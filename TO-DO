@@ -1,0 +1,88 @@
+Hyperspace Explorer TO-DO											2004-04-18
+=========================
+
+Beautifications:
+----------------
+ - clean up code; remove GeneralException and combind StdAfx.* with Misc.C
+
+ - clean up root folder; understand which files can be moved to the config	
+   subdir and how to tell autoconf about that
+
+ - ease code bloat in the *DialogImpl classes, remove the duplicate code to a
+   parent class (or make it global functions, ferchrissake)
+
+ - develop a smarter directory structure, especially under src/
+
+ - commit to CVS
+
+ - comment code									ALWAYS
+
+ - use exceptions for error handling
+
+ - develop a rc-file and a shared directory system (for the documentation and	QUICK
+   for precompiled functions)
+
+ - adjust distances of near/far clipping planes
+
+Lower priority Bugs:
+--------------------
+ - for checking against crashes, change all pointers to QObjects to 
+   QGuardedPtr<QObject>, and check them for validity before accessing them
+   pity the Function objects can't be guarded like this, think of something else
+
+ - crashes when changing the object during animation, stop animation first	QUICK
+
+ - Objects don't notice the changes made and applied in the ValuesDialog	SOON
+
+ - finish ValuesDialog integration
+
+ - transparent polygons (the transparence simply doesn't work!)
+
+ - better polygon drawing quality, especially: avoid drawing more than one
+   poly in one place
+
+ - C4DDoc::[tuv]steps should depend on Function::tsteps, instead of
+   SpongeDlg::tsteps			
+
+ - usable (ie. showing all information), resizable and toggle-able statusbar
+
+ - crashes when steps not equal
+
+ - free memory in destructors
+
+ - check for memory leaks, there should be thousands of them
+    + Function::~Function () and Function::ReInit () and their descendants
+
+
+New Features:
+-------------
+ - rendering to pixmaps								QUICK
+
+ - adding default parameters to objects and functions, as well as default 	SOON
+   bounds, especially for the custom functions
+
+ - scripting - execute scripts and render to pixmaps, which are written to disk
+
+ - let user write own custom functions in C++, which can be compiled from the
+   FunctionDialogs.
+
+ - 4D depthcue for coordinate cross
+
+ - more (and more flexible) functions
+    + morphing between functions
+    + animated parameter values
+    + Custom Complex functions don't work	
+    + bodies in warped space							
+    + four-dimensional voxel sets (wow!)					
+
+ - output to POV-ray								
+
+Optimizations:
+--------------
+ - accelerate GL drawing - PROFILE! it is almost inconceivable that the 3D	
+   drawing takes as long as the 4D transformations				
+
+ - multithreaded 4D transform, projection and (maybe) drawing			
+
+ - optimize transform: compute matrix only once, pass it down			
+

@@ -1,0 +1,36 @@
+HyperspaceExplorer Changelog
+=============================
+
+	release 0.2.0:
+	* rc-file system added; custom function compilation and installation now takes
+	place in ~/.HyperspaceExplorer
+	DONE, 2004-04-20
+	* make dist now works
+	DONE, 2004-04-20
+	* sometimes starts up with a damaged hypercube
+	FIXED, 2004-04-19
+	* FunctionDialogImpl::loadFunction() can't find the mangled function signature
+	FIXED, 2004-04-19
+	* switched to autoconf - builds now with ./configure; make
+	DONE, 2004-04-18
+	* animation (timer event) 
+	DONE, 2004-03-20
+
+	release 0.1.9:
+	* custom functions in C++ syntax, which are compiled and read with dlopen ()
+	DONE, 2002-09-14
+	* online help in HTML
+	DONE, 2002-09-13
+
+	older versions:
+	* warn when mem exceeded
+	DONE, 2001-06-12
+	* separation of the transformation / projection / drawing into a specialized
+	  class - or make them a part of class Function, to make them overridable by
+	  derived classes
+	DONE, 2000-11-30
+	* hypermengersponge
+	DONE, 2000-11-30
+	* surfaces in 4-space, as well as C -> C functions
+	DONE, 2000-12-08
+

@@ -1,0 +1,49 @@
+Installation instructions for Hyperspace Explorer V0.1.9a
+=========================================================
+
+Source distribution
+===================
+
+Requirements:
+Multithreaded Qt >= 3.0
+OpenGL libraries and header files, MesaGL does fine
+
+Building the executable:
+> tar zxf HyperspaceExplorer.tar.gz
+> cd HyperspaceExplorer
+> ./configure
+> make
+>make install
+
+If any errors occur, you are on your own, this is still alpha code. You 
+might drop me a line anyway, maybe I am able to help you, and I am highly 
+interested in bug reports.
+
+Binary distribution
+===================
+
+Requirements:
+as above
+
+Installing:
+> tar zxf HyperspaceExplorer-Linux-i586-160902.tar.gz 
+
+Running
+=======
+
+> cd HyperspaceExplorer
+> export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.
+> ./HyperspaceExplorer
+
+You definitely should run the program from it's own directory if you want to
+define your own functions, because it compiles them as dynamically loadable
+libraries, which are compiled and stored from HyperspaceExplorer's current
+working directory.
+
+Contacting the author
+=====================
+
+email me: scout@hyperspace-travel.de. 
+Tell me whatever you want about the program. If you find any interesting or 
+nice-looking functions, send them to me as well. I'd like to include them with
+the next version.
