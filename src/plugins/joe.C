@@ -1,0 +1,11 @@
+#include "numclass.H"
+    Vector f (double x, double y, double z) {
+      static Vector F (4);
+      F[0] = x;
+      F[1] = y;
+      F[2] = z;
+      F[3] = x*x*pow(y*y,sin(z*z));
+
+      return F; }
+
+    char *symbolic () { return "x*x*pow(y*y,sin(z*z))"; }

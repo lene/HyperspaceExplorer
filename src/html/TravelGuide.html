@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>hyperspace travel guide</title>
+     
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+</head>
+<body bgcolor="#000000" text="#cccccc">
+<h2><font color="#ff0000">Hyperspace Travel Guide</font></h2>
+<h3 align="left"><font color="#ff0000">Basics about displaying objects and
+projection</font></h3>
+<p><font color="#c0c0c0">The way to visualizing four- and even higherdimensional
+  objects is, while intellectually demanding (to say the least), mathematically
+  straightforward. Just go ahead and project objects from 4-space to the familiar
+   3-space, as you project objects from 3-space to a 2-plane. How you go
+about    projecting objects from three to two dimensions, has been known
+for centuries.    </font></p>
+<p><font color="#c0c0c0">[here goes a picture]</font></p>
+<p><font color="#c0c0c0">All you need is an eye ('camera' in computer-graphics
+  language), an object you want to visualize and an image plane to project
+the    vertices defining the object onto, one by one. You can calculate the
+screen    coordinates as</font></p>
+<p align="center"><var><font color="#c0c0c0">x<font size="-4">scr </font>=
+x<font size="-4">obj</font>    * (z<font size="-4">scr</font> - z<font
+ size="-4">cam</font>) / (z<font size="-4">obj</font>    - z<font
+ size="-4">cam</font>)</font></var></p>
+<p align="center"><var><font color="#c0c0c0">y<font size="-4">scr </font>=
+y<font size="-4">obj</font>    * (z<font size="-4">scr</font> - z<font
+ size="-4">cam</font>) / (z<font size="-4">obj</font>    - z<font
+ size="-4">cam</font>)</font></var></p>
+<p align="left">This projection method extends readily to the projection from
+   four-dimensional to three-dimensional space:</p>
+<p align="left">[no picture here, well...]</p>
+<p align="center"><var><font color="#c0c0c0">x<font size="-4">scr </font>=
+x<font size="-4">obj</font>    * (w<font size="-4">scr</font> - w<font
+ size="-4">cam</font>) / (w<font size="-4">obj</font>    - w<font
+ size="-4">cam</font>)</font></var></p>
+<p align="center"><var><font color="#c0c0c0">y<font size="-4">scr </font>=
+y<font size="-4">obj</font>    * (w<font size="-4">scr</font> - w<font
+ size="-4">cam</font>) / (w<font size="-4">obj</font>    - w<font
+ size="-4">cam</font>)</font></var></p>
+<p align="center"><var><font color="#c0c0c0">z<font size="-4">scr </font>=
+z<font size="-4">obj</font>    * (w<font size="-4">scr</font> - w<font
+ size="-4">cam</font>) / (w<font size="-4">obj</font>    - w<font
+ size="-4">cam</font>)</font></var></p>
+<p align="left">Of course, to view the three-dimensional projection of a four-dimensional
+   object on a computer monitor (or a piece of paper, or whatever means of
+viewing    pictures is available to you), you must project it down another
+dimension, onto    a two-dimensional plane.</p>
+<p align="left">While this part is reasonably straightforward, there are some
+   pitfalls.</p>
+<p align="left">One issue is that we have viewed the camera as stationary
+to keep    the math simple. If you want to see your object from different
+angles, there    are two possibilities: move the camera around the object,
+or rotate the object.    In my work, i have taken the latter approach. This
+way a counterintuitive phenomenon    appears: in 4-space, rotations do not
+take place around axes. They take place    around planes.</p>
+<p align="left">The math for rotations, though, remains the same. In 3-space,
+  a rotation around the <var>x</var>-axis by an angle of <font
+ face="Symbol">a    </font>is described by the following matrix:</p>
+<div align="center">  
+<table width="50%" border="1">
+    <tbody>
+    <tr>
+        <td width="30%">                 
+      <div align="center">1</div>
+      </td>
+      <td width="35%">                 
+      <div align="center">0</div>
+      </td>
+      <td width="35%">                 
+      <div align="center">0</div>
+      </td>
+    </tr>
+    <tr>
+        <td width="30%">                 
+      <div align="center">0</div>
+      </td>
+      <td width="35%">                 
+      <div align="center">cos <font face="Symbol">a</font></div>
+      </td>
+      <td width="35%">                 
+      <div align="center">-sin <font face="Symbol">a</font></div>
+      </td>
+    </tr>
+    <tr>
+        <td width="30%">                 
+      <div align="center">0</div>
+      </td>
+      <td width="35%">                 
+      <div align="center">sin <font face="Symbol">a</font></div>
+      </td>
+      <td width="35%">                 
+      <div align="center">cos </div>
+      </td>
+    </tr>
+     
+  </tbody>
+</table>
+</div>
+<div align="left"></div>
+<p align="center">&nbsp;</p>
+<p align="left">In 4-space, this operation would be called a rotation around
+the    yz-plane and be expressed as follows:</p>
+<div align="center">  
+<table width="50%" border="1">
+    <tbody>
+    <tr>
+        <td width="20%">                 
+      <div align="center">1</div>
+      </td>
+      <td width="29%">                 
+      <div align="center">0</div>
+      </td>
+      <td width="30%">                 
+      <div align="center">0</div>
+      </td>
+      <td width="21%">                 
+      <div align="center">0</div>
+      </td>
+    </tr>
+    <tr>
+        <td width="20%">                 
+      <div align="center">0</div>
+      </td>
+      <td width="29%">                 
+      <div align="center">cos <font face="Symbol">a</font></div>
+      </td>
+      <td width="30%">                 
+      <div align="center">-sin <font face="Symbol">a</font></div>
+      </td>
+      <td width="21%">                 
+      <div align="center">0</div>
+      </td>
+    </tr>
+    <tr>
+        <td width="20%">                 
+      <div align="center">0</div>
+      </td>
+      <td width="29%">                 
+      <div align="center">sin <font face="Symbol">a</font></div>
+      </td>
+      <td width="30%">                 
+      <div align="center">cos <font face="Symbol">a</font></div>
+      </td>
+      <td width="21%">                 
+      <div align="center">0</div>
+      </td>
+    </tr>
+    <tr>
+        <td width="20%">                 
+      <div align="center">0</div>
+      </td>
+      <td width="29%">                 
+      <div align="center">0</div>
+      </td>
+      <td width="30%">                 
+      <div align="center">0</div>
+      </td>
+      <td width="21%">                 
+      <div align="center">1</div>
+      </td>
+    </tr>
+     
+  </tbody>
+</table>
+<p>&nbsp;</p>
+</div>
+<p align="left">There are only three new rotations in four-space as opposed
+to    three-space, the ones which include the <var>w</var>-axis. As an example,
+the    rotation matrix around the <var>xw</var>-plane looks like:</p>
+<div align="center">  
+<table width="50%" border="1">
+    <tbody>
+    <tr>
+        <td width="32%">                 
+      <div align="center">cos <font face="Symbol">a</font></div>
+      </td>
+      <td width="17%">                 
+      <div align="center">0</div>
+      </td>
+      <td width="16%">                 
+      <div align="center">0</div>
+      </td>
+      <td width="35%">                 
+      <div align="center">-sin <font face="Symbol">a</font></div>
+      </td>
+    </tr>
+    <tr>
+        <td width="32%">                 
+      <div align="center">0</div>
+      </td>
+      <td width="17%">                 
+      <div align="center">1</div>
+      </td>
+      <td width="16%">                 
+      <div align="center">0</div>
+      </td>
+      <td width="35%">                 
+      <div align="center">0</div>
+      </td>
+    </tr>
+    <tr>
+        <td width="32%">                 
+      <div align="center">0</div>
+      </td>
+      <td width="17%">                 
+      <div align="center">0</div>
+      </td>
+      <td width="16%">                 
+      <div align="center">1</div>
+      </td>
+      <td width="35%">                 
+      <div align="center">0</div>
+      </td>
+    </tr>
+    <tr>
+        <td width="32%">                 
+      <div align="center">sin <font face="Symbol">a</font></div>
+      </td>
+      <td width="17%">                 
+      <div align="center">0</div>
+      </td>
+      <td width="16%">                 
+      <div align="center">0</div>
+      </td>
+      <td width="35%">                 
+      <div align="center">cos <font face="Symbol">a</font></div>
+      </td>
+    </tr>
+     
+  </tbody>
+</table>
+</div>
+<p align="left">&nbsp;</p>
+<p align="left">The other pitfall i want to mention: do not confuse the 4D
+and    the 3D viewpoint. The former defines your projection from four- to
+three-space,    the latter the projection from three- to two-space. They are
+totally independent.    You can project an object from 4D to 3D, and then
+change the 3D viewpoint as    you wish, without having to change the 4D viewpoint.</p>
+<h3 align="left"><font color="#ff0000">Some interesting four-dimensional objects</font></h3>
+<h4 align="left"><font color="#ff0000">Hypersphere</font></h4>
+<font color="#c0c0c0">The hypersphere is (arguably) the simplest four-dimensional
+object.</font> Its surspace (please help <a
+ href="mailto:scout@hyperspace-travel.de">me</a>  with the nomenclature, if
+you can) consists of all points which have a fixed distance  from its center
+point. 
+<h4 align="left"><font color="#ff0000">Hypercube<img src="Hypercube.gif"
+ alt="" width="100" height="100" align="right"></font></h4>
+<p>here i should say some witty things about hypercubes. but my brain is empty
+   now. </p>
+<h4 align="left"><font color="#ff0000">Hypertori</font></h4>
+There are two generalizations of a torus to 4-space. 
+<h4 align="left"><font color="#ff0000">Generic functions from R&sup3;-&gt;R</font></h4>
+.
+<h4 align="left"><font color="#ff0000">Generic functions from R&sup3;-&gt;R<font
+ size="-4">4</font></font></h4>
+Just as you can mathematically describe any surface in 3-space as a function
+of  two variables, you can describe any surspace in 4-space as a function
+of three  variables. 
+<h4 align="left"><font color="#ff0000">Generic functions from C-&gt;C</font></h4>
+.
+<h4 align="left"><font color="#ff0000">Menger Sponge</font><img
+ src="Mengersponge.gif" alt="" width="64" height="64" align="right"></h4>
+<p><br>
+One of my favourites... a three-dimensional Menger Sponge is constructed this
+   way:</p>
+<p>Take a cube.</p>
+<p>Subdivide each face of the cube in 9 squares. You'll slice the cube in
+27 smaller    cubes.</p>
+<p>Remove the cube in the middle of every face, as well as the centermost
+cube.</p>
+<p>This is what i call a 'level 1' Menger Sponge. To construct a level <var>n
+  </var>sponge, assemble 20 level <var>n</var>-1 sponges in the above way.</p>
+<p>A four-dimensional sponge is created similarly:<img
+ src="Hypersponge.gif" alt="" width="100" height="100" align="right"></p>
+<p>Take a hypercube.</p>
+<p>Subdivide each surspace of the cube in 27 cubes. You'll slice the hypercube
+  in 81 smaller hypercubes.</p>
+<p>Remove the hypercube in the middle of every surspace, as well as the centermost
+  hypercube.<br>
+<br>
+</p>
+<p></p>
+<h4 align="left"><font color="#ff0000">Regular 4-Simplex<img
+ src="Hypersimplex.gif" alt="" width="100" height="100" align="right"></font></h4>
+<p align="left">Lacking a better name for the four-dimensional analog of a
+regular    tetrahedron, I call it "Regular 4-simplex". You can construct a
+4-simplex    fron a tetrahedron (or 3-simplex) by defining a point on the
+<var>w</var>-axis    (or any point that does not lie in a 3-space with the
+tetrahedron) and connecting    it to all four vertices of the tetrahedron.</p>
+<p align="left">Any four-dimensional object can be approximated as a ... of
+4-simplices,    just as any surface can be approximated by triangles and every
+body by tetrahedra.</p>
+<p align="left">&nbsp;</p>
+<br>
+<br>
+</body>
+</html>
