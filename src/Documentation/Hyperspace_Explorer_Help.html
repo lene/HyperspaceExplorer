@@ -1,0 +1,525 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Hyperspace Explorer Help</title>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+</head>
+<body>
+<h1>Hyperspace Explorer Online Help</h1>
+<h2>Contents</h2>
+<a href="#Introduction">Introduction<br>
+<br>
+</a><a href="#Object_Manipulation">Object translation/rotation with the
+mouse and modifier keys<br>
+<br>
+</a><a href="#Menus">The menus</a> <br>
+<br>
+&nbsp;&nbsp;&nbsp; <a href="#Object">The "Object" submenu<br>
+<br>
+</a>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a href="#fR3R">f:R&sup3;-&gt;R</a><br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a href="#Objects">Objects</a><br>
+<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a href="#Surfaces">Surfaces</a><br>
+<br>
+&nbsp;&nbsp;&nbsp; <a href="#Appearance">The "Appearance" submenu</a><br>
+<br>
+&nbsp;&nbsp;&nbsp; <a href="#Animation">The "Animation" submenu<br>
+</a><br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a href="#Benchmark">Benchmark</a><br>
+<br>
+&nbsp;&nbsp;&nbsp; <a href="#Help">The "Help" submenu</a><br>
+<br>
+&nbsp;&nbsp;&nbsp; <a href="#Quit">Quit</a><br>
+<br>
+<a href="#Parameter_Window">The Parameter Window</a><br>
+<br>
+<a href="#To_Do">To Do</a><br>
+<br>
+<br>
+<hr style="width: 100%; height: 2px;">
+<h2><a name="Introduction" href="Introduction"></a>Introduction<br>
+</h2>
+<div align="justify">
+<div>Just as you can define objects in three-dimensional space, you can
+define objects with four dimensions. And just as three-dimensional
+objects can be projected onto a plane, four-dimensional objects can be
+projected into three-space.</div>
+<div>This program uses this approach to acquaint you with a couple of
+four-dimensional objects. Four-dimensional objects are projected to
+three dimensions, and then displayed on the computer monitor (after a
+further projection to two dimensions).</div>
+<div>Every object thus has a is viewed from a viewpoint in four
+dimensions, as well as a viewpoint in three dimensions. That leaves
+freedom for plenty of viewing transformations. You can translate and
+rotate what is displayed in three and four dimensions, to get a better
+feeling for the objects and for four-space manipulations.</div>
+<div>when you start this program, you will see nothing spectacular,
+just a colorful cube on the screen. The purpose of this document is to
+enable you to see what the four dimensional structure of this cube is,
+and to explore many other four dimensional objects. </div>
+<br>
+<div align="center"> <img src="Hypercube.png"
+ title="Hyperspace Explorer's start window"
+ alt="Hyperspace Explorer's start window"
+ style="width: 300px; height: 315px;"><br>
+The start window of Hyperspace Explorer<br>
+</div>
+</div>
+<hr width="100%" size="2">
+<h2><a name="Object_Manipulation"></a>Object translation/rotation with
+the mouse and modifier keys</h2>
+You manipulate the displayed object pressing a mouse button, optionally
+holding a modifier key, and dragging the mouse.<br>
+LMB stands for left mouse button, MMB for middle mouse button, RMB for
+right mouse button. <br>
+<br>
+<table cellpadding="2" cellspacing="1" border="0" width="100%">
+  <tbody>
+    <tr>
+      <td valign="top">LMB+left/right<br>
+      </td>
+      <td valign="top">rotate about y-axis<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">LMB+up/down<br>
+      </td>
+      <td valign="top">rotate about x-axis<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">LMB+MMB+up/down<br>
+      </td>
+      <td valign="top">rotate about z-axis<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">MMB+left/right, CTRL+LMB+left/right<br>
+      </td>
+      <td valign="top">translate along x-axis<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">MMB+up/down, CTRL+LMB+up/down<br>
+      </td>
+      <td valign="top">translate along y-axis<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">LMB+MMB+left/right, CTRL+MMB+up/down<br>
+      </td>
+      <td valign="top">translate along z-axis<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">CTRL+MMB+left/right<br>
+      </td>
+      <td valign="top">translate along w-axis<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">SHIFT+LMB+left/right<br>
+      </td>
+      <td valign="top">rotate about xy-plane ( = z-axis)<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">SHIFT+LMB+up/down<br>
+      </td>
+      <td valign="top">rotate about xz-plane ( = y-axis)<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">SHIFT+MMB+up/down<br>
+      </td>
+      <td valign="top">rotate about yz-plane ( = x-axis)<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">SHIFT+MMB+left/right<br>
+      </td>
+      <td valign="top">rotate about xw-plane<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">SHIFT+RMB+left/right<br>
+      </td>
+      <td valign="top">rotate about yw-plane<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">SHIFT+RMB+up/down<br>
+      </td>
+      <td valign="top">rotate about zw-plane<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+&nbsp;<br>
+note that rotating about the xy-plane, the xz-plane and the yz-plane in
+four-space is the same as rotating about z-axis, y-axis and x-axis in
+three-space.<br>
+<br>
+With a double click you can restore all transforms in four-space back
+to original values.<br>
+<br>
+If you press the ALT key while performing any of these transforms, your
+mouse movement is taken as an indication of how fast the object should
+rotate, and an animation is started rotating the object about the given
+axes/planes. You can indicate more than one direction, if you add
+another movement after the animation has started.<br>
+Double clicking stops the animation, as well as restoring the
+four-dimensional transform.<br>
+You can do almost everything, such as changing the display properties
+or changing the displayed object, while the animation is running.<br>
+<br>
+<hr width="100%" size="2">
+<h2><a name="Menus"></a>The menus</h2>
+<blockquote>
+  <h3><a name="Object"></a>The "Object" submenu</h3>
+</blockquote>
+<blockquote>You select the four-dimensional object to be displayed with
+the submenu titled "Object". There is a load of choices available.<br>
+</blockquote>
+<blockquote>
+  <blockquote>
+    <h4><a name="fR3R"></a>The "f:R&sup3;-&gt;R" submenu</h4>
+Under this menu you find a couple of three-dimensional "surspaces" in
+four-space (just as there are two-dimensional surfaces in three-space).
+These "surspaces" are described by functions of the type <br>
+    <blockquote><u>x</u> = (<i>x</i>, <i>y</i>, <i>z</i>, <i>w</i>)<br>
+where <i>w </i>= f (<i>x</i>, <i>y</i>, <i>z</i>)<br>
+    </blockquote>
+(up to now, only functions where <i>w</i> = f (<span
+ style="font-style: italic;">r</span>), <span
+ style="font-style: italic;">r</span> = sqrt (<i>x</i>&sup2;+<i>y</i>&sup2;+<i>z</i>&sup2;),&nbsp;
+are implemented)<br>
+    <br>
+and of the type <br>
+    <blockquote><u>x</u> = R&middot;(sin (<i>psi</i>)&middot;sin (<i>theta</i>)&middot;cos
+(<i>phi</i>), sin (<i>psi</i>)&middot;sin (<i>theta</i>)&middot;sin (<i>phi</i>),
+sin (<i>psi</i>)&middot;cos (<i>theta</i>), cos (<i>psi</i>))<br>
+    </blockquote>
+    <blockquote> where R = f (<i>x, y, z</i>),<br>
+    </blockquote>
+in other words, four-dimensional polar functions.<br>
+    <h4><a name="Objects"></a>The "Objects" submenu</h4>
+Under this menu you find some four-dimensional objects. These objects
+are generalizations of real objects from three-space, such as the cube,
+the sphere or the tetrahedron.<br>
+    <b><br>
+Hypersphere:</b>&nbsp;&nbsp;&nbsp; The four-dimensional version of a
+circle or sphere, an object with a surface (or "surspace") which is the
+same distance from the center in every point.<br>
+    <b><br>
+Hypercube:</b>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; The
+four-dimensional version of a cube. In 4D it has eight "surspaces", each
+consisting of a cube.<br>
+    <b><br>
+Hyperpyramid:</b> The four-dimensional version of a tetrahedron or
+four-sided pyramid. In 4D it has five "surspaces", each consisting of a
+tetrahedron.<br>
+    <b><br>
+Menger Sponge:&nbsp;&nbsp;&nbsp; &nbsp; </b>The four-dimensional
+relative of a Menger sponge. <br>
+If you do not know what a Menger sponge is: A Menger sponge is a
+fractal created by the following process. <br>
+You take a cube and slice it into 27 (3x3x3) small cubes. <br>
+Then you remove all subcubes which do not have an edge in common with
+the original cube. In effect, you remove the cross-shaped interior of
+the cube. <br>
+Then you go ahead with this operation for all the subcubes which have
+remained. <br>
+And so on, ad infinitum.<br>
+    <br>
+    <div align="center"> &nbsp;<img src="MengerSponge.png"
+ title="A three-dimensional Menger sponge"
+ alt="A three-dimensional Menger sponge"
+ style="width: 300px; height: 309px;"><br>
+A three-dimensional Menger sponge<br>
+    <br>
+    </div>
+To the four-dimensional Menger sponge there are three parameters: <br>
+    <ul>
+      <li>The level of the sponge, i.e. the number of times the
+described process is repeated. For an actual fractal, the number would
+be infinite. That, of course, cannot be done in our less-than-ideal,
+CPU- and RAM-bound world. Do not set this above 3, unless you have a <span
+ style="font-style: italic;">huge</span> machine and/or know exactly,
+what you're doing. This number is of course an integer.</li>
+      <li>The distance from the center, up to which hypercubes are
+taken out of the surrounding cube. If you set this to 1, you get
+something like a foam. At 2, you get the four-dimensional equivalent of
+the sponge depicted and described above. Set to three, you get something
+like dust, with the subcubes disconnected from each other.<br>
+For higher values of distance, you can choose higher values of the
+level too, before your computer gives up.<br>
+      </li>
+      <li>The size of the object.<br>
+      </li>
+    </ul>
+    <b>Sierpinski Gasket:</b>&nbsp;&nbsp; The four-dimensional relative
+of a Sierpinski Gasket.<br>
+A Sierpinski gasket is similar in concept to a Menger sponge, but it
+takes a tetrahedron as a basis.<br>
+The four-dimensional Sierpinski gasket takes two parameters:<br>
+    <ul>
+      <li>The level, defined as in the Menger sponge. With Sierpinski
+gaskets, you can go a little higher on this, up to 6, say.</li>
+      <li>The size of the object.<br>
+      </li>
+    </ul>
+    <span style="font-weight: bold;">&nbsp;<br>
+Torus 1:&nbsp;&nbsp;&nbsp; </span>There is more than one way to
+generalize a torus from three to four dimensions. In three dimensions,
+you create a torus by taking a circle with radius <span
+ style="font-style: italic;">r</span>, and rotating it around another
+center, in a second circle with radius <span style="font-style: italic;">R</span>.<br>
+This generalization to four-space&nbsp; takes a circle of radius <i>rho</i>,
+rotates it about a centre with a distance of <i>r</i> (defining a torus
+in three dimensions), and rotates <em>that</em> about a centre in the
+distance <i>R</i>.<br>
+    <span style="font-weight: bold;"><br>
+Torus 2:</span>&nbsp;&nbsp;&nbsp; This 4-torus is defined by rotating a
+sphere of radius <i>r</i> about a centre in distance <i>R</i>.<br>
+    <h4><a name="Surfaces"></a>The "Surfaces" submenu</h4>
+Under this menu you find a couple of two-dimensional surfaces in
+four-space, which are described by functions of the type <br>
+    <blockquote><u>x</u> = <u>x</u> (<i>u, v</i>) and<br>
+      <u>x</u> = <u>x</u> (<i>theta, phi</i>).<br>
+    </blockquote>
+    <h4><a name="CustomFunctions"></a>Custom Functions</h4>
+    <img src="CustomScalarFunction.png" title="CustomScalarFunction"
+ alt="CustomScalarFunction" style="width: 361px; height: 179px;"><br>
+    <br>
+    <img src="CustomPolarFunction.png" title="CustomPolarFunction"
+ alt="CustomPolarFunction" style="width: 362px; height: 212px;"><br>
+    <br>
+    <img src="CustomComplexFunction.png" title="CustomComplexFunction"
+ alt="CustomComplexFunction" style="width: 361px; height: 231px;"><br>
+    <br>
+    <img src="CustomSurface.png" title="CustomSurface"
+ alt="CustomSurface" style="width: 361px; height: 322px;">&nbsp;<br>
+    <br>
+  </blockquote>
+  <h3><a name="Appearance"></a>The "Appearance" submenu</h3>
+  <blockquote>
+    <h4>Colors</h4>
+Coloration can be switched on or off. You usually want colors, as they
+greatly aid you eye in understanding the spatial properties of the
+displayed object. Turning off colors gives a slight performance
+advantage. Colors are enabled by default.<br>
+    <h4>Shading<br>
+    </h4>
+Shading means the smooth coloration from one point of the object to
+another. You almost certainly want this, as everything looks awful
+without it. Turning off shading gives a slight performance advantage.
+Shading is enabled by default.<br>
+    <h4>Depth Cue</h4>
+Depth cue, also called fog, paints points which are further away from
+the viewer in three-dimensional space darker. This greatly helps you to
+understand the three-dimensional properties of an object. Turning it off
+gives a slight performance advantage. Depth cue is enabled by default.<br>
+    <div align="center"> <br>
+    <img src="Hypercube_Depthcue.png" title="Depth cue on"
+ alt="Depth cue on" style="width: 300px; height: 331px;"><br>
+Depth cue on<br>
+    <br>
+    <img src="Hypercube_No_Depthcue.png" title="Depth cue off"
+ alt="Depth cue off" style="width: 300px; height: 331px;"><br>
+Depth cue off </div>
+    <h4>4D Depth Cue</h4>
+4D depth cue is the four-dimensional analogon to Depth cue, painting
+points which are further away <span style="font-style: italic;">in
+four-space</span> darker. Turning it off gives a moderate performance
+advantage. It is disabled by default.
+    <h4>Transparence / Line Antialiasing</h4>
+Transparence is used when you view a solid object, Line AA is used when
+viewing an object in wireframe. This makes an object look smoother and
+thus "better". Turning it on incurs a huge performance hit, so it is
+disabled by default.<br>
+    <h4>Lighting</h4>
+You can't turn off lighting, because without it everything would look
+just flat and white. I don't even know why I left this menu point.<br>
+    <h4>Wireframe / Solid</h4>
+You can switch between wireframe display and solid display of an
+object. The default is solid.<br>
+    <div align="center"> <br>
+    <img src="Hypercube_Wireframe.png"
+ title="The Hypercube displayed as wireframe"
+ alt="The Hypercube displayed as wireframe"
+ style="width: 300px; height: 331px;"><br>
+The Hypercube displayed as wireframe<br>
+    </div>
+    <h4>Coordinate Cross<br>
+    </h4>
+You can display a coordinate cross to aid you in distinguishing which
+direction is which axis. The x-axis is colored red, the y-axis green,
+the z-axis blue and the w-axis purple.<br>
+    <div align="center"> <br>
+&nbsp;<img src="Hypercube_Coordinates.png" title="The coordinate cross"
+ alt="The coordinate cross" style="width: 300px; height: 331px;"><br>
+The coordinate cross<br>
+    </div>
+  </blockquote>
+  <br>
+  <h3><a name="Animation"></a>The "Animation" submenu</h3>
+  <blockquote>
+    <h4><a name="RenderToImages"></a>Render to Images</h4>
+TBD. Don't use it yet.<br>
+    <h4><a name="Benchmark"></a>Benchmark</h4>
+Okay, this menu point <span style="font-style: italic;">is</span>
+somewhat of a misnomer. What it does is rotating the current object in
+the current display space first in four-space, then in three-space, and
+then gives you the time it took and the framerate for each. <br>
+Warning: this is not interruptible,and it may take quite a while,
+depending on the object you display,the"Appearance" options you
+enabled, and your hardware!<br>
+    <h4><a name="AnimationSettings"></a>Settings</h4>
+TBD.<br>
+    <br>
+  </blockquote>
+  <h3><a name="Help"></a>The "Help" submenu</h3>
+</blockquote>
+<blockquote>
+  <blockquote>
+    <h4>Online Help</h4>
+Obviously, you already found out what this item is for.<br>
+    <h4>About</h4>
+Information about Hyperspace Explorer<br>
+    <h4>About Qt</h4>
+Information about Qt, the toolkit heavily used to program Hyperspace
+Explorer<br>
+  </blockquote>
+</blockquote>
+<blockquote>
+  <h3><a name="Quit"></a>Quit</h3>
+Exits the program, no questions asked.<br>
+  <br>
+</blockquote>
+<hr style="width: 100%; height: 2px;">
+<blockquote> </blockquote>
+<h2><a name="Parameter_Window"></a>The Parameter Window</h2>
+<div align="center"> <img src="ParameterWindow.png"
+ title="The Parameter Window" alt="The Parameter Window"
+ style="width: 345px; height: 429px;"><br>
+The Parameter Window </div>
+<br>
+<blockquote>
+  <h3>Grid Size and Bounds</h3>
+You can enter the roughness of the grid at which the function values
+are sampled. By default, functions are displayed on a 5x5x5 grid, which
+is very inaccurate and looks rough. The drawback of a higher resolution
+is, that the number of points sampled scales with the cube of the grid
+size, so that for a grid that is twice as large, you'll have eight times
+as many points as before, and the performance drops to one eigth.<br>
+The bounds span the parameter space for the given function.<br>
+For objects you find under the submenu "f:R&sup3;-&gt;R" you can
+specify the grid in three dimensions (t, u, v), for objects from the
+submenu "Surfaces" you need two (u and v), for  objects from the submenu
+"Objects" you need none, as these are not sampled on a grid.<br>
+  <h3>Function and Parameters</h3>
+TBD.<br>
+</blockquote>
+Notice that while changes on the "Grid Size and Bounds" part of the
+window take effect immediately after you pressed the "Apply" button,
+changes in the "Function and Parameters" part do not. In that case, you
+first have to (re-)select the object or function you are setting the
+parameters for.<br>
+<br>
+<hr style="width: 100%; height: 2px;">
+<blockquote> </blockquote>
+<h2><a name="To_Do"></a>To Do</h2>
+<ul>
+  <li>Finishing (at least to a point where it is understandable) this
+documentation</li>
+  <ul>
+    <li style="color: rgb(255, 0, 0);">Fill in the missing descriptions
+for menu points, custom functions (if &amp; when they work) and the
+parameter window</li>
+    <li>Make the online help function path independent<br>
+    </li>
+    <li>Add documentation for custom functions</li>
+    <li>Readable introduction</li>
+  </ul>
+  <li>Debugging</li>
+  <ul>
+    <li style="color: rgb(255, 0, 0);">comment code</li>
+    <li style="color: rgb(255, 0, 0);">loading custom functions does
+not work (name mangling seems to blame?!)<br>
+    </li>
+    <li>crashes when steps in t, u, v not equal</li>
+    <li>free memory in destructors</li>
+    <li>check for memory leaks, there should be thousands of them</li>
+    <ul>
+      <li>Function::~Function () and Function::ReInit () and their
+descendants</li>
+    </ul>
+  </ul>
+  <li>Optimizing</li>
+  <ul>
+    <li>optimize transform: compute matrix only once, pass it down</li>
+    <li>accelerate GL drawing - PROFILE! it is almost inconceivable
+that the 3D drawing takes as long as the 4D transformations</li>
+    <li>multithreaded 4D transform, projection and (maybe) drawing</li>
+    <li style="color: rgb(255, 0, 0);">I assume I can strip most of the
+libraries from the linker command line in the Makefile</li>
+  </ul>
+  <li>New features</li>
+  <ul>
+    <li>4D depthcue for coordinate cross</li>
+    <li>adjust the color values for 3D and 4D depth cue<br>
+    </li>
+    <li>adjust distances of near/far clipping planes</li>
+    <li>finish ValuesDialog integration</li>
+    <li>more (and more flexible) functions</li>
+    <ul>
+      <li>morphing between functions</li>
+    </ul>
+    <ul>
+      <li>animated parameter values</li>
+    </ul>
+    <ul>
+      <li>Custom Complex functions don't work&nbsp;</li>
+    </ul>
+    <ul>
+      <li>bodies in warped space<br>
+      </li>
+    </ul>
+    <li>transparent polygons (the transparence simply doesn't work!)</li>
+    <li>better polygon drawing quality, especially: avoid drawing more
+than one poly in one place</li>
+    <li>output to POV-ray</li>
+    <li style="color: rgb(255, 0, 0);">output to pictures, especially
+animations</li>
+    <ul style="color: rgb(255, 0, 0);">
+      <li>this makes necessary to move the creation of GL display lists
+in the module C4DView to initializeGL () (or resizeGL () or paintGL ())
+from the current location at Redraw ()<br>
+      </li>
+    </ul>
+    <li>C4DDoc::[tuv]steps should depend on Function::tsteps, instead
+of SpongeDlg::tsteps</li>
+    <li>usable (ie. showing all information), resizable and toggle-able
+statusbar<br>
+      <br>
+    </li>
+  </ul>
+</ul>
+<br>
+</body>
+</html>

@@ -1,0 +1,528 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Deutsch (Deutschland) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#ifdef _WIN32
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 7, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\4D.rc2""  // Nicht mit Microsoft Visual C++ bearbeitete Ressourcen\r\n"
+    "#include ""l.deu\\afxres.rc""          // Standardkomponenten\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\4D.ico"
+IDR_4DTYPE              ICON    DISCARDABLE     "res\\4DDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "&Datei"
+    BEGIN
+        MENUITEM "&Print\tStrg+P",              ID_DATEI_PRINT, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "&Exit",                       ID_APP_EXIT
+    END
+    POPUP "Function"
+    BEGIN
+        MENUITEM "Hypersphere",                 ID_FUNCTION_HYPERSPHERE
+        MENUITEM "Torus (1)",                   ID_FUNCTION_TORUS1
+        MENUITEM "Torus (2)",                   ID_FUNCTION_TORUS2
+        POPUP "f: R³ -> R"
+        BEGIN
+            MENUITEM "w = 1/(r²+1/2)",              ID_FUNCTION_ONE_OVER_R2
+            MENUITEM "w = sin (r²)",                ID_FUNCTION_SIN_R2
+            MENUITEM "w = exp (-r²)",               ID_FUNCTION_EXP_MINUS_R2
+            MENUITEM "Gravitation Potential",       ID_FUNCTION_FR3R_GRAVITATIONPOTENTIAL
+
+        END
+        POPUP "Polar"
+        BEGIN
+            MENUITEM "R = phi+theta+psi",           ID_FUNCTION_POLAR_RPHITHETAPSI
+
+            MENUITEM "R = sin (phi*theta*psi)",     ID_FUNCTION_POLAR_RSINPHITHETAPSI
+
+            MENUITEM "R = sqrt (phi²+theta²+psi²)", ID_FUNCTION_POLAR_RSQRTPHI2THETA2PSI2
+
+        END
+        POPUP "Objects"
+        BEGIN
+            MENUITEM "Hypercube",                   ID_FUNCTION_HYPERCUBE
+            MENUITEM "Simplex",                     ID_FUNCTION_OBJECTS_SIMPLEX
+
+            MENUITEM "Sponge",                      ID_FUNCTION_SPONGE
+            MENUITEM "Pyramid",                     ID_FUNCTION_OBJECTS_PYRAMID
+
+        END
+        POPUP "Surfaces"
+        BEGIN
+            MENUITEM "1",                           ID_FUNCTION_SURFACES_1
+            MENUITEM "Horizon",                     ID_FUNCTION_SURFACES_HORIZON
+
+            MENUITEM "Torus (3)",                   ID_FUNCTION_SURFACES_TORUS3
+
+            POPUP "f: C -> C"
+            BEGIN
+                MENUITEM "z²",                          ID_FUNCTION_SURFACES_2
+
+                MENUITEM "z³",                          ID_FUNCTION_SURFACES_Z
+
+                MENUITEM "z^a",                         ID_FUNCTION_SURFACES_FCC_ZA
+
+                MENUITEM "Polynomial",                  ID_FUNCTION_POLYNOMIAL
+
+                MENUITEM "1/z",                         ID_FUNCTION_SURFACES_FCC_1Z
+
+                MENUITEM "1/z²",                        ID_FUNCTION_SURFACES_FCC_1Z2
+
+                MENUITEM "sqrt (z)",                    ID_FUNCTION_SURFACES_FCC_SQRTZ
+
+                MENUITEM "e^z",                         ID_FUNCTION_SURFACES_EZ
+
+                MENUITEM "e^-z²",                       ID_FUNCTION_SURFACES_E2
+
+                MENUITEM "ln (z)",                      ID_FUNCTION_SURFACES_FCC_LNZ
+
+                MENUITEM "sin (z)",                     ID_FUNCTION_SURFACES_FCC_SINZ
+
+                MENUITEM "cos (z)",                     ID_FUNCTION_SURFACES_FCC_COSZ
+
+                MENUITEM "tan (z)",                     ID_FUNCTION_SURFACES_FCC_TANZ
+
+                MENUITEM "sinh (z)",                    ID_FUNCTION_SURFACES_FCC_SINHZ
+
+                MENUITEM "cosh (z)",                    ID_FUNCTION_SURFACES_FCC_COSHZ
+
+            END
+        END
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "Lines",                       ID_LINES, CHECKED
+        MENUITEM "Polygons",                    ID_POLYGONS, INACTIVE
+        MENUITEM "3D Depth Cue",                ID_DEPTHCUE_3D
+        MENUITEM "4D Depth Cue",                ID_DEPTHCUE_4D
+        MENUITEM "Lighting",                    ID_LIGHTING, CHECKED
+        MENUITEM "Coordinate Cross",            65535
+    END
+    POPUP "Animate"
+    BEGIN
+        MENUITEM "Random",                      ID_VIEW_ANIMATE_RANDOM
+        MENUITEM "Benchmark",                   ID_VIEW_ANIMATE_BENCHMARK
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "Inf&o über 4D...",            ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+BEGIN
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 254, 185
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "info about hyperspace explorer"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "four-dimensional function viewer version 0.37",
+                    IDC_STATIC,40,1,153,8,SS_NOPREFIX
+    LTEXT           "copyleft (GNU) 2000 by metal.dog@gmx.net",IDC_STATIC,40,
+                    11,153,8
+    DEFPUSHBUTTON   "stop this!",IDOK,197,1,50,14,WS_GROUP
+    LTEXT           "some usage hints:",IDC_STATIC,1,44,58,8
+    LTEXT           "3D viewpoint transformation:",IDC_STATIC,1,55,246,8
+    LTEXT           "rotation about x/y axis:        LMB + horizontal/vertical movement",
+                    IDC_STATIC,1,64,246,8
+    LTEXT           "rotation about z axis:           LMB + MMB + vertical movement",
+                    IDC_STATIC,1,73,246,8
+    LTEXT           "translation along x/y axis:    MMB + horizontal/vertical movement",
+                    IDC_STATIC,1,82,246,8
+    LTEXT           "translation along z axis:        LMB + MMB + horizontal movement",
+                    IDC_STATIC,1,91,246,8
+    LTEXT           "4D viewpoint transformation:",IDC_STATIC,1,100,246,8
+    LTEXT           "rotation about xy/xz plane:  SHIFT + LMB + horizontal/vertical movement",
+                    IDC_STATIC,1,109,246,8
+    LTEXT           "rotation about xw/yz plane:  SHIFT + MMB + horizontal/vertical movement",
+                    IDC_STATIC,1,118,246,8
+    LTEXT           "rotation about yw/zw plane: SHIFT + RMB + horizontal/vertical movement",
+                    IDC_STATIC,1,127,246,8
+    LTEXT           "translation along x/y axis:     CTRL + LMB + horizontal/vertical movement",
+                    IDC_STATIC,1,136,246,8
+    LTEXT           "translation along z/w axis:    CTRL + MMB + horizontal/vertical movement",
+                    IDC_STATIC,1,145,246,8
+    LTEXT           "animated viewpoint transformation:",IDC_STATIC,1,154,
+                    246,8
+    LTEXT           "keep SPACE pressed while selecting any of the rotation modes, then release",
+                    IDC_STATIC,1,163,246,8
+    LTEXT           "the mouse button",IDC_STATIC,1,172,246,8
+    LTEXT           "this software may be distributed under the terms of the GPL",
+                    IDC_STATIC,40,21,207,8
+    LTEXT           "please read the file license.txt",IDC_STATIC,40,31,94,8
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040704b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "MFC-Anwendung 4D\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "4D\0"
+            VALUE "LegalCopyright", "Copyright (C) 2000\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "4D.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "Anwendung 4D\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x407, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 1
+        RIGHTMARGIN, 247
+        TOPMARGIN, 1
+        BOTTOMMARGIN, 182
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "4D\n\n4D\n\n\n4D.Document\n4D Document"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "4D"
+    AFX_IDS_IDLEMESSAGE     "Bereit"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INDICATOR_EXT        "ER"
+    ID_INDICATOR_CAPS       "UF"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "RF"
+    ID_INDICATOR_OVR        "ÜB"
+    ID_INDICATOR_REC        "MA"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_NEW             "Erstellt ein neues Dokument.\nNeu"
+    ID_FILE_OPEN            "Öffnet ein bestehendes Dokument.\nÖffnen"
+    ID_FILE_CLOSE           "Schließt das aktive Dokument.\nSchließen"
+    ID_FILE_SAVE            "Speichert das aktive Dokument.\nSpeichern"
+    ID_FILE_SAVE_AS         "Speichert das aktive Dokument unter neuem Namen.\nSpeichern unter"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "Zeigt Programm-Informationen, Versionsnummer und Copyright an.\nInfo"
+    ID_APP_EXIT             "Verläßt die Anwendung; fragt, ob Dokumente gespeichert werden sollen.\nBeenden"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE2       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE3       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE4       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE5       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE6       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE7       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE8       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE9       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE10      "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE11      "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE12      "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE13      "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE14      "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE15      "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE16      "Öffnet dieses Dokument."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NEXT_PANE            "Wechselt zum nächsten Fensterausschnitt.\nNächster Ausschnitt"
+    ID_PREV_PANE            "Springt zum vorherigen Fensterausschnitt zurück.\nVorheriger Ausschnitt"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "Teilt das aktive Fenster in Ausschnitte.\nTeilen"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Löscht die Markierung.\nLöschen"
+    ID_EDIT_CLEAR_ALL       "Löscht alles.\nAlles löschen"
+    ID_EDIT_COPY            "Kopiert die Markierung und überträgt sie in die Zwischenablage.\nKopieren"
+    ID_EDIT_CUT             "Entfernt die Markierung und überträgt sie in die Zwischenablage.\nAusschneiden"
+    ID_EDIT_FIND            "Sucht den angegebenen Text.\nSuchen"
+    ID_EDIT_PASTE           "Fügt den Inhalt der Zwischenablage ein.\nEinfügen"
+    ID_EDIT_REPEAT          "Wiederholt die letzte Aktion.\nWiederholen"
+    ID_EDIT_REPLACE         "Ersetzt einen bestimmten Text durch einen anderen.\nErsetzen"
+    ID_EDIT_SELECT_ALL      "Markiert das gesamte Dokument.\nAlles markieren"
+    ID_EDIT_UNDO            "Macht die letzte Aktion rückgängig.\nRückgängig"
+    ID_EDIT_REDO            "Wiederholt die vorher rückgängig gemachte Aktion.\nWiederherstellen"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Ändert die Fenstergröße."
+    AFX_IDS_SCMOVE          "Ändert die Position des Fensters."
+    AFX_IDS_SCMINIMIZE      "Verkleinert das Fenster zu einem Symbol."
+    AFX_IDS_SCMAXIMIZE      "Vergrößert das Fenster zu voller Größe."
+    AFX_IDS_SCNEXTWINDOW    "Wechselt zum nächsten Dokumentfenster."
+    AFX_IDS_SCPREVWINDOW    "Wechselt zum vorherigen Dokumentfenster."
+    AFX_IDS_SCCLOSE         "Schließt das aktive Fenster und fordert zur Dokumentspeicherung auf."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Stellt das Fenster in seiner normalen Größe wieder her."
+    AFX_IDS_SCTASKLIST      "Aktiviert die Task-Liste."
+END
+
+#endif    // Deutsch (Deutschland) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Englisch (USA) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SPONGE_DLG DIALOGEX 0, 0, 177, 202
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Hyperspace Explorer - Parameters"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "min. u:",IDC_STATIC,7,55,24,14
+    EDITTEXT        IDC_UMIN,35,55,40,14,ES_AUTOHSCROLL
+    LTEXT           "max. u:",IDC_STATIC,102,55,24,14
+    EDITTEXT        IDC_UMAX,129,55,40,14,ES_AUTOHSCROLL
+    LTEXT           "steps in u:",IDC_STATIC,7,74,34,14
+    CONTROL         "Slider2",IDC_USTEPS,"msctls_trackbar32",TBS_AUTOTICKS | 
+                    WS_BORDER | WS_TABSTOP,43,74,107,15
+    LTEXT           "0",IDC_USTEXT,152,76,17,8,SS_SUNKEN | NOT WS_GROUP,
+                    WS_EX_RIGHT
+    LTEXT           "min. v:",IDC_STATIC,7,93,24,14
+    EDITTEXT        IDC_VMIN,35,93,40,14,ES_AUTOHSCROLL
+    LTEXT           "max. v:",IDC_STATIC,102,93,24,14
+    EDITTEXT        IDC_VMAX,129,93,40,14,ES_AUTOHSCROLL
+    LTEXT           "steps in v:",IDC_STATIC,7,112,34,14
+    CONTROL         "Slider2",IDC_VSTEPS,"msctls_trackbar32",TBS_AUTOTICKS | 
+                    WS_BORDER | WS_TABSTOP,43,112,107,15
+    LTEXT           "0",IDC_VSTEXT,152,114,17,8,SS_SUNKEN,WS_EX_RIGHT
+    LTEXT           "Param. a:",IDC_PARAMETER_A_STRING,7,140,39,14
+    EDITTEXT        IDC_PARAMETER,47,137,40,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "Param. b:",IDC_PARAMETER_B_STRING,91,140,31,8
+    EDITTEXT        IDC_PARAMETER_B,129,137,40,14,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    LTEXT           "Param. c:",IDC_PARAMETER_C_STRING,7,154,38,14
+    EDITTEXT        IDC_PARAMETER_C,47,154,40,14,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    LTEXT           "Param. d:",IDC_PARAMETER_D_STRING,91,157,31,8
+    EDITTEXT        IDC_PARAMETER_D,129,154,40,14,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    LTEXT           "min. t:",IDC_STATIC,7,17,24,14
+    EDITTEXT        IDC_TMIN,32,17,40,14,ES_AUTOHSCROLL
+    LTEXT           "max. t:",IDC_STATIC,102,17,24,14
+    EDITTEXT        IDC_TMAX,129,17,40,14,ES_AUTOHSCROLL
+    LTEXT           "steps in t:",IDC_STATIC,7,36,34,14
+    CONTROL         "Slider2",IDC_TSTEPS,"msctls_trackbar32",TBS_AUTOTICKS | 
+                    WS_BORDER | WS_TABSTOP,43,35,107,15
+    LTEXT           "0",IDC_TSTEXT,152,38,17,8,SS_SUNKEN,WS_EX_RIGHT
+    PUSHBUTTON      "hit <ENTER> to apply changes!",IDC_CHANGE,15,174,146,14,
+                    WS_DISABLED
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_SPONGE_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 169
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 195
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Englisch (USA) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#ifdef _WIN32
+LANGUAGE 7, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\4D.rc2"  // Nicht mit Microsoft Visual C++ bearbeitete Ressourcen
+#include "l.deu\afxres.rc"          // Standardkomponenten
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

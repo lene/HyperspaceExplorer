@@ -1,0 +1,21 @@
+#!/bin/bash
+
+tilesize=984x668
+for i in classdiagram.?.?.png; do 
+    /bin/echo -e -n $i "\r"
+    if [ ! -f $i.png ]; then 
+	convert -crop ${tilesize}+32+92 $i $i.png; 
+    fi
+done
+
+echo
+
+montage -tile 6x6 -geometry ${tilesize}+0+0 -cache 20 -verbose \
+	classdiagram.[1-6].0.png.png \
+	classdiagram.[1-6].1.png.png \
+	classdiagram.[1-6].2.png.png \
+	classdiagram.[1-6].3.png.png \
+	classdiagram.[1-6].4.png.png \
+	classdiagram.[1-6].5.png.png \
+	png:classdiagram.png && \
+	rm classdiagram.?.?.png.png

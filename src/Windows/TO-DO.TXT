@@ -1,0 +1,43 @@
+Hyperspace Explorer TO-DO											2000-11-23
+=========================
+
+ -	separation of the transformation / projection / drawing into a specialized	
+	class - or make them a part of class Function, to make them overridable by	
+	derived classes																DONE, 2000-11-30
+
+
+ -	accelerate GL drawing - PROFILE! it is almost inconceivable that the 3D		
+	drawing takes as long as the 4D transformations								
+
+ -	multithreaded 4D transform, projection and (maybe) drawing					
+
+
+ -	more (and more flexible) functions											
+	 +	morphing between functions												
+	 +	animated parameter values												
+	 +  hypermengersponge														DONE, 2000-11-30
+
+ -	implement surfaces in 4-space,												DONE, 2000-12-08
+	as well as C -> C functions													
+	+	Complex functions don't work because the c'tor calls the parent's 
+		Initialize(), which doesn't call the descendant's g ()
+
+ -  bodies in warped space														
+
+
+ -	transparent polygons (the transparence simply doesn't work!)			
+
+ -	better polygon drawing quality, especially: avoid drawing more than one		
+	poly in one place															
+
+ -	output to POV-ray															
+
+
+ -	C4DDoc::[tuv]steps should depend on Function::tsteps, instead of			
+	SpongeDlg::tsteps															
+
+ -	usable (ie. showing all information), resizable and toggle-able statusbar	
+
+ -	check for memory leaks, there should be thousands of them					
+	+	Function::~Function () and Function::ReInit () and their descendants	
+

@@ -1,0 +1,7 @@
+[Project]
+Language=cpp
+Root.0=$PROJECT_DIR$
+Root.0.access=writable
+Root.0.file_types=cpp_source;cpp_header;diagram
+Root.0.package_prefix=
+Version=3.0

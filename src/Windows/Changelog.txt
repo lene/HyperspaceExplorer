@@ -1,0 +1,6 @@
+Version Date
+0.36	2000/11/14	bugfix: t values in C4DDoc were set to u values
+0.37	2000/11/14	bugfix: redraw after changing values/parameters on SpongeDlg does not result
+					in drawing the default function any more (-> Function::SetParameters, 
+					Function::ReInit)
+					set initial lighting state to 'false' (i.e. ambient intensity = 1)

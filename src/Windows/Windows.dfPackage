@@ -1,0 +1,78 @@
+package id2lqfnd6s4kl0xd6s5i2ig;
+
+/**
+@version 2.0
+@physicalPackage
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:cpp#Class#C4DDoc:oiref><oihard>
+@__modelType reference 
+*/
+class reference {
+}/**
+@__ref <oiref:cpp#Class#GeneralException:oiref><oihard>
+@__modelType reference 
+*/
+class reference69 {
+}/**
+@__ref <oiref:cpp#Class#C4DApp:oiref><oihard>
+@__modelType reference 
+*/
+class reference70 {
+}/**
+@__ref <oiref:cpp#Class#Matrix:oiref><oihard>
+@__modelType reference 
+*/
+class reference71 {
+}/**
+@__ref <oiref:cpp#Class#GLException:oiref><oihard>
+@__modelType reference 
+*/
+class reference72 {
+}/**
+@__ref <oiref:cpp#Class#SpongeDlg:oiref><oihard>
+@__modelType reference 
+*/
+class reference73 {
+}/**
+@__ref <oiref:cpp#Class#CMainFrame:oiref><oihard>
+@__modelType reference 
+*/
+class reference74 {
+}/**
+@__ref <oiref:design#Class#id14ducchzywcg5chzz83s6.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#Windows.res:oiref> 
+*/
+class reference75 {
+}/**
+@__ref <oiref:cpp#Class#CAboutDlg:oiref><oihard>
+@__modelType reference 
+*/
+class reference76 {
+}/**
+@__ref <oiref:cpp#Class#C4DView:oiref><oihard>
+@__modelType reference 
+*/
+class reference77 {
+}/**
+@__ref <oiref:cpp#Class#Vector:oiref><oihard>
+@__modelType reference 
+*/
+class reference78 {
+}}/**
+@__tags
+@shapeType ClassDiagram 
+*/
+class __tags {
+}/**
+@__options 
+*/
+class __options {
+}/**
+@__positions 
+*/
+class __positions {
+}

@@ -1,0 +1,945 @@
+<!DOCTYPE UI><UI version="3.0" stdsetdef="1">
+<class>ValuesDialog</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>ValuesDialog</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>345</width>
+            <height>399</height>
+        </rect>
+    </property>
+    <property name="sizePolicy">
+        <sizepolicy>
+            <hsizetype>1</hsizetype>
+            <vsizetype>1</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+    </property>
+    <property name="caption">
+        <string>Enter Values for the Function</string>
+    </property>
+    <property name="sizeGripEnabled">
+        <bool>false</bool>
+    </property>
+    <property name="whatsThis" stdset="0">
+        <string>In this dialog window the user can enter up to four parameters to the displayed four-dimensional function or object.
+She con also change the resolution of the grid.</string>
+    </property>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>Grid</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>3</x>
+                <y>7</y>
+                <width>341</width>
+                <height>200</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>Box</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Sunken</enum>
+        </property>
+        <property name="title">
+            <string>Grid Size and Bounds</string>
+        </property>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>ULayout</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>80</y>
+                    <width>320</width>
+                    <height>27</height>
+                </rect>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
+                    <number>0</number>
+                </property>
+                <property name="spacing">
+                    <number>6</number>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>ULabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Steps in u</string>
+                    </property>
+                </widget>
+                <widget class="QSlider">
+                    <property name="name">
+                        <cstring>USlider</cstring>
+                    </property>
+                    <property name="minValue">
+                        <number>1</number>
+                    </property>
+                    <property name="maxValue">
+                        <number>50</number>
+                    </property>
+                    <property name="pageStep">
+                        <number>5</number>
+                    </property>
+                    <property name="value">
+                        <number>5</number>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="tickmarks">
+                        <enum>Right</enum>
+                    </property>
+                    <property name="tickInterval">
+                        <number>5</number>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>USteps</cstring>
+                    </property>
+                    <property name="text">
+                        <string>1</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>VLayout</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>140</y>
+                    <width>320</width>
+                    <height>27</height>
+                </rect>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
+                    <number>0</number>
+                </property>
+                <property name="spacing">
+                    <number>6</number>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>VLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Steps in v</string>
+                    </property>
+                </widget>
+                <widget class="QSlider">
+                    <property name="name">
+                        <cstring>VSlider</cstring>
+                    </property>
+                    <property name="minValue">
+                        <number>1</number>
+                    </property>
+                    <property name="maxValue">
+                        <number>50</number>
+                    </property>
+                    <property name="pageStep">
+                        <number>5</number>
+                    </property>
+                    <property name="value">
+                        <number>5</number>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="tickmarks">
+                        <enum>Right</enum>
+                    </property>
+                    <property name="tickInterval">
+                        <number>5</number>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>VSteps</cstring>
+                    </property>
+                    <property name="text">
+                        <string>1</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>TBoundsLayout</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>70</x>
+                    <y>50</y>
+                    <width>240</width>
+                    <height>26</height>
+                </rect>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
+                    <number>0</number>
+                </property>
+                <property name="spacing">
+                    <number>6</number>
+                </property>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>TminLayout</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>0</number>
+                        </property>
+                        <property name="spacing">
+                            <number>6</number>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>TextLabel12</cstring>
+                            </property>
+                            <property name="text">
+                                <string>tmin</string>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>TMin</cstring>
+                            </property>
+                            <property name="text">
+                                <string>-1</string>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>enter '-pi' if you mean -3.1415...</string>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>TmaxLayout</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>0</number>
+                        </property>
+                        <property name="spacing">
+                            <number>6</number>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>TextLabel11</cstring>
+                            </property>
+                            <property name="text">
+                                <string>tmax</string>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>TMax</cstring>
+                            </property>
+                            <property name="text">
+                                <string>1</string>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>or 'pi' if you want 3.1415...</string>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>UBoundsLayout</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>70</x>
+                    <y>110</y>
+                    <width>240</width>
+                    <height>26</height>
+                </rect>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
+                    <number>0</number>
+                </property>
+                <property name="spacing">
+                    <number>6</number>
+                </property>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>UminLayout</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>0</number>
+                        </property>
+                        <property name="spacing">
+                            <number>6</number>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>TextLabel12_2</cstring>
+                            </property>
+                            <property name="text">
+                                <string>umin</string>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>UMin</cstring>
+                            </property>
+                            <property name="text">
+                                <string>-1</string>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>enter '-pi' if you mean -3.1415...</string>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>UMaxLayout</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>0</number>
+                        </property>
+                        <property name="spacing">
+                            <number>6</number>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>TextLabel11_2</cstring>
+                            </property>
+                            <property name="text">
+                                <string>umax</string>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>UMax</cstring>
+                            </property>
+                            <property name="text">
+                                <string>1</string>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>or 'pi' if you want 3.1415...</string>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>VBoundsLayout</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>70</x>
+                    <y>170</y>
+                    <width>240</width>
+                    <height>26</height>
+                </rect>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
+                    <number>0</number>
+                </property>
+                <property name="spacing">
+                    <number>6</number>
+                </property>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>VminLayout</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>0</number>
+                        </property>
+                        <property name="spacing">
+                            <number>6</number>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>TextLabel12_2_2</cstring>
+                            </property>
+                            <property name="text">
+                                <string>vmin</string>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>VMin</cstring>
+                            </property>
+                            <property name="text">
+                                <string>-1</string>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>enter '-pi' if you mean -3.1415...</string>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>VMaxLayout</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>0</number>
+                        </property>
+                        <property name="spacing">
+                            <number>6</number>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>TextLabel11_2_2</cstring>
+                            </property>
+                            <property name="text">
+                                <string>vmax</string>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>VMax</cstring>
+                            </property>
+                            <property name="text">
+                                <string>1</string>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>or 'pi' if you want 3.1415...</string>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>TLayout</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>20</y>
+                    <width>320</width>
+                    <height>27</height>
+                </rect>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
+                    <number>0</number>
+                </property>
+                <property name="spacing">
+                    <number>6</number>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>TLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Steps in t</string>
+                    </property>
+                </widget>
+                <widget class="QSlider">
+                    <property name="name">
+                        <cstring>TSlider</cstring>
+                    </property>
+                    <property name="minValue">
+                        <number>1</number>
+                    </property>
+                    <property name="maxValue">
+                        <number>50</number>
+                    </property>
+                    <property name="pageStep">
+                        <number>5</number>
+                    </property>
+                    <property name="value">
+                        <number>5</number>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="tickmarks">
+                        <enum>Right</enum>
+                    </property>
+                    <property name="tickInterval">
+                        <number>5</number>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>TSteps</cstring>
+                    </property>
+                    <property name="text">
+                        <string>1</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </widget>
+    <widget class="QLayoutWidget">
+        <property name="name">
+            <cstring>Layout1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>360</y>
+                <width>340</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <hbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <property name="margin">
+                <number>0</number>
+            </property>
+            <property name="spacing">
+                <number>6</number>
+            </property>
+            <widget class="QPushButton">
+                <property name="name">
+                    <cstring>buttonApply</cstring>
+                </property>
+                <property name="text">
+                    <string>&amp;Apply</string>
+                </property>
+                <property name="autoDefault">
+                    <bool>true</bool>
+                </property>
+                <property name="toolTip" stdset="0">
+                    <string>Accept changes and redraw</string>
+                </property>
+            </widget>
+            <widget class="QPushButton">
+                <property name="name">
+                    <cstring>buttonOk</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>false</bool>
+                </property>
+                <property name="text">
+                    <string>&amp;OK</string>
+                </property>
+                <property name="autoDefault">
+                    <bool>true</bool>
+                </property>
+                <property name="default">
+                    <bool>true</bool>
+                </property>
+                <property name="toolTip" stdset="0">
+                    <string>Apply changes, redraw and close this window</string>
+                </property>
+            </widget>
+            <widget class="QPushButton">
+                <property name="name">
+                    <cstring>buttonCancel</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>false</bool>
+                </property>
+                <property name="text">
+                    <string>&amp;Cancel</string>
+                </property>
+                <property name="autoDefault">
+                    <bool>true</bool>
+                </property>
+                <property name="toolTip" stdset="0">
+                    <string>Discard changes</string>
+                </property>
+            </widget>
+        </hbox>
+    </widget>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>Function</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>3</x>
+                <y>210</y>
+                <width>340</width>
+                <height>150</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Function and Parameters</string>
+        </property>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>Parameters</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>60</y>
+                    <width>320</width>
+                    <height>70</height>
+                </rect>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
+                    <number>0</number>
+                </property>
+                <property name="spacing">
+                    <number>6</number>
+                </property>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>AB</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>0</number>
+                        </property>
+                        <property name="spacing">
+                            <number>6</number>
+                        </property>
+                        <widget class="QLayoutWidget">
+                            <property name="name">
+                                <cstring>A_in</cstring>
+                            </property>
+                            <hbox>
+                                <property name="name">
+                                    <cstring>unnamed</cstring>
+                                </property>
+                                <property name="margin">
+                                    <number>0</number>
+                                </property>
+                                <property name="spacing">
+                                    <number>6</number>
+                                </property>
+                                <widget class="QLabel">
+                                    <property name="name">
+                                        <cstring>ALabel</cstring>
+                                    </property>
+                                    <property name="text">
+                                        <string>Parameter A</string>
+                                    </property>
+                                </widget>
+                                <widget class="QLineEdit">
+                                    <property name="name">
+                                        <cstring>A</cstring>
+                                    </property>
+                                    <property name="text">
+                                        <string>1</string>
+                                    </property>
+                                </widget>
+                            </hbox>
+                        </widget>
+                        <widget class="QLayoutWidget">
+                            <property name="name">
+                                <cstring>B_in</cstring>
+                            </property>
+                            <hbox>
+                                <property name="name">
+                                    <cstring>unnamed</cstring>
+                                </property>
+                                <property name="margin">
+                                    <number>0</number>
+                                </property>
+                                <property name="spacing">
+                                    <number>6</number>
+                                </property>
+                                <widget class="QLabel">
+                                    <property name="name">
+                                        <cstring>BLabel</cstring>
+                                    </property>
+                                    <property name="text">
+                                        <string>Parameter B</string>
+                                    </property>
+                                </widget>
+                                <widget class="QLineEdit">
+                                    <property name="name">
+                                        <cstring>B</cstring>
+                                    </property>
+                                    <property name="text">
+                                        <string>0.5</string>
+                                    </property>
+                                </widget>
+                            </hbox>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>CD</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>0</number>
+                        </property>
+                        <property name="spacing">
+                            <number>6</number>
+                        </property>
+                        <widget class="QLayoutWidget">
+                            <property name="name">
+                                <cstring>C_in</cstring>
+                            </property>
+                            <hbox>
+                                <property name="name">
+                                    <cstring>unnamed</cstring>
+                                </property>
+                                <property name="margin">
+                                    <number>0</number>
+                                </property>
+                                <property name="spacing">
+                                    <number>6</number>
+                                </property>
+                                <widget class="QLabel">
+                                    <property name="name">
+                                        <cstring>CLabel</cstring>
+                                    </property>
+                                    <property name="text">
+                                        <string>Parameter C</string>
+                                    </property>
+                                </widget>
+                                <widget class="QLineEdit">
+                                    <property name="name">
+                                        <cstring>C</cstring>
+                                    </property>
+                                    <property name="text">
+                                        <string>0.25</string>
+                                    </property>
+                                </widget>
+                            </hbox>
+                        </widget>
+                        <widget class="QLayoutWidget">
+                            <property name="name">
+                                <cstring>D_in</cstring>
+                            </property>
+                            <hbox>
+                                <property name="name">
+                                    <cstring>unnamed</cstring>
+                                </property>
+                                <property name="margin">
+                                    <number>0</number>
+                                </property>
+                                <property name="spacing">
+                                    <number>6</number>
+                                </property>
+                                <widget class="QLabel">
+                                    <property name="name">
+                                        <cstring>DLabel</cstring>
+                                    </property>
+                                    <property name="text">
+                                        <string>Parameter D</string>
+                                    </property>
+                                </widget>
+                                <widget class="QLineEdit">
+                                    <property name="name">
+                                        <cstring>D</cstring>
+                                    </property>
+                                    <property name="text">
+                                        <string>0</string>
+                                    </property>
+                                </widget>
+                            </hbox>
+                        </widget>
+                    </hbox>
+                </widget>
+            </vbox>
+        </widget>
+        <widget class="QComboBox">
+            <property name="name">
+                <cstring>FunctionBox</cstring>
+            </property>
+            <property name="enabled">
+                <bool>false</bool>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>76</x>
+                    <y>20</y>
+                    <width>250</width>
+                    <height>22</height>
+                </rect>
+            </property>
+        </widget>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>TextLabel13</cstring>
+            </property>
+            <property name="enabled">
+                <bool>false</bool>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>11</x>
+                    <y>21</y>
+                    <width>60</width>
+                    <height>22</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Function</string>
+            </property>
+        </widget>
+    </widget>
+</widget>
+<connections>
+    <connection>
+        <sender>TSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>TSteps</receiver>
+        <slot>setNum(int)</slot>
+    </connection>
+    <connection>
+        <sender>USlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>USteps</receiver>
+        <slot>setNum(int)</slot>
+    </connection>
+    <connection>
+        <sender>VSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>VSteps</receiver>
+        <slot>setNum(int)</slot>
+    </connection>
+    <connection>
+        <sender>A</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>ValuesDialog</receiver>
+        <slot>CheckNumeric(const QString&amp;)</slot>
+    </connection>
+    <connection>
+        <sender>B</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>ValuesDialog</receiver>
+        <slot>CheckNumeric(const QString&amp;)</slot>
+    </connection>
+    <connection>
+        <sender>C</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>ValuesDialog</receiver>
+        <slot>CheckNumeric(const QString&amp;)</slot>
+    </connection>
+    <connection>
+        <sender>D</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>ValuesDialog</receiver>
+        <slot>CheckNumeric(const QString&amp;)</slot>
+    </connection>
+    <connection>
+        <sender>buttonApply</sender>
+        <signal>clicked()</signal>
+        <receiver>ValuesDialog</receiver>
+        <slot>accept()</slot>
+    </connection>
+    <connection>
+        <sender>buttonOk</sender>
+        <signal>clicked()</signal>
+        <receiver>ValuesDialog</receiver>
+        <slot>accept()</slot>
+    </connection>
+    <connection>
+        <sender>TSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>ValuesDialog</receiver>
+        <slot>AlignValues(int)</slot>
+    </connection>
+    <connection>
+        <sender>USlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>ValuesDialog</receiver>
+        <slot>AlignValues(int)</slot>
+    </connection>
+    <connection>
+        <sender>VSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>ValuesDialog</receiver>
+        <slot>AlignValues(int)</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>TSlider</tabstop>
+    <tabstop>TMin</tabstop>
+    <tabstop>TMax</tabstop>
+    <tabstop>USlider</tabstop>
+    <tabstop>UMin</tabstop>
+    <tabstop>UMax</tabstop>
+    <tabstop>VSlider</tabstop>
+    <tabstop>VMin</tabstop>
+    <tabstop>VMax</tabstop>
+    <tabstop>FunctionBox</tabstop>
+    <tabstop>A</tabstop>
+    <tabstop>B</tabstop>
+    <tabstop>C</tabstop>
+    <tabstop>D</tabstop>
+    <tabstop>buttonApply</tabstop>
+    <tabstop>buttonOk</tabstop>
+    <tabstop>buttonCancel</tabstop>
+</tabstops>
+<slots>
+    <slot>AlignValues(int)</slot>
+    <slot>CheckNumeric(const QString &amp;)</slot>
+    <slot>DisplayValues()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>
