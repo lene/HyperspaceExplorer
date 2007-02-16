@@ -21,6 +21,20 @@
 
 extern QStringList rcdirs;
 
+
+//////////////////////////////////////////////////////////////////////
+// construction / destruction
+//////////////////////////////////////////////////////////////////////
+
+/*******************************************************************************
+ *  SurfaceDialogImpl c'tor taking parameters for the parent ComplexDialog,
+ *  which in turn inherited them from QDialog
+ *  displays the dialog
+ *  @param parent	parent widget (NULL)
+ *  @param name		name of the widget
+ *  @param modal	modal dialog?
+ *  @param f		window flags
+ */
 SurfaceDialogImpl::SurfaceDialogImpl (QWidget *parent, const char *name,
 					bool modal, WFlags f) :
 	SurfaceDialog (parent, name, modal, f) {

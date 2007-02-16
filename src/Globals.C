@@ -1,12 +1,13 @@
 
 //      project:      hyperspace explorer
-//      module:       
-//      contains:     
+//      module:       Globals.C
+//      contains:     definitions of global variables and functions
 //      compile with: make all
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
 
 #include <qstring.h>
+#include <fstream>
 #include <sstream>
 
 #include "Globals.H"
@@ -14,8 +15,59 @@
 #include "numclass.H"
 #include "GLObject.H"
 
+
+/*******************************************************************************
+ *  sqrt (3), stored to save computation time, probably superfluous, wtf
+ */
 double SR3 = sqrt (3.);
 
+
+/*******************************************************************************
+ *  global (YUCK!) alpha value for transparent display
+ */
+double ALPHA = .9;
+
+
+/*******************************************************************************
+ *  global (YUCK!) shininess value
+ */
+double SHININESS = 32.;
+
+
+/*******************************************************************************
+ *  global (YUCK!) fog/depth cue color
+ */
+float fog_color[]  = { 0.2, 0.2, 0.2, 1.0 };
+
+
+/*******************************************************************************
+ *  color definition for White
+ */
+float White[]      = { 1.0, 1.0, 1.0, 1.0 };
+
+
+/*******************************************************************************
+ *  color definition for Black
+ */
+float grey50[]     = { 0.5, 0.5, 0.5, 1.0 };
+
+float background[] = { 0.1, 0.1, 0.1, 1.0 };
+
+/*
+inline float *BackgroundColor() {
+  return background;
+}
+inline float setBackground(float r, float g, float b, float a = 1.0) {
+  background[0] = r;
+  background[1] = g;
+  background[2] = b;
+  background[3] = a;
+}
+*/
+/*******************************************************************************
+ *  debug function for OpenGL commands; outputs all current GL errors on cerr
+ *  @param op		optional repetition of last GL command
+ */
 inline void CheckGLErrors (const char *op = 0) {
 #   ifdef __DEBUG
     GLenum error;
@@ -24,13 +76,14 @@ inline void CheckGLErrors (const char *op = 0) {
 #   endif
 }
 
-double ALPHA = .9, SHININESS = 32.;
 
-float fog_color[]  = { 0.2, 0.2, 0.2, 1.0 },
-      White[]      = { 1.0, 1.0, 1.0, 1.0 },
-      grey50[]     = { 0.5, 0.5, 0.5, 1.0 };
-
-
+/*******************************************************************************
+ *  set the current OpenGL color
+ *  uses HARDCODED simple algorithm to set ambient and specular values for a
+ *  specific color: if halves resp. dobles them, clipping at 1.0
+ *  THIS FUNCTION IS UGLY IN MANY RESPECTS!
+ *  @param RGB		RGB value to be set
+ */
 void SetColor (const Vector &RGB) {
   static float *ambient  = new float [4], 
                *diffuse  = new float [4], 
@@ -45,19 +98,19 @@ void SetColor (const Vector &RGB) {
   glMaterialfv (GL_FRONT, GL_AMBIENT,  ambient);
   glMaterialfv (GL_FRONT, GL_DIFFUSE,  diffuse);
   glMaterialfv (GL_FRONT, GL_SPECULAR, specular);
-  glMaterialf  (GL_FRONT, GL_SHININESS,::SHININESS); }
-
-#if 1
-int GetGLList() {
-	int MyList = 1;
-	
-	//	find a free GL list
-	while (glIsList (MyList) == GL_TRUE) MyList++;
-
-	return MyList;
+  glMaterialf  (GL_FRONT, GL_SHININESS,::SHININESS);
 }
-#endif
 
+
+/*******************************************************************************
+ *  set the current OpenGL color
+ *  uses HARDCODED simple algorithm to set ambient and specular values for a
+ *  specific color: if halves resp. dobles them, clipping at 1.0
+ *  THIS FUNCTION IS UGLY IN MANY RESPECTS!
+ *  @param R		R value to be set
+ *  @param G		G value to be set
+ *  @param B		B value to be set
+ */
 void SetColor(float R, float G, float B)
 {
 	static GLfloat RGB[4] = { 0., 0., 0., 1. };
@@ -74,25 +127,70 @@ void SetColor(float R, float G, float B)
 	RGB[1] *= 4.; if (RGB [1] < 0.5) RGB[1] = 0.5;
 	RGB[2] *= 4.; if (RGB [2] < 0.5) RGB[2] = 0.5;
 	glMaterialfv (GL_FRONT, GL_SPECULAR, RGB);
-	glMaterialf (GL_FRONT, GL_SHININESS, 32.);
+	glMaterialf (GL_FRONT, GL_SHININESS, ::SHININESS);
 }
 
+
+/*******************************************************************************
+ *  find the ID of the first free GL list
+ *  @return	first freee GL list
+ */
+#if 1
+int GetGLList() {
+	int MyList = 1;
+	
+	//	find a free GL list
+	while (glIsList (MyList) == GL_TRUE) MyList++;
+
+	return MyList;
+}
+#endif
+
+
+/*******************************************************************************
+ *  makes a double precision value from a QString
+ *  implemented because I called a function atod () ages ago, for convenience
+ *  @param s	string to be converted
+ *  @return	its numerical value
+ */
 double atod (QString s) {
   return s.toDouble ();
 }
+
+
 #if 1
+/*******************************************************************************
+ *  makes a string  from an integer value
+ *  implemented because I called a function itoa () ages ago, for convenience
+ *  @param x	number to be converted
+ *  @return	its string representation
+ */
 string itoa (int x) {
 	ostringstream o;
 	o << x << ends;
 	return o.str (); 
 }
 
+
+/*******************************************************************************
+ *  makes a string  from a double value
+ *  implemented because I called a function ftoa () ages ago, for convenience
+ *  @param x	number to be converted
+ *  @return	its string representation
+ */
 string ftoa (double x) {
 	ostringstream o;
 	o << x << ends;
 	return o.str (); 
 }
 #endif
+
+
+/*******************************************************************************
+ *  normalizes a 3-Vector out-of-place
+ *  @param x	Vector to be normalized
+ *  @return	its normalized value
+ */
 Vector vnormalize (Vector x) {
 	static Vector n (3);
 	double norm = sqrt (x[0]*x[0]+x[1]*x[1]+x[2]*x[2]);
@@ -103,6 +201,14 @@ Vector vnormalize (Vector x) {
 	return n;
 }
 
+
+/*******************************************************************************
+ *  normalizes a Vector made from 3 doubles out-of-place
+ *  @param xx	x component of Vector to be normalized
+ *  @param yy	y component of Vector to be normalized
+ *  @param zz	z component of Vector to be normalized
+ *  @return	normalized Vector
+ */
 Vector vnormalize (double xx, double yy, double zz) {
 	static Vector x (3);
 
@@ -110,6 +216,13 @@ Vector vnormalize (double xx, double yy, double zz) {
 	return vnormalize (x);
 }
 
+
+/*******************************************************************************
+ *  cross product of two 3-Vectors (dimension is not checked!)
+ *  @param a	first operand of cross product
+ *  @param b	second operand of cross product
+ *  @return	a x b
+ */
 Vector vcross (Vector a, Vector b) {
 	static Vector c (3);
 	
@@ -120,6 +233,14 @@ Vector vcross (Vector a, Vector b) {
 	return c; 
 }
 
+
+/*******************************************************************************
+ *  cross product of three 4-Vectors (dimension is not checked!)
+ *  @param a	first operand of cross product
+ *  @param b	second operand of cross product
+ *  @param c	third operand of cross product
+ *  @return	a x b x c
+ */
 Vector vcross (Vector a, Vector b, Vector c) {
 	static Vector d (4);
 	double A = b[0]*c[1]-b[1]*c[0],
@@ -136,3 +257,32 @@ Vector vcross (Vector a, Vector b, Vector c) {
 	
 	return d; 
 }
+
+
+/*******************************************************************************
+ *  get the system memory from /proc/meminfo
+ *  of course, this only works on OS's with /proc filesystem and /proc/meminfo
+ *  information!
+ *  relies on /proc/meminfo of being of the format:
+ *  MemTotal:       506912 kB
+ *  ...
+ *  returns 512 MB as default memory size, when /proc/meminfo is not present
+ *  @return	total memory size, or 512 MB
+ */
+unsigned long check_proc_meminfo () {
+  ifstream in ("/proc/meminfo");
+  if (!in) {
+    cerr << "no /proc/meminfo - setting Memory limit of 512 MB" << endl;
+    return 512*1024*1024;
+  }
+  string meminfo;
+  in >> meminfo;
+  in >> meminfo;
+  return strtoul (meminfo.c_str (), NULL, 10)*1024;
+}
+
+
+/*******************************************************************************
+ *  maximum memory that should be consumed; calls check_proc_meminfo () above
+ */
+extern unsigned long MaximumMemory = check_proc_meminfo (); 

@@ -1,0 +1,18 @@
+//	TO DO:
+//		- rotation around z is weird
+//		- support for reading rules from files				OK for now
+//		- check rules against conventions
+//		- AFTER all that is done: 4-D L-systems (phew!)
+//		- support for multiple bodies
+//		- support for colors & textures (in principle already possible
+//		  inside body declaration)
+//		- interactive OpenGL visualization
+//		- blob instead of union
+//		- interactive rule editing (?)
+//		- rule mutation
+//		- better integration with POVray; outfiles; write to pipe
+//		  (outfile "| povray -I- ..." in input file)
+//		- cleaner code:
+//			- const-correctness (check Matrix.H and numclass.H too)
+//			- Doxygen documentation
+//		- integration with Hyperspace Explorer

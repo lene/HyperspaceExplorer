@@ -56,6 +56,9 @@ public:
 
   void Redraw ();
 
+  double Benchmark4D (int, double, double, double, bool = true);
+  double Benchmark3D (int, double, double, double, bool = true);
+
 public slots:
   void ApplyChanges ();
 
@@ -71,7 +74,9 @@ protected:
 
   void Project ();
   void Draw ();
-
+  void PreRedraw ();
+  QPixmap makePixmap ();
+  
   GLint ObjectList, CoordinateCross;
 
   void DrawCoordinates (void);
@@ -103,7 +108,11 @@ protected:
 
   ValuesDialogImpl *Values;
 
+# ifdef USE_AUTO_PTR 
+    auto_ptr<Function> F;
+# else
   Function *F;
+# endif  
 
   QStatusBar *StatusBar;
   QString ObjectName;
@@ -148,7 +157,9 @@ protected:
 
 protected slots:
   void OnTimer();
-
+  void AnimationSettings();
+  
+public slots:
   //  menu items
   void Wireframe();
   void Coordinates();
@@ -156,7 +167,6 @@ protected slots:
   void Light();
   void Benchmark();
   void RenderToImages();
-  void AnimationSettings();
   
   void FunctionFr3r();
   void FunctionHypersphere();
@@ -194,6 +204,7 @@ protected slots:
   void customPolarFunction();
   void customComplexFunction();
   void customSurface();
+
 };
 
 #endif // !defined(4DVIEW)

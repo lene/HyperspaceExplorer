@@ -21,20 +21,41 @@
 
 extern QStringList rcdirs;
 
-//  constructor. displays the dialog.
+
+//////////////////////////////////////////////////////////////////////
+// construction / destruction
+//////////////////////////////////////////////////////////////////////
+
+/*******************************************************************************
+ *  FunctionDialogImpl c'tor taking parameters for the parent ComplexDialog,
+ *  which in turn inherited them from QDialog
+ *  displays the dialog
+ *  @param parent	parent widget (NULL)
+ *  @param name		name of the widget
+ *  @param modal	modal dialog?
+ *  @param f		window flags
+ */
 FunctionDialogImpl::FunctionDialogImpl (QWidget *parent, const char *name,
 					bool modal, WFlags f) :
 	FunctionDialog (parent, name, modal, f) {
   show ();
 }
 
-//  getter
+
+/*******************************************************************************
+ *  @return		the name of the selected DLL
+ */
 QString FunctionDialogImpl::libraryName () {
   return LibraryName;
 }
 
-//  loads a dynamic library, which can be selected by the user. calls loadFunction ()
-//  below. see there.
+
+/*******************************************************************************
+ *  display  and load the selected DLL into current address space
+ *  loads a dynamic library, which can be selected by the user on a QFileDialog.
+ *  calls loadFunction () below. see there.
+ *  @return	success (?)
+ */
 bool FunctionDialogImpl::loadFunction() {
   QString libName;
   //  iterate through all resource directories until you find a plugin subdirectory
@@ -60,11 +81,17 @@ bool FunctionDialogImpl::loadFunction() {
   return false;
 }
 
-//  loads the dynamic library given by libName, if it exists and can be loaded.
-//  then it checks whether a function named f () is present. if so, returns true.
-//  i'm sorry loadFunction () is a misnomer, it should be called checkFunction (),
-//  but as this name is distributed about three dozen .C, .H and .ui files, it is
-//  too much bother to change that now.
+
+/*******************************************************************************
+ *  loads the dynamic library given by libName, if it exists and can be loaded.
+ *  then it checks whether a function named f () is present. if so, returns true.
+ *  else borks with an error message.
+ *  i'm sorry loadFunction () is a misnomer, it should be called checkFunction (),
+ *  but as this name is distributed about three dozen .C, .H and .ui files, it is
+ *  too much bother to change that now.
+ *  @param libName	filename for the selected DLL
+ *  @return		success
+ */
 bool FunctionDialogImpl::loadFunction(const QString &libName) {
   void *handle;
   Vector (*f)(double, double, double);
@@ -97,15 +124,19 @@ bool FunctionDialogImpl::loadFunction(const QString &libName) {
   return true;    
 }
 
-//  this function is called when the user clicks the OK button in the Function Dialog.
-//  checks whether all fields are filled in, whether the given function is valid C++ 
-//  syntax, ie. whether it compiles, and whether the compiled code links into a dynamic
-//  library.
-//  as a side effect, it generates this library.
-//  finally, it checks whether the library can be loaded. if so, it accepts the input.
-//  also, this function creates a directory structure "plugins/real" under the resource
-//  directory and changes the CWD to that folder for the duration of checkValidity ().
-//  the name for this function is chosen rather unfortunately, i guess.
+
+/*******************************************************************************
+ *  this function is called when the user clicks the OK button in the Function Dialog.
+ *  checks whether all fields are filled in, whether the given function is valid C++ 
+ *  syntax, ie. whether it compiles, and whether the compiled code links into a dynamic
+ *  library.
+ *  as a side effect, it generates this library.
+ *  finally, it checks whether the library can be loaded. if so, it accepts the input.
+ *  also, this function creates a directory structure "plugins/real" under the resource
+ *  directory and changes the CWD to that folder for the duration of checkValidity ().
+ *  the name for this function is chosen rather unfortunately, i guess.
+ *  @return		success
+ */
 bool FunctionDialogImpl::checkValidity() {
   if ((NameEdit->text().isEmpty()) || (FEdit->text().isEmpty())) {
     QMessageBox::warning (this, "Missing fields",
@@ -147,10 +178,14 @@ bool FunctionDialogImpl::checkValidity() {
   return true;
 }
 
-//  write a C++ source file, containing the given function and some framework to make
-//  it compilable by g++ (there is currently no support for other compilers).
-//  the resulting file defines the function f () and the function symbolic (), which
-//  returns the function in symbolic terms, not in C++ syntax.
+
+/*******************************************************************************
+ *  write a C++ source file, containing the given function and some framework to
+ *  make it compilable by g++ (there is currently no support for other compilers).
+ *  the resulting file "<function-name>.C" defines the function f () and the
+ *  function symbolic (), which returns the function in symbolic terms, not in
+ *  C++ syntax.
+ */
 void FunctionDialogImpl::writeSource () {
   ofstream SourceFile (NameEdit->text()+".C");
 
@@ -173,10 +208,14 @@ void FunctionDialogImpl::writeSource () {
     SourceFile.close ();
 }
 
-//  compile the C++ source code written by writeSource (), displaying errors and
-//  warnings, if they come up.
-//  needs "numclass.H" in the current directory or in the C++ include path.
-//  return whether the compilation succeeded.
+
+/*******************************************************************************
+ *  compile the C++ source code written by writeSource (), displaying errors and
+ *  warnings, if they come up.
+ *  needs "numclass.H" in the current directory or in the C++ include path.
+ *  might tweak the compilation flags a little, or make them variable
+ *  @return 	success
+ */
 bool FunctionDialogImpl::compile () {
   bool Success = !system ("g++ -I.. -I../.. -g -c -Wall \""
 			  +NameEdit->text()
@@ -192,9 +231,12 @@ bool FunctionDialogImpl::compile () {
   return Success;
 }
 
-//  link the object file generated by compile () into a dynamic library.
-//  needs "numclass.o" in the current directory.
-//  return whether the linking succeeded.
+
+/*******************************************************************************
+ *  link the object file generated by compile () into a dynamic library.
+ *  needs "numclass.o" in the current directory.
+ *  @return 	success
+ */
 bool FunctionDialogImpl::link () {
   bool Success = !system ("g++ -shared -Wl,-export-dynamic -Wl,-soname,\""
 			  +NameEdit->text()+".so\" -o \""

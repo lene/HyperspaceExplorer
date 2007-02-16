@@ -1,0 +1,695 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Hyperspace Explorer - Optimization Benchmarks</title>
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);"
+ link="#0000ff" alink="#000088" vlink="#ff0000">
+<table style="text-align: left; width: 1002px; height: 144px;"
+ border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">OPTIMIZATION<br>
+      </td>
+      <td colspan="6" rowspan="1" style="vertical-align: top;">hypercube<br>
+      </td>
+      <td colspan="6" rowspan="1" style="vertical-align: top;">sponge
+(level 1, distance 2, size 0.75)<br>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1" rowspan="4" style="vertical-align: top;">default
+(-O2 -g -ffast-math)<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">wireframe<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">solid<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">line AA,
+4D DC<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">wireframe<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">solid<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">line AA,
+4D DC<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><font size="-1">4D rotation<br>
+      </font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation<br>
+      </font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">1.29 s<br>
+      </td>
+      <td style="vertical-align: top;">0.88s<br>
+      </td>
+      <td style="vertical-align: top;">20.7 s<br>
+      </td>
+      <td style="vertical-align: top;">5.59 s<br>
+      </td>
+      <td style="vertical-align: top;">14.3 s<br>
+      </td>
+      <td style="vertical-align: top;">8.84 s<br>
+      </td>
+      <td style="vertical-align: top;">14.2 s<br>
+      </td>
+      <td style="vertical-align: top;">7.89 s<br>
+      </td>
+      <td style="vertical-align: top;">64.1 s<br>
+      </td>
+      <td style="vertical-align: top;">22.9 s<br>
+      </td>
+      <td style="vertical-align: top;">227 s<br>
+      </td>
+      <td style="vertical-align: top;">143 s<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">279 fps<br>
+      </td>
+      <td style="vertical-align: top;">409 fps<br>
+      </td>
+      <td style="vertical-align: top;">17.4 fps<br>
+      </td>
+      <td style="vertical-align: top;">64.4 fps<br>
+      </td>
+      <td style="vertical-align: top;">25.2 fps<br>
+      </td>
+      <td style="vertical-align: top;">40.7 fps<br>
+      </td>
+      <td style="vertical-align: top;">25.4 fps<br>
+      </td>
+      <td style="vertical-align: top;">45.6 fps<br>
+      </td>
+      <td style="vertical-align: top;">5.62 fps<br>
+      </td>
+      <td style="vertical-align: top;">15.7 fps<br>
+      </td>
+      <td style="vertical-align: top;">1.59 fps<br>
+      </td>
+      <td style="vertical-align: top;">2.52 fps<br>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="13" rowspan="1" style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table style="text-align: left; width: 1002px; height: 144px;"
+ border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td colspan="1" rowspan="4" style="vertical-align: top;">none&nbsp;
+(-ffast-math)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">wireframe<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">solid<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">line AA,
+4D DC<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">wireframe<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">solid<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">line AA,
+4D DC<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><font size="-1">4D rotation<br>
+      </font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation<br>
+      </font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">1.32 s<br>
+      </td>
+      <td style="vertical-align: top;">0.77s<br>
+      </td>
+      <td style="vertical-align: top;">20.8 s<br>
+      </td>
+      <td style="vertical-align: top;">5.59 s<br>
+      </td>
+      <td style="vertical-align: top;">14.2 s<br>
+      </td>
+      <td style="vertical-align: top;">8.87 s<br>
+      </td>
+      <td style="vertical-align: top;">14.7 s<br>
+      </td>
+      <td style="vertical-align: top;">7.92 s<br>
+      </td>
+      <td style="vertical-align: top;">64.8 s<br>
+      </td>
+      <td style="vertical-align: top;">23.0 s<br>
+      </td>
+      <td style="vertical-align: top;">226 s<br>
+      </td>
+      <td style="vertical-align: top;">141 s<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">273 fps<br>
+      </td>
+      <td style="vertical-align: top;">468 fps<br>
+      </td>
+      <td style="vertical-align: top;">17.3 fps<br>
+      </td>
+      <td style="vertical-align: top;">64.4 fps<br>
+      </td>
+      <td style="vertical-align: top;">25.4 fps<br>
+      </td>
+      <td style="vertical-align: top;">40.6 fps<br>
+      </td>
+      <td style="vertical-align: top;">24.5&nbsp; fps<br>
+      </td>
+      <td style="vertical-align: top;">45.5 fps<br>
+      </td>
+      <td style="vertical-align: top;">5.56 fps<br>
+      </td>
+      <td style="vertical-align: top;">15.6 fps<br>
+      </td>
+      <td style="vertical-align: top;">1.59 fps<br>
+      </td>
+      <td style="vertical-align: top;">2.54 fps<br>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="13" rowspan="1" style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table style="text-align: left; width: 1002px; height: 144px;"
+ border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td colspan="1" rowspan="4" style="vertical-align: top;">default
+(-O2 -g -ffast-math)<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">wireframe<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">solid<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">line AA,
+4D DC<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">wireframe<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">solid<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">line AA,
+4D DC<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><font size="-1">4D rotation<br>
+      </font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation<br>
+      </font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">1.29 s<br>
+      </td>
+      <td style="vertical-align: top;">0.88s<br>
+      </td>
+      <td style="vertical-align: top;">20.7 s<br>
+      </td>
+      <td style="vertical-align: top;">5.59 s<br>
+      </td>
+      <td style="vertical-align: top;">14.3 s<br>
+      </td>
+      <td style="vertical-align: top;">8.84 s<br>
+      </td>
+      <td style="vertical-align: top;">14.2 s<br>
+      </td>
+      <td style="vertical-align: top;">7.89 s<br>
+      </td>
+      <td style="vertical-align: top;">64.1 s<br>
+      </td>
+      <td style="vertical-align: top;">22.9 s<br>
+      </td>
+      <td style="vertical-align: top;">227 s<br>
+      </td>
+      <td style="vertical-align: top;">143 s<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">279 fps<br>
+      </td>
+      <td style="vertical-align: top;">409 fps<br>
+      </td>
+      <td style="vertical-align: top;">17.4 fps<br>
+      </td>
+      <td style="vertical-align: top;">64.4 fps<br>
+      </td>
+      <td style="vertical-align: top;">25.2 fps<br>
+      </td>
+      <td style="vertical-align: top;">40.7 fps<br>
+      </td>
+      <td style="vertical-align: top;">25.4 fps<br>
+      </td>
+      <td style="vertical-align: top;">45.6 fps<br>
+      </td>
+      <td style="vertical-align: top;">5.62 fps<br>
+      </td>
+      <td style="vertical-align: top;">15.7 fps<br>
+      </td>
+      <td style="vertical-align: top;">1.59 fps<br>
+      </td>
+      <td style="vertical-align: top;">2.52 fps<br>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="13" rowspan="1" style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table style="text-align: left; width: 1002px; height: 144px;"
+ border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td colspan="1" rowspan="4" style="vertical-align: top;">default
+(-O2 -g -ffast-math)<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">wireframe<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">solid<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">line AA,
+4D DC<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">wireframe<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">solid<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">line AA,
+4D DC<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><font size="-1">4D rotation<br>
+      </font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation<br>
+      </font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">1.29 s<br>
+      </td>
+      <td style="vertical-align: top;">0.88s<br>
+      </td>
+      <td style="vertical-align: top;">20.7 s<br>
+      </td>
+      <td style="vertical-align: top;">5.59 s<br>
+      </td>
+      <td style="vertical-align: top;">14.3 s<br>
+      </td>
+      <td style="vertical-align: top;">8.84 s<br>
+      </td>
+      <td style="vertical-align: top;">14.2 s<br>
+      </td>
+      <td style="vertical-align: top;">7.89 s<br>
+      </td>
+      <td style="vertical-align: top;">64.1 s<br>
+      </td>
+      <td style="vertical-align: top;">22.9 s<br>
+      </td>
+      <td style="vertical-align: top;">227 s<br>
+      </td>
+      <td style="vertical-align: top;">143 s<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">279 fps<br>
+      </td>
+      <td style="vertical-align: top;">409 fps<br>
+      </td>
+      <td style="vertical-align: top;">17.4 fps<br>
+      </td>
+      <td style="vertical-align: top;">64.4 fps<br>
+      </td>
+      <td style="vertical-align: top;">25.2 fps<br>
+      </td>
+      <td style="vertical-align: top;">40.7 fps<br>
+      </td>
+      <td style="vertical-align: top;">25.4 fps<br>
+      </td>
+      <td style="vertical-align: top;">45.6 fps<br>
+      </td>
+      <td style="vertical-align: top;">5.62 fps<br>
+      </td>
+      <td style="vertical-align: top;">15.7 fps<br>
+      </td>
+      <td style="vertical-align: top;">1.59 fps<br>
+      </td>
+      <td style="vertical-align: top;">2.52 fps<br>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="13" rowspan="1" style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table style="text-align: left; width: 1002px; height: 144px;"
+ border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td colspan="1" rowspan="4" style="vertical-align: top;">default
+(-O2 -g -ffast-math)<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">wireframe<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">solid<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">line AA,
+4D DC<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">wireframe<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">solid<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">line AA,
+4D DC<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><font size="-1">4D rotation<br>
+      </font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation<br>
+      </font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">1.29 s<br>
+      </td>
+      <td style="vertical-align: top;">0.88s<br>
+      </td>
+      <td style="vertical-align: top;">20.7 s<br>
+      </td>
+      <td style="vertical-align: top;">5.59 s<br>
+      </td>
+      <td style="vertical-align: top;">14.3 s<br>
+      </td>
+      <td style="vertical-align: top;">8.84 s<br>
+      </td>
+      <td style="vertical-align: top;">14.2 s<br>
+      </td>
+      <td style="vertical-align: top;">7.89 s<br>
+      </td>
+      <td style="vertical-align: top;">64.1 s<br>
+      </td>
+      <td style="vertical-align: top;">22.9 s<br>
+      </td>
+      <td style="vertical-align: top;">227 s<br>
+      </td>
+      <td style="vertical-align: top;">143 s<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">279 fps<br>
+      </td>
+      <td style="vertical-align: top;">409 fps<br>
+      </td>
+      <td style="vertical-align: top;">17.4 fps<br>
+      </td>
+      <td style="vertical-align: top;">64.4 fps<br>
+      </td>
+      <td style="vertical-align: top;">25.2 fps<br>
+      </td>
+      <td style="vertical-align: top;">40.7 fps<br>
+      </td>
+      <td style="vertical-align: top;">25.4 fps<br>
+      </td>
+      <td style="vertical-align: top;">45.6 fps<br>
+      </td>
+      <td style="vertical-align: top;">5.62 fps<br>
+      </td>
+      <td style="vertical-align: top;">15.7 fps<br>
+      </td>
+      <td style="vertical-align: top;">1.59 fps<br>
+      </td>
+      <td style="vertical-align: top;">2.52 fps<br>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="13" rowspan="1" style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table style="text-align: left; width: 1002px; height: 144px;"
+ border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td colspan="1" rowspan="4" style="vertical-align: top;">default
+(-O2 -g -ffast-math)<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">wireframe<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">solid<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">line AA,
+4D DC<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">wireframe<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">solid<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">line AA,
+4D DC<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><font size="-1">4D rotation<br>
+      </font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation<br>
+      </font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">1.29 s<br>
+      </td>
+      <td style="vertical-align: top;">0.88s<br>
+      </td>
+      <td style="vertical-align: top;">20.7 s<br>
+      </td>
+      <td style="vertical-align: top;">5.59 s<br>
+      </td>
+      <td style="vertical-align: top;">14.3 s<br>
+      </td>
+      <td style="vertical-align: top;">8.84 s<br>
+      </td>
+      <td style="vertical-align: top;">14.2 s<br>
+      </td>
+      <td style="vertical-align: top;">7.89 s<br>
+      </td>
+      <td style="vertical-align: top;">64.1 s<br>
+      </td>
+      <td style="vertical-align: top;">22.9 s<br>
+      </td>
+      <td style="vertical-align: top;">227 s<br>
+      </td>
+      <td style="vertical-align: top;">143 s<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">279 fps<br>
+      </td>
+      <td style="vertical-align: top;">409 fps<br>
+      </td>
+      <td style="vertical-align: top;">17.4 fps<br>
+      </td>
+      <td style="vertical-align: top;">64.4 fps<br>
+      </td>
+      <td style="vertical-align: top;">25.2 fps<br>
+      </td>
+      <td style="vertical-align: top;">40.7 fps<br>
+      </td>
+      <td style="vertical-align: top;">25.4 fps<br>
+      </td>
+      <td style="vertical-align: top;">45.6 fps<br>
+      </td>
+      <td style="vertical-align: top;">5.62 fps<br>
+      </td>
+      <td style="vertical-align: top;">15.7 fps<br>
+      </td>
+      <td style="vertical-align: top;">1.59 fps<br>
+      </td>
+      <td style="vertical-align: top;">2.52 fps<br>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="13" rowspan="1" style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table style="text-align: left; width: 1002px; height: 144px;"
+ border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td colspan="1" rowspan="4" style="vertical-align: top;">default
+(-O2 -g -ffast-math)<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">wireframe<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">solid<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">line AA,
+4D DC<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">wireframe<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">solid<br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: top;">line AA,
+4D DC<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><font size="-1">4D rotation<br>
+      </font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation<br>
+      </font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">4D rotation</font></td>
+      <td style="vertical-align: top;"><font size="-1">3D rotation</font></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">1.29 s<br>
+      </td>
+      <td style="vertical-align: top;">0.88s<br>
+      </td>
+      <td style="vertical-align: top;">20.7 s<br>
+      </td>
+      <td style="vertical-align: top;">5.59 s<br>
+      </td>
+      <td style="vertical-align: top;">14.3 s<br>
+      </td>
+      <td style="vertical-align: top;">8.84 s<br>
+      </td>
+      <td style="vertical-align: top;">14.2 s<br>
+      </td>
+      <td style="vertical-align: top;">7.89 s<br>
+      </td>
+      <td style="vertical-align: top;">64.1 s<br>
+      </td>
+      <td style="vertical-align: top;">22.9 s<br>
+      </td>
+      <td style="vertical-align: top;">227 s<br>
+      </td>
+      <td style="vertical-align: top;">143 s<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">279 fps<br>
+      </td>
+      <td style="vertical-align: top;">409 fps<br>
+      </td>
+      <td style="vertical-align: top;">17.4 fps<br>
+      </td>
+      <td style="vertical-align: top;">64.4 fps<br>
+      </td>
+      <td style="vertical-align: top;">25.2 fps<br>
+      </td>
+      <td style="vertical-align: top;">40.7 fps<br>
+      </td>
+      <td style="vertical-align: top;">25.4 fps<br>
+      </td>
+      <td style="vertical-align: top;">45.6 fps<br>
+      </td>
+      <td style="vertical-align: top;">5.62 fps<br>
+      </td>
+      <td style="vertical-align: top;">15.7 fps<br>
+      </td>
+      <td style="vertical-align: top;">1.59 fps<br>
+      </td>
+      <td style="vertical-align: top;">2.52 fps<br>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="13" rowspan="1" style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+</body>
+</html>

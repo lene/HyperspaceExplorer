@@ -10,7 +10,7 @@
 //      project:      Extended QGLWidget
 //      module:       XQGLWidget.C
 //      compile with: make all
-//      contains:     ...
+//      contains:     member function declarations for the extended OpenGL widget
 //                    and some useful auxiliary routines
 //                    uses OpenGL (e.g. MesaGL) and the Qt OpenGL extension
 
@@ -35,9 +35,16 @@ void SetColor (const Vector &);
 extern float White[], grey50[];
 extern double SR3;
 
+
 //      XQGLWidget:: public functions
 
-//      XQGLWidget:: constructor
+
+/*******************************************************************************
+ *  XQGLWidget constructor; does a lot of initialization to (usually sensible) hard-
+ *  coded default values, creates the menus and accelerators
+ *  @param parent	parent QWidget, defaults to NULL
+ *  @param name		name, defaulting to ""
+ */
 XQGLWidget::XQGLWidget (QWidget *parent, const char *name) : 
     QGLWidget (parent, name), DrawObject (0),         //                                 *
     R (10), psi (0), theta (0), phi (0),        //                                 *
@@ -52,10 +59,14 @@ XQGLWidget::XQGLWidget (QWidget *parent, const char *name) :
   setCaption ("XQGLWidget");                    //  yeah or what else?
 
   menu = SetupMenu ();                          //  set up popup menu
-  SetupAccel (); }                              //  set up key accelerators
+  SetupAccel ();                               //  set up key accelerators
+}
 
-//      initializeGL function
-//    * when exactly is it called ?                                                *
+
+/*******************************************************************************
+ *  OpenGL initialization
+ *  setting background colors, setting up lighting, shading, fog and transparence
+ */
 void XQGLWidget::initializeGL (void) {          
 # ifdef __DEBUG__
     cerr << "XQGLWidget::initializeGL " << light << shade << fog << transparent << endl;
@@ -66,15 +77,21 @@ void XQGLWidget::initializeGL (void) {
   
   glClearColor (Background[0], Background[1], Background[2], Background[3]);
                                                 //  set background color
-  if (!doubleBuffer ()) cerr << "Widget is single buffered\n";  //  bad luck
+  if (!doubleBuffer ()) cerr << "Widget is single buffered\n";  //  bad luck; balk but continue
 
   InitLight ();                                 //  set up lighting parameters
   InitShade ();                                 //  ... flat or gouraud shading
   InitFog ();                                   //  ... depth cue or not
-  InitTransparence (); }                        //  ... transparence
+  InitTransparence ();                         	//  ... transparence
+}
 
+
+/*******************************************************************************
+ *  OpenGL initialization
+ *  setting background colors, setting up lighting, shading, fog and transparence
+ */
 void XQGLWidget::InitLight (void) {
-  static GLfloat LightPos[4] = { 4., 4., 8., 0. };      //  this should be variable!
+  static GLfloat LightPos[4] = { 4., 4., 8., 0. };      //  this should be a member variable!
 
   if (light) {
     glEnable (GL_LIGHTING);                             //  enable lighting
@@ -118,7 +135,9 @@ void XQGLWidget::InitTransparence (void) {
 void XQGLWidget::SetAlpha (int a) { 
   Alpha = float (a)/255.;                       //  calculate Alpha
   InitTransparence ();                          //  change GL state
-  repaint (); }                                 //  update picture
+  repaint ();                                  //  update picture
+}
+
 
 void XQGLWidget::paintGL () {
 # ifdef __DEBUG__
@@ -174,7 +193,9 @@ void XQGLWidget::resizeGL (int width, int height) {
 	     0., 0., 0.,
 	     0., 1., 0.);
   glTranslatef (0, 0, -R);                      //                                 *
-  if (fog) SetupDepthCue (R, 2.); }             //                                 *
+  if (fog) SetupDepthCue (R, 2.);               //                                 *
+}
+
 
 //      ViewPos (psi, theta, phi) 
 //      called any time the viewing angle is changed on the command widget

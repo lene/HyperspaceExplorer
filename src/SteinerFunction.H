@@ -1,35 +1,34 @@
 
 //      project:      hyperspace explorer
-//      module:       
-//      contains:     
+//      module:       SteinerFunction.H
+//      contains:     Steiner surfaces -- this is sort of a dead branch, haven't
+//		      really implemented anything; needs to be redone to fit in
 //      compile with: make all
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
 
 
-#if !defined(FUNCTION_H)
-#define FUNCTION_H
+#if !defined(STEINER_FUNCTION_H)
+#define STEINER_FUNCTION_H
 
-class SteinerFunction  
-{
+class SteinerFunction: public Function {
 public:
-	SteinerFunction();
-	SteinerFunction (double _umin, double _umax, double _ustep,
-			  double _vmin, double _vmax, double _vstep, double _a = 2.);
-	virtual ~SteinerFunction();
-
-	virtual void Draw (void);
+  SteinerFunction();
+  SteinerFunction (double _umin, double _umax, double _ustep,
+		   double _vmin, double _vmax, double _vstep, double _a = 2.);
+  virtual ~SteinerFunction();
+  
+  virtual void Draw (void);
 
 protected:
-	double *f (double, double);
-	double **df (double, double);
+  Vector &f (double, double);
+  double **df (double, double);
 	
-	double a,
-		   umin, umax, du,
-		   vmin, vmax, dv;
+  double a,
+         umin, umax, du,
+         vmin, vmax, dv;
 
-	double  *F,
-		   **DF;
+  Vector F;
 };
 
-#endif // !defined(FUNCTION_H)
+#endif // !defined(STEINER_FUNCTION_H)

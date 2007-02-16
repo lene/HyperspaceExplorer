@@ -13,31 +13,31 @@
 
 #include "numclass.H"
 
-
-//  a  Function is a mathematical function  f: R^3 -> R^4,  evaluated on a 3-dimensional grid,
-//  together with methods  to rotate and translate the grid in 4-space,  to project the trans-
-//  formed grid onto 3-space, and to draw the projected grid into an OpenGL display list.
-//  
-//  abstract member:
-//			- Vector &f (double, double, double);
-//  virtual members:
-//			- Vector *df (double, double, double);
-//			- Vector &normal (double, double, double);    
-//			- Transform (double Rxy, double Rxz, double Rxw, 
-//				     double Ryz, double Ryw, double Rzw,
-//				     double Tx, double Ty, double Tz, double Tw) 
-//			- Project (double ScrW, double CamW, bool DepthCue4D)
-//			- Draw ()
-//			- ReInit(double _tmin, double _tmax, double _dt,
-//				 double _umin, double _umax, double _du,
-//				 double _vmin, double _vmax, double _dv)
-//			- SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0)
-//  other useful members: 
-//			- Transform ()
-//			- operator () (double t, double u, double v)
-//			- Initialize ();
-//			- InitMem ();
-
+/*******************************************************************************
+ *  a  Function is a mathematical function  f: R^3 -> R^4,  evaluated on a 3-dimensional grid,
+ *  together with methods  to rotate and translate the grid in 4-space,  to project the trans-
+ *  formed grid onto 3-space, and to draw the projected grid into an OpenGL display list.
+ *  
+ *  abstract member:
+ *			- Vector &f (double, double, double);
+ *  virtual members:
+ *			- Vector *df (double, double, double);
+ *			- Vector &normal (double, double, double);    
+ *			- Transform (double Rxy, double Rxz, double Rxw, 
+ *				     double Ryz, double Ryw, double Rzw,
+ *				     double Tx, double Ty, double Tz, double Tw) 
+ *			- Project (double ScrW, double CamW, bool DepthCue4D)
+ *			- Draw ()
+ *			- ReInit(double _tmin, double _tmax, double _dt,
+ *				 double _umin, double _umax, double _du,
+ *				 double _vmin, double _vmax, double _dv)
+ *			- SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0)
+ *  other useful members: 
+ *			- Transform ()
+ *			- operator () (double t, double u, double v)
+ *			- Initialize ();
+ *			- InitMem ();
+ */
 class Function {
 public:
     Function();
@@ -101,12 +101,14 @@ protected:
 
 
 
-///////////////////////////////////////////////////////////////////////////////
-//
-//  classes which implement Function::f (double, double, double) follow
-//  the descendants may also implement Function::df () and Function::normal (),
-//  but need not
-//
+/*******************************************************************************
+ *
+ *  classes which implement Function::f (double, double, double) follow
+ *  the descendants may also implement Function::df () and Function::normal (),
+ *  but need not
+ */
+
+////////////////////////////////////////////////////////////////////////////////
 
 class Hypersphere: public Function {
 public:

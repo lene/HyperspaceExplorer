@@ -12,10 +12,16 @@
 #include "Surface.H"
 #include "Matrix.H"
 
-unsigned int Delete (void *x);
+unsigned int Delete (void *x);		// defined in Function.C
 
-    ///////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////////////////
+
+
+/*******************************************************************************
+ *  Surface default c'tor
+ *  zeroes everything
+ */
 Surface::Surface ():
     umin (0),	umax (0),	du (0),
     vmin (0),	vmax (0),	dv (0),
@@ -26,6 +32,15 @@ Surface::Surface ():
     R (NULL), G (NULL), B (NULL), RGBChunk (NULL) { }
 
 
+/*******************************************************************************
+ *  Function c'tor given a definition set in R� (as parameter space)
+ *  @param _umin	minimal value in u
+ *  @param _umax	maximal value in u
+ *  @param _du		stepsize in u
+ *  @param _vmin	minimal value in v
+ *  @param _vmax	maximal value in v
+ *  @param _dv		stepsize in v
+ */
 Surface::Surface (double _umin, double _umax, double _du,
 		  double _vmin, double _vmax, double _dv):
     umin (_umin),	umax (_umax),	du (_du/2),
@@ -37,8 +52,10 @@ Surface::Surface (double _umin, double _umax, double _du,
     R (NULL), G (NULL), B (NULL), RGBChunk (NULL) { }
 
 
-    //	initialize the temporary storage areas Xscr[][][], Xtrans[][][],
-    //	R[][][], G[][][], B[][][]
+/*******************************************************************************
+ *  Initialize the temporary storage areas Xscr[][], Xtrans[][], 
+ *                                         R[][], G[][], B[][]
+ */
 void Surface::InitMem (void) {
     XscrChunk = new Vector [(usteps+2)*(vsteps+2)];
     Xscr = new Vector * [usteps+2];
@@ -62,6 +79,11 @@ void Surface::InitMem (void) {
     }			//	for (unsigned u = 0; u <= usteps+1; u++) 
 }			//	Initialize ()
 
+
+/*******************************************************************************
+ *  allocate and initialize X[][] with values of f()
+ *  call InitMem () above
+ */
 void Surface::Initialize () {
     X = new Vector * [usteps+2];
     Xchunk = new Vector   [(usteps+2)*(vsteps+2)];
@@ -76,8 +98,30 @@ void Surface::Initialize () {
     InitMem ();
 }
 
+
+/*******************************************************************************
+ *  placeholder for function to set parameters in descendants - empty because
+ *  generic function has no parameters
+ *  @param _a		1st parameter
+ *  @param _b		2nd parameter
+ *  @param _c		3rd parameter
+ *  @param _d		4th parameter
+ */
 void Surface::SetParameters (double _a, double _b, double _c, double _d) { }
 
+
+/*******************************************************************************
+ *  re-initialize a Surface if the definition set has changed
+ *  @param tmin		minimal value in t
+ *  @param tmax		maximal value in t
+ *  @param dt		stepsize in t
+ *  @param umin		minimal value in u
+ *  @param umax		maximal value in u
+ *  @param du		stepsize in u
+ *  @param vmin		minimal value in v
+ *  @param vmax		maximal value in v
+ *  @param dv		stepsize in v
+ */
 void Surface::ReInit(double _tmin, double _tmax, double _dt,
 		     double _umin, double _umax, double _du,
 		     double _vmin, double _vmax, double _dv) {
@@ -91,6 +135,10 @@ void Surface::ReInit(double _tmin, double _tmax, double _dt,
     Initialize ();
 }
 
+
+/*******************************************************************************
+ *  auxiliary function to safely free all member arrays
+ */
 void Surface::Free (void) {
     for (unsigned u = 0; u <= usteps+1; u++) {
 	Delete (X[u]);
@@ -112,14 +160,34 @@ void Surface::Free (void) {
     Delete (RGBChunk);
 }
 
+
+/*******************************************************************************
+ *  return the approximate amount of memory needed to display a Function of current
+ *  definition set
+ *  uses hardcoded and experimentally found value for memory per cell - ICK!
+ *  @return		approx. mem required
+ */
 unsigned long Surface::MemRequired (void) {
     return (tsteps+2)*(usteps+2);
 }
 
+
+/*******************************************************************************
+ *  Surface destructor
+ */
 Surface::~Surface() {
     Free ();
 }
 
+
+/*******************************************************************************
+ *  calculate normal to function at a given point in definition set
+ *  no further assumption is made than that f () is continuous
+ *  this function is not yet used anywhere, but i like it
+ *  @param uu		u value
+ *  @param vv		v value
+ *  @return		surface normal, normalized
+ */
 Vector &Surface::normal (double uu, double vv) {
     static Vector n;
 
@@ -132,10 +200,16 @@ Vector &Surface::normal (double uu, double vv) {
 }
 
 
-/*	numerical calculation of the derivatives in u and v:
-		df	  f(u+h, v) - f (u)   df
-		-- =  lim -----------------,  -- analogously
-		du   h->0		  h   dv
+/*******************************************************************************
+ *  numerical calculation of the derivatives in u and v:
+ *
+ *		df	  f(u+h, v) - f (u)   df
+ *		-- =  lim -----------------,  -- analogously
+ *		du   h->0      	  h   	      dv
+ *
+ *  @param uu		u value
+ *  @param vv		v value
+ *  @return		gradient in t, u and v as array
 */
 Vector *Surface::df (double uu, double vv) {	
 
@@ -152,24 +226,46 @@ Vector *Surface::df (double uu, double vv) {
     F = operator () (uu, vv+h);					//	derive after v
     DF[1] = (F-F0)/h;
 
-    DF[2] = (F-F0)/h;	
+    DF[2] = (F-F0)/h;						//	are you sure this is correct?
 
     return DF; }
 
 
-void Surface::Transform (double Thetaxy, double Thetaxz, double Thetaxw, double Thetayz, double Thetayw, double Thetazw,
-			 double Tx, double Ty, double Tz, double Tw) {
-    matrix<4> Rxw = matrix<4> (0, 3, Thetaxw), Ryw = matrix<4> (1, 3, Thetayw), Rzw = matrix<4> (2, 3, Thetazw),
+/*******************************************************************************
+ *  transforms a Surface
+ *  as I look at it, i think this could be optimized by making the transformation
+ *  matrices static and only canging the corresponding entries... but how to
+ *  make this beautifully, i don't know
+ *  @param thetaxy	rotation around xy plane (z axis);  ignored because 3D rotation takes care of it
+ *  @param thetaxz	rotation around xz plane (y axis);  ignored because 3D rotation takes care of it
+ *  @param thetaxw	rotation around xw plane
+ *  @param thetayz	rotation around xy plane (x axis);  ignored because 3D rotation takes care of it
+ *  @param thetayw	rotation around yw plane
+ *  @param thetazw	rotation around zw plane
+ *  @param tx		translation in x direction
+ *  @param ty		translation in y direction
+ *  @param tz		translation in z direction
+ *  @param tw		translation in w direction
+ */
+void Surface::Transform (double thetaxy, double thetaxz, double thetaxw, double thetayz, double thetayw, double thetazw,
+			 double tx, double ty, double tz, double tw) {
+    matrix<4> Rxw = matrix<4> (0, 3, thetaxw), Ryw = matrix<4> (1, 3, thetayw), Rzw = matrix<4> (2, 3, thetazw),
 	Rxwyw = Rxw*Ryw, Rot = Rxwyw*Rzw;
-    Vector Trans = Vector (4, Tx, Ty, Tz, Tw);
+    Vector trans = Vector (4, tx, ty, tz, tw);
 	
     for (unsigned u = 0; u <= usteps+1; u++) 
 	for (unsigned v = 0; v <= vsteps+1; v++)
-	    Xtrans[u][v] = (Rot*X[u][v])+Trans;
+	    Xtrans[u][v] = (Rot*X[u][v])+trans;
 }
 
 
-void Surface::Project (double ScrW, double CamW, bool DepthCue4D) {
+/*******************************************************************************
+ *  projects a Surface into three-space
+ *  @param scr_w	w coordinate of screen
+ *  @param cam_w	w coordinate of camera
+ *  @param depthcue4d	wheter to use hyperfog/dc
+ */
+void Surface::Project (double scr_w, double cam_w, bool depthcue4d) {
     double ProjectionFactor;
     double Wmax = 0, Wmin = 0;
 
@@ -179,7 +275,7 @@ void Surface::Project (double ScrW, double CamW, bool DepthCue4D) {
 	    if (Xtrans[u][v][3] < Wmin) Wmin = Xtrans[u][v][3];
 	    if (Xtrans[u][v][3] > Wmax) Wmax = Xtrans[u][v][3];
 
-	    ProjectionFactor = (ScrW-CamW)/(Xtrans[u][v][3]-CamW);
+	    ProjectionFactor = (scr_w-cam_w)/(Xtrans[u][v][3]-cam_w);
 
 	    for (unsigned i = 0; i <= 2; i++)
 		Xscr[u][v][i] = ProjectionFactor*Xtrans[u][v][i];
@@ -189,7 +285,7 @@ void Surface::Project (double ScrW, double CamW, bool DepthCue4D) {
 	    B[u][v] = (Wmax-X[u][v][3])/(Wmax-Wmin);
 	}
 
-    if (!DepthCue4D) return;
+    if (!depthcue4d) return;
 
     for (unsigned u = 0; u <= usteps+1; u++) 
 	for (unsigned v = 0; v <= vsteps+1; v++) {
@@ -201,6 +297,9 @@ void Surface::Project (double ScrW, double CamW, bool DepthCue4D) {
 }
 
 
+/*******************************************************************************
+ *  draw the projected Surface (onto screen or into GL list, as it is)
+ */
 void Surface::Draw (void) {
     NumVertices = 0;
 
@@ -208,6 +307,11 @@ void Surface::Draw (void) {
 	DrawStrip (u);
 }
 
+
+/*******************************************************************************
+ *  draw the current strip of the projected Function
+ *  @param u	current u value
+ */
 void Surface::DrawStrip (unsigned u){
     glBegin (GL_QUAD_STRIP);
 
@@ -232,15 +336,36 @@ void Surface::DrawStrip (unsigned u){
 
     ///////////////////////////////////////////////////////////////////////////////
 
+
+/*******************************************************************************
+ *  Surface1 c'tor given a definition set in R� (as parameter space) 
+ *  @param _umin	minimal value in u
+ *  @param _umax	maximal value in u
+ *  @param _du		stepsize in u
+ *  @param _vmin	minimal value in v
+ *  @param _vmax	maximal value in v
+ *  @param _dv		stepsize in v
+ *  @param _rad		radius
+ */
 Surface1::Surface1 (double _umin, double _umax, double _du,
 		    double _vmin, double _vmax, double _dv):
     Surface (_umin, _umax, _du, _vmin, _vmax, _dv) {
     Initialize ();
 }
 
+
+/*******************************************************************************
+ *  Surface1 destructor
+ */
 Surface1::~Surface1 () { }
 
 
+/*******************************************************************************
+ *  Surface1 defining function
+ *  @param uu		u value
+ *  @param vv		v value
+ *  @return		(sintht*sinpsi, costht*sinpsi, costht, cospsi)
+ */
 Vector &Surface1::f (double uu, double vv) {
     double sintht = sin (pi*uu), costht = cos (pi*uu),
 	sinpsi = sin (pi*vv), cospsi = cos (pi*vv),
@@ -256,15 +381,34 @@ Vector &Surface1::f (double uu, double vv) {
 
     ///////////////////////////////////////////////////////////////////////////////
 
+
+/*******************************************************************************
+ *  Horizon c'tor given a definition set in R� (as parameter space) 
+ *  @param _umin	minimal value in u
+ *  @param _umax	maximal value in u
+ *  @param _du		stepsize in u
+ *  @param _vmin	minimal value in v
+ *  @param _vmax	maximal value in v
+ *  @param _dv		stepsize in v
+ *  @param _rad		radius
+ */
 Horizon::Horizon (double _umin, double _umax, double _du,
 		  double _vmin, double _vmax, double _dv):
     Surface (_umin, _umax, _du, _vmin, _vmax, _dv) {
     Initialize ();
 }
 
+/*******************************************************************************
+ *  Horizon destructor
+ */
 Horizon::~Horizon () { }
 
-
+/*******************************************************************************
+ *  Horizon defining function
+ *  @param uu		u value
+ *  @param vv		v value
+ *  @return		aah, see below
+ */
 Vector &Horizon::f (double t, double phi) {
     t *= pi; phi *= pi/2;
     F[0] = (1-sin (t))*cos (phi);
@@ -279,15 +423,34 @@ Vector &Horizon::f (double t, double phi) {
 
     ///////////////////////////////////////////////////////////////////////////////
 
+
+/*******************************************************************************
+ *  Torus3 c'tor given a definition set in R� (as parameter space) 
+ *  @param _umin	minimal value in u
+ *  @param _umax	maximal value in u
+ *  @param _du		stepsize in u
+ *  @param _vmin	minimal value in v
+ *  @param _vmax	maximal value in v
+ *  @param _dv		stepsize in v
+ *  @param _rad		radius
+ */
 Torus3::Torus3 (double _umin, double _umax, double _du,
 		double _vmin, double _vmax, double _dv):
     Surface (_umin, _umax, _du, _vmin, _vmax, _dv) {
     Initialize ();
 }
 
+/*******************************************************************************
+ *  Torus3 destructor
+ */
 Torus3::~Torus3 () { }
 
-
+/*******************************************************************************
+ *  Torus3 defining function
+ *  @param uu		u value
+ *  @param vv		v value
+ *  @return		(costht, sintht, cosphi, sinphi)
+ */
 Vector &Torus3::f (double theta, double phi) {
     theta *= pi; phi *= pi;
     F[0] = cos (theta);

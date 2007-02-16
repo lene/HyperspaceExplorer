@@ -1,0 +1,3 @@
+Number of log entries: 2
+In file /var/home/helge/src/HyperspaceExplorer/src/PolarDialog.ui at line 143 column 34: Vertical -> Qt::Vertical
+In file /var/home/helge/src/HyperspaceExplorer/src/PolarDialog.ui at line 200 column 36: Horizontal -> Qt::Horizontal

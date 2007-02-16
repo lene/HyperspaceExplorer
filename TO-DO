@@ -1,9 +1,21 @@
-Hyperspace Explorer TO-DO											2004-04-18
+hyperspace Explorer TO-DO											2004-04-18
 =========================
 
 Beautifications:
 ----------------
  - clean up code; remove GeneralException and combind StdAfx.* with Misc.C
+
+ - use auto_ptr instead of pointers
+
+ - remove "using namespace ...;" directives, replace them with "using ...:...;"
+   declarations. move using declarations out of header files entirely.
+
+ - check whether all C header files are included as <cheader> instead of <header.h>
+
+ - file:///home/i/www.gotw.ca/publications/mill18.htm
+
+ - instead of using static for file-local globals (?), use unnamed namespaces
+   (http://www.cuj.com/documents/s=7982/cujcexp2006hyslop/)
 
  - clean up root folder; understand which files can be moved to the config	
    subdir and how to tell autoconf about that
@@ -29,9 +41,12 @@ Lower priority Bugs:
  - for checking against crashes, change all pointers to QObjects to 
    QGuardedPtr<QObject>, and check them for validity before accessing them
    pity the Function objects can't be guarded like this, think of something else
+   (std::auto_ptr<> ?!)
 
  - crashes when changing the object during animation, stop animation first	QUICK
 
+ - crashes when deleting a Surface object					QUICK
+  
  - Objects don't notice the changes made and applied in the ValuesDialog	SOON
 
  - finish ValuesDialog integration
@@ -61,6 +76,8 @@ New Features:
  - adding default parameters to objects and functions, as well as default 	SOON
    bounds, especially for the custom functions
 
+ - use /proc/meminfo to determine the maximum size of Objects			SOON
+
  - scripting - execute scripts and render to pixmaps, which are written to disk
 
  - let user write own custom functions in C++, which can be compiled from the
@@ -80,9 +97,51 @@ New Features:
 Optimizations:
 --------------
  - accelerate GL drawing - PROFILE! it is almost inconceivable that the 3D	
-   drawing takes as long as the 4D transformations				
+   drawing takes as long as the 4D transformations...				
+   ... err well, it seems this is really so... but i think there is still room	
+   for improvement.
 
  - multithreaded 4D transform, projection and (maybe) drawing			
 
  - optimize transform: compute matrix only once, pass it down			
 
+ - use template metaprogramming for classes Vector and Matrix, esp. for
+   operators *, [] and =  -- see below
+
+ - some gprof output:
+    -O0
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+ 18.08    108.38   108.38 156935686     0.00     0.00  Vector::operator*(Vector const&)
+ 15.97    204.11    95.73 156935686     0.00     0.00  SetColor(float, float, float)
+ 12.54    279.27    75.16  1571850     0.00     0.00  Object::Draw()
+  7.92    326.75    47.48 26142021     0.00     0.00  matrix<4>::operator*(Vector const
+  7.58    372.19    45.44 751333952     0.00     0.00  Vector::operator[](unsigned int)
+  6.54    411.40    39.21  1571850     0.00     0.00  Object::Project(double, double, b
+  5.46    444.15    32.75 56972055     0.00     0.00  Vector::operator=(Vector const&)
+  4.72    472.46    28.31 418579210     0.00     0.00  Vector::operator[](unsigned int)
+  3.27    492.08    19.62  3156355     0.00     0.00  matrix<4>::operator*(matrix<4> co
+  1.86    503.26    11.18 26217685     0.00     0.00  Vector::operator+=(Vector const&)
+  1.80    514.03    10.77 26293349     0.00     0.00  Vector::Vector(Vector const&, boo
+  1.23    521.39     7.36 156935686     0.00     0.00  glVertex(Vector&)
+  1.19    528.50     7.12  4730736     0.00     0.00  matrix<4>::matrix(unsigned int, u
+  1.02    534.61     6.10 154108768     0.00     0.00  Vector::data()
+  1.01    540.68     6.08 83114076     0.00     0.00  Vector::dimension() const
+  1.00    546.71     6.02  1571850     0.00     0.00  Object::Transform(double, double,
+
+    -Os
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+ 29.04     81.00    81.00 156935686     0.00     0.00  SetColor(float, float, floa
+ 27.36    157.31    76.31  1571850     0.00     0.00  Object::Draw()
+ 14.36    197.35    40.05  1571850     0.00     0.00  Object::Project(double, doub
+  7.76    218.99    21.64 26142021     0.00     0.00  matrix<4>::operator*(Vector 
+  3.50    228.74     9.75 56972055     0.00     0.00  Vector::operator=(Vector con
+  2.89    236.79     8.05  1571850     0.00     0.00  Object::Transform(double, do
+  2.84    244.72     7.93  3156355     0.00     0.00  matrix<4>::operator*(matrix<
+  2.65    252.12     7.40   558467     0.00     0.00  Function::DrawCube(unsigned 
+  1.97    257.62     5.50  4730736     0.00     0.00  matrix<4>::matrix(unsigned i
+  1.91    262.95     5.33      725     0.01     0.22  Sponge::Draw()
+  1.75    267.83     4.88      725     0.01     0.06  Sponge::Project(double, doub
+  1.56    272.19     4.36      725     0.01     0.08  Sponge::Transform(double, do
+  1.27    275.72     3.53 26293349     0.00     0.00  Vector::Vector(Vector const&

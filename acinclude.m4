@@ -54,7 +54,7 @@ AC_DEFUN(AC_HAVE_GL,
 	AC_LANG_C
 	ac_save_ldflags="$LDFLAGS"
 	ac_save_cflags="$CFLAGS"
-	LDFLAGS="$LDFLAGS $GL_LDFLAGS $all_libraries -lMesaGL -lMesaGLU -lX11 -lXext -lm $LIBSOCKET"
+	LDFLAGS="$LDFLAGS $GL_LDFLAGS $all_libraries -lGL -lGLU -lX11 -lXext -lm $LIBSOCKET"
 	CFLAGS="$CFLAGS $X_INCLUDES"
 	test ! -z "$GL_INCLUDE" && CFLAGS="-I$GL_INCLUDE $CFLAGS"
 	AC_TRY_LINK([
@@ -74,10 +74,12 @@ AC_DEFUN(AC_HAVE_GL,
 	$2
       else
 	AC_DEFINE(HAVE_GL)
+#                                            action-if-found,  action-if-not-found  extra-libs
+#	AC_SEARCH_LIBS (glIsList, GL MesaGL, [              ], [                 ], [        ]) 
 	if test "$GL_LDFLAGS" = ""; then
-	   GLLIB="-lMesaGL -lMesaGLU"
+	   GLLIB="-lGL -lGLU"
 	else
-	   GLLIB="-L$GL_LDFLAGS -lMesaGL -lMesaGLU"
+	   GLLIB="-L$GL_LDFLAGS -lGL -lGLU"
 	fi
 	if test "$GL_INCLUDE" = ""; then
 	   GLINC=""

@@ -12,6 +12,8 @@
 
 
 #include <vector>
+#include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -34,8 +36,8 @@ public:
 protected:
 	unsigned NumVertices, NumSurfaces;
 	Vector *X,
-		   *Xtrans,
-		   *Xscr;
+	       *Xtrans,
+	       *Xscr;
 	float *R, *G, *B;
 
 	unsigned *Surface[4];
@@ -48,13 +50,18 @@ protected:
 
 class Hypercube: public Object {
 public:
-	Hypercube (): Object (16, 24) { }
-	Hypercube (const Vector &_Center, double _a = 1);
-	virtual ~Hypercube();
+  Hypercube (): Object (16, 24) { }
+  Hypercube (const Vector &_Center, double _a = 1);
+  virtual ~Hypercube();
+  
+  virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) {
+    a = _a; }
 
-	virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) {
-		a = _a; }
-
+  virtual string description () {
+    ostringstream out;
+    out << "Hypercube (a = " << a << ")" << ends;
+    return out.str ();
+  }
 protected:
 	void DeclareSquare (unsigned, unsigned, unsigned, unsigned, unsigned);
 
@@ -75,6 +82,11 @@ public:
 	virtual void Project (double ScrW, double CamW, bool DepthCue4D);
 	virtual void Draw (void);
 
+  virtual string description () {
+    ostringstream out;
+    out << "Sponge (level = " << Level << ")" << ends;
+    return out.str ();
+  }
 protected:
     virtual unsigned long MemRequired (unsigned);
     unsigned Level;

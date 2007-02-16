@@ -24,11 +24,18 @@
 #include <qlabel.h>
 #include <qimage.h>
 
-/////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 // 	C4DView construction/destruction
-//
-//
-//
+////////////////////////////////////////////////////////////////////////////////
+
+/*******************************************************************************
+ *  C4DView constructor; does a lot of initialization to (usually sensible) hard-
+ *  coded default values, initializes the coordinate cross object (which could
+ *  well be a class on its own), creates the necessary timers and menus, and
+ *  finally creates a Hypercube as the default object to display
+ *  @param parent	parent QWidget, defaults to NULL
+ *  @param name		name, defaulting to ""
+ */
 C4DView::C4DView(QWidget *parent, const char *name): 
     XQGLWidget (parent, name),
 
@@ -79,11 +86,11 @@ C4DView::C4DView(QWidget *parent, const char *name):
   connect (Values, SIGNAL (ApplyChanges ()), this, SLOT (ApplyChanges ()));
   
   menu = SetupMenu ();
-  //  StatusBar = new QStatusBar (this);
+  //  StatusBar = new QStatusBar (this);			//  this does not work well with QGLWidgets. left out for now.
 
   show ();
   
-  ObjectHypercube ();
+    ObjectHypercube ();
 
   Light ();
 
@@ -91,12 +98,12 @@ C4DView::C4DView(QWidget *parent, const char *name):
   //  object, with vertices missing and generally wrong. i don't know why. all i can say
   //  is that a second call to ObjectHypercube () always seems to give a correct result.
   //  so:
-  ObjectHypercube ();
+  //ObjectHypercube ();
 }
 
-//
-//
-//
+/*******************************************************************************
+ *  C4DView destructor; frees arrays
+ */
 C4DView::~C4DView() {
   for (unsigned j = 0; j < 4; j++) {
     delete [] Cross[j]; delete [] CrossTrans[j]; delete [] CrossScr[j];
@@ -104,33 +111,55 @@ C4DView::~C4DView() {
   delete [] Cross; delete [] CrossTrans; delete [] CrossScr;
 }
 
-/////////////////////////////////////////////////////////////////////////////
-//	application of translations and rotations
-//
-//
-//
-void C4DView::Transform (double Thetaxy, double Thetaxz, double Thetaxw, double Thetayz, double Thetayw, double Thetazw,
-			 double Tx, double Ty, double Tz, double Tw) {
-  if (F) F->Transform (Thetaxy, Thetaxz, Thetaxw, Thetayz, Thetayw, Thetazw, 
-		       Tx, Ty, Tz, Tw);
+
+/*******************************************************************************
+ *  application of translations and rotations
+ *  calls F->Transform () and transforms the coordinate cross
+ *  @param thetaxy	rotation around xy plane (z axis); ignored because 3D rotation takes care of it
+ *  @param thetaxz	rotation around xz plane (y axis); ignored because 3D rotation takes care of it
+ *  @param thetaxw	rotation around xw plane
+ *  @param thetayz	rotation around xy plane (x axis); ignored because 3D rotation takes care of it
+ *  @param thetayw	rotation around yw plane
+ *  @param thetazw	rotation around zw plane
+ *  @param tx		translation in x direction
+ *  @param ty		translation in y direction
+ *  @param tz		translation in z direction
+ *  @param tw		translation in w direction
+ */
+void C4DView::Transform (double thetaxy, double thetaxz, double thetaxw, double thetayz, double thetayw, double thetazw,
+			 double tx, double ty, double tz, double tw) {
+
+# ifdef USE_AUTO_PTR 
+    if (F.get ()) 
+# else
+    if (F)
+# endif
+      F->Transform (thetaxy, thetaxz, thetaxw, thetayz, thetayw, thetazw, 
+		    tx, ty, tz, tw);
   else return;
 
-  matrix<4> Rxy = matrix<4> (0, 1, Thetaxy), Rxz = matrix<4> (0, 2, Thetaxz), Rxw = matrix<4> (0, 3, Thetaxw),
-            Ryz = matrix<4> (1, 2, Thetayz), Ryw = matrix<4> (1, 3, Thetayw), Rzw = matrix<4> (2, 3, Thetazw),
+  matrix<4> Rxy = matrix<4> (0, 1, thetaxy), Rxz = matrix<4> (0, 2, thetaxz), Rxw = matrix<4> (0, 3, thetaxw),
+            Ryz = matrix<4> (1, 2, thetayz), Ryw = matrix<4> (1, 3, thetayw), Rzw = matrix<4> (2, 3, thetazw),
             Rxyz = Rxy*Rxz, Rxwyz = Rxw*Ryz, Ryzw = Ryw*Rzw,
             Rot = Rxyz*Rxwyz*Ryzw;
-  Vector Trans = Vector (4, Tx, Ty, Tz, Tw);
+  Vector trans = Vector (4, tx, ty, tz, tw);
 
   for (unsigned i = 0; i < 4; i++)
     for (unsigned j = 0; j < 2; j++) 
-      CrossTrans[i][j] = (Rot*Cross[i][j])+Trans;
+      CrossTrans[i][j] = (Rot*Cross[i][j])+trans;
 }
 
-//
-//
-//
+
+/*******************************************************************************
+ *  projects F and coordinate cross into three-space
+ */
 void C4DView::Project (void) {
-  if (F) F->Project (ScrW, CamW, DepthCue4D);
+# ifdef USE_AUTO_PTR 
+    if (F.get ())
+# else    
+    if (F)
+#endif
+      F->Project (ScrW, CamW, DepthCue4D);
   else return;
 
   if (DisplayCoordinates) {
@@ -145,18 +174,20 @@ void C4DView::Project (void) {
   }
 }
 
-//
-//
-//
+
+/*******************************************************************************
+ *  @return approximate diameter of definition space
+ */
 double C4DView::Size () {
   return sqrt ((Values->tmax ()-Values->tmin ())*(Values->tmax ()-Values->tmin ())
 	      +(Values->umax ()-Values->umin ())*(Values->umax ()-Values->umin ())
 	      +(Values->vmax ()-Values->vmin ())*(Values->vmax ()-Values->vmin ()));
 }   
 
-//
-//
-//
+
+/*******************************************************************************
+ *  draw the coordinate cross (on screen or int GL list)
+ */
 void C4DView::DrawCoordinates () {
   for (unsigned j = 0; j < 4; j++) {
     switch (j) {
@@ -180,18 +211,23 @@ void C4DView::DrawCoordinates () {
   }
 }
 
-//
-//
-//
+
+/*******************************************************************************
+ *  draw the projected Object (onto screen or into GL list, as it is)
+ */
 void C4DView::Draw () {
   if (DisplayCoordinates) DrawCoordinates ();
 
   F->Draw ();
 }
 
-//
-//
-//
+
+/*******************************************************************************
+ *  mouse move event handler; awfully long, which is UGLY, but it does not seem
+ *  to make much sense to break it up, so here we go
+ *  particular mouse move/button/modifier key combinations documented below
+ *  @param e	Qt's mouse event information structure
+ */
 void C4DView::mouseMoveEvent (QMouseEvent *e) {
   QPoint point = e->pos ();
   ButtonState s = e->stateAfter ();
@@ -269,8 +305,8 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
                                                                 //    equivalent to z/y 3D rotation
               
 	if (TakingSpinValues) {                    		//
-	  dz = rotate.x ()/xsize*10; 
-	  dy = rotate.y ()/ysize*10;                    	//
+	  dz += rotate.x ()/xsize*5; 
+	  dy += rotate.y ()/ysize*5;                    	//
 	  UpdateStatus ("taking xy/xz rotation speed");
 	}
 	else {                                    		//    immediate movement
@@ -289,8 +325,8 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
 	QPoint rotate = m_MidDownPos-point;        		//    store difference from button press position
                 
 	if (TakingSpinValues) {                    		//
-	  dxw = rotate.x ()/xsize*10; 
-	  dx = rotate.y ()/ysize*10;                    	//
+	  dxw += rotate.x ()/xsize*5; 
+	  dx += rotate.y ()/ysize*5;                    	//
           if (dxw == 0.) ViewChanged = false;
 
 	  UpdateStatus ("taking xw / yz rotation speed");
@@ -313,8 +349,8 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
 	QPoint rotate = m_RightDownPos-point;    		//    store difference from button press position
                 
 	if (TakingSpinValues) {                    		//
-	  dyw = rotate.x ()/xsize*10; 
-	  dzw = rotate.y ()/ysize*10;                    	//
+	  dyw += rotate.x ()/xsize*5; 
+	  dzw += rotate.y ()/ysize*5;                    	//
 	  UpdateStatus ("taking yw / zw rotation speed");
 	}
 	else {                                    		//    immediate movement
@@ -364,8 +400,8 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
 	QPoint rotate = m_LeftDownPos-point;        		//    store difference from button press position
                 
 	if (TakingSpinValues) {                    		//
-	  dx = rotate.x ()/xsize*10; 
-	  dy = rotate.y ()/ysize*10;                    	//
+	  dx += rotate.x ()/xsize*5; 
+	  dy += rotate.y ()/ysize*5;                    	//
 	  UpdateStatus ("taking x/y rotation speed");
 	}
                 
@@ -386,7 +422,7 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
 	QPoint zoom = m_LeftDownPos-point;        		//    store difference from button press position
 	
 	if (TakingSpinValues) {                    		//
-	  dz = zoom.x ()/xsize*20; 
+	  dz += zoom.x ()/xsize*10; 
 	  UpdateStatus ("taking z rotation speed");
 	}
 	
@@ -415,9 +451,11 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
 }
 
 
-//
-//
-//
+/*******************************************************************************
+ *  mouse button event handler
+ *  only sets flags which buttons are down
+ *  @param e	Qt's mouse event information structure
+ */
 void C4DView::mousePressEvent (QMouseEvent *e) {
   QPoint point = e->pos ();
   ButtonState s = e->stateAfter ();
@@ -435,9 +473,12 @@ void C4DView::mousePressEvent (QMouseEvent *e) {
   }  
 }
 
-//
-//
-//
+
+/*******************************************************************************
+ *  mouse button release event handler
+ *  if taking values for an animation, starts the animation
+ *  @param e	Qt's mouse event information structure
+ */
 void C4DView::mouseReleaseEvent ( QMouseEvent *e) {
   ButtonState s = e->stateAfter ();
   
@@ -452,9 +493,12 @@ void C4DView::mouseReleaseEvent ( QMouseEvent *e) {
 
 }
 
-//
-//
-//
+
+/*******************************************************************************
+ *  double click event handler
+ *  stops animation, if running, or resets transformation values to default
+ *  @param e	Qt's mouse event information structure
+ */
 void C4DView::mouseDoubleClickEvent (QMouseEvent *e) {
     if (Animated) StopAnimation ();
     else { 
@@ -474,9 +518,11 @@ void C4DView::mouseDoubleClickEvent (QMouseEvent *e) {
     XQGLWidget::mouseDoubleClickEvent (e);
 }
 
-//
-//
-//
+
+/*******************************************************************************
+ *  err well.. just that!
+ *  starts AnimationTimer, too...
+ */
 void C4DView::StartAnimation () {
 # if 0
   cerr << "C4DView::StartAnimation ()\n";
@@ -488,9 +534,10 @@ void C4DView::StartAnimation () {
   UpdateStatus ("Double-click LMB to stop animation");
 }
 
-//
-//
-//
+
+/*******************************************************************************
+ *  you guessed it
+ */
 void C4DView::StopAnimation () {
 # if 0
   cerr << "C4DView::StopAnimation ()\n";
@@ -503,13 +550,51 @@ void C4DView::StopAnimation () {
   CurrentlyRendering = false;
 }
 
-//
-//
-//
+
+/*******************************************************************************
+ *  starts a random animation, whose xw/yw/zw rotation speed changes every HARDCODED - EEEEYUARGH!
+ *  10 seconds
+ */
+void C4DView::RandomAnimation() {
+  AnimationTimer->stop ();
+  AnimateRandomTimer->stop ();
+
+  dxw = float (rand ())/RAND_MAX;
+  dyw = float (rand ())/RAND_MAX; 
+  dzw = float (rand ())/RAND_MAX;
+  StartAnimation ();
+
+  AnimateRandomTimer->start (10000);
+}
+
+
+/*******************************************************************************
+ *  make a pixmap to to be rendered by the gl widget, and render it.
+ *  this is an embarrassing workaround to make rendering to files work.
+ *  especially embarrassing is that it doesn't work either.
+ */
+QPixmap C4DView::makePixmap() {
+    QPixmap pm;
+
+    // Render the pixmap, with either c1's size or the fixed size pmSz
+    pm = renderPixmap();
+
+    if ( pm.isNull() ) {
+      cerr << "Failed to render Pixmap.\n";
+    }
+    return pm;
+}
+
+
+/*******************************************************************************
+ *  timer event handler
+ *  updates values if in the middle of an animation, and renders an image
+ *  tries to write image to file too, if wanted, but fails miserably.
+ */
 void C4DView::OnTimer() {
   m_rotX += dx; m_rotY += dy; m_rotZ += dz;        		//    update 3D viewpoint values
 
-# if 0
+# ifdef DEBUG
   cerr << "C4DView::OnTimer()\n"
        << "  dx = " <<  dx << "  dy = " <<  dy << "  dz = " <<  dz << endl
        << " dxy = " << dxy << " dxz = " << dxz << " dxw = " << dxw
@@ -527,13 +612,167 @@ void C4DView::OnTimer() {
   } 	 
   else OnPaint ();                                		//    explicit OnPaint ()
   
+  if (1 && RenderToPixmap) {
+    CurrentlyRendering = true;
+    static unsigned long frame = 0;
+
+
+    PreRedraw ();
+#   ifdef DEBUG
+      cerr << "  C4DView::OnTimer() \n";
+#   endif
+    QPixmap tmpPixmap = makePixmap ();
+
+#   ifdef DEBUG
+      cerr << "    renderPixmap ("<<width ()<<", "<<height()<< ")\n";
+      cerr << "    " << tmpPixmap.width () << " " << tmpPixmap.height () << endl;
+#   endif
+
+    QString imageFilename = QString ("/tmp/HyperspaceExplorer_Image.%1.png")
+                                     .arg (frame++, 6)
+                                     .replace (" ", "0");
+    if (tmpPixmap.save (imageFilename, "PNG"))
+#   ifdef DEBUG
+      //      cerr << "writing " << iio.fileName () << " successful!";
+      cerr << "writing " << imageFilename << " successful!\n";
+#   endif
+    ;
+    else
+#   ifdef DEBUG
+      //      cerr << "writing " << iio.fileName () << " failed!";
+      cerr << "writing " << imageFilename << " failed!\n";
+#   endif
+    ;
+  }
+    
+  UpdateStatus ("Double-click LMB to stop animation");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//    from here on it gets pretty boring OpenGL management stuff
+//
+/*******************************************************************************
+ *  separated the 4d projection stuff from the 3d opengl handling into this function
+ */
+void C4DView::PreRedraw () {
+  // this does seem very ineffective to me, deleting and reassigning the GL Lists,
+  // but it does not seem to work any other way...?
+# ifdef DEBUG
+    cerr << "  PreRedraw ()\n";
+# endif
+  
+  if (DisplayCoordinates) {
+    if (CoordinateCross) glDeleteLists (CoordinateCross,1);
+    CoordinateCross = GetGLList ();
+    glNewList (CoordinateCross, GL_COMPILE);
+      DrawCoordinates ();
+    glEndList ();
+  }
+
+  if (ObjectList) glDeleteLists (ObjectList,1); 
+  ObjectList = GetGLList ();
+  glNewList (ObjectList, GL_COMPILE_AND_EXECUTE);
+    /*
+    glBegin (GL_POINTS);
+      SetColor (0., 0., 0.);
+      for (unsigned i = 0; i < 160; i++) glVertex3d (0., 0., i/100.);
+    glEnd ();
+    */
+    Project ();
+    Draw (); 
+
+  glEndList ();
+
+# ifdef DEBUG
+    cerr << "  PreRedraw () done\n";
+# endif
+}
+
+
+/*******************************************************************************
+ *  redraw handler
+ */
+void C4DView::Redraw () {
+  PreRedraw ();
+  OnPaint ();
+}
+
+
+/*******************************************************************************
+ *  wrapper for redraw handler, with an exit strategy
+ */
+void C4DView::RenderScene (unsigned Frame) {			//	draw (frame of animation)
+  usleep (16000);
+  while (!glIsList (ObjectList)) {
+#   ifdef DEBUG
+      switch (QMessageBox::warning (NULL, 
+				    "C4DView::RenderScene", 
+				    ("ObjectList No. "+itoa (ObjectList)+
+				     " is not a GL list!").c_str (),
+				    "Retry", "Die", 0,
+				    0, 1)) {
+      case 0: PreRedraw ();
+	      break;
+      case 1: exit (1);
+              break;
+      }
+      sleep (1);
+#   else
+      cerr << "C4DView::RenderScene ():  "
+	   << "ObjectList No. " << itoa (ObjectList) <<" is not a GL list!" << endl;
+      sleep (1);
+      PreRedraw ();
+#   endif
+  }
+
+  glCallList (ObjectList);					//	draw the object
+  if (DisplayCoordinates)
+    glCallList (CoordinateCross);
+}
+
+
+/*******************************************************************************
+ *  should be called whenever the object is rotaded or translated
+ */
+void C4DView::OnPaint() {                                	//    object drawing routine
+  glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);    		//    clear the window
+
+  if (DisplayPolygons)                                	//    this might move to a special routine
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);        	//    "SwitchWireframe ()"
+  else 
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+  
+  glPushMatrix();                                        	//    save transformation matrix
+    // glTranslated(0.0, /*Size ()*.75*/0., 0);            	//    set the camera position
+
+  glTranslated (m_transX, m_transY, m_camZ);            	//    apply object translation
+  glRotated(m_rotX, 1.0, 0.0, 0.0);                    	//     -"-    -"-     rotation
+  glRotated(m_rotY, 0.0, 1.0, 0.0);
+  glRotated(m_rotZ, 0.0, 0.0, 1.0);
+  
+  RenderScene (0);                                		//    draw current frame
+  
+  glPopMatrix();                                        	//    restore transformation matrix
+
+  swapBuffers ();                            			//    swap the buffers
+
   if (RenderToPixmap) {
     CurrentlyRendering = true;
     static unsigned long frame = 0;
-    
-    cerr << "C4DView::OnTimer() ";
-    QPixmap tmpPixmap = renderPixmap (width (), height (), false);
-    cerr << tmpPixmap.width () << " " << tmpPixmap.height () << endl;
+
+    PreRedraw ();
+
+#ifdef DEBUG
+    cerr << "  C4DView::OnPaint () \n";
+# endif
+    QPixmap tmpPixmap = makePixmap ();
+    //    QPixmap tmpPixmap = renderPixmap (/* width (), height (), false */);
+#ifdef DEBUG
+    cerr << "    renderPixmap ("<<width ()<<", "<<height()<< ")\n";
+    cerr << "    " << tmpPixmap.width () << " " << tmpPixmap.height () << endl;
+# endif
 
     QString imageFilename = QString ("/tmp/HyperspaceExplorer_Image.%1.png")
                                      .arg (frame++, 6)
@@ -544,107 +783,13 @@ void C4DView::OnTimer() {
     else
       //      cerr << "writing " << iio.fileName () << " failed!";
       cerr << "writing " << imageFilename << " failed!\n";
-
-  }
-    
-  UpdateStatus ("Double-click LMB to stop animation");
-}
-
-void C4DView::RandomAnimation() {
-  AnimationTimer->stop ();
-  AnimateRandomTimer->stop ();
-
-  dxw = float (rand ())/RAND_MAX;
-  dyw = float (rand ())/RAND_MAX; 
-  dzw = float (rand ())/RAND_MAX;
-  StartAnimation ();
-
-  AnimateRandomTimer->start (10000);
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//    from here on it gets pretty boring OpenGL management stuff
-//
-
-void C4DView::Redraw () {
-  if (ObjectList) glDeleteLists (ObjectList,1); 
-  ObjectList = GetGLList ();
-  glNewList (ObjectList, GL_COMPILE_AND_EXECUTE);
-
-    Project ();
-    Draw (); 
-
-  glEndList ();
-  
-  if (DisplayCoordinates) {
-    if (CoordinateCross) glDeleteLists (CoordinateCross,1);
-    CoordinateCross = GetGLList ();
-    glNewList (CoordinateCross, GL_COMPILE);
-      DrawCoordinates ();
-    glEndList ();
-  }
-
-  OnPaint ();
-}
-
-//
-//
-//
-void C4DView::RenderScene (unsigned Frame) {			//	draw (a frame of the animation)
-  if (glIsList (ObjectList)) {
-    glCallList (ObjectList);					//	draw the object
-    if (DisplayCoordinates)
-      glCallList (CoordinateCross);
-  }
-  else {
-#if 1
-    switch (QMessageBox::warning (NULL, 
-				  "C4DView::RenderScene", 
-				 ("ObjectList No. "+itoa (ObjectList)+
-				  " is not a GL list!").c_str (),
-				  "Retry", "Die", 0,
-				  0, 1)) {
-    case 0: Redraw ();
-            break;
-    case 1: exit (1);
-            break;
-    }
-#else
-    Redraw ();
-#endif
   }
 }
 
-//
-//	OnPaint: should be called whenever the object is rotaded or translated
-//
-void C4DView::OnPaint() {                                	//    object drawing routine
-  glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);    		//    clear the window
 
-    if (DisplayPolygons)                                	//    this might move to a special routine
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);        	//    "SwitchWireframe ()"
-    else 
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-    glPushMatrix();                                        	//    save the transformation matrix
-    // glTranslated(0.0, /*Size ()*.75*/0., 0);            	//    set the camera position
-
-    glTranslated (m_transX, m_transY, m_camZ);            	//    apply object translation
-    glRotated(m_rotX, 1.0, 0.0, 0.0);                    	//     -"-    -"-     rotation
-    glRotated(m_rotY, 0.0, 1.0, 0.0);
-    glRotated(m_rotZ, 0.0, 0.0, 1.0);
-
-    RenderScene (0);                                		//    draw current frame
-
-    glPopMatrix();                                        	//    restore transformation matrix
-
-    swapBuffers ();                            			//    swap the buffers
-}
-
-//
-//	resizeEvent (): 
-//
+/*******************************************************************************
+ *  resizeEvent (): 
+ */
 void C4DView::resizeEvent (QResizeEvent *e) {           	//    resizing routine
   unsigned cx = e->size ().width (),                    	//    also, the definition of the
            cy = e->size ().height ();                   	//    GL viewport is done here
@@ -669,45 +814,75 @@ void C4DView::resizeEvent (QResizeEvent *e) {           	//    resizing routine
     glDrawBuffer (GL_BACK);                                	//    dump the buffer
 }
 
-/////////////////////////////////////////////////////////////////////////////
-// C4DView Zeichnen
 
+/*******************************************************************************
+ *  paintEvent (): 
+ */
 void C4DView::paintEvent (QPaintEvent *e) {
   OnPaint ();
 }
 
-/////////////////////////////////////////////////////////////////////////////
-// C4DView Nachrichten-Handler
 
+/*******************************************************************************
+ *  OpenGL initialization
+ *  now this is not as boring as it seems, because further work has to be done here:
+ *  trying to check for rendering to file, but this doesn't work yet.
+ *  the rest of interesting inits is done in XQGLWidget::initializeGL (), btw.
+ */
 void C4DView::initializeGL (void) {
-  
+
+# ifdef DEBUG
+    cerr << "initializeGL ()\n";
+# endif
   XQGLWidget::initializeGL ();
  
   glDisable (GL_CULL_FACE);                            		//    disable face culling
-  
-  glClearColor (0.1f, 0.1f, 0.1f, 1.);                    	//    set background color
 
-  if (RenderToPixmap /* && CurrentlyRendering */) {
-    if (ObjectList) glDeleteLists (ObjectList,1); 
-    ObjectList = GetGLList ();
-    glNewList (ObjectList, GL_COMPILE_AND_EXECUTE);
+  float *background = ::BackgroundColor();
+  glClearColor (background[0], background[1], background[2], background[3]);	//    set background color
 
-      Project ();
-      Draw (); 
+  if (RenderToPixmap /* && CurrentlyRendering */ ) {
+#   ifdef DEBUG
+      cerr << "  render to pixmap = true\n";
+#   endif
+    PreRedraw ();
 
-    glEndList ();
-  
-    if (DisplayCoordinates) {
-      if (CoordinateCross) glDeleteLists (CoordinateCross,1);
-      CoordinateCross = GetGLList ();
-      glNewList (CoordinateCross, GL_COMPILE);
-        DrawCoordinates ();
-      glEndList ();
-    }
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);    		//    clear the window
+
+    if (DisplayPolygons)                                	//    this might move to a special routine
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);        	//    "SwitchWireframe ()"
+    else 
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+    glPushMatrix();                                        	//    save the transformation matrix
+    // glTranslated(0.0, /*Size ()*.75*/0., 0);            	//    set the camera position
+
+    glTranslated (m_transX, m_transY, m_camZ);            	//    apply object translation
+    glRotated(m_rotX, 1.0, 0.0, 0.0);                    	//     -"-    -"-     rotation
+    glRotated(m_rotY, 0.0, 1.0, 0.0);
+    glRotated(m_rotZ, 0.0, 0.0, 1.0);
+
+
+#   ifdef DEBUG
+      cerr << "  RenderScene ()\n";
+#   endif
+    RenderScene (0);                                		//    draw current frame
+
+    glPopMatrix();                                        	//    restore transformation matrix
   }
+# ifdef DEBUG
+    cerr << "initializeGL () done\n";
+# endif
 }
 
 
+/*******************************************************************************
+ *  display some info about current object and its transformations, not in a 
+ *  status bar, as i can't get this to work with QGLWidget, but in the title bar
+ *  side effect: checks rotation values for overflow and resets them to the
+ *  interval [-360, 360]. is this wise?
+ *  @param status	string to be displayed
+ */
 void C4DView::UpdateStatus (QString status) {            	//    write a text to the status bar
   if (m_rotX > 360) m_rotX -= 360;
   if (m_rotX <-360) m_rotX += 360;
@@ -724,8 +899,8 @@ void C4DView::UpdateStatus (QString status) {            	//    write a text to 
   if (Ryw <-360) Ryw += 360;
   if (Rzw > 360) Rzw -= 360;
   if (Rzw <-360) Rzw += 360;
-  /*        
-  ostrstream o;
+  /*     
+  ostringstream o;
   o << "  cam_z = " << setw (4) << setprecision (3) << m_camZ 
     << "  r_x = " << setw (4) << setprecision (3) << m_rotX << "°"
     << "  r_y = " << setw (4) << setprecision (3) << m_rotY << "°"
@@ -735,7 +910,7 @@ void C4DView::UpdateStatus (QString status) {            	//    write a text to 
     << "  R_yw ="  << setw (4) << setprecision (3) << Ryw << "°"
     << "  R_zw ="  << setw (4) << setprecision (3) << Rzw << "°"
     << ends;
-
+    
   status += o.str ();
   */
   if (!status.isEmpty ()) {
@@ -746,6 +921,10 @@ void C4DView::UpdateStatus (QString status) {            	//    write a text to 
   //  StatusBar->message (ObjectName+status);
 }
 
+
+/*******************************************************************************
+ *  @param on		wheter to use fog
+ */
 void C4DView::SetupDepthCue (bool on) {
   float size = Size ();
   DepthCue3D = on;
@@ -756,6 +935,16 @@ void C4DView::SetupDepthCue (bool on) {
   else glDisable (GL_FOG);
 }
 
+
+/*******************************************************************************
+ *  called whenever an object or the parameters have changed; changes the display
+ *  on the status bar and for the names of the parameters on the ValuesDialog
+ *  @param Title	name of the new object
+ *  @param Parameter1	name of the new object's first parameter, if any
+ *  @param Parameter2	name of the new object's second parameter, if any
+ *  @param Parameter3	name of the new object's third parameter, if any
+ *  @param Parameter4	name of the new object's fourth parameter, if any
+ */
 void C4DView::AssignValues (const char *Title,
 			    const char *Parameter1, const char *Parameter2,
 			    const char *Parameter3, const char *Parameter4) {
@@ -804,6 +993,11 @@ void C4DView::AssignValues (const char *Title,
   Transform ();
 }
 
+
+/*******************************************************************************
+ *  called whenever an object or the parameters have changed; sets the parameters,
+ *  applies the changed parameters to the function object and redraws it
+ */
 void C4DView::ApplyChanges (void) {
   F->SetParameters (Values->a (), Values->b (), Values->c (), Values->d ());
   /*
@@ -836,6 +1030,11 @@ void C4DView::ApplyChanges (void) {
 
 }
 
+
+/*******************************************************************************
+ *  called whenever an object or the parameters have changed; this is the most
+ *  generalized version, but it doesn't exist  yet
+ */
 void C4DView::ParametersChanged (double tmin, double tmax, unsigned tsteps,
 				 double umin, double umax, unsigned usteps,
 				 double vmin, double vmax, unsigned vsteps,

@@ -24,13 +24,33 @@
 using namespace std;
 class Vector;
 
+const bool check_memory = false;
+
 extern double SR3; 
 
-const unsigned MaximumMemory = 180;
+extern unsigned long MaximumMemory;
 
 int GetGLList();
 
 void SetColor(float R, float G, float B);
+
+extern float background[], fog_color[];
+
+inline float *BackgroundColor() { return background; }
+inline void setBackground(float r, float g, float b, float a = 1.0) {
+  background[0] = r;
+  background[1] = g;
+  background[2] = b;
+  background[3] = a;
+}
+
+inline float *FogColor() { return fog_color; }
+inline void setFogColor(float r, float g, float b, float a = 1.0) {
+  fog_color[0] = r;
+  fog_color[1] = g;
+  fog_color[2] = b;
+  fog_color[3] = a;
+}
 
 double atod (QString);
 
@@ -55,5 +75,6 @@ template <class T> void Swap (T &a, T &b) {
 	a = b;
 	b = temp;
 }
+
 
 #endif // !defined(GLOBALS_H)

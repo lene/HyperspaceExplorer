@@ -1,7 +1,7 @@
 
 //      project:      hyperspace explorer
-//      module:       
-//      contains:     
+//      module:       Help.C
+//      contains:     code for displaying the help window
 //      compile with: make all
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
@@ -14,6 +14,11 @@
 #if (QT_VERSION < 300)
 
 
+/*******************************************************************************
+ *  construct and display a rudimentary help window
+ *  this is the terribly old version for Qt versions < 3, I should dump this...
+ *  @param parent	parent widget
+ */
 HelpWindow::HelpWindow (QWidget *parent): 
   QMultiLineEdit (parent) {
     setCaption ("XQGLWidget Key Help");
@@ -57,6 +62,14 @@ HelpWindow::HelpWindow (QWidget *parent):
 #include <qstatusbar.h>
 #include <qstringlist.h>
 
+
+/*******************************************************************************
+ *  construct and display a help browser window displaying the Help HTML file
+ *  @param home_	name of help file
+ *  @param _path	directory of help file
+ *  @param parent	parent widget
+ *  @param name		widget name
+ */
 HelpWindow::HelpWindow( const QString& home_, const QString& _path,
                         QWidget* parent, const char *name )
   : QMainWindow( parent, name, WDestructiveClose ) {

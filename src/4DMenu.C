@@ -1,7 +1,8 @@
 
 //      project:      hyperspace explorer
-//      module:       
-//      contains:     
+//      module:       4DMenu.C
+//      contains:     menu definitions unique to this application (functions,
+//		      4D manipulations, the like)
 //      compile with: make all
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
@@ -27,8 +28,8 @@ FunctionTableEntry FuncTable[] = {
   "Hypersphere", new 
 */
 
-//#define TESTFEATURES 1
-#undef TESTFEATURES
+#define TESTFEATURES 1
+//#undef TESTFEATURES
 
 inline void TESTED_FEATURE (QPopupMenu *menu, int item) {
 # ifdef TESTFEATURES
@@ -44,6 +45,10 @@ inline void TESTED_FEATURE (QPopupMenu *menu, int item) {
     //
     ////////////////////////////////////////////////////////////////////////////////
 
+/*******************************************************************************
+ *  create the menu 
+ *  @return		the menu
+ */
 QPopupMenu * C4DView::SetupMenu () {
     menu = XQGLWidget::SetupMenu ();
 
@@ -146,7 +151,18 @@ QPopupMenu * C4DView::SetupMenu () {
 
       return menu;
 }
-  
+
+
+/*******************************************************************************
+ *  menu callback functions
+ */
+
+
+/*******************************************************************************
+ *  switch between wireframe and solid display
+ *  account for antialiasing only in WF mode
+ *  change menu items accordingly
+ */
 void C4DView::Wireframe() {
   if (DisplayPolygons) {
     appear->changeItem (linesID, "Solid");
@@ -166,6 +182,10 @@ void C4DView::Wireframe() {
 }
 
 
+/*******************************************************************************
+ *  switch coordinate cross on or off
+ *  change menu items accordingly
+ */
 void C4DView::Coordinates() {
   DisplayCoordinates = !DisplayCoordinates;
   appear->setItemChecked (crossID, DisplayCoordinates); 
@@ -173,6 +193,11 @@ void C4DView::Coordinates() {
   Redraw ();
 }
 
+
+/*******************************************************************************
+ *  switch 4D depth cue on or off
+ *  change menu items accordingly
+ */
 void C4DView::HyperFog() {
   DepthCue4D = !DepthCue4D;
   appear->setItemChecked (hyperfogID, DepthCue4D);
@@ -180,12 +205,16 @@ void C4DView::HyperFog() {
   Redraw ();
 }
 
+/*******************************************************************************
+ *  switch lighting on or off
+ *  change menu items accordingly
+ */
 void C4DView::Light() {
   Lighting = !Lighting;
   if (Lighting) {
     glEnable(GL_LIGHTING);					//      turn on the light
  
-    static GLfloat LightAmbient[]  = { 0.3f, 0.3f, 0.3f, 1.0f },
+    static GLfloat LightAmbient[]  = { 0.3f, 0.3f, 0.3f, 1.0f }, //	HARDCODED VALUES
       LightDiffuse[]  = { 0.9f, 0.9f, 0.9f, 1.0f },
 	LightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f },
 	  LightPosition[] = { 1.0f, 1.0f, 1.0f, 0.0f }; //      light properties
@@ -211,47 +240,93 @@ void C4DView::Light() {
   OnPaint (); 
 }
 
+
+/*******************************************************************************
+ *  switch rendering to files on or off
+ *  change menu items accordingly
+ */
 void C4DView::RenderToImages() {
   RenderToPixmap = !RenderToPixmap; 
   animation->setItemChecked (pixmapID, RenderToPixmap);   
 }
 
+
+/*******************************************************************************
+ */
 void C4DView::AnimationSettings() {
   cerr << "C4DView::AnimationSettings() is not yet implemented!" << endl;
 }
 
+/*******************************************************************************
+ *  run a benchmark test
+ */
 void C4DView::Benchmark() {
-  clock_t stime = clock ();					//  record start time
-  const double DegreeStep=1;
-  
-  for (double Rxw = 0.01; Rxw <= 360.01; Rxw += DegreeStep) { 
-    Transform (0,0,Rxw,0,Rxw,Rxw,0,0,0,0);
-    Redraw ();
-    UpdateStatus (QString::number (unsigned (50*Rxw/360.))+"% done");
-  }
-	
-  float xtime = float (clock ()-stime)/CLOCKS_PER_SEC; 
-  
   ostringstream Time;
-  Time << "4D viewpoint rotation: " << xtime << " sec." 
-       << " (" << 360/DegreeStep/xtime << " fps)" << endl;
+
+  double time_4d = Benchmark4D (360, 1., 0., 0.);
+
+  Time << "4D viewpoint rotation: " << time_4d << " sec." 
+       << " (" << 360/1./time_4d << " fps)" << endl;
   
-  stime = clock ();
-  for (double Rz = 0; Rz <= 360; Rz += DegreeStep) {
-    m_rotZ = Rz;
-    OnPaint ();
-    UpdateStatus (QString::number (unsigned (50*Rz/360.)+50)+"% done");
-  }
+  float time_3d = Benchmark3D (360, 1., 0., 0.);
   
-  xtime = float (clock ()-stime)/CLOCKS_PER_SEC; 
-  
-  Time << "3D viewpoint rotation: " << xtime << " sec." 
-       << " (" << 360/DegreeStep/xtime << " fps)" << ends;
+  Time << "3D viewpoint rotation: " << time_3d << " sec." 
+       << " (" << 360/1./time_3d << " fps)" << ends;
   
   QMessageBox::information (NULL, "Benchmark results", Time.str ().c_str ());
   UpdateStatus ();
 }
 
+
+/*******************************************************************************
+ *  rotate in 4D 360 degrees
+ */
+double C4DView::Benchmark4D (int num_steps,
+			     double step_xw, double step_yw, double step_zw,
+			     bool display) {
+  clock_t stime = clock ();					//  record start time
+
+  double Rxw = 0., Ryw = 0., Rzw = 0.; 
+  
+  for (int step = 0; step < num_steps; step++) {
+    Rxw += step_xw; Ryw += step_yw; Rzw += step_zw; 
+    Transform (0., 0. ,Rxw, 0. , Ryw, Rzw, 0., 0., 0., 0.);
+    if (display) {
+      Redraw ();
+      UpdateStatus (QString::number ((100*step)/num_steps)+"% done");
+    }
+  }
+  
+  return double (clock ()-stime)/CLOCKS_PER_SEC;  
+}
+
+
+/*******************************************************************************
+ *  rotate in 3D 360 degrees
+ */
+double C4DView::Benchmark3D (int num_steps,
+			     double step_x, double step_y, double step_z,
+			     bool display) {
+  clock_t stime = clock ();					//  record start time
+
+  double Rx = m_rotX, Ry = m_rotY, Rz = m_rotZ; 
+  
+  for (int step = 0; step < num_steps; step++) {
+    m_rotX += step_x; m_rotY += step_y; m_rotZ += step_z; 
+    if (display) {
+      OnPaint ();
+      UpdateStatus (QString::number ((100*step)/num_steps)+"% done");
+    }
+  }
+  m_rotX = Rx; m_rotY = Ry;  m_rotZ = Rz;
+	
+  return double (clock ()-stime)/CLOCKS_PER_SEC;  
+}
+
+
+/*******************************************************************************
+ *  rotate in 3D 360 degrees
+ */
 void C4DView::UpdateFunctionMenu (int Item) {
   /*  for (unsigned i = 0; i < 32; i++)
       functions->setItemChecked (i, false);
@@ -259,27 +334,46 @@ void C4DView::UpdateFunctionMenu (int Item) {
   functions->setItemChecked (Item, true);
 }
 
+
+/*******************************************************************************
+ *  display a Fr3r object
+ */
 void C4DView::FunctionFr3r() {
   UpdateFunctionMenu (0);
 
-  if (F) delete F;
-  F = new Fr3r (Values->tmin (), Values->tmax (), Values->dt (),
-		Values->umin (), Values->umax (), Values->du (),
-		Values->vmin (), Values->vmax (), Values->dv ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new Fr3r (Values->tmin (), Values->tmax (), Values->dt (),
+		 Values->umin (), Values->umax (), Values->du (),
+		 Values->vmin (), Values->vmax (), Values->dv ()));
 
   AssignValues ("Some Function");
 	 
   Redraw ();
 }
 
+
+/*******************************************************************************
+ *  display a Hypersphere object
+ */
 void C4DView::FunctionHypersphere() {
   UpdateFunctionMenu (2);
 
-  if (F) delete F;
-  F = new Hypersphere (Values->tmin (), Values->tmax (), Values->dt (),
-		       Values->umin (), Values->umax (), Values->du (),
-		       Values->vmin (), Values->vmax (), Values->dv (),
-		       Values->a ());
+
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new Hypersphere (Values->tmin (), Values->tmax (), Values->dt (),
+			Values->umin (), Values->umax (), Values->du (),
+			Values->vmin (), Values->vmax (), Values->dv (),
+			Values->a ()));
 
   AssignValues ("Hypersphere", "Radius");
 
@@ -287,14 +381,22 @@ void C4DView::FunctionHypersphere() {
 }
 
 
+/*******************************************************************************
+ *  display a Torus1 object
+ */
 void C4DView::FunctionTorus1() {
   UpdateFunctionMenu (3);
 
-  if (F) delete F;
-  F = new Torus1 (Values->tmin (), Values->tmax (), Values->dt (),
-		  Values->umin (), Values->umax (), Values->du (),
-		  Values->vmin (), Values->vmax (), Values->dv (),
-		  Values->a (), Values->b (), Values->c ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new Torus1 (Values->tmin (), Values->tmax (), Values->dt (),
+		   Values->umin (), Values->umax (), Values->du (),
+		   Values->vmin (), Values->vmax (), Values->dv (),
+		   Values->a (), Values->b (), Values->c ()));
   
   AssignValues ("Torus 1", "Major Radius", "Minor Radius", "Micro Radius");
   
@@ -302,146 +404,259 @@ void C4DView::FunctionTorus1() {
 }
 
  
+/*******************************************************************************
+ *  display a Torus2 object
+ */
 void C4DView::FunctionTorus2() {
   UpdateFunctionMenu (4);
 
-  if (F) delete F;
-  F = new Torus2 (Values->tmin (), Values->tmax (), Values->dt (),
-		  Values->umin (), Values->umax (), Values->du (),
-		  Values->vmin (), Values->vmax (), Values->dv (),
-		  Values->a (), Values->b ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new Torus2 (Values->tmin (), Values->tmax (), Values->dt (),
+		   Values->umin (), Values->umax (), Values->du (),
+		   Values->vmin (), Values->vmax (), Values->dv (),
+		   Values->a (), Values->b ()));
   
   AssignValues ("Torus 2", "Major Radius", "Minor Radius");
   
   Redraw ();
 }
 
+
+/*******************************************************************************
+ *  display a Fr3r object
+ */
 void C4DView::FR3R(){
   UpdateFunctionMenu (4);
 
-  if (F) delete F;
-  F = new Fr3r (Values->tmin (), Values->tmax (), Values->dt (),
-		Values->umin (), Values->umax (), Values->du (),
-		Values->vmin (), Values->vmax (), Values->dv ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif 
+      (new Fr3r (Values->tmin (), Values->tmax (), Values->dt (),
+		 Values->umin (), Values->umax (), Values->du (),
+		 Values->vmin (), Values->vmax (), Values->dv ()));
   
   AssignValues ("f (r) = 1/(r²+1/4)");
   
   Redraw ();
 }
+
+
+/*******************************************************************************
+ *  display a GravPotential object
+ */
 void C4DView::GravPotential(){
   UpdateFunctionMenu (4);
 
-  if (F) delete F;
-  F = new GravitationPotential (Values->tmin (), Values->tmax (), Values->dt (),
-				Values->umin (), Values->umax (), Values->du (),
-				Values->vmin (), Values->vmax (), Values->dv (),
-				Values->a (), Values->b ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif 
+       (new GravitationPotential (Values->tmin (), Values->tmax (), Values->dt (),
+				  Values->umin (), Values->umax (), Values->du (),
+				  Values->vmin (), Values->vmax (), Values->dv (),
+				  Values->a (), Values->b ()));
   
   AssignValues ("Gravitation Potential", "M", "R");
   
   Redraw ();
 }
+
+
+/*******************************************************************************
+ *  display a SinR object
+ */
 void C4DView::SinR(){
   UpdateFunctionMenu (4);
 
-  if (F) delete F;
-  F = new Fr3rSin (Values->tmin (), Values->tmax (), Values->dt (),
-		   Values->umin (), Values->umax (), Values->du (),
-		   Values->vmin (), Values->vmax (), Values->dv ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new Fr3rSin (Values->tmin (), Values->tmax (), Values->dt (),
+		    Values->umin (), Values->umax (), Values->du (),
+		    Values->vmin (), Values->vmax (), Values->dv ()));
   
   AssignValues ("sin (r²)");
   
   Redraw ();
 }
+
+
+/*******************************************************************************
+ *  display a ExpR object
+ */
 void C4DView::ExpR(){
   UpdateFunctionMenu (4);
 
-  if (F) delete F;
-  F = new Fr3rExp (Values->tmin (), Values->tmax (), Values->dt (),
-		   Values->umin (), Values->umax (), Values->du (),
-		   Values->vmin (), Values->vmax (), Values->dv ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new Fr3rExp (Values->tmin (), Values->tmax (), Values->dt (),
+		    Values->umin (), Values->umax (), Values->du (),
+		    Values->vmin (), Values->vmax (), Values->dv ()));
   
   AssignValues ("exp (r²)");
   
   Redraw ();
 }
+
+
+/*******************************************************************************
+ *  display a Sin object
+ */
 void C4DView::Sin(){
   UpdateFunctionMenu (4);
 
-  if (F) delete F;
-  F = new PolarSin (Values->tmin (), Values->tmax (), Values->dt (),
-		    Values->umin (), Values->umax (), Values->du (),
-		    Values->vmin (), Values->vmax (), Values->dv (),
-		    Values->a ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif  
+      (new PolarSin (Values->tmin (), Values->tmax (), Values->dt (),
+		     Values->umin (), Values->umax (), Values->du (),
+		     Values->vmin (), Values->vmax (), Values->dv (),
+		     Values->a ()));
   
   AssignValues ("r = sin (...)", "Phase");
   
   Redraw ();
 }
+
+
+/*******************************************************************************
+ *  display a Sin2 object
+ */
 void C4DView::Sin2(){
   UpdateFunctionMenu (4);
 
-  if (F) delete F;
-  F = new PolarSin2 (Values->tmin (), Values->tmax (), Values->dt (),
-		     Values->umin (), Values->umax (), Values->du (),
-		     Values->vmin (), Values->vmax (), Values->dv ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new PolarSin2 (Values->tmin (), Values->tmax (), Values->dt (),
+		      Values->umin (), Values->umax (), Values->du (),
+		      Values->vmin (), Values->vmax (), Values->dv ()));
   
   AssignValues ("r = sin (...)");
   
   Redraw ();
 }
+
+
+/*******************************************************************************
+ *  display a FunctionR object
+ */
 void C4DView::FunctionR(){
   UpdateFunctionMenu (4);
 
-  if (F) delete F;
-  F = new PolarR (Values->tmin (), Values->tmax (), Values->dt (),
-		  Values->umin (), Values->umax (), Values->du (),
-		  Values->vmin (), Values->vmax (), Values->dv (),
-		  Values->a ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new PolarR (Values->tmin (), Values->tmax (), Values->dt (),
+		   Values->umin (), Values->umax (), Values->du (),
+		   Values->vmin (), Values->vmax (), Values->dv (),
+		   Values->a ()));
   
   AssignValues ("r", "Phase");
   
   Redraw ();
 }
 
+
+/*******************************************************************************
+ *  display a ObjectHypercube object
+ */
 void C4DView::ObjectHypercube() {
   UpdateFunctionMenu (1);
 
-  if (F) delete F;
-  F = new Hypercube (Vector (4, 0., 0., 0., 0.), Values->a ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new Hypercube (Vector (4, 0., 0., 0., 0.), Values->a ()));
 
   AssignValues ("Hypercube", "Size");
   
   Redraw ();
 }
 
+
+/*******************************************************************************
+ *  display a ObjectHyperpyramid object
+ */
 void C4DView::ObjectHyperpyramid() {
   UpdateFunctionMenu (1);
 
-  if (F) delete F;
-  F = new Pyramid (Vector (4, 0., 0., 0., 0.), 2.*Values->a ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new Pyramid (Vector (4, 0., 0., 0., 0.), 2.*Values->a ()));
 
   AssignValues ("Hyperpyramid", "Size");
   
   Redraw ();
 } 
 
+
+/*******************************************************************************
+ *  display a ObjectHypersponge object
+ */
 void C4DView::ObjectHypersponge() {
   UpdateFunctionMenu (1);
 
-  if (F) delete F;
-  F = new Sponge (unsigned (Values->a ()), int (Values->b ()), Values->c (), Vector (4, 0., 0., 0., 0.));
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new Sponge (unsigned (Values->a ()), int (Values->b ()), Values->c (), Vector (4, 0., 0., 0., 0.)));
 
   AssignValues ("4-dimensional Menger Sponge", "Level", "Distance", "Size");
   
   Redraw ();
 }
 
+
+/*******************************************************************************
+ *  display a ObjectGasket object
+ */
 void C4DView::ObjectGasket() {
   UpdateFunctionMenu (1);
 
-  if (F) delete F;
-  F = new Gasket (unsigned (Values->a ()), 2.*Values->b (), Vector (4, 0., 0., 0., 0.));
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new Gasket (unsigned (Values->a ()), 2.*Values->b (), Vector (4, 0., 0., 0., 0.)));
 
   AssignValues ("4-dimensional Sierpinski Gasket", "Level", "Size");
   
@@ -449,178 +664,331 @@ void C4DView::ObjectGasket() {
 } 
 
 
+/*******************************************************************************
+ *  display a Surface object
+ */
 void C4DView::Surface_1() {
-  if (F) delete F;
-  F = new Surface1 (Values->tmin (), Values->tmax (), Values->dt (),
-		    Values->umin (), Values->umax (), Values->du ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new Surface1 (Values->tmin (), Values->tmax (), Values->dt (),
+		     Values->umin (), Values->umax (), Values->du ()));
 
   AssignValues ("Surface");
   
   Redraw ();
 } 
 
+
+/*******************************************************************************
+ *  display a SurfaceHorizon object
+ */
 void C4DView::SurfaceHorizon() {
-  if (F) delete F;
-  F = new Horizon (Values->tmin (), Values->tmax (), Values->dt (),
-		   Values->umin (), Values->umax (), Values->du ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif 
+      (new Horizon (Values->tmin (), Values->tmax (), Values->dt (),
+		    Values->umin (), Values->umax (), Values->du ()));
 
   AssignValues ("Horizon");
   
   Redraw ();
 } 
 
+
+/*******************************************************************************
+ *  display a SurfaceTorus3 object
+ */
 void C4DView::SurfaceTorus3() {
-  if (F) delete F;
-  F = new Torus3 (Values->tmin (), Values->tmax (), Values->dt (),
-		  Values->umin (), Values->umax (), Values->du ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif 
+      (new Torus3 (Values->tmin (), Values->tmax (), Values->dt (),
+		   Values->umin (), Values->umax (), Values->du ()));
 
   AssignValues ("Torus");
   
   Redraw ();
 } 
 
+
+/*******************************************************************************
+ *  display a ComplexZ2 object
+ */
 void C4DView::ComplexZ2() {
-  if (F) delete F;
-  F = new z3 (Values->tmin (), Values->tmax (), Values->dt (),
-	      Values->umin (), Values->umax (), Values->du ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new z3 (Values->tmin (), Values->tmax (), Values->dt (),
+	       Values->umin (), Values->umax (), Values->du ()));
 
   AssignValues ("z²");
   
   Redraw ();
 } 
 
+
+/*******************************************************************************
+ *  display a ComplexZ3 object
+ */
 void C4DView::ComplexZ3() {
-  if (F) delete F;
-  F = new z3 (Values->tmin (), Values->tmax (), Values->dt (),
-	      Values->umin (), Values->umax (), Values->du ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new z3 (Values->tmin (), Values->tmax (), Values->dt (),
+	       Values->umin (), Values->umax (), Values->du ()));
 
   AssignValues ("z³");
   
   Redraw ();
 } 
 
+
+/*******************************************************************************
+ *  display a ComplexZA object
+ */
 void C4DView::ComplexZA() {
-  if (F) delete F;
-  F = new zA (Values->tmin (), Values->tmax (), Values->dt (),
-	      Values->umin (), Values->umax (), Values->du (),
-	      Values->a ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new zA (Values->tmin (), Values->tmax (), Values->dt (),
+	       Values->umin (), Values->umax (), Values->du (),
+	       Values->a ()));
 
   AssignValues ("z^a", "a");
   
   Redraw ();
 } 
 
+
+/*******************************************************************************
+ *  display a ComplexEZ object
+ */
 void C4DView::ComplexEZ() {
-  if (F) delete F;
-  F = new ez (Values->tmin (), Values->tmax (), Values->dt (),
-	      Values->umin (), Values->umax (), Values->du (),
-	      Values->a ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new ez (Values->tmin (), Values->tmax (), Values->dt (),
+	       Values->umin (), Values->umax (), Values->du (),
+	       Values->a ()));
 
   AssignValues ("e^a*z", "a");
   
   Redraw ();
 } 
 
+
+/*******************************************************************************
+ *  display a ComplexEMZ2 object
+ */
 void C4DView::ComplexEMZ2() {
-  if (F) delete F;
-  F = new emz2 (Values->tmin (), Values->tmax (), Values->dt (),
-		Values->umin (), Values->umax (), Values->du (),
-		Values->a ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif  
+      (new emz2 (Values->tmin (), Values->tmax (), Values->dt (),
+		 Values->umin (), Values->umax (), Values->du (),
+		 Values->a ()));
 
   AssignValues ("e^-a*z²", "a");
   
   Redraw ();
 } 
 
+
+/*******************************************************************************
+ *  display a ComplexZM1 object
+ */
 void C4DView::ComplexZM1() {
-  if (F) delete F;
-  F = new zm1 (Values->tmin (), Values->tmax (), Values->dt (),
-	       Values->umin (), Values->umax (), Values->du ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif 
+      (new zm1 (Values->tmin (), Values->tmax (), Values->dt (),
+		Values->umin (), Values->umax (), Values->du ()));
 
   AssignValues ("1/z");
   
   Redraw ();
-} 
+}
 
+
+/*******************************************************************************
+ *  display a ComplexZM2 object
+ */
 void C4DView::ComplexZM2() {
-  if (F) delete F;
-  F = new zm2 (Values->tmin (), Values->tmax (), Values->dt (),
-	       Values->umin (), Values->umax (), Values->du ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new zm2 (Values->tmin (), Values->tmax (), Values->dt (),
+		Values->umin (), Values->umax (), Values->du ()));
 
   AssignValues ("1/z²");
   
   Redraw ();
 } 
 
+
+/*******************************************************************************
+ *  display a ComplexSqrtZ object
+ */
 void C4DView::ComplexSqrtZ() {
-  if (F) delete F;
-  F = new sqrtz (Values->tmin (), Values->tmax (), Values->dt (),
-		 Values->umin (), Values->umax (), Values->du ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif 
+      (new sqrtz (Values->tmin (), Values->tmax (), Values->dt (),
+		  Values->umin (), Values->umax (), Values->du ()));
 
   AssignValues ("sqrt (z)");
   
   Redraw ();
 } 
 
+
+/*******************************************************************************
+ *  display a ComplexLnZ object
+ */
 void C4DView::ComplexLnZ() {
-  if (F) delete F;
-  F = new lnz (Values->tmin (), Values->tmax (), Values->dt (),
-	       Values->umin (), Values->umax (), Values->du ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new lnz (Values->tmin (), Values->tmax (), Values->dt (),
+		Values->umin (), Values->umax (), Values->du ()));
 
   AssignValues ("ln z");
   
   Redraw ();
 } 
 
+
+/*******************************************************************************
+ *  display a ComplexSinZ object
+ */
 void C4DView::ComplexSinZ() {
-  if (F) delete F;
-  F = new sinz (Values->tmin (), Values->tmax (), Values->dt (),
-		Values->umin (), Values->umax (), Values->du ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new sinz (Values->tmin (), Values->tmax (), Values->dt (),
+		 Values->umin (), Values->umax (), Values->du ()));
 
   AssignValues ("sin z");
   
   Redraw ();
 } 
 
+
+/*******************************************************************************
+ *  display a ComplexCosZ object
+ */
 void C4DView::ComplexCosZ() {
-  if (F) delete F;
-  F = new cosz (Values->tmin (), Values->tmax (), Values->dt (),
-		Values->umin (), Values->umax (), Values->du ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new cosz (Values->tmin (), Values->tmax (), Values->dt (),
+		 Values->umin (), Values->umax (), Values->du ()));
 
   AssignValues ("cos z");
   
   Redraw ();
 } 
 
+
+/*******************************************************************************
+ *  display a ComplexSinhZ object
+ */
 void C4DView::ComplexSinhZ() {
-  if (F) delete F;
-  F = new sinhz (Values->tmin (), Values->tmax (), Values->dt (),
-		 Values->umin (), Values->umax (), Values->du ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new sinhz (Values->tmin (), Values->tmax (), Values->dt (),
+		  Values->umin (), Values->umax (), Values->du ()));
 
   AssignValues ("sinh z");
   
   Redraw ();
 } 
 
+
+/*******************************************************************************
+ *  display a ComplexCoshZ object
+ */
 void C4DView::ComplexCoshZ() {
-  if (F) delete F;
-  F = new coshz (Values->tmin (), Values->tmax (), Values->dt (),
-		 Values->umin (), Values->umax (), Values->du ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new coshz (Values->tmin (), Values->tmax (), Values->dt (),
+		  Values->umin (), Values->umax (), Values->du ()));
 
   AssignValues ("cosh z");
   
   Redraw ();
 } 
 
+
+/*******************************************************************************
+ *  display a ComplexTanZ object
+ */
 void C4DView::ComplexTanZ() {
-  if (F) delete F;
-  F = new tanz (Values->tmin (), Values->tmax (), Values->dt (),
-		Values->umin (), Values->umax (), Values->du ());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif 
+      (new tanz (Values->tmin (), Values->tmax (), Values->dt (),
+		 Values->umin (), Values->umax (), Values->du ()));
 
   AssignValues ("tan z");
   
   Redraw ();
 } 
+
 
 
 #include "FunctionDialogImpl.H"
@@ -630,43 +998,97 @@ void C4DView::ComplexTanZ() {
 
 #include "CustomFunction.H"
 
+
+/*******************************************************************************
+ *  display a customFunction object
+ */
 void C4DView::customFunction() {
-  if (F) delete F;
-  F = new CustomFunction (Values->tmin (), Values->tmax (), Values->dt (),
-			  Values->umin (), Values->umax (), Values->du (),
-			  Values->vmin (), Values->vmax (), Values->dv ());
-  QString sym (((CustomFunction *)F)->symbolic());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new CustomFunction (Values->tmin (), Values->tmax (), Values->dt (),
+			   Values->umin (), Values->umax (), Values->du (),
+			   Values->vmin (), Values->vmax (), Values->dv ()));
+# ifdef USE_AUTO_PTR
+    QString sym (((CustomFunction *)F.get ())->symbolic());
+# else
+    QString sym (((CustomFunction *)F)->symbolic());
+# endif    
   AssignValues (sym);
   
   Redraw ();
 }
 
+
+/*******************************************************************************
+ *  display a customPolarFunction object
+ */
 void C4DView::customPolarFunction() {
-  if (F) delete F;
-  F = new CustomPolarFunction (Values->tmin (), Values->tmax (), Values->dt (),
-			       Values->umin (), Values->umax (), Values->du (),
-			       Values->vmin (), Values->vmax (), Values->dv ());
-  QString sym (((CustomPolarFunction *)F)->symbolic());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new CustomPolarFunction (Values->tmin (), Values->tmax (), Values->dt (),
+				Values->umin (), Values->umax (), Values->du (),
+				Values->vmin (), Values->vmax (), Values->dv ()));
+# ifdef USE_AUTO_PTR
+    QString sym (((CustomPolarFunction *)F.get ())->symbolic());
+# else
+    QString sym (((CustomPolarFunction *)F)->symbolic());
+# endif    
   AssignValues (sym);
   
   Redraw ();
   //  PolarDialog *PolarDlg = new PolarDialogImpl;
 }
+
+
+/*******************************************************************************
+ *  display a customComplexFunction object
+ */
 void C4DView::customComplexFunction() {
-  if (F) delete F;
-  F = new CustomComplexFunction (Values->tmin (), Values->tmax (), Values->dt (),
-				 Values->umin (), Values->umax (), Values->du ());
-  QString sym (((CustomComplexFunction *)F)->symbolic());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new CustomComplexFunction (Values->tmin (), Values->tmax (), Values->dt (),
+				  Values->umin (), Values->umax (), Values->du ()));
+# ifdef USE_AUTO_PTR
+    QString sym (((CustomComplexFunction *)F.get ())->symbolic());
+# else
+    QString sym (((CustomComplexFunction *)F)->symbolic());
+# endif    
   AssignValues (sym);
   
   Redraw ();
   //  ComplexDialog *ComplexDlg = new ComplexDialogImpl;
 }
+
+
+/*******************************************************************************
+ *  display a customSurface object
+ */
 void C4DView::customSurface() {
-  if (F) delete F;
-  F = new CustomSurface (Values->tmin (), Values->tmax (), Values->dt (),
-			 Values->umin (), Values->umax (), Values->du ());
-  QString sym (((CustomSurface *)F)->symbolic());
+# ifdef USE_AUTO_PTR
+  F.reset
+# else
+    if (F) delete F;
+    F =
+#endif
+      (new CustomSurface (Values->tmin (), Values->tmax (), Values->dt (),
+			  Values->umin (), Values->umax (), Values->du ()));
+# ifdef USE_AUTO_PTR
+    QString sym (((CustomSurface *)F.get ())->symbolic());
+# else
+    QString sym (((CustomSurface *)F)->symbolic());
+# endif    
   AssignValues (sym);
   
   Redraw ();

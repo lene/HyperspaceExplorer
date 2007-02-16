@@ -55,6 +55,8 @@ AC_SUBST(LDFLAGS)
 AC_HEADER_STDC
 AC_CHECK_HEADERS([stdlib.h unistd.h])
 
+#AC_CHECK_FILES ([/proc/meminfo])
+
 # Checks for typedefs, structures, and compiler characteristics.
 AC_HEADER_STDBOOL
 AC_C_CONST
