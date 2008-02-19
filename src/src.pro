@@ -21,4 +21,5 @@ FORMS += ValuesDialog.ui
 DEFINES += PACKAGE_BUGREPORT
 DEFINES += PACKAGE_VERSION
 
+DESTDIR = ../
 TARGET = HyperspaceExplorer

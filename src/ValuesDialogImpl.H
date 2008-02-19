@@ -11,7 +11,7 @@
 #define VALUES_DIALOG_IMPL_H
 
 //#include "ValuesDialog.H"
-#include "ValuesDialog.hxx"
+#include "ui_ValuesDialog.h"
 
 #include <qslider.h>
 #include <qlineedit.h>
