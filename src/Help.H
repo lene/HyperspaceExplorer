@@ -14,7 +14,7 @@
 
 # include <qmultilinedit.h>
 
-  class HelpWindow: public QMultiLineEdit {
+  class HelpWindow: public Q3MultiLineEdit {
     public:
       HelpWindow (QWidget * = 0);
   };
@@ -23,16 +23,16 @@
 #else
 
 
-# include <qmainwindow.h>
-# include <qtextbrowser.h>
+# include <q3mainwindow.h>
+# include <q3textbrowser.h>
 
-  class HelpWindow : public QMainWindow {
+  class HelpWindow : public Q3MainWindow {
     Q_OBJECT
   public:
     HelpWindow( const QString& home_,  const QString& path, QWidget* parent = 0, const char *name=0 );
 
   private:
-    QTextBrowser* browser;
+    Q3TextBrowser* browser;
   };
 
 

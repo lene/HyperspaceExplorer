@@ -12,7 +12,7 @@
 #include <qmessagebox.h>
 #include <qlineedit.h>
 #include <qfile.h>
-#include <qfiledialog.h>
+#include <q3filedialog.h>
 #include <qstringlist.h>
 
 #include <fstream>
@@ -36,8 +36,9 @@ extern QStringList rcdirs;
  *  @param f		window flags
  */
 SurfaceDialogImpl::SurfaceDialogImpl (QWidget *parent, const char *name,
-					bool modal, WFlags f) :
-	SurfaceDialog (parent, name, modal, f) {
+					bool modal, Qt::WFlags f) :
+	QDialog (parent, name, modal, f) {
+  setupUi(this);
   show ();
 }
 
@@ -52,7 +53,7 @@ bool SurfaceDialogImpl::loadFunction() {
     QDir current (*it);
 
     if (current.exists ("plugins/surface")) {	//  plugin subdir present?
-      libName = QFileDialog::getOpenFileName(current.absPath ()+"/plugins/surface",
+      libName = Q3FileDialog::getOpenFileName(current.absPath ()+"/plugins/surface",
 					     "Libraries (*.so*)",
 					     this,
 					     "Open a function"
@@ -145,19 +146,19 @@ void SurfaceDialogImpl::writeSource () {
                                                 \n\
     Vector f (double u, double v) {		\n\
       static Vector F (4);			\n\
-      F[0] = " << XEdit->text() << ";		\n\
-      F[1] = " << YEdit->text() << ";		\n\
-      F[2] = " << ZEdit->text() << ";		\n\
-      F[3] = " << WEdit->text() << ";		\n\
+      F[0] = " << XEdit->text().toStdString() << ";		\n\
+      F[1] = " << YEdit->text().toStdString() << ";		\n\
+      F[2] = " << ZEdit->text().toStdString() << ";		\n\
+      F[3] = " << WEdit->text().toStdString() << ";		\n\
                                                 \n\
     return F; 					\n\
 }						\n\
                                                 \n\
     char *symbolic () { return \"("	
-	     << XEdit->text() << ", "
-	     << YEdit->text() << ", "
-	     << ZEdit->text() << ", "
-	     << WEdit->text() << ")"
+	     << XEdit->text().toStdString() << ", "
+	     << YEdit->text().toStdString() << ", "
+	     << ZEdit->text().toStdString() << ", "
+	     << WEdit->text().toStdString() << ")"
 	     << "\"; }\n";
 
   SourceFile.close ();
@@ -170,7 +171,7 @@ bool SurfaceDialogImpl::compile () {
     
   if (!Success) {
     QFile Errs ("/tmp/HyperspaceExplorer.compile.errors");
-    Errs.open (IO_ReadOnly);
+    Errs.open (QIODevice::ReadOnly);
     QString ErrString (Errs.readAll ());
     QMessageBox::warning (this, "Compilation Errors", ErrString);
   }    
@@ -186,7 +187,7 @@ bool SurfaceDialogImpl::link () {
     
   if (!Success) {
     QFile Errs ("/tmp/HyperspaceExplorer.link.errors");
-    Errs.open (IO_ReadOnly);
+    Errs.open (QIODevice::ReadOnly);
     QString ErrString (Errs.readAll ());
     QMessageBox::warning (this, "Compilation Errors", ErrString);
   }

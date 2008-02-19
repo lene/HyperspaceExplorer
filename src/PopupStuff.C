@@ -11,11 +11,13 @@
 //		      for XQGLWidget
 
 
-#include <qapp.h>
-#include <qpopupmenu.h>
-#include <qaccel.h>
+#include <qapplication.h>
+#include <q3popupmenu.h>
+#include <q3accel.h>
 #include <qslider.h>
 #include <qmessagebox.h>
+//Added by qt3to4:
+#include <QMouseEvent>
 
 #include "numclass.H"
 
@@ -33,10 +35,10 @@
  *  create the menu 
  *  @return		the menu
  */
-QPopupMenu *XQGLWidget::SetupMenu (void) {
-  menu   = new QPopupMenu;
-  appear = new QPopupMenu;
-  help   = new QPopupMenu;
+Q3PopupMenu *XQGLWidget::SetupMenu (void) {
+  menu   = new Q3PopupMenu;
+  appear = new Q3PopupMenu;
+  help   = new Q3PopupMenu;
   
   colorsID     = appear->insertItem ("Colors",       this, SLOT(Colors ()));
   shadeID      = appear->insertItem ("Shading",      this, SLOT(Shade()));
@@ -162,16 +164,16 @@ void XQGLWidget::Colors () {
  */
 void XQGLWidget::mousePressEvent (QMouseEvent *E) {
   int ButtonPressed = E->button ();
-  if (ButtonPressed == RightButton)
+  if (ButtonPressed == Qt::RightButton)
 #   if (QT_VERSION < 300)
     menu->exec (QCursor::pos ());
 #   else
   menu->exec (E->pos());
 #   endif
-  else if (ButtonPressed == LeftButton) {
+  else if (ButtonPressed == Qt::LeftButton) {
     xpressed = E->x (); ypressed = E->y (); }
-  else if (ButtonPressed == MidButton) {
-    if (E->state () && ShiftButton) ViewPos (R+1);
+  else if (ButtonPressed == Qt::MidButton) {
+    if (E->state () && Qt::ShiftButton) ViewPos (R+1);
     else                            // ViewPos (R-1); }
       ypressed = E->y (); } }
 
@@ -184,15 +186,15 @@ void XQGLWidget::mousePressEvent (QMouseEvent *E) {
  */
 void XQGLWidget::mouseReleaseEvent (QMouseEvent *E) { 
   int ButtonPressed = E->button ();
-  if (ButtonPressed == LeftButton) {
+  if (ButtonPressed == Qt::LeftButton) {
     int dx = E->x () - xpressed, dy = E->y () -ypressed,
       dtheta = dx*90/width (), dpsi   = dy*90/height ();
     theta += dtheta; psi += dpsi;
     repaint (); } 
-  if (ButtonPressed == MidButton) {
+  if (ButtonPressed == Qt::MidButton) {
     double dr = double (E->y ()-ypressed)/height ()*5.;   //  the 5 may have to be reviewed
     if (dr) ViewPos (R*pow (1.25, dr));                   //  exponential change (1.25 also)
-    else if (!(E->state () && ShiftButton))
+    else if (!(E->state () && Qt::ShiftButton))
       ViewPos (R/1.25);
     //    cerr << "dr = " << dr << " R = " <<R << endl;
   }
@@ -215,27 +217,27 @@ void XQGLWidget::mouseMoveEvent (QMouseEvent *) { }
  *  create keyboard accelerators
  */
 void XQGLWidget::SetupAccel (void) {
-  static QAccel *accel;
-  accel = new QAccel (this);
+  static Q3Accel *accel;
+  accel = new Q3Accel (this);
 
   accel->connectItem (accel->insertItem (Qt::Key_Left),  this, SLOT (Left ()));
   accel->connectItem (accel->insertItem (Qt::Key_Right), this, SLOT (Right ()));
   accel->connectItem (accel->insertItem (Qt::Key_Up),    this, SLOT (Up ()));
   accel->connectItem (accel->insertItem (Qt::Key_Down),  this, SLOT (Down ())); 
 
-  accel->connectItem (accel->insertItem (Qt::Key_Left+SHIFT),  this, SLOT (SLeft ()));
-  accel->connectItem (accel->insertItem (Qt::Key_Right+SHIFT), this, SLOT (SRight ()));
-  accel->connectItem (accel->insertItem (Qt::Key_Up+SHIFT),    this, SLOT (SUp ())); 
-  accel->connectItem (accel->insertItem (Qt::Key_Down+SHIFT),  this, SLOT (SDown ()));
+  accel->connectItem (accel->insertItem (Qt::Key_Left+Qt::SHIFT),  this, SLOT (SLeft ()));
+  accel->connectItem (accel->insertItem (Qt::Key_Right+Qt::SHIFT), this, SLOT (SRight ()));
+  accel->connectItem (accel->insertItem (Qt::Key_Up+Qt::SHIFT),    this, SLOT (SUp ())); 
+  accel->connectItem (accel->insertItem (Qt::Key_Down+Qt::SHIFT),  this, SLOT (SDown ()));
 
-  accel->connectItem (accel->insertItem (Qt::Key_Left+ALT+CTRL),  this, SLOT (CALeft ()));
-  accel->connectItem (accel->insertItem (Qt::Key_Right+ALT+CTRL), this, SLOT (CARight ()));
-  accel->connectItem (accel->insertItem (Qt::Key_Up+ALT+CTRL),    this, SLOT (CAUp ())); 
-  accel->connectItem (accel->insertItem (Qt::Key_Down+ALT+CTRL),  this, SLOT (CADown ())); 
+  accel->connectItem (accel->insertItem (Qt::Key_Left+Qt::ALT+Qt::CTRL),  this, SLOT (CALeft ()));
+  accel->connectItem (accel->insertItem (Qt::Key_Right+Qt::ALT+Qt::CTRL), this, SLOT (CARight ()));
+  accel->connectItem (accel->insertItem (Qt::Key_Up+Qt::ALT+Qt::CTRL),    this, SLOT (CAUp ())); 
+  accel->connectItem (accel->insertItem (Qt::Key_Down+Qt::ALT+Qt::CTRL),  this, SLOT (CADown ())); 
  
   accel->connectItem (accel->insertItem (Qt::Key_A), this, SLOT (A ())); 
 
-  accel->connectItem (accel->insertItem (Qt::Key_Q+CTRL), qApp, SLOT (quit ())); }
+  accel->connectItem (accel->insertItem (Qt::Key_Q+Qt::CTRL), qApp, SLOT (quit ())); }
  
 
 /*******************************************************************************
@@ -319,7 +321,7 @@ void XQGLWidget::CADown () {
  */
 void XQGLWidget::A () { 
   QSlider *GetAlpha = new QSlider    (0  , 255,  64, int (Alpha*255),
-				      QSlider::Horizontal, this);
+				      Qt::Horizontal, this);
   GetAlpha->setTickInterval (16);
   GetAlpha->setFixedSize (200, 20);
   GetAlpha->show ();
@@ -348,8 +350,8 @@ void XQGLWidget::about()
   QMessageBox::about( this, "Hyperspace Explorer",
 		      "<p>A program to view four-dimensional objects "
 		      "using OpenGL and the Qt GUI library.</p>"
-		      "<p>author: "PACKAGE_BUGREPORT"</p>"
-		      "<p>version: "PACKAGE_VERSION" of 2004-04-20</p>"
+		      "<p>author: "+QString(PACKAGE_BUGREPORT)+"</p>"
+		      "<p>version: "+QString(PACKAGE_VERSION)+" of 2004-04-20</p>"
 		      );
 }
 

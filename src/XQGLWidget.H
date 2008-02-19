@@ -18,11 +18,14 @@
 #undef DEBUG
 
 #include <qgl.h>
+//Added by qt3to4:
+#include <QMouseEvent>
+#include <Q3PopupMenu>
 
 #include <numclass.H>
 #include "GLObject.H"
 
-class QPopupMenu;
+class Q3PopupMenu;
 
  ////////////////////////////////////////////////////////////////////////////
 //  class XQGLWidget:                                                       //
@@ -79,12 +82,12 @@ class XQGLWidget: public QGLWidget {
     void SetupDepthCue (float, float);
 
   //  popup menu handling
-    QPopupMenu *menu;                              //  menu identifiers
-    virtual QPopupMenu *SetupMenu (void);
+    Q3PopupMenu *menu;                              //  menu identifiers
+    virtual Q3PopupMenu *SetupMenu (void);
     void SetupAccel (void);
 
   protected:
-    QPopupMenu *appear, *help;                            //  menu identifiers
+    Q3PopupMenu *appear, *help;                            //  menu identifiers
 
     int lightID, fogID, transparentID, shadeID,    //  appearance items
         colorsID;

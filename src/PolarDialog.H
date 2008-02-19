@@ -4,35 +4,39 @@
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
+//#include <QtGui/Q3ButtonGroup>
 #include <QtGui/QDialog>
-#include <QtGui/QHBoxLayout>
+//#include <QtGui/Q3HBoxLayout>
 #include <QtGui/QLabel>
 #include <QtGui/QLineEdit>
 #include <QtGui/QPushButton>
 #include <QtGui/QSpacerItem>
-#include <QtGui/QVBoxLayout>
+//#include <QtGui/Q3VBoxLayout>
 #include <QtGui/QWidget>
 #include <Qt3Support/Q3MimeSourceFactory>
+//Added by qt3to4:
+#include <Q3HBoxLayout>
+#include <Q3VBoxLayout>
+#include <QLabel>
 
 class Ui_PolarDialog
 {
 public:
     QWidget *FLayout;
-    QHBoxLayout *hboxLayout;
+    Q3HBoxLayout *hboxLayout;
     QLabel *FLabel;
     QLineEdit *FEdit;
     QWidget *Layout27;
-    QVBoxLayout *vboxLayout;
-    QHBoxLayout *hboxLayout1;
+    Q3VBoxLayout *vboxLayout;
+    Q3HBoxLayout *hboxLayout1;
     QLabel *NameLabel;
     QLineEdit *NameEdit;
-    QHBoxLayout *hboxLayout2;
+    Q3HBoxLayout *hboxLayout2;
     QLabel *DescLabel;
     QLineEdit *LineEdit12;
     QSpacerItem *spacerItem;
     QWidget *BtnsLayout;
-    QHBoxLayout *hboxLayout3;
+    Q3HBoxLayout *hboxLayout3;
     QPushButton *OKButton;
     QPushButton *CancelButton;
     QSpacerItem *spacerItem1;
@@ -46,7 +50,7 @@ public:
     FLayout = new QWidget(PolarDialog);
     FLayout->setObjectName(QString::fromUtf8("FLayout"));
     FLayout->setGeometry(QRect(0, 40, 360, 28));
-    hboxLayout = new QHBoxLayout(FLayout);
+    hboxLayout = new Q3HBoxLayout(FLayout);
     hboxLayout->setSpacing(6);
     hboxLayout->setMargin(0);
     hboxLayout->setObjectName(QString::fromUtf8("hboxLayout"));
@@ -63,11 +67,11 @@ public:
     Layout27 = new QWidget(PolarDialog);
     Layout27->setObjectName(QString::fromUtf8("Layout27"));
     Layout27->setGeometry(QRect(0, 71, 360, 71));
-    vboxLayout = new QVBoxLayout(Layout27);
+    vboxLayout = new Q3VBoxLayout(Layout27);
     vboxLayout->setSpacing(6);
     vboxLayout->setMargin(0);
     vboxLayout->setObjectName(QString::fromUtf8("vboxLayout"));
-    hboxLayout1 = new QHBoxLayout();
+    hboxLayout1 = new Q3HBoxLayout();
     hboxLayout1->setSpacing(6);
     hboxLayout1->setMargin(0);
     hboxLayout1->setObjectName(QString::fromUtf8("hboxLayout1"));
@@ -84,7 +88,7 @@ public:
 
     vboxLayout->addLayout(hboxLayout1);
 
-    hboxLayout2 = new QHBoxLayout();
+    hboxLayout2 = new Q3HBoxLayout();
     hboxLayout2->setSpacing(6);
     hboxLayout2->setMargin(0);
     hboxLayout2->setObjectName(QString::fromUtf8("hboxLayout2"));
@@ -109,7 +113,7 @@ public:
     BtnsLayout = new QWidget(PolarDialog);
     BtnsLayout->setObjectName(QString::fromUtf8("BtnsLayout"));
     BtnsLayout->setGeometry(QRect(-10, 150, 360, 30));
-    hboxLayout3 = new QHBoxLayout(BtnsLayout);
+    hboxLayout3 = new Q3HBoxLayout(BtnsLayout);
     hboxLayout3->setSpacing(6);
     hboxLayout3->setMargin(0);
     hboxLayout3->setObjectName(QString::fromUtf8("hboxLayout3"));

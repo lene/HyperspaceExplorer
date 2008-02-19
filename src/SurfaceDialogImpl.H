@@ -6,15 +6,16 @@
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
 
-#include "SurfaceDialog.H"
+#include "ui_SurfaceDialog.h"
 
-class SurfaceDialogImpl: public SurfaceDialog {
+class SurfaceDialogImpl: public QDialog, public Ui::SurfaceDialog {
   Q_OBJECT
 
 public:
   SurfaceDialogImpl (QWidget *parent = 0, const char *name =0,
-		      bool modal = true, WFlags f = 0);
-  
+		      bool modal = true, Qt::WFlags f = 0);
+  virtual ~SurfaceDialogImpl() {}
+
   QString libraryName ();
   
 public slots:

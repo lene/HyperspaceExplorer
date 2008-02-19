@@ -6,15 +6,16 @@
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
 
-#include "PolarDialog.H"
+#include "ui_PolarDialog.h"
 
-class PolarDialogImpl: public PolarDialog {
+class PolarDialogImpl: public QDialog, public Ui::PolarDialog {
   Q_OBJECT
 
 public:
   PolarDialogImpl (QWidget *parent = 0, const char *name =0,
-		      bool modal = true, WFlags f = 0);
-  
+		      bool modal = true, Qt::WFlags f = 0);
+  virtual ~PolarDialogImpl() {}
+
   QString libraryName ();
   
 public slots:

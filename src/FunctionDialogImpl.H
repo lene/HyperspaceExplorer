@@ -6,14 +6,15 @@
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
 
-#include "FunctionDialog.H"
+#include "ui_FunctionDialog.h"
 
-class FunctionDialogImpl: public FunctionDialog {
+class FunctionDialogImpl: public QDialog, public Ui::FunctionDialog {
   Q_OBJECT
 
 public:
   FunctionDialogImpl (QWidget *parent = 0, const char *name =0,
-		      bool modal = true, WFlags f = 0);
+		      bool modal = true, Qt::WFlags f = 0);
+  virtual ~FunctionDialogImpl() {} 
   QString libraryName ();
   
 public slots:

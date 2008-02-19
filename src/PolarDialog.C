@@ -15,7 +15,10 @@
 #include <qlineedit.h>
 #include <qlayout.h>
 #include <qtooltip.h>
-#include <qwhatsthis.h>
+#include <q3whatsthis.h>
+//Added by qt3to4:
+#include <Q3HBoxLayout>
+#include <Q3VBoxLayout>
 
 /*
  *  Constructs a PolarDialog as a child of 'parent', with the
@@ -24,7 +27,7 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  TRUE to construct a modal dialog.
  */
-PolarDialog::PolarDialog( QWidget* parent, const char* name, bool modal, WFlags fl )
+PolarDialog::PolarDialog( QWidget* parent, const char* name, bool modal, Qt::WFlags fl )
     : QDialog( parent, name, modal, fl )
 {
     if ( !name )
@@ -32,7 +35,7 @@ PolarDialog::PolarDialog( QWidget* parent, const char* name, bool modal, WFlags 
 
     QWidget* privateLayoutWidget = new QWidget( this, "FLayout" );
     privateLayoutWidget->setGeometry( QRect( 0, 40, 360, 28 ) );
-    FLayout = new QHBoxLayout( privateLayoutWidget, 0, 6, "FLayout"); 
+    FLayout = new Q3HBoxLayout( privateLayoutWidget, 0, 6, "FLayout"); 
 
     FLabel = new QLabel( privateLayoutWidget, "FLabel" );
     FLayout->addWidget( FLabel );
@@ -42,9 +45,9 @@ PolarDialog::PolarDialog( QWidget* parent, const char* name, bool modal, WFlags 
 
     QWidget* privateLayoutWidget_2 = new QWidget( this, "Layout27" );
     privateLayoutWidget_2->setGeometry( QRect( 0, 71, 360, 71 ) );
-    Layout27 = new QVBoxLayout( privateLayoutWidget_2, 0, 6, "Layout27"); 
+    Layout27 = new Q3VBoxLayout( privateLayoutWidget_2, 0, 6, "Layout27"); 
 
-    NameLayout1 = new QHBoxLayout( 0, 0, 6, "NameLayout1"); 
+    NameLayout1 = new Q3HBoxLayout( 0, 0, 6, "NameLayout1"); 
 
     NameLabel = new QLabel( privateLayoutWidget_2, "NameLabel" );
     NameLayout1->addWidget( NameLabel );
@@ -53,7 +56,7 @@ PolarDialog::PolarDialog( QWidget* parent, const char* name, bool modal, WFlags 
     NameLayout1->addWidget( NameEdit );
     Layout27->addLayout( NameLayout1 );
 
-    Layout21 = new QHBoxLayout( 0, 0, 6, "Layout21"); 
+    Layout21 = new Q3HBoxLayout( 0, 0, 6, "Layout21"); 
 
     DescLabel = new QLabel( privateLayoutWidget_2, "DescLabel" );
     Layout21->addWidget( DescLabel );
@@ -67,7 +70,7 @@ PolarDialog::PolarDialog( QWidget* parent, const char* name, bool modal, WFlags 
 
     QWidget* privateLayoutWidget_3 = new QWidget( this, "BtnsLayout" );
     privateLayoutWidget_3->setGeometry( QRect( -10, 150, 360, 30 ) );
-    BtnsLayout = new QHBoxLayout( privateLayoutWidget_3, 0, 6, "BtnsLayout"); 
+    BtnsLayout = new Q3HBoxLayout( privateLayoutWidget_3, 0, 6, "BtnsLayout"); 
 
     OKButton = new QPushButton( privateLayoutWidget_3, "OKButton" );
     BtnsLayout->addWidget( OKButton );

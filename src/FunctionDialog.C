@@ -15,7 +15,10 @@
 #include <qlineedit.h>
 #include <qlayout.h>
 #include <qtooltip.h>
-#include <qwhatsthis.h>
+#include <q3whatsthis.h>
+//Added by qt3to4:
+#include <Q3HBoxLayout>
+#include <Q3VBoxLayout>
 
 /*
  *  Constructs a FunctionDialog as a child of 'parent', with the
@@ -24,7 +27,7 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  TRUE to construct a modal dialog.
  */
-FunctionDialog::FunctionDialog( QWidget* parent, const char* name, bool modal, WFlags fl )
+FunctionDialog::FunctionDialog( QWidget* parent, const char* name, bool modal, Qt::WFlags fl )
     : QDialog( parent, name, modal, fl )
 {
     if ( !name )
@@ -35,7 +38,7 @@ FunctionDialog::FunctionDialog( QWidget* parent, const char* name, bool modal, W
 
     QWidget* privateLayoutWidget = new QWidget( this, "BtnsLayout" );
     privateLayoutWidget->setGeometry( QRect( 0, 120, 360, 30 ) );
-    BtnsLayout = new QHBoxLayout( privateLayoutWidget, 0, 6, "BtnsLayout"); 
+    BtnsLayout = new Q3HBoxLayout( privateLayoutWidget, 0, 6, "BtnsLayout"); 
 
     OKButton = new QPushButton( privateLayoutWidget, "OKButton" );
     BtnsLayout->addWidget( OKButton );
@@ -51,7 +54,7 @@ FunctionDialog::FunctionDialog( QWidget* parent, const char* name, bool modal, W
 
     QWidget* privateLayoutWidget_2 = new QWidget( this, "FLayout" );
     privateLayoutWidget_2->setGeometry( QRect( 0, 20, 360, 28 ) );
-    FLayout = new QHBoxLayout( privateLayoutWidget_2, 0, 6, "FLayout"); 
+    FLayout = new Q3HBoxLayout( privateLayoutWidget_2, 0, 6, "FLayout"); 
 
     FLabel = new QLabel( privateLayoutWidget_2, "FLabel" );
     FLayout->addWidget( FLabel );
@@ -61,9 +64,9 @@ FunctionDialog::FunctionDialog( QWidget* parent, const char* name, bool modal, W
 
     QWidget* privateLayoutWidget_3 = new QWidget( this, "Layout22" );
     privateLayoutWidget_3->setGeometry( QRect( 0, 50, 360, 71 ) );
-    Layout22 = new QVBoxLayout( privateLayoutWidget_3, 0, 6, "Layout22"); 
+    Layout22 = new Q3VBoxLayout( privateLayoutWidget_3, 0, 6, "Layout22"); 
 
-    NameLayout1 = new QHBoxLayout( 0, 0, 6, "NameLayout1"); 
+    NameLayout1 = new Q3HBoxLayout( 0, 0, 6, "NameLayout1"); 
 
     NameLabel = new QLabel( privateLayoutWidget_3, "NameLabel" );
     NameLayout1->addWidget( NameLabel );
@@ -72,7 +75,7 @@ FunctionDialog::FunctionDialog( QWidget* parent, const char* name, bool modal, W
     NameLayout1->addWidget( NameEdit );
     Layout22->addLayout( NameLayout1 );
 
-    Layout21 = new QHBoxLayout( 0, 0, 6, "Layout21"); 
+    Layout21 = new Q3HBoxLayout( 0, 0, 6, "Layout21"); 
 
     DescLabel = new QLabel( privateLayoutWidget_3, "DescLabel" );
     DescLabel->setEnabled( TRUE );

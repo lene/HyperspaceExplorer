@@ -15,7 +15,10 @@
 #include <qlineedit.h>
 #include <qlayout.h>
 #include <qtooltip.h>
-#include <qwhatsthis.h>
+#include <q3whatsthis.h>
+//Added by qt3to4:
+#include <Q3HBoxLayout>
+#include <Q3VBoxLayout>
 
 /*
  *  Constructs a SurfaceDialog as a child of 'parent', with the
@@ -24,7 +27,7 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  TRUE to construct a modal dialog.
  */
-SurfaceDialog::SurfaceDialog( QWidget* parent, const char* name, bool modal, WFlags fl )
+SurfaceDialog::SurfaceDialog( QWidget* parent, const char* name, bool modal, Qt::WFlags fl )
     : QDialog( parent, name, modal, fl )
 {
     if ( !name )
@@ -35,9 +38,9 @@ SurfaceDialog::SurfaceDialog( QWidget* parent, const char* name, bool modal, WFl
 
     QWidget* privateLayoutWidget = new QWidget( this, "FunctionsLayout" );
     privateLayoutWidget->setGeometry( QRect( 0, 40, 360, 132 ) );
-    FunctionsLayout = new QVBoxLayout( privateLayoutWidget, 0, 6, "FunctionsLayout"); 
+    FunctionsLayout = new Q3VBoxLayout( privateLayoutWidget, 0, 6, "FunctionsLayout"); 
 
-    XLayout = new QHBoxLayout( 0, 0, 6, "XLayout"); 
+    XLayout = new Q3HBoxLayout( 0, 0, 6, "XLayout"); 
 
     XLabel = new QLabel( privateLayoutWidget, "XLabel" );
     XLayout->addWidget( XLabel );
@@ -46,7 +49,7 @@ SurfaceDialog::SurfaceDialog( QWidget* parent, const char* name, bool modal, WFl
     XLayout->addWidget( XEdit );
     FunctionsLayout->addLayout( XLayout );
 
-    YLayout = new QHBoxLayout( 0, 0, 6, "YLayout"); 
+    YLayout = new Q3HBoxLayout( 0, 0, 6, "YLayout"); 
 
     YLabel = new QLabel( privateLayoutWidget, "YLabel" );
     YLayout->addWidget( YLabel );
@@ -55,7 +58,7 @@ SurfaceDialog::SurfaceDialog( QWidget* parent, const char* name, bool modal, WFl
     YLayout->addWidget( YEdit );
     FunctionsLayout->addLayout( YLayout );
 
-    ZLayout = new QHBoxLayout( 0, 0, 6, "ZLayout"); 
+    ZLayout = new Q3HBoxLayout( 0, 0, 6, "ZLayout"); 
 
     ZLabel = new QLabel( privateLayoutWidget, "ZLabel" );
     ZLayout->addWidget( ZLabel );
@@ -64,7 +67,7 @@ SurfaceDialog::SurfaceDialog( QWidget* parent, const char* name, bool modal, WFl
     ZLayout->addWidget( ZEdit );
     FunctionsLayout->addLayout( ZLayout );
 
-    WLayout = new QHBoxLayout( 0, 0, 6, "WLayout"); 
+    WLayout = new Q3HBoxLayout( 0, 0, 6, "WLayout"); 
 
     WLabel = new QLabel( privateLayoutWidget, "WLabel" );
     WLayout->addWidget( WLabel );
@@ -75,9 +78,9 @@ SurfaceDialog::SurfaceDialog( QWidget* parent, const char* name, bool modal, WFl
 
     QWidget* privateLayoutWidget_2 = new QWidget( this, "Layout29" );
     privateLayoutWidget_2->setGeometry( QRect( 0, 180, 360, 71 ) );
-    Layout29 = new QVBoxLayout( privateLayoutWidget_2, 0, 6, "Layout29"); 
+    Layout29 = new Q3VBoxLayout( privateLayoutWidget_2, 0, 6, "Layout29"); 
 
-    NameLayout1 = new QHBoxLayout( 0, 0, 6, "NameLayout1"); 
+    NameLayout1 = new Q3HBoxLayout( 0, 0, 6, "NameLayout1"); 
 
     NameLabel = new QLabel( privateLayoutWidget_2, "NameLabel" );
     NameLayout1->addWidget( NameLabel );
@@ -86,7 +89,7 @@ SurfaceDialog::SurfaceDialog( QWidget* parent, const char* name, bool modal, WFl
     NameLayout1->addWidget( NameEdit );
     Layout29->addLayout( NameLayout1 );
 
-    Layout21 = new QHBoxLayout( 0, 0, 6, "Layout21"); 
+    Layout21 = new Q3HBoxLayout( 0, 0, 6, "Layout21"); 
 
     DescLabel = new QLabel( privateLayoutWidget_2, "DescLabel" );
     Layout21->addWidget( DescLabel );
@@ -100,7 +103,7 @@ SurfaceDialog::SurfaceDialog( QWidget* parent, const char* name, bool modal, WFl
 
     QWidget* privateLayoutWidget_3 = new QWidget( this, "BtnsLayout" );
     privateLayoutWidget_3->setGeometry( QRect( 0, 260, 360, 30 ) );
-    BtnsLayout = new QHBoxLayout( privateLayoutWidget_3, 0, 6, "BtnsLayout"); 
+    BtnsLayout = new Q3HBoxLayout( privateLayoutWidget_3, 0, 6, "BtnsLayout"); 
 
     OKButton = new QPushButton( privateLayoutWidget_3, "OKButton" );
     BtnsLayout->addWidget( OKButton );

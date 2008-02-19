@@ -9,6 +9,8 @@
 
 
 #include "Help.H"
+//Added by qt3to4:
+#include <Q3Frame>
 
 
 #if (QT_VERSION < 300)
@@ -20,7 +22,7 @@
  *  @param parent	parent widget
  */
 HelpWindow::HelpWindow (QWidget *parent): 
-  QMultiLineEdit (parent) {
+  Q3MultiLineEdit (parent) {
     setCaption ("XQGLWidget Key Help");
     setReadOnly (TRUE);
     setMinimumSize (360, 498);
@@ -72,11 +74,11 @@ HelpWindow::HelpWindow (QWidget *parent):
  */
 HelpWindow::HelpWindow( const QString& home_, const QString& _path,
                         QWidget* parent, const char *name )
-  : QMainWindow( parent, name, WDestructiveClose ) {
-    browser = new QTextBrowser( this );
+  : Q3MainWindow( parent, name, Qt::WDestructiveClose ) {
+    browser = new Q3TextBrowser( this );
 
     browser->mimeSourceFactory()->setFilePath( _path );
-    browser->setFrameStyle( QFrame::Panel | QFrame::Sunken );
+    browser->setFrameStyle( Q3Frame::Panel | Q3Frame::Sunken );
 #   if 0
     connect( browser, SIGNAL( textChanged() ),
              this, SLOT( textChanged() ) );

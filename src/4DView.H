@@ -16,8 +16,16 @@
 #include <qtimer.h> 
 #include <qpoint.h> 
 #include <qstatusbar.h>
-#include <qpopupmenu.h>
-
+//Added by qt3to4:
+#include <QPaintEvent>
+#include <QResizeEvent>
+#include <QPixmap>
+#include <QMouseEvent>
+#if (QT_VERSION < 400)
+#include <q3popupmenu.h>
+#else
+#include <QMenu>
+#endif
 #include "ValuesDialogImpl.H"
 
 class Vector;
@@ -70,7 +78,7 @@ public slots:
 
 protected: 
 
-  virtual QPopupMenu * SetupMenu ();
+  virtual Q3PopupMenu * SetupMenu ();
 
   void Project ();
   void Draw ();
@@ -150,7 +158,7 @@ protected:
   virtual void mouseMoveEvent(QMouseEvent *);
   virtual void mouseDoubleClickEvent ( QMouseEvent *);
 
-  QPopupMenu *functions, *animation;
+  Q3PopupMenu *functions, *animation;
   int linesID, crossID, hyperfogID, pixmapID;
   int funcID[32];
   void UpdateFunctionMenu (int);

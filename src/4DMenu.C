@@ -15,6 +15,8 @@
 #include "ComplexFunction.H"
 
 #include <qmessagebox.h>
+//Added by qt3to4:
+#include <Q3PopupMenu>
 
 #include <sstream>
 #include <iomanip>
@@ -31,7 +33,7 @@ FunctionTableEntry FuncTable[] = {
 #define TESTFEATURES 1
 //#undef TESTFEATURES
 
-inline void TESTED_FEATURE (QPopupMenu *menu, int item) {
+inline void TESTED_FEATURE (Q3PopupMenu *menu, int item) {
 # ifdef TESTFEATURES
     menu->setItemEnabled (item, true);
 # else
@@ -49,16 +51,16 @@ inline void TESTED_FEATURE (QPopupMenu *menu, int item) {
  *  create the menu 
  *  @return		the menu
  */
-QPopupMenu * C4DView::SetupMenu () {
+Q3PopupMenu * C4DView::SetupMenu () {
     menu = XQGLWidget::SetupMenu ();
 
-    functions = new QPopupMenu;
-    animation = new QPopupMenu;
+    functions = new Q3PopupMenu;
+    animation = new Q3PopupMenu;
 
-    QPopupMenu *fr3r = new QPopupMenu,
-               *objects = new QPopupMenu,
-               *surfaces = new QPopupMenu,
-               *fcc = new QPopupMenu;
+    Q3PopupMenu *fr3r = new Q3PopupMenu,
+               *objects = new Q3PopupMenu,
+               *surfaces = new Q3PopupMenu,
+               *fcc = new Q3PopupMenu;
 
     fr3r->insertItem ("1/(r²+1)", this, SLOT(FR3R()));
     fr3r->insertItem ("Gravitation Potential", this, SLOT(GravPotential()));

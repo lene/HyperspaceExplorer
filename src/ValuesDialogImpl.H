@@ -10,19 +10,22 @@
 #ifndef VALUES_DIALOG_IMPL_H
 #define VALUES_DIALOG_IMPL_H
 
-#include "ValuesDialog.H"
+//#include "ValuesDialog.H"
+#include "ValuesDialog.hxx"
 
 #include <qslider.h>
 #include <qlineedit.h>
 #include <qcombobox.h>
 #include <stdlib.h>
 
-class ValuesDialogImpl: public ValuesDialog {
+//class ValuesDialogImpl: public ValuesDialog {
+class ValuesDialogImpl: public QDialog, public Ui::ValuesDialog {
   Q_OBJECT
 
 public:
   ValuesDialogImpl (QWidget *parent = 0, const char *name =0,
-					bool modal = false, WFlags f = 0);
+					bool modal = false, Qt::WFlags f = 0);
+  virtual ~ValuesDialogImpl() {}
   
   double tmin () { return atof (TMin->text ()); }
   double tmax () { return atof (TMax->text ()); }

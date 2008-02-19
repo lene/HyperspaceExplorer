@@ -21,8 +21,9 @@
 using namespace std;
 
 ValuesDialogImpl::ValuesDialogImpl (QWidget *parent, const char *name,
-				    bool modal, WFlags f) :
-	ValuesDialog (parent, name, modal, f) {
+				    bool modal, Qt::WFlags f) :
+	QDialog (parent, name, modal, f) {
+  setupUi(this);
   /*
   InsertFunction ("Fr3r");
   InsertFunction ("Hypersphere");
@@ -48,7 +49,7 @@ void ValuesDialogImpl::DisplayValues () {
     << "b     : " << b () << "\n"
     << "c     : " << c () << "\t"
     << "d     : " << d () << "\n\n"
-    << "f     : " << FunctionBox->currentText () 
+    << "f     : " << FunctionBox->currentText ().toStdString()
     << ends;
   QMessageBox::information (this, QString ("There you are:"), QString (o.str ().c_str ()));
 }

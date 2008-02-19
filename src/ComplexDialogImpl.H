@@ -6,14 +6,15 @@
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
 
-#include "ComplexDialog.H"
+#include "ui_ComplexDialog.h"
 
-class ComplexDialogImpl: public ComplexDialog {
+class ComplexDialogImpl: public QDialog, public Ui::ComplexDialog {
   Q_OBJECT
 
 public:
   ComplexDialogImpl (QWidget *parent = 0, const char *name =0,
-		      bool modal = true, WFlags f = 0);
+		      bool modal = true, Qt::WFlags f = 0);
+  virtual ~ComplexDialogImpl() {}
   QString libraryName ();
   
 public slots:

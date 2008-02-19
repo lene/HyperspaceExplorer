@@ -39,7 +39,7 @@ protected:
 /*******************************************************************************
  *  default constructor: creates a unity DxD matrix
  */
-template<unsigned D> matrix<D>::matrix<D> () {
+template<unsigned D> matrix<D>::matrix () {
   for (unsigned i = 0; i < D; i++) {					//	i: row
     for (unsigned j = 0; j < D; j++) 				//	j: col
       M[i][j] = 0;
@@ -57,7 +57,7 @@ template<unsigned D> matrix<D>::matrix<D> () {
  *  @param Ryw	rotation around yw plane
  *  @param Rzw	rotation around zw plane
  */
-template <unsigned D> matrix<D>::matrix<D> (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw) {
+template <unsigned D> matrix<D>::matrix (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw) {
   cerr << "matrix<" << D <<">::matrix<" << D <<"> (Rxy, Rxz, Rxw, Ryz, Ryw, Rzw) not yet implemented!" << endl;
   abort();
 }
@@ -69,7 +69,7 @@ template <unsigned D> matrix<D>::matrix<D> (double Rxy, double Rxz, double Rxw, 
  *  @param jj		second (column) index
  *  @param Theta	rotation angle
  */
-template<unsigned D> matrix<D>::matrix<D> (unsigned ii, unsigned jj, double Theta) {
+template<unsigned D> matrix<D>::matrix (unsigned ii, unsigned jj, double Theta) {
   double c = cos (Theta*pi/180.), s = sin (Theta*pi/180.);
   for (unsigned i = 0; i < D; i++) {					//	i: row
     for (unsigned j = 0; j < D; j++) 				//	j: col

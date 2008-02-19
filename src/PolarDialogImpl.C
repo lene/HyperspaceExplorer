@@ -13,7 +13,7 @@
 #include <qmessagebox.h>
 #include <qlineedit.h>
 #include <qfile.h>
-#include <qfiledialog.h>
+#include <q3filedialog.h>
 #include <qstringlist.h>
 
 #include <fstream>
@@ -37,8 +37,9 @@ extern QStringList rcdirs;
  *  @param f		window flags
  */
 PolarDialogImpl::PolarDialogImpl (QWidget *parent, const char *name,
-				  bool modal, WFlags f) :
-	PolarDialog (parent, name, modal, f) {
+				  bool modal, Qt::WFlags f) :
+	QDialog (parent, name, modal, f) {
+  setupUi(this);
   show ();
 }
 
@@ -63,7 +64,7 @@ bool PolarDialogImpl::loadFunction() {
   for (QStringList::Iterator it = rcdirs.begin(); it != rcdirs.end(); ++it ) {
     QDir current (*it);
     if (current.exists ("plugins/polar")) {	//  plugin subdir present?
-      libName = QFileDialog::getOpenFileName(current.absPath ()+"/plugins/polar",
+      libName = Q3FileDialog::getOpenFileName(current.absPath ()+"/plugins/polar",
 					     "Libraries (*.so*)",
 					     this,
 					     "Open a function"
@@ -190,7 +191,7 @@ void PolarDialogImpl::writeSource () {
       double sinphi = sin (pi*t), cosphi = cos (pi*t),	\n\
              sintht = sin (pi*u), costht = cos (pi*u),	\n\
              sinpsi = sin (pi*v), cospsi = cos (pi*v),	\n\
-             Radius = " << FEdit->text() << ";		\n\
+             Radius = " << FEdit->text().toStdString() << ";		\n\
                                                         \n\
       F[0] = Radius*sinpsi*sintht*cosphi;		\n\
       F[1] = Radius*sinpsi*sintht*sinphi;		\n\
@@ -199,7 +200,7 @@ void PolarDialogImpl::writeSource () {
                                                         \n\
       return F; }					\n\
                                                         \n\
-    char *symbolic () { return \"" << FEdit->text()<< "\"; }\n";
+    char *symbolic () { return \"" << FEdit->text().toStdString() << "\"; }\n";
   
     SourceFile.close ();
 }
@@ -220,7 +221,7 @@ bool PolarDialogImpl::compile () {
     
   if (!Success) {
     QFile Errs ("/tmp/HyperspaceExplorer.compile.errors");
-    Errs.open (IO_ReadOnly);
+    Errs.open (QIODevice::ReadOnly);
     QString ErrString (Errs.readAll ());
     QMessageBox::warning (this, "Compilation Errors", ErrString);
   }    
@@ -242,7 +243,7 @@ bool PolarDialogImpl::link () {
 			  +"> /tmp/HyperspaceExplorer.link.errors 2>&1");    
   if (!Success) {
     QFile Errs ("/tmp/HyperspaceExplorer.link.errors");
-    Errs.open (IO_ReadOnly);
+    Errs.open (QIODevice::ReadOnly);
     QString ErrString (Errs.readAll ());
     QMessageBox::warning (this, "Compilation Errors", ErrString);
   }

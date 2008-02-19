@@ -107,14 +107,14 @@ void Surface::Initialize () {
  *  @param _c		3rd parameter
  *  @param _d		4th parameter
  */
-void Surface::SetParameters (double _a, double _b, double _c, double _d) { }
+void Surface::SetParameters (double, double, double, double) { }
 
 
 /*******************************************************************************
  *  re-initialize a Surface if the definition set has changed
- *  @param tmin		minimal value in t
- *  @param tmax		maximal value in t
- *  @param dt		stepsize in t
+ *  @param tmin		minimal value in t (ignored)
+ *  @param tmax		maximal value in t (ignored)
+ *  @param dt		stepsize in t (ignored)
  *  @param umin		minimal value in u
  *  @param umax		maximal value in u
  *  @param du		stepsize in u
@@ -122,7 +122,7 @@ void Surface::SetParameters (double _a, double _b, double _c, double _d) { }
  *  @param vmax		maximal value in v
  *  @param dv		stepsize in v
  */
-void Surface::ReInit(double _tmin, double _tmax, double _dt,
+void Surface::ReInit(double, double, double,
 		     double _umin, double _umax, double _du,
 		     double _vmin, double _vmax, double _dv) {
     umin = _umin;	umax = _umax;	du = _du;

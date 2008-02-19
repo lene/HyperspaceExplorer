@@ -21,8 +21,8 @@ QStringList rcdirs;	//  why tf did i make that global again? damn, i really shou
  */
 void help (QString progname) {
   cout << "Usage:" << endl
-       << progname << " [--rcdir dir]" << endl
-       << progname << " [-h | --help]" << endl
+       << progname.toStdString() << " [--rcdir dir]" << endl
+       << progname.toStdString() << " [-h | --help]" << endl
        << "Consult the online help for more info!" << endl;
 }
 

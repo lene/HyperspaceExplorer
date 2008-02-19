@@ -12,7 +12,7 @@
 #include <qmessagebox.h>
 #include <qlineedit.h>
 #include <qfile.h>
-#include <qfiledialog.h>
+#include <q3filedialog.h>
 #include <qstringlist.h>
 
 #include <fstream>
@@ -35,9 +35,13 @@ extern QStringList rcdirs;
  *  @param modal	modal dialog?
  *  @param f		window flags
  */
+//ComplexDialogImpl::ComplexDialogImpl (QWidget *parent, const char *name,
+//					bool modal, Qt::WFlags f) :
+//	ComplexDialog (parent, name, modal, f) {
 ComplexDialogImpl::ComplexDialogImpl (QWidget *parent, const char *name,
-					bool modal, WFlags f) :
-	ComplexDialog (parent, name, modal, f) {
+					bool modal, Qt::WFlags f) :
+	QDialog (parent, name, modal, f) {
+  setupUi(this);
   show ();
 }
 
@@ -62,7 +66,7 @@ bool ComplexDialogImpl::loadFunction() {
   for (QStringList::Iterator it = rcdirs.begin(); it != rcdirs.end(); ++it ) {
     QDir current (*it);
     if (current.exists ("plugins/complex")) {	//  plugin subdir present?
-      libName = QFileDialog::getOpenFileName(current.absPath ()+"/plugins/complex",
+      libName = Q3FileDialog::getOpenFileName(current.absPath ()+"/plugins/complex",
 					     "Libraries (*.so*)",
 					     this,
 					     "Open a function"
@@ -184,7 +188,7 @@ void ComplexDialogImpl::writeSource () {
                                                                 \n\
     Vector f (double u, double v) {				\n\
       static Vector F (4);					\n\
-      complex<double> z (u, v), w = " <<WEdit->text() << ";	\n\
+      complex<double> z (u, v), w = " << WEdit->text().toStdString() << ";	\n\
       F[0] = u; 						\n\
       F[1] = v;							\n\
       F[2] = w.real ();						\n\
@@ -192,7 +196,7 @@ void ComplexDialogImpl::writeSource () {
                                                                 \n\
       return F; }						\n\
                                                                 \n\
-    char *symbolic () { return \"" << WEdit->text()<< "\"; }	\n";
+    char *symbolic () { return \"" << WEdit->text().toStdString() << "\"; }	\n";
   
     SourceFile.close ();
 }
@@ -213,7 +217,7 @@ bool ComplexDialogImpl::compile () {
     
   if (!Success) {
     QFile Errs ("/tmp/HyperspaceExplorer.compile.errors");
-    Errs.open (IO_ReadOnly);
+    Errs.open (QIODevice::ReadOnly);
     QString ErrString (Errs.readAll ());
     QMessageBox::warning (this, "Compilation Errors", ErrString);
   }    
@@ -236,7 +240,7 @@ bool ComplexDialogImpl::link () {
     
   if (!Success) {
     QFile Errs ("/tmp/HyperspaceExplorer.link.errors");
-    Errs.open (IO_ReadOnly);
+    Errs.open (QIODevice::ReadOnly);
     QString ErrString (Errs.readAll ());
     QMessageBox::warning (this, "Compilation Errors", ErrString);
   }

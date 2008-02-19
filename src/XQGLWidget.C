@@ -17,8 +17,9 @@
 # include <time.h>
 # include <sstream>
 
-#include <qapp.h>
+#include <qapplication.h>
 #include <qwidget.h>
+#include <qdesktopwidget.h>
 #include <qgl.h>
 #if (QT_VERSION < 300)
 #else
@@ -50,7 +51,7 @@ XQGLWidget::XQGLWidget (QWidget *parent, const char *name) :
     R (10), psi (0), theta (0), phi (0),        //                                 *
     Background (4, 0.25, 0.25, 0.25, 1.), Alpha (1.0),  //                         *
     light (true), fog (true), transparent (false), shade (true), colors (true) {
-  QWidget *root = QApplication::desktop ();     //
+  QDesktopWidget *root = QApplication::desktop ();     //
   int screenheight = root->height ();           //  find screen size
   setMinimumSize (256, 256);                    //  hmm... shouldnt I find a more
   setMaximumSize (screenheight,screenheight);   //  flexible way? 
@@ -170,7 +171,7 @@ void XQGLWidget::paintGL () {
 
   glPopMatrix ();                               //  restore default view
 
-  setCursor (arrowCursor); }                    //  restore cursor
+  setCursor (Qt::ArrowCursor); }                    //  restore cursor
 
 void XQGLWidget::Draw (void) {
   DrawObject->Draw (); }                        //  draw what's there

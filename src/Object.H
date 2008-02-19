@@ -24,9 +24,9 @@ class Object: public Function {
 public:
 	Object (unsigned, unsigned);
 	virtual ~Object ();
-	virtual void ReInit (double _tmin, double _tmax, double _dt,
-			     double _umin, double _umax, double _du,
-			     double _vmin, double _vmax, double _dv) { }
+	virtual void ReInit (double, double, double,
+			     double, double, double,
+			     double, double, double) { }
 
 	virtual void Transform (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw,
 							double Tx, double Ty, double Tz, double Tw);
@@ -54,7 +54,7 @@ public:
   Hypercube (const Vector &_Center, double _a = 1);
   virtual ~Hypercube();
   
-  virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) {
+  virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
     a = _a; }
 
   virtual string description () {
@@ -102,7 +102,7 @@ public:
 	Pyramid (const Vector &_Center, double _a = 1);
 	virtual ~Pyramid();
 
-	virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) {
+	virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
 		a = _a; }
 
 protected:

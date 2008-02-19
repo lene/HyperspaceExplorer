@@ -15,7 +15,10 @@
 #include <qlineedit.h>
 #include <qlayout.h>
 #include <qtooltip.h>
-#include <qwhatsthis.h>
+#include <q3whatsthis.h>
+//Added by qt3to4:
+#include <Q3HBoxLayout>
+#include <Q3VBoxLayout>
 
 /*
  *  Constructs a ComplexDialog as a child of 'parent', with the
@@ -24,7 +27,7 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  TRUE to construct a modal dialog.
  */
-ComplexDialog::ComplexDialog( QWidget* parent, const char* name, bool modal, WFlags fl )
+ComplexDialog::ComplexDialog( QWidget* parent, const char* name, bool modal, Qt::WFlags fl )
     : QDialog( parent, name, modal, fl )
 {
     if ( !name )
@@ -32,7 +35,7 @@ ComplexDialog::ComplexDialog( QWidget* parent, const char* name, bool modal, WFl
 
     QWidget* privateLayoutWidget = new QWidget( this, "WLayout" );
     privateLayoutWidget->setGeometry( QRect( 0, 60, 360, 28 ) );
-    WLayout = new QHBoxLayout( privateLayoutWidget, 0, 6, "WLayout"); 
+    WLayout = new Q3HBoxLayout( privateLayoutWidget, 0, 6, "WLayout"); 
 
     WLabel = new QLabel( privateLayoutWidget, "WLabel" );
     WLayout->addWidget( WLabel );
@@ -42,11 +45,11 @@ ComplexDialog::ComplexDialog( QWidget* parent, const char* name, bool modal, WFl
 
     QWidget* privateLayoutWidget_2 = new QWidget( this, "Layout25" );
     privateLayoutWidget_2->setGeometry( QRect( 0, 90, 360, 73 ) );
-    Layout25 = new QVBoxLayout( privateLayoutWidget_2, 0, 6, "Layout25"); 
+    Layout25 = new Q3VBoxLayout( privateLayoutWidget_2, 0, 6, "Layout25"); 
 
-    Layout24 = new QVBoxLayout( 0, 0, 6, "Layout24"); 
+    Layout24 = new Q3VBoxLayout( 0, 0, 6, "Layout24"); 
 
-    NameLayout1 = new QHBoxLayout( 0, 0, 6, "NameLayout1"); 
+    NameLayout1 = new Q3HBoxLayout( 0, 0, 6, "NameLayout1"); 
 
     NameLabel = new QLabel( privateLayoutWidget_2, "NameLabel" );
     NameLayout1->addWidget( NameLabel );
@@ -55,7 +58,7 @@ ComplexDialog::ComplexDialog( QWidget* parent, const char* name, bool modal, WFl
     NameLayout1->addWidget( NameEdit );
     Layout24->addLayout( NameLayout1 );
 
-    Layout21 = new QHBoxLayout( 0, 0, 6, "Layout21"); 
+    Layout21 = new Q3HBoxLayout( 0, 0, 6, "Layout21"); 
 
     DescLabel = new QLabel( privateLayoutWidget_2, "DescLabel" );
     Layout21->addWidget( DescLabel );
@@ -70,7 +73,7 @@ ComplexDialog::ComplexDialog( QWidget* parent, const char* name, bool modal, WFl
 
     QWidget* privateLayoutWidget_3 = new QWidget( this, "BtnsLayout" );
     privateLayoutWidget_3->setGeometry( QRect( 0, 170, 360, 30 ) );
-    BtnsLayout = new QHBoxLayout( privateLayoutWidget_3, 0, 6, "BtnsLayout"); 
+    BtnsLayout = new Q3HBoxLayout( privateLayoutWidget_3, 0, 6, "BtnsLayout"); 
 
     OKButton = new QPushButton( privateLayoutWidget_3, "OKButton" );
     BtnsLayout->addWidget( OKButton );

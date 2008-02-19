@@ -4,37 +4,41 @@
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
+//#include <QtGui/Q3ButtonGroup>
 #include <QtGui/QDialog>
-#include <QtGui/QHBoxLayout>
+//#include <QtGui/Q3HBoxLayout>
 #include <QtGui/QLabel>
 #include <QtGui/QLineEdit>
 #include <QtGui/QPushButton>
 #include <QtGui/QSpacerItem>
-#include <QtGui/QVBoxLayout>
+//#include <QtGui/Q3VBoxLayout>
 #include <QtGui/QWidget>
 #include <Qt3Support/Q3MimeSourceFactory>
+//Added by qt3to4:
+#include <Q3HBoxLayout>
+#include <Q3VBoxLayout>
+#include <QLabel>
 
 class Ui_FunctionDialog
 {
 public:
     QLabel *IntroLabel;
     QWidget *BtnsLayout;
-    QHBoxLayout *hboxLayout;
+    Q3HBoxLayout *hboxLayout;
     QPushButton *OKButton;
     QPushButton *CancelButton;
     QSpacerItem *spacerItem;
     QPushButton *LoadButton;
     QWidget *FLayout;
-    QHBoxLayout *hboxLayout1;
+    Q3HBoxLayout *hboxLayout1;
     QLabel *FLabel;
     QLineEdit *FEdit;
     QWidget *Layout22;
-    QVBoxLayout *vboxLayout;
-    QHBoxLayout *hboxLayout2;
+    Q3VBoxLayout *vboxLayout;
+    Q3HBoxLayout *hboxLayout2;
     QLabel *NameLabel;
     QLineEdit *NameEdit;
-    QHBoxLayout *hboxLayout3;
+    Q3HBoxLayout *hboxLayout3;
     QLabel *DescLabel;
     QLineEdit *LineEdit12;
     QSpacerItem *spacerItem1;
@@ -49,7 +53,7 @@ public:
     BtnsLayout = new QWidget(FunctionDialog);
     BtnsLayout->setObjectName(QString::fromUtf8("BtnsLayout"));
     BtnsLayout->setGeometry(QRect(0, 120, 360, 30));
-    hboxLayout = new QHBoxLayout(BtnsLayout);
+    hboxLayout = new Q3HBoxLayout(BtnsLayout);
     hboxLayout->setSpacing(6);
     hboxLayout->setMargin(0);
     hboxLayout->setObjectName(QString::fromUtf8("hboxLayout"));
@@ -76,7 +80,7 @@ public:
     FLayout = new QWidget(FunctionDialog);
     FLayout->setObjectName(QString::fromUtf8("FLayout"));
     FLayout->setGeometry(QRect(0, 20, 360, 28));
-    hboxLayout1 = new QHBoxLayout(FLayout);
+    hboxLayout1 = new Q3HBoxLayout(FLayout);
     hboxLayout1->setSpacing(6);
     hboxLayout1->setMargin(0);
     hboxLayout1->setObjectName(QString::fromUtf8("hboxLayout1"));
@@ -93,11 +97,11 @@ public:
     Layout22 = new QWidget(FunctionDialog);
     Layout22->setObjectName(QString::fromUtf8("Layout22"));
     Layout22->setGeometry(QRect(0, 50, 360, 71));
-    vboxLayout = new QVBoxLayout(Layout22);
+    vboxLayout = new Q3VBoxLayout(Layout22);
     vboxLayout->setSpacing(6);
     vboxLayout->setMargin(0);
     vboxLayout->setObjectName(QString::fromUtf8("vboxLayout"));
-    hboxLayout2 = new QHBoxLayout();
+    hboxLayout2 = new Q3HBoxLayout();
     hboxLayout2->setSpacing(6);
     hboxLayout2->setMargin(0);
     hboxLayout2->setObjectName(QString::fromUtf8("hboxLayout2"));
@@ -114,7 +118,7 @@ public:
 
     vboxLayout->addLayout(hboxLayout2);
 
-    hboxLayout3 = new QHBoxLayout();
+    hboxLayout3 = new Q3HBoxLayout();
     hboxLayout3->setSpacing(6);
     hboxLayout3->setMargin(0);
     hboxLayout3->setObjectName(QString::fromUtf8("hboxLayout3"));

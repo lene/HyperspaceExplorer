@@ -23,6 +23,11 @@
 
 #include <qlabel.h>
 #include <qimage.h>
+//Added by qt3to4:
+#include <QPixmap>
+#include <QResizeEvent>
+#include <QMouseEvent>
+#include <QPaintEvent>
 
 ////////////////////////////////////////////////////////////////////////////////
 // 	C4DView construction/destruction
@@ -230,11 +235,12 @@ void C4DView::Draw () {
  */
 void C4DView::mouseMoveEvent (QMouseEvent *e) {
   QPoint point = e->pos ();
-  ButtonState s = e->stateAfter ();
+//  ButtonState s = e->stateAfter ();
+  Qt::KeyboardModifiers s = e->modifiers();
 
-  bool LeftButtonDown  = s & LeftButton,
-       MidButtonDown   = s & MidButton,
-       RightButtonDown = s & RightButton;
+  bool LeftButtonDown  = s & Qt::LeftButton,
+       MidButtonDown   = s & Qt::MidButton,
+       RightButtonDown = s & Qt::RightButton;
 
   bool ViewChanged = false;
 
@@ -244,10 +250,10 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
 
   if (xsize == 0 || ysize == 0) return;         		//    pathological case better taken care of
 
-  if ((s & AltButton) != 0) TakingSpinValues = true;
-  else                      TakingSpinValues = false;
+  if ((s & Qt::AltButton) != 0) TakingSpinValues = true;
+  else                          TakingSpinValues = false;
 
-  if ((s & ControlButton) != 0) {						//  CONTROL pressed
+  if ((s & Qt::ControlButton) != 0) {						//  CONTROL pressed
 										
     if (LeftButtonDown || MidButtonDown || RightButtonDown) {			//  CONTROL + any Button
 
@@ -291,7 +297,7 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
 
   }                     //    if (::GetKeyState (VK_CONTROL) < 0)
 
-  if ((s & ShiftButton) != 0) {                    		//    rotate 4D viewpoint with SHIFT pressed	
+  if ((s & Qt::ShiftButton) != 0) {                    		//    rotate 4D viewpoint with SHIFT pressed	
 
     if (LeftButtonDown || MidButtonDown || RightButtonDown) {		//  SHIFT + any button
 
@@ -458,17 +464,18 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
  */
 void C4DView::mousePressEvent (QMouseEvent *e) {
   QPoint point = e->pos ();
-  ButtonState s = e->stateAfter ();
+  Qt::KeyboardModifiers s = e->modifiers();
+//  ButtonState s = e->stateAfter ();
 
-  if ((s & LeftButton) != 0) {
+  if ((s & Qt::LeftButton) != 0) {
     m_LeftDownPos = point;
   }
-  if ((s & MidButton) != 0) {
+  if ((s & Qt::MidButton) != 0) {
     m_MidDownPos = point;
   }
-  if ((s & RightButton) != 0) {
+  if ((s & Qt::RightButton) != 0) {
     m_RightDownPos = point;
-    if (s == RightButton)
+    if (s == Qt::RightButton)
       XQGLWidget::mousePressEvent (e);	
   }  
 }
@@ -480,7 +487,8 @@ void C4DView::mousePressEvent (QMouseEvent *e) {
  *  @param e	Qt's mouse event information structure
  */
 void C4DView::mouseReleaseEvent ( QMouseEvent *e) {
-  ButtonState s = e->stateAfter ();
+  Qt::KeyboardModifiers s = e->modifiers();
+//  ButtonState s = e->stateAfter ();
   
   if (TakingSpinValues) {
     StartAnimation ();
@@ -488,7 +496,7 @@ void C4DView::mouseReleaseEvent ( QMouseEvent *e) {
   }   
 
   UpdateStatus ("");
-  if (s == RightButton)
+  if (s == Qt::RightButton)
     XQGLWidget::mouseReleaseEvent (e);				// this fucks up all the location data!
 
 }
@@ -637,12 +645,12 @@ void C4DView::OnTimer() {
       cerr << "writing " << imageFilename << " successful!\n";
 #   endif
     ;
-    else
+    else {
 #   ifdef DEBUG
       //      cerr << "writing " << iio.fileName () << " failed!";
       cerr << "writing " << imageFilename << " failed!\n";
 #   endif
-    ;
+    }
   }
     
   UpdateStatus ("Double-click LMB to stop animation");
@@ -703,7 +711,7 @@ void C4DView::Redraw () {
 /*******************************************************************************
  *  wrapper for redraw handler, with an exit strategy
  */
-void C4DView::RenderScene (unsigned Frame) {			//	draw (frame of animation)
+void C4DView::RenderScene (unsigned /* Frame */) {			//	draw (frame of animation)
   usleep (16000);
   while (!glIsList (ObjectList)) {
 #   ifdef DEBUG
@@ -779,10 +787,10 @@ void C4DView::OnPaint() {                                	//    object drawing r
                                      .replace (" ", "0");
     if (tmpPixmap.save (imageFilename, "PNG"))
       //      cerr << "writing " << iio.fileName () << " successful!";
-      cerr << "writing " << imageFilename << " successful!\n";
+      cerr << "writing " << imageFilename.toStdString() << " successful!\n";
     else
       //      cerr << "writing " << iio.fileName () << " failed!";
-      cerr << "writing " << imageFilename << " failed!\n";
+      cerr << "writing " << imageFilename.toStdString() << " failed!\n";
   }
 }
 
@@ -818,7 +826,7 @@ void C4DView::resizeEvent (QResizeEvent *e) {           	//    resizing routine
 /*******************************************************************************
  *  paintEvent (): 
  */
-void C4DView::paintEvent (QPaintEvent *e) {
+void C4DView::paintEvent (QPaintEvent *) {
   OnPaint ();
 }
 
@@ -1035,11 +1043,11 @@ void C4DView::ApplyChanges (void) {
  *  called whenever an object or the parameters have changed; this is the most
  *  generalized version, but it doesn't exist  yet
  */
-void C4DView::ParametersChanged (double tmin, double tmax, unsigned tsteps,
-				 double umin, double umax, unsigned usteps,
-				 double vmin, double vmax, unsigned vsteps,
-				 double a, double b, double c, double d,
-				 QString &func) {
+void C4DView::ParametersChanged (double, double, unsigned,
+				 double, double, unsigned,
+				 double, double, unsigned,
+				 double, double, double, double,
+				 QString &) {
   QMessageBox::information (this, "C4DView::ParametersChanged", "... is not yet implemented");
 }
 

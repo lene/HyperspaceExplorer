@@ -173,7 +173,7 @@ void Function::ReInit(double _tmin, double _tmax, double _dt,
  *  @param _c		3rd parameter
  *  @param _d		4th parameter
  */
-void Function::SetParameters (double _a, double _b, double _c, double _d) { }
+void Function::SetParameters (double, double, double, double) { }
 
 
 /*******************************************************************************

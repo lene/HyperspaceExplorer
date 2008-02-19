@@ -22,7 +22,7 @@ public:
 	ComplexFunction (double _umin, double _umax, double _du,
 		 			 double _vmin, double _vmax, double _dv);
 	virtual ~ComplexFunction ();
-	virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) { }
+	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
 	virtual Vector &f (double, double);
@@ -36,7 +36,7 @@ public:
 	z2 (double _umin, double _umax, double _du,
 		double _vmin, double _vmax, double _dv);
 	virtual ~z2();
-	virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) { }
+	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
 	virtual complex<double> g (complex <double>);
@@ -47,7 +47,7 @@ public:
 	z3 (double _umin, double _umax, double _du,
 		double _vmin, double _vmax, double _dv);
 	virtual ~z3();
-	virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) { }
+	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
 	virtual complex<double> g (complex <double>);
@@ -59,7 +59,7 @@ public:
 		double _vmin, double _vmax, double _dv,
 		double _alpha);
 	virtual ~zA ();
-	virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) { 
+	virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) { 
 		alpha = _a; }
 
 protected:
@@ -74,7 +74,7 @@ public:
 		double _vmin, double _vmax, double _dv,
 		double _alpha);
 	virtual ~ez();
-	virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) { 
+	virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) { 
 		alpha = _a; }
 
 protected:
@@ -88,7 +88,7 @@ public:
 		  double _vmin, double _vmax, double _dv,
 		  double _alpha);
 	virtual ~emz2();
-	virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) { 
+	virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) { 
 		alpha = _a; }
 
 protected:
@@ -101,7 +101,7 @@ public:
 	zm1 (double _umin, double _umax, double _du,
 		 double _vmin, double _vmax, double _dv);
 	virtual ~zm1 ();
-	virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) { }
+	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
 	virtual complex<double> g (complex <double>);
@@ -112,7 +112,7 @@ public:
 	zm2 (double _umin, double _umax, double _du,
 		 double _vmin, double _vmax, double _dv);
 	virtual ~zm2 ();
-	virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) { }
+	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
 	virtual complex<double> g (complex <double>);
@@ -123,7 +123,7 @@ public:
 	sqrtz (double _umin, double _umax, double _du,
 		   double _vmin, double _vmax, double _dv);
 	virtual ~sqrtz ();
-	virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) { }
+	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
 	virtual complex<double> g (complex <double>);
@@ -134,7 +134,7 @@ public:
 	lnz (double _umin, double _umax, double _du,
 		 double _vmin, double _vmax, double _dv);
 	virtual ~lnz ();
-	virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) { }
+	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
 	virtual complex<double> g (complex <double>);
@@ -145,7 +145,7 @@ public:
 	sinz (double _umin, double _umax, double _du,
 		 double _vmin, double _vmax, double _dv);
 	virtual ~sinz ();
-	virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) { }
+	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
 	virtual complex<double> g (complex <double>);
@@ -156,7 +156,7 @@ public:
 	cosz (double _umin, double _umax, double _du,
 		 double _vmin, double _vmax, double _dv);
 	virtual ~cosz ();
-	virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) { }
+	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
 	virtual complex<double> g (complex <double>);
@@ -167,7 +167,7 @@ public:
 	sinhz (double _umin, double _umax, double _du,
 		 double _vmin, double _vmax, double _dv);
 	virtual ~sinhz ();
-	virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) { }
+	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
 	virtual complex<double> g (complex <double>);
@@ -178,7 +178,7 @@ public:
 	coshz (double _umin, double _umax, double _du,
 		 double _vmin, double _vmax, double _dv);
 	virtual ~coshz ();
-	virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) { }
+	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
 	virtual complex<double> g (complex <double>);
@@ -189,7 +189,7 @@ public:
 	tanz (double _umin, double _umax, double _du,
 		 double _vmin, double _vmax, double _dv);
 	virtual ~tanz ();
-	virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) { }
+	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
 	virtual complex<double> g (complex <double>);

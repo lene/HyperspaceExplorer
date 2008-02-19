@@ -117,7 +117,7 @@ public:
 	   double _vmin, double _vmax, double _dv,
 	   double _rad = 1);
   virtual ~Hypersphere();
-        virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) {
+        virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
                 Radius = _a; }
 
 protected:
@@ -137,7 +137,7 @@ public:
 	  double _vmin, double _vmax, double _dv,
 	  double _R = 2, double _r = 1, double _rho = 0.5);
   virtual ~Torus1();
-        virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) {
+        virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double = 0) {
                 R = _a; r = _b; rho = _c; }
 
 protected:
@@ -156,7 +156,7 @@ public:
 	  double _vmin, double _vmax, double _dv,
 	  double _R = 1, double _r = 0.5);
   virtual ~Torus2 ();
-        virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) {
+        virtual void SetParameters (double _a = 0, double _b = 0, double = 0, double = 0) {
                 R = _a; r = _b; }
 
 protected:
@@ -192,7 +192,7 @@ public:
 			  double _vmin, double _vmax, double _dv,
 			  double _M = 1, double _R = 0.25);
     virtual ~GravitationPotential ();
-    virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) {
+    virtual void SetParameters (double _a = 0, double _b = 0, double = 0, double = 0) {
 	M = _a; R = _b; }
 
 protected:
@@ -251,7 +251,7 @@ public:
 	      double _vmin, double _vmax, double _dv,
 	      double _phase = 2);
     virtual ~PolarSin ();
-    virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) {
+    virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
 	Phase = _a; }
  
 protected:
@@ -283,7 +283,7 @@ public:
 	    double _vmin, double _vmax, double _dv,
 	    double _phase = 2);
     virtual ~PolarR ();
-    virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) {
+    virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
 	Phase = _a; }
  
 protected:

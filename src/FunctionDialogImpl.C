@@ -12,7 +12,7 @@
 #include <qmessagebox.h>
 #include <qlineedit.h>
 #include <qfile.h>
-#include <qfiledialog.h>
+#include <q3filedialog.h>
 #include <qstringlist.h>
 
 #include <fstream>
@@ -36,8 +36,9 @@ extern QStringList rcdirs;
  *  @param f		window flags
  */
 FunctionDialogImpl::FunctionDialogImpl (QWidget *parent, const char *name,
-					bool modal, WFlags f) :
-	FunctionDialog (parent, name, modal, f) {
+					bool modal, Qt::WFlags f) :
+	QDialog (parent, name, modal, f) {
+  setupUi(this);
   show ();
 }
 
@@ -62,7 +63,7 @@ bool FunctionDialogImpl::loadFunction() {
   for (QStringList::Iterator it = rcdirs.begin(); it != rcdirs.end(); ++it ) {
     QDir current (*it);
     if (current.exists ("plugins/real")) {	//  plugin subdir present?
-      libName = QFileDialog::getOpenFileName(current.absPath ()+"/plugins/real",
+      libName = Q3FileDialog::getOpenFileName(current.absPath ()+"/plugins/real",
 					     "Libraries (*.so*)",
 					     this,
 					     "Open a function"
@@ -99,7 +100,7 @@ bool FunctionDialogImpl::loadFunction(const QString &libName) {
 
   if (!QFile::exists (libName)) {
     QMessageBox::warning (this, "Error opening library", "Library does not exist: "+libName);
-    cerr << "Library does not exist: "+libName << endl;
+    cerr << "Library does not exist: "+libName.toStdString() << endl;
     return false;
   }
   
@@ -199,11 +200,11 @@ void FunctionDialogImpl::writeSource () {
       F[0] = x;						\n\
       F[1] = y;						\n\
       F[2] = z;						\n\
-      F[3] = " << FEdit->text() << ";			\n\
+      F[3] = " << FEdit->text().toStdString() << ";			\n\
                                                         \n\
       return F; }					\n\
                                                         \n\
-    char *symbolic () { return \"" << FEdit->text()<< "\"; }\n";
+    char *symbolic () { return \"" << FEdit->text().toStdString() << "\"; }\n";
   
     SourceFile.close ();
 }
@@ -223,7 +224,7 @@ bool FunctionDialogImpl::compile () {
     
   if (!Success) {
     QFile Errs ("/tmp/HyperspaceExplorer.compile.errors");
-    Errs.open (IO_ReadOnly);
+    Errs.open (QIODevice::ReadOnly);
     QString ErrString (Errs.readAll ());
     QMessageBox::warning (this, "Compilation Errors", ErrString);
   }    
@@ -246,7 +247,7 @@ bool FunctionDialogImpl::link () {
     
   if (!Success) {
     QFile Errs ("/tmp/HyperspaceExplorer.link.errors");
-    Errs.open (IO_ReadOnly);
+    Errs.open (QIODevice::ReadOnly);
     QString ErrString (Errs.readAll ());
     QMessageBox::warning (this, "Link Errors", ErrString);
   }
