@@ -35,22 +35,22 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-ACLOCAL = ${SHELL} /var/home/helge/src/HyperspaceExplorer/missing --run aclocal-1.7
+ACLOCAL = ${SHELL} /home/helge/workspace/HyperspaceExplorer/missing --run aclocal-1.7
 AMDEP_FALSE = #
 AMDEP_TRUE = 
-AMTAR = ${SHELL} /var/home/helge/src/HyperspaceExplorer/missing --run tar
-AUTOCONF = ${SHELL} /var/home/helge/src/HyperspaceExplorer/missing --run autoconf
-AUTOHEADER = ${SHELL} /var/home/helge/src/HyperspaceExplorer/missing --run autoheader
-AUTOMAKE = ${SHELL} /var/home/helge/src/HyperspaceExplorer/missing --run automake-1.7
+AMTAR = ${SHELL} /home/helge/workspace/HyperspaceExplorer/missing --run tar
+AUTOCONF = ${SHELL} /home/helge/workspace/HyperspaceExplorer/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/helge/workspace/HyperspaceExplorer/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/helge/workspace/HyperspaceExplorer/missing --run automake-1.7
 AWK = gawk
 CC = gcc
-CCDEPMODE = depmode=gcc3
+CCDEPMODE = depmode=none
 CFLAGS = -g -O2
 CPP = gcc -E
 CPPFLAGS = 
 CXX = g++
 CXXCPP = g++ -E
-CXXDEPMODE = depmode=gcc3
+CXXDEPMODE = depmode=none
 CXXFLAGS = -g -O2
 CYGPATH_W = echo
 DEFS = -DPACKAGE_NAME=\"HyperspaceExplorer\" -DPACKAGE_TARNAME=\"hyperspace-expl\" -DPACKAGE_VERSION=\"0.2.0\" -DPACKAGE_STRING=\"HyperspaceExplorer\ 0.2.0\" -DPACKAGE_BUGREPORT=\"helge.preuss@gmx.net\" -DPACKAGE=\"hyperspace-expl\" -DVERSION=\"0.2.0\" -DHAVE_GL=1 -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DHAVE_UNISTD_H=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DHAVE_POW=1 -DHAVE_SQRT=1 -DHAVE_USLEEP=1
@@ -72,7 +72,7 @@ LDFLAGS =
 LIBOBJS = 
 LIBS =  -lGL -lGLU
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /var/home/helge/src/HyperspaceExplorer/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/helge/workspace/HyperspaceExplorer/missing --run makeinfo
 MOC = moc
 OBJEXT = o
 PACKAGE = hyperspace-expl
@@ -95,10 +95,10 @@ VERSION = 0.2.0
 XMKMF = 
 ac_ct_CC = gcc
 ac_ct_CXX = g++
-am__fastdepCC_FALSE = #
-am__fastdepCC_TRUE = 
-am__fastdepCXX_FALSE = #
-am__fastdepCXX_TRUE = 
+am__fastdepCC_FALSE = 
+am__fastdepCC_TRUE = #
+am__fastdepCXX_FALSE = 
+am__fastdepCXX_TRUE = #
 am__include = include
 am__leading_dot = .
 am__quote = 
@@ -113,7 +113,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = /var/home/helge/src/HyperspaceExplorer/install-sh
+install_sh = /home/helge/workspace/HyperspaceExplorer/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -142,9 +142,8 @@ RECURSIVE_TARGETS = info-recursive dvi-recursive pdf-recursive \
 	installdirs-recursive install-recursive uninstall-recursive \
 	check-recursive installcheck-recursive
 DIST_COMMON = README $(srcdir)/Makefile.in $(srcdir)/configure AUTHORS \
-	COPYING ChangeLog INSTALL Makefile.am NEWS acinclude.m4 \
-	aclocal.m4 config/depcomp config/install-sh config/missing \
-	config/mkinstalldirs configure configure.ac install-sh missing
+	ChangeLog INSTALL Makefile.am NEWS acinclude.m4 aclocal.m4 \
+	config/install-sh configure configure.ac install-sh missing
 DIST_SUBDIRS = $(SUBDIRS)
 all: all-recursive
 
