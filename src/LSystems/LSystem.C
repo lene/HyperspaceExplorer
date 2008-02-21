@@ -17,7 +17,7 @@
 #include <vector>
 using namespace std;
 
-#include "Matrix.H"
+#include "../Matrix.H"
 #include "LSystem.H"
 
 
