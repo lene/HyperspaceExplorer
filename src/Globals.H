@@ -12,7 +12,7 @@
 #define GLOBALS_H
 
 #include <string>
-#include <math.h>
+#include <cmath>
 #include <GL/gl.h>
 #include <GL/glu.h>
 
@@ -21,7 +21,6 @@
 #include "ValuesDialogImpl.H"
 #include "numclass.H"
 
-using namespace std;
 class Vector;
 
 const bool check_memory = false;
@@ -54,14 +53,14 @@ inline void setFogColor(float r, float g, float b, float a = 1.0) {
 
 double atod (QString);
 
-string itoa (int x);
-string ftoa (double x);
+std::string itoa (int x);
+std::string ftoa (double x);
 
 Vector vnormalize (Vector );
 Vector vcross (Vector , Vector);
 Vector vcross (Vector , Vector, Vector);
 
-inline void Debug (string s, string h = "") {
+inline void Debug (std::string s, std::string h = "") {
     QMessageBox::information (NULL, h.c_str (), s.c_str ());
 }
 

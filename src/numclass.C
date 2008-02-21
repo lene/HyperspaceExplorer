@@ -18,6 +18,10 @@
 
 #include "numclass.H"
 
+using std::cerr;
+using std::endl;
+using std::ostream;
+using std::istream;
 
 //------------  Vector member functions and static variable initialization
 

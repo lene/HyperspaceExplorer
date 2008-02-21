@@ -14,6 +14,8 @@
 #include "Object.H"
 #include "Matrix.H"
 
+using std::cerr;
+using std::endl;
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -151,11 +153,9 @@ void Object::ReInit (double, double, double,
 Hypercube::Hypercube (const Vector &_center, double _a):
     Object (16, 24),
     a (_a), center(_center) {
-
 #ifdef DEBUG
     cerr << "Hypercube::Hypercube()\n";
 #endif      
-
     Initialize();
 }		
 
@@ -235,44 +235,9 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
  *  @param rad		side_length/2
  *  @param center	center
  */
-Sponge::Sponge (unsigned level, int distance, double rad, Vector center):
-    Level (level) {
-    if (Level < 1)
-	List.push_back (new Hypercube (center, rad*3./2.));
-    else {
-        if (distance > 3) distance = 3;				//  dunno if this is wise
-
-	if (MemRequired (distance) > MaximumMemory) {		//  which is defined in Globals.C, yuck
-	  cerr << "Menger sponge of level " << Level		//  but there seems to be no portable way to find it out
-	       << " would require approx. " << MemRequired (distance)/1024/1024  //  and the rcfile-system is not ready yet
-	       << " MB of memory." << endl;
-	  if (check_memory) {
-	    cerr << "This is more than your available Memory of "
-		 << MaximumMemory/1024/1024 << "MB." << endl;
-	    while (MemRequired (distance) > MaximumMemory) Level--;
-	    cerr << "Using level " << Level << " instead." << endl;
-	  }
-	}
-	for (int x = -1; x <= 1; x++)
-	    for (int y = -1; y <= 1; y++)
-		for (int z = -1; z <= 1; z++)
-		    for (int w = -1; w <= 1; w++) {
-			if (distance >= 0) {
-			    if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
-				Vector NewCen = Vector (4, double (x), double (y), double (z), double (w))*rad;
-				NewCen += center;
-				List.push_back (new Sponge (Level-1, distance, rad/3., NewCen));
-			    }
-			}
-			else {
-			    if (abs (x)+abs (y)+abs (z)+abs (w) < distance) {
-				Vector NewCen = Vector (4, double (x), double (y), double (z), double (w))*rad;
-				NewCen += center;
-				List.push_back (new Sponge (Level-1, distance, rad/3., NewCen));
-			    }
-			}
-		    }
-    }
+Sponge::Sponge (unsigned level, int _distance, double _rad, Vector _center):
+    Level (level), distance(_distance), rad(_rad), center(_center) {
+    Initialize();
 }
 
 
@@ -297,6 +262,47 @@ unsigned long Sponge::MemRequired (unsigned distance) {
  */
 Sponge::~Sponge () { }
 
+void Sponge::Initialize(void) {
+    if (Level < 1)
+	List.push_back (new Hypercube (center, rad*3./2.));
+    else {
+        if (distance > 3) distance = 3;				//  dunno if this is wise
+
+	if (MemRequired (distance) > MaximumMemory) {		//  which is defined in Globals.C, yuck
+	  cerr << "Menger sponge of level " << Level		//  but there seems to be no portable way to find it out
+	       << " would require approx. " << MemRequired (distance)/1024/1024  //  and the rcfile-system is not ready yet
+	       << " MB of memory." << endl;
+	  if (check_memory) {
+	    cerr << "This is more than your available Memory of "
+		 << MaximumMemory/1024/1024 << "MB." << endl;
+	    while (MemRequired (distance) > MaximumMemory) Level--;
+	    cerr << "Using level " << Level << " instead." << endl;
+	  }
+	}
+	for (int x = -1; x <= 1; x++) {
+	    for (int y = -1; y <= 1; y++) {
+		for (int z = -1; z <= 1; z++) {
+		    for (int w = -1; w <= 1; w++) {
+			if (distance >= 0) {
+			    if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
+				Vector NewCen = Vector (4, double (x), double (y), double (z), double (w))*rad;
+				NewCen += center;
+				List.push_back (new Sponge (Level-1, distance, rad/3., NewCen));
+			    }
+			}
+			else {
+			    if (abs (x)+abs (y)+abs (z)+abs (w) < distance) {
+				Vector NewCen = Vector (4, double (x), double (y), double (z), double (w))*rad;
+				NewCen += center;
+				List.push_back (new Sponge (Level-1, distance, rad/3., NewCen));
+			    }
+			}
+		    }
+		}
+	    }
+	}
+    }
+}
 
 /*******************************************************************************
  *  transforms a Sponge
@@ -357,9 +363,20 @@ void Sponge::Draw (void) {
  *  @param center	center
  *  @param _a		side_length/2
  */
-Pyramid::Pyramid (const Vector &center, double _a):
+Pyramid::Pyramid (const Vector &_center, double _a):
     Object (5, 10),
-    a (_a) {
+    center(_center), a (_a) {
+    Initialize();
+}		
+
+
+/*******************************************************************************
+ *  Pyramid destructor
+ */
+Pyramid::~Pyramid () { }
+
+
+void Pyramid::Initialize() {
     X[0] = Vector (4, 0.0, 0.0, 0.0, 0.0);
     X[1] = Vector (4, 1.0, 0.0, 0.0, 0.0);
     X[2] = Vector (4, 0.5, sqrt (3.)/2., 0.0, 0.0);
@@ -380,14 +397,7 @@ Pyramid::Pyramid (const Vector &center, double _a):
     DeclareTriangle (7,  1, 2, 4);    
     DeclareTriangle (8,  1, 3, 4);    
     DeclareTriangle (9,  2, 3, 4);    
-}		
-
-
-/*******************************************************************************
- *  Pyramid destructor
- */
-Pyramid::~Pyramid () { }
-
+}
 
 /*******************************************************************************
  *  declare a triangle in the surfaces array
@@ -413,8 +423,30 @@ void Pyramid::DeclareTriangle (unsigned i, unsigned a, unsigned b, unsigned c) {
  *  @param rad		side_length/2
  *  @param center	center
  */
-Gasket::Gasket (unsigned level, double rad, Vector center):
-    Level (level) {
+Gasket::Gasket (unsigned level, double _rad, Vector _center):
+    Level (level), rad(_rad), center(_center) {
+    Initialize();
+}
+
+
+/*******************************************************************************
+ *  return the approximate amount of memory needed to display a gasket of current
+ *  level
+ *  uses hardcoded and experimentally found value for memory per simplex - ICK!
+ *  @return		approx. mem required
+ */
+unsigned long Gasket::MemRequired (void) {
+    return (unsigned long) ((pow (5., (int)Level)*14.5)/1024+8)*1024*1024;
+}
+
+
+/*******************************************************************************
+ *  Gasket destructor
+ */
+Gasket::~Gasket () { }
+
+
+void Gasket::Initialize() {
     if (Level < 1)
 	List.push_back (new Pyramid (center, rad));
     else {
@@ -452,23 +484,6 @@ Gasket::Gasket (unsigned level, double rad, Vector center):
 	List.push_back (new Gasket (Level-1, rad, NewCen));
     }
 }
-
-
-/*******************************************************************************
- *  return the approximate amount of memory needed to display a gasket of current
- *  level
- *  uses hardcoded and experimentally found value for memory per simplex - ICK!
- *  @return		approx. mem required
- */
-unsigned long Gasket::MemRequired (void) {
-    return (unsigned long) ((pow (5., (int)Level)*14.5)/1024+8)*1024*1024;
-}
-
-
-/*******************************************************************************
- *  Gasket destructor
- */
-Gasket::~Gasket () { }
 
 
 /*******************************************************************************

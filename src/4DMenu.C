@@ -33,6 +33,11 @@ FunctionTableEntry FuncTable[] = {
 #define TESTFEATURES 1
 //#undef TESTFEATURES
 
+using std::ostringstream;
+using std::cerr;
+using std::endl;
+using std::ends;
+
 inline void TESTED_FEATURE (Q3PopupMenu *menu, int item) {
 # ifdef TESTFEATURES
     menu->setItemEnabled (item, true);

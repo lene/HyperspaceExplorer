@@ -26,7 +26,7 @@ public:
 
 protected:
 	virtual Vector &f (double, double);
-	virtual complex<double> g (complex <double>) = 0;
+	virtual std::complex<double> g (std::complex <double>) = 0;
 	void Initialize (void);
 };
 
@@ -39,7 +39,7 @@ public:
 	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
-	virtual complex<double> g (complex <double>);
+	virtual std::complex<double> g (std::complex <double>);
 };
 
 class z3: public ComplexFunction {
@@ -50,7 +50,7 @@ public:
 	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
-	virtual complex<double> g (complex <double>);
+	virtual std::complex<double> g (std::complex <double>);
 };
 
 class zA: public ComplexFunction {
@@ -63,7 +63,7 @@ public:
 		alpha = _a; }
 
 protected:
-	virtual complex<double> g (complex <double>);
+	virtual std::complex<double> g (std::complex <double>);
 
 	double alpha;
 };
@@ -78,7 +78,7 @@ public:
 		alpha = _a; }
 
 protected:
-	virtual complex<double> g (complex <double>);
+	virtual std::complex<double> g (std::complex <double>);
 	double alpha;
 };
 
@@ -92,7 +92,7 @@ public:
 		alpha = _a; }
 
 protected:
-	virtual complex<double> g (complex <double>);
+	virtual std::complex<double> g (std::complex <double>);
 	double alpha;
 };
 
@@ -104,7 +104,7 @@ public:
 	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
-	virtual complex<double> g (complex <double>);
+	virtual std::complex<double> g (std::complex <double>);
 };
 
 class zm2: public ComplexFunction {
@@ -115,7 +115,7 @@ public:
 	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
-	virtual complex<double> g (complex <double>);
+	virtual std::complex<double> g (std::complex <double>);
 };
 
 class sqrtz: public ComplexFunction {
@@ -126,7 +126,7 @@ public:
 	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
-	virtual complex<double> g (complex <double>);
+	virtual std::complex<double> g (std::complex <double>);
 };
 
 class lnz: public ComplexFunction {
@@ -137,7 +137,7 @@ public:
 	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
-	virtual complex<double> g (complex <double>);
+	virtual std::complex<double> g (std::complex <double>);
 };
 
 class sinz: public ComplexFunction {
@@ -148,7 +148,7 @@ public:
 	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
-	virtual complex<double> g (complex <double>);
+	virtual std::complex<double> g (std::complex <double>);
 };
 
 class cosz: public ComplexFunction {
@@ -159,7 +159,7 @@ public:
 	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
-	virtual complex<double> g (complex <double>);
+	virtual std::complex<double> g (std::complex <double>);
 };
 
 class sinhz: public ComplexFunction {
@@ -170,7 +170,7 @@ public:
 	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
-	virtual complex<double> g (complex <double>);
+	virtual std::complex<double> g (std::complex <double>);
 };
 
 class coshz: public ComplexFunction {
@@ -181,7 +181,7 @@ public:
 	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
-	virtual complex<double> g (complex <double>);
+	virtual std::complex<double> g (std::complex <double>);
 };
 
 class tanz: public ComplexFunction {
@@ -192,7 +192,7 @@ public:
 	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
-	virtual complex<double> g (complex <double>);
+	virtual std::complex<double> g (std::complex <double>);
 };
 #if 0
 class Polynomial: public ComplexFunction {

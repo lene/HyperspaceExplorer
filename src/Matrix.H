@@ -29,7 +29,7 @@ public:
 
   matrix<D> operator - ();
 
-  string Print ();
+  std::string Print ();
 
 protected:
   double M[D][D];
@@ -58,7 +58,8 @@ template<unsigned D> matrix<D>::matrix () {
  *  @param Rzw	rotation around zw plane
  */
 template <unsigned D> matrix<D>::matrix (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw) {
-  cerr << "matrix<" << D <<">::matrix<" << D <<"> (Rxy, Rxz, Rxw, Ryz, Ryw, Rzw) not yet implemented!" << endl;
+  std::cerr << "matrix<" << D <<">::matrix<" << D 
+	    <<"> (Rxy, Rxz, Rxw, Ryz, Ryw, Rzw) not yet implemented!" << std::endl;
   abort();
 }
 
@@ -107,8 +108,8 @@ template <unsigned D> matrix<D> matrix<D>::operator * (const matrix<D> &B) const
  */
 template <unsigned D> Vector matrix<D>::operator * (const Vector &V) {
   if (D != V.dimension ()) {
-    cerr << "Vector matrix<" << D << ">::operator * (const Vector &V)" << endl
-	 << "matrix.D != Vector.D:\n" << D << " != " << V.dimension () << endl;
+    std::cerr << "Vector matrix<" << D << ">::operator * (const Vector &V)" << std::endl
+	 << "matrix.D != Vector.D:\n" << D << " != " << V.dimension () << std::endl;
     abort();
   }
 
@@ -143,15 +144,15 @@ template <unsigned D> matrix<D> matrix<D>::operator - () {
 /*******************************************************************************
  *  output, mainly for debugging purposes
  */
-template <unsigned D> string matrix<D>::Print () {
-  ostringstream o;
+template <unsigned D> std::string matrix<D>::Print () {
+  std::ostringstream o;
   for (unsigned i = 0; i < D; i++) {
     o << "|";
     for (unsigned j = 0; j < D; j++) 
-      o << setw (10) << setprecision (3) << M[i][j];
+      o << std::setw (10) << std::setprecision (3) << M[i][j];
     o << "|\n";
   }
-  o << ends;
+  o << std::ends;
   return o.str ();
 }
 

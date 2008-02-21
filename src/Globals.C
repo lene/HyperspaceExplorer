@@ -15,6 +15,12 @@
 #include "numclass.H"
 #include "GLObject.H"
 
+using std::cerr;
+using std::endl;
+using std::string;
+using std::ifstream;
+using std::ostringstream;
+using std::ends;
 
 /*******************************************************************************
  *  sqrt (3), stored to save computation time, probably superfluous, wtf

@@ -54,11 +54,11 @@ public:
   QString symbolic ();
   
 protected:
-  complex<double> g (complex<double> z);
+  std::complex<double> g (std::complex<double> z);
   bool loadFunction (const QString &);
 
 
-  complex<double> (*gunc) (complex<double> z);
+  std::complex<double> (*gunc) (std::complex<double> z);
 
 
   void *handle;

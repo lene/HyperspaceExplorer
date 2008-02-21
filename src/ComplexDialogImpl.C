@@ -20,7 +20,8 @@
 #include "numclass.H"
 
 extern QStringList rcdirs;
-                                                     
+
+using std::ofstream;
 
 //////////////////////////////////////////////////////////////////////
 // construction / destruction

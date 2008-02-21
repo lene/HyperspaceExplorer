@@ -10,15 +10,14 @@
 #ifndef VALUES_DIALOG_IMPL_H
 #define VALUES_DIALOG_IMPL_H
 
-//#include "ValuesDialog.H"
-#include "ui_ValuesDialog.h"
+#include <cstdlib>
 
 #include <qslider.h>
 #include <qlineedit.h>
 #include <qcombobox.h>
-#include <stdlib.h>
 
-//class ValuesDialogImpl: public ValuesDialog {
+#include "ui_ValuesDialog.h"
+
 class ValuesDialogImpl: public QDialog, public Ui::ValuesDialog {
   Q_OBJECT
 

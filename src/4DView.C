@@ -14,7 +14,6 @@
 
 #include <sstream>
 #include <iomanip>
-//#include <unistd.h>			//  usleep (), 
 
 #include "Function.H"
 #include "Surface.H"
@@ -28,6 +27,11 @@
 #include <QResizeEvent>
 #include <QMouseEvent>
 #include <QPaintEvent>
+
+using std::ostringstream;
+using std::cerr;
+using std::endl;
+using std::ends;
 
 ////////////////////////////////////////////////////////////////////////////////
 // 	C4DView construction/destruction

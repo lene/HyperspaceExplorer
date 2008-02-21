@@ -14,8 +14,6 @@
 #include <stdarg.h>
 #include <string>
 
-using namespace std;
-
 # if (!defined __PI)
 #   include <cmath>
     const double pi = 4.*atan (1.);
@@ -92,8 +90,8 @@ class Vector {
     double *x; 
     bool own; };
  
-ostream &operator << (ostream &, const Vector &);
-istream &operator >> (istream &, Vector &);
+std::ostream &operator << (std::ostream &, const Vector &);
+std::istream &operator >> (std::istream &, Vector &);
 
 Vector cross (const Vector &, const Vector &);
 

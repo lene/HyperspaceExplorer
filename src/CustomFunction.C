@@ -20,6 +20,9 @@
 #include "ComplexDialogImpl.H"
 #include "SurfaceDialogImpl.H"
 
+using std::complex;
+using std::cerr;
+using std::endl;
 
 /*******************************************************************************
  *  outsourced function, as it is the same in all classes

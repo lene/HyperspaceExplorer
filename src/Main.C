@@ -16,6 +16,15 @@
 
 QStringList rcdirs;	//  why tf did i make that global again? damn, i really should write comments immediately after writing the code</rant>
 
+using std::cout;
+using std::cerr;
+using std::endl;
+using std::setprecision;
+
+using std::pair;
+using std::map;
+using std::vector;
+
 /*******************************************************************************
  * yeah, big deal...
  */

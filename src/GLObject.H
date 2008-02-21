@@ -18,7 +18,7 @@
 #define GLOBJECT_H
 
 #include <GL/gl.h>
-#include <stdarg.h>
+#include <cstdarg>
 
 #include <vector>
 
@@ -91,6 +91,6 @@ class GLObject {
       return false; }
 
   protected:
-    vector<GLuint> List;
+    std::vector<GLuint> List;
 };
 #endif

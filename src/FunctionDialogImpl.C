@@ -21,6 +21,9 @@
 
 extern QStringList rcdirs;
 
+using std::cerr;
+using std::endl;
+using std::ofstream;
 
 //////////////////////////////////////////////////////////////////////
 // construction / destruction

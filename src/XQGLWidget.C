@@ -14,8 +14,8 @@
 //                    and some useful auxiliary routines
 //                    uses OpenGL (e.g. MesaGL) and the Qt OpenGL extension
 
-# include <time.h>
-# include <sstream>
+#include <ctime>
+#include <sstream>
 
 #include <qapplication.h>
 #include <qwidget.h>
@@ -30,6 +30,9 @@
 
 #include "XQGLWidget.H"
 #include "GLObject.H"
+
+using std::cerr;
+using std::endl;
 
 void SetColor (const Vector &);
 

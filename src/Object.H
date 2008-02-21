@@ -15,34 +15,32 @@
 #include <sstream>
 #include <string>
 
-using namespace std;
-
 #include "Function.H"
 
 
 class Object: public Function {
 public:
-	Object (unsigned, unsigned);
-	virtual ~Object ();
-	virtual void ReInit (double, double, double,
-			     double, double, double,
-			     double, double, double);
+    Object (unsigned, unsigned);
+    virtual ~Object ();
+    virtual void ReInit (double, double, double,
+			 double, double, double,
+			 double, double, double);
 
-	virtual void Transform (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw,
-							double Tx, double Ty, double Tz, double Tw);
-	virtual void Project (double ScrW, double CamW, bool DepthCue4D);
-	virtual void Draw (void);
+    virtual void Transform (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw,
+			    double Tx, double Ty, double Tz, double Tw);
+    virtual void Project (double ScrW, double CamW, bool DepthCue4D);
+    virtual void Draw (void);
 
 protected:
-	unsigned NumVertices, NumSurfaces;
-	Vector *X,
-	       *Xtrans,
-	       *Xscr;
-	float *R, *G, *B;
+    unsigned NumVertices, NumSurfaces;
+    Vector *X,
+	   *Xtrans,
+	   *Xscr;
+    float *R, *G, *B;
 
-	unsigned *Surface[4];
+    unsigned *Surface[4];
 
-	virtual Vector &f (double, double, double) { return F; }
+    virtual Vector &f (double, double, double) { return F; }
 };
 
 
@@ -50,24 +48,24 @@ protected:
 
 class Hypercube: public Object {
 public:
-  Hypercube (): Object (16, 24) { }
-  Hypercube (const Vector &_Center, double _a = 1);
-  virtual ~Hypercube();
+    Hypercube (): Object (16, 24) { }
+    Hypercube (const Vector &_Center, double _a = 1);
+    virtual ~Hypercube();
   
-  virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
-    a = _a; }
+    virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
+        a = _a; }
 
-  virtual string description () {
-    ostringstream out;
-    out << "Hypercube (a = " << a << ")" << ends;
-    return out.str ();
-  }
+    virtual std::string description () {
+    	std::ostringstream out;
+    	out << "Hypercube (a = " << a << ")" << std::ends;
+    	return out.str ();
+    }
 protected:
-  void Initialize();
-  void DeclareSquare (unsigned, unsigned, unsigned, unsigned, unsigned);
+    virtual void Initialize();
+    void DeclareSquare (unsigned, unsigned, unsigned, unsigned, unsigned);
 
-  double a;
-  Vector center;
+    double a;
+    Vector center;
 };
 
 
@@ -84,15 +82,19 @@ public:
 	virtual void Project (double ScrW, double CamW, bool DepthCue4D);
 	virtual void Draw (void);
 
-  virtual string description () {
-    ostringstream out;
-    out << "Sponge (level = " << Level << ")" << ends;
+  virtual std::string description () {
+    std::ostringstream out;
+    out << "Sponge (level = " << Level << ")" << std::ends;
     return out.str ();
   }
 protected:
+    virtual void Initialize();
     virtual unsigned long MemRequired (unsigned);
     unsigned Level;
-    vector<Hypercube *> List;
+    std::vector<Hypercube *> List;
+    int distance;
+    double rad;
+    Vector center;
 };
 
 
@@ -100,17 +102,19 @@ protected:
 
 class Pyramid: public Object {
 public:
-	Pyramid (): Object (5, 10) { }
-	Pyramid (const Vector &_Center, double _a = 1);
-	virtual ~Pyramid();
+    Pyramid (): Object (5, 10) { }
+    Pyramid (const Vector &_Center, double _a = 1);
+    virtual ~Pyramid();
 
-	virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
+    virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
 		a = _a; }
 
 protected:
-	void DeclareTriangle (unsigned, unsigned, unsigned, unsigned);
+    virtual void Initialize();
+    void DeclareTriangle (unsigned, unsigned, unsigned, unsigned);
 
-	double a;
+    Vector center;
+    double a;
 };
 
 
@@ -118,18 +122,22 @@ protected:
 
 class Gasket: public Pyramid {
 public:
-	Gasket (unsigned level = 1, double rad = 1, Vector Center = Vector (4, 0., 0.,0., 0.));
-	virtual ~Gasket();
+    Gasket (unsigned level = 1, double rad = 1, 
+	    Vector Center = Vector (4, 0., 0.,0., 0.));
+    virtual ~Gasket();
 
-	virtual void Transform (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw,
-							double Tx, double Ty, double Tz, double Tw);
-	virtual void Project (double ScrW, double CamW, bool DepthCue4D);
-	virtual void Draw (void);
+    virtual void Transform (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw,
+			    double Tx, double Ty, double Tz, double Tw);
+    virtual void Project (double ScrW, double CamW, bool DepthCue4D);
+    virtual void Draw (void);
 
 protected:
+    virtual void Initialize();
     virtual unsigned long MemRequired (void);
     unsigned Level;
-    vector<Pyramid *> List;
+    std::vector<Pyramid *> List;
+    double rad;
+    Vector center;
 };
 
 #endif
