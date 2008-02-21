@@ -3,63 +3,20 @@ hyperspace Explorer TO-DO											2004-04-18
 
 Beautifications:
 ----------------
- - clean up code; remove GeneralException and combind StdAfx.* with Misc.C
-   and move all globals and static initialization stuff to a singleton
-
- - use auto_ptr instead of pointers; or vector<> throughout
-
- - remove "using namespace ...;" directives, replace them with "using ...:...;"
-   declarations. move using declarations out of header files entirely.
-
- - check whether all C header files are included as <cheader> instead of <header.h>
 
  - http://www.gotw.ca/publications/mill18.htm
 
- - instead of using static for file-local globals (?), use unnamed namespaces
-   (http://www.cuj.com/documents/s=7982/cujcexp2006hyslop/)
-
- - develop a smarter directory structure, especially under src/
-
  - comment code									ALWAYS
-
- - use exceptions for error handling
-
- - develop a rc-file and a shared directory system (for the documentation and	QUICK
-   for precompiled functions)
-
- - adjust distances of near/far clipping planes
 
 Lower priority Bugs:
 --------------------
- - for checking against crashes, change all pointers to QObjects to 
-   QGuardedPtr<QObject>, and check them for validity before accessing them
-   pity the Function objects can't be guarded like this, think of something else
-   (std::auto_ptr<> ?!)
-
- - crashes when changing the object during animation, stop animation first	QUICK
-
- - crashes when deleting a Surface object					QUICK
-  
- - Objects don't notice the changes made and applied in the ValuesDialog	SOON
 
  - finish ValuesDialog integration
-
- - transparent polygons (the transparence simply doesn't work!)
-
- - better polygon drawing quality, especially: avoid drawing more than one
-   poly in one place
 
  - C4DDoc::[tuv]steps should depend on Function::tsteps, instead of
    SpongeDlg::tsteps			
 
  - usable (ie. showing all information), resizable and toggle-able statusbar
-
- - crashes when steps not equal
-
- - free memory in destructors
-
- - check for memory leaks, there should be thousands of them
-    + Function::~Function () and Function::ReInit () and their descendants
 
 
 New Features:
