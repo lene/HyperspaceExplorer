@@ -1,6 +1,0 @@
-- find out why events are not honored
-- a log class instead of #ifdef DEBUG all over the code
-- move code from constructor to initialize inside of Object
-- add a description of the function and the parameters to Function(), and let the ValueDialog display them
-- use template metaprogramming-generated Matrix class and a corresponding Vector class to speed up computations
-- unit testing for all functions
