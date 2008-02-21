@@ -1,10 +1,11 @@
 TEMPLATE = app
+TEMPLATE += subdirs
 
-CONFIG = debug qt warn_on uic
+CONFIG = debug qt warn_on uic ordered
 
 QT += opengl qt3support
 
-SUBDIRS += Functions
+SUBDIRS = Functions
 
 HEADERS += 4DView.H ComplexDialogImpl.H FunctionDialogImpl.H GLObject.H
 HEADERS += Globals.H Help.H Matrix.H PolarDialogImpl.H SurfaceDialogImpl.H

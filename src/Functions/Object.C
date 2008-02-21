@@ -9,10 +9,9 @@
 
 
 
-#include "Globals.H"
-
+#include "../Globals.H"
+#include "../Matrix.H"
 #include "Object.H"
-#include "Matrix.H"
 
 using std::cerr;
 using std::endl;

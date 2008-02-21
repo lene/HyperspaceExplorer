@@ -15,10 +15,10 @@
 
 #include "CustomFunction.H"
 
-#include "FunctionDialogImpl.H"
-#include "PolarDialogImpl.H"
-#include "ComplexDialogImpl.H"
-#include "SurfaceDialogImpl.H"
+#include "../FunctionDialogImpl.H"
+#include "../PolarDialogImpl.H"
+#include "../ComplexDialogImpl.H"
+#include "../SurfaceDialogImpl.H"
 
 using std::complex;
 using std::cerr;

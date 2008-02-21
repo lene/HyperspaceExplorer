@@ -7,7 +7,7 @@
 //	license:      GPL (see License.txt)
 
 
-#include "Globals.H"
+#include "../Globals.H"
 
 #include "ComplexFunction.H"
 
