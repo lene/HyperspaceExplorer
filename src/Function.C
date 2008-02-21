@@ -149,6 +149,12 @@ void Function::Initialize () {
 void Function::ReInit(double _tmin, double _tmax, double _dt,
 		      double _umin, double _umax, double _du,
 		      double _vmin, double _vmax, double _dv) {
+
+# ifdef DEBUG
+  cerr  << "Function::ReInit(" << _tmin << ", " << _tmax << ", " << _dt << ", "
+	<< _umin << ", " << _umax<< ", " << _du << ", " << _vmin << ", " << _vmax << ", " << _dv << ")\n";
+# endif      
+
   tmin = _tmin;   tmax = _tmax;   dt = _dt;
   umin = _umin;   umax = _umax;   du = _du;
   vmin = _vmin;   vmax = _vmax;   dv = _dv;

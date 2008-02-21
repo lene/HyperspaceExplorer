@@ -69,7 +69,7 @@ XQGLWidget::XQGLWidget (QWidget *parent, const char *name) :
  *  setting background colors, setting up lighting, shading, fog and transparence
  */
 void XQGLWidget::initializeGL (void) {          
-# ifdef __DEBUG__
+# ifdef DEBUG
     cerr << "XQGLWidget::initializeGL " << light << shade << fog << transparent << endl;
 # endif      
 
@@ -141,7 +141,7 @@ void XQGLWidget::SetAlpha (int a) {
 
 
 void XQGLWidget::paintGL () {
-# ifdef __DEBUG__
+# ifdef DEBUG
     cerr << "XQGLWidget::paintGL ()\n";
 # endif      
 
@@ -151,7 +151,7 @@ void XQGLWidget::paintGL () {
   setCursor (QCursor (Qt::WaitCursor));              //  change cursor to 'working'
 #endif
 
-# ifdef __DEBUG__
+# ifdef DEBUG
     cerr << "  glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT )\n";
 # endif      
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   //  clear screen
@@ -163,7 +163,7 @@ void XQGLWidget::paintGL () {
   glRotatef (GLfloat (theta), 0., 1., 0.);
   glRotatef (GLfloat (phi),   0., 0., 1.);      //  rotate view
 
-# ifdef __DEBUG__
+# ifdef DEBUG
     cerr << "    if (DrawObject) DrawObject->Draw ()\n";
 # endif      
 

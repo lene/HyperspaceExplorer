@@ -84,7 +84,7 @@ class XQGLWidget: public QGLWidget {
   //  popup menu handling
     Q3PopupMenu *menu;                              //  menu identifiers
     virtual Q3PopupMenu *SetupMenu (void);
-    void SetupAccel (void);
+    virtual void SetupAccel (void);
 
   protected:
     Q3PopupMenu *appear, *help;                            //  menu identifiers

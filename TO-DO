@@ -4,28 +4,21 @@ hyperspace Explorer TO-DO											2004-04-18
 Beautifications:
 ----------------
  - clean up code; remove GeneralException and combind StdAfx.* with Misc.C
+   and move all globals and static initialization stuff to a singleton
 
- - use auto_ptr instead of pointers
+ - use auto_ptr instead of pointers; or vector<> throughout
 
  - remove "using namespace ...;" directives, replace them with "using ...:...;"
    declarations. move using declarations out of header files entirely.
 
  - check whether all C header files are included as <cheader> instead of <header.h>
 
- - file:///home/i/www.gotw.ca/publications/mill18.htm
+ - http://www.gotw.ca/publications/mill18.htm
 
  - instead of using static for file-local globals (?), use unnamed namespaces
    (http://www.cuj.com/documents/s=7982/cujcexp2006hyslop/)
 
- - clean up root folder; understand which files can be moved to the config	
-   subdir and how to tell autoconf about that
-
- - ease code bloat in the *DialogImpl classes, remove the duplicate code to a
-   parent class (or make it global functions, ferchrissake)
-
  - develop a smarter directory structure, especially under src/
-
- - commit to CVS
 
  - comment code									ALWAYS
 

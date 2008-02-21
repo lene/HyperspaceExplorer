@@ -69,7 +69,7 @@ protected:
     virtual Vector *df (double, double, double);
     virtual Vector &normal (double, double, double);
     
-    void Initialize (void);
+    virtual void Initialize (void);
     void InitMem (void);
     void Free (void);
     virtual unsigned long MemRequired (void);

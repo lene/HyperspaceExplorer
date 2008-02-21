@@ -131,6 +131,14 @@ void Object::Draw () {
     glEnd ();
 }
 
+void Object::ReInit (double, double, double,
+		     double, double, double,
+		     double, double, double) { 
+# ifdef DEBUG
+	  cerr << "Object::ReInit()\n";
+# endif      
+	  Initialize();
+	}
 
     ///////////////////////////////////////////////////////////////////////////////
 
@@ -140,9 +148,30 @@ void Object::Draw () {
  *  @param center	center
  *  @param _a		side_length/2
  */
-Hypercube::Hypercube (const Vector &center, double _a):
+Hypercube::Hypercube (const Vector &_center, double _a):
     Object (16, 24),
-    a (_a) {
+    a (_a), center(_center) {
+
+# ifdef DEBUG
+    cerr << "Hypercube::Hypercube()\n";
+# endif      
+
+    Initialize();
+}		
+
+
+/*******************************************************************************
+ *  Hypercube destructor
+ *  @rant	really, i am so anal, i don't know why i even bother to document this
+ *  		must be the virgo inheritance or what
+ */
+Hypercube::~Hypercube () { }
+
+
+void Hypercube::Initialize(void) {
+# ifdef DEBUG
+    cerr << "Hypercube::Initialize()\n";
+# endif      
     for (int x = 0; x <= 1; x++)
 	for (int y = 0; y <= 1; y++)
 	    for (int z = 0; z <= 1; z++)
@@ -172,17 +201,8 @@ Hypercube::Hypercube (const Vector &center, double _a):
     DeclareSquare (20,  8,10,14,12);    
     DeclareSquare (21,  9,11,15,13);    
     DeclareSquare (22, 10,11,15,14);    
-    DeclareSquare (23,12,13,15,14);    
-}		
-
-
-/*******************************************************************************
- *  Hypercube destructor
- *  @rant	really, i am so anal, idon't know why i even bother to document this
- *  		must be the virgo inheritance or what
- */
-Hypercube::~Hypercube () { }
-
+    DeclareSquare (23, 12,13,15,14);    
+}
 
 /*******************************************************************************
  *  declare a square in the surfaces array

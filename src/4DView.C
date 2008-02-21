@@ -234,6 +234,9 @@ void C4DView::Draw () {
  *  @param e	Qt's mouse event information structure
  */
 void C4DView::mouseMoveEvent (QMouseEvent *e) {
+# ifdef DEBUG
+  cerr << "C4DView::mouseMoveEvent ()\n";
+#endif
   QPoint point = e->pos ();
 //  ButtonState s = e->stateAfter ();
   Qt::KeyboardModifiers s = e->modifiers();
@@ -463,6 +466,9 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
  *  @param e	Qt's mouse event information structure
  */
 void C4DView::mousePressEvent (QMouseEvent *e) {
+# ifdef DEBUG
+  cerr << "C4DView::mousePressEvent ()\n";
+#endif
   QPoint point = e->pos ();
   Qt::KeyboardModifiers s = e->modifiers();
 //  ButtonState s = e->stateAfter ();
@@ -487,6 +493,9 @@ void C4DView::mousePressEvent (QMouseEvent *e) {
  *  @param e	Qt's mouse event information structure
  */
 void C4DView::mouseReleaseEvent ( QMouseEvent *e) {
+# ifdef DEBUG
+  cerr << "C4DView::mouseReleaseEvent ()\n";
+#endif
   Qt::KeyboardModifiers s = e->modifiers();
 //  ButtonState s = e->stateAfter ();
   
@@ -1008,8 +1017,8 @@ void C4DView::AssignValues (const char *Title,
  */
 void C4DView::ApplyChanges (void) {
   F->SetParameters (Values->a (), Values->b (), Values->c (), Values->d ());
-  /*
-    ostrstream o;
+# ifdef DEBUG
+    ostringstream o;
     o << "Parameter A: " << Values->a () << "\t"
     << "Parameter B: " << Values->b () << "\n"
     << "Parameter C: " << Values->c () << "\t"
@@ -1025,10 +1034,8 @@ void C4DView::ApplyChanges (void) {
     << "dV  : " << Values->dv () << "\n"
     << ends;
     
-    QMessageBox::warning (NULL, 
-			  "C4DView::ApplyChanges ()", 
-			  "OK");
-  */
+    cerr << "C4DView::ApplyChanges (): " << endl << o.str() << endl;
+# endif      
   F->ReInit (Values->tmin (), Values->tmax (), Values->dt (), 
 	     Values->umin (), Values->umax (), Values->du (),
 	     Values->vmin (), Values->vmax (), Values->dv ());

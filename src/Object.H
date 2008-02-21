@@ -26,7 +26,7 @@ public:
 	virtual ~Object ();
 	virtual void ReInit (double, double, double,
 			     double, double, double,
-			     double, double, double) { }
+			     double, double, double);
 
 	virtual void Transform (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw,
 							double Tx, double Ty, double Tz, double Tw);
@@ -63,9 +63,11 @@ public:
     return out.str ();
   }
 protected:
-	void DeclareSquare (unsigned, unsigned, unsigned, unsigned, unsigned);
+  void Initialize();
+  void DeclareSquare (unsigned, unsigned, unsigned, unsigned, unsigned);
 
-	double a;
+  double a;
+  Vector center;
 };
 
 
