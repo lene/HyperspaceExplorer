@@ -133,6 +133,10 @@ C4DView::~C4DView() {
  */
 void C4DView::Transform (double thetaxy, double thetaxz, double thetaxw, double thetayz, double thetayw, double thetazw,
 			 double tx, double ty, double tz, double tw) {
+#ifdef DEBUG
+  cerr << "C4DView::Transform ("<< thetaxy << ", " << thetaxz << ", " << thetaxw << ", " << thetayz << ", " << thetayw << ", " << thetazw << ", " << endl
+       << "                    "<< tx << ", " << ty << ", " << tz << ", " << tw <<")\n";
+#endif
 
 # ifdef USE_AUTO_PTR 
     if (F.get ()) 
@@ -234,16 +238,29 @@ void C4DView::Draw () {
  *  @param e	Qt's mouse event information structure
  */
 void C4DView::mouseMoveEvent (QMouseEvent *e) {
-# ifdef DEBUG
-  cerr << "C4DView::mouseMoveEvent ()\n";
+#ifdef DEBUG
+  cerr << "C4DView::mouseMoveEvent ("<< e->modifiers()<<")\n";
 #endif
   QPoint point = e->pos ();
 //  ButtonState s = e->stateAfter ();
   Qt::KeyboardModifiers s = e->modifiers();
+  Qt::MouseButtons b = e->buttons();
 
-  bool LeftButtonDown  = s & Qt::LeftButton,
-       MidButtonDown   = s & Qt::MidButton,
-       RightButtonDown = s & Qt::RightButton;
+  bool LeftButtonDown  = b & Qt::LeftButton,
+       MidButtonDown   = b & Qt::MidButton,
+       RightButtonDown = b & Qt::RightButton,
+       AltPressed = s & Qt::AltModifier,
+       ControlPressed = s & Qt::ControlModifier,
+       ShiftPressed = s & Qt::ShiftModifier;
+
+#ifdef DEBUG
+  cerr << (LeftButtonDown? "LMB ": "") 
+       << (MidButtonDown? "MMB ": "") 
+       << (RightButtonDown? "RMB ": "") 
+       << (AltPressed? "+ Alt ": "") 
+       << (ControlPressed? "+ Ctrl ": "") 
+       << (ShiftPressed? "+ Shift ": "") << endl;
+#endif
 
   bool ViewChanged = false;
 
@@ -253,10 +270,10 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
 
   if (xsize == 0 || ysize == 0) return;         		//    pathological case better taken care of
 
-  if ((s & Qt::AltButton) != 0) TakingSpinValues = true;
-  else                          TakingSpinValues = false;
+  if (AltPressed) TakingSpinValues = true;
+  else            TakingSpinValues = false;
 
-  if ((s & Qt::ControlButton) != 0) {						//  CONTROL pressed
+  if (ControlPressed) {						//  CONTROL pressed
 										
     if (LeftButtonDown || MidButtonDown || RightButtonDown) {			//  CONTROL + any Button
 
@@ -300,7 +317,7 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
 
   }                     //    if (::GetKeyState (VK_CONTROL) < 0)
 
-  if ((s & Qt::ShiftButton) != 0) {                    		//    rotate 4D viewpoint with SHIFT pressed	
+  if (ShiftPressed) {                    		//    rotate 4D viewpoint with SHIFT pressed	
 
     if (LeftButtonDown || MidButtonDown || RightButtonDown) {		//  SHIFT + any button
 
@@ -378,6 +395,9 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
   }                    	//    if (::GetKeyState (VK_SHIFT) < 0)
 
   if (ViewChanged) {                                    	//    4D viewpoint has changed
+#ifdef DEBUG
+  cerr << "C4DView::mouseMoveEvent: View changed ()\n";
+#endif
     Transform (Rxy, Rxz, Rxw, Ryz, Ryw, Rzw, Tx, Ty, Tz, Tw);   //    apply the 4D transformation
     Redraw ();
   }
@@ -466,22 +486,22 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
  *  @param e	Qt's mouse event information structure
  */
 void C4DView::mousePressEvent (QMouseEvent *e) {
-# ifdef DEBUG
+#ifdef DEBUG
   cerr << "C4DView::mousePressEvent ()\n";
 #endif
   QPoint point = e->pos ();
-  Qt::KeyboardModifiers s = e->modifiers();
+  Qt::MouseButtons b = e->buttons();
 //  ButtonState s = e->stateAfter ();
 
-  if ((s & Qt::LeftButton) != 0) {
+  if ((b & Qt::LeftButton) != 0) {
     m_LeftDownPos = point;
   }
-  if ((s & Qt::MidButton) != 0) {
+  if ((b & Qt::MidButton) != 0) {
     m_MidDownPos = point;
   }
-  if ((s & Qt::RightButton) != 0) {
+  if ((b & Qt::RightButton) != 0) {
     m_RightDownPos = point;
-    if (s == Qt::RightButton)
+    if (b == Qt::RightButton)
       XQGLWidget::mousePressEvent (e);	
   }  
 }
@@ -493,10 +513,10 @@ void C4DView::mousePressEvent (QMouseEvent *e) {
  *  @param e	Qt's mouse event information structure
  */
 void C4DView::mouseReleaseEvent ( QMouseEvent *e) {
-# ifdef DEBUG
+#ifdef DEBUG
   cerr << "C4DView::mouseReleaseEvent ()\n";
 #endif
-  Qt::KeyboardModifiers s = e->modifiers();
+  Qt::MouseButtons b = e->buttons();
 //  ButtonState s = e->stateAfter ();
   
   if (TakingSpinValues) {
@@ -505,7 +525,7 @@ void C4DView::mouseReleaseEvent ( QMouseEvent *e) {
   }   
 
   UpdateStatus ("");
-  if (s == Qt::RightButton)
+  if (b == Qt::RightButton)
     XQGLWidget::mouseReleaseEvent (e);				// this fucks up all the location data!
 
 }
@@ -517,6 +537,9 @@ void C4DView::mouseReleaseEvent ( QMouseEvent *e) {
  *  @param e	Qt's mouse event information structure
  */
 void C4DView::mouseDoubleClickEvent (QMouseEvent *e) {
+#ifdef DEBUG
+  cerr << "C4DView::mouseDoubleClickEvent ()\n";
+#endif
     if (Animated) StopAnimation ();
     else { 
       Tx = Ty = Tz = Tw = 0;
@@ -648,16 +671,15 @@ void C4DView::OnTimer() {
     QString imageFilename = QString ("/tmp/HyperspaceExplorer_Image.%1.png")
                                      .arg (frame++, 6)
                                      .replace (" ", "0");
-    if (tmpPixmap.save (imageFilename, "PNG"))
+    if (tmpPixmap.save (imageFilename, "PNG")) {
 #   ifdef DEBUG
       //      cerr << "writing " << iio.fileName () << " successful!";
-      cerr << "writing " << imageFilename << " successful!\n";
+      cerr << "writing " << imageFilename.toStdString() << " successful!\n";
 #   endif
-    ;
-    else {
+    } else {
 #   ifdef DEBUG
       //      cerr << "writing " << iio.fileName () << " failed!";
-      cerr << "writing " << imageFilename << " failed!\n";
+      cerr << "writing " << imageFilename.toStdString() << " failed!\n";
 #   endif
     }
   }
@@ -754,6 +776,9 @@ void C4DView::RenderScene (unsigned /* Frame */) {			//	draw (frame of animation
  *  should be called whenever the object is rotaded or translated
  */
 void C4DView::OnPaint() {                                	//    object drawing routine
+# ifdef DEBUG
+    cerr << "C4DView::OnPaint()\n";
+# endif
   glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);    		//    clear the window
 
   if (DisplayPolygons)                                	//    this might move to a special routine
@@ -782,7 +807,7 @@ void C4DView::OnPaint() {                                	//    object drawing r
     PreRedraw ();
 
 #ifdef DEBUG
-    cerr << "  C4DView::OnPaint () \n";
+    cerr << "  C4DView::OnPaint () - RenderToPixmap \n";
 # endif
     QPixmap tmpPixmap = makePixmap ();
     //    QPixmap tmpPixmap = renderPixmap (/* width (), height (), false */);

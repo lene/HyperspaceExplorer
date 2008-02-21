@@ -163,13 +163,20 @@ void XQGLWidget::Colors () {
  *  @param e	Qt's mouse event information structure
  */
 void XQGLWidget::mousePressEvent (QMouseEvent *E) {
+#ifdef DEBUG
+  cerr << "XQGLWidget::mousePressEvent ()\n";
+#endif
   int ButtonPressed = E->button ();
-  if (ButtonPressed == Qt::RightButton)
+  if (ButtonPressed == Qt::RightButton) {
 #   if (QT_VERSION < 300)
-    menu->exec (QCursor::pos ());
+      menu->exec (QCursor::pos ());
 #   else
-  menu->exec (E->pos());
+      menu->exec (this->mapToGlobal(E->pos()));
+#ifdef DEBUG
+      cerr << "  ButtonPressed == Qt::RightButton\n";
+#endif
 #   endif
+  }
   else if (ButtonPressed == Qt::LeftButton) {
     xpressed = E->x (); ypressed = E->y (); }
   else if (ButtonPressed == Qt::MidButton) {

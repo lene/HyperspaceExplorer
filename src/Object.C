@@ -134,7 +134,7 @@ void Object::Draw () {
 void Object::ReInit (double, double, double,
 		     double, double, double,
 		     double, double, double) { 
-# ifdef DEBUG
+#ifdef DEBUG
 	  cerr << "Object::ReInit()\n";
 # endif      
 	  Initialize();
@@ -152,9 +152,9 @@ Hypercube::Hypercube (const Vector &_center, double _a):
     Object (16, 24),
     a (_a), center(_center) {
 
-# ifdef DEBUG
+#ifdef DEBUG
     cerr << "Hypercube::Hypercube()\n";
-# endif      
+#endif      
 
     Initialize();
 }		
@@ -169,9 +169,9 @@ Hypercube::~Hypercube () { }
 
 
 void Hypercube::Initialize(void) {
-# ifdef DEBUG
+#ifdef DEBUG
     cerr << "Hypercube::Initialize()\n";
-# endif      
+#endif      
     for (int x = 0; x <= 1; x++)
 	for (int y = 0; y <= 1; y++)
 	    for (int z = 0; z <= 1; z++)

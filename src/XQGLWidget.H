@@ -15,8 +15,6 @@
 #ifndef XQGLW_H
 #define XQGLW_H
 
-#undef DEBUG
-
 #include <qgl.h>
 //Added by qt3to4:
 #include <QMouseEvent>
