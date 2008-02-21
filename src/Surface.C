@@ -7,8 +7,8 @@
 //	license:      GPL (see License.txt)
 
 
-#include "../Globals.H"
-#include "../Matrix.H"
+#include "Globals.H"
+#include "Matrix.H"
 #include "Surface.H"
 
 unsigned int Delete (void *x);		// defined in Function.C

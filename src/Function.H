@@ -11,7 +11,7 @@
 #if !defined(FUNCTION_H)
 #define FUNCTION_H
 
-#include "../numclass.H"
+#include "numclass.H"
 
 /*******************************************************************************
  *  a  Function is a mathematical function  f: R^3 -> R^4,  evaluated on a 3-dimensional grid,

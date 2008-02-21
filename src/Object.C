@@ -9,8 +9,8 @@
 
 
 
-#include "../Globals.H"
-#include "../Matrix.H"
+#include "Globals.H"
+#include "Matrix.H"
 #include "Object.H"
 
 using std::cerr;

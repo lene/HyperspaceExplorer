@@ -6,8 +6,8 @@
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
 
-#include "../Globals.H"
-#include "../Matrix.H"
+#include "Globals.H"
+#include "Matrix.H"
 #include "Function.H"
 
 unsigned int Delete (void *);

@@ -15,10 +15,10 @@
 #include <sstream>
 #include <iomanip>
 
-#include "Functions/Function.H"
-#include "Functions/Surface.H"
-#include "Functions/ComplexFunction.H"
-#include "Functions/Object.H"
+#include "Function.H"
+#include "Surface.H"
+#include "ComplexFunction.H"
+#include "Object.H"
 
 #include <qlabel.h>
 #include <qimage.h>

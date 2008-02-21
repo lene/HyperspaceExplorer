@@ -9,10 +9,10 @@
 
 
 #include "4DView.H"
-#include "Functions/Function.H"
-#include "Functions/Surface.H"
-#include "Functions/Object.H"
-#include "Functions/ComplexFunction.H"
+#include "Function.H"
+#include "Surface.H"
+#include "Object.H"
+#include "ComplexFunction.H"
 
 #include <qmessagebox.h>
 //Added by qt3to4:
@@ -994,7 +994,7 @@ void C4DView::ComplexTanZ() {
 #include "ComplexDialogImpl.H"
 #include "SurfaceDialogImpl.H"
 
-#include "Functions/CustomFunction.H"
+#include "CustomFunction.H"
 
 
 /*******************************************************************************
