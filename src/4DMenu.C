@@ -9,10 +9,10 @@
 
 
 #include "4DView.H"
-#include "Function.H"
-#include "Surface.H"
-#include "Object.H"
-#include "ComplexFunction.H"
+#include "Functions/Function.H"
+#include "Functions/Surface.H"
+#include "Functions/Object.H"
+#include "Functions/ComplexFunction.H"
 
 #include <qmessagebox.h>
 //Added by qt3to4:
@@ -20,15 +20,6 @@
 
 #include <sstream>
 #include <iomanip>
-/*
-struct FunctionTableEntry {
-  QString FunctionName;
-  Function *FunctionPtr;
-};
-
-FunctionTableEntry FuncTable[] = {
-  "Hypersphere", new 
-*/
 
 #define TESTFEATURES 1
 //#undef TESTFEATURES
@@ -1003,7 +994,7 @@ void C4DView::ComplexTanZ() {
 #include "ComplexDialogImpl.H"
 #include "SurfaceDialogImpl.H"
 
-#include "CustomFunction.H"
+#include "Functions/CustomFunction.H"
 
 
 /*******************************************************************************
