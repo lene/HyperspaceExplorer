@@ -5,28 +5,19 @@ Source distribution
 ===================
 
 Requirements:
-Multithreaded Qt >= 3.0
+Multithreaded Qt >= 4.0
 OpenGL libraries and header files, MesaGL does fine
 
 Building the executable:
 > tar zxf HyperspaceExplorer.tar.gz
 > cd HyperspaceExplorer
-> ./configure
+> qmake
 > make
->make install
+> make install
 
 If any errors occur, you are on your own, this is still alpha code. You 
 might drop me a line anyway, maybe I am able to help you, and I am highly 
 interested in bug reports.
-
-Binary distribution
-===================
-
-Requirements:
-as above
-
-Installing:
-> tar zxf HyperspaceExplorer-Linux-i586-160902.tar.gz 
 
 Running
 =======
