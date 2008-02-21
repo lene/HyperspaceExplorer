@@ -1,6 +1,10 @@
 HyperspaceExplorer Changelog
 =============================
 
+	release 0.3.0:
+	* converted the project to Qt 4 and qmake
+	2008-02-21
+
 	release 0.2.0:
 	* rc-file system added; custom function compilation and installation now takes
 	place in ~/.HyperspaceExplorer
