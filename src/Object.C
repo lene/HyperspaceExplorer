@@ -137,7 +137,7 @@ void Object::ReInit (double, double, double,
 		     double, double, double) { 
 #ifdef DEBUG
 	  cerr << "Object::ReInit()\n";
-# endif      
+# endif
 	  Initialize();
 	}
 
@@ -262,6 +262,10 @@ unsigned long Sponge::MemRequired (unsigned distance) {
 Sponge::~Sponge () { }
 
 void Sponge::Initialize(void) {
+#ifdef DEBUG
+    cerr << "Sponge::Initialize()\n";
+#endif      
+    List.clear();
     if (Level < 1)
 	List.push_back (new Hypercube (center, rad*3./2.));
     else {
@@ -318,6 +322,9 @@ void Sponge::Initialize(void) {
  */
 void Sponge::Transform (double Thetaxy, double Thetaxz, double Thetaxw, double Thetayz, double Thetayw, double Thetazw,
 			double Tx, double Ty, double Tz, double Tw) {
+#ifdef DEBUG
+    cerr << "Sponge::Transform()\n";
+#endif      
     for (unsigned i = 0; i < List.size (); i++)
 	List[i]->Transform (Thetaxy, Thetaxz, Thetaxw, Thetayz, Thetayw, Thetazw,
 			    Tx, Ty, Tz, Tw);
@@ -331,6 +338,9 @@ void Sponge::Transform (double Thetaxy, double Thetaxz, double Thetaxw, double T
  *  @param depthcue4d	wheter to use hyperfog/dc
  */
 void Sponge::Project (double scr_w, double cam_w, bool depthcue4d) {
+#ifdef DEBUG
+    cerr << "Sponge::Project()\n";
+#endif      
     for (unsigned i = 0; i < List.size (); i++)
 	List[i]->Project (scr_w, cam_w, depthcue4d);
 }

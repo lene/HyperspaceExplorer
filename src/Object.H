@@ -73,20 +73,33 @@ protected:
 
 class Sponge: public Hypercube {
 public:
-	Sponge (unsigned level = 1, int distance = 1, double rad = 1,
-		Vector Center = Vector (4, 0., 0.,0., 0.));
-	virtual ~Sponge ();
+    Sponge (unsigned level = 1, int distance = 1, double rad = 1,
+	    Vector Center = Vector (4, 0., 0.,0., 0.));
+    virtual ~Sponge ();
 
-	virtual void Transform (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw,
-							double Tx, double Ty, double Tz, double Tw);
-	virtual void Project (double ScrW, double CamW, bool DepthCue4D);
-	virtual void Draw (void);
+    virtual void Transform (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw,
+			    double Tx, double Ty, double Tz, double Tw);
+    virtual void Project (double ScrW, double CamW, bool DepthCue4D);
+    virtual void Draw (void);
 
-  virtual std::string description () {
-    std::ostringstream out;
-    out << "Sponge (level = " << Level << ")" << std::ends;
-    return out.str ();
-  }
+    virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double = 0) {
+	Level = _a;
+	distance = _b;
+	rad = _c;
+    }
+
+    virtual void ReInit (double, double, double,
+			 double, double, double,
+			 double, double, double) {
+	List.clear();
+	Object::ReInit(0,0,0,0,0,0,0,0,0);
+    }
+
+    virtual std::string description () {
+	std::ostringstream out;
+	out << "Sponge (level = " << Level << ")" << std::ends;
+	return out.str ();
+    }
 protected:
     virtual void Initialize();
     virtual unsigned long MemRequired (unsigned);
@@ -130,6 +143,16 @@ public:
 			    double Tx, double Ty, double Tz, double Tw);
     virtual void Project (double ScrW, double CamW, bool DepthCue4D);
     virtual void Draw (void);
+    virtual void SetParameters (double _a = 0, double _b = 0, double = 0, double = 0) {
+	Level = _a;
+	rad = _b;
+    }
+    virtual void ReInit (double, double, double,
+			 double, double, double,
+			 double, double, double) {
+	List.clear();
+	Object::ReInit(0,0,0,0,0,0,0,0,0);
+    }
 
 protected:
     virtual void Initialize();
