@@ -11,7 +11,7 @@
 #include "Matrix.H"
 #include "Surface.H"
 
-unsigned int Delete (void *x);		// defined in Function.C
+template <typename T> unsigned int Delete (T *x);	// defined in Function.C
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -140,12 +140,12 @@ void Surface::ReInit(double, double, double,
  */
 void Surface::Free (void) {
     for (unsigned u = 0; u <= usteps+1; u++) {
-	Delete (X[u]);
-	Delete (Xscr[u]);
-	Delete (Xtrans[u]);
-	Delete (R[u]);
-	Delete (G[u]);
-	Delete (B[u]);
+//	Delete (X[u]);
+//	Delete (Xscr[u]);
+//	Delete (Xtrans[u]);
+//	Delete (R[u]);
+//	Delete (G[u]);
+//	Delete (B[u]);
     }
     Delete (X);
     Delete (Xscr);
@@ -153,10 +153,10 @@ void Surface::Free (void) {
     Delete (R);
     Delete (G);
     Delete (B);
-    Delete (Xchunk);
-    Delete (XscrChunk);
-    Delete (XtransChunk);
-    Delete (RGBChunk);
+//    Delete (Xchunk);
+//    Delete (XscrChunk);
+//    Delete (XtransChunk);
+//    Delete (RGBChunk); 
 }
 
 

@@ -634,7 +634,8 @@ void C4DView::ObjectHypersponge() {
     if (F) delete F;
     F =
 #endif
-      (new Sponge (unsigned (Values->a ()), int (Values->b ()), Values->c (), Vector (4, 0., 0., 0., 0.)));
+      (new Sponge (unsigned (Values->a ()), int (Values->b ()), Values->c (), Vector (4, 0., 0., 0., 0.))); 	// valgrind bemoans "601248 bytes in 1 blocks are indirectly lost"
+
 
   AssignValues ("4-dimensional Menger Sponge", "Level", "Distance", "Size");
   

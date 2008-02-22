@@ -7,18 +7,9 @@
 //	license:      GPL (see License.txt)
 
 
-#include "Globals.H"
-#include "4DView.H"
-
-#include "Matrix.H"
-
 #include <sstream>
 #include <iomanip>
-
-#include "Function.H"
-#include "Surface.H"
-#include "ComplexFunction.H"
-#include "Object.H"
+#include "Globals.H"
 
 #include <qlabel.h>
 #include <qimage.h>
@@ -27,6 +18,16 @@
 #include <QResizeEvent>
 #include <QMouseEvent>
 #include <QPaintEvent>
+
+#include "4DView.H"
+#include "Log.H"
+
+#include "Matrix.H"
+
+#include "Function.H"
+#include "Surface.H"
+#include "ComplexFunction.H"
+#include "Object.H"
 
 using std::ostringstream;
 using std::cerr;
@@ -399,9 +400,8 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
   }                    	//    if (::GetKeyState (VK_SHIFT) < 0)
 
   if (ViewChanged) {                                    	//    4D viewpoint has changed
-#ifdef DEBUG
-  cerr << "C4DView::mouseMoveEvent: View changed ()\n";
-#endif
+    SingletonLog::Instance().log("C4DView::mouseMoveEvent: View changed ()");
+
     Transform (Rxy, Rxz, Rxw, Ryz, Ryw, Rzw, Tx, Ty, Tz, Tw);   //    apply the 4D transformation
     Redraw ();
   }
@@ -490,9 +490,8 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
  *  @param e	Qt's mouse event information structure
  */
 void C4DView::mousePressEvent (QMouseEvent *e) {
-#ifdef DEBUG
-  cerr << "C4DView::mousePressEvent ()\n";
-#endif
+  SingletonLog::Instance().log("C4DView::mousePressEvent ()");
+
   QPoint point = e->pos ();
   Qt::MouseButtons b = e->buttons();
 //  ButtonState s = e->stateAfter ();
@@ -517,9 +516,8 @@ void C4DView::mousePressEvent (QMouseEvent *e) {
  *  @param e	Qt's mouse event information structure
  */
 void C4DView::mouseReleaseEvent ( QMouseEvent *e) {
-#ifdef DEBUG
-  cerr << "C4DView::mouseReleaseEvent ()\n";
-#endif
+  SingletonLog::Instance().log("C4DView::mouseReleaseEvent ()");
+
   Qt::MouseButtons b = e->buttons();
 //  ButtonState s = e->stateAfter ();
   
@@ -541,9 +539,8 @@ void C4DView::mouseReleaseEvent ( QMouseEvent *e) {
  *  @param e	Qt's mouse event information structure
  */
 void C4DView::mouseDoubleClickEvent (QMouseEvent *e) {
-#ifdef DEBUG
-  cerr << "C4DView::mouseDoubleClickEvent ()\n";
-#endif
+    SingletonLog::Instance().log("C4DView::mouseDoubleClickEvent ()");
+
     if (Animated) StopAnimation ();
     else { 
       Tx = Ty = Tz = Tw = 0;
@@ -568,9 +565,7 @@ void C4DView::mouseDoubleClickEvent (QMouseEvent *e) {
  *  starts AnimationTimer, too...
  */
 void C4DView::StartAnimation () {
-# if 0
-  cerr << "C4DView::StartAnimation ()\n";
-# endif
+  SingletonLog::Instance().log("C4DView::StartAnimation ()");
 
   Animated = true;
   AnimationTimer->start (1000/animation_fps);                                 //    go for 50 fps
@@ -583,9 +578,7 @@ void C4DView::StartAnimation () {
  *  you guessed it
  */
 void C4DView::StopAnimation () {
-# if 0
-  cerr << "C4DView::StopAnimation ()\n";
-# endif
+  SingletonLog::Instance().log("C4DView::StopAnimation ()");
 
   Animated = false;
   dxy = dxz = dxw = dyz = dyw = dzw = dx = dy = dz = 0.;
@@ -662,9 +655,7 @@ void C4DView::OnTimer() {
 
 
     PreRedraw ();
-#   ifdef DEBUG
-      cerr << "  C4DView::OnTimer() \n";
-#   endif
+
     QPixmap tmpPixmap = makePixmap ();
 
 #   ifdef DEBUG
@@ -677,12 +668,10 @@ void C4DView::OnTimer() {
                                      .replace (" ", "0");
     if (tmpPixmap.save (imageFilename, "PNG")) {
 #   ifdef DEBUG
-      //      cerr << "writing " << iio.fileName () << " successful!";
       cerr << "writing " << imageFilename.toStdString() << " successful!\n";
 #   endif
     } else {
 #   ifdef DEBUG
-      //      cerr << "writing " << iio.fileName () << " failed!";
       cerr << "writing " << imageFilename.toStdString() << " failed!\n";
 #   endif
     }
@@ -700,11 +689,10 @@ void C4DView::OnTimer() {
  *  separated the 4d projection stuff from the 3d opengl handling into this function
  */
 void C4DView::PreRedraw () {
+  SingletonLog::Instance().log("C4DView::PreRedraw ()");
+
   // this does seem very ineffective to me, deleting and reassigning the GL Lists,
   // but it does not seem to work any other way...?
-# ifdef DEBUG
-    cerr << "  PreRedraw ()\n";
-# endif
   
   if (DisplayCoordinates) {
     if (CoordinateCross) glDeleteLists (CoordinateCross,1);
@@ -728,9 +716,7 @@ void C4DView::PreRedraw () {
 
   glEndList ();
 
-# ifdef DEBUG
-    cerr << "  PreRedraw () done\n";
-# endif
+  SingletonLog::Instance().log("C4DView::PreRedraw () done");
 }
 
 
@@ -780,9 +766,8 @@ void C4DView::RenderScene (unsigned /* Frame */) {			//	draw (frame of animation
  *  should be called whenever the object is rotaded or translated
  */
 void C4DView::OnPaint() {                                	//    object drawing routine
-# ifdef DEBUG
-    cerr << "C4DView::OnPaint()\n";
-# endif
+  SingletonLog::Instance().log("C4DView::OnPaint ()");
+
   glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);    		//    clear the window
 
   if (DisplayPolygons)                                	//    this might move to a special routine
@@ -810,9 +795,7 @@ void C4DView::OnPaint() {                                	//    object drawing r
 
     PreRedraw ();
 
-#ifdef DEBUG
-    cerr << "  C4DView::OnPaint () - RenderToPixmap \n";
-# endif
+    SingletonLog::Instance().log("C4DView::OnPaint () - RenderToPixmap");
     QPixmap tmpPixmap = makePixmap ();
     //    QPixmap tmpPixmap = renderPixmap (/* width (), height (), false */);
 #ifdef DEBUG
@@ -877,9 +860,7 @@ void C4DView::paintEvent (QPaintEvent *) {
  */
 void C4DView::initializeGL (void) {
 
-# ifdef DEBUG
-    cerr << "initializeGL ()\n";
-# endif
+  SingletonLog::Instance().log("C4DView::initializeGL ()");
   XQGLWidget::initializeGL ();
  
   glDisable (GL_CULL_FACE);                            		//    disable face culling
@@ -888,9 +869,8 @@ void C4DView::initializeGL (void) {
   glClearColor (background[0], background[1], background[2], background[3]);	//    set background color
 
   if (RenderToPixmap /* && CurrentlyRendering */ ) {
-#   ifdef DEBUG
-      cerr << "  render to pixmap = true\n";
-#   endif
+    SingletonLog::Instance().log("  render to pixmap = true");
+
     PreRedraw ();
 
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);    		//    clear the window
@@ -909,16 +889,12 @@ void C4DView::initializeGL (void) {
     glRotated(m_rotZ, 0.0, 0.0, 1.0);
 
 
-#   ifdef DEBUG
-      cerr << "  RenderScene ()\n";
-#   endif
+    SingletonLog::Instance().log("  RenderScene");
     RenderScene (0);                                		//    draw current frame
 
     glPopMatrix();                                        	//    restore transformation matrix
   }
-# ifdef DEBUG
-    cerr << "initializeGL () done\n";
-# endif
+  SingletonLog::Instance().log("C4DView::initializeGL() done");
 }
 
 
@@ -1046,8 +1022,8 @@ void C4DView::AssignValues (const char *Title,
  */
 void C4DView::ApplyChanges (void) {
   F->SetParameters (Values->a (), Values->b (), Values->c (), Values->d ());
+  ostringstream o;
 # ifdef DEBUG
-    ostringstream o;
     o << "Parameter A: " << Values->a () << "\t"
     << "Parameter B: " << Values->b () << "\n"
     << "Parameter C: " << Values->c () << "\t"
@@ -1062,9 +1038,8 @@ void C4DView::ApplyChanges (void) {
     << "Vmax: " << Values->vmax () << "\t"
     << "dV  : " << Values->dv () << "\n"
     << ends;
-    
-    cerr << "C4DView::ApplyChanges (): " << endl << o.str() << endl;
 # endif      
+  SingletonLog::Instance().log("C4DView::ApplyChanges ():\n" + o.str());
   F->ReInit (Values->tmin (), Values->tmax (), Values->dt (), 
 	     Values->umin (), Values->umax (), Values->du (),
 	     Values->vmin (), Values->vmax (), Values->dv ());

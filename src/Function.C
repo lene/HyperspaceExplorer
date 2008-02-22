@@ -15,6 +15,19 @@ unsigned int Delete (void *);
 using std::cerr;
 using std::endl;
 
+/*******************************************************************************
+ *  auxiliary function to safely free a memory chunk
+ *  @param x		pointer to memory
+ */
+template <typename T> unsigned int Delete (T *x) {
+  if (x) {
+    delete [] x;
+    x = NULL;
+  }
+  return 0; 
+}
+
+
 //////////////////////////////////////////////////////////////////////
 // construction / destruction
 //////////////////////////////////////////////////////////////////////
@@ -81,10 +94,10 @@ Function::Function (double _tmin, double _tmax, double _dt,
  */
 void Function::InitMem (void) {
   XscrChunk = new Vector [(tsteps+2)*(usteps+2)*(vsteps+2)];
-  Xscr = new Vector ** [tsteps+2];
+  Xscr = new Vector ** [tsteps+2];	// valgrind moans about lost bytes
         
   XtransChunk = new Vector [(tsteps+2)*(usteps+2)*(vsteps+2)];
-  Xtrans = new Vector ** [tsteps+2];
+  Xtrans = new Vector ** [tsteps+2];	// valgrind moans about lost bytes
 
   RGBChunk = new float [3*(tsteps+2)*(usteps+2)*(vsteps+2)];
   R = new float ** [tsteps+2];
@@ -120,7 +133,7 @@ void Function::InitMem (void) {
  */
 void Function::Initialize () {
   Xchunk = new Vector   [(tsteps+2)*(usteps+2)*(vsteps+2)];
-  X 	 = new Vector ** [tsteps+2];
+  X 	 = new Vector ** [tsteps+2];	// valgrind moans about lost bytes
 
   for (unsigned t = 0; t <= tsteps+1; t++) {
     X[t] = new Vector * [usteps+2];
@@ -167,7 +180,7 @@ void Function::ReInit(double _tmin, double _tmax, double _dt,
   
   //  for (unsigned t = 0; t <= tsteps+1; t++) 
   //    delete [] X[t];
-  Delete (X);
+  Delete (X);	//	! Mismatched delete !
   //  Delete (Xchunk);
 
   Initialize ();
@@ -183,19 +196,6 @@ void Function::ReInit(double _tmin, double _tmax, double _dt,
  *  @param _d		4th parameter
  */
 void Function::SetParameters (double, double, double, double) { }
-
-
-/*******************************************************************************
- *  auxiliary function to safely free a memory chunk
- *  @param x		pointer to memory
- */
-unsigned int Delete (void *x) {
-  if (x) {
-    delete [] x;
-    x = NULL;
-  }
-  return 0; 
-}
 
 
 /*******************************************************************************

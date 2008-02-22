@@ -69,7 +69,7 @@ inline void glVertex (Vector &V) {
 	glVertex3dv (V.data ());
 }
     
-template <class T> void Swap (T &a, T &b) {
+template <typename T> void Swap (T &a, T &b) {
 	T temp (a);
 	a = b;
 	b = temp;

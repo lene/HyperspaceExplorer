@@ -115,7 +115,9 @@ inline bool Vector::operator! (void) const { return !dim; }
 inline void Vector::invalidate (void) {
   if (own) delete [] x;
   x = 0;
-  dim = 0; }
+  dim = 0; 
+  own = false;
+}
 
     //----------  access      ----------
 

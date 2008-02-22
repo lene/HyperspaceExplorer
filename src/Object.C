@@ -265,8 +265,9 @@ void Sponge::Initialize(void) {
 #ifdef DEBUG
     cerr << "Sponge::Initialize()\n";
 #endif      
-    List.clear();
+
     if (Level < 1)
+	//	valgrind bemoans "43648 bytes in 2432 blocks are indirectly lost"
 	List.push_back (new Hypercube (center, rad*3./2.));
     else {
         if (distance > 3) distance = 3;				//  dunno if this is wise
@@ -290,6 +291,7 @@ void Sponge::Initialize(void) {
 			    if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
 				Vector NewCen = Vector (4, double (x), double (y), double (z), double (w))*rad;
 				NewCen += center;
+				//	valgrind bemoans "154112 bytes in 4816 blocks are indirectly lost"
 				List.push_back (new Sponge (Level-1, distance, rad/3., NewCen));
 			    }
 			}
