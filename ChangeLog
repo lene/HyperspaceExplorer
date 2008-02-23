@@ -1,5 +1,10 @@
 HyperspaceExplorer Changelog
 =============================
+	release 0.3.1:
+	* fixed bug that caused recursive fractals to need to be re-selected in
+	the menu to change parameters
+	* fixed online help (preliminarily)
+	* created a structured source tree
 
 	release 0.3.0:
 	* converted the project to Qt 4 and qmake

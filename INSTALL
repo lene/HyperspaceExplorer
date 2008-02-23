@@ -29,7 +29,7 @@ Running
 You definitely should run the program from it's own directory if you want to
 define your own functions, because it compiles them as dynamically loadable
 libraries, which are compiled and stored from HyperspaceExplorer's current
-working directory.
+working directory. Sorry about the inconvenience.
 
 Contacting the author
 =====================
