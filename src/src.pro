@@ -19,18 +19,18 @@ SOURCES += Functions/ComplexFunction.C Functions/CustomFunction.C \
 	   Functions/Function.C Functions/Surface.C Functions/Object.C
 #	   Functions/SteinerFunction.C
 ###
-###	Dialogs
+###	UI
 ###
-INCLUDEPATH += ./Dialogs
-DEPENDPATH += ./Dialogs
-HEADERS += Dialogs/ComplexDialogImpl.H Dialogs/FunctionDialogImpl.H \
-	   Dialogs/PolarDialogImpl.H Dialogs/SurfaceDialogImpl.H \
-	   Dialogs/ValuesDialogImpl.H
-SOURCES += Dialogs/ComplexDialogImpl.C Dialogs/FunctionDialogImpl.C \
-	   Dialogs/PolarDialogImpl.C Dialogs/SurfaceDialogImpl.C \
-	   Dialogs/ValuesDialogImpl.C
-FORMS += Dialogs/ComplexDialog.ui Dialogs/FunctionDialog.ui \
-	 Dialogs/PolarDialog.ui Dialogs/SurfaceDialog.ui Dialogs/ValuesDialog.ui
+INCLUDEPATH += ./UI
+DEPENDPATH += ./UI
+HEADERS += UI/4DView.H UI/ComplexDialogImpl.H UI/FunctionDialogImpl.H \
+	   UI/PolarDialogImpl.H UI/SurfaceDialogImpl.H UI/ValuesDialogImpl.H \
+	   UI/GLObject.H UI/XQGLWidget.H
+SOURCES += UI/4DView.C UI/4DMenu.C UI/ComplexDialogImpl.C \
+	   UI/FunctionDialogImpl.C UI/PolarDialogImpl.C UI/SurfaceDialogImpl.C \
+	   UI/ValuesDialogImpl.C UI/XQGLWidget.C UI/PopupStuff.C
+FORMS += UI/ComplexDialog.ui UI/FunctionDialog.ui \
+	 UI/PolarDialog.ui UI/SurfaceDialog.ui UI/ValuesDialog.ui
 ###
 ###	Loki
 ###
@@ -42,10 +42,8 @@ HEADERS += Loki/SingletonHolder.H
 ###
 INCLUDEPATH += .
 DEPENDPATH += .
-HEADERS += 4DView.H GLObject.H Globals.H Help.H Matrix.H XQGLWidget.H \
-	   numclass.H Log.H 
-SOURCES += 4DMenu.C 4DView.C Globals.C Help.C Main.C  PopupStuff.C \
-	   XQGLWidget.C numclass.C Log.C
+HEADERS += Globals.H Help.H Matrix.H numclass.H Log.H 
+SOURCES += Globals.C Help.C Main.C numclass.C Log.C
 ###
 ################################################################################
 
