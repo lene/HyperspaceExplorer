@@ -7,11 +7,13 @@
 //	license:      GPL (see License.txt)
 
 
-
+#include <iostream>
 #include "Help.H"
 //Added by qt3to4:
 #include <Q3Frame>
 
+using std::cerr;
+using std::endl;
 
 #if (QT_VERSION < 300)
 
@@ -62,7 +64,9 @@ HelpWindow::HelpWindow (QWidget *parent):
 
 
 #include <qstatusbar.h>
-#include <qstringlist.h>
+#include <QStringList>
+#include <QFile>
+#include <QDir>
 
 
 /*******************************************************************************
@@ -74,15 +78,17 @@ HelpWindow::HelpWindow (QWidget *parent):
  */
 HelpWindow::HelpWindow( const QString& home_, const QString& _path,
                         QWidget* parent, const char *name )
-  : Q3MainWindow( parent, name, Qt::WDestructiveClose ) {
-    browser = new Q3TextBrowser( this );
+  : QMainWindow( parent, name, Qt::WDestructiveClose ) {
+    browser = new QTextBrowser( this );
+    QStringList possiblePaths;
+    possiblePaths.append(_path+"/");
+    possiblePaths.append(_path+"/Documentation/");
+    possiblePaths.append(_path+"/src/Documentation/");
+    possiblePaths.append(QDir::currentPath()+"/Documentation/");
 
-    browser->mimeSourceFactory()->setFilePath( _path );
+    browser->setSearchPaths(possiblePaths);
+    browser->setSource(QUrl(home_));
     browser->setFrameStyle( Q3Frame::Panel | Q3Frame::Sunken );
-#   if 0
-    connect( browser, SIGNAL( textChanged() ),
-             this, SLOT( textChanged() ) );
-#   endif
     
     setCentralWidget( browser );
 

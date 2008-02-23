@@ -7,14 +7,4 @@ Everything has moved to https://sourceforge.net/tracker, except for these items:
  - comment code
  - finish ValuesDialog integration
 
-New Stuff:
-
- - GLObject: replace vararg constructor with template
- - all files where qt stuff is included as <q....h> instead of <Q...> is to be updated
- - split C4DView into smaller classes: Menu, control, view
- - find out where typedefs are appropriate; certainly in the Function modules (especially in ComplexFunction.H!)
- - Function.C: Delete -> template
- - QStringlist rcdirs into global config singleton
- - numclass -> Vector
- - mangled objects. especially sponge!
 

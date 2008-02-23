@@ -23,16 +23,16 @@
 #else
 
 
-# include <q3mainwindow.h>
-# include <q3textbrowser.h>
+# include <QMainWindow>
+# include <QTextBrowser>
 
-  class HelpWindow : public Q3MainWindow {
+  class HelpWindow : public QMainWindow {
     Q_OBJECT
   public:
     HelpWindow( const QString& home_,  const QString& path, QWidget* parent = 0, const char *name=0 );
 
   private:
-    Q3TextBrowser* browser;
+    QTextBrowser* browser;
   };
 
 
