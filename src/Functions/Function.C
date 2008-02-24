@@ -141,8 +141,7 @@ void Function::Initialize () {
       X[t][u]  =  Xchunk+t*(usteps+2)*(vsteps+2)+u*(vsteps+2);	//new Vector [vsteps+2];
       for (unsigned v = 0; v <= vsteps+1; v++) {
 	double T = tmin+t*dt, U =umin+u*du, V = vmin+v*dv;
-	X[t][u][v] =
-	  f (T, U, V);
+	X[t][u][v] = f (T, U, V);
       }
     }
   }
