@@ -5,11 +5,12 @@ Source distribution
 ===================
 
 Requirements:
-Multithreaded Qt >= 4.0
-OpenGL libraries and header files, MesaGL does fine
+Linux (*BSD should work, but is not tested yet) (Windows should work in theory)
+Multithreaded Qt >= 4.0 <http://trolltech.com/products/qt>
+OpenGL libraries and header files
 
 Building the executable:
-> tar zxf HyperspaceExplorer.tar.gz
+> tar jxf HyperspaceExplorer.tar.bz2
 > cd HyperspaceExplorer
 > qmake
 > make
@@ -34,7 +35,13 @@ working directory. Sorry about the inconvenience.
 Contacting the author
 =====================
 
-email me: scout@hyperspace-travel.de. 
+email me: scout@hyperspace-travel.de
+
+Or use the Bug Tracker on the SourceForge project page: 
+http://sourceforge.net/projects/hyperspace-expl
+(You can find the Bug Tracker as the menu entry "Bugs" under the menu "Tracker".
+There is also a Tracker for Feature Requests.)
+
 Tell me whatever you want about the program. If you find any interesting or 
 nice-looking functions, send them to me as well. I'd like to include them with
 the next version.
