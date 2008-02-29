@@ -207,48 +207,6 @@ Vector<3> vnormalize (double xx, double yy, double zz) {
 
 
 /*******************************************************************************
- *  cross product of two 3-Vectors (dimension is not checked!)
- *  @param a	first operand of cross product
- *  @param b	second operand of cross product
- *  @return	a x b
- */
-Vector<3> vcross (Vector<3> a, Vector<3> b) {
-    static Vector<3> c;
-	
-	c[0] = a[1]*b[2]-a[2]*b[1];
-	c[1] = a[2]*b[0]-a[0]*b[2];
-	c[2] = a[0]*b[1]-a[1]*b[0];
-
-	return c; 
-}
-
-
-/*******************************************************************************
- *  cross product of three 4-Vectors (dimension is not checked!)
- *  @param a	first operand of cross product
- *  @param b	second operand of cross product
- *  @param c	third operand of cross product
- *  @return	a x b x c
- */
-Vector<4> vcross (Vector<4> a, Vector<4> b, Vector<4> c) {
-    static Vector<4> d;
-	double A = b[0]*c[1]-b[1]*c[0],
-		   B = b[0]*c[2]-b[2]*c[0],
-		   C = b[0]*c[3]-b[3]*c[0],
-		   D = b[1]*c[2]-b[2]*c[1],
-		   E = b[1]*c[3]-b[3]*c[1],
-		   F = b[2]*c[3]-b[3]*c[2];
-	
-	d[0] =  a[1]*F - a[2]*E + a[3]*D;
-	d[1] = -a[0]*F + a[2]*C - a[3]*B;
-	d[2] =  a[0]*E - a[1]*C + a[3]*A;
-	d[3] = -a[0]*D + a[1]*B - a[2]*A;
-	
-	return d; 
-}
-
-
-/*******************************************************************************
  *  get the system memory from /proc/meminfo
  *  of course, this only works on OS's with /proc filesystem and /proc/meminfo
  *  information!

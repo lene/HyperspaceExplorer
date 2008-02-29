@@ -28,7 +28,7 @@
 #endif
 #include "ValuesDialogImpl.H"
 
-template <unsigned D> class Vector;
+template <unsigned D, typename N> class Vector;
 class Function;
 
 class C4DView : public XQGLWidget {

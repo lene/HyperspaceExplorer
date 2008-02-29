@@ -10,8 +10,10 @@
 #ifndef VECTOR_H
 #define VECTOR_H 1
 
+#include <cstdarg>
+#include <cassert>
+
 #include <iostream>
-#include <stdarg.h>
 #include <string>
 
 # if (!defined __PI)
@@ -20,285 +22,293 @@
 #   define __PI 3_14
 # endif
 
-template <unsigned D> class Vector {
+template <unsigned D, typename N = double> class Vector {
   public:
 
     //----------  management  ----------
 
-    //  constructor: given a pointer to double, interprets it as n-dimensional vector 
-    //  defaults are n = Vector::DefaultDim, A = 0; they are set in the implementation,
-    //  because they must be defined after Vector::DefaultDim
-    Vector<D> (double *A); 
-    Vector<D> (double, ... );
+    Vector<D, N> (); 
+    Vector<D, N> (N, ... );
 
-    ~Vector<D> (void);                                   //  destructor
+    //  destructor is non-virtual for performance reasons
+    ~Vector<D, N> (void);
 
-    //  copy constructor: makes a deep copy, if deep == true, else a shallow one
-    Vector<D> (const Vector<D> &X, bool deep = true);
+    Vector<D, N> (const Vector<D, N> &X);
 
-    Vector<D> &operator= (const Vector<D> &Y);              // assignment operator
-//    Vector<D> operator= (const Vector<D> &Y);              // assignment operator
-
-    //----------  validity    ----------
-
-    operator bool  (void) const;                      // true if valid, false if not
-    bool operator! (void) const;                      // false if valid, true if not
-      
-    //  ownership concept:
-    bool owner (void) const;                          // true if object is owner of data
-
-    void invalidate (void);                           //  invalidates an object, destroying data if owner
+    Vector<D, N> &operator= (const Vector<D, N> &Y);
 
     //----------  access      ----------
 
-    //  operator [] returns a reference to component i (no boundary checking!)
-    double &operator[] (unsigned i);
+    N &operator[] (unsigned i);
+    N operator[] (unsigned i) const;
 
-    //  operator [] const returns component i (read-only access, no check)
-    double operator[] (unsigned i) const;
-
-    unsigned dimension (void) const;
+    static unsigned dimension (void);
 
     //----------  arithmetics ----------
 
-    Vector<D> &operator+= (const Vector<D> &Y);
-    Vector<D> &operator-= (const Vector<D> &Y);
-    Vector<D> &operator*= (const double &s);
+    Vector<D, N> &operator+= (const Vector<D, N> &Y);
+    Vector<D, N> &operator-= (const Vector<D, N> &Y);
+    Vector<D, N> &operator*= (const N &s);
 
-    Vector<D> operator- (void) const;
-    Vector<D> operator+ (const Vector<D> &Y);
-    Vector<D> operator- (const Vector<D> &Y);
-    Vector<D> operator* (const double &s);
-    double operator* (const Vector<D> &X);
-    Vector<D> operator/ (const double &s);
+    Vector<D, N> operator- (void) const;
+    Vector<D, N> operator+ (const Vector<D, N> &Y);
+    Vector<D, N> operator- (const Vector<D, N> &Y);
+    Vector<D, N> operator* (const N &s);
+    N operator* (const Vector<D, N> &X);
+    Vector<D, N> operator/ (const N &s);
 
-    bool operator== (const Vector<D> &Y);
-    bool operator!= (const Vector<D> &Y);
+    N sqnorm (void);
 
-    double sqnorm (void);
-    double norm (void);
-    Vector normalize (void);
-
-    double *data () { return x; }
+    N *data () { return x; }
 
   private:
-    double *x;
-    bool own; };
+    N *x;
+};
  
-template <unsigned D> std::ostream &operator << (std::ostream &, const Vector<D> &);
-template <unsigned D> std::istream &operator >> (std::istream &, Vector<D> &);
-
-template <unsigned D> Vector<D> cross (const Vector<D> &, const Vector<D> &);
-
-
-
+template <unsigned D, typename N> 
+        std::ostream &operator << (std::ostream &, const Vector<D> &);
 
 //------------  Vector member functions
 
     //  ------------  management  ------------
 
-template <unsigned D> inline Vector<D>::Vector (double *A = 0):
-    x (A ? A : new double [D]), own (A? false: true) { } //  implicitly initialized to zero vector
-  
-template <unsigned D> inline Vector<D>::~Vector (void) { if (own) delete [] x; }
-  
-//template <unsigned D> Vector<D> Vector<D>::operator= (const Vector<D> &Y) {
-//    return operator=(Y);
-//}
-    
-    //----------  validity    ----------     
+/** default constructor, implicitly initialized to zero vector                */
+template <unsigned D, typename N> 
+        Vector<D, N>::Vector ():
+    x (new N [D]) { 
+} //  
 
-template <unsigned D> inline Vector<D>::operator bool  (void) const { return  x; }
-template <unsigned D> inline bool Vector<D>::operator! (void) const { return !x; }
-
-template <unsigned D> inline void Vector<D>::invalidate (void) {
-  if (own) delete [] x;
-  x = 0;
-  own = false;
-}
-
-    //----------  access      ----------
-
-template <unsigned D> inline double &Vector<D>::operator[] (unsigned i) { 
-  return x[i];                                                   //  no boundary checking!
-}
-
-template <unsigned D> inline double Vector<D>::operator[] (unsigned i) const {
-  return x[i];                                                  //  -''- !
-}                                                                  //  valgrind: "Use of uninitialised value of size 8"
-                                                                  //  at Vector::operator[](unsigned int) const (Vector.H:128)
-
-template <unsigned D> inline unsigned Vector<D>::dimension (void) const { return D; }
-
-    //----------  arithmetics ----------
-
-template <unsigned D> inline Vector<D> &Vector<D>::operator+= (const Vector<D> &Y) {
-  for (unsigned i = 0; i < D; i++) x[i] += Y.x[i] ;
-  return *this; 
-}
-
-template <unsigned D> inline Vector<D> &Vector<D>::operator-= (const Vector<D> &Y) {
-  for (unsigned i = 0; i < D; i++) x[i] -= Y.x[i] ;
-  return *this; 
-}
-
-template <unsigned D> inline Vector<D> &Vector<D>::operator*= (const double &s) {             //  scalar multiplication
-  for (unsigned i = 0; i < D; i++) x[i] *= s ;
-  return *this;
-}
-
-template <unsigned D> inline Vector<D> Vector<D>::operator- (void) const {
-  static Vector Z;
-  Z = *this;
-  for (unsigned i = 0; i < D; i++) Z.x[i] = -x[i] ;
-  return Z; 
-}
-
-template <unsigned D> inline Vector<D> Vector<D>::operator+ (const Vector<D> &Y) {
-  static Vector Z;
-  Z = *this;
-  return (Z += Y); 
-}
-
-template <unsigned D> inline Vector<D> Vector<D>::operator- (const Vector<D> &Y) {
-  static Vector Z;
-  Z = *this;
-  return (Z -= Y); 
-}
-
-template <unsigned D> inline Vector<D> Vector<D>::operator* (const double &s) {               //  scalar multiplication
-  /*static*/ Vector Z;
-  Z = *this;
-  return Z *= s; 
-}
-
-template <unsigned D> inline double Vector<D>::operator* (const Vector<D> &Y) {               //  dot product
-  double dot = 0.;
-  for (unsigned i = 0; i < D; i++)
-    if (x[i]) dot += x[i]*Y.x[i];				  //  valgrind barks "Use of uninitialised value of size 8"
-				                                  //  at Vector::operator*(Vector const &) (Vector.H:174)
-  return dot; 
-}
-
-template <unsigned D> inline Vector<D> Vector<D>::operator/ (const double &s) {               //  scalar multiplication
-  return operator* (1./s); 
-}
-
-template <unsigned D> inline bool Vector<D>::operator== (const Vector<D> &Y) {
-  for (unsigned i = 0; i < D; i++)
-    if (x[i] != Y.x[i]) return false;
-  return true; 
-}
-
-template <unsigned D> inline bool Vector<D>::operator!= (const Vector<D> &Y) {
-  return !operator== (Y); 
-}
-
-template <unsigned D> inline double Vector<D>::sqnorm (void) {
-  return operator* (*this); 
-}
-
-template <unsigned D> inline double Vector<D>::norm (void) {
-  return sqrt (sqnorm ()); 
-}
-
-template <unsigned D> inline Vector<D> Vector<D>::normalize (void) {
-  double n = norm ();
-  if (n > 0.) return operator* (1./sqrt (n));
-  else return *this; 
-}
-
-using std::cerr;
-using std::endl;
-using std::ostream;
-using std::istream;
-
-//------------  Vector member functions and static variable initialization
-
-
-    //----------  management  ----------
-
-template <unsigned D> Vector<D>::Vector (double x0, ... ) :	//  Vector:: constructor with variable arglist
-        x (new double [D]), own (true) {
+/** constructor with variable arglist
+ *  @param x0 first element of the Vector
+ *  @param ... the following elements                                         */
+template <unsigned D, typename N> 
+        Vector<D, N>::Vector (N x0, ... ) :
+        x (new N [D]) {
     x[0] = x0;
     unsigned i = 0;
     va_list argp;
     va_start (argp, x0);
     for (i = 1; i < D; i++) {
-        x[i] = va_arg (argp, double); }
-        va_end (argp);
-        }
+        x[i] = va_arg (argp, N); 
+    }
+    va_end (argp);
+}
 
-        template <unsigned D> Vector<D>::Vector (const Vector<D> &X, bool deep) :		//  Vector:: copy constructor
-                own (deep) {
-            if (deep) {						//  deep copy
-                x = new double [D];
-                for (unsigned i = 0; i < D; i++) x[i] = X[i];
-            } else							//  shallow copy
-                x = X.x;
-                }
+/** destructor; frees the memory reserved by the vector members               */
+template <unsigned D, typename N>
+        Vector<D, N>::~Vector (void) { 
+    delete [] x; 
+}
+      
 
-                template <unsigned D> Vector<D> &Vector<D>::operator= (const Vector<D> &Y) {
-                    if (Y) {						//  copy only valid source Vectors
-                        for (unsigned i = 0; i < D; i++) x[i] = Y[i];	//  copy the elements
-                        own = true; }
-                        return *this;
-                }
+		
+/** copy constructor: makes a deep copy
+ *  @param X other Vector                                                     */
+template <unsigned D, typename N> 
+        Vector<D, N>::Vector(const Vector<D, N> &X) {	//  Vector:: copy constructor
+    x = new N [D];
+    for ( unsigned i = 0; i < D; i++ ) x[i] = X[i];
+}
+	
+/** assignment operator; copies contents but does not free memory
+ *  @param X other Vector                                                     */
+template <unsigned D, typename N>
+        Vector<D, N> &Vector<D, N>::operator=(const Vector<D, N> &Y) {
+    if ( Y.x ) {				//  copy only valid source Vectors
+	for ( unsigned i = 0; i < D; i++ ) x[i] = Y[i];	//  copy the elements
+    }
+    return *this;
+}
 
+    //----------  access      ----------
+/** operator [] returns a reference to component i
+ *  @param i index of the element
+ *  @return non-const reference to the accessed element                       */
+template <unsigned D, typename N> 
+        N &Vector<D, N>::operator[] (unsigned i) { 
+    assert(i < D);
+    return x[i];
+}
+
+/** operator [] returns component i by value
+ *  @param i index of the element
+ *  @return the accessed element                                              */
+template <unsigned D, typename N> 
+        N Vector<D, N>::operator[] (unsigned i) const {
+    assert(i < D);  
+    return x[i];    //  valgrind: "Use of uninitialised value of size 8"
+        }           //  at Vector::operator[](unsigned int) const (Vector.H:128)
+
+/** @return dimension of the Vector (the template parameter D)                */
+template <unsigned D, typename N> 
+        unsigned Vector<D, N>::dimension (void) {
+     return D; 
+}
+
+    //----------  arithmetics ----------
+
+/** @param Y other Vector
+ *  @return *this+Y                                                           */
+template <unsigned D, typename N> 
+        Vector<D, N> &Vector<D, N>::operator+= (const Vector<D, N> &Y) {
+  for (unsigned i = 0; i < D; i++) x[i] += Y.x[i] ;
+  return *this; 
+}
+
+/** @param Y other Vector
+ *  @return *this-Y                                                           */
+template <unsigned D, typename N> 
+        Vector<D, N> &Vector<D, N>::operator-= (const Vector<D, N> &Y) {
+  for (unsigned i = 0; i < D; i++) x[i] -= Y.x[i] ;
+  return *this; 
+}
+
+/** @param s scalar type
+ *  @return *this*s                                                           */
+template <unsigned D, typename N>
+        Vector<D, N> &Vector<D, N>::operator*= (const N &s) {
+  for (unsigned i = 0; i < D; i++) x[i] *= s ;
+  return *this;
+}
+
+/** @return -*this                                                            */
+template <unsigned D, typename N>
+        Vector<D, N> Vector<D, N>::operator- (void) const {
+    static Vector<D, N> Z;
+    Z = *this;
+    for (unsigned i = 0; i < D; i++) Z.x[i] = -x[i] ;
+    return Z; 
+}
+
+/** @param Y other Vector
+ *  @return *this+Y                                                           */
+template <unsigned D, typename N>
+        Vector<D, N> Vector<D, N>::operator+ (const Vector<D, N> &Y) {
+  static Vector<D, N> Z;
+  Z = *this;
+  return (Z += Y); 
+}
+
+/** @param Y other Vector
+ *  @return *this-Y                                                           */
+template <unsigned D, typename N>
+        Vector<D, N> Vector<D, N>::operator- (const Vector<D, N> &Y) {
+  static Vector<D, N> Z;
+  Z = *this;
+  return (Z -= Y); 
+}
+
+/** @param s scalar type
+ *  @return *this*s                                                           */
+template <unsigned D, typename N> 
+        Vector<D, N> Vector<D, N>::operator* (const N &s) {
+  Vector <D, N>Z;
+  Z = *this;
+  return Z *= s; 
+}
+
+/** scalar multiplication between two Vectors
+ *  @param Y other Vector
+ *  @return dot product < *this, Y >                                          */
+template <unsigned D, typename N> 
+        N Vector<D, N>::operator* (const Vector<D, N> &Y) {
+  N dot = 0.;
+  for (unsigned i = 0; i < D; i++)
+    if (x[i]) dot += x[i]*Y.x[i];	//  valgrind barks "Use of uninitialised value of size 8"
+				        //  at Vector::operator*(Vector const &) (Vector.H:174)
+  return dot; 
+}
+
+/** @param s scalar type
+ *  @return *this/s                                                           */
+template <unsigned D, typename N>
+        Vector<D, N> Vector<D, N>::operator/ (const N &s) {
+  return operator* (1./s); 
+}
+
+/** @return the squared norm of the vector, |V|²                              */
+template <unsigned D, typename N>
+        N Vector<D, N>::sqnorm (void) {
+  return operator* (*this); 
+}
+
+		
 //------------  important non-member functions for class Vector
+/** Vector output operator
+ *  @param o ostream to push into
+ *  @param v Vector to print
+ *  @return a new ostream to push Vectors and stuff into                      */
+template <unsigned D, typename N> 
+        std::ostream &operator << (std::ostream &o, const Vector<D, N> &v) {
+    //  i might want to use other brackets one day
+    o << "<";
+    for ( unsigned i = 0; i < v.dimension ()-1; i++ )
+	o << v[i] << ",";
+    o << v[v.dimension ()-1] << ">";
+    return o;
+}
 
-                template <unsigned D> ostream &operator << (ostream &o, const Vector<D> &v) {	//  Vector: output operator
-                    o << "<";						//  might want to use other brackets one day
-                    for (unsigned i = 0; i < v.dimension ()-1; i++)
-                        o << v[i] << ",";
-                    o << v[v.dimension ()-1] << ">";
-                    return o;
-                }
+/** cross product of two 3-Vectors
+ *  fails for dimensions other than 3 due to lack of template specialization
+ *  @param a	first operand of cross product
+ *  @param b	second operand of cross product
+ *  @return	a x b                                                         */
+template <unsigned D, typename N> Vector<D> cross (const Vector<D> &, const Vector<D> &);
 
-                template <unsigned D> istream &operator >> (istream &i, Vector<D> &v) {
-                    for (unsigned j = 0; j < v.dimension (); j++)
-                        i >> v[j];						//  how about brackets?
+/** cross product of three 4-Vectors
+ *  fails for dimensions other than 4 due to lack of template specialization
+ *  @param a	first operand of cross product
+ *  @param b	second operand of cross product
+ *  @param c	third operand of cross product
+ *  @return	a x b x c                                                     */
+template <unsigned D, typename N> Vector<D> cross (const Vector<D> &, const Vector<D> &, const Vector<D> &);
+		
+/** specialization for cross product of two 3-Vectors
+ *  @param a	first operand of cross product
+ *  @param b	second operand of cross product
+ *  @return	a x b                                                         */
+template <typename N> 
+        Vector<3, N> vcross (Vector<3, N> a, Vector<3, N> b) {
+    static Vector<3, N> c;
+	
+    c[0] = a[1]*b[2]-a[2]*b[1];
+    c[1] = a[2]*b[0]-a[0]*b[2];
+    c[2] = a[0]*b[1]-a[1]*b[0];
 
-                    return i;
-                }
+    return c; 
+}
 
-                template <unsigned D> Vector<D> cross (const Vector<D> &a, const Vector<D> &b) {	//  cross product of two 3D Vectors
-                    if (a.dimension () != b.dimension ()) {
-                        cerr << "dimensions must be equal for cross product!" << endl;
-                        abort(); }
-                        if (a.dimension () < 3) {
-                            cerr << "cross product for dimension < 3 is not defined." << endl;
-                            abort(); }
-                            if (a.dimension () > 3) {
-                                cerr << "cross product for dimension > 3 not yet implemented, sorry." << endl;
-                                abort(); }
+/** specialization for cross product of three 4-Vectors
+ *  @param a	first operand of cross product
+ *  @param b	second operand of cross product
+ *  @param c	third operand of cross product
+ *  @return	a x b x c                                                     */
+template <typename N> 
+        Vector<4, N> vcross (Vector<4, N> a, Vector<4, N> b, Vector<4, N> c) {
+    static Vector<4, N> d;
+    N A = b[0]*c[1]-b[1]*c[0],
+    B = b[0]*c[2]-b[2]*c[0],
+    C = b[0]*c[3]-b[3]*c[0],
+    D = b[1]*c[2]-b[2]*c[1],
+    E = b[1]*c[3]-b[3]*c[1],
+    F = b[2]*c[3]-b[3]*c[2];
+	
+    d[0] =  a[1]*F - a[2]*E + a[3]*D;
+    d[1] = -a[0]*F + a[2]*C - a[3]*B;
+    d[2] =  a[0]*E - a[1]*C + a[3]*A;
+    d[3] = -a[0]*D + a[1]*B - a[2]*A;
+	
+    return d; 
+}
 
-                                Vector<D> c ();
-  
-                                c[0] = a[1]*b[2]-b[1]*a[2];
-                                c[1] = a[2]*b[0]-b[2]*a[0];
-                                c[0] = a[0]*b[1]-b[0]*a[1];
-  
-                                return c;
-                }
-
-
-/*******************************************************************************
-                *  normalizes a 3-Vector out-of-place
-                *  @param x	Vector to be normalized
-                *  @return	its normalized value
- */
-                template <unsigned D> Vector<D> vnormalize (Vector<D> x) {
-                    static Vector<D> n;
-                    double norm = 0;
-                    for (unsigned i = 0; i < D; i++) norm += x[i]*x[i];
-
-                    if (norm == 0) return x;
-    
-                    norm = sqrt(norm);
-                    for (unsigned i = 0; i < D; i++) n[i] = x[i]/norm;
-                    return n;
-                }
-
-
+/** normalizes a 3-Vector out-of-place
+ *  @param x	Vector to be normalized
+ *  @return	its normalized value                                          */
+template <unsigned D, typename N> Vector<D, N> vnormalize ( Vector<D, N> x ) {
+    static Vector<D, N> n;
+    N norm = sqrt ( x.sqnorm() );
+    for ( unsigned i = 0; i < D; i++ ) n[i] = x[i]/norm;
+    return n;
+}
+		
 #endif                                                //  VECTOR_H

@@ -54,10 +54,6 @@ double atod (QString);
 std::string itoa (int x);
 std::string ftoa (double x);
 
-template <unsigned D> Vector<D> vnormalize (Vector<D>);
-Vector<3> vcross (Vector<3>, Vector<3>);
-Vector<4> vcross (Vector<4>, Vector<4>, Vector<4>);
-
 inline void Debug (std::string s, std::string h = "") {
     QMessageBox::information (NULL, h.c_str (), s.c_str ());
 }
