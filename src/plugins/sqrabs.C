@@ -1,4 +1,4 @@
-#include "numclass.H"		
+#include "Vector.H"		
                                                         
     extern "C" Vector f (double x, double y, double z);	
     extern "C" char *symbolic ();			

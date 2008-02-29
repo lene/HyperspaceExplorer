@@ -1,4 +1,4 @@
-#include "numclass.H"
+#include "Vector.H"
     Vector f (double x, double y, double z) {
       static Vector F (4);
       F[0] = x;

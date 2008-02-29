@@ -1,4 +1,4 @@
-#include "numclass.H"			
+#include "Vector.H"			
 #include <complex>						
                                                                 
     extern "C" Vector f (double, double);			

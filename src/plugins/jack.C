@@ -1,4 +1,4 @@
-#include "numclass.H"
+#include "Vector.H"
     Vector f (double t, double u, double v) {
       static Vector F (4);
       double sinphi = sin (pi*t), cosphi = cos (pi*t),	

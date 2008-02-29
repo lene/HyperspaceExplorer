@@ -1,4 +1,4 @@
-#include "numclass.H"
+#include "Vector.H"
 #include <complex>
 
     Vector f (double u, double v) {
