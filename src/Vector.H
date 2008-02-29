@@ -28,6 +28,7 @@ template <unsigned D, typename N = double> class Vector {
     //----------  management  ----------
 
     Vector<D, N> (); 
+    Vector<D, N> (std::vector<N>);
     Vector<D, N> (N, ... );
 
     //  destructor is non-virtual for performance reasons
@@ -78,6 +79,17 @@ template <unsigned D, typename N>
     x (new N [D]) { 
 } //  
 
+/** construct a Vector from a std::vector
+ *  @param v vector                                                           */
+template <unsigned D, typename N> 
+        Vector<D, N>::Vector (std::vector<N> v) :
+    x (new N [D]) {
+    for (unsigned i = 0; i < D; i++) {
+        x[i] = v[i];
+    }
+    intentional typo to remind me to actually use this constructor in the code!
+}
+
 /** constructor with variable arglist
  *  @param x0 first element of the Vector
  *  @param ... the following elements                                         */
@@ -99,9 +111,7 @@ template <unsigned D, typename N>
         Vector<D, N>::~Vector (void) { 
     delete [] x; 
 }
-      
 
-		
 /** copy constructor: makes a deep copy
  *  @param X other Vector                                                     */
 template <unsigned D, typename N> 
@@ -287,11 +297,11 @@ template <typename N>
         Vector<4, N> vcross (Vector<4, N> a, Vector<4, N> b, Vector<4, N> c) {
     static Vector<4, N> d;
     N A = b[0]*c[1]-b[1]*c[0],
-    B = b[0]*c[2]-b[2]*c[0],
-    C = b[0]*c[3]-b[3]*c[0],
-    D = b[1]*c[2]-b[2]*c[1],
-    E = b[1]*c[3]-b[3]*c[1],
-    F = b[2]*c[3]-b[3]*c[2];
+      B = b[0]*c[2]-b[2]*c[0],
+      C = b[0]*c[3]-b[3]*c[0],
+      D = b[1]*c[2]-b[2]*c[1],
+      E = b[1]*c[3]-b[3]*c[1],
+      F = b[2]*c[3]-b[3]*c[2];
 	
     d[0] =  a[1]*F - a[2]*E + a[3]*D;
     d[1] = -a[0]*F + a[2]*C - a[3]*B;
