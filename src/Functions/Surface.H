@@ -35,17 +35,17 @@ public:
 
     virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0);
 
-    Vector **Data (void) { return X; }
+    Vector<4> **Data (void) { return X; }
 
-    Vector &operator () (double u, double v) { 
+    Vector<4> &operator () (double u, double v) { 
 	unsigned iu = unsigned ((u-umin)/du), iv = unsigned ((v-vmin)/dv);
 	return X[iu][iv]; }
 
 protected:
-    virtual Vector &f (double, double,  double) { return F; }
-    virtual Vector &f (double, double) = 0;
-    virtual Vector *df (double, double);
-    virtual Vector &normal (double, double);
+    virtual Vector<4> &f (double, double,  double) { return F; }
+    virtual Vector<4> &f (double, double) = 0;
+    virtual Vector<4> *df (double, double);
+    virtual Vector<4> &normal (double, double);
 	
     void Initialize (void);
     void InitMem (void);
@@ -62,13 +62,13 @@ protected:
 
     unsigned NumVertices;
 
-    Vector   F;										//	
+    Vector<4> F;										//
 
 	//	temporary storage for the function values on the grid
-    Vector **X,	
-	**Xscr, **Xtrans;
-    Vector   *Xchunk,
-	*XscrChunk, *XtransChunk;
+    Vector<4> **X, **Xtrans;
+	Vector<3> **Xscr;
+    Vector<4> *Xchunk, *XtransChunk;
+	Vector<3> *XscrChunk;
 	
 	//	storage for the coloring of the vertices
     float **R, **G, **B;
@@ -83,7 +83,7 @@ public:
     virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
-    virtual Vector &f (double, double);
+    virtual Vector<4> &f (double, double);
 };
 
 
@@ -95,7 +95,7 @@ public:
     virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
-    virtual Vector &f (double, double);
+    virtual Vector<4> &f (double, double);
 };
 
 
@@ -107,7 +107,7 @@ public:
     virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
-    virtual Vector &f (double, double);
+    virtual Vector<4> &f (double, double);
 };
 
 #endif

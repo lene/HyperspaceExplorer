@@ -27,7 +27,7 @@ Surface::Surface ():
     usteps (0), vsteps (0),
     NumVertices (0),
     F (4),
-    Xscr (NULL), Xtrans (NULL), XscrChunk (NULL), XtransChunk (NULL),
+       Xtrans (NULL), Xscr (NULL), XtransChunk (NULL), XscrChunk (NULL), 
     R (NULL), G (NULL), B (NULL), RGBChunk (NULL) { }
 
 
@@ -47,7 +47,7 @@ Surface::Surface (double _umin, double _umax, double _du,
     usteps (unsigned (2*(umax-umin)/du+1)), vsteps (unsigned (2*(vmax-vmin)/dv+1)),
     NumVertices (0),
     F (4),
-    Xscr (NULL), Xtrans (NULL), XscrChunk (NULL), XtransChunk (NULL),
+       Xtrans (NULL), Xscr (NULL), XtransChunk (NULL), XscrChunk (NULL), 
     R (NULL), G (NULL), B (NULL), RGBChunk (NULL) { }
 
 
@@ -56,11 +56,11 @@ Surface::Surface (double _umin, double _umax, double _du,
  *                                         R[][], G[][], B[][]
  */
 void Surface::InitMem (void) {
-    XscrChunk = new Vector [(usteps+2)*(vsteps+2)];
-    Xscr = new Vector * [usteps+2];
+    XscrChunk = new Vector<3> [(usteps+2)*(vsteps+2)];
+    Xscr = new Vector<3> * [usteps+2];
 	
-    XtransChunk = new Vector [(usteps+2)*(vsteps+2)];
-    Xtrans = new Vector * [usteps+2];
+    XtransChunk = new Vector<4> [(usteps+2)*(vsteps+2)];
+    Xtrans = new Vector<4> * [usteps+2];
 
     RGBChunk = new float [3*(usteps+2)*(vsteps+2)];
     R = new float * [usteps+2];
@@ -84,8 +84,8 @@ void Surface::InitMem (void) {
  *  call InitMem () above
  */
 void Surface::Initialize () {
-    X = new Vector * [usteps+2];
-    Xchunk = new Vector   [(usteps+2)*(vsteps+2)];
+    X = new Vector<4> * [usteps+2];
+    Xchunk = new Vector<4>   [(usteps+2)*(vsteps+2)];
 
     for (unsigned u = 0; u <= usteps+1; u++) {
 	X[u]  =  Xchunk+u*(vsteps+2);
@@ -187,10 +187,10 @@ Surface::~Surface() {
  *  @param vv		v value
  *  @return		surface normal, normalized
  */
-Vector &Surface::normal (double uu, double vv) {
-    static Vector n;
+Vector<4> &Surface::normal (double uu, double vv) {
+    static Vector<4> n;
 
-    Vector *D = df (uu, vv);
+    Vector<4> *D = df (uu, vv);
 
     n = vcross (D[0], D[1], D[2]);
     vnormalize (n);
@@ -210,12 +210,12 @@ Vector &Surface::normal (double uu, double vv) {
  *  @param vv		v value
  *  @return		gradient in t, u and v as array
 */
-Vector *Surface::df (double uu, double vv) {	
+Vector<4> *Surface::df (double uu, double vv) {	
 
-    static Vector F0 (3);					//	f (u, v)
+    static Vector<4> F0;					//	f (u, v)
     static double h = 1e-5;					//	maybe tweak to get best results
 
-    static Vector DF[3];
+    static Vector<4> DF[3];
 
     F0 = operator () (uu, vv);							
 
@@ -250,7 +250,7 @@ void Surface::Transform (double thetaxy, double thetaxz, double thetaxw, double 
 			 double tx, double ty, double tz, double tw) {
     matrix<4> Rxw = matrix<4> (0, 3, thetaxw), Ryw = matrix<4> (1, 3, thetayw), Rzw = matrix<4> (2, 3, thetazw),
 	Rxwyw = Rxw*Ryw, Rot = Rxwyw*Rzw;
-    Vector trans = Vector (4, tx, ty, tz, tw);
+    Vector<4> trans = Vector<4> (tx, ty, tz, tw);
 	
     for (unsigned u = 0; u <= usteps+1; u++) 
 	for (unsigned v = 0; v <= vsteps+1; v++)
@@ -365,7 +365,7 @@ Surface1::~Surface1 () { }
  *  @param vv		v value
  *  @return		(sintht*sinpsi, costht*sinpsi, costht, cospsi)
  */
-Vector &Surface1::f (double uu, double vv) {
+Vector<4> &Surface1::f (double uu, double vv) {
     double sintht = sin (pi*uu), costht = cos (pi*uu),
 	sinpsi = sin (pi*vv), cospsi = cos (pi*vv),
 	Radius = 1;
@@ -408,7 +408,7 @@ Horizon::~Horizon () { }
  *  @param vv		v value
  *  @return		aah, see below
  */
-Vector &Horizon::f (double t, double phi) {
+Vector<4> &Horizon::f (double t, double phi) {
     t *= pi; phi *= pi/2;
     F[0] = (1-sin (t))*cos (phi);
     F[1] = (1-sin (t))*sin (phi);
@@ -450,7 +450,7 @@ Torus3::~Torus3 () { }
  *  @param vv		v value
  *  @return		(costht, sintht, cosphi, sinphi)
  */
-Vector &Torus3::f (double theta, double phi) {
+Vector<4> &Torus3::f (double theta, double phi) {
     theta *= pi; phi *= pi;
     F[0] = cos (theta);
     F[1] = sin (theta);

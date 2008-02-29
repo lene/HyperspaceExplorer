@@ -19,7 +19,7 @@
 //Added by qt3to4:
 #include <QMouseEvent>
 
-#include "numclass.H"
+#include "Vector.H"
 
 #include "XQGLWidget.H"
 #include "Help.H"

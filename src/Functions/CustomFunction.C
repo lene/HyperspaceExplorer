@@ -91,8 +91,8 @@ CustomFunction::~CustomFunction() {
  *  @param z		z value
  *  @return		custom function of (x, y, z)
  */
-Vector &CustomFunction::f (double x, double y, double z) {
-  static Vector T;
+Vector<4> &CustomFunction::f (double x, double y, double z) {
+    static Vector<4> T;
   T = (*func) (x, y, z);
   return T;
 }
@@ -120,7 +120,7 @@ bool CustomFunction::loadFunction(const QString &libName) {
     return false;
   }
 
-  func = (Vector(*)(double, double, double))dlsym(handle, "f");
+  func = (Vector<4>(*)(double, double, double))dlsym(handle, "f");
   if ((error = dlerror()) != NULL)  {
     cerr << "Error finding function: " << error << endl;
     return false;
@@ -173,8 +173,8 @@ CustomPolarFunction::~CustomPolarFunction() {
  *  @param z		z value
  *  @return		custom function of (x, y, z)
  */
-Vector &CustomPolarFunction::f (double x, double y, double z) {
-  static Vector T;
+Vector<4> &CustomPolarFunction::f (double x, double y, double z) {
+    static Vector<4> T;
   T = (*CustomFunction::func) (x, y, z);
   return T;
 }
@@ -288,8 +288,8 @@ CustomSurface::~CustomSurface() {
  *  @param z		z value
  *  @return		custom function of (u, v)
  */
-Vector &CustomSurface::f (double u, double v) {
-  static Vector T;
+Vector<4> &CustomSurface::f (double u, double v) {
+    static Vector<4> T;
   T = (*func) (u, v);
   return T;
 }
@@ -315,7 +315,7 @@ bool CustomSurface::loadFunction(const QString &libName) {
     return false;
   }
 
-  func = (Vector(*)(double, double))dlsym(handle, "f");
+  func = (Vector<4>(*)(double, double))dlsym(handle, "f");
   if ((error = dlerror()) != NULL)  {
     cerr << "Error finding function: " << error << endl;
     return false;

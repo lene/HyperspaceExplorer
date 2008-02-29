@@ -25,7 +25,7 @@ public:
 	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
-	virtual Vector &f (double, double);
+    virtual Vector<4> &f (double, double);
 	virtual std::complex<double> g (std::complex <double>) = 0;
 	void Initialize (void);
 };

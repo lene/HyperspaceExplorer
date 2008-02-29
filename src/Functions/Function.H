@@ -11,7 +11,7 @@
 #if !defined(FUNCTION_H)
 #define FUNCTION_H
 
-#include "numclass.H"
+#include "Vector.H"
 
 /*******************************************************************************
  *  a  Function is a mathematical function  f: R^3 -> R^4,  evaluated on a
@@ -59,18 +59,18 @@ public:
 			double _vmin, double _vmax, double _dv);
     virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0);
 
-    Vector ***Data (void) { return X; }
+    Vector<4> ***Data (void) { return X; }
 
-    Vector &operator () (double t, double u, double v) { 
+    Vector<4> &operator () (double t, double u, double v) {
 	unsigned it = unsigned ((t-tmin)/dt), 
 		 iu = unsigned ((u-umin)/du), 
 		 iv = unsigned ((v-vmin)/dv);
 	return X[it][iu][iv]; }
 
 protected:
-    virtual Vector &f (double, double, double) = 0;
-    virtual Vector *df (double, double, double);
-    virtual Vector &normal (double, double, double);
+    virtual Vector<4> &f (double, double, double) = 0;
+    virtual Vector<4> *df (double, double, double);
+    virtual Vector<4> &normal (double, double, double);
     
     virtual void Initialize (void);
     void InitMem (void);
@@ -89,13 +89,13 @@ protected:
 
     unsigned NumVertices;
 
-    Vector   F;
+    Vector<4> F;
 
     //      temporary storage for the function values on the grid
-    Vector ***X,    
-	   ***Xscr, ***Xtrans;
-    Vector   *Xchunk,
-	     *XscrChunk, *XtransChunk;
+    Vector<4> ***X, ***Xtrans;
+	Vector<3> ***Xscr;
+    Vector<4> *Xchunk, *XtransChunk;
+	Vector<3> *XscrChunk;
         
         //      storage for the coloring of the vertices
     float ***R, ***G, ***B;
@@ -124,8 +124,8 @@ public:
 			      double = 0) { Radius = _a; }
 
 protected:
-  virtual Vector &f (double, double, double);
-  virtual Vector &normal (double, double, double);
+  virtual Vector<4> &f (double, double, double);
+  virtual Vector<4> &normal (double, double, double);
 
   double Radius;
 };
@@ -144,7 +144,7 @@ public:
                 R = _a; r = _b; rho = _c; }
 
 protected:
-  virtual Vector &f (double, double, double);
+    virtual Vector<4> &f (double, double, double);
 
   double R, r, rho;
 };
@@ -163,7 +163,7 @@ public:
                 R = _a; r = _b; }
 
 protected:
-  virtual Vector &f (double, double, double);
+    virtual Vector<4> &f (double, double, double);
 
   double R, r;
 };
@@ -179,7 +179,7 @@ public:
   virtual ~Fr3r();
 
 protected:
-  virtual Vector &f (double, double, double);
+    virtual Vector<4> &f (double, double, double);
 
   double Radius;
 };
@@ -199,7 +199,7 @@ public:
 	M = _a; R = _b; }
 
 protected:
-    virtual Vector &f (double, double, double);
+    virtual Vector<4> &f (double, double, double);
 
     double M,	                       				//      not really M, but M/R^3
 	   R;
@@ -215,7 +215,7 @@ public:
     virtual ~Fr3rSin ();
  
 protected:
-    virtual Vector &f (double, double, double);
+    virtual Vector<4> &f (double, double, double);
 };
  
 ///////////////////////////////////////////////////////////////////////////////
@@ -228,7 +228,7 @@ public:
     virtual ~Fr3rExp ();
  
 protected:
-    virtual Vector &f (double, double, double);
+    virtual Vector<4> &f (double, double, double);
 };
  
 ///////////////////////////////////////////////////////////////////////////////
@@ -241,7 +241,7 @@ public:
     virtual ~Polar();
  
 protected:
-    virtual Vector &f (double, double, double);
+    virtual Vector<4> &f (double, double, double);
 };
  
 
@@ -258,7 +258,7 @@ public:
 	Phase = _a; }
  
 protected:
-    virtual Vector &f (double, double, double);
+    virtual Vector<4> &f (double, double, double);
     double Phase;
 };
 
@@ -273,7 +273,7 @@ public:
     virtual ~PolarSin2 ();
  
 protected:
-    virtual Vector &f (double, double, double);
+    virtual Vector<4> &f (double, double, double);
 };
 
 
@@ -290,7 +290,7 @@ public:
 	Phase = _a; }
  
 protected:
-    virtual Vector &f (double, double, double);
+    virtual Vector<4> &f (double, double, double);
     double Phase;
 };
 

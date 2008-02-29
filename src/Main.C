@@ -261,25 +261,25 @@ int main (int argc, char *argv[]) {
   //  if default rc directory does not yet exist, create it
   if (!QDir::home ().exists (rcdir))
     QDir::home ().mkdir (rcdir);
-  //  if numclass module for linking custom functions does not exist, copy it
+  //  if Vector module for linking custom functions does not exist, copy it
   if (!QDir::home ().exists (rcdir+"/plugins"))
     QDir::home ().mkdir (rcdir+"/plugins");
-  if (!QDir::home ().exists (rcdir+"/plugins/numclass.o")) {
+  if (!QDir::home ().exists (rcdir+"/plugins/Vector.o")) {
 #   if 0    
-    cerr << (qApp->applicationDirPath ()+"/numclass.o").ascii () << " "
-	 << (rcdir+"/plugins/numclass.o").ascii () << " "
-	 << symlink ((qApp->applicationDirPath ()+"/numclass.o").ascii (),
-		     (QDir::home ().absPath ()+"/"+rcdir+"/plugins/numclass.o").ascii () ) << " "
-	 << strerror (errno) << endl 
-	 << qApp->applicationDirPath ()+"/numclass.H " 
-	 << symlink ((qApp->applicationDirPath ()+"/numclass.H").ascii (),
-		     (QDir::home ().absPath ()+"/"+rcdir+"/plugins/numclass.H").ascii () ) << " "
+      cerr << (qApp->applicationDirPath ()+"/Vector.o").ascii () << " "
+                                                   << (rcdir+"/plugins/Vector.o").ascii () << " "
+                                                   << symlink ((qApp->applicationDirPath ()+"/Vector.o").ascii (),
+                                                   (QDir::home ().absPath ()+"/"+rcdir+"/plugins/Vector.o").ascii () ) << " "
+	 << strerror (errno) << endl
+                                                   << qApp->applicationDirPath ()+"/Vector.H "
+                                                   << symlink ((qApp->applicationDirPath ()+"/Vector.H").ascii (),
+                                                   (QDir::home ().absPath ()+"/"+rcdir+"/plugins/Vector.H").ascii () ) << " "
 	 << strerror (errno) << endl;
 #   else
-    symlink ((qApp->applicationDirPath ()+"/numclass.o").ascii (),
-	     (QDir::home ().absPath ()+"/"+rcdir+"/plugins/numclass.o").ascii () );
-    symlink ((qApp->applicationDirPath ()+"/numclass.H").ascii (),
-	     (QDir::home ().absPath ()+"/"+rcdir+"/plugins/numclass.H").ascii () );
+                                                   symlink ((qApp->applicationDirPath ()+"/Vector.o").ascii (),
+                                                   (QDir::home ().absPath ()+"/"+rcdir+"/Vector/Vector.o").ascii () );
+                                           symlink ((qApp->applicationDirPath ()+"/Vector.H").ascii (),
+                                                   (QDir::home ().absPath ()+"/"+rcdir+"/plugins/Vector.H").ascii () );
 #   endif    
   }  
   rcdirs.append (QDir::home ().absPath ()+"/"+rcdir);

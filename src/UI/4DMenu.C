@@ -594,7 +594,7 @@ void C4DView::ObjectHypercube() {
     if (F) delete F;
     F =
 #endif
-      (new Hypercube (Vector (4, 0., 0., 0., 0.), Values->a ()));
+            (new Hypercube (Vector<4>(0., 0., 0., 0.), Values->a ()));
 
   AssignValues ("Hypercube", "Size");
   
@@ -614,7 +614,7 @@ void C4DView::ObjectHyperpyramid() {
     if (F) delete F;
     F =
 #endif
-      (new Pyramid (Vector (4, 0., 0., 0., 0.), 2.*Values->a ()));
+            (new Pyramid (Vector<4>(0., 0., 0., 0.), 2.*Values->a ()));
 
   AssignValues ("Hyperpyramid", "Size");
   
@@ -634,7 +634,7 @@ void C4DView::ObjectHypersponge() {
     if (F) delete F;
     F =
 #endif
-      (new Sponge (unsigned (Values->a ()), int (Values->b ()), Values->c (), Vector (4, 0., 0., 0., 0.))); 	// valgrind bemoans "601248 bytes in 1 blocks are indirectly lost"
+            (new Sponge (unsigned (Values->a ()), int (Values->b ()), Values->c (), Vector<4>(0., 0., 0., 0.))); 	// valgrind bemoans "601248 bytes in 1 blocks are indirectly lost"
 
 
   AssignValues ("4-dimensional Menger Sponge", "Level", "Distance", "Size");
@@ -655,7 +655,7 @@ void C4DView::ObjectGasket() {
     if (F) delete F;
     F =
 #endif
-      (new Gasket (unsigned (Values->a ()), 2.*Values->b (), Vector (4, 0., 0., 0., 0.)));
+            (new Gasket (unsigned (Values->a ()), 2.*Values->b (), Vector<4>(0., 0., 0., 0.)));
 
   AssignValues ("4-dimensional Sierpinski Gasket", "Level", "Size");
   

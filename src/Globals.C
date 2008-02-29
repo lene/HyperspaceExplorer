@@ -12,7 +12,7 @@
 
 #include "Globals.H"
 
-#include "numclass.H"
+#include "Vector.H"
 #include "GLObject.H"
 
 using std::cerr;
@@ -90,7 +90,7 @@ inline void CheckGLErrors (const char *op = 0) {
  *  THIS FUNCTION IS UGLY IN MANY RESPECTS!
  *  @param RGB		RGB value to be set
  */
-void SetColor (const Vector &RGB) {
+void SetColor (const Vector<4> &RGB) {
   static float *ambient  = new float [4], 
                *diffuse  = new float [4], 
                *specular = new float [4];
@@ -117,11 +117,10 @@ void SetColor (const Vector &RGB) {
  *  @param G		G value to be set
  *  @param B		B value to be set
  */
-void SetColor(float R, float G, float B)
-{
-	static GLfloat RGB[4] = { 0., 0., 0., 1. };
+void SetColor(float R, float G, float B) {
+    static GLfloat RGB[4] = { 0., 0., 0., 1. };
 
-	RGB[0] = float (R); if (RGB [0] > 1) RGB[0] = 1;
+    RGB[0] = float (R); if (RGB [0] > 1) RGB[0] = 1;
 	RGB[1] = float (G); if (RGB [1] > 1) RGB[1] = 1;
 	RGB[2] = float (B); if (RGB [2] > 1) RGB[2] = 1;
 	glMaterialfv (GL_FRONT, GL_DIFFUSE, RGB);
@@ -193,30 +192,14 @@ string ftoa (double x) {
 
 
 /*******************************************************************************
- *  normalizes a 3-Vector out-of-place
- *  @param x	Vector to be normalized
- *  @return	its normalized value
- */
-Vector vnormalize (Vector x) {
-	static Vector n (3);
-	double norm = sqrt (x[0]*x[0]+x[1]*x[1]+x[2]*x[2]);
-
-	if (norm == 0) return x;
-
-	n[0] = x[0]/norm; n[1] = x[1]/norm; n[2] = x[2]/norm;
-	return n;
-}
-
-
-/*******************************************************************************
  *  normalizes a Vector made from 3 doubles out-of-place
  *  @param xx	x component of Vector to be normalized
  *  @param yy	y component of Vector to be normalized
  *  @param zz	z component of Vector to be normalized
  *  @return	normalized Vector
  */
-Vector vnormalize (double xx, double yy, double zz) {
-	static Vector x (3);
+Vector<3> vnormalize (double xx, double yy, double zz) {
+	static Vector<3> x;
 
 	x[0] = xx; x[1] = yy; x[2] = zz;
 	return vnormalize (x);
@@ -229,8 +212,8 @@ Vector vnormalize (double xx, double yy, double zz) {
  *  @param b	second operand of cross product
  *  @return	a x b
  */
-Vector vcross (Vector a, Vector b) {
-	static Vector c (3);
+Vector<3> vcross (Vector<3> a, Vector<3> b) {
+    static Vector<3> c;
 	
 	c[0] = a[1]*b[2]-a[2]*b[1];
 	c[1] = a[2]*b[0]-a[0]*b[2];
@@ -247,8 +230,8 @@ Vector vcross (Vector a, Vector b) {
  *  @param c	third operand of cross product
  *  @return	a x b x c
  */
-Vector vcross (Vector a, Vector b, Vector c) {
-	static Vector d (4);
+Vector<4> vcross (Vector<4> a, Vector<4> b, Vector<4> c) {
+    static Vector<4> d;
 	double A = b[0]*c[1]-b[1]*c[0],
 		   B = b[0]*c[2]-b[2]*c[0],
 		   C = b[0]*c[3]-b[3]*c[0],

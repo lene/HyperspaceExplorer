@@ -44,7 +44,7 @@ Function::Function ():
   tsteps (0), usteps (0), vsteps (0),
   NumVertices (0),
   F (4),
-  Xscr (NULL), Xtrans (NULL), XscrChunk (NULL), XtransChunk (NULL),
+     Xtrans (NULL), Xscr (NULL), XtransChunk (NULL), XscrChunk (NULL),
   R (NULL), G (NULL), B (NULL), RGBChunk (NULL) { }
 
 
@@ -71,8 +71,8 @@ Function::Function (double _tmin, double _tmax, double _dt,
   vsteps (unsigned ((vmax-vmin)/dv+1)),
   NumVertices (0),
   F (4),
-  Xscr (NULL), Xtrans (NULL), XscrChunk (NULL), XtransChunk (NULL),
-  R (NULL), G (NULL), B (NULL), RGBChunk (NULL) {
+     Xtrans (NULL), Xscr (NULL), XtransChunk (NULL), XscrChunk (NULL),
+             R (NULL), G (NULL), B (NULL), RGBChunk (NULL) {
   if (MemRequired () > MaximumMemory) {				//  which is defined in Globals.H
     cerr << "Using a " << tsteps << "x" << usteps << "x" << vsteps
 	 << " grid would require approx. " << MemRequired () << " MB of memory.\n";
@@ -93,11 +93,11 @@ Function::Function (double _tmin, double _tmax, double _dt,
  *                                         R[][][], G[][][], B[][][]
  */
 void Function::InitMem (void) {
-  XscrChunk = new Vector [(tsteps+2)*(usteps+2)*(vsteps+2)];
-  Xscr = new Vector ** [tsteps+2];	// valgrind moans about lost bytes
+  XscrChunk = new Vector<3> [(tsteps+2)*(usteps+2)*(vsteps+2)];
+  Xscr = new Vector<3> ** [tsteps+2];	// valgrind moans about lost bytes
         
-  XtransChunk = new Vector [(tsteps+2)*(usteps+2)*(vsteps+2)];
-  Xtrans = new Vector ** [tsteps+2];	// valgrind moans about lost bytes
+  XtransChunk = new Vector<4> [(tsteps+2)*(usteps+2)*(vsteps+2)];
+  Xtrans = new Vector<4> ** [tsteps+2];	// valgrind moans about lost bytes
 
   RGBChunk = new float [3*(tsteps+2)*(usteps+2)*(vsteps+2)];
   R = new float ** [tsteps+2];
@@ -106,8 +106,8 @@ void Function::InitMem (void) {
 
   for (unsigned t = 0; t <= tsteps+1; t++) {
                 
-    Xscr[t] = new Vector * [usteps+2];
-    Xtrans[t] = new Vector * [usteps+2];
+      Xscr[t] = new Vector<3> * [usteps+2];
+      Xtrans[t] = new Vector<4> * [usteps+2];
 
     R[t] = new float * [usteps+2];
     G[t] = new float * [usteps+2];
@@ -132,20 +132,20 @@ void Function::InitMem (void) {
  *  call InitMem () above
  */
 void Function::Initialize () {
-  Xchunk = new Vector   [(tsteps+2)*(usteps+2)*(vsteps+2)];
-  X 	 = new Vector ** [tsteps+2];	// valgrind moans about lost bytes
+    Xchunk = new Vector<4>   [(tsteps+2)*(usteps+2)*(vsteps+2)];
+    X 	 = new Vector<4> ** [tsteps+2];	// valgrind moans about lost bytes
 
-  for (unsigned t = 0; t <= tsteps+1; t++) {
-    X[t] = new Vector * [usteps+2];
-    for (unsigned u = 0; u <= usteps+1; u++) {
-      X[t][u]  =  Xchunk+t*(usteps+2)*(vsteps+2)+u*(vsteps+2);	//new Vector [vsteps+2];
-      for (unsigned v = 0; v <= vsteps+1; v++) {
-	double T = tmin+t*dt, U =umin+u*du, V = vmin+v*dv;
-	X[t][u][v] = f (T, U, V);
-      }
+    for (unsigned t = 0; t <= tsteps+1; t++) {
+        X[t] = new Vector<4> * [usteps+2];
+        for (unsigned u = 0; u <= usteps+1; u++) {
+            X[t][u]  =  Xchunk+t*(usteps+2)*(vsteps+2)+u*(vsteps+2);	//new Vector [vsteps+2];
+            for (unsigned v = 0; v <= vsteps+1; v++) {
+	            double T = tmin+t*dt, U =umin+u*du, V = vmin+v*dv;
+	            X[t][u][v] = f (T, U, V);
+            }
+        }
     }
-  }
-  InitMem ();
+    InitMem ();
 }
 
 
@@ -258,15 +258,15 @@ Function::~Function() {
  *  @param vv		v value
  *  @return		surface normal, normalized
  */
-Vector &Function::normal (double tt, double uu, double vv) {
-  static Vector n;
+Vector<4> &Function::normal (double tt, double uu, double vv) {
+    static Vector<4> n;
 
-  Vector *D = df (tt, uu, vv);
+    Vector<4> *D = df (tt, uu, vv);
 
-  n = vcross (D[0], D[1], D[2]);
-  vnormalize (n);
+    n = vcross (D[0], D[1], D[2]);
+    vnormalize (n);
 
-  return n; 
+    return n; 
 }
 
 
@@ -282,13 +282,13 @@ Vector &Function::normal (double tt, double uu, double vv) {
  *  @param vv		v value
  *  @return		gradient in t, u and v as array
  */
-Vector *Function::df (double tt, double uu, double vv) {	
+Vector<4> *Function::df (double tt, double uu, double vv) {	
 
-  static Vector F0 (3);			//	f (u, v)
+  static Vector<4> F0;			//	f (u, v)
   static double h = 1e-5;		//	HARDCODED; uargh! maybe tweak to get best results
                                         //	don't want to find it out dynamically though
                                         //	(performance, elegance)
-  static Vector DF[3];
+  static Vector<4> DF[3];
 
   F0 = operator () (tt, uu, vv);							
 
@@ -322,16 +322,16 @@ Vector *Function::df (double tt, double uu, double vv) {
  */
 void Function::Transform (double thetaxy, double thetaxz, double thetaxw, double thetayz, double thetayw, double thetazw,
 			  double tx, double ty, double tz, double tw) {
-  matrix<4> Rxy = matrix<4> (0, 1, thetaxy), Rxz = matrix<4> (0, 2, thetaxz), Rxw = matrix<4> (0, 3, thetaxw),
-    Ryz = matrix<4> (1, 2, thetayz), Ryw = matrix<4> (1, 3, thetayw), Rzw = matrix<4> (2, 3, thetazw),
-    Rxyz = Rxy*Rxz, Rxwyz = Rxw*Ryz, Ryzw = Ryw*Rzw, 
-    Rot = Rxyz*Rxwyz*Ryzw;
-  Vector trans = Vector (4, tx, ty, tz, tw);
+    matrix<4> Rxy = matrix<4> (0, 1, thetaxy), Rxz = matrix<4> (0, 2, thetaxz), Rxw = matrix<4> (0, 3, thetaxw),
+        Ryz = matrix<4> (1, 2, thetayz), Ryw = matrix<4> (1, 3, thetayw), Rzw = matrix<4> (2, 3, thetazw),
+        Rxyz = Rxy*Rxz, Rxwyz = Rxw*Ryz, Ryzw = Ryw*Rzw, 
+        Rot = Rxyz*Rxwyz*Ryzw;
+    Vector<4> trans = Vector<4>(tx, ty, tz, tw);
         
-  for (unsigned t = 0; t <= tsteps+1; t++) {
-    for (unsigned u = 0; u <= usteps+1; u++) 
-      for (unsigned v = 0; v <= vsteps+1; v++)
-	Xtrans[t][u][v] = (Rot*X[t][u][v])+trans;
+    for (unsigned t = 0; t <= tsteps+1; t++) {
+        for (unsigned u = 0; u <= usteps+1; u++) 
+            for (unsigned v = 0; v <= vsteps+1; v++)
+	            Xtrans[t][u][v] = (Rot*X[t][u][v])+trans;
   }
 }
 
@@ -343,26 +343,28 @@ void Function::Transform (double thetaxy, double thetaxz, double thetaxw, double
  *  @param depthcue4d	wheter to use hyperfog/dc
  */
 void Function::Project (double scr_w, double cam_w, bool depthcue4d) {
-  double ProjectionFactor;
-  double Wmax = 0, Wmin = 0;
+    double ProjectionFactor;
+    double Wmax = 0, Wmin = 0;
 
-  for (unsigned t = 0; t <= tsteps+1; t++) {
-    for (unsigned u = 0; u <= usteps+1; u++) 
-      for (unsigned v = 0; v <= vsteps+1; v++) {
+    for (unsigned t = 0; t <= tsteps+1; t++) {
+        for (unsigned u = 0; u <= usteps+1; u++) {
+            for (unsigned v = 0; v <= vsteps+1; v++) {
 
-	if (Xtrans[t][u][v][3] < Wmin) Wmin = Xtrans[t][u][v][3];
-	if (Xtrans[t][u][v][3] > Wmax) Wmax = Xtrans[t][u][v][3];
+            	if (Xtrans[t][u][v][3] < Wmin) Wmin = Xtrans[t][u][v][3];
+	            if (Xtrans[t][u][v][3] > Wmax) Wmax = Xtrans[t][u][v][3];
 
-	ProjectionFactor = (scr_w-cam_w)/(Xtrans[t][u][v][3]-cam_w);
+	            ProjectionFactor = (scr_w-cam_w)/(Xtrans[t][u][v][3]-cam_w);
 
-	for (unsigned i = 0; i <= 2; i++)
-	  Xscr[t][u][v][i] = ProjectionFactor*Xtrans[t][u][v][i];
+	            for (unsigned i = 0; i <= 2; i++) {
+	                Xscr[t][u][v][i] = ProjectionFactor*Xtrans[t][u][v][i];
+                }
 
-	R[t][u][v] = float (t)/float (tsteps);                  //      color schemes wanted
-	G[t][u][v] = float (u)/float (usteps);
-	B[t][u][v] = float (v)/float (vsteps);
-      }
-  }
+	            R[t][u][v] = float (t)/float (tsteps);                  //      color schemes wanted
+	            G[t][u][v] = float (u)/float (usteps);
+	            B[t][u][v] = float (v)/float (vsteps);
+            }
+        }
+    }
 
   if (!depthcue4d) return;
 
@@ -406,7 +408,9 @@ void Function::DrawStrip (unsigned t, unsigned u){
     DrawCube (t, u, v);
 }
 
-
+using std::string;
+using std::setw;
+using std::setprecision;
 /*******************************************************************************
  *  draw the current cube or cell of the projected Function
  *  @param t	current t value
@@ -414,65 +418,69 @@ void Function::DrawStrip (unsigned t, unsigned u){
  *  @param v	current v value
  */
 void Function::DrawCube (unsigned t, unsigned u, unsigned v) {
-  static Vector *V = new Vector [8];
+    static Vector<3> *V = new Vector<3> [8];
 
   V[0] = Xscr[t][u][v];     V[1] = Xscr[t][u][v+1];
   V[2] = Xscr[t][u+1][v];   V[3] = Xscr[t][u+1][v+1];
   V[4] = Xscr[t+1][u][v];   V[5] = Xscr[t+1][u][v+1];
   V[6] = Xscr[t+1][u+1][v]; V[7] = Xscr[t+1][u+1][v+1];
 
+#if 0
+  cerr << "Function::DrawCube(" << t << ", " << u << ", " << v << "): " << endl
+          << string(8, ' ') << setw(6) << setprecision(2) << V[3] << string(32, ' ') << V[7] << endl
+          << endl;
+#endif
   glBegin (GL_QUAD_STRIP);
-  if (t == 0) {
-    SetColor (R [t][u][v], G [t][u][v], B [t][u][v]);       
-    glVertex (V[0]);
-    SetColor (R [t][u][v+1], G [t][u][v+1], B [t][u][v+1]); 
-    glVertex (V[1]);
-    NumVertices += 2;
-  }
-  SetColor (R [t][u+1][v], G [t][u+1][v], B [t][u+1][v]); 
-  glVertex (V[2]);
-  SetColor (R [t][u+1][v+1], G [t][u+1][v+1], B [t][u+1][v+1]);   
-  glVertex (V[3]);
-  SetColor (R [t+1][u+1][v], G [t+1][u+1][v], B [t+1][u+1][v]);   
-  glVertex (V[6]);
-  SetColor (R [t+1][u+1][v+1], G [t+1][u+1][v+1], B [t+1][u+1][v+1]);     
-  glVertex (V[7]);
-  SetColor (R [t+1][u][v], G [t+1][u][v], B [t+1][u][v]); 
-  glVertex (V[4]);
-  SetColor (R [t+1][u][v+1], G [t+1][u][v+1], B [t+1][u][v+1]);   
-  glVertex (V[5]);             
-  NumVertices += 6;
-  if (u == 0) {
-    SetColor (R [t][u][v], G [t][u][v], B [t][u][v]);       
-    glVertex (V[0]);
-    SetColor (R [t][u][v+1], G [t][u][v+1], B [t][u][v+1]); 
-    glVertex (V[1]);
-    NumVertices += 2;
-  }
-  glEnd ();
-
-  glBegin (GL_QUADS); 
-  if (v == 0) {   
-    SetColor (R [t][u][v], G [t][u][v], B [t][u][v]);       
-    glVertex (V[0]);
+    if (t == 0) {
+      SetColor (R [t][u][v], G [t][u][v], B [t][u][v]);
+      glVertex (V[0]);
+      SetColor (R [t][u][v+1], G [t][u][v+1], B [t][u][v+1]); 
+      glVertex (V[1]);
+      NumVertices += 2;
+    }
     SetColor (R [t][u+1][v], G [t][u+1][v], B [t][u+1][v]); 
     glVertex (V[2]);
+    SetColor (R [t][u+1][v+1], G [t][u+1][v+1], B [t][u+1][v+1]);   
+    glVertex (V[3]);
     SetColor (R [t+1][u+1][v], G [t+1][u+1][v], B [t+1][u+1][v]);   
     glVertex (V[6]);
+    SetColor (R [t+1][u+1][v+1], G [t+1][u+1][v+1], B [t+1][u+1][v+1]);     
+    glVertex (V[7]);
     SetColor (R [t+1][u][v], G [t+1][u][v], B [t+1][u][v]); 
     glVertex (V[4]);
+    SetColor (R [t+1][u][v+1], G [t+1][u][v+1], B [t+1][u][v+1]);   
+    glVertex (V[5]);             
+    NumVertices += 6;
+    if (u == 0) {
+      SetColor (R [t][u][v], G [t][u][v], B [t][u][v]);       
+      glVertex (V[0]);
+      SetColor (R [t][u][v+1], G [t][u][v+1], B [t][u][v+1]); 
+      glVertex (V[1]);
+      NumVertices += 2;
+    }
+  glEnd ();
+  
+  glBegin (GL_QUADS);
+    if (v == 0) {   
+      SetColor (R [t][u][v], G [t][u][v], B [t][u][v]);       
+      glVertex (V[0]);
+      SetColor (R [t][u+1][v], G [t][u+1][v], B [t][u+1][v]); 
+      glVertex (V[2]);
+      SetColor (R [t+1][u+1][v], G [t+1][u+1][v], B [t+1][u+1][v]);   
+      glVertex (V[6]);
+      SetColor (R [t+1][u][v], G [t+1][u][v], B [t+1][u][v]); 
+      glVertex (V[4]);
+      NumVertices += 4;
+    }
+    SetColor (R [t][u][v+1], G [t][u][v+1], B [t][u][v+1]); 
+    glVertex (V[1]);
+    SetColor (R [t][u+1][v+1], G [t][u+1][v+1], B [t][u+1][v+1]);   
+    glVertex (V[3]);
+    SetColor (R [t+1][u+1][v+1], G [t+1][u+1][v+1], B [t+1][u+1][v+1]);     
+    glVertex (V[7]);
+    SetColor (R [t+1][u][v+1], G [t+1][u][v+1], B [t+1][u][v+1]);   
+    glVertex (V[5]);
     NumVertices += 4;
-  }
-  SetColor (R [t][u][v+1], G [t][u][v+1], B [t][u][v+1]); 
-  glVertex (V[1]);
-  SetColor (R [t][u+1][v+1], G [t][u+1][v+1], B [t][u+1][v+1]);   
-  glVertex (V[3]);
-  SetColor (R [t+1][u+1][v+1], G [t+1][u+1][v+1], B [t+1][u+1][v+1]);     
-  glVertex (V[7]);
-  SetColor (R [t+1][u][v+1], G [t+1][u][v+1], B [t+1][u][v+1]);   
-  glVertex (V[5]);
-  NumVertices += 4;
-                
   glEnd ();
 }
 
@@ -518,7 +526,7 @@ Hypersphere::~Hypersphere () { }
  *  @param vv		v value
  *  @return		value of defining function at point in question
  */
-Vector &Hypersphere::f (double tt, double uu, double vv) {
+Vector<4> &Hypersphere::f (double tt, double uu, double vv) {
   double sinphi = sin (pi/2*tt), cosphi = cos (pi/2*tt),	//  hypersphere
     sintht = sin (pi*uu), costht = cos (pi*uu),
     sinpsi = sin (pi*vv), cospsi = cos (pi*vv);
@@ -539,8 +547,8 @@ Vector &Hypersphere::f (double tt, double uu, double vv) {
  *  @param vv		v value
  *  @return		surface normal, normalized
  */
-Vector &Hypersphere::normal (double tt, double uu, double vv) {
-  static Vector n;
+Vector<4> &Hypersphere::normal (double tt, double uu, double vv) {
+    static Vector<4> n;
 
   n = f (tt, uu, vv);
   vnormalize (n);
@@ -591,7 +599,7 @@ Torus1::~Torus1 () { }
  *  @param vv		v value
  *  @return		value of defining function at point in question
  */
-Vector &Torus1::f (double tt, double uu, double vv) {
+Vector<4> &Torus1::f (double tt, double uu, double vv) {
   F[0] =  cos (pi*tt)*(R+cos (pi*uu)*(r+rho*cos (pi*vv))); 
   F[1] =  sin (pi*tt)*(R+cos (pi*uu)*(r+rho*cos (pi*vv))); 
   F[2] =  sin (pi*uu)*(r+rho*cos (pi*vv));  
@@ -642,7 +650,7 @@ Torus2::~Torus2 () { }
  *  @param vv		v value
  *  @return		value of defining function at point in question
  */
-Vector &Torus2::f (double tt, double uu, double vv) {
+Vector<4> &Torus2::f (double tt, double uu, double vv) {
   F[0] =  cos (pi*tt)*(R+r*cos (pi*uu)*cos (pi*vv)); 
   F[1] =  cos (pi*tt)*(R+r*cos (pi*uu)*sin (pi*vv)); 
   F[2] =  cos (pi*tt)*(R+r*sin (pi*uu));
@@ -688,7 +696,7 @@ Fr3r::~Fr3r () {}
  *  @param vv		v value
  *  @return		value of defining function at point in question
  */
-Vector &Fr3r::f (double tt, double uu, double vv) {
+Vector<4> &Fr3r::f (double tt, double uu, double vv) {
   F[0] = tt;
   F[1] = uu;
   F[2] = vv;
@@ -741,7 +749,7 @@ GravitationPotential::~GravitationPotential () { }
  *  @param vv		v value
  *  @return		value of defining function at point in question
  */
-Vector &GravitationPotential::f (double tt, double uu, double vv) {
+Vector<4> &GravitationPotential::f (double tt, double uu, double vv) {
   const double G = 1;		//  arbitrary value for gravitation constant
   F[0] = tt;
   F[1] = uu;
@@ -792,7 +800,7 @@ Fr3rSin::~Fr3rSin () { }
  *  @param vv		v value
  *  @return		sin (pi*(x²+y²+z²))
  */
-Vector &Fr3rSin::f (double tt, double uu, double vv) {
+Vector<4> &Fr3rSin::f (double tt, double uu, double vv) {
   F[0] = tt;
   F[1] = uu;
   F[2] = vv;
@@ -838,7 +846,7 @@ Fr3rExp::~Fr3rExp () { }
  *  @param vv		v value
  *  @return		exp (x²+y²+z²)
  */
-Vector &Fr3rExp::f (double tt, double uu, double vv) {
+Vector<4> &Fr3rExp::f (double tt, double uu, double vv) {
   F[0] = tt;
   F[1] = uu;
   F[2] = vv;
@@ -884,7 +892,7 @@ Polar::~Polar () { }
  *  @param vv		v value
  *  @return		value of defining function at point in question
  */
-Vector &Polar::f (double tt, double uu, double vv) {
+Vector<4> &Polar::f (double tt, double uu, double vv) {
   double sinphi = sin (pi*tt), cosphi = cos (pi*tt),	
     sintht = sin (pi*uu), costht = cos (pi*uu),
     sinpsi = sin (pi*vv), cospsi = cos (pi*vv),
@@ -939,7 +947,7 @@ PolarSin::~PolarSin () { }
  *  @param vv		v value
  *  @return		r = 1/2 + |sin (pi*phase*theta*phi*psi)|
  */
-Vector &PolarSin::f (double tt, double uu, double vv) {
+Vector<4> &PolarSin::f (double tt, double uu, double vv) {
   double sinphi = sin (pi*tt), cosphi = cos (pi*tt),	
     sintht = sin (pi*uu), costht = cos (pi*uu),
     sinpsi = sin (pi*vv), cospsi = cos (pi*vv),
@@ -990,7 +998,7 @@ PolarSin2::~PolarSin2 () { }
  *  @param vv		v value
  *  @return		r = sin (pi/3*(phi+theta+psi))
  */
-Vector &PolarSin2::f (double tt, double uu, double vv) {
+Vector<4> &PolarSin2::f (double tt, double uu, double vv) {
   double sinphi = sin (pi*tt), cosphi = cos (pi*tt),	
     sintht = sin (pi*uu), costht = cos (pi*uu),
     sinpsi = sin (pi*vv), cospsi = cos (pi*vv),
@@ -1043,7 +1051,7 @@ PolarR::~PolarR () { }
  *  @param vv		v value
  *  @return		r = sqrt (phi²+theta²+psi²)
  */
-Vector &PolarR::f (double tt, double uu, double vv) {
+Vector<4> &PolarR::f (double tt, double uu, double vv) {
   double sinphi = sin (pi*tt), cosphi = cos (pi*tt),	
     sintht = sin (pi*uu), costht = cos (pi*uu),
     sinpsi = sin (pi*vv), cospsi = cos (pi*vv),

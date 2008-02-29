@@ -74,18 +74,18 @@ C4DView::C4DView(QWidget *parent, const char *name):
     animation_fps (50),
     CamW (-3.), ScrW (0.) {
 
-  Cross = new Vector * [4]; CrossTrans = new Vector * [4]; CrossScr = new Vector * [4];
+        Cross = new Vector<4> * [4]; CrossTrans = new Vector<4> * [4]; CrossScr = new Vector<3> * [4];
   for (unsigned j = 0; j < 4; j++) {
-    Cross[j] = new Vector [2]; CrossTrans[j] = new Vector [2]; CrossScr[j] = new Vector [2];
+      Cross[j] = new Vector<4> [2]; CrossTrans[j] = new Vector<4> [2]; CrossScr[j] = new Vector<3> [2];
     for (unsigned k = 0; k < 2; k++) {
       //      CrossTrans[j][k] = Vector (4, 0., 0., 0., 0.);
-      CrossScr[j][k] = Vector (4, 0., 0., 0., 0.);
+        CrossScr[j][k] = Vector<3> (0., 0., 0.);
     }
   }
-  Cross[0][0] = Vector (4, -5., 0., 0., 0.);	Cross[0][1] = Vector (4, 5., 0., 0., 0.);
-  Cross[1][0] = Vector (4, 0., -5., 0., 0.);	Cross[1][1] = Vector (4, 0., 5., 0., 0.);
-  Cross[2][0] = Vector (4, 0., 0., -5., 0.);	Cross[2][1] = Vector (4, 0., 0., 5., 0.);
-  Cross[3][0] = Vector (4, 0., 0., 0., -5.);	Cross[3][1] = Vector (4, 0., 0., 0., 5.);
+  Cross[0][0] = Vector<4>(-5., 0., 0., 0.);	Cross[0][1] = Vector<4>(5., 0., 0., 0.);
+  Cross[1][0] = Vector<4>(0., -5., 0., 0.);	Cross[1][1] = Vector<4>(0., 5., 0., 0.);
+  Cross[2][0] = Vector<4>(0., 0., -5., 0.);	Cross[2][1] = Vector<4>(0., 0., 5., 0.);
+  Cross[3][0] = Vector<4>(0., 0., 0., -5.);	Cross[3][1] = Vector<4>(0., 0., 0., 5.);
 
   AnimationTimer = new QTimer (this);
   connect (AnimationTimer, SIGNAL(timeout()), this, SLOT(OnTimer()));
@@ -156,7 +156,7 @@ void C4DView::Transform (double thetaxy, double thetaxz, double thetaxw, double 
             Ryz = matrix<4> (1, 2, thetayz), Ryw = matrix<4> (1, 3, thetayw), Rzw = matrix<4> (2, 3, thetazw),
             Rxyz = Rxy*Rxz, Rxwyz = Rxw*Ryz, Ryzw = Ryw*Rzw,
             Rot = Rxyz*Rxwyz*Ryzw;
-  Vector trans = Vector (4, tx, ty, tz, tw);
+            Vector<4> trans = Vector<4>(tx, ty, tz, tw);
 
   for (unsigned i = 0; i < 4; i++)
     for (unsigned j = 0; j < 2; j++) 
@@ -169,23 +169,24 @@ void C4DView::Transform (double thetaxy, double thetaxz, double thetaxw, double 
  */
 void C4DView::Project (void) {
 # ifdef USE_AUTO_PTR 
-    if (F.get ())
+        if (F.get ())
 # else    
-    if (F)
+        if (F)
 #endif
-      F->Project (ScrW, CamW, DepthCue4D);
-  else return;
+        F->Project (ScrW, CamW, DepthCue4D);
+    else return;
 
-  if (DisplayCoordinates) {
-    for (unsigned i = 0; i < 2; i++)
-      for (unsigned j = 0; j < 4; j++) {
-#	if 0
-	cerr << "i = " << i << " j = " << j << "CrossScr[j][i]" << CrossScr[j][i] << endl;
-#	endif	
-	double ProjectionFactor = (ScrW-CamW)/(CrossTrans[j][i][3]-CamW);
-	CrossScr[j][i] = CrossTrans[j][i]*ProjectionFactor;
-      }
-  }
+    if (DisplayCoordinates) {
+        for (unsigned i = 0; i < 2; i++)
+            for (unsigned j = 0; j < 4; j++) {
+#	          if 0
+	               cerr << "i = " << i << " j = " << j << "CrossScr[j][i]" << CrossScr[j][i] << endl;
+#	          endif	
+	            double ProjectionFactor = (ScrW-CamW)/(CrossTrans[j][i][3]-CamW);
+                for (unsigned k = 0; k < CrossScr[j][i].dimension(); k++)
+	                CrossScr[j][i][k] = CrossTrans[j][i][k]*ProjectionFactor;
+            }
+        }
 }
 
 
@@ -504,7 +505,11 @@ void C4DView::mousePressEvent (QMouseEvent *e) {
   }
   if ((b & Qt::RightButton) != 0) {
     m_RightDownPos = point;
-    if (b == Qt::RightButton)
+    Qt::KeyboardModifiers s = e->modifiers();
+    bool AltPressed = s & Qt::AltModifier,
+         ControlPressed = s & Qt::ControlModifier,
+         ShiftPressed = s & Qt::ShiftModifier;
+    if (b == Qt::RightButton && !(AltPressed || ControlPressed || ShiftPressed))
       XQGLWidget::mousePressEvent (e);	
   }  
 }

@@ -11,7 +11,7 @@
 #define MATRIX_H
 
 
-#include "numclass.H"
+#include "Vector.H"
 
 //  matrix<D>: a DxD matrix
 template <unsigned D> class matrix {
@@ -25,7 +25,7 @@ public:
     return M[i][j]; }
 
   matrix<D> operator * (const matrix<D> &) const;
-  Vector operator * (const Vector &);
+  Vector<D> operator * (const Vector<D> &);
 
   matrix<D> operator - ();
 
@@ -106,21 +106,15 @@ template <unsigned D> matrix<D> matrix<D>::operator * (const matrix<D> &B) const
  *  @param V	Vector to multiply with (project)
  *  @return	*this * V
  */
-template <unsigned D> Vector matrix<D>::operator * (const Vector &V) {
-  if (D != V.dimension ()) {
-    std::cerr << "Vector matrix<" << D << ">::operator * (const Vector &V)" << std::endl
-	 << "matrix.D != Vector.D:\n" << D << " != " << V.dimension () << std::endl;
-    abort();
-  }
-
-  Vector W (D);
-  for (unsigned i = 0; i < D; i++) {				//	i: row
-    double s = 0;
-    for (unsigned j = 0; j < D; j++)			//	j: col
-      s += M[i][j]*V[j];
-    W[i] = s;
-  }
-  return W;
+template <unsigned D> Vector<D> matrix<D>::operator * (const Vector<D> &V) {
+    Vector<D> W;
+    for (unsigned i = 0; i < D; i++) {				//	i: row
+        double s = 0;
+        for (unsigned j = 0; j < D; j++)			//	j: col
+            s += M[i][j]*V[j];
+        W[i] = s;
+    }
+    return W;
 }
 
 

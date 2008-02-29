@@ -17,7 +17,7 @@
 
 #include <fstream>
 #include <dlfcn.h>
-#include "numclass.H"
+#include "Vector.H"
 
 extern QStringList rcdirs;
 
@@ -75,7 +75,7 @@ bool SurfaceDialogImpl::loadFunction() {
 
 bool SurfaceDialogImpl::loadFunction(const QString &libName) {
   void *handle;
-  Vector (*f)(double, double);
+  Vector<4> (*f)(double, double);
   char *error;
       
   handle = dlopen (libName, RTLD_LAZY);
@@ -84,7 +84,7 @@ bool SurfaceDialogImpl::loadFunction(const QString &libName) {
     return false;
   }
 
-  f = (Vector(*)(double, double))dlsym(handle, "f");
+  f = (Vector<4>(*)(double, double))dlsym(handle, "f");
   if ((error = dlerror()) != NULL)  {
     QMessageBox::warning (this, "Error finding function", error);
     return false;
@@ -140,7 +140,7 @@ bool SurfaceDialogImpl::checkValidity() {
 void SurfaceDialogImpl::writeSource () {
   ofstream SourceFile (NameEdit->text()+".C");
 
-  SourceFile << "#include \"numclass.H\"	\n\
+  SourceFile << "#include \"Vector.H\"	\n\
                                                 \n\
     extern \"C\" Vector f (double, double);	\n\
     extern \"C\" char *symbolic ();		\n\
@@ -183,7 +183,7 @@ bool SurfaceDialogImpl::link () {
   bool Success = !system ("g++ -shared -Wl,-export-dynamic -Wl,-soname,\""
 			  +NameEdit->text()+".so\" -o \""
 			  +NameEdit->text()+".so\" \""
-			  +NameEdit->text()+".o\" ../numclass.o"
+          +NameEdit->text()+".o\" ../Vector.o"
 			  +"> /tmp/HyperspaceExplorer.link.errors 2>&1");
     
   if (!Success) {

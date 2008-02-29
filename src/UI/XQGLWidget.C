@@ -34,7 +34,7 @@
 using std::cerr;
 using std::endl;
 
-void SetColor (const Vector &);
+void SetColor (const Vector<4> &);
 
 extern float White[], grey50[];
 extern double SR3;

@@ -19,9 +19,7 @@
 #include <qmessagebox.h>
 
 #include "ValuesDialogImpl.H"
-#include "numclass.H"
-
-class Vector;
+#include "Vector.H"
 
 const bool check_memory = false;
 
@@ -56,15 +54,15 @@ double atod (QString);
 std::string itoa (int x);
 std::string ftoa (double x);
 
-Vector vnormalize (Vector );
-Vector vcross (Vector , Vector);
-Vector vcross (Vector , Vector, Vector);
+template <unsigned D> Vector<D> vnormalize (Vector<D>);
+Vector<3> vcross (Vector<3>, Vector<3>);
+Vector<4> vcross (Vector<4>, Vector<4>, Vector<4>);
 
 inline void Debug (std::string s, std::string h = "") {
     QMessageBox::information (NULL, h.c_str (), s.c_str ());
 }
 
-inline void glVertex (Vector &V) {
+inline void glVertex (Vector<3> &V) {
     if (__finite (V.sqnorm ()))
 	glVertex3dv (V.data ());
 }
@@ -74,6 +72,5 @@ template <typename T> void Swap (T &a, T &b) {
 	a = b;
 	b = temp;
 }
-
 
 #endif // !defined(GLOBALS_H)

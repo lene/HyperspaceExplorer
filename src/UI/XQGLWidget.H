@@ -20,7 +20,7 @@
 #include <QMouseEvent>
 #include <Q3PopupMenu>
 
-#include <numclass.H>
+#include <Vector.H>
 #include "GLObject.H"
 
 class Q3PopupMenu;
@@ -40,10 +40,10 @@ class XQGLWidget: public QGLWidget {
     bool SetDrawObject (GLuint list) { 
       DrawObject = new GLObject (list); return *DrawObject; }
 
-    void SetBackgroundColor (const Vector &RGBA) { Background = RGBA; }
+      void SetBackgroundColor (const Vector<4> &RGBA) { Background = RGBA; }
 
     void SetBackgroundColor (float R, float G, float B, float A) {
-      Background = Vector (4, R, G, B, A); }
+        Background = Vector<4> (R, G, B, A); }
 
   public slots:                                    //  called when:
     void ViewPos (double, double, double);         //  - viewing angle is changed
@@ -66,7 +66,7 @@ class XQGLWidget: public QGLWidget {
   //  geometry states
     double R,                       //  viewpoint distance
            psi, theta, phi;         //  rotation about x-, y- & z-axis
-    Vector Background;
+           Vector<4> Background;
     GLfloat Alpha;
 
   //  drawing realism states

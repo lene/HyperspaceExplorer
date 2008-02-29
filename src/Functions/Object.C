@@ -28,9 +28,9 @@ using std::endl;
 Object::Object (unsigned vertices, unsigned surfaces):
     Function (),
     NumVertices (vertices), NumSurfaces (surfaces) {
-    X	   = new Vector [NumVertices];
-    Xtrans = new Vector [NumVertices];
-    Xscr   = new Vector [NumVertices];
+        X	   = new Vector<4> [NumVertices];
+        Xtrans = new Vector<4> [NumVertices];
+        Xscr   = new Vector<3> [NumVertices];
     R = new float [NumVertices];
     G = new float [NumVertices];
     B = new float [NumVertices];
@@ -74,7 +74,7 @@ void Object::Transform (double thetaxy, double thetaxz, double thetaxw, double t
 			double tx, double ty, double tz, double tw) {
     matrix<4> Rxw = matrix<4> (0, 3, thetaxw), Ryw = matrix<4> (1, 3, thetayw), Rzw = matrix<4> (2, 3, thetazw),
 	Rxwyw = Rxw*Ryw, Rot = Rxwyw*Rzw;
-    Vector trans = Vector (4, tx, ty, tz, tw);
+    Vector<4> trans = Vector<4>(tx, ty, tz, tw);
 		
     for (unsigned i = 0; i < NumVertices; i++) 
 	Xtrans[i] = (Rot*X[i])+trans;
@@ -149,7 +149,7 @@ void Object::ReInit (double, double, double,
  *  @param center	center
  *  @param _a		side_length/2
  */
-Hypercube::Hypercube (const Vector &_center, double _a):
+Hypercube::Hypercube (const Vector<4> &_center, double _a):
     Object (16, 24),
     a (_a), center(_center) {
 #ifdef DEBUG
@@ -175,7 +175,7 @@ void Hypercube::Initialize(void) {
 	for (int y = 0; y <= 1; y++)
 	    for (int z = 0; z <= 1; z++)
 		for (int w = 0; w <= 1; w++) 
-		    X[x+2*(y+2*(z+2*w))] = Vector (4, 2.*x-1., 2.*y-1., 2.*z-1., 2.*w-1.)*a+center;
+                    X[x+2*(y+2*(z+2*w))] = Vector<4> (2.*x-1., 2.*y-1., 2.*z-1., 2.*w-1.)*a+center;
 
     DeclareSquare (0,   0, 1, 3, 2);
     DeclareSquare (1,   0, 1, 5, 4);    
@@ -234,7 +234,7 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
  *  @param rad		side_length/2
  *  @param center	center
  */
-Sponge::Sponge (unsigned level, int _distance, double _rad, Vector _center):
+Sponge::Sponge (unsigned level, int _distance, double _rad, Vector<4> _center):
     Level (level), distance(_distance), rad(_rad), center(_center) {
     Initialize();
 }
@@ -289,7 +289,7 @@ void Sponge::Initialize(void) {
 		    for (int w = -1; w <= 1; w++) {
 			if (distance >= 0) {
 			    if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
-				Vector NewCen = Vector (4, double (x), double (y), double (z), double (w))*rad;
+                    Vector<4> NewCen = Vector<4> (double (x), double (y), double (z), double (w))*rad;
 				NewCen += center;
 				//	valgrind bemoans "154112 bytes in 4816 blocks are indirectly lost"
 				List.push_back (new Sponge (Level-1, distance, rad/3., NewCen));
@@ -297,7 +297,7 @@ void Sponge::Initialize(void) {
 			}
 			else {
 			    if (abs (x)+abs (y)+abs (z)+abs (w) < distance) {
-				Vector NewCen = Vector (4, double (x), double (y), double (z), double (w))*rad;
+                    Vector<4> NewCen = Vector<4> (double (x), double (y), double (z), double (w))*rad;
 				NewCen += center;
 				List.push_back (new Sponge (Level-1, distance, rad/3., NewCen));
 			    }
@@ -374,7 +374,7 @@ void Sponge::Draw (void) {
  *  @param center	center
  *  @param _a		side_length/2
  */
-Pyramid::Pyramid (const Vector &_center, double _a):
+Pyramid::Pyramid (const Vector<4> &_center, double _a):
     Object (5, 10),
     center(_center), a (_a) {
     Initialize();
@@ -388,13 +388,13 @@ Pyramid::~Pyramid () { }
 
 
 void Pyramid::Initialize() {
-    X[0] = Vector (4, 0.0, 0.0, 0.0, 0.0);
-    X[1] = Vector (4, 1.0, 0.0, 0.0, 0.0);
-    X[2] = Vector (4, 0.5, sqrt (3.)/2., 0.0, 0.0);
-    X[3] = Vector (4, 0.5, sqrt (3.)/6., sqrt (2./3.), 0.0);
-    X[4] = Vector (4, 0.5, sqrt (3.)/6., 1./sqrt (6.), 1./sqrt (2.));
+    X[0] = Vector<4> (0.0, 0.0, 0.0, 0.0);
+    X[1] = Vector<4> (1.0, 0.0, 0.0, 0.0);
+    X[2] = Vector<4> (0.5, sqrt (3.)/2., 0.0, 0.0);
+    X[3] = Vector<4> (0.5, sqrt (3.)/6., sqrt (2./3.), 0.0);
+    X[4] = Vector<4> (0.5, sqrt (3.)/6., 1./sqrt (6.), 1./sqrt (2.));
 
-    Vector center_of_mass (4, 0.5, sqrt (3.)/4., sqrt (1./6.), 1./sqrt (8.));
+    Vector<4> center_of_mass (0.5, sqrt (3.)/4., sqrt (1./6.), 1./sqrt (8.));
     for (unsigned i = 0; i < NumVertices; i++)
 	X[i] = X[i]*a+center-center_of_mass*a;
 
@@ -434,7 +434,7 @@ void Pyramid::DeclareTriangle (unsigned i, unsigned a, unsigned b, unsigned c) {
  *  @param rad		side_length/2
  *  @param center	center
  */
-Gasket::Gasket (unsigned level, double _rad, Vector _center):
+Gasket::Gasket (unsigned level, double _rad, Vector<4> _center):
     Level (level), rad(_rad), center(_center) {
     Initialize();
 }
@@ -474,23 +474,23 @@ void Gasket::Initialize() {
 	}
 	rad = rad/2;
 	
-	Vector NewCen = Vector (4, 0.0, 0.0, 0.0, 0.0);
+    Vector<4> NewCen = Vector<4> (0.0, 0.0, 0.0, 0.0);
 	NewCen += center;
 	List.push_back (new Gasket (Level-1, rad, NewCen));
 
-	NewCen = Vector (4, 1.0, 0.0, 0.0, 0.0)*rad;
+    NewCen = Vector<4> (1.0, 0.0, 0.0, 0.0)*rad;
 	NewCen += center;
 	List.push_back (new Gasket (Level-1, rad, NewCen));
 
-	NewCen = Vector (4, 0.5, sqrt (3.)/2., 0.0, 0.0)*rad;
+    NewCen = Vector<4> (0.5, sqrt (3.)/2., 0.0, 0.0)*rad;
 	NewCen += center;
 	List.push_back (new Gasket (Level-1, rad, NewCen));
 
-	NewCen = Vector (4, 0.5, sqrt (3.)/6., sqrt (2./3.), 0.0)*rad;
+    NewCen = Vector<4> (0.5, sqrt (3.)/6., sqrt (2./3.), 0.0)*rad;
 	NewCen += center;
 	List.push_back (new Gasket (Level-1, rad, NewCen));
 
-	NewCen = Vector (4, 0.5, sqrt (3.)/6., 1./sqrt (6.), 1./sqrt (2.))*rad;
+    NewCen = Vector<4> (0.5, sqrt (3.)/6., 1./sqrt (6.), 1./sqrt (2.))*rad;
 	NewCen += center;
 	List.push_back (new Gasket (Level-1, rad, NewCen));
     }

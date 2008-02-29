@@ -23,11 +23,11 @@ public:
   QString symbolic ();
   
 protected:
-  virtual Vector &f (double, double, double);
+    virtual Vector<4> &f (double, double, double);
   bool loadFunction (const QString &);
 
 
-  Vector (*func)(double, double, double);
+  Vector<4> (*func)(double, double, double);
 
   void *handle;
 };
@@ -41,7 +41,7 @@ public:
   virtual ~CustomPolarFunction();
 
 protected:
-  virtual Vector &f (double, double, double);
+    virtual Vector<4> &f (double, double, double);
 };
 
 
@@ -73,11 +73,11 @@ public:
   QString symbolic ();
   
 protected:
-  virtual Vector &f (double, double);
+    virtual Vector<4> &f (double, double);
   bool loadFunction (const QString &);
 
 
-  Vector (*func)(double, double);
+  Vector<4> (*func)(double, double);
 
   void *handle;
 };

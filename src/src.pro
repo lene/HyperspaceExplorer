@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-CONFIG = release qt warn_on uic
+CONFIG = debug qt warn_on uic
 
 QT += opengl qt3support
 
@@ -42,8 +42,8 @@ HEADERS += Loki/SingletonHolder.H
 ###
 INCLUDEPATH += .
 DEPENDPATH += .
-HEADERS += Globals.H Help.H Matrix.H numclass.H Log.H 
-SOURCES += Globals.C Help.C Main.C numclass.C Log.C
+HEADERS += Globals.H Help.H Matrix.H Vector.H Log.H 
+SOURCES += Globals.C Help.C Main.C Log.C
 ###
 ################################################################################
 

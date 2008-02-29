@@ -41,8 +41,8 @@ ComplexFunction::~ComplexFunction () { }
  *  call Surface::InitMem () 
  */
 void ComplexFunction::Initialize () {
-  X = new Vector * [usteps+2];
-  Xchunk = new Vector   [(usteps+2)*(vsteps+2)];
+    X = new Vector<4> * [usteps+2];
+    Xchunk = new Vector<4>   [(usteps+2)*(vsteps+2)];
   
   for (unsigned u = 0; u <= usteps+1; u++) {
     X[u]  =  Xchunk+u*(vsteps+2);
@@ -61,7 +61,7 @@ void ComplexFunction::Initialize () {
  *  @param vv		Im (z)
  *  @return		value of defining function at point in question
  */
-Vector &ComplexFunction::f (double uu, double vv) {
+Vector<4> &ComplexFunction::f (double uu, double vv) {
   complex<double> z (uu, vv), w = g (z);
   F[0] = uu;
   F[1] = vv;
