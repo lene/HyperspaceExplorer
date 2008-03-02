@@ -13,6 +13,11 @@
 //      contains:     member function declarations for the extended OpenGL widget
 //                    and some useful auxiliary routines
 //                    uses OpenGL (e.g. MesaGL) and the Qt OpenGL extension
+//
+//                    I wrote this module in 2000, maybe 2001, and never touched
+//                    it since, because it Just Worked(TM) for me.
+//                    Don't be surprised about some peculiarities. I have
+//                    moved on since then.
 
 #include <ctime>
 #include <sstream>
@@ -30,197 +35,190 @@
 
 #include "XQGLWidget.H"
 #include "GLObject.H"
+#include "Log.H"
+#include "Globals.H"
 
 using std::cerr;
 using std::endl;
 
-void SetColor (const Vector<4> &);
-
-extern float White[], grey50[];
-extern double SR3;
-
-
 //      XQGLWidget:: public functions
 
 
-/*******************************************************************************
- *  XQGLWidget constructor; does a lot of initialization to (usually sensible) hard-
- *  coded default values, creates the menus and accelerators
+/** XQGLWidget constructor; does a lot of initialization to (usually sensible)
+ *  hardcoded default values, creates the menus and accelerators
  *  @param parent	parent QWidget, defaults to NULL
- *  @param name		name, defaulting to ""
- */
-XQGLWidget::XQGLWidget (QWidget *parent, const char *name) : 
-    QGLWidget (parent, name), DrawObject (0),         //                                 *
-    R (10), psi (0), theta (0), phi (0),        //                                 *
-    Background (4, 0.25, 0.25, 0.25, 1.), Alpha (1.0),  //                         *
+ *  @param name		name, defaulting to ""                                */
+XQGLWidget::XQGLWidget (QWidget *parent, const char *name) :
+    QGLWidget (parent, name), DrawObject (0),
+    R (10), psi (0), theta (0), phi (0),
+    Background (4, 0.25, 0.25, 0.25, 1.), Alpha (1.0),
     light (true), fog (true), transparent (false), shade (true), colors (true) {
-  QDesktopWidget *root = QApplication::desktop ();     //
-  int screenheight = root->height ();           //  find screen size
-  setMinimumSize (256, 256);                    //  hmm... shouldnt I find a more
-  setMaximumSize (screenheight,screenheight);   //  flexible way? 
-  resize (600, 600);                            //  resize (screenheight,screenheight);
+    QDesktopWidget *root = QApplication::desktop ();
+    int screenheight = root->height ();         //  find screen size
+    setMinimumSize (256, 256);                  //  hmm... shouldnt I find a more
+    setMaximumSize (screenheight,screenheight); //  flexible way? 
+    resize (600, 600);                          //  resize (screenheight,screenheight);
 
-  setCaption ("XQGLWidget");                    //  yeah or what else?
+    setCaption ("XQGLWidget");                  //  yeah or what else?
 
-  menu = SetupMenu ();                          //  set up popup menu
-  SetupAccel ();                               //  set up key accelerators
+    menu = SetupMenu ();                        //  set up popup menu
+    SetupAccel ();                              //  set up key accelerators
 }
 
+/** OpenGL initialization
+ *  setting background colors, setting up lighting, shading, fog and 
+ *  transparence                                                              */
+void XQGLWidget::initializeGL (void) {
+    SingletonLog::Instance().log("XQGLWidget::initializeGL()");
 
-/*******************************************************************************
- *  OpenGL initialization
- *  setting background colors, setting up lighting, shading, fog and transparence
- */
-void XQGLWidget::initializeGL (void) {          
-# ifdef DEBUG
-    cerr << "XQGLWidget::initializeGL " << light << shade << fog << transparent << endl;
-# endif      
-
-  glEnable (GL_DEPTH_TEST);                     //  enable 3D mode, sotosay
-  glEnable (GL_NORMALIZE);                      //  automatically normalize surface normals
+    glEnable (GL_DEPTH_TEST);                   //  enable 3D mode, sotosay
+    glEnable (GL_NORMALIZE);                    //  automatically normalize surface normals
   
-  glClearColor (Background[0], Background[1], Background[2], Background[3]);
+    glClearColor (Background[0], Background[1], Background[2], Background[3]);
                                                 //  set background color
-  if (!doubleBuffer ()) cerr << "Widget is single buffered\n";  //  bad luck; balk but continue
+    if (!doubleBuffer ()) cerr << "Widget is single buffered\n";  //  bad luck; balk but continue
 
-  InitLight ();                                 //  set up lighting parameters
-  InitShade ();                                 //  ... flat or gouraud shading
-  InitFog ();                                   //  ... depth cue or not
-  InitTransparence ();                         	//  ... transparence
+    InitLight ();                               //  set up lighting parameters
+    InitShade ();                               //  ... flat or gouraud shading
+    InitFog ();                                 //  ... depth cue or not
+    InitTransparence ();                        //  ... transparence
 }
 
-
-/*******************************************************************************
- *  OpenGL initialization
- *  setting background colors, setting up lighting, shading, fog and transparence
- */
+/** OpenGL initialization
+ *  setting background colors, setting up lighting, shading, fog and
+ *  transparence                                                              */
 void XQGLWidget::InitLight (void) {
-  static GLfloat LightPos[4] = { 4., 4., 8., 0. };      //  this should be a member variable!
+    static GLfloat LightPos[4] = { 4., 4., 8., 0. };  //  should be a member variable!
 
-  if (light) {
-    glEnable (GL_LIGHTING);                             //  enable lighting
-    glLightModeli (GL_LIGHT_MODEL_LOCAL_VIEWER, 1);     //  specular reflections are computed 
-                                                //  from the origin of the eye coordinate system
-    glLightfv (GL_LIGHT0, GL_POSITION, LightPos);       //  set light position
-    glLightfv (GL_LIGHT0, GL_DIFFUSE, White);           //  set diffuse color
-    glLightfv (GL_LIGHT0, GL_AMBIENT, grey50);          //  set ambient color
-    glEnable (GL_LIGHT0); }                             //  enable this light
-  else {
-    glDisable (GL_LIGHTING); } }                        //  disable lighting
+    if (light) {
+        glEnable(GL_LIGHTING);                          //  enable lighting
+        glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, 1);  //  compute specular reflections
+                                                        //  from the origin of the eye
+                                                        //  coordinate system
+        glLightfv(GL_LIGHT0, GL_POSITION, LightPos);    //  set light position
+        glLightfv(GL_LIGHT0, GL_DIFFUSE,
+                  Globals::Instance().White);           //  diffuse color
+        glLightfv(GL_LIGHT0, GL_AMBIENT,
+                  Globals::Instance().grey50);          //  ambient color
+        glEnable(GL_LIGHT0);                            //  enable this light
+    } else {
+        glDisable(GL_LIGHTING);                         //  disable lighting
+    }
+}
 
 void XQGLWidget::InitShade (void) {
-  if (shade) glShadeModel (GL_SMOOTH);                  //  gouraud shading
-  else       glShadeModel (GL_FLAT); }                  //  flat shading
+    if (shade) glShadeModel (GL_SMOOTH);        //  gouraud shading
+    else       glShadeModel (GL_FLAT);          //  flat shading
+}
 
-void XQGLWidget::InitFog  (void) { 
-  if (fog) {
-    glEnable (GL_FOG);                                  //  enable depth cueing
-    SetupDepthCue (R, 1.5); }                           //  set depth cue parameters
-  else glDisable (GL_FOG); }                            //  disable depth cueing
+void XQGLWidget::InitFog  (void) {
+    if (fog) {
+        glEnable (GL_FOG);                      //  enable depth cueing
+        SetupDepthCue (R, 1.5);                 //  set depth cue parameters
+    } else 
+        glDisable (GL_FOG);                     //  disable depth cueing
+}
 
 void XQGLWidget::InitTransparence (void) {
-  if (transparent) {
-    glEnable  (GL_BLEND);                               //  enable blending
-    glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); //  blending function
-    glEnable  (GL_POINT_SMOOTH);                        //  draw smooth points
-    glEnable  (GL_LINE_SMOOTH);                         //  draw smooth lines
-    glEnable  (GL_POLYGON_SMOOTH);                      //  draw smooth surfaces
-    glDisable (GL_CULL_FACE);                           //  ...why?                *
- }
-  else {
-    glDisable (GL_BLEND);                               //  disable blending
-    glDisable  (GL_POINT_SMOOTH);                       //  ..
-    glDisable (GL_LINE_SMOOTH);                         //  ..
-    glDisable (GL_POLYGON_SMOOTH);                      //  .. 
-    glEnable  (GL_CULL_FACE); } }               //                                 *
-
-//      SetAlpha (int a e [0, 255])
-//      changes global transparence Alpha to a
-void XQGLWidget::SetAlpha (int a) { 
-  Alpha = float (a)/255.;                       //  calculate Alpha
-  InitTransparence ();                          //  change GL state
-  repaint ();                                  //  update picture
+    if (transparent) {
+        glEnable  (GL_BLEND);                               //  enable blending
+        glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); //  blending function
+        glEnable  (GL_POINT_SMOOTH);                        //  draw smooth points
+        glEnable  (GL_LINE_SMOOTH);                         //  draw smooth lines
+        glEnable  (GL_POLYGON_SMOOTH);                      //  draw smooth surfaces
+        glDisable (GL_CULL_FACE);                           //  ...why?             *
+    } else {
+        glDisable (GL_BLEND);                               //  disable blending
+        glDisable  (GL_POINT_SMOOTH);                       //  ..
+        glDisable (GL_LINE_SMOOTH);                         //  ..
+        glDisable (GL_POLYGON_SMOOTH);                      //  ..
+        glEnable  (GL_CULL_FACE);                           //                      *
+    } 
 }
 
+/** changes global transparence Alpha to a
+ *  @param a int e [0, 255]                                                   */
+void XQGLWidget::SetAlpha (int a) { 
+    Alpha = float (a)/255.;                     //  calculate Alpha
+    InitTransparence ();                        //  change GL state
+    repaint ();                                 //  update picture
+}
 
 void XQGLWidget::paintGL () {
-# ifdef DEBUG
-    cerr << "XQGLWidget::paintGL ()\n";
-# endif      
+    SingletonLog::Instance().log("XQGLWidget::paintGL()");
 
 #if (QT_VERSION < 300)
-  setCursor (Qt::WaitCursor);              	     //  change cursor to 'working'
+    setCursor (Qt::WaitCursor);                 //  change cursor to 'working'
 #else
-  setCursor (QCursor (Qt::WaitCursor));              //  change cursor to 'working'
+    setCursor (QCursor (Qt::WaitCursor));       //  change cursor to 'working'
 #endif
 
-# ifdef DEBUG
-    cerr << "  glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT )\n";
-# endif      
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   //  clear screen
+    SingletonLog::Instance().log("  glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)");
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   //  clear screen
 
-  glPushMatrix ();                              //  save default view
-  //  glMatrixMode (GL_MODELVIEW);              //  NECESSARY?
+    glPushMatrix ();                            //  save default view
+    //  glMatrixMode (GL_MODELVIEW);            //  NECESSARY?
 
-  glRotatef (GLfloat (psi),   1., 0., 0.);
-  glRotatef (GLfloat (theta), 0., 1., 0.);
-  glRotatef (GLfloat (phi),   0., 0., 1.);      //  rotate view
+    glRotatef (GLfloat (psi),   1., 0., 0.);
+    glRotatef (GLfloat (theta), 0., 1., 0.);
+    glRotatef (GLfloat (phi),   0., 0., 1.);    //  rotate view
 
-# ifdef DEBUG
-    cerr << "    if (DrawObject) DrawObject->Draw ()\n";
-# endif      
+    SingletonLog::Instance().log("    if (DrawObject) DrawObject->Draw ()");
+    if (DrawObject) DrawObject->Draw ();        //  draw what's there
 
-  if (DrawObject) DrawObject->Draw ();          //  draw what's there
+    glPopMatrix ();                             //  restore default view
 
-  glPopMatrix ();                               //  restore default view
-
-  setCursor (Qt::ArrowCursor); }                    //  restore cursor
+    setCursor (Qt::ArrowCursor);                //  restore cursor
+}
 
 void XQGLWidget::Draw (void) {
-  DrawObject->Draw (); }                        //  draw what's there
+    DrawObject->Draw ();                        //  draw what's there
+}
 
-//  change of viewing distance is handled here too,
-//  which is not so clean programming style...
+/** change of viewing distance is handled here too, which is not so clean
+ *  programming style...                                                      */
 void XQGLWidget::resizeGL (int width, int height) {
-  GLfloat aspect = (float) width / (float) height,      //                         *
-          angle  = .8*atan (2./R)*180./pi,      //                                 *
-          across = SR3;                         //                                 *  
-  if (angle < 0) angle = 180+angle;             //  keep positive viewing angle
+    GLfloat aspect = (float) width / (float) height,
+            angle  = .8*atan (2./R)*180./pi,
+            across = Globals::Instance().SR3;
+    if (angle < 0) angle = 180+angle;           //  keep positive viewing angle
 
-  glViewport (0, 0, width, height);             //                                 *
-  glMatrixMode (GL_PROJECTION);                 //                                 *
-  glLoadIdentity ();                            //                                ?!
-  gluPerspective (angle, aspect, .25, R+across);//                                 *
-  glMatrixMode (GL_MODELVIEW);                  //                                 *
-  glLoadIdentity ();                            //                                 *
-  gluLookAt (0., 0., 1.,                        //                                 *
-	     0., 0., 0.,
-	     0., 1., 0.);
-  glTranslatef (0, 0, -R);                      //                                 *
-  if (fog) SetupDepthCue (R, 2.);               //                                 *
+    glViewport (0, 0, width, height);
+    glMatrixMode (GL_PROJECTION);
+    glLoadIdentity ();
+    gluPerspective (angle, aspect, .25, R+across);
+    glMatrixMode (GL_MODELVIEW);
+    glLoadIdentity ();
+    gluLookAt (0., 0., 1.,
+	       0., 0., 0.,
+	       0., 1., 0.);
+    glTranslatef (0, 0, -R);
+    if (fog) SetupDepthCue (R, 2.);
 }
 
 
-//      ViewPos (psi, theta, phi) 
-//      called any time the viewing angle is changed on the command widget
+/** ViewPos (psi, theta, phi) 
+    called any time the viewing angle is changed on the command widget        */
 void XQGLWidget::ViewPos (double psi_, double theta_, double phi_) {
-  if ((psi != psi_) || (theta != theta_) || (phi != phi_)) {    //  any change?
-    psi = psi_; theta = theta_; phi = phi_;     //  update values
-    updateGL (); } }                            //  update picture
+    if ((psi != psi_) || (theta != theta_) || (phi != phi_)) {    //  any change?
+        psi = psi_; theta = theta_; phi = phi_; //  update values
+        updateGL (); } }                        //  update picture
 
-//      CanvasGL::ViewPos (R)
-//      called any time the viewing distance is changed on the command widget
+/** called any time the viewing distance is changed on the command widget     */
 void XQGLWidget::ViewPos (double R_) {
-  if (R != R_ && R_ > 0) {                      //  valid distance?
-    R = R_;                                     //  update value
-    resizeGL (width (), height());              //  update GL state
-    updateGL (); } }                            //  update picture
+    if (R != R_ && R_ > 0) {                    //  valid distance?
+        R = R_;                                 //  update value
+        resizeGL (width (), height());          //  update GL state
+        updateGL ();                            //  update picture
+    } 
+}
 
 void XQGLWidget::SetupDepthCue (float dist, float size) {
   static GLfloat back[4];                       //  copy background color because
-  for (unsigned i = 0; i < 4; back[i] = Background[i++]);       //                 *
+  for (unsigned i = 0; i < 4; back[i] = Background[i++]);
 
   glFogi (GL_FOG_MODE,  GL_LINEAR);             //  set fog mode to linear
   glFogfv(GL_FOG_COLOR, back);                  //  ... fog color 
-  glFogf (GL_FOG_START, dist-size/2.);          //  ...                            *
-  glFogf (GL_FOG_END,   dist+size/2.*SR3); }    //  ...                            *
+  glFogf (GL_FOG_START, dist-size/2.);          //  ...
+  glFogf (GL_FOG_END,   dist+size/2.*Globals::Instance().SR3); 
+}

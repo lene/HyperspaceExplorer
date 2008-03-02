@@ -23,15 +23,12 @@
 # endif
 
 template <unsigned D, typename N = double> class Vector {
-    public:
-        N x[D];
-        
+
     public:
 
     //----------  management  ----------
 
-    Vector<D, N> () { } 
-//    Vector<D, N> (std::vector<N>);
+    Vector<D, N> () { }
     Vector<D, N> (N, ... );
 
     //----------  access      ----------
@@ -51,13 +48,15 @@ template <unsigned D, typename N = double> class Vector {
     Vector<D, N> operator+ (const Vector<D, N> &Y);
     Vector<D, N> operator- (const Vector<D, N> &Y);
     Vector<D, N> operator* (const N &s);
-    N operator* (const Vector<D, N> &X);
+    N operator* (const Vector<D, N> &X) const;
     Vector<D, N> operator/ (const N &s);
 
-    N sqnorm (void);
+    N sqnorm (void) const;
 
     N *data () { return x; }
 
+private:
+    N x[D];
 };
  
 template <unsigned D, typename N> 
@@ -67,17 +66,6 @@ template <unsigned D, typename N>
 
     //  ------------  management  ------------
 
-/** construct a Vector from a std::vector
- *  @param v vector                                                           */
-/*
-template <unsigned D, typename N> 
-        Vector<D, N>::Vector (std::vector<N> v) :
-    x (new N [D]) {
-    for (unsigned i = 0; i < D; i++) {
-        x[i] = v[i];
-    }
-}
-*/
 /** constructor with variable arglist
  *  @param x0 first element of the Vector
  *  @param ... the following elements                                         */
@@ -89,18 +77,18 @@ template <unsigned D, typename N>
     va_list argp;
     va_start (argp, x0);
     for (i = 1; i < D; i++) {
-        x[i] = va_arg (argp, N); 
+        x[i] = va_arg (argp, N);
     }
     va_end (argp);
 }
-    
+
 //----------  access      ----------
 
 /** operator [] returns a reference to component i
  *  @param i index of the element
  *  @return non-const reference to the accessed element                       */
 template <unsigned D, typename N> 
-        N &Vector<D, N>::operator[] (unsigned i) { 
+        N &Vector<D, N>::operator[] (unsigned i) {
     assert(i < D);
     return x[i];
 }
@@ -110,9 +98,9 @@ template <unsigned D, typename N>
  *  @return the accessed element                                              */
 template <unsigned D, typename N> 
         N Vector<D, N>::operator[] (unsigned i) const {
-    assert(i < D);  
-    return x[i];    //  valgrind: "Use of uninitialised value of size 8"
-        }           //  at Vector::operator[](unsigned int) const (Vector.H:128)
+    assert(i < D);
+    return x[i];
+}
 
 /** @return dimension of the Vector (the template parameter D)                */
 template <unsigned D, typename N> 
@@ -124,25 +112,25 @@ template <unsigned D, typename N>
 
 /** @param Y other Vector
  *  @return *this+Y                                                           */
-template <unsigned D, typename N> 
+template <unsigned D, typename N>
         Vector<D, N> &Vector<D, N>::operator+= (const Vector<D, N> &Y) {
-  for (unsigned i = 0; i < D; i++) x[i] += Y.x[i] ;
-  return *this; 
+  for (unsigned i = 0; i < D; i++) x[i] += Y.x[i];
+  return *this;
 }
 
 /** @param Y other Vector
  *  @return *this-Y                                                           */
 template <unsigned D, typename N> 
         Vector<D, N> &Vector<D, N>::operator-= (const Vector<D, N> &Y) {
-  for (unsigned i = 0; i < D; i++) x[i] -= Y.x[i] ;
-  return *this; 
+  for (unsigned i = 0; i < D; i++) x[i] -= Y.x[i];
+  return *this;
 }
 
 /** @param s scalar type
  *  @return *this*s                                                           */
 template <unsigned D, typename N>
         Vector<D, N> &Vector<D, N>::operator*= (const N &s) {
-  for (unsigned i = 0; i < D; i++) x[i] *= s ;
+  for (unsigned i = 0; i < D; i++) x[i] *= s;
   return *this;
 }
 
@@ -152,7 +140,7 @@ template <unsigned D, typename N>
     static Vector<D, N> Z;
     Z = *this;
     for (unsigned i = 0; i < D; i++) Z.x[i] = -x[i] ;
-    return Z; 
+    return Z;
 }
 
 /** @param Y other Vector
@@ -161,7 +149,7 @@ template <unsigned D, typename N>
         Vector<D, N> Vector<D, N>::operator+ (const Vector<D, N> &Y) {
   static Vector<D, N> Z;
   Z = *this;
-  return (Z += Y); 
+  return (Z += Y);
 }
 
 /** @param Y other Vector
@@ -170,7 +158,7 @@ template <unsigned D, typename N>
         Vector<D, N> Vector<D, N>::operator- (const Vector<D, N> &Y) {
   static Vector<D, N> Z;
   Z = *this;
-  return (Z -= Y); 
+  return (Z -= Y);
 }
 
 /** @param s scalar type
@@ -179,41 +167,42 @@ template <unsigned D, typename N>
         Vector<D, N> Vector<D, N>::operator* (const N &s) {
   Vector <D, N>Z;
   Z = *this;
-  return Z *= s; 
+  return Z *= s;
 }
 
 /** scalar multiplication between two Vectors
  *  @param Y other Vector
  *  @return dot product < *this, Y >                                          */
-template <unsigned D, typename N> 
-        N Vector<D, N>::operator* (const Vector<D, N> &Y) {
+template <unsigned D, typename N>
+        N Vector<D, N>::operator* (const Vector<D, N> &Y) const {
   N dot = 0.;
   for (unsigned i = 0; i < D; i++)
-    if (x[i]) dot += x[i]*Y.x[i];	//  valgrind barks "Use of uninitialised value of size 8"
-				        //  at Vector::operator*(Vector const &) (Vector.H:174)
-  return dot; 
+    if (x[i]) dot += x[i]*Y.x[i];
+
+  return dot;
 }
 
 /** @param s scalar type
  *  @return *this/s                                                           */
 template <unsigned D, typename N>
         Vector<D, N> Vector<D, N>::operator/ (const N &s) {
-  return operator* (1./s); 
+  return operator* (1./s);
 }
 
 /** @return the squared norm of the vector, |V|²                              */
 template <unsigned D, typename N>
-        N Vector<D, N>::sqnorm (void) {
-  return operator* (*this); 
+        N Vector<D, N>::sqnorm (void) const {
+  return operator* (*this);
 }
 
-		
+
 //------------  important non-member functions for class Vector
+
 /** Vector output operator
  *  @param o ostream to push into
  *  @param v Vector to print
  *  @return a new ostream to push Vectors and stuff into                      */
-template <unsigned D, typename N> 
+template <unsigned D, typename N>
         std::ostream &operator << (std::ostream &o, const Vector<D, N> &v) {
     //  i might want to use other brackets one day
     o << "<";
@@ -228,7 +217,8 @@ template <unsigned D, typename N>
  *  @param a	first operand of cross product
  *  @param b	second operand of cross product
  *  @return	a x b                                                         */
-template <unsigned D, typename N> Vector<D> cross (const Vector<D> &, const Vector<D> &);
+template <unsigned D, typename N>
+        Vector<D> cross (const Vector<D> &, const Vector<D> &);
 
 /** cross product of three 4-Vectors
  *  fails for dimensions other than 4 due to lack of template specialization
@@ -236,16 +226,17 @@ template <unsigned D, typename N> Vector<D> cross (const Vector<D> &, const Vect
  *  @param b	second operand of cross product
  *  @param c	third operand of cross product
  *  @return	a x b x c                                                     */
-template <unsigned D, typename N> Vector<D> cross (const Vector<D> &, const Vector<D> &, const Vector<D> &);
-		
+template <unsigned D, typename N>
+        Vector<D> cross (const Vector<D> &, const Vector<D> &, const Vector<D> &);
+
 /** specialization for cross product of two 3-Vectors
  *  @param a	first operand of cross product
  *  @param b	second operand of cross product
  *  @return	a x b                                                         */
-template <typename N> 
+template <typename N>
         Vector<3, N> vcross (Vector<3, N> a, Vector<3, N> b) {
     static Vector<3, N> c;
-	
+
     c[0] = a[1]*b[2]-a[2]*b[1];
     c[1] = a[2]*b[0]-a[0]*b[2];
     c[2] = a[0]*b[1]-a[1]*b[0];
@@ -258,7 +249,7 @@ template <typename N>
  *  @param b	second operand of cross product
  *  @param c	third operand of cross product
  *  @return	a x b x c                                                     */
-template <typename N> 
+template <typename N>
         Vector<4, N> vcross (Vector<4, N> a, Vector<4, N> b, Vector<4, N> c) {
     static Vector<4, N> d;
     N A = b[0]*c[1]-b[1]*c[0],
@@ -267,23 +258,24 @@ template <typename N>
       D = b[1]*c[2]-b[2]*c[1],
       E = b[1]*c[3]-b[3]*c[1],
       F = b[2]*c[3]-b[3]*c[2];
-	
+
     d[0] =  a[1]*F - a[2]*E + a[3]*D;
     d[1] = -a[0]*F + a[2]*C - a[3]*B;
     d[2] =  a[0]*E - a[1]*C + a[3]*A;
     d[3] = -a[0]*D + a[1]*B - a[2]*A;
-	
+
     return d; 
 }
 
 /** normalizes a 3-Vector out-of-place
  *  @param x	Vector to be normalized
  *  @return	its normalized value                                          */
-template <unsigned D, typename N> Vector<D, N> vnormalize ( Vector<D, N> x ) {
+template <unsigned D, typename N> 
+        Vector<D, N> vnormalize( const Vector<D, N> &x ) {
     static Vector<D, N> n;
     N norm = sqrt ( x.sqnorm() );
     for ( unsigned i = 0; i < D; i++ ) n[i] = x[i]/norm;
     return n;
 }
-		
+
 #endif                                                //  VECTOR_H

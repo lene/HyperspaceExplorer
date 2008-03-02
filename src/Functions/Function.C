@@ -73,10 +73,10 @@ Function::Function (double _tmin, double _tmax, double _dt,
   F (),
      Xtrans (NULL), Xscr (NULL), XtransChunk (NULL), XscrChunk (NULL),
              R (NULL), G (NULL), B (NULL), RGBChunk (NULL) {
-  if (MemRequired () > MaximumMemory) {				//  which is defined in Globals.H
+  if (MemRequired () > Globals::Instance().MaximumMemory) {				//  which is defined in Globals.H
     cerr << "Using a " << tsteps << "x" << usteps << "x" << vsteps
 	 << " grid would require approx. " << MemRequired () << " MB of memory.\n";
-    while (MemRequired () > MaximumMemory) {
+    while (MemRequired () > Globals::Instance().MaximumMemory) {
       tsteps--; usteps--; vsteps--;
     }
     cerr << "Using a " << tsteps << "x" << usteps << "x" << vsteps
@@ -430,58 +430,58 @@ void Function::DrawCube (unsigned t, unsigned u, unsigned v) {
           << string(8, ' ') << setw(6) << setprecision(2) << V[3] << string(32, ' ') << V[7] << endl
           << endl;
 #endif
-  glBegin (GL_QUAD_STRIP);
-    if (t == 0) {
-      SetColor (R [t][u][v], G [t][u][v], B [t][u][v]);
-      glVertex (V[0]);
-      SetColor (R [t][u][v+1], G [t][u][v+1], B [t][u][v+1]); 
-      glVertex (V[1]);
-      NumVertices += 2;
-    }
-    SetColor (R [t][u+1][v], G [t][u+1][v], B [t][u+1][v]); 
-    glVertex (V[2]);
-    SetColor (R [t][u+1][v+1], G [t][u+1][v+1], B [t][u+1][v+1]);   
-    glVertex (V[3]);
-    SetColor (R [t+1][u+1][v], G [t+1][u+1][v], B [t+1][u+1][v]);   
-    glVertex (V[6]);
-    SetColor (R [t+1][u+1][v+1], G [t+1][u+1][v+1], B [t+1][u+1][v+1]);     
-    glVertex (V[7]);
-    SetColor (R [t+1][u][v], G [t+1][u][v], B [t+1][u][v]); 
-    glVertex (V[4]);
-    SetColor (R [t+1][u][v+1], G [t+1][u][v+1], B [t+1][u][v+1]);   
-    glVertex (V[5]);             
-    NumVertices += 6;
-    if (u == 0) {
-      SetColor (R [t][u][v], G [t][u][v], B [t][u][v]);       
-      glVertex (V[0]);
-      SetColor (R [t][u][v+1], G [t][u][v+1], B [t][u][v+1]); 
-      glVertex (V[1]);
-      NumVertices += 2;
-    }
-  glEnd ();
+    glBegin (GL_QUAD_STRIP);
+        if (t == 0) {
+            Globals::Instance().SetColor(R[t][u][v], G[t][u][v], B[t][u][v]);
+            Globals::Instance().glVertex(V[0]);
+            Globals::Instance().SetColor(R[t][u][v+1], G[t][u][v+1], B[t][u][v+1]);
+            Globals::Instance().glVertex(V[1]);
+            NumVertices += 2;
+        }
+        Globals::Instance().SetColor(R[t][u+1][v], G[t][u+1][v], B[t][u+1][v]);
+        Globals::Instance().glVertex(V[2]);
+        Globals::Instance().SetColor(R[t][u+1][v+1], G[t][u+1][v+1], B[t][u+1][v+1]);
+        Globals::Instance().glVertex(V[3]);
+        Globals::Instance().SetColor(R[t+1][u+1][v], G[t+1][u+1][v], B[t+1][u+1][v]);
+        Globals::Instance().glVertex(V[6]);
+        Globals::Instance().SetColor(R[t+1][u+1][v+1], G[t+1][u+1][v+1], B[t+1][u+1][v+1]);     
+        Globals::Instance().glVertex(V[7]);
+        Globals::Instance().SetColor(R[t+1][u][v], G[t+1][u][v], B[t+1][u][v]); 
+        Globals::Instance().glVertex(V[4]);
+        Globals::Instance().SetColor(R[t+1][u][v+1], G[t+1][u][v+1], B[t+1][u][v+1]);   
+        Globals::Instance().glVertex(V[5]);             
+        NumVertices += 6;
+        if (u == 0) {
+            Globals::Instance().SetColor(R[t][u][v], G[t][u][v], B[t][u][v]);       
+            Globals::Instance().glVertex(V[0]);
+            Globals::Instance().SetColor(R[t][u][v+1], G[t][u][v+1], B[t][u][v+1]); 
+            Globals::Instance().glVertex(V[1]);
+            NumVertices += 2;
+        }
+    glEnd ();
   
-  glBegin (GL_QUADS);
-    if (v == 0) {   
-      SetColor (R [t][u][v], G [t][u][v], B [t][u][v]);       
-      glVertex (V[0]);
-      SetColor (R [t][u+1][v], G [t][u+1][v], B [t][u+1][v]); 
-      glVertex (V[2]);
-      SetColor (R [t+1][u+1][v], G [t+1][u+1][v], B [t+1][u+1][v]);   
-      glVertex (V[6]);
-      SetColor (R [t+1][u][v], G [t+1][u][v], B [t+1][u][v]); 
-      glVertex (V[4]);
-      NumVertices += 4;
-    }
-    SetColor (R [t][u][v+1], G [t][u][v+1], B [t][u][v+1]); 
-    glVertex (V[1]);
-    SetColor (R [t][u+1][v+1], G [t][u+1][v+1], B [t][u+1][v+1]);   
-    glVertex (V[3]);
-    SetColor (R [t+1][u+1][v+1], G [t+1][u+1][v+1], B [t+1][u+1][v+1]);     
-    glVertex (V[7]);
-    SetColor (R [t+1][u][v+1], G [t+1][u][v+1], B [t+1][u][v+1]);   
-    glVertex (V[5]);
-    NumVertices += 4;
-  glEnd ();
+    glBegin (GL_QUADS);
+        if (v == 0) {   
+            Globals::Instance().SetColor(R[t][u][v], G[t][u][v], B[t][u][v]);       
+            Globals::Instance().glVertex(V[0]);
+            Globals::Instance().SetColor(R[t][u+1][v], G[t][u+1][v], B[t][u+1][v]); 
+            Globals::Instance().glVertex(V[2]);
+            Globals::Instance().SetColor(R[t+1][u+1][v], G[t+1][u+1][v], B[t+1][u+1][v]);   
+            Globals::Instance().glVertex(V[6]);
+            Globals::Instance().SetColor(R[t+1][u][v], G[t+1][u][v], B[t+1][u][v]); 
+            Globals::Instance().glVertex(V[4]);
+            NumVertices += 4;
+        }
+        Globals::Instance().SetColor(R[t][u][v+1], G[t][u][v+1], B[t][u][v+1]); 
+        Globals::Instance().glVertex(V[1]);
+        Globals::Instance().SetColor(R[t][u+1][v+1], G[t][u+1][v+1], B[t][u+1][v+1]);
+        Globals::Instance().glVertex(V[3]);
+        Globals::Instance().SetColor(R[t+1][u+1][v+1], G[t+1][u+1][v+1], B[t+1][u+1][v+1]);
+        Globals::Instance().glVertex(V[7]);
+        Globals::Instance().SetColor(R[t+1][u][v+1], G[t+1][u][v+1], B[t+1][u][v+1]);
+        Globals::Instance().glVertex(V[5]);
+        NumVertices += 4;
+    glEnd ();
 }
 
 
@@ -510,14 +510,6 @@ Hypersphere::Hypersphere (double _tmin, double _tmax, double _dt,
   Radius (_rad){
   Initialize ();
 }
-
-
-/*******************************************************************************
- *  Hypersphere destructor
- */
-Hypersphere::~Hypersphere () { }
-
-
 
 /*******************************************************************************
  *  Hypersphere defining function
@@ -585,13 +577,6 @@ Torus1::Torus1 (double _tmin, double _tmax, double _dt,
   Initialize ();
 }
 
-
-/*******************************************************************************
- *  Torus1 destructor
- */
-Torus1::~Torus1 () { }
-
-
 /*******************************************************************************
  *  Torus1 defining function
  *  @param tt		t value
@@ -636,13 +621,6 @@ Torus2::Torus2 (double _tmin, double _tmax, double _dt,
   Initialize ();
 }
 
-
-/*******************************************************************************
- *  Torus2 destructor
- */
-Torus2::~Torus2 () { }
-
-
 /*******************************************************************************
  *  Torus2 defining function
  *  @param tt		t value
@@ -682,13 +660,6 @@ Fr3r::Fr3r (double _tmin, double _tmax, double _dt,
   Initialize ();
 }
 
-
-/*******************************************************************************
- *  Fr3r destructor
- */
-Fr3r::~Fr3r () {}
-
-
 /*******************************************************************************
  *  Fr3r defining function
  *  @param tt		t value
@@ -703,9 +674,10 @@ Vector<4> &Fr3r::f (double tt, double uu, double vv) {
   double rsq = tt*tt+uu*uu+vv*vv; 
   F[3] = 1./(rsq+.25);
   // sin (pi*(tt*tt+uu*uu+vv*vv));
-  // exp (tt*tt+uu*uu+vv*vv);														
+  // exp (tt*tt+uu*uu+vv*vv);
 
-  return F; }
+  return F; 
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -734,13 +706,6 @@ GravitationPotential::GravitationPotential (double xmin, double xmax, double dx,
   M (_M), R (_R) {
   Initialize ();
 }
-
-
-/*******************************************************************************
- *  Hypersphere destructor
- */
-GravitationPotential::~GravitationPotential () { }
-
 
 /*******************************************************************************
  *  Hypersphere defining function
@@ -786,13 +751,6 @@ Fr3rSin::Fr3rSin (double _tmin, double _tmax, double _dt,
   Initialize ();
 }
 
-
-/*******************************************************************************
- *  Fr3rSin destructor
- */
-Fr3rSin::~Fr3rSin () { }
- 
- 
 /*******************************************************************************
  *  Fr3rSin defining function
  *  @param tt		t value
@@ -832,13 +790,6 @@ Fr3rExp::Fr3rExp (double _tmin, double _tmax, double _dt,
   Initialize ();
 }
 
-
-/*******************************************************************************
- *  Fr3rExp destructor
- */
-Fr3rExp::~Fr3rExp () { }
- 
- 
 /*******************************************************************************
  *  Fr3rExp defining function
  *  @param tt		t value
@@ -850,7 +801,7 @@ Vector<4> &Fr3rExp::f (double tt, double uu, double vv) {
   F[0] = tt;
   F[1] = uu;
   F[2] = vv;
-  F[3] = exp (tt*tt+uu*uu+vv*vv);														
+  F[3] = exp (tt*tt+uu*uu+vv*vv);
  
   return F; }
  
@@ -877,13 +828,6 @@ Polar::Polar (double _tmin, double _tmax, double _dt,
   Function (_tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
   Initialize ();
 }
-
-
-/*******************************************************************************
- *  Polar destructor
- */
-Polar::~Polar () { }
-
 
 /*******************************************************************************
  *  Polar defining function
@@ -933,13 +877,6 @@ PolarSin::PolarSin (double _tmin, double _tmax, double _dt,
   Initialize ();
 }
 
-
-/*******************************************************************************
- *  PolarSin destructor
- */
-PolarSin::~PolarSin () { }
-
-
 /*******************************************************************************
  *  PolarSin defining function
  *  @param tt		t value
@@ -983,13 +920,6 @@ PolarSin2::PolarSin2 (double _tmin, double _tmax, double _dt,
   Function (_tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
   Initialize ();
 }
-
-
-/*******************************************************************************
- *  PolarSin2 destructor
- */
-PolarSin2::~PolarSin2 () { }
-
 
 /*******************************************************************************
  *  PolarSin2 defining function
@@ -1040,11 +970,6 @@ PolarR::PolarR (double _tmin, double _tmax, double _dt,
 }
  
 /*******************************************************************************
- *  PolarR destructor
- */
-PolarR::~PolarR () { }
- 
-/*******************************************************************************
  *  PolarR defining function
  *  @param tt		t value
  *  @param uu		u value
@@ -1064,5 +989,3 @@ Vector<4> &PolarR::f (double tt, double uu, double vv) {
  
   return F; 
 }
-
-

@@ -7,7 +7,6 @@
 //	license:      GPL (see License.txt)
 
 
-#include "SurfaceDialogImpl.H"
 #include <qapplication.h>
 #include <qmessagebox.h>
 #include <qlineedit.h>
@@ -17,7 +16,10 @@
 
 #include <fstream>
 #include <dlfcn.h>
+
+#include "SurfaceDialogImpl.H"
 #include "Vector.H"
+#include "Globals.H"
 
 extern QStringList rcdirs;
 
@@ -50,7 +52,9 @@ QString SurfaceDialogImpl::libraryName () {
 bool SurfaceDialogImpl::loadFunction() {
   QString libName;
   //  iterate through all resource directories until you find a plugin subdirectory
-  for (QStringList::Iterator it = rcdirs.begin(); it != rcdirs.end(); ++it ) {
+  for (QStringList::Iterator it = Globals::Instance().rcdirs.begin(); 
+       it != Globals::Instance().rcdirs.end(); 
+       ++it ) {
     QDir current (*it);
 
     if (current.exists ("plugins/surface")) {	//  plugin subdir present?
@@ -105,7 +109,7 @@ bool SurfaceDialogImpl::checkValidity() {
   }
 
   QString currentPath = QDir::currentDirPath ();
-  QDir::setCurrent (*(rcdirs.begin()));		//  qApp->applicationDirPath ());
+  QDir::setCurrent (*(Globals::Instance().rcdirs.begin())); // qApp->applicationDirPath ());
 
   if (!QDir::current ().exists ("plugins"))
     QDir::current ().mkdir ("plugins");

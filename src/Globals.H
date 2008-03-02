@@ -20,53 +20,77 @@
 
 #include "ValuesDialogImpl.H"
 #include "Vector.H"
+#include "SingletonHolder.H"
 
-const bool check_memory = false;
+class Global {
+    public:
+        static bool check_memory;
+        /** sqrt (3), stored to save computation time, probably superfluous   */
+        static double SR3; 
+        /** global (YUCK!) alpha value for transparent display                */
+        static double ALPHA;
+        /** global (YUCK!) shininess value                                    */
+        static double SHININESS;
+        /** global (YUCK!) fog/depth cue color                                */
+        static float fog_color[4];
+        /** color definition for White                                        */
+        static float White[4];
+        /** color definition for Grey                                         */
+        static float grey50[4];
+        static float background[4];
 
-extern double SR3; 
+        static unsigned long MaximumMemory;
+        /** why tf did i make that global again? damn, i really should write
+         *  comments immediately after writing the code</rant>                */
+        QStringList rcdirs;
 
-extern unsigned long MaximumMemory;
+        int GetGLList();
 
-int GetGLList();
+        void SetColor(float R, float G, float B);
+        void SetColor (const Vector<4> &RGB);
+        
+        float *BackgroundColor() { return background; }
+        void setBackground(float r, float g, float b, float a = 1.0) {
+            background[0] = r;
+            background[1] = g;
+            background[2] = b;
+            background[3] = a;
+        }
 
-void SetColor(float R, float G, float B);
+        float *FogColor() { return fog_color; }
+        void setFogColor(float r, float g, float b, float a = 1.0) {
+            fog_color[0] = r;
+            fog_color[1] = g;
+            fog_color[2] = b;
+            fog_color[3] = a;
+        }
 
-extern float background[], fog_color[];
+        double atod (QString);
 
-inline float *BackgroundColor() { return background; }
-inline void setBackground(float r, float g, float b, float a = 1.0) {
-  background[0] = r;
-  background[1] = g;
-  background[2] = b;
-  background[3] = a;
-}
+        std::string itoa (int x);
+        std::string ftoa (double x);
+        
+        void CheckGLErrors (const char *op = 0);
+        
+        void Debug (std::string s, std::string h = "") {
+            QMessageBox::information (NULL, h.c_str (), s.c_str ());
+        }
 
-inline float *FogColor() { return fog_color; }
-inline void setFogColor(float r, float g, float b, float a = 1.0) {
-  fog_color[0] = r;
-  fog_color[1] = g;
-  fog_color[2] = b;
-  fog_color[3] = a;
-}
+        void glVertex (Vector<3> &V) {
+            if (__finite (V.sqnorm ()))
+	       glVertex3dv (V.data ());
+        }
+        
+        Vector<3> vnormalize (double xx, double yy, double zz);
+        
+        template <typename T> void Swap (T &a, T &b) {
+	    T temp (a);
+	    a = b;
+	    b = temp;
+        }
+        static unsigned long check_proc_meminfo ();
+};
 
-double atod (QString);
-
-std::string itoa (int x);
-std::string ftoa (double x);
-
-inline void Debug (std::string s, std::string h = "") {
-    QMessageBox::information (NULL, h.c_str (), s.c_str ());
-}
-
-inline void glVertex (Vector<3> &V) {
-    if (__finite (V.sqnorm ()))
-	glVertex3dv (V.data ());
-}
-    
-template <typename T> void Swap (T &a, T &b) {
-	T temp (a);
-	a = b;
-	b = temp;
-}
+typedef Loki::SingletonHolder<Global> Globals;
 
 #endif // !defined(GLOBALS_H)

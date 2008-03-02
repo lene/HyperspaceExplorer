@@ -204,26 +204,26 @@ double C4DView::Size () {
  *  draw the coordinate cross (on screen or int GL list)
  */
 void C4DView::DrawCoordinates () {
-  for (unsigned j = 0; j < 4; j++) {
-    switch (j) {
-    case 0:
-      SetColor (1., 0., 0.);
-      break;
-    case 1:
-      SetColor (0., 1., 0.);
-      break;
-    case 2:
-      SetColor (0., 0., 1.);
-      break;
-    case 3:
-      SetColor (1., 0., 1.);
-      break;
+    for (unsigned j = 0; j < 4; j++) {
+        switch (j) {
+        case 0:
+            Globals::Instance().SetColor (1., 0., 0.);
+            break;
+        case 1:
+            Globals::Instance().SetColor (0., 1., 0.);
+            break;
+        case 2:
+            Globals::Instance().SetColor (0., 0., 1.);
+            break;
+        case 3:
+            Globals::Instance().SetColor (1., 0., 1.);
+            break;
+        }
+        glBegin (GL_LINES);
+            for (unsigned i = 0; i < 2; i++)
+                Globals::Instance().glVertex (CrossScr[j][i]);
+        glEnd ();
     }
-    glBegin (GL_LINES);
-    for (unsigned i = 0; i < 2; i++)
-      glVertex (CrossScr[j][i]);
-    glEnd ();
-  }
 }
 
 
@@ -694,34 +694,34 @@ void C4DView::OnTimer() {
  *  separated the 4d projection stuff from the 3d opengl handling into this function
  */
 void C4DView::PreRedraw () {
-  SingletonLog::Instance().log("C4DView::PreRedraw ()");
+    SingletonLog::Instance().log("C4DView::PreRedraw ()");
 
-  // this does seem very ineffective to me, deleting and reassigning the GL Lists,
-  // but it does not seem to work any other way...?
+    // this does seem very ineffective to me, deleting and reassigning the GL Lists,
+    // but it does not seem to work any other way...?
   
-  if (DisplayCoordinates) {
-    if (CoordinateCross) glDeleteLists (CoordinateCross,1);
-    CoordinateCross = GetGLList ();
-    glNewList (CoordinateCross, GL_COMPILE);
-      DrawCoordinates ();
+    if (DisplayCoordinates) {
+        if (CoordinateCross) glDeleteLists (CoordinateCross,1);
+        CoordinateCross = Globals::Instance().GetGLList ();
+        glNewList (CoordinateCross, GL_COMPILE);
+        DrawCoordinates ();
+        glEndList ();
+    }
+
+    if (ObjectList) glDeleteLists (ObjectList,1); 
+    ObjectList = Globals::Instance().GetGLList ();
+    glNewList (ObjectList, GL_COMPILE_AND_EXECUTE);
+        /*
+        glBegin (GL_POINTS);
+            SetColor (0., 0., 0.);
+            for (unsigned i = 0; i < 160; i++) glVertex3d (0., 0., i/100.);
+        glEnd ();
+        */
+        Project ();
+        Draw (); 
+
     glEndList ();
-  }
 
-  if (ObjectList) glDeleteLists (ObjectList,1); 
-  ObjectList = GetGLList ();
-  glNewList (ObjectList, GL_COMPILE_AND_EXECUTE);
-    /*
-    glBegin (GL_POINTS);
-      SetColor (0., 0., 0.);
-      for (unsigned i = 0; i < 160; i++) glVertex3d (0., 0., i/100.);
-    glEnd ();
-    */
-    Project ();
-    Draw (); 
-
-  glEndList ();
-
-  SingletonLog::Instance().log("C4DView::PreRedraw () done");
+    SingletonLog::Instance().log("C4DView::PreRedraw () done");
 }
 
 
@@ -755,7 +755,8 @@ void C4DView::RenderScene (unsigned /* Frame */) {			//	draw (frame of animation
       sleep (1);
 #   else
       cerr << "C4DView::RenderScene ():  "
-	   << "ObjectList No. " << itoa (ObjectList) <<" is not a GL list!" << endl;
+              << "ObjectList No. " << Globals::Instance().itoa (ObjectList)
+              << " is not a GL list!" << endl;
       sleep (1);
       PreRedraw ();
 #   endif
@@ -868,9 +869,9 @@ void C4DView::initializeGL (void) {
   SingletonLog::Instance().log("C4DView::initializeGL ()");
   XQGLWidget::initializeGL ();
  
-  glDisable (GL_CULL_FACE);                            		//    disable face culling
+  glDisable (GL_CULL_FACE);                             //    disable face culling
 
-  float *background = ::BackgroundColor();
+  float *background = Globals::Instance().BackgroundColor();
   glClearColor (background[0], background[1], background[2], background[3]);	//    set background color
 
   if (RenderToPixmap /* && CurrentlyRendering */ ) {
@@ -878,26 +879,26 @@ void C4DView::initializeGL (void) {
 
     PreRedraw ();
 
-    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);    		//    clear the window
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);   //    clear the window
 
-    if (DisplayPolygons)                                	//    this might move to a special routine
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);        	//    "SwitchWireframe ()"
+    if (DisplayPolygons)                                //    this might move to a special routine
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);      //    "SwitchWireframe ()"
     else 
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-    glPushMatrix();                                        	//    save the transformation matrix
-    // glTranslated(0.0, /*Size ()*.75*/0., 0);            	//    set the camera position
+    glPushMatrix();                                     //    save the transformation matrix
+    // glTranslated(0.0, /*Size ()*.75*/0., 0);         //    set the camera position
 
-    glTranslated (m_transX, m_transY, m_camZ);            	//    apply object translation
-    glRotated(m_rotX, 1.0, 0.0, 0.0);                    	//     -"-    -"-     rotation
+    glTranslated (m_transX, m_transY, m_camZ);          //    apply object translation
+    glRotated(m_rotX, 1.0, 0.0, 0.0);                   //     -"-    -"-     rotation
     glRotated(m_rotY, 0.0, 1.0, 0.0);
     glRotated(m_rotZ, 0.0, 0.0, 1.0);
 
 
     SingletonLog::Instance().log("  RenderScene");
-    RenderScene (0);                                		//    draw current frame
+    RenderScene (0);                                	//    draw current frame
 
-    glPopMatrix();                                        	//    restore transformation matrix
+    glPopMatrix();                                      //    restore transformation matrix
   }
   SingletonLog::Instance().log("C4DView::initializeGL() done");
 }
@@ -949,14 +950,13 @@ void C4DView::UpdateStatus (QString status) {            	//    write a text to 
 }
 
 
-/*******************************************************************************
- *  @param on		wheter to use fog
- */
+/** @param on whether to use fog                                              */
 void C4DView::SetupDepthCue (bool on) {
   float size = Size ();
   DepthCue3D = on;
   if (on) {
-    XQGLWidget::SetupDepthCue (fabs (m_camZ)-size/2., fabs (m_camZ)+size/2.*SR3);
+      XQGLWidget::SetupDepthCue(fabs(m_camZ)-size/2.,
+                                fabs (m_camZ)+size/2.*Globals::Instance().SR3);
     glEnable (GL_FOG);
   }
   else glDisable (GL_FOG);

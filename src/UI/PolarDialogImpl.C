@@ -7,8 +7,6 @@
 //	license:      GPL (see License.txt)
 
 
-#include "PolarDialogImpl.H"
-
 #include <qapplication.h>
 #include <qmessagebox.h>
 #include <qlineedit.h>
@@ -18,7 +16,10 @@
 
 #include <fstream>
 #include <dlfcn.h>
+
+#include "PolarDialogImpl.H"
 #include "Vector.H"
+#include "Globals.H"
 
 extern QStringList rcdirs;
 
@@ -62,7 +63,9 @@ QString PolarDialogImpl::libraryName () {
 bool PolarDialogImpl::loadFunction() {
   QString libName;
   //  iterate through all resource directories until you find a plugin subdirectory
-  for (QStringList::Iterator it = rcdirs.begin(); it != rcdirs.end(); ++it ) {
+  for (QStringList::Iterator it = Globals::Instance().rcdirs.begin(); 
+       it != Globals::Instance().rcdirs.end(); 
+       ++it ) {
     QDir current (*it);
     if (current.exists ("plugins/polar")) {	//  plugin subdir present?
       libName = Q3FileDialog::getOpenFileName(current.absPath ()+"/plugins/polar",
@@ -139,7 +142,7 @@ bool PolarDialogImpl::checkValidity() {
   }
 
   QString currentPath = QDir::currentDirPath ();
-  QDir::setCurrent (*(rcdirs.begin()));		//  qApp->applicationDirPath ());
+  QDir::setCurrent (*(Globals::Instance().rcdirs.begin()));
 
   if (!QDir::current ().exists ("plugins"))
     QDir::current ().mkdir ("plugins");

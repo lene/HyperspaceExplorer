@@ -7,7 +7,7 @@
 //	license:      GPL (see License.txt)
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 #ifndef COMPLEXFUNCTION_H
 #define COMPLEXFUNCTION_H 1
@@ -18,195 +18,200 @@
 #include "Surface.H"
 
 class ComplexFunction: public Surface {
-public:
+    public:
 	ComplexFunction (double _umin, double _umax, double _du,
-		 			 double _vmin, double _vmax, double _dv);
+			 double _vmin, double _vmax, double _dv);
 	virtual ~ComplexFunction ();
 	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
-protected:
-    virtual Vector<4> &f (double, double);
-	virtual std::complex<double> g (std::complex <double>) = 0;
+        typedef std::complex<double> function_type(std::complex <double>) ;
+
+    protected:
+        virtual Vector<4> &f (double, double);
+	virtual function_type g = 0;
 	void Initialize (void);
 };
 
 
 class z2: public ComplexFunction {
-public:
+    public:
 	z2 (double _umin, double _umax, double _du,
-		double _vmin, double _vmax, double _dv);
-	virtual ~z2();
+	    double _vmin, double _vmax, double _dv);
+	virtual ~z2() { }
 	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
-protected:
-	virtual std::complex<double> g (std::complex <double>);
+    protected:
+	virtual function_type g;
 };
 
 class z3: public ComplexFunction {
-public:
+    public:
 	z3 (double _umin, double _umax, double _du,
-		double _vmin, double _vmax, double _dv);
-	virtual ~z3();
+	    double _vmin, double _vmax, double _dv);
+	virtual ~z3() { }
 	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
-protected:
-	virtual std::complex<double> g (std::complex <double>);
+    protected:
+        virtual function_type g;
 };
 
 class zA: public ComplexFunction {
-public:
+    public:
 	zA (double _umin, double _umax, double _du,
-		double _vmin, double _vmax, double _dv,
-		double _alpha);
-	virtual ~zA ();
-	virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) { 
-		alpha = _a; }
+	    double _vmin, double _vmax, double _dv,
+	    double _alpha);
+	virtual ~zA () { }
+	virtual void SetParameters(double _a = 0, double = 0, double = 0, double = 0) {
+	   alpha = _a; 
+        }
 
-protected:
-	virtual std::complex<double> g (std::complex <double>);
+    protected:
+        virtual function_type g;
 
 	double alpha;
 };
 
 class ez: public ComplexFunction {
-public:
+    public:
 	ez (double _umin, double _umax, double _du,
-		double _vmin, double _vmax, double _dv,
-		double _alpha);
-	virtual ~ez();
-	virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) { 
-		alpha = _a; }
+	    double _vmin, double _vmax, double _dv,
+	    double _alpha);
+	virtual ~ez() { }
+	virtual void SetParameters(double _a = 0, double = 0, double = 0, double = 0) {
+            alpha = _a;
+        }
 
-protected:
-	virtual std::complex<double> g (std::complex <double>);
-	double alpha;
+    protected:
+        virtual function_type g;
+        double alpha;
 };
 
 class emz2: public ComplexFunction {
-public:
+    public:
 	emz2 (double _umin, double _umax, double _du,
-		  double _vmin, double _vmax, double _dv,
-		  double _alpha);
-	virtual ~emz2();
-	virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) { 
-		alpha = _a; }
+	      double _vmin, double _vmax, double _dv,
+	      double _alpha);
+	virtual ~emz2() { }
+	virtual void SetParameters(double _a = 0, double = 0, double = 0, double = 0) {
+	   alpha = _a;
+        }
 
-protected:
-	virtual std::complex<double> g (std::complex <double>);
-	double alpha;
+    protected:
+        virtual function_type g;
+        double alpha;
 };
 
 class zm1: public ComplexFunction {
-public:
+    public:
 	zm1 (double _umin, double _umax, double _du,
-		 double _vmin, double _vmax, double _dv);
-	virtual ~zm1 ();
-	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
+	     double _vmin, double _vmax, double _dv);
+	virtual ~zm1 () { }
+	virtual void SetParameters(double = 0, double = 0, double = 0, double = 0) { }
 
-protected:
-	virtual std::complex<double> g (std::complex <double>);
+    protected:
+        virtual function_type g;
 };
 
 class zm2: public ComplexFunction {
-public:
+    public:
 	zm2 (double _umin, double _umax, double _du,
-		 double _vmin, double _vmax, double _dv);
-	virtual ~zm2 ();
-	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
+	     double _vmin, double _vmax, double _dv);
+	virtual ~zm2 () { }
+	virtual void SetParameters(double = 0, double = 0, double = 0, double = 0) { }
 
-protected:
-	virtual std::complex<double> g (std::complex <double>);
+    protected:
+        virtual function_type g;
 };
 
 class sqrtz: public ComplexFunction {
-public:
+    public:
 	sqrtz (double _umin, double _umax, double _du,
-		   double _vmin, double _vmax, double _dv);
-	virtual ~sqrtz ();
-	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
+	       double _vmin, double _vmax, double _dv);
+	virtual ~sqrtz () { }
+	virtual void SetParameters(double = 0, double = 0, double = 0, double = 0) { }
 
-protected:
-	virtual std::complex<double> g (std::complex <double>);
+    protected:
+        virtual function_type g;
 };
 
 class lnz: public ComplexFunction {
-public:
+    public:
 	lnz (double _umin, double _umax, double _du,
-		 double _vmin, double _vmax, double _dv);
-	virtual ~lnz ();
-	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
+	     double _vmin, double _vmax, double _dv);
+	virtual ~lnz () { }
+	virtual void SetParameters(double = 0, double = 0, double = 0, double = 0) { }
 
-protected:
-	virtual std::complex<double> g (std::complex <double>);
+    protected:
+        virtual function_type g;
 };
 
 class sinz: public ComplexFunction {
-public:
+    public:
 	sinz (double _umin, double _umax, double _du,
-		 double _vmin, double _vmax, double _dv);
-	virtual ~sinz ();
+	      double _vmin, double _vmax, double _dv);
+	virtual ~sinz () { }
 	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
-protected:
-	virtual std::complex<double> g (std::complex <double>);
+    protected:
+        virtual function_type g;
 };
 
 class cosz: public ComplexFunction {
-public:
+    public:
 	cosz (double _umin, double _umax, double _du,
-		 double _vmin, double _vmax, double _dv);
-	virtual ~cosz ();
+	      double _vmin, double _vmax, double _dv);
+	virtual ~cosz () { }
 	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
-protected:
-	virtual std::complex<double> g (std::complex <double>);
+    protected:
+        virtual function_type g;
 };
 
 class sinhz: public ComplexFunction {
-public:
+    public:
 	sinhz (double _umin, double _umax, double _du,
-		 double _vmin, double _vmax, double _dv);
-	virtual ~sinhz ();
+	       double _vmin, double _vmax, double _dv);
+	virtual ~sinhz () { }
 	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
-protected:
-	virtual std::complex<double> g (std::complex <double>);
+    protected:
+        virtual function_type g;
 };
 
 class coshz: public ComplexFunction {
-public:
+    public:
 	coshz (double _umin, double _umax, double _du,
-		 double _vmin, double _vmax, double _dv);
-	virtual ~coshz ();
+	       double _vmin, double _vmax, double _dv);
+	virtual ~coshz () { }
 	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
-protected:
-	virtual std::complex<double> g (std::complex <double>);
+    protected:
+        virtual function_type g;
 };
 
 class tanz: public ComplexFunction {
-public:
+    public:
 	tanz (double _umin, double _umax, double _du,
 		 double _vmin, double _vmax, double _dv);
-	virtual ~tanz ();
+	virtual ~tanz () { }
 	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
-protected:
-	virtual std::complex<double> g (std::complex <double>);
+    protected:
+        virtual function_type g;
 };
-#if 0
+
 class Polynomial: public ComplexFunction {
-public:
-	Polynomial (double _umin, double _umax, double _du,
-				double _vmin, double _vmax, double _dv,
-				double _a1, double _a2, double _a3, double _a4);
-	virtual ~Polynomial ();
-	virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0) {
+    public:
+	Polynomial(double _umin, double _umax, double _du,
+		   double _vmin, double _vmax, double _dv,
+		   double _a1, double _a2, double _a3, double _a4);
+	virtual ~Polynomial () { }
+	virtual void SetParameters(double _a = 0, double _b = 0, 
+                                   double _c = 0, double _d = 0) {
 		a[1] = _a; a[2] = _b; a[3] = _c; a[4] = _d; }
 
-protected:
-	virtual complex<double> g (complex <double>);
+    protected:
+        virtual function_type g;
 	double a[5];
 };
-#endif
 #endif

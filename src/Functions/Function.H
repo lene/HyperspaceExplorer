@@ -13,8 +13,7 @@
 
 #include "Vector.H"
 
-/*******************************************************************************
- *  a  Function is a mathematical function  f: R^3 -> R^4,  evaluated on a
+/** a  Function is a mathematical function  f: R^3 -> R^4,  evaluated on a
  *  3-dimensional grid, together with methods  to rotate and translate the grid
  *  in 4-space,  to project the transformed grid onto 3-space, and to draw the
  *  projected grid into an OpenGL display list.
@@ -37,71 +36,73 @@
  *	- Transform ()
  *	- operator () (double t, double u, double v)
  *	- Initialize ();
- *	- InitMem ();
- */
+ *	- InitMem ();                                                         */
 class Function {
-public:
-    Function();
-    Function (double _tmin, double _tmax, double _dt,
-	      double _umin, double _umax, double _du,
-	      double _vmin, double _vmax, double _dv);
-    virtual ~Function();
+    public:
+        Function();
+        Function (double _tmin, double _tmax, double _dt,
+	         double _umin, double _umax, double _du,
+	          double _vmin, double _vmax, double _dv);
+        virtual ~Function();
 
-    virtual void Transform (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw,
-			    double Tx, double Ty, double Tz, double Tw);
-    void Transform (void) { Transform (0, 0, 0, 0, 0, 0,  0, 0, 0, 0); }
+        virtual void Transform (double Rxy, double Rxz, double Rxw, 
+                                double Ryz, double Ryw, double Rzw,
+			        double Tx, double Ty, double Tz, double Tw);
+        void Transform (void) { Transform (0, 0, 0, 0, 0, 0,  0, 0, 0, 0); }
 
-    virtual void Project (double ScrW, double CamW, bool DepthCue4D);
-    virtual void Draw (void);
+        virtual void Project (double ScrW, double CamW, bool DepthCue4D);
+        virtual void Draw (void);
 	
-    virtual void ReInit(double _tmin, double _tmax, double _dt,
-			double _umin, double _umax, double _du,
-			double _vmin, double _vmax, double _dv);
-    virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0);
+        virtual void ReInit(double _tmin, double _tmax, double _dt,
+			    double _umin, double _umax, double _du,
+			    double _vmin, double _vmax, double _dv);
+        virtual void SetParameters (double _a = 0, double _b = 0, 
+                                    double _c = 0, double _d = 0);
 
-    Vector<4> ***Data (void) { return X; }
+        Vector<4> ***Data (void) { return X; }
 
-    Vector<4> &operator () (double t, double u, double v) {
-	unsigned it = unsigned ((t-tmin)/dt), 
-		 iu = unsigned ((u-umin)/du), 
-		 iv = unsigned ((v-vmin)/dv);
-	return X[it][iu][iv]; }
+        Vector<4> &operator () (double t, double u, double v) {
+	   unsigned it = unsigned ((t-tmin)/dt),
+		    iu = unsigned ((u-umin)/du),
+		    iv = unsigned ((v-vmin)/dv);
+	   return X[it][iu][iv]; }
 
-protected:
-    virtual Vector<4> &f (double, double, double) = 0;
-    virtual Vector<4> *df (double, double, double);
-    virtual Vector<4> &normal (double, double, double);
+        typedef Vector<4> &function_type (double, double, double);
+        
+    protected:
+        virtual function_type f = 0;
+        virtual Vector<4> *df (double, double, double);
+        virtual function_type normal;
     
-    virtual void Initialize (void);
-    void InitMem (void);
-    void Free (void);
-    virtual unsigned long MemRequired (void);
+        virtual void Initialize (void);
+        void InitMem (void);
+        void Free (void);
+        virtual unsigned long MemRequired (void);
     
-    void DrawPlane (unsigned);
-    void DrawStrip (unsigned, unsigned);
-    void DrawCube (unsigned, unsigned, unsigned);
+        void DrawPlane (unsigned);
+        void DrawStrip (unsigned, unsigned);
+        void DrawCube (unsigned, unsigned, unsigned);
     
-    double tmin, tmax, dt,
-	umin, umax, du,
-	vmin, vmax, dv;
+        double tmin, tmax, dt,
+	       umin, umax, du,
+	       vmin, vmax, dv;
 
-    unsigned tsteps, usteps, vsteps;
+        unsigned tsteps, usteps, vsteps;
 
-    unsigned NumVertices;
+        unsigned NumVertices;
 
-    Vector<4> F;
+        Vector<4> F;
 
-    //      temporary storage for the function values on the grid
-    Vector<4> ***X, ***Xtrans;
+        //      temporary storage for the function values on the grid
+        Vector<4> ***X, ***Xtrans;
 	Vector<3> ***Xscr;
-    Vector<4> *Xchunk, *XtransChunk;
+        Vector<4> *Xchunk, *XtransChunk;
 	Vector<3> *XscrChunk;
         
         //      storage for the coloring of the vertices
-    float ***R, ***G, ***B;
-    float *RGBChunk;
+        float ***R, ***G, ***B;
+        float *RGBChunk;
 };
-
 
 
 /*******************************************************************************
@@ -114,74 +115,76 @@ protected:
 ////////////////////////////////////////////////////////////////////////////////
 
 class Hypersphere: public Function {
-public:
-  Hypersphere (double _tmin, double _tmax, double _dt,
-	   double _umin, double _umax, double _du,
-	   double _vmin, double _vmax, double _dv,
-	   double _rad = 1);
-  virtual ~Hypersphere();
-  virtual void SetParameters (double _a = 0, double = 0, double = 0, 
-			      double = 0) { Radius = _a; }
+    public:
+        Hypersphere (double _tmin, double _tmax, double _dt,
+	             double _umin, double _umax, double _du,
+	             double _vmin, double _vmax, double _dv,
+	             double _rad = 1);
+        virtual ~Hypersphere() { }
+        virtual void SetParameters (double _a = 0, double = 0, double = 0, 
+			            double = 0) { Radius = _a; }
 
-protected:
-  virtual Vector<4> &f (double, double, double);
-  virtual Vector<4> &normal (double, double, double);
+    protected:
+        virtual function_type f;
+        virtual function_type normal;
 
-  double Radius;
+        double Radius;
 };
 
 
 ///////////////////////////////////////////////////////////////////////////////
 
 class Torus1: public Function {
-public:
-  Torus1 (double _tmin, double _tmax, double _dt,
-	  double _umin, double _umax, double _du,
-	  double _vmin, double _vmax, double _dv,
-	  double _R = 2, double _r = 1, double _rho = 0.5);
-  virtual ~Torus1();
-        virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double = 0) {
-                R = _a; r = _b; rho = _c; }
+    public:
+        Torus1 (double _tmin, double _tmax, double _dt,
+	        double _umin, double _umax, double _du,
+                double _vmin, double _vmax, double _dv,
+	        double _R = 2, double _r = 1, double _rho = 0.5);
+        virtual ~Torus1() { }
+        virtual void SetParameters (double _a = 0, double _b = 0, 
+                                    double _c = 0, double = 0) {
+            R = _a; r = _b; rho = _c; }
 
-protected:
-    virtual Vector<4> &f (double, double, double);
+    protected:
+        virtual function_type f;
 
-  double R, r, rho;
+        double R, r, rho;
 };
 
 
 ///////////////////////////////////////////////////////////////////////////////
 
 class Torus2: public Function {
-public:
-  Torus2 (double _tmin, double _tmax, double _dt,
-	  double _umin, double _umax, double _du,
-	  double _vmin, double _vmax, double _dv,
-	  double _R = 1, double _r = 0.5);
-  virtual ~Torus2 ();
-        virtual void SetParameters (double _a = 0, double _b = 0, double = 0, double = 0) {
+    public:
+        Torus2 (double _tmin, double _tmax, double _dt,
+	        double _umin, double _umax, double _du,
+	        double _vmin, double _vmax, double _dv,
+	        double _R = 1, double _r = 0.5);
+        virtual ~Torus2 () { }
+        virtual void SetParameters (double _a = 0, double _b = 0, 
+                                    double = 0, double = 0) {
                 R = _a; r = _b; }
 
-protected:
-    virtual Vector<4> &f (double, double, double);
+    protected:
+        virtual function_type f;
 
-  double R, r;
+        double R, r;
 };
 
 
 ///////////////////////////////////////////////////////////////////////////////
 
 class Fr3r: public Function {
-public:
-  Fr3r (double _tmin, double _tmax, double _dt,
-	double _umin, double _umax, double _du,
-	double _vmin, double _vmax, double _dv);
-  virtual ~Fr3r();
+    public:
+        Fr3r (double _tmin, double _tmax, double _dt,
+	      double _umin, double _umax, double _du,
+	       double _vmin, double _vmax, double _dv);
+        virtual ~Fr3r() { }
 
-protected:
-    virtual Vector<4> &f (double, double, double);
+    protected:
+        virtual function_type f;
 
-  double Radius;
+        double Radius;
 };
 
 
@@ -194,12 +197,12 @@ public:
 			  double _umin, double _umax, double _du,
 			  double _vmin, double _vmax, double _dv,
 			  double _M = 1, double _R = 0.25);
-    virtual ~GravitationPotential ();
+    virtual ~GravitationPotential () { }
     virtual void SetParameters (double _a = 0, double _b = 0, double = 0, double = 0) {
 	M = _a; R = _b; }
 
 protected:
-    virtual Vector<4> &f (double, double, double);
+    virtual function_type f;
 
     double M,	                       				//      not really M, but M/R^3
 	   R;
@@ -212,10 +215,10 @@ public:
     Fr3rSin (double _tmin, double _tmax, double _dt,
 	     double _umin, double _umax, double _du,
 	     double _vmin, double _vmax, double _dv);
-    virtual ~Fr3rSin ();
+    virtual ~Fr3rSin () { }
  
 protected:
-    virtual Vector<4> &f (double, double, double);
+    virtual function_type f;
 };
  
 ///////////////////////////////////////////////////////////////////////////////
@@ -225,10 +228,10 @@ public:
     Fr3rExp (double _tmin, double _tmax, double _dt,
 	     double _umin, double _umax, double _du,
 	     double _vmin, double _vmax, double _dv);
-    virtual ~Fr3rExp ();
+    virtual ~Fr3rExp () { }
  
 protected:
-    virtual Vector<4> &f (double, double, double);
+    virtual function_type f;
 };
  
 ///////////////////////////////////////////////////////////////////////////////
@@ -238,10 +241,10 @@ public:
     Polar (double _tmin, double _tmax, double _dt,
 	   double _umin, double _umax, double _du,
 	   double _vmin, double _vmax, double _dv);
-    virtual ~Polar();
+    virtual ~Polar() { }
  
 protected:
-    virtual Vector<4> &f (double, double, double);
+    virtual function_type f;
 };
  
 
@@ -253,12 +256,12 @@ public:
 	      double _umin, double _umax, double _du,
 	      double _vmin, double _vmax, double _dv,
 	      double _phase = 2);
-    virtual ~PolarSin ();
+    virtual ~PolarSin () { }
     virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
 	Phase = _a; }
  
 protected:
-    virtual Vector<4> &f (double, double, double);
+    virtual function_type f;
     double Phase;
 };
 
@@ -270,10 +273,10 @@ public:
     PolarSin2 (double _tmin, double _tmax, double _dt,
 	       double _umin, double _umax, double _du,
 	       double _vmin, double _vmax, double _dv);
-    virtual ~PolarSin2 ();
+    virtual ~PolarSin2 () { }
  
 protected:
-    virtual Vector<4> &f (double, double, double);
+    virtual function_type f;
 };
 
 
@@ -285,12 +288,12 @@ public:
 	    double _umin, double _umax, double _du,
 	    double _vmin, double _vmax, double _dv,
 	    double _phase = 2);
-    virtual ~PolarR ();
+    virtual ~PolarR () { }
     virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
 	Phase = _a; }
  
 protected:
-    virtual Vector<4> &f (double, double, double);
+    virtual function_type f;
     double Phase;
 };
 

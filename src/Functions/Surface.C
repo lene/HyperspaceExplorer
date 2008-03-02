@@ -314,17 +314,17 @@ void Surface::Draw (void) {
 void Surface::DrawStrip (unsigned u){
     glBegin (GL_QUAD_STRIP);
 
-    SetColor (R [u][0], G [u][0], B [u][0]);	
-    glVertex (Xscr[u][0]);
-    SetColor (R [u+1][0], G [u+1][0], B [u+1][0]);	
-    glVertex (Xscr[u+1][0]);
+    Globals::Instance().SetColor (R [u][0], G [u][0], B [u][0]);	
+    Globals::Instance().glVertex (Xscr[u][0]);
+    Globals::Instance().SetColor (R [u+1][0], G [u+1][0], B [u+1][0]);	
+    Globals::Instance().glVertex (Xscr[u+1][0]);
     NumVertices += 2;
 
     for (unsigned v = 1; v <= vsteps; v++) {
-	SetColor (R [u][v], G [u][v], B [u][v]);	
-	glVertex (Xscr[u][v]);
-	SetColor (R [u+1][v], G [u+1][v], B [u+1][v]);	
-	glVertex (Xscr[u+1][v]);
+        Globals::Instance().SetColor (R [u][v], G [u][v], B [u][v]);	
+        Globals::Instance().glVertex (Xscr[u][v]);
+        Globals::Instance().SetColor (R [u+1][v], G [u+1][v], B [u+1][v]);	
+        Globals::Instance().glVertex (Xscr[u+1][v]);
 
 	NumVertices += 2;
     }

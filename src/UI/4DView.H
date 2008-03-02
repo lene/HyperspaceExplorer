@@ -122,44 +122,43 @@ protected:
   Function *F;
 # endif  
 
-  QStatusBar *StatusBar;
-  QString ObjectName;
+    QStatusBar *StatusBar;
+    QString ObjectName;
   
-  double dxy, dxz, dxw, dyz, dyw, dzw,
-         dx, dy, dz;
+    double dxy, dxz, dxw, dyz, dyw, dzw,
+           dx, dy, dz;
   
-  unsigned animation_fps;
+    unsigned animation_fps;
 
-  Vector<4> ***Data;
+    Vector<4> ***Data;
 
-  Vector<3> ***Xscr;
-  Vector<4> ***Xtrans;
-  Vector<3> *XscrChunk;
-  Vector<4> *XtransChunk;
+    Vector<3> ***Xscr;
+    Vector<4> ***Xtrans;
+    Vector<3> *XscrChunk;
+    Vector<4> *XtransChunk;
 	
-	float ***R, ***G, ***B;
-	float *RGBChunk;
+    float ***R, ***G, ***B;
+    float *RGBChunk;
 
-	unsigned tsteps, usteps, vsteps;
-	double CamW, ScrW;
+    unsigned tsteps, usteps, vsteps;
+    double CamW, ScrW;
 	
-	Vector<4> **Cross, **CrossTrans;
+    Vector<4> **Cross, **CrossTrans;
     Vector<3> **CrossScr;
+    
+    void UpdateStatus (QString = "");
 
+    void AssignValues (const char *Title = 0,
+		       const char *Parameter1 = 0,  const char *Parameter2 = 0,
+		       const char *Parameter3 = 0,  const char *Parameter4 = 0);
 
-  void UpdateStatus (QString = "");
+    void OnPaint();
 
-  void AssignValues (const char *Title = 0,
-		     const char *Parameter1 = 0,  const char *Parameter2 = 0,
-		     const char *Parameter3 = 0,  const char *Parameter4 = 0);
-
-  void OnPaint();
-
-  virtual void resizeEvent ( QResizeEvent * );
-  virtual void mousePressEvent (QMouseEvent *);
-  virtual void mouseReleaseEvent ( QMouseEvent *);
-  virtual void mouseMoveEvent(QMouseEvent *);
-  virtual void mouseDoubleClickEvent ( QMouseEvent *);
+    virtual void resizeEvent ( QResizeEvent * );
+    virtual void mousePressEvent (QMouseEvent *);
+    virtual void mouseReleaseEvent ( QMouseEvent *);
+    virtual void mouseMoveEvent(QMouseEvent *);
+    virtual void mouseDoubleClickEvent ( QMouseEvent *);
 
   Q3PopupMenu *functions, *animation;
   int linesID, crossID, hyperfogID, pixmapID;

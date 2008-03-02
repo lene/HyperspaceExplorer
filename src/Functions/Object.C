@@ -126,8 +126,8 @@ void Object::Draw () {
     glBegin (GL_QUADS);
     for (unsigned i = 0; i < NumSurfaces; i++) 
 	for (unsigned j = 0; j < 4; j++) {
-	    SetColor (R[Surface[j][i]], G[Surface[j][i]], B[Surface[j][i]]);
-	    glVertex (Xscr[Surface[j][i]]);
+            Globals::Instance().SetColor(R[Surface[j][i]], G[Surface[j][i]], B[Surface[j][i]]);
+            Globals::Instance().glVertex(Xscr[Surface[j][i]]);
 	}
     glEnd ();
 }
@@ -274,14 +274,14 @@ void Sponge::Initialize(void) {
     else {
         if (distance > 3) distance = 3; 	//  dunno if this is wise
 
-	if (MemRequired (distance) > MaximumMemory) {	//  which is defined in Globals.C, yuck
+        if (MemRequired (distance) > Globals::Instance().MaximumMemory) {
 	  cerr << "Menger sponge of level " << Level	//  but there seems to be no portable way to find it out
 	       << " would require approx. " << MemRequired (distance)/1024/1024  //  and the rcfile-system is not ready yet
 	       << " MB of memory." << endl;
-	  if (check_memory) {
+          if (Globals::Instance().check_memory) {
 	    cerr << "This is more than your available Memory of "
-		 << MaximumMemory/1024/1024 << "MB." << endl;
-	    while (MemRequired (distance) > MaximumMemory) Level--;
+                    << Globals::Instance().MaximumMemory/1024/1024 << "MB." << endl;
+            while (MemRequired (distance) > Globals::Instance().MaximumMemory) Level--;
 	    cerr << "Using level " << Level << " instead." << endl;
 	  }
 	}
@@ -461,14 +461,14 @@ void Gasket::Initialize() {
     if (Level < 1)
 	List.push_back (new Pyramid (center, rad));
     else {
-	if (MemRequired () > MaximumMemory) {			//  which is defined in Globals.C
+        if (MemRequired () > Globals::Instance().MaximumMemory) {
 	  cerr << "Sierpinski gasket of level " << Level	//  see Sponge::Sponge (...)
 	       << " would require approx. " << MemRequired ()/1024/1024
 	       << " MB of memory." << endl;
-	  if (check_memory) {
+          if (Globals::Instance().check_memory) {
 	    cerr << "This is more than your available Memory of "
-		 << MaximumMemory/1024/1024 << "MB." << endl;
-	    while (MemRequired () > MaximumMemory) Level--;
+                    << Globals::Instance().MaximumMemory/1024/1024 << "MB." << endl;
+            while (MemRequired () > Globals::Instance().MaximumMemory) Level--;
 	    cerr << "Using level " << Level << " instead." << endl;
 	  }
 	}

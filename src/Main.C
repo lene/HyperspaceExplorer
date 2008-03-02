@@ -13,8 +13,7 @@
 #include <qstring.h>
 #include <qdir.h>
 #include "4DView.H"
-
-QStringList rcdirs;	//  why tf did i make that global again? damn, i really should write comments immediately after writing the code</rant>
+#include "Globals.H"
 
 using std::cout;
 using std::cerr;
@@ -232,19 +231,19 @@ void benchmark (const unsigned num_runs = 10) {
  *  @param argv 	array of arguments
  */
 void parse (int argc, char *argv[]) {
-  for (int i = 0; i < argc; i++) {
-    if (QString (argv[i]) == QString ("--rcdir"))
-      if (i+1 < argc) rcdirs.append (QString (argv[i+1]));
-    if (QString (argv[i]) == QString ("--help") ||
-	QString (argv[i]) == QString ("-h")) {
-      help (argv[0]);
-      exit (0);
+    for (int i = 0; i < argc; i++) {
+        if (QString (argv[i]) == QString ("--rcdir"))
+            if (i+1 < argc) Globals::Instance().rcdirs.append (QString (argv[i+1]));
+        if (QString (argv[i]) == QString ("--help") ||
+	    QString (argv[i]) == QString ("-h")) {
+            help (argv[0]);
+            exit (0);
+        }
+        if (QString (argv[i]) == QString ("--benchmark")) {
+            if (i+1 < argc) benchmark (QString (argv[i+1]).toUInt ());
+            else benchmark (10);
+        }
     }
-    if (QString (argv[i]) == QString ("--benchmark")) {
-      if (i+1 < argc) benchmark (QString (argv[i+1]).toUInt ());
-      else benchmark (10);
-    }
-  }
 }
 
 
@@ -282,11 +281,11 @@ int main (int argc, char *argv[]) {
                                                    (QDir::home ().absPath ()+"/"+rcdir+"/plugins/Vector.H").ascii () );
 #   endif    
   }  
-  rcdirs.append (QDir::home ().absPath ()+"/"+rcdir);
+  Globals::Instance().rcdirs.append (QDir::home ().absPath ()+"/"+rcdir);
   
   parse (argc, argv);
 
-  rcdirs.append (".");
+  Globals::Instance().rcdirs.append (".");
 
   C4DView view;
   app.setMainWidget (&view);
