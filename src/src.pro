@@ -43,7 +43,7 @@ HEADERS += Loki/SingletonHolder.H
 INCLUDEPATH += .
 DEPENDPATH += .
 HEADERS += Globals.H Help.H Matrix.H Vector.H Log.H 
-SOURCES += Globals.C Help.C Main.C Log.C
+SOURCES += Globals.C Help.C Main.C Log.C 
 ###
 ################################################################################
 

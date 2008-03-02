@@ -23,20 +23,16 @@
 # endif
 
 template <unsigned D, typename N = double> class Vector {
-  public:
+    public:
+        N x[D];
+        
+    public:
 
     //----------  management  ----------
 
-    Vector<D, N> (); 
-    Vector<D, N> (std::vector<N>);
+    Vector<D, N> () { } 
+//    Vector<D, N> (std::vector<N>);
     Vector<D, N> (N, ... );
-
-    //  destructor is non-virtual for performance reasons
-    ~Vector<D, N> (void);
-
-    Vector<D, N> (const Vector<D, N> &X);
-
-    Vector<D, N> &operator= (const Vector<D, N> &Y);
 
     //----------  access      ----------
 
@@ -62,8 +58,6 @@ template <unsigned D, typename N = double> class Vector {
 
     N *data () { return x; }
 
-  private:
-    N *x;
 };
  
 template <unsigned D, typename N> 
@@ -73,29 +67,23 @@ template <unsigned D, typename N>
 
     //  ------------  management  ------------
 
-/** default constructor, implicitly initialized to zero vector                */
-template <unsigned D, typename N> 
-        Vector<D, N>::Vector ():
-    x (new N [D]) { 
-} //  
-
 /** construct a Vector from a std::vector
  *  @param v vector                                                           */
+/*
 template <unsigned D, typename N> 
         Vector<D, N>::Vector (std::vector<N> v) :
     x (new N [D]) {
     for (unsigned i = 0; i < D; i++) {
         x[i] = v[i];
     }
-    intentional typo to remind me to actually use this constructor in the code!
 }
-
+*/
 /** constructor with variable arglist
  *  @param x0 first element of the Vector
  *  @param ... the following elements                                         */
 template <unsigned D, typename N> 
         Vector<D, N>::Vector (N x0, ... ) :
-        x (new N [D]) {
+        x () {
     x[0] = x0;
     unsigned i = 0;
     va_list argp;
@@ -105,32 +93,9 @@ template <unsigned D, typename N>
     }
     va_end (argp);
 }
+    
+//----------  access      ----------
 
-/** destructor; frees the memory reserved by the vector members               */
-template <unsigned D, typename N>
-        Vector<D, N>::~Vector (void) { 
-    delete [] x; 
-}
-
-/** copy constructor: makes a deep copy
- *  @param X other Vector                                                     */
-template <unsigned D, typename N> 
-        Vector<D, N>::Vector(const Vector<D, N> &X) {	//  Vector:: copy constructor
-    x = new N [D];
-    for ( unsigned i = 0; i < D; i++ ) x[i] = X[i];
-}
-	
-/** assignment operator; copies contents but does not free memory
- *  @param X other Vector                                                     */
-template <unsigned D, typename N>
-        Vector<D, N> &Vector<D, N>::operator=(const Vector<D, N> &Y) {
-    if ( Y.x ) {				//  copy only valid source Vectors
-	for ( unsigned i = 0; i < D; i++ ) x[i] = Y[i];	//  copy the elements
-    }
-    return *this;
-}
-
-    //----------  access      ----------
 /** operator [] returns a reference to component i
  *  @param i index of the element
  *  @return non-const reference to the accessed element                       */

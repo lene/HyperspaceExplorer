@@ -259,7 +259,9 @@ unsigned long Sponge::MemRequired (unsigned distance) {
 /*******************************************************************************
  *  Sponge destructor
  */
-Sponge::~Sponge () { }
+Sponge::~Sponge () { 
+    List.clear();
+}
 
 void Sponge::Initialize(void) {
 #ifdef DEBUG
@@ -270,10 +272,10 @@ void Sponge::Initialize(void) {
 	//	valgrind bemoans "43648 bytes in 2432 blocks are indirectly lost"
 	List.push_back (new Hypercube (center, rad*3./2.));
     else {
-        if (distance > 3) distance = 3;				//  dunno if this is wise
+        if (distance > 3) distance = 3; 	//  dunno if this is wise
 
-	if (MemRequired (distance) > MaximumMemory) {		//  which is defined in Globals.C, yuck
-	  cerr << "Menger sponge of level " << Level		//  but there seems to be no portable way to find it out
+	if (MemRequired (distance) > MaximumMemory) {	//  which is defined in Globals.C, yuck
+	  cerr << "Menger sponge of level " << Level	//  but there seems to be no portable way to find it out
 	       << " would require approx. " << MemRequired (distance)/1024/1024  //  and the rcfile-system is not ready yet
 	       << " MB of memory." << endl;
 	  if (check_memory) {
@@ -355,8 +357,6 @@ void Sponge::Draw (void) {
     cerr << description () << endl;	//  clumsy debug output
 # endif    
   
-    //  usleep (200000);
-
   if (Level < 1) {
     List[0]->Draw ();
   }
@@ -441,8 +441,8 @@ Gasket::Gasket (unsigned level, double _rad, Vector<4> _center):
 
 
 /*******************************************************************************
- *  return the approximate amount of memory needed to display a gasket of current
- *  level
+ *  return the approximate amount of memory needed to display a gasket of 
+ *  current level
  *  uses hardcoded and experimentally found value for memory per simplex - ICK!
  *  @return		approx. mem required
  */
@@ -474,6 +474,8 @@ void Gasket::Initialize() {
 	}
 	rad = rad/2;
 	
+    Vector<4> center_of_mass (0.5, sqrt (3.)/4., sqrt (1./6.), 1./sqrt (8.));
+        
     Vector<4> NewCen = Vector<4> (0.0, 0.0, 0.0, 0.0);
 	NewCen += center;
 	List.push_back (new Gasket (Level-1, rad, NewCen));

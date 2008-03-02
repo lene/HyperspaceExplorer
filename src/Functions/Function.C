@@ -43,7 +43,7 @@ Function::Function ():
   vmin (0),       vmax (0),       dv (0),
   tsteps (0), usteps (0), vsteps (0),
   NumVertices (0),
-  F (4),
+  F (),
      Xtrans (NULL), Xscr (NULL), XtransChunk (NULL), XscrChunk (NULL),
   R (NULL), G (NULL), B (NULL), RGBChunk (NULL) { }
 
@@ -70,7 +70,7 @@ Function::Function (double _tmin, double _tmax, double _dt,
   usteps (unsigned ((umax-umin)/du+1)), 
   vsteps (unsigned ((vmax-vmin)/dv+1)),
   NumVertices (0),
-  F (4),
+  F (),
      Xtrans (NULL), Xscr (NULL), XtransChunk (NULL), XscrChunk (NULL),
              R (NULL), G (NULL), B (NULL), RGBChunk (NULL) {
   if (MemRequired () > MaximumMemory) {				//  which is defined in Globals.H
