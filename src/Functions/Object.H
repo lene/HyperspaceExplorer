@@ -19,27 +19,28 @@
 
 
 class Object: public Function {
-public:
-    Object (unsigned, unsigned);
-    virtual ~Object ();
-    virtual void ReInit (double, double, double,
-			 double, double, double,
-			 double, double, double);
+    public:
+        Object (unsigned, unsigned);
+        virtual ~Object ();
+        virtual void ReInit (double, double, double,
+	       		     double, double, double,
+			     double, double, double);
 
-    virtual void Transform (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw,
-			    double Tx, double Ty, double Tz, double Tw);
-    virtual void Project (double ScrW, double CamW, bool DepthCue4D);
-    virtual void Draw (void);
+        virtual void Transform (double Rxy, double Rxz, double Rxw, 
+                                double Ryz, double Ryw, double Rzw,
+			        double Tx, double Ty, double Tz, double Tw);
+        virtual void Project (double ScrW, double CamW, bool DepthCue4D);
+        virtual void Draw (void);
 
-protected:
-    unsigned NumVertices, NumSurfaces;
-    Vector<4> *X, *Xtrans;
+    protected:
+        unsigned NumVertices, NumSurfaces;
+        Vector<4> *X, *Xtrans;
 	Vector<3> *Xscr;
-    float *R, *G, *B;
+        float *R, *G, *B;
 
-    unsigned *Surface[4];
+        unsigned *Surface[4];
 
-    virtual Vector<4> &f (double, double, double) { return F; }
+        virtual Vector<4> &f (double, double, double) { return F; }
 };
 
 
@@ -49,7 +50,7 @@ class Hypercube: public Object {
 public:
     Hypercube (): Object (16, 24) { }
     Hypercube (const Vector<4> &_Center, double _a = 1);
-    virtual ~Hypercube();
+    virtual ~Hypercube() { }
   
     virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
         a = _a; }
@@ -76,12 +77,14 @@ public:
             Vector<4> Center = Vector<4>(0., 0.,0., 0.));
     virtual ~Sponge ();
 
-    virtual void Transform (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw,
+    virtual void Transform (double Rxy, double Rxz, double Rxw, 
+                            double Ryz, double Ryw, double Rzw,
 			    double Tx, double Ty, double Tz, double Tw);
     virtual void Project (double ScrW, double CamW, bool DepthCue4D);
     virtual void Draw (void);
 
-    virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, double = 0) {
+    virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, 
+                                double = 0) {
 	Level = (unsigned)_a;
 	distance = (int)_b;
 	rad = _c;
@@ -116,7 +119,7 @@ class Pyramid: public Object {
 public:
     Pyramid (): Object (5, 10) { }
     Pyramid (const Vector<4> &_Center, double _a = 1);
-    virtual ~Pyramid();
+    virtual ~Pyramid() { }
 
     virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
 		a = _a; }
@@ -136,13 +139,15 @@ class Gasket: public Pyramid {
 public:
     Gasket (unsigned level = 1, double rad = 1, 
             Vector<4> Center = Vector<4> (0., 0.,0., 0.));
-    virtual ~Gasket();
+    virtual ~Gasket() { }
 
-    virtual void Transform (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw,
+    virtual void Transform (double Rxy, double Rxz, double Rxw, 
+                            double Ryz, double Ryw, double Rzw,
 			    double Tx, double Ty, double Tz, double Tw);
     virtual void Project (double ScrW, double CamW, bool DepthCue4D);
     virtual void Draw (void);
-    virtual void SetParameters (double _a = 0, double _b = 0, double = 0, double = 0) {
+    virtual void SetParameters (double _a = 0, double _b = 0, 
+                                double = 0, double = 0) {
 	Level = (unsigned)_a;
 	rad = _b;
     }

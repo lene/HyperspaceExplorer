@@ -212,26 +212,24 @@ Vector<4> &Surface::normal (double uu, double vv) {
 */
 Vector<4> *Surface::df (double uu, double vv) {	
 
-    static Vector<4> F0;					//	f (u, v)
-    static double h = 1e-5;					//	maybe tweak to get best results
+    static Vector<4> F0;			//	f (u, v)
+    static double h = 1e-5;			//	maybe tweak to get best results
 
     static Vector<4> DF[3];
 
-    F0 = operator () (uu, vv);							
+    F0 = operator () (uu, vv);			
 
-    F = operator () (uu+h, vv);					//	derive after u
+    F = operator () (uu+h, vv);			//	derive after u
     DF[0] = (F-F0)/h;			
-
-    F = operator () (uu, vv+h);					//	derive after v
+    F = operator () (uu, vv+h);			//	derive after v
     DF[1] = (F-F0)/h;
+    DF[2] = (F-F0)/h;				//	are you sure this is correct?
 
-    DF[2] = (F-F0)/h;						//	are you sure this is correct?
+    return DF; 
+}
 
-    return DF; }
 
-
-/*******************************************************************************
- *  transforms a Surface
+/** transforms a Surface
  *  as I look at it, i think this could be optimized by making the transformation
  *  matrices static and only canging the corresponding entries... but how to
  *  make this beautifully, i don't know
@@ -246,10 +244,13 @@ Vector<4> *Surface::df (double uu, double vv) {
  *  @param tz		translation in z direction
  *  @param tw		translation in w direction
  */
-void Surface::Transform (double thetaxy, double thetaxz, double thetaxw, double thetayz, double thetayw, double thetazw,
+void Surface::Transform (double thetaxy, double thetaxz, double thetaxw, 
+                         double thetayz, double thetayw, double thetazw,
 			 double tx, double ty, double tz, double tw) {
-    matrix<4> Rxw = matrix<4> (0, 3, thetaxw), Ryw = matrix<4> (1, 3, thetayw), Rzw = matrix<4> (2, 3, thetazw),
-	Rxwyw = Rxw*Ryw, Rot = Rxwyw*Rzw;
+    matrix<4> Rxw = matrix<4> (0, 3, thetaxw), 
+              Ryw = matrix<4> (1, 3, thetayw), 
+              Rzw = matrix<4> (2, 3, thetazw),
+	      Rxwyw = Rxw*Ryw, Rot = Rxwyw*Rzw;
     Vector<4> trans = Vector<4> (tx, ty, tz, tw);
 	
     for (unsigned u = 0; u <= usteps+1; u++) 
@@ -258,8 +259,7 @@ void Surface::Transform (double thetaxy, double thetaxz, double thetaxw, double 
 }
 
 
-/*******************************************************************************
- *  projects a Surface into three-space
+/** projects a Surface into three-space
  *  @param scr_w	w coordinate of screen
  *  @param cam_w	w coordinate of camera
  *  @param depthcue4d	wheter to use hyperfog/dc
@@ -296,8 +296,7 @@ void Surface::Project (double scr_w, double cam_w, bool depthcue4d) {
 }
 
 
-/*******************************************************************************
- *  draw the projected Surface (onto screen or into GL list, as it is)
+/** draw the projected Surface (onto screen or into GL list, as it is)
  */
 void Surface::Draw (void) {
     NumVertices = 0;
@@ -307,8 +306,7 @@ void Surface::Draw (void) {
 }
 
 
-/*******************************************************************************
- *  draw the current strip of the projected Function
+/** draw the current strip of the projected Function
  *  @param u	current u value
  */
 void Surface::DrawStrip (unsigned u){
@@ -336,8 +334,7 @@ void Surface::DrawStrip (unsigned u){
     ///////////////////////////////////////////////////////////////////////////////
 
 
-/*******************************************************************************
- *  Surface1 c'tor given a definition set in R² (as parameter space) 
+/** Surface1 c'tor given a definition set in R² (as parameter space) 
  *  @param _umin	minimal value in u
  *  @param _umax	maximal value in u
  *  @param _du		stepsize in u
@@ -352,15 +349,7 @@ Surface1::Surface1 (double _umin, double _umax, double _du,
     Initialize ();
 }
 
-
-/*******************************************************************************
- *  Surface1 destructor
- */
-Surface1::~Surface1 () { }
-
-
-/*******************************************************************************
- *  Surface1 defining function
+/** Surface1 defining function
  *  @param uu		u value
  *  @param vv		v value
  *  @return		(sintht*sinpsi, costht*sinpsi, costht, cospsi)
@@ -381,8 +370,7 @@ Vector<4> &Surface1::f (double uu, double vv) {
     ///////////////////////////////////////////////////////////////////////////////
 
 
-/*******************************************************************************
- *  Horizon c'tor given a definition set in R² (as parameter space) 
+/** Horizon c'tor given a definition set in R² (as parameter space) 
  *  @param _umin	minimal value in u
  *  @param _umax	maximal value in u
  *  @param _du		stepsize in u
@@ -397,13 +385,7 @@ Horizon::Horizon (double _umin, double _umax, double _du,
     Initialize ();
 }
 
-/*******************************************************************************
- *  Horizon destructor
- */
-Horizon::~Horizon () { }
-
-/*******************************************************************************
- *  Horizon defining function
+/** Horizon defining function
  *  @param uu		u value
  *  @param vv		v value
  *  @return		aah, see below
@@ -423,8 +405,7 @@ Vector<4> &Horizon::f (double t, double phi) {
     ///////////////////////////////////////////////////////////////////////////////
 
 
-/*******************************************************************************
- *  Torus3 c'tor given a definition set in R² (as parameter space) 
+/** Torus3 c'tor given a definition set in R² (as parameter space) 
  *  @param _umin	minimal value in u
  *  @param _umax	maximal value in u
  *  @param _du		stepsize in u
@@ -439,13 +420,7 @@ Torus3::Torus3 (double _umin, double _umax, double _du,
     Initialize ();
 }
 
-/*******************************************************************************
- *  Torus3 destructor
- */
-Torus3::~Torus3 () { }
-
-/*******************************************************************************
- *  Torus3 defining function
+/** Torus3 defining function
  *  @param uu		u value
  *  @param vv		v value
  *  @return		(costht, sintht, cosphi, sinphi)
@@ -459,6 +434,3 @@ Vector<4> &Torus3::f (double theta, double phi) {
 
     return F; 
 }
-
-
-

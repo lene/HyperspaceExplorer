@@ -12,6 +12,7 @@
 #include "Globals.H"
 #include "Matrix.H"
 #include "Object.H"
+#include "Log.H"
 
 using std::cerr;
 using std::endl;
@@ -19,8 +20,7 @@ using std::endl;
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/*******************************************************************************
- *  generic Object constructor; only allocates necessary arrays, children must
+/** generic Object constructor; only allocates necessary arrays, children must
  *  fill them in their c'tor
  *  @param vertices	number of vertices
  *  @param surfaces	number of surfaces
@@ -39,8 +39,7 @@ Object::Object (unsigned vertices, unsigned surfaces):
 }		
 
 
-/*******************************************************************************
- *  generic Object destructor; frees arrays
+/** generic Object destructor; frees arrays
  */
 Object::~Object () {
     delete [] X;
@@ -54,8 +53,7 @@ Object::~Object () {
 }
 
 
-/*******************************************************************************
- *  transforms an Object
+/** transforms an Object
  *  as I look at it, i think this could be optimized by making the transformation
  *  matrices static and only canging the corresponding entries... but how to
  *  make this beautifully, i don't know
@@ -81,8 +79,7 @@ void Object::Transform (double thetaxy, double thetaxz, double thetaxw, double t
 }
 
 
-/*******************************************************************************
- *  projects an Object into three-space
+/** projects an Object into three-space
  *  @param scr_w	w coordinate of screen
  *  @param cam_w	w coordinate of camera
  *  @param depthcue4d	wheter to use hyperfog/dc
@@ -119,8 +116,7 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
 }
 
 
-/*******************************************************************************
- *  draw the projected Object (onto screen or into GL list, as it is)
+/** draw the projected Object (onto screen or into GL list, as it is)
  */
 void Object::Draw () {
     glBegin (GL_QUADS);
@@ -144,33 +140,19 @@ void Object::ReInit (double, double, double,
     ///////////////////////////////////////////////////////////////////////////////
 
 
-/*******************************************************************************
- *  Hypercube constructor
+/** Hypercube constructor
  *  @param center	center
  *  @param _a		side_length/2
  */
 Hypercube::Hypercube (const Vector<4> &_center, double _a):
     Object (16, 24),
     a (_a), center(_center) {
-#ifdef DEBUG
-    cerr << "Hypercube::Hypercube()\n";
-#endif      
+    SingletonLog::Instance().log("Hypercube::Hypercube()");
     Initialize();
-}		
-
-
-/*******************************************************************************
- *  Hypercube destructor
- *  @rant	really, i am so anal, i don't know why i even bother to document this
- *  		must be the virgo inheritance or what
- */
-Hypercube::~Hypercube () { }
-
+}
 
 void Hypercube::Initialize(void) {
-#ifdef DEBUG
-    cerr << "Hypercube::Initialize()\n";
-#endif      
+    SingletonLog::Instance().log("Hypercube::Initialize()");
     for (int x = 0; x <= 1; x++)
 	for (int y = 0; y <= 1; y++)
 	    for (int z = 0; z <= 1; z++)
@@ -203,8 +185,7 @@ void Hypercube::Initialize(void) {
     DeclareSquare (23, 12,13,15,14);    
 }
 
-/*******************************************************************************
- *  declare a square in the surfaces array
+/** declare a square in the surfaces array
  *  @param i	index of the square
  *  @param a	index of vertex 1	
  *  @param b	index of vertex 2
@@ -222,8 +203,7 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
     ///////////////////////////////////////////////////////////////////////////////
 
 
-/*******************************************************************************
- *  Sponge constructor
+/** Sponge constructor
  *  @param level	hypersponge level
  *  @param distance	distance of subcubes to center to be counted as part of the fractal
  *			= 0: solid hypercube
@@ -240,8 +220,7 @@ Sponge::Sponge (unsigned level, int _distance, double _rad, Vector<4> _center):
 }
 
 
-/*******************************************************************************
- *  return the approximate amount of memory needed to display a sponge of current
+/** return the approximate amount of memory needed to display a sponge of current
  *  level and given distance
  *  uses hardcoded and experimentally found value for memory per hypercube - ICK!
  *  @param distance	see c'tor
@@ -256,34 +235,31 @@ unsigned long Sponge::MemRequired (unsigned distance) {
 }
 
 
-/*******************************************************************************
- *  Sponge destructor
+/** Sponge destructor
  */
 Sponge::~Sponge () { 
     List.clear();
 }
 
 void Sponge::Initialize(void) {
-#ifdef DEBUG
-    cerr << "Sponge::Initialize()\n";
-#endif      
+    SingletonLog::Instance().log("Sponge::Initialize()");
 
     if (Level < 1)
-	//	valgrind bemoans "43648 bytes in 2432 blocks are indirectly lost"
 	List.push_back (new Hypercube (center, rad*3./2.));
     else {
         if (distance > 3) distance = 3; 	//  dunno if this is wise
 
         if (MemRequired (distance) > Globals::Instance().MaximumMemory) {
-	  cerr << "Menger sponge of level " << Level	//  but there seems to be no portable way to find it out
-	       << " would require approx. " << MemRequired (distance)/1024/1024  //  and the rcfile-system is not ready yet
-	       << " MB of memory." << endl;
-          if (Globals::Instance().check_memory) {
-	    cerr << "This is more than your available Memory of "
-                    << Globals::Instance().MaximumMemory/1024/1024 << "MB." << endl;
-            while (MemRequired (distance) > Globals::Instance().MaximumMemory) Level--;
-	    cerr << "Using level " << Level << " instead." << endl;
-	  }
+	    cerr << "Menger sponge of level " << Level
+	         << " would require approx. " << MemRequired (distance)/1024/1024
+	         << " MB of memory." << endl;
+            if (Globals::Instance().check_memory) {
+	        cerr << "This is more than your available Memory, "
+                     << Globals::Instance().MaximumMemory/1024/1024 << "MB" << endl;
+                while (MemRequired (distance) > Globals::Instance().MaximumMemory)
+                    Level--;
+	        cerr << "Using level " << Level << " instead." << endl;
+	    }
 	}
 	for (int x = -1; x <= 1; x++) {
 	    for (int y = -1; y <= 1; y++) {
@@ -291,17 +267,23 @@ void Sponge::Initialize(void) {
 		    for (int w = -1; w <= 1; w++) {
 			if (distance >= 0) {
 			    if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
-                    Vector<4> NewCen = Vector<4> (double (x), double (y), double (z), double (w))*rad;
+                                Vector<4> NewCen = 
+                                        Vector<4> (double (x), double (y), 
+                                                   double (z), double (w))*rad;
 				NewCen += center;
-				//	valgrind bemoans "154112 bytes in 4816 blocks are indirectly lost"
-				List.push_back (new Sponge (Level-1, distance, rad/3., NewCen));
+				List.push_back (
+                                        new Sponge (
+                                            Level-1, distance, rad/3., NewCen));
 			    }
-			}
-			else {
+			} else {
 			    if (abs (x)+abs (y)+abs (z)+abs (w) < distance) {
-                    Vector<4> NewCen = Vector<4> (double (x), double (y), double (z), double (w))*rad;
+                                Vector<4> NewCen = 
+                                        Vector<4> (double (x), double (y), 
+                                                   double (z), double (w))*rad;
 				NewCen += center;
-				List.push_back (new Sponge (Level-1, distance, rad/3., NewCen));
+				List.push_back (
+                                        new Sponge (
+                                            Level-1, distance, rad/3., NewCen));
 			    }
 			}
 		    }
@@ -311,8 +293,7 @@ void Sponge::Initialize(void) {
     }
 }
 
-/*******************************************************************************
- *  transforms a Sponge
+/** transforms a Sponge
  *  @param thetaxy	rotation around xy plane (z axis); ignored because 3D rotation takes care of it
  *  @param thetaxz	rotation around xz plane (y axis); ignored because 3D rotation takes care of it
  *  @param thetaxw	rotation around xw plane
@@ -324,53 +305,39 @@ void Sponge::Initialize(void) {
  *  @param tz		translation in z direction
  *  @param tw		translation in w direction
  */
-void Sponge::Transform (double Thetaxy, double Thetaxz, double Thetaxw, double Thetayz, double Thetayw, double Thetazw,
+void Sponge::Transform (double Thetaxy, double Thetaxz, double Thetaxw, 
+                        double Thetayz, double Thetayw, double Thetazw,
 			double Tx, double Ty, double Tz, double Tw) {
-#ifdef DEBUG
-    cerr << "Sponge::Transform()\n";
-#endif      
+    SingletonLog::Instance().log("Sponge::Transform()");
     for (unsigned i = 0; i < List.size (); i++)
-	List[i]->Transform (Thetaxy, Thetaxz, Thetaxw, Thetayz, Thetayw, Thetazw,
+	List[i]->Transform (Thetaxy, Thetaxz, Thetaxw, 
+                            Thetayz, Thetayw, Thetazw,
 			    Tx, Ty, Tz, Tw);
 }
 
 
-/*******************************************************************************
- *  projects a Sponge into three-space
+/** projects a Sponge into three-space
  *  @param scr_w	w coordinate of screen
  *  @param cam_w	w coordinate of camera
  *  @param depthcue4d	wheter to use hyperfog/dc
  */
 void Sponge::Project (double scr_w, double cam_w, bool depthcue4d) {
-#ifdef DEBUG
-    cerr << "Sponge::Project()\n";
-#endif      
+    SingletonLog::Instance().log("Sponge::Project()");
     for (unsigned i = 0; i < List.size (); i++)
 	List[i]->Project (scr_w, cam_w, depthcue4d);
 }
 
-/*******************************************************************************
- *  draw the projected Sponge (onto screen or into GL list, as it is)
- */
+/** draw the projected Sponge (onto screen or into GL list, as it is)         */
 void Sponge::Draw (void) {
-# if 0
-    cerr << description () << endl;	//  clumsy debug output
-# endif    
-  
-  if (Level < 1) {
-    List[0]->Draw ();
-  }
-  else 
-    for (unsigned i = 0; i < List.size (); i++)
-      List[i]->Draw ();
+    if (Level < 1) List[0]->Draw();
+    else for (unsigned i = 0; i < List.size(); i++) List[i]->Draw();
 }
 
 
     ///////////////////////////////////////////////////////////////////////////////
 
 
-/*******************************************************************************
- *  Pyramid (hypersimplex) constructor
+/** Pyramid (hypersimplex) constructor
  *  @param center	center
  *  @param _a		side_length/2
  */
@@ -379,13 +346,6 @@ Pyramid::Pyramid (const Vector<4> &_center, double _a):
     center(_center), a (_a) {
     Initialize();
 }		
-
-
-/*******************************************************************************
- *  Pyramid destructor
- */
-Pyramid::~Pyramid () { }
-
 
 void Pyramid::Initialize() {
     X[0] = Vector<4> (0.0, 0.0, 0.0, 0.0);
@@ -410,8 +370,7 @@ void Pyramid::Initialize() {
     DeclareTriangle (9,  2, 3, 4);    
 }
 
-/*******************************************************************************
- *  declare a triangle in the surfaces array
+/** declare a triangle in the surfaces array
  *  @param i	index of the square
  *  @param a	index of vertex 1	
  *  @param b	index of vertex 2
@@ -428,8 +387,7 @@ void Pyramid::DeclareTriangle (unsigned i, unsigned a, unsigned b, unsigned c) {
     ///////////////////////////////////////////////////////////////////////////////
 
 
-/*******************************************************************************
- *  Gasket constructor
+/** Gasket constructor
  *  @param level	hyper-sierpinski gasket level
  *  @param rad		side_length/2
  *  @param center	center
@@ -440,8 +398,7 @@ Gasket::Gasket (unsigned level, double _rad, Vector<4> _center):
 }
 
 
-/*******************************************************************************
- *  return the approximate amount of memory needed to display a gasket of 
+/** return the approximate amount of memory needed to display a gasket of 
  *  current level
  *  uses hardcoded and experimentally found value for memory per simplex - ICK!
  *  @return		approx. mem required
@@ -450,19 +407,12 @@ unsigned long Gasket::MemRequired (void) {
     return (unsigned long) ((pow (5., (int)Level)*14.5)/1024+8)*1024*1024;
 }
 
-
-/*******************************************************************************
- *  Gasket destructor
- */
-Gasket::~Gasket () { }
-
-
 void Gasket::Initialize() {
     if (Level < 1)
 	List.push_back (new Pyramid (center, rad));
     else {
         if (MemRequired () > Globals::Instance().MaximumMemory) {
-	  cerr << "Sierpinski gasket of level " << Level	//  see Sponge::Sponge (...)
+	  cerr << "Sierpinski gasket of level " << Level
 	       << " would require approx. " << MemRequired ()/1024/1024
 	       << " MB of memory." << endl;
           if (Globals::Instance().check_memory) {
@@ -499,8 +449,7 @@ void Gasket::Initialize() {
 }
 
 
-/*******************************************************************************
- *  transforms a Gasket
+/** transforms a Gasket
  *  @param thetaxy	rotation around xy plane (z axis); ignored because 3D rotation takes care of it
  *  @param thetaxz	rotation around xz plane (y axis); ignored because 3D rotation takes care of it
  *  @param thetaxw	rotation around xw plane
@@ -520,8 +469,7 @@ void Gasket::Transform (double Thetaxy, double Thetaxz, double Thetaxw, double T
 }
 
 
-/*******************************************************************************
- *  projects a Gasket into three-space
+/** projects a Gasket into three-space
  *  @param scr_w	w coordinate of screen
  *  @param cam_w	w coordinate of camera
  *  @param depthcue4d	wheter to use hyperfog/dc
@@ -531,10 +479,8 @@ void Gasket::Project (double scr_w, double cam_w, bool depthcue4d) {
 	List[i]->Project (scr_w, cam_w, depthcue4d);
 }
 
-/*******************************************************************************
- *  draw the projected Gasket (onto screen or into GL list, as it is)
+/** draw the projected Gasket (onto screen or into GL list, as it is)
  */
 void Gasket::Draw (void) {
-    for (unsigned i = 0; i < List.size (); i++)
-	List[i]->Draw ();
+    for (unsigned i = 0; i < List.size (); i++) List[i]->Draw ();
 }
