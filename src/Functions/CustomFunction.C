@@ -26,29 +26,25 @@ using std::endl;
 
 using VecMath::Vector;
 
-/*******************************************************************************
- *  outsourced function, as it is the same in all classes
- *  @param handle	an opened DLL handle
- *  @return		custom function in symbolic notation
- */
+/** outsourced function, as it is the same in all classes
+ *  @param handle an opened DLL handle
+ *  @return custom function in symbolic notation                              */
 QString symbolic (void *handle) {
-  typedef char* STRING;
-  STRING (*sym)();
-  sym = (STRING (*)())dlsym(handle, "symbolic");
-  char *error;
-  static char *ret;
+    typedef char* STRING;
+    STRING (*sym)();
+    sym = (STRING (*)())dlsym(handle, "symbolic");
+    char *error;
+    static char *ret;
     
-  if ((error = dlerror()) != NULL)  { 
-    cerr << "Error finding symbolic description in " << error << endl;
-    return QString ("something");
-  }
-  ret=(*sym)();
-  return QString (ret);
+    if ((error = dlerror()) != NULL)  { 
+        cerr << "Error finding symbolic description in " << error << endl;
+        return QString ("something");
+    }
+    ret=(*sym)();
+    return QString (ret);
 }
 
-
-/*******************************************************************************
- *  CustomFunction c'tor given a definition set in R³ (as parameter space) and a
+/** CustomFunction c'tor given a definition set in R³ (as parameter space) and a
  *  flag indicatin whether this is a test construction or a real one
  *  @param _tmin	minimal value in t
  *  @param _tmax	maximal value in t
@@ -59,85 +55,72 @@ QString symbolic (void *handle) {
  *  @param _vmin	minimal value in v
  *  @param _vmax	maximal value in v
  *  @param _dv		stepsize in v
- *  @param _final	real construction or test
- */
+ *  @param _final	real construction or test                                 */
 CustomFunction::CustomFunction (double _tmin, double _tmax, double _dt,
-				double _umin, double _umax, double _du,
-				double _vmin, double _vmax, double _dv,
-				bool final):
+                                double _umin, double _umax, double _du,
+                                double _vmin, double _vmax, double _dv,
+                                bool final):
     Function (_tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
     func (NULL), handle (NULL) {
-  if (final) {
-    FunctionDialogImpl *Dlg = new FunctionDialogImpl ();
+    if (final) {
+        FunctionDialogImpl *Dlg = new FunctionDialogImpl ();
 
-    if (Dlg->exec () == QDialog::Accepted) {
-      loadFunction (Dlg->libraryName());
-      Initialize ();
+        if (Dlg->exec () == QDialog::Accepted) {
+            loadFunction (Dlg->libraryName());
+            Initialize ();
+        }
     }
-  }
 }
 
-
-/*******************************************************************************
- *  CustomFunction destructor, closes DLL if necessary
- */
+/** CustomFunction destructor, closes DLL if necessary                        */
 CustomFunction::~CustomFunction() {
-  if (handle) dlclose (handle);       
+  if (handle) dlclose (handle);
 }
 
-
-/*******************************************************************************
- *  CustomFunction defining function; calls loaded function
+/** CustomFunction defining function; calls loaded function
  *  @param x		x value
  *  @param y		y value
  *  @param z		z value
- *  @return		custom function of (x, y, z)
- */
+ *  @return		custom function of (x, y, z)                                  */
 Vector<4> &CustomFunction::f (double x, double y, double z) {
     static Vector<4> T;
-  T = (*func) (x, y, z);
-  return T;
+    T = (*func) (x, y, z);
+    return T;
 }
 
-
-/*******************************************************************************
- *  @return		custom function in symbolic notation
- */
+/** @return		custom function in symbolic notation                          */
 QString CustomFunction::symbolic () {
   return ::symbolic (handle);
 }
 
 
-/*******************************************************************************
- *  try to load a DLL and the f() in it
- *  @param libName	name of the plugin DLL file
- *  @return		success
- */
+/** try to load a DLL and the f() in it
+ *  @param libName name of the plugin DLL file
+ *  @return success                                                           */
 bool CustomFunction::loadFunction(const QString &libName) {
-  static char *error;
-      
-  handle = dlopen (libName, RTLD_LAZY);
-  if (!handle) {
-    cerr << "Error opening library: " << dlerror() << endl;
-    return false;
-  }
+    static char *error;
 
-  func = (Vector<4>(*)(double, double, double))dlsym(handle, "f");
-  if ((error = dlerror()) != NULL)  {
-    cerr << "Error finding function: " << error << endl;
-    return false;
-  }
+    handle = dlopen (libName, RTLD_LAZY);
+    if (!handle) {
+        cerr << "Error opening library: " << dlerror() << endl;
+        return false;
+    }
 
-  return true;    
+    func = (Vector<4>(*)(double, double, double))dlsym(handle, "f");
+    if ((error = dlerror()) != NULL)  {
+        cerr << "Error finding function: " << error << endl;
+        return false;
+    }
+
+    return true;    
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
 
 
-/*******************************************************************************
- *  CustomPolarFunction c'tor given a definition set in R³ (as parameter space) and a
- *  flag indicatin whether this is a test construction or a real one
+/** CustomPolarFunction c'tor given a definition set in R³ (as parameter space)
+ *  and a flag indicating whether this is a test construction or a real one
  *  @param _tmin	minimal value in t
  *  @param _tmax	maximal value in t
  *  @param _dt		stepsize in t
@@ -146,35 +129,29 @@ bool CustomFunction::loadFunction(const QString &libName) {
  *  @param _du		stepsize in u
  *  @param _vmin	minimal value in v
  *  @param _vmax	maximal value in v
- *  @param _dv		stepsize in v
- */
+ *  @param _dv		stepsize in v                                             */
 CustomPolarFunction::CustomPolarFunction (double _tmin, double _tmax, double _dt,
-					  double _umin, double _umax, double _du,
-					  double _vmin, double _vmax, double _dv):
+                                          double _umin, double _umax, double _du,
+                                          double _vmin, double _vmax, double _dv):
     CustomFunction (_tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv, false) {
-  PolarDialogImpl *Dlg = new PolarDialogImpl ();
+    PolarDialogImpl *Dlg = new PolarDialogImpl ();
 
-  if (Dlg->exec () == QDialog::Accepted) {
-    loadFunction (Dlg->libraryName());
-    Initialize ();
-  }
+    if (Dlg->exec () == QDialog::Accepted) {
+        loadFunction (Dlg->libraryName());
+        Initialize ();
+    }
 }
 
-
-/*******************************************************************************
- *  CustomPolarFunction destructor, closes DLL if necessary
- */
+/** CustomPolarFunction destructor, closes DLL if necessary                   */
 CustomPolarFunction::~CustomPolarFunction() {
-  if (handle) dlclose (handle);       
+  if (handle) dlclose (handle);
 }
 
-/*******************************************************************************
- *  CustomPolarFunction defining function; calls loaded function
+/** CustomPolarFunction defining function; calls loaded function
  *  @param x		x value (these would really be phi, theta, psi)
  *  @param y		y value
  *  @param z		z value
- *  @return		custom function of (x, y, z)
- */
+ *  @return		custom function of (x, y, z)                                  */
 Vector<4> &CustomPolarFunction::f (double x, double y, double z) {
     static Vector<4> T;
   T = (*CustomFunction::func) (x, y, z);

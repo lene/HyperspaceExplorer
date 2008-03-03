@@ -136,35 +136,35 @@ protected:
 ///////////////////////////////////////////////////////////////////////////////
 
 class Gasket: public Pyramid {
-public:
-    Gasket (unsigned level = 1, double rad = 1, 
-            VecMath::Vector<4> Center = VecMath::Vector<4> (0., 0.,0., 0.));
-    virtual ~Gasket() { }
+    public:
+        Gasket (unsigned level = 1, double rad = 1, 
+                VecMath::Vector<4> Center = VecMath::Vector<4> (0., 0.,0., 0.));
+        virtual ~Gasket() { }
 
-    virtual void Transform (double Rxy, double Rxz, double Rxw, 
-                            double Ryz, double Ryw, double Rzw,
-			    double Tx, double Ty, double Tz, double Tw);
-    virtual void Project (double ScrW, double CamW, bool DepthCue4D);
-    virtual void Draw (void);
-    virtual void SetParameters (double _a = 0, double _b = 0, 
-                                double = 0, double = 0) {
-	Level = (unsigned)_a;
-	rad = _b;
-    }
-    virtual void ReInit (double, double, double,
-			 double, double, double,
-			 double, double, double) {
-	List.clear();
-	Object::ReInit(0,0,0,0,0,0,0,0,0);
-    }
+        virtual void Transform (double Rxy, double Rxz, double Rxw, 
+                                double Ryz, double Ryw, double Rzw,
+                                double Tx, double Ty, double Tz, double Tw);
+        virtual void Project (double ScrW, double CamW, bool DepthCue4D);
+        virtual void Draw (void);
+        virtual void SetParameters (double _a = 0, double _b = 0, 
+                                    double = 0, double = 0) {
+            Level = (unsigned)_a;
+            rad = _b;
+        }
+        virtual void ReInit (double, double, double,
+                             double, double, double,
+                             double, double, double) {
+            List.clear();
+            Object::ReInit(0,0,0,0,0,0,0,0,0);
+        }
 
-protected:
-    virtual void Initialize();
-    virtual unsigned long MemRequired (void);
-    unsigned Level;
-    std::vector<Pyramid *> List;
-    double rad;
-    VecMath::Vector<4> center;
+    protected:
+        virtual void Initialize();
+        virtual unsigned long MemRequired (void);
+        unsigned Level;
+        std::vector<Pyramid *> List;
+        double rad;
+        VecMath::Vector<4> center;
 };
 
 #endif

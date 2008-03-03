@@ -323,18 +323,20 @@ Vector<4> *Function::df (double tt, double uu, double vv) {
  *  @param tz		translation in z direction
  *  @param tw		translation in w direction
  */
-void Function::Transform (double thetaxy, double thetaxz, double thetaxw, double thetayz, double thetayw, double thetazw,
-			  double tx, double ty, double tz, double tw) {
-    Matrix<4> Rxy = Matrix<4> (0, 1, thetaxy), Rxz = Matrix<4> (0, 2, thetaxz), Rxw = Matrix<4> (0, 3, thetaxw),
-        Ryz = Matrix<4> (1, 2, thetayz), Ryw = Matrix<4> (1, 3, thetayw), Rzw = Matrix<4> (2, 3, thetazw),
-        Rxyz = Rxy*Rxz, Rxwyz = Rxw*Ryz, Ryzw = Ryw*Rzw, 
-        Rot = Rxyz*Rxwyz*Ryzw;
+void Function::Transform (double thetaxy, double thetaxz, double thetaxw,
+                          double thetayz, double thetayw, double thetazw,
+                          double tx, double ty, double tz, double tw) {
+    Matrix<4> Rxy = Matrix<4> (0, 1, thetaxy), Rxz = Matrix<4> (0, 2, thetaxz),
+              Rxw = Matrix<4> (0, 3, thetaxw), Ryz = Matrix<4> (1, 2, thetayz), 
+              Ryw = Matrix<4> (1, 3, thetayw), Rzw = Matrix<4> (2, 3, thetazw),
+              Rxyz = Rxy*Rxz, Rxwyz = Rxw*Ryz, Ryzw = Ryw*Rzw, 
+              Rot = Rxyz*Rxwyz*Ryzw;
     Vector<4> trans = Vector<4>(tx, ty, tz, tw);
-        
+
     for (unsigned t = 0; t <= tsteps+1; t++) {
         for (unsigned u = 0; u <= usteps+1; u++) 
             for (unsigned v = 0; v <= vsteps+1; v++)
-	            Xtrans[t][u][v] = (Rot*X[t][u][v])+trans;
+                Xtrans[t][u][v] = (Rot*X[t][u][v])+trans;
   }
 }
 

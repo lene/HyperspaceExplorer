@@ -72,14 +72,18 @@ Object::~Object () {
  *  @param tz		translation in z direction
  *  @param tw		translation in w direction
  */
-void Object::Transform (double thetaxy, double thetaxz, double thetaxw, double thetayz, double thetayw, double thetazw,
-			double tx, double ty, double tz, double tw) {
-    Matrix<4> Rxw = Matrix<4> (0, 3, thetaxw), Ryw = Matrix<4> (1, 3, thetayw), Rzw = Matrix<4> (2, 3, thetazw),
-	Rxwyw = Rxw*Ryw, Rot = Rxwyw*Rzw;
+void Object::Transform (double thetaxy, double thetaxz, double thetaxw, 
+                        double thetayz, double thetayw, double thetazw,
+                        double tx, double ty, double tz, double tw) {
+    Matrix<4> Rxw = Matrix<4> (0, 3, thetaxw),
+                    Ryw = Matrix<4> (1, 3, thetayw),
+                    Rzw = Matrix<4> (2, 3, thetazw),
+                    Rxwyw = Rxw*Ryw,
+                    Rot = Rxwyw*Rzw;
     Vector<4> trans = Vector<4>(tx, ty, tz, tw);
-		
+    
     for (unsigned i = 0; i < NumVertices; i++) 
-	Xtrans[i] = (Rot*X[i])+trans;
+        Xtrans[i] = (Rot*X[i])+trans;
 }
 
 

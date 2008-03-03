@@ -252,12 +252,12 @@ void Surface::Transform (double thetaxy, double thetaxz, double thetaxw,
     Matrix<4> Rxw = Matrix<4> (0, 3, thetaxw),
               Ryw = Matrix<4> (1, 3, thetayw),
               Rzw = Matrix<4> (2, 3, thetazw),
-	      Rxwyw = Rxw*Ryw, Rot = Rxwyw*Rzw;
+              Rxwyw = Rxw*Ryw, Rot = Rxwyw*Rzw;
     Vector<4> trans = Vector<4> (tx, ty, tz, tw);
-	
-    for (unsigned u = 0; u <= usteps+1; u++) 
-	for (unsigned v = 0; v <= vsteps+1; v++)
-	    Xtrans[u][v] = (Rot*X[u][v])+trans;
+
+    for (unsigned u = 0; u <= usteps+1; u++)
+        for (unsigned v = 0; v <= vsteps+1; v++)
+            Xtrans[u][v] = (Rot*X[u][v])+trans;
 }
 
 

@@ -88,7 +88,7 @@ namespace VecMath {
 
     /** operator [] returns a reference to component i
     *  @param i index of the element
-    *  @return non-const reference to the accessed element                       */
+    *  @return non-const reference to the accessed element                    */
     template <unsigned D, typename N> 
             N &Vector<D, N>::operator[] (unsigned i) {
         assert(i < D);
@@ -97,14 +97,14 @@ namespace VecMath {
 
     /** operator [] returns component i by value
     *  @param i index of the element
-    *  @return the accessed element                                              */
+    *  @return the accessed element                                           */
     template <unsigned D, typename N> 
             N Vector<D, N>::operator[] (unsigned i) const {
         assert(i < D);
         return x[i];
     }
 
-    /** @return dimension of the Vector (the template parameter D)                */
+    /** @return dimension of the Vector (the template parameter D)             */
     template <unsigned D, typename N> 
             unsigned Vector<D, N>::dimension (void) {
         return D; 
@@ -113,7 +113,7 @@ namespace VecMath {
         //----------  arithmetics ----------
 
     /** @param Y other Vector
-    *  @return *this+Y                                                           */
+    *  @return *this+Y                                                        */
     template <unsigned D, typename N>
             Vector<D, N> &Vector<D, N>::operator+= (const Vector<D, N> &Y) {
     for (unsigned i = 0; i < D; i++) x[i] += Y.x[i];
@@ -121,7 +121,7 @@ namespace VecMath {
     }
 
     /** @param Y other Vector
-    *  @return *this-Y                                                           */
+    *  @return *this-Y                                                        */
     template <unsigned D, typename N> 
             Vector<D, N> &Vector<D, N>::operator-= (const Vector<D, N> &Y) {
     for (unsigned i = 0; i < D; i++) x[i] -= Y.x[i];
@@ -129,14 +129,14 @@ namespace VecMath {
     }
 
     /** @param s scalar type
-    *  @return *this*s                                                           */
+    *  @return *this*s                                                        */
     template <unsigned D, typename N>
             Vector<D, N> &Vector<D, N>::operator*= (const N &s) {
     for (unsigned i = 0; i < D; i++) x[i] *= s;
     return *this;
     }
 
-    /** @return -*this                                                            */
+    /** @return -*this                                                         */
     template <unsigned D, typename N>
             Vector<D, N> Vector<D, N>::operator- (void) const {
         static Vector<D, N> Z;
@@ -146,7 +146,7 @@ namespace VecMath {
     }
 
     /** @param Y other Vector
-    *  @return *this+Y                                                           */
+    *  @return *this+Y                                                        */
     template <unsigned D, typename N>
             Vector<D, N> Vector<D, N>::operator+ (const Vector<D, N> &Y) {
     static Vector<D, N> Z;
@@ -155,7 +155,7 @@ namespace VecMath {
     }
 
     /** @param Y other Vector
-    *  @return *this-Y                                                           */
+    *  @return *this-Y                                                        */
     template <unsigned D, typename N>
             Vector<D, N> Vector<D, N>::operator- (const Vector<D, N> &Y) {
     static Vector<D, N> Z;
@@ -164,7 +164,7 @@ namespace VecMath {
     }
 
     /** @param s scalar type
-    *  @return *this*s                                                           */
+    *  @return *this*s                                                        */
     template <unsigned D, typename N> 
             Vector<D, N> Vector<D, N>::operator* (const N &s) {
     Vector <D, N>Z;
@@ -174,7 +174,7 @@ namespace VecMath {
 
     /** scalar multiplication between two Vectors
     *  @param Y other Vector
-    *  @return dot product < *this, Y >                                          */
+    *  @return dot product < *this, Y >                                       */
     template <unsigned D, typename N>
             N Vector<D, N>::operator* (const Vector<D, N> &Y) const {
     N dot = 0.;
@@ -185,13 +185,13 @@ namespace VecMath {
     }
 
     /** @param s scalar type
-    *  @return *this/s                                                           */
+    *  @return *this/s                                                        */
     template <unsigned D, typename N>
             Vector<D, N> Vector<D, N>::operator/ (const N &s) {
     return operator* (1./s);
     }
 
-    /** @return the squared norm of the vector, |V|²                              */
+    /** @return the squared norm of the vector, |V|²                           */
     template <unsigned D, typename N>
             N Vector<D, N>::sqnorm (void) const {
     return operator* (*this);
@@ -203,7 +203,7 @@ namespace VecMath {
     /** Vector output operator
     *  @param o ostream to push into
     *  @param v Vector to print
-    *  @return a new ostream to push Vectors and stuff into                      */
+    *  @return a new ostream to push Vectors and stuff into                   */
     template <unsigned D, typename N>
             std::ostream &operator << (std::ostream &o, const Vector<D, N> &v) {
         //  i might want to use other brackets one day
