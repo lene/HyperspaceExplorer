@@ -15,13 +15,13 @@ class QString;
 class CustomFunction: public Function {
     public:
          CustomFunction (double _tmin, double _tmax, double _dt,
-		                 double _umin, double _umax, double _du,
-		                 double _vmin, double _vmax, double _dv,
-		                 bool final = true);
+                         double _umin, double _umax, double _du,
+                         double _vmin, double _vmax, double _dv,
+                         bool final = true);
          virtual ~CustomFunction();
 
          QString symbolic ();
-  
+
     protected:
          virtual VecMath::Vector<4> &f (double, double, double);
          bool loadFunction (const QString &);
@@ -35,8 +35,8 @@ class CustomFunction: public Function {
 class CustomPolarFunction: public CustomFunction {
     public:
          CustomPolarFunction (double _tmin, double _tmax, double _dt,
-		                      double _umin, double _umax, double _du,
-		                      double _vmin, double _vmax, double _dv);
+                              double _umin, double _umax, double _du,
+                              double _vmin, double _vmax, double _dv);
          virtual ~CustomPolarFunction();
 
     protected:
@@ -47,7 +47,7 @@ class CustomPolarFunction: public CustomFunction {
 class CustomComplexFunction: public ComplexFunction {
     public:
          CustomComplexFunction (double _umin, double _umax, double _du,
-			                    double _vmin, double _vmax, double _dv);
+                                double _vmin, double _vmax, double _dv);
          virtual ~CustomComplexFunction();
 
          QString symbolic ();
@@ -66,11 +66,11 @@ class CustomComplexFunction: public ComplexFunction {
 class CustomSurface: public Surface {
     public:
          CustomSurface ( double _umin, double _umax, double _du,
-		                 double _vmin, double _vmax, double _dv);
+                         double _vmin, double _vmax, double _dv);
          virtual ~CustomSurface();
 
          QString symbolic ();
-  
+
     protected:
          virtual VecMath::Vector<4> &f (double, double);
          bool loadFunction (const QString &);

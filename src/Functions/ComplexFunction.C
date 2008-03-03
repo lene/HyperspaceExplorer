@@ -23,16 +23,14 @@ using VecMath::Vector;
  *  @param _du		stepsize in u
  *  @param _vmin	minimal value in v
  *  @param _vmax	maximal value in v
- *  @param _dv		stepsize in v                                         */
+ *  @param _dv		stepsize in v                                             */
 ComplexFunction::ComplexFunction (double _umin, double _umax, double _du,
-				  double _vmin, double _vmax, double _dv):
+                                  double _vmin, double _vmax, double _dv):
   Surface (_umin, _umax, _du, _vmin, _vmax, _dv) {
 }
 
-
 /** ComplexFunction destructor                                                */
 ComplexFunction::~ComplexFunction () { }
-
 
 /** allocate and initialize X[][] with values of f()
  *  call Surface::InitMem ()                                                  */
@@ -41,28 +39,28 @@ void ComplexFunction::Initialize () {
     Xchunk = new Vector<4>   [(usteps+2)*(vsteps+2)];
   
   for (unsigned u = 0; u <= usteps+1; u++) {
-    X[u]  =  Xchunk+u*(vsteps+2);
-    for (unsigned v = 0; v <= vsteps+1; v++) {
-      X[u][v] = f (umin+u*du, vmin+v*dv);
+        X[u]  =  Xchunk+u*(vsteps+2);
+        for (unsigned v = 0; v <= vsteps+1; v++) {
+            X[u][v] = f (umin+u*du, vmin+v*dv);
+        }
     }
-  }
   
-  InitMem ();
+    InitMem ();
 }
 
 
 /** ComplexFunction defining function calling g () and returning (z, g (z))
  *  @param uu		Re (z)
  *  @param vv		Im (z)
- *  @return		value of defining function at point in question       */
+ *  @return		value of defining function at point in question               */
 Vector<4> &ComplexFunction::f (double uu, double vv) {
-  complex<double> z (uu, vv), w = g (z);
-  F[0] = uu;
-  F[1] = vv;
-  F[2] = w.real ();
-  F[3] = w.imag ();
+    complex<double> z (uu, vv), w = g (z);
+    F[0] = uu;
+    F[1] = vv;
+    F[2] = w.real ();
+    F[3] = w.imag ();
   
-  return F; 
+    return F; 
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -74,18 +72,18 @@ Vector<4> &ComplexFunction::f (double uu, double vv) {
  *  @param _du		stepsize in Re (z) 
  *  @param _vmin	minimal value in Im (z) 
  *  @param _vmax	maximal value in Im (z) 
- *  @param _dv		stepsize in Im (z)                                    */
+ *  @param _dv		stepsize in Im (z)                                        */
 z2::z2 (double _umin, double _umax, double _du,
-	double _vmin, double _vmax, double _dv):
-  ComplexFunction (_umin, _umax, _du, _vmin, _vmax, _dv) {
-  Initialize ();
+        double _vmin, double _vmax, double _dv):
+    ComplexFunction (_umin, _umax, _du, _vmin, _vmax, _dv) {
+    Initialize ();
 }
 
 /** z² defining function
  *  @param z		operand
- *  @return		z²                                                    */
+ *  @return		z²                                                            */
 complex<double> z2::g (complex<double> z) {
-  return z*z; 
+    return z*z;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -97,22 +95,19 @@ complex<double> z2::g (complex<double> z) {
  *  @param _du		stepsize in Re (z) 
  *  @param _vmin	minimal value in Im (z) 
  *  @param _vmax	maximal value in Im (z) 
- *  @param _dv		stepsize in Im (z) 
- */
+ *  @param _dv		stepsize in Im (z)                                        */
 z3::z3 (double _umin, double _umax, double _du,
-	double _vmin, double _vmax, double _dv):
-  ComplexFunction (_umin, _umax, _du, _vmin, _vmax, _dv) {
-  Initialize ();
+        double _vmin, double _vmax, double _dv):
+    ComplexFunction (_umin, _umax, _du, _vmin, _vmax, _dv) {
+    Initialize ();
 }
 
 /** z³ defining function
  *  @param z		operand
- *  @return		z³
- */
+ *  @return		z³                                                            */
 complex<double> z3::g (complex<double> z) {
-  return z*z*z; 
+    return z*z*z; 
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -124,24 +119,21 @@ complex<double> z3::g (complex<double> z) {
  *  @param _vmin	minimal value in Im (z) 
  *  @param _vmax	maximal value in Im (z) 
  *  @param _dv		stepsize in Im (z) 
- *  @param _alpha	exponent
- */
+ *  @param _alpha	exponent                                                  */
 zA::zA (double _umin, double _umax, double _du,
-	double _vmin, double _vmax, double _dv,
-	double _alpha):
-  ComplexFunction (_umin, _umax, _du, _vmin, _vmax, _dv),
-  alpha (_alpha) {
-  Initialize ();
+        double _vmin, double _vmax, double _dv,
+        double _alpha):
+    ComplexFunction (_umin, _umax, _du, _vmin, _vmax, _dv),
+    alpha (_alpha) {
+    Initialize ();
 }
 
 /** z^a defining function
  *  @param z		operand
- *  @return		z^alpha
- */
+ *  @return		z^alpha                                                      */
 complex<double> zA::g (complex<double> z) {
-  return pow (z, alpha); 
+    return pow (z, alpha);
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -153,24 +145,21 @@ complex<double> zA::g (complex<double> z) {
  *  @param _vmin	minimal value in Im (z) 
  *  @param _vmax	maximal value in Im (z) 
  *  @param _dv		stepsize in Im (z) 
- *  @param _alpha	exponent multiplicator
- */
+ *  @param _alpha	exponent multiplicator                                    */
 ez::ez (double _umin, double _umax, double _du,
-	double _vmin, double _vmax, double _dv,
-	double _alpha):
-  ComplexFunction (_umin, _umax, _du, _vmin, _vmax, _dv),
-  alpha (_alpha) {
-  Initialize ();
+        double _vmin, double _vmax, double _dv,
+        double _alpha):
+    ComplexFunction (_umin, _umax, _du, _vmin, _vmax, _dv),
+    alpha (_alpha) {
+    Initialize ();
 }
 
 /** e^z defining function
  *  @param z		operand
- *  @return		e^(alpha*z)
- */
+ *  @return		e^(alpha*z)                                                   */
 complex<double> ez::g (complex<double> z) {
-  return exp (alpha*z); 
+    return exp (alpha*z); 
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////
 
