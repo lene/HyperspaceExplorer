@@ -22,6 +22,9 @@ using std::ifstream;
 using std::ostringstream;
 using std::ends;
 
+using VecMath::Vector;
+
+
 double Global::SR3 = sqrt(3.);
 bool Global::check_memory = false;
 double Global::ALPHA = .9;
@@ -136,7 +139,7 @@ Vector<3> Global::vnormalize (double xx, double yy, double zz) {
     static Vector<3> x;
 
     x[0] = xx; x[1] = yy; x[2] = zz;
-    return ::vnormalize(x);
+    return VecMath::vnormalize(x);
 }
 
 /** get the system memory from /proc/meminfo

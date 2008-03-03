@@ -22,6 +22,7 @@
 #include "Vector.H"
 #include "SingletonHolder.H"
 
+
 class Global {
     public:
         static bool check_memory;
@@ -47,7 +48,7 @@ class Global {
         int GetGLList();
 
         void SetColor(float R, float G, float B);
-        void SetColor (const Vector<4> &RGB);
+        void SetColor (const VecMath::Vector<4> &RGB);
         
         float *BackgroundColor() { return background; }
         void setBackground(float r, float g, float b, float a = 1.0) {
@@ -76,12 +77,12 @@ class Global {
             QMessageBox::information (NULL, h.c_str (), s.c_str ());
         }
 
-        void glVertex (Vector<3> &V) {
+        void glVertex (VecMath::Vector<3> &V) {
             if (__finite (V.sqnorm ()))
 	       glVertex3dv (V.data ());
         }
         
-        Vector<3> vnormalize (double xx, double yy, double zz);
+        VecMath::Vector<3> vnormalize (double xx, double yy, double zz);
         
         template <typename T> void Swap (T &a, T &b) {
 	    T temp (a);

@@ -15,6 +15,9 @@ unsigned int Delete (void *);
 using std::cerr;
 using std::endl;
 
+using VecMath::Vector;
+using VecMath::Matrix;
+
 /*******************************************************************************
  *  auxiliary function to safely free a memory chunk
  *  @param x		pointer to memory
@@ -263,8 +266,8 @@ Vector<4> &Function::normal (double tt, double uu, double vv) {
 
     Vector<4> *D = df (tt, uu, vv);
 
-    n = vcross (D[0], D[1], D[2]);
-    vnormalize (n);
+    n = VecMath::vcross (D[0], D[1], D[2]);
+    VecMath::vnormalize (n);
 
     return n; 
 }
@@ -322,8 +325,8 @@ Vector<4> *Function::df (double tt, double uu, double vv) {
  */
 void Function::Transform (double thetaxy, double thetaxz, double thetaxw, double thetayz, double thetayw, double thetazw,
 			  double tx, double ty, double tz, double tw) {
-    matrix<4> Rxy = matrix<4> (0, 1, thetaxy), Rxz = matrix<4> (0, 2, thetaxz), Rxw = matrix<4> (0, 3, thetaxw),
-        Ryz = matrix<4> (1, 2, thetayz), Ryw = matrix<4> (1, 3, thetayw), Rzw = matrix<4> (2, 3, thetazw),
+    Matrix<4> Rxy = Matrix<4> (0, 1, thetaxy), Rxz = Matrix<4> (0, 2, thetaxz), Rxw = Matrix<4> (0, 3, thetaxw),
+        Ryz = Matrix<4> (1, 2, thetayz), Ryw = Matrix<4> (1, 3, thetayw), Rzw = Matrix<4> (2, 3, thetazw),
         Rxyz = Rxy*Rxz, Rxwyz = Rxw*Ryz, Ryzw = Ryw*Rzw, 
         Rot = Rxyz*Rxwyz*Ryzw;
     Vector<4> trans = Vector<4>(tx, ty, tz, tw);
@@ -543,7 +546,7 @@ Vector<4> &Hypersphere::normal (double tt, double uu, double vv) {
     static Vector<4> n;
 
   n = f (tt, uu, vv);
-  vnormalize (n);
+  VecMath::vnormalize (n);
 
   return n; 
 }

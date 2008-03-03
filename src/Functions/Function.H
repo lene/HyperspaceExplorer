@@ -59,49 +59,50 @@ class Function {
         virtual void SetParameters (double _a = 0, double _b = 0, 
                                     double _c = 0, double _d = 0);
 
-        Vector<4> ***Data (void) { return X; }
+        VecMath::Vector<4> ***Data (void) { return X; }
 
-        Vector<4> &operator () (double t, double u, double v) {
-	   unsigned it = unsigned ((t-tmin)/dt),
-		    iu = unsigned ((u-umin)/du),
-		    iv = unsigned ((v-vmin)/dv);
-	   return X[it][iu][iv]; }
+        VecMath::Vector<4> &operator () (double t, double u, double v) {
+	        unsigned it = unsigned ((t-tmin)/dt),
+		             iu = unsigned ((u-umin)/du),
+		             iv = unsigned ((v-vmin)/dv);
+	        return X[it][iu][iv]; 
+        }
 
-        typedef Vector<4> &function_type (double, double, double);
+        typedef VecMath::Vector<4> &function_type (double, double, double);
         
     protected:
-        virtual function_type f = 0;
-        virtual Vector<4> *df (double, double, double);
-        virtual function_type normal;
+         virtual function_type f = 0;
+         virtual VecMath::Vector<4> *df (double, double, double);
+         virtual function_type normal;
     
-        virtual void Initialize (void);
-        void InitMem (void);
-        void Free (void);
-        virtual unsigned long MemRequired (void);
+         virtual void Initialize (void);
+         void InitMem (void);
+         void Free (void);
+         virtual unsigned long MemRequired (void);
     
-        void DrawPlane (unsigned);
-        void DrawStrip (unsigned, unsigned);
-        void DrawCube (unsigned, unsigned, unsigned);
+         void DrawPlane (unsigned);
+         void DrawStrip (unsigned, unsigned);
+         void DrawCube (unsigned, unsigned, unsigned);
     
-        double tmin, tmax, dt,
-	       umin, umax, du,
-	       vmin, vmax, dv;
+         double tmin, tmax, dt,
+	            umin, umax, du,
+	            vmin, vmax, dv;
 
-        unsigned tsteps, usteps, vsteps;
+         unsigned tsteps, usteps, vsteps;
 
-        unsigned NumVertices;
+         unsigned NumVertices;
 
-        Vector<4> F;
+         VecMath::Vector<4> F;
 
-        //      temporary storage for the function values on the grid
-        Vector<4> ***X, ***Xtrans;
-	Vector<3> ***Xscr;
-        Vector<4> *Xchunk, *XtransChunk;
-	Vector<3> *XscrChunk;
+         //      temporary storage for the function values on the grid
+         VecMath::Vector<4> ***X, ***Xtrans;
+         VecMath::Vector<3> ***Xscr;
+         VecMath::Vector<4> *Xchunk, *XtransChunk;
+         VecMath::Vector<3> *XscrChunk;
         
-        //      storage for the coloring of the vertices
-        float ***R, ***G, ***B;
-        float *RGBChunk;
+         //      storage for the coloring of the vertices
+         float ***R, ***G, ***B;
+         float *RGBChunk;
 };
 
 

@@ -34,6 +34,9 @@ using std::cerr;
 using std::endl;
 using std::ends;
 
+using VecMath::Vector;
+using VecMath::Matrix;
+
 ////////////////////////////////////////////////////////////////////////////////
 // 	C4DView construction/destruction
 ////////////////////////////////////////////////////////////////////////////////
@@ -152,8 +155,8 @@ void C4DView::Transform (double thetaxy, double thetaxz, double thetaxw, double 
 		    tx, ty, tz, tw);
   else return;
 
-  matrix<4> Rxy = matrix<4> (0, 1, thetaxy), Rxz = matrix<4> (0, 2, thetaxz), Rxw = matrix<4> (0, 3, thetaxw),
-            Ryz = matrix<4> (1, 2, thetayz), Ryw = matrix<4> (1, 3, thetayw), Rzw = matrix<4> (2, 3, thetazw),
+  Matrix<4> Rxy = Matrix<4> (0, 1, thetaxy), Rxz = Matrix<4> (0, 2, thetaxz), Rxw = Matrix<4> (0, 3, thetaxw),
+            Ryz = Matrix<4> (1, 2, thetayz), Ryw = Matrix<4> (1, 3, thetayw), Rzw = Matrix<4> (2, 3, thetazw),
             Rxyz = Rxy*Rxz, Rxwyz = Rxw*Ryz, Ryzw = Ryw*Rzw,
             Rot = Rxyz*Rxwyz*Ryzw;
             Vector<4> trans = Vector<4>(tx, ty, tz, tw);
@@ -781,7 +784,7 @@ void C4DView::OnPaint() {                                	//    object drawing r
   else 
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
   
-  glPushMatrix();                                        	//    save transformation matrix
+  glPushMatrix();                                        	//    save transformation Matrix
     // glTranslated(0.0, /*Size ()*.75*/0., 0);            	//    set the camera position
 
   glTranslated (m_transX, m_transY, m_camZ);            	//    apply object translation
@@ -791,7 +794,7 @@ void C4DView::OnPaint() {                                	//    object drawing r
   
   RenderScene (0);                                		//    draw current frame
   
-  glPopMatrix();                                        	//    restore transformation matrix
+  glPopMatrix();                                        	//    restore transformation Matrix
 
   swapBuffers ();                            			//    swap the buffers
 
@@ -886,7 +889,7 @@ void C4DView::initializeGL (void) {
     else 
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-    glPushMatrix();                                     //    save the transformation matrix
+    glPushMatrix();                                     //    save the transformation Matrix
     // glTranslated(0.0, /*Size ()*.75*/0., 0);         //    set the camera position
 
     glTranslated (m_transX, m_transY, m_camZ);          //    apply object translation
@@ -898,7 +901,7 @@ void C4DView::initializeGL (void) {
     SingletonLog::Instance().log("  RenderScene");
     RenderScene (0);                                	//    draw current frame
 
-    glPopMatrix();                                      //    restore transformation matrix
+    glPopMatrix();                                      //    restore transformation Matrix
   }
   SingletonLog::Instance().log("C4DView::initializeGL() done");
 }

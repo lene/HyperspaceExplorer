@@ -28,7 +28,6 @@
 #endif
 #include "ValuesDialogImpl.H"
 
-template <unsigned D, typename N> class Vector;
 class Function;
 
 class C4DView : public XQGLWidget {
@@ -130,12 +129,12 @@ protected:
   
     unsigned animation_fps;
 
-    Vector<4> ***Data;
+    VecMath::Vector<4> ***Data;
 
-    Vector<3> ***Xscr;
-    Vector<4> ***Xtrans;
-    Vector<3> *XscrChunk;
-    Vector<4> *XtransChunk;
+    VecMath::Vector<3> ***Xscr;
+    VecMath::Vector<4> ***Xtrans;
+    VecMath::Vector<3> *XscrChunk;
+    VecMath::Vector<4> *XtransChunk;
 	
     float ***R, ***G, ***B;
     float *RGBChunk;
@@ -143,8 +142,8 @@ protected:
     unsigned tsteps, usteps, vsteps;
     double CamW, ScrW;
 	
-    Vector<4> **Cross, **CrossTrans;
-    Vector<3> **CrossScr;
+    VecMath::Vector<4> **Cross, **CrossTrans;
+    VecMath::Vector<3> **CrossScr;
     
     void UpdateStatus (QString = "");
 

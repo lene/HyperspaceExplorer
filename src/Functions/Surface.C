@@ -13,6 +13,8 @@
 
 template <typename T> unsigned int Delete (T *x);	// defined in Function.C
 
+using VecMath::Vector;
+using VecMath::Matrix;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -192,8 +194,8 @@ Vector<4> &Surface::normal (double uu, double vv) {
 
     Vector<4> *D = df (uu, vv);
 
-    n = vcross (D[0], D[1], D[2]);
-    vnormalize (n);
+    n = VecMath::vcross (D[0], D[1], D[2]);
+    VecMath::vnormalize (n);
 
     return n; 
 }
@@ -247,9 +249,9 @@ Vector<4> *Surface::df (double uu, double vv) {
 void Surface::Transform (double thetaxy, double thetaxz, double thetaxw, 
                          double thetayz, double thetayw, double thetazw,
 			 double tx, double ty, double tz, double tw) {
-    matrix<4> Rxw = matrix<4> (0, 3, thetaxw), 
-              Ryw = matrix<4> (1, 3, thetayw), 
-              Rzw = matrix<4> (2, 3, thetazw),
+    Matrix<4> Rxw = Matrix<4> (0, 3, thetaxw),
+              Ryw = Matrix<4> (1, 3, thetayw),
+              Rzw = Matrix<4> (2, 3, thetazw),
 	      Rxwyw = Rxw*Ryw, Rot = Rxwyw*Rzw;
     Vector<4> trans = Vector<4> (tx, ty, tz, tw);
 	

@@ -13,6 +13,8 @@
 
 using std::complex;
 
+using VecMath::Vector;
+
 ///////////////////////////////////////////////////////////////////////////////
 
 /** ComplexFunction c'tor given a definition set in R² (as parameter space)

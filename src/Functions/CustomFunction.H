@@ -13,71 +13,69 @@
 class QString;
 
 class CustomFunction: public Function {
-public:
-  CustomFunction (double _tmin, double _tmax, double _dt,
-		  double _umin, double _umax, double _du,
-		  double _vmin, double _vmax, double _dv,
-		  bool final = true);
-  virtual ~CustomFunction();
+    public:
+         CustomFunction (double _tmin, double _tmax, double _dt,
+		                 double _umin, double _umax, double _du,
+		                 double _vmin, double _vmax, double _dv,
+		                 bool final = true);
+         virtual ~CustomFunction();
 
-  QString symbolic ();
+         QString symbolic ();
   
-protected:
-    virtual Vector<4> &f (double, double, double);
-  bool loadFunction (const QString &);
+    protected:
+         virtual VecMath::Vector<4> &f (double, double, double);
+         bool loadFunction (const QString &);
 
+         VecMath::Vector<4> (*func)(double, double, double);
 
-  Vector<4> (*func)(double, double, double);
-
-  void *handle;
+         void *handle;
 };
 
 
 class CustomPolarFunction: public CustomFunction {
-public:
-  CustomPolarFunction (double _tmin, double _tmax, double _dt,
-		       double _umin, double _umax, double _du,
-		       double _vmin, double _vmax, double _dv);
-  virtual ~CustomPolarFunction();
+    public:
+         CustomPolarFunction (double _tmin, double _tmax, double _dt,
+		                      double _umin, double _umax, double _du,
+		                      double _vmin, double _vmax, double _dv);
+         virtual ~CustomPolarFunction();
 
-protected:
-    virtual Vector<4> &f (double, double, double);
+    protected:
+         virtual VecMath::Vector<4> &f (double, double, double);
 };
 
 
 class CustomComplexFunction: public ComplexFunction {
-public:
-  CustomComplexFunction (double _umin, double _umax, double _du,
-			 double _vmin, double _vmax, double _dv);
-  virtual ~CustomComplexFunction();
+    public:
+         CustomComplexFunction (double _umin, double _umax, double _du,
+			                    double _vmin, double _vmax, double _dv);
+         virtual ~CustomComplexFunction();
 
-  QString symbolic ();
+         QString symbolic ();
   
-protected:
-  std::complex<double> g (std::complex<double> z);
-  bool loadFunction (const QString &);
+    protected:
+         std::complex<double> g (std::complex<double> z);
+         bool loadFunction (const QString &);
 
 
-  std::complex<double> (*gunc) (std::complex<double> z);
+         std::complex<double> (*gunc) (std::complex<double> z);
 
 
-  void *handle;
+         void *handle;
 };
 
 class CustomSurface: public Surface {
-public:
-  CustomSurface ( double _umin, double _umax, double _du,
-		  double _vmin, double _vmax, double _dv);
-  virtual ~CustomSurface();
+    public:
+         CustomSurface ( double _umin, double _umax, double _du,
+		                 double _vmin, double _vmax, double _dv);
+         virtual ~CustomSurface();
 
-  QString symbolic ();
+         QString symbolic ();
   
-protected:
-    virtual Vector<4> &f (double, double);
-  bool loadFunction (const QString &);
+    protected:
+         virtual VecMath::Vector<4> &f (double, double);
+         bool loadFunction (const QString &);
 
+         VecMath::Vector<4> (*func)(double, double);
 
-  Vector<4> (*func)(double, double);
-
-  void *handle;
+         void *handle;
 };

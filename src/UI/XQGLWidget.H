@@ -41,10 +41,10 @@ class XQGLWidget: public QGLWidget {
             return *DrawObject; 
         }
 
-        void SetBackgroundColor (const Vector<4> &RGBA) { Background = RGBA; }
+        void SetBackgroundColor (const VecMath::Vector<4> &RGBA) { Background = RGBA; }
 
         void SetBackgroundColor (float R, float G, float B, float A) {
-            Background = Vector<4> (R, G, B, A); 
+            Background = VecMath::Vector<4> (R, G, B, A);
         }
 
     public slots:                               //  called when:
@@ -67,7 +67,7 @@ class XQGLWidget: public QGLWidget {
         //  geometry states
         double R,                       //  viewpoint distance
                psi, theta, phi;         //  rotation about x-, y- & z-axis
-               Vector<4> Background;
+               VecMath::Vector<4> Background;
         GLfloat Alpha;
 
         //  drawing realism states

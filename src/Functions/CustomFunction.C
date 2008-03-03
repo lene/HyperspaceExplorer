@@ -24,6 +24,8 @@ using std::complex;
 using std::cerr;
 using std::endl;
 
+using VecMath::Vector;
+
 /*******************************************************************************
  *  outsourced function, as it is the same in all classes
  *  @param handle	an opened DLL handle

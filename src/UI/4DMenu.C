@@ -29,6 +29,8 @@ using std::cerr;
 using std::endl;
 using std::ends;
 
+using VecMath::Vector;
+
 inline void TESTED_FEATURE (Q3PopupMenu *menu, int item) {
 # ifdef TESTFEATURES
     menu->setItemEnabled (item, true);

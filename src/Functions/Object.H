@@ -23,24 +23,24 @@ class Object: public Function {
         Object (unsigned, unsigned);
         virtual ~Object ();
         virtual void ReInit (double, double, double,
-	       		     double, double, double,
-			     double, double, double);
+                             double, double, double,
+                             double, double, double);
 
-        virtual void Transform (double Rxy, double Rxz, double Rxw, 
+        virtual void Transform (double Rxy, double Rxz, double Rxw,
                                 double Ryz, double Ryw, double Rzw,
-			        double Tx, double Ty, double Tz, double Tw);
+                                double Tx, double Ty, double Tz, double Tw);
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
         virtual void Draw (void);
 
     protected:
         unsigned NumVertices, NumSurfaces;
-        Vector<4> *X, *Xtrans;
-	Vector<3> *Xscr;
+        VecMath::Vector<4> *X, *Xtrans;
+        VecMath::Vector<3> *Xscr;
         float *R, *G, *B;
 
         unsigned *Surface[4];
 
-        virtual Vector<4> &f (double, double, double) { return F; }
+        virtual VecMath::Vector<4> &f (double, double, double) { return F; }
 };
 
 
@@ -49,7 +49,7 @@ class Object: public Function {
 class Hypercube: public Object {
 public:
     Hypercube (): Object (16, 24) { }
-    Hypercube (const Vector<4> &_Center, double _a = 1);
+    Hypercube (const VecMath::Vector<4> &_Center, double _a = 1);
     virtual ~Hypercube() { }
   
     virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
@@ -65,7 +65,7 @@ protected:
     void DeclareSquare (unsigned, unsigned, unsigned, unsigned, unsigned);
 
     double a;
-    Vector<4> center;
+    VecMath::Vector<4> center;
 };
 
 
@@ -74,7 +74,7 @@ protected:
 class Sponge: public Hypercube {
 public:
     Sponge (unsigned level = 1, int distance = 1, double rad = 1,
-            Vector<4> Center = Vector<4>(0., 0.,0., 0.));
+            VecMath::Vector<4> Center = VecMath::Vector<4>(0., 0.,0., 0.));
     virtual ~Sponge ();
 
     virtual void Transform (double Rxy, double Rxz, double Rxw, 
@@ -109,7 +109,7 @@ protected:
     std::vector<Hypercube *> List;
     int distance;
     double rad;
-    Vector<4> center;
+    VecMath::Vector<4> center;
 };
 
 
@@ -118,7 +118,7 @@ protected:
 class Pyramid: public Object {
 public:
     Pyramid (): Object (5, 10) { }
-    Pyramid (const Vector<4> &_Center, double _a = 1);
+    Pyramid (const VecMath::Vector<4> &_Center, double _a = 1);
     virtual ~Pyramid() { }
 
     virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
@@ -128,7 +128,7 @@ protected:
     virtual void Initialize();
     void DeclareTriangle (unsigned, unsigned, unsigned, unsigned);
 
-    Vector<4> center;
+    VecMath::Vector<4> center;
     double a;
 };
 
@@ -138,7 +138,7 @@ protected:
 class Gasket: public Pyramid {
 public:
     Gasket (unsigned level = 1, double rad = 1, 
-            Vector<4> Center = Vector<4> (0., 0.,0., 0.));
+            VecMath::Vector<4> Center = VecMath::Vector<4> (0., 0.,0., 0.));
     virtual ~Gasket() { }
 
     virtual void Transform (double Rxy, double Rxz, double Rxw, 
@@ -164,7 +164,7 @@ protected:
     unsigned Level;
     std::vector<Pyramid *> List;
     double rad;
-    Vector<4> center;
+    VecMath::Vector<4> center;
 };
 
 #endif
