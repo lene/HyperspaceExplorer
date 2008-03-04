@@ -9,8 +9,8 @@ class Menu4D: public QMenu {
     public:
         Menu4D(C4DView *);
     
-//        void updateFunctionMenu(const QString &);
-        void updateFunctionMenu(int);
+        void updateFunctionMenu(const QString &);
+        
         QAction *getAction(const QString &key) {
             return actionMap[key];
         }
@@ -28,9 +28,5 @@ class Menu4D: public QMenu {
         C4DView *parent;
         QMenu *functions, *appear, *animation, *help;
         
-        QAction *linesAction, *crossAction, *hyperfogAction, *pixmapAction,
-                *lightAction, *fogAction, *transparentAction, *shadeAction,
-                *colorsAction;
-        QAction *funcAction[32];
         std::map<QString, QAction *> actionMap;
 };

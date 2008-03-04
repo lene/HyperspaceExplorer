@@ -1,5 +1,7 @@
 #include <map>
 
+#include <QShortcut>
+
 #include "Menu4D.H"
 #include "4DView.H"
 
@@ -31,14 +33,12 @@ Menu4D::Menu4D(C4DView *_parent):
     insertAction(fr3r, "Gravitation Potential", SLOT(GravPotential()));
     insertAction(fr3r, "sin (r²)", SLOT(SinR()));
     insertAction(fr3r, "exp (r²)", SLOT(ExpR()));
-    QAction *tmp = insertAction(fr3r, "Custom function", SLOT(customFunction()));
-    //    TESTED_FEATURE (fr3r, tmp);
-
+    insertAction(fr3r, "Custom function", SLOT(customFunction()));
+    
     insertAction(fr3r, "Polar: r = sin (pi/3.*(t+u+v))", SLOT(Sin2()));
     insertAction(fr3r, "Polar: r = 1/2+sin (Phase*pi*t*u*v)", SLOT(Sin()));
     insertAction(fr3r, "Polar: r = sqrt (t²+u²+v²)", SLOT(FunctionR()));
-    tmp = insertAction(fr3r, "Custom polar function", SLOT(customPolarFunction()));
-    //    TESTED_FEATURE (fr3r, tmp);
+    insertAction(fr3r, "Custom polar function", SLOT(customPolarFunction()));
 
     insertAction(objects, "Hypersphere", SLOT(FunctionHypersphere()));
     insertAction(objects, "Hypercube", SLOT(ObjectHypercube()));
@@ -50,8 +50,8 @@ Menu4D::Menu4D(C4DView *_parent):
     insertAction(surfaces, "Surface1", SLOT(Surface_1()));
     insertAction(surfaces, "Horizon", SLOT(SurfaceHorizon()));
     insertAction(surfaces, "Torus 3", SLOT(SurfaceTorus3()));
-    tmp = insertAction(surfaces, "Custom surface", SLOT(customSurface()));
-    TESTED_FEATURE (tmp);
+    insertAction(surfaces, "Custom surface", SLOT(customSurface()));
+    TESTED_FEATURE (getAction("Custom surface"));
 
     insertAction(fcc, "z²", SLOT(ComplexZ2()));
     insertAction(fcc, "z³", SLOT(ComplexZ3()));
@@ -67,30 +67,30 @@ Menu4D::Menu4D(C4DView *_parent):
     insertAction(fcc, "sinh (z)", SLOT(ComplexSinhZ()));
     insertAction(fcc, "cosh (z)", SLOT(ComplexCoshZ()));
     insertAction(fcc, "tan (z)", SLOT(ComplexTanZ()));
-    tmp = insertAction(fcc, "Custom complex function", SLOT(customComplexFunction()));
-    TESTED_FEATURE (tmp);
+    insertAction(fcc, "Custom complex function", SLOT(customComplexFunction()));
+    TESTED_FEATURE (getAction("Custom complex function"));
     
     functions->setCheckable (true);
         
     ////////////////////////////////////////////////////////////////////////////
     //      "Appearance" Menu
     ////////////////////////////////////////////////////////////////////////////
-    colorsAction     = insertAction(appear, "Colors", SLOT(Colors ()));
-    shadeAction      = insertAction(appear, "Shading", SLOT(Shade()));
-    fogAction        = insertAction(appear, "Depth Cue", SLOT(Fog()));
-    transparentAction= insertAction(appear, "Transparence", SLOT(Transparent()));
-    lightAction      = insertAction(appear, "Lighting", SLOT(Light()));
-    linesAction      = insertAction(appear, "Wireframe", SLOT(Wireframe()));
-    crossAction      = insertAction(appear, "Coordinate Cross", SLOT(Coordinates()));
+    insertAction(appear, "Colors", SLOT(Colors ()));
+    insertAction(appear, "Shading", SLOT(Shade()));
+    insertAction(appear, "Depth Cue", SLOT(Fog()));
+    insertAction(appear, "Transparence", SLOT(Transparent()));
+    insertAction(appear, "Lighting", SLOT(Light()));
+    insertAction(appear, "Wireframe", SLOT(Wireframe()));
+    insertAction(appear, "Coordinate Cross", SLOT(Coordinates()));
 
     appear->setCheckable (true);
 
-    colorsAction->setChecked(parent->getColors());
-    shadeAction->setChecked(parent->getShade());
-    fogAction->setChecked(parent->getFog());
-    lightAction->setChecked(parent->getLight()); 
-    transparentAction->setChecked(parent->getTransparent());
-    crossAction->setChecked(parent->getDisplayCoordinates()); 
+    getAction("Colors")->setChecked(parent->getColors());
+    getAction("Shading")->setChecked(parent->getShade());
+    getAction("Depth Cue")->setChecked(parent->getFog());
+    getAction("Lighting")->setChecked(parent->getLight()); 
+    getAction("Transparence")->setChecked(parent->getTransparent());
+    getAction("Coordinate Cross")->setChecked(parent->getDisplayCoordinates()); 
 
     insertAction(help, "Online help", SLOT(Help ()));
     help->insertSeparator ();
@@ -102,25 +102,25 @@ Menu4D::Menu4D(C4DView *_parent):
     addAction("Quit",       qApp, SLOT(quit ()));
             
     
-    pixmapAction = insertAction(animation, "Render to Images", SLOT(RenderToImages()));
-    pixmapAction->setChecked(parent->getRenderToPixmap());
-    TESTED_FEATURE (pixmapAction);
+    insertAction(animation, "Render to Images", SLOT(RenderToImages()));
+    getAction("Render to Images")->setChecked(parent->getRenderToPixmap());
+    TESTED_FEATURE (getAction("Render to Images"));
 
-    tmp = insertAction(animation, "Animation Settings", SLOT(AnimationSettings()));
-    TESTED_FEATURE (tmp);
+    insertAction(animation, "Animation Settings", SLOT(AnimationSettings()));
+    TESTED_FEATURE (getAction("Animation Settings"));
     
     insertAction(animation, "Benchmark", SLOT (Benchmark()));
-    hyperfogAction = insertAction(appear, "4D Depth Cue", SLOT(HyperFog()));
+    insertAction(appear, "4D Depth Cue", SLOT(HyperFog()));
 
     if (parent->getDisplayPolygons()) {
-        linesAction->setText("Solid");
-        transparentAction->setText("Line Antialiasing");
-        transparentAction->setEnabled(true);
+        getAction("Wireframe")->setText("Solid");
+        getAction("Transparence")->setText("Line Antialiasing");
+        getAction("Transparence")->setEnabled(true);
     }
     else {
-        linesAction->setText("Wireframe");
-        transparentAction->setText("Transparence");
-        TESTED_FEATURE (transparentAction);	
+        getAction("Wireframe")->setText("Wireframe");
+        getAction("Transparence")->setText("Transparence");
+        TESTED_FEATURE (getAction("Transparence"));	
     }
       //      appear->setItemEnabled (transparentAction, DisplayPolygons);
     parent->SetWireframe (parent->getDisplayPolygons());
@@ -129,9 +129,9 @@ Menu4D::Menu4D(C4DView *_parent):
 /*******************************************************************************
  *  rotate in 3D 360 degrees
  */
-void Menu4D::updateFunctionMenu (int Item) {
-  /*  for (unsigned i = 0; i < 32; i++)
+void Menu4D::updateFunctionMenu (const QString &item) {
+    /*  for (unsigned i = 0; i < 32; i++)
     functions->setItemChecked (i, false);
-  */
-//    functions->setItemChecked (Item, true);
+    */
+    getAction(item)->setChecked(true);
 }

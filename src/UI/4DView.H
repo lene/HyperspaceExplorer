@@ -125,7 +125,7 @@ class C4DView : public XQGLWidget {
 
         QStatusBar *StatusBar;
         QString ObjectName;
-
+        
         double dxy, dxz, dxw, dyz, dyw, dzw,
                dx, dy, dz;
 
@@ -143,6 +143,7 @@ class C4DView : public XQGLWidget {
 
         unsigned tsteps, usteps, vsteps;
         double CamW, ScrW;
+        QAction quitAction;
 
         VecMath::Vector<4> **Cross, **CrossTrans;
         VecMath::Vector<3> **CrossScr;
