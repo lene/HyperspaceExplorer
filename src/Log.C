@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <string>
+
 #include "Log.H"
 
 using std::cerr;

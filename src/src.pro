@@ -25,10 +25,13 @@ INCLUDEPATH += ./UI
 DEPENDPATH += ./UI
 HEADERS += UI/4DView.H UI/ComplexDialogImpl.H UI/FunctionDialogImpl.H \
 	   UI/PolarDialogImpl.H UI/SurfaceDialogImpl.H UI/ValuesDialogImpl.H \
-	   UI/GLObject.H UI/XQGLWidget.H
+	   UI/GLObject.H UI/XQGLWidget.H \
+           UI/4DMenu.H
 SOURCES += UI/4DView.C UI/4DMenu.C UI/ComplexDialogImpl.C \
 	   UI/FunctionDialogImpl.C UI/PolarDialogImpl.C UI/SurfaceDialogImpl.C \
-	   UI/ValuesDialogImpl.C UI/XQGLWidget.C UI/PopupStuff.C
+	   UI/ValuesDialogImpl.C UI/XQGLWidget.C UI/PopupStuff.C \
+           UI/Menu4D.C
+
 FORMS += UI/ComplexDialog.ui UI/FunctionDialog.ui \
 	 UI/PolarDialog.ui UI/SurfaceDialog.ui UI/ValuesDialog.ui
 ###
@@ -44,6 +47,7 @@ INCLUDEPATH += .
 DEPENDPATH += .
 HEADERS += Globals.H Help.H Matrix.H Vector.H Log.H 
 SOURCES += Globals.C Help.C Main.C Log.C 
+
 ###
 ################################################################################
 

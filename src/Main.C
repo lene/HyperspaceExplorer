@@ -8,10 +8,12 @@
 
 #include <vector>
 #include <iomanip>
-#include <qapplication.h>
-#include <qstringlist.h>
-#include <qstring.h>
-#include <qdir.h>
+
+#include <QApplication>
+#include <QStringList>
+#include <QString>
+#include <QDir>
+
 #include "4DView.H"
 #include "Globals.H"
 

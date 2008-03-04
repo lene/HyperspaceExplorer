@@ -13,10 +13,11 @@
 
 #include <string>
 #include <cmath>
+
 #include <GL/gl.h>
 #include <GL/glu.h>
 
-#include <qmessagebox.h>
+#include <QMessageBox>
 
 #include "ValuesDialogImpl.H"
 #include "Vector.H"
