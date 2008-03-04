@@ -78,26 +78,9 @@ class XQGLWidget: public QGLWidget {
         int xpressed, ypressed;
         void SetupDepthCue (float, float);
 
-        //  popup menu handling
-        Q3PopupMenu *menu;                              //  menu identifiers
-        virtual Q3PopupMenu *SetupMenu (void);
-        virtual void SetupAccel (void);
-
-    protected:
-        Q3PopupMenu *appear, *help;                            //  menu identifiers
-
-        int lightID, fogID, transparentID, shadeID,    //  appearance items
-            colorsID;
-
     protected slots:
         void Rotate ();
         void Help ();
-
-        void Light ();                                 //  appearance submenu handlers
-        void Colors ();
-        void Fog ();
-        void Transparent ();
-        void Shade ();
 
         void SetAlpha (int);
 

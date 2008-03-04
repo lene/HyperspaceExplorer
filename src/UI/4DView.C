@@ -12,6 +12,7 @@
 #include <QMouseEvent>
 
 #include "4DView.H"
+#include "Menu4D.H"
 
 #include "Globals.H"
 #include "Log.H"
@@ -78,7 +79,7 @@ C4DView::C4DView(QWidget *parent, const char *name):
 
     connect (Values, SIGNAL (ApplyChanges ()), this, SLOT (ApplyChanges ()));
 
-    menu = SetupMenu ();
+    menu = new Menu4D(this);
     //  this does not work well with QGLWidgets. left out for now.
     //  StatusBar = new QStatusBar (this);
 
@@ -486,7 +487,8 @@ void C4DView::mousePressEvent (QMouseEvent *e) {
              ControlPressed = s & Qt::ControlModifier,
              ShiftPressed = s & Qt::ShiftModifier;
         if (b == Qt::RightButton && !(AltPressed || ControlPressed || ShiftPressed))
-            XQGLWidget::mousePressEvent (e);	
+            menu->exec (this->mapToGlobal(point));
+//            XQGLWidget::mousePressEvent (e);	
     }
 }
 

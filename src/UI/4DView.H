@@ -18,6 +18,7 @@
 class QPaintEvent;
 class QStatusBar;
 
+class Menu4D;
 class Function;
 
 class C4DView : public XQGLWidget {
@@ -57,6 +58,15 @@ class C4DView : public XQGLWidget {
         double Benchmark4D (int, double, double, double, bool = true);
         double Benchmark3D (int, double, double, double, bool = true);
 
+        bool getColors() const { return colors; }
+        bool getShade() const { return shade; }
+        bool getFog() const { return fog; }
+        bool getLight() const { return light; }
+        bool getTransparent() const { return transparent; }
+        bool getDisplayCoordinates() const { return DisplayCoordinates; }
+        bool getRenderToPixmap() const { return RenderToPixmap; }
+        bool getDisplayPolygons() const { return DisplayPolygons; }
+                
     public slots:
         void ApplyChanges ();
 
@@ -68,8 +78,9 @@ class C4DView : public XQGLWidget {
 
     protected:
 
-        virtual Q3PopupMenu * SetupMenu ();
-
+//        virtual Q3PopupMenu * SetupMenu ();
+        Menu4D *menu;
+        
         void Project ();
         void Draw ();
         void PreRedraw ();
@@ -166,6 +177,10 @@ class C4DView : public XQGLWidget {
         void Coordinates();
         void HyperFog();
         void Light();
+        void Colors ();
+        void Fog ();
+        void Transparent ();
+        void Shade ();
         void Benchmark();
         void RenderToImages();
   

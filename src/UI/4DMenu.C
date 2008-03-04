@@ -9,6 +9,8 @@
 
 
 #include "4DView.H"
+#include "Menu4D.H"
+
 #include "Function.H"
 #include "Surface.H"
 #include "Object.H"
@@ -31,154 +33,60 @@ using std::ends;
 
 using VecMath::Vector;
 
-inline void TESTED_FEATURE (Q3PopupMenu *menu, int item) {
-# ifdef TESTFEATURES
-    menu->setItemEnabled (item, true);
-# else
-    menu->setItemEnabled (item, false);
-#endif
-}
-
-    ////////////////////////////////////////////////////////////////////////////////
-    //
-    //	C4DView menu handling
-    //
-    ////////////////////////////////////////////////////////////////////////////////
-
-/*******************************************************************************
- *  create the menu 
- *  @return		the menu
- */
-Q3PopupMenu * C4DView::SetupMenu () {
-    menu = XQGLWidget::SetupMenu ();
-
-    functions = new Q3PopupMenu;
-    animation = new Q3PopupMenu;
-
-    Q3PopupMenu *fr3r = new Q3PopupMenu,
-               *objects = new Q3PopupMenu,
-               *surfaces = new Q3PopupMenu,
-               *fcc = new Q3PopupMenu;
-
-    fr3r->insertItem ("1/(r²+1)", this, SLOT(FR3R()));
-    fr3r->insertItem ("Gravitation Potential", this, SLOT(GravPotential()));
-    fr3r->insertItem ("sin (r²)", this, SLOT(SinR()));
-    fr3r->insertItem ("exp (r²)", this, SLOT(ExpR()));
-    int tmp = fr3r->insertItem ("Custom function", this, SLOT(customFunction()));    
-    //    TESTED_FEATURE (fr3r, tmp);
-
-    fr3r->insertItem ("Polar: r = sin (pi/3.*(t+u+v))", this, SLOT(Sin2()));
-    fr3r->insertItem ("Polar: r = 1/2+sin (Phase*pi*t*u*v)", this, SLOT(Sin()));
-    fr3r->insertItem ("Polar: r = sqrt (t²+u²+v²)", this, SLOT(FunctionR()));
-    tmp = fr3r->insertItem ("Custom polar function", this, SLOT(customPolarFunction()));
-    //    TESTED_FEATURE (fr3r, tmp);
-
-    objects->insertItem ("Hypersphere", this, SLOT(FunctionHypersphere()));
-    objects->insertItem ("Hypercube", this, SLOT(ObjectHypercube()));
-    objects->insertItem ("Hyperpyramid", this, SLOT(ObjectHyperpyramid()));
-    objects->insertItem ("Menger Sponge", this, SLOT(ObjectHypersponge()));
-    objects->insertItem ("Sierpinski Gasket", this, SLOT(ObjectGasket()));
-    objects->insertItem ("Torus 1", this, SLOT(FunctionTorus1()));
-    objects->insertItem ("Torus 2", this, SLOT(FunctionTorus2()));
-    surfaces->insertItem ("Surface1", this, SLOT(Surface_1()));
-    surfaces->insertItem ("Horizon", this, SLOT(SurfaceHorizon()));
-    surfaces->insertItem ("Torus 3", this, SLOT(SurfaceTorus3()));
-    tmp = surfaces->insertItem ("Custom surface", this, SLOT(customSurface()));
-    TESTED_FEATURE (surfaces, tmp);
-
-    fcc->insertItem ("z²", this, SLOT(ComplexZ2()));
-    fcc->insertItem ("z³", this, SLOT(ComplexZ3()));
-    fcc->insertItem ("z^a", this, SLOT(ComplexZA()));
-    fcc->insertItem ("e^z", this, SLOT(ComplexEZ()));
-    fcc->insertItem ("e^-z²", this, SLOT(ComplexEMZ2()));
-    fcc->insertItem ("1/z", this, SLOT(ComplexZM1()));
-    fcc->insertItem ("1/z²", this, SLOT(ComplexZM2()));
-    fcc->insertItem ("sqrt (z)", this, SLOT(ComplexSqrtZ()));
-    fcc->insertItem ("ln (z)", this, SLOT(ComplexLnZ()));
-    fcc->insertItem ("sin (z)", this, SLOT(ComplexSinZ()));
-    fcc->insertItem ("cos (z)", this, SLOT(ComplexCosZ()));
-    fcc->insertItem ("sinh (z)", this, SLOT(ComplexSinhZ()));
-    fcc->insertItem ("cosh (z)", this, SLOT(ComplexCoshZ()));
-    fcc->insertItem ("tan (z)", this, SLOT(ComplexTanZ()));
-    tmp = fcc->insertItem ("Custom complex function", this, SLOT(customComplexFunction()));
-    TESTED_FEATURE (fcc, tmp);
-
-    functions->insertItem ("f: R³ -> R", fr3r, -1, 0);
-    functions->insertItem ("Objects", objects, -1, 1);
-    surfaces->insertItem ("f: C -> C", fcc, -1, 0);
-    functions->insertItem ("Surfaces", surfaces, -1, 2);
-    
-    functions->setCheckable (true);
-    
-    linesID = appear->insertItem ("Wireframe", this, SLOT(Wireframe()));
-    crossID = appear->insertItem ("Coordinate Cross", this, SLOT(Coordinates()));
-    appear->setItemChecked (crossID, DisplayCoordinates); 
-    pixmapID = animation->insertItem ("Render to Images", this, SLOT(RenderToImages()));
-    animation->setItemChecked (pixmapID, RenderToPixmap);
-    TESTED_FEATURE (animation, pixmapID);
-
-    tmp = animation->insertItem ("Animation Settings", this, SLOT(AnimationSettings()));
-    TESTED_FEATURE (animation, tmp);
-    
-#   if (QT_VERSION < 300)
-      animation->insertItem ("Benchmark", this, SLOT (Benchmark()), 0, -1, 2);
-#   else
-      animation->insertItem ("Benchmark", this, SLOT (Benchmark()), (const QKeySequence &)0, -1, 2);
-#   endif      
-
-#   if (QT_VERSION < 300)
-      hyperfogID = appear->insertItem ("4D Depth Cue", this, SLOT(HyperFog()), 0, -1, 3);
-#   else
-      hyperfogID = appear->insertItem ("4D Depth Cue", this, SLOT(HyperFog()), (const QKeySequence &)0, -1, 3);
-#   endif
-    
-    menu->insertItem ("Object", functions, -1, 0);
-      
-    menu->insertItem ("Animation", animation, -1, 2);
-
-      if (DisplayPolygons) {
-	appear->changeItem (linesID, "Solid");
-	appear->changeItem (transparentID, "Line Antialiasing");
-	appear->setItemEnabled (transparentID, true);
-      }
-      else {
-	appear->changeItem (linesID, "Wireframe");
-	appear->changeItem (transparentID, "Transparence");
-	TESTED_FEATURE (appear, transparentID);	
-      }
-      //      appear->setItemEnabled (transparentID, DisplayPolygons);
-      SetWireframe (DisplayPolygons);
-
-      return menu;
-}
-
-
 /*******************************************************************************
  *  menu callback functions
  */
 
+/** toggle fog/depth cue */
+void C4DView::Fog () {
+  fog = !fog;
+  menu->getAction("Depth Cue")->setChecked(fog);
+  InitFog ();
+  repaint (); }
 
-/*******************************************************************************
- *  switch between wireframe and solid display
+
+/** toggle object transparency */
+void C4DView::Transparent () {
+  transparent = !transparent;
+  menu->getAction("Transparence")->setChecked(transparent);
+  InitTransparence ();
+  repaint (); }
+
+
+/** toggle shading */
+void C4DView::Shade () {
+  shade = !shade;
+  menu->getAction("Shading")->setChecked(shade);
+  InitShade ();
+  repaint (); }
+
+
+/** toggle colors */
+void C4DView::Colors () {
+  colors = !colors;
+  menu->getAction("Colors")->setChecked(colors);
+  initializeGL ();
+  repaint (); }
+
+
+/** switch between wireframe and solid display
  *  account for antialiasing only in WF mode
- *  change menu items accordingly
- */
+ *  change menu items accordingly                                             */
 void C4DView::Wireframe() {
-  if (DisplayPolygons) {
-    appear->changeItem (linesID, "Solid");
-    appear->changeItem (transparentID, "Line Antialiasing");
-  }
-  else {
-    transparent = true;;
-    Transparent ();
-    appear->changeItem (linesID, "Wireframe");
-    appear->changeItem (transparentID, "Transparence");
-    glDisable (GL_CULL_FACE);
-  }
-  appear->setItemEnabled (transparentID, DisplayPolygons);
-  SetWireframe (DisplayPolygons);
+    if (DisplayPolygons) {
+        menu->getAction("Wireframe")->setText("Solid");
+        menu->getAction("Transparence")->setText("Line Antialiasing");
+    } else {
+        transparent = true;;
+        Transparent ();
+        menu->getAction("Wireframe")->setText("Wireframe");
+        menu->getAction("Transparence")->setText("Transparence");
+        glDisable (GL_CULL_FACE);
+    }
+    menu->getAction("Wireframe")->setChecked (DisplayPolygons);
+    SetWireframe (DisplayPolygons);
 
-  OnPaint ();
+    OnPaint ();
 }
 
 
@@ -187,10 +95,10 @@ void C4DView::Wireframe() {
  *  change menu items accordingly
  */
 void C4DView::Coordinates() {
-  DisplayCoordinates = !DisplayCoordinates;
-  appear->setItemChecked (crossID, DisplayCoordinates); 
+    DisplayCoordinates = !DisplayCoordinates;
+    menu->getAction("Coordinate Cross")->setChecked (DisplayCoordinates);
   
-  Redraw ();
+    Redraw ();
 }
 
 
@@ -199,10 +107,10 @@ void C4DView::Coordinates() {
  *  change menu items accordingly
  */
 void C4DView::HyperFog() {
-  DepthCue4D = !DepthCue4D;
-  appear->setItemChecked (hyperfogID, DepthCue4D);
+    DepthCue4D = !DepthCue4D;
+    menu->getAction("4D Depth Cue")->setChecked (DepthCue4D);
   
-  Redraw ();
+    Redraw ();
 }
 
 /*******************************************************************************
@@ -210,34 +118,33 @@ void C4DView::HyperFog() {
  *  change menu items accordingly
  */
 void C4DView::Light() {
-  Lighting = !Lighting;
-  if (Lighting) {
-    glEnable(GL_LIGHTING);					//      turn on the light
+    Lighting = !Lighting;
+    if (Lighting) {
+        glEnable(GL_LIGHTING);                  //  turn on the light
  
-    static GLfloat LightAmbient[]  = { 0.3f, 0.3f, 0.3f, 1.0f }, //	HARDCODED VALUES
-      LightDiffuse[]  = { 0.9f, 0.9f, 0.9f, 1.0f },
-	LightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f },
-	  LightPosition[] = { 1.0f, 1.0f, 1.0f, 0.0f }; //      light properties
+        static GLfloat LightAmbient[]  = { 0.3f, 0.3f, 0.3f, 1.0f }, //  HARDCODED VALUES
+                       LightDiffuse[]  = { 0.9f, 0.9f, 0.9f, 1.0f },
+	               LightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f },
+	               LightPosition[] = { 1.0f, 1.0f, 1.0f, 0.0f }; //  light properties
  
-	  glLightfv (GL_LIGHT0, GL_AMBIENT, LightAmbient); 		//     set the light properties
-	  glLightfv (GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
-	  glLightfv (GL_LIGHT0, GL_SPECULAR, LightSpecular);
-	  glLightfv (GL_LIGHT0, GL_POSITION, LightPosition);
-	  glEnable  (GL_LIGHT0);					//      turn on the light
-  }
-  else {
-    static GLfloat LightAmbient[]  = { 1.0f, 1.0f, 1.0f, 0.0f },
-      LightPosition[] = { 1.0f, 1.0f, 1.0f, 0.0f }; //      light properties
+        glLightfv (GL_LIGHT0, GL_AMBIENT, LightAmbient); // set the light properties
+        glLightfv (GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
+        glLightfv (GL_LIGHT0, GL_SPECULAR, LightSpecular);
+        glLightfv (GL_LIGHT0, GL_POSITION, LightPosition);
+        glEnable  (GL_LIGHT0);   // turn on the light
+    } else {
+        static GLfloat LightAmbient[]  = { 1.0f, 1.0f, 1.0f, 0.0f },
+                       LightPosition[] = { 1.0f, 1.0f, 1.0f, 0.0f }; //      light properties
       
-      glEnable  (GL_LIGHTING);
-      glLightfv (GL_LIGHT0, GL_AMBIENT, LightAmbient); 		//     set the light properties
-      glLightfv (GL_LIGHT0, GL_DIFFUSE, LightAmbient); 
-      glLightfv (GL_LIGHT0, GL_SPECULAR, LightAmbient); 
-      glLightfv (GL_LIGHT0, GL_POSITION, LightPosition);
-      glEnable  (GL_LIGHT0);					//      turn on the light
-  }
+        glEnable  (GL_LIGHTING);
+        glLightfv (GL_LIGHT0, GL_AMBIENT, LightAmbient); // set the light properties
+        glLightfv (GL_LIGHT0, GL_DIFFUSE, LightAmbient);
+        glLightfv (GL_LIGHT0, GL_SPECULAR, LightAmbient);
+        glLightfv (GL_LIGHT0, GL_POSITION, LightPosition);
+        glEnable  (GL_LIGHT0);    //      turn on the light
+    }
   
-  OnPaint (); 
+    OnPaint ();
 }
 
 
@@ -247,7 +154,7 @@ void C4DView::Light() {
  */
 void C4DView::RenderToImages() {
   RenderToPixmap = !RenderToPixmap; 
-  animation->setItemChecked (pixmapID, RenderToPixmap);   
+  menu->getAction("Render to Images")->setChecked(RenderToPixmap);
 }
 
 
@@ -323,23 +230,11 @@ double C4DView::Benchmark3D (int num_steps,
   return double (clock ()-stime)/CLOCKS_PER_SEC;  
 }
 
-
-/*******************************************************************************
- *  rotate in 3D 360 degrees
- */
-void C4DView::UpdateFunctionMenu (int Item) {
-  /*  for (unsigned i = 0; i < 32; i++)
-      functions->setItemChecked (i, false);
-  */
-  functions->setItemChecked (Item, true);
-}
-
-
 /*******************************************************************************
  *  display a Fr3r object
  */
 void C4DView::FunctionFr3r() {
-  UpdateFunctionMenu (0);
+  menu->updateFunctionMenu (0);
 
 # ifdef USE_AUTO_PTR
   F.reset
@@ -361,7 +256,7 @@ void C4DView::FunctionFr3r() {
  *  display a Hypersphere object
  */
 void C4DView::FunctionHypersphere() {
-  UpdateFunctionMenu (2);
+  menu->updateFunctionMenu(2);
 
 
 # ifdef USE_AUTO_PTR
@@ -385,7 +280,7 @@ void C4DView::FunctionHypersphere() {
  *  display a Torus1 object
  */
 void C4DView::FunctionTorus1() {
-  UpdateFunctionMenu (3);
+  menu->updateFunctionMenu(3);
 
 # ifdef USE_AUTO_PTR
   F.reset
@@ -408,7 +303,7 @@ void C4DView::FunctionTorus1() {
  *  display a Torus2 object
  */
 void C4DView::FunctionTorus2() {
-  UpdateFunctionMenu (4);
+  menu->updateFunctionMenu(4);
 
 # ifdef USE_AUTO_PTR
   F.reset
@@ -431,7 +326,7 @@ void C4DView::FunctionTorus2() {
  *  display a Fr3r object
  */
 void C4DView::FR3R(){
-  UpdateFunctionMenu (4);
+  menu->updateFunctionMenu(4);
 
 # ifdef USE_AUTO_PTR
   F.reset
@@ -453,7 +348,7 @@ void C4DView::FR3R(){
  *  display a GravPotential object
  */
 void C4DView::GravPotential(){
-  UpdateFunctionMenu (4);
+  menu->updateFunctionMenu(4);
 
 # ifdef USE_AUTO_PTR
   F.reset
@@ -476,7 +371,7 @@ void C4DView::GravPotential(){
  *  display a SinR object
  */
 void C4DView::SinR(){
-  UpdateFunctionMenu (4);
+  menu->updateFunctionMenu(4);
 
 # ifdef USE_AUTO_PTR
   F.reset
@@ -498,7 +393,7 @@ void C4DView::SinR(){
  *  display a ExpR object
  */
 void C4DView::ExpR(){
-  UpdateFunctionMenu (4);
+  menu->updateFunctionMenu(4);
 
 # ifdef USE_AUTO_PTR
   F.reset
@@ -520,7 +415,7 @@ void C4DView::ExpR(){
  *  display a Sin object
  */
 void C4DView::Sin(){
-  UpdateFunctionMenu (4);
+  menu->updateFunctionMenu(4);
 
 # ifdef USE_AUTO_PTR
   F.reset
@@ -543,7 +438,7 @@ void C4DView::Sin(){
  *  display a Sin2 object
  */
 void C4DView::Sin2(){
-  UpdateFunctionMenu (4);
+  menu->updateFunctionMenu(4);
 
 # ifdef USE_AUTO_PTR
   F.reset
@@ -565,7 +460,7 @@ void C4DView::Sin2(){
  *  display a FunctionR object
  */
 void C4DView::FunctionR(){
-  UpdateFunctionMenu (4);
+  menu->updateFunctionMenu(4);
 
 # ifdef USE_AUTO_PTR
   F.reset
@@ -588,7 +483,7 @@ void C4DView::FunctionR(){
  *  display a ObjectHypercube object
  */
 void C4DView::ObjectHypercube() {
-  UpdateFunctionMenu (1);
+  menu->updateFunctionMenu(1);
 
 # ifdef USE_AUTO_PTR
   F.reset
@@ -608,7 +503,7 @@ void C4DView::ObjectHypercube() {
  *  display a ObjectHyperpyramid object
  */
 void C4DView::ObjectHyperpyramid() {
-  UpdateFunctionMenu (1);
+  menu->updateFunctionMenu(1);
 
 # ifdef USE_AUTO_PTR
   F.reset
@@ -628,20 +523,22 @@ void C4DView::ObjectHyperpyramid() {
  *  display a ObjectHypersponge object
  */
 void C4DView::ObjectHypersponge() {
-  UpdateFunctionMenu (1);
+    menu->updateFunctionMenu(1);
 
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
-            (new Sponge (unsigned (Values->a ()), int (Values->b ()), Values->c (), Vector<4>(0., 0., 0., 0.))); 	// valgrind bemoans "601248 bytes in 1 blocks are indirectly lost"
+#   ifdef USE_AUTO_PTR
+        F.reset
+#   else
+        if (F) delete F;
+        F =
+#   endif
+            (new Sponge (
+                unsigned (Values->a ()), int (Values->b ()), 
+                Values->c (), Vector<4>(0., 0., 0., 0.))
+            );
 
-
-  AssignValues ("4-dimensional Menger Sponge", "Level", "Distance", "Size");
+    AssignValues ("4-dimensional Menger Sponge", "Level", "Distance", "Size");
   
-  Redraw ();
+    Redraw ();
 }
 
 
@@ -649,7 +546,7 @@ void C4DView::ObjectHypersponge() {
  *  display a ObjectGasket object
  */
 void C4DView::ObjectGasket() {
-  UpdateFunctionMenu (1);
+  menu->updateFunctionMenu(1);
 
 # ifdef USE_AUTO_PTR
   F.reset

@@ -1,42 +1,36 @@
 
 //      project:      hyperspace explorer
-//      module:       
-//      contains:     
-//      compile with: make all
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
-
-
+//
+//	taken and adapted from:
 //      project:      Extended QGLWidget
-//      module:       XQGLWidget.C
+//      module:       PopupStuff.C
 //      compile with: make all
 //      contains:     member function declarations for the extended OpenGL widget
 //                    and some useful auxiliary routines
 //                    uses OpenGL (e.g. MesaGL) and the Qt OpenGL extension
+//                    Menu, mouse event and keyboard accelerator declarations
+//		      for XQGLWidget
 //
 //                    I wrote this module in 2000, maybe 2001, and never touched
 //                    it since, because it Just Worked(TM) for me.
 //                    Don't be surprised about some peculiarities. I have
 //                    moved on since then.
 
+#include <GL/glu.h>
+
 #include <ctime>
 #include <sstream>
 
-#include <qapplication.h>
-#include <qwidget.h>
-#include <qdesktopwidget.h>
-#include <qgl.h>
-#if (QT_VERSION < 300)
-#else
-# include <qcursor.h>
-#endif
-
-#include <GL/glu.h>
+#include <QDesktopWidget>
+#include <QMouseEvent>
 
 #include "XQGLWidget.H"
 #include "GLObject.H"
 #include "Log.H"
 #include "Globals.H"
+#include "Help.H"
 
 using std::cerr;
 using std::endl;
@@ -61,8 +55,8 @@ XQGLWidget::XQGLWidget (QWidget *parent, const char *name) :
 
     setCaption ("XQGLWidget");                  //  yeah or what else?
 
-    menu = SetupMenu ();                        //  set up popup menu
-    SetupAccel ();                              //  set up key accelerators
+//    menu = SetupMenu ();                        //  set up popup menu
+//    SetupAccel ();                              //  set up key accelerators
 }
 
 /** OpenGL initialization
@@ -222,3 +216,266 @@ void XQGLWidget::SetupDepthCue (float dist, float size) {
   glFogf (GL_FOG_START, dist-size/2.);          //  ...
   glFogf (GL_FOG_END,   dist+size/2.*Globals::Instance().SR3); 
 }
+
+////////////////////////////////////////////////////////////////////////////////
+//
+//	XQGLWidget menu handling
+//
+////////////////////////////////////////////////////////////////////////////////
+
+/*******************************************************************************
+ *  menu callback functions
+ */
+//  top level menu
+
+
+/*******************************************************************************
+ *  obsolete function to rotate display by 360 degrees, 3 degrees at a time,
+ *  without ability to interrupt
+ */
+void XQGLWidget::Rotate () {
+  double theta_ = theta;
+  for (double i = 0.; i < 360.; i += 3.) {
+    theta = theta_+i;
+    repaint (); }
+  theta = theta_; }
+
+/*******************************************************************************
+ *  display help window (using HARDCODED paths and filenames, YUCK!)
+ */
+void XQGLWidget::Help () {
+  static HelpWindow *H;
+  H = new HelpWindow ("Hyperspace_Explorer_Help.html",
+		      qApp->applicationDirPath ());
+  //    H->setCaption("Qt Example - Helpviewer");		//  huh?
+  H->show();
+
+}
+
+
+//  appearance menu
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+//
+//	XQGLWidget mouse handling
+//
+////////////////////////////////////////////////////////////////////////////////
+
+/*******************************************************************************
+ *  mouse press event handler; cares for popping up the menu (RMB), rotating (LMB)
+ *  and zooming (MMB)
+ *  @param e	Qt's mouse event information structure
+ */
+void XQGLWidget::mousePressEvent (QMouseEvent *E) {
+#ifdef DEBUG
+  cerr << "XQGLWidget::mousePressEvent ()\n";
+#endif
+  int ButtonPressed = E->button ();
+  if (ButtonPressed == Qt::RightButton) {
+#   if (QT_VERSION < 300)
+//      menu->exec (QCursor::pos ());
+#   else
+//      menu->exec (this->mapToGlobal(E->pos()));
+#ifdef DEBUG
+      cerr << "  ButtonPressed == Qt::RightButton\n";
+#endif
+#   endif
+  }
+  else if (ButtonPressed == Qt::LeftButton) {
+    xpressed = E->x (); ypressed = E->y (); }
+  else if (ButtonPressed == Qt::MidButton) {
+    if (E->state () && Qt::ShiftButton) ViewPos (R+1);
+    else                            // ViewPos (R-1); }
+      ypressed = E->y (); } }
+
+
+/*******************************************************************************
+ *  mouse release event handler; cares for executing the action associated with
+ *  the mouse button
+ *  uses HARDCODED values for zooming!
+ *  @param e	Qt's mouse event information structure
+ */
+void XQGLWidget::mouseReleaseEvent (QMouseEvent *E) { 
+  int ButtonPressed = E->button ();
+  if (ButtonPressed == Qt::LeftButton) {
+    int dx = E->x () - xpressed, dy = E->y () -ypressed,
+      dtheta = dx*90/width (), dpsi   = dy*90/height ();
+    theta += dtheta; psi += dpsi;
+    repaint (); } 
+  if (ButtonPressed == Qt::MidButton) {
+    double dr = double (E->y ()-ypressed)/height ()*5.;   //  the 5 may have to be reviewed
+    if (dr) ViewPos (R*pow (1.25, dr));                   //  exponential change (1.25 also)
+    else if (!(E->state () && Qt::ShiftButton))
+      ViewPos (R/1.25);
+    //    cerr << "dr = " << dr << " R = " <<R << endl;
+  }
+}
+
+
+/*******************************************************************************
+ *  mouse move event handler; empty, included out of anality or something
+ */
+void XQGLWidget::mouseMoveEvent (QMouseEvent *) { }
+
+
+////////////////////////////////////////////////////////////////////////////////
+//
+//	XQGLWidget keyboard accelerators
+//
+////////////////////////////////////////////////////////////////////////////////
+
+/*******************************************************************************
+ *  create keyboard accelerators
+ */
+#if 0
+void XQGLWidget::SetupAccel (void) {
+  static Q3Accel *accel;
+  accel = new Q3Accel (this);
+
+  accel->connectItem (accel->insertItem (Qt::Key_Left),  this, SLOT (Left ()));
+  accel->connectItem (accel->insertItem (Qt::Key_Right), this, SLOT (Right ()));
+  accel->connectItem (accel->insertItem (Qt::Key_Up),    this, SLOT (Up ()));
+  accel->connectItem (accel->insertItem (Qt::Key_Down),  this, SLOT (Down ())); 
+
+  accel->connectItem (accel->insertItem (Qt::Key_Left+Qt::SHIFT),  this, SLOT (SLeft ()));
+  accel->connectItem (accel->insertItem (Qt::Key_Right+Qt::SHIFT), this, SLOT (SRight ()));
+  accel->connectItem (accel->insertItem (Qt::Key_Up+Qt::SHIFT),    this, SLOT (SUp ())); 
+  accel->connectItem (accel->insertItem (Qt::Key_Down+Qt::SHIFT),  this, SLOT (SDown ()));
+
+  accel->connectItem (accel->insertItem (Qt::Key_Left+Qt::ALT+Qt::CTRL),  this, SLOT (CALeft ()));
+  accel->connectItem (accel->insertItem (Qt::Key_Right+Qt::ALT+Qt::CTRL), this, SLOT (CARight ()));
+  accel->connectItem (accel->insertItem (Qt::Key_Up+Qt::ALT+Qt::CTRL),    this, SLOT (CAUp ())); 
+  accel->connectItem (accel->insertItem (Qt::Key_Down+Qt::ALT+Qt::CTRL),  this, SLOT (CADown ())); 
+ 
+  accel->connectItem (accel->insertItem (Qt::Key_A), this, SLOT (A ())); 
+
+  accel->connectItem (accel->insertItem (Qt::Key_Q+Qt::CTRL), qApp, SLOT (quit ())); }
+ 
+#endif
+/*******************************************************************************
+ *  "Left" key: rotate 5 degrees left
+ */
+void XQGLWidget::Left () {
+  theta -= 5; repaint (); }
+ 
+/*******************************************************************************
+ *  "Right" key: rotate 5 degrees right
+ */
+void XQGLWidget::Right () {
+  theta += 5; repaint (); }
+ 
+/*******************************************************************************
+ *  "Up" key: rotate 5 degrees up
+ */
+void XQGLWidget::Up () {
+  psi -= 5; repaint (); } 
+
+/*******************************************************************************
+ *  "Down" key: rotate 5 degrees down
+ */
+void XQGLWidget::Down () {
+  psi += 5; repaint (); }
+
+
+/*******************************************************************************
+ *  Shift-"Left" key: rotate 45 degrees left
+ */
+void XQGLWidget::SLeft () {
+  theta -= 45; repaint (); }
+
+/*******************************************************************************
+ *  Shift-"Right" key: rotate 45 degrees left
+ */
+void XQGLWidget::SRight () {
+  theta += 45; repaint (); }
+
+/*******************************************************************************
+ *  Shift-"Up" key: rotate 45 degrees left
+ */
+void XQGLWidget::SUp () {
+  psi -= 45; repaint (); }
+
+/*******************************************************************************
+ *  Shift-"Down" key: rotate 45 degrees left
+ */
+void XQGLWidget::SDown () {
+  psi += 45; repaint (); }
+
+ 
+/*******************************************************************************
+ *  Ctrl-Alt-"Left" key: rotate 1 degrees left
+ */
+void XQGLWidget::CALeft () {
+  theta -= 1; repaint (); }
+ 
+/*******************************************************************************
+ *  Ctrl-Alt-"Right" key: rotate 1 degrees left
+ */
+void XQGLWidget::CARight () {
+  theta += 1; repaint (); }
+ 
+/*******************************************************************************
+ *  Ctrl-Alt-"Up" key: rotate 1 degrees left
+ */
+void XQGLWidget::CAUp () {
+  psi -= 1; repaint (); } 
+
+/*******************************************************************************
+ *  Ctrl-Alt-"Down" key: rotate 1 degrees left
+ */
+void XQGLWidget::CADown () {
+  psi += 1; repaint (); }
+
+
+/*******************************************************************************
+ *  "A" key: should open a slider to adjust alpha value. not yet implemented
+ *  correctly.
+ */
+void XQGLWidget::A () { 
+  QSlider *GetAlpha = new QSlider    (0  , 255,  64, int (Alpha*255),
+				      Qt::Horizontal, this);
+  GetAlpha->setTickInterval (16);
+  GetAlpha->setFixedSize (200, 20);
+  GetAlpha->show ();
+  
+  connect (GetAlpha, SIGNAL(valueChanged(int)), this, SLOT(SetAlpha(int))); }
+
+
+/*******************************************************************************
+ *  no function
+ */
+void XQGLWidget::Plus () {
+}
+
+/*******************************************************************************
+ *  no function
+ */
+void XQGLWidget::Minus () {
+}
+
+
+/*******************************************************************************
+ *  open an "About"-Dialog
+ */
+void XQGLWidget::about()
+{
+  QMessageBox::about( this, "Hyperspace Explorer",
+		      "<p>A program to view four-dimensional objects "
+		      "using OpenGL and the Qt GUI library.</p>"
+		      "<p>author: "+QString(PACKAGE_BUGREPORT)+"</p>"
+		      "<p>version: "+QString(PACKAGE_VERSION)+" of 2004-04-20</p>"
+		      );
+}
+
+
+/*******************************************************************************
+ *  open an "About Qt"-Dialog
+ */
+void XQGLWidget::aboutQt()
+{
+  QMessageBox::aboutQt( this, "Hyperspace Explorer" );
+}
+
+
