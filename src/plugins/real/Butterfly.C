@@ -1,4 +1,7 @@
-#include "Vector.H"		
+#include "../Vector.H"		
+
+using namespace VecMath;
+
                                                         
     extern "C" Vector<4> f (double, double, double);	
     extern "C" char *symbolic ();			

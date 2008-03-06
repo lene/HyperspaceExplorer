@@ -1,6 +1,9 @@
 #include "Vector.H"			
 #include <complex>						
                                                                 
+
+using namespace VecMath;
+
     extern "C" Vector<4> f (double, double);			
     extern "C" char *symbolic ();			        
                                                                 

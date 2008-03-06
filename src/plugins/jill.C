@@ -1,6 +1,9 @@
 #include "Vector.H"
 #include <complex>
 
+
+using namespace VecMath;
+
     Vector<4> f (double u, double v) {
       static Vector<4> F;
       std::complex<double> z (u, v), w = z*z+std::complex<double>(1);

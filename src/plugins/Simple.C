@@ -1,4 +1,7 @@
 #include "Vector.H"		
+
+using namespace VecMath;
+
     Vector<4> f (double x, double y, double z) {		
       static Vector<4> F;				
       F[0] = x;						

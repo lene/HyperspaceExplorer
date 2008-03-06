@@ -1,4 +1,7 @@
 #include "Vector.H"
+
+using namespace VecMath;
+
     Vector<4> f (double t, double u, double v) {
       static Vector<4> F;
       double sinphi = sin (pi*t), cosphi = cos (pi*t),	
