@@ -12,4 +12,3 @@ using namespace VecMath;
       return F; }					
                                                         
     char *symbolic () { return "sqrt (x*x*x*x+y*y*y*y+z*z*z*z)"; }
-    
