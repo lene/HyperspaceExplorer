@@ -1,6 +1,6 @@
 #include "Vector.H"
-    Vector f (double x, double y, double z) {
-      static Vector F (4);
+    Vector<4> f (double x, double y, double z) {
+      static Vector<4> F;
       F[0] = x;
       F[1] = y;
       F[2] = z;

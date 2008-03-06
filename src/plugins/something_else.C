@@ -1,10 +1,10 @@
 #include "Vector.H"		
                                                         
-    extern "C" Vector f (double, double, double);	
+    extern "C" Vector<4> f(double, double, double);	
     extern "C" char *symbolic ();			
                                                         
-    Vector f (double t, double u, double v) {		
-      static Vector F (4);				
+    Vector<4> f(double t, double u, double v) {		
+      static Vector<4> F;				
       double sinphi = sin (pi*t), cosphi = cos (pi*t),	
              sintht = sin (pi*u), costht = cos (pi*u),	
              sinpsi = sin (pi*v), cospsi = cos (pi*v),	

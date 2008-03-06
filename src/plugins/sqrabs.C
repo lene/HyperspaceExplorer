@@ -1,10 +1,10 @@
 #include "Vector.H"		
                                                         
-    extern "C" Vector f (double x, double y, double z);	
+    extern "C" Vector<4> f (double x, double y, double z);	
     extern "C" char *symbolic ();			
                                                         
-    Vector f (double x, double y, double z) {		
-      static Vector F (4);				
+    Vector<4> f (double x, double y, double z) {		
+      static Vector<4> F;				
       F[0] = x;						
       F[1] = y;						
       F[2] = z;						

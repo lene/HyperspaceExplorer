@@ -1,9 +1,9 @@
 #include "Vector.H"
 #include <complex>
 
-    Vector f (double u, double v) {
-      static Vector F (4);
-      complex<double> z (u, v), w = z;
+    Vector<4> f (double u, double v) {
+      static Vector<4> F;
+      std::complex<double> z (u, v), w = z;
       F[0] = u; 
       F[1] = v;
       F[2] = w.real ();
