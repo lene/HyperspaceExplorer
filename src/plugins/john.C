@@ -15,3 +15,4 @@ using namespace VecMath;
       return F; }
 
     char *symbolic () { return "z"; }
+    
