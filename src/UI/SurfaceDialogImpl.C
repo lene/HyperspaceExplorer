@@ -147,26 +147,30 @@ void SurfaceDialogImpl::writeSource () {
   ofstream SourceFile (NameEdit->text()+".C");
 
   SourceFile << "#include \"Vector.H\"	\n\
-                                                \n\
-    extern \"C\" Vector f (double, double);	\n\
-    extern \"C\" char *symbolic ();		\n\
-                                                \n\
-    Vector f (double u, double v) {		\n\
-      static Vector F (4);			\n\
-      F[0] = " << XEdit->text().toStdString() << ";		\n\
-      F[1] = " << YEdit->text().toStdString() << ";		\n\
-      F[2] = " << ZEdit->text().toStdString() << ";		\n\
-      F[3] = " << WEdit->text().toStdString() << ";		\n\
-                                                \n\
-    return F; 					\n\
-}						\n\
-                                                \n\
-    char *symbolic () { return \"("	
-	     << XEdit->text().toStdString() << ", "
-	     << YEdit->text().toStdString() << ", "
-	     << ZEdit->text().toStdString() << ", "
-	     << WEdit->text().toStdString() << ")"
-	     << "\"; }\n";
+\n\
+using namespace VecMath;\n\
+\n\
+extern \"C\" Vector<4> f (double, double);\n\
+extern \"C\" char *symbolic ();\n\
+\n\
+Vector<4> f (double u, double v) {\n\
+    static Vector<4> F;\n\
+    F[0] = " << XEdit->text().toStdString() << ";\n\
+    F[1] = " << YEdit->text().toStdString() << ";\n\
+    F[2] = " << ZEdit->text().toStdString() << ";\n\
+    F[3] = " << WEdit->text().toStdString() << ";\n\
+\n\
+    return F;\n\
+}\n\
+\n\
+char *symbolic () {\n\
+    return \"("
+    << XEdit->text().toStdString() << ", "
+    << YEdit->text().toStdString() << ", "
+    << ZEdit->text().toStdString() << ", "
+    << WEdit->text().toStdString() << ")"
+    << "\";\n\
+}\n";
 
   SourceFile.close ();
 }

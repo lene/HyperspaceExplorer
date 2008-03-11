@@ -187,26 +187,31 @@ bool PolarDialogImpl::checkValidity() {
 void PolarDialogImpl::writeSource () {
   ofstream SourceFile (NameEdit->text()+".C");
 
-  SourceFile << "#include \"Vector.H\"		\n\
-                                                        \n\
-    extern \"C\" Vector f (double, double, double);	\n\
-    extern \"C\" char *symbolic ();			\n\
-                                                        \n\
-    Vector f (double t, double u, double v) {		\n\
-      static Vector F (4);				\n\
-      double sinphi = sin (pi*t), cosphi = cos (pi*t),	\n\
-             sintht = sin (pi*u), costht = cos (pi*u),	\n\
-             sinpsi = sin (pi*v), cospsi = cos (pi*v),	\n\
-             Radius = " << FEdit->text().toStdString() << ";		\n\
-                                                        \n\
-      F[0] = Radius*sinpsi*sintht*cosphi;		\n\
-      F[1] = Radius*sinpsi*sintht*sinphi;		\n\
-      F[2] = Radius*sinpsi*costht;			\n\
-      F[3] = Radius*cospsi;				\n\
-                                                        \n\
-      return F; }					\n\
-                                                        \n\
-    char *symbolic () { return \"" << FEdit->text().toStdString() << "\"; }\n";
+  SourceFile << "#include \"Vector.H\"\n\
+\n\
+using namespace VecMath;\n\
+\n\
+extern \"C\" Vector<4> f (double, double, double);\n\
+extern \"C\" char *symbolic ();\n\
+\n\
+Vector<4> f (double t, double u, double v) {\n\
+    static Vector<4> F;\n\
+    double sinphi = sin (pi*t), cosphi = cos (pi*t),\n\
+           sintht = sin (pi*u), costht = cos (pi*u),\n\
+           sinpsi = sin (pi*v), cospsi = cos (pi*v),\n\
+           Radius = " << FEdit->text().toStdString() << ";\n\
+\n\
+    F[0] = Radius*sinpsi*sintht*cosphi;\n\
+    F[1] = Radius*sinpsi*sintht*sinphi;\n\
+    F[2] = Radius*sinpsi*costht;\n\
+    F[3] = Radius*cospsi;\n\
+\n\
+    return F;\n\
+}\n\
+\n\
+char *symbolic () {\n\
+    return \"" << FEdit->text().toStdString() << "\";\n\
+}\n";
   
     SourceFile.close ();
 }

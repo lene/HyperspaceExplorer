@@ -203,11 +203,11 @@ void FunctionDialogImpl::writeSource () {
 \n\
 using namespace VecMath;\n\
 \n\
-extern \"C\" Vector f (double, double, double);	\n\
+extern \"C\" Vector<4> f (double, double, double);	\n\
 extern \"C\" char *symbolic ();\n\
 \n\
-Vector f (double x, double y, double z) {\n\
-    static Vector F (4);\n\
+Vector<4> f (double x, double y, double z) {\n\
+    static Vector<4> F;\n\
     F[0] = x;\n\
     F[1] = y;\n\
     F[2] = z;\n\

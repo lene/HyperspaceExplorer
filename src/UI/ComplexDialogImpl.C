@@ -193,11 +193,11 @@ void ComplexDialogImpl::writeSource () {
 using namespace VecMath;\n\
 using std::complex;\n\
 \n\
-extern \"C\" Vector f (double, double);\n\
+extern \"C\" Vector<4> f (double, double);\n\
 extern \"C\" char *symbolic ();\n\
 \n\
-Vector f (double u, double v) {\n\
-    static Vector F (4);\n\
+Vector<4> f (double u, double v) {\n\
+    static Vector<4> F;\n\
     complex<double> z (u, v), w = " << WEdit->text().toStdString() << ";\n\
     F[0] = u;\n\
     F[1] = v;\n\
