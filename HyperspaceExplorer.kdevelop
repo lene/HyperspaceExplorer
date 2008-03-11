@@ -147,7 +147,7 @@
   </kdevfilecreate>
   <kdevtrollproject>
     <general>
-      <activedir>src</activedir>
+      <activedir></activedir>
     </general>
     <run>
       <directoryradio>executable</directoryradio>

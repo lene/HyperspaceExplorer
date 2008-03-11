@@ -10,6 +10,7 @@
 #include <iomanip>
 
 #include <QApplication>
+#include <QMainWindow>
 #include <QStringList>
 #include <QString>
 #include <QDir>
@@ -290,8 +291,14 @@ int main (int argc, char *argv[]) {
   Globals::Instance().rcdirs.append (".");
 
   C4DView view;
+# if 1  
+  QMainWindow mainWindow;
+  mainWindow.setCentralWidget(&view);
+  // app.setMainWidget (&view);
+# else  
   app.setMainWidget (&view);
-
+#endif
+  
   int ret = app.exec ();
   return ret;
 }

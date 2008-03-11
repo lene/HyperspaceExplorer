@@ -66,6 +66,7 @@ class C4DView : public XQGLWidget {
         bool getDisplayCoordinates() const { return DisplayCoordinates; }
         bool getRenderToPixmap() const { return RenderToPixmap; }
         bool getDisplayPolygons() const { return DisplayPolygons; }
+        QAction *getQuitAction() const { return quitAction; }
                 
     public slots:
         void ApplyChanges ();
@@ -143,7 +144,7 @@ class C4DView : public XQGLWidget {
 
         unsigned tsteps, usteps, vsteps;
         double CamW, ScrW;
-        QAction quitAction;
+        QAction *quitAction;
 
         VecMath::Vector<4> **Cross, **CrossTrans;
         VecMath::Vector<3> **CrossScr;

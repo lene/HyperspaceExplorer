@@ -4,6 +4,7 @@
 
 class C4DView;
 class QString;
+class QMenuBar;
 
 class Menu4D: public QMenu {
     public:
@@ -11,22 +12,19 @@ class Menu4D: public QMenu {
     
         void updateFunctionMenu(const QString &);
         
-        QAction *getAction(const QString &key) {
-            return actionMap[key];
-        }
+        QAction *&getAction(const QString &key);
+        
+        void addToMenuBar(QMenuBar *menuBar);
+        
+        typedef std::map<QString, QAction *> ActionMapType;
+        typedef std::map<QMenu *, ActionMapType> MenuMapType;
+        
     private:
         QAction *insertAction(QMenu *_menu, const QString &title, 
-                              const char *slot) {
-            QAction *tmp =
-                _menu->addAction(
-                    title, (const QObject *)parent, (const char *)slot,
-                    (const QKeySequence &)0);
-            actionMap.insert(std::pair<QString, QAction *>(title, tmp));
-            return tmp;
-        }
-        
+                              const char *slot, bool checkable = true);
         C4DView *parent;
-        QMenu *functions, *appear, *animation, *help;
+        QMenu *functions, *appear, *animation, *help,
+              *fr3r, *objects, *surfaces, *fcc;
         
-        std::map<QString, QAction *> actionMap;
+        MenuMapType menuMap;
 };

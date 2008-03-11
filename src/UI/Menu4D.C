@@ -1,6 +1,7 @@
 #include <map>
 
 #include <QShortcut>
+#include <QMenuBar>
 
 #include "Menu4D.H"
 #include "4DView.H"
@@ -24,10 +25,10 @@ Menu4D::Menu4D(C4DView *_parent):
     ////////////////////////////////////////////////////////////////////////////
     //      "Objects" Menu
     ////////////////////////////////////////////////////////////////////////////
-    QMenu *fr3r = functions->addMenu("f: R³ -> R"),
-          *objects = functions->addMenu("Objects"),
-          *surfaces = functions->addMenu("Surfaces"), 
-          *fcc = surfaces->addMenu("f: C -> C");
+    fr3r = functions->addMenu("f: R³ -> R");
+    objects = functions->addMenu("Objects");
+    surfaces = functions->addMenu("Surfaces");
+    fcc = surfaces->addMenu("f: C -> C");
 
     insertAction(fr3r, "1/(r²+1)", SLOT(FR3R()));
     insertAction(fr3r, "Gravitation Potential", SLOT(GravPotential()));
@@ -80,7 +81,7 @@ Menu4D::Menu4D(C4DView *_parent):
     insertAction(appear, "Depth Cue", SLOT(Fog()));
     insertAction(appear, "Transparence", SLOT(Transparent()));
     insertAction(appear, "Lighting", SLOT(Light()));
-    insertAction(appear, "Wireframe", SLOT(Wireframe()));
+    insertAction(appear, "Wireframe", SLOT(Wireframe()), false);
     insertAction(appear, "Coordinate Cross", SLOT(Coordinates()));
 
     appear->setCheckable (true);
@@ -88,28 +89,28 @@ Menu4D::Menu4D(C4DView *_parent):
     getAction("Colors")->setChecked(parent->getColors());
     getAction("Shading")->setChecked(parent->getShade());
     getAction("Depth Cue")->setChecked(parent->getFog());
-    getAction("Lighting")->setChecked(parent->getLight()); 
+    getAction("Lighting")->setChecked(parent->getLight());
     getAction("Transparence")->setChecked(parent->getTransparent());
-    getAction("Coordinate Cross")->setChecked(parent->getDisplayCoordinates()); 
+    getAction("Coordinate Cross")->setChecked(parent->getDisplayCoordinates());
 
-    insertAction(help, "Online help", SLOT(Help ()));
+    insertAction(help, "Online help", SLOT(Help ()), false);
     help->insertSeparator ();
-    help->insertItem( QObject::tr("&About ..."), parent, SLOT( about() ) );
-    help->insertItem( QObject::tr("About &Qt ..."), parent, SLOT( aboutQt() ) );
+    help->insertItem( tr("&About ..."), parent, SLOT( about() ) );
+    help->insertItem( tr("About &Qt ..."), parent, SLOT( aboutQt() ) );
 
-            //  addAction("Rotate",     parent, SLOT(Rotate()));
     insertSeparator ();
-    addAction("Quit",       qApp, SLOT(quit ()));
-            
+//    addAction("Quit",       qApp, SLOT(quit ()));
+    addAction(parent->getQuitAction());
     
     insertAction(animation, "Render to Images", SLOT(RenderToImages()));
     getAction("Render to Images")->setChecked(parent->getRenderToPixmap());
     TESTED_FEATURE (getAction("Render to Images"));
 
-    insertAction(animation, "Animation Settings", SLOT(AnimationSettings()));
+    insertAction(animation, "Animation Settings", SLOT(AnimationSettings()),
+                 false);
     TESTED_FEATURE (getAction("Animation Settings"));
     
-    insertAction(animation, "Benchmark", SLOT (Benchmark()));
+    insertAction(animation, "Benchmark", SLOT (Benchmark()), false);
     insertAction(appear, "4D Depth Cue", SLOT(HyperFog()));
 
     if (parent->getDisplayPolygons()) {
@@ -126,12 +127,56 @@ Menu4D::Menu4D(C4DView *_parent):
     parent->SetWireframe (parent->getDisplayPolygons());
 }
 
-/*******************************************************************************
- *  rotate in 3D 360 degrees
- */
+void Menu4D::addToMenuBar(QMenuBar *menuBar) {
+    menuBar->addMenu(functions);
+    menuBar->addMenu(appear);
+    menuBar->addMenu(animation);
+    menuBar->addMenu(help);
+}
+
+/** insert a menu item with a specified slot into a specified menu AND into
+ *  the hash map storing the actions by menu title. this is necessary to find
+ *  the menus whenever you want to change the item titles.
+ *  @param _menu QMenu* the menu you want to add the item to
+ *  @param title QString the title of the item
+ *  @param slot const char * the function triggered by the item's selection   */
+QAction *Menu4D::insertAction(QMenu *_menu, const QString &title, 
+                              const char *slot, bool checkable) {
+    QAction *tmp = _menu->addAction(
+        title, (const QObject *)parent, (const char *)slot,
+        (const QKeySequence &)0);
+    tmp->setCheckable(checkable);
+    menuMap[_menu].insert(std::pair<QString, QAction *>(title, tmp));
+    return tmp;
+}
+
+/** search for the supplied String in the list of menu entries in all submenus
+ *  and return the associated QAction                                         */
+QAction *&Menu4D::getAction(const QString &key) {
+    MenuMapType::iterator it;
+    for (it = menuMap.begin(); it != menuMap.end(); ++it) {
+        ActionMapType actionMap = it->second;
+        if (actionMap.count(key)) return actionMap[key];
+    }
+    throw key+" not found in list of menu entries!";    //  TODO clean exception
+}
+
+/** set the selected function as checked and all the others unchecked
+    @param item QString the item's title                                      */
 void Menu4D::updateFunctionMenu (const QString &item) {
-    /*  for (unsigned i = 0; i < 32; i++)
-    functions->setItemChecked (i, false);
-    */
+    static QMenu* functionMenuList[] = {
+        functions, fr3r, objects, surfaces, fcc
+    };
+
+    for (unsigned functionIdx = 0; functionIdx < sizeof(functionMenuList);
+         ++functionIdx) {
+        ActionMapType actionMap = menuMap[functionMenuList[functionIdx]];
+        for (ActionMapType::iterator it = actionMap.begin();
+            it != actionMap.end(); ++it) {
+            it->second->setChecked(false);
+        }
+    }
+    
     getAction(item)->setChecked(true);
 }
+

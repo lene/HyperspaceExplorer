@@ -68,9 +68,12 @@ C4DView::C4DView(QWidget *parent, const char *name):
     dxy (0), dxz (0), dxw (0), dyz (0), dyw (0), dzw (0), 
     dx (0), dy (0), dz (0),
     animation_fps (50),
-    CamW (-3.), ScrW (0.), quitAction(this) {
-    quitAction.setShortcut(QKeySequence(tr("Ctrl+Q")));
-    connect(&quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
+    CamW (-3.), ScrW (0.),
+    quitAction(new QAction(tr("&Quit"), this)) {
+    
+    quitAction->setShortcut(tr("Ctrl+Q"));
+    connect(quitAction, SIGNAL(triggered()), this, SLOT(close()));
+    
     InitCross();
 
     AnimationTimer = new QTimer (this);
@@ -82,6 +85,7 @@ C4DView::C4DView(QWidget *parent, const char *name):
     connect (Values, SIGNAL (ApplyChanges ()), this, SLOT (ApplyChanges ()));
 
     menu = new Menu4D(this);
+    
     //  this does not work well with QGLWidgets. left out for now.
     //  StatusBar = new QStatusBar (this);
 
