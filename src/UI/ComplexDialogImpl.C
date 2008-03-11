@@ -187,23 +187,29 @@ bool ComplexDialogImpl::checkValidity() {
 void ComplexDialogImpl::writeSource () {
   ofstream SourceFile (NameEdit->text()+".C");
 
-  SourceFile << "#include \"Vector.H\"			\n\
-#include <complex>						\n\
-                                                                \n\
-    extern \"C\" Vector f (double, double);			\n\
-    extern \"C\" char *symbolic ();			        \n\
-                                                                \n\
-    Vector f (double u, double v) {				\n\
-      static Vector F (4);					\n\
-      complex<double> z (u, v), w = " << WEdit->text().toStdString() << ";	\n\
-      F[0] = u; 						\n\
-      F[1] = v;							\n\
-      F[2] = w.real ();						\n\
-      F[3] = w.imag ();						\n\
-                                                                \n\
-      return F; }						\n\
-                                                                \n\
-    char *symbolic () { return \"" << WEdit->text().toStdString() << "\"; }	\n";
+  SourceFile << "#include \"Vector.H\"\n\
+#include <complex>\n\
+\n\
+using namespace VecMath;\n\
+using std::complex;\n\
+\n\
+extern \"C\" Vector f (double, double);\n\
+extern \"C\" char *symbolic ();\n\
+\n\
+Vector f (double u, double v) {\n\
+    static Vector F (4);\n\
+    complex<double> z (u, v), w = " << WEdit->text().toStdString() << ";\n\
+    F[0] = u;\n\
+    F[1] = v;\n\
+    F[2] = w.real ();\n\
+    F[3] = w.imag ();\n\
+\n\
+    return F;\n\
+}\n\
+\n\
+char *symbolic () {\n\
+    return \"" << WEdit->text().toStdString() << "\"; \n\
+}\n";
   
     SourceFile.close ();
 }

@@ -199,21 +199,25 @@ bool FunctionDialogImpl::checkValidity() {
 void FunctionDialogImpl::writeSource () {
   ofstream SourceFile (NameEdit->text()+".C");
 
-  SourceFile << "#include \"Vector.H\"		\n\
-                                                        \n\
-    extern \"C\" Vector f (double, double, double);	\n\
-    extern \"C\" char *symbolic ();			\n\
-                                                        \n\
-    Vector f (double x, double y, double z) {		\n\
-      static Vector F (4);				\n\
-      F[0] = x;						\n\
-      F[1] = y;						\n\
-      F[2] = z;						\n\
-      F[3] = " << FEdit->text().toStdString() << ";			\n\
-                                                        \n\
-      return F; }					\n\
-                                                        \n\
-    char *symbolic () { return \"" << FEdit->text().toStdString() << "\"; }\n";
+  SourceFile << "#include \"Vector.H\"\n\
+\n\
+using namespace VecMath;\n\
+\n\
+extern \"C\" Vector f (double, double, double);	\n\
+extern \"C\" char *symbolic ();\n\
+\n\
+Vector f (double x, double y, double z) {\n\
+    static Vector F (4);\n\
+    F[0] = x;\n\
+    F[1] = y;\n\
+    F[2] = z;\n\
+    F[3] = " << FEdit->text().toStdString() << ";\n\
+\n\
+    return F; }\n\
+\n\
+char *symbolic () {\n\
+    return \"" << FEdit->text().toStdString() << "\";\n\
+}\n";
   
     SourceFile.close ();
 }
