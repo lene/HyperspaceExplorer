@@ -66,7 +66,7 @@ class C4DView : public XQGLWidget {
         bool getDisplayCoordinates() const { return DisplayCoordinates; }
         bool getRenderToPixmap() const { return RenderToPixmap; }
         bool getDisplayPolygons() const { return DisplayPolygons; }
-        QAction *getQuitAction() const { return quitAction; }
+        Menu4D *getMenu() const { return menu; }
                 
     public slots:
         void ApplyChanges ();
@@ -124,7 +124,6 @@ class C4DView : public XQGLWidget {
             Function *F;
 #       endif
 
-        QStatusBar *StatusBar;
         QString ObjectName;
         
         double dxy, dxz, dxw, dyz, dyw, dzw,
@@ -144,7 +143,6 @@ class C4DView : public XQGLWidget {
 
         unsigned tsteps, usteps, vsteps;
         double CamW, ScrW;
-        QAction *quitAction;
 
         VecMath::Vector<4> **Cross, **CrossTrans;
         VecMath::Vector<3> **CrossScr;

@@ -47,16 +47,7 @@ XQGLWidget::XQGLWidget (QWidget *parent, const char *name) :
     R (10), psi (0), theta (0), phi (0),
     Background (4, 0.25, 0.25, 0.25, 1.), Alpha (1.0),
     light (true), fog (true), transparent (false), shade (true), colors (true) {
-    QDesktopWidget *root = QApplication::desktop ();
-    int screenheight = root->height ();         //  find screen size
-    setMinimumSize (256, 256);                  //  hmm... shouldnt I find a more
-    setMaximumSize (screenheight,screenheight); //  flexible way? 
-    resize (600, 600);                          //  resize (screenheight,screenheight);
-
-    setCaption ("XQGLWidget");                  //  yeah or what else?
-
-//    menu = SetupMenu ();                        //  set up popup menu
-//    SetupAccel ();                              //  set up key accelerators
+    setMinimumSize (256, 256);                  //  hmm... shouldnt I find a more flexible way?
 }
 
 /** OpenGL initialization

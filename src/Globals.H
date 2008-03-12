@@ -23,9 +23,13 @@
 #include "Vector.H"
 #include "SingletonHolder.H"
 
+class QAction;
+class QMainWindow;
 
 class Global {
     public:
+        Global();
+        
         static bool check_memory;
         /** sqrt (3), stored to save computation time, probably superfluous   */
         static double SR3; 
@@ -46,6 +50,9 @@ class Global {
          *  comments immediately after writing the code</rant>                */
         QStringList rcdirs;
 
+        QAction *getQuitAction() const { return quitAction; }
+        QMainWindow *getMainWindow() const { return mainWindow; }
+        
         int GetGLList();
 
         void SetColor(float R, float G, float B);
@@ -91,6 +98,11 @@ class Global {
 	    b = temp;
         }
         static unsigned long check_proc_meminfo ();
+        
+    private:
+        QAction *quitAction;
+        QMainWindow *mainWindow;
+
 };
 
 typedef Loki::SingletonHolder<Global> Globals;

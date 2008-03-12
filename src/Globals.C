@@ -10,6 +10,9 @@
 #include <fstream>
 #include <sstream>
 
+#include <QAction>
+#include <QMainWindow>
+
 #include "Globals.H"
 
 #include "Vector.H"
@@ -33,6 +36,13 @@ float Global::fog_color[]  = { 0.2, 0.2, 0.2, 1.0 };
 float Global::White[]      = { 1.0, 1.0, 1.0, 1.0 };
 float Global::grey50[]     = { 0.5, 0.5, 0.5, 1.0 };
 float Global::background[] = { 0.1, 0.1, 0.1, 1.0 };
+
+Global::Global() {
+    mainWindow = new QMainWindow;
+    quitAction = new QAction(QObject::tr("&Quit"), NULL);
+    quitAction->setShortcut(QObject::tr("Ctrl+Q"));
+    QObject::connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
+}
 
 /** debug function for OpenGL commands; outputs all current GL errors on cerr
  *  @param op optional repetition of last GL command                          */

@@ -10,6 +10,8 @@
 #include <iomanip>
 
 #include <QMouseEvent>
+#include <QMainWindow>
+#include <QStatusBar>
 
 #include "4DView.H"
 #include "Menu4D.H"
@@ -68,12 +70,10 @@ C4DView::C4DView(QWidget *parent, const char *name):
     dxy (0), dxz (0), dxw (0), dyz (0), dyw (0), dzw (0), 
     dx (0), dy (0), dz (0),
     animation_fps (50),
-    CamW (-3.), ScrW (0.),
-    quitAction(new QAction(tr("&Quit"), this)) {
+    CamW (-3.), ScrW (0.) {
     
-    quitAction->setShortcut(tr("Ctrl+Q"));
-    connect(quitAction, SIGNAL(triggered()), this, SLOT(close()));
-    
+    QObject::connect(this, SIGNAL(closed()), qApp, SLOT(quit()));
+
     InitCross();
 
     AnimationTimer = new QTimer (this);
@@ -85,10 +85,8 @@ C4DView::C4DView(QWidget *parent, const char *name):
     connect (Values, SIGNAL (ApplyChanges ()), this, SLOT (ApplyChanges ()));
 
     menu = new Menu4D(this);
+    menu->addToMenuBar(Globals::Instance().getMainWindow()->menuBar());
     
-    //  this does not work well with QGLWidgets. left out for now.
-    //  StatusBar = new QStatusBar (this);
-
     show ();
 
     ObjectHypercube ();
@@ -100,9 +98,13 @@ C4DView::C4DView(QWidget *parent, const char *name):
 /** C4DView destructor; frees arrays                                          */
 C4DView::~C4DView() {
     for (unsigned j = 0; j < 4; j++) {
-        delete [] Cross[j]; delete [] CrossTrans[j]; delete [] CrossScr[j];
+        delete [] Cross[j]; 
+        delete [] CrossTrans[j]; 
+        delete [] CrossScr[j];
     }
-    delete [] Cross; delete [] CrossTrans; delete [] CrossScr;
+    delete [] Cross; 
+    delete [] CrossTrans; 
+    delete [] CrossScr;
 }
 
 /** Initialize the structure to display a four-dimensional coordinate cross   */
@@ -688,8 +690,10 @@ void C4DView::UpdateStatus (QString status) {
         for (unsigned i = status.length (); i <= 24; i++) status = " "+status;
         status = " - "+status;
     }
+    
+    Globals::Instance().getMainWindow()->statusBar()->showMessage (ObjectName+status);
+
     setCaption (ObjectName+status);
-    //  StatusBar->message (ObjectName+status);
 }
 
 
@@ -759,6 +763,8 @@ void C4DView::AssignValues (const char *Title,
     }
 
     Transform ();
+    
+    UpdateStatus("");
 }
 
 

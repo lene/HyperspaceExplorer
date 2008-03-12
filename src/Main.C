@@ -14,8 +14,10 @@
 #include <QStringList>
 #include <QString>
 #include <QDir>
+#include <QMenuBar>
 
 #include "4DView.H"
+#include "Menu4D.H"
 #include "Globals.H"
 
 using std::cout;
@@ -290,14 +292,11 @@ int main (int argc, char *argv[]) {
 
   Globals::Instance().rcdirs.append (".");
 
-  C4DView view;
-# if 1  
-  QMainWindow mainWindow;
-  mainWindow.setCentralWidget(&view);
-  // app.setMainWidget (&view);
-# else  
-  app.setMainWidget (&view);
-#endif
+  C4DView view/*(&mainWindow)*/;
+  Globals::Instance().getMainWindow()->setCentralWidget(&view);
+  Globals::Instance().getMainWindow()->resize(580,600);
+  
+  Globals::Instance().getMainWindow()->show();
   
   int ret = app.exec ();
   return ret;

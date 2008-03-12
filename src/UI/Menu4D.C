@@ -5,6 +5,7 @@
 
 #include "Menu4D.H"
 #include "4DView.H"
+#include "Globals.H"
 
 inline void TESTED_FEATURE(QAction *item) {
 # ifdef TESTFEATURES
@@ -100,7 +101,7 @@ Menu4D::Menu4D(C4DView *_parent):
 
     insertSeparator ();
 //    addAction("Quit",       qApp, SLOT(quit ()));
-    addAction(parent->getQuitAction());
+    addAction(Globals::Instance().getQuitAction());
     
     insertAction(animation, "Render to Images", SLOT(RenderToImages()));
     getAction("Render to Images")->setChecked(parent->getRenderToPixmap());
@@ -132,6 +133,9 @@ void Menu4D::addToMenuBar(QMenuBar *menuBar) {
     menuBar->addMenu(appear);
     menuBar->addMenu(animation);
     menuBar->addMenu(help);
+    menuBar->addSeparator();
+    menuBar->addAction(Globals::Instance().getQuitAction());
+
 }
 
 /** insert a menu item with a specified slot into a specified menu AND into
