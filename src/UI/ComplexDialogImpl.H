@@ -7,8 +7,10 @@
 //	license:      GPL (see License.txt)
 
 #include "ui_ComplexDialog.h"
+#include "PluginCreator.H"
 
-class ComplexDialogImpl: public QDialog, public Ui::ComplexDialog {
+class ComplexDialogImpl: 
+        public QDialog, public Ui::ComplexDialog, public PluginCreator {
   Q_OBJECT
 
 public:
@@ -20,12 +22,12 @@ public:
 public slots:
   virtual bool checkValidity();
   virtual bool loadFunction();
-
-private:
-  virtual bool loadFunction(const QString &);
-  void writeSource ();
-  bool compile ();
-  bool link ();
-  QString LibraryName;
+    
+    protected:
+        virtual bool loadFunction(const QString &);
+        virtual void writeSource ();
+    
+    private:
+        QString LibraryName;
 
 };

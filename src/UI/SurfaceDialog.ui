@@ -1,155 +1,43 @@
 <ui version="4.0" >
- <author></author>
- <comment></comment>
- <exportmacro></exportmacro>
  <class>SurfaceDialog</class>
  <widget class="QDialog" name="SurfaceDialog" >
   <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>361</width>
-    <height>292</height>
+    <width>380</width>
+    <height>333</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>Enter a definition for the surface</string>
   </property>
-  <widget class="QLabel" name="IntroLabel" >
+  <widget class="QWidget" name="" >
    <property name="geometry" >
     <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>368</width>
-     <height>40</height>
-    </rect>
-   </property>
-   <property name="text" >
-    <string>A surface in four dimensions is defined with four functions of two
-variables. Please enter these functions below, in C++ syntax.</string>
-   </property>
-  </widget>
-  <widget class="QWidget" name="FunctionsLayout" >
-   <property name="geometry" >
-    <rect>
-     <x>0</x>
-     <y>40</y>
-     <width>360</width>
-     <height>132</height>
+     <x>10</x>
+     <y>10</y>
+     <width>361</width>
+     <height>315</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" >
-    <property name="margin" >
-     <number>0</number>
-    </property>
-    <property name="spacing" >
-     <number>6</number>
-    </property>
     <item>
      <layout class="QHBoxLayout" >
-      <property name="margin" >
-       <number>0</number>
-      </property>
       <property name="spacing" >
        <number>6</number>
       </property>
-      <item>
-       <widget class="QLabel" name="XLabel" >
-        <property name="text" >
-         <string>X (u, v) =</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="XEdit" />
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" >
-      <property name="margin" >
+      <property name="leftMargin" >
        <number>0</number>
       </property>
-      <property name="spacing" >
-       <number>6</number>
-      </property>
-      <item>
-       <widget class="QLabel" name="YLabel" >
-        <property name="text" >
-         <string>Y (u, v) =</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="YEdit" />
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" >
-      <property name="margin" >
+      <property name="topMargin" >
        <number>0</number>
       </property>
-      <property name="spacing" >
-       <number>6</number>
-      </property>
-      <item>
-       <widget class="QLabel" name="ZLabel" >
-        <property name="text" >
-         <string>Z (u, v) =</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="ZEdit" />
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" >
-      <property name="margin" >
+      <property name="rightMargin" >
        <number>0</number>
       </property>
-      <property name="spacing" >
-       <number>6</number>
-      </property>
-      <item>
-       <widget class="QLabel" name="WLabel" >
-        <property name="text" >
-         <string>W (u, v) =</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="WEdit" />
-      </item>
-     </layout>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="Layout29" >
-   <property name="geometry" >
-    <rect>
-     <x>0</x>
-     <y>180</y>
-     <width>360</width>
-     <height>71</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" >
-    <property name="margin" >
-     <number>0</number>
-    </property>
-    <property name="spacing" >
-     <number>6</number>
-    </property>
-    <item>
-     <layout class="QHBoxLayout" >
-      <property name="margin" >
+      <property name="bottomMargin" >
        <number>0</number>
-      </property>
-      <property name="spacing" >
-       <number>6</number>
       </property>
       <item>
        <widget class="QLabel" name="NameLabel" >
@@ -159,31 +47,164 @@ variables. Please enter these functions below, in C++ syntax.</string>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="NameEdit" />
+       <widget class="QLineEdit" name="nameEdit" />
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QLabel" name="IntroLabel" >
+      <property name="text" >
+       <string>A surface in four dimensions is defined with four functions of two
+variables. Please enter these functions below, in C++ syntax.</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" >
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <property name="leftMargin" >
+       <number>0</number>
+      </property>
+      <property name="topMargin" >
+       <number>0</number>
+      </property>
+      <property name="rightMargin" >
+       <number>0</number>
+      </property>
+      <property name="bottomMargin" >
+       <number>0</number>
+      </property>
+      <item>
+       <layout class="QHBoxLayout" >
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <property name="leftMargin" >
+         <number>0</number>
+        </property>
+        <property name="topMargin" >
+         <number>0</number>
+        </property>
+        <property name="rightMargin" >
+         <number>0</number>
+        </property>
+        <property name="bottomMargin" >
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="XLabel" >
+          <property name="text" >
+           <string>X (u, v) =</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="XEdit" />
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" >
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <property name="leftMargin" >
+         <number>0</number>
+        </property>
+        <property name="topMargin" >
+         <number>0</number>
+        </property>
+        <property name="rightMargin" >
+         <number>0</number>
+        </property>
+        <property name="bottomMargin" >
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="YLabel" >
+          <property name="text" >
+           <string>Y (u, v) =</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="YEdit" />
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" >
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <property name="leftMargin" >
+         <number>0</number>
+        </property>
+        <property name="topMargin" >
+         <number>0</number>
+        </property>
+        <property name="rightMargin" >
+         <number>0</number>
+        </property>
+        <property name="bottomMargin" >
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="ZLabel" >
+          <property name="text" >
+           <string>Z (u, v) =</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="ZEdit" />
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" >
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <property name="leftMargin" >
+         <number>0</number>
+        </property>
+        <property name="topMargin" >
+         <number>0</number>
+        </property>
+        <property name="rightMargin" >
+         <number>0</number>
+        </property>
+        <property name="bottomMargin" >
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="WLabel" >
+          <property name="text" >
+           <string>W (u, v) =</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="WEdit" />
+        </item>
+       </layout>
       </item>
      </layout>
     </item>
     <item>
      <layout class="QHBoxLayout" >
-      <property name="margin" >
-       <number>0</number>
-      </property>
-      <property name="spacing" >
-       <number>6</number>
-      </property>
       <item>
        <widget class="QLabel" name="DescLabel" >
         <property name="text" >
-         <string>Additional description (optional)</string>
+         <string>Description</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="LineEdit12" >
-        <property name="enabled" >
-         <bool>false</bool>
-        </property>
-       </widget>
+       <widget class="QTextEdit" name="textEdit" />
       </item>
      </layout>
     </item>
@@ -197,69 +218,70 @@ variables. Please enter these functions below, in C++ syntax.</string>
       </property>
       <property name="sizeHint" >
        <size>
-        <width>20</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="BtnsLayout" >
-   <property name="geometry" >
-    <rect>
-     <x>0</x>
-     <y>260</y>
-     <width>360</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" >
-    <property name="margin" >
-     <number>0</number>
-    </property>
-    <property name="spacing" >
-     <number>6</number>
-    </property>
-    <item>
-     <widget class="QPushButton" name="OKButton" >
-      <property name="text" >
-       <string>&amp;OK</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="CancelButton" >
-      <property name="text" >
-       <string>&amp;Cancel</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <spacer>
-      <property name="orientation" >
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeType" >
-       <enum>QSizePolicy::Expanding</enum>
-      </property>
-      <property name="sizeHint" >
-       <size>
-        <width>20</width>
-        <height>20</height>
+        <width>358</width>
+        <height>16</height>
        </size>
       </property>
      </spacer>
     </item>
     <item>
-     <widget class="QPushButton" name="LoadButton" >
-      <property name="enabled" >
-       <bool>true</bool>
+     <layout class="QHBoxLayout" >
+      <property name="spacing" >
+       <number>6</number>
       </property>
-      <property name="text" >
-       <string>&amp;Load Function</string>
+      <property name="leftMargin" >
+       <number>0</number>
       </property>
-     </widget>
+      <property name="topMargin" >
+       <number>0</number>
+      </property>
+      <property name="rightMargin" >
+       <number>0</number>
+      </property>
+      <property name="bottomMargin" >
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="okButton" >
+        <property name="text" >
+         <string>&amp;OK</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="cancelButton" >
+        <property name="text" >
+         <string>&amp;Cancel</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType" >
+         <enum>QSizePolicy::Expanding</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="loadButton" >
+        <property name="enabled" >
+         <bool>true</bool>
+        </property>
+        <property name="text" >
+         <string>&amp;Load Function</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
@@ -269,7 +291,7 @@ variables. Please enter these functions below, in C++ syntax.</string>
  <resources/>
  <connections>
   <connection>
-   <sender>CancelButton</sender>
+   <sender>cancelButton</sender>
    <signal>clicked()</signal>
    <receiver>SurfaceDialog</receiver>
    <slot>close()</slot>

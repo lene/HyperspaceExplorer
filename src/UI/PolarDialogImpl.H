@@ -7,26 +7,28 @@
 //	license:      GPL (see License.txt)
 
 #include "ui_PolarDialog.h"
+#include "PluginCreator.H"
 
-class PolarDialogImpl: public QDialog, public Ui::PolarDialog {
-  Q_OBJECT
+class PolarDialogImpl: 
+        public QDialog, public Ui::PolarDialog, public PluginCreator {
+    Q_OBJECT
 
-public:
-  PolarDialogImpl (QWidget *parent = 0, const char *name =0,
-		      bool modal = true, Qt::WFlags f = 0);
-  virtual ~PolarDialogImpl() {}
+    public:
+        PolarDialogImpl (QWidget *parent = 0, const char *name =0,
+		                 bool modal = true, Qt::WFlags f = 0);
+        virtual ~PolarDialogImpl() {}
 
-  QString libraryName ();
+        QString libraryName ();
   
-public slots:
-  virtual bool checkValidity();
-  virtual bool loadFunction();
+    public slots:
+        virtual bool checkValidity();
+        virtual bool loadFunction();
 
-private:
-  virtual bool loadFunction(const QString &);
-  void writeSource ();
-  bool compile ();
-  bool link ();
-  QString LibraryName;
+    protected:
+        virtual bool loadFunction(const QString &);
+        virtual void writeSource ();
+  
+    private:
+        QString LibraryName;
 
 };

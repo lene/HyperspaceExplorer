@@ -72,8 +72,6 @@ C4DView::C4DView(QWidget *parent, const char *name):
     animation_fps (50),
     CamW (-3.), ScrW (0.) {
     
-    QObject::connect(this, SIGNAL(closed()), qApp, SLOT(quit()));
-
     InitCross();
 
     AnimationTimer = new QTimer (this);

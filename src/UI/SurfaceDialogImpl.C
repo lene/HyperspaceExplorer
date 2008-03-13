@@ -44,6 +44,8 @@ SurfaceDialogImpl::SurfaceDialogImpl (QWidget *parent, const char *name,
 					bool modal, Qt::WFlags f) :
 	QDialog (parent, name, modal, f) {
   setupUi(this);
+  connect (okButton, SIGNAL(clicked()), this, SLOT(checkValidity()));
+  connect (loadButton, SIGNAL(clicked()), this, SLOT(loadFunction()));
   show ();
 }
 
@@ -103,7 +105,7 @@ bool SurfaceDialogImpl::loadFunction(const QString &libName) {
 
 
 bool SurfaceDialogImpl::checkValidity() {
-  if ((NameEdit->text().isEmpty()) || (XEdit->text().isEmpty())
+  if ((nameEdit->text().isEmpty()) || (XEdit->text().isEmpty())
       || (YEdit->text().isEmpty()) || (ZEdit->text().isEmpty()) || (WEdit->text().isEmpty())) {
     QMessageBox::warning (this, "Missing fields",
 			  "Please fill in all fields!");
@@ -121,20 +123,20 @@ bool SurfaceDialogImpl::checkValidity() {
 
   writeSource ();
 
-  if (!compile ()) {					//  try to compile
+  if (!compile (nameEdit->text())) {					//  try to compile
     QDir::setCurrent (currentPath);  
     return false;
   }
   
-  if (!link ()) {					//  try to link
+  if (!link (nameEdit->text())) {					//  try to link
     QDir::setCurrent (currentPath);     
     return false;
   }
   //  try to open the resulting dynamic library
   //  the name of the dynamic library must be given absolutely, because dlopen ()
   //  only checks LD_LIBRARY_PATH, which usually does not contain "."
-  if (loadFunction (QDir::currentDirPath ()+"/"+NameEdit->text()+".so")) {
-    LibraryName = QDir::currentDirPath ()+"/"+NameEdit->text()+".so";
+  if (loadFunction (QDir::currentDirPath ()+"/"+nameEdit->text()+".so")) {
+    LibraryName = QDir::currentDirPath ()+"/"+nameEdit->text()+".so";
     accept();
   }
 
@@ -144,7 +146,7 @@ bool SurfaceDialogImpl::checkValidity() {
 }
 
 void SurfaceDialogImpl::writeSource () {
-  ofstream SourceFile (NameEdit->text()+".C");
+  ofstream SourceFile (nameEdit->text()+".C");
 
   SourceFile << "#include \"Vector.H\"	\n\
 \n\
@@ -173,34 +175,4 @@ char *symbolic () {\n\
 }\n";
 
   SourceFile.close ();
-}
-
-bool SurfaceDialogImpl::compile () {
-  bool Success = !system ("g++ -g -c -Wall -I.. -I../.. \""
-			  +NameEdit->text()
-			  +".C\" > /tmp/HyperspaceExplorer.compile.errors 2>&1");
-    
-  if (!Success) {
-    QFile Errs ("/tmp/HyperspaceExplorer.compile.errors");
-    Errs.open (QIODevice::ReadOnly);
-    QString ErrString (Errs.readAll ());
-    QMessageBox::warning (this, "Compilation Errors", ErrString);
-  }    
-  return Success;
-}
-
-bool SurfaceDialogImpl::link () {
-  bool Success = !system ("g++ -shared -Wl,-export-dynamic -Wl,-soname,\""
-			  +NameEdit->text()+".so\" -o \""
-			  +NameEdit->text()+".so\" \""
-          +NameEdit->text()+".o\" ../Vector.o"
-			  +"> /tmp/HyperspaceExplorer.link.errors 2>&1");
-    
-  if (!Success) {
-    QFile Errs ("/tmp/HyperspaceExplorer.link.errors");
-    Errs.open (QIODevice::ReadOnly);
-    QString ErrString (Errs.readAll ());
-    QMessageBox::warning (this, "Compilation Errors", ErrString);
-  }
-  return Success;
 }

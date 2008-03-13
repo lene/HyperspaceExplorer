@@ -53,7 +53,6 @@ Menu4D::Menu4D(C4DView *_parent):
     insertAction(surfaces, "Horizon", SLOT(SurfaceHorizon()));
     insertAction(surfaces, "Torus 3", SLOT(SurfaceTorus3()));
     insertAction(surfaces, "Custom surface", SLOT(customSurface()));
-    TESTED_FEATURE (getAction("Custom surface"));
 
     insertAction(fcc, "z²", SLOT(ComplexZ2()));
     insertAction(fcc, "z³", SLOT(ComplexZ3()));

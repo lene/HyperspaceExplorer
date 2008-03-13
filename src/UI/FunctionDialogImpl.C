@@ -24,6 +24,8 @@
 extern QStringList rcdirs;
 
 using std::cerr;
+
+
 using std::endl;
 using std::ofstream;
 
@@ -46,6 +48,8 @@ FunctionDialogImpl::FunctionDialogImpl (QWidget *parent, const char *name,
 					bool modal, Qt::WFlags f) :
 	QDialog (parent, name, modal, f) {
   setupUi(this);
+  connect (okButton, SIGNAL(clicked()), this, SLOT(checkValidity()));
+  connect (loadButton, SIGNAL(clicked()), this, SLOT(loadFunction()));
   show ();
 }
 
@@ -67,7 +71,7 @@ QString FunctionDialogImpl::libraryName () {
 bool FunctionDialogImpl::loadFunction() {
   QString libName;
   //  iterate through all resource directories until you find a plugin subdirectory
-  for (QStringList::Iterator it = Globals::Instance().rcdirs.begin(); 
+  for (QStringList::Iterator it = Globals::Instance().rcdirs.begin();
        it != Globals::Instance().rcdirs.end(); 
        ++it ) {
     QDir current (*it);
@@ -148,44 +152,44 @@ bool FunctionDialogImpl::loadFunction(const QString &libName) {
  *  @return		success
  */
 bool FunctionDialogImpl::checkValidity() {
-  if ((NameEdit->text().isEmpty()) || (FEdit->text().isEmpty())) {
-    QMessageBox::warning (this, "Missing fields",
-			  "Please fill in all fields!");
-    return false;
-  }
+    if ((nameEdit->text().isEmpty()) || (functionEdit->text().isEmpty())) {
+        QMessageBox::warning (this, "Missing fields",
+                              "Please fill in all fields!");
+        return false;
+    }
 
-  QString currentPath = QDir::currentDirPath ();
-  QDir::setCurrent (*(Globals::Instance().rcdirs.begin())); // qApp->applicationDirPath ());
+    QString currentPath = QDir::currentDirPath ();
+    QDir::setCurrent (*(Globals::Instance().rcdirs.begin())); // qApp->applicationDirPath ());
 
-  if (!QDir::current ().exists ("plugins"))
-    QDir::current ().mkdir ("plugins");
-  if (!QDir::current ().exists ("plugins/real"))
-    QDir::current ().mkdir ("plugins/real");
-  QDir::setCurrent ("plugins/real");
+    if (!QDir::current ().exists ("plugins"))
+        QDir::current ().mkdir ("plugins");
+    if (!QDir::current ().exists ("plugins/real"))
+        QDir::current ().mkdir ("plugins/real");
+    QDir::setCurrent ("plugins/real");
+    //  we are now in the subdirectory plugins/real under the first entry of the rcdirs list
 
+    writeSource();                      //  generate C++ source code
 
-  writeSource ();					//  generate C++ source code
-
-  if (!compile ()) {					//  try to compile
-    QDir::setCurrent (currentPath);  
-    return false;
-  }
+    if (!compile(nameEdit->text())) {                  //  try to compile
+        QDir::setCurrent (currentPath);
+        return false;
+    }
   
-  if (!link ()) {					//  try to link
-    QDir::setCurrent (currentPath);     
-    return false;
-  }
-  //  try to open the resulting dynamic library
-  //  the name of the dynamic library must be given absolutely, because dlopen ()
-  //  only checks LD_LIBRARY_PATH, which usually does not contain "."
-  if (loadFunction (QDir::currentDirPath ()+"/"+NameEdit->text()+".so")) {
-    LibraryName = QDir::currentDirPath ()+"/"+NameEdit->text()+".so";
-    accept();
-  }
+    if (!link (nameEdit->text())) {                     //  try to link
+        QDir::setCurrent (currentPath);
+        return false;
+    }
+    //  try to open the resulting dynamic library
+    //  the name of the dynamic library must be given absolutely, because dlopen ()
+    //  only checks LD_LIBRARY_PATH, which usually does not contain "."
+    if (loadFunction (QDir::currentDirPath ()+"/"+nameEdit->text()+".so")) {
+        LibraryName = QDir::currentDirPath ()+"/"+nameEdit->text()+".so";
+        accept();
+    }
 
-  QDir::setCurrent (currentPath);
+    QDir::setCurrent (currentPath);
   
-  return true;
+    return true;
 }
 
 
@@ -197,7 +201,7 @@ bool FunctionDialogImpl::checkValidity() {
  *  C++ syntax.
  */
 void FunctionDialogImpl::writeSource () {
-  ofstream SourceFile (NameEdit->text()+".C");
+  ofstream SourceFile (nameEdit->text()+".C");
 
   SourceFile << "#include \"Vector.H\"\n\
 \n\
@@ -211,61 +215,15 @@ Vector<4> f (double x, double y, double z) {\n\
     F[0] = x;\n\
     F[1] = y;\n\
     F[2] = z;\n\
-    F[3] = " << FEdit->text().toStdString() << ";\n\
+    F[3] = " << functionEdit->text().toStdString() << ";\n\
 \n\
     return F; }\n\
 \n\
 char *symbolic () {\n\
-    return \"" << FEdit->text().toStdString() << "\";\n\
+    return \"" << functionEdit->text().toStdString() << "\";\n\
 }\n";
   
     SourceFile.close ();
-}
-
-
-/*******************************************************************************
- *  compile the C++ source code written by writeSource (), displaying errors and
- *  warnings, if they come up.
- *  needs "Vector.H" in the current directory or in the C++ include path.
- *  might tweak the compilation flags a little, or make them variable
- *  @return 	success
- */
-bool FunctionDialogImpl::compile () {
-  bool Success = !system ("g++ -I.. -I../.. -g -c -Wall \""
-			  +NameEdit->text()
-			  +".C\" > /tmp/HyperspaceExplorer.compile.errors 2>&1");
-    
-  if (!Success) {
-    QFile Errs ("/tmp/HyperspaceExplorer.compile.errors");
-    Errs.open (QIODevice::ReadOnly);
-    QString ErrString (Errs.readAll ());
-    QMessageBox::warning (this, "Compilation Errors", ErrString);
-  }    
-
-  return Success;
-}
-
-
-/*******************************************************************************
- *  link the object file generated by compile () into a dynamic library.
- *  needs "Vector.o" in the current directory.
- *  @return 	success
- */
-bool FunctionDialogImpl::link () {
-  bool Success = !system ("g++ -shared -Wl,-export-dynamic -Wl,-soname,\""
-			  +NameEdit->text()+".so\" -o \""
-			  +NameEdit->text()+".so\" \""
-          +NameEdit->text()+".o\" ../Vector.o"
-			  +"> /tmp/HyperspaceExplorer.link.errors 2>&1");
-    
-  if (!Success) {
-    QFile Errs ("/tmp/HyperspaceExplorer.link.errors");
-    Errs.open (QIODevice::ReadOnly);
-    QString ErrString (Errs.readAll ());
-    QMessageBox::warning (this, "Link Errors", ErrString);
-  }
-
-  return Success;
 }
 
 

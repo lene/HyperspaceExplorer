@@ -7,8 +7,10 @@
 //	license:      GPL (see License.txt)
 
 #include "ui_SurfaceDialog.h"
+#include "PluginCreator.H"
 
-class SurfaceDialogImpl: public QDialog, public Ui::SurfaceDialog {
+class SurfaceDialogImpl: 
+        public QDialog, public Ui::SurfaceDialog, public PluginCreator {
   Q_OBJECT
 
 public:
@@ -22,10 +24,10 @@ public slots:
   virtual bool checkValidity();
   virtual bool loadFunction();
 
-private:
-  virtual bool loadFunction(const QString &);
-  void writeSource ();
-  bool compile ();
-  bool link ();
-  QString LibraryName;
+    protected:
+        virtual bool loadFunction(const QString &);
+        virtual void writeSource ();
+        
+    private:
+        QString LibraryName;
 };
