@@ -10,8 +10,6 @@
 #include "Matrix.H"
 #include "Function.H"
 
-unsigned int Delete (void *);
-
 using std::cerr;
 using std::endl;
 
