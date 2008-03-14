@@ -36,6 +36,9 @@ ValuesDialogImpl::ValuesDialogImpl (QWidget *parent, const char *name,
   USteps->setText (QString::number (USlider->value ()));
   VSteps->setText (QString::number (VSlider->value ()));
   
+  FunctionBox->hide();
+  TextLabel13->hide();
+  
   show ();
 } 
   

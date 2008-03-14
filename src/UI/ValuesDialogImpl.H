@@ -11,6 +11,7 @@
 #define VALUES_DIALOG_IMPL_H
 
 #include <cstdlib>
+#include <iostream>
 
 #include <qslider.h>
 #include <qlineedit.h>
@@ -51,7 +52,7 @@ public:
   
   int Function () { return FunctionBox->currentItem (); }
   QString FunctionName () { return FunctionBox->currentText (); }
-
+  void setFunction(const QString &f) { std::cerr << "ValuesDialogImpl::setFunction("<<f.toStdString()<<")"<< std::endl;; }
   int InsertFunction (const QString &FuncName, int index = -1);
 
 public slots:

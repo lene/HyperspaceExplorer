@@ -178,7 +178,7 @@ void Function::ReInit(double _tmin, double _tmax, double _dt,
   tmin = _tmin;   tmax = _tmax;   dt = _dt;
   umin = _umin;   umax = _umax;   du = _du;
   vmin = _vmin;   vmax = _vmax;   dv = _dv;
-  tsteps = unsigned ((tmax-tmin)/dt+1); usteps = unsigned ((umax-umin)/du+1); vsteps = unsigned ((vmax-vmin)/dv+1);
+  tsteps = unsigned ((tmax-tmin)/dt+2); usteps = unsigned ((umax-umin)/du+2); vsteps = unsigned ((vmax-vmin)/dv+2);
         
   //      Free ();
   

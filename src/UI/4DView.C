@@ -721,6 +721,7 @@ void C4DView::AssignValues (const QString &Title,
     if (!Title.isEmpty()) {
         ObjectName = Title;
         setCaption (ObjectName);
+        Values->setFunction(ObjectName);
     }
 
     if (!Parameter1.isEmpty()) {
@@ -788,7 +789,7 @@ void C4DView::ApplyChanges (void) {
           << ends;
 #   endif
     SingletonLog::Instance().log("C4DView::ApplyChanges ():\n" + o.str());
-    F->ReInit (Values->tmin (), Values->tmax (), Values->dt (), 
+    F->ReInit (Values->tmin (), Values->tmax (), Values->dt (),
                Values->umin (), Values->umax (), Values->du (),
                Values->vmin (), Values->vmax (), Values->dv ());
 
