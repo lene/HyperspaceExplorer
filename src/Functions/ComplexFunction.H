@@ -60,7 +60,7 @@ class zA: public ComplexFunction {
     public:
 	zA (double _umin, double _umax, double _du,
 	    double _vmin, double _vmax, double _dv,
-	    double _alpha);
+	    double _alpha = 2);
 	virtual ~zA () { }
 	virtual void SetParameters(double _a = 0, double = 0, double = 0, double = 0) {
 	   alpha = _a; 
@@ -76,7 +76,7 @@ class ez: public ComplexFunction {
     public:
 	ez (double _umin, double _umax, double _du,
 	    double _vmin, double _vmax, double _dv,
-	    double _alpha);
+	    double _alpha = 2);
 	virtual ~ez() { }
 	virtual void SetParameters(double _a = 0, double = 0, double = 0, double = 0) {
             alpha = _a;
@@ -91,7 +91,7 @@ class emz2: public ComplexFunction {
     public:
 	emz2 (double _umin, double _umax, double _du,
 	      double _vmin, double _vmax, double _dv,
-	      double _alpha);
+	      double _alpha = 1);
 	virtual ~emz2() { }
 	virtual void SetParameters(double _a = 0, double = 0, double = 0, double = 0) {
 	   alpha = _a;

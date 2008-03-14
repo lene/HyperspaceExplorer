@@ -49,7 +49,7 @@ Menu4D::Menu4D(C4DView *_parent):
     insertAction(objects, "Sierpinski Gasket", SLOT(ObjectGasket()));
     insertAction(objects, "Torus 1", SLOT(FunctionTorus1()));
     insertAction(objects, "Torus 2", SLOT(FunctionTorus2()));
-    insertAction(surfaces, "Surface1", SLOT(Surface_1()));
+    insertAction(surfaces, "Surface 1", SLOT(Surface_1()));
     insertAction(surfaces, "Horizon", SLOT(SurfaceHorizon()));
     insertAction(surfaces, "Torus 3", SLOT(SurfaceTorus3()));
     insertAction(surfaces, "Custom surface", SLOT(customSurface()));
@@ -152,7 +152,16 @@ QAction *Menu4D::insertAction(QMenu *_menu, const QString &title,
     menuMap[_menu].insert(std::pair<QString, QAction *>(title, tmp));
     return tmp;
 }
-
+/*
+QAction *Menu4D::insertActionNew(QMenu *_menu, , bool checkable) {
+    QAction *tmp = _menu->addAction(
+        title, (const QObject *)parent, (const char *)slot,
+        (const QKeySequence &)0);
+    tmp->setCheckable(checkable);
+    menuMap[_menu].insert(std::pair<QString, QAction *>(title, tmp));
+    return tmp;
+}
+*/
 /** search for the supplied String in the list of menu entries in all submenus
  *  and return the associated QAction                                         */
 QAction *&Menu4D::getAction(const QString &key) {

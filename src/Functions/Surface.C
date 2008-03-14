@@ -350,7 +350,7 @@ void Surface::DrawStrip (unsigned u){
  */
 Surface1::Surface1 (double _umin, double _umax, double _du,
 		    double _vmin, double _vmax, double _dv):
-        Surface ("Surface", _umin, _umax, _du, _vmin, _vmax, _dv) {
+        Surface ("Surface 1", _umin, _umax, _du, _vmin, _vmax, _dv) {
     Initialize ();
 }
 

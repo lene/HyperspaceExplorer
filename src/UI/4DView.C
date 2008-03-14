@@ -715,49 +715,49 @@ void C4DView::SetupDepthCue (bool on) {
  *  @param Parameter2	name of the new object's second parameter, if any
  *  @param Parameter3	name of the new object's third parameter, if any
  *  @param Parameter4	name of the new object's fourth parameter, if any     */
-void C4DView::AssignValues (const char *Title,
-                            const char *Parameter1, const char *Parameter2,
-                            const char *Parameter3, const char *Parameter4) {
-    if (Title) {
+void C4DView::AssignValues (const QString &Title,
+                            const QString &Parameter1, const QString &Parameter2,
+                            const QString &Parameter3, const QString &Parameter4) {
+    if (!Title.isEmpty()) {
         ObjectName = Title;
         setCaption (ObjectName);
     }
 
-    if (Parameter1) {
+    if (!Parameter1.isEmpty()) {
         Values->aText (Parameter1);
-        Values->A->setEnabled (true);
-        Values->ALabel->setEnabled (true);
+        Values->A->show();
+        Values->ALabel->show();
     } else {
         Values->aText ("");
-        Values->A->setEnabled (false);
-        Values->ALabel->setEnabled (false);
+        Values->A->hide();
+        Values->ALabel->hide();
     }
-    if (Parameter2) {
+    if (!Parameter2.isEmpty()) {
         Values->bText (Parameter2);
-        Values->B->setEnabled (true);
-        Values->BLabel->setEnabled (true);
+        Values->B->show();
+        Values->BLabel->show();
     } else {
         Values->bText ("");
-        Values->B->setEnabled (false);
-        Values->BLabel->setEnabled (false);
+        Values->B->hide();
+        Values->BLabel->hide();
     }
-    if (Parameter3) {
+    if (!Parameter3.isEmpty()) {
         Values->cText (Parameter3);
-        Values->C->setEnabled (true);
-        Values->CLabel->setEnabled (true);
+        Values->C->show();
+        Values->CLabel->show();
     } else {
         Values->cText ("");
-        Values->C->setEnabled (false);
-        Values->CLabel->setEnabled (false);
+        Values->C->hide();
+        Values->CLabel->hide();
     }
-    if (Parameter4) {
+    if (!Parameter4.isEmpty()) {
         Values->dText (Parameter4);
-        Values->D->setEnabled (true);
-        Values->DLabel->setEnabled (true);
+        Values->D->show();
+        Values->DLabel->show();
     } else {
         Values->dText ("");
-        Values->D->setEnabled (false);
-        Values->DLabel->setEnabled (false);
+        Values->D->hide();
+        Values->DLabel->hide();
     }
 
     Transform ();
@@ -1206,258 +1206,98 @@ double C4DView::Benchmark3D (int num_steps,
   return double (clock ()-stime)/CLOCKS_PER_SEC;  
 }
 
-/*******************************************************************************
- *  display a Fr3r object
- */
-void C4DView::FunctionFr3r() {
-  menu->updateFunctionMenu (0);
 
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
+////////////////////////////////////////////////////////////////////////////////
+
+
+template<class function>
+        void C4DView::FunctionSlot<function>::createFunction(C4DView *view) {
+
+#   ifdef USE_AUTO_PTR
+        view->F.reset
+#   else
+        if (view->F) delete view->F;
+        view->F =
 #endif
-      (new Fr3r (Values->tmin (), Values->tmax (), Values->dt (),
-		 Values->umin (), Values->umax (), Values->du (),
-		 Values->vmin (), Values->vmax (), Values->dv ()));
+            (new function (view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
+                           view->Values->umin (), view->Values->umax (), view->Values->du (),
+                           view->Values->vmin (), view->Values->vmax (), view->Values->dv ()));
 
-  AssignValues ("Some Function");
-	 
-  Redraw ();
+    if(0) cerr << "FunctionSlot<function>::createFunction(): " << view->F->getFunctionName().toStdString()
+            << "(" << view->F->getParameterName(0).toStdString() <<","<<view->F->getParameterName(1).toStdString() <<","<<
+            view->F->getParameterName(2).toStdString() <<","<< view->F->getParameterName(3).toStdString()<<")"<<endl;
+    
+    view->menu->updateFunctionMenu (view->F->getFunctionName());
+    view->AssignValues (view->F->getFunctionName(),
+                        view->F->getParameterName(0), view->F->getParameterName(1),
+                        view->F->getParameterName(2), view->F->getParameterName(3));
+
+    view->Redraw ();
 }
 
+template<class function>
+        void C4DView::FunctionSlot<function>::createSurface(C4DView *view) {
 
-/*******************************************************************************
- *  display a Hypersphere object
- */
-void C4DView::FunctionHypersphere() {
-    menu->updateFunctionMenu("Hypersphere");
-
-
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
+#   ifdef USE_AUTO_PTR
+    view->F.reset
+#   else
+            if (view->F) delete view->F;
+    view->F =
 #endif
-      (new Hypersphere (Values->tmin (), Values->tmax (), Values->dt (),
-			Values->umin (), Values->umax (), Values->du (),
-			Values->vmin (), Values->vmax (), Values->dv (),
-			Values->a ()));
+            (new function (view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
+             view->Values->umin (), view->Values->umax (), view->Values->du ()));
 
-  AssignValues ("Hypersphere", "Radius");
+    if(0) cerr << "FunctionSlot<function>::createSurface(): " << view->F->getFunctionName().toStdString()
+                << "(" << view->F->getParameterName(0).toStdString() <<","<<view->F->getParameterName(1).toStdString() <<","<<
+                view->F->getParameterName(2).toStdString() <<","<< view->F->getParameterName(3).toStdString()<<")"<<endl;
+    
+    try {
+        view->menu->updateFunctionMenu (view->F->getFunctionName());
+    } catch (QString error) {
+        QMessageBox::information (NULL, "Error", error);
 
-  Redraw ();
+    }
+    view->AssignValues (view->F->getFunctionName(),
+                        view->F->getParameterName(0), view->F->getParameterName(1),
+                                view->F->getParameterName(2), view->F->getParameterName(3));
+
+    view->Redraw ();
 }
 
+/** display a Fr3r object */
+void C4DView::FunctionFr3r() { FunctionSlot<Fr3r>::createFunction(this); }
 
-/*******************************************************************************
- *  display a Torus1 object
- */
-void C4DView::FunctionTorus1() {
-  menu->updateFunctionMenu("Torus 1");
+/** display a Hypersphere object */
+void C4DView::FunctionHypersphere() { FunctionSlot<Hypersphere>::createFunction(this); }
 
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
-      (new Torus1 (Values->tmin (), Values->tmax (), Values->dt (),
-		   Values->umin (), Values->umax (), Values->du (),
-		   Values->vmin (), Values->vmax (), Values->dv (),
-		   Values->a (), Values->b (), Values->c ()));
-  
-  AssignValues ("Torus 1", "Major Radius", "Minor Radius", "Micro Radius");
-  
-  Redraw ();
-}
+/** display a Torus1 object */
+void C4DView::FunctionTorus1() { FunctionSlot<Torus1>::createFunction(this); }
 
- 
-/*******************************************************************************
- *  display a Torus2 object
- */
-void C4DView::FunctionTorus2() {
-    menu->updateFunctionMenu("Torus 2");
+/** display a Torus2 object */
+void C4DView::FunctionTorus2() { FunctionSlot<Torus2>::createFunction(this); }
 
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
-      (new Torus2 (Values->tmin (), Values->tmax (), Values->dt (),
-		   Values->umin (), Values->umax (), Values->du (),
-		   Values->vmin (), Values->vmax (), Values->dv (),
-		   Values->a (), Values->b ()));
-  
-  AssignValues ("Torus 2", "Major Radius", "Minor Radius");
-  
-  Redraw ();
-}
+/** display a Fr3r object */
+void C4DView::FR3R(){ FunctionSlot<Fr3r>::createFunction(this); }
 
+/** display a GravPotential object */
+void C4DView::GravPotential(){ FunctionSlot<GravitationPotential>::createFunction(this); }
 
-/*******************************************************************************
- *  display a Fr3r object
- */
-void C4DView::FR3R(){
-    menu->updateFunctionMenu("1/(r²+1)");
+/** display a SinR object */
+void C4DView::SinR(){ FunctionSlot<Fr3rSin>::createFunction(this); }
 
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif 
-      (new Fr3r (Values->tmin (), Values->tmax (), Values->dt (),
-		 Values->umin (), Values->umax (), Values->du (),
-		 Values->vmin (), Values->vmax (), Values->dv ()));
-  
-  AssignValues ("f (r) = 1/(r²+1/4)");
-  
-  Redraw ();
-}
+/** display a ExpR object */
+void C4DView::ExpR(){ FunctionSlot<Fr3rExp>::createFunction(this); }
 
+/** display a Sin object */
+void C4DView::Sin(){ FunctionSlot<PolarSin>::createFunction(this); }
 
-/*******************************************************************************
- *  display a GravPotential object
- */
-void C4DView::GravPotential(){
-    menu->updateFunctionMenu("Gravitation Potential");
+/** display a Sin2 object */
+void C4DView::Sin2(){ FunctionSlot<PolarSin2>::createFunction(this); }
 
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif 
-       (new GravitationPotential (Values->tmin (), Values->tmax (), Values->dt (),
-				  Values->umin (), Values->umax (), Values->du (),
-				  Values->vmin (), Values->vmax (), Values->dv (),
-				  Values->a (), Values->b ()));
-  
-  AssignValues ("Gravitation Potential", "M", "R");
-  
-  Redraw ();
-}
+/** display a FunctionR object */
+void C4DView::FunctionR(){ FunctionSlot<PolarR>::createFunction(this); }
 
-
-/*******************************************************************************
- *  display a SinR object
- */
-void C4DView::SinR(){
-    menu->updateFunctionMenu("sin (r²)");
-
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
-      (new Fr3rSin (Values->tmin (), Values->tmax (), Values->dt (),
-		    Values->umin (), Values->umax (), Values->du (),
-		    Values->vmin (), Values->vmax (), Values->dv ()));
-  
-  AssignValues ("sin (r²)");
-  
-  Redraw ();
-}
-
-
-/*******************************************************************************
- *  display a ExpR object
- */
-void C4DView::ExpR(){
-    menu->updateFunctionMenu("exp (r²)");
-
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
-      (new Fr3rExp (Values->tmin (), Values->tmax (), Values->dt (),
-		    Values->umin (), Values->umax (), Values->du (),
-		    Values->vmin (), Values->vmax (), Values->dv ()));
-  
-  AssignValues ("exp (r²)");
-  
-  Redraw ();
-}
-
-
-/*******************************************************************************
- *  display a Sin object
- */
-void C4DView::Sin(){
-    menu->updateFunctionMenu("Polar: r = 1/2+sin (Phase*pi*t*u*v)");
-
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif  
-      (new PolarSin (Values->tmin (), Values->tmax (), Values->dt (),
-		     Values->umin (), Values->umax (), Values->du (),
-		     Values->vmin (), Values->vmax (), Values->dv (),
-		     Values->a ()));
-  
-  AssignValues ("r = sin (...)", "Phase");
-  
-  Redraw ();
-}
-
-
-/*******************************************************************************
- *  display a Sin2 object
- */
-void C4DView::Sin2(){
-    menu->updateFunctionMenu("Polar: r = sin (pi/3.*(t+u+v))");
-
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
-      (new PolarSin2 (Values->tmin (), Values->tmax (), Values->dt (),
-		      Values->umin (), Values->umax (), Values->du (),
-		      Values->vmin (), Values->vmax (), Values->dv ()));
-  
-  AssignValues ("r = sin (...)");
-  
-  Redraw ();
-}
-
-
-/*******************************************************************************
- *  display a FunctionR object
- */
-void C4DView::FunctionR(){
-    menu->updateFunctionMenu("Polar: r = sqrt (t²+u²+v²)");
-
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
-      (new PolarR (Values->tmin (), Values->tmax (), Values->dt (),
-		   Values->umin (), Values->umax (), Values->du (),
-		   Values->vmin (), Values->vmax (), Values->dv (),
-		   Values->a ()));
-  
-  AssignValues ("r", "Phase");
-  
-  Redraw ();
-}
-
-
-/*******************************************************************************
- *  display a ObjectHypercube object
- */
+/** display a ObjectHypercube object */
 void C4DView::ObjectHypercube() {
     menu->updateFunctionMenu("Hypercube");
 
@@ -1474,10 +1314,7 @@ void C4DView::ObjectHypercube() {
   Redraw ();
 }
 
-
-/*******************************************************************************
- *  display a ObjectHyperpyramid object
- */
+/** display a ObjectHyperpyramid object */
 void C4DView::ObjectHyperpyramid() {
     menu->updateFunctionMenu("Hyperpyramid");
 
@@ -1494,10 +1331,7 @@ void C4DView::ObjectHyperpyramid() {
   Redraw ();
 } 
 
-
-/*******************************************************************************
- *  display a ObjectHypersponge object
- */
+/** display a ObjectHypersponge object */
 void C4DView::ObjectHypersponge() {
     menu->updateFunctionMenu("Menger Sponge");
 
@@ -1517,10 +1351,7 @@ void C4DView::ObjectHypersponge() {
     Redraw ();
 }
 
-
-/*******************************************************************************
- *  display a ObjectGasket object
- */
+/** display a ObjectGasket object */
 void C4DView::ObjectGasket() {
     menu->updateFunctionMenu("Sierpinski Gasket");
 
@@ -1537,333 +1368,56 @@ void C4DView::ObjectGasket() {
   Redraw ();
 } 
 
+/** display a Surface object */
+void C4DView::Surface_1() { FunctionSlot<Surface1>::createSurface(this); }
 
-/*******************************************************************************
- *  display a Surface object
- */
-void C4DView::Surface_1() {
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
-      (new Surface1 (Values->tmin (), Values->tmax (), Values->dt (),
-		     Values->umin (), Values->umax (), Values->du ()));
+/** display a SurfaceHorizon object */
+void C4DView::SurfaceHorizon() { FunctionSlot<Horizon>::createSurface(this); }
 
-  AssignValues ("Surface");
-  
-  Redraw ();
-} 
+/** display a SurfaceTorus3 object */
+void C4DView::SurfaceTorus3() { FunctionSlot<Torus3>::createSurface(this); }
 
+/** display a ComplexZ2 object */
+void C4DView::ComplexZ2() { FunctionSlot<z2>::createSurface(this); }
 
-/*******************************************************************************
- *  display a SurfaceHorizon object
- */
-void C4DView::SurfaceHorizon() {
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif 
-      (new Horizon (Values->tmin (), Values->tmax (), Values->dt (),
-		    Values->umin (), Values->umax (), Values->du ()));
+/** display a ComplexZ3 object */
+void C4DView::ComplexZ3() { FunctionSlot<z3>::createSurface(this); }
 
-  AssignValues ("Horizon");
-  
-  Redraw ();
-} 
+/** display a ComplexZA object */
+void C4DView::ComplexZA() { FunctionSlot<zA>::createSurface(this); }
 
+/** display a ComplexEZ object */
+void C4DView::ComplexEZ() { FunctionSlot<ez>::createSurface(this); }
 
-/*******************************************************************************
- *  display a SurfaceTorus3 object
- */
-void C4DView::SurfaceTorus3() {
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif 
-      (new Torus3 (Values->tmin (), Values->tmax (), Values->dt (),
-		   Values->umin (), Values->umax (), Values->du ()));
+/** display a ComplexEMZ2 object */
+void C4DView::ComplexEMZ2() { FunctionSlot<emz2>::createSurface(this); }
 
-  AssignValues ("Torus 3");
-  
-  Redraw ();
-} 
+/** display a ComplexZM1 object */
+void C4DView::ComplexZM1() { FunctionSlot<zm1>::createSurface(this); }
 
+/** display a ComplexZM2 object */
+void C4DView::ComplexZM2() {FunctionSlot<zm2>::createSurface(this); }
 
-/*******************************************************************************
- *  display a ComplexZ2 object
- */
-void C4DView::ComplexZ2() {
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
-      (new z3 (Values->tmin (), Values->tmax (), Values->dt (),
-	       Values->umin (), Values->umax (), Values->du ()));
+/** display a ComplexSqrtZ object */
+void C4DView::ComplexSqrtZ() {FunctionSlot<sqrtz>::createSurface(this); }
 
-  AssignValues ("z²");
-  
-  Redraw ();
-} 
+/** display a ComplexLnZ object */
+void C4DView::ComplexLnZ() {FunctionSlot<lnz>::createSurface(this); }
 
+/** display a ComplexSinZ object */
+void C4DView::ComplexSinZ() {FunctionSlot<sinz>::createSurface(this); }
 
-/*******************************************************************************
- *  display a ComplexZ3 object
- */
-void C4DView::ComplexZ3() {
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
-      (new z3 (Values->tmin (), Values->tmax (), Values->dt (),
-	       Values->umin (), Values->umax (), Values->du ()));
+/** display a ComplexCosZ object */
+void C4DView::ComplexCosZ() {FunctionSlot<cosz>::createSurface(this); }
 
-  AssignValues ("z³");
-  
-  Redraw ();
-} 
+/** display a ComplexSinhZ object */
+void C4DView::ComplexSinhZ() {FunctionSlot<sinhz>::createSurface(this); }
 
+/** display a ComplexCoshZ object */
+void C4DView::ComplexCoshZ() {FunctionSlot<coshz>::createSurface(this); }
 
-/*******************************************************************************
- *  display a ComplexZA object
- */
-void C4DView::ComplexZA() {
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
-      (new zA (Values->tmin (), Values->tmax (), Values->dt (),
-	       Values->umin (), Values->umax (), Values->du (),
-	       Values->a ()));
-
-  AssignValues ("z^a", "a");
-  
-  Redraw ();
-} 
-
-
-/*******************************************************************************
- *  display a ComplexEZ object
- */
-void C4DView::ComplexEZ() {
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
-      (new ez (Values->tmin (), Values->tmax (), Values->dt (),
-	       Values->umin (), Values->umax (), Values->du (),
-	       Values->a ()));
-
-  AssignValues ("e^a*z", "a");
-  
-  Redraw ();
-} 
-
-
-/*******************************************************************************
- *  display a ComplexEMZ2 object
- */
-void C4DView::ComplexEMZ2() {
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif  
-      (new emz2 (Values->tmin (), Values->tmax (), Values->dt (),
-		 Values->umin (), Values->umax (), Values->du (),
-		 Values->a ()));
-
-  AssignValues ("e^-a*z²", "a");
-  
-  Redraw ();
-} 
-
-
-/*******************************************************************************
- *  display a ComplexZM1 object
- */
-void C4DView::ComplexZM1() {
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif 
-      (new zm1 (Values->tmin (), Values->tmax (), Values->dt (),
-		Values->umin (), Values->umax (), Values->du ()));
-
-  AssignValues ("1/z");
-  
-  Redraw ();
-}
-
-
-/*******************************************************************************
- *  display a ComplexZM2 object
- */
-void C4DView::ComplexZM2() {
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
-      (new zm2 (Values->tmin (), Values->tmax (), Values->dt (),
-		Values->umin (), Values->umax (), Values->du ()));
-
-  AssignValues ("1/z²");
-  
-  Redraw ();
-} 
-
-
-/*******************************************************************************
- *  display a ComplexSqrtZ object
- */
-void C4DView::ComplexSqrtZ() {
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif 
-      (new sqrtz (Values->tmin (), Values->tmax (), Values->dt (),
-		  Values->umin (), Values->umax (), Values->du ()));
-
-  AssignValues ("sqrt (z)");
-  
-  Redraw ();
-} 
-
-
-/*******************************************************************************
- *  display a ComplexLnZ object
- */
-void C4DView::ComplexLnZ() {
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
-      (new lnz (Values->tmin (), Values->tmax (), Values->dt (),
-		Values->umin (), Values->umax (), Values->du ()));
-
-  AssignValues ("ln z");
-  
-  Redraw ();
-} 
-
-
-/*******************************************************************************
- *  display a ComplexSinZ object
- */
-void C4DView::ComplexSinZ() {
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
-      (new sinz (Values->tmin (), Values->tmax (), Values->dt (),
-		 Values->umin (), Values->umax (), Values->du ()));
-
-  AssignValues ("sin z");
-  
-  Redraw ();
-} 
-
-
-/*******************************************************************************
- *  display a ComplexCosZ object
- */
-void C4DView::ComplexCosZ() {
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
-      (new cosz (Values->tmin (), Values->tmax (), Values->dt (),
-		 Values->umin (), Values->umax (), Values->du ()));
-
-  AssignValues ("cos z");
-  
-  Redraw ();
-} 
-
-
-/*******************************************************************************
- *  display a ComplexSinhZ object
- */
-void C4DView::ComplexSinhZ() {
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
-      (new sinhz (Values->tmin (), Values->tmax (), Values->dt (),
-		  Values->umin (), Values->umax (), Values->du ()));
-
-  AssignValues ("sinh z");
-  
-  Redraw ();
-} 
-
-
-/*******************************************************************************
- *  display a ComplexCoshZ object
- */
-void C4DView::ComplexCoshZ() {
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
-      (new coshz (Values->tmin (), Values->tmax (), Values->dt (),
-		  Values->umin (), Values->umax (), Values->du ()));
-
-  AssignValues ("cosh z");
-  
-  Redraw ();
-} 
-
-
-/*******************************************************************************
- *  display a ComplexTanZ object
- */
-void C4DView::ComplexTanZ() {
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif 
-      (new tanz (Values->tmin (), Values->tmax (), Values->dt (),
-		 Values->umin (), Values->umax (), Values->du ()));
-
-  AssignValues ("tan z");
-  
-  Redraw ();
-} 
-
-
+/** display a ComplexTanZ object */
+void C4DView::ComplexTanZ() {FunctionSlot<tanz>::createSurface(this); }
 
 #include "FunctionDialogImpl.H"
 #include "PolarDialogImpl.H"
@@ -1873,7 +1427,7 @@ void C4DView::ComplexTanZ() {
 #include "CustomFunction.H"
 
 template<class function> 
-        void CustomFunctionHelper<function>::createCustomFunction(C4DView *view) {
+        void C4DView::CustomFunctionSlot<function>::createCustomFunction(C4DView *view) {
             function *tmp = new function (view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
                                           view->Values->umin (), view->Values->umax (), view->Values->du (),
                                           view->Values->vmin (), view->Values->vmax (), view->Values->dv ());
@@ -1896,7 +1450,7 @@ template<class function>
         }
         
 template<class function>
-        void CustomFunctionHelper<function>::createCustomSurface(C4DView *view) {
+        void C4DView::CustomFunctionSlot<function>::createCustomSurface(C4DView *view) {
             function *tmp = new function (view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
                                           view->Values->umin (), view->Values->umax (), view->Values->du ());
             if (tmp->isValid()) {
@@ -1917,33 +1471,22 @@ template<class function>
             }
         }
 
-/*******************************************************************************
- *  display a customFunction object
- */
+/** display a customFunction object */
 void C4DView::customFunction() {
-    CustomFunctionHelper<CustomFunction>::createCustomFunction(this);
+    CustomFunctionSlot<CustomFunction>::createCustomFunction(this);
 }
 
-
-/*******************************************************************************
- *  display a customPolarFunction object
- */
+/** display a customPolarFunction object */
 void C4DView::customPolarFunction() {
-    CustomFunctionHelper<CustomPolarFunction>::createCustomFunction(this);
+    CustomFunctionSlot<CustomPolarFunction>::createCustomFunction(this);
 }
 
-
-/*******************************************************************************
- *  display a customComplexFunction object
- */
+/** display a customComplexFunction object */
 void C4DView::customComplexFunction() {
-    CustomFunctionHelper<CustomComplexFunction>::createCustomSurface(this);
+    CustomFunctionSlot<CustomComplexFunction>::createCustomSurface(this);
 }
 
-
-/*******************************************************************************
- *  display a customSurface object
- */
+/** display a customSurface object */
 void C4DView::customSurface() {
-    CustomFunctionHelper<CustomSurface>::createCustomSurface(this);
+    CustomFunctionSlot<CustomSurface>::createCustomSurface(this);
 }

@@ -27,15 +27,48 @@ class CustomPolarFunction;
 class CustomSurface;
 class CustomComplexFunction;
 
-
-template<class function> class CustomFunctionHelper {
-    public:
-        static void createCustomFunction(C4DView *view);
-        static void createCustomSurface(C4DView *view);
-};
+class Fr3r;
+class GravitationPotential;
+class Fr3rSin;
+class Fr3rExp;
+class PolarSin;
+class PolarSin2;
+class PolarR;
+class Surface1;
+class Horizon;
+class Torus3;
+class z2;
+class z3;
+class zA;
+class ez;
+class emz2;
+class zm1;
+class zm2;
+class sqrtz;
+class lnz;
+class sinz;
+class cosz;
+class sinhz;
+class coshz;
+class tanz;
+class Hypersphere;
+class Torus1;
+class Torus2;
 
 
 class C4DView : public XQGLWidget {
+    template<class function> class CustomFunctionSlot {
+        public:
+            static void createCustomFunction(C4DView *view);
+            static void createCustomSurface(C4DView *view);
+    };
+
+    template<class function> class FunctionSlot {
+    //  Q_OBJECT
+        public:
+            static void createFunction(C4DView *view);
+            static void createSurface(C4DView *view);
+    };
 
     Q_OBJECT
 
@@ -163,9 +196,9 @@ class C4DView : public XQGLWidget {
 
         void UpdateStatus (QString = "");
 
-        void AssignValues (const char *Title = 0,
-                           const char *Parameter1 = 0,  const char *Parameter2 = 0,
-                           const char *Parameter3 = 0,  const char *Parameter4 = 0);
+        void AssignValues (const QString &Title = 0,
+                           const QString &Parameter1 = 0,  const QString &Parameter2 = 0,
+                           const QString &Parameter3 = 0,  const QString &Parameter4 = 0);
 
         void OnPaint();
 
@@ -235,11 +268,38 @@ class C4DView : public XQGLWidget {
         void customComplexFunction();
         void customSurface();
     
-        friend class CustomFunctionHelper<CustomFunction>;
-        friend class CustomFunctionHelper<CustomPolarFunction>;
-        friend class CustomFunctionHelper<CustomComplexFunction>;
-        friend class CustomFunctionHelper<CustomSurface>;
-
+        friend class FunctionSlot<Fr3r>;
+        
+        friend class FunctionSlot<Hypersphere>;
+        friend class FunctionSlot<Torus1>;
+        friend class FunctionSlot<Torus2>;
+        friend class FunctionSlot<GravitationPotential>;
+        friend class FunctionSlot<Fr3rSin>;
+        friend class FunctionSlot<Fr3rExp>;
+        friend class FunctionSlot<PolarSin>;
+        friend class FunctionSlot<PolarSin2>;
+        friend class FunctionSlot<PolarR>;
+        friend class FunctionSlot<Surface1>;
+        friend class FunctionSlot<Horizon>;
+        friend class FunctionSlot<Torus3>;
+        friend class FunctionSlot<z2>;
+        friend class FunctionSlot<z3>;
+        friend class FunctionSlot<zA>;
+        friend class FunctionSlot<ez>;
+        friend class FunctionSlot<emz2>;
+        friend class FunctionSlot<zm1>;
+        friend class FunctionSlot<zm2>;
+        friend class FunctionSlot<sqrtz>;
+        friend class FunctionSlot<lnz>;
+        friend class FunctionSlot<sinz>;
+        friend class FunctionSlot<cosz>;
+        friend class FunctionSlot<sinhz>;
+        friend class FunctionSlot<coshz>;
+        friend class FunctionSlot<tanz>;
+        friend class CustomFunctionSlot<CustomFunction>;
+        friend class CustomFunctionSlot<CustomPolarFunction>;
+        friend class CustomFunctionSlot<CustomComplexFunction>;
+        friend class CustomFunctionSlot<CustomSurface>;
 
 };
 

@@ -71,47 +71,48 @@ class Function {
         
         virtual QString getFunctionName() const { return functionName; }
         virtual std::vector<QString> getParameterNames() { return parameterNames; }
-        virtual QString getParameterName(unsigned i) { return parameterNames[i]; }
+        virtual QString getParameterName(unsigned i) {
+            return i < parameterNames.size()? parameterNames[i]: ""; }
 
         typedef VecMath::Vector<4> &function_type (double, double, double);
         typedef VecMath::Vector<4> raw_function_type (double, double, double);
         
     protected:
-         virtual function_type f = 0;
-         virtual VecMath::Vector<4> *df (double, double, double);
-         virtual function_type normal;
+        virtual function_type f = 0;
+        virtual VecMath::Vector<4> *df (double, double, double);
+        virtual function_type normal;
     
-         virtual void Initialize (void);
-         void InitMem (void);
-         void Free (void);
-         virtual unsigned long MemRequired (void);
+        virtual void Initialize (void);
+        void InitMem (void);
+        void Free (void);
+        virtual unsigned long MemRequired (void);
     
-         void DrawPlane (unsigned);
-         void DrawStrip (unsigned, unsigned);
-         void DrawCube (unsigned, unsigned, unsigned);
+        void DrawPlane (unsigned);
+        void DrawStrip (unsigned, unsigned);
+        void DrawCube (unsigned, unsigned, unsigned);
     
-         double tmin, tmax, dt,
-	            umin, umax, du,
-	            vmin, vmax, dv;
+        double tmin, tmax, dt,
+               umin, umax, du,
+               vmin, vmax, dv;
 
-         unsigned tsteps, usteps, vsteps;
+        unsigned tsteps, usteps, vsteps;
 
-         unsigned NumVertices;
+        unsigned NumVertices;
 
-         VecMath::Vector<4> F;
+        VecMath::Vector<4> F;
 
-         //      temporary storage for the function values on the grid
-         VecMath::Vector<4> ***X, ***Xtrans;
-         VecMath::Vector<3> ***Xscr;
-         VecMath::Vector<4> *Xchunk, *XtransChunk;
-         VecMath::Vector<3> *XscrChunk;
+        //      temporary storage for the function values on the grid
+        VecMath::Vector<4> ***X, ***Xtrans;
+        VecMath::Vector<3> ***Xscr;
+        VecMath::Vector<4> *Xchunk, *XtransChunk;
+        VecMath::Vector<3> *XscrChunk;
         
-         //      storage for the coloring of the vertices
-         float ***R, ***G, ***B;
-         float *RGBChunk;
+        //      storage for the coloring of the vertices
+        float ***R, ***G, ***B;
+        float *RGBChunk;
 
-         QString functionName;
-         std::vector<QString> parameterNames;
+        QString functionName;
+        std::vector<QString> parameterNames;
 
 };
 

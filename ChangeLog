@@ -2,7 +2,7 @@ HyperspaceExplorer Changelog
 =============================
     
     * functions have a name and a list of parameter names as attributes
-    * slots to select custom functions from menu are programmed more cleanly now eith a templated function (so to speak - a class template with a static member function)
+    * slots to select functions from menu are programmed more cleanly now with a templated function (so to speak - a class template with a static member function in fact)
     * custom functions work again (almost - need a way to move Vector.H into include path, and complex functions still crash)
     
 release 0.3.2:
