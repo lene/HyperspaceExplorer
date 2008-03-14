@@ -57,6 +57,7 @@ class Torus2;
 
 
 class C4DView : public XQGLWidget {
+    
     template<class function> class CustomFunctionSlot {
         public:
             static void createCustomFunction(C4DView *view);
@@ -68,6 +69,7 @@ class C4DView : public XQGLWidget {
         public:
             static void createFunction(C4DView *view);
             static void createSurface(C4DView *view);
+            static void createObject(C4DView *view);
     };
 
     Q_OBJECT

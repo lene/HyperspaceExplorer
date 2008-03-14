@@ -495,8 +495,7 @@ void Function::DrawCube (unsigned t, unsigned u, unsigned v) {
 ////////////////////////////////////////////////////////////////////////////////
 
 
-/*******************************************************************************
- *  Hypersphere c'tor given a definition set in R³ (as parameter space) and a
+/** Hypersphere c'tor given a definition set in R³ (as parameter space) and a
  *  radius
  *  @param _tmin	minimal value in t
  *  @param _tmax	maximal value in t
@@ -519,8 +518,7 @@ Hypersphere::Hypersphere (double _tmin, double _tmax, double _dt,
       Initialize ();
 }
 
-/*******************************************************************************
- *  Hypersphere defining function
+/** Hypersphere defining function
  *  @param tt		t value
  *  @param uu		u value
  *  @param vv		v value

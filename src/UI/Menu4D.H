@@ -5,6 +5,7 @@
 class C4DView;
 class QString;
 class QMenuBar;
+class Function;
 
 class Menu4D: public QMenu {
     public:
@@ -22,8 +23,8 @@ class Menu4D: public QMenu {
     private:
         QAction *insertAction(QMenu *_menu, const QString &title, 
                               const char *slot, bool checkable = true);
-/*        QAction *insertActionNew(QMenu *_menu, const QString &title, 
-                                 const char *slot, bool checkable = true);*/
+        QAction *insertAction(QMenu *_menu, const Function *function,
+                                 const char *slot, bool checkable = true);
         C4DView *parent;
         QMenu *functions, *appear, *animation, *help,
               *fr3r, *objects, *surfaces, *fcc;
