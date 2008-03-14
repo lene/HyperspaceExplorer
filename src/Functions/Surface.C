@@ -87,13 +87,13 @@ void Surface::InitMem (void) {
  */
 void Surface::Initialize () {
     X = new Vector<4> * [usteps+2];
-    Xchunk = new Vector<4>   [(usteps+2)*(vsteps+2)];
+    Xchunk = new Vector<4> [(usteps+2)*(vsteps+2)];
 
     for (unsigned u = 0; u <= usteps+1; u++) {
-	X[u]  =  Xchunk+u*(vsteps+2);
-	for (unsigned v = 0; v <= vsteps+1; v++) {
-	    X[u][v] = f (umin+u*du, vmin+v*dv);
-	}
+        X[u]  =  Xchunk+u*(vsteps+2);
+        for (unsigned v = 0; v <= vsteps+1; v++) {
+            X[u][v] = f (umin+u*du, vmin+v*dv);
+        }
     }
 
     InitMem ();

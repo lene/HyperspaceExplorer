@@ -147,7 +147,7 @@
   </kdevfilecreate>
   <kdevtrollproject>
     <general>
-      <activedir></activedir>
+      <activedir>src</activedir>
     </general>
     <run>
       <directoryradio>executable</directoryradio>
@@ -184,4 +184,28 @@
       <implementationsuffix>.cpp</implementationsuffix>
     </filetemplates>
   </cppsupportpart>
+  <dist>
+    <custom>false</custom>
+    <bzip>true</bzip>
+    <archname>%n-%v</archname>
+    <appname>HyperspaceExplorer</appname>
+    <version>0.3.2</version>
+    <release></release>
+    <vendor></vendor>
+    <licence></licence>
+    <summary></summary>
+    <group></group>
+    <packager></packager>
+    <description></description>
+    <changelog></changelog>
+    <devpackage>false</devpackage>
+    <docspackage>false</docspackage>
+    <appicon>false</appicon>
+    <arch>0</arch>
+    <genHTML>false</genHTML>
+    <useRPM>false</useRPM>
+    <ftpkde>false</ftpkde>
+    <appskde>false</appskde>
+    <url></url>
+  </dist>
 </kdevelop>

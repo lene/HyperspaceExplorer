@@ -1877,23 +1877,26 @@ void C4DView::ComplexTanZ() {
  *  display a customFunction object
  */
 void C4DView::customFunction() {
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
-      (new CustomFunction (Values->tmin (), Values->tmax (), Values->dt (),
-			   Values->umin (), Values->umax (), Values->du (),
-			   Values->vmin (), Values->vmax (), Values->dv ()));
-# ifdef USE_AUTO_PTR
-    QString sym (((CustomFunction *)F.get ())->symbolic());
-# else
-    QString sym (((CustomFunction *)F)->symbolic());
-# endif    
-  AssignValues (sym);
-  
-  Redraw ();
+    CustomFunction *tmp = new CustomFunction (Values->tmin (), Values->tmax (), Values->dt (),
+                                              Values->umin (), Values->umax (), Values->du (),
+                                              Values->vmin (), Values->vmax (), Values->dv ());
+    if (tmp->isValid()) {
+#       ifdef USE_AUTO_PTR
+            F.reset(tmp);
+            QString sym (((CustomFunction *)F.get ())->symbolic());
+#       else
+            if (F) delete F;
+            F = tmp;
+            QString sym (((CustomFunction *)F)->symbolic());
+#       endif
+
+        AssignValues (sym);
+
+        Redraw ();
+    } else {
+        delete tmp;
+        UpdateStatus("Failed to load custom function");
+    }
 }
 
 

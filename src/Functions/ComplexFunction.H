@@ -19,17 +19,17 @@
 
 class ComplexFunction: public Surface {
     public:
-	     ComplexFunction (double _umin, double _umax, double _du,
-			              double _vmin, double _vmax, double _dv);
-	     virtual ~ComplexFunction ();
-	     virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
+        ComplexFunction (double _umin, double _umax, double _du,
+                         double _vmin, double _vmax, double _dv);
+        virtual ~ComplexFunction ();
+        virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
-         typedef std::complex<double> function_type(std::complex <double>) ;
+        typedef std::complex<double> function_type(std::complex <double>) ;
 
     protected:
-         virtual VecMath::Vector<4> &f (double, double);
-	     virtual function_type g = 0;
-	     void Initialize (void);
+        virtual VecMath::Vector<4> &f (double, double);
+        virtual function_type g = 0;
+        void Initialize (void);
 };
 
 

@@ -17,34 +17,35 @@
 
 class Surface: public Function {
     public:
-         Surface();
-         Surface (double _umin, double _umax, double _du,
-	              double _vmin, double _vmax, double _dv);
-         virtual ~Surface();
+        Surface();
+        Surface (double _umin, double _umax, double _du,
+                 double _vmin, double _vmax, double _dv);
+        virtual ~Surface();
 
-         virtual void Transform (double Rxy, double Rxz, double Rxw, 
-                                 double Ryz, double Ryw, double Rzw,
-			                     double Tx, double Ty, double Tz, double Tw);
-         void Transform (void) { Transform (0, 0, 0, 0, 0, 0,  0, 0, 0, 0); }
+        virtual void Transform (double Rxy, double Rxz, double Rxw,
+                                double Ryz, double Ryw, double Rzw,
+                                double Tx, double Ty, double Tz, double Tw);
+        void Transform (void) { Transform (0, 0, 0, 0, 0, 0,  0, 0, 0, 0); }
 
-         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
-         virtual void Draw (void);
+        virtual void Project (double ScrW, double CamW, bool DepthCue4D);
+        virtual void Draw (void);
 
-         virtual void ReInit(double _tmin, double _tmax, double _dt,
-			                 double _umin, double _umax, double _du,
-			                 double _vmin, double _vmax, double _dv);
+        virtual void ReInit(double _tmin, double _tmax, double _dt,
+                            double _umin, double _umax, double _du,
+                            double _vmin, double _vmax, double _dv);
 
-         virtual void SetParameters (double _a = 0, double _b = 0,
-                                     double _c = 0, double _d = 0);
+        virtual void SetParameters (double _a = 0, double _b = 0,
+                                    double _c = 0, double _d = 0);
 
-         VecMath::Vector<4> **Data (void) { return X; }
+        VecMath::Vector<4> **Data (void) { return X; }
 
-         VecMath::Vector<4> &operator () (double u, double v) {
-	         unsigned iu = unsigned ((u-umin)/du), iv = unsigned ((v-vmin)/dv);
-	         return X[iu][iv]; 
-         }
+        VecMath::Vector<4> &operator () (double u, double v) {
+            unsigned iu = unsigned ((u-umin)/du), iv = unsigned ((v-vmin)/dv);
+            return X[iu][iv];
+        }
 
-         typedef VecMath::Vector<4> &function_type (double, double);
+        typedef VecMath::Vector<4> &function_type (double, double);
+        typedef VecMath::Vector<4> raw_function_type (double, double);
     
     protected:
          virtual VecMath::Vector<4> &f (double, double,  double) { return F; }

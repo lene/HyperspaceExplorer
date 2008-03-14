@@ -69,6 +69,7 @@ class Function {
         }
 
         typedef VecMath::Vector<4> &function_type (double, double, double);
+        typedef VecMath::Vector<4> raw_function_type (double, double, double);
         
     protected:
          virtual function_type f = 0;
@@ -299,4 +300,4 @@ protected:
 };
 
 
-#endif 					// 	!defined(FUNCTION_H)
+#endif

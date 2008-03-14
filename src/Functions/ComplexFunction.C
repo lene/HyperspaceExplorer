@@ -35,13 +35,21 @@ ComplexFunction::~ComplexFunction () { }
 /** allocate and initialize X[][] with values of f()
  *  call Surface::InitMem ()                                                  */
 void ComplexFunction::Initialize () {
+    std::cerr<<"ComplexFunction::Initialize(); usteps = "<< usteps << ", vsteps = " << vsteps << std::endl;
+    
     X = new Vector<4> * [usteps+2];
-    Xchunk = new Vector<4>   [(usteps+2)*(vsteps+2)];
-  
-  for (unsigned u = 0; u <= usteps+1; u++) {
+    Xchunk = new Vector<4> [(usteps+2)*(vsteps+2)];
+    
+    std::cerr<<"ComplexFunction::Initialize(); X = "<< X << ", Xchunk = " << Xchunk << std::endl;
+    
+    for (unsigned u = 0; u <= usteps+1; u++) {
+        std::cerr << u << std::endl;
         X[u]  =  Xchunk+u*(vsteps+2);
         for (unsigned v = 0; v <= vsteps+1; v++) {
-            X[u][v] = f (umin+u*du, vmin+v*dv);
+//            X[u][v] = f (umin+u*du, vmin+v*dv);
+            //Xchunk[u*(vsteps+2)+v] = f (umin+u*du, vmin+v*dv);
+            Vector<4> dummy = f (umin+u*du, vmin+v*dv);
+            std::cerr << "X["<<u<<"]["<<v<<"] = " << dummy << std::endl;
         }
     }
   
