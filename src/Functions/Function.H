@@ -40,9 +40,10 @@
 class Function {
     public:
         Function();
-        Function (double _tmin, double _tmax, double _dt,
-	         double _umin, double _umax, double _du,
-	          double _vmin, double _vmax, double _dv);
+        Function (const QString &name,
+                  double _tmin, double _tmax, double _dt,
+                  double _umin, double _umax, double _du,
+                  double _vmin, double _vmax, double _dv);
         virtual ~Function();
 
         virtual void Transform (double Rxy, double Rxz, double Rxw, 
@@ -67,6 +68,10 @@ class Function {
 		             iv = unsigned ((v-vmin)/dv);
 	        return X[it][iu][iv]; 
         }
+        
+        virtual QString getFunctionName() const { return functionName; }
+        virtual std::vector<QString> getParameterNames() { return parameterNames; }
+        virtual QString getParameterName(unsigned i) { return parameterNames[i]; }
 
         typedef VecMath::Vector<4> &function_type (double, double, double);
         typedef VecMath::Vector<4> raw_function_type (double, double, double);
@@ -104,6 +109,10 @@ class Function {
          //      storage for the coloring of the vertices
          float ***R, ***G, ***B;
          float *RGBChunk;
+
+         QString functionName;
+         std::vector<QString> parameterNames;
+
 };
 
 
@@ -190,24 +199,24 @@ class Fr3r: public Function {
 };
 
 
-
 ///////////////////////////////////////////////////////////////////////////////
 
 class GravitationPotential: public Function {
-public:
-    GravitationPotential (double _tmin, double _tmax, double _dt,
-			  double _umin, double _umax, double _du,
-			  double _vmin, double _vmax, double _dv,
-			  double _M = 1, double _R = 0.25);
-    virtual ~GravitationPotential () { }
-    virtual void SetParameters (double _a = 0, double _b = 0, double = 0, double = 0) {
-	M = _a; R = _b; }
+    public:
+        GravitationPotential (double _tmin, double _tmax, double _dt,
+                              double _umin, double _umax, double _du,
+                              double _vmin, double _vmax, double _dv,
+                              double _M = 1, double _R = 0.25);
+        virtual ~GravitationPotential () { }
+        virtual void SetParameters (double _a = 0, double _b = 0, double = 0, double = 0) {
+            M = _a; R = _b; 
+        }
+        
+    protected:
+        virtual function_type f;
 
-protected:
-    virtual function_type f;
-
-    double M,	                       				//      not really M, but M/R^3
-	   R;
+        double M,               //  not really M, but M/R^3
+               R;
 };
 
 ///////////////////////////////////////////////////////////////////////////////

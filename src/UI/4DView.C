@@ -1279,7 +1279,7 @@ void C4DView::FunctionTorus1() {
  *  display a Torus2 object
  */
 void C4DView::FunctionTorus2() {
-    menu->updateFunctionMenu("Torus 1");
+    menu->updateFunctionMenu("Torus 2");
 
 # ifdef USE_AUTO_PTR
   F.reset
@@ -1589,7 +1589,7 @@ void C4DView::SurfaceTorus3() {
       (new Torus3 (Values->tmin (), Values->tmax (), Values->dt (),
 		   Values->umin (), Values->umax (), Values->du ()));
 
-  AssignValues ("Torus");
+  AssignValues ("Torus 3");
   
   Redraw ();
 } 
@@ -1872,31 +1872,56 @@ void C4DView::ComplexTanZ() {
 
 #include "CustomFunction.H"
 
+template<class function> 
+        void CustomFunctionHelper<function>::createCustomFunction(C4DView *view) {
+            function *tmp = new function (view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
+                                          view->Values->umin (), view->Values->umax (), view->Values->du (),
+                                          view->Values->vmin (), view->Values->vmax (), view->Values->dv ());
+            if (tmp->isValid()) {
+#               ifdef USE_AUTO_PTR
+                    view->F.reset(tmp);
+                    QString sym (((function *)(view->F).get ())->symbolic());
+#               else
+                    if (view->F) delete view->F;
+                    view->F = tmp;
+                    QString sym (((function *)(view->F))->symbolic());
+#               endif
+
+                view->AssignValues (sym);
+                view->Redraw ();
+            } else {
+                delete tmp;
+                view->UpdateStatus("Failed to load custom function");
+            }
+        }
+        
+template<class function>
+        void CustomFunctionHelper<function>::createCustomSurface(C4DView *view) {
+            function *tmp = new function (view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
+                                          view->Values->umin (), view->Values->umax (), view->Values->du ());
+            if (tmp->isValid()) {
+#               ifdef USE_AUTO_PTR
+                view->F.reset(tmp);
+                QString sym (((function *)(view->F).get ())->symbolic());
+#               else
+                if (view->F) delete view->F;
+                view->F = tmp;
+                QString sym (((function *)(view->F))->symbolic());
+#               endif
+
+                view->AssignValues (sym);
+                view->Redraw ();
+            } else {
+                delete tmp;
+                view->UpdateStatus("Failed to load custom function");
+            }
+        }
 
 /*******************************************************************************
  *  display a customFunction object
  */
 void C4DView::customFunction() {
-    CustomFunction *tmp = new CustomFunction (Values->tmin (), Values->tmax (), Values->dt (),
-                                              Values->umin (), Values->umax (), Values->du (),
-                                              Values->vmin (), Values->vmax (), Values->dv ());
-    if (tmp->isValid()) {
-#       ifdef USE_AUTO_PTR
-            F.reset(tmp);
-            QString sym (((CustomFunction *)F.get ())->symbolic());
-#       else
-            if (F) delete F;
-            F = tmp;
-            QString sym (((CustomFunction *)F)->symbolic());
-#       endif
-
-        AssignValues (sym);
-
-        Redraw ();
-    } else {
-        delete tmp;
-        UpdateStatus("Failed to load custom function");
-    }
+    CustomFunctionHelper<CustomFunction>::createCustomFunction(this);
 }
 
 
@@ -1904,24 +1929,7 @@ void C4DView::customFunction() {
  *  display a customPolarFunction object
  */
 void C4DView::customPolarFunction() {
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
-      (new CustomPolarFunction (Values->tmin (), Values->tmax (), Values->dt (),
-				Values->umin (), Values->umax (), Values->du (),
-				Values->vmin (), Values->vmax (), Values->dv ()));
-# ifdef USE_AUTO_PTR
-    QString sym (((CustomPolarFunction *)F.get ())->symbolic());
-# else
-    QString sym (((CustomPolarFunction *)F)->symbolic());
-# endif    
-  AssignValues (sym);
-  
-  Redraw ();
-  //  PolarDialog *PolarDlg = new PolarDialogImpl;
+    CustomFunctionHelper<CustomPolarFunction>::createCustomFunction(this);
 }
 
 
@@ -1929,23 +1937,7 @@ void C4DView::customPolarFunction() {
  *  display a customComplexFunction object
  */
 void C4DView::customComplexFunction() {
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
-      (new CustomComplexFunction (Values->tmin (), Values->tmax (), Values->dt (),
-				  Values->umin (), Values->umax (), Values->du ()));
-# ifdef USE_AUTO_PTR
-    QString sym (((CustomComplexFunction *)F.get ())->symbolic());
-# else
-    QString sym (((CustomComplexFunction *)F)->symbolic());
-# endif    
-  AssignValues (sym);
-  
-  Redraw ();
-  //  ComplexDialog *ComplexDlg = new ComplexDialogImpl;
+    CustomFunctionHelper<CustomComplexFunction>::createCustomSurface(this);
 }
 
 
@@ -1953,31 +1945,5 @@ void C4DView::customComplexFunction() {
  *  display a customSurface object
  */
 void C4DView::customSurface() {
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
-      (new CustomSurface (Values->tmin (), Values->tmax (), Values->dt (),
-			  Values->umin (), Values->umax (), Values->du ()));
-# ifdef USE_AUTO_PTR
-    QString sym (((CustomSurface *)F.get ())->symbolic());
-# else
-    QString sym (((CustomSurface *)F)->symbolic());
-# endif    
-  AssignValues (sym);
-  
-  Redraw ();
-  //  SurfaceDialog *SurfaceDlg = new SurfaceDialogImpl;
+    CustomFunctionHelper<CustomSurface>::createCustomSurface(this);
 }
-
-/*
-void C4DView::OnUpdateFunctionFr3r () {
-    menu->setItemEnabled (0, dynamic_cast <Fr3r *> (F) != NULL);
-}
-*/
-
-
-
-

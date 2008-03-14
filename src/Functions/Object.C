@@ -29,10 +29,12 @@ using VecMath::Matrix;
  *  @param vertices	number of vertices
  *  @param surfaces	number of surfaces
  */
-Object::Object (unsigned vertices, unsigned surfaces):
+Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
     Function (),
     NumVertices (vertices), NumSurfaces (surfaces) {
-        X	   = new Vector<4> [NumVertices];
+        functionName = name;
+        
+        X      = new Vector<4> [NumVertices];
         Xtrans = new Vector<4> [NumVertices];
         Xscr   = new Vector<3> [NumVertices];
     R = new float [NumVertices];
@@ -153,9 +155,10 @@ void Object::ReInit (double, double, double,
  *  @param _a		side_length/2
  */
 Hypercube::Hypercube (const Vector<4> &_center, double _a):
-    Object (16, 24),
+        Object ("Hypercube", 16, 24),
     a (_a), center(_center) {
-    SingletonLog::Instance().log("Hypercube::Hypercube()");
+        parameterNames.push_back("Size");
+        SingletonLog::Instance().log("Hypercube::Hypercube()");
     Initialize();
 }
 
@@ -224,6 +227,11 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
  */
 Sponge::Sponge (unsigned level, int _distance, double _rad, Vector<4> _center):
     Level (level), distance(_distance), rad(_rad), center(_center) {
+    functionName = "4-dimensional Menger Sponge";
+    parameterNames.push_back("Level");
+    parameterNames.push_back("Distance");
+    parameterNames.push_back("Size");
+    
     Initialize();
 }
 
@@ -350,9 +358,10 @@ void Sponge::Draw (void) {
  *  @param _a		side_length/2
  */
 Pyramid::Pyramid (const Vector<4> &_center, double _a):
-    Object (5, 10),
+        Object ("Hyperpyramid", 5, 10),
     center(_center), a (_a) {
-    Initialize();
+        parameterNames.push_back("Size");
+        Initialize();
 }		
 
 void Pyramid::Initialize() {
@@ -402,6 +411,9 @@ void Pyramid::DeclareTriangle (unsigned i, unsigned a, unsigned b, unsigned c) {
  */
 Gasket::Gasket (unsigned level, double _rad, Vector<4> _center):
     Level (level), rad(_rad), center(_center) {
+    functionName = "4-dimensional Sierpinski Gasket";
+    parameterNames.push_back("Level");
+    parameterNames.push_back("Size");
     Initialize();
 }
 

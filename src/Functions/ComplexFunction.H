@@ -19,7 +19,8 @@
 
 class ComplexFunction: public Surface {
     public:
-        ComplexFunction (double _umin, double _umax, double _du,
+        ComplexFunction (const QString &name,
+                         double _umin, double _umax, double _du,
                          double _vmin, double _vmax, double _dv);
         virtual ~ComplexFunction ();
         virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }

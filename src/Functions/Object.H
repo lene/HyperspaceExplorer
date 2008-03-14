@@ -20,7 +20,7 @@
 
 class Object: public Function {
     public:
-        Object (unsigned, unsigned);
+        Object (const QString &, unsigned, unsigned);
         virtual ~Object ();
         virtual void ReInit (double, double, double,
                              double, double, double,
@@ -48,7 +48,9 @@ class Object: public Function {
 
 class Hypercube: public Object {
 public:
-    Hypercube (): Object (16, 24) { }
+    Hypercube (): Object ("Hypercube", 16, 24) {
+        parameterNames.push_back("Size");
+    }
     Hypercube (const VecMath::Vector<4> &_Center, double _a = 1);
     virtual ~Hypercube() { }
   
@@ -117,7 +119,9 @@ protected:
 
 class Pyramid: public Object {
 public:
-    Pyramid (): Object (5, 10) { }
+    Pyramid (): Object ("Hyperpyramid", 5, 10) { 
+        parameterNames.push_back("Size");
+    }
     Pyramid (const VecMath::Vector<4> &_Center, double _a = 1);
     virtual ~Pyramid() { }
 

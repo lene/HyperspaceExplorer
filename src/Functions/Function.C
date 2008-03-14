@@ -39,14 +39,16 @@ template <typename T> unsigned int Delete (T *x) {
  *  zeroes everything
  */
 Function::Function ():
-  tmin (0),       tmax (0),       dt (0),
-  umin (0),       umax (0),       du (0),
-  vmin (0),       vmax (0),       dv (0),
-  tsteps (0), usteps (0), vsteps (0),
-  NumVertices (0),
-  F (),
-     Xtrans (NULL), Xscr (NULL), XtransChunk (NULL), XscrChunk (NULL),
-  R (NULL), G (NULL), B (NULL), RGBChunk (NULL) { }
+    tmin (0),       tmax (0),       dt (0),
+    umin (0),       umax (0),       du (0),
+    vmin (0),       vmax (0),       dv (0),
+    tsteps (0), usteps (0), vsteps (0),
+    NumVertices (0),
+    F (),
+    Xtrans (NULL), Xscr (NULL), XtransChunk (NULL), XscrChunk (NULL),
+    R (NULL), G (NULL), B (NULL), RGBChunk (NULL),
+    functionName(""), parameterNames()
+{ }
 
 
 /*******************************************************************************
@@ -61,19 +63,21 @@ Function::Function ():
  *  @param _vmax	maximal value in v
  *  @param _dv		stepsize in v
  */
-Function::Function (double _tmin, double _tmax, double _dt,
-		    double _umin, double _umax, double _du,
-		    double _vmin, double _vmax, double _dv):
-  tmin (_tmin),	tmax (_tmax),	dt (_dt),
-  umin (_umin),	umax (_umax),	du (_du),
-  vmin (_vmin),	vmax (_vmax),	dv (_dv),
-  tsteps (unsigned ((tmax-tmin)/dt+1)), 
-  usteps (unsigned ((umax-umin)/du+1)), 
-  vsteps (unsigned ((vmax-vmin)/dv+1)),
-  NumVertices (0),
-  F (),
-     Xtrans (NULL), Xscr (NULL), XtransChunk (NULL), XscrChunk (NULL),
-             R (NULL), G (NULL), B (NULL), RGBChunk (NULL) {
+Function::Function (const QString &name,
+                    double _tmin, double _tmax, double _dt,
+                    double _umin, double _umax, double _du,
+                    double _vmin, double _vmax, double _dv):
+    tmin (_tmin), tmax (_tmax), dt (_dt),
+    umin (_umin), umax (_umax), du (_du),
+    vmin (_vmin), vmax (_vmax), dv (_dv),
+    tsteps (unsigned ((tmax-tmin)/dt+1)),
+    usteps (unsigned ((umax-umin)/du+1)),
+    vsteps (unsigned ((vmax-vmin)/dv+1)),
+    NumVertices (0),
+    F (),
+    Xtrans (NULL), Xscr (NULL), XtransChunk (NULL), XscrChunk (NULL),
+    R (NULL), G (NULL), B (NULL), RGBChunk (NULL),
+    functionName(name), parameterNames() {
   if (MemRequired () > Globals::Instance().MaximumMemory) {				//  which is defined in Globals.H
     cerr << "Using a " << tsteps << "x" << usteps << "x" << vsteps
 	 << " grid would require approx. " << MemRequired () << " MB of memory.\n";
@@ -506,12 +510,13 @@ void Function::DrawCube (unsigned t, unsigned u, unsigned v) {
  *  @param _rad		radius
  */
 Hypersphere::Hypersphere (double _tmin, double _tmax, double _dt,
-			  double _umin, double _umax, double _du,
-			  double _vmin, double _vmax, double _dv,
-			  double _rad):
-  Function (_tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
-  Radius (_rad){
-  Initialize ();
+                          double _umin, double _umax, double _du,
+                          double _vmin, double _vmax, double _dv,
+                          double _rad):
+        Function ("Hypersphere", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
+  Radius (_rad) {
+      parameterNames.push_back("Radius");
+      Initialize ();
 }
 
 /*******************************************************************************
@@ -575,9 +580,12 @@ Torus1::Torus1 (double _tmin, double _tmax, double _dt,
 		double _umin, double _umax, double _du,
 		double _vmin, double _vmax, double _dv,
 		double _R, double _r, double _rho):
-  Function (_tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
+  Function ("Torus 1", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
   R (_R), r (_r), rho (_rho) {
-  Initialize ();
+      parameterNames.push_back("Major Radius");
+      parameterNames.push_back("Minor Radius");
+      parameterNames.push_back("Micro Radius");
+      Initialize ();
 }
 
 /*******************************************************************************
@@ -619,9 +627,12 @@ Torus2::Torus2 (double _tmin, double _tmax, double _dt,
 		double _umin, double _umax, double _du,
 		double _vmin, double _vmax, double _dv,
 		double _R, double _r):
-  Function (_tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
+  Function ("Torus 2", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
   R (_R), r (_r) {
-  Initialize ();
+      parameterNames.push_back("Major Radius");
+      parameterNames.push_back("Minor Radius");
+
+      Initialize ();
 }
 
 /*******************************************************************************
@@ -657,9 +668,9 @@ Vector<4> &Torus2::f (double tt, double uu, double vv) {
  *  @param _dv		stepsize in v
  */
 Fr3r::Fr3r (double _tmin, double _tmax, double _dt,
-	    double _umin, double _umax, double _du,
-	    double _vmin, double _vmax, double _dv):
-  Function (_tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
+            double _umin, double _umax, double _du,
+            double _vmin, double _vmax, double _dv):
+    Function ("1/(r²+1)", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
   Initialize ();
 }
 
@@ -705,9 +716,11 @@ GravitationPotential::GravitationPotential (double xmin, double xmax, double dx,
 					    double ymin, double ymax, double dy,
 					    double zmin, double zmax, double dz,
 					    double _M, double _R):
-  Function (xmin, xmax, dx, ymin, ymax, dy, zmin, zmax, dz),
+        Function ("Gravitation Potential", xmin, xmax, dx, ymin, ymax, dy, zmin, zmax, dz),
   M (_M), R (_R) {
-  Initialize ();
+      parameterNames.push_back("M");
+      parameterNames.push_back("R");
+      Initialize ();
 }
 
 /*******************************************************************************
@@ -750,7 +763,7 @@ Vector<4> &GravitationPotential::f (double tt, double uu, double vv) {
 Fr3rSin::Fr3rSin (double _tmin, double _tmax, double _dt,
 		  double _umin, double _umax, double _du,
 		  double _vmin, double _vmax, double _dv):
-  Function (_tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
+        Function ("sin (r²)", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
   Initialize ();
 }
 
@@ -789,7 +802,7 @@ Vector<4> &Fr3rSin::f (double tt, double uu, double vv) {
 Fr3rExp::Fr3rExp (double _tmin, double _tmax, double _dt,
 		  double _umin, double _umax, double _du,
 		  double _vmin, double _vmax, double _dv):
-  Function (_tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
+        Function ("exp (r²)", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
   Initialize ();
 }
 
@@ -828,7 +841,7 @@ Vector<4> &Fr3rExp::f (double tt, double uu, double vv) {
 Polar::Polar (double _tmin, double _tmax, double _dt,
 	      double _umin, double _umax, double _du,
 	      double _vmin, double _vmax, double _dv):
-  Function (_tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
+  Function ("Polar: Hypersphere", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
   Initialize ();
 }
 
@@ -875,7 +888,7 @@ PolarSin::PolarSin (double _tmin, double _tmax, double _dt,
 		    double _umin, double _umax, double _du,
 		    double _vmin, double _vmax, double _dv,
 		    double _phase):
-  Function (_tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
+        Function ("Polar: r = 1/2+sin (Phase*pi*t*u*v)", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
   Phase (_phase) {
   Initialize ();
 }
@@ -920,8 +933,9 @@ Vector<4> &PolarSin::f (double tt, double uu, double vv) {
 PolarSin2::PolarSin2 (double _tmin, double _tmax, double _dt,
 		      double _umin, double _umax, double _du,
 		      double _vmin, double _vmax, double _dv):
-  Function (_tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
-  Initialize ();
+        Function ("Polar: r = sin (pi/3.*(t+u+v))", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
+    parameterNames.push_back("Phase");
+    Initialize ();
 }
 
 /*******************************************************************************
@@ -967,8 +981,9 @@ PolarR::PolarR (double _tmin, double _tmax, double _dt,
 		double _umin, double _umax, double _du,
 		double _vmin, double _vmax, double _dv,
 		double _phase):
-  Function (_tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
+        Function ("Polar: r = sqrt (t²+u²+v²)", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
   Phase (_phase) {
+      parameterNames.push_back("Phase");
   Initialize ();
 }
  

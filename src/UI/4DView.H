@@ -18,8 +18,22 @@
 class QPaintEvent;
 class QStatusBar;
 
+class C4DView;
 class Menu4D;
 class Function;
+
+class CustomFunction;
+class CustomPolarFunction;
+class CustomSurface;
+class CustomComplexFunction;
+
+
+template<class function> class CustomFunctionHelper {
+    public:
+        static void createCustomFunction(C4DView *view);
+        static void createCustomSurface(C4DView *view);
+};
+
 
 class C4DView : public XQGLWidget {
 
@@ -67,7 +81,7 @@ class C4DView : public XQGLWidget {
         bool getRenderToPixmap() const { return RenderToPixmap; }
         bool getDisplayPolygons() const { return DisplayPolygons; }
         Menu4D *getMenu() const { return menu; }
-                
+
     public slots:
         void ApplyChanges ();
 
@@ -220,6 +234,12 @@ class C4DView : public XQGLWidget {
         void customPolarFunction();
         void customComplexFunction();
         void customSurface();
+    
+        friend class CustomFunctionHelper<CustomFunction>;
+        friend class CustomFunctionHelper<CustomPolarFunction>;
+        friend class CustomFunctionHelper<CustomComplexFunction>;
+        friend class CustomFunctionHelper<CustomSurface>;
+
 
 };
 

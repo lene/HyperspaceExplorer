@@ -18,7 +18,8 @@
 class Surface: public Function {
     public:
         Surface();
-        Surface (double _umin, double _umax, double _du,
+        Surface (const QString &name,
+                 double _umin, double _umax, double _du,
                  double _vmin, double _vmax, double _dv);
         virtual ~Surface();
 

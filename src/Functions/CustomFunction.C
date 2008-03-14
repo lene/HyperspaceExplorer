@@ -40,7 +40,7 @@ CustomFunction::CustomFunction (double _tmin, double _tmax, double _dt,
                                 double _umin, double _umax, double _du,
                                 double _vmin, double _vmax, double _dv,
                                 bool final):
-    Function (_tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
+    Function ("Custom function yet without a name", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
     if (final) {
         FunctionDialogImpl *Dlg = new FunctionDialogImpl ();
 
@@ -123,7 +123,7 @@ Vector<4> &CustomPolarFunction::f (double x, double y, double z) {
  *  @param _dv		stepsize in v                                             */
 CustomComplexFunction::CustomComplexFunction (double _umin, double _umax, double _du,
                                               double _vmin, double _vmax, double _dv):
-    ComplexFunction (_umin, _umax, _du, _vmin, _vmax, _dv) {
+        ComplexFunction ("Custom complex function yet without a name", _umin, _umax, _du, _vmin, _vmax, _dv) {
     ComplexDialogImpl *Dlg = new ComplexDialogImpl ();
 
     if (Dlg->exec () == QDialog::Accepted) {
@@ -159,7 +159,7 @@ complex<double> CustomComplexFunction::g (complex<double> z) {
  *  @param _dv		stepsize in v                                             */
 CustomSurface::CustomSurface (double _umin, double _umax, double _du,
                               double _vmin, double _vmax, double _dv):
-    Surface (_umin, _umax, _du, _vmin, _vmax, _dv) {
+        Surface ("Custom surface yet without a name", _umin, _umax, _du, _vmin, _vmax, _dv) {
     SurfaceDialogImpl *Dlg = new SurfaceDialogImpl ();
 
     if (Dlg->exec () == QDialog::Accepted) {

@@ -42,15 +42,18 @@ Surface::Surface ():
  *  @param _vmax	maximal value in v
  *  @param _dv		stepsize in v
  */
-Surface::Surface (double _umin, double _umax, double _du,
-		  double _vmin, double _vmax, double _dv):
+Surface::Surface (const QString &name,
+                  double _umin, double _umax, double _du,
+                  double _vmin, double _vmax, double _dv):
     umin (_umin),	umax (_umax),	du (_du/2),
     vmin (_vmin),	vmax (_vmax),	dv (_dv/2),
     usteps (unsigned (2*(umax-umin)/du+1)), vsteps (unsigned (2*(vmax-vmin)/dv+1)),
     NumVertices (0),
     F (4),
        Xtrans (NULL), Xscr (NULL), XtransChunk (NULL), XscrChunk (NULL), 
-    R (NULL), G (NULL), B (NULL), RGBChunk (NULL) { }
+    R (NULL), G (NULL), B (NULL), RGBChunk (NULL) { 
+        functionName = name;
+    }
 
 
 /*******************************************************************************
@@ -347,7 +350,7 @@ void Surface::DrawStrip (unsigned u){
  */
 Surface1::Surface1 (double _umin, double _umax, double _du,
 		    double _vmin, double _vmax, double _dv):
-    Surface (_umin, _umax, _du, _vmin, _vmax, _dv) {
+        Surface ("Surface", _umin, _umax, _du, _vmin, _vmax, _dv) {
     Initialize ();
 }
 
@@ -383,7 +386,7 @@ Vector<4> &Surface1::f (double uu, double vv) {
  */
 Horizon::Horizon (double _umin, double _umax, double _du,
 		  double _vmin, double _vmax, double _dv):
-    Surface (_umin, _umax, _du, _vmin, _vmax, _dv) {
+    Surface ("Horizon", _umin, _umax, _du, _vmin, _vmax, _dv) {
     Initialize ();
 }
 
@@ -418,7 +421,7 @@ Vector<4> &Horizon::f (double t, double phi) {
  */
 Torus3::Torus3 (double _umin, double _umax, double _du,
 		double _vmin, double _vmax, double _dv):
-    Surface (_umin, _umax, _du, _vmin, _vmax, _dv) {
+        Surface ("Torus 3", _umin, _umax, _du, _vmin, _vmax, _dv) {
     Initialize ();
 }
 
