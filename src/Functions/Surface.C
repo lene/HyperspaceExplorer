@@ -103,34 +103,30 @@ void Surface::Initialize () {
 }
 
 
-/*******************************************************************************
- *  placeholder for function to set parameters in descendants - empty because
+/** placeholder for function to set parameters in descendants - empty because
  *  generic function has no parameters
- *  @param _a		1st parameter
- *  @param _b		2nd parameter
- *  @param _c		3rd parameter
- *  @param _d		4th parameter
- */
+ *  @param _a 1st parameter
+ *  @param _b 2nd parameter
+ *  @param _c 3rd parameter
+ *  @param _d 4th parameter                                                   */
 void Surface::SetParameters (double, double, double, double) { }
 
 
-/*******************************************************************************
- *  re-initialize a Surface if the definition set has changed
- *  @param tmin		minimal value in t (ignored)
- *  @param tmax		maximal value in t (ignored)
- *  @param dt		stepsize in t (ignored)
- *  @param umin		minimal value in u
- *  @param umax		maximal value in u
- *  @param du		stepsize in u
- *  @param vmin		minimal value in v
- *  @param vmax		maximal value in v
- *  @param dv		stepsize in v
- */
+/** re-initialize a Surface if the definition set has changed
+ *  @param tmin minimal value in t (ignored)
+ *  @param tmax maximal value in t (ignored)
+ *  @param dt stepsize in t (ignored)
+ *  @param umin minimal value in u
+ *  @param umax maximal value in u
+ *  @param du stepsize in u
+ *  @param vmin minimal value in v
+ *  @param vmax maximal value in v
+ *  @param dv stepsize in v                                                   */
 void Surface::ReInit(double, double, double,
-		     double _umin, double _umax, double _du,
-		     double _vmin, double _vmax, double _dv) {
-    umin = _umin;	umax = _umax;	du = _du;
-    vmin = _vmin;	vmax = _vmax;	dv = _dv;
+                     double _umin, double _umax, double _du,
+                     double _vmin, double _vmax, double _dv) {
+    umin = _umin; umax = _umax; du = _du;
+    vmin = _vmin; vmax = _vmax; dv = _dv;
     usteps = unsigned ((umax-umin)/du+1); vsteps = unsigned ((vmax-vmin)/dv+1);
 	
 	//	Free ();
@@ -145,12 +141,12 @@ void Surface::ReInit(double, double, double,
  */
 void Surface::Free (void) {
     for (unsigned u = 0; u <= usteps+1; u++) {
-//	Delete (X[u]);
-//	Delete (Xscr[u]);
-//	Delete (Xtrans[u]);
-//	Delete (R[u]);
-//	Delete (G[u]);
-//	Delete (B[u]);
+// Delete (X[u]);
+// Delete (Xscr[u]);
+// Delete (Xtrans[u]);
+// Delete (R[u]);
+// Delete (G[u]);
+// Delete (B[u]);
     }
     Delete (X);
     Delete (Xscr);
@@ -161,7 +157,7 @@ void Surface::Free (void) {
 //    Delete (Xchunk);
 //    Delete (XscrChunk);
 //    Delete (XtransChunk);
-//    Delete (RGBChunk); 
+//    Delete (RGBChunk);
 }
 
 

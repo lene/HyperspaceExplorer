@@ -1,8 +1,15 @@
 TEMPLATE = app
 
-CONFIG = debug qt warn_on uic
+CONFIG = release qt warn_on uic
 
 QT += opengl qt3support
+
+VERSION = 0.3.3
+
+OBJECTS_DIR = tmp
+MOC_DIR = tmp
+UI_DIR = tmp
+UI_HEADERS_DIR = tmp
 
 ################################################################################
 ###	subdirectories
@@ -68,3 +75,9 @@ DEFINES += TESTFEATURES
 
 DESTDIR = ../
 TARGET = HyperspaceExplorer
+
+target.path = /usr/local/bin
+vector.files = Vector.H
+vector.path = ~/.HyperspaceExplorer/plugins
+INSTALLS += target
+INSTALLS += vector
