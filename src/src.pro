@@ -69,6 +69,8 @@ SOURCES += Globals.C Help.C Main.C Log.C
 ###
 ################################################################################
 
+INSTALLDIR = "/usr/local"
+DEFINES += PREFIX="$${INSTALLDIR}"
 DEFINES += PACKAGE_BUGREPORT="helge.preuss@gmx.net"
 DEFINES += PACKAGE_VERSION="$${VERSION}"
 DEFINES += TESTFEATURES
@@ -76,9 +78,9 @@ DEFINES += TESTFEATURES
 DESTDIR = ../
 TARGET = HyperspaceExplorer
 
-target.path = /usr/local/bin
+target.path = $${INSTALLDIR}/bin
 vector.files = Vector.H
-vector.path = ~/.HyperspaceExplorer/plugins
+vector.path = $${INSTALLDIR}/share/HyperspaceExplorer/plugins
 doc.files = doc
-doc.path = ~/.HyperspaceExplorer
+doc.path =  $${INSTALLDIR}/share/HyperspaceExplorer
 INSTALLS += target vector doc

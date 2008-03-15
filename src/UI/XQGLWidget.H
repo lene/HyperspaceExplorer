@@ -15,12 +15,6 @@
 #ifndef XQGLW_H
 #define XQGLW_H
 
-//  for an explanation why this two-stage macro expansion generates string 
-//  literals from #defines, see 
-//  http://groups.google.de/group/comp.lang.c/browse_thread/thread/2016d4664fdae3c1/f2873d4f6ef769b9#f2873d4f6ef769b9
-#define stringify(X) #X
-#define make_str(X) stringify(X)
-
 #include <QGLWidget>
 
 #include "Vector.H"

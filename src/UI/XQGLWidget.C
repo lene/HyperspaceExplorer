@@ -236,9 +236,7 @@ void XQGLWidget::Rotate () {
  */
 void XQGLWidget::Help () {
   static HelpWindow *H;
-  H = new HelpWindow ("Hyperspace_Explorer_Help.html",
-		      qApp->applicationDirPath ());
-  //    H->setCaption("Qt Example - Helpviewer");		//  huh?
+  H = new HelpWindow ("Hyperspace_Explorer_Help.html");
   H->show();
 
 }

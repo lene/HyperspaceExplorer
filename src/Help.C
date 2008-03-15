@@ -13,10 +13,9 @@
 #include <QFile>
 #include <QDir>
 #include <QTextBrowser>
-//Added by qt3to4:
-#include <Q3Frame>
 
 #include "Help.H"
+#include "Globals.H"
 
 using std::cerr;
 using std::endl;
@@ -31,15 +30,23 @@ HelpWindow::HelpWindow( const QString& home_, const QString& _path,
   : QMainWindow( parent, name, Qt::WDestructiveClose ) {
     browser = new QTextBrowser( this );
     QStringList possiblePaths;
-    possiblePaths.append(_path+"/");
-    possiblePaths.append(_path+"/Documentation/");
-    possiblePaths.append(_path+"/src/Documentation/");
-    possiblePaths.append(QDir::currentPath()+"/Documentation/");
-
+    if (_path.size() > 0) {
+        possiblePaths.append(_path+"/");
+        possiblePaths.append(_path+"/Documentation/");
+        possiblePaths.append(_path+"/doc/");
+        possiblePaths.append(_path+"/src/Documentation/");
+        possiblePaths.append(_path+"/src/doc/");
+        possiblePaths.append(QDir::currentPath()+"/Documentation/");
+    } else {
+         for (QStringList::const_iterator constIterator = Globals::Instance().rcdirs.constBegin(); 
+              constIterator != Globals::Instance().rcdirs.constEnd();
+             ++constIterator)
+             possiblePaths.append((*constIterator)+"/doc/");
+    }
     browser->setSearchPaths(possiblePaths);
     browser->setSource(QUrl(home_));
-    browser->setFrameStyle( Q3Frame::Panel | Q3Frame::Sunken );
-    
+    browser->setFrameStyle( QFrame::Panel | QFrame::Sunken );
+
     setCentralWidget( browser );
 
     if ( !home_.isEmpty() )

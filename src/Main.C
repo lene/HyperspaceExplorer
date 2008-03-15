@@ -237,14 +237,10 @@ void parse (int argc, char *argv[]) {
     }
 }
 
-
-/** initialize and run HyperspaceExplorer
- *  @param argc number of arguments
- *  @param argv array of arguments
- *  @return     exit status                                                   */
-int main (int argc, char *argv[]) {
-    QApplication app (argc, argv);
-
+/** add the default entries to the path to look for rc files (and plugins,
+ *  and documentation): $HOME/.HyperspaceExplorer and 
+ *  $PREFIX/share/HyperspaceExplorer (where PREFIX is /usr/local per default  */
+void setRCFilePath() {
     QString rcdir (".HyperspaceExplorer");
     //  if default rc directory does not yet exist, create it
     if (!QDir::home ().exists (rcdir))
@@ -254,12 +250,26 @@ int main (int argc, char *argv[]) {
         QDir::home ().mkdir (rcdir+"/plugins");
     if (!QDir::home ().exists (rcdir+"/plugins/Vector.H")) {
         symlink ((qApp->applicationDirPath()+"/Vector.H").ascii(),
-                 (QDir::home().absPath()+"/"+rcdir+"/plugins/Vector.H").ascii());
+                  (QDir::home().absPath()+"/"+rcdir+"/plugins/Vector.H").ascii());
     }
     Globals::Instance().rcdirs.append (QDir::home ().absPath ()+"/"+rcdir);
+    
+    QString prefix(make_str(PREFIX));
+    Globals::Instance().rcdirs.append(prefix+"/share/HyperspaceExplorer");
+}
 
+/** initialize and run HyperspaceExplorer
+ *  @param argc number of arguments
+ *  @param argv array of arguments
+ *  @return     exit status                                                   */
+int main (int argc, char *argv[]) {
+    QApplication app (argc, argv);
+
+    setRCFilePath();
+    
     parse (argc, argv);
 
+    //  okay to set . last in rc file path? shouldn't it be first?
     Globals::Instance().rcdirs.append (".");
 
     C4DView view;
