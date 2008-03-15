@@ -46,7 +46,11 @@ Global::Global() {
 
 /** debug function for OpenGL commands; outputs all current GL errors on cerr
  *  @param op optional repetition of last GL command                          */
-void Global::CheckGLErrors (const char *op) {
+void Global::CheckGLErrors (const char *
+#ifdef DEBUG
+    op
+#endif
+                           ) {
 #   ifdef DEBUG
     GLenum error;
     while ((error = glGetError ()) != GL_NO_ERROR)

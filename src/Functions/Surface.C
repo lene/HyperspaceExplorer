@@ -245,8 +245,8 @@ Vector<4> *Surface::df (double uu, double vv) {
  *  @param tz		translation in z direction
  *  @param tw		translation in w direction
  */
-void Surface::Transform (double thetaxy, double thetaxz, double thetaxw, 
-                         double thetayz, double thetayw, double thetazw,
+void Surface::Transform (double, double, double thetaxw, 
+                         double, double thetayw, double thetazw,
 			 double tx, double ty, double tz, double tw) {
     Matrix<4> Rxw = Matrix<4> (0, 3, thetaxw),
               Ryw = Matrix<4> (1, 3, thetayw),

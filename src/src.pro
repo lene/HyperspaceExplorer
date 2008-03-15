@@ -69,8 +69,8 @@ SOURCES += Globals.C Help.C Main.C Log.C
 ###
 ################################################################################
 
-DEFINES += PACKAGE_BUGREPORT
-DEFINES += PACKAGE_VERSION
+DEFINES += PACKAGE_BUGREPORT="helge.preuss@gmx.net"
+DEFINES += PACKAGE_VERSION="$${VERSION}"
 DEFINES += TESTFEATURES
 
 DESTDIR = ../

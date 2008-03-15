@@ -200,7 +200,7 @@ void XQGLWidget::ViewPos (double R_) {
 
 void XQGLWidget::SetupDepthCue (float dist, float size) {
   static GLfloat back[4];                       //  copy background color because
-  for (unsigned i = 0; i < 4; back[i] = Background[i++]);
+  for (unsigned i = 0; i < 4; i++) back[i] = Background[i];
 
   glFogi (GL_FOG_MODE,  GL_LINEAR);             //  set fog mode to linear
   glFogfv(GL_FOG_COLOR, back);                  //  ... fog color 
@@ -446,7 +446,6 @@ void XQGLWidget::Plus () {
 void XQGLWidget::Minus () {
 }
 
-
 /*******************************************************************************
  *  open an "About"-Dialog
  */
@@ -455,8 +454,9 @@ void XQGLWidget::about()
   QMessageBox::about( this, "Hyperspace Explorer",
 		      "<p>A program to view four-dimensional objects "
 		      "using OpenGL and the Qt GUI library.</p>"
-		      "<p>author: "+QString(PACKAGE_BUGREPORT)+"</p>"
-		      "<p>version: "+QString(PACKAGE_VERSION)+" of 2004-04-20</p>"
+		      "<p>author: "+QString(make_str(PACKAGE_BUGREPORT))+"</p>"
+                      "<p>version: "+QString(make_str(PACKAGE_VERSION))+
+                              " of "+QString(__DATE__)+"</p>"
 		      );
 }
 
