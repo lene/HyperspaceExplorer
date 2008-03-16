@@ -1,7 +1,7 @@
 
 //      project:      hyperspace explorer
-//      module:       
-//      contains:     
+//      module:
+//      contains:
 //      compile with: make all
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
@@ -22,75 +22,68 @@
 
 #include <vector>
 
+#include "Log.H"
+
 class GLObject {
-  public:
-    GLObject (GLuint objlist = 0): List () {
-      if (glIsList (objlist)) List.push_back (objlist); }
+    public:
+        GLObject (GLuint objlist = 0): List () {
+            if (glIsList (objlist)) List.push_back (objlist);
+        }
 
-    GLObject (unsigned elements, GLuint objlist, ...): List () {
-#     ifdef __DEBUG__
-        cerr << "    GLObject (" << elements << ", ";
-#     endif
-      if (glIsList (objlist)) {
-#       ifdef __DEBUG__
-	  cerr << objlist << ", ";
-#       endif
-	List.push_back (objlist); }
-#     ifdef __DEBUG__
-        else cerr << objlist << " not a GL list ";
-#     endif
- 
-      va_list argp;
-      va_start (argp, objlist);
+        GLObject (unsigned elements, GLuint objlist, ...): List () {
+            SingletonLog::Instance() << "    GLObject (" << (long)elements << ", ";
+            if (glIsList (objlist)) {
+                SingletonLog::Instance() << (long)objlist << ", ";
+                List.push_back (objlist);
+            } else {
+                SingletonLog::Instance() << (long)objlist << " not a GL list ";
+            }
 
-      for (unsigned i = 1; i < elements; i++) {
-	objlist = va_arg (argp, GLuint); 
+            va_list argp;
+            va_start (argp, objlist);
 
-	if (glIsList (objlist)) {
-#         ifdef __DEBUG__
-	    cerr << objlist << ", ";
-#         endif
-	  List.push_back (objlist); }
+            for (unsigned i = 1; i < elements; i++) {
+                objlist = va_arg (argp, GLuint);
 
-#       ifdef __DEBUG__
-          else cerr << objlist << " not a GL list ";
-#       endif
-      }
+                if (glIsList (objlist)) {
+                    SingletonLog::Instance() << (long)objlist << ", ";
+                    List.push_back (objlist);
+                }
 
-#     ifdef __DEBUG__
-        cerr << ")"<< endl;
-#     endif
+                else SingletonLog::Instance() << (long)objlist << " not a GL list ";
+            }
 
-      va_end (argp); }
+            SingletonLog::Instance() << ")\n";
+
+            va_end (argp);
+        }
 
 
-    virtual ~GLObject (void) {
-      for (unsigned i = 0; i < List.size (); i++) {
-	if (glIsList (List[i])) glDeleteLists (List[i], 1); } }
+        virtual ~GLObject (void) {
+            for (unsigned i = 0; i < List.size (); i++)
+                if (glIsList (List[i])) glDeleteLists (List[i], 1);
+        }
 
-    virtual unsigned Draw (void) {
-#     ifdef __DEBUG__
-        cerr << "GLObject::Draw (";
-#     endif      
+        virtual unsigned Draw (void) {
+            SingletonLog::Instance() << "GLObject::Draw (";
 
-      for (unsigned i = 0; i < List.size (); i++) {
-#       ifdef __DEBUG__
-	  cerr << List[i] << ", ";
-#       endif
-	glCallList (List[i]); }
-#     ifdef __DEBUG__
-        cerr << ")" << endl;
-#     endif
+            for (unsigned i = 0; i < List.size (); i++) {
+                SingletonLog::Instance() << (long)List[i] << ", ";
+                glCallList (List[i]);
+            }
+            SingletonLog::Instance() << ")\n";
 
-      return 0; }
+            return 0;
+        }
 
-    operator bool () { 
-      if (List.empty ()) return false;
-      for (unsigned i = 0; i < List.size (); i++)
-	if (glIsList (List[i])) return true;
-      return false; }
+        operator bool () {
+            if (List.empty ()) return false;
+            for (unsigned i = 0; i < List.size (); i++)
+                if (glIsList (List[i])) return true;
+            return false;
+        }
 
-  protected:
-    std::vector<GLuint> List;
+        protected:
+            std::vector<GLuint> List;
 };
 #endif

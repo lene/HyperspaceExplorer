@@ -33,7 +33,7 @@ Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
     Function (),
     NumVertices (vertices), NumSurfaces (surfaces) {
         functionName = name;
-        
+
         X      = new Vector<4> [NumVertices];
         Xtrans = new Vector<4> [NumVertices];
         Xscr   = new Vector<3> [NumVertices];
@@ -42,7 +42,7 @@ Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
     B = new float [NumVertices];
     for (unsigned i = 0; i < 4; i++)
 	Surface[i] = new unsigned [NumSurfaces];
-}		
+}
 
 
 /** generic Object destructor; frees arrays
@@ -74,7 +74,7 @@ Object::~Object () {
  *  @param tz		translation in z direction
  *  @param tw		translation in w direction
  */
-void Object::Transform (double, double, double thetaxw, 
+void Object::Transform (double, double, double thetaxw,
                         double, double thetayw, double thetazw,
                         double tx, double ty, double tz, double tw) {
     Matrix<4> Rxw = Matrix<4> (0, 3, thetaxw),
@@ -83,8 +83,8 @@ void Object::Transform (double, double, double thetaxw,
                     Rxwyw = Rxw*Ryw,
                     Rot = Rxwyw*Rzw;
     Vector<4> trans = Vector<4>(tx, ty, tz, tw);
-    
-    for (unsigned i = 0; i < NumVertices; i++) 
+
+    for (unsigned i = 0; i < NumVertices; i++)
         Xtrans[i] = (Rot*X[i])+trans;
 }
 
@@ -106,14 +106,14 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
 
 	ProjectionFactor = (scr_w-cam_w)/(Xtrans[i][3]-cam_w);
 
-	for (unsigned j = 0; j <= 2; j++) 
+	for (unsigned j = 0; j <= 2; j++)
 	    Xscr[i][j] = ProjectionFactor*Xtrans[i][j];
 
-	R[i] = (X[i][0]+1)/2;							
+	R[i] = (X[i][0]+1)/2;
 	G[i] = (X[i][1]+1)/2;
 	B[i] = (X[i][2]+1)/2;
     }
- 	
+
     if (!depthcue4d) return;
 
     //  apply hyperfog
@@ -130,7 +130,7 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
  */
 void Object::Draw () {
     glBegin (GL_QUADS);
-    for (unsigned i = 0; i < NumSurfaces; i++) 
+    for (unsigned i = 0; i < NumSurfaces; i++)
 	for (unsigned j = 0; j < 4; j++) {
             Globals::Instance().SetColor(R[Surface[j][i]], G[Surface[j][i]], B[Surface[j][i]]);
             Globals::Instance().glVertex(Xscr[Surface[j][i]]);
@@ -139,15 +139,13 @@ void Object::Draw () {
 }
 
 void Object::ReInit (double, double, double,
-		     double, double, double,
-		     double, double, double) { 
-#ifdef DEBUG
-	  cerr << "Object::ReInit()\n";
-# endif
-	  Initialize();
-	}
+                     double, double, double,
+                     double, double, double) {
+    SingletonLog::Instance() << "Object::ReInit()\n";
+    Initialize();
+}
 
-    ///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 
 /** Hypercube constructor
@@ -167,47 +165,47 @@ void Hypercube::Initialize(void) {
     for (int x = 0; x <= 1; x++)
 	for (int y = 0; y <= 1; y++)
 	    for (int z = 0; z <= 1; z++)
-		for (int w = 0; w <= 1; w++) 
+		for (int w = 0; w <= 1; w++)
                     X[x+2*(y+2*(z+2*w))] = Vector<4> (2.*x-1., 2.*y-1., 2.*z-1., 2.*w-1.)*a+center;
 
     DeclareSquare (0,   0, 1, 3, 2);
-    DeclareSquare (1,   0, 1, 5, 4);    
-    DeclareSquare (2,   0, 1, 9, 8);    
-    DeclareSquare (3,   0, 2, 6, 4);    
-    DeclareSquare (4,   0, 2,10, 8);    
-    DeclareSquare (5,   0, 4,12, 8);    
-    DeclareSquare (6,   1, 3, 7, 5);    
-    DeclareSquare (7,   1, 3,11, 9);    
-    DeclareSquare (8,   1, 5,13, 9);    
-    DeclareSquare (9,   2, 3, 7, 6);    
-    DeclareSquare (10,  2, 3,11,10);    
-    DeclareSquare (11,  2, 6,14,10);    
-    DeclareSquare (12,  3, 7,15,11);    
-    DeclareSquare (13,  4, 5, 7, 6);    
-    DeclareSquare (14,  4, 5,13,12);    
-    DeclareSquare (15,  4, 6,14,12);    
-    DeclareSquare (16,  5, 7,15,13);    
-    DeclareSquare (17,  6, 7,15,14);    
-    DeclareSquare (18,  8, 9,11,10);    
-    DeclareSquare (19,  8, 9,13,12);    
-    DeclareSquare (20,  8,10,14,12);    
-    DeclareSquare (21,  9,11,15,13);    
-    DeclareSquare (22, 10,11,15,14);    
-    DeclareSquare (23, 12,13,15,14);    
+    DeclareSquare (1,   0, 1, 5, 4);
+    DeclareSquare (2,   0, 1, 9, 8);
+    DeclareSquare (3,   0, 2, 6, 4);
+    DeclareSquare (4,   0, 2,10, 8);
+    DeclareSquare (5,   0, 4,12, 8);
+    DeclareSquare (6,   1, 3, 7, 5);
+    DeclareSquare (7,   1, 3,11, 9);
+    DeclareSquare (8,   1, 5,13, 9);
+    DeclareSquare (9,   2, 3, 7, 6);
+    DeclareSquare (10,  2, 3,11,10);
+    DeclareSquare (11,  2, 6,14,10);
+    DeclareSquare (12,  3, 7,15,11);
+    DeclareSquare (13,  4, 5, 7, 6);
+    DeclareSquare (14,  4, 5,13,12);
+    DeclareSquare (15,  4, 6,14,12);
+    DeclareSquare (16,  5, 7,15,13);
+    DeclareSquare (17,  6, 7,15,14);
+    DeclareSquare (18,  8, 9,11,10);
+    DeclareSquare (19,  8, 9,13,12);
+    DeclareSquare (20,  8,10,14,12);
+    DeclareSquare (21,  9,11,15,13);
+    DeclareSquare (22, 10,11,15,14);
+    DeclareSquare (23, 12,13,15,14);
 }
 
 /** declare a square in the surfaces array
  *  @param i	index of the square
- *  @param a	index of vertex 1	
+ *  @param a	index of vertex 1
  *  @param b	index of vertex 2
- *  @param c	index of vertex 3	
- *  @param d	index of vertex 4	
+ *  @param c	index of vertex 3
+ *  @param d	index of vertex 4
  */
 void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, unsigned d) {
     Surface[0][i] = a;
     Surface[1][i] = b;
     Surface[2][i] = c;
-    Surface[3][i] = d; 
+    Surface[3][i] = d;
 }
 
 
@@ -231,7 +229,7 @@ Sponge::Sponge (unsigned level, int _distance, double _rad, Vector<4> _center):
     parameterNames.push_back("Level");
     parameterNames.push_back("Distance");
     parameterNames.push_back("Size");
-    
+
     Initialize();
 }
 
@@ -253,7 +251,7 @@ unsigned long Sponge::MemRequired (unsigned distance) {
 
 /** Sponge destructor
  */
-Sponge::~Sponge () { 
+Sponge::~Sponge () {
     List.clear();
 }
 
@@ -283,8 +281,8 @@ void Sponge::Initialize(void) {
 		    for (int w = -1; w <= 1; w++) {
 			if (distance >= 0) {
 			    if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
-                                Vector<4> NewCen = 
-                                        Vector<4> (double (x), double (y), 
+                                Vector<4> NewCen =
+                                        Vector<4> (double (x), double (y),
                                                    double (z), double (w))*rad;
 				NewCen += center;
 				List.push_back (
@@ -293,8 +291,8 @@ void Sponge::Initialize(void) {
 			    }
 			} else {
 			    if (abs (x)+abs (y)+abs (z)+abs (w) < distance) {
-                                Vector<4> NewCen = 
-                                        Vector<4> (double (x), double (y), 
+                                Vector<4> NewCen =
+                                        Vector<4> (double (x), double (y),
                                                    double (z), double (w))*rad;
 				NewCen += center;
 				List.push_back (
@@ -321,12 +319,12 @@ void Sponge::Initialize(void) {
  *  @param tz		translation in z direction
  *  @param tw		translation in w direction
  */
-void Sponge::Transform (double Thetaxy, double Thetaxz, double Thetaxw, 
+void Sponge::Transform (double Thetaxy, double Thetaxz, double Thetaxw,
                         double Thetayz, double Thetayw, double Thetazw,
 			double Tx, double Ty, double Tz, double Tw) {
     SingletonLog::Instance().log("Sponge::Transform()");
     for (unsigned i = 0; i < List.size (); i++)
-	List[i]->Transform (Thetaxy, Thetaxz, Thetaxw, 
+	List[i]->Transform (Thetaxy, Thetaxz, Thetaxw,
                             Thetayz, Thetayw, Thetazw,
 			    Tx, Ty, Tz, Tw);
 }
@@ -362,7 +360,7 @@ Pyramid::Pyramid (const Vector<4> &_center, double _a):
     center(_center), a (_a) {
         parameterNames.push_back("Size");
         Initialize();
-}		
+}
 
 void Pyramid::Initialize() {
     X[0] = Vector<4> (0.0, 0.0, 0.0, 0.0);
@@ -376,28 +374,28 @@ void Pyramid::Initialize() {
 	X[i] = X[i]*a+center-center_of_mass*a;
 
     DeclareTriangle (0,  0, 1, 2);
-    DeclareTriangle (1,  0, 1, 3);    
-    DeclareTriangle (2,  0, 1, 4);    
-    DeclareTriangle (3,  0, 2, 3);    
-    DeclareTriangle (4,  0, 2, 4);    
-    DeclareTriangle (5,  0, 3, 4);    
-    DeclareTriangle (6,  1, 2, 3);    
-    DeclareTriangle (7,  1, 2, 4);    
-    DeclareTriangle (8,  1, 3, 4);    
-    DeclareTriangle (9,  2, 3, 4);    
+    DeclareTriangle (1,  0, 1, 3);
+    DeclareTriangle (2,  0, 1, 4);
+    DeclareTriangle (3,  0, 2, 3);
+    DeclareTriangle (4,  0, 2, 4);
+    DeclareTriangle (5,  0, 3, 4);
+    DeclareTriangle (6,  1, 2, 3);
+    DeclareTriangle (7,  1, 2, 4);
+    DeclareTriangle (8,  1, 3, 4);
+    DeclareTriangle (9,  2, 3, 4);
 }
 
 /** declare a triangle in the surfaces array
  *  @param i	index of the square
- *  @param a	index of vertex 1	
+ *  @param a	index of vertex 1
  *  @param b	index of vertex 2
- *  @param c	index of vertex 3	
+ *  @param c	index of vertex 3
  */
 void Pyramid::DeclareTriangle (unsigned i, unsigned a, unsigned b, unsigned c) {
     Surface[0][i] = a;
     Surface[1][i] = b;
     Surface[2][i] = c;
-    Surface[3][i] = c; 
+    Surface[3][i] = c;
 }
 
 
@@ -418,7 +416,7 @@ Gasket::Gasket (unsigned level, double _rad, Vector<4> _center):
 }
 
 
-/** return the approximate amount of memory needed to display a gasket of 
+/** return the approximate amount of memory needed to display a gasket of
  *  current level
  *  uses hardcoded and experimentally found value for memory per simplex - ICK!
  *  @return		approx. mem required
@@ -443,9 +441,9 @@ void Gasket::Initialize() {
 	  }
 	}
 	rad = rad/2;
-	
+
     Vector<4> center_of_mass (0.5, sqrt (3.)/4., sqrt (1./6.), 1./sqrt (8.));
-        
+
     Vector<4> NewCen = Vector<4> (0.0, 0.0, 0.0, 0.0);
 	NewCen += center;
 	List.push_back (new Gasket (Level-1, rad, NewCen));

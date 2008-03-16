@@ -1,7 +1,7 @@
 
 //      project:      hyperspace explorer
-//      module:       
-//      contains:     
+//      module:
+//      contains:
 //      compile with: make all
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
@@ -9,6 +9,7 @@
 #include "Globals.H"
 #include "Matrix.H"
 #include "Function.H"
+#include "Log.H"
 
 using std::cerr;
 using std::endl;
@@ -25,7 +26,7 @@ template <typename T> unsigned int Delete (T *x) {
     delete [] x;
     x = NULL;
   }
-  return 0; 
+  return 0;
 }
 
 
@@ -94,13 +95,13 @@ Function::Function (const QString &name,
 
 
 /*******************************************************************************
- *  Initialize the temporary storage areas Xscr[][][], Xtrans[][][], 
+ *  Initialize the temporary storage areas Xscr[][][], Xtrans[][][],
  *                                         R[][][], G[][][], B[][][]
  */
 void Function::InitMem (void) {
   XscrChunk = new Vector<3> [(tsteps+2)*(usteps+2)*(vsteps+2)];
   Xscr = new Vector<3> ** [tsteps+2];	// valgrind moans about lost bytes
-        
+
   XtransChunk = new Vector<4> [(tsteps+2)*(usteps+2)*(vsteps+2)];
   Xtrans = new Vector<4> ** [tsteps+2];	// valgrind moans about lost bytes
 
@@ -110,25 +111,25 @@ void Function::InitMem (void) {
   B = new float ** [tsteps+2];
 
   for (unsigned t = 0; t <= tsteps+1; t++) {
-                
+
       Xscr[t] = new Vector<3> * [usteps+2];
       Xtrans[t] = new Vector<4> * [usteps+2];
 
     R[t] = new float * [usteps+2];
     G[t] = new float * [usteps+2];
     B[t] = new float * [usteps+2];
-        
+
     for (unsigned u = 0; u <= usteps+1; u++) {
-        
+
       Xscr[t][u] = XscrChunk+t*(tsteps+2)*(usteps+2)+u*(usteps+2);
       Xtrans[t][u] = XtransChunk+t*(tsteps+2)*(usteps+2)+u*(usteps+2);
 
       R[t][u] = RGBChunk+1*t*(tsteps+2)*(usteps+2)+u*(usteps+2);
       G[t][u] = RGBChunk+2*t*(tsteps+2)*(usteps+2)+u*(usteps+2);
       B[t][u] = RGBChunk+3*t*(tsteps+2)*(usteps+2)+u*(usteps+2);
-    }                                       //      for (unsigned u = 0; u <= usteps+1; u++) 
+    }                                       //      for (unsigned u = 0; u <= usteps+1; u++)
 
-  }                                               //      for (unsigned t = 0; t <= tsteps+1; t++) 
+  }                                               //      for (unsigned t = 0; t <= tsteps+1; t++)
 }                                                       //      InitiMem ()
 
 
@@ -154,35 +155,31 @@ void Function::Initialize () {
 }
 
 
-/*******************************************************************************
- *  re-initialize a Function if the definition set has changed
- *  @param tmin		minimal value in t
- *  @param tmax		maximal value in t
- *  @param dt		stepsize in t
- *  @param umin		minimal value in u
- *  @param umax		maximal value in u
- *  @param du		stepsize in u
- *  @param vmin		minimal value in v
- *  @param vmax		maximal value in v
- *  @param dv		stepsize in v
- */
+/** re-initialize a Function if the definition set has changed
+ *  @param tmin minimal value in t
+ *  @param tmax maximal value in t
+ *  @param dt stepsize in t
+ *  @param umin minimal value in u
+ *  @param umax maximal value in u
+ *  @param du stepsize in u
+ *  @param vmin minimal value in v
+ *  @param vmax maximal value in v
+ *  @param dv stepsize in v                                                   */
 void Function::ReInit(double _tmin, double _tmax, double _dt,
-		      double _umin, double _umax, double _du,
-		      double _vmin, double _vmax, double _dv) {
+                      double _umin, double _umax, double _du,
+                      double _vmin, double _vmax, double _dv) {
 
-# ifdef DEBUG
-  cerr  << "Function::ReInit(" << _tmin << ", " << _tmax << ", " << _dt << ", "
+    SingletonLog::Instance()  << "Function::ReInit(" << _tmin << ", " << _tmax << ", " << _dt << ", "
 	<< _umin << ", " << _umax<< ", " << _du << ", " << _vmin << ", " << _vmax << ", " << _dv << ")\n";
-# endif      
 
   tmin = _tmin;   tmax = _tmax;   dt = _dt;
   umin = _umin;   umax = _umax;   du = _du;
   vmin = _vmin;   vmax = _vmax;   dv = _dv;
   tsteps = unsigned ((tmax-tmin)/dt+2); usteps = unsigned ((umax-umin)/du+2); vsteps = unsigned ((vmax-vmin)/dv+2);
-        
+
   //      Free ();
-  
-  //  for (unsigned t = 0; t <= tsteps+1; t++) 
+
+  //  for (unsigned t = 0; t <= tsteps+1; t++)
   //    delete [] X[t];
   Delete (X);	//	! Mismatched delete !
   //  Delete (Xchunk);
@@ -271,7 +268,7 @@ Vector<4> &Function::normal (double tt, double uu, double vv) {
     n = VecMath::vcross (D[0], D[1], D[2]);
     VecMath::vnormalize (n);
 
-    return n; 
+    return n;
 }
 
 
@@ -287,7 +284,7 @@ Vector<4> &Function::normal (double tt, double uu, double vv) {
  *  @param vv		v value
  *  @return		gradient in t, u and v as array
  */
-Vector<4> *Function::df (double tt, double uu, double vv) {	
+Vector<4> *Function::df (double tt, double uu, double vv) {
 
   static Vector<4> F0;			//	f (u, v)
   static double h = 1e-5;		//	HARDCODED; uargh! maybe tweak to get best results
@@ -295,16 +292,16 @@ Vector<4> *Function::df (double tt, double uu, double vv) {
                                         //	(performance, elegance)
   static Vector<4> DF[3];
 
-  F0 = operator () (tt, uu, vv);							
+  F0 = operator () (tt, uu, vv);
 
   F = operator () (tt+h, uu, vv);	//	derive after t
-  DF[0] = (F-F0)/h;			
+  DF[0] = (F-F0)/h;
 
   F = operator () (tt, uu+h, vv);	//	derive after u
   DF[1] = (F-F0)/h;
 
   F = operator () (tt, uu, vv+h);	//	derive after v
-  DF[2] = (F-F0)/h;	
+  DF[2] = (F-F0)/h;
 
   return DF; }
 
@@ -329,14 +326,14 @@ void Function::Transform (double thetaxy, double thetaxz, double thetaxw,
                           double thetayz, double thetayw, double thetazw,
                           double tx, double ty, double tz, double tw) {
     Matrix<4> Rxy = Matrix<4> (0, 1, thetaxy), Rxz = Matrix<4> (0, 2, thetaxz),
-              Rxw = Matrix<4> (0, 3, thetaxw), Ryz = Matrix<4> (1, 2, thetayz), 
+              Rxw = Matrix<4> (0, 3, thetaxw), Ryz = Matrix<4> (1, 2, thetayz),
               Ryw = Matrix<4> (1, 3, thetayw), Rzw = Matrix<4> (2, 3, thetazw),
-              Rxyz = Rxy*Rxz, Rxwyz = Rxw*Ryz, Ryzw = Ryw*Rzw, 
+              Rxyz = Rxy*Rxz, Rxwyz = Rxw*Ryz, Ryzw = Ryw*Rzw,
               Rot = Rxyz*Rxwyz*Ryzw;
     Vector<4> trans = Vector<4>(tx, ty, tz, tw);
 
     for (unsigned t = 0; t <= tsteps+1; t++) {
-        for (unsigned u = 0; u <= usteps+1; u++) 
+        for (unsigned u = 0; u <= usteps+1; u++)
             for (unsigned v = 0; v <= vsteps+1; v++)
                 Xtrans[t][u][v] = (Rot*X[t][u][v])+trans;
   }
@@ -375,8 +372,8 @@ void Function::Project (double scr_w, double cam_w, bool depthcue4d) {
 
   if (!depthcue4d) return;
 
-  for (unsigned t = 0; t <= tsteps+1; t++) 
-    for (unsigned u = 0; u <= usteps+1; u++) 
+  for (unsigned t = 0; t <= tsteps+1; t++)
+    for (unsigned u = 0; u <= usteps+1; u++)
       for (unsigned v = 0; v <= vsteps+1; v++) {
 	float DepthCueFactor = (Wmax-Xtrans[t][u][v][3])/(Wmax-Wmin)*0.9+0.1; //	HARDCODED! EEEEEYYYYUUUURGHHHHHHH!
 	R[t][u][v] = 0.1+(R[t][u][v]-0.1)*DepthCueFactor;
@@ -390,17 +387,17 @@ void Function::Project (double scr_w, double cam_w, bool depthcue4d) {
  *  draw the projected Function (onto screen or into GL list, as it is)
  */
 void Function::Draw (void) {
-  for (unsigned t = 0; t < tsteps; t++) 
+  for (unsigned t = 0; t < tsteps; t++)
     DrawPlane (t);
 }
 
-        
+
 /*******************************************************************************
  *  draw the current plane of the projected Function
  *  @param t	current t value
  */
 void Function::DrawPlane (unsigned t){
-  for (unsigned u = 0; u < usteps; u++) 
+  for (unsigned u = 0; u < usteps; u++)
     DrawStrip (t, u);
 }
 
@@ -411,7 +408,7 @@ void Function::DrawPlane (unsigned t){
  *  @param u	current u value
  */
 void Function::DrawStrip (unsigned t, unsigned u){
-  for (unsigned v = 0; v < vsteps; v++) 
+  for (unsigned v = 0; v < vsteps; v++)
     DrawCube (t, u, v);
 }
 
@@ -451,35 +448,35 @@ void Function::DrawCube (unsigned t, unsigned u, unsigned v) {
         Globals::Instance().glVertex(V[3]);
         Globals::Instance().SetColor(R[t+1][u+1][v], G[t+1][u+1][v], B[t+1][u+1][v]);
         Globals::Instance().glVertex(V[6]);
-        Globals::Instance().SetColor(R[t+1][u+1][v+1], G[t+1][u+1][v+1], B[t+1][u+1][v+1]);     
+        Globals::Instance().SetColor(R[t+1][u+1][v+1], G[t+1][u+1][v+1], B[t+1][u+1][v+1]);
         Globals::Instance().glVertex(V[7]);
-        Globals::Instance().SetColor(R[t+1][u][v], G[t+1][u][v], B[t+1][u][v]); 
+        Globals::Instance().SetColor(R[t+1][u][v], G[t+1][u][v], B[t+1][u][v]);
         Globals::Instance().glVertex(V[4]);
-        Globals::Instance().SetColor(R[t+1][u][v+1], G[t+1][u][v+1], B[t+1][u][v+1]);   
-        Globals::Instance().glVertex(V[5]);             
+        Globals::Instance().SetColor(R[t+1][u][v+1], G[t+1][u][v+1], B[t+1][u][v+1]);
+        Globals::Instance().glVertex(V[5]);
         NumVertices += 6;
         if (u == 0) {
-            Globals::Instance().SetColor(R[t][u][v], G[t][u][v], B[t][u][v]);       
+            Globals::Instance().SetColor(R[t][u][v], G[t][u][v], B[t][u][v]);
             Globals::Instance().glVertex(V[0]);
-            Globals::Instance().SetColor(R[t][u][v+1], G[t][u][v+1], B[t][u][v+1]); 
+            Globals::Instance().SetColor(R[t][u][v+1], G[t][u][v+1], B[t][u][v+1]);
             Globals::Instance().glVertex(V[1]);
             NumVertices += 2;
         }
     glEnd ();
-  
+
     glBegin (GL_QUADS);
-        if (v == 0) {   
-            Globals::Instance().SetColor(R[t][u][v], G[t][u][v], B[t][u][v]);       
+        if (v == 0) {
+            Globals::Instance().SetColor(R[t][u][v], G[t][u][v], B[t][u][v]);
             Globals::Instance().glVertex(V[0]);
-            Globals::Instance().SetColor(R[t][u+1][v], G[t][u+1][v], B[t][u+1][v]); 
+            Globals::Instance().SetColor(R[t][u+1][v], G[t][u+1][v], B[t][u+1][v]);
             Globals::Instance().glVertex(V[2]);
-            Globals::Instance().SetColor(R[t+1][u+1][v], G[t+1][u+1][v], B[t+1][u+1][v]);   
+            Globals::Instance().SetColor(R[t+1][u+1][v], G[t+1][u+1][v], B[t+1][u+1][v]);
             Globals::Instance().glVertex(V[6]);
-            Globals::Instance().SetColor(R[t+1][u][v], G[t+1][u][v], B[t+1][u][v]); 
+            Globals::Instance().SetColor(R[t+1][u][v], G[t+1][u][v], B[t+1][u][v]);
             Globals::Instance().glVertex(V[4]);
             NumVertices += 4;
         }
-        Globals::Instance().SetColor(R[t][u][v+1], G[t][u][v+1], B[t][u][v+1]); 
+        Globals::Instance().SetColor(R[t][u][v+1], G[t][u][v+1], B[t][u][v+1]);
         Globals::Instance().glVertex(V[1]);
         Globals::Instance().SetColor(R[t][u+1][v+1], G[t][u+1][v+1], B[t][u+1][v+1]);
         Globals::Instance().glVertex(V[3]);
@@ -533,7 +530,7 @@ Vector<4> &Hypersphere::f (double tt, double uu, double vv) {
   F[2] = Radius*sinpsi*costht;
   F[3] = Radius*cospsi;
 
-  return F; 
+  return F;
 }
 
 
@@ -551,7 +548,7 @@ Vector<4> &Hypersphere::normal (double tt, double uu, double vv) {
   n = f (tt, uu, vv);
   VecMath::vnormalize (n);
 
-  return n; 
+  return n;
 }
 
 
@@ -594,12 +591,12 @@ Torus1::Torus1 (double _tmin, double _tmax, double _dt,
  *  @return		value of defining function at point in question
  */
 Vector<4> &Torus1::f (double tt, double uu, double vv) {
-  F[0] =  cos (pi*tt)*(R+cos (pi*uu)*(r+rho*cos (pi*vv))); 
-  F[1] =  sin (pi*tt)*(R+cos (pi*uu)*(r+rho*cos (pi*vv))); 
-  F[2] =  sin (pi*uu)*(r+rho*cos (pi*vv));  
-  F[3] =  rho*sin (pi*vv);   
+  F[0] =  cos (pi*tt)*(R+cos (pi*uu)*(r+rho*cos (pi*vv)));
+  F[1] =  sin (pi*tt)*(R+cos (pi*uu)*(r+rho*cos (pi*vv)));
+  F[2] =  sin (pi*uu)*(r+rho*cos (pi*vv));
+  F[3] =  rho*sin (pi*vv);
 
-  return F; 
+  return F;
 }
 
 
@@ -641,12 +638,12 @@ Torus2::Torus2 (double _tmin, double _tmax, double _dt,
  *  @return		value of defining function at point in question
  */
 Vector<4> &Torus2::f (double tt, double uu, double vv) {
-  F[0] =  cos (pi*tt)*(R+r*cos (pi*uu)*cos (pi*vv)); 
-  F[1] =  cos (pi*tt)*(R+r*cos (pi*uu)*sin (pi*vv)); 
+  F[0] =  cos (pi*tt)*(R+r*cos (pi*uu)*cos (pi*vv));
+  F[1] =  cos (pi*tt)*(R+r*cos (pi*uu)*sin (pi*vv));
   F[2] =  cos (pi*tt)*(R+r*sin (pi*uu));
-  F[3] =  sin (pi*tt)*R;								  
+  F[3] =  sin (pi*tt)*R;
 
-  return F; 
+  return F;
 }
 
 
@@ -683,12 +680,12 @@ Vector<4> &Fr3r::f (double tt, double uu, double vv) {
   F[0] = tt;
   F[1] = uu;
   F[2] = vv;
-  double rsq = tt*tt+uu*uu+vv*vv; 
+  double rsq = tt*tt+uu*uu+vv*vv;
   F[3] = 1./(rsq+.25);
   // sin (pi*(tt*tt+uu*uu+vv*vv));
   // exp (tt*tt+uu*uu+vv*vv);
 
-  return F; 
+  return F;
 }
 
 
@@ -736,10 +733,10 @@ Vector<4> &GravitationPotential::f (double tt, double uu, double vv) {
   double rsq = tt*tt+uu*uu+vv*vv;
   if (rsq > R*R)
     F[3] = G*M/rsq;
-  else 
+  else
     F[3] = G*M/(R*R*R)*sqrt (rsq);
 
-  return F; 
+  return F;
 }
 
 
@@ -816,10 +813,10 @@ Vector<4> &Fr3rExp::f (double tt, double uu, double vv) {
   F[1] = uu;
   F[2] = vv;
   F[3] = exp (tt*tt+uu*uu+vv*vv);
- 
+
   return F; }
- 
- 
+
+
 ///////////////////////////////////////////////////////////////////////////////
 
 
@@ -851,20 +848,20 @@ Polar::Polar (double _tmin, double _tmax, double _dt,
  *  @return		value of defining function at point in question
  */
 Vector<4> &Polar::f (double tt, double uu, double vv) {
-  double sinphi = sin (pi*tt), cosphi = cos (pi*tt),	
+  double sinphi = sin (pi*tt), cosphi = cos (pi*tt),
     sintht = sin (pi*uu), costht = cos (pi*uu),
     sinpsi = sin (pi*vv), cospsi = cos (pi*vv),
     Radius = sin (pi/3.*(tt+uu+vv));
- 
+
   F[0] = Radius*sinpsi*sintht*cosphi;
   F[1] = Radius*sinpsi*sintht*sinphi;
   F[2] = Radius*sinpsi*costht;
   F[3] = Radius*cospsi;
- 
-  return F; 
+
+  return F;
 }
- 
- 
+
+
 ///////////////////////////////////////////////////////////////////////////////
 
 
@@ -899,19 +896,19 @@ PolarSin::PolarSin (double _tmin, double _tmax, double _dt,
  *  @return		r = 1/2 + |sin (pi*phase*theta*phi*psi)|
  */
 Vector<4> &PolarSin::f (double tt, double uu, double vv) {
-  double sinphi = sin (pi*tt), cosphi = cos (pi*tt),	
+  double sinphi = sin (pi*tt), cosphi = cos (pi*tt),
     sintht = sin (pi*uu), costht = cos (pi*uu),
     sinpsi = sin (pi*vv), cospsi = cos (pi*vv),
     Radius = .5+fabs (sin (Phase*tt*uu*vv*pi));
- 
+
   F[0] = Radius*sinpsi*sintht*cosphi;
   F[1] = Radius*sinpsi*sintht*sinphi;
   F[2] = Radius*sinpsi*costht;
   F[3] = Radius*cospsi;
- 
-  return F; 
+
+  return F;
 }
- 
+
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -944,19 +941,19 @@ PolarSin2::PolarSin2 (double _tmin, double _tmax, double _dt,
  *  @return		r = sin (pi/3*(phi+theta+psi))
  */
 Vector<4> &PolarSin2::f (double tt, double uu, double vv) {
-  double sinphi = sin (pi*tt), cosphi = cos (pi*tt),	
+  double sinphi = sin (pi*tt), cosphi = cos (pi*tt),
     sintht = sin (pi*uu), costht = cos (pi*uu),
     sinpsi = sin (pi*vv), cospsi = cos (pi*vv),
     Radius = sin (pi/3.*(tt+uu+vv));
- 
+
   F[0] = Radius*sinpsi*sintht*cosphi;
   F[1] = Radius*sinpsi*sintht*sinphi;
   F[2] = Radius*sinpsi*costht;
   F[3] = Radius*cospsi;
- 
-  return F; 
+
+  return F;
 }
- 
+
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -984,7 +981,7 @@ PolarR::PolarR (double _tmin, double _tmax, double _dt,
       parameterNames.push_back("Phase");
   Initialize ();
 }
- 
+
 /*******************************************************************************
  *  PolarR defining function
  *  @param tt		t value
@@ -993,15 +990,15 @@ PolarR::PolarR (double _tmin, double _tmax, double _dt,
  *  @return		r = sqrt (phi²+theta²+psi²)
  */
 Vector<4> &PolarR::f (double tt, double uu, double vv) {
-  double sinphi = sin (pi*tt), cosphi = cos (pi*tt),	
+  double sinphi = sin (pi*tt), cosphi = cos (pi*tt),
     sintht = sin (pi*uu), costht = cos (pi*uu),
     sinpsi = sin (pi*vv), cospsi = cos (pi*vv),
     Radius = sqrt (tt*tt+uu*uu+vv*vv);
- 
+
   F[0] = Radius*sinpsi*sintht*cosphi;
   F[1] = Radius*sinpsi*sintht*sinphi;
   F[2] = Radius*sinpsi*costht;
   F[3] = Radius*cospsi;
- 
-  return F; 
+
+  return F;
 }

@@ -7,6 +7,11 @@
 class Log{
 public:
     void log(std::string);
+    Log &operator<<(const std::string &);
+    Log &operator<<(long);
+    Log &operator<<(unsigned long);
+    Log &operator<<(double);
+
 private:
     Log();
     Log(const Log &);

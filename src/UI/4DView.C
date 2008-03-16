@@ -38,10 +38,10 @@ using VecMath::Matrix;
 // 	C4DView construction/destruction
 ////////////////////////////////////////////////////////////////////////////////
 
-/** C4DView constructor; does a lot of initialization to (usually sensible) hard-
- *  coded default values, initializes the coordinate cross object (which could
- *  well be a class on its own), creates the necessary timers and menus, and
- *  finally creates a Hypercube as the default object to display
+/** C4DView constructor; does a lot of initialization to (usually sensible)
+ *  hardcoded default values, initializes the coordinate cross object (which
+ *  could well be a class on its own), creates the necessary timers and menus,
+ *  and finally creates a Hypercube as the default object to display
  *  @param parent	parent QWidget, defaults to NULL                      */
 C4DView::C4DView(QWidget *parent):
     XQGLWidget (parent),
@@ -118,10 +118,14 @@ void C4DView::InitCross() {
             CrossScr[j][k] = Vector<3> (0., 0., 0.);
         }
     }
-    Cross[0][0] = Vector<4>(-5., 0., 0., 0.); Cross[0][1] = Vector<4>(5., 0., 0., 0.);
-    Cross[1][0] = Vector<4>(0., -5., 0., 0.); Cross[1][1] = Vector<4>(0., 5., 0., 0.);
-    Cross[2][0] = Vector<4>(0., 0., -5., 0.); Cross[2][1] = Vector<4>(0., 0., 5., 0.);
-    Cross[3][0] = Vector<4>(0., 0., 0., -5.); Cross[3][1] = Vector<4>(0., 0., 0., 5.);
+    Cross[0][0] = Vector<4>(-5., 0., 0., 0.);
+    Cross[0][1] = Vector<4>( 5., 0., 0., 0.);
+    Cross[1][0] = Vector<4>(0., -5., 0., 0.);
+    Cross[1][1] = Vector<4>(0.,  5., 0., 0.);
+    Cross[2][0] = Vector<4>(0., 0., -5., 0.);
+    Cross[2][1] = Vector<4>(0., 0.,  5., 0.);
+    Cross[3][0] = Vector<4>(0., 0., 0., -5.);
+    Cross[3][1] = Vector<4>(0., 0., 0.,  5.);
 }
 
 /** application of translations and rotations
@@ -139,11 +143,11 @@ void C4DView::InitCross() {
 void C4DView::Transform (double thetaxy, double thetaxz, double thetaxw,
                          double thetayz, double thetayw, double thetazw,
                          double tx, double ty, double tz, double tw) {
-#ifdef DEBUG
-    cerr << "C4DView::Transform ("<< thetaxy << ", " << thetaxz << ", " << thetaxw << ", "
-         << thetayz << ", " << thetayw << ", " << thetazw << ", " << endl
-         << "                    "<< tx << ", " << ty << ", " << tz << ", " << tw <<")\n";
-#endif
+    SingletonLog::Instance() << "C4DView::Transform ("<< thetaxy << ", "
+            << thetaxz << ", " << thetaxw << ", "
+            << thetayz << ", " << thetayw << ", " << thetazw << ", \n"
+            << "                    "
+            << tx << ", " << ty << ", " << tz << ", " << tw <<")\n";
 
 #   ifdef USE_AUTO_PTR
         if (F.get ())
@@ -238,9 +242,8 @@ void C4DView::Draw () {
  *  particular mouse move/button/modifier key combinations documented below
  *  @param e Qt's mouse event information structure                           */
 void C4DView::mouseMoveEvent (QMouseEvent *e) {
-#   ifdef DEBUG
-        cerr << "C4DView::mouseMoveEvent ("<< e->modifiers()<<")\n";
-#   endif
+    SingletonLog::Instance() << "C4DView::mouseMoveEvent ("
+                << (long)e->modifiers()<<")\n";
     QPoint point = e->pos ();
     Qt::KeyboardModifiers s = e->modifiers();
     Qt::MouseButtons b = e->buttons();
@@ -252,14 +255,12 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
          ControlPressed = s & Qt::ControlModifier,
          ShiftPressed = s & Qt::ShiftModifier;
 
-#   ifdef DEBUG
-        cerr << (LeftButtonDown? "LMB ": "")
+    SingletonLog::Instance() << (LeftButtonDown? "LMB ": "")
              << (MidButtonDown? "MMB ": "")
              << (RightButtonDown? "RMB ": "")
              << (AltPressed? "+ Alt ": "")
              << (ControlPressed? "+ Ctrl ": "")
-             << (ShiftPressed? "+ Shift ": "") << endl;
-#   endif
+             << (ShiftPressed? "+ Shift ": "") << "\n";
 
     bool ViewChanged = false;
 
@@ -582,16 +583,19 @@ void C4DView::RandomAnimation() {
 
 /** make a pixmap to to be rendered by the gl widget, and render it.
  *  this is an embarrassing workaround to make rendering to files work.
- *  especially embarrassing is that it doesn't work either.                   */
+ *  QGLWidget's renderPixmap() method only produces black frames. Work with
+ *  QPixmap::grabWindow() instead.                                            */
 QPixmap C4DView::makePixmap() {
-    QPixmap pm;
 
-    // Render the pixmap, with either c1's size or the fixed size pmSz
-    pm = renderPixmap();
+    this->activateWindow();
+    this->raise();
+
+    QPixmap pm = QPixmap::grabWindow(this->winId());
 
     if ( pm.isNull() ) {
       cerr << "Failed to render Pixmap.\n";
     }
+
     return pm;
 }
 
@@ -600,24 +604,23 @@ QPixmap C4DView::makePixmap() {
  *  updates values if in the middle of an animation, and renders an image
  *  tries to write image to file too, if wanted, but fails miserably.         */
 void C4DView::OnTimer() {
-    m_rotX += dx; m_rotY += dy; m_rotZ += dz;       //  update 3D viewpoint values
+    m_rotX += dx; m_rotY += dy; m_rotZ += dz;   //  update 3D viewpoint values
 
-#   ifdef DEBUG
-        cerr << "C4DView::OnTimer()\n"
-             << "  dx = " <<  dx << "  dy = " <<  dy << "  dz = " <<  dz << endl
-             << " dxy = " << dxy << " dxz = " << dxz << " dxw = " << dxw
-             << " dyz = " << dyz << " dyw = " << dyw << " dzw = " << dzw  << endl;
-#   endif
+    SingletonLog::Instance() << "C4DView::OnTimer()\n"
+            << "  dx = " <<  dx << "  dy = " <<  dy << "  dz = " <<  dz << "\n"
+            << " dxy = " << dxy << " dxz = " << dxz << " dxw = " << dxw
+            << " dyz = " << dyz << " dyw = " << dyw << " dzw = " << dzw
+            << "\n";
 
-    if (dxy != 0 || dxz != 0 || dxw != 0 ||         //  4D viewpoint animated?
+    if (dxy != 0 || dxz != 0 || dxw != 0 ||     //  4D viewpoint animated?
         dyz != 0 || dyw != 0 || dzw != 0 ) {
 
         Rxy += dxy;    Rxz += dxz;    Rxw += dxw;   //  update values
         Ryz += dyz;    Ryw += dyw;    Rzw += dzw;
 
-        Transform (Rxy, Rxz, Rxw, Ryz, Ryw, Rzw, Tx, Ty, Tz, Tw);   //  transform
-        Redraw ();                                                  //  implicit OnPaint()
-    } else OnPaint ();                                              //  explicit OnPaint()
+        Transform (Rxy, Rxz, Rxw, Ryz, Ryw, Rzw, Tx, Ty, Tz, Tw);   // transform
+        Redraw ();                                                  // implicit OnPaint()
+    } else OnPaint ();                                              // explicit OnPaint()
 
     if (RenderToPixmap) {
         CurrentlyRendering = true;
@@ -625,32 +628,25 @@ void C4DView::OnTimer() {
 
         PreRedraw ();
 
-        QPixmap tmpPixmap = makePixmap ();
-
-#       ifdef DEBUG
-            cerr << "    renderPixmap ("<<width ()<<", "<<height()<< ")\n";
-            cerr << "    " << tmpPixmap.width () << " " << tmpPixmap.height () << endl;
-#       endif
+        QPixmap tmpPixmap = makePixmap();
 
         QString imageFilename =
             QString ("/tmp/HyperspaceExplorer_Image.%1.png").arg (frame++, 6)
                                                             .replace (" ", "0");
         if (tmpPixmap.save (imageFilename, "PNG")) {
-#           ifdef DEBUG
-                cerr << "writing " << imageFilename.toStdString() << " successful!\n";
-#           endif
+            SingletonLog::Instance() << "writing "
+                    << imageFilename.toStdString() << " successful!\n";
         } else {
-#           ifdef DEBUG
-                cerr << "writing " << imageFilename.toStdString() << " failed!\n";
-#           endif
+            SingletonLog::Instance() << "writing "
+                    << imageFilename.toStdString() << " failed!\n";
         }
     }
 
     UpdateStatus ("Double-click LMB to stop animation");
 }
 
-/** display some info about current object and its transformations, not in a
- *  status bar, as i can't get this to work with QGLWidget, but in the title bar
+/** display some info about current object and its transformations in a
+ *  status bar.
  *  side effect: checks rotation values for overflow and resets them to the
  *  interval [-360, 360]. is this wise?
  *  @param status string to be displayed                                      */
@@ -715,8 +711,10 @@ void C4DView::SetupDepthCue (bool on) {
  *  @param Parameter3	name of the new object's third parameter, if any
  *  @param Parameter4	name of the new object's fourth parameter, if any     */
 void C4DView::AssignValues (const QString &Title,
-                            const QString &Parameter1, const QString &Parameter2,
-                            const QString &Parameter3, const QString &Parameter4) {
+                            const QString &Parameter1,
+                            const QString &Parameter2,
+                            const QString &Parameter3,
+                            const QString &Parameter4) {
     if (!Title.isEmpty()) {
         ObjectName = Title;
         setWindowTitle(ObjectName);
@@ -766,13 +764,14 @@ void C4DView::AssignValues (const QString &Title,
 }
 
 
-/** called whenever an object or the parameters have changed; sets the parameters,
- *  applies the changed parameters to the function object and redraws it      */
+/** called whenever an object or the parameters have changed; sets the
+ *  parameters, applies the changed parameters to the function object and
+ *  redraws it                                                                */
 void C4DView::ApplyChanges (void) {
     F->SetParameters (Values->a (), Values->b (), Values->c (), Values->d ());
-    ostringstream o;
-#   ifdef DEBUG
-        o << "Parameter A: " << Values->a () << "\t"
+
+    SingletonLog::Instance() << "C4DView::ApplyChanges ():\n"
+          << "Parameter A: " << Values->a () << "\t"
           << "Parameter B: " << Values->b () << "\n"
           << "Parameter C: " << Values->c () << "\t"
           << "Parameter D: " << Values->d () << "\n"
@@ -784,10 +783,8 @@ void C4DView::ApplyChanges (void) {
           << "dU  : " << Values->du () << "\n"
           << "Vmin: " << Values->vmin () << "\t"
           << "Vmax: " << Values->vmax () << "\t"
-          << "dV  : " << Values->dv () << "\n"
-          << ends;
-#   endif
-    SingletonLog::Instance().log("C4DView::ApplyChanges ():\n" + o.str());
+          << "dV  : " << Values->dv () << "\n";
+
     F->ReInit (Values->tmin (), Values->tmax (), Values->dt (),
                Values->umin (), Values->umax (), Values->du (),
                Values->vmin (), Values->vmax (), Values->dv ());
@@ -799,11 +796,11 @@ void C4DView::ApplyChanges (void) {
 
 /** called whenever an object or the parameters have changed; this is the most
  *  generalized version, which is great, but sadly it doesn't exist  yet      */
-void C4DView::ParametersChanged (double, double, unsigned,
-				 double, double, unsigned,
-				 double, double, unsigned,
-				 double, double, double, double,
-				 QString &) {
+void C4DView::ParametersChanged(double, double, unsigned,
+                                double, double, unsigned,
+                                double, double, unsigned,
+                                double, double, double, double,
+                                QString &) {
     QMessageBox::information (this, "C4DView::ParametersChanged",
                               "... is not yet implemented");
 }
@@ -862,7 +859,8 @@ void C4DView::RenderScene (unsigned /* Frame */) {  //  draw (frame of animation
             switch (
                 QMessageBox::warning (
                     NULL, "C4DView::RenderScene",
-                    ("ObjectList No. "+itoa (ObjectList)+" is not a GL list!").c_str (),
+                    ("ObjectList No. "+Globals::Instance().itoa (ObjectList)+
+                     " is not a GL list!").c_str (),
                     "Retry", "Die", 0, 0, 1)) {
                 case 0: PreRedraw ();
                         break;
@@ -872,7 +870,7 @@ void C4DView::RenderScene (unsigned /* Frame */) {  //  draw (frame of animation
             sleep (1);
 #       else
             cerr << "C4DView::RenderScene ():  "
-                 << "ObjectList No. " << Globals::Instance().itoa (ObjectList)
+                 << "ObjectList No. " << Globals::Instance().itoa(ObjectList)
                  << " is not a GL list!" << endl;
             sleep (1);
             PreRedraw ();
@@ -883,7 +881,7 @@ void C4DView::RenderScene (unsigned /* Frame */) {  //  draw (frame of animation
     if (DisplayCoordinates) glCallList (CoordinateCross);
 }
 
-/** should be called whenever the object is rotaded or translated */
+/** should be called whenever the object is rotated or translated */
 void C4DView::OnPaint() {                           //  object drawing routine
     SingletonLog::Instance().log("C4DView::OnPaint ()");
 
@@ -913,21 +911,18 @@ void C4DView::OnPaint() {                           //  object drawing routine
 
         PreRedraw ();
 
-        SingletonLog::Instance().log("C4DView::OnPaint () - RenderToPixmap");
+        SingletonLog::Instance() << "C4DView::OnPaint () - RenderToPixmap\n";
         QPixmap tmpPixmap = makePixmap ();
-        //  QPixmap tmpPixmap = renderPixmap (/* width (), height (), false */);
-#       ifdef DEBUG
-            cerr << "    renderPixmap ("<<width ()<<", "<<height()<< ")\n";
-            cerr << "    " << tmpPixmap.width () << " " << tmpPixmap.height () << endl;
-#       endif
 
         QString imageFilename =
             QString ("/tmp/HyperspaceExplorer_Image.%1.png").arg (frame++, 6)
                                                             .replace (" ", "0");
         if (tmpPixmap.save (imageFilename, "PNG"))
-            cerr << "writing " << imageFilename.toStdString() << " successful!\n";
+            SingletonLog::Instance() << "writing "
+                    << imageFilename.toStdString() << " successful!\n";
         else
-            cerr << "writing " << imageFilename.toStdString() << " failed!\n";
+            SingletonLog::Instance() << "writing "
+                    << imageFilename.toStdString() << " failed!\n";
     }
 }
 
@@ -1066,10 +1061,8 @@ void C4DView::Wireframe() {
 }
 
 
-/*******************************************************************************
- *  switch coordinate cross on or off
- *  change menu items accordingly
- */
+/** switch coordinate cross on or off
+ *  change menu items accordingly    */
 void C4DView::Coordinates() {
     DisplayCoordinates = !DisplayCoordinates;
     menu->getAction("Coordinate Cross")->setChecked (DisplayCoordinates);
@@ -1078,10 +1071,8 @@ void C4DView::Coordinates() {
 }
 
 
-/*******************************************************************************
- *  switch 4D depth cue on or off
- *  change menu items accordingly
- */
+/** switch 4D depth cue on or off
+ *  change menu items accordingly */
 void C4DView::HyperFog() {
     DepthCue4D = !DepthCue4D;
     menu->getAction("4D Depth Cue")->setChecked (DepthCue4D);
@@ -1089,10 +1080,8 @@ void C4DView::HyperFog() {
     Redraw ();
 }
 
-/*******************************************************************************
- *  switch lighting on or off
- *  change menu items accordingly
- */
+/** switch lighting on or off
+ *  change menu items accordingly */
 void C4DView::Light() {
     Lighting = !Lighting;
     if (Lighting) {
@@ -1124,25 +1113,20 @@ void C4DView::Light() {
 }
 
 
-/*******************************************************************************
- *  switch rendering to files on or off
- *  change menu items accordingly
- */
+/** switch rendering to files on or off
+ *  change menu items accordingly        */
 void C4DView::RenderToImages() {
   RenderToPixmap = !RenderToPixmap;
   menu->getAction("Render to Images")->setChecked(RenderToPixmap);
 }
 
 
-/*******************************************************************************
- */
+/** */
 void C4DView::AnimationSettings() {
   cerr << "C4DView::AnimationSettings() is not yet implemented!" << endl;
 }
 
-/*******************************************************************************
- *  run a benchmark test
- */
+/** run a benchmark test */
 void C4DView::Benchmark() {
   ostringstream Time;
 
@@ -1161,13 +1145,11 @@ void C4DView::Benchmark() {
 }
 
 
-/*******************************************************************************
- *  rotate in 4D 360 degrees
- */
+/** rotate in 4D 360 degrees */
 double C4DView::Benchmark4D (int num_steps,
-			     double step_xw, double step_yw, double step_zw,
-			     bool display) {
-  clock_t stime = clock ();					//  record start time
+                             double step_xw, double step_yw, double step_zw,
+                             bool display) {
+  clock_t stime = clock ();                     //  record start time
 
   double Rxw = 0., Ryw = 0., Rzw = 0.;
 
@@ -1184,13 +1166,11 @@ double C4DView::Benchmark4D (int num_steps,
 }
 
 
-/*******************************************************************************
- *  rotate in 3D 360 degrees
- */
+/** rotate in 3D 360 degrees */
 double C4DView::Benchmark3D (int num_steps,
-			     double step_x, double step_y, double step_z,
-			     bool display) {
-  clock_t stime = clock ();					//  record start time
+                             double step_x, double step_y, double step_z,
+                             bool display) {
+  clock_t stime = clock ();                     //  record start time
 
   double Rx = m_rotX, Ry = m_rotY, Rz = m_rotZ;
 
@@ -1229,8 +1209,10 @@ template<class function>
 
     view->menu->updateFunctionMenu (view->F->getFunctionName());
     view->AssignValues (view->F->getFunctionName(),
-                        view->F->getParameterName(0), view->F->getParameterName(1),
-                        view->F->getParameterName(2), view->F->getParameterName(3));
+                        view->F->getParameterName(0),
+                        view->F->getParameterName(1),
+                        view->F->getParameterName(2),
+                        view->F->getParameterName(3));
 
     view->Redraw ();
 }

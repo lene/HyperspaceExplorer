@@ -258,21 +258,17 @@ void XQGLWidget::Help () {
  *  @param e	Qt's mouse event information structure
  */
 void XQGLWidget::mousePressEvent (QMouseEvent *E) {
-#ifdef DEBUG
-  cerr << "XQGLWidget::mousePressEvent ()\n";
-#endif
-  int ButtonPressed = E->button ();
-  if (ButtonPressed == Qt::RightButton) {
-#ifdef DEBUG
-      cerr << "  ButtonPressed == Qt::RightButton\n";
-#endif
-  }
-  else if (ButtonPressed == Qt::LeftButton) {
-    xpressed = E->x(); ypressed = E->y(); }
-  else if (ButtonPressed == Qt::MidButton) {
-    if (E->modifiers() && Qt::ShiftModifier) ViewPos (R+1);
-    else                            // ViewPos (R-1); }
-      ypressed = E->y(); } }
+    SingletonLog::Instance() << "XQGLWidget::mousePressEvent ()\n";
+    int ButtonPressed = E->button ();
+    if (ButtonPressed == Qt::RightButton) {
+        SingletonLog::Instance() << "  ButtonPressed == Qt::RightButton\n";
+    } else if (ButtonPressed == Qt::LeftButton) {
+        xpressed = E->x(); ypressed = E->y();
+    } else if (ButtonPressed == Qt::MidButton) {
+        if (E->modifiers() && Qt::ShiftModifier) ViewPos (R+1);
+        else ypressed = E->y();               // ViewPos (R-1); }
+    }
+}
 
 
 /*******************************************************************************

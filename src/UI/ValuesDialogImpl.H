@@ -13,11 +13,13 @@
 #include <cstdlib>
 #include <iostream>
 
-#include <qslider.h>
-#include <qlineedit.h>
-#include <qcombobox.h>
+#include <QSlider>
+#include <QLineEdit>
+#include <QComboBox>
 
 #include "ui_ValuesDialog.h"
+
+#include "Log.H"
 
 class ValuesDialogImpl: public QDialog, public Ui::ValuesDialog {
   Q_OBJECT
@@ -48,11 +50,14 @@ public:
 
   int Function () { return FunctionBox->currentIndex(); }
   QString FunctionName () { return FunctionBox->currentText (); }
-  void setFunction(const QString &f) { std::cerr << "ValuesDialogImpl::setFunction("<<f.toStdString()<<")"<< std::endl;; }
+  void setFunction(const QString &f) {
+      SingletonLog::Instance() << "ValuesDialogImpl::setFunction("
+              << f.toStdString()<<") not yet implemented!\n";
+  }
   int InsertFunction (const QString &FuncName, int index = -1);
 
 public slots:
-  virtual void accept ();					//  reimplementation of ValuesDialog::accept ()
+  virtual void accept ();   //  reimplementation of ValuesDialog::accept ()
 
   virtual void DisplayValues ();
   virtual void CheckNumeric (const QString &);

@@ -1,23 +1,29 @@
 HyperspaceExplorer Changelog
 =============================
-    
+
+    * rendering to images is possible now
+    * replaced all possible #ifdef DEBUG statements to use SingletonLog
+    * refactored custom function dialogs to move as much code as possible to
+      PluginCreator
     * functions have a name and a list of parameter names as attributes
-    * slots to select functions from menu are programmed more cleanly now with a templated function (so to speak - a class template with a static member function in fact)
+    * slots to select functions from menu are programmed more cleanly now with a
+      templated function (so to speak - a class template with a static member
+      function in fact)
     * custom functions work again (almost - complex functions still crash)
-    
+
 release 0.3.2:
     * added a menu bar and a status bar
     * checking of menu items works correctly now
     * cleaned up the code using namespaces and a singleton instead of global variables
     2008-03-13
-    
+
 release 0.3.1:
 	* fixed bug that caused recursive fractals to need to be re-selected in
 	the menu to change parameters
 	* fixed online help (preliminarily)
 	* created a structured source tree
     2008-02-25
-    
+
 	release 0.3.0:
 	* converted the project to Qt 4 and qmake
 	2008-02-21
@@ -34,7 +40,7 @@ release 0.3.1:
 	FIXED, 2004-04-19
 	* switched to autoconf - builds now with ./configure; make
 	DONE, 2004-04-18
-	* animation (timer event) 
+	* animation (timer event)
 	DONE, 2004-03-20
 
 	release 0.1.9:
