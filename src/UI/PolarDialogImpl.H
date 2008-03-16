@@ -17,8 +17,6 @@ class PolarDialogImpl:
         PolarDialogImpl (QWidget *parent = 0, Qt::WFlags f = 0);
         virtual ~PolarDialogImpl() {}
 
-        QString libraryName ();
-
     public slots:
         virtual bool checkValidity();
         virtual bool loadFunction();

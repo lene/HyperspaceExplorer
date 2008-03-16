@@ -13,17 +13,75 @@
 #define PLUGIN_CREATOR_H
 
 class PluginCreator {
+
+    template <class F> class LoadFunctionHelper {
+        public:
+            static bool functionPresent(const QString &, QDialog *);
+    };
+
     public:
         virtual ~PluginCreator() { }
+        /** @return the name of the selected DLL */
+        QString libraryName () { return LibraryName; }
+
     protected:
         virtual bool loadFunction() = 0;
-        virtual bool loadFunction(const QString &, QDialog *);
         virtual bool doLoadFunction(const QString &) = 0;
         virtual void writeSource () = 0;
+
+        bool loadFunction(const QString &, QDialog *);
+        bool checkValidity(const QString &, const QString &, QDialog *);
+
         bool compile (QString);
         bool link (QString);
 
         QString LibraryName;
 };
+
+#include <dlfcn.h>
+#include <iostream>
+#include <QFile>
+#include <QMessageBox>
+
+/** loads the dynamic library given by libName, if it exists and can be loaded.
+ *  then it checks whether a function named f () is present. if so, returns
+ *  true. else borks with an error message.
+ *  @param libName filename for the selected DLL
+ *  @return success                                                           */
+template <class F>
+        bool PluginCreator::LoadFunctionHelper<F>::functionPresent(
+            const QString &libName, QDialog *parent) {
+    void *handle;
+    F *f;
+    char *error;
+
+    if (!QFile::exists (libName)) {
+        QMessageBox::warning (parent, "Error opening library",
+                              "Library does not exist: "+libName);
+        std::cerr << "Library does not exist: "+libName.toStdString()
+                  << std::endl;
+        return false;
+    }
+
+    handle = dlopen (libName.toStdString().c_str(), RTLD_LAZY);
+    if (!handle) {
+        QMessageBox::warning (parent, "Error opening library", dlerror());
+        return false;
+    }
+
+    f = (F *)dlsym(handle, "f");
+
+    if (f == NULL) {
+        if ((error = dlerror()) != NULL)  {
+            QMessageBox::warning (parent, "Error finding function", error);
+            abort ();
+            return false;
+        }
+    }
+
+    dlclose(handle);
+
+    return true;
+}
 
 #endif

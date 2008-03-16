@@ -16,7 +16,6 @@ class FunctionDialogImpl:
     public:
         FunctionDialogImpl (QWidget *parent = 0, Qt::WFlags f = 0);
         virtual ~FunctionDialogImpl() {}
-        QString libraryName ();
 
     public slots:
         virtual bool checkValidity();

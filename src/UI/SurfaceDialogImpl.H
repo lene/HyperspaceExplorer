@@ -17,8 +17,6 @@ class SurfaceDialogImpl:
         SurfaceDialogImpl (QWidget *parent = 0, Qt::WFlags f = 0);
         virtual ~SurfaceDialogImpl() {}
 
-        QString libraryName ();
-
     public slots:
         virtual bool checkValidity();
         virtual bool loadFunction();

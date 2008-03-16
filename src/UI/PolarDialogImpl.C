@@ -27,109 +27,40 @@ using std::ofstream;
 
 using VecMath::Vector;
 
-//////////////////////////////////////////////////////////////////////
-// construction / destruction
-//////////////////////////////////////////////////////////////////////
-
-/*******************************************************************************
- *  PolarDialogImpl c'tor taking parameters for the parent ComplexDialog,
+/** PolarDialogImpl c'tor taking parameters for the parent ComplexDialog,
  *  which in turn inherited them from QDialog
  *  displays the dialog
- *  @param parent	parent widget (NULL)
- *  @param name		name of the widget
- *  @param modal	modal dialog?
- *  @param f		window flags
- */
+ *  @param parent parent widget (NULL)
+ *  @param f window flags                                                     */
 PolarDialogImpl::PolarDialogImpl (QWidget *parent, Qt::WFlags f) :
-	QDialog (parent, f) {
+        QDialog (parent, f) {
   setupUi(this);
   connect (okButton, SIGNAL(clicked()), this, SLOT(checkValidity()));
   connect (loadButton, SIGNAL(clicked()), this, SLOT(loadFunction()));
   show ();
 }
 
-
-/*******************************************************************************
- *  @return		the name of the selected DLL
- */
-QString PolarDialogImpl::libraryName () {
-  return LibraryName;
-}
-
-
-/*******************************************************************************
- *  display  and load the selected DLL into current address space
+/** display  and load the selected DLL into current address space
  *  loads a dynamic library, which can be selected by the user on a QFileDialog.
  *  calls loadFunction () below. see there.
  *  @return	success (?)
  */
 bool PolarDialogImpl::loadFunction() {
     return PluginCreator::loadFunction("polar", this);
-/*
-  QString libName;
-  //  iterate through all resource directories until you find a plugin subdirectory
-  for (QStringList::Iterator it = Globals::Instance().rcdirs.begin();
-       it != Globals::Instance().rcdirs.end();
-       ++it ) {
-    QDir current (*it);
-    if (current.exists ("plugins/polar")) {	//  plugin subdir present?
-      libName = Q3FileDialog::getOpenFileName(current.absPath ()+"/plugins/polar",
-					     "Libraries (*.so*)",
-					     this,
-					     "Open a function"
-					     "Choose a dynamic library");
-      if (!libName.isNull ()) break;		//  if user pressed "Cancel", try next dir
-    }
-  }
-
-  if (libName.isNull ()) return false;		//  nothing found or selected
-
-  if (loadFunction (libName)) {
-    LibraryName = libName;
-    accept();
-  }
-
-  return false;
-    */
 }
 
-
-/*******************************************************************************
- *  loads the dynamic library given by libName, if it exists and can be loaded.
+/** loads the dynamic library given by libName, if it exists and can be loaded.
  *  then it checks whether a function named f () is present. if so, returns true.
  *  else borks with an error message.
- *  i'm sorry loadFunction () is a misnomer, it should be called checkFunction (),
- *  but as this name is distributed about three dozen .C, .H and .ui files, it is
- *  too much bother to change that now.
- *  @param libName	filename for the selected DLL
- *  @return		success
- */
+ *  @param libName filename for the selected DLL
+ *  @return success                                                           */
 bool PolarDialogImpl::doLoadFunction(const QString &libName) {
-    void *handle;
-    Vector<4> (*f)(double, double, double);
-    char *error;
-
-    handle = dlopen (libName.toStdString().c_str(), RTLD_LAZY);
-    if (!handle) {
-        QMessageBox::warning (this, "Error opening library", dlerror());
-        return false;
-    }
-
-  //  f = (Vector(*)(double, double, double))dlsym(handle, "f__Fddd");
-  f = (Vector<4>(*)(double, double, double))dlsym(handle, "f");
-  if ((error = dlerror()) != NULL)  {
-    QMessageBox::warning (this, "Error finding function", error);
-    return false;
-  }
-
-  dlclose(handle);
-
-  return true;
+    return PluginCreator::
+        LoadFunctionHelper<Vector<4> (double, double, double)>::
+            functionPresent(libName, this);
 }
 
-
-/*******************************************************************************
- *  this function is called when the user clicks the OK button in the Function Dialog.
+/** this function is called when the user clicks the OK button in the Function Dialog.
  *  checks whether all fields are filled in, whether the given function is valid C++
  *  syntax, ie. whether it compiles, and whether the compiled code links into a dynamic
  *  library.
@@ -141,48 +72,15 @@ bool PolarDialogImpl::doLoadFunction(const QString &libName) {
  *  @return		success
  */
 bool PolarDialogImpl::checkValidity() {
-  if ((nameEdit->text().isEmpty()) || (FEdit->text().isEmpty())) {
-    QMessageBox::warning (this, "Missing fields",
-			  "Please fill in all fields!");
-    return false;
-  }
-
-  QString currentPath = QDir::currentPath ();
-  QDir::setCurrent (*(Globals::Instance().rcdirs.begin()));
-
-  if (!QDir::current ().exists ("plugins"))
-    QDir::current ().mkdir ("plugins");
-  if (!QDir::current ().exists ("plugins/polar"))
-    QDir::current ().mkdir ("plugins/polar");
-  QDir::setCurrent ("plugins/polar");
-
-  writeSource ();
-
-  if (!compile (nameEdit->text())) {					//  try to compile
-    QDir::setCurrent (currentPath);
-    return false;
-  }
-
-  if (!link (nameEdit->text())) {					//  try to link
-    QDir::setCurrent (currentPath);
-    return false;
-  }
-  //  try to open the resulting dynamic library
-  //  the name of the dynamic library must be given absolutely, because dlopen ()
-  //  only checks LD_LIBRARY_PATH, which usually does not contain "."
-  if (doLoadFunction (QDir::currentPath ()+"/"+nameEdit->text()+".so")) {
-    LibraryName = QDir::currentPath ()+"/"+nameEdit->text()+".so";
-    accept();
-  }
-
-  QDir::setCurrent (currentPath);
-
-  return true;
+    if ((nameEdit->text().isEmpty()) || (FEdit->text().isEmpty())) {
+        QMessageBox::warning (this, "Missing fields",
+                              "Please fill in all fields!");
+        return false;
+    }
+    return PluginCreator::checkValidity("polar", nameEdit->text(), this);
 }
 
-
-/*******************************************************************************
- *  write a C++ source file, containing the given function and some framework to
+/** write a C++ source file, containing the given function and some framework to
  *  make it compilable by g++ (there is currently no support for other compilers).
  *  the resulting file "<function-name>.C" defines the function f () and the
  *  function symbolic (), which returns the function in symbolic terms, not in
@@ -219,53 +117,3 @@ char *symbolic () {\n\
 
     SourceFile.close ();
 }
-
-
-/*******************************************************************************
- *  compile the C++ source code written by writeSource (), displaying errors and
- *  warnings, if they come up.
- *  needs "Vector.H" in the current directory or in the C++ include path.
- *  might tweak the compilation flags a little, or make them variable
- *  I think this could be done in the parent...?
- *  @return 	success
- */
-/*
-bool PolarDialogImpl::compile () {
-  bool Success = !system ("g++ -g -c -Wall -I.. -I../..  \""
-			  +NameEdit->text()
-			  +".C\" > /tmp/HyperspaceExplorer.compile.errors 2>&1");
-
-  if (!Success) {
-    QFile Errs ("/tmp/HyperspaceExplorer.compile.errors");
-    Errs.open (QIODevice::ReadOnly);
-    QString ErrString (Errs.readAll ());
-    QMessageBox::warning (this, "Compilation Errors", ErrString);
-  }
-  return Success;
-}
-*/
-
-/*******************************************************************************
- *  link the object file generated by compile () into a dynamic library.
- *  needs "Vector.o" in the current directory.
- *  I think this could be done in the parent...?
- *  @return 	success
- */
-/*
-bool PolarDialogImpl::link () {
-  bool Success = !system ("g++ -shared -Wl,-export-dynamic -Wl,-soname,\""
-			  +NameEdit->text()+".so\" -o \""
-			  +NameEdit->text()+".so\" \""
-          +NameEdit->text()+".o\" ../Vector.o"
-			  +"> /tmp/HyperspaceExplorer.link.errors 2>&1");
-  if (!Success) {
-    QFile Errs ("/tmp/HyperspaceExplorer.link.errors");
-    Errs.open (QIODevice::ReadOnly);
-    QString ErrString (Errs.readAll ());
-    QMessageBox::warning (this, "Compilation Errors", ErrString);
-  }
-  return Success;
-}
-*/
-
-

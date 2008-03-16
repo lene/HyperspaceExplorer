@@ -3,9 +3,7 @@
 
 #include "SingletonHolder.H"
 
-/**
-	@author Helge Preuss <scout@hyperspace-travel.de>
-*/
+/** @author Helge Preuss <scout@hyperspace-travel.de> */
 class Log{
 public:
     void log(std::string);

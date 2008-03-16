@@ -46,9 +46,6 @@ FunctionDialogImpl::FunctionDialogImpl (QWidget *parent, Qt::WFlags f) :
 }
 
 
-/** @return the name of the selected DLL */
-QString FunctionDialogImpl::libraryName () { return LibraryName; }
-
 /** display  and load the selected DLL into current address space
  *  loads a dynamic library, which can be selected by the user on a QFileDialog.
  *  calls loadFunction () below. see there.
@@ -68,36 +65,9 @@ bool FunctionDialogImpl::loadFunction() {
  *  @return success
  */
 bool FunctionDialogImpl::doLoadFunction(const QString &libName) {
-    void *handle;
-    Vector<4> (*f)(double, double, double);
-    char *error;
-
-    if (!QFile::exists (libName)) {
-        QMessageBox::warning (this, "Error opening library",
-                              "Library does not exist: "+libName);
-        cerr << "Library does not exist: "+libName.toStdString() << endl;
-        return false;
-    }
-
-    handle = dlopen (libName.toStdString().c_str(), RTLD_LAZY);
-    if (!handle) {
-        QMessageBox::warning (this, "Error opening library", dlerror());
-        return false;
-    }
-
-    f = (Vector<4>(*)(double, double, double))dlsym(handle, "f");
-
-    if (f == NULL) {
-        if ((error = dlerror()) != NULL)  {
-            QMessageBox::warning (this, "Error finding function", error);
-            abort ();
-            return false;
-        }
-    }
-
-    dlclose(handle);
-
-    return true;
+    return PluginCreator::
+        LoadFunctionHelper<Vector<4> (double, double, double)>::
+            functionPresent(libName, this);
 }
 
 
@@ -120,53 +90,19 @@ bool FunctionDialogImpl::checkValidity() {
                               "Please fill in all fields!");
         return false;
     }
-
-    QString currentPath = QDir::currentPath();
-    QDir::setCurrent (*(Globals::Instance().rcdirs.begin()));
-
-    if (!QDir::current ().exists ("plugins"))
-        QDir::current ().mkdir ("plugins");
-    if (!QDir::current ().exists ("plugins/real"))
-        QDir::current ().mkdir ("plugins/real");
-    QDir::setCurrent ("plugins/real");
-    //  we are now in the subdirectory plugins/real under the first entry of the rcdirs list
-    cerr << QDir::currentPath().toStdString() << endl;
-    writeSource();                      //  generate C++ source code
-
-    if (!compile(nameEdit->text())) {                  //  try to compile
-        QDir::setCurrent (currentPath);
-        return false;
-    }
-
-    if (!link (nameEdit->text())) {                     //  try to link
-        QDir::setCurrent (currentPath);
-        return false;
-    }
-    //  try to open the resulting dynamic library
-    //  the name of the dynamic library must be given absolutely, because dlopen ()
-    //  only checks LD_LIBRARY_PATH, which usually does not contain "."
-    if (doLoadFunction (QDir::currentPath ()+"/"+nameEdit->text()+".so")) {
-        LibraryName = QDir::currentPath ()+"/"+nameEdit->text()+".so";
-        accept();
-    }
-
-    QDir::setCurrent (currentPath);
-
-    return true;
+    return PluginCreator::checkValidity("real", nameEdit->text(), this);
 }
 
 
-/*******************************************************************************
- *  write a C++ source file, containing the given function and some framework to
+/** write a C++ source file, containing the given function and some framework to
  *  make it compilable by g++ (there is currently no support for other compilers).
  *  the resulting file "<function-name>.C" defines the function f () and the
  *  function symbolic (), which returns the function in symbolic terms, not in
- *  C++ syntax.
- */
+ *  C++ syntax.                                                               */
 void FunctionDialogImpl::writeSource () {
     ofstream SourceFile ((nameEdit->text().toStdString()+".C").c_str());
 
-  SourceFile << "#include \"Vector.H\"\n\
+    SourceFile << "#include \"Vector.H\"\n\
 \n\
 using namespace VecMath;\n\
 \n\
@@ -188,5 +124,3 @@ char *symbolic () {\n\
 
     SourceFile.close ();
 }
-
-

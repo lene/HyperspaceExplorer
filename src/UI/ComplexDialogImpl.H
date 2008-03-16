@@ -16,7 +16,6 @@ class ComplexDialogImpl:
     public:
         ComplexDialogImpl (QWidget *parent = 0, Qt::WFlags f = 0);
         virtual ~ComplexDialogImpl() {}
-        QString libraryName ();
 
     public slots:
         virtual bool checkValidity();

@@ -49,6 +49,54 @@ bool PluginCreator::loadFunction(const QString &type, QDialog *parent) {
     return false;
 }
 
+/** this function is called when the user clicks the OK button in the Function
+ *  Dialog. Checks whether all fields are filled in, whether the given function
+ *  is valid C++ syntax, ie. whether it compiles, and whether the compiled code
+ *  links into a dynamic library.
+ *  as a side effect, it generates this library.
+ *  finally, it checks whether the library can be loaded. if so, it accepts the
+ *  input.
+ *  also, this function creates a directory structure "plugins/real" under the
+ *  resource directory and changes the CWD to that folder for the duration of
+ *  checkValidity ().
+ *  the name for this function is chosen rather unfortunately, i guess.
+ *
+ *  @return success                                                           */
+bool PluginCreator::checkValidity(const QString &type, const QString &name,
+                                  QDialog *parent) {
+    QString currentPath = QDir::currentPath();
+    QDir::setCurrent (*(Globals::Instance().rcdirs.begin()));
+
+    if (!QDir::current ().exists ("plugins"))
+        QDir::current ().mkdir ("plugins");
+    if (!QDir::current ().exists ("plugins/"+type))
+        QDir::current ().mkdir ("plugins/"+type);
+    QDir::setCurrent ("plugins/"+type);
+    //  we are now in the subdirectory plugins/real under the first entry of the rcdirs list
+    writeSource();                      //  generate C++ source code
+
+    if (!compile(name)) {                  //  try to compile
+        QDir::setCurrent (currentPath);
+        return false;
+    }
+
+    if (!link (name)) {                     //  try to link
+        QDir::setCurrent (currentPath);
+        return false;
+    }
+    //  try to open the resulting dynamic library
+    //  the name of the dynamic library must be given absolutely, because dlopen ()
+    //  only checks LD_LIBRARY_PATH, which usually does not contain "."
+    if (doLoadFunction (QDir::currentPath ()+"/"+name+".so")) {
+        LibraryName = QDir::currentPath ()+"/"+name+".so";
+        parent->accept();
+    }
+
+    QDir::setCurrent (currentPath);
+
+    return true;
+}
+
 /** compile the C++ source code written by writeSource (), displaying errors and
  *  warnings, if they come up.
  *  needs "Vector.H" in the current directory or in the C++ include path.
