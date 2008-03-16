@@ -13,7 +13,8 @@
 #define PLUGIN_CREATOR_H
 
 class PluginCreator {
-
+    /** a class template with a static function to simulate a function
+     *  template.                                                             */
     template <class F> class LoadFunctionHelper {
         public:
             static bool functionPresent(const QString &, QDialog *);
@@ -26,7 +27,7 @@ class PluginCreator {
 
     protected:
         virtual bool loadFunction() = 0;
-        virtual bool doLoadFunction(const QString &) = 0;
+        virtual bool functionPresent(const QString &) = 0;
         virtual void writeSource () = 0;
 
         bool loadFunction(const QString &, QDialog *);
@@ -45,7 +46,9 @@ class PluginCreator {
 
 /** loads the dynamic library given by libName, if it exists and can be loaded.
  *  then it checks whether a function named f () is present. if so, returns
- *  true. else borks with an error message.
+ *  true. else, gives an error message.
+ *
+ *  @param F the type of the function to be checked for
  *  @param libName filename for the selected DLL
  *  @return success                                                           */
 template <class F>

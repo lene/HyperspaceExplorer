@@ -42,7 +42,7 @@ bool SurfaceDialogImpl::loadFunction() {
     return PluginCreator::loadFunction("surface", this);
 }
 
-bool SurfaceDialogImpl::doLoadFunction(const QString &libName) {
+bool SurfaceDialogImpl::functionPresent(const QString &libName) {
     return PluginCreator::
         LoadFunctionHelper<Vector<4> (double, double)>::
             functionPresent(libName, this);

@@ -52,7 +52,7 @@ bool PolarDialogImpl::loadFunction() {
  *  else borks with an error message.
  *  @param libName filename for the selected DLL
  *  @return success                                                           */
-bool PolarDialogImpl::doLoadFunction(const QString &libName) {
+bool PolarDialogImpl::functionPresent(const QString &libName) {
     return PluginCreator::
         LoadFunctionHelper<Vector<4> (double, double, double)>::
             functionPresent(libName, this);

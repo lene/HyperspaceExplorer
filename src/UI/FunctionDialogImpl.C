@@ -58,13 +58,10 @@ bool FunctionDialogImpl::loadFunction() {
 /** loads the dynamic library given by libName, if it exists and can be loaded.
  *  then it checks whether a function named f () is present. if so, returns
  *  true. else borks with an error message.
- *  i'm sorry doLoadFunction () is a misnomer, it should be called
- *  checkFunction (), but as this name is distributed about three dozen .C, .H
- *  and .ui files, it is too much bother to change that now.
  *  @param libName filename for the selected DLL
  *  @return success
  */
-bool FunctionDialogImpl::doLoadFunction(const QString &libName) {
+bool FunctionDialogImpl::functionPresent(const QString &libName) {
     return PluginCreator::
         LoadFunctionHelper<Vector<4> (double, double, double)>::
             functionPresent(libName, this);

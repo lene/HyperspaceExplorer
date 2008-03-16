@@ -22,6 +22,6 @@ class ComplexDialogImpl:
         virtual bool loadFunction();
 
     protected:
-        virtual bool doLoadFunction(const QString &);
+        virtual bool functionPresent(const QString &);
         virtual void writeSource ();
 };

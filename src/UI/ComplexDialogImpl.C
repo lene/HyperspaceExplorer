@@ -54,7 +54,7 @@ bool ComplexDialogImpl::loadFunction() {
  *  @param libName	filename for the selected DLL
  *  @return		success
  */
-bool ComplexDialogImpl::doLoadFunction(const QString &libName) {
+bool ComplexDialogImpl::functionPresent(const QString &libName) {
     return PluginCreator::
         LoadFunctionHelper<Vector<4> (double, double)>::
             functionPresent(libName, this);
