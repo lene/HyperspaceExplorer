@@ -21,8 +21,6 @@
 #include "Vector.H"
 #include "Globals.H"
 
-extern QStringList rcdirs;
-
 using std::ofstream;
 
 using VecMath::Vector;
