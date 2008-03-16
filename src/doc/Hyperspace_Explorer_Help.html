@@ -26,7 +26,6 @@
       <p><a href="#Quit">Quit</a></p>
     </blockquote>
     <p><a href="#Parameter_Window">The Parameter Window</a></p>
-    <p><a href="#To_Do">To Do</a></p>
 
     <hr style="width: 100%; height: 2px;">
 
@@ -55,69 +54,48 @@ and to explore many other four dimensional objects. </p>
         <p>The start window of Hyperspace Explorer</p>
       </div>
     </div>
+    
     <hr width="100%" size="2">
+    
     <a name="Object_Manipulation" /><h2>Object translation/rotation with the mouse and modifier keys</h2>
-You manipulate the displayed object pressing a mouse button, optionally
-holding a modifier key, and dragging the mouse.<br>
-LMB stands for left mouse button, MMB for middle mouse button, RMB for
-right mouse button. <br>
-<br>
-<table cellpadding="2" cellspacing="1" border="0" width="100%">
-  <tbody>
-    <tr>
-      <td valign="top">LMB+left/right<br>
-      </td>
-      <td valign="top">rotate about y-axis<br>
-      </td>
-    </tr>
-    <tr>
-      <td valign="top">LMB+up/down<br>
-      </td>
-      <td valign="top">rotate about x-axis<br>
-      </td>
-    </tr>
-    <tr>
-      <td valign="top">LMB+MMB+up/down<br>
-      </td>
-      <td valign="top">rotate about z-axis<br>
-      </td>
-    </tr>
-    <tr>
-      <td valign="top"><br>
-      </td>
-      <td valign="top"><br>
-      </td>
-    </tr>
-    <tr>
-      <td valign="top">MMB+left/right, CTRL+LMB+left/right<br>
-      </td>
-      <td valign="top">translate along x-axis<br>
-      </td>
-    </tr>
-    <tr>
-      <td valign="top">MMB+up/down, CTRL+LMB+up/down<br>
-      </td>
-      <td valign="top">translate along y-axis<br>
-      </td>
-    </tr>
-    <tr>
-      <td valign="top">LMB+MMB+left/right, CTRL+MMB+up/down<br>
-      </td>
-      <td valign="top">translate along z-axis<br>
-      </td>
-    </tr>
-    <tr>
-      <td valign="top">CTRL+MMB+left/right<br>
-      </td>
-      <td valign="top">translate along w-axis<br>
-      </td>
-    </tr>
-    <tr>
-      <td valign="top"><br>
-      </td>
-      <td valign="top"><br>
-      </td>
-    </tr>
+    <div align="justify">
+      <p>You manipulate the displayed object pressing a mouse button, optionally
+holding a modifier key, and dragging the mouse.</p>
+      <p>LMB stands for left mouse button, MMB for middle mouse button, RMB for
+right mouse button.</p>
+
+      <table cellpadding="2" cellspacing="1" border="0" width="100%">
+        <tbody>
+          <tr>
+            <td valign="top">LMB+left/right</td>
+            <td valign="top">rotate about y-axis</td>
+          </tr>
+          <tr>
+            <td valign="top">LMB+up/down</td>
+            <td valign="top">rotate about x-axis</td>
+          </tr>
+          <tr>
+            <td valign="top">LMB+MMB+up/down</td>
+            <td valign="top">rotate about z-axis</td>
+          </tr>
+          <tr><td valign="top"></td><td valign="top"></td></tr>
+    	  <tr>
+	    <td valign="top">MMB+left/right, CTRL+LMB+left/right</td>
+      	    <td valign="top">translate along x-axis</td>
+    	  </tr>
+    	  <tr>
+      	    <td valign="top">MMB+up/down, CTRL+LMB+up/down</td>
+      	    <td valign="top">translate along y-axis</td>
+    	  </tr>
+	  <tr>
+    	    <td valign="top">LMB+MMB+left/right, CTRL+MMB+up/down</td>
+   	    <td valign="top">translate along z-axis</td>
+	  </tr>
+  	  <tr>
+  	    <td valign="top">CTRL+MMB+left/right</td>
+  	    <td valign="top">translate along w-axis</td>
+  	  </tr>
+  	  <tr><td valign="top"></td><td valign="top"></td></tr>
     <tr>
       <td valign="top">SHIFT+LMB+left/right<br>
       </td>
@@ -429,84 +407,5 @@ first have to (re-)select the object or function you are setting the
 parameters for.<br>
 <br>
 <hr style="width: 100%; height: 2px;">
-<blockquote> </blockquote>
-<h2><a name="To_Do"></a>To Do</h2>
-<ul>
-  <li>Finishing (at least to a point where it is understandable) this
-documentation</li>
-  <ul>
-    <li style="color: rgb(255, 0, 0);">Fill in the missing descriptions
-for menu points, custom functions (if &amp; when they work) and the
-parameter window</li>
-    <li>Make the online help function path independent<br>
-    </li>
-    <li>Add documentation for custom functions</li>
-    <li>Readable introduction</li>
-  </ul>
-  <li>Debugging</li>
-  <ul>
-    <li style="color: rgb(255, 0, 0);">comment code</li>
-    <li style="color: rgb(255, 0, 0);">loading custom functions does
-not work (name mangling seems to blame?!)<br>
-    </li>
-    <li>crashes when steps in t, u, v not equal</li>
-    <li>free memory in destructors</li>
-    <li>check for memory leaks, there should be thousands of them</li>
-    <ul>
-      <li>Function::~Function () and Function::ReInit () and their
-descendants</li>
-    </ul>
-  </ul>
-  <li>Optimizing</li>
-  <ul>
-    <li>optimize transform: compute matrix only once, pass it down</li>
-    <li>accelerate GL drawing - PROFILE! it is almost inconceivable
-that the 3D drawing takes as long as the 4D transformations</li>
-    <li>multithreaded 4D transform, projection and (maybe) drawing</li>
-    <li style="color: rgb(255, 0, 0);">I assume I can strip most of the
-libraries from the linker command line in the Makefile</li>
-  </ul>
-  <li>New features</li>
-  <ul>
-    <li>4D depthcue for coordinate cross</li>
-    <li>adjust the color values for 3D and 4D depth cue<br>
-    </li>
-    <li>adjust distances of near/far clipping planes</li>
-    <li>finish ValuesDialog integration</li>
-    <li>more (and more flexible) functions</li>
-    <ul>
-      <li>morphing between functions</li>
-    </ul>
-    <ul>
-      <li>animated parameter values</li>
-    </ul>
-    <ul>
-      <li>Custom Complex functions don't work&nbsp;</li>
-    </ul>
-    <ul>
-      <li>bodies in warped space<br>
-      </li>
-    </ul>
-    <li>transparent polygons (the transparence simply doesn't work!)</li>
-    <li>better polygon drawing quality, especially: avoid drawing more
-than one poly in one place</li>
-    <li>output to POV-ray</li>
-    <li style="color: rgb(255, 0, 0);">output to pictures, especially
-animations</li>
-    <ul style="color: rgb(255, 0, 0);">
-      <li>this makes necessary to move the creation of GL display lists
-in the module C4DView to initializeGL () (or resizeGL () or paintGL ())
-from the current location at Redraw ()<br>
-      </li>
-    </ul>
-    <li>C4DDoc::[tuv]steps should depend on Function::tsteps, instead
-of SpongeDlg::tsteps</li>
-    <li>usable (ie. showing all information), resizable and toggle-able
-statusbar<br>
-      <br>
-    </li>
-  </ul>
-</ul>
-<br>
 </body>
 </html>
