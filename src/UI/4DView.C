@@ -1,7 +1,7 @@
 
 //      project:      hyperspace explorer
-//      module:       
-//      contains:     
+//      module:
+//      contains:
 //      compile with: make all
 //      author:       helge preuss (scout@hyperspace-travel.de)
 //      license:      GPL (see License.txt)
@@ -42,23 +42,22 @@ using VecMath::Matrix;
  *  coded default values, initializes the coordinate cross object (which could
  *  well be a class on its own), creates the necessary timers and menus, and
  *  finally creates a Hypercube as the default object to display
- *  @param parent	parent QWidget, defaults to NULL
- *  @param name		name, defaulting to ""                                */
-C4DView::C4DView(QWidget *parent, const char *name): 
-    XQGLWidget (parent, name),
+ *  @param parent	parent QWidget, defaults to NULL                      */
+C4DView::C4DView(QWidget *parent):
+    XQGLWidget (parent),
 
     ObjectList (0), CoordinateCross (0),
 
-    Tx (0), Ty (0), Tz (0), Tw (0), 
+    Tx (0), Ty (0), Tz (0), Tw (0),
     Rxy (0), Rxz (0), Rxw (0), Ryz (0), Ryw (0), Rzw (0),
 
-    m_rotX (15), m_rotY (15), m_transX (0), m_transY (0), 
+    m_rotX (15), m_rotY (15), m_transX (0), m_transY (0),
     m_camZ (-10.), m_rotZ (0.),
 
-    m_LeftDownPos (0,0), m_MidDownPos (0,0), m_RightDownPos (0,0), 
+    m_LeftDownPos (0,0), m_MidDownPos (0,0), m_RightDownPos (0,0),
 
     AntiAlias (false), DisplayPolygons (false), Lighting (true),
-    DepthCue3D (false), DepthCue4D (false), 
+    DepthCue3D (false), DepthCue4D (false),
     DisplayCoordinates (false),
     Animated (false), TakingSpinValues (false),
 
@@ -67,11 +66,11 @@ C4DView::C4DView(QWidget *parent, const char *name):
     Values (new ValuesDialogImpl (this)),
     F (NULL),
 
-    dxy (0), dxz (0), dxw (0), dyz (0), dyw (0), dzw (0), 
+    dxy (0), dxz (0), dxw (0), dyz (0), dyw (0), dzw (0),
     dx (0), dy (0), dz (0),
     animation_fps (50),
     CamW (-3.), ScrW (0.) {
-    
+
     InitCross();
 
     AnimationTimer = new QTimer (this);
@@ -84,7 +83,7 @@ C4DView::C4DView(QWidget *parent, const char *name):
 
     menu = new Menu4D(this);
     menu->addToMenuBar(Globals::Instance().getMainWindow()->menuBar());
-    
+
     show ();
 
     ObjectHypercube ();
@@ -96,23 +95,23 @@ C4DView::C4DView(QWidget *parent, const char *name):
 /** C4DView destructor; frees arrays                                          */
 C4DView::~C4DView() {
     for (unsigned j = 0; j < 4; j++) {
-        delete [] Cross[j]; 
-        delete [] CrossTrans[j]; 
+        delete [] Cross[j];
+        delete [] CrossTrans[j];
         delete [] CrossScr[j];
     }
-    delete [] Cross; 
-    delete [] CrossTrans; 
+    delete [] Cross;
+    delete [] CrossTrans;
     delete [] CrossScr;
 }
 
 /** Initialize the structure to display a four-dimensional coordinate cross   */
 void C4DView::InitCross() {
-    Cross = new Vector<4> * [4]; 
-    CrossTrans = new Vector<4> * [4]; 
+    Cross = new Vector<4> * [4];
+    CrossTrans = new Vector<4> * [4];
     CrossScr = new Vector<3> * [4];
     for (unsigned j = 0; j < 4; j++) {
-        Cross[j] = new Vector<4> [2]; 
-        CrossTrans[j] = new Vector<4> [2]; 
+        Cross[j] = new Vector<4> [2];
+        CrossTrans[j] = new Vector<4> [2];
         CrossScr[j] = new Vector<3> [2];
         for (unsigned k = 0; k < 2; k++) {
             //  CrossTrans[j][k] = Vector (4, 0., 0., 0., 0.);
@@ -137,7 +136,7 @@ void C4DView::InitCross() {
  *  @param ty		translation in y direction
  *  @param tz		translation in z direction
  *  @param tw		translation in w direction                            */
-void C4DView::Transform (double thetaxy, double thetaxz, double thetaxw, 
+void C4DView::Transform (double thetaxy, double thetaxz, double thetaxw,
                          double thetayz, double thetayw, double thetazw,
                          double tx, double ty, double tz, double tw) {
 #ifdef DEBUG
@@ -146,12 +145,12 @@ void C4DView::Transform (double thetaxy, double thetaxz, double thetaxw,
          << "                    "<< tx << ", " << ty << ", " << tz << ", " << tw <<")\n";
 #endif
 
-#   ifdef USE_AUTO_PTR 
-        if (F.get ()) 
+#   ifdef USE_AUTO_PTR
+        if (F.get ())
 #   else
         if (F)
 #   endif
-        F->Transform (thetaxy, thetaxz, thetaxw, thetayz, thetayw, thetazw, 
+        F->Transform (thetaxy, thetaxz, thetaxw, thetayz, thetayw, thetazw,
                       tx, ty, tz, tw);
     else return;
 
@@ -163,14 +162,14 @@ void C4DView::Transform (double thetaxy, double thetaxz, double thetaxw,
     Vector<4> trans = Vector<4>(tx, ty, tz, tw);
 
     for (unsigned i = 0; i < 4; i++)
-        for (unsigned j = 0; j < 2; j++) 
+        for (unsigned j = 0; j < 2; j++)
             CrossTrans[i][j] = (Rot*Cross[i][j])+trans;
 }
 
 
 /** projects F and coordinate cross into three-space                          */
 void C4DView::Project (void) {
-#   ifdef USE_AUTO_PTR 
+#   ifdef USE_AUTO_PTR
         if (F.get ())
 #   else
         if (F)
@@ -182,7 +181,7 @@ void C4DView::Project (void) {
         for (unsigned i = 0; i < 2; i++)
             for (unsigned j = 0; j < 4; j++) {
 #               if 0
-	           cerr << "i = " << i << " j = " << j 
+	           cerr << "i = " << i << " j = " << j
                         << "CrossScr[j][i]" << CrossScr[j][i] << endl;
 #	        endif
                 double ProjectionFactor = (ScrW-CamW)/(CrossTrans[j][i][3]-CamW);
@@ -254,11 +253,11 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
          ShiftPressed = s & Qt::ShiftModifier;
 
 #   ifdef DEBUG
-        cerr << (LeftButtonDown? "LMB ": "") 
-             << (MidButtonDown? "MMB ": "") 
-             << (RightButtonDown? "RMB ": "") 
-             << (AltPressed? "+ Alt ": "") 
-             << (ControlPressed? "+ Ctrl ": "") 
+        cerr << (LeftButtonDown? "LMB ": "")
+             << (MidButtonDown? "MMB ": "")
+             << (RightButtonDown? "RMB ": "")
+             << (AltPressed? "+ Alt ": "")
+             << (ControlPressed? "+ Ctrl ": "")
              << (ShiftPressed? "+ Shift ": "") << endl;
 #   endif
 
@@ -293,9 +292,9 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
                    Ty += translate.y ()*size/ysize;     //  add y translation
 
                    UpdateStatus ("translate x/y");
-               }               //    if (TakingSpinValues) 
+               }               //    if (TakingSpinValues)
 
-            }                 //    if (LeftButtonDown && !MidButtonDown && !RightButtonDown) 
+            }                 //    if (LeftButtonDown && !MidButtonDown && !RightButtonDown)
 
             //    translate z / w with MMB
             if (MidButtonDown && !LeftButtonDown && !RightButtonDown) { //  CTRL + MMB pressed
@@ -309,10 +308,10 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
                     Tw += translate.y ()*size/ysize;     //  add w translation
 
                     UpdateStatus ("translate z/w");
-	        }            //  if (TakingSpinValues) 
-	
+	        }            //  if (TakingSpinValues)
+
             }                //  if (MidButtonDown && !LeftButtonDown && !RightButtonDown)
-      
+
         }                 //    if (LeftButtonDown || MidButtonDown || RightButtonDown)
 
     }                     //    if (::GetKeyState (VK_CONTROL) < 0)
@@ -329,11 +328,11 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
                 QPoint rotate = m_LeftDownPos-point;    //  store difference from button press position
                 ViewChanged = false;                    //  takes only xy/xz values, which are
                                                         //  equivalent to z/y 3D rotation
-              
+
                 if (TakingSpinValues) {
                     dz += rotate.x ()/xsize*5;
                     dy += rotate.y ()/ysize*5;
-                    UpdateStatus ("taking xy/xz rotation speed");    
+                    UpdateStatus ("taking xy/xz rotation speed");
                 } else {                                //  immediate movement
                     m_LeftDownPos = point;              //  reset start position for next mouse move
 
@@ -341,8 +340,8 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
                     m_rotY -= rotate.y ()/ysize*180;    //  add xz rotation ( = y in 3D)
 
                     UpdateStatus ("rotate xy/xz");
-                }        //    if (TakingSpinValues) 
-            }            //    if (LeftButtonDown && !MidButtonDown && !RightButtonDown) 
+                }        //    if (TakingSpinValues)
+            }            //    if (LeftButtonDown && !MidButtonDown && !RightButtonDown)
 
             //    rotate xw / yz with MMB
             if (!LeftButtonDown && MidButtonDown && !RightButtonDown) { //  SHIFT + MMB
@@ -357,23 +356,23 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
                     UpdateStatus ("taking xw / yz rotation speed");
                 } else {                             		//    immediate movement
                     m_MidDownPos = point;     //    reset start position for next mouse move
-	  
+
                     Rxw -= rotate.x ()/xsize*180;            		//    add xw rotation
                     m_rotX -= rotate.y ()/ysize*180;            		//    add yz  ( = x in 3D) rotation
                     if (Rxw == 0.) ViewChanged = false;
-  
-	            UpdateStatus ("rotate xw/yz");
-	        }        	//    if (TakingSpinValues) 
 
-            }          	//    if (!LeftButtonDown && MidButtonDown && !RightButtonDown) 
+	            UpdateStatus ("rotate xw/yz");
+	        }        	//    if (TakingSpinValues)
+
+            }          	//    if (!LeftButtonDown && MidButtonDown && !RightButtonDown)
 
             //    rotate yw / zw with RMB
             if (!LeftButtonDown && !MidButtonDown && RightButtonDown) {    	//  SHIFT + RMB pressed
 
 	        QPoint rotate = m_RightDownPos-point;    		//    store difference from button press position
-                
+
 	        if (TakingSpinValues) {                    		//
-	            dyw += rotate.x ()/xsize*5; 
+	            dyw += rotate.x ()/xsize*5;
 	            dzw += rotate.y ()/ysize*5;                    	//
 	            UpdateStatus ("taking yw / zw rotation speed");
 	        } else {                                    		//    immediate movement
@@ -381,14 +380,14 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
 
 	            Ryw -= rotate.x ()/xsize*180;            		//    add yw rotation
 	            Rzw -= rotate.y ()/ysize*180;            		//    add zw rotation
-    
+
 	            UpdateStatus ("rotate yw/zw");
-	        }        	//    if (TakingSpinValues) 
-	
-            }            	//    if (!LeftButtonDown && !MidButtonDown && RightButtonDown) 
-      
+	        }        	//    if (TakingSpinValues)
+
+            }            	//    if (!LeftButtonDown && !MidButtonDown && RightButtonDown)
+
         }                	//    if (LeftButtonDown || MidButtonDown || RightButtonDown)
-    
+
     }                     	//    if (::GetKeyState (VK_SHIFT) < 0)
 
     if (ViewChanged) {                                    	//    4D viewpoint has changed
@@ -404,47 +403,47 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
 
             //    pan the view with MMB
             if (MidButtonDown && !LeftButtonDown) {		//  MMB
-	
+
 	        QPoint translate = m_MidDownPos-point;    		//    store difference from button press position
-	
+
 	        if (TakingSpinValues) {    } else {        		//    no translation animation (yet?)
 	            m_MidDownPos = point;                			//    reset start position for next mouse move
-	  
+
 	            m_transX -= translate.x ()*size/xsize; 		//    add x translation
 	            m_transY += translate.y ()*size/ysize; 		//    add y translation
-	  
+
 	            UpdateStatus ("translate x/y");
-	        }            	//    if (TakingSpinValues) 
-	
+	        }            	//    if (TakingSpinValues)
+
             }                	//    if (MidButtonDown && !LeftButtonDown)
 
             //    rotate the view with LMB
             if (LeftButtonDown && !MidButtonDown) {				//  LMB
 
 	        QPoint rotate = m_LeftDownPos-point;        		//    store difference from button press position
-                
+
  	        if (TakingSpinValues) {                    		//
-	            dx += rotate.x ()/xsize*5; 
+	            dx += rotate.x ()/xsize*5;
 	            dy += rotate.y ()/ysize*5;                    	//
 	            UpdateStatus ("taking x/y rotation speed");
 	        } else {                                    		//    immediate movement
 	            m_LeftDownPos = point;                		//    reset start position for next mouse move
 
-	            m_rotX -= rotate.y ()/ysize*180;        		//    add x rotation 
+	            m_rotX -= rotate.y ()/ysize*180;        		//    add x rotation
 	            m_rotY -= rotate.x ()/xsize*180;        		//    add y rotation
-	  
+
 	            UpdateStatus ("rotate x/y");
-	        }            	//    if (TakingSpinValues) 
-	
-            }                	//    if (LeftButtonDown && !MidButtonDown) 
-      
+	        }            	//    if (TakingSpinValues)
+
+            }                	//    if (LeftButtonDown && !MidButtonDown)
+
             //    zoom with LMB+RMB
             if (LeftButtonDown && MidButtonDown) {				//  LMB+RMB
-	
+
                 QPoint zoom = m_LeftDownPos-point;        		//    store difference from button press position
-	
+
                 if (TakingSpinValues) {                    		//
-	            dz += zoom.x ()/xsize*10; 
+	            dz += zoom.x ()/xsize*10;
 	            UpdateStatus ("taking z rotation speed");
 	        } else {                                    		//    immediate movement
 	            m_LeftDownPos = point;                		//    reset start position for next mouse move
@@ -456,15 +455,15 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
 	            m_rotZ -= zoom.y ()/ysize*180;        		//    add z rotation
 
 	            UpdateStatus ("translate/rotate z");
-	        }            	//    if (TakingSpinValues) 
-	
+	        }            	//    if (TakingSpinValues)
+
             }                	//    if (LeftButtonDown && MidButtonDown)
-      
-      
-        }                   //    if (LeftButtonDown || MidButtonDown) 
-    
+
+
+        }                   //    if (LeftButtonDown || MidButtonDown)
+
     }                     //    if (ViewChanged)
-  
+
     OnPaint ();                					//    redraw the window
 
   //  XQGLWidget::mouseMoveEvent (e);
@@ -494,7 +493,7 @@ void C4DView::mousePressEvent (QMouseEvent *e) {
              ShiftPressed = s & Qt::ShiftModifier;
         if (b == Qt::RightButton && !(AltPressed || ControlPressed || ShiftPressed))
             menu->exec (this->mapToGlobal(point));
-//            XQGLWidget::mousePressEvent (e);	
+//            XQGLWidget::mousePressEvent (e);
     }
 }
 
@@ -573,7 +572,7 @@ void C4DView::RandomAnimation() {
     AnimateRandomTimer->stop ();
 
     dxw = float (rand ())/RAND_MAX;
-    dyw = float (rand ())/RAND_MAX; 
+    dyw = float (rand ())/RAND_MAX;
     dzw = float (rand ())/RAND_MAX;
     StartAnimation ();
 
@@ -650,7 +649,7 @@ void C4DView::OnTimer() {
     UpdateStatus ("Double-click LMB to stop animation");
 }
 
-/** display some info about current object and its transformations, not in a 
+/** display some info about current object and its transformations, not in a
  *  status bar, as i can't get this to work with QGLWidget, but in the title bar
  *  side effect: checks rotation values for overflow and resets them to the
  *  interval [-360, 360]. is this wise?
@@ -673,7 +672,7 @@ void C4DView::UpdateStatus (QString status) {
     if (Rzw <-360) Rzw += 360;
 #   if 0
         ostringstream o;
-        o << "  cam_z = " << setw (4) << setprecision (3) << m_camZ 
+        o << "  cam_z = " << setw (4) << setprecision (3) << m_camZ
           << "  r_x = " << setw (4) << setprecision (3) << m_rotX << "°"
           << "  r_y = " << setw (4) << setprecision (3) << m_rotY << "°"
           << "  r_z = " << setw (4) << setprecision (3) << m_rotZ << "°" << "   |  "
@@ -688,10 +687,10 @@ void C4DView::UpdateStatus (QString status) {
         for (unsigned i = status.length (); i <= 24; i++) status = " "+status;
         status = " - "+status;
     }
-    
+
     Globals::Instance().getMainWindow()->statusBar()->showMessage (ObjectName+status);
 
-    setCaption (ObjectName+status);
+    setWindowTitle(ObjectName+status);
 }
 
 
@@ -720,7 +719,7 @@ void C4DView::AssignValues (const QString &Title,
                             const QString &Parameter3, const QString &Parameter4) {
     if (!Title.isEmpty()) {
         ObjectName = Title;
-        setCaption (ObjectName);
+        setWindowTitle(ObjectName);
         Values->setFunction(ObjectName);
     }
 
@@ -762,7 +761,7 @@ void C4DView::AssignValues (const QString &Title,
     }
 
     Transform ();
-    
+
     UpdateStatus("");
 }
 
@@ -805,7 +804,7 @@ void C4DView::ParametersChanged (double, double, unsigned,
 				 double, double, unsigned,
 				 double, double, double, double,
 				 QString &) {
-    QMessageBox::information (this, "C4DView::ParametersChanged", 
+    QMessageBox::information (this, "C4DView::ParametersChanged",
                               "... is not yet implemented");
 }
 
@@ -814,14 +813,14 @@ void C4DView::ParametersChanged (double, double, unsigned,
 //
 //    from here on it gets pretty boring OpenGL management stuff
 //
-/** separated the 4d projection stuff from the 3d opengl handling into this 
+/** separated the 4d projection stuff from the 3d opengl handling into this
  *  function                                                                  */
 void C4DView::PreRedraw () {
     SingletonLog::Instance().log("C4DView::PreRedraw ()");
 
     // this does seem very ineffective to me, deleting and reassigning the GL Lists,
     // but it does not seem to work any other way...?
-  
+
     if (DisplayCoordinates) {
         if (CoordinateCross) glDeleteLists (CoordinateCross,1);
         CoordinateCross = Globals::Instance().GetGLList ();
@@ -830,7 +829,7 @@ void C4DView::PreRedraw () {
         glEndList ();
     }
 
-    if (ObjectList) glDeleteLists (ObjectList,1); 
+    if (ObjectList) glDeleteLists (ObjectList,1);
     ObjectList = Globals::Instance().GetGLList ();
     glNewList (ObjectList, GL_COMPILE_AND_EXECUTE);
         /*
@@ -840,7 +839,7 @@ void C4DView::PreRedraw () {
         glEnd ();
         */
         Project ();
-        Draw (); 
+        Draw ();
 
     glEndList ();
 
@@ -922,7 +921,7 @@ void C4DView::OnPaint() {                           //  object drawing routine
             cerr << "    " << tmpPixmap.width () << " " << tmpPixmap.height () << endl;
 #       endif
 
-        QString imageFilename = 
+        QString imageFilename =
             QString ("/tmp/HyperspaceExplorer_Image.%1.png").arg (frame++, 6)
                                                             .replace (" ", "0");
         if (tmpPixmap.save (imageFilename, "PNG"))
@@ -941,7 +940,7 @@ void C4DView::resizeEvent (QResizeEvent *e) {
     if (cx == 0 && cy == 0) return;             //  zero size window taken care of
 
     XQGLWidget::resizeEvent (e);                //  window resizing
-    
+
     GLsizei width = cx, height = cy;
     GLdouble aspect = GLdouble (width > 0? width: 1);   //  calculate aspect ratio
     if (height != 0) aspect /= GLdouble (height);
@@ -989,7 +988,7 @@ void C4DView::initializeGL (void) {
 
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);   //  clear the window
 
-        if (DisplayPolygons)                            //  this might move to a 
+        if (DisplayPolygons)                            //  this might move to a
             glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);  //  special routine "SwitchWireframe()"
         else glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
@@ -1074,7 +1073,7 @@ void C4DView::Wireframe() {
 void C4DView::Coordinates() {
     DisplayCoordinates = !DisplayCoordinates;
     menu->getAction("Coordinate Cross")->setChecked (DisplayCoordinates);
-  
+
     Redraw ();
 }
 
@@ -1086,7 +1085,7 @@ void C4DView::Coordinates() {
 void C4DView::HyperFog() {
     DepthCue4D = !DepthCue4D;
     menu->getAction("4D Depth Cue")->setChecked (DepthCue4D);
-  
+
     Redraw ();
 }
 
@@ -1098,12 +1097,12 @@ void C4DView::Light() {
     Lighting = !Lighting;
     if (Lighting) {
         glEnable(GL_LIGHTING);                  //  turn on the light
- 
+
         static GLfloat LightAmbient[]  = { 0.3f, 0.3f, 0.3f, 1.0f }, //  HARDCODED VALUES
                        LightDiffuse[]  = { 0.9f, 0.9f, 0.9f, 1.0f },
 	               LightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f },
 	               LightPosition[] = { 1.0f, 1.0f, 1.0f, 0.0f }; //  light properties
- 
+
         glLightfv (GL_LIGHT0, GL_AMBIENT, LightAmbient); // set the light properties
         glLightfv (GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
         glLightfv (GL_LIGHT0, GL_SPECULAR, LightSpecular);
@@ -1112,7 +1111,7 @@ void C4DView::Light() {
     } else {
         static GLfloat LightAmbient[]  = { 1.0f, 1.0f, 1.0f, 0.0f },
                        LightPosition[] = { 1.0f, 1.0f, 1.0f, 0.0f }; //      light properties
-      
+
         glEnable  (GL_LIGHTING);
         glLightfv (GL_LIGHT0, GL_AMBIENT, LightAmbient); // set the light properties
         glLightfv (GL_LIGHT0, GL_DIFFUSE, LightAmbient);
@@ -1120,7 +1119,7 @@ void C4DView::Light() {
         glLightfv (GL_LIGHT0, GL_POSITION, LightPosition);
         glEnable  (GL_LIGHT0);    //      turn on the light
     }
-  
+
     OnPaint ();
 }
 
@@ -1130,7 +1129,7 @@ void C4DView::Light() {
  *  change menu items accordingly
  */
 void C4DView::RenderToImages() {
-  RenderToPixmap = !RenderToPixmap; 
+  RenderToPixmap = !RenderToPixmap;
   menu->getAction("Render to Images")->setChecked(RenderToPixmap);
 }
 
@@ -1149,14 +1148,14 @@ void C4DView::Benchmark() {
 
   double time_4d = Benchmark4D (360, 1., 0., 0.);
 
-  Time << "4D viewpoint rotation: " << time_4d << " sec." 
+  Time << "4D viewpoint rotation: " << time_4d << " sec."
        << " (" << 360/1./time_4d << " fps)" << endl;
-  
+
   float time_3d = Benchmark3D (360, 1., 0., 0.);
-  
-  Time << "3D viewpoint rotation: " << time_3d << " sec." 
+
+  Time << "3D viewpoint rotation: " << time_3d << " sec."
        << " (" << 360/1./time_3d << " fps)" << ends;
-  
+
   QMessageBox::information (NULL, "Benchmark results", Time.str ().c_str ());
   UpdateStatus ();
 }
@@ -1170,18 +1169,18 @@ double C4DView::Benchmark4D (int num_steps,
 			     bool display) {
   clock_t stime = clock ();					//  record start time
 
-  double Rxw = 0., Ryw = 0., Rzw = 0.; 
-  
+  double Rxw = 0., Ryw = 0., Rzw = 0.;
+
   for (int step = 0; step < num_steps; step++) {
-    Rxw += step_xw; Ryw += step_yw; Rzw += step_zw; 
+    Rxw += step_xw; Ryw += step_yw; Rzw += step_zw;
     Transform (0., 0. ,Rxw, 0. , Ryw, Rzw, 0., 0., 0., 0.);
     if (display) {
       Redraw ();
       UpdateStatus (QString::number ((100*step)/num_steps)+"% done");
     }
   }
-  
-  return double (clock ()-stime)/CLOCKS_PER_SEC;  
+
+  return double (clock ()-stime)/CLOCKS_PER_SEC;
 }
 
 
@@ -1193,18 +1192,18 @@ double C4DView::Benchmark3D (int num_steps,
 			     bool display) {
   clock_t stime = clock ();					//  record start time
 
-  double Rx = m_rotX, Ry = m_rotY, Rz = m_rotZ; 
-  
+  double Rx = m_rotX, Ry = m_rotY, Rz = m_rotZ;
+
   for (int step = 0; step < num_steps; step++) {
-    m_rotX += step_x; m_rotY += step_y; m_rotZ += step_z; 
+    m_rotX += step_x; m_rotY += step_y; m_rotZ += step_z;
     if (display) {
       OnPaint ();
       UpdateStatus (QString::number ((100*step)/num_steps)+"% done");
     }
   }
   m_rotX = Rx; m_rotY = Ry;  m_rotZ = Rz;
-	
-  return double (clock ()-stime)/CLOCKS_PER_SEC;  
+
+  return double (clock ()-stime)/CLOCKS_PER_SEC;
 }
 
 
@@ -1227,7 +1226,7 @@ template<class function>
     if(0) cerr << "FunctionSlot<function>::createFunction(): " << view->F->getFunctionName().toStdString()
             << "(" << view->F->getParameterName(0).toStdString() <<","<<view->F->getParameterName(1).toStdString() <<","<<
             view->F->getParameterName(2).toStdString() <<","<< view->F->getParameterName(3).toStdString()<<")"<<endl;
-    
+
     view->menu->updateFunctionMenu (view->F->getFunctionName());
     view->AssignValues (view->F->getFunctionName(),
                         view->F->getParameterName(0), view->F->getParameterName(1),
@@ -1251,7 +1250,7 @@ template<class function>
     if(0) cerr << "FunctionSlot<function>::createSurface(): " << view->F->getFunctionName().toStdString()
                 << "(" << view->F->getParameterName(0).toStdString() <<","<<view->F->getParameterName(1).toStdString() <<","<<
                 view->F->getParameterName(2).toStdString() <<","<< view->F->getParameterName(3).toStdString()<<")"<<endl;
-    
+
     try {
         view->menu->updateFunctionMenu (view->F->getFunctionName());
     } catch (QString error) {
@@ -1311,7 +1310,7 @@ void C4DView::ObjectHypercube() {
             (new Hypercube (Vector<4>(0., 0., 0., 0.), Values->a ()));
 
   AssignValues ("Hypercube", "Size");
-  
+
   Redraw ();
 }
 
@@ -1328,9 +1327,9 @@ void C4DView::ObjectHyperpyramid() {
             (new Pyramid (Vector<4>(0., 0., 0., 0.), 2.*Values->a ()));
 
   AssignValues ("Hyperpyramid", "Size");
-  
+
   Redraw ();
-} 
+}
 
 /** display a ObjectHypersponge object */
 void C4DView::ObjectHypersponge() {
@@ -1343,12 +1342,12 @@ void C4DView::ObjectHypersponge() {
         F =
 #   endif
             (new Sponge (
-                unsigned (Values->a ()), int (Values->b ()), 
+                unsigned (Values->a ()), int (Values->b ()),
                 Values->c (), Vector<4>(0., 0., 0., 0.))
             );
 
     AssignValues ("4-dimensional Menger Sponge", "Level", "Distance", "Size");
-  
+
     Redraw ();
 }
 
@@ -1365,9 +1364,9 @@ void C4DView::ObjectGasket() {
             (new Gasket (unsigned (Values->a ()), 2.*Values->b (), Vector<4>(0., 0., 0., 0.)));
 
   AssignValues ("4-dimensional Sierpinski Gasket", "Level", "Size");
-  
+
   Redraw ();
-} 
+}
 
 /** display a Surface object */
 void C4DView::Surface_1() { FunctionSlot<Surface1>::createSurface(this); }
@@ -1427,7 +1426,7 @@ void C4DView::ComplexTanZ() {FunctionSlot<tanz>::createSurface(this); }
 
 #include "CustomFunction.H"
 
-template<class function> 
+template<class function>
         void C4DView::CustomFunctionSlot<function>::createCustomFunction(C4DView *view) {
             function *tmp = new function (view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
                                           view->Values->umin (), view->Values->umax (), view->Values->du (),
@@ -1449,7 +1448,7 @@ template<class function>
                 view->UpdateStatus("Failed to load custom function");
             }
         }
-        
+
 template<class function>
         void C4DView::CustomFunctionSlot<function>::createCustomSurface(C4DView *view) {
             function *tmp = new function (view->Values->tmin (), view->Values->tmax (), view->Values->dt (),

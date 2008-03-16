@@ -1,18 +1,18 @@
 
 //      project:      hyperspace explorer
-//      module:       
-//      contains:     
+//      module:
+//      contains:
 //      compile with: make all
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
 
 
-#include <qapplication.h>
-#include <qmessagebox.h>
-#include <qlineedit.h>
-#include <qfile.h>
-#include <q3filedialog.h>
-#include <qstringlist.h>
+#include <QApplication>
+#include <QMessageBox>
+#include <QLineEdit>
+#include <QFile>
+#include <QFileDialog>
+#include <QStringList>
 
 #include <fstream>
 #include <dlfcn.h>
@@ -40,9 +40,8 @@ using VecMath::Vector;
  *  @param modal	modal dialog?
  *  @param f		window flags
  */
-PolarDialogImpl::PolarDialogImpl (QWidget *parent, const char *name,
-				  bool modal, Qt::WFlags f) :
-	QDialog (parent, name, modal, f) {
+PolarDialogImpl::PolarDialogImpl (QWidget *parent, Qt::WFlags f) :
+	QDialog (parent, f) {
   setupUi(this);
   connect (okButton, SIGNAL(clicked()), this, SLOT(checkValidity()));
   connect (loadButton, SIGNAL(clicked()), this, SLOT(loadFunction()));
@@ -65,10 +64,12 @@ QString PolarDialogImpl::libraryName () {
  *  @return	success (?)
  */
 bool PolarDialogImpl::loadFunction() {
+    return PluginCreator::loadFunction("polar", this);
+/*
   QString libName;
   //  iterate through all resource directories until you find a plugin subdirectory
-  for (QStringList::Iterator it = Globals::Instance().rcdirs.begin(); 
-       it != Globals::Instance().rcdirs.end(); 
+  for (QStringList::Iterator it = Globals::Instance().rcdirs.begin();
+       it != Globals::Instance().rcdirs.end();
        ++it ) {
     QDir current (*it);
     if (current.exists ("plugins/polar")) {	//  plugin subdir present?
@@ -87,8 +88,9 @@ bool PolarDialogImpl::loadFunction() {
     LibraryName = libName;
     accept();
   }
-  
+
   return false;
+    */
 }
 
 
@@ -102,16 +104,16 @@ bool PolarDialogImpl::loadFunction() {
  *  @param libName	filename for the selected DLL
  *  @return		success
  */
-bool PolarDialogImpl::loadFunction(const QString &libName) {
-  void *handle;
-  Vector<4> (*f)(double, double, double);
-  char *error;
-      
-  handle = dlopen (libName, RTLD_LAZY);
-  if (!handle) {
-    QMessageBox::warning (this, "Error opening library", dlerror());
-    return false;
-  }
+bool PolarDialogImpl::doLoadFunction(const QString &libName) {
+    void *handle;
+    Vector<4> (*f)(double, double, double);
+    char *error;
+
+    handle = dlopen (libName.toStdString().c_str(), RTLD_LAZY);
+    if (!handle) {
+        QMessageBox::warning (this, "Error opening library", dlerror());
+        return false;
+    }
 
   //  f = (Vector(*)(double, double, double))dlsym(handle, "f__Fddd");
   f = (Vector<4>(*)(double, double, double))dlsym(handle, "f");
@@ -120,15 +122,15 @@ bool PolarDialogImpl::loadFunction(const QString &libName) {
     return false;
   }
 
-  dlclose(handle); 
-      
-  return true;    
+  dlclose(handle);
+
+  return true;
 }
 
 
 /*******************************************************************************
  *  this function is called when the user clicks the OK button in the Function Dialog.
- *  checks whether all fields are filled in, whether the given function is valid C++ 
+ *  checks whether all fields are filled in, whether the given function is valid C++
  *  syntax, ie. whether it compiles, and whether the compiled code links into a dynamic
  *  library.
  *  as a side effect, it generates this library.
@@ -145,7 +147,7 @@ bool PolarDialogImpl::checkValidity() {
     return false;
   }
 
-  QString currentPath = QDir::currentDirPath ();
+  QString currentPath = QDir::currentPath ();
   QDir::setCurrent (*(Globals::Instance().rcdirs.begin()));
 
   if (!QDir::current ().exists ("plugins"))
@@ -157,24 +159,24 @@ bool PolarDialogImpl::checkValidity() {
   writeSource ();
 
   if (!compile (nameEdit->text())) {					//  try to compile
-    QDir::setCurrent (currentPath);  
+    QDir::setCurrent (currentPath);
     return false;
   }
-  
+
   if (!link (nameEdit->text())) {					//  try to link
-    QDir::setCurrent (currentPath);     
+    QDir::setCurrent (currentPath);
     return false;
   }
   //  try to open the resulting dynamic library
   //  the name of the dynamic library must be given absolutely, because dlopen ()
   //  only checks LD_LIBRARY_PATH, which usually does not contain "."
-  if (loadFunction (QDir::currentDirPath ()+"/"+nameEdit->text()+".so")) {
-    LibraryName = QDir::currentDirPath ()+"/"+nameEdit->text()+".so";
+  if (doLoadFunction (QDir::currentPath ()+"/"+nameEdit->text()+".so")) {
+    LibraryName = QDir::currentPath ()+"/"+nameEdit->text()+".so";
     accept();
   }
 
   QDir::setCurrent (currentPath);
-  
+
   return true;
 }
 
@@ -187,9 +189,9 @@ bool PolarDialogImpl::checkValidity() {
  *  C++ syntax.
  */
 void PolarDialogImpl::writeSource () {
-  ofstream SourceFile (nameEdit->text()+".C");
+    ofstream SourceFile ((nameEdit->text().toStdString()+".C").c_str());
 
-  SourceFile << "#include \"Vector.H\"\n\
+    SourceFile << "#include \"Vector.H\"\n\
 \n\
 using namespace VecMath;\n\
 \n\
@@ -214,7 +216,7 @@ Vector<4> f (double t, double u, double v) {\n\
 char *symbolic () {\n\
     return \"" << FEdit->text().toStdString() << "\";\n\
 }\n";
-  
+
     SourceFile.close ();
 }
 
@@ -232,13 +234,13 @@ bool PolarDialogImpl::compile () {
   bool Success = !system ("g++ -g -c -Wall -I.. -I../..  \""
 			  +NameEdit->text()
 			  +".C\" > /tmp/HyperspaceExplorer.compile.errors 2>&1");
-    
+
   if (!Success) {
     QFile Errs ("/tmp/HyperspaceExplorer.compile.errors");
     Errs.open (QIODevice::ReadOnly);
     QString ErrString (Errs.readAll ());
     QMessageBox::warning (this, "Compilation Errors", ErrString);
-  }    
+  }
   return Success;
 }
 */
@@ -255,7 +257,7 @@ bool PolarDialogImpl::link () {
 			  +NameEdit->text()+".so\" -o \""
 			  +NameEdit->text()+".so\" \""
           +NameEdit->text()+".o\" ../Vector.o"
-			  +"> /tmp/HyperspaceExplorer.link.errors 2>&1");    
+			  +"> /tmp/HyperspaceExplorer.link.errors 2>&1");
   if (!Success) {
     QFile Errs ("/tmp/HyperspaceExplorer.link.errors");
     Errs.open (QIODevice::ReadOnly);

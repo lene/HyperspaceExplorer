@@ -1,7 +1,7 @@
 //
 // C++ Interface: PluginCreator
 //
-// Description: 
+// Description:
 //
 //
 // Author: Helge Preuss <scout@hyperspace-travel.de>, (C) 2008
@@ -13,12 +13,17 @@
 #define PLUGIN_CREATOR_H
 
 class PluginCreator {
-    public: 
+    public:
         virtual ~PluginCreator() { }
     protected:
+        virtual bool loadFunction() = 0;
+        virtual bool loadFunction(const QString &, QDialog *);
+        virtual bool doLoadFunction(const QString &) = 0;
         virtual void writeSource () = 0;
         bool compile (QString);
         bool link (QString);
+
+        QString LibraryName;
 };
 
 #endif

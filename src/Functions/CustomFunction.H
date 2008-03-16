@@ -1,7 +1,7 @@
 
 //      project:      hyperspace explorer
-//      module:       
-//      contains:     
+//      module:
+//      contains:
 //      compile with: make all
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
@@ -18,19 +18,19 @@ template<class function_type>
         CustomFunctionBase(): handle (NULL) {}
         QString symbolic ();
         bool isValid() const { return valid; }
-        
+
     protected:
         bool loadFunction (const QString &);
         void setValid() { valid = true; }
         void setInvalid() { valid = false; }
-        
+
         function_type *func;
         void *handle;
         bool valid;
 };
 
-class CustomFunction: 
-        public Function, 
+class CustomFunction:
+        public Function,
         public CustomFunctionBase<Function::raw_function_type> {
     public:
         CustomFunction (double _tmin, double _tmax, double _dt,
@@ -90,7 +90,7 @@ template<class function_type>
         bool CustomFunctionBase<function_type>::loadFunction(const QString &libName) {
     static char *error;
 
-    handle = dlopen (libName, RTLD_LAZY);
+    handle = dlopen (libName.toStdString().c_str(), RTLD_LAZY);
     if (!handle) {
         std::cerr << "Error opening library: " << dlerror() << std::endl;
         return false;
@@ -114,7 +114,7 @@ template<class function_type>
     sym = (STRING (*)())dlsym(handle, "symbolic");
     char *error;
     static char *ret;
-    
+
     if ((error = dlerror()) != NULL)  {
         std::cerr << "Error finding symbolic description in " << error << std::endl;
         return QString ("something");

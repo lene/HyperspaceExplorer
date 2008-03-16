@@ -42,8 +42,8 @@ using std::endl;
  *  hardcoded default values, creates the menus and accelerators
  *  @param parent	parent QWidget, defaults to NULL
  *  @param name		name, defaulting to ""                                */
-XQGLWidget::XQGLWidget (QWidget *parent, const char *name) :
-    QGLWidget (parent, name), DrawObject (0),
+XQGLWidget::XQGLWidget (QWidget *parent) :
+    QGLWidget (parent), DrawObject (0),
     R (10), psi (0), theta (0), phi (0),
     Background (4, 0.25, 0.25, 0.25, 1.), Alpha (1.0),
     light (true), fog (true), transparent (false), shade (true), colors (true) {
@@ -51,14 +51,14 @@ XQGLWidget::XQGLWidget (QWidget *parent, const char *name) :
 }
 
 /** OpenGL initialization
- *  setting background colors, setting up lighting, shading, fog and 
+ *  setting background colors, setting up lighting, shading, fog and
  *  transparence                                                              */
 void XQGLWidget::initializeGL (void) {
     SingletonLog::Instance().log("XQGLWidget::initializeGL()");
 
     glEnable (GL_DEPTH_TEST);                   //  enable 3D mode, sotosay
     glEnable (GL_NORMALIZE);                    //  automatically normalize surface normals
-  
+
     glClearColor (Background[0], Background[1], Background[2], Background[3]);
                                                 //  set background color
     if (!doubleBuffer ()) cerr << "Widget is single buffered\n";  //  bad luck; balk but continue
@@ -100,7 +100,7 @@ void XQGLWidget::InitFog  (void) {
     if (fog) {
         glEnable (GL_FOG);                      //  enable depth cueing
         SetupDepthCue (R, 1.5);                 //  set depth cue parameters
-    } else 
+    } else
         glDisable (GL_FOG);                     //  disable depth cueing
 }
 
@@ -118,12 +118,12 @@ void XQGLWidget::InitTransparence (void) {
         glDisable (GL_LINE_SMOOTH);                         //  ..
         glDisable (GL_POLYGON_SMOOTH);                      //  ..
         glEnable  (GL_CULL_FACE);                           //                      *
-    } 
+    }
 }
 
 /** changes global transparence Alpha to a
  *  @param a int e [0, 255]                                                   */
-void XQGLWidget::SetAlpha (int a) { 
+void XQGLWidget::SetAlpha (int a) {
     Alpha = float (a)/255.;                     //  calculate Alpha
     InitTransparence ();                        //  change GL state
     repaint ();                                 //  update picture
@@ -182,7 +182,7 @@ void XQGLWidget::resizeGL (int width, int height) {
 }
 
 
-/** ViewPos (psi, theta, phi) 
+/** ViewPos (psi, theta, phi)
     called any time the viewing angle is changed on the command widget        */
 void XQGLWidget::ViewPos (double psi_, double theta_, double phi_) {
     if ((psi != psi_) || (theta != theta_) || (phi != phi_)) {    //  any change?
@@ -195,7 +195,7 @@ void XQGLWidget::ViewPos (double R_) {
         R = R_;                                 //  update value
         resizeGL (width (), height());          //  update GL state
         updateGL ();                            //  update picture
-    } 
+    }
 }
 
 void XQGLWidget::SetupDepthCue (float dist, float size) {
@@ -203,9 +203,9 @@ void XQGLWidget::SetupDepthCue (float dist, float size) {
   for (unsigned i = 0; i < 4; i++) back[i] = Background[i];
 
   glFogi (GL_FOG_MODE,  GL_LINEAR);             //  set fog mode to linear
-  glFogfv(GL_FOG_COLOR, back);                  //  ... fog color 
+  glFogfv(GL_FOG_COLOR, back);                  //  ... fog color
   glFogf (GL_FOG_START, dist-size/2.);          //  ...
-  glFogf (GL_FOG_END,   dist+size/2.*Globals::Instance().SR3); 
+  glFogf (GL_FOG_END,   dist+size/2.*Globals::Instance().SR3);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -263,21 +263,16 @@ void XQGLWidget::mousePressEvent (QMouseEvent *E) {
 #endif
   int ButtonPressed = E->button ();
   if (ButtonPressed == Qt::RightButton) {
-#   if (QT_VERSION < 300)
-//      menu->exec (QCursor::pos ());
-#   else
-//      menu->exec (this->mapToGlobal(E->pos()));
 #ifdef DEBUG
       cerr << "  ButtonPressed == Qt::RightButton\n";
 #endif
-#   endif
   }
   else if (ButtonPressed == Qt::LeftButton) {
-    xpressed = E->x (); ypressed = E->y (); }
+    xpressed = E->x(); ypressed = E->y(); }
   else if (ButtonPressed == Qt::MidButton) {
-    if (E->state () && Qt::ShiftButton) ViewPos (R+1);
+    if (E->modifiers() && Qt::ShiftModifier) ViewPos (R+1);
     else                            // ViewPos (R-1); }
-      ypressed = E->y (); } }
+      ypressed = E->y(); } }
 
 
 /*******************************************************************************
@@ -286,17 +281,17 @@ void XQGLWidget::mousePressEvent (QMouseEvent *E) {
  *  uses HARDCODED values for zooming!
  *  @param e	Qt's mouse event information structure
  */
-void XQGLWidget::mouseReleaseEvent (QMouseEvent *E) { 
+void XQGLWidget::mouseReleaseEvent (QMouseEvent *E) {
   int ButtonPressed = E->button ();
   if (ButtonPressed == Qt::LeftButton) {
     int dx = E->x () - xpressed, dy = E->y () -ypressed,
       dtheta = dx*90/width (), dpsi   = dy*90/height ();
     theta += dtheta; psi += dpsi;
-    repaint (); } 
+    repaint (); }
   if (ButtonPressed == Qt::MidButton) {
     double dr = double (E->y ()-ypressed)/height ()*5.;   //  the 5 may have to be reviewed
     if (dr) ViewPos (R*pow (1.25, dr));                   //  exponential change (1.25 also)
-    else if (!(E->state () && Qt::ShiftButton))
+    else if (!(E->modifiers() && Qt::ShiftModifier))
       ViewPos (R/1.25);
     //    cerr << "dr = " << dr << " R = " <<R << endl;
   }
@@ -326,40 +321,40 @@ void XQGLWidget::SetupAccel (void) {
   accel->connectItem (accel->insertItem (Qt::Key_Left),  this, SLOT (Left ()));
   accel->connectItem (accel->insertItem (Qt::Key_Right), this, SLOT (Right ()));
   accel->connectItem (accel->insertItem (Qt::Key_Up),    this, SLOT (Up ()));
-  accel->connectItem (accel->insertItem (Qt::Key_Down),  this, SLOT (Down ())); 
+  accel->connectItem (accel->insertItem (Qt::Key_Down),  this, SLOT (Down ()));
 
   accel->connectItem (accel->insertItem (Qt::Key_Left+Qt::SHIFT),  this, SLOT (SLeft ()));
   accel->connectItem (accel->insertItem (Qt::Key_Right+Qt::SHIFT), this, SLOT (SRight ()));
-  accel->connectItem (accel->insertItem (Qt::Key_Up+Qt::SHIFT),    this, SLOT (SUp ())); 
+  accel->connectItem (accel->insertItem (Qt::Key_Up+Qt::SHIFT),    this, SLOT (SUp ()));
   accel->connectItem (accel->insertItem (Qt::Key_Down+Qt::SHIFT),  this, SLOT (SDown ()));
 
   accel->connectItem (accel->insertItem (Qt::Key_Left+Qt::ALT+Qt::CTRL),  this, SLOT (CALeft ()));
   accel->connectItem (accel->insertItem (Qt::Key_Right+Qt::ALT+Qt::CTRL), this, SLOT (CARight ()));
-  accel->connectItem (accel->insertItem (Qt::Key_Up+Qt::ALT+Qt::CTRL),    this, SLOT (CAUp ())); 
-  accel->connectItem (accel->insertItem (Qt::Key_Down+Qt::ALT+Qt::CTRL),  this, SLOT (CADown ())); 
- 
-  accel->connectItem (accel->insertItem (Qt::Key_A), this, SLOT (A ())); 
+  accel->connectItem (accel->insertItem (Qt::Key_Up+Qt::ALT+Qt::CTRL),    this, SLOT (CAUp ()));
+  accel->connectItem (accel->insertItem (Qt::Key_Down+Qt::ALT+Qt::CTRL),  this, SLOT (CADown ()));
+
+  accel->connectItem (accel->insertItem (Qt::Key_A), this, SLOT (A ()));
 
   accel->connectItem (accel->insertItem (Qt::Key_Q+Qt::CTRL), qApp, SLOT (quit ())); }
- 
+
 #endif
 /*******************************************************************************
  *  "Left" key: rotate 5 degrees left
  */
 void XQGLWidget::Left () {
   theta -= 5; repaint (); }
- 
+
 /*******************************************************************************
  *  "Right" key: rotate 5 degrees right
  */
 void XQGLWidget::Right () {
   theta += 5; repaint (); }
- 
+
 /*******************************************************************************
  *  "Up" key: rotate 5 degrees up
  */
 void XQGLWidget::Up () {
-  psi -= 5; repaint (); } 
+  psi -= 5; repaint (); }
 
 /*******************************************************************************
  *  "Down" key: rotate 5 degrees down
@@ -392,24 +387,24 @@ void XQGLWidget::SUp () {
 void XQGLWidget::SDown () {
   psi += 45; repaint (); }
 
- 
+
 /*******************************************************************************
  *  Ctrl-Alt-"Left" key: rotate 1 degrees left
  */
 void XQGLWidget::CALeft () {
   theta -= 1; repaint (); }
- 
+
 /*******************************************************************************
  *  Ctrl-Alt-"Right" key: rotate 1 degrees left
  */
 void XQGLWidget::CARight () {
   theta += 1; repaint (); }
- 
+
 /*******************************************************************************
  *  Ctrl-Alt-"Up" key: rotate 1 degrees left
  */
 void XQGLWidget::CAUp () {
-  psi -= 1; repaint (); } 
+  psi -= 1; repaint (); }
 
 /*******************************************************************************
  *  Ctrl-Alt-"Down" key: rotate 1 degrees left
@@ -422,13 +417,16 @@ void XQGLWidget::CADown () {
  *  "A" key: should open a slider to adjust alpha value. not yet implemented
  *  correctly.
  */
-void XQGLWidget::A () { 
-  QSlider *GetAlpha = new QSlider    (0  , 255,  64, int (Alpha*255),
-				      Qt::Horizontal, this);
+void XQGLWidget::A () {
+  QSlider *GetAlpha = new QSlider (Qt::Horizontal, this);
+  GetAlpha->setMinimum(0);
+  GetAlpha->setMaximum(255);
+  GetAlpha->setPageStep(64);
+  GetAlpha->setValue(int(Alpha*255));
   GetAlpha->setTickInterval (16);
   GetAlpha->setFixedSize (200, 20);
   GetAlpha->show ();
-  
+
   connect (GetAlpha, SIGNAL(valueChanged(int)), this, SLOT(SetAlpha(int))); }
 
 

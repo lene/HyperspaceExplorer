@@ -1,7 +1,7 @@
 
 //      project:      hyperspace explorer
-//      module:       
-//      contains:     
+//      module:
+//      contains:
 //      compile with: make all
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
@@ -29,14 +29,14 @@ class XQGLWidget: public QGLWidget {
     Q_OBJECT
 
     public:
-        XQGLWidget (QWidget * = 0, const char *name = 0);
-        bool SetDrawObject (GLObject *obj) { 
-            DrawObject = obj; 
-            return *DrawObject; 
+        XQGLWidget (QWidget * = 0);
+        bool SetDrawObject (GLObject *obj) {
+            DrawObject = obj;
+            return *DrawObject;
         }
         bool SetDrawObject (GLuint list) {
-            DrawObject = new GLObject (list); 
-            return *DrawObject; 
+            DrawObject = new GLObject (list);
+            return *DrawObject;
         }
 
         void SetBackgroundColor (const VecMath::Vector<4> &RGBA) { Background = RGBA; }
@@ -56,9 +56,9 @@ class XQGLWidget: public QGLWidget {
         void Draw (void);
 
         void InitLight (void);
-        void InitShade (void); 
-        void InitFog  (void); 
-        void InitTransparence (void); 
+        void InitShade (void);
+        void InitFog  (void);
+        void InitTransparence (void);
 
     protected:
         GLObject *DrawObject;

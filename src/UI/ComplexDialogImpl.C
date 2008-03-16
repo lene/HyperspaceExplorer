@@ -1,18 +1,18 @@
 
 //      project:      hyperspace explorer
-//      module:       
-//      contains:     
+//      module:
+//      contains:
 //      compile with: make all
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
 
 
-#include <qapplication.h>
-#include <qmessagebox.h>
-#include <qlineedit.h>
-#include <qfile.h>
-#include <q3filedialog.h>
-#include <qstringlist.h>
+#include <QApplication>
+#include <QMessageBox>
+#include <QLineEdit>
+#include <QFile>
+#include <QFileDialog>
+#include <QStringList>
 
 #include <fstream>
 #include <dlfcn.h>
@@ -43,9 +43,8 @@ using VecMath::Vector;
 //ComplexDialogImpl::ComplexDialogImpl (QWidget *parent, const char *name,
 //					bool modal, Qt::WFlags f) :
 //	ComplexDialog (parent, name, modal, f) {
-ComplexDialogImpl::ComplexDialogImpl (QWidget *parent, const char *name,
-					bool modal, Qt::WFlags f) :
-	QDialog (parent, name, modal, f) {
+ComplexDialogImpl::ComplexDialogImpl (QWidget *parent, Qt::WFlags f) :
+	QDialog (parent, f) {
   setupUi(this);
   connect (okButton, SIGNAL(clicked()), this, SLOT(checkValidity()));
   connect (loadButton, SIGNAL(clicked()), this, SLOT(loadFunction()));
@@ -68,14 +67,16 @@ QString ComplexDialogImpl::libraryName () {
  *  @return	success (?)
  */
 bool ComplexDialogImpl::loadFunction() {
-  QString libName;
+    return PluginCreator::loadFunction("complex", this);
+/*
+    QString libName;
   //  iterate through all resource directories until you find a plugin subdirectory
-  for (QStringList::Iterator it = Globals::Instance().rcdirs.begin(); 
-       it != Globals::Instance().rcdirs.end(); 
+  for (QStringList::Iterator it = Globals::Instance().rcdirs.begin();
+       it != Globals::Instance().rcdirs.end();
        ++it ) {
     QDir current (*it);
     if (current.exists ("plugins/complex")) {	//  plugin subdir present?
-      libName = Q3FileDialog::getOpenFileName(current.absPath ()+"/plugins/complex",
+      libName = QFileDialog::getOpenFileName(current.absolutePath ()+"/plugins/complex",
 					     "Libraries (*.so*)",
 					     this,
 					     "Open a function"
@@ -90,8 +91,9 @@ bool ComplexDialogImpl::loadFunction() {
     LibraryName = libName;
     accept();				        //  WHAT GOES ON HERE? forgot to check <blush>
   }
-  
+
   return false;
+    */
 }
 
 
@@ -102,12 +104,12 @@ bool ComplexDialogImpl::loadFunction() {
  *  @param libName	filename for the selected DLL
  *  @return		success
  */
-bool ComplexDialogImpl::loadFunction(const QString &libName) {
+bool ComplexDialogImpl::doLoadFunction(const QString &libName) {
   void *handle;
   Vector<4> (*f)(double, double, double);
   char *error;
-      
-  handle = dlopen (libName, RTLD_LAZY);
+
+  handle = dlopen (libName.toStdString().c_str(), RTLD_LAZY);
   if (!handle) {
     QMessageBox::warning (this, "Error opening library", dlerror());
     return false;
@@ -119,15 +121,14 @@ bool ComplexDialogImpl::loadFunction(const QString &libName) {
     return false;
   }
 
-  dlclose(handle); 
-      
-  return true;    
+  dlclose(handle);
+
+  return true;
 }
 
 
-/*******************************************************************************
- *  this function is called when the user clicks the OK button in the Function Dialog.
- *  checks whether all fields are filled in, whether the given function is valid C++ 
+/** this function is called when the user clicks the OK button in the Function Dialog.
+ *  checks whether all fields are filled in, whether the given function is valid C++
  *  syntax, ie. whether it compiles, and whether the compiled code links into a dynamic
  *  library.
  *  as a side effect, it generates this library.
@@ -144,9 +145,8 @@ bool ComplexDialogImpl::checkValidity() {
     return false;
   }
 
-  QString currentPath = QDir::currentDirPath ();
-  //  QDir::setCurrent (qApp->applicationDirPath ());
-  QDir::setCurrent (*(Globals::Instance().rcdirs.begin())); // qApp->applicationDirPath ());
+  QString currentPath = QDir::currentPath ();
+  QDir::setCurrent (*(Globals::Instance().rcdirs.begin()));
 
   if (!QDir::current ().exists ("plugins"))
     QDir::current ().mkdir ("plugins");
@@ -156,25 +156,25 @@ bool ComplexDialogImpl::checkValidity() {
 
   writeSource ();
 
-  if (!compile (nameEdit->text())) {					//  try to compile
-    QDir::setCurrent (currentPath);  
+  if (!compile (nameEdit->text())) {    //  try to compile
+    QDir::setCurrent (currentPath);
     return false;
   }
-  
+
   if (!link (nameEdit->text())) {					//  try to link
-    QDir::setCurrent (currentPath);     
+    QDir::setCurrent (currentPath);
     return false;
   }
   //  try to open the resulting dynamic library
   //  the name of the dynamic library must be given absolutely, because dlopen ()
   //  only checks LD_LIBRARY_PATH, which usually does not contain "."
-  if (loadFunction (QDir::currentDirPath ()+"/"+nameEdit->text()+".so")) {
-    LibraryName = QDir::currentDirPath ()+"/"+nameEdit->text()+".so";
+  if (doLoadFunction (QDir::currentPath ()+"/"+nameEdit->text()+".so")) {
+    LibraryName = QDir::currentPath ()+"/"+nameEdit->text()+".so";
     accept();
   }
 
   QDir::setCurrent (currentPath);
-  
+
   return true;
 }
 
@@ -187,7 +187,7 @@ bool ComplexDialogImpl::checkValidity() {
  *  C++ syntax.
  */
 void ComplexDialogImpl::writeSource () {
-  ofstream SourceFile (nameEdit->text()+".C");
+  ofstream SourceFile ((nameEdit->text().toStdString()+".C").c_str());
 
   SourceFile << "#include \"Vector.H\"\n\
 #include <complex>\n\
@@ -212,7 +212,7 @@ Vector<4> f (double u, double v) {\n\
 char *symbolic () {\n\
     return \"" << WEdit->text().toStdString() << "\"; \n\
 }\n";
-  
+
     SourceFile.close ();
 }
 

@@ -1,7 +1,7 @@
 
 //      project:      hyperspace explorer
-//      module:       
-//      contains:     
+//      module:
+//      contains:
 //      compile with: make all
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
@@ -14,7 +14,6 @@
 #include <QStringList>
 #include <QString>
 #include <QDir>
-#include <QMenuBar>
 
 #include "4DView.H"
 #include "Menu4D.H"
@@ -63,7 +62,7 @@ void evaluate_benchmark (double2D results) {
     cout << setprecision (3) << "<td>" << avg  << "s 	&plusmn;" << sqdev << "s</td>";
     cout << "</tr>" << endl;
   }
-    
+
 }
 
 /** writes a HTML table of the benchmark results given as parameter to cout
@@ -74,7 +73,7 @@ void evaluate_benchmark (double2D results) {
 void evaluate_benchmark (double2Dmap results_by_style) {
 
   cout << "<table>\n";
-  
+
   double2Dmap::iterator it;
 
   for (it = results_by_style.begin (); it != results_by_style.end (); ++it) {
@@ -87,7 +86,7 @@ void evaluate_benchmark (double2Dmap results_by_style) {
   }
 
   cout << "</table>\n";
-  
+
 }
 
 
@@ -123,17 +122,17 @@ double2D run_benchmarks (C4DView & view,
 			const unsigned num_steps,
 			const double step) {
   double2D results (2);
-  
+
   results[0] = vector<double> (num_runs);
   results[1] = vector<double> (num_runs);
   for (unsigned i = 0; i < num_runs; i++) {
     cerr << " " << i+1 << " / " << num_runs << "  \r";
-    results[0][i] = view.Benchmark3D (num_steps, step, step, step, true);   
-    results[1][i] = view.Benchmark4D (num_steps, step, step, step, true);   
+    results[0][i] = view.Benchmark3D (num_steps, step, step, step, true);
+    results[1][i] = view.Benchmark4D (num_steps, step, step, step, true);
   }
-  
+
   return results;
-}	
+}
 
 
 /** runs rotation in four and three dimensions on a C4DView in solid and
@@ -186,7 +185,7 @@ double2Dmap benchmarks_by_style (C4DView & view, const unsigned num_runs,
 void benchmark (const unsigned num_runs = 10) {
     unsigned num_steps = 360;
     double step = 1.;
-  
+
     C4DView view;
 
     {
@@ -209,7 +208,7 @@ void benchmark (const unsigned num_runs = 10) {
 
     evaluate_benchmark (results_by_object);
   }
-  
+
   exit (0);
 }
 
@@ -223,7 +222,7 @@ void benchmark (const unsigned num_runs = 10) {
 void parse (int argc, char *argv[]) {
     for (int i = 0; i < argc; i++) {
         if (QString (argv[i]) == QString ("--rcdir"))
-            if (i+1 < argc) 
+            if (i+1 < argc)
                 Globals::Instance().rcdirs.append (QString (argv[i+1]));
         if (QString (argv[i]) == QString ("--help") ||
 	    QString (argv[i]) == QString ("-h")) {
@@ -238,7 +237,7 @@ void parse (int argc, char *argv[]) {
 }
 
 /** add the default entries to the path to look for rc files (and plugins,
- *  and documentation): $HOME/.HyperspaceExplorer and 
+ *  and documentation): $HOME/.HyperspaceExplorer and
  *  $PREFIX/share/HyperspaceExplorer (where PREFIX is /usr/local per default  */
 void setRCFilePath() {
     QString rcdir (".HyperspaceExplorer");
@@ -249,11 +248,11 @@ void setRCFilePath() {
     if (!QDir::home ().exists (rcdir+"/plugins"))
         QDir::home ().mkdir (rcdir+"/plugins");
     if (!QDir::home ().exists (rcdir+"/plugins/Vector.H")) {
-        symlink ((qApp->applicationDirPath()+"/Vector.H").ascii(),
-                  (QDir::home().absPath()+"/"+rcdir+"/plugins/Vector.H").ascii());
+        symlink ((qApp->applicationDirPath()+"/Vector.H").toAscii(),
+                  (QDir::home().absolutePath()+"/"+rcdir+"/plugins/Vector.H").toAscii());
     }
-    Globals::Instance().rcdirs.append (QDir::home ().absPath ()+"/"+rcdir);
-    
+    Globals::Instance().rcdirs.append (QDir::home ().absolutePath ()+"/"+rcdir);
+
     QString prefix(make_str(PREFIX));
     Globals::Instance().rcdirs.append(prefix+"/share/HyperspaceExplorer");
 }
@@ -266,7 +265,7 @@ int main (int argc, char *argv[]) {
     QApplication app (argc, argv);
 
     setRCFilePath();
-    
+
     parse (argc, argv);
 
     //  okay to set . last in rc file path? shouldn't it be first?
@@ -275,9 +274,9 @@ int main (int argc, char *argv[]) {
     C4DView view;
     Globals::Instance().getMainWindow()->setCentralWidget(&view);
     Globals::Instance().getMainWindow()->resize(580,600);
-  
+
     Globals::Instance().getMainWindow()->show();
-  
+
     int ret = app.exec ();
     return ret;
 }

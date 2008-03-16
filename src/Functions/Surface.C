@@ -3,8 +3,8 @@
 //      module:       
 //      contains:     
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
-//	license:      GPL (see License.txt)
+//      author:       helge preuss (scout@hyperspace-travel.de)
+//      license:      GPL (see License.txt)
 
 
 #include "Globals.H"
@@ -18,52 +18,46 @@ using VecMath::Matrix;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-
-/*******************************************************************************
- *  Surface default c'tor
- *  zeroes everything
- */
+/** Surface default c'tor
+ *  zeroes everything    */
 Surface::Surface ():
-    umin (0),	umax (0),	du (0),
-    vmin (0),	vmax (0),	dv (0),
+    umin (0), umax (0), du (0),
+    vmin (0), vmax (0), dv (0),
     usteps (0), vsteps (0),
     NumVertices (0),
     F (4),
-       Xtrans (NULL), Xscr (NULL), XtransChunk (NULL), XscrChunk (NULL), 
+    Xtrans (NULL), Xscr (NULL), XtransChunk (NULL), XscrChunk (NULL), 
     R (NULL), G (NULL), B (NULL), RGBChunk (NULL) { }
 
 
-/*******************************************************************************
- *  Function c'tor given a definition set in R� (as parameter space)
- *  @param _umin	minimal value in u
- *  @param _umax	maximal value in u
- *  @param _du		stepsize in u
- *  @param _vmin	minimal value in v
- *  @param _vmax	maximal value in v
- *  @param _dv		stepsize in v
- */
+/** Function c'tor given a definition set in R� (as parameter space)
+ *  @param _umin minimal value in u
+ *  @param _umax maximal value in u
+ *  @param _du stepsize in u
+ *  @param _vmin minimal value in v
+ *  @param _vmax maximal value in v
+ *  @param _dv stepsize in v                                                  */
 Surface::Surface (const QString &name,
                   double _umin, double _umax, double _du,
                   double _vmin, double _vmax, double _dv):
-    umin (_umin),	umax (_umax),	du (_du/2),
-    vmin (_vmin),	vmax (_vmax),	dv (_dv/2),
-    usteps (unsigned (2*(umax-umin)/du+1)), vsteps (unsigned (2*(vmax-vmin)/dv+1)),
+    umin (_umin), umax (_umax), du (_du/2),
+    vmin (_vmin), vmax (_vmax), dv (_dv/2),
+    usteps (unsigned (2*(umax-umin)/du+1)),
+    vsteps (unsigned (2*(vmax-vmin)/dv+1)),
     NumVertices (0),
     F (4),
-       Xtrans (NULL), Xscr (NULL), XtransChunk (NULL), XscrChunk (NULL), 
-    R (NULL), G (NULL), B (NULL), RGBChunk (NULL) { 
+    Xtrans (NULL), Xscr (NULL), XtransChunk (NULL), XscrChunk (NULL),
+    R (NULL), G (NULL), B (NULL), RGBChunk (NULL) {
         functionName = name;
-    }
+}
 
 
-/*******************************************************************************
- *  Initialize the temporary storage areas Xscr[][], Xtrans[][], 
- *                                         R[][], G[][], B[][]
- */
+/** Initialize the temporary storage areas Xscr[][], Xtrans[][],
+ *                                         R[][], G[][], B[][]                */
 void Surface::InitMem (void) {
     XscrChunk = new Vector<3> [(usteps+2)*(vsteps+2)];
     Xscr = new Vector<3> * [usteps+2];
-	
+
     XtransChunk = new Vector<4> [(usteps+2)*(vsteps+2)];
     Xtrans = new Vector<4> * [usteps+2];
 
@@ -73,21 +67,19 @@ void Surface::InitMem (void) {
     B = new float * [usteps+2];
 
     for (unsigned u = 0; u <= usteps+1; u++) {
-	
-	Xscr[u]   = XscrChunk+u*(usteps+2);
-	Xtrans[u] = XtransChunk+u*(usteps+2);
 
-	R[u] = RGBChunk+1*u*(usteps+2);
-	G[u] = RGBChunk+2*u*(usteps+2);
-	B[u] = RGBChunk+3*u*(usteps+2);
-    }			//	for (unsigned u = 0; u <= usteps+1; u++) 
-}			//	Initialize ()
+        Xscr[u]   = XscrChunk+u*(usteps+2);
+        Xtrans[u] = XtransChunk+u*(usteps+2);
+
+        R[u] = RGBChunk+1*u*(usteps+2);
+        G[u] = RGBChunk+2*u*(usteps+2);
+        B[u] = RGBChunk+3*u*(usteps+2);
+    }
+}
 
 
-/*******************************************************************************
- *  allocate and initialize X[][] with values of f()
- *  call InitMem () above
- */
+/** allocate and initialize X[][] with values of f()
+ *  call InitMem () above                                                     */
 void Surface::Initialize () {
     X = new Vector<4> * [usteps+2];
     Xchunk = new Vector<4> [(usteps+2)*(vsteps+2)];
@@ -128,17 +120,15 @@ void Surface::ReInit(double, double, double,
     umin = _umin; umax = _umax; du = _du;
     vmin = _vmin; vmax = _vmax; dv = _dv;
     usteps = unsigned ((umax-umin)/du+1); vsteps = unsigned ((vmax-vmin)/dv+1);
-	
-	//	Free ();
-	//	Delete (Xchunk); Delete (XscrChunk); Delete (XtransChunk);
+
+    //  Free ();
+    //  Delete (Xchunk); Delete (XscrChunk); Delete (XtransChunk);
     Delete (X); Delete (Xscr); Delete (Xtrans); Delete (R);
     Initialize ();
 }
 
 
-/*******************************************************************************
- *  auxiliary function to safely free all member arrays
- */
+/** auxiliary function to safely free all member arrays */
 void Surface::Free (void) {
     for (unsigned u = 0; u <= usteps+1; u++) {
 // Delete (X[u]);
@@ -161,33 +151,27 @@ void Surface::Free (void) {
 }
 
 
-/*******************************************************************************
- *  return the approximate amount of memory needed to display a Function of current
- *  definition set
+/** return the approximate amount of memory needed to display a Function of
+ *  current definition set
  *  uses hardcoded and experimentally found value for memory per cell - ICK!
- *  @return		approx. mem required
- */
+ *  @return approx. mem required                                              */
 unsigned long Surface::MemRequired (void) {
     return (tsteps+2)*(usteps+2);
 }
 
 
-/*******************************************************************************
- *  Surface destructor
- */
+/** Surface destructor */
 Surface::~Surface() {
     Free ();
 }
 
 
-/*******************************************************************************
- *  calculate normal to function at a given point in definition set
+/** calculate normal to function at a given point in definition set
  *  no further assumption is made than that f () is continuous
  *  this function is not yet used anywhere, but i like it
- *  @param uu		u value
- *  @param vv		v value
- *  @return		surface normal, normalized
- */
+ *  @param uu u value
+ *  @param vv v value
+ *  @return surface normal, normalized                                        */
 Vector<4> &Surface::normal (double uu, double vv) {
     static Vector<4> n;
 
@@ -200,31 +184,29 @@ Vector<4> &Surface::normal (double uu, double vv) {
 }
 
 
-/*******************************************************************************
- *  numerical calculation of the derivatives in u and v:
+/** numerical calculation of the derivatives in u and v:
  *
- *		df	  f(u+h, v) - f (u)   df
- *		-- =  lim -----------------,  -- analogously
- *		du   h->0      	  h   	      dv
+ *  df        f(u+h, v) - f (u)   df
+ *  -- =  lim -----------------,  -- analogously
+ *  du    h->0      h             dv
  *
- *  @param uu		u value
- *  @param vv		v value
- *  @return		gradient in t, u and v as array
-*/
-Vector<4> *Surface::df (double uu, double vv) {	
+ *  @param uu u value
+ *  @param vv v value
+ *  @return gradient in t, u and v as array                                   */
+Vector<4> *Surface::df (double uu, double vv) {
 
-    static Vector<4> F0;			//	f (u, v)
-    static double h = 1e-5;			//	maybe tweak to get best results
+    static Vector<4> F0;        //  f (u, v)
+    static double h = 1e-5;     //  maybe tweak to get best results
 
     static Vector<4> DF[3];
 
-    F0 = operator () (uu, vv);			
+    F0 = operator () (uu, vv);
 
-    F = operator () (uu+h, vv);			//	derive after u
-    DF[0] = (F-F0)/h;			
-    F = operator () (uu, vv+h);			//	derive after v
+    F = operator () (uu+h, vv); //  derive after u
+    DF[0] = (F-F0)/h;
+    F = operator () (uu, vv+h); //  derive after v
     DF[1] = (F-F0)/h;
-    DF[2] = (F-F0)/h;				//	are you sure this is correct?
+    DF[2] = (F-F0)/h;           //  are you sure this is correct?
 
     return DF; 
 }
@@ -234,20 +216,19 @@ Vector<4> *Surface::df (double uu, double vv) {
  *  as I look at it, i think this could be optimized by making the transformation
  *  matrices static and only canging the corresponding entries... but how to
  *  make this beautifully, i don't know
- *  @param thetaxy	rotation around xy plane (z axis);  ignored because 3D rotation takes care of it
- *  @param thetaxz	rotation around xz plane (y axis);  ignored because 3D rotation takes care of it
- *  @param thetaxw	rotation around xw plane
- *  @param thetayz	rotation around xy plane (x axis);  ignored because 3D rotation takes care of it
- *  @param thetayw	rotation around yw plane
- *  @param thetazw	rotation around zw plane
- *  @param tx		translation in x direction
- *  @param ty		translation in y direction
- *  @param tz		translation in z direction
- *  @param tw		translation in w direction
- */
-void Surface::Transform (double, double, double thetaxw, 
+ *  @param thetaxy rotation around xy plane (z axis);  ignored because 3D rotation takes care of it
+ *  @param thetaxz rotation around xz plane (y axis);  ignored because 3D rotation takes care of it
+ *  @param thetaxw rotation around xw plane
+ *  @param thetayz rotation around xy plane (x axis);  ignored because 3D rotation takes care of it
+ *  @param thetayw rotation around yw plane
+ *  @param thetazw rotation around zw plane
+ *  @param tx translation in x direction
+ *  @param ty translation in y direction
+ *  @param tz translation in z direction
+ *  @param tw translation in w direction                                      */
+void Surface::Transform (double, double, double thetaxw,
                          double, double thetayw, double thetazw,
-			 double tx, double ty, double tz, double tw) {
+                         double tx, double ty, double tz, double tw) {
     Matrix<4> Rxw = Matrix<4> (0, 3, thetaxw),
               Ryw = Matrix<4> (1, 3, thetayw),
               Rzw = Matrix<4> (2, 3, thetazw),
@@ -261,136 +242,127 @@ void Surface::Transform (double, double, double thetaxw,
 
 
 /** projects a Surface into three-space
- *  @param scr_w	w coordinate of screen
- *  @param cam_w	w coordinate of camera
- *  @param depthcue4d	wheter to use hyperfog/dc
- */
+ *  @param scr_w w coordinate of screen
+ *  @param cam_w w coordinate of camera
+ *  @param depthcue4d wheter to use hyperfog/depth cue                        */
 void Surface::Project (double scr_w, double cam_w, bool depthcue4d) {
     double ProjectionFactor;
     double Wmax = 0, Wmin = 0;
 
     for (unsigned u = 0; u <= usteps+1; u++) 
-	for (unsigned v = 0; v <= vsteps+1; v++) {
+        for (unsigned v = 0; v <= vsteps+1; v++) {
 
-	    if (Xtrans[u][v][3] < Wmin) Wmin = Xtrans[u][v][3];
-	    if (Xtrans[u][v][3] > Wmax) Wmax = Xtrans[u][v][3];
+            if (Xtrans[u][v][3] < Wmin) Wmin = Xtrans[u][v][3];
+            if (Xtrans[u][v][3] > Wmax) Wmax = Xtrans[u][v][3];
 
-	    ProjectionFactor = (scr_w-cam_w)/(Xtrans[u][v][3]-cam_w);
+            ProjectionFactor = (scr_w-cam_w)/(Xtrans[u][v][3]-cam_w);
 
-	    for (unsigned i = 0; i <= 2; i++)
-		Xscr[u][v][i] = ProjectionFactor*Xtrans[u][v][i];
+            for (unsigned i = 0; i <= 2; i++)
+                Xscr[u][v][i] = ProjectionFactor*Xtrans[u][v][i];
 
-	    R[u][v] = float (u)/float (usteps);
-	    G[u][v] = float (v)/float (vsteps);
-	    B[u][v] = (Wmax-X[u][v][3])/(Wmax-Wmin);
-	}
+            R[u][v] = float (u)/float (usteps);
+            G[u][v] = float (v)/float (vsteps);
+            B[u][v] = (Wmax-X[u][v][3])/(Wmax-Wmin);
+    }
 
     if (!depthcue4d) return;
 
-    for (unsigned u = 0; u <= usteps+1; u++) 
-	for (unsigned v = 0; v <= vsteps+1; v++) {
-	    float DepthCueFactor = (Wmax-Xtrans[u][v][3])/(Wmax-Wmin)*0.9+0.1; //	??? !!!
-	    R[u][v] = 0.1+(R[u][v]-0.1)*DepthCueFactor;
-	    G[u][v] = 0.1+(G[u][v]-0.1)*DepthCueFactor;
-	    B[u][v] = 0.1+(B[u][v]-0.1)*DepthCueFactor;
-	}
+    for (unsigned u = 0; u <= usteps+1; u++)
+        for (unsigned v = 0; v <= vsteps+1; v++) {
+            float DepthCueFactor = (Wmax-Xtrans[u][v][3])/(Wmax-Wmin)*0.9+0.1; //	??? !!!
+            R[u][v] = 0.1+(R[u][v]-0.1)*DepthCueFactor;
+            G[u][v] = 0.1+(G[u][v]-0.1)*DepthCueFactor;
+            B[u][v] = 0.1+(B[u][v]-0.1)*DepthCueFactor;
+        }
 }
 
 
-/** draw the projected Surface (onto screen or into GL list, as it is)
- */
+/** draw the projected Surface (onto screen or into GL list, as it is)        */
 void Surface::Draw (void) {
     NumVertices = 0;
 
-    for (unsigned u = 0; u < usteps; u++) 
-	DrawStrip (u);
+    for (unsigned u = 0; u < usteps; u++)
+        DrawStrip (u);
 }
 
 
 /** draw the current strip of the projected Function
- *  @param u	current u value
- */
+ *  @param u current u value                                                  */
 void Surface::DrawStrip (unsigned u){
     glBegin (GL_QUAD_STRIP);
 
-    Globals::Instance().SetColor (R [u][0], G [u][0], B [u][0]);	
+    Globals::Instance().SetColor (R [u][0], G [u][0], B [u][0]);
     Globals::Instance().glVertex (Xscr[u][0]);
-    Globals::Instance().SetColor (R [u+1][0], G [u+1][0], B [u+1][0]);	
+    Globals::Instance().SetColor (R [u+1][0], G [u+1][0], B [u+1][0]);
     Globals::Instance().glVertex (Xscr[u+1][0]);
     NumVertices += 2;
 
     for (unsigned v = 1; v <= vsteps; v++) {
-        Globals::Instance().SetColor (R [u][v], G [u][v], B [u][v]);	
+        Globals::Instance().SetColor (R [u][v], G [u][v], B [u][v]);
         Globals::Instance().glVertex (Xscr[u][v]);
-        Globals::Instance().SetColor (R [u+1][v], G [u+1][v], B [u+1][v]);	
+        Globals::Instance().SetColor (R [u+1][v], G [u+1][v], B [u+1][v]);
         Globals::Instance().glVertex (Xscr[u+1][v]);
 
-	NumVertices += 2;
+        NumVertices += 2;
     }
- 		
+    
     glEnd ();
 }
 
 
-    ///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 
 /** Surface1 c'tor given a definition set in R� (as parameter space) 
- *  @param _umin	minimal value in u
- *  @param _umax	maximal value in u
- *  @param _du		stepsize in u
- *  @param _vmin	minimal value in v
- *  @param _vmax	maximal value in v
- *  @param _dv		stepsize in v
- *  @param _rad		radius
- */
+ *  @param _umin minimal value in u
+ *  @param _umax maximal value in u
+ *  @param _du stepsize in u
+ *  @param _vmin minimal value in v
+ *  @param _vmax maximal value in v
+ *  @param _dv stepsize in v                                                  */
 Surface1::Surface1 (double _umin, double _umax, double _du,
-		    double _vmin, double _vmax, double _dv):
+                    double _vmin, double _vmax, double _dv):
         Surface ("Surface 1", _umin, _umax, _du, _vmin, _vmax, _dv) {
     Initialize ();
 }
 
 /** Surface1 defining function
- *  @param uu		u value
- *  @param vv		v value
- *  @return		(sintht*sinpsi, costht*sinpsi, costht, cospsi)
- */
+ *  @param uu u value
+ *  @param vv v value
+ *  @return (sintht*sinpsi, costht*sinpsi, costht, cospsi)                    */
 Vector<4> &Surface1::f (double uu, double vv) {
     double sintht = sin (pi*uu), costht = cos (pi*uu),
-	sinpsi = sin (pi*vv), cospsi = cos (pi*vv),
-	Radius = 1;
+           sinpsi = sin (pi*vv), cospsi = cos (pi*vv),
+           Radius = 1;
     F[0] = Radius*sintht*sinpsi;
     F[1] = Radius*costht*sinpsi;
     F[2] = Radius*costht;
     F[3] = Radius*cospsi;
 
-    return F; 
+    return F;
 }
 
 
-    ///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 
 /** Horizon c'tor given a definition set in R� (as parameter space) 
- *  @param _umin	minimal value in u
- *  @param _umax	maximal value in u
- *  @param _du		stepsize in u
- *  @param _vmin	minimal value in v
- *  @param _vmax	maximal value in v
- *  @param _dv		stepsize in v
- *  @param _rad		radius
- */
+ *  @param _umin minimal value in u
+ *  @param _umax maximal value in u
+ *  @param _du stepsize in u
+ *  @param _vmin minimal value in v
+ *  @param _vmax maximal value in v
+ *  @param _dv stepsize in v                                                  */
 Horizon::Horizon (double _umin, double _umax, double _du,
-		  double _vmin, double _vmax, double _dv):
+                  double _vmin, double _vmax, double _dv):
     Surface ("Horizon", _umin, _umax, _du, _vmin, _vmax, _dv) {
     Initialize ();
 }
 
 /** Horizon defining function
- *  @param uu		u value
- *  @param vv		v value
- *  @return		aah, see below
- */
+ *  @param uu u value
+ *  @param vv v value
+ *  @return aah, see below */
 Vector<4> &Horizon::f (double t, double phi) {
     t *= pi; phi *= pi/2;
     F[0] = (1-sin (t))*cos (phi);
@@ -403,29 +375,27 @@ Vector<4> &Horizon::f (double t, double phi) {
 }
 
 
-    ///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 
 /** Torus3 c'tor given a definition set in R� (as parameter space) 
- *  @param _umin	minimal value in u
- *  @param _umax	maximal value in u
- *  @param _du		stepsize in u
- *  @param _vmin	minimal value in v
- *  @param _vmax	maximal value in v
- *  @param _dv		stepsize in v
- *  @param _rad		radius
- */
+ *  @param _umin minimal value in u
+ *  @param _umax maximal value in u
+ *  @param _du stepsize in u
+ *  @param _vmin minimal value in v
+ *  @param _vmax maximal value in v
+ *  @param _dv stepsize in v
+ *  @param _rad radius                                                        */
 Torus3::Torus3 (double _umin, double _umax, double _du,
-		double _vmin, double _vmax, double _dv):
+                double _vmin, double _vmax, double _dv):
         Surface ("Torus 3", _umin, _umax, _du, _vmin, _vmax, _dv) {
     Initialize ();
 }
 
 /** Torus3 defining function
- *  @param uu		u value
- *  @param vv		v value
- *  @return		(costht, sintht, cosphi, sinphi)
- */
+ *  @param theta u value
+ *  @param phi v value
+ *  @return (costht, sintht, cosphi, sinphi)                                  */
 Vector<4> &Torus3::f (double theta, double phi) {
     theta *= pi; phi *= pi;
     F[0] = cos (theta);
@@ -433,5 +403,5 @@ Vector<4> &Torus3::f (double theta, double phi) {
     F[2] = cos (phi);
     F[3] = sin (phi);
 
-    return F; 
+    return F;
 }

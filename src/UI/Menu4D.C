@@ -19,12 +19,12 @@ inline void TESTED_FEATURE(QAction *item) {
 
 Menu4D::Menu4D(C4DView *_parent):
     parent(_parent) {
-    
-    functions = addMenu("Object");
-    appear = addMenu("Appearance");
-    animation = addMenu("Animation");
-    help = addMenu("Help");
-    
+
+    functions = addMenu(tr("Object"));
+    appear = addMenu(tr("Appearance"));
+    animation = addMenu(tr("Animation"));
+    help = addMenu(tr("Help"));
+
     ////////////////////////////////////////////////////////////////////////////
     //      "Objects" Menu
     ////////////////////////////////////////////////////////////////////////////
@@ -38,7 +38,7 @@ Menu4D::Menu4D(C4DView *_parent):
     insertAction(fr3r, "sin (r²)", SLOT(SinR()));
     insertAction(fr3r, "exp (r²)", SLOT(ExpR()));
     insertAction(fr3r, "Custom function", SLOT(customFunction()));
-    
+
     insertAction(fr3r, "Polar: r = sin (pi/3.*(t+u+v))", SLOT(Sin2()));
     insertAction(fr3r, "Polar: r = 1/2+sin (Phase*pi*t*u*v)", SLOT(Sin()));
     insertAction(fr3r, "Polar: r = sqrt (t²+u²+v²)", SLOT(FunctionR()));
@@ -72,9 +72,9 @@ Menu4D::Menu4D(C4DView *_parent):
     insertAction(fcc, "tan (z)", SLOT(ComplexTanZ()));
     insertAction(fcc, "Custom complex function", SLOT(customComplexFunction()));
     TESTED_FEATURE (getAction("Custom complex function"));
-    
-    functions->setCheckable (true);
-        
+
+//    functions->setCheckable (true);
+
     ////////////////////////////////////////////////////////////////////////////
     //      "Appearance" Menu
     ////////////////////////////////////////////////////////////////////////////
@@ -86,7 +86,7 @@ Menu4D::Menu4D(C4DView *_parent):
     insertAction(appear, "Wireframe", SLOT(Wireframe()), false);
     insertAction(appear, "Coordinate Cross", SLOT(Coordinates()));
 
-    appear->setCheckable (true);
+//    appear->setCheckable (true);
 
     getAction("Colors")->setChecked(parent->getColors());
     getAction("Shading")->setChecked(parent->getShade());
@@ -96,14 +96,14 @@ Menu4D::Menu4D(C4DView *_parent):
     getAction("Coordinate Cross")->setChecked(parent->getDisplayCoordinates());
 
     insertAction(help, "Online help", SLOT(Help ()), false);
-    help->insertSeparator ();
-    help->insertItem( tr("&About ..."), parent, SLOT( about() ) );
-    help->insertItem( tr("About &Qt ..."), parent, SLOT( aboutQt() ) );
+    help->insertSeparator (
+        insertAction(help, tr("&About ..."), SLOT(about()), false));
+    insertAction(help, tr("About &Qt ..."), SLOT(about()), false);
 
-    insertSeparator ();
 //    addAction("Quit",       qApp, SLOT(quit ()));
     addAction(Globals::Instance().getQuitAction());
-    
+    insertSeparator(Globals::Instance().getQuitAction());
+
     insertAction(animation, "Render to Images", SLOT(RenderToImages()));
     getAction("Render to Images")->setChecked(parent->getRenderToPixmap());
     TESTED_FEATURE (getAction("Render to Images"));
@@ -111,7 +111,7 @@ Menu4D::Menu4D(C4DView *_parent):
     insertAction(animation, "Animation Settings", SLOT(AnimationSettings()),
                  false);
     TESTED_FEATURE (getAction("Animation Settings"));
-    
+
     insertAction(animation, "Benchmark", SLOT (Benchmark()), false);
     insertAction(appear, "4D Depth Cue", SLOT(HyperFog()));
 
@@ -123,7 +123,7 @@ Menu4D::Menu4D(C4DView *_parent):
     else {
         getAction("Wireframe")->setText("Wireframe");
         getAction("Transparence")->setText("Transparence");
-        TESTED_FEATURE (getAction("Transparence"));	
+        TESTED_FEATURE (getAction("Transparence"));
     }
       //      appear->setItemEnabled (transparentAction, DisplayPolygons);
     parent->SetWireframe (parent->getDisplayPolygons());
@@ -144,7 +144,7 @@ void Menu4D::addToMenuBar(QMenuBar *menuBar) {
  *  @param _menu QMenu* the menu you want to add the item to
  *  @param title QString the title of the item
  *  @param slot const char * the function triggered by the item's selection   */
-QAction *Menu4D::insertAction(QMenu *_menu, const QString &title, 
+QAction *Menu4D::insertAction(QMenu *_menu, const QString &title,
                               const char *slot, bool checkable) {
     QAction *tmp = _menu->addAction(
         title, (const QObject *)parent, (const char *)slot,
@@ -154,7 +154,7 @@ QAction *Menu4D::insertAction(QMenu *_menu, const QString &title,
     return tmp;
 }
 
-QAction *Menu4D::insertAction(QMenu *_menu, const Function *function, 
+QAction *Menu4D::insertAction(QMenu *_menu, const Function *function,
                               const char *slot, bool checkable) {
     return insertAction(_menu, function->getFunctionName(), slot, checkable);
 }
@@ -185,7 +185,7 @@ void Menu4D::updateFunctionMenu (const QString &item) {
             it->second->setChecked(false);
         }
     }
-    
+
     getAction(item)->setChecked(true);
 }
 

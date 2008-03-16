@@ -1,7 +1,7 @@
 
 //      project:      hyperspace explorer
-//      module:       
-//      contains:     
+//      module:
+//      contains:
 //      compile with: make all
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
@@ -20,9 +20,8 @@
 
 using namespace std;
 
-ValuesDialogImpl::ValuesDialogImpl (QWidget *parent, const char *name,
-				    bool modal, Qt::WFlags f) :
-	QDialog (parent, name, modal, f) {
+ValuesDialogImpl::ValuesDialogImpl (QWidget *parent, Qt::WFlags f) :
+	QDialog (parent, f) {
   setupUi(this);
   /*
   InsertFunction ("Fr3r");
@@ -35,13 +34,13 @@ ValuesDialogImpl::ValuesDialogImpl (QWidget *parent, const char *name,
   TSteps->setText (QString::number (TSlider->value ()));
   USteps->setText (QString::number (USlider->value ()));
   VSteps->setText (QString::number (VSlider->value ()));
-  
+
   FunctionBox->hide();
   TextLabel13->hide();
-  
+
   show ();
-} 
-  
+}
+
 
 void ValuesDialogImpl::DisplayValues () {
   ostringstream o;
@@ -58,7 +57,7 @@ void ValuesDialogImpl::DisplayValues () {
 }
 
 int ValuesDialogImpl::InsertFunction (const QString &FuncName, int index) {
-  FunctionBox->insertItem (FuncName, index);
+    FunctionBox->insertItem (index, FuncName);
   if (index < 0) return FunctionBox->count ();
   else           return index;
 }

@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>390</width>
-    <height>217</height>
+    <height>216</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -16,9 +16,9 @@
    <property name="geometry" >
     <rect>
      <x>10</x>
-     <y>11</y>
+     <y>1</y>
      <width>371</width>
-     <height>199</height>
+     <height>205</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" >
@@ -89,7 +89,7 @@
        </widget>
       </item>
       <item>
-       <widget class="Q3TextEdit" name="descriptionEdit" />
+       <widget class="QTextEdit" name="textEdit" />
       </item>
      </layout>
     </item>
@@ -100,7 +100,7 @@
       </property>
       <property name="sizeHint" >
        <size>
-        <width>20</width>
+        <width>369</width>
         <height>16</height>
        </size>
       </property>
@@ -161,13 +161,6 @@
  </widget>
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
- <customwidgets>
-  <customwidget>
-   <class>Q3TextEdit</class>
-   <extends>Q3Frame</extends>
-   <header>q3textedit.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections>
   <connection>

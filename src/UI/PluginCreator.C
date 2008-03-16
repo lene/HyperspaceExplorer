@@ -1,7 +1,7 @@
 //
 // C++ Implementation: PluginCreator
 //
-// Description: 
+// Description:
 //
 //
 // Author: Helge Preuss <scout@hyperspace-travel.de>, (C) 2008
@@ -12,23 +12,56 @@
 
 #include <QString>
 #include <QFile>
+#include <QFileDialog>
 #include <QMessageBox>
 
+#include "Globals.H"
 #include "PluginCreator.H"
 
-/*******************************************************************************
- *  compile the C++ source code written by writeSource (), displaying errors and
+/** display  and load the selected DLL into current address space
+ *  loads a dynamic library, which can be selected by the user on a QFileDialog.
+ *  calls loadFunction () below. see there.
+ *  @return success (?)                                                       */
+bool PluginCreator::loadFunction(const QString &type, QDialog *parent) {
+    QString libName;
+    //  iterate through resource directories until plugin subdirectory found
+    for (QStringList::Iterator it = Globals::Instance().rcdirs.begin();
+         it != Globals::Instance().rcdirs.end();
+         ++it ) {
+        QDir current (*it);
+        if (current.exists ("plugins/"+type)) {  //  plugin subdir present?
+            libName = QFileDialog::getOpenFileName(
+                     parent,
+                     QObject::tr("Open a function"),
+                        current.absolutePath ()+"/plugins/"+type,
+                     "Libraries (*.so*)");
+            if (!libName.isNull ()) break;      //  "Cancel" pressed
+        }
+    }
+
+    if (libName.isNull ()) return false;        //  nothing found or selected
+
+    if (doLoadFunction(libName)) {
+        LibraryName = libName;
+        parent->accept();
+    }
+
+    return false;
+}
+
+/** compile the C++ source code written by writeSource (), displaying errors and
  *  warnings, if they come up.
  *  needs "Vector.H" in the current directory or in the C++ include path.
  *  might tweak the compilation flags a little, or make them variable
- *  @return 	success
- */
+ *  @return success                                                           */
 bool PluginCreator::compile (QString name) {
-    QString compileCommand = "g++ -I.. -I../.. -g -c -Wall -fPIC \""
+    QString compileCommand = "g++ -I.. -I../.. -I"
+            +Globals::Instance().rcdirs.join("/plugins -I")+"/plugins"
+            +" -g -c -Wall -fPIC \""
             +name
             +".C\" > /tmp/HyperspaceExplorer.compile.errors 2>&1";
-    bool Success = !system (compileCommand);
-    
+    bool Success = !system (compileCommand.toStdString().c_str());
+
     if (!Success) {
         QFile Errs ("/tmp/HyperspaceExplorer.compile.errors");
         Errs.open (QIODevice::ReadOnly);
@@ -51,8 +84,8 @@ bool PluginCreator::link (QString name) {
             +name+".so\" \""
             +name+".o\""
             +"> /tmp/HyperspaceExplorer.link.errors 2>&1";
-    bool Success = !system (linkCommand);
-    
+    bool Success = !system (linkCommand.toStdString().c_str());
+
     if (!Success) {
         QFile Errs ("/tmp/HyperspaceExplorer.link.errors");
         Errs.open (QIODevice::ReadOnly);

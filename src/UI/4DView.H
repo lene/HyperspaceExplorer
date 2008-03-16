@@ -1,7 +1,7 @@
 
 //      project:      hyperspace explorer
-//      module:       
-//      contains:     
+//      module:
+//      contains:
 //      compile with: make all
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
@@ -10,7 +10,7 @@
 #ifndef VIEW_H
 #define VIEW_H
 
-#include <QTimer> 
+#include <QTimer>
 
 #include "ValuesDialogImpl.H"
 #include "XQGLWidget.H"
@@ -57,7 +57,7 @@ class Torus2;
 
 
 class C4DView : public XQGLWidget {
-    
+
     template<class function> class CustomFunctionSlot {
         public:
             static void createCustomFunction(C4DView *view);
@@ -75,19 +75,19 @@ class C4DView : public XQGLWidget {
     Q_OBJECT
 
     public:
-        C4DView(QWidget * = 0, const char * = 0);
+        C4DView(QWidget * = 0);
         virtual ~C4DView();
 
         void SetWireframe (bool wire) { DisplayPolygons = !wire; }
         bool GetWireframe (void) { return !DisplayPolygons; }
         void SetLighting (bool light) { Lighting = light; }
         bool GetLighting (void) { return Lighting; }
-        void SetDepthCue (bool on) { 
+        void SetDepthCue (bool on) {
             SetupDepthCue (on);
             OnPaint ();
         }
         void SetRotation (double rx, double ry, double rz) {
-            m_rotX = rx; m_rotY = ry; m_rotZ = rz; 
+            m_rotX = rx; m_rotY = ry; m_rotZ = rz;
         }
 
         virtual void paintEvent (QPaintEvent *);
@@ -96,8 +96,8 @@ class C4DView : public XQGLWidget {
         double Size ();
 
         void RenderScene (unsigned Frame);
-  
-        void Transform (double Rxy, double Rxz, double Rxw, 
+
+        void Transform (double Rxy, double Rxz, double Rxw,
                         double Ryz, double Ryw, double Rzw,
                         double Tx, double Ty, double Tz, double Tw);
         void Transform (void) { Transform (0, 0, 0, 0, 0, 0,  0, 0, 0, 0); }
@@ -130,12 +130,12 @@ class C4DView : public XQGLWidget {
 
 //        virtual Q3PopupMenu * SetupMenu ();
         Menu4D *menu;
-        
+
         void Project ();
         void Draw ();
         void PreRedraw ();
         QPixmap makePixmap ();
-  
+
         GLint ObjectList, CoordinateCross;
 
         void DrawCoordinates (void);
@@ -150,7 +150,7 @@ class C4DView : public XQGLWidget {
 
         QPoint m_LeftDownPos, m_MidDownPos, m_RightDownPos;
 
-        bool AntiAlias, DisplayPolygons, Lighting, 
+        bool AntiAlias, DisplayPolygons, Lighting,
              DepthCue3D, DepthCue4D;
 
         bool DisplayCoordinates;
@@ -159,7 +159,7 @@ class C4DView : public XQGLWidget {
              TakingSpinValues;
 
         bool RenderToPixmap, CurrentlyRendering;
-  
+
         void StartAnimation ();
         void StopAnimation ();
         void RandomAnimation();
@@ -167,14 +167,14 @@ class C4DView : public XQGLWidget {
 
         ValuesDialogImpl *Values;
 
-#       ifdef USE_AUTO_PTR 
+#       ifdef USE_AUTO_PTR
             auto_ptr<Function> F;
 #       else
             Function *F;
 #       endif
 
         QString ObjectName;
-        
+
         double dxy, dxz, dxw, dyz, dyw, dzw,
                dx, dy, dz;
 
@@ -232,7 +232,7 @@ class C4DView : public XQGLWidget {
         void Shade ();
         void Benchmark();
         void RenderToImages();
-  
+
         void FunctionFr3r();
         void FunctionHypersphere();
         void FunctionTorus1();
@@ -269,9 +269,9 @@ class C4DView : public XQGLWidget {
         void customPolarFunction();
         void customComplexFunction();
         void customSurface();
-    
+
         friend class FunctionSlot<Fr3r>;
-        
+
         friend class FunctionSlot<Hypersphere>;
         friend class FunctionSlot<Torus1>;
         friend class FunctionSlot<Torus2>;

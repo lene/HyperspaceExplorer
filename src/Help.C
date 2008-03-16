@@ -26,8 +26,8 @@ using std::endl;
  *  @param parent	parent widget
  *  @param name		widget name                                           */
 HelpWindow::HelpWindow( const QString& home_, const QString& _path,
-                        QWidget* parent, const char *name )
-  : QMainWindow( parent, name, Qt::WDestructiveClose ) {
+                        QWidget* parent)
+    : QMainWindow(parent/*, Qt::WA_DeleteOnClose*/) {
     browser = new QTextBrowser( this );
     QStringList possiblePaths;
     if (_path.size() > 0) {
@@ -38,7 +38,7 @@ HelpWindow::HelpWindow( const QString& home_, const QString& _path,
         possiblePaths.append(_path+"/src/doc/");
         possiblePaths.append(QDir::currentPath()+"/Documentation/");
     } else {
-         for (QStringList::const_iterator constIterator = Globals::Instance().rcdirs.constBegin(); 
+         for (QStringList::const_iterator constIterator = Globals::Instance().rcdirs.constBegin();
               constIterator != Globals::Instance().rcdirs.constEnd();
              ++constIterator)
              possiblePaths.append((*constIterator)+"/doc/");
@@ -59,5 +59,5 @@ HelpWindow::HelpWindow( const QString& home_, const QString& _path,
 
     browser->setFocus();
 
-    setCaption ("Hyperspace Explorer Help Browser");
+    setWindowTitle("Hyperspace Explorer Help Browser");
 }
