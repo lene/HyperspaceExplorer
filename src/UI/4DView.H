@@ -56,14 +56,22 @@ class Torus1;
 class Torus2;
 
 
+/** class C4DView:
+ *  displays and manipulates four-dimensional @href Function in a QGLWidget   */
 class C4DView : public XQGLWidget {
 
+    /** class CustomFunctionSlot
+     *  class template to outsource redundant code for the generation of
+     *  customized functions in a slot called by QActions from the QMenu      */
     template<class function> class CustomFunctionSlot {
         public:
             static void createCustomFunction(C4DView *view);
             static void createCustomSurface(C4DView *view);
     };
 
+    /** class FunctionSlot
+     *  class template to outsource redundant code for the generation of
+     *  functions in a slot called by QActions from the QMenu                 */
     template<class function> class FunctionSlot {
     //  Q_OBJECT
         public:
@@ -128,7 +136,6 @@ class C4DView : public XQGLWidget {
 
     protected:
 
-//        virtual Q3PopupMenu * SetupMenu ();
         Menu4D *menu;
 
         void Project ();

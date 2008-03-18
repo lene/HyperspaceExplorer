@@ -1190,7 +1190,11 @@ double C4DView::Benchmark3D (int num_steps,
 
 ////////////////////////////////////////////////////////////////////////////////
 
-
+/** Factory method to create a new Function of type R³->R
+ *  This function template is called by each slot with the correct function
+ *  type as template parameter
+ *  sets F to the newly created Function, checks the corresponding menu item,
+ *  updates the ValuesDialog and redraws                                      */
 template<class function>
         void C4DView::FunctionSlot<function>::createFunction(C4DView *view) {
 
@@ -1204,9 +1208,12 @@ template<class function>
                            view->Values->umin (), view->Values->umax (), view->Values->du (),
                            view->Values->vmin (), view->Values->vmax (), view->Values->dv ()));
 
-    if(0) cerr << "FunctionSlot<function>::createFunction(): " << view->F->getFunctionName().toStdString()
-            << "(" << view->F->getParameterName(0).toStdString() <<","<<view->F->getParameterName(1).toStdString() <<","<<
-            view->F->getParameterName(2).toStdString() <<","<< view->F->getParameterName(3).toStdString()<<")"<<endl;
+    SingletonLog::Instance() << "FunctionSlot<function>::createFunction(): "
+            << view->F->getFunctionName().toStdString()
+            << "(" << view->F->getParameterName(0).toStdString()
+            << "," <<view->F->getParameterName(1).toStdString() <<","
+            << view->F->getParameterName(2).toStdString() <<","
+            << view->F->getParameterName(3).toStdString()<<")\n";
 
     view->menu->updateFunctionMenu (view->F->getFunctionName());
     view->AssignValues (view->F->getFunctionName(),
@@ -1218,6 +1225,11 @@ template<class function>
     view->Redraw ();
 }
 
+/** Factory method to create a new Function of type R²->R^4
+ *  This function template is called by each slot with the correct function
+ *  type as template parameter
+ *  sets F to the newly created Function, checks the corresponding menu item,
+ *  updates the ValuesDialog and redraws                                      */
 template<class function>
         void C4DView::FunctionSlot<function>::createSurface(C4DView *view) {
 
@@ -1409,11 +1421,18 @@ void C4DView::ComplexTanZ() {FunctionSlot<tanz>::createSurface(this); }
 
 #include "CustomFunction.H"
 
+/** Factory method to create a new customized Function of type R³->R
+ *  This function template is called by each slot with the correct function
+ *  type as template parameter
+ *  sets F to the newly created Function, checks the corresponding menu item,
+ *  updates the ValuesDialog and redraws. Does some error handling in case the
+ *  Function could not be loaded.                                             */
 template<class function>
         void C4DView::CustomFunctionSlot<function>::createCustomFunction(C4DView *view) {
-            function *tmp = new function (view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
-                                          view->Values->umin (), view->Values->umax (), view->Values->du (),
-                                          view->Values->vmin (), view->Values->vmax (), view->Values->dv ());
+            function *tmp = new function (
+                view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
+                view->Values->umin (), view->Values->umax (), view->Values->du (),
+                view->Values->vmin (), view->Values->vmax (), view->Values->dv ());
             if (tmp->isValid()) {
 #               ifdef USE_AUTO_PTR
                     view->F.reset(tmp);
@@ -1432,6 +1451,12 @@ template<class function>
             }
         }
 
+/** Factory method to create a new customized Function of type R²->R^4
+ *  This function template is called by each slot with the correct function
+ *  type as template parameter
+ *  sets F to the newly created Function, checks the corresponding menu item,
+ *  updates the ValuesDialog and redraws. Does some error handling in case the
+ *  Function could not be loaded.                                             */
 template<class function>
         void C4DView::CustomFunctionSlot<function>::createCustomSurface(C4DView *view) {
             function *tmp = new function (view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
