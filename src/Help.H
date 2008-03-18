@@ -13,6 +13,8 @@
 
 class QTextBrowser;
 
+/** A popup window displaying the Hyperspace Explorer online help as HTML
+ *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class HelpWindow : public QMainWindow {
     Q_OBJECT
     public:

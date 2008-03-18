@@ -1,7 +1,7 @@
 
 //      project:      hyperspace explorer
-//      module:       
-//      contains:     
+//      module:
+//      contains:
 //      compile with: make all
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
@@ -18,10 +18,10 @@
 #include "Function.H"
 #include "Vector.H"
 
-/** an Object is a four-dimensional geometrical object which can not be 
+/** an Object is a four-dimensional geometrical object which can not be
  *  described as a mathematical function from R³ to R or from R² to R^4.
- *  Instead it is described as a set of surfaces. 
- */
+ *  Instead it is described as a set of surfaces.
+ *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Object: public Function {
     public:
         Object (const QString &, unsigned, unsigned);
@@ -50,6 +50,7 @@ class Object: public Function {
 
 ///////////////////////////////////////////////////////////////////////////////
 
+/** a four-dimensional cube */
 class Hypercube: public Object {
 public:
     Hypercube (): Object ("Hypercube", 16, 24) {
@@ -57,7 +58,7 @@ public:
     }
     Hypercube (double _a, const VecMath::Vector<4> &_Center = VecMath::Vector<4>(0., 0., 0., 0.));
     virtual ~Hypercube() { }
-  
+
     virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
         a = _a; }
 
@@ -77,19 +78,35 @@ protected:
 
 ///////////////////////////////////////////////////////////////////////////////
 
+/** A four-dimensional Menger Sponge.\n
+ *  A Menger Sponge in three dimensions is a fractal produced by subdividing
+ *  a cube and taking away parts of the cube which get subsequentally
+ *  smaller.\n
+ *  A four-dimensional Menger Sponge is created analogously from a hypercube.\n
+ *  The fractal can be further controlled by the distance parameter:
+ *  \li distance = 0: Only the innermost cube is removed, resulting in a
+ *  four-dimensional foam
+ *  \li distance = 1: the innermost and the next to innermost cubes are removed,
+ *  resulting in a foam in three dimensions, but holes in the four-dimensional
+ *  structure
+ *  \li distance = 2: the holes reach the surface of the cube, resulting in a
+ *  sponge structure
+ *  \li distance = 3: only the corners of the hypercube remain, resulting in
+ *  dust
+ */
 class Sponge: public Hypercube {
 public:
     Sponge (unsigned level = 1, int distance = 1, double rad = 1,
             VecMath::Vector<4> Center = VecMath::Vector<4>(0., 0.,0., 0.));
     virtual ~Sponge ();
 
-    virtual void Transform (double Rxy, double Rxz, double Rxw, 
+    virtual void Transform (double Rxy, double Rxz, double Rxw,
                             double Ryz, double Ryw, double Rzw,
 			    double Tx, double Ty, double Tz, double Tw);
     virtual void Project (double ScrW, double CamW, bool DepthCue4D);
     virtual void Draw (void);
 
-    virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0, 
+    virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0,
                                 double = 0) {
 	Level = (unsigned)_a;
 	distance = (int)_b;
@@ -121,9 +138,10 @@ protected:
 
 ///////////////////////////////////////////////////////////////////////////////
 
+/** A four-dimensional pyramid, also known as hypersimplex */
 class Pyramid: public Object {
 public:
-    Pyramid (): Object ("Hyperpyramid", 5, 10) { 
+    Pyramid (): Object ("Hyperpyramid", 5, 10) {
         parameterNames.push_back("Size");
     }
     Pyramid (double _a, const VecMath::Vector<4> &_Center = VecMath::Vector<4> (0., 0., 0., 0.));
@@ -143,18 +161,21 @@ protected:
 
 ///////////////////////////////////////////////////////////////////////////////
 
+/** A four-dimensional version of the Sierpinski Gasket.\n
+ *  It is similar to the Menger Sponge, but it uses a Hypersimplex as generator.
+ */
 class Gasket: public Pyramid {
     public:
-        Gasket (unsigned level = 1, double rad = 1, 
+        Gasket (unsigned level = 1, double rad = 1,
                 VecMath::Vector<4> Center = VecMath::Vector<4> (0., 0.,0., 0.));
         virtual ~Gasket() { }
 
-        virtual void Transform (double Rxy, double Rxz, double Rxw, 
+        virtual void Transform (double Rxy, double Rxz, double Rxw,
                                 double Ryz, double Ryw, double Rzw,
                                 double Tx, double Ty, double Tz, double Tw);
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
         virtual void Draw (void);
-        virtual void SetParameters (double _a = 0, double _b = 0, 
+        virtual void SetParameters (double _a = 0, double _b = 0,
                                     double = 0, double = 0) {
             Level = (unsigned)_a;
             rad = _b;

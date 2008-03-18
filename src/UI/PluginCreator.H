@@ -12,9 +12,16 @@
 #ifndef PLUGIN_CREATOR_H
 #define PLUGIN_CREATOR_H
 
+/** Base class for all Dialogs which allow entering a custom function in
+ *  symbolic notation and get the function compiled and loaded and displayed. \n
+ *  This class contains all the variables and functions common to the four
+ *  different function types, the differences being encapsulated in a template
+ *  class with auxiliary functions.
+ *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class PluginCreator {
     /** a class template with a static function to simulate a function
-     *  template.                                                             */
+     *  template.
+     *  @param F the type of function to be loaded                            */
     template <class F> class LoadFunctionHelper {
         public:
             static bool functionPresent(const QString &, QDialog *);

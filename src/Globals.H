@@ -19,19 +19,26 @@
 
 #include <QMessageBox>
 
-//#include "ValuesDialogImpl.H"
 #include "Vector.H"
 #include "SingletonHolder.H"
 
 class QAction;
 class QMainWindow;
 
-//  for an explanation why this two-stage macro expansion generates string
-//  literals from #defines, see
-//  http://groups.google.de/group/comp.lang.c/browse_thread/thread/2016d4664fdae3c1/f2873d4f6ef769b9#f2873d4f6ef769b9
+/** for an explanation why this two-stage macro expansion generates string
+ *  literals from #defines, see
+ * http://groups.google.de/group/comp.lang.c/browse_thread/thread/2016d4664fdae3c1/f2873d4f6ef769b9#f2873d4f6ef769b9
+ */
 #define stringify(X) #X
 #define make_str(X) stringify(X)
 
+/** As a workaround to end the embarassing practice of keeping global variables,
+ *  I have created this class as a singleton. You might also call it a
+ *  namespace. \n
+ *  I plan to advance this class to a full-blown registry though. One day. \n
+ *  Members are accessed with the SingletonHolder static function, i.e.
+ *  Globals::Instance().
+ *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Global {
     public:
         Global();

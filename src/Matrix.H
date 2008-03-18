@@ -16,7 +16,10 @@
 #include "Vector.H"
 
 namespace VecMath {
-    /**  Matrix<D, N>: a DxD matrix of numbers of type N                      */
+    /**  Matrix<D, N>: a DxD matrix of numbers of type N
+     *  @param D dimension of the matrix
+     *  @param N numerical type of the matrix elements
+     *  @author Helge Preuss <scout@hyperspace-travel.de>                     */
     template <unsigned D, typename N = double> class Matrix {
         public:
             Matrix<D, N> ();
@@ -25,7 +28,7 @@ namespace VecMath {
             virtual ~Matrix<D, N> () { }
 
             N &operator () (unsigned i, unsigned j) {
-                return M[i][j]; 
+                return M[i][j];
             }
 
             Matrix<D, N> operator * (const Matrix<D, N> &) const;
@@ -59,7 +62,7 @@ namespace VecMath {
     template <unsigned D, typename N>
             Matrix<D, N>::Matrix (N Rxy, N Rxz, N Rxw, N Ryz, N Ryw, N Rzw) {
         std::cerr << "Matrix<" << D <<">::Matrix<" << D
-                  <<"> (Rxy, Rxz, Rxw, Ryz, Ryw, Rzw) not yet implemented!" 
+                  <<"> (Rxy, Rxz, Rxw, Ryz, Ryw, Rzw) not yet implemented!"
                   << std::endl;
         abort();
     }
@@ -114,7 +117,7 @@ namespace VecMath {
 
     /** Matrix negation
      *  @return	- *this                                                       */
-    template <unsigned D, typename N> 
+    template <unsigned D, typename N>
             Matrix<D, N> Matrix<D, N>::operator - () {
         Matrix<D, N> B (*this);
         for (unsigned i = 0; i < D; i++)					//	i: row
@@ -130,7 +133,7 @@ namespace VecMath {
         std::ostringstream o;
         for (unsigned i = 0; i < D; i++) {
             o << "|";
-            for (unsigned j = 0; j < D; j++) 
+            for (unsigned j = 0; j < D; j++)
                 o << std::setw (10) << std::setprecision (3) << M[i][j];
             o << "|\n";
         }

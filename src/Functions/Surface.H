@@ -1,7 +1,7 @@
 
 //      project:      hyperspace explorer
-//      module:       
-//      contains:     
+//      module:
+//      contains:
 //      compile with: make all
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
@@ -13,8 +13,10 @@
 #include "Function.H"
 
 
-    ///////////////////////////////////////////////////////////////////////////////
-
+////////////////////////////////////////////////////////////////////////////////
+/** A function from \f$ R^2 \rightarrow R^4 \f$, thus describing a parametrized
+ *  surface in hyperspace
+ *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Surface: public Function {
     public:
         Surface();
@@ -47,18 +49,18 @@ class Surface: public Function {
 
         typedef VecMath::Vector<4> &function_type (double, double);
         typedef VecMath::Vector<4> raw_function_type (double, double);
-    
+
     protected:
          virtual VecMath::Vector<4> &f (double, double,  double) { return F; }
          virtual function_type f  = 0;
          virtual VecMath::Vector<4> *df (double, double);
          virtual function_type normal;
-	
+
          void Initialize (void);
          void InitMem (void);
          virtual void Free (void);
          virtual unsigned long MemRequired (void);
-	
+
          void DrawPlane (unsigned);
          void DrawStrip (unsigned);
 
@@ -76,12 +78,19 @@ class Surface: public Function {
          VecMath::Vector<3> **Xscr;
          VecMath::Vector<4> *Xchunk, *XtransChunk;
          VecMath::Vector<3> *XscrChunk;
-	
+
 	     //	storage for the coloring of the vertices
          float **R, **G, **B;
          float *RGBChunk;
 };
 
+/** An example surface:
+    \f{eqnarray*}{
+        F_0 & = & Radius*\sin \theta*\sin \psi;   \\
+        F_1 & = & Radius*\cos \theta*\sin \psi;   \\
+        F_2 & = & Radius*\cos \theta;             \\
+        F_3 & = & Radius*\cos \psi;
+    \f}                                                                       */
 class Surface1: public Surface {
 public:
     Surface1 (double _umin, double _umax, double _du,
@@ -93,7 +102,16 @@ protected:
     virtual function_type f;
 };
 
-
+/** A four-dimensional surface described by Thomas Banchoff
+    \f{eqnarray*}{
+        t & = & \theta*\pi                  \\
+        p & = & \phi*frac{\pi}{2}           \\
+        F_0 & = (1-\sin{t})*\cos{p}         \\
+        F_1 & = (1-\sin{t})*\sin{p}         \\
+        F_2 & = (1+\sin{t})*\cos{p}         \\
+        F_3 & = (1+\sin{t})*\sin{p}         \\
+        F & = & F*\frac{1}{\sqrt{2}}*\cos{t}
+    \f}                                                                       */
 class Horizon: public Surface {
 public:
     Horizon (double _umin, double _umax, double _du,
@@ -105,7 +123,8 @@ protected:
     virtual function_type f;
 };
 
-
+/** Another torus version, this time as a two-dimensional surface in
+ *  four-space                                                                */
 class Torus3: public Surface {
 public:
     Torus3 (double _umin, double _umax, double _du,

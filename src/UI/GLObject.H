@@ -6,14 +6,6 @@
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
 
-
- ////////////////////////////////////////////////////////////////////////////
-//  class GLObject:                                                       //
-//  abstract base class for 3D objects. provides a glList containing the    //
-//  base primitive and a routine to draw it.                                //
-//  the Draw () routine must be implemented in the derived classes.         //
- ////////////////////////////////////////////////////////////////////////////
-
 #ifndef GLOBJECT_H
 #define GLOBJECT_H
 
@@ -24,6 +16,11 @@
 
 #include "Log.H"
 
+/** class GLObject:
+ *  abstract base class for 3D objects. provides a glList containing the
+ *  base primitive and a routine to draw it. \n
+ *  the Draw () routine must be implemented in the derived classes.
+ *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class GLObject {
     public:
         GLObject (GLuint objlist = 0): List () {

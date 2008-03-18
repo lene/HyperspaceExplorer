@@ -1,8 +1,8 @@
 
 //      project:      hyperspace explorer
-//      module:       
-//      contains:     
-//      compile with: 
+//      module:
+//      contains:
+//      compile with:
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
 
@@ -15,9 +15,10 @@
 
 using namespace std;
 
-
+/** An experimental class to display Lindenmayer Systems (LSystems)
+ *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class LSystem {
-public: 
+public:
   LSystem (unsigned = 2);
   LSystem (string, map<string, string>, unsigned = 2);
   virtual ~LSystem ();
@@ -27,24 +28,24 @@ public:
 
   void axiom (string a) { m_axiom = a; }
   string axiom () { return m_axiom; }
-  
+
   void set_rule (string key, string rule) { m_rules[key] = rule; }
   void rules (map<string, string> rules) {m_rules = rules; }
   map<string, string> rules (void)  { return m_rules; }
 
   void angle (double angle) { m_angle = angle; }
   double angle () { return m_angle; }
-  
+
   void object (string key, string object) { m_object[key] = object; }
   void object (map<string, string> object);
   map<string, string> object () { return m_object; }
   string object (string key) { return m_object[key]; }
-  
+
   virtual string Expand ();
-  
+
   virtual string POV_Source ();
   virtual void Draw () { throw "nyi!"; }
-  
+
 protected:
   string POV_Header (const string &);
   string POV_Footer (const Vector &, const Vector &);

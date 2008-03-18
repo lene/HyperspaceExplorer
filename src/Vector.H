@@ -24,6 +24,10 @@
 
 namespace VecMath {
 
+    /**  Vector<D, N>: a D-dimensional vector of numbers of type N
+     *  @param D dimension of the vector
+     *  @param N numerical type of the vector elements
+     *  @author Helge Preuss <scout@hyperspace-travel.de>                     */
     template <unsigned D, typename N = double> class Vector {
 
         public:
@@ -60,8 +64,8 @@ namespace VecMath {
     private:
         N x[D];
     };
-    
-    template <unsigned D, typename N> 
+
+    template <unsigned D, typename N>
             std::ostream &operator << (std::ostream &, const Vector<D> &);
 
     //------------  Vector member functions
@@ -89,7 +93,7 @@ namespace VecMath {
     /** operator [] returns a reference to component i
     *  @param i index of the element
     *  @return non-const reference to the accessed element                    */
-    template <unsigned D, typename N> 
+    template <unsigned D, typename N>
             N &Vector<D, N>::operator[] (unsigned i) {
         assert(i < D);
         return x[i];
@@ -98,16 +102,16 @@ namespace VecMath {
     /** operator [] returns component i by value
     *  @param i index of the element
     *  @return the accessed element                                           */
-    template <unsigned D, typename N> 
+    template <unsigned D, typename N>
             N Vector<D, N>::operator[] (unsigned i) const {
         assert(i < D);
         return x[i];
     }
 
     /** @return dimension of the Vector (the template parameter D)             */
-    template <unsigned D, typename N> 
+    template <unsigned D, typename N>
             unsigned Vector<D, N>::dimension (void) {
-        return D; 
+        return D;
     }
 
         //----------  arithmetics ----------
@@ -122,7 +126,7 @@ namespace VecMath {
 
     /** @param Y other Vector
     *  @return *this-Y                                                        */
-    template <unsigned D, typename N> 
+    template <unsigned D, typename N>
             Vector<D, N> &Vector<D, N>::operator-= (const Vector<D, N> &Y) {
     for (unsigned i = 0; i < D; i++) x[i] -= Y.x[i];
     return *this;
@@ -165,7 +169,7 @@ namespace VecMath {
 
     /** @param s scalar type
     *  @return *this*s                                                        */
-    template <unsigned D, typename N> 
+    template <unsigned D, typename N>
             Vector<D, N> Vector<D, N>::operator* (const N &s) {
     Vector <D, N>Z;
     Z = *this;
@@ -243,7 +247,7 @@ namespace VecMath {
         c[1] = a[2]*b[0]-a[0]*b[2];
         c[2] = a[0]*b[1]-a[1]*b[0];
 
-        return c; 
+        return c;
     }
 
     /** specialization for cross product of three 4-Vectors
@@ -266,13 +270,13 @@ namespace VecMath {
         d[2] =  a[0]*E - a[1]*C + a[3]*A;
         d[3] = -a[0]*D + a[1]*B - a[2]*A;
 
-        return d; 
+        return d;
     }
 
     /** normalizes a 3-Vector out-of-place
     *  @param x	Vector to be normalized
     *  @return	its normalized value                                          */
-    template <unsigned D, typename N> 
+    template <unsigned D, typename N>
             Vector<D, N> vnormalize( const Vector<D, N> &x ) {
         static Vector<D, N> n;
         N norm = sqrt ( x.sqnorm() );

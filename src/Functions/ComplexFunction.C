@@ -1,7 +1,7 @@
 
 //      project:      hyperspace explorer
-//      module:       
-//      contains:     
+//      module:
+//      contains:
 //      compile with: make all
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
@@ -17,7 +17,8 @@ using VecMath::Vector;
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** ComplexFunction c'tor given a definition set in R² (as parameter space)
+/** ComplexFunction c'tor given a definition set in \f$ R^2 \f$ (as parameter
+ *  space)
  *  @param _umin	minimal value in u
  *  @param _umax	maximal value in u
  *  @param _du		stepsize in u
@@ -37,12 +38,12 @@ ComplexFunction::~ComplexFunction () { }
  *  call Surface::InitMem ()                                                  */
 void ComplexFunction::Initialize () {
     if(0) std::cerr<<"ComplexFunction::Initialize(); usteps = "<< usteps << ", vsteps = " << vsteps << std::endl;
-    
+
     X = new Vector<4> * [usteps+2];
     Xchunk = new Vector<4> [(usteps+2)*(vsteps+2)];
-    
+
     if(0) std::cerr<<"ComplexFunction::Initialize(); X = "<< X << ", Xchunk = " << Xchunk << std::endl;
-    
+
     for (unsigned u = 0; u <= usteps+1; u++) {
         if(0) std::cerr << u << std::endl;
         X[u]  =  Xchunk+u*(vsteps+2);
@@ -53,7 +54,7 @@ void ComplexFunction::Initialize () {
             if(0) std::cerr << "X["<<u<<"]["<<v<<"] = " << dummy << std::endl;
         }
     }
-  
+
     InitMem ();
 }
 
@@ -68,19 +69,18 @@ Vector<4> &ComplexFunction::f (double uu, double vv) {
     F[1] = vv;
     F[2] = w.real ();
     F[3] = w.imag ();
-  
-    return F; 
+
+    return F;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
-
-/** z² c'tor given a definition set in C (as parameter space)
+/** \f$ z^2 \f$ c'tor given a definition set in C (as parameter space)
  *  @param _umin	minimal value in Re (z)
- *  @param _umax	maximal value in Re (z) 
- *  @param _du		stepsize in Re (z) 
- *  @param _vmin	minimal value in Im (z) 
- *  @param _vmax	maximal value in Im (z) 
+ *  @param _umax	maximal value in Re (z)
+ *  @param _du		stepsize in Re (z)
+ *  @param _vmin	minimal value in Im (z)
+ *  @param _vmax	maximal value in Im (z)
  *  @param _dv		stepsize in Im (z)                                        */
 z2::z2 (double _umin, double _umax, double _du,
         double _vmin, double _vmax, double _dv):
@@ -88,9 +88,9 @@ z2::z2 (double _umin, double _umax, double _du,
     Initialize ();
 }
 
-/** z² defining function
- *  @param z		operand
- *  @return		z²                                                            */
+/** \f$ z^2 \f$ defining function
+ *  @param z operand
+ *  @return \f$ z^2 \f$                                                            */
 complex<double> z2::g (complex<double> z) {
     return z*z;
 }
@@ -98,12 +98,12 @@ complex<double> z2::g (complex<double> z) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/** z³ c'tor given a definition set in C (as parameter space)
+/** \f$ z^3 \f$ c'tor given a definition set in C (as parameter space)
  *  @param _umin	minimal value in Re (z)
- *  @param _umax	maximal value in Re (z) 
- *  @param _du		stepsize in Re (z) 
- *  @param _vmin	minimal value in Im (z) 
- *  @param _vmax	maximal value in Im (z) 
+ *  @param _umax	maximal value in Re (z)
+ *  @param _du		stepsize in Re (z)
+ *  @param _vmin	minimal value in Im (z)
+ *  @param _vmax	maximal value in Im (z)
  *  @param _dv		stepsize in Im (z)                                        */
 z3::z3 (double _umin, double _umax, double _du,
         double _vmin, double _vmax, double _dv):
@@ -111,11 +111,11 @@ z3::z3 (double _umin, double _umax, double _du,
     Initialize ();
 }
 
-/** z³ defining function
- *  @param z		operand
- *  @return		z³                                                            */
+/** \f$ z^3 \f$ defining function
+ *  @param z operand
+ *  @return \f$ z^3 \f$                                                            */
 complex<double> z3::g (complex<double> z) {
-    return z*z*z; 
+    return z*z*z;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -123,11 +123,11 @@ complex<double> z3::g (complex<double> z) {
 
 /** z^a c'tor given a definition set in C (as parameter space)
  *  @param _umin	minimal value in Re (z)
- *  @param _umax	maximal value in Re (z) 
- *  @param _du		stepsize in Re (z) 
- *  @param _vmin	minimal value in Im (z) 
- *  @param _vmax	maximal value in Im (z) 
- *  @param _dv		stepsize in Im (z) 
+ *  @param _umax	maximal value in Re (z)
+ *  @param _du		stepsize in Re (z)
+ *  @param _vmin	minimal value in Im (z)
+ *  @param _vmax	maximal value in Im (z)
+ *  @param _dv		stepsize in Im (z)
  *  @param _alpha	exponent                                                  */
 zA::zA (double _umin, double _umax, double _du,
         double _vmin, double _vmax, double _dv,
@@ -150,11 +150,11 @@ complex<double> zA::g (complex<double> z) {
 
 /** e^z c'tor given a definition set in C (as parameter space)
  *  @param _umin	minimal value in Re (z)
- *  @param _umax	maximal value in Re (z) 
- *  @param _du		stepsize in Re (z) 
- *  @param _vmin	minimal value in Im (z) 
- *  @param _vmax	maximal value in Im (z) 
- *  @param _dv		stepsize in Im (z) 
+ *  @param _umax	maximal value in Re (z)
+ *  @param _du		stepsize in Re (z)
+ *  @param _vmin	minimal value in Im (z)
+ *  @param _vmax	maximal value in Im (z)
+ *  @param _dv		stepsize in Im (z)
  *  @param _alpha	exponent multiplicator                                    */
 ez::ez (double _umin, double _umax, double _du,
         double _vmin, double _vmax, double _dv,
@@ -169,19 +169,19 @@ ez::ez (double _umin, double _umax, double _du,
  *  @param z		operand
  *  @return		e^(alpha*z)                                                   */
 complex<double> ez::g (complex<double> z) {
-    return exp (alpha*z); 
+    return exp (alpha*z);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/** e^-z² c'tor given a definition set in C (as parameter space)
+/** e^-\f$ z^2 \f$ c'tor given a definition set in C (as parameter space)
  *  @param _umin	minimal value in Re (z)
- *  @param _umax	maximal value in Re (z) 
- *  @param _du		stepsize in Re (z) 
- *  @param _vmin	minimal value in Im (z) 
- *  @param _vmax	maximal value in Im (z) 
- *  @param _dv		stepsize in Im (z) 
+ *  @param _umax	maximal value in Re (z)
+ *  @param _du		stepsize in Re (z)
+ *  @param _vmin	minimal value in Im (z)
+ *  @param _vmax	maximal value in Im (z)
+ *  @param _dv		stepsize in Im (z)
  *  @param _alpha	exponent multiplicator
  */
 emz2::emz2 (double _umin, double _umax, double _du,
@@ -193,12 +193,12 @@ emz2::emz2 (double _umin, double _umax, double _du,
   parameterNames.push_back("a");
 }
 
-/** e^-z² defining function
- *  @param z		operand
- *  @return		e^-(alpha*z²)
+/** e^-\f$ z^2 \f$ defining function
+ *  @param z operand
+ *  @return \f$ e^{-\alpha*z^2} \f$
  */
 complex<double> emz2::g (complex<double> z) {
-  return exp (-alpha*z*z); 
+  return exp (-alpha*z*z);
 }
 
 
@@ -207,11 +207,11 @@ complex<double> emz2::g (complex<double> z) {
 
 /** z^-1 c'tor given a definition set in C (as parameter space)
  *  @param _umin	minimal value in Re (z)
- *  @param _umax	maximal value in Re (z) 
- *  @param _du		stepsize in Re (z) 
- *  @param _vmin	minimal value in Im (z) 
- *  @param _vmax	maximal value in Im (z) 
- *  @param _dv		stepsize in Im (z) 
+ *  @param _umax	maximal value in Re (z)
+ *  @param _du		stepsize in Re (z)
+ *  @param _vmin	minimal value in Im (z)
+ *  @param _vmax	maximal value in Im (z)
+ *  @param _dv		stepsize in Im (z)
  */
 zm1::zm1 (double _umin, double _umax, double _du,
 	  double _vmin, double _vmax, double _dv):
@@ -224,7 +224,7 @@ zm1::zm1 (double _umin, double _umax, double _du,
  *  @return		1/z
  */
 complex<double> zm1::g (complex<double> z) {
-  return 1./z; 
+  return 1./z;
 }
 
 
@@ -233,11 +233,11 @@ complex<double> zm1::g (complex<double> z) {
 
 /** z^-2 c'tor given a definition set in C (as parameter space)
  *  @param _umin	minimal value in Re (z)
- *  @param _umax	maximal value in Re (z) 
- *  @param _du		stepsize in Re (z) 
- *  @param _vmin	minimal value in Im (z) 
- *  @param _vmax	maximal value in Im (z) 
- *  @param _dv		stepsize in Im (z) 
+ *  @param _umax	maximal value in Re (z)
+ *  @param _du		stepsize in Re (z)
+ *  @param _vmin	minimal value in Im (z)
+ *  @param _vmax	maximal value in Im (z)
+ *  @param _dv		stepsize in Im (z)
  */
 zm2::zm2 (double _umin, double _umax, double _du,
 	  double _vmin, double _vmax, double _dv):
@@ -250,7 +250,7 @@ zm2::zm2 (double _umin, double _umax, double _du,
  *  @return		1/z²
  */
 complex<double> zm2::g (complex<double> z) {
-  return 1./(z*z); 
+  return 1./(z*z);
 }
 
 
@@ -259,11 +259,11 @@ complex<double> zm2::g (complex<double> z) {
 
 /** sqrt(z) c'tor given a definition set in C (as parameter space)
  *  @param _umin	minimal value in Re (z)
- *  @param _umax	maximal value in Re (z) 
- *  @param _du		stepsize in Re (z) 
- *  @param _vmin	minimal value in Im (z) 
- *  @param _vmax	maximal value in Im (z) 
- *  @param _dv		stepsize in Im (z) 
+ *  @param _umax	maximal value in Re (z)
+ *  @param _du		stepsize in Re (z)
+ *  @param _vmin	minimal value in Im (z)
+ *  @param _vmax	maximal value in Im (z)
+ *  @param _dv		stepsize in Im (z)
  */
 sqrtz::sqrtz (double _umin, double _umax, double _du,
 	      double _vmin, double _vmax, double _dv):
@@ -276,7 +276,7 @@ sqrtz::sqrtz (double _umin, double _umax, double _du,
  *  @return		sqrt (z)
  */
 complex<double> sqrtz::g (complex<double> z) {
-  return sqrt (z); 
+  return sqrt (z);
 }
 
 
@@ -285,11 +285,11 @@ complex<double> sqrtz::g (complex<double> z) {
 
 /** ln(z) c'tor given a definition set in C (as parameter space)
  *  @param _umin	minimal value in Re (z)
- *  @param _umax	maximal value in Re (z) 
- *  @param _du		stepsize in Re (z) 
- *  @param _vmin	minimal value in Im (z) 
- *  @param _vmax	maximal value in Im (z) 
- *  @param _dv		stepsize in Im (z) 
+ *  @param _umax	maximal value in Re (z)
+ *  @param _du		stepsize in Re (z)
+ *  @param _vmin	minimal value in Im (z)
+ *  @param _vmax	maximal value in Im (z)
+ *  @param _dv		stepsize in Im (z)
  */
 lnz::lnz (double _umin, double _umax, double _du,
 	  double _vmin, double _vmax, double _dv):
@@ -302,7 +302,7 @@ lnz::lnz (double _umin, double _umax, double _du,
  *  @return		ln(z)
  */
 complex<double> lnz::g (complex<double> z) {
-  return log (z); 
+  return log (z);
 }
 
 
@@ -311,11 +311,11 @@ complex<double> lnz::g (complex<double> z) {
 
 /** sin(z) c'tor given a definition set in C (as parameter space)
  *  @param _umin	minimal value in Re (z)
- *  @param _umax	maximal value in Re (z) 
- *  @param _du		stepsize in Re (z) 
- *  @param _vmin	minimal value in Im (z) 
- *  @param _vmax	maximal value in Im (z) 
- *  @param _dv		stepsize in Im (z) 
+ *  @param _umax	maximal value in Re (z)
+ *  @param _du		stepsize in Re (z)
+ *  @param _vmin	minimal value in Im (z)
+ *  @param _vmax	maximal value in Im (z)
+ *  @param _dv		stepsize in Im (z)
  */
 sinz::sinz (double _umin, double _umax, double _du,
 	    double _vmin, double _vmax, double _dv):
@@ -328,7 +328,7 @@ sinz::sinz (double _umin, double _umax, double _du,
  *  @return		sin(pi*z)
  */
 complex<double> sinz::g (complex<double> z) {
-  return sin (pi*z); 
+  return sin (pi*z);
 }
 
 
@@ -337,11 +337,11 @@ complex<double> sinz::g (complex<double> z) {
 
 /** cos(z) c'tor given a definition set in C (as parameter space)
  *  @param _umin	minimal value in Re (z)
- *  @param _umax	maximal value in Re (z) 
- *  @param _du		stepsize in Re (z) 
- *  @param _vmin	minimal value in Im (z) 
- *  @param _vmax	maximal value in Im (z) 
- *  @param _dv		stepsize in Im (z) 
+ *  @param _umax	maximal value in Re (z)
+ *  @param _du		stepsize in Re (z)
+ *  @param _vmin	minimal value in Im (z)
+ *  @param _vmax	maximal value in Im (z)
+ *  @param _dv		stepsize in Im (z)
  */
 cosz::cosz (double _umin, double _umax, double _du,
 	    double _vmin, double _vmax, double _dv):
@@ -349,13 +349,11 @@ cosz::cosz (double _umin, double _umax, double _du,
   Initialize ();
 }
 
-/*******************************************************************************
- *  cos(z) defining function
- *  @param z		operand
- *  @return		cos (pi*z)
- */
+/** cos(z) defining function
+ *  @param z operand
+ *  @return cos (pi*z) */
 complex<double> cosz::g (complex<double> z) {
-  return cos (pi*z); 
+  return cos (pi*z);
 }
 
 
@@ -363,13 +361,12 @@ complex<double> cosz::g (complex<double> z) {
 
 
 /** sinh(z) c'tor given a definition set in C (as parameter space)
- *  @param _umin	minimal value in Re (z)
- *  @param _umax	maximal value in Re (z) 
- *  @param _du		stepsize in Re (z) 
- *  @param _vmin	minimal value in Im (z) 
- *  @param _vmax	maximal value in Im (z) 
- *  @param _dv		stepsize in Im (z) 
- */
+ *  @param _umin minimal value in Re (z)
+ *  @param _umax maximal value in Re (z)
+ *  @param _du stepsize in Re (z)
+ *  @param _vmin minimal value in Im (z)
+ *  @param _vmax maximal value in Im (z)
+ *  @param _dv stepsize in Im (z)                                             */
 sinhz::sinhz (double _umin, double _umax, double _du,
 	      double _vmin, double _vmax, double _dv):
         ComplexFunction ("sinh z", _umin, _umax, _du, _vmin, _vmax, _dv) {
@@ -377,11 +374,10 @@ sinhz::sinhz (double _umin, double _umax, double _du,
 }
 
 /** sinh(z) defining function
- *  @param z		operand
- *  @return		sinh(pi*z)
- */
+ *  @param z operand
+ *  @return sinh(pi*z)       */
 complex<double> sinhz::g (complex<double> z) {
-  return sinh (pi*z); 
+  return sinh (pi*z);
 }
 
 
@@ -390,12 +386,11 @@ complex<double> sinhz::g (complex<double> z) {
 
 /** cosh(z) c'tor given a definition set in C (as parameter space)
  *  @param _umin	minimal value in Re (z)
- *  @param _umax	maximal value in Re (z) 
- *  @param _du		stepsize in Re (z) 
- *  @param _vmin	minimal value in Im (z) 
- *  @param _vmax	maximal value in Im (z) 
- *  @param _dv		stepsize in Im (z) 
- */
+ *  @param _umax	maximal value in Re (z)
+ *  @param _du		stepsize in Re (z)
+ *  @param _vmin	minimal value in Im (z)
+ *  @param _vmax	maximal value in Im (z)
+ *  @param _dv		stepsize in Im (z)                                    */
 coshz::coshz (double _umin, double _umax, double _du,
 	      double _vmin, double _vmax, double _dv):
         ComplexFunction ("cosh z", _umin, _umax, _du, _vmin, _vmax, _dv) {
@@ -404,10 +399,9 @@ coshz::coshz (double _umin, double _umax, double _du,
 
 /** cosh(z) defining function
  *  @param z		operand
- *  @return		cosh(pi*z)
- */
+ *  @return		cosh(pi*z)  */
 complex<double> coshz::g (complex<double> z) {
-  return cosh (pi*z); 
+  return cosh (pi*z);
 }
 
 
@@ -416,12 +410,11 @@ complex<double> coshz::g (complex<double> z) {
 
 /** tan(z) c'tor given a definition set in C (as parameter space)
  *  @param _umin	minimal value in Re (z)
- *  @param _umax	maximal value in Re (z) 
- *  @param _du		stepsize in Re (z) 
- *  @param _vmin	minimal value in Im (z) 
- *  @param _vmax	maximal value in Im (z) 
- *  @param _dv		stepsize in Im (z) 
- */
+ *  @param _umax	maximal value in Re (z)
+ *  @param _du		stepsize in Re (z)
+ *  @param _vmin	minimal value in Im (z)
+ *  @param _vmax	maximal value in Im (z)
+ *  @param _dv		stepsize in Im (z)                                    */
 tanz::tanz (double _umin, double _umax, double _du,
 	    double _vmin, double _vmax, double _dv):
         ComplexFunction ("tan z", _umin, _umax, _du, _vmin, _vmax, _dv) {
@@ -429,11 +422,10 @@ tanz::tanz (double _umin, double _umax, double _du,
 }
 
 /** tan(z) defining function
- *  @param z		operand
- *  @return		tan (pi*z)
- */
+ *  @param z operand
+ *  @return tan (pi*z)      */
 complex<double> tanz::g (complex<double> z) {
-  return sin (pi*z)/cos (pi*z); 
+  return sin (pi*z)/cos (pi*z);
 }
 
 
@@ -448,5 +440,5 @@ Polynomial::Polynomial (double _umin, double _umax, double _du,
 }
 
 complex<double> Polynomial::g (complex<double> z) {
-  return ((((a[4]*z)+a[3])*z+a[2])*z+a[1])*z; 
+  return ((((a[4]*z)+a[3])*z+a[2])*z+a[1])*z;
 }

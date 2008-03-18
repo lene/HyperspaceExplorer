@@ -17,26 +17,27 @@
  *  3-dimensional grid, together with methods  to rotate and translate the grid
  *  in 4-space,  to project the transformed grid onto 3-space, and to draw the
  *  projected grid into an OpenGL display list.
- *  
+ *
  *  abstract member:
  *	- Vector &f (double, double, double);
  *  virtual members:
  *	- Vector *df (double, double, double);
- *	- Vector &normal (double, double, double);    
- *	- Transform (double Rxy, double Rxz, double Rxw, 
+ *	- Vector &normal (double, double, double);
+ *	- Transform (double Rxy, double Rxz, double Rxw,
  *		     double Ryz, double Ryw, double Rzw,
- *		     double Tx, double Ty, double Tz, double Tw) 
+ *		     double Tx, double Ty, double Tz, double Tw)
  *	- Project (double ScrW, double CamW, bool DepthCue4D)
  *	- Draw ()
  *	- ReInit(double _tmin, double _tmax, double _dt,
  *		 double _umin, double _umax, double _du,
  *		 double _vmin, double _vmax, double _dv)
  *	- SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0)
- *  other useful members: 
+ *  other useful members:
  *	- Transform ()
  *	- operator () (double t, double u, double v)
  *	- Initialize ();
- *	- InitMem ();                                                         */
+ *	- InitMem ();
+ *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Function {
     public:
         Function();
@@ -46,18 +47,18 @@ class Function {
                   double _vmin, double _vmax, double _dv);
         virtual ~Function();
 
-        virtual void Transform (double Rxy, double Rxz, double Rxw, 
+        virtual void Transform (double Rxy, double Rxz, double Rxw,
                                 double Ryz, double Ryw, double Rzw,
 			        double Tx, double Ty, double Tz, double Tw);
         void Transform (void) { Transform (0, 0, 0, 0, 0, 0,  0, 0, 0, 0); }
 
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
         virtual void Draw (void);
-	
+
         virtual void ReInit(double _tmin, double _tmax, double _dt,
 			    double _umin, double _umax, double _du,
 			    double _vmin, double _vmax, double _dv);
-        virtual void SetParameters (double _a = 0, double _b = 0, 
+        virtual void SetParameters (double _a = 0, double _b = 0,
                                     double _c = 0, double _d = 0);
 
         VecMath::Vector<4> ***Data (void) { return X; }
@@ -66,9 +67,9 @@ class Function {
 	        unsigned it = unsigned ((t-tmin)/dt),
 		             iu = unsigned ((u-umin)/du),
 		             iv = unsigned ((v-vmin)/dv);
-	        return X[it][iu][iv]; 
+	        return X[it][iu][iv];
         }
-        
+
         QString getFunctionName() const { return functionName; }
         unsigned getNumParameters() { return parameterNames.size(); }
         std::vector<QString> getParameterNames() { return parameterNames; }
@@ -77,21 +78,21 @@ class Function {
 
         typedef VecMath::Vector<4> &function_type (double, double, double);
         typedef VecMath::Vector<4> raw_function_type (double, double, double);
-        
+
     protected:
         virtual function_type f = 0;
         virtual VecMath::Vector<4> *df (double, double, double);
         virtual function_type normal;
-    
+
         virtual void Initialize (void);
         void InitMem (void);
         void Free (void);
         virtual unsigned long MemRequired (void);
-    
+
         void DrawPlane (unsigned);
         void DrawStrip (unsigned, unsigned);
         void DrawCube (unsigned, unsigned, unsigned);
-    
+
         double tmin, tmax, dt,
                umin, umax, du,
                vmin, vmax, dv;
@@ -107,7 +108,7 @@ class Function {
         VecMath::Vector<3> ***Xscr;
         VecMath::Vector<4> *Xchunk, *XtransChunk;
         VecMath::Vector<3> *XscrChunk;
-        
+
         //      storage for the coloring of the vertices
         float ***R, ***G, ***B;
         float *RGBChunk;
@@ -127,11 +128,13 @@ class Function {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-/** a hypersphere: defining function is 
- *  F[0] = Radius*sin(psi)*sin(theta)*cos(phi)
- *  F[1] = Radius*sin(psi)*sin(theta)*sin(phi)
- *  F[2] = Radius*sin(psi)*cos(theta)
- *  F[3] = Radius*cos(psi)                                                    */
+/** a hypersphere: defining function is
+    \f{eqnarray*} {
+        F_0 & = & Radius*\sin(\psi)*\sin(\theta)*\cos(\phi)    \\
+        F_1 & = & Radius*\sin(\psi)*\sin(\theta)*\sin(\phi)    \\
+        F_2 & = & Radius*\sin(\psi)*\cos(\theta)              \\
+        F_3 & = & Radius*\cos(\psi)
+    \f}                                                                       */
 class Hypersphere: public Function {
     public:
         Hypersphere (double _tmin, double _tmax, double _dt,
@@ -139,7 +142,7 @@ class Hypersphere: public Function {
 	             double _vmin, double _vmax, double _dv,
 	             double _rad = 1);
         virtual ~Hypersphere() { }
-        virtual void SetParameters (double _a = 0, double = 0, double = 0, 
+        virtual void SetParameters (double _a = 0, double = 0, double = 0,
 			            double = 0) { Radius = _a; }
 
     protected:
@@ -163,7 +166,7 @@ class Torus1: public Function {
                 double _vmin, double _vmax, double _dv,
 	        double _R = 2, double _r = 1, double _rho = 0.5);
         virtual ~Torus1() { }
-        virtual void SetParameters (double _a = 0, double _b = 0, 
+        virtual void SetParameters (double _a = 0, double _b = 0,
                                     double _c = 0, double = 0) {
             R = _a; r = _b; rho = _c; }
 
@@ -185,7 +188,7 @@ class Torus2: public Function {
 	        double _vmin, double _vmax, double _dv,
 	        double _R = 1, double _r = 0.5);
         virtual ~Torus2 () { }
-        virtual void SetParameters (double _a = 0, double _b = 0, 
+        virtual void SetParameters (double _a = 0, double _b = 0,
                                     double = 0, double = 0) {
                 R = _a; r = _b; }
 
@@ -198,9 +201,12 @@ class Torus2: public Function {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** an example function from R³ to R
- *        r² = tt*tt+uu*uu+vv*vv
- *  f(t,u,v) = 1./(r²+.25)                 */
+/** an example function from \f$R^3 \rightarrow R\f$
+    \f{eqnarray*}{
+        r^2      & = & x^2+y^2+z^2  \\
+        f(x,y,z) & = & 1./(r^2+.25)
+    \f}
+*/
 class Fr3r: public Function {
     public:
         Fr3r (double _tmin, double _tmax, double _dt,
@@ -226,9 +232,9 @@ class GravitationPotential: public Function {
                               double _M = 1, double _R = 0.25);
         virtual ~GravitationPotential () { }
         virtual void SetParameters (double _a = 0, double _b = 0, double = 0, double = 0) {
-            M = _a; R = _b; 
+            M = _a; R = _b;
         }
-        
+
     protected:
         virtual function_type f;
 
@@ -238,32 +244,32 @@ class GravitationPotential: public Function {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** f(x,y,z) = sin (pi*(x²+y²+z²))  */
+/** \f$ f(x,y,z) = \sin (\pi*(x^2+y^2+z^2)) \f$  */
 class Fr3rSin: public Function {
 public:
     Fr3rSin (double _tmin, double _tmax, double _dt,
 	     double _umin, double _umax, double _du,
 	     double _vmin, double _vmax, double _dv);
     virtual ~Fr3rSin () { }
- 
+
 protected:
     virtual function_type f;
 };
- 
+
 ///////////////////////////////////////////////////////////////////////////////
 
-/** f(x,y,z) = exp(x²+y²+z²)    */
+/** \f$ f(x,y,z) = \exp (x^2+y^2+z^2) \f$  */
 class Fr3rExp: public Function {
 public:
     Fr3rExp (double _tmin, double _tmax, double _dt,
 	     double _umin, double _umax, double _du,
 	     double _vmin, double _vmax, double _dv);
     virtual ~Fr3rExp () { }
- 
+
 protected:
     virtual function_type f;
 };
- 
+
 ///////////////////////////////////////////////////////////////////////////////
 
 /** a hypersphere as an example polar function */
@@ -273,15 +279,15 @@ public:
 	   double _umin, double _umax, double _du,
 	   double _vmin, double _vmax, double _dv);
     virtual ~Polar() { }
- 
+
 protected:
     virtual function_type f;
 };
- 
+
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** r(psi, theta, phi) = abs (sin (Phase*pi*psi*theta*phi))     */
+/** \f$ r(\psi, \theta, \phi) = |\sin (Phase*\pi*\psi*\theta*\phi)| \f$       */
 class PolarSin: public Function {
 public:
     PolarSin (double _tmin, double _tmax, double _dt,
@@ -291,7 +297,7 @@ public:
     virtual ~PolarSin () { }
     virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
 	Phase = _a; }
- 
+
 protected:
     virtual function_type f;
     double Phase;
@@ -300,14 +306,14 @@ protected:
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** r = sin (pi/3.*(psi+theta+phi)) */
+/** \f$ r = \sin(\pi/3.*(\psi+\theta+\phi)) \f$ */
 class PolarSin2: public Function {
 public:
     PolarSin2 (double _tmin, double _tmax, double _dt,
 	       double _umin, double _umax, double _du,
 	       double _vmin, double _vmax, double _dv);
     virtual ~PolarSin2 () { }
- 
+
 protected:
     virtual function_type f;
 };
@@ -315,7 +321,7 @@ protected:
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** r = sqrt (tt*tt+uu*uu+vv*vv) */
+/** \f$ r = \sqrt{\psi^2+\theta^2+\phi^2} \f$ */
 class PolarR: public Function {
 public:
     PolarR (double _tmin, double _tmax, double _dt,
@@ -325,7 +331,7 @@ public:
     virtual ~PolarR () { }
     virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
 	Phase = _a; }
- 
+
 protected:
     virtual function_type f;
     double Phase;

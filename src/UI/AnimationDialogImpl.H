@@ -10,6 +10,9 @@
 
 #include "ui_AnimationDialog.h"
 
+/** A Dialog to select settings concerning the writing of animated frames
+ *  to disk
+ *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class AnimationDialogImpl:
         public QDialog, public Ui::AnimationDialog {
 

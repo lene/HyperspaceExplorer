@@ -1,7 +1,7 @@
 
 //      project:      hyperspace explorer
-//      module:       
-//      contains:     
+//      module:
+//      contains:
 //      compile with: make all
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
@@ -13,10 +13,19 @@
 #define COMPLEXFUNCTION_H 1
 
 
-#include <complex> 
+#include <complex>
 
 #include "Surface.H"
 
+/** A surface defined as a function \f$ C \rightarrow C \f$, where the surface
+ *  in four dimensions is defined as
+    \f{eqnarray*}{
+        F_0 & = & Real(z)    \\
+        F_1 & = & Imag(z)    \\
+        F_2 & = & Real(f(z)) \\
+        F_3 & = & Imag(f(z))
+    \f}
+ *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class ComplexFunction: public Surface {
     public:
         ComplexFunction (const QString &name,
@@ -33,7 +42,7 @@ class ComplexFunction: public Surface {
         void Initialize (void);
 };
 
-
+/** \f$ f(z) = z^2 \f$ */
 class z2: public ComplexFunction {
     public:
 	z2 (double _umin, double _umax, double _du,
@@ -45,6 +54,7 @@ class z2: public ComplexFunction {
 	virtual function_type g;
 };
 
+/** \f$ f(z) = z^3 \f$ */
 class z3: public ComplexFunction {
     public:
 	z3 (double _umin, double _umax, double _du,
@@ -56,6 +66,7 @@ class z3: public ComplexFunction {
         virtual function_type g;
 };
 
+/** \f$ f(z) = z^\alpha \f$ */
 class zA: public ComplexFunction {
     public:
 	zA (double _umin, double _umax, double _du,
@@ -63,7 +74,7 @@ class zA: public ComplexFunction {
 	    double _alpha = 2);
 	virtual ~zA () { }
 	virtual void SetParameters(double _a = 0, double = 0, double = 0, double = 0) {
-	   alpha = _a; 
+	   alpha = _a;
         }
 
     protected:
@@ -72,6 +83,7 @@ class zA: public ComplexFunction {
 	double alpha;
 };
 
+/** \f$ f(z) = e^{\alpha*z} \f$ */
 class ez: public ComplexFunction {
     public:
 	ez (double _umin, double _umax, double _du,
@@ -87,6 +99,7 @@ class ez: public ComplexFunction {
         double alpha;
 };
 
+/** \f$ f(z) = e^{-\alpha*z^2} \f$ */
 class emz2: public ComplexFunction {
     public:
 	emz2 (double _umin, double _umax, double _du,
@@ -102,6 +115,7 @@ class emz2: public ComplexFunction {
         double alpha;
 };
 
+/** \f$ f(z) = \frac{1}{z} \f$ */
 class zm1: public ComplexFunction {
     public:
 	zm1 (double _umin, double _umax, double _du,
@@ -113,6 +127,7 @@ class zm1: public ComplexFunction {
         virtual function_type g;
 };
 
+/** \f$ f(z) = \frac{1}{z^2} \f$ */
 class zm2: public ComplexFunction {
     public:
 	zm2 (double _umin, double _umax, double _du,
@@ -124,6 +139,7 @@ class zm2: public ComplexFunction {
         virtual function_type g;
 };
 
+/** \f$ f(z) = \sqrt{z} \f$ */
 class sqrtz: public ComplexFunction {
     public:
 	sqrtz (double _umin, double _umax, double _du,
@@ -135,6 +151,7 @@ class sqrtz: public ComplexFunction {
         virtual function_type g;
 };
 
+/** \f$ f(z) = \ln{z} \f$ */
 class lnz: public ComplexFunction {
     public:
 	lnz (double _umin, double _umax, double _du,
@@ -146,6 +163,7 @@ class lnz: public ComplexFunction {
         virtual function_type g;
 };
 
+/** \f$ f(z) = \sin{z} \f$ */
 class sinz: public ComplexFunction {
     public:
 	sinz (double _umin, double _umax, double _du,
@@ -157,6 +175,7 @@ class sinz: public ComplexFunction {
         virtual function_type g;
 };
 
+/** \f$ f(z) = \cos{z} \f$ */
 class cosz: public ComplexFunction {
     public:
 	cosz (double _umin, double _umax, double _du,
@@ -168,6 +187,7 @@ class cosz: public ComplexFunction {
         virtual function_type g;
 };
 
+/** \f$ f(z) = \sinh{z} \f$ */
 class sinhz: public ComplexFunction {
     public:
 	sinhz (double _umin, double _umax, double _du,
@@ -179,6 +199,7 @@ class sinhz: public ComplexFunction {
         virtual function_type g;
 };
 
+/** \f$ f(z) = \cosh{z} \f$ */
 class coshz: public ComplexFunction {
     public:
 	coshz (double _umin, double _umax, double _du,
@@ -190,6 +211,7 @@ class coshz: public ComplexFunction {
         virtual function_type g;
 };
 
+/** \f$ f(z) = \tan{z} \f$ */
 class tanz: public ComplexFunction {
     public:
 	tanz (double _umin, double _umax, double _du,
@@ -201,13 +223,14 @@ class tanz: public ComplexFunction {
         virtual function_type g;
 };
 
+/** a third-order polynomial of z, not yet implemented */
 class Polynomial: public ComplexFunction {
     public:
 	Polynomial(double _umin, double _umax, double _du,
 		   double _vmin, double _vmax, double _dv,
 		   double _a1, double _a2, double _a3, double _a4);
 	virtual ~Polynomial () { }
-	virtual void SetParameters(double _a = 0, double _b = 0, 
+	virtual void SetParameters(double _a = 0, double _b = 0,
                                    double _c = 0, double _d = 0) {
 		a[1] = _a; a[2] = _b; a[3] = _c; a[4] = _d; }
 

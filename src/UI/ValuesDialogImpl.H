@@ -21,6 +21,14 @@
 
 #include "Log.H"
 
+/** A Dialog to enter parameters for the displayed function. \n
+ *  These parameters encompass the definition space, the resolution of the
+ *  grid on which the function's values are sampled and displayed, as well as
+ *  parameters which are specific to the function. \n
+ *  The switching on and off of input fields, depending on which function is
+ *  selected, is done from C4DView. This is of course unfortunate and will be
+ *  changed.
+ *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class ValuesDialogImpl: public QDialog, public Ui::ValuesDialog {
   Q_OBJECT
 

@@ -9,6 +9,10 @@
 #include "ui_SurfaceDialog.h"
 #include "PluginCreator.H"
 
+/** A Dialog to enter a function from \f$ R^2 \rightarrow R^4 \f$, which will
+ *  then be compiled into a dynamic library and loaded to be displayed on
+ *  screen
+ *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class SurfaceDialogImpl:
         public QDialog, public Ui::SurfaceDialog, public PluginCreator {
     Q_OBJECT

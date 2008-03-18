@@ -7,15 +7,19 @@
 #include "SingletonHolder.H"
 #include "Globals.H"
 
-/** @author Helge Preuss <scout@hyperspace-travel.de> */
+/** A class to conditionally print debug messages, depnding on whether the
+ *  preprocessor variable DEBUG is defined
+ *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Log{
     public:
+        /** print a string with a line break */
         void log(std::string message) {
 #           ifdef DEBUG
                 std::cerr << message << std::endl;
 #           endif
         }
 
+        /** print a string without a line break */
         Log &operator<<(const std::string &message) {
 #           ifdef DEBUG
                 std::cerr << message;
@@ -23,23 +27,30 @@ class Log{
             return *this;
         }
 
+        /** print a long integer without a line break */
         Log &operator<<(long x) {
             return operator<<(Globals::Instance().itoa(x));
         }
 
+        /** print an unsigned long integer without a line break */
         Log &operator<<(unsigned long x) {
             return operator<<(Globals::Instance().itoa(x));
         }
 
+        /** print a double without a line break */
         Log &operator<<(double x) {
             return operator<<(Globals::Instance().ftoa(x));
         }
 
-private:
-    Log() { }
-    Log(const Log &);
-    Log &operator=(const Log &);
-    ~Log() { }
+    private:
+        /** disabled default constructor */
+        Log() { }
+        /** disabled copy constructor */
+        Log(const Log &);
+        /** disabled assignment operator */
+        Log &operator=(const Log &);
+        /** disabled destructor */
+        ~Log() { }
 
     friend class Loki::CreateUsingNew<Log>;
 };

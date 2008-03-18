@@ -9,6 +9,9 @@
 #include "ui_ComplexDialog.h"
 #include "PluginCreator.H"
 
+/** A Dialog to enter a complex function, which will then be compiled into
+ *  a dynamic library and loaded to be displayed on screen
+ *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class ComplexDialogImpl:
         public QDialog, public Ui::ComplexDialog, public PluginCreator {
     Q_OBJECT

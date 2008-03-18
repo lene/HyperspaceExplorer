@@ -1,7 +1,7 @@
 
 //      project:      hyperspace explorer
-//      module:       
-//      contains:     
+//      module:
+//      contains:
 //      compile with: make all
 //      author:       helge preuss (scout@hyperspace-travel.de)
 //      license:      GPL (see License.txt)
@@ -26,11 +26,11 @@ Surface::Surface ():
     usteps (0), vsteps (0),
     NumVertices (0),
     F (4),
-    Xtrans (NULL), Xscr (NULL), XtransChunk (NULL), XscrChunk (NULL), 
+    Xtrans (NULL), Xscr (NULL), XtransChunk (NULL), XscrChunk (NULL),
     R (NULL), G (NULL), B (NULL), RGBChunk (NULL) { }
 
 
-/** Function c'tor given a definition set in R² (as parameter space)
+/** Function c'tor given a definition set in \f$ R^2 \f$ (as parameter space)
  *  @param _umin minimal value in u
  *  @param _umax maximal value in u
  *  @param _du stepsize in u
@@ -180,15 +180,16 @@ Vector<4> &Surface::normal (double uu, double vv) {
     n = VecMath::vcross (D[0], D[1], D[2]);
     VecMath::vnormalize (n);
 
-    return n; 
+    return n;
 }
 
 
 /** numerical calculation of the derivatives in u and v:
- *
- *  df        f(u+h, v) - f (u)   df
- *  -- =  lim -----------------,  -- analogously
- *  du    h->0      h             dv
+    \f[
+        \frac{df}{du} = \lim_{h \rightarrow \infty}
+            \frac{f(u+h, v) - f(u)}{h},
+        \frac{df}{dv}\mbox{analogously}
+    \f]
  *
  *  @param uu u value
  *  @param vv v value
@@ -208,7 +209,7 @@ Vector<4> *Surface::df (double uu, double vv) {
     DF[1] = (F-F0)/h;
     DF[2] = (F-F0)/h;           //  are you sure this is correct?
 
-    return DF; 
+    return DF;
 }
 
 
@@ -249,7 +250,7 @@ void Surface::Project (double scr_w, double cam_w, bool depthcue4d) {
     double ProjectionFactor;
     double Wmax = 0, Wmin = 0;
 
-    for (unsigned u = 0; u <= usteps+1; u++) 
+    for (unsigned u = 0; u <= usteps+1; u++)
         for (unsigned v = 0; v <= vsteps+1; v++) {
 
             if (Xtrans[u][v][3] < Wmin) Wmin = Xtrans[u][v][3];
@@ -305,7 +306,7 @@ void Surface::DrawStrip (unsigned u){
 
         NumVertices += 2;
     }
-    
+
     glEnd ();
 }
 
@@ -313,7 +314,7 @@ void Surface::DrawStrip (unsigned u){
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/** Surface1 c'tor given a definition set in R² (as parameter space) 
+/** Surface1 c'tor given a definition set in \f$ R^2 \f$ (as parameter space)
  *  @param _umin minimal value in u
  *  @param _umax maximal value in u
  *  @param _du stepsize in u
@@ -346,7 +347,7 @@ Vector<4> &Surface1::f (double uu, double vv) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/** Horizon c'tor given a definition set in R² (as parameter space) 
+/** Horizon c'tor given a definition set in \f$ R^2 \f$ (as parameter space)
  *  @param _umin minimal value in u
  *  @param _umax maximal value in u
  *  @param _du stepsize in u
@@ -371,14 +372,14 @@ Vector<4> &Horizon::f (double t, double phi) {
     F[3] = (1+sin (t))*sin (phi);
     F *= 1./sqrt (2.)*cos (t);
 
-    return F; 
+    return F;
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
 
 
-/** Torus3 c'tor given a definition set in R² (as parameter space) 
+/** Torus3 c'tor given a definition set in \f$ R^2 \f$ (as parameter space)
  *  @param _umin minimal value in u
  *  @param _umax maximal value in u
  *  @param _du stepsize in u
