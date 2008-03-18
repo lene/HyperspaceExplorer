@@ -5,20 +5,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>380</width>
-    <height>333</height>
+    <width>487</width>
+    <height>362</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>Enter a definition for the surface</string>
   </property>
-  <widget class="QWidget" name="" >
+  <widget class="QWidget" name="layoutWidget" >
    <property name="geometry" >
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>361</width>
-     <height>315</height>
+     <width>468</width>
+     <height>347</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" >
@@ -53,6 +53,9 @@
     </item>
     <item>
      <widget class="QLabel" name="IntroLabel" >
+      <property name="toolTip" >
+       <string>The lines you enter is compiled by the gcc compiler. The assignment and the semicolon at the end of the line are added automatically.</string>
+      </property>
       <property name="text" >
        <string>A surface in four dimensions is defined with four functions of two
 variables. Please enter these functions below, in C++ syntax.</string>
@@ -197,14 +200,14 @@ variables. Please enter these functions below, in C++ syntax.</string>
     <item>
      <layout class="QHBoxLayout" >
       <item>
-       <widget class="QLabel" name="DescLabel" >
+       <widget class="QLabel" name="descriptionLabel" >
         <property name="text" >
          <string>Description</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QTextEdit" name="textEdit" />
+       <widget class="QTextEdit" name="descriptionTextEdit" />
       </item>
      </layout>
     </item>

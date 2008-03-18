@@ -5,20 +5,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>377</width>
-    <height>239</height>
+    <width>464</width>
+    <height>263</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>Enter a complex function</string>
   </property>
-  <widget class="QWidget" name="" >
+  <widget class="QWidget" name="layoutWidget" >
    <property name="geometry" >
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>360</width>
-     <height>221</height>
+     <width>446</width>
+     <height>245</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" >
@@ -53,6 +53,9 @@
     </item>
     <item>
      <widget class="QLabel" name="IntroLabel" >
+      <property name="toolTip" >
+       <string>The line you enter is compiled by the gcc compiler. The assignment and the semicolon at the end of the line are added automatically.</string>
+      </property>
       <property name="text" >
        <string>Enter a complex function below, in C++ syntax, using z.real ()
 and z.imag () for the real and complex part of the argument
@@ -92,14 +95,14 @@ and z.imag () for the real and complex part of the argument
     <item>
      <layout class="QHBoxLayout" >
       <item>
-       <widget class="QLabel" name="DescLabel" >
+       <widget class="QLabel" name="descriptionLabel" >
         <property name="text" >
          <string>Description</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QTextEdit" name="textEdit" />
+       <widget class="QTextEdit" name="descriptionTextEdit" />
       </item>
      </layout>
     </item>

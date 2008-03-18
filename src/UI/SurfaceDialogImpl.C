@@ -35,6 +35,8 @@ SurfaceDialogImpl::SurfaceDialogImpl (QWidget *parent, Qt::WFlags f) :
   setupUi(this);
   connect (okButton, SIGNAL(clicked()), this, SLOT(checkValidity()));
   connect (loadButton, SIGNAL(clicked()), this, SLOT(loadFunction()));
+  descriptionLabel->hide();
+  descriptionTextEdit->hide();
   show ();
 }
 
@@ -49,14 +51,15 @@ bool SurfaceDialogImpl::functionPresent(const QString &libName) {
 }
 
 bool SurfaceDialogImpl::checkValidity() {
-  if ((nameEdit->text().isEmpty()) || (XEdit->text().isEmpty())
-      || (YEdit->text().isEmpty()) || (ZEdit->text().isEmpty())
-      || (WEdit->text().isEmpty())) {
-    QMessageBox::warning (this, "Missing fields",
-			  "Please fill in all fields!");
-    return false;
-  }
-  return PluginCreator::checkValidity("surface", nameEdit->text(), this);
+    if ((nameEdit->text().isEmpty()) || (XEdit->text().isEmpty())
+        || (YEdit->text().isEmpty()) || (ZEdit->text().isEmpty())
+        || (WEdit->text().isEmpty())) {
+        QMessageBox::warning (this, "Missing fields",
+"Please fill in all fields: A name for the function and a function f:R²->R \
+for all four components of the resulting vector!");
+        return false;
+    }
+    return PluginCreator::checkValidity("surface", nameEdit->text(), this);
 }
 
 void SurfaceDialogImpl::writeSource () {

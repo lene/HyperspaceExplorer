@@ -5,20 +5,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>389</width>
-    <height>222</height>
+    <width>475</width>
+    <height>245</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>Enter a polar function</string>
   </property>
-  <widget class="QWidget" name="" >
+  <widget class="QWidget" name="layoutWidget" >
    <property name="geometry" >
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>371</width>
-     <height>205</height>
+     <width>458</width>
+     <height>225</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" >
@@ -61,14 +61,14 @@ variables.</string>
     <item>
      <layout class="QHBoxLayout" >
       <item>
-       <widget class="QLabel" name="DescLabel" >
+       <widget class="QLabel" name="descriptionLabel" >
         <property name="text" >
          <string>Description</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QTextEdit" name="textEdit" />
+       <widget class="QTextEdit" name="descriptionTextEdit" />
       </item>
      </layout>
     </item>

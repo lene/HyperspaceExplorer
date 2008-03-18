@@ -42,6 +42,8 @@ FunctionDialogImpl::FunctionDialogImpl (QWidget *parent, Qt::WFlags f) :
     setupUi(this);
     connect (okButton, SIGNAL(clicked()), this, SLOT(checkValidity()));
     connect (loadButton, SIGNAL(clicked()), this, SLOT(loadFunction()));
+    descriptionLabel->hide();
+    descriptionTextEdit->hide();
     show ();
 }
 

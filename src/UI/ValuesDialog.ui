@@ -25,7 +25,7 @@ She con also change the resolution of the grid.</string>
   <property name="sizeGripEnabled" >
    <bool>false</bool>
   </property>
-  <widget class="QWidget" name="" >
+  <widget class="QWidget" name="layoutWidget" >
    <property name="geometry" >
     <rect>
      <x>0</x>
@@ -60,6 +60,9 @@ She con also change the resolution of the grid.</string>
          </property>
          <item>
           <widget class="QLabel" name="TLabel" >
+           <property name="toolTip" >
+            <string>Grid resolution in the first dimension</string>
+           </property>
            <property name="text" >
             <string>Steps in t</string>
            </property>
@@ -67,6 +70,9 @@ She con also change the resolution of the grid.</string>
          </item>
          <item>
           <widget class="QSlider" name="TSlider" >
+           <property name="toolTip" >
+            <string>Grid resolution in the first dimension</string>
+           </property>
            <property name="minimum" >
             <number>1</number>
            </property>
@@ -132,6 +138,9 @@ She con also change the resolution of the grid.</string>
            </property>
            <item>
             <widget class="QLabel" name="TextLabel12" >
+             <property name="toolTip" >
+              <string>Definition set: Lower bound in first dimension</string>
+             </property>
              <property name="text" >
               <string>tmin</string>
              </property>
@@ -168,6 +177,9 @@ She con also change the resolution of the grid.</string>
            </property>
            <item>
             <widget class="QLabel" name="TextLabel11" >
+             <property name="toolTip" >
+              <string>Definition set: Upper bound in first dimension</string>
+             </property>
              <property name="text" >
               <string>tmax</string>
              </property>
@@ -206,6 +218,9 @@ She con also change the resolution of the grid.</string>
          </property>
          <item>
           <widget class="QLabel" name="ULabel" >
+           <property name="toolTip" >
+            <string>Grid resolution in the second dimension</string>
+           </property>
            <property name="text" >
             <string>Steps in u</string>
            </property>
@@ -213,6 +228,9 @@ She con also change the resolution of the grid.</string>
          </item>
          <item>
           <widget class="QSlider" name="USlider" >
+           <property name="toolTip" >
+            <string>Grid resolution in the second dimension</string>
+           </property>
            <property name="minimum" >
             <number>1</number>
            </property>
@@ -278,6 +296,9 @@ She con also change the resolution of the grid.</string>
            </property>
            <item>
             <widget class="QLabel" name="TextLabel12_2" >
+             <property name="toolTip" >
+              <string>Definition set: Lower bound in second dimension</string>
+             </property>
              <property name="text" >
               <string>umin</string>
              </property>
@@ -314,6 +335,9 @@ She con also change the resolution of the grid.</string>
            </property>
            <item>
             <widget class="QLabel" name="TextLabel11_2" >
+             <property name="toolTip" >
+              <string>Definition set: Upper bound in second dimension</string>
+             </property>
              <property name="text" >
               <string>umax</string>
              </property>
@@ -352,6 +376,9 @@ She con also change the resolution of the grid.</string>
          </property>
          <item>
           <widget class="QLabel" name="VLabel" >
+           <property name="toolTip" >
+            <string>Grid resolution in the third dimension</string>
+           </property>
            <property name="text" >
             <string>Steps in v</string>
            </property>
@@ -359,6 +386,9 @@ She con also change the resolution of the grid.</string>
          </item>
          <item>
           <widget class="QSlider" name="VSlider" >
+           <property name="toolTip" >
+            <string>Grid resolution in the third dimension</string>
+           </property>
            <property name="minimum" >
             <number>1</number>
            </property>
@@ -424,6 +454,9 @@ She con also change the resolution of the grid.</string>
            </property>
            <item>
             <widget class="QLabel" name="TextLabel12_2_2" >
+             <property name="toolTip" >
+              <string>Definition set: Lower bound in third dimension</string>
+             </property>
              <property name="text" >
               <string>vmin</string>
              </property>
@@ -460,6 +493,9 @@ She con also change the resolution of the grid.</string>
            </property>
            <item>
             <widget class="QLabel" name="TextLabel11_2_2" >
+             <property name="toolTip" >
+              <string>Definition set: Upper bound in third dimension</string>
+             </property>
              <property name="text" >
               <string>vmax</string>
              </property>
@@ -485,7 +521,7 @@ She con also change the resolution of the grid.</string>
     <item>
      <widget class="QGroupBox" name="Function" >
       <property name="title" >
-       <string>Function</string>
+       <string>Function parameters</string>
       </property>
       <layout class="QGridLayout" >
        <item row="0" column="0" >

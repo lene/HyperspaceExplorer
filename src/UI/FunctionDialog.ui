@@ -12,7 +12,7 @@
   <property name="windowTitle" >
    <string>Enter a real scalar function</string>
   </property>
-  <widget class="QWidget" name="" >
+  <widget class="QWidget" name="layoutWidget" >
    <property name="geometry" >
     <rect>
      <x>10</x>
@@ -48,6 +48,9 @@
     </item>
     <item>
      <widget class="QLabel" name="introLabel" >
+      <property name="toolTip" >
+       <string>The line you enter is compiled by the gcc compiler. The assignment and the semicolon at the end of the line are added automatically.</string>
+      </property>
       <property name="text" >
        <string>Enter a function f:R³->R below, in C++ syntax.</string>
       </property>
@@ -89,7 +92,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QTextEdit" name="textEdit" />
+       <widget class="QTextEdit" name="descriptionTextEdit" />
       </item>
      </layout>
     </item>
