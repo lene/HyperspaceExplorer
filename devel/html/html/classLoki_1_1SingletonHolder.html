@@ -42,6 +42,24 @@ typedef T&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 static T &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28">Instance</a> ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a reference to singleton object. <br></td></tr>
+<tr><td colspan="2"><br><h2>Private Types</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="26a6ec9e3019fc2f8406c5b3c03f0791"></a><!-- doxytag: member="Loki::SingletonHolder::PtrInstanceType" ref="26a6ec9e3019fc2f8406c5b3c03f0791" args="" -->
+typedef T *&nbsp;</td><td class="memItemRight" valign="bottom"><b>PtrInstanceType</b></td></tr>
+
+<tr><td colspan="2"><br><h2>Static Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d944c37d85028f4046d4e1f78f133710"></a><!-- doxytag: member="Loki::SingletonHolder::MakeInstance" ref="d944c37d85028f4046d4e1f78f133710" args="()" -->
+static void&nbsp;</td><td class="memItemRight" valign="bottom"><b>MakeInstance</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="fa306d4e67df281b85b0c932cf5186c6"></a><!-- doxytag: member="Loki::SingletonHolder::DestroySingleton" ref="fa306d4e67df281b85b0c932cf5186c6" args="()" -->
+static void&nbsp;</td><td class="memItemRight" valign="bottom"><b>DestroySingleton</b> ()</td></tr>
+
+<tr><td colspan="2"><br><h2>Static Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3aaa564fefd318e66188c5f5c61f3fa0"></a><!-- doxytag: member="Loki::SingletonHolder::pInstance_" ref="3aaa564fefd318e66188c5f5c61f3fa0" args="" -->
+static PtrInstanceType&nbsp;</td><td class="memItemRight" valign="bottom"><b>pInstance_</b> = 0</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="feb17951ea9358a3f6dbbf3a9ad32d0a"></a><!-- doxytag: member="Loki::SingletonHolder::destroyed_" ref="feb17951ea9358a3f6dbbf3a9ad32d0a" args="" -->
+static bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>destroyed_</b> = false</td></tr>
+
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 <h3>template&lt;typename T, template&lt; class &gt; class CreationPolicy = CreateUsingNew&gt;<br>
@@ -57,7 +75,7 @@ Provides <a class="el" href="classLoki_1_1Singleton.html">Singleton</a> amenitie
 </dl>
 <hr>The documentation for this class was generated from the following file:<ul>
 <li>workspace/HyperspaceExplorer/src/Loki/<a class="el" href="SingletonHolder_8H-source.html">SingletonHolder.H</a></ul>
-<hr size="1"><address style="text-align: right;"><small>Generated on Wed Mar 19 00:08:31 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Mar 19 00:35:42 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
 </body>

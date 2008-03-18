@@ -28,9 +28,9 @@
 <a name="l00013"></a>00013 <span class="preprocessor"></span><span class="preprocessor">#define PLUGIN_CREATOR_H</span>
 <a name="l00014"></a>00014 <span class="preprocessor"></span>
 <a name="l00021"></a><a class="code" href="classPluginCreator.html">00021</a> <span class="keyword">class </span><a class="code" href="classPluginCreator.html">PluginCreator</a> {
-<a name="l00025"></a>00025     <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt; <span class="keyword">class </span>LoadFunctionHelper {
+<a name="l00025"></a><a class="code" href="classPluginCreator_1_1LoadFunctionHelper.html">00025</a>     <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt; <span class="keyword">class </span><a class="code" href="classPluginCreator_1_1LoadFunctionHelper.html">LoadFunctionHelper</a> {
 <a name="l00026"></a>00026         <span class="keyword">public</span>:
-<a name="l00027"></a>00027             <span class="keyword">static</span> <span class="keywordtype">bool</span> functionPresent(<span class="keyword">const</span> QString &amp;, QDialog *);
+<a name="l00027"></a>00027             <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="classPluginCreator_1_1LoadFunctionHelper.html#daa553cc712de9359f011e289acbc299">functionPresent</a>(<span class="keyword">const</span> QString &amp;, QDialog *);
 <a name="l00028"></a>00028     };
 <a name="l00029"></a>00029 
 <a name="l00030"></a>00030     <span class="keyword">public</span>:
@@ -57,7 +57,7 @@
 <a name="l00052"></a>00052 <span class="preprocessor">#include &lt;QMessageBox&gt;</span>
 <a name="l00053"></a>00053 
 <a name="l00061"></a>00061 <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt;
-<a name="l00062"></a>00062         <span class="keywordtype">bool</span> PluginCreator::LoadFunctionHelper&lt;F&gt;::functionPresent(
+<a name="l00062"></a><a class="code" href="classPluginCreator_1_1LoadFunctionHelper.html#daa553cc712de9359f011e289acbc299">00062</a>         <span class="keywordtype">bool</span> <a class="code" href="classPluginCreator_1_1LoadFunctionHelper.html#daa553cc712de9359f011e289acbc299">PluginCreator::LoadFunctionHelper&lt;F&gt;::functionPresent</a>(
 <a name="l00063"></a>00063             <span class="keyword">const</span> QString &amp;libName, QDialog *parent) {
 <a name="l00064"></a>00064     <span class="keywordtype">void</span> *handle;
 <a name="l00065"></a>00065     F *f;
@@ -93,7 +93,7 @@
 <a name="l00095"></a>00095 }
 <a name="l00096"></a>00096 
 <a name="l00097"></a>00097 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Wed Mar 19 00:08:31 2008 for HyperspaceExplorer by&nbsp;
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Wed Mar 19 00:35:41 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
 </body>

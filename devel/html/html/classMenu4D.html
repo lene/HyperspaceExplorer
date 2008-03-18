@@ -47,6 +47,43 @@ typedef std::map&lt; QMenu *,<br>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e01f65904e1cb5810ae760cb99565dda"></a><!-- doxytag: member="Menu4D::addToMenuBar" ref="e01f65904e1cb5810ae760cb99565dda" args="(QMenuBar *menuBar)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>addToMenuBar</b> (QMenuBar *menuBar)</td></tr>
 
+<tr><td colspan="2"><br><h2>Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">QAction *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMenu4D.html#89193f9ec4f65d3e16c828e0528e9244">insertAction</a> (QMenu *_menu, const QString &amp;title, const char *slot, bool checkable=true)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="72069f68676ba2bb0cbe3379342d259d"></a><!-- doxytag: member="Menu4D::insertAction" ref="72069f68676ba2bb0cbe3379342d259d" args="(QMenu *_menu, const Function *function, const char *slot, bool checkable=true)" -->
+QAction *&nbsp;</td><td class="memItemRight" valign="bottom"><b>insertAction</b> (QMenu *_menu, const <a class="el" href="classFunction.html">Function</a> *function, const char *slot, bool checkable=true)</td></tr>
+
+<tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3dbb3295e8653ea4836f7a6e003f2f7b"></a><!-- doxytag: member="Menu4D::parent" ref="3dbb3295e8653ea4836f7a6e003f2f7b" args="" -->
+<a class="el" href="classC4DView.html">C4DView</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>parent</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3bd1be593925c5b107bd690c002194e8"></a><!-- doxytag: member="Menu4D::functions" ref="3bd1be593925c5b107bd690c002194e8" args="" -->
+QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><b>functions</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ba12a7b1e1ee68cc3d4a274e1b70e2a9"></a><!-- doxytag: member="Menu4D::appear" ref="ba12a7b1e1ee68cc3d4a274e1b70e2a9" args="" -->
+QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><b>appear</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="cf9c72674031073314bbe07db0541ad5"></a><!-- doxytag: member="Menu4D::animation" ref="cf9c72674031073314bbe07db0541ad5" args="" -->
+QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><b>animation</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="cabcba935440b751f5fcf38bc3e093f3"></a><!-- doxytag: member="Menu4D::help" ref="cabcba935440b751f5fcf38bc3e093f3" args="" -->
+QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><b>help</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="37866501a2d40412d9173bd4817d952a"></a><!-- doxytag: member="Menu4D::fr3r" ref="37866501a2d40412d9173bd4817d952a" args="" -->
+QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><b>fr3r</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="27445c54b995f2e17be6ca7e61c5fc5a"></a><!-- doxytag: member="Menu4D::objects" ref="27445c54b995f2e17be6ca7e61c5fc5a" args="" -->
+QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><b>objects</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="eb2e62145fcf5c64211360b3d7cc67ad"></a><!-- doxytag: member="Menu4D::surfaces" ref="eb2e62145fcf5c64211360b3d7cc67ad" args="" -->
+QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><b>surfaces</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="dcfef3e466a387a964b6bb361b0187e1"></a><!-- doxytag: member="Menu4D::fcc" ref="dcfef3e466a387a964b6bb361b0187e1" args="" -->
+QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><b>fcc</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0f1ae22ea522ece59d48ec5bcda0ba96"></a><!-- doxytag: member="Menu4D::menuMap" ref="0f1ae22ea522ece59d48ec5bcda0ba96" args="" -->
+MenuMapType&nbsp;</td><td class="memItemRight" valign="bottom"><b>menuMap</b></td></tr>
+
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 The menu for the <a class="el" href="classC4DView.html">C4DView</a>. <br>
@@ -97,9 +134,57 @@ set the selected function as checked and all the others unchecked <dl compact><d
 search for the supplied String in the list of menu entries in all submenus and return the associated QAction 
 </div>
 </div><p>
+<a class="anchor" name="89193f9ec4f65d3e16c828e0528e9244"></a><!-- doxytag: member="Menu4D::insertAction" ref="89193f9ec4f65d3e16c828e0528e9244" args="(QMenu *_menu, const QString &amp;title, const char *slot, bool checkable=true)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction * Menu4D::insertAction           </td>
+          <td>(</td>
+          <td class="paramtype">QMenu *&nbsp;</td>
+          <td class="paramname"> <em>_menu</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&nbsp;</td>
+          <td class="paramname"> <em>title</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&nbsp;</td>
+          <td class="paramname"> <em>slot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>checkable</em> = <code>true</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+insert a menu item with a specified slot into a specified menu AND into the hash map storing the actions by menu title. this is necessary to find the menus whenever you want to change the item titles. <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>_menu</em>&nbsp;</td><td>QMenu* the menu you want to add the item to </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>title</em>&nbsp;</td><td>QString the title of the item </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>slot</em>&nbsp;</td><td>const char * the function triggered by the item's selection </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/UI/<a class="el" href="Menu4D_8H-source.html">Menu4D.H</a><li>workspace/HyperspaceExplorer/src/UI/Menu4D.C</ul>
-<hr size="1"><address style="text-align: right;"><small>Generated on Wed Mar 19 00:08:31 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Wed Mar 19 00:35:41 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
 </body>
