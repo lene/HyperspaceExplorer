@@ -52,7 +52,7 @@ public:
   QString FunctionName () { return FunctionBox->currentText (); }
   void setFunction(const QString &f) {
       SingletonLog::Instance() << "ValuesDialogImpl::setFunction("
-              << f.toStdString()<<") not yet implemented!\n";
+              << f.toStdString() <<") not yet implemented!\n";
   }
   int InsertFunction (const QString &FuncName, int index = -1);
 

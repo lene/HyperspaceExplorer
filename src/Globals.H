@@ -19,15 +19,15 @@
 
 #include <QMessageBox>
 
-#include "ValuesDialogImpl.H"
+//#include "ValuesDialogImpl.H"
 #include "Vector.H"
 #include "SingletonHolder.H"
 
 class QAction;
 class QMainWindow;
 
-//  for an explanation why this two-stage macro expansion generates string 
-//  literals from #defines, see 
+//  for an explanation why this two-stage macro expansion generates string
+//  literals from #defines, see
 //  http://groups.google.de/group/comp.lang.c/browse_thread/thread/2016d4664fdae3c1/f2873d4f6ef769b9#f2873d4f6ef769b9
 #define stringify(X) #X
 #define make_str(X) stringify(X)
@@ -35,10 +35,10 @@ class QMainWindow;
 class Global {
     public:
         Global();
-        
+
         static bool check_memory;
         /** sqrt (3), stored to save computation time, probably superfluous   */
-        static double SR3; 
+        static double SR3;
         /** global (YUCK!) alpha value for transparent display                */
         static double ALPHA;
         /** global (YUCK!) shininess value                                    */
@@ -58,12 +58,12 @@ class Global {
 
         QAction *getQuitAction() const { return quitAction; }
         QMainWindow *getMainWindow() const { return mainWindow; }
-        
+
         int GetGLList();
 
         void SetColor(float R, float G, float B);
         void SetColor (const VecMath::Vector<4> &RGB);
-        
+
         float *BackgroundColor() { return background; }
         void setBackground(float r, float g, float b, float a = 1.0) {
             background[0] = r;
@@ -84,9 +84,9 @@ class Global {
 
         std::string itoa (int x);
         std::string ftoa (double x);
-        
+
         void CheckGLErrors (const char *op = 0);
-        
+
         void Debug (std::string s, std::string h = "") {
             QMessageBox::information (NULL, h.c_str (), s.c_str ());
         }
@@ -95,16 +95,16 @@ class Global {
             if (__finite (V.sqnorm ()))
 	       glVertex3dv (V.data ());
         }
-        
+
         VecMath::Vector<3> vnormalize (double xx, double yy, double zz);
-        
+
         template <typename T> void Swap (T &a, T &b) {
 	    T temp (a);
 	    a = b;
 	    b = temp;
         }
         static unsigned long check_proc_meminfo ();
-        
+
     private:
         QAction *quitAction;
         QMainWindow *mainWindow;

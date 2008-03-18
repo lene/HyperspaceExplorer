@@ -1,0 +1,232 @@
+<ui version="4.0" >
+ <class>AnimationDialog</class>
+ <widget class="QDialog" name="AnimationDialog" >
+  <property name="windowModality" >
+   <enum>Qt::WindowModal</enum>
+  </property>
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>240</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Dialog</string>
+  </property>
+  <widget class="QWidget" name="" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>381</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" >
+    <item>
+     <layout class="QVBoxLayout" >
+      <item>
+       <layout class="QVBoxLayout" >
+        <item>
+         <widget class="QLabel" name="directoryLabel" >
+          <property name="text" >
+           <string>Storage directory</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" >
+          <item>
+           <widget class="QLineEdit" name="directoryEdit" >
+            <property name="toolTip" >
+             <string>The Directory where the frames of the animation are saved</string>
+            </property>
+            <property name="text" >
+             <string>/tmp/</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="fileDialogButton" >
+            <property name="maximumSize" >
+             <size>
+              <width>32</width>
+              <height>27</height>
+             </size>
+            </property>
+            <property name="toolTip" >
+             <string>Pop up a file dialog</string>
+            </property>
+            <property name="text" >
+             <string/>
+            </property>
+            <property name="icon" >
+             <iconset resource="AnimationDialog.qrc" >:/AnimationDialog Buttons/icons/qmake_sub.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" >
+        <item>
+         <widget class="QLabel" name="prefixLabel" >
+          <property name="text" >
+           <string>File Name Prefix</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="prefixEdit" >
+          <property name="toolTip" >
+           <string>The file names of the individual frames start with this string</string>
+          </property>
+          <property name="text" >
+           <string>HyperspaceExplorer.Image.</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" >
+      <item>
+       <widget class="QLabel" name="framesLabel" >
+        <property name="toolTip" >
+         <string>By default the number of saved frames is unlimited. With this setting you can limit the number of images saved.</string>
+        </property>
+        <property name="text" >
+         <string>Maximum # Frames</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="framesCheckBox" >
+        <property name="toolTip" >
+         <string>Limit number of saved animation frames</string>
+        </property>
+        <property name="text" >
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="framesSpinBox" >
+        <property name="enabled" >
+         <bool>false</bool>
+        </property>
+        <property name="toolTip" >
+         <string>Maximum number of frames saved to disk</string>
+        </property>
+        <property name="maximum" >
+         <number>1000000</number>
+        </property>
+        <property name="singleStep" >
+         <number>100</number>
+        </property>
+        <property name="value" >
+         <number>1000</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <spacer>
+      <property name="orientation" >
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" >
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <widget class="QDialogButtonBox" name="buttonBox" >
+      <property name="orientation" >
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="standardButtons" >
+       <set>QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok</set>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources>
+  <include location="AnimationDialog.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>AnimationDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>AnimationDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>framesCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>framesSpinBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>140</x>
+     <y>166</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>228</x>
+     <y>166</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

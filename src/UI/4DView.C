@@ -15,6 +15,7 @@
 
 #include "4DView.H"
 #include "Menu4D.H"
+#include "AnimationDialogImpl.H"
 
 #include "Globals.H"
 #include "Log.H"
@@ -69,7 +70,9 @@ C4DView::C4DView(QWidget *parent):
     dxy (0), dxz (0), dxw (0), dyz (0), dyw (0), dzw (0),
     dx (0), dy (0), dz (0),
     animation_fps (50),
-    CamW (-3.), ScrW (0.) {
+    CamW (-3.), ScrW (0.),
+    animationMaxFrames((unsigned)-1), animationDirectory("/tmp"),
+    animationPrefix("HyperspaceExplorer_Image") {
 
     InitCross();
 
@@ -548,6 +551,7 @@ void C4DView::StartAnimation () {
     SingletonLog::Instance().log("C4DView::StartAnimation ()");
 
     Animated = true;
+    animationFrame = 0;
     AnimationTimer->start (1000/animation_fps);               //  go for 50 fps
 
     UpdateStatus ("Double-click LMB to stop animation");
@@ -622,27 +626,36 @@ void C4DView::OnTimer() {
         Redraw ();                                                  // implicit OnPaint()
     } else OnPaint ();                                              // explicit OnPaint()
 
-    if (RenderToPixmap) {
+    writeFrame();   //  if render to pixmap is selected, do it
+
+    UpdateStatus ("Double-click LMB to stop animation");
+}
+
+void C4DView::writeFrame() {
+    if (RenderToPixmap && (animationFrame <= animationMaxFrames)) {
+
         CurrentlyRendering = true;
-        static unsigned long frame = 0;
 
         PreRedraw ();
 
         QPixmap tmpPixmap = makePixmap();
 
+        unsigned animationCiphers = animationMaxFrames > 0?
+                (unsigned)(log((double)animationMaxFrames)/log(10.))+1: 6;
         QString imageFilename =
-            QString ("/tmp/HyperspaceExplorer_Image.%1.png").arg (frame++, 6)
-                                                            .replace (" ", "0");
+                QString (animationDirectory+"/"+animationPrefix+"%1.png")
+                .arg (animationFrame++, animationCiphers)
+                .replace (" ", "0");
         if (tmpPixmap.save (imageFilename, "PNG")) {
-            SingletonLog::Instance() << "writing "
-                    << imageFilename.toStdString() << " successful!\n";
+            cerr << "writing "
+                    << imageFilename.toStdString() << " successful! ("
+                    << (long)animationFrame << "/" << (long)animationMaxFrames
+                    << ")\n";
         } else {
             SingletonLog::Instance() << "writing "
                     << imageFilename.toStdString() << " failed!\n";
         }
     }
-
-    UpdateStatus ("Double-click LMB to stop animation");
 }
 
 /** display some info about current object and its transformations in a
@@ -793,7 +806,6 @@ void C4DView::ApplyChanges (void) {
     Redraw ();
 }
 
-
 /** called whenever an object or the parameters have changed; this is the most
  *  generalized version, which is great, but sadly it doesn't exist  yet      */
 void C4DView::ParametersChanged(double, double, unsigned,
@@ -843,13 +855,11 @@ void C4DView::PreRedraw () {
     SingletonLog::Instance().log("C4DView::PreRedraw () done");
 }
 
-
 /** redraw handler */
 void C4DView::Redraw () {
   PreRedraw ();
   OnPaint ();
 }
-
 
 /** wrapper for redraw handler, with an exit strategy */
 void C4DView::RenderScene (unsigned /* Frame */) {  //  draw (frame of animation)
@@ -905,25 +915,7 @@ void C4DView::OnPaint() {                           //  object drawing routine
 
     swapBuffers ();                                 //  swap the buffers
 
-    if (RenderToPixmap) {
-        CurrentlyRendering = true;
-        static unsigned long frame = 0;
-
-        PreRedraw ();
-
-        SingletonLog::Instance() << "C4DView::OnPaint () - RenderToPixmap\n";
-        QPixmap tmpPixmap = makePixmap ();
-
-        QString imageFilename =
-            QString ("/tmp/HyperspaceExplorer_Image.%1.png").arg (frame++, 6)
-                                                            .replace (" ", "0");
-        if (tmpPixmap.save (imageFilename, "PNG"))
-            SingletonLog::Instance() << "writing "
-                    << imageFilename.toStdString() << " successful!\n";
-        else
-            SingletonLog::Instance() << "writing "
-                    << imageFilename.toStdString() << " failed!\n";
-    }
+    writeFrame();
 }
 
 
@@ -1123,7 +1115,16 @@ void C4DView::RenderToImages() {
 
 /** */
 void C4DView::AnimationSettings() {
-  cerr << "C4DView::AnimationSettings() is not yet implemented!" << endl;
+    AnimationDialogImpl *Dlg = new AnimationDialogImpl;
+    if (Dlg->exec () == QDialog::Accepted) {
+        animationMaxFrames = Dlg->getFrames();
+        animationDirectory = Dlg->getDir();
+        animationPrefix = Dlg->getPrefix();
+        SingletonLog::Instance()
+                << "animationMaxFrames: " << (long)animationMaxFrames
+                << ", animationDirectory: " << animationDirectory.toStdString()
+                << ", animationPrefix: "<< animationPrefix.toStdString() << "\n";
+    }
 }
 
 /** run a benchmark test */

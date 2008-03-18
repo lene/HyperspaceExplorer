@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/AnimationDialog Buttons" >
+        <file>icons/qmake_sub.png</file>
+    </qresource>
+</RCC>

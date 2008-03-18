@@ -10,6 +10,7 @@
 #include <fstream>
 #include <sstream>
 
+#include <QApplication>
 #include <QAction>
 #include <QMainWindow>
 
@@ -54,7 +55,7 @@ void Global::CheckGLErrors (const char *
 #   ifdef DEBUG
     GLenum error;
     while ((error = glGetError ()) != GL_NO_ERROR)
-      cerr << "GL Err: " << op << ": " << gluErrorString (error) << endl; 
+      cerr << "GL Err: " << op << ": " << gluErrorString (error) << endl;
 #   endif
 }
 
@@ -64,8 +65,8 @@ void Global::CheckGLErrors (const char *
  *  THIS FUNCTION IS UGLY IN MANY RESPECTS!
  *  @param RGB		RGB value to be set                                   */
 void Global::SetColor (const Vector<4> &RGB) {
-  static float *ambient  = new float [4], 
-               *diffuse  = new float [4], 
+  static float *ambient  = new float [4],
+               *diffuse  = new float [4],
                *specular = new float [4];
 
   for (unsigned i = 0; i < 3; i++) {
@@ -131,7 +132,7 @@ double Global::atod (QString s) {
 string Global::itoa (int x) {
 	ostringstream o;
 	o << x << ends;
-	return o.str (); 
+	return o.str ();
 }
 
 /** makes a string  from a double value
@@ -141,7 +142,7 @@ string Global::itoa (int x) {
 string Global::ftoa (double x) {
     ostringstream o;
     o << x << ends;
-    return o.str (); 
+    return o.str ();
 }
 
 /** normalizes a Vector made from 3 doubles out-of-place
@@ -177,4 +178,4 @@ unsigned long Global::check_proc_meminfo () {
 }
 
 /** maximum memory that should be consumed; calls check_proc_meminfo () above */
-unsigned long Global::MaximumMemory = check_proc_meminfo (); 
+unsigned long Global::MaximumMemory = check_proc_meminfo ();

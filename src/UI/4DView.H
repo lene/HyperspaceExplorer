@@ -216,6 +216,13 @@ class C4DView : public XQGLWidget {
         void UpdateFunctionMenu (int);
         void InitCross();
 
+        unsigned animationMaxFrames,
+                 animationFrame;
+        QString animationDirectory;
+        QString animationPrefix;
+
+        void writeFrame();
+
     protected slots:
         void OnTimer();
         void AnimationSettings();

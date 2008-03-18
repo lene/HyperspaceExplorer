@@ -25,6 +25,7 @@
 
 #include <QDesktopWidget>
 #include <QMouseEvent>
+#include <QSlider>
 
 #include "XQGLWidget.H"
 #include "GLObject.H"
