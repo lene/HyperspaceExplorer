@@ -205,9 +205,7 @@ class C4DView : public XQGLWidget {
 
         void UpdateStatus (QString = "");
 
-        void AssignValues (const QString &Title = 0,
-                           const QString &Parameter1 = 0,  const QString &Parameter2 = 0,
-                           const QString &Parameter3 = 0,  const QString &Parameter4 = 0);
+        void AssignValues (Function *);
 
         void OnPaint();
 

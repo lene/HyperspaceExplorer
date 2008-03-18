@@ -723,17 +723,79 @@ void C4DView::SetupDepthCue (bool on) {
  *  @param Parameter2	name of the new object's second parameter, if any
  *  @param Parameter3	name of the new object's third parameter, if any
  *  @param Parameter4	name of the new object's fourth parameter, if any     */
-void C4DView::AssignValues (const QString &Title,
-                            const QString &Parameter1,
-                            const QString &Parameter2,
-                            const QString &Parameter3,
-                            const QString &Parameter4) {
-    if (!Title.isEmpty()) {
-        ObjectName = Title;
+void C4DView::AssignValues (Function *F) {
+    QString Parameter1 = F->getParameterName(0);
+    QString Parameter2 = F->getParameterName(1);
+    QString Parameter3 = F->getParameterName(2);
+    QString Parameter4 = F->getParameterName(3);
+
+    if (!F->getFunctionName().isEmpty()) {
+        ObjectName = F->getFunctionName();
         setWindowTitle(ObjectName);
         Values->setFunction(ObjectName);
     }
 
+    if (dynamic_cast<Object *>(F)) {
+        Values->gridLabel->hide();
+        Values->TLabel->hide();
+        Values->TSlider->hide();
+        Values->TSteps->hide();
+        Values->TMinLabel->hide();
+        Values->TMin->hide();
+        Values->TMaxLabel->hide();
+        Values->TMax->hide();
+        Values->ULabel->hide();
+        Values->USlider->hide();
+        Values->USteps->hide();
+        Values->UMinLabel->hide();
+        Values->UMin->hide();
+        Values->UMaxLabel->hide();
+        Values->UMax->hide();
+        Values->VLabel->hide();
+        Values->VSlider->hide();
+        Values->VSteps->hide();
+        Values->VMinLabel->hide();
+        Values->VMin->hide();
+        Values->VMaxLabel->hide();
+        Values->VMax->hide();
+    } else {
+        Values->gridLabel->show();
+        Values->TLabel->show();
+        Values->TSlider->show();
+        Values->TSteps->show();
+        Values->TMinLabel->show();
+        Values->TMin->show();
+        Values->TMaxLabel->show();
+        Values->TMax->show();
+        Values->ULabel->show();
+        Values->USlider->show();
+        Values->USteps->show();
+        Values->UMinLabel->show();
+        Values->UMin->show();
+        Values->UMaxLabel->show();
+        Values->UMax->show();
+        if (dynamic_cast<Surface *>(F)) {
+            Values->VLabel->hide();
+            Values->VSlider->hide();
+            Values->VSteps->hide();
+            Values->VMinLabel->hide();
+            Values->VMin->hide();
+            Values->VMaxLabel->hide();
+            Values->VMax->hide();
+        } else {
+            Values->VLabel->show();
+            Values->VSlider->show();
+            Values->VSteps->show();
+            Values->VMinLabel->show();
+            Values->VMin->show();
+            Values->VMaxLabel->show();
+            Values->VMax->show();
+        }
+    }
+    
+    if (F->getNumParameters() == 0) Values->functionLabel->hide();
+    else Values->functionLabel->show();
+    
     if (!Parameter1.isEmpty()) {
         Values->aText (Parameter1);
         Values->A->show();
@@ -1216,12 +1278,7 @@ template<class function>
             << view->F->getParameterName(3).toStdString()<<")\n";
 
     view->menu->updateFunctionMenu (view->F->getFunctionName());
-    view->AssignValues (view->F->getFunctionName(),
-                        view->F->getParameterName(0),
-                        view->F->getParameterName(1),
-                        view->F->getParameterName(2),
-                        view->F->getParameterName(3));
-
+    view->AssignValues (view->F);
     view->Redraw ();
 }
 
@@ -1252,10 +1309,8 @@ template<class function>
         QMessageBox::information (NULL, "Error", error);
 
     }
-    view->AssignValues (view->F->getFunctionName(),
-                        view->F->getParameterName(0), view->F->getParameterName(1),
-                                view->F->getParameterName(2), view->F->getParameterName(3));
-
+    view->AssignValues (view->F);
+    
     view->Redraw ();
 }
 
@@ -1296,34 +1351,32 @@ void C4DView::FunctionR(){ FunctionSlot<PolarR>::createFunction(this); }
 void C4DView::ObjectHypercube() {
     menu->updateFunctionMenu("Hypercube");
 
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
+#   ifdef USE_AUTO_PTR
+        F.reset
+#   else
+        if (F) delete F;
+        F =
+#   endif
             (new Hypercube (Vector<4>(0., 0., 0., 0.), Values->a ()));
 
-  AssignValues ("Hypercube", "Size");
-
-  Redraw ();
+    AssignValues(F);
+    Redraw ();
 }
 
 /** display a ObjectHyperpyramid object */
 void C4DView::ObjectHyperpyramid() {
     menu->updateFunctionMenu("Hyperpyramid");
 
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
+#   ifdef USE_AUTO_PTR
+        F.reset
+#   else
+        if (F) delete F;
+        F =
+#   endif
             (new Pyramid (Vector<4>(0., 0., 0., 0.), 2.*Values->a ()));
 
-  AssignValues ("Hyperpyramid", "Size");
-
-  Redraw ();
+    AssignValues(F);
+    Redraw ();
 }
 
 /** display a ObjectHypersponge object */
@@ -1341,8 +1394,7 @@ void C4DView::ObjectHypersponge() {
                 Values->c (), Vector<4>(0., 0., 0., 0.))
             );
 
-    AssignValues ("4-dimensional Menger Sponge", "Level", "Distance", "Size");
-
+    AssignValues(F);
     Redraw ();
 }
 
@@ -1350,17 +1402,16 @@ void C4DView::ObjectHypersponge() {
 void C4DView::ObjectGasket() {
     menu->updateFunctionMenu("Sierpinski Gasket");
 
-# ifdef USE_AUTO_PTR
-  F.reset
-# else
-    if (F) delete F;
-    F =
-#endif
+#   ifdef USE_AUTO_PTR
+        F.reset
+#   else
+        if (F) delete F;
+        F =
+#   endif
             (new Gasket (unsigned (Values->a ()), 2.*Values->b (), Vector<4>(0., 0., 0., 0.)));
 
-  AssignValues ("4-dimensional Sierpinski Gasket", "Level", "Size");
-
-  Redraw ();
+    AssignValues(F);
+    Redraw ();
 }
 
 /** display a Surface object */
@@ -1443,7 +1494,7 @@ template<class function>
                     QString sym (((function *)(view->F))->symbolic());
 #               endif
 
-                view->AssignValues (sym);
+                view->AssignValues(view->F);
                 view->Redraw ();
             } else {
                 delete tmp;
@@ -1471,7 +1522,7 @@ template<class function>
                 QString sym (((function *)(view->F))->symbolic());
 #               endif
 
-                view->AssignValues (sym);
+                view->AssignValues(view->F);
                 view->Redraw ();
             } else {
                 delete tmp;

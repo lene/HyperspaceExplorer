@@ -69,9 +69,10 @@ class Function {
 	        return X[it][iu][iv]; 
         }
         
-        virtual QString getFunctionName() const { return functionName; }
-        virtual std::vector<QString> getParameterNames() { return parameterNames; }
-        virtual QString getParameterName(unsigned i) {
+        QString getFunctionName() const { return functionName; }
+        unsigned getNumParameters() { return parameterNames.size(); }
+        std::vector<QString> getParameterNames() { return parameterNames; }
+        QString getParameterName(unsigned i) {
             return i < parameterNames.size()? parameterNames[i]: ""; }
 
         typedef VecMath::Vector<4> &function_type (double, double, double);

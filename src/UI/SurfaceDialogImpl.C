@@ -37,6 +37,7 @@ SurfaceDialogImpl::SurfaceDialogImpl (QWidget *parent, Qt::WFlags f) :
   connect (loadButton, SIGNAL(clicked()), this, SLOT(loadFunction()));
   descriptionLabel->hide();
   descriptionTextEdit->hide();
+  if (layout()) layout()->setSizeConstraint(QLayout::SetFixedSize);
   show ();
 }
 

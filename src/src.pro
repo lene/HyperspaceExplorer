@@ -6,6 +6,7 @@ QT += opengl
 
 VERSION = 0.3.3
 
+system(mkdir tmp)
 OBJECTS_DIR = tmp
 MOC_DIR = tmp
 UI_DIR = tmp

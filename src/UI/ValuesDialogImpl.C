@@ -37,6 +37,10 @@ ValuesDialogImpl::ValuesDialogImpl (QWidget *parent, Qt::WFlags f) :
 
   FunctionBox->hide();
   TextLabel13->hide();
+  buttonOk->hide();
+  buttonCancel->hide();
+  
+  if (layout()) layout()->setSizeConstraint(QLayout::SetFixedSize);
 
   show ();
 }
