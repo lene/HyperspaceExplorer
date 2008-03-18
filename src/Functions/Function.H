@@ -127,6 +127,11 @@ class Function {
 
 ////////////////////////////////////////////////////////////////////////////////
 
+/** a hypersphere: defining function is 
+ *  F[0] = Radius*sin(psi)*sin(theta)*cos(phi)
+ *  F[1] = Radius*sin(psi)*sin(theta)*sin(phi)
+ *  F[2] = Radius*sin(psi)*cos(theta)
+ *  F[3] = Radius*cos(psi)                                                    */
 class Hypersphere: public Function {
     public:
         Hypersphere (double _tmin, double _tmax, double _dt,
@@ -147,6 +152,10 @@ class Hypersphere: public Function {
 
 ///////////////////////////////////////////////////////////////////////////////
 
+/** a four-dimensional torus where there are three radii - one circling about
+ *  the main axis, the second circling perpendicular to the first circle, and
+ *  the third circling about the second circle, perpendicular to all other
+ *  directions                                                                */
 class Torus1: public Function {
     public:
         Torus1 (double _tmin, double _tmax, double _dt,
@@ -167,6 +176,8 @@ class Torus1: public Function {
 
 ///////////////////////////////////////////////////////////////////////////////
 
+/** a four-dimensional torus where a sphere circles about a center point in a
+ *  direction perpendicular to all directions making up the sphere            */
 class Torus2: public Function {
     public:
         Torus2 (double _tmin, double _tmax, double _dt,
@@ -187,11 +198,14 @@ class Torus2: public Function {
 
 ///////////////////////////////////////////////////////////////////////////////
 
+/** an example function from R³ to R
+ *        r² = tt*tt+uu*uu+vv*vv
+ *  f(t,u,v) = 1./(r²+.25)                 */
 class Fr3r: public Function {
     public:
         Fr3r (double _tmin, double _tmax, double _dt,
-	      double _umin, double _umax, double _du,
-	       double _vmin, double _vmax, double _dv);
+              double _umin, double _umax, double _du,
+              double _vmin, double _vmax, double _dv);
         virtual ~Fr3r() { }
 
     protected:
@@ -203,6 +217,7 @@ class Fr3r: public Function {
 
 ///////////////////////////////////////////////////////////////////////////////
 
+/** a function describing the gravitational potential of a spherical mass     */
 class GravitationPotential: public Function {
     public:
         GravitationPotential (double _tmin, double _tmax, double _dt,
@@ -223,6 +238,7 @@ class GravitationPotential: public Function {
 
 ///////////////////////////////////////////////////////////////////////////////
 
+/** f(x,y,z) = sin (pi*(x²+y²+z²))  */
 class Fr3rSin: public Function {
 public:
     Fr3rSin (double _tmin, double _tmax, double _dt,
@@ -236,6 +252,7 @@ protected:
  
 ///////////////////////////////////////////////////////////////////////////////
 
+/** f(x,y,z) = exp(x²+y²+z²)    */
 class Fr3rExp: public Function {
 public:
     Fr3rExp (double _tmin, double _tmax, double _dt,
@@ -249,6 +266,7 @@ protected:
  
 ///////////////////////////////////////////////////////////////////////////////
 
+/** a hypersphere as an example polar function */
 class Polar: public Function {
 public:
     Polar (double _tmin, double _tmax, double _dt,
@@ -263,6 +281,7 @@ protected:
 
 ///////////////////////////////////////////////////////////////////////////////
 
+/** r(psi, theta, phi) = abs (sin (Phase*pi*psi*theta*phi))     */
 class PolarSin: public Function {
 public:
     PolarSin (double _tmin, double _tmax, double _dt,
@@ -281,6 +300,7 @@ protected:
 
 ///////////////////////////////////////////////////////////////////////////////
 
+/** r = sin (pi/3.*(psi+theta+phi)) */
 class PolarSin2: public Function {
 public:
     PolarSin2 (double _tmin, double _tmax, double _dt,
@@ -295,6 +315,7 @@ protected:
 
 ///////////////////////////////////////////////////////////////////////////////
 
+/** r = sqrt (tt*tt+uu*uu+vv*vv) */
 class PolarR: public Function {
 public:
     PolarR (double _tmin, double _tmax, double _dt,

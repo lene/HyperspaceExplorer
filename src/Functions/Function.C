@@ -17,10 +17,8 @@ using std::endl;
 using VecMath::Vector;
 using VecMath::Matrix;
 
-/*******************************************************************************
- *  auxiliary function to safely free a memory chunk
- *  @param x		pointer to memory
- */
+/** auxiliary function to safely free a memory chunk
+ *  @param x pointer to memory                                                */
 template <typename T> unsigned int Delete (T *x) {
   if (x) {
     delete [] x;
@@ -35,10 +33,8 @@ template <typename T> unsigned int Delete (T *x) {
 //////////////////////////////////////////////////////////////////////
 
 
-/*******************************************************************************
- *  Function default c'tor
- *  zeroes everything
- */
+/** Function default c'tor
+ *  zeroes everything       */
 Function::Function ():
     tmin (0),       tmax (0),       dt (0),
     umin (0),       umax (0),       du (0),
@@ -52,18 +48,17 @@ Function::Function ():
 { }
 
 
-/*******************************************************************************
- *  Function c'tor given a definition set in R³ (as parameter space)
- *  @param _tmin	minimal value in t
- *  @param _tmax	maximal value in t
- *  @param _dt		stepsize in t
- *  @param _umin	minimal value in u
- *  @param _umax	maximal value in u
- *  @param _du		stepsize in u
- *  @param _vmin	minimal value in v
- *  @param _vmax	maximal value in v
- *  @param _dv		stepsize in v
- */
+/** Function c'tor given a definition set in R³ (as parameter space)
+ *  @param name a name for the function
+ *  @param _tmin minimal value in t
+ *  @param _tmax maximal value in t
+ *  @param _dt stepsize in t
+ *  @param _umin minimal value in u
+ *  @param _umax maximal value in u
+ *  @param _du stepsize in u
+ *  @param _vmin minimal value in v
+ *  @param _vmax maximal value in v
+ *  @param _dv stepsize in v                                                  */
 Function::Function (const QString &name,
                     double _tmin, double _tmax, double _dt,
                     double _umin, double _umax, double _du,
@@ -94,10 +89,8 @@ Function::Function (const QString &name,
 }
 
 
-/*******************************************************************************
- *  Initialize the temporary storage areas Xscr[][][], Xtrans[][][],
- *                                         R[][][], G[][][], B[][][]
- */
+/** Initialize the temporary storage areas Xscr[][][], Xtrans[][][],
+ *                                         R[][][], G[][][], B[][][]          */
 void Function::InitMem (void) {
   XscrChunk = new Vector<3> [(tsteps+2)*(usteps+2)*(vsteps+2)];
   Xscr = new Vector<3> ** [tsteps+2];	// valgrind moans about lost bytes
@@ -133,8 +126,7 @@ void Function::InitMem (void) {
 }                                                       //      InitiMem ()
 
 
-/*******************************************************************************
- *  allocate and initialize X[][][] with values of f()
+/** allocate and initialize X[][][] with values of f()
  *  call InitMem () above
  */
 void Function::Initialize () {
@@ -188,20 +180,16 @@ void Function::ReInit(double _tmin, double _tmax, double _dt,
 }
 
 
-/*******************************************************************************
- *  placeholder for function to set parameters in descendants - empty because
+/** placeholder for function to set parameters in descendants - empty because
  *  generic function has no parameters
- *  @param _a		1st parameter
- *  @param _b		2nd parameter
- *  @param _c		3rd parameter
- *  @param _d		4th parameter
- */
+ *  @param _a 1st parameter
+ *  @param _b 2nd parameter
+ *  @param _c 3rd parameter
+ *  @param _d 4th parameter                                                   */
 void Function::SetParameters (double, double, double, double) { }
 
 
-/*******************************************************************************
- *  auxiliary function to safely free all member arrays
- */
+/** auxiliary function to safely free all member arrays  */
 void Function::Free (void) {
   for (unsigned u = 0; u <= usteps+1; u++) {
     for (unsigned v = 0; v <= vsteps+1; v++) {
@@ -232,34 +220,28 @@ void Function::Free (void) {
 }
 
 
-/*******************************************************************************
- *  return the approximate amount of memory needed to display a Function of current
- *  definition set
+/** return the approximate amount of memory needed to display a Function of
+ *  current definition set
  *  uses hardcoded and experimentally found value for memory per cell - ICK!
- *  @return		approx. mem required
- */
+ *  @return approx. mem required                                              */
 unsigned long Function::MemRequired (void) {
   return ((tsteps+2)*(usteps+2)*(vsteps+2)*4)/1024+8;
 }
 
 
-/*******************************************************************************
- *  Function destructor
- */
+/** Function destructor */
 Function::~Function() {
   //  Free ();				//  WHAT'S WRONG HERE?
 }
 
 
-/*******************************************************************************
- *  calculate normal to function at a given point in definition set
+/** calculate normal to function at a given point in definition set
  *  no further assumption is made than that f () is continuous
  *  this function is not yet used anywhere, but i like it
- *  @param tt		t value
- *  @param uu		u value
- *  @param vv		v value
- *  @return		surface normal, normalized
- */
+ *  @param tt t value
+ *  @param uu u value
+ *  @param vv v value
+ *  @return surface normal, normalized                                        */
 Vector<4> &Function::normal (double tt, double uu, double vv) {
     static Vector<4> n;
 
@@ -272,18 +254,16 @@ Vector<4> &Function::normal (double tt, double uu, double vv) {
 }
 
 
-/*******************************************************************************
- *  numerical calculation of the derivatives in u and v:
+/** numerical calculation of the derivatives in u and v:
  *
- *	df	  f(u+h, v) - f (u)   df     df
- *	-- =  lim -----------------,  -- and -- analogously
- *	du    h->0     	  h	      dv     dt
+ *  df    f(u+h, v) - f (u)   df     df
+ *  -- =  lim -----------------,  -- and -- analogously
+ *  du    h->0        h       dv     dt
  *
- *  @param tt		t value
- *  @param uu		u value
- *  @param vv		v value
- *  @return		gradient in t, u and v as array
- */
+ *  @param tt t value
+ *  @param uu u value
+ *  @param vv v value
+ *  @return gradient in t, u and v as array                                   */
 Vector<4> *Function::df (double tt, double uu, double vv) {
 
   static Vector<4> F0;			//	f (u, v)
@@ -306,22 +286,20 @@ Vector<4> *Function::df (double tt, double uu, double vv) {
   return DF; }
 
 
-/*******************************************************************************
- *  transforms a Function
+/** transforms a Function
  *  as I look at it, i think this could be optimized by making the transformation
  *  matrices static and only canging the corresponding entries... but how to
  *  make this beautifully, i don't know
- *  @param thetaxy	rotation around xy plane (z axis); should be ignored because 3D rotation takes care of it, but isn't
- *  @param thetaxz	rotation around xz plane (y axis); should be ignored because 3D rotation takes care of it, but isn't
- *  @param thetaxw	rotation around xw plane
- *  @param thetayz	rotation around xy plane (x axis); should be ignored because 3D rotation takes care of it, but isn't
- *  @param thetayw	rotation around yw plane
- *  @param thetazw	rotation around zw plane
- *  @param tx		translation in x direction
- *  @param ty		translation in y direction
- *  @param tz		translation in z direction
- *  @param tw		translation in w direction
- */
+ *  @param thetaxy rotation around xy plane (z axis); should be ignored because 3D rotation takes care of it, but isn't
+ *  @param thetaxz rotation around xz plane (y axis); should be ignored because 3D rotation takes care of it, but isn't
+ *  @param thetaxw rotation around xw plane
+ *  @param thetayz rotation around xy plane (x axis); should be ignored because 3D rotation takes care of it, but isn't
+ *  @param thetayw rotation around yw plane
+ *  @param thetazw rotation around zw plane
+ *  @param tx translation in x direction
+ *  @param ty translation in y direction
+ *  @param tz translation in z direction
+ *  @param tw translation in w direction                                      */
 void Function::Transform (double thetaxy, double thetaxz, double thetaxw,
                           double thetayz, double thetayw, double thetazw,
                           double tx, double ty, double tz, double tw) {
@@ -340,12 +318,10 @@ void Function::Transform (double thetaxy, double thetaxz, double thetaxw,
 }
 
 
-/*******************************************************************************
- *  projects a Function into three-space
- *  @param scr_w	w coordinate of screen
- *  @param cam_w	w coordinate of camera
- *  @param depthcue4d	wheter to use hyperfog/dc
- */
+/** projects a Function into three-space
+ *  @param scr_w w coordinate of screen
+ *  @param cam_w w coordinate of camera
+ *  @param depthcue4d whether to use hyperfog/depth cue */
 void Function::Project (double scr_w, double cam_w, bool depthcue4d) {
     double ProjectionFactor;
     double Wmax = 0, Wmin = 0;
@@ -383,30 +359,24 @@ void Function::Project (double scr_w, double cam_w, bool depthcue4d) {
 }
 
 
-/*******************************************************************************
- *  draw the projected Function (onto screen or into GL list, as it is)
- */
+/** draw the projected Function (onto screen or into GL list, as it is) */
 void Function::Draw (void) {
   for (unsigned t = 0; t < tsteps; t++)
     DrawPlane (t);
 }
 
 
-/*******************************************************************************
- *  draw the current plane of the projected Function
- *  @param t	current t value
- */
+/** draw the current plane of the projected Function
+ *  @param t current t value                                                  */
 void Function::DrawPlane (unsigned t){
   for (unsigned u = 0; u < usteps; u++)
     DrawStrip (t, u);
 }
 
 
-/*******************************************************************************
- *  draw the current strip of the projected Function
- *  @param t	current t value
- *  @param u	current u value
- */
+/** draw the current strip of the projected Function
+ *  @param t current t value
+ *  @param u current u value                                                  */
 void Function::DrawStrip (unsigned t, unsigned u){
   for (unsigned v = 0; v < vsteps; v++)
     DrawCube (t, u, v);
@@ -415,12 +385,10 @@ void Function::DrawStrip (unsigned t, unsigned u){
 using std::string;
 using std::setw;
 using std::setprecision;
-/*******************************************************************************
- *  draw the current cube or cell of the projected Function
- *  @param t	current t value
- *  @param u	current u value
- *  @param v	current v value
- */
+/** draw the current cube or cell of the projected Function
+ *  @param t current t value
+ *  @param u current u value
+ *  @param v current v value                                                  */
 void Function::DrawCube (unsigned t, unsigned u, unsigned v) {
     static Vector<3> *V = new Vector<3> [8];
 
@@ -534,14 +502,12 @@ Vector<4> &Hypersphere::f (double tt, double uu, double vv) {
 }
 
 
-/*******************************************************************************
- *  calculate normal to function at a given point in definition set
+/** calculate normal to function at a given point in definition set
  *  overridden because it's much easier to calculate
- *  @param tt		t value
- *  @param uu		u value
- *  @param vv		v value
- *  @return		surface normal, normalized
- */
+ *  @param tt t value
+ *  @param uu u value
+ *  @param vv v value
+ *  @return surface normal, normalized                                        */
 Vector<4> &Hypersphere::normal (double tt, double uu, double vv) {
     static Vector<4> n;
 
@@ -555,8 +521,7 @@ Vector<4> &Hypersphere::normal (double tt, double uu, double vv) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/*******************************************************************************
- *  Torus1 c'tor given a definition set in R³ (as parameter space) and three
+/** Torus1 c'tor given a definition set in R³ (as parameter space) and three
  *  radii: major, minor and... what'sitcalled... subminor
  *  @param _tmin	minimal value in t
  *  @param _tmax	maximal value in t
@@ -569,8 +534,7 @@ Vector<4> &Hypersphere::normal (double tt, double uu, double vv) {
  *  @param _dv		stepsize in v
  *  @param _R		major radius
  *  @param _r		minor radius
- *  @param _rho		subminor radius
- */
+ *  @param _rho		subminor radius */
 Torus1::Torus1 (double _tmin, double _tmax, double _dt,
 		double _umin, double _umax, double _du,
 		double _vmin, double _vmax, double _dv,
@@ -583,13 +547,11 @@ Torus1::Torus1 (double _tmin, double _tmax, double _dt,
       Initialize ();
 }
 
-/*******************************************************************************
- *  Torus1 defining function
+/** Torus1 defining function
  *  @param tt		t value
  *  @param uu		u value
  *  @param vv		v value
- *  @return		value of defining function at point in question
- */
+ *  @return		value of defining function at point in question */
 Vector<4> &Torus1::f (double tt, double uu, double vv) {
   F[0] =  cos (pi*tt)*(R+cos (pi*uu)*(r+rho*cos (pi*vv)));
   F[1] =  sin (pi*tt)*(R+cos (pi*uu)*(r+rho*cos (pi*vv)));
@@ -603,8 +565,7 @@ Vector<4> &Torus1::f (double tt, double uu, double vv) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/*******************************************************************************
- *  Torus2 c'tor given a definition set in R³ (as parameter space) and two
+/** Torus2 c'tor given a definition set in R³ (as parameter space) and two
  *  radii - a major and a minor (defining a sphere)
  *  @param _tmin	minimal value in t
  *  @param _tmax	maximal value in t
@@ -630,8 +591,7 @@ Torus2::Torus2 (double _tmin, double _tmax, double _dt,
       Initialize ();
 }
 
-/*******************************************************************************
- *  Torus2 defining function
+/** Torus2 defining function
  *  @param tt		t value
  *  @param uu		u value
  *  @param vv		v value
@@ -650,8 +610,7 @@ Vector<4> &Torus2::f (double tt, double uu, double vv) {
 ////////////////////////////////////////////////////////////////////////////////
 
 
-/*******************************************************************************
- *  Fr3r (example R³->R function) c'tor given a definition set in R³
+/** Fr3r (example R³->R function) c'tor given a definition set in R³
  *  @param _tmin	minimal value in t
  *  @param _tmax	maximal value in t
  *  @param _dt		stepsize in t
@@ -669,8 +628,7 @@ Fr3r::Fr3r (double _tmin, double _tmax, double _dt,
   Initialize ();
 }
 
-/*******************************************************************************
- *  Fr3r defining function
+/** Fr3r defining function
  *  @param tt		t value
  *  @param uu		u value
  *  @param vv		v value
@@ -692,8 +650,7 @@ Vector<4> &Fr3r::f (double tt, double uu, double vv) {
 ////////////////////////////////////////////////////////////////////////////////
 
 
-/*******************************************************************************
- *  GravitationPotential c'tor given a definition set in R³ (as parameter space),
+/** GravitationPotential c'tor given a definition set in R³ (as parameter space),
  *  a mass and a radius of a spherical mass
  *  @param _tmin	minimal value in t
  *  @param _tmax	maximal value in t
@@ -708,9 +665,9 @@ Vector<4> &Fr3r::f (double tt, double uu, double vv) {
  *  @param _R		radius
  */
 GravitationPotential::GravitationPotential (double xmin, double xmax, double dx,
-					    double ymin, double ymax, double dy,
-					    double zmin, double zmax, double dz,
-					    double _M, double _R):
+                                            double ymin, double ymax, double dy,
+                                            double zmin, double zmax, double dz,
+                                            double _M, double _R):
         Function ("Gravitation Potential", xmin, xmax, dx, ymin, ymax, dy, zmin, zmax, dz),
   M (_M), R (_R) {
       parameterNames.push_back("M");
@@ -718,12 +675,11 @@ GravitationPotential::GravitationPotential (double xmin, double xmax, double dx,
       Initialize ();
 }
 
-/*******************************************************************************
- *  Hypersphere defining function
- *  @param tt		t value
- *  @param uu		u value
- *  @param vv		v value
- *  @return		value of defining function at point in question
+/** GravitationPotential defining function
+ *  @param tt   t value
+ *  @param uu   u value
+ *  @param vv   v value
+ *  @return     value of defining function at point in question
  */
 Vector<4> &GravitationPotential::f (double tt, double uu, double vv) {
   const double G = 1;		//  arbitrary value for gravitation constant
@@ -743,8 +699,7 @@ Vector<4> &GravitationPotential::f (double tt, double uu, double vv) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/*******************************************************************************
- *  Fr3rSin c'tor given a definition set in R³ (as parameter space)
+/** Fr3rSin c'tor given a definition set in R³ (as parameter space)
  *  @param _tmin	minimal value in t
  *  @param _tmax	maximal value in t
  *  @param _dt		stepsize in t
@@ -762,8 +717,7 @@ Fr3rSin::Fr3rSin (double _tmin, double _tmax, double _dt,
   Initialize ();
 }
 
-/*******************************************************************************
- *  Fr3rSin defining function
+/** Fr3rSin defining function
  *  @param tt		t value
  *  @param uu		u value
  *  @param vv		v value
@@ -782,8 +736,7 @@ Vector<4> &Fr3rSin::f (double tt, double uu, double vv) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/*******************************************************************************
- *  Fr3rExp c'tor given a definition set in R³ (as parameter space)
+/** Fr3rExp c'tor given a definition set in R³ (as parameter space)
  *  @param _tmin	minimal value in t
  *  @param _tmax	maximal value in t
  *  @param _dt		stepsize in t
@@ -801,8 +754,7 @@ Fr3rExp::Fr3rExp (double _tmin, double _tmax, double _dt,
   Initialize ();
 }
 
-/*******************************************************************************
- *  Fr3rExp defining function
+/** Fr3rExp defining function
  *  @param tt		t value
  *  @param uu		u value
  *  @param vv		v value
@@ -820,8 +772,7 @@ Vector<4> &Fr3rExp::f (double tt, double uu, double vv) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/*******************************************************************************
- *  Polar (example polar function) c'tor given a definition set in [t, u, v]
+/** Polar (example polar function) c'tor given a definition set in [t, u, v]
  *  as parameter space
  *  @param _tmin	minimal value in t
  *  @param _tmax	maximal value in t
@@ -840,8 +791,7 @@ Polar::Polar (double _tmin, double _tmax, double _dt,
   Initialize ();
 }
 
-/*******************************************************************************
- *  Polar defining function
+/** Polar defining function
  *  @param tt		t value
  *  @param uu		u value
  *  @param vv		v value
@@ -865,8 +815,7 @@ Vector<4> &Polar::f (double tt, double uu, double vv) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/*******************************************************************************
- *  PolarSin c'tor given a definition set in R³ (as parameter space) and a
+/** PolarSin c'tor given a definition set in R³ (as parameter space) and a
  *  phase
  *  @param _tmin	minimal value in t
  *  @param _tmax	maximal value in t
@@ -888,8 +837,7 @@ PolarSin::PolarSin (double _tmin, double _tmax, double _dt,
   Initialize ();
 }
 
-/*******************************************************************************
- *  PolarSin defining function
+/** PolarSin defining function
  *  @param tt		t value
  *  @param uu		u value
  *  @param vv		v value
@@ -913,8 +861,7 @@ Vector<4> &PolarSin::f (double tt, double uu, double vv) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/*******************************************************************************
- *  PolarSin2 c'tor given a definition set in R³ (as parameter space)
+/** PolarSin2 c'tor given a definition set in R³ (as parameter space)
  *  @param _tmin	minimal value in t
  *  @param _tmax	maximal value in t
  *  @param _dt		stepsize in t
@@ -933,8 +880,7 @@ PolarSin2::PolarSin2 (double _tmin, double _tmax, double _dt,
     Initialize ();
 }
 
-/*******************************************************************************
- *  PolarSin2 defining function
+/** PolarSin2 defining function
  *  @param tt		t value
  *  @param uu		u value
  *  @param vv		v value
@@ -958,8 +904,7 @@ Vector<4> &PolarSin2::f (double tt, double uu, double vv) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/*******************************************************************************
- *  PolarR c'tor given a definition set in R³ (as parameter space) and a
+/** PolarR c'tor given a definition set in R³ (as parameter space) and a
  *  phase
  *  @param _tmin	minimal value in t
  *  @param _tmax	maximal value in t
@@ -982,8 +927,7 @@ PolarR::PolarR (double _tmin, double _tmax, double _dt,
   Initialize ();
 }
 
-/*******************************************************************************
- *  PolarR defining function
+/** PolarR defining function
  *  @param tt		t value
  *  @param uu		u value
  *  @param vv		v value

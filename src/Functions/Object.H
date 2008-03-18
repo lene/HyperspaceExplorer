@@ -18,6 +18,10 @@
 #include "Function.H"
 #include "Vector.H"
 
+/** an Object is a four-dimensional geometrical object which can not be 
+ *  described as a mathematical function from R³ to R or from R² to R^4.
+ *  Instead it is described as a set of surfaces. 
+ */
 class Object: public Function {
     public:
         Object (const QString &, unsigned, unsigned);
