@@ -716,13 +716,10 @@ void C4DView::SetupDepthCue (bool on) {
 }
 
 
-/** called whenever an object or the parameters have changed; changes the display
- *  on the status bar and for the names of the parameters on the ValuesDialog
- *  @param Title	name of the new object
- *  @param Parameter1	name of the new object's first parameter, if any
- *  @param Parameter2	name of the new object's second parameter, if any
- *  @param Parameter3	name of the new object's third parameter, if any
- *  @param Parameter4	name of the new object's fourth parameter, if any     */
+/** called whenever an object or the parameters have changed; changes the
+ *  display on the status bar and the number and names of the parameters and
+ *  grid parameters on the ValuesDialog
+ *  @param F the Function object for which the ValuesDialog is changed        */
 void C4DView::AssignValues (Function *F) {
     QString Parameter1 = F->getParameterName(0);
     QString Parameter2 = F->getParameterName(1);
@@ -1357,7 +1354,7 @@ void C4DView::ObjectHypercube() {
         if (F) delete F;
         F =
 #   endif
-            (new Hypercube (Vector<4>(0., 0., 0., 0.), Values->a ()));
+            (new Hypercube (Values->a ()));
 
     AssignValues(F);
     Redraw ();
@@ -1373,7 +1370,7 @@ void C4DView::ObjectHyperpyramid() {
         if (F) delete F;
         F =
 #   endif
-            (new Pyramid (Vector<4>(0., 0., 0., 0.), 2.*Values->a ()));
+            (new Pyramid (2.*Values->a ()));
 
     AssignValues(F);
     Redraw ();
@@ -1391,7 +1388,7 @@ void C4DView::ObjectHypersponge() {
 #   endif
             (new Sponge (
                 unsigned (Values->a ()), int (Values->b ()),
-                Values->c (), Vector<4>(0., 0., 0., 0.))
+                Values->c ())
             );
 
     AssignValues(F);
@@ -1408,7 +1405,7 @@ void C4DView::ObjectGasket() {
         if (F) delete F;
         F =
 #   endif
-            (new Gasket (unsigned (Values->a ()), 2.*Values->b (), Vector<4>(0., 0., 0., 0.)));
+            (new Gasket (unsigned (Values->a ()), 2.*Values->b ()));
 
     AssignValues(F);
     Redraw ();

@@ -16,7 +16,7 @@
 #include <string>
 
 #include "Function.H"
-
+#include "Vector.H"
 
 class Object: public Function {
     public:
@@ -51,7 +51,7 @@ public:
     Hypercube (): Object ("Hypercube", 16, 24) {
         parameterNames.push_back("Size");
     }
-    Hypercube (const VecMath::Vector<4> &_Center, double _a = 1);
+    Hypercube (double _a, const VecMath::Vector<4> &_Center = VecMath::Vector<4>(0., 0., 0., 0.));
     virtual ~Hypercube() { }
   
     virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
@@ -122,7 +122,7 @@ public:
     Pyramid (): Object ("Hyperpyramid", 5, 10) { 
         parameterNames.push_back("Size");
     }
-    Pyramid (const VecMath::Vector<4> &_Center, double _a = 1);
+    Pyramid (double _a, const VecMath::Vector<4> &_Center = VecMath::Vector<4> (0., 0., 0., 0.));
     virtual ~Pyramid() { }
 
     virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {

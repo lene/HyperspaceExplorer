@@ -152,7 +152,7 @@ void Object::ReInit (double, double, double,
  *  @param center	center
  *  @param _a		side_length/2
  */
-Hypercube::Hypercube (const Vector<4> &_center, double _a):
+Hypercube::Hypercube (double _a, const Vector<4> &_center):
         Object ("Hypercube", 16, 24),
     a (_a), center(_center) {
         parameterNames.push_back("Size");
@@ -226,6 +226,7 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
 Sponge::Sponge (unsigned level, int _distance, double _rad, Vector<4> _center):
     Level (level), distance(_distance), rad(_rad), center(_center) {
     functionName = "4-dimensional Menger Sponge";
+    parameterNames.clear();
     parameterNames.push_back("Level");
     parameterNames.push_back("Distance");
     parameterNames.push_back("Size");
@@ -259,7 +260,7 @@ void Sponge::Initialize(void) {
     SingletonLog::Instance().log("Sponge::Initialize()");
 
     if (Level < 1)
-	List.push_back (new Hypercube (center, rad*3./2.));
+        List.push_back (new Hypercube (rad*3./2., center));
     else {
         if (distance > 3) distance = 3; 	//  dunno if this is wise
 
@@ -355,7 +356,7 @@ void Sponge::Draw (void) {
  *  @param center	center
  *  @param _a		side_length/2
  */
-Pyramid::Pyramid (const Vector<4> &_center, double _a):
+Pyramid::Pyramid (double _a, const Vector<4> &_center):
         Object ("Hyperpyramid", 5, 10),
     center(_center), a (_a) {
         parameterNames.push_back("Size");
@@ -410,6 +411,7 @@ void Pyramid::DeclareTriangle (unsigned i, unsigned a, unsigned b, unsigned c) {
 Gasket::Gasket (unsigned level, double _rad, Vector<4> _center):
     Level (level), rad(_rad), center(_center) {
     functionName = "4-dimensional Sierpinski Gasket";
+    parameterNames.clear();
     parameterNames.push_back("Level");
     parameterNames.push_back("Size");
     Initialize();
@@ -427,7 +429,7 @@ unsigned long Gasket::MemRequired (void) {
 
 void Gasket::Initialize() {
     if (Level < 1)
-	List.push_back (new Pyramid (center, rad));
+        List.push_back (new Pyramid (rad, center));
     else {
         if (MemRequired () > Globals::Instance().MaximumMemory) {
 	  cerr << "Sierpinski gasket of level " << Level
