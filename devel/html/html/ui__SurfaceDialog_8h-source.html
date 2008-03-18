@@ -16,7 +16,7 @@
 <h1>workspace/HyperspaceExplorer/src/tmp/ui_SurfaceDialog.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/********************************************************************************</span>
 <a name="l00002"></a>00002 <span class="comment">** Form generated from reading ui file 'SurfaceDialog.ui'</span>
 <a name="l00003"></a>00003 <span class="comment">**</span>
-<a name="l00004"></a>00004 <span class="comment">** Created: Tue Mar 18 15:04:40 2008</span>
+<a name="l00004"></a>00004 <span class="comment">** Created: Tue Mar 18 23:32:34 2008</span>
 <a name="l00005"></a>00005 <span class="comment">**      by: Qt User Interface Compiler version 4.3.3</span>
 <a name="l00006"></a>00006 <span class="comment">**</span>
 <a name="l00007"></a>00007 <span class="comment">** WARNING! All changes made in this file will be lost when recompiling ui file!</span>
@@ -31,237 +31,232 @@
 <a name="l00016"></a>00016 <span class="preprocessor">#include &lt;QtGui/QApplication&gt;</span>
 <a name="l00017"></a>00017 <span class="preprocessor">#include &lt;QtGui/QButtonGroup&gt;</span>
 <a name="l00018"></a>00018 <span class="preprocessor">#include &lt;QtGui/QDialog&gt;</span>
-<a name="l00019"></a>00019 <span class="preprocessor">#include &lt;QtGui/QHBoxLayout&gt;</span>
-<a name="l00020"></a>00020 <span class="preprocessor">#include &lt;QtGui/QLabel&gt;</span>
-<a name="l00021"></a>00021 <span class="preprocessor">#include &lt;QtGui/QLineEdit&gt;</span>
-<a name="l00022"></a>00022 <span class="preprocessor">#include &lt;QtGui/QPushButton&gt;</span>
-<a name="l00023"></a>00023 <span class="preprocessor">#include &lt;QtGui/QSpacerItem&gt;</span>
-<a name="l00024"></a>00024 <span class="preprocessor">#include &lt;QtGui/QTextEdit&gt;</span>
-<a name="l00025"></a>00025 <span class="preprocessor">#include &lt;QtGui/QVBoxLayout&gt;</span>
-<a name="l00026"></a>00026 <span class="preprocessor">#include &lt;QtGui/QWidget&gt;</span>
+<a name="l00019"></a>00019 <span class="preprocessor">#include &lt;QtGui/QGridLayout&gt;</span>
+<a name="l00020"></a>00020 <span class="preprocessor">#include &lt;QtGui/QHBoxLayout&gt;</span>
+<a name="l00021"></a>00021 <span class="preprocessor">#include &lt;QtGui/QLabel&gt;</span>
+<a name="l00022"></a>00022 <span class="preprocessor">#include &lt;QtGui/QLineEdit&gt;</span>
+<a name="l00023"></a>00023 <span class="preprocessor">#include &lt;QtGui/QPushButton&gt;</span>
+<a name="l00024"></a>00024 <span class="preprocessor">#include &lt;QtGui/QSpacerItem&gt;</span>
+<a name="l00025"></a>00025 <span class="preprocessor">#include &lt;QtGui/QTextEdit&gt;</span>
+<a name="l00026"></a>00026 <span class="preprocessor">#include &lt;QtGui/QVBoxLayout&gt;</span>
 <a name="l00027"></a>00027 
 <a name="l00028"></a>00028 <span class="keyword">class </span>Ui_SurfaceDialog
 <a name="l00029"></a>00029 {
 <a name="l00030"></a>00030 <span class="keyword">public</span>:
-<a name="l00031"></a>00031     QWidget *layoutWidget;
-<a name="l00032"></a>00032     QVBoxLayout *vboxLayout;
-<a name="l00033"></a>00033     QHBoxLayout *hboxLayout;
-<a name="l00034"></a>00034     QLabel *NameLabel;
-<a name="l00035"></a>00035     QLineEdit *nameEdit;
-<a name="l00036"></a>00036     QLabel *IntroLabel;
-<a name="l00037"></a>00037     QVBoxLayout *vboxLayout1;
-<a name="l00038"></a>00038     QHBoxLayout *hboxLayout1;
-<a name="l00039"></a>00039     QLabel *XLabel;
-<a name="l00040"></a>00040     QLineEdit *XEdit;
-<a name="l00041"></a>00041     QHBoxLayout *hboxLayout2;
-<a name="l00042"></a>00042     QLabel *YLabel;
-<a name="l00043"></a>00043     QLineEdit *YEdit;
-<a name="l00044"></a>00044     QHBoxLayout *hboxLayout3;
-<a name="l00045"></a>00045     QLabel *ZLabel;
-<a name="l00046"></a>00046     QLineEdit *ZEdit;
-<a name="l00047"></a>00047     QHBoxLayout *hboxLayout4;
-<a name="l00048"></a>00048     QLabel *WLabel;
-<a name="l00049"></a>00049     QLineEdit *WEdit;
-<a name="l00050"></a>00050     QHBoxLayout *hboxLayout5;
-<a name="l00051"></a>00051     QLabel *descriptionLabel;
-<a name="l00052"></a>00052     QTextEdit *descriptionTextEdit;
-<a name="l00053"></a>00053     QSpacerItem *spacerItem;
-<a name="l00054"></a>00054     QHBoxLayout *hboxLayout6;
-<a name="l00055"></a>00055     QPushButton *okButton;
-<a name="l00056"></a>00056     QPushButton *cancelButton;
-<a name="l00057"></a>00057     QSpacerItem *spacerItem1;
-<a name="l00058"></a>00058     QPushButton *loadButton;
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060     <span class="keywordtype">void</span> setupUi(QDialog *SurfaceDialog)
-<a name="l00061"></a>00061     {
-<a name="l00062"></a>00062     <span class="keywordflow">if</span> (SurfaceDialog-&gt;objectName().isEmpty())
-<a name="l00063"></a>00063         SurfaceDialog-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"SurfaceDialog"</span>));
-<a name="l00064"></a>00064     SurfaceDialog-&gt;resize(487, 362);
-<a name="l00065"></a>00065     layoutWidget = <span class="keyword">new</span> QWidget(SurfaceDialog);
-<a name="l00066"></a>00066     layoutWidget-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"layoutWidget"</span>));
-<a name="l00067"></a>00067     layoutWidget-&gt;setGeometry(QRect(10, 10, 468, 347));
-<a name="l00068"></a>00068     vboxLayout = <span class="keyword">new</span> QVBoxLayout(layoutWidget);
-<a name="l00069"></a>00069     vboxLayout-&gt;setSpacing(6);
-<a name="l00070"></a>00070     vboxLayout-&gt;setMargin(11);
-<a name="l00071"></a>00071     vboxLayout-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"vboxLayout"</span>));
-<a name="l00072"></a>00072     vboxLayout-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00073"></a>00073     hboxLayout = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00074"></a>00074     hboxLayout-&gt;setSpacing(6);
-<a name="l00075"></a>00075     hboxLayout-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout"</span>));
-<a name="l00076"></a>00076     hboxLayout-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00077"></a>00077     NameLabel = <span class="keyword">new</span> QLabel(layoutWidget);
-<a name="l00078"></a>00078     NameLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"NameLabel"</span>));
+<a name="l00031"></a>00031     QGridLayout *gridLayout;
+<a name="l00032"></a>00032     QHBoxLayout *hboxLayout;
+<a name="l00033"></a>00033     QLabel *NameLabel;
+<a name="l00034"></a>00034     QLineEdit *nameEdit;
+<a name="l00035"></a>00035     QLabel *IntroLabel;
+<a name="l00036"></a>00036     QVBoxLayout *vboxLayout;
+<a name="l00037"></a>00037     QHBoxLayout *hboxLayout1;
+<a name="l00038"></a>00038     QLabel *XLabel;
+<a name="l00039"></a>00039     QLineEdit *XEdit;
+<a name="l00040"></a>00040     QHBoxLayout *hboxLayout2;
+<a name="l00041"></a>00041     QLabel *YLabel;
+<a name="l00042"></a>00042     QLineEdit *YEdit;
+<a name="l00043"></a>00043     QHBoxLayout *hboxLayout3;
+<a name="l00044"></a>00044     QLabel *ZLabel;
+<a name="l00045"></a>00045     QLineEdit *ZEdit;
+<a name="l00046"></a>00046     QHBoxLayout *hboxLayout4;
+<a name="l00047"></a>00047     QLabel *WLabel;
+<a name="l00048"></a>00048     QLineEdit *WEdit;
+<a name="l00049"></a>00049     QHBoxLayout *hboxLayout5;
+<a name="l00050"></a>00050     QLabel *descriptionLabel;
+<a name="l00051"></a>00051     QTextEdit *descriptionTextEdit;
+<a name="l00052"></a>00052     QSpacerItem *spacerItem;
+<a name="l00053"></a>00053     QHBoxLayout *hboxLayout6;
+<a name="l00054"></a>00054     QPushButton *okButton;
+<a name="l00055"></a>00055     QPushButton *cancelButton;
+<a name="l00056"></a>00056     QSpacerItem *spacerItem1;
+<a name="l00057"></a>00057     QPushButton *loadButton;
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059     <span class="keywordtype">void</span> setupUi(QDialog *SurfaceDialog)
+<a name="l00060"></a>00060     {
+<a name="l00061"></a>00061     <span class="keywordflow">if</span> (SurfaceDialog-&gt;objectName().isEmpty())
+<a name="l00062"></a>00062         SurfaceDialog-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"SurfaceDialog"</span>));
+<a name="l00063"></a>00063     SurfaceDialog-&gt;resize(474, 362);
+<a name="l00064"></a>00064     gridLayout = <span class="keyword">new</span> QGridLayout(SurfaceDialog);
+<a name="l00065"></a>00065     gridLayout-&gt;setSpacing(6);
+<a name="l00066"></a>00066     gridLayout-&gt;setMargin(11);
+<a name="l00067"></a>00067     gridLayout-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"gridLayout"</span>));
+<a name="l00068"></a>00068     hboxLayout = <span class="keyword">new</span> QHBoxLayout();
+<a name="l00069"></a>00069     hboxLayout-&gt;setSpacing(6);
+<a name="l00070"></a>00070     hboxLayout-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout"</span>));
+<a name="l00071"></a>00071     hboxLayout-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00072"></a>00072     NameLabel = <span class="keyword">new</span> QLabel(SurfaceDialog);
+<a name="l00073"></a>00073     NameLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"NameLabel"</span>));
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075     hboxLayout-&gt;addWidget(NameLabel);
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077     nameEdit = <span class="keyword">new</span> QLineEdit(SurfaceDialog);
+<a name="l00078"></a>00078     nameEdit-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"nameEdit"</span>));
 <a name="l00079"></a>00079 
-<a name="l00080"></a>00080     hboxLayout-&gt;addWidget(NameLabel);
+<a name="l00080"></a>00080     hboxLayout-&gt;addWidget(nameEdit);
 <a name="l00081"></a>00081 
-<a name="l00082"></a>00082     nameEdit = <span class="keyword">new</span> QLineEdit(layoutWidget);
-<a name="l00083"></a>00083     nameEdit-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"nameEdit"</span>));
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083     gridLayout-&gt;addLayout(hboxLayout, 0, 0, 1, 1);
 <a name="l00084"></a>00084 
-<a name="l00085"></a>00085     hboxLayout-&gt;addWidget(nameEdit);
-<a name="l00086"></a>00086 
+<a name="l00085"></a>00085     IntroLabel = <span class="keyword">new</span> QLabel(SurfaceDialog);
+<a name="l00086"></a>00086     IntroLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"IntroLabel"</span>));
 <a name="l00087"></a>00087 
-<a name="l00088"></a>00088     vboxLayout-&gt;addLayout(hboxLayout);
+<a name="l00088"></a>00088     gridLayout-&gt;addWidget(IntroLabel, 1, 0, 1, 1);
 <a name="l00089"></a>00089 
-<a name="l00090"></a>00090     IntroLabel = <span class="keyword">new</span> QLabel(layoutWidget);
-<a name="l00091"></a>00091     IntroLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"IntroLabel"</span>));
-<a name="l00092"></a>00092 
-<a name="l00093"></a>00093     vboxLayout-&gt;addWidget(IntroLabel);
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095     vboxLayout1 = <span class="keyword">new</span> QVBoxLayout();
-<a name="l00096"></a>00096     vboxLayout1-&gt;setSpacing(6);
-<a name="l00097"></a>00097     vboxLayout1-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"vboxLayout1"</span>));
-<a name="l00098"></a>00098     vboxLayout1-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00099"></a>00099     hboxLayout1 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00100"></a>00100     hboxLayout1-&gt;setSpacing(6);
-<a name="l00101"></a>00101     hboxLayout1-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout1"</span>));
-<a name="l00102"></a>00102     hboxLayout1-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00103"></a>00103     XLabel = <span class="keyword">new</span> QLabel(layoutWidget);
-<a name="l00104"></a>00104     XLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"XLabel"</span>));
+<a name="l00090"></a>00090     vboxLayout = <span class="keyword">new</span> QVBoxLayout();
+<a name="l00091"></a>00091     vboxLayout-&gt;setSpacing(6);
+<a name="l00092"></a>00092     vboxLayout-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"vboxLayout"</span>));
+<a name="l00093"></a>00093     vboxLayout-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00094"></a>00094     hboxLayout1 = <span class="keyword">new</span> QHBoxLayout();
+<a name="l00095"></a>00095     hboxLayout1-&gt;setSpacing(6);
+<a name="l00096"></a>00096     hboxLayout1-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout1"</span>));
+<a name="l00097"></a>00097     hboxLayout1-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00098"></a>00098     XLabel = <span class="keyword">new</span> QLabel(SurfaceDialog);
+<a name="l00099"></a>00099     XLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"XLabel"</span>));
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101     hboxLayout1-&gt;addWidget(XLabel);
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103     XEdit = <span class="keyword">new</span> QLineEdit(SurfaceDialog);
+<a name="l00104"></a>00104     XEdit-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"XEdit"</span>));
 <a name="l00105"></a>00105 
-<a name="l00106"></a>00106     hboxLayout1-&gt;addWidget(XLabel);
+<a name="l00106"></a>00106     hboxLayout1-&gt;addWidget(XEdit);
 <a name="l00107"></a>00107 
-<a name="l00108"></a>00108     XEdit = <span class="keyword">new</span> QLineEdit(layoutWidget);
-<a name="l00109"></a>00109     XEdit-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"XEdit"</span>));
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109     vboxLayout-&gt;addLayout(hboxLayout1);
 <a name="l00110"></a>00110 
-<a name="l00111"></a>00111     hboxLayout1-&gt;addWidget(XEdit);
-<a name="l00112"></a>00112 
-<a name="l00113"></a>00113 
-<a name="l00114"></a>00114     vboxLayout1-&gt;addLayout(hboxLayout1);
-<a name="l00115"></a>00115 
-<a name="l00116"></a>00116     hboxLayout2 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00117"></a>00117     hboxLayout2-&gt;setSpacing(6);
-<a name="l00118"></a>00118     hboxLayout2-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout2"</span>));
-<a name="l00119"></a>00119     hboxLayout2-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00120"></a>00120     YLabel = <span class="keyword">new</span> QLabel(layoutWidget);
-<a name="l00121"></a>00121     YLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"YLabel"</span>));
+<a name="l00111"></a>00111     hboxLayout2 = <span class="keyword">new</span> QHBoxLayout();
+<a name="l00112"></a>00112     hboxLayout2-&gt;setSpacing(6);
+<a name="l00113"></a>00113     hboxLayout2-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout2"</span>));
+<a name="l00114"></a>00114     hboxLayout2-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00115"></a>00115     YLabel = <span class="keyword">new</span> QLabel(SurfaceDialog);
+<a name="l00116"></a>00116     YLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"YLabel"</span>));
+<a name="l00117"></a>00117 
+<a name="l00118"></a>00118     hboxLayout2-&gt;addWidget(YLabel);
+<a name="l00119"></a>00119 
+<a name="l00120"></a>00120     YEdit = <span class="keyword">new</span> QLineEdit(SurfaceDialog);
+<a name="l00121"></a>00121     YEdit-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"YEdit"</span>));
 <a name="l00122"></a>00122 
-<a name="l00123"></a>00123     hboxLayout2-&gt;addWidget(YLabel);
+<a name="l00123"></a>00123     hboxLayout2-&gt;addWidget(YEdit);
 <a name="l00124"></a>00124 
-<a name="l00125"></a>00125     YEdit = <span class="keyword">new</span> QLineEdit(layoutWidget);
-<a name="l00126"></a>00126     YEdit-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"YEdit"</span>));
+<a name="l00125"></a>00125 
+<a name="l00126"></a>00126     vboxLayout-&gt;addLayout(hboxLayout2);
 <a name="l00127"></a>00127 
-<a name="l00128"></a>00128     hboxLayout2-&gt;addWidget(YEdit);
-<a name="l00129"></a>00129 
-<a name="l00130"></a>00130 
-<a name="l00131"></a>00131     vboxLayout1-&gt;addLayout(hboxLayout2);
-<a name="l00132"></a>00132 
-<a name="l00133"></a>00133     hboxLayout3 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00134"></a>00134     hboxLayout3-&gt;setSpacing(6);
-<a name="l00135"></a>00135     hboxLayout3-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout3"</span>));
-<a name="l00136"></a>00136     hboxLayout3-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00137"></a>00137     ZLabel = <span class="keyword">new</span> QLabel(layoutWidget);
-<a name="l00138"></a>00138     ZLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"ZLabel"</span>));
+<a name="l00128"></a>00128     hboxLayout3 = <span class="keyword">new</span> QHBoxLayout();
+<a name="l00129"></a>00129     hboxLayout3-&gt;setSpacing(6);
+<a name="l00130"></a>00130     hboxLayout3-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout3"</span>));
+<a name="l00131"></a>00131     hboxLayout3-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00132"></a>00132     ZLabel = <span class="keyword">new</span> QLabel(SurfaceDialog);
+<a name="l00133"></a>00133     ZLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"ZLabel"</span>));
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135     hboxLayout3-&gt;addWidget(ZLabel);
+<a name="l00136"></a>00136 
+<a name="l00137"></a>00137     ZEdit = <span class="keyword">new</span> QLineEdit(SurfaceDialog);
+<a name="l00138"></a>00138     ZEdit-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"ZEdit"</span>));
 <a name="l00139"></a>00139 
-<a name="l00140"></a>00140     hboxLayout3-&gt;addWidget(ZLabel);
+<a name="l00140"></a>00140     hboxLayout3-&gt;addWidget(ZEdit);
 <a name="l00141"></a>00141 
-<a name="l00142"></a>00142     ZEdit = <span class="keyword">new</span> QLineEdit(layoutWidget);
-<a name="l00143"></a>00143     ZEdit-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"ZEdit"</span>));
+<a name="l00142"></a>00142 
+<a name="l00143"></a>00143     vboxLayout-&gt;addLayout(hboxLayout3);
 <a name="l00144"></a>00144 
-<a name="l00145"></a>00145     hboxLayout3-&gt;addWidget(ZEdit);
-<a name="l00146"></a>00146 
-<a name="l00147"></a>00147 
-<a name="l00148"></a>00148     vboxLayout1-&gt;addLayout(hboxLayout3);
-<a name="l00149"></a>00149 
-<a name="l00150"></a>00150     hboxLayout4 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00151"></a>00151     hboxLayout4-&gt;setSpacing(6);
-<a name="l00152"></a>00152     hboxLayout4-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout4"</span>));
-<a name="l00153"></a>00153     hboxLayout4-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00154"></a>00154     WLabel = <span class="keyword">new</span> QLabel(layoutWidget);
-<a name="l00155"></a>00155     WLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"WLabel"</span>));
+<a name="l00145"></a>00145     hboxLayout4 = <span class="keyword">new</span> QHBoxLayout();
+<a name="l00146"></a>00146     hboxLayout4-&gt;setSpacing(6);
+<a name="l00147"></a>00147     hboxLayout4-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout4"</span>));
+<a name="l00148"></a>00148     hboxLayout4-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00149"></a>00149     WLabel = <span class="keyword">new</span> QLabel(SurfaceDialog);
+<a name="l00150"></a>00150     WLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"WLabel"</span>));
+<a name="l00151"></a>00151 
+<a name="l00152"></a>00152     hboxLayout4-&gt;addWidget(WLabel);
+<a name="l00153"></a>00153 
+<a name="l00154"></a>00154     WEdit = <span class="keyword">new</span> QLineEdit(SurfaceDialog);
+<a name="l00155"></a>00155     WEdit-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"WEdit"</span>));
 <a name="l00156"></a>00156 
-<a name="l00157"></a>00157     hboxLayout4-&gt;addWidget(WLabel);
+<a name="l00157"></a>00157     hboxLayout4-&gt;addWidget(WEdit);
 <a name="l00158"></a>00158 
-<a name="l00159"></a>00159     WEdit = <span class="keyword">new</span> QLineEdit(layoutWidget);
-<a name="l00160"></a>00160     WEdit-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"WEdit"</span>));
+<a name="l00159"></a>00159 
+<a name="l00160"></a>00160     vboxLayout-&gt;addLayout(hboxLayout4);
 <a name="l00161"></a>00161 
-<a name="l00162"></a>00162     hboxLayout4-&gt;addWidget(WEdit);
-<a name="l00163"></a>00163 
+<a name="l00162"></a>00162 
+<a name="l00163"></a>00163     gridLayout-&gt;addLayout(vboxLayout, 2, 0, 1, 1);
 <a name="l00164"></a>00164 
-<a name="l00165"></a>00165     vboxLayout1-&gt;addLayout(hboxLayout4);
-<a name="l00166"></a>00166 
-<a name="l00167"></a>00167 
-<a name="l00168"></a>00168     vboxLayout-&gt;addLayout(vboxLayout1);
-<a name="l00169"></a>00169 
-<a name="l00170"></a>00170     hboxLayout5 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00171"></a>00171     hboxLayout5-&gt;setSpacing(6);
-<a name="l00172"></a>00172     hboxLayout5-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout5"</span>));
-<a name="l00173"></a>00173     descriptionLabel = <span class="keyword">new</span> QLabel(layoutWidget);
-<a name="l00174"></a>00174     descriptionLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"descriptionLabel"</span>));
+<a name="l00165"></a>00165     hboxLayout5 = <span class="keyword">new</span> QHBoxLayout();
+<a name="l00166"></a>00166     hboxLayout5-&gt;setSpacing(6);
+<a name="l00167"></a>00167     hboxLayout5-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout5"</span>));
+<a name="l00168"></a>00168     descriptionLabel = <span class="keyword">new</span> QLabel(SurfaceDialog);
+<a name="l00169"></a>00169     descriptionLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"descriptionLabel"</span>));
+<a name="l00170"></a>00170 
+<a name="l00171"></a>00171     hboxLayout5-&gt;addWidget(descriptionLabel);
+<a name="l00172"></a>00172 
+<a name="l00173"></a>00173     descriptionTextEdit = <span class="keyword">new</span> QTextEdit(SurfaceDialog);
+<a name="l00174"></a>00174     descriptionTextEdit-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"descriptionTextEdit"</span>));
 <a name="l00175"></a>00175 
-<a name="l00176"></a>00176     hboxLayout5-&gt;addWidget(descriptionLabel);
+<a name="l00176"></a>00176     hboxLayout5-&gt;addWidget(descriptionTextEdit);
 <a name="l00177"></a>00177 
-<a name="l00178"></a>00178     descriptionTextEdit = <span class="keyword">new</span> QTextEdit(layoutWidget);
-<a name="l00179"></a>00179     descriptionTextEdit-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"descriptionTextEdit"</span>));
+<a name="l00178"></a>00178 
+<a name="l00179"></a>00179     gridLayout-&gt;addLayout(hboxLayout5, 3, 0, 1, 1);
 <a name="l00180"></a>00180 
-<a name="l00181"></a>00181     hboxLayout5-&gt;addWidget(descriptionTextEdit);
+<a name="l00181"></a>00181     spacerItem = <span class="keyword">new</span> QSpacerItem(466, 16, QSizePolicy::Minimum, QSizePolicy::Expanding);
 <a name="l00182"></a>00182 
-<a name="l00183"></a>00183 
-<a name="l00184"></a>00184     vboxLayout-&gt;addLayout(hboxLayout5);
-<a name="l00185"></a>00185 
-<a name="l00186"></a>00186     spacerItem = <span class="keyword">new</span> QSpacerItem(358, 16, QSizePolicy::Minimum, QSizePolicy::Expanding);
-<a name="l00187"></a>00187 
-<a name="l00188"></a>00188     vboxLayout-&gt;addItem(spacerItem);
-<a name="l00189"></a>00189 
-<a name="l00190"></a>00190     hboxLayout6 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00191"></a>00191     hboxLayout6-&gt;setSpacing(6);
-<a name="l00192"></a>00192     hboxLayout6-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout6"</span>));
-<a name="l00193"></a>00193     hboxLayout6-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00194"></a>00194     okButton = <span class="keyword">new</span> QPushButton(layoutWidget);
-<a name="l00195"></a>00195     okButton-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"okButton"</span>));
+<a name="l00183"></a>00183     gridLayout-&gt;addItem(spacerItem, 4, 0, 1, 1);
+<a name="l00184"></a>00184 
+<a name="l00185"></a>00185     hboxLayout6 = <span class="keyword">new</span> QHBoxLayout();
+<a name="l00186"></a>00186     hboxLayout6-&gt;setSpacing(6);
+<a name="l00187"></a>00187     hboxLayout6-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout6"</span>));
+<a name="l00188"></a>00188     hboxLayout6-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00189"></a>00189     okButton = <span class="keyword">new</span> QPushButton(SurfaceDialog);
+<a name="l00190"></a>00190     okButton-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"okButton"</span>));
+<a name="l00191"></a>00191 
+<a name="l00192"></a>00192     hboxLayout6-&gt;addWidget(okButton);
+<a name="l00193"></a>00193 
+<a name="l00194"></a>00194     cancelButton = <span class="keyword">new</span> QPushButton(SurfaceDialog);
+<a name="l00195"></a>00195     cancelButton-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"cancelButton"</span>));
 <a name="l00196"></a>00196 
-<a name="l00197"></a>00197     hboxLayout6-&gt;addWidget(okButton);
+<a name="l00197"></a>00197     hboxLayout6-&gt;addWidget(cancelButton);
 <a name="l00198"></a>00198 
-<a name="l00199"></a>00199     cancelButton = <span class="keyword">new</span> QPushButton(layoutWidget);
-<a name="l00200"></a>00200     cancelButton-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"cancelButton"</span>));
-<a name="l00201"></a>00201 
-<a name="l00202"></a>00202     hboxLayout6-&gt;addWidget(cancelButton);
-<a name="l00203"></a>00203 
-<a name="l00204"></a>00204     spacerItem1 = <span class="keyword">new</span> QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-<a name="l00205"></a>00205 
-<a name="l00206"></a>00206     hboxLayout6-&gt;addItem(spacerItem1);
-<a name="l00207"></a>00207 
-<a name="l00208"></a>00208     loadButton = <span class="keyword">new</span> QPushButton(layoutWidget);
-<a name="l00209"></a>00209     loadButton-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"loadButton"</span>));
-<a name="l00210"></a>00210     loadButton-&gt;setEnabled(<span class="keyword">true</span>);
+<a name="l00199"></a>00199     spacerItem1 = <span class="keyword">new</span> QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+<a name="l00200"></a>00200 
+<a name="l00201"></a>00201     hboxLayout6-&gt;addItem(spacerItem1);
+<a name="l00202"></a>00202 
+<a name="l00203"></a>00203     loadButton = <span class="keyword">new</span> QPushButton(SurfaceDialog);
+<a name="l00204"></a>00204     loadButton-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"loadButton"</span>));
+<a name="l00205"></a>00205     loadButton-&gt;setEnabled(<span class="keyword">true</span>);
+<a name="l00206"></a>00206 
+<a name="l00207"></a>00207     hboxLayout6-&gt;addWidget(loadButton);
+<a name="l00208"></a>00208 
+<a name="l00209"></a>00209 
+<a name="l00210"></a>00210     gridLayout-&gt;addLayout(hboxLayout6, 5, 0, 1, 1);
 <a name="l00211"></a>00211 
-<a name="l00212"></a>00212     hboxLayout6-&gt;addWidget(loadButton);
-<a name="l00213"></a>00213 
-<a name="l00214"></a>00214 
-<a name="l00215"></a>00215     vboxLayout-&gt;addLayout(hboxLayout6);
-<a name="l00216"></a>00216 
-<a name="l00217"></a>00217 
-<a name="l00218"></a>00218     retranslateUi(SurfaceDialog);
-<a name="l00219"></a>00219     QObject::connect(cancelButton, SIGNAL(clicked()), SurfaceDialog, SLOT(close()));
-<a name="l00220"></a>00220 
-<a name="l00221"></a>00221     QMetaObject::connectSlotsByName(SurfaceDialog);
-<a name="l00222"></a>00222     } <span class="comment">// setupUi</span>
-<a name="l00223"></a>00223 
-<a name="l00224"></a>00224     <span class="keywordtype">void</span> retranslateUi(QDialog *SurfaceDialog)
-<a name="l00225"></a>00225     {
-<a name="l00226"></a>00226     SurfaceDialog-&gt;setWindowTitle(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"Enter a definition for the surface"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00227"></a>00227     NameLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"Name of the function"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00228"></a>00228     IntroLabel-&gt;setToolTip(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"The lines you enter is compiled by the gcc compiler. The assignment and the semicolon at the end of the line are added automatically."</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00229"></a>00229     IntroLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"A surface in four dimensions is defined with four functions of two\n"</span>
-<a name="l00230"></a>00230 <span class="stringliteral">"variables. Please enter these functions below, in C++ syntax."</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00231"></a>00231     XLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"X (u, v) ="</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00232"></a>00232     YLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"Y (u, v) ="</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00233"></a>00233     ZLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"Z (u, v) ="</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00234"></a>00234     WLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"W (u, v) ="</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00235"></a>00235     descriptionLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"Description"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00236"></a>00236     okButton-&gt;setText(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"&amp;OK"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00237"></a>00237     cancelButton-&gt;setText(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"&amp;Cancel"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00238"></a>00238     loadButton-&gt;setText(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"&amp;Load Function"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00239"></a>00239     Q_UNUSED(SurfaceDialog);
-<a name="l00240"></a>00240     } <span class="comment">// retranslateUi</span>
-<a name="l00241"></a>00241 
-<a name="l00242"></a>00242 };
-<a name="l00243"></a>00243 
-<a name="l00244"></a>00244 <span class="keyword">namespace </span>Ui {
-<a name="l00245"></a>00245     <span class="keyword">class </span>SurfaceDialog: <span class="keyword">public</span> Ui_SurfaceDialog {};
-<a name="l00246"></a>00246 } <span class="comment">// namespace Ui</span>
-<a name="l00247"></a>00247 
-<a name="l00248"></a>00248 <span class="preprocessor">#endif // UI_SURFACEDIALOG_H</span>
-</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Tue Mar 18 23:17:21 2008 for HyperspaceExplorer by&nbsp;
+<a name="l00212"></a>00212 
+<a name="l00213"></a>00213     retranslateUi(SurfaceDialog);
+<a name="l00214"></a>00214     QObject::connect(cancelButton, SIGNAL(clicked()), SurfaceDialog, SLOT(close()));
+<a name="l00215"></a>00215 
+<a name="l00216"></a>00216     QMetaObject::connectSlotsByName(SurfaceDialog);
+<a name="l00217"></a>00217     } <span class="comment">// setupUi</span>
+<a name="l00218"></a>00218 
+<a name="l00219"></a>00219     <span class="keywordtype">void</span> retranslateUi(QDialog *SurfaceDialog)
+<a name="l00220"></a>00220     {
+<a name="l00221"></a>00221     SurfaceDialog-&gt;setWindowTitle(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"Enter a definition for the surface"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00222"></a>00222     NameLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"Name of the function"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00223"></a>00223     IntroLabel-&gt;setToolTip(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"The lines you enter is compiled by the gcc compiler. The assignment and the semicolon at the end of the line are added automatically."</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00224"></a>00224     IntroLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"A surface in four dimensions is defined with four functions of two\n"</span>
+<a name="l00225"></a>00225 <span class="stringliteral">"variables. Please enter these functions below, in C++ syntax."</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00226"></a>00226     XLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"X (u, v) ="</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00227"></a>00227     YLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"Y (u, v) ="</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00228"></a>00228     ZLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"Z (u, v) ="</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00229"></a>00229     WLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"W (u, v) ="</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00230"></a>00230     descriptionLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"Description"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00231"></a>00231     okButton-&gt;setText(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"&amp;OK"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00232"></a>00232     cancelButton-&gt;setText(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"&amp;Cancel"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00233"></a>00233     loadButton-&gt;setText(QApplication::translate(<span class="stringliteral">"SurfaceDialog"</span>, <span class="stringliteral">"&amp;Load Function"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00234"></a>00234     Q_UNUSED(SurfaceDialog);
+<a name="l00235"></a>00235     } <span class="comment">// retranslateUi</span>
+<a name="l00236"></a>00236 
+<a name="l00237"></a>00237 };
+<a name="l00238"></a>00238 
+<a name="l00239"></a>00239 <span class="keyword">namespace </span>Ui {
+<a name="l00240"></a>00240     <span class="keyword">class </span>SurfaceDialog: <span class="keyword">public</span> Ui_SurfaceDialog {};
+<a name="l00241"></a>00241 } <span class="comment">// namespace Ui</span>
+<a name="l00242"></a>00242 
+<a name="l00243"></a>00243 <span class="preprocessor">#endif // UI_SURFACEDIALOG_H</span>
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Tue Mar 18 23:52:38 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
 </body>

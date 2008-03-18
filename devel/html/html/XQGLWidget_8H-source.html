@@ -43,19 +43,19 @@
 <a name="l00030"></a>00030 
 <a name="l00031"></a>00031     <span class="keyword">public</span>:
 <a name="l00032"></a>00032         <a class="code" href="classXQGLWidget.html#85f432f8fe5454ab47b7c1fda0039323">XQGLWidget</a> (QWidget * = 0);
-<a name="l00033"></a>00033         <span class="keywordtype">bool</span> SetDrawObject (GLObject *obj) {
+<a name="l00033"></a>00033         <span class="keywordtype">bool</span> SetDrawObject (<a class="code" href="classGLObject.html">GLObject</a> *obj) {
 <a name="l00034"></a>00034             DrawObject = obj;
 <a name="l00035"></a>00035             <span class="keywordflow">return</span> *DrawObject;
 <a name="l00036"></a>00036         }
 <a name="l00037"></a>00037         <span class="keywordtype">bool</span> SetDrawObject (GLuint list) {
-<a name="l00038"></a>00038             DrawObject = <span class="keyword">new</span> GLObject (list);
+<a name="l00038"></a>00038             DrawObject = <span class="keyword">new</span> <a class="code" href="classGLObject.html">GLObject</a> (list);
 <a name="l00039"></a>00039             <span class="keywordflow">return</span> *DrawObject;
 <a name="l00040"></a>00040         }
 <a name="l00041"></a>00041 
-<a name="l00042"></a>00042         <span class="keywordtype">void</span> SetBackgroundColor (<span class="keyword">const</span> VecMath::Vector&lt;4&gt; &amp;RGBA) { Background = RGBA; }
+<a name="l00042"></a>00042         <span class="keywordtype">void</span> SetBackgroundColor (<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;4&gt;</a> &amp;RGBA) { Background = RGBA; }
 <a name="l00043"></a>00043 
 <a name="l00044"></a>00044         <span class="keywordtype">void</span> SetBackgroundColor (<span class="keywordtype">float</span> R, <span class="keywordtype">float</span> G, <span class="keywordtype">float</span> B, <span class="keywordtype">float</span> A) {
-<a name="l00045"></a>00045             Background = VecMath::Vector&lt;4&gt; (R, G, B, A);
+<a name="l00045"></a>00045             Background = <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;4&gt;</a> (R, G, B, A);
 <a name="l00046"></a>00046         }
 <a name="l00047"></a>00047 
 <a name="l00048"></a>00048     <span class="keyword">public</span> slots:                               <span class="comment">//  called when:</span>
@@ -74,11 +74,11 @@
 <a name="l00061"></a>00061         <span class="keywordtype">void</span> InitTransparence (<span class="keywordtype">void</span>);
 <a name="l00062"></a>00062 
 <a name="l00063"></a>00063     <span class="keyword">protected</span>:
-<a name="l00064"></a>00064         GLObject *DrawObject;
+<a name="l00064"></a>00064         <a class="code" href="classGLObject.html">GLObject</a> *DrawObject;
 <a name="l00065"></a>00065         <span class="comment">//  geometry states</span>
 <a name="l00066"></a>00066         <span class="keywordtype">double</span> R,                       <span class="comment">//  viewpoint distance</span>
 <a name="l00067"></a>00067                psi, theta, phi;         <span class="comment">//  rotation about x-, y- &amp; z-axis</span>
-<a name="l00068"></a>00068                VecMath::Vector&lt;4&gt; Background;
+<a name="l00068"></a>00068                <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;4&gt;</a> Background;
 <a name="l00069"></a>00069         GLfloat Alpha;
 <a name="l00070"></a>00070 
 <a name="l00071"></a>00071         <span class="comment">//  drawing realism states</span>
@@ -122,7 +122,7 @@
 <a name="l00109"></a>00109 };
 <a name="l00110"></a>00110 
 <a name="l00111"></a>00111 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Tue Mar 18 23:17:21 2008 for HyperspaceExplorer by&nbsp;
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Tue Mar 18 23:52:38 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
 </body>

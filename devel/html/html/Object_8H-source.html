@@ -49,13 +49,13 @@
 <a name="l00038"></a>00038 
 <a name="l00039"></a>00039     <span class="keyword">protected</span>:
 <a name="l00040"></a>00040         <span class="keywordtype">unsigned</span> NumVertices, NumSurfaces;
-<a name="l00041"></a>00041         VecMath::Vector&lt;4&gt; *X, *Xtrans;
-<a name="l00042"></a>00042         VecMath::Vector&lt;3&gt; *Xscr;
+<a name="l00041"></a>00041         <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;4&gt;</a> *X, *Xtrans;
+<a name="l00042"></a>00042         <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;3&gt;</a> *Xscr;
 <a name="l00043"></a>00043         <span class="keywordtype">float</span> *R, *G, *B;
 <a name="l00044"></a>00044 
 <a name="l00045"></a>00045         <span class="keywordtype">unsigned</span> *<a class="code" href="classSurface.html">Surface</a>[4];
 <a name="l00046"></a>00046 
-<a name="l00047"></a>00047         <span class="keyword">virtual</span> VecMath::Vector&lt;4&gt; &amp;f (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>) { <span class="keywordflow">return</span> F; }
+<a name="l00047"></a>00047         <span class="keyword">virtual</span> <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;4&gt;</a> &amp;f (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>) { <span class="keywordflow">return</span> F; }
 <a name="l00048"></a>00048 };
 <a name="l00049"></a>00049 
 <a name="l00050"></a>00050 
@@ -65,7 +65,7 @@
 <a name="l00056"></a>00056     <a class="code" href="classHypercube.html">Hypercube</a> (): <a class="code" href="classObject.html#88590464e2e1cb975f59ddb47f4f09b7">Object</a> (<span class="stringliteral">"Hypercube"</span>, 16, 24) {
 <a name="l00057"></a>00057         parameterNames.push_back(<span class="stringliteral">"Size"</span>);
 <a name="l00058"></a>00058     }
-<a name="l00059"></a>00059     <a class="code" href="classHypercube.html">Hypercube</a> (<span class="keywordtype">double</span> _a, <span class="keyword">const</span> VecMath::Vector&lt;4&gt; &amp;_Center = VecMath::Vector&lt;4&gt;(0., 0., 0., 0.));
+<a name="l00059"></a>00059     <a class="code" href="classHypercube.html">Hypercube</a> (<span class="keywordtype">double</span> _a, <span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;4&gt;</a> &amp;_Center = <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;4&gt;</a>(0., 0., 0., 0.));
 <a name="l00060"></a>00060     <span class="keyword">virtual</span> ~<a class="code" href="classHypercube.html">Hypercube</a>() { }
 <a name="l00061"></a>00061 
 <a name="l00062"></a><a class="code" href="classHypercube.html#290688b04edc2e4f651cd9ca4da861b6">00062</a>     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classHypercube.html#290688b04edc2e4f651cd9ca4da861b6">SetParameters</a> (<span class="keywordtype">double</span> _a = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0) {
@@ -81,7 +81,7 @@
 <a name="l00072"></a>00072     <span class="keywordtype">void</span> <a class="code" href="classHypercube.html#0c9fb7fe129ae7e5e2834fd0ea861e8d">DeclareSquare</a> (<span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>);
 <a name="l00073"></a>00073 
 <a name="l00074"></a>00074     <span class="keywordtype">double</span> a;
-<a name="l00075"></a>00075     VecMath::Vector&lt;4&gt; center;
+<a name="l00075"></a>00075     <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;4&gt;</a> center;
 <a name="l00076"></a>00076 };
 <a name="l00077"></a>00077 
 <a name="l00078"></a>00078 
@@ -89,7 +89,7 @@
 <a name="l00097"></a><a class="code" href="classSponge.html">00097</a> <span class="keyword">class </span><a class="code" href="classSponge.html">Sponge</a>: <span class="keyword">public</span> <a class="code" href="classHypercube.html">Hypercube</a> {
 <a name="l00098"></a>00098 <span class="keyword">public</span>:
 <a name="l00099"></a>00099     <a class="code" href="classSponge.html">Sponge</a> (<span class="keywordtype">unsigned</span> level = 1, <span class="keywordtype">int</span> distance = 1, <span class="keywordtype">double</span> rad = 1,
-<a name="l00100"></a>00100             VecMath::Vector&lt;4&gt; Center = VecMath::Vector&lt;4&gt;(0., 0.,0., 0.));
+<a name="l00100"></a>00100             <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;4&gt;</a> Center = <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;4&gt;</a>(0., 0.,0., 0.));
 <a name="l00101"></a>00101     <span class="keyword">virtual</span> <a class="code" href="classSponge.html#7f86fac04936c5486a16a187f32e0e5b">~Sponge</a> ();
 <a name="l00102"></a>00102 
 <a name="l00103"></a>00103     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSponge.html#00961c9a2034c8edac7697568e2f6cc8">Transform</a> (<span class="keywordtype">double</span> Rxy, <span class="keywordtype">double</span> Rxz, <span class="keywordtype">double</span> Rxw,
@@ -124,7 +124,7 @@
 <a name="l00132"></a>00132     std::vector&lt;Hypercube *&gt; List;
 <a name="l00133"></a>00133     <span class="keywordtype">int</span> distance;
 <a name="l00134"></a>00134     <span class="keywordtype">double</span> rad;
-<a name="l00135"></a>00135     VecMath::Vector&lt;4&gt; center;
+<a name="l00135"></a>00135     <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;4&gt;</a> center;
 <a name="l00136"></a>00136 };
 <a name="l00137"></a>00137 
 <a name="l00138"></a>00138 
@@ -134,7 +134,7 @@
 <a name="l00144"></a>00144     <a class="code" href="classPyramid.html">Pyramid</a> (): <a class="code" href="classObject.html#88590464e2e1cb975f59ddb47f4f09b7">Object</a> (<span class="stringliteral">"Hyperpyramid"</span>, 5, 10) {
 <a name="l00145"></a>00145         parameterNames.push_back(<span class="stringliteral">"Size"</span>);
 <a name="l00146"></a>00146     }
-<a name="l00147"></a>00147     <a class="code" href="classPyramid.html">Pyramid</a> (<span class="keywordtype">double</span> _a, <span class="keyword">const</span> VecMath::Vector&lt;4&gt; &amp;_Center = VecMath::Vector&lt;4&gt; (0., 0., 0., 0.));
+<a name="l00147"></a>00147     <a class="code" href="classPyramid.html">Pyramid</a> (<span class="keywordtype">double</span> _a, <span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;4&gt;</a> &amp;_Center = <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;4&gt;</a> (0., 0., 0., 0.));
 <a name="l00148"></a>00148     <span class="keyword">virtual</span> ~<a class="code" href="classPyramid.html">Pyramid</a>() { }
 <a name="l00149"></a>00149 
 <a name="l00150"></a><a class="code" href="classPyramid.html#c5b649d5cb7fd2637751385ba3d63af0">00150</a>     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classPyramid.html#c5b649d5cb7fd2637751385ba3d63af0">SetParameters</a> (<span class="keywordtype">double</span> _a = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0) {
@@ -144,7 +144,7 @@
 <a name="l00154"></a>00154     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classPyramid.html#dc837fa34b2f484a0c28da7210677db9">Initialize</a>();
 <a name="l00155"></a>00155     <span class="keywordtype">void</span> <a class="code" href="classPyramid.html#9867ed04145e00009d85352f1b15727a">DeclareTriangle</a> (<span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>);
 <a name="l00156"></a>00156 
-<a name="l00157"></a>00157     VecMath::Vector&lt;4&gt; center;
+<a name="l00157"></a>00157     <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;4&gt;</a> center;
 <a name="l00158"></a>00158     <span class="keywordtype">double</span> a;
 <a name="l00159"></a>00159 };
 <a name="l00160"></a>00160 
@@ -153,7 +153,7 @@
 <a name="l00167"></a><a class="code" href="classGasket.html">00167</a> <span class="keyword">class </span><a class="code" href="classGasket.html">Gasket</a>: <span class="keyword">public</span> <a class="code" href="classPyramid.html">Pyramid</a> {
 <a name="l00168"></a>00168     <span class="keyword">public</span>:
 <a name="l00169"></a>00169         <a class="code" href="classGasket.html">Gasket</a> (<span class="keywordtype">unsigned</span> level = 1, <span class="keywordtype">double</span> rad = 1,
-<a name="l00170"></a>00170                 VecMath::Vector&lt;4&gt; Center = VecMath::Vector&lt;4&gt; (0., 0.,0., 0.));
+<a name="l00170"></a>00170                 <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;4&gt;</a> Center = <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;4&gt;</a> (0., 0.,0., 0.));
 <a name="l00171"></a>00171         <span class="keyword">virtual</span> ~<a class="code" href="classGasket.html">Gasket</a>() { }
 <a name="l00172"></a>00172 
 <a name="l00173"></a>00173         <span class="keyword">virtual</span> <span class="keywordtype">void</span> Transform (<span class="keywordtype">double</span> Rxy, <span class="keywordtype">double</span> Rxz, <span class="keywordtype">double</span> Rxw,
@@ -179,11 +179,11 @@
 <a name="l00193"></a>00193         <span class="keywordtype">unsigned</span> Level;
 <a name="l00194"></a>00194         std::vector&lt;Pyramid *&gt; List;
 <a name="l00195"></a>00195         <span class="keywordtype">double</span> rad;
-<a name="l00196"></a>00196         VecMath::Vector&lt;4&gt; center;
+<a name="l00196"></a>00196         <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;4&gt;</a> center;
 <a name="l00197"></a>00197 };
 <a name="l00198"></a>00198 
 <a name="l00199"></a>00199 <span class="preprocessor">#endif</span>
-</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Tue Mar 18 23:17:21 2008 for HyperspaceExplorer by&nbsp;
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Tue Mar 18 23:52:38 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
 </body>
