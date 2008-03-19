@@ -870,10 +870,11 @@ void C4DView::ApplyChanges (void) {
 void C4DView::ParametersChanged(double, double, unsigned,
                                 double, double, unsigned,
                                 double, double, unsigned,
-                                double, double, double, double,
+                                double a, double b, double c, double d,
                                 QString &) {
-    QMessageBox::information (this, "C4DView::ParametersChanged",
-                              "... is not yet implemented");
+    F->SetParameters(a, b, c, d);
+//    QMessageBox::information (this, "C4DView::ParametersChanged",
+//                              "... is not yet implemented");
 }
 
 
@@ -977,7 +978,6 @@ void C4DView::OnPaint() {                           //  object drawing routine
     writeFrame();
 }
 
-
 /** resizing routine
  *  also, the definition of the GL viewport is done here                      */
 void C4DView::resizeEvent (QResizeEvent *e) {
@@ -1004,12 +1004,10 @@ void C4DView::resizeEvent (QResizeEvent *e) {
     glDrawBuffer (GL_BACK);                     //  dump the buffer
 }
 
-
 /** paintEvent() */
 void C4DView::paintEvent (QPaintEvent *) {
   OnPaint ();
 }
-
 
 /** OpenGL initialization
  *  now this is not as boring as it seems, because further work has to be done
@@ -1066,14 +1064,12 @@ void C4DView::Fog () {
   InitFog ();
   repaint (); }
 
-
 /** toggle object transparency */
 void C4DView::Transparent () {
   transparent = !transparent;
   menu->getAction("Transparence")->setChecked(transparent);
   InitTransparence ();
   repaint (); }
-
 
 /** toggle shading */
 void C4DView::Shade () {
@@ -1082,14 +1078,12 @@ void C4DView::Shade () {
   InitShade ();
   repaint (); }
 
-
 /** toggle colors */
 void C4DView::Colors () {
   colors = !colors;
   menu->getAction("Colors")->setChecked(colors);
   initializeGL ();
   repaint (); }
-
 
 /** switch between wireframe and solid display
  *  account for antialiasing only in WF mode
@@ -1111,7 +1105,6 @@ void C4DView::Wireframe() {
     OnPaint ();
 }
 
-
 /** switch coordinate cross on or off
  *  change menu items accordingly    */
 void C4DView::Coordinates() {
@@ -1120,7 +1113,6 @@ void C4DView::Coordinates() {
 
     Redraw ();
 }
-
 
 /** switch 4D depth cue on or off
  *  change menu items accordingly */
@@ -1163,7 +1155,6 @@ void C4DView::Light() {
     OnPaint ();
 }
 
-
 /** switch rendering to files on or off
  *  change menu items accordingly        */
 void C4DView::RenderToImages() {
@@ -1171,8 +1162,8 @@ void C4DView::RenderToImages() {
   menu->getAction("Render to Images")->setChecked(RenderToPixmap);
 }
 
-
-/** */
+/** show a dialog to adjust animation settings: where to write image files
+ *  and how many files to write                                               */
 void C4DView::AnimationSettings() {
     AnimationDialogImpl *Dlg = new AnimationDialogImpl;
     if (Dlg->exec () == QDialog::Accepted) {
@@ -1387,8 +1378,8 @@ void C4DView::ObjectHypersponge() {
         F =
 #   endif
             (new Sponge (
-                unsigned (Values->a ()), int (Values->b ()),
-                Values->c ())
+//                unsigned (Values->a ()), int (Values->b ()), Values->c ())
+                2, 2, 0.8)
             );
 
     AssignValues(F);

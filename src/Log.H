@@ -13,14 +13,22 @@
 class Log{
     public:
         /** print a string with a line break */
-        void log(std::string message) {
+        void log(std::string 
+#           ifdef DEBUG
+                message
+#           endif
+                ) {
 #           ifdef DEBUG
                 std::cerr << message << std::endl;
 #           endif
         }
 
         /** print a string without a line break */
-        Log &operator<<(const std::string &message) {
+        Log &operator<<(const std::string &
+#           ifdef DEBUG
+                        message
+#           endif
+                       ) {
 #           ifdef DEBUG
                 std::cerr << message;
 #           endif

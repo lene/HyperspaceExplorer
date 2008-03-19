@@ -193,21 +193,31 @@ void benchmark (const unsigned num_runs = 10) {
         map < const char *, double2Dmap> results_by_object;
 
         view.ObjectHypercube ();
-
+        cerr << "Hypercube\n";
+        
         double2Dmap results_by_style = benchmarks_by_style (view, num_runs, num_steps, step);
         results_by_object.insert (
             pair<const char *, double2Dmap> ("Hypercube",
                 benchmarks_by_style (view, num_runs, num_steps, step)));
 
-    view.ObjectHyperpyramid ();
+        view.ObjectHyperpyramid ();
+        cerr << "Hyperpyramid\n";
 
-    results_by_style = benchmarks_by_style (view, num_runs, num_steps, step);
-    results_by_object.insert (
-        pair<const char *, double2Dmap> ("Hyperpyramid",
-            benchmarks_by_style (view, num_runs, num_steps, step)));
+        results_by_style = benchmarks_by_style (view, num_runs, num_steps, step);
+        results_by_object.insert (
+            pair<const char *, double2Dmap> ("Hyperpyramid",
+                benchmarks_by_style (view, num_runs, num_steps, step)));
+        
+        view.ObjectHypersponge();
+        cerr << "Hypersponge\n";
+        
+        results_by_style = benchmarks_by_style (view, num_runs, num_steps, step);
+        results_by_object.insert (
+            pair<const char *, double2Dmap> ("Hypersponge",
+                benchmarks_by_style (view, num_runs, num_steps, step)));
 
-    evaluate_benchmark (results_by_object);
-  }
+        evaluate_benchmark (results_by_object);
+    }
 
   exit (0);
 }
