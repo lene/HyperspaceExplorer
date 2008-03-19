@@ -25,6 +25,7 @@
         F_2 & = & Real(f(z)) \\
         F_3 & = & Imag(f(z))
     \f}
+ *  \ingroup FunctionGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class ComplexFunction: public Surface {
     public:
@@ -42,7 +43,8 @@ class ComplexFunction: public Surface {
         void Initialize (void);
 };
 
-/** \f$ f(z) = z^2 \f$ */
+/** \f$ f(z) = z^2 \f$
+ *  \ingroup FunctionGroup                                                    */
 class z2: public ComplexFunction {
     public:
 	z2 (double _umin, double _umax, double _du,
@@ -54,7 +56,8 @@ class z2: public ComplexFunction {
 	virtual function_type g;
 };
 
-/** \f$ f(z) = z^3 \f$ */
+/** \f$ f(z) = z^3 \f$
+ *  \ingroup FunctionGroup                                                    */
 class z3: public ComplexFunction {
     public:
 	z3 (double _umin, double _umax, double _du,
@@ -66,7 +69,8 @@ class z3: public ComplexFunction {
         virtual function_type g;
 };
 
-/** \f$ f(z) = z^\alpha \f$ */
+/** \f$ f(z) = z^\alpha \f$
+ *  \ingroup FunctionGroup                                                    */
 class zA: public ComplexFunction {
     public:
 	zA (double _umin, double _umax, double _du,
@@ -83,7 +87,8 @@ class zA: public ComplexFunction {
 	double alpha;
 };
 
-/** \f$ f(z) = e^{\alpha*z} \f$ */
+/** \f$ f(z) = e^{\alpha*z} \f$
+ *  \ingroup FunctionGroup                                                    */
 class ez: public ComplexFunction {
     public:
 	ez (double _umin, double _umax, double _du,
@@ -99,7 +104,8 @@ class ez: public ComplexFunction {
         double alpha;
 };
 
-/** \f$ f(z) = e^{-\alpha*z^2} \f$ */
+/** \f$ f(z) = e^{-\alpha*z^2} \f$
+ *  \ingroup FunctionGroup                                                    */
 class emz2: public ComplexFunction {
     public:
 	emz2 (double _umin, double _umax, double _du,
@@ -115,7 +121,8 @@ class emz2: public ComplexFunction {
         double alpha;
 };
 
-/** \f$ f(z) = \frac{1}{z} \f$ */
+/** \f$ f(z) = \frac{1}{z} \f$
+ *  \ingroup FunctionGroup                                                    */
 class zm1: public ComplexFunction {
     public:
 	zm1 (double _umin, double _umax, double _du,
@@ -127,7 +134,8 @@ class zm1: public ComplexFunction {
         virtual function_type g;
 };
 
-/** \f$ f(z) = \frac{1}{z^2} \f$ */
+/** \f$ f(z) = \frac{1}{z^2} \f$
+ *  \ingroup FunctionGroup                                                    */
 class zm2: public ComplexFunction {
     public:
 	zm2 (double _umin, double _umax, double _du,
@@ -139,7 +147,8 @@ class zm2: public ComplexFunction {
         virtual function_type g;
 };
 
-/** \f$ f(z) = \sqrt{z} \f$ */
+/** \f$ f(z) = \sqrt{z} \f$
+ *  \ingroup FunctionGroup                                                    */
 class sqrtz: public ComplexFunction {
     public:
 	sqrtz (double _umin, double _umax, double _du,
@@ -151,7 +160,8 @@ class sqrtz: public ComplexFunction {
         virtual function_type g;
 };
 
-/** \f$ f(z) = \ln{z} \f$ */
+/** \f$ f(z) = \ln{z} \f$
+ *  \ingroup FunctionGroup                                                    */
 class lnz: public ComplexFunction {
     public:
 	lnz (double _umin, double _umax, double _du,
@@ -163,7 +173,8 @@ class lnz: public ComplexFunction {
         virtual function_type g;
 };
 
-/** \f$ f(z) = \sin{z} \f$ */
+/** \f$ f(z) = \sin{z} \f$
+ *  \ingroup FunctionGroup                                                    */
 class sinz: public ComplexFunction {
     public:
 	sinz (double _umin, double _umax, double _du,
@@ -175,7 +186,8 @@ class sinz: public ComplexFunction {
         virtual function_type g;
 };
 
-/** \f$ f(z) = \cos{z} \f$ */
+/** \f$ f(z) = \cos{z} \f$
+ *  \ingroup FunctionGroup                                                    */
 class cosz: public ComplexFunction {
     public:
 	cosz (double _umin, double _umax, double _du,
@@ -187,7 +199,8 @@ class cosz: public ComplexFunction {
         virtual function_type g;
 };
 
-/** \f$ f(z) = \sinh{z} \f$ */
+/** \f$ f(z) = \sinh{z} \f$
+ *  \ingroup FunctionGroup                                                    */
 class sinhz: public ComplexFunction {
     public:
 	sinhz (double _umin, double _umax, double _du,
@@ -199,7 +212,8 @@ class sinhz: public ComplexFunction {
         virtual function_type g;
 };
 
-/** \f$ f(z) = \cosh{z} \f$ */
+/** \f$ f(z) = \cosh{z} \f$
+ *  \ingroup FunctionGroup                                                    */
 class coshz: public ComplexFunction {
     public:
 	coshz (double _umin, double _umax, double _du,
@@ -211,7 +225,8 @@ class coshz: public ComplexFunction {
         virtual function_type g;
 };
 
-/** \f$ f(z) = \tan{z} \f$ */
+/** \f$ f(z) = \tan{z} \f$
+ *  \ingroup FunctionGroup                                                    */
 class tanz: public ComplexFunction {
     public:
 	tanz (double _umin, double _umax, double _du,
@@ -223,7 +238,8 @@ class tanz: public ComplexFunction {
         virtual function_type g;
 };
 
-/** a third-order polynomial of z, not yet implemented */
+/** a third-order polynomial of z, not yet implemented
+ *  \ingroup FunctionGroup                                                    */
 class Polynomial: public ComplexFunction {
     public:
 	Polynomial(double _umin, double _umax, double _du,

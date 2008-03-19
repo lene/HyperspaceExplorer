@@ -13,6 +13,7 @@
 /** Class defining a Steiner surface \n
  *  this is sort of a dead branch, I haven't really implemented anything;
  *  needs to be redone to fit in
+ *  \ingroup FunctionGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class SteinerFunction: public Function {
 public:

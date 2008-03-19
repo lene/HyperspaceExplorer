@@ -28,6 +28,7 @@
  *  The switching on and off of input fields, depending on which function is
  *  selected, is done from C4DView. This is of course unfortunate and will be
  *  changed.
+ *  \ingroup UIGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class ValuesDialogImpl: public QDialog, public Ui::ValuesDialog {
   Q_OBJECT

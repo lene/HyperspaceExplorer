@@ -12,6 +12,7 @@
 /** A Dialog to enter a function from \f$ R^3 \rightarrow R \f$ in a polar
  *  coordinate system, which will then be compiled into a dynamic library and
  *  loaded to be displayed on screen
+ *  \ingroup UIGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class PolarDialogImpl:
         public QDialog, public Ui::PolarDialog, public PluginCreator {

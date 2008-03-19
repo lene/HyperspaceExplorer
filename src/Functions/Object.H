@@ -21,6 +21,7 @@
 /** an Object is a four-dimensional geometrical object which can not be
  *  described as a mathematical function from R³ to R or from R² to R^4.
  *  Instead it is described as a set of surfaces.
+ *  \ingroup FunctionGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Object: public Function {
     public:
@@ -50,7 +51,8 @@ class Object: public Function {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** a four-dimensional cube */
+/** a four-dimensional cube
+ *  \ingroup FunctionGroup                                                    */
 class Hypercube: public Object {
 public:
     Hypercube (): Object ("Hypercube", 16, 24) {
@@ -93,7 +95,7 @@ protected:
  *  sponge structure
  *  \li distance = 3: only the corners of the hypercube remain, resulting in
  *  dust
- */
+ *  \ingroup FunctionGroup                                                    */
 class Sponge: public Hypercube {
 public:
     Sponge (unsigned level = 1, int distance = 1, double rad = 1,
@@ -138,7 +140,8 @@ protected:
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A four-dimensional pyramid, also known as hypersimplex */
+/** A four-dimensional pyramid, also known as hypersimplex
+ *  \ingroup FunctionGroup                                                    */
 class Pyramid: public Object {
 public:
     Pyramid (): Object ("Hyperpyramid", 5, 10) {
@@ -163,7 +166,7 @@ protected:
 
 /** A four-dimensional version of the Sierpinski Gasket.\n
  *  It is similar to the Menger Sponge, but it uses a Hypersimplex as generator.
- */
+ *  \ingroup FunctionGroup                                                    */
 class Gasket: public Pyramid {
     public:
         Gasket (unsigned level = 1, double rad = 1,

@@ -20,6 +20,8 @@
       <p><a href="#Appearance">The "Appearance" submenu</a></p>
       <p><a href="#Animation">The "Animation" submenu</a></p>
       <blockquote>
+        <p><a href="#RenderToImages">Render to images</a></p>
+        <p><a href="#AnimationSettings">Animation Settings</a></p>
         <p><a href="#Benchmark">Benchmark</a></p>
       </blockquote>
       <p><a href="#Help">The "Help" submenu</a></p>
@@ -345,7 +347,22 @@ The coordinate cross<br>
   <h3><a name="Animation"></a>The "Animation" submenu</h3>
   <blockquote>
     <h4><a name="RenderToImages"></a>Render to Images</h4>
-TBD. Don't use it yet.<br>
+    When selected, all images which are rendered are written to a PNG image file with continuing numbers. This is especially useful if you want to save an animated
+    display of your object for later replay.<br>
+    <h4><a name="AnimationSettings"></a>Animation Settings</h4>
+    Selecting this menu item pops up a dialog which lets you select:
+    <ul>
+      <li>The directory where you want to store rendered images</li>
+      <li>The beginning of the filename, before the frame numbers and the extension ".png"</li>
+      <li>The maximum number of frames to be rendered. Perhaps you don't want to fill up your hard disk if you let the program run over night ;-). The default for
+        this value is unlimited.</li>
+    </ul>
+    <br>
+    <img src="AnimationSettings.png"
+      title="The dialog to adjust animation settings"
+      alt="The dialog to adjust animation settings" />
+    <br>
+    
     <h4><a name="Benchmark"></a>Benchmark</h4>
 Okay, this menu point <span style="font-style: italic;">is</span>
 somewhat of a misnomer. What it does is rotating the current object in

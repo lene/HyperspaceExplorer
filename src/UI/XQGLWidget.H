@@ -24,7 +24,8 @@ class Q3PopupMenu;
 class QMouseEvent;
 
 /** class XQGLWidget:
- *  implements a QGLWidget                                                    */
+ *  implements a QGLWidget
+ *  \ingroup UIGroup                                                          */
 class XQGLWidget: public QGLWidget {
     Q_OBJECT
 

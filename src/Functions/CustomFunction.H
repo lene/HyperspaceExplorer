@@ -11,7 +11,8 @@
 #include "Surface.H"
 
 class QString;
-
+/**
+ *  \ingroup FunctionGroup                                                    */
 template<class function_type>
         class CustomFunctionBase {
     public:
@@ -29,6 +30,8 @@ template<class function_type>
         bool valid;
 };
 
+/**
+ *  \ingroup FunctionGroup                                                    */
 class CustomFunction:
         public Function,
         public CustomFunctionBase<Function::raw_function_type> {
@@ -43,7 +46,8 @@ class CustomFunction:
         virtual VecMath::Vector<4> &f (double, double, double);
 };
 
-
+/**
+ *  \ingroup FunctionGroup                                                    */
 class CustomPolarFunction: public CustomFunction {
     public:
         CustomPolarFunction (double _tmin, double _tmax, double _dt,
@@ -55,7 +59,8 @@ class CustomPolarFunction: public CustomFunction {
         virtual VecMath::Vector<4> &f (double, double, double);
 };
 
-
+/**
+ *  \ingroup FunctionGroup                                                    */
 class CustomComplexFunction:
         public ComplexFunction,
         public CustomFunctionBase<ComplexFunction::function_type> {
@@ -68,6 +73,8 @@ class CustomComplexFunction:
         ComplexFunction::function_type g;
 };
 
+/**
+ *  \ingroup FunctionGroup                                                    */
 class CustomSurface:
         public Surface,
         public CustomFunctionBase<Surface::raw_function_type> {

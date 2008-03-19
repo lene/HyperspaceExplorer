@@ -22,11 +22,13 @@
 #   define __PI 3_14
 # endif
 
+/// \defgroup VecMath Vector and Matrix algebra
 namespace VecMath {
 
     /**  Vector<D, N>: a D-dimensional vector of numbers of type N
      *  @param D dimension of the vector
      *  @param N numerical type of the vector elements
+     *  \ingroup VecMath
      *  @author Helge Preuss <scout@hyperspace-travel.de>                     */
     template <unsigned D, typename N = double> class Vector {
 
@@ -64,7 +66,7 @@ namespace VecMath {
     private:
         N x[D];
     };
-
+    
     template <unsigned D, typename N>
             std::ostream &operator << (std::ostream &, const Vector<D> &);
 

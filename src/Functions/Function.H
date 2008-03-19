@@ -13,6 +13,8 @@
 
 #include "Vector.H"
 
+/// \defgroup FunctionGroup Functions and objects
+
 /** a  Function is a mathematical function  f: R^3 -> R^4,  evaluated on a
  *  3-dimensional grid, together with methods  to rotate and translate the grid
  *  in 4-space,  to project the transformed grid onto 3-space, and to draw the
@@ -37,6 +39,7 @@
  *	- operator () (double t, double u, double v)
  *	- Initialize ();
  *	- InitMem ();
+ *  \ingroup FunctionGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Function {
     public:
@@ -134,7 +137,8 @@ class Function {
         F_1 & = & Radius*\sin(\psi)*\sin(\theta)*\sin(\phi)    \\
         F_2 & = & Radius*\sin(\psi)*\cos(\theta)              \\
         F_3 & = & Radius*\cos(\psi)
-    \f}                                                                       */
+    \f}
+ *  \ingroup FunctionGroup                                                    */
 class Hypersphere: public Function {
     public:
         Hypersphere (double _tmin, double _tmax, double _dt,
@@ -158,7 +162,8 @@ class Hypersphere: public Function {
 /** a four-dimensional torus where there are three radii - one circling about
  *  the main axis, the second circling perpendicular to the first circle, and
  *  the third circling about the second circle, perpendicular to all other
- *  directions                                                                */
+ *  directions
+ *  \ingroup FunctionGroup                                                    */
 class Torus1: public Function {
     public:
         Torus1 (double _tmin, double _tmax, double _dt,
@@ -180,7 +185,8 @@ class Torus1: public Function {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** a four-dimensional torus where a sphere circles about a center point in a
- *  direction perpendicular to all directions making up the sphere            */
+ *  direction perpendicular to all directions making up the sphere
+ *  \ingroup FunctionGroup                                                    */
 class Torus2: public Function {
     public:
         Torus2 (double _tmin, double _tmax, double _dt,
@@ -206,7 +212,7 @@ class Torus2: public Function {
         r^2      & = & x^2+y^2+z^2  \\
         f(x,y,z) & = & 1./(r^2+.25)
     \f}
-*/
+ *  \ingroup FunctionGroup                                                    */
 class Fr3r: public Function {
     public:
         Fr3r (double _tmin, double _tmax, double _dt,
@@ -223,7 +229,8 @@ class Fr3r: public Function {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** a function describing the gravitational potential of a spherical mass     */
+/** a function describing the gravitational potential of a spherical mass
+ *  \ingroup FunctionGroup                                                    */
 class GravitationPotential: public Function {
     public:
         GravitationPotential (double _tmin, double _tmax, double _dt,
@@ -244,7 +251,8 @@ class GravitationPotential: public Function {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** \f$ f(x,y,z) = \sin (\pi*(x^2+y^2+z^2)) \f$  */
+/** \f$ f(x,y,z) = \sin (\pi*(x^2+y^2+z^2)) \f$
+ *  \ingroup FunctionGroup                                                    */
 class Fr3rSin: public Function {
 public:
     Fr3rSin (double _tmin, double _tmax, double _dt,
@@ -258,7 +266,8 @@ protected:
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** \f$ f(x,y,z) = \exp (x^2+y^2+z^2) \f$  */
+/** \f$ f(x,y,z) = \exp (x^2+y^2+z^2) \f$
+ *  \ingroup FunctionGroup                                                    */
 class Fr3rExp: public Function {
 public:
     Fr3rExp (double _tmin, double _tmax, double _dt,
@@ -272,7 +281,8 @@ protected:
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** a hypersphere as an example polar function */
+/** a hypersphere as an example polar function
+ *  \ingroup FunctionGroup                                                    */
 class Polar: public Function {
 public:
     Polar (double _tmin, double _tmax, double _dt,
@@ -287,7 +297,8 @@ protected:
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** \f$ r(\psi, \theta, \phi) = |\sin (Phase*\pi*\psi*\theta*\phi)| \f$       */
+/** \f$ r(\psi, \theta, \phi) = |\sin (Phase*\pi*\psi*\theta*\phi)| \f$
+ *  \ingroup FunctionGroup                                                    */
 class PolarSin: public Function {
 public:
     PolarSin (double _tmin, double _tmax, double _dt,
@@ -306,7 +317,8 @@ protected:
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** \f$ r = \sin(\pi/3.*(\psi+\theta+\phi)) \f$ */
+/** \f$ r = \sin(\pi/3.*(\psi+\theta+\phi)) \f$
+ *  \ingroup FunctionGroup                                                    */
 class PolarSin2: public Function {
 public:
     PolarSin2 (double _tmin, double _tmax, double _dt,
@@ -321,7 +333,8 @@ protected:
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** \f$ r = \sqrt{\psi^2+\theta^2+\phi^2} \f$ */
+/** \f$ r = \sqrt{\psi^2+\theta^2+\phi^2} \f$
+ *  \ingroup FunctionGroup                                                    */
 class PolarR: public Function {
 public:
     PolarR (double _tmin, double _tmax, double _dt,

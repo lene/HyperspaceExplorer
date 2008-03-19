@@ -55,16 +55,19 @@ class Hypersphere;
 class Torus1;
 class Torus2;
 
+/// \defgroup UIGroup User Interface
 
 /** class C4DView:
  *  displays and manipulates four-dimensional Function in a QGLWidget \n
  *  This class is much too big and will be split into parts wherever possible
+ *  \ingroup UIGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class C4DView : public XQGLWidget {
 
     /** class CustomFunctionSlot
      *  class template to outsource redundant code for the generation of
-     *  customized functions in a slot called by QActions from the QMenu      */
+     *  customized functions in a slot called by QActions from the QMenu
+     *  \ingroup UIGroup                                                      */
     template<class function> class CustomFunctionSlot {
         public:
             static void createCustomFunction(C4DView *view);
@@ -73,7 +76,8 @@ class C4DView : public XQGLWidget {
 
     /** class FunctionSlot
      *  class template to outsource redundant code for the generation of
-     *  functions in a slot called by QActions from the QMenu                 */
+     *  functions in a slot called by QActions from the QMenu
+     *  \ingroup UIGroup                                                      */
     template<class function> class FunctionSlot {
     //  Q_OBJECT
         public:

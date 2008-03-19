@@ -20,6 +20,7 @@
  *  abstract base class for 3D objects. provides a glList containing the
  *  base primitive and a routine to draw it. \n
  *  the Draw () routine must be implemented in the derived classes.
+ *  \ingroup UIGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class GLObject {
     public:

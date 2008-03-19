@@ -19,6 +19,7 @@ namespace VecMath {
     /**  Matrix<D, N>: a DxD matrix of numbers of type N
      *  @param D dimension of the matrix
      *  @param N numerical type of the matrix elements
+     *  \ingroup VecMath
      *  @author Helge Preuss <scout@hyperspace-travel.de>                     */
     template <unsigned D, typename N = double> class Matrix {
         public:
@@ -26,10 +27,12 @@ namespace VecMath {
             Matrix<D, N> (N, N, N, N, N, N);
             Matrix<D, N> (unsigned, unsigned, N);
             virtual ~Matrix<D, N> () { }
-
-            N &operator () (unsigned i, unsigned j) {
-                return M[i][j];
-            }
+            
+            /** access operator
+             *  \param i row index
+             *  \param j column index
+             *  \return \f$ M_{ij} \f$                                        */
+            N &operator () (unsigned i, unsigned j) { return M[i][j]; }
 
             Matrix<D, N> operator * (const Matrix<D, N> &) const;
             Vector<D, N> operator * (const Vector<D, N> &);

@@ -10,6 +10,7 @@ class Function;
 /** The menu for the C4DView. \n
  *  This class has been outsourced from C4DView to keep C4DView of a managable
  *  size.
+ *  \ingroup UIGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Menu4D: public QMenu {
     public:

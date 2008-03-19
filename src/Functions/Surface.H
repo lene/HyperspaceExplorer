@@ -3,8 +3,8 @@
 //      module:
 //      contains:
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
-//	license:      GPL (see License.txt)
+//      author:       helge preuss (scout@hyperspace-travel.de)
+//      license:      GPL (see License.txt)
 
 
 #if(!defined SURFACE_H)
@@ -14,8 +14,10 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
+
 /** A function from \f$ R^2 \rightarrow R^4 \f$, thus describing a parametrized
  *  surface in hyperspace
+ *  \ingroup FunctionGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Surface: public Function {
     public:
@@ -90,7 +92,8 @@ class Surface: public Function {
         F_1 & = & Radius*\cos \theta*\sin \psi;   \\
         F_2 & = & Radius*\cos \theta;             \\
         F_3 & = & Radius*\cos \psi;
-    \f}                                                                       */
+    \f}
+ *  \ingroup FunctionGroup                                                    */
 class Surface1: public Surface {
 public:
     Surface1 (double _umin, double _umax, double _du,
@@ -111,7 +114,8 @@ protected:
         F_2 & = (1+\sin{t})*\cos{p}         \\
         F_3 & = (1+\sin{t})*\sin{p}         \\
         F & = & F*\frac{1}{\sqrt{2}}*\cos{t}
-    \f}                                                                       */
+    \f}
+ *  \ingroup FunctionGroup                                                    */
 class Horizon: public Surface {
 public:
     Horizon (double _umin, double _umax, double _du,
@@ -124,7 +128,8 @@ protected:
 };
 
 /** Another torus version, this time as a two-dimensional surface in
- *  four-space                                                                */
+ *  four-space
+ *  \ingroup FunctionGroup                                                    */
 class Torus3: public Surface {
 public:
     Torus3 (double _umin, double _umax, double _du,

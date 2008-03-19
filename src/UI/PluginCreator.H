@@ -17,6 +17,7 @@
  *  This class contains all the variables and functions common to the four
  *  different function types, the differences being encapsulated in a template
  *  class with auxiliary functions.
+ *  \ingroup UIGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class PluginCreator {
     /** a class template with a static function to simulate a function
