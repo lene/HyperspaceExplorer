@@ -93,7 +93,7 @@ class Surface: public Function {
         F_2 & = & Radius*\cos \theta;             \\
         F_3 & = & Radius*\cos \psi;
     \f}
- *  \ingroup FunctionGroup                                                    */
+ *  \ingroup SurfaceGroup                                                    */
 class Surface1: public Surface {
 public:
     Surface1 (double _umin, double _umax, double _du,
@@ -115,7 +115,7 @@ protected:
         F_3 & = (1+\sin{t})*\sin{p}         \\
         F & = & F*\frac{1}{\sqrt{2}}*\cos{t}
     \f}
- *  \ingroup FunctionGroup                                                    */
+ *  \ingroup SurfaceGroup                                                    */
 class Horizon: public Surface {
 public:
     Horizon (double _umin, double _umax, double _du,
@@ -129,7 +129,7 @@ protected:
 
 /** Another torus version, this time as a two-dimensional surface in
  *  four-space
- *  \ingroup FunctionGroup                                                    */
+ *  \ingroup SurfaceGroup                                                    */
 class Torus3: public Surface {
 public:
     Torus3 (double _umin, double _umax, double _du,

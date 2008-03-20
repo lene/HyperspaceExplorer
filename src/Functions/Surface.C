@@ -18,7 +18,7 @@ using VecMath::Matrix;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-/** Surface default c'tor
+/** Surface default c'tor \n
  *  zeroes everything    */
 Surface::Surface ():
     umin (0), umax (0), du (0),
@@ -30,7 +30,7 @@ Surface::Surface ():
     R (NULL), G (NULL), B (NULL), RGBChunk (NULL) { }
 
 
-/** Function c'tor given a definition set in \f$ R^2 \f$ (as parameter space)
+/** Surface c'tor given a definition set in \f$ R^2 \f$ (as parameter space)
  *  @param _umin minimal value in u
  *  @param _umax maximal value in u
  *  @param _du stepsize in u
@@ -78,7 +78,7 @@ void Surface::InitMem (void) {
 }
 
 
-/** allocate and initialize X[][] with values of f()
+/** allocate and initialize X[][] with values of f() \n
  *  call InitMem () above                                                     */
 void Surface::Initialize () {
     X = new Vector<4> * [usteps+2];
@@ -152,7 +152,7 @@ void Surface::Free (void) {
 
 
 /** return the approximate amount of memory needed to display a Function of
- *  current definition set
+ *  current definition set \n
  *  uses hardcoded and experimentally found value for memory per cell - ICK!
  *  @return approx. mem required                                              */
 unsigned long Surface::MemRequired (void) {
@@ -166,8 +166,8 @@ Surface::~Surface() {
 }
 
 
-/** calculate normal to function at a given point in definition set
- *  no further assumption is made than that f () is continuous
+/** calculate normal to function at a given point in definition set \n
+ *  no further assumption is made than that f () is continuous \n
  *  this function is not yet used anywhere, but i like it
  *  @param uu u value
  *  @param vv v value
@@ -213,7 +213,7 @@ Vector<4> *Surface::df (double uu, double vv) {
 }
 
 
-/** transforms a Surface
+/** transforms a Surface \n
  *  as I look at it, i think this could be optimized by making the transformation
  *  matrices static and only canging the corresponding entries... but how to
  *  make this beautifully, i don't know
@@ -287,7 +287,7 @@ void Surface::Draw (void) {
 }
 
 
-/** draw the current strip of the projected Function
+/** draw the current strip of the projected Surface
  *  @param u current u value                                                  */
 void Surface::DrawStrip (unsigned u){
     glBegin (GL_QUAD_STRIP);

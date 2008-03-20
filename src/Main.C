@@ -3,8 +3,14 @@
 //      module:
 //      contains:
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
-//	license:      GPL (see License.txt)
+//      author:       helge preuss (scout@hyperspace-travel.de)
+//      license:      GPL (see License.txt)
+
+/** \mainpage HyperspaceExplorer
+ *  \section intro Introduction
+ *  Hyperspace Explorer is a program that lets you visualize four-dimensional
+ *  objects and mathematical functions.
+ *  \section tbc Documentation to be continued...                                 */
 
 #include <vector>
 #include <iomanip>
@@ -194,7 +200,7 @@ void benchmark (const unsigned num_runs = 10) {
 
         view.ObjectHypercube ();
         cerr << "Hypercube\n";
-        
+
         double2Dmap results_by_style = benchmarks_by_style (view, num_runs, num_steps, step);
         results_by_object.insert (
             pair<const char *, double2Dmap> ("Hypercube",
@@ -207,10 +213,10 @@ void benchmark (const unsigned num_runs = 10) {
         results_by_object.insert (
             pair<const char *, double2Dmap> ("Hyperpyramid",
                 benchmarks_by_style (view, num_runs, num_steps, step)));
-        
+
         view.ObjectHypersponge();
         cerr << "Hypersponge\n";
-        
+
         results_by_style = benchmarks_by_style (view, num_runs, num_steps, step);
         results_by_object.insert (
             pair<const char *, double2Dmap> ("Hypersponge",

@@ -40,3 +40,8 @@
 \form#39:$ e^{-\alpha*z^2} $
 \form#40:$ R^3 \rightarrow R $
 \form#41:$ M_{ij} $
+\form#42:$ f: R^3 \rightarrow R^4 $
+\form#43:$ f: R^3 \rightarrow R $
+\form#44:$ r = r(\psi, \theta, \phi) $
+\form#45:$ f: R^2 \rightarrow R^4 $
+\form#46:$ f: C \rightarrow C $

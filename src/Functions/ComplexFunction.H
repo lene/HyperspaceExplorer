@@ -44,7 +44,7 @@ class ComplexFunction: public Surface {
 };
 
 /** \f$ f(z) = z^2 \f$
- *  \ingroup FunctionGroup                                                    */
+ *  \ingroup ComplexGroup                                                    */
 class z2: public ComplexFunction {
     public:
 	z2 (double _umin, double _umax, double _du,
@@ -57,7 +57,7 @@ class z2: public ComplexFunction {
 };
 
 /** \f$ f(z) = z^3 \f$
- *  \ingroup FunctionGroup                                                    */
+ *  \ingroup ComplexGroup                                                    */
 class z3: public ComplexFunction {
     public:
 	z3 (double _umin, double _umax, double _du,
@@ -70,7 +70,7 @@ class z3: public ComplexFunction {
 };
 
 /** \f$ f(z) = z^\alpha \f$
- *  \ingroup FunctionGroup                                                    */
+ *  \ingroup ComplexGroup                                                    */
 class zA: public ComplexFunction {
     public:
 	zA (double _umin, double _umax, double _du,
@@ -88,7 +88,7 @@ class zA: public ComplexFunction {
 };
 
 /** \f$ f(z) = e^{\alpha*z} \f$
- *  \ingroup FunctionGroup                                                    */
+ *  \ingroup ComplexGroup                                                    */
 class ez: public ComplexFunction {
     public:
 	ez (double _umin, double _umax, double _du,
@@ -105,7 +105,7 @@ class ez: public ComplexFunction {
 };
 
 /** \f$ f(z) = e^{-\alpha*z^2} \f$
- *  \ingroup FunctionGroup                                                    */
+ *  \ingroup ComplexGroup                                                    */
 class emz2: public ComplexFunction {
     public:
 	emz2 (double _umin, double _umax, double _du,
@@ -122,7 +122,7 @@ class emz2: public ComplexFunction {
 };
 
 /** \f$ f(z) = \frac{1}{z} \f$
- *  \ingroup FunctionGroup                                                    */
+ *  \ingroup ComplexGroup                                                    */
 class zm1: public ComplexFunction {
     public:
 	zm1 (double _umin, double _umax, double _du,
@@ -135,7 +135,7 @@ class zm1: public ComplexFunction {
 };
 
 /** \f$ f(z) = \frac{1}{z^2} \f$
- *  \ingroup FunctionGroup                                                    */
+ *  \ingroup ComplexGroup                                                    */
 class zm2: public ComplexFunction {
     public:
 	zm2 (double _umin, double _umax, double _du,
@@ -148,7 +148,7 @@ class zm2: public ComplexFunction {
 };
 
 /** \f$ f(z) = \sqrt{z} \f$
- *  \ingroup FunctionGroup                                                    */
+ *  \ingroup ComplexGroup                                                    */
 class sqrtz: public ComplexFunction {
     public:
 	sqrtz (double _umin, double _umax, double _du,
@@ -161,7 +161,7 @@ class sqrtz: public ComplexFunction {
 };
 
 /** \f$ f(z) = \ln{z} \f$
- *  \ingroup FunctionGroup                                                    */
+ *  \ingroup ComplexGroup                                                    */
 class lnz: public ComplexFunction {
     public:
 	lnz (double _umin, double _umax, double _du,
@@ -174,7 +174,7 @@ class lnz: public ComplexFunction {
 };
 
 /** \f$ f(z) = \sin{z} \f$
- *  \ingroup FunctionGroup                                                    */
+ *  \ingroup ComplexGroup                                                    */
 class sinz: public ComplexFunction {
     public:
 	sinz (double _umin, double _umax, double _du,
@@ -187,7 +187,7 @@ class sinz: public ComplexFunction {
 };
 
 /** \f$ f(z) = \cos{z} \f$
- *  \ingroup FunctionGroup                                                    */
+ *  \ingroup ComplexGroup                                                    */
 class cosz: public ComplexFunction {
     public:
 	cosz (double _umin, double _umax, double _du,
@@ -200,7 +200,7 @@ class cosz: public ComplexFunction {
 };
 
 /** \f$ f(z) = \sinh{z} \f$
- *  \ingroup FunctionGroup                                                    */
+ *  \ingroup ComplexGroup                                                    */
 class sinhz: public ComplexFunction {
     public:
 	sinhz (double _umin, double _umax, double _du,
@@ -213,7 +213,7 @@ class sinhz: public ComplexFunction {
 };
 
 /** \f$ f(z) = \cosh{z} \f$
- *  \ingroup FunctionGroup                                                    */
+ *  \ingroup ComplexGroup                                                    */
 class coshz: public ComplexFunction {
     public:
 	coshz (double _umin, double _umax, double _du,
@@ -226,7 +226,7 @@ class coshz: public ComplexFunction {
 };
 
 /** \f$ f(z) = \tan{z} \f$
- *  \ingroup FunctionGroup                                                    */
+ *  \ingroup ComplexGroup                                                    */
 class tanz: public ComplexFunction {
     public:
 	tanz (double _umin, double _umax, double _du,
@@ -239,7 +239,7 @@ class tanz: public ComplexFunction {
 };
 
 /** a third-order polynomial of z, not yet implemented
- *  \ingroup FunctionGroup                                                    */
+ *  \ingroup ComplexGroup                                                    */
 class Polynomial: public ComplexFunction {
     public:
 	Polynomial(double _umin, double _umax, double _du,
