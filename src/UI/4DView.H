@@ -67,6 +67,7 @@ class C4DView : public XQGLWidget {
     /** class CustomFunctionSlot
      *  class template to outsource redundant code for the generation of
      *  customized functions in a slot called by QActions from the QMenu
+     *  @param function the Function to be created in the slot
      *  \ingroup UIGroup                                                      */
     template<class function> class CustomFunctionSlot {
         public:
@@ -77,6 +78,7 @@ class C4DView : public XQGLWidget {
     /** class FunctionSlot
      *  class template to outsource redundant code for the generation of
      *  functions in a slot called by QActions from the QMenu
+     *  @param function the Function to be created in the slot
      *  \ingroup UIGroup                                                      */
     template<class function> class FunctionSlot {
     //  Q_OBJECT
@@ -322,5 +324,136 @@ class C4DView : public XQGLWidget {
         friend class CustomFunctionSlot<CustomSurface>;
 
 };
+
+#include "Function.H"
+#include "Menu4D.H"
+
+/** Factory method to create a new Function of type R³->R
+ *  This function template is called by each slot with the correct function
+ *  type as template parameter
+ *  sets F to the newly created Function, checks the corresponding menu item,
+ *  updates the ValuesDialog and redraws                                      */
+template<class function>
+        void C4DView::FunctionSlot<function>::createFunction(C4DView *view) {
+
+#   ifdef USE_AUTO_PTR
+        view->F.reset
+#   else
+        if (view->F) delete view->F;
+        view->F =
+#endif
+            (new function (view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
+                           view->Values->umin (), view->Values->umax (), view->Values->du (),
+                           view->Values->vmin (), view->Values->vmax (), view->Values->dv ()));
+
+    SingletonLog::Instance() << "FunctionSlot<function>::createFunction(): "
+            << view->F->getFunctionName().toStdString()
+            << "(" << view->F->getParameterName(0).toStdString()
+            << "," <<view->F->getParameterName(1).toStdString() <<","
+            << view->F->getParameterName(2).toStdString() <<","
+            << view->F->getParameterName(3).toStdString()<<")\n";
+
+    view->menu->updateFunctionMenu (view->F->getFunctionName());
+    view->AssignValues (view->F);
+    view->Redraw ();
+}
+
+/** Factory method to create a new Function of type R²->R^4
+ *  This function template is called by each slot with the correct function
+ *  type as template parameter
+ *  sets F to the newly created Function, checks the corresponding menu item,
+ *  updates the ValuesDialog and redraws                                      */
+template<class function>
+        void C4DView::FunctionSlot<function>::createSurface(C4DView *view) {
+
+#   ifdef USE_AUTO_PTR
+    view->F.reset
+#   else
+            if (view->F) delete view->F;
+    view->F =
+#endif
+            (new function (view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
+             view->Values->umin (), view->Values->umax (), view->Values->du ()));
+
+    if(0) std::cerr << "FunctionSlot<function>::createSurface(): " << view->F->getFunctionName().toStdString()
+                << "(" << view->F->getParameterName(0).toStdString() <<","<<view->F->getParameterName(1).toStdString() <<","<<
+                view->F->getParameterName(2).toStdString() <<","<< view->F->getParameterName(3).toStdString()<<")"<< std::endl;
+
+    try {
+        view->menu->updateFunctionMenu (view->F->getFunctionName());
+    } catch (QString error) {
+        QMessageBox::information (NULL, "Error", error);
+
+    }
+    view->AssignValues (view->F);
+
+    view->Redraw ();
+}
+
+#include "FunctionDialogImpl.H"
+#include "PolarDialogImpl.H"
+#include "ComplexDialogImpl.H"
+#include "SurfaceDialogImpl.H"
+
+#include "CustomFunction.H"
+
+/** Factory method to create a new customized Function of type R³->R
+ *  This function template is called by each slot with the correct function
+ *  type as template parameter
+ *  sets F to the newly created Function, checks the corresponding menu item,
+ *  updates the ValuesDialog and redraws. Does some error handling in case the
+ *  Function could not be loaded.                                             */
+template<class function>
+        void C4DView::CustomFunctionSlot<function>::createCustomFunction(C4DView *view) {
+            function *tmp = new function (
+                view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
+                view->Values->umin (), view->Values->umax (), view->Values->du (),
+                view->Values->vmin (), view->Values->vmax (), view->Values->dv ());
+            if (tmp->isValid()) {
+#               ifdef USE_AUTO_PTR
+                    view->F.reset(tmp);
+                    QString sym (((function *)(view->F).get ())->symbolic());
+#               else
+                    if (view->F) delete view->F;
+                    view->F = tmp;
+                    QString sym (((function *)(view->F))->symbolic());
+#               endif
+
+                view->AssignValues(view->F);
+                view->Redraw ();
+            } else {
+                delete tmp;
+                view->UpdateStatus("Failed to load custom function");
+            }
+        }
+
+/** Factory method to create a new customized Function of type R²->R^4
+ *  This function template is called by each slot with the correct function
+ *  type as template parameter
+ *  sets F to the newly created Function, checks the corresponding menu item,
+ *  updates the ValuesDialog and redraws. Does some error handling in case the
+ *  Function could not be loaded.                                             */
+template<class function>
+        void C4DView::CustomFunctionSlot<function>::createCustomSurface(C4DView *view) {
+            function *tmp = new function (view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
+                                          view->Values->umin (), view->Values->umax (), view->Values->du ());
+            if (tmp->isValid()) {
+#               ifdef USE_AUTO_PTR
+                view->F.reset(tmp);
+                QString sym (((function *)(view->F).get ())->symbolic());
+#               else
+                if (view->F) delete view->F;
+                view->F = tmp;
+                QString sym (((function *)(view->F))->symbolic());
+#               endif
+
+                view->AssignValues(view->F);
+                view->Redraw ();
+            } else {
+                delete tmp;
+                view->UpdateStatus("Failed to load custom function");
+            }
+        }
+
 
 #endif // !defined(4DVIEW)

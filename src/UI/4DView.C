@@ -198,14 +198,12 @@ void C4DView::Project (void) {
     }
 }
 
-
 /** @return approximate diameter of definition space                          */
 double C4DView::Size () {
   return sqrt ((Values->tmax ()-Values->tmin ())*(Values->tmax ()-Values->tmin ())
               +(Values->umax ()-Values->umin ())*(Values->umax ()-Values->umin ())
               +(Values->vmax ()-Values->vmin ())*(Values->vmax ()-Values->vmin ()));
 }
-
 
 /** draw the coordinate cross (on screen or int GL list)                      */
 void C4DView::DrawCoordinates () {
@@ -231,14 +229,12 @@ void C4DView::DrawCoordinates () {
     }
 }
 
-
 /** draw the projected Object (onto screen or into GL list, as it is)         */
 void C4DView::Draw () {
   if (DisplayCoordinates) DrawCoordinates ();
 
   F->Draw ();
 }
-
 
 /** mouse move event handler; awfully long, which is UGLY, but it does not seem
  *  to make much sense to break it up, so here we go
@@ -473,7 +469,6 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
   //  XQGLWidget::mouseMoveEvent (e);
 }
 
-
 /** mouse button event handler
  *  only sets flags which buttons are down
  *  @param e	Qt's mouse event information structure                        */
@@ -501,7 +496,6 @@ void C4DView::mousePressEvent (QMouseEvent *e) {
     }
 }
 
-
 /** mouse button release event handler
  *  if taking values for an animation, starts the animation
  *  @param e	Qt's mouse event information structure                        */
@@ -518,7 +512,6 @@ void C4DView::mouseReleaseEvent ( QMouseEvent *e) {
     UpdateStatus ("");
     if (b == Qt::RightButton) XQGLWidget::mouseReleaseEvent (e);
 }
-
 
 /** double click event handler
  *  stops animation, if running, or resets transformation values to default
@@ -544,7 +537,6 @@ void C4DView::mouseDoubleClickEvent (QMouseEvent *e) {
     XQGLWidget::mouseDoubleClickEvent (e);
 }
 
-
 /** err well.. just that!
  *  starts AnimationTimer, too...                                             */
 void C4DView::StartAnimation () {
@@ -557,7 +549,6 @@ void C4DView::StartAnimation () {
     UpdateStatus ("Double-click LMB to stop animation");
 }
 
-
 /** you guessed it */
 void C4DView::StopAnimation () {
     SingletonLog::Instance().log("C4DView::StopAnimation ()");
@@ -568,7 +559,6 @@ void C4DView::StopAnimation () {
     AnimateRandomTimer->stop ();
     CurrentlyRendering = false;
 }
-
 
 /** starts a random animation, whose xw/yw/zw rotation speed changes every
  *  HARDCODED - EEEEYUARGH! 10 seconds                                        */
@@ -584,7 +574,6 @@ void C4DView::RandomAnimation() {
     AnimateRandomTimer->start (10000);
 }
 
-
 /** make a pixmap to to be rendered by the gl widget, and render it.
  *  this is an embarrassing workaround to make rendering to files work.
  *  QGLWidget's renderPixmap() method only produces black frames. Work with
@@ -597,16 +586,16 @@ QPixmap C4DView::makePixmap() {
     QPixmap pm = QPixmap::grabWindow(this->winId());
 
     if ( pm.isNull() ) {
-      cerr << "Failed to render Pixmap.\n";
+      SingletonLog::Instance() << "Failed to render Pixmap.\n";
     }
 
     return pm;
 }
 
 
-/** timer event handler
- *  updates values if in the middle of an animation, and renders an image
- *  tries to write image to file too, if wanted, but fails miserably.         */
+/** timer event handler \n
+ *  updates values if in the middle of an animation, and renders an image \n
+ *  writes image to file too, if wanted.                                      */
 void C4DView::OnTimer() {
     m_rotX += dx; m_rotY += dy; m_rotZ += dz;   //  update 3D viewpoint values
 
@@ -628,9 +617,16 @@ void C4DView::OnTimer() {
 
     writeFrame();   //  if render to pixmap is selected, do it
 
-    UpdateStatus ("Double-click LMB to stop animation");
+    UpdateStatus (QString("Animation: Frame %1").arg(animationFrame)
+            +(animationMaxFrames > 0 && animationMaxFrames < (unsigned)(-1)?
+                QString("/%1").arg(animationMaxFrames):
+                QString(""))
+            +" - Double-click LMB to stop");
 }
 
+/** writes a snapshot of the current frame of an animation or interactive
+ *  display to disk \n
+ *  updates animationFrame                                                    */
 void C4DView::writeFrame() {
     if (RenderToPixmap && (animationFrame <= animationMaxFrames)) {
 
@@ -644,7 +640,7 @@ void C4DView::writeFrame() {
                 (unsigned)(log((double)animationMaxFrames)/log(10.))+1: 6;
         QString imageFilename =
                 QString (animationDirectory+"/"+animationPrefix+"%1.png")
-                .arg (animationFrame++, animationCiphers)
+                .arg (animationFrame, animationCiphers)
                 .replace (" ", "0");
         if (tmpPixmap.save (imageFilename, "PNG")) {
             cerr << "writing "
@@ -656,6 +652,7 @@ void C4DView::writeFrame() {
                     << imageFilename.toStdString() << " failed!\n";
         }
     }
+    ++animationFrame;
 }
 
 /** display some info about current object and its transformations in a
@@ -789,10 +786,10 @@ void C4DView::AssignValues (Function *F) {
             Values->VMax->show();
         }
     }
-    
+
     if (F->getNumParameters() == 0) Values->functionLabel->hide();
     else Values->functionLabel->show();
-    
+
     if (!Parameter1.isEmpty()) {
         Values->aText (Parameter1);
         Values->A->show();
@@ -1240,68 +1237,6 @@ double C4DView::Benchmark3D (int num_steps,
 
 ////////////////////////////////////////////////////////////////////////////////
 
-/** Factory method to create a new Function of type R³->R
- *  This function template is called by each slot with the correct function
- *  type as template parameter
- *  sets F to the newly created Function, checks the corresponding menu item,
- *  updates the ValuesDialog and redraws                                      */
-template<class function>
-        void C4DView::FunctionSlot<function>::createFunction(C4DView *view) {
-
-#   ifdef USE_AUTO_PTR
-        view->F.reset
-#   else
-        if (view->F) delete view->F;
-        view->F =
-#endif
-            (new function (view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
-                           view->Values->umin (), view->Values->umax (), view->Values->du (),
-                           view->Values->vmin (), view->Values->vmax (), view->Values->dv ()));
-
-    SingletonLog::Instance() << "FunctionSlot<function>::createFunction(): "
-            << view->F->getFunctionName().toStdString()
-            << "(" << view->F->getParameterName(0).toStdString()
-            << "," <<view->F->getParameterName(1).toStdString() <<","
-            << view->F->getParameterName(2).toStdString() <<","
-            << view->F->getParameterName(3).toStdString()<<")\n";
-
-    view->menu->updateFunctionMenu (view->F->getFunctionName());
-    view->AssignValues (view->F);
-    view->Redraw ();
-}
-
-/** Factory method to create a new Function of type R²->R^4
- *  This function template is called by each slot with the correct function
- *  type as template parameter
- *  sets F to the newly created Function, checks the corresponding menu item,
- *  updates the ValuesDialog and redraws                                      */
-template<class function>
-        void C4DView::FunctionSlot<function>::createSurface(C4DView *view) {
-
-#   ifdef USE_AUTO_PTR
-    view->F.reset
-#   else
-            if (view->F) delete view->F;
-    view->F =
-#endif
-            (new function (view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
-             view->Values->umin (), view->Values->umax (), view->Values->du ()));
-
-    if(0) cerr << "FunctionSlot<function>::createSurface(): " << view->F->getFunctionName().toStdString()
-                << "(" << view->F->getParameterName(0).toStdString() <<","<<view->F->getParameterName(1).toStdString() <<","<<
-                view->F->getParameterName(2).toStdString() <<","<< view->F->getParameterName(3).toStdString()<<")"<<endl;
-
-    try {
-        view->menu->updateFunctionMenu (view->F->getFunctionName());
-    } catch (QString error) {
-        QMessageBox::information (NULL, "Error", error);
-
-    }
-    view->AssignValues (view->F);
-    
-    view->Redraw ();
-}
-
 /** display a Fr3r object */
 void C4DView::FunctionFr3r() { FunctionSlot<Fr3r>::createFunction(this); }
 
@@ -1452,71 +1387,6 @@ void C4DView::ComplexCoshZ() {FunctionSlot<coshz>::createSurface(this); }
 
 /** display a ComplexTanZ object */
 void C4DView::ComplexTanZ() {FunctionSlot<tanz>::createSurface(this); }
-
-#include "FunctionDialogImpl.H"
-#include "PolarDialogImpl.H"
-#include "ComplexDialogImpl.H"
-#include "SurfaceDialogImpl.H"
-
-#include "CustomFunction.H"
-
-/** Factory method to create a new customized Function of type R³->R
- *  This function template is called by each slot with the correct function
- *  type as template parameter
- *  sets F to the newly created Function, checks the corresponding menu item,
- *  updates the ValuesDialog and redraws. Does some error handling in case the
- *  Function could not be loaded.                                             */
-template<class function>
-        void C4DView::CustomFunctionSlot<function>::createCustomFunction(C4DView *view) {
-            function *tmp = new function (
-                view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
-                view->Values->umin (), view->Values->umax (), view->Values->du (),
-                view->Values->vmin (), view->Values->vmax (), view->Values->dv ());
-            if (tmp->isValid()) {
-#               ifdef USE_AUTO_PTR
-                    view->F.reset(tmp);
-                    QString sym (((function *)(view->F).get ())->symbolic());
-#               else
-                    if (view->F) delete view->F;
-                    view->F = tmp;
-                    QString sym (((function *)(view->F))->symbolic());
-#               endif
-
-                view->AssignValues(view->F);
-                view->Redraw ();
-            } else {
-                delete tmp;
-                view->UpdateStatus("Failed to load custom function");
-            }
-        }
-
-/** Factory method to create a new customized Function of type R²->R^4
- *  This function template is called by each slot with the correct function
- *  type as template parameter
- *  sets F to the newly created Function, checks the corresponding menu item,
- *  updates the ValuesDialog and redraws. Does some error handling in case the
- *  Function could not be loaded.                                             */
-template<class function>
-        void C4DView::CustomFunctionSlot<function>::createCustomSurface(C4DView *view) {
-            function *tmp = new function (view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
-                                          view->Values->umin (), view->Values->umax (), view->Values->du ());
-            if (tmp->isValid()) {
-#               ifdef USE_AUTO_PTR
-                view->F.reset(tmp);
-                QString sym (((function *)(view->F).get ())->symbolic());
-#               else
-                if (view->F) delete view->F;
-                view->F = tmp;
-                QString sym (((function *)(view->F))->symbolic());
-#               endif
-
-                view->AssignValues(view->F);
-                view->Redraw ();
-            } else {
-                delete tmp;
-                view->UpdateStatus("Failed to load custom function");
-            }
-        }
 
 /** display a customFunction object */
 void C4DView::customFunction() {

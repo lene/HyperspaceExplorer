@@ -1,4 +1,7 @@
 
+#ifndef MENU4D_H
+#define MENU4D_H
+
 #include <QMenu>
 #include <map>
 
@@ -36,3 +39,5 @@ class Menu4D: public QMenu {
 
         MenuMapType menuMap;
 };
+
+#endif
