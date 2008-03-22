@@ -103,7 +103,7 @@ class CustomComplexFunction:
  *  @return success                                                       */
 template<class function_type>
         bool CustomFunctionBase<function_type>::loadFunction(const QString &libName) {
-    static char *error;
+    const char *error;
 
     handle = dlopen (libName.toStdString().c_str(), RTLD_LAZY);
     if (!handle) {
@@ -127,7 +127,7 @@ template<class function_type>
     typedef char* STRING;
     STRING (*sym)();
     sym = (STRING (*)())dlsym(handle, "symbolic");
-    char *error;
+    const char *error;
     static char *ret;
 
     if ((error = dlerror()) != NULL)  {

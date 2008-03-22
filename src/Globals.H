@@ -24,6 +24,8 @@
 
 class QAction;
 class QMainWindow;
+class QStringList;
+class QString;
 
 /** for an explanation why this two-stage macro expansion generates string
  *  literals from #defines, see
@@ -99,7 +101,7 @@ class Global {
         }
 
         void glVertex (VecMath::Vector<3> &V) {
-            if (__finite (V.sqnorm ()))
+            if (std::isfinite (V.sqnorm ()))
 	       glVertex3dv (V.data ());
         }
 

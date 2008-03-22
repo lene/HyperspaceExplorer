@@ -64,7 +64,7 @@ template <class F>
             const QString &libName, QDialog *parent) {
     void *handle;
     F *f;
-    char *error;
+    const char *error;
 
     if (!QFile::exists (libName)) {
         QMessageBox::warning (parent, "Error opening library",
