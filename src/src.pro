@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-CONFIG = release qt warn_on uic
+CONFIG = debug qt warn_on uic
 
 QT += opengl
 

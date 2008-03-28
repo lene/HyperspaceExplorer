@@ -1,6 +1,9 @@
 HyperspaceExplorer Changelog
 =============================
 
+    * replaced all arrays with std::vector<>'s
+    
+release 0.4.0:
     * rendering to images is possible now
     * replaced all possible #ifdef DEBUG statements to use SingletonLog
     * refactored custom function dialogs to move as much code as possible to
@@ -10,6 +13,7 @@ HyperspaceExplorer Changelog
       templated function (so to speak - a class template with a static member
       function in fact)
     * custom functions work again (almost - complex functions still crash)
+    2008-03-19
 
 release 0.3.2:
     * added a menu bar and a status bar

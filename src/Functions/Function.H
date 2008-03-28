@@ -141,6 +141,7 @@ class Function {
 
         /// temporary storage for the function values on the grid
         vec4vec3D X, Xtrans;
+        /// temporary storage for the projected function values
         vec3vec3D Xscr;
         
         /// storage for the coloring of the vertices

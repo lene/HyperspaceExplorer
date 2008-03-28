@@ -25,8 +25,13 @@
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Object: public Function {
     public:
+        /// a one-dimensional array of unsigned, implemented as a std::vector
+        typedef std::vector<unsigned> uintvec1D;
+        /// a two-dimensional array of unsigned, implemented as a nested std::vector
+        typedef std::vector<uintvec1D> uintvec2D;
+        
         Object (const QString &, unsigned, unsigned);
-        virtual ~Object ();
+        virtual ~Object () { }
         virtual void ReInit (double, double, double,
                              double, double, double,
                              double, double, double);
@@ -38,12 +43,18 @@ class Object: public Function {
         virtual void Draw (void);
 
     protected:
+        /// number of vertices and surfaces the object possesses; must be set 
+        /// by implementations
         unsigned NumVertices, NumSurfaces;
-        VecMath::Vector<4> *X, *Xtrans;
-        VecMath::Vector<3> *Xscr;
-        float *R, *G, *B;
+        /// temporary storage for the function values
+        vec4vec1D X, Xtrans;
+        /// temporary storage for the projected function values
+        vec3vec1D Xscr;
+        /// storage for the coloring of the vertices
+        floatvec1D R, G, B;
 
-        unsigned *Surface[4];
+        /// the surfaces, stored as vectors of indeces to the points in X
+        uintvec2D Surface;
 
         virtual VecMath::Vector<4> &f (double, double, double) { return F; }
 };

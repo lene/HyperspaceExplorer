@@ -1314,7 +1314,7 @@ void C4DView::ObjectHypersponge() {
 #   endif
             (new Sponge (
 //                unsigned (Values->a ()), int (Values->b ()), Values->c ())
-                2, 2, 0.8)
+                1, 2, 0.8)
             );
 
     AssignValues(F);

@@ -31,33 +31,14 @@ using VecMath::Matrix;
  */
 Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
     Function (),
-    NumVertices (vertices), NumSurfaces (surfaces) {
-        functionName = name;
+    NumVertices (vertices), NumSurfaces (surfaces),
+    X(vec4vec1D(NumVertices)), Xtrans(vec4vec1D(NumVertices)), Xscr(vec3vec1D(NumVertices)),
+    R(floatvec1D(NumVertices)), G(floatvec1D(NumVertices)), B(floatvec1D(NumVertices)),
+    Surface(4) {
+    functionName = name;
 
-        X      = new Vector<4> [NumVertices];
-        Xtrans = new Vector<4> [NumVertices];
-        Xscr   = new Vector<3> [NumVertices];
-    R = new float [NumVertices];
-    G = new float [NumVertices];
-    B = new float [NumVertices];
-    for (unsigned i = 0; i < 4; i++)
-	Surface[i] = new unsigned [NumSurfaces];
+    for (unsigned i = 0; i < 4; i++) Surface[i].resize(NumSurfaces);
 }
-
-
-/** generic Object destructor; frees arrays
- */
-Object::~Object () {
-    delete [] X;
-    delete [] Xtrans;
-    delete [] Xscr;
-    delete [] R;
-    delete [] G;
-    delete [] B;
-    for (unsigned i = 0; i < 4; i++)
-	delete [] Surface[i];
-}
-
 
 /** transforms an Object
  *  as I look at it, i think this could be optimized by making the transformation
@@ -155,17 +136,17 @@ void Object::ReInit (double, double, double,
 Hypercube::Hypercube (double _a, const Vector<4> &_center):
         Object ("Hypercube", 16, 24),
     a (_a), center(_center) {
-        parameterNames.push_back("Size");
-        SingletonLog::Instance().log("Hypercube::Hypercube()");
+    parameterNames.push_back("Size");
+    SingletonLog::Instance().log("Hypercube::Hypercube()");
     Initialize();
 }
 
 void Hypercube::Initialize(void) {
     SingletonLog::Instance().log("Hypercube::Initialize()");
     for (int x = 0; x <= 1; x++)
-	for (int y = 0; y <= 1; y++)
-	    for (int z = 0; z <= 1; z++)
-		for (int w = 0; w <= 1; w++)
+        for (int y = 0; y <= 1; y++)
+            for (int z = 0; z <= 1; z++)
+                for (int w = 0; w <= 1; w++)
                     X[x+2*(y+2*(z+2*w))] = Vector<4> (2.*x-1., 2.*y-1., 2.*z-1., 2.*w-1.)*a+center;
 
     DeclareSquare (0,   0, 1, 3, 2);
@@ -195,11 +176,11 @@ void Hypercube::Initialize(void) {
 }
 
 /** declare a square in the surfaces array
- *  @param i	index of the square
- *  @param a	index of vertex 1
- *  @param b	index of vertex 2
- *  @param c	index of vertex 3
- *  @param d	index of vertex 4
+ *  @param i index of the square
+ *  @param a index of vertex 1
+ *  @param b index of vertex 2
+ *  @param c index of vertex 3
+ *  @param d index of vertex 4
  */
 void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, unsigned d) {
     Surface[0][i] = a;
@@ -213,13 +194,13 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
 
 
 /** Sponge constructor
- *  @param level	hypersponge level
- *  @param distance	distance of subcubes to center to be counted as part of the fractal
- *			= 0: solid hypercube
- *			= 1: foam
- *			= 2: sponge
- *			= 3: dust
- *			>= 4: nothing
+ *  @param level hypersponge level
+ *  @param distance distance of subcubes to center to be counted as part of the fractal
+ *                  = 0: solid hypercube
+ *                  = 1: foam
+ *                  = 2: sponge
+ *                  = 3: dust
+ *                  >= 4: nothing
  *  @param rad		side_length/2
  *  @param center	center
  */
@@ -238,24 +219,41 @@ Sponge::Sponge (unsigned level, int _distance, double _rad, Vector<4> _center):
 /** return the approximate amount of memory needed to display a sponge of current
  *  level and given distance
  *  uses hardcoded and experimentally found value for memory per hypercube - ICK!
- *  @param distance	see c'tor
- *  @return		approx. mem required
- */
+ *  @param distance see c'tor
+ *  @return approx. mem required                                              */
 unsigned long Sponge::MemRequired (unsigned distance) {
     double SpongePerLevel = ((distance == 0)? 81:
-			     (distance == 1)? 72:
-			     (distance == 2)? 48:
-			                      16);
+                                (distance == 1)? 72:
+                                    (distance == 2)? 48:
+                                        16);
     return (unsigned long) ((pow (SpongePerLevel, int (Level))*32)/1024+8)*1024*1024;
 }
 
 
-/** Sponge destructor
- */
+/** Sponge destructor */
 Sponge::~Sponge () {
     List.clear();
 }
 
+/** This function actually creates the hypersponge. It views it as an assembly
+ *  of \f$ 3^4 \f$ smaller sponges, slicing the sponge in three sub-sponges in
+ *  every one of the four dimensions, and then taking away some of the resulting
+ *  81 smaller sub-sponges.
+ *  <ul>
+ *  <li>if the parameter "distance" is zero, it only removes the sub-sponge with
+ *      distance 0 from the center, i.e. the one at the center.</li>
+ *  <li>if the parameter "distance" is one, it only removes the sub-sponges with
+ *      distance <= 1, amounting to nine removed sub-sponges. The three-
+ *      dimensional surface of the hypercube enveloping the sponge is not 
+ *      breached, because the surface of a hypercube is two units away from the
+ *      center, instead of one unit, as in 3D.</li>
+ *  <li>if distance = 2, the holes reach the hypercubes surface, giving an
+ *      object analogous to the three-dimensional Menger Sponge.</li>
+ *  <li>if distance = 3, only the 16 corners of the hypercube remain, giving
+ *      four-dimensional fractal dust.</li>
+ *  </ul>
+ *  If the level of the sponge is 1, the sub-sponges are hypercubes. Otherwise,
+ *  they are Hypersponges with a level reduced by 1.                          */
 void Sponge::Initialize(void) {
     SingletonLog::Instance().log("Sponge::Initialize()");
 
@@ -265,81 +263,81 @@ void Sponge::Initialize(void) {
         if (distance > 3) distance = 3; 	//  dunno if this is wise
 
         if (MemRequired (distance) > Globals::Instance().MaximumMemory) {
-	    cerr << "Menger sponge of level " << Level
-	         << " would require approx. " << MemRequired (distance)/1024/1024
-	         << " MB of memory." << endl;
+        cerr << "Menger sponge of level " << Level
+             << " would require approx. " << MemRequired (distance)/1024/1024
+             << " MB of memory." << endl;
             if (Globals::Instance().check_memory) {
-	        cerr << "This is more than your available Memory, "
+                cerr << "This is more than your available Memory, "
                      << Globals::Instance().MaximumMemory/1024/1024 << "MB" << endl;
                 while (MemRequired (distance) > Globals::Instance().MaximumMemory)
                     Level--;
-	        cerr << "Using level " << Level << " instead." << endl;
-	    }
-	}
-	for (int x = -1; x <= 1; x++) {
-	    for (int y = -1; y <= 1; y++) {
-		for (int z = -1; z <= 1; z++) {
-		    for (int w = -1; w <= 1; w++) {
-			if (distance >= 0) {
-			    if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
+                cerr << "Using level " << Level << " instead." << endl;
+            }
+        }
+        for (int x = -1; x <= 1; x++) {
+            for (int y = -1; y <= 1; y++) {
+                for (int z = -1; z <= 1; z++) {
+                    for (int w = -1; w <= 1; w++) {
+                        if (distance >= 0) {
+                            if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
                                 Vector<4> NewCen =
                                         Vector<4> (double (x), double (y),
                                                    double (z), double (w))*rad;
-				NewCen += center;
-				List.push_back (
+                                NewCen += center;
+                                List.push_back (
                                         new Sponge (
                                             Level-1, distance, rad/3., NewCen));
-			    }
-			} else {
-			    if (abs (x)+abs (y)+abs (z)+abs (w) < distance) {
+                            }
+                        } else {
+                            if (abs (x)+abs (y)+abs (z)+abs (w) < distance) {
                                 Vector<4> NewCen =
                                         Vector<4> (double (x), double (y),
                                                    double (z), double (w))*rad;
-				NewCen += center;
-				List.push_back (
+                                NewCen += center;
+                                List.push_back (
                                         new Sponge (
                                             Level-1, distance, rad/3., NewCen));
-			    }
-			}
-		    }
-		}
-	    }
-	}
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
-/** transforms a Sponge
- *  @param thetaxy	rotation around xy plane (z axis); ignored because 3D rotation takes care of it
- *  @param thetaxz	rotation around xz plane (y axis); ignored because 3D rotation takes care of it
- *  @param thetaxw	rotation around xw plane
- *  @param thetayz	rotation around xy plane (x axis); ignored because 3D rotation takes care of it
- *  @param thetayw	rotation around yw plane
- *  @param thetazw	rotation around zw plane
- *  @param tx		translation in x direction
- *  @param ty		translation in y direction
- *  @param tz		translation in z direction
- *  @param tw		translation in w direction
- */
+/** transforms a Sponge \n
+ *  The transformation is achieved by transforming all constituting sub-sponges
+ *  @param thetaxy rotation around xy plane (z axis); ignored because 3D rotation takes care of it
+ *  @param thetaxz rotation around xz plane (y axis); ignored because 3D rotation takes care of it
+ *  @param thetaxw rotation around xw plane
+ *  @param thetayz rotation around xy plane (x axis); ignored because 3D rotation takes care of it
+ *  @param thetayw rotation around yw plane
+ *  @param thetazw rotation around zw plane
+ *  @param tx translation in x direction
+ *  @param ty translation in y direction
+ *  @param tz translation in z direction
+ *  @param tw translation in w direction                                      */
 void Sponge::Transform (double Thetaxy, double Thetaxz, double Thetaxw,
                         double Thetayz, double Thetayw, double Thetazw,
-			double Tx, double Ty, double Tz, double Tw) {
+                        double Tx, double Ty, double Tz, double Tw) {
     SingletonLog::Instance().log("Sponge::Transform()");
     for (unsigned i = 0; i < List.size (); i++)
-	List[i]->Transform (Thetaxy, Thetaxz, Thetaxw,
+        List[i]->Transform (Thetaxy, Thetaxz, Thetaxw,
                             Thetayz, Thetayw, Thetazw,
-			    Tx, Ty, Tz, Tw);
+                            Tx, Ty, Tz, Tw);
 }
 
 
-/** projects a Sponge into three-space
- *  @param scr_w	w coordinate of screen
- *  @param cam_w	w coordinate of camera
- *  @param depthcue4d	wheter to use hyperfog/dc
- */
+/** projects a Sponge into three-space \n
+ *  The projection is achieved by projecting all constituting sub-sponges
+ *  @param scr_w w coordinate of screen
+ *  @param cam_w w coordinate of camera
+ *  @param depthcue4d wheter to use hyperfog/dc                               */
 void Sponge::Project (double scr_w, double cam_w, bool depthcue4d) {
     SingletonLog::Instance().log("Sponge::Project()");
     for (unsigned i = 0; i < List.size (); i++)
-	List[i]->Project (scr_w, cam_w, depthcue4d);
+        List[i]->Project (scr_w, cam_w, depthcue4d);
 }
 
 /** draw the projected Sponge (onto screen or into GL list, as it is)         */
@@ -353,9 +351,8 @@ void Sponge::Draw (void) {
 
 
 /** Pyramid (hypersimplex) constructor
- *  @param center	center
- *  @param _a		side_length/2
- */
+ *  @param center center
+ *  @param _a side_length/2                                                   */
 Pyramid::Pyramid (double _a, const Vector<4> &_center):
         Object ("Hyperpyramid", 5, 10),
     center(_center), a (_a) {
