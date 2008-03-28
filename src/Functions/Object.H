@@ -3,8 +3,8 @@
 //      module:
 //      contains:
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
-//	license:      GPL (see License.txt)
+//      author:       helge preuss (scout@hyperspace-travel.de)
+//      license:      GPL (see License.txt)
 
 
 #if(!defined OBJECT_H)
@@ -29,7 +29,7 @@ class Object: public Function {
         typedef std::vector<unsigned> uintvec1D;
         /// a two-dimensional array of unsigned, implemented as a nested std::vector
         typedef std::vector<uintvec1D> uintvec2D;
-        
+
         Object (const QString &, unsigned, unsigned);
         virtual ~Object () { }
         virtual void ReInit (double, double, double,
@@ -76,9 +76,9 @@ public:
         a = _a; }
 
     virtual std::string description () {
-    	std::ostringstream out;
-    	out << "Hypercube (a = " << a << ")" << std::ends;
-    	return out.str ();
+        std::ostringstream out;
+        out << "Hypercube (a = " << a << ")" << std::ends;
+        return out.str ();
     }
 protected:
     virtual void Initialize();
@@ -115,28 +115,28 @@ public:
 
     virtual void Transform (double Rxy, double Rxz, double Rxw,
                             double Ryz, double Ryw, double Rzw,
-			    double Tx, double Ty, double Tz, double Tw);
+                            double Tx, double Ty, double Tz, double Tw);
     virtual void Project (double ScrW, double CamW, bool DepthCue4D);
     virtual void Draw (void);
 
     virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0,
                                 double = 0) {
-	Level = (unsigned)_a;
-	distance = (int)_b;
-	rad = _c;
+        Level = (unsigned)_a;
+        distance = (int)_b;
+        rad = _c;
     }
 
     virtual void ReInit (double, double, double,
-			 double, double, double,
-			 double, double, double) {
-	List.clear();
-	Object::ReInit(0,0,0,0,0,0,0,0,0);
+                         double, double, double,
+                         double, double, double) {
+        List.clear();
+        Object::ReInit(0,0,0,0,0,0,0,0,0);
     }
 
     virtual std::string description () {
-	std::ostringstream out;
-	out << "Sponge (level = " << Level << ")" << std::ends;
-	return out.str ();
+        std::ostringstream out;
+        out << "Sponge (level = " << Level << ")" << std::ends;
+        return out.str ();
     }
 protected:
     virtual void Initialize();
@@ -162,7 +162,8 @@ public:
     virtual ~Pyramid() { }
 
     virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
-		a = _a; }
+        a = _a; 
+    }
 
 protected:
     virtual void Initialize();

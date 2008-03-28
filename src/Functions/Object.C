@@ -26,9 +26,9 @@ using VecMath::Matrix;
 
 /** generic Object constructor; only allocates necessary arrays, children must
  *  fill them in their c'tor
- *  @param vertices	number of vertices
- *  @param surfaces	number of surfaces
- */
+ *  @param name name of the object
+ *  @param vertices number of vertices
+ *  @param surfaces number of surfaces                                        */
 Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
     Function (),
     NumVertices (vertices), NumSurfaces (surfaces),
@@ -40,20 +40,20 @@ Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
     for (unsigned i = 0; i < 4; i++) Surface[i].resize(NumSurfaces);
 }
 
-/** transforms an Object
+/** transforms an Object \n
  *  as I look at it, i think this could be optimized by making the transformation
  *  matrices static and only canging the corresponding entries... but how to
  *  make this beautifully, i don't know
- *  @param thetaxy	rotation around xy plane (z axis); ignored because 3D rotation takes care of it
- *  @param thetaxz	rotation around xz plane (y axis); ignored because 3D rotation takes care of it
- *  @param thetaxw	rotation around xw plane
- *  @param thetayz	rotation around xy plane (x axis); ignored because 3D rotation takes care of it
- *  @param thetayw	rotation around yw plane
- *  @param thetazw	rotation around zw plane
- *  @param tx		translation in x direction
- *  @param ty		translation in y direction
- *  @param tz		translation in z direction
- *  @param tw		translation in w direction
+ *  @param thetaxy rotation around xy plane (z axis); ignored because 3D rotation takes care of it
+ *  @param thetaxz rotation around xz plane (y axis); ignored because 3D rotation takes care of it
+ *  @param thetaxw rotation around xw plane
+ *  @param thetayz rotation around xy plane (x axis); ignored because 3D rotation takes care of it
+ *  @param thetayw rotation around yw plane
+ *  @param thetazw rotation around zw plane
+ *  @param tx translation in x direction
+ *  @param ty translation in y direction
+ *  @param tz translation in z direction
+ *  @param tw translation in w direction
  */
 void Object::Transform (double, double, double thetaxw,
                         double, double thetayw, double thetazw,
@@ -71,10 +71,10 @@ void Object::Transform (double, double, double thetaxw,
 
 
 /** projects an Object into three-space
- *  @param scr_w	w coordinate of screen
- *  @param cam_w	w coordinate of camera
- *  @param depthcue4d	wheter to use hyperfog/dc
- */
+ *  @param scr_w w coordinate of screen
+ *  @param cam_w w coordinate of camera
+ *  @param depthcue4d wheter to use hyperfog/dc
+ *  @todo uses hardcoded values!                                              */
 void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
     double ProjectionFactor;
     double Wmax = 0, Wmin = 0;
@@ -99,23 +99,22 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
 
     //  apply hyperfog
     for (unsigned i = 0; i < NumVertices; i++) {
-	float DepthCueFactor = (Wmax-Xtrans[i][3])/(Wmax-Wmin)*0.9+0.1; 	//	HARDCODED! YUCK! VADE RETRO SATANAS!
-	R[i] = 0.1+(R[i]-0.1)*DepthCueFactor;
-	G[i] = 0.1+(G[i]-0.1)*DepthCueFactor;
-	B[i] = 0.1+(B[i]-0.1)*DepthCueFactor;
+        float DepthCueFactor = (Wmax-Xtrans[i][3])/(Wmax-Wmin)*0.9+0.1; 	//	HARDCODED! YUCK! VADE RETRO SATANAS!
+        R[i] = 0.1+(R[i]-0.1)*DepthCueFactor;
+        G[i] = 0.1+(G[i]-0.1)*DepthCueFactor;
+        B[i] = 0.1+(B[i]-0.1)*DepthCueFactor;
     }
 }
 
 
-/** draw the projected Object (onto screen or into GL list, as it is)
- */
+/** draw the projected Object (onto screen or into GL list, as it is) */
 void Object::Draw () {
     glBegin (GL_QUADS);
     for (unsigned i = 0; i < NumSurfaces; i++)
-	for (unsigned j = 0; j < 4; j++) {
+        for (unsigned j = 0; j < 4; j++) {
             Globals::Instance().SetColor(R[Surface[j][i]], G[Surface[j][i]], B[Surface[j][i]]);
             Globals::Instance().glVertex(Xscr[Surface[j][i]]);
-	}
+        }
     glEnd ();
 }
 
@@ -130,9 +129,8 @@ void Object::ReInit (double, double, double,
 
 
 /** Hypercube constructor
- *  @param center	center
- *  @param _a		side_length/2
- */
+ *  @param center center
+ *  @param _a side_length/2                                                   */
 Hypercube::Hypercube (double _a, const Vector<4> &_center):
         Object ("Hypercube", 16, 24),
     a (_a), center(_center) {
@@ -141,6 +139,10 @@ Hypercube::Hypercube (double _a, const Vector<4> &_center):
     Initialize();
 }
 
+/** Actually creates the Hypercube
+ *  sets up the vertices of the Hypercube in X[], then sets up the surfaces
+ *  of the Hypercube by declaring the appropriate squares as a list in 
+ *  Surface[][].                                                              */
 void Hypercube::Initialize(void) {
     SingletonLog::Instance().log("Hypercube::Initialize()");
     for (int x = 0; x <= 1; x++)
@@ -180,8 +182,7 @@ void Hypercube::Initialize(void) {
  *  @param a index of vertex 1
  *  @param b index of vertex 2
  *  @param c index of vertex 3
- *  @param d index of vertex 4
- */
+ *  @param d index of vertex 4                                                */
 void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, unsigned d) {
     Surface[0][i] = a;
     Surface[1][i] = b;
@@ -201,9 +202,8 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
  *                  = 2: sponge
  *                  = 3: dust
  *                  >= 4: nothing
- *  @param rad		side_length/2
- *  @param center	center
- */
+ *  @param rad side_length/2
+ *  @param center center                                                      */
 Sponge::Sponge (unsigned level, int _distance, double _rad, Vector<4> _center):
     Level (level), distance(_distance), rad(_rad), center(_center) {
     functionName = "4-dimensional Menger Sponge";
@@ -218,7 +218,7 @@ Sponge::Sponge (unsigned level, int _distance, double _rad, Vector<4> _center):
 
 /** return the approximate amount of memory needed to display a sponge of current
  *  level and given distance
- *  uses hardcoded and experimentally found value for memory per hypercube - ICK!
+ *  @todo uses hardcoded and experimentally found value for memory per hypercube
  *  @param distance see c'tor
  *  @return approx. mem required                                              */
 unsigned long Sponge::MemRequired (unsigned distance) {
@@ -307,7 +307,7 @@ void Sponge::Initialize(void) {
 }
 
 /** transforms a Sponge \n
- *  The transformation is achieved by transforming all constituting sub-sponges
+ *  The transformation is achieved by transforming all constituting sub-sponges.
  *  @param thetaxy rotation around xy plane (z axis); ignored because 3D rotation takes care of it
  *  @param thetaxz rotation around xz plane (y axis); ignored because 3D rotation takes care of it
  *  @param thetaxw rotation around xw plane
@@ -330,7 +330,7 @@ void Sponge::Transform (double Thetaxy, double Thetaxz, double Thetaxw,
 
 
 /** projects a Sponge into three-space \n
- *  The projection is achieved by projecting all constituting sub-sponges
+ *  The projection is achieved by projecting all constituting sub-sponges.
  *  @param scr_w w coordinate of screen
  *  @param cam_w w coordinate of camera
  *  @param depthcue4d wheter to use hyperfog/dc                               */
@@ -360,6 +360,7 @@ Pyramid::Pyramid (double _a, const Vector<4> &_center):
         Initialize();
 }
 
+/** @see Hypercube::Initialize() */
 void Pyramid::Initialize() {
     X[0] = Vector<4> (0.0, 0.0, 0.0, 0.0);
     X[1] = Vector<4> (1.0, 0.0, 0.0, 0.0);
@@ -369,7 +370,7 @@ void Pyramid::Initialize() {
 
     Vector<4> center_of_mass (0.5, sqrt (3.)/4., sqrt (1./6.), 1./sqrt (8.));
     for (unsigned i = 0; i < NumVertices; i++)
-	X[i] = X[i]*a+center-center_of_mass*a;
+        X[i] = X[i]*a+center-center_of_mass*a;
 
     DeclareTriangle (0,  0, 1, 2);
     DeclareTriangle (1,  0, 1, 3);
@@ -384,11 +385,10 @@ void Pyramid::Initialize() {
 }
 
 /** declare a triangle in the surfaces array
- *  @param i	index of the square
- *  @param a	index of vertex 1
- *  @param b	index of vertex 2
- *  @param c	index of vertex 3
- */
+ *  @param i index of the square
+ *  @param a index of vertex 1
+ *  @param b index of vertex 2
+ *  @param c index of vertex 3                                                */
 void Pyramid::DeclareTriangle (unsigned i, unsigned a, unsigned b, unsigned c) {
     Surface[0][i] = a;
     Surface[1][i] = b;
@@ -417,29 +417,29 @@ Gasket::Gasket (unsigned level, double _rad, Vector<4> _center):
 
 /** return the approximate amount of memory needed to display a gasket of
  *  current level
- *  uses hardcoded and experimentally found value for memory per simplex - ICK!
- *  @return		approx. mem required
- */
+ *  @todo uses hardcoded and experimentally found value for memory per simplex
+ *  @return approx. mem required                                             */
 unsigned long Gasket::MemRequired (void) {
     return (unsigned long) ((pow (5., (int)Level)*14.5)/1024+8)*1024*1024;
 }
 
+/** @see Sponge::Initialize() */
 void Gasket::Initialize() {
     if (Level < 1)
         List.push_back (new Pyramid (rad, center));
     else {
         if (MemRequired () > Globals::Instance().MaximumMemory) {
-	  cerr << "Sierpinski gasket of level " << Level
-	       << " would require approx. " << MemRequired ()/1024/1024
-	       << " MB of memory." << endl;
-          if (Globals::Instance().check_memory) {
-	    cerr << "This is more than your available Memory of "
-                    << Globals::Instance().MaximumMemory/1024/1024 << "MB." << endl;
-            while (MemRequired () > Globals::Instance().MaximumMemory) Level--;
-	    cerr << "Using level " << Level << " instead." << endl;
-	  }
-	}
-	rad = rad/2;
+            cerr << "Sierpinski gasket of level " << Level
+                 << " would require approx. " << MemRequired ()/1024/1024
+                 << " MB of memory." << endl;
+            if (Globals::Instance().check_memory) {
+                cerr << "This is more than your available Memory of "
+                     << Globals::Instance().MaximumMemory/1024/1024 << "MB." << endl;
+                while (MemRequired () > Globals::Instance().MaximumMemory) Level--;
+                cerr << "Using level " << Level << " instead." << endl;
+            }
+        }
+    rad = rad/2;
 
     Vector<4> center_of_mass (0.5, sqrt (3.)/4., sqrt (1./6.), 1./sqrt (8.));
 
