@@ -25,7 +25,7 @@ class Surface: public Function {
         Surface (const QString &name,
                  double _umin, double _umax, double _du,
                  double _vmin, double _vmax, double _dv);
-        virtual ~Surface();
+        virtual ~Surface() { }
 
         virtual void Transform (double Rxy, double Rxz, double Rxw,
                                 double Ryz, double Ryw, double Rzw,
@@ -42,7 +42,7 @@ class Surface: public Function {
         virtual void SetParameters (double _a = 0, double _b = 0,
                                     double _c = 0, double _d = 0);
 
-        VecMath::Vector<4> **Data (void) { return X; }
+        vec4vec2D Data (void) { return X; }
 
         VecMath::Vector<4> &operator () (double u, double v) {
             unsigned iu = unsigned ((u-umin)/du), iv = unsigned ((v-vmin)/dv);
@@ -55,12 +55,12 @@ class Surface: public Function {
     protected:
          virtual VecMath::Vector<4> &f (double, double,  double) { return F; }
          virtual function_type f  = 0;
-         virtual VecMath::Vector<4> *df (double, double);
+         virtual vec4vec1D df (double, double);
          virtual function_type normal;
 
          void Initialize (void);
          void InitMem (void);
-         virtual void Free (void);
+
          virtual unsigned long MemRequired (void);
 
          void DrawPlane (unsigned);
@@ -74,16 +74,13 @@ class Surface: public Function {
          unsigned NumVertices;
 
          VecMath::Vector<4> F;
-
-	     //	temporary storage for the function values on the grid
-         VecMath::Vector<4> **X, **Xtrans;
-         VecMath::Vector<3> **Xscr;
-         VecMath::Vector<4> *Xchunk, *XtransChunk;
-         VecMath::Vector<3> *XscrChunk;
-
-	     //	storage for the coloring of the vertices
-         float **R, **G, **B;
-         float *RGBChunk;
+	     
+         /// temporary storage for the function values on the grid
+         vec4vec2D X, Xtrans;
+         vec3vec2D Xscr;
+         
+	     /// storage for the coloring of the vertices
+         floatvec2D R, G, B;
 };
 
 /** An example surface:

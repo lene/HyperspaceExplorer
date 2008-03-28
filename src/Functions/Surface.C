@@ -26,8 +26,9 @@ Surface::Surface ():
     usteps (0), vsteps (0),
     NumVertices (0),
     F (4),
-    Xtrans (NULL), Xscr (NULL), XtransChunk (NULL), XscrChunk (NULL),
-    R (NULL), G (NULL), B (NULL), RGBChunk (NULL) { }
+    Xtrans(vec4vec2D()), Xscr(vec3vec2D()),
+    R(floatvec2D()), G(floatvec2D()), B(floatvec2D())
+{ }
 
 
 /** Surface c'tor given a definition set in \f$ R^2 \f$ (as parameter space)
@@ -46,34 +47,27 @@ Surface::Surface (const QString &name,
     vsteps (unsigned (2*(vmax-vmin)/dv+1)),
     NumVertices (0),
     F (4),
-    Xtrans (NULL), Xscr (NULL), XtransChunk (NULL), XscrChunk (NULL),
-    R (NULL), G (NULL), B (NULL), RGBChunk (NULL) {
-        functionName = name;
+    Xtrans(vec4vec2D()), Xscr(vec3vec2D()),
+    R(floatvec2D()), G(floatvec2D()), B(floatvec2D()) {
+    functionName = name;
 }
 
 
 /** Initialize the temporary storage areas Xscr[][], Xtrans[][],
  *                                         R[][], G[][], B[][]                */
 void Surface::InitMem (void) {
-    XscrChunk = new Vector<3> [(usteps+2)*(vsteps+2)];
-    Xscr = new Vector<3> * [usteps+2];
-
-    XtransChunk = new Vector<4> [(usteps+2)*(vsteps+2)];
-    Xtrans = new Vector<4> * [usteps+2];
-
-    RGBChunk = new float [3*(usteps+2)*(vsteps+2)];
-    R = new float * [usteps+2];
-    G = new float * [usteps+2];
-    B = new float * [usteps+2];
+    Xscr.resize(usteps+2);
+    Xtrans.resize(usteps+2);
+    R.resize(usteps+2);
+    G.resize(usteps+2);
+    B.resize(usteps+2);
 
     for (unsigned u = 0; u <= usteps+1; u++) {
-
-        Xscr[u]   = XscrChunk+u*(usteps+2);
-        Xtrans[u] = XtransChunk+u*(usteps+2);
-
-        R[u] = RGBChunk+1*u*(usteps+2);
-        G[u] = RGBChunk+2*u*(usteps+2);
-        B[u] = RGBChunk+3*u*(usteps+2);
+        Xscr[u].resize(vsteps+2);
+        Xtrans[u].resize(vsteps+2);
+        R[u].resize(vsteps+2);
+        G[u].resize(vsteps+2);
+        B[u].resize(vsteps+2);
     }
 }
 
@@ -81,11 +75,9 @@ void Surface::InitMem (void) {
 /** allocate and initialize X[][] with values of f() \n
  *  call InitMem () above                                                     */
 void Surface::Initialize () {
-    X = new Vector<4> * [usteps+2];
-    Xchunk = new Vector<4> [(usteps+2)*(vsteps+2)];
-
+    X = vec4vec2D(usteps+2);
     for (unsigned u = 0; u <= usteps+1; u++) {
-        X[u]  =  Xchunk+u*(vsteps+2);
+        X[u].resize(vsteps+2);
         for (unsigned v = 0; v <= vsteps+1; v++) {
             X[u][v] = f (umin+u*du, vmin+v*dv);
         }
@@ -120,34 +112,8 @@ void Surface::ReInit(double, double, double,
     umin = _umin; umax = _umax; du = _du;
     vmin = _vmin; vmax = _vmax; dv = _dv;
     usteps = unsigned ((umax-umin)/du+1); vsteps = unsigned ((vmax-vmin)/dv+1);
-
-    //  Free ();
-    //  Delete (Xchunk); Delete (XscrChunk); Delete (XtransChunk);
-    Delete (X); Delete (Xscr); Delete (Xtrans); Delete (R);
+    
     Initialize ();
-}
-
-
-/** auxiliary function to safely free all member arrays */
-void Surface::Free (void) {
-    for (unsigned u = 0; u <= usteps+1; u++) {
-// Delete (X[u]);
-// Delete (Xscr[u]);
-// Delete (Xtrans[u]);
-// Delete (R[u]);
-// Delete (G[u]);
-// Delete (B[u]);
-    }
-    Delete (X);
-    Delete (Xscr);
-    Delete (Xtrans);
-    Delete (R);
-    Delete (G);
-    Delete (B);
-//    Delete (Xchunk);
-//    Delete (XscrChunk);
-//    Delete (XtransChunk);
-//    Delete (RGBChunk);
 }
 
 
@@ -160,12 +126,6 @@ unsigned long Surface::MemRequired (void) {
 }
 
 
-/** Surface destructor */
-Surface::~Surface() {
-    Free ();
-}
-
-
 /** calculate normal to function at a given point in definition set \n
  *  no further assumption is made than that f () is continuous \n
  *  this function is not yet used anywhere, but i like it
@@ -175,7 +135,7 @@ Surface::~Surface() {
 Vector<4> &Surface::normal (double uu, double vv) {
     static Vector<4> n;
 
-    Vector<4> *D = df (uu, vv);
+    Function::vec4vec1D D = df (uu, vv);
 
     n = VecMath::vcross (D[0], D[1], D[2]);
     VecMath::vnormalize (n);
@@ -194,12 +154,12 @@ Vector<4> &Surface::normal (double uu, double vv) {
  *  @param uu u value
  *  @param vv v value
  *  @return gradient in t, u and v as array                                   */
-Vector<4> *Surface::df (double uu, double vv) {
+Function::vec4vec1D Surface::df (double uu, double vv) {
 
     static Vector<4> F0;        //  f (u, v)
     static double h = 1e-5;     //  maybe tweak to get best results
 
-    static Vector<4> DF[3];
+    static Function::vec4vec1D DF(3);
 
     F0 = operator () (uu, vv);
 

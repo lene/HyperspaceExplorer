@@ -55,34 +55,55 @@
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Function {
     public:
+        /// a one-dimensional array of floats, implemented as a std::vector
+        typedef std::vector<float> floatvec1D;
+        /// a two-dimensional array of floats, implemented as a nested std::vector
+        typedef std::vector<floatvec1D> floatvec2D;
+        /// a three-dimensional array of floats, implemented as a nested std::vector
+        typedef std::vector<floatvec2D> floatvec3D;
+        
+        /// a one-dimensional array of Vector<3>, implemented as a std::vector
+        typedef std::vector<VecMath::Vector<3> > vec3vec1D;
+        /// a two-dimensional array of Vector<3>, implemented as a nested std::vector
+        typedef std::vector<vec3vec1D> vec3vec2D;
+        /// a three-dimensional array of Vector<3>, implemented as a nested std::vector
+        typedef std::vector<vec3vec2D> vec3vec3D;
+        
+        /// a one-dimensional array of Vector<4>, implemented as a std::vector
+        typedef std::vector<VecMath::Vector<4> > vec4vec1D;
+        /// a two-dimensional array of Vector<4>, implemented as a nested std::vector
+        typedef std::vector<vec4vec1D> vec4vec2D;
+        /// a three-dimensional array of Vector<4>, implemented as a nested std::vector
+        typedef std::vector<vec4vec2D> vec4vec3D;
+
         Function();
         Function (const QString &name,
                   double _tmin, double _tmax, double _dt,
                   double _umin, double _umax, double _du,
                   double _vmin, double _vmax, double _dv);
-        virtual ~Function();
+        virtual ~Function() { }
 
         virtual void Transform (double Rxy, double Rxz, double Rxw,
                                 double Ryz, double Ryw, double Rzw,
-			        double Tx, double Ty, double Tz, double Tw);
+                                double Tx, double Ty, double Tz, double Tw);
         void Transform (void) { Transform (0, 0, 0, 0, 0, 0,  0, 0, 0, 0); }
 
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
         virtual void Draw (void);
 
         virtual void ReInit(double _tmin, double _tmax, double _dt,
-			    double _umin, double _umax, double _du,
-			    double _vmin, double _vmax, double _dv);
+                double _umin, double _umax, double _du,
+                double _vmin, double _vmax, double _dv);
         virtual void SetParameters (double _a = 0, double _b = 0,
                                     double _c = 0, double _d = 0);
 
-        VecMath::Vector<4> ***Data (void) { return X; }
+        vec4vec3D Data(void) { return X; }
 
         VecMath::Vector<4> &operator () (double t, double u, double v) {
-	        unsigned it = unsigned ((t-tmin)/dt),
-		             iu = unsigned ((u-umin)/du),
-		             iv = unsigned ((v-vmin)/dv);
-	        return X[it][iu][iv];
+            unsigned it = unsigned ((t-tmin)/dt),
+                     iu = unsigned ((u-umin)/du),
+                     iv = unsigned ((v-vmin)/dv);
+            return X[it][iu][iv];
         }
 
         QString getFunctionName() const { return functionName; }
@@ -96,12 +117,12 @@ class Function {
 
     protected:
         virtual function_type f = 0;
-        virtual VecMath::Vector<4> *df (double, double, double);
+        virtual vec4vec1D df (double, double, double);
         virtual function_type normal;
 
         virtual void Initialize (void);
         void InitMem (void);
-        void Free (void);
+//        void Free (void);
         virtual unsigned long MemRequired (void);
 
         void DrawPlane (unsigned);
@@ -118,15 +139,12 @@ class Function {
 
         VecMath::Vector<4> F;
 
-        //      temporary storage for the function values on the grid
-        VecMath::Vector<4> ***X, ***Xtrans;
-        VecMath::Vector<3> ***Xscr;
-        VecMath::Vector<4> *Xchunk, *XtransChunk;
-        VecMath::Vector<3> *XscrChunk;
-
-        //      storage for the coloring of the vertices
-        float ***R, ***G, ***B;
-        float *RGBChunk;
+        /// temporary storage for the function values on the grid
+        vec4vec3D X, Xtrans;
+        vec3vec3D Xscr;
+        
+        /// storage for the coloring of the vertices
+        floatvec3D R, G, B;
 
         QString functionName;
         std::vector<QString> parameterNames;

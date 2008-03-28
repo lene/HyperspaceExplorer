@@ -42,8 +42,8 @@ Function::Function ():
     tsteps (0), usteps (0), vsteps (0),
     NumVertices (0),
     F (),
-    Xtrans (NULL), Xscr (NULL), XtransChunk (NULL), XscrChunk (NULL),
-    R (NULL), G (NULL), B (NULL), RGBChunk (NULL),
+    Xtrans(vec4vec3D()), Xscr(vec3vec3D()),
+    R (floatvec3D()), G (floatvec3D()), B (floatvec3D()),
     functionName(""), parameterNames()
 { }
 
@@ -71,58 +71,54 @@ Function::Function (const QString &name,
     vsteps (unsigned ((vmax-vmin)/dv+1)),
     NumVertices (0),
     F (),
-    Xtrans (NULL), Xscr (NULL), XtransChunk (NULL), XscrChunk (NULL),
-    R (NULL), G (NULL), B (NULL), RGBChunk (NULL),
+    Xtrans(vec4vec3D()), Xscr(vec3vec3D()),
+    R (floatvec3D()), G (floatvec3D()), B (floatvec3D()),
     functionName(name), parameterNames() {
-  if (MemRequired () > Globals::Instance().MaximumMemory) {				//  which is defined in Globals.H
-    cerr << "Using a " << tsteps << "x" << usteps << "x" << vsteps
-	 << " grid would require approx. " << MemRequired () << " MB of memory.\n";
-    while (MemRequired () > Globals::Instance().MaximumMemory) {
-      tsteps--; usteps--; vsteps--;
+    if (MemRequired () > Globals::Instance().MaximumMemory) {
+        cerr << "Using a " << tsteps << "x" << usteps << "x" << vsteps
+             << " grid would require approx. " << MemRequired () << " MB of memory.\n";
+        while (MemRequired () > Globals::Instance().MaximumMemory) {
+            tsteps--; usteps--; vsteps--;
+        }
+        cerr << "Using a " << tsteps << "x" << usteps << "x" << vsteps
+             << " grid instead." << endl;
+        dt = (tmax-tmin)/tsteps;
+        du = (umax-umin)/usteps;
+        dv = (vmax-vmin)/vsteps;
     }
-    cerr << "Using a " << tsteps << "x" << usteps << "x" << vsteps
-	 << " grid instead." << endl;
-    dt = (tmax-tmin)/tsteps;
-    du = (umax-umin)/usteps;
-    dv = (vmax-vmin)/vsteps;
-  }
 }
 
 
 /** Initialize the temporary storage areas Xscr[][][], Xtrans[][][],
  *                                         R[][][], G[][][], B[][][]          */
 void Function::InitMem (void) {
-  XscrChunk = new Vector<3> [(tsteps+2)*(usteps+2)*(vsteps+2)];
-  Xscr = new Vector<3> ** [tsteps+2];	// valgrind moans about lost bytes
 
-  XtransChunk = new Vector<4> [(tsteps+2)*(usteps+2)*(vsteps+2)];
-  Xtrans = new Vector<4> ** [tsteps+2];	// valgrind moans about lost bytes
+    Xscr.resize(tsteps+2);
+    Xtrans.resize(tsteps+2);
 
-  RGBChunk = new float [3*(tsteps+2)*(usteps+2)*(vsteps+2)];
-  R = new float ** [tsteps+2];
-  G = new float ** [tsteps+2];
-  B = new float ** [tsteps+2];
+    R.resize(tsteps+2);
+    G.resize(tsteps+2);
+    B.resize(tsteps+2);
+    for (unsigned t = 0; t <= tsteps+1; t++) {
 
-  for (unsigned t = 0; t <= tsteps+1; t++) {
+        Xscr[t].resize(usteps+2);
+        Xtrans[t].resize(usteps+2);
 
-      Xscr[t] = new Vector<3> * [usteps+2];
-      Xtrans[t] = new Vector<4> * [usteps+2];
+        R[t].resize(usteps+2);
+        G[t].resize(usteps+2);
+        B[t].resize(usteps+2);
 
-    R[t] = new float * [usteps+2];
-    G[t] = new float * [usteps+2];
-    B[t] = new float * [usteps+2];
+        for (unsigned u = 0; u <= usteps+1; u++) {
 
-    for (unsigned u = 0; u <= usteps+1; u++) {
+            Xscr[t][u].resize(vsteps+2);
+            Xtrans[t][u].resize(vsteps+2);
 
-      Xscr[t][u] = XscrChunk+t*(tsteps+2)*(usteps+2)+u*(usteps+2);
-      Xtrans[t][u] = XtransChunk+t*(tsteps+2)*(usteps+2)+u*(usteps+2);
+            R[t][u].resize(vsteps+2);
+            G[t][u].resize(vsteps+2);
+            B[t][u].resize(vsteps+2);
+        }                                       //      for (unsigned u = 0; u <= usteps+1; u++)
 
-      R[t][u] = RGBChunk+1*t*(tsteps+2)*(usteps+2)+u*(usteps+2);
-      G[t][u] = RGBChunk+2*t*(tsteps+2)*(usteps+2)+u*(usteps+2);
-      B[t][u] = RGBChunk+3*t*(tsteps+2)*(usteps+2)+u*(usteps+2);
-    }                                       //      for (unsigned u = 0; u <= usteps+1; u++)
-
-  }                                               //      for (unsigned t = 0; t <= tsteps+1; t++)
+    }                                               //      for (unsigned t = 0; t <= tsteps+1; t++)
 }                                                       //      InitiMem ()
 
 
@@ -130,13 +126,14 @@ void Function::InitMem (void) {
  *  call InitMem () above
  */
 void Function::Initialize () {
-    Xchunk = new Vector<4>   [(tsteps+2)*(usteps+2)*(vsteps+2)];
-    X 	 = new Vector<4> ** [tsteps+2];	// valgrind moans about lost bytes
+    X = vec4vec3D(tsteps+2);
 
     for (unsigned t = 0; t <= tsteps+1; t++) {
-        X[t] = new Vector<4> * [usteps+2];
+        X[t].resize(usteps+2);
+
         for (unsigned u = 0; u <= usteps+1; u++) {
-            X[t][u]  =  Xchunk+t*(usteps+2)*(vsteps+2)+u*(vsteps+2);	//new Vector [vsteps+2];
+            X[t][u].resize(vsteps+2);
+
             for (unsigned v = 0; v <= vsteps+1; v++) {
 	            double T = tmin+t*dt, U =umin+u*du, V = vmin+v*dv;
 	            X[t][u][v] = f (T, U, V);
@@ -169,56 +166,17 @@ void Function::ReInit(double _tmin, double _tmax, double _dt,
   vmin = _vmin;   vmax = _vmax;   dv = _dv;
   tsteps = unsigned ((tmax-tmin)/dt+2); usteps = unsigned ((umax-umin)/du+2); vsteps = unsigned ((vmax-vmin)/dv+2);
 
-  //      Free ();
-
-  //  for (unsigned t = 0; t <= tsteps+1; t++)
-  //    delete [] X[t];
-  Delete (X);	//	! Mismatched delete !
-  //  Delete (Xchunk);
-
   Initialize ();
 }
 
 
 /** placeholder for function to set parameters in descendants - empty because
- *  generic function has no parameters
+ *  a generic function has no parameters
  *  @param _a 1st parameter
  *  @param _b 2nd parameter
  *  @param _c 3rd parameter
  *  @param _d 4th parameter                                                   */
 void Function::SetParameters (double, double, double, double) { }
-
-
-/** auxiliary function to safely free all member arrays  */
-void Function::Free (void) {
-  for (unsigned u = 0; u <= usteps+1; u++) {
-    for (unsigned v = 0; v <= vsteps+1; v++) {
-      Delete (X[u][v]);
-      Delete (Xscr[u][v]);
-      Delete (Xtrans[u][v]);
-      Delete (R[u][v]);
-      Delete (G[u][v]);
-      Delete (B[u][v]);
-    }
-    Delete (X[u]);
-    Delete (Xscr[u]);
-    Delete (Xtrans[u]);
-    Delete (R[u]);
-    Delete (G[u]);
-    Delete (B[u]);
-  }
-  Delete (X);
-  Delete (Xscr);
-  Delete (Xtrans);
-  Delete (R);
-  Delete (G);
-  Delete (B);
-  Delete (Xchunk);
-  Delete (XscrChunk);
-  Delete (XtransChunk);
-  Delete (RGBChunk);
-}
-
 
 /** return the approximate amount of memory needed to display a Function of
  *  current definition set
@@ -226,12 +184,6 @@ void Function::Free (void) {
  *  @return approx. mem required                                              */
 unsigned long Function::MemRequired (void) {
   return ((tsteps+2)*(usteps+2)*(vsteps+2)*4)/1024+8;
-}
-
-
-/** Function destructor */
-Function::~Function() {
-  //  Free ();				//  WHAT'S WRONG HERE?
 }
 
 
@@ -245,7 +197,7 @@ Function::~Function() {
 Vector<4> &Function::normal (double tt, double uu, double vv) {
     static Vector<4> n;
 
-    Vector<4> *D = df (tt, uu, vv);
+    Function::vec4vec1D D = df (tt, uu, vv);
 
     n = VecMath::vcross (D[0], D[1], D[2]);
     VecMath::vnormalize (n);
@@ -264,13 +216,13 @@ Vector<4> &Function::normal (double tt, double uu, double vv) {
  *  @param uu u value
  *  @param vv v value
  *  @return gradient in t, u and v as array                                   */
-Vector<4> *Function::df (double tt, double uu, double vv) {
+Function::vec4vec1D Function::df (double tt, double uu, double vv) {
 
   static Vector<4> F0;			//	f (u, v)
   static double h = 1e-5;		//	HARDCODED; uargh! maybe tweak to get best results
                                         //	don't want to find it out dynamically though
                                         //	(performance, elegance)
-  static Vector<4> DF[3];
+  static Function::vec4vec1D DF(3);
 
   F0 = operator () (tt, uu, vv);
 

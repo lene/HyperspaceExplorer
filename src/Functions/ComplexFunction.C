@@ -39,16 +39,19 @@ ComplexFunction::~ComplexFunction () { }
 void ComplexFunction::Initialize () {
     if(0) std::cerr<<"ComplexFunction::Initialize(); usteps = "<< usteps << ", vsteps = " << vsteps << std::endl;
 
+#   if 0
     X = new Vector<4> * [usteps+2];
     Xchunk = new Vector<4> [(usteps+2)*(vsteps+2)];
-
-    if(0) std::cerr<<"ComplexFunction::Initialize(); X = "<< X << ", Xchunk = " << Xchunk << std::endl;
+#   else
+    X = vec4vec2D(usteps+2);
+#endif
 
     for (unsigned u = 0; u <= usteps+1; u++) {
         if(0) std::cerr << u << std::endl;
-        X[u]  =  Xchunk+u*(vsteps+2);
+//        X[u]  =  Xchunk+u*(vsteps+2);
+        X[u].resize(vsteps+2);
         for (unsigned v = 0; v <= vsteps+1; v++) {
-//            X[u][v] = f (umin+u*du, vmin+v*dv);
+            X[u][v] = f (umin+u*du, vmin+v*dv);
             //Xchunk[u*(vsteps+2)+v] = f (umin+u*du, vmin+v*dv);
             Vector<4> dummy = f (umin+u*du, vmin+v*dv);
             if(0) std::cerr << "X["<<u<<"]["<<v<<"] = " << dummy << std::endl;
