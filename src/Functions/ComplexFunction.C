@@ -24,7 +24,7 @@ using VecMath::Vector;
  *  @param _du		stepsize in u
  *  @param _vmin	minimal value in v
  *  @param _vmax	maximal value in v
- *  @param _dv		stepsize in v                                             */
+ *  @param _dv stepsize in v                                             */
 ComplexFunction::ComplexFunction (const QString &name,
                                   double _umin, double _umax, double _du,
                                   double _vmin, double _vmax, double _dv):
@@ -37,24 +37,12 @@ ComplexFunction::~ComplexFunction () { }
 /** allocate and initialize X[][] with values of f()
  *  call Surface::InitMem ()                                                  */
 void ComplexFunction::Initialize () {
-    if(0) std::cerr<<"ComplexFunction::Initialize(); usteps = "<< usteps << ", vsteps = " << vsteps << std::endl;
-
-#   if 0
-    X = new Vector<4> * [usteps+2];
-    Xchunk = new Vector<4> [(usteps+2)*(vsteps+2)];
-#   else
     X = vec4vec2D(usteps+2);
-#endif
 
     for (unsigned u = 0; u <= usteps+1; u++) {
-        if(0) std::cerr << u << std::endl;
-//        X[u]  =  Xchunk+u*(vsteps+2);
         X[u].resize(vsteps+2);
         for (unsigned v = 0; v <= vsteps+1; v++) {
-            X[u][v] = f (umin+u*du, vmin+v*dv);
-            //Xchunk[u*(vsteps+2)+v] = f (umin+u*du, vmin+v*dv);
-            Vector<4> dummy = f (umin+u*du, vmin+v*dv);
-            if(0) std::cerr << "X["<<u<<"]["<<v<<"] = " << dummy << std::endl;
+            X[u][v] = f(umin+u*du, vmin+v*dv);
         }
     }
 
@@ -63,9 +51,9 @@ void ComplexFunction::Initialize () {
 
 
 /** ComplexFunction defining function calling g () and returning (z, g (z))
- *  @param uu		Re (z)
- *  @param vv		Im (z)
- *  @return		value of defining function at point in question               */
+ *  @param uu Re (z)
+ *  @param vv Im (z)
+ *  @return value of defining function at point in question                   */
 Vector<4> &ComplexFunction::f (double uu, double vv) {
     complex<double> z (uu, vv), w = g (z);
     F[0] = uu;

@@ -74,10 +74,10 @@ Function::Function (const QString &name,
     Xtrans(vec4vec3D()), Xscr(vec3vec3D()),
     R (floatvec3D()), G (floatvec3D()), B (floatvec3D()),
     functionName(name), parameterNames() {
-    if (MemRequired () > Globals::Instance().MaximumMemory) {
+    if (MemRequired () > Globals::Instance().getMaxMemory()) {
         cerr << "Using a " << tsteps << "x" << usteps << "x" << vsteps
              << " grid would require approx. " << MemRequired () << " MB of memory.\n";
-        while (MemRequired () > Globals::Instance().MaximumMemory) {
+        while (MemRequired () > Globals::Instance().getMaxMemory()) {
             tsteps--; usteps--; vsteps--;
         }
         cerr << "Using a " << tsteps << "x" << usteps << "x" << vsteps
@@ -356,29 +356,29 @@ void Function::DrawCube (unsigned t, unsigned u, unsigned v) {
 #endif
     glBegin (GL_QUAD_STRIP);
         if (t == 0) {
-            Globals::Instance().SetColor(R[t][u][v], G[t][u][v], B[t][u][v]);
+            Globals::Instance().setColor(R[t][u][v], G[t][u][v], B[t][u][v]);
             Globals::Instance().glVertex(V[0]);
-            Globals::Instance().SetColor(R[t][u][v+1], G[t][u][v+1], B[t][u][v+1]);
+            Globals::Instance().setColor(R[t][u][v+1], G[t][u][v+1], B[t][u][v+1]);
             Globals::Instance().glVertex(V[1]);
             NumVertices += 2;
         }
-        Globals::Instance().SetColor(R[t][u+1][v], G[t][u+1][v], B[t][u+1][v]);
+        Globals::Instance().setColor(R[t][u+1][v], G[t][u+1][v], B[t][u+1][v]);
         Globals::Instance().glVertex(V[2]);
-        Globals::Instance().SetColor(R[t][u+1][v+1], G[t][u+1][v+1], B[t][u+1][v+1]);
+        Globals::Instance().setColor(R[t][u+1][v+1], G[t][u+1][v+1], B[t][u+1][v+1]);
         Globals::Instance().glVertex(V[3]);
-        Globals::Instance().SetColor(R[t+1][u+1][v], G[t+1][u+1][v], B[t+1][u+1][v]);
+        Globals::Instance().setColor(R[t+1][u+1][v], G[t+1][u+1][v], B[t+1][u+1][v]);
         Globals::Instance().glVertex(V[6]);
-        Globals::Instance().SetColor(R[t+1][u+1][v+1], G[t+1][u+1][v+1], B[t+1][u+1][v+1]);
+        Globals::Instance().setColor(R[t+1][u+1][v+1], G[t+1][u+1][v+1], B[t+1][u+1][v+1]);
         Globals::Instance().glVertex(V[7]);
-        Globals::Instance().SetColor(R[t+1][u][v], G[t+1][u][v], B[t+1][u][v]);
+        Globals::Instance().setColor(R[t+1][u][v], G[t+1][u][v], B[t+1][u][v]);
         Globals::Instance().glVertex(V[4]);
-        Globals::Instance().SetColor(R[t+1][u][v+1], G[t+1][u][v+1], B[t+1][u][v+1]);
+        Globals::Instance().setColor(R[t+1][u][v+1], G[t+1][u][v+1], B[t+1][u][v+1]);
         Globals::Instance().glVertex(V[5]);
         NumVertices += 6;
         if (u == 0) {
-            Globals::Instance().SetColor(R[t][u][v], G[t][u][v], B[t][u][v]);
+            Globals::Instance().setColor(R[t][u][v], G[t][u][v], B[t][u][v]);
             Globals::Instance().glVertex(V[0]);
-            Globals::Instance().SetColor(R[t][u][v+1], G[t][u][v+1], B[t][u][v+1]);
+            Globals::Instance().setColor(R[t][u][v+1], G[t][u][v+1], B[t][u][v+1]);
             Globals::Instance().glVertex(V[1]);
             NumVertices += 2;
         }
@@ -386,23 +386,23 @@ void Function::DrawCube (unsigned t, unsigned u, unsigned v) {
 
     glBegin (GL_QUADS);
         if (v == 0) {
-            Globals::Instance().SetColor(R[t][u][v], G[t][u][v], B[t][u][v]);
+            Globals::Instance().setColor(R[t][u][v], G[t][u][v], B[t][u][v]);
             Globals::Instance().glVertex(V[0]);
-            Globals::Instance().SetColor(R[t][u+1][v], G[t][u+1][v], B[t][u+1][v]);
+            Globals::Instance().setColor(R[t][u+1][v], G[t][u+1][v], B[t][u+1][v]);
             Globals::Instance().glVertex(V[2]);
-            Globals::Instance().SetColor(R[t+1][u+1][v], G[t+1][u+1][v], B[t+1][u+1][v]);
+            Globals::Instance().setColor(R[t+1][u+1][v], G[t+1][u+1][v], B[t+1][u+1][v]);
             Globals::Instance().glVertex(V[6]);
-            Globals::Instance().SetColor(R[t+1][u][v], G[t+1][u][v], B[t+1][u][v]);
+            Globals::Instance().setColor(R[t+1][u][v], G[t+1][u][v], B[t+1][u][v]);
             Globals::Instance().glVertex(V[4]);
             NumVertices += 4;
         }
-        Globals::Instance().SetColor(R[t][u][v+1], G[t][u][v+1], B[t][u][v+1]);
+        Globals::Instance().setColor(R[t][u][v+1], G[t][u][v+1], B[t][u][v+1]);
         Globals::Instance().glVertex(V[1]);
-        Globals::Instance().SetColor(R[t][u+1][v+1], G[t][u+1][v+1], B[t][u+1][v+1]);
+        Globals::Instance().setColor(R[t][u+1][v+1], G[t][u+1][v+1], B[t][u+1][v+1]);
         Globals::Instance().glVertex(V[3]);
-        Globals::Instance().SetColor(R[t+1][u+1][v+1], G[t+1][u+1][v+1], B[t+1][u+1][v+1]);
+        Globals::Instance().setColor(R[t+1][u+1][v+1], G[t+1][u+1][v+1], B[t+1][u+1][v+1]);
         Globals::Instance().glVertex(V[7]);
-        Globals::Instance().SetColor(R[t+1][u][v+1], G[t+1][u][v+1], B[t+1][u][v+1]);
+        Globals::Instance().setColor(R[t+1][u][v+1], G[t+1][u][v+1], B[t+1][u][v+1]);
         Globals::Instance().glVertex(V[5]);
         NumVertices += 4;
     glEnd ();

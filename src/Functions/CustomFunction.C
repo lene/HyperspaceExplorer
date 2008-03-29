@@ -126,8 +126,8 @@ CustomComplexFunction::CustomComplexFunction (double _umin, double _umax, double
         ComplexFunction ("Custom complex function yet without a name", _umin, _umax, _du, _vmin, _vmax, _dv) {
     ComplexDialogImpl *Dlg = new ComplexDialogImpl ();
 
-    if (Dlg->exec () == QDialog::Accepted) {
-        loadFunction (Dlg->libraryName());
+    if (Dlg->exec () == QDialog::Accepted &&
+        loadFunction(Dlg->libraryName())) {
         Initialize ();
         setValid();
     } else setInvalid();

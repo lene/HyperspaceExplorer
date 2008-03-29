@@ -21,6 +21,7 @@
 
 #include "Vector.H"
 #include "SingletonHolder.H"
+#include "Color.H"
 
 class QAction;
 class QMainWindow;
@@ -45,22 +46,6 @@ class Global {
     public:
         Global();
 
-        static bool check_memory;
-        /** sqrt (3), stored to save computation time, probably superfluous   */
-        static double SR3;
-        /** global (YUCK!) alpha value for transparent display                */
-        static double ALPHA;
-        /** global (YUCK!) shininess value                                    */
-        static double SHININESS;
-        /** global (YUCK!) fog/depth cue color                                */
-        static float fog_color[4];
-        /** color definition for White                                        */
-        static float White[4];
-        /** color definition for Grey                                         */
-        static float grey50[4];
-        static float background[4];
-
-        static unsigned long MaximumMemory;
         /** why tf did i make that global again? damn, i really should write
          *  comments immediately after writing the code</rant>                */
         QStringList rcdirs;
@@ -70,24 +55,21 @@ class Global {
 
         int GetGLList();
 
-        void SetColor(float R, float G, float B);
-        void SetColor (const VecMath::Vector<4> &RGB);
-
-        float *BackgroundColor() { return background; }
-        void setBackground(float r, float g, float b, float a = 1.0) {
-            background[0] = r;
-            background[1] = g;
-            background[2] = b;
-            background[3] = a;
+        void setColor(const Color &);
+        /** This function is overloaded for convenience.
+         *  @param r red component of the color to set
+         *  @param g green component of the color to set
+         *  @param b blue component of the color to set
+         *  @param r alpha component of the color to set                      */
+        void setColor(float r, float g, float b, float a = 1.0) {
+            setColor(Color(r, g, b, a));
         }
 
-        float *FogColor() { return fog_color; }
-        void setFogColor(float r, float g, float b, float a = 1.0) {
-            fog_color[0] = r;
-            fog_color[1] = g;
-            fog_color[2] = b;
-            fog_color[3] = a;
-        }
+        Color &BackgroundColor() { return background; }
+        void setBackground(const Color &rgba) { background = rgba; }
+
+        Color &FogColor() { return fog_color; }
+        void setFogColor(const Color &rgba) { fog_color = rgba; }
 
         double atod (QString);
 
@@ -96,27 +78,59 @@ class Global {
 
         void CheckGLErrors (const char *op = 0);
 
-        void Debug (std::string s, std::string h = "") {
-            QMessageBox::information (NULL, h.c_str (), s.c_str ());
-        }
-
+        /** define a GL Vertex from a Vector<3>
+         *  @param V the vertex to be defined                                 */
         void glVertex (VecMath::Vector<3> &V) {
-            if (std::isfinite (V.sqnorm ()))
-	       glVertex3dv (V.data ());
+            if (std::isfinite (V.sqnorm()))
+               glVertex3dv (V.data());
         }
 
         VecMath::Vector<3> vnormalize (double xx, double yy, double zz);
 
-        template <typename T> void Swap (T &a, T &b) {
-	    T temp (a);
-	    a = b;
-	    b = temp;
-        }
-        static unsigned long check_proc_meminfo ();
+        /** maximum amount of memory available for use                        */
+        static unsigned long getMaxMemory() { return MaximumMemory; }
+
+        /** color definition for White                                        */
+        static Color& white() { return White; }
+        /** color definition for Grey                                         */
+        static Color& grey50() { return Grey50; }
+
+        /** whether to check for memory usage. this member is set or unset from
+            check_proc_meminfo(), depending on the success of that function.  */
+        static bool check_memory;
+        /** sqrt (3), stored to save computation time, probably superfluous   */
+        const double SR3;
 
     private:
-        QAction *quitAction;
+        static unsigned long check_proc_meminfo ();
+
+        /** value to multiply a color with to get its ambient value           */
+        const double ambientColorModifier;
+        /** value to multiply a color with to get its specular value          */
+        const double specularColorModifier;
+        /** minimum value for the specular component of any color             */
+        const double specularColorMinimum;
+
+        /** global (YUCK!) background color                                   */
+        static Color background;
+        /** global (YUCK!) fog/depth cue color                                */
+        static Color fog_color;
+        /** global (YUCK!) alpha value for transparent display                */
+        const double ALPHA;
+        /** global (YUCK!) shininess value                                    */
+        const double SHININESS;
+        /** color definition for White                                        */
+        static Color White;
+        /** color definition for Grey                                         */
+        static Color Grey50;
+
+        /** maximum amount of memory available for use                        */
+        static unsigned long MaximumMemory;
+
+        /** main window of the application                                    */
         QMainWindow *mainWindow;
+        /** global QAction that quits the program                             */
+        QAction *quitAction;
 
 };
 

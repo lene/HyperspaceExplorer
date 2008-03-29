@@ -61,14 +61,14 @@ class Function {
         typedef std::vector<floatvec1D> floatvec2D;
         /// a three-dimensional array of floats, implemented as a nested std::vector
         typedef std::vector<floatvec2D> floatvec3D;
-        
+
         /// a one-dimensional array of Vector<3>, implemented as a std::vector
         typedef std::vector<VecMath::Vector<3> > vec3vec1D;
         /// a two-dimensional array of Vector<3>, implemented as a nested std::vector
         typedef std::vector<vec3vec1D> vec3vec2D;
         /// a three-dimensional array of Vector<3>, implemented as a nested std::vector
         typedef std::vector<vec3vec2D> vec3vec3D;
-        
+
         /// a one-dimensional array of Vector<4>, implemented as a std::vector
         typedef std::vector<VecMath::Vector<4> > vec4vec1D;
         /// a two-dimensional array of Vector<4>, implemented as a nested std::vector
@@ -86,6 +86,7 @@ class Function {
         virtual void Transform (double Rxy, double Rxz, double Rxw,
                                 double Ryz, double Ryw, double Rzw,
                                 double Tx, double Ty, double Tz, double Tw);
+        /** overloaded function executing the transform to the default state  */
         void Transform (void) { Transform (0, 0, 0, 0, 0, 0,  0, 0, 0, 0); }
 
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
@@ -97,8 +98,13 @@ class Function {
         virtual void SetParameters (double _a = 0, double _b = 0,
                                     double _c = 0, double _d = 0);
 
-        vec4vec3D Data(void) { return X; }
-
+        /** function evaluation operator \n
+         *  as optimization, returns the precomputed value on the grid point
+         *  closest to (t, u, v)
+         *  @param t first argument, e.g. x or t
+         *  @param u second argument, e.g. y or u
+         *  @param v third argument, e.g. z or v
+         *  @return X[t][u][v]                                                */
         VecMath::Vector<4> &operator () (double t, double u, double v) {
             unsigned it = unsigned ((t-tmin)/dt),
                      iu = unsigned ((u-umin)/du),
@@ -106,9 +112,14 @@ class Function {
             return X[it][iu][iv];
         }
 
+        /** @return The name of the function in cleartext                     */
         QString getFunctionName() const { return functionName; }
+        /** @return number of parameters for the function                     */
         unsigned getNumParameters() { return parameterNames.size(); }
+        /** @return the names of the parameters for the function              */
         std::vector<QString> getParameterNames() { return parameterNames; }
+        /** @param i index of the wanted parameter
+         *  @return name of the ith parameter                                 */
         QString getParameterName(unsigned i) {
             return i < parameterNames.size()? parameterNames[i]: ""; }
 
@@ -122,7 +133,7 @@ class Function {
 
         virtual void Initialize (void);
         void InitMem (void);
-//        void Free (void);
+
         virtual unsigned long MemRequired (void);
 
         void DrawPlane (unsigned);
@@ -143,7 +154,7 @@ class Function {
         vec4vec3D X, Xtrans;
         /// temporary storage for the projected function values
         vec3vec3D Xscr;
-        
+
         /// storage for the coloring of the vertices
         floatvec3D R, G, B;
 

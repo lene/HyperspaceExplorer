@@ -72,7 +72,8 @@ void XQGLWidget::initializeGL (void) {
 
 /** OpenGL initialization
  *  setting background colors, setting up lighting, shading, fog and
- *  transparence                                                              */
+ *  transparence
+ *  @todo hardcoded light position and colors!                                */
 void XQGLWidget::InitLight (void) {
     static GLfloat LightPos[4] = { 4., 4., 8., 0. };  //  should be a member variable!
 
@@ -83,9 +84,9 @@ void XQGLWidget::InitLight (void) {
                                                         //  coordinate system
         glLightfv(GL_LIGHT0, GL_POSITION, LightPos);    //  set light position
         glLightfv(GL_LIGHT0, GL_DIFFUSE,
-                  Globals::Instance().White);           //  diffuse color
+                  Globals::Instance().white());         //  diffuse color
         glLightfv(GL_LIGHT0, GL_AMBIENT,
-                  Globals::Instance().grey50);          //  ambient color
+                  Globals::Instance().grey50());        //  ambient color
         glEnable(GL_LIGHT0);                            //  enable this light
     } else {
         glDisable(GL_LIGHTING);                         //  disable lighting

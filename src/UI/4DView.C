@@ -31,6 +31,7 @@ using std::ostringstream;
 using std::cerr;
 using std::endl;
 using std::ends;
+using std::auto_ptr;
 
 using VecMath::Vector;
 using VecMath::Matrix;
@@ -65,8 +66,11 @@ C4DView::C4DView(QWidget *parent):
     RenderToPixmap (false), CurrentlyRendering (false),
 
     Values (new ValuesDialogImpl (this)),
-    F (NULL),
-
+#   ifdef USE_AUTO_PTR
+        F(auto_ptr<Function>()),
+#   else
+        F (NULL),
+#   endif
     dxy (0), dxz (0), dxw (0), dyz (0), dyw (0), dzw (0),
     dx (0), dy (0), dz (0),
     animation_fps (50),
@@ -210,16 +214,16 @@ void C4DView::DrawCoordinates () {
     for (unsigned j = 0; j < 4; j++) {
         switch (j) {
         case 0:
-            Globals::Instance().SetColor (1., 0., 0.);
+            Globals::Instance().setColor (1., 0., 0.);
             break;
         case 1:
-            Globals::Instance().SetColor (0., 1., 0.);
+            Globals::Instance().setColor (0., 1., 0.);
             break;
         case 2:
-            Globals::Instance().SetColor (0., 0., 1.);
+            Globals::Instance().setColor (0., 0., 1.);
             break;
         case 3:
-            Globals::Instance().SetColor (1., 0., 1.);
+            Globals::Instance().setColor (1., 0., 1.);
             break;
         }
         glBegin (GL_LINES);
@@ -717,7 +721,11 @@ void C4DView::SetupDepthCue (bool on) {
  *  display on the status bar and the number and names of the parameters and
  *  grid parameters on the ValuesDialog
  *  @param F the Function object for which the ValuesDialog is changed        */
+#ifdef USE_AUTO_PTR
+void C4DView::AssignValues (const std::auto_ptr<Function> &F) {
+#else
 void C4DView::AssignValues (Function *F) {
+#endif
     QString Parameter1 = F->getParameterName(0);
     QString Parameter2 = F->getParameterName(1);
     QString Parameter3 = F->getParameterName(2);
@@ -729,7 +737,11 @@ void C4DView::AssignValues (Function *F) {
         Values->setFunction(ObjectName);
     }
 
-    if (dynamic_cast<Object *>(F)) {
+#   ifdef USE_AUTO_PTR
+        if (dynamic_cast<Object *>(F.get())) {
+#   else
+        if (dynamic_cast<Object *>(F)) {
+#   endif
         Values->gridLabel->hide();
         Values->TLabel->hide();
         Values->TSlider->hide();
@@ -768,7 +780,11 @@ void C4DView::AssignValues (Function *F) {
         Values->UMin->show();
         Values->UMaxLabel->show();
         Values->UMax->show();
-        if (dynamic_cast<Surface *>(F)) {
+#   ifdef USE_AUTO_PTR
+        if (dynamic_cast<Surface *>(F.get())) {
+#   else
+            if (dynamic_cast<Surface *>(F)) {
+#   endif
             Values->VLabel->hide();
             Values->VSlider->hide();
             Values->VSteps->hide();
@@ -900,7 +916,7 @@ void C4DView::PreRedraw () {
     glNewList (ObjectList, GL_COMPILE_AND_EXECUTE);
         /*
         glBegin (GL_POINTS);
-            SetColor (0., 0., 0.);
+            setColor (0., 0., 0.);
             for (unsigned i = 0; i < 160; i++) glVertex3d (0., 0., i/100.);
         glEnd ();
         */

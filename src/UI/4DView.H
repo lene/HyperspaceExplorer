@@ -183,7 +183,7 @@ class C4DView : public XQGLWidget {
         ValuesDialogImpl *Values;
 
 #       ifdef USE_AUTO_PTR
-            auto_ptr<Function> F;
+            std::auto_ptr<Function> F;
 #       else
             Function *F;
 #       endif
@@ -213,7 +213,11 @@ class C4DView : public XQGLWidget {
 
         void UpdateStatus (QString = "");
 
+#       ifdef USE_AUTO_PTR
+        void AssignValues (const std::auto_ptr<Function> &);
+#       else
         void AssignValues (Function *);
+#       endif
 
         void OnPaint();
 

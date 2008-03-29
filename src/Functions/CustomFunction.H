@@ -24,7 +24,7 @@ template<class function_type>
         bool isValid() const { return valid; }
 
     protected:
-        bool loadFunction (const QString &);
+        bool loadFunction (const QString &, QString = "f");
         void setValid() { valid = true; }
         void setInvalid() { valid = false; }
 
@@ -102,7 +102,7 @@ class CustomComplexFunction:
  *  @param libName name of the plugin DLL file
  *  @return success                                                       */
 template<class function_type>
-        bool CustomFunctionBase<function_type>::loadFunction(const QString &libName) {
+        bool CustomFunctionBase<function_type>::loadFunction(const QString &libName, QString funcName) {
     const char *error;
 
     handle = dlopen (libName.toStdString().c_str(), RTLD_LAZY);
@@ -111,7 +111,7 @@ template<class function_type>
         return false;
     }
 
-    func = (function_type *)dlsym(handle, "f");
+    func = (function_type *)dlsym(handle, funcName.toStdString().c_str());
     if ((error = dlerror()) != NULL)  {
         std::cerr << "Error finding function: " << error << std::endl;
         return false;

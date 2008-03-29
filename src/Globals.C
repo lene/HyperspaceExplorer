@@ -3,8 +3,8 @@
 //      module:       Globals.C
 //      contains:     definitions of global variables and functions
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
-//	license:      GPL (see License.txt)
+//      author:       helge preuss (scout@hyperspace-travel.de)
+//      license:      GPL (see License.txt)
 
 #include <qstring.h>
 #include <fstream>
@@ -29,18 +29,19 @@ using std::ends;
 using VecMath::Vector;
 
 
-double Global::SR3 = sqrt(3.);
 bool Global::check_memory = false;
-double Global::ALPHA = .9;
-double Global::SHININESS = 32.;
-float Global::fog_color[]  = { 0.2, 0.2, 0.2, 1.0 };
-float Global::White[]      = { 1.0, 1.0, 1.0, 1.0 };
-float Global::grey50[]     = { 0.5, 0.5, 0.5, 1.0 };
-float Global::background[] = { 0.1, 0.1, 0.1, 1.0 };
+Color Global::White( 1.0, 1.0, 1.0, 1.0 );
+Color Global::Grey50( 0.5, 0.5, 0.5, 1.0 );
+Color Global::background(0.1, 0.1, 0.1, 1.0);
+Color Global::fog_color(0.2, 0.2, 0.2, 1.0);
 
-Global::Global() {
-    mainWindow = new QMainWindow;
-    quitAction = new QAction(QObject::tr("&Quit"), NULL);
+Global::Global():
+    SR3(sqrt(3.)),
+    ambientColorModifier(0.5), specularColorModifier(2.0),
+    specularColorMinimum(0.5),
+    ALPHA(0.9), SHININESS(32.),
+    mainWindow(new QMainWindow),
+    quitAction(new QAction(QObject::tr("&Quit"), NULL)) {
     quitAction->setShortcut(QObject::tr("Ctrl+Q"));
     QObject::connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
@@ -62,46 +63,19 @@ void Global::CheckGLErrors (const char *
 /** set the current OpenGL color
  *  uses HARDCODED simple algorithm to set ambient and specular values for a
  *  specific color: if halves resp. dobles them, clipping at 1.0
- *  THIS FUNCTION IS UGLY IN MANY RESPECTS!
- *  @param RGB		RGB value to be set                                   */
-void Global::SetColor (const Vector<4> &RGB) {
-  static float *ambient  = new float [4],
-               *diffuse  = new float [4],
-               *specular = new float [4];
+ *  @todo make the agorithm which computes the ambient and specular values
+ *        variable
+ *  @param rgb color value to be set                                          */
+void Global::setColor(const Color &rgb) {
+    Color RGB(rgb);
 
-  for (unsigned i = 0; i < 3; i++) {
-    ambient[i]  = RGB[i]/2.;
-    diffuse[i]  = RGB[i];
-    specular[i] = RGB[i] > .5? 1.: 2*RGB[i]; }
-  ambient[3] = diffuse[3] = specular[3] = ALPHA;
-
-  glMaterialfv (GL_FRONT, GL_AMBIENT,  ambient);
-  glMaterialfv (GL_FRONT, GL_DIFFUSE,  diffuse);
-  glMaterialfv (GL_FRONT, GL_SPECULAR, specular);
-  glMaterialf  (GL_FRONT, GL_SHININESS,SHININESS);
-}
-
-/** set the current OpenGL color
- *  uses HARDCODED simple algorithm to set ambient and specular values for a
- *  specific color: if halves resp. dobles them, clipping at 1.0
- *  THIS FUNCTION IS UGLY IN MANY RESPECTS!
- *  @param R	R value to be set
- *  @param G	G value to be set
- *  @param B	B value to be set                                             */
-void Global::SetColor(float R, float G, float B) {
-    static GLfloat RGB[4] = { 0., 0., 0., 1. };
-
-    RGB[0] = float (R); if (RGB [0] > 1) RGB[0] = 1;
-    RGB[1] = float (G); if (RGB [1] > 1) RGB[1] = 1;
-    RGB[2] = float (B); if (RGB [2] > 1) RGB[2] = 1;
     glMaterialfv (GL_FRONT, GL_DIFFUSE, RGB);
 
-    RGB[0] /= 2.; RGB[1] /= 2.; RGB[2] /= 2.;
+    RGB *= ambientColorModifier;
     glMaterialfv (GL_FRONT, GL_AMBIENT, RGB);
 
-    RGB[0] *= 4.; if (RGB [0] < 0.5) RGB[0] = 0.5;
-    RGB[1] *= 4.; if (RGB [1] < 0.5) RGB[1] = 0.5;
-    RGB[2] *= 4.; if (RGB [2] < 0.5) RGB[2] = 0.5;
+    RGB *= specularColorModifier/ambientColorModifier;
+    RGB.setComponentLowerLimit(specularColorMinimum);
     glMaterialfv (GL_FRONT, GL_SPECULAR, RGB);
     glMaterialf (GL_FRONT, GL_SHININESS, SHININESS);
 }
@@ -169,11 +143,13 @@ unsigned long Global::check_proc_meminfo () {
     ifstream in ("/proc/meminfo");
     if (!in) {
         cerr << "no /proc/meminfo - setting Memory limit of 512 MB" << endl;
+        check_memory = false;
         return 512*1024*1024;
     }
     string meminfo;
     in >> meminfo;
     in >> meminfo;
+    check_memory = true;
     return strtoul (meminfo.c_str (), NULL, 10)*1024;
 }
 

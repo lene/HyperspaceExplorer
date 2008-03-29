@@ -43,7 +43,7 @@ class Object: public Function {
         virtual void Draw (void);
 
     protected:
-        /// number of vertices and surfaces the object possesses; must be set 
+        /// number of vertices and surfaces the object possesses; must be set
         /// by implementations
         unsigned NumVertices, NumSurfaces;
         /// temporary storage for the function values
@@ -142,7 +142,9 @@ protected:
     virtual void Initialize();
     virtual unsigned long MemRequired (unsigned);
     unsigned Level;
+
     std::vector<Hypercube *> List;
+
     int distance;
     double rad;
     VecMath::Vector<4> center;
@@ -162,7 +164,7 @@ public:
     virtual ~Pyramid() { }
 
     virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
-        a = _a; 
+        a = _a;
     }
 
 protected:

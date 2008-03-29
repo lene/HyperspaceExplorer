@@ -1,12 +1,12 @@
 TEMPLATE = app
 
-CONFIG = release qt warn_on uic
+CONFIG = debug qt warn_on uic
 
 QT += opengl
 
 VERSION = 0.3.3
 
-system(mkdir tmp)
+system(mkdir -p tmp)
 OBJECTS_DIR = tmp
 MOC_DIR = tmp
 UI_DIR = tmp
@@ -67,7 +67,8 @@ HEADERS += Loki/SingletonHolder.H
 ###
 INCLUDEPATH += .
 DEPENDPATH += .
-HEADERS += Globals.H Help.H Matrix.H Vector.H Log.H
+HEADERS += Globals.H Help.H Matrix.H Vector.H Log.H \
+ Color.h
 SOURCES += Globals.C Help.C Main.C
 
 ###
@@ -77,9 +78,9 @@ INSTALLDIR = "/usr/local"
 DEFINES += PREFIX="$${INSTALLDIR}"
 DEFINES += PACKAGE_BUGREPORT="helge.preuss@gmx.net"
 DEFINES += PACKAGE_VERSION="$${VERSION}"
-DEFINES += TESTFEATURES
+DEFINES += TESTFEATURES USE_AUTO_PTR
 
-CONFIG(debug) {
+CONFIG(debug){
     DEFINES += DEBUG
 }
 
