@@ -146,8 +146,8 @@ Vector<4> &Surface::normal (double uu, double vv) {
 
 /** numerical calculation of the derivatives in u and v:
     \f[
-        \frac{df}{du} = \lim_{h \rightarrow \infty}
-            \frac{f(u+h, v) - f(u)}{h},
+        \frac{df}{du} = \lim_{h \rightarrow 0}
+            \frac{f(u+h, v) - f(u, v)}{h},
         \frac{df}{dv}\mbox{analogously}
     \f]
  *

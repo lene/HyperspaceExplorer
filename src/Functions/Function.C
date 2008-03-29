@@ -187,9 +187,9 @@ unsigned long Function::MemRequired (void) {
 }
 
 
-/** calculate normal to function at a given point in definition set
- *  no further assumption is made than that f () is continuous
- *  this function is not yet used anywhere, but i like it
+/** calculate normal to function at a given point in definition set \n
+ *  no further assumption is made than that f () is continuous. \n
+ *  this function is not yet used anywhere, but i like it.
  *  @param tt t value
  *  @param uu u value
  *  @param vv v value
@@ -206,36 +206,37 @@ Vector<4> &Function::normal (double tt, double uu, double vv) {
 }
 
 
-/** numerical calculation of the derivatives in u and v:
- *
- *  df    f(u+h, v) - f (u)   df     df
- *  -- =  lim -----------------,  -- and -- analogously
- *  du    h->0        h       dv     dt
- *
+/** numerical calculation of the derivatives in t, u and v:
+    \f[
+        \frac{df}{dt} = \lim_{h \rightarrow 0}
+            \frac{f(t+h, u, v) - f(t, u, v)}{h},
+        \frac{df}{du},\frac{df}{dv}\mbox{analogously}
+    \f]
+ *  @todo the h value is fixed and hardcoded. better approach?
+ *  @todo I don't think calling operator() is right. call f()!
  *  @param tt t value
  *  @param uu u value
  *  @param vv v value
  *  @return gradient in t, u and v as array                                   */
 Function::vec4vec1D Function::df (double tt, double uu, double vv) {
 
-  static Vector<4> F0;			//	f (u, v)
-  static double h = 1e-5;		//	HARDCODED; uargh! maybe tweak to get best results
-                                        //	don't want to find it out dynamically though
-                                        //	(performance, elegance)
-  static Function::vec4vec1D DF(3);
+    static Vector<4> F0;                //  f (u, v)
+    static double h = 1e-5;
+    static Function::vec4vec1D DF(3);
 
-  F0 = operator () (tt, uu, vv);
+    F0 = operator () (tt, uu, vv);
 
-  F = operator () (tt+h, uu, vv);	//	derive after t
-  DF[0] = (F-F0)/h;
+    F = operator () (tt+h, uu, vv);     //  derive after t
+    DF[0] = (F-F0)/h;
 
-  F = operator () (tt, uu+h, vv);	//	derive after u
-  DF[1] = (F-F0)/h;
+    F = operator () (tt, uu+h, vv);     //  derive after u
+    DF[1] = (F-F0)/h;
 
-  F = operator () (tt, uu, vv+h);	//	derive after v
-  DF[2] = (F-F0)/h;
+    F = operator () (tt, uu, vv+h);     //  derive after v
+    DF[2] = (F-F0)/h;
 
-  return DF; }
+    return DF;
+}
 
 
 /** transforms a Function
@@ -271,9 +272,10 @@ void Function::Transform (double thetaxy, double thetaxz, double thetaxw,
 
 
 /** projects a Function into three-space
+ *  @todo replace hardcoded function to calculate 4D fog color with better one
  *  @param scr_w w coordinate of screen
  *  @param cam_w w coordinate of camera
- *  @param depthcue4d whether to use hyperfog/depth cue */
+ *  @param depthcue4d whether to use hyperfog/depth cue                       */
 void Function::Project (double scr_w, double cam_w, bool depthcue4d) {
     double ProjectionFactor;
     double Wmax = 0, Wmin = 0;
@@ -349,11 +351,6 @@ void Function::DrawCube (unsigned t, unsigned u, unsigned v) {
   V[4] = Xscr[t+1][u][v];   V[5] = Xscr[t+1][u][v+1];
   V[6] = Xscr[t+1][u+1][v]; V[7] = Xscr[t+1][u+1][v+1];
 
-#if 0
-  cerr << "Function::DrawCube(" << t << ", " << u << ", " << v << "): " << endl
-          << string(8, ' ') << setw(6) << setprecision(2) << V[3] << string(32, ' ') << V[7] << endl
-          << endl;
-#endif
     glBegin (GL_QUAD_STRIP);
         if (t == 0) {
             Globals::Instance().setColor(R[t][u][v], G[t][u][v], B[t][u][v]);
@@ -500,10 +497,10 @@ Torus1::Torus1 (double _tmin, double _tmax, double _dt,
 }
 
 /** Torus1 defining function
- *  @param tt		t value
- *  @param uu		u value
- *  @param vv		v value
- *  @return		value of defining function at point in question */
+ *  @param tt t value
+ *  @param uu u value
+ *  @param vv v value
+ *  @return value of defining function at point in question                   */
 Vector<4> &Torus1::f (double tt, double uu, double vv) {
   F[0] =  cos (pi*tt)*(R+cos (pi*uu)*(r+rho*cos (pi*vv)));
   F[1] =  sin (pi*tt)*(R+cos (pi*uu)*(r+rho*cos (pi*vv)));

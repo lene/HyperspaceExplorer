@@ -81,7 +81,6 @@ class C4DView : public XQGLWidget {
      *  @param function the Function to be created in the slot
      *  \ingroup UIGroup                                                      */
     template<class function> class FunctionSlot {
-    //  Q_OBJECT
         public:
             static void createFunction(C4DView *view);
             static void createSurface(C4DView *view);
@@ -94,14 +93,25 @@ class C4DView : public XQGLWidget {
         C4DView(QWidget * = 0);
         virtual ~C4DView();
 
+        /// @param wire if true, displays wireframe model; else solid
         void SetWireframe (bool wire) { DisplayPolygons = !wire; }
+        /// @return true if display is set to wireframe, false if solid
         bool GetWireframe (void) { return !DisplayPolygons; }
+        /// @param light whether to use lights in rendering or not
         void SetLighting (bool light) { Lighting = light; }
+        /// @return whether to use lights in rendering or not
         bool GetLighting (void) { return Lighting; }
+        /** toggle depth cue in display and redraw
+         *  @param on whether to use depth cue                                */
         void SetDepthCue (bool on) {
             SetupDepthCue (on);
             OnPaint ();
         }
+
+        /** set the three-space rotation of the object
+         *  @param rx rotation about X-axis
+         *  @param ry rotation about Y-axis
+         *  @param rz rotation about Z-axis                                   */
         void SetRotation (double rx, double ry, double rz) {
             m_rotX = rx; m_rotY = ry; m_rotZ = rz;
         }
@@ -116,6 +126,7 @@ class C4DView : public XQGLWidget {
         void Transform (double Rxy, double Rxz, double Rxw,
                         double Ryz, double Ryw, double Rzw,
                         double Tx, double Ty, double Tz, double Tw);
+        /** overloaded function executing the transform to the default state  */
         void Transform (void) { Transform (0, 0, 0, 0, 0, 0,  0, 0, 0, 0); }
 
         void Redraw ();
@@ -123,14 +134,24 @@ class C4DView : public XQGLWidget {
         double Benchmark4D (int, double, double, double, bool = true);
         double Benchmark3D (int, double, double, double, bool = true);
 
+        /// @return whether to use colors in rendering or not
         bool getColors() const { return colors; }
+        /// @return whether to use shading in rendering or not
         bool getShade() const { return shade; }
+        /// @return whether to use depth cue/fog in rendering or not
         bool getFog() const { return fog; }
+        /// @return whether to use lighting in rendering or not
         bool getLight() const { return light; }
+        /// @return whether to use transparence/line antialiasing or not
         bool getTransparent() const { return transparent; }
+        /// @return whether to display the 4D coordinate cross or not
         bool getDisplayCoordinates() const { return DisplayCoordinates; }
+        /// @return whether to save the rendered images to an image file
         bool getRenderToPixmap() const { return RenderToPixmap; }
+        /// @return whether to draw the objects' surfaces or only the edges
         bool getDisplayPolygons() const { return DisplayPolygons; }
+
+        /// @return a pointer to the popup menu
         Menu4D *getMenu() const { return menu; }
 
     public slots:
@@ -144,80 +165,22 @@ class C4DView : public XQGLWidget {
 
     protected:
 
-        Menu4D *menu;
-
         void Project ();
         void Draw ();
         void PreRedraw ();
-        QPixmap makePixmap ();
-
-        GLint ObjectList, CoordinateCross;
+        QPixmap makePixmap();
+        void writeFrame();
 
         void DrawCoordinates (void);
         void SetupDepthCue (bool);
 
-        double Tx,  Ty,  Tz,  Tw,
-               Rxy, Rxz, Rxw, Ryz, Ryw, Rzw;
-
-        GLdouble m_rotX,   m_rotY,
-                 m_transX, m_transY,
-                 m_camZ, m_rotZ;
-
-        QPoint m_LeftDownPos, m_MidDownPos, m_RightDownPos;
-
-        bool AntiAlias, DisplayPolygons, Lighting,
-             DepthCue3D, DepthCue4D;
-
-        bool DisplayCoordinates;
-
-        bool Animated,
-             TakingSpinValues;
-
-        bool RenderToPixmap, CurrentlyRendering;
-
         void StartAnimation ();
         void StopAnimation ();
         void RandomAnimation();
-        QTimer *AnimationTimer, *AnimateRandomTimer;
-
-        ValuesDialogImpl *Values;
-
-#       ifdef USE_AUTO_PTR
-            std::auto_ptr<Function> F;
-#       else
-            Function *F;
-#       endif
-
-        QString ObjectName;
-
-        double dxy, dxz, dxw, dyz, dyw, dzw,
-               dx, dy, dz;
-
-        unsigned animation_fps;
-
-        VecMath::Vector<4> ***Data;
-
-        VecMath::Vector<3> ***Xscr;
-        VecMath::Vector<4> ***Xtrans;
-        VecMath::Vector<3> *XscrChunk;
-        VecMath::Vector<4> *XtransChunk;
-
-        float ***R, ***G, ***B;
-        float *RGBChunk;
-
-        unsigned tsteps, usteps, vsteps;
-        double CamW, ScrW;
-
-        VecMath::Vector<4> **Cross, **CrossTrans;
-        VecMath::Vector<3> **CrossScr;
 
         void UpdateStatus (QString = "");
 
-#       ifdef USE_AUTO_PTR
         void AssignValues (const std::auto_ptr<Function> &);
-#       else
-        void AssignValues (Function *);
-#       endif
 
         void OnPaint();
 
@@ -227,18 +190,116 @@ class C4DView : public XQGLWidget {
         virtual void mouseMoveEvent(QMouseEvent *);
         virtual void mouseDoubleClickEvent ( QMouseEvent *);
 
-        Q3PopupMenu *functions, *animation;
-        int linesID, crossID, hyperfogID, pixmapID;
-        int funcID[32];
-        void UpdateFunctionMenu (int);
         void InitCross();
 
-        unsigned animationMaxFrames,
-                 animationFrame;
+        /// a GLList for the display of the object
+        GLint ObjectList;
+        /// a GLList for the display of the coordinates
+        GLint CoordinateCross;
+
+        double Tx,  ///< X coordinate for the 4D translation of the object
+               Ty,  ///< Y coordinate for the 4D translation of the object
+               Tz,  ///< Z coordinate for the 4D translation of the object
+               Tw;  ///< W coordinate for the 4D translation of the object
+        double Rxy, ///< XY angle for the 4D rotation of the object
+               Rxz, ///< XZ angle for the 4D rotation of the object
+               Rxw, ///< XW angle for the 4D rotation of the object
+               Ryz, ///< YZ angle for the 4D rotation of the object
+               Ryw, ///< YW angle for the 4D rotation of the object
+               Rzw; ///< ZW angle for the 4D rotation of the object
+
+        /// rotation in X
+        GLdouble m_rotX;
+        /// rotation in Y
+        GLdouble m_rotY;
+        /// rotation in Z
+        GLdouble m_rotZ;
+        /// translation in X
+        GLdouble m_transX;
+        /// translation in Y
+        GLdouble m_transY;
+        /// Z coordinate of the camera (distance from object)
+        GLdouble m_camZ;
+
+        QPoint m_LeftDownPos,   ///< position where the LMB press started
+               m_MidDownPos,    ///< position where the MMB press started
+               m_RightDownPos;  ///< position where the RMB press started
+
+        /// whether to draw antialiased lines or transparent surfaces
+        bool AntiAlias;
+        /// whether to draw solid surfaces
+        bool DisplayPolygons;
+        /// whether to use lights in rendering
+        bool Lighting;
+        /// whether to use depth cue
+        bool DepthCue3D;
+        /// whether to use depth cue in 4D
+        bool DepthCue4D;
+
+        /// whether to show the 4D coordinate cross
+        bool DisplayCoordinates;
+
+        /// whether the image is currently animated
+        bool Animated;
+        /// true while mouse button pressed and mouse moved to take movement speed
+        bool TakingSpinValues;
+
+        /// whether to save images
+        bool RenderToPixmap;
+        /// whether currently rendering an image
+        bool CurrentlyRendering;
+
+        /// times out every X ms to draw new animation frame
+        QTimer *AnimationTimer;
+        /// times out to change rotation direction
+        QTimer *AnimateRandomTimer;
+
+        /// dialog to enter function parameters
+        ValuesDialogImpl *Values;
+
+        /// the Function object currently displayed
+        std::auto_ptr<Function> F;
+
+        /// name of current function for status bar
+        QString ObjectName;
+
+        double dxy,     ///< delta values in xy rotation angle - for animations
+               dxz,     ///< delta values in xz rotation angle - for animations
+               dxw,     ///< delta values in xw rotation angle - for animations
+               dyz,     ///< delta values in yz rotation angle - for animations
+               dyw,     ///< delta values in yw rotation angle - for animations
+               dzw,     ///< delta values in zw rotation angle - for animations
+               dx,      ///< delta values in x translation - for animations
+               dy,      ///< delta values in y translation - for animations
+               dz;      ///< delta values in z translation - for animations
+
+        /// frames per second for animations
+        const unsigned animation_fps;
+
+        /// W coordinate of the camera
+        double CamW;
+        /// W coordinate of the screen
+        double ScrW;
+
+        /// endpoints of the lines constituting the 4D coordinate cross
+        std::vector<std::vector<VecMath::Vector<4> > > Cross;
+        /// endpoints of the lines constituting the transformed 4D coordinates
+        std::vector<std::vector<VecMath::Vector<4> > > CrossTrans;
+        /// endpoints of the lines constituting the projected 4D coordinates
+        std::vector<std::vector<VecMath::Vector<3> > > CrossScr;
+
+        /// limit for saved animation frames
+        unsigned animationMaxFrames;
+        /// current frame in animation
+        unsigned animationFrame;
+        /// where to save the images of an animation
         QString animationDirectory;
+        /// prefix of animation frame filenames
         QString animationPrefix;
 
-        void writeFrame();
+        /// the popup menu
+        Menu4D *menu;
+
 
     protected slots:
         void OnTimer();
@@ -332,23 +393,18 @@ class C4DView : public XQGLWidget {
 #include "Function.H"
 #include "Menu4D.H"
 
-/** Factory method to create a new Function of type R³->R
+/** Factory method to create a new Function of type R^3->R \n
  *  This function template is called by each slot with the correct function
- *  type as template parameter
+ *  type as template parameter \n
  *  sets F to the newly created Function, checks the corresponding menu item,
  *  updates the ValuesDialog and redraws                                      */
 template<class function>
         void C4DView::FunctionSlot<function>::createFunction(C4DView *view) {
 
-#   ifdef USE_AUTO_PTR
-        view->F.reset
-#   else
-        if (view->F) delete view->F;
-        view->F =
-#endif
-            (new function (view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
-                           view->Values->umin (), view->Values->umax (), view->Values->du (),
-                           view->Values->vmin (), view->Values->vmax (), view->Values->dv ()));
+        view->F.reset(new function (
+            view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
+            view->Values->umin (), view->Values->umax (), view->Values->du (),
+            view->Values->vmin (), view->Values->vmax (), view->Values->dv ()));
 
     SingletonLog::Instance() << "FunctionSlot<function>::createFunction(): "
             << view->F->getFunctionName().toStdString()
@@ -362,26 +418,17 @@ template<class function>
     view->Redraw ();
 }
 
-/** Factory method to create a new Function of type R²->R^4
+/** Factory method to create a new Function of type R^2->R^4 \n
  *  This function template is called by each slot with the correct function
- *  type as template parameter
+ *  type as template parameter \n
  *  sets F to the newly created Function, checks the corresponding menu item,
  *  updates the ValuesDialog and redraws                                      */
 template<class function>
         void C4DView::FunctionSlot<function>::createSurface(C4DView *view) {
 
-#   ifdef USE_AUTO_PTR
-    view->F.reset
-#   else
-            if (view->F) delete view->F;
-    view->F =
-#endif
-            (new function (view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
+    view->F.reset(new function (
+             view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
              view->Values->umin (), view->Values->umax (), view->Values->du ()));
-
-    if(0) std::cerr << "FunctionSlot<function>::createSurface(): " << view->F->getFunctionName().toStdString()
-                << "(" << view->F->getParameterName(0).toStdString() <<","<<view->F->getParameterName(1).toStdString() <<","<<
-                view->F->getParameterName(2).toStdString() <<","<< view->F->getParameterName(3).toStdString()<<")"<< std::endl;
 
     try {
         view->menu->updateFunctionMenu (view->F->getFunctionName());
@@ -401,27 +448,22 @@ template<class function>
 
 #include "CustomFunction.H"
 
-/** Factory method to create a new customized Function of type R³->R
+/** Factory method to create a new customized Function of type R^3->R \n
  *  This function template is called by each slot with the correct function
- *  type as template parameter
+ *  type as template parameter \n
  *  sets F to the newly created Function, checks the corresponding menu item,
  *  updates the ValuesDialog and redraws. Does some error handling in case the
  *  Function could not be loaded.                                             */
 template<class function>
-        void C4DView::CustomFunctionSlot<function>::createCustomFunction(C4DView *view) {
+        void C4DView::CustomFunctionSlot<function>::createCustomFunction(
+                 C4DView *view) {
             function *tmp = new function (
                 view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
                 view->Values->umin (), view->Values->umax (), view->Values->du (),
                 view->Values->vmin (), view->Values->vmax (), view->Values->dv ());
             if (tmp->isValid()) {
-#               ifdef USE_AUTO_PTR
                     view->F.reset(tmp);
                     QString sym (((function *)(view->F).get ())->symbolic());
-#               else
-                    if (view->F) delete view->F;
-                    view->F = tmp;
-                    QString sym (((function *)(view->F))->symbolic());
-#               endif
 
                 view->AssignValues(view->F);
                 view->Redraw ();
@@ -431,25 +473,21 @@ template<class function>
             }
         }
 
-/** Factory method to create a new customized Function of type R²->R^4
+/** Factory method to create a new customized Function of type R^2->R^4 \n
  *  This function template is called by each slot with the correct function
- *  type as template parameter
+ *  type as template parameter \n
  *  sets F to the newly created Function, checks the corresponding menu item,
  *  updates the ValuesDialog and redraws. Does some error handling in case the
  *  Function could not be loaded.                                             */
 template<class function>
-        void C4DView::CustomFunctionSlot<function>::createCustomSurface(C4DView *view) {
-            function *tmp = new function (view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
-                                          view->Values->umin (), view->Values->umax (), view->Values->du ());
+        void C4DView::CustomFunctionSlot<function>::createCustomSurface(
+                C4DView *view) {
+            function *tmp = new function (
+                view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
+                view->Values->umin (), view->Values->umax (), view->Values->du ());
             if (tmp->isValid()) {
-#               ifdef USE_AUTO_PTR
                 view->F.reset(tmp);
                 QString sym (((function *)(view->F).get ())->symbolic());
-#               else
-                if (view->F) delete view->F;
-                view->F = tmp;
-                QString sym (((function *)(view->F))->symbolic());
-#               endif
 
                 view->AssignValues(view->F);
                 view->Redraw ();

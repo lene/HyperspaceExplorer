@@ -76,6 +76,12 @@ class Function {
         /// a three-dimensional array of Vector<4>, implemented as a nested std::vector
         typedef std::vector<vec4vec2D> vec4vec3D;
 
+        /** type of the function used to generate values, optimized with a
+         *  reference as return value                                         */
+        typedef VecMath::Vector<4> &function_type (double, double, double);
+        /// the real, raw type of the function used to generate values
+        typedef VecMath::Vector<4> raw_function_type (double, double, double);
+
         Function();
         Function (const QString &name,
                   double _tmin, double _tmax, double _dt,
@@ -104,7 +110,8 @@ class Function {
          *  @param t first argument, e.g. x or t
          *  @param u second argument, e.g. y or u
          *  @param v third argument, e.g. z or v
-         *  @return X[t][u][v]                                                */
+         *  @return f(t, u, v), approximated by the value on the grid point
+         *          closest to (t, u, v)                         */
         VecMath::Vector<4> &operator () (double t, double u, double v) {
             unsigned it = unsigned ((t-tmin)/dt),
                      iu = unsigned ((u-umin)/du),
@@ -123,10 +130,8 @@ class Function {
         QString getParameterName(unsigned i) {
             return i < parameterNames.size()? parameterNames[i]: ""; }
 
-        typedef VecMath::Vector<4> &function_type (double, double, double);
-        typedef VecMath::Vector<4> raw_function_type (double, double, double);
-
     protected:
+        /// the mathematical function defining the Function object
         virtual function_type f = 0;
         virtual vec4vec1D df (double, double, double);
         virtual function_type normal;
@@ -140,25 +145,43 @@ class Function {
         void DrawStrip (unsigned, unsigned);
         void DrawCube (unsigned, unsigned, unsigned);
 
-        double tmin, tmax, dt,
-               umin, umax, du,
-               vmin, vmax, dv;
+        double tmin, ///< min. value of the first parameter, here called t
+               tmax, ///< min. value of the first parameter, here called t
+               dt,   ///< stepsize in first parameter
+               umin, ///< min. value of the second parameter, here called u
+               umax, ///< min. value of the second parameter, here called u
+               du,   ///< stepsize in second parameter
+               vmin, ///< min. value of the third parameter, here called v
+               vmax, ///< min. value of the third parameter, here called v
+               dv;   ///< stepsize in third parameter
 
-        unsigned tsteps, usteps, vsteps;
+        unsigned tsteps, ///< number of steps in t
+                 usteps, ///< number of steps in u
+                 vsteps; ///< number of steps in v
 
+        /// counter for the number of GL vertices used drawing the function
         unsigned NumVertices;
 
+        /// temporary storage for the value of the function at a given point
         VecMath::Vector<4> F;
 
-        /// temporary storage for the function values on the grid
-        vec4vec3D X, Xtrans;
-        /// temporary storage for the projected function values
-        vec3vec3D Xscr;
+        vec4vec3D X,      ///< temporary storage for function values on grid
+                  Xtrans; ///< temporary storage for transformed function values
+        vec3vec3D Xscr;   ///< temporary storage for projected function values
 
-        /// storage for the coloring of the vertices
-        floatvec3D R, G, B;
+        /** storage for the coloring of the vertices - red component
+         *  @todo turn these three arrays into a single array of Color's      */
+        floatvec3D R;
+        /** storage for the coloring of the vertices - red component
+         *  @todo turn these three arrays into a single array of Color's      */
+        floatvec3D G;
+        /** storage for the coloring of the vertices - red component
+         *  @todo turn these three arrays into a single array of Color's      */
+        floatvec3D B;
 
+        /// the name of the function as a free-form string
         QString functionName;
+        /// list of the names of parameters to the function
         std::vector<QString> parameterNames;
 
 };

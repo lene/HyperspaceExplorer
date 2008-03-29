@@ -21,6 +21,13 @@
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Surface: public Function {
     public:
+
+        /** type of the function used to generate values, optimized with a
+         *  reference as return value                                         */
+        typedef VecMath::Vector<4> &function_type (double, double);
+        /// the real, raw type of the function used to generate values
+        typedef VecMath::Vector<4> raw_function_type (double, double);
+
         Surface();
         Surface (const QString &name,
                  double _umin, double _umax, double _du,
@@ -49,9 +56,6 @@ class Surface: public Function {
             return X[iu][iv];
         }
 
-        typedef VecMath::Vector<4> &function_type (double, double);
-        typedef VecMath::Vector<4> raw_function_type (double, double);
-
     protected:
          virtual VecMath::Vector<4> &f (double, double,  double) { return F; }
          virtual function_type f  = 0;
@@ -74,11 +78,11 @@ class Surface: public Function {
          unsigned NumVertices;
 
          VecMath::Vector<4> F;
-	     
+
          /// temporary storage for the function values on the grid
          vec4vec2D X, Xtrans;
          vec3vec2D Xscr;
-         
+
 	     /// storage for the coloring of the vertices
          floatvec2D R, G, B;
 };

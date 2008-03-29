@@ -36,7 +36,7 @@
 <a name="l00024"></a>00024         <span class="keywordtype">bool</span> isValid()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> valid; }
 <a name="l00025"></a>00025 
 <a name="l00026"></a>00026     <span class="keyword">protected</span>:
-<a name="l00027"></a>00027         <span class="keywordtype">bool</span> <a class="code" href="classCustomFunctionBase.html#c64f06b60836deeabcf4c6de0cf17f08">loadFunction</a> (<span class="keyword">const</span> QString &amp;);
+<a name="l00027"></a>00027         <span class="keywordtype">bool</span> <a class="code" href="classCustomFunctionBase.html#d2e4b7516d73ab9ebeb9a33c6708f6b8">loadFunction</a> (<span class="keyword">const</span> QString &amp;, QString = <span class="stringliteral">"f"</span>);
 <a name="l00028"></a>00028         <span class="keywordtype">void</span> setValid() { valid = <span class="keyword">true</span>; }
 <a name="l00029"></a>00029         <span class="keywordtype">void</span> setInvalid() { valid = <span class="keyword">false</span>; }
 <a name="l00030"></a>00030 
@@ -79,7 +79,7 @@
 <a name="l00077"></a>00077                 <span class="keyword">virtual</span> <a class="code" href="classCustomSurface.html#09a78eacb67d05a4e4854301f0505212">~CustomSurface</a>();
 <a name="l00078"></a>00078 
 <a name="l00079"></a>00079             <span class="keyword">protected</span>:
-<a name="l00080"></a><a class="code" href="classCustomSurface.html#1d54a8a914cc1d2133dda2d72235eac7">00080</a>                 <span class="keyword">virtual</span> Surface::function_type <a class="code" href="classCustomSurface.html#1d54a8a914cc1d2133dda2d72235eac7">f</a>;
+<a name="l00080"></a><a class="code" href="classCustomSurface.html#1d54a8a914cc1d2133dda2d72235eac7">00080</a>                 <span class="keyword">virtual</span> <a class="code" href="classSurface.html#6734aac8b6b055e83971ea054d1ddde1">Surface::function_type</a> <a class="code" href="classCustomSurface.html#1d54a8a914cc1d2133dda2d72235eac7">f</a>;
 <a name="l00081"></a>00081         };
 <a name="l00082"></a>00082 
 <a name="l00086"></a><a class="code" href="classCustomComplexFunction.html">00086</a> <span class="keyword">class </span><a class="code" href="classCustomComplexFunction.html">CustomComplexFunction</a>:
@@ -98,7 +98,7 @@
 <a name="l00099"></a>00099 <span class="preprocessor">#include &lt;dlfcn.h&gt;</span>
 <a name="l00100"></a>00100 
 <a name="l00104"></a>00104 <span class="keyword">template</span>&lt;<span class="keyword">class</span> function_type&gt;
-<a name="l00105"></a><a class="code" href="classCustomFunctionBase.html#c64f06b60836deeabcf4c6de0cf17f08">00105</a>         <span class="keywordtype">bool</span> <a class="code" href="classCustomFunctionBase.html#c64f06b60836deeabcf4c6de0cf17f08">CustomFunctionBase&lt;function_type&gt;::loadFunction</a>(<span class="keyword">const</span> QString &amp;libName) {
+<a name="l00105"></a><a class="code" href="classCustomFunctionBase.html#d2e4b7516d73ab9ebeb9a33c6708f6b8">00105</a>         <span class="keywordtype">bool</span> <a class="code" href="classCustomFunctionBase.html#d2e4b7516d73ab9ebeb9a33c6708f6b8">CustomFunctionBase&lt;function_type&gt;::loadFunction</a>(<span class="keyword">const</span> QString &amp;libName, QString funcName) {
 <a name="l00106"></a>00106     <span class="keyword">const</span> <span class="keywordtype">char</span> *error;
 <a name="l00107"></a>00107 
 <a name="l00108"></a>00108     handle = dlopen (libName.toStdString().c_str(), RTLD_LAZY);
@@ -107,7 +107,7 @@
 <a name="l00111"></a>00111         <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00112"></a>00112     }
 <a name="l00113"></a>00113 
-<a name="l00114"></a>00114     func = (function_type *)dlsym(handle, <span class="stringliteral">"f"</span>);
+<a name="l00114"></a>00114     func = (function_type *)dlsym(handle, funcName.toStdString().c_str());
 <a name="l00115"></a>00115     <span class="keywordflow">if</span> ((error = dlerror()) != NULL)  {
 <a name="l00116"></a>00116         std::cerr &lt;&lt; <span class="stringliteral">"Error finding function: "</span> &lt;&lt; error &lt;&lt; std::endl;
 <a name="l00117"></a>00117         <span class="keywordflow">return</span> <span class="keyword">false</span>;
@@ -132,7 +132,7 @@
 <a name="l00138"></a>00138     <span class="keywordflow">return</span> QString (ret);
 <a name="l00139"></a>00139 }
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Mar 28 19:08:51 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat Mar 29 23:59:03 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

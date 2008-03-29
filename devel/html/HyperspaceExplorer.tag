@@ -737,6 +737,13 @@
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
+      <name>writeFrame</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>54cf3b6bbb8bf1eed47afc6da5fcebe2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
       <name>DrawCoordinates</name>
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>37a8191d956104629a6182ba86755cd1</anchor>
@@ -781,8 +788,8 @@
       <type>void</type>
       <name>AssignValues</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>fe74bb993321a790f5a089c2c497c441</anchor>
-      <arglist>(Function *)</arglist>
+      <anchor>e38186ceacf6c4e6b13de7bee6cd8bda</anchor>
+      <arglist>(const std::auto_ptr&lt; Function &gt; &amp;)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
@@ -828,31 +835,10 @@
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
-      <name>UpdateFunctionMenu</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>f8aa91ab9ef45b6eb91e12f27c9b2dfd</anchor>
-      <arglist>(int)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
       <name>InitCross</name>
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>04a35de24dbf03d029afc5d0be93ec11</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>writeFrame</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>54cf3b6bbb8bf1eed47afc6da5fcebe2</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>Menu4D *</type>
-      <name>menu</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>9311d9bc1abd37efb55eca7ecbcf964b</anchor>
-      <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>GLint</type>
@@ -954,6 +940,13 @@
     </member>
     <member kind="variable" protection="protected">
       <type>GLdouble</type>
+      <name>m_rotZ</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>46e61c4e6edb2d937edc786a164fd5c1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>GLdouble</type>
       <name>m_transX</name>
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>8c1ed22d36c0d09d267ac7acf5c62177</anchor>
@@ -971,13 +964,6 @@
       <name>m_camZ</name>
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>e1dce655f46f29f97e103657bb32ed92</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>GLdouble</type>
-      <name>m_rotZ</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>46e61c4e6edb2d937edc786a164fd5c1</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -1082,7 +1068,7 @@
       <type>QTimer *</type>
       <name>AnimateRandomTimer</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>6242a7217b1583beeaaf3e9af07a458b</anchor>
+      <anchor>ceae252bed8926ed258fdbe764a7ecf2</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -1093,10 +1079,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>Function *</type>
+      <type>std::auto_ptr&lt; Function &gt;</type>
       <name>F</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>1a7bd58ab83ca82daa9cabe30d2e6713</anchor>
+      <anchor>eb29ac45dbb361327d3a896d6cfeb3dc</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -1170,94 +1156,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>unsigned</type>
+      <type>const unsigned</type>
       <name>animation_fps</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>b6733b330fee4702e1a01c6a8aa5ec9d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>VecMath::Vector&lt; 4 &gt; ***</type>
-      <name>Data</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>c3f7b77a24d940e78bfd08d4507431c2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>VecMath::Vector&lt; 3 &gt; ***</type>
-      <name>Xscr</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>060498c187dca659c2b5ad97065e3ab1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>VecMath::Vector&lt; 4 &gt; ***</type>
-      <name>Xtrans</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>cc613e656514f8eb4e4d9c8ab50946df</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>VecMath::Vector&lt; 3 &gt; *</type>
-      <name>XscrChunk</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>4cf630e5f96a55d494cb6de9a2a23064</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>VecMath::Vector&lt; 4 &gt; *</type>
-      <name>XtransChunk</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>3173c9cf1fff3c6e48a552ef5394fa77</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>float ***</type>
-      <name>R</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>8c30072ccec36c4c1e8c0a1dfe7db30a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>float ***</type>
-      <name>G</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>301833f581d2f45433416cdb9f7e0e60</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>float ***</type>
-      <name>B</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>4a044682ad8b7b0237a8529aea31e461</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>float *</type>
-      <name>RGBChunk</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>512259acdc81e286e8c98152c75980e5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>unsigned</type>
-      <name>tsteps</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>a92cde11ce739c51d93516e50bc1f298</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>unsigned</type>
-      <name>usteps</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>b51ddd57505a5eed3c44c31c9fbb1fcf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>unsigned</type>
-      <name>vsteps</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>d7d7695ab1b79913d069f329265ae846</anchor>
+      <anchor>dc3741dcb91695bf84c2f921a0d1ca2f</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -1275,74 +1177,25 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>VecMath::Vector&lt; 4 &gt; **</type>
+      <type>std::vector&lt; std::vector&lt; VecMath::Vector&lt; 4 &gt; &gt; &gt;</type>
       <name>Cross</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>9d1621abd3d826842a838db4d8b65329</anchor>
+      <anchor>3a944bfbcae2c13b0fcac503d62a60fe</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>VecMath::Vector&lt; 4 &gt; **</type>
+      <type>std::vector&lt; std::vector&lt; VecMath::Vector&lt; 4 &gt; &gt; &gt;</type>
       <name>CrossTrans</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>7ef25b8be966cdf4aa04b7ef9ce210d6</anchor>
+      <anchor>0eba9d6ac6f7fe31287fd728ef61266c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>VecMath::Vector&lt; 3 &gt; **</type>
+      <type>std::vector&lt; std::vector&lt; VecMath::Vector&lt; 3 &gt; &gt; &gt;</type>
       <name>CrossScr</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>e0d130268ad8b43f51b1b0b810634a2e</anchor>
+      <anchor>4b450c11b94a6dc190fd7b0e8bdb64c1</anchor>
       <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>Q3PopupMenu *</type>
-      <name>functions</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>0e852ee0a1abf1ee520879d5f3d444fe</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>Q3PopupMenu *</type>
-      <name>animation</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>d4e71a834f667073a9b566f06a117822</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>int</type>
-      <name>linesID</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>d167a6018788c6c5e551616c9a957244</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>int</type>
-      <name>crossID</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>fa523a44922e72c1e6b1b3ba914347d6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>int</type>
-      <name>hyperfogID</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>8fa6b8c030bb9043157b97376ca01627</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>int</type>
-      <name>pixmapID</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>6dfb3e6627ac584c635bada25f353db5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>int</type>
-      <name>funcID</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>ddf7c0d384f9571b47a017b197af6975</anchor>
-      <arglist>[32]</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>unsigned</type>
@@ -1370,6 +1223,13 @@
       <name>animationPrefix</name>
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>e766d45e783ed357a35cb3482b1a4cc6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Menu4D *</type>
+      <name>menu</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>9311d9bc1abd37efb55eca7ecbcf964b</anchor>
       <arglist></arglist>
     </member>
     <member kind="friend">
@@ -1638,6 +1498,80 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>Color</name>
+    <filename>classColor.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>Color</name>
+      <anchorfile>classColor.html</anchorfile>
+      <anchor>565126164d4a96f3b109829391702c7c</anchor>
+      <arglist>(float, float, float, float=0.)</arglist>
+    </member>
+    <member kind="function">
+      <type>float &amp;</type>
+      <name>r</name>
+      <anchorfile>classColor.html</anchorfile>
+      <anchor>9023bb1107a89197950986157c4ef9de</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>float &amp;</type>
+      <name>g</name>
+      <anchorfile>classColor.html</anchorfile>
+      <anchor>4b63eac9efcfc3f626f10f43f4f13391</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>float &amp;</type>
+      <name>b</name>
+      <anchorfile>classColor.html</anchorfile>
+      <anchor>48ea644ea0e8f943f5049a1fae966c55</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>float &amp;</type>
+      <name>a</name>
+      <anchorfile>classColor.html</anchorfile>
+      <anchor>3ef2ea6a92faf2a560e359cfa75a3597</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator float *</name>
+      <anchorfile>classColor.html</anchorfile>
+      <anchor>b64d37c2436bee884af85d80d5cae572</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Color</type>
+      <name>operator*=</name>
+      <anchorfile>classColor.html</anchorfile>
+      <anchor>96290badbfa2d5aa740bbea07ee5bdc0</anchor>
+      <arglist>(float)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setComponentLowerLimit</name>
+      <anchorfile>classColor.html</anchorfile>
+      <anchor>6c25bc30b1d2dbd3210d1964fae53742</anchor>
+      <arglist>(float)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setComponentUpperLimit</name>
+      <anchorfile>classColor.html</anchorfile>
+      <anchor>90b94d65cd470c2ac979825c0c1b2c20</anchor>
+      <arglist>(float)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>float</type>
+      <name>RGBA</name>
+      <anchorfile>classColor.html</anchorfile>
+      <anchor>945779bc9577f258cff038ed98b1b6e2</anchor>
+      <arglist>[4]</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>ComplexDialogImpl</name>
     <filename>classComplexDialogImpl.html</filename>
     <base>PluginCreator</base>
@@ -1859,8 +1793,8 @@
       <type>bool</type>
       <name>loadFunction</name>
       <anchorfile>classCustomFunctionBase.html</anchorfile>
-      <anchor>c64f06b60836deeabcf4c6de0cf17f08</anchor>
-      <arglist>(const QString &amp;)</arglist>
+      <anchor>d2e4b7516d73ab9ebeb9a33c6708f6b8</anchor>
+      <arglist>(const QString &amp;, QString=&quot;f&quot;)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
@@ -2148,6 +2082,20 @@
       <arglist></arglist>
     </member>
     <member kind="function">
+      <type>typedef VecMath::Vector&lt; 4 &gt; &amp;</type>
+      <name>function_type</name>
+      <anchorfile>classFunction.html</anchorfile>
+      <anchor>6f9f724fe362e920e4b4d34bbd9757f6</anchor>
+      <arglist>(double, double, double)</arglist>
+    </member>
+    <member kind="function">
+      <type>typedef VecMath::Vector&lt; 4 &gt;</type>
+      <name>raw_function_type</name>
+      <anchorfile>classFunction.html</anchorfile>
+      <anchor>3d71cdb864a975ddcc7c8fe2e249624a</anchor>
+      <arglist>(double, double, double)</arglist>
+    </member>
+    <member kind="function">
       <type></type>
       <name>Function</name>
       <anchorfile>classFunction.html</anchorfile>
@@ -2204,13 +2152,6 @@
       <arglist>(double _a=0, double _b=0, double _c=0, double _d=0)</arglist>
     </member>
     <member kind="function">
-      <type>vec4vec3D</type>
-      <name>Data</name>
-      <anchorfile>classFunction.html</anchorfile>
-      <anchor>61648f5270a2e0bd4c9844ae7db94a7d</anchor>
-      <arglist>(void)</arglist>
-    </member>
-    <member kind="function">
       <type>VecMath::Vector&lt; 4 &gt; &amp;</type>
       <name>operator()</name>
       <anchorfile>classFunction.html</anchorfile>
@@ -2244,20 +2185,6 @@
       <anchorfile>classFunction.html</anchorfile>
       <anchor>0a05df01c1ec8b0aa9a23a3551da3d53</anchor>
       <arglist>(unsigned i)</arglist>
-    </member>
-    <member kind="function">
-      <type>typedef VecMath::Vector&lt; 4 &gt; &amp;</type>
-      <name>function_type</name>
-      <anchorfile>classFunction.html</anchorfile>
-      <anchor>6f9f724fe362e920e4b4d34bbd9757f6</anchor>
-      <arglist>(double, double, double)</arglist>
-    </member>
-    <member kind="function">
-      <type>typedef VecMath::Vector&lt; 4 &gt;</type>
-      <name>raw_function_type</name>
-      <anchorfile>classFunction.html</anchorfile>
-      <anchor>3d71cdb864a975ddcc7c8fe2e249624a</anchor>
-      <arglist>(double, double, double)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual vec4vec1D</type>
@@ -2632,45 +2559,45 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>SetColor</name>
+      <name>setColor</name>
       <anchorfile>classGlobal.html</anchorfile>
-      <anchor>ca70cc6b30787900288e1edaa6220c01</anchor>
-      <arglist>(float R, float G, float B)</arglist>
+      <anchor>fc415ad35cd5f1150223adc110af2abb</anchor>
+      <arglist>(const Color &amp;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
-      <name>SetColor</name>
+      <name>setColor</name>
       <anchorfile>classGlobal.html</anchorfile>
-      <anchor>4b7a42d87bde58d4edf67ffa2176b7ea</anchor>
-      <arglist>(const VecMath::Vector&lt; 4 &gt; &amp;RGB)</arglist>
+      <anchor>cd24574b306c815486b2b41bd5c58f91</anchor>
+      <arglist>(float r, float g, float b, float a=1.0)</arglist>
     </member>
     <member kind="function">
-      <type>float *</type>
+      <type>Color &amp;</type>
       <name>BackgroundColor</name>
       <anchorfile>classGlobal.html</anchorfile>
-      <anchor>9d51fe4e3171a86f71f87123337d7364</anchor>
+      <anchor>d2cda1b62aafc1e37319de079b51db1f</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>setBackground</name>
       <anchorfile>classGlobal.html</anchorfile>
-      <anchor>cddf4bae3fb9ccc06042abfa98ab8ff9</anchor>
-      <arglist>(float r, float g, float b, float a=1.0)</arglist>
+      <anchor>d51a21fbe6a770154d8a16d0e5a06072</anchor>
+      <arglist>(const Color &amp;rgba)</arglist>
     </member>
     <member kind="function">
-      <type>float *</type>
+      <type>Color &amp;</type>
       <name>FogColor</name>
       <anchorfile>classGlobal.html</anchorfile>
-      <anchor>05069a5c9a05e86fe6a911cf8f32c02d</anchor>
+      <anchor>de13b8a6c462f1d8f0180bbaa4960008</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>setFogColor</name>
       <anchorfile>classGlobal.html</anchorfile>
-      <anchor>f9479f1280e9159b4c0476f4b6b47e78</anchor>
-      <arglist>(float r, float g, float b, float a=1.0)</arglist>
+      <anchor>1ae62128f23c890ebca8d6d0f7075f5c</anchor>
+      <arglist>(const Color &amp;rgba)</arglist>
     </member>
     <member kind="function">
       <type>double</type>
@@ -2702,13 +2629,6 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>Debug</name>
-      <anchorfile>classGlobal.html</anchorfile>
-      <anchor>90bfe3da3c9db002a04fbeb49e195764</anchor>
-      <arglist>(std::string s, std::string h=&quot;&quot;)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
       <name>glVertex</name>
       <anchorfile>classGlobal.html</anchorfile>
       <anchor>897ad69b2f273e4379c4dba53983ef25</anchor>
@@ -2721,18 +2641,25 @@
       <anchor>3787cef8ea672abfa0f8beaf3738c698</anchor>
       <arglist>(double xx, double yy, double zz)</arglist>
     </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Swap</name>
-      <anchorfile>classGlobal.html</anchorfile>
-      <anchor>566a325c28777ef16ed78640cf4de4a4</anchor>
-      <arglist>(T &amp;a, T &amp;b)</arglist>
-    </member>
     <member kind="function" static="yes">
       <type>static unsigned long</type>
-      <name>check_proc_meminfo</name>
+      <name>getMaxMemory</name>
       <anchorfile>classGlobal.html</anchorfile>
-      <anchor>ee41dfa8c3f54721609d57c58ae702d8</anchor>
+      <anchor>028fc2484b8b9ccb9cf857a77076b637</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static Color &amp;</type>
+      <name>white</name>
+      <anchorfile>classGlobal.html</anchorfile>
+      <anchor>c512ceb809cd9a6b401900318d4bbc62</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static Color &amp;</type>
+      <name>grey50</name>
+      <anchorfile>classGlobal.html</anchorfile>
+      <anchor>2d8afc1687681fc168bb468000fb9326</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="variable">
@@ -2742,6 +2669,13 @@
       <anchor>bcddc926a59c03ecfcca578f5829be8d</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable">
+      <type>const double</type>
+      <name>SR3</name>
+      <anchorfile>classGlobal.html</anchorfile>
+      <anchor>db311d7f438bfa1f40f030b56e813578</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="variable" static="yes">
       <type>static bool</type>
       <name>check_memory</name>
@@ -2749,60 +2683,53 @@
       <anchor>53d14f4c4fa1472251cb87181a021291</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable" static="yes">
-      <type>static double</type>
-      <name>SR3</name>
+    <member kind="function" protection="private" static="yes">
+      <type>static unsigned long</type>
+      <name>check_proc_meminfo</name>
       <anchorfile>classGlobal.html</anchorfile>
-      <anchor>d5e70d3caa0daeffbf4f78637e271650</anchor>
+      <anchor>ee41dfa8c3f54721609d57c58ae702d8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>const double</type>
+      <name>ambientColorModifier</name>
+      <anchorfile>classGlobal.html</anchorfile>
+      <anchor>d4539a71509e1ef13b4f46a55012e27f</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable" static="yes">
-      <type>static double</type>
+    <member kind="variable" protection="private">
+      <type>const double</type>
+      <name>specularColorModifier</name>
+      <anchorfile>classGlobal.html</anchorfile>
+      <anchor>a95e8a76247e0677dda04db724c1e322</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>const double</type>
+      <name>specularColorMinimum</name>
+      <anchorfile>classGlobal.html</anchorfile>
+      <anchor>79e85452303b5f18b408fe0467bf25ea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>const double</type>
       <name>ALPHA</name>
       <anchorfile>classGlobal.html</anchorfile>
-      <anchor>3c6a49e93e27066408f579c88816bcab</anchor>
+      <anchor>a8a55e4a11eb8df8f7b3ec312626b48d</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable" static="yes">
-      <type>static double</type>
+    <member kind="variable" protection="private">
+      <type>const double</type>
       <name>SHININESS</name>
       <anchorfile>classGlobal.html</anchorfile>
-      <anchor>fede83146ef16dedae04215871724250</anchor>
+      <anchor>1f0c53a55b080e48ea48f1b405d09790</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable" static="yes">
-      <type>static float</type>
-      <name>fog_color</name>
+    <member kind="variable" protection="private">
+      <type>QMainWindow *</type>
+      <name>mainWindow</name>
       <anchorfile>classGlobal.html</anchorfile>
-      <anchor>c1cb219ab01774c3c23961f8602e596b</anchor>
-      <arglist>[4]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static float</type>
-      <name>White</name>
-      <anchorfile>classGlobal.html</anchorfile>
-      <anchor>134843c6dc446b5e10438194a4f3cd58</anchor>
-      <arglist>[4]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static float</type>
-      <name>grey50</name>
-      <anchorfile>classGlobal.html</anchorfile>
-      <anchor>d8fdca4392cae5fde280fc0a0367f1be</anchor>
-      <arglist>[4]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static float</type>
-      <name>background</name>
-      <anchorfile>classGlobal.html</anchorfile>
-      <anchor>2c2868078a3675c5d91ea40c37a4dd7f</anchor>
-      <arglist>[4]</arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static unsigned long</type>
-      <name>MaximumMemory</name>
-      <anchorfile>classGlobal.html</anchorfile>
-      <anchor>9ce07a3f47f79473e32f67eca456f79b</anchor>
+      <anchor>80cba6b0d930d4f38f01be9a03012b3c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -2812,11 +2739,39 @@
       <anchor>85c2751599c677efee668f61fc86e09d</anchor>
       <arglist></arglist>
     </member>
-    <member kind="variable" protection="private">
-      <type>QMainWindow *</type>
-      <name>mainWindow</name>
+    <member kind="variable" protection="private" static="yes">
+      <type>static Color</type>
+      <name>background</name>
       <anchorfile>classGlobal.html</anchorfile>
-      <anchor>80cba6b0d930d4f38f01be9a03012b3c</anchor>
+      <anchor>2f8f0a44741d3e331a41f0cb7cef5782</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static Color</type>
+      <name>fog_color</name>
+      <anchorfile>classGlobal.html</anchorfile>
+      <anchor>8a4a15ef7b6327aaafec97ba55635e74</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static Color</type>
+      <name>White</name>
+      <anchorfile>classGlobal.html</anchorfile>
+      <anchor>c057e73b4628f9010a2580ccf21244d3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static Color</type>
+      <name>Grey50</name>
+      <anchorfile>classGlobal.html</anchorfile>
+      <anchor>ca5d167ac2b151c95be44e3e07bd8c58</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static unsigned long</type>
+      <name>MaximumMemory</name>
+      <anchorfile>classGlobal.html</anchorfile>
+      <anchor>9ce07a3f47f79473e32f67eca456f79b</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -4177,6 +4132,20 @@
     <filename>classSurface.html</filename>
     <base>Function</base>
     <member kind="function">
+      <type>typedef VecMath::Vector&lt; 4 &gt; &amp;</type>
+      <name>function_type</name>
+      <anchorfile>classSurface.html</anchorfile>
+      <anchor>6734aac8b6b055e83971ea054d1ddde1</anchor>
+      <arglist>(double, double)</arglist>
+    </member>
+    <member kind="function">
+      <type>typedef VecMath::Vector&lt; 4 &gt;</type>
+      <name>raw_function_type</name>
+      <anchorfile>classSurface.html</anchorfile>
+      <anchor>a55d5575266767939adf085244eab155</anchor>
+      <arglist>(double, double)</arglist>
+    </member>
+    <member kind="function">
       <type></type>
       <name>Surface</name>
       <anchorfile>classSurface.html</anchorfile>
@@ -4245,20 +4214,6 @@
       <anchorfile>classSurface.html</anchorfile>
       <anchor>1d687515344a513edb4c1ac8d8a796c7</anchor>
       <arglist>(double u, double v)</arglist>
-    </member>
-    <member kind="function">
-      <type>typedef VecMath::Vector&lt; 4 &gt; &amp;</type>
-      <name>function_type</name>
-      <anchorfile>classSurface.html</anchorfile>
-      <anchor>6734aac8b6b055e83971ea054d1ddde1</anchor>
-      <arglist>(double, double)</arglist>
-    </member>
-    <member kind="function">
-      <type>typedef VecMath::Vector&lt; 4 &gt;</type>
-      <name>raw_function_type</name>
-      <anchorfile>classSurface.html</anchorfile>
-      <anchor>a55d5575266767939adf085244eab155</anchor>
-      <arglist>(double, double)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual VecMath::Vector&lt; 4 &gt; &amp;</type>

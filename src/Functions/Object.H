@@ -43,19 +43,32 @@ class Object: public Function {
         virtual void Draw (void);
 
     protected:
-        /// number of vertices and surfaces the object possesses; must be set
-        /// by implementations
-        unsigned NumVertices, NumSurfaces;
-        /// temporary storage for the function values
-        vec4vec1D X, Xtrans;
-        /// temporary storage for the projected function values
-        vec3vec1D Xscr;
-        /// storage for the coloring of the vertices
-        floatvec1D R, G, B;
+        /// number of vertices the object possesses; must be set by implementations
+        unsigned NumVertices;
+        /// number of surfaces the object possesses; must be set by implementations
+        unsigned NumSurfaces;
+
+        vec4vec1D X;        ///< temporary storage for the function values
+        vec4vec1D Xtrans;   ///< temp. storage for transformed function values
+        vec3vec1D Xscr;     ///< temporary storage for projected function values
+
+        /** storage for the coloring of the vertices - red component
+         *  @todo turn these three arrays into a single array of Color's      */
+        floatvec1D R;
+        /** storage for the coloring of the vertices - red component
+         *  @todo turn these three arrays into a single array of Color's      */
+        floatvec1D G;
+        /** storage for the coloring of the vertices - red component
+         *  @todo turn these three arrays into a single array of Color's      */
+        floatvec1D B;
 
         /// the surfaces, stored as vectors of indeces to the points in X
         uintvec2D Surface;
 
+        /** A pointless function, but it must be overridden to satisfy the
+         *  Function interface. In an Object it is never called because the
+         *  four-dimensional object is represented by a list of surfaces instead
+         *  of a mathematical function.                                       */
         virtual VecMath::Vector<4> &f (double, double, double) { return F; }
 };
 

@@ -32,6 +32,7 @@ using std::cerr;
 using std::endl;
 using std::ends;
 using std::auto_ptr;
+using std::vector;
 
 using VecMath::Vector;
 using VecMath::Matrix;
@@ -66,11 +67,7 @@ C4DView::C4DView(QWidget *parent):
     RenderToPixmap (false), CurrentlyRendering (false),
 
     Values (new ValuesDialogImpl (this)),
-#   ifdef USE_AUTO_PTR
-        F(auto_ptr<Function>()),
-#   else
-        F (NULL),
-#   endif
+    F(auto_ptr<Function>()),
     dxy (0), dxz (0), dxw (0), dyz (0), dyw (0), dzw (0),
     dx (0), dy (0), dz (0),
     animation_fps (50),
@@ -101,25 +98,25 @@ C4DView::C4DView(QWidget *parent):
 
 /** C4DView destructor; frees arrays                                          */
 C4DView::~C4DView() {
-    for (unsigned j = 0; j < 4; j++) {
+/*    for (unsigned j = 0; j < 4; j++) {
         delete [] Cross[j];
         delete [] CrossTrans[j];
         delete [] CrossScr[j];
     }
     delete [] Cross;
     delete [] CrossTrans;
-    delete [] CrossScr;
+    delete [] CrossScr; */
 }
 
 /** Initialize the structure to display a four-dimensional coordinate cross   */
 void C4DView::InitCross() {
-    Cross = new Vector<4> * [4];
-    CrossTrans = new Vector<4> * [4];
-    CrossScr = new Vector<3> * [4];
+    Cross = vector<vector<Vector<4> > > (4);
+    CrossTrans = vector<vector<Vector<4> > > (4);
+    CrossScr = vector<vector<Vector<3> > > (4);;
     for (unsigned j = 0; j < 4; j++) {
-        Cross[j] = new Vector<4> [2];
-        CrossTrans[j] = new Vector<4> [2];
-        CrossScr[j] = new Vector<3> [2];
+        Cross[j].resize(2);
+        CrossTrans[j].resize(2);
+        CrossScr[j].resize(2);
         for (unsigned k = 0; k < 2; k++) {
             //  CrossTrans[j][k] = Vector (4, 0., 0., 0., 0.);
             CrossScr[j][k] = Vector<3> (0., 0., 0.);
@@ -137,16 +134,16 @@ void C4DView::InitCross() {
 
 /** application of translations and rotations
  *  calls F->Transform () and transforms the coordinate cross
- *  @param thetaxy	rotation around xy plane (z axis); ignored because 3D rotation takes care of it
- *  @param thetaxz	rotation around xz plane (y axis); ignored because 3D rotation takes care of it
- *  @param thetaxw	rotation around xw plane
- *  @param thetayz	rotation around xy plane (x axis); ignored because 3D rotation takes care of it
- *  @param thetayw	rotation around yw plane
- *  @param thetazw	rotation around zw plane
- *  @param tx		translation in x direction
- *  @param ty		translation in y direction
- *  @param tz		translation in z direction
- *  @param tw		translation in w direction                            */
+ *  @param thetaxy rotation around xy plane (z axis); ignored because 3D rotation takes care of it
+ *  @param thetaxz rotation around xz plane (y axis); ignored because 3D rotation takes care of it
+ *  @param thetaxw rotation around xw plane
+ *  @param thetayz rotation around xy plane (x axis); ignored because 3D rotation takes care of it
+ *  @param thetayw rotation around yw plane
+ *  @param thetazw rotation around zw plane
+ *  @param tx translation in x direction
+ *  @param ty translation in y direction
+ *  @param tz translation in z direction
+ *  @param tw translation in w direction                            */
 void C4DView::Transform (double thetaxy, double thetaxz, double thetaxw,
                          double thetayz, double thetayw, double thetazw,
                          double tx, double ty, double tz, double tw) {
@@ -156,11 +153,7 @@ void C4DView::Transform (double thetaxy, double thetaxz, double thetaxw,
             << "                    "
             << tx << ", " << ty << ", " << tz << ", " << tw <<")\n";
 
-#   ifdef USE_AUTO_PTR
-        if (F.get ())
-#   else
-        if (F)
-#   endif
+    if (F.get())
         F->Transform (thetaxy, thetaxz, thetaxw, thetayz, thetayw, thetazw,
                       tx, ty, tz, tw);
     else return;
@@ -180,21 +173,12 @@ void C4DView::Transform (double thetaxy, double thetaxz, double thetaxw,
 
 /** projects F and coordinate cross into three-space                          */
 void C4DView::Project (void) {
-#   ifdef USE_AUTO_PTR
-        if (F.get ())
-#   else
-        if (F)
-#   endif
-        F->Project (ScrW, CamW, DepthCue4D);
+    if (F.get()) F->Project (ScrW, CamW, DepthCue4D);
     else return;
 
     if (DisplayCoordinates) {
         for (unsigned i = 0; i < 2; i++)
             for (unsigned j = 0; j < 4; j++) {
-#               if 0
-	           cerr << "i = " << i << " j = " << j
-                        << "CrossScr[j][i]" << CrossScr[j][i] << endl;
-#	        endif
                 double ProjectionFactor = (ScrW-CamW)/(CrossTrans[j][i][3]-CamW);
                 for (unsigned k = 0; k < CrossScr[j][i].dimension(); k++)
                     CrossScr[j][i][k] = CrossTrans[j][i][k]*ProjectionFactor;
@@ -241,8 +225,9 @@ void C4DView::Draw () {
 }
 
 /** mouse move event handler; awfully long, which is UGLY, but it does not seem
- *  to make much sense to break it up, so here we go
+ *  to make much sense to break it up, so here we go \n
  *  particular mouse move/button/modifier key combinations documented below
+ *  in the code
  *  @param e Qt's mouse event information structure                           */
 void C4DView::mouseMoveEvent (QMouseEvent *e) {
     SingletonLog::Instance() << "C4DView::mouseMoveEvent ("
@@ -469,13 +454,11 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
     }                     //    if (ViewChanged)
 
     OnPaint ();                					//    redraw the window
-
-  //  XQGLWidget::mouseMoveEvent (e);
 }
 
 /** mouse button event handler
  *  only sets flags which buttons are down
- *  @param e	Qt's mouse event information structure                        */
+ *  @param e Qt's mouse event information structure                           */
 void C4DView::mousePressEvent (QMouseEvent *e) {
     SingletonLog::Instance().log("C4DView::mousePressEvent ()");
 
@@ -502,7 +485,7 @@ void C4DView::mousePressEvent (QMouseEvent *e) {
 
 /** mouse button release event handler
  *  if taking values for an animation, starts the animation
- *  @param e	Qt's mouse event information structure                        */
+ *  @param e Qt's mouse event information structure                           */
 void C4DView::mouseReleaseEvent ( QMouseEvent *e) {
     SingletonLog::Instance().log("C4DView::mouseReleaseEvent ()");
 
@@ -519,7 +502,7 @@ void C4DView::mouseReleaseEvent ( QMouseEvent *e) {
 
 /** double click event handler
  *  stops animation, if running, or resets transformation values to default
- *  @param e	Qt's mouse event information structure                        */
+ *  @param e Qt's mouse event information structure                           */
 void C4DView::mouseDoubleClickEvent (QMouseEvent *e) {
     SingletonLog::Instance().log("C4DView::mouseDoubleClickEvent ()");
 
@@ -565,7 +548,9 @@ void C4DView::StopAnimation () {
 }
 
 /** starts a random animation, whose xw/yw/zw rotation speed changes every
- *  HARDCODED - EEEEYUARGH! 10 seconds                                        */
+ *  HARDCODED - EEEEYUARGH! 10 seconds
+ *  @todo make hardcoded duration of rotation change frequency adjustable
+ *  @todo a menu entry for this                                               */
 void C4DView::RandomAnimation() {
     AnimationTimer->stop ();
     AnimateRandomTimer->stop ();
@@ -578,9 +563,9 @@ void C4DView::RandomAnimation() {
     AnimateRandomTimer->start (10000);
 }
 
-/** make a pixmap to to be rendered by the gl widget, and render it.
+/** make a pixmap to to be rendered by the gl widget, and render it. \n
  *  this is an embarrassing workaround to make rendering to files work.
- *  QGLWidget's renderPixmap() method only produces black frames. Work with
+ *  QGLWidget's renderPixmap() method only produces black frames. Works with
  *  QPixmap::grabWindow() instead.                                            */
 QPixmap C4DView::makePixmap() {
 
@@ -680,19 +665,7 @@ void C4DView::UpdateStatus (QString status) {
     if (Ryw <-360) Ryw += 360;
     if (Rzw > 360) Rzw -= 360;
     if (Rzw <-360) Rzw += 360;
-#   if 0
-        ostringstream o;
-        o << "  cam_z = " << setw (4) << setprecision (3) << m_camZ
-          << "  r_x = " << setw (4) << setprecision (3) << m_rotX << "°"
-          << "  r_y = " << setw (4) << setprecision (3) << m_rotY << "°"
-          << "  r_z = " << setw (4) << setprecision (3) << m_rotZ << "°" << "   |  "
-          << "  cam_w = " << setw (4) << setprecision (3) << -Tw - 2.
-          << "  R_xw ="  << setw (4) << setprecision (3) << Rxw << "°"
-          << "  R_yw ="  << setw (4) << setprecision (3) << Ryw << "°"
-          << "  R_zw ="  << setw (4) << setprecision (3) << Rzw << "°"
-          << ends;
-        status += o.str ();
-#   endif
+
     if (!status.isEmpty ()) {
         for (unsigned i = status.length (); i <= 24; i++) status = " "+status;
         status = " - "+status;
@@ -702,7 +675,6 @@ void C4DView::UpdateStatus (QString status) {
 
     setWindowTitle(ObjectName+status);
 }
-
 
 /** @param on whether to use fog                                              */
 void C4DView::SetupDepthCue (bool on) {
@@ -716,16 +688,11 @@ void C4DView::SetupDepthCue (bool on) {
     else glDisable (GL_FOG);
 }
 
-
 /** called whenever an object or the parameters have changed; changes the
  *  display on the status bar and the number and names of the parameters and
  *  grid parameters on the ValuesDialog
  *  @param F the Function object for which the ValuesDialog is changed        */
-#ifdef USE_AUTO_PTR
-void C4DView::AssignValues (const std::auto_ptr<Function> &F) {
-#else
-void C4DView::AssignValues (Function *F) {
-#endif
+void C4DView::AssignValues (const auto_ptr<Function> &F) {
     QString Parameter1 = F->getParameterName(0);
     QString Parameter2 = F->getParameterName(1);
     QString Parameter3 = F->getParameterName(2);
@@ -737,11 +704,7 @@ void C4DView::AssignValues (Function *F) {
         Values->setFunction(ObjectName);
     }
 
-#   ifdef USE_AUTO_PTR
-        if (dynamic_cast<Object *>(F.get())) {
-#   else
-        if (dynamic_cast<Object *>(F)) {
-#   endif
+    if (dynamic_cast<Object *>(F.get())) {
         Values->gridLabel->hide();
         Values->TLabel->hide();
         Values->TSlider->hide();
@@ -780,11 +743,7 @@ void C4DView::AssignValues (Function *F) {
         Values->UMin->show();
         Values->UMaxLabel->show();
         Values->UMax->show();
-#   ifdef USE_AUTO_PTR
         if (dynamic_cast<Surface *>(F.get())) {
-#   else
-            if (dynamic_cast<Surface *>(F)) {
-#   endif
             Values->VLabel->hide();
             Values->VSlider->hide();
             Values->VSteps->hide();
@@ -847,7 +806,6 @@ void C4DView::AssignValues (Function *F) {
 
     UpdateStatus("");
 }
-
 
 /** called whenever an object or the parameters have changed; sets the
  *  parameters, applies the changed parameters to the function object and
@@ -1290,13 +1248,7 @@ void C4DView::FunctionR(){ FunctionSlot<PolarR>::createFunction(this); }
 void C4DView::ObjectHypercube() {
     menu->updateFunctionMenu("Hypercube");
 
-#   ifdef USE_AUTO_PTR
-        F.reset
-#   else
-        if (F) delete F;
-        F =
-#   endif
-            (new Hypercube (Values->a ()));
+    F.reset(new Hypercube (Values->a ()));
 
     AssignValues(F);
     Redraw ();
@@ -1306,13 +1258,7 @@ void C4DView::ObjectHypercube() {
 void C4DView::ObjectHyperpyramid() {
     menu->updateFunctionMenu("Hyperpyramid");
 
-#   ifdef USE_AUTO_PTR
-        F.reset
-#   else
-        if (F) delete F;
-        F =
-#   endif
-            (new Pyramid (2.*Values->a ()));
+    F.reset(new Pyramid (2.*Values->a ()));
 
     AssignValues(F);
     Redraw ();
@@ -1322,16 +1268,10 @@ void C4DView::ObjectHyperpyramid() {
 void C4DView::ObjectHypersponge() {
     menu->updateFunctionMenu("Menger Sponge");
 
-#   ifdef USE_AUTO_PTR
-        F.reset
-#   else
-        if (F) delete F;
-        F =
-#   endif
-            (new Sponge (
+    F.reset(new Sponge (
 //                unsigned (Values->a ()), int (Values->b ()), Values->c ())
                 1, 2, 0.8)
-            );
+    );
 
     AssignValues(F);
     Redraw ();
@@ -1341,13 +1281,7 @@ void C4DView::ObjectHypersponge() {
 void C4DView::ObjectGasket() {
     menu->updateFunctionMenu("Sierpinski Gasket");
 
-#   ifdef USE_AUTO_PTR
-        F.reset
-#   else
-        if (F) delete F;
-        F =
-#   endif
-            (new Gasket (unsigned (Values->a ()), 2.*Values->b ()));
+        F.reset(new Gasket (unsigned (Values->a ()), 2.*Values->b ()));
 
     AssignValues(F);
     Redraw ();

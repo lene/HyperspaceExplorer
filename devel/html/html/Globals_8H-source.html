@@ -38,91 +38,86 @@
 <a name="l00021"></a>00021 
 <a name="l00022"></a>00022 <span class="preprocessor">#include "Vector.H"</span>
 <a name="l00023"></a>00023 <span class="preprocessor">#include "SingletonHolder.H"</span>
-<a name="l00024"></a>00024 
-<a name="l00025"></a>00025 <span class="keyword">class </span>QAction;
-<a name="l00026"></a>00026 <span class="keyword">class </span>QMainWindow;
-<a name="l00027"></a>00027 <span class="keyword">class </span>QStringList;
-<a name="l00028"></a>00028 <span class="keyword">class </span>QString;
-<a name="l00029"></a>00029 
-<a name="l00034"></a>00034 <span class="preprocessor">#define stringify(X) #X</span>
-<a name="l00035"></a>00035 <span class="preprocessor"></span><span class="preprocessor">#define make_str(X) stringify(X)</span>
-<a name="l00036"></a>00036 <span class="preprocessor"></span>
-<a name="l00044"></a><a class="code" href="classGlobal.html">00044</a> <span class="keyword">class </span><a class="code" href="classGlobal.html">Global</a> {
-<a name="l00045"></a>00045     <span class="keyword">public</span>:
-<a name="l00046"></a>00046         <a class="code" href="classGlobal.html">Global</a>();
-<a name="l00047"></a>00047 
-<a name="l00048"></a>00048         <span class="keyword">static</span> <span class="keywordtype">bool</span> check_memory;
-<a name="l00050"></a><a class="code" href="classGlobal.html#d5e70d3caa0daeffbf4f78637e271650">00050</a>         <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code" href="classGlobal.html#d5e70d3caa0daeffbf4f78637e271650">SR3</a>;
-<a name="l00052"></a><a class="code" href="classGlobal.html#3c6a49e93e27066408f579c88816bcab">00052</a>         <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code" href="classGlobal.html#3c6a49e93e27066408f579c88816bcab">ALPHA</a>;
-<a name="l00054"></a><a class="code" href="classGlobal.html#fede83146ef16dedae04215871724250">00054</a>         <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code" href="classGlobal.html#fede83146ef16dedae04215871724250">SHININESS</a>;
-<a name="l00056"></a><a class="code" href="classGlobal.html#c1cb219ab01774c3c23961f8602e596b">00056</a>         <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code" href="classGlobal.html#c1cb219ab01774c3c23961f8602e596b">fog_color</a>[4];
-<a name="l00058"></a><a class="code" href="classGlobal.html#134843c6dc446b5e10438194a4f3cd58">00058</a>         <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code" href="classGlobal.html#134843c6dc446b5e10438194a4f3cd58">White</a>[4];
-<a name="l00060"></a><a class="code" href="classGlobal.html#d8fdca4392cae5fde280fc0a0367f1be">00060</a>         <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code" href="classGlobal.html#d8fdca4392cae5fde280fc0a0367f1be">grey50</a>[4];
-<a name="l00061"></a>00061         <span class="keyword">static</span> <span class="keywordtype">float</span> background[4];
-<a name="l00062"></a>00062 
-<a name="l00063"></a><a class="code" href="classGlobal.html#9ce07a3f47f79473e32f67eca456f79b">00063</a>         <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="classGlobal.html#9ce07a3f47f79473e32f67eca456f79b">MaximumMemory</a>;
-<a name="l00066"></a><a class="code" href="classGlobal.html#bcddc926a59c03ecfcca578f5829be8d">00066</a>         QStringList <a class="code" href="classGlobal.html#bcddc926a59c03ecfcca578f5829be8d">rcdirs</a>;
+<a name="l00024"></a>00024 <span class="preprocessor">#include "Color.H"</span>
+<a name="l00025"></a>00025 
+<a name="l00026"></a>00026 <span class="keyword">class </span>QAction;
+<a name="l00027"></a>00027 <span class="keyword">class </span>QMainWindow;
+<a name="l00028"></a>00028 <span class="keyword">class </span>QStringList;
+<a name="l00029"></a>00029 <span class="keyword">class </span>QString;
+<a name="l00030"></a>00030 
+<a name="l00035"></a>00035 <span class="preprocessor">#define stringify(X) #X</span>
+<a name="l00036"></a>00036 <span class="preprocessor"></span><span class="preprocessor">#define make_str(X) stringify(X)</span>
+<a name="l00037"></a>00037 <span class="preprocessor"></span>
+<a name="l00045"></a><a class="code" href="classGlobal.html">00045</a> <span class="keyword">class </span><a class="code" href="classGlobal.html">Global</a> {
+<a name="l00046"></a>00046     <span class="keyword">public</span>:
+<a name="l00047"></a>00047         <a class="code" href="classGlobal.html">Global</a>();
+<a name="l00048"></a>00048 
+<a name="l00051"></a><a class="code" href="classGlobal.html#bcddc926a59c03ecfcca578f5829be8d">00051</a>         QStringList <a class="code" href="classGlobal.html#bcddc926a59c03ecfcca578f5829be8d">rcdirs</a>;
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053         QAction *getQuitAction()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classGlobal.html#85c2751599c677efee668f61fc86e09d">quitAction</a>; }
+<a name="l00054"></a>00054         QMainWindow *getMainWindow()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classGlobal.html#80cba6b0d930d4f38f01be9a03012b3c">mainWindow</a>; }
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056         <span class="keywordtype">int</span> <a class="code" href="classGlobal.html#1ee9e9244bd1fe16b13f252ecc952872">GetGLList</a>();
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058         <span class="keywordtype">void</span> <a class="code" href="classGlobal.html#fc415ad35cd5f1150223adc110af2abb">setColor</a>(<span class="keyword">const</span> <a class="code" href="classColor.html">Color</a> &amp;);
+<a name="l00064"></a><a class="code" href="classGlobal.html#cd24574b306c815486b2b41bd5c58f91">00064</a>         <span class="keywordtype">void</span> <a class="code" href="classGlobal.html#fc415ad35cd5f1150223adc110af2abb">setColor</a>(<span class="keywordtype">float</span> r, <span class="keywordtype">float</span> g, <span class="keywordtype">float</span> b, <span class="keywordtype">float</span> a = 1.0) {
+<a name="l00065"></a>00065             <a class="code" href="classGlobal.html#fc415ad35cd5f1150223adc110af2abb">setColor</a>(<a class="code" href="classColor.html">Color</a>(r, g, b, a));
+<a name="l00066"></a>00066         }
 <a name="l00067"></a>00067 
-<a name="l00068"></a>00068         QAction *getQuitAction()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> quitAction; }
-<a name="l00069"></a>00069         QMainWindow *getMainWindow()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> mainWindow; }
+<a name="l00068"></a>00068         <a class="code" href="classColor.html">Color</a> &amp;BackgroundColor() { <span class="keywordflow">return</span> <a class="code" href="classGlobal.html#2f8f0a44741d3e331a41f0cb7cef5782">background</a>; }
+<a name="l00069"></a>00069         <span class="keywordtype">void</span> setBackground(<span class="keyword">const</span> <a class="code" href="classColor.html">Color</a> &amp;rgba) { <a class="code" href="classGlobal.html#2f8f0a44741d3e331a41f0cb7cef5782">background</a> = rgba; }
 <a name="l00070"></a>00070 
-<a name="l00071"></a>00071         <span class="keywordtype">int</span> <a class="code" href="classGlobal.html#1ee9e9244bd1fe16b13f252ecc952872">GetGLList</a>();
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073         <span class="keywordtype">void</span> <a class="code" href="classGlobal.html#ca70cc6b30787900288e1edaa6220c01">SetColor</a>(<span class="keywordtype">float</span> R, <span class="keywordtype">float</span> G, <span class="keywordtype">float</span> B);
-<a name="l00074"></a>00074         <span class="keywordtype">void</span> <a class="code" href="classGlobal.html#ca70cc6b30787900288e1edaa6220c01">SetColor</a> (<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;4&gt;</a> &amp;RGB);
+<a name="l00071"></a>00071         <a class="code" href="classColor.html">Color</a> &amp;FogColor() { <span class="keywordflow">return</span> <a class="code" href="classGlobal.html#8a4a15ef7b6327aaafec97ba55635e74">fog_color</a>; }
+<a name="l00072"></a>00072         <span class="keywordtype">void</span> setFogColor(<span class="keyword">const</span> <a class="code" href="classColor.html">Color</a> &amp;rgba) { <a class="code" href="classGlobal.html#8a4a15ef7b6327aaafec97ba55635e74">fog_color</a> = rgba; }
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074         <span class="keywordtype">double</span> <a class="code" href="classGlobal.html#46d4d63fb67924db3e1bcf093a917a3f">atod</a> (QString);
 <a name="l00075"></a>00075 
-<a name="l00076"></a>00076         <span class="keywordtype">float</span> *BackgroundColor() { <span class="keywordflow">return</span> background; }
-<a name="l00077"></a>00077         <span class="keywordtype">void</span> setBackground(<span class="keywordtype">float</span> r, <span class="keywordtype">float</span> g, <span class="keywordtype">float</span> b, <span class="keywordtype">float</span> a = 1.0) {
-<a name="l00078"></a>00078             background[0] = r;
-<a name="l00079"></a>00079             background[1] = g;
-<a name="l00080"></a>00080             background[2] = b;
-<a name="l00081"></a>00081             background[3] = a;
-<a name="l00082"></a>00082         }
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084         <span class="keywordtype">float</span> *FogColor() { <span class="keywordflow">return</span> <a class="code" href="classGlobal.html#c1cb219ab01774c3c23961f8602e596b">fog_color</a>; }
-<a name="l00085"></a>00085         <span class="keywordtype">void</span> setFogColor(<span class="keywordtype">float</span> r, <span class="keywordtype">float</span> g, <span class="keywordtype">float</span> b, <span class="keywordtype">float</span> a = 1.0) {
-<a name="l00086"></a>00086             <a class="code" href="classGlobal.html#c1cb219ab01774c3c23961f8602e596b">fog_color</a>[0] = r;
-<a name="l00087"></a>00087             <a class="code" href="classGlobal.html#c1cb219ab01774c3c23961f8602e596b">fog_color</a>[1] = g;
-<a name="l00088"></a>00088             <a class="code" href="classGlobal.html#c1cb219ab01774c3c23961f8602e596b">fog_color</a>[2] = b;
-<a name="l00089"></a>00089             <a class="code" href="classGlobal.html#c1cb219ab01774c3c23961f8602e596b">fog_color</a>[3] = a;
-<a name="l00090"></a>00090         }
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092         <span class="keywordtype">double</span> <a class="code" href="classGlobal.html#46d4d63fb67924db3e1bcf093a917a3f">atod</a> (QString);
-<a name="l00093"></a>00093 
-<a name="l00094"></a>00094         std::string <a class="code" href="classGlobal.html#41cee4049871dc14b3f7101e40734c16">itoa</a> (<span class="keywordtype">int</span> x);
-<a name="l00095"></a>00095         std::string <a class="code" href="classGlobal.html#2854bac3d8ea35166049a1a07028ed43">ftoa</a> (<span class="keywordtype">double</span> x);
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097         <span class="keywordtype">void</span> <a class="code" href="classGlobal.html#28cb8515629b9395ed5e2c00a8c1be7b">CheckGLErrors</a> (<span class="keyword">const</span> <span class="keywordtype">char</span> *op = 0);
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099         <span class="keywordtype">void</span> Debug (std::string s, std::string h = <span class="stringliteral">""</span>) {
-<a name="l00100"></a>00100             QMessageBox::information (NULL, h.c_str (), s.c_str ());
-<a name="l00101"></a>00101         }
-<a name="l00102"></a>00102 
-<a name="l00103"></a>00103         <span class="keywordtype">void</span> glVertex (<a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;3&gt;</a> &amp;V) {
-<a name="l00104"></a>00104             <span class="keywordflow">if</span> (std::isfinite (V.<a class="code" href="classVecMath_1_1Vector.html#c60183f68f2d8a6473c64c2e753cd053">sqnorm</a> ()))
-<a name="l00105"></a>00105                glVertex3dv (V.<a class="code" href="classVecMath_1_1Vector.html#540cec1fb9483d9cad8ea9356525d867">data</a> ());
-<a name="l00106"></a>00106         }
-<a name="l00107"></a>00107 
-<a name="l00108"></a>00108         <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;3&gt;</a> <a class="code" href="classGlobal.html#3787cef8ea672abfa0f8beaf3738c698">vnormalize</a> (<span class="keywordtype">double</span> xx, <span class="keywordtype">double</span> yy, <span class="keywordtype">double</span> zz);
-<a name="l00109"></a>00109 
-<a name="l00110"></a>00110         <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keywordtype">void</span> Swap (T &amp;a, T &amp;b) {
-<a name="l00111"></a>00111             T temp (a);
-<a name="l00112"></a>00112             a = b;
-<a name="l00113"></a>00113             b = temp;
-<a name="l00114"></a>00114         }
-<a name="l00115"></a>00115         <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="classGlobal.html#ee41dfa8c3f54721609d57c58ae702d8">check_proc_meminfo</a> ();
-<a name="l00116"></a>00116 
-<a name="l00117"></a>00117     <span class="keyword">private</span>:
-<a name="l00118"></a>00118         QAction *quitAction;
-<a name="l00119"></a>00119         QMainWindow *mainWindow;
-<a name="l00120"></a>00120 
-<a name="l00121"></a>00121 };
-<a name="l00122"></a>00122 
-<a name="l00123"></a>00123 <span class="keyword">typedef</span> <a class="code" href="classLoki_1_1SingletonHolder.html">Loki::SingletonHolder&lt;Global&gt;</a> <a class="code" href="classLoki_1_1SingletonHolder.html">Globals</a>;
-<a name="l00124"></a>00124 
-<a name="l00125"></a>00125 <span class="preprocessor">#endif // !defined(GLOBALS_H)</span>
+<a name="l00076"></a>00076         std::string <a class="code" href="classGlobal.html#41cee4049871dc14b3f7101e40734c16">itoa</a> (<span class="keywordtype">int</span> x);
+<a name="l00077"></a>00077         std::string <a class="code" href="classGlobal.html#2854bac3d8ea35166049a1a07028ed43">ftoa</a> (<span class="keywordtype">double</span> x);
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079         <span class="keywordtype">void</span> <a class="code" href="classGlobal.html#28cb8515629b9395ed5e2c00a8c1be7b">CheckGLErrors</a> (<span class="keyword">const</span> <span class="keywordtype">char</span> *op = 0);
+<a name="l00080"></a>00080 
+<a name="l00083"></a><a class="code" href="classGlobal.html#897ad69b2f273e4379c4dba53983ef25">00083</a>         <span class="keywordtype">void</span> <a class="code" href="classGlobal.html#897ad69b2f273e4379c4dba53983ef25">glVertex</a> (<a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;3&gt;</a> &amp;V) {
+<a name="l00084"></a>00084             <span class="keywordflow">if</span> (std::isfinite (V.<a class="code" href="classVecMath_1_1Vector.html#c60183f68f2d8a6473c64c2e753cd053">sqnorm</a>()))
+<a name="l00085"></a>00085                glVertex3dv (V.<a class="code" href="classVecMath_1_1Vector.html#540cec1fb9483d9cad8ea9356525d867">data</a>());
+<a name="l00086"></a>00086         }
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088         <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;3&gt;</a> <a class="code" href="classGlobal.html#3787cef8ea672abfa0f8beaf3738c698">vnormalize</a> (<span class="keywordtype">double</span> xx, <span class="keywordtype">double</span> yy, <span class="keywordtype">double</span> zz);
+<a name="l00089"></a>00089 
+<a name="l00091"></a><a class="code" href="classGlobal.html#028fc2484b8b9ccb9cf857a77076b637">00091</a>         <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="classGlobal.html#028fc2484b8b9ccb9cf857a77076b637">getMaxMemory</a>() { <span class="keywordflow">return</span> <a class="code" href="classGlobal.html#9ce07a3f47f79473e32f67eca456f79b">MaximumMemory</a>; }
+<a name="l00092"></a>00092 
+<a name="l00094"></a><a class="code" href="classGlobal.html#c512ceb809cd9a6b401900318d4bbc62">00094</a>         <span class="keyword">static</span> <a class="code" href="classColor.html">Color</a>&amp; <a class="code" href="classGlobal.html#c512ceb809cd9a6b401900318d4bbc62">white</a>() { <span class="keywordflow">return</span> <a class="code" href="classGlobal.html#c057e73b4628f9010a2580ccf21244d3">White</a>; }
+<a name="l00096"></a><a class="code" href="classGlobal.html#2d8afc1687681fc168bb468000fb9326">00096</a>         <span class="keyword">static</span> <a class="code" href="classColor.html">Color</a>&amp; <a class="code" href="classGlobal.html#2d8afc1687681fc168bb468000fb9326">grey50</a>() { <span class="keywordflow">return</span> <a class="code" href="classGlobal.html#ca5d167ac2b151c95be44e3e07bd8c58">Grey50</a>; }
+<a name="l00097"></a>00097 
+<a name="l00100"></a><a class="code" href="classGlobal.html#53d14f4c4fa1472251cb87181a021291">00100</a>         <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="classGlobal.html#53d14f4c4fa1472251cb87181a021291">check_memory</a>;
+<a name="l00102"></a><a class="code" href="classGlobal.html#db311d7f438bfa1f40f030b56e813578">00102</a>         <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="classGlobal.html#db311d7f438bfa1f40f030b56e813578">SR3</a>;
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104     <span class="keyword">private</span>:
+<a name="l00105"></a>00105         <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="classGlobal.html#ee41dfa8c3f54721609d57c58ae702d8">check_proc_meminfo</a> ();
+<a name="l00106"></a>00106 
+<a name="l00108"></a><a class="code" href="classGlobal.html#d4539a71509e1ef13b4f46a55012e27f">00108</a>         <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="classGlobal.html#d4539a71509e1ef13b4f46a55012e27f">ambientColorModifier</a>;
+<a name="l00110"></a><a class="code" href="classGlobal.html#a95e8a76247e0677dda04db724c1e322">00110</a>         <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="classGlobal.html#a95e8a76247e0677dda04db724c1e322">specularColorModifier</a>;
+<a name="l00112"></a><a class="code" href="classGlobal.html#79e85452303b5f18b408fe0467bf25ea">00112</a>         <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="classGlobal.html#79e85452303b5f18b408fe0467bf25ea">specularColorMinimum</a>;
+<a name="l00113"></a>00113 
+<a name="l00115"></a><a class="code" href="classGlobal.html#2f8f0a44741d3e331a41f0cb7cef5782">00115</a>         <span class="keyword">static</span> <a class="code" href="classColor.html">Color</a> <a class="code" href="classGlobal.html#2f8f0a44741d3e331a41f0cb7cef5782">background</a>;
+<a name="l00117"></a><a class="code" href="classGlobal.html#8a4a15ef7b6327aaafec97ba55635e74">00117</a>         <span class="keyword">static</span> <a class="code" href="classColor.html">Color</a> <a class="code" href="classGlobal.html#8a4a15ef7b6327aaafec97ba55635e74">fog_color</a>;
+<a name="l00119"></a><a class="code" href="classGlobal.html#a8a55e4a11eb8df8f7b3ec312626b48d">00119</a>         <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="classGlobal.html#a8a55e4a11eb8df8f7b3ec312626b48d">ALPHA</a>;
+<a name="l00121"></a><a class="code" href="classGlobal.html#1f0c53a55b080e48ea48f1b405d09790">00121</a>         <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="classGlobal.html#1f0c53a55b080e48ea48f1b405d09790">SHININESS</a>;
+<a name="l00123"></a><a class="code" href="classGlobal.html#c057e73b4628f9010a2580ccf21244d3">00123</a>         <span class="keyword">static</span> <a class="code" href="classColor.html">Color</a> <a class="code" href="classGlobal.html#c057e73b4628f9010a2580ccf21244d3">White</a>;
+<a name="l00125"></a><a class="code" href="classGlobal.html#ca5d167ac2b151c95be44e3e07bd8c58">00125</a>         <span class="keyword">static</span> <a class="code" href="classColor.html">Color</a> <a class="code" href="classGlobal.html#ca5d167ac2b151c95be44e3e07bd8c58">Grey50</a>;
+<a name="l00126"></a>00126 
+<a name="l00128"></a><a class="code" href="classGlobal.html#9ce07a3f47f79473e32f67eca456f79b">00128</a>         <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="classGlobal.html#9ce07a3f47f79473e32f67eca456f79b">MaximumMemory</a>;
+<a name="l00129"></a>00129 
+<a name="l00131"></a><a class="code" href="classGlobal.html#80cba6b0d930d4f38f01be9a03012b3c">00131</a>         QMainWindow *<a class="code" href="classGlobal.html#80cba6b0d930d4f38f01be9a03012b3c">mainWindow</a>;
+<a name="l00133"></a><a class="code" href="classGlobal.html#85c2751599c677efee668f61fc86e09d">00133</a>         QAction *<a class="code" href="classGlobal.html#85c2751599c677efee668f61fc86e09d">quitAction</a>;
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135 };
+<a name="l00136"></a>00136 
+<a name="l00137"></a>00137 <span class="keyword">typedef</span> <a class="code" href="classLoki_1_1SingletonHolder.html">Loki::SingletonHolder&lt;Global&gt;</a> <a class="code" href="classLoki_1_1SingletonHolder.html">Globals</a>;
+<a name="l00138"></a>00138 
+<a name="l00139"></a>00139 <span class="preprocessor">#endif // !defined(GLOBALS_H)</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Mar 28 19:08:51 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat Mar 29 23:59:03 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

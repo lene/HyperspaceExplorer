@@ -40,22 +40,21 @@ QMainWindow *&nbsp;</td><td class="memItemRight" valign="bottom"><b>getMainWindo
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#1ee9e9244bd1fe16b13f252ecc952872">GetGLList</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#ca70cc6b30787900288e1edaa6220c01">SetColor</a> (float R, float G, float B)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#fc415ad35cd5f1150223adc110af2abb">setColor</a> (const <a class="el" href="classColor.html">Color</a> &amp;)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4b7a42d87bde58d4edf67ffa2176b7ea"></a><!-- doxytag: member="Global::SetColor" ref="4b7a42d87bde58d4edf67ffa2176b7ea" args="(const VecMath::Vector&lt; 4 &gt; &amp;RGB)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetColor</b> (const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;RGB)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#cd24574b306c815486b2b41bd5c58f91">setColor</a> (float r, float g, float b, float a=1.0)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9d51fe4e3171a86f71f87123337d7364"></a><!-- doxytag: member="Global::BackgroundColor" ref="9d51fe4e3171a86f71f87123337d7364" args="()" -->
-float *&nbsp;</td><td class="memItemRight" valign="bottom"><b>BackgroundColor</b> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d2cda1b62aafc1e37319de079b51db1f"></a><!-- doxytag: member="Global::BackgroundColor" ref="d2cda1b62aafc1e37319de079b51db1f" args="()" -->
+<a class="el" href="classColor.html">Color</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>BackgroundColor</b> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="cddf4bae3fb9ccc06042abfa98ab8ff9"></a><!-- doxytag: member="Global::setBackground" ref="cddf4bae3fb9ccc06042abfa98ab8ff9" args="(float r, float g, float b, float a=1.0)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setBackground</b> (float r, float g, float b, float a=1.0)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d51a21fbe6a770154d8a16d0e5a06072"></a><!-- doxytag: member="Global::setBackground" ref="d51a21fbe6a770154d8a16d0e5a06072" args="(const Color &amp;rgba)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setBackground</b> (const <a class="el" href="classColor.html">Color</a> &amp;rgba)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="05069a5c9a05e86fe6a911cf8f32c02d"></a><!-- doxytag: member="Global::FogColor" ref="05069a5c9a05e86fe6a911cf8f32c02d" args="()" -->
-float *&nbsp;</td><td class="memItemRight" valign="bottom"><b>FogColor</b> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="de13b8a6c462f1d8f0180bbaa4960008"></a><!-- doxytag: member="Global::FogColor" ref="de13b8a6c462f1d8f0180bbaa4960008" args="()" -->
+<a class="el" href="classColor.html">Color</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>FogColor</b> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f9479f1280e9159b4c0476f4b6b47e78"></a><!-- doxytag: member="Global::setFogColor" ref="f9479f1280e9159b4c0476f4b6b47e78" args="(float r, float g, float b, float a=1.0)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setFogColor</b> (float r, float g, float b, float a=1.0)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1ae62128f23c890ebca8d6d0f7075f5c"></a><!-- doxytag: member="Global::setFogColor" ref="1ae62128f23c890ebca8d6d0f7075f5c" args="(const Color &amp;rgba)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setFogColor</b> (const <a class="el" href="classColor.html">Color</a> &amp;rgba)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#46d4d63fb67924db3e1bcf093a917a3f">atod</a> (QString)</td></tr>
 
@@ -65,51 +64,53 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setFogColor</b> (floa
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#28cb8515629b9395ed5e2c00a8c1be7b">CheckGLErrors</a> (const char *op=0)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="90bfe3da3c9db002a04fbeb49e195764"></a><!-- doxytag: member="Global::Debug" ref="90bfe3da3c9db002a04fbeb49e195764" args="(std::string s, std::string h=&quot;&quot;)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>Debug</b> (std::string s, std::string h=&quot;&quot;)</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="897ad69b2f273e4379c4dba53983ef25"></a><!-- doxytag: member="Global::glVertex" ref="897ad69b2f273e4379c4dba53983ef25" args="(VecMath::Vector&lt; 3 &gt; &amp;V)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>glVertex</b> (<a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 3 &gt; &amp;V)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#897ad69b2f273e4379c4dba53983ef25">glVertex</a> (<a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 3 &gt; &amp;V)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 3 &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#3787cef8ea672abfa0f8beaf3738c698">vnormalize</a> (double xx, double yy, double zz)</td></tr>
 
-<tr><td class="memTemplParams" nowrap colspan="2"><a class="anchor" name="566a325c28777ef16ed78640cf4de4a4"></a><!-- doxytag: member="Global::Swap" ref="566a325c28777ef16ed78640cf4de4a4" args="(T &amp;a, T &amp;b)" -->
-template&lt;typename T&gt; </td></tr>
-<tr><td class="memTemplItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><b>Swap</b> (T &amp;a, T &amp;b)</td></tr>
-
 <tr><td colspan="2"><br><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">static unsigned long&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#ee41dfa8c3f54721609d57c58ae702d8">check_proc_meminfo</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static unsigned long&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#028fc2484b8b9ccb9cf857a77076b637">getMaxMemory</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static <a class="el" href="classColor.html">Color</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#c512ceb809cd9a6b401900318d4bbc62">white</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static <a class="el" href="classColor.html">Color</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#2d8afc1687681fc168bb468000fb9326">grey50</a> ()</td></tr>
 
 <tr><td colspan="2"><br><h2>Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">QStringList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#bcddc926a59c03ecfcca578f5829be8d">rcdirs</a></td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#db311d7f438bfa1f40f030b56e813578">SR3</a></td></tr>
+
 <tr><td colspan="2"><br><h2>Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="53d14f4c4fa1472251cb87181a021291"></a><!-- doxytag: member="Global::check_memory" ref="53d14f4c4fa1472251cb87181a021291" args="" -->
-static bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>check_memory</b> = false</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#53d14f4c4fa1472251cb87181a021291">check_memory</a> = false</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">static double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#d5e70d3caa0daeffbf4f78637e271650">SR3</a> = sqrt(3.)</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">static double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#3c6a49e93e27066408f579c88816bcab">ALPHA</a> = .9</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">static double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#fede83146ef16dedae04215871724250">SHININESS</a> = 32.</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">static float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#c1cb219ab01774c3c23961f8602e596b">fog_color</a> [4] = { 0.2, 0.2, 0.2, 1.0 }</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">static float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#134843c6dc446b5e10438194a4f3cd58">White</a> [4] = { 1.0, 1.0, 1.0, 1.0 }</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">static float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#d8fdca4392cae5fde280fc0a0367f1be">grey50</a> [4] = { 0.5, 0.5, 0.5, 1.0 }</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2c2868078a3675c5d91ea40c37a4dd7f"></a><!-- doxytag: member="Global::background" ref="2c2868078a3675c5d91ea40c37a4dd7f" args="[4]" -->
-static float&nbsp;</td><td class="memItemRight" valign="bottom"><b>background</b> [4] = { 0.1, 0.1, 0.1, 1.0 }</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">static unsigned long&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#9ce07a3f47f79473e32f67eca456f79b">MaximumMemory</a> = check_proc_meminfo ()</td></tr>
+<tr><td colspan="2"><br><h2>Static Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static unsigned long&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#ee41dfa8c3f54721609d57c58ae702d8">check_proc_meminfo</a> ()</td></tr>
 
 <tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="85c2751599c677efee668f61fc86e09d"></a><!-- doxytag: member="Global::quitAction" ref="85c2751599c677efee668f61fc86e09d" args="" -->
-QAction *&nbsp;</td><td class="memItemRight" valign="bottom"><b>quitAction</b></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#d4539a71509e1ef13b4f46a55012e27f">ambientColorModifier</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="80cba6b0d930d4f38f01be9a03012b3c"></a><!-- doxytag: member="Global::mainWindow" ref="80cba6b0d930d4f38f01be9a03012b3c" args="" -->
-QMainWindow *&nbsp;</td><td class="memItemRight" valign="bottom"><b>mainWindow</b></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#a95e8a76247e0677dda04db724c1e322">specularColorModifier</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#79e85452303b5f18b408fe0467bf25ea">specularColorMinimum</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#a8a55e4a11eb8df8f7b3ec312626b48d">ALPHA</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#1f0c53a55b080e48ea48f1b405d09790">SHININESS</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">QMainWindow *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#80cba6b0d930d4f38f01be9a03012b3c">mainWindow</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">QAction *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#85c2751599c677efee668f61fc86e09d">quitAction</a></td></tr>
+
+<tr><td colspan="2"><br><h2>Static Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static <a class="el" href="classColor.html">Color</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#2f8f0a44741d3e331a41f0cb7cef5782">background</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static <a class="el" href="classColor.html">Color</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#8a4a15ef7b6327aaafec97ba55635e74">fog_color</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static <a class="el" href="classColor.html">Color</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#c057e73b4628f9010a2580ccf21244d3">White</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static <a class="el" href="classColor.html">Color</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#ca5d167ac2b151c95be44e3e07bd8c58">Grey50</a></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static unsigned long&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#9ce07a3f47f79473e32f67eca456f79b">MaximumMemory</a> = check_proc_meminfo ()</td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
@@ -137,47 +138,84 @@ find the ID of the first free GL list <dl class="return" compact><dt><b>Returns:
 
 </div>
 </div><p>
-<a class="anchor" name="ca70cc6b30787900288e1edaa6220c01"></a><!-- doxytag: member="Global::SetColor" ref="ca70cc6b30787900288e1edaa6220c01" args="(float R, float G, float B)" -->
+<a class="anchor" name="fc415ad35cd5f1150223adc110af2abb"></a><!-- doxytag: member="Global::setColor" ref="fc415ad35cd5f1150223adc110af2abb" args="(const Color &amp;)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Global::SetColor           </td>
+          <td class="memname">void Global::setColor           </td>
           <td>(</td>
-          <td class="paramtype">float&nbsp;</td>
-          <td class="paramname"> <em>R</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&nbsp;</td>
-          <td class="paramname"> <em>G</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&nbsp;</td>
-          <td class="paramname"> <em>B</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td width="100%"></td>
+          <td class="paramtype">const <a class="el" href="classColor.html">Color</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>rgb</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-set the current OpenGL color uses HARDCODED simple algorithm to set ambient and specular values for a specific color: if halves resp. dobles them, clipping at 1.0 THIS FUNCTION IS UGLY IN MANY RESPECTS! <dl compact><dt><b>Parameters:</b></dt><dd>
+set the current OpenGL color uses HARDCODED simple algorithm to set ambient and specular values for a specific color: if halves resp. dobles them, clipping at 1.0 <dl compact><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>make the agorithm which computes the ambient and specular values variable </dd></dl>
+<dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>R</em>&nbsp;</td><td>R value to be set </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>G</em>&nbsp;</td><td>G value to be set </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>B</em>&nbsp;</td><td>B value to be set </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>rgb</em>&nbsp;</td><td>color value to be set </td></tr>
   </table>
 </dl>
 
-<p>References <a class="el" href="Globals_8H-source.html#l00054">SHININESS</a>.</p>
+<p>References <a class="el" href="Globals_8H-source.html#l00108">ambientColorModifier</a>, <a class="el" href="Color_8H-source.html#l00066">Color::setComponentLowerLimit()</a>, <a class="el" href="Globals_8H-source.html#l00121">SHININESS</a>, <a class="el" href="Globals_8H-source.html#l00112">specularColorMinimum</a>, and <a class="el" href="Globals_8H-source.html#l00110">specularColorModifier</a>.</p>
+
+<p>Referenced by <a class="el" href="Globals_8H-source.html#l00064">setColor()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="cd24574b306c815486b2b41bd5c58f91"></a><!-- doxytag: member="Global::setColor" ref="cd24574b306c815486b2b41bd5c58f91" args="(float r, float g, float b, float a=1.0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Global::setColor           </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>r</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>g</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>a</em> = <code>1.0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+This function is overloaded for convenience. <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>r</em>&nbsp;</td><td>red component of the color to set </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>g</em>&nbsp;</td><td>green component of the color to set </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>b</em>&nbsp;</td><td>blue component of the color to set </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>r</em>&nbsp;</td><td>alpha component of the color to set </td></tr>
+  </table>
+</dl>
+
+<p>References <a class="el" href="Globals_8C-source.html#l00069">setColor()</a>.</p>
 
 </div>
 </div><p>
@@ -284,6 +322,33 @@ debug function for OpenGL commands; outputs all current GL errors on cerr <dl co
 
 </div>
 </div><p>
+<a class="anchor" name="897ad69b2f273e4379c4dba53983ef25"></a><!-- doxytag: member="Global::glVertex" ref="897ad69b2f273e4379c4dba53983ef25" args="(VecMath::Vector&lt; 3 &gt; &amp;V)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Global::glVertex           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 3 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>V</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+define a GL Vertex from a Vector&lt;3&gt; <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>V</em>&nbsp;</td><td>the vertex to be defined </td></tr>
+  </table>
+</dl>
+
+<p>References <a class="el" href="plugins_2Vector_8H-source.html#l00058">VecMath::Vector&lt; D, N &gt;::data()</a>, and <a class="el" href="plugins_2Vector_8H-source.html#l00196">VecMath::Vector&lt; D, N &gt;::sqnorm()</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="3787cef8ea672abfa0f8beaf3738c698"></a><!-- doxytag: member="Global::vnormalize" ref="3787cef8ea672abfa0f8beaf3738c698" args="(double xx, double yy, double zz)" -->
 <div class="memitem">
 <div class="memproto">
@@ -327,6 +392,69 @@ normalizes a Vector made from 3 doubles out-of-place <dl compact><dt><b>Paramete
 
 </div>
 </div><p>
+<a class="anchor" name="028fc2484b8b9ccb9cf857a77076b637"></a><!-- doxytag: member="Global::getMaxMemory" ref="028fc2484b8b9ccb9cf857a77076b637" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static unsigned long Global::getMaxMemory           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+maximum amount of memory available for use 
+<p>References <a class="el" href="Globals_8H-source.html#l00128">MaximumMemory</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c512ceb809cd9a6b401900318d4bbc62"></a><!-- doxytag: member="Global::white" ref="c512ceb809cd9a6b401900318d4bbc62" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classColor.html">Color</a>&amp; Global::white           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+color definition for White 
+<p>References <a class="el" href="Globals_8H-source.html#l00123">White</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2d8afc1687681fc168bb468000fb9326"></a><!-- doxytag: member="Global::grey50" ref="2d8afc1687681fc168bb468000fb9326" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classColor.html">Color</a>&amp; Global::grey50           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+color definition for Grey 
+<p>References <a class="el" href="Globals_8H-source.html#l00125">Grey50</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="ee41dfa8c3f54721609d57c58ae702d8"></a><!-- doxytag: member="Global::check_proc_meminfo" ref="ee41dfa8c3f54721609d57c58ae702d8" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -336,7 +464,7 @@ normalizes a Vector made from 3 doubles out-of-place <dl compact><dt><b>Paramete
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td width="100%"><code> [static]</code></td>
+          <td width="100%"><code> [static, private]</code></td>
         </tr>
       </table>
 </div>
@@ -345,116 +473,11 @@ normalizes a Vector made from 3 doubles out-of-place <dl compact><dt><b>Paramete
 <p>
 get the system memory from /proc/meminfo of course, this only works on OS's with /proc filesystem and /proc/meminfo information! relies on /proc/meminfo of being of the format: MemTotal: 506912 kB ... returns 512 MB as default memory size, when /proc/meminfo is not present <dl class="return" compact><dt><b>Returns:</b></dt><dd>total memory size, or 512 MB </dd></dl>
 
+<p>References <a class="el" href="Globals_8H-source.html#l00100">check_memory</a>.</p>
+
 </div>
 </div><p>
 <hr><h2>Member Data Documentation</h2>
-<a class="anchor" name="d5e70d3caa0daeffbf4f78637e271650"></a><!-- doxytag: member="Global::SR3" ref="d5e70d3caa0daeffbf4f78637e271650" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double <a class="el" href="classGlobal.html#d5e70d3caa0daeffbf4f78637e271650">Global::SR3</a> = sqrt(3.)<code> [static]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-sqrt (3), stored to save computation time, probably superfluous 
-</div>
-</div><p>
-<a class="anchor" name="3c6a49e93e27066408f579c88816bcab"></a><!-- doxytag: member="Global::ALPHA" ref="3c6a49e93e27066408f579c88816bcab" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double <a class="el" href="classGlobal.html#3c6a49e93e27066408f579c88816bcab">Global::ALPHA</a> = .9<code> [static]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-global (YUCK!) alpha value for transparent display 
-</div>
-</div><p>
-<a class="anchor" name="fede83146ef16dedae04215871724250"></a><!-- doxytag: member="Global::SHININESS" ref="fede83146ef16dedae04215871724250" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double <a class="el" href="classGlobal.html#fede83146ef16dedae04215871724250">Global::SHININESS</a> = 32.<code> [static]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-global (YUCK!) shininess value 
-<p>Referenced by <a class="el" href="Globals_8C-source.html#l00091">SetColor()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="c1cb219ab01774c3c23961f8602e596b"></a><!-- doxytag: member="Global::fog_color" ref="c1cb219ab01774c3c23961f8602e596b" args="[4]" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float <a class="el" href="classGlobal.html#c1cb219ab01774c3c23961f8602e596b">Global::fog_color</a> = { 0.2, 0.2, 0.2, 1.0 }<code> [static]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-global (YUCK!) fog/depth cue color 
-</div>
-</div><p>
-<a class="anchor" name="134843c6dc446b5e10438194a4f3cd58"></a><!-- doxytag: member="Global::White" ref="134843c6dc446b5e10438194a4f3cd58" args="[4]" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float <a class="el" href="classGlobal.html#134843c6dc446b5e10438194a4f3cd58">Global::White</a> = { 1.0, 1.0, 1.0, 1.0 }<code> [static]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-color definition for White 
-</div>
-</div><p>
-<a class="anchor" name="d8fdca4392cae5fde280fc0a0367f1be"></a><!-- doxytag: member="Global::grey50" ref="d8fdca4392cae5fde280fc0a0367f1be" args="[4]" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float <a class="el" href="classGlobal.html#d8fdca4392cae5fde280fc0a0367f1be">Global::grey50</a> = { 0.5, 0.5, 0.5, 1.0 }<code> [static]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-color definition for Grey 
-</div>
-</div><p>
-<a class="anchor" name="9ce07a3f47f79473e32f67eca456f79b"></a><!-- doxytag: member="Global::MaximumMemory" ref="9ce07a3f47f79473e32f67eca456f79b" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned long <a class="el" href="classGlobal.html#9ce07a3f47f79473e32f67eca456f79b">Global::MaximumMemory</a> = check_proc_meminfo ()<code> [static]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-maximum memory that should be consumed; calls check_proc_meminfo () above 
-</div>
-</div><p>
 <a class="anchor" name="bcddc926a59c03ecfcca578f5829be8d"></a><!-- doxytag: member="Global::rcdirs" ref="bcddc926a59c03ecfcca578f5829be8d" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -470,10 +493,237 @@ maximum memory that should be consumed; calls check_proc_meminfo () above
 why tf did i make that global again? damn, i really should write comments immediately after writing the code&lt;/rant&gt; 
 </div>
 </div><p>
+<a class="anchor" name="53d14f4c4fa1472251cb87181a021291"></a><!-- doxytag: member="Global::check_memory" ref="53d14f4c4fa1472251cb87181a021291" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classGlobal.html#53d14f4c4fa1472251cb87181a021291">Global::check_memory</a> = false<code> [static]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+whether to check for memory usage. this member is set or unset from <a class="el" href="classGlobal.html#ee41dfa8c3f54721609d57c58ae702d8">check_proc_meminfo()</a>, depending on the success of that function. 
+<p>Referenced by <a class="el" href="Globals_8C-source.html#l00142">check_proc_meminfo()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="db311d7f438bfa1f40f030b56e813578"></a><!-- doxytag: member="Global::SR3" ref="db311d7f438bfa1f40f030b56e813578" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double <a class="el" href="classGlobal.html#db311d7f438bfa1f40f030b56e813578">Global::SR3</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+sqrt (3), stored to save computation time, probably superfluous 
+</div>
+</div><p>
+<a class="anchor" name="d4539a71509e1ef13b4f46a55012e27f"></a><!-- doxytag: member="Global::ambientColorModifier" ref="d4539a71509e1ef13b4f46a55012e27f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double <a class="el" href="classGlobal.html#d4539a71509e1ef13b4f46a55012e27f">Global::ambientColorModifier</a><code> [private]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+value to multiply a color with to get its ambient value 
+<p>Referenced by <a class="el" href="Globals_8C-source.html#l00069">setColor()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a95e8a76247e0677dda04db724c1e322"></a><!-- doxytag: member="Global::specularColorModifier" ref="a95e8a76247e0677dda04db724c1e322" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double <a class="el" href="classGlobal.html#a95e8a76247e0677dda04db724c1e322">Global::specularColorModifier</a><code> [private]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+value to multiply a color with to get its specular value 
+<p>Referenced by <a class="el" href="Globals_8C-source.html#l00069">setColor()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="79e85452303b5f18b408fe0467bf25ea"></a><!-- doxytag: member="Global::specularColorMinimum" ref="79e85452303b5f18b408fe0467bf25ea" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double <a class="el" href="classGlobal.html#79e85452303b5f18b408fe0467bf25ea">Global::specularColorMinimum</a><code> [private]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+minimum value for the specular component of any color 
+<p>Referenced by <a class="el" href="Globals_8C-source.html#l00069">setColor()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2f8f0a44741d3e331a41f0cb7cef5782"></a><!-- doxytag: member="Global::background" ref="2f8f0a44741d3e331a41f0cb7cef5782" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classColor.html">Color</a> <a class="el" href="classGlobal.html#2f8f0a44741d3e331a41f0cb7cef5782">Global::background</a><code> [static, private]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+global (YUCK!) background color 
+</div>
+</div><p>
+<a class="anchor" name="8a4a15ef7b6327aaafec97ba55635e74"></a><!-- doxytag: member="Global::fog_color" ref="8a4a15ef7b6327aaafec97ba55635e74" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classColor.html">Color</a> <a class="el" href="classGlobal.html#8a4a15ef7b6327aaafec97ba55635e74">Global::fog_color</a><code> [static, private]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+global (YUCK!) fog/depth cue color 
+</div>
+</div><p>
+<a class="anchor" name="a8a55e4a11eb8df8f7b3ec312626b48d"></a><!-- doxytag: member="Global::ALPHA" ref="a8a55e4a11eb8df8f7b3ec312626b48d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double <a class="el" href="classGlobal.html#a8a55e4a11eb8df8f7b3ec312626b48d">Global::ALPHA</a><code> [private]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+global (YUCK!) alpha value for transparent display 
+</div>
+</div><p>
+<a class="anchor" name="1f0c53a55b080e48ea48f1b405d09790"></a><!-- doxytag: member="Global::SHININESS" ref="1f0c53a55b080e48ea48f1b405d09790" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double <a class="el" href="classGlobal.html#1f0c53a55b080e48ea48f1b405d09790">Global::SHININESS</a><code> [private]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+global (YUCK!) shininess value 
+<p>Referenced by <a class="el" href="Globals_8C-source.html#l00069">setColor()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c057e73b4628f9010a2580ccf21244d3"></a><!-- doxytag: member="Global::White" ref="c057e73b4628f9010a2580ccf21244d3" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classColor.html">Color</a> <a class="el" href="classGlobal.html#c057e73b4628f9010a2580ccf21244d3">Global::White</a><code> [static, private]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+color definition for White 
+<p>Referenced by <a class="el" href="Globals_8H-source.html#l00094">white()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ca5d167ac2b151c95be44e3e07bd8c58"></a><!-- doxytag: member="Global::Grey50" ref="ca5d167ac2b151c95be44e3e07bd8c58" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classColor.html">Color</a> <a class="el" href="classGlobal.html#ca5d167ac2b151c95be44e3e07bd8c58">Global::Grey50</a><code> [static, private]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+color definition for Grey 
+<p>Referenced by <a class="el" href="Globals_8H-source.html#l00096">grey50()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9ce07a3f47f79473e32f67eca456f79b"></a><!-- doxytag: member="Global::MaximumMemory" ref="9ce07a3f47f79473e32f67eca456f79b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long <a class="el" href="classGlobal.html#9ce07a3f47f79473e32f67eca456f79b">Global::MaximumMemory</a> = check_proc_meminfo ()<code> [static, private]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+maximum amount of memory available for use<p>
+maximum memory that should be consumed; calls check_proc_meminfo () above 
+<p>Referenced by <a class="el" href="Globals_8H-source.html#l00091">getMaxMemory()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="80cba6b0d930d4f38f01be9a03012b3c"></a><!-- doxytag: member="Global::mainWindow" ref="80cba6b0d930d4f38f01be9a03012b3c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMainWindow* <a class="el" href="classGlobal.html#80cba6b0d930d4f38f01be9a03012b3c">Global::mainWindow</a><code> [private]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+main window of the application 
+</div>
+</div><p>
+<a class="anchor" name="85c2751599c677efee668f61fc86e09d"></a><!-- doxytag: member="Global::quitAction" ref="85c2751599c677efee668f61fc86e09d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* <a class="el" href="classGlobal.html#85c2751599c677efee668f61fc86e09d">Global::quitAction</a><code> [private]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+global QAction that quits the program 
+</div>
+</div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/<a class="el" href="Globals_8H-source.html">Globals.H</a><li>workspace/HyperspaceExplorer/src/Globals.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Mar 28 19:08:51 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat Mar 29 23:59:04 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

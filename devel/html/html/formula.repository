@@ -46,3 +46,9 @@
 \form#45:$ f: R^2 \rightarrow R^4 $
 \form#46:$ f: C \rightarrow C $
 \form#47:$ 3^4 $
+\form#48:\[ \frac{df}{dt} = \lim_{h \rightarrow \infty} \frac{f(t+h, v) - f(t)}{h}, \frac{df}{dv},\frac{df}{dv}\mbox{analogously} \]
+\form#49:\[ \frac{df}{dt} = \lim_{h \rightarrow \infty} \frac{f(t+h, v) - f(t)}{h}, \frac{df}{du},\frac{df}{dv}\mbox{analogously} \]
+\form#50:\[ \frac{df}{dt} = \lim_{h \rightarrow 0} \frac{f(t+h, v) - f(t)}{h}, \frac{df}{du},\frac{df}{dv}\mbox{analogously} \]
+\form#51:\[ \frac{df}{du} = \lim_{h \rightarrow 0} \frac{f(u+h, v) - f(u)}{h}, \frac{df}{dv}\mbox{analogously} \]
+\form#52:\[ \frac{df}{dt} = \lim_{h \rightarrow 0} \frac{f(t+h, u, v) - f(t, u, v)}{h}, \frac{df}{du},\frac{df}{dv}\mbox{analogously} \]
+\form#53:\[ \frac{df}{du} = \lim_{h \rightarrow 0} \frac{f(u+h, v) - f(u, v)}{h}, \frac{df}{dv}\mbox{analogously} \]
