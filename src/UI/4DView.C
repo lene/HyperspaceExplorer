@@ -50,7 +50,7 @@ using VecMath::Matrix;
 C4DView::C4DView(QWidget *parent):
     XQGLWidget (parent),
 
-    ObjectList (0), CoordinateCross (0),
+    F(auto_ptr<Function>()),
 
     Tx (0), Ty (0), Tz (0), Tw (0),
     Rxy (0), Rxz (0), Rxw (0), Ryz (0), Ryw (0), Rzw (0),
@@ -58,23 +58,29 @@ C4DView::C4DView(QWidget *parent):
     m_rotX (15), m_rotY (15), m_rotZ (0.),
     m_transX (0), m_transY (0), m_camZ (-10.),
 
-    m_LeftDownPos (0,0), m_MidDownPos (0,0), m_RightDownPos (0,0),
+    CamW (-3.), ScrW (0.),
 
     AntiAlias (false), DisplayPolygons (false), Lighting (true),
     DepthCue3D (false), DepthCue4D (false),
     DisplayCoordinates (false),
+    RenderToPixmap (false),
+    animationDirectory("/tmp"),
+    animationPrefix("HyperspaceExplorer_Image"),
+    animationMaxFrames((unsigned)-1),
+    animation_fps (50),
+
+    ObjectList (0), CoordinateCross (0),
+
     Animated (false), TakingSpinValues (false),
 
-    RenderToPixmap (false), CurrentlyRendering (false),
+     CurrentlyRendering (false),
+
+    m_LeftDownPos (0,0), m_MidDownPos (0,0), m_RightDownPos (0,0),
+
 
     Values (new ValuesDialogImpl (this)),
-    F(auto_ptr<Function>()),
     dxy (0), dxz (0), dxw (0), dyz (0), dyw (0), dzw (0),
-    dx (0), dy (0), dz (0),
-    animation_fps (50),
-    CamW (-3.), ScrW (0.),
-    animationMaxFrames((unsigned)-1), animationDirectory("/tmp"),
-    animationPrefix("HyperspaceExplorer_Image") {
+    dx (0), dy (0), dz (0) {
 
     InitCross();
 
@@ -668,9 +674,10 @@ void C4DView::UpdateStatus (QString status) {
         status = " - "+status;
     }
 
-    Globals::Instance().getMainWindow()->statusBar()->showMessage (ObjectName+status);
+    Globals::Instance().getMainWindow()->statusBar()->showMessage(
+                      F->getFunctionName()+status);
 
-    setWindowTitle(ObjectName+status);
+    setWindowTitle(F->getFunctionName()+status);
 }
 
 /// Switch 3D depth cue on and off
@@ -697,9 +704,8 @@ void C4DView::AssignValues (const std::auto_ptr<Function> &F) {
     QString Parameter4 = F->getParameterName(3);
 
     if (!F->getFunctionName().isEmpty()) {
-        ObjectName = F->getFunctionName();
-        setWindowTitle(ObjectName);
-        Values->setFunction(ObjectName);
+        setWindowTitle(F->getFunctionName());
+        Values->setFunction(F->getFunctionName());
     }
 
     if (dynamic_cast<Object *>(F.get())) {
@@ -834,19 +840,6 @@ void C4DView::ApplyChanges (void) {
     Redraw ();
 }
 
-/** called whenever an object or the parameters have changed; this is the most
- *  generalized version, which is great, but sadly it doesn't exist  yet      */
-void C4DView::ParametersChanged(double, double, unsigned,
-                                double, double, unsigned,
-                                double, double, unsigned,
-                                double a, double b, double c, double d,
-                                QString &) {
-    F->SetParameters(a, b, c, d);
-//    QMessageBox::information (this, "C4DView::ParametersChanged",
-//                              "... is not yet implemented");
-}
-
-
 ////////////////////////////////////////////////////////////////////////////////
 //
 //    from here on it gets pretty boring OpenGL management stuff
@@ -922,8 +915,9 @@ void C4DView::RenderScene (unsigned /* Frame */) {  //  draw (frame of animation
 }
 
 /// Should be called whenever the object is rotated or translated
-/** */
-void C4DView::OnPaint() {                           //  object drawing routine
+/** Object drawing routine: Does all the OpenGL stuff necessary to paint the
+ *  object on screen                                                          */
+void C4DView::OnPaint() {
     SingletonLog::Instance().log("C4DView::OnPaint ()");
 
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);   //  clear the window
@@ -1077,7 +1071,7 @@ void C4DView::Wireframe() {
         glDisable (GL_CULL_FACE);
     }
     menu->getAction("Wireframe")->setChecked (DisplayPolygons);
-    SetWireframe (DisplayPolygons);
+    setWireframe (DisplayPolygons);
 
     OnPaint ();
 }
@@ -1264,7 +1258,7 @@ void C4DView::ObjectHypersponge() {
 void C4DView::ObjectGasket() {
     menu->updateFunctionMenu("Sierpinski Gasket");
 
-        F.reset(new Gasket (unsigned (Values->a ()), 2.*Values->b ()));
+    F.reset(new Gasket (unsigned (Values->a ()), 2.*Values->b ()));
 
     AssignValues(F);
     Redraw ();

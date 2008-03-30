@@ -10,6 +10,8 @@
 //
 //
 
+#include "Menu4D.H"
+
 #include "SlotHelper.H"
 #include "4DView.H"
 

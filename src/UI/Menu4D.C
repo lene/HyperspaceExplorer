@@ -155,7 +155,7 @@ Menu4D::Menu4D(C4DView *_parent):
         TESTED_FEATURE (getAction("Transparence"));
     }
       //      appear->setItemEnabled (transparentAction, DisplayPolygons);
-    parent->SetWireframe (parent->getDisplayPolygons());
+    parent->setWireframe (parent->getDisplayPolygons());
 }
 
 void Menu4D::addToMenuBar(QMenuBar *menuBar) {
