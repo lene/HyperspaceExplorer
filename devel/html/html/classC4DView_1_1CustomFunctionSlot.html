@@ -30,7 +30,7 @@
 <h1>C4DView::CustomFunctionSlot&lt; function &gt; Class Template Reference<br>
 <small>
 [<a class="el" href="group__UIHelpers.html">Helper classes for User Interface classes</a>]</small>
-</h1><!-- doxytag: class="C4DView::CustomFunctionSlot" -->Class template to outsource redundant code.  
+</h1><!-- doxytag: class="C4DView::CustomFunctionSlot" -->Class template to outsource redundant code for customized functions.  
 <a href="#_details">More...</a>
 <p>
 <code>#include &lt;<a class="el" href="4DView_8H-source.html">4DView.H</a>&gt;</code>
@@ -40,9 +40,9 @@
 <a href="classC4DView_1_1CustomFunctionSlot-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1CustomFunctionSlot.html#b4150e26778debfb3de8214203578a41">createCustomFunction</a> (<a class="el" href="classC4DView.html">C4DView</a> *view)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__UIHelpers.html#gb4150e26778debfb3de8214203578a41">createCustomFunction</a> (<a class="el" href="classC4DView.html">C4DView</a> *view)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Factory method to create a new customized <a class="el" href="classFunction.html" title="A Function is a mathematical function  .">Function</a> of type R^3-&gt;R.  <a href="#b4150e26778debfb3de8214203578a41"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Factory method to create a new customized <a class="el" href="classFunction.html" title="A Function is a mathematical function  .">Function</a> of type R^3-&gt;R.  <a href="group__UIHelpers.html#gb4150e26778debfb3de8214203578a41"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1CustomFunctionSlot.html#2eaaaf653f2d1bbfe3a2b416f33e4b08">createCustomSurface</a> (<a class="el" href="classC4DView.html">C4DView</a> *view)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Factory method to create a new customized <a class="el" href="classFunction.html" title="A Function is a mathematical function  .">Function</a> of type R^2-&gt;R^4.  <a href="#2eaaaf653f2d1bbfe3a2b416f33e4b08"></a><br></td></tr>
@@ -51,41 +51,14 @@
 <h3>template&lt;class function&gt;<br>
  class C4DView::CustomFunctionSlot&lt; function &gt;</h3>
 
-Class template to outsource redundant code. 
+Class template to outsource redundant code for customized functions. 
 <p>
-Class template to outsource redundant code for the generation of customized functions in a slot called by QActions from the QMenu <dl compact><dt><b>Parameters:</b></dt><dd>
+Redundant code for the generation of customized functions is moved to a slot called by QActions from the QMenu <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>function</em>&nbsp;</td><td>the <a class="el" href="classFunction.html" title="A Function is a mathematical function  .">Function</a> to be created in the slot </td></tr>
   </table>
 </dl>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="b4150e26778debfb3de8214203578a41"></a><!-- doxytag: member="C4DView::CustomFunctionSlot::createCustomFunction" ref="b4150e26778debfb3de8214203578a41" args="(C4DView *view)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class function&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="classC4DView_1_1CustomFunctionSlot.html">C4DView::CustomFunctionSlot</a>&lt; function &gt;::createCustomFunction           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classC4DView.html">C4DView</a> *&nbsp;</td>
-          <td class="paramname"> <em>view</em>          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td width="100%"><code> [inline, static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Factory method to create a new customized <a class="el" href="classFunction.html" title="A Function is a mathematical function  .">Function</a> of type R^3-&gt;R. 
-<p>
-This function template is called by each slot with the correct function type as template parameter. <br>
- Sets F to the newly created <a class="el" href="classFunction.html" title="A Function is a mathematical function  .">Function</a>, checks the corresponding menu item, updates the ValuesDialog and redraws. Does some error handling in case the <a class="el" href="classFunction.html" title="A Function is a mathematical function  .">Function</a> could not be loaded. 
-<p>References <a class="el" href="4DView_8C-source.html#l00693">C4DView::AssignValues()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00043">ValuesDialogImpl::dt()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00048">ValuesDialogImpl::du()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00053">ValuesDialogImpl::dv()</a>, <a class="el" href="4DView_8H-source.html#l00275">C4DView::F</a>, <a class="el" href="4DView_8C-source.html#l00888">C4DView::Redraw()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00041">ValuesDialogImpl::tmax()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00040">ValuesDialogImpl::tmin()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00046">ValuesDialogImpl::umax()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00045">ValuesDialogImpl::umin()</a>, <a class="el" href="4DView_8C-source.html#l00649">C4DView::UpdateStatus()</a>, <a class="el" href="4DView_8H-source.html#l00272">C4DView::Values</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00051">ValuesDialogImpl::vmax()</a>, and <a class="el" href="ValuesDialogImpl_8H-source.html#l00050">ValuesDialogImpl::vmin()</a>.</p>
-
-</div>
-</div><p>
 <a class="anchor" name="2eaaaf653f2d1bbfe3a2b416f33e4b08"></a><!-- doxytag: member="C4DView::CustomFunctionSlot::createCustomSurface" ref="2eaaaf653f2d1bbfe3a2b416f33e4b08" args="(C4DView *view)" -->
 <div class="memitem">
 <div class="memproto">
@@ -109,14 +82,14 @@ Factory method to create a new customized <a class="el" href="classFunction.html
 <p>
 This function template is called by each slot with the correct function type as template parameter. <br>
  Sets F to the newly created <a class="el" href="classFunction.html" title="A Function is a mathematical function  .">Function</a>, checks the corresponding menu item, updates the ValuesDialog and redraws. Does some error handling in case the <a class="el" href="classFunction.html" title="A Function is a mathematical function  .">Function</a> could not be loaded. 
-<p>References <a class="el" href="4DView_8C-source.html#l00693">C4DView::AssignValues()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00043">ValuesDialogImpl::dt()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00048">ValuesDialogImpl::du()</a>, <a class="el" href="4DView_8H-source.html#l00275">C4DView::F</a>, <a class="el" href="4DView_8C-source.html#l00888">C4DView::Redraw()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00041">ValuesDialogImpl::tmax()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00040">ValuesDialogImpl::tmin()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00046">ValuesDialogImpl::umax()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00045">ValuesDialogImpl::umin()</a>, <a class="el" href="4DView_8C-source.html#l00649">C4DView::UpdateStatus()</a>, and <a class="el" href="4DView_8H-source.html#l00272">C4DView::Values</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00700">C4DView::AssignValues()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00043">ValuesDialogImpl::dt()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00048">ValuesDialogImpl::du()</a>, <a class="el" href="4DView_8H-source.html#l00195">C4DView::F</a>, <a class="el" href="4DView_8C-source.html#l00881">C4DView::Redraw()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00041">ValuesDialogImpl::tmax()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00040">ValuesDialogImpl::tmin()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00046">ValuesDialogImpl::umax()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00045">ValuesDialogImpl::umin()</a>, <a class="el" href="4DView_8C-source.html#l00655">C4DView::UpdateStatus()</a>, and <a class="el" href="4DView_8H-source.html#l00253">C4DView::Values</a>.</p>
 
 </div>
 </div><p>
-<hr>The documentation for this class was generated from the following file:<ul>
-<li>workspace/HyperspaceExplorer/src/UI/<a class="el" href="4DView_8H-source.html">4DView.H</a></ul>
+<hr>The documentation for this class was generated from the following files:<ul>
+<li>workspace/HyperspaceExplorer/src/UI/<a class="el" href="4DView_8H-source.html">4DView.H</a><li>workspace/HyperspaceExplorer/src/UI/<a class="el" href="CustomFunctionSlot_8impl_8H-source.html">CustomFunctionSlot.impl.H</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun Mar 30 23:29:23 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Mar 31 01:19:18 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>
