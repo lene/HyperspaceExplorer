@@ -28,7 +28,10 @@
 <h1>Hypersphere Class Reference<br>
 <small>
 [<a class="el" href="group__FunctionGroup.html">Functions and objects</a>]</small>
-</h1><!-- doxytag: class="Hypersphere" --><!-- doxytag: inherits="Function" --><code>#include &lt;<a class="el" href="Function_8H-source.html">Function.H</a>&gt;</code>
+</h1><!-- doxytag: class="Hypersphere" --><!-- doxytag: inherits="Function" -->A hypersphere.  
+<a href="#_details">More...</a>
+<p>
+<code>#include &lt;<a class="el" href="Function_8H-source.html">Function.H</a>&gt;</code>
 <p>
 <div class="dynheader">
 Inheritance diagram for Hypersphere:</div>
@@ -48,17 +51,22 @@ Inheritance diagram for Hypersphere:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHypersphere.html#8eeb401282ab3269d40537b68cb2b3d3">SetParameters</a> (double _a=0, double=0, double=0, double=0)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Placeholder for function to set parameters in descendants.  <a href="#8eeb401282ab3269d40537b68cb2b3d3"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual function_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHypersphere.html#8b641f61bdb8dff6d4d99e5eb40ea70b">f</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="classHypersphere.html" title="A hypersphere.">Hypersphere</a> defining function.  <a href="#8b641f61bdb8dff6d4d99e5eb40ea70b"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual function_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHypersphere.html#9bf34a96391538b27d1c693a4c455e39">normal</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Calculate normal to function at a given point in definition set.  <a href="#9bf34a96391538b27d1c693a4c455e39"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="05716ee24d8d877c9c93783038e7e21d"></a><!-- doxytag: member="Hypersphere::Radius" ref="05716ee24d8d877c9c93783038e7e21d" args="" -->
 double&nbsp;</td><td class="memItemRight" valign="bottom"><b>Radius</b></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
-a hypersphere: defining function is <p class="formulaDsp">
+A hypersphere. 
+<p>
+Defining function is <p class="formulaDsp">
 <img class="formulaDsp" alt="\begin{eqnarray*} { F_0 &amp; = &amp; Radius*\sin(\psi)*\sin(\theta)*\cos(\phi) \\ F_1 &amp; = &amp; Radius*\sin(\psi)*\sin(\theta)*\sin(\phi) \\ F_2 &amp; = &amp; Radius*\sin(\psi)*\cos(\theta) \\ F_3 &amp; = &amp; Radius*\cos(\psi) \end{eqnarray*}" src="form_7.png">
 <p>
  <hr><h2>Constructor &amp; Destructor Documentation</h2>
@@ -136,7 +144,7 @@ a hypersphere: defining function is <p class="formulaDsp">
 <div class="memdoc">
 
 <p>
-<a class="el" href="classHypersphere.html">Hypersphere</a> c'tor given a definition set in R³ (as parameter space) and a radius <dl compact><dt><b>Parameters:</b></dt><dd>
+<a class="el" href="classHypersphere.html" title="A hypersphere.">Hypersphere</a> c'tor given a definition set in R³ (as parameter space) and a radius <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>_tmin</em>&nbsp;</td><td>minimal value in t </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>_tmax</em>&nbsp;</td><td>maximal value in t </td></tr>
@@ -151,7 +159,7 @@ a hypersphere: defining function is <p class="formulaDsp">
   </table>
 </dl>
 
-<p>References <a class="el" href="Function_8C-source.html#l00128">Function::Initialize()</a>, and <a class="el" href="Function_8H-source.html#l00185">Function::parameterNames</a>.</p>
+<p>References <a class="el" href="Function_8C-source.html#l00117">Function::Initialize()</a>, and <a class="el" href="Function_8H-source.html#l00188">Function::parameterNames</a>.</p>
 
 </div>
 </div><p>
@@ -194,15 +202,9 @@ a hypersphere: defining function is <p class="formulaDsp">
 <div class="memdoc">
 
 <p>
-placeholder for function to set parameters in descendants - empty because a generic function has no parameters <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>_a</em>&nbsp;</td><td>1st parameter </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>_b</em>&nbsp;</td><td>2nd parameter </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>_c</em>&nbsp;</td><td>3rd parameter </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>_d</em>&nbsp;</td><td>4th parameter </td></tr>
-  </table>
-</dl>
-
+Placeholder for function to set parameters in descendants. 
+<p>
+Empty because a generic function has no parameters 
 <p>Reimplemented from <a class="el" href="classFunction.html#d718e144e4dadb18eeb5eebcc46ac3f5">Function</a>.</p>
 
 </div>
@@ -220,7 +222,9 @@ placeholder for function to set parameters in descendants - empty because a gene
 <div class="memdoc">
 
 <p>
-<a class="el" href="classHypersphere.html">Hypersphere</a> defining function <dl compact><dt><b>Parameters:</b></dt><dd>
+<a class="el" href="classHypersphere.html" title="A hypersphere.">Hypersphere</a> defining function. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>tt</em>&nbsp;</td><td>t value </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>uu</em>&nbsp;</td><td>u value </td></tr>
@@ -245,7 +249,9 @@ placeholder for function to set parameters in descendants - empty because a gene
 <div class="memdoc">
 
 <p>
-calculate normal to function at a given point in definition set overridden because it's much easier to calculate <dl compact><dt><b>Parameters:</b></dt><dd>
+Calculate normal to function at a given point in definition set. 
+<p>
+Overridden because it's much easier to calculate in a <a class="el" href="classHypersphere.html" title="A hypersphere.">Hypersphere</a> than in a generic function <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>tt</em>&nbsp;</td><td>t value </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>uu</em>&nbsp;</td><td>u value </td></tr>
@@ -261,7 +267,7 @@ calculate normal to function at a given point in definition set overridden becau
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="Function_8H-source.html">Function.H</a><li>workspace/HyperspaceExplorer/src/Functions/Function.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Mar 29 23:59:04 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Mar 30 04:15:25 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

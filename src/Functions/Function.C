@@ -17,24 +17,14 @@ using std::endl;
 using VecMath::Vector;
 using VecMath::Matrix;
 
-/** auxiliary function to safely free a memory chunk
- *  @param x pointer to memory                                                */
-template <typename T> unsigned int Delete (T *x) {
-  if (x) {
-    delete [] x;
-    x = NULL;
-  }
-  return 0;
-}
-
 
 //////////////////////////////////////////////////////////////////////
 // construction / destruction
 //////////////////////////////////////////////////////////////////////
 
 
-/** Function default c'tor
- *  zeroes everything       */
+/// Function default c'tor
+/** Zeroes everything       */
 Function::Function ():
     tmin (0),       tmax (0),       dt (0),
     umin (0),       umax (0),       du (0),
@@ -89,8 +79,8 @@ Function::Function (const QString &name,
 }
 
 
-/** Initialize the temporary storage areas Xscr[][][], Xtrans[][][],
- *                                         R[][][], G[][][], B[][][]          */
+/// Initialize the temporary storage areas
+/** Xscr[][][], Xtrans[][][], R[][][], G[][][], B[][][]          */
 void Function::InitMem (void) {
 
     Xscr.resize(tsteps+2);
@@ -122,9 +112,8 @@ void Function::InitMem (void) {
 }                                                       //      InitiMem ()
 
 
-/** allocate and initialize X[][][] with values of f()
- *  call InitMem () above
- */
+/// Allocate and initialize X[][][] with values of f()
+/** Call InitMem() above */
 void Function::Initialize () {
     X = vec4vec3D(tsteps+2);
 
@@ -135,8 +124,8 @@ void Function::Initialize () {
             X[t][u].resize(vsteps+2);
 
             for (unsigned v = 0; v <= vsteps+1; v++) {
-	            double T = tmin+t*dt, U =umin+u*du, V = vmin+v*dv;
-	            X[t][u][v] = f (T, U, V);
+                    double T = tmin+t*dt, U =umin+u*du, V = vmin+v*dv;
+                    X[t][u][v] = f (T, U, V);
             }
         }
     }
@@ -144,8 +133,8 @@ void Function::Initialize () {
 }
 
 
-/** re-initialize a Function if the definition set has changed
- *  @param tmin minimal value in t
+/// Re-initialize a Function if the definition set has changed
+/** @param tmin minimal value in t
  *  @param tmax maximal value in t
  *  @param dt stepsize in t
  *  @param umin minimal value in u
@@ -170,26 +159,22 @@ void Function::ReInit(double _tmin, double _tmax, double _dt,
 }
 
 
-/** placeholder for function to set parameters in descendants - empty because
- *  a generic function has no parameters
- *  @param _a 1st parameter
- *  @param _b 2nd parameter
- *  @param _c 3rd parameter
- *  @param _d 4th parameter                                                   */
+/// Placeholder for function to set parameters in descendants
+/** Empty because a generic function has no parameters                        */
 void Function::SetParameters (double, double, double, double) { }
 
-/** return the approximate amount of memory needed to display a Function of
- *  current definition set
- *  uses hardcoded and experimentally found value for memory per cell - ICK!
+/// Return the approximate amount of memory needed to display a Function of
+/// current definition set
+/** \todo uses hardcoded and experimentally found value for memory per cell
  *  @return approx. mem required                                              */
 unsigned long Function::MemRequired (void) {
   return ((tsteps+2)*(usteps+2)*(vsteps+2)*4)/1024+8;
 }
 
 
-/** calculate normal to function at a given point in definition set \n
- *  no further assumption is made than that f () is continuous. \n
- *  this function is not yet used anywhere, but i like it.
+/// Calculate normal to function at a given point in definition set.
+/** No further assumption is made than that f () is continuous. \n
+ *  This function is not yet used anywhere, but i like it.
  *  @param tt t value
  *  @param uu u value
  *  @param vv v value
@@ -206,14 +191,14 @@ Vector<4> &Function::normal (double tt, double uu, double vv) {
 }
 
 
-/** numerical calculation of the derivatives in t, u and v:
-    \f[
+/// Numerical calculation of the derivatives in t, u and v
+/** \f[
         \frac{df}{dt} = \lim_{h \rightarrow 0}
             \frac{f(t+h, u, v) - f(t, u, v)}{h},
         \frac{df}{du},\frac{df}{dv}\mbox{analogously}
     \f]
- *  @todo the h value is fixed and hardcoded. better approach?
- *  @todo I don't think calling operator() is right. call f()!
+ *  @todo The h value is fixed and hardcoded. better approach, please!
+ *  @todo I don't think calling operator() is right. Call f()!
  *  @param tt t value
  *  @param uu u value
  *  @param vv v value
@@ -239,14 +224,17 @@ Function::vec4vec1D Function::df (double tt, double uu, double vv) {
 }
 
 
-/** transforms a Function
- *  as I look at it, i think this could be optimized by making the transformation
- *  matrices static and only canging the corresponding entries... but how to
- *  make this beautifully, i don't know
- *  @param thetaxy rotation around xy plane (z axis); should be ignored because 3D rotation takes care of it, but isn't
- *  @param thetaxz rotation around xz plane (y axis); should be ignored because 3D rotation takes care of it, but isn't
+/// Transforms a Function
+/** \todo As I look at it, i think this could be optimized by making the
+ *        transformation matrices static and only canging the corresponding
+ *        entries... but how to do this beautifully, i don't know
+ *  @param thetaxy rotation around xy plane (z axis); should be ignored because
+ *                 3D rotation takes care of it, but isn't
+ *  @param thetaxz rotation around xz plane (y axis); should be ignored because
+ *                 3D rotation takes care of it, but isn't
  *  @param thetaxw rotation around xw plane
- *  @param thetayz rotation around xy plane (x axis); should be ignored because 3D rotation takes care of it, but isn't
+ *  @param thetayz rotation around xy plane (x axis); should be ignored because
+ *                 3D rotation takes care of it, but isn't
  *  @param thetayw rotation around yw plane
  *  @param thetazw rotation around zw plane
  *  @param tx translation in x direction
@@ -271,8 +259,8 @@ void Function::Transform (double thetaxy, double thetaxz, double thetaxw,
 }
 
 
-/** projects a Function into three-space
- *  @todo replace hardcoded function to calculate 4D fog color with better one
+/// Projects a Function into three-space
+/** @todo replace hardcoded function to calculate 4D fog color with better one
  *  @param scr_w w coordinate of screen
  *  @param cam_w w coordinate of camera
  *  @param depthcue4d whether to use hyperfog/depth cue                       */
@@ -313,23 +301,24 @@ void Function::Project (double scr_w, double cam_w, bool depthcue4d) {
 }
 
 
-/** draw the projected Function (onto screen or into GL list, as it is) */
+/// Draw the projected Function (onto screen or into GL list, as it is)
+/** */
 void Function::Draw (void) {
   for (unsigned t = 0; t < tsteps; t++)
     DrawPlane (t);
 }
 
 
-/** draw the current plane of the projected Function
- *  @param t current t value                                                  */
+/// Draw the current plane of the projected Function
+/** @param t current t value                                                  */
 void Function::DrawPlane (unsigned t){
   for (unsigned u = 0; u < usteps; u++)
     DrawStrip (t, u);
 }
 
 
-/** draw the current strip of the projected Function
- *  @param t current t value
+/// Draw the current strip of the projected Function
+/** @param t current t value
  *  @param u current u value                                                  */
 void Function::DrawStrip (unsigned t, unsigned u){
   for (unsigned v = 0; v < vsteps; v++)
@@ -339,8 +328,8 @@ void Function::DrawStrip (unsigned t, unsigned u){
 using std::string;
 using std::setw;
 using std::setprecision;
-/** draw the current cube or cell of the projected Function
- *  @param t current t value
+/// Draw the current cube or cell of the projected Function
+/** @param t current t value
  *  @param u current u value
  *  @param v current v value                                                  */
 void Function::DrawCube (unsigned t, unsigned u, unsigned v) {
@@ -409,9 +398,9 @@ void Function::DrawCube (unsigned t, unsigned u, unsigned v) {
 ////////////////////////////////////////////////////////////////////////////////
 
 
-/** Hypersphere c'tor given a definition set in R³ (as parameter space) and a
- *  radius
- *  @param _tmin	minimal value in t
+/// Hypersphere c'tor given a definition set in R³ (as parameter space) and a
+/// radius
+/** @param _tmin	minimal value in t
  *  @param _tmax	maximal value in t
  *  @param _dt		stepsize in t
  *  @param _umin	minimal value in u
@@ -432,8 +421,8 @@ Hypersphere::Hypersphere (double _tmin, double _tmax, double _dt,
       Initialize ();
 }
 
-/** Hypersphere defining function
- *  @param tt		t value
+/// Hypersphere defining function
+/** @param tt		t value
  *  @param uu		u value
  *  @param vv		v value
  *  @return		value of defining function at point in question
@@ -451,8 +440,9 @@ Vector<4> &Hypersphere::f (double tt, double uu, double vv) {
 }
 
 
-/** calculate normal to function at a given point in definition set
- *  overridden because it's much easier to calculate
+/// Calculate normal to function at a given point in definition set
+/** Overridden because it's much easier to calculate in a Hypersphere than in
+ *  a generic function
  *  @param tt t value
  *  @param uu u value
  *  @param vv v value

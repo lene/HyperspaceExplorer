@@ -41,7 +41,8 @@ using VecMath::Matrix;
 // 	C4DView construction/destruction
 ////////////////////////////////////////////////////////////////////////////////
 
-/** C4DView constructor; does a lot of initialization to (usually sensible)
+/// C4DView constructor
+/** does a lot of initialization to (usually sensible)
  *  hardcoded default values, initializes the coordinate cross object (which
  *  could well be a class on its own), creates the necessary timers and menus,
  *  and finally creates a Hypercube as the default object to display
@@ -54,8 +55,8 @@ C4DView::C4DView(QWidget *parent):
     Tx (0), Ty (0), Tz (0), Tw (0),
     Rxy (0), Rxz (0), Rxw (0), Ryz (0), Ryw (0), Rzw (0),
 
-    m_rotX (15), m_rotY (15), m_transX (0), m_transY (0),
-    m_camZ (-10.), m_rotZ (0.),
+    m_rotX (15), m_rotY (15), m_rotZ (0.),
+    m_transX (0), m_transY (0), m_camZ (-10.),
 
     m_LeftDownPos (0,0), m_MidDownPos (0,0), m_RightDownPos (0,0),
 
@@ -96,19 +97,10 @@ C4DView::C4DView(QWidget *parent):
 
 }
 
-/** C4DView destructor; frees arrays                                          */
-C4DView::~C4DView() {
-/*    for (unsigned j = 0; j < 4; j++) {
-        delete [] Cross[j];
-        delete [] CrossTrans[j];
-        delete [] CrossScr[j];
-    }
-    delete [] Cross;
-    delete [] CrossTrans;
-    delete [] CrossScr; */
-}
+/// C4DView destructor
+C4DView::~C4DView() { }
 
-/** Initialize the structure to display a four-dimensional coordinate cross   */
+/// Initialize the structures to display a four-dimensional coordinate cross
 void C4DView::InitCross() {
     Cross = vector<vector<Vector<4> > > (4);
     CrossTrans = vector<vector<Vector<4> > > (4);
@@ -132,8 +124,8 @@ void C4DView::InitCross() {
     Cross[3][1] = Vector<4>(0., 0., 0.,  5.);
 }
 
-/** application of translations and rotations
- *  calls F->Transform () and transforms the coordinate cross
+/// Application of translations and rotations
+/** Calls F->Transform () and transforms the coordinate cross
  *  @param thetaxy rotation around xy plane (z axis); ignored because 3D rotation takes care of it
  *  @param thetaxz rotation around xz plane (y axis); ignored because 3D rotation takes care of it
  *  @param thetaxw rotation around xw plane
@@ -171,7 +163,8 @@ void C4DView::Transform (double thetaxy, double thetaxz, double thetaxw,
 }
 
 
-/** projects F and coordinate cross into three-space                          */
+/// Projects F and coordinate cross into three-space
+/** */
 void C4DView::Project (void) {
     if (F.get()) F->Project (ScrW, CamW, DepthCue4D);
     else return;
@@ -186,6 +179,7 @@ void C4DView::Project (void) {
     }
 }
 
+/// Get size of displayed area
 /** @return approximate diameter of definition space                          */
 double C4DView::Size () {
   return sqrt ((Values->tmax ()-Values->tmin ())*(Values->tmax ()-Values->tmin ())
@@ -193,7 +187,8 @@ double C4DView::Size () {
               +(Values->vmax ()-Values->vmin ())*(Values->vmax ()-Values->vmin ()));
 }
 
-/** draw the coordinate cross (on screen or int GL list)                      */
+/// draw the coordinate cross (on screen or int GL list)                      */
+/** */
 void C4DView::DrawCoordinates () {
     for (unsigned j = 0; j < 4; j++) {
         switch (j) {
@@ -217,17 +212,19 @@ void C4DView::DrawCoordinates () {
     }
 }
 
-/** draw the projected Object (onto screen or into GL list, as it is)         */
+/// draw the projected Object (onto screen or into GL list, as it is)
+/** */
 void C4DView::Draw () {
   if (DisplayCoordinates) DrawCoordinates ();
 
   F->Draw ();
 }
 
-/** mouse move event handler; awfully long, which is UGLY, but it does not seem
- *  to make much sense to break it up, so here we go \n
- *  particular mouse move/button/modifier key combinations documented below
- *  in the code
+/// Mouse move event handler
+/** Awfully long, which is UGLY, but it does not seem to make much sense to
+ *  break it up, so here we go \n
+ *  Particular mouse move/button/modifier key combinations documented in the
+ *  code below
  *  @param e Qt's mouse event information structure                           */
 void C4DView::mouseMoveEvent (QMouseEvent *e) {
     SingletonLog::Instance() << "C4DView::mouseMoveEvent ("
@@ -456,8 +453,8 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
     OnPaint ();                					//    redraw the window
 }
 
-/** mouse button event handler
- *  only sets flags which buttons are down
+/// Mouse button event handler
+/** Only sets flags which buttons are down
  *  @param e Qt's mouse event information structure                           */
 void C4DView::mousePressEvent (QMouseEvent *e) {
     SingletonLog::Instance().log("C4DView::mousePressEvent ()");
@@ -483,8 +480,8 @@ void C4DView::mousePressEvent (QMouseEvent *e) {
     }
 }
 
-/** mouse button release event handler
- *  if taking values for an animation, starts the animation
+/// Mouse button release event handler
+/** If taking values for an animation, starts the animation
  *  @param e Qt's mouse event information structure                           */
 void C4DView::mouseReleaseEvent ( QMouseEvent *e) {
     SingletonLog::Instance().log("C4DView::mouseReleaseEvent ()");
@@ -500,8 +497,8 @@ void C4DView::mouseReleaseEvent ( QMouseEvent *e) {
     if (b == Qt::RightButton) XQGLWidget::mouseReleaseEvent (e);
 }
 
-/** double click event handler
- *  stops animation, if running, or resets transformation values to default
+/// Double click event handler
+/** Stops animation, if running, or resets transformation values to default
  *  @param e Qt's mouse event information structure                           */
 void C4DView::mouseDoubleClickEvent (QMouseEvent *e) {
     SingletonLog::Instance().log("C4DView::mouseDoubleClickEvent ()");
@@ -524,7 +521,7 @@ void C4DView::mouseDoubleClickEvent (QMouseEvent *e) {
     XQGLWidget::mouseDoubleClickEvent (e);
 }
 
-/** err well.. just that!
+/** Err well.. just that!
  *  starts AnimationTimer, too...                                             */
 void C4DView::StartAnimation () {
     SingletonLog::Instance().log("C4DView::StartAnimation ()");
@@ -547,8 +544,8 @@ void C4DView::StopAnimation () {
     CurrentlyRendering = false;
 }
 
-/** starts a random animation, whose xw/yw/zw rotation speed changes every
- *  HARDCODED - EEEEYUARGH! 10 seconds
+/// Starts a random animation
+/** xw/yw/zw rotation speed changes every 10 seconds
  *  @todo make hardcoded duration of rotation change frequency adjustable
  *  @todo a menu entry for this                                               */
 void C4DView::RandomAnimation() {
@@ -563,8 +560,8 @@ void C4DView::RandomAnimation() {
     AnimateRandomTimer->start (10000);
 }
 
-/** make a pixmap to to be rendered by the gl widget, and render it. \n
- *  this is an embarrassing workaround to make rendering to files work.
+/// Make a pixmap to to be rendered by the GL widget, and render it.
+/** this is an embarrassing workaround to make rendering to files work.
  *  QGLWidget's renderPixmap() method only produces black frames. Works with
  *  QPixmap::grabWindow() instead.                                            */
 QPixmap C4DView::makePixmap() {
@@ -582,9 +579,9 @@ QPixmap C4DView::makePixmap() {
 }
 
 
-/** timer event handler \n
- *  updates values if in the middle of an animation, and renders an image \n
- *  writes image to file too, if wanted.                                      */
+/// Timer event handler
+/** Updates values if in the middle of an animation, and renders an image. \n
+ *  Writes image to file too, if wanted.                                      */
 void C4DView::OnTimer() {
     m_rotX += dx; m_rotY += dy; m_rotZ += dz;   //  update 3D viewpoint values
 
@@ -644,10 +641,10 @@ void C4DView::writeFrame() {
     ++animationFrame;
 }
 
-/** display some info about current object and its transformations in a
- *  status bar.
- *  side effect: checks rotation values for overflow and resets them to the
- *  interval [-360, 360]. is this wise?
+/// display some info about current object and its transformations
+/** In the status bar.
+ *  Side effect: checks rotation values for overflow and resets them to the
+ *  interval [-360, 360]. \todo Is this wise?
  *  @param status string to be displayed                                      */
 void C4DView::UpdateStatus (QString status) {
     if (m_rotX > 360) m_rotX -= 360;
@@ -676,6 +673,7 @@ void C4DView::UpdateStatus (QString status) {
     setWindowTitle(ObjectName+status);
 }
 
+/// Switch 3D depth cue on and off
 /** @param on whether to use fog                                              */
 void C4DView::SetupDepthCue (bool on) {
     float size = Size ();
@@ -688,11 +686,11 @@ void C4DView::SetupDepthCue (bool on) {
     else glDisable (GL_FOG);
 }
 
-/** called whenever an object or the parameters have changed; changes the
- *  display on the status bar and the number and names of the parameters and
- *  grid parameters on the ValuesDialog
+/// Called whenever an object or the parameters have changed
+/** Changes the display on the status bar and the number and names of the
+ *  parameters and grid parameters on the ValuesDialog
  *  @param F the Function object for which the ValuesDialog is changed        */
-void C4DView::AssignValues (const auto_ptr<Function> &F) {
+void C4DView::AssignValues (const std::auto_ptr<Function> &F) {
     QString Parameter1 = F->getParameterName(0);
     QString Parameter2 = F->getParameterName(1);
     QString Parameter3 = F->getParameterName(2);
@@ -807,9 +805,9 @@ void C4DView::AssignValues (const auto_ptr<Function> &F) {
     UpdateStatus("");
 }
 
-/** called whenever an object or the parameters have changed; sets the
- *  parameters, applies the changed parameters to the function object and
- *  redraws it                                                                */
+/// Called whenever an object or the parameters have changed
+/** Sets the parameters, applies the changed parameters to the function object
+ *  and redraws it                                                            */
 void C4DView::ApplyChanges (void) {
     F->SetParameters (Values->a (), Values->b (), Values->c (), Values->d ());
 
@@ -853,8 +851,8 @@ void C4DView::ParametersChanged(double, double, unsigned,
 //
 //    from here on it gets pretty boring OpenGL management stuff
 //
-/** separated the 4d projection stuff from the 3d opengl handling into this
- *  function                                                                  */
+/// 4D projection stuff
+/** Separated from the 3D OpenGL handling into this function                  */
 void C4DView::PreRedraw () {
     SingletonLog::Instance().log("C4DView::PreRedraw ()");
 
@@ -886,13 +884,14 @@ void C4DView::PreRedraw () {
     SingletonLog::Instance().log("C4DView::PreRedraw () done");
 }
 
-/** redraw handler */
+/// Redraw handler
 void C4DView::Redraw () {
   PreRedraw ();
   OnPaint ();
 }
 
-/** wrapper for redraw handler, with an exit strategy */
+/// Wrapper for redraw handler
+/** With an error reporting routine and exit strategy */
 void C4DView::RenderScene (unsigned /* Frame */) {  //  draw (frame of animation)
     usleep (16000);
     while (!glIsList (ObjectList)) {
@@ -922,7 +921,8 @@ void C4DView::RenderScene (unsigned /* Frame */) {  //  draw (frame of animation
     if (DisplayCoordinates) glCallList (CoordinateCross);
 }
 
-/** should be called whenever the object is rotated or translated */
+/// Should be called whenever the object is rotated or translated
+/** */
 void C4DView::OnPaint() {                           //  object drawing routine
     SingletonLog::Instance().log("C4DView::OnPaint ()");
 
@@ -949,8 +949,8 @@ void C4DView::OnPaint() {                           //  object drawing routine
     writeFrame();
 }
 
-/** resizing routine
- *  also, the definition of the GL viewport is done here                      */
+/// Resizing routine
+/** Also, the definition of the GL viewport is done here                      */
 void C4DView::resizeEvent (QResizeEvent *e) {
     unsigned cx = e->size ().width (),
              cy = e->size ().height ();
@@ -980,10 +980,11 @@ void C4DView::paintEvent (QPaintEvent *) {
   OnPaint ();
 }
 
-/** OpenGL initialization
- *  now this is not as boring as it seems, because further work has to be done
- *  here:
- *  trying to check for rendering to file, but this doesn't work yet.
+/// OpenGL initialization
+/** Now this is not as boring as it seems, because further work has to be done
+ *  here: \n
+ *  \todo trying to check for rendering to file, but this doesn't work yet.
+ *
  *  the rest of interesting inits is done in XQGLWidget::initializeGL (), btw.*/
 void C4DView::initializeGL (void) {
 
@@ -1028,37 +1029,42 @@ void C4DView::initializeGL (void) {
  *  menu callback functions
  */
 
-/** toggle fog/depth cue */
+/// Toggle fog/depth cue
+/** menu callback function */
 void C4DView::Fog () {
   fog = !fog;
   menu->getAction("Depth Cue")->setChecked(fog);
   InitFog ();
   repaint (); }
 
-/** toggle object transparency */
+/// toggle object transparency
+/** menu callback function */
 void C4DView::Transparent () {
   transparent = !transparent;
   menu->getAction("Transparence")->setChecked(transparent);
   InitTransparence ();
   repaint (); }
 
-/** toggle shading */
+/// toggle shading
+/** menu callback function */
 void C4DView::Shade () {
   shade = !shade;
   menu->getAction("Shading")->setChecked(shade);
   InitShade ();
   repaint (); }
 
-/** toggle colors */
+/// toggle colors
+/** menu callback function */
 void C4DView::Colors () {
   colors = !colors;
   menu->getAction("Colors")->setChecked(colors);
   initializeGL ();
   repaint (); }
 
-/** switch between wireframe and solid display
- *  account for antialiasing only in WF mode
- *  change menu items accordingly                                             */
+/// Switch between wireframe and solid display
+/** Account for antialiasing only in wireframe mode \n
+ *  Change menu items accordingly \n
+ *  Menu callback function                                                    */
 void C4DView::Wireframe() {
     if (DisplayPolygons) {
         menu->getAction("Wireframe")->setText("Solid");
@@ -1076,8 +1082,9 @@ void C4DView::Wireframe() {
     OnPaint ();
 }
 
-/** switch coordinate cross on or off
- *  change menu items accordingly    */
+/// switch coordinate cross on or off
+/** change menu items accordingly \n
+ *  menu callback function */
 void C4DView::Coordinates() {
     DisplayCoordinates = !DisplayCoordinates;
     menu->getAction("Coordinate Cross")->setChecked (DisplayCoordinates);
@@ -1085,8 +1092,9 @@ void C4DView::Coordinates() {
     Redraw ();
 }
 
-/** switch 4D depth cue on or off
- *  change menu items accordingly */
+/// switch 4D depth cue on or off
+/** change menu items accordingly \n
+ *  menu callback function */
 void C4DView::HyperFog() {
     DepthCue4D = !DepthCue4D;
     menu->getAction("4D Depth Cue")->setChecked (DepthCue4D);
@@ -1094,8 +1102,9 @@ void C4DView::HyperFog() {
     Redraw ();
 }
 
-/** switch lighting on or off
- *  change menu items accordingly */
+/// switch lighting on or off
+/** change menu items accordingly \n
+ *  menu callback function */
 void C4DView::Light() {
     Lighting = !Lighting;
     if (Lighting) {
@@ -1126,15 +1135,17 @@ void C4DView::Light() {
     OnPaint ();
 }
 
-/** switch rendering to files on or off
- *  change menu items accordingly        */
+/// switch rendering to files on or off
+/** change menu items accordingly        \n
+ *  menu callback function */
 void C4DView::RenderToImages() {
   RenderToPixmap = !RenderToPixmap;
   menu->getAction("Render to Images")->setChecked(RenderToPixmap);
 }
 
-/** show a dialog to adjust animation settings: where to write image files
- *  and how many files to write                                               */
+/// show a dialog to adjust animation settings
+/** Where to write image files and how many files to write \n
+ *  menu callback function */
 void C4DView::AnimationSettings() {
     AnimationDialogImpl *Dlg = new AnimationDialogImpl;
     if (Dlg->exec () == QDialog::Accepted) {
@@ -1148,7 +1159,8 @@ void C4DView::AnimationSettings() {
     }
 }
 
-/** run a benchmark test */
+/// run a benchmark test
+/** menu callback function */
 void C4DView::Benchmark() {
   ostringstream Time;
 
@@ -1167,7 +1179,7 @@ void C4DView::Benchmark() {
 }
 
 
-/** rotate in 4D 360 degrees */
+/// rotate in 4D 360 degrees
 double C4DView::Benchmark4D (int num_steps,
                              double step_xw, double step_yw, double step_zw,
                              bool display) {
@@ -1188,7 +1200,7 @@ double C4DView::Benchmark4D (int num_steps,
 }
 
 
-/** rotate in 3D 360 degrees */
+/// rotate in 3D 360 degrees
 double C4DView::Benchmark3D (int num_steps,
                              double step_x, double step_y, double step_z,
                              bool display) {
@@ -1211,40 +1223,52 @@ double C4DView::Benchmark3D (int num_steps,
 
 ////////////////////////////////////////////////////////////////////////////////
 
-/** display a Fr3r object */
+/// display a Fr3r object
+/** menu callback function */
 void C4DView::FunctionFr3r() { FunctionSlot<Fr3r>::createFunction(this); }
 
-/** display a Hypersphere object */
+/// display a Hypersphere object
+/** menu callback function */
 void C4DView::FunctionHypersphere() { FunctionSlot<Hypersphere>::createFunction(this); }
 
-/** display a Torus1 object */
+/// display a Torus1 object
+/** menu callback function */
 void C4DView::FunctionTorus1() { FunctionSlot<Torus1>::createFunction(this); }
 
-/** display a Torus2 object */
+/// display a Torus2 object
+/** menu callback function */
 void C4DView::FunctionTorus2() { FunctionSlot<Torus2>::createFunction(this); }
 
-/** display a Fr3r object */
+///  display a Fr3r object
+/** menu callback function */
 void C4DView::FR3R(){ FunctionSlot<Fr3r>::createFunction(this); }
 
-/** display a GravPotential object */
+/// display a GravPotential object
+/** menu callback function */
 void C4DView::GravPotential(){ FunctionSlot<GravitationPotential>::createFunction(this); }
 
-/** display a SinR object */
+/// display a SinR object
+/** menu callback function */
 void C4DView::SinR(){ FunctionSlot<Fr3rSin>::createFunction(this); }
 
-/** display a ExpR object */
+/// display a ExpR object
+/** menu callback function */
 void C4DView::ExpR(){ FunctionSlot<Fr3rExp>::createFunction(this); }
 
-/** display a Sin object */
+/// display a Sin object
+/** menu callback function */
 void C4DView::Sin(){ FunctionSlot<PolarSin>::createFunction(this); }
 
-/** display a Sin2 object */
+/// display a Sin2 object
+/** menu callback function */
 void C4DView::Sin2(){ FunctionSlot<PolarSin2>::createFunction(this); }
 
-/** display a FunctionR object */
+/// display a FunctionR object
+/** menu callback function */
 void C4DView::FunctionR(){ FunctionSlot<PolarR>::createFunction(this); }
 
-/** display a ObjectHypercube object */
+/// display a ObjectHypercube object
+/** menu callback function */
 void C4DView::ObjectHypercube() {
     menu->updateFunctionMenu("Hypercube");
 
@@ -1254,7 +1278,8 @@ void C4DView::ObjectHypercube() {
     Redraw ();
 }
 
-/** display a ObjectHyperpyramid object */
+/// display a ObjectHyperpyramid object
+/** menu callback function */
 void C4DView::ObjectHyperpyramid() {
     menu->updateFunctionMenu("Hyperpyramid");
 
@@ -1264,7 +1289,8 @@ void C4DView::ObjectHyperpyramid() {
     Redraw ();
 }
 
-/** display a ObjectHypersponge object */
+/// display a ObjectHypersponge object
+/** menu callback function */
 void C4DView::ObjectHypersponge() {
     menu->updateFunctionMenu("Menger Sponge");
 
@@ -1277,7 +1303,8 @@ void C4DView::ObjectHypersponge() {
     Redraw ();
 }
 
-/** display a ObjectGasket object */
+/// display a ObjectGasket object
+/** menu callback function */
 void C4DView::ObjectGasket() {
     menu->updateFunctionMenu("Sierpinski Gasket");
 
@@ -1287,73 +1314,94 @@ void C4DView::ObjectGasket() {
     Redraw ();
 }
 
-/** display a Surface object */
+/// display a Surface object
+/** menu callback function */
 void C4DView::Surface_1() { FunctionSlot<Surface1>::createSurface(this); }
 
-/** display a SurfaceHorizon object */
+/// display a SurfaceHorizon object
+/** menu callback function */
 void C4DView::SurfaceHorizon() { FunctionSlot<Horizon>::createSurface(this); }
 
-/** display a SurfaceTorus3 object */
+/// display a SurfaceTorus3 object
+/** menu callback function */
 void C4DView::SurfaceTorus3() { FunctionSlot<Torus3>::createSurface(this); }
 
-/** display a ComplexZ2 object */
+/// display a ComplexZ2 object
+/** menu callback function */
 void C4DView::ComplexZ2() { FunctionSlot<z2>::createSurface(this); }
 
-/** display a ComplexZ3 object */
+/// display a ComplexZ3 object
+/** menu callback function */
 void C4DView::ComplexZ3() { FunctionSlot<z3>::createSurface(this); }
 
-/** display a ComplexZA object */
+/// display a ComplexZA object
+/** menu callback function */
 void C4DView::ComplexZA() { FunctionSlot<zA>::createSurface(this); }
 
-/** display a ComplexEZ object */
+/// display a ComplexEZ object
+/** menu callback function */
 void C4DView::ComplexEZ() { FunctionSlot<ez>::createSurface(this); }
 
-/** display a ComplexEMZ2 object */
+/// display a ComplexEMZ2 object
+/** menu callback function */
 void C4DView::ComplexEMZ2() { FunctionSlot<emz2>::createSurface(this); }
 
-/** display a ComplexZM1 object */
+/// display a ComplexZM1 object
+/** menu callback function */
 void C4DView::ComplexZM1() { FunctionSlot<zm1>::createSurface(this); }
 
-/** display a ComplexZM2 object */
+/// display a ComplexZM2 object
+/** menu callback function */
 void C4DView::ComplexZM2() {FunctionSlot<zm2>::createSurface(this); }
 
-/** display a ComplexSqrtZ object */
+/// display a ComplexSqrtZ object
+/** menu callback function */
 void C4DView::ComplexSqrtZ() {FunctionSlot<sqrtz>::createSurface(this); }
 
-/** display a ComplexLnZ object */
+/// display a ComplexLnZ object
+/** menu callback function */
 void C4DView::ComplexLnZ() {FunctionSlot<lnz>::createSurface(this); }
 
-/** display a ComplexSinZ object */
+/// display a ComplexSinZ object
+/** menu callback function */
 void C4DView::ComplexSinZ() {FunctionSlot<sinz>::createSurface(this); }
 
-/** display a ComplexCosZ object */
+/// display a ComplexCosZ object
+/** menu callback function */
 void C4DView::ComplexCosZ() {FunctionSlot<cosz>::createSurface(this); }
 
-/** display a ComplexSinhZ object */
+/// display a ComplexSinhZ object
+/** menu callback function */
 void C4DView::ComplexSinhZ() {FunctionSlot<sinhz>::createSurface(this); }
 
-/** display a ComplexCoshZ object */
+/// display a ComplexCoshZ object
+/** menu callback function */
 void C4DView::ComplexCoshZ() {FunctionSlot<coshz>::createSurface(this); }
 
-/** display a ComplexTanZ object */
+/// display a ComplexTanZ object
+/** menu callback function */
 void C4DView::ComplexTanZ() {FunctionSlot<tanz>::createSurface(this); }
 
-/** display a customFunction object */
+/// display a customFunction object
+/** menu callback function */
 void C4DView::customFunction() {
     CustomFunctionSlot<CustomFunction>::createCustomFunction(this);
 }
 
-/** display a customPolarFunction object */
+/// display a customPolarFunction object
+/** menu callback function */
 void C4DView::customPolarFunction() {
     CustomFunctionSlot<CustomPolarFunction>::createCustomFunction(this);
 }
 
-/** display a customComplexFunction object */
+/// display a customComplexFunction object
+/** menu callback function */
 void C4DView::customComplexFunction() {
     CustomFunctionSlot<CustomComplexFunction>::createCustomSurface(this);
 }
 
-/** display a customSurface object */
+/// display a customSurface object
+/** menu callback function */
 void C4DView::customSurface() {
     CustomFunctionSlot<CustomSurface>::createCustomSurface(this);
 }

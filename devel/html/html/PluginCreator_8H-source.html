@@ -29,74 +29,81 @@
 <a name="l00012"></a>00012 <span class="preprocessor">#ifndef PLUGIN_CREATOR_H</span>
 <a name="l00013"></a>00013 <span class="preprocessor"></span><span class="preprocessor">#define PLUGIN_CREATOR_H</span>
 <a name="l00014"></a>00014 <span class="preprocessor"></span>
-<a name="l00022"></a><a class="code" href="classPluginCreator.html">00022</a> <span class="keyword">class </span><a class="code" href="classPluginCreator.html">PluginCreator</a> {
-<a name="l00026"></a><a class="code" href="classPluginCreator_1_1LoadFunctionHelper.html">00026</a>     <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt; <span class="keyword">class </span><a class="code" href="classPluginCreator_1_1LoadFunctionHelper.html">LoadFunctionHelper</a> {
-<a name="l00027"></a>00027         <span class="keyword">public</span>:
-<a name="l00028"></a>00028             <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="classPluginCreator_1_1LoadFunctionHelper.html#daa553cc712de9359f011e289acbc299">functionPresent</a>(<span class="keyword">const</span> QString &amp;, QDialog *);
-<a name="l00029"></a>00029     };
-<a name="l00030"></a>00030 
-<a name="l00031"></a>00031     <span class="keyword">public</span>:
-<a name="l00032"></a>00032         <span class="keyword">virtual</span> ~<a class="code" href="classPluginCreator.html">PluginCreator</a>() { }
-<a name="l00034"></a><a class="code" href="classPluginCreator.html#4b0c4aa6bb17649c888f720f96741c6d">00034</a>         QString <a class="code" href="classPluginCreator.html#4b0c4aa6bb17649c888f720f96741c6d">libraryName</a> () { <span class="keywordflow">return</span> LibraryName; }
-<a name="l00035"></a>00035 
-<a name="l00036"></a>00036     <span class="keyword">protected</span>:
-<a name="l00037"></a>00037         <span class="keyword">virtual</span> <span class="keywordtype">bool</span> loadFunction() = 0;
-<a name="l00038"></a>00038         <span class="keyword">virtual</span> <span class="keywordtype">bool</span> functionPresent(<span class="keyword">const</span> QString &amp;) = 0;
-<a name="l00039"></a>00039         <span class="keyword">virtual</span> <span class="keywordtype">void</span> writeSource () = 0;
+<a name="l00016"></a>00016 
+<a name="l00025"></a><a class="code" href="classPluginCreator.html">00025</a> <span class="keyword">class </span><a class="code" href="classPluginCreator.html" title="Abstract base class for all Dialogs which allow entering a custom function.">PluginCreator</a> {
+<a name="l00027"></a>00027 
+<a name="l00030"></a><a class="code" href="classPluginCreator_1_1LoadFunctionHelper.html">00030</a>     <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt; <span class="keyword">class </span><a class="code" href="classPluginCreator_1_1LoadFunctionHelper.html" title="Class template with a static function to simulate a function template.">LoadFunctionHelper</a> {
+<a name="l00031"></a>00031         <span class="keyword">public</span>:
+<a name="l00032"></a>00032             <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="classPluginCreator_1_1LoadFunctionHelper.html#daa553cc712de9359f011e289acbc299" title="Loads the dynamic library given by libName, if it exists and can be loaded.">functionPresent</a>(<span class="keyword">const</span> QString &amp;, QDialog *);
+<a name="l00033"></a>00033     };
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035     <span class="keyword">public</span>:
+<a name="l00036"></a>00036 
+<a name="l00037"></a><a class="code" href="classPluginCreator.html#2b7db1dca02da60b9e8fa6b26042fb02">00037</a>         <span class="keyword">virtual</span> <a class="code" href="classPluginCreator.html#2b7db1dca02da60b9e8fa6b26042fb02" title="Empty destructor.">~PluginCreator</a>() { }    
+<a name="l00038"></a>00038 
 <a name="l00040"></a>00040 
-<a name="l00041"></a>00041         <span class="keywordtype">bool</span> loadFunction(<span class="keyword">const</span> QString &amp;, QDialog *);
-<a name="l00042"></a>00042         <span class="keywordtype">bool</span> <a class="code" href="classPluginCreator.html#ffb2921b42c0adceb0611b594d9c692b">checkValidity</a>(<span class="keyword">const</span> QString &amp;, <span class="keyword">const</span> QString &amp;, QDialog *);
-<a name="l00043"></a>00043 
-<a name="l00044"></a>00044         <span class="keywordtype">bool</span> <a class="code" href="classPluginCreator.html#1c6920f6a1d27a1473fcabc18195eb5b">compile</a> (QString);
-<a name="l00045"></a>00045         <span class="keywordtype">bool</span> <a class="code" href="classPluginCreator.html#9f7766eedfa75857a52c2f07d6831bad">link</a> (QString);
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047         QString LibraryName;
-<a name="l00048"></a>00048 };
-<a name="l00049"></a>00049 
-<a name="l00050"></a>00050 <span class="preprocessor">#include &lt;dlfcn.h&gt;</span>
-<a name="l00051"></a>00051 <span class="preprocessor">#include &lt;iostream&gt;</span>
-<a name="l00052"></a>00052 <span class="preprocessor">#include &lt;QFile&gt;</span>
-<a name="l00053"></a>00053 <span class="preprocessor">#include &lt;QMessageBox&gt;</span>
+<a name="l00041"></a><a class="code" href="classPluginCreator.html#4b0c4aa6bb17649c888f720f96741c6d">00041</a>         QString <a class="code" href="classPluginCreator.html#4b0c4aa6bb17649c888f720f96741c6d" title="Get the name of the selected dynamic library containing a function.">libraryName</a> () { <span class="keywordflow">return</span> <a class="code" href="classPluginCreator.html#6084c2eae2022898d503bae9cac97617" title="Filename of the DLL to be loaded.">LibraryName</a>; }
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043     <span class="keyword">protected</span>:
+<a name="l00044"></a>00044 
+<a name="l00046"></a>00046         <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classPluginCreator.html#934c4708ba3cf6054982d9b0b67e29d2" title="Display and load the selected DLL into current address space.">loadFunction</a>() = 0;
+<a name="l00048"></a>00048         <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classPluginCreator.html#72d965933b305fe25e9e27b9ab88fbb6" title="Loads the dynamic library given by libName, if it exists and can be loaded.">functionPresent</a>(<span class="keyword">const</span> QString &amp;) = 0;
+<a name="l00050"></a>00050         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classPluginCreator.html#a951c5e85ecfdc22750cb5485c9d5b9e" title="Write a C++ source file containing the given function.">writeSource</a>() = 0;
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052         <span class="keywordtype">bool</span> <a class="code" href="classPluginCreator.html#934c4708ba3cf6054982d9b0b67e29d2" title="Display and load the selected DLL into current address space.">loadFunction</a>(<span class="keyword">const</span> QString &amp;, QDialog *);
+<a name="l00053"></a>00053         <span class="keywordtype">bool</span> <a class="code" href="classPluginCreator.html#ffb2921b42c0adceb0611b594d9c692b" title="Called when the user clicks the OK button in the Function Dialog.">checkValidity</a>(<span class="keyword">const</span> QString &amp;, <span class="keyword">const</span> QString &amp;, QDialog *);
 <a name="l00054"></a>00054 
-<a name="l00062"></a>00062 <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt;
-<a name="l00063"></a><a class="code" href="classPluginCreator_1_1LoadFunctionHelper.html#daa553cc712de9359f011e289acbc299">00063</a>         <span class="keywordtype">bool</span> <a class="code" href="classPluginCreator_1_1LoadFunctionHelper.html#daa553cc712de9359f011e289acbc299">PluginCreator::LoadFunctionHelper&lt;F&gt;::functionPresent</a>(
-<a name="l00064"></a>00064             <span class="keyword">const</span> QString &amp;libName, QDialog *parent) {
-<a name="l00065"></a>00065     <span class="keywordtype">void</span> *handle;
-<a name="l00066"></a>00066     F *f;
-<a name="l00067"></a>00067     <span class="keyword">const</span> <span class="keywordtype">char</span> *error;
-<a name="l00068"></a>00068 
-<a name="l00069"></a>00069     <span class="keywordflow">if</span> (!QFile::exists (libName)) {
-<a name="l00070"></a>00070         QMessageBox::warning (parent, <span class="stringliteral">"Error opening library"</span>,
-<a name="l00071"></a>00071                               <span class="stringliteral">"Library does not exist: "</span>+libName);
-<a name="l00072"></a>00072         std::cerr &lt;&lt; <span class="stringliteral">"Library does not exist: "</span>+libName.toStdString()
-<a name="l00073"></a>00073                   &lt;&lt; std::endl;
-<a name="l00074"></a>00074         <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00075"></a>00075     }
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077     handle = dlopen (libName.toStdString().c_str(), RTLD_LAZY);
-<a name="l00078"></a>00078     <span class="keywordflow">if</span> (!handle) {
-<a name="l00079"></a>00079         QMessageBox::warning (parent, <span class="stringliteral">"Error opening library"</span>, dlerror());
-<a name="l00080"></a>00080         <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00081"></a>00081     }
-<a name="l00082"></a>00082 
-<a name="l00083"></a>00083     f = (F *)dlsym(handle, <span class="stringliteral">"f"</span>);
-<a name="l00084"></a>00084 
-<a name="l00085"></a>00085     <span class="keywordflow">if</span> (f == NULL) {
-<a name="l00086"></a>00086         <span class="keywordflow">if</span> ((error = dlerror()) != NULL)  {
-<a name="l00087"></a>00087             QMessageBox::warning (parent, <span class="stringliteral">"Error finding function"</span>, error);
-<a name="l00088"></a>00088             abort ();
-<a name="l00089"></a>00089             <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00090"></a>00090         }
-<a name="l00091"></a>00091     }
-<a name="l00092"></a>00092 
-<a name="l00093"></a>00093     dlclose(handle);
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095     <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00096"></a>00096 }
-<a name="l00097"></a>00097 
-<a name="l00098"></a>00098 <span class="preprocessor">#endif</span>
+<a name="l00055"></a>00055         <span class="keywordtype">bool</span> <a class="code" href="classPluginCreator.html#1c6920f6a1d27a1473fcabc18195eb5b" title="Compile the C++ source code written by writeSource().">compile</a> (QString);
+<a name="l00056"></a>00056         <span class="keywordtype">bool</span> <a class="code" href="classPluginCreator.html#9f7766eedfa75857a52c2f07d6831bad" title="link the object file generated by compile() into a dynamic library.">link</a> (QString);
+<a name="l00057"></a>00057 
+<a name="l00058"></a><a class="code" href="classPluginCreator.html#6084c2eae2022898d503bae9cac97617">00058</a>         QString <a class="code" href="classPluginCreator.html#6084c2eae2022898d503bae9cac97617" title="Filename of the DLL to be loaded.">LibraryName</a>;    
+<a name="l00059"></a>00059 };
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061 <span class="preprocessor">#include &lt;dlfcn.h&gt;</span>
+<a name="l00062"></a>00062 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00063"></a>00063 <span class="preprocessor">#include &lt;QFile&gt;</span>
+<a name="l00064"></a>00064 <span class="preprocessor">#include &lt;QMessageBox&gt;</span>
+<a name="l00065"></a>00065 
+<a name="l00067"></a>00067 
+<a name="l00073"></a>00073 <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt;
+<a name="l00074"></a><a class="code" href="classPluginCreator_1_1LoadFunctionHelper.html#daa553cc712de9359f011e289acbc299">00074</a>         <span class="keywordtype">bool</span> <a class="code" href="classPluginCreator_1_1LoadFunctionHelper.html#daa553cc712de9359f011e289acbc299" title="Loads the dynamic library given by libName, if it exists and can be loaded.">PluginCreator::LoadFunctionHelper&lt;F&gt;::functionPresent</a>(
+<a name="l00075"></a>00075             <span class="keyword">const</span> QString &amp;libName, QDialog *parent) {
+<a name="l00076"></a>00076     <span class="keywordtype">void</span> *handle;
+<a name="l00077"></a>00077     F *f;
+<a name="l00078"></a>00078     <span class="keyword">const</span> <span class="keywordtype">char</span> *error;
+<a name="l00079"></a>00079 
+<a name="l00080"></a>00080     <span class="keywordflow">if</span> (!QFile::exists (libName)) {
+<a name="l00081"></a>00081         QMessageBox::warning (parent, <span class="stringliteral">"Error opening library"</span>,
+<a name="l00082"></a>00082                               <span class="stringliteral">"Library does not exist: "</span>+libName);
+<a name="l00083"></a>00083         std::cerr &lt;&lt; <span class="stringliteral">"Library does not exist: "</span>+libName.toStdString()
+<a name="l00084"></a>00084                   &lt;&lt; std::endl;
+<a name="l00085"></a>00085         <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00086"></a>00086     }
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088     handle = dlopen (libName.toStdString().c_str(), RTLD_LAZY);
+<a name="l00089"></a>00089     <span class="keywordflow">if</span> (!handle) {
+<a name="l00090"></a>00090         QMessageBox::warning (parent, <span class="stringliteral">"Error opening library"</span>, dlerror());
+<a name="l00091"></a>00091         <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00092"></a>00092     }
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094     f = (F *)dlsym(handle, <span class="stringliteral">"f"</span>);
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096     <span class="keywordflow">if</span> (f == NULL) {
+<a name="l00097"></a>00097         <span class="keywordflow">if</span> ((error = dlerror()) != NULL)  {
+<a name="l00098"></a>00098             QMessageBox::warning (parent, <span class="stringliteral">"Error finding function"</span>, error);
+<a name="l00099"></a>00099             abort ();
+<a name="l00100"></a>00100             <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00101"></a>00101         }
+<a name="l00102"></a>00102     }
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104     dlclose(handle);
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106     <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00107"></a>00107 }
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Mar 29 23:59:03 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Mar 30 04:15:25 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

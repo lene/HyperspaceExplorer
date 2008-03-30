@@ -30,12 +30,8 @@ using VecMath::Vector;
 // construction / destruction
 //////////////////////////////////////////////////////////////////////
 
-/** FunctionDialogImpl c'tor taking parameters for the parent ComplexDialog,
- *  which in turn inherited them from QDialog
- *  displays the dialog
- *  @param parent parent widget (NULL)
- *  @param name name of the widget
- *  @param modal modal dialog?
+/// FunctionDialogImpl c'tor - displays the dialog
+/** @param parent parent widget (NULL)
  *  @param f window flags                                                     */
 FunctionDialogImpl::FunctionDialogImpl (QWidget *parent, Qt::WFlags f) :
     QDialog (parent, f) {
@@ -49,8 +45,8 @@ FunctionDialogImpl::FunctionDialogImpl (QWidget *parent, Qt::WFlags f) :
 }
 
 
-/** display  and load the selected DLL into current address space
- *  loads a dynamic library, which can be selected by the user on a QFileDialog.
+/// Display  and load the selected DLL into current address space
+/** Loads a dynamic library, which can be selected by the user on a QFileDialog.
  *  calls loadFunction () below. see there.
  *  @return success (?)                                                       */
 bool FunctionDialogImpl::loadFunction() {
@@ -58,12 +54,11 @@ bool FunctionDialogImpl::loadFunction() {
 }
 
 
-/** loads the dynamic library given by libName, if it exists and can be loaded.
- *  then it checks whether a function named f () is present. if so, returns
+/// Loads the dynamic library given by libName, if it exists and can be loaded.
+/** Then checks whether a function named f() is present. if so, returns
  *  true. else borks with an error message.
  *  @param libName filename for the selected DLL
- *  @return success
- */
+ *  @return success                                                           */
 bool FunctionDialogImpl::functionPresent(const QString &libName) {
     return PluginCreator::
         LoadFunctionHelper<Vector<4> (double, double, double)>::
@@ -71,17 +66,17 @@ bool FunctionDialogImpl::functionPresent(const QString &libName) {
 }
 
 
-/** this function is called when the user clicks the OK button in the Function
- *  Dialog. Checks whether all fields are filled in, whether the given function
+/// Called when the user clicks the OK button in the Function Dialog.
+/** Checks whether all fields are filled in, whether the given function
  *  is valid C++ syntax, ie. whether it compiles, and whether the compiled code
- *  links into a dynamic library.
- *  as a side effect, it generates this library.
- *  finally, it checks whether the library can be loaded. if so, it accepts the
- *  input.
- *  also, this function creates a directory structure "plugins/real" under the
+ *  links into a dynamic library. \n
+ *  As a side effect, it generates this library. \n
+ *  Finally, it checks whether the library can be loaded. if so, it accepts the
+ *  input. \n
+ *  Also, this function creates a directory structure "plugins/real" under the
  *  resource directory and changes the CWD to that folder for the duration of
- *  checkValidity ().
- *  the name for this function is chosen rather unfortunately, i guess.
+ *  checkValidity (). \n
+ *  The name for this function is chosen rather unfortunately, i admit.
  *
  *  @return success                                                           */
 bool FunctionDialogImpl::checkValidity() {
@@ -94,11 +89,12 @@ bool FunctionDialogImpl::checkValidity() {
 }
 
 
-/** write a C++ source file, containing the given function and some framework to
- *  make it compilable by g++ (there is currently no support for other compilers).
- *  the resulting file "<function-name>.C" defines the function f () and the
- *  function symbolic (), which returns the function in symbolic terms, not in
- *  C++ syntax.                                                               */
+/// Write a C++ source file containing the given function
+/** Also written is a little framework to make the source file compilable by g++
+ *  (there is currently no support for other compilers). \n
+ *  The resulting file "<function-name>.C" defines the function \em f() and the
+ *  function \em symbolic(), which returns the function in symbolic terms, not
+ *  in C++ syntax.                                                               */
 void FunctionDialogImpl::writeSource () {
     ofstream SourceFile ((nameEdit->text().toStdString()+".C").c_str());
 

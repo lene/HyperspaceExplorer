@@ -28,7 +28,10 @@
 <h1>SurfaceDialogImpl Class Reference<br>
 <small>
 [<a class="el" href="group__UIGroup.html">User Interface</a>]</small>
-</h1><!-- doxytag: class="SurfaceDialogImpl" --><!-- doxytag: inherits="Ui::SurfaceDialog,PluginCreator" --><code>#include &lt;<a class="el" href="SurfaceDialogImpl_8H-source.html">SurfaceDialogImpl.H</a>&gt;</code>
+</h1><!-- doxytag: class="SurfaceDialogImpl" --><!-- doxytag: inherits="Ui::SurfaceDialog,PluginCreator" -->A Dialog to enter a function from <img class="formulaInl" alt="$ R^2 \rightarrow R^4 $" src="form_14.png">.  
+<a href="#_details">More...</a>
+<p>
+<code>#include &lt;<a class="el" href="SurfaceDialogImpl_8H-source.html">SurfaceDialogImpl.H</a>&gt;</code>
 <p>
 <div class="dynheader">
 Inheritance diagram for SurfaceDialogImpl:</div>
@@ -48,21 +51,26 @@ Inheritance diagram for SurfaceDialogImpl:</div>
 virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>checkValidity</b> ()</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ad946f3182546f50ee84ae134d1196f1"></a><!-- doxytag: member="SurfaceDialogImpl::loadFunction" ref="ad946f3182546f50ee84ae134d1196f1" args="()" -->
-virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>loadFunction</b> ()</td></tr>
+virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurfaceDialogImpl.html#ad946f3182546f50ee84ae134d1196f1">loadFunction</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Display and load the selected DLL into current address space. <br></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurfaceDialogImpl.html#65e1b1a5403b060c4fc10c657643491c">SurfaceDialogImpl</a> (QWidget *parent=0, Qt::WFlags f=0)</td></tr>
 
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="157da54702f3a3731db11480a83d5b93"></a><!-- doxytag: member="SurfaceDialogImpl::functionPresent" ref="157da54702f3a3731db11480a83d5b93" args="(const QString &amp;)" -->
-virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>functionPresent</b> (const QString &amp;)</td></tr>
+virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurfaceDialogImpl.html#157da54702f3a3731db11480a83d5b93">functionPresent</a> (const QString &amp;)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Loads the dynamic library given by libName, if it exists and can be loaded. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ec4e55afe7dafd34504f91dfd6718814"></a><!-- doxytag: member="SurfaceDialogImpl::writeSource" ref="ec4e55afe7dafd34504f91dfd6718814" args="()" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>writeSource</b> ()</td></tr>
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurfaceDialogImpl.html#ec4e55afe7dafd34504f91dfd6718814">writeSource</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Write a C++ source file containing the given function. <br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
-A Dialog to enter a function from <img class="formulaInl" alt="$ R^2 \rightarrow R^4 $" src="form_14.png">, which will then be compiled into a dynamic library and loaded to be displayed on screen<p>
+A Dialog to enter a function from <img class="formulaInl" alt="$ R^2 \rightarrow R^4 $" src="form_14.png">. 
+<p>
+The function will then be compiled into a dynamic library and loaded to be displayed on screen<p>
 <dl class="author" compact><dt><b>Author:</b></dt><dd>Helge Preuss &lt;<a href="mailto:scout@hyperspace-travel.de">scout@hyperspace-travel.de</a>&gt; </dd></dl>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="65e1b1a5403b060c4fc10c657643491c"></a><!-- doxytag: member="SurfaceDialogImpl::SurfaceDialogImpl" ref="65e1b1a5403b060c4fc10c657643491c" args="(QWidget *parent=0, Qt::WFlags f=0)" -->
@@ -91,19 +99,21 @@ A Dialog to enter a function from <img class="formulaInl" alt="$ R^2 \rightarrow
 <div class="memdoc">
 
 <p>
-<a class="el" href="classSurfaceDialogImpl.html">SurfaceDialogImpl</a> c'tor taking parameters for the parent ComplexDialog, which in turn inherited them from QDialog displays the dialog <dl compact><dt><b>Parameters:</b></dt><dd>
+<a class="el" href="classSurfaceDialogImpl.html" title="A Dialog to enter a function from .">SurfaceDialogImpl</a> c'tor taking parameters for the parent ComplexDialog, which in turn inherited them from QDialog displays the dialog <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>parent</em>&nbsp;</td><td>parent widget (NULL) </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>f</em>&nbsp;</td><td>window flags </td></tr>
   </table>
 </dl>
 
+<p>References <a class="el" href="SurfaceDialogImpl_8C-source.html#l00044">loadFunction()</a>.</p>
+
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/UI/<a class="el" href="SurfaceDialogImpl_8H-source.html">SurfaceDialogImpl.H</a><li>workspace/HyperspaceExplorer/src/UI/SurfaceDialogImpl.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Mar 29 23:59:04 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Mar 30 04:15:26 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

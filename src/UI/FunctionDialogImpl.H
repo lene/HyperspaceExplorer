@@ -9,9 +9,9 @@
 #include "ui_FunctionDialog.h"
 #include "PluginCreator.H"
 
-/** A Dialog to enter a function from \f$ R^3 \rightarrow R \f$, which will
- *  then be compiled into a dynamic library and loaded to be displayed on
- *  screen
+/// A Dialog to enter a function from \f$ R^3 \rightarrow R \f$
+/** The function which has been entered will then be compiled into a dynamic
+ *  library and loaded to be displayed on screen as a Function.
  *  \ingroup UIGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class FunctionDialogImpl:

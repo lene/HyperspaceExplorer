@@ -142,6 +142,13 @@
       <anchor>23097e15ef85fd3616b804b7de14db7d</anchor>
       <arglist>(QWidget *parent=0, Qt::WFlags f=0)</arglist>
     </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~AnimationDialogImpl</name>
+      <anchorfile>classAnimationDialogImpl.html</anchorfile>
+      <anchor>4c9b789036a6bdd3946ef740d51af1e8</anchor>
+      <arglist>()</arglist>
+    </member>
     <member kind="function">
       <type>int</type>
       <name>getFrames</name>
@@ -3549,6 +3556,13 @@
   <compound kind="class">
     <name>PluginCreator</name>
     <filename>classPluginCreator.html</filename>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~PluginCreator</name>
+      <anchorfile>classPluginCreator.html</anchorfile>
+      <anchor>2b7db1dca02da60b9e8fa6b26042fb02</anchor>
+      <arglist>()</arglist>
+    </member>
     <member kind="function">
       <type>QString</type>
       <name>libraryName</name>
@@ -3910,8 +3924,8 @@
       <type></type>
       <name>Sponge</name>
       <anchorfile>classSponge.html</anchorfile>
-      <anchor>9271bb455bef99592709da1664876fbc</anchor>
-      <arglist>(unsigned level=1, int distance=1, double rad=1, VecMath::Vector&lt; 4 &gt; Center=VecMath::Vector&lt; 4 &gt;(0., 0., 0., 0.))</arglist>
+      <anchor>0d524e4eea3e514891726a0e46784f32</anchor>
+      <arglist>(unsigned _level=1, int _distance=1, double _rad=1, VecMath::Vector&lt; 4 &gt; _center=VecMath::Vector&lt; 4 &gt;(0., 0., 0., 0.))</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual</type>
@@ -5623,6 +5637,13 @@
       <name>data</name>
       <anchorfile>classVecMath_1_1Vector.html</anchorfile>
       <anchor>540cec1fb9483d9cad8ea9356525d867</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Vector</name>
+      <anchorfile>classVecMath_1_1Vector.html</anchorfile>
+      <anchor>63640f08c7793bf37aedf32e552499dd</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">

@@ -193,16 +193,6 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
     ///////////////////////////////////////////////////////////////////////////////
 
 
-/** Sponge constructor
- *  @param level hypersponge level
- *  @param distance distance of subcubes to center to be counted as part of the fractal
- *                  = 0: solid hypercube
- *                  = 1: foam
- *                  = 2: sponge
- *                  = 3: dust
- *                  >= 4: nothing
- *  @param rad side_length/2
- *  @param center center                                                      */
 Sponge::Sponge (unsigned level, int _distance, double _rad, Vector<4> _center):
     Level (level), distance(_distance), rad(_rad), center(_center) {
     functionName = "4-dimensional Menger Sponge";
@@ -215,10 +205,10 @@ Sponge::Sponge (unsigned level, int _distance, double _rad, Vector<4> _center):
 }
 
 
-/** return the approximate amount of memory needed to display a sponge of
- *  current level and given distance
- *  @todo uses hardcoded and experimentally found value for memory per hypercube
- *  @param distance see c'tor
+/// return the approximate amount of memory needed to display a sponge of
+/// current \em level and given \em distance
+/** @todo uses hardcoded and experimentally found value for memory per hypercube
+ *  @param distance see Initialize()
  *  @return approx. mem required                                              */
 unsigned long Sponge::MemRequired (unsigned distance) {
     double SpongePerLevel = ((distance == 0)? 81:
@@ -229,30 +219,30 @@ unsigned long Sponge::MemRequired (unsigned distance) {
 }
 
 
-/** Sponge destructor */
+/// Sponge destructor
 Sponge::~Sponge () {
     List.clear();
 }
 
-/** This function actually creates the hypersponge. It views it as an assembly
+/// This function actually creates the hypersponge.
+/** It views it as an assembly
  *  of \f$ 3^4 \f$ smaller sponges, slicing the sponge in three sub-sponges in
  *  every one of the four dimensions, and then taking away some of the resulting
  *  81 smaller sub-sponges.
- *  <ul>
- *  <li>if the parameter "distance" is zero, it only removes the sub-sponge with
- *      distance 0 from the center, i.e. the one at the center.</li>
- *  <li>if the parameter "distance" is one, it only removes the sub-sponges with
- *      distance <= 1, amounting to nine removed sub-sponges. The three-
+ *  \li if the parameter \em distance is zero, it only removes the sub-sponge
+ *      with distance 0 from the center, i.e. the one at the center.
+ *  \li if the parameter \em distance is one, it only removes the sub-sponges
+ *      with distance <= 1, amounting to nine removed sub-sponges. The three-
  *      dimensional surface of the hypercube enveloping the sponge is not
  *      breached, because the surface of a hypercube is two units away from the
- *      center, instead of one unit, as in 3D.</li>
- *  <li>if distance = 2, the holes reach the hypercubes surface, giving an
- *      object analogous to the three-dimensional Menger Sponge.</li>
- *  <li>if distance = 3, only the 16 corners of the hypercube remain, giving
- *      four-dimensional fractal dust.</li>
- *  </ul>
- *  If the level of the sponge is 1, the sub-sponges are hypercubes. Otherwise,
- *  they are Hypersponges with a level reduced by 1.                          */
+ *      center, instead of one unit, as in 3D.
+ *  \li if \em distance = 2, the holes reach the hypercubes surface, giving an
+ *      object analogous to the three-dimensional Menger Sponge.
+ *  \li if \em distance = 3, only the 16 corners of the hypercube remain, giving
+ *      four-dimensional fractal dust.
+ *
+ *  If the \em level of the sponge is 1, the sub-sponges are hypercubes. Otherwise,
+ *  they are Hypersponges with a \em level reduced by 1.                          */
 void Sponge::Initialize(void) {
     SingletonLog::Instance().log("Sponge::Initialize()");
 
@@ -305,12 +295,15 @@ void Sponge::Initialize(void) {
     }
 }
 
-/** transforms a Sponge \n
- *  The transformation is achieved by transforming all constituting sub-sponges.
- *  @param thetaxy rotation around xy plane (z axis); ignored because 3D rotation takes care of it
- *  @param thetaxz rotation around xz plane (y axis); ignored because 3D rotation takes care of it
+/// Transforms a Sponge
+/** The transformation is achieved by transforming all constituting sub-sponges.
+ *  @param thetaxy rotation around xy plane (z axis); ignored because 3D
+ *                 rotation takes care of it
+ *  @param thetaxz rotation around xz plane (y axis); ignored because 3D
+ *                 rotation takes care of it
  *  @param thetaxw rotation around xw plane
- *  @param thetayz rotation around xy plane (x axis); ignored because 3D rotation takes care of it
+ *  @param thetayz rotation around xy plane (x axis); ignored because 3D
+ *                 rotation takes care of it
  *  @param thetayw rotation around yw plane
  *  @param thetazw rotation around zw plane
  *  @param tx translation in x direction
@@ -328,8 +321,8 @@ void Sponge::Transform (double Thetaxy, double Thetaxz, double Thetaxw,
 }
 
 
-/** projects a Sponge into three-space \n
- *  The projection is achieved by projecting all constituting sub-sponges.
+/// Projects a Sponge into three-space
+/** The projection is achieved by projecting all constituting sub-sponges.
  *  @param scr_w w coordinate of screen
  *  @param cam_w w coordinate of camera
  *  @param depthcue4d wheter to use hyperfog/dc                               */
@@ -339,7 +332,8 @@ void Sponge::Project (double scr_w, double cam_w, bool depthcue4d) {
         List[i]->Project (scr_w, cam_w, depthcue4d);
 }
 
-/** draw the projected Sponge (onto screen or into GL list, as it is)         */
+/// Draw the projected Sponge (onto screen or into GL list, as it is)
+/** Draws all sub-sponges, recursively.                                       */
 void Sponge::Draw (void) {
     if (Level < 1) List[0]->Draw();
     else for (unsigned i = 0; i < List.size(); i++) List[i]->Draw();
@@ -349,8 +343,8 @@ void Sponge::Draw (void) {
     ///////////////////////////////////////////////////////////////////////////////
 
 
-/** Pyramid (hypersimplex) constructor
- *  @param center center
+/// Pyramid (hypersimplex) constructor
+/** @param center center
  *  @param _a side_length/2                                                   */
 Pyramid::Pyramid (double _a, const Vector<4> &_center):
     Object ("Hyperpyramid", 5, 10),
@@ -383,8 +377,8 @@ void Pyramid::Initialize() {
     DeclareTriangle (9,  2, 3, 4);
 }
 
-/** declare a triangle in the surfaces array
- *  @param i index of the square
+/// declare a triangle in the surfaces array
+/** @param i index of the square
  *  @param a index of vertex 1
  *  @param b index of vertex 2
  *  @param c index of vertex 3                                                */
@@ -399,8 +393,8 @@ void Pyramid::DeclareTriangle (unsigned i, unsigned a, unsigned b, unsigned c) {
     ///////////////////////////////////////////////////////////////////////////////
 
 
-/** Gasket constructor
- *  @param level hyper-sierpinski gasket level
+/// Gasket constructor
+/** @param level hyper-sierpinski gasket level
  *  @param rad side_length/2
  *  @param center center                                                      */
 Gasket::Gasket (unsigned level, double _rad, Vector<4> _center):
@@ -412,9 +406,9 @@ Gasket::Gasket (unsigned level, double _rad, Vector<4> _center):
     Initialize();
 }
 
-/** return the approximate amount of memory needed to display a gasket of
- *  current level
- *  @todo uses hardcoded and experimentally found value for memory per simplex
+/// return the approximate amount of memory needed to display a gasket of
+/// current level
+/** @todo uses hardcoded and experimentally found value for memory per simplex
  *  @return approx. mem required                                             */
 unsigned long Gasket::MemRequired (void) {
     return (unsigned long) ((pow (5., (int)Level)*14.5)/1024+8)*1024*1024;
@@ -462,11 +456,14 @@ void Gasket::Initialize() {
     }
 }
 
-/** transforms a Gasket
- *  @param thetaxy rotation around xy plane (z axis); ignored because 3D rotation takes care of it
- *  @param thetaxz rotation around xz plane (y axis); ignored because 3D rotation takes care of it
+/// Transforms a Gasket
+/** @param thetaxy rotation around xy plane (z axis); ignored because 3D
+ *                  rotation takes care of it
+ *  @param thetaxz rotation around xz plane (y axis); ignored because 3D
+ *                  rotation takes care of it
  *  @param thetaxw rotation around xw plane
- *  @param thetayz rotation around xy plane (x axis); ignored because 3D rotation takes care of it
+ *  @param thetayz rotation around xy plane (x axis); ignored because 3D
+ *                  rotation takes care of it
  *  @param thetayw rotation around yw plane
  *  @param thetazw rotation around zw plane
  *  @param tx translation in x direction
@@ -480,8 +477,8 @@ void Gasket::Transform (double Thetaxy, double Thetaxz, double Thetaxw, double T
                             Tx, Ty, Tz, Tw);
 }
 
-/** projects a Gasket into three-space
- *  @param scr_w w coordinate of screen
+/// projects a Gasket into three-space
+/** @param scr_w w coordinate of screen
  *  @param cam_w w coordinate of camera
  *  @param depthcue4d wheter to use hyperfog/dc                               */
 void Gasket::Project (double scr_w, double cam_w, bool depthcue4d) {
@@ -489,7 +486,8 @@ void Gasket::Project (double scr_w, double cam_w, bool depthcue4d) {
         List[i]->Project (scr_w, cam_w, depthcue4d);
 }
 
-/** draw the projected Gasket (onto screen or into GL list, as it is)         */
+/// draw the projected Gasket (onto screen or into GL list, as it is)
+/** */
 void Gasket::Draw (void) {
     for (unsigned i = 0; i < List.size (); i++) List[i]->Draw ();
 }

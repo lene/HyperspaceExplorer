@@ -25,61 +25,63 @@
 /// \defgroup ComplexGroup Functions C -> C
 /// \ingroup SurfaceGroup
 
-/** a  Function is a mathematical function  \f$ f: R^3 \rightarrow R^4 \f$ ,
- *  evaluated on a 3-dimensional grid, together with methods  to rotate and
- *  translate the grid in 4-space,  to project the transformed grid onto
+/// A \em Function is a mathematical function  \f$ f: R^3 \rightarrow R^4 \f$ .
+/** The function \em f is evaluated on a 3-dimensional grid. The \em Function
+ *  class provides the evaluation on the grid, together with methods  to rotate
+ *  and translate the grid in 4-space,  to project the transformed grid onto
  *  3-space, and to draw the projected grid into an OpenGL display list.
  *
  *  abstract member:
- *	- Vector &f (double, double, double);
+ *      \li Vector &f (double, double, double);
  *
  *  virtual members:
- *	- Vector *df (double, double, double);
- *	- Vector &normal (double, double, double);
- *	- Transform (double Rxy, double Rxz, double Rxw,
- *		     double Ryz, double Ryw, double Rzw,
- *		     double Tx, double Ty, double Tz, double Tw)
- *	- Project (double ScrW, double CamW, bool DepthCue4D)
- *	- Draw ()
- *	- ReInit(double _tmin, double _tmax, double _dt,
- *		 double _umin, double _umax, double _du,
- *		 double _vmin, double _vmax, double _dv)
- *	- SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0)
+ *      \li Vector *df (double, double, double);
+ *      \li Vector &normal (double, double, double);
+ *      \li Transform (double Rxy, double Rxz, double Rxw,
+ *                     double Ryz, double Ryw, double Rzw,
+ *                     double Tx, double Ty, double Tz, double Tw)
+ *      \li Project (double ScrW, double CamW, bool DepthCue4D)
+ *      \li Draw ()
+ *      \li ReInit(double _tmin, double _tmax, double _dt,
+ *                 double _umin, double _umax, double _du,
+ *                 double _vmin, double _vmax, double _dv)
+ *      \li SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0)
  *
  *  other useful members:
- *	- Transform ()
- *	- operator () (double t, double u, double v)
- *	- Initialize ();
- *	- InitMem ();
+ *      \li Transform ()
+ *      \li operator () (double t, double u, double v)
+ *      \li Initialize ();
+ *      \li InitMem ();
+ *
  *  \ingroup FunctionGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Function {
     public:
-        /// a one-dimensional array of floats, implemented as a std::vector
+        /// one-dimensional array of floats, implemented as a std::vector
         typedef std::vector<float> floatvec1D;
-        /// a two-dimensional array of floats, implemented as a nested std::vector
+        /// two-dimensional array of floats, implemented as a nested std::vector
         typedef std::vector<floatvec1D> floatvec2D;
-        /// a three-dimensional array of floats, implemented as a nested std::vector
+        /// three-dimensional array of floats, implemented as a nested std::vector
         typedef std::vector<floatvec2D> floatvec3D;
 
-        /// a one-dimensional array of Vector<3>, implemented as a std::vector
+        /// one-dimensional array of Vector<3>, implemented as a std::vector
         typedef std::vector<VecMath::Vector<3> > vec3vec1D;
-        /// a two-dimensional array of Vector<3>, implemented as a nested std::vector
+        /// two-dimensional array of Vector<3>, implemented as a nested std::vector
         typedef std::vector<vec3vec1D> vec3vec2D;
-        /// a three-dimensional array of Vector<3>, implemented as a nested std::vector
+        /// three-dimensional array of Vector<3>, implemented as a nested std::vector
         typedef std::vector<vec3vec2D> vec3vec3D;
 
-        /// a one-dimensional array of Vector<4>, implemented as a std::vector
+        /// one-dimensional array of Vector<4>, implemented as a std::vector
         typedef std::vector<VecMath::Vector<4> > vec4vec1D;
-        /// a two-dimensional array of Vector<4>, implemented as a nested std::vector
+        /// two-dimensional array of Vector<4>, implemented as a nested std::vector
         typedef std::vector<vec4vec1D> vec4vec2D;
-        /// a three-dimensional array of Vector<4>, implemented as a nested std::vector
+        /// three-dimensional array of Vector<4>, implemented as a nested std::vector
         typedef std::vector<vec4vec2D> vec4vec3D;
 
-        /** type of the function used to generate values, optimized with a
-         *  reference as return value                                         */
+        /// Type of the function used to generate values
+        /** Optimized by using a reference as return value.                   */
         typedef VecMath::Vector<4> &function_type (double, double, double);
-        /// the real, raw type of the function used to generate values
+        /// The real, raw type of the function used to generate values
         typedef VecMath::Vector<4> raw_function_type (double, double, double);
 
         Function();
@@ -92,7 +94,7 @@ class Function {
         virtual void Transform (double Rxy, double Rxz, double Rxw,
                                 double Ryz, double Ryw, double Rzw,
                                 double Tx, double Ty, double Tz, double Tw);
-        /** overloaded function executing the transform to the default state  */
+        /// Overloaded function executing the transform to the default state
         void Transform (void) { Transform (0, 0, 0, 0, 0, 0,  0, 0, 0, 0); }
 
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
@@ -104,14 +106,14 @@ class Function {
         virtual void SetParameters (double _a = 0, double _b = 0,
                                     double _c = 0, double _d = 0);
 
-        /** function evaluation operator \n
-         *  as optimization, returns the precomputed value on the grid point
+        /// Function evaluation operator
+        /** As optimization, returns the precomputed value on the grid point
          *  closest to (t, u, v)
          *  @param t first argument, e.g. x or t
          *  @param u second argument, e.g. y or u
          *  @param v third argument, e.g. z or v
          *  @return f(t, u, v), approximated by the value on the grid point
-         *          closest to (t, u, v)                         */
+         *          closest to (t, u, v)                                      */
         VecMath::Vector<4> &operator () (double t, double u, double v) {
             unsigned it = unsigned ((t-tmin)/dt),
                      iu = unsigned ((u-umin)/du),
@@ -125,13 +127,14 @@ class Function {
         unsigned getNumParameters() { return parameterNames.size(); }
         /** @return the names of the parameters for the function              */
         std::vector<QString> getParameterNames() { return parameterNames; }
+        /// Get a specified parameter name from the list
         /** @param i index of the wanted parameter
          *  @return name of the ith parameter                                 */
         QString getParameterName(unsigned i) {
             return i < parameterNames.size()? parameterNames[i]: ""; }
 
     protected:
-        /// the mathematical function defining the Function object
+        /// The mathematical function defining the Function object
         virtual function_type f = 0;
         virtual vec4vec1D df (double, double, double);
         virtual function_type normal;
@@ -169,14 +172,14 @@ class Function {
                   Xtrans; ///< temporary storage for transformed function values
         vec3vec3D Xscr;   ///< temporary storage for projected function values
 
-        /** storage for the coloring of the vertices - red component
-         *  @todo turn these three arrays into a single array of Color's      */
+        /// storage for the coloring of the vertices - red component
+        /** @todo turn these three arrays into a single array of Color's      */
         floatvec3D R;
-        /** storage for the coloring of the vertices - red component
-         *  @todo turn these three arrays into a single array of Color's      */
+        /// storage for the coloring of the vertices - red component
+        /** @todo turn these three arrays into a single array of Color's      */
         floatvec3D G;
-        /** storage for the coloring of the vertices - red component
-         *  @todo turn these three arrays into a single array of Color's      */
+        /// storage for the coloring of the vertices - red component
+        /** @todo turn these three arrays into a single array of Color's      */
         floatvec3D B;
 
         /// the name of the function as a free-form string
@@ -196,7 +199,8 @@ class Function {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-/** a hypersphere: defining function is
+/// A hypersphere.
+/** Defining function is
     \f{eqnarray*} {
         F_0 & = & Radius*\sin(\psi)*\sin(\theta)*\cos(\phi)    \\
         F_1 & = & Radius*\sin(\psi)*\sin(\theta)*\sin(\phi)    \\

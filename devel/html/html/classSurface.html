@@ -77,8 +77,10 @@ typedef <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt;
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#98f6a79d334e61068031f15ebef90458">Transform</a> (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#ce4dec89d0480aa9c59b5d0bc578131e">Transform</a> (void)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ce4dec89d0480aa9c59b5d0bc578131e"></a><!-- doxytag: member="Surface::Transform" ref="ce4dec89d0480aa9c59b5d0bc578131e" args="(void)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#ce4dec89d0480aa9c59b5d0bc578131e">Transform</a> (void)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Overloaded function executing the transform to the default state. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#15e6f13147e522e15ddda573201926b1">Project</a> (double ScrW, double CamW, bool DepthCue4D)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#926508366b1255fa6ae5cbd5d400174a">Draw</a> (void)</td></tr>
@@ -107,13 +109,14 @@ virtual <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt;
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#c892c3621a13bb30418c5b2d73763ea2">DrawPlane</a> (unsigned)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Draw the current plane of the projected <a class="el" href="classFunction.html" title="A Function is a mathematical function  .">Function</a>.  <a href="#c892c3621a13bb30418c5b2d73763ea2"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#4b6eecac144cb1d0650d711727ecb540">DrawStrip</a> (unsigned)</td></tr>
 
 <tr><td colspan="2"><br><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="40ab0b084efb0b19abd4630294083c1a"></a><!-- doxytag: member="Surface::f" ref="40ab0b084efb0b19abd4630294083c1a" args="" -->
 virtual function_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#40ab0b084efb0b19abd4630294083c1a">f</a> = 0</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">the mathematical function defining the <a class="el" href="classFunction.html">Function</a> object <br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The mathematical function defining the <a class="el" href="classFunction.html" title="A Function is a mathematical function  .">Function</a> object. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual function_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#19a24f801227ea542d749f94cb3fa44d">normal</a></td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d0c58ea4eaaa5a1b616f7630e10b9b5e"></a><!-- doxytag: member="Surface::umin" ref="d0c58ea4eaaa5a1b616f7630e10b9b5e" args="" -->
@@ -174,8 +177,10 @@ unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">storage for the coloring of the vertices <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classFunction.html#4c15e6200b99c8e333e0fc1859822b2c">floatvec2D</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#a4e58afa2b994b4a48e83b94f3fc7db7">G</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">storage for the coloring of the vertices - red component  <a href="#a4e58afa2b994b4a48e83b94f3fc7db7"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classFunction.html#4c15e6200b99c8e333e0fc1859822b2c">floatvec2D</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#5820231eed7444889a2f82f6ee4ccc4b">B</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">storage for the coloring of the vertices - red component  <a href="#5820231eed7444889a2f82f6ee4ccc4b"></a><br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 A function from <img class="formulaInl" alt="$ R^2 \rightarrow R^4 $" src="form_14.png">, thus describing a parametrized surface in hyperspace<p>
@@ -268,7 +273,7 @@ A function from <img class="formulaInl" alt="$ R^2 \rightarrow R^4 $" src="form_
   </table>
 </dl>
 
-<p>References <a class="el" href="Function_8H-source.html#l00183">Function::functionName</a>.</p>
+<p>References <a class="el" href="Function_8H-source.html#l00186">Function::functionName</a>.</p>
 
 </div>
 </div><p>
@@ -395,28 +400,6 @@ transforms a <a class="el" href="classSurface.html">Surface</a> <br>
 <p>Reimplemented from <a class="el" href="classFunction.html#72f006db20997686354a12e6fc1069f0">Function</a>.</p>
 
 <p>References <a class="el" href="Surface_8H-source.html#l00076">usteps</a>, <a class="el" href="Surface_8H-source.html#l00076">vsteps</a>, <a class="el" href="Surface_8H-source.html#l00083">X</a>, and <a class="el" href="Surface_8H-source.html#l00083">Xtrans</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="ce4dec89d0480aa9c59b5d0bc578131e"></a><!-- doxytag: member="Surface::Transform" ref="ce4dec89d0480aa9c59b5d0bc578131e" args="(void)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Surface::Transform           </td>
-          <td>(</td>
-          <td class="paramtype">void&nbsp;</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td width="100%"><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-overloaded function executing the transform to the default state 
-<p>Reimplemented from <a class="el" href="classFunction.html#42e2e15e46dc3c126a924ad7701ef69f">Function</a>.</p>
 
 </div>
 </div><p>
@@ -690,7 +673,7 @@ numerical calculation of the derivatives in u and v: <p class="formulaDsp">
 <div class="memdoc">
 
 <p>
-allocate and initialize X[][] with values of <a class="el" href="classSurface.html#40ab0b084efb0b19abd4630294083c1a" title="the mathematical function defining the Function object">f()</a> <br>
+allocate and initialize X[][] with values of <a class="el" href="classSurface.html#40ab0b084efb0b19abd4630294083c1a" title="The mathematical function defining the Function object.">f()</a> <br>
  call InitMem () above 
 <p>Reimplemented from <a class="el" href="classFunction.html#bf3e9d2aac1920bc533040cdac3408d8">Function</a>.</p>
 
@@ -745,12 +728,12 @@ Initialize the temporary storage areas Xscr[][], Xtrans[][], R[][], G[][], B[][]
 <div class="memdoc">
 
 <p>
-return the approximate amount of memory needed to display a <a class="el" href="classFunction.html">Function</a> of current definition set <br>
+return the approximate amount of memory needed to display a <a class="el" href="classFunction.html" title="A Function is a mathematical function  .">Function</a> of current definition set <br>
  uses hardcoded and experimentally found value for memory per cell - ICK! <dl class="return" compact><dt><b>Returns:</b></dt><dd>approx. mem required </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classFunction.html#d6a10b999b0d561d36a473d461c62311">Function</a>.</p>
 
-<p>References <a class="el" href="Function_8H-source.html#l00158">Function::tsteps</a>, and <a class="el" href="Surface_8H-source.html#l00076">usteps</a>.</p>
+<p>References <a class="el" href="Function_8H-source.html#l00161">Function::tsteps</a>, and <a class="el" href="Surface_8H-source.html#l00076">usteps</a>.</p>
 
 </div>
 </div><p>
@@ -771,7 +754,9 @@ return the approximate amount of memory needed to display a <a class="el" href="
 <div class="memdoc">
 
 <p>
-draw the current plane of the projected <a class="el" href="classFunction.html">Function</a> <dl compact><dt><b>Parameters:</b></dt><dd>
+Draw the current plane of the projected <a class="el" href="classFunction.html" title="A Function is a mathematical function  .">Function</a>. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>t</em>&nbsp;</td><td>current t value </td></tr>
   </table>
@@ -849,7 +834,9 @@ calculate normal to function at a given point in definition set <br>
 <div class="memdoc">
 
 <p>
-storage for the coloring of the vertices - red component <dl compact><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>turn these three arrays into a single array of Color's </dd></dl>
+storage for the coloring of the vertices - red component 
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>turn these three arrays into a single array of Color's </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classFunction.html#0bd63aff446ad45bca54b2998b53e74c">Function</a>.</p>
 
@@ -869,7 +856,9 @@ storage for the coloring of the vertices - red component <dl compact><dt><b><a c
 <div class="memdoc">
 
 <p>
-storage for the coloring of the vertices - red component <dl compact><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>turn these three arrays into a single array of Color's </dd></dl>
+storage for the coloring of the vertices - red component 
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>turn these three arrays into a single array of Color's </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classFunction.html#2186681b07fb49a64a97a23849a832f3">Function</a>.</p>
 
@@ -880,7 +869,7 @@ storage for the coloring of the vertices - red component <dl compact><dt><b><a c
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="Surface_8H-source.html">Surface.H</a><li>workspace/HyperspaceExplorer/src/Functions/Surface.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Mar 29 23:59:04 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Mar 30 04:15:26 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

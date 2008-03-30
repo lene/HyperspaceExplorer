@@ -28,7 +28,10 @@
 <h1>Sponge Class Reference<br>
 <small>
 [<a class="el" href="group__ObjectGroup.html">Arbitrary four-dimensional objects, described by their surfaces</a>]</small>
-</h1><!-- doxytag: class="Sponge" --><!-- doxytag: inherits="Hypercube" --><code>#include &lt;<a class="el" href="Object_8H-source.html">Object.H</a>&gt;</code>
+</h1><!-- doxytag: class="Sponge" --><!-- doxytag: inherits="Hypercube" -->A four-dimensional Menger <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a>.  
+<a href="#_details">More...</a>
+<p>
+<code>#include &lt;<a class="el" href="Object_8H-source.html">Object.H</a>&gt;</code>
 <p>
 <div class="dynheader">
 Inheritance diagram for Sponge:</div>
@@ -46,74 +49,125 @@ Inheritance diagram for Sponge:</div>
 <a href="classSponge-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9271bb455bef99592709da1664876fbc"></a><!-- doxytag: member="Sponge::Sponge" ref="9271bb455bef99592709da1664876fbc" args="(unsigned level=1, int distance=1, double rad=1, VecMath::Vector&lt; 4 &gt; Center=VecMath::Vector&lt; 4 &gt;(0., 0., 0., 0.))" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>Sponge</b> (unsigned level=1, int distance=1, double rad=1, <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; Center=<a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt;(0., 0., 0., 0.))</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSponge.html#0d524e4eea3e514891726a0e46784f32">Sponge</a> (unsigned _level=1, int _distance=1, double _rad=1, <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; _center=<a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt;(0., 0., 0., 0.))</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSponge.html#7f86fac04936c5486a16a187f32e0e5b">~Sponge</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a> constructor.  <a href="#0d524e4eea3e514891726a0e46784f32"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7f86fac04936c5486a16a187f32e0e5b"></a><!-- doxytag: member="Sponge::~Sponge" ref="7f86fac04936c5486a16a187f32e0e5b" args="()" -->
+virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSponge.html#7f86fac04936c5486a16a187f32e0e5b">~Sponge</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a> destructor. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSponge.html#00961c9a2034c8edac7697568e2f6cc8">Transform</a> (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Transforms a <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a>.  <a href="#00961c9a2034c8edac7697568e2f6cc8"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSponge.html#ee14d45eb035e31bf23efe2c45245e6a">Project</a> (double ScrW, double CamW, bool DepthCue4D)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Projects a <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a> into three-space.  <a href="#ee14d45eb035e31bf23efe2c45245e6a"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSponge.html#673da787a17189eafade24bf21e82f70">Draw</a> (void)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Draw the projected <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a> (onto screen or into GL list, as it is).  <a href="#673da787a17189eafade24bf21e82f70"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSponge.html#36471176a1ee0aef443094278469f6a6">SetParameters</a> (double _a=0, double _b=0, double _c=0, double=0)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSponge.html#e4ee07a364e503076552de10d5006260">ReInit</a> (double, double, double, double, double, double, double, double, double)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e4ee07a364e503076552de10d5006260"></a><!-- doxytag: member="Sponge::ReInit" ref="e4ee07a364e503076552de10d5006260" args="(double, double, double, double, double, double, double, double, double)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSponge.html#e4ee07a364e503076552de10d5006260">ReInit</a> (double, double, double, double, double, double, double, double, double)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7821a0eec75f0d4c75c6e9c1a4ea0d5c"></a><!-- doxytag: member="Sponge::description" ref="7821a0eec75f0d4c75c6e9c1a4ea0d5c" args="()" -->
-virtual std::string&nbsp;</td><td class="memItemRight" valign="bottom"><b>description</b> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Rebuild the <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a> if the parameters have changed. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual std::string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSponge.html#7821a0eec75f0d4c75c6e9c1a4ea0d5c">description</a> ()</td></tr>
 
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSponge.html#b552ce65169a2b44bc93e86dbba76a25">Initialize</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This function actually creates the hypersponge.  <a href="#b552ce65169a2b44bc93e86dbba76a25"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual unsigned long&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSponge.html#31290427d5599a4ea65e24b23427eeef">MemRequired</a> (unsigned)</td></tr>
 
 <tr><td colspan="2"><br><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9bbf04ed220e35a64d987d972c9baf07"></a><!-- doxytag: member="Sponge::Level" ref="9bbf04ed220e35a64d987d972c9baf07" args="" -->
-unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><b>Level</b></td></tr>
+unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSponge.html#9bbf04ed220e35a64d987d972c9baf07">Level</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="599e21656433097f9e7f2ac143a1dc7a"></a><!-- doxytag: member="Sponge::List" ref="599e21656433097f9e7f2ac143a1dc7a" args="" -->
-std::vector&lt; <a class="el" href="classHypercube.html">Hypercube</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>List</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Level of the hypersponge. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">std::vector&lt; <a class="el" href="classHypercube.html">Hypercube</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSponge.html#599e21656433097f9e7f2ac143a1dc7a">List</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">List of sub-sponges (see <a class="el" href="classSponge.html#b552ce65169a2b44bc93e86dbba76a25" title="This function actually creates the hypersponge.">Initialize()</a>).  <a href="#599e21656433097f9e7f2ac143a1dc7a"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5b0880e7ae3dfa67598961e9e4cc075d"></a><!-- doxytag: member="Sponge::distance" ref="5b0880e7ae3dfa67598961e9e4cc075d" args="" -->
-int&nbsp;</td><td class="memItemRight" valign="bottom"><b>distance</b></td></tr>
+int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSponge.html#5b0880e7ae3dfa67598961e9e4cc075d">distance</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">max. distance (see <a class="el" href="classSponge.html#b552ce65169a2b44bc93e86dbba76a25" title="This function actually creates the hypersponge.">Initialize()</a>) <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="309b53bbc078d739edd0eb31e127b1fa"></a><!-- doxytag: member="Sponge::rad" ref="309b53bbc078d739edd0eb31e127b1fa" args="" -->
-double&nbsp;</td><td class="memItemRight" valign="bottom"><b>rad</b></td></tr>
+double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSponge.html#309b53bbc078d739edd0eb31e127b1fa">rad</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">radius, more correctly size, of the sponge <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5a57edfbaa6e238e19e16b4e88c10dee"></a><!-- doxytag: member="Sponge::center" ref="5a57edfbaa6e238e19e16b4e88c10dee" args="" -->
-<a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>center</b></td></tr>
+<a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSponge.html#5a57edfbaa6e238e19e16b4e88c10dee">center</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">center of the sponge <br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
-A four-dimensional Menger <a class="el" href="classSponge.html">Sponge</a>.<br>
- A Menger <a class="el" href="classSponge.html">Sponge</a> in three dimensions is a fractal produced by subdividing a cube and taking away parts of the cube which get subsequentally smaller.<br>
- A four-dimensional Menger <a class="el" href="classSponge.html">Sponge</a> is created analogously from a hypercube.<br>
- The fractal can be further controlled by the distance parameter: <ul>
-<li>distance = 0: Only the innermost cube is removed, resulting in a four-dimensional foam </li>
-<li>distance = 1: the innermost and the next to innermost cubes are removed, resulting in a foam in three dimensions, but holes in the four-dimensional structure </li>
-<li>distance = 2: the holes reach the surface of the cube, resulting in a sponge structure </li>
-<li>distance = 3: only the corners of the hypercube remain, resulting in dust </li>
+A four-dimensional Menger <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a>. 
+<p>
+A Menger <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a> in three dimensions is a fractal produced by subdividing a cube and taking away parts of the cube which get subsequentally smaller. The <em>level</em> parameter controls how often this process is repeated, i.e. how many holes there are in the final object. <br>
+ A four-dimensional Menger <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a> is created analogously from a hypercube.<br>
+ The fractal can be further controlled by the <em>distance</em> parameter: <ul>
+<li><em>distance</em> = 0: Only the innermost cube is removed, resulting in a four-dimensional foam with connected body and disjoint holes. </li>
+<li><em>distance</em> = 1: the innermost and the next to innermost cubes are removed, which results in a foam in three dimensions, but has holes in the four-dimensional structure. </li>
+<li><em>distance</em> = 2: the holes reach the surface of the cube, resulting in a sponge structure - both the holes and the cubes ("curd") are connected. </li>
+<li><em>distance</em> = 3: only the corners of the hypercube remain, resulting in dust - the "curd" is disjoint, the holes are connected. </li>
 </ul>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" name="7f86fac04936c5486a16a187f32e0e5b"></a><!-- doxytag: member="Sponge::~Sponge" ref="7f86fac04936c5486a16a187f32e0e5b" args="()" -->
+<a class="anchor" name="0d524e4eea3e514891726a0e46784f32"></a><!-- doxytag: member="Sponge::Sponge" ref="0d524e4eea3e514891726a0e46784f32" args="(unsigned _level=1, int _distance=1, double _rad=1, VecMath::Vector&lt; 4 &gt; _center=VecMath::Vector&lt; 4 &gt;(0., 0., 0., 0.))" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Sponge::~Sponge           </td>
+          <td class="memname">Sponge::Sponge           </td>
           <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td width="100%"><code> [virtual]</code></td>
+          <td class="paramtype">unsigned&nbsp;</td>
+          <td class="paramname"> <em>_level</em> = <code>1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>_distance</em> = <code>1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>_rad</em> = <code>1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt;&nbsp;</td>
+          <td class="paramname"> <em>_center</em> = <code><a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt;&nbsp;4&nbsp;&gt;(0.,&nbsp;0.,&nbsp;0.,&nbsp;0.)</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-<a class="el" href="classSponge.html">Sponge</a> destructor 
+<a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a> constructor. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>_level</em>&nbsp;</td><td>hypersponge level </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_distance</em>&nbsp;</td><td>distance of subcubes to center to be counted as part of the fractal <ul>
+<li>= 0: solid hypercube </li>
+<li>= 1: foam </li>
+<li>= 2: sponge </li>
+<li>= 3: dust </li>
+<li>&gt;= 4: nothing </li>
+</ul>
+</td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_rad</em>&nbsp;</td><td>side_length/2 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_center</em>&nbsp;</td><td>center </td></tr>
+  </table>
+</dl>
+
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
@@ -191,8 +245,9 @@ A four-dimensional Menger <a class="el" href="classSponge.html">Sponge</a>.<br>
 <div class="memdoc">
 
 <p>
-transforms a <a class="el" href="classSponge.html">Sponge</a> <br>
- The transformation is achieved by transforming all constituting sub-sponges. <dl compact><dt><b>Parameters:</b></dt><dd>
+Transforms a <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a>. 
+<p>
+The transformation is achieved by transforming all constituting sub-sponges. <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>thetaxy</em>&nbsp;</td><td>rotation around xy plane (z axis); ignored because 3D rotation takes care of it </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>thetaxz</em>&nbsp;</td><td>rotation around xz plane (y axis); ignored because 3D rotation takes care of it </td></tr>
@@ -209,7 +264,7 @@ transforms a <a class="el" href="classSponge.html">Sponge</a> <br>
 
 <p>Reimplemented from <a class="el" href="classObject.html#325a0b66e653f67de1d26c35022cdaa5">Object</a>.</p>
 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="Function_8H-source.html#l00096">Function::Transform()</a>.</p>
+<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="Object_8H-source.html#l00180">List</a>, and <a class="el" href="Function_8H-source.html#l00098">Function::Transform()</a>.</p>
 
 </div>
 </div><p>
@@ -245,8 +300,9 @@ transforms a <a class="el" href="classSponge.html">Sponge</a> <br>
 <div class="memdoc">
 
 <p>
-projects a <a class="el" href="classSponge.html">Sponge</a> into three-space <br>
- The projection is achieved by projecting all constituting sub-sponges. <dl compact><dt><b>Parameters:</b></dt><dd>
+Projects a <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a> into three-space. 
+<p>
+The projection is achieved by projecting all constituting sub-sponges. <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>scr_w</em>&nbsp;</td><td>w coordinate of screen </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>cam_w</em>&nbsp;</td><td>w coordinate of camera </td></tr>
@@ -256,7 +312,7 @@ projects a <a class="el" href="classSponge.html">Sponge</a> into three-space <br
 
 <p>Reimplemented from <a class="el" href="classObject.html#8404a4e0b7cddabbb14797c755c3daa8">Object</a>.</p>
 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
+<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="Object_8H-source.html#l00180">List</a>.</p>
 
 </div>
 </div><p>
@@ -277,8 +333,12 @@ projects a <a class="el" href="classSponge.html">Sponge</a> into three-space <br
 <div class="memdoc">
 
 <p>
-draw the projected <a class="el" href="classSponge.html">Sponge</a> (onto screen or into GL list, as it is) 
+Draw the projected <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a> (onto screen or into GL list, as it is). 
+<p>
+Draws all sub-sponges, recursively. 
 <p>Reimplemented from <a class="el" href="classObject.html#3afa1b9af32b78d81b5de0836c511aeb">Object</a>.</p>
+
+<p>References <a class="el" href="Object_8H-source.html#l00176">Level</a>, and <a class="el" href="Object_8H-source.html#l00180">List</a>.</p>
 
 </div>
 </div><p>
@@ -308,7 +368,7 @@ draw the projected <a class="el" href="classSponge.html">Sponge</a> (onto screen
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_d</em> = <code>0</code></td><td>&nbsp;</td>
+          <td class="paramname"> = <code>0</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -320,104 +380,41 @@ draw the projected <a class="el" href="classSponge.html">Sponge</a> (onto screen
 <div class="memdoc">
 
 <p>
-placeholder for function to set parameters in descendants - empty because a generic function has no parameters <dl compact><dt><b>Parameters:</b></dt><dd>
+<dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>_a</em>&nbsp;</td><td>1st parameter </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>_b</em>&nbsp;</td><td>2nd parameter </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>_c</em>&nbsp;</td><td>3rd parameter </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>_d</em>&nbsp;</td><td>4th parameter </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>a</em>&nbsp;</td><td><a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a> level </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>b</em>&nbsp;</td><td>Distance (see <a class="el" href="classSponge.html#b552ce65169a2b44bc93e86dbba76a25" title="This function actually creates the hypersponge.">Initialize()</a>) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>c</em>&nbsp;</td><td><a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a> size </td></tr>
   </table>
 </dl>
 
 <p>Reimplemented from <a class="el" href="classHypercube.html#290688b04edc2e4f651cd9ca4da861b6">Hypercube</a>.</p>
 
+<p>References <a class="el" href="Object_8H-source.html#l00182">distance</a>, <a class="el" href="Object_8H-source.html#l00176">Level</a>, and <a class="el" href="Object_8H-source.html#l00183">rad</a>.</p>
+
 </div>
 </div><p>
-<a class="anchor" name="e4ee07a364e503076552de10d5006260"></a><!-- doxytag: member="Sponge::ReInit" ref="e4ee07a364e503076552de10d5006260" args="(double, double, double, double, double, double, double, double, double)" -->
+<a class="anchor" name="7821a0eec75f0d4c75c6e9c1a4ea0d5c"></a><!-- doxytag: member="Sponge::description" ref="7821a0eec75f0d4c75c6e9c1a4ea0d5c" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void Sponge::ReInit           </td>
+          <td class="memname">virtual std::string Sponge::description           </td>
           <td>(</td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_tmin</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_tmax</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_dt</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_umin</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_umax</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_du</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_vmin</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_vmax</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_dv</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td width="100%"><code> [inline, virtual]</code></td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline, virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-re-initialize a <a class="el" href="classFunction.html">Function</a> if the definition set has changed <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>tmin</em>&nbsp;</td><td>minimal value in t </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>tmax</em>&nbsp;</td><td>maximal value in t </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>dt</em>&nbsp;</td><td>stepsize in t </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>umin</em>&nbsp;</td><td>minimal value in u </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>umax</em>&nbsp;</td><td>maximal value in u </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>du</em>&nbsp;</td><td>stepsize in u </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>vmin</em>&nbsp;</td><td>minimal value in v </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>vmax</em>&nbsp;</td><td>maximal value in v </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>dv</em>&nbsp;</td><td>stepsize in v </td></tr>
-  </table>
-</dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>A string with a description of the Hypersponge object </dd></dl>
 
-<p>Reimplemented from <a class="el" href="classObject.html#cb280cacb700070c0cccd0bf35225102">Object</a>.</p>
+<p>Reimplemented from <a class="el" href="classHypercube.html">Hypercube</a>.</p>
 
-<p>References <a class="el" href="Object_8C-source.html#l00120">Object::ReInit()</a>.</p>
+<p>References <a class="el" href="Object_8H-source.html#l00176">Level</a>.</p>
 
 </div>
 </div><p>
@@ -438,20 +435,18 @@ re-initialize a <a class="el" href="classFunction.html">Function</a> if the defi
 <div class="memdoc">
 
 <p>
-This function actually creates the hypersponge. It views it as an assembly of <img class="formulaInl" alt="$ 3^4 $" src="form_47.png"> smaller sponges, slicing the sponge in three sub-sponges in every one of the four dimensions, and then taking away some of the resulting 81 smaller sub-sponges. <ul>
-<li>
-if the parameter "distance" is zero, it only removes the sub-sponge with distance 0 from the center, i.e. the one at the center. </li>
-<li>
-if the parameter "distance" is one, it only removes the sub-sponges with distance &lt;= 1, amounting to nine removed sub-sponges. The three- dimensional surface of the hypercube enveloping the sponge is not breached, because the surface of a hypercube is two units away from the center, instead of one unit, as in 3D. </li>
-<li>
-if distance = 2, the holes reach the hypercubes surface, giving an object analogous to the three-dimensional Menger <a class="el" href="classSponge.html">Sponge</a>. </li>
-<li>
-if distance = 3, only the 16 corners of the hypercube remain, giving four-dimensional fractal dust. </li>
+This function actually creates the hypersponge. 
+<p>
+It views it as an assembly of <img class="formulaInl" alt="$ 3^4 $" src="form_47.png"> smaller sponges, slicing the sponge in three sub-sponges in every one of the four dimensions, and then taking away some of the resulting 81 smaller sub-sponges. <ul>
+<li>if the parameter <em>distance</em> is zero, it only removes the sub-sponge with distance 0 from the center, i.e. the one at the center. </li>
+<li>if the parameter <em>distance</em> is one, it only removes the sub-sponges with distance &lt;= 1, amounting to nine removed sub-sponges. The three- dimensional surface of the hypercube enveloping the sponge is not breached, because the surface of a hypercube is two units away from the center, instead of one unit, as in 3D. </li>
+<li>if <em>distance</em> = 2, the holes reach the hypercubes surface, giving an object analogous to the three-dimensional Menger <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a>. </li>
+<li>if <em>distance</em> = 3, only the 16 corners of the hypercube remain, giving four-dimensional fractal dust.</li>
 </ul>
-If the level of the sponge is 1, the sub-sponges are hypercubes. Otherwise, they are Hypersponges with a level reduced by 1. 
+If the <em>level</em> of the sponge is 1, the sub-sponges are hypercubes. Otherwise, they are Hypersponges with a <em>level</em> reduced by 1. 
 <p>Reimplemented from <a class="el" href="classHypercube.html#790d87e55f2b01d1b339df6f05852ffd">Hypercube</a>.</p>
 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="Function_8C-source.html#l00185">Function::MemRequired()</a>.</p>
+<p>References <a class="el" href="Object_8H-source.html#l00184">center</a>, <a class="el" href="Object_8H-source.html#l00182">distance</a>, <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="Object_8H-source.html#l00176">Level</a>, <a class="el" href="Object_8H-source.html#l00180">List</a>, <a class="el" href="Function_8C-source.html#l00170">Function::MemRequired()</a>, and <a class="el" href="Object_8H-source.html#l00183">rad</a>.</p>
 
 </div>
 </div><p>
@@ -472,20 +467,43 @@ If the level of the sponge is 1, the sub-sponges are hypercubes. Otherwise, they
 <div class="memdoc">
 
 <p>
-return the approximate amount of memory needed to display a sponge of current level and given distance <dl compact><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>uses hardcoded and experimentally found value for memory per hypercube </dd></dl>
+return the approximate amount of memory needed to display a sponge of current <em>level</em> and given <em>distance</em> <dl compact><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>uses hardcoded and experimentally found value for memory per hypercube </dd></dl>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>distance</em>&nbsp;</td><td>see c'tor </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>distance</em>&nbsp;</td><td>see <a class="el" href="classSponge.html#b552ce65169a2b44bc93e86dbba76a25" title="This function actually creates the hypersponge.">Initialize()</a> </td></tr>
   </table>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>approx. mem required </dd></dl>
+
+<p>References <a class="el" href="Object_8H-source.html#l00176">Level</a>.</p>
+
+</div>
+</div><p>
+<hr><h2>Member Data Documentation</h2>
+<a class="anchor" name="599e21656433097f9e7f2ac143a1dc7a"></a><!-- doxytag: member="Sponge::List" ref="599e21656433097f9e7f2ac143a1dc7a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classHypercube.html">Hypercube</a> *&gt; <a class="el" href="classSponge.html#599e21656433097f9e7f2ac143a1dc7a">Sponge::List</a><code> [protected]</code>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+List of sub-sponges (see <a class="el" href="classSponge.html#b552ce65169a2b44bc93e86dbba76a25" title="This function actually creates the hypersponge.">Initialize()</a>). 
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>Use smart pointers instead of a simple pointer-to-object </dd></dl>
+
+<p>Referenced by <a class="el" href="Object_8C-source.html#l00337">Draw()</a>, <a class="el" href="Object_8C-source.html#l00246">Initialize()</a>, <a class="el" href="Object_8C-source.html#l00329">Project()</a>, <a class="el" href="Object_8H-source.html#l00159">ReInit()</a>, <a class="el" href="Object_8C-source.html#l00313">Transform()</a>, and <a class="el" href="Object_8C-source.html#l00223">~Sponge()</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="Object_8H-source.html">Object.H</a><li>workspace/HyperspaceExplorer/src/Functions/Object.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Mar 29 23:59:04 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Mar 30 04:15:25 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

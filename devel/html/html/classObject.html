@@ -61,6 +61,7 @@ typedef std::vector&lt; <a class="el" href="classObject.html#6b75a43f15ef4d901ad
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObject.html#cb280cacb700070c0cccd0bf35225102">ReInit</a> (double, double, double, double, double, double, double, double, double)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Re-initialize a <a class="el" href="classFunction.html" title="A Function is a mathematical function  .">Function</a> if the definition set has changed.  <a href="#cb280cacb700070c0cccd0bf35225102"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObject.html#325a0b66e653f67de1d26c35022cdaa5">Transform</a> (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObject.html#8404a4e0b7cddabbb14797c755c3daa8">Project</a> (double ScrW, double CamW, bool DepthCue4D)</td></tr>
@@ -146,7 +147,7 @@ generic <a class="el" href="classObject.html">Object</a> constructor; only alloc
   </table>
 </dl>
 
-<p>References <a class="el" href="Function_8H-source.html#l00183">Function::functionName</a>, and <a class="el" href="Object_8H-source.html#l00049">NumSurfaces</a>.</p>
+<p>References <a class="el" href="Function_8H-source.html#l00186">Function::functionName</a>, and <a class="el" href="Object_8H-source.html#l00049">NumSurfaces</a>.</p>
 
 </div>
 </div><p>
@@ -219,7 +220,9 @@ generic <a class="el" href="classObject.html">Object</a> constructor; only alloc
 <div class="memdoc">
 
 <p>
-re-initialize a <a class="el" href="classFunction.html">Function</a> if the definition set has changed <dl compact><dt><b>Parameters:</b></dt><dd>
+Re-initialize a <a class="el" href="classFunction.html" title="A Function is a mathematical function  .">Function</a> if the definition set has changed. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>tmin</em>&nbsp;</td><td>minimal value in t </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>tmax</em>&nbsp;</td><td>maximal value in t </td></tr>
@@ -237,9 +240,9 @@ re-initialize a <a class="el" href="classFunction.html">Function</a> if the defi
 
 <p>Reimplemented in <a class="el" href="classSponge.html#e4ee07a364e503076552de10d5006260">Sponge</a>, and <a class="el" href="classGasket.html#d4ff88db24102c117decfc8d4309489a">Gasket</a>.</p>
 
-<p>References <a class="el" href="Function_8C-source.html#l00128">Function::Initialize()</a>, and <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
+<p>References <a class="el" href="Function_8C-source.html#l00117">Function::Initialize()</a>, and <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
 
-<p>Referenced by <a class="el" href="Object_8H-source.html#l00213">Gasket::ReInit()</a>, and <a class="el" href="Object_8H-source.html#l00142">Sponge::ReInit()</a>.</p>
+<p>Referenced by <a class="el" href="Object_8H-source.html#l00234">Gasket::ReInit()</a>, and <a class="el" href="Object_8H-source.html#l00159">Sponge::ReInit()</a>.</p>
 
 </div>
 </div><p>
@@ -380,8 +383,8 @@ projects an <a class="el" href="classObject.html">Object</a> into three-space <d
     <tr><td valign="top"></td><td valign="top"><em>depthcue4d</em>&nbsp;</td><td>wheter to use hyperfog/dc </td></tr>
   </table>
 </dl>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>change R[], G[], B[] into a single array of Color's </dd></dl>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>uses hardcoded values! </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>change R[], G[], B[] into a single array of Color's </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>uses hardcoded values! </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classFunction.html#b6ca8a43af74c15ffbb805ecf6eba991">Function</a>.</p>
 
@@ -449,8 +452,8 @@ draw the projected <a class="el" href="classObject.html">Object</a> (onto screen
 <div class="memdoc">
 
 <p>
-A pointless function, but it must be overridden to satisfy the <a class="el" href="classFunction.html">Function</a> interface. In an <a class="el" href="classObject.html">Object</a> it is never called because the four-dimensional object is represented by a list of surfaces instead of a mathematical function. 
-<p>References <a class="el" href="Function_8H-source.html#l00166">Function::F</a>.</p>
+A pointless function, but it must be overridden to satisfy the <a class="el" href="classFunction.html" title="A Function is a mathematical function  .">Function</a> interface. In an <a class="el" href="classObject.html">Object</a> it is never called because the four-dimensional object is represented by a list of surfaces instead of a mathematical function. 
+<p>References <a class="el" href="Function_8H-source.html#l00169">Function::F</a>.</p>
 
 </div>
 </div><p>
@@ -467,7 +470,7 @@ A pointless function, but it must be overridden to satisfy the <a class="el" hre
 <div class="memdoc">
 
 <p>
-storage for the coloring of the vertices - red component <dl compact><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>turn these three arrays into a single array of Color's </dd></dl>
+storage for the coloring of the vertices - red component <dl compact><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>turn these three arrays into a single array of Color's </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classFunction.html#81a830f022fb09e6bd07b4c6b67fd26c">Function</a>.</p>
 
@@ -487,7 +490,7 @@ storage for the coloring of the vertices - red component <dl compact><dt><b><a c
 <div class="memdoc">
 
 <p>
-storage for the coloring of the vertices - red component <dl compact><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>turn these three arrays into a single array of Color's </dd></dl>
+storage for the coloring of the vertices - red component <dl compact><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>turn these three arrays into a single array of Color's </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classFunction.html#0bd63aff446ad45bca54b2998b53e74c">Function</a>.</p>
 
@@ -507,7 +510,7 @@ storage for the coloring of the vertices - red component <dl compact><dt><b><a c
 <div class="memdoc">
 
 <p>
-storage for the coloring of the vertices - red component <dl compact><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>turn these three arrays into a single array of Color's </dd></dl>
+storage for the coloring of the vertices - red component <dl compact><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>turn these three arrays into a single array of Color's </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classFunction.html#2186681b07fb49a64a97a23849a832f3">Function</a>.</p>
 
@@ -518,7 +521,7 @@ storage for the coloring of the vertices - red component <dl compact><dt><b><a c
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="Object_8H-source.html">Object.H</a><li>workspace/HyperspaceExplorer/src/Functions/Object.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Mar 29 23:59:04 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Mar 30 04:15:25 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

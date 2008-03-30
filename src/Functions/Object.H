@@ -104,26 +104,39 @@ protected:
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A four-dimensional Menger Sponge.\n
- *  A Menger Sponge in three dimensions is a fractal produced by subdividing
+/// A four-dimensional Menger Sponge.
+/** A Menger Sponge in three dimensions is a fractal produced by subdividing
  *  a cube and taking away parts of the cube which get subsequentally
- *  smaller.\n
+ *  smaller. The \em level parameter controls how often this process is repeated,
+ *  i.e. how many holes there are in the final object. \n
  *  A four-dimensional Menger Sponge is created analogously from a hypercube.\n
- *  The fractal can be further controlled by the distance parameter:
- *  \li distance = 0: Only the innermost cube is removed, resulting in a
- *  four-dimensional foam
- *  \li distance = 1: the innermost and the next to innermost cubes are removed,
- *  resulting in a foam in three dimensions, but holes in the four-dimensional
- *  structure
- *  \li distance = 2: the holes reach the surface of the cube, resulting in a
- *  sponge structure
- *  \li distance = 3: only the corners of the hypercube remain, resulting in
- *  dust
+ *  The fractal can be further controlled by the \em distance parameter:
+ *  \li \em distance = 0: Only the innermost cube is removed, resulting in a
+ *      four-dimensional foam with connected body and disjoint holes.
+ *  \li \em distance = 1: the innermost and the next to innermost cubes are
+ *      removed, which results in a foam in three dimensions, but has holes in
+ *      the four-dimensional structure.
+ *  \li \em distance = 2: the holes reach the surface of the cube, resulting in
+ *      a sponge structure - both the holes and the cubes ("curd") are
+ *      connected.
+ *  \li \em distance = 3: only the corners of the hypercube remain, resulting in
+ *      dust - the "curd" is disjoint, the holes are connected.
  *  \ingroup ObjectGroup                                                    */
 class Sponge: public Hypercube {
 public:
-    Sponge (unsigned level = 1, int distance = 1, double rad = 1,
-            VecMath::Vector<4> Center = VecMath::Vector<4>(0., 0.,0., 0.));
+    /// Sponge constructor
+    /** @param _level hypersponge level
+     *  @param _distance distance of subcubes to center to be counted as part of
+     *                   the fractal
+     *                   \li = 0: solid hypercube
+     *                   \li = 1: foam
+     *                   \li = 2: sponge
+     *                   \li = 3: dust
+     *                   \li >= 4: nothing
+     *  @param _rad side_length/2
+     *  @param _center center                                                 */
+    Sponge (unsigned _level = 1, int _distance = 1, double _rad = 1,
+            VecMath::Vector<4> _center = VecMath::Vector<4>(0., 0.,0., 0.));
     virtual ~Sponge ();
 
     virtual void Transform (double Rxy, double Rxz, double Rxw,
@@ -132,6 +145,9 @@ public:
     virtual void Project (double ScrW, double CamW, bool DepthCue4D);
     virtual void Draw (void);
 
+    /** @param a Sponge level
+     *  @param b Distance (see Initialize())
+     *  @param c Sponge size                                                  */
     virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0,
                                 double = 0) {
         Level = (unsigned)_a;
@@ -139,6 +155,7 @@ public:
         rad = _c;
     }
 
+    /// Rebuild the Sponge if the parameters have changed
     virtual void ReInit (double, double, double,
                          double, double, double,
                          double, double, double) {
@@ -146,28 +163,32 @@ public:
         Object::ReInit(0,0,0,0,0,0,0,0,0);
     }
 
+    /** @return A string with a description of the Hypersponge object         */
     virtual std::string description () {
         std::ostringstream out;
         out << "Sponge (level = " << Level << ")" << std::ends;
         return out.str ();
     }
+
 protected:
     virtual void Initialize();
     virtual unsigned long MemRequired (unsigned);
-    unsigned Level;
+    unsigned Level;                 ///< Level of the hypersponge
 
+    /// List of sub-sponges (see Initialize())
+    /** @todo Use smart pointers instead of a simple pointer-to-object        */
     std::vector<Hypercube *> List;
 
-    int distance;
-    double rad;
-    VecMath::Vector<4> center;
+    int distance;                   ///< max. distance (see Initialize())
+    double rad;                     ///< radius, more correctly size, of the sponge
+    VecMath::Vector<4> center;      ///< center of the sponge
 };
 
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A four-dimensional pyramid, also known as hypersimplex
- *  \ingroup ObjectGroup                                                    */
+/// A four-dimensional pyramid, also known as hypersimplex
+/** \ingroup ObjectGroup                                                    */
 class Pyramid: public Object {
 public:
     Pyramid (): Object ("Hyperpyramid", 5, 10) {

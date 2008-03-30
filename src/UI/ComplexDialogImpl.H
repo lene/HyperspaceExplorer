@@ -9,8 +9,9 @@
 #include "ui_ComplexDialog.h"
 #include "PluginCreator.H"
 
-/** A Dialog to enter a complex function, which will then be compiled into
- *  a dynamic library and loaded to be displayed on screen
+/// A Dialog to enter a user-defined complex function, \f$ f: C \rightarrow C \f$
+/** The function will then be compiled into a dynamic library and loaded to be
+ *  displayed on screen.
  *  \ingroup UIGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class ComplexDialogImpl:

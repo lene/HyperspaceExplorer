@@ -41,14 +41,14 @@
 <a name="l00024"></a>00024 <span class="preprocessor"></span>
 <a name="l00025"></a>00025 <span class="keyword">namespace </span>VecMath {
 <a name="l00026"></a>00026 
-<a name="l00027"></a><a class="code" href="classVecMath_1_1Vector.html">00027</a>     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N = <span class="keywordtype">double</span>&gt; <span class="keyword">class </span><a class="code" href="classVecMath_1_1Vector.html">Vector</a> {
+<a name="l00027"></a><a class="code" href="classVecMath_1_1Vector.html">00027</a>     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N = <span class="keywordtype">double</span>&gt; <span class="keyword">class </span><a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector</a> {
 <a name="l00028"></a>00028 
 <a name="l00029"></a>00029         <span class="keyword">public</span>:
 <a name="l00030"></a>00030 
 <a name="l00031"></a>00031         <span class="comment">//----------  management  ----------</span>
 <a name="l00032"></a>00032 
-<a name="l00033"></a>00033         <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> () { }
-<a name="l00034"></a>00034         <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> (N, ... );
+<a name="l00033"></a>00033         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> () { }
+<a name="l00034"></a>00034         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> (N, ... );
 <a name="l00035"></a>00035 
 <a name="l00036"></a>00036         <span class="comment">//----------  access      ----------</span>
 <a name="l00037"></a>00037 
@@ -59,23 +59,23 @@
 <a name="l00042"></a>00042 
 <a name="l00043"></a>00043         <span class="comment">//----------  arithmetics ----------</span>
 <a name="l00044"></a>00044 
-<a name="l00045"></a>00045         <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> &amp;<a class="code" href="classVecMath_1_1Vector.html#17f70aae366128f7148096ade6b81ee0">operator+= </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> &amp;Y);
-<a name="l00046"></a>00046         <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> &amp;<a class="code" href="classVecMath_1_1Vector.html#7d51f7d32747367552f54a11c2fb8c49">operator-= </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> &amp;Y);
-<a name="l00047"></a>00047         <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> &amp;<a class="code" href="classVecMath_1_1Vector.html#aee09ef5f2ec33845899979f21de76f6">operator*= </a>(<span class="keyword">const</span> N &amp;s);
+<a name="l00045"></a>00045         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;<a class="code" href="classVecMath_1_1Vector.html#17f70aae366128f7148096ade6b81ee0">operator+= </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;Y);
+<a name="l00046"></a>00046         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;<a class="code" href="classVecMath_1_1Vector.html#7d51f7d32747367552f54a11c2fb8c49">operator-= </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;Y);
+<a name="l00047"></a>00047         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;<a class="code" href="classVecMath_1_1Vector.html#aee09ef5f2ec33845899979f21de76f6">operator*= </a>(<span class="keyword">const</span> N &amp;s);
 <a name="l00048"></a>00048 
-<a name="l00049"></a>00049         <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Vector.html#f6686d68f8e7073c89ff57bca8a16b24">operator- </a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
-<a name="l00050"></a>00050         <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Vector.html#c0a5d6a6275a36d6cf01ae0ca93862dd">operator+ </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> &amp;Y);
-<a name="l00051"></a>00051         <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Vector.html#f6686d68f8e7073c89ff57bca8a16b24">operator- </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> &amp;Y);
-<a name="l00052"></a>00052         <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Vector.html#df9a50f7a2cf5b360405ce05a49ad42f">operator* </a>(<span class="keyword">const</span> N &amp;s);
-<a name="l00053"></a>00053         N <a class="code" href="classVecMath_1_1Vector.html#df9a50f7a2cf5b360405ce05a49ad42f">operator* </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> &amp;X) <span class="keyword">const</span>;
-<a name="l00054"></a>00054         <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Vector.html#99cded84739f77be3d691c65dc8b4439">operator/ </a>(<span class="keyword">const</span> N &amp;s);
+<a name="l00049"></a>00049         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Vector.html#f6686d68f8e7073c89ff57bca8a16b24">operator- </a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
+<a name="l00050"></a>00050         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Vector.html#c0a5d6a6275a36d6cf01ae0ca93862dd">operator+ </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;Y);
+<a name="l00051"></a>00051         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Vector.html#f6686d68f8e7073c89ff57bca8a16b24">operator- </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;Y);
+<a name="l00052"></a>00052         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Vector.html#df9a50f7a2cf5b360405ce05a49ad42f">operator* </a>(<span class="keyword">const</span> N &amp;s);
+<a name="l00053"></a>00053         N <a class="code" href="classVecMath_1_1Vector.html#df9a50f7a2cf5b360405ce05a49ad42f">operator* </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;X) <span class="keyword">const</span>;
+<a name="l00054"></a>00054         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Vector.html#99cded84739f77be3d691c65dc8b4439">operator/ </a>(<span class="keyword">const</span> N &amp;s);
 <a name="l00055"></a>00055 
 <a name="l00056"></a>00056         N <a class="code" href="classVecMath_1_1Vector.html#c60183f68f2d8a6473c64c2e753cd053">sqnorm</a> (<span class="keywordtype">void</span>) <span class="keyword">const</span>;
 <a name="l00057"></a>00057 
-<a name="l00058"></a>00058         N *data () { <span class="keywordflow">return</span> x; }
+<a name="l00058"></a>00058         N *data () { <span class="keywordflow">return</span> <a class="code" href="classVecMath_1_1Vector.html#5fc498893a35a23282dbfd6fb7784ad9" title="A static array storing the components.">x</a>; }
 <a name="l00059"></a>00059 
 <a name="l00060"></a>00060     <span class="keyword">private</span>:
-<a name="l00061"></a>00061         N x[D];
+<a name="l00061"></a><a class="code" href="classVecMath_1_1Vector.html#5fc498893a35a23282dbfd6fb7784ad9">00061</a>         N <a class="code" href="classVecMath_1_1Vector.html#5fc498893a35a23282dbfd6fb7784ad9" title="A static array storing the components.">x</a>[D];
 <a name="l00062"></a>00062     };
 <a name="l00063"></a>00063     
 <a name="l00064"></a>00064     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; 
@@ -86,14 +86,14 @@
 <a name="l00069"></a>00069         <span class="comment">//  ------------  management  ------------</span>
 <a name="l00070"></a>00070 
 <a name="l00074"></a>00074     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00075"></a><a class="code" href="classVecMath_1_1Vector.html#7ce10a3281bba5657868f7817ff06379">00075</a>             <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;::Vector</a> (N x0, ... ) :
+<a name="l00075"></a><a class="code" href="classVecMath_1_1Vector.html#7ce10a3281bba5657868f7817ff06379">00075</a>             <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;::Vector</a> (N x0, ... ) :
 <a name="l00076"></a>00076             x () {
-<a name="l00077"></a>00077         x[0] = x0;
+<a name="l00077"></a>00077         <a class="code" href="classVecMath_1_1Vector.html#5fc498893a35a23282dbfd6fb7784ad9" title="A static array storing the components.">x</a>[0] = x0;
 <a name="l00078"></a>00078         <span class="keywordtype">unsigned</span> i = 0;
 <a name="l00079"></a>00079         va_list argp;
 <a name="l00080"></a>00080         va_start (argp, x0);
 <a name="l00081"></a>00081         <span class="keywordflow">for</span> (i = 1; i &lt; D; i++) {
-<a name="l00082"></a>00082             x[i] = va_arg (argp, N);
+<a name="l00082"></a>00082             <a class="code" href="classVecMath_1_1Vector.html#5fc498893a35a23282dbfd6fb7784ad9" title="A static array storing the components.">x</a>[i] = va_arg (argp, N);
 <a name="l00083"></a>00083         }
 <a name="l00084"></a>00084         va_end (argp);
 <a name="l00085"></a>00085     }
@@ -101,87 +101,87 @@
 <a name="l00087"></a>00087     <span class="comment">//----------  access      ----------</span>
 <a name="l00088"></a>00088 
 <a name="l00092"></a>00092     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; 
-<a name="l00093"></a><a class="code" href="classVecMath_1_1Vector.html#65b86dd66378dba300f0026a3eb02a95">00093</a>             N &amp;<a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;::operator[] </a>(<span class="keywordtype">unsigned</span> i) {
+<a name="l00093"></a><a class="code" href="classVecMath_1_1Vector.html#65b86dd66378dba300f0026a3eb02a95">00093</a>             N &amp;<a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;::operator[] </a>(<span class="keywordtype">unsigned</span> i) {
 <a name="l00094"></a>00094         assert(i &lt; D);
-<a name="l00095"></a>00095         <span class="keywordflow">return</span> x[i];
+<a name="l00095"></a>00095         <span class="keywordflow">return</span> <a class="code" href="classVecMath_1_1Vector.html#5fc498893a35a23282dbfd6fb7784ad9" title="A static array storing the components.">x</a>[i];
 <a name="l00096"></a>00096     }
 <a name="l00097"></a>00097 
 <a name="l00101"></a>00101     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; 
-<a name="l00102"></a><a class="code" href="classVecMath_1_1Vector.html#495b90c06c0eff975cdf37e70fbd06f8">00102</a>             N <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;::operator[] </a>(<span class="keywordtype">unsigned</span> i)<span class="keyword"> const </span>{
+<a name="l00102"></a><a class="code" href="classVecMath_1_1Vector.html#495b90c06c0eff975cdf37e70fbd06f8">00102</a>             N <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;::operator[] </a>(<span class="keywordtype">unsigned</span> i)<span class="keyword"> const </span>{
 <a name="l00103"></a>00103         assert(i &lt; D);
-<a name="l00104"></a>00104         <span class="keywordflow">return</span> x[i];
+<a name="l00104"></a>00104         <span class="keywordflow">return</span> <a class="code" href="classVecMath_1_1Vector.html#5fc498893a35a23282dbfd6fb7784ad9" title="A static array storing the components.">x</a>[i];
 <a name="l00105"></a>00105     }
 <a name="l00106"></a>00106 
 <a name="l00108"></a>00108     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; 
-<a name="l00109"></a><a class="code" href="classVecMath_1_1Vector.html#9d4348338bf90f69f8d3979a34fd2e7c">00109</a>             <span class="keywordtype">unsigned</span> <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;::dimension</a> (<span class="keywordtype">void</span>) {
+<a name="l00109"></a><a class="code" href="classVecMath_1_1Vector.html#9d4348338bf90f69f8d3979a34fd2e7c">00109</a>             <span class="keywordtype">unsigned</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;::dimension</a> (<span class="keywordtype">void</span>) {
 <a name="l00110"></a>00110         <span class="keywordflow">return</span> D; 
 <a name="l00111"></a>00111     }
 <a name="l00112"></a>00112 
 <a name="l00113"></a>00113         <span class="comment">//----------  arithmetics ----------</span>
 <a name="l00114"></a>00114 
 <a name="l00117"></a>00117     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00118"></a><a class="code" href="classVecMath_1_1Vector.html#17f70aae366128f7148096ade6b81ee0">00118</a>             <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> &amp;<a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;::operator+= </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> &amp;Y) {
-<a name="l00119"></a>00119     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) x[i] += Y.<a class="code" href="classVecMath_1_1Vector.html#5fc498893a35a23282dbfd6fb7784ad9">x</a>[i];
+<a name="l00118"></a><a class="code" href="classVecMath_1_1Vector.html#17f70aae366128f7148096ade6b81ee0">00118</a>             <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;<a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;::operator+= </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;Y) {
+<a name="l00119"></a>00119     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) <a class="code" href="classVecMath_1_1Vector.html#5fc498893a35a23282dbfd6fb7784ad9" title="A static array storing the components.">x</a>[i] += Y.<a class="code" href="classVecMath_1_1Vector.html#5fc498893a35a23282dbfd6fb7784ad9" title="A static array storing the components.">x</a>[i];
 <a name="l00120"></a>00120     <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00121"></a>00121     }
 <a name="l00122"></a>00122 
 <a name="l00125"></a>00125     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; 
-<a name="l00126"></a><a class="code" href="classVecMath_1_1Vector.html#7d51f7d32747367552f54a11c2fb8c49">00126</a>             <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> &amp;<a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;::operator-= </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> &amp;Y) {
-<a name="l00127"></a>00127     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) x[i] -= Y.<a class="code" href="classVecMath_1_1Vector.html#5fc498893a35a23282dbfd6fb7784ad9">x</a>[i];
+<a name="l00126"></a><a class="code" href="classVecMath_1_1Vector.html#7d51f7d32747367552f54a11c2fb8c49">00126</a>             <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;<a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;::operator-= </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;Y) {
+<a name="l00127"></a>00127     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) <a class="code" href="classVecMath_1_1Vector.html#5fc498893a35a23282dbfd6fb7784ad9" title="A static array storing the components.">x</a>[i] -= Y.<a class="code" href="classVecMath_1_1Vector.html#5fc498893a35a23282dbfd6fb7784ad9" title="A static array storing the components.">x</a>[i];
 <a name="l00128"></a>00128     <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00129"></a>00129     }
 <a name="l00130"></a>00130 
 <a name="l00133"></a>00133     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00134"></a><a class="code" href="classVecMath_1_1Vector.html#aee09ef5f2ec33845899979f21de76f6">00134</a>             <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> &amp;<a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;::operator*= </a>(<span class="keyword">const</span> N &amp;s) {
-<a name="l00135"></a>00135     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) x[i] *= s;
+<a name="l00134"></a><a class="code" href="classVecMath_1_1Vector.html#aee09ef5f2ec33845899979f21de76f6">00134</a>             <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;<a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;::operator*= </a>(<span class="keyword">const</span> N &amp;s) {
+<a name="l00135"></a>00135     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) <a class="code" href="classVecMath_1_1Vector.html#5fc498893a35a23282dbfd6fb7784ad9" title="A static array storing the components.">x</a>[i] *= s;
 <a name="l00136"></a>00136     <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00137"></a>00137     }
 <a name="l00138"></a>00138 
 <a name="l00140"></a>00140     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00141"></a><a class="code" href="classVecMath_1_1Vector.html#f6686d68f8e7073c89ff57bca8a16b24">00141</a>             <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;::operator- </a>(<span class="keywordtype">void</span>)<span class="keyword"> const </span>{
-<a name="l00142"></a>00142         <span class="keyword">static</span> <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> Z;
+<a name="l00141"></a><a class="code" href="classVecMath_1_1Vector.html#f6686d68f8e7073c89ff57bca8a16b24">00141</a>             <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;::operator- </a>(<span class="keywordtype">void</span>)<span class="keyword"> const </span>{
+<a name="l00142"></a>00142         <span class="keyword">static</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> Z;
 <a name="l00143"></a>00143         Z = *<span class="keyword">this</span>;
-<a name="l00144"></a>00144         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) Z.<a class="code" href="classVecMath_1_1Vector.html#5fc498893a35a23282dbfd6fb7784ad9">x</a>[i] = -x[i] ;
+<a name="l00144"></a>00144         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) Z.<a class="code" href="classVecMath_1_1Vector.html#5fc498893a35a23282dbfd6fb7784ad9" title="A static array storing the components.">x</a>[i] = -<a class="code" href="classVecMath_1_1Vector.html#5fc498893a35a23282dbfd6fb7784ad9" title="A static array storing the components.">x</a>[i] ;
 <a name="l00145"></a>00145         <span class="keywordflow">return</span> Z;
 <a name="l00146"></a>00146     }
 <a name="l00147"></a>00147 
 <a name="l00150"></a>00150     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00151"></a><a class="code" href="classVecMath_1_1Vector.html#c0a5d6a6275a36d6cf01ae0ca93862dd">00151</a>             <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;::operator+ </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> &amp;Y) {
-<a name="l00152"></a>00152     <span class="keyword">static</span> <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> Z;
+<a name="l00151"></a><a class="code" href="classVecMath_1_1Vector.html#c0a5d6a6275a36d6cf01ae0ca93862dd">00151</a>             <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;::operator+ </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;Y) {
+<a name="l00152"></a>00152     <span class="keyword">static</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> Z;
 <a name="l00153"></a>00153     Z = *<span class="keyword">this</span>;
 <a name="l00154"></a>00154     <span class="keywordflow">return</span> (Z += Y);
 <a name="l00155"></a>00155     }
 <a name="l00156"></a>00156 
 <a name="l00159"></a>00159     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00160"></a><a class="code" href="classVecMath_1_1Vector.html#84934a5d1548fc800a8524be2e3c090f">00160</a>             <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;::operator- </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> &amp;Y) {
-<a name="l00161"></a>00161     <span class="keyword">static</span> <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> Z;
+<a name="l00160"></a><a class="code" href="classVecMath_1_1Vector.html#84934a5d1548fc800a8524be2e3c090f">00160</a>             <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;::operator- </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;Y) {
+<a name="l00161"></a>00161     <span class="keyword">static</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> Z;
 <a name="l00162"></a>00162     Z = *<span class="keyword">this</span>;
 <a name="l00163"></a>00163     <span class="keywordflow">return</span> (Z -= Y);
 <a name="l00164"></a>00164     }
 <a name="l00165"></a>00165 
 <a name="l00168"></a>00168     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; 
-<a name="l00169"></a><a class="code" href="classVecMath_1_1Vector.html#df9a50f7a2cf5b360405ce05a49ad42f">00169</a>             <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;::operator* </a>(<span class="keyword">const</span> N &amp;s) {
+<a name="l00169"></a><a class="code" href="classVecMath_1_1Vector.html#df9a50f7a2cf5b360405ce05a49ad42f">00169</a>             <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;::operator* </a>(<span class="keyword">const</span> N &amp;s) {
 <a name="l00170"></a>00170     Vector &lt;D, N&gt;Z;
 <a name="l00171"></a>00171     Z = *<span class="keyword">this</span>;
 <a name="l00172"></a>00172     <span class="keywordflow">return</span> Z *= s;
 <a name="l00173"></a>00173     }
 <a name="l00174"></a>00174 
 <a name="l00178"></a>00178     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00179"></a><a class="code" href="classVecMath_1_1Vector.html#482500d5c8d51f1a1fb45452947c365e">00179</a>             N <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;::operator* </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> &amp;Y)<span class="keyword"> const </span>{
+<a name="l00179"></a><a class="code" href="classVecMath_1_1Vector.html#482500d5c8d51f1a1fb45452947c365e">00179</a>             N <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;::operator* </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;Y)<span class="keyword"> const </span>{
 <a name="l00180"></a>00180     N dot = 0.;
 <a name="l00181"></a>00181     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++)
-<a name="l00182"></a>00182         <span class="keywordflow">if</span> (x[i]) dot += x[i]*Y.<a class="code" href="classVecMath_1_1Vector.html#5fc498893a35a23282dbfd6fb7784ad9">x</a>[i];
+<a name="l00182"></a>00182         <span class="keywordflow">if</span> (<a class="code" href="classVecMath_1_1Vector.html#5fc498893a35a23282dbfd6fb7784ad9" title="A static array storing the components.">x</a>[i]) dot += <a class="code" href="classVecMath_1_1Vector.html#5fc498893a35a23282dbfd6fb7784ad9" title="A static array storing the components.">x</a>[i]*Y.<a class="code" href="classVecMath_1_1Vector.html#5fc498893a35a23282dbfd6fb7784ad9" title="A static array storing the components.">x</a>[i];
 <a name="l00183"></a>00183 
 <a name="l00184"></a>00184     <span class="keywordflow">return</span> dot;
 <a name="l00185"></a>00185     }
 <a name="l00186"></a>00186 
 <a name="l00189"></a>00189     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00190"></a><a class="code" href="classVecMath_1_1Vector.html#99cded84739f77be3d691c65dc8b4439">00190</a>             <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;::operator/ </a>(<span class="keyword">const</span> N &amp;s) {
+<a name="l00190"></a><a class="code" href="classVecMath_1_1Vector.html#99cded84739f77be3d691c65dc8b4439">00190</a>             <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;::operator/ </a>(<span class="keyword">const</span> N &amp;s) {
 <a name="l00191"></a>00191     <span class="keywordflow">return</span> <a class="code" href="classVecMath_1_1Vector.html#df9a50f7a2cf5b360405ce05a49ad42f">operator* </a>(1./s);
 <a name="l00192"></a>00192     }
 <a name="l00193"></a>00193 
 <a name="l00195"></a>00195     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00196"></a><a class="code" href="classVecMath_1_1Vector.html#c60183f68f2d8a6473c64c2e753cd053">00196</a>             N <a class="code" href="classVecMath_1_1Vector.html">Vector&lt;D, N&gt;::sqnorm</a> (<span class="keywordtype">void</span>)<span class="keyword"> const </span>{
+<a name="l00196"></a><a class="code" href="classVecMath_1_1Vector.html#c60183f68f2d8a6473c64c2e753cd053">00196</a>             N <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;::sqnorm</a> (<span class="keywordtype">void</span>)<span class="keyword"> const </span>{
 <a name="l00197"></a>00197     <span class="keywordflow">return</span> <a class="code" href="classVecMath_1_1Vector.html#df9a50f7a2cf5b360405ce05a49ad42f">operator* </a>(*<span class="keyword">this</span>);
 <a name="l00198"></a>00198     }
 <a name="l00199"></a>00199 
@@ -234,7 +234,7 @@
 <a name="l00270"></a>00270     }
 <a name="l00271"></a>00271 
 <a name="l00275"></a>00275     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; 
-<a name="l00276"></a>00276             Vector&lt;D, N&gt; vnormalize( <span class="keyword">const</span> Vector&lt;D, N&gt; &amp;x ) {
+<a name="l00276"></a>00276             Vector&lt;D, N&gt; vnormalize( <span class="keyword">const</span> Vector&lt;D, N&gt; &amp;<a class="code" href="classVecMath_1_1Vector.html#5fc498893a35a23282dbfd6fb7784ad9" title="A static array storing the components.">x</a> ) {
 <a name="l00277"></a>00277         <span class="keyword">static</span> Vector&lt;D, N&gt; n;
 <a name="l00278"></a>00278         N norm = sqrt ( x.sqnorm() );
 <a name="l00279"></a>00279         <span class="keywordflow">for</span> ( <span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++ ) n[i] = x[i]/norm;
@@ -243,7 +243,7 @@
 <a name="l00282"></a>00282 }
 <a name="l00283"></a>00283 <span class="preprocessor">#endif                                                //  VECTOR_H</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Mar 29 23:59:03 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Mar 30 04:15:25 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

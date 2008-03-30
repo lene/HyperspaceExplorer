@@ -57,15 +57,14 @@ class Torus2;
 
 /// \defgroup UIGroup User Interface
 
-/** class C4DView:
- *  displays and manipulates four-dimensional Function in a QGLWidget \n
- *  This class is much too big and will be split into parts wherever possible
+/// Displays and manipulates four-dimensional Functions in a QGLWidget
+/** This class is much too fat and will be split into parts wherever possible
  *  \ingroup UIGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class C4DView : public XQGLWidget {
 
-    /** class CustomFunctionSlot
-     *  class template to outsource redundant code for the generation of
+    /// Class template to outsource redundant code
+    /** Class template to outsource redundant code for the generation of
      *  customized functions in a slot called by QActions from the QMenu
      *  @param function the Function to be created in the slot
      *  \ingroup UIGroup                                                      */
@@ -75,8 +74,8 @@ class C4DView : public XQGLWidget {
             static void createCustomSurface(C4DView *view);
     };
 
-    /** class FunctionSlot
-     *  class template to outsource redundant code for the generation of
+    /// Class template to outsource redundant code
+    /** Class template to outsource redundant code for the generation of
      *  functions in a slot called by QActions from the QMenu
      *  @param function the Function to be created in the slot
      *  \ingroup UIGroup                                                      */
@@ -101,15 +100,15 @@ class C4DView : public XQGLWidget {
         void SetLighting (bool light) { Lighting = light; }
         /// @return whether to use lights in rendering or not
         bool GetLighting (void) { return Lighting; }
-        /** toggle depth cue in display and redraw
-         *  @param on whether to use depth cue                                */
+        /// Toggle depth cue in display and redraw
+        /** @param on whether to use depth cue                                */
         void SetDepthCue (bool on) {
             SetupDepthCue (on);
             OnPaint ();
         }
 
-        /** set the three-space rotation of the object
-         *  @param rx rotation about X-axis
+        /// Set the three-space rotation of the object
+        /** @param rx rotation about X-axis
          *  @param ry rotation about Y-axis
          *  @param rz rotation about Z-axis                                   */
         void SetRotation (double rx, double ry, double rz) {
@@ -126,7 +125,7 @@ class C4DView : public XQGLWidget {
         void Transform (double Rxy, double Rxz, double Rxw,
                         double Ryz, double Ryw, double Rzw,
                         double Tx, double Ty, double Tz, double Tw);
-        /** overloaded function executing the transform to the default state  */
+        /// Overloaded function executing the transform to the default state
         void Transform (void) { Transform (0, 0, 0, 0, 0, 0,  0, 0, 0, 0); }
 
         void Redraw ();
@@ -393,11 +392,11 @@ class C4DView : public XQGLWidget {
 #include "Function.H"
 #include "Menu4D.H"
 
-/** Factory method to create a new Function of type R^3->R \n
- *  This function template is called by each slot with the correct function
- *  type as template parameter \n
- *  sets F to the newly created Function, checks the corresponding menu item,
- *  updates the ValuesDialog and redraws                                      */
+/// Factory method to create a new Function of type R^3->R
+/** This function template is called by each slot with the correct function
+ *  type as template parameter. \n
+ *  Sets F to the newly created Function, checks the corresponding menu item,
+ *  updates the ValuesDialog and redraws.                                     */
 template<class function>
         void C4DView::FunctionSlot<function>::createFunction(C4DView *view) {
 
@@ -418,11 +417,11 @@ template<class function>
     view->Redraw ();
 }
 
-/** Factory method to create a new Function of type R^2->R^4 \n
- *  This function template is called by each slot with the correct function
- *  type as template parameter \n
- *  sets F to the newly created Function, checks the corresponding menu item,
- *  updates the ValuesDialog and redraws                                      */
+/// Factory method to create a new Function of type R^2->R^4
+/** This function template is called by each slot with the correct function
+ *  type as template parameter. \n
+ *  Sets F to the newly created Function, checks the corresponding menu item,
+ *  updates the ValuesDialog and redraws.                                     */
 template<class function>
         void C4DView::FunctionSlot<function>::createSurface(C4DView *view) {
 
@@ -448,10 +447,10 @@ template<class function>
 
 #include "CustomFunction.H"
 
-/** Factory method to create a new customized Function of type R^3->R \n
- *  This function template is called by each slot with the correct function
- *  type as template parameter \n
- *  sets F to the newly created Function, checks the corresponding menu item,
+/// Factory method to create a new customized Function of type R^3->R
+/** This function template is called by each slot with the correct function
+ *  type as template parameter. \n
+ *  Sets F to the newly created Function, checks the corresponding menu item,
  *  updates the ValuesDialog and redraws. Does some error handling in case the
  *  Function could not be loaded.                                             */
 template<class function>
@@ -473,10 +472,10 @@ template<class function>
             }
         }
 
-/** Factory method to create a new customized Function of type R^2->R^4 \n
- *  This function template is called by each slot with the correct function
- *  type as template parameter \n
- *  sets F to the newly created Function, checks the corresponding menu item,
+/// Factory method to create a new customized Function of type R^2->R^4
+/** This function template is called by each slot with the correct function
+ *  type as template parameter. \n
+ *  Sets F to the newly created Function, checks the corresponding menu item,
  *  updates the ValuesDialog and redraws. Does some error handling in case the
  *  Function could not be loaded.                                             */
 template<class function>
