@@ -27,7 +27,7 @@
   </div>
 </div>
 <div class="contents">
-<h1>VecMath::Matrix&lt; D, N &gt;::VecMath::Matrix::MultiplyRowLoop&lt; 0, D_ &gt; Struct Template Reference</h1><!-- doxytag: class="VecMath::Matrix::MultiplyRowLoop&lt; 0, D_ &gt;" -->Loop over the rows of two matrices to multiply them in <a class="el" href="structVecMath_1_1Matrix_1_1MultiplyRowLoop_3_010_00_01D___01_4.html#2bead12deb0461d3ce7873ece233dd71">loop()</a>.  
+<h1>VecMath::Matrix&lt; D, N &gt;::VecMath::Matrix::MultiplyRowLoop&lt; 0, D_ &gt; Struct Template Reference</h1><!-- doxytag: class="VecMath::Matrix::MultiplyRowLoop&lt; 0, D_ &gt;" -->Calculate the product of two matrices looping over all rows.  
 <a href="#_details">More...</a>
 <p>
 <code>#include &lt;<a class="el" href="matrix_8H-source.html">matrix.H</a>&gt;</code>
@@ -45,9 +45,10 @@
 template&lt;unsigned D_&gt;<br>
  struct VecMath::Matrix&lt; D, N &gt;::VecMath::Matrix::MultiplyRowLoop&lt; 0, D_ &gt;</h3>
 
-Loop over the rows of two matrices to multiply them in <a class="el" href="structVecMath_1_1Matrix_1_1MultiplyRowLoop_3_010_00_01D___01_4.html#2bead12deb0461d3ce7873ece233dd71">loop()</a>. 
+Calculate the product of two matrices looping over all rows. 
 <p>
-Specialization for <code>i</code> = 0 <hr><h2>Member Function Documentation</h2>
+Loop over the rows of two matrices to multiply them in <a class="el" href="structVecMath_1_1Matrix_1_1MultiplyRowLoop_3_010_00_01D___01_4.html#2bead12deb0461d3ce7873ece233dd71">loop()</a> <br>
+ Specialization for <code>i</code> = 0 <hr><h2>Member Function Documentation</h2>
 <a class="anchor" name="2bead12deb0461d3ce7873ece233dd71"></a><!-- doxytag: member="VecMath::Matrix::MultiplyRowLoop&lt; 0, D_ &gt;::loop" ref="2bead12deb0461d3ce7873ece233dd71" args="(const N a[D][D], const N b[D][D], N c[D][D])" -->
 <div class="memitem">
 <div class="memproto">
@@ -84,14 +85,14 @@ template&lt;unsigned D_&gt; </div>
 <div class="memdoc">
 
 <p>
-VecMath::Matrix&lt;D, N&gt;::MultiplyRowLoop&lt;0, D_&gt;::loop (N a[D][D], N b[D][D], N c[D][D]) first row of the loop over all rows <dl compact><dt><b>Parameters:</b></dt><dd>
+first row of the loop over all rows <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>a</em>&nbsp;</td><td>left operand of <img class="formulaInl" alt="$ A*B $" src="form_56.png"> </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>b</em>&nbsp;</td><td>right operand of <img class="formulaInl" alt="$ A*B $" src="form_56.png"> </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>c</em>&nbsp;</td><td>resulting matrix </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>D_</em>&nbsp;</td><td>dimension of the matrix (dummy) </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>D</em>&nbsp;</td><td>dimension of the matrix (encapsulating generic type <a class="el" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix</a>) </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>N_</em>&nbsp;</td><td>Numeric type (encapsulating generic type <a class="el" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix</a>) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>N</em>&nbsp;</td><td>Numeric type (encapsulating generic type <a class="el" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix</a>) </td></tr>
   </table>
 </dl>
 
@@ -100,7 +101,7 @@ VecMath::Matrix&lt;D, N&gt;::MultiplyRowLoop&lt;0, D_&gt;::loop (N a[D][D], N b[
 <hr>The documentation for this struct was generated from the following file:<ul>
 <li>workspace/HyperspaceExplorer/src/testing/<a class="el" href="matrix_8H-source.html">matrix.H</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun Mar 30 13:46:36 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Mar 30 23:29:23 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

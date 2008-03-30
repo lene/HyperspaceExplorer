@@ -118,9 +118,8 @@
     <name>UIGroup</name>
     <title>User Interface</title>
     <filename>group__UIGroup.html</filename>
+    <subgroup>UIHelpers</subgroup>
     <class kind="class">C4DView</class>
-    <class kind="class">C4DView::CustomFunctionSlot</class>
-    <class kind="class">C4DView::FunctionSlot</class>
     <class kind="class">AnimationDialogImpl</class>
     <class kind="class">ComplexDialogImpl</class>
     <class kind="class">FunctionDialogImpl</class>
@@ -131,6 +130,19 @@
     <class kind="class">SurfaceDialogImpl</class>
     <class kind="class">ValuesDialogImpl</class>
     <class kind="class">XQGLWidget</class>
+  </compound>
+  <compound kind="group">
+    <name>UIHelpers</name>
+    <title>Helper classes for User Interface classes</title>
+    <filename>group__UIHelpers.html</filename>
+    <class kind="class">FunctionFactory</class>
+    <class kind="class">SurfaceFactory</class>
+    <class kind="class">C4DView::TemplatedFunctionFactory</class>
+    <class kind="class">C4DView::TemplatedSurfaceFactory</class>
+    <class kind="class">C4DView::CustomFunctionSlot</class>
+    <class kind="class">C4DView::FunctionSlot</class>
+    <class kind="class">FunctionSlotHelper</class>
+    <class kind="class">SurfaceSlotHelper</class>
   </compound>
   <compound kind="group">
     <name>VecMath</name>
@@ -317,83 +329,6 @@
     </member>
     <member kind="slot">
       <type>void</type>
-      <name>FunctionFr3r</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>0f36a7036f3ce90dd6202e75adf09f42</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>FunctionHypersphere</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>1407cd2e65937706dc58ae4599e02386</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>FunctionTorus1</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>7582c4365724e3d27cef81d0ff5b5983</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>FunctionTorus2</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>fd970d973bf6791ed10a783de02c50ec</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>FR3R</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>c2953c0e65f97b0c4f3d9c5d355b35c7</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>GravPotential</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>96faa718eddccd9c50b2ccd996b58635</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>SinR</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>bd21453ac749b43bcd8178a796a24058</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>ExpR</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>8a798c2f29fd6a2d16d92bd409e48a8b</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>Sin</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>f37441fcc9ced6db5adfdfbd195ff4d9</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>Sin2</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>37ed4320b876f8c9776ff26a5015c612</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>FunctionR</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>ca15add293e6055f6e7c7d8c25267960</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
       <name>ObjectHypercube</name>
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>bc3a4f6e3276734aa70e0853f0df6022</anchor>
@@ -418,125 +353,6 @@
       <name>ObjectGasket</name>
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>2b8270b08a2a62faa7381adcd83715af</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>Surface_1</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>5d97e9db5da37eae9c232c28b3c1609d</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>SurfaceHorizon</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>4470d0b85bf6b09385f512ca4dc9acbd</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>SurfaceTorus3</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>7a30b54f93b4c6d2912d6b949478d9a5</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>ComplexZ2</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>ea9cb7918776d41829f3356202f52ee8</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>ComplexZ3</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>b3e67b7b59c7edf11a74ca5e9590f5be</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>ComplexZA</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>92bf4d3586bfd902fff54fa4d042c2b9</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>ComplexEZ</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>6578a3206d96fd1a3a6f31a711887cfa</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>ComplexEMZ2</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>24cd1dd23729041d285be90f3aff93b1</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>ComplexZM1</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>8e992aa51e1fe75658c1d89358d71b5e</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>ComplexZM2</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>ce35a7b801f27d57c619a5f3edf93d8f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>ComplexSqrtZ</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>e41765271d381365188ebc7143bfbc9a</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>ComplexLnZ</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>bbbdc74ac338098bcc9ca2b9f75a424c</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>ComplexSinZ</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>eeb2972639602ee8d6645f18960bad88</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>ComplexCosZ</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>20f2034d784705ef6d3a9053cbf549ae</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>ComplexSinhZ</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>e9fdb433188635b4265d8a26327e5148</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>ComplexCoshZ</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>ecd7cc7cb10926f9cdd101da0ee1885b</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot">
-      <type>void</type>
-      <name>ComplexTanZ</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>676de8c3d940baef97ed8eb7c20b0836</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="slot">
@@ -748,6 +564,13 @@
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>95a458f00b3d9772cf8f32bd999ad7b3</anchor>
       <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setFunction</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>20ae9cbdbc9fc4568d2d2b75edc9c700</anchor>
+      <arglist>(Function *_f)</arglist>
     </member>
     <member kind="slot" protection="protected">
       <type>void</type>
@@ -1290,195 +1113,6 @@
     </member>
     <member kind="friend">
       <type>friend class</type>
-      <name>FunctionSlot&lt; Fr3r &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>cfc18f1ccee7d0aca05aafbb8464d7be</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; Hypersphere &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>c54f3e50a877096ca008649d9bc414fb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; Torus1 &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>12b30687978154a70d5b38fc2882a121</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; Torus2 &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>d00ed3d9690a5181ef8a3a6206af16e2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; GravitationPotential &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>e341df02928202db51060272d1659768</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; Fr3rSin &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>53fadfbaf99fff83fab44bf86c47239b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; Fr3rExp &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>3328576d7dd12661afe531a10af94597</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; PolarSin &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>48abfd542d7856a650eab3a795ae53fb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; PolarSin2 &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>735bb5a79765889994d36731375329f1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; PolarR &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>787087d4906c8d4ca675c55f5638ecc4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; Surface1 &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>cb1244e31834a287a4439aac5a04bbc6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; Horizon &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>a100d2463bc398aebd9d88e5676462c5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; Torus3 &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>40c5d75a70114ad65a8d2588b7b86dae</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; z2 &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>04ca2e3b0925e287673ce1f7c264b33e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; z3 &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>8ee53cde52e282aa6d36d3c462c7e40b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; zA &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>caaea79c627ab64acd8c6bcbd3a2417e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; ez &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>863167cbb0f9e170bfe0ac3c9df3db54</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; emz2 &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>b95c470d1c385fee020790baff38d8fd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; zm1 &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>44223f5498caf23ae9e009f22ead75b7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; zm2 &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>552ffc9e2d7c82ab0898e5865e32f01e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; sqrtz &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>f3321a1ce906bd89290a03b4224c1ce3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; lnz &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>a23b2686c14b4559b8e661a8c092676b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; sinz &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>4b56f7f352dbeb8146e8fb4fc8a32e22</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; cosz &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>04c41b5d84ba71cfb31fb8799017a843</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; sinhz &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>836cabf8fa892444ecd8f55aea31c7f7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; coshz &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>5cedb5959ab8cc80c06fcc0051041e91</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
-      <name>FunctionSlot&lt; tanz &gt;</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>f0eca53ed80e76ff12d3fb8d045675a5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="friend">
-      <type>friend class</type>
       <name>CustomFunctionSlot&lt; CustomFunction &gt;</name>
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>e47dce0b05c5aa8b8166aef6df650108</anchor>
@@ -1505,8 +1139,24 @@
       <anchor>fe3d7015a7bf22b3cf3a7ad178630e2c</anchor>
       <arglist></arglist>
     </member>
+    <member kind="friend">
+      <type>friend class</type>
+      <name>FunctionSlotHelper</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>36046b63ea701d901a03695f98246e78</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="friend">
+      <type>friend class</type>
+      <name>SurfaceSlotHelper</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>ac8480f38ed88a738dd93173e300cd97</anchor>
+      <arglist></arglist>
+    </member>
     <class kind="class">C4DView::CustomFunctionSlot</class>
     <class kind="class">C4DView::FunctionSlot</class>
+    <class kind="class">C4DView::TemplatedFunctionFactory</class>
+    <class kind="class">C4DView::TemplatedSurfaceFactory</class>
   </compound>
   <compound kind="class">
     <name>C4DView::CustomFunctionSlot</name>
@@ -1551,6 +1201,32 @@
       <anchorfile>classC4DView_1_1FunctionSlot.html</anchorfile>
       <anchor>8d57ac49ae0a8f60e1c4089ea8a486bc</anchor>
       <arglist>(C4DView *view)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>C4DView::TemplatedFunctionFactory</name>
+    <filename>classC4DView_1_1TemplatedFunctionFactory.html</filename>
+    <templarg>function</templarg>
+    <base>FunctionFactory</base>
+    <member kind="function" virtualness="virtual">
+      <type>virtual Function *</type>
+      <name>createFunction</name>
+      <anchorfile>classC4DView_1_1TemplatedFunctionFactory.html</anchorfile>
+      <anchor>e263f40b872a9ff178277c22e7edb0b0</anchor>
+      <arglist>(C4DView *)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>C4DView::TemplatedSurfaceFactory</name>
+    <filename>classC4DView_1_1TemplatedSurfaceFactory.html</filename>
+    <templarg>function</templarg>
+    <base>SurfaceFactory</base>
+    <member kind="function" virtualness="virtual">
+      <type>virtual Surface *</type>
+      <name>createSurface</name>
+      <anchorfile>classC4DView_1_1TemplatedSurfaceFactory.html</anchorfile>
+      <anchor>00cfc1d3d1125e22c38325610d10b457</anchor>
+      <arglist>(C4DView *)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -2501,6 +2177,56 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>FunctionFactory</name>
+    <filename>classFunctionFactory.html</filename>
+    <member kind="function" virtualness="pure">
+      <type>virtual Function *</type>
+      <name>createFunction</name>
+      <anchorfile>classFunctionFactory.html</anchorfile>
+      <anchor>c150ff4cd187dc9774e4770e139bb421</anchor>
+      <arglist>(C4DView *)=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>FunctionSlotHelper</name>
+    <filename>classFunctionSlotHelper.html</filename>
+    <member kind="slot">
+      <type>void</type>
+      <name>slot</name>
+      <anchorfile>classFunctionSlotHelper.html</anchorfile>
+      <anchor>faed6163af28f8aec9713bc41db04764</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>FunctionSlotHelper</name>
+      <anchorfile>classFunctionSlotHelper.html</anchorfile>
+      <anchor>e4433182de693da3152a9888e9006504</anchor>
+      <arglist>(C4DView *_view, FunctionFactory *ff)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~FunctionSlotHelper</name>
+      <anchorfile>classFunctionSlotHelper.html</anchorfile>
+      <anchor>333781450ab084e3e900e591b60ed7fd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>C4DView *</type>
+      <name>view</name>
+      <anchorfile>classFunctionSlotHelper.html</anchorfile>
+      <anchor>48b327d3202aabe535e4f4ab6ae6e5d3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>FunctionFactory *</type>
+      <name>functionFactory</name>
+      <anchorfile>classFunctionSlotHelper.html</anchorfile>
+      <anchor>f663bb374925f0a1ce884cd7b81d096f</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>Gasket</name>
     <filename>classGasket.html</filename>
     <base>Pyramid</base>
@@ -3397,8 +3123,22 @@
       <type>QAction *</type>
       <name>insertAction</name>
       <anchorfile>classMenu4D.html</anchorfile>
-      <anchor>89193f9ec4f65d3e16c828e0528e9244</anchor>
-      <arglist>(QMenu *_menu, const QString &amp;title, const char *slot, bool checkable=true)</arglist>
+      <anchor>722cc6d2d4fca574510d5b6f5b7b6449</anchor>
+      <arglist>(QMenu *, const QString &amp;, const char *, bool=true)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>QAction *</type>
+      <name>insertAction</name>
+      <anchorfile>classMenu4D.html</anchorfile>
+      <anchor>5dc16e75c71c4718246b7abcdc7d89c8</anchor>
+      <arglist>(QMenu *, const QString &amp;, FunctionFactory *, bool=true)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>QAction *</type>
+      <name>insertAction</name>
+      <anchorfile>classMenu4D.html</anchorfile>
+      <anchor>20552c6d6735d3cf30fb577b424618c7</anchor>
+      <arglist>(QMenu *, const QString &amp;, SurfaceFactory *, bool=true)</arglist>
     </member>
     <member kind="function" protection="private">
       <type>QAction *</type>
@@ -4521,6 +4261,56 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>SurfaceFactory</name>
+    <filename>classSurfaceFactory.html</filename>
+    <member kind="function" virtualness="pure">
+      <type>virtual Surface *</type>
+      <name>createSurface</name>
+      <anchorfile>classSurfaceFactory.html</anchorfile>
+      <anchor>0b854424fb13bc295186e06cd03a1f8f</anchor>
+      <arglist>(C4DView *)=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>SurfaceSlotHelper</name>
+    <filename>classSurfaceSlotHelper.html</filename>
+    <member kind="slot">
+      <type>void</type>
+      <name>slot</name>
+      <anchorfile>classSurfaceSlotHelper.html</anchorfile>
+      <anchor>8713bbb96e6f3d213a0b8f4b99cf6cf5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SurfaceSlotHelper</name>
+      <anchorfile>classSurfaceSlotHelper.html</anchorfile>
+      <anchor>9f9f70d53c7ad3abbc86d5120417acb2</anchor>
+      <arglist>(C4DView *_view, SurfaceFactory *sf)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~SurfaceSlotHelper</name>
+      <anchorfile>classSurfaceSlotHelper.html</anchorfile>
+      <anchor>74c11f8948ce53da826ad0a35cbcb9bc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>C4DView *</type>
+      <name>view</name>
+      <anchorfile>classSurfaceSlotHelper.html</anchorfile>
+      <anchor>173ab760460eac61eb2b6d85aef49bf4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>SurfaceFactory *</type>
+      <name>surfaceFactory</name>
+      <anchorfile>classSurfaceSlotHelper.html</anchorfile>
+      <anchor>91041f0179161a909376440ad38635b9</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>tanz</name>
     <filename>classtanz.html</filename>
     <base>ComplexFunction</base>
@@ -5560,7 +5350,7 @@
       <type>Vector&lt; D, N &gt;</type>
       <name>operator*</name>
       <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
-      <anchor>da1563139030bb5272c300bf6eaa06d1</anchor>
+      <anchor>c9bb6064bbab4c97f65dbb89b25358a1</anchor>
       <arglist>(const Vector&lt; D, N &gt; &amp;)</arglist>
     </member>
     <member kind="function">
@@ -5632,6 +5422,13 @@
       <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
       <anchor>8107ec5c6964bd5715ded0de8a500f26</anchor>
       <arglist>(const Matrix&lt; D, N &gt; &amp;other)</arglist>
+    </member>
+    <member kind="function">
+      <type>VecMath::Vector&lt; D, N &gt;</type>
+      <name>operator*</name>
+      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
+      <anchor>955315c730d0acf6bc1c44b4dd4351a8</anchor>
+      <arglist>(const VecMath::Vector&lt; D, N &gt; &amp;)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
