@@ -98,7 +98,7 @@ class Surface: public Function {
 class Surface1: public Surface {
 public:
     Surface1 (double _umin, double _umax, double _du,
-	      double _vmin, double _vmax, double _dv);
+              double _vmin, double _vmax, double _dv);
     virtual ~Surface1() { }
     virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 

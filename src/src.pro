@@ -35,11 +35,11 @@ DEPENDPATH += ./UI
 HEADERS += UI/4DView.H UI/ComplexDialogImpl.H UI/FunctionDialogImpl.H \
            UI/PolarDialogImpl.H UI/SurfaceDialogImpl.H UI/ValuesDialogImpl.H \
            UI/GLObject.H UI/XQGLWidget.H UI/Menu4D.H UI/PluginCreator.H \
-           UI/AnimationDialogImpl.H
+           UI/AnimationDialogImpl.H UI/SlotHelper.H
 SOURCES += UI/4DView.C UI/Menu4D.C UI/ComplexDialogImpl.C \
            UI/FunctionDialogImpl.C UI/PolarDialogImpl.C UI/SurfaceDialogImpl.C \
            UI/ValuesDialogImpl.C UI/XQGLWidget.C UI/PluginCreator.C \
-           UI/AnimationDialogImpl.C
+           UI/AnimationDialogImpl.C UI/SlotHelper.C
 
 FORMS += UI/ComplexDialog.ui UI/FunctionDialog.ui \
          UI/PolarDialog.ui UI/SurfaceDialog.ui UI/ValuesDialog.ui \
@@ -67,8 +67,7 @@ HEADERS += Loki/SingletonHolder.H
 ###
 INCLUDEPATH += .
 DEPENDPATH += .
-HEADERS += Globals.H Help.H Matrix.H Vector.H Log.H \
- Color.h
+HEADERS += Globals.H Help.H Matrix.H Vector.H Log.H Color.H
 SOURCES += Globals.C Help.C Main.C
 
 ###

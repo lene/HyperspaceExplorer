@@ -5,10 +5,12 @@
 #include <QMenu>
 #include <map>
 
-class C4DView;
 class QString;
 class QMenuBar;
+class C4DView;
+class FunctionFactory;
 class Function;
+class SurfaceFactory;
 
 /** The menu for the C4DView. \n
  *  This class has been outsourced from C4DView to keep C4DView of a managable
@@ -29,8 +31,12 @@ class Menu4D: public QMenu {
         typedef std::map<QMenu *, ActionMapType> MenuMapType;
 
     private:
-        QAction *insertAction(QMenu *_menu, const QString &title,
-                              const char *slot, bool checkable = true);
+        QAction *insertAction(QMenu *, const QString &, const char *,
+                              bool = true);
+        QAction *insertAction(QMenu *, const QString &,
+                              FunctionFactory *, bool = true);
+        QAction *insertAction(QMenu *, const QString &,
+                              SurfaceFactory *, bool = true);
         QAction *insertAction(QMenu *_menu, const Function *function,
                                  const char *slot, bool checkable = true);
         C4DView *parent;

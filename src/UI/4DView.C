@@ -1223,50 +1223,6 @@ double C4DView::Benchmark3D (int num_steps,
 
 ////////////////////////////////////////////////////////////////////////////////
 
-/// display a Fr3r object
-/** menu callback function */
-void C4DView::FunctionFr3r() { FunctionSlot<Fr3r>::createFunction(this); }
-
-/// display a Hypersphere object
-/** menu callback function */
-void C4DView::FunctionHypersphere() { FunctionSlot<Hypersphere>::createFunction(this); }
-
-/// display a Torus1 object
-/** menu callback function */
-void C4DView::FunctionTorus1() { FunctionSlot<Torus1>::createFunction(this); }
-
-/// display a Torus2 object
-/** menu callback function */
-void C4DView::FunctionTorus2() { FunctionSlot<Torus2>::createFunction(this); }
-
-///  display a Fr3r object
-/** menu callback function */
-void C4DView::FR3R(){ FunctionSlot<Fr3r>::createFunction(this); }
-
-/// display a GravPotential object
-/** menu callback function */
-void C4DView::GravPotential(){ FunctionSlot<GravitationPotential>::createFunction(this); }
-
-/// display a SinR object
-/** menu callback function */
-void C4DView::SinR(){ FunctionSlot<Fr3rSin>::createFunction(this); }
-
-/// display a ExpR object
-/** menu callback function */
-void C4DView::ExpR(){ FunctionSlot<Fr3rExp>::createFunction(this); }
-
-/// display a Sin object
-/** menu callback function */
-void C4DView::Sin(){ FunctionSlot<PolarSin>::createFunction(this); }
-
-/// display a Sin2 object
-/** menu callback function */
-void C4DView::Sin2(){ FunctionSlot<PolarSin2>::createFunction(this); }
-
-/// display a FunctionR object
-/** menu callback function */
-void C4DView::FunctionR(){ FunctionSlot<PolarR>::createFunction(this); }
-
 /// display a ObjectHypercube object
 /** menu callback function */
 void C4DView::ObjectHypercube() {
@@ -1313,74 +1269,6 @@ void C4DView::ObjectGasket() {
     AssignValues(F);
     Redraw ();
 }
-
-/// display a Surface object
-/** menu callback function */
-void C4DView::Surface_1() { FunctionSlot<Surface1>::createSurface(this); }
-
-/// display a SurfaceHorizon object
-/** menu callback function */
-void C4DView::SurfaceHorizon() { FunctionSlot<Horizon>::createSurface(this); }
-
-/// display a SurfaceTorus3 object
-/** menu callback function */
-void C4DView::SurfaceTorus3() { FunctionSlot<Torus3>::createSurface(this); }
-
-/// display a ComplexZ2 object
-/** menu callback function */
-void C4DView::ComplexZ2() { FunctionSlot<z2>::createSurface(this); }
-
-/// display a ComplexZ3 object
-/** menu callback function */
-void C4DView::ComplexZ3() { FunctionSlot<z3>::createSurface(this); }
-
-/// display a ComplexZA object
-/** menu callback function */
-void C4DView::ComplexZA() { FunctionSlot<zA>::createSurface(this); }
-
-/// display a ComplexEZ object
-/** menu callback function */
-void C4DView::ComplexEZ() { FunctionSlot<ez>::createSurface(this); }
-
-/// display a ComplexEMZ2 object
-/** menu callback function */
-void C4DView::ComplexEMZ2() { FunctionSlot<emz2>::createSurface(this); }
-
-/// display a ComplexZM1 object
-/** menu callback function */
-void C4DView::ComplexZM1() { FunctionSlot<zm1>::createSurface(this); }
-
-/// display a ComplexZM2 object
-/** menu callback function */
-void C4DView::ComplexZM2() {FunctionSlot<zm2>::createSurface(this); }
-
-/// display a ComplexSqrtZ object
-/** menu callback function */
-void C4DView::ComplexSqrtZ() {FunctionSlot<sqrtz>::createSurface(this); }
-
-/// display a ComplexLnZ object
-/** menu callback function */
-void C4DView::ComplexLnZ() {FunctionSlot<lnz>::createSurface(this); }
-
-/// display a ComplexSinZ object
-/** menu callback function */
-void C4DView::ComplexSinZ() {FunctionSlot<sinz>::createSurface(this); }
-
-/// display a ComplexCosZ object
-/** menu callback function */
-void C4DView::ComplexCosZ() {FunctionSlot<cosz>::createSurface(this); }
-
-/// display a ComplexSinhZ object
-/** menu callback function */
-void C4DView::ComplexSinhZ() {FunctionSlot<sinhz>::createSurface(this); }
-
-/// display a ComplexCoshZ object
-/** menu callback function */
-void C4DView::ComplexCoshZ() {FunctionSlot<coshz>::createSurface(this); }
-
-/// display a ComplexTanZ object
-/** menu callback function */
-void C4DView::ComplexTanZ() {FunctionSlot<tanz>::createSurface(this); }
 
 /// display a customFunction object
 /** menu callback function */

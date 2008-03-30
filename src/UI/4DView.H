@@ -3,8 +3,8 @@
 //      module:
 //      contains:
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
-//	license:      GPL (see License.txt)
+//      author:	      helge preuss (scout@hyperspace-travel.de)
+//      license:      GPL (see License.txt)
 
 
 #ifndef VIEW_H
@@ -21,41 +21,30 @@ class QStatusBar;
 class C4DView;
 class Menu4D;
 class Function;
+class Surface;
 
 class CustomFunction;
 class CustomPolarFunction;
 class CustomSurface;
 class CustomComplexFunction;
 
-class Fr3r;
-class GravitationPotential;
-class Fr3rSin;
-class Fr3rExp;
-class PolarSin;
-class PolarSin2;
-class PolarR;
-class Surface1;
-class Horizon;
-class Torus3;
-class z2;
-class z3;
-class zA;
-class ez;
-class emz2;
-class zm1;
-class zm2;
-class sqrtz;
-class lnz;
-class sinz;
-class cosz;
-class sinhz;
-class coshz;
-class tanz;
-class Hypersphere;
-class Torus1;
-class Torus2;
-
 /// \defgroup UIGroup User Interface
+/// \defgroup UIHelpers Helper classes for User Interface classes
+/// \ingroup UIGroup
+
+/// Abstract base class for a factory creating Function's
+/** \ingroup UIHelpers                                                */
+class FunctionFactory {
+    public:
+        virtual Function *createFunction(C4DView *)=0;
+};
+
+/// Abstract base class for a factory creating Surface's
+/** \ingroup UIHelpers                                                */
+class SurfaceFactory {
+    public:
+        virtual Surface *createSurface(C4DView *)=0;
+};
 
 /// Displays and manipulates four-dimensional Functions in a QGLWidget
 /** This class is much too fat and will be split into parts wherever possible
@@ -64,28 +53,50 @@ class Torus2;
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class C4DView : public XQGLWidget {
 
-    /// Class template to outsource redundant code
-    /** Class template to outsource redundant code for the generation of
-     *  customized functions in a slot called by QActions from the QMenu
-     *  @param function the Function to be created in the slot
-     *  \ingroup UIGroup                                                      */
-    template<class function> class CustomFunctionSlot {
-        public:
-            static void createCustomFunction(C4DView *view);
-            static void createCustomSurface(C4DView *view);
-    };
+    public:
+        /// Class template implementation for a factory creating Function's
+        /** The type of the Function to be created by the factory method of this
+         *  class is passed as a template parameter.
+         *  \ingroup UIHelpers                                                */
+        template <typename function>
+            class TemplatedFunctionFactory: public FunctionFactory {
+                public:
+                    virtual Function *createFunction(C4DView *);
+            };
 
-    /// Class template to outsource redundant code
-    /** Class template to outsource redundant code for the generation of
-     *  functions in a slot called by QActions from the QMenu
-     *  @param function the Function to be created in the slot
-     *  \ingroup UIGroup                                                      */
-    template<class function> class FunctionSlot {
-        public:
-            static void createFunction(C4DView *view);
-            static void createSurface(C4DView *view);
-            static void createObject(C4DView *view);
-    };
+        /// Class template implementation for a factory creating Surface's
+        /** The type of the Surface to be created by the factory method of this
+         *  class is passed as a template parameter.
+         *  \ingroup UIHelpers                                                */
+        template <typename function>
+            class TemplatedSurfaceFactory: public SurfaceFactory {
+                public:
+                    virtual Surface *createSurface(C4DView *);
+            };
+
+    protected:
+        /// Class template to outsource redundant code
+        /** Class template to outsource redundant code for the generation of
+        *  customized functions in a slot called by QActions from the QMenu
+        *  @param function the Function to be created in the slot
+        *  \ingroup UIHelpers                                                 */
+        template<class function> class CustomFunctionSlot {
+            public:
+                static void createCustomFunction(C4DView *view);
+                static void createCustomSurface(C4DView *view);
+        };
+
+        /// Class template to outsource redundant code
+        /** Class template to outsource redundant code for the generation of
+        *  functions in a slot called by QActions from the QMenu
+        *  @param function the Function to be created in the slot
+        *  \ingroup UIHelpers                                                 */
+        template<class function> class FunctionSlot {
+            public:
+                static void createFunction(C4DView *view);
+                static void createSurface(C4DView *view);
+                static void createObject(C4DView *view);
+        };
 
     Q_OBJECT
 
@@ -153,6 +164,9 @@ class C4DView : public XQGLWidget {
 
         /// @return a pointer to the popup menu
         Menu4D *getMenu() const { return menu; }
+
+        /// Set the Function object associated with this view
+        void setFunction(Function *_f) { F.reset(_f); }
 
     public slots:
         void ApplyChanges ();
@@ -318,76 +332,22 @@ class C4DView : public XQGLWidget {
         void Benchmark();
         void RenderToImages();
 
-        void FunctionFr3r();
-        void FunctionHypersphere();
-        void FunctionTorus1();
-        void FunctionTorus2();
-        void FR3R();
-        void GravPotential();
-        void SinR();
-        void ExpR();
-        void Sin();
-        void Sin2();
-        void FunctionR();
         void ObjectHypercube();
         void ObjectHyperpyramid();
         void ObjectHypersponge();
         void ObjectGasket();
-        void Surface_1();
-        void SurfaceHorizon();
-        void SurfaceTorus3();
-        void ComplexZ2();
-        void ComplexZ3();
-        void ComplexZA();
-        void ComplexEZ();
-        void ComplexEMZ2();
-        void ComplexZM1();
-        void ComplexZM2();
-        void ComplexSqrtZ();
-        void ComplexLnZ();
-        void ComplexSinZ();
-        void ComplexCosZ();
-        void ComplexSinhZ();
-        void ComplexCoshZ();
-        void ComplexTanZ();
         void customFunction();
         void customPolarFunction();
         void customComplexFunction();
         void customSurface();
 
-        friend class FunctionSlot<Fr3r>;
-
-        friend class FunctionSlot<Hypersphere>;
-        friend class FunctionSlot<Torus1>;
-        friend class FunctionSlot<Torus2>;
-        friend class FunctionSlot<GravitationPotential>;
-        friend class FunctionSlot<Fr3rSin>;
-        friend class FunctionSlot<Fr3rExp>;
-        friend class FunctionSlot<PolarSin>;
-        friend class FunctionSlot<PolarSin2>;
-        friend class FunctionSlot<PolarR>;
-        friend class FunctionSlot<Surface1>;
-        friend class FunctionSlot<Horizon>;
-        friend class FunctionSlot<Torus3>;
-        friend class FunctionSlot<z2>;
-        friend class FunctionSlot<z3>;
-        friend class FunctionSlot<zA>;
-        friend class FunctionSlot<ez>;
-        friend class FunctionSlot<emz2>;
-        friend class FunctionSlot<zm1>;
-        friend class FunctionSlot<zm2>;
-        friend class FunctionSlot<sqrtz>;
-        friend class FunctionSlot<lnz>;
-        friend class FunctionSlot<sinz>;
-        friend class FunctionSlot<cosz>;
-        friend class FunctionSlot<sinhz>;
-        friend class FunctionSlot<coshz>;
-        friend class FunctionSlot<tanz>;
         friend class CustomFunctionSlot<CustomFunction>;
         friend class CustomFunctionSlot<CustomPolarFunction>;
         friend class CustomFunctionSlot<CustomComplexFunction>;
         friend class CustomFunctionSlot<CustomSurface>;
 
+        friend class FunctionSlotHelper;
+        friend class SurfaceSlotHelper;
 };
 
 #include "Function.H"
@@ -480,22 +440,45 @@ template<class function>
  *  updates the ValuesDialog and redraws. Does some error handling in case the
  *  Function could not be loaded.                                             */
 template<class function>
-        void C4DView::CustomFunctionSlot<function>::createCustomSurface(
+    void C4DView::CustomFunctionSlot<function>::createCustomSurface(
                 C4DView *view) {
-            function *tmp = new function (
-                view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
-                view->Values->umin (), view->Values->umax (), view->Values->du ());
-            if (tmp->isValid()) {
-                view->F.reset(tmp);
-                QString sym (((function *)(view->F).get ())->symbolic());
+        function *tmp = new function (
+            view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
+            view->Values->umin (), view->Values->umax (), view->Values->du ());
+        if (tmp->isValid()) {
+            view->F.reset(tmp);
+            QString sym (((function *)(view->F).get ())->symbolic());
 
-                view->AssignValues(view->F);
-                view->Redraw ();
-            } else {
-                delete tmp;
-                view->UpdateStatus("Failed to load custom function");
-            }
+            view->AssignValues(view->F);
+            view->Redraw ();
+        } else {
+            delete tmp;
+            view->UpdateStatus("Failed to load custom function");
         }
+    }
+
+/// Factory method to create a Function object
+/** The type of the created Function is supplied as template parameter to the
+ *  TemplatedFunctionFactory object owning this method.                       */
+template<class function>
+    Function *C4DView::TemplatedFunctionFactory<function>::createFunction(
+        C4DView *view) {
+        return new function (
+            view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
+            view->Values->umin (), view->Values->umax (), view->Values->du (),
+            view->Values->vmin (), view->Values->vmax (), view->Values->dv ());
+    }
+
+/// Factory method to create a Surface object
+/** The type of the created Surface is supplied as template parameter to the
+ *  TemplatedSurfaceFactory object owning this method.                       */
+template<class function>
+    Surface *C4DView::TemplatedSurfaceFactory<function>::createSurface(
+        C4DView *view) {
+        return new function (
+            view->Values->umin (), view->Values->umax (), view->Values->du (),
+            view->Values->vmin (), view->Values->vmax (), view->Values->dv ());
+    }
 
 
 #endif // !defined(4DVIEW)
