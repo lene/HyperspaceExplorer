@@ -59,6 +59,7 @@ class Torus2;
 
 /// Displays and manipulates four-dimensional Functions in a QGLWidget
 /** This class is much too fat and will be split into parts wherever possible
+ *  \todo move all menu slots into one (or a few) factory methods
  *  \ingroup UIGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class C4DView : public XQGLWidget {

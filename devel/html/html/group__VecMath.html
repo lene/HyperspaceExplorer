@@ -22,12 +22,332 @@
 <tr><td colspan="2"><br><h2>Classes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix&lt; D, N &gt;</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix</a> class that uses template metaprogramming to speed up multiplications.  <a href="classVecMath_1_1Matrix.html#_details">More...</a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector&lt; D, N &gt;</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vector&lt;D, N&gt;: a D-dimensional vector of numbers of type N.  <a href="classVecMath_1_1Vector.html#_details">More...</a><br></td></tr>
+<tr><td colspan="2"><br><h2>Functions</h2></td></tr>
+<tr><td class="memTemplParams" nowrap colspan="2">template&lt;unsigned D, typename N&gt; </td></tr>
+<tr><td class="memTemplItemLeft" nowrap align="right" valign="top">std::ostream &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__VecMath.html#gef433144f359a8cda43c2290871425b3">VecMath::operator&lt;&lt;</a> (std::ostream &amp;o, const Vector&lt; D, N &gt; &amp;v)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D-dimensional vector of numbers of type N.">Vector</a> output operator.  <a href="#gef433144f359a8cda43c2290871425b3"></a><br></td></tr>
+<tr><td class="memTemplParams" nowrap colspan="2">template&lt;unsigned D, typename N&gt; </td></tr>
+<tr><td class="memTemplItemLeft" nowrap align="right" valign="top">Vector&lt; D &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__VecMath.html#g42f840301b4c197f9e58290655ad7f73">VecMath::cross</a> (const Vector&lt; D &gt; &amp;, const Vector&lt; D &gt; &amp;)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">cross product of two Vectors  <a href="#g42f840301b4c197f9e58290655ad7f73"></a><br></td></tr>
+<tr><td class="memTemplParams" nowrap colspan="2">template&lt;unsigned D, typename N&gt; </td></tr>
+<tr><td class="memTemplItemLeft" nowrap align="right" valign="top">Vector&lt; D &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__VecMath.html#g84360f66f3dcffe78961def5353844f3">VecMath::cross</a> (const Vector&lt; D &gt; &amp;, const Vector&lt; D &gt; &amp;, const Vector&lt; D &gt; &amp;)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">specialization for cross product of three 4-Vectors  <a href="#g84360f66f3dcffe78961def5353844f3"></a><br></td></tr>
+<tr><td class="memTemplParams" nowrap colspan="2">template&lt;typename N&gt; </td></tr>
+<tr><td class="memTemplItemLeft" nowrap align="right" valign="top">Vector&lt; 3, N &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__VecMath.html#g5f42c95ec973af0eae139718319fc9dd">VecMath::vcross</a> (Vector&lt; 3, N &gt; a, Vector&lt; 3, N &gt; b)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">specialization for cross product of two 3-Vectors  <a href="#g5f42c95ec973af0eae139718319fc9dd"></a><br></td></tr>
+<tr><td class="memTemplParams" nowrap colspan="2">template&lt;typename N&gt; </td></tr>
+<tr><td class="memTemplItemLeft" nowrap align="right" valign="top">Vector&lt; 4, N &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__VecMath.html#g73fe56ecc2d2897eb3f5c1b723536e11">VecMath::vcross</a> (Vector&lt; 4, N &gt; a, Vector&lt; 4, N &gt; b, Vector&lt; 4, N &gt; c)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">specialization for cross product of three 4-Vectors  <a href="#g73fe56ecc2d2897eb3f5c1b723536e11"></a><br></td></tr>
+<tr><td class="memTemplParams" nowrap colspan="2">template&lt;unsigned D, typename N&gt; </td></tr>
+<tr><td class="memTemplItemLeft" nowrap align="right" valign="top">Vector&lt; D, N &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__VecMath.html#g4b99a05522c09599748899e794bc65e9">VecMath::vnormalize</a> (const Vector&lt; D, N &gt; &amp;x)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">normalizes a 3-Vector out-of-place  <a href="#g4b99a05522c09599748899e794bc65e9"></a><br></td></tr>
 </table>
+<hr><h2>Function Documentation</h2>
+<a class="anchor" name="g84360f66f3dcffe78961def5353844f3"></a><!-- doxytag: member="VecMath::cross" ref="g84360f66f3dcffe78961def5353844f3" args="(const Vector&lt; D &gt; &amp;, const Vector&lt; D &gt; &amp;, const Vector&lt; D &gt; &amp;)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;unsigned D, typename N&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector&lt; D &gt; VecMath::cross           </td>
+          <td>(</td>
+          <td class="paramtype">const Vector&lt; D &gt; &amp;&nbsp;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Vector&lt; D &gt; &amp;&nbsp;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Vector&lt; D &gt; &amp;&nbsp;</td>
+          <td class="paramname"></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun Mar 30 04:15:25 2008 for HyperspaceExplorer by&nbsp;
+<div class="memdoc">
+
+<p>
+specialization for cross product of three 4-Vectors 
+<p>
+cross product of three 4-Vectors fails for dimensions other than 4 due to lack of template specialization <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>a</em>&nbsp;</td><td>first operand of cross product </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>b</em>&nbsp;</td><td>second operand of cross product </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>c</em>&nbsp;</td><td>third operand of cross product </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>a x b x c</dd></dl>
+fails for dimensions other than 4 due to lack of template specialization<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>a</em>&nbsp;</td><td>first operand of cross product </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>b</em>&nbsp;</td><td>second operand of cross product </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>c</em>&nbsp;</td><td>third operand of cross product </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>a x b x c </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="g42f840301b4c197f9e58290655ad7f73"></a><!-- doxytag: member="VecMath::cross" ref="g42f840301b4c197f9e58290655ad7f73" args="(const Vector&lt; D &gt; &amp;, const Vector&lt; D &gt; &amp;)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;unsigned D, typename N&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector&lt; D &gt; VecMath::cross           </td>
+          <td>(</td>
+          <td class="paramtype">const Vector&lt; D &gt; &amp;&nbsp;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Vector&lt; D &gt; &amp;&nbsp;</td>
+          <td class="paramname"></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+cross product of two Vectors 
+<p>
+cross product of two 3-Vectors fails for dimensions other than 3 due to lack of template specialization <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>a</em>&nbsp;</td><td>first operand of cross product </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>b</em>&nbsp;</td><td>second operand of cross product </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>a x b</dd></dl>
+fails for dimensions other than 3 due to lack of template specialization<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>a</em>&nbsp;</td><td>first operand of cross product </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>b</em>&nbsp;</td><td>second operand of cross product </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>a x b </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="gef433144f359a8cda43c2290871425b3"></a><!-- doxytag: member="VecMath::operator&lt;&lt;" ref="gef433144f359a8cda43c2290871425b3" args="(std::ostream &amp;o, const Vector&lt; D, N &gt; &amp;v)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;unsigned D, typename N&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; VecMath::operator&lt;&lt;           </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&nbsp;</td>
+          <td class="paramname"> <em>o</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Vector&lt; D, N &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>v</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<a class="el" href="classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D-dimensional vector of numbers of type N.">Vector</a> output operator. 
+<p>
+<a class="el" href="classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D-dimensional vector of numbers of type N.">Vector</a> output operator <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>o</em>&nbsp;</td><td>ostream to push into </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v</em>&nbsp;</td><td><a class="el" href="classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D-dimensional vector of numbers of type N.">Vector</a> to print </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>a new ostream to push Vectors and stuff into</dd></dl>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>o</em>&nbsp;</td><td>ostream to push into </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v</em>&nbsp;</td><td><a class="el" href="classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D-dimensional vector of numbers of type N.">Vector</a> to print </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>a new ostream to push Vectors and stuff into </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="g73fe56ecc2d2897eb3f5c1b723536e11"></a><!-- doxytag: member="VecMath::vcross" ref="g73fe56ecc2d2897eb3f5c1b723536e11" args="(Vector&lt; 4, N &gt; a, Vector&lt; 4, N &gt; b, Vector&lt; 4, N &gt; c)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename N&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector&lt; 4, N &gt; VecMath::vcross           </td>
+          <td>(</td>
+          <td class="paramtype">Vector&lt; 4, N &gt;&nbsp;</td>
+          <td class="paramname"> <em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector&lt; 4, N &gt;&nbsp;</td>
+          <td class="paramname"> <em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector&lt; 4, N &gt;&nbsp;</td>
+          <td class="paramname"> <em>c</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+specialization for cross product of three 4-Vectors 
+<p>
+specialization for cross product of three 4-Vectors <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>a</em>&nbsp;</td><td>first operand of cross product </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>b</em>&nbsp;</td><td>second operand of cross product </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>c</em>&nbsp;</td><td>third operand of cross product </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>a x b x c</dd></dl>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>a</em>&nbsp;</td><td>first operand of cross product </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>b</em>&nbsp;</td><td>second operand of cross product </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>c</em>&nbsp;</td><td>third operand of cross product </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>a x b x c </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="g5f42c95ec973af0eae139718319fc9dd"></a><!-- doxytag: member="VecMath::vcross" ref="g5f42c95ec973af0eae139718319fc9dd" args="(Vector&lt; 3, N &gt; a, Vector&lt; 3, N &gt; b)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename N&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector&lt; 3, N &gt; VecMath::vcross           </td>
+          <td>(</td>
+          <td class="paramtype">Vector&lt; 3, N &gt;&nbsp;</td>
+          <td class="paramname"> <em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector&lt; 3, N &gt;&nbsp;</td>
+          <td class="paramname"> <em>b</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+specialization for cross product of two 3-Vectors 
+<p>
+specialization for cross product of two 3-Vectors <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>a</em>&nbsp;</td><td>first operand of cross product </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>b</em>&nbsp;</td><td>second operand of cross product </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>a x b</dd></dl>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>a</em>&nbsp;</td><td>first operand of cross product </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>b</em>&nbsp;</td><td>second operand of cross product </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>a x b </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="g4b99a05522c09599748899e794bc65e9"></a><!-- doxytag: member="VecMath::vnormalize" ref="g4b99a05522c09599748899e794bc65e9" args="(const Vector&lt; D, N &gt; &amp;x)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;unsigned D, typename N&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector&lt; D, N &gt; VecMath::vnormalize           </td>
+          <td>(</td>
+          <td class="paramtype">const Vector&lt; D, N &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+normalizes a 3-Vector out-of-place 
+<p>
+normalizes a 3-Vector out-of-place <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>x</em>&nbsp;</td><td><a class="el" href="classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D-dimensional vector of numbers of type N.">Vector</a> to be normalized </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>its normalized value</dd></dl>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>x</em>&nbsp;</td><td><a class="el" href="classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D-dimensional vector of numbers of type N.">Vector</a> to be normalized </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>its normalized value </dd></dl>
+
+<p>References <a class="el" href="plugins_2Vector_8H-source.html#l00196">VecMath::Vector&lt; D, N &gt;::sqnorm()</a>.</p>
+
+<p>Referenced by <a class="el" href="Globals_8C-source.html#l00127">Global::vnormalize()</a>.</p>
+
+</div>
+</div><p>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Mar 30 13:46:36 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

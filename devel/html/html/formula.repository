@@ -52,3 +52,6 @@
 \form#51:\[ \frac{df}{du} = \lim_{h \rightarrow 0} \frac{f(u+h, v) - f(u)}{h}, \frac{df}{dv}\mbox{analogously} \]
 \form#52:\[ \frac{df}{dt} = \lim_{h \rightarrow 0} \frac{f(t+h, u, v) - f(t, u, v)}{h}, \frac{df}{du},\frac{df}{dv}\mbox{analogously} \]
 \form#53:\[ \frac{df}{du} = \lim_{h \rightarrow 0} \frac{f(u+h, v) - f(u, v)}{h}, \frac{df}{dv}\mbox{analogously} \]
+\form#54:$ C_ij $
+\form#55:$ C = A*B $
+\form#56:$ A*B $

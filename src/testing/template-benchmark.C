@@ -18,6 +18,15 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+/*  compile with: g++ template-benchmark.C -I.. -DDIM=4 -lrt
+    To run a benchmark suite and only display the interesting results do:
+    for i in $(seq 3 8); do
+      for opt in -O -O2 -O3; do
+        g++ $opt -DDIM=$i -I.. template-benchmark.C -lrt
+        ./a.out 1000000 "Optimization: $opt" | grep -a Opt
+      done
+    done
+*/
 
 #include <cstdlib>
 #include <ctime>
@@ -85,10 +94,9 @@ main (int argc, char **argv) {
     while (prefix.length() < 30) prefix.append(" ");
     //  matrix multiplication with template metaprogramming
     std::string text = prefix+" template metaprogramming - DIM = "+itoa(DIM);
-    benchmark<VecMath2::Matrix<DIM> > b1 (nloop, text);
+    benchmark<VecMath::Matrix<DIM> > b1 (nloop, text);
 
     //  traditional matrix multiplication with for-loops
     text = prefix+" for loops                - DIM = "+itoa(DIM);
     benchmark<matrix<DIM> > b2 (nloop, text);
 }
-

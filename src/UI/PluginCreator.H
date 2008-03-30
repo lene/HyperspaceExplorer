@@ -20,6 +20,7 @@
  *  class with auxiliary functions. \n
  *  This class is abstract. The inheriting classes must implement the members
  *  loadFunction(), functionPresent() and writeSource().
+ *  \todo set the function name to symbolic() in the descendants' constructors
  *  \ingroup UIGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class PluginCreator {

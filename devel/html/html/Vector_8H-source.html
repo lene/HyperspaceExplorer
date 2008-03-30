@@ -195,67 +195,67 @@
 <a name="l00210"></a>00210     <span class="comment">//------------  important non-member functions for class Vector</span>
 <a name="l00211"></a>00211 
 <a name="l00213"></a>00213 
-<a name="l00216"></a>00216     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00217"></a>00217             std::ostream &amp;operator &lt;&lt; (std::ostream &amp;o, const Vector&lt;D, N&gt; &amp;v) {
-<a name="l00218"></a>00218         <span class="comment">//  i might want to use other brackets one day</span>
-<a name="l00219"></a>00219         o &lt;&lt; <span class="stringliteral">"&lt;"</span>;
-<a name="l00220"></a>00220         <span class="keywordflow">for</span> ( <span class="keywordtype">unsigned</span> i = 0; i &lt; v.dimension ()-1; i++ )
-<a name="l00221"></a>00221         o &lt;&lt; v[i] &lt;&lt; <span class="stringliteral">","</span>;
-<a name="l00222"></a>00222         o &lt;&lt; v[v.dimension ()-1] &lt;&lt; <span class="stringliteral">"&gt;"</span>;
-<a name="l00223"></a>00223         <span class="keywordflow">return</span> o;
-<a name="l00224"></a>00224     }
-<a name="l00225"></a>00225 
-<a name="l00227"></a>00227 
-<a name="l00232"></a>00232     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00233"></a>00233             Vector&lt;D&gt; cross (<span class="keyword">const</span> Vector&lt;D&gt; &amp;, <span class="keyword">const</span> Vector&lt;D&gt; &amp;);
-<a name="l00234"></a>00234 
+<a name="l00217"></a>00217     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
+<a name="l00218"></a>00218             std::ostream &amp;operator &lt;&lt; (std::ostream &amp;o, const Vector&lt;D, N&gt; &amp;v) {
+<a name="l00219"></a>00219         <span class="comment">//  i might want to use other brackets one day</span>
+<a name="l00220"></a>00220         o &lt;&lt; <span class="stringliteral">"&lt;"</span>;
+<a name="l00221"></a>00221         <span class="keywordflow">for</span> ( <span class="keywordtype">unsigned</span> i = 0; i &lt; v.dimension ()-1; i++ )
+<a name="l00222"></a>00222         o &lt;&lt; v[i] &lt;&lt; <span class="stringliteral">","</span>;
+<a name="l00223"></a>00223         o &lt;&lt; v[v.dimension ()-1] &lt;&lt; <span class="stringliteral">"&gt;"</span>;
+<a name="l00224"></a>00224         <span class="keywordflow">return</span> o;
+<a name="l00225"></a>00225     }
+<a name="l00226"></a>00226 
+<a name="l00228"></a>00228 
+<a name="l00234"></a>00234     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
+<a name="l00235"></a>00235             Vector&lt;D&gt; <a class="code" href="group__VecMath.html#g84360f66f3dcffe78961def5353844f3" title="specialization for cross product of three 4-Vectors">cross</a> (<span class="keyword">const</span> Vector&lt;D&gt; &amp;, <span class="keyword">const</span> Vector&lt;D&gt; &amp;);
 <a name="l00236"></a>00236 
-<a name="l00242"></a>00242     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00243"></a>00243             Vector&lt;D&gt; cross (<span class="keyword">const</span> Vector&lt;D&gt; &amp;, <span class="keyword">const</span> Vector&lt;D&gt; &amp;, <span class="keyword">const</span> Vector&lt;D&gt; &amp;);
-<a name="l00244"></a>00244 
-<a name="l00246"></a>00246 
-<a name="l00249"></a>00249     <span class="keyword">template</span> &lt;<span class="keyword">typename</span> N&gt;
-<a name="l00250"></a>00250             Vector&lt;3, N&gt; vcross (Vector&lt;3, N&gt; a, Vector&lt;3, N&gt; b) {
-<a name="l00251"></a>00251         <span class="keyword">static</span> Vector&lt;3, N&gt; c;
-<a name="l00252"></a>00252 
-<a name="l00253"></a>00253         c[0] = a[1]*b[2]-a[2]*b[1];
-<a name="l00254"></a>00254         c[1] = a[2]*b[0]-a[0]*b[2];
-<a name="l00255"></a>00255         c[2] = a[0]*b[1]-a[1]*b[0];
+<a name="l00238"></a>00238 
+<a name="l00245"></a>00245     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
+<a name="l00246"></a>00246             Vector&lt;D&gt; <a class="code" href="group__VecMath.html#g84360f66f3dcffe78961def5353844f3" title="specialization for cross product of three 4-Vectors">cross</a> (<span class="keyword">const</span> Vector&lt;D&gt; &amp;, <span class="keyword">const</span> Vector&lt;D&gt; &amp;, <span class="keyword">const</span> Vector&lt;D&gt; &amp;);
+<a name="l00247"></a>00247 
+<a name="l00249"></a>00249 
+<a name="l00253"></a>00253     <span class="keyword">template</span> &lt;<span class="keyword">typename</span> N&gt;
+<a name="l00254"></a>00254             Vector&lt;3, N&gt; <a class="code" href="group__VecMath.html#g73fe56ecc2d2897eb3f5c1b723536e11" title="specialization for cross product of three 4-Vectors">vcross</a> (Vector&lt;3, N&gt; a, Vector&lt;3, N&gt; b) {
+<a name="l00255"></a>00255         <span class="keyword">static</span> Vector&lt;3, N&gt; c;
 <a name="l00256"></a>00256 
-<a name="l00257"></a>00257         <span class="keywordflow">return</span> c;
-<a name="l00258"></a>00258     }
-<a name="l00259"></a>00259 
-<a name="l00261"></a>00261 
-<a name="l00265"></a>00265     <span class="keyword">template</span> &lt;<span class="keyword">typename</span> N&gt;
-<a name="l00266"></a>00266             Vector&lt;4, N&gt; vcross (Vector&lt;4, N&gt; a, Vector&lt;4, N&gt; b, Vector&lt;4, N&gt; c) {
-<a name="l00267"></a>00267         <span class="keyword">static</span> Vector&lt;4, N&gt; d;
-<a name="l00268"></a>00268         N A = b[0]*c[1]-b[1]*c[0],
-<a name="l00269"></a>00269         B = b[0]*c[2]-b[2]*c[0],
-<a name="l00270"></a>00270         C = b[0]*c[3]-b[3]*c[0],
-<a name="l00271"></a>00271         D = b[1]*c[2]-b[2]*c[1],
-<a name="l00272"></a>00272         E = b[1]*c[3]-b[3]*c[1],
-<a name="l00273"></a>00273         F = b[2]*c[3]-b[3]*c[2];
-<a name="l00274"></a>00274 
-<a name="l00275"></a>00275         d[0] =  a[1]*F - a[2]*E + a[3]*D;
-<a name="l00276"></a>00276         d[1] = -a[0]*F + a[2]*C - a[3]*B;
-<a name="l00277"></a>00277         d[2] =  a[0]*E - a[1]*C + a[3]*A;
-<a name="l00278"></a>00278         d[3] = -a[0]*D + a[1]*B - a[2]*A;
+<a name="l00257"></a>00257         c[0] = a[1]*b[2]-a[2]*b[1];
+<a name="l00258"></a>00258         c[1] = a[2]*b[0]-a[0]*b[2];
+<a name="l00259"></a>00259         c[2] = a[0]*b[1]-a[1]*b[0];
+<a name="l00260"></a>00260 
+<a name="l00261"></a>00261         <span class="keywordflow">return</span> c;
+<a name="l00262"></a>00262     }
+<a name="l00263"></a>00263 
+<a name="l00265"></a>00265 
+<a name="l00270"></a>00270     <span class="keyword">template</span> &lt;<span class="keyword">typename</span> N&gt;
+<a name="l00271"></a>00271             Vector&lt;4, N&gt; <a class="code" href="group__VecMath.html#g73fe56ecc2d2897eb3f5c1b723536e11" title="specialization for cross product of three 4-Vectors">vcross</a> (Vector&lt;4, N&gt; a, Vector&lt;4, N&gt; b, Vector&lt;4, N&gt; c) {
+<a name="l00272"></a>00272         <span class="keyword">static</span> Vector&lt;4, N&gt; d;
+<a name="l00273"></a>00273         N A = b[0]*c[1]-b[1]*c[0],
+<a name="l00274"></a>00274         B = b[0]*c[2]-b[2]*c[0],
+<a name="l00275"></a>00275         C = b[0]*c[3]-b[3]*c[0],
+<a name="l00276"></a>00276         D = b[1]*c[2]-b[2]*c[1],
+<a name="l00277"></a>00277         E = b[1]*c[3]-b[3]*c[1],
+<a name="l00278"></a>00278         F = b[2]*c[3]-b[3]*c[2];
 <a name="l00279"></a>00279 
-<a name="l00280"></a>00280         <span class="keywordflow">return</span> d;
-<a name="l00281"></a>00281     }
-<a name="l00282"></a>00282 
+<a name="l00280"></a>00280         d[0] =  a[1]*F - a[2]*E + a[3]*D;
+<a name="l00281"></a>00281         d[1] = -a[0]*F + a[2]*C - a[3]*B;
+<a name="l00282"></a>00282         d[2] =  a[0]*E - a[1]*C + a[3]*A;
+<a name="l00283"></a>00283         d[3] = -a[0]*D + a[1]*B - a[2]*A;
 <a name="l00284"></a>00284 
-<a name="l00286"></a>00286     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00287"></a>00287             Vector&lt;D, N&gt; vnormalize( <span class="keyword">const</span> Vector&lt;D, N&gt; &amp;x ) {
-<a name="l00288"></a>00288         <span class="keyword">static</span> Vector&lt;D, N&gt; n;
-<a name="l00289"></a>00289         N norm = sqrt ( x.sqnorm() );
-<a name="l00290"></a>00290         <span class="keywordflow">for</span> ( <span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++ ) n[i] = x[i]/norm;
-<a name="l00291"></a>00291         <span class="keywordflow">return</span> n;
-<a name="l00292"></a>00292     }
-<a name="l00293"></a>00293 }
-<a name="l00294"></a>00294 <span class="preprocessor">#endif                                                //  VECTOR_H</span>
+<a name="l00285"></a>00285         <span class="keywordflow">return</span> d;
+<a name="l00286"></a>00286     }
+<a name="l00287"></a>00287 
+<a name="l00289"></a>00289 
+<a name="l00292"></a>00292     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
+<a name="l00293"></a>00293             Vector&lt;D, N&gt; <a class="code" href="group__VecMath.html#g4b99a05522c09599748899e794bc65e9" title="normalizes a 3-Vector out-of-place">vnormalize</a>( <span class="keyword">const</span> Vector&lt;D, N&gt; &amp;x ) {
+<a name="l00294"></a>00294         <span class="keyword">static</span> Vector&lt;D, N&gt; n;
+<a name="l00295"></a>00295         N norm = sqrt ( x.sqnorm() );
+<a name="l00296"></a>00296         <span class="keywordflow">for</span> ( <span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++ ) n[i] = x[i]/norm;
+<a name="l00297"></a>00297         <span class="keywordflow">return</span> n;
+<a name="l00298"></a>00298     }
+<a name="l00299"></a>00299 }
+<a name="l00300"></a>00300 <span class="preprocessor">#endif                                                //  VECTOR_H</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun Mar 30 04:15:25 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Mar 30 13:46:36 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

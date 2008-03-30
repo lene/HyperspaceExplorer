@@ -108,6 +108,13 @@
     <filename>group__LifetimeGroup.html</filename>
   </compound>
   <compound kind="group">
+    <name>VecMathTest</name>
+    <title>Vector and Matrix algebra optimized, in test state</title>
+    <filename>group__VecMathTest.html</filename>
+    <class kind="struct">VecMath::NotYetImplementedException</class>
+    <class kind="class">VecMath::Matrix</class>
+  </compound>
+  <compound kind="group">
     <name>UIGroup</name>
     <title>User Interface</title>
     <filename>group__UIGroup.html</filename>
@@ -131,6 +138,48 @@
     <filename>group__VecMath.html</filename>
     <class kind="class">VecMath::Matrix</class>
     <class kind="class">VecMath::Vector</class>
+    <member kind="function">
+      <type>std::ostream &amp;</type>
+      <name>operator&lt;&lt;</name>
+      <anchorfile>group__VecMath.html</anchorfile>
+      <anchor>gef433144f359a8cda43c2290871425b3</anchor>
+      <arglist>(std::ostream &amp;o, const Vector&lt; D, N &gt; &amp;v)</arglist>
+    </member>
+    <member kind="function">
+      <type>Vector&lt; D &gt;</type>
+      <name>cross</name>
+      <anchorfile>group__VecMath.html</anchorfile>
+      <anchor>g42f840301b4c197f9e58290655ad7f73</anchor>
+      <arglist>(const Vector&lt; D &gt; &amp;, const Vector&lt; D &gt; &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>Vector&lt; D &gt;</type>
+      <name>cross</name>
+      <anchorfile>group__VecMath.html</anchorfile>
+      <anchor>g84360f66f3dcffe78961def5353844f3</anchor>
+      <arglist>(const Vector&lt; D &gt; &amp;, const Vector&lt; D &gt; &amp;, const Vector&lt; D &gt; &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>Vector&lt; 3, N &gt;</type>
+      <name>vcross</name>
+      <anchorfile>group__VecMath.html</anchorfile>
+      <anchor>g5f42c95ec973af0eae139718319fc9dd</anchor>
+      <arglist>(Vector&lt; 3, N &gt; a, Vector&lt; 3, N &gt; b)</arglist>
+    </member>
+    <member kind="function">
+      <type>Vector&lt; 4, N &gt;</type>
+      <name>vcross</name>
+      <anchorfile>group__VecMath.html</anchorfile>
+      <anchor>g73fe56ecc2d2897eb3f5c1b723536e11</anchor>
+      <arglist>(Vector&lt; 4, N &gt; a, Vector&lt; 4, N &gt; b, Vector&lt; 4, N &gt; c)</arglist>
+    </member>
+    <member kind="function">
+      <type>Vector&lt; D, N &gt;</type>
+      <name>vnormalize</name>
+      <anchorfile>group__VecMath.html</anchorfile>
+      <anchor>g4b99a05522c09599748899e794bc65e9</anchor>
+      <arglist>(const Vector&lt; D, N &gt; &amp;x)</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>AnimationDialogImpl</name>
@@ -5497,7 +5546,7 @@
       <type>N &amp;</type>
       <name>operator()</name>
       <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
-      <anchor>10a5a2dc0327ce50af18806a39e2faa0</anchor>
+      <anchor>23a74a530edd9ae5e54d7b792f7b0d40</anchor>
       <arglist>(unsigned i, unsigned j)</arglist>
     </member>
     <member kind="function">
@@ -5528,12 +5577,350 @@
       <anchor>f6ef681da5373b7f1214fca37b0dfa7d</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="function">
+      <type></type>
+      <name>Matrix</name>
+      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
+      <anchor>110bedf8a53847d2985f57bdb897afe1</anchor>
+      <arglist>(unsigned, unsigned, N)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Matrix</name>
+      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
+      <anchor>2cbaca136bfebfeadb1646b49a1ef28c</anchor>
+      <arglist>(bool random)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Matrix</name>
+      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
+      <anchor>79e43f201d199747ad5bfb7e5c90ee60</anchor>
+      <arglist>(const N a[D][D])</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Matrix</name>
+      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
+      <anchor>2fcfc3d24f171f0b785568e31246c9b5</anchor>
+      <arglist>(const N *a)</arglist>
+    </member>
+    <member kind="function">
+      <type>N</type>
+      <name>operator()</name>
+      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
+      <anchor>99cf82a7c1bd1af4d1b50927f64aed65</anchor>
+      <arglist>(unsigned i, unsigned j) const </arglist>
+    </member>
+    <member kind="function">
+      <type>N &amp;</type>
+      <name>operator()</name>
+      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
+      <anchor>10a5a2dc0327ce50af18806a39e2faa0</anchor>
+      <arglist>(unsigned i, unsigned j)</arglist>
+    </member>
+    <member kind="function">
+      <type>Matrix&lt; D, N &gt;</type>
+      <name>operator*</name>
+      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
+      <anchor>1f6faf9525beb1bebe0e631db8d409e9</anchor>
+      <arglist>(const Matrix&lt; D, N &gt; &amp;other)</arglist>
+    </member>
+    <member kind="function">
+      <type>Matrix&lt; D, N &gt;</type>
+      <name>operator*=</name>
+      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
+      <anchor>8107ec5c6964bd5715ded0de8a500f26</anchor>
+      <arglist>(const Matrix&lt; D, N &gt; &amp;other)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>print</name>
+      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
+      <anchor>ca1a9a5285708e821b35db56226a1f77</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>N</type>
+      <name>det</name>
+      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
+      <anchor>ad3219dd37882f712a68af0f6ce115be</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>Matrix&lt; D-1, N &gt;</type>
+      <name>matrix_minor</name>
+      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
+      <anchor>ebb8b54532f1ad66cef37ea7aba3548a</anchor>
+      <arglist>(unsigned i, unsigned j)</arglist>
+    </member>
     <member kind="variable" protection="protected">
       <type>N</type>
       <name>M</name>
       <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
       <anchor>b05a96df5ab732804b596f5e34d3216b</anchor>
       <arglist>[D][D]</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>N</type>
+      <name>data_</name>
+      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
+      <anchor>2a642afb497fa4ca0adb485f0e492ee5</anchor>
+      <arglist>[D][D]</arglist>
+    </member>
+    <class kind="struct">VecMath::Matrix::ConstructLoop</class>
+    <class kind="struct">VecMath::Matrix::ConstructLoop&lt; D_, 0, 0 &gt;</class>
+    <class kind="struct">VecMath::Matrix::ConstructLoop&lt; D_, 0, j &gt;</class>
+    <class kind="struct">VecMath::Matrix::ConstructLoop&lt; D_, i, 0 &gt;</class>
+    <class kind="struct">VecMath::Matrix::CopyLoop</class>
+    <class kind="struct">VecMath::Matrix::CopyLoop&lt; 0, 0, D_ &gt;</class>
+    <class kind="struct">VecMath::Matrix::CopyLoop&lt; 0, j, D_ &gt;</class>
+    <class kind="struct">VecMath::Matrix::CopyLoop&lt; i, 0, D_ &gt;</class>
+    <class kind="struct">VecMath::Matrix::Multiply</class>
+    <class kind="struct">VecMath::Matrix::MultiplyColLoop</class>
+    <class kind="struct">VecMath::Matrix::MultiplyColLoop&lt; i, 0, D_ &gt;</class>
+    <class kind="struct">VecMath::Matrix::MultiplyInnerLoop</class>
+    <class kind="struct">VecMath::Matrix::MultiplyInnerLoop&lt; i, j, 0, D_ &gt;</class>
+    <class kind="struct">VecMath::Matrix::MultiplyRowLoop</class>
+    <class kind="struct">VecMath::Matrix::MultiplyRowLoop&lt; 0, D_ &gt;</class>
+  </compound>
+  <compound kind="struct">
+    <name>VecMath::Matrix::ConstructLoop</name>
+    <filename>structVecMath_1_1Matrix_1_1ConstructLoop.html</filename>
+    <templarg>D_</templarg>
+    <templarg>i</templarg>
+    <templarg>j</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>row_loop</name>
+      <anchorfile>structVecMath_1_1Matrix_1_1ConstructLoop.html</anchorfile>
+      <anchor>d4c98ae6c9ced7303b9f4cbebf70ad24</anchor>
+      <arglist>(N a[D][D])</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>col_loop</name>
+      <anchorfile>structVecMath_1_1Matrix_1_1ConstructLoop.html</anchorfile>
+      <anchor>020261e53088f417772d8482366e8947</anchor>
+      <arglist>(N a[D][D])</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>VecMath::Matrix::ConstructLoop&lt; D_, 0, 0 &gt;</name>
+    <filename>structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_010_00_010_01_4.html</filename>
+    <templarg>D_</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>row_loop</name>
+      <anchorfile>structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_010_00_010_01_4.html</anchorfile>
+      <anchor>bd76d08952638eac75de3605cf3572b6</anchor>
+      <arglist>(N a[D][D])</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>col_loop</name>
+      <anchorfile>structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_010_00_010_01_4.html</anchorfile>
+      <anchor>3466f03ab3f1f55834edf05b18e2943d</anchor>
+      <arglist>(N a[D][D])</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>VecMath::Matrix::ConstructLoop&lt; D_, 0, j &gt;</name>
+    <filename>structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_010_00_01j_01_4.html</filename>
+    <templarg>D_</templarg>
+    <templarg>j</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>row_loop</name>
+      <anchorfile>structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_010_00_01j_01_4.html</anchorfile>
+      <anchor>ba08387b85702d80f41a5b8d1a38c884</anchor>
+      <arglist>(N a[D][D])</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>col_loop</name>
+      <anchorfile>structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_010_00_01j_01_4.html</anchorfile>
+      <anchor>323e0e6e628e770885d889db9a551e38</anchor>
+      <arglist>(N a[D][D])</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>VecMath::Matrix::ConstructLoop&lt; D_, i, 0 &gt;</name>
+    <filename>structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_01i_00_010_01_4.html</filename>
+    <templarg>D_</templarg>
+    <templarg>i</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>row_loop</name>
+      <anchorfile>structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_01i_00_010_01_4.html</anchorfile>
+      <anchor>039d3ed367d85985a26743123d7f13bf</anchor>
+      <arglist>(N a[D][D])</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>col_loop</name>
+      <anchorfile>structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_01i_00_010_01_4.html</anchorfile>
+      <anchor>ba0a249190fb1eb275da61b4349842da</anchor>
+      <arglist>(N a[D][D])</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>VecMath::Matrix::CopyLoop</name>
+    <filename>structVecMath_1_1Matrix_1_1CopyLoop.html</filename>
+    <templarg>i</templarg>
+    <templarg>j</templarg>
+    <templarg>D_</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>copy_row</name>
+      <anchorfile>structVecMath_1_1Matrix_1_1CopyLoop.html</anchorfile>
+      <anchor>4ebad8452bedb2841bcb0e93e297c969</anchor>
+      <arglist>(N from[D][D], N to[D][D])</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>copy_col</name>
+      <anchorfile>structVecMath_1_1Matrix_1_1CopyLoop.html</anchorfile>
+      <anchor>ab95906a2a48848c46ca443631a64eb8</anchor>
+      <arglist>(N from[D][D], N to[D][D])</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>VecMath::Matrix::CopyLoop&lt; 0, 0, D_ &gt;</name>
+    <filename>structVecMath_1_1Matrix_1_1CopyLoop_3_010_00_010_00_01D___01_4.html</filename>
+    <templarg>D_</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>copy_col</name>
+      <anchorfile>structVecMath_1_1Matrix_1_1CopyLoop_3_010_00_010_00_01D___01_4.html</anchorfile>
+      <anchor>2dffd4befd8412f64cc9a0513f4a91fe</anchor>
+      <arglist>(N from[D][D], N to[D][D])</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>VecMath::Matrix::CopyLoop&lt; 0, j, D_ &gt;</name>
+    <filename>structVecMath_1_1Matrix_1_1CopyLoop_3_010_00_01j_00_01D___01_4.html</filename>
+    <templarg>j</templarg>
+    <templarg>D_</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>copy_row</name>
+      <anchorfile>structVecMath_1_1Matrix_1_1CopyLoop_3_010_00_01j_00_01D___01_4.html</anchorfile>
+      <anchor>73761d9c54126f2cb5396d8e5c9d856e</anchor>
+      <arglist>(N from[D][D], N to[D][D])</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>copy_col</name>
+      <anchorfile>structVecMath_1_1Matrix_1_1CopyLoop_3_010_00_01j_00_01D___01_4.html</anchorfile>
+      <anchor>2600c76a7b627452ec28a319ed8e0fac</anchor>
+      <arglist>(N from[D][D], N to[D][D])</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>VecMath::Matrix::CopyLoop&lt; i, 0, D_ &gt;</name>
+    <filename>structVecMath_1_1Matrix_1_1CopyLoop_3_01i_00_010_00_01D___01_4.html</filename>
+    <templarg>i</templarg>
+    <templarg>D_</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>copy_col</name>
+      <anchorfile>structVecMath_1_1Matrix_1_1CopyLoop_3_01i_00_010_00_01D___01_4.html</anchorfile>
+      <anchor>ff13ee39bf63e475428398b3349a5d16</anchor>
+      <arglist>(N from[D][D], N to[D][D])</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>VecMath::Matrix::Multiply</name>
+    <filename>structVecMath_1_1Matrix_1_1Multiply.html</filename>
+    <templarg>D_</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>multiply</name>
+      <anchorfile>structVecMath_1_1Matrix_1_1Multiply.html</anchorfile>
+      <anchor>697bbffbef972c93d87062c3b667638f</anchor>
+      <arglist>(const N a[D][D], const N b[D][D], N c[D][D])</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>VecMath::Matrix::MultiplyColLoop</name>
+    <filename>structVecMath_1_1Matrix_1_1MultiplyColLoop.html</filename>
+    <templarg>i</templarg>
+    <templarg>j</templarg>
+    <templarg>D_</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>loop</name>
+      <anchorfile>structVecMath_1_1Matrix_1_1MultiplyColLoop.html</anchorfile>
+      <anchor>a0134d77ce1f36e25890f591584cbf0f</anchor>
+      <arglist>(const N a[D][D], const N b[D][D], N c[D][D])</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>VecMath::Matrix::MultiplyColLoop&lt; i, 0, D_ &gt;</name>
+    <filename>structVecMath_1_1Matrix_1_1MultiplyColLoop_3_01i_00_010_00_01D___01_4.html</filename>
+    <templarg>i</templarg>
+    <templarg>D_</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>loop</name>
+      <anchorfile>structVecMath_1_1Matrix_1_1MultiplyColLoop_3_01i_00_010_00_01D___01_4.html</anchorfile>
+      <anchor>a1d031f96f4438be2dc1f3d8cadd8e20</anchor>
+      <arglist>(const N a[D][D], const N b[D][D], N c[D][D])</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>VecMath::Matrix::MultiplyInnerLoop</name>
+    <filename>structVecMath_1_1Matrix_1_1MultiplyInnerLoop.html</filename>
+    <templarg>i</templarg>
+    <templarg>j</templarg>
+    <templarg>k</templarg>
+    <templarg>D_</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>loop</name>
+      <anchorfile>structVecMath_1_1Matrix_1_1MultiplyInnerLoop.html</anchorfile>
+      <anchor>5308531d8b81c0510cbd57f0c19fb905</anchor>
+      <arglist>(const N a[D][D], const N b[D][D], N c[D][D])</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>VecMath::Matrix::MultiplyInnerLoop&lt; i, j, 0, D_ &gt;</name>
+    <filename>structVecMath_1_1Matrix_1_1MultiplyInnerLoop_3_01i_00_01j_00_010_00_01D___01_4.html</filename>
+    <templarg>i</templarg>
+    <templarg>j</templarg>
+    <templarg>D_</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>loop</name>
+      <anchorfile>structVecMath_1_1Matrix_1_1MultiplyInnerLoop_3_01i_00_01j_00_010_00_01D___01_4.html</anchorfile>
+      <anchor>16407b02898e8cb8eadff7e86be709cc</anchor>
+      <arglist>(const N a[D][D], const N b[D][D], N c[D][D])</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>VecMath::Matrix::MultiplyRowLoop</name>
+    <filename>structVecMath_1_1Matrix_1_1MultiplyRowLoop.html</filename>
+    <templarg>i</templarg>
+    <templarg>D_</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>loop</name>
+      <anchorfile>structVecMath_1_1Matrix_1_1MultiplyRowLoop.html</anchorfile>
+      <anchor>ea4947bfe7d8c1782df64827f8c73770</anchor>
+      <arglist>(const N a[D][D], const N b[D][D], N c[D][D])</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>VecMath::Matrix::MultiplyRowLoop&lt; 0, D_ &gt;</name>
+    <filename>structVecMath_1_1Matrix_1_1MultiplyRowLoop_3_010_00_01D___01_4.html</filename>
+    <templarg>D_</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>loop</name>
+      <anchorfile>structVecMath_1_1Matrix_1_1MultiplyRowLoop_3_010_00_01D___01_4.html</anchorfile>
+      <anchor>2bead12deb0461d3ce7873ece233dd71</anchor>
+      <arglist>(const N a[D][D], const N b[D][D], N c[D][D])</arglist>
     </member>
   </compound>
   <compound kind="class">

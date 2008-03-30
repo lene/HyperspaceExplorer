@@ -29,8 +29,11 @@
 <div class="contents">
 <h1>VecMath::Matrix&lt; D, N &gt; Class Template Reference<br>
 <small>
-[<a class="el" href="group__VecMath.html">Vector and Matrix algebra</a>]</small>
-</h1><!-- doxytag: class="VecMath::Matrix" --><code>#include &lt;<a class="el" href="Matrix_8H-source.html">Matrix.H</a>&gt;</code>
+[<a class="el" href="group__VecMath.html">Vector and Matrix algebra</a>,&nbsp;<a class="el" href="group__VecMathTest.html">Vector and Matrix algebra optimized, in test state</a>]</small>
+</h1><!-- doxytag: class="VecMath::Matrix" --><a class="el" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix</a> class that uses template metaprogramming to speed up multiplications.  
+<a href="#_details">More...</a>
+<p>
+<code>#include &lt;<a class="el" href="Matrix_8H-source.html">Matrix.H</a>&gt;</code>
 <p>
 
 <p>
@@ -39,12 +42,15 @@
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html#afaeb5312b577fa2bb48e9605e76afd5">Matrix</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct a unity matrix.  <a href="#afaeb5312b577fa2bb48e9605e76afd5"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html#fa3dcfdb384b9d3ad844578451401bc2">Matrix</a> (N, N, N, N, N, N)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html#110bedf8a53847d2985f57bdb897afe1">Matrix</a> (unsigned, unsigned, N)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">N &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html#10a5a2dc0327ce50af18806a39e2faa0">operator()</a> (unsigned i, unsigned j)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct a rotation matrix.  <a href="#110bedf8a53847d2985f57bdb897afe1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">N &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html#23a74a530edd9ae5e54d7b792f7b0d40">operator()</a> (unsigned i, unsigned j)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Non-const access operator.  <a href="#23a74a530edd9ae5e54d7b792f7b0d40"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classVecMath_1_1Matrix.html">Matrix</a>&lt; D, N &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html#b560a8ea5f4708be9b5d4164d07ccbb4">operator*</a> (const <a class="el" href="classVecMath_1_1Matrix.html">Matrix</a>&lt; D, N &gt; &amp;) const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classVecMath_1_1Vector.html">Vector</a>&lt; D, N &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html#da1563139030bb5272c300bf6eaa06d1">operator*</a> (const <a class="el" href="classVecMath_1_1Vector.html">Vector</a>&lt; D, N &gt; &amp;)</td></tr>
@@ -53,22 +59,145 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">std::string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html#f6ef681da5373b7f1214fca37b0dfa7d">Print</a> ()</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="110bedf8a53847d2985f57bdb897afe1"></a><!-- doxytag: member="VecMath::Matrix::Matrix" ref="110bedf8a53847d2985f57bdb897afe1" args="(unsigned, unsigned, N)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>Matrix</b> (unsigned, unsigned, N)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html#2cbaca136bfebfeadb1646b49a1ef28c">Matrix</a> (bool random)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct a randomized matrix.  <a href="#2cbaca136bfebfeadb1646b49a1ef28c"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html#79e43f201d199747ad5bfb7e5c90ee60">Matrix</a> (const N a[D][D])</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">construct a matrix from a two-dimensional array of <code>N</code> 's  <a href="#79e43f201d199747ad5bfb7e5c90ee60"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html#2fcfc3d24f171f0b785568e31246c9b5">Matrix</a> (const N *a)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">construct a matrix from a one-dimensional array of <code>N</code> 's  <a href="#2fcfc3d24f171f0b785568e31246c9b5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">N&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html#99cf82a7c1bd1af4d1b50927f64aed65">operator()</a> (unsigned i, unsigned j) const </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Const access operator.  <a href="#99cf82a7c1bd1af4d1b50927f64aed65"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="10a5a2dc0327ce50af18806a39e2faa0"></a><!-- doxytag: member="VecMath::Matrix::operator()" ref="10a5a2dc0327ce50af18806a39e2faa0" args="(unsigned i, unsigned j)" -->
+N &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator()</b> (unsigned i, unsigned j)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classVecMath_1_1Matrix.html">Matrix</a>&lt; D, N &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html#1f6faf9525beb1bebe0e631db8d409e9">operator*</a> (const <a class="el" href="classVecMath_1_1Matrix.html">Matrix</a>&lt; D, N &gt; &amp;other)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix</a> multiplication.  <a href="#1f6faf9525beb1bebe0e631db8d409e9"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classVecMath_1_1Matrix.html">Matrix</a>&lt; D, N &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html#8107ec5c6964bd5715ded0de8a500f26">operator*=</a> (const <a class="el" href="classVecMath_1_1Matrix.html">Matrix</a>&lt; D, N &gt; &amp;other)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix</a> multiplication.  <a href="#8107ec5c6964bd5715ded0de8a500f26"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html#ca1a9a5285708e821b35db56226a1f77">print</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Print the matrix on <code>std::cout</code>.  <a href="#ca1a9a5285708e821b35db56226a1f77"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ad3219dd37882f712a68af0f6ce115be"></a><!-- doxytag: member="VecMath::Matrix::det" ref="ad3219dd37882f712a68af0f6ce115be" args="()" -->
+N&nbsp;</td><td class="memItemRight" valign="bottom"><b>det</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ebb8b54532f1ad66cef37ea7aba3548a"></a><!-- doxytag: member="VecMath::Matrix::matrix_minor" ref="ebb8b54532f1ad66cef37ea7aba3548a" args="(unsigned i, unsigned j)" -->
+<a class="el" href="classVecMath_1_1Matrix.html">Matrix</a>&lt; D-1, N &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>matrix_minor</b> (unsigned i, unsigned j)</td></tr>
+
 <tr><td colspan="2"><br><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b05a96df5ab732804b596f5e34d3216b"></a><!-- doxytag: member="VecMath::Matrix::M" ref="b05a96df5ab732804b596f5e34d3216b" args="[D][D]" -->
-N&nbsp;</td><td class="memItemRight" valign="bottom"><b>M</b> [D][D]</td></tr>
+N&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b">M</a> [D][D]</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A static two-dimensional array storing the components. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2a642afb497fa4ca0adb485f0e492ee5"></a><!-- doxytag: member="VecMath::Matrix::data_" ref="2a642afb497fa4ca0adb485f0e492ee5" args="[D][D]" -->
+N&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html#2a642afb497fa4ca0adb485f0e492ee5">data_</a> [D][D]</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A static two-dimensional array storing the components. <br></td></tr>
+<tr><td colspan="2"><br><h2>Classes</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVecMath_1_1Matrix_1_1ConstructLoop.html">ConstructLoop</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialization of a unity <code>D</code> x <code>D</code> matrix.  <a href="structVecMath_1_1Matrix_1_1ConstructLoop.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_010_00_010_01_4.html">VecMath::Matrix::ConstructLoop&lt; D_, 0, 0 &gt;</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialization of a unity <code>D</code> x <code>D</code> matrix.  <a href="structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_010_00_010_01_4.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_010_00_01j_01_4.html">VecMath::Matrix::ConstructLoop&lt; D_, 0, j &gt;</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialization of a unity <code>D</code> x <code>D</code> matrix.  <a href="structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_010_00_01j_01_4.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_01i_00_010_01_4.html">VecMath::Matrix::ConstructLoop&lt; D_, i, 0 &gt;</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialization of a unity <code>D</code> x <code>D</code> matrix.  <a href="structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_01i_00_010_01_4.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVecMath_1_1Matrix_1_1CopyLoop.html">CopyLoop</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy a matrix to another, element by element.  <a href="structVecMath_1_1Matrix_1_1CopyLoop.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVecMath_1_1Matrix_1_1CopyLoop_3_010_00_010_00_01D___01_4.html">VecMath::Matrix::CopyLoop&lt; 0, 0, D_ &gt;</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy a matrix to another, element by element.  <a href="structVecMath_1_1Matrix_1_1CopyLoop_3_010_00_010_00_01D___01_4.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVecMath_1_1Matrix_1_1CopyLoop_3_010_00_01j_00_01D___01_4.html">VecMath::Matrix::CopyLoop&lt; 0, j, D_ &gt;</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy a matrix to another, element by element.  <a href="structVecMath_1_1Matrix_1_1CopyLoop_3_010_00_01j_00_01D___01_4.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVecMath_1_1Matrix_1_1CopyLoop_3_01i_00_010_00_01D___01_4.html">VecMath::Matrix::CopyLoop&lt; i, 0, D_ &gt;</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy a matrix to another, element by element.  <a href="structVecMath_1_1Matrix_1_1CopyLoop_3_01i_00_010_00_01D___01_4.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVecMath_1_1Matrix_1_1Multiply.html">Multiply</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="structVecMath_1_1Matrix_1_1Multiply.html" title="Multiply two matrices in the function multiply().">Multiply</a> two matrices in the function <a class="el" href="structVecMath_1_1Matrix_1_1Multiply.html#697bbffbef972c93d87062c3b667638f">multiply()</a>.  <a href="structVecMath_1_1Matrix_1_1Multiply.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVecMath_1_1Matrix_1_1MultiplyColLoop.html">MultiplyColLoop</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Calculate one row of the product of two matrices.  <a href="structVecMath_1_1Matrix_1_1MultiplyColLoop.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVecMath_1_1Matrix_1_1MultiplyColLoop_3_01i_00_010_00_01D___01_4.html">VecMath::Matrix::MultiplyColLoop&lt; i, 0, D_ &gt;</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Calculate one row of the product of two matrices.  <a href="structVecMath_1_1Matrix_1_1MultiplyColLoop_3_01i_00_010_00_01D___01_4.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVecMath_1_1Matrix_1_1MultiplyInnerLoop.html">MultiplyInnerLoop</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Calculate an element of the product of two matrices.  <a href="structVecMath_1_1Matrix_1_1MultiplyInnerLoop.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVecMath_1_1Matrix_1_1MultiplyInnerLoop_3_01i_00_01j_00_010_00_01D___01_4.html">VecMath::Matrix::MultiplyInnerLoop&lt; i, j, 0, D_ &gt;</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Calculate an element of the product of two matrices.  <a href="structVecMath_1_1Matrix_1_1MultiplyInnerLoop_3_01i_00_01j_00_010_00_01D___01_4.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVecMath_1_1Matrix_1_1MultiplyRowLoop.html">MultiplyRowLoop</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Loop over the rows of two matrices to multiply them in <a class="el" href="structVecMath_1_1Matrix_1_1MultiplyRowLoop.html#ea4947bfe7d8c1782df64827f8c73770">loop()</a>.  <a href="structVecMath_1_1Matrix_1_1MultiplyRowLoop.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVecMath_1_1Matrix_1_1MultiplyRowLoop_3_010_00_01D___01_4.html">VecMath::Matrix::MultiplyRowLoop&lt; 0, D_ &gt;</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Loop over the rows of two matrices to multiply them in <a class="el" href="structVecMath_1_1Matrix_1_1MultiplyRowLoop_3_010_00_01D___01_4.html#2bead12deb0461d3ce7873ece233dd71">loop()</a>.  <a href="structVecMath_1_1Matrix_1_1MultiplyRowLoop_3_010_00_01D___01_4.html#_details">More...</a><br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 <h3>template&lt;unsigned D, typename N = double&gt;<br>
  class VecMath::Matrix&lt; D, N &gt;</h3>
 
+<a class="el" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix</a> class that uses template metaprogramming to speed up multiplications. 
+<p>
 Matrix&lt;D, N&gt;: a DxD matrix of numbers of type N <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>D</em>&nbsp;</td><td>dimension of the matrix </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>N</em>&nbsp;</td><td>numerical type of the matrix elements</td></tr>
   </table>
 </dl>
-<dl class="author" compact><dt><b>Author:</b></dt><dd>Helge Preuss &lt;<a href="mailto:scout@hyperspace-travel.de">scout@hyperspace-travel.de</a>&gt; </dd></dl>
+<dl class="author" compact><dt><b>Author:</b></dt><dd>Helge Preuss &lt;<a href="mailto:scout@hyperspace-travel.de">scout@hyperspace-travel.de</a>&gt;</dd></dl>
+A matrix class speeding up matrix multiplications by using template metaprogramming to let the compiler unroll and optimize the multiplication loops<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000020">Todo:</a></b></dt><dd>why does the 100 fold speed increase come and go? why does it only work for dimensions up to 4? <br>
+ some clue: <br>
+ when <a class="el" href="classVecMath_1_1Matrix.html#ca1a9a5285708e821b35db56226a1f77" title="Print the matrix on std::cout.">print()</a> is called after NLOOP multiplications, runtime performance drops significantly. this is the case for templatized version as well as with the for loop. roughly speaking, <a class="el" href="classVecMath_1_1Matrix.html#ca1a9a5285708e821b35db56226a1f77" title="Print the matrix on std::cout.">print()</a> incurs an overhead of a second for both versions. funny thing is, print () is called AFTER the timing has taken place. <br>
+ the performance drop with <a class="el" href="classVecMath_1_1Matrix.html#ca1a9a5285708e821b35db56226a1f77" title="Print the matrix on std::cout.">print()</a> has vanished after getting the initialization correct (looping from <code>D-1</code> to 0 instead of looping from <code>D</code>) <br>
+ err well, this in not true... it has only vanished *sometimes*. I assume that gcc does the calculations only when the elements are in fact accessed after the calculation, otherwise it optimizes them away. <br>
+</dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000020">Todo:</a></b></dt><dd>a corresponding vector class and member function for transformation of vectors</dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000020">Todo:</a></b></dt><dd>const-correctness everywhere</dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000020">Todo:</a></b></dt><dd>templatize copy loop in <code><a class="el" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix</a> (/*const\*\/ N a[D][D])</code></dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000020">Todo:</a></b></dt><dd>drop <code>D_</code> as template parameter for inner classes where possible <br>
+ there is a problem with specializations in inner classes, which don't have any template parameters at all: </dd></dl>
+<div class="fragment"><pre class="fragment">            <span class="keyword">template</span> &lt;&gt;                                             <span class="comment">// error!</span>
+                <span class="keyword">struct </span>ConstructLoop&lt;0, 0&gt; {
+                  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="structVecMath_1_1Matrix_1_1ConstructLoop.html#d4c98ae6c9ced7303b9f4cbebf70ad24" title="Initialize a matrix to unity.">row_loop</a> (N a[D][D]) { a[0][0] = (N)1;
+                }
+</pre></div> workaround &lt;<a href="news:718f76ba.0305081256.6969e6ae@posting.google.com">news:718f76ba.0305081256.6969e6ae@posting.google.com</a>&gt; <div class="fragment"><pre class="fragment">            <span class="comment">// workaround class</span>
+            <span class="keyword">template</span> &lt;<span class="keyword">typename</span> S&gt; <span class="keyword">struct </span>inner {
+                <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">static</span> <span class="keywordtype">int</span> apply(<span class="keywordtype">int</span>) { <span class="keyword">generic</span> action here }
+            };
+
+            <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">struct </span>outer {
+                <span class="keyword">template</span> &lt;<span class="keyword">typename</span> S&gt; <span class="keywordtype">int</span> specialized(<span class="keywordtype">int</span> a) {
+                    <span class="keywordflow">return</span> inner&lt;S&gt;::template apply&lt;T&gt;(a);
+                }
+            };
+
+            <span class="comment">// specialize your workaround class for each type</span>
+            <span class="keyword">template</span> &lt;&gt; <span class="keyword">struct </span>inner&lt; double &gt; {
+                <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">static</span> <span class="keywordtype">int</span> apply(<span class="keywordtype">int</span>) {
+                    <span class="comment">// code for outer&lt;T&gt;::specialized&lt; double &gt;</span>
+                }
+            };
+
+            <span class="comment">// more specialization's of inner&lt;&gt; as necessary.</span>
+</pre></div> <dl compact><dt><b><a class="el" href="todo.html#_todo000020">Todo:</a></b></dt><dd>specializations of inner classes - do they really have to be declared? (seems so)<br>
+ whittle them down to the bare minimum anyways</dd></dl>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="afaeb5312b577fa2bb48e9605e76afd5"></a><!-- doxytag: member="VecMath::Matrix::Matrix" ref="afaeb5312b577fa2bb48e9605e76afd5" args="()" -->
 <div class="memitem">
@@ -88,7 +217,18 @@ template&lt;unsigned D, typename N&gt; </div>
 <div class="memdoc">
 
 <p>
-default constructor: creates a unit DxD <a class="el" href="classVecMath_1_1Matrix.html">Matrix</a> 
+Construct a unity matrix. 
+<p>
+default constructor: creates a unit DxD <a class="el" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix</a><p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>D</em>&nbsp;</td><td>dimension of the matrix </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>N</em>&nbsp;</td><td>(Numeric) type of the elements </td></tr>
+  </table>
+</dl>
+
+<p>References <a class="el" href="Matrix_8H-source.html#l00046">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="fa3dcfdb384b9d3ad844578451401bc2"></a><!-- doxytag: member="VecMath::Matrix::Matrix" ref="fa3dcfdb384b9d3ad844578451401bc2" args="(N, N, N, N, N, N)" -->
@@ -143,7 +283,7 @@ template&lt;unsigned D, typename N&gt; </div>
 <div class="memdoc">
 
 <p>
-creates a DxD rotation <a class="el" href="classVecMath_1_1Matrix.html">Matrix</a>, where D=4, not yet implemented <dl compact><dt><b>Parameters:</b></dt><dd>
+creates a DxD rotation <a class="el" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix</a>, where D=4, not yet implemented <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Rxy</em>&nbsp;</td><td>rotation around xy plane (z axis) </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>Rxz</em>&nbsp;</td><td>rotation around xz plane (y axis) </td></tr>
@@ -166,19 +306,19 @@ template&lt;unsigned D, typename N&gt; </div>
           <td class="memname"><a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix</a>&lt; D, N &gt;::<a class="el" href="classVecMath_1_1Matrix.html">Matrix</a>           </td>
           <td>(</td>
           <td class="paramtype">unsigned&nbsp;</td>
-          <td class="paramname"> <em>ii</em>, </td>
+          <td class="paramname"> <em>axis1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">unsigned&nbsp;</td>
-          <td class="paramname"> <em>jj</em>, </td>
+          <td class="paramname"> <em>axis2</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">N&nbsp;</td>
-          <td class="paramname"> <em>Theta</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>alpha</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -190,25 +330,138 @@ template&lt;unsigned D, typename N&gt; </div>
 <div class="memdoc">
 
 <p>
+Construct a rotation matrix. 
+<p>
 creates a rotation about axes ii and jj of angle Theta <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>ii</em>&nbsp;</td><td>first (row) index </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>jj</em>&nbsp;</td><td>second (column) index </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>Theta</em>&nbsp;</td><td>rotation angle </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>Theta</em>&nbsp;</td><td>rotation angle</td></tr>
   </table>
 </dl>
+For the rotation angle alpha around the axis defined by <code>axis1</code> and <code>axis2</code>. <br>
+ e.g. in 3 dimensions: <code>axis1</code> = 1, <code>axis2</code> = 2 =&gt; rotation around dimension 0 ( = <em>x</em> -axis) <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>axis1</em>&nbsp;</td><td>first dimension to define the rotation direction </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>axis2</em>&nbsp;</td><td>first dimension to define the rotation direction </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>alpha</em>&nbsp;</td><td>rotation angle </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>D</em>&nbsp;</td><td>dimension of the matrix </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>N</em>&nbsp;</td><td>(Numeric) type of the elements </td></tr>
+  </table>
+</dl>
+
+<p>References <a class="el" href="Matrix_8H-source.html#l00046">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2cbaca136bfebfeadb1646b49a1ef28c"></a><!-- doxytag: member="VecMath::Matrix::Matrix" ref="2cbaca136bfebfeadb1646b49a1ef28c" args="(bool random)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;unsigned D, typename N&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix</a>&lt; D, N &gt;::<a class="el" href="classVecMath_1_1Matrix.html">Matrix</a>           </td>
+          <td>(</td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>random</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Construct a randomized matrix. 
+<p>
+construct a unity matrix, if <code>random</code> == false, otherwise a matrix filled with random elements between (<code>N</code>)0 and (<code>N</code>)1 <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>random</em>&nbsp;</td><td>whether to fill matrix randomly </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>D</em>&nbsp;</td><td>dimension of the matrix </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>N</em>&nbsp;</td><td>(Numeric) type of the elements </td></tr>
+  </table>
+</dl>
+
+<p>References <a class="el" href="matrix_8H-source.html#l00303">VecMath::Matrix&lt; D, N &gt;::data_</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="79e43f201d199747ad5bfb7e5c90ee60"></a><!-- doxytag: member="VecMath::Matrix::Matrix" ref="79e43f201d199747ad5bfb7e5c90ee60" args="(const N a[D][D])" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;unsigned D, typename N&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix</a>&lt; D, N &gt;::<a class="el" href="classVecMath_1_1Matrix.html">Matrix</a>           </td>
+          <td>(</td>
+          <td class="paramtype">const N&nbsp;</td>
+          <td class="paramname"> <em>a</em>[D][D]          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+construct a matrix from a two-dimensional array of <code>N</code> 's 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>a[][]</em>&nbsp;</td><td>array elements to initialize matrix </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>D</em>&nbsp;</td><td>dimension of the matrix </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>N</em>&nbsp;</td><td>(Numeric) type of the elements </td></tr>
+  </table>
+</dl>
+
+<p>References <a class="el" href="matrix_8H-source.html#l00303">VecMath::Matrix&lt; D, N &gt;::data_</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2fcfc3d24f171f0b785568e31246c9b5"></a><!-- doxytag: member="VecMath::Matrix::Matrix" ref="2fcfc3d24f171f0b785568e31246c9b5" args="(const N *a)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;unsigned D, typename N&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix</a>&lt; D, N &gt;::<a class="el" href="classVecMath_1_1Matrix.html">Matrix</a>           </td>
+          <td>(</td>
+          <td class="paramtype">const N *&nbsp;</td>
+          <td class="paramname"> <em>a</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+construct a matrix from a one-dimensional array of <code>N</code> 's 
+<p>
+this matrix will very probably not use the blessings and optimizations of template metaprogramming, because the compiler cannot see its contents <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>a[]</em>&nbsp;</td><td>array elements to initialize matrix </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>D</em>&nbsp;</td><td>dimension of the matrix </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>N</em>&nbsp;</td><td>(Numeric) type of the elements </td></tr>
+  </table>
+</dl>
+
+<p>References <a class="el" href="matrix_8H-source.html#l00303">VecMath::Matrix&lt; D, N &gt;::data_</a>.</p>
 
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="10a5a2dc0327ce50af18806a39e2faa0"></a><!-- doxytag: member="VecMath::Matrix::operator()" ref="10a5a2dc0327ce50af18806a39e2faa0" args="(unsigned i, unsigned j)" -->
+<a class="anchor" name="23a74a530edd9ae5e54d7b792f7b0d40"></a><!-- doxytag: member="VecMath::Matrix::operator()" ref="23a74a530edd9ae5e54d7b792f7b0d40" args="(unsigned i, unsigned j)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;unsigned D, typename N = double&gt; </div>
+template&lt;unsigned D, typename N&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">N&amp; <a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix</a>&lt; D, N &gt;::operator()           </td>
+          <td class="memname">N &amp; <a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix</a>&lt; D, N &gt;::operator()           </td>
           <td>(</td>
           <td class="paramtype">unsigned&nbsp;</td>
           <td class="paramname"> <em>i</em>, </td>
@@ -229,13 +482,25 @@ template&lt;unsigned D, typename N = double&gt; </div>
 <div class="memdoc">
 
 <p>
+Non-const access operator. 
+<p>
 access operator <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>row index </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>j</em>&nbsp;</td><td>column index </td></tr>
   </table>
 </dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$ M_{ij} $" src="form_41.png"> </dd></dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$ M_{ij} $" src="form_41.png"></dd></dl>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>row index </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>j</em>&nbsp;</td><td>column index </td></tr>
+  </table>
+</dl>
+
+<p>References <a class="el" href="Matrix_8H-source.html#l00046">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
+
+<p>Referenced by <a class="el" href="matrix_8H-source.html#l00442">VecMath::Matrix&lt; D, N &gt;::print()</a>.</p>
 
 </div>
 </div><p>
@@ -258,14 +523,14 @@ template&lt;unsigned D, typename N&gt; </div>
 <div class="memdoc">
 
 <p>
-<a class="el" href="classVecMath_1_1Matrix.html">Matrix</a> multiplication <dl compact><dt><b>Parameters:</b></dt><dd>
+<a class="el" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix</a> multiplication <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>B</em>&nbsp;</td><td><a class="el" href="classVecMath_1_1Matrix.html">Matrix</a> to multiply with </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>B</em>&nbsp;</td><td><a class="el" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix</a> to multiply with </td></tr>
   </table>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>*this * B </dd></dl>
 
-<p>References <a class="el" href="Matrix_8H-source.html#l00045">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
+<p>References <a class="el" href="Matrix_8H-source.html#l00046">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
 
 </div>
 </div><p>
@@ -288,12 +553,14 @@ template&lt;unsigned D, typename N&gt; </div>
 <div class="memdoc">
 
 <p>
-apply the <a class="el" href="classVecMath_1_1Matrix.html">Matrix</a> on a vector <dl compact><dt><b>Parameters:</b></dt><dd>
+apply the <a class="el" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix</a> on a vector <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>V</em>&nbsp;</td><td><a class="el" href="classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D-dimensional vector of numbers of type N.">Vector</a> to multiply with (project) </td></tr>
   </table>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>*this * V </dd></dl>
+
+<p>References <a class="el" href="Matrix_8H-source.html#l00046">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
 
 </div>
 </div><p>
@@ -316,9 +583,9 @@ template&lt;unsigned D, typename N&gt; </div>
 <div class="memdoc">
 
 <p>
-<a class="el" href="classVecMath_1_1Matrix.html">Matrix</a> negation <dl class="return" compact><dt><b>Returns:</b></dt><dd>- *this </dd></dl>
+<a class="el" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix</a> negation <dl class="return" compact><dt><b>Returns:</b></dt><dd>- *this </dd></dl>
 
-<p>References <a class="el" href="Matrix_8H-source.html#l00045">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
+<p>References <a class="el" href="Matrix_8H-source.html#l00046">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
 
 </div>
 </div><p>
@@ -341,12 +608,147 @@ template&lt;unsigned D, typename N&gt; </div>
 
 <p>
 output, mainly for debugging purposes 
+<p>References <a class="el" href="Matrix_8H-source.html#l00046">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
+
 </div>
 </div><p>
-<hr>The documentation for this class was generated from the following file:<ul>
-<li>workspace/HyperspaceExplorer/src/<a class="el" href="Matrix_8H-source.html">Matrix.H</a></ul>
+<a class="anchor" name="99cf82a7c1bd1af4d1b50927f64aed65"></a><!-- doxytag: member="VecMath::Matrix::operator()" ref="99cf82a7c1bd1af4d1b50927f64aed65" args="(unsigned i, unsigned j) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;unsigned D, typename N&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">N <a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix</a>&lt; D, N &gt;::operator()           </td>
+          <td>(</td>
+          <td class="paramtype">unsigned&nbsp;</td>
+          <td class="paramname"> <em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&nbsp;</td>
+          <td class="paramname"> <em>j</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"> const<code> [inline]</code></td>
+        </tr>
+      </table>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun Mar 30 04:15:26 2008 for HyperspaceExplorer by&nbsp;
+<div class="memdoc">
+
+<p>
+Const access operator. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>row index </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>j</em>&nbsp;</td><td>column index </td></tr>
+  </table>
+</dl>
+
+<p>References <a class="el" href="matrix_8H-source.html#l00303">VecMath::Matrix&lt; D, N &gt;::data_</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="1f6faf9525beb1bebe0e631db8d409e9"></a><!-- doxytag: member="VecMath::Matrix::operator*" ref="1f6faf9525beb1bebe0e631db8d409e9" args="(const Matrix&lt; D, N &gt; &amp;other)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;unsigned D, typename N&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix</a>&lt; D, N &gt; <a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix</a>&lt; D, N &gt;::operator*           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classVecMath_1_1Matrix.html">Matrix</a>&lt; D, N &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>other</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<a class="el" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix</a> multiplication. 
+<p>
+Uses the class static function <a class="el" href="structVecMath_1_1Matrix_1_1Multiply.html#697bbffbef972c93d87062c3b667638f">Multiply&lt;D&gt;::multiply()</a> to do the loop over the elements and perform the multiplications. <br>
+ Does not change <em>this</em>. <dl class="return" compact><dt><b>Returns:</b></dt><dd><em>this</em> multiplied by <code>other</code> </dd></dl>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>other</em>&nbsp;</td><td>The matrix with which to multiply <em>this</em> </td></tr>
+  </table>
+</dl>
+
+<p>References <a class="el" href="matrix_8H-source.html#l00303">VecMath::Matrix&lt; D, N &gt;::data_</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8107ec5c6964bd5715ded0de8a500f26"></a><!-- doxytag: member="VecMath::Matrix::operator*=" ref="8107ec5c6964bd5715ded0de8a500f26" args="(const Matrix&lt; D, N &gt; &amp;other)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;unsigned D, typename N&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix</a>&lt; D, N &gt; <a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix</a>&lt; D, N &gt;::operator*=           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classVecMath_1_1Matrix.html">Matrix</a>&lt; D, N &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>other</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<a class="el" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix</a> multiplication. 
+<p>
+Uses the class static function <a class="el" href="structVecMath_1_1Matrix_1_1Multiply.html#697bbffbef972c93d87062c3b667638f">Multiply&lt;D&gt;::multiply()</a> to do the loop over the elements and perform the multiplications.<br>
+ Replaces <em>this</em> with <em>this</em> * <code>other</code> <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>other</em>&nbsp;</td><td>The matrix with which to multiply <em>this</em> </td></tr>
+  </table>
+</dl>
+
+<p>References <a class="el" href="matrix_8H-source.html#l00303">VecMath::Matrix&lt; D, N &gt;::data_</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ca1a9a5285708e821b35db56226a1f77"></a><!-- doxytag: member="VecMath::Matrix::print" ref="ca1a9a5285708e821b35db56226a1f77" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;unsigned D, typename N&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix</a>&lt; D, N &gt;::print           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Print the matrix on <code>std::cout</code>. 
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000018">Todo:</a></b></dt><dd>flexible output stream </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000018">Todo:</a></b></dt><dd>flexible printing format </dd></dl>
+
+<p>References <a class="el" href="Matrix_8H-source.html#l00035">VecMath::Matrix&lt; D, N &gt;::operator()()</a>.</p>
+
+</div>
+</div><p>
+<hr>The documentation for this class was generated from the following files:<ul>
+<li>workspace/HyperspaceExplorer/src/<a class="el" href="Matrix_8H-source.html">Matrix.H</a><li>workspace/HyperspaceExplorer/src/testing/<a class="el" href="matrix_8H-source.html">matrix.H</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Mar 30 13:46:36 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

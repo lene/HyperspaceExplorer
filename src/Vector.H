@@ -210,7 +210,8 @@ namespace VecMath {
     //------------  important non-member functions for class Vector
 
     /// Vector output operator
-    /** @param o ostream to push into
+    /** \ingroup VecMath
+     *  @param o ostream to push into
      *  @param v Vector to print
      *  @return a new ostream to push Vectors and stuff into                   */
     template <unsigned D, typename N>
@@ -226,6 +227,7 @@ namespace VecMath {
     /// cross product of two Vectors
     /** fails for dimensions other than 3 due to lack of template
      *  specialization
+     *  \ingroup VecMath
      *  @param a	first operand of cross product
      *  @param b	second operand of cross product
      *  @return	a x b                                                         */
@@ -235,6 +237,7 @@ namespace VecMath {
     /// specialization for cross product of three 4-Vectors
     /** fails for dimensions other than 4 due to lack of template
      *  specialization
+     *  \ingroup VecMath
      *  @param a	first operand of cross product
      *  @param b	second operand of cross product
      *  @param c	third operand of cross product
@@ -243,9 +246,10 @@ namespace VecMath {
             Vector<D> cross (const Vector<D> &, const Vector<D> &, const Vector<D> &);
 
     /// specialization for cross product of two 3-Vectors
-    /** @param a	first operand of cross product
-     *  @param b	second operand of cross product
-     *  @return	a x b                                                         */
+    /** \ingroup VecMath
+     *  @param a first operand of cross product
+     *  @param b second operand of cross product
+     *  @return a x b                                                         */
     template <typename N>
             Vector<3, N> vcross (Vector<3, N> a, Vector<3, N> b) {
         static Vector<3, N> c;
@@ -258,10 +262,11 @@ namespace VecMath {
     }
 
     /// specialization for cross product of three 4-Vectors
-    /**  @param a	first operand of cross product
-    *  @param b	second operand of cross product
-    *  @param c	third operand of cross product
-    *  @return	a x b x c                                                     */
+    /** \ingroup VecMath
+     * @param a	first operand of cross product
+     * @param b	second operand of cross product
+     * @param c	third operand of cross product
+     * @return	a x b x c                                                     */
     template <typename N>
             Vector<4, N> vcross (Vector<4, N> a, Vector<4, N> b, Vector<4, N> c) {
         static Vector<4, N> d;
@@ -281,8 +286,9 @@ namespace VecMath {
     }
 
     /// normalizes a 3-Vector out-of-place
-    /**  @param x	Vector to be normalized
-    *  @return	its normalized value                                          */
+    /** \ingroup VecMath
+     *  @param x Vector to be normalized
+     *  @return its normalized value                                          */
     template <unsigned D, typename N>
             Vector<D, N> vnormalize( const Vector<D, N> &x ) {
         static Vector<D, N> n;

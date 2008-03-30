@@ -27,7 +27,7 @@ namespace VecMath {
             Matrix<D, N> (N, N, N, N, N, N);
             Matrix<D, N> (unsigned, unsigned, N);
             virtual ~Matrix<D, N> () { }
-            
+
             /** access operator
              *  \param i row index
              *  \param j column index
@@ -42,6 +42,7 @@ namespace VecMath {
             std::string Print ();
 
         protected:
+            /// A static two-dimensional array storing the components
             N M[D][D];
     };
 
