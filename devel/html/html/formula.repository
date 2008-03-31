@@ -55,3 +55,4 @@
 \form#54:$ C_ij $
 \form#55:$ C = A*B $
 \form#56:$ A*B $
+\form#57:$ \vec{x} = ( x, y, z, f(x, y, z) ) $

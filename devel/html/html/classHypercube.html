@@ -28,7 +28,10 @@
 <h1>Hypercube Class Reference<br>
 <small>
 [<a class="el" href="group__ObjectGroup.html">Arbitrary four-dimensional objects, described by their surfaces</a>]</small>
-</h1><!-- doxytag: class="Hypercube" --><!-- doxytag: inherits="Object" --><code>#include &lt;<a class="el" href="Object_8H-source.html">Object.H</a>&gt;</code>
+</h1><!-- doxytag: class="Hypercube" --><!-- doxytag: inherits="Object" -->A four-dimensional cube.  
+<a href="#_details">More...</a>
+<p>
+<code>#include &lt;<a class="el" href="Object_8H-source.html">Object.H</a>&gt;</code>
 <p>
 <div class="dynheader">
 Inheritance diagram for Hypercube:</div>
@@ -58,8 +61,10 @@ virtual std::string&nbsp;</td><td class="memItemRight" valign="bottom"><b>descri
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHypercube.html#790d87e55f2b01d1b339df6f05852ffd">Initialize</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Actually creates the <a class="el" href="classHypercube.html" title="A four-dimensional cube.">Hypercube</a>.  <a href="#790d87e55f2b01d1b339df6f05852ffd"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHypercube.html#0c9fb7fe129ae7e5e2834fd0ea861e8d">DeclareSquare</a> (unsigned, unsigned, unsigned, unsigned, unsigned)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Declare a square in the <code><a class="el" href="classSurface.html">Surface</a></code> array.  <a href="#0c9fb7fe129ae7e5e2834fd0ea861e8d"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="732e1022d95319bb996c87b2913f8c08"></a><!-- doxytag: member="Hypercube::a" ref="732e1022d95319bb996c87b2913f8c08" args="" -->
 double&nbsp;</td><td class="memItemRight" valign="bottom"><b>a</b></td></tr>
@@ -69,7 +74,9 @@ double&nbsp;</td><td class="memItemRight" valign="bottom"><b>a</b></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
-a four-dimensional cube <hr><h2>Member Function Documentation</h2>
+A four-dimensional cube. 
+<p>
+<hr><h2>Member Function Documentation</h2>
 <a class="anchor" name="290688b04edc2e4f651cd9ca4da861b6"></a><!-- doxytag: member="Hypercube::SetParameters" ref="290688b04edc2e4f651cd9ca4da861b6" args="(double _a=0, double=0, double=0, double=0)" -->
 <div class="memitem">
 <div class="memproto">
@@ -134,12 +141,14 @@ Empty because a generic function has no parameters
 <div class="memdoc">
 
 <p>
-Actually creates the <a class="el" href="classHypercube.html">Hypercube</a> sets up the vertices of the <a class="el" href="classHypercube.html">Hypercube</a> in X[], then sets up the surfaces of the <a class="el" href="classHypercube.html">Hypercube</a> by declaring the appropriate squares as a list in <a class="el" href="classSurface.html">Surface</a>[][]. 
+Actually creates the <a class="el" href="classHypercube.html" title="A four-dimensional cube.">Hypercube</a>. 
+<p>
+sets up the vertices of the <a class="el" href="classHypercube.html" title="A four-dimensional cube.">Hypercube</a> in <code>X</code>[], then sets up the surfaces of the <a class="el" href="classHypercube.html" title="A four-dimensional cube.">Hypercube</a> by declaring the appropriate squares as a list in <code><a class="el" href="classSurface.html">Surface</a></code>[][]. 
 <p>Reimplemented from <a class="el" href="classFunction.html#bf3e9d2aac1920bc533040cdac3408d8">Function</a>.</p>
 
 <p>Reimplemented in <a class="el" href="classSponge.html#b552ce65169a2b44bc93e86dbba76a25">Sponge</a>.</p>
 
-<p>References <a class="el" href="Object_8C-source.html#l00185">DeclareSquare()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="Object_8H-source.html#l00051">Object::X</a>.</p>
+<p>References <a class="el" href="Object_8C-source.html#l00188">DeclareSquare()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="Object_8H-source.html#l00052">Object::X</a>.</p>
 
 </div>
 </div><p>
@@ -187,7 +196,9 @@ Actually creates the <a class="el" href="classHypercube.html">Hypercube</a> sets
 <div class="memdoc">
 
 <p>
-declare a square in the surfaces array <dl compact><dt><b>Parameters:</b></dt><dd>
+Declare a square in the <code><a class="el" href="classSurface.html">Surface</a></code> array. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>index of the square </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>a</em>&nbsp;</td><td>index of vertex 1 </td></tr>
@@ -197,14 +208,14 @@ declare a square in the surfaces array <dl compact><dt><b>Parameters:</b></dt><d
   </table>
 </dl>
 
-<p>Referenced by <a class="el" href="Object_8C-source.html#l00145">Initialize()</a>.</p>
+<p>Referenced by <a class="el" href="Object_8C-source.html#l00148">Initialize()</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="Object_8H-source.html">Object.H</a><li>workspace/HyperspaceExplorer/src/Functions/Object.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon Mar 31 01:19:18 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Mar 31 15:03:51 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

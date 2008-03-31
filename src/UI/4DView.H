@@ -37,6 +37,7 @@ class CustomComplexFunction;
  *  \ingroup UIHelpers                                                        */
 class FunctionFactory {
     public:
+        virtual ~FunctionFactory() { }
         virtual Function *createFunction(C4DView *) = 0;
 };
 
@@ -46,6 +47,7 @@ class FunctionFactory {
  *  \ingroup UIHelpers                                                        */
 class SurfaceFactory {
     public:
+        virtual ~SurfaceFactory() { }
         virtual Surface *createSurface(C4DView *) = 0;
 };
 

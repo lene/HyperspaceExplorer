@@ -40,14 +40,17 @@ Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
     for (unsigned i = 0; i < 4; i++) Surface[i].resize(NumSurfaces);
 }
 
-/** transforms an Object \n
- *  as I look at it, i think this could be optimized by making the transformation
+/// Transforms an Object
+/** I think this could be optimized by making the transformation
  *  matrices static and only canging the corresponding entries... but how to
  *  make this beautifully, i don't know
- *  @param thetaxy rotation around xy plane (z axis); ignored because 3D rotation takes care of it
- *  @param thetaxz rotation around xz plane (y axis); ignored because 3D rotation takes care of it
+ *  @param thetaxy rotation around xy plane (z axis); ignored because 3D
+ *                 rotation takes care of it
+ *  @param thetaxz rotation around xz plane (y axis); ignored because 3D
+ *                 rotation takes care of it
  *  @param thetaxw rotation around xw plane
- *  @param thetayz rotation around xy plane (x axis); ignored because 3D rotation takes care of it
+ *  @param thetayz rotation around xy plane (x axis); ignored because 3D
+ *                 rotation takes care of it
  *  @param thetayw rotation around yw plane
  *  @param thetazw rotation around zw plane
  *  @param tx translation in x direction
@@ -68,8 +71,8 @@ void Object::Transform (double, double, double thetaxw,
         Xtrans[i] = (Rot*X[i])+trans;
 }
 
-/** projects an Object into three-space
- *  @param scr_w w coordinate of screen
+/// Projects an Object into three-space
+/** @param scr_w w coordinate of screen
  *  @param cam_w w coordinate of camera
  *  @param depthcue4d wheter to use hyperfog/dc
  *  @todo change R[], G[], B[] into a single array of Color's
@@ -106,7 +109,7 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
 }
 
 
-/** draw the projected Object (onto screen or into GL list, as it is) */
+/// Draw the projected Object (onto screen or into GL list, as it is)
 void Object::Draw () {
     glBegin (GL_QUADS);
     for (unsigned i = 0; i < NumSurfaces; i++)
@@ -127,8 +130,8 @@ void Object::ReInit (double, double, double,
 ////////////////////////////////////////////////////////////////////////////////
 
 
-/** Hypercube constructor
- *  @param center center
+/// Hypercube constructor
+/** @param center center
  *  @param _a side_length/2                                                   */
 Hypercube::Hypercube (double _a, const Vector<4> &_center):
         Object ("Hypercube", 16, 24),
@@ -138,10 +141,10 @@ Hypercube::Hypercube (double _a, const Vector<4> &_center):
     Initialize();
 }
 
-/** Actually creates the Hypercube
- *  sets up the vertices of the Hypercube in X[], then sets up the surfaces
+/// Actually creates the Hypercube
+/** sets up the vertices of the Hypercube in \p X[], then sets up the surfaces
  *  of the Hypercube by declaring the appropriate squares as a list in
- *  Surface[][].                                                              */
+ *  \p Surface[][].                                                           */
 void Hypercube::Initialize(void) {
     SingletonLog::Instance().log("Hypercube::Initialize()");
     for (int x = 0; x <= 1; x++)
@@ -176,8 +179,8 @@ void Hypercube::Initialize(void) {
     DeclareSquare (23, 12,13,15,14);
 }
 
-/** declare a square in the surfaces array
- *  @param i index of the square
+/// Declare a square in the \p Surface array
+/** @param i index of the square
  *  @param a index of vertex 1
  *  @param b index of vertex 2
  *  @param c index of vertex 3
@@ -192,7 +195,11 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
 
     ///////////////////////////////////////////////////////////////////////////////
 
-
+/// Construct a Hypersponge of level \p level
+/** \param level Level of recursion used in creating the Sponge
+ *  \param _distance see Initialize()
+ *  \param _rad Size of the Sponge - \p _rad is half the side length
+ *  \param _center Center point of the Sponge                                 */
 Sponge::Sponge (unsigned level, int _distance, double _rad, Vector<4> _center):
     Level (level), distance(_distance), rad(_rad), center(_center) {
     functionName = "4-dimensional Menger Sponge";
@@ -206,7 +213,7 @@ Sponge::Sponge (unsigned level, int _distance, double _rad, Vector<4> _center):
 
 
 /// return the approximate amount of memory needed to display a sponge of
-/// current \em level and given \em distance
+/// current \p level and given \p distance
 /** @todo uses hardcoded and experimentally found value for memory per hypercube
  *  @param distance see Initialize()
  *  @return approx. mem required                                              */
@@ -353,6 +360,7 @@ Pyramid::Pyramid (double _a, const Vector<4> &_center):
     Initialize();
 }
 
+/// Actually creates the Pyramid
 /** @see Hypercube::Initialize() */
 void Pyramid::Initialize() {
     X[0] = Vector<4> (0.0, 0.0, 0.0, 0.0);
@@ -377,7 +385,7 @@ void Pyramid::Initialize() {
     DeclareTriangle (9,  2, 3, 4);
 }
 
-/// declare a triangle in the surfaces array
+/// Declare a triangle in the \p Surface array
 /** @param i index of the square
  *  @param a index of vertex 1
  *  @param b index of vertex 2
@@ -414,6 +422,7 @@ unsigned long Gasket::MemRequired (void) {
     return (unsigned long) ((pow (5., (int)Level)*14.5)/1024+8)*1024*1024;
 }
 
+/// This function actually creates the Sierpinski Gasket
 /** @see Sponge::Initialize() */
 void Gasket::Initialize() {
     if (Level < 1)

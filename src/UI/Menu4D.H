@@ -8,8 +8,8 @@
 class QString;
 class QMenuBar;
 class C4DView;
-class FunctionFactory;
 class Function;
+class FunctionFactory;
 class SurfaceFactory;
 
 /** The menu for the C4DView. \n

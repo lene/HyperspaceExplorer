@@ -6,7 +6,7 @@
 #include "Menu4D.H"
 #include "4DView.H"
 #include "Globals.H"
-#include "Function.H"
+#include "RealFunction.H"
 #include "SlotHelper.H"
 
 inline void TESTED_FEATURE(QAction *item) {

@@ -16,9 +16,6 @@
     <class kind="class">ComplexFunction</class>
     <class kind="class">CustomFunctionBase</class>
     <class kind="class">Function</class>
-    <class kind="class">Hypersphere</class>
-    <class kind="class">Torus1</class>
-    <class kind="class">Torus2</class>
     <class kind="class">Object</class>
     <class kind="class">SteinerFunction</class>
     <class kind="class">Surface</class>
@@ -29,6 +26,9 @@
     <filename>group__RealGroup.html</filename>
     <subgroup>PolarGroup</subgroup>
     <class kind="class">CustomFunction</class>
+    <class kind="class">RealFunction</class>
+    <class kind="class">Hypersphere</class>
+    <class kind="class">Torus2</class>
     <class kind="class">Fr3r</class>
     <class kind="class">GravitationPotential</class>
     <class kind="class">Fr3rSin</class>
@@ -39,6 +39,7 @@
     <title>Polar functions R^3 -&gt; R</title>
     <filename>group__PolarGroup.html</filename>
     <class kind="class">CustomPolarFunction</class>
+    <class kind="class">Torus1</class>
     <class kind="class">Polar</class>
     <class kind="class">PolarSin</class>
     <class kind="class">PolarSin2</class>
@@ -1609,7 +1610,7 @@
   <compound kind="class">
     <name>Fr3r</name>
     <filename>classFr3r.html</filename>
-    <base>Function</base>
+    <base>RealFunction</base>
     <member kind="function">
       <type></type>
       <name>Fr3r</name>
@@ -1635,7 +1636,7 @@
   <compound kind="class">
     <name>Fr3rExp</name>
     <filename>classFr3rExp.html</filename>
-    <base>Function</base>
+    <base>RealFunction</base>
     <member kind="function">
       <type></type>
       <name>Fr3rExp</name>
@@ -1654,7 +1655,7 @@
   <compound kind="class">
     <name>Fr3rSin</name>
     <filename>classFr3rSin.html</filename>
-    <base>Function</base>
+    <base>RealFunction</base>
     <member kind="function">
       <type></type>
       <name>Fr3rSin</name>
@@ -2522,7 +2523,7 @@
   <compound kind="class">
     <name>GravitationPotential</name>
     <filename>classGravitationPotential.html</filename>
-    <base>Function</base>
+    <base>RealFunction</base>
     <member kind="function">
       <type></type>
       <name>GravitationPotential</name>
@@ -2660,7 +2661,7 @@
   <compound kind="class">
     <name>Hypersphere</name>
     <filename>classHypersphere.html</filename>
-    <base>Function</base>
+    <base>RealFunction</base>
     <member kind="function">
       <type></type>
       <name>Hypersphere</name>
@@ -3355,7 +3356,7 @@
   <compound kind="class">
     <name>Polar</name>
     <filename>classPolar.html</filename>
-    <base>Function</base>
+    <base>RealFunction</base>
     <member kind="function">
       <type></type>
       <name>Polar</name>
@@ -3414,7 +3415,7 @@
   <compound kind="class">
     <name>PolarR</name>
     <filename>classPolarR.html</filename>
-    <base>Function</base>
+    <base>RealFunction</base>
     <member kind="function">
       <type></type>
       <name>PolarR</name>
@@ -3447,7 +3448,7 @@
   <compound kind="class">
     <name>PolarSin</name>
     <filename>classPolarSin.html</filename>
-    <base>Function</base>
+    <base>RealFunction</base>
     <member kind="function">
       <type></type>
       <name>PolarSin</name>
@@ -3480,7 +3481,7 @@
   <compound kind="class">
     <name>PolarSin2</name>
     <filename>classPolarSin2.html</filename>
-    <base>Function</base>
+    <base>RealFunction</base>
     <member kind="function">
       <type></type>
       <name>PolarSin2</name>
@@ -3574,6 +3575,18 @@
       <anchorfile>classPyramid.html</anchorfile>
       <anchor>6f9e737d979568956e870d7d7605fb97</anchor>
       <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>RealFunction</name>
+    <filename>classRealFunction.html</filename>
+    <base>Function</base>
+    <member kind="function">
+      <type></type>
+      <name>RealFunction</name>
+      <anchorfile>classRealFunction.html</anchorfile>
+      <anchor>198dec897172567a0fb6c110a2afbe22</anchor>
+      <arglist>(const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -4262,7 +4275,7 @@
   <compound kind="class">
     <name>Torus1</name>
     <filename>classTorus1.html</filename>
-    <base>Function</base>
+    <base>RealFunction</base>
     <member kind="function">
       <type></type>
       <name>Torus1</name>
@@ -4309,7 +4322,7 @@
   <compound kind="class">
     <name>Torus2</name>
     <filename>classTorus2.html</filename>
-    <base>Function</base>
+    <base>RealFunction</base>
     <member kind="function">
       <type></type>
       <name>Torus2</name>

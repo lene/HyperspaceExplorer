@@ -18,6 +18,7 @@
 #include "Function.H"
 #include "Vector.H"
 
+/// Generalized four-dimensional Object, described by vertexes and surfaces
 /** an Object is a four-dimensional geometrical object which can not be
  *  described as a mathematical function from R³ to R or from R² to R^4.
  *  Instead it is described as a set of surfaces.
@@ -75,8 +76,8 @@ class Object: public Function {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** a four-dimensional cube
- *  \ingroup ObjectGroup                                                    */
+/// A four-dimensional cube
+/** \ingroup ObjectGroup                                                    */
 class Hypercube: public Object {
 public:
     Hypercube (): Object ("Hypercube", 16, 24) {
@@ -212,9 +213,14 @@ protected:
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A four-dimensional version of the Sierpinski Gasket.\n
- *  It is similar to the Menger Sponge, but it uses a Hypersimplex as generator.
- *  \ingroup ObjectGroup                                                    */
+/// A four-dimensional version of the Sierpinski Gasket.
+/** This object is similar to the Menger Sponge, but it uses a Hypersimplex as
+ *  generator.
+ *
+ *  It lacks the \p distance parameter, because there is only one way
+ *  to generate a Sierpinski Gasket of level \p n. Otherwise it is analogous to
+ *  the Menger Sponge fractal.
+ *  \ingroup ObjectGroup                                                      */
 class Gasket: public Pyramid {
     public:
         Gasket (unsigned level = 1, double rad = 1,
