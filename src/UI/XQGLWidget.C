@@ -336,85 +336,57 @@ void XQGLWidget::SetupAccel (void) {
   accel->connectItem (accel->insertItem (Qt::Key_Q+Qt::CTRL), qApp, SLOT (quit ())); }
 
 #endif
-/*******************************************************************************
- *  "Left" key: rotate 5 degrees left
- */
+/** "Left" key: rotate 5 degrees left */
 void XQGLWidget::Left () {
   theta -= 5; repaint (); }
 
-/*******************************************************************************
- *  "Right" key: rotate 5 degrees right
- */
+/** "Right" key: rotate 5 degrees right */
 void XQGLWidget::Right () {
   theta += 5; repaint (); }
 
-/*******************************************************************************
- *  "Up" key: rotate 5 degrees up
- */
+/** "Up" key: rotate 5 degrees up */
 void XQGLWidget::Up () {
   psi -= 5; repaint (); }
 
-/*******************************************************************************
- *  "Down" key: rotate 5 degrees down
- */
+/** "Down" key: rotate 5 degrees down */
 void XQGLWidget::Down () {
   psi += 5; repaint (); }
 
-
-/*******************************************************************************
- *  Shift-"Left" key: rotate 45 degrees left
- */
+/** Shift-"Left" key: rotate 45 degrees left */
 void XQGLWidget::SLeft () {
   theta -= 45; repaint (); }
 
-/*******************************************************************************
- *  Shift-"Right" key: rotate 45 degrees left
- */
+/** Shift-"Right" key: rotate 45 degrees left */
 void XQGLWidget::SRight () {
   theta += 45; repaint (); }
 
-/*******************************************************************************
- *  Shift-"Up" key: rotate 45 degrees left
- */
+/** Shift-"Up" key: rotate 45 degrees left */
 void XQGLWidget::SUp () {
   psi -= 45; repaint (); }
 
-/*******************************************************************************
- *  Shift-"Down" key: rotate 45 degrees left
- */
+/** Shift-"Down" key: rotate 45 degrees left */
 void XQGLWidget::SDown () {
   psi += 45; repaint (); }
 
-
-/*******************************************************************************
- *  Ctrl-Alt-"Left" key: rotate 1 degrees left
- */
+/** Ctrl-Alt-"Left" key: rotate 1 degrees left */
 void XQGLWidget::CALeft () {
   theta -= 1; repaint (); }
 
-/*******************************************************************************
- *  Ctrl-Alt-"Right" key: rotate 1 degrees left
- */
+/** Ctrl-Alt-"Right" key: rotate 1 degrees left */
 void XQGLWidget::CARight () {
   theta += 1; repaint (); }
 
-/*******************************************************************************
- *  Ctrl-Alt-"Up" key: rotate 1 degrees left
- */
+/** Ctrl-Alt-"Up" key: rotate 1 degrees left */
 void XQGLWidget::CAUp () {
   psi -= 1; repaint (); }
 
-/*******************************************************************************
- *  Ctrl-Alt-"Down" key: rotate 1 degrees left
- */
+/** Ctrl-Alt-"Down" key: rotate 1 degrees left */
 void XQGLWidget::CADown () {
   psi += 1; repaint (); }
 
 
-/*******************************************************************************
- *  "A" key: should open a slider to adjust alpha value. not yet implemented
- *  correctly.
- */
+/** "A" key: should open a slider to adjust alpha value. not yet implemented
+ *  correctly. */
 void XQGLWidget::A () {
   QSlider *GetAlpha = new QSlider (Qt::Horizontal, this);
   GetAlpha->setMinimum(0);
@@ -428,21 +400,15 @@ void XQGLWidget::A () {
   connect (GetAlpha, SIGNAL(valueChanged(int)), this, SLOT(SetAlpha(int))); }
 
 
-/*******************************************************************************
- *  no function
- */
+/** no function */
 void XQGLWidget::Plus () {
 }
 
-/*******************************************************************************
- *  no function
- */
+/** no function */
 void XQGLWidget::Minus () {
 }
 
-/*******************************************************************************
- *  open an "About"-Dialog
- */
+/** open an "About"-Dialog */
 void XQGLWidget::about()
 {
   QMessageBox::about( this, "Hyperspace Explorer",
@@ -455,12 +421,8 @@ void XQGLWidget::about()
 }
 
 
-/*******************************************************************************
- *  open an "About Qt"-Dialog
- */
+/** open an "About Qt"-Dialog */
 void XQGLWidget::aboutQt()
 {
   QMessageBox::aboutQt( this, "Hyperspace Explorer" );
 }
-
-

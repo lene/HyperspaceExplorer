@@ -53,7 +53,6 @@ class SurfaceFactory {
 
 /// Displays and manipulates four-dimensional Functions in a QGLWidget
 /** This class is much too fat and will be split into parts wherever possible
- *  \todo move all menu slots into one (or a few) factory methods
  *  \ingroup UIGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class C4DView : public XQGLWidget {
@@ -118,8 +117,8 @@ class C4DView : public XQGLWidget {
         void ObjectGasket();
         void customFunction();
         void customPolarFunction();
-        void customComplexFunction();
         void customSurface();
+        void customComplexFunction();
 
     public:
         C4DView(QWidget * = 0);
@@ -144,8 +143,8 @@ class C4DView : public XQGLWidget {
         /// @return whether to draw the objects' surfaces or only the edges
         bool getDisplayPolygons() const { return DisplayPolygons; }
 
-        double Benchmark4D(int, double, double, double, bool = true);
         double Benchmark3D(int, double, double, double, bool = true);
+        double Benchmark4D(int, double, double, double, bool = true);
 
     protected slots:
         void OnTimer();
@@ -167,8 +166,8 @@ class C4DView : public XQGLWidget {
         void OnPaint();
 
         void InitCross();
-        void DrawCoordinates(void);
         void SetupDepthCue(bool);
+        void DrawCoordinates(void);
 
         void StartAnimation();
         void StopAnimation();
@@ -177,6 +176,7 @@ class C4DView : public XQGLWidget {
         QPixmap makePixmap();
         void writeFrame();
 
+        void checkAnglesForOverflow();
         void UpdateStatus(QString = "");
 
         void AssignValues(const std::auto_ptr<Function> &);
@@ -184,12 +184,12 @@ class C4DView : public XQGLWidget {
         double Size();
 
         // event handlers reimplemented from QWidget or QGLWidget
-        virtual void resizeEvent( QResizeEvent * );
+        virtual void mouseMoveEvent(QMouseEvent *);
         virtual void mousePressEvent(QMouseEvent *);
         virtual void mouseReleaseEvent( QMouseEvent *);
-        virtual void mouseMoveEvent(QMouseEvent *);
         virtual void mouseDoubleClickEvent( QMouseEvent *);
         virtual void paintEvent(QPaintEvent *);
+        virtual void resizeEvent( QResizeEvent * );
         virtual void initializeGL(void);
 
         //  member variables

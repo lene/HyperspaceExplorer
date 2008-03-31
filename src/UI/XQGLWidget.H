@@ -27,7 +27,12 @@ class QMouseEvent;
  *  implements a QGLWidget
  *  \ingroup UIGroup                                                          */
 class XQGLWidget: public QGLWidget {
+
     Q_OBJECT
+
+    public slots:                               //  called when:
+        void ViewPos (double, double, double);  //  - viewing angle is changed
+        void ViewPos (double);                  //  - distance of viewpoint is changed
 
     public:
         XQGLWidget (QWidget * = 0);
@@ -40,44 +45,14 @@ class XQGLWidget: public QGLWidget {
             return *DrawObject;
         }
 
-        void SetBackgroundColor (const VecMath::Vector<4> &RGBA) { Background = RGBA; }
+        void SetBackgroundColor (const VecMath::Vector<4> &RGBA) {
+            Background = RGBA;
+        }
 
         void SetBackgroundColor (float R, float G, float B, float A) {
             Background = VecMath::Vector<4> (R, G, B, A);
         }
 
-    public slots:                               //  called when:
-        void ViewPos (double, double, double);  //  - viewing angle is changed
-        void ViewPos (double);                  //  - distance of viewpoint is changed
-
-    protected:                                  //  OpenGL interface
-        void initializeGL (void);
-        void paintGL (void);
-        void resizeGL (int, int);
-        void Draw (void);
-
-        void InitLight (void);
-        void InitShade (void);
-        void InitFog  (void);
-        void InitTransparence (void);
-
-    protected:
-        GLObject *DrawObject;
-        //  geometry states
-        double R,                       //  viewpoint distance
-               psi, theta, phi;         //  rotation about x-, y- & z-axis
-               VecMath::Vector<4> Background;
-        GLfloat Alpha;
-
-        //  drawing realism states
-        bool light, fog, transparent, shade, colors;
-
-    protected:
-        void mousePressEvent (QMouseEvent *);
-        void mouseReleaseEvent (QMouseEvent *);
-        void mouseMoveEvent (QMouseEvent *);
-        int xpressed, ypressed;
-        void SetupDepthCue (float, float);
 
     protected slots:
         void Rotate ();
@@ -86,7 +61,6 @@ class XQGLWidget: public QGLWidget {
         void SetAlpha (int);
 
         //  key acceleration handling
-    protected slots:
         void Left ();
         void Right ();
         void Up ();
@@ -107,6 +81,35 @@ class XQGLWidget: public QGLWidget {
 
         void about ();
         void aboutQt ();
+
+    protected:                                  //  OpenGL interface
+        void initializeGL (void);
+        void paintGL (void);
+        void resizeGL (int, int);
+        void Draw (void);
+
+        void mousePressEvent (QMouseEvent *);
+        void mouseReleaseEvent (QMouseEvent *);
+        void mouseMoveEvent (QMouseEvent *);
+        void SetupDepthCue (float, float);
+        void InitLight (void);
+        void InitShade (void);
+        void InitFog  (void);
+        void InitTransparence (void);
+
+        GLObject *DrawObject;
+        //  geometry states
+        double R,                       ///< viewpoint distance
+               psi,                     ///< rotation about x-axis
+               theta,                   ///< rotation about y-axis
+               phi;                     ///< rotation about z-axis
+               VecMath::Vector<4> Background;
+        GLfloat Alpha;
+
+        //  drawing realism states
+        bool light, fog, transparent, shade, colors;
+        int xpressed, ypressed;
+
 };
 
 #endif
