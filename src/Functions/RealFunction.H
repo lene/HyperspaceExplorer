@@ -9,6 +9,8 @@
 // Copyright: See COPYING file that comes with this distribution
 //
 //
+#ifndef REAL_FUNCTION_H
+#define REAL_FUNCTION_H
 
 #include "Function.H"
 
@@ -24,15 +26,62 @@
  *
  *  \ingroup RealGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
-class RealFunction: public Function {
+class RealFunction: public RealBase {
     public:
+        /// Type of the function used to generate values
+        /** Optimized by using a reference as return value.                   */
+//        typedef VecMath::Vector<4> &function_type (double, double, double);
+        /// The real, raw type of the function used to generate values
+        typedef VecMath::Vector<4> raw_function_type (double, double, double);
+
         RealFunction (const QString &name,
                       double _tmin, double _tmax, double _dt,
                       double _umin, double _umax, double _du,
-                      double _vmin, double _vmax, double _dv):
-                Function(name, _tmin, _tmax, _dt, _umin, _umax, _du,
-                         _vmin, _vmax, _dv) { }
+                      double _vmin, double _vmax, double _dv);
         virtual ~RealFunction() { }
+
+        virtual void Transform (double Rxy, double Rxz, double Rxw,
+                                double Ryz, double Ryw, double Rzw,
+                                double Tx, double Ty, double Tz, double Tw);
+        virtual void Project (double ScrW, double CamW, bool DepthCue4D);
+        virtual void Draw (void);
+
+        virtual void ReInit(double _tmin, double _tmax, double _dt,
+                            double _umin, double _umax, double _du,
+                            double _vmin, double _vmax, double _dv);
+
+    protected:
+        /// Function evaluation operator
+        /** @param t first argument, e.g. x or t
+         *  @param u second argument, e.g. y or u
+         *  @param v third argument, e.g. z or v
+         *  @return f(t, u, v)                                                */
+        VecMath::Vector<4> &operator () (double t, double u, double v) {
+            return f(t,u,v);
+        }
+        VecMath::Vector<4> &normal(double t, double u, double v);
+
+        void DrawPlane (unsigned);
+        void DrawStrip (unsigned, unsigned);
+        void DrawCube (unsigned, unsigned, unsigned);
+        
+        virtual void Initialize (void);
+        virtual void InitMem (void);
+
+        vec4vec3D X,      ///< temporary storage for function values on grid
+        Xtrans; ///< temporary storage for transformed function values
+        vec3vec3D Xscr;   ///< temporary storage for projected function values
+
+        /// storage for the coloring of the vertices - red component
+        /** @todo turn these three arrays into a single array of Color's      */
+        floatvec3D R;
+        /// storage for the coloring of the vertices - red component
+        /** @todo turn these three arrays into a single array of Color's      */
+        floatvec3D G;
+        /// storage for the coloring of the vertices - red component
+        /** @todo turn these three arrays into a single array of Color's      */
+        floatvec3D B;
+
 };
 
 
@@ -265,3 +314,4 @@ class PolarR: public RealFunction {
         double Phase;
 };
 
+#endif

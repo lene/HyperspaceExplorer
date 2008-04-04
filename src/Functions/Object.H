@@ -18,13 +18,15 @@
 #include "Function.H"
 #include "Vector.H"
 
+struct EmptyType {};
+
 /// Generalized four-dimensional Object, described by vertexes and surfaces
 /** an Object is a four-dimensional geometrical object which can not be
  *  described as a mathematical function from R³ to R or from R² to R^4.
  *  Instead it is described as a set of surfaces.
  *  \ingroup FunctionGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
-class Object: public Function {
+class Object: public FunctionBase {
     public:
         /// a one-dimensional array of unsigned, implemented as a std::vector
         typedef std::vector<unsigned> uintvec1D;
@@ -42,6 +44,9 @@ class Object: public Function {
                                 double Tx, double Ty, double Tz, double Tw);
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
         virtual void Draw (void);
+        virtual VecMath::Vector<4> &operator () (double, double, double) {
+            return F;
+        }
 
     protected:
         /// number of vertices the object possesses; must be set by implementations

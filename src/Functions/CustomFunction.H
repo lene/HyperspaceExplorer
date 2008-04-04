@@ -7,6 +7,7 @@
 //	license:      GPL (see License.txt)
 
 #include "Function.H"
+#include "RealFunction.H"
 #include "ComplexFunction.H"
 #include "Surface.H"
 
@@ -37,8 +38,8 @@ template<class function_type>
  *  have an arbitrary function.
  *  \ingroup RealGroup                                                        */
 class CustomFunction:
-        public Function,
-        public CustomFunctionBase<Function::raw_function_type> {
+        public RealFunction,
+        public CustomFunctionBase<RealFunction::raw_function_type> {
     public:
         CustomFunction (double _tmin, double _tmax, double _dt,
                         double _umin, double _umax, double _du,

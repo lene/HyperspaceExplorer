@@ -50,7 +50,7 @@ using VecMath::Matrix;
 C4DView::C4DView(QWidget *parent):
     XQGLWidget (parent),
 
-    F(auto_ptr<Function>()),
+    F(auto_ptr<FunctionBase>()),
 
     Tx (0), Ty (0), Tz (0), Tw (0),
     Rxy (0), Rxz (0), Rxw (0), Ryz (0), Ryw (0), Rzw (0),
@@ -783,7 +783,7 @@ void C4DView::UpdateStatus (QString status) {
 /** Changes the display on the status bar and the number and names of the
  *  parameters and grid parameters on the ValuesDialog
  *  @param F the Function object for which the ValuesDialog is changed        */
-void C4DView::AssignValues (const std::auto_ptr<Function> &F) {
+void C4DView::AssignValues (const std::auto_ptr<FunctionBase> &F) {
     QString Parameter1 = F->getParameterName(0);
     QString Parameter2 = F->getParameterName(1);
     QString Parameter3 = F->getParameterName(2);

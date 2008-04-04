@@ -40,7 +40,7 @@ CustomFunction::CustomFunction (double _tmin, double _tmax, double _dt,
                                 double _umin, double _umax, double _du,
                                 double _vmin, double _vmax, double _dv,
                                 bool final):
-    Function ("Custom function yet without a name", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
+    RealFunction ("Custom function yet without a name", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
     if (final) {
         FunctionDialogImpl *Dlg = new FunctionDialogImpl ();
 

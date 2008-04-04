@@ -12,14 +12,13 @@
 
 #include "Function.H"
 
-
 ////////////////////////////////////////////////////////////////////////////////
 
 /** A function from \f$ R^2 \rightarrow R^4 \f$, thus describing a parametrized
  *  surface in hyperspace
  *  \ingroup FunctionGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
-class Surface: public Function {
+class Surface: public SurfaceBase {
     public:
 
         /** type of the function used to generate values, optimized with a
@@ -51,7 +50,7 @@ class Surface: public Function {
 
         vec4vec2D Data (void) { return X; }
 
-        VecMath::Vector<4> &operator () (double u, double v) {
+        VecMath::Vector<4> &operator () (double u, double v, double = 0) {
             unsigned iu = unsigned ((u-umin)/du), iv = unsigned ((v-vmin)/dv);
             return X[iu][iv];
         }

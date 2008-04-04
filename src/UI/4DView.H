@@ -19,7 +19,8 @@ class QStatusBar;
 
 class C4DView;
 class Menu4D;
-class Function;
+class FunctionBase;
+class RealFunction;
 class Surface;
 
 class CustomFunction;
@@ -38,7 +39,7 @@ class CustomComplexFunction;
 class FunctionFactory {
     public:
         virtual ~FunctionFactory() { }
-        virtual Function *createFunction(C4DView *) = 0;
+        virtual FunctionBase *createFunction(C4DView *) = 0;
 };
 
 /// Abstract base class for a factory creating Surface's
@@ -68,7 +69,7 @@ class C4DView : public XQGLWidget {
         template <typename function>
             class TemplatedFunctionFactory: public FunctionFactory {
                 public:
-                    virtual Function *createFunction(C4DView *);
+                    virtual RealFunction *createFunction(C4DView *);
             };
 
         /// Class template implementation for a factory creating Surface's
@@ -179,7 +180,7 @@ class C4DView : public XQGLWidget {
         void checkAnglesForOverflow();
         void UpdateStatus(QString = "");
 
-        void AssignValues(const std::auto_ptr<Function> &);
+        void AssignValues(const std::auto_ptr<FunctionBase> &);
 
         double Size();
 
@@ -194,7 +195,7 @@ class C4DView : public XQGLWidget {
 
         //  member variables
 
-        std::auto_ptr<Function> F;  ///< the Function object currently displayed
+        std::auto_ptr<FunctionBase> F;  ///< the Function object currently displayed
 
         double Tx,  ///< X coordinate for the 4D translation of the object
                Ty,  ///< Y coordinate for the 4D translation of the object

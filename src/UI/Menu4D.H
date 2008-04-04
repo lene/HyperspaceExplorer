@@ -8,7 +8,7 @@
 class QString;
 class QMenuBar;
 class C4DView;
-class Function;
+class FunctionBase;
 class FunctionFactory;
 class SurfaceFactory;
 
@@ -37,7 +37,7 @@ class Menu4D: public QMenu {
                               FunctionFactory *, bool = true);
         QAction *insertAction(QMenu *, const QString &,
                               SurfaceFactory *, bool = true);
-        QAction *insertAction(QMenu *_menu, const Function *function,
+        QAction *insertAction(QMenu *_menu, const FunctionBase *function,
                                  const char *slot, bool checkable = true);
         C4DView *parent;
         QMenu *functions, *appear, *animation, *help,

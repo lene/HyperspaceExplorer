@@ -216,7 +216,7 @@ QAction *Menu4D::insertAction(QMenu *_menu, const QString &title,
     return tmp;
 }
 
-QAction *Menu4D::insertAction(QMenu *_menu, const Function *function,
+QAction *Menu4D::insertAction(QMenu *_menu, const FunctionBase *function,
                               const char *slot, bool checkable) {
     return insertAction(_menu, function->getFunctionName(), slot, checkable);
 }
