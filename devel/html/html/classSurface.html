@@ -11,6 +11,7 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -28,7 +29,7 @@
 <h1>Surface Class Reference<br>
 <small>
 [<a class="el" href="group__FunctionGroup.html">Functions and objects</a>]</small>
-</h1><!-- doxytag: class="Surface" --><!-- doxytag: inherits="Function" --><code>#include &lt;<a class="el" href="Surface_8H-source.html">Surface.H</a>&gt;</code>
+</h1><!-- doxytag: class="Surface" --><!-- doxytag: inherits="SurfaceBase" --><code>#include &lt;<a class="el" href="Surface_8H-source.html">Surface.H</a>&gt;</code>
 <p>
 <div class="dynheader">
 Inheritance diagram for Surface:</div>
@@ -36,28 +37,29 @@ Inheritance diagram for Surface:</div>
 
 <p><center><img src="classSurface.png" usemap="#Surface_map" border="0" alt=""></center>
 <map name="Surface_map">
+<area href="classSurfaceBase.html" alt="SurfaceBase" shape="rect" coords="320,56,470,80">
 <area href="classFunction.html" alt="Function" shape="rect" coords="320,0,470,24">
-<area href="classComplexFunction.html" alt="ComplexFunction" shape="rect" coords="0,112,150,136">
-<area href="classCustomSurface.html" alt="CustomSurface" shape="rect" coords="160,112,310,136">
-<area href="classHorizon.html" alt="Horizon" shape="rect" coords="320,112,470,136">
-<area href="classSurface1.html" alt="Surface1" shape="rect" coords="480,112,630,136">
-<area href="classTorus3.html" alt="Torus3" shape="rect" coords="640,112,790,136">
-<area href="classcoshz.html" alt="coshz" shape="rect" coords="160,168,310,192">
-<area href="classcosz.html" alt="cosz" shape="rect" coords="160,224,310,248">
-<area href="classCustomComplexFunction.html" alt="CustomComplexFunction" shape="rect" coords="160,280,310,304">
-<area href="classemz2.html" alt="emz2" shape="rect" coords="160,336,310,360">
-<area href="classez.html" alt="ez" shape="rect" coords="160,392,310,416">
-<area href="classlnz.html" alt="lnz" shape="rect" coords="160,448,310,472">
-<area href="classPolynomial.html" alt="Polynomial" shape="rect" coords="160,504,310,528">
-<area href="classsinhz.html" alt="sinhz" shape="rect" coords="160,560,310,584">
-<area href="classsinz.html" alt="sinz" shape="rect" coords="160,616,310,640">
-<area href="classsqrtz.html" alt="sqrtz" shape="rect" coords="160,672,310,696">
-<area href="classtanz.html" alt="tanz" shape="rect" coords="160,728,310,752">
-<area href="classz2.html" alt="z2" shape="rect" coords="160,784,310,808">
-<area href="classz3.html" alt="z3" shape="rect" coords="160,840,310,864">
-<area href="classzA.html" alt="zA" shape="rect" coords="160,896,310,920">
-<area href="classzm1.html" alt="zm1" shape="rect" coords="160,952,310,976">
-<area href="classzm2.html" alt="zm2" shape="rect" coords="160,1008,310,1032">
+<area href="classComplexFunction.html" alt="ComplexFunction" shape="rect" coords="0,168,150,192">
+<area href="classCustomSurface.html" alt="CustomSurface" shape="rect" coords="160,168,310,192">
+<area href="classHorizon.html" alt="Horizon" shape="rect" coords="320,168,470,192">
+<area href="classSurface1.html" alt="Surface1" shape="rect" coords="480,168,630,192">
+<area href="classTorus3.html" alt="Torus3" shape="rect" coords="640,168,790,192">
+<area href="classcoshz.html" alt="coshz" shape="rect" coords="160,224,310,248">
+<area href="classcosz.html" alt="cosz" shape="rect" coords="160,280,310,304">
+<area href="classCustomComplexFunction.html" alt="CustomComplexFunction" shape="rect" coords="160,336,310,360">
+<area href="classemz2.html" alt="emz2" shape="rect" coords="160,392,310,416">
+<area href="classez.html" alt="ez" shape="rect" coords="160,448,310,472">
+<area href="classlnz.html" alt="lnz" shape="rect" coords="160,504,310,528">
+<area href="classPolynomial.html" alt="Polynomial" shape="rect" coords="160,560,310,584">
+<area href="classsinhz.html" alt="sinhz" shape="rect" coords="160,616,310,640">
+<area href="classsinz.html" alt="sinz" shape="rect" coords="160,672,310,696">
+<area href="classsqrtz.html" alt="sqrtz" shape="rect" coords="160,728,310,752">
+<area href="classtanz.html" alt="tanz" shape="rect" coords="160,784,310,808">
+<area href="classz2.html" alt="z2" shape="rect" coords="160,840,310,864">
+<area href="classz3.html" alt="z3" shape="rect" coords="160,896,310,920">
+<area href="classzA.html" alt="zA" shape="rect" coords="160,952,310,976">
+<area href="classzm1.html" alt="zm1" shape="rect" coords="160,1008,310,1032">
+<area href="classzm2.html" alt="zm2" shape="rect" coords="160,1064,310,1088">
 </map>
 </div>
 
@@ -65,12 +67,6 @@ Inheritance diagram for Surface:</div>
 <a href="classSurface-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#6734aac8b6b055e83971ea054d1ddde1">function_type</a> (double, double)</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a55d5575266767939adf085244eab155"></a><!-- doxytag: member="Surface::raw_function_type" ref="a55d5575266767939adf085244eab155" args="(double, double)" -->
-typedef <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#a55d5575266767939adf085244eab155">raw_function_type</a> (double, double)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">the real, raw type of the function used to generate values <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#8fc57f2a15292135c00545c9d224ec68">Surface</a> ()</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#14f5dccdc28a9fc9d72fbabc24b42d60">Surface</a> (const QString &amp;name, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)</td></tr>
@@ -92,13 +88,7 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="94d03f3097e1478093dd3a286f987562"></a><!-- doxytag: member="Surface::Data" ref="94d03f3097e1478093dd3a286f987562" args="(void)" -->
 <a class="el" href="classFunction.html#0c807fd0b7c98ca9c5052c15b3c817a3">vec4vec2D</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>Data</b> (void)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1d687515344a513edb4c1ac8d8a796c7"></a><!-- doxytag: member="Surface::operator()" ref="1d687515344a513edb4c1ac8d8a796c7" args="(double u, double v)" -->
-<a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator()</b> (double u, double v)</td></tr>
-
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2dc62a3fa32fafc15e0c9ca672bd396d"></a><!-- doxytag: member="Surface::f" ref="2dc62a3fa32fafc15e0c9ca672bd396d" args="(double, double, double)" -->
-virtual <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>f</b> (double, double, double)</td></tr>
-
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classFunction.html#67b6c27b652c41b419602713cd4d72b7">vec4vec1D</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#dc25dc3cc52c171fbd4ef38cb96a516a">df</a> (double, double)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#e140ab69205e1a6a73459b9e22cda019">Initialize</a> (void)</td></tr>
@@ -107,16 +97,12 @@ virtual <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt;
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual unsigned long&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#185472961fe456f587c160c2cc6e8545">MemRequired</a> (void)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#c892c3621a13bb30418c5b2d73763ea2">DrawPlane</a> (unsigned)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c892c3621a13bb30418c5b2d73763ea2"></a><!-- doxytag: member="Surface::DrawPlane" ref="c892c3621a13bb30418c5b2d73763ea2" args="(unsigned)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>DrawPlane</b> (unsigned)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Draw the current plane of the projected <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a>.  <a href="#c892c3621a13bb30418c5b2d73763ea2"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#4b6eecac144cb1d0650d711727ecb540">DrawStrip</a> (unsigned)</td></tr>
 
 <tr><td colspan="2"><br><h2>Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="40ab0b084efb0b19abd4630294083c1a"></a><!-- doxytag: member="Surface::f" ref="40ab0b084efb0b19abd4630294083c1a" args="" -->
-virtual function_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#40ab0b084efb0b19abd4630294083c1a">f</a> = 0</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The mathematical function defining the <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> object. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual function_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#19a24f801227ea542d749f94cb3fa44d">normal</a></td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d0c58ea4eaaa5a1b616f7630e10b9b5e"></a><!-- doxytag: member="Surface::umin" ref="d0c58ea4eaaa5a1b616f7630e10b9b5e" args="" -->
@@ -152,9 +138,8 @@ unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">number of steps in v <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2cf4c28a257ce73719c4280d4d6bcbf6"></a><!-- doxytag: member="Surface::NumVertices" ref="2cf4c28a257ce73719c4280d4d6bcbf6" args="" -->
-unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#2cf4c28a257ce73719c4280d4d6bcbf6">NumVertices</a></td></tr>
+unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><b>NumVertices</b></td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">counter for the number of GL vertices used drawing the function <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="80d92e7d5fb9aaeff5b557b41b02978f"></a><!-- doxytag: member="Surface::F" ref="80d92e7d5fb9aaeff5b557b41b02978f" args="" -->
 <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#80d92e7d5fb9aaeff5b557b41b02978f">F</a></td></tr>
 
@@ -164,23 +149,21 @@ unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">temporary storage for the function values on the grid <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="958a812babb443ccda9b2ba1dda19b9a"></a><!-- doxytag: member="Surface::Xtrans" ref="958a812babb443ccda9b2ba1dda19b9a" args="" -->
-<a class="el" href="classFunction.html#0c807fd0b7c98ca9c5052c15b3c817a3">vec4vec2D</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#958a812babb443ccda9b2ba1dda19b9a">Xtrans</a></td></tr>
+<a class="el" href="classFunction.html#0c807fd0b7c98ca9c5052c15b3c817a3">vec4vec2D</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>Xtrans</b></td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">temporary storage for transformed function values <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0d4e87cf750c15554d39725baca6896e"></a><!-- doxytag: member="Surface::Xscr" ref="0d4e87cf750c15554d39725baca6896e" args="" -->
-<a class="el" href="classFunction.html#9f46be8d00fa46a28bbd9165074510bb">vec3vec2D</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#0d4e87cf750c15554d39725baca6896e">Xscr</a></td></tr>
+<a class="el" href="classFunction.html#9f46be8d00fa46a28bbd9165074510bb">vec3vec2D</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>Xscr</b></td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">temporary storage for projected function values <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="edae59b363aec7bc66a7e4ba1d6b2328"></a><!-- doxytag: member="Surface::R" ref="edae59b363aec7bc66a7e4ba1d6b2328" args="" -->
 <a class="el" href="classFunction.html#4c15e6200b99c8e333e0fc1859822b2c">floatvec2D</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#edae59b363aec7bc66a7e4ba1d6b2328">R</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">storage for the coloring of the vertices <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classFunction.html#4c15e6200b99c8e333e0fc1859822b2c">floatvec2D</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#a4e58afa2b994b4a48e83b94f3fc7db7">G</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a4e58afa2b994b4a48e83b94f3fc7db7"></a><!-- doxytag: member="Surface::G" ref="a4e58afa2b994b4a48e83b94f3fc7db7" args="" -->
+<a class="el" href="classFunction.html#4c15e6200b99c8e333e0fc1859822b2c">floatvec2D</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>G</b></td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">storage for the coloring of the vertices - red component  <a href="#a4e58afa2b994b4a48e83b94f3fc7db7"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classFunction.html#4c15e6200b99c8e333e0fc1859822b2c">floatvec2D</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#5820231eed7444889a2f82f6ee4ccc4b">B</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5820231eed7444889a2f82f6ee4ccc4b"></a><!-- doxytag: member="Surface::B" ref="5820231eed7444889a2f82f6ee4ccc4b" args="" -->
+<a class="el" href="classFunction.html#4c15e6200b99c8e333e0fc1859822b2c">floatvec2D</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>B</b></td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">storage for the coloring of the vertices - red component  <a href="#5820231eed7444889a2f82f6ee4ccc4b"></a><br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 A function from <img class="formulaInl" alt="$ R^2 \rightarrow R^4 $" src="form_14.png">, thus describing a parametrized surface in hyperspace<p>
@@ -273,40 +256,11 @@ A function from <img class="formulaInl" alt="$ R^2 \rightarrow R^4 $" src="form_
   </table>
 </dl>
 
-<p>References <a class="el" href="Function_8H-source.html#l00189">Function::functionName</a>.</p>
+<p>References <a class="el" href="Function_8H-source.html#l00152">Function::functionName</a>.</p>
 
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="6734aac8b6b055e83971ea054d1ddde1"></a><!-- doxytag: member="Surface::function_type" ref="6734aac8b6b055e83971ea054d1ddde1" args="(double, double)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt;4&gt;&amp; Surface::function_type           </td>
-          <td>(</td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td width="100%"></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-type of the function used to generate values, optimized with a reference as return value 
-</div>
-</div><p>
 <a class="anchor" name="98f6a79d334e61068031f15ebef90458"></a><!-- doxytag: member="Surface::Transform" ref="98f6a79d334e61068031f15ebef90458" args="(double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)" -->
 <div class="memitem">
 <div class="memproto">
@@ -397,9 +351,9 @@ transforms a <a class="el" href="classSurface.html">Surface</a> <br>
   </table>
 </dl>
 
-<p>Reimplemented from <a class="el" href="classFunction.html#72f006db20997686354a12e6fc1069f0">Function</a>.</p>
+<p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
-<p>References <a class="el" href="Surface_8H-source.html#l00076">usteps</a>, <a class="el" href="Surface_8H-source.html#l00076">vsteps</a>, <a class="el" href="Surface_8H-source.html#l00083">X</a>, and <a class="el" href="Surface_8H-source.html#l00083">Xtrans</a>.</p>
+<p>References <a class="el" href="Surface_8H-source.html#l00061">usteps</a>, <a class="el" href="Surface_8H-source.html#l00061">vsteps</a>, and <a class="el" href="Surface_8H-source.html#l00068">X</a>.</p>
 
 </div>
 </div><p>
@@ -443,9 +397,9 @@ projects a <a class="el" href="classSurface.html">Surface</a> into three-space <
   </table>
 </dl>
 
-<p>Reimplemented from <a class="el" href="classFunction.html#b6ca8a43af74c15ffbb805ecf6eba991">Function</a>.</p>
+<p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
-<p>References <a class="el" href="Surface_8H-source.html#l00087">B</a>, <a class="el" href="Surface_8H-source.html#l00087">G</a>, <a class="el" href="Surface_8H-source.html#l00087">R</a>, <a class="el" href="Surface_8H-source.html#l00076">usteps</a>, <a class="el" href="Surface_8H-source.html#l00076">vsteps</a>, <a class="el" href="Surface_8H-source.html#l00083">X</a>, <a class="el" href="Surface_8H-source.html#l00084">Xscr</a>, and <a class="el" href="Surface_8H-source.html#l00083">Xtrans</a>.</p>
+<p>References <a class="el" href="Surface_8H-source.html#l00072">R</a>, <a class="el" href="Surface_8H-source.html#l00061">usteps</a>, <a class="el" href="Surface_8H-source.html#l00061">vsteps</a>, and <a class="el" href="Surface_8H-source.html#l00068">X</a>.</p>
 
 </div>
 </div><p>
@@ -467,9 +421,9 @@ projects a <a class="el" href="classSurface.html">Surface</a> into three-space <
 
 <p>
 draw the projected <a class="el" href="classSurface.html">Surface</a> (onto screen or into GL list, as it is) 
-<p>Reimplemented from <a class="el" href="classFunction.html#6df36482216ff1965214feb5c8b43af9">Function</a>.</p>
+<p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
-<p>References <a class="el" href="Surface_8C-source.html#l00252">DrawStrip()</a>, <a class="el" href="Surface_8H-source.html#l00078">NumVertices</a>, and <a class="el" href="Surface_8H-source.html#l00076">usteps</a>.</p>
+<p>References <a class="el" href="Surface_8C-source.html#l00252">DrawStrip()</a>, and <a class="el" href="Surface_8H-source.html#l00061">usteps</a>.</p>
 
 </div>
 </div><p>
@@ -555,9 +509,9 @@ re-initialize a <a class="el" href="classSurface.html">Surface</a> if the defini
   </table>
 </dl>
 
-<p>Reimplemented from <a class="el" href="classFunction.html#26a5a6a2caaa847116f6e0074ecb5a61">Function</a>.</p>
+<p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
-<p>References <a class="el" href="Surface_8H-source.html#l00073">du</a>, <a class="el" href="Surface_8H-source.html#l00073">dv</a>, <a class="el" href="Surface_8C-source.html#l00077">Initialize()</a>, <a class="el" href="Surface_8H-source.html#l00073">umax</a>, <a class="el" href="Surface_8H-source.html#l00073">umin</a>, <a class="el" href="Surface_8H-source.html#l00076">usteps</a>, <a class="el" href="Surface_8H-source.html#l00073">vmax</a>, <a class="el" href="Surface_8H-source.html#l00073">vmin</a>, and <a class="el" href="Surface_8H-source.html#l00076">vsteps</a>.</p>
+<p>References <a class="el" href="Surface_8H-source.html#l00058">du</a>, <a class="el" href="Surface_8H-source.html#l00058">dv</a>, <a class="el" href="Surface_8C-source.html#l00077">Initialize()</a>, <a class="el" href="Surface_8H-source.html#l00058">umax</a>, <a class="el" href="Surface_8H-source.html#l00058">umin</a>, <a class="el" href="Surface_8H-source.html#l00061">usteps</a>, <a class="el" href="Surface_8H-source.html#l00058">vmax</a>, <a class="el" href="Surface_8H-source.html#l00058">vmin</a>, and <a class="el" href="Surface_8H-source.html#l00061">vsteps</a>.</p>
 
 </div>
 </div><p>
@@ -652,7 +606,7 @@ numerical calculation of the derivatives in u and v: <p class="formulaDsp">
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>gradient in t, u and v as array </dd></dl>
 
-<p>References <a class="el" href="Surface_8H-source.html#l00080">F</a>.</p>
+<p>References <a class="el" href="Surface_8H-source.html#l00065">F</a>, and <a class="el" href="Function_8H-source.html#l00237">SurfaceBase::operator()()</a>.</p>
 
 </div>
 </div><p>
@@ -673,13 +627,13 @@ numerical calculation of the derivatives in u and v: <p class="formulaDsp">
 <div class="memdoc">
 
 <p>
-allocate and initialize X[][] with values of <a class="el" href="classSurface.html#40ab0b084efb0b19abd4630294083c1a" title="The mathematical function defining the Function object.">f()</a> <br>
+allocate and initialize X[][] with values of <a class="el" href="classSurfaceBase.html#ba6ce6327e509663e484560f849d03f1" title="The mathematical function defining the Function object.">f()</a> <br>
  call InitMem () above 
-<p>Reimplemented from <a class="el" href="classFunction.html#bf3e9d2aac1920bc533040cdac3408d8">Function</a>.</p>
+<p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
 <p>Reimplemented in <a class="el" href="classComplexFunction.html#a978ff4b165e029bb82ba33dce35e4e3">ComplexFunction</a>.</p>
 
-<p>References <a class="el" href="Surface_8H-source.html#l00073">du</a>, <a class="el" href="Surface_8H-source.html#l00073">dv</a>, <a class="el" href="Surface_8H-source.html#l00061">f</a>, <a class="el" href="Surface_8C-source.html#l00058">InitMem()</a>, <a class="el" href="Surface_8H-source.html#l00073">umin</a>, <a class="el" href="Surface_8H-source.html#l00076">usteps</a>, <a class="el" href="Surface_8H-source.html#l00073">vmin</a>, <a class="el" href="Surface_8H-source.html#l00076">vsteps</a>, and <a class="el" href="Surface_8H-source.html#l00083">X</a>.</p>
+<p>References <a class="el" href="Surface_8H-source.html#l00058">du</a>, <a class="el" href="Surface_8H-source.html#l00058">dv</a>, <a class="el" href="classSurfaceBase.html#ba6ce6327e509663e484560f849d03f1">SurfaceBase::f()</a>, <a class="el" href="Surface_8C-source.html#l00058">InitMem()</a>, <a class="el" href="Surface_8H-source.html#l00058">umin</a>, <a class="el" href="Surface_8H-source.html#l00061">usteps</a>, <a class="el" href="Surface_8H-source.html#l00058">vmin</a>, <a class="el" href="Surface_8H-source.html#l00061">vsteps</a>, and <a class="el" href="Surface_8H-source.html#l00068">X</a>.</p>
 
 <p>Referenced by <a class="el" href="CustomFunction_8C-source.html#l00158">CustomSurface::CustomSurface()</a>, <a class="el" href="Surface_8C-source.html#l00317">Horizon::Horizon()</a>, <a class="el" href="Surface_8C-source.html#l00109">ReInit()</a>, <a class="el" href="Surface_8C-source.html#l00284">Surface1::Surface1()</a>, and <a class="el" href="Surface_8C-source.html#l00350">Torus3::Torus3()</a>.</p>
 
@@ -703,9 +657,7 @@ allocate and initialize X[][] with values of <a class="el" href="classSurface.ht
 
 <p>
 Initialize the temporary storage areas Xscr[][], Xtrans[][], R[][], G[][], B[][] 
-<p>Reimplemented from <a class="el" href="classFunction.html#e68730c6a5f0b882ee0b84bdae6674e3">Function</a>.</p>
-
-<p>References <a class="el" href="Surface_8H-source.html#l00087">B</a>, <a class="el" href="Surface_8H-source.html#l00087">G</a>, <a class="el" href="Surface_8H-source.html#l00087">R</a>, <a class="el" href="Surface_8H-source.html#l00076">usteps</a>, <a class="el" href="Surface_8H-source.html#l00076">vsteps</a>, <a class="el" href="Surface_8H-source.html#l00084">Xscr</a>, and <a class="el" href="Surface_8H-source.html#l00083">Xtrans</a>.</p>
+<p>References <a class="el" href="Surface_8H-source.html#l00072">R</a>, <a class="el" href="Surface_8H-source.html#l00061">usteps</a>, and <a class="el" href="Surface_8H-source.html#l00061">vsteps</a>.</p>
 
 <p>Referenced by <a class="el" href="Surface_8C-source.html#l00077">Initialize()</a>, and <a class="el" href="ComplexFunction_8C-source.html#l00039">ComplexFunction::Initialize()</a>.</p>
 
@@ -733,36 +685,7 @@ return the approximate amount of memory needed to display a <a class="el" href="
 
 <p>Reimplemented from <a class="el" href="classFunction.html#d6a10b999b0d561d36a473d461c62311">Function</a>.</p>
 
-<p>References <a class="el" href="Function_8H-source.html#l00164">Function::tsteps</a>, and <a class="el" href="Surface_8H-source.html#l00076">usteps</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="c892c3621a13bb30418c5b2d73763ea2"></a><!-- doxytag: member="Surface::DrawPlane" ref="c892c3621a13bb30418c5b2d73763ea2" args="(unsigned)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Surface::DrawPlane           </td>
-          <td>(</td>
-          <td class="paramtype">unsigned&nbsp;</td>
-          <td class="paramname"> <em>t</em>          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td width="100%"><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Draw the current plane of the projected <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a>. 
-<p>
-<dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>t</em>&nbsp;</td><td>current t value </td></tr>
-  </table>
-</dl>
-
-<p>Reimplemented from <a class="el" href="classFunction.html#ae2c2d21c48a7538d9326edad37fac18">Function</a>.</p>
+<p>References <a class="el" href="Function_8H-source.html#l00142">Function::tsteps</a>, and <a class="el" href="Surface_8H-source.html#l00061">usteps</a>.</p>
 
 </div>
 </div><p>
@@ -789,7 +712,7 @@ draw the current strip of the projected <a class="el" href="classSurface.html">S
   </table>
 </dl>
 
-<p>References <a class="el" href="Surface_8H-source.html#l00087">B</a>, <a class="el" href="Surface_8H-source.html#l00087">G</a>, <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="Surface_8H-source.html#l00078">NumVertices</a>, <a class="el" href="Surface_8H-source.html#l00087">R</a>, <a class="el" href="Surface_8H-source.html#l00076">vsteps</a>, and <a class="el" href="Surface_8H-source.html#l00084">Xscr</a>.</p>
+<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, <a class="el" href="Surface_8H-source.html#l00072">R</a>, and <a class="el" href="Surface_8H-source.html#l00061">vsteps</a>.</p>
 
 <p>Referenced by <a class="el" href="Surface_8C-source.html#l00242">Draw()</a>.</p>
 
@@ -818,58 +741,12 @@ calculate normal to function at a given point in definition set <br>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>surface normal, normalized </dd></dl>
 
-<p>Reimplemented from <a class="el" href="classFunction.html#e1712d8d5febc0e4ea0bcd65a9d04bab">Function</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="a4e58afa2b994b4a48e83b94f3fc7db7"></a><!-- doxytag: member="Surface::G" ref="a4e58afa2b994b4a48e83b94f3fc7db7" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classFunction.html#4c15e6200b99c8e333e0fc1859822b2c">floatvec2D</a> <a class="el" href="classSurface.html#a4e58afa2b994b4a48e83b94f3fc7db7">Surface::G</a><code> [protected]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-storage for the coloring of the vertices - red component 
-<p>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>turn these three arrays into a single array of Color's </dd></dl>
-
-<p>Reimplemented from <a class="el" href="classFunction.html#0bd63aff446ad45bca54b2998b53e74c">Function</a>.</p>
-
-<p>Referenced by <a class="el" href="Surface_8C-source.html#l00252">DrawStrip()</a>, <a class="el" href="Surface_8C-source.html#l00058">InitMem()</a>, and <a class="el" href="Surface_8C-source.html#l00209">Project()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="5820231eed7444889a2f82f6ee4ccc4b"></a><!-- doxytag: member="Surface::B" ref="5820231eed7444889a2f82f6ee4ccc4b" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classFunction.html#4c15e6200b99c8e333e0fc1859822b2c">floatvec2D</a> <a class="el" href="classSurface.html#5820231eed7444889a2f82f6ee4ccc4b">Surface::B</a><code> [protected]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-storage for the coloring of the vertices - red component 
-<p>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>turn these three arrays into a single array of Color's </dd></dl>
-
-<p>Reimplemented from <a class="el" href="classFunction.html#2186681b07fb49a64a97a23849a832f3">Function</a>.</p>
-
-<p>Referenced by <a class="el" href="Surface_8C-source.html#l00252">DrawStrip()</a>, <a class="el" href="Surface_8C-source.html#l00058">InitMem()</a>, and <a class="el" href="Surface_8C-source.html#l00209">Project()</a>.</p>
-
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="Surface_8H-source.html">Surface.H</a><li>workspace/HyperspaceExplorer/src/Functions/Surface.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon Mar 31 15:03:51 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Apr 4 21:03:21 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

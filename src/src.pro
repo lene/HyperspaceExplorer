@@ -24,7 +24,7 @@ HEADERS += Functions/Function.H Functions/ComplexFunction.H Functions/CustomFunc
            Functions/Object.H Functions/Surface.H \
            Functions/RealFunction.H
 #          Functions/SteinerFunction.H
-SOURCES += Functions/FunctionBase.C Functions/ComplexFunction.C Functions/CustomFunction.C \
+SOURCES += Functions/Function.C Functions/ComplexFunction.C Functions/CustomFunction.C \
            Functions/Surface.C Functions/Object.C \
            Functions/RealFunction.C
 #          Functions/SteinerFunction.C

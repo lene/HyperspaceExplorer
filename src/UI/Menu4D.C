@@ -34,36 +34,36 @@ Menu4D::Menu4D(C4DView *_parent):
     fcc = surfaces->addMenu("f: C -> C");
 
     insertAction(fr3r, "1/(r²+1)",
-                 new C4DView::TemplatedFunctionFactory<Fr3r>);
+                 new C4DView::TemplatedRealFunctionFactory<Fr3r>);
     insertAction(fr3r, "Gravitation Potential",
-                 new C4DView::TemplatedFunctionFactory<GravitationPotential>);
+                 new C4DView::TemplatedRealFunctionFactory<GravitationPotential>);
     insertAction(fr3r, "sin (r²)",
-                 new C4DView::TemplatedFunctionFactory<Fr3rSin>);
+                 new C4DView::TemplatedRealFunctionFactory<Fr3rSin>);
     insertAction(fr3r, "exp (r²)",
-                 new C4DView::TemplatedFunctionFactory<Fr3rExp>);
+                 new C4DView::TemplatedRealFunctionFactory<Fr3rExp>);
     insertAction(fr3r, "Custom function", SLOT(customFunction()));
 
     insertAction(fr3r, "Polar: r = sin (pi/3.*(t+u+v))",
-                 new C4DView::TemplatedFunctionFactory<PolarSin>);
+                 new C4DView::TemplatedRealFunctionFactory<PolarSin>);
     insertAction(fr3r, "Polar: r = 1/2+sin (Phase*pi*t*u*v)",
-                 new C4DView::TemplatedFunctionFactory<PolarSin2>);
+                 new C4DView::TemplatedRealFunctionFactory<PolarSin2>);
     insertAction(fr3r, "Polar: r = sqrt (t²+u²+v²)",
-                 new C4DView::TemplatedFunctionFactory<PolarR>);
+                 new C4DView::TemplatedRealFunctionFactory<PolarR>);
     insertAction(fr3r, "Custom polar function", SLOT(customPolarFunction()));
 
 //    insertAction(objects, "Hypersphere", SLOT(FunctionHypersphere()));
     insertAction(objects, "Hypersphere",
-                 new C4DView::TemplatedFunctionFactory<Hypersphere>);
+                 new C4DView::TemplatedRealFunctionFactory<Hypersphere>);
     insertAction(objects, "Hypercube", SLOT(ObjectHypercube()));
     insertAction(objects, "Hyperpyramid", SLOT(ObjectHyperpyramid()));
     insertAction(objects, "Menger Sponge", SLOT(ObjectHypersponge()));
     insertAction(objects, "Sierpinski Gasket", SLOT(ObjectGasket()));
 //    insertAction(objects, "Torus 1", SLOT(FunctionTorus1()));
     insertAction(objects, "Torus 1",
-                 new C4DView::TemplatedFunctionFactory<Torus1>);
+                 new C4DView::TemplatedRealFunctionFactory<Torus1>);
 //    insertAction(objects, "Torus 2", SLOT(FunctionTorus2()));
     insertAction(objects, "Torus 2",
-                 new C4DView::TemplatedFunctionFactory<Torus2>);
+                 new C4DView::TemplatedRealFunctionFactory<Torus2>);
 
     insertAction(surfaces, "Surface 1",
                  new C4DView::TemplatedSurfaceFactory<Surface1>);
@@ -189,7 +189,7 @@ QAction *Menu4D::insertAction(QMenu *_menu, const QString &title,
  *  @param title the title of the item
  *  @param checkable whether the menu item is checkable                       */
 QAction *Menu4D::insertAction(QMenu *_menu, const QString &title,
-                              FunctionFactory *factory,
+                              RealFunctionFactory *factory,
                               bool checkable) {
     QAction *tmp = _menu->addAction(title,
                                     new FunctionSlotHelper(parent, factory),
@@ -216,7 +216,7 @@ QAction *Menu4D::insertAction(QMenu *_menu, const QString &title,
     return tmp;
 }
 
-QAction *Menu4D::insertAction(QMenu *_menu, const FunctionBase *function,
+QAction *Menu4D::insertAction(QMenu *_menu, const Function *function,
                               const char *slot, bool checkable) {
     return insertAction(_menu, function->getFunctionName(), slot, checkable);
 }

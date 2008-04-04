@@ -17,7 +17,7 @@
 /** The type of the created Function is supplied as template parameter to the
  *  TemplatedFunctionFactory object owning this method.                       */
 template<class function>
-    RealFunction *C4DView::TemplatedFunctionFactory<function>::createFunction(
+    RealFunction *C4DView::TemplatedRealFunctionFactory<function>::createFunction(
         C4DView *view) {
         return new function (
             view->Values->tmin (), view->Values->tmax (), view->Values->dt (),

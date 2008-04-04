@@ -11,6 +11,7 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -64,9 +65,9 @@ Inheritance diagram for Gasket:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGasket.html#3cf2053ec1ffa7afc2c65973a5f3afbe">SetParameters</a> (double _a=0, double _b=0, double=0, double=0)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Placeholder for function to set parameters in descendants.  <a href="#3cf2053ec1ffa7afc2c65973a5f3afbe"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGasket.html#d4ff88db24102c117decfc8d4309489a">ReInit</a> (double, double, double, double, double, double, double, double, double)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d4ff88db24102c117decfc8d4309489a"></a><!-- doxytag: member="Gasket::ReInit" ref="d4ff88db24102c117decfc8d4309489a" args="(double, double, double, double, double, double, double, double, double)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>ReInit</b> (double, double, double, double, double, double, double, double, double)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Re-initialize a <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> if the definition set has changed.  <a href="#d4ff88db24102c117decfc8d4309489a"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGasket.html#1c1d1a1c6508a13532efd9b4618781e5">Initialize</a> ()</td></tr>
 
@@ -185,7 +186,7 @@ Transforms a <a class="el" href="classGasket.html" title="A four-dimensional ver
 
 <p>Reimplemented from <a class="el" href="classObject.html#325a0b66e653f67de1d26c35022cdaa5">Object</a>.</p>
 
-<p>References <a class="el" href="Function_8H-source.html#l00101">Function::Transform()</a>.</p>
+<p>References <a class="el" href="Function_8H-source.html#l00099">Function::Transform()</a>.</p>
 
 </div>
 </div><p>
@@ -304,96 +305,6 @@ Empty because a generic function has no parameters
 
 </div>
 </div><p>
-<a class="anchor" name="d4ff88db24102c117decfc8d4309489a"></a><!-- doxytag: member="Gasket::ReInit" ref="d4ff88db24102c117decfc8d4309489a" args="(double, double, double, double, double, double, double, double, double)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void Gasket::ReInit           </td>
-          <td>(</td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_tmin</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_tmax</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_dt</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_umin</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_umax</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_du</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_vmin</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_vmax</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_dv</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td width="100%"><code> [inline, virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Re-initialize a <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> if the definition set has changed. 
-<p>
-<dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>tmin</em>&nbsp;</td><td>minimal value in t </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>tmax</em>&nbsp;</td><td>maximal value in t </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>dt</em>&nbsp;</td><td>stepsize in t </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>umin</em>&nbsp;</td><td>minimal value in u </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>umax</em>&nbsp;</td><td>maximal value in u </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>du</em>&nbsp;</td><td>stepsize in u </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>vmin</em>&nbsp;</td><td>minimal value in v </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>vmax</em>&nbsp;</td><td>maximal value in v </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>dv</em>&nbsp;</td><td>stepsize in v </td></tr>
-  </table>
-</dl>
-
-<p>Reimplemented from <a class="el" href="classObject.html#cb280cacb700070c0cccd0bf35225102">Object</a>.</p>
-
-<p>References <a class="el" href="Object_8C-source.html#l00123">Object::ReInit()</a>.</p>
-
-</div>
-</div><p>
 <a class="anchor" name="1c1d1a1c6508a13532efd9b4618781e5"></a><!-- doxytag: member="Gasket::Initialize" ref="1c1d1a1c6508a13532efd9b4618781e5" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -417,7 +328,7 @@ This function actually creates the Sierpinski <a class="el" href="classGasket.ht
 
 <p>Reimplemented from <a class="el" href="classPyramid.html#dc837fa34b2f484a0c28da7210677db9">Pyramid</a>.</p>
 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="Object_8C-source.html#l00421">MemRequired()</a>.</p>
+<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, and <a class="el" href="Object_8C-source.html#l00421">MemRequired()</a>.</p>
 
 </div>
 </div><p>
@@ -438,7 +349,7 @@ This function actually creates the Sierpinski <a class="el" href="classGasket.ht
 <div class="memdoc">
 
 <p>
-return the approximate amount of memory needed to display a gasket of current level <dl compact><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>uses hardcoded and experimentally found value for memory per simplex </dd></dl>
+return the approximate amount of memory needed to display a gasket of current level <dl compact><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>uses hardcoded and experimentally found value for memory per simplex </dd></dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>approx. mem required </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classFunction.html#d6a10b999b0d561d36a473d461c62311">Function</a>.</p>
@@ -450,7 +361,7 @@ return the approximate amount of memory needed to display a gasket of current le
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="Object_8H-source.html">Object.H</a><li>workspace/HyperspaceExplorer/src/Functions/Object.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon Mar 31 15:03:51 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Apr 4 21:03:21 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

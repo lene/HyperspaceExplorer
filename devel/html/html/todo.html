@@ -11,62 +11,38 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
 </div>
 <div class="contents">
-<h1><a class="anchor" name="todo">Todo List </a></h1><a class="anchor" name="_todo000031"></a> <dl>
-<dt>Class <a class="el" href="classC4DView.html">C4DView</a>  </dt>
-<dd>move all menu slots into one (or a few) factory methods<p>
-</dd>
-</dl>
-<p>
-<a class="anchor" name="_todo000027"></a> <dl>
+<h1><a class="anchor" name="todo">Todo List </a></h1><a class="anchor" name="_todo000034"></a> <dl>
 <dt>Member <a class="el" href="classC4DView.html#f33c8cf03fcfc94d4c64f9f4454b0339">C4DView::RandomAnimation</a> () </dt>
 <dd>make hardcoded duration of rotation change frequency adjustable </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000027"></a> <dl>
+<a class="anchor" name="_todo000034"></a> <dl>
 <dt>Member <a class="el" href="classC4DView.html#f33c8cf03fcfc94d4c64f9f4454b0339">C4DView::RandomAnimation</a> () </dt>
 <dd>a menu entry for this </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000029"></a> <dl>
-<dt>Member <a class="el" href="classC4DView.html#d37702c9ecc5cbf124df84d0263734b9">C4DView::UpdateStatus</a> (QString="") </dt>
-<dd>Is this wise? </dd>
-</dl>
-<p>
-<a class="anchor" name="_todo000030"></a> <dl>
+<a class="anchor" name="_todo000036"></a> <dl>
 <dt>Member <a class="el" href="classC4DView.html#3c797ad72f10f9d43d720a45cd60509a">C4DView::initializeGL</a> (void) </dt>
 <dd>trying to check for rendering to file, but this doesn't work yet.<p>
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000006"></a> <dl>
-<dt>Member <a class="el" href="classFunction.html#81a830f022fb09e6bd07b4c6b67fd26c">Function::R</a>  </dt>
-<dd>turn these three arrays into a single array of Color's </dd>
-</dl>
-<p>
-<a class="anchor" name="_todo000007"></a> <dl>
-<dt>Member <a class="el" href="classFunction.html#0bd63aff446ad45bca54b2998b53e74c">Function::G</a>  </dt>
-<dd>turn these three arrays into a single array of Color's </dd>
-</dl>
-<p>
-<a class="anchor" name="_todo000008"></a> <dl>
-<dt>Member <a class="el" href="classFunction.html#2186681b07fb49a64a97a23849a832f3">Function::B</a>  </dt>
-<dd>turn these three arrays into a single array of Color's </dd>
+<a class="anchor" name="_todo000004"></a> <dl>
+<dt>Class <a class="el" href="classFunction.html">Function</a>  </dt>
+<dd>Vector &amp;normal (double, double, double); - or in derived classes? </dd>
 </dl>
 <p>
 <a class="anchor" name="_todo000004"></a> <dl>
-<dt>Member <a class="el" href="classFunction.html#72f006db20997686354a12e6fc1069f0">Function::Transform</a> (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw) </dt>
-<dd>As I look at it, i think this could be optimized by making the transformation matrices static and only canging the corresponding entries... but how to do this beautifully, i don't know </dd>
-</dl>
-<p>
-<a class="anchor" name="_todo000005"></a> <dl>
-<dt>Member <a class="el" href="classFunction.html#b6ca8a43af74c15ffbb805ecf6eba991">Function::Project</a> (double ScrW, double CamW, bool DepthCue4D) </dt>
-<dd>replace hardcoded function to calculate 4D fog color with better one </dd>
+<dt>Class <a class="el" href="classFunction.html">Function</a>  </dt>
+<dd>operator () (double t, double u, double v) - ditto<p>
+</dd>
 </dl>
 <p>
 <a class="anchor" name="_todo000002"></a> <dl>
@@ -79,22 +55,37 @@
 <dd>I don't think calling operator() is right. Call f()! </dd>
 </dl>
 <p>
+<a class="anchor" name="_todo000009"></a> <dl>
+<dt>Member <a class="el" href="classFunction.html#7e1d08b78b48b4be45772cec73b926ac">Function::df</a> (double, double, double) </dt>
+<dd>The h value is fixed and hardcoded. better approach, please! </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000009"></a> <dl>
+<dt>Member <a class="el" href="classFunction.html#7e1d08b78b48b4be45772cec73b926ac">Function::df</a> (double, double, double) </dt>
+<dd>I don't think calling operator() is right. Call f()! </dd>
+</dl>
+<p>
 <a class="anchor" name="_todo000001"></a> <dl>
 <dt>Member <a class="el" href="classFunction.html#d6a10b999b0d561d36a473d461c62311">Function::MemRequired</a> (void) </dt>
 <dd>uses hardcoded and experimentally found value for memory per cell </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000012"></a> <dl>
+<a class="anchor" name="_todo000008"></a> <dl>
+<dt>Member <a class="el" href="classFunction.html#d6a10b999b0d561d36a473d461c62311">Function::MemRequired</a> (void) </dt>
+<dd>uses hardcoded and experimentally found value for memory per cell </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000014"></a> <dl>
 <dt>Member <a class="el" href="classGasket.html#e65a8be228108ab1997e0cc80504aa56">Gasket::MemRequired</a> (void) </dt>
 <dd>uses hardcoded and experimentally found value for memory per simplex </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000017"></a> <dl>
+<a class="anchor" name="_todo000024"></a> <dl>
 <dt>Member <a class="el" href="classGlobal.html#fc415ad35cd5f1150223adc110af2abb">Global::setColor</a> (const <a class="el" href="classColor.html">Color</a> &amp;) </dt>
 <dd>make the agorithm which computes the ambient and specular values variable </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000021"></a> <dl>
+<a class="anchor" name="_todo000028"></a> <dl>
 <dt>Class <a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix&lt; D, N &gt;</a>  </dt>
 <dd>why does the 100 fold speed increase come and go? why does it only work for dimensions up to 4? <br>
  some clue: <br>
@@ -105,104 +96,141 @@
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000021"></a> <dl>
+<a class="anchor" name="_todo000028"></a> <dl>
 <dt>Class <a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix&lt; D, N &gt;</a>  </dt>
 <dd>a corresponding vector class and member function for transformation of vectors<p>
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000021"></a> <dl>
+<a class="anchor" name="_todo000028"></a> <dl>
 <dt>Class <a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix&lt; D, N &gt;</a>  </dt>
 <dd>const-correctness everywhere<p>
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000021"></a> <dl>
+<a class="anchor" name="_todo000028"></a> <dl>
 <dt>Class <a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix&lt; D, N &gt;</a>  </dt>
 <dd>templatize copy loop in <code>Matrix (const N a[D][D])</code><p>
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000021"></a> <dl>
+<a class="anchor" name="_todo000028"></a> <dl>
 <dt>Class <a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix&lt; D, N &gt;</a>  </dt>
 <dd>drop <code>D_</code> as template parameter for inner classes where possible <br>
  there is a problem with specializations in inner classes, which don't have any template parameters at all: </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000021"></a> <dl>
+<a class="anchor" name="_todo000028"></a> <dl>
 <dt>Class <a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix&lt; D, N &gt;</a>  </dt>
 <dd>specializations of inner classes - do they really have to be declared? (seems so)<br>
  whittle them down to the bare minimum anyways<p>
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000018"></a> <dl>
+<a class="anchor" name="_todo000025"></a> <dl>
 <dt>Member <a class="el" href="classVecMath_1_1Matrix.html#c9bb6064bbab4c97f65dbb89b25358a1">VecMath::Matrix::operator*</a> (const Vector&lt; D, N &gt; &amp;) </dt>
 <dd>use template metaprogramming here too </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000019"></a> <dl>
+<a class="anchor" name="_todo000026"></a> <dl>
 <dt>Member <a class="el" href="classVecMath_1_1Matrix.html#ca1a9a5285708e821b35db56226a1f77">VecMath::Matrix::print</a> () </dt>
 <dd>flexible output stream </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000019"></a> <dl>
+<a class="anchor" name="_todo000026"></a> <dl>
 <dt>Member <a class="el" href="classVecMath_1_1Matrix.html#ca1a9a5285708e821b35db56226a1f77">VecMath::Matrix::print</a> () </dt>
 <dd>flexible printing format </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000013"></a> <dl>
+<a class="anchor" name="_todo000015"></a> <dl>
 <dt>Member <a class="el" href="classObject.html#61ff801a10427bf1b8a8fb5ec9f9937d">Object::R</a>  </dt>
 <dd>turn these three arrays into a single array of Color's </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000014"></a> <dl>
+<a class="anchor" name="_todo000016"></a> <dl>
 <dt>Member <a class="el" href="classObject.html#770462e34d7856993a31aca7bcc71f94">Object::G</a>  </dt>
 <dd>turn these three arrays into a single array of Color's </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000015"></a> <dl>
+<a class="anchor" name="_todo000017"></a> <dl>
 <dt>Member <a class="el" href="classObject.html#3a5f711ad4ef87bb9a2c2c78199899d6">Object::B</a>  </dt>
 <dd>turn these three arrays into a single array of Color's </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000009"></a> <dl>
+<a class="anchor" name="_todo000011"></a> <dl>
 <dt>Member <a class="el" href="classObject.html#8404a4e0b7cddabbb14797c755c3daa8">Object::Project</a> (double ScrW, double CamW, bool DepthCue4D) </dt>
 <dd>change R[], G[], B[] into a single array of Color's </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000009"></a> <dl>
+<a class="anchor" name="_todo000011"></a> <dl>
 <dt>Member <a class="el" href="classObject.html#8404a4e0b7cddabbb14797c755c3daa8">Object::Project</a> (double ScrW, double CamW, bool DepthCue4D) </dt>
 <dd>uses hardcoded values! </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000033"></a> <dl>
+<a class="anchor" name="_todo000038"></a> <dl>
 <dt>Class <a class="el" href="classPluginCreator.html">PluginCreator</a>  </dt>
 <dd>set the function name to symbolic() in the descendants' constructors<p>
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000032"></a> <dl>
+<a class="anchor" name="_todo000037"></a> <dl>
 <dt>Member <a class="el" href="classPluginCreator.html#1c6920f6a1d27a1473fcabc18195eb5b">PluginCreator::compile</a> (QString) </dt>
 <dd>Might tweak the compilation flags a little, or make them variable </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000016"></a> <dl>
+<a class="anchor" name="_todo000006"></a> <dl>
+<dt>Class <a class="el" href="classRealBase.html">RealBase</a>  </dt>
+<dd>Vector &amp;normal (double, double, double); - or in base class?<p>
+</dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000021"></a> <dl>
+<dt>Member <a class="el" href="classRealFunction.html#cde2075b97cf67ceeefcfa3148bc707e">RealFunction::R</a>  </dt>
+<dd>turn these three arrays into a single array of Color's </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000022"></a> <dl>
+<dt>Member <a class="el" href="classRealFunction.html#99af055c93f9e7563adfa625fd667724">RealFunction::G</a>  </dt>
+<dd>turn these three arrays into a single array of Color's </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000023"></a> <dl>
+<dt>Member <a class="el" href="classRealFunction.html#fadc909693e918fe4453cfebbcb638a6">RealFunction::B</a>  </dt>
+<dd>turn these three arrays into a single array of Color's </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000019"></a> <dl>
+<dt>Member <a class="el" href="classRealFunction.html#ab400a3b8c445044007307fa295f1c89">RealFunction::Transform</a> (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw) </dt>
+<dd>As I look at it, i think this could be optimized by making the transformation matrices static and only canging the corresponding entries... but how to do this beautifully, i don't know </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000020"></a> <dl>
+<dt>Member <a class="el" href="classRealFunction.html#184141451489cdd8373a47acc9ec673e">RealFunction::Project</a> (double ScrW, double CamW, bool DepthCue4D) </dt>
+<dd>replace hardcoded function to calculate 4D fog color with better one </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000018"></a> <dl>
 <dt>Member <a class="el" href="classSponge.html#599e21656433097f9e7f2ac143a1dc7a">Sponge::List</a>  </dt>
 <dd>Use smart pointers instead of a simple pointer-to-object </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000011"></a> <dl>
+<a class="anchor" name="_todo000013"></a> <dl>
 <dt>Member <a class="el" href="classSponge.html#31290427d5599a4ea65e24b23427eeef">Sponge::MemRequired</a> (unsigned) </dt>
 <dd>uses hardcoded and experimentally found value for memory per hypercube </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000034"></a> <dl>
+<a class="anchor" name="_todo000007"></a> <dl>
+<dt>Class <a class="el" href="classSurfaceBase.html">SurfaceBase</a>  </dt>
+<dd>Vector &amp;normal (double, double); - or in base class?<p>
+</dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000039"></a> <dl>
 <dt>Member <a class="el" href="classXQGLWidget.html#26ff1c69c2921fcd7dbda3ba2e9cc146">XQGLWidget::InitLight</a> (void) </dt>
 <dd>hardcoded light position and colors! </dd>
 </dl>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon Mar 31 15:03:51 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Apr 4 21:03:20 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

@@ -11,6 +11,7 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="classes.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -29,107 +30,95 @@
 <a name="l00012"></a>00012 <span class="preprocessor"></span>
 <a name="l00013"></a>00013 <span class="preprocessor">#include "Function.H"</span>
 <a name="l00014"></a>00014 
-<a name="l00015"></a>00015 
-<a name="l00017"></a>00017 
-<a name="l00022"></a><a class="code" href="classSurface.html">00022</a> <span class="keyword">class </span><a class="code" href="classSurface.html">Surface</a>: <span class="keyword">public</span> <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> {
-<a name="l00023"></a>00023     <span class="keyword">public</span>:
-<a name="l00024"></a>00024 
-<a name="l00027"></a>00027         <span class="keyword">typedef</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;<a class="code" href="classSurface.html#6734aac8b6b055e83971ea054d1ddde1">function_type</a> (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>);
-<a name="l00029"></a>00029         <span class="keyword">typedef</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> <a class="code" href="classSurface.html#a55d5575266767939adf085244eab155" title="the real, raw type of the function used to generate values">raw_function_type</a> (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>);
-<a name="l00030"></a>00030 
-<a name="l00031"></a>00031         <a class="code" href="classSurface.html#8fc57f2a15292135c00545c9d224ec68">Surface</a>();
-<a name="l00032"></a>00032         <a class="code" href="classSurface.html#8fc57f2a15292135c00545c9d224ec68">Surface</a> (<span class="keyword">const</span> QString &amp;name,
-<a name="l00033"></a>00033                  <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00034"></a>00034                  <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00035"></a>00035         <span class="keyword">virtual</span> ~<a class="code" href="classSurface.html">Surface</a>() { }
+<a name="l00016"></a>00016 
+<a name="l00021"></a><a class="code" href="classSurface.html">00021</a> <span class="keyword">class </span><a class="code" href="classSurface.html">Surface</a>: <span class="keyword">public</span> <a class="code" href="classSurfaceBase.html" title="SurfaceBase provides a base class for functions which take two parameters">SurfaceBase</a> {
+<a name="l00022"></a>00022     <span class="keyword">public</span>:
+<a name="l00023"></a>00023         <a class="code" href="classSurface.html#8fc57f2a15292135c00545c9d224ec68">Surface</a>();
+<a name="l00024"></a>00024         <a class="code" href="classSurface.html#8fc57f2a15292135c00545c9d224ec68">Surface</a> (<span class="keyword">const</span> QString &amp;name,
+<a name="l00025"></a>00025                  <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00026"></a>00026                  <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00027"></a>00027         <span class="keyword">virtual</span> ~<a class="code" href="classSurface.html">Surface</a>() { }
+<a name="l00028"></a>00028 
+<a name="l00029"></a>00029         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSurface.html#ce4dec89d0480aa9c59b5d0bc578131e" title="Overloaded function executing the transform to the default state.">Transform</a> (<span class="keywordtype">double</span> Rxy, <span class="keywordtype">double</span> Rxz, <span class="keywordtype">double</span> Rxw,
+<a name="l00030"></a>00030                                 <span class="keywordtype">double</span> Ryz, <span class="keywordtype">double</span> Ryw, <span class="keywordtype">double</span> Rzw,
+<a name="l00031"></a>00031                                 <span class="keywordtype">double</span> Tx, <span class="keywordtype">double</span> Ty, <span class="keywordtype">double</span> Tz, <span class="keywordtype">double</span> Tw);
+<a name="l00032"></a><a class="code" href="classSurface.html#ce4dec89d0480aa9c59b5d0bc578131e">00032</a>         <span class="keywordtype">void</span> <a class="code" href="classSurface.html#ce4dec89d0480aa9c59b5d0bc578131e" title="Overloaded function executing the transform to the default state.">Transform</a> (<span class="keywordtype">void</span>) { <a class="code" href="classSurface.html#ce4dec89d0480aa9c59b5d0bc578131e" title="Overloaded function executing the transform to the default state.">Transform</a> (0, 0, 0, 0, 0, 0,  0, 0, 0, 0); }
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSurface.html#15e6f13147e522e15ddda573201926b1">Project</a> (<span class="keywordtype">double</span> ScrW, <span class="keywordtype">double</span> CamW, <span class="keywordtype">bool</span> DepthCue4D);
+<a name="l00035"></a>00035         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSurface.html#926508366b1255fa6ae5cbd5d400174a">Draw</a> (<span class="keywordtype">void</span>);
 <a name="l00036"></a>00036 
-<a name="l00037"></a>00037         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSurface.html#ce4dec89d0480aa9c59b5d0bc578131e" title="Overloaded function executing the transform to the default state.">Transform</a> (<span class="keywordtype">double</span> Rxy, <span class="keywordtype">double</span> Rxz, <span class="keywordtype">double</span> Rxw,
-<a name="l00038"></a>00038                                 <span class="keywordtype">double</span> Ryz, <span class="keywordtype">double</span> Ryw, <span class="keywordtype">double</span> Rzw,
-<a name="l00039"></a>00039                                 <span class="keywordtype">double</span> Tx, <span class="keywordtype">double</span> Ty, <span class="keywordtype">double</span> Tz, <span class="keywordtype">double</span> Tw);
-<a name="l00040"></a><a class="code" href="classSurface.html#ce4dec89d0480aa9c59b5d0bc578131e">00040</a>         <span class="keywordtype">void</span> <a class="code" href="classSurface.html#ce4dec89d0480aa9c59b5d0bc578131e" title="Overloaded function executing the transform to the default state.">Transform</a> (<span class="keywordtype">void</span>) { <a class="code" href="classSurface.html#ce4dec89d0480aa9c59b5d0bc578131e" title="Overloaded function executing the transform to the default state.">Transform</a> (0, 0, 0, 0, 0, 0,  0, 0, 0, 0); }
-<a name="l00041"></a>00041 
-<a name="l00042"></a>00042         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSurface.html#15e6f13147e522e15ddda573201926b1">Project</a> (<span class="keywordtype">double</span> ScrW, <span class="keywordtype">double</span> CamW, <span class="keywordtype">bool</span> DepthCue4D);
-<a name="l00043"></a>00043         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSurface.html#926508366b1255fa6ae5cbd5d400174a">Draw</a> (<span class="keywordtype">void</span>);
-<a name="l00044"></a>00044 
-<a name="l00045"></a>00045         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSurface.html#a6b958d909ace5cfc2347cb8082d3fdb">ReInit</a>(<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
-<a name="l00046"></a>00046                             <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00047"></a>00047                             <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00048"></a>00048 
-<a name="l00049"></a>00049         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSurface.html#580a0a8dc84fdc53152e20a41c576735">SetParameters</a> (<span class="keywordtype">double</span> _a = 0, <span class="keywordtype">double</span> _b = 0,
-<a name="l00050"></a>00050                                     <span class="keywordtype">double</span> _c = 0, <span class="keywordtype">double</span> _d = 0);
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052         <a class="code" href="classFunction.html#0c807fd0b7c98ca9c5052c15b3c817a3" title="two-dimensional array of Vector&amp;lt;4&amp;gt;, implemented as a nested std::vector">vec4vec2D</a> Data (<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> <a class="code" href="classSurface.html#d6ea34c0e91689a28144fc4959f3acc1" title="temporary storage for the function values on the grid">X</a>; }
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;operator () (<span class="keywordtype">double</span> u, <span class="keywordtype">double</span> v) {
-<a name="l00055"></a>00055             <span class="keywordtype">unsigned</span> iu = unsigned ((u-<a class="code" href="classSurface.html#d0c58ea4eaaa5a1b616f7630e10b9b5e" title="min. value of the second parameter, here called u">umin</a>)/<a class="code" href="classSurface.html#c939cc8c38972d3f6310e85bd57970a8" title="stepsize in second parameter">du</a>), iv = unsigned ((v-<a class="code" href="classSurface.html#7caf2e83204ffdec4b01a056c69a9d60" title="min. value of the third parameter, here called v">vmin</a>)/<a class="code" href="classSurface.html#a3a7fbf7f6f5c16bfe79b08324ea8ada" title="stepsize in third parameter">dv</a>);
-<a name="l00056"></a>00056             <span class="keywordflow">return</span> <a class="code" href="classSurface.html#d6ea34c0e91689a28144fc4959f3acc1" title="temporary storage for the function values on the grid">X</a>[iu][iv];
-<a name="l00057"></a>00057         }
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059     <span class="keyword">protected</span>:
-<a name="l00060"></a>00060          <span class="keyword">virtual</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;<a class="code" href="classSurface.html#40ab0b084efb0b19abd4630294083c1a" title="The mathematical function defining the Function object.">f</a> (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>,  <span class="keywordtype">double</span>) { <span class="keywordflow">return</span> <a class="code" href="classSurface.html#80d92e7d5fb9aaeff5b557b41b02978f" title="temporary storage for the value of the function at a given point">F</a>; }
-<a name="l00061"></a><a class="code" href="classSurface.html#40ab0b084efb0b19abd4630294083c1a">00061</a>          <span class="keyword">virtual</span> function_type <a class="code" href="classSurface.html#40ab0b084efb0b19abd4630294083c1a" title="The mathematical function defining the Function object.">f</a>  = 0;
-<a name="l00062"></a>00062          <span class="keyword">virtual</span> <a class="code" href="classFunction.html#67b6c27b652c41b419602713cd4d72b7" title="one-dimensional array of Vector&amp;lt;4&amp;gt;, implemented as a std::vector">vec4vec1D</a> <a class="code" href="classSurface.html#dc25dc3cc52c171fbd4ef38cb96a516a">df</a> (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>);
-<a name="l00063"></a><a class="code" href="classSurface.html#19a24f801227ea542d749f94cb3fa44d">00063</a>          <span class="keyword">virtual</span> function_type <a class="code" href="classSurface.html#19a24f801227ea542d749f94cb3fa44d">normal</a>;
+<a name="l00037"></a>00037         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSurface.html#a6b958d909ace5cfc2347cb8082d3fdb">ReInit</a>(<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
+<a name="l00038"></a>00038                             <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00039"></a>00039                             <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00040"></a>00040 
+<a name="l00041"></a>00041         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSurface.html#580a0a8dc84fdc53152e20a41c576735">SetParameters</a> (<span class="keywordtype">double</span> _a = 0, <span class="keywordtype">double</span> _b = 0,
+<a name="l00042"></a>00042                                     <span class="keywordtype">double</span> _c = 0, <span class="keywordtype">double</span> _d = 0);
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044         <a class="code" href="classFunction.html#0c807fd0b7c98ca9c5052c15b3c817a3" title="two-dimensional array of Vector&amp;lt;4&amp;gt;, implemented as a nested std::vector">vec4vec2D</a> Data (<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> <a class="code" href="classSurface.html#d6ea34c0e91689a28144fc4959f3acc1" title="temporary storage for the function values on the grid">X</a>; }
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046     <span class="keyword">protected</span>:
+<a name="l00047"></a>00047          <span class="keyword">virtual</span> <a class="code" href="classFunction.html#67b6c27b652c41b419602713cd4d72b7" title="one-dimensional array of Vector&amp;lt;4&amp;gt;, implemented as a std::vector">vec4vec1D</a> <a class="code" href="classSurface.html#dc25dc3cc52c171fbd4ef38cb96a516a">df</a> (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>);
+<a name="l00048"></a><a class="code" href="classSurface.html#19a24f801227ea542d749f94cb3fa44d">00048</a>          <span class="keyword">virtual</span> <a class="code" href="classSurfaceBase.html#02cf6fe2a88f04b0a81430b9050622f7">function_type</a> <a class="code" href="classSurface.html#19a24f801227ea542d749f94cb3fa44d">normal</a>;
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050          <span class="keywordtype">void</span> <a class="code" href="classSurface.html#e140ab69205e1a6a73459b9e22cda019">Initialize</a> (<span class="keywordtype">void</span>);
+<a name="l00051"></a>00051          <span class="keywordtype">void</span> <a class="code" href="classSurface.html#f77d456ed7b5d495f4a54978ab5f4acc">InitMem</a> (<span class="keywordtype">void</span>);
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053          <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="classSurface.html#185472961fe456f587c160c2cc6e8545">MemRequired</a> (<span class="keywordtype">void</span>);
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055          <span class="keywordtype">void</span> DrawPlane (<span class="keywordtype">unsigned</span>);
+<a name="l00056"></a>00056          <span class="keywordtype">void</span> <a class="code" href="classSurface.html#4b6eecac144cb1d0650d711727ecb540">DrawStrip</a> (<span class="keywordtype">unsigned</span>);
+<a name="l00057"></a>00057 
+<a name="l00058"></a><a class="code" href="classSurface.html#7caf2e83204ffdec4b01a056c69a9d60">00058</a>          <span class="keywordtype">double</span> <a class="code" href="classSurface.html#d0c58ea4eaaa5a1b616f7630e10b9b5e" title="min. value of the second parameter, here called u">umin</a>, <a class="code" href="classSurface.html#e69a5129b7739178c131550ff5738021" title="min. value of the second parameter, here called u">umax</a>, <a class="code" href="classSurface.html#c939cc8c38972d3f6310e85bd57970a8" title="stepsize in second parameter">du</a>,
+<a name="l00059"></a>00059                     <a class="code" href="classSurface.html#7caf2e83204ffdec4b01a056c69a9d60" title="min. value of the third parameter, here called v">vmin</a>, <a class="code" href="classSurface.html#c58ed3059e0d9e6bbb8a0665ee57f4a0" title="min. value of the third parameter, here called v">vmax</a>, <a class="code" href="classSurface.html#a3a7fbf7f6f5c16bfe79b08324ea8ada" title="stepsize in third parameter">dv</a>;
+<a name="l00060"></a>00060 
+<a name="l00061"></a><a class="code" href="classSurface.html#13e7593db4e6be501947add27c679d99">00061</a>          <span class="keywordtype">unsigned</span> <a class="code" href="classSurface.html#107f2d371027fc0b935086a23bb0f5bf" title="number of steps in u">usteps</a>, <a class="code" href="classSurface.html#13e7593db4e6be501947add27c679d99" title="number of steps in v">vsteps</a>;
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063          <span class="keywordtype">unsigned</span> NumVertices;
 <a name="l00064"></a>00064 
-<a name="l00065"></a>00065          <span class="keywordtype">void</span> <a class="code" href="classSurface.html#e140ab69205e1a6a73459b9e22cda019">Initialize</a> (<span class="keywordtype">void</span>);
-<a name="l00066"></a>00066          <span class="keywordtype">void</span> <a class="code" href="classSurface.html#f77d456ed7b5d495f4a54978ab5f4acc">InitMem</a> (<span class="keywordtype">void</span>);
-<a name="l00067"></a>00067 
-<a name="l00068"></a>00068          <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="classSurface.html#185472961fe456f587c160c2cc6e8545">MemRequired</a> (<span class="keywordtype">void</span>);
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070          <span class="keywordtype">void</span> <a class="code" href="classSurface.html#c892c3621a13bb30418c5b2d73763ea2" title="Draw the current plane of the projected Function.">DrawPlane</a> (<span class="keywordtype">unsigned</span>);
-<a name="l00071"></a>00071          <span class="keywordtype">void</span> <a class="code" href="classSurface.html#4b6eecac144cb1d0650d711727ecb540">DrawStrip</a> (<span class="keywordtype">unsigned</span>);
-<a name="l00072"></a>00072 
-<a name="l00073"></a><a class="code" href="classSurface.html#7caf2e83204ffdec4b01a056c69a9d60">00073</a>          <span class="keywordtype">double</span> <a class="code" href="classSurface.html#d0c58ea4eaaa5a1b616f7630e10b9b5e" title="min. value of the second parameter, here called u">umin</a>, <a class="code" href="classSurface.html#e69a5129b7739178c131550ff5738021" title="min. value of the second parameter, here called u">umax</a>, <a class="code" href="classSurface.html#c939cc8c38972d3f6310e85bd57970a8" title="stepsize in second parameter">du</a>,
-<a name="l00074"></a>00074                     <a class="code" href="classSurface.html#7caf2e83204ffdec4b01a056c69a9d60" title="min. value of the third parameter, here called v">vmin</a>, <a class="code" href="classSurface.html#c58ed3059e0d9e6bbb8a0665ee57f4a0" title="min. value of the third parameter, here called v">vmax</a>, <a class="code" href="classSurface.html#a3a7fbf7f6f5c16bfe79b08324ea8ada" title="stepsize in third parameter">dv</a>;
-<a name="l00075"></a>00075 
-<a name="l00076"></a><a class="code" href="classSurface.html#13e7593db4e6be501947add27c679d99">00076</a>          <span class="keywordtype">unsigned</span> <a class="code" href="classSurface.html#107f2d371027fc0b935086a23bb0f5bf" title="number of steps in u">usteps</a>, <a class="code" href="classSurface.html#13e7593db4e6be501947add27c679d99" title="number of steps in v">vsteps</a>;
-<a name="l00077"></a>00077 
-<a name="l00078"></a><a class="code" href="classSurface.html#2cf4c28a257ce73719c4280d4d6bcbf6">00078</a>          <span class="keywordtype">unsigned</span> <a class="code" href="classSurface.html#2cf4c28a257ce73719c4280d4d6bcbf6" title="counter for the number of GL vertices used drawing the function">NumVertices</a>;
-<a name="l00079"></a>00079 
-<a name="l00080"></a><a class="code" href="classSurface.html#80d92e7d5fb9aaeff5b557b41b02978f">00080</a>          <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> <a class="code" href="classSurface.html#80d92e7d5fb9aaeff5b557b41b02978f" title="temporary storage for the value of the function at a given point">F</a>;
-<a name="l00081"></a>00081 
-<a name="l00083"></a><a class="code" href="classSurface.html#958a812babb443ccda9b2ba1dda19b9a">00083</a>          <a class="code" href="classFunction.html#0c807fd0b7c98ca9c5052c15b3c817a3" title="two-dimensional array of Vector&amp;lt;4&amp;gt;, implemented as a nested std::vector">vec4vec2D</a> <a class="code" href="classSurface.html#d6ea34c0e91689a28144fc4959f3acc1" title="temporary storage for the function values on the grid">X</a>, <a class="code" href="classSurface.html#958a812babb443ccda9b2ba1dda19b9a" title="temporary storage for transformed function values">Xtrans</a>;
-<a name="l00084"></a><a class="code" href="classSurface.html#0d4e87cf750c15554d39725baca6896e">00084</a>          <a class="code" href="classFunction.html#9f46be8d00fa46a28bbd9165074510bb" title="two-dimensional array of Vector&amp;lt;3&amp;gt;, implemented as a nested std::vector">vec3vec2D</a> <a class="code" href="classSurface.html#0d4e87cf750c15554d39725baca6896e" title="temporary storage for projected function values">Xscr</a>;
-<a name="l00085"></a>00085 
-<a name="l00087"></a><a class="code" href="classSurface.html#edae59b363aec7bc66a7e4ba1d6b2328">00087</a>          <a class="code" href="classFunction.html#4c15e6200b99c8e333e0fc1859822b2c" title="two-dimensional array of floats, implemented as a nested std::vector">floatvec2D</a> <a class="code" href="classSurface.html#edae59b363aec7bc66a7e4ba1d6b2328" title="storage for the coloring of the vertices">R</a>, <a class="code" href="classSurface.html#a4e58afa2b994b4a48e83b94f3fc7db7" title="storage for the coloring of the vertices - red component">G</a>, <a class="code" href="classSurface.html#5820231eed7444889a2f82f6ee4ccc4b" title="storage for the coloring of the vertices - red component">B</a>;
-<a name="l00088"></a>00088 };
+<a name="l00065"></a><a class="code" href="classSurface.html#80d92e7d5fb9aaeff5b557b41b02978f">00065</a>          <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> <a class="code" href="classSurface.html#80d92e7d5fb9aaeff5b557b41b02978f" title="temporary storage for the value of the function at a given point">F</a>;
+<a name="l00066"></a>00066 
+<a name="l00068"></a><a class="code" href="classSurface.html#d6ea34c0e91689a28144fc4959f3acc1">00068</a>          <a class="code" href="classFunction.html#0c807fd0b7c98ca9c5052c15b3c817a3" title="two-dimensional array of Vector&amp;lt;4&amp;gt;, implemented as a nested std::vector">vec4vec2D</a> <a class="code" href="classSurface.html#d6ea34c0e91689a28144fc4959f3acc1" title="temporary storage for the function values on the grid">X</a>, Xtrans;
+<a name="l00069"></a>00069          <a class="code" href="classFunction.html#9f46be8d00fa46a28bbd9165074510bb" title="two-dimensional array of Vector&amp;lt;3&amp;gt;, implemented as a nested std::vector">vec3vec2D</a> Xscr;
+<a name="l00070"></a>00070 
+<a name="l00072"></a><a class="code" href="classSurface.html#edae59b363aec7bc66a7e4ba1d6b2328">00072</a>          <a class="code" href="classFunction.html#4c15e6200b99c8e333e0fc1859822b2c" title="two-dimensional array of floats, implemented as a nested std::vector">floatvec2D</a> <a class="code" href="classSurface.html#edae59b363aec7bc66a7e4ba1d6b2328" title="storage for the coloring of the vertices">R</a>, G, B;
+<a name="l00073"></a>00073 };
+<a name="l00074"></a>00074 
+<a name="l00083"></a><a class="code" href="classSurface1.html">00083</a> <span class="keyword">class </span><a class="code" href="classSurface1.html">Surface1</a>: <span class="keyword">public</span> <a class="code" href="classSurface.html">Surface</a> {
+<a name="l00084"></a>00084 <span class="keyword">public</span>:
+<a name="l00085"></a>00085     <a class="code" href="classSurface1.html#86c0983ef9c5c527244d2bac298c9210">Surface1</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00086"></a>00086               <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00087"></a>00087     <span class="keyword">virtual</span> ~<a class="code" href="classSurface1.html">Surface1</a>() { }
+<a name="l00088"></a><a class="code" href="classSurface1.html#6eb55c84c5e9bdc7eeaa2b3931254639">00088</a>     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSurface1.html#6eb55c84c5e9bdc7eeaa2b3931254639">SetParameters</a> (<span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0) { }
 <a name="l00089"></a>00089 
-<a name="l00098"></a><a class="code" href="classSurface1.html">00098</a> <span class="keyword">class </span><a class="code" href="classSurface1.html">Surface1</a>: <span class="keyword">public</span> <a class="code" href="classSurface.html">Surface</a> {
-<a name="l00099"></a>00099 <span class="keyword">public</span>:
-<a name="l00100"></a>00100     <a class="code" href="classSurface1.html#86c0983ef9c5c527244d2bac298c9210">Surface1</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00101"></a>00101               <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00102"></a>00102     <span class="keyword">virtual</span> ~<a class="code" href="classSurface1.html">Surface1</a>() { }
-<a name="l00103"></a><a class="code" href="classSurface1.html#6eb55c84c5e9bdc7eeaa2b3931254639">00103</a>     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSurface1.html#6eb55c84c5e9bdc7eeaa2b3931254639">SetParameters</a> (<span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0) { }
-<a name="l00104"></a>00104 
-<a name="l00105"></a>00105 <span class="keyword">protected</span>:
-<a name="l00106"></a><a class="code" href="classSurface1.html#cc2a2a6e0c8a13269315cb2ffac50579">00106</a>     <span class="keyword">virtual</span> function_type <a class="code" href="classSurface1.html#cc2a2a6e0c8a13269315cb2ffac50579">f</a>;
-<a name="l00107"></a>00107 };
-<a name="l00108"></a>00108 
-<a name="l00120"></a><a class="code" href="classHorizon.html">00120</a> <span class="keyword">class </span><a class="code" href="classHorizon.html">Horizon</a>: <span class="keyword">public</span> <a class="code" href="classSurface.html">Surface</a> {
-<a name="l00121"></a>00121 <span class="keyword">public</span>:
-<a name="l00122"></a>00122     <a class="code" href="classHorizon.html#87fb6007c4b29aecdd664efa56ae9647">Horizon</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00123"></a>00123              <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00124"></a>00124     <span class="keyword">virtual</span> ~<a class="code" href="classHorizon.html">Horizon</a> () { }
-<a name="l00125"></a><a class="code" href="classHorizon.html#0c491c1d64aea3eb792222bdb77fa152">00125</a>     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classHorizon.html#0c491c1d64aea3eb792222bdb77fa152">SetParameters</a> (<span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0) { }
-<a name="l00126"></a>00126 
-<a name="l00127"></a>00127 <span class="keyword">protected</span>:
-<a name="l00128"></a><a class="code" href="classHorizon.html#579fa87ed4a96626c0a68238aa23e081">00128</a>     <span class="keyword">virtual</span> function_type <a class="code" href="classHorizon.html#579fa87ed4a96626c0a68238aa23e081">f</a>;
-<a name="l00129"></a>00129 };
-<a name="l00130"></a>00130 
-<a name="l00134"></a><a class="code" href="classTorus3.html">00134</a> <span class="keyword">class </span><a class="code" href="classTorus3.html">Torus3</a>: <span class="keyword">public</span> <a class="code" href="classSurface.html">Surface</a> {
-<a name="l00135"></a>00135 <span class="keyword">public</span>:
-<a name="l00136"></a>00136     <a class="code" href="classTorus3.html#4109e686fa418cf2b0831d23bf58fa78">Torus3</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00137"></a>00137             <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00138"></a>00138     <span class="keyword">virtual</span> ~<a class="code" href="classTorus3.html">Torus3</a> () { }
-<a name="l00139"></a><a class="code" href="classTorus3.html#3973f9361c1de567826e5501ad37ebab">00139</a>     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classTorus3.html#3973f9361c1de567826e5501ad37ebab">SetParameters</a> (<span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0) { }
-<a name="l00140"></a>00140 
-<a name="l00141"></a>00141 <span class="keyword">protected</span>:
-<a name="l00142"></a><a class="code" href="classTorus3.html#4b7e1986731243f42ba630be199a3327">00142</a>     <span class="keyword">virtual</span> function_type <a class="code" href="classTorus3.html#4b7e1986731243f42ba630be199a3327">f</a>;
-<a name="l00143"></a>00143 };
-<a name="l00144"></a>00144 
-<a name="l00145"></a>00145 <span class="preprocessor">#endif</span>
+<a name="l00090"></a>00090 <span class="keyword">protected</span>:
+<a name="l00091"></a><a class="code" href="classSurface1.html#cc2a2a6e0c8a13269315cb2ffac50579">00091</a>     <span class="keyword">virtual</span> <a class="code" href="classSurfaceBase.html#02cf6fe2a88f04b0a81430b9050622f7">function_type</a> <a class="code" href="classSurface1.html#cc2a2a6e0c8a13269315cb2ffac50579">f</a>;
+<a name="l00092"></a>00092 };
+<a name="l00093"></a>00093 
+<a name="l00105"></a><a class="code" href="classHorizon.html">00105</a> <span class="keyword">class </span><a class="code" href="classHorizon.html">Horizon</a>: <span class="keyword">public</span> <a class="code" href="classSurface.html">Surface</a> {
+<a name="l00106"></a>00106 <span class="keyword">public</span>:
+<a name="l00107"></a>00107     <a class="code" href="classHorizon.html#87fb6007c4b29aecdd664efa56ae9647">Horizon</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00108"></a>00108              <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00109"></a>00109     <span class="keyword">virtual</span> ~<a class="code" href="classHorizon.html">Horizon</a> () { }
+<a name="l00110"></a><a class="code" href="classHorizon.html#0c491c1d64aea3eb792222bdb77fa152">00110</a>     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classHorizon.html#0c491c1d64aea3eb792222bdb77fa152">SetParameters</a> (<span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0) { }
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112 <span class="keyword">protected</span>:
+<a name="l00113"></a><a class="code" href="classHorizon.html#579fa87ed4a96626c0a68238aa23e081">00113</a>     <span class="keyword">virtual</span> <a class="code" href="classSurfaceBase.html#02cf6fe2a88f04b0a81430b9050622f7">function_type</a> <a class="code" href="classHorizon.html#579fa87ed4a96626c0a68238aa23e081">f</a>;
+<a name="l00114"></a>00114 };
+<a name="l00115"></a>00115 
+<a name="l00119"></a><a class="code" href="classTorus3.html">00119</a> <span class="keyword">class </span><a class="code" href="classTorus3.html">Torus3</a>: <span class="keyword">public</span> <a class="code" href="classSurface.html">Surface</a> {
+<a name="l00120"></a>00120 <span class="keyword">public</span>:
+<a name="l00121"></a>00121     <a class="code" href="classTorus3.html#4109e686fa418cf2b0831d23bf58fa78">Torus3</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00122"></a>00122             <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00123"></a>00123     <span class="keyword">virtual</span> ~<a class="code" href="classTorus3.html">Torus3</a> () { }
+<a name="l00124"></a><a class="code" href="classTorus3.html#3973f9361c1de567826e5501ad37ebab">00124</a>     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classTorus3.html#3973f9361c1de567826e5501ad37ebab">SetParameters</a> (<span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0) { }
+<a name="l00125"></a>00125 
+<a name="l00126"></a>00126 <span class="keyword">protected</span>:
+<a name="l00127"></a><a class="code" href="classTorus3.html#4b7e1986731243f42ba630be199a3327">00127</a>     <span class="keyword">virtual</span> <a class="code" href="classSurfaceBase.html#02cf6fe2a88f04b0a81430b9050622f7">function_type</a> <a class="code" href="classTorus3.html#4b7e1986731243f42ba630be199a3327">f</a>;
+<a name="l00128"></a>00128 };
+<a name="l00129"></a>00129 
+<a name="l00130"></a>00130 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon Mar 31 15:03:50 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Apr 4 21:03:20 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

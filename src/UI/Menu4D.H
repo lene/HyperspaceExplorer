@@ -8,8 +8,8 @@
 class QString;
 class QMenuBar;
 class C4DView;
-class FunctionBase;
-class FunctionFactory;
+class Function;
+class RealFunctionFactory;
 class SurfaceFactory;
 
 /** The menu for the C4DView. \n
@@ -34,10 +34,10 @@ class Menu4D: public QMenu {
         QAction *insertAction(QMenu *, const QString &, const char *,
                               bool = true);
         QAction *insertAction(QMenu *, const QString &,
-                              FunctionFactory *, bool = true);
+                              RealFunctionFactory *, bool = true);
         QAction *insertAction(QMenu *, const QString &,
                               SurfaceFactory *, bool = true);
-        QAction *insertAction(QMenu *_menu, const FunctionBase *function,
+        QAction *insertAction(QMenu *_menu, const Function *function,
                                  const char *slot, bool checkable = true);
         C4DView *parent;
         QMenu *functions, *appear, *animation, *help,

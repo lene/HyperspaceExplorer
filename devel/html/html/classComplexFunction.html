@@ -11,6 +11,7 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -36,24 +37,25 @@ Inheritance diagram for ComplexFunction:</div>
 
 <p><center><img src="classComplexFunction.png" usemap="#ComplexFunction_map" border="0" alt=""></center>
 <map name="ComplexFunction_map">
-<area href="classSurface.html" alt="Surface" shape="rect" coords="0,56,150,80">
+<area href="classSurface.html" alt="Surface" shape="rect" coords="0,112,150,136">
+<area href="classSurfaceBase.html" alt="SurfaceBase" shape="rect" coords="0,56,150,80">
 <area href="classFunction.html" alt="Function" shape="rect" coords="0,0,150,24">
-<area href="classcoshz.html" alt="coshz" shape="rect" coords="160,168,310,192">
-<area href="classcosz.html" alt="cosz" shape="rect" coords="160,224,310,248">
-<area href="classCustomComplexFunction.html" alt="CustomComplexFunction" shape="rect" coords="160,280,310,304">
-<area href="classemz2.html" alt="emz2" shape="rect" coords="160,336,310,360">
-<area href="classez.html" alt="ez" shape="rect" coords="160,392,310,416">
-<area href="classlnz.html" alt="lnz" shape="rect" coords="160,448,310,472">
-<area href="classPolynomial.html" alt="Polynomial" shape="rect" coords="160,504,310,528">
-<area href="classsinhz.html" alt="sinhz" shape="rect" coords="160,560,310,584">
-<area href="classsinz.html" alt="sinz" shape="rect" coords="160,616,310,640">
-<area href="classsqrtz.html" alt="sqrtz" shape="rect" coords="160,672,310,696">
-<area href="classtanz.html" alt="tanz" shape="rect" coords="160,728,310,752">
-<area href="classz2.html" alt="z2" shape="rect" coords="160,784,310,808">
-<area href="classz3.html" alt="z3" shape="rect" coords="160,840,310,864">
-<area href="classzA.html" alt="zA" shape="rect" coords="160,896,310,920">
-<area href="classzm1.html" alt="zm1" shape="rect" coords="160,952,310,976">
-<area href="classzm2.html" alt="zm2" shape="rect" coords="160,1008,310,1032">
+<area href="classcoshz.html" alt="coshz" shape="rect" coords="160,224,310,248">
+<area href="classcosz.html" alt="cosz" shape="rect" coords="160,280,310,304">
+<area href="classCustomComplexFunction.html" alt="CustomComplexFunction" shape="rect" coords="160,336,310,360">
+<area href="classemz2.html" alt="emz2" shape="rect" coords="160,392,310,416">
+<area href="classez.html" alt="ez" shape="rect" coords="160,448,310,472">
+<area href="classlnz.html" alt="lnz" shape="rect" coords="160,504,310,528">
+<area href="classPolynomial.html" alt="Polynomial" shape="rect" coords="160,560,310,584">
+<area href="classsinhz.html" alt="sinhz" shape="rect" coords="160,616,310,640">
+<area href="classsinz.html" alt="sinz" shape="rect" coords="160,672,310,696">
+<area href="classsqrtz.html" alt="sqrtz" shape="rect" coords="160,728,310,752">
+<area href="classtanz.html" alt="tanz" shape="rect" coords="160,784,310,808">
+<area href="classz2.html" alt="z2" shape="rect" coords="160,840,310,864">
+<area href="classz3.html" alt="z3" shape="rect" coords="160,896,310,920">
+<area href="classzA.html" alt="zA" shape="rect" coords="160,952,310,976">
+<area href="classzm1.html" alt="zm1" shape="rect" coords="160,1008,310,1032">
+<area href="classzm2.html" alt="zm2" shape="rect" coords="160,1064,310,1088">
 </map>
 </div>
 
@@ -263,7 +265,9 @@ placeholder for function to set parameters in descendants - empty because generi
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>value of defining function at point in question </dd></dl>
 
-<p>References <a class="el" href="Surface_8H-source.html#l00080">Surface::F</a>.</p>
+<p>Implements <a class="el" href="classSurfaceBase.html#ba6ce6327e509663e484560f849d03f1">SurfaceBase</a>.</p>
+
+<p>References <a class="el" href="Surface_8H-source.html#l00065">Surface::F</a>.</p>
 
 <p>Referenced by <a class="el" href="ComplexFunction_8C-source.html#l00039">Initialize()</a>.</p>
 
@@ -289,7 +293,7 @@ placeholder for function to set parameters in descendants - empty because generi
 allocate and initialize X[][] with values of <a class="el" href="classComplexFunction.html#234485506b16d03867c20e8e8d7e0b21">f()</a> call <a class="el" href="classSurface.html#f77d456ed7b5d495f4a54978ab5f4acc">Surface::InitMem</a> () 
 <p>Reimplemented from <a class="el" href="classSurface.html#e140ab69205e1a6a73459b9e22cda019">Surface</a>.</p>
 
-<p>References <a class="el" href="Surface_8H-source.html#l00073">Surface::du</a>, <a class="el" href="Surface_8H-source.html#l00073">Surface::dv</a>, <a class="el" href="ComplexFunction_8C-source.html#l00057">f()</a>, <a class="el" href="Surface_8C-source.html#l00058">Surface::InitMem()</a>, <a class="el" href="Surface_8H-source.html#l00073">Surface::umin</a>, <a class="el" href="Surface_8H-source.html#l00076">Surface::usteps</a>, <a class="el" href="Surface_8H-source.html#l00073">Surface::vmin</a>, <a class="el" href="Surface_8H-source.html#l00076">Surface::vsteps</a>, and <a class="el" href="Surface_8H-source.html#l00083">Surface::X</a>.</p>
+<p>References <a class="el" href="Surface_8H-source.html#l00058">Surface::du</a>, <a class="el" href="Surface_8H-source.html#l00058">Surface::dv</a>, <a class="el" href="ComplexFunction_8C-source.html#l00057">f()</a>, <a class="el" href="Surface_8C-source.html#l00058">Surface::InitMem()</a>, <a class="el" href="Surface_8H-source.html#l00058">Surface::umin</a>, <a class="el" href="Surface_8H-source.html#l00061">Surface::usteps</a>, <a class="el" href="Surface_8H-source.html#l00058">Surface::vmin</a>, <a class="el" href="Surface_8H-source.html#l00061">Surface::vsteps</a>, and <a class="el" href="Surface_8H-source.html#l00068">Surface::X</a>.</p>
 
 <p>Referenced by <a class="el" href="ComplexFunction_8C-source.html#l00385">coshz::coshz()</a>, <a class="el" href="ComplexFunction_8C-source.html#l00337">cosz::cosz()</a>, <a class="el" href="CustomFunction_8C-source.html#l00124">CustomComplexFunction::CustomComplexFunction()</a>, <a class="el" href="ComplexFunction_8C-source.html#l00178">emz2::emz2()</a>, <a class="el" href="ComplexFunction_8C-source.html#l00150">ez::ez()</a>, <a class="el" href="ComplexFunction_8C-source.html#l00285">lnz::lnz()</a>, <a class="el" href="ComplexFunction_8C-source.html#l00361">sinhz::sinhz()</a>, <a class="el" href="ComplexFunction_8C-source.html#l00311">sinz::sinz()</a>, <a class="el" href="ComplexFunction_8C-source.html#l00259">sqrtz::sqrtz()</a>, <a class="el" href="ComplexFunction_8C-source.html#l00409">tanz::tanz()</a>, <a class="el" href="ComplexFunction_8C-source.html#l00076">z2::z2()</a>, <a class="el" href="ComplexFunction_8C-source.html#l00099">z3::z3()</a>, <a class="el" href="ComplexFunction_8C-source.html#l00123">zA::zA()</a>, <a class="el" href="ComplexFunction_8C-source.html#l00207">zm1::zm1()</a>, and <a class="el" href="ComplexFunction_8C-source.html#l00233">zm2::zm2()</a>.</p>
 
@@ -298,7 +302,7 @@ allocate and initialize X[][] with values of <a class="el" href="classComplexFun
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="ComplexFunction_8H-source.html">ComplexFunction.H</a><li>workspace/HyperspaceExplorer/src/Functions/ComplexFunction.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon Mar 31 15:03:51 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Apr 4 21:03:21 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

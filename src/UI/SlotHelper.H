@@ -15,7 +15,7 @@
 
 #include "4DView.H"
 
-class FunctionFactory;
+class RealFunctionFactory;
 class SurfaceFactory;
 
 /// Single-stop slot for menu QActions generating Function objects
@@ -34,7 +34,7 @@ class SurfaceFactory;
 class FunctionSlotHelper: public QObject {
     Q_OBJECT
     public:
-        FunctionSlotHelper(C4DView *_view, FunctionFactory *ff):
+        FunctionSlotHelper(C4DView *_view, RealFunctionFactory *ff):
             view(_view),functionFactory(ff) {}              ///< Construction
         ~FunctionSlotHelper() { delete functionFactory; }   ///< Cleanup
     public slots:
@@ -43,7 +43,7 @@ class FunctionSlotHelper: public QObject {
         /// The C4DView which wants to instantiate Function's
         C4DView* view;
         /// The factory object creating Function's in createFunction()
-        FunctionFactory *functionFactory;
+        RealFunctionFactory *functionFactory;
 };
 
 /// Single-stop slot for menu QActions generating Surface objects
