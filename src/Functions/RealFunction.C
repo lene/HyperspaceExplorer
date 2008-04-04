@@ -25,7 +25,7 @@ using std::endl;
 using VecMath::Vector;
 using VecMath::Matrix;
 
-/** Function c'tor given a definition set in R³ (as parameter space)
+/** RealFunction c'tor given a definition set in R³ (as parameter space)
  *  @param name a name for the function
  *  @param _tmin minimal value in t
  *  @param _tmax maximal value in t
@@ -112,7 +112,7 @@ void RealFunction::Initialize () {
 
 
 
-/// Re-initialize a Function if the definition set has changed
+/// Re-initialize a RealFunction if the definition set has changed
 /** @param tmin minimal value in t
  *  @param tmax maximal value in t
  *  @param dt stepsize in t
@@ -138,7 +138,7 @@ void RealFunction::ReInit(double _tmin, double _tmax, double _dt,
 }
 
 
-/// Transforms a Function
+/// Transforms a RealFunction
 /** \todo As I look at it, i think this could be optimized by making the
  *        transformation matrices static and only canging the corresponding
  *        entries... but how to do this beautifully, i don't know
@@ -232,7 +232,7 @@ void RealFunction::Draw (void) {
 Vector<4> &RealFunction::normal (double tt, double uu, double vv) {
     static Vector<4> n;
 
-    FunctionBase::vec4vec1D D = df (tt, uu, vv);
+    Function::vec4vec1D D = df (tt, uu, vv);
 
     n = VecMath::vcross (D[0], D[1], D[2]);
     VecMath::vnormalize (n);

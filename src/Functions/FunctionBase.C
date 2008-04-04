@@ -22,7 +22,7 @@ using VecMath::Vector;
 
 /// Function default c'tor
 /** Zeroes everything       */
-FunctionBase::FunctionBase ():
+Function::Function ():
     tmin (0),       tmax (0),       dt (0),
     umin (0),       umax (0),       du (0),
     vmin (0),       vmax (0),       dv (0),
@@ -43,7 +43,7 @@ FunctionBase::FunctionBase ():
  *  @param _vmin minimal value in v
  *  @param _vmax maximal value in v
  *  @param _dv stepsize in v                                                  */
-FunctionBase::FunctionBase (const QString &name,
+Function::Function (const QString &name,
                             double _tmin, double _tmax, double _dt,
                             double _umin, double _umax, double _du,
                             double _vmin, double _vmax, double _dv):
@@ -73,13 +73,13 @@ FunctionBase::FunctionBase (const QString &name,
 
 /// Placeholder for function to set parameters in descendants
 /** Empty because a generic function has no parameters                        */
-void FunctionBase::SetParameters (double, double, double, double) { }
+void Function::SetParameters (double, double, double, double) { }
 
 /// Return the approximate amount of memory needed to display a Function of
 /// current definition set
 /** \todo uses hardcoded and experimentally found value for memory per cell
  *  @return approx. mem required                                              */
-unsigned long FunctionBase::MemRequired (void) {
+unsigned long Function::MemRequired (void) {
   return ((tsteps+2)*(usteps+2)*(vsteps+2)*4)/1024+8;
 }
 
@@ -97,11 +97,11 @@ unsigned long FunctionBase::MemRequired (void) {
  *  @param uu u value
  *  @param vv v value
  *  @return gradient in t, u and v as array                                   */
-FunctionBase::vec4vec1D FunctionBase::df (double tt, double uu, double vv) {
+Function::vec4vec1D Function::df (double tt, double uu, double vv) {
 
     static Vector<4> F0;                //  f (u, v)
     static double h = 1e-5;
-    static FunctionBase::vec4vec1D DF(3);
+    static Function::vec4vec1D DF(3);
 
     F0 = operator () (tt, uu, vv);
 

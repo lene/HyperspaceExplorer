@@ -28,12 +28,6 @@
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class RealFunction: public RealBase {
     public:
-        /// Type of the function used to generate values
-        /** Optimized by using a reference as return value.                   */
-//        typedef VecMath::Vector<4> &function_type (double, double, double);
-        /// The real, raw type of the function used to generate values
-        typedef VecMath::Vector<4> raw_function_type (double, double, double);
-
         RealFunction (const QString &name,
                       double _tmin, double _tmax, double _dt,
                       double _umin, double _umax, double _du,
@@ -51,14 +45,6 @@ class RealFunction: public RealBase {
                             double _vmin, double _vmax, double _dv);
 
     protected:
-        /// Function evaluation operator
-        /** @param t first argument, e.g. x or t
-         *  @param u second argument, e.g. y or u
-         *  @param v third argument, e.g. z or v
-         *  @return f(t, u, v)                                                */
-        VecMath::Vector<4> &operator () (double t, double u, double v) {
-            return f(t,u,v);
-        }
         VecMath::Vector<4> &normal(double t, double u, double v);
 
         void DrawPlane (unsigned);

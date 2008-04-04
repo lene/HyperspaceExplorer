@@ -20,13 +20,6 @@
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Surface: public SurfaceBase {
     public:
-
-        /** type of the function used to generate values, optimized with a
-         *  reference as return value                                         */
-        typedef VecMath::Vector<4> &function_type (double, double);
-        /// the real, raw type of the function used to generate values
-        typedef VecMath::Vector<4> raw_function_type (double, double);
-
         Surface();
         Surface (const QString &name,
                  double _umin, double _umax, double _du,
@@ -50,14 +43,7 @@ class Surface: public SurfaceBase {
 
         vec4vec2D Data (void) { return X; }
 
-        VecMath::Vector<4> &operator () (double u, double v, double = 0) {
-            unsigned iu = unsigned ((u-umin)/du), iv = unsigned ((v-vmin)/dv);
-            return X[iu][iv];
-        }
-
     protected:
-         virtual VecMath::Vector<4> &f (double, double,  double) { return F; }
-         virtual function_type f  = 0;
          virtual vec4vec1D df (double, double);
          virtual function_type normal;
 

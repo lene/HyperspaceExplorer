@@ -26,7 +26,7 @@ struct EmptyType {};
  *  Instead it is described as a set of surfaces.
  *  \ingroup FunctionGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
-class Object: public FunctionBase {
+class Object: public Function {
     public:
         /// a one-dimensional array of unsigned, implemented as a std::vector
         typedef std::vector<unsigned> uintvec1D;

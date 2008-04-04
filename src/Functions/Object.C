@@ -30,7 +30,7 @@ using VecMath::Matrix;
  *  @param vertices number of vertices
  *  @param surfaces number of surfaces                                        */
 Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
-    FunctionBase (),
+    Function (),
     NumVertices (vertices), NumSurfaces (surfaces),
     X(vec4vec1D(NumVertices)), Xtrans(vec4vec1D(NumVertices)), Xscr(vec3vec1D(NumVertices)),
     R(floatvec1D(NumVertices)), G(floatvec1D(NumVertices)), B(floatvec1D(NumVertices)),

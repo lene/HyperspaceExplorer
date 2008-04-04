@@ -29,40 +29,73 @@
 /// \defgroup ComplexGroup Functions C -> C
 /// \ingroup SurfaceGroup
 
-class FunctionBase {
+/// A \em Function is a generalized four-dimensional mathematical function
+/** The \em Function interface provides abstract members for the evaluation of
+ *  the function values, usually on a grid, together with methods to rotate and
+ *  translate the resulting four-dimensional geometry in 4-space, to project the
+ *  transformed geometry onto 3-space, and to draw the projected grid into an
+ *  OpenGL display list.
+ * 
+ *  It also handles Function name and its parameters.
+ *
+ *  abstract members:
+ *      \li Vector &f (double, double, double);
+ *      \li Transform (double Rxy, double Rxz, double Rxw,
+ *                     double Ryz, double Ryw, double Rzw,
+ *                     double Tx, double Ty, double Tz, double Tw)
+ *      \li Project (double ScrW, double CamW, bool DepthCue4D)
+ *      \li Draw ()
+ *      \li ReInit(double _tmin, double _tmax, double _dt,
+ *                 double _umin, double _umax, double _du,
+ *                 double _vmin, double _vmax, double _dv)
+ *      \li Initialize ();
+ *
+ *  virtual members:
+ *      \li Vector *df (double, double, double);
+ *      \li SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0)
+ *
+ *  other useful members:
+ *      \li Transform ()
+ *
+ *  @todo Vector &normal (double, double, double); - or in derived classes?
+ *  @todo  operator () (double t, double u, double v) - ditto
+ *
+ *  \ingroup FunctionGroup
+ *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
+class Function {
     public:
-            /// one-dimensional array of floats, implemented as a std::vector
+        /// one-dimensional array of floats, implemented as a std::vector
         typedef std::vector<float> floatvec1D;
-            /// two-dimensional array of floats, implemented as a nested std::vector
+        /// two-dimensional array of floats, implemented as a nested std::vector
         typedef std::vector<floatvec1D> floatvec2D;
-            /// three-dimensional array of floats, implemented as a nested std::vector
+        /// three-dimensional array of floats, implemented as a nested std::vector
         typedef std::vector<floatvec2D> floatvec3D;
 
-            /// one-dimensional array of Vector<3>, implemented as a std::vector
+        /// one-dimensional array of Vector<3>, implemented as a std::vector
         typedef std::vector<VecMath::Vector<3> > vec3vec1D;
-            /// two-dimensional array of Vector<3>, implemented as a nested std::vector
+        /// two-dimensional array of Vector<3>, implemented as a nested std::vector
         typedef std::vector<vec3vec1D> vec3vec2D;
-            /// three-dimensional array of Vector<3>, implemented as a nested std::vector
+        /// three-dimensional array of Vector<3>, implemented as a nested std::vector
         typedef std::vector<vec3vec2D> vec3vec3D;
 
-            /// one-dimensional array of Vector<4>, implemented as a std::vector
+        /// one-dimensional array of Vector<4>, implemented as a std::vector
         typedef std::vector<VecMath::Vector<4> > vec4vec1D;
-            /// two-dimensional array of Vector<4>, implemented as a nested std::vector
+        /// two-dimensional array of Vector<4>, implemented as a nested std::vector
         typedef std::vector<vec4vec1D> vec4vec2D;
-            /// three-dimensional array of Vector<4>, implemented as a nested std::vector
+        /// three-dimensional array of Vector<4>, implemented as a nested std::vector
         typedef std::vector<vec4vec2D> vec4vec3D;
 
-        FunctionBase();
-        FunctionBase (const QString &name,
+        Function();
+        Function (const QString &name,
                   double _tmin, double _tmax, double _dt,
                   double _umin, double _umax, double _du,
                   double _vmin, double _vmax, double _dv);
-        virtual ~FunctionBase() { }
+        virtual ~Function() { }
 
         virtual void Transform (double Rxy, double Rxz, double Rxw,
                                 double Ryz, double Ryw, double Rzw,
                                 double Tx, double Ty, double Tz, double Tw) = 0;
-            /// Overloaded function executing the transform to the default state
+        /// Overloaded function executing the transform to the default state
         void Transform (void) { Transform (0, 0, 0, 0, 0, 0,  0, 0, 0, 0); }
 
         virtual void Project (double ScrW, double CamW, bool DepthCue4D) = 0;
@@ -80,14 +113,14 @@ class FunctionBase {
         unsigned getNumParameters() { return parameterNames.size(); }
         /** @return the names of the parameters for the function              */
         std::vector<QString> getParameterNames() { return parameterNames; }
-            /// Get a specified parameter name from the list
-            /** @param i index of the wanted parameter
-             *  @return name of the ith parameter                                 */
+        /// Get a specified parameter name from the list
+        /** @param i index of the wanted parameter
+         *  @return name of the ith parameter                                 */
         QString getParameterName(unsigned i) {
             return i < parameterNames.size()? parameterNames[i]: ""; }
 
     protected:
-            /// Function evaluation operator for three parameters
+        /// Function evaluation operator for three parameters
         virtual VecMath::Vector<4> &operator () (double, double, double) = 0;
 
         virtual vec4vec1D df (double, double, double);
@@ -97,92 +130,114 @@ class FunctionBase {
         virtual unsigned long MemRequired (void);
 
         double tmin, ///< min. value of the first parameter, here called t
-        tmax, ///< min. value of the first parameter, here called t
-        dt,   ///< stepsize in first parameter
-        umin, ///< min. value of the second parameter, here called u
-        umax, ///< min. value of the second parameter, here called u
-        du,   ///< stepsize in second parameter
-        vmin, ///< min. value of the third parameter, here called v
-        vmax, ///< min. value of the third parameter, here called v
-        dv;   ///< stepsize in third parameter
+               tmax, ///< min. value of the first parameter, here called t
+               dt,   ///< stepsize in first parameter
+               umin, ///< min. value of the second parameter, here called u
+               umax, ///< min. value of the second parameter, here called u
+               du,   ///< stepsize in second parameter
+               vmin, ///< min. value of the third parameter, here called v
+               vmax, ///< min. value of the third parameter, here called v
+               dv;   ///< stepsize in third parameter
 
         unsigned tsteps, ///< number of steps in t
-        usteps, ///< number of steps in u
-        vsteps; ///< number of steps in v
+                 usteps, ///< number of steps in u
+                 vsteps; ///< number of steps in v
 
-            /// temporary storage for the value of the function at a given point
+        /// temporary storage for the value of the function at a given point
         VecMath::Vector<4> F;
 
         unsigned NumVertices;
             
-            /// the name of the function as a free-form string
+        /// the name of the function as a free-form string
         QString functionName;
-            /// list of the names of parameters to the function
+        /// list of the names of parameters to the function
         std::vector<QString> parameterNames;
 
 };
 
-/// A \em Function is a generalized four-dimensional mathematical function
-/** The \em Function class provides the evaluation of the function values,
- *  usually on a grid, together with methods to rotate and translate the
- *  resulting four-dimensional geometry in 4-space, to project the transformed
- *  geometry onto 3-space, and to draw the projected grid into an OpenGL display
- *  list.
+/// \em RealBase provides a base class for functions which take three parameters
+/** The \em RealBase interface provides abstract members for the evaluation of
+ *  the function values on a three-dimensional grid.
  *
  *  abstract member:
- *      \li Vector &f (double, double, double);
+ *      \li Vector &f (double, double);
  *
- *  virtual members:
- *      \li Vector *df (double, double, double);
- *      \li Vector &normal (double, double, double);
- *      \li Transform (double Rxy, double Rxz, double Rxw,
- *                     double Ryz, double Ryw, double Rzw,
- *                     double Tx, double Ty, double Tz, double Tw)
- *      \li Project (double ScrW, double CamW, bool DepthCue4D)
- *      \li Draw ()
- *      \li ReInit(double _tmin, double _tmax, double _dt,
- *                 double _umin, double _umax, double _du,
- *                 double _vmin, double _vmax, double _dv)
- *      \li SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0)
+ *  member:
+ *      \li operator () (double t, double u, double);
  *
- *  other useful members:
- *      \li Transform ()
- *      \li operator () (double t, double u, double v)
- *      \li Initialize ();
- *      \li InitMem ();
+ *  @todo Vector &normal (double, double, double); - or in base class?
  *
- *  \ingroup FunctionGroup
+ *  \ingroup RealGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
-class RealBase: public FunctionBase {
+class RealBase: public Function {
     public:
+        /** type of the function used to generate values, optimized with a
+         *  reference as return value                                         */
         typedef VecMath::Vector<4> &function_type(double, double, double);
+        /// the real, raw type of the function used to generate values
+        typedef VecMath::Vector<4> raw_function_type (double, double, double);
 
         RealBase() { }
         RealBase(const QString &name,
                  double _tmin, double _tmax, double _dt,
                  double _umin, double _umax, double _du,
                  double _vmin, double _vmax, double _dv):
-            FunctionBase(name, _tmin, _tmax, _dt, _umin, _umax, _du,
+            Function(name, _tmin, _tmax, _dt, _umin, _umax, _du,
                                _vmin, _vmax, _dv) { }
     protected:
         /// The mathematical function defining the Function object
         virtual VecMath::Vector<4> &f(double, double, double) = 0;
+        /// Function evaluation operator for three parameters
+        /** @param t first argument, e.g. x or t
+         *  @param u second argument, e.g. y or u
+         *  @param v third argument, e.g. z or v
+         *  @return f(t, u, v)                                                */
+        VecMath::Vector<4> &operator () (double t, double u, double v) {
+            return f(t,u,v);
+        }
 };
 
-class SurfaceBase: public FunctionBase {
+/// \em SurfaceBase provides a base class for functions which take two parameters
+/** The \em SurfaceBase interface provides abstract members for the evaluation of
+ *  the function values on a two-dimensional grid.
+ *
+ *  abstract member:
+ *      \li Vector &f (double, double);
+ * 
+ *  member:
+ *      \li operator () (double t, double u, double);
+ *
+ *  @todo Vector &normal (double, double); - or in base class?
+ *
+ *  \ingroup SurfaceGroup
+ *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
+class SurfaceBase: public Function {
     public:
+        /** type of the function used to generate values, optimized with a
+         *  reference as return value                                         */
         typedef VecMath::Vector<4> &function_type(double, double);
+        /// the real, raw type of the function used to generate values
+        typedef VecMath::Vector<4> raw_function_type (double, double);
 
         SurfaceBase() { }
         SurfaceBase(const QString &name,
                     double _tmin, double _tmax, double _dt,
                     double _umin, double _umax, double _du,
                     double _vmin, double _vmax, double _dv):
-            FunctionBase(name, _tmin, _tmax, _dt, _umin, _umax, _du,
+            Function(name, _tmin, _tmax, _dt, _umin, _umax, _du,
                                _vmin, _vmax, _dv) { }
     protected:
         /// The mathematical function defining the Function object
         virtual VecMath::Vector<4> &f(double, double) = 0;
+        /// Function evaluation operator for three parameters
+        /** @param t first argument, e.g. x or t
+         *  @param u second argument, e.g. y or u
+         *  @param v third argument, e.g. z or v
+         *  @return f(t, u, v)                                                */
+        VecMath::Vector<4> &operator () (double u, double v, double = 0) {
+            return f(u,v);
+        }
+
 };
 
 #endif
