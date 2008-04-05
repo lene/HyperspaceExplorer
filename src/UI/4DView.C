@@ -19,6 +19,7 @@
 
 #include "Globals.H"
 #include "Log.H"
+#include "ColorManager.H"
 
 #include "Matrix.H"
 
@@ -423,6 +424,9 @@ void C4DView::ApplyChanges (void) {
                Values->vmin (), Values->vmax (), Values->dv ());
 
     Transform ();
+
+    ColMgrMgr::Instance().setColorManager(new xyz2RGBColorManager(F.get()));
+
     Redraw ();
 }
 
@@ -893,6 +897,9 @@ void C4DView::AssignValues (const std::auto_ptr<Function> &F) {
     }
 
     Transform ();
+
+    ColMgrMgr::Instance().setColorManager(new xyz2RGBColorManager(F.get()));
+//    ColMgrMgr::Instance().setColorManager(new monochromeColorManager(F.get()));
 
     UpdateStatus("");
 }

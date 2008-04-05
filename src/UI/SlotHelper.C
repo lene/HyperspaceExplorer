@@ -21,6 +21,7 @@ void FunctionSlotHelper::slot() {
 
     view->menu->updateFunctionMenu (view->F->getFunctionName());
     view->AssignValues (view->F);
+
     view->Redraw ();
 }
 

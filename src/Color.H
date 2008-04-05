@@ -21,6 +21,7 @@
 /// an array of floats as parameter.
 class Color {
     public:
+        Color() { r() = g() = b() = a() = 0.; }
         Color(float, float, float, float = 0.);
 
         float &r() { return RGBA[0]; }  /// the red component of the color
@@ -31,6 +32,9 @@ class Color {
         /// direct access to the array of components, needed by OpenGL functions
         operator float *() { return RGBA; }
         Color operator *=(float);
+        Color operator *(float);
+        Color operator +=(float);
+        Color operator +(float);
         void setComponentLowerLimit(float);
         void setComponentUpperLimit(float);
 
@@ -59,6 +63,31 @@ inline Color Color::operator *=(float x) {
         if (RGBA[i] < 0.) RGBA[i] = 0.;
     }
     return *this;
+}
+
+/// scale the color by a float, keeping the RGB components between 0.0 and 1.0
+/// @param x scaling factor
+inline Color Color::operator *(float x) {
+    Color tmp(*this);
+    return (tmp *= x);
+}
+
+/// add a float to the color, keeping the RGB components between 0.0 and 1.0
+/// @param x added term
+inline Color Color::operator +=(float x) {
+    for (unsigned i = 0; i < 3; i++) {
+        RGBA[i] += x;
+        if (RGBA[i] > 1.) RGBA[i] = 1.;
+        if (RGBA[i] < 0.) RGBA[i] = 0.;
+    }
+    return *this;
+}
+
+/// add a float to the color, keeping the RGB components between 0.0 and 1.0
+/// @param x added term
+inline Color Color::operator +(float x) {
+    Color tmp(*this);
+    return (tmp += x);
 }
 
 /// make sure that none of the color components is less than the provided limit

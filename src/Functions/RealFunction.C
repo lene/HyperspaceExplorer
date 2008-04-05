@@ -1,7 +1,7 @@
 //
 // C++ Implementation: RealFunction
 //
-// Description: 
+// Description:
 //
 //
 // Author: Helge Preuss <scout@hyperspace-travel.de>, (C) 2008
@@ -14,6 +14,7 @@
 
 #include "Globals.H"
 #include "Log.H"
+#include "ColorManager.H"
 
 #include "Vector.H"
 #include "Matrix.H"
@@ -41,8 +42,7 @@ RealFunction::RealFunction (const QString &name,
                             double _umin, double _umax, double _du,
                             double _vmin, double _vmax, double _dv):
         RealBase(name, _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
-        Xtrans(vec4vec3D()), Xscr(vec3vec3D()),
-        R (floatvec3D()), G (floatvec3D()), B (floatvec3D()) {
+        Xtrans(vec4vec3D()), Xscr(vec3vec3D()) {
     if (MemRequired () > Globals::Instance().getMaxMemory()) {
         cerr << "Using a " << tsteps << "x" << usteps << "x" << vsteps
              << " grid would require approx. " << MemRequired () << " MB of memory.\n";
@@ -58,37 +58,25 @@ RealFunction::RealFunction (const QString &name,
 }
 
 /// Initialize the temporary storage areas
-/** Xscr[][][], Xtrans[][][], R[][][], G[][][], B[][][]          */
+/** Xscr[][][], Xtrans[][][]                */
 void RealFunction::InitMem (void) {
 
     Xscr.resize(tsteps+2);
     Xtrans.resize(tsteps+2);
 
-    R.resize(tsteps+2);
-    G.resize(tsteps+2);
-    B.resize(tsteps+2);
     for (unsigned t = 0; t <= tsteps+1; t++) {
 
         Xscr[t].resize(usteps+2);
         Xtrans[t].resize(usteps+2);
 
-        R[t].resize(usteps+2);
-        G[t].resize(usteps+2);
-        B[t].resize(usteps+2);
-
         for (unsigned u = 0; u <= usteps+1; u++) {
 
             Xscr[t][u].resize(vsteps+2);
             Xtrans[t][u].resize(vsteps+2);
+        }                           //  for (unsigned u = 0; u <= usteps+1; u++)
 
-            R[t][u].resize(vsteps+2);
-            G[t][u].resize(vsteps+2);
-            B[t][u].resize(vsteps+2);
-        }                                       //      for (unsigned u = 0; u <= usteps+1; u++)
-
-    }                                               //      for (unsigned t = 0; t <= tsteps+1; t++)
-}                                                       //      InitiMem ()
-
+    }                               //  for (unsigned t = 0; t <= tsteps+1; t++)
+}                                   //  InitMem ()
 
 /// Allocate and initialize X[][][] with values of f()
 /** Call InitMem() above */
@@ -109,8 +97,6 @@ void RealFunction::Initialize () {
     }
     InitMem ();
 }
-
-
 
 /// Re-initialize a RealFunction if the definition set has changed
 /** @param tmin minimal value in t
@@ -136,7 +122,6 @@ void RealFunction::ReInit(double _tmin, double _tmax, double _dt,
 
   Initialize ();
 }
-
 
 /// Transforms a RealFunction
 /** \todo As I look at it, i think this could be optimized by making the
@@ -172,7 +157,6 @@ void RealFunction::Transform (double thetaxy, double thetaxz, double thetaxw,
   }
 }
 
-
 /// Projects a Function into three-space
 /** @todo replace hardcoded function to calculate 4D fog color with better one
  *  @param scr_w w coordinate of screen
@@ -194,10 +178,10 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
                 for (unsigned i = 0; i <= 2; i++) {
                     Xscr[t][u][v][i] = ProjectionFactor*Xtrans[t][u][v][i];
                 }
-
-                R[t][u][v] = float (t)/float (tsteps);                  //      color schemes wanted
-                G[t][u][v] = float (u)/float (usteps);
-                B[t][u][v] = float (v)/float (vsteps);
+                ColMgrMgr::Instance().calibrateColor(
+                    Color(float(t)/float(tsteps), float(u)/float(usteps),
+                          float(v)/float(vsteps)),
+                    float(t)/float(tsteps), float(u)/float(usteps), float(v)/float(vsteps));
             }
         }
     }
@@ -207,13 +191,19 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
     for (unsigned t = 0; t <= tsteps+1; t++)
         for (unsigned u = 0; u <= usteps+1; u++)
             for (unsigned v = 0; v <= vsteps+1; v++) {
-        float DepthCueFactor = (Wmax-Xtrans[t][u][v][3])/(Wmax-Wmin)*0.9+0.1; //	HARDCODED! EEEEEYYYYUUUURGHHHHHHH!
+        /*
+        float DepthCueFactor =
+                        (Wmax-Xtrans[t][u][v][3])/(Wmax-Wmin)*0.9+0.1; //	HARDCODED! EEEEEYYYYUUUURGHHHHHHH!
         R[t][u][v] = 0.1+(R[t][u][v]-0.1)*DepthCueFactor;
         G[t][u][v] = 0.1+(G[t][u][v]-0.1)*DepthCueFactor;
         B[t][u][v] = 0.1+(B[t][u][v]-0.1)*DepthCueFactor;
+        */
+                ColMgrMgr::Instance().depthCueColor(Wmax, Wmin,
+                    Xtrans[t][u][v][3],
+                    float(t)/float(tsteps), float(u)/float(usteps),
+                    float(v)/float(vsteps));
             }
 }
-
 
 /// Draw the projected Function (onto screen or into GL list, as it is)
 /** */
@@ -238,7 +228,7 @@ Vector<4> &RealFunction::normal (double tt, double uu, double vv) {
     VecMath::vnormalize (n);
 
     return n;
-        }
+}
 
 
 /// Draw the current plane of the projected Function
@@ -274,29 +264,29 @@ void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v) {
 
     glBegin (GL_QUAD_STRIP);
     if (t == 0) {
-        Globals::Instance().setColor(R[t][u][v], G[t][u][v], B[t][u][v]);
+        ColMgrMgr::Instance().setColor(X[t][u][v]);
         Globals::Instance().glVertex(V[0]);
-        Globals::Instance().setColor(R[t][u][v+1], G[t][u][v+1], B[t][u][v+1]);
+        ColMgrMgr::Instance().setColor(X[t][u][v+1]);
         Globals::Instance().glVertex(V[1]);
         NumVertices += 2;
     }
-    Globals::Instance().setColor(R[t][u+1][v], G[t][u+1][v], B[t][u+1][v]);
+    ColMgrMgr::Instance().setColor(X[t][u+1][v]);
     Globals::Instance().glVertex(V[2]);
-    Globals::Instance().setColor(R[t][u+1][v+1], G[t][u+1][v+1], B[t][u+1][v+1]);
+    ColMgrMgr::Instance().setColor(X[t][u+1][v+1]);
     Globals::Instance().glVertex(V[3]);
-    Globals::Instance().setColor(R[t+1][u+1][v], G[t+1][u+1][v], B[t+1][u+1][v]);
+    ColMgrMgr::Instance().setColor(X[t+1][u+1][v]);
     Globals::Instance().glVertex(V[6]);
-    Globals::Instance().setColor(R[t+1][u+1][v+1], G[t+1][u+1][v+1], B[t+1][u+1][v+1]);
+    ColMgrMgr::Instance().setColor(X[t+1][u+1][v+1]);
     Globals::Instance().glVertex(V[7]);
-    Globals::Instance().setColor(R[t+1][u][v], G[t+1][u][v], B[t+1][u][v]);
+    ColMgrMgr::Instance().setColor(X[t+1][u][v]);
     Globals::Instance().glVertex(V[4]);
-    Globals::Instance().setColor(R[t+1][u][v+1], G[t+1][u][v+1], B[t+1][u][v+1]);
+    ColMgrMgr::Instance().setColor(X[t+1][u][v+1]);
     Globals::Instance().glVertex(V[5]);
     NumVertices += 6;
     if (u == 0) {
-        Globals::Instance().setColor(R[t][u][v], G[t][u][v], B[t][u][v]);
+        ColMgrMgr::Instance().setColor(X[t][u][v]);
         Globals::Instance().glVertex(V[0]);
-        Globals::Instance().setColor(R[t][u][v+1], G[t][u][v+1], B[t][u][v+1]);
+        ColMgrMgr::Instance().setColor(X[t][u][v+1]);
         Globals::Instance().glVertex(V[1]);
         NumVertices += 2;
     }
@@ -304,23 +294,23 @@ void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v) {
 
     glBegin (GL_QUADS);
     if (v == 0) {
-        Globals::Instance().setColor(R[t][u][v], G[t][u][v], B[t][u][v]);
+        ColMgrMgr::Instance().setColor(X[t][u][v]);
         Globals::Instance().glVertex(V[0]);
-        Globals::Instance().setColor(R[t][u+1][v], G[t][u+1][v], B[t][u+1][v]);
+        ColMgrMgr::Instance().setColor(X[t][u][v]);
         Globals::Instance().glVertex(V[2]);
-        Globals::Instance().setColor(R[t+1][u+1][v], G[t+1][u+1][v], B[t+1][u+1][v]);
+        ColMgrMgr::Instance().setColor(X[t][u][v]);
         Globals::Instance().glVertex(V[6]);
-        Globals::Instance().setColor(R[t+1][u][v], G[t+1][u][v], B[t+1][u][v]);
+        ColMgrMgr::Instance().setColor(X[t][u][v]);
         Globals::Instance().glVertex(V[4]);
         NumVertices += 4;
     }
-    Globals::Instance().setColor(R[t][u][v+1], G[t][u][v+1], B[t][u][v+1]);
+    ColMgrMgr::Instance().setColor(X[t][u][v+1]);
     Globals::Instance().glVertex(V[1]);
-    Globals::Instance().setColor(R[t][u+1][v+1], G[t][u+1][v+1], B[t][u+1][v+1]);
+    ColMgrMgr::Instance().setColor(X[t][u+1][v+1]);
     Globals::Instance().glVertex(V[3]);
-    Globals::Instance().setColor(R[t+1][u+1][v+1], G[t+1][u+1][v+1], B[t+1][u+1][v+1]);
+    ColMgrMgr::Instance().setColor(X[t+1][u+1][v+1]);
     Globals::Instance().glVertex(V[7]);
-    Globals::Instance().setColor(R[t+1][u][v+1], G[t+1][u][v+1], B[t+1][u][v+1]);
+    ColMgrMgr::Instance().setColor(X[t+1][u][v+1]);
     Globals::Instance().glVertex(V[5]);
     NumVertices += 4;
     glEnd ();

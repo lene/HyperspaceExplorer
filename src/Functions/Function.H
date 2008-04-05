@@ -1,4 +1,3 @@
-
 //      project:      hyperspace explorer
 //      module:       Function.H
 //      contains:     class Function: abstract base class for all that follow
@@ -35,7 +34,7 @@
  *  translate the resulting four-dimensional geometry in 4-space, to project the
  *  transformed geometry onto 3-space, and to draw the projected grid into an
  *  OpenGL display list.
- * 
+ *
  *  It also handles Function name and its parameters.
  *
  *  abstract members:
@@ -119,6 +118,29 @@ class Function {
         QString getParameterName(unsigned i) {
             return i < parameterNames.size()? parameterNames[i]: ""; }
 
+        unsigned getTsteps() const { return tsteps; }
+        unsigned getUsteps() const { return usteps; }
+        unsigned getVsteps() const { return vsteps; }
+
+        double &getTmin() { return tmin; }
+        const double &getTmin() const { return tmin; }
+        double &getTmax() { return tmax; }
+        const double &getTmax() const { return tmax; }
+        double &getDt() { return dt; }
+        const double &getDt() const { return dt; }
+        double &getUmin() { return umin; }
+        const double &getUmin() const { return umin; }
+        double &getUmax() { return umax; }
+        const double &getUmax() const { return umax; }
+        double &getDu() { return du; }
+        const double &getDu() const { return du; }
+        double &getVmin() { return vmin; }
+        const double &getVmin() const { return vmin; }
+        double &getVmax() { return vmax; }
+        const double &getVmax() const { return vmax; }
+        double &getDv() { return dv; }
+        const double &getDv() const { return dv; }
+
     protected:
         /// Function evaluation operator for three parameters
         virtual VecMath::Vector<4> &operator () (double, double, double) = 0;
@@ -147,7 +169,7 @@ class Function {
         VecMath::Vector<4> F;
 
         unsigned NumVertices;
-            
+
         /// the name of the function as a free-form string
         QString functionName;
         /// list of the names of parameters to the function
@@ -203,7 +225,7 @@ class RealBase: public Function {
  *
  *  abstract member:
  *      \li Vector &f (double, double);
- * 
+ *
  *  member:
  *      \li operator () (double t, double u, double);
  *

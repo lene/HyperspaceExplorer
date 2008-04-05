@@ -20,12 +20,12 @@ UI_HEADERS_DIR = tmp
 ###
 INCLUDEPATH += ./Functions
 DEPENDPATH += ./Functions
-HEADERS += Functions/Function.H Functions/ComplexFunction.H Functions/CustomFunction.H \
-           Functions/Object.H Functions/Surface.H \
+HEADERS += Functions/ComplexFunction.H Functions/CustomFunction.H \
+           Functions/Function.H Functions/Object.H Functions/Surface.H \
            Functions/RealFunction.H
 #          Functions/SteinerFunction.H
-SOURCES += Functions/Function.C Functions/ComplexFunction.C Functions/CustomFunction.C \
-           Functions/Surface.C Functions/Object.C \
+SOURCES += Functions/ComplexFunction.C Functions/CustomFunction.C \
+           Functions/Function.C Functions/Surface.C Functions/Object.C \
            Functions/RealFunction.C
 #          Functions/SteinerFunction.C
 
@@ -53,7 +53,7 @@ FORMS += UI/ComplexDialog.ui UI/FunctionDialog.ui \
 ###
 INCLUDEPATH += ./Loki
 DEPENDPATH += ./Loki
-HEADERS += Loki/SingletonHolder.H Loki/Functor.H
+HEADERS += Loki/SingletonHolder.H
 
 ###
 ###     plugins
@@ -70,8 +70,8 @@ HEADERS += Loki/SingletonHolder.H Loki/Functor.H
 ###
 INCLUDEPATH += .
 DEPENDPATH += .
-HEADERS += Globals.H Help.H Matrix.H Vector.H Log.H Color.H
-SOURCES += Globals.C Help.C Main.C
+HEADERS += Globals.H Help.H Matrix.H Vector.H Log.H Color.H ColorManager.H
+SOURCES += Globals.C Help.C Main.C ColorManager.C
 
 ###
 ################################################################################

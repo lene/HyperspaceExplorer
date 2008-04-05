@@ -1,7 +1,7 @@
 //
 // C++ Interface: RealFunction
 //
-// Description: 
+// Description:
 //
 //
 // Author: Helge Preuss <scout@hyperspace-travel.de>, (C) 2008
@@ -15,7 +15,7 @@
 #include "Function.H"
 
 /// A \em RealFunction is a mathematical function  \f$ f: R^3 \rightarrow R \f$ .
-/** The function \em f is evaluated on a 3-dimensional cartesian grid. The 
+/** The function \em f is evaluated on a 3-dimensional cartesian grid. The
  *  function value constitutes the fourth dimension of the Function object:
  *  \f$ \vec{x} = ( x, y, z, f(x, y, z) ) \f$.
  *
@@ -50,23 +50,13 @@ class RealFunction: public RealBase {
         void DrawPlane (unsigned);
         void DrawStrip (unsigned, unsigned);
         void DrawCube (unsigned, unsigned, unsigned);
-        
+
         virtual void Initialize (void);
         virtual void InitMem (void);
 
         vec4vec3D X,      ///< temporary storage for function values on grid
         Xtrans; ///< temporary storage for transformed function values
         vec3vec3D Xscr;   ///< temporary storage for projected function values
-
-        /// storage for the coloring of the vertices - red component
-        /** @todo turn these three arrays into a single array of Color's      */
-        floatvec3D R;
-        /// storage for the coloring of the vertices - red component
-        /** @todo turn these three arrays into a single array of Color's      */
-        floatvec3D G;
-        /// storage for the coloring of the vertices - red component
-        /** @todo turn these three arrays into a single array of Color's      */
-        floatvec3D B;
 
 };
 
