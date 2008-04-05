@@ -11,7 +11,6 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -98,7 +97,7 @@ Abstract base class for all Dialogs which allow entering a custom function.
 <p>
 The user can enter a mathematical function in C++ syntax in almost symbolic notation and get the function compiled and loaded and displayed. <br>
  This class contains all the variables and functions common to the four different function types, the differences being encapsulated in a template class with auxiliary functions. <br>
- This class is abstract. The inheriting classes must implement the members <a class="el" href="classPluginCreator.html#934c4708ba3cf6054982d9b0b67e29d2" title="Display and load the selected DLL into current address space.">loadFunction()</a>, <a class="el" href="classPluginCreator.html#72d965933b305fe25e9e27b9ab88fbb6" title="Loads the dynamic library given by libName, if it exists and can be loaded.">functionPresent()</a> and <a class="el" href="classPluginCreator.html#a951c5e85ecfdc22750cb5485c9d5b9e" title="Write a C++ source file containing the given function.">writeSource()</a>. <dl compact><dt><b><a class="el" href="todo.html#_todo000038">Todo:</a></b></dt><dd>set the function name to symbolic() in the descendants' constructors</dd></dl>
+ This class is abstract. The inheriting classes must implement the members <a class="el" href="classPluginCreator.html#934c4708ba3cf6054982d9b0b67e29d2" title="Display and load the selected DLL into current address space.">loadFunction()</a>, <a class="el" href="classPluginCreator.html#72d965933b305fe25e9e27b9ab88fbb6" title="Loads the dynamic library given by libName, if it exists and can be loaded.">functionPresent()</a> and <a class="el" href="classPluginCreator.html#a951c5e85ecfdc22750cb5485c9d5b9e" title="Write a C++ source file containing the given function.">writeSource()</a>. <dl compact><dt><b><a class="el" href="todo.html#_todo000036">Todo:</a></b></dt><dd>set the function name to symbolic() in the descendants' constructors</dd></dl>
 <dl class="author" compact><dt><b>Author:</b></dt><dd>Helge Preuss &lt;<a href="mailto:scout@hyperspace-travel.de">scout@hyperspace-travel.de</a>&gt; </dd></dl>
 <hr><h2>Member Function Documentation</h2>
 <a class="anchor" name="4b0c4aa6bb17649c888f720f96741c6d"></a><!-- doxytag: member="PluginCreator::libraryName" ref="4b0c4aa6bb17649c888f720f96741c6d" args="()" -->
@@ -164,7 +163,7 @@ Calls <a class="el" href="classPluginCreator.html#72d965933b305fe25e9e27b9ab88fb
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>success </dd></dl>
 
-<p>References <a class="el" href="classPluginCreator.html#72d965933b305fe25e9e27b9ab88fbb6">functionPresent()</a>, <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, and <a class="el" href="PluginCreator_8H-source.html#l00059">LibraryName</a>.</p>
+<p>References <a class="el" href="classPluginCreator.html#72d965933b305fe25e9e27b9ab88fbb6">functionPresent()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="PluginCreator_8H-source.html#l00059">LibraryName</a>.</p>
 
 </div>
 </div><p>
@@ -216,7 +215,7 @@ Checks whether all fields are filled in, whether the given function is valid C++
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>success </dd></dl>
 
-<p>References <a class="el" href="PluginCreator_8C-source.html#l00115">compile()</a>, <a class="el" href="classPluginCreator.html#72d965933b305fe25e9e27b9ab88fbb6">functionPresent()</a>, <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, <a class="el" href="PluginCreator_8H-source.html#l00059">LibraryName</a>, <a class="el" href="PluginCreator_8C-source.html#l00138">link()</a>, and <a class="el" href="classPluginCreator.html#a951c5e85ecfdc22750cb5485c9d5b9e">writeSource()</a>.</p>
+<p>References <a class="el" href="PluginCreator_8C-source.html#l00115">compile()</a>, <a class="el" href="classPluginCreator.html#72d965933b305fe25e9e27b9ab88fbb6">functionPresent()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="PluginCreator_8H-source.html#l00059">LibraryName</a>, <a class="el" href="PluginCreator_8C-source.html#l00138">link()</a>, and <a class="el" href="classPluginCreator.html#a951c5e85ecfdc22750cb5485c9d5b9e">writeSource()</a>.</p>
 
 <p>Referenced by <a class="el" href="PolarDialogImpl_8C-source.html#l00075">PolarDialogImpl::checkValidity()</a>, <a class="el" href="FunctionDialogImpl_8C-source.html#l00082">FunctionDialogImpl::checkValidity()</a>, and <a class="el" href="ComplexDialogImpl_8C-source.html#l00078">ComplexDialogImpl::checkValidity()</a>.</p>
 
@@ -243,7 +242,7 @@ Compile the C++ source code written by <a class="el" href="classPluginCreator.ht
 <p>
 Display errors and warnings, if they come up. <br>
  Needs "Vector.H" in the current directory or in the C++ include path.<br>
- <dl compact><dt><b><a class="el" href="todo.html#_todo000037">Todo:</a></b></dt><dd>Might tweak the compilation flags a little, or make them variable </dd></dl>
+ <dl compact><dt><b><a class="el" href="todo.html#_todo000035">Todo:</a></b></dt><dd>Might tweak the compilation flags a little, or make them variable </dd></dl>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>name</em>&nbsp;</td><td>the name of the plugin </td></tr>
@@ -251,7 +250,7 @@ Display errors and warnings, if they come up. <br>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>success </dd></dl>
 
-<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>.</p>
+<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
 
 <p>Referenced by <a class="el" href="PluginCreator_8C-source.html#l00071">checkValidity()</a>.</p>
 
@@ -290,7 +289,7 @@ link the object file generated by <a class="el" href="classPluginCreator.html#1c
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/UI/<a class="el" href="PluginCreator_8H-source.html">PluginCreator.H</a><li>workspace/HyperspaceExplorer/src/UI/PluginCreator.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Apr 4 21:03:21 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 5 02:31:00 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>
