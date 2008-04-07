@@ -11,9 +11,11 @@
 #define FUNCTION_H
 
 #include <vector>
+#include <map>
 
 #include <QString>
 
+#include "FunctionParameter.H"
 #include "Vector.H"
 
 /// \defgroup FunctionGroup Functions and objects
@@ -51,7 +53,7 @@
  *
  *  virtual members:
  *      \li Vector *df (double, double, double);
- *      \li SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0)
+ *      \li SetParameters (double = 0, double = 0, double = 0, double = 0)
  *
  *  other useful members:
  *      \li Transform ()
@@ -83,12 +85,15 @@ class Function {
         typedef std::vector<vec4vec1D> vec4vec2D;
         /// three-dimensional array of Vector<4>, implemented as a nested std::vector
         typedef std::vector<vec4vec2D> vec4vec3D;
+        /// the container a function's parameters are stored in
+        typedef std::map<std::string, FunctionParameterBase *> parameterMap;
 
         Function();
         Function (const QString &name,
                   double _tmin, double _tmax, double _dt,
                   double _umin, double _umax, double _du,
-                  double _vmin, double _vmax, double _dv);
+                  double _vmin, double _vmax, double _dv,
+                  parameterMap _parms = parameterMap());
         virtual ~Function() { }
 
         virtual void Transform (double Rxy, double Rxz, double Rxw,
@@ -117,6 +122,10 @@ class Function {
          *  @return name of the ith parameter                                 */
         QString getParameterName(unsigned i) {
             return i < parameterNames.size()? parameterNames[i]: ""; }
+
+        FunctionParameterBase *getParameter(QString name) {
+            return parameters[name.toStdString()];
+        }
 
         unsigned getTsteps() const { return tsteps; }
         unsigned getUsteps() const { return usteps; }
@@ -174,7 +183,7 @@ class Function {
         QString functionName;
         /// list of the names of parameters to the function
         std::vector<QString> parameterNames;
-
+        parameterMap parameters;
 };
 
 /// \em RealBase provides a base class for functions which take three parameters
@@ -203,9 +212,10 @@ class RealBase: public Function {
         RealBase(const QString &name,
                  double _tmin, double _tmax, double _dt,
                  double _umin, double _umax, double _du,
-                 double _vmin, double _vmax, double _dv):
+                 double _vmin, double _vmax, double _dv,
+                 parameterMap _parms = parameterMap()):
             Function(name, _tmin, _tmax, _dt, _umin, _umax, _du,
-                               _vmin, _vmax, _dv) { }
+                     _vmin, _vmax, _dv, _parms) { }
     protected:
         /// The mathematical function defining the Function object
         virtual VecMath::Vector<4> &f(double, double, double) = 0;

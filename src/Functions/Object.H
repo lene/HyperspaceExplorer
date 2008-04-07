@@ -91,7 +91,8 @@ public:
     Hypercube (double _a, const VecMath::Vector<4> &_Center = VecMath::Vector<4>(0., 0., 0., 0.));
     virtual ~Hypercube() { }
 
-    virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
+    virtual void SetParameters (double _a = 0,
+                                double = 0, double = 0, double = 0) {
         a = _a; }
 
     virtual std::string description () {

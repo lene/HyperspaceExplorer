@@ -8,6 +8,8 @@
 
 
 #include "Globals.H"
+#include "ColorManager.H"
+
 #include "Matrix.H"
 #include "Surface.H"
 
@@ -26,8 +28,8 @@ Surface::Surface ():
     usteps (0), vsteps (0),
     NumVertices (0),
     F (4),
-    Xtrans(vec4vec2D()), Xscr(vec3vec2D()),
-    R(floatvec2D()), G(floatvec2D()), B(floatvec2D())
+    Xtrans(vec4vec2D()), Xscr(vec3vec2D())
+//    R(floatvec2D()), G(floatvec2D()), B(floatvec2D())
 { }
 
 
@@ -47,30 +49,29 @@ Surface::Surface (const QString &name,
     vsteps (unsigned (2*(vmax-vmin)/dv+1)),
     NumVertices (0),
     F (4),
-    Xtrans(vec4vec2D()), Xscr(vec3vec2D()),
-    R(floatvec2D()), G(floatvec2D()), B(floatvec2D()) {
+    Xtrans(vec4vec2D()), Xscr(vec3vec2D())
+//    R(floatvec2D()), G(floatvec2D()), B(floatvec2D())
+    {
     functionName = name;
 }
-
 
 /** Initialize the temporary storage areas Xscr[][], Xtrans[][],
  *                                         R[][], G[][], B[][]                */
 void Surface::InitMem (void) {
     Xscr.resize(usteps+2);
     Xtrans.resize(usteps+2);
-    R.resize(usteps+2);
-    G.resize(usteps+2);
-    B.resize(usteps+2);
+//    R.resize(usteps+2);
+//    G.resize(usteps+2);
+//    B.resize(usteps+2);
 
     for (unsigned u = 0; u <= usteps+1; u++) {
         Xscr[u].resize(vsteps+2);
         Xtrans[u].resize(vsteps+2);
-        R[u].resize(vsteps+2);
+/*        R[u].resize(vsteps+2);
         G[u].resize(vsteps+2);
-        B[u].resize(vsteps+2);
+        B[u].resize(vsteps+2);*/
     }
 }
-
 
 /** allocate and initialize X[][] with values of f() \n
  *  call InitMem () above                                                     */
@@ -86,7 +87,6 @@ void Surface::Initialize () {
     InitMem ();
 }
 
-
 /** placeholder for function to set parameters in descendants - empty because
  *  generic function has no parameters
  *  @param _a 1st parameter
@@ -94,7 +94,6 @@ void Surface::Initialize () {
  *  @param _c 3rd parameter
  *  @param _d 4th parameter                                                   */
 void Surface::SetParameters (double, double, double, double) { }
-
 
 /** re-initialize a Surface if the definition set has changed
  *  @param tmin minimal value in t (ignored)
@@ -116,7 +115,6 @@ void Surface::ReInit(double, double, double,
     Initialize ();
 }
 
-
 /** return the approximate amount of memory needed to display a Function of
  *  current definition set \n
  *  uses hardcoded and experimentally found value for memory per cell - ICK!
@@ -124,7 +122,6 @@ void Surface::ReInit(double, double, double,
 unsigned long Surface::MemRequired (void) {
     return (tsteps+2)*(usteps+2);
 }
-
 
 /** calculate normal to function at a given point in definition set \n
  *  no further assumption is made than that f () is continuous \n
@@ -142,7 +139,6 @@ Vector<4> &Surface::normal (double uu, double vv) {
 
     return n;
 }
-
 
 /** numerical calculation of the derivatives in u and v:
     \f[
@@ -172,7 +168,6 @@ Function::vec4vec1D Surface::df (double uu, double vv) {
     return DF;
 }
 
-
 /** transforms a Surface \n
  *  as I look at it, i think this could be optimized by making the transformation
  *  matrices static and only canging the corresponding entries... but how to
@@ -201,7 +196,6 @@ void Surface::Transform (double, double, double thetaxw,
             Xtrans[u][v] = (Rot*X[u][v])+trans;
 }
 
-
 /** projects a Surface into three-space
  *  @param scr_w w coordinate of screen
  *  @param cam_w w coordinate of camera
@@ -221,19 +215,26 @@ void Surface::Project (double scr_w, double cam_w, bool depthcue4d) {
             for (unsigned i = 0; i <= 2; i++)
                 Xscr[u][v][i] = ProjectionFactor*Xtrans[u][v][i];
 
-            R[u][v] = float (u)/float (usteps);
+/*            R[u][v] = float (u)/float (usteps);
             G[u][v] = float (v)/float (vsteps);
-            B[u][v] = (Wmax-X[u][v][3])/(Wmax-Wmin);
+            B[u][v] = (Wmax-X[u][v][3])/(Wmax-Wmin);*/
+            ColMgrMgr::Instance().calibrateColor(
+                Color(float(u)/float(usteps), float(v)/float(vsteps),
+                      (Wmax-X[u][v][3])/(Wmax-Wmin)),
+                0, float(u)/float(usteps), float(v)/float(vsteps));
     }
 
     if (!depthcue4d) return;
 
     for (unsigned u = 0; u <= usteps+1; u++)
         for (unsigned v = 0; v <= vsteps+1; v++) {
-            float DepthCueFactor = (Wmax-Xtrans[u][v][3])/(Wmax-Wmin)*0.9+0.1; //	??? !!!
+/*            float DepthCueFactor = (Wmax-Xtrans[u][v][3])/(Wmax-Wmin)*0.9+0.1; //	??? !!!
             R[u][v] = 0.1+(R[u][v]-0.1)*DepthCueFactor;
             G[u][v] = 0.1+(G[u][v]-0.1)*DepthCueFactor;
-            B[u][v] = 0.1+(B[u][v]-0.1)*DepthCueFactor;
+            B[u][v] = 0.1+(B[u][v]-0.1)*DepthCueFactor;*/
+            ColMgrMgr::Instance().depthCueColor(Wmax, Wmin,
+                    Xtrans[u][v][3],
+                    0, float(u)/float(usteps), float(v)/float(vsteps));
         }
 }
 
@@ -252,16 +253,20 @@ void Surface::Draw (void) {
 void Surface::DrawStrip (unsigned u){
     glBegin (GL_QUAD_STRIP);
 
-    Globals::Instance().setColor (R [u][0], G [u][0], B [u][0]);
+//     Globals::Instance().setColor (R [u][0], G [u][0], B [u][0]);
+    ColMgrMgr::Instance().setColor(X[u][0]);
     Globals::Instance().glVertex (Xscr[u][0]);
-    Globals::Instance().setColor (R [u+1][0], G [u+1][0], B [u+1][0]);
+//     Globals::Instance().setColor (R [u+1][0], G [u+1][0], B [u+1][0]);
+    ColMgrMgr::Instance().setColor(X[u+1][0]);
     Globals::Instance().glVertex (Xscr[u+1][0]);
     NumVertices += 2;
 
     for (unsigned v = 1; v <= vsteps; v++) {
-        Globals::Instance().setColor (R [u][v], G [u][v], B [u][v]);
+//         Globals::Instance().setColor (R [u][v], G [u][v], B [u][v]);
+        ColMgrMgr::Instance().setColor(X[u][v]);
         Globals::Instance().glVertex (Xscr[u][v]);
-        Globals::Instance().setColor (R [u+1][v], G [u+1][v], B [u+1][v]);
+//         Globals::Instance().setColor (R [u+1][v], G [u+1][v], B [u+1][v]);
+        ColMgrMgr::Instance().setColor(X[u+1][v]);
         Globals::Instance().glVertex (Xscr[u+1][v]);
 
         NumVertices += 2;

@@ -68,8 +68,8 @@ class Surface: public SurfaceBase {
          vec4vec2D X, Xtrans;
          vec3vec2D Xscr;
 
-	     /// storage for the coloring of the vertices
-         floatvec2D R, G, B;
+         /// storage for the coloring of the vertices
+//         floatvec2D R, G, B;
 };
 
 /** An example surface:

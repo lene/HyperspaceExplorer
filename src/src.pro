@@ -22,7 +22,7 @@ INCLUDEPATH += ./Functions
 DEPENDPATH += ./Functions
 HEADERS += Functions/ComplexFunction.H Functions/CustomFunction.H \
            Functions/Function.H Functions/Object.H Functions/Surface.H \
-           Functions/RealFunction.H
+           Functions/RealFunction.H  Functions/FunctionParameter.H
 #          Functions/SteinerFunction.H
 SOURCES += Functions/ComplexFunction.C Functions/CustomFunction.C \
            Functions/Function.C Functions/Surface.C Functions/Object.C \

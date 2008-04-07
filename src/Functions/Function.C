@@ -44,9 +44,10 @@ Function::Function ():
  *  @param _vmax maximal value in v
  *  @param _dv stepsize in v                                                  */
 Function::Function (const QString &name,
-                            double _tmin, double _tmax, double _dt,
-                            double _umin, double _umax, double _du,
-                            double _vmin, double _vmax, double _dv):
+                    double _tmin, double _tmax, double _dt,
+                    double _umin, double _umax, double _du,
+                    double _vmin, double _vmax, double _dv,
+                    parameterMap _parameters):
     tmin (_tmin), tmax (_tmax), dt (_dt),
     umin (_umin), umax (_umax), du (_du),
     vmin (_vmin), vmax (_vmax), dv (_dv),
@@ -54,7 +55,8 @@ Function::Function (const QString &name,
     usteps (unsigned ((umax-umin)/du+1)),
     vsteps (unsigned ((vmax-vmin)/dv+1)),
     F (),
-    functionName(name), parameterNames() {
+    functionName(name), parameterNames(),
+    parameters(_parameters) {
     if (MemRequired () > Globals::Instance().getMaxMemory()) {
         cerr << "Using a " << tsteps << "x" << usteps << "x" << vsteps
              << " grid would require approx. " << MemRequired () << " MB of memory.\n";
@@ -68,8 +70,6 @@ Function::Function (const QString &name,
         dv = (vmax-vmin)/vsteps;
     }
 }
-
-
 
 /// Placeholder for function to set parameters in descendants
 /** Empty because a generic function has no parameters                        */

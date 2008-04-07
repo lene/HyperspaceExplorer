@@ -37,11 +37,13 @@ using VecMath::Matrix;
  *  @param _vmin minimal value in v
  *  @param _vmax maximal value in v
  *  @param _dv stepsize in v                                                  */
-RealFunction::RealFunction (const QString &name,
-                            double _tmin, double _tmax, double _dt,
-                            double _umin, double _umax, double _du,
-                            double _vmin, double _vmax, double _dv):
-        RealBase(name, _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
+RealFunction::RealFunction(const QString &name,
+                           double _tmin, double _tmax, double _dt,
+                           double _umin, double _umax, double _du,
+                           double _vmin, double _vmax, double _dv,
+                           parameterMap _parms):
+        RealBase(name, _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv,
+                 _parms),
         Xtrans(vec4vec3D()), Xscr(vec3vec3D()) {
     if (MemRequired () > Globals::Instance().getMaxMemory()) {
         cerr << "Using a " << tsteps << "x" << usteps << "x" << vsteps
@@ -150,16 +152,14 @@ void RealFunction::Transform (double thetaxy, double thetaxz, double thetaxw,
               Rot = Rxyz*Rxwyz*Ryzw;
     Vector<4> trans = Vector<4>(tx, ty, tz, tw);
 
-    for (unsigned t = 0; t <= tsteps+1; t++) {
+    for (unsigned t = 0; t <= tsteps+1; t++)
         for (unsigned u = 0; u <= usteps+1; u++)
             for (unsigned v = 0; v <= vsteps+1; v++)
                 Xtrans[t][u][v] = (Rot*X[t][u][v])+trans;
-  }
 }
 
 /// Projects a Function into three-space
-/** @todo replace hardcoded function to calculate 4D fog color with better one
- *  @param scr_w w coordinate of screen
+/** @param scr_w w coordinate of screen
  *  @param cam_w w coordinate of camera
  *  @param depthcue4d whether to use hyperfog/depth cue                       */
 void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
@@ -181,7 +181,8 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
                 ColMgrMgr::Instance().calibrateColor(
                     Color(float(t)/float(tsteps), float(u)/float(usteps),
                           float(v)/float(vsteps)),
-                    float(t)/float(tsteps), float(u)/float(usteps), float(v)/float(vsteps));
+                    float(t)/float(tsteps), float(u)/float(usteps),
+                    float(v)/float(vsteps));
             }
         }
     }
@@ -191,13 +192,6 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
     for (unsigned t = 0; t <= tsteps+1; t++)
         for (unsigned u = 0; u <= usteps+1; u++)
             for (unsigned v = 0; v <= vsteps+1; v++) {
-        /*
-        float DepthCueFactor =
-                        (Wmax-Xtrans[t][u][v][3])/(Wmax-Wmin)*0.9+0.1; //	HARDCODED! EEEEEYYYYUUUURGHHHHHHH!
-        R[t][u][v] = 0.1+(R[t][u][v]-0.1)*DepthCueFactor;
-        G[t][u][v] = 0.1+(G[t][u][v]-0.1)*DepthCueFactor;
-        B[t][u][v] = 0.1+(B[t][u][v]-0.1)*DepthCueFactor;
-        */
                 ColMgrMgr::Instance().depthCueColor(Wmax, Wmin,
                     Xtrans[t][u][v][3],
                     float(t)/float(tsteps), float(u)/float(usteps),
@@ -230,14 +224,12 @@ Vector<4> &RealFunction::normal (double tt, double uu, double vv) {
     return n;
 }
 
-
 /// Draw the current plane of the projected Function
 /** @param t current t value                                                  */
 void RealFunction::DrawPlane (unsigned t){
     for (unsigned u = 0; u < usteps; u++)
         DrawStrip (t, u);
 }
-
 
 /// Draw the current strip of the projected Function
 /** @param t current t value
@@ -333,13 +325,16 @@ void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v) {
  *  @param _dv		stepsize in v
  *  @param _rad		radius
  */
-Hypersphere::Hypersphere (double _tmin, double _tmax, double _dt,
-                          double _umin, double _umax, double _du,
-                          double _vmin, double _vmax, double _dv,
-                          double _rad):
-        RealFunction ("Hypersphere", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
-  Radius (_rad) {
-      parameterNames.push_back("Radius");
+Hypersphere::Hypersphere(double _tmin, double _tmax, double _dt,
+                         double _umin, double _umax, double _du,
+                         double _vmin, double _vmax, double _dv,
+                         double _rad):
+        RealFunction ("Hypersphere",
+                      _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
+        Radius (_rad) {
+    parameterNames.push_back("Radius");
+    parameters.insert(
+        std::make_pair("Radius", new FunctionParameter<double>(1.0)));
       Initialize ();
 }
 
@@ -400,8 +395,9 @@ Torus1::Torus1 (double _tmin, double _tmax, double _dt,
 		double _umin, double _umax, double _du,
 		double _vmin, double _vmax, double _dv,
 		double _R, double _r, double _rho):
-  RealFunction ("Torus 1", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
-  R (_R), r (_r), rho (_rho) {
+    RealFunction ("Torus 1",
+                _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
+    R (_R), r (_r), rho (_rho) {
       parameterNames.push_back("Major Radius");
       parameterNames.push_back("Minor Radius");
       parameterNames.push_back("Micro Radius");
@@ -414,12 +410,12 @@ Torus1::Torus1 (double _tmin, double _tmax, double _dt,
  *  @param vv v value
  *  @return value of defining function at point in question                   */
 Vector<4> &Torus1::f (double tt, double uu, double vv) {
-  F[0] =  cos (pi*tt)*(R+cos (pi*uu)*(r+rho*cos (pi*vv)));
-  F[1] =  sin (pi*tt)*(R+cos (pi*uu)*(r+rho*cos (pi*vv)));
-  F[2] =  sin (pi*uu)*(r+rho*cos (pi*vv));
-  F[3] =  rho*sin (pi*vv);
+    F[0] =  cos (pi*tt)*(R+cos (pi*uu)*(r+rho*cos (pi*vv)));
+    F[1] =  sin (pi*tt)*(R+cos (pi*uu)*(r+rho*cos (pi*vv)));
+    F[2] =  sin (pi*uu)*(r+rho*cos (pi*vv));
+    F[3] =  rho*sin (pi*vv);
 
-  return F;
+    return F;
 }
 
 
@@ -444,7 +440,8 @@ Torus2::Torus2 (double _tmin, double _tmax, double _dt,
 		double _umin, double _umax, double _du,
 		double _vmin, double _vmax, double _dv,
 		double _R, double _r):
-  RealFunction ("Torus 2", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
+  RealFunction ("Torus 2",
+                _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
   R (_R), r (_r) {
       parameterNames.push_back("Major Radius");
       parameterNames.push_back("Minor Radius");
@@ -485,7 +482,8 @@ Vector<4> &Torus2::f (double tt, double uu, double vv) {
 Fr3r::Fr3r (double _tmin, double _tmax, double _dt,
             double _umin, double _umax, double _du,
             double _vmin, double _vmax, double _dv):
-    RealFunction ("1/(r²+1)", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
+    RealFunction ("1/(r²+1)",
+                  _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
   Initialize ();
 }
 
@@ -529,7 +527,8 @@ GravitationPotential::GravitationPotential (double xmin, double xmax, double dx,
                                             double ymin, double ymax, double dy,
                                             double zmin, double zmax, double dz,
                                             double _M, double _R):
-        RealFunction ("Gravitation Potential", xmin, xmax, dx, ymin, ymax, dy, zmin, zmax, dz),
+        RealFunction ("Gravitation Potential",
+                      xmin, xmax, dx, ymin, ymax, dy, zmin, zmax, dz),
   M (_M), R (_R) {
       parameterNames.push_back("M");
       parameterNames.push_back("R");
@@ -574,7 +573,8 @@ Vector<4> &GravitationPotential::f (double tt, double uu, double vv) {
 Fr3rSin::Fr3rSin (double _tmin, double _tmax, double _dt,
 		  double _umin, double _umax, double _du,
 		  double _vmin, double _vmax, double _dv):
-        RealFunction ("sin (r²)", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
+        RealFunction ("sin (r²)",
+                      _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
   Initialize ();
 }
 
@@ -611,7 +611,8 @@ Vector<4> &Fr3rSin::f (double tt, double uu, double vv) {
 Fr3rExp::Fr3rExp (double _tmin, double _tmax, double _dt,
 		  double _umin, double _umax, double _du,
 		  double _vmin, double _vmax, double _dv):
-        RealFunction ("exp (r²)", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
+        RealFunction ("exp (r²)",
+                      _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
   Initialize ();
 }
 
@@ -648,7 +649,8 @@ Vector<4> &Fr3rExp::f (double tt, double uu, double vv) {
 Polar::Polar (double _tmin, double _tmax, double _dt,
 	      double _umin, double _umax, double _du,
 	      double _vmin, double _vmax, double _dv):
-  RealFunction ("Polar: Hypersphere", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
+  RealFunction ("Polar: Hypersphere",
+                _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
   Initialize ();
 }
 
@@ -734,9 +736,10 @@ Vector<4> &PolarSin::f (double tt, double uu, double vv) {
  *  @param _dv		stepsize in v
  */
 PolarSin2::PolarSin2 (double _tmin, double _tmax, double _dt,
-		      double _umin, double _umax, double _du,
-		      double _vmin, double _vmax, double _dv):
-        RealFunction ("Polar: r = sin (pi/3.*(t+u+v))", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
+                      double _umin, double _umax, double _du,
+                      double _vmin, double _vmax, double _dv):
+        RealFunction ("Polar: r = sin (pi/3.*(t+u+v))",
+                      _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
     parameterNames.push_back("Phase");
     Initialize ();
 }

@@ -22,6 +22,12 @@ class Function;
 ///
 /// \ingroup
 ///
+
+/// Interface for all color managers
+/** sets some values common to all color managers, manages the function
+ *  belonging to every color manager and has some typedefs for arrays of colors.
+ *
+ *  But above all, defines the interface every color manager must implement.  */
 class ColorManager {
     public:
         ColorManager(const Function *_f):
@@ -36,10 +42,16 @@ class ColorManager {
             f = _f;
         }
 
-        virtual void calibrateColor(const Color &,
-                                    float, float, float) = 0;
-        virtual void setColor(const VecMath::Vector<4> &);
+        /// Point (x, y, z) has color col. This may serve for interpolation.
+        virtual void calibrateColor(const Color &col,
+                                    float x, float y, float z) = 0;
+        /// Set current OpenGL color at given point
+        /** @param x four-dimensional coordinate for which the color is sought*/
+        virtual void setColor(const VecMath::Vector<4> &x);
+        /// Find the color of a given point
+        /** @param x four-dimensional coordinate for which the color is sought*/
         virtual Color getColor(const VecMath::Vector<4> &) = 0;
+        /// post-process color at given point to have 4D depth cue
         virtual void depthCueColor(double wmax, double wmin, double w,
                                    float, float, float) = 0;
 
@@ -53,7 +65,7 @@ class ColorManager {
         /// four-dimensional Color array, implemented as a nested std::vector
         typedef std::vector<colorvec3D> colorvec4D;
 
-        const Function* f;
+        const Function* f;      ///< Function for which to manage colors
 
         /** value to multiply a color with to get its ambient value           */
         double ambientColorModifier;
@@ -69,6 +81,7 @@ class ColorManager {
         double offset4Ddepthcue;
 };
 
+/// maps x, y, z in parameter space to R, G, B
 class xyz2RGBColorManager: public ColorManager {
     public:
         xyz2RGBColorManager(Function *_f):
@@ -91,9 +104,10 @@ class xyz2RGBColorManager: public ColorManager {
     protected:
         void resizeCol();
 
-        colorvec3D col;
+        colorvec3D col; ///< this is stupid. you could compute values on the fly.
 };
 
+/// Plots all points in white
 class monochromeColorManager: public ColorManager {
     public:
         monochromeColorManager(Function *_f): ColorManager(_f) { }
@@ -106,17 +120,24 @@ class monochromeColorManager: public ColorManager {
                                    float, float, float) { }
 };
 
+/// Singleton to set the color scheme globally - proxies the color manager
+/** \todo implement a map<Function *, ColorManager *> to store one ColorManager
+ *  per function - this will probably break the existing interface            */
 class ColorManagerManager {
     public:
+        /// determine which coloring scheme to use
         void setColorManager(ColorManager *cm) {
             colorManager.reset(cm);
         }
         std::auto_ptr<ColorManager> getColorManager() { return colorManager; }
 
+        /// proxy function for ColorManager::calibrateColor()
         void calibrateColor(const Color &_col, float x, float y, float z) {
             colorManager->calibrateColor(_col, x, y, z);
         }
+        /// proxy function for ColorManager::setColor()
         void setColor(const VecMath::Vector<4> &x) { colorManager->setColor(x); }
+        /// proxy function for ColorManager::depthCueColor()
         void depthCueColor(double wmax, double wmin, double w,
                            float x, float y, float z) {
             colorManager->depthCueColor(wmax, wmin, w, x, y, z);

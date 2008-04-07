@@ -51,8 +51,8 @@ void xyz2RGBColorManager::resizeCol() {
 void xyz2RGBColorManager::calibrateColor(const Color &_col,
                                          float x, float y, float z) {
     unsigned ix = unsigned(x*f->getTsteps()),
-             iy = unsigned(y*f->getTsteps()),
-             iz = unsigned(z*f->getTsteps());
+             iy = unsigned(y*f->getUsteps()),
+             iz = unsigned(z*f->getVsteps());
     col[ix][iy][iz] = _col;
 }
 
@@ -67,8 +67,8 @@ Color xyz2RGBColorManager::getColor(const VecMath::Vector<4> &x) {
     if (zscaled < 0.) zscaled = 0.;
     if (zscaled > 1.) zscaled = 1.;
     unsigned ix = unsigned(xscaled*f->getTsteps()),
-             iy = unsigned(yscaled*f->getTsteps()),
-             iz = unsigned(zscaled*f->getTsteps());
+             iy = unsigned(yscaled*f->getUsteps()),
+             iz = unsigned(zscaled*f->getVsteps());
     return col[ix][iy][iz];
 }
 void xyz2RGBColorManager::depthCueColor(double wmax, double wmin, double w,

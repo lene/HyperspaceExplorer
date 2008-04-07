@@ -430,7 +430,6 @@ void C4DView::ApplyChanges (void) {
     Redraw ();
 }
 
-
 /// Application of translations and rotations
 /** Calls F->Transform () and transforms the coordinate cross
  *  @param thetaxy rotation around xy plane (z axis); ignored because 3D rotation takes care of it

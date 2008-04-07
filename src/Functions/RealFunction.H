@@ -31,7 +31,8 @@ class RealFunction: public RealBase {
         RealFunction (const QString &name,
                       double _tmin, double _tmax, double _dt,
                       double _umin, double _umax, double _du,
-                      double _vmin, double _vmax, double _dv);
+                      double _vmin, double _vmax, double _dv,
+                      parameterMap _parms = parameterMap());
         virtual ~RealFunction() { }
 
         virtual void Transform (double Rxy, double Rxz, double Rxw,
