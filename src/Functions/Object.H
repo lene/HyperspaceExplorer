@@ -48,6 +48,17 @@ class Object: public Function {
             return F;
         }
 
+        virtual unsigned getTsteps() const { return NumVertices; }
+        virtual unsigned getUsteps() const { return 1; }
+        virtual unsigned getVsteps() const { return 1; }
+
+        virtual double getTmin() const { return -1; }
+        virtual double getTmax() const { return 1; }
+        virtual double getUmin() const { return -1; }
+        virtual double getUmax() const { return 1; }
+        virtual double getVmin() const { return -1; }
+        virtual double getVmax() const { return 1; }
+
     protected:
         /// number of vertices the object possesses; must be set by implementations
         unsigned NumVertices;

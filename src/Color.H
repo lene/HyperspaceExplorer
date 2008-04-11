@@ -13,6 +13,9 @@
 #if !defined(COLOR_H)
 #define COLOR_H
 
+#include <string>
+#include <sstream>
+
 /// a class to represent a color value by its RGBA components \n
 /// This class provides a single-stop interface to handle a color. It also
 /// provides some utility functions to work with colors. \n
@@ -37,6 +40,12 @@ class Color {
         Color operator +(float);
         void setComponentLowerLimit(float);
         void setComponentUpperLimit(float);
+
+        operator std::string() const {
+            std::ostringstream o;
+            o <<"[ "<< RGBA[0] << ", "<< RGBA[1]<< ", "<< RGBA[2]<< " ]";
+            return o.str();
+        }
 
     private:
         float RGBA[4];  /// the components stored as an array of floats

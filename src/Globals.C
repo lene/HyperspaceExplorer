@@ -37,9 +37,6 @@ Color Global::fog_color(0.2, 0.2, 0.2, 1.0);
 
 Global::Global():
     SR3(sqrt(3.)),
-    ambientColorModifier(0.5), specularColorModifier(2.0),
-    specularColorMinimum(0.5),
-    ALPHA(0.9), SHININESS(32.),
     mainWindow(new QMainWindow),
     quitAction(new QAction(QObject::tr("&Quit"), NULL)) {
     quitAction->setShortcut(QObject::tr("Ctrl+Q"));
@@ -58,26 +55,6 @@ void Global::CheckGLErrors (const char *
     while ((error = glGetError ()) != GL_NO_ERROR)
       cerr << "GL Err: " << op << ": " << gluErrorString (error) << endl;
 #   endif
-}
-
-/** set the current OpenGL color
- *  uses HARDCODED simple algorithm to set ambient and specular values for a
- *  specific color: if halves resp. dobles them, clipping at 1.0
- *  @todo make the agorithm which computes the ambient and specular values
- *        variable
- *  @param rgb color value to be set                                          */
-void Global::setColor(const Color &rgb) {
-    Color RGB(rgb);
-
-    glMaterialfv (GL_FRONT, GL_DIFFUSE, RGB);
-
-    RGB *= ambientColorModifier;
-    glMaterialfv (GL_FRONT, GL_AMBIENT, RGB);
-
-    RGB *= specularColorModifier/ambientColorModifier;
-    RGB.setComponentLowerLimit(specularColorMinimum);
-    glMaterialfv (GL_FRONT, GL_SPECULAR, RGB);
-    glMaterialf (GL_FRONT, GL_SHININESS, SHININESS);
 }
 
 /** find the ID of the first free GL list

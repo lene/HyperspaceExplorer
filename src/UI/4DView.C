@@ -635,16 +635,16 @@ void C4DView::DrawCoordinates () {
     for (unsigned j = 0; j < 4; j++) {
         switch (j) {
         case 0:
-            Globals::Instance().setColor (1., 0., 0.);
+            ColMgrMgr::Instance().setRGB (Color(1., 0., 0.));
             break;
         case 1:
-            Globals::Instance().setColor (0., 1., 0.);
+            ColMgrMgr::Instance().setRGB (Color(0., 1., 0.));
             break;
         case 2:
-            Globals::Instance().setColor (0., 0., 1.);
+            ColMgrMgr::Instance().setRGB (Color(0., 0., 1.));
             break;
         case 3:
-            Globals::Instance().setColor (1., 0., 1.);
+            ColMgrMgr::Instance().setRGB (Color(1., 0., 1.));
             break;
         }
         glBegin (GL_LINES);

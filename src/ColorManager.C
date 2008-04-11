@@ -10,6 +10,7 @@
 ///
 ///
 
+#include <iostream>
 #include <GL/gl.h>
 #include <GL/glu.h>
 
@@ -53,6 +54,11 @@ void xyz2RGBColorManager::calibrateColor(const Color &_col,
     unsigned ix = unsigned(x*f->getTsteps()),
              iy = unsigned(y*f->getUsteps()),
              iz = unsigned(z*f->getVsteps());
+
+    if (ix >= col.size()) { col.resize(ix, colorvec2D()); }
+    if (iy >= col[ix].size()) col[ix].resize(iy, colorvec1D());
+    if (iz >= col[ix][iy].size()) col[ix][iy].resize(iz);
+
     col[ix][iy][iz] = _col;
 }
 
@@ -69,13 +75,14 @@ Color xyz2RGBColorManager::getColor(const VecMath::Vector<4> &x) {
     unsigned ix = unsigned(xscaled*f->getTsteps()),
              iy = unsigned(yscaled*f->getUsteps()),
              iz = unsigned(zscaled*f->getVsteps());
+
     return col[ix][iy][iz];
 }
 void xyz2RGBColorManager::depthCueColor(double wmax, double wmin, double w,
                                         float x, float y, float z) {
     unsigned ix = unsigned(x*f->getTsteps()),
-             iy = unsigned(y*f->getTsteps()),
-             iz = unsigned(z*f->getTsteps());
+             iy = unsigned(y*f->getUsteps()),
+             iz = unsigned(z*f->getVsteps());
     float DepthCueFactor = (wmax-w)/(wmax-wmin)*(1.0-offset4Ddepthcue)
                             +offset4Ddepthcue;
     col[ix][iy][iz] = ((col[ix][iy][iz]+(-offset4Ddepthcue))

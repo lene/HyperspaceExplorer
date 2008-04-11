@@ -55,16 +55,6 @@ class Global {
 
         int GetGLList();
 
-        void setColor(const Color &);
-        /** This function is overloaded for convenience.
-         *  @param r red component of the color to set
-         *  @param g green component of the color to set
-         *  @param b blue component of the color to set
-         *  @param r alpha component of the color to set                      */
-        void setColor(float r, float g, float b, float a = 1.0) {
-            setColor(Color(r, g, b, a));
-        }
-
         Color &BackgroundColor() { return background; }
         void setBackground(const Color &rgba) { background = rgba; }
 
@@ -104,21 +94,10 @@ class Global {
     private:
         static unsigned long check_proc_meminfo ();
 
-        /** value to multiply a color with to get its ambient value           */
-        const double ambientColorModifier;
-        /** value to multiply a color with to get its specular value          */
-        const double specularColorModifier;
-        /** minimum value for the specular component of any color             */
-        const double specularColorMinimum;
-
         /** global (YUCK!) background color                                   */
         static Color background;
         /** global (YUCK!) fog/depth cue color                                */
         static Color fog_color;
-        /** global (YUCK!) alpha value for transparent display                */
-        const double ALPHA;
-        /** global (YUCK!) shininess value                                    */
-        const double SHININESS;
         /** color definition for White                                        */
         static Color White;
         /** color definition for Grey                                         */

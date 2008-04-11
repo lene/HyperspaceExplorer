@@ -121,32 +121,33 @@ class Function {
         /** @param i index of the wanted parameter
          *  @return name of the ith parameter                                 */
         QString getParameterName(unsigned i) {
-            return i < parameterNames.size()? parameterNames[i]: ""; }
+            return i < parameterNames.size()? parameterNames[i]: "";
+        }
 
         FunctionParameterBase *getParameter(QString name) {
             return parameters[name.toStdString()];
         }
 
-        unsigned getTsteps() const { return tsteps; }
-        unsigned getUsteps() const { return usteps; }
-        unsigned getVsteps() const { return vsteps; }
+        virtual unsigned getTsteps() const { return tsteps > 0? tsteps: 1; }
+        virtual unsigned getUsteps() const { return usteps > 0? usteps: 1; }
+        virtual unsigned getVsteps() const { return vsteps > 0? vsteps: 1; }
 
         double &getTmin() { return tmin; }
-        const double &getTmin() const { return tmin; }
+        virtual double getTmin() const { return tmin; }
         double &getTmax() { return tmax; }
-        const double &getTmax() const { return tmax; }
+        virtual double getTmax() const { return tmax; }
         double &getDt() { return dt; }
         const double &getDt() const { return dt; }
         double &getUmin() { return umin; }
-        const double &getUmin() const { return umin; }
+        virtual double getUmin() const { return umin; }
         double &getUmax() { return umax; }
-        const double &getUmax() const { return umax; }
+        virtual double getUmax() const { return umax; }
         double &getDu() { return du; }
         const double &getDu() const { return du; }
         double &getVmin() { return vmin; }
-        const double &getVmin() const { return vmin; }
+        virtual double getVmin() const { return vmin; }
         double &getVmax() { return vmax; }
-        const double &getVmax() const { return vmax; }
+        virtual double getVmax() const { return vmax; }
         double &getDv() { return dv; }
         const double &getDv() const { return dv; }
 

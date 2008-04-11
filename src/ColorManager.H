@@ -2,6 +2,7 @@
 #define COLOR_MANAGER_H
 
 #include <vector>
+#include <string>
 
 #include "SingletonHolder.H"
 
@@ -54,7 +55,29 @@ class ColorManager {
         /// post-process color at given point to have 4D depth cue
         virtual void depthCueColor(double wmax, double wmin, double w,
                                    float, float, float) = 0;
+        /** set the current OpenGL color
+         *  uses HARDCODED simple algorithm to set ambient and specular values for a
+         *  specific color: if halves resp. dobles them, clipping at 1.0
+         *  @todo make the agorithm which computes the ambient and specular values
+         *        variable
+         *  @param rgb color value to be set                                          */
+        void setRGB(const Color &rgb) {
+            Color RGB(rgb);
 
+            glMaterialfv (GL_FRONT, GL_DIFFUSE, RGB);
+
+            RGB *= ambientColorModifier;
+            glMaterialfv (GL_FRONT, GL_AMBIENT, RGB);
+
+            RGB *= specularColorModifier/ambientColorModifier;
+            RGB.setComponentLowerLimit(specularColorMinimum);
+            glMaterialfv (GL_FRONT, GL_SPECULAR, RGB);
+            glMaterialf (GL_FRONT, GL_SHININESS, SHININESS);
+        }
+
+        virtual unsigned size() { return 0; }
+        virtual std::string getContents() { return ""; }
+        
     protected:
         /// one-dimensional Color array, implemented as a std::vector
         typedef std::vector<Color> colorvec1D;
@@ -96,10 +119,27 @@ class xyz2RGBColorManager: public ColorManager {
         }
 
         virtual void calibrateColor(const Color &_col,
-                               float x, float y, float z);
+                                    float x, float y, float z);
         virtual Color getColor(const VecMath::Vector<4> &x);
         virtual void depthCueColor(double wmax, double wmin, double w,
                                    float, float, float);
+        virtual unsigned size() { return col.size(); }
+
+        virtual std::string getContents() {
+            std::string tmp = "";
+            for (unsigned ix = 0; ix < col.size(); ix++) {
+                tmp += (ix+48);
+                tmp += "\n";
+                for (unsigned iy = 0; iy < 1; iy++) {
+                    for (unsigned iz = 0; iz < 1; iz++) {
+                        tmp += col[ix][iy][iz];
+                    }
+                    tmp += "\n";
+                }
+                tmp += "\n";
+            }
+            return tmp;
+        }
 
     protected:
         void resizeCol();
@@ -129,7 +169,6 @@ class ColorManagerManager {
         void setColorManager(ColorManager *cm) {
             colorManager.reset(cm);
         }
-        std::auto_ptr<ColorManager> getColorManager() { return colorManager; }
 
         /// proxy function for ColorManager::calibrateColor()
         void calibrateColor(const Color &_col, float x, float y, float z) {
@@ -142,6 +181,8 @@ class ColorManagerManager {
                            float x, float y, float z) {
             colorManager->depthCueColor(wmax, wmin, w, x, y, z);
         }
+        void setRGB(const Color &_col) { colorManager->setRGB(_col); }
+        std::string getContents() { return colorManager->getContents(); }
 
     private:
         /** disabled default constructor */

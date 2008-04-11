@@ -10,9 +10,11 @@
 
 
 #include "Globals.H"
+#include "ColorManager.H"
+#include "Log.H"
+
 #include "Matrix.H"
 #include "Object.H"
-#include "Log.H"
 
 using std::cerr;
 using std::endl;
@@ -91,20 +93,18 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
 
         for (unsigned j = 0; j <= 2; j++)
             Xscr[i][j] = ProjectionFactor*Xtrans[i][j];
-
-        R[i] = (X[i][0]+1)/2;
-        G[i] = (X[i][1]+1)/2;
-        B[i] = (X[i][2]+1)/2;
+            ColMgrMgr::Instance().calibrateColor(
+                Color((X[i][0]+1)/2, (X[i][1]+1)/2, (X[i][2]+1)/2),
+                (float)i/(float)getTsteps(), 0., 0.);
     }
 
     if (!depthcue4d) return;
 
     //  apply hyperfog
     for (unsigned i = 0; i < NumVertices; i++) {
-        float DepthCueFactor = (Wmax-Xtrans[i][3])/(Wmax-Wmin)*0.9+0.1; //  HARDCODED! YUCK! VADE RETRO SATANAS!
-        R[i] = 0.1+(R[i]-0.1)*DepthCueFactor;
-        G[i] = 0.1+(G[i]-0.1)*DepthCueFactor;
-        B[i] = 0.1+(B[i]-0.1)*DepthCueFactor;
+        ColMgrMgr::Instance().depthCueColor(Wmax, Wmin,
+            Xtrans[i][3],
+            (float)i/(float)getTsteps(), 0., 0.);
     }
 }
 
@@ -114,7 +114,7 @@ void Object::Draw () {
     glBegin (GL_QUADS);
     for (unsigned i = 0; i < NumSurfaces; i++)
         for (unsigned j = 0; j < 4; j++) {
-            Globals::Instance().setColor(R[Surface[j][i]], G[Surface[j][i]], B[Surface[j][i]]);
+            ColMgrMgr::Instance().setColor(Vector<4>((float)Surface[j][i]/(float)getTsteps(), 0., 0., 0.));
             Globals::Instance().glVertex(Xscr[Surface[j][i]]);
         }
     glEnd ();
