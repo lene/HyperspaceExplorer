@@ -2,7 +2,9 @@
 #define COLOR_MANAGER_H
 
 #include <vector>
+#include <map>
 #include <string>
+#include <sstream>
 
 #include "SingletonHolder.H"
 
@@ -45,7 +47,7 @@ class ColorManager {
 
         /// Point (x, y, z) has color col. This may serve for interpolation.
         virtual void calibrateColor(const Color &col,
-                                    float x, float y, float z) = 0;
+                                    const VecMath::Vector<4> &x) = 0;
         /// Set current OpenGL color at given point
         /** @param x four-dimensional coordinate for which the color is sought*/
         virtual void setColor(const VecMath::Vector<4> &x);
@@ -54,7 +56,7 @@ class ColorManager {
         virtual Color getColor(const VecMath::Vector<4> &) = 0;
         /// post-process color at given point to have 4D depth cue
         virtual void depthCueColor(double wmax, double wmin, double w,
-                                   float, float, float) = 0;
+                                   const VecMath::Vector<4> &x) = 0;
         /** set the current OpenGL color
          *  uses HARDCODED simple algorithm to set ambient and specular values for a
          *  specific color: if halves resp. dobles them, clipping at 1.0
@@ -77,7 +79,7 @@ class ColorManager {
 
         virtual unsigned size() { return 0; }
         virtual std::string getContents() { return ""; }
-        
+
     protected:
         /// one-dimensional Color array, implemented as a std::vector
         typedef std::vector<Color> colorvec1D;
@@ -87,6 +89,8 @@ class ColorManager {
         typedef std::vector<colorvec2D> colorvec3D;
         /// four-dimensional Color array, implemented as a nested std::vector
         typedef std::vector<colorvec3D> colorvec4D;
+        /// map of Colors, indexed by 4D points
+        typedef std::map<VecMath::Vector<4>, Color> colormap;
 
         const Function* f;      ///< Function for which to manage colors
 
@@ -108,43 +112,34 @@ class ColorManager {
 class xyz2RGBColorManager: public ColorManager {
     public:
         xyz2RGBColorManager(Function *_f):
-            ColorManager(_f) {
-            resizeCol();
-        }
+            ColorManager(_f), col(colormap()) { }
         virtual ~xyz2RGBColorManager() { }
 
         virtual void setFunction(Function *_f) {
             f = _f;
-            resizeCol();
+            col.clear();
         }
 
         virtual void calibrateColor(const Color &_col,
-                                    float x, float y, float z);
+                                    const VecMath::Vector<4> &x);
         virtual Color getColor(const VecMath::Vector<4> &x);
         virtual void depthCueColor(double wmax, double wmin, double w,
-                                   float, float, float);
+                                   const VecMath::Vector<4> &);
         virtual unsigned size() { return col.size(); }
 
         virtual std::string getContents() {
-            std::string tmp = "";
-            for (unsigned ix = 0; ix < col.size(); ix++) {
-                tmp += (ix+48);
-                tmp += "\n";
-                for (unsigned iy = 0; iy < 1; iy++) {
-                    for (unsigned iz = 0; iz < 1; iz++) {
-                        tmp += col[ix][iy][iz];
-                    }
-                    tmp += "\n";
-                }
-                tmp += "\n";
+            std::ostringstream o;
+            for (colormap::iterator i = col.begin(); i != col.end(); ++i) {
+                o << i->first << " -> " << i->second.operator std::string()
+                  << std::endl;
             }
-            return tmp;
+            return o.str();
         }
 
     protected:
         void resizeCol();
 
-        colorvec3D col; ///< this is stupid. you could compute values on the fly.
+        colormap col; ///< this is stupid. you could compute values on the fly.
 };
 
 /// Plots all points in white
@@ -152,12 +147,13 @@ class monochromeColorManager: public ColorManager {
     public:
         monochromeColorManager(Function *_f): ColorManager(_f) { }
         ~monochromeColorManager() { }
-        virtual void calibrateColor(const Color &, float, float, float) { }
+        virtual void calibrateColor(const Color &,
+                                    const VecMath::Vector<4> &) { }
         virtual Color getColor(const VecMath::Vector<4> &) {
             return Color(1., 1., 1.);
         }
         virtual void depthCueColor(double, double, double,
-                                   float, float, float) { }
+                                   const VecMath::Vector<4> &) { }
 };
 
 /// Singleton to set the color scheme globally - proxies the color manager
@@ -171,15 +167,15 @@ class ColorManagerManager {
         }
 
         /// proxy function for ColorManager::calibrateColor()
-        void calibrateColor(const Color &_col, float x, float y, float z) {
-            colorManager->calibrateColor(_col, x, y, z);
+        void calibrateColor(const Color &_col, const VecMath::Vector<4> &x) {
+            colorManager->calibrateColor(_col, x);
         }
         /// proxy function for ColorManager::setColor()
         void setColor(const VecMath::Vector<4> &x) { colorManager->setColor(x); }
         /// proxy function for ColorManager::depthCueColor()
         void depthCueColor(double wmax, double wmin, double w,
-                           float x, float y, float z) {
-            colorManager->depthCueColor(wmax, wmin, w, x, y, z);
+                           const VecMath::Vector<4> &x) {
+            colorManager->depthCueColor(wmax, wmin, w, x);
         }
         void setRGB(const Color &_col) { colorManager->setRGB(_col); }
         std::string getContents() { return colorManager->getContents(); }

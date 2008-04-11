@@ -43,7 +43,8 @@ class Color {
 
         operator std::string() const {
             std::ostringstream o;
-            o <<"[ "<< RGBA[0] << ", "<< RGBA[1]<< ", "<< RGBA[2]<< " ]";
+            o <<"[ "<< RGBA[0] << ", "<< RGBA[1]<< ", "<< RGBA[2]<< " ]"
+              << std::ends;
             return o.str();
         }
 

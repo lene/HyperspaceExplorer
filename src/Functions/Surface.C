@@ -215,26 +215,19 @@ void Surface::Project (double scr_w, double cam_w, bool depthcue4d) {
             for (unsigned i = 0; i <= 2; i++)
                 Xscr[u][v][i] = ProjectionFactor*Xtrans[u][v][i];
 
-/*            R[u][v] = float (u)/float (usteps);
-            G[u][v] = float (v)/float (vsteps);
-            B[u][v] = (Wmax-X[u][v][3])/(Wmax-Wmin);*/
             ColMgrMgr::Instance().calibrateColor(
                 Color(float(u)/float(usteps), float(v)/float(vsteps),
                       (Wmax-X[u][v][3])/(Wmax-Wmin)),
-                0, float(u)/float(usteps), float(v)/float(vsteps));
+                X[u][v]);
     }
 
     if (!depthcue4d) return;
 
     for (unsigned u = 0; u <= usteps+1; u++)
         for (unsigned v = 0; v <= vsteps+1; v++) {
-/*            float DepthCueFactor = (Wmax-Xtrans[u][v][3])/(Wmax-Wmin)*0.9+0.1; //	??? !!!
-            R[u][v] = 0.1+(R[u][v]-0.1)*DepthCueFactor;
-            G[u][v] = 0.1+(G[u][v]-0.1)*DepthCueFactor;
-            B[u][v] = 0.1+(B[u][v]-0.1)*DepthCueFactor;*/
             ColMgrMgr::Instance().depthCueColor(Wmax, Wmin,
                     Xtrans[u][v][3],
-                    0, float(u)/float(usteps), float(v)/float(vsteps));
+                    X[u][v]);
         }
 }
 

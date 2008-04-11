@@ -72,24 +72,37 @@ namespace VecMath {
         /** @return -*this                                                    */
         Vector<D, N> operator- (void) const;
         /** @param Y other Vector
-         *  @return *this+Y                                                        */
-        Vector<D, N> operator+ (const Vector<D, N> &Y);
+         *  @return *this+Y                                                   */
+        Vector<D, N> operator+ (const Vector<D, N> &Y) const;
         /** @param Y other Vector
-         *  @return *this-Y                                                        */
-        Vector<D, N> operator- (const Vector<D, N> &Y);
+         *  @return *this-Y                                                   */
+        Vector<D, N> operator- (const Vector<D, N> &Y) const;
         /** @param s scalar type
-         *  @return *this*s                                                        */
-        Vector<D, N> operator* (const N &s);
+         *  @return *this*s                                                   */
+        Vector<D, N> operator* (const N &s) const;
         /// scalar multiplication between two Vectors (dot product)
         /** @param Y other Vector
-         *  @return dot product < *this, Y >                                       */
+         *  @return dot product < *this, Y >                                  */
         N operator* (const Vector<D, N> &X) const;
         /** @param s scalar type
          *  @return *this/s                                                   */
-        Vector<D, N> operator/ (const N &s);
+        Vector<D, N> operator/ (const N &s) const;
 
-        /** @return the squared norm of the vector, |V|²                           */
+        /** @return the squared norm of the vector, |V|²                      */
         N sqnorm (void) const;
+
+        /// Ordering needed to use Vector as key for a std::map
+        /** @return whether absolute value of this is less than the other
+         *  Vector's                                                          */
+        bool operator<(const Vector<D, N> &other) const {
+            if (sqnorm() == other.sqnorm()) {
+                for (unsigned i = 0; i < D; i++) {
+                    if (x[i] < other[i]) return true;
+                    if (x[i] > other[i]) return false;
+                }
+            }
+            return sqnorm() < other.sqnorm();
+        }
 
         /// Direct access to the array storing the components
         /** Needed by glVertex3dv   */
@@ -167,21 +180,21 @@ namespace VecMath {
     }
 
     template <unsigned D, typename N>
-            Vector<D, N> Vector<D, N>::operator+ (const Vector<D, N> &Y) {
+            Vector<D, N> Vector<D, N>::operator+ (const Vector<D, N> &Y) const {
     static Vector<D, N> Z;
     Z = *this;
     return (Z += Y);
     }
 
     template <unsigned D, typename N>
-            Vector<D, N> Vector<D, N>::operator- (const Vector<D, N> &Y) {
+            Vector<D, N> Vector<D, N>::operator- (const Vector<D, N> &Y) const {
     static Vector<D, N> Z;
     Z = *this;
     return (Z -= Y);
     }
 
     template <unsigned D, typename N>
-            Vector<D, N> Vector<D, N>::operator* (const N &s) {
+            Vector<D, N> Vector<D, N>::operator* (const N &s) const {
     Vector <D, N>Z;
     Z = *this;
     return Z *= s;
@@ -197,7 +210,7 @@ namespace VecMath {
     }
 
     template <unsigned D, typename N>
-            Vector<D, N> Vector<D, N>::operator/ (const N &s) {
+            Vector<D, N> Vector<D, N>::operator/ (const N &s) const {
     return operator* (1./s);
     }
 

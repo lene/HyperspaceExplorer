@@ -181,8 +181,7 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
                 ColMgrMgr::Instance().calibrateColor(
                     Color(float(t)/float(tsteps), float(u)/float(usteps),
                           float(v)/float(vsteps)),
-                    float(t)/float(tsteps), float(u)/float(usteps),
-                    float(v)/float(vsteps));
+                    X[t][u][v]);
             }
         }
     }
@@ -193,9 +192,7 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
         for (unsigned u = 0; u <= usteps+1; u++)
             for (unsigned v = 0; v <= vsteps+1; v++) {
                 ColMgrMgr::Instance().depthCueColor(Wmax, Wmin,
-                    Xtrans[t][u][v][3],
-                    float(t)/float(tsteps), float(u)/float(usteps),
-                    float(v)/float(vsteps));
+                    Xtrans[t][u][v][3], X[t][u][v]);
             }
 }
 

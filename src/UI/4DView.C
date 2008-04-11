@@ -445,11 +445,11 @@ void C4DView::ApplyChanges (void) {
 void C4DView::Transform (double thetaxy, double thetaxz, double thetaxw,
                          double thetayz, double thetayw, double thetazw,
                          double tx, double ty, double tz, double tw) {
-    SingletonLog::Instance() << "C4DView::Transform ("<< thetaxy << ", "
-            << thetaxz << ", " << thetaxw << ", "
-            << thetayz << ", " << thetayw << ", " << thetazw << ", \n"
-            << "                    "
-            << tx << ", " << ty << ", " << tz << ", " << tw <<")\n";
+//     SingletonLog::Instance() << "C4DView::Transform ("<< thetaxy << ", "
+//             << thetaxz << ", " << thetaxw << ", "
+//             << thetayz << ", " << thetayw << ", " << thetazw << ", \n"
+//             << "                    "
+//             << tx << ", " << ty << ", " << tz << ", " << tw <<")\n";
 
     if (F.get())
         F->Transform (thetaxy, thetaxz, thetaxw, thetayz, thetayw, thetazw,

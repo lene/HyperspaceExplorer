@@ -93,18 +93,16 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
 
         for (unsigned j = 0; j <= 2; j++)
             Xscr[i][j] = ProjectionFactor*Xtrans[i][j];
-            ColMgrMgr::Instance().calibrateColor(
-                Color((X[i][0]+1)/2, (X[i][1]+1)/2, (X[i][2]+1)/2),
-                (float)i/(float)getTsteps(), 0., 0.);
+
+        ColMgrMgr::Instance().calibrateColor(
+            Color((X[i][0]+1)/2, (X[i][1]+1)/2, (X[i][2]+1)/2), X[i]);
     }
 
     if (!depthcue4d) return;
 
     //  apply hyperfog
     for (unsigned i = 0; i < NumVertices; i++) {
-        ColMgrMgr::Instance().depthCueColor(Wmax, Wmin,
-            Xtrans[i][3],
-            (float)i/(float)getTsteps(), 0., 0.);
+        ColMgrMgr::Instance().depthCueColor(Wmax, Wmin, Xtrans[i][3], X[i]);
     }
 }
 
@@ -114,7 +112,7 @@ void Object::Draw () {
     glBegin (GL_QUADS);
     for (unsigned i = 0; i < NumSurfaces; i++)
         for (unsigned j = 0; j < 4; j++) {
-            ColMgrMgr::Instance().setColor(Vector<4>((float)Surface[j][i]/(float)getTsteps(), 0., 0., 0.));
+            ColMgrMgr::Instance().setColor(X[Surface[j][i]]);
             Globals::Instance().glVertex(Xscr[Surface[j][i]]);
         }
     glEnd ();

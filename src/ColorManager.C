@@ -37,54 +37,26 @@ void ColorManager::setColor(const VecMath::Vector<4> &x) {
     glMaterialf (GL_FRONT, GL_SHININESS, SHININESS);
 }
 
-void xyz2RGBColorManager::resizeCol() {
-    if (f) {
-        col.resize(f->getTsteps()+2);
-        for (unsigned t = 0; t < col.size(); ++t) {
-            col[t].resize(f->getUsteps()+2);
-            for (unsigned u = 0; u < col[t].size(); ++u) {
-                col[t][u].resize(f->getVsteps()+2);
-            }
-        }
-    }
-}
-
 void xyz2RGBColorManager::calibrateColor(const Color &_col,
-                                         float x, float y, float z) {
-    unsigned ix = unsigned(x*f->getTsteps()),
-             iy = unsigned(y*f->getUsteps()),
-             iz = unsigned(z*f->getVsteps());
-
-    if (ix >= col.size()) { col.resize(ix, colorvec2D()); }
-    if (iy >= col[ix].size()) col[ix].resize(iy, colorvec1D());
-    if (iz >= col[ix][iy].size()) col[ix][iy].resize(iz);
-
-    col[ix][iy][iz] = _col;
+                                         const VecMath::Vector<4> &x) {
+    col.insert(std::make_pair(x, _col));
 }
 
 Color xyz2RGBColorManager::getColor(const VecMath::Vector<4> &x) {
-    float xscaled = (x[0]-f->getTmin())/(f->getTmax()-f->getTmin());
-    if (xscaled < 0.) xscaled = 0.;
-    if (xscaled > 1.) xscaled = 1.;
-    float yscaled = (x[1]-f->getUmin())/(f->getUmax()-f->getUmin());
-    if (yscaled < 0.) yscaled = 0.;
-    if (yscaled > 1.) yscaled = 1.;
-    float zscaled = (x[2]-f->getVmin())/(f->getVmax()-f->getVmin());
-    if (zscaled < 0.) zscaled = 0.;
-    if (zscaled > 1.) zscaled = 1.;
-    unsigned ix = unsigned(xscaled*f->getTsteps()),
-             iy = unsigned(yscaled*f->getUsteps()),
-             iz = unsigned(zscaled*f->getVsteps());
-
-    return col[ix][iy][iz];
+    if (col.count(x)) {
+        return col[x];
+    } else {
+        std::map<VecMath::Vector<4>, double> distances;
+        for (colormap::iterator i = col.begin(); i != col.end(); ++i) {
+            distances[i->first] = (x-i->first).sqnorm();
+            std::cerr << distances[i->first] << std::endl;
+        }
+    }
 }
 void xyz2RGBColorManager::depthCueColor(double wmax, double wmin, double w,
-                                        float x, float y, float z) {
-    unsigned ix = unsigned(x*f->getTsteps()),
-             iy = unsigned(y*f->getUsteps()),
-             iz = unsigned(z*f->getVsteps());
+                                        const VecMath::Vector<4> &x) {
     float DepthCueFactor = (wmax-w)/(wmax-wmin)*(1.0-offset4Ddepthcue)
                             +offset4Ddepthcue;
-    col[ix][iy][iz] = ((col[ix][iy][iz]+(-offset4Ddepthcue))
+    col[x] = ((col[x]+(-offset4Ddepthcue))
                         + offset4Ddepthcue)*DepthCueFactor;
 }
