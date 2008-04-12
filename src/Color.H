@@ -29,7 +29,7 @@
 class Color {
     public:
         Color() { r() = g() = b() = a() = 0.; }
-        Color(float, float, float, float = 0.);
+        Color(float, float, float, float = 1.);
         Color(const VecMath::Vector<4> &);
 
         float &r() { return RGBA[0]; }  /// the red component of the color

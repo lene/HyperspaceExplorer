@@ -83,6 +83,7 @@ void RealFunction::InitMem (void) {
 /// Allocate and initialize X[][][] with values of f()
 /** Call InitMem() above */
 void RealFunction::Initialize () {
+    double Wmin = 0., Wmax = 0.;
     X = vec4vec3D(tsteps+2);
     ColMgrMgr::Instance().setFunction(this);
 
@@ -95,10 +96,20 @@ void RealFunction::Initialize () {
             for (unsigned v = 0; v <= vsteps+1; v++) {
                 double T = tmin+t*dt, U =umin+u*du, V = vmin+v*dv;
                 X[t][u][v] = f (T, U, V);
+                if (X[t][u][v][3] < Wmin) Wmin = X[t][u][v][3];
+                if (X[t][u][v][3] > Wmax) Wmax = X[t][u][v][3];
+            }
+        }
+    }
+
+    for (unsigned t = 0; t <= tsteps+1; t++) {
+        for (unsigned u = 0; u <= usteps+1; u++) {
+            for (unsigned v = 0; v <= vsteps+1; v++) {
                 ColMgrMgr::Instance().calibrateColor(
+                    X[t][u][v],
                     Color(float(t)/float(tsteps), float(u)/float(usteps),
-                          float(v)/float(vsteps)),
-                    X[t][u][v]);
+                          float(v)/float(vsteps),
+                          (X[t][u][v][3]-Wmin)/(Wmax-Wmin)));
             }
         }
     }

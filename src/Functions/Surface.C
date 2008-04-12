@@ -78,9 +78,9 @@ void Surface::Initialize () {
     for (unsigned u = 0; u <= usteps+1; u++) {
         for (unsigned v = 0; v <= vsteps+1; v++) {
             ColMgrMgr::Instance().calibrateColor(
+                X[u][v],
                 Color(float(u)/float(usteps), float(v)/float(vsteps),
-                      (Wmax-X[u][v][3])/(Wmax-Wmin)),
-                X[u][v]);
+                      (Wmax-X[u][v][3])/(Wmax-Wmin)));
         }
     }
 

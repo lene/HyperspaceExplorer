@@ -47,8 +47,8 @@ class ColorManager {
         }
 
         /// Point (x, y, z) has color col. This may serve for interpolation.
-        virtual void calibrateColor(const Color &col,
-                                    const VecMath::Vector<4> &x) = 0;
+        virtual void calibrateColor(const VecMath::Vector<4> &x,
+                                    const Color &col = Color()) = 0;
         /// Set current OpenGL color at given point
         /** @param x four-dimensional coordinate for which the color is sought*/
         virtual void setColor(const VecMath::Vector<4> &x);
@@ -104,8 +104,8 @@ class xyz2RGBColorManager: public ColorManager {
             col.clear();
         }
 
-        virtual void calibrateColor(const Color &_col,
-                                    const VecMath::Vector<4> &x);
+        virtual void calibrateColor(const VecMath::Vector<4> &x,
+                                    const Color &_col = Color());
         virtual Color getColor(const VecMath::Vector<4> &x);
         virtual void depthCueColor(double wmax, double wmin, double w,
                                    const VecMath::Vector<4> &);
@@ -134,8 +134,8 @@ class monochromeColorManager: public ColorManager {
     public:
         monochromeColorManager(Function *_f): ColorManager(_f) { }
         ~monochromeColorManager() { }
-        virtual void calibrateColor(const Color &,
-                                    const VecMath::Vector<4> &) { }
+        virtual void calibrateColor(const VecMath::Vector<4> &,
+                                    const Color & = Color()) { }
         virtual Color getColor(const VecMath::Vector<4> &) {
             return Color(1., 1., 1.);
         }
@@ -156,8 +156,9 @@ class ColorManagerManager {
         /// proxy function for ColorManager::setFunction()
         void setFunction(Function *_f) { colorManager->setFunction(_f); }
         /// proxy function for ColorManager::calibrateColor()
-        void calibrateColor(const Color &_col, const VecMath::Vector<4> &x) {
-            colorManager->calibrateColor(_col, x);
+        void calibrateColor(const VecMath::Vector<4> &x,
+                            const Color &_col = Color()) {
+            colorManager->calibrateColor(x, _col);
         }
         /// proxy function for ColorManager::setColor()
         void setColor(const VecMath::Vector<4> &x) { colorManager->setColor(x); }

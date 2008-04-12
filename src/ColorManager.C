@@ -62,7 +62,7 @@ void ColorManager::setRGB(const Color &rgb) {
     glMaterialf (GL_FRONT, GL_SHININESS, SHININESS);
 }
 
-void xyz2RGBColorManager::calibrateColor(const Color &_col, const Vector<4> &x) {
+void xyz2RGBColorManager::calibrateColor(const Vector<4> &x, const Color &_col) {
     col.insert(std::make_pair(x, _col));
 }
 

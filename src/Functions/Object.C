@@ -45,7 +45,9 @@ Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
 void Object::Initialize() {
     for (unsigned i = 0; i < NumVertices; i++) {
         ColMgrMgr::Instance().calibrateColor(
-            Color((X[i][0]+1)/2, (X[i][1]+1)/2, (X[i][2]+1)/2), X[i]);
+            X[i],
+            Color((X[i][0]+1)/2, (X[i][1]+1)/2, (X[i][2]+1)/2,
+                   .75-(X[i][3]+1)/4));
     }
 }
 

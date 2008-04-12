@@ -118,8 +118,6 @@ void C4DView::Wireframe() {
         menu->getAction("Wireframe")->setText("Solid");
         menu->getAction("Transparence")->setText("Line Antialiasing");
     } else {
-        transparent = true;;
-        Transparent ();
         menu->getAction("Wireframe")->setText("Wireframe");
         menu->getAction("Transparence")->setText("Transparence");
         glDisable (GL_CULL_FACE);
