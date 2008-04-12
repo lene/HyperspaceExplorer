@@ -23,14 +23,15 @@ class Function;
 ///
 /// Copyright: See COPYING file that comes with this distribution
 ///
-/// \ingroup
-///
+/// \defgroup Coloring Functionality for defining color schemes
+/// \ingroup UIGroup
 
 /// Interface for all color managers
 /** sets some values common to all color managers, manages the function
  *  belonging to every color manager and has some typedefs for arrays of colors.
  *
- *  But above all, defines the interface every color manager must implement.  */
+ *  But above all, defines the interface every color manager must implement.
+ *  \ingroup Coloring                                                         */
 class ColorManager {
     public:
         ColorManager(const Function *_f):
@@ -57,27 +58,9 @@ class ColorManager {
         /// post-process color at given point to have 4D depth cue
         virtual void depthCueColor(double wmax, double wmin, double w,
                                    const VecMath::Vector<4> &x) = 0;
-        /** set the current OpenGL color
-         *  uses HARDCODED simple algorithm to set ambient and specular values for a
-         *  specific color: if halves resp. dobles them, clipping at 1.0
-         *  @todo make the agorithm which computes the ambient and specular values
-         *        variable
-         *  @param rgb color value to be set                                          */
-        void setRGB(const Color &rgb) {
-            Color RGB(rgb);
+        void setRGB(const Color &rgb);
 
-            glMaterialfv (GL_FRONT, GL_DIFFUSE, RGB);
-
-            RGB *= ambientColorModifier;
-            glMaterialfv (GL_FRONT, GL_AMBIENT, RGB);
-
-            RGB *= specularColorModifier/ambientColorModifier;
-            RGB.setComponentLowerLimit(specularColorMinimum);
-            glMaterialfv (GL_FRONT, GL_SPECULAR, RGB);
-            glMaterialf (GL_FRONT, GL_SHININESS, SHININESS);
-        }
-
-        virtual unsigned size() { return 0; }
+        /// debugging output
         virtual std::string getContents() { return ""; }
 
     protected:
@@ -94,21 +77,22 @@ class ColorManager {
 
         const Function* f;      ///< Function for which to manage colors
 
-        /** value to multiply a color with to get its ambient value           */
+        /// value to multiply a color with to get its ambient value
         double ambientColorModifier;
-        /** value to multiply a color with to get its specular value          */
+        /// value to multiply a color with to get its specular value
         double specularColorModifier;
-        /** minimum value for the specular component of any color             */
+        /// minimum value for the specular component of any color
         double specularColorMinimum;
-        /** shininess value                                                   */
+        /// shininess value
         double SHININESS;
-        /** alpha value for transparent display                               */
+        /// alpha value for transparent display
         double ALPHA;
-        /** offset (minimum color) value for 4D depth cue                     */
+        /// offset (minimum color) value for 4D depth cue
         double offset4Ddepthcue;
 };
 
 /// maps x, y, z in parameter space to R, G, B
+/** \ingroup Coloring                                                         */
 class xyz2RGBColorManager: public ColorManager {
     public:
         xyz2RGBColorManager(Function *_f):
@@ -125,8 +109,7 @@ class xyz2RGBColorManager: public ColorManager {
         virtual Color getColor(const VecMath::Vector<4> &x);
         virtual void depthCueColor(double wmax, double wmin, double w,
                                    const VecMath::Vector<4> &);
-        virtual unsigned size() { return col.size(); }
-
+        /// debugging output
         virtual std::string getContents() {
             std::ostringstream o;
             for (colormap::iterator i = col.begin(); i != col.end(); ++i) {
@@ -146,6 +129,7 @@ class xyz2RGBColorManager: public ColorManager {
 };
 
 /// Plots all points in white
+/** \ingroup Coloring                                                         */
 class monochromeColorManager: public ColorManager {
     public:
         monochromeColorManager(Function *_f): ColorManager(_f) { }
@@ -161,7 +145,8 @@ class monochromeColorManager: public ColorManager {
 
 /// Singleton to set the color scheme globally - proxies the color manager
 /** \todo implement a map<Function *, ColorManager *> to store one ColorManager
- *  per function - this will probably break the existing interface            */
+ *  per function - this will probably break the existing interface
+ *  \ingroup Coloring                                                         */
 class ColorManagerManager {
     public:
         /// determine which coloring scheme to use
@@ -181,6 +166,7 @@ class ColorManagerManager {
             colorManager->depthCueColor(wmax, wmin, w, x);
         }
         void setRGB(const Color &_col) { colorManager->setRGB(_col); }
+        /// debugging output
         std::string getContents() { return colorManager->getContents(); }
 
     private:

@@ -40,10 +40,6 @@ QMainWindow *&nbsp;</td><td class="memItemRight" valign="bottom"><b>getMainWindo
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#1ee9e9244bd1fe16b13f252ecc952872">GetGLList</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#fc415ad35cd5f1150223adc110af2abb">setColor</a> (const <a class="el" href="classColor.html">Color</a> &amp;)</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#cd24574b306c815486b2b41bd5c58f91">setColor</a> (float r, float g, float b, float a=1.0)</td></tr>
-
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d2cda1b62aafc1e37319de079b51db1f"></a><!-- doxytag: member="Global::BackgroundColor" ref="d2cda1b62aafc1e37319de079b51db1f" args="()" -->
 <a class="el" href="classColor.html">Color</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>BackgroundColor</b> ()</td></tr>
 
@@ -87,16 +83,6 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setFogColor</b> (cons
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static unsigned long&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#ee41dfa8c3f54721609d57c58ae702d8">check_proc_meminfo</a> ()</td></tr>
 
 <tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#d4539a71509e1ef13b4f46a55012e27f">ambientColorModifier</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#a95e8a76247e0677dda04db724c1e322">specularColorModifier</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#79e85452303b5f18b408fe0467bf25ea">specularColorMinimum</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#a8a55e4a11eb8df8f7b3ec312626b48d">ALPHA</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#1f0c53a55b080e48ea48f1b405d09790">SHININESS</a></td></tr>
-
 <tr><td class="memItemLeft" nowrap align="right" valign="top">QMainWindow *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#80cba6b0d930d4f38f01be9a03012b3c">mainWindow</a></td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">QAction *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#85c2751599c677efee668f61fc86e09d">quitAction</a></td></tr>
@@ -135,87 +121,6 @@ As a workaround to end the embarassing practice of keeping global variables, I h
 
 <p>
 find the ID of the first free GL list <dl class="return" compact><dt><b>Returns:</b></dt><dd>first freee GL list </dd></dl>
-
-</div>
-</div><p>
-<a class="anchor" name="fc415ad35cd5f1150223adc110af2abb"></a><!-- doxytag: member="Global::setColor" ref="fc415ad35cd5f1150223adc110af2abb" args="(const Color &amp;)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Global::setColor           </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classColor.html">Color</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>rgb</em>          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td width="100%"></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-set the current OpenGL color uses HARDCODED simple algorithm to set ambient and specular values for a specific color: if halves resp. dobles them, clipping at 1.0 <dl compact><dt><b><a class="el" href="todo.html#_todo000022">Todo:</a></b></dt><dd>make the agorithm which computes the ambient and specular values variable </dd></dl>
-<dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>rgb</em>&nbsp;</td><td>color value to be set </td></tr>
-  </table>
-</dl>
-
-<p>References <a class="el" href="Globals_8H-source.html#l00108">ambientColorModifier</a>, <a class="el" href="Color_8H-source.html#l00095">Color::setComponentLowerLimit()</a>, <a class="el" href="Globals_8H-source.html#l00121">SHININESS</a>, <a class="el" href="Globals_8H-source.html#l00112">specularColorMinimum</a>, and <a class="el" href="Globals_8H-source.html#l00110">specularColorModifier</a>.</p>
-
-<p>Referenced by <a class="el" href="Globals_8H-source.html#l00064">setColor()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="cd24574b306c815486b2b41bd5c58f91"></a><!-- doxytag: member="Global::setColor" ref="cd24574b306c815486b2b41bd5c58f91" args="(float r, float g, float b, float a=1.0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Global::setColor           </td>
-          <td>(</td>
-          <td class="paramtype">float&nbsp;</td>
-          <td class="paramname"> <em>r</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&nbsp;</td>
-          <td class="paramname"> <em>g</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&nbsp;</td>
-          <td class="paramname"> <em>b</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&nbsp;</td>
-          <td class="paramname"> <em>a</em> = <code>1.0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td width="100%"><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-This function is overloaded for convenience. <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>r</em>&nbsp;</td><td>red component of the color to set </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>g</em>&nbsp;</td><td>green component of the color to set </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>b</em>&nbsp;</td><td>blue component of the color to set </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>r</em>&nbsp;</td><td>alpha component of the color to set </td></tr>
-  </table>
-</dl>
-
-<p>References <a class="el" href="Globals_8C-source.html#l00069">setColor()</a>.</p>
 
 </div>
 </div><p>
@@ -411,7 +316,7 @@ normalizes a Vector made from 3 doubles out-of-place <dl compact><dt><b>Paramete
 
 <p>
 maximum amount of memory available for use 
-<p>References <a class="el" href="Globals_8H-source.html#l00128">MaximumMemory</a>.</p>
+<p>References <a class="el" href="Globals_8H-source.html#l00107">MaximumMemory</a>.</p>
 
 </div>
 </div><p>
@@ -432,7 +337,7 @@ maximum amount of memory available for use
 
 <p>
 color definition for White 
-<p>References <a class="el" href="Globals_8H-source.html#l00123">White</a>.</p>
+<p>References <a class="el" href="Globals_8H-source.html#l00102">White</a>.</p>
 
 </div>
 </div><p>
@@ -453,7 +358,7 @@ color definition for White
 
 <p>
 color definition for Grey 
-<p>References <a class="el" href="Globals_8H-source.html#l00125">Grey50</a>.</p>
+<p>References <a class="el" href="Globals_8H-source.html#l00104">Grey50</a>.</p>
 
 </div>
 </div><p>
@@ -475,7 +380,7 @@ color definition for Grey
 <p>
 get the system memory from /proc/meminfo of course, this only works on OS's with /proc filesystem and /proc/meminfo information! relies on /proc/meminfo of being of the format: MemTotal: 506912 kB ... returns 512 MB as default memory size, when /proc/meminfo is not present <dl class="return" compact><dt><b>Returns:</b></dt><dd>total memory size, or 512 MB </dd></dl>
 
-<p>References <a class="el" href="Globals_8H-source.html#l00100">check_memory</a>.</p>
+<p>References <a class="el" href="Globals_8H-source.html#l00090">check_memory</a>.</p>
 
 </div>
 </div><p>
@@ -508,7 +413,7 @@ why tf did i make that global again? damn, i really should write comments immedi
 
 <p>
 whether to check for memory usage. this member is set or unset from <a class="el" href="classGlobal.html#ee41dfa8c3f54721609d57c58ae702d8">check_proc_meminfo()</a>, depending on the success of that function. 
-<p>Referenced by <a class="el" href="Globals_8C-source.html#l00142">check_proc_meminfo()</a>.</p>
+<p>Referenced by <a class="el" href="Globals_8C-source.html#l00119">check_proc_meminfo()</a>.</p>
 
 </div>
 </div><p>
@@ -525,57 +430,6 @@ whether to check for memory usage. this member is set or unset from <a class="el
 
 <p>
 sqrt (3), stored to save computation time, probably superfluous 
-</div>
-</div><p>
-<a class="anchor" name="d4539a71509e1ef13b4f46a55012e27f"></a><!-- doxytag: member="Global::ambientColorModifier" ref="d4539a71509e1ef13b4f46a55012e27f" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const double <a class="el" href="classGlobal.html#d4539a71509e1ef13b4f46a55012e27f">Global::ambientColorModifier</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-value to multiply a color with to get its ambient value 
-<p>Referenced by <a class="el" href="Globals_8C-source.html#l00069">setColor()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="a95e8a76247e0677dda04db724c1e322"></a><!-- doxytag: member="Global::specularColorModifier" ref="a95e8a76247e0677dda04db724c1e322" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const double <a class="el" href="classGlobal.html#a95e8a76247e0677dda04db724c1e322">Global::specularColorModifier</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-value to multiply a color with to get its specular value 
-<p>Referenced by <a class="el" href="Globals_8C-source.html#l00069">setColor()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="79e85452303b5f18b408fe0467bf25ea"></a><!-- doxytag: member="Global::specularColorMinimum" ref="79e85452303b5f18b408fe0467bf25ea" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const double <a class="el" href="classGlobal.html#79e85452303b5f18b408fe0467bf25ea">Global::specularColorMinimum</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-minimum value for the specular component of any color 
-<p>Referenced by <a class="el" href="Globals_8C-source.html#l00069">setColor()</a>.</p>
-
 </div>
 </div><p>
 <a class="anchor" name="2f8f0a44741d3e331a41f0cb7cef5782"></a><!-- doxytag: member="Global::background" ref="2f8f0a44741d3e331a41f0cb7cef5782" args="" -->
@@ -608,38 +462,6 @@ global (YUCK!) background color
 global (YUCK!) fog/depth cue color 
 </div>
 </div><p>
-<a class="anchor" name="a8a55e4a11eb8df8f7b3ec312626b48d"></a><!-- doxytag: member="Global::ALPHA" ref="a8a55e4a11eb8df8f7b3ec312626b48d" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const double <a class="el" href="classGlobal.html#a8a55e4a11eb8df8f7b3ec312626b48d">Global::ALPHA</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-global (YUCK!) alpha value for transparent display 
-</div>
-</div><p>
-<a class="anchor" name="1f0c53a55b080e48ea48f1b405d09790"></a><!-- doxytag: member="Global::SHININESS" ref="1f0c53a55b080e48ea48f1b405d09790" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const double <a class="el" href="classGlobal.html#1f0c53a55b080e48ea48f1b405d09790">Global::SHININESS</a><code> [private]</code>          </td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-global (YUCK!) shininess value 
-<p>Referenced by <a class="el" href="Globals_8C-source.html#l00069">setColor()</a>.</p>
-
-</div>
-</div><p>
 <a class="anchor" name="c057e73b4628f9010a2580ccf21244d3"></a><!-- doxytag: member="Global::White" ref="c057e73b4628f9010a2580ccf21244d3" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -653,7 +475,7 @@ global (YUCK!) shininess value
 
 <p>
 color definition for White 
-<p>Referenced by <a class="el" href="Globals_8H-source.html#l00094">white()</a>.</p>
+<p>Referenced by <a class="el" href="Globals_8H-source.html#l00084">white()</a>.</p>
 
 </div>
 </div><p>
@@ -670,7 +492,7 @@ color definition for White
 
 <p>
 color definition for Grey 
-<p>Referenced by <a class="el" href="Globals_8H-source.html#l00096">grey50()</a>.</p>
+<p>Referenced by <a class="el" href="Globals_8H-source.html#l00086">grey50()</a>.</p>
 
 </div>
 </div><p>
@@ -688,7 +510,7 @@ color definition for Grey
 <p>
 maximum amount of memory available for use<p>
 maximum memory that should be consumed; calls check_proc_meminfo () above 
-<p>Referenced by <a class="el" href="Globals_8H-source.html#l00091">getMaxMemory()</a>.</p>
+<p>Referenced by <a class="el" href="Globals_8H-source.html#l00081">getMaxMemory()</a>.</p>
 
 </div>
 </div><p>
@@ -725,7 +547,7 @@ global QAction that quits the program
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/<a class="el" href="Globals_8H-source.html">Globals.H</a><li>workspace/HyperspaceExplorer/src/Globals.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 5 02:31:00 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 12 18:56:09 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

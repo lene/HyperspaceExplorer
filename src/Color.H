@@ -18,12 +18,14 @@
 
 #include "Vector.H"
 
-/// a class to represent a color value by its RGBA components \n
-/// This class provides a single-stop interface to handle a color. It also
-/// provides some utility functions to work with colors. \n
-/// The color's components are stored as an array of floats. Access to the raw
-/// array is provided, because the OpenGL functions I use to set a color need
-/// an array of floats as parameter.
+/// A class to represent a color value by its RGBA components
+/** This class provides a single-stop interface to handle a color. It also
+ *  provides some utility functions to work with colors.
+ *
+ *  The color's components are stored as an array of floats. Access to the raw
+ *  array is provided, because the OpenGL functions I use to set a color need
+ *  an array of floats as parameter.
+ *  \ingroup Coloring                                                         */
 class Color {
     public:
         Color() { r() = g() = b() = a() = 0.; }

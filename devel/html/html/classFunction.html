@@ -111,11 +111,16 @@ typedef std::vector&lt; <a class="el" href="classFunction.html#67b6c27b652c41b41
 typedef std::vector&lt; <a class="el" href="classFunction.html#0c807fd0b7c98ca9c5052c15b3c817a3">vec4vec2D</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunction.html#fbc77cb3e6c8ca2c59225db92f5e420c">vec4vec3D</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">three-dimensional array of <a class="el" href="classVecMath_1_1Vector.html">Vector&lt;4&gt;</a>, implemented as a nested std::vector <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e7f20a47a42cb57e40ec2a1b34b0d5b7"></a><!-- doxytag: member="Function::parameterMap" ref="e7f20a47a42cb57e40ec2a1b34b0d5b7" args="" -->
+typedef std::map&lt; std::string, <br>
+<a class="el" href="classFunctionParameterBase.html">FunctionParameterBase</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunction.html#e7f20a47a42cb57e40ec2a1b34b0d5b7">parameterMap</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">the container a function's parameters are stored in <br></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunction.html#e206568fd4fd4c885e3ccff76345c4e6">Function</a> ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> default c'tor.  <a href="#e206568fd4fd4c885e3ccff76345c4e6"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunction.html#860c512c6fde48ab92d69033ca48c0d7">Function</a> (const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunction.html#48a632ba4066454740dbed6e862e1b4e">Function</a> (const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv, <a class="el" href="classFunction.html#e7f20a47a42cb57e40ec2a1b34b0d5b7">parameterMap</a> _parms=<a class="el" href="classFunction.html#e7f20a47a42cb57e40ec2a1b34b0d5b7">parameterMap</a>())</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ba589b8ff84f92035c7b74bef6e9c1fc"></a><!-- doxytag: member="Function::Transform" ref="ba589b8ff84f92035c7b74bef6e9c1fc" args="(double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)=0" -->
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>Transform</b> (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)=0</td></tr>
@@ -145,26 +150,29 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>ReInit</b> (d
 <tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunction.html#0a05df01c1ec8b0aa9a23a3551da3d53">getParameterName</a> (unsigned i)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get a specified parameter name from the list.  <a href="#0a05df01c1ec8b0aa9a23a3551da3d53"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="af11b612821db196ce5d4cbd3b0bec0d"></a><!-- doxytag: member="Function::getTsteps" ref="af11b612821db196ce5d4cbd3b0bec0d" args="() const " -->
-unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><b>getTsteps</b> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f5a32b2791460f53a53726a424d16716"></a><!-- doxytag: member="Function::getParameter" ref="f5a32b2791460f53a53726a424d16716" args="(QString name)" -->
+<a class="el" href="classFunctionParameterBase.html">FunctionParameterBase</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>getParameter</b> (QString name)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0a96891f8ead4aa48e2d7041c76de3f5"></a><!-- doxytag: member="Function::getUsteps" ref="0a96891f8ead4aa48e2d7041c76de3f5" args="() const " -->
-unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><b>getUsteps</b> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5bc503ce6b83498eaefc32df6f0f3748"></a><!-- doxytag: member="Function::getTsteps" ref="5bc503ce6b83498eaefc32df6f0f3748" args="() const " -->
+virtual unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><b>getTsteps</b> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9cdaff8bce992ee70c8db2e913ad4e16"></a><!-- doxytag: member="Function::getVsteps" ref="9cdaff8bce992ee70c8db2e913ad4e16" args="() const " -->
-unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><b>getVsteps</b> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="285eabd983f9b1947d65d9a90f3fc82b"></a><!-- doxytag: member="Function::getUsteps" ref="285eabd983f9b1947d65d9a90f3fc82b" args="() const " -->
+virtual unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><b>getUsteps</b> () const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="aa6093e672f95016e78075338fa5d78d"></a><!-- doxytag: member="Function::getVsteps" ref="aa6093e672f95016e78075338fa5d78d" args="() const " -->
+virtual unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><b>getVsteps</b> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3f37689b13e1640aca959175a3d72fa5"></a><!-- doxytag: member="Function::getTmin" ref="3f37689b13e1640aca959175a3d72fa5" args="()" -->
 double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getTmin</b> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="eaeb4476d1d1857e8045cfdca5bdc150"></a><!-- doxytag: member="Function::getTmin" ref="eaeb4476d1d1857e8045cfdca5bdc150" args="() const " -->
-const double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getTmin</b> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2eae00e1bcd7d0aaf5abea56062b212d"></a><!-- doxytag: member="Function::getTmin" ref="2eae00e1bcd7d0aaf5abea56062b212d" args="() const " -->
+virtual double&nbsp;</td><td class="memItemRight" valign="bottom"><b>getTmin</b> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6458f7375749b0510eb5bd4918308790"></a><!-- doxytag: member="Function::getTmax" ref="6458f7375749b0510eb5bd4918308790" args="()" -->
 double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getTmax</b> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="98b115e4744524ab52080d31054228d9"></a><!-- doxytag: member="Function::getTmax" ref="98b115e4744524ab52080d31054228d9" args="() const " -->
-const double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getTmax</b> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4ece9ad6198086aa481ad1adef33bd37"></a><!-- doxytag: member="Function::getTmax" ref="4ece9ad6198086aa481ad1adef33bd37" args="() const " -->
+virtual double&nbsp;</td><td class="memItemRight" valign="bottom"><b>getTmax</b> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="730a331d95b67056b04ba23888ac1a01"></a><!-- doxytag: member="Function::getDt" ref="730a331d95b67056b04ba23888ac1a01" args="()" -->
 double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getDt</b> ()</td></tr>
@@ -175,14 +183,14 @@ const double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getDt</
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0da25473ea171ae9eff99c60b02a90b0"></a><!-- doxytag: member="Function::getUmin" ref="0da25473ea171ae9eff99c60b02a90b0" args="()" -->
 double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getUmin</b> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4b4f66c1d46d0f9d94fb48278bbe264b"></a><!-- doxytag: member="Function::getUmin" ref="4b4f66c1d46d0f9d94fb48278bbe264b" args="() const " -->
-const double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getUmin</b> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4ad207d43dd7882e1c497941bffb4fd9"></a><!-- doxytag: member="Function::getUmin" ref="4ad207d43dd7882e1c497941bffb4fd9" args="() const " -->
+virtual double&nbsp;</td><td class="memItemRight" valign="bottom"><b>getUmin</b> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0e732388f081c055e7a7f90c0c8dc068"></a><!-- doxytag: member="Function::getUmax" ref="0e732388f081c055e7a7f90c0c8dc068" args="()" -->
 double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getUmax</b> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="85e71dc90181124211604fe1e24e09f9"></a><!-- doxytag: member="Function::getUmax" ref="85e71dc90181124211604fe1e24e09f9" args="() const " -->
-const double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getUmax</b> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a82c62889db8ff5c8b915f6bb46638a1"></a><!-- doxytag: member="Function::getUmax" ref="a82c62889db8ff5c8b915f6bb46638a1" args="() const " -->
+virtual double&nbsp;</td><td class="memItemRight" valign="bottom"><b>getUmax</b> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1fbb55f33e4fd54e86f6efa6a11b3e91"></a><!-- doxytag: member="Function::getDu" ref="1fbb55f33e4fd54e86f6efa6a11b3e91" args="()" -->
 double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getDu</b> ()</td></tr>
@@ -193,14 +201,14 @@ const double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getDu</
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0bc6132e0b0a00d3975a68dee2cd8293"></a><!-- doxytag: member="Function::getVmin" ref="0bc6132e0b0a00d3975a68dee2cd8293" args="()" -->
 double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getVmin</b> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="987ad27dae25d70b4d8811e3129ee39b"></a><!-- doxytag: member="Function::getVmin" ref="987ad27dae25d70b4d8811e3129ee39b" args="() const " -->
-const double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getVmin</b> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5eef625698a60a101fd98e95a87abc1e"></a><!-- doxytag: member="Function::getVmin" ref="5eef625698a60a101fd98e95a87abc1e" args="() const " -->
+virtual double&nbsp;</td><td class="memItemRight" valign="bottom"><b>getVmin</b> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a0a502e9f18469fc78fbacc45d5ec3c6"></a><!-- doxytag: member="Function::getVmax" ref="a0a502e9f18469fc78fbacc45d5ec3c6" args="()" -->
 double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getVmax</b> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9e6e1cac83eceb1ac61ce33939d68ca1"></a><!-- doxytag: member="Function::getVmax" ref="9e6e1cac83eceb1ac61ce33939d68ca1" args="() const " -->
-const double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getVmax</b> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f0693091ac1bcaefafacd7727b1b2e28"></a><!-- doxytag: member="Function::getVmax" ref="f0693091ac1bcaefafacd7727b1b2e28" args="() const " -->
+virtual double&nbsp;</td><td class="memItemRight" valign="bottom"><b>getVmax</b> () const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1d6b0f23929e8fc6f8bc0d375d0171ff"></a><!-- doxytag: member="Function::getDv" ref="1d6b0f23929e8fc6f8bc0d375d0171ff" args="()" -->
 double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getDv</b> ()</td></tr>
@@ -285,6 +293,9 @@ QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 std::vector&lt; QString &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunction.html#b51bc4eb3a16cd5073803509fc5a242e">parameterNames</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">list of the names of parameters to the function <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f229d2240d59c88d0b2cd8193bea4e69"></a><!-- doxytag: member="Function::parameters" ref="f229d2240d59c88d0b2cd8193bea4e69" args="" -->
+<a class="el" href="classFunction.html#e7f20a47a42cb57e40ec2a1b34b0d5b7">parameterMap</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>parameters</b></td></tr>
+
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 A <em><a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a></em> is a generalized four-dimensional mathematical function. 
@@ -301,13 +312,13 @@ abstract members: <ul>
 </ul>
 virtual members: <ul>
 <li>Vector *df (double, double, double); </li>
-<li>SetParameters (double _a = 0, double _b = 0, double _c = 0, double _d = 0)</li>
+<li>SetParameters (double = 0, double = 0, double = 0, double = 0)</li>
 </ul>
 other useful members: <ul>
 <li>Transform ()</li>
 </ul>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>Vector &amp;normal (double, double, double); - or in derived classes? </dd></dl>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>operator () (double t, double u, double v) - ditto</dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>Vector &amp;normal (double, double, double); - or in derived classes? </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>operator () (double t, double u, double v) - ditto</dd></dl>
 <dl class="author" compact><dt><b>Author:</b></dt><dd>Helge Preuss &lt;<a href="mailto:scout@hyperspace-travel.de">scout@hyperspace-travel.de</a>&gt; </dd></dl>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="e206568fd4fd4c885e3ccff76345c4e6"></a><!-- doxytag: member="Function::Function" ref="e206568fd4fd4c885e3ccff76345c4e6" args="()" -->
@@ -331,7 +342,7 @@ other useful members: <ul>
 Zeroes everything 
 </div>
 </div><p>
-<a class="anchor" name="860c512c6fde48ab92d69033ca48c0d7"></a><!-- doxytag: member="Function::Function" ref="860c512c6fde48ab92d69033ca48c0d7" args="(const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)" -->
+<a class="anchor" name="48a632ba4066454740dbed6e862e1b4e"></a><!-- doxytag: member="Function::Function" ref="48a632ba4066454740dbed6e862e1b4e" args="(const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv, parameterMap _parms=parameterMap())" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -393,7 +404,13 @@ Zeroes everything
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_dv</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>_dv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classFunction.html#e7f20a47a42cb57e40ec2a1b34b0d5b7">parameterMap</a>&nbsp;</td>
+          <td class="paramname"> <em>_parameters</em> = <code><a class="el" href="classFunction.html#e7f20a47a42cb57e40ec2a1b34b0d5b7">parameterMap</a>()</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -420,7 +437,7 @@ Zeroes everything
   </table>
 </dl>
 
-<p>References <a class="el" href="Function_8H-source.html#l00154">dt</a>, <a class="el" href="Function_8H-source.html#l00154">du</a>, <a class="el" href="Function_8H-source.html#l00154">dv</a>, <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="Function_8C-source.html#l00082">MemRequired()</a>, <a class="el" href="Function_8H-source.html#l00154">tmax</a>, <a class="el" href="Function_8H-source.html#l00154">tmin</a>, <a class="el" href="Function_8H-source.html#l00164">tsteps</a>, <a class="el" href="Function_8H-source.html#l00154">umax</a>, <a class="el" href="Function_8H-source.html#l00154">umin</a>, <a class="el" href="Function_8H-source.html#l00164">usteps</a>, <a class="el" href="Function_8H-source.html#l00154">vmax</a>, <a class="el" href="Function_8H-source.html#l00154">vmin</a>, and <a class="el" href="Function_8H-source.html#l00164">vsteps</a>.</p>
+<p>References <a class="el" href="Function_8H-source.html#l00164">dt</a>, <a class="el" href="Function_8H-source.html#l00164">du</a>, <a class="el" href="Function_8H-source.html#l00164">dv</a>, <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="Function_8C-source.html#l00082">MemRequired()</a>, <a class="el" href="Function_8H-source.html#l00164">tmax</a>, <a class="el" href="Function_8H-source.html#l00164">tmin</a>, <a class="el" href="Function_8H-source.html#l00174">tsteps</a>, <a class="el" href="Function_8H-source.html#l00164">umax</a>, <a class="el" href="Function_8H-source.html#l00164">umin</a>, <a class="el" href="Function_8H-source.html#l00174">usteps</a>, <a class="el" href="Function_8H-source.html#l00164">vmax</a>, <a class="el" href="Function_8H-source.html#l00164">vmin</a>, and <a class="el" href="Function_8H-source.html#l00174">vsteps</a>.</p>
 
 </div>
 </div><p>
@@ -488,7 +505,7 @@ Empty because a generic function has no parameters
 <p>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>The name of the function in cleartext </dd></dl>
 
-<p>References <a class="el" href="Function_8H-source.html#l00174">functionName</a>.</p>
+<p>References <a class="el" href="Function_8H-source.html#l00184">functionName</a>.</p>
 
 </div>
 </div><p>
@@ -510,7 +527,7 @@ Empty because a generic function has no parameters
 <p>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>number of parameters for the function </dd></dl>
 
-<p>References <a class="el" href="Function_8H-source.html#l00176">parameterNames</a>.</p>
+<p>References <a class="el" href="Function_8H-source.html#l00186">parameterNames</a>.</p>
 
 </div>
 </div><p>
@@ -532,7 +549,7 @@ Empty because a generic function has no parameters
 <p>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>the names of the parameters for the function </dd></dl>
 
-<p>References <a class="el" href="Function_8H-source.html#l00176">parameterNames</a>.</p>
+<p>References <a class="el" href="Function_8H-source.html#l00186">parameterNames</a>.</p>
 
 </div>
 </div><p>
@@ -562,7 +579,7 @@ Get a specified parameter name from the list.
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>name of the ith parameter </dd></dl>
 
-<p>References <a class="el" href="Function_8H-source.html#l00176">parameterNames</a>.</p>
+<p>References <a class="el" href="Function_8H-source.html#l00186">parameterNames</a>.</p>
 
 </div>
 </div><p>
@@ -603,8 +620,8 @@ Numerical calculation of the derivatives in t, u and v.
 <p class="formulaDsp">
 <img class="formulaDsp" alt="\[ \frac{df}{dt} = \lim_{h \rightarrow 0} \frac{f(t+h, u, v) - f(t, u, v)}{h}, \frac{df}{du},\frac{df}{dv}\mbox{analogously} \]" src="form_52.png">
 <p>
- <dl compact><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>The h value is fixed and hardcoded. better approach, please! </dd></dl>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>I don't think calling operator() is right. Call f()! </dd></dl>
+ <dl compact><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>The h value is fixed and hardcoded. better approach, please! </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>I don't think calling operator() is right. Call f()! </dd></dl>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>tt</em>&nbsp;</td><td>t value </td></tr>
@@ -616,8 +633,8 @@ Numerical calculation of the derivatives in t, u and v.
 <p class="formulaDsp">
 <img class="formulaDsp" alt="\[ \frac{df}{dt} = \lim_{h \rightarrow 0} \frac{f(t+h, u, v) - f(t, u, v)}{h}, \frac{df}{du},\frac{df}{dv}\mbox{analogously} \]" src="form_52.png">
 <p>
- <dl compact><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>The h value is fixed and hardcoded. better approach, please! </dd></dl>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>I don't think calling operator() is right. Call f()! </dd></dl>
+ <dl compact><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>The h value is fixed and hardcoded. better approach, please! </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>I don't think calling operator() is right. Call f()! </dd></dl>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>tt</em>&nbsp;</td><td>t value </td></tr>
@@ -627,9 +644,9 @@ Numerical calculation of the derivatives in t, u and v.
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>gradient in t, u and v as array </dd></dl>
 
-<p>References <a class="el" href="Function_8H-source.html#l00169">F</a>, and <a class="el" href="classFunction.html#68cf5a6e74a4f6a96893079ace0dc228">operator()()</a>.</p>
+<p>References <a class="el" href="Function_8H-source.html#l00179">F</a>, and <a class="el" href="classFunction.html#68cf5a6e74a4f6a96893079ace0dc228">operator()()</a>.</p>
 
-<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00222">RealFunction::normal()</a>.</p>
+<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00213">RealFunction::normal()</a>.</p>
 
 </div>
 </div><p>
@@ -650,23 +667,23 @@ Numerical calculation of the derivatives in t, u and v.
 <div class="memdoc">
 
 <p>
-Return the approximate amount of memory needed to display a <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> of current definition set <dl compact><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>uses hardcoded and experimentally found value for memory per cell </dd></dl>
+Return the approximate amount of memory needed to display a <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> of current definition set <dl compact><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>uses hardcoded and experimentally found value for memory per cell </dd></dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>approx. mem required</dd></dl>
-Return the approximate amount of memory needed to display a <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> of current definition set <dl compact><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>uses hardcoded and experimentally found value for memory per cell </dd></dl>
+Return the approximate amount of memory needed to display a <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> of current definition set <dl compact><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>uses hardcoded and experimentally found value for memory per cell </dd></dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>approx. mem required </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classGasket.html#e65a8be228108ab1997e0cc80504aa56">Gasket</a>, and <a class="el" href="classSurface.html#185472961fe456f587c160c2cc6e8545">Surface</a>.</p>
 
-<p>References <a class="el" href="Function_8H-source.html#l00164">tsteps</a>, <a class="el" href="Function_8H-source.html#l00164">usteps</a>, and <a class="el" href="Function_8H-source.html#l00164">vsteps</a>.</p>
+<p>References <a class="el" href="Function_8H-source.html#l00174">tsteps</a>, <a class="el" href="Function_8H-source.html#l00174">usteps</a>, and <a class="el" href="Function_8H-source.html#l00174">vsteps</a>.</p>
 
-<p>Referenced by <a class="el" href="Function_8C-source.html#l00046">Function()</a>, <a class="el" href="Object_8C-source.html#l00253">Sponge::Initialize()</a>, and <a class="el" href="RealFunction_8C-source.html#l00040">RealFunction::RealFunction()</a>.</p>
+<p>Referenced by <a class="el" href="Function_8C-source.html#l00046">Function()</a>, <a class="el" href="Object_8C-source.html#l00251">Sponge::Initialize()</a>, and <a class="el" href="RealFunction_8C-source.html#l00040">RealFunction::RealFunction()</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="Function_8H-source.html">Function.H</a><li>workspace/HyperspaceExplorer/src/Functions/Function.C<li>workspace/HyperspaceExplorer/src/Functions/FunctionBase.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 5 02:30:59 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 12 18:56:09 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

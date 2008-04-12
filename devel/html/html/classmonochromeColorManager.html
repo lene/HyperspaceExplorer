@@ -25,7 +25,10 @@
   </div>
 </div>
 <div class="contents">
-<h1>monochromeColorManager Class Reference</h1><!-- doxytag: class="monochromeColorManager" --><!-- doxytag: inherits="ColorManager" -->Plots all points in white.  
+<h1>monochromeColorManager Class Reference<br>
+<small>
+[<a class="el" href="group__Coloring.html">Functionality for defining color schemes</a>]</small>
+</h1><!-- doxytag: class="monochromeColorManager" --><!-- doxytag: inherits="ColorManager" -->Plots all points in white.  
 <a href="#_details">More...</a>
 <p>
 <code>#include &lt;<a class="el" href="ColorManager_8H-source.html">ColorManager.H</a>&gt;</code>
@@ -47,20 +50,22 @@ Inheritance diagram for monochromeColorManager:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5f0910e88338221cbb34d1b297be169b"></a><!-- doxytag: member="monochromeColorManager::monochromeColorManager" ref="5f0910e88338221cbb34d1b297be169b" args="(Function *_f)" -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><b>monochromeColorManager</b> (<a class="el" href="classFunction.html">Function</a> *_f)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="88def67d756f9d621dfa976463fb9c59"></a><!-- doxytag: member="monochromeColorManager::calibrateColor" ref="88def67d756f9d621dfa976463fb9c59" args="(const Color &amp;, float, float, float)" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmonochromeColorManager.html#88def67d756f9d621dfa976463fb9c59">calibrateColor</a> (const <a class="el" href="classColor.html">Color</a> &amp;, float, float, float)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6c870626362d78cae1f89e55392862b9"></a><!-- doxytag: member="monochromeColorManager::calibrateColor" ref="6c870626362d78cae1f89e55392862b9" args="(const Color &amp;, const VecMath::Vector&lt; 4 &gt; &amp;)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmonochromeColorManager.html#6c870626362d78cae1f89e55392862b9">calibrateColor</a> (const <a class="el" href="classColor.html">Color</a> &amp;, const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Point (x, y, z) has color col. This may serve for interpolation. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classColor.html">Color</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmonochromeColorManager.html#7293c2517301681e819f2de8a6d78fec">getColor</a> (const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Find the color of a given point.  <a href="#7293c2517301681e819f2de8a6d78fec"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d86d64db415559272894919b2f1b6010"></a><!-- doxytag: member="monochromeColorManager::depthCueColor" ref="d86d64db415559272894919b2f1b6010" args="(double, double, double, float, float, float)" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmonochromeColorManager.html#d86d64db415559272894919b2f1b6010">depthCueColor</a> (double, double, double, float, float, float)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c0bef6fd1532d68ddf08e97841201758"></a><!-- doxytag: member="monochromeColorManager::depthCueColor" ref="c0bef6fd1532d68ddf08e97841201758" args="(double, double, double, const VecMath::Vector&lt; 4 &gt; &amp;)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmonochromeColorManager.html#c0bef6fd1532d68ddf08e97841201758">depthCueColor</a> (double, double, double, const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">post-process color at given point to have 4D depth cue <br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
-Plots all points in white. <hr><h2>Member Function Documentation</h2>
+Plots all points in white. 
+<p>
+<hr><h2>Member Function Documentation</h2>
 <a class="anchor" name="7293c2517301681e819f2de8a6d78fec"></a><!-- doxytag: member="monochromeColorManager::getColor" ref="7293c2517301681e819f2de8a6d78fec" args="(const VecMath::Vector&lt; 4 &gt; &amp;)" -->
 <div class="memitem">
 <div class="memproto">
@@ -93,7 +98,7 @@ Find the color of a given point.
 <hr>The documentation for this class was generated from the following file:<ul>
 <li>workspace/HyperspaceExplorer/src/<a class="el" href="ColorManager_8H-source.html">ColorManager.H</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 5 02:31:00 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 12 18:56:09 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

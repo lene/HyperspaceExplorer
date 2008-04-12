@@ -26,7 +26,6 @@
 </div>
 <div class="contents">
 <h1>z2 Member List</h1>This is the complete list of members for <a class="el" href="classz2.html">z2</a>, including all inherited members.<p><table>
-  <tr bgcolor="#f0f0f0"><td><b>B</b> (defined in <a class="el" href="classSurface.html">Surface</a>)</td><td><a class="el" href="classSurface.html">Surface</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classComplexFunction.html#1ca44717ee72b524ce3e7afd8d358ca0">ComplexFunction</a>(const QString &amp;name, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)</td><td><a class="el" href="classComplexFunction.html">ComplexFunction</a></td><td></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>Data</b>(void) (defined in <a class="el" href="classSurface.html">Surface</a>)</td><td><a class="el" href="classSurface.html">Surface</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classSurface.html#dc25dc3cc52c171fbd4ef38cb96a516a">df</a>(double, double)</td><td><a class="el" href="classSurface.html">Surface</a></td><td><code> [protected, virtual]</code></td></tr>
@@ -43,12 +42,11 @@
   <tr class="memlist"><td><a class="el" href="classFunction.html#4c15e6200b99c8e333e0fc1859822b2c">floatvec2D</a> typedef</td><td><a class="el" href="classFunction.html">Function</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#9c3a1e1ebb63069140bedf690fe2cae8">floatvec3D</a> typedef</td><td><a class="el" href="classFunction.html">Function</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#e206568fd4fd4c885e3ccff76345c4e6">Function</a>()</td><td><a class="el" href="classFunction.html">Function</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="classFunction.html#860c512c6fde48ab92d69033ca48c0d7">Function</a>(const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)</td><td><a class="el" href="classFunction.html">Function</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classFunction.html#48a632ba4066454740dbed6e862e1b4e">Function</a>(const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv, parameterMap _parms=parameterMap())</td><td><a class="el" href="classFunction.html">Function</a></td><td></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>function_type</b>(std::complex&lt; double &gt;) (defined in <a class="el" href="classComplexFunction.html">ComplexFunction</a>)</td><td><a class="el" href="classComplexFunction.html">ComplexFunction</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classSurfaceBase.html#02cf6fe2a88f04b0a81430b9050622f7">Surface::function_type</a>(double, double)</td><td><a class="el" href="classSurfaceBase.html">SurfaceBase</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#e7491b1f17c6929f8716f07bfa5f2b46">functionName</a></td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classz2.html#877021ae4fd62890e7729049ff36980a">g</a></td><td><a class="el" href="classz2.html">z2</a></td><td><code> [protected]</code></td></tr>
-  <tr bgcolor="#f0f0f0"><td><b>G</b> (defined in <a class="el" href="classSurface.html">Surface</a>)</td><td><a class="el" href="classSurface.html">Surface</a></td><td><code> [protected]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>getDt</b>() (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>getDt</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>getDu</b>() (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
@@ -57,32 +55,34 @@
   <tr bgcolor="#f0f0f0"><td><b>getDv</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#d9d5798104590fa83ac7c43502a4ed72">getFunctionName</a>() const </td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#d18b0ec9865d28b35579cb3d908ef202">getNumParameters</a>()</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>getParameter</b>(QString name) (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#0a05df01c1ec8b0aa9a23a3551da3d53">getParameterName</a>(unsigned i)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#55e3c5ac36b0597f9332287502fe07f8">getParameterNames</a>()</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>getTmax</b>() (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
-  <tr bgcolor="#f0f0f0"><td><b>getTmax</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>getTmax</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, virtual]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>getTmin</b>() (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
-  <tr bgcolor="#f0f0f0"><td><b>getTmin</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
-  <tr bgcolor="#f0f0f0"><td><b>getTsteps</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>getTmin</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, virtual]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>getTsteps</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, virtual]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>getUmax</b>() (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
-  <tr bgcolor="#f0f0f0"><td><b>getUmax</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>getUmax</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, virtual]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>getUmin</b>() (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
-  <tr bgcolor="#f0f0f0"><td><b>getUmin</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
-  <tr bgcolor="#f0f0f0"><td><b>getUsteps</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>getUmin</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, virtual]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>getUsteps</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, virtual]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>getVmax</b>() (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
-  <tr bgcolor="#f0f0f0"><td><b>getVmax</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>getVmax</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, virtual]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>getVmin</b>() (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
-  <tr bgcolor="#f0f0f0"><td><b>getVmin</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
-  <tr bgcolor="#f0f0f0"><td><b>getVsteps</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>getVmin</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, virtual]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>getVsteps</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classComplexFunction.html#a978ff4b165e029bb82ba33dce35e4e3">Initialize</a>(void)</td><td><a class="el" href="classComplexFunction.html">ComplexFunction</a></td><td><code> [protected, virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classSurface.html#f77d456ed7b5d495f4a54978ab5f4acc">InitMem</a>(void)</td><td><a class="el" href="classSurface.html">Surface</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classSurface.html#185472961fe456f587c160c2cc6e8545">MemRequired</a>(void)</td><td><a class="el" href="classSurface.html">Surface</a></td><td><code> [protected, virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classSurface.html#19a24f801227ea542d749f94cb3fa44d">normal</a></td><td><a class="el" href="classSurface.html">Surface</a></td><td><code> [protected]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>NumVertices</b> (defined in <a class="el" href="classSurface.html">Surface</a>)</td><td><a class="el" href="classSurface.html">Surface</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classSurfaceBase.html#279eefbc9e2d3733eeae5dee35a62f0b">operator()</a>(double u, double v, double=0)</td><td><a class="el" href="classSurfaceBase.html">SurfaceBase</a></td><td><code> [inline, protected, virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classFunction.html#e7f20a47a42cb57e40ec2a1b34b0d5b7">parameterMap</a> typedef</td><td><a class="el" href="classFunction.html">Function</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#b51bc4eb3a16cd5073803509fc5a242e">parameterNames</a></td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>parameters</b> (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classSurface.html#15e6f13147e522e15ddda573201926b1">Project</a>(double ScrW, double CamW, bool DepthCue4D)</td><td><a class="el" href="classSurface.html">Surface</a></td><td><code> [virtual]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="classSurface.html#edae59b363aec7bc66a7e4ba1d6b2328">R</a></td><td><a class="el" href="classSurface.html">Surface</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classSurfaceBase.html#d2203f76756ba3478e3a73dc215fc06a">raw_function_type</a>(double, double)</td><td><a class="el" href="classSurfaceBase.html">SurfaceBase</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classSurface.html#a6b958d909ace5cfc2347cb8082d3fdb">ReInit</a>(double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)</td><td><a class="el" href="classSurface.html">Surface</a></td><td><code> [virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classz2.html#2a7166cbbd02118399d350ee2dab9b01">SetParameters</a>(double=0, double=0, double=0, double=0)</td><td><a class="el" href="classz2.html">z2</a></td><td><code> [inline, virtual]</code></td></tr>
@@ -116,7 +116,7 @@
   <tr bgcolor="#f0f0f0"><td><b>~Surface</b>() (defined in <a class="el" href="classSurface.html">Surface</a>)</td><td><a class="el" href="classSurface.html">Surface</a></td><td><code> [inline, virtual]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>~z2</b>() (defined in <a class="el" href="classz2.html">z2</a>)</td><td><a class="el" href="classz2.html">z2</a></td><td><code> [inline, virtual]</code></td></tr>
 </table></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 5 02:31:00 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 12 18:56:09 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

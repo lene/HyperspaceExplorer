@@ -25,7 +25,13 @@
   </div>
 </div>
 <div class="contents">
-<h1>Color Class Reference</h1><!-- doxytag: class="Color" --><code>#include &lt;<a class="el" href="Color_8H-source.html">Color.H</a>&gt;</code>
+<h1>Color Class Reference<br>
+<small>
+[<a class="el" href="group__Coloring.html">Functionality for defining color schemes</a>]</small>
+</h1><!-- doxytag: class="Color" -->A class to represent a color value by its RGBA components.  
+<a href="#_details">More...</a>
+<p>
+<code>#include &lt;<a class="el" href="Color_8H-source.html">Color.H</a>&gt;</code>
 <p>
 
 <p>
@@ -33,6 +39,9 @@
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColor.html#565126164d4a96f3b109829391702c7c">Color</a> (float, float, float, float=0.)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="46c431895589d4687b45de7dc88b31bf"></a><!-- doxytag: member="Color::Color" ref="46c431895589d4687b45de7dc88b31bf" args="(const VecMath::Vector&lt; 4 &gt; &amp;)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>Color</b> (const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9023bb1107a89197950986157c4ef9de"></a><!-- doxytag: member="Color::r" ref="9023bb1107a89197950986157c4ef9de" args="()" -->
 float &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>r</b> ()</td></tr>
@@ -54,15 +63,26 @@ float &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">the alpha component of the color  <a href="#b64d37c2436bee884af85d80d5cae572"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classColor.html">Color</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColor.html#96290badbfa2d5aa740bbea07ee5bdc0">operator*=</a> (float)</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classColor.html">Color</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColor.html#34ada2ca4d7d1fa7ac9b6b10dc0c4455">operator*=</a> (const <a class="el" href="classColor.html">Color</a> &amp;)</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classColor.html">Color</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColor.html#2ee47ea7f9fe38c19108842e9b076ec8">operator*</a> (float)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classColor.html">Color</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColor.html#3f50eab1d8d56ff11dd52cd4c575bd5c">operator*</a> (const <a class="el" href="classColor.html">Color</a> &amp;)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classColor.html">Color</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColor.html#7f623d09256dacb4996006382238f787">operator+=</a> (float)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classColor.html">Color</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColor.html#b4e82d8b087e2bdd8407351c3e3e02bb">operator+</a> (float)</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classColor.html">Color</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColor.html#ddd202a7c9833daa6bd4ea441635dfff">operator+=</a> (const <a class="el" href="classColor.html">Color</a> &amp;)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classColor.html">Color</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColor.html#6ba5a4109c6afe40b45efc7107a9fb76">operator+</a> (const <a class="el" href="classColor.html">Color</a> &amp;)</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColor.html#6c25bc30b1d2dbd3210d1964fae53742">setComponentLowerLimit</a> (float)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColor.html#90b94d65cd470c2ac979825c0c1b2c20">setComponentUpperLimit</a> (float)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="003d14e1c63981ad66238fe3d30bef7b"></a><!-- doxytag: member="Color::operator std::string" ref="003d14e1c63981ad66238fe3d30bef7b" args="() const " -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator std::string</b> () const </td></tr>
 
 <tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="945779bc9577f258cff038ed98b1b6e2"></a><!-- doxytag: member="Color::RGBA" ref="945779bc9577f258cff038ed98b1b6e2" args="[4]" -->
@@ -70,9 +90,10 @@ float&nbsp;</td><td class="memItemRight" valign="bottom"><b>RGBA</b> [4]</td></t
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
-a class to represent a color value by its RGBA components <br>
- This class provides a single-stop interface to handle a color. It also provides some utility functions to work with colors. <br>
- The color's components are stored as an array of floats. Access to the raw array is provided, because the OpenGL functions I use to set a color need an array of floats as parameter. <hr><h2>Constructor &amp; Destructor Documentation</h2>
+A class to represent a color value by its RGBA components. 
+<p>
+This class provides a single-stop interface to handle a color. It also provides some utility functions to work with colors.<p>
+The color's components are stored as an array of floats. Access to the raw array is provided, because the OpenGL functions I use to set a color need an array of floats as parameter. <hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="565126164d4a96f3b109829391702c7c"></a><!-- doxytag: member="Color::Color" ref="565126164d4a96f3b109829391702c7c" args="(float, float, float, float=0.)" -->
 <div class="memitem">
 <div class="memproto">
@@ -120,7 +141,7 @@ construct a color from its R, G, B and alpha values <dl compact><dt><b>Parameter
   </table>
 </dl>
 
-<p>References <a class="el" href="Color_8H-source.html#l00030">a()</a>, <a class="el" href="Color_8H-source.html#l00029">b()</a>, and <a class="el" href="Color_8H-source.html#l00028">g()</a>.</p>
+<p>References <a class="el" href="Color_8H-source.html#l00038">a()</a>, <a class="el" href="Color_8H-source.html#l00037">b()</a>, and <a class="el" href="Color_8H-source.html#l00036">g()</a>.</p>
 
 </div>
 </div><p>
@@ -171,6 +192,33 @@ scale the color by a float, keeping the RGB components between 0.0 and 1.0 <dl c
 
 </div>
 </div><p>
+<a class="anchor" name="34ada2ca4d7d1fa7ac9b6b10dc0c4455"></a><!-- doxytag: member="Color::operator*=" ref="34ada2ca4d7d1fa7ac9b6b10dc0c4455" args="(const Color &amp;)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classColor.html">Color</a> Color::operator*=           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classColor.html">Color</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Multiply two colors, component by component <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>x</em>&nbsp;</td><td>scaling factor </td></tr>
+  </table>
+</dl>
+
+<p>References <a class="el" href="Color_8H-source.html#l00061">RGBA</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="2ee47ea7f9fe38c19108842e9b076ec8"></a><!-- doxytag: member="Color::operator*" ref="2ee47ea7f9fe38c19108842e9b076ec8" args="(float)" -->
 <div class="memitem">
 <div class="memproto">
@@ -189,6 +237,31 @@ scale the color by a float, keeping the RGB components between 0.0 and 1.0 <dl c
 
 <p>
 scale the color by a float, keeping the RGB components between 0.0 and 1.0 <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>x</em>&nbsp;</td><td>scaling factor </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="3f50eab1d8d56ff11dd52cd4c575bd5c"></a><!-- doxytag: member="Color::operator*" ref="3f50eab1d8d56ff11dd52cd4c575bd5c" args="(const Color &amp;)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classColor.html">Color</a> Color::operator*           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classColor.html">Color</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Multiply two colors, component by component <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>x</em>&nbsp;</td><td>scaling factor </td></tr>
   </table>
@@ -246,6 +319,58 @@ add a float to the color, keeping the RGB components between 0.0 and 1.0 <dl com
 
 </div>
 </div><p>
+<a class="anchor" name="ddd202a7c9833daa6bd4ea441635dfff"></a><!-- doxytag: member="Color::operator+=" ref="ddd202a7c9833daa6bd4ea441635dfff" args="(const Color &amp;)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classColor.html">Color</a> Color::operator+=           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classColor.html">Color</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+add a float to the color, keeping the RGB components between 0.0 and 1.0 <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>x</em>&nbsp;</td><td>added term </td></tr>
+  </table>
+</dl>
+
+<p>References <a class="el" href="Color_8H-source.html#l00061">RGBA</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6ba5a4109c6afe40b45efc7107a9fb76"></a><!-- doxytag: member="Color::operator+" ref="6ba5a4109c6afe40b45efc7107a9fb76" args="(const Color &amp;)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classColor.html">Color</a> Color::operator+           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classColor.html">Color</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+add a float to the color, keeping the RGB components between 0.0 and 1.0 <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>x</em>&nbsp;</td><td>added term </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
 <a class="anchor" name="6c25bc30b1d2dbd3210d1964fae53742"></a><!-- doxytag: member="Color::setComponentLowerLimit" ref="6c25bc30b1d2dbd3210d1964fae53742" args="(float)" -->
 <div class="memitem">
 <div class="memproto">
@@ -269,7 +394,7 @@ make sure that none of the color components is less than the provided limit <dl 
   </table>
 </dl>
 
-<p>Referenced by <a class="el" href="Globals_8C-source.html#l00069">Global::setColor()</a>, and <a class="el" href="ColorManager_8C-source.html#l00025">ColorManager::setColor()</a>.</p>
+<p>Referenced by <a class="el" href="ColorManager_8C-source.html#l00051">ColorManager::setRGB()</a>.</p>
 
 </div>
 </div><p>
@@ -301,7 +426,7 @@ make sure that none of the color components is more than the provided limit <dl 
 <hr>The documentation for this class was generated from the following file:<ul>
 <li>workspace/HyperspaceExplorer/src/<a class="el" href="Color_8H-source.html">Color.H</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 5 02:30:59 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 12 18:56:09 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

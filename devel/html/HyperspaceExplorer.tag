@@ -7,6 +7,16 @@
     <docanchor file="index">intro</docanchor>
   </compound>
   <compound kind="group">
+    <name>Coloring</name>
+    <title>Functionality for defining color schemes</title>
+    <filename>group__Coloring.html</filename>
+    <class kind="class">Color</class>
+    <class kind="class">ColorManager</class>
+    <class kind="class">xyz2RGBColorManager</class>
+    <class kind="class">monochromeColorManager</class>
+    <class kind="class">ColorManagerManager</class>
+  </compound>
+  <compound kind="group">
     <name>FunctionGroup</name>
     <title>Functions and objects</title>
     <filename>group__FunctionGroup.html</filename>
@@ -121,6 +131,7 @@
     <name>UIGroup</name>
     <title>User Interface</title>
     <filename>group__UIGroup.html</filename>
+    <subgroup>Coloring</subgroup>
     <subgroup>UIHelpers</subgroup>
     <class kind="class">C4DView</class>
     <class kind="class">AnimationDialogImpl</class>
@@ -1173,6 +1184,13 @@
       <arglist>(float, float, float, float=0.)</arglist>
     </member>
     <member kind="function">
+      <type></type>
+      <name>Color</name>
+      <anchorfile>classColor.html</anchorfile>
+      <anchor>46c431895589d4687b45de7dc88b31bf</anchor>
+      <arglist>(const VecMath::Vector&lt; 4 &gt; &amp;)</arglist>
+    </member>
+    <member kind="function">
       <type>float &amp;</type>
       <name>r</name>
       <anchorfile>classColor.html</anchorfile>
@@ -1216,10 +1234,24 @@
     </member>
     <member kind="function">
       <type>Color</type>
+      <name>operator*=</name>
+      <anchorfile>classColor.html</anchorfile>
+      <anchor>34ada2ca4d7d1fa7ac9b6b10dc0c4455</anchor>
+      <arglist>(const Color &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>Color</type>
       <name>operator*</name>
       <anchorfile>classColor.html</anchorfile>
       <anchor>2ee47ea7f9fe38c19108842e9b076ec8</anchor>
       <arglist>(float)</arglist>
+    </member>
+    <member kind="function">
+      <type>Color</type>
+      <name>operator*</name>
+      <anchorfile>classColor.html</anchorfile>
+      <anchor>3f50eab1d8d56ff11dd52cd4c575bd5c</anchor>
+      <arglist>(const Color &amp;)</arglist>
     </member>
     <member kind="function">
       <type>Color</type>
@@ -1236,6 +1268,20 @@
       <arglist>(float)</arglist>
     </member>
     <member kind="function">
+      <type>Color</type>
+      <name>operator+=</name>
+      <anchorfile>classColor.html</anchorfile>
+      <anchor>ddd202a7c9833daa6bd4ea441635dfff</anchor>
+      <arglist>(const Color &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>Color</type>
+      <name>operator+</name>
+      <anchorfile>classColor.html</anchorfile>
+      <anchor>6ba5a4109c6afe40b45efc7107a9fb76</anchor>
+      <arglist>(const Color &amp;)</arglist>
+    </member>
+    <member kind="function">
       <type>void</type>
       <name>setComponentLowerLimit</name>
       <anchorfile>classColor.html</anchorfile>
@@ -1248,6 +1294,13 @@
       <anchorfile>classColor.html</anchorfile>
       <anchor>90b94d65cd470c2ac979825c0c1b2c20</anchor>
       <arglist>(float)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator std::string</name>
+      <anchorfile>classColor.html</anchorfile>
+      <anchor>003d14e1c63981ad66238fe3d30bef7b</anchor>
+      <arglist>() const </arglist>
     </member>
     <member kind="variable" protection="private">
       <type>float</type>
@@ -1278,14 +1331,14 @@
       <type>virtual void</type>
       <name>calibrateColor</name>
       <anchorfile>classColorManager.html</anchorfile>
-      <anchor>afb0e73288aa00a796224d02082a953b</anchor>
-      <arglist>(const Color &amp;col, float x, float y, float z)=0</arglist>
+      <anchor>672e68d31278741895b167a4e19923be</anchor>
+      <arglist>(const Color &amp;col, const VecMath::Vector&lt; 4 &gt; &amp;x)=0</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
       <name>setColor</name>
       <anchorfile>classColorManager.html</anchorfile>
-      <anchor>02f751dc0b713cdc6a26e94258e104d9</anchor>
+      <anchor>57bdd15e796f3e54754e90152c05970a</anchor>
       <arglist>(const VecMath::Vector&lt; 4 &gt; &amp;x)</arglist>
     </member>
     <member kind="function" virtualness="pure">
@@ -1299,8 +1352,22 @@
       <type>virtual void</type>
       <name>depthCueColor</name>
       <anchorfile>classColorManager.html</anchorfile>
-      <anchor>0054c437db732f637f78dd703d2bd0ef</anchor>
-      <arglist>(double wmax, double wmin, double w, float, float, float)=0</arglist>
+      <anchor>332d02ab6a78c2c45caf8494046737b8</anchor>
+      <arglist>(double wmax, double wmin, double w, const VecMath::Vector&lt; 4 &gt; &amp;x)=0</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setRGB</name>
+      <anchorfile>classColorManager.html</anchorfile>
+      <anchor>033c23a659bdba5b1897c80b7848a32f</anchor>
+      <arglist>(const Color &amp;rgb)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual std::string</type>
+      <name>getContents</name>
+      <anchorfile>classColorManager.html</anchorfile>
+      <anchor>ad1a7b0968629130c33bce1d6e95028c</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="typedef" protection="protected">
       <type>std::vector&lt; Color &gt;</type>
@@ -1328,6 +1395,13 @@
       <name>colorvec4D</name>
       <anchorfile>classColorManager.html</anchorfile>
       <anchor>4c7e1d50f80ad5ec9213ff6924821648</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef" protection="protected">
+      <type>std::map&lt; VecMath::Vector&lt; 4 &gt;, Color &gt;</type>
+      <name>colormap</name>
+      <anchorfile>classColorManager.html</anchorfile>
+      <anchor>e092ace0146c74427af31cb4ad0f0221</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -1391,18 +1465,11 @@
       <arglist>(ColorManager *cm)</arglist>
     </member>
     <member kind="function">
-      <type>std::auto_ptr&lt; ColorManager &gt;</type>
-      <name>getColorManager</name>
-      <anchorfile>classColorManagerManager.html</anchorfile>
-      <anchor>a8e6c92722ff90d284fe014a7ce8504d</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
       <type>void</type>
       <name>calibrateColor</name>
       <anchorfile>classColorManagerManager.html</anchorfile>
-      <anchor>0bdaa21512ae3bb9faf267503f2941f2</anchor>
-      <arglist>(const Color &amp;_col, float x, float y, float z)</arglist>
+      <anchor>abd3cead42f8234afdae3c5e5ef27c5b</anchor>
+      <arglist>(const Color &amp;_col, const VecMath::Vector&lt; 4 &gt; &amp;x)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -1415,8 +1482,22 @@
       <type>void</type>
       <name>depthCueColor</name>
       <anchorfile>classColorManagerManager.html</anchorfile>
-      <anchor>f4d0f0725543e4fabf61338383216fe8</anchor>
-      <arglist>(double wmax, double wmin, double w, float x, float y, float z)</arglist>
+      <anchor>2a2d545b1c230e93f050385a1d3a77e6</anchor>
+      <arglist>(double wmax, double wmin, double w, const VecMath::Vector&lt; 4 &gt; &amp;x)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setRGB</name>
+      <anchorfile>classColorManagerManager.html</anchorfile>
+      <anchor>6653aa733813159326436cbf365a0ad3</anchor>
+      <arglist>(const Color &amp;_col)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>getContents</name>
+      <anchorfile>classColorManagerManager.html</anchorfile>
+      <anchor>74f49fd0d9acb2485c61087fe079c63c</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
       <type></type>
@@ -1971,6 +2052,13 @@
       <anchor>fbc77cb3e6c8ca2c59225db92f5e420c</anchor>
       <arglist></arglist>
     </member>
+    <member kind="typedef">
+      <type>std::map&lt; std::string, FunctionParameterBase * &gt;</type>
+      <name>parameterMap</name>
+      <anchorfile>classFunction.html</anchorfile>
+      <anchor>e7f20a47a42cb57e40ec2a1b34b0d5b7</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type></type>
       <name>Function</name>
@@ -1982,8 +2070,8 @@
       <type></type>
       <name>Function</name>
       <anchorfile>classFunction.html</anchorfile>
-      <anchor>860c512c6fde48ab92d69033ca48c0d7</anchor>
-      <arglist>(const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)</arglist>
+      <anchor>48a632ba4066454740dbed6e862e1b4e</anchor>
+      <arglist>(const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv, parameterMap _parms=parameterMap())</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
@@ -2056,24 +2144,31 @@
       <arglist>(unsigned i)</arglist>
     </member>
     <member kind="function">
-      <type>unsigned</type>
+      <type>FunctionParameterBase *</type>
+      <name>getParameter</name>
+      <anchorfile>classFunction.html</anchorfile>
+      <anchor>f5a32b2791460f53a53726a424d16716</anchor>
+      <arglist>(QString name)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual unsigned</type>
       <name>getTsteps</name>
       <anchorfile>classFunction.html</anchorfile>
-      <anchor>af11b612821db196ce5d4cbd3b0bec0d</anchor>
+      <anchor>5bc503ce6b83498eaefc32df6f0f3748</anchor>
       <arglist>() const </arglist>
     </member>
-    <member kind="function">
-      <type>unsigned</type>
+    <member kind="function" virtualness="virtual">
+      <type>virtual unsigned</type>
       <name>getUsteps</name>
       <anchorfile>classFunction.html</anchorfile>
-      <anchor>0a96891f8ead4aa48e2d7041c76de3f5</anchor>
+      <anchor>285eabd983f9b1947d65d9a90f3fc82b</anchor>
       <arglist>() const </arglist>
     </member>
-    <member kind="function">
-      <type>unsigned</type>
+    <member kind="function" virtualness="virtual">
+      <type>virtual unsigned</type>
       <name>getVsteps</name>
       <anchorfile>classFunction.html</anchorfile>
-      <anchor>9cdaff8bce992ee70c8db2e913ad4e16</anchor>
+      <anchor>aa6093e672f95016e78075338fa5d78d</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function">
@@ -2083,11 +2178,11 @@
       <anchor>3f37689b13e1640aca959175a3d72fa5</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function">
-      <type>const double &amp;</type>
+    <member kind="function" virtualness="virtual">
+      <type>virtual double</type>
       <name>getTmin</name>
       <anchorfile>classFunction.html</anchorfile>
-      <anchor>eaeb4476d1d1857e8045cfdca5bdc150</anchor>
+      <anchor>2eae00e1bcd7d0aaf5abea56062b212d</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function">
@@ -2097,11 +2192,11 @@
       <anchor>6458f7375749b0510eb5bd4918308790</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function">
-      <type>const double &amp;</type>
+    <member kind="function" virtualness="virtual">
+      <type>virtual double</type>
       <name>getTmax</name>
       <anchorfile>classFunction.html</anchorfile>
-      <anchor>98b115e4744524ab52080d31054228d9</anchor>
+      <anchor>4ece9ad6198086aa481ad1adef33bd37</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function">
@@ -2125,11 +2220,11 @@
       <anchor>0da25473ea171ae9eff99c60b02a90b0</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function">
-      <type>const double &amp;</type>
+    <member kind="function" virtualness="virtual">
+      <type>virtual double</type>
       <name>getUmin</name>
       <anchorfile>classFunction.html</anchorfile>
-      <anchor>4b4f66c1d46d0f9d94fb48278bbe264b</anchor>
+      <anchor>4ad207d43dd7882e1c497941bffb4fd9</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function">
@@ -2139,11 +2234,11 @@
       <anchor>0e732388f081c055e7a7f90c0c8dc068</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function">
-      <type>const double &amp;</type>
+    <member kind="function" virtualness="virtual">
+      <type>virtual double</type>
       <name>getUmax</name>
       <anchorfile>classFunction.html</anchorfile>
-      <anchor>85e71dc90181124211604fe1e24e09f9</anchor>
+      <anchor>a82c62889db8ff5c8b915f6bb46638a1</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function">
@@ -2167,11 +2262,11 @@
       <anchor>0bc6132e0b0a00d3975a68dee2cd8293</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function">
-      <type>const double &amp;</type>
+    <member kind="function" virtualness="virtual">
+      <type>virtual double</type>
       <name>getVmin</name>
       <anchorfile>classFunction.html</anchorfile>
-      <anchor>987ad27dae25d70b4d8811e3129ee39b</anchor>
+      <anchor>5eef625698a60a101fd98e95a87abc1e</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function">
@@ -2181,11 +2276,11 @@
       <anchor>a0a502e9f18469fc78fbacc45d5ec3c6</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function">
-      <type>const double &amp;</type>
+    <member kind="function" virtualness="virtual">
+      <type>virtual double</type>
       <name>getVmax</name>
       <anchorfile>classFunction.html</anchorfile>
-      <anchor>9e6e1cac83eceb1ac61ce33939d68ca1</anchor>
+      <anchor>f0693091ac1bcaefafacd7727b1b2e28</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function">
@@ -2342,6 +2437,13 @@
       <anchor>b51bc4eb3a16cd5073803509fc5a242e</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable" protection="protected">
+      <type>parameterMap</type>
+      <name>parameters</name>
+      <anchorfile>classFunction.html</anchorfile>
+      <anchor>f229d2240d59c88d0b2cd8193bea4e69</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>FunctionDialogImpl</name>
@@ -2381,6 +2483,45 @@
       <anchorfile>classFunctionDialogImpl.html</anchorfile>
       <anchor>42b371226c6719adae49e8cb7eb457b1</anchor>
       <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>FunctionParameterBase</name>
+    <filename>classFunctionParameterBase.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>FunctionParameterBase</name>
+      <anchorfile>classFunctionParameterBase.html</anchorfile>
+      <anchor>c51efc2423ab71f3963fb6049b498b00</anchor>
+      <arglist>(const std::string &amp;_description=&quot;&quot;)</arglist>
+    </member>
+    <member kind="function">
+      <type>const std::string &amp;</type>
+      <name>getDescription</name>
+      <anchorfile>classFunctionParameterBase.html</anchorfile>
+      <anchor>4fc1180ba56b2f8577520c68c59400dc</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setDescription</name>
+      <anchorfile>classFunctionParameterBase.html</anchorfile>
+      <anchor>608b4fce52009156b4fc3aece441c46c</anchor>
+      <arglist>(const std::string &amp;_description)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>operator double</name>
+      <anchorfile>classFunctionParameterBase.html</anchorfile>
+      <anchor>a2afab56e7c80206a947981a447e1b54</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::string</type>
+      <name>description</name>
+      <anchorfile>classFunctionParameterBase.html</anchorfile>
+      <anchor>1acd62a25f47a8125ba50660b6ba05a5</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -2536,20 +2677,6 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>setColor</name>
-      <anchorfile>classGlobal.html</anchorfile>
-      <anchor>fc415ad35cd5f1150223adc110af2abb</anchor>
-      <arglist>(const Color &amp;)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setColor</name>
-      <anchorfile>classGlobal.html</anchorfile>
-      <anchor>cd24574b306c815486b2b41bd5c58f91</anchor>
-      <arglist>(float r, float g, float b, float a=1.0)</arglist>
-    </member>
-    <member kind="function">
       <type>Color &amp;</type>
       <name>BackgroundColor</name>
       <anchorfile>classGlobal.html</anchorfile>
@@ -2667,41 +2794,6 @@
       <anchorfile>classGlobal.html</anchorfile>
       <anchor>ee41dfa8c3f54721609d57c58ae702d8</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>const double</type>
-      <name>ambientColorModifier</name>
-      <anchorfile>classGlobal.html</anchorfile>
-      <anchor>d4539a71509e1ef13b4f46a55012e27f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>const double</type>
-      <name>specularColorModifier</name>
-      <anchorfile>classGlobal.html</anchorfile>
-      <anchor>a95e8a76247e0677dda04db724c1e322</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>const double</type>
-      <name>specularColorMinimum</name>
-      <anchorfile>classGlobal.html</anchorfile>
-      <anchor>79e85452303b5f18b408fe0467bf25ea</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>const double</type>
-      <name>ALPHA</name>
-      <anchorfile>classGlobal.html</anchorfile>
-      <anchor>a8a55e4a11eb8df8f7b3ec312626b48d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>const double</type>
-      <name>SHININESS</name>
-      <anchorfile>classGlobal.html</anchorfile>
-      <anchor>1f0c53a55b080e48ea48f1b405d09790</anchor>
-      <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QMainWindow *</type>
@@ -3429,8 +3521,8 @@
       <type>virtual void</type>
       <name>calibrateColor</name>
       <anchorfile>classmonochromeColorManager.html</anchorfile>
-      <anchor>88def67d756f9d621dfa976463fb9c59</anchor>
-      <arglist>(const Color &amp;, float, float, float)</arglist>
+      <anchor>6c870626362d78cae1f89e55392862b9</anchor>
+      <arglist>(const Color &amp;, const VecMath::Vector&lt; 4 &gt; &amp;)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual Color</type>
@@ -3443,8 +3535,8 @@
       <type>virtual void</type>
       <name>depthCueColor</name>
       <anchorfile>classmonochromeColorManager.html</anchorfile>
-      <anchor>d86d64db415559272894919b2f1b6010</anchor>
-      <arglist>(double, double, double, float, float, float)</arglist>
+      <anchor>c0bef6fd1532d68ddf08e97841201758</anchor>
+      <arglist>(double, double, double, const VecMath::Vector&lt; 4 &gt; &amp;)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -3506,6 +3598,69 @@
       <anchorfile>classObject.html</anchorfile>
       <anchor>3dfa9443e4d4b71f1a12827bab2d90f5</anchor>
       <arglist>(double, double, double)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual unsigned</type>
+      <name>getTsteps</name>
+      <anchorfile>classObject.html</anchorfile>
+      <anchor>1788b64f26f2e0b0dde1bc9d745a1e9f</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual unsigned</type>
+      <name>getUsteps</name>
+      <anchorfile>classObject.html</anchorfile>
+      <anchor>233a5ba3e17eb319db356c300132ba85</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual unsigned</type>
+      <name>getVsteps</name>
+      <anchorfile>classObject.html</anchorfile>
+      <anchor>1aa24c774545e7ff55b1aad7f3fce385</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual double</type>
+      <name>getTmin</name>
+      <anchorfile>classObject.html</anchorfile>
+      <anchor>77b54e5622f0036cac520dcf954b5bc9</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual double</type>
+      <name>getTmax</name>
+      <anchorfile>classObject.html</anchorfile>
+      <anchor>0a6a405664a329b2b5d0322ea3731b2e</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual double</type>
+      <name>getUmin</name>
+      <anchorfile>classObject.html</anchorfile>
+      <anchor>0d905217992272a7066284511dea0d38</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual double</type>
+      <name>getUmax</name>
+      <anchorfile>classObject.html</anchorfile>
+      <anchor>77d8b699bae8111631611ce526da2f53</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual double</type>
+      <name>getVmin</name>
+      <anchorfile>classObject.html</anchorfile>
+      <anchor>bd4d6ba639eda9b45c722cf80c0be416</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual double</type>
+      <name>getVmax</name>
+      <anchorfile>classObject.html</anchorfile>
+      <anchor>907226e84b30073b27326c86874aa53e</anchor>
+      <arglist>() const </arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual VecMath::Vector&lt; 4 &gt; &amp;</type>
@@ -3911,8 +4066,8 @@
       <type></type>
       <name>RealBase</name>
       <anchorfile>classRealBase.html</anchorfile>
-      <anchor>53b370431bb413146c845c2269a2a73c</anchor>
-      <arglist>(const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)</arglist>
+      <anchor>9a0113fea54e32e136296339c204199f</anchor>
+      <arglist>(const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv, parameterMap _parms=parameterMap())</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="pure">
       <type>virtual VecMath::Vector&lt; 4 &gt; &amp;</type>
@@ -3937,8 +4092,8 @@
       <type></type>
       <name>RealFunction</name>
       <anchorfile>classRealFunction.html</anchorfile>
-      <anchor>198dec897172567a0fb6c110a2afbe22</anchor>
-      <arglist>(const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)</arglist>
+      <anchor>bef904362b31918cb40fdc2ae24a0cd0</anchor>
+      <arglist>(const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv, parameterMap _parms=parameterMap())</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
@@ -4525,27 +4680,6 @@
       <name>Xscr</name>
       <anchorfile>classSurface.html</anchorfile>
       <anchor>0d4e87cf750c15554d39725baca6896e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>floatvec2D</type>
-      <name>R</name>
-      <anchorfile>classSurface.html</anchorfile>
-      <anchor>edae59b363aec7bc66a7e4ba1d6b2328</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>floatvec2D</type>
-      <name>G</name>
-      <anchorfile>classSurface.html</anchorfile>
-      <anchor>a4e58afa2b994b4a48e83b94f3fc7db7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>floatvec2D</type>
-      <name>B</name>
-      <anchorfile>classSurface.html</anchorfile>
-      <anchor>5820231eed7444889a2f82f6ee4ccc4b</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -5455,35 +5589,56 @@
       <type>virtual void</type>
       <name>calibrateColor</name>
       <anchorfile>classxyz2RGBColorManager.html</anchorfile>
-      <anchor>30f1813e7061751614d14a4d5dbf2f27</anchor>
-      <arglist>(const Color &amp;_col, float x, float y, float z)</arglist>
+      <anchor>a55e04466b6a7e133f8eb6b2bb115b41</anchor>
+      <arglist>(const Color &amp;_col, const VecMath::Vector&lt; 4 &gt; &amp;x)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual Color</type>
       <name>getColor</name>
       <anchorfile>classxyz2RGBColorManager.html</anchorfile>
-      <anchor>a60078da92c91b32051acc0c1195715f</anchor>
+      <anchor>87c08aa7c7f3a1f23488ae2cba90aad6</anchor>
       <arglist>(const VecMath::Vector&lt; 4 &gt; &amp;x)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
       <name>depthCueColor</name>
       <anchorfile>classxyz2RGBColorManager.html</anchorfile>
-      <anchor>e86b30e5a828717acd0bfa010f89e011</anchor>
-      <arglist>(double wmax, double wmin, double w, float, float, float)</arglist>
+      <anchor>df18ce7e156627c77546e17833c0b4b6</anchor>
+      <arglist>(double wmax, double wmin, double w, const VecMath::Vector&lt; 4 &gt; &amp;)</arglist>
     </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>resizeCol</name>
+    <member kind="function" virtualness="virtual">
+      <type>virtual std::string</type>
+      <name>getContents</name>
       <anchorfile>classxyz2RGBColorManager.html</anchorfile>
-      <anchor>0f1004126986258b1382f4be28787c16</anchor>
+      <anchor>80a3f3ccffbabf566ecf1d197d1959b8</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="function" protection="protected">
+      <type>Color</type>
+      <name>computeColorFromNeighbors</name>
+      <anchorfile>classxyz2RGBColorManager.html</anchorfile>
+      <anchor>028115852304ac06d6dbb58a1544ab5f</anchor>
+      <arglist>(const VecMath::Vector&lt; 4 &gt; &amp;x)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>std::pair&lt; std::vector&lt; VecMath::Vector&lt; 4 &gt; &gt;, std::vector&lt; double &gt; &gt;</type>
+      <name>findClosestPoints</name>
+      <anchorfile>classxyz2RGBColorManager.html</anchorfile>
+      <anchor>3f2868b3d5889c2ea4118acd67f0f28e</anchor>
+      <arglist>(const VecMath::Vector&lt; 4 &gt; &amp;, unsigned=5)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Color</type>
+      <name>averageColors</name>
+      <anchorfile>classxyz2RGBColorManager.html</anchorfile>
+      <anchor>aa571f6a1aeefd51b4fe88f766c0d7d8</anchor>
+      <arglist>(const std::vector&lt; Color &gt; &amp;)</arglist>
+    </member>
     <member kind="variable" protection="protected">
-      <type>colorvec3D</type>
+      <type>colormap</type>
       <name>col</name>
       <anchorfile>classxyz2RGBColorManager.html</anchorfile>
-      <anchor>c12a70005dd5841a4a3e8b31754719d0</anchor>
+      <anchor>eb8683f850c9d79dc8911e0ecb8e01e8</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -6332,22 +6487,22 @@
       <type>Vector&lt; D, N &gt;</type>
       <name>operator+</name>
       <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>38ca2040a445c58b752e285ba98cf52f</anchor>
-      <arglist>(const Vector&lt; D, N &gt; &amp;Y)</arglist>
+      <anchor>a68deef6f47c2f6550ca05ce7f8bb11c</anchor>
+      <arglist>(const Vector&lt; D, N &gt; &amp;Y) const </arglist>
     </member>
     <member kind="function">
       <type>Vector&lt; D, N &gt;</type>
       <name>operator-</name>
       <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>4815043540a8862c67db0266e1b71d16</anchor>
-      <arglist>(const Vector&lt; D, N &gt; &amp;Y)</arglist>
+      <anchor>9d760206780943e36381f022da5ac047</anchor>
+      <arglist>(const Vector&lt; D, N &gt; &amp;Y) const </arglist>
     </member>
     <member kind="function">
       <type>Vector&lt; D, N &gt;</type>
       <name>operator*</name>
       <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>5e2a60f1a088d7da9108a73f110b0ef8</anchor>
-      <arglist>(const N &amp;s)</arglist>
+      <anchor>1c92fee3076d3f646e97df2f5f246726</anchor>
+      <arglist>(const N &amp;s) const </arglist>
     </member>
     <member kind="function">
       <type>N</type>
@@ -6360,8 +6515,15 @@
       <type>Vector&lt; D, N &gt;</type>
       <name>operator/</name>
       <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>5e1b66a2713adfb230f3baa9417e3c88</anchor>
-      <arglist>(const N &amp;s)</arglist>
+      <anchor>5b21cec75070d6f476cf4217d4db3d01</anchor>
+      <arglist>(const N &amp;s) const </arglist>
+    </member>
+    <member kind="function">
+      <type>Vector&lt; D, N &gt;</type>
+      <name>operator/</name>
+      <anchorfile>classVecMath_1_1Vector.html</anchorfile>
+      <anchor>2034516bcdac81c123d76d1018a5ed47</anchor>
+      <arglist>(const Vector&lt; D, N &gt; &amp;X) const </arglist>
     </member>
     <member kind="function">
       <type>N</type>
@@ -6369,6 +6531,13 @@
       <anchorfile>classVecMath_1_1Vector.html</anchorfile>
       <anchor>1ac5b53c857112a28de561ee4c80e6d3</anchor>
       <arglist>(void) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&lt;</name>
+      <anchorfile>classVecMath_1_1Vector.html</anchorfile>
+      <anchor>101c57864da2145be32e255919ef1845</anchor>
+      <arglist>(const Vector&lt; D, N &gt; &amp;other) const </arglist>
     </member>
     <member kind="function">
       <type>N *</type>

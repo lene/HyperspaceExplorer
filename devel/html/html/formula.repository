@@ -56,3 +56,14 @@
 \form#55:$ C = A*B $
 \form#56:$ A*B $
 \form#57:$ \vec{x} = ( x, y, z, f(x, y, z) ) $
+\form#58:$ R^1 = (R_2-R_1)*\frac{x-x_1}{x_2-x_1}+R_1, R^2 = (R_3-R_1)*\frac{x-x_1}{x_3-x_1}+R_1, ..., R^10 = (R_5-R_4)*\frac{x-x_4}{x_5-x_4}+R_4 $
+\form#59:$ R $
+\form#60:$ G $
+\form#61:$ y $
+\form#62:$ B $
+\form#63:$ z $
+\form#64:$ \alpha $
+\form#65:$ w $
+\form#66:$ R^1 = (R_2-R_1)*\frac{x-x_1}{x_2-x_1}+R_1, R^2 = (R_3-R_1)*\frac{x-x_1}{x_3-x_1}+R_1, ..., R^{10} = (R_5-R_4)*\frac{x-x_4}{x_5-x_4}+R_4 $
+\form#67:\begin{eqnarray*}{ R^1 & = & (R_2-R_1)*\frac{x-x_1}{x_2-x_1}+R_1 \\ R^2 & = & (R_3-R_1)*\frac{x-x_1}{x_3-x_1}+R_1 \\ \ldots \\ R^{10} = (R_5-R_4)*\frac{x-x_4}{x_5-x_4}+R_4 \end{eqnarray*}{
+\form#68:\begin{eqnarray*}{ R^1 & = & (R_2-R_1)*\frac{x-x_1}{x_2-x_1}+R_1 \\ R^2 & = & (R_3-R_1)*\frac{x-x_1}{x_3-x_1}+R_1 \\ \ldots \\ R^{10} & = & (R_5-R_4)*\frac{x-x_4}{x_5-x_4}+R_4 \end{eqnarray*}{
