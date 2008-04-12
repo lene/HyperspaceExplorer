@@ -76,7 +76,7 @@ class RealFunction: public RealBase {
     \f{eqnarray*} {
         F_0 & = & Radius*\sin(\psi)*\sin(\theta)*\cos(\phi)    \\
         F_1 & = & Radius*\sin(\psi)*\sin(\theta)*\sin(\phi)    \\
-        F_2 & = & Radius*\sin(\psi)*\cos(\theta)              \\
+        F_2 & = & Radius*\sin(\psi)*\cos(\theta)               \\
         F_3 & = & Radius*\cos(\psi)
     \f}
  *  \ingroup RealGroup                                                    */

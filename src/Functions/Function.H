@@ -155,6 +155,8 @@ class Function {
         /// Function evaluation operator for three parameters
         virtual VecMath::Vector<4> &operator () (double, double, double) = 0;
 
+        void setVertex(const VecMath::Vector<4> &X, VecMath::Vector<3> &Xscr);
+
         virtual vec4vec1D df (double, double, double);
 
         virtual void Initialize (void) = 0;

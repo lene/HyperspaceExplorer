@@ -13,8 +13,6 @@
 #include "Matrix.H"
 #include "Surface.H"
 
-template <typename T> unsigned int Delete (T *x);	// defined in Function.C
-
 using VecMath::Vector;
 using VecMath::Matrix;
 
@@ -28,9 +26,7 @@ Surface::Surface ():
     usteps (0), vsteps (0),
     NumVertices (0),
     F (4),
-    Xtrans(vec4vec2D()), Xscr(vec3vec2D())
-//    R(floatvec2D()), G(floatvec2D()), B(floatvec2D())
-{ }
+    Xtrans(vec4vec2D()), Xscr(vec3vec2D()) { }
 
 
 /** Surface c'tor given a definition set in \f$ R^2 \f$ (as parameter space)
@@ -49,9 +45,7 @@ Surface::Surface (const QString &name,
     vsteps (unsigned (2*(vmax-vmin)/dv+1)),
     NumVertices (0),
     F (4),
-    Xtrans(vec4vec2D()), Xscr(vec3vec2D())
-//    R(floatvec2D()), G(floatvec2D()), B(floatvec2D())
-    {
+    Xtrans(vec4vec2D()), Xscr(vec3vec2D()) {
     functionName = name;
 }
 
@@ -60,27 +54,33 @@ Surface::Surface (const QString &name,
 void Surface::InitMem (void) {
     Xscr.resize(usteps+2);
     Xtrans.resize(usteps+2);
-//    R.resize(usteps+2);
-//    G.resize(usteps+2);
-//    B.resize(usteps+2);
 
     for (unsigned u = 0; u <= usteps+1; u++) {
         Xscr[u].resize(vsteps+2);
         Xtrans[u].resize(vsteps+2);
-/*        R[u].resize(vsteps+2);
-        G[u].resize(vsteps+2);
-        B[u].resize(vsteps+2);*/
     }
 }
 
 /** allocate and initialize X[][] with values of f() \n
  *  call InitMem () above                                                     */
 void Surface::Initialize () {
+    double Wmax = 0, Wmin = 0;
     X = vec4vec2D(usteps+2);
+    ColMgrMgr::Instance().setFunction(this);
     for (unsigned u = 0; u <= usteps+1; u++) {
         X[u].resize(vsteps+2);
         for (unsigned v = 0; v <= vsteps+1; v++) {
             X[u][v] = f (umin+u*du, vmin+v*dv);
+            if (X[u][v][3] < Wmin) Wmin = X[u][v][3];
+            if (X[u][v][3] > Wmax) Wmax = X[u][v][3];
+        }
+    }
+    for (unsigned u = 0; u <= usteps+1; u++) {
+        for (unsigned v = 0; v <= vsteps+1; v++) {
+            ColMgrMgr::Instance().calibrateColor(
+                Color(float(u)/float(usteps), float(v)/float(vsteps),
+                      (Wmax-X[u][v][3])/(Wmax-Wmin)),
+                X[u][v]);
         }
     }
 
@@ -214,11 +214,6 @@ void Surface::Project (double scr_w, double cam_w, bool depthcue4d) {
 
             for (unsigned i = 0; i <= 2; i++)
                 Xscr[u][v][i] = ProjectionFactor*Xtrans[u][v][i];
-
-            ColMgrMgr::Instance().calibrateColor(
-                Color(float(u)/float(usteps), float(v)/float(vsteps),
-                      (Wmax-X[u][v][3])/(Wmax-Wmin)),
-                X[u][v]);
     }
 
     if (!depthcue4d) return;
@@ -246,22 +241,13 @@ void Surface::Draw (void) {
 void Surface::DrawStrip (unsigned u){
     glBegin (GL_QUAD_STRIP);
 
-//     Globals::Instance().setColor (R [u][0], G [u][0], B [u][0]);
-    ColMgrMgr::Instance().setColor(X[u][0]);
-    Globals::Instance().glVertex (Xscr[u][0]);
-//     Globals::Instance().setColor (R [u+1][0], G [u+1][0], B [u+1][0]);
-    ColMgrMgr::Instance().setColor(X[u+1][0]);
-    Globals::Instance().glVertex (Xscr[u+1][0]);
+    setVertex(X[u][0], Xscr[u][0]);
+    setVertex(X[u+1][0], Xscr[u+1][0]);
     NumVertices += 2;
 
     for (unsigned v = 1; v <= vsteps; v++) {
-//         Globals::Instance().setColor (R [u][v], G [u][v], B [u][v]);
-        ColMgrMgr::Instance().setColor(X[u][v]);
-        Globals::Instance().glVertex (Xscr[u][v]);
-//         Globals::Instance().setColor (R [u+1][v], G [u+1][v], B [u+1][v]);
-        ColMgrMgr::Instance().setColor(X[u+1][v]);
-        Globals::Instance().glVertex (Xscr[u+1][v]);
-
+        setVertex(X[u][v], Xscr[u][v]);
+        setVertex(X[u+1][v], Xscr[u+1][v]);
         NumVertices += 2;
     }
 

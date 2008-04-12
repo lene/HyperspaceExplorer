@@ -8,6 +8,7 @@
 
 #include "Function.H"
 #include "Log.H"
+#include "ColorManager.H"
 
 using std::cerr;
 using std::endl;
@@ -83,7 +84,10 @@ unsigned long Function::MemRequired (void) {
   return ((tsteps+2)*(usteps+2)*(vsteps+2)*4)/1024+8;
 }
 
-
+void Function::setVertex(const VecMath::Vector<4> &X, VecMath::Vector<3> &Xscr) {
+    ColMgrMgr::Instance().setColor(X);
+    Globals::Instance().glVertex(Xscr);
+}
 
 /// Numerical calculation of the derivatives in t, u and v
 /** \f[

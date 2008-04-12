@@ -98,6 +98,8 @@ C4DView::C4DView(QWidget *parent):
 
     show ();
 
+    ColMgrMgr::Instance().setColorManager(new xyz2RGBColorManager(F.get()));
+
     ObjectHypercube ();
 
     Light ();
@@ -423,9 +425,9 @@ void C4DView::ApplyChanges (void) {
                Values->umin (), Values->umax (), Values->du (),
                Values->vmin (), Values->vmax (), Values->dv ());
 
-    Transform ();
+    ColMgrMgr::Instance().setFunction(F.get());
 
-    ColMgrMgr::Instance().setColorManager(new xyz2RGBColorManager(F.get()));
+    Transform ();
 
     Redraw ();
 }
@@ -897,8 +899,7 @@ void C4DView::AssignValues (const std::auto_ptr<Function> &F) {
 
     Transform ();
 
-    ColMgrMgr::Instance().setColorManager(new xyz2RGBColorManager(F.get()));
-//    ColMgrMgr::Instance().setColorManager(new monochromeColorManager(F.get()));
+    ColMgrMgr::Instance().setFunction(F.get());
 
     UpdateStatus("");
 }

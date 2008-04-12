@@ -153,7 +153,8 @@ class ColorManagerManager {
         void setColorManager(ColorManager *cm) {
             colorManager.reset(cm);
         }
-
+        /// proxy function for ColorManager::setFunction()
+        void setFunction(Function *_f) { colorManager->setFunction(_f); }
         /// proxy function for ColorManager::calibrateColor()
         void calibrateColor(const Color &_col, const VecMath::Vector<4> &x) {
             colorManager->calibrateColor(_col, x);

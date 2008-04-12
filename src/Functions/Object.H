@@ -60,6 +60,7 @@ class Object: public Function {
         virtual double getVmax() const { return 1; }
 
     protected:
+        virtual void Initialize();
         /// number of vertices the object possesses; must be set by implementations
         unsigned NumVertices;
         /// number of surfaces the object possesses; must be set by implementations

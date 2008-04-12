@@ -84,6 +84,7 @@ void RealFunction::InitMem (void) {
 /** Call InitMem() above */
 void RealFunction::Initialize () {
     X = vec4vec3D(tsteps+2);
+    ColMgrMgr::Instance().setFunction(this);
 
     for (unsigned t = 0; t <= tsteps+1; t++) {
         X[t].resize(usteps+2);
@@ -94,6 +95,10 @@ void RealFunction::Initialize () {
             for (unsigned v = 0; v <= vsteps+1; v++) {
                 double T = tmin+t*dt, U =umin+u*du, V = vmin+v*dv;
                 X[t][u][v] = f (T, U, V);
+                ColMgrMgr::Instance().calibrateColor(
+                    Color(float(t)/float(tsteps), float(u)/float(usteps),
+                          float(v)/float(vsteps)),
+                    X[t][u][v]);
             }
         }
     }
@@ -178,10 +183,6 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
                 for (unsigned i = 0; i <= 2; i++) {
                     Xscr[t][u][v][i] = ProjectionFactor*Xtrans[t][u][v][i];
                 }
-                ColMgrMgr::Instance().calibrateColor(
-                    Color(float(t)/float(tsteps), float(u)/float(usteps),
-                          float(v)/float(vsteps)),
-                    X[t][u][v]);
             }
         }
     }
@@ -253,54 +254,36 @@ void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v) {
 
     glBegin (GL_QUAD_STRIP);
     if (t == 0) {
-        ColMgrMgr::Instance().setColor(X[t][u][v]);
-        Globals::Instance().glVertex(V[0]);
-        ColMgrMgr::Instance().setColor(X[t][u][v+1]);
-        Globals::Instance().glVertex(V[1]);
+        setVertex(X[t][u][v], V[0]);
+        setVertex(X[t][u][v+1], V[1]);
         NumVertices += 2;
     }
-    ColMgrMgr::Instance().setColor(X[t][u+1][v]);
-    Globals::Instance().glVertex(V[2]);
-    ColMgrMgr::Instance().setColor(X[t][u+1][v+1]);
-    Globals::Instance().glVertex(V[3]);
-    ColMgrMgr::Instance().setColor(X[t+1][u+1][v]);
-    Globals::Instance().glVertex(V[6]);
-    ColMgrMgr::Instance().setColor(X[t+1][u+1][v+1]);
-    Globals::Instance().glVertex(V[7]);
-    ColMgrMgr::Instance().setColor(X[t+1][u][v]);
-    Globals::Instance().glVertex(V[4]);
-    ColMgrMgr::Instance().setColor(X[t+1][u][v+1]);
-    Globals::Instance().glVertex(V[5]);
+    setVertex(X[t][u+1][v], V[2]);
+    setVertex(X[t][u+1][v+1], V[3]);
+    setVertex(X[t+1][u+1][v], V[6]);
+    setVertex(X[t+1][u+1][v+1], V[7]);
+    setVertex(X[t+1][u][v], V[4]);
+    setVertex(X[t+1][u][v+1], V[5]);
     NumVertices += 6;
     if (u == 0) {
-        ColMgrMgr::Instance().setColor(X[t][u][v]);
-        Globals::Instance().glVertex(V[0]);
-        ColMgrMgr::Instance().setColor(X[t][u][v+1]);
-        Globals::Instance().glVertex(V[1]);
+        setVertex(X[t][u][v], V[0]);
+        setVertex(X[t][u][v+1], V[1]);
         NumVertices += 2;
     }
     glEnd ();
 
     glBegin (GL_QUADS);
     if (v == 0) {
-        ColMgrMgr::Instance().setColor(X[t][u][v]);
-        Globals::Instance().glVertex(V[0]);
-        ColMgrMgr::Instance().setColor(X[t][u][v]);
-        Globals::Instance().glVertex(V[2]);
-        ColMgrMgr::Instance().setColor(X[t][u][v]);
-        Globals::Instance().glVertex(V[6]);
-        ColMgrMgr::Instance().setColor(X[t][u][v]);
-        Globals::Instance().glVertex(V[4]);
+        setVertex(X[t][u][v], V[0]);
+        setVertex(X[t][u+1][v], V[2]);
+        setVertex(X[t+1][u+1][v], V[6]);
+        setVertex(X[t+1][u][v], V[4]);
         NumVertices += 4;
     }
-    ColMgrMgr::Instance().setColor(X[t][u][v+1]);
-    Globals::Instance().glVertex(V[1]);
-    ColMgrMgr::Instance().setColor(X[t][u+1][v+1]);
-    Globals::Instance().glVertex(V[3]);
-    ColMgrMgr::Instance().setColor(X[t+1][u+1][v+1]);
-    Globals::Instance().glVertex(V[7]);
-    ColMgrMgr::Instance().setColor(X[t+1][u][v+1]);
-    Globals::Instance().glVertex(V[5]);
+    setVertex(X[t][u][v+1], V[1]);
+    setVertex(X[t][u+1][v+1], V[3]);
+    setVertex(X[t+1][u+1][v+1], V[7]);
+    setVertex(X[t+1][u][v+1], V[5]);
     NumVertices += 4;
     glEnd ();
 }

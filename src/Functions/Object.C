@@ -42,6 +42,13 @@ Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
     for (unsigned i = 0; i < 4; i++) Surface[i].resize(NumSurfaces);
 }
 
+void Object::Initialize() {
+    for (unsigned i = 0; i < NumVertices; i++) {
+        ColMgrMgr::Instance().calibrateColor(
+            Color((X[i][0]+1)/2, (X[i][1]+1)/2, (X[i][2]+1)/2), X[i]);
+    }
+}
+
 /// Transforms an Object
 /** I think this could be optimized by making the transformation
  *  matrices static and only canging the corresponding entries... but how to
@@ -93,9 +100,6 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
 
         for (unsigned j = 0; j <= 2; j++)
             Xscr[i][j] = ProjectionFactor*Xtrans[i][j];
-
-        ColMgrMgr::Instance().calibrateColor(
-            Color((X[i][0]+1)/2, (X[i][1]+1)/2, (X[i][2]+1)/2), X[i]);
     }
 
     if (!depthcue4d) return;
@@ -112,8 +116,7 @@ void Object::Draw () {
     glBegin (GL_QUADS);
     for (unsigned i = 0; i < NumSurfaces; i++)
         for (unsigned j = 0; j < 4; j++) {
-            ColMgrMgr::Instance().setColor(X[Surface[j][i]]);
-            Globals::Instance().glVertex(Xscr[Surface[j][i]]);
+            setVertex(X[Surface[j][i]], Xscr[Surface[j][i]]);
         }
     glEnd ();
 }
@@ -148,8 +151,10 @@ void Hypercube::Initialize(void) {
     for (int x = 0; x <= 1; x++)
         for (int y = 0; y <= 1; y++)
             for (int z = 0; z <= 1; z++)
-                for (int w = 0; w <= 1; w++)
-                    X[x+2*(y+2*(z+2*w))] = Vector<4> (2.*x-1., 2.*y-1., 2.*z-1., 2.*w-1.)*a+center;
+                for (int w = 0; w <= 1; w++) {
+                    X[x+2*(y+2*(z+2*w))] =
+                            Vector<4> (2.*x-1., 2.*y-1., 2.*z-1., 2.*w-1.)*a+center;
+                }
 
     DeclareSquare (0,   0, 1, 3, 2);
     DeclareSquare (1,   0, 1, 5, 4);
@@ -175,6 +180,8 @@ void Hypercube::Initialize(void) {
     DeclareSquare (21,  9,11,15,13);
     DeclareSquare (22, 10,11,15,14);
     DeclareSquare (23, 12,13,15,14);
+
+    Object::Initialize();
 }
 
 /// Declare a square in the \p Surface array
@@ -298,6 +305,8 @@ void Sponge::Initialize(void) {
             }
         }
     }
+
+    Object::Initialize();
 }
 
 /// Transforms a Sponge
@@ -345,7 +354,7 @@ void Sponge::Draw (void) {
 }
 
 
-    ///////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
 
 
 /// Pyramid (hypersimplex) constructor
@@ -381,6 +390,8 @@ void Pyramid::Initialize() {
     DeclareTriangle (7,  1, 2, 4);
     DeclareTriangle (8,  1, 3, 4);
     DeclareTriangle (9,  2, 3, 4);
+
+    Object::Initialize();
 }
 
 /// Declare a triangle in the \p Surface array
@@ -396,7 +407,7 @@ void Pyramid::DeclareTriangle (unsigned i, unsigned a, unsigned b, unsigned c) {
 }
 
 
-    ///////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
 
 
 /// Gasket constructor
@@ -461,6 +472,8 @@ void Gasket::Initialize() {
         NewCen += center;
         List.push_back (new Gasket (Level-1, rad, NewCen));
     }
+
+    Object::Initialize();
 }
 
 /// Transforms a Gasket
