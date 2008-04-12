@@ -16,6 +16,8 @@
 #include <string>
 #include <sstream>
 
+#include "Vector.H"
+
 /// a class to represent a color value by its RGBA components \n
 /// This class provides a single-stop interface to handle a color. It also
 /// provides some utility functions to work with colors. \n
@@ -26,6 +28,7 @@ class Color {
     public:
         Color() { r() = g() = b() = a() = 0.; }
         Color(float, float, float, float = 0.);
+        Color(const VecMath::Vector<4> &);
 
         float &r() { return RGBA[0]; }  /// the red component of the color
         float &g() { return RGBA[1]; }  /// the green component of the color
@@ -35,9 +38,13 @@ class Color {
         /// direct access to the array of components, needed by OpenGL functions
         operator float *() { return RGBA; }
         Color operator *=(float);
+        Color operator *=(const Color &);
         Color operator *(float);
+        Color operator *(const Color &);
         Color operator +=(float);
         Color operator +(float);
+        Color operator +=(const Color &);
+        Color operator +(const Color &);
         void setComponentLowerLimit(float);
         void setComponentUpperLimit(float);
 
@@ -64,6 +71,13 @@ inline Color::Color(float _r, float _g, float _b, float _a) {
     a() = _a;
 }
 
+inline Color::Color(const VecMath::Vector<4> &x) {
+    r() = x[0];
+    g() = x[1];
+    b() = x[2];
+    a() = x[3];
+}
+
 /// scale the color by a float, keeping the RGB components between 0.0 and 1.0
 /// @param x scaling factor
 inline Color Color::operator *=(float x) {
@@ -75,9 +89,29 @@ inline Color Color::operator *=(float x) {
     return *this;
 }
 
+/// Multiply two colors, component by component
+/// @param x scaling factor
+inline Color Color::operator *=(const Color &x) {
+    for (unsigned i = 0; i < 3; i++) {
+        RGBA[i] *= x.RGBA[i];
+#if 0
+        if (RGBA[i] > 1.) RGBA[i] = 1.;
+        if (RGBA[i] < 0.) RGBA[i] = 0.;
+#endif
+    }
+    return *this;
+}
+
 /// scale the color by a float, keeping the RGB components between 0.0 and 1.0
 /// @param x scaling factor
 inline Color Color::operator *(float x) {
+    Color tmp(*this);
+    return (tmp *= x);
+}
+
+/// Multiply two colors, component by component
+/// @param x scaling factor
+inline Color Color::operator *(const Color &x) {
     Color tmp(*this);
     return (tmp *= x);
 }
@@ -96,6 +130,26 @@ inline Color Color::operator +=(float x) {
 /// add a float to the color, keeping the RGB components between 0.0 and 1.0
 /// @param x added term
 inline Color Color::operator +(float x) {
+    Color tmp(*this);
+    return (tmp += x);
+}
+
+/// add a float to the color, keeping the RGB components between 0.0 and 1.0
+/// @param x added term
+inline Color Color::operator +=(const Color &x) {
+    for (unsigned i = 0; i < 3; i++) {
+        RGBA[i] += x.RGBA[i];
+#if 0
+             if (RGBA[i] > 1.) RGBA[i] = 1.;
+             if (RGBA[i] < 0.) RGBA[i] = 0.;
+#endif
+    }
+    return *this;
+}
+
+/// add a float to the color, keeping the RGB components between 0.0 and 1.0
+/// @param x added term
+inline Color Color::operator +(const Color &x) {
     Color tmp(*this);
     return (tmp += x);
 }

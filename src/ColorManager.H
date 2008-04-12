@@ -137,9 +137,12 @@ class xyz2RGBColorManager: public ColorManager {
         }
 
     protected:
-        void resizeCol();
+        Color computeColorFromNeighbors(const VecMath::Vector<4> &x);
+        std::pair<std::vector<VecMath::Vector<4> >, std::vector<double> >
+                findClosestPoints(const VecMath::Vector<4> &, unsigned = 5);
+        Color averageColors(const std::vector<Color> &);
 
-        colormap col; ///< this is stupid. you could compute values on the fly.
+        colormap col; ///<
 };
 
 /// Plots all points in white

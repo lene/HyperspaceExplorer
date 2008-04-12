@@ -87,6 +87,10 @@ namespace VecMath {
         /** @param s scalar type
          *  @return *this/s                                                   */
         Vector<D, N> operator/ (const N &s) const;
+        /// divide every component of one vector by same component of another
+        /** @param Y other Vector
+         *  @return scaled vector                                             */
+        Vector<D, N> operator/ (const Vector<D, N> &X) const;
 
         /** @return the squared norm of the vector, |V|²                      */
         N sqnorm (void) const;
@@ -213,6 +217,15 @@ namespace VecMath {
             Vector<D, N> Vector<D, N>::operator/ (const N &s) const {
     return operator* (1./s);
     }
+
+    template <unsigned D, typename N>
+            Vector<D, N> Vector<D, N>::operator/ (const Vector<D, N> &X) const {
+        Vector<D, N> tmp;
+        for (unsigned i = 0; i < D; i++)
+            tmp[i] = x[i]/X[i];
+        return tmp;
+    }
+
 
     template <unsigned D, typename N>
             N Vector<D, N>::sqnorm (void) const {
