@@ -81,7 +81,7 @@ class GLObject {
             return false;
         }
 
-        protected:
+    private:
             std::vector<GLuint> List;
 };
 #endif

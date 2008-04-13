@@ -52,11 +52,6 @@ CustomFunction::CustomFunction (double _tmin, double _tmax, double _dt,
     }
 }
 
-/** CustomFunction destructor, closes DLL if necessary                        */
-CustomFunction::~CustomFunction() {
-  if (handle) dlclose (handle);
-}
-
 /** CustomFunction defining function; calls loaded function
  *  @param x x value
  *  @param y y value
@@ -96,11 +91,6 @@ CustomPolarFunction::CustomPolarFunction (double _tmin, double _tmax, double _dt
     } else setInvalid();
 }
 
-/** CustomPolarFunction destructor, closes DLL if necessary                   */
-CustomPolarFunction::~CustomPolarFunction() {
-  if (handle) dlclose (handle);
-}
-
 /** CustomPolarFunction defining function; calls loaded function
  *  @param x x value (these would really be phi, theta, psi)
  *  @param y y value
@@ -133,11 +123,6 @@ CustomComplexFunction::CustomComplexFunction (double _umin, double _umax, double
     } else setInvalid();
 }
 
-/** CustomComplexFunction destructor, closes DLL if necessary                 */
-CustomComplexFunction::~CustomComplexFunction() {
-    if (handle) dlclose (handle);
-}
-
 /** CustomComplexFunction defining function; calls loaded function
  *  @param z (complex) z value
  *  @return custom function of z                                              */
@@ -165,11 +150,6 @@ CustomSurface::CustomSurface (double _umin, double _umax, double _du,
         Initialize ();
         setValid();
     } else setInvalid();
-}
-
-/** CustomFunction destructor, closes DLL if necessary                        */
-CustomSurface::~CustomSurface() {
-    if (handle) dlclose (handle);
 }
 
 /** CustomFunction defining function; calls loaded function

@@ -52,6 +52,16 @@ class XQGLWidget: public QGLWidget {
         void SetBackgroundColor (float R, float G, float B, float A) {
             Background = VecMath::Vector<4> (R, G, B, A);
         }
+        /// @return whether to use colors in rendering or not
+        bool &getColors() { return colors; }
+        /// @return whether to use shading in rendering or not
+        bool &getShade() { return shade; }
+        /// @return whether to use depth cue/fog in rendering or not
+        bool &getFog() { return fog; }
+        /// @return whether to use lighting in rendering or not
+        bool &getLight() { return light; }
+        /// @return whether to use transparence/line antialiasing or not
+        bool &getTransparent() { return transparent; }
 
 
     protected slots:
@@ -97,6 +107,7 @@ class XQGLWidget: public QGLWidget {
         void InitFog  (void);
         void InitTransparence (void);
 
+    private:
         GLObject *DrawObject;
         //  geometry states
         double R,                       ///< viewpoint distance

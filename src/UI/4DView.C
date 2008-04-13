@@ -184,32 +184,32 @@ void C4DView::Light() {
 /// toggle colors
 /** menu callback function */
 void C4DView::Colors () {
-    colors = !colors;
-    menu->getAction("Colors")->setChecked(colors);
+    getColors() = !getColors();
+    menu->getAction("Colors")->setChecked(getColors());
     initializeGL ();
     repaint (); }
 
 /// Toggle fog/depth cue
 /** menu callback function */
 void C4DView::Fog () {
-  fog = !fog;
-  menu->getAction("Depth Cue")->setChecked(fog);
+  getFog() = !getFog();
+  menu->getAction("Depth Cue")->setChecked(getFog());
   InitFog ();
   repaint (); }
 
 /// toggle object transparency
 /** menu callback function */
 void C4DView::Transparent () {
-  transparent = !transparent;
-  menu->getAction("Transparence")->setChecked(transparent);
+  getTransparent() = !getTransparent();
+  menu->getAction("Transparence")->setChecked(getTransparent());
   InitTransparence ();
   repaint (); }
 
 /// toggle shading
 /** menu callback function */
 void C4DView::Shade () {
-  shade = !shade;
-  menu->getAction("Shading")->setChecked(shade);
+  getShade() = !getShade();
+  menu->getAction("Shading")->setChecked(getShade());
   InitShade ();
   repaint (); }
 

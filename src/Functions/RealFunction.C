@@ -267,7 +267,7 @@ void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v) {
     if (t == 0) {
         setVertex(X[t][u][v], V[0]);
         setVertex(X[t][u][v+1], V[1]);
-        NumVertices += 2;
+        addVertices(2);
     }
     setVertex(X[t][u+1][v], V[2]);
     setVertex(X[t][u+1][v+1], V[3]);
@@ -275,11 +275,11 @@ void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v) {
     setVertex(X[t+1][u+1][v+1], V[7]);
     setVertex(X[t+1][u][v], V[4]);
     setVertex(X[t+1][u][v+1], V[5]);
-    NumVertices += 6;
+    addVertices(6);
     if (u == 0) {
         setVertex(X[t][u][v], V[0]);
         setVertex(X[t][u][v+1], V[1]);
-        NumVertices += 2;
+        addVertices(2);
     }
     glEnd ();
 
@@ -289,13 +289,13 @@ void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v) {
         setVertex(X[t][u+1][v], V[2]);
         setVertex(X[t+1][u+1][v], V[6]);
         setVertex(X[t+1][u][v], V[4]);
-        NumVertices += 4;
+        addVertices(4);
     }
     setVertex(X[t][u][v+1], V[1]);
     setVertex(X[t][u+1][v+1], V[3]);
     setVertex(X[t+1][u+1][v+1], V[7]);
     setVertex(X[t+1][u][v+1], V[5]);
-    NumVertices += 4;
+    addVertices(4);
     glEnd ();
 }
 
@@ -323,8 +323,8 @@ Hypersphere::Hypersphere(double _tmin, double _tmax, double _dt,
         RealFunction ("Hypersphere",
                       _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
         Radius (_rad) {
-    parameterNames.push_back("Radius");
-    parameters.insert(
+    newParameterName("Radius");
+    insertParameter(
         std::make_pair("Radius", new FunctionParameter<double>(1.0)));
       Initialize ();
 }
@@ -389,9 +389,9 @@ Torus1::Torus1 (double _tmin, double _tmax, double _dt,
     RealFunction ("Torus 1",
                 _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
     R (_R), r (_r), rho (_rho) {
-      parameterNames.push_back("Major Radius");
-      parameterNames.push_back("Minor Radius");
-      parameterNames.push_back("Micro Radius");
+      newParameterName("Major Radius");
+      newParameterName("Minor Radius");
+      newParameterName("Micro Radius");
       Initialize ();
 }
 
@@ -434,8 +434,8 @@ Torus2::Torus2 (double _tmin, double _tmax, double _dt,
   RealFunction ("Torus 2",
                 _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
   R (_R), r (_r) {
-      parameterNames.push_back("Major Radius");
-      parameterNames.push_back("Minor Radius");
+      newParameterName("Major Radius");
+      newParameterName("Minor Radius");
 
       Initialize ();
 }
@@ -521,8 +521,8 @@ GravitationPotential::GravitationPotential (double xmin, double xmax, double dx,
         RealFunction ("Gravitation Potential",
                       xmin, xmax, dx, ymin, ymax, dy, zmin, zmax, dz),
   M (_M), R (_R) {
-      parameterNames.push_back("M");
-      parameterNames.push_back("R");
+      newParameterName("M");
+      newParameterName("R");
       Initialize ();
 }
 
@@ -731,7 +731,7 @@ PolarSin2::PolarSin2 (double _tmin, double _tmax, double _dt,
                       double _vmin, double _vmax, double _dv):
         RealFunction ("Polar: r = sin (pi/3.*(t+u+v))",
                       _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
-    parameterNames.push_back("Phase");
+    newParameterName("Phase");
     Initialize ();
 }
 
@@ -778,7 +778,7 @@ PolarR::PolarR (double _tmin, double _tmax, double _dt,
 		double _phase):
         RealFunction ("Polar: r = sqrt (t²+u²+v²)", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
   Phase (_phase) {
-      parameterNames.push_back("Phase");
+      newParameterName("Phase");
   Initialize ();
 }
 

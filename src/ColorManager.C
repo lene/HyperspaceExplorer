@@ -28,26 +28,6 @@ template <typename T> T min(T a, T b) { return (a < b? a: b); }
  *  @todo make the agorithm which computes the ambient and specular values
  *        variable
  *  @param rgb color value to be set                                          */
-void ColorManager::setColor(const Vector<4> &x) {
-    Color RGB = getColor(x);
-
-    glMaterialfv (GL_FRONT, GL_DIFFUSE, RGB);
-
-    RGB *= ambientColorModifier;
-    glMaterialfv (GL_FRONT, GL_AMBIENT, RGB);
-
-    RGB *= specularColorModifier/ambientColorModifier;
-    RGB.setComponentLowerLimit(specularColorMinimum);
-    glMaterialfv (GL_FRONT, GL_SPECULAR, RGB);
-    glMaterialf (GL_FRONT, GL_SHININESS, SHININESS);
-}
-
-/// set the current OpenGL color
-/** uses HARDCODED simple algorithm to set ambient and specular values for a
- *  specific color: if halves resp. dobles them, clipping at 1.0
- *  @todo make the agorithm which computes the ambient and specular values
- *        variable
- *  @param rgb color value to be set                                          */
 void ColorManager::setRGB(const Color &rgb) {
     Color RGB(rgb);
 

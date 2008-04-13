@@ -127,16 +127,6 @@ class C4DView : public XQGLWidget {
 
         /// @param wire if true, displays wireframe model; else solid
         void setWireframe (bool wire) { DisplayPolygons = !wire; }
-        /// @return whether to use colors in rendering or not
-        bool getColors() const { return colors; }
-        /// @return whether to use shading in rendering or not
-        bool getShade() const { return shade; }
-        /// @return whether to use depth cue/fog in rendering or not
-        bool getFog() const { return fog; }
-        /// @return whether to use lighting in rendering or not
-        bool getLight() const { return light; }
-        /// @return whether to use transparence/line antialiasing or not
-        bool getTransparent() const { return transparent; }
         /// @return whether to display the 4D coordinate cross or not
         bool getDisplayCoordinates() const { return DisplayCoordinates; }
         /// @return whether to save the rendered images to an image file
@@ -193,8 +183,7 @@ class C4DView : public XQGLWidget {
         virtual void resizeEvent( QResizeEvent * );
         virtual void initializeGL(void);
 
-        //  member variables
-
+    private:                                    //  member variables
         std::auto_ptr<Function> F;  ///< the Function object currently displayed
 
         double Tx,  ///< X coordinate for the 4D translation of the object

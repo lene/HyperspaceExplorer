@@ -6,13 +6,16 @@
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
 
+#include <dlfcn.h>
+
 #include "Function.H"
 #include "RealFunction.H"
 #include "ComplexFunction.H"
 #include "Surface.H"
 
 class QString;
-/** Base class for custom functions, which can be edited by the user \n
+/** Base class for custom functions, which can be edited by the user
+ *
  *  CustomFunctionBase contains the functions common to all descendants, if
  *  necessary as a template to cater for the varying function types of the
  *  different implementations
@@ -21,6 +24,8 @@ template<class function_type>
         class CustomFunctionBase {
     public:
         CustomFunctionBase(): handle (NULL) {}
+        /// CustomFunction destructor, closes DLL if necessary
+        ~CustomFunctionBase() { if (handle) dlclose (handle); }
         QString symbolic ();
         bool isValid() const { return valid; }
 
@@ -30,6 +35,8 @@ template<class function_type>
         void setInvalid() { valid = false; }
 
         function_type *func;
+
+    private:
         void *handle;
         bool valid;
 };
@@ -45,10 +52,11 @@ class CustomFunction:
                         double _umin, double _umax, double _du,
                         double _vmin, double _vmax, double _dv,
                         bool final = true);
-        virtual ~CustomFunction();
+//        virtual ~CustomFunction();
 
     protected:
-        virtual VecMath::Vector<4> &f (double, double, double);
+//        virtual VecMath::Vector<4> &f (double, double, double);
+        virtual RealFunction::function_type f;
 };
 
 /** A Function \f$ f: R^3 \rightarrow R \f$, which the user can edit to
@@ -60,10 +68,11 @@ class CustomPolarFunction: public CustomFunction {
         CustomPolarFunction (double _tmin, double _tmax, double _dt,
                              double _umin, double _umax, double _du,
                              double _vmin, double _vmax, double _dv);
-        virtual ~CustomPolarFunction();
+//        virtual ~CustomPolarFunction();
 
     protected:
-        virtual VecMath::Vector<4> &f (double, double, double);
+//        virtual VecMath::Vector<4> &f (double, double, double);
+        virtual RealFunction::function_type f;
 };
 
 /** A Function \f$ f: R^2 \rightarrow R^4 \f$, which the user can edit to
@@ -75,7 +84,7 @@ class CustomSurface:
             public:
                 CustomSurface ( double _umin, double _umax, double _du,
                                 double _vmin, double _vmax, double _dv);
-                virtual ~CustomSurface();
+//                virtual ~CustomSurface();
 
             protected:
                 virtual Surface::function_type f;
@@ -90,14 +99,12 @@ class CustomComplexFunction:
     public:
         CustomComplexFunction (double _umin, double _umax, double _du,
                                double _vmin, double _vmax, double _dv);
-        virtual ~CustomComplexFunction();
+//        virtual ~CustomComplexFunction();
 
     protected:
         ComplexFunction::function_type g;
 };
 
-
-#include <dlfcn.h>
 
 /** try to load a DLL and the f() in it
  *  @param libName name of the plugin DLL file

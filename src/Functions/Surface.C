@@ -120,7 +120,7 @@ void Surface::ReInit(double, double, double,
  *  uses hardcoded and experimentally found value for memory per cell - ICK!
  *  @return approx. mem required                                              */
 unsigned long Surface::MemRequired (void) {
-    return (tsteps+2)*(usteps+2);
+    return (vsteps+2)*(usteps+2);
 }
 
 /** calculate normal to function at a given point in definition set \n

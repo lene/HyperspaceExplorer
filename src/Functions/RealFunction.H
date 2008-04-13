@@ -58,6 +58,8 @@ class RealFunction: public RealBase {
         vec4vec3D X,      ///< temporary storage for function values on grid
                   Xtrans; ///< temporary storage for transformed function values
         vec3vec3D Xscr;   ///< temporary storage for projected function values
+        /// temporary storage for the value of the function at a given point
+        VecMath::Vector<4> F;
 
 };
 

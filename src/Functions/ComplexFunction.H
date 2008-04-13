@@ -73,34 +73,39 @@ class z3: public ComplexFunction {
  *  \ingroup ComplexGroup                                                    */
 class zA: public ComplexFunction {
     public:
-	zA (double _umin, double _umax, double _du,
-	    double _vmin, double _vmax, double _dv,
-	    double _alpha = 2);
-	virtual ~zA () { }
-	virtual void SetParameters(double _a = 0, double = 0, double = 0, double = 0) {
-	   alpha = _a;
+        zA (double _umin, double _umax, double _du,
+            double _vmin, double _vmax, double _dv,
+            double _alpha = 2);
+        virtual ~zA () { }
+        virtual void SetParameters(double _a = 0,
+                                   double = 0, double = 0, double = 0) {
+           alpha = _a;
         }
 
     protected:
         virtual function_type g;
 
-	double alpha;
+    private:
+        double alpha;
 };
 
 /** \f$ f(z) = e^{\alpha*z} \f$
  *  \ingroup ComplexGroup                                                    */
 class ez: public ComplexFunction {
     public:
-	ez (double _umin, double _umax, double _du,
-	    double _vmin, double _vmax, double _dv,
-	    double _alpha = 2);
-	virtual ~ez() { }
-	virtual void SetParameters(double _a = 0, double = 0, double = 0, double = 0) {
+        ez (double _umin, double _umax, double _du,
+            double _vmin, double _vmax, double _dv,
+            double _alpha = 2);
+        virtual ~ez() { }
+        virtual void SetParameters(double _a = 0,
+                                   double = 0, double = 0, double = 0) {
             alpha = _a;
         }
 
     protected:
         virtual function_type g;
+
+    private:
         double alpha;
 };
 
@@ -108,16 +113,19 @@ class ez: public ComplexFunction {
  *  \ingroup ComplexGroup                                                    */
 class emz2: public ComplexFunction {
     public:
-	emz2 (double _umin, double _umax, double _du,
-	      double _vmin, double _vmax, double _dv,
-	      double _alpha = 1);
-	virtual ~emz2() { }
-	virtual void SetParameters(double _a = 0, double = 0, double = 0, double = 0) {
-	   alpha = _a;
+        emz2 (double _umin, double _umax, double _du,
+              double _vmin, double _vmax, double _dv,
+              double _alpha = 1);
+        virtual ~emz2() { }
+        virtual void SetParameters(double _a = 0,
+                                   double = 0, double = 0, double = 0) {
+           alpha = _a;
         }
 
     protected:
         virtual function_type g;
+
+    private:
         double alpha;
 };
 
@@ -125,10 +133,11 @@ class emz2: public ComplexFunction {
  *  \ingroup ComplexGroup                                                    */
 class zm1: public ComplexFunction {
     public:
-	zm1 (double _umin, double _umax, double _du,
-	     double _vmin, double _vmax, double _dv);
-	virtual ~zm1 () { }
-	virtual void SetParameters(double = 0, double = 0, double = 0, double = 0) { }
+        zm1 (double _umin, double _umax, double _du,
+             double _vmin, double _vmax, double _dv);
+        virtual ~zm1 () { }
+        virtual void SetParameters(double = 0, double = 0,
+                                   double = 0, double = 0) { }
 
     protected:
         virtual function_type g;
@@ -138,10 +147,11 @@ class zm1: public ComplexFunction {
  *  \ingroup ComplexGroup                                                    */
 class zm2: public ComplexFunction {
     public:
-	zm2 (double _umin, double _umax, double _du,
-	     double _vmin, double _vmax, double _dv);
-	virtual ~zm2 () { }
-	virtual void SetParameters(double = 0, double = 0, double = 0, double = 0) { }
+        zm2 (double _umin, double _umax, double _du,
+             double _vmin, double _vmax, double _dv);
+        virtual ~zm2 () { }
+        virtual void SetParameters(double = 0, double = 0,
+                                   double = 0, double = 0) { }
 
     protected:
         virtual function_type g;
@@ -242,16 +252,18 @@ class tanz: public ComplexFunction {
  *  \ingroup ComplexGroup                                                    */
 class Polynomial: public ComplexFunction {
     public:
-	Polynomial(double _umin, double _umax, double _du,
-		   double _vmin, double _vmax, double _dv,
-		   double _a1, double _a2, double _a3, double _a4);
-	virtual ~Polynomial () { }
-	virtual void SetParameters(double _a = 0, double _b = 0,
+        Polynomial(double _umin, double _umax, double _du,
+                   double _vmin, double _vmax, double _dv,
+                   double _a1, double _a2, double _a3, double _a4);
+        virtual ~Polynomial () { }
+        virtual void SetParameters(double _a = 0, double _b = 0,
                                    double _c = 0, double _d = 0) {
-		a[1] = _a; a[2] = _b; a[3] = _c; a[4] = _d; }
+            a[1] = _a; a[2] = _b; a[3] = _c; a[4] = _d; }
 
     protected:
         virtual function_type g;
-	double a[5];
+
+    private:
+        double a[5];
 };
 #endif

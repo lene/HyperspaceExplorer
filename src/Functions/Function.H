@@ -163,6 +163,16 @@ class Function {
 
         virtual unsigned long MemRequired (void);
 
+        void newParameterName(QString n) { parameterNames.push_back(n); }
+        void clearParameterNames() { parameterNames.clear(); }
+        void insertParameter(
+            const std::pair<std::string, FunctionParameterBase *> &value) {
+            parameters.insert(value);
+        }
+        void addVertices(unsigned num) { NumVertices += num; }
+
+    private:
+    protected:  //  only until I sorted out bad design in derived classes
         double tmin, ///< min. value of the first parameter, here called t
                tmax, ///< min. value of the first parameter, here called t
                dt,   ///< stepsize in first parameter
@@ -177,13 +187,16 @@ class Function {
                  usteps, ///< number of steps in u
                  vsteps; ///< number of steps in v
 
+    private:  //  only until I sorted out bad design in derived classes
         /// temporary storage for the value of the function at a given point
         VecMath::Vector<4> F;
 
         unsigned NumVertices;
 
+    protected:  //  only until I sorted out bad design in derived classes
         /// the name of the function as a free-form string
         QString functionName;
+    private:
         /// list of the names of parameters to the function
         std::vector<QString> parameterNames;
         parameterMap parameters;

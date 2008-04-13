@@ -45,7 +45,8 @@ class Object: public Function {
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
         virtual void Draw (void);
         virtual VecMath::Vector<4> &operator () (double, double, double) {
-            return F;
+            static VecMath::Vector<4> tmp;
+            return tmp;
         }
 
         virtual unsigned getTsteps() const { return NumVertices; }
@@ -87,7 +88,10 @@ class Object: public Function {
          *  Function interface. In an Object it is never called because the
          *  four-dimensional object is represented by a list of surfaces instead
          *  of a mathematical function.                                       */
-        virtual VecMath::Vector<4> &f (double, double, double) { return F; }
+        virtual VecMath::Vector<4> &f (double, double, double) {
+            static VecMath::Vector<4> tmp;
+            return tmp;
+        }
 };
 
 
@@ -98,7 +102,7 @@ class Object: public Function {
 class Hypercube: public Object {
 public:
     Hypercube (): Object ("Hypercube", 16, 24) {
-        parameterNames.push_back("Size");
+        newParameterName("Size");
     }
     Hypercube (double _a, const VecMath::Vector<4> &_Center = VecMath::Vector<4>(0., 0., 0., 0.));
     virtual ~Hypercube() { }
@@ -211,7 +215,7 @@ protected:
 class Pyramid: public Object {
 public:
     Pyramid (): Object ("Hyperpyramid", 5, 10) {
-        parameterNames.push_back("Size");
+        newParameterName("Size");
     }
     Pyramid (double _a, const VecMath::Vector<4> &_Center = VecMath::Vector<4> (0., 0., 0., 0.));
     virtual ~Pyramid() { }

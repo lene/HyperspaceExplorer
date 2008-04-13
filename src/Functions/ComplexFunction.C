@@ -126,7 +126,7 @@ zA::zA (double _umin, double _umax, double _du,
         ComplexFunction ("z^a", _umin, _umax, _du, _vmin, _vmax, _dv),
     alpha (_alpha) {
     Initialize ();
-    parameterNames.push_back("a");
+    newParameterName("a");
     }
 
 /** z^a defining function
@@ -153,7 +153,7 @@ ez::ez (double _umin, double _umax, double _du,
         ComplexFunction ("e^a*z", _umin, _umax, _du, _vmin, _vmax, _dv),
     alpha (_alpha) {
     Initialize ();
-    parameterNames.push_back("a");
+    newParameterName("a");
 }
 
 /** e^z defining function
@@ -181,7 +181,7 @@ emz2::emz2 (double _umin, double _umax, double _du,
         ComplexFunction ("e^-a*z²", _umin, _umax, _du, _vmin, _vmax, _dv),
   alpha (_alpha) {
   Initialize ();
-  parameterNames.push_back("a");
+  newParameterName("a");
 }
 
 /** e^-\f$ z^2 \f$ defining function

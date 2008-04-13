@@ -42,23 +42,28 @@ class ColorManager {
 
         virtual ~ColorManager() { }
 
-        virtual void setFunction(const Function *_f) {
-            f = _f;
-        }
+        /// Set the function we are managing
+        virtual void setFunction(const Function *_f) { f = _f; }
 
         /// Point (x, y, z) has color col. This may serve for interpolation.
         virtual void calibrateColor(const VecMath::Vector<4> &x,
                                     const Color &col = Color()) = 0;
+
+        void setRGB(const Color &rgb);
+
         /// Set current OpenGL color at given point
         /** @param x four-dimensional coordinate for which the color is sought*/
-        virtual void setColor(const VecMath::Vector<4> &x);
+        virtual void setColor(const VecMath::Vector<4> &x) {
+            setRGB(Color(x));
+        }
+
         /// Find the color of a given point
         /** @param x four-dimensional coordinate for which the color is sought*/
         virtual Color getColor(const VecMath::Vector<4> &) = 0;
+
         /// post-process color at given point to have 4D depth cue
         virtual void depthCueColor(double wmax, double wmin, double w,
                                    const VecMath::Vector<4> &x) = 0;
-        void setRGB(const Color &rgb);
 
         /// debugging output
         virtual std::string getContents() { return ""; }

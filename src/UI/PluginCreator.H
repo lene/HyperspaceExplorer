@@ -56,6 +56,7 @@ class PluginCreator {
         bool compile (QString);
         bool link (QString);
 
+    private:
         QString LibraryName;    ///< Filename of the DLL to be loaded
 };
 
