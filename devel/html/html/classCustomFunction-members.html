@@ -11,6 +11,7 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -26,6 +27,8 @@
 </div>
 <div class="contents">
 <h1>CustomFunction Member List</h1>This is the complete list of members for <a class="el" href="classCustomFunction.html">CustomFunction</a>, including all inherited members.<p><table>
+  <tr bgcolor="#f0f0f0"><td><b>addVertices</b>(unsigned num) (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, protected]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>clearParameterNames</b>() (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classCustomFunction.html#6b507d733c2fb3595e00df9c1a575cb3">CustomFunction</a>(double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv, bool final=true)</td><td><a class="el" href="classCustomFunction.html">CustomFunction</a></td><td></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>CustomFunctionBase</b>() (defined in <a class="el" href="classCustomFunctionBase.html">CustomFunctionBase&lt; RealFunction::raw_function_type &gt;</a>)</td><td><a class="el" href="classCustomFunctionBase.html">CustomFunctionBase&lt; RealFunction::raw_function_type &gt;</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#7e1d08b78b48b4be45772cec73b926ac">df</a>(double, double, double)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected, virtual]</code></td></tr>
@@ -36,8 +39,9 @@
   <tr class="memlist"><td><a class="el" href="classFunction.html#a97d770719415f7023f04ada90a03576">dt</a></td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#be75c0330aee2be564da236c2ad6af89">du</a></td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#0816edec47aa531c04a233208a0bb44b">dv</a></td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="classFunction.html#3805b737129fe652314bf2603c9b7855">F</a></td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="classCustomFunction.html#8091263336df8fc584788756a811c9e5">f</a>(double, double, double)</td><td><a class="el" href="classCustomFunction.html">CustomFunction</a></td><td><code> [protected, virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classCustomFunction.html#dd9350656e4c9499cdc52dc80543c9b0">f</a></td><td><a class="el" href="classCustomFunction.html">CustomFunction</a></td><td><code> [protected]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classRealBase.html#c2cd018b4108455a6daa23d78b2064a6">RealFunction::f</a>(double, double, double)=0</td><td><a class="el" href="classRealBase.html">RealBase</a></td><td><code> [protected, pure virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classRealFunction.html#da001f73d52d3267762aed76256be0a9">F</a></td><td><a class="el" href="classRealFunction.html">RealFunction</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#8bb7d4dbd11f9ca7b8d1e2411e9a02e3">floatvec1D</a> typedef</td><td><a class="el" href="classFunction.html">Function</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#4c15e6200b99c8e333e0fc1859822b2c">floatvec2D</a> typedef</td><td><a class="el" href="classFunction.html">Function</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#9c3a1e1ebb63069140bedf690fe2cae8">floatvec3D</a> typedef</td><td><a class="el" href="classFunction.html">Function</a></td><td></td></tr>
@@ -72,18 +76,16 @@
   <tr bgcolor="#f0f0f0"><td><b>getVmin</b>() (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>getVmin</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, virtual]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>getVsteps</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, virtual]</code></td></tr>
-  <tr bgcolor="#f0f0f0"><td><b>handle</b> (defined in <a class="el" href="classCustomFunctionBase.html">CustomFunctionBase&lt; RealFunction::raw_function_type &gt;</a>)</td><td><a class="el" href="classCustomFunctionBase.html">CustomFunctionBase&lt; RealFunction::raw_function_type &gt;</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classRealFunction.html#37c91ed60f82198f48dfab887dd743c3">Initialize</a>(void)</td><td><a class="el" href="classRealFunction.html">RealFunction</a></td><td><code> [protected, virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classRealFunction.html#1905c4297b0f6b4f91a3b24b55b62eea">InitMem</a>(void)</td><td><a class="el" href="classRealFunction.html">RealFunction</a></td><td><code> [protected, virtual]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>insertParameter</b>(const std::pair&lt; std::string, FunctionParameter * &gt; &amp;value) (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, protected]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>isValid</b>() const  (defined in <a class="el" href="classCustomFunctionBase.html">CustomFunctionBase&lt; RealFunction::raw_function_type &gt;</a>)</td><td><a class="el" href="classCustomFunctionBase.html">CustomFunctionBase&lt; RealFunction::raw_function_type &gt;</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classCustomFunctionBase.html#d2e4b7516d73ab9ebeb9a33c6708f6b8">loadFunction</a>(const QString &amp;, QString=&quot;f&quot;)</td><td><a class="el" href="classCustomFunctionBase.html">CustomFunctionBase&lt; RealFunction::raw_function_type &gt;</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#d6a10b999b0d561d36a473d461c62311">MemRequired</a>(void)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected, virtual]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>newParameterName</b>(QString n) (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classRealFunction.html#fc801388deaab9bb3783ae470891a2d8">normal</a>(double t, double u, double v)</td><td><a class="el" href="classRealFunction.html">RealFunction</a></td><td><code> [protected]</code></td></tr>
-  <tr bgcolor="#f0f0f0"><td><b>NumVertices</b> (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classRealBase.html#8f529fd1c84d703a9ca7e8d43a16a5fd">operator()</a>(double t, double u, double v)</td><td><a class="el" href="classRealBase.html">RealBase</a></td><td><code> [inline, protected, virtual]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="classFunction.html#e7f20a47a42cb57e40ec2a1b34b0d5b7">parameterMap</a> typedef</td><td><a class="el" href="classFunction.html">Function</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="classFunction.html#b51bc4eb3a16cd5073803509fc5a242e">parameterNames</a></td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
-  <tr bgcolor="#f0f0f0"><td><b>parameters</b> (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classFunction.html#6957facb852e36f93672c86d2040097a">parameterMap</a> typedef</td><td><a class="el" href="classFunction.html">Function</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classRealFunction.html#184141451489cdd8373a47acc9ec673e">Project</a>(double ScrW, double CamW, bool DepthCue4D)</td><td><a class="el" href="classRealFunction.html">RealFunction</a></td><td><code> [virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classRealBase.html#5b57016405717bea79950aee2dc02255">raw_function_type</a>(double, double, double)</td><td><a class="el" href="classRealBase.html">RealBase</a></td><td></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>RealBase</b>() (defined in <a class="el" href="classRealBase.html">RealBase</a>)</td><td><a class="el" href="classRealBase.html">RealBase</a></td><td><code> [inline]</code></td></tr>
@@ -93,6 +95,7 @@
   <tr bgcolor="#f0f0f0"><td><b>setInvalid</b>() (defined in <a class="el" href="classCustomFunctionBase.html">CustomFunctionBase&lt; RealFunction::raw_function_type &gt;</a>)</td><td><a class="el" href="classCustomFunctionBase.html">CustomFunctionBase&lt; RealFunction::raw_function_type &gt;</a></td><td><code> [inline, protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#d718e144e4dadb18eeb5eebcc46ac3f5">SetParameters</a>(double _a=0, double _b=0, double _c=0, double _d=0)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [virtual]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>setValid</b>() (defined in <a class="el" href="classCustomFunctionBase.html">CustomFunctionBase&lt; RealFunction::raw_function_type &gt;</a>)</td><td><a class="el" href="classCustomFunctionBase.html">CustomFunctionBase&lt; RealFunction::raw_function_type &gt;</a></td><td><code> [inline, protected]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>setVertex</b>(const VecMath::Vector&lt; 4 &gt; &amp;X, VecMath::Vector&lt; 3 &gt; &amp;Xscr) (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classCustomFunctionBase.html#3060ebeee0e5430aaac08cd2d2031ca7">symbolic</a>()</td><td><a class="el" href="classCustomFunctionBase.html">CustomFunctionBase&lt; RealFunction::raw_function_type &gt;</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#f135b0723892c79a2d0191f00e4ca8f9">tmax</a></td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#6fbe081f6df6800e076075f5ab4b964f">tmin</a></td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
@@ -102,7 +105,6 @@
   <tr class="memlist"><td><a class="el" href="classFunction.html#07225eeeb1060365dd8675f4ebdc8332">umax</a></td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#c071319d6c2ef873f73f88fe952e3fa1">umin</a></td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#eec8fc2cf02bb1ddab2c333af7b0e720">usteps</a></td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
-  <tr bgcolor="#f0f0f0"><td><b>valid</b> (defined in <a class="el" href="classCustomFunctionBase.html">CustomFunctionBase&lt; RealFunction::raw_function_type &gt;</a>)</td><td><a class="el" href="classCustomFunctionBase.html">CustomFunctionBase&lt; RealFunction::raw_function_type &gt;</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#b4b38b599eb124967f4665e2d56afb64">vec3vec1D</a> typedef</td><td><a class="el" href="classFunction.html">Function</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#9f46be8d00fa46a28bbd9165074510bb">vec3vec2D</a> typedef</td><td><a class="el" href="classFunction.html">Function</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#f3fbebbb4cb0151aeea503738ad6fd2f">vec3vec3D</a> typedef</td><td><a class="el" href="classFunction.html">Function</a></td><td></td></tr>
@@ -115,11 +117,11 @@
   <tr class="memlist"><td><a class="el" href="classRealFunction.html#950ebb62a55990cd42ce6ee48aaa9810">X</a></td><td><a class="el" href="classRealFunction.html">RealFunction</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classRealFunction.html#2b4805a60e748aee992f62ac7c9bd4df">Xscr</a></td><td><a class="el" href="classRealFunction.html">RealFunction</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classRealFunction.html#ed466bcba4e1959d68c4932513612e19">Xtrans</a></td><td><a class="el" href="classRealFunction.html">RealFunction</a></td><td><code> [protected]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="classCustomFunction.html#fe42408508c689532dd7b73576210751">~CustomFunction</a>()</td><td><a class="el" href="classCustomFunction.html">CustomFunction</a></td><td><code> [virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classCustomFunctionBase.html#cb395c323a02392fb2dfb46fac141f0d">~CustomFunctionBase</a>()</td><td><a class="el" href="classCustomFunctionBase.html">CustomFunctionBase&lt; RealFunction::raw_function_type &gt;</a></td><td><code> [inline]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>~Function</b>() (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, virtual]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>~RealFunction</b>() (defined in <a class="el" href="classRealFunction.html">RealFunction</a>)</td><td><a class="el" href="classRealFunction.html">RealFunction</a></td><td><code> [inline, virtual]</code></td></tr>
 </table></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 12 18:56:09 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Apr 18 19:39:36 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

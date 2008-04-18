@@ -11,6 +11,7 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -62,6 +63,16 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetBackgroundColor</b
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c0b6d0e8d75a9038c59f83db71be9921"></a><!-- doxytag: member="XQGLWidget::SetBackgroundColor" ref="c0b6d0e8d75a9038c59f83db71be9921" args="(float R, float G, float B, float A)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetBackgroundColor</b> (float <a class="el" href="classXQGLWidget.html#fc36dd30e32e73098dbefa9fb8d4fe7f">R</a>, float G, float B, float A)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXQGLWidget.html#9a1e3002e61b9cd572e05738cff9ec65">getColors</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXQGLWidget.html#9f5a6811449582aa882fc930477e4885">getShade</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXQGLWidget.html#3213378bba161dc44ce934a1ac356a3d">getFog</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXQGLWidget.html#d097388a81673c8143e59777c6eb97a2">getLight</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXQGLWidget.html#6256da71b03cb2385f0197f365978dcd">getTransparent</a> ()</td></tr>
 
 <tr><td colspan="2"><br><h2>Protected Slots</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d24cd45a87ed97e8842c84d7ff67a4f8"></a><!-- doxytag: member="XQGLWidget::Rotate" ref="d24cd45a87ed97e8842c84d7ff67a4f8" args="()" -->
@@ -140,7 +151,7 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>InitFog</b> (void)</t
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="fe7d67b5d34a14ae183c1ddef927d80a"></a><!-- doxytag: member="XQGLWidget::InitTransparence" ref="fe7d67b5d34a14ae183c1ddef927d80a" args="(void)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>InitTransparence</b> (void)</td></tr>
 
-<tr><td colspan="2"><br><h2>Protected Attributes</h2></td></tr>
+<tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1efb2a9a604bdf843349a7562ae77ee2"></a><!-- doxytag: member="XQGLWidget::DrawObject" ref="1efb2a9a604bdf843349a7562ae77ee2" args="" -->
 <a class="el" href="classGLObject.html">GLObject</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>DrawObject</b></td></tr>
 
@@ -250,7 +261,7 @@ class <a class="el" href="classXQGLWidget.html">XQGLWidget</a>: implements a QGL
 
 <p>
 ViewPos (psi, theta, phi) called any time the viewing angle is changed on the command widget 
-<p>References <a class="el" href="XQGLWidget_8H-source.html#l00102">phi</a>, <a class="el" href="XQGLWidget_8H-source.html#l00102">psi</a>, and <a class="el" href="XQGLWidget_8H-source.html#l00102">theta</a>.</p>
+<p>References <a class="el" href="XQGLWidget_8H-source.html#l00113">phi</a>, <a class="el" href="XQGLWidget_8H-source.html#l00113">psi</a>, and <a class="el" href="XQGLWidget_8H-source.html#l00113">theta</a>.</p>
 
 </div>
 </div><p>
@@ -272,7 +283,115 @@ ViewPos (psi, theta, phi) called any time the viewing angle is changed on the co
 
 <p>
 called any time the viewing distance is changed on the command widget 
-<p>References <a class="el" href="XQGLWidget_8H-source.html#l00102">R</a>, and <a class="el" href="XQGLWidget_8C-source.html#l00167">resizeGL()</a>.</p>
+<p>References <a class="el" href="XQGLWidget_8H-source.html#l00113">R</a>, and <a class="el" href="XQGLWidget_8C-source.html#l00167">resizeGL()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9a1e3002e61b9cd572e05738cff9ec65"></a><!-- doxytag: member="XQGLWidget::getColors" ref="9a1e3002e61b9cd572e05738cff9ec65" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool&amp; XQGLWidget::getColors           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to use colors in rendering or not </dd></dl>
+
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00186">C4DView::Colors()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9f5a6811449582aa882fc930477e4885"></a><!-- doxytag: member="XQGLWidget::getShade" ref="9f5a6811449582aa882fc930477e4885" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool&amp; XQGLWidget::getShade           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to use shading in rendering or not </dd></dl>
+
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00210">C4DView::Shade()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3213378bba161dc44ce934a1ac356a3d"></a><!-- doxytag: member="XQGLWidget::getFog" ref="3213378bba161dc44ce934a1ac356a3d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool&amp; XQGLWidget::getFog           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to use depth cue/fog in rendering or not </dd></dl>
+
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00194">C4DView::Fog()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d097388a81673c8143e59777c6eb97a2"></a><!-- doxytag: member="XQGLWidget::getLight" ref="d097388a81673c8143e59777c6eb97a2" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool&amp; XQGLWidget::getLight           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to use lighting in rendering or not </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="6256da71b03cb2385f0197f365978dcd"></a><!-- doxytag: member="XQGLWidget::getTransparent" ref="6256da71b03cb2385f0197f365978dcd" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool&amp; XQGLWidget::getTransparent           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to use transparence/line antialiasing or not </dd></dl>
+
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00202">C4DView::Transparent()</a>.</p>
 
 </div>
 </div><p>
@@ -320,7 +439,7 @@ changes global transparence Alpha to a <dl compact><dt><b>Parameters:</b></dt><d
 
 <p>
 "Left" key: rotate 5 degrees left 
-<p>References <a class="el" href="XQGLWidget_8H-source.html#l00102">theta</a>.</p>
+<p>References <a class="el" href="XQGLWidget_8H-source.html#l00113">theta</a>.</p>
 
 </div>
 </div><p>
@@ -341,7 +460,7 @@ changes global transparence Alpha to a <dl compact><dt><b>Parameters:</b></dt><d
 
 <p>
 "Right" key: rotate 5 degrees right 
-<p>References <a class="el" href="XQGLWidget_8H-source.html#l00102">theta</a>.</p>
+<p>References <a class="el" href="XQGLWidget_8H-source.html#l00113">theta</a>.</p>
 
 </div>
 </div><p>
@@ -362,7 +481,7 @@ changes global transparence Alpha to a <dl compact><dt><b>Parameters:</b></dt><d
 
 <p>
 "Up" key: rotate 5 degrees up 
-<p>References <a class="el" href="XQGLWidget_8H-source.html#l00102">psi</a>.</p>
+<p>References <a class="el" href="XQGLWidget_8H-source.html#l00113">psi</a>.</p>
 
 </div>
 </div><p>
@@ -383,7 +502,7 @@ changes global transparence Alpha to a <dl compact><dt><b>Parameters:</b></dt><d
 
 <p>
 "Down" key: rotate 5 degrees down 
-<p>References <a class="el" href="XQGLWidget_8H-source.html#l00102">psi</a>.</p>
+<p>References <a class="el" href="XQGLWidget_8H-source.html#l00113">psi</a>.</p>
 
 </div>
 </div><p>
@@ -404,7 +523,7 @@ changes global transparence Alpha to a <dl compact><dt><b>Parameters:</b></dt><d
 
 <p>
 Shift-"Left" key: rotate 45 degrees left 
-<p>References <a class="el" href="XQGLWidget_8H-source.html#l00102">theta</a>.</p>
+<p>References <a class="el" href="XQGLWidget_8H-source.html#l00113">theta</a>.</p>
 
 </div>
 </div><p>
@@ -425,7 +544,7 @@ Shift-"Left" key: rotate 45 degrees left
 
 <p>
 Shift-"Right" key: rotate 45 degrees left 
-<p>References <a class="el" href="XQGLWidget_8H-source.html#l00102">theta</a>.</p>
+<p>References <a class="el" href="XQGLWidget_8H-source.html#l00113">theta</a>.</p>
 
 </div>
 </div><p>
@@ -446,7 +565,7 @@ Shift-"Right" key: rotate 45 degrees left
 
 <p>
 Shift-"Up" key: rotate 45 degrees left 
-<p>References <a class="el" href="XQGLWidget_8H-source.html#l00102">psi</a>.</p>
+<p>References <a class="el" href="XQGLWidget_8H-source.html#l00113">psi</a>.</p>
 
 </div>
 </div><p>
@@ -467,7 +586,7 @@ Shift-"Up" key: rotate 45 degrees left
 
 <p>
 Shift-"Down" key: rotate 45 degrees left 
-<p>References <a class="el" href="XQGLWidget_8H-source.html#l00102">psi</a>.</p>
+<p>References <a class="el" href="XQGLWidget_8H-source.html#l00113">psi</a>.</p>
 
 </div>
 </div><p>
@@ -488,7 +607,7 @@ Shift-"Down" key: rotate 45 degrees left
 
 <p>
 Ctrl-Alt-"Left" key: rotate 1 degrees left 
-<p>References <a class="el" href="XQGLWidget_8H-source.html#l00102">theta</a>.</p>
+<p>References <a class="el" href="XQGLWidget_8H-source.html#l00113">theta</a>.</p>
 
 </div>
 </div><p>
@@ -509,7 +628,7 @@ Ctrl-Alt-"Left" key: rotate 1 degrees left
 
 <p>
 Ctrl-Alt-"Right" key: rotate 1 degrees left 
-<p>References <a class="el" href="XQGLWidget_8H-source.html#l00102">theta</a>.</p>
+<p>References <a class="el" href="XQGLWidget_8H-source.html#l00113">theta</a>.</p>
 
 </div>
 </div><p>
@@ -530,7 +649,7 @@ Ctrl-Alt-"Right" key: rotate 1 degrees left
 
 <p>
 Ctrl-Alt-"Up" key: rotate 1 degrees left 
-<p>References <a class="el" href="XQGLWidget_8H-source.html#l00102">psi</a>.</p>
+<p>References <a class="el" href="XQGLWidget_8H-source.html#l00113">psi</a>.</p>
 
 </div>
 </div><p>
@@ -551,7 +670,7 @@ Ctrl-Alt-"Up" key: rotate 1 degrees left
 
 <p>
 Ctrl-Alt-"Down" key: rotate 1 degrees left 
-<p>References <a class="el" href="XQGLWidget_8H-source.html#l00102">psi</a>.</p>
+<p>References <a class="el" href="XQGLWidget_8H-source.html#l00113">psi</a>.</p>
 
 </div>
 </div><p>
@@ -672,9 +791,9 @@ open an "About Qt"-Dialog
 OpenGL initialization setting background colors, setting up lighting, shading, fog and transparence 
 <p>Reimplemented in <a class="el" href="classC4DView.html#3c797ad72f10f9d43d720a45cd60509a">C4DView</a>.</p>
 
-<p>References <a class="el" href="XQGLWidget_8C-source.html#l00077">InitLight()</a>, and <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
+<p>References <a class="el" href="XQGLWidget_8C-source.html#l00077">InitLight()</a>, and <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l01252">C4DView::initializeGL()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l01262">C4DView::initializeGL()</a>.</p>
 
 </div>
 </div><p>
@@ -705,7 +824,7 @@ OpenGL initialization setting background colors, setting up lighting, shading, f
 
 <p>
 change of viewing distance is handled here too, which is not so clean programming style... 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="XQGLWidget_8H-source.html#l00102">R</a>.</p>
+<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, and <a class="el" href="XQGLWidget_8H-source.html#l00113">R</a>.</p>
 
 <p>Referenced by <a class="el" href="XQGLWidget_8C-source.html#l00195">ViewPos()</a>.</p>
 
@@ -728,9 +847,9 @@ change of viewing distance is handled here too, which is not so clean programmin
 <div class="memdoc">
 
 <p>
-OpenGL initialization setting background colors, setting up lighting, shading, fog and transparence <dl compact><dt><b><a class="el" href="todo.html#_todo000037">Todo:</a></b></dt><dd>hardcoded light position and colors! </dd></dl>
+OpenGL initialization setting background colors, setting up lighting, shading, fog and transparence <dl compact><dt><b><a class="el" href="todo.html#_todo000036">Todo:</a></b></dt><dd>hardcoded light position and colors! </dd></dl>
 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
+<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>.</p>
 
 <p>Referenced by <a class="el" href="XQGLWidget_8C-source.html#l00057">initializeGL()</a>.</p>
 
@@ -739,7 +858,7 @@ OpenGL initialization setting background colors, setting up lighting, shading, f
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/UI/<a class="el" href="XQGLWidget_8H-source.html">XQGLWidget.H</a><li>workspace/HyperspaceExplorer/src/UI/XQGLWidget.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 12 18:56:09 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Apr 18 19:39:36 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

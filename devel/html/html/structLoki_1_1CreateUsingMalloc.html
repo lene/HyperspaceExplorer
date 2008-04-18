@@ -11,6 +11,7 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -23,14 +24,14 @@
       <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><b>Loki</b>::<a class="el" href="structLoki_1_1CreateUsingMalloc.html">CreateUsingMalloc</a>
+  <div class="navpath"><a class="el" href="namespaceLoki.html">Loki</a>::<a class="el" href="structLoki_1_1CreateUsingMalloc.html">CreateUsingMalloc</a>
   </div>
 </div>
 <div class="contents">
 <h1>Loki::CreateUsingMalloc&lt; T &gt; Struct Template Reference<br>
 <small>
 [<a class="el" href="group__CreationGroup.html">Creation policies</a>]</small>
-</h1><!-- doxytag: class="Loki::CreateUsingMalloc" --><code>#include &lt;<a class="el" href="SingletonHolder_8H-source.html">SingletonHolder.H</a>&gt;</code>
+</h1><!-- doxytag: class="Loki::CreateUsingMalloc" --><code>#include &lt;<a class="el" href="Singleton_8h-source.html">Singleton.h</a>&gt;</code>
 <p>
 
 <p>
@@ -43,15 +44,22 @@ static T *&nbsp;</td><td class="memItemRight" valign="bottom"><b>Create</b> ()</
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ffb9968bbfb43c4199a538f95bc2d2fc"></a><!-- doxytag: member="Loki::CreateUsingMalloc::Destroy" ref="ffb9968bbfb43c4199a538f95bc2d2fc" args="(T *p)" -->
 static void&nbsp;</td><td class="memItemRight" valign="bottom"><b>Destroy</b> (T *p)</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="55bf1f773f835e3b56bf7f51e17f03f6"></a><!-- doxytag: member="Loki::CreateUsingMalloc::Create" ref="55bf1f773f835e3b56bf7f51e17f03f6" args="()" -->
+static T *&nbsp;</td><td class="memItemRight" valign="bottom"><b>Create</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ffb9968bbfb43c4199a538f95bc2d2fc"></a><!-- doxytag: member="Loki::CreateUsingMalloc::Destroy" ref="ffb9968bbfb43c4199a538f95bc2d2fc" args="(T *p)" -->
+static void&nbsp;</td><td class="memItemRight" valign="bottom"><b>Destroy</b> (T *p)</td></tr>
+
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 <h3>template&lt;class T&gt;<br>
  struct Loki::CreateUsingMalloc&lt; T &gt;</h3>
 
-Implementation of the CreationPolicy used by <a class="el" href="classLoki_1_1SingletonHolder.html">SingletonHolder</a> Creates objects using a call to std::malloc, followed by a call to the placement new operator <hr>The documentation for this struct was generated from the following file:<ul>
-<li>workspace/HyperspaceExplorer/src/Loki/<a class="el" href="SingletonHolder_8H-source.html">SingletonHolder.H</a></ul>
+Implementation of the CreationPolicy used by <a class="el" href="classLoki_1_1SingletonHolder.html">SingletonHolder</a> Creates objects using a call to std::malloc, followed by a call to the placement new operator<p>
+Implementation of the CreationPolicy used by <a class="el" href="classLoki_1_1SingletonHolder.html">SingletonHolder</a> Creates objects using a call to std::malloc, followed by a call to the placement new operator <hr>The documentation for this struct was generated from the following files:<ul>
+<li>workspace/HyperspaceExplorer/src/Loki/<a class="el" href="Singleton_8h-source.html">Singleton.h</a><li>workspace/HyperspaceExplorer/src/Loki/<a class="el" href="SingletonHolder_8H-source.html">SingletonHolder.H</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 12 18:56:09 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Apr 18 19:39:36 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

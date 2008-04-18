@@ -11,6 +11,7 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -38,7 +39,7 @@
 <a href="classColor-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColor.html#565126164d4a96f3b109829391702c7c">Color</a> (float, float, float, float=0.)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColor.html#38a084160d7c811e71fbace3ce612806">Color</a> (float, float, float, float=1.)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="46c431895589d4687b45de7dc88b31bf"></a><!-- doxytag: member="Color::Color" ref="46c431895589d4687b45de7dc88b31bf" args="(const VecMath::Vector&lt; 4 &gt; &amp;)" -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><b>Color</b> (const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;)</td></tr>
@@ -94,7 +95,7 @@ A class to represent a color value by its RGBA components.
 <p>
 This class provides a single-stop interface to handle a color. It also provides some utility functions to work with colors.<p>
 The color's components are stored as an array of floats. Access to the raw array is provided, because the OpenGL functions I use to set a color need an array of floats as parameter. <hr><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" name="565126164d4a96f3b109829391702c7c"></a><!-- doxytag: member="Color::Color" ref="565126164d4a96f3b109829391702c7c" args="(float, float, float, float=0.)" -->
+<a class="anchor" name="38a084160d7c811e71fbace3ce612806"></a><!-- doxytag: member="Color::Color" ref="38a084160d7c811e71fbace3ce612806" args="(float, float, float, float=1.)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -120,7 +121,7 @@ The color's components are stored as an array of floats. Access to the raw array
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&nbsp;</td>
-          <td class="paramname"> <em>_a</em> = <code>0.</code></td><td>&nbsp;</td>
+          <td class="paramname"> <em>_a</em> = <code>1.</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -394,7 +395,7 @@ make sure that none of the color components is less than the provided limit <dl 
   </table>
 </dl>
 
-<p>Referenced by <a class="el" href="ColorManager_8C-source.html#l00051">ColorManager::setRGB()</a>.</p>
+<p>Referenced by <a class="el" href="ColorManager_8C-source.html#l00031">ColorManager::setRGB()</a>.</p>
 
 </div>
 </div><p>
@@ -426,7 +427,7 @@ make sure that none of the color components is more than the provided limit <dl 
 <hr>The documentation for this class was generated from the following file:<ul>
 <li>workspace/HyperspaceExplorer/src/<a class="el" href="Color_8H-source.html">Color.H</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 12 18:56:09 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Apr 18 19:39:36 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

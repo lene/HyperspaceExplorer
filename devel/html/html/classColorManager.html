@@ -11,6 +11,7 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -52,12 +53,16 @@ Inheritance diagram for ColorManager:</div>
 &nbsp;</td><td class="memItemRight" valign="bottom"><b>ColorManager</b> (const <a class="el" href="classFunction.html">Function</a> *_f)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bb1652a9ccbced5d9bc7bda29ba6f0de"></a><!-- doxytag: member="ColorManager::setFunction" ref="bb1652a9ccbced5d9bc7bda29ba6f0de" args="(const Function *_f)" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setFunction</b> (const <a class="el" href="classFunction.html">Function</a> *_f)</td></tr>
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColorManager.html#bb1652a9ccbced5d9bc7bda29ba6f0de">setFunction</a> (const <a class="el" href="classFunction.html">Function</a> *_f)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="672e68d31278741895b167a4e19923be"></a><!-- doxytag: member="ColorManager::calibrateColor" ref="672e68d31278741895b167a4e19923be" args="(const Color &amp;col, const VecMath::Vector&lt; 4 &gt; &amp;x)=0" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColorManager.html#672e68d31278741895b167a4e19923be">calibrateColor</a> (const <a class="el" href="classColor.html">Color</a> &amp;col, const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;x)=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the function we are managing. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="90923216a204fddbbf3936bb4d4f00d3"></a><!-- doxytag: member="ColorManager::calibrateColor" ref="90923216a204fddbbf3936bb4d4f00d3" args="(const VecMath::Vector&lt; 4 &gt; &amp;x, const Color &amp;col=Color())=0" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColorManager.html#90923216a204fddbbf3936bb4d4f00d3">calibrateColor</a> (const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;x, const <a class="el" href="classColor.html">Color</a> &amp;col=<a class="el" href="classColor.html">Color</a>())=0</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Point (x, y, z) has color col. This may serve for interpolation. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColorManager.html#033c23a659bdba5b1897c80b7848a32f">setRGB</a> (const <a class="el" href="classColor.html">Color</a> &amp;rgb)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">set the current OpenGL color  <a href="#033c23a659bdba5b1897c80b7848a32f"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColorManager.html#57bdd15e796f3e54754e90152c05970a">setColor</a> (const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;x)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set current OpenGL color at given point.  <a href="#57bdd15e796f3e54754e90152c05970a"></a><br></td></tr>
@@ -68,9 +73,6 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColorManager.html#332d02ab6a78c2c45caf8494046737b8">depthCueColor</a> (double wmax, double wmin, double w, const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;x)=0</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">post-process color at given point to have 4D depth cue <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColorManager.html#033c23a659bdba5b1897c80b7848a32f">setRGB</a> (const <a class="el" href="classColor.html">Color</a> &amp;rgb)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">set the current OpenGL color  <a href="#033c23a659bdba5b1897c80b7848a32f"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ad1a7b0968629130c33bce1d6e95028c"></a><!-- doxytag: member="ColorManager::getContents" ref="ad1a7b0968629130c33bce1d6e95028c" args="()" -->
 virtual std::string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColorManager.html#ad1a7b0968629130c33bce1d6e95028c">getContents</a> ()</td></tr>
 
@@ -132,6 +134,38 @@ Interface for all color managers.
 <p>
 sets some values common to all color managers, manages the function belonging to every color manager and has some typedefs for arrays of colors.<p>
 But above all, defines the interface every color manager must implement. <hr><h2>Member Function Documentation</h2>
+<a class="anchor" name="033c23a659bdba5b1897c80b7848a32f"></a><!-- doxytag: member="ColorManager::setRGB" ref="033c23a659bdba5b1897c80b7848a32f" args="(const Color &amp;rgb)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ColorManager::setRGB           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classColor.html">Color</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>rgb</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+set the current OpenGL color 
+<p>
+uses HARDCODED simple algorithm to set ambient and specular values for a specific color: if halves resp. dobles them, clipping at 1.0 <dl compact><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>make the agorithm which computes the ambient and specular values variable </dd></dl>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>rgb</em>&nbsp;</td><td>color value to be set </td></tr>
+  </table>
+</dl>
+
+<p>References <a class="el" href="ColorManager_8H-source.html#l00086">ambientColorModifier</a>, <a class="el" href="Color_8H-source.html#l00161">Color::setComponentLowerLimit()</a>, <a class="el" href="ColorManager_8H-source.html#l00092">SHININESS</a>, <a class="el" href="ColorManager_8H-source.html#l00090">specularColorMinimum</a>, and <a class="el" href="ColorManager_8H-source.html#l00088">specularColorModifier</a>.</p>
+
+<p>Referenced by <a class="el" href="ColorManager_8H-source.html#l00056">setColor()</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="57bdd15e796f3e54754e90152c05970a"></a><!-- doxytag: member="ColorManager::setColor" ref="57bdd15e796f3e54754e90152c05970a" args="(const VecMath::Vector&lt; 4 &gt; &amp;x)" -->
 <div class="memitem">
 <div class="memproto">
@@ -142,7 +176,7 @@ But above all, defines the interface every color manager must implement. <hr><h2
           <td class="paramtype">const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>x</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td width="100%"><code> [virtual]</code></td>
+          <td width="100%"><code> [inline, virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -156,6 +190,8 @@ Set current OpenGL color at given point.
     <tr><td valign="top"></td><td valign="top"><em>x</em>&nbsp;</td><td>four-dimensional coordinate for which the color is sought </td></tr>
   </table>
 </dl>
+
+<p>References <a class="el" href="ColorManager_8C-source.html#l00031">setRGB()</a>.</p>
 
 </div>
 </div><p>
@@ -188,40 +224,10 @@ Find the color of a given point.
 
 </div>
 </div><p>
-<a class="anchor" name="033c23a659bdba5b1897c80b7848a32f"></a><!-- doxytag: member="ColorManager::setRGB" ref="033c23a659bdba5b1897c80b7848a32f" args="(const Color &amp;rgb)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ColorManager::setRGB           </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classColor.html">Color</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>rgb</em>          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td width="100%"></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-set the current OpenGL color 
-<p>
-uses HARDCODED simple algorithm to set ambient and specular values for a specific color: if halves resp. dobles them, clipping at 1.0 <dl compact><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>make the agorithm which computes the ambient and specular values variable </dd></dl>
-<dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>rgb</em>&nbsp;</td><td>color value to be set </td></tr>
-  </table>
-</dl>
-
-<p>References <a class="el" href="ColorManager_8H-source.html#l00081">ambientColorModifier</a>, <a class="el" href="Color_8H-source.html#l00161">Color::setComponentLowerLimit()</a>, <a class="el" href="ColorManager_8H-source.html#l00087">SHININESS</a>, <a class="el" href="ColorManager_8H-source.html#l00085">specularColorMinimum</a>, and <a class="el" href="ColorManager_8H-source.html#l00083">specularColorModifier</a>.</p>
-
-</div>
-</div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/<a class="el" href="ColorManager_8H-source.html">ColorManager.H</a><li>workspace/HyperspaceExplorer/src/ColorManager.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 12 18:56:09 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Apr 18 19:39:36 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

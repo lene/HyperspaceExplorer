@@ -11,6 +11,7 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -50,10 +51,8 @@ Inheritance diagram for CustomFunction:</div>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomFunction.html#6b507d733c2fb3595e00df9c1a575cb3">CustomFunction</a> (double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv, bool final=true)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomFunction.html#fe42408508c689532dd7b73576210751">~CustomFunction</a> ()</td></tr>
-
-<tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomFunction.html#8091263336df8fc584788756a811c9e5">f</a> (double, double, double)</td></tr>
+<tr><td colspan="2"><br><h2>Protected Attributes</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual RealFunction::function_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomFunction.html#dd9350656e4c9499cdc52dc80543c9b0">f</a></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
@@ -151,52 +150,13 @@ A <a class="el" href="classFunction.html" title="A Function is a generalized fou
 
 </div>
 </div><p>
-<a class="anchor" name="fe42408508c689532dd7b73576210751"></a><!-- doxytag: member="CustomFunction::~CustomFunction" ref="fe42408508c689532dd7b73576210751" args="()" -->
+<hr><h2>Member Data Documentation</h2>
+<a class="anchor" name="dd9350656e4c9499cdc52dc80543c9b0"></a><!-- doxytag: member="CustomFunction::f" ref="dd9350656e4c9499cdc52dc80543c9b0" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">CustomFunction::~CustomFunction           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td width="100%"><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-<a class="el" href="classCustomFunction.html">CustomFunction</a> destructor, closes DLL if necessary 
-</div>
-</div><p>
-<hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="8091263336df8fc584788756a811c9e5"></a><!-- doxytag: member="CustomFunction::f" ref="8091263336df8fc584788756a811c9e5" args="(double, double, double)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Vector&lt; 4 &gt; &amp; CustomFunction::f           </td>
-          <td>(</td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>z</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td width="100%"><code> [protected, virtual]</code></td>
+          <td class="memname">Vector&lt; 4 &gt; &amp; <a class="el" href="classCustomFunction.html#dd9350656e4c9499cdc52dc80543c9b0">CustomFunction::f</a><code> [protected]</code>          </td>
         </tr>
       </table>
 </div>
@@ -212,16 +172,14 @@ A <a class="el" href="classFunction.html" title="A Function is a generalized fou
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>custom function of (x, y, z) </dd></dl>
 
-<p>Implements <a class="el" href="classRealBase.html#c2cd018b4108455a6daa23d78b2064a6">RealBase</a>.</p>
-
-<p>Reimplemented in <a class="el" href="classCustomPolarFunction.html#5e5e847b7a80c3df3b9c893494257cbc">CustomPolarFunction</a>.</p>
+<p>Reimplemented in <a class="el" href="classCustomPolarFunction.html#bb24915afd71420db0befdfa164a1116">CustomPolarFunction</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="CustomFunction_8H-source.html">CustomFunction.H</a><li>workspace/HyperspaceExplorer/src/Functions/CustomFunction.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 12 18:56:09 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Apr 18 19:39:36 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

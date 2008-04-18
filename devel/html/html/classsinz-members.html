@@ -11,6 +11,7 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -26,6 +27,8 @@
 </div>
 <div class="contents">
 <h1>sinz Member List</h1>This is the complete list of members for <a class="el" href="classsinz.html">sinz</a>, including all inherited members.<p><table>
+  <tr bgcolor="#f0f0f0"><td><b>addVertices</b>(unsigned num) (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, protected]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>clearParameterNames</b>() (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classComplexFunction.html#1ca44717ee72b524ce3e7afd8d358ca0">ComplexFunction</a>(const QString &amp;name, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)</td><td><a class="el" href="classComplexFunction.html">ComplexFunction</a></td><td></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>Data</b>(void) (defined in <a class="el" href="classSurface.html">Surface</a>)</td><td><a class="el" href="classSurface.html">Surface</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classSurface.html#dc25dc3cc52c171fbd4ef38cb96a516a">df</a>(double, double)</td><td><a class="el" href="classSurface.html">Surface</a></td><td><code> [protected, virtual]</code></td></tr>
@@ -75,17 +78,18 @@
   <tr bgcolor="#f0f0f0"><td><b>getVsteps</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classComplexFunction.html#a978ff4b165e029bb82ba33dce35e4e3">Initialize</a>(void)</td><td><a class="el" href="classComplexFunction.html">ComplexFunction</a></td><td><code> [protected, virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classSurface.html#f77d456ed7b5d495f4a54978ab5f4acc">InitMem</a>(void)</td><td><a class="el" href="classSurface.html">Surface</a></td><td><code> [protected]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>insertParameter</b>(const std::pair&lt; std::string, FunctionParameter * &gt; &amp;value) (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classSurface.html#185472961fe456f587c160c2cc6e8545">MemRequired</a>(void)</td><td><a class="el" href="classSurface.html">Surface</a></td><td><code> [protected, virtual]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>newParameterName</b>(QString n) (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classSurface.html#19a24f801227ea542d749f94cb3fa44d">normal</a></td><td><a class="el" href="classSurface.html">Surface</a></td><td><code> [protected]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>NumVertices</b> (defined in <a class="el" href="classSurface.html">Surface</a>)</td><td><a class="el" href="classSurface.html">Surface</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classSurfaceBase.html#279eefbc9e2d3733eeae5dee35a62f0b">operator()</a>(double u, double v, double=0)</td><td><a class="el" href="classSurfaceBase.html">SurfaceBase</a></td><td><code> [inline, protected, virtual]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="classFunction.html#e7f20a47a42cb57e40ec2a1b34b0d5b7">parameterMap</a> typedef</td><td><a class="el" href="classFunction.html">Function</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="classFunction.html#b51bc4eb3a16cd5073803509fc5a242e">parameterNames</a></td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
-  <tr bgcolor="#f0f0f0"><td><b>parameters</b> (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classFunction.html#6957facb852e36f93672c86d2040097a">parameterMap</a> typedef</td><td><a class="el" href="classFunction.html">Function</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classSurface.html#15e6f13147e522e15ddda573201926b1">Project</a>(double ScrW, double CamW, bool DepthCue4D)</td><td><a class="el" href="classSurface.html">Surface</a></td><td><code> [virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classSurfaceBase.html#d2203f76756ba3478e3a73dc215fc06a">raw_function_type</a>(double, double)</td><td><a class="el" href="classSurfaceBase.html">SurfaceBase</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classSurface.html#a6b958d909ace5cfc2347cb8082d3fdb">ReInit</a>(double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)</td><td><a class="el" href="classSurface.html">Surface</a></td><td><code> [virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classsinz.html#78d0f7de6ddae7080ef0e01917e336a7">SetParameters</a>(double=0, double=0, double=0, double=0)</td><td><a class="el" href="classsinz.html">sinz</a></td><td><code> [inline, virtual]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>setVertex</b>(const VecMath::Vector&lt; 4 &gt; &amp;X, VecMath::Vector&lt; 3 &gt; &amp;Xscr) (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classsinz.html#106c003cf91f0aae52e54ea050aa85ac">sinz</a>(double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)</td><td><a class="el" href="classsinz.html">sinz</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classSurface.html#8fc57f2a15292135c00545c9d224ec68">Surface</a>()</td><td><a class="el" href="classSurface.html">Surface</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classSurface.html#14f5dccdc28a9fc9d72fbabc24b42d60">Surface</a>(const QString &amp;name, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)</td><td><a class="el" href="classSurface.html">Surface</a></td><td></td></tr>
@@ -116,7 +120,7 @@
   <tr bgcolor="#f0f0f0"><td><b>~sinz</b>() (defined in <a class="el" href="classsinz.html">sinz</a>)</td><td><a class="el" href="classsinz.html">sinz</a></td><td><code> [inline, virtual]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>~Surface</b>() (defined in <a class="el" href="classSurface.html">Surface</a>)</td><td><a class="el" href="classSurface.html">Surface</a></td><td><code> [inline, virtual]</code></td></tr>
 </table></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 12 18:56:09 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Apr 18 19:39:36 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

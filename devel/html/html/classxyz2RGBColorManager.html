@@ -11,6 +11,7 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -53,8 +54,8 @@ Inheritance diagram for xyz2RGBColorManager:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0a4bba66a9e813a45c81af287d80fb42"></a><!-- doxytag: member="xyz2RGBColorManager::setFunction" ref="0a4bba66a9e813a45c81af287d80fb42" args="(Function *_f)" -->
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setFunction</b> (<a class="el" href="classFunction.html">Function</a> *_f)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a55e04466b6a7e133f8eb6b2bb115b41"></a><!-- doxytag: member="xyz2RGBColorManager::calibrateColor" ref="a55e04466b6a7e133f8eb6b2bb115b41" args="(const Color &amp;_col, const VecMath::Vector&lt; 4 &gt; &amp;x)" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxyz2RGBColorManager.html#a55e04466b6a7e133f8eb6b2bb115b41">calibrateColor</a> (const <a class="el" href="classColor.html">Color</a> &amp;_col, const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;x)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e234f6fc5aa3de4bb185675542ac821e"></a><!-- doxytag: member="xyz2RGBColorManager::calibrateColor" ref="e234f6fc5aa3de4bb185675542ac821e" args="(const VecMath::Vector&lt; 4 &gt; &amp;x, const Color &amp;_col=Color())" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxyz2RGBColorManager.html#e234f6fc5aa3de4bb185675542ac821e">calibrateColor</a> (const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;x, const <a class="el" href="classColor.html">Color</a> &amp;_col=<a class="el" href="classColor.html">Color</a>())</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Point (x, y, z) has color col. This may serve for interpolation. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classColor.html">Color</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxyz2RGBColorManager.html#87c08aa7c7f3a1f23488ae2cba90aad6">getColor</a> (const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;x)</td></tr>
@@ -149,7 +150,7 @@ Analogous for <img class="formulaInl" alt="$ G $" src="form_60.png"> in <img cla
   </table>
 </dl>
 
-<p>References <a class="el" href="ColorManager_8C-source.html#l00119">averageColors()</a>, and <a class="el" href="ColorManager_8C-source.html#l00131">findClosestPoints()</a>.</p>
+<p>References <a class="el" href="ColorManager_8C-source.html#l00099">averageColors()</a>, and <a class="el" href="ColorManager_8C-source.html#l00111">findClosestPoints()</a>.</p>
 
 </div>
 </div><p>
@@ -189,14 +190,14 @@ find the closest points in the map of colors
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>two vectors containing the closest points and their distances to x </dd></dl>
 
-<p>Referenced by <a class="el" href="ColorManager_8C-source.html#l00096">computeColorFromNeighbors()</a>.</p>
+<p>Referenced by <a class="el" href="ColorManager_8C-source.html#l00076">computeColorFromNeighbors()</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/<a class="el" href="ColorManager_8H-source.html">ColorManager.H</a><li>workspace/HyperspaceExplorer/src/ColorManager.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 12 18:56:09 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Apr 18 19:39:36 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

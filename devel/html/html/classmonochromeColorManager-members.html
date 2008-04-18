@@ -11,6 +11,7 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -28,7 +29,7 @@
 <h1>monochromeColorManager Member List</h1>This is the complete list of members for <a class="el" href="classmonochromeColorManager.html">monochromeColorManager</a>, including all inherited members.<p><table>
   <tr class="memlist"><td><a class="el" href="classColorManager.html#338f8765ad29889ad1960158ddd4f833">ALPHA</a></td><td><a class="el" href="classColorManager.html">ColorManager</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classColorManager.html#0514d78a7b4503dc6938fe64e3badde0">ambientColorModifier</a></td><td><a class="el" href="classColorManager.html">ColorManager</a></td><td><code> [protected]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="classmonochromeColorManager.html#6c870626362d78cae1f89e55392862b9">calibrateColor</a>(const Color &amp;, const VecMath::Vector&lt; 4 &gt; &amp;)</td><td><a class="el" href="classmonochromeColorManager.html">monochromeColorManager</a></td><td><code> [inline, virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classmonochromeColorManager.html#cbd6eb12fe0079c69c69e8f0786dba64">calibrateColor</a>(const VecMath::Vector&lt; 4 &gt; &amp;, const Color &amp;=Color())</td><td><a class="el" href="classmonochromeColorManager.html">monochromeColorManager</a></td><td><code> [inline, virtual]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>ColorManager</b>(const Function *_f) (defined in <a class="el" href="classColorManager.html">ColorManager</a>)</td><td><a class="el" href="classColorManager.html">ColorManager</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classColorManager.html#e092ace0146c74427af31cb4ad0f0221">colormap</a> typedef</td><td><a class="el" href="classColorManager.html">ColorManager</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classColorManager.html#655a8539f21e4ccc3252fcaeb50416e9">colorvec1D</a> typedef</td><td><a class="el" href="classColorManager.html">ColorManager</a></td><td><code> [protected]</code></td></tr>
@@ -41,8 +42,8 @@
   <tr class="memlist"><td><a class="el" href="classColorManager.html#ad1a7b0968629130c33bce1d6e95028c">getContents</a>()</td><td><a class="el" href="classColorManager.html">ColorManager</a></td><td><code> [inline, virtual]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>monochromeColorManager</b>(Function *_f) (defined in <a class="el" href="classmonochromeColorManager.html">monochromeColorManager</a>)</td><td><a class="el" href="classmonochromeColorManager.html">monochromeColorManager</a></td><td><code> [inline]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classColorManager.html#7ab03319a99e2984440ffd021a24cd5c">offset4Ddepthcue</a></td><td><a class="el" href="classColorManager.html">ColorManager</a></td><td><code> [protected]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="classColorManager.html#57bdd15e796f3e54754e90152c05970a">setColor</a>(const VecMath::Vector&lt; 4 &gt; &amp;x)</td><td><a class="el" href="classColorManager.html">ColorManager</a></td><td><code> [virtual]</code></td></tr>
-  <tr bgcolor="#f0f0f0"><td><b>setFunction</b>(const Function *_f) (defined in <a class="el" href="classColorManager.html">ColorManager</a>)</td><td><a class="el" href="classColorManager.html">ColorManager</a></td><td><code> [inline, virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classColorManager.html#57bdd15e796f3e54754e90152c05970a">setColor</a>(const VecMath::Vector&lt; 4 &gt; &amp;x)</td><td><a class="el" href="classColorManager.html">ColorManager</a></td><td><code> [inline, virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classColorManager.html#bb1652a9ccbced5d9bc7bda29ba6f0de">setFunction</a>(const Function *_f)</td><td><a class="el" href="classColorManager.html">ColorManager</a></td><td><code> [inline, virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classColorManager.html#033c23a659bdba5b1897c80b7848a32f">setRGB</a>(const Color &amp;rgb)</td><td><a class="el" href="classColorManager.html">ColorManager</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classColorManager.html#28a882d32d0279c35e2488548c0d827d">SHININESS</a></td><td><a class="el" href="classColorManager.html">ColorManager</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classColorManager.html#01495ef2165ec65a7b1024ea7263f60d">specularColorMinimum</a></td><td><a class="el" href="classColorManager.html">ColorManager</a></td><td><code> [protected]</code></td></tr>
@@ -50,7 +51,7 @@
   <tr bgcolor="#f0f0f0"><td><b>~ColorManager</b>() (defined in <a class="el" href="classColorManager.html">ColorManager</a>)</td><td><a class="el" href="classColorManager.html">ColorManager</a></td><td><code> [inline, virtual]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>~monochromeColorManager</b>() (defined in <a class="el" href="classmonochromeColorManager.html">monochromeColorManager</a>)</td><td><a class="el" href="classmonochromeColorManager.html">monochromeColorManager</a></td><td><code> [inline]</code></td></tr>
 </table></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 12 18:56:09 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Apr 18 19:39:36 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

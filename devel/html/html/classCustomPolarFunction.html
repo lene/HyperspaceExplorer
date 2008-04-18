@@ -11,6 +11,7 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -50,10 +51,8 @@ Inheritance diagram for CustomPolarFunction:</div>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomPolarFunction.html#4da5bf879492f3baa2dc472fcfd5b70c">CustomPolarFunction</a> (double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomPolarFunction.html#dd055521ce33d0e4e420e52e9e133c78">~CustomPolarFunction</a> ()</td></tr>
-
-<tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomPolarFunction.html#5e5e847b7a80c3df3b9c893494257cbc">f</a> (double, double, double)</td></tr>
+<tr><td colspan="2"><br><h2>Protected Attributes</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual RealFunction::function_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomPolarFunction.html#bb24915afd71420db0befdfa164a1116">f</a></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
@@ -144,52 +143,13 @@ A <a class="el" href="classFunction.html" title="A Function is a generalized fou
 
 </div>
 </div><p>
-<a class="anchor" name="dd055521ce33d0e4e420e52e9e133c78"></a><!-- doxytag: member="CustomPolarFunction::~CustomPolarFunction" ref="dd055521ce33d0e4e420e52e9e133c78" args="()" -->
+<hr><h2>Member Data Documentation</h2>
+<a class="anchor" name="bb24915afd71420db0befdfa164a1116"></a><!-- doxytag: member="CustomPolarFunction::f" ref="bb24915afd71420db0befdfa164a1116" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">CustomPolarFunction::~CustomPolarFunction           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td width="100%"><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-<a class="el" href="classCustomPolarFunction.html">CustomPolarFunction</a> destructor, closes DLL if necessary 
-</div>
-</div><p>
-<hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="5e5e847b7a80c3df3b9c893494257cbc"></a><!-- doxytag: member="CustomPolarFunction::f" ref="5e5e847b7a80c3df3b9c893494257cbc" args="(double, double, double)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Vector&lt; 4 &gt; &amp; CustomPolarFunction::f           </td>
-          <td>(</td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>z</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td width="100%"><code> [protected, virtual]</code></td>
+          <td class="memname">Vector&lt; 4 &gt; &amp; <a class="el" href="classCustomPolarFunction.html#bb24915afd71420db0befdfa164a1116">CustomPolarFunction::f</a><code> [protected]</code>          </td>
         </tr>
       </table>
 </div>
@@ -205,14 +165,14 @@ A <a class="el" href="classFunction.html" title="A Function is a generalized fou
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>custom function of (x, y, z) </dd></dl>
 
-<p>Reimplemented from <a class="el" href="classCustomFunction.html#8091263336df8fc584788756a811c9e5">CustomFunction</a>.</p>
+<p>Reimplemented from <a class="el" href="classCustomFunction.html#dd9350656e4c9499cdc52dc80543c9b0">CustomFunction</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="CustomFunction_8H-source.html">CustomFunction.H</a><li>workspace/HyperspaceExplorer/src/Functions/CustomFunction.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 12 18:56:09 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Apr 18 19:39:36 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

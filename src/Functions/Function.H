@@ -86,7 +86,7 @@ class Function {
         /// three-dimensional array of Vector<4>, implemented as a nested std::vector
         typedef std::vector<vec4vec2D> vec4vec3D;
         /// the container a function's parameters are stored in
-        typedef std::map<std::string, FunctionParameterBase *> parameterMap;
+        typedef std::map<std::string, FunctionParameter *> parameterMap;
 
         Function();
         Function (const QString &name,
@@ -124,7 +124,7 @@ class Function {
             return i < parameterNames.size()? parameterNames[i]: "";
         }
 
-        FunctionParameterBase *getParameter(QString name) {
+        FunctionParameter *getParameter(QString name) {
             return parameters[name.toStdString()];
         }
 
@@ -166,7 +166,7 @@ class Function {
         void newParameterName(QString n) { parameterNames.push_back(n); }
         void clearParameterNames() { parameterNames.clear(); }
         void insertParameter(
-            const std::pair<std::string, FunctionParameterBase *> &value) {
+            const std::pair<std::string, FunctionParameter *> &value) {
             parameters.insert(value);
         }
         void addVertices(unsigned num) { NumVertices += num; }

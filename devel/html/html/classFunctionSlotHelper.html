@@ -11,6 +11,7 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -64,12 +65,14 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 Single-stop slot for menu QActions generating <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> objects. 
 <p>
+The mission is to have a single function to serve as slot for all menu Actions which generate a new <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a>. After all, this could be done with a template.<p>
+In fact, it's not quite so easy and we need an indirection. Also, one function is not enough because <a class="el" href="classSurface.html">Surface</a> objects have a constructor different from <a class="el" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> objects.<p>
 Because moc can't compile class templates, we need another class to stand between the QAction triggered by (e.g.) menu item selection and the creation of a <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> object.<p>
 This class provides a single slot, which calls the factory method of the factory object that was passed to the SlotHelper object during construction. That factory object is of type C4DView::TemplatedFunctionFactory &lt;<a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> *&gt;.<p>
 This way, a single slot function can create all <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> objects. The drawback is that now many SlotHelper objects exist, one for every type of <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> that is present in the menus. <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/UI/<a class="el" href="SlotHelper_8H-source.html">SlotHelper.H</a><li>workspace/HyperspaceExplorer/src/UI/SlotHelper.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 12 18:56:09 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Apr 18 19:39:36 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

@@ -402,7 +402,14 @@ void C4DView::AnimationSettings() {
 /** Sets the parameters, applies the changed parameters to the function object
  *  and redraws it                                                            */
 void C4DView::ApplyChanges (void) {
-    F->SetParameters (Values->a (), Values->b (), Values->c (), Values->d ());
+    if (dynamic_cast<Hypersphere *>(F.get())) {
+        cerr << "C4DView::ApplyChanges (): F is a Hypersphere!" << endl;
+        Function::parameterMap temp;
+        temp["Radius"] = ParameterFactory::Instance().createParameterWithValue("Radius", Values->a());
+        dynamic_cast<Hypersphere *>(F.get())->SetParameters(temp);
+    } else {
+        F->SetParameters (Values->a (), Values->b (), Values->c (), Values->d ());
+    }
 
     SingletonLog::Instance() << "C4DView::ApplyChanges ():\n"
             << "Parameter A: " << Values->a () << "\t"
@@ -654,8 +661,8 @@ void C4DView::DrawCoordinates () {
     }
 }
 
-/** Err well.. just that!
- *  starts AnimationTimer, too...                                             */
+/// Err well.. just that!
+/** Starts AnimationTimer, too...                                             */
 void C4DView::StartAnimation () {
     SingletonLog::Instance().log("C4DView::StartAnimation ()");
 
@@ -666,7 +673,7 @@ void C4DView::StartAnimation () {
     UpdateStatus ("Double-click LMB to stop animation");
 }
 
-/** you guessed it */
+/// you guessed it
 void C4DView::StopAnimation () {
     SingletonLog::Instance().log("C4DView::StopAnimation ()");
 
@@ -853,6 +860,10 @@ void C4DView::AssignValues (const std::auto_ptr<Function> &F) {
             Values->VMaxLabel->show();
             Values->VMax->show();
         }
+    }
+
+    if (dynamic_cast<Hypersphere *>(F.get())) {
+        cerr << "C4DView::AssignValues(): F is a Hypersphere!" << endl;
     }
 
     if (F->getNumParameters() == 0) Values->functionLabel->hide();

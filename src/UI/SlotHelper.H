@@ -19,7 +19,15 @@ class RealFunctionFactory;
 class SurfaceFactory;
 
 /// Single-stop slot for menu QActions generating Function objects
-/** Because moc can't compile class templates, we need another class to stand
+/** The mission is to have a single function to serve as slot for all menu
+ *  Actions which generate a new Function. After all, this could be done with a
+ *  template.
+ *
+ *  In fact, it's not quite so easy and we need an indirection. Also, one
+ *  function is not enough because Surface objects have a constructor different
+ *  from RealFunction objects.
+ *
+ *  Because moc can't compile class templates, we need another class to stand
  *  between the QAction triggered by (e.g.) menu item selection and the creation
  *  of a Function object.
  *
@@ -49,6 +57,7 @@ class FunctionSlotHelper: public QObject {
 /// Single-stop slot for menu QActions generating Surface objects
 /** Because the constructors for classes derived from Surface differ from the
  *  c'tors for Function objects, we need a different slot() function.
+ *  \see FunctionSlotHelper
  *  \ingroup UIHelpers                                                        */
 class SurfaceSlotHelper: public QObject {
     Q_OBJECT

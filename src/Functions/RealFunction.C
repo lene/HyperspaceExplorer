@@ -174,7 +174,7 @@ void RealFunction::Transform (double thetaxy, double thetaxz, double thetaxw,
                 Xtrans[t][u][v] = (Rot*X[t][u][v])+trans;
 }
 
-/// Projects a Function into three-space
+/// Projects a RealFunction into three-space
 /** @param scr_w w coordinate of screen
  *  @param cam_w w coordinate of camera
  *  @param depthcue4d whether to use hyperfog/depth cue                       */
@@ -325,8 +325,15 @@ Hypersphere::Hypersphere(double _tmin, double _tmax, double _dt,
         Radius (_rad) {
     newParameterName("Radius");
     insertParameter(
-        std::make_pair("Radius", new FunctionParameter<double>(1.0)));
+                    std::make_pair("Radius", ParameterFactory::Instance().createParameterWithDefault("Radius", 1.0)));
       Initialize ();
+}
+
+void Hypersphere::SetParameters(const parameterMap &parms) {
+    //  parms["Radius"].value must be set!
+    for (parameterMap::const_iterator i = parms.begin(); i != parms.end(); ++i) {
+        if (i->second->getName() == "Radius") Radius = i->second->getValue();
+    }
 }
 
 /// Hypersphere defining function

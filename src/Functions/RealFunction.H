@@ -91,6 +91,7 @@ class Hypersphere: public RealFunction {
         virtual ~Hypersphere() { }
         virtual void SetParameters (double _a = 0, double = 0, double = 0,
                                     double = 0) { Radius = _a; }
+        virtual void SetParameters(const parameterMap &);
 
     protected:
         virtual function_type f;

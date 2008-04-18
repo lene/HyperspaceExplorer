@@ -11,6 +11,7 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -27,6 +28,8 @@
 <div class="contents">
 <h1>SteinerFunction Member List</h1>This is the complete list of members for <a class="el" href="classSteinerFunction.html">SteinerFunction</a>, including all inherited members.<p><table>
   <tr bgcolor="#f0f0f0"><td><b>a</b> (defined in <a class="el" href="classSteinerFunction.html">SteinerFunction</a>)</td><td><a class="el" href="classSteinerFunction.html">SteinerFunction</a></td><td><code> [protected]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>addVertices</b>(unsigned num) (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, protected]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>clearParameterNames</b>() (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, protected]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>df</b>(double, double) (defined in <a class="el" href="classSteinerFunction.html">SteinerFunction</a>)</td><td><a class="el" href="classSteinerFunction.html">SteinerFunction</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#7e1d08b78b48b4be45772cec73b926ac">Function::df</a>(double, double, double)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected, virtual]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>Draw</b>(void) (defined in <a class="el" href="classSteinerFunction.html">SteinerFunction</a>)</td><td><a class="el" href="classSteinerFunction.html">SteinerFunction</a></td><td><code> [virtual]</code></td></tr>
@@ -68,15 +71,15 @@
   <tr bgcolor="#f0f0f0"><td><b>getVmin</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, virtual]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>getVsteps</b>() const  (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, virtual]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>Initialize</b>(void)=0 (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected, pure virtual]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>insertParameter</b>(const std::pair&lt; std::string, FunctionParameter * &gt; &amp;value) (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#d6a10b999b0d561d36a473d461c62311">MemRequired</a>(void)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected, virtual]</code></td></tr>
-  <tr bgcolor="#f0f0f0"><td><b>NumVertices</b> (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>newParameterName</b>(QString n) (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#68cf5a6e74a4f6a96893079ace0dc228">operator()</a>(double, double, double)=0</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected, pure virtual]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="classFunction.html#e7f20a47a42cb57e40ec2a1b34b0d5b7">parameterMap</a> typedef</td><td><a class="el" href="classFunction.html">Function</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="classFunction.html#b51bc4eb3a16cd5073803509fc5a242e">parameterNames</a></td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
-  <tr bgcolor="#f0f0f0"><td><b>parameters</b> (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classFunction.html#6957facb852e36f93672c86d2040097a">parameterMap</a> typedef</td><td><a class="el" href="classFunction.html">Function</a></td><td></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>Project</b>(double ScrW, double CamW, bool DepthCue4D)=0 (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [pure virtual]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>ReInit</b>(double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)=0 (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [pure virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#d718e144e4dadb18eeb5eebcc46ac3f5">SetParameters</a>(double _a=0, double _b=0, double _c=0, double _d=0)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [virtual]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>setVertex</b>(const VecMath::Vector&lt; 4 &gt; &amp;X, VecMath::Vector&lt; 3 &gt; &amp;Xscr) (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>SteinerFunction</b>() (defined in <a class="el" href="classSteinerFunction.html">SteinerFunction</a>)</td><td><a class="el" href="classSteinerFunction.html">SteinerFunction</a></td><td></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>SteinerFunction</b>(double _umin, double _umax, double _ustep, double _vmin, double _vmax, double _vstep, double _a=2.) (defined in <a class="el" href="classSteinerFunction.html">SteinerFunction</a>)</td><td><a class="el" href="classSteinerFunction.html">SteinerFunction</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classFunction.html#f135b0723892c79a2d0191f00e4ca8f9">tmax</a></td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [protected]</code></td></tr>
@@ -99,7 +102,7 @@
   <tr bgcolor="#f0f0f0"><td><b>~Function</b>() (defined in <a class="el" href="classFunction.html">Function</a>)</td><td><a class="el" href="classFunction.html">Function</a></td><td><code> [inline, virtual]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>~SteinerFunction</b>() (defined in <a class="el" href="classSteinerFunction.html">SteinerFunction</a>)</td><td><a class="el" href="classSteinerFunction.html">SteinerFunction</a></td><td><code> [virtual]</code></td></tr>
 </table></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 12 18:56:09 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Apr 18 19:39:36 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>
