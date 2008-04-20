@@ -28,6 +28,8 @@
 #include "ComplexFunction.H"
 #include "Object.H"
 
+#include "ParameterMap.H"
+
 using std::ostringstream;
 using std::cerr;
 using std::endl;
@@ -404,11 +406,14 @@ void C4DView::AnimationSettings() {
 void C4DView::ApplyChanges (void) {
     if (dynamic_cast<Hypersphere *>(F.get())) {
         cerr << "C4DView::ApplyChanges (): F is a Hypersphere!" << endl;
-        Function::parameterMap temp;
-        temp["Radius"] = ParameterFactory::Instance().createParameterWithValue("Radius", Values->a());
+        ParameterMap temp("Radius", Values->a());
+/*        temp["Radius"] =
+                ParameterFactory::Instance().createParameterWithValue(
+                    "Radius", Values->a());*/
         dynamic_cast<Hypersphere *>(F.get())->SetParameters(temp);
     } else {
-        F->SetParameters (Values->a (), Values->b (), Values->c (), Values->d ());
+        F->SetParameters (Values->a (), Values->b (),
+                          Values->c (), Values->d ());
     }
 
     SingletonLog::Instance() << "C4DView::ApplyChanges ():\n"

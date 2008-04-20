@@ -15,7 +15,7 @@
 
 #include <QString>
 
-#include "FunctionParameter.H"
+#include "ParameterMap.H"
 #include "Vector.H"
 
 /// \defgroup FunctionGroup Functions and objects
@@ -86,14 +86,14 @@ class Function {
         /// three-dimensional array of Vector<4>, implemented as a nested std::vector
         typedef std::vector<vec4vec2D> vec4vec3D;
         /// the container a function's parameters are stored in
-        typedef std::map<std::string, FunctionParameter *> parameterMap;
+//        typedef std::map<std::string, FunctionParameter *> parameterMap;
 
         Function();
         Function (const QString &name,
                   double _tmin, double _tmax, double _dt,
                   double _umin, double _umax, double _du,
                   double _vmin, double _vmax, double _dv,
-                  parameterMap _parms = parameterMap());
+                  ParameterMap _parms = ParameterMap());
         virtual ~Function() { }
 
         virtual void Transform (double Rxy, double Rxz, double Rxw,
@@ -165,10 +165,15 @@ class Function {
 
         void newParameterName(QString n) { parameterNames.push_back(n); }
         void clearParameterNames() { parameterNames.clear(); }
-        void insertParameter(
-            const std::pair<std::string, FunctionParameter *> &value) {
-            parameters.insert(value);
+        /// Add a parameter to the list of parameters
+        template <typename T> void insertParameter(const std::string _name,
+                                                   const T &_default) {
+            insertParameter(
+                std::make_pair(_name,
+                    ParameterFactory::Instance().
+                            createParameterWithDefault(_name, _default)));
         }
+
         void addVertices(unsigned num) { NumVertices += num; }
 
     private:
@@ -197,9 +202,13 @@ class Function {
         /// the name of the function as a free-form string
         QString functionName;
     private:
+        void insertParameter(
+            const std::pair<std::string, FunctionParameter *> &value) {
+            parameters.insert(value);
+        }
         /// list of the names of parameters to the function
         std::vector<QString> parameterNames;
-        parameterMap parameters;
+        ParameterMap parameters;
 };
 
 /// \em RealBase provides a base class for functions which take three parameters
@@ -229,7 +238,7 @@ class RealBase: public Function {
                  double _tmin, double _tmax, double _dt,
                  double _umin, double _umax, double _du,
                  double _vmin, double _vmax, double _dv,
-                 parameterMap _parms = parameterMap()):
+                 ParameterMap _parms = ParameterMap()):
             Function(name, _tmin, _tmax, _dt, _umin, _umax, _du,
                      _vmin, _vmax, _dv, _parms) { }
     protected:

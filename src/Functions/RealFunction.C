@@ -41,7 +41,7 @@ RealFunction::RealFunction(const QString &name,
                            double _tmin, double _tmax, double _dt,
                            double _umin, double _umax, double _du,
                            double _vmin, double _vmax, double _dv,
-                           parameterMap _parms):
+                           ParameterMap _parms):
         RealBase(name, _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv,
                  _parms),
         Xtrans(vec4vec3D()), Xscr(vec3vec3D()) {
@@ -305,17 +305,16 @@ void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v) {
 
 /// Hypersphere c'tor given a definition set in R³ (as parameter space) and a
 /// radius
-/** @param _tmin	minimal value in t
- *  @param _tmax	maximal value in t
- *  @param _dt		stepsize in t
- *  @param _umin	minimal value in u
- *  @param _umax	maximal value in u
- *  @param _du		stepsize in u
- *  @param _vmin	minimal value in v
- *  @param _vmax	maximal value in v
- *  @param _dv		stepsize in v
- *  @param _rad		radius
- */
+/** @param _tmin minimal value in t
+ *  @param _tmax maximal value in t
+ *  @param _dt stepsize in t
+ *  @param _umin minimal value in u
+ *  @param _umax maximal value in u
+ *  @param _du stepsize in u
+ *  @param _vmin minimal value in v
+ *  @param _vmax maximal value in v
+ *  @param _dv stepsize in v
+ *  @param _rad radius                                                        */
 Hypersphere::Hypersphere(double _tmin, double _tmax, double _dt,
                          double _umin, double _umax, double _du,
                          double _vmin, double _vmax, double _dv,
@@ -324,16 +323,19 @@ Hypersphere::Hypersphere(double _tmin, double _tmax, double _dt,
                       _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
         Radius (_rad) {
     newParameterName("Radius");
-    insertParameter(
-                    std::make_pair("Radius", ParameterFactory::Instance().createParameterWithDefault("Radius", 1.0)));
-      Initialize ();
+    insertParameter("Radius", 1.0);
+    Initialize ();
 }
 
-void Hypersphere::SetParameters(const parameterMap &parms) {
+void Hypersphere::SetParameters(const ParameterMap &parms) {
+    SingletonLog::Instance() << "Hypersphere::SetParameters(";
     //  parms["Radius"].value must be set!
-    for (parameterMap::const_iterator i = parms.begin(); i != parms.end(); ++i) {
-        if (i->second->getName() == "Radius") Radius = i->second->getValue();
+    for (ParameterMap::const_iterator i = parms.begin(); i != parms.end(); ++i) {
+        SingletonLog::Instance() << i->second->getName() << ", "
+                                 << double(*i->second);
+        if (i->second->getName() == "Radius") Radius = double(*i->second);
     }
+    SingletonLog::Instance() << ") \n";
 }
 
 /// Hypersphere defining function

@@ -13,7 +13,7 @@
 class Log{
     public:
         /** print a string with a line break */
-        void log(std::string 
+        void log(std::string
 #           ifdef DEBUG
                 message
 #           endif
@@ -31,6 +31,7 @@ class Log{
                        ) {
 #           ifdef DEBUG
                 std::cerr << message;
+                std::cerr.flush();
 #           endif
             return *this;
         }
