@@ -11,24 +11,23 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
 </div>
 <div class="contents">
-<h1><a class="anchor" name="todo">Todo List </a></h1><a class="anchor" name="_todo000031"></a> <dl>
+<h1><a class="anchor" name="todo">Todo List </a></h1><a class="anchor" name="_todo000035"></a> <dl>
 <dt>Member <a class="el" href="classC4DView.html#f33c8cf03fcfc94d4c64f9f4454b0339">C4DView::RandomAnimation</a> () </dt>
 <dd>make hardcoded duration of rotation change frequency adjustable </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000031"></a> <dl>
+<a class="anchor" name="_todo000035"></a> <dl>
 <dt>Member <a class="el" href="classC4DView.html#f33c8cf03fcfc94d4c64f9f4454b0339">C4DView::RandomAnimation</a> () </dt>
 <dd>a menu entry for this </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000033"></a> <dl>
+<a class="anchor" name="_todo000037"></a> <dl>
 <dt>Member <a class="el" href="classC4DView.html#3c797ad72f10f9d43d720a45cd60509a">C4DView::initializeGL</a> (void) </dt>
 <dd>trying to check for rendering to file, but this doesn't work yet.<p>
 </dd>
@@ -85,12 +84,32 @@
 <dd>uses hardcoded and experimentally found value for memory per cell </dd>
 </dl>
 <p>
+<a class="anchor" name="_todo000015"></a> <dl>
+<dt>Member <a class="el" href="classFunctionParameter.html#d8923ccb1a2c9c86eadf7fd41b06d21b">FunctionParameter::setValue</a> (FunctionParameterValue&lt; T &gt; *_value) </dt>
+<dd>Can't I call createParameterWithValue() from inside setValue()? </dd>
+</dl>
+<p>
 <a class="anchor" name="_todo000016"></a> <dl>
+<dt>Member <a class="el" href="classFunctionParameter.html#d3f0a76d63c6e62533ce95dd19ea6996">FunctionParameter::setDefaultValue</a> (FunctionParameterValue&lt; T &gt; *_defaultValue) </dt>
+<dd>Can't I call createParameterWithDefault() from inside setDefaultValue()? </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000014"></a> <dl>
+<dt>Member <a class="el" href="classFunctionParameterValue.html#cbf55f79789e12f6e6b78d6b9b6c7770">FunctionParameterValue::operator double</a> () </dt>
+<dd>throw an "wrong type" exception in the default implementation, to be overridden in the specialization </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000013"></a> <dl>
+<dt>Member <a class="el" href="classFunctionParameterValueBase.html#926882a10c75d392d8384757d8910e68">FunctionParameterValueBase::setValue</a> (const double &amp;) </dt>
+<dd>throw an "wrong type" exception in the default implementation, to be overridden in the derived class template </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000020"></a> <dl>
 <dt>Member <a class="el" href="classGasket.html#e65a8be228108ab1997e0cc80504aa56">Gasket::MemRequired</a> (void) </dt>
 <dd>uses hardcoded and experimentally found value for memory per simplex </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000025"></a> <dl>
+<a class="anchor" name="_todo000029"></a> <dl>
 <dt>Class <a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix&lt; D, N &gt;</a>  </dt>
 <dd>why does the 100 fold speed increase come and go? why does it only work for dimensions up to 4? <br>
  some clue: <br>
@@ -101,84 +120,84 @@
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000025"></a> <dl>
+<a class="anchor" name="_todo000029"></a> <dl>
 <dt>Class <a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix&lt; D, N &gt;</a>  </dt>
 <dd>a corresponding vector class and member function for transformation of vectors<p>
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000025"></a> <dl>
+<a class="anchor" name="_todo000029"></a> <dl>
 <dt>Class <a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix&lt; D, N &gt;</a>  </dt>
 <dd>const-correctness everywhere<p>
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000025"></a> <dl>
+<a class="anchor" name="_todo000029"></a> <dl>
 <dt>Class <a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix&lt; D, N &gt;</a>  </dt>
 <dd>templatize copy loop in <code>Matrix (const N a[D][D])</code><p>
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000025"></a> <dl>
+<a class="anchor" name="_todo000029"></a> <dl>
 <dt>Class <a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix&lt; D, N &gt;</a>  </dt>
 <dd>drop <code>D_</code> as template parameter for inner classes where possible <br>
  there is a problem with specializations in inner classes, which don't have any template parameters at all: </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000025"></a> <dl>
+<a class="anchor" name="_todo000029"></a> <dl>
 <dt>Class <a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix&lt; D, N &gt;</a>  </dt>
 <dd>specializations of inner classes - do they really have to be declared? (seems so)<br>
  whittle them down to the bare minimum anyways<p>
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000022"></a> <dl>
+<a class="anchor" name="_todo000026"></a> <dl>
 <dt>Member <a class="el" href="classVecMath_1_1Matrix.html#c9bb6064bbab4c97f65dbb89b25358a1">VecMath::Matrix::operator*</a> (const Vector&lt; D, N &gt; &amp;) </dt>
 <dd>use template metaprogramming here too </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000023"></a> <dl>
+<a class="anchor" name="_todo000027"></a> <dl>
 <dt>Member <a class="el" href="classVecMath_1_1Matrix.html#ca1a9a5285708e821b35db56226a1f77">VecMath::Matrix::print</a> () </dt>
 <dd>flexible output stream </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000023"></a> <dl>
+<a class="anchor" name="_todo000027"></a> <dl>
 <dt>Member <a class="el" href="classVecMath_1_1Matrix.html#ca1a9a5285708e821b35db56226a1f77">VecMath::Matrix::print</a> () </dt>
 <dd>flexible printing format </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000017"></a> <dl>
+<a class="anchor" name="_todo000021"></a> <dl>
 <dt>Member <a class="el" href="classObject.html#61ff801a10427bf1b8a8fb5ec9f9937d">Object::R</a>  </dt>
 <dd>turn these three arrays into a single array of Color's </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000018"></a> <dl>
+<a class="anchor" name="_todo000022"></a> <dl>
 <dt>Member <a class="el" href="classObject.html#770462e34d7856993a31aca7bcc71f94">Object::G</a>  </dt>
 <dd>turn these three arrays into a single array of Color's </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000019"></a> <dl>
+<a class="anchor" name="_todo000023"></a> <dl>
 <dt>Member <a class="el" href="classObject.html#3a5f711ad4ef87bb9a2c2c78199899d6">Object::B</a>  </dt>
 <dd>turn these three arrays into a single array of Color's </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000013"></a> <dl>
+<a class="anchor" name="_todo000017"></a> <dl>
 <dt>Member <a class="el" href="classObject.html#8404a4e0b7cddabbb14797c755c3daa8">Object::Project</a> (double ScrW, double CamW, bool DepthCue4D) </dt>
 <dd>change R[], G[], B[] into a single array of Color's </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000013"></a> <dl>
+<a class="anchor" name="_todo000017"></a> <dl>
 <dt>Member <a class="el" href="classObject.html#8404a4e0b7cddabbb14797c755c3daa8">Object::Project</a> (double ScrW, double CamW, bool DepthCue4D) </dt>
 <dd>uses hardcoded values! </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000035"></a> <dl>
+<a class="anchor" name="_todo000039"></a> <dl>
 <dt>Class <a class="el" href="classPluginCreator.html">PluginCreator</a>  </dt>
 <dd>set the function name to symbolic() in the descendants' constructors<p>
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000034"></a> <dl>
+<a class="anchor" name="_todo000038"></a> <dl>
 <dt>Member <a class="el" href="classPluginCreator.html#1c6920f6a1d27a1473fcabc18195eb5b">PluginCreator::compile</a> (QString) </dt>
 <dd>Might tweak the compilation flags a little, or make them variable </dd>
 </dl>
@@ -189,17 +208,17 @@
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000021"></a> <dl>
+<a class="anchor" name="_todo000025"></a> <dl>
 <dt>Member <a class="el" href="classRealFunction.html#ab400a3b8c445044007307fa295f1c89">RealFunction::Transform</a> (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw) </dt>
 <dd>As I look at it, i think this could be optimized by making the transformation matrices static and only canging the corresponding entries... but how to do this beautifully, i don't know </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000020"></a> <dl>
+<a class="anchor" name="_todo000024"></a> <dl>
 <dt>Member <a class="el" href="classSponge.html#599e21656433097f9e7f2ac143a1dc7a">Sponge::List</a>  </dt>
 <dd>Use smart pointers instead of a simple pointer-to-object </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000015"></a> <dl>
+<a class="anchor" name="_todo000019"></a> <dl>
 <dt>Member <a class="el" href="classSponge.html#31290427d5599a4ea65e24b23427eeef">Sponge::MemRequired</a> (unsigned) </dt>
 <dd>uses hardcoded and experimentally found value for memory per hypercube </dd>
 </dl>
@@ -210,12 +229,12 @@
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000036"></a> <dl>
+<a class="anchor" name="_todo000040"></a> <dl>
 <dt>Member <a class="el" href="classXQGLWidget.html#26ff1c69c2921fcd7dbda3ba2e9cc146">XQGLWidget::InitLight</a> (void) </dt>
 <dd>hardcoded light position and colors! </dd>
 </dl>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Apr 18 19:39:36 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Apr 20 15:20:25 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

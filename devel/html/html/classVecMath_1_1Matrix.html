@@ -11,7 +11,6 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -167,16 +166,16 @@ Matrix&lt;D, N&gt;: a DxD matrix of numbers of type N <dl compact><dt><b>Paramet
 </dl>
 <dl class="author" compact><dt><b>Author:</b></dt><dd>Helge Preuss &lt;<a href="mailto:scout@hyperspace-travel.de">scout@hyperspace-travel.de</a>&gt;</dd></dl>
 A matrix class speeding up matrix multiplications by using template metaprogramming to let the compiler unroll and optimize the multiplication loops<p>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>why does the 100 fold speed increase come and go? why does it only work for dimensions up to 4? <br>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000029">Todo:</a></b></dt><dd>why does the 100 fold speed increase come and go? why does it only work for dimensions up to 4? <br>
  some clue: <br>
  when <a class="el" href="classVecMath_1_1Matrix.html#ca1a9a5285708e821b35db56226a1f77" title="Print the matrix on std::cout.">print()</a> is called after NLOOP multiplications, runtime performance drops significantly. this is the case for templatized version as well as with the for loop. roughly speaking, <a class="el" href="classVecMath_1_1Matrix.html#ca1a9a5285708e821b35db56226a1f77" title="Print the matrix on std::cout.">print()</a> incurs an overhead of a second for both versions. funny thing is, print () is called AFTER the timing has taken place. <br>
  the performance drop with <a class="el" href="classVecMath_1_1Matrix.html#ca1a9a5285708e821b35db56226a1f77" title="Print the matrix on std::cout.">print()</a> has vanished after getting the initialization correct (looping from <code>D-1</code> to 0 instead of looping from <code>D</code>) <br>
  err well, this in not true... it has only vanished *sometimes*. I assume that gcc does the calculations only when the elements are in fact accessed after the calculation, otherwise it optimizes them away. <br>
 </dd></dl>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>a corresponding vector class and member function for transformation of vectors</dd></dl>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>const-correctness everywhere</dd></dl>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>templatize copy loop in <code><a class="el" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix</a> (const N a[D][D])</code></dd></dl>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>drop <code>D_</code> as template parameter for inner classes where possible <br>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000029">Todo:</a></b></dt><dd>a corresponding vector class and member function for transformation of vectors</dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000029">Todo:</a></b></dt><dd>const-correctness everywhere</dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000029">Todo:</a></b></dt><dd>templatize copy loop in <code><a class="el" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix</a> (const N a[D][D])</code></dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000029">Todo:</a></b></dt><dd>drop <code>D_</code> as template parameter for inner classes where possible <br>
  there is a problem with specializations in inner classes, which don't have any template parameters at all: </dd></dl>
 <div class="fragment"><pre class="fragment">            <span class="keyword">template</span> &lt;&gt;                                             <span class="comment">// error!</span>
                 <span class="keyword">struct </span>ConstructLoop&lt;0, 0&gt; {
@@ -201,7 +200,7 @@ A matrix class speeding up matrix multiplications by using template metaprogramm
             };
 
             <span class="comment">// more specialization's of inner&lt;&gt; as necessary.</span>
-</pre></div> <dl compact><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>specializations of inner classes - do they really have to be declared? (seems so)<br>
+</pre></div> <dl compact><dt><b><a class="el" href="todo.html#_todo000029">Todo:</a></b></dt><dd>specializations of inner classes - do they really have to be declared? (seems so)<br>
  whittle them down to the bare minimum anyways</dd></dl>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="afaeb5312b577fa2bb48e9605e76afd5"></a><!-- doxytag: member="VecMath::Matrix::Matrix" ref="afaeb5312b577fa2bb48e9605e76afd5" args="()" -->
@@ -566,7 +565,7 @@ apply the <a class="el" href="classVecMath_1_1Matrix.html" title="Matrix class t
   </table>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>*this * V</dd></dl>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000022">Todo:</a></b></dt><dd>use template metaprogramming here too </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000026">Todo:</a></b></dt><dd>use template metaprogramming here too </dd></dl>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>V</em>&nbsp;</td><td><a class="el" href="classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D-dimensional vector of numbers of type N.">Vector</a> to multiply with (project) </td></tr>
@@ -752,8 +751,8 @@ template&lt;unsigned D, typename N&gt; </div>
 <p>
 Print the matrix on <code>std::cout</code>. 
 <p>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000023">Todo:</a></b></dt><dd>flexible output stream </dd></dl>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000023">Todo:</a></b></dt><dd>flexible printing format </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000027">Todo:</a></b></dt><dd>flexible output stream </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000027">Todo:</a></b></dt><dd>flexible printing format </dd></dl>
 
 <p>References <a class="el" href="Matrix_8H-source.html#l00035">VecMath::Matrix&lt; D, N &gt;::operator()()</a>.</p>
 
@@ -762,7 +761,7 @@ Print the matrix on <code>std::cout</code>.
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/<a class="el" href="Matrix_8H-source.html">Matrix.H</a><li>workspace/HyperspaceExplorer/src/testing/<a class="el" href="matrix_8H-source.html">matrix.H</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Apr 18 19:39:36 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Apr 20 15:20:26 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

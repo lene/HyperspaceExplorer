@@ -11,7 +11,6 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -114,7 +113,7 @@ typedef std::vector&lt; <a class="el" href="classFunction.html#0c807fd0b7c98ca9c
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">three-dimensional array of <a class="el" href="classVecMath_1_1Vector.html">Vector&lt;4&gt;</a>, implemented as a nested std::vector <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6957facb852e36f93672c86d2040097a"></a><!-- doxytag: member="Function::parameterMap" ref="6957facb852e36f93672c86d2040097a" args="" -->
 typedef std::map&lt; std::string, <br>
-FunctionParameter * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunction.html#6957facb852e36f93672c86d2040097a">parameterMap</a></td></tr>
+<a class="el" href="classFunctionParameter.html">FunctionParameter</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunction.html#6957facb852e36f93672c86d2040097a">parameterMap</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">the container a function's parameters are stored in <br></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
@@ -152,7 +151,7 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>ReInit</b> (d
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get a specified parameter name from the list.  <a href="#0a05df01c1ec8b0aa9a23a3551da3d53"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2ccf820f7363613448529ff4b8e0d89a"></a><!-- doxytag: member="Function::getParameter" ref="2ccf820f7363613448529ff4b8e0d89a" args="(QString name)" -->
-FunctionParameter *&nbsp;</td><td class="memItemRight" valign="bottom"><b>getParameter</b> (QString name)</td></tr>
+<a class="el" href="classFunctionParameter.html">FunctionParameter</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>getParameter</b> (QString name)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5bc503ce6b83498eaefc32df6f0f3748"></a><!-- doxytag: member="Function::getTsteps" ref="5bc503ce6b83498eaefc32df6f0f3748" args="() const " -->
 virtual unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><b>getTsteps</b> () const </td></tr>
@@ -240,7 +239,7 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>newParameterName</b> 
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>clearParameterNames</b> ()</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="04cb73563ed4bb916fe52c94b3d25a5c"></a><!-- doxytag: member="Function::insertParameter" ref="04cb73563ed4bb916fe52c94b3d25a5c" args="(const std::pair&lt; std::string, FunctionParameter * &gt; &amp;value)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>insertParameter</b> (const std::pair&lt; std::string, FunctionParameter * &gt; &amp;value)</td></tr>
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>insertParameter</b> (const std::pair&lt; std::string, <a class="el" href="classFunctionParameter.html">FunctionParameter</a> * &gt; &amp;value)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="dab9c5dfed7cfe3840ec9a28d2248327"></a><!-- doxytag: member="Function::addVertices" ref="dab9c5dfed7cfe3840ec9a28d2248327" args="(unsigned num)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>addVertices</b> (unsigned num)</td></tr>
@@ -454,7 +453,7 @@ Zeroes everything
   </table>
 </dl>
 
-<p>References <a class="el" href="Function_8H-source.html#l00176">dt</a>, <a class="el" href="Function_8H-source.html#l00176">du</a>, <a class="el" href="Function_8H-source.html#l00176">dv</a>, <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, <a class="el" href="Function_8C-source.html#l00083">MemRequired()</a>, <a class="el" href="Function_8H-source.html#l00176">tmax</a>, <a class="el" href="Function_8H-source.html#l00176">tmin</a>, <a class="el" href="Function_8H-source.html#l00186">tsteps</a>, <a class="el" href="Function_8H-source.html#l00176">umax</a>, <a class="el" href="Function_8H-source.html#l00176">umin</a>, <a class="el" href="Function_8H-source.html#l00186">usteps</a>, <a class="el" href="Function_8H-source.html#l00176">vmax</a>, <a class="el" href="Function_8H-source.html#l00176">vmin</a>, and <a class="el" href="Function_8H-source.html#l00186">vsteps</a>.</p>
+<p>References <a class="el" href="Function_8H-source.html#l00176">dt</a>, <a class="el" href="Function_8H-source.html#l00176">du</a>, <a class="el" href="Function_8H-source.html#l00176">dv</a>, <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="Function_8C-source.html#l00083">MemRequired()</a>, <a class="el" href="Function_8H-source.html#l00176">tmax</a>, <a class="el" href="Function_8H-source.html#l00176">tmin</a>, <a class="el" href="Function_8H-source.html#l00186">tsteps</a>, <a class="el" href="Function_8H-source.html#l00176">umax</a>, <a class="el" href="Function_8H-source.html#l00176">umin</a>, <a class="el" href="Function_8H-source.html#l00186">usteps</a>, <a class="el" href="Function_8H-source.html#l00176">vmax</a>, <a class="el" href="Function_8H-source.html#l00176">vmin</a>, and <a class="el" href="Function_8H-source.html#l00186">vsteps</a>.</p>
 
 </div>
 </div><p>
@@ -700,7 +699,7 @@ Return the approximate amount of memory needed to display a <a class="el" href="
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="Function_8H-source.html">Function.H</a><li>workspace/HyperspaceExplorer/src/Functions/Function.C<li>workspace/HyperspaceExplorer/src/Functions/FunctionBase.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Apr 18 19:39:36 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Apr 20 15:20:26 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

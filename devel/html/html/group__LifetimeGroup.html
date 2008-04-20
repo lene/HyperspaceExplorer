@@ -11,7 +11,6 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -23,72 +22,11 @@
 [<a class="el" href="group__SingletonGroup.html">Singleton</a>]</small>
 </h1><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
-<tr><td colspan="2"><br><h2>Modules</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__LongevityLifetimeGroup.html">LongevityLifetime</a></td></tr>
-
-<tr><td colspan="2"><br><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structLoki_1_1DefaultLifetime.html">Loki::DefaultLifetime&lt; T &gt;</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1PhoenixSingleton.html">Loki::PhoenixSingleton&lt; T &gt;</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1DeletableSingleton.html">Loki::DeletableSingleton&lt; T &gt;</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1SingletonWithLongevity.html">Loki::SingletonWithLongevity&lt; T &gt;</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structLoki_1_1NoDestroy.html">Loki::NoDestroy&lt; T &gt;</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1FollowIntoDeath.html">Loki::FollowIntoDeath</a></td></tr>
-
-<tr><td colspan="2"><br><h2>Functions</h2></td></tr>
-<tr><td class="memTemplParams" nowrap colspan="2">template&lt;typename T, typename Destroyer&gt; </td></tr>
-<tr><td class="memTemplItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__LifetimeGroup.html#g82d4520d213b3b9ef2090f5e237874cf">Loki::SetLongevity</a> (T *pDynObject, unsigned int longevity, Destroyer d)</td></tr>
-
 </table>
-<hr><a name="_details"></a><h2>Detailed Description</h2>
-The lifetimes of the singleton. <dl class="user" compact><dt><b>Special lifetime for SmallObjects</b></dt><dd>When the holded object is a Small(Value)<a class="el" href="classObject.html" title="Generalized four-dimensional Object, described by vertexes and surfaces.">Object</a> or the holded object uses objects which are or inherit from Small(Value)<a class="el" href="classObject.html" title="Generalized four-dimensional Object, described by vertexes and surfaces.">Object</a> then you can't use the default lifetime: you must use the lifetime <div class="fragment"><pre class="fragment"> <a class="code" href="structLoki_1_1LongevityLifetime_1_1DieAsSmallObjectChild.html">Loki::LongevityLifetime::DieAsSmallObjectChild</a> 
-</pre></div> Be aware of this when you use Loki::Factory, <a class="el" href="classLoki_1_1Functor.html">Loki::Functor</a>, or Loki::Function.</dd></dl>
-The lifetimes of the singleton. <dl class="user" compact><dt><b>Special lifetime for SmallObjects</b></dt><dd>When the holded object is a Small(Value)<a class="el" href="classObject.html" title="Generalized four-dimensional Object, described by vertexes and surfaces.">Object</a> or the holded object uses objects which are or inherit from Small(Value)<a class="el" href="classObject.html" title="Generalized four-dimensional Object, described by vertexes and surfaces.">Object</a> then you can't use the default lifetime: you must use the lifetime <div class="fragment"><pre class="fragment"> <a class="code" href="structLoki_1_1LongevityLifetime_1_1DieAsSmallObjectChild.html">Loki::LongevityLifetime::DieAsSmallObjectChild</a> 
-</pre></div> Be aware of this when you use Loki::Factory, <a class="el" href="classLoki_1_1Functor.html">Loki::Functor</a>, or Loki::Function. </dd></dl>
-<hr><h2>Function Documentation</h2>
-<a class="anchor" name="g82d4520d213b3b9ef2090f5e237874cf"></a><!-- doxytag: member="Loki::SetLongevity" ref="g82d4520d213b3b9ef2090f5e237874cf" args="(T *pDynObject, unsigned int longevity, Destroyer d)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T, typename Destroyer&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void Loki::SetLongevity           </td>
-          <td>(</td>
-          <td class="paramtype">T *&nbsp;</td>
-          <td class="paramname"> <em>pDynObject</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&nbsp;</td>
-          <td class="paramname"> <em>longevity</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Destroyer&nbsp;</td>
-          <td class="paramname"> <em>d</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td width="100%"><code> [inline]</code></td>
-        </tr>
-      </table>
+The lifetimes of the singleton. <dl class="user" compact><dt><b>Special lifetime for SmallObjects</b></dt><dd>When the holded object is a Small(Value)<a class="el" href="classObject.html" title="Generalized four-dimensional Object, described by vertexes and surfaces.">Object</a> or the holded object uses objects which are or inherit from Small(Value)<a class="el" href="classObject.html" title="Generalized four-dimensional Object, described by vertexes and surfaces.">Object</a> then you can't use the default lifetime: you must use the lifetime <div class="fragment"><pre class="fragment"> Loki::LongevityLifetime::DieAsSmallObjectChild 
+</pre></div> Be aware of this when you use Loki::Factory, Loki::Functor, or Loki::Function. </dd></dl>
 </div>
-<div class="memdoc">
-
-<p>
-Assigns an object a longevity; ensures ordered destructions of objects registered thusly during the exit sequence of the application 
-</div>
-</div><p>
-</div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Apr 18 19:39:36 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Apr 20 15:20:25 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>
