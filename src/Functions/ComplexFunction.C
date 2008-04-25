@@ -126,7 +126,7 @@ zA::zA (double _umin, double _umax, double _du,
         ComplexFunction ("z^a", _umin, _umax, _du, _vmin, _vmax, _dv),
     alpha (_alpha) {
     Initialize ();
-    newParameterName("a");
+    declareParameter("a", 2.0);
     }
 
 /** z^a defining function
@@ -153,7 +153,7 @@ ez::ez (double _umin, double _umax, double _du,
         ComplexFunction ("e^a*z", _umin, _umax, _du, _vmin, _vmax, _dv),
     alpha (_alpha) {
     Initialize ();
-    newParameterName("a");
+    declareParameter("a", 2.0);
 }
 
 /** e^z defining function
@@ -176,12 +176,12 @@ complex<double> ez::g (complex<double> z) {
  *  @param _alpha	exponent multiplicator
  */
 emz2::emz2 (double _umin, double _umax, double _du,
-	    double _vmin, double _vmax, double _dv,
-	    double _alpha):
+            double _vmin, double _vmax, double _dv,
+            double _alpha):
         ComplexFunction ("e^-a*z²", _umin, _umax, _du, _vmin, _vmax, _dv),
   alpha (_alpha) {
   Initialize ();
-  newParameterName("a");
+  declareParameter("a", 1.0);
 }
 
 /** e^-\f$ z^2 \f$ defining function

@@ -190,7 +190,7 @@ class GravitationPotential: public RealFunction {
         virtual function_type f;
 
         double M,               //  not really M, but M/R^3
-        R;
+               R;
 };
 
 ///////////////////////////////////////////////////////////////////////////////

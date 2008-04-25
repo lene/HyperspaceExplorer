@@ -102,7 +102,7 @@ class Object: public Function {
 class Hypercube: public Object {
 public:
     Hypercube (): Object ("Hypercube", 16, 24) {
-        newParameterName("Size");
+        declareParameter("Size", 1.0);
     }
     Hypercube (double _a, const VecMath::Vector<4> &_Center = VecMath::Vector<4>(0., 0., 0., 0.));
     virtual ~Hypercube() { }
@@ -215,7 +215,7 @@ protected:
 class Pyramid: public Object {
 public:
     Pyramid (): Object ("Hyperpyramid", 5, 10) {
-        newParameterName("Size");
+        declareParameter("Size", 1.0);
     }
     Pyramid (double _a, const VecMath::Vector<4> &_Center = VecMath::Vector<4> (0., 0., 0., 0.));
     virtual ~Pyramid() { }

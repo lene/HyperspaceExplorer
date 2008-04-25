@@ -322,8 +322,7 @@ Hypersphere::Hypersphere(double _tmin, double _tmax, double _dt,
         RealFunction ("Hypersphere",
                       _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
         Radius (_rad) {
-    newParameterName("Radius");
-    insertParameter("Radius", 1.0);
+    declareParameter("Radius", 1.0);
     Initialize ();
 }
 
@@ -398,9 +397,9 @@ Torus1::Torus1 (double _tmin, double _tmax, double _dt,
     RealFunction ("Torus 1",
                 _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
     R (_R), r (_r), rho (_rho) {
-      newParameterName("Major Radius");
-      newParameterName("Minor Radius");
-      newParameterName("Micro Radius");
+      declareParameter("Major Radius", 2.0);
+      declareParameter("Minor Radius", 1.0);
+      declareParameter("Micro Radius", 0.5);
       Initialize ();
 }
 
@@ -437,14 +436,14 @@ Vector<4> &Torus1::f (double tt, double uu, double vv) {
  *  @param _r		minor radius
  */
 Torus2::Torus2 (double _tmin, double _tmax, double _dt,
-		double _umin, double _umax, double _du,
-		double _vmin, double _vmax, double _dv,
-		double _R, double _r):
+                double _umin, double _umax, double _du,
+                double _vmin, double _vmax, double _dv,
+                double _R, double _r):
   RealFunction ("Torus 2",
                 _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
   R (_R), r (_r) {
-      newParameterName("Major Radius");
-      newParameterName("Minor Radius");
+    declareParameter("Major Radius", 1.0);
+    declareParameter("Minor Radius", 0.5);
 
       Initialize ();
 }
@@ -530,8 +529,8 @@ GravitationPotential::GravitationPotential (double xmin, double xmax, double dx,
         RealFunction ("Gravitation Potential",
                       xmin, xmax, dx, ymin, ymax, dy, zmin, zmax, dz),
   M (_M), R (_R) {
-      newParameterName("M");
-      newParameterName("R");
+      declareParameter("M", 1.0);
+      declareParameter("R", 0.25);
       Initialize ();
 }
 
@@ -740,7 +739,7 @@ PolarSin2::PolarSin2 (double _tmin, double _tmax, double _dt,
                       double _vmin, double _vmax, double _dv):
         RealFunction ("Polar: r = sin (pi/3.*(t+u+v))",
                       _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
-    newParameterName("Phase");
+    declareParameter("Phase", 2.0);
     Initialize ();
 }
 
@@ -787,7 +786,7 @@ PolarR::PolarR (double _tmin, double _tmax, double _dt,
 		double _phase):
         RealFunction ("Polar: r = sqrt (t²+u²+v²)", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
   Phase (_phase) {
-      newParameterName("Phase");
+      declareParameter("Phase", 2.0);
   Initialize ();
 }
 

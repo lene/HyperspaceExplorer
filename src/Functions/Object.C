@@ -139,7 +139,7 @@ void Object::ReInit (double, double, double,
 Hypercube::Hypercube (double _a, const Vector<4> &_center):
         Object ("Hypercube", 16, 24),
     a (_a), center(_center) {
-    newParameterName("Size");
+    declareParameter("Size", 1.0);
     SingletonLog::Instance().log("Hypercube::Hypercube()");
     Initialize();
 }
@@ -211,9 +211,9 @@ Sponge::Sponge (unsigned level, int _distance, double _rad, Vector<4> _center):
     Level (level), distance(_distance), rad(_rad), center(_center) {
     functionName = "4-dimensional Menger Sponge";
     clearParameterNames();
-    newParameterName("Level");
-    newParameterName("Distance");
-    newParameterName("Size");
+    declareParameter("Level", 1);
+    declareParameter("Distance", 2);
+    declareParameter("Size", 0.8);
 
     Initialize();
 }
@@ -365,7 +365,7 @@ void Sponge::Draw (void) {
 Pyramid::Pyramid (double _a, const Vector<4> &_center):
     Object ("Hyperpyramid", 5, 10),
     center(_center), a (_a) {
-    newParameterName("Size");
+    declareParameter("Size", 1.0);
     Initialize();
 }
 
@@ -420,8 +420,8 @@ Gasket::Gasket (unsigned level, double _rad, Vector<4> _center):
     Level (level), rad(_rad), center(_center) {
     functionName = "4-dimensional Sierpinski Gasket";
     clearParameterNames();
-    newParameterName("Level");
-    newParameterName("Size");
+    declareParameter("Level", 3);
+    declareParameter("Size", 1.0);
     Initialize();
 }
 

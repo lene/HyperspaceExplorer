@@ -803,7 +803,7 @@ void C4DView::AssignValues (const std::auto_ptr<Function> &F) {
 
     if (!F->getFunctionName().isEmpty()) {
         setWindowTitle(F->getFunctionName());
-        Values->setFunction(F->getFunctionName());
+//        Values->setFunction(F->getFunctionName());
     }
 
     if (dynamic_cast<Object *>(F.get())) {
@@ -873,39 +873,39 @@ void C4DView::AssignValues (const std::auto_ptr<Function> &F) {
 
     if (!Parameter1.isEmpty()) {
         Values->aText (Parameter1);
-        Values->A->show();
-        Values->ALabel->show();
+        Values->A()->show();
+        Values->ALabel()->show();
     } else {
         Values->aText ("");
-        Values->A->hide();
-        Values->ALabel->hide();
+        Values->A()->hide();
+        Values->ALabel()->hide();
     }
     if (!Parameter2.isEmpty()) {
         Values->bText (Parameter2);
-        Values->B->show();
-        Values->BLabel->show();
+        Values->B()->show();
+        Values->BLabel()->show();
     } else {
         Values->bText ("");
-        Values->B->hide();
-        Values->BLabel->hide();
+        Values->B()->hide();
+        Values->BLabel()->hide();
     }
     if (!Parameter3.isEmpty()) {
         Values->cText (Parameter3);
-        Values->C->show();
-        Values->CLabel->show();
+        Values->C()->show();
+        Values->CLabel()->show();
     } else {
         Values->cText ("");
-        Values->C->hide();
-        Values->CLabel->hide();
+        Values->C()->hide();
+        Values->CLabel()->hide();
     }
     if (!Parameter4.isEmpty()) {
         Values->dText (Parameter4);
-        Values->D->show();
-        Values->DLabel->show();
+        Values->D()->show();
+        Values->DLabel()->show();
     } else {
         Values->dText ("");
-        Values->D->hide();
-        Values->DLabel->hide();
+        Values->D()->hide();
+        Values->DLabel()->hide();
     }
 
     Transform ();

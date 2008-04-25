@@ -14,37 +14,34 @@
 #include <qcombobox.h>
 #include <qlabel.h>
 #include <sstream>
+#include <iostream>
 #include <iomanip>
 
 #include "ValuesDialogImpl.H"
 
+#include "ParameterMap.H"
+
 using namespace std;
 
-ValuesDialogImpl::ValuesDialogImpl (QWidget *parent, Qt::WFlags f) :
-	QDialog (parent, f) {
-  setupUi(this);
-  /*
-  InsertFunction ("Fr3r");
-  InsertFunction ("Hypersphere");
-  InsertFunction ("Hypercube");
-  InsertFunction ("Torus1");
-  InsertFunction ("Torus2");
-  InsertFunction ("");
-  */
-  TSteps->setText (QString::number (TSlider->value ()));
-  USteps->setText (QString::number (USlider->value ()));
-  VSteps->setText (QString::number (VSlider->value ()));
+ValuesDialogImpl::ValuesDialogImpl(QWidget *parent, Qt::WFlags f) :
+    QDialog (parent, f) {
+    setupUi(this);
 
-  FunctionBox->hide();
-  TextLabel13->hide();
-  buttonOk->hide();
-  buttonCancel->hide();
-  
-  if (layout()) layout()->setSizeConstraint(QLayout::SetFixedSize);
+    TSteps->setText (QString::number (TSlider->value ()));
+    USteps->setText (QString::number (USlider->value ()));
+    VSteps->setText (QString::number (VSlider->value ()));
 
-  show ();
+    buttonOk->hide();
+    buttonCancel->hide();
+
+    if (layout()) layout()->setSizeConstraint(QLayout::SetFixedSize);
+
+    show ();
 }
 
+void ValuesDialogImpl::setParameters(const ParameterMap &parms) {
+    std::cerr << "ValuesDialogImpl::setParameters(" << parms.print() << ") not yet implemented!" << std::endl;
+}
 
 void ValuesDialogImpl::DisplayValues () {
   ostringstream o;
@@ -55,15 +52,8 @@ void ValuesDialogImpl::DisplayValues () {
     << "b     : " << b () << "\n"
     << "c     : " << c () << "\t"
     << "d     : " << d () << "\n\n"
-    << "f     : " << FunctionBox->currentText ().toStdString()
     << ends;
   QMessageBox::information (this, QString ("There you are:"), QString (o.str ().c_str ()));
-}
-
-int ValuesDialogImpl::InsertFunction (const QString &FuncName, int index) {
-    FunctionBox->insertItem (index, FuncName);
-  if (index < 0) return FunctionBox->count ();
-  else           return index;
 }
 
 void ValuesDialogImpl::CheckNumeric (const QString &) {
@@ -72,7 +62,6 @@ void ValuesDialogImpl::CheckNumeric (const QString &) {
 
 void ValuesDialogImpl::accept () {
   emit ApplyChanges ();
-  //  ValuesDialog::accept ();
 }
 
 
@@ -84,15 +73,15 @@ void ValuesDialogImpl::AlignValues(int v) {
 }
 
 void ValuesDialogImpl::aText (const QString &text) {
-  ALabel->setText (text);
+    ALabel()->setText (text);
 }
 void ValuesDialogImpl::bText (const QString &text) {
-  BLabel->setText (text);
+    BLabel()->setText (text);
 }
 void ValuesDialogImpl::cText (const QString &text) {
-  CLabel->setText (text);
+    CLabel()->setText (text);
 }
 void ValuesDialogImpl::dText (const QString &text) {
-  DLabel->setText (text);
+    DLabel()->setText (text);
 }
 

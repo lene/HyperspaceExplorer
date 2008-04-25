@@ -17,14 +17,18 @@
 #include <QLineEdit>
 #include <QComboBox>
 
-#include "ui_ValuesDialog.h"
+#include "ValuesDialog.H"
 
 #include "Log.H"
 
-/** A Dialog to enter parameters for the displayed function. \n
+class ParameterMap;
+
+/** A Dialog to enter parameters for the displayed function.
+ *
  *  These parameters encompass the definition space, the resolution of the
  *  grid on which the function's values are sampled and displayed, as well as
- *  parameters which are specific to the function. \n
+ *  parameters which are specific to the function.
+ *
  *  The switching on and off of input fields, depending on which function is
  *  selected, is done from C4DView. This is of course unfortunate and will be
  *  changed.
@@ -34,36 +38,40 @@ class ValuesDialogImpl: public QDialog, public Ui::ValuesDialog {
   Q_OBJECT
 
 public:
-  ValuesDialogImpl (QWidget *parent = 0, Qt::WFlags f = 0);
-  virtual ~ValuesDialogImpl() {}
+    ValuesDialogImpl(QWidget *parent = 0, Qt::WFlags f = 0);
+    virtual ~ValuesDialogImpl() {}
 
-  double tmin () { return atof (TMin->text ().toStdString().c_str()); }
-  double tmax () { return atof (TMax->text ().toStdString().c_str()); }
-  unsigned tsteps () { return TSlider->value (); }
-  double dt () { return (tmax ()-tmin ())/double (tsteps ()); }
+    void setParameters(const ParameterMap &);
+    
+    double tmin () { return atof (TMin->text ().toStdString().c_str()); }
+    double tmax () { return atof (TMax->text ().toStdString().c_str()); }
+    unsigned tsteps () { return TSlider->value (); }
+    double dt () { return (tmax ()-tmin ())/double (tsteps ()); }
 
-  double umin () { return atof (UMin->text ().toStdString().c_str()); }
-  double umax () { return atof (UMax->text ().toStdString().c_str()); }
-  unsigned usteps () { return USlider->value (); }
-  double du () { return (umax ()-umin ())/double (usteps ()); }
+    double umin () { return atof (UMin->text ().toStdString().c_str()); }
+    double umax () { return atof (UMax->text ().toStdString().c_str()); }
+    unsigned usteps () { return USlider->value (); }
+    double du () { return (umax ()-umin ())/double (usteps ()); }
 
-  double vmin () { return atof (VMin->text ().toStdString().c_str()); }
-  double vmax () { return atof (VMax->text ().toStdString().c_str()); }
-  unsigned vsteps () { return VSlider->value (); }
-  double dv () { return (vmax ()-vmin ())/double (vsteps ()); }
+    double vmin () { return atof (VMin->text ().toStdString().c_str()); }
+    double vmax () { return atof (VMax->text ().toStdString().c_str()); }
+    unsigned vsteps () { return VSlider->value (); }
+    double dv () { return (vmax ()-vmin ())/double (vsteps ()); }
 
-  double a () { return atof (A->text ().toStdString().c_str()); }
-  double b () { return atof (B->text ().toStdString().c_str()); }
-  double c () { return atof (C->text ().toStdString().c_str()); }
-  double d () { return atof (D->text ().toStdString().c_str()); }
+    QLineEdit *&A() { return Parameter[0]; }
+    QLineEdit *&B() { return Parameter[1]; }
+    QLineEdit *&C() { return Parameter[2]; }
+    QLineEdit *&D() { return Parameter[3]; }
 
-  int Function () { return FunctionBox->currentIndex(); }
-  QString FunctionName () { return FunctionBox->currentText (); }
-  void setFunction(const QString &f) {
-      SingletonLog::Instance() << "ValuesDialogImpl::setFunction("
-              << f.toStdString() <<") not yet implemented!\n";
-  }
-  int InsertFunction (const QString &FuncName, int index = -1);
+    QLabel *&ALabel() { return ParameterLabel[0]; }
+    QLabel *&BLabel() { return ParameterLabel[1]; }
+    QLabel *&CLabel() { return ParameterLabel[2]; }
+    QLabel *&DLabel() { return ParameterLabel[3]; }
+
+    double a () { return atof (A()->text ().toStdString().c_str()); }
+    double b () { return atof (B()->text ().toStdString().c_str()); }
+    double c () { return atof (C()->text ().toStdString().c_str()); }
+    double d () { return atof (D()->text ().toStdString().c_str()); }
 
 public slots:
   virtual void accept ();   //  reimplementation of ValuesDialog::accept ()

@@ -86,7 +86,6 @@ class Function {
         /// three-dimensional array of Vector<4>, implemented as a nested std::vector
         typedef std::vector<vec4vec2D> vec4vec3D;
         /// the container a function's parameters are stored in
-//        typedef std::map<std::string, FunctionParameter *> parameterMap;
 
         Function();
         Function (const QString &name,
@@ -124,6 +123,7 @@ class Function {
             return i < parameterNames.size()? parameterNames[i]: "";
         }
 
+        ParameterMap getParameters() { return parameters; }
         FunctionParameter *getParameter(QString name) {
             return parameters[name.toStdString()];
         }
@@ -163,16 +163,10 @@ class Function {
 
         virtual unsigned long MemRequired (void);
 
-        void newParameterName(QString n) { parameterNames.push_back(n); }
         void clearParameterNames() { parameterNames.clear(); }
         /// Add a parameter to the list of parameters
-        template <typename T> void insertParameter(const std::string _name,
-                                                   const T &_default) {
-            insertParameter(
-                std::make_pair(_name,
-                    ParameterFactory::Instance().
-                            createParameterWithDefault(_name, _default)));
-        }
+        template <typename T> void declareParameter(const std::string &,
+                                                    const T &);
 
         void addVertices(unsigned num) { NumVertices += num; }
 
@@ -210,6 +204,21 @@ class Function {
         std::vector<QString> parameterNames;
         ParameterMap parameters;
 };
+
+/// Add a parameter with a name and a default value to the parameter list
+template <typename T> inline
+        void Function::declareParameter(const std::string &_name,
+                                        const T &_default) {
+            //  temporary measure to avoid code breaking when newParameterName()
+            //  is replaced with declareParameter()
+            parameterNames.push_back(QString(_name.c_str()));
+            if (parameters.find(_name) == parameters.end()) {
+                insertParameter(
+                    std::make_pair(_name,
+                        ParameterFactory::Instance().
+                            createParameterWithDefault(_name, _default)));
+            }
+        }
 
 /// \em RealBase provides a base class for functions which take three parameters
 /** The \em RealBase interface provides abstract members for the evaluation of
