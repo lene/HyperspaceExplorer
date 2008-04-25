@@ -15,6 +15,7 @@
 #define FUNCTION_PARAMETER_H
 
 #include <string>
+#include <iostream>
 
 #include "SingletonHolder.H"
 
@@ -162,7 +163,9 @@ class FunctionParameter {
         ~FunctionParameter() { delete pImpl; }
 
         /// get the value if it is of type double
-        operator double() { return (double)(*(pImpl->value));}
+        operator double() {
+            return double(*(pImpl->value));
+        }
         /// get the value if it is of type unsigned
         operator unsigned() { return (unsigned)(*(pImpl->value));}
         /// get the value if it is of type int

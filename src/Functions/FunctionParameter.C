@@ -12,6 +12,19 @@
 
 #include "FunctionParameter.H"
 
+template<>
+    FunctionParameterValue<double>::FunctionParameterValue(const double &_value):
+        value(_value) {}
+template<>
+    FunctionParameterValue<unsigned>::FunctionParameterValue(const unsigned &_value):
+        value(_value) {}
+template<>
+    FunctionParameterValue<int>::FunctionParameterValue(const int &_value):
+        value(_value) {}
+template<>
+    FunctionParameterValue<std::string>::FunctionParameterValue(const std::string &_value):
+        value(_value) {}
+
 /// Specialization for type double
 template<> FunctionParameterValue<double>::operator double() {
     return (double)value;

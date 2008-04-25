@@ -407,9 +407,6 @@ void C4DView::ApplyChanges (void) {
     if (dynamic_cast<Hypersphere *>(F.get())) {
         cerr << "C4DView::ApplyChanges (): F is a Hypersphere!" << endl;
         ParameterMap temp("Radius", Values->a());
-/*        temp["Radius"] =
-                ParameterFactory::Instance().createParameterWithValue(
-                    "Radius", Values->a());*/
         dynamic_cast<Hypersphere *>(F.get())->SetParameters(temp);
     } else {
         F->SetParameters (Values->a (), Values->b (),

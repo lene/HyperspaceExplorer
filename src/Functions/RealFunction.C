@@ -328,14 +328,14 @@ Hypersphere::Hypersphere(double _tmin, double _tmax, double _dt,
 }
 
 void Hypersphere::SetParameters(const ParameterMap &parms) {
-    SingletonLog::Instance() << "Hypersphere::SetParameters(";
+    cerr<< "Hypersphere::SetParameters(";
     //  parms["Radius"].value must be set!
     for (ParameterMap::const_iterator i = parms.begin(); i != parms.end(); ++i) {
-        SingletonLog::Instance() << i->second->getName() << ", "
-                                 << double(*i->second);
+        cerr << i->second->getName() << ", " << i->second->operator double();
         if (i->second->getName() == "Radius") Radius = double(*i->second);
     }
-    SingletonLog::Instance() << ") \n";
+    cerr << ") \n";
+    std::cerr.flush();
 }
 
 /// Hypersphere defining function

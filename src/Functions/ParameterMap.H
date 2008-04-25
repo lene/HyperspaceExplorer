@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <map>
+#include <sstream>
 
 #include "FunctionParameter.H"
 #include "Log.H"
@@ -18,15 +19,13 @@ public:
     template<typename T1> ParameterMap(const std::string &_name1,
                                        const T1 &_value1):
             std::map<std::string, FunctionParameter *> () {
-        SingletonLog::Instance() << "ParameterMap::ParameterMap(" << _name1
-                                 << ", " << _value1 << ")\n";
         insertByValue(_name1, _value1);
     }
     ~ParameterMap() { }
 
     template <typename T> void insertByValue(const std::string _name,
                                              const T &_value) {
-            insert(
+        insert(
                 std::make_pair(_name,
                     ParameterFactory::Instance().
                             createParameterWithValue(_name, _value)));
@@ -38,6 +37,18 @@ public:
                     ParameterFactory::Instance().
                             createParameterWithDefault(_name, _default)));
         }
+    std::string print() {
+        std::ostringstream o;
+        o << "[\n";
+        for (std::map<std::string, FunctionParameter *>::const_iterator i = begin(); i != end(); ++i) {
+            o << i->first << ": \t"
+              << i->second->getName() << ", ";
+            o << double(*(i->second));
+            o << "\n";
+        }
+        o << "}\n" << std::ends;
+        return o.str();
+    }
 
 };
 
