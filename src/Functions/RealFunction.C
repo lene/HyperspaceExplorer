@@ -327,14 +327,15 @@ Hypersphere::Hypersphere(double _tmin, double _tmax, double _dt,
 }
 
 void Hypersphere::SetParameters(const ParameterMap &parms) {
-    cerr<< "Hypersphere::SetParameters(";
     //  parms["Radius"].value must be set!
+#if 1
+    cerr << "Hypersphere::SetParameters(" << parms.print() << ")" << endl;
     for (ParameterMap::const_iterator i = parms.begin(); i != parms.end(); ++i) {
-        cerr << i->second->getName() << ", " << i->second->operator double();
         if (i->second->getName() == "Radius") Radius = double(*i->second);
     }
-    cerr << ") \n";
-    std::cerr.flush();
+#else
+    setParameter(parms, this->Radius, "Radius");
+#endif
 }
 
 /// Hypersphere defining function

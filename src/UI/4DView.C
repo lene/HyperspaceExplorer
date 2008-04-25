@@ -404,7 +404,7 @@ void C4DView::AnimationSettings() {
 /** Sets the parameters, applies the changed parameters to the function object
  *  and redraws it                                                            */
 void C4DView::ApplyChanges (void) {
-    if (dynamic_cast<Hypersphere *>(F.get())) {
+/*    if (dynamic_cast<Hypersphere *>(F.get())) {
         cerr << "C4DView::ApplyChanges (): F is a Hypersphere!" << endl;
         ParameterMap temp("Radius", Values->a());
         dynamic_cast<Hypersphere *>(F.get())->SetParameters(temp);
@@ -412,7 +412,10 @@ void C4DView::ApplyChanges (void) {
         F->SetParameters (Values->a (), Values->b (),
                           Values->c (), Values->d ());
     }
-
+*/
+//    ParameterMap temp("Radius", Values->a());
+    cerr << Values->getParameters().print() << endl;
+    F.get()->SetParameters(Values->getParameters());
     SingletonLog::Instance() << "C4DView::ApplyChanges ():\n"
             << "Parameter A: " << Values->a () << "\t"
             << "Parameter B: " << Values->b () << "\n"
@@ -796,14 +799,13 @@ void C4DView::UpdateStatus (QString status) {
  *  parameters and grid parameters on the ValuesDialog
  *  @param F the Function object for which the ValuesDialog is changed        */
 void C4DView::AssignValues (const std::auto_ptr<Function> &F) {
-    QString Parameter1 = F->getParameterName(0);
-    QString Parameter2 = F->getParameterName(1);
-    QString Parameter3 = F->getParameterName(2);
-    QString Parameter4 = F->getParameterName(3);
+//     QString Parameter1 = F->getParameterName(0);
+//     QString Parameter2 = F->getParameterName(1);
+//     QString Parameter3 = F->getParameterName(2);
+//     QString Parameter4 = F->getParameterName(3);
 
     if (!F->getFunctionName().isEmpty()) {
         setWindowTitle(F->getFunctionName());
-//        Values->setFunction(F->getFunctionName());
     }
 
     if (dynamic_cast<Object *>(F.get())) {
@@ -864,13 +866,11 @@ void C4DView::AssignValues (const std::auto_ptr<Function> &F) {
         }
     }
 
-    if (dynamic_cast<Hypersphere *>(F.get())) {
-        cerr << "C4DView::AssignValues(): F is a Hypersphere!" << endl;
-    }
+    Values->setParameters(F->getParameters());
 
     if (F->getNumParameters() == 0) Values->functionLabel->hide();
     else Values->functionLabel->show();
-
+#if 0
     if (!Parameter1.isEmpty()) {
         Values->aText (Parameter1);
         Values->A()->show();
@@ -907,7 +907,7 @@ void C4DView::AssignValues (const std::auto_ptr<Function> &F) {
         Values->D()->hide();
         Values->DLabel()->hide();
     }
-
+#endif
     Transform ();
 
     ColMgrMgr::Instance().setFunction(F.get());

@@ -76,19 +76,8 @@ public:
     QLabel *functionLabel;
     QLabel *ParameterLabel[4];
     QLineEdit *Parameter[4];
-/*
-    QLabel *ALabel;
-    QLineEdit *A;
-    QLabel *BLabel;
-    QLineEdit *B;
-    QLabel *CLabel;
-    QLineEdit *C;
-    QLabel *DLabel;
-    QLineEdit *D;
-*/
+
     QPushButton *buttonApply;
-    QPushButton *buttonOk;
-    QPushButton *buttonCancel;
 
     void setupUi(QDialog *ValuesDialog)
     {
@@ -433,23 +422,6 @@ public:
     buttonApply->setAutoDefault(true);
 
     hboxLayout19->addWidget(buttonApply);
-
-    buttonOk = new QPushButton(ValuesDialog);
-    buttonOk->setObjectName(QString::fromUtf8("buttonOk"));
-    buttonOk->setEnabled(false);
-    buttonOk->setAutoDefault(true);
-    buttonOk->setDefault(true);
-
-    hboxLayout19->addWidget(buttonOk);
-
-    buttonCancel = new QPushButton(ValuesDialog);
-    buttonCancel->setObjectName(QString::fromUtf8("buttonCancel"));
-    buttonCancel->setEnabled(false);
-    buttonCancel->setAutoDefault(true);
-
-    hboxLayout19->addWidget(buttonCancel);
-
-
     gridLayout->addLayout(hboxLayout19, 5, 0, 1, 1);
 
     QWidget::setTabOrder(TSlider, TMin);
@@ -465,15 +437,12 @@ public:
     QWidget::setTabOrder(Parameter[1], Parameter[2]);
     QWidget::setTabOrder(Parameter[2], Parameter[3]);
     QWidget::setTabOrder(Parameter[3], buttonApply);
-//    QWidget::setTabOrder(buttonApply, buttonOk);
-//    QWidget::setTabOrder(buttonOk, buttonCancel);
 
     retranslateUi(ValuesDialog);
     QObject::connect(TSlider, SIGNAL(valueChanged(int)), TSteps, SLOT(setNum(int)));
     QObject::connect(USlider, SIGNAL(valueChanged(int)), USteps, SLOT(setNum(int)));
     QObject::connect(VSlider, SIGNAL(valueChanged(int)), VSteps, SLOT(setNum(int)));
     QObject::connect(buttonApply, SIGNAL(clicked()), ValuesDialog, SLOT(accept()));
-    QObject::connect(buttonOk, SIGNAL(clicked()), ValuesDialog, SLOT(accept()));
     QObject::connect(TSlider, SIGNAL(valueChanged(int)), USlider, SLOT(setValue(int)));
     QObject::connect(TSlider, SIGNAL(valueChanged(int)), VSlider, SLOT(setValue(int)));
     QObject::connect(USlider, SIGNAL(valueChanged(int)), VSlider, SLOT(setValue(int)));
@@ -522,10 +491,6 @@ public:
     Parameter[3]->setText(QApplication::translate("ValuesDialog", "0", 0, QApplication::UnicodeUTF8));
     buttonApply->setToolTip(QApplication::translate("ValuesDialog", "Accept changes and redraw", 0, QApplication::UnicodeUTF8));
     buttonApply->setText(QApplication::translate("ValuesDialog", "&Apply", 0, QApplication::UnicodeUTF8));
-    buttonOk->setToolTip(QApplication::translate("ValuesDialog", "Apply changes, redraw and close this window", 0, QApplication::UnicodeUTF8));
-    buttonOk->setText(QApplication::translate("ValuesDialog", "&OK", 0, QApplication::UnicodeUTF8));
-    buttonCancel->setToolTip(QApplication::translate("ValuesDialog", "Discard changes", 0, QApplication::UnicodeUTF8));
-    buttonCancel->setText(QApplication::translate("ValuesDialog", "&Cancel", 0, QApplication::UnicodeUTF8));
     Q_UNUSED(ValuesDialog);
     } // retranslateUi
 

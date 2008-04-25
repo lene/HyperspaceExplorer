@@ -118,6 +118,20 @@ class Torus1: public RealFunction {
         virtual void SetParameters (double _a = 0, double _b = 0,
                                     double _c = 0, double = 0) {
                                         R = _a; r = _b; rho = _c; }
+        virtual void SetParameters(const ParameterMap &parms) {
+    //  parms["Radius"].value must be set!
+#if 1
+    for (ParameterMap::const_iterator i = parms.begin(); i != parms.end(); ++i) {
+        if (i->second->getName() == "Major Radius") R = double(*i->second);
+        if (i->second->getName() == "Minor Radius") r = double(*i->second);
+        if (i->second->getName() == "Micro Radius") rho = double(*i->second);
+    }
+#else
+    setParameter(parms, this->R, "Major Radius");
+    setParameter(parms, this->r, "Minor Radius");
+    setParameter(parms, this->rho, "Micro Radius");
+#endif
+}
 
     protected:
         virtual function_type f;

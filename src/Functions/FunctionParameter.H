@@ -94,6 +94,8 @@ class FunctionParameterValueBase {
         virtual void setValue(const unsigned &) { }     ///< set an unsigned parm
         virtual void setValue(const int &) { }          ///< set an int parm
         virtual void setValue(const std::string &) { }  ///< set a string parm
+        
+        virtual void setValue(const char *) = 0;
 
         virtual operator double() = 0;                  ///< get a double parm
         virtual operator unsigned() = 0;                ///< get an unsigned parm
@@ -120,7 +122,12 @@ template <typename T> class FunctionParameterValue:
 
 //      getValue() is never used. But it seems to make sense to declare it...
 //      virtual const T &getValue() const { return value; }
-        virtual void setValue(const T &_value) { value = _value; }
+        virtual void setValue(const T &_value) {
+            value = _value;
+        }
+        /// Set a value from a string, as contained in a QLineEdit
+        virtual void setValue(const char *);
+
         /** default implementations for all cast operators that will be
          *  necessary in template instantiations. The concrete implementations
          *  will be defined in specializations.
@@ -192,6 +199,12 @@ class FunctionParameter {
         template<typename T> void setValue(FunctionParameterValue<T> *_value) {
             pImpl->value.reset(_value);
         }
+
+        /// Set a value from a string, as contained in a QLineEdit
+        void setValue(std::string _value) {
+            pImpl->value->setValue(_value.c_str());
+        }
+
         /// set the default value of the parameter.
         /** Requires a pointer created by
          *  ParameterFac::createParameterWithDefault().
@@ -204,10 +217,6 @@ class FunctionParameter {
 
     private:
         //  these accessors are never used, but i like to keep them around
-//         std::string &name() { return pImpl->name; }
-//         std::string &name() const { return pImpl->name; }
-//         std::string &description() { return pImpl->description; }
-//         std::string &description() const { return pImpl->description; }
 //         std::auto_ptr<FunctionParameterValueBase> value() {
 //             return pImpl->value;
 //         }
@@ -258,6 +267,7 @@ class ParameterFac {
                     const std::string &_description = "") {
             FunctionParameter *tmp = new FunctionParameter(_name, _description);
             tmp->setDefaultValue(new FunctionParameterValue<T>(_default));
+            tmp->setValue(new FunctionParameterValue<T>(_default));
 
             return tmp;
         }

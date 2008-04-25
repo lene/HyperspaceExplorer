@@ -20,8 +20,7 @@
 #include "ValuesDialog.H"
 
 #include "Log.H"
-
-class ParameterMap;
+#include "ParameterMap.H"
 
 /** A Dialog to enter parameters for the displayed function.
  *
@@ -35,61 +34,64 @@ class ParameterMap;
  *  \ingroup UIGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class ValuesDialogImpl: public QDialog, public Ui::ValuesDialog {
-  Q_OBJECT
+    Q_OBJECT
 
-public:
-    ValuesDialogImpl(QWidget *parent = 0, Qt::WFlags f = 0);
-    virtual ~ValuesDialogImpl() {}
+    public:
+        ValuesDialogImpl(QWidget *parent = 0, Qt::WFlags f = 0);
+        virtual ~ValuesDialogImpl() {}
 
-    void setParameters(const ParameterMap &);
-    
-    double tmin () { return atof (TMin->text ().toStdString().c_str()); }
-    double tmax () { return atof (TMax->text ().toStdString().c_str()); }
-    unsigned tsteps () { return TSlider->value (); }
-    double dt () { return (tmax ()-tmin ())/double (tsteps ()); }
+        void setParameters(const ParameterMap &);
+        const ParameterMap &getParameters() { return parameters; }
 
-    double umin () { return atof (UMin->text ().toStdString().c_str()); }
-    double umax () { return atof (UMax->text ().toStdString().c_str()); }
-    unsigned usteps () { return USlider->value (); }
-    double du () { return (umax ()-umin ())/double (usteps ()); }
+        double tmin () { return atof (TMin->text ().toStdString().c_str()); }
+        double tmax () { return atof (TMax->text ().toStdString().c_str()); }
+        unsigned tsteps () { return TSlider->value (); }
+        double dt () { return (tmax ()-tmin ())/double (tsteps ()); }
 
-    double vmin () { return atof (VMin->text ().toStdString().c_str()); }
-    double vmax () { return atof (VMax->text ().toStdString().c_str()); }
-    unsigned vsteps () { return VSlider->value (); }
-    double dv () { return (vmax ()-vmin ())/double (vsteps ()); }
+        double umin () { return atof (UMin->text ().toStdString().c_str()); }
+        double umax () { return atof (UMax->text ().toStdString().c_str()); }
+        unsigned usteps () { return USlider->value (); }
+        double du () { return (umax ()-umin ())/double (usteps ()); }
 
-    QLineEdit *&A() { return Parameter[0]; }
-    QLineEdit *&B() { return Parameter[1]; }
-    QLineEdit *&C() { return Parameter[2]; }
-    QLineEdit *&D() { return Parameter[3]; }
+        double vmin () { return atof (VMin->text ().toStdString().c_str()); }
+        double vmax () { return atof (VMax->text ().toStdString().c_str()); }
+        unsigned vsteps () { return VSlider->value (); }
+        double dv () { return (vmax ()-vmin ())/double (vsteps ()); }
 
-    QLabel *&ALabel() { return ParameterLabel[0]; }
-    QLabel *&BLabel() { return ParameterLabel[1]; }
-    QLabel *&CLabel() { return ParameterLabel[2]; }
-    QLabel *&DLabel() { return ParameterLabel[3]; }
+        QLineEdit *&A() { return Parameter[0]; }
+        QLineEdit *&B() { return Parameter[1]; }
+        QLineEdit *&C() { return Parameter[2]; }
+        QLineEdit *&D() { return Parameter[3]; }
 
-    double a () { return atof (A()->text ().toStdString().c_str()); }
-    double b () { return atof (B()->text ().toStdString().c_str()); }
-    double c () { return atof (C()->text ().toStdString().c_str()); }
-    double d () { return atof (D()->text ().toStdString().c_str()); }
+        QLabel *&ALabel() { return ParameterLabel[0]; }
+        QLabel *&BLabel() { return ParameterLabel[1]; }
+        QLabel *&CLabel() { return ParameterLabel[2]; }
+        QLabel *&DLabel() { return ParameterLabel[3]; }
 
-public slots:
-  virtual void accept ();   //  reimplementation of ValuesDialog::accept ()
+        double a () { return atof (A()->text ().toStdString().c_str()); }
+        double b () { return atof (B()->text ().toStdString().c_str()); }
+        double c () { return atof (C()->text ().toStdString().c_str()); }
+        double d () { return atof (D()->text ().toStdString().c_str()); }
 
-  virtual void DisplayValues ();
-  virtual void CheckNumeric (const QString &);
+    public slots:
+        virtual void accept ();   //  reimplementation of ValuesDialog::accept ()
 
-  virtual void aText (const QString &);
-  virtual void bText (const QString &);
-  virtual void cText (const QString &);
-  virtual void dText (const QString &);
+        virtual void DisplayValues ();
+        virtual void CheckNumeric (const QString &);
 
-protected slots:
-    virtual void AlignValues(int);
+        virtual void aText (const QString &);
+        virtual void bText (const QString &);
+        virtual void cText (const QString &);
+        virtual void dText (const QString &);
 
-signals:
-  void ApplyChanges ();
+    protected slots:
+        virtual void AlignValues(int);
 
+    signals:
+        void ApplyChanges ();
+
+    private:
+        ParameterMap parameters;
 };
 
 #endif

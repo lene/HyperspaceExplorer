@@ -29,7 +29,7 @@ Function::Function ():
     vmin (0),       vmax (0),       dv (0),
     tsteps (0), usteps (0), vsteps (0),
     F (),
-    functionName(""), parameterNames()
+    functionName("")//, parameterNames()
 { }
 
 
@@ -56,7 +56,7 @@ Function::Function (const QString &name,
     usteps (unsigned ((umax-umin)/du+1)),
     vsteps (unsigned ((vmax-vmin)/dv+1)),
     F (),
-    functionName(name), parameterNames(),
+    functionName(name),// parameterNames(),
     parameters(_parameters) {
     if (MemRequired () > Globals::Instance().getMaxMemory()) {
         cerr << "Using a " << tsteps << "x" << usteps << "x" << vsteps

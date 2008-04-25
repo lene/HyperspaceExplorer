@@ -210,7 +210,7 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
 Sponge::Sponge (unsigned level, int _distance, double _rad, Vector<4> _center):
     Level (level), distance(_distance), rad(_rad), center(_center) {
     functionName = "4-dimensional Menger Sponge";
-    clearParameterNames();
+//    clearParameterNames();
     declareParameter("Level", 1);
     declareParameter("Distance", 2);
     declareParameter("Size", 0.8);
@@ -419,7 +419,7 @@ void Pyramid::DeclareTriangle (unsigned i, unsigned a, unsigned b, unsigned c) {
 Gasket::Gasket (unsigned level, double _rad, Vector<4> _center):
     Level (level), rad(_rad), center(_center) {
     functionName = "4-dimensional Sierpinski Gasket";
-    clearParameterNames();
+//    clearParameterNames();
     declareParameter("Level", 3);
     declareParameter("Size", 1.0);
     Initialize();

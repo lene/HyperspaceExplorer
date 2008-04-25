@@ -109,23 +109,31 @@ class Function {
                             double _vmin, double _vmax, double _dv) = 0;
         virtual void SetParameters (double _a = 0, double _b = 0,
                                     double _c = 0, double _d = 0);
+        virtual void SetParameters(const ParameterMap &) {
+            std::cerr << "Function::SetParameters()" << std::endl;
+        }
 
         /** @return The name of the function in cleartext                     */
         QString getFunctionName() const { return functionName; }
         /** @return number of parameters for the function                     */
-        unsigned getNumParameters() { return parameterNames.size(); }
-        /** @return the names of the parameters for the function              */
-        std::vector<QString> getParameterNames() { return parameterNames; }
-        /// Get a specified parameter name from the list
-        /** @param i index of the wanted parameter
-         *  @return name of the ith parameter                                 */
-        QString getParameterName(unsigned i) {
-            return i < parameterNames.size()? parameterNames[i]: "";
-        }
+        unsigned getNumParameters() { return parameters.size(); }
 
         ParameterMap getParameters() { return parameters; }
         FunctionParameter *getParameter(QString name) {
             return parameters[name.toStdString()];
+        }
+
+        /// Set a parameter with a specified key from a supplied ParameterMap
+        template <typename T> void setParameter(const ParameterMap &parms,
+                                                T &parm,
+                                                const std::string &key) {
+            std::cerr<< "Function::SetParameter(";
+            for (ParameterMap::const_iterator i = parameters.begin();
+                 i != parms.end(); ++i) {
+                std::cerr << i->second->getName() << ", " << T(*(i->second));
+                if (i->second->getName() == key) parm = T(*(i->second));
+            }
+            std::cerr << ", " << parm << ", " << key << ") \n";
         }
 
         virtual unsigned getTsteps() const { return tsteps > 0? tsteps: 1; }
@@ -163,7 +171,7 @@ class Function {
 
         virtual unsigned long MemRequired (void);
 
-        void clearParameterNames() { parameterNames.clear(); }
+//        void clearParameterNames() { parameterNames.clear(); }
         /// Add a parameter to the list of parameters
         template <typename T> void declareParameter(const std::string &,
                                                     const T &);
@@ -201,7 +209,7 @@ class Function {
             parameters.insert(value);
         }
         /// list of the names of parameters to the function
-        std::vector<QString> parameterNames;
+//        std::vector<QString> parameterNames;
         ParameterMap parameters;
 };
 
@@ -211,7 +219,7 @@ template <typename T> inline
                                         const T &_default) {
             //  temporary measure to avoid code breaking when newParameterName()
             //  is replaced with declareParameter()
-            parameterNames.push_back(QString(_name.c_str()));
+//            parameterNames.push_back(QString(_name.c_str()));
             if (parameters.find(_name) == parameters.end()) {
                 insertParameter(
                     std::make_pair(_name,

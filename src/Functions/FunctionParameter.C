@@ -41,3 +41,21 @@ template<> FunctionParameterValue<int>::operator int() {
 template<> FunctionParameterValue<std::string>::operator std::string() {
     return (std::string)value;
 }
+
+template<>
+    void FunctionParameterValue<double>::setValue(const char * _value) {
+    value = atof(_value);
+}
+template<>
+    void FunctionParameterValue<unsigned>::setValue(const char * _value) {
+    value = atoi(_value);
+}
+template<>
+    void FunctionParameterValue<int>::setValue(const char * _value) {
+    value = atoi(_value);
+}
+template<>
+    void FunctionParameterValue<std::string>::setValue(const char * _value) {
+    value = _value;
+}
+

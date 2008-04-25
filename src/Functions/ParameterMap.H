@@ -42,11 +42,11 @@ public:
         o << "[\n";
         for (std::map<std::string, FunctionParameter *>::const_iterator i = begin(); i != end(); ++i) {
             o << i->first << ": \t"
-              << i->second->getName() << ", ";
+              << i->second->getName() << " = ";
             o << double(*(i->second));
             o << "\n";
         }
-        o << "}\n" << std::ends;
+        o << "]\n" << std::ends;
         return o.str();
     }
 

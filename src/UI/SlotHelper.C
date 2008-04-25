@@ -19,17 +19,17 @@
 void FunctionSlotHelper::slot() {
     view->F.reset(functionFactory->createFunction(view));
 
-    view->menu->updateFunctionMenu (view->F->getFunctionName());
-    view->AssignValues (view->F);
+    view->menu->updateFunctionMenu(view->F->getFunctionName());
+    view->AssignValues(view->F);
 
-    view->Redraw ();
+    view->Redraw();
 }
 
 /// Generalized slot. Sets C4DView::F to Surface associated with this SlotHelper
 void SurfaceSlotHelper::slot() {
     view->F.reset(surfaceFactory->createSurface(view));
 
-    view->menu->updateFunctionMenu (view->F->getFunctionName());
-    view->AssignValues (view->F);
-    view->Redraw ();
+    view->menu->updateFunctionMenu(view->F->getFunctionName());
+    view->AssignValues(view->F);
+    view->Redraw();
 }
