@@ -109,7 +109,18 @@ public:
 
     virtual void SetParameters (double _a = 0,
                                 double = 0, double = 0, double = 0) {
-        a = _a; }
+        a = _a;
+    }
+    virtual void SetParameters(const ParameterMap &parms) {
+#       if 1
+            for (ParameterMap::const_iterator i = parms.begin();
+                 i != parms.end(); ++i) {
+                if (i->second->getName() == "Size") a = double(*i->second);
+            }
+#       else
+            setParameter(parms, this->a, "Size");
+#       endif
+    }
 
     virtual std::string description () {
         std::ostringstream out;
@@ -177,6 +188,22 @@ public:
         distance = (int)_b;
         rad = _c;
     }
+    virtual void SetParameters(const ParameterMap &parms) {
+#       if 1
+            for (ParameterMap::const_iterator i = parms.begin();
+                 i != parms.end(); ++i) {
+                if (i->second->getName() == "Level")
+                    Level = unsigned(*i->second);
+                if (i->second->getName() == "Distance")
+                    distance = int(*i->second);
+                if (i->second->getName() == "Size")
+                    rad = double(*i->second);
+
+            }
+#       else
+            setParameter(parms, this->Phase, "Phase");
+#       endif
+        }
 
     /// Rebuild the Sponge if the parameters have changed
     virtual void ReInit (double, double, double,
@@ -217,11 +244,23 @@ public:
     Pyramid (): Object ("Hyperpyramid", 5, 10) {
         declareParameter("Size", 1.0);
     }
-    Pyramid (double _a, const VecMath::Vector<4> &_Center = VecMath::Vector<4> (0., 0., 0., 0.));
+    Pyramid (double _a,
+             const VecMath::Vector<4> &_Center = VecMath::Vector<4> (0., 0., 0., 0.));
     virtual ~Pyramid() { }
 
-    virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
+    virtual void SetParameters (double _a = 0, double = 0, double = 0,
+                                double = 0) {
         a = _a;
+    }
+    virtual void SetParameters(const ParameterMap &parms) {
+#       if 1
+        for (ParameterMap::const_iterator i = parms.begin();
+             i != parms.end(); ++i) {
+                 if (i->second->getName() == "Size") a = double(*i->second);
+             }
+#       else
+             setParameter(parms, this->a, "Size");
+#       endif
     }
 
 protected:
@@ -259,6 +298,20 @@ class Gasket: public Pyramid {
             Level = (unsigned)_a;
             rad = _b;
         }
+        virtual void SetParameters(const ParameterMap &parms) {
+#       if 1
+            for (ParameterMap::const_iterator i = parms.begin();
+                 i != parms.end(); ++i) {
+                if (i->second->getName() == "Level")
+                    Level = unsigned(*i->second);
+                if (i->second->getName() == "Size")
+                    rad = double(*i->second);
+            }
+#       else
+            setParameter(parms, this->Phase, "Phase");
+#       endif
+        }
+
         virtual void ReInit (double, double, double,
                              double, double, double,
                              double, double, double) {

@@ -404,18 +404,8 @@ void C4DView::AnimationSettings() {
 /** Sets the parameters, applies the changed parameters to the function object
  *  and redraws it                                                            */
 void C4DView::ApplyChanges (void) {
-/*    if (dynamic_cast<Hypersphere *>(F.get())) {
-        cerr << "C4DView::ApplyChanges (): F is a Hypersphere!" << endl;
-        ParameterMap temp("Radius", Values->a());
-        dynamic_cast<Hypersphere *>(F.get())->SetParameters(temp);
-    } else {
-        F->SetParameters (Values->a (), Values->b (),
-                          Values->c (), Values->d ());
-    }
-*/
-//    ParameterMap temp("Radius", Values->a());
-    cerr << Values->getParameters().print() << endl;
     F.get()->SetParameters(Values->getParameters());
+
     SingletonLog::Instance() << "C4DView::ApplyChanges ():\n"
             << "Parameter A: " << Values->a () << "\t"
             << "Parameter B: " << Values->b () << "\n"

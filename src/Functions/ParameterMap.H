@@ -41,7 +41,7 @@ public:
         std::ostringstream o;
         o << "[\n";
         for (std::map<std::string, FunctionParameter *>::const_iterator i = begin(); i != end(); ++i) {
-            o << i->first << ": \t"
+            o << "    " << i->first << ": \t"
               << i->second->getName() << " = ";
             o << double(*(i->second));
             o << "\n";

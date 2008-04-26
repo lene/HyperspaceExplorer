@@ -155,6 +155,21 @@ class Torus2: public RealFunction {
         virtual void SetParameters (double _a = 0, double _b = 0,
                                     double = 0, double = 0) {
                                         R = _a; r = _b; }
+        virtual void SetParameters(const ParameterMap &parms) {
+            //  parms["Radius"].value must be set!
+#if 1
+            for (ParameterMap::const_iterator i = parms.begin();
+                 i != parms.end(); ++i) {
+                if (i->second->getName() == "Major Radius")
+                    R = double(*i->second);
+                if (i->second->getName() == "Minor Radius")
+                    r = double(*i->second);
+            }
+#else
+            setParameter(parms, this->R, "Major Radius");
+            setParameter(parms, this->r, "Minor Radius");
+#endif
+        }
 
     protected:
         virtual function_type f;
@@ -180,8 +195,6 @@ class Fr3r: public RealFunction {
 
     protected:
         virtual function_type f;
-
-        double Radius;
 };
 
 
@@ -198,6 +211,18 @@ class GravitationPotential: public RealFunction {
         virtual ~GravitationPotential () { }
         virtual void SetParameters (double _a = 0, double _b = 0, double = 0, double = 0) {
             M = _a; R = _b;
+        }
+        virtual void SetParameters(const ParameterMap &parms) {
+#if 1
+            for (ParameterMap::const_iterator i = parms.begin();
+                 i != parms.end(); ++i) {
+                if (i->second->getName() == "M") M = double(*i->second);
+                if (i->second->getName() == "R") R = double(*i->second);
+            }
+#else
+            setParameter(parms, this->M, "M");
+            setParameter(parms, this->R, "R");
+#endif
         }
 
     protected:
@@ -264,8 +289,21 @@ class PolarSin: public RealFunction {
                   double _vmin, double _vmax, double _dv,
                   double _phase = 2);
         virtual ~PolarSin () { }
-        virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
-            Phase = _a; }
+        virtual void SetParameters (double _a = 0, double = 0, double = 0,
+                                    double = 0) {
+            Phase = _a;
+        }
+
+        virtual void SetParameters(const ParameterMap &parms) {
+#       if 1
+            for (ParameterMap::const_iterator i = parms.begin();
+                 i != parms.end(); ++i) {
+                if (i->second->getName() == "Phase") Phase = double(*i->second);
+            }
+#       else
+            setParameter(parms, this->Phase, "Phase");
+#       endif
+        }
 
     protected:
         virtual function_type f;
@@ -300,8 +338,21 @@ class PolarR: public RealFunction {
                 double _vmin, double _vmax, double _dv,
                 double _phase = 2);
         virtual ~PolarR () { }
-        virtual void SetParameters (double _a = 0, double = 0, double = 0, double = 0) {
-            Phase = _a; }
+        virtual void SetParameters (double _a = 0, double = 0, double = 0,
+                                    double = 0) {
+            Phase = _a;
+        }
+
+        virtual void SetParameters(const ParameterMap &parms) {
+#       if 1
+            for (ParameterMap::const_iterator i = parms.begin();
+                 i != parms.end(); ++i) {
+                if (i->second->getName() == "Phase") Phase = double(*i->second);
+            }
+#       else
+            setParameter(parms, this->Phase, "Phase");
+#       endif
+        }
 
     protected:
         virtual function_type f;

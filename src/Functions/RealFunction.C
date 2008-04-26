@@ -692,12 +692,13 @@ Vector<4> &Polar::f (double tt, double uu, double vv) {
  *  @param _phase	phase
  */
 PolarSin::PolarSin (double _tmin, double _tmax, double _dt,
-		    double _umin, double _umax, double _du,
-		    double _vmin, double _vmax, double _dv,
-		    double _phase):
+                    double _umin, double _umax, double _du,
+                    double _vmin, double _vmax, double _dv,
+                    double _phase):
         RealFunction ("Polar: r = 1/2+sin (Phase*pi*t*u*v)", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
-  Phase (_phase) {
-  Initialize ();
+    Phase (_phase) {
+    declareParameter("Phase", 2.0);
+    Initialize ();
 }
 
 /** PolarSin defining function
@@ -740,7 +741,6 @@ PolarSin2::PolarSin2 (double _tmin, double _tmax, double _dt,
                       double _vmin, double _vmax, double _dv):
         RealFunction ("Polar: r = sin (pi/3.*(t+u+v))",
                       _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
-    declareParameter("Phase", 2.0);
     Initialize ();
 }
 

@@ -81,6 +81,16 @@ class zA: public ComplexFunction {
                                    double = 0, double = 0, double = 0) {
            alpha = _a;
         }
+        virtual void SetParameters(const ParameterMap &parms) {
+#       if 1
+            for (ParameterMap::const_iterator i = parms.begin();
+                 i != parms.end(); ++i) {
+                if (i->second->getName() == "a") alpha = double(*i->second);
+            }
+#       else
+            setParameter(parms, this->Phase, "a");
+#       endif
+        }
 
     protected:
         virtual function_type g;
@@ -101,6 +111,16 @@ class ez: public ComplexFunction {
                                    double = 0, double = 0, double = 0) {
             alpha = _a;
         }
+        virtual void SetParameters(const ParameterMap &parms) {
+#       if 1
+            for (ParameterMap::const_iterator i = parms.begin();
+                 i != parms.end(); ++i) {
+                if (i->second->getName() == "a") alpha = double(*i->second);
+            }
+#       else
+            setParameter(parms, this->Phase, "a");
+#       endif
+        }
 
     protected:
         virtual function_type g;
@@ -120,6 +140,16 @@ class emz2: public ComplexFunction {
         virtual void SetParameters(double _a = 0,
                                    double = 0, double = 0, double = 0) {
            alpha = _a;
+        }
+        virtual void SetParameters(const ParameterMap &parms) {
+#       if 1
+            for (ParameterMap::const_iterator i = parms.begin();
+                 i != parms.end(); ++i) {
+                if (i->second->getName() == "a") alpha = double(*i->second);
+            }
+#       else
+            setParameter(parms, this->Phase, "a");
+#       endif
         }
 
     protected:
