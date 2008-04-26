@@ -32,7 +32,7 @@
 <a name="l00015"></a>00015 
 <a name="l00016"></a>00016 <span class="preprocessor">#include &lt;QString&gt;</span>
 <a name="l00017"></a>00017 
-<a name="l00018"></a>00018 <span class="preprocessor">#include "FunctionParameter.H"</span>
+<a name="l00018"></a>00018 <span class="preprocessor">#include "ParameterMap.H"</span>
 <a name="l00019"></a>00019 <span class="preprocessor">#include "Vector.H"</span>
 <a name="l00020"></a>00020 
 <a name="l00032"></a>00032 
@@ -50,159 +50,185 @@
 <a name="l00083"></a><a class="code" href="classFunction.html#67b6c27b652c41b419602713cd4d72b7">00083</a>         <span class="keyword">typedef</span> std::vector&lt;VecMath::Vector&lt;4&gt; &gt; <a class="code" href="classFunction.html#67b6c27b652c41b419602713cd4d72b7" title="one-dimensional array of Vector&amp;lt;4&amp;gt;, implemented as a std::vector">vec4vec1D</a>;
 <a name="l00085"></a><a class="code" href="classFunction.html#0c807fd0b7c98ca9c5052c15b3c817a3">00085</a>         <span class="keyword">typedef</span> std::vector&lt;vec4vec1D&gt; <a class="code" href="classFunction.html#0c807fd0b7c98ca9c5052c15b3c817a3" title="two-dimensional array of Vector&amp;lt;4&amp;gt;, implemented as a nested std::vector">vec4vec2D</a>;
 <a name="l00087"></a><a class="code" href="classFunction.html#fbc77cb3e6c8ca2c59225db92f5e420c">00087</a>         <span class="keyword">typedef</span> std::vector&lt;vec4vec2D&gt; <a class="code" href="classFunction.html#fbc77cb3e6c8ca2c59225db92f5e420c" title="three-dimensional array of Vector&amp;lt;4&amp;gt;, implemented as a nested std::vector">vec4vec3D</a>;
-<a name="l00089"></a><a class="code" href="classFunction.html#6957facb852e36f93672c86d2040097a">00089</a>         <span class="keyword">typedef</span> std::map&lt;std::string, FunctionParameter *&gt; <a class="code" href="classFunction.html#6957facb852e36f93672c86d2040097a" title="the container a function&amp;#39;s parameters are stored in">parameterMap</a>;
-<a name="l00090"></a>00090 
-<a name="l00091"></a>00091         <a class="code" href="classFunction.html#e206568fd4fd4c885e3ccff76345c4e6" title="Function default c&amp;#39;tor.">Function</a>();
-<a name="l00092"></a>00092         <a class="code" href="classFunction.html#e206568fd4fd4c885e3ccff76345c4e6" title="Function default c&amp;#39;tor.">Function</a> (<span class="keyword">const</span> QString &amp;name,
-<a name="l00093"></a>00093                   <span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
-<a name="l00094"></a>00094                   <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00095"></a>00095                   <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
-<a name="l00096"></a>00096                   <a class="code" href="classFunction.html#6957facb852e36f93672c86d2040097a" title="the container a function&amp;#39;s parameters are stored in">parameterMap</a> _parms = <a class="code" href="classFunction.html#6957facb852e36f93672c86d2040097a" title="the container a function&amp;#39;s parameters are stored in">parameterMap</a>());
-<a name="l00097"></a>00097         <span class="keyword">virtual</span> ~<a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a>() { }
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classFunction.html#42e2e15e46dc3c126a924ad7701ef69f" title="Overloaded function executing the transform to the default state.">Transform</a> (<span class="keywordtype">double</span> Rxy, <span class="keywordtype">double</span> Rxz, <span class="keywordtype">double</span> Rxw,
-<a name="l00100"></a>00100                                 <span class="keywordtype">double</span> Ryz, <span class="keywordtype">double</span> Ryw, <span class="keywordtype">double</span> Rzw,
-<a name="l00101"></a>00101                                 <span class="keywordtype">double</span> Tx, <span class="keywordtype">double</span> Ty, <span class="keywordtype">double</span> Tz, <span class="keywordtype">double</span> Tw) = 0;
-<a name="l00103"></a><a class="code" href="classFunction.html#42e2e15e46dc3c126a924ad7701ef69f">00103</a>         <span class="keywordtype">void</span> <a class="code" href="classFunction.html#42e2e15e46dc3c126a924ad7701ef69f" title="Overloaded function executing the transform to the default state.">Transform</a> (<span class="keywordtype">void</span>) { <a class="code" href="classFunction.html#42e2e15e46dc3c126a924ad7701ef69f" title="Overloaded function executing the transform to the default state.">Transform</a> (0, 0, 0, 0, 0, 0,  0, 0, 0, 0); }
-<a name="l00104"></a>00104 
-<a name="l00105"></a>00105         <span class="keyword">virtual</span> <span class="keywordtype">void</span> Project (<span class="keywordtype">double</span> ScrW, <span class="keywordtype">double</span> CamW, <span class="keywordtype">bool</span> DepthCue4D) = 0;
-<a name="l00106"></a>00106         <span class="keyword">virtual</span> <span class="keywordtype">void</span> Draw (<span class="keywordtype">void</span>) = 0;
-<a name="l00107"></a>00107 
-<a name="l00108"></a>00108         <span class="keyword">virtual</span> <span class="keywordtype">void</span> ReInit(<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
-<a name="l00109"></a>00109                             <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00110"></a>00110                             <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv) = 0;
-<a name="l00111"></a>00111         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classFunction.html#d718e144e4dadb18eeb5eebcc46ac3f5" title="Placeholder for function to set parameters in descendants.">SetParameters</a> (<span class="keywordtype">double</span> _a = 0, <span class="keywordtype">double</span> _b = 0,
-<a name="l00112"></a>00112                                     <span class="keywordtype">double</span> _c = 0, <span class="keywordtype">double</span> _d = 0);
-<a name="l00113"></a>00113 
-<a name="l00115"></a><a class="code" href="classFunction.html#d9d5798104590fa83ac7c43502a4ed72">00115</a>         QString <a class="code" href="classFunction.html#d9d5798104590fa83ac7c43502a4ed72">getFunctionName</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#e7491b1f17c6929f8716f07bfa5f2b46" title="the name of the function as a free-form string">functionName</a>; }
-<a name="l00117"></a><a class="code" href="classFunction.html#d18b0ec9865d28b35579cb3d908ef202">00117</a>         <span class="keywordtype">unsigned</span> <a class="code" href="classFunction.html#d18b0ec9865d28b35579cb3d908ef202">getNumParameters</a>() { <span class="keywordflow">return</span> <a class="code" href="classFunction.html#b51bc4eb3a16cd5073803509fc5a242e" title="list of the names of parameters to the function">parameterNames</a>.size(); }
-<a name="l00119"></a><a class="code" href="classFunction.html#55e3c5ac36b0597f9332287502fe07f8">00119</a>         std::vector&lt;QString&gt; <a class="code" href="classFunction.html#55e3c5ac36b0597f9332287502fe07f8">getParameterNames</a>() { <span class="keywordflow">return</span> <a class="code" href="classFunction.html#b51bc4eb3a16cd5073803509fc5a242e" title="list of the names of parameters to the function">parameterNames</a>; }
-<a name="l00121"></a>00121 
-<a name="l00123"></a><a class="code" href="classFunction.html#0a05df01c1ec8b0aa9a23a3551da3d53">00123</a>         QString <a class="code" href="classFunction.html#0a05df01c1ec8b0aa9a23a3551da3d53" title="Get a specified parameter name from the list.">getParameterName</a>(<span class="keywordtype">unsigned</span> i) {
-<a name="l00124"></a>00124             <span class="keywordflow">return</span> i &lt; <a class="code" href="classFunction.html#b51bc4eb3a16cd5073803509fc5a242e" title="list of the names of parameters to the function">parameterNames</a>.size()? <a class="code" href="classFunction.html#b51bc4eb3a16cd5073803509fc5a242e" title="list of the names of parameters to the function">parameterNames</a>[i]: <span class="stringliteral">""</span>;
-<a name="l00125"></a>00125         }
-<a name="l00126"></a>00126 
-<a name="l00127"></a>00127         <a class="code" href="classFunctionParameter.html" title="A parameter to a Function with a name, an optional description and a default.">FunctionParameter</a> *getParameter(QString name) {
-<a name="l00128"></a>00128             <span class="keywordflow">return</span> parameters[name.toStdString()];
-<a name="l00129"></a>00129         }
-<a name="l00130"></a>00130 
-<a name="l00131"></a>00131         <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> getTsteps()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#99b0bf62c51a77b25e0a1141a740dde6" title="number of steps in t">tsteps</a> &gt; 0? <a class="code" href="classFunction.html#99b0bf62c51a77b25e0a1141a740dde6" title="number of steps in t">tsteps</a>: 1; }
-<a name="l00132"></a>00132         <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> getUsteps()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#eec8fc2cf02bb1ddab2c333af7b0e720" title="number of steps in u">usteps</a> &gt; 0? <a class="code" href="classFunction.html#eec8fc2cf02bb1ddab2c333af7b0e720" title="number of steps in u">usteps</a>: 1; }
-<a name="l00133"></a>00133         <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> getVsteps()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#4dafffb2325a48316f08c70c34e1b0f8" title="number of steps in v">vsteps</a> &gt; 0? <a class="code" href="classFunction.html#4dafffb2325a48316f08c70c34e1b0f8" title="number of steps in v">vsteps</a>: 1; }
-<a name="l00134"></a>00134 
-<a name="l00135"></a>00135         <span class="keywordtype">double</span> &amp;getTmin() { <span class="keywordflow">return</span> <a class="code" href="classFunction.html#6fbe081f6df6800e076075f5ab4b964f" title="min. value of the first parameter, here called t">tmin</a>; }
-<a name="l00136"></a>00136         <span class="keyword">virtual</span> <span class="keywordtype">double</span> getTmin()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#6fbe081f6df6800e076075f5ab4b964f" title="min. value of the first parameter, here called t">tmin</a>; }
-<a name="l00137"></a>00137         <span class="keywordtype">double</span> &amp;getTmax() { <span class="keywordflow">return</span> <a class="code" href="classFunction.html#f135b0723892c79a2d0191f00e4ca8f9" title="min. value of the first parameter, here called t">tmax</a>; }
-<a name="l00138"></a>00138         <span class="keyword">virtual</span> <span class="keywordtype">double</span> getTmax()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#f135b0723892c79a2d0191f00e4ca8f9" title="min. value of the first parameter, here called t">tmax</a>; }
-<a name="l00139"></a>00139         <span class="keywordtype">double</span> &amp;getDt() { <span class="keywordflow">return</span> <a class="code" href="classFunction.html#a97d770719415f7023f04ada90a03576" title="stepsize in first parameter">dt</a>; }
-<a name="l00140"></a>00140         <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;getDt()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#a97d770719415f7023f04ada90a03576" title="stepsize in first parameter">dt</a>; }
-<a name="l00141"></a>00141         <span class="keywordtype">double</span> &amp;getUmin() { <span class="keywordflow">return</span> <a class="code" href="classFunction.html#c071319d6c2ef873f73f88fe952e3fa1" title="min. value of the second parameter, here called u">umin</a>; }
-<a name="l00142"></a>00142         <span class="keyword">virtual</span> <span class="keywordtype">double</span> getUmin()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#c071319d6c2ef873f73f88fe952e3fa1" title="min. value of the second parameter, here called u">umin</a>; }
-<a name="l00143"></a>00143         <span class="keywordtype">double</span> &amp;getUmax() { <span class="keywordflow">return</span> <a class="code" href="classFunction.html#07225eeeb1060365dd8675f4ebdc8332" title="min. value of the second parameter, here called u">umax</a>; }
-<a name="l00144"></a>00144         <span class="keyword">virtual</span> <span class="keywordtype">double</span> getUmax()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#07225eeeb1060365dd8675f4ebdc8332" title="min. value of the second parameter, here called u">umax</a>; }
-<a name="l00145"></a>00145         <span class="keywordtype">double</span> &amp;getDu() { <span class="keywordflow">return</span> <a class="code" href="classFunction.html#be75c0330aee2be564da236c2ad6af89" title="stepsize in second parameter">du</a>; }
-<a name="l00146"></a>00146         <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;getDu()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#be75c0330aee2be564da236c2ad6af89" title="stepsize in second parameter">du</a>; }
-<a name="l00147"></a>00147         <span class="keywordtype">double</span> &amp;getVmin() { <span class="keywordflow">return</span> <a class="code" href="classFunction.html#6636c1379de44f6087a135e6a47a1173" title="min. value of the third parameter, here called v">vmin</a>; }
-<a name="l00148"></a>00148         <span class="keyword">virtual</span> <span class="keywordtype">double</span> getVmin()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#6636c1379de44f6087a135e6a47a1173" title="min. value of the third parameter, here called v">vmin</a>; }
-<a name="l00149"></a>00149         <span class="keywordtype">double</span> &amp;getVmax() { <span class="keywordflow">return</span> <a class="code" href="classFunction.html#977fa459e3fb608ed60fb1b6446b6d07" title="min. value of the third parameter, here called v">vmax</a>; }
-<a name="l00150"></a>00150         <span class="keyword">virtual</span> <span class="keywordtype">double</span> getVmax()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#977fa459e3fb608ed60fb1b6446b6d07" title="min. value of the third parameter, here called v">vmax</a>; }
-<a name="l00151"></a>00151         <span class="keywordtype">double</span> &amp;getDv() { <span class="keywordflow">return</span> <a class="code" href="classFunction.html#0816edec47aa531c04a233208a0bb44b" title="stepsize in third parameter">dv</a>; }
-<a name="l00152"></a>00152         <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;getDv()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#0816edec47aa531c04a233208a0bb44b" title="stepsize in third parameter">dv</a>; }
-<a name="l00153"></a>00153 
-<a name="l00154"></a>00154     <span class="keyword">protected</span>:
-<a name="l00156"></a>00156         <span class="keyword">virtual</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;<a class="code" href="classFunction.html#68cf5a6e74a4f6a96893079ace0dc228" title="Function evaluation operator for three parameters.">operator () </a>(<span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>) = 0;
-<a name="l00157"></a>00157 
-<a name="l00158"></a>00158         <span class="keywordtype">void</span> setVertex(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;X, <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;3&gt;</a> &amp;Xscr);
-<a name="l00159"></a>00159 
-<a name="l00160"></a>00160         <span class="keyword">virtual</span> <a class="code" href="classFunction.html#67b6c27b652c41b419602713cd4d72b7" title="one-dimensional array of Vector&amp;lt;4&amp;gt;, implemented as a std::vector">vec4vec1D</a> <a class="code" href="classFunction.html#7e1d08b78b48b4be45772cec73b926ac" title="Numerical calculation of the derivatives in t, u and v.">df</a> (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>);
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090         <a class="code" href="classFunction.html#e206568fd4fd4c885e3ccff76345c4e6" title="the container a function&amp;#39;s parameters are stored in">Function</a>();
+<a name="l00091"></a>00091         <a class="code" href="classFunction.html#e206568fd4fd4c885e3ccff76345c4e6" title="the container a function&amp;#39;s parameters are stored in">Function</a> (<span class="keyword">const</span> QString &amp;name,
+<a name="l00092"></a>00092                   <span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
+<a name="l00093"></a>00093                   <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00094"></a>00094                   <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
+<a name="l00095"></a>00095                   <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> _parms = <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a>());
+<a name="l00096"></a>00096         <span class="keyword">virtual</span> ~<a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a>() { }
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classFunction.html#42e2e15e46dc3c126a924ad7701ef69f" title="Overloaded function executing the transform to the default state.">Transform</a> (<span class="keywordtype">double</span> Rxy, <span class="keywordtype">double</span> Rxz, <span class="keywordtype">double</span> Rxw,
+<a name="l00099"></a>00099                                 <span class="keywordtype">double</span> Ryz, <span class="keywordtype">double</span> Ryw, <span class="keywordtype">double</span> Rzw,
+<a name="l00100"></a>00100                                 <span class="keywordtype">double</span> Tx, <span class="keywordtype">double</span> Ty, <span class="keywordtype">double</span> Tz, <span class="keywordtype">double</span> Tw) = 0;
+<a name="l00102"></a><a class="code" href="classFunction.html#42e2e15e46dc3c126a924ad7701ef69f">00102</a>         <span class="keywordtype">void</span> <a class="code" href="classFunction.html#42e2e15e46dc3c126a924ad7701ef69f" title="Overloaded function executing the transform to the default state.">Transform</a> (<span class="keywordtype">void</span>) { <a class="code" href="classFunction.html#42e2e15e46dc3c126a924ad7701ef69f" title="Overloaded function executing the transform to the default state.">Transform</a> (0, 0, 0, 0, 0, 0,  0, 0, 0, 0); }
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104         <span class="keyword">virtual</span> <span class="keywordtype">void</span> Project (<span class="keywordtype">double</span> ScrW, <span class="keywordtype">double</span> CamW, <span class="keywordtype">bool</span> DepthCue4D) = 0;
+<a name="l00105"></a>00105         <span class="keyword">virtual</span> <span class="keywordtype">void</span> Draw (<span class="keywordtype">void</span>) = 0;
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107         <span class="keyword">virtual</span> <span class="keywordtype">void</span> ReInit(<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
+<a name="l00108"></a>00108                             <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00109"></a>00109                             <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv) = 0;
+<a name="l00110"></a>00110         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classFunction.html#d718e144e4dadb18eeb5eebcc46ac3f5" title="Placeholder for function to set parameters in descendants.">SetParameters</a> (<span class="keywordtype">double</span> _a = 0, <span class="keywordtype">double</span> _b = 0,
+<a name="l00111"></a>00111                                     <span class="keywordtype">double</span> _c = 0, <span class="keywordtype">double</span> _d = 0);
+<a name="l00112"></a>00112         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classFunction.html#d718e144e4dadb18eeb5eebcc46ac3f5" title="Placeholder for function to set parameters in descendants.">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;) {
+<a name="l00113"></a>00113             std::cerr &lt;&lt; <span class="stringliteral">"Function::SetParameters()"</span> &lt;&lt; std::endl;
+<a name="l00114"></a>00114         }
+<a name="l00115"></a>00115 
+<a name="l00117"></a><a class="code" href="classFunction.html#d9d5798104590fa83ac7c43502a4ed72">00117</a>         QString <a class="code" href="classFunction.html#d9d5798104590fa83ac7c43502a4ed72">getFunctionName</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#e7491b1f17c6929f8716f07bfa5f2b46" title="the name of the function as a free-form string">functionName</a>; }
+<a name="l00119"></a><a class="code" href="classFunction.html#d18b0ec9865d28b35579cb3d908ef202">00119</a>         <span class="keywordtype">unsigned</span> <a class="code" href="classFunction.html#d18b0ec9865d28b35579cb3d908ef202">getNumParameters</a>() { <span class="keywordflow">return</span> <a class="code" href="classFunction.html#df8416ce9302cb8d9fa27400cdaa7c3c" title="list of the names of parameters to the function">parameters</a>.size(); }
+<a name="l00120"></a>00120 
+<a name="l00121"></a>00121         <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> getParameters() { <span class="keywordflow">return</span> <a class="code" href="classFunction.html#df8416ce9302cb8d9fa27400cdaa7c3c" title="list of the names of parameters to the function">parameters</a>; }
+<a name="l00122"></a>00122         <a class="code" href="classFunctionParameter.html" title="A parameter to a Function with a name, an optional description and a default.">FunctionParameter</a> *getParameter(QString name) {
+<a name="l00123"></a>00123             <span class="keywordflow">return</span> <a class="code" href="classFunction.html#df8416ce9302cb8d9fa27400cdaa7c3c" title="list of the names of parameters to the function">parameters</a>[name.toStdString()];
+<a name="l00124"></a>00124         }
+<a name="l00125"></a>00125 
+<a name="l00127"></a><a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d">00127</a>         <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keywordtype">void</span> <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms,
+<a name="l00128"></a>00128                                                 T &amp;parm,
+<a name="l00129"></a>00129                                                 <span class="keyword">const</span> std::string &amp;key) {
+<a name="l00130"></a>00130             std::cerr&lt;&lt; <span class="stringliteral">"Function::SetParameter("</span>;
+<a name="l00131"></a>00131             <span class="keywordflow">for</span> (ParameterMap::const_iterator i = <a class="code" href="classFunction.html#df8416ce9302cb8d9fa27400cdaa7c3c" title="list of the names of parameters to the function">parameters</a>.begin();
+<a name="l00132"></a>00132                  i != parms.end(); ++i) {
+<a name="l00133"></a>00133                 std::cerr &lt;&lt; i-&gt;second-&gt;getName() &lt;&lt; <span class="stringliteral">", "</span> &lt;&lt; T(*(i-&gt;second));
+<a name="l00134"></a>00134                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == key) parm = T(*(i-&gt;second));
+<a name="l00135"></a>00135             }
+<a name="l00136"></a>00136             std::cerr &lt;&lt; <span class="stringliteral">", "</span> &lt;&lt; parm &lt;&lt; <span class="stringliteral">", "</span> &lt;&lt; key &lt;&lt; <span class="stringliteral">") \n"</span>;
+<a name="l00137"></a>00137         }
+<a name="l00138"></a>00138 
+<a name="l00139"></a>00139         <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> getTsteps()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#99b0bf62c51a77b25e0a1141a740dde6" title="number of steps in t">tsteps</a> &gt; 0? <a class="code" href="classFunction.html#99b0bf62c51a77b25e0a1141a740dde6" title="number of steps in t">tsteps</a>: 1; }
+<a name="l00140"></a>00140         <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> getUsteps()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#eec8fc2cf02bb1ddab2c333af7b0e720" title="number of steps in u">usteps</a> &gt; 0? <a class="code" href="classFunction.html#eec8fc2cf02bb1ddab2c333af7b0e720" title="number of steps in u">usteps</a>: 1; }
+<a name="l00141"></a>00141         <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> getVsteps()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#4dafffb2325a48316f08c70c34e1b0f8" title="number of steps in v">vsteps</a> &gt; 0? <a class="code" href="classFunction.html#4dafffb2325a48316f08c70c34e1b0f8" title="number of steps in v">vsteps</a>: 1; }
+<a name="l00142"></a>00142 
+<a name="l00143"></a>00143         <span class="keywordtype">double</span> &amp;getTmin() { <span class="keywordflow">return</span> <a class="code" href="classFunction.html#6fbe081f6df6800e076075f5ab4b964f" title="min. value of the first parameter, here called t">tmin</a>; }
+<a name="l00144"></a>00144         <span class="keyword">virtual</span> <span class="keywordtype">double</span> getTmin()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#6fbe081f6df6800e076075f5ab4b964f" title="min. value of the first parameter, here called t">tmin</a>; }
+<a name="l00145"></a>00145         <span class="keywordtype">double</span> &amp;getTmax() { <span class="keywordflow">return</span> <a class="code" href="classFunction.html#f135b0723892c79a2d0191f00e4ca8f9" title="min. value of the first parameter, here called t">tmax</a>; }
+<a name="l00146"></a>00146         <span class="keyword">virtual</span> <span class="keywordtype">double</span> getTmax()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#f135b0723892c79a2d0191f00e4ca8f9" title="min. value of the first parameter, here called t">tmax</a>; }
+<a name="l00147"></a>00147         <span class="keywordtype">double</span> &amp;getDt() { <span class="keywordflow">return</span> <a class="code" href="classFunction.html#a97d770719415f7023f04ada90a03576" title="stepsize in first parameter">dt</a>; }
+<a name="l00148"></a>00148         <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;getDt()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#a97d770719415f7023f04ada90a03576" title="stepsize in first parameter">dt</a>; }
+<a name="l00149"></a>00149         <span class="keywordtype">double</span> &amp;getUmin() { <span class="keywordflow">return</span> <a class="code" href="classFunction.html#c071319d6c2ef873f73f88fe952e3fa1" title="min. value of the second parameter, here called u">umin</a>; }
+<a name="l00150"></a>00150         <span class="keyword">virtual</span> <span class="keywordtype">double</span> getUmin()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#c071319d6c2ef873f73f88fe952e3fa1" title="min. value of the second parameter, here called u">umin</a>; }
+<a name="l00151"></a>00151         <span class="keywordtype">double</span> &amp;getUmax() { <span class="keywordflow">return</span> <a class="code" href="classFunction.html#07225eeeb1060365dd8675f4ebdc8332" title="min. value of the second parameter, here called u">umax</a>; }
+<a name="l00152"></a>00152         <span class="keyword">virtual</span> <span class="keywordtype">double</span> getUmax()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#07225eeeb1060365dd8675f4ebdc8332" title="min. value of the second parameter, here called u">umax</a>; }
+<a name="l00153"></a>00153         <span class="keywordtype">double</span> &amp;getDu() { <span class="keywordflow">return</span> <a class="code" href="classFunction.html#be75c0330aee2be564da236c2ad6af89" title="stepsize in second parameter">du</a>; }
+<a name="l00154"></a>00154         <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;getDu()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#be75c0330aee2be564da236c2ad6af89" title="stepsize in second parameter">du</a>; }
+<a name="l00155"></a>00155         <span class="keywordtype">double</span> &amp;getVmin() { <span class="keywordflow">return</span> <a class="code" href="classFunction.html#6636c1379de44f6087a135e6a47a1173" title="min. value of the third parameter, here called v">vmin</a>; }
+<a name="l00156"></a>00156         <span class="keyword">virtual</span> <span class="keywordtype">double</span> getVmin()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#6636c1379de44f6087a135e6a47a1173" title="min. value of the third parameter, here called v">vmin</a>; }
+<a name="l00157"></a>00157         <span class="keywordtype">double</span> &amp;getVmax() { <span class="keywordflow">return</span> <a class="code" href="classFunction.html#977fa459e3fb608ed60fb1b6446b6d07" title="min. value of the third parameter, here called v">vmax</a>; }
+<a name="l00158"></a>00158         <span class="keyword">virtual</span> <span class="keywordtype">double</span> getVmax()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#977fa459e3fb608ed60fb1b6446b6d07" title="min. value of the third parameter, here called v">vmax</a>; }
+<a name="l00159"></a>00159         <span class="keywordtype">double</span> &amp;getDv() { <span class="keywordflow">return</span> <a class="code" href="classFunction.html#0816edec47aa531c04a233208a0bb44b" title="stepsize in third parameter">dv</a>; }
+<a name="l00160"></a>00160         <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;getDv()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classFunction.html#0816edec47aa531c04a233208a0bb44b" title="stepsize in third parameter">dv</a>; }
 <a name="l00161"></a>00161 
-<a name="l00162"></a>00162         <span class="keyword">virtual</span> <span class="keywordtype">void</span> Initialize (<span class="keywordtype">void</span>) = 0;
-<a name="l00163"></a>00163 
-<a name="l00164"></a>00164         <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="classFunction.html#d6a10b999b0d561d36a473d461c62311">MemRequired</a> (<span class="keywordtype">void</span>);
+<a name="l00162"></a>00162     <span class="keyword">protected</span>:
+<a name="l00164"></a>00164         <span class="keyword">virtual</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;<a class="code" href="classFunction.html#68cf5a6e74a4f6a96893079ace0dc228" title="Function evaluation operator for three parameters.">operator () </a>(<span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>) = 0;
 <a name="l00165"></a>00165 
-<a name="l00166"></a>00166         <span class="keywordtype">void</span> newParameterName(QString n) { <a class="code" href="classFunction.html#b51bc4eb3a16cd5073803509fc5a242e" title="list of the names of parameters to the function">parameterNames</a>.push_back(n); }
-<a name="l00167"></a>00167         <span class="keywordtype">void</span> clearParameterNames() { <a class="code" href="classFunction.html#b51bc4eb3a16cd5073803509fc5a242e" title="list of the names of parameters to the function">parameterNames</a>.clear(); }
-<a name="l00168"></a>00168         <span class="keywordtype">void</span> insertParameter(
-<a name="l00169"></a>00169             <span class="keyword">const</span> std::pair&lt;std::string, FunctionParameter *&gt; &amp;value) {
-<a name="l00170"></a>00170             parameters.insert(value);
-<a name="l00171"></a>00171         }
-<a name="l00172"></a>00172         <span class="keywordtype">void</span> addVertices(<span class="keywordtype">unsigned</span> num) { NumVertices += num; }
+<a name="l00166"></a>00166         <span class="keywordtype">void</span> setVertex(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;X, <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;3&gt;</a> &amp;Xscr);
+<a name="l00167"></a>00167 
+<a name="l00168"></a>00168         <span class="keyword">virtual</span> <a class="code" href="classFunction.html#67b6c27b652c41b419602713cd4d72b7" title="one-dimensional array of Vector&amp;lt;4&amp;gt;, implemented as a std::vector">vec4vec1D</a> <a class="code" href="classFunction.html#7e1d08b78b48b4be45772cec73b926ac" title="Numerical calculation of the derivatives in t, u and v.">df</a> (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>);
+<a name="l00169"></a>00169 
+<a name="l00170"></a>00170         <span class="keyword">virtual</span> <span class="keywordtype">void</span> Initialize (<span class="keywordtype">void</span>) = 0;
+<a name="l00171"></a>00171 
+<a name="l00172"></a>00172         <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="classFunction.html#d6a10b999b0d561d36a473d461c62311">MemRequired</a> (<span class="keywordtype">void</span>);
 <a name="l00173"></a>00173 
-<a name="l00174"></a>00174     <span class="keyword">private</span>:
-<a name="l00175"></a>00175     <span class="keyword">protected</span>:  <span class="comment">//  only until I sorted out bad design in derived classes</span>
-<a name="l00176"></a><a class="code" href="classFunction.html#6636c1379de44f6087a135e6a47a1173">00176</a>         <span class="keywordtype">double</span> <a class="code" href="classFunction.html#6fbe081f6df6800e076075f5ab4b964f" title="min. value of the first parameter, here called t">tmin</a>, 
-<a name="l00177"></a>00177                <a class="code" href="classFunction.html#f135b0723892c79a2d0191f00e4ca8f9" title="min. value of the first parameter, here called t">tmax</a>, 
-<a name="l00178"></a>00178                <a class="code" href="classFunction.html#a97d770719415f7023f04ada90a03576" title="stepsize in first parameter">dt</a>,   
-<a name="l00179"></a>00179                <a class="code" href="classFunction.html#c071319d6c2ef873f73f88fe952e3fa1" title="min. value of the second parameter, here called u">umin</a>, 
-<a name="l00180"></a>00180                <a class="code" href="classFunction.html#07225eeeb1060365dd8675f4ebdc8332" title="min. value of the second parameter, here called u">umax</a>, 
-<a name="l00181"></a>00181                <a class="code" href="classFunction.html#be75c0330aee2be564da236c2ad6af89" title="stepsize in second parameter">du</a>,   
-<a name="l00182"></a>00182                <a class="code" href="classFunction.html#6636c1379de44f6087a135e6a47a1173" title="min. value of the third parameter, here called v">vmin</a>, 
-<a name="l00183"></a>00183                <a class="code" href="classFunction.html#977fa459e3fb608ed60fb1b6446b6d07" title="min. value of the third parameter, here called v">vmax</a>, 
-<a name="l00184"></a>00184                <a class="code" href="classFunction.html#0816edec47aa531c04a233208a0bb44b" title="stepsize in third parameter">dv</a>;   
-<a name="l00185"></a>00185 
-<a name="l00186"></a><a class="code" href="classFunction.html#4dafffb2325a48316f08c70c34e1b0f8">00186</a>         <span class="keywordtype">unsigned</span> <a class="code" href="classFunction.html#99b0bf62c51a77b25e0a1141a740dde6" title="number of steps in t">tsteps</a>, 
-<a name="l00187"></a>00187                  <a class="code" href="classFunction.html#eec8fc2cf02bb1ddab2c333af7b0e720" title="number of steps in u">usteps</a>, 
-<a name="l00188"></a>00188                  <a class="code" href="classFunction.html#4dafffb2325a48316f08c70c34e1b0f8" title="number of steps in v">vsteps</a>; 
-<a name="l00189"></a>00189 
-<a name="l00190"></a>00190     <span class="keyword">private</span>:  <span class="comment">//  only until I sorted out bad design in derived classes</span>
-<a name="l00192"></a><a class="code" href="classFunction.html#3805b737129fe652314bf2603c9b7855">00192</a> <span class="comment"></span>        <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> <a class="code" href="classFunction.html#3805b737129fe652314bf2603c9b7855" title="temporary storage for the value of the function at a given point">F</a>;
-<a name="l00193"></a>00193 
-<a name="l00194"></a>00194         <span class="keywordtype">unsigned</span> NumVertices;
-<a name="l00195"></a>00195 
-<a name="l00196"></a>00196     <span class="keyword">protected</span>:  <span class="comment">//  only until I sorted out bad design in derived classes</span>
-<a name="l00198"></a><a class="code" href="classFunction.html#e7491b1f17c6929f8716f07bfa5f2b46">00198</a> <span class="comment"></span>        QString <a class="code" href="classFunction.html#e7491b1f17c6929f8716f07bfa5f2b46" title="the name of the function as a free-form string">functionName</a>;
-<a name="l00199"></a>00199     <span class="keyword">private</span>:
-<a name="l00201"></a><a class="code" href="classFunction.html#b51bc4eb3a16cd5073803509fc5a242e">00201</a>         std::vector&lt;QString&gt; <a class="code" href="classFunction.html#b51bc4eb3a16cd5073803509fc5a242e" title="list of the names of parameters to the function">parameterNames</a>;
-<a name="l00202"></a>00202         <a class="code" href="classFunction.html#6957facb852e36f93672c86d2040097a" title="the container a function&amp;#39;s parameters are stored in">parameterMap</a> parameters;
-<a name="l00203"></a>00203 };
-<a name="l00204"></a>00204 
-<a name="l00206"></a>00206 
-<a name="l00219"></a><a class="code" href="classRealBase.html">00219</a> <span class="keyword">class </span><a class="code" href="classRealBase.html" title="RealBase provides a base class for functions which take three parameters">RealBase</a>: <span class="keyword">public</span> <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> {
-<a name="l00220"></a>00220     <span class="keyword">public</span>:
-<a name="l00223"></a>00223         <span class="keyword">typedef</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;<a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">function_type</a>(<span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>);
-<a name="l00225"></a>00225         <span class="keyword">typedef</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> <a class="code" href="classRealBase.html#5b57016405717bea79950aee2dc02255" title="the real, raw type of the function used to generate values">raw_function_type</a> (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>);
-<a name="l00226"></a>00226 
-<a name="l00227"></a>00227         <a class="code" href="classRealBase.html" title="RealBase provides a base class for functions which take three parameters">RealBase</a>() { }
-<a name="l00228"></a>00228         <a class="code" href="classRealBase.html" title="RealBase provides a base class for functions which take three parameters">RealBase</a>(<span class="keyword">const</span> QString &amp;name,
-<a name="l00229"></a>00229                  <span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
-<a name="l00230"></a>00230                  <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00231"></a>00231                  <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
-<a name="l00232"></a>00232                  <a class="code" href="classFunction.html#6957facb852e36f93672c86d2040097a" title="the container a function&amp;#39;s parameters are stored in">parameterMap</a> _parms = <a class="code" href="classFunction.html#6957facb852e36f93672c86d2040097a" title="the container a function&amp;#39;s parameters are stored in">parameterMap</a>()):
-<a name="l00233"></a>00233             <a class="code" href="classFunction.html#e206568fd4fd4c885e3ccff76345c4e6" title="Function default c&amp;#39;tor.">Function</a>(name, _tmin, _tmax, _dt, _umin, _umax, _du,
-<a name="l00234"></a>00234                      _vmin, _vmax, _dv, _parms) { }
-<a name="l00235"></a>00235     <span class="keyword">protected</span>:
-<a name="l00237"></a>00237         <span class="keyword">virtual</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;<a class="code" href="classRealBase.html#c2cd018b4108455a6daa23d78b2064a6" title="The mathematical function defining the Function object.">f</a>(<span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>) = 0;
-<a name="l00239"></a>00239 
-<a name="l00243"></a><a class="code" href="classRealBase.html#8f529fd1c84d703a9ca7e8d43a16a5fd">00243</a>         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;<a class="code" href="classRealBase.html#8f529fd1c84d703a9ca7e8d43a16a5fd" title="Function evaluation operator for three parameters.">operator () </a>(<span class="keywordtype">double</span> t, <span class="keywordtype">double</span> u, <span class="keywordtype">double</span> v) {
-<a name="l00244"></a>00244             <span class="keywordflow">return</span> <a class="code" href="classRealBase.html#c2cd018b4108455a6daa23d78b2064a6" title="The mathematical function defining the Function object.">f</a>(t,u,v);
-<a name="l00245"></a>00245         }
-<a name="l00246"></a>00246 };
-<a name="l00247"></a>00247 
-<a name="l00249"></a>00249 
-<a name="l00262"></a><a class="code" href="classSurfaceBase.html">00262</a> <span class="keyword">class </span><a class="code" href="classSurfaceBase.html" title="SurfaceBase provides a base class for functions which take two parameters">SurfaceBase</a>: <span class="keyword">public</span> <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> {
-<a name="l00263"></a>00263     <span class="keyword">public</span>:
-<a name="l00266"></a>00266         <span class="keyword">typedef</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;<a class="code" href="classSurfaceBase.html#02cf6fe2a88f04b0a81430b9050622f7">function_type</a>(<span class="keywordtype">double</span>, <span class="keywordtype">double</span>);
-<a name="l00268"></a>00268         <span class="keyword">typedef</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> <a class="code" href="classSurfaceBase.html#d2203f76756ba3478e3a73dc215fc06a" title="the real, raw type of the function used to generate values">raw_function_type</a> (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>);
-<a name="l00269"></a>00269 
-<a name="l00270"></a>00270         <a class="code" href="classSurfaceBase.html" title="SurfaceBase provides a base class for functions which take two parameters">SurfaceBase</a>() { }
-<a name="l00271"></a>00271         <a class="code" href="classSurfaceBase.html" title="SurfaceBase provides a base class for functions which take two parameters">SurfaceBase</a>(<span class="keyword">const</span> QString &amp;name,
-<a name="l00272"></a>00272                     <span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
-<a name="l00273"></a>00273                     <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00274"></a>00274                     <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv):
-<a name="l00275"></a>00275             <a class="code" href="classFunction.html#e206568fd4fd4c885e3ccff76345c4e6" title="Function default c&amp;#39;tor.">Function</a>(name, _tmin, _tmax, _dt, _umin, _umax, _du,
-<a name="l00276"></a>00276                                _vmin, _vmax, _dv) { }
-<a name="l00277"></a>00277     <span class="keyword">protected</span>:
-<a name="l00279"></a>00279         <span class="keyword">virtual</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;<a class="code" href="classSurfaceBase.html#ba6ce6327e509663e484560f849d03f1" title="The mathematical function defining the Function object.">f</a>(<span class="keywordtype">double</span>, <span class="keywordtype">double</span>) = 0;
-<a name="l00281"></a>00281 
-<a name="l00285"></a><a class="code" href="classSurfaceBase.html#279eefbc9e2d3733eeae5dee35a62f0b">00285</a>         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;<a class="code" href="classSurfaceBase.html#279eefbc9e2d3733eeae5dee35a62f0b" title="Function evaluation operator for three parameters.">operator () </a>(<span class="keywordtype">double</span> u, <span class="keywordtype">double</span> v, <span class="keywordtype">double</span> = 0) {
-<a name="l00286"></a>00286             <span class="keywordflow">return</span> <a class="code" href="classSurfaceBase.html#ba6ce6327e509663e484560f849d03f1" title="The mathematical function defining the Function object.">f</a>(u,v);
-<a name="l00287"></a>00287         }
-<a name="l00288"></a>00288 
-<a name="l00289"></a>00289 };
-<a name="l00290"></a>00290 
-<a name="l00291"></a>00291 <span class="preprocessor">#endif</span>
+<a name="l00174"></a>00174 <span class="comment">//        void clearParameterNames() { parameterNames.clear(); }</span>
+<a name="l00176"></a>00176 <span class="comment"></span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keywordtype">void</span> <a class="code" href="classFunction.html#a490e914a7cd65862ba7956fd558553e" title="Add a parameter to the list of parameters.">declareParameter</a>(<span class="keyword">const</span> std::string &amp;,
+<a name="l00177"></a>00177                                                     <span class="keyword">const</span> T &amp;);
+<a name="l00178"></a>00178 
+<a name="l00179"></a>00179         <span class="keywordtype">void</span> addVertices(<span class="keywordtype">unsigned</span> num) { NumVertices += num; }
+<a name="l00180"></a>00180 
+<a name="l00181"></a>00181     <span class="keyword">private</span>:
+<a name="l00182"></a>00182     <span class="keyword">protected</span>:  <span class="comment">//  only until I sorted out bad design in derived classes</span>
+<a name="l00183"></a><a class="code" href="classFunction.html#6636c1379de44f6087a135e6a47a1173">00183</a>         <span class="keywordtype">double</span> <a class="code" href="classFunction.html#6fbe081f6df6800e076075f5ab4b964f" title="min. value of the first parameter, here called t">tmin</a>, 
+<a name="l00184"></a>00184                <a class="code" href="classFunction.html#f135b0723892c79a2d0191f00e4ca8f9" title="min. value of the first parameter, here called t">tmax</a>, 
+<a name="l00185"></a>00185                <a class="code" href="classFunction.html#a97d770719415f7023f04ada90a03576" title="stepsize in first parameter">dt</a>,   
+<a name="l00186"></a>00186                <a class="code" href="classFunction.html#c071319d6c2ef873f73f88fe952e3fa1" title="min. value of the second parameter, here called u">umin</a>, 
+<a name="l00187"></a>00187                <a class="code" href="classFunction.html#07225eeeb1060365dd8675f4ebdc8332" title="min. value of the second parameter, here called u">umax</a>, 
+<a name="l00188"></a>00188                <a class="code" href="classFunction.html#be75c0330aee2be564da236c2ad6af89" title="stepsize in second parameter">du</a>,   
+<a name="l00189"></a>00189                <a class="code" href="classFunction.html#6636c1379de44f6087a135e6a47a1173" title="min. value of the third parameter, here called v">vmin</a>, 
+<a name="l00190"></a>00190                <a class="code" href="classFunction.html#977fa459e3fb608ed60fb1b6446b6d07" title="min. value of the third parameter, here called v">vmax</a>, 
+<a name="l00191"></a>00191                <a class="code" href="classFunction.html#0816edec47aa531c04a233208a0bb44b" title="stepsize in third parameter">dv</a>;   
+<a name="l00192"></a>00192 
+<a name="l00193"></a><a class="code" href="classFunction.html#4dafffb2325a48316f08c70c34e1b0f8">00193</a>         <span class="keywordtype">unsigned</span> <a class="code" href="classFunction.html#99b0bf62c51a77b25e0a1141a740dde6" title="number of steps in t">tsteps</a>, 
+<a name="l00194"></a>00194                  <a class="code" href="classFunction.html#eec8fc2cf02bb1ddab2c333af7b0e720" title="number of steps in u">usteps</a>, 
+<a name="l00195"></a>00195                  <a class="code" href="classFunction.html#4dafffb2325a48316f08c70c34e1b0f8" title="number of steps in v">vsteps</a>; 
+<a name="l00196"></a>00196 
+<a name="l00197"></a>00197     <span class="keyword">private</span>:  <span class="comment">//  only until I sorted out bad design in derived classes</span>
+<a name="l00199"></a><a class="code" href="classFunction.html#3805b737129fe652314bf2603c9b7855">00199</a> <span class="comment"></span>        <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> <a class="code" href="classFunction.html#3805b737129fe652314bf2603c9b7855" title="temporary storage for the value of the function at a given point">F</a>;
+<a name="l00200"></a>00200 
+<a name="l00201"></a>00201         <span class="keywordtype">unsigned</span> NumVertices;
+<a name="l00202"></a>00202 
+<a name="l00203"></a>00203     <span class="keyword">protected</span>:  <span class="comment">//  only until I sorted out bad design in derived classes</span>
+<a name="l00205"></a><a class="code" href="classFunction.html#e7491b1f17c6929f8716f07bfa5f2b46">00205</a> <span class="comment"></span>        QString <a class="code" href="classFunction.html#e7491b1f17c6929f8716f07bfa5f2b46" title="the name of the function as a free-form string">functionName</a>;
+<a name="l00206"></a>00206     <span class="keyword">private</span>:
+<a name="l00207"></a>00207         <span class="keywordtype">void</span> insertParameter(
+<a name="l00208"></a>00208             <span class="keyword">const</span> std::pair&lt;std::string, FunctionParameter *&gt; &amp;value) {
+<a name="l00209"></a>00209             <a class="code" href="classFunction.html#df8416ce9302cb8d9fa27400cdaa7c3c" title="list of the names of parameters to the function">parameters</a>.insert(value);
+<a name="l00210"></a>00210         }
+<a name="l00212"></a>00212 <span class="comment">//        std::vector&lt;QString&gt; parameterNames;</span>
+<a name="l00213"></a><a class="code" href="classFunction.html#df8416ce9302cb8d9fa27400cdaa7c3c">00213</a>         <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> <a class="code" href="classFunction.html#df8416ce9302cb8d9fa27400cdaa7c3c" title="list of the names of parameters to the function">parameters</a>;
+<a name="l00214"></a>00214 };
+<a name="l00215"></a>00215 
+<a name="l00217"></a>00217 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">inline</span>
+<a name="l00218"></a><a class="code" href="classFunction.html#a490e914a7cd65862ba7956fd558553e">00218</a>         <span class="keywordtype">void</span> <a class="code" href="classFunction.html#a490e914a7cd65862ba7956fd558553e" title="Add a parameter to the list of parameters.">Function::declareParameter</a>(<span class="keyword">const</span> std::string &amp;_name,
+<a name="l00219"></a>00219                                         <span class="keyword">const</span> T &amp;_default) {
+<a name="l00220"></a>00220             <span class="comment">//  temporary measure to avoid code breaking when newParameterName()</span>
+<a name="l00221"></a>00221             <span class="comment">//  is replaced with declareParameter()</span>
+<a name="l00222"></a>00222 <span class="comment">//            parameterNames.push_back(QString(_name.c_str()));</span>
+<a name="l00223"></a>00223             <span class="keywordflow">if</span> (<a class="code" href="classFunction.html#df8416ce9302cb8d9fa27400cdaa7c3c" title="list of the names of parameters to the function">parameters</a>.find(_name) == <a class="code" href="classFunction.html#df8416ce9302cb8d9fa27400cdaa7c3c" title="list of the names of parameters to the function">parameters</a>.end()) {
+<a name="l00224"></a>00224                 insertParameter(
+<a name="l00225"></a>00225                     std::make_pair(_name,
+<a name="l00226"></a>00226                         <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">ParameterFactory::Instance</a>().
+<a name="l00227"></a>00227                             createParameterWithDefault(_name, _default)));
+<a name="l00228"></a>00228             }
+<a name="l00229"></a>00229         }
+<a name="l00230"></a>00230 
+<a name="l00232"></a>00232 
+<a name="l00245"></a><a class="code" href="classRealBase.html">00245</a> <span class="keyword">class </span><a class="code" href="classRealBase.html" title="RealBase provides a base class for functions which take three parameters">RealBase</a>: <span class="keyword">public</span> <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> {
+<a name="l00246"></a>00246     <span class="keyword">public</span>:
+<a name="l00249"></a>00249         <span class="keyword">typedef</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;function_type(<span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>);
+<a name="l00251"></a>00251         <span class="keyword">typedef</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> raw_function_type (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>);
+<a name="l00252"></a>00252 
+<a name="l00253"></a>00253         <a class="code" href="classRealBase.html" title="RealBase provides a base class for functions which take three parameters">RealBase</a>() { }
+<a name="l00254"></a>00254         <a class="code" href="classRealBase.html" title="RealBase provides a base class for functions which take three parameters">RealBase</a>(<span class="keyword">const</span> QString &amp;name,
+<a name="l00255"></a>00255                  <span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
+<a name="l00256"></a>00256                  <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00257"></a>00257                  <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
+<a name="l00258"></a>00258                  <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> _parms = <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a>()):
+<a name="l00259"></a>00259             <a class="code" href="classFunction.html#e206568fd4fd4c885e3ccff76345c4e6" title="the container a function&amp;#39;s parameters are stored in">Function</a>(name, _tmin, _tmax, _dt, _umin, _umax, _du,
+<a name="l00260"></a>00260                      _vmin, _vmax, _dv, _parms) { }
+<a name="l00261"></a>00261     <span class="keyword">protected</span>:
+<a name="l00263"></a>00263         <span class="keyword">virtual</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;f(<span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>) = 0;
+<a name="l00265"></a>00265 
+<a name="l00269"></a><a class="code" href="classRealBase.html#8f529fd1c84d703a9ca7e8d43a16a5fd">00269</a>         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;<a class="code" href="classFunction.html#68cf5a6e74a4f6a96893079ace0dc228" title="Function evaluation operator for three parameters.">operator () </a>(<span class="keywordtype">double</span> t, <span class="keywordtype">double</span> u, <span class="keywordtype">double</span> v) {
+<a name="l00270"></a>00270             <span class="keywordflow">return</span> f(t,u,v);
+<a name="l00271"></a>00271         }
+<a name="l00272"></a>00272 };
+<a name="l00273"></a>00273 
+<a name="l00275"></a>00275 
+<a name="l00288"></a><a class="code" href="classSurfaceBase.html">00288</a> <span class="keyword">class </span><a class="code" href="classSurfaceBase.html" title="SurfaceBase provides a base class for functions which take two parameters">SurfaceBase</a>: <span class="keyword">public</span> <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> {
+<a name="l00289"></a>00289     <span class="keyword">public</span>:
+<a name="l00292"></a>00292         <span class="keyword">typedef</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;function_type(<span class="keywordtype">double</span>, <span class="keywordtype">double</span>);
+<a name="l00294"></a>00294         <span class="keyword">typedef</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> raw_function_type (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>);
+<a name="l00295"></a>00295 
+<a name="l00296"></a>00296         <a class="code" href="classSurfaceBase.html" title="SurfaceBase provides a base class for functions which take two parameters">SurfaceBase</a>() { }
+<a name="l00297"></a>00297         <a class="code" href="classSurfaceBase.html" title="SurfaceBase provides a base class for functions which take two parameters">SurfaceBase</a>(<span class="keyword">const</span> QString &amp;name,
+<a name="l00298"></a>00298                     <span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
+<a name="l00299"></a>00299                     <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00300"></a>00300                     <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv):
+<a name="l00301"></a>00301             <a class="code" href="classFunction.html#e206568fd4fd4c885e3ccff76345c4e6" title="the container a function&amp;#39;s parameters are stored in">Function</a>(name, _tmin, _tmax, _dt, _umin, _umax, _du,
+<a name="l00302"></a>00302                                _vmin, _vmax, _dv) { }
+<a name="l00303"></a>00303     <span class="keyword">protected</span>:
+<a name="l00305"></a>00305         <span class="keyword">virtual</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;f(<span class="keywordtype">double</span>, <span class="keywordtype">double</span>) = 0;
+<a name="l00307"></a>00307 
+<a name="l00311"></a><a class="code" href="classSurfaceBase.html#279eefbc9e2d3733eeae5dee35a62f0b">00311</a>         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;<a class="code" href="classFunction.html#68cf5a6e74a4f6a96893079ace0dc228" title="Function evaluation operator for three parameters.">operator () </a>(<span class="keywordtype">double</span> u, <span class="keywordtype">double</span> v, <span class="keywordtype">double</span> = 0) {
+<a name="l00312"></a>00312             <span class="keywordflow">return</span> f(u,v);
+<a name="l00313"></a>00313         }
+<a name="l00314"></a>00314 
+<a name="l00315"></a>00315 };
+<a name="l00316"></a>00316 
+<a name="l00317"></a>00317 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun Apr 20 15:20:25 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 26 02:22:33 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

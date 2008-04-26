@@ -77,6 +77,10 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr><td class="memTemplItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classFunctionParameter.html#d8923ccb1a2c9c86eadf7fd41b06d21b">setValue</a> (<a class="el" href="classFunctionParameterValue.html">FunctionParameterValue</a>&lt; T &gt; *_value)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">set the value of the parameter.  <a href="#d8923ccb1a2c9c86eadf7fd41b06d21b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="65442a43fe7b3b230f51a99537e2a5f8"></a><!-- doxytag: member="FunctionParameter::setValue" ref="65442a43fe7b3b230f51a99537e2a5f8" args="(std::string _value)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionParameter.html#65442a43fe7b3b230f51a99537e2a5f8">setValue</a> (std::string _value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set a value from a string, as contained in a QLineEdit. <br></td></tr>
 <tr><td class="memTemplParams" nowrap colspan="2">template&lt;typename T&gt; </td></tr>
 <tr><td class="memTemplItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classFunctionParameter.html#d3f0a76d63c6e62533ce95dd19ea6996">setDefaultValue</a> (<a class="el" href="classFunctionParameterValue.html">FunctionParameterValue</a>&lt; T &gt; *_defaultValue)</td></tr>
 
@@ -123,7 +127,7 @@ set the value of the parameter.
 <p>
 Requires a pointer created by <a class="el" href="classParameterFac.html#e842a045da1f9aae0510bbc98ae2d87f" title="Create a FunctionParameter from a value of type T.">ParameterFac::createParameterWithValue()</a>. <dl compact><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>Can't I call createParameterWithValue() from inside <a class="el" href="classFunctionParameter.html#d8923ccb1a2c9c86eadf7fd41b06d21b" title="set the value of the parameter.">setValue()</a>? </dd></dl>
 
-<p>Referenced by <a class="el" href="FunctionParameter_8H-source.html#l00243">ParameterFac::createParameterWithValue()</a>.</p>
+<p>Referenced by <a class="el" href="FunctionParameter_8H-source.html#l00265">ParameterFac::createParameterWithDefault()</a>, and <a class="el" href="FunctionParameter_8H-source.html#l00255">ParameterFac::createParameterWithValue()</a>.</p>
 
 </div>
 </div><p>
@@ -150,14 +154,14 @@ set the default value of the parameter.
 <p>
 Requires a pointer created by <a class="el" href="classParameterFac.html#9957bbda7ea380b6165fe372d6108459" title="Create a FunctionParameter from a default value of type T.">ParameterFac::createParameterWithDefault()</a>. <dl compact><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>Can't I call createParameterWithDefault() from inside <a class="el" href="classFunctionParameter.html#d3f0a76d63c6e62533ce95dd19ea6996" title="set the default value of the parameter.">setDefaultValue()</a>? </dd></dl>
 
-<p>Referenced by <a class="el" href="FunctionParameter_8H-source.html#l00253">ParameterFac::createParameterWithDefault()</a>.</p>
+<p>Referenced by <a class="el" href="FunctionParameter_8H-source.html#l00265">ParameterFac::createParameterWithDefault()</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following file:<ul>
 <li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="FunctionParameter_8H-source.html">FunctionParameter.H</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun Apr 20 15:20:26 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 26 02:22:34 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

@@ -106,6 +106,7 @@
     <class kind="class">FunctionParameterValue</class>
     <class kind="class">FunctionParameter</class>
     <class kind="class">ParameterFac</class>
+    <class kind="class">ParameterMap</class>
     <member kind="typedef">
       <type>Loki::SingletonHolder&lt; ParameterFac &gt;</type>
       <name>ParameterFactory</name>
@@ -1846,6 +1847,13 @@
       <anchor>32a37152a8c5006fb61b10e3bc23125d</anchor>
       <arglist>(double _a=0, double=0, double=0, double=0)</arglist>
     </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>SetParameters</name>
+      <anchorfile>classemz2.html</anchorfile>
+      <anchor>410a42e6418b05bd7afe28a5cd93d116</anchor>
+      <arglist>(const ParameterMap &amp;parms)</arglist>
+    </member>
     <member kind="variable" protection="protected">
       <type>virtual function_type</type>
       <name>g</name>
@@ -1879,6 +1887,13 @@
       <anchor>c405c6888cb741bb61d8baec5a9fafda</anchor>
       <arglist>(double _a=0, double=0, double=0, double=0)</arglist>
     </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>SetParameters</name>
+      <anchorfile>classez.html</anchorfile>
+      <anchor>fdb78abe0d9431731a523bb25f1b0de8</anchor>
+      <arglist>(const ParameterMap &amp;parms)</arglist>
+    </member>
     <member kind="variable" protection="protected">
       <type>virtual function_type</type>
       <name>g</name>
@@ -1910,13 +1925,6 @@
       <name>f</name>
       <anchorfile>classFr3r.html</anchorfile>
       <anchor>4dfb0ba6640f894d2e08d062ec98cadb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>double</type>
-      <name>Radius</name>
-      <anchorfile>classFr3r.html</anchorfile>
-      <anchor>105b69177647b3a246002885c3834da3</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -2024,13 +2032,6 @@
       <anchor>fbc77cb3e6c8ca2c59225db92f5e420c</anchor>
       <arglist></arglist>
     </member>
-    <member kind="typedef">
-      <type>std::map&lt; std::string, FunctionParameter * &gt;</type>
-      <name>parameterMap</name>
-      <anchorfile>classFunction.html</anchorfile>
-      <anchor>6957facb852e36f93672c86d2040097a</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="function">
       <type></type>
       <name>Function</name>
@@ -2042,8 +2043,8 @@
       <type></type>
       <name>Function</name>
       <anchorfile>classFunction.html</anchorfile>
-      <anchor>48a632ba4066454740dbed6e862e1b4e</anchor>
-      <arglist>(const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv, parameterMap _parms=parameterMap())</arglist>
+      <anchor>77a9153ff7bb6690931782d90ad1d28b</anchor>
+      <arglist>(const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv, ParameterMap _parms=ParameterMap())</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
@@ -2087,6 +2088,13 @@
       <anchor>d718e144e4dadb18eeb5eebcc46ac3f5</anchor>
       <arglist>(double _a=0, double _b=0, double _c=0, double _d=0)</arglist>
     </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>SetParameters</name>
+      <anchorfile>classFunction.html</anchorfile>
+      <anchor>3182062a98f1212d2b402b80d515444a</anchor>
+      <arglist>(const ParameterMap &amp;)</arglist>
+    </member>
     <member kind="function">
       <type>QString</type>
       <name>getFunctionName</name>
@@ -2102,18 +2110,11 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>std::vector&lt; QString &gt;</type>
-      <name>getParameterNames</name>
+      <type>ParameterMap</type>
+      <name>getParameters</name>
       <anchorfile>classFunction.html</anchorfile>
-      <anchor>55e3c5ac36b0597f9332287502fe07f8</anchor>
+      <anchor>44cfbb753b145fd88812b8ff749df406</anchor>
       <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>getParameterName</name>
-      <anchorfile>classFunction.html</anchorfile>
-      <anchor>0a05df01c1ec8b0aa9a23a3551da3d53</anchor>
-      <arglist>(unsigned i)</arglist>
     </member>
     <member kind="function">
       <type>FunctionParameter *</type>
@@ -2121,6 +2122,13 @@
       <anchorfile>classFunction.html</anchorfile>
       <anchor>2ccf820f7363613448529ff4b8e0d89a</anchor>
       <arglist>(QString name)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setParameter</name>
+      <anchorfile>classFunction.html</anchorfile>
+      <anchor>5fdd859f7deb0f6efa36f0b22111b19d</anchor>
+      <arglist>(const ParameterMap &amp;parms, T &amp;parm, const std::string &amp;key)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual unsigned</type>
@@ -2306,24 +2314,10 @@
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
-      <name>newParameterName</name>
+      <name>declareParameter</name>
       <anchorfile>classFunction.html</anchorfile>
-      <anchor>c3a18d44a638e684f6b739c9d0a79684</anchor>
-      <arglist>(QString n)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>clearParameterNames</name>
-      <anchorfile>classFunction.html</anchorfile>
-      <anchor>bed1b091a86869d8d2d47562739d0fa6</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>insertParameter</name>
-      <anchorfile>classFunction.html</anchorfile>
-      <anchor>04cb73563ed4bb916fe52c94b3d25a5c</anchor>
-      <arglist>(const std::pair&lt; std::string, FunctionParameter * &gt; &amp;value)</arglist>
+      <anchor>a490e914a7cd65862ba7956fd558553e</anchor>
+      <arglist>(const std::string &amp;, const T &amp;)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
@@ -2423,6 +2417,13 @@
       <anchor>e7491b1f17c6929f8716f07bfa5f2b46</anchor>
       <arglist></arglist>
     </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>insertParameter</name>
+      <anchorfile>classFunction.html</anchorfile>
+      <anchor>04cb73563ed4bb916fe52c94b3d25a5c</anchor>
+      <arglist>(const std::pair&lt; std::string, FunctionParameter * &gt; &amp;value)</arglist>
+    </member>
     <member kind="variable" protection="private">
       <type>VecMath::Vector&lt; 4 &gt;</type>
       <name>F</name>
@@ -2438,17 +2439,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
-      <type>std::vector&lt; QString &gt;</type>
-      <name>parameterNames</name>
-      <anchorfile>classFunction.html</anchorfile>
-      <anchor>b51bc4eb3a16cd5073803509fc5a242e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>parameterMap</type>
+      <type>ParameterMap</type>
       <name>parameters</name>
       <anchorfile>classFunction.html</anchorfile>
-      <anchor>f229d2240d59c88d0b2cd8193bea4e69</anchor>
+      <anchor>df8416ce9302cb8d9fa27400cdaa7c3c</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -2567,6 +2561,13 @@
     </member>
     <member kind="function">
       <type>void</type>
+      <name>setValue</name>
+      <anchorfile>classFunctionParameter.html</anchorfile>
+      <anchor>65442a43fe7b3b230f51a99537e2a5f8</anchor>
+      <arglist>(std::string _value)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>setDefaultValue</name>
       <anchorfile>classFunctionParameter.html</anchorfile>
       <anchor>d3f0a76d63c6e62533ce95dd19ea6996</anchor>
@@ -2640,6 +2641,13 @@
       <arglist>(const T &amp;_value)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setValue</name>
+      <anchorfile>classFunctionParameterValue.html</anchorfile>
+      <anchor>c01e6de990697e9adf4f70302f51238c</anchor>
+      <arglist>(const char *)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
       <type>virtual</type>
       <name>operator double</name>
       <anchorfile>classFunctionParameterValue.html</anchorfile>
@@ -2669,6 +2677,34 @@
     </member>
     <member kind="function">
       <type></type>
+      <name>FunctionParameterValue</name>
+      <anchorfile>classFunctionParameterValue.html</anchorfile>
+      <anchor>e2194bc5225cee3551e72421889647b6</anchor>
+      <arglist>(const double &amp;_value)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>FunctionParameterValue</name>
+      <anchorfile>classFunctionParameterValue.html</anchorfile>
+      <anchor>009a90fe4349e0220e13b19ed401f7b9</anchor>
+      <arglist>(const unsigned &amp;_value)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>FunctionParameterValue</name>
+      <anchorfile>classFunctionParameterValue.html</anchorfile>
+      <anchor>cf4b754e19b5ac2deffccc852a8d1167</anchor>
+      <arglist>(const int &amp;_value)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>FunctionParameterValue</name>
+      <anchorfile>classFunctionParameterValue.html</anchorfile>
+      <anchor>685050400a470cdafcb7526dc72adaa6</anchor>
+      <arglist>(const std::string &amp;_value)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
       <name>operator double</name>
       <anchorfile>classFunctionParameterValue.html</anchorfile>
       <anchor>7dc6b36c669eea417f0189f9d1688061</anchor>
@@ -2694,6 +2730,34 @@
       <anchorfile>classFunctionParameterValue.html</anchorfile>
       <anchor>96f986d27ac2f8abb4435c76edd7eaa3</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setValue</name>
+      <anchorfile>classFunctionParameterValue.html</anchorfile>
+      <anchor>dda12921a11499d00bd1d83c2ae5b9e4</anchor>
+      <arglist>(const char *_value)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setValue</name>
+      <anchorfile>classFunctionParameterValue.html</anchorfile>
+      <anchor>fa656786c3651c14d646a1fcc1936835</anchor>
+      <arglist>(const char *_value)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setValue</name>
+      <anchorfile>classFunctionParameterValue.html</anchorfile>
+      <anchor>164f4d976977d3d3b82f8cddd166230f</anchor>
+      <arglist>(const char *_value)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setValue</name>
+      <anchorfile>classFunctionParameterValue.html</anchorfile>
+      <anchor>0eb475fb7d67702357eb7c533adcb198</anchor>
+      <arglist>(const char *_value)</arglist>
     </member>
     <member kind="variable" protection="private">
       <type>T</type>
@@ -2733,6 +2797,13 @@
       <anchorfile>classFunctionParameterValueBase.html</anchorfile>
       <anchor>29950ca43cb1200a2197b2bca217aeaa</anchor>
       <arglist>(const std::string &amp;)</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>setValue</name>
+      <anchorfile>classFunctionParameterValueBase.html</anchorfile>
+      <anchor>4897962d597cbdb6e464a6fe2db57182</anchor>
+      <arglist>(const char *)=0</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual</type>
@@ -2840,6 +2911,13 @@
       <anchorfile>classGasket.html</anchorfile>
       <anchor>3cf2053ec1ffa7afc2c65973a5f3afbe</anchor>
       <arglist>(double _a=0, double _b=0, double=0, double=0)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>SetParameters</name>
+      <anchorfile>classGasket.html</anchorfile>
+      <anchor>cddb72bd882ada85324313792fedfe3e</anchor>
+      <arglist>(const ParameterMap &amp;parms)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
@@ -3141,6 +3219,13 @@
       <anchor>3316dc8a0507e88642ad113d7941b6f4</anchor>
       <arglist>(double _a=0, double _b=0, double=0, double=0)</arglist>
     </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>SetParameters</name>
+      <anchorfile>classGravitationPotential.html</anchorfile>
+      <anchor>111c5a6f5a4794afc529c25fd0633d5a</anchor>
+      <arglist>(const ParameterMap &amp;parms)</arglist>
+    </member>
     <member kind="variable" protection="protected">
       <type>virtual function_type</type>
       <name>f</name>
@@ -3226,6 +3311,13 @@
       <arglist>(double _a=0, double=0, double=0, double=0)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>SetParameters</name>
+      <anchorfile>classHypercube.html</anchorfile>
+      <anchor>e405a9eaf0b835a4546aecbb48e938f5</anchor>
+      <arglist>(const ParameterMap &amp;parms)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
       <type>virtual std::string</type>
       <name>description</name>
       <anchorfile>classHypercube.html</anchorfile>
@@ -3283,8 +3375,8 @@
       <type>virtual void</type>
       <name>SetParameters</name>
       <anchorfile>classHypersphere.html</anchorfile>
-      <anchor>b075cfbb4ab3c5a7a28380b5ed28abd6</anchor>
-      <arglist>(const parameterMap &amp;)</arglist>
+      <anchor>40aaf3955e02904625d8f12d044d9ba0</anchor>
+      <arglist>(const ParameterMap &amp;)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>virtual function_type</type>
@@ -4005,6 +4097,38 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>ParameterMap</name>
+    <filename>classParameterMap.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>ParameterMap</name>
+      <anchorfile>classParameterMap.html</anchorfile>
+      <anchor>33cc5a5bf52240a71869e3740a7136e9</anchor>
+      <arglist>(const std::string &amp;_name1, const T1 &amp;_value1)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>insertByValue</name>
+      <anchorfile>classParameterMap.html</anchorfile>
+      <anchor>c520b76e3dad195c928cb86610504210</anchor>
+      <arglist>(const std::string _name, const T &amp;_value)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>insertByDefault</name>
+      <anchorfile>classParameterMap.html</anchorfile>
+      <anchor>424c66976d4797d7d4941ca9a6789db6</anchor>
+      <arglist>(const std::string _name, const T &amp;_default)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>print</name>
+      <anchorfile>classParameterMap.html</anchorfile>
+      <anchor>10ef7c40dd90a134dbc35881dc18f168</anchor>
+      <arglist>() const </arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>PluginCreator</name>
     <filename>classPluginCreator.html</filename>
     <member kind="function" virtualness="virtual">
@@ -4168,6 +4292,13 @@
       <anchor>6a1d202b518c5698b76a7f66cab741c6</anchor>
       <arglist>(double _a=0, double=0, double=0, double=0)</arglist>
     </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>SetParameters</name>
+      <anchorfile>classPolarR.html</anchorfile>
+      <anchor>1aefb2a16b71009f29dfa25d9ada912c</anchor>
+      <arglist>(const ParameterMap &amp;parms)</arglist>
+    </member>
     <member kind="variable" protection="protected">
       <type>virtual function_type</type>
       <name>f</name>
@@ -4200,6 +4331,13 @@
       <anchorfile>classPolarSin.html</anchorfile>
       <anchor>3f4c61294de768ab57351a62a3096f09</anchor>
       <arglist>(double _a=0, double=0, double=0, double=0)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>SetParameters</name>
+      <anchorfile>classPolarSin.html</anchorfile>
+      <anchor>026c7ea056660e31972d3dd1062b2e92</anchor>
+      <arglist>(const ParameterMap &amp;parms)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>virtual function_type</type>
@@ -4286,6 +4424,13 @@
       <anchor>c5b649d5cb7fd2637751385ba3d63af0</anchor>
       <arglist>(double _a=0, double=0, double=0, double=0)</arglist>
     </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>SetParameters</name>
+      <anchorfile>classPyramid.html</anchorfile>
+      <anchor>29d24610dababa3905aad2b8979a0612</anchor>
+      <arglist>(const ParameterMap &amp;parms)</arglist>
+    </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>Initialize</name>
@@ -4337,8 +4482,8 @@
       <type></type>
       <name>RealBase</name>
       <anchorfile>classRealBase.html</anchorfile>
-      <anchor>9a0113fea54e32e136296339c204199f</anchor>
-      <arglist>(const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv, parameterMap _parms=parameterMap())</arglist>
+      <anchor>8eb03b17160d1e764c0a8478b2288087</anchor>
+      <arglist>(const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv, ParameterMap _parms=ParameterMap())</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="pure">
       <type>virtual VecMath::Vector&lt; 4 &gt; &amp;</type>
@@ -4363,8 +4508,8 @@
       <type></type>
       <name>RealFunction</name>
       <anchorfile>classRealFunction.html</anchorfile>
-      <anchor>bef904362b31918cb40fdc2ae24a0cd0</anchor>
-      <arglist>(const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv, parameterMap _parms=parameterMap())</arglist>
+      <anchor>330968d75b1e8da0d272360e278799e1</anchor>
+      <arglist>(const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv, ParameterMap _parms=ParameterMap())</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
@@ -4573,6 +4718,13 @@
       <anchorfile>classSponge.html</anchorfile>
       <anchor>36471176a1ee0aef443094278469f6a6</anchor>
       <arglist>(double _a=0, double _b=0, double _c=0, double=0)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>SetParameters</name>
+      <anchorfile>classSponge.html</anchorfile>
+      <anchor>b379dd05d2113837b3101a4b7881715a</anchor>
+      <arglist>(const ParameterMap &amp;parms)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
@@ -5161,6 +5313,13 @@
       <anchor>016c592bbb7e0220cb00f1dc2c4a726c</anchor>
       <arglist>(double _a=0, double _b=0, double _c=0, double=0)</arglist>
     </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>SetParameters</name>
+      <anchorfile>classTorus1.html</anchorfile>
+      <anchor>c8d5faf8d43130e3aa8b0f58cffbab0e</anchor>
+      <arglist>(const ParameterMap &amp;parms)</arglist>
+    </member>
     <member kind="variable" protection="protected">
       <type>virtual function_type</type>
       <name>f</name>
@@ -5208,6 +5367,13 @@
       <anchor>ef07d5df812d4ce4ec7f86555bcf4817</anchor>
       <arglist>(double _a=0, double _b=0, double=0, double=0)</arglist>
     </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>SetParameters</name>
+      <anchorfile>classTorus2.html</anchorfile>
+      <anchor>eff2372bb43c897676949bd3d21cc92f</anchor>
+      <arglist>(const ParameterMap &amp;parms)</arglist>
+    </member>
     <member kind="variable" protection="protected">
       <type>virtual function_type</type>
       <name>f</name>
@@ -5253,6 +5419,787 @@
       <name>f</name>
       <anchorfile>classTorus3.html</anchorfile>
       <anchor>4b7e1986731243f42ba630be199a3327</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>Ui_ValuesDialog</name>
+    <filename>classUi__ValuesDialog.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>setupUi</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>c3f35fcc3a053a5fd7d5c6972d072a7c</anchor>
+      <arglist>(QDialog *ValuesDialog)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>retranslateUi</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>6e4192b89d585bbab3e1f03a0094027b</anchor>
+      <arglist>(QDialog *ValuesDialog)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setupUi</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>c3f35fcc3a053a5fd7d5c6972d072a7c</anchor>
+      <arglist>(QDialog *ValuesDialog)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>retranslateUi</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>6e4192b89d585bbab3e1f03a0094027b</anchor>
+      <arglist>(QDialog *ValuesDialog)</arglist>
+    </member>
+    <member kind="variable">
+      <type>QGridLayout *</type>
+      <name>gridLayout</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>4cabc3bf035e33ec8f63ec3e5f52d595</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QVBoxLayout *</type>
+      <name>vboxLayout</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>e83c454c1e13c61d3bb2f7ce1c05def0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>gridLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>0ba92dabf82c45401a131f7fd57242eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>937f5b063063229bc2efd61f201fc917</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>df15da5b3e56ac116dd2cb1adde67724</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSlider *</type>
+      <name>TSlider</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>7a1d12dc830feae4457fe732698aa7d8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TSteps</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>ff54a284c847b823a2107678fe3e5e57</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout1</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>96d7e7d12dfd94836344517044c8f282</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout2</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>8b85642c26756ee265b43652756c9898</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TMinLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>7fd42d4cb50804e32bef4dc9f3f7ace6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>TMin</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>199c990023e9204f56e0b5cf521ab696</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout3</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>0d953398e34878e763ae9e3b7062d82b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TMaxLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>4671ea5de52d939a247e3deea903c5ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>TMax</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>ffe42cda468dee2608fad3e527d0222e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout4</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>45aeaa86574ea0de2f1ee0cce755e091</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>ULabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>5aa3e3930bd101f135572c778534917a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSlider *</type>
+      <name>USlider</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>85b86034f26c7c1c205ffb45fe06fe8d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>USteps</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>da09975156384aa303eb2c4a78cb6700</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout5</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>52fb462742cc2a31f7ee4bf7d392b5f8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout6</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>2ace4469873d6f5de0c62106fd222fa2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>UMinLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>986a0523938968c4112c4be2d6bedfce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>UMin</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>90b5e6c1744098b439145b1dce07fa6e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout7</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>f240efc78c57df3daabe60eef0afe494</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>UMaxLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>6675db3ebcdc49fc074b3d5b19a7e3b6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>UMax</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>cc47d392c4ba3b3fae1bba4f30e601c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout8</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>54a5e7fa03d342e3a93bd844e12dbf37</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>VLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>332f7a107b607d33352249b8442abb98</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSlider *</type>
+      <name>VSlider</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>ca86af89757b4fbad6917e5d386b4bb8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>VSteps</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>b9838c99fe6c9d527e6a546504e909f8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout9</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>8adcaade3f319fb2bcfea46ad611e6cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout10</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>ae454ffcffe2ade02f5c78e1d56616e3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>VMinLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>de713a99f8e900106e5ea64b50b839d9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>VMin</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>3ed2361475ec310caa31ae7f49e191bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout11</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>b443432e6102d3fbbd7007a2a7c65eb5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>VMaxLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>e0835dba5c5810bc84614be8c15e40e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>VMax</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>3fdd1149f205ad0e7d930580cecccc98</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>functionLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>64c5680f8034342c68839ba741605b66</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout12</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>713f42d09751223932ec5cc9c7dc3511</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TextLabel13</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>1da2db6780d47e0c9953775592a82ad5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QComboBox *</type>
+      <name>FunctionBox</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>953f1789f3408c7527d114adf3f8d4b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QVBoxLayout *</type>
+      <name>vboxLayout1</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>bc0fe68eba06398ac2c2e48610b3aa95</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout13</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>cccbfbe1db9d9c49e8c026f654257075</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout14</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>18ccda14e24d55f582a57caa1ec2f83b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>ALabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>a191886f92d64ec1e014817e524358a0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>A</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>2bb72b733958971b982ceb269b988d63</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout15</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>dfbe366c27f841475c7ae434d0bbeb5d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>BLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>434ef2db91aa11fa8e67c373d29149dd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>B</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>606babe3461172ab85f4d21a17a7df70</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout16</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>0b9bdf2ca713824732eff993c8d59779</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout17</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>015403b822699bae82da47b2211893b1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>CLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>cec9df3bc9d167decb532e31e95d0762</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>C</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>322bd32464ddd0209bebd0dedf1a8abc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout18</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>df89338658e79cdf65ceda64bd0e69e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>DLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>3e911621e133dc69130ad9a79e9713cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>D</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>1b25ab0791e849a83f429560b2403fee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout19</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>b3eebc3bbede30fff223714c5de31142</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPushButton *</type>
+      <name>buttonApply</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>a957950d35fd0e2d4507f6791c17445a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPushButton *</type>
+      <name>buttonOk</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>361a4d4ddb0e157519e232900fbec056</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPushButton *</type>
+      <name>buttonCancel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>2b9e8e63267275699acc2e2ab91028f5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QGridLayout *</type>
+      <name>gridLayout</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>4cabc3bf035e33ec8f63ec3e5f52d595</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QVBoxLayout *</type>
+      <name>vboxLayout</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>e83c454c1e13c61d3bb2f7ce1c05def0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QVBoxLayout *</type>
+      <name>vboxLayout1</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>bc0fe68eba06398ac2c2e48610b3aa95</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>937f5b063063229bc2efd61f201fc917</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout1</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>96d7e7d12dfd94836344517044c8f282</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout2</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>8b85642c26756ee265b43652756c9898</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout3</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>0d953398e34878e763ae9e3b7062d82b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout4</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>45aeaa86574ea0de2f1ee0cce755e091</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout5</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>52fb462742cc2a31f7ee4bf7d392b5f8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout6</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>2ace4469873d6f5de0c62106fd222fa2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout7</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>f240efc78c57df3daabe60eef0afe494</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout8</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>54a5e7fa03d342e3a93bd844e12dbf37</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout9</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>8adcaade3f319fb2bcfea46ad611e6cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout10</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>ae454ffcffe2ade02f5c78e1d56616e3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout11</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>b443432e6102d3fbbd7007a2a7c65eb5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout13</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>cccbfbe1db9d9c49e8c026f654257075</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout14</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>18ccda14e24d55f582a57caa1ec2f83b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout15</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>dfbe366c27f841475c7ae434d0bbeb5d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout16</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>0b9bdf2ca713824732eff993c8d59779</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout17</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>015403b822699bae82da47b2211893b1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout18</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>df89338658e79cdf65ceda64bd0e69e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout19</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>b3eebc3bbede30fff223714c5de31142</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>gridLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>0ba92dabf82c45401a131f7fd57242eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>df15da5b3e56ac116dd2cb1adde67724</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSlider *</type>
+      <name>TSlider</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>7a1d12dc830feae4457fe732698aa7d8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TSteps</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>ff54a284c847b823a2107678fe3e5e57</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TMinLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>7fd42d4cb50804e32bef4dc9f3f7ace6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>TMin</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>199c990023e9204f56e0b5cf521ab696</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TMaxLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>4671ea5de52d939a247e3deea903c5ff</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>TMax</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>ffe42cda468dee2608fad3e527d0222e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>ULabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>5aa3e3930bd101f135572c778534917a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSlider *</type>
+      <name>USlider</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>85b86034f26c7c1c205ffb45fe06fe8d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>USteps</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>da09975156384aa303eb2c4a78cb6700</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>UMinLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>986a0523938968c4112c4be2d6bedfce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>UMin</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>90b5e6c1744098b439145b1dce07fa6e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>UMaxLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>6675db3ebcdc49fc074b3d5b19a7e3b6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>UMax</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>cc47d392c4ba3b3fae1bba4f30e601c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>VLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>332f7a107b607d33352249b8442abb98</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSlider *</type>
+      <name>VSlider</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>ca86af89757b4fbad6917e5d386b4bb8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>VSteps</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>b9838c99fe6c9d527e6a546504e909f8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>VMinLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>de713a99f8e900106e5ea64b50b839d9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>VMin</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>3ed2361475ec310caa31ae7f49e191bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>VMaxLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>e0835dba5c5810bc84614be8c15e40e0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>VMax</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>3fdd1149f205ad0e7d930580cecccc98</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>functionLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>64c5680f8034342c68839ba741605b66</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>ParameterLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>168b1c3fab3a80aa508f18ecbd337ad4</anchor>
+      <arglist>[4]</arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>Parameter</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>0e20e0e9862ce29ced8a852bfe9f662a</anchor>
+      <arglist>[4]</arglist>
+    </member>
+    <member kind="variable">
+      <type>QPushButton *</type>
+      <name>buttonApply</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>a957950d35fd0e2d4507f6791c17445a</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -5321,6 +6268,20 @@
       <anchorfile>classValuesDialogImpl.html</anchorfile>
       <anchor>da76fef88c056d9145243be54f61a53a</anchor>
       <arglist>(QWidget *parent=0, Qt::WFlags f=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setParameters</name>
+      <anchorfile>classValuesDialogImpl.html</anchorfile>
+      <anchor>9c8ed70c102c1a781f00888c0e3c0f5b</anchor>
+      <arglist>(const ParameterMap &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>const ParameterMap &amp;</type>
+      <name>getParameters</name>
+      <anchorfile>classValuesDialogImpl.html</anchorfile>
+      <anchor>05f56e98781cde2b024eb07c180d2e17</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>double</type>
@@ -5407,6 +6368,62 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
+      <type>QLineEdit *&amp;</type>
+      <name>A</name>
+      <anchorfile>classValuesDialogImpl.html</anchorfile>
+      <anchor>8bb19b836269aa59abe5eac17c3f0daf</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QLineEdit *&amp;</type>
+      <name>B</name>
+      <anchorfile>classValuesDialogImpl.html</anchorfile>
+      <anchor>5e8715cd1798e0c4d575b7205e7259d6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QLineEdit *&amp;</type>
+      <name>C</name>
+      <anchorfile>classValuesDialogImpl.html</anchorfile>
+      <anchor>5e2628063cf51df21e77fd91731e3a9e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QLineEdit *&amp;</type>
+      <name>D</name>
+      <anchorfile>classValuesDialogImpl.html</anchorfile>
+      <anchor>8e228209d2a209b55ecde84ab8317dec</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QLabel *&amp;</type>
+      <name>ALabel</name>
+      <anchorfile>classValuesDialogImpl.html</anchorfile>
+      <anchor>e02576b719370e5000f4628f221eaecd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QLabel *&amp;</type>
+      <name>BLabel</name>
+      <anchorfile>classValuesDialogImpl.html</anchorfile>
+      <anchor>091902202210431ea33497ecaccb1eae</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QLabel *&amp;</type>
+      <name>CLabel</name>
+      <anchorfile>classValuesDialogImpl.html</anchorfile>
+      <anchor>627c5d40d4fa2c557fc4124876c60a35</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>QLabel *&amp;</type>
+      <name>DLabel</name>
+      <anchorfile>classValuesDialogImpl.html</anchorfile>
+      <anchor>009ccf6df91101a7b60cd9f8f718f688</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
       <type>double</type>
       <name>a</name>
       <anchorfile>classValuesDialogImpl.html</anchorfile>
@@ -5434,40 +6451,19 @@
       <anchor>e2188628d68fa2e33eb32aae5f41e859</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function">
-      <type>int</type>
-      <name>Function</name>
-      <anchorfile>classValuesDialogImpl.html</anchorfile>
-      <anchor>e66d0eedcd271ecabc6b1f42cca91471</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>FunctionName</name>
-      <anchorfile>classValuesDialogImpl.html</anchorfile>
-      <anchor>6397f0835fee52c667e9ee8e0604ad8a</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setFunction</name>
-      <anchorfile>classValuesDialogImpl.html</anchorfile>
-      <anchor>4421918403808ad24e1e2dba0698cca0</anchor>
-      <arglist>(const QString &amp;f)</arglist>
-    </member>
-    <member kind="function">
-      <type>int</type>
-      <name>InsertFunction</name>
-      <anchorfile>classValuesDialogImpl.html</anchorfile>
-      <anchor>67a38cbc0b628577a8d9ee08c5c077c4</anchor>
-      <arglist>(const QString &amp;FuncName, int index=-1)</arglist>
-    </member>
     <member kind="slot" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>AlignValues</name>
       <anchorfile>classValuesDialogImpl.html</anchorfile>
       <anchor>677dc70ed3fc8b4709fd4667656d7ffc</anchor>
       <arglist>(int)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>ParameterMap</type>
+      <name>parameters</name>
+      <anchorfile>classValuesDialogImpl.html</anchorfile>
+      <anchor>786bc88cfdd8ee561de2d99c98a97cb7</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -6024,6 +7020,13 @@
       <anchorfile>classzA.html</anchorfile>
       <anchor>d45d697ba6f97919da150077abe2f208</anchor>
       <arglist>(double _a=0, double=0, double=0, double=0)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>SetParameters</name>
+      <anchorfile>classzA.html</anchorfile>
+      <anchor>0e9efa24072615db758fe995335926be</anchor>
+      <arglist>(const ParameterMap &amp;parms)</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>virtual function_type</type>

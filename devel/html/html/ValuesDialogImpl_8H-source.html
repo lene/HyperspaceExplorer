@@ -34,68 +34,76 @@
 <a name="l00017"></a>00017 <span class="preprocessor">#include &lt;QLineEdit&gt;</span>
 <a name="l00018"></a>00018 <span class="preprocessor">#include &lt;QComboBox&gt;</span>
 <a name="l00019"></a>00019 
-<a name="l00020"></a>00020 <span class="preprocessor">#include "ui_ValuesDialog.h"</span>
+<a name="l00020"></a>00020 <span class="preprocessor">#include "ValuesDialog.H"</span>
 <a name="l00021"></a>00021 
 <a name="l00022"></a>00022 <span class="preprocessor">#include "Log.H"</span>
-<a name="l00023"></a>00023 
-<a name="l00033"></a><a class="code" href="classValuesDialogImpl.html">00033</a> <span class="keyword">class </span><a class="code" href="classValuesDialogImpl.html">ValuesDialogImpl</a>: <span class="keyword">public</span> QDialog, <span class="keyword">public</span> Ui::ValuesDialog {
-<a name="l00034"></a>00034   Q_OBJECT
-<a name="l00035"></a>00035 
-<a name="l00036"></a>00036 <span class="keyword">public</span>:
-<a name="l00037"></a>00037   <a class="code" href="classValuesDialogImpl.html">ValuesDialogImpl</a> (QWidget *parent = 0, Qt::WFlags f = 0);
-<a name="l00038"></a>00038   <span class="keyword">virtual</span> ~<a class="code" href="classValuesDialogImpl.html">ValuesDialogImpl</a>() {}
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040   <span class="keywordtype">double</span> tmin () { <span class="keywordflow">return</span> atof (TMin-&gt;text ().toStdString().c_str()); }
-<a name="l00041"></a>00041   <span class="keywordtype">double</span> tmax () { <span class="keywordflow">return</span> atof (TMax-&gt;text ().toStdString().c_str()); }
-<a name="l00042"></a>00042   <span class="keywordtype">unsigned</span> tsteps () { <span class="keywordflow">return</span> TSlider-&gt;value (); }
-<a name="l00043"></a>00043   <span class="keywordtype">double</span> dt () { <span class="keywordflow">return</span> (tmax ()-tmin ())/double (tsteps ()); }
-<a name="l00044"></a>00044 
-<a name="l00045"></a>00045   <span class="keywordtype">double</span> umin () { <span class="keywordflow">return</span> atof (UMin-&gt;text ().toStdString().c_str()); }
-<a name="l00046"></a>00046   <span class="keywordtype">double</span> umax () { <span class="keywordflow">return</span> atof (UMax-&gt;text ().toStdString().c_str()); }
-<a name="l00047"></a>00047   <span class="keywordtype">unsigned</span> usteps () { <span class="keywordflow">return</span> USlider-&gt;value (); }
-<a name="l00048"></a>00048   <span class="keywordtype">double</span> du () { <span class="keywordflow">return</span> (umax ()-umin ())/double (usteps ()); }
-<a name="l00049"></a>00049 
-<a name="l00050"></a>00050   <span class="keywordtype">double</span> vmin () { <span class="keywordflow">return</span> atof (VMin-&gt;text ().toStdString().c_str()); }
-<a name="l00051"></a>00051   <span class="keywordtype">double</span> vmax () { <span class="keywordflow">return</span> atof (VMax-&gt;text ().toStdString().c_str()); }
-<a name="l00052"></a>00052   <span class="keywordtype">unsigned</span> vsteps () { <span class="keywordflow">return</span> VSlider-&gt;value (); }
-<a name="l00053"></a>00053   <span class="keywordtype">double</span> dv () { <span class="keywordflow">return</span> (vmax ()-vmin ())/double (vsteps ()); }
-<a name="l00054"></a>00054 
-<a name="l00055"></a>00055   <span class="keywordtype">double</span> a () { <span class="keywordflow">return</span> atof (A-&gt;text ().toStdString().c_str()); }
-<a name="l00056"></a>00056   <span class="keywordtype">double</span> b () { <span class="keywordflow">return</span> atof (B-&gt;text ().toStdString().c_str()); }
-<a name="l00057"></a>00057   <span class="keywordtype">double</span> c () { <span class="keywordflow">return</span> atof (C-&gt;text ().toStdString().c_str()); }
-<a name="l00058"></a>00058   <span class="keywordtype">double</span> d () { <span class="keywordflow">return</span> atof (D-&gt;text ().toStdString().c_str()); }
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060   <span class="keywordtype">int</span> <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> () { <span class="keywordflow">return</span> FunctionBox-&gt;currentIndex(); }
-<a name="l00061"></a>00061   QString FunctionName () { <span class="keywordflow">return</span> FunctionBox-&gt;currentText (); }
-<a name="l00062"></a>00062   <span class="keywordtype">void</span> setFunction(<span class="keyword">const</span> QString &amp;f) {
-<a name="l00063"></a>00063       <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">SingletonLog::Instance</a>() &lt;&lt; <span class="stringliteral">"ValuesDialogImpl::setFunction("</span>
-<a name="l00064"></a>00064               &lt;&lt; f.toStdString() &lt;&lt;<span class="stringliteral">") not yet implemented!\n"</span>;
-<a name="l00065"></a>00065   }
-<a name="l00066"></a>00066   <span class="keywordtype">int</span> InsertFunction (<span class="keyword">const</span> QString &amp;FuncName, <span class="keywordtype">int</span> index = -1);
-<a name="l00067"></a>00067 
-<a name="l00068"></a>00068 <span class="keyword">public</span> slots:
-<a name="l00069"></a>00069   <span class="keyword">virtual</span> <span class="keywordtype">void</span> accept ();   <span class="comment">//  reimplementation of ValuesDialog::accept ()</span>
+<a name="l00023"></a>00023 <span class="preprocessor">#include "ParameterMap.H"</span>
+<a name="l00024"></a>00024 
+<a name="l00036"></a><a class="code" href="classValuesDialogImpl.html">00036</a> <span class="keyword">class </span><a class="code" href="classValuesDialogImpl.html">ValuesDialogImpl</a>: <span class="keyword">public</span> QDialog, <span class="keyword">public</span> Ui::ValuesDialog {
+<a name="l00037"></a>00037     Q_OBJECT
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039     <span class="keyword">public</span>:
+<a name="l00040"></a>00040         <a class="code" href="classValuesDialogImpl.html">ValuesDialogImpl</a>(QWidget *parent = 0, Qt::WFlags f = 0);
+<a name="l00041"></a>00041         <span class="keyword">virtual</span> ~<a class="code" href="classValuesDialogImpl.html">ValuesDialogImpl</a>() {}
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043         <span class="keywordtype">void</span> setParameters(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;);
+<a name="l00044"></a>00044         <span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;getParameters() { <span class="keywordflow">return</span> parameters; }
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046         <span class="keywordtype">double</span> tmin () { <span class="keywordflow">return</span> atof (TMin-&gt;text ().toStdString().c_str()); }
+<a name="l00047"></a>00047         <span class="keywordtype">double</span> tmax () { <span class="keywordflow">return</span> atof (TMax-&gt;text ().toStdString().c_str()); }
+<a name="l00048"></a>00048         <span class="keywordtype">unsigned</span> tsteps () { <span class="keywordflow">return</span> TSlider-&gt;value (); }
+<a name="l00049"></a>00049         <span class="keywordtype">double</span> dt () { <span class="keywordflow">return</span> (tmax ()-tmin ())/double (tsteps ()); }
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051         <span class="keywordtype">double</span> umin () { <span class="keywordflow">return</span> atof (UMin-&gt;text ().toStdString().c_str()); }
+<a name="l00052"></a>00052         <span class="keywordtype">double</span> umax () { <span class="keywordflow">return</span> atof (UMax-&gt;text ().toStdString().c_str()); }
+<a name="l00053"></a>00053         <span class="keywordtype">unsigned</span> usteps () { <span class="keywordflow">return</span> USlider-&gt;value (); }
+<a name="l00054"></a>00054         <span class="keywordtype">double</span> du () { <span class="keywordflow">return</span> (umax ()-umin ())/double (usteps ()); }
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056         <span class="keywordtype">double</span> vmin () { <span class="keywordflow">return</span> atof (VMin-&gt;text ().toStdString().c_str()); }
+<a name="l00057"></a>00057         <span class="keywordtype">double</span> vmax () { <span class="keywordflow">return</span> atof (VMax-&gt;text ().toStdString().c_str()); }
+<a name="l00058"></a>00058         <span class="keywordtype">unsigned</span> vsteps () { <span class="keywordflow">return</span> VSlider-&gt;value (); }
+<a name="l00059"></a>00059         <span class="keywordtype">double</span> dv () { <span class="keywordflow">return</span> (vmax ()-vmin ())/double (vsteps ()); }
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061         QLineEdit *&amp;A() { <span class="keywordflow">return</span> Parameter[0]; }
+<a name="l00062"></a>00062         QLineEdit *&amp;B() { <span class="keywordflow">return</span> Parameter[1]; }
+<a name="l00063"></a>00063         QLineEdit *&amp;C() { <span class="keywordflow">return</span> Parameter[2]; }
+<a name="l00064"></a>00064         QLineEdit *&amp;D() { <span class="keywordflow">return</span> Parameter[3]; }
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066         QLabel *&amp;ALabel() { <span class="keywordflow">return</span> ParameterLabel[0]; }
+<a name="l00067"></a>00067         QLabel *&amp;BLabel() { <span class="keywordflow">return</span> ParameterLabel[1]; }
+<a name="l00068"></a>00068         QLabel *&amp;CLabel() { <span class="keywordflow">return</span> ParameterLabel[2]; }
+<a name="l00069"></a>00069         QLabel *&amp;DLabel() { <span class="keywordflow">return</span> ParameterLabel[3]; }
 <a name="l00070"></a>00070 
-<a name="l00071"></a>00071   <span class="keyword">virtual</span> <span class="keywordtype">void</span> DisplayValues ();
-<a name="l00072"></a>00072   <span class="keyword">virtual</span> <span class="keywordtype">void</span> CheckNumeric (<span class="keyword">const</span> QString &amp;);
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074   <span class="keyword">virtual</span> <span class="keywordtype">void</span> aText (<span class="keyword">const</span> QString &amp;);
-<a name="l00075"></a>00075   <span class="keyword">virtual</span> <span class="keywordtype">void</span> bText (<span class="keyword">const</span> QString &amp;);
-<a name="l00076"></a>00076   <span class="keyword">virtual</span> <span class="keywordtype">void</span> cText (<span class="keyword">const</span> QString &amp;);
-<a name="l00077"></a>00077   <span class="keyword">virtual</span> <span class="keywordtype">void</span> dText (<span class="keyword">const</span> QString &amp;);
+<a name="l00071"></a>00071         <span class="keywordtype">double</span> a () { <span class="keywordflow">return</span> atof (A()-&gt;text ().toStdString().c_str()); }
+<a name="l00072"></a>00072         <span class="keywordtype">double</span> b () { <span class="keywordflow">return</span> atof (B()-&gt;text ().toStdString().c_str()); }
+<a name="l00073"></a>00073         <span class="keywordtype">double</span> c () { <span class="keywordflow">return</span> atof (C()-&gt;text ().toStdString().c_str()); }
+<a name="l00074"></a>00074         <span class="keywordtype">double</span> d () { <span class="keywordflow">return</span> atof (D()-&gt;text ().toStdString().c_str()); }
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076     <span class="keyword">public</span> slots:
+<a name="l00077"></a>00077         <span class="keyword">virtual</span> <span class="keywordtype">void</span> accept ();   <span class="comment">//  reimplementation of ValuesDialog::accept ()</span>
 <a name="l00078"></a>00078 
-<a name="l00079"></a>00079 <span class="keyword">protected</span> slots:
-<a name="l00080"></a>00080     <span class="keyword">virtual</span> <span class="keywordtype">void</span> AlignValues(<span class="keywordtype">int</span>);
+<a name="l00079"></a>00079         <span class="keyword">virtual</span> <span class="keywordtype">void</span> DisplayValues ();
+<a name="l00080"></a>00080         <span class="keyword">virtual</span> <span class="keywordtype">void</span> CheckNumeric (<span class="keyword">const</span> QString &amp;);
 <a name="l00081"></a>00081 
-<a name="l00082"></a>00082 signals:
-<a name="l00083"></a>00083   <span class="keywordtype">void</span> ApplyChanges ();
-<a name="l00084"></a>00084 
-<a name="l00085"></a>00085 };
+<a name="l00082"></a>00082         <span class="keyword">virtual</span> <span class="keywordtype">void</span> aText (<span class="keyword">const</span> QString &amp;);
+<a name="l00083"></a>00083         <span class="keyword">virtual</span> <span class="keywordtype">void</span> bText (<span class="keyword">const</span> QString &amp;);
+<a name="l00084"></a>00084         <span class="keyword">virtual</span> <span class="keywordtype">void</span> cText (<span class="keyword">const</span> QString &amp;);
+<a name="l00085"></a>00085         <span class="keyword">virtual</span> <span class="keywordtype">void</span> dText (<span class="keyword">const</span> QString &amp;);
 <a name="l00086"></a>00086 
-<a name="l00087"></a>00087 <span class="preprocessor">#endif</span>
-<a name="l00088"></a>00088 <span class="preprocessor"></span>
+<a name="l00087"></a>00087     <span class="keyword">protected</span> slots:
+<a name="l00088"></a>00088         <span class="keyword">virtual</span> <span class="keywordtype">void</span> AlignValues(<span class="keywordtype">int</span>);
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090     signals:
+<a name="l00091"></a>00091         <span class="keywordtype">void</span> ApplyChanges ();
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093     <span class="keyword">private</span>:
+<a name="l00094"></a>00094         <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> parameters;
+<a name="l00095"></a>00095 };
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097 <span class="preprocessor">#endif</span>
+<a name="l00098"></a>00098 <span class="preprocessor"></span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun Apr 20 15:20:25 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 26 02:22:34 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>
