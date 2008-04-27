@@ -82,10 +82,11 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#a6b958d909ace5cfc2347cb8082d3fdb">ReInit</a> (double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#580a0a8dc84fdc53152e20a41c576735">SetParameters</a> (double _a=0, double _b=0, double _c=0, double _d=0)</td></tr>
-
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="94d03f3097e1478093dd3a286f987562"></a><!-- doxytag: member="Surface::Data" ref="94d03f3097e1478093dd3a286f987562" args="(void)" -->
 <a class="el" href="classFunction.html#0c807fd0b7c98ca9c5052c15b3c817a3">vec4vec2D</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>Data</b> (void)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="40887c0b67ecc005cbc181ccda034cc0"></a><!-- doxytag: member="Surface::getDefinitionSpaceDimensions" ref="40887c0b67ecc005cbc181ccda034cc0" args="()" -->
+virtual unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><b>getDefinitionSpaceDimensions</b> ()</td></tr>
 
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classFunction.html#67b6c27b652c41b419602713cd4d72b7">vec4vec1D</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#dc25dc3cc52c171fbd4ef38cb96a516a">df</a> (double, double)</td></tr>
@@ -342,7 +343,7 @@ transforms a <a class="el" href="classSurface.html">Surface</a> <br>
 
 <p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
-<p>References <a class="el" href="Surface_8H-source.html#l00061">usteps</a>, <a class="el" href="Surface_8H-source.html#l00061">vsteps</a>, and <a class="el" href="Surface_8H-source.html#l00068">X</a>.</p>
+<p>References <a class="el" href="Surface_8H-source.html#l00060">usteps</a>, <a class="el" href="Surface_8H-source.html#l00060">vsteps</a>, and <a class="el" href="Surface_8H-source.html#l00067">X</a>.</p>
 
 </div>
 </div><p>
@@ -388,7 +389,7 @@ projects a <a class="el" href="classSurface.html">Surface</a> into three-space <
 
 <p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="Surface_8H-source.html#l00061">usteps</a>, <a class="el" href="Surface_8H-source.html#l00061">vsteps</a>, and <a class="el" href="Surface_8H-source.html#l00068">X</a>.</p>
+<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="Surface_8H-source.html#l00060">usteps</a>, <a class="el" href="Surface_8H-source.html#l00060">vsteps</a>, and <a class="el" href="Surface_8H-source.html#l00067">X</a>.</p>
 
 </div>
 </div><p>
@@ -412,7 +413,7 @@ projects a <a class="el" href="classSurface.html">Surface</a> into three-space <
 draw the projected <a class="el" href="classSurface.html">Surface</a> (onto screen or into GL list, as it is) 
 <p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
-<p>References <a class="el" href="Surface_8C-source.html#l00241">DrawStrip()</a>, and <a class="el" href="Surface_8H-source.html#l00061">usteps</a>.</p>
+<p>References <a class="el" href="Surface_8C-source.html#l00233">DrawStrip()</a>, and <a class="el" href="Surface_8H-source.html#l00060">usteps</a>.</p>
 
 </div>
 </div><p>
@@ -500,60 +501,7 @@ re-initialize a <a class="el" href="classSurface.html">Surface</a> if the defini
 
 <p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
-<p>References <a class="el" href="Surface_8H-source.html#l00058">du</a>, <a class="el" href="Surface_8H-source.html#l00058">dv</a>, <a class="el" href="Surface_8C-source.html#l00066">Initialize()</a>, <a class="el" href="Surface_8H-source.html#l00058">umax</a>, <a class="el" href="Surface_8H-source.html#l00058">umin</a>, <a class="el" href="Surface_8H-source.html#l00061">usteps</a>, <a class="el" href="Surface_8H-source.html#l00058">vmax</a>, <a class="el" href="Surface_8H-source.html#l00058">vmin</a>, and <a class="el" href="Surface_8H-source.html#l00061">vsteps</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="580a0a8dc84fdc53152e20a41c576735"></a><!-- doxytag: member="Surface::SetParameters" ref="580a0a8dc84fdc53152e20a41c576735" args="(double _a=0, double _b=0, double _c=0, double _d=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Surface::SetParameters           </td>
-          <td>(</td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_a</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_b</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_c</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>_d</em> = <code>0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td width="100%"><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-placeholder for function to set parameters in descendants - empty because generic function has no parameters <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>_a</em>&nbsp;</td><td>1st parameter </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>_b</em>&nbsp;</td><td>2nd parameter </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>_c</em>&nbsp;</td><td>3rd parameter </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>_d</em>&nbsp;</td><td>4th parameter </td></tr>
-  </table>
-</dl>
-
-<p>Reimplemented from <a class="el" href="classFunction.html#d718e144e4dadb18eeb5eebcc46ac3f5">Function</a>.</p>
-
-<p>Reimplemented in <a class="el" href="classComplexFunction.html#644b064a32d83344be095b2375cb1e90">ComplexFunction</a>, <a class="el" href="classz2.html#2a7166cbbd02118399d350ee2dab9b01">z2</a>, <a class="el" href="classz3.html#d32ed22dc9e9f0410f5ea160aa1466ae">z3</a>, <a class="el" href="classzA.html#d45d697ba6f97919da150077abe2f208">zA</a>, <a class="el" href="classez.html#c405c6888cb741bb61d8baec5a9fafda">ez</a>, <a class="el" href="classemz2.html#32a37152a8c5006fb61b10e3bc23125d">emz2</a>, <a class="el" href="classzm1.html#843b570cf08a730cd6afd85419158aed">zm1</a>, <a class="el" href="classzm2.html#34e714557e70c728999946bebac7a415">zm2</a>, <a class="el" href="classsqrtz.html#9269ac280bb7a05fdb62f4f266ccb21f">sqrtz</a>, <a class="el" href="classlnz.html#a57a9788bb8dad639fbcae4ebdb1bde7">lnz</a>, <a class="el" href="classsinz.html#78d0f7de6ddae7080ef0e01917e336a7">sinz</a>, <a class="el" href="classcosz.html#e6b035b5222d74ef9abe20b99a94e827">cosz</a>, <a class="el" href="classsinhz.html#23f8dfe02e6123b17b059da2b9606a1f">sinhz</a>, <a class="el" href="classcoshz.html#47afebca43426823d6396f93649acf29">coshz</a>, <a class="el" href="classtanz.html#3f97b2d036e9fec0bb9aa915f336c6ef">tanz</a>, <a class="el" href="classPolynomial.html#43641b71a87fc4335feae113271358e5">Polynomial</a>, <a class="el" href="classSurface1.html#6eb55c84c5e9bdc7eeaa2b3931254639">Surface1</a>, <a class="el" href="classHorizon.html#0c491c1d64aea3eb792222bdb77fa152">Horizon</a>, and <a class="el" href="classTorus3.html#3973f9361c1de567826e5501ad37ebab">Torus3</a>.</p>
+<p>References <a class="el" href="Surface_8H-source.html#l00057">du</a>, <a class="el" href="Surface_8H-source.html#l00057">dv</a>, <a class="el" href="Surface_8C-source.html#l00066">Initialize()</a>, <a class="el" href="Surface_8H-source.html#l00057">umax</a>, <a class="el" href="Surface_8H-source.html#l00057">umin</a>, <a class="el" href="Surface_8H-source.html#l00060">usteps</a>, <a class="el" href="Surface_8H-source.html#l00057">vmax</a>, <a class="el" href="Surface_8H-source.html#l00057">vmin</a>, and <a class="el" href="Surface_8H-source.html#l00060">vsteps</a>.</p>
 
 </div>
 </div><p>
@@ -595,7 +543,7 @@ numerical calculation of the derivatives in u and v: <p class="formulaDsp">
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>gradient in t, u and v as array </dd></dl>
 
-<p>References <a class="el" href="Surface_8H-source.html#l00065">F</a>, and <a class="el" href="Function_8H-source.html#l00311">SurfaceBase::operator()()</a>.</p>
+<p>References <a class="el" href="Surface_8H-source.html#l00064">F</a>, and <a class="el" href="Function_8H-source.html#l00311">SurfaceBase::operator()()</a>.</p>
 
 </div>
 </div><p>
@@ -622,9 +570,9 @@ allocate and initialize X[][] with values of <a class="el" href="classSurfaceBas
 
 <p>Reimplemented in <a class="el" href="classComplexFunction.html#a978ff4b165e029bb82ba33dce35e4e3">ComplexFunction</a>.</p>
 
-<p>References <a class="el" href="Surface_8H-source.html#l00058">du</a>, <a class="el" href="Surface_8H-source.html#l00058">dv</a>, <a class="el" href="classSurfaceBase.html#ba6ce6327e509663e484560f849d03f1">SurfaceBase::f()</a>, <a class="el" href="Surface_8C-source.html#l00054">InitMem()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="Surface_8H-source.html#l00058">umin</a>, <a class="el" href="Surface_8H-source.html#l00061">usteps</a>, <a class="el" href="Surface_8H-source.html#l00058">vmin</a>, <a class="el" href="Surface_8H-source.html#l00061">vsteps</a>, and <a class="el" href="Surface_8H-source.html#l00068">X</a>.</p>
+<p>References <a class="el" href="Surface_8H-source.html#l00057">du</a>, <a class="el" href="Surface_8H-source.html#l00057">dv</a>, <a class="el" href="classSurfaceBase.html#ba6ce6327e509663e484560f849d03f1">SurfaceBase::f()</a>, <a class="el" href="Surface_8C-source.html#l00054">InitMem()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="Surface_8H-source.html#l00057">umin</a>, <a class="el" href="Surface_8H-source.html#l00060">usteps</a>, <a class="el" href="Surface_8H-source.html#l00057">vmin</a>, <a class="el" href="Surface_8H-source.html#l00060">vsteps</a>, and <a class="el" href="Surface_8H-source.html#l00067">X</a>.</p>
 
-<p>Referenced by <a class="el" href="CustomFunction_8C-source.html#l00143">CustomSurface::CustomSurface()</a>, <a class="el" href="Surface_8C-source.html#l00301">Horizon::Horizon()</a>, <a class="el" href="Surface_8C-source.html#l00108">ReInit()</a>, <a class="el" href="Surface_8C-source.html#l00268">Surface1::Surface1()</a>, and <a class="el" href="Surface_8C-source.html#l00334">Torus3::Torus3()</a>.</p>
+<p>Referenced by <a class="el" href="CustomFunction_8C-source.html#l00143">CustomSurface::CustomSurface()</a>, <a class="el" href="Surface_8C-source.html#l00293">Horizon::Horizon()</a>, <a class="el" href="Surface_8C-source.html#l00100">ReInit()</a>, <a class="el" href="Surface_8C-source.html#l00260">Surface1::Surface1()</a>, and <a class="el" href="Surface_8C-source.html#l00326">Torus3::Torus3()</a>.</p>
 
 </div>
 </div><p>
@@ -646,7 +594,7 @@ allocate and initialize X[][] with values of <a class="el" href="classSurfaceBas
 
 <p>
 Initialize the temporary storage areas Xscr[][], Xtrans[][], R[][], G[][], B[][] 
-<p>References <a class="el" href="Surface_8H-source.html#l00061">usteps</a>, and <a class="el" href="Surface_8H-source.html#l00061">vsteps</a>.</p>
+<p>References <a class="el" href="Surface_8H-source.html#l00060">usteps</a>, and <a class="el" href="Surface_8H-source.html#l00060">vsteps</a>.</p>
 
 <p>Referenced by <a class="el" href="Surface_8C-source.html#l00066">Initialize()</a>, and <a class="el" href="ComplexFunction_8C-source.html#l00039">ComplexFunction::Initialize()</a>.</p>
 
@@ -674,7 +622,7 @@ return the approximate amount of memory needed to display a <a class="el" href="
 
 <p>Reimplemented from <a class="el" href="classFunction.html#d6a10b999b0d561d36a473d461c62311">Function</a>.</p>
 
-<p>References <a class="el" href="Surface_8H-source.html#l00061">usteps</a>, and <a class="el" href="Surface_8H-source.html#l00061">vsteps</a>.</p>
+<p>References <a class="el" href="Surface_8H-source.html#l00060">usteps</a>, and <a class="el" href="Surface_8H-source.html#l00060">vsteps</a>.</p>
 
 </div>
 </div><p>
@@ -701,9 +649,9 @@ draw the current strip of the projected <a class="el" href="classSurface.html">S
   </table>
 </dl>
 
-<p>References <a class="el" href="Surface_8H-source.html#l00061">vsteps</a>, and <a class="el" href="Surface_8H-source.html#l00068">X</a>.</p>
+<p>References <a class="el" href="Surface_8H-source.html#l00060">vsteps</a>, and <a class="el" href="Surface_8H-source.html#l00067">X</a>.</p>
 
-<p>Referenced by <a class="el" href="Surface_8C-source.html#l00231">Draw()</a>.</p>
+<p>Referenced by <a class="el" href="Surface_8C-source.html#l00223">Draw()</a>.</p>
 
 </div>
 </div><p>
@@ -735,7 +683,7 @@ calculate normal to function at a given point in definition set <br>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="Surface_8H-source.html">Surface.H</a><li>workspace/HyperspaceExplorer/src/Functions/Surface.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 26 02:22:35 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Apr 27 22:34:13 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

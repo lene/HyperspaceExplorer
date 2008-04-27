@@ -72,10 +72,6 @@ Function::Function (const QString &name,
     }
 }
 
-/// Placeholder for function to set parameters in descendants
-/** Empty because a generic function has no parameters                        */
-void Function::SetParameters (double, double, double, double) { }
-
 /// Return the approximate amount of memory needed to display a Function of
 /// current definition set
 /** \todo uses hardcoded and experimentally found value for memory per cell

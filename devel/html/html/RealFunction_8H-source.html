@@ -51,44 +51,44 @@
 <a name="l00045"></a>00045                             <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
 <a name="l00046"></a>00046                             <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
 <a name="l00047"></a>00047 
-<a name="l00048"></a>00048     <span class="keyword">protected</span>:
-<a name="l00049"></a>00049         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;<a class="code" href="classRealFunction.html#fc801388deaab9bb3783ae470891a2d8" title="Calculate normal to function at a given point in definition set.">normal</a>(<span class="keywordtype">double</span> t, <span class="keywordtype">double</span> u, <span class="keywordtype">double</span> v);
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051         <span class="keywordtype">void</span> <a class="code" href="classRealFunction.html#45794e4c47942b87f76535062cc23423" title="Draw the current plane of the projected Function.">DrawPlane</a> (<span class="keywordtype">unsigned</span>);
-<a name="l00052"></a>00052         <span class="keywordtype">void</span> <a class="code" href="classRealFunction.html#dbafbb0c90473d0b4c3dbc5c3dfdd75a" title="Draw the current strip of the projected Function.">DrawStrip</a> (<span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>);
-<a name="l00053"></a>00053         <span class="keywordtype">void</span> <a class="code" href="classRealFunction.html#891f30e71e090f4c8cfb0362d1c40cd3" title="Draw the current cube or cell of the projected Function.">DrawCube</a> (<span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>);
-<a name="l00054"></a>00054 
-<a name="l00055"></a>00055         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classRealFunction.html#37c91ed60f82198f48dfab887dd743c3" title="Allocate and initialize X[][][] with values of f().">Initialize</a> (<span class="keywordtype">void</span>);
-<a name="l00056"></a>00056         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classRealFunction.html#1905c4297b0f6b4f91a3b24b55b62eea" title="Initialize the temporary storage areas.">InitMem</a> (<span class="keywordtype">void</span>);
-<a name="l00057"></a>00057 
-<a name="l00058"></a><a class="code" href="classRealFunction.html#ed466bcba4e1959d68c4932513612e19">00058</a>         <a class="code" href="classFunction.html#fbc77cb3e6c8ca2c59225db92f5e420c" title="three-dimensional array of Vector&amp;lt;4&amp;gt;, implemented as a nested std::vector">vec4vec3D</a> <a class="code" href="classRealFunction.html#950ebb62a55990cd42ce6ee48aaa9810" title="temporary storage for function values on grid">X</a>,      
-<a name="l00059"></a>00059                   <a class="code" href="classRealFunction.html#ed466bcba4e1959d68c4932513612e19" title="temporary storage for transformed function values">Xtrans</a>; 
-<a name="l00060"></a><a class="code" href="classRealFunction.html#2b4805a60e748aee992f62ac7c9bd4df">00060</a>         <a class="code" href="classFunction.html#f3fbebbb4cb0151aeea503738ad6fd2f" title="three-dimensional array of Vector&amp;lt;3&amp;gt;, implemented as a nested std::vector">vec3vec3D</a> <a class="code" href="classRealFunction.html#2b4805a60e748aee992f62ac7c9bd4df">Xscr</a>;   
-<a name="l00061"></a>00061 
-<a name="l00062"></a><a class="code" href="classRealFunction.html#da001f73d52d3267762aed76256be0a9">00062</a>         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> <a class="code" href="classRealFunction.html#da001f73d52d3267762aed76256be0a9" title="temporary storage for the value of the function at a given point">F</a>;
+<a name="l00048"></a>00048         <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> getDefinitionSpaceDimensions() { <span class="keywordflow">return</span> 3; }
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050     <span class="keyword">protected</span>:
+<a name="l00051"></a>00051         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;<a class="code" href="classRealFunction.html#fc801388deaab9bb3783ae470891a2d8" title="Calculate normal to function at a given point in definition set.">normal</a>(<span class="keywordtype">double</span> t, <span class="keywordtype">double</span> u, <span class="keywordtype">double</span> v);
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053         <span class="keywordtype">void</span> <a class="code" href="classRealFunction.html#45794e4c47942b87f76535062cc23423" title="Draw the current plane of the projected Function.">DrawPlane</a> (<span class="keywordtype">unsigned</span>);
+<a name="l00054"></a>00054         <span class="keywordtype">void</span> <a class="code" href="classRealFunction.html#dbafbb0c90473d0b4c3dbc5c3dfdd75a" title="Draw the current strip of the projected Function.">DrawStrip</a> (<span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>);
+<a name="l00055"></a>00055         <span class="keywordtype">void</span> <a class="code" href="classRealFunction.html#891f30e71e090f4c8cfb0362d1c40cd3" title="Draw the current cube or cell of the projected Function.">DrawCube</a> (<span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>);
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classRealFunction.html#37c91ed60f82198f48dfab887dd743c3" title="Allocate and initialize X[][][] with values of f().">Initialize</a> (<span class="keywordtype">void</span>);
+<a name="l00058"></a>00058         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classRealFunction.html#1905c4297b0f6b4f91a3b24b55b62eea" title="Initialize the temporary storage areas.">InitMem</a> (<span class="keywordtype">void</span>);
+<a name="l00059"></a>00059 
+<a name="l00060"></a><a class="code" href="classRealFunction.html#ed466bcba4e1959d68c4932513612e19">00060</a>         <a class="code" href="classFunction.html#fbc77cb3e6c8ca2c59225db92f5e420c" title="three-dimensional array of Vector&amp;lt;4&amp;gt;, implemented as a nested std::vector">vec4vec3D</a> <a class="code" href="classRealFunction.html#950ebb62a55990cd42ce6ee48aaa9810" title="temporary storage for function values on grid">X</a>,      
+<a name="l00061"></a>00061                   <a class="code" href="classRealFunction.html#ed466bcba4e1959d68c4932513612e19" title="temporary storage for transformed function values">Xtrans</a>; 
+<a name="l00062"></a><a class="code" href="classRealFunction.html#2b4805a60e748aee992f62ac7c9bd4df">00062</a>         <a class="code" href="classFunction.html#f3fbebbb4cb0151aeea503738ad6fd2f" title="three-dimensional array of Vector&amp;lt;3&amp;gt;, implemented as a nested std::vector">vec3vec3D</a> <a class="code" href="classRealFunction.html#2b4805a60e748aee992f62ac7c9bd4df">Xscr</a>;   
 <a name="l00063"></a>00063 
-<a name="l00064"></a>00064 };
+<a name="l00064"></a><a class="code" href="classRealFunction.html#da001f73d52d3267762aed76256be0a9">00064</a>         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> <a class="code" href="classRealFunction.html#da001f73d52d3267762aed76256be0a9" title="temporary storage for the value of the function at a given point">F</a>;
 <a name="l00065"></a>00065 
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067 <span class="comment">/*******************************************************************************</span>
-<a name="l00068"></a>00068 <span class="comment"> *</span>
-<a name="l00069"></a>00069 <span class="comment"> *  classes which implement RealFunction::f (double, double, double) follow</span>
-<a name="l00070"></a>00070 <span class="comment"> *  the descendants may also implement Function::df () and Function::normal (),</span>
-<a name="l00071"></a>00071 <span class="comment"> *  but need not</span>
-<a name="l00072"></a>00072 <span class="comment"> */</span>
-<a name="l00073"></a>00073 
+<a name="l00066"></a>00066 };
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069 <span class="comment">/*******************************************************************************</span>
+<a name="l00070"></a>00070 <span class="comment"> *</span>
+<a name="l00071"></a>00071 <span class="comment"> *  classes which implement RealFunction::f (double, double, double) follow</span>
+<a name="l00072"></a>00072 <span class="comment"> *  the descendants may also implement Function::df () and Function::normal (),</span>
+<a name="l00073"></a>00073 <span class="comment"> *  but need not</span>
+<a name="l00074"></a>00074 <span class="comment"> */</span>
 <a name="l00075"></a>00075 
 <a name="l00077"></a>00077 
-<a name="l00085"></a><a class="code" href="classHypersphere.html">00085</a> <span class="keyword">class </span><a class="code" href="classHypersphere.html" title="A hypersphere.">Hypersphere</a>: <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> {
-<a name="l00086"></a>00086     <span class="keyword">public</span>:
-<a name="l00087"></a>00087         <a class="code" href="classHypersphere.html#d03be78c012ccd6339a0d37633522635">Hypersphere</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
-<a name="l00088"></a>00088                      <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00089"></a>00089                      <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
-<a name="l00090"></a>00090                      <span class="keywordtype">double</span> _rad = 1);
-<a name="l00091"></a>00091         <span class="keyword">virtual</span> ~<a class="code" href="classHypersphere.html" title="A hypersphere.">Hypersphere</a>() { }
-<a name="l00092"></a><a class="code" href="classHypersphere.html#8eeb401282ab3269d40537b68cb2b3d3">00092</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classHypersphere.html#8eeb401282ab3269d40537b68cb2b3d3" title="Placeholder for function to set parameters in descendants.">SetParameters</a> (<span class="keywordtype">double</span> _a = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0,
-<a name="l00093"></a>00093                                     <span class="keywordtype">double</span> = 0) { Radius = _a; }
-<a name="l00094"></a>00094         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classHypersphere.html#8eeb401282ab3269d40537b68cb2b3d3" title="Placeholder for function to set parameters in descendants.">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;);
+<a name="l00079"></a>00079 
+<a name="l00087"></a><a class="code" href="classHypersphere.html">00087</a> <span class="keyword">class </span><a class="code" href="classHypersphere.html" title="A hypersphere.">Hypersphere</a>: <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> {
+<a name="l00088"></a>00088     <span class="keyword">public</span>:
+<a name="l00089"></a>00089         <a class="code" href="classHypersphere.html#d03be78c012ccd6339a0d37633522635">Hypersphere</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
+<a name="l00090"></a>00090                      <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00091"></a>00091                      <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
+<a name="l00092"></a>00092                      <span class="keywordtype">double</span> _rad = 1);
+<a name="l00093"></a>00093         <span class="keyword">virtual</span> ~<a class="code" href="classHypersphere.html" title="A hypersphere.">Hypersphere</a>() { }
+<a name="l00094"></a>00094         <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetParameters(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;);
 <a name="l00095"></a>00095 
 <a name="l00096"></a>00096     <span class="keyword">protected</span>:
 <a name="l00097"></a><a class="code" href="classHypersphere.html#8b641f61bdb8dff6d4d99e5eb40ea70b">00097</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">function_type</a> <a class="code" href="classHypersphere.html#8b641f61bdb8dff6d4d99e5eb40ea70b" title="Hypersphere defining function.">f</a>;
@@ -106,221 +106,204 @@
 <a name="l00115"></a>00115                 <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
 <a name="l00116"></a>00116                 <span class="keywordtype">double</span> _R = 2, <span class="keywordtype">double</span> _r = 1, <span class="keywordtype">double</span> _rho = 0.5);
 <a name="l00117"></a>00117         <span class="keyword">virtual</span> ~<a class="code" href="classTorus1.html">Torus1</a>() { }
-<a name="l00118"></a><a class="code" href="classTorus1.html#016c592bbb7e0220cb00f1dc2c4a726c">00118</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classTorus1.html#016c592bbb7e0220cb00f1dc2c4a726c" title="Placeholder for function to set parameters in descendants.">SetParameters</a> (<span class="keywordtype">double</span> _a = 0, <span class="keywordtype">double</span> _b = 0,
-<a name="l00119"></a>00119                                     <span class="keywordtype">double</span> _c = 0, <span class="keywordtype">double</span> = 0) {
-<a name="l00120"></a>00120                                         R = _a; r = _b; rho = _c; }
-<a name="l00121"></a>00121         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classTorus1.html#016c592bbb7e0220cb00f1dc2c4a726c" title="Placeholder for function to set parameters in descendants.">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
-<a name="l00122"></a>00122     <span class="comment">//  parms["Radius"].value must be set!</span>
-<a name="l00123"></a>00123 <span class="preprocessor">#if 1</span>
-<a name="l00124"></a>00124 <span class="preprocessor"></span>    <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin(); i != parms.end(); ++i) {
-<a name="l00125"></a>00125         <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"Major Radius"</span>) R = <span class="keywordtype">double</span>(*i-&gt;second);
-<a name="l00126"></a>00126         <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"Minor Radius"</span>) r = <span class="keywordtype">double</span>(*i-&gt;second);
-<a name="l00127"></a>00127         <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"Micro Radius"</span>) rho = <span class="keywordtype">double</span>(*i-&gt;second);
-<a name="l00128"></a>00128     }
-<a name="l00129"></a>00129 <span class="preprocessor">#else</span>
-<a name="l00130"></a>00130 <span class="preprocessor"></span>    <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;R, <span class="stringliteral">"Major Radius"</span>);
-<a name="l00131"></a>00131     <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;r, <span class="stringliteral">"Minor Radius"</span>);
-<a name="l00132"></a>00132     <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;rho, <span class="stringliteral">"Micro Radius"</span>);
-<a name="l00133"></a>00133 <span class="preprocessor">#endif</span>
-<a name="l00134"></a>00134 <span class="preprocessor"></span>}
+<a name="l00118"></a>00118         <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetParameters(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
+<a name="l00119"></a>00119     <span class="comment">//  parms["Radius"].value must be set!</span>
+<a name="l00120"></a>00120 <span class="preprocessor">#if 1</span>
+<a name="l00121"></a>00121 <span class="preprocessor"></span>    <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin(); i != parms.end(); ++i) {
+<a name="l00122"></a>00122         <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"Major Radius"</span>) R = <span class="keywordtype">double</span>(*i-&gt;second);
+<a name="l00123"></a>00123         <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"Minor Radius"</span>) r = <span class="keywordtype">double</span>(*i-&gt;second);
+<a name="l00124"></a>00124         <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"Micro Radius"</span>) rho = <span class="keywordtype">double</span>(*i-&gt;second);
+<a name="l00125"></a>00125     }
+<a name="l00126"></a>00126 <span class="preprocessor">#else</span>
+<a name="l00127"></a>00127 <span class="preprocessor"></span>    <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;R, <span class="stringliteral">"Major Radius"</span>);
+<a name="l00128"></a>00128     <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;r, <span class="stringliteral">"Minor Radius"</span>);
+<a name="l00129"></a>00129     <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;rho, <span class="stringliteral">"Micro Radius"</span>);
+<a name="l00130"></a>00130 <span class="preprocessor">#endif</span>
+<a name="l00131"></a>00131 <span class="preprocessor"></span>}
+<a name="l00132"></a>00132 
+<a name="l00133"></a>00133     <span class="keyword">protected</span>:
+<a name="l00134"></a><a class="code" href="classTorus1.html#5eed4631d608d7892264aab65eed15dd">00134</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">function_type</a> <a class="code" href="classTorus1.html#5eed4631d608d7892264aab65eed15dd">f</a>;
 <a name="l00135"></a>00135 
-<a name="l00136"></a>00136     <span class="keyword">protected</span>:
-<a name="l00137"></a><a class="code" href="classTorus1.html#5eed4631d608d7892264aab65eed15dd">00137</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">function_type</a> <a class="code" href="classTorus1.html#5eed4631d608d7892264aab65eed15dd">f</a>;
+<a name="l00136"></a>00136         <span class="keywordtype">double</span> R, r, rho;
+<a name="l00137"></a>00137 };
 <a name="l00138"></a>00138 
-<a name="l00139"></a>00139         <span class="keywordtype">double</span> R, r, rho;
-<a name="l00140"></a>00140 };
+<a name="l00139"></a>00139 
 <a name="l00141"></a>00141 
-<a name="l00142"></a>00142 
-<a name="l00144"></a>00144 
-<a name="l00148"></a><a class="code" href="classTorus2.html">00148</a> <span class="keyword">class </span><a class="code" href="classTorus2.html">Torus2</a>: <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> {
-<a name="l00149"></a>00149     <span class="keyword">public</span>:
-<a name="l00150"></a>00150         <a class="code" href="classTorus2.html#89902faec35a16ac5bd27e37fd9ca47c">Torus2</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
-<a name="l00151"></a>00151                 <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00152"></a>00152                 <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
-<a name="l00153"></a>00153                 <span class="keywordtype">double</span> _R = 1, <span class="keywordtype">double</span> _r = 0.5);
-<a name="l00154"></a>00154         <span class="keyword">virtual</span> ~<a class="code" href="classTorus2.html">Torus2</a> () { }
-<a name="l00155"></a><a class="code" href="classTorus2.html#ef07d5df812d4ce4ec7f86555bcf4817">00155</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classTorus2.html#ef07d5df812d4ce4ec7f86555bcf4817" title="Placeholder for function to set parameters in descendants.">SetParameters</a> (<span class="keywordtype">double</span> _a = 0, <span class="keywordtype">double</span> _b = 0,
-<a name="l00156"></a>00156                                     <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0) {
-<a name="l00157"></a>00157                                         R = _a; r = _b; }
-<a name="l00158"></a>00158         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classTorus2.html#ef07d5df812d4ce4ec7f86555bcf4817" title="Placeholder for function to set parameters in descendants.">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
-<a name="l00159"></a>00159             <span class="comment">//  parms["Radius"].value must be set!</span>
-<a name="l00160"></a>00160 <span class="preprocessor">#if 1</span>
-<a name="l00161"></a>00161 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
-<a name="l00162"></a>00162                  i != parms.end(); ++i) {
-<a name="l00163"></a>00163                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"Major Radius"</span>)
-<a name="l00164"></a>00164                     R = <span class="keywordtype">double</span>(*i-&gt;second);
-<a name="l00165"></a>00165                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"Minor Radius"</span>)
-<a name="l00166"></a>00166                     r = <span class="keywordtype">double</span>(*i-&gt;second);
-<a name="l00167"></a>00167             }
-<a name="l00168"></a>00168 <span class="preprocessor">#else</span>
-<a name="l00169"></a>00169 <span class="preprocessor"></span>            <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;R, <span class="stringliteral">"Major Radius"</span>);
-<a name="l00170"></a>00170             <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;r, <span class="stringliteral">"Minor Radius"</span>);
-<a name="l00171"></a>00171 <span class="preprocessor">#endif</span>
-<a name="l00172"></a>00172 <span class="preprocessor"></span>        }
+<a name="l00145"></a><a class="code" href="classTorus2.html">00145</a> <span class="keyword">class </span><a class="code" href="classTorus2.html">Torus2</a>: <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> {
+<a name="l00146"></a>00146     <span class="keyword">public</span>:
+<a name="l00147"></a>00147         <a class="code" href="classTorus2.html#89902faec35a16ac5bd27e37fd9ca47c">Torus2</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
+<a name="l00148"></a>00148                 <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00149"></a>00149                 <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
+<a name="l00150"></a>00150                 <span class="keywordtype">double</span> _R = 1, <span class="keywordtype">double</span> _r = 0.5);
+<a name="l00151"></a>00151         <span class="keyword">virtual</span> ~<a class="code" href="classTorus2.html">Torus2</a> () { }
+<a name="l00152"></a>00152         <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetParameters(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
+<a name="l00153"></a>00153             <span class="comment">//  parms["Radius"].value must be set!</span>
+<a name="l00154"></a>00154 <span class="preprocessor">#if 1</span>
+<a name="l00155"></a>00155 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
+<a name="l00156"></a>00156                  i != parms.end(); ++i) {
+<a name="l00157"></a>00157                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"Major Radius"</span>)
+<a name="l00158"></a>00158                     R = <span class="keywordtype">double</span>(*i-&gt;second);
+<a name="l00159"></a>00159                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"Minor Radius"</span>)
+<a name="l00160"></a>00160                     r = <span class="keywordtype">double</span>(*i-&gt;second);
+<a name="l00161"></a>00161             }
+<a name="l00162"></a>00162 <span class="preprocessor">#else</span>
+<a name="l00163"></a>00163 <span class="preprocessor"></span>            <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;R, <span class="stringliteral">"Major Radius"</span>);
+<a name="l00164"></a>00164             <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;r, <span class="stringliteral">"Minor Radius"</span>);
+<a name="l00165"></a>00165 <span class="preprocessor">#endif</span>
+<a name="l00166"></a>00166 <span class="preprocessor"></span>        }
+<a name="l00167"></a>00167 
+<a name="l00168"></a>00168     <span class="keyword">protected</span>:
+<a name="l00169"></a><a class="code" href="classTorus2.html#3c9380712b296d5605dd88fcc8c9b7bb">00169</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">function_type</a> <a class="code" href="classTorus2.html#3c9380712b296d5605dd88fcc8c9b7bb">f</a>;
+<a name="l00170"></a>00170 
+<a name="l00171"></a>00171         <span class="keywordtype">double</span> R, r;
+<a name="l00172"></a>00172 };
 <a name="l00173"></a>00173 
-<a name="l00174"></a>00174     <span class="keyword">protected</span>:
-<a name="l00175"></a><a class="code" href="classTorus2.html#3c9380712b296d5605dd88fcc8c9b7bb">00175</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">function_type</a> <a class="code" href="classTorus2.html#3c9380712b296d5605dd88fcc8c9b7bb">f</a>;
+<a name="l00174"></a>00174 
 <a name="l00176"></a>00176 
-<a name="l00177"></a>00177         <span class="keywordtype">double</span> R, r;
-<a name="l00178"></a>00178 };
-<a name="l00179"></a>00179 
-<a name="l00180"></a>00180 
-<a name="l00182"></a>00182 
-<a name="l00189"></a><a class="code" href="classFr3r.html">00189</a> <span class="keyword">class </span><a class="code" href="classFr3r.html">Fr3r</a>: <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> {
-<a name="l00190"></a>00190     <span class="keyword">public</span>:
-<a name="l00191"></a>00191         <a class="code" href="classFr3r.html#438c26c506e5fda0242a16ba517a4e5e">Fr3r</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
-<a name="l00192"></a>00192               <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00193"></a>00193               <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00194"></a>00194         <span class="keyword">virtual</span> ~<a class="code" href="classFr3r.html">Fr3r</a>() { }
-<a name="l00195"></a>00195 
-<a name="l00196"></a>00196     <span class="keyword">protected</span>:
-<a name="l00197"></a><a class="code" href="classFr3r.html#4dfb0ba6640f894d2e08d062ec98cadb">00197</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">function_type</a> <a class="code" href="classFr3r.html#4dfb0ba6640f894d2e08d062ec98cadb">f</a>;
-<a name="l00198"></a>00198 };
-<a name="l00199"></a>00199 
-<a name="l00200"></a>00200 
-<a name="l00202"></a>00202 
-<a name="l00205"></a><a class="code" href="classGravitationPotential.html">00205</a> <span class="keyword">class </span><a class="code" href="classGravitationPotential.html">GravitationPotential</a>: <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> {
-<a name="l00206"></a>00206     <span class="keyword">public</span>:
-<a name="l00207"></a>00207         <a class="code" href="classGravitationPotential.html#1087fe7d0272f927001e19fba7636f06">GravitationPotential</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
-<a name="l00208"></a>00208                               <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00209"></a>00209                               <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
-<a name="l00210"></a>00210                               <span class="keywordtype">double</span> _M = 1, <span class="keywordtype">double</span> _R = 0.25);
-<a name="l00211"></a>00211         <span class="keyword">virtual</span> ~<a class="code" href="classGravitationPotential.html">GravitationPotential</a> () { }
-<a name="l00212"></a><a class="code" href="classGravitationPotential.html#3316dc8a0507e88642ad113d7941b6f4">00212</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classGravitationPotential.html#3316dc8a0507e88642ad113d7941b6f4" title="Placeholder for function to set parameters in descendants.">SetParameters</a> (<span class="keywordtype">double</span> _a = 0, <span class="keywordtype">double</span> _b = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0) {
-<a name="l00213"></a>00213             M = _a; R = _b;
-<a name="l00214"></a>00214         }
-<a name="l00215"></a>00215         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classGravitationPotential.html#3316dc8a0507e88642ad113d7941b6f4" title="Placeholder for function to set parameters in descendants.">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
-<a name="l00216"></a>00216 <span class="preprocessor">#if 1</span>
-<a name="l00217"></a>00217 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
-<a name="l00218"></a>00218                  i != parms.end(); ++i) {
-<a name="l00219"></a>00219                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"M"</span>) M = <span class="keywordtype">double</span>(*i-&gt;second);
-<a name="l00220"></a>00220                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"R"</span>) R = <span class="keywordtype">double</span>(*i-&gt;second);
-<a name="l00221"></a>00221             }
-<a name="l00222"></a>00222 <span class="preprocessor">#else</span>
-<a name="l00223"></a>00223 <span class="preprocessor"></span>            <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;M, <span class="stringliteral">"M"</span>);
-<a name="l00224"></a>00224             <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;R, <span class="stringliteral">"R"</span>);
-<a name="l00225"></a>00225 <span class="preprocessor">#endif</span>
-<a name="l00226"></a>00226 <span class="preprocessor"></span>        }
+<a name="l00183"></a><a class="code" href="classFr3r.html">00183</a> <span class="keyword">class </span><a class="code" href="classFr3r.html">Fr3r</a>: <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> {
+<a name="l00184"></a>00184     <span class="keyword">public</span>:
+<a name="l00185"></a>00185         <a class="code" href="classFr3r.html#438c26c506e5fda0242a16ba517a4e5e">Fr3r</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
+<a name="l00186"></a>00186               <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00187"></a>00187               <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00188"></a>00188         <span class="keyword">virtual</span> ~<a class="code" href="classFr3r.html">Fr3r</a>() { }
+<a name="l00189"></a>00189 
+<a name="l00190"></a>00190     <span class="keyword">protected</span>:
+<a name="l00191"></a><a class="code" href="classFr3r.html#4dfb0ba6640f894d2e08d062ec98cadb">00191</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">function_type</a> <a class="code" href="classFr3r.html#4dfb0ba6640f894d2e08d062ec98cadb">f</a>;
+<a name="l00192"></a>00192 };
+<a name="l00193"></a>00193 
+<a name="l00194"></a>00194 
+<a name="l00196"></a>00196 
+<a name="l00199"></a><a class="code" href="classGravitationPotential.html">00199</a> <span class="keyword">class </span><a class="code" href="classGravitationPotential.html">GravitationPotential</a>: <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> {
+<a name="l00200"></a>00200     <span class="keyword">public</span>:
+<a name="l00201"></a>00201         <a class="code" href="classGravitationPotential.html#1087fe7d0272f927001e19fba7636f06">GravitationPotential</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
+<a name="l00202"></a>00202                               <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00203"></a>00203                               <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
+<a name="l00204"></a>00204                               <span class="keywordtype">double</span> _M = 1, <span class="keywordtype">double</span> _R = 0.25);
+<a name="l00205"></a>00205         <span class="keyword">virtual</span> ~<a class="code" href="classGravitationPotential.html">GravitationPotential</a> () { }
+<a name="l00206"></a>00206         <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetParameters(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
+<a name="l00207"></a>00207 <span class="preprocessor">#if 1</span>
+<a name="l00208"></a>00208 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
+<a name="l00209"></a>00209                  i != parms.end(); ++i) {
+<a name="l00210"></a>00210                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"M"</span>) M = <span class="keywordtype">double</span>(*i-&gt;second);
+<a name="l00211"></a>00211                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"R"</span>) R = <span class="keywordtype">double</span>(*i-&gt;second);
+<a name="l00212"></a>00212             }
+<a name="l00213"></a>00213 <span class="preprocessor">#else</span>
+<a name="l00214"></a>00214 <span class="preprocessor"></span>            <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;M, <span class="stringliteral">"M"</span>);
+<a name="l00215"></a>00215             <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;R, <span class="stringliteral">"R"</span>);
+<a name="l00216"></a>00216 <span class="preprocessor">#endif</span>
+<a name="l00217"></a>00217 <span class="preprocessor"></span>        }
+<a name="l00218"></a>00218 
+<a name="l00219"></a>00219     <span class="keyword">protected</span>:
+<a name="l00220"></a><a class="code" href="classGravitationPotential.html#51bd59d7e700290c8b366f5b5f9abb20">00220</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">function_type</a> <a class="code" href="classGravitationPotential.html#51bd59d7e700290c8b366f5b5f9abb20">f</a>;
+<a name="l00221"></a>00221 
+<a name="l00222"></a>00222         <span class="keywordtype">double</span> M,               <span class="comment">//  not really M, but M/R^3</span>
+<a name="l00223"></a>00223                R;
+<a name="l00224"></a>00224 };
+<a name="l00225"></a>00225 
 <a name="l00227"></a>00227 
-<a name="l00228"></a>00228     <span class="keyword">protected</span>:
-<a name="l00229"></a><a class="code" href="classGravitationPotential.html#51bd59d7e700290c8b366f5b5f9abb20">00229</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">function_type</a> <a class="code" href="classGravitationPotential.html#51bd59d7e700290c8b366f5b5f9abb20">f</a>;
-<a name="l00230"></a>00230 
-<a name="l00231"></a>00231         <span class="keywordtype">double</span> M,               <span class="comment">//  not really M, but M/R^3</span>
-<a name="l00232"></a>00232                R;
-<a name="l00233"></a>00233 };
-<a name="l00234"></a>00234 
+<a name="l00230"></a><a class="code" href="classFr3rSin.html">00230</a> <span class="keyword">class </span><a class="code" href="classFr3rSin.html">Fr3rSin</a>: <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> {
+<a name="l00231"></a>00231     <span class="keyword">public</span>:
+<a name="l00232"></a>00232         <a class="code" href="classFr3rSin.html#c26b6a297516602648707d867cd6b4bf">Fr3rSin</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
+<a name="l00233"></a>00233                  <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00234"></a>00234                  <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00235"></a>00235         <span class="keyword">virtual</span> ~<a class="code" href="classFr3rSin.html">Fr3rSin</a> () { }
 <a name="l00236"></a>00236 
-<a name="l00239"></a><a class="code" href="classFr3rSin.html">00239</a> <span class="keyword">class </span><a class="code" href="classFr3rSin.html">Fr3rSin</a>: <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> {
-<a name="l00240"></a>00240     <span class="keyword">public</span>:
-<a name="l00241"></a>00241         <a class="code" href="classFr3rSin.html#c26b6a297516602648707d867cd6b4bf">Fr3rSin</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
-<a name="l00242"></a>00242                  <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00243"></a>00243                  <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00244"></a>00244         <span class="keyword">virtual</span> ~<a class="code" href="classFr3rSin.html">Fr3rSin</a> () { }
-<a name="l00245"></a>00245 
-<a name="l00246"></a>00246     <span class="keyword">protected</span>:
-<a name="l00247"></a><a class="code" href="classFr3rSin.html#3f1f72ff9d484144c49bdbed4658bb6a">00247</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">function_type</a> <a class="code" href="classFr3rSin.html#3f1f72ff9d484144c49bdbed4658bb6a">f</a>;
-<a name="l00248"></a>00248 };
-<a name="l00249"></a>00249 
+<a name="l00237"></a>00237     <span class="keyword">protected</span>:
+<a name="l00238"></a><a class="code" href="classFr3rSin.html#3f1f72ff9d484144c49bdbed4658bb6a">00238</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">function_type</a> <a class="code" href="classFr3rSin.html#3f1f72ff9d484144c49bdbed4658bb6a">f</a>;
+<a name="l00239"></a>00239 };
+<a name="l00240"></a>00240 
+<a name="l00242"></a>00242 
+<a name="l00245"></a><a class="code" href="classFr3rExp.html">00245</a> <span class="keyword">class </span><a class="code" href="classFr3rExp.html">Fr3rExp</a>: <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> {
+<a name="l00246"></a>00246     <span class="keyword">public</span>:
+<a name="l00247"></a>00247         <a class="code" href="classFr3rExp.html#2711de0e8315031811dc0c7c95f80786">Fr3rExp</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
+<a name="l00248"></a>00248                  <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00249"></a>00249                  <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00250"></a>00250         <span class="keyword">virtual</span> ~<a class="code" href="classFr3rExp.html">Fr3rExp</a> () { }
 <a name="l00251"></a>00251 
-<a name="l00254"></a><a class="code" href="classFr3rExp.html">00254</a> <span class="keyword">class </span><a class="code" href="classFr3rExp.html">Fr3rExp</a>: <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> {
-<a name="l00255"></a>00255     <span class="keyword">public</span>:
-<a name="l00256"></a>00256         <a class="code" href="classFr3rExp.html#2711de0e8315031811dc0c7c95f80786">Fr3rExp</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
-<a name="l00257"></a>00257                  <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00258"></a>00258                  <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00259"></a>00259         <span class="keyword">virtual</span> ~<a class="code" href="classFr3rExp.html">Fr3rExp</a> () { }
-<a name="l00260"></a>00260 
-<a name="l00261"></a>00261     <span class="keyword">protected</span>:
-<a name="l00262"></a><a class="code" href="classFr3rExp.html#455382fbe0bf6c17e607ae106a4d94ac">00262</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">function_type</a> <a class="code" href="classFr3rExp.html#455382fbe0bf6c17e607ae106a4d94ac">f</a>;
-<a name="l00263"></a>00263 };
-<a name="l00264"></a>00264 
+<a name="l00252"></a>00252     <span class="keyword">protected</span>:
+<a name="l00253"></a><a class="code" href="classFr3rExp.html#455382fbe0bf6c17e607ae106a4d94ac">00253</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">function_type</a> <a class="code" href="classFr3rExp.html#455382fbe0bf6c17e607ae106a4d94ac">f</a>;
+<a name="l00254"></a>00254 };
+<a name="l00255"></a>00255 
+<a name="l00257"></a>00257 
+<a name="l00260"></a><a class="code" href="classPolar.html">00260</a> <span class="keyword">class </span><a class="code" href="classPolar.html">Polar</a>: <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> {
+<a name="l00261"></a>00261     <span class="keyword">public</span>:
+<a name="l00262"></a>00262         <a class="code" href="classPolar.html#1915fdb6145030005485f323bbf111fb">Polar</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
+<a name="l00263"></a>00263                <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00264"></a>00264                <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00265"></a>00265         <span class="keyword">virtual</span> ~<a class="code" href="classPolar.html">Polar</a>() { }
 <a name="l00266"></a>00266 
-<a name="l00269"></a><a class="code" href="classPolar.html">00269</a> <span class="keyword">class </span><a class="code" href="classPolar.html">Polar</a>: <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> {
-<a name="l00270"></a>00270     <span class="keyword">public</span>:
-<a name="l00271"></a>00271         <a class="code" href="classPolar.html#1915fdb6145030005485f323bbf111fb">Polar</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
-<a name="l00272"></a>00272                <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00273"></a>00273                <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00274"></a>00274         <span class="keyword">virtual</span> ~<a class="code" href="classPolar.html">Polar</a>() { }
-<a name="l00275"></a>00275 
-<a name="l00276"></a>00276     <span class="keyword">protected</span>:
-<a name="l00277"></a><a class="code" href="classPolar.html#3166e315e6b0e4b706a8a0fe87d2157c">00277</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">function_type</a> <a class="code" href="classPolar.html#3166e315e6b0e4b706a8a0fe87d2157c">f</a>;
-<a name="l00278"></a>00278 };
-<a name="l00279"></a>00279 
-<a name="l00280"></a>00280 
-<a name="l00282"></a>00282 
-<a name="l00285"></a><a class="code" href="classPolarSin.html">00285</a> <span class="keyword">class </span><a class="code" href="classPolarSin.html">PolarSin</a>: <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> {
-<a name="l00286"></a>00286     <span class="keyword">public</span>:
-<a name="l00287"></a>00287         <a class="code" href="classPolarSin.html#740d752f6b10f835495760fdf62aa930">PolarSin</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
-<a name="l00288"></a>00288                   <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00289"></a>00289                   <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
-<a name="l00290"></a>00290                   <span class="keywordtype">double</span> _phase = 2);
-<a name="l00291"></a>00291         <span class="keyword">virtual</span> ~<a class="code" href="classPolarSin.html">PolarSin</a> () { }
-<a name="l00292"></a><a class="code" href="classPolarSin.html#3f4c61294de768ab57351a62a3096f09">00292</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classPolarSin.html#3f4c61294de768ab57351a62a3096f09" title="Placeholder for function to set parameters in descendants.">SetParameters</a> (<span class="keywordtype">double</span> _a = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0,
-<a name="l00293"></a>00293                                     <span class="keywordtype">double</span> = 0) {
-<a name="l00294"></a>00294             Phase = _a;
-<a name="l00295"></a>00295         }
-<a name="l00296"></a>00296 
-<a name="l00297"></a>00297         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classPolarSin.html#3f4c61294de768ab57351a62a3096f09" title="Placeholder for function to set parameters in descendants.">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
-<a name="l00298"></a>00298 <span class="preprocessor">#       if 1</span>
-<a name="l00299"></a>00299 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
-<a name="l00300"></a>00300                  i != parms.end(); ++i) {
-<a name="l00301"></a>00301                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"Phase"</span>) Phase = <span class="keywordtype">double</span>(*i-&gt;second);
-<a name="l00302"></a>00302             }
-<a name="l00303"></a>00303 <span class="preprocessor">#       else</span>
-<a name="l00304"></a>00304 <span class="preprocessor"></span>            <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;Phase, <span class="stringliteral">"Phase"</span>);
-<a name="l00305"></a>00305 <span class="preprocessor">#       endif</span>
-<a name="l00306"></a>00306 <span class="preprocessor"></span>        }
-<a name="l00307"></a>00307 
-<a name="l00308"></a>00308     <span class="keyword">protected</span>:
-<a name="l00309"></a><a class="code" href="classPolarSin.html#a251c15750227005569e44a4ba26fce8">00309</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">function_type</a> <a class="code" href="classPolarSin.html#a251c15750227005569e44a4ba26fce8">f</a>;
-<a name="l00310"></a>00310         <span class="keywordtype">double</span> Phase;
-<a name="l00311"></a>00311 };
-<a name="l00312"></a>00312 
-<a name="l00313"></a>00313 
+<a name="l00267"></a>00267     <span class="keyword">protected</span>:
+<a name="l00268"></a><a class="code" href="classPolar.html#3166e315e6b0e4b706a8a0fe87d2157c">00268</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">function_type</a> <a class="code" href="classPolar.html#3166e315e6b0e4b706a8a0fe87d2157c">f</a>;
+<a name="l00269"></a>00269 };
+<a name="l00270"></a>00270 
+<a name="l00271"></a>00271 
+<a name="l00273"></a>00273 
+<a name="l00276"></a><a class="code" href="classPolarSin.html">00276</a> <span class="keyword">class </span><a class="code" href="classPolarSin.html">PolarSin</a>: <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> {
+<a name="l00277"></a>00277     <span class="keyword">public</span>:
+<a name="l00278"></a>00278         <a class="code" href="classPolarSin.html#740d752f6b10f835495760fdf62aa930">PolarSin</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
+<a name="l00279"></a>00279                   <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00280"></a>00280                   <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
+<a name="l00281"></a>00281                   <span class="keywordtype">double</span> _phase = 2);
+<a name="l00282"></a>00282         <span class="keyword">virtual</span> ~<a class="code" href="classPolarSin.html">PolarSin</a> () { }
+<a name="l00283"></a>00283 
+<a name="l00284"></a>00284         <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetParameters(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
+<a name="l00285"></a>00285 <span class="preprocessor">#       if 1</span>
+<a name="l00286"></a>00286 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
+<a name="l00287"></a>00287                  i != parms.end(); ++i) {
+<a name="l00288"></a>00288                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"Phase"</span>) Phase = <span class="keywordtype">double</span>(*i-&gt;second);
+<a name="l00289"></a>00289             }
+<a name="l00290"></a>00290 <span class="preprocessor">#       else</span>
+<a name="l00291"></a>00291 <span class="preprocessor"></span>            <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;Phase, <span class="stringliteral">"Phase"</span>);
+<a name="l00292"></a>00292 <span class="preprocessor">#       endif</span>
+<a name="l00293"></a>00293 <span class="preprocessor"></span>        }
+<a name="l00294"></a>00294 
+<a name="l00295"></a>00295     <span class="keyword">protected</span>:
+<a name="l00296"></a><a class="code" href="classPolarSin.html#a251c15750227005569e44a4ba26fce8">00296</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">function_type</a> <a class="code" href="classPolarSin.html#a251c15750227005569e44a4ba26fce8">f</a>;
+<a name="l00297"></a>00297         <span class="keywordtype">double</span> Phase;
+<a name="l00298"></a>00298 };
+<a name="l00299"></a>00299 
+<a name="l00300"></a>00300 
+<a name="l00302"></a>00302 
+<a name="l00305"></a><a class="code" href="classPolarSin2.html">00305</a> <span class="keyword">class </span><a class="code" href="classPolarSin2.html">PolarSin2</a>: <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> {
+<a name="l00306"></a>00306     <span class="keyword">public</span>:
+<a name="l00307"></a>00307         <a class="code" href="classPolarSin2.html#5595a98e7c1b2862702760b284998c95">PolarSin2</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
+<a name="l00308"></a>00308                    <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00309"></a>00309                    <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00310"></a>00310         <span class="keyword">virtual</span> ~<a class="code" href="classPolarSin2.html">PolarSin2</a> () { }
+<a name="l00311"></a>00311 
+<a name="l00312"></a>00312     <span class="keyword">protected</span>:
+<a name="l00313"></a><a class="code" href="classPolarSin2.html#e02ab268122d4685189e9d0e640c093b">00313</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">function_type</a> <a class="code" href="classPolarSin2.html#e02ab268122d4685189e9d0e640c093b">f</a>;
+<a name="l00314"></a>00314 };
 <a name="l00315"></a>00315 
-<a name="l00318"></a><a class="code" href="classPolarSin2.html">00318</a> <span class="keyword">class </span><a class="code" href="classPolarSin2.html">PolarSin2</a>: <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> {
-<a name="l00319"></a>00319     <span class="keyword">public</span>:
-<a name="l00320"></a>00320         <a class="code" href="classPolarSin2.html#5595a98e7c1b2862702760b284998c95">PolarSin2</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
-<a name="l00321"></a>00321                    <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00322"></a>00322                    <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00323"></a>00323         <span class="keyword">virtual</span> ~<a class="code" href="classPolarSin2.html">PolarSin2</a> () { }
-<a name="l00324"></a>00324 
-<a name="l00325"></a>00325     <span class="keyword">protected</span>:
-<a name="l00326"></a><a class="code" href="classPolarSin2.html#e02ab268122d4685189e9d0e640c093b">00326</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">function_type</a> <a class="code" href="classPolarSin2.html#e02ab268122d4685189e9d0e640c093b">f</a>;
-<a name="l00327"></a>00327 };
+<a name="l00316"></a>00316 
+<a name="l00318"></a>00318 
+<a name="l00321"></a><a class="code" href="classPolarR.html">00321</a> <span class="keyword">class </span><a class="code" href="classPolarR.html">PolarR</a>: <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> {
+<a name="l00322"></a>00322     <span class="keyword">public</span>:
+<a name="l00323"></a>00323         <a class="code" href="classPolarR.html#2a3c7f1387bcb12cbd110aba70531209">PolarR</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
+<a name="l00324"></a>00324                 <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00325"></a>00325                 <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
+<a name="l00326"></a>00326                 <span class="keywordtype">double</span> _phase = 2);
+<a name="l00327"></a>00327         <span class="keyword">virtual</span> ~<a class="code" href="classPolarR.html">PolarR</a> () { }
 <a name="l00328"></a>00328 
-<a name="l00329"></a>00329 
-<a name="l00331"></a>00331 
-<a name="l00334"></a><a class="code" href="classPolarR.html">00334</a> <span class="keyword">class </span><a class="code" href="classPolarR.html">PolarR</a>: <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> {
-<a name="l00335"></a>00335     <span class="keyword">public</span>:
-<a name="l00336"></a>00336         <a class="code" href="classPolarR.html#2a3c7f1387bcb12cbd110aba70531209">PolarR</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
-<a name="l00337"></a>00337                 <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00338"></a>00338                 <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
-<a name="l00339"></a>00339                 <span class="keywordtype">double</span> _phase = 2);
-<a name="l00340"></a>00340         <span class="keyword">virtual</span> ~<a class="code" href="classPolarR.html">PolarR</a> () { }
-<a name="l00341"></a><a class="code" href="classPolarR.html#6a1d202b518c5698b76a7f66cab741c6">00341</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classPolarR.html#6a1d202b518c5698b76a7f66cab741c6" title="Placeholder for function to set parameters in descendants.">SetParameters</a> (<span class="keywordtype">double</span> _a = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0,
-<a name="l00342"></a>00342                                     <span class="keywordtype">double</span> = 0) {
-<a name="l00343"></a>00343             Phase = _a;
-<a name="l00344"></a>00344         }
-<a name="l00345"></a>00345 
-<a name="l00346"></a>00346         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classPolarR.html#6a1d202b518c5698b76a7f66cab741c6" title="Placeholder for function to set parameters in descendants.">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
-<a name="l00347"></a>00347 <span class="preprocessor">#       if 1</span>
-<a name="l00348"></a>00348 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
-<a name="l00349"></a>00349                  i != parms.end(); ++i) {
-<a name="l00350"></a>00350                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"Phase"</span>) Phase = <span class="keywordtype">double</span>(*i-&gt;second);
-<a name="l00351"></a>00351             }
-<a name="l00352"></a>00352 <span class="preprocessor">#       else</span>
-<a name="l00353"></a>00353 <span class="preprocessor"></span>            <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;Phase, <span class="stringliteral">"Phase"</span>);
-<a name="l00354"></a>00354 <span class="preprocessor">#       endif</span>
-<a name="l00355"></a>00355 <span class="preprocessor"></span>        }
-<a name="l00356"></a>00356 
-<a name="l00357"></a>00357     <span class="keyword">protected</span>:
-<a name="l00358"></a><a class="code" href="classPolarR.html#459afefce858d473e97188ffbd68d4ff">00358</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">function_type</a> <a class="code" href="classPolarR.html#459afefce858d473e97188ffbd68d4ff">f</a>;
-<a name="l00359"></a>00359         <span class="keywordtype">double</span> Phase;
-<a name="l00360"></a>00360 };
-<a name="l00361"></a>00361 
-<a name="l00362"></a>00362 <span class="preprocessor">#endif</span>
+<a name="l00329"></a>00329         <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetParameters(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
+<a name="l00330"></a>00330 <span class="preprocessor">#       if 1</span>
+<a name="l00331"></a>00331 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
+<a name="l00332"></a>00332                  i != parms.end(); ++i) {
+<a name="l00333"></a>00333                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"Phase"</span>) Phase = <span class="keywordtype">double</span>(*i-&gt;second);
+<a name="l00334"></a>00334             }
+<a name="l00335"></a>00335 <span class="preprocessor">#       else</span>
+<a name="l00336"></a>00336 <span class="preprocessor"></span>            <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;Phase, <span class="stringliteral">"Phase"</span>);
+<a name="l00337"></a>00337 <span class="preprocessor">#       endif</span>
+<a name="l00338"></a>00338 <span class="preprocessor"></span>        }
+<a name="l00339"></a>00339 
+<a name="l00340"></a>00340     <span class="keyword">protected</span>:
+<a name="l00341"></a><a class="code" href="classPolarR.html#459afefce858d473e97188ffbd68d4ff">00341</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">function_type</a> <a class="code" href="classPolarR.html#459afefce858d473e97188ffbd68d4ff">f</a>;
+<a name="l00342"></a>00342         <span class="keywordtype">double</span> Phase;
+<a name="l00343"></a>00343 };
+<a name="l00344"></a>00344 
+<a name="l00345"></a>00345 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 26 02:22:33 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Apr 27 22:34:12 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

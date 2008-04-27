@@ -16,6 +16,7 @@
 
 #include <string>
 #include <iostream>
+#include <sstream>
 
 #include "SingletonHolder.H"
 
@@ -94,14 +95,16 @@ class FunctionParameterValueBase {
         virtual void setValue(const unsigned &) { }     ///< set an unsigned parm
         virtual void setValue(const int &) { }          ///< set an int parm
         virtual void setValue(const std::string &) { }  ///< set a string parm
-        
+
         virtual void setValue(const char *) = 0;
 
         virtual operator double() = 0;                  ///< get a double parm
         virtual operator unsigned() = 0;                ///< get an unsigned parm
         virtual operator int() = 0;                     ///< get an int parm
         virtual operator std::string() = 0;             ///< set a string parm
-};
+
+        virtual std::string toString() = 0;             ///< string representation
+    };
 
 /// A value for a function parameter. Template depending on its type.
 /** Defines the interface declared by FunctionParameterValueBase:
@@ -138,6 +141,11 @@ template <typename T> class FunctionParameterValue:
         virtual operator int() { return 0; }
         virtual operator std::string() { return ""; }
 
+        virtual std::string toString() {
+            std::ostringstream o;
+            o << value << std::ends;
+            return o.str();
+        }
     private:
         T value;
 };
@@ -202,7 +210,14 @@ class FunctionParameter {
 
         /// Set a value from a string, as contained in a QLineEdit
         void setValue(std::string _value) {
-            pImpl->value->setValue(_value.c_str());
+            if (!pImpl->value.get()) {
+#               if 0
+                pImpl->value = std::auto_ptr<FunctionParameterValueBase>(
+                    new FunctionParameterValueBase(*pImpl->defaultValue));
+#               endif
+            } else {
+                pImpl->value->setValue(_value.c_str());
+            }
         }
 
         /// set the default value of the parameter.
@@ -215,6 +230,13 @@ class FunctionParameter {
             pImpl->defaultValue.reset(_defaultValue);
         }
 
+        FunctionParameterValueBase *value() const {
+            return pImpl->value.get();
+        }
+        FunctionParameterValueBase *defaultValue() const {
+            return pImpl->defaultValue.get();
+        }
+
     private:
         //  these accessors are never used, but i like to keep them around
 //         std::auto_ptr<FunctionParameterValueBase> value() {
@@ -224,9 +246,6 @@ class FunctionParameter {
 //             return pImpl->value;
 //         }
 //         std::auto_ptr<FunctionParameterValueBase> defaultValue() {
-//             return pImpl->defaultValue;
-//         }
-//         std::auto_ptr<FunctionParameterValueBase> defaultValue() const {
 //             return pImpl->defaultValue;
 //         }
 

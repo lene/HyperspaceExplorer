@@ -93,7 +93,8 @@ C4DView::C4DView(QWidget *parent):
     AnimateRandomTimer = new QTimer (this);
     //  connect (AnimateRandomTimer, SIGNAL(timeout()), this, SLOT(RandomAnimation()));
 
-    connect (Values, SIGNAL (ApplyChanges ()), this, SLOT (ApplyChanges ()));
+    connect (Values, SIGNAL (ApplyChanges (const ParameterMap &)),
+             this, SLOT (ApplyChanges (const ParameterMap &)));
 
     menu = new Menu4D(this);
     menu->addToMenuBar(Globals::Instance().getMainWindow()->menuBar());
@@ -247,7 +248,7 @@ void C4DView::RenderToImages() {
 void C4DView::ObjectHypercube() {
     menu->updateFunctionMenu("Hypercube");
 
-    F.reset(new Hypercube (Values->a ()));
+    F.reset(new Hypercube (/*Values->a ()*/));
 
     AssignValues(F);
     Redraw ();
@@ -258,7 +259,7 @@ void C4DView::ObjectHypercube() {
 void C4DView::ObjectHyperpyramid() {
     menu->updateFunctionMenu("Hyperpyramid");
 
-    F.reset(new Pyramid (2.*Values->a ()));
+    F.reset(new Pyramid (/*2.*Values->a ()*/));
 
     AssignValues(F);
     Redraw ();
@@ -269,9 +270,9 @@ void C4DView::ObjectHyperpyramid() {
 void C4DView::ObjectHypersponge() {
     menu->updateFunctionMenu("Menger Sponge");
 
-    F.reset(new Sponge (
+    F.reset(new Sponge ()
 //                unsigned (Values->a ()), int (Values->b ()), Values->c ())
-            1, 2, 0.8)
+//            1, 2, 0.8)
            );
 
     AssignValues(F);
@@ -283,7 +284,7 @@ void C4DView::ObjectHypersponge() {
 void C4DView::ObjectGasket() {
     menu->updateFunctionMenu("Sierpinski Gasket");
 
-    F.reset(new Gasket (unsigned (Values->a ()), 2.*Values->b ()));
+    F.reset(new Gasket (/* unsigned (Values->a ()), 2.*Values->b ()*/));
 
     AssignValues(F);
     Redraw ();
@@ -403,23 +404,12 @@ void C4DView::AnimationSettings() {
 /// Called whenever an object or the parameters have changed
 /** Sets the parameters, applies the changed parameters to the function object
  *  and redraws it                                                            */
-void C4DView::ApplyChanges (void) {
-    F.get()->SetParameters(Values->getParameters());
+void C4DView::ApplyChanges (const ParameterMap &parms) {
+    cerr << parms.print() << endl;
+    F.get()->SetParameters(parms);
 
     SingletonLog::Instance() << "C4DView::ApplyChanges ():\n"
-            << "Parameter A: " << Values->a () << "\t"
-            << "Parameter B: " << Values->b () << "\n"
-            << "Parameter C: " << Values->c () << "\t"
-            << "Parameter D: " << Values->d () << "\n"
-            << "Tmin: " << Values->tmin () << "\t"
-            << "Tmax: " << Values->tmax () << "\t"
-            << "dT  : " << Values->dt () << "\n"
-            << "Umin: " << Values->umin () << "\t"
-            << "Umax: " << Values->umax () << "\t"
-            << "dU  : " << Values->du () << "\n"
-            << "Vmin: " << Values->vmin () << "\t"
-            << "Vmax: " << Values->vmax () << "\t"
-            << "dV  : " << Values->dv () << "\n";
+            << Values->print() << "\n";
 
     F->ReInit (Values->tmin (), Values->tmax (), Values->dt (),
                Values->umin (), Values->umax (), Values->du (),
@@ -789,115 +779,13 @@ void C4DView::UpdateStatus (QString status) {
  *  parameters and grid parameters on the ValuesDialog
  *  @param F the Function object for which the ValuesDialog is changed        */
 void C4DView::AssignValues (const std::auto_ptr<Function> &F) {
-//     QString Parameter1 = F->getParameterName(0);
-//     QString Parameter2 = F->getParameterName(1);
-//     QString Parameter3 = F->getParameterName(2);
-//     QString Parameter4 = F->getParameterName(3);
 
     if (!F->getFunctionName().isEmpty()) {
         setWindowTitle(F->getFunctionName());
     }
 
-    if (dynamic_cast<Object *>(F.get())) {
-        Values->gridLabel->hide();
-        Values->TLabel->hide();
-        Values->TSlider->hide();
-        Values->TSteps->hide();
-        Values->TMinLabel->hide();
-        Values->TMin->hide();
-        Values->TMaxLabel->hide();
-        Values->TMax->hide();
-        Values->ULabel->hide();
-        Values->USlider->hide();
-        Values->USteps->hide();
-        Values->UMinLabel->hide();
-        Values->UMin->hide();
-        Values->UMaxLabel->hide();
-        Values->UMax->hide();
-        Values->VLabel->hide();
-        Values->VSlider->hide();
-        Values->VSteps->hide();
-        Values->VMinLabel->hide();
-        Values->VMin->hide();
-        Values->VMaxLabel->hide();
-        Values->VMax->hide();
-    } else {
-        Values->gridLabel->show();
-        Values->TLabel->show();
-        Values->TSlider->show();
-        Values->TSteps->show();
-        Values->TMinLabel->show();
-        Values->TMin->show();
-        Values->TMaxLabel->show();
-        Values->TMax->show();
-        Values->ULabel->show();
-        Values->USlider->show();
-        Values->USteps->show();
-        Values->UMinLabel->show();
-        Values->UMin->show();
-        Values->UMaxLabel->show();
-        Values->UMax->show();
-        if (dynamic_cast<Surface *>(F.get())) {
-            Values->VLabel->hide();
-            Values->VSlider->hide();
-            Values->VSteps->hide();
-            Values->VMinLabel->hide();
-            Values->VMin->hide();
-            Values->VMaxLabel->hide();
-            Values->VMax->hide();
-        } else {
-            Values->VLabel->show();
-            Values->VSlider->show();
-            Values->VSteps->show();
-            Values->VMinLabel->show();
-            Values->VMin->show();
-            Values->VMaxLabel->show();
-            Values->VMax->show();
-        }
-    }
+    Values->setFunction(F);
 
-    Values->setParameters(F->getParameters());
-
-    if (F->getNumParameters() == 0) Values->functionLabel->hide();
-    else Values->functionLabel->show();
-#if 0
-    if (!Parameter1.isEmpty()) {
-        Values->aText (Parameter1);
-        Values->A()->show();
-        Values->ALabel()->show();
-    } else {
-        Values->aText ("");
-        Values->A()->hide();
-        Values->ALabel()->hide();
-    }
-    if (!Parameter2.isEmpty()) {
-        Values->bText (Parameter2);
-        Values->B()->show();
-        Values->BLabel()->show();
-    } else {
-        Values->bText ("");
-        Values->B()->hide();
-        Values->BLabel()->hide();
-    }
-    if (!Parameter3.isEmpty()) {
-        Values->cText (Parameter3);
-        Values->C()->show();
-        Values->CLabel()->show();
-    } else {
-        Values->cText ("");
-        Values->C()->hide();
-        Values->CLabel()->hide();
-    }
-    if (!Parameter4.isEmpty()) {
-        Values->dText (Parameter4);
-        Values->D()->show();
-        Values->DLabel()->show();
-    } else {
-        Values->dText ("");
-        Values->D()->hide();
-        Values->DLabel()->hide();
-    }
-#endif
     Transform ();
 
     ColMgrMgr::Instance().setFunction(F.get());

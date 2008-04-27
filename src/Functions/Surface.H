@@ -38,10 +38,9 @@ class Surface: public SurfaceBase {
                             double _umin, double _umax, double _du,
                             double _vmin, double _vmax, double _dv);
 
-        virtual void SetParameters (double _a = 0, double _b = 0,
-                                    double _c = 0, double _d = 0);
-
         vec4vec2D Data (void) { return X; }
+
+        virtual unsigned getDefinitionSpaceDimensions() { return 2; }
 
     protected:
          virtual vec4vec1D df (double, double);
@@ -85,7 +84,6 @@ public:
     Surface1 (double _umin, double _umax, double _du,
               double _vmin, double _vmax, double _dv);
     virtual ~Surface1() { }
-    virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
     virtual function_type f;
@@ -107,7 +105,6 @@ public:
     Horizon (double _umin, double _umax, double _du,
 	     double _vmin, double _vmax, double _dv);
     virtual ~Horizon () { }
-    virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
     virtual function_type f;
@@ -121,7 +118,6 @@ public:
     Torus3 (double _umin, double _umax, double _du,
 	    double _vmin, double _vmax, double _dv);
     virtual ~Torus3 () { }
-    virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
 protected:
     virtual function_type f;

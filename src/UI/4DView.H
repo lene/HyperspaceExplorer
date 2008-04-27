@@ -140,7 +140,7 @@ class C4DView : public XQGLWidget {
     protected slots:
         void OnTimer();
         void AnimationSettings();
-        void ApplyChanges();
+        void ApplyChanges(const ParameterMap &);
 
     protected:
         void Transform(double Rxy, double Rxz, double Rxw,

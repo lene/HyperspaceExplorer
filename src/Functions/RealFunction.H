@@ -45,6 +45,8 @@ class RealFunction: public RealBase {
                             double _umin, double _umax, double _du,
                             double _vmin, double _vmax, double _dv);
 
+        virtual unsigned getDefinitionSpaceDimensions() { return 3; }
+
     protected:
         VecMath::Vector<4> &normal(double t, double u, double v);
 
@@ -89,8 +91,6 @@ class Hypersphere: public RealFunction {
                      double _vmin, double _vmax, double _dv,
                      double _rad = 1);
         virtual ~Hypersphere() { }
-        virtual void SetParameters (double _a = 0, double = 0, double = 0,
-                                    double = 0) { Radius = _a; }
         virtual void SetParameters(const ParameterMap &);
 
     protected:
@@ -115,9 +115,6 @@ class Torus1: public RealFunction {
                 double _vmin, double _vmax, double _dv,
                 double _R = 2, double _r = 1, double _rho = 0.5);
         virtual ~Torus1() { }
-        virtual void SetParameters (double _a = 0, double _b = 0,
-                                    double _c = 0, double = 0) {
-                                        R = _a; r = _b; rho = _c; }
         virtual void SetParameters(const ParameterMap &parms) {
     //  parms["Radius"].value must be set!
 #if 1
@@ -152,9 +149,6 @@ class Torus2: public RealFunction {
                 double _vmin, double _vmax, double _dv,
                 double _R = 1, double _r = 0.5);
         virtual ~Torus2 () { }
-        virtual void SetParameters (double _a = 0, double _b = 0,
-                                    double = 0, double = 0) {
-                                        R = _a; r = _b; }
         virtual void SetParameters(const ParameterMap &parms) {
             //  parms["Radius"].value must be set!
 #if 1
@@ -209,9 +203,6 @@ class GravitationPotential: public RealFunction {
                               double _vmin, double _vmax, double _dv,
                               double _M = 1, double _R = 0.25);
         virtual ~GravitationPotential () { }
-        virtual void SetParameters (double _a = 0, double _b = 0, double = 0, double = 0) {
-            M = _a; R = _b;
-        }
         virtual void SetParameters(const ParameterMap &parms) {
 #if 1
             for (ParameterMap::const_iterator i = parms.begin();
@@ -289,10 +280,6 @@ class PolarSin: public RealFunction {
                   double _vmin, double _vmax, double _dv,
                   double _phase = 2);
         virtual ~PolarSin () { }
-        virtual void SetParameters (double _a = 0, double = 0, double = 0,
-                                    double = 0) {
-            Phase = _a;
-        }
 
         virtual void SetParameters(const ParameterMap &parms) {
 #       if 1
@@ -338,10 +325,6 @@ class PolarR: public RealFunction {
                 double _vmin, double _vmax, double _dv,
                 double _phase = 2);
         virtual ~PolarR () { }
-        virtual void SetParameters (double _a = 0, double = 0, double = 0,
-                                    double = 0) {
-            Phase = _a;
-        }
 
         virtual void SetParameters(const ParameterMap &parms) {
 #       if 1

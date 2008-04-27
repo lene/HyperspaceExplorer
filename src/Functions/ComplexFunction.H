@@ -47,10 +47,9 @@ class ComplexFunction: public Surface {
  *  \ingroup ComplexGroup                                                    */
 class z2: public ComplexFunction {
     public:
-	z2 (double _umin, double _umax, double _du,
-	    double _vmin, double _vmax, double _dv);
-	virtual ~z2() { }
-	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
+        z2 (double _umin, double _umax, double _du,
+            double _vmin, double _vmax, double _dv);
+        virtual ~z2() { }
 
     protected:
 	virtual function_type g;
@@ -63,7 +62,6 @@ class z3: public ComplexFunction {
 	z3 (double _umin, double _umax, double _du,
 	    double _vmin, double _vmax, double _dv);
 	virtual ~z3() { }
-	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
     protected:
         virtual function_type g;
@@ -77,10 +75,6 @@ class zA: public ComplexFunction {
             double _vmin, double _vmax, double _dv,
             double _alpha = 2);
         virtual ~zA () { }
-        virtual void SetParameters(double _a = 0,
-                                   double = 0, double = 0, double = 0) {
-           alpha = _a;
-        }
         virtual void SetParameters(const ParameterMap &parms) {
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
@@ -107,10 +101,6 @@ class ez: public ComplexFunction {
             double _vmin, double _vmax, double _dv,
             double _alpha = 2);
         virtual ~ez() { }
-        virtual void SetParameters(double _a = 0,
-                                   double = 0, double = 0, double = 0) {
-            alpha = _a;
-        }
         virtual void SetParameters(const ParameterMap &parms) {
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
@@ -137,10 +127,6 @@ class emz2: public ComplexFunction {
               double _vmin, double _vmax, double _dv,
               double _alpha = 1);
         virtual ~emz2() { }
-        virtual void SetParameters(double _a = 0,
-                                   double = 0, double = 0, double = 0) {
-           alpha = _a;
-        }
         virtual void SetParameters(const ParameterMap &parms) {
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
@@ -166,8 +152,6 @@ class zm1: public ComplexFunction {
         zm1 (double _umin, double _umax, double _du,
              double _vmin, double _vmax, double _dv);
         virtual ~zm1 () { }
-        virtual void SetParameters(double = 0, double = 0,
-                                   double = 0, double = 0) { }
 
     protected:
         virtual function_type g;
@@ -180,8 +164,6 @@ class zm2: public ComplexFunction {
         zm2 (double _umin, double _umax, double _du,
              double _vmin, double _vmax, double _dv);
         virtual ~zm2 () { }
-        virtual void SetParameters(double = 0, double = 0,
-                                   double = 0, double = 0) { }
 
     protected:
         virtual function_type g;
@@ -194,7 +176,6 @@ class sqrtz: public ComplexFunction {
 	sqrtz (double _umin, double _umax, double _du,
 	       double _vmin, double _vmax, double _dv);
 	virtual ~sqrtz () { }
-	virtual void SetParameters(double = 0, double = 0, double = 0, double = 0) { }
 
     protected:
         virtual function_type g;
@@ -207,7 +188,6 @@ class lnz: public ComplexFunction {
 	lnz (double _umin, double _umax, double _du,
 	     double _vmin, double _vmax, double _dv);
 	virtual ~lnz () { }
-	virtual void SetParameters(double = 0, double = 0, double = 0, double = 0) { }
 
     protected:
         virtual function_type g;
@@ -220,7 +200,6 @@ class sinz: public ComplexFunction {
 	sinz (double _umin, double _umax, double _du,
 	      double _vmin, double _vmax, double _dv);
 	virtual ~sinz () { }
-	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
     protected:
         virtual function_type g;
@@ -233,7 +212,6 @@ class cosz: public ComplexFunction {
 	cosz (double _umin, double _umax, double _du,
 	      double _vmin, double _vmax, double _dv);
 	virtual ~cosz () { }
-	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
     protected:
         virtual function_type g;
@@ -246,7 +224,6 @@ class sinhz: public ComplexFunction {
 	sinhz (double _umin, double _umax, double _du,
 	       double _vmin, double _vmax, double _dv);
 	virtual ~sinhz () { }
-	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
     protected:
         virtual function_type g;
@@ -259,7 +236,6 @@ class coshz: public ComplexFunction {
 	coshz (double _umin, double _umax, double _du,
 	       double _vmin, double _vmax, double _dv);
 	virtual ~coshz () { }
-	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
     protected:
         virtual function_type g;
@@ -272,7 +248,6 @@ class tanz: public ComplexFunction {
 	tanz (double _umin, double _umax, double _du,
 		 double _vmin, double _vmax, double _dv);
 	virtual ~tanz () { }
-	virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
     protected:
         virtual function_type g;
@@ -286,9 +261,6 @@ class Polynomial: public ComplexFunction {
                    double _vmin, double _vmax, double _dv,
                    double _a1, double _a2, double _a3, double _a4);
         virtual ~Polynomial () { }
-        virtual void SetParameters(double _a = 0, double _b = 0,
-                                   double _c = 0, double _d = 0) {
-            a[1] = _a; a[2] = _b; a[3] = _c; a[4] = _d; }
 
     protected:
         virtual function_type g;

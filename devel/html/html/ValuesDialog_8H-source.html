@@ -16,509 +16,339 @@
     </ul>
   </div>
 <h1>workspace/HyperspaceExplorer/src/UI/ValuesDialog.H</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/********************************************************************************</span>
-<a name="l00002"></a>00002 <span class="comment">** Form generated from reading ui file 'ValuesDialog.ui'</span>
+<a name="l00002"></a>00002 <span class="comment">** Form originally  generated from reading ui file 'ValuesDialog.ui'</span>
 <a name="l00003"></a>00003 <span class="comment">**</span>
 <a name="l00004"></a>00004 <span class="comment">** Created: Fri Apr 25 15:22:18 2008</span>
 <a name="l00005"></a>00005 <span class="comment">**      by: Qt User Interface Compiler version 4.3.4</span>
 <a name="l00006"></a>00006 <span class="comment">**</span>
-<a name="l00007"></a>00007 <span class="comment">** WARNING! All changes made in this file will be lost when recompiling ui file!</span>
-<a name="l00008"></a>00008 <span class="comment">********************************************************************************/</span>
-<a name="l00009"></a>00009 
-<a name="l00010"></a>00010 <span class="preprocessor">#ifndef UI_VALUESDIALOG_H</span>
-<a name="l00011"></a>00011 <span class="preprocessor"></span><span class="preprocessor">#define UI_VALUESDIALOG_H</span>
-<a name="l00012"></a>00012 <span class="preprocessor"></span>
-<a name="l00013"></a>00013 <span class="preprocessor">#include &lt;Qt3Support/Q3MimeSourceFactory&gt;</span>
-<a name="l00014"></a>00014 <span class="preprocessor">#include &lt;QtCore/QVariant&gt;</span>
-<a name="l00015"></a>00015 <span class="preprocessor">#include &lt;QtGui/QAction&gt;</span>
-<a name="l00016"></a>00016 <span class="preprocessor">#include &lt;QtGui/QApplication&gt;</span>
-<a name="l00017"></a>00017 <span class="preprocessor">#include &lt;QtGui/QButtonGroup&gt;</span>
-<a name="l00018"></a>00018 <span class="preprocessor">#include &lt;QtGui/QComboBox&gt;</span>
-<a name="l00019"></a>00019 <span class="preprocessor">#include &lt;QtGui/QDialog&gt;</span>
-<a name="l00020"></a>00020 <span class="preprocessor">#include &lt;QtGui/QGridLayout&gt;</span>
-<a name="l00021"></a>00021 <span class="preprocessor">#include &lt;QtGui/QHBoxLayout&gt;</span>
-<a name="l00022"></a>00022 <span class="preprocessor">#include &lt;QtGui/QLabel&gt;</span>
-<a name="l00023"></a>00023 <span class="preprocessor">#include &lt;QtGui/QLineEdit&gt;</span>
-<a name="l00024"></a>00024 <span class="preprocessor">#include &lt;QtGui/QPushButton&gt;</span>
-<a name="l00025"></a>00025 <span class="preprocessor">#include &lt;QtGui/QSlider&gt;</span>
-<a name="l00026"></a>00026 <span class="preprocessor">#include &lt;QtGui/QVBoxLayout&gt;</span>
-<a name="l00027"></a>00027 
-<a name="l00029"></a>00029 <span class="keyword">class </span><a class="code" href="classUi__ValuesDialog.html" title="Base class for ValuesDialog, originally created by uic (thus the ugliness).">Ui_ValuesDialog</a>
-<a name="l00030"></a>00030 {
-<a name="l00031"></a>00031 <span class="keyword">public</span>:
-<a name="l00032"></a>00032     QGridLayout *gridLayout;
-<a name="l00033"></a>00033     QVBoxLayout *vboxLayout;
-<a name="l00034"></a>00034     QVBoxLayout *vboxLayout1;
-<a name="l00035"></a>00035     QHBoxLayout *hboxLayout;
-<a name="l00036"></a>00036     QHBoxLayout *hboxLayout1;
-<a name="l00037"></a>00037     QHBoxLayout *hboxLayout2;
-<a name="l00038"></a>00038     QHBoxLayout *hboxLayout3;
-<a name="l00039"></a>00039     QHBoxLayout *hboxLayout4;
-<a name="l00040"></a>00040     QHBoxLayout *hboxLayout5;
-<a name="l00041"></a>00041     QHBoxLayout *hboxLayout6;
-<a name="l00042"></a>00042     QHBoxLayout *hboxLayout7;
-<a name="l00043"></a>00043     QHBoxLayout *hboxLayout8;
-<a name="l00044"></a>00044     QHBoxLayout *hboxLayout9;
-<a name="l00045"></a>00045     QHBoxLayout *hboxLayout10;
-<a name="l00046"></a>00046     QHBoxLayout *hboxLayout11;
-<a name="l00047"></a>00047     QHBoxLayout *hboxLayout13;
-<a name="l00048"></a>00048     QHBoxLayout *hboxLayout14;
-<a name="l00049"></a>00049     QHBoxLayout *hboxLayout15;
-<a name="l00050"></a>00050     QHBoxLayout *hboxLayout16;
-<a name="l00051"></a>00051     QHBoxLayout *hboxLayout17;
-<a name="l00052"></a>00052     QHBoxLayout *hboxLayout18;
-<a name="l00053"></a>00053     QHBoxLayout *hboxLayout19;
-<a name="l00054"></a>00054     QLabel *gridLabel;
-<a name="l00055"></a>00055     QLabel *TLabel;
-<a name="l00056"></a>00056     QSlider *TSlider;
-<a name="l00057"></a>00057     QLabel *TSteps;
-<a name="l00058"></a>00058     QLabel *TMinLabel;
-<a name="l00059"></a>00059     QLineEdit *TMin;
-<a name="l00060"></a>00060     QLabel *TMaxLabel;
-<a name="l00061"></a>00061     QLineEdit *TMax;
-<a name="l00062"></a>00062     QLabel *ULabel;
-<a name="l00063"></a>00063     QSlider *USlider;
-<a name="l00064"></a>00064     QLabel *USteps;
-<a name="l00065"></a>00065     QLabel *UMinLabel;
-<a name="l00066"></a>00066     QLineEdit *UMin;
-<a name="l00067"></a>00067     QLabel *UMaxLabel;
-<a name="l00068"></a>00068     QLineEdit *UMax;
-<a name="l00069"></a>00069     QLabel *VLabel;
-<a name="l00070"></a>00070     QSlider *VSlider;
-<a name="l00071"></a>00071     QLabel *VSteps;
-<a name="l00072"></a>00072     QLabel *VMinLabel;
-<a name="l00073"></a>00073     QLineEdit *VMin;
-<a name="l00074"></a>00074     QLabel *VMaxLabel;
-<a name="l00075"></a>00075     QLineEdit *VMax;
-<a name="l00076"></a>00076     QLabel *functionLabel;
-<a name="l00077"></a>00077     QLabel *ParameterLabel[4];
-<a name="l00078"></a>00078     QLineEdit *Parameter[4];
-<a name="l00079"></a>00079 
-<a name="l00080"></a>00080     QPushButton *buttonApply;
-<a name="l00081"></a>00081 
-<a name="l00082"></a>00082     <span class="keywordtype">void</span> setupUi(QDialog *ValuesDialog)
-<a name="l00083"></a>00083     {
-<a name="l00084"></a>00084     <span class="keywordflow">if</span> (ValuesDialog-&gt;objectName().isEmpty())
-<a name="l00085"></a>00085         ValuesDialog-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"ValuesDialog"</span>));
-<a name="l00086"></a>00086     ValuesDialog-&gt;resize(343, 410);
-<a name="l00087"></a>00087     QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-<a name="l00088"></a>00088     sizePolicy.setHorizontalStretch(0);
-<a name="l00089"></a>00089     sizePolicy.setVerticalStretch(0);
-<a name="l00090"></a>00090     sizePolicy.setHeightForWidth(ValuesDialog-&gt;sizePolicy().hasHeightForWidth());
-<a name="l00091"></a>00091     ValuesDialog-&gt;setSizePolicy(sizePolicy);
-<a name="l00092"></a>00092     ValuesDialog-&gt;setSizeGripEnabled(<span class="keyword">false</span>);
-<a name="l00093"></a>00093     gridLayout = <span class="keyword">new</span> QGridLayout(ValuesDialog);
-<a name="l00094"></a>00094     gridLayout-&gt;setSpacing(6);
-<a name="l00095"></a>00095     gridLayout-&gt;setMargin(11);
-<a name="l00096"></a>00096     gridLayout-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"gridLayout"</span>));
-<a name="l00097"></a>00097     vboxLayout = <span class="keyword">new</span> QVBoxLayout();
-<a name="l00098"></a>00098     vboxLayout-&gt;setSpacing(6);
-<a name="l00099"></a>00099     vboxLayout-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"vboxLayout"</span>));
-<a name="l00100"></a>00100     gridLabel = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00101"></a>00101     gridLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"gridLabel"</span>));
-<a name="l00102"></a>00102     QFont font;
-<a name="l00103"></a>00103     font.setBold(<span class="keyword">true</span>);
-<a name="l00104"></a>00104     font.setWeight(75);
-<a name="l00105"></a>00105     gridLabel-&gt;setFont(font);
-<a name="l00106"></a>00106     gridLabel-&gt;setAlignment(Qt::AlignCenter);
-<a name="l00107"></a>00107 
-<a name="l00108"></a>00108     vboxLayout-&gt;addWidget(gridLabel);
-<a name="l00109"></a>00109 
-<a name="l00110"></a>00110     hboxLayout = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00111"></a>00111     hboxLayout-&gt;setSpacing(6);
-<a name="l00112"></a>00112     hboxLayout-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout"</span>));
-<a name="l00113"></a>00113     hboxLayout-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00114"></a>00114     TLabel = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00115"></a>00115     TLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"TLabel"</span>));
+<a name="l00007"></a>00007 <span class="comment">********************************************************************************/</span>
+<a name="l00008"></a>00008 
+<a name="l00009"></a>00009 <span class="preprocessor">#ifndef UI_VALUESDIALOG_H</span>
+<a name="l00010"></a>00010 <span class="preprocessor"></span><span class="preprocessor">#define UI_VALUESDIALOG_H</span>
+<a name="l00011"></a>00011 <span class="preprocessor"></span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include &lt;Qt3Support/Q3MimeSourceFactory&gt;</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#include &lt;QtCore/QVariant&gt;</span>
+<a name="l00014"></a>00014 <span class="preprocessor">#include &lt;QtGui/QAction&gt;</span>
+<a name="l00015"></a>00015 <span class="preprocessor">#include &lt;QtGui/QApplication&gt;</span>
+<a name="l00016"></a>00016 <span class="preprocessor">#include &lt;QtGui/QButtonGroup&gt;</span>
+<a name="l00017"></a>00017 <span class="preprocessor">#include &lt;QtGui/QComboBox&gt;</span>
+<a name="l00018"></a>00018 <span class="preprocessor">#include &lt;QtGui/QDialog&gt;</span>
+<a name="l00019"></a>00019 <span class="preprocessor">#include &lt;QtGui/QGridLayout&gt;</span>
+<a name="l00020"></a>00020 <span class="preprocessor">#include &lt;QtGui/QHBoxLayout&gt;</span>
+<a name="l00021"></a>00021 <span class="preprocessor">#include &lt;QtGui/QLabel&gt;</span>
+<a name="l00022"></a>00022 <span class="preprocessor">#include &lt;QtGui/QLineEdit&gt;</span>
+<a name="l00023"></a>00023 <span class="preprocessor">#include &lt;QtGui/QPushButton&gt;</span>
+<a name="l00024"></a>00024 <span class="preprocessor">#include &lt;QtGui/QSlider&gt;</span>
+<a name="l00025"></a>00025 <span class="preprocessor">#include &lt;QtGui/QVBoxLayout&gt;</span>
+<a name="l00026"></a>00026 
+<a name="l00028"></a>00028 
+<a name="l00029"></a><a class="code" href="classUi__ValuesDialog.html">00029</a> <span class="keyword">class </span><a class="code" href="classUi__ValuesDialog.html" title="Base class for ValuesDialog, originally created by uic (thus the ugliness).">Ui_ValuesDialog</a> {
+<a name="l00030"></a>00030     <span class="keyword">protected</span>:
+<a name="l00032"></a><a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3">00032</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a> = 3;
+<a name="l00034"></a><a class="code" href="classUi__ValuesDialog.html#1b4d3fca097cbc53827db8f18e33638b">00034</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <a class="code" href="classUi__ValuesDialog.html#1b4d3fca097cbc53827db8f18e33638b" title="maximum number of function parameters to display">maxNumParameters</a> = 4;
+<a name="l00036"></a><a class="code" href="classUi__ValuesDialog.html#9ec22f0535ebacd6dfd57d2790dd9eb7">00036</a>         <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <a class="code" href="classUi__ValuesDialog.html#9ec22f0535ebacd6dfd57d2790dd9eb7" title="group this many parameter input fields on a line">parametersPerLine</a> = 2;
+<a name="l00037"></a>00037 
+<a name="l00039"></a><a class="code" href="classUi__ValuesDialog.html#c3f35fcc3a053a5fd7d5c6972d072a7c">00039</a>         <span class="keywordtype">void</span> <a class="code" href="classUi__ValuesDialog.html#c3f35fcc3a053a5fd7d5c6972d072a7c" title="create the widgets in the dialog and lay them out">setupUi</a>(QDialog *ValuesDialog) {
+<a name="l00040"></a>00040             QFont font;
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042             <span class="comment">//  global initializations, layout and header</span>
+<a name="l00043"></a>00043             {
+<a name="l00044"></a>00044                 <span class="keywordflow">if</span> (ValuesDialog-&gt;objectName().isEmpty())
+<a name="l00045"></a>00045                     ValuesDialog-&gt;setObjectName(
+<a name="l00046"></a>00046                             QString::fromUtf8(<span class="stringliteral">"ValuesDialog"</span>));
+<a name="l00047"></a>00047                 ValuesDialog-&gt;resize(343, 410);
+<a name="l00048"></a>00048                 QSizePolicy sizePolicy(QSizePolicy::Minimum,
+<a name="l00049"></a>00049                                        QSizePolicy::Minimum);
+<a name="l00050"></a>00050                 sizePolicy.setHorizontalStretch(0);
+<a name="l00051"></a>00051                 sizePolicy.setVerticalStretch(0);
+<a name="l00052"></a>00052                 sizePolicy.setHeightForWidth(
+<a name="l00053"></a>00053                         ValuesDialog-&gt;sizePolicy().hasHeightForWidth());
+<a name="l00054"></a>00054                 ValuesDialog-&gt;setSizePolicy(sizePolicy);
+<a name="l00055"></a>00055                 ValuesDialog-&gt;setSizeGripEnabled(<span class="keyword">false</span>);
+<a name="l00056"></a>00056                 gridLayout = <span class="keyword">new</span> QGridLayout(ValuesDialog);
+<a name="l00057"></a>00057                 gridLayout-&gt;setSpacing(6);
+<a name="l00058"></a>00058                 gridLayout-&gt;setMargin(11);
+<a name="l00059"></a>00059                 gridLayout-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"gridLayout"</span>));
+<a name="l00060"></a>00060                 AllBoundsLayout = <span class="keyword">new</span> QVBoxLayout();
+<a name="l00061"></a>00061                 AllBoundsLayout-&gt;setSpacing(6);
+<a name="l00062"></a>00062                 AllBoundsLayout-&gt;setObjectName(
+<a name="l00063"></a>00063                         QString::fromUtf8(<span class="stringliteral">"AllBoundsLayout"</span>));
+<a name="l00064"></a>00064                 gridLabel = <span class="keyword">new</span> QLabel(ValuesDialog);
+<a name="l00065"></a>00065                 gridLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"gridLabel"</span>));
+<a name="l00066"></a>00066                 font.setBold(<span class="keyword">true</span>);
+<a name="l00067"></a>00067                 font.setWeight(75);
+<a name="l00068"></a>00068                 gridLabel-&gt;setFont(font);
+<a name="l00069"></a>00069                 gridLabel-&gt;setAlignment(Qt::AlignCenter);
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071                 AllBoundsLayout-&gt;addWidget(gridLabel);
+<a name="l00072"></a>00072             }
+<a name="l00073"></a>00073             <span class="comment">//  defining the grid resolution and bounds</span>
+<a name="l00074"></a>00074             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; <a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>; i++) {
+<a name="l00075"></a>00075                 SliderLayout[i] = <span class="keyword">new</span> QHBoxLayout();
+<a name="l00076"></a>00076                 SliderLayout[i]-&gt;setSpacing(6);
+<a name="l00077"></a>00077                 SliderLayout[i]-&gt;setObjectName(
+<a name="l00078"></a>00078                         QString::fromUtf8(<span class="stringliteral">"SliderLayout[i]"</span>));
+<a name="l00079"></a>00079                 SliderLayout[i]-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00080"></a>00080                 Label[i] = <span class="keyword">new</span> QLabel(ValuesDialog);
+<a name="l00081"></a>00081                 Label[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"Label[i]"</span>));
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083                 SliderLayout[i]-&gt;addWidget(Label[i]);
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085                 Slider[i] = <span class="keyword">new</span> QSlider(ValuesDialog);
+<a name="l00086"></a>00086                 Slider[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"Slider[i]"</span>));
+<a name="l00087"></a>00087                 Slider[i]-&gt;setMinimum(1);
+<a name="l00088"></a>00088                 Slider[i]-&gt;setMaximum(50);
+<a name="l00089"></a>00089                 Slider[i]-&gt;setPageStep(5);
+<a name="l00090"></a>00090                 Slider[i]-&gt;setValue(5);
+<a name="l00091"></a>00091                 Slider[i]-&gt;setOrientation(Qt::Horizontal);
+<a name="l00092"></a>00092                 Slider[i]-&gt;setTickInterval(5);
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094                 SliderLayout[i]-&gt;addWidget(Slider[i]);
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096                 Steps[i] = <span class="keyword">new</span> QLabel(ValuesDialog);
+<a name="l00097"></a>00097                 Steps[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"Steps[i]"</span>));
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099                 SliderLayout[i]-&gt;addWidget(Steps[i]);
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101                 AllBoundsLayout-&gt;addLayout(SliderLayout[i]);
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103                 BoundsLayout[i] = <span class="keyword">new</span> QHBoxLayout();
+<a name="l00104"></a>00104                 BoundsLayout[i]-&gt;setSpacing(6);
+<a name="l00105"></a>00105                 BoundsLayout[i]-&gt;setObjectName(
+<a name="l00106"></a>00106                         QString::fromUtf8(<span class="stringliteral">"BoundsLayout[i]"</span>));
+<a name="l00107"></a>00107                 BoundsLayout[i]-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00108"></a>00108                 MinLayout[i] = <span class="keyword">new</span> QHBoxLayout();
+<a name="l00109"></a>00109                 MinLayout[i]-&gt;setSpacing(6);
+<a name="l00110"></a>00110                 MinLayout[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"MinLayout[i]"</span>));
+<a name="l00111"></a>00111                 MinLayout[i]-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00112"></a>00112                 MinLabel[i] = <span class="keyword">new</span> QLabel(ValuesDialog);
+<a name="l00113"></a>00113                 MinLabel[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"MinLabel[i]"</span>));
+<a name="l00114"></a>00114 
+<a name="l00115"></a>00115                 MinLayout[i]-&gt;addWidget(MinLabel[i]);
 <a name="l00116"></a>00116 
-<a name="l00117"></a>00117     hboxLayout-&gt;addWidget(TLabel);
-<a name="l00118"></a>00118 
-<a name="l00119"></a>00119     TSlider = <span class="keyword">new</span> QSlider(ValuesDialog);
-<a name="l00120"></a>00120     TSlider-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"TSlider"</span>));
-<a name="l00121"></a>00121     TSlider-&gt;setMinimum(1);
-<a name="l00122"></a>00122     TSlider-&gt;setMaximum(50);
-<a name="l00123"></a>00123     TSlider-&gt;setPageStep(5);
-<a name="l00124"></a>00124     TSlider-&gt;setValue(5);
-<a name="l00125"></a>00125     TSlider-&gt;setOrientation(Qt::Horizontal);
-<a name="l00126"></a>00126     TSlider-&gt;setTickInterval(5);
-<a name="l00127"></a>00127 
-<a name="l00128"></a>00128     hboxLayout-&gt;addWidget(TSlider);
-<a name="l00129"></a>00129 
-<a name="l00130"></a>00130     TSteps = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00131"></a>00131     TSteps-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"TSteps"</span>));
+<a name="l00117"></a>00117                 Min[i] = <span class="keyword">new</span> QLineEdit(ValuesDialog);
+<a name="l00118"></a>00118                 Min[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"Min[i]"</span>));
+<a name="l00119"></a>00119 
+<a name="l00120"></a>00120                 MinLayout[i]-&gt;addWidget(Min[i]);
+<a name="l00121"></a>00121 
+<a name="l00122"></a>00122                 BoundsLayout[i]-&gt;addLayout(MinLayout[i]);
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124                 MaxLayout[i] = <span class="keyword">new</span> QHBoxLayout();
+<a name="l00125"></a>00125                 MaxLayout[i]-&gt;setSpacing(6);
+<a name="l00126"></a>00126                 MaxLayout[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"MaxLayout[i]"</span>));
+<a name="l00127"></a>00127                 MaxLayout[i]-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00128"></a>00128                 MaxLabel[i] = <span class="keyword">new</span> QLabel(ValuesDialog);
+<a name="l00129"></a>00129                 MaxLabel[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"MaxLabel[i]"</span>));
+<a name="l00130"></a>00130 
+<a name="l00131"></a>00131                 MaxLayout[i]-&gt;addWidget(MaxLabel[i]);
 <a name="l00132"></a>00132 
-<a name="l00133"></a>00133     hboxLayout-&gt;addWidget(TSteps);
-<a name="l00134"></a>00134 
+<a name="l00133"></a>00133                 Max[i] = <span class="keyword">new</span> QLineEdit(ValuesDialog);
+<a name="l00134"></a>00134                 Max[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"Max[i]"</span>));
 <a name="l00135"></a>00135 
-<a name="l00136"></a>00136     vboxLayout-&gt;addLayout(hboxLayout);
+<a name="l00136"></a>00136                 MaxLayout[i]-&gt;addWidget(Max[i]);
 <a name="l00137"></a>00137 
-<a name="l00138"></a>00138     hboxLayout1 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00139"></a>00139     hboxLayout1-&gt;setSpacing(6);
-<a name="l00140"></a>00140     hboxLayout1-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout1"</span>));
-<a name="l00141"></a>00141     hboxLayout1-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00142"></a>00142     hboxLayout2 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00143"></a>00143     hboxLayout2-&gt;setSpacing(6);
-<a name="l00144"></a>00144     hboxLayout2-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout2"</span>));
-<a name="l00145"></a>00145     hboxLayout2-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00146"></a>00146     TMinLabel = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00147"></a>00147     TMinLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"TMinLabel"</span>));
-<a name="l00148"></a>00148 
-<a name="l00149"></a>00149     hboxLayout2-&gt;addWidget(TMinLabel);
-<a name="l00150"></a>00150 
-<a name="l00151"></a>00151     TMin = <span class="keyword">new</span> QLineEdit(ValuesDialog);
-<a name="l00152"></a>00152     TMin-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"TMin"</span>));
+<a name="l00138"></a>00138                 BoundsLayout[i]-&gt;addLayout(MaxLayout[i]);
+<a name="l00139"></a>00139 
+<a name="l00140"></a>00140                 AllBoundsLayout-&gt;addLayout(BoundsLayout[i]);
+<a name="l00141"></a>00141             }
+<a name="l00142"></a>00142 
+<a name="l00143"></a>00143             gridLayout-&gt;addLayout(AllBoundsLayout, 0, 0, 1, 1);
+<a name="l00144"></a>00144 
+<a name="l00145"></a>00145             <span class="comment">//  function parameters - heading and layout</span>
+<a name="l00146"></a>00146             {
+<a name="l00147"></a>00147                 functionLabel = <span class="keyword">new</span> QLabel(ValuesDialog);
+<a name="l00148"></a>00148                 functionLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"functionLabel"</span>));
+<a name="l00149"></a>00149                 functionLabel-&gt;setFont(font);
+<a name="l00150"></a>00150                 functionLabel-&gt;setAlignment(Qt::AlignCenter);
+<a name="l00151"></a>00151 
+<a name="l00152"></a>00152                 gridLayout-&gt;addWidget(functionLabel, 2, 0, 1, 1);
 <a name="l00153"></a>00153 
-<a name="l00154"></a>00154     hboxLayout2-&gt;addWidget(TMin);
-<a name="l00155"></a>00155 
-<a name="l00156"></a>00156 
-<a name="l00157"></a>00157     hboxLayout1-&gt;addLayout(hboxLayout2);
-<a name="l00158"></a>00158 
-<a name="l00159"></a>00159     hboxLayout3 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00160"></a>00160     hboxLayout3-&gt;setSpacing(6);
-<a name="l00161"></a>00161     hboxLayout3-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout3"</span>));
-<a name="l00162"></a>00162     hboxLayout3-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00163"></a>00163     TMaxLabel = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00164"></a>00164     TMaxLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"TMaxLabel"</span>));
-<a name="l00165"></a>00165 
-<a name="l00166"></a>00166     hboxLayout3-&gt;addWidget(TMaxLabel);
-<a name="l00167"></a>00167 
-<a name="l00168"></a>00168     TMax = <span class="keyword">new</span> QLineEdit(ValuesDialog);
-<a name="l00169"></a>00169     TMax-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"TMax"</span>));
-<a name="l00170"></a>00170 
-<a name="l00171"></a>00171     hboxLayout3-&gt;addWidget(TMax);
-<a name="l00172"></a>00172 
-<a name="l00173"></a>00173 
-<a name="l00174"></a>00174     hboxLayout1-&gt;addLayout(hboxLayout3);
-<a name="l00175"></a>00175 
-<a name="l00176"></a>00176 
-<a name="l00177"></a>00177     vboxLayout-&gt;addLayout(hboxLayout1);
+<a name="l00154"></a>00154                 AllParametersLayout = <span class="keyword">new</span> QVBoxLayout();
+<a name="l00155"></a>00155                 AllParametersLayout-&gt;setSpacing(6);
+<a name="l00156"></a>00156                 AllParametersLayout-&gt;setObjectName(
+<a name="l00157"></a>00157                         QString::fromUtf8(<span class="stringliteral">"AllParametersLayout"</span>));
+<a name="l00158"></a>00158                 AllParametersLayout-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00159"></a>00159             }
+<a name="l00160"></a>00160 
+<a name="l00161"></a>00161             <span class="comment">//  function parameters - input fields</span>
+<a name="l00162"></a>00162             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; <a class="code" href="classUi__ValuesDialog.html#1b4d3fca097cbc53827db8f18e33638b" title="maximum number of function parameters to display">maxNumParameters</a>/<a class="code" href="classUi__ValuesDialog.html#9ec22f0535ebacd6dfd57d2790dd9eb7" title="group this many parameter input fields on a line">parametersPerLine</a>; j++) {
+<a name="l00163"></a>00163                 ParameterLineLayout[j] = <span class="keyword">new</span> QHBoxLayout();
+<a name="l00164"></a>00164                 ParameterLineLayout[j]-&gt;setSpacing(6);
+<a name="l00165"></a>00165                 ParameterLineLayout[j]-&gt;setObjectName(
+<a name="l00166"></a>00166                         QString::fromUtf8(<span class="stringliteral">"ParameterLineLayout[j]"</span>));
+<a name="l00167"></a>00167                 ParameterLineLayout[j]-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00168"></a>00168                 <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = <a class="code" href="classUi__ValuesDialog.html#9ec22f0535ebacd6dfd57d2790dd9eb7" title="group this many parameter input fields on a line">parametersPerLine</a>*j;
+<a name="l00169"></a>00169                      i &lt; <a class="code" href="classUi__ValuesDialog.html#9ec22f0535ebacd6dfd57d2790dd9eb7" title="group this many parameter input fields on a line">parametersPerLine</a>*j+<a class="code" href="classUi__ValuesDialog.html#9ec22f0535ebacd6dfd57d2790dd9eb7" title="group this many parameter input fields on a line">parametersPerLine</a>; i++) {
+<a name="l00170"></a>00170                     ParameterLayout[i] = <span class="keyword">new</span> QHBoxLayout();
+<a name="l00171"></a>00171                     ParameterLayout[i]-&gt;setSpacing(6);
+<a name="l00172"></a>00172                     ParameterLayout[i]-&gt;setObjectName(
+<a name="l00173"></a>00173                             QString::fromUtf8(<span class="stringliteral">"ParameterLayout[i]"</span>));
+<a name="l00174"></a>00174                     ParameterLayout[i]-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00175"></a>00175                     ParameterLabel[i] = <span class="keyword">new</span> QLabel(ValuesDialog);
+<a name="l00176"></a>00176                     ParameterLabel[i]-&gt;setObjectName(
+<a name="l00177"></a>00177                             QString::fromUtf8(<span class="stringliteral">"ParameterLabel[i]"</span>));
 <a name="l00178"></a>00178 
-<a name="l00179"></a>00179     hboxLayout4 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00180"></a>00180     hboxLayout4-&gt;setSpacing(6);
-<a name="l00181"></a>00181     hboxLayout4-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout4"</span>));
-<a name="l00182"></a>00182     hboxLayout4-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00183"></a>00183     ULabel = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00184"></a>00184     ULabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"ULabel"</span>));
-<a name="l00185"></a>00185 
-<a name="l00186"></a>00186     hboxLayout4-&gt;addWidget(ULabel);
-<a name="l00187"></a>00187 
-<a name="l00188"></a>00188     USlider = <span class="keyword">new</span> QSlider(ValuesDialog);
-<a name="l00189"></a>00189     USlider-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"USlider"</span>));
-<a name="l00190"></a>00190     USlider-&gt;setMinimum(1);
-<a name="l00191"></a>00191     USlider-&gt;setMaximum(50);
-<a name="l00192"></a>00192     USlider-&gt;setPageStep(5);
-<a name="l00193"></a>00193     USlider-&gt;setValue(5);
-<a name="l00194"></a>00194     USlider-&gt;setOrientation(Qt::Horizontal);
-<a name="l00195"></a>00195     USlider-&gt;setTickInterval(5);
-<a name="l00196"></a>00196 
-<a name="l00197"></a>00197     hboxLayout4-&gt;addWidget(USlider);
-<a name="l00198"></a>00198 
-<a name="l00199"></a>00199     USteps = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00200"></a>00200     USteps-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"USteps"</span>));
-<a name="l00201"></a>00201 
-<a name="l00202"></a>00202     hboxLayout4-&gt;addWidget(USteps);
-<a name="l00203"></a>00203 
-<a name="l00204"></a>00204 
-<a name="l00205"></a>00205     vboxLayout-&gt;addLayout(hboxLayout4);
-<a name="l00206"></a>00206 
-<a name="l00207"></a>00207     hboxLayout5 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00208"></a>00208     hboxLayout5-&gt;setSpacing(6);
-<a name="l00209"></a>00209     hboxLayout5-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout5"</span>));
-<a name="l00210"></a>00210     hboxLayout5-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00211"></a>00211     hboxLayout6 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00212"></a>00212     hboxLayout6-&gt;setSpacing(6);
-<a name="l00213"></a>00213     hboxLayout6-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout6"</span>));
-<a name="l00214"></a>00214     hboxLayout6-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00215"></a>00215     UMinLabel = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00216"></a>00216     UMinLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"UMinLabel"</span>));
-<a name="l00217"></a>00217 
-<a name="l00218"></a>00218     hboxLayout6-&gt;addWidget(UMinLabel);
-<a name="l00219"></a>00219 
-<a name="l00220"></a>00220     UMin = <span class="keyword">new</span> QLineEdit(ValuesDialog);
-<a name="l00221"></a>00221     UMin-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"UMin"</span>));
+<a name="l00179"></a>00179                     ParameterLayout[i]-&gt;addWidget(ParameterLabel[i]);
+<a name="l00180"></a>00180 
+<a name="l00181"></a>00181                     Parameter[i] = <span class="keyword">new</span> QLineEdit(ValuesDialog);
+<a name="l00182"></a>00182                     Parameter[i]-&gt;setObjectName(
+<a name="l00183"></a>00183                             QString::fromUtf8(<span class="stringliteral">"Parameter[i]"</span>));
+<a name="l00184"></a>00184 
+<a name="l00185"></a>00185                     ParameterLayout[i]-&gt;addWidget(Parameter[i]);
+<a name="l00186"></a>00186 
+<a name="l00187"></a>00187                     ParameterLineLayout[j]-&gt;addLayout(ParameterLayout[i]);
+<a name="l00188"></a>00188                 }
+<a name="l00189"></a>00189 
+<a name="l00190"></a>00190 
+<a name="l00191"></a>00191                 AllParametersLayout-&gt;addLayout(ParameterLineLayout[j]);
+<a name="l00192"></a>00192             }
+<a name="l00193"></a>00193 
+<a name="l00194"></a>00194             gridLayout-&gt;addLayout(AllParametersLayout, 4, 0, 1, 1);
+<a name="l00195"></a>00195 
+<a name="l00196"></a>00196             <span class="comment">//  "Apply" button</span>
+<a name="l00197"></a>00197             {
+<a name="l00198"></a>00198                 ButtonLayout = <span class="keyword">new</span> QHBoxLayout();
+<a name="l00199"></a>00199                 ButtonLayout-&gt;setSpacing(6);
+<a name="l00200"></a>00200                 ButtonLayout-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"ButtonLayout"</span>));
+<a name="l00201"></a>00201                 ButtonLayout-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00202"></a>00202                 buttonApply = <span class="keyword">new</span> QPushButton(ValuesDialog);
+<a name="l00203"></a>00203                 buttonApply-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"buttonApply"</span>));
+<a name="l00204"></a>00204                 buttonApply-&gt;setAutoDefault(<span class="keyword">true</span>);
+<a name="l00205"></a>00205 
+<a name="l00206"></a>00206                 ButtonLayout-&gt;addWidget(buttonApply);
+<a name="l00207"></a>00207                 gridLayout-&gt;addLayout(ButtonLayout, 5, 0, 1, 1);
+<a name="l00208"></a>00208             }
+<a name="l00209"></a>00209 
+<a name="l00210"></a>00210             <span class="comment">//  tab order</span>
+<a name="l00211"></a>00211             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; maxNumDimensions; ++i) {
+<a name="l00212"></a>00212                 QWidget::setTabOrder(Slider[i], Min[i]);
+<a name="l00213"></a>00213                 QWidget::setTabOrder(Min[i], Max[i]);
+<a name="l00214"></a>00214                 <span class="keywordflow">if</span> (i &lt; maxNumDimensions-1)
+<a name="l00215"></a>00215                     QWidget::setTabOrder(Max[i], Slider[i+1]);
+<a name="l00216"></a>00216             }
+<a name="l00217"></a>00217             QWidget::setTabOrder(Max[maxNumDimensions-1], Parameter[0]);
+<a name="l00218"></a>00218             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; <a class="code" href="classUi__ValuesDialog.html#1b4d3fca097cbc53827db8f18e33638b" title="maximum number of function parameters to display">maxNumParameters</a>-1; ++i) {
+<a name="l00219"></a>00219                 QWidget::setTabOrder(Parameter[i], Parameter[i+1]);
+<a name="l00220"></a>00220             }
+<a name="l00221"></a>00221             QWidget::setTabOrder(Parameter[maxNumParameters-1], buttonApply);
 <a name="l00222"></a>00222 
-<a name="l00223"></a>00223     hboxLayout6-&gt;addWidget(UMin);
+<a name="l00223"></a>00223             <a class="code" href="classUi__ValuesDialog.html#6e4192b89d585bbab3e1f03a0094027b" title="add the text(s) associated with each widget">retranslateUi</a>(ValuesDialog);
 <a name="l00224"></a>00224 
-<a name="l00225"></a>00225 
-<a name="l00226"></a>00226     hboxLayout5-&gt;addLayout(hboxLayout6);
-<a name="l00227"></a>00227 
-<a name="l00228"></a>00228     hboxLayout7 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00229"></a>00229     hboxLayout7-&gt;setSpacing(6);
-<a name="l00230"></a>00230     hboxLayout7-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout7"</span>));
-<a name="l00231"></a>00231     hboxLayout7-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00232"></a>00232     UMaxLabel = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00233"></a>00233     UMaxLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"UMaxLabel"</span>));
-<a name="l00234"></a>00234 
-<a name="l00235"></a>00235     hboxLayout7-&gt;addWidget(UMaxLabel);
+<a name="l00225"></a>00225             <span class="comment">//  signal/slot connections</span>
+<a name="l00226"></a>00226             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; maxNumDimensions; ++i) {
+<a name="l00227"></a>00227                 QObject::connect(Slider[i], SIGNAL(valueChanged(<span class="keywordtype">int</span>)),
+<a name="l00228"></a>00228                                  Steps[i], SLOT(setNum(<span class="keywordtype">int</span>)));
+<a name="l00229"></a>00229                 <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = i+1; j &lt; maxNumDimensions; ++j) {
+<a name="l00230"></a>00230                     QObject::connect(Slider[i], SIGNAL(valueChanged(<span class="keywordtype">int</span>)),
+<a name="l00231"></a>00231                                      Slider[j], SLOT(setValue(<span class="keywordtype">int</span>)));
+<a name="l00232"></a>00232                 }
+<a name="l00233"></a>00233             }
+<a name="l00234"></a>00234             QObject::connect(buttonApply, SIGNAL(clicked()),
+<a name="l00235"></a>00235                              ValuesDialog, SLOT(accept()));
 <a name="l00236"></a>00236 
-<a name="l00237"></a>00237     UMax = <span class="keyword">new</span> QLineEdit(ValuesDialog);
-<a name="l00238"></a>00238     UMax-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"UMax"</span>));
+<a name="l00237"></a>00237             QMetaObject::connectSlotsByName(ValuesDialog);
+<a name="l00238"></a>00238         } <span class="comment">// setupUi</span>
 <a name="l00239"></a>00239 
-<a name="l00240"></a>00240     hboxLayout7-&gt;addWidget(UMax);
-<a name="l00241"></a>00241 
-<a name="l00242"></a>00242 
-<a name="l00243"></a>00243     hboxLayout5-&gt;addLayout(hboxLayout7);
-<a name="l00244"></a>00244 
-<a name="l00245"></a>00245 
-<a name="l00246"></a>00246     vboxLayout-&gt;addLayout(hboxLayout5);
-<a name="l00247"></a>00247 
-<a name="l00248"></a>00248     hboxLayout8 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00249"></a>00249     hboxLayout8-&gt;setSpacing(6);
-<a name="l00250"></a>00250     hboxLayout8-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout8"</span>));
-<a name="l00251"></a>00251     hboxLayout8-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00252"></a>00252     VLabel = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00253"></a>00253     VLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"VLabel"</span>));
-<a name="l00254"></a>00254 
-<a name="l00255"></a>00255     hboxLayout8-&gt;addWidget(VLabel);
-<a name="l00256"></a>00256 
-<a name="l00257"></a>00257     VSlider = <span class="keyword">new</span> QSlider(ValuesDialog);
-<a name="l00258"></a>00258     VSlider-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"VSlider"</span>));
-<a name="l00259"></a>00259     VSlider-&gt;setMinimum(1);
-<a name="l00260"></a>00260     VSlider-&gt;setMaximum(50);
-<a name="l00261"></a>00261     VSlider-&gt;setPageStep(5);
-<a name="l00262"></a>00262     VSlider-&gt;setValue(5);
-<a name="l00263"></a>00263     VSlider-&gt;setOrientation(Qt::Horizontal);
-<a name="l00264"></a>00264     VSlider-&gt;setTickInterval(5);
-<a name="l00265"></a>00265 
-<a name="l00266"></a>00266     hboxLayout8-&gt;addWidget(VSlider);
-<a name="l00267"></a>00267 
-<a name="l00268"></a>00268     VSteps = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00269"></a>00269     VSteps-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"VSteps"</span>));
-<a name="l00270"></a>00270 
-<a name="l00271"></a>00271     hboxLayout8-&gt;addWidget(VSteps);
-<a name="l00272"></a>00272 
-<a name="l00273"></a>00273 
-<a name="l00274"></a>00274     vboxLayout-&gt;addLayout(hboxLayout8);
-<a name="l00275"></a>00275 
-<a name="l00276"></a>00276     hboxLayout9 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00277"></a>00277     hboxLayout9-&gt;setSpacing(6);
-<a name="l00278"></a>00278     hboxLayout9-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout9"</span>));
-<a name="l00279"></a>00279     hboxLayout9-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00280"></a>00280     hboxLayout10 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00281"></a>00281     hboxLayout10-&gt;setSpacing(6);
-<a name="l00282"></a>00282     hboxLayout10-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout10"</span>));
-<a name="l00283"></a>00283     hboxLayout10-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00284"></a>00284     VMinLabel = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00285"></a>00285     VMinLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"VMinLabel"</span>));
-<a name="l00286"></a>00286 
-<a name="l00287"></a>00287     hboxLayout10-&gt;addWidget(VMinLabel);
-<a name="l00288"></a>00288 
-<a name="l00289"></a>00289     VMin = <span class="keyword">new</span> QLineEdit(ValuesDialog);
-<a name="l00290"></a>00290     VMin-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"VMin"</span>));
-<a name="l00291"></a>00291 
-<a name="l00292"></a>00292     hboxLayout10-&gt;addWidget(VMin);
-<a name="l00293"></a>00293 
-<a name="l00294"></a>00294 
-<a name="l00295"></a>00295     hboxLayout9-&gt;addLayout(hboxLayout10);
-<a name="l00296"></a>00296 
-<a name="l00297"></a>00297     hboxLayout11 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00298"></a>00298     hboxLayout11-&gt;setSpacing(6);
-<a name="l00299"></a>00299     hboxLayout11-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout11"</span>));
-<a name="l00300"></a>00300     hboxLayout11-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00301"></a>00301     VMaxLabel = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00302"></a>00302     VMaxLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"VMaxLabel"</span>));
-<a name="l00303"></a>00303 
-<a name="l00304"></a>00304     hboxLayout11-&gt;addWidget(VMaxLabel);
-<a name="l00305"></a>00305 
-<a name="l00306"></a>00306     VMax = <span class="keyword">new</span> QLineEdit(ValuesDialog);
-<a name="l00307"></a>00307     VMax-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"VMax"</span>));
+<a name="l00241"></a><a class="code" href="classUi__ValuesDialog.html#6e4192b89d585bbab3e1f03a0094027b">00241</a>         <span class="keywordtype">void</span> <a class="code" href="classUi__ValuesDialog.html#6e4192b89d585bbab3e1f03a0094027b" title="add the text(s) associated with each widget">retranslateUi</a>(QDialog *ValuesDialog) {
+<a name="l00242"></a>00242             ValuesDialog-&gt;setWindowTitle(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00243"></a>00243                 <span class="stringliteral">"Enter Values for the Function"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00244"></a>00244             ValuesDialog-&gt;setWhatsThis(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00245"></a>00245                 <span class="stringliteral">"In this dialog window the user can enter up to four parameters"</span>
+<a name="l00246"></a>00246                 <span class="stringliteral">"to the displayed four-dimensional function or object.\n"</span>
+<a name="l00247"></a>00247                 <span class="stringliteral">"She can also change the resolution of the grid."</span>, 0,
+<a name="l00248"></a>00248                  QApplication::UnicodeUTF8));
+<a name="l00249"></a>00249             gridLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00250"></a>00250                 <span class="stringliteral">"Grid size and bounds"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00251"></a>00251             Label[0]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00252"></a>00252                 <span class="stringliteral">"Steps in t"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00253"></a>00253             MinLabel[0]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00254"></a>00254                 <span class="stringliteral">"tmin"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00255"></a>00255             MaxLabel[0]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00256"></a>00256                 <span class="stringliteral">"tmax"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00257"></a>00257             Label[1]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00258"></a>00258                 <span class="stringliteral">"Steps in u"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00259"></a>00259             MinLabel[1]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00260"></a>00260                 <span class="stringliteral">"umin"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00261"></a>00261             MaxLabel[1]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00262"></a>00262                 <span class="stringliteral">"umax"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00263"></a>00263             Label[2]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00264"></a>00264                 <span class="stringliteral">"Steps in v"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00265"></a>00265             MinLabel[2]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00266"></a>00266                 <span class="stringliteral">"vmin"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00267"></a>00267             MaxLabel[2]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00268"></a>00268                 <span class="stringliteral">"vmax"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00269"></a>00269             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; <a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>; ++i) {
+<a name="l00270"></a>00270                 Steps[i]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00271"></a>00271                     <span class="stringliteral">"1"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00272"></a>00272                 Min[i]-&gt;setToolTip(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00273"></a>00273                     <span class="stringliteral">"enter '-pi' if you mean -3.1415..."</span>, 0,
+<a name="l00274"></a>00274                      QApplication::UnicodeUTF8));
+<a name="l00275"></a>00275                 Min[i]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00276"></a>00276                     <span class="stringliteral">"-1"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00277"></a>00277                 Max[i]-&gt;setToolTip(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00278"></a>00278                     <span class="stringliteral">"or 'pi' if you want 3.1415..."</span>, 0,
+<a name="l00279"></a>00279                      QApplication::UnicodeUTF8));
+<a name="l00280"></a>00280                 Max[i]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00281"></a>00281                     <span class="stringliteral">"1"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00282"></a>00282             }
+<a name="l00283"></a>00283             functionLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00284"></a>00284                 <span class="stringliteral">"Function Parameters"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00285"></a>00285             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; <a class="code" href="classUi__ValuesDialog.html#1b4d3fca097cbc53827db8f18e33638b" title="maximum number of function parameters to display">maxNumParameters</a>; ++i) {
+<a name="l00286"></a>00286                 ParameterLabel[i]-&gt;setText(QApplication::translate(
+<a name="l00287"></a>00287                     <span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"Parameter"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00288"></a>00288                 Parameter[i]-&gt;setText(QApplication::translate(
+<a name="l00289"></a>00289                     <span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"1"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00290"></a>00290             }
+<a name="l00291"></a>00291             buttonApply-&gt;setToolTip(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00292"></a>00292                 <span class="stringliteral">"Accept changes and redraw"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00293"></a>00293             buttonApply-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00294"></a>00294                 <span class="stringliteral">"&amp;Apply"</span>, 0, QApplication::UnicodeUTF8));
+<a name="l00295"></a>00295             Q_UNUSED(ValuesDialog);
+<a name="l00296"></a>00296         } <span class="comment">// retranslateUi</span>
+<a name="l00297"></a>00297 
+<a name="l00298"></a>00298     <span class="keyword">protected</span>:
+<a name="l00299"></a>00299         <span class="comment">//  these members should be private and referred to only by accessors,</span>
+<a name="l00300"></a>00300         <span class="comment">//  but this is the way uic created the class and the derived class</span>
+<a name="l00301"></a>00301         <span class="comment">//  depends too much on them. so i didn't bother.</span>
+<a name="l00302"></a>00302         QGridLayout *gridLayout;
+<a name="l00303"></a>00303         QVBoxLayout *AllBoundsLayout;
+<a name="l00304"></a>00304         QVBoxLayout *AllParametersLayout;
+<a name="l00305"></a>00305         QHBoxLayout *ButtonLayout;
+<a name="l00306"></a>00306 
+<a name="l00307"></a>00307         QLabel *gridLabel;
 <a name="l00308"></a>00308 
-<a name="l00309"></a>00309     hboxLayout11-&gt;addWidget(VMax);
-<a name="l00310"></a>00310 
-<a name="l00311"></a>00311 
-<a name="l00312"></a>00312     hboxLayout9-&gt;addLayout(hboxLayout11);
+<a name="l00309"></a>00309         QHBoxLayout *SliderLayout[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
+<a name="l00310"></a>00310         QHBoxLayout *BoundsLayout[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
+<a name="l00311"></a>00311         QHBoxLayout *MinLayout[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
+<a name="l00312"></a>00312         QHBoxLayout *MaxLayout[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
 <a name="l00313"></a>00313 
-<a name="l00314"></a>00314 
-<a name="l00315"></a>00315     vboxLayout-&gt;addLayout(hboxLayout9);
-<a name="l00316"></a>00316 
-<a name="l00317"></a>00317 
-<a name="l00318"></a>00318     gridLayout-&gt;addLayout(vboxLayout, 0, 0, 1, 1);
-<a name="l00319"></a>00319 
-<a name="l00320"></a>00320     functionLabel = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00321"></a>00321     functionLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"functionLabel"</span>));
-<a name="l00322"></a>00322     functionLabel-&gt;setFont(font);
-<a name="l00323"></a>00323     functionLabel-&gt;setAlignment(Qt::AlignCenter);
-<a name="l00324"></a>00324 
-<a name="l00325"></a>00325     gridLayout-&gt;addWidget(functionLabel, 2, 0, 1, 1);
+<a name="l00314"></a>00314         QLabel *Label[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
+<a name="l00315"></a>00315         QSlider *Slider[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
+<a name="l00316"></a>00316         QLabel *Steps[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
+<a name="l00317"></a>00317         QLabel *MinLabel[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
+<a name="l00318"></a>00318         QLineEdit *Min[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
+<a name="l00319"></a>00319         QLabel *MaxLabel[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
+<a name="l00320"></a>00320         QLineEdit *Max[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
+<a name="l00321"></a>00321 
+<a name="l00322"></a>00322         QLabel *functionLabel;
+<a name="l00323"></a>00323 
+<a name="l00324"></a>00324         QHBoxLayout *ParameterLayout[<a class="code" href="classUi__ValuesDialog.html#1b4d3fca097cbc53827db8f18e33638b" title="maximum number of function parameters to display">maxNumParameters</a>];
+<a name="l00325"></a>00325         QHBoxLayout *ParameterLineLayout[<a class="code" href="classUi__ValuesDialog.html#1b4d3fca097cbc53827db8f18e33638b" title="maximum number of function parameters to display">maxNumParameters</a>/<a class="code" href="classUi__ValuesDialog.html#9ec22f0535ebacd6dfd57d2790dd9eb7" title="group this many parameter input fields on a line">parametersPerLine</a>];
 <a name="l00326"></a>00326 
-<a name="l00327"></a>00327     vboxLayout1 = <span class="keyword">new</span> QVBoxLayout();
-<a name="l00328"></a>00328     vboxLayout1-&gt;setSpacing(6);
-<a name="l00329"></a>00329     vboxLayout1-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"vboxLayout1"</span>));
-<a name="l00330"></a>00330     vboxLayout1-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00331"></a>00331     hboxLayout13 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00332"></a>00332     hboxLayout13-&gt;setSpacing(6);
-<a name="l00333"></a>00333     hboxLayout13-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout13"</span>));
-<a name="l00334"></a>00334     hboxLayout13-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00335"></a>00335     hboxLayout14 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00336"></a>00336     hboxLayout14-&gt;setSpacing(6);
-<a name="l00337"></a>00337     hboxLayout14-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout14"</span>));
-<a name="l00338"></a>00338     hboxLayout14-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00339"></a>00339     ParameterLabel[0] = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00340"></a>00340     ParameterLabel[0]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"ParameterLabel[0]"</span>));
-<a name="l00341"></a>00341 
-<a name="l00342"></a>00342     hboxLayout14-&gt;addWidget(ParameterLabel[0]);
-<a name="l00343"></a>00343 
-<a name="l00344"></a>00344     Parameter[0] = <span class="keyword">new</span> QLineEdit(ValuesDialog);
-<a name="l00345"></a>00345     Parameter[0]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"Parameter[0]"</span>));
-<a name="l00346"></a>00346 
-<a name="l00347"></a>00347     hboxLayout14-&gt;addWidget(Parameter[0]);
-<a name="l00348"></a>00348 
-<a name="l00349"></a>00349 
-<a name="l00350"></a>00350     hboxLayout13-&gt;addLayout(hboxLayout14);
-<a name="l00351"></a>00351 
-<a name="l00352"></a>00352     hboxLayout15 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00353"></a>00353     hboxLayout15-&gt;setSpacing(6);
-<a name="l00354"></a>00354     hboxLayout15-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout15"</span>));
-<a name="l00355"></a>00355     hboxLayout15-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00356"></a>00356     ParameterLabel[1] = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00357"></a>00357     ParameterLabel[1]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"ParameterLabel[1]"</span>));
-<a name="l00358"></a>00358 
-<a name="l00359"></a>00359     hboxLayout15-&gt;addWidget(ParameterLabel[1]);
-<a name="l00360"></a>00360 
-<a name="l00361"></a>00361     Parameter[1] = <span class="keyword">new</span> QLineEdit(ValuesDialog);
-<a name="l00362"></a>00362     Parameter[1]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"Parameter[1]"</span>));
-<a name="l00363"></a>00363 
-<a name="l00364"></a>00364     hboxLayout15-&gt;addWidget(Parameter[1]);
-<a name="l00365"></a>00365 
-<a name="l00366"></a>00366 
-<a name="l00367"></a>00367     hboxLayout13-&gt;addLayout(hboxLayout15);
-<a name="l00368"></a>00368 
-<a name="l00369"></a>00369 
-<a name="l00370"></a>00370     vboxLayout1-&gt;addLayout(hboxLayout13);
-<a name="l00371"></a>00371 
-<a name="l00372"></a>00372     hboxLayout16 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00373"></a>00373     hboxLayout16-&gt;setSpacing(6);
-<a name="l00374"></a>00374     hboxLayout16-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout16"</span>));
-<a name="l00375"></a>00375     hboxLayout16-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00376"></a>00376     hboxLayout17 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00377"></a>00377     hboxLayout17-&gt;setSpacing(6);
-<a name="l00378"></a>00378     hboxLayout17-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout17"</span>));
-<a name="l00379"></a>00379     hboxLayout17-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00380"></a>00380     ParameterLabel[2] = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00381"></a>00381     ParameterLabel[2]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"ParameterLabel[2]"</span>));
-<a name="l00382"></a>00382 
-<a name="l00383"></a>00383     hboxLayout17-&gt;addWidget(ParameterLabel[2]);
-<a name="l00384"></a>00384 
-<a name="l00385"></a>00385     Parameter[2] = <span class="keyword">new</span> QLineEdit(ValuesDialog);
-<a name="l00386"></a>00386     Parameter[2]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"Parameter[2]"</span>));
-<a name="l00387"></a>00387 
-<a name="l00388"></a>00388     hboxLayout17-&gt;addWidget(Parameter[2]);
-<a name="l00389"></a>00389 
-<a name="l00390"></a>00390 
-<a name="l00391"></a>00391     hboxLayout16-&gt;addLayout(hboxLayout17);
-<a name="l00392"></a>00392 
-<a name="l00393"></a>00393     hboxLayout18 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00394"></a>00394     hboxLayout18-&gt;setSpacing(6);
-<a name="l00395"></a>00395     hboxLayout18-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout18"</span>));
-<a name="l00396"></a>00396     hboxLayout18-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00397"></a>00397     ParameterLabel[3] = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00398"></a>00398     ParameterLabel[3]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"ParameterLabel[3]"</span>));
-<a name="l00399"></a>00399 
-<a name="l00400"></a>00400     hboxLayout18-&gt;addWidget(ParameterLabel[3]);
-<a name="l00401"></a>00401 
-<a name="l00402"></a>00402     Parameter[3] = <span class="keyword">new</span> QLineEdit(ValuesDialog);
-<a name="l00403"></a>00403     Parameter[3]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"Parameter[3]"</span>));
-<a name="l00404"></a>00404 
-<a name="l00405"></a>00405     hboxLayout18-&gt;addWidget(Parameter[3]);
-<a name="l00406"></a>00406 
-<a name="l00407"></a>00407 
-<a name="l00408"></a>00408     hboxLayout16-&gt;addLayout(hboxLayout18);
-<a name="l00409"></a>00409 
-<a name="l00410"></a>00410 
-<a name="l00411"></a>00411     vboxLayout1-&gt;addLayout(hboxLayout16);
-<a name="l00412"></a>00412 
-<a name="l00413"></a>00413 
-<a name="l00414"></a>00414     gridLayout-&gt;addLayout(vboxLayout1, 4, 0, 1, 1);
-<a name="l00415"></a>00415 
-<a name="l00416"></a>00416     hboxLayout19 = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00417"></a>00417     hboxLayout19-&gt;setSpacing(6);
-<a name="l00418"></a>00418     hboxLayout19-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"hboxLayout19"</span>));
-<a name="l00419"></a>00419     hboxLayout19-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00420"></a>00420     buttonApply = <span class="keyword">new</span> QPushButton(ValuesDialog);
-<a name="l00421"></a>00421     buttonApply-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"buttonApply"</span>));
-<a name="l00422"></a>00422     buttonApply-&gt;setAutoDefault(<span class="keyword">true</span>);
-<a name="l00423"></a>00423 
-<a name="l00424"></a>00424     hboxLayout19-&gt;addWidget(buttonApply);
-<a name="l00425"></a>00425     gridLayout-&gt;addLayout(hboxLayout19, 5, 0, 1, 1);
-<a name="l00426"></a>00426 
-<a name="l00427"></a>00427     QWidget::setTabOrder(TSlider, TMin);
-<a name="l00428"></a>00428     QWidget::setTabOrder(TMin, TMax);
-<a name="l00429"></a>00429     QWidget::setTabOrder(TMax, USlider);
-<a name="l00430"></a>00430     QWidget::setTabOrder(USlider, UMin);
-<a name="l00431"></a>00431     QWidget::setTabOrder(UMin, UMax);
-<a name="l00432"></a>00432     QWidget::setTabOrder(UMax, VSlider);
-<a name="l00433"></a>00433     QWidget::setTabOrder(VSlider, VMin);
-<a name="l00434"></a>00434     QWidget::setTabOrder(VMin, VMax);
-<a name="l00435"></a>00435     QWidget::setTabOrder(VMax, Parameter[0]);
-<a name="l00436"></a>00436     QWidget::setTabOrder(Parameter[0], Parameter[1]);
-<a name="l00437"></a>00437     QWidget::setTabOrder(Parameter[1], Parameter[2]);
-<a name="l00438"></a>00438     QWidget::setTabOrder(Parameter[2], Parameter[3]);
-<a name="l00439"></a>00439     QWidget::setTabOrder(Parameter[3], buttonApply);
-<a name="l00440"></a>00440 
-<a name="l00441"></a>00441     retranslateUi(ValuesDialog);
-<a name="l00442"></a>00442     QObject::connect(TSlider, SIGNAL(valueChanged(<span class="keywordtype">int</span>)), TSteps, SLOT(setNum(<span class="keywordtype">int</span>)));
-<a name="l00443"></a>00443     QObject::connect(USlider, SIGNAL(valueChanged(<span class="keywordtype">int</span>)), USteps, SLOT(setNum(<span class="keywordtype">int</span>)));
-<a name="l00444"></a>00444     QObject::connect(VSlider, SIGNAL(valueChanged(<span class="keywordtype">int</span>)), VSteps, SLOT(setNum(<span class="keywordtype">int</span>)));
-<a name="l00445"></a>00445     QObject::connect(buttonApply, SIGNAL(clicked()), ValuesDialog, SLOT(accept()));
-<a name="l00446"></a>00446     QObject::connect(TSlider, SIGNAL(valueChanged(<span class="keywordtype">int</span>)), USlider, SLOT(setValue(<span class="keywordtype">int</span>)));
-<a name="l00447"></a>00447     QObject::connect(TSlider, SIGNAL(valueChanged(<span class="keywordtype">int</span>)), VSlider, SLOT(setValue(<span class="keywordtype">int</span>)));
-<a name="l00448"></a>00448     QObject::connect(USlider, SIGNAL(valueChanged(<span class="keywordtype">int</span>)), VSlider, SLOT(setValue(<span class="keywordtype">int</span>)));
-<a name="l00449"></a>00449 
-<a name="l00450"></a>00450     QMetaObject::connectSlotsByName(ValuesDialog);
-<a name="l00451"></a>00451     } <span class="comment">// setupUi</span>
-<a name="l00452"></a>00452 
-<a name="l00453"></a>00453     <span class="keywordtype">void</span> retranslateUi(QDialog *ValuesDialog)
-<a name="l00454"></a>00454     {
-<a name="l00455"></a>00455     ValuesDialog-&gt;setWindowTitle(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"Enter Values for the Function"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00456"></a>00456     ValuesDialog-&gt;setWhatsThis(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"In this dialog window the user can enter up to four parameters to the displayed four-dimensional function or object.\n"</span>
-<a name="l00457"></a>00457 <span class="stringliteral">"She con also change the resolution of the grid."</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00458"></a>00458     gridLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"Grid size and bounds"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00459"></a>00459     TLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"Steps in t"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00460"></a>00460     TSteps-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"1"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00461"></a>00461     TMinLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"tmin"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00462"></a>00462     TMin-&gt;setToolTip(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"enter '-pi' if you mean -3.1415..."</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00463"></a>00463     TMin-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"-1"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00464"></a>00464     TMaxLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"tmax"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00465"></a>00465     TMax-&gt;setToolTip(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"or 'pi' if you want 3.1415..."</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00466"></a>00466     TMax-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"1"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00467"></a>00467     ULabel-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"Steps in u"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00468"></a>00468     USteps-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"1"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00469"></a>00469     UMinLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"umin"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00470"></a>00470     UMin-&gt;setToolTip(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"enter '-pi' if you mean -3.1415..."</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00471"></a>00471     UMin-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"-1"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00472"></a>00472     UMaxLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"umax"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00473"></a>00473     UMax-&gt;setToolTip(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"or 'pi' if you want 3.1415..."</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00474"></a>00474     UMax-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"1"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00475"></a>00475     VLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"Steps in v"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00476"></a>00476     VSteps-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"1"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00477"></a>00477     VMinLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"vmin"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00478"></a>00478     VMin-&gt;setToolTip(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"enter '-pi' if you mean -3.1415..."</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00479"></a>00479     VMin-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"-1"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00480"></a>00480     VMaxLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"vmax"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00481"></a>00481     VMax-&gt;setToolTip(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"or 'pi' if you want 3.1415..."</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00482"></a>00482     VMax-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"1"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00483"></a>00483     functionLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"Function Parameters"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00484"></a>00484     ParameterLabel[0]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"Parameter A"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00485"></a>00485     Parameter[0]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"1"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00486"></a>00486     ParameterLabel[1]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"Parameter B"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00487"></a>00487     Parameter[1]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"0.5"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00488"></a>00488     ParameterLabel[2]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"Parameter C"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00489"></a>00489     Parameter[2]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"0.25"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00490"></a>00490     ParameterLabel[3]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"Parameter D"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00491"></a>00491     Parameter[3]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"0"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00492"></a>00492     buttonApply-&gt;setToolTip(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"Accept changes and redraw"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00493"></a>00493     buttonApply-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"&amp;Apply"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00494"></a>00494     Q_UNUSED(ValuesDialog);
-<a name="l00495"></a>00495     } <span class="comment">// retranslateUi</span>
-<a name="l00496"></a>00496 
-<a name="l00497"></a>00497 };
-<a name="l00498"></a>00498 
-<a name="l00499"></a>00499 <span class="keyword">namespace </span>Ui {
-<a name="l00500"></a>00500     <span class="keyword">class </span>ValuesDialog: <span class="keyword">public</span> <a class="code" href="classUi__ValuesDialog.html" title="Base class for ValuesDialog, originally created by uic (thus the ugliness).">Ui_ValuesDialog</a> {};
-<a name="l00501"></a>00501 } <span class="comment">// namespace Ui</span>
-<a name="l00502"></a>00502 
-<a name="l00503"></a>00503 <span class="preprocessor">#endif // UI_VALUESDIALOG_H</span>
+<a name="l00327"></a>00327         QLabel *ParameterLabel[<a class="code" href="classUi__ValuesDialog.html#1b4d3fca097cbc53827db8f18e33638b" title="maximum number of function parameters to display">maxNumParameters</a>];
+<a name="l00328"></a>00328         QLineEdit *Parameter[<a class="code" href="classUi__ValuesDialog.html#1b4d3fca097cbc53827db8f18e33638b" title="maximum number of function parameters to display">maxNumParameters</a>];
+<a name="l00329"></a>00329 
+<a name="l00330"></a>00330         QPushButton *buttonApply;
+<a name="l00331"></a>00331 
+<a name="l00332"></a>00332 };
+<a name="l00333"></a>00333 
+<a name="l00334"></a>00334 <span class="keyword">namespace </span>Ui {
+<a name="l00335"></a>00335     <span class="keyword">class </span>ValuesDialog: <span class="keyword">public</span> <a class="code" href="classUi__ValuesDialog.html" title="Base class for ValuesDialog, originally created by uic (thus the ugliness).">Ui_ValuesDialog</a> {};
+<a name="l00336"></a>00336 } <span class="comment">// namespace Ui</span>
+<a name="l00337"></a>00337 
+<a name="l00338"></a>00338 <span class="preprocessor">#endif // UI_VALUESDIALOG_H</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Apr 26 02:22:34 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Apr 27 22:34:12 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

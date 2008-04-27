@@ -87,14 +87,6 @@ void Surface::Initialize () {
     InitMem ();
 }
 
-/** placeholder for function to set parameters in descendants - empty because
- *  generic function has no parameters
- *  @param _a 1st parameter
- *  @param _b 2nd parameter
- *  @param _c 3rd parameter
- *  @param _d 4th parameter                                                   */
-void Surface::SetParameters (double, double, double, double) { }
-
 /** re-initialize a Surface if the definition set has changed
  *  @param tmin minimal value in t (ignored)
  *  @param tmax maximal value in t (ignored)

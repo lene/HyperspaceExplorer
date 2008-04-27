@@ -107,8 +107,6 @@ class Function {
         virtual void ReInit(double _tmin, double _tmax, double _dt,
                             double _umin, double _umax, double _du,
                             double _vmin, double _vmax, double _dv) = 0;
-        virtual void SetParameters (double _a = 0, double _b = 0,
-                                    double _c = 0, double _d = 0);
         virtual void SetParameters(const ParameterMap &) {
             std::cerr << "Function::SetParameters()" << std::endl;
         }
@@ -158,6 +156,8 @@ class Function {
         virtual double getVmax() const { return vmax; }
         double &getDv() { return dv; }
         const double &getDv() const { return dv; }
+
+        virtual unsigned getDefinitionSpaceDimensions() = 0;
 
     protected:
         /// Function evaluation operator for three parameters

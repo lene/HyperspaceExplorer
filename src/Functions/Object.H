@@ -60,6 +60,8 @@ class Object: public Function {
         virtual double getVmin() const { return -1; }
         virtual double getVmax() const { return 1; }
 
+        virtual unsigned getDefinitionSpaceDimensions() { return 0; }
+
     protected:
         virtual void Initialize();
         /// number of vertices the object possesses; must be set by implementations
@@ -102,15 +104,14 @@ class Object: public Function {
 class Hypercube: public Object {
 public:
     Hypercube (): Object ("Hypercube", 16, 24) {
+        a = 1;
         declareParameter("Size", 1.0);
+        Initialize();
     }
-    Hypercube (double _a, const VecMath::Vector<4> &_Center = VecMath::Vector<4>(0., 0., 0., 0.));
+    Hypercube (double _a,
+               const VecMath::Vector<4> &_Center = VecMath::Vector<4>(0., 0., 0., 0.));
     virtual ~Hypercube() { }
 
-    virtual void SetParameters (double _a = 0,
-                                double = 0, double = 0, double = 0) {
-        a = _a;
-    }
     virtual void SetParameters(const ParameterMap &parms) {
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
@@ -169,7 +170,7 @@ public:
      *                   \li >= 4: nothing
      *  @param _rad side_length/2
      *  @param _center center                                                 */
-    Sponge (unsigned _level = 1, int _distance = 1, double _rad = 1,
+    Sponge (unsigned _level = 1, int _distance = 2, double _rad = 0.8,
             VecMath::Vector<4> _center = VecMath::Vector<4>(0., 0.,0., 0.));
     virtual ~Sponge ();
 
@@ -179,15 +180,6 @@ public:
     virtual void Project (double ScrW, double CamW, bool DepthCue4D);
     virtual void Draw (void);
 
-    /** @param a Sponge level
-     *  @param b Distance (see Initialize())
-     *  @param c Sponge size                                                  */
-    virtual void SetParameters (double _a = 0, double _b = 0, double _c = 0,
-                                double = 0) {
-        Level = (unsigned)_a;
-        distance = (int)_b;
-        rad = _c;
-    }
     virtual void SetParameters(const ParameterMap &parms) {
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
@@ -198,7 +190,6 @@ public:
                     distance = int(*i->second);
                 if (i->second->getName() == "Size")
                     rad = double(*i->second);
-
             }
 #       else
             setParameter(parms, this->Phase, "Phase");
@@ -248,10 +239,6 @@ public:
              const VecMath::Vector<4> &_Center = VecMath::Vector<4> (0., 0., 0., 0.));
     virtual ~Pyramid() { }
 
-    virtual void SetParameters (double _a = 0, double = 0, double = 0,
-                                double = 0) {
-        a = _a;
-    }
     virtual void SetParameters(const ParameterMap &parms) {
 #       if 1
         for (ParameterMap::const_iterator i = parms.begin();
@@ -293,11 +280,7 @@ class Gasket: public Pyramid {
                                 double Tx, double Ty, double Tz, double Tw);
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
         virtual void Draw (void);
-        virtual void SetParameters (double _a = 0, double _b = 0,
-                                    double = 0, double = 0) {
-            Level = (unsigned)_a;
-            rad = _b;
-        }
+
         virtual void SetParameters(const ParameterMap &parms) {
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();

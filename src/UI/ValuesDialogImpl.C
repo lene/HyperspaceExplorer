@@ -3,8 +3,8 @@
 //      module:
 //      contains:
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
-//	license:      GPL (see License.txt)
+//      author:       helge preuss (scout@hyperspace-travel.de)
+//      license:      GPL (see License.txt)
 
 
 #include <qmessagebox.h>
@@ -18,27 +18,65 @@
 #include <iomanip>
 
 #include "ValuesDialogImpl.H"
+#include "Function.H"
 
-using namespace std;
-
+/// Set up the components of the dialog and displays it
 ValuesDialogImpl::ValuesDialogImpl(QWidget *parent, Qt::WFlags f) :
     QDialog (parent, f) {
     setupUi(this);
 
-    TSteps->setText (QString::number (TSlider->value ()));
-    USteps->setText (QString::number (USlider->value ()));
-    VSteps->setText (QString::number (VSlider->value ()));
+    Steps[0]->setText (QString::number (Slider[0]->value ()));
+    Steps[1]->setText (QString::number (Slider[1]->value ()));
+    Steps[2]->setText (QString::number (Slider[2]->value ()));
 
     if (layout()) layout()->setSizeConstraint(QLayout::SetFixedSize);
 
     show ();
 }
 
+/// Adjust the display according to the Function whose Parameters are controlled
+/** \li Sets the internal map of parameters to the parameters the Function
+ *      expects and adjusts input elements accordingly
+ *  \li Shows as many sliders to adjust the size of the grid the function is
+ *      evaluated on, as the definition space of the function has dimensions
+ *  \li Only displays labels for the parts of the dialog which are shown      */
+void ValuesDialogImpl::setFunction(const std::auto_ptr<Function> &F) {
+    setParameters(F->getParameters());
+
+    for (unsigned i = 0; i < F->getDefinitionSpaceDimensions(); ++i) {
+        Label[i]->show();
+        Slider[i]->show();
+        Steps[i]->show();
+        MinLabel[i]->show();
+        Min[i]->show();
+        MaxLabel[i]->show();
+        Max[i]->show();
+    }
+    for (unsigned i = F->getDefinitionSpaceDimensions();
+         i < maxNumDimensions; ++i) {
+        Label[i]->hide();
+        Slider[i]->hide();
+        Steps[i]->hide();
+        MinLabel[i]->hide();
+        Min[i]->hide();
+        MaxLabel[i]->hide();
+        Max[i]->hide();
+    }
+
+    gridLabel->setVisible(F->getDefinitionSpaceDimensions() > 0);
+    functionLabel->setVisible(F->getNumParameters() > 0);
+}
+
+/// Adjust the displayed parameter fields to the parameters the function needs
+/** \li Sets the internal map of parameters to the parameters the Function
+ *      expects
+ *  \li Shows input fields for as many parameters as necessary
+ *  \li Sets the text on these fields to the parameter's name, the tool tip to
+ *      its optional description and the value to its value                   */
 void ValuesDialogImpl::setParameters(const ParameterMap &parms) {
-    std::cerr << "ValuesDialogImpl::setParameters(" << parms.print() << ")" << std::endl;
     parameters = parms;
 
-    for (unsigned i = 0; i < 4; i++) {
+    for (unsigned i = 0; i < maxNumParameters; i++) {
         ParameterLabel[i]->hide();
         Parameter[i]->hide();
     }
@@ -48,60 +86,52 @@ void ValuesDialogImpl::setParameters(const ParameterMap &parms) {
          it != parms.end(); ++it, ++j) {
         std::string name = it->second->getName();
         ParameterLabel[j]->setText(name.c_str());
+        std::string description = it->second->getDescription();
+        if (!description.empty()) {
+            ParameterLabel[j]->setToolTip(description.c_str());
+            Parameter[j]->setToolTip(description.c_str());
+        } else {
+            ParameterLabel[j]->setToolTip("");
+            Parameter[j]->setToolTip("");
+        }
+        std::string value = it->second->value()->toString();
+        if (!value.empty()) {
+            Parameter[j]->setText(value.c_str());
+        } else {
+            std::string defaultValue = it->second->defaultValue()->toString();
+            if (!defaultValue.empty()) {
+                Parameter[j]->setText(defaultValue.c_str());
+            }
+        }
         Parameter[j]->show();
         ParameterLabel[j]->show();
     }
 }
 
-void ValuesDialogImpl::DisplayValues () {
-  ostringstream o;
-  o << "tsteps: " << TSlider->value () << "\t"	<< "dt    : " << dt () << "\n"
-    << "usteps: " << USlider->value () << "\t"	<< "du    : " << du () << "\n"
-    << "vsteps: " << VSlider->value () << "\t"	<< "dv    : " << dv () << "\n\n"
-    << "a     : " << a () << "\t"
-    << "b     : " << b () << "\n"
-    << "c     : " << c () << "\t"
-    << "d     : " << d () << "\n\n"
-    << ends;
-  QMessageBox::information (this, QString ("There you are:"), QString (o.str ().c_str ()));
-}
-
-void ValuesDialogImpl::CheckNumeric (const QString &) {
-  //  QMessageBox::information (this, QString ("There you are:"), QString ("Hi dee Ho"));
-}
-
+/// This function is called when the user clicks the "Apply" button
 void ValuesDialogImpl::accept () {
-    for (unsigned i = 0; i < 4; ++i) {
+    for (unsigned i = 0; i < maxNumParameters; ++i) {
         std::string parameterName = ParameterLabel[i]->text().toStdString();
         ParameterMap::iterator it = parameters.find(parameterName);
         if (it != parameters.end()) {
-            std::cerr << parameterName << " found!" << endl;
             it->second->setValue(Parameter[i]->text().toStdString());
-        } else {
-            std::cerr << parameterName << " NOT found!" << endl;
         }
     }
-  emit ApplyChanges ();
+    emit ApplyChanges (parameters);
 }
 
+/// output for debugging purposes
+std::string ValuesDialogImpl::print () {
+    std::ostringstream o;
+    o << "C4DView::ApplyChanges ():\n";
+    for (unsigned i = 0; i < maxNumParameters; ++i)
+        o << "Parameter[" << i << "]: " << Parameter[i]->text ().toStdString() << "\t";
+    o << std::endl;
+    for (unsigned i = 0; i < maxNumDimensions; ++i)
+        o << 'T'+(char)i << "min: " << Min[i]->text ().toStdString() << "\t"
+          << 'T'+(char)i << "max: " << Max[i]->text ().toStdString() << "\t"
+          << "d"<< 'T'+(char)i <<"  : " << dt () << "\n"; // !!! nyi!
+    o << std::ends;
 
-void ValuesDialogImpl::AlignValues(int v) {
-  if (TSlider->value () == v && USlider->value () == v && VSlider->value () == v) return;
-  TSlider->setValue (v);
-  USlider->setValue (v);
-  VSlider->setValue (v);
+    return o.str();
 }
-
-void ValuesDialogImpl::aText (const QString &text) {
-    ALabel()->setText (text);
-}
-void ValuesDialogImpl::bText (const QString &text) {
-    BLabel()->setText (text);
-}
-void ValuesDialogImpl::cText (const QString &text) {
-    CLabel()->setText (text);
-}
-void ValuesDialogImpl::dText (const QString &text) {
-    DLabel()->setText (text);
-}
-
