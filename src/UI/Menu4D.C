@@ -51,17 +51,14 @@ Menu4D::Menu4D(C4DView *_parent):
                  new C4DView::TemplatedRealFunctionFactory<PolarR>);
     insertAction(fr3r, "Custom polar function", SLOT(customPolarFunction()));
 
-//    insertAction(objects, "Hypersphere", SLOT(FunctionHypersphere()));
     insertAction(objects, "Hypersphere",
                  new C4DView::TemplatedRealFunctionFactory<Hypersphere>);
     insertAction(objects, "Hypercube", SLOT(ObjectHypercube()));
     insertAction(objects, "Hyperpyramid", SLOT(ObjectHyperpyramid()));
     insertAction(objects, "Menger Sponge", SLOT(ObjectHypersponge()));
     insertAction(objects, "Sierpinski Gasket", SLOT(ObjectGasket()));
-//    insertAction(objects, "Torus 1", SLOT(FunctionTorus1()));
     insertAction(objects, "Torus 1",
                  new C4DView::TemplatedRealFunctionFactory<Torus1>);
-//    insertAction(objects, "Torus 2", SLOT(FunctionTorus2()));
     insertAction(objects, "Torus 2",
                  new C4DView::TemplatedRealFunctionFactory<Torus2>);
 
@@ -129,17 +126,14 @@ Menu4D::Menu4D(C4DView *_parent):
         insertAction(help, tr("&About ..."), SLOT(about()), false));
     insertAction(help, tr("About &Qt ..."), SLOT(about()), false);
 
-//    addAction("Quit",       qApp, SLOT(quit ()));
     addAction(Globals::Instance().getQuitAction());
     insertSeparator(Globals::Instance().getQuitAction());
 
     insertAction(animation, "Render to Images", SLOT(RenderToImages()));
     getAction("Render to Images")->setChecked(parent->getRenderToPixmap());
-    TESTED_FEATURE (getAction("Render to Images"));
 
     insertAction(animation, "Animation Settings", SLOT(AnimationSettings()),
                  false);
-    TESTED_FEATURE (getAction("Animation Settings"));
 
     insertAction(animation, "Benchmark", SLOT (Benchmark()), false);
     insertAction(appear, "4D Depth Cue", SLOT(HyperFog()));
@@ -152,7 +146,6 @@ Menu4D::Menu4D(C4DView *_parent):
     else {
         getAction("Wireframe")->setText("Wireframe");
         getAction("Transparence")->setText("Transparence");
-        TESTED_FEATURE (getAction("Transparence"));
     }
       //      appear->setItemEnabled (transparentAction, DisplayPolygons);
     parent->setWireframe (parent->getDisplayPolygons());

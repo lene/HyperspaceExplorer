@@ -329,7 +329,6 @@ Hypersphere::Hypersphere(double _tmin, double _tmax, double _dt,
 void Hypersphere::SetParameters(const ParameterMap &parms) {
     //  parms["Radius"].value must be set!
 #if 1
-    cerr << "Hypersphere::SetParameters(" << parms.print() << ")" << endl;
     for (ParameterMap::const_iterator i = parms.begin(); i != parms.end(); ++i) {
         if (i->second->getName() == "Radius") Radius = double(*i->second);
     }

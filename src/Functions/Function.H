@@ -175,6 +175,9 @@ class Function {
         /// Add a parameter to the list of parameters
         template <typename T> void declareParameter(const std::string &,
                                                     const T &);
+        /// Add a parameter to the list of parameters
+        template <typename T> void declareParameter(const std::string &,
+                const T &, const T &);
 
         void addVertices(unsigned num) { NumVertices += num; }
 
@@ -210,6 +213,7 @@ class Function {
         }
         /// list of the names of parameters to the function
 //        std::vector<QString> parameterNames;
+    protected:
         ParameterMap parameters;
 };
 
@@ -225,6 +229,22 @@ template <typename T> inline
                     std::make_pair(_name,
                         ParameterFactory::Instance().
                             createParameterWithDefault(_name, _default)));
+            }
+        }
+
+/// Add a parameter with a name and a default value to the parameter list
+template <typename T> inline
+        void Function::declareParameter(const std::string &_name,
+                                        const T &_default, const T &_value) {
+            //  temporary measure to avoid code breaking when newParameterName()
+            //  is replaced with declareParameter()
+//            parameterNames.push_back(QString(_name.c_str()));
+            if (parameters.find(_name) == parameters.end()) {
+                insertParameter(
+                    std::make_pair(_name,
+                        ParameterFactory::Instance().
+                            createParameterWithDefault(_name, _default)));
+                parameters[_name]->setValue(new FunctionParameterValue<T>(_value));
             }
         }
 

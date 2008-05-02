@@ -37,13 +37,15 @@ public:
                     ParameterFactory::Instance().
                             createParameterWithDefault(_name, _default)));
         }
+    /// return a string representation for debugging purposes
     std::string print() const {
         std::ostringstream o;
         o << "[\n";
         for (std::map<std::string, FunctionParameter *>::const_iterator i = begin(); i != end(); ++i) {
             o << "    " << i->first << ": \t"
               << i->second->getName() << " = ";
-            o << double(*(i->second));
+            o << double(*(i->second)) << "(double), " << unsigned(*(i->second)) << "(unsigned), "
+              << int(*(i->second)) << "(int), \"" << std::string(*(i->second)) << "\"(string)";
             o << "\n";
         }
         o << "]\n" << std::ends;

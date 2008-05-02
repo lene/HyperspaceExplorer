@@ -117,20 +117,20 @@ void ValuesDialogImpl::accept () {
             it->second->setValue(Parameter[i]->text().toStdString());
         }
     }
-    emit ApplyChanges (parameters);
+    emit ApplyChanges(parameters);
 }
 
 /// output for debugging purposes
 std::string ValuesDialogImpl::print () {
     std::ostringstream o;
-    o << "C4DView::ApplyChanges ():\n";
+    o << "ValuesDialogImpl::print():\n";
     for (unsigned i = 0; i < maxNumParameters; ++i)
         o << "Parameter[" << i << "]: " << Parameter[i]->text ().toStdString() << "\t";
     o << std::endl;
     for (unsigned i = 0; i < maxNumDimensions; ++i)
-        o << 'T'+(char)i << "min: " << Min[i]->text ().toStdString() << "\t"
-          << 'T'+(char)i << "max: " << Max[i]->text ().toStdString() << "\t"
-          << "d"<< 'T'+(char)i <<"  : " << dt () << "\n"; // !!! nyi!
+        o << (char)('T'+i) << "min: " << Min[i]->text ().toStdString() << "\t"
+          << (char)('T'+i) << "max: " << Max[i]->text ().toStdString() << "\t"
+          << "d"<< (char)('T'+i) <<"  : " << dt () << "\n"; // !!! nyi!
     o << std::ends;
 
     return o.str();

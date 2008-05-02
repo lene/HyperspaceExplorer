@@ -140,7 +140,6 @@ Hypercube::Hypercube (double _a, const Vector<4> &_center):
         Object ("Hypercube", 16, 24),
     a (_a), center(_center) {
     declareParameter("Size", 1.0);
-    SingletonLog::Instance().log("Hypercube::Hypercube()");
     Initialize();
 }
 
@@ -149,7 +148,7 @@ Hypercube::Hypercube (double _a, const Vector<4> &_center):
  *  of the Hypercube by declaring the appropriate squares as a list in
  *  \p Surface[][].                                                           */
 void Hypercube::Initialize(void) {
-    SingletonLog::Instance().log("Hypercube::Initialize()");
+//    SingletonLog::Instance().log("Hypercube::Initialize()");
     for (int x = 0; x <= 1; x++)
         for (int y = 0; y <= 1; y++)
             for (int z = 0; z <= 1; z++)
@@ -207,13 +206,13 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
  *  \param _distance see Initialize()
  *  \param _rad Size of the Sponge - \p _rad is half the side length
  *  \param _center Center point of the Sponge                                 */
-Sponge::Sponge (unsigned level, int _distance, double _rad, Vector<4> _center):
+Sponge::Sponge (unsigned level, unsigned _distance, double _rad, Vector<4> _center):
     Level (level), distance(_distance), rad(_rad), center(_center) {
     functionName = "4-dimensional Menger Sponge";
 //    clearParameterNames();
-    declareParameter("Level", 1);
-    declareParameter("Distance", 2);
-    declareParameter("Size", 0.8);
+    declareParameter("Level", (unsigned)1, level);
+    declareParameter("Distance", (unsigned)2, _distance);
+    declareParameter("Size", 0.8, _rad);
 
     Initialize();
 }
@@ -258,7 +257,7 @@ Sponge::~Sponge () {
  *  If the \em level of the sponge is 1, the sub-sponges are hypercubes. Otherwise,
  *  they are Hypersponges with a \em level reduced by 1.                          */
 void Sponge::Initialize(void) {
-    SingletonLog::Instance().log("Sponge::Initialize()");
+//    SingletonLog::Instance().log("Sponge::Initialize()");
 
     if (Level < 1)
         List.push_back (new Hypercube (rad*3./2., center));
@@ -329,7 +328,7 @@ void Sponge::Initialize(void) {
 void Sponge::Transform (double Thetaxy, double Thetaxz, double Thetaxw,
                         double Thetayz, double Thetayw, double Thetazw,
                         double Tx, double Ty, double Tz, double Tw) {
-    SingletonLog::Instance().log("Sponge::Transform()");
+//    SingletonLog::Instance().log("Sponge::Transform()");
     for (unsigned i = 0; i < List.size (); i++)
         List[i]->Transform (Thetaxy, Thetaxz, Thetaxw,
                             Thetayz, Thetayw, Thetazw,
@@ -343,7 +342,7 @@ void Sponge::Transform (double Thetaxy, double Thetaxz, double Thetaxw,
  *  @param cam_w w coordinate of camera
  *  @param depthcue4d wheter to use hyperfog/dc                               */
 void Sponge::Project (double scr_w, double cam_w, bool depthcue4d) {
-    SingletonLog::Instance().log("Sponge::Project()");
+//    SingletonLog::Instance().log("Sponge::Project()");
     for (unsigned i = 0; i < List.size (); i++)
         List[i]->Project (scr_w, cam_w, depthcue4d);
 }

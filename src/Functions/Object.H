@@ -170,7 +170,7 @@ public:
      *                   \li >= 4: nothing
      *  @param _rad side_length/2
      *  @param _center center                                                 */
-    Sponge (unsigned _level = 1, int _distance = 2, double _rad = 0.8,
+    Sponge (unsigned _level = 1, unsigned _distance = 2, double _rad = 0.8,
             VecMath::Vector<4> _center = VecMath::Vector<4>(0., 0.,0., 0.));
     virtual ~Sponge ();
 
@@ -187,7 +187,7 @@ public:
                 if (i->second->getName() == "Level")
                     Level = unsigned(*i->second);
                 if (i->second->getName() == "Distance")
-                    distance = int(*i->second);
+                    distance = unsigned(*i->second);
                 if (i->second->getName() == "Size")
                     rad = double(*i->second);
             }

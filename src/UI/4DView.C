@@ -405,11 +405,11 @@ void C4DView::AnimationSettings() {
 /** Sets the parameters, applies the changed parameters to the function object
  *  and redraws it                                                            */
 void C4DView::ApplyChanges (const ParameterMap &parms) {
-    cerr << parms.print() << endl;
     F.get()->SetParameters(parms);
 
     SingletonLog::Instance() << "C4DView::ApplyChanges ():\n"
-            << Values->print() << "\n";
+                             << parms.print() << "\n"
+                             << Values->print() << "\n";
 
     F->ReInit (Values->tmin (), Values->tmax (), Values->dt (),
                Values->umin (), Values->umax (), Values->du (),
@@ -487,7 +487,7 @@ void C4DView::Draw () {
 /// 4D projection stuff
 /** Separated from the 3D OpenGL handling into this function                  */
 void C4DView::PreRedraw () {
-    SingletonLog::Instance().log("C4DView::PreRedraw ()");
+//    SingletonLog::Instance().log("C4DView::PreRedraw ()");
 
     // this does seem very ineffective to me, deleting and reassigning the GL Lists,
     // but it does not seem to work any other way...?
@@ -514,7 +514,7 @@ void C4DView::PreRedraw () {
 
     glEndList ();
 
-    SingletonLog::Instance().log("C4DView::PreRedraw () done");
+//    SingletonLog::Instance().log("C4DView::PreRedraw () done");
 }
 
 /// Redraw handler
@@ -558,7 +558,7 @@ void C4DView::RenderScene (unsigned /* Frame */) {  //  draw (frame of animation
 /** Object drawing routine: Does all the OpenGL stuff necessary to paint the
  *  object on screen                                                          */
 void C4DView::OnPaint() {
-    SingletonLog::Instance().log("C4DView::OnPaint ()");
+//    SingletonLog::Instance().log("C4DView::OnPaint ()");
 
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);   //  clear the window
 

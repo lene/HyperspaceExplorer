@@ -113,13 +113,13 @@ void XQGLWidget::InitTransparence (void) {
         glEnable  (GL_POINT_SMOOTH);                        //  draw smooth points
         glEnable  (GL_LINE_SMOOTH);                         //  draw smooth lines
         glEnable  (GL_POLYGON_SMOOTH);                      //  draw smooth surfaces
-        glDisable (GL_CULL_FACE);                           //  ...why?             *
+//        glDisable (GL_CULL_FACE);                           //  ...why?             *
     } else {
         glDisable (GL_BLEND);                               //  disable blending
         glDisable  (GL_POINT_SMOOTH);                       //  ..
         glDisable (GL_LINE_SMOOTH);                         //  ..
         glDisable (GL_POLYGON_SMOOTH);                      //  ..
-        glEnable  (GL_CULL_FACE);                           //                      *
+//        glEnable  (GL_CULL_FACE);                           //                      *
     }
 }
 

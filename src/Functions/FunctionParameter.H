@@ -123,11 +123,6 @@ template <typename T> class FunctionParameterValue:
     public:
         FunctionParameterValue<T>(const T &_value): value(_value) { }
 
-//      getValue() is never used. But it seems to make sense to declare it...
-//      virtual const T &getValue() const { return value; }
-        virtual void setValue(const T &_value) {
-            value = _value;
-        }
         /// Set a value from a string, as contained in a QLineEdit
         virtual void setValue(const char *);
 
