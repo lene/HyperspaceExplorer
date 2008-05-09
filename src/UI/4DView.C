@@ -52,7 +52,8 @@ using VecMath::Matrix;
  *  @param parent	parent QWidget, defaults to NULL                      */
 C4DView::C4DView(QWidget *parent):
     XQGLWidget (parent),
-
+    pImpl(new Impl(this))
+/*
     F(auto_ptr<Function>()),
 
     Tx (0), Ty (0), Tz (0), Tw (0),
@@ -83,25 +84,26 @@ C4DView::C4DView(QWidget *parent):
 
     Values (new ValuesDialogImpl (this)),
     dxy (0), dxz (0), dxw (0), dyz (0), dyw (0), dzw (0),
-    dx (0), dy (0), dz (0) {
+    dx (0), dy (0), dz (0) { */
+    {
 
     InitCross();
 
-    AnimationTimer = new QTimer (this);
-    connect (AnimationTimer, SIGNAL(timeout()), this, SLOT(OnTimer()));
+    setAnimationTimer(new QTimer (this));
+    connect (AnimationTimer(), SIGNAL(timeout()), this, SLOT(OnTimer()));
 
-    AnimateRandomTimer = new QTimer (this);
+    setAnimateRandomTimer(new QTimer (this));
     //  connect (AnimateRandomTimer, SIGNAL(timeout()), this, SLOT(RandomAnimation()));
 
-    connect (Values, SIGNAL (ApplyChanges (const ParameterMap &)),
+    connect (Values(), SIGNAL (ApplyChanges (const ParameterMap &)),
              this, SLOT (ApplyChanges (const ParameterMap &)));
 
-    menu = new Menu4D(this);
-    menu->addToMenuBar(Globals::Instance().getMainWindow()->menuBar());
+    setmenu(new Menu4D(this));
+    menu()->addToMenuBar(Globals::Instance().getMainWindow()->menuBar());
 
     show ();
 
-    ColMgrMgr::Instance().setColorManager(new xyz2RGBColorManager(F.get()));
+    ColMgrMgr::Instance().setColorManager(new xyz2RGBColorManager(F().get()));
 
     ObjectHypercube ();
 
@@ -117,16 +119,16 @@ C4DView::~C4DView() { }
  *  Change menu items accordingly \n
  *  Menu callback function                                                    */
 void C4DView::Wireframe() {
-    if (DisplayPolygons) {
-        menu->getAction("Wireframe")->setText("Solid");
-        menu->getAction("Transparence")->setText("Line Antialiasing");
+    if (DisplayPolygons()) {
+        menu()->getAction("Wireframe")->setText("Solid");
+        menu()->getAction("Transparence")->setText("Line Antialiasing");
     } else {
-        menu->getAction("Wireframe")->setText("Wireframe");
-        menu->getAction("Transparence")->setText("Transparence");
+        menu()->getAction("Wireframe")->setText("Wireframe");
+        menu()->getAction("Transparence")->setText("Transparence");
         glDisable (GL_CULL_FACE);
     }
-    menu->getAction("Wireframe")->setChecked (DisplayPolygons);
-    setWireframe (DisplayPolygons);
+    menu()->getAction("Wireframe")->setChecked (DisplayPolygons());
+    setWireframe (DisplayPolygons());
 
     OnPaint ();
 }
@@ -135,8 +137,8 @@ void C4DView::Wireframe() {
 /** change menu items accordingly \n
  *  menu callback function */
 void C4DView::Coordinates() {
-    DisplayCoordinates = !DisplayCoordinates;
-    menu->getAction("Coordinate Cross")->setChecked (DisplayCoordinates);
+    setDisplayCoordinates(!DisplayCoordinates());
+    menu()->getAction("Coordinate Cross")->setChecked (DisplayCoordinates());
 
     Redraw ();
 }
@@ -145,8 +147,8 @@ void C4DView::Coordinates() {
 /** change menu items accordingly \n
  *  menu callback function */
 void C4DView::HyperFog() {
-    DepthCue4D = !DepthCue4D;
-    menu->getAction("4D Depth Cue")->setChecked (DepthCue4D);
+    setDepthCue4D(!DepthCue4D());
+    menu()->getAction("4D Depth Cue")->setChecked (DepthCue4D());
 
     Redraw ();
 }
@@ -155,14 +157,14 @@ void C4DView::HyperFog() {
 /** change menu items accordingly \n
  *  menu callback function */
 void C4DView::Light() {
-    Lighting = !Lighting;
-    if (Lighting) {
+    setLighting(!Lighting());
+    if (Lighting()) {
         glEnable(GL_LIGHTING);                  //  turn on the light
 
         static GLfloat LightAmbient[]  = { 0.3f, 0.3f, 0.3f, 1.0f }, //  HARDCODED VALUES
-        LightDiffuse[]  = { 0.9f, 0.9f, 0.9f, 1.0f },
-        LightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f },
-        LightPosition[] = { 1.0f, 1.0f, 1.0f, 0.0f }; //  light properties
+                       LightDiffuse[]  = { 0.9f, 0.9f, 0.9f, 1.0f },
+                       LightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f },
+                       LightPosition[] = { 1.0f, 1.0f, 1.0f, 0.0f }; //  light properties
 
         glLightfv (GL_LIGHT0, GL_AMBIENT, LightAmbient); // set the light properties
         glLightfv (GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
@@ -171,7 +173,7 @@ void C4DView::Light() {
         glEnable  (GL_LIGHT0);   // turn on the light
     } else {
         static GLfloat LightAmbient[]  = { 1.0f, 1.0f, 1.0f, 0.0f },
-        LightPosition[] = { 1.0f, 1.0f, 1.0f, 0.0f }; //      light properties
+                       LightPosition[] = { 1.0f, 1.0f, 1.0f, 0.0f }; //      light properties
 
         glEnable  (GL_LIGHTING);
         glLightfv (GL_LIGHT0, GL_AMBIENT, LightAmbient); // set the light properties
@@ -188,7 +190,7 @@ void C4DView::Light() {
 /** menu callback function */
 void C4DView::Colors () {
     getColors() = !getColors();
-    menu->getAction("Colors")->setChecked(getColors());
+    menu()->getAction("Colors")->setChecked(getColors());
     initializeGL ();
     repaint (); }
 
@@ -196,7 +198,7 @@ void C4DView::Colors () {
 /** menu callback function */
 void C4DView::Fog () {
   getFog() = !getFog();
-  menu->getAction("Depth Cue")->setChecked(getFog());
+  menu()->getAction("Depth Cue")->setChecked(getFog());
   InitFog ();
   repaint (); }
 
@@ -204,7 +206,7 @@ void C4DView::Fog () {
 /** menu callback function */
 void C4DView::Transparent () {
   getTransparent() = !getTransparent();
-  menu->getAction("Transparence")->setChecked(getTransparent());
+  menu()->getAction("Transparence")->setChecked(getTransparent());
   InitTransparence ();
   repaint (); }
 
@@ -212,7 +214,7 @@ void C4DView::Transparent () {
 /** menu callback function */
 void C4DView::Shade () {
   getShade() = !getShade();
-  menu->getAction("Shading")->setChecked(getShade());
+  menu()->getAction("Shading")->setChecked(getShade());
   InitShade ();
   repaint (); }
 
@@ -239,54 +241,54 @@ void C4DView::Shade () {
 /** change menu items accordingly        \n
  *  menu callback function */
 void C4DView::RenderToImages() {
-  RenderToPixmap = !RenderToPixmap;
-  menu->getAction("Render to Images")->setChecked(RenderToPixmap);
+  setRenderToPixmap(!RenderToPixmap());
+  menu()->getAction("Render to Images")->setChecked(RenderToPixmap());
 }
 
 /// display a ObjectHypercube object
 /** menu callback function */
 void C4DView::ObjectHypercube() {
-    menu->updateFunctionMenu("Hypercube");
+    menu()->updateFunctionMenu("Hypercube");
 
-    F.reset(new Hypercube (/*Values->a ()*/));
+    setF(new Hypercube (/*Values()->a ()*/));
 
-    AssignValues(F);
+    AssignValues(F());
     Redraw ();
 }
 
 /// display a ObjectHyperpyramid object
 /** menu callback function */
 void C4DView::ObjectHyperpyramid() {
-    menu->updateFunctionMenu("Hyperpyramid");
+    menu()->updateFunctionMenu("Hyperpyramid");
 
-    F.reset(new Pyramid (/*2.*Values->a ()*/));
+    setF(new Pyramid (/*2.*Values()->a ()*/));
 
-    AssignValues(F);
+    AssignValues(F());
     Redraw ();
 }
 
 /// display a ObjectHypersponge object
 /** menu callback function */
 void C4DView::ObjectHypersponge() {
-    menu->updateFunctionMenu("Menger Sponge");
+    menu()->updateFunctionMenu("Menger Sponge");
 
-    F.reset(new Sponge ()
-//                unsigned (Values->a ()), int (Values->b ()), Values->c ())
+    setF(new Sponge ()
+//                unsigned (Values()->a ()), int (Values()->b ()), Values()->c ())
 //            1, 2, 0.8)
            );
 
-    AssignValues(F);
+    AssignValues(F());
     Redraw ();
 }
 
 /// display a ObjectGasket object
 /** menu callback function */
 void C4DView::ObjectGasket() {
-    menu->updateFunctionMenu("Sierpinski Gasket");
+    menu()->updateFunctionMenu("Sierpinski Gasket");
 
-    F.reset(new Gasket (/* unsigned (Values->a ()), 2.*Values->b ()*/));
+    setF(new Gasket (/* unsigned (Values()->a ()), 2.*Values()->b ()*/));
 
-    AssignValues(F);
+    AssignValues(F());
     Redraw ();
 }
 
@@ -318,18 +320,18 @@ void C4DView::customComplexFunction() {
 double C4DView::Benchmark3D (int num_steps,
                              double step_x, double step_y, double step_z,
                              bool display) {
-  clock_t stime = clock ();                     //  record start time
+    clock_t stime = clock ();                     //  record start time
 
-  double Rx = m_rotX, Ry = m_rotY, Rz = m_rotZ;
+    double Rx = m_rotX(), Ry = m_rotY(), Rz = m_rotZ();
 
-  for (int step = 0; step < num_steps; step++) {
-    m_rotX += step_x; m_rotY += step_y; m_rotZ += step_z;
-    if (display) {
-      OnPaint ();
-      UpdateStatus (QString::number ((100*step)/num_steps)+"% done");
+    for (int step = 0; step < num_steps; step++) {
+        setm_rotX(m_rotX() + step_x); setm_rotY(m_rotY() + step_y); setm_rotZ(m_rotZ() + step_z);
+        if (display) {
+            OnPaint ();
+            UpdateStatus (QString::number ((100*step)/num_steps)+"% done");
+        }
     }
-  }
-  m_rotX = Rx; m_rotY = Ry;  m_rotZ = Rz;
+    setm_rotX(Rx); setm_rotY(Ry); setm_rotZ(Rz);
 
   return double (clock ()-stime)/CLOCKS_PER_SEC;
 }
@@ -358,29 +360,29 @@ double C4DView::Benchmark4D (int num_steps,
 /** Updates values if in the middle of an animation, and renders an image. \n
  *  Writes image to file too, if wanted.                                      */
 void C4DView::OnTimer() {
-    m_rotX += dx; m_rotY += dy; m_rotZ += dz;   //  update 3D viewpoint values
+    setm_rotX(m_rotX() + dx()); setm_rotY(m_rotY() + dy()); setm_rotZ(m_rotZ() + dz());   //  update 3D viewpoint values
 
     SingletonLog::Instance() << "C4DView::OnTimer()\n"
-            << "  dx = " <<  dx << "  dy = " <<  dy << "  dz = " <<  dz << "\n"
-            << " dxy = " << dxy << " dxz = " << dxz << " dxw = " << dxw
-            << " dyz = " << dyz << " dyw = " << dyw << " dzw = " << dzw
+            << "  dx = " <<  dx() << "  dy = " <<  dy() << "  dz = " <<  dz() << "\n"
+            << " dxy = " << dxy() << " dxz = " << dxz() << " dxw = " << dxw()
+            << " dyz = " << dyz() << " dyw = " << dyw() << " dzw = " << dzw()
             << "\n";
 
-    if (dxy != 0 || dxz != 0 || dxw != 0 ||     //  4D viewpoint animated?
-        dyz != 0 || dyw != 0 || dzw != 0 ) {
+    if (dxy() != 0 || dxz() != 0 || dxw() != 0 ||     //  4D viewpoint animated?
+        dyz() != 0 || dyw() != 0 || dzw() != 0 ) {
 
-        Rxy += dxy;    Rxz += dxz;    Rxw += dxw;   //  update values
-        Ryz += dyz;    Ryw += dyw;    Rzw += dzw;
+        setRxy(Rxy() + dxy()); setRxz(Rxz() + dxz()); setRxw(Rxw() + dxw());   //  update values
+        setRyz(Ryz() + dyz()); setRyw(Ryw() + dyw()); setRzw(Rzw() + dzw());   //  update values
 
-        Transform (Rxy, Rxz, Rxw, Ryz, Ryw, Rzw, Tx, Ty, Tz, Tw);   // transform
+        Transform (Rxy(), Rxz(), Rxw(), Ryz(), Ryw(), Rzw(), Tx(), Ty(), Tz(), Tw());   // transform
         Redraw ();                                                  // implicit OnPaint()
         } else OnPaint ();                                              // explicit OnPaint()
 
         writeFrame();   //  if render to pixmap is selected, do it
 
-        UpdateStatus (QString("Animation: Frame %1").arg(animationFrame)
-                +(animationMaxFrames > 0 && animationMaxFrames < (unsigned)(-1)?
-                QString("/%1").arg(animationMaxFrames):
+        UpdateStatus (QString("Animation: Frame %1").arg(animationFrame())
+                +(animationMaxFrames() > 0 && animationMaxFrames() < (unsigned)(-1)?
+                QString("/%1").arg(animationMaxFrames()):
                 QString(""))
                 +" - Double-click LMB to stop");
 }
@@ -391,13 +393,13 @@ void C4DView::OnTimer() {
 void C4DView::AnimationSettings() {
     AnimationDialogImpl *Dlg = new AnimationDialogImpl;
     if (Dlg->exec () == QDialog::Accepted) {
-        animationMaxFrames = Dlg->getFrames();
-        animationDirectory = Dlg->getDir();
-        animationPrefix = Dlg->getPrefix();
+        setanimationMaxFrames(Dlg->getFrames());
+        setanimationDirectory(Dlg->getDir());
+        setanimationPrefix(Dlg->getPrefix());
         SingletonLog::Instance()
-                << "animationMaxFrames: " << (long)animationMaxFrames
-                << ", animationDirectory: " << animationDirectory.toStdString()
-                << ", animationPrefix: "<< animationPrefix.toStdString() << "\n";
+                << "animationMaxFrames: " << (long)animationMaxFrames()
+                << ", animationDirectory: " << animationDirectory().toStdString()
+                << ", animationPrefix: "<< animationPrefix().toStdString() << "\n";
     }
 }
 
@@ -405,17 +407,17 @@ void C4DView::AnimationSettings() {
 /** Sets the parameters, applies the changed parameters to the function object
  *  and redraws it                                                            */
 void C4DView::ApplyChanges (const ParameterMap &parms) {
-    F.get()->SetParameters(parms);
+    F().get()->SetParameters(parms);
 
     SingletonLog::Instance() << "C4DView::ApplyChanges ():\n"
                              << parms.print() << "\n"
-                             << Values->print() << "\n";
+                             << Values()->print() << "\n";
 
-    F->ReInit (Values->tmin (), Values->tmax (), Values->dt (),
-               Values->umin (), Values->umax (), Values->du (),
-               Values->vmin (), Values->vmax (), Values->dv ());
+    F()->ReInit (Values()->tmin (), Values()->tmax (), Values()->dt (),
+               Values()->umin (), Values()->umax (), Values()->du (),
+               Values()->vmin (), Values()->vmax (), Values()->dv ());
 
-    ColMgrMgr::Instance().setFunction(F.get());
+    ColMgrMgr::Instance().setFunction(F().get());
 
     Transform ();
 
@@ -443,8 +445,8 @@ void C4DView::Transform (double thetaxy, double thetaxz, double thetaxw,
 //             << "                    "
 //             << tx << ", " << ty << ", " << tz << ", " << tw <<")\n";
 
-    if (F.get())
-        F->Transform (thetaxy, thetaxz, thetaxw, thetayz, thetayw, thetazw,
+    if (F().get())
+        F()->Transform (thetaxy, thetaxz, thetaxw, thetayz, thetayw, thetazw,
                       tx, ty, tz, tw);
     else return;
 
@@ -463,13 +465,13 @@ void C4DView::Transform (double thetaxy, double thetaxz, double thetaxw,
 /// Projects F and coordinate cross into three-space
 /** */
 void C4DView::Project (void) {
-    if (F.get()) F->Project (ScrW, CamW, DepthCue4D);
+    if (F().get()) F()->Project (ScrW(), CamW(), DepthCue4D());
     else return;
 
-    if (DisplayCoordinates) {
+    if (DisplayCoordinates()) {
         for (unsigned i = 0; i < 2; i++)
             for (unsigned j = 0; j < 4; j++) {
-                double ProjectionFactor = (ScrW-CamW)/(CrossTrans[j][i][3]-CamW);
+                double ProjectionFactor = (ScrW()-CamW())/(CrossTrans[j][i][3]-CamW());
                 for (unsigned k = 0; k < CrossScr[j][i].dimension(); k++)
                     CrossScr[j][i][k] = CrossTrans[j][i][k]*ProjectionFactor;
             }
@@ -479,9 +481,9 @@ void C4DView::Project (void) {
 /// draw the projected Object (onto screen or into GL list, as it is)
 /** */
 void C4DView::Draw () {
-    if (DisplayCoordinates) DrawCoordinates ();
+    if (DisplayCoordinates()) DrawCoordinates ();
 
-    F->Draw ();
+    F()->Draw ();
 }
 
 /// 4D projection stuff
@@ -492,17 +494,17 @@ void C4DView::PreRedraw () {
     // this does seem very ineffective to me, deleting and reassigning the GL Lists,
     // but it does not seem to work any other way...?
 
-    if (DisplayCoordinates) {
-        if (CoordinateCross) glDeleteLists (CoordinateCross,1);
-        CoordinateCross = Globals::Instance().GetGLList ();
-        glNewList (CoordinateCross, GL_COMPILE);
-        DrawCoordinates ();
-        glEndList ();
+    if (DisplayCoordinates()) {
+        if (CoordinateCross()) glDeleteLists (CoordinateCross(), 1);
+        setCoordinateCross(Globals::Instance().GetGLList());
+        glNewList (CoordinateCross(), GL_COMPILE);
+        DrawCoordinates();
+        glEndList();
     }
 
-    if (ObjectList) glDeleteLists (ObjectList,1);
-    ObjectList = Globals::Instance().GetGLList ();
-    glNewList (ObjectList, GL_COMPILE_AND_EXECUTE);
+    if (ObjectList()) glDeleteLists(ObjectList(), 1);
+    setObjectList(Globals::Instance().GetGLList());
+    glNewList (ObjectList(), GL_COMPILE_AND_EXECUTE);
         /*
         glBegin (GL_POINTS);
             setColor (0., 0., 0.);
@@ -527,12 +529,12 @@ void C4DView::Redraw () {
 /** With an error reporting routine and exit strategy */
 void C4DView::RenderScene (unsigned /* Frame */) {  //  draw (frame of animation)
     usleep (16000);
-    while (!glIsList (ObjectList)) {
+    while (!glIsList (ObjectList())) {
 #       ifdef DEBUG
             switch (
                 QMessageBox::warning (
                     NULL, "C4DView::RenderScene",
-                    ("ObjectList No. "+Globals::Instance().itoa (ObjectList)+
+                    ("ObjectList No. "+Globals::Instance().itoa (ObjectList())+
                      " is not a GL list!").c_str (),
                     "Retry", "Die", 0, 0, 1)) {
                 case 0: PreRedraw ();
@@ -543,15 +545,15 @@ void C4DView::RenderScene (unsigned /* Frame */) {  //  draw (frame of animation
             sleep (1);
 #       else
             cerr << "C4DView::RenderScene ():  "
-                 << "ObjectList No. " << Globals::Instance().itoa(ObjectList)
+                 << "ObjectList No. " << Globals::Instance().itoa(ObjectList())
                  << " is not a GL list!" << endl;
             sleep (1);
             PreRedraw ();
 #       endif
     }
 
-    glCallList (ObjectList);                                //  draw the object
-    if (DisplayCoordinates) glCallList (CoordinateCross);
+    glCallList (ObjectList());                                //  draw the object
+    if (DisplayCoordinates()) glCallList (CoordinateCross());
 }
 
 /// Should be called whenever the object is rotated or translated
@@ -562,17 +564,17 @@ void C4DView::OnPaint() {
 
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);   //  clear the window
 
-    if (DisplayPolygons)                            //  this might move to a special
+    if (DisplayPolygons())                            //  this might move to a special
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);  //  routine "SwitchWireframe ()"
     else glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
     glPushMatrix();                                 //  save transformation Matrix
     // glTranslated(0.0, /*Size ()*.75*/0., 0);     //  set the camera position
 
-    glTranslated (m_transX, m_transY, m_camZ);      //  apply object translation
-    glRotated(m_rotX, 1.0, 0.0, 0.0);               //   -"-    -"-     rotation
-    glRotated(m_rotY, 0.0, 1.0, 0.0);
-    glRotated(m_rotZ, 0.0, 0.0, 1.0);
+    glTranslated (m_transX(), m_transY(), m_camZ());      //  apply object translation
+    glRotated(m_rotX(), 1.0, 0.0, 0.0);               //   -"-    -"-     rotation
+    glRotated(m_rotY(), 0.0, 1.0, 0.0);
+    glRotated(m_rotZ(), 0.0, 0.0, 1.0);
 
     RenderScene (0);                                //  draw current frame
 
@@ -611,11 +613,11 @@ void C4DView::InitCross() {
 /** @param on whether to use fog                                              */
 void C4DView::SetupDepthCue (bool on) {
     float size = Size ();
-    DepthCue3D = on;
+    setDepthCue3D(on);
     if (on) {
         XQGLWidget::SetupDepthCue(
-            fabs(m_camZ)-size/2.,
-            fabs(m_camZ)+size/2.*Globals::Instance().SR3);
+            fabs(m_camZ())-size/2.,
+            fabs(m_camZ())+size/2.*Globals::Instance().SR3);
         glEnable(GL_FOG);
     }
     else glDisable (GL_FOG);
@@ -651,9 +653,9 @@ void C4DView::DrawCoordinates () {
 void C4DView::StartAnimation () {
     SingletonLog::Instance().log("C4DView::StartAnimation ()");
 
-    Animated = true;
-    animationFrame = 0;
-    AnimationTimer->start (1000/animation_fps);               //  go for 50 fps
+    setAnimated(true);
+    setanimationFrame(0);
+    AnimationTimer()->start (1000/animation_fps());               //  go for 50 fps
 
     UpdateStatus ("Double-click LMB to stop animation");
 }
@@ -662,11 +664,12 @@ void C4DView::StartAnimation () {
 void C4DView::StopAnimation () {
     SingletonLog::Instance().log("C4DView::StopAnimation ()");
 
-    Animated = false;
-    dxy = dxz = dxw = dyz = dyw = dzw = dx = dy = dz = 0.;
-    AnimationTimer->stop ();
-    AnimateRandomTimer->stop ();
-    CurrentlyRendering = false;
+    setAnimated(false);
+    setdxy(0.); setdxz(0.); setdxw(0.); setdyz(0.); setdyw(0.); setdyw(0.);
+    setdx(0.); setdy(0.); setdz(0.);
+    AnimationTimer()->stop ();
+    AnimateRandomTimer()->stop ();
+    setCurrentlyRendering(false);
 }
 
 /// Starts a random animation
@@ -674,15 +677,15 @@ void C4DView::StopAnimation () {
  *  @todo make hardcoded duration of rotation change frequency adjustable
  *  @todo a menu entry for this                                               */
 void C4DView::RandomAnimation() {
-    AnimationTimer->stop ();
-    AnimateRandomTimer->stop ();
+    AnimationTimer()->stop ();
+    AnimateRandomTimer()->stop ();
 
-    dxw = float (rand ())/RAND_MAX;
-    dyw = float (rand ())/RAND_MAX;
-    dzw = float (rand ())/RAND_MAX;
+    setdxw(float (rand ())/RAND_MAX);
+    setdyw(float (rand ())/RAND_MAX);
+    setdzw(float (rand ())/RAND_MAX);
     StartAnimation ();
 
-    AnimateRandomTimer->start (10000);
+    AnimateRandomTimer()->start (10000);
 }
 
 /// Make a pixmap to to be rendered by the GL widget, and render it.
@@ -707,50 +710,50 @@ QPixmap C4DView::makePixmap() {
  *  display to disk \n
  *  updates animationFrame                                                    */
 void C4DView::writeFrame() {
-    if (RenderToPixmap && (animationFrame <= animationMaxFrames)) {
+    if (RenderToPixmap() && (animationFrame() <= animationMaxFrames())) {
 
-        CurrentlyRendering = true;
+        setCurrentlyRendering(true);
 
         PreRedraw ();
 
         QPixmap tmpPixmap = makePixmap();
 
-        unsigned animationCiphers = animationMaxFrames > 0?
-                (unsigned)(log((double)animationMaxFrames)/log(10.))+1: 6;
+        unsigned animationCiphers = animationMaxFrames() > 0?
+                (unsigned)(log((double)animationMaxFrames())/log(10.))+1: 6;
         QString imageFilename =
-                QString (animationDirectory+"/"+animationPrefix+"%1.png")
-                .arg (animationFrame, animationCiphers)
+                QString (animationDirectory()+"/"+animationPrefix()+"%1.png")
+                .arg (animationFrame(), animationCiphers)
                 .replace (" ", "0");
         if (tmpPixmap.save (imageFilename, "PNG")) {
             cerr << "writing "
                     << imageFilename.toStdString() << " successful! ("
-                    << (long)animationFrame << "/" << (long)animationMaxFrames
+                    << (long)animationFrame() << "/" << (long)animationMaxFrames()
                     << ")\n";
         } else {
             SingletonLog::Instance() << "writing "
                     << imageFilename.toStdString() << " failed!\n";
         }
     }
-    ++animationFrame;
+    setanimationFrame(animationFrame()+1);
 }
 
 /// Keep all rotation angles in the interval [-360 degrees, 360 degrees]
 void C4DView::checkAnglesForOverflow() {
-    if (m_rotX > 360) m_rotX -= 360;
-    if (m_rotX <-360) m_rotX += 360;
-    if (fabs (m_rotX) < 1e-3) m_rotX = 0;
-    if (m_rotY > 360) m_rotY -= 360;
-    if (m_rotY <-360) m_rotY += 360;
-    if (fabs (m_rotY) < 1e-3) m_rotY = 0;
-    if (m_rotZ > 360) m_rotZ -= 360;
-    if (m_rotZ <-360) m_rotZ += 360;
-    if (fabs (m_rotZ) < 1e-3) m_rotZ = 0;
-    if (Rxw > 360) Rxw -= 360;
-    if (Rxw <-360) Rxw += 360;
-    if (Ryw > 360) Ryw -= 360;
-    if (Ryw <-360) Ryw += 360;
-    if (Rzw > 360) Rzw -= 360;
-    if (Rzw <-360) Rzw += 360;
+    if (m_rotX() > 360) setm_rotX(m_rotX() - 360);
+    if (m_rotX() <-360) setm_rotX(m_rotX() + 360);
+    if (fabs (m_rotX()) < 1e-3) setm_rotX(0);
+    if (m_rotY() > 360) setm_rotY(m_rotY() - 360);
+    if (m_rotY() <-360) setm_rotY(m_rotY() + 360);
+    if (fabs (m_rotY()) < 1e-3) setm_rotY(0);
+    if (m_rotZ() > 360) setm_rotZ(m_rotZ() - 360);
+    if (m_rotZ() <-360) setm_rotZ(m_rotZ() + 360);
+    if (fabs (m_rotZ()) < 1e-3) setm_rotZ(0);
+    if (Rxw() > 360) setRxw(Rxw() - 360);
+    if (Rxw() <-360) setRxw(Rxw() + 360);
+    if (Ryw() > 360) setRyw(Ryw() - 360);
+    if (Ryw() <-360) setRyw(Ryw() + 360);
+    if (Rzw() > 360) setRzw(Rzw() - 360);
+    if (Rzw() <-360) setRzw(Rzw() + 360);
 }
 
 /// display some info about current object and its transformations
@@ -769,9 +772,9 @@ void C4DView::UpdateStatus (QString status) {
     }
 
     Globals::Instance().getMainWindow()->statusBar()->showMessage(
-                      F->getFunctionName()+status);
+                      F()->getFunctionName()+status);
 
-    setWindowTitle(F->getFunctionName()+status);
+    setWindowTitle(F()->getFunctionName()+status);
 }
 
 /// Called whenever an object or the parameters have changed
@@ -784,7 +787,7 @@ void C4DView::AssignValues (const std::auto_ptr<Function> &F) {
         setWindowTitle(F->getFunctionName());
     }
 
-    Values->setFunction(F);
+    Values()->setFunction(F);
 
     Transform ();
 
@@ -796,9 +799,9 @@ void C4DView::AssignValues (const std::auto_ptr<Function> &F) {
 /// Get size of displayed area
 /** @return approximate diameter of definition space                          */
 double C4DView::Size () {
-  return sqrt ((Values->tmax ()-Values->tmin ())*(Values->tmax ()-Values->tmin ())
-              +(Values->umax ()-Values->umin ())*(Values->umax ()-Values->umin ())
-              +(Values->vmax ()-Values->vmin ())*(Values->vmax ()-Values->vmin ()));
+  return sqrt ((Values()->tmax ()-Values()->tmin ())*(Values()->tmax ()-Values()->tmin ())
+              +(Values()->umax ()-Values()->umin ())*(Values()->umax ()-Values()->umin ())
+              +(Values()->vmax ()-Values()->vmin ())*(Values()->vmax ()-Values()->vmin ()));
 }
 
 /// Mouse move event handler
@@ -836,8 +839,8 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
 
     if (xsize == 0 || ysize == 0) return;       //  pathological case better taken care of
 
-    if (AltPressed) TakingSpinValues = true;
-    else            TakingSpinValues = false;
+    if (AltPressed) setTakingSpinValues(true);
+    else            setTakingSpinValues(false);
 
     if (ControlPressed) {                                   //  CONTROL pressed
 
@@ -850,13 +853,13 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
             //    translate x / y with LMB
             if (LeftButtonDown && !MidButtonDown && !RightButtonDown) { //  CONTROL+LMB pressed
 
-               QPoint translate = m_LeftDownPos-point;  //  store difference from button press position
+               QPoint translate = m_LeftDownPos()-point;  //  store difference from button press position
 
-               if (TakingSpinValues) {    } else {      //  no translation animation (yet?)
-                   m_LeftDownPos = point;               //  reset start position for next mouse move
+               if (TakingSpinValues()) {    } else {      //  no translation animation (yet?)
+                   setm_LeftDownPos(point);               //  reset start position for next mouse move
 
-                   Tx -= translate.x ()*size/xsize;     //  add x translation
-                   Ty += translate.y ()*size/ysize;     //  add y translation
+                   setTx(Tx() - translate.x ()*size/xsize);     //  add x translation
+                   setTy(Ty() + translate.y ()*size/ysize);     //  add y translation
 
                    UpdateStatus ("translate x/y");
                }               //    if (TakingSpinValues)
@@ -866,13 +869,13 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
             //    translate z / w with MMB
             if (MidButtonDown && !LeftButtonDown && !RightButtonDown) { //  CTRL + MMB pressed
 
-                QPoint translate = m_MidDownPos-point;   //  store difference from button press position
+                QPoint translate = m_MidDownPos()-point;   //  store difference from button press position
 
-                if (TakingSpinValues) {    } else {      //  no translation animation (yet?)
-                    m_MidDownPos = point;                //  reset start position for next mouse move
+                if (TakingSpinValues()) {    } else {      //  no translation animation (yet?)
+                    setm_MidDownPos(point);                //  reset start position for next mouse move
 
-                    Tz -= translate.x ()*size/xsize;     //  add z translation
-                    Tw += translate.y ()*size/ysize;     //  add w translation
+                    setTz(Tz() - translate.x ()*size/xsize);     //  add z translation
+                    setTw(Tw() + translate.y ()*size/ysize);     //  add w translation
 
                     UpdateStatus ("translate z/w");
 	        }            //  if (TakingSpinValues)
@@ -892,19 +895,19 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
             //    rotate xy / xz with LMB
             if (LeftButtonDown && !MidButtonDown && !RightButtonDown) { //  SHIFT + LMB
 
-                QPoint rotate = m_LeftDownPos-point;    //  store difference from button press position
+                QPoint rotate = m_LeftDownPos()-point;    //  store difference from button press position
                 ViewChanged = false;                    //  takes only xy/xz values, which are
                                                         //  equivalent to z/y 3D rotation
 
-                if (TakingSpinValues) {
-                    dz += rotate.x ()/xsize*5;
-                    dy += rotate.y ()/ysize*5;
+                if (TakingSpinValues()) {
+                    setdz(dz() + rotate.x ()/xsize*5);
+                    setdy(dy() + rotate.y ()/ysize*5);
                     UpdateStatus ("taking xy/xz rotation speed");
                 } else {                                //  immediate movement
-                    m_LeftDownPos = point;              //  reset start position for next mouse move
+                    setm_LeftDownPos(point);              //  reset start position for next mouse move
 
-                    m_rotZ -= rotate.x ()/xsize*180;    //  add xy rotation ( = z in 3D)
-                    m_rotY -= rotate.y ()/ysize*180;    //  add xz rotation ( = y in 3D)
+                    setm_rotZ(m_rotZ() - rotate.x ()/xsize*180);    //  add xy rotation ( = z in 3D)
+                    setm_rotY(m_rotY() - rotate.y ()/ysize*180);    //  add xz rotation ( = y in 3D)
 
                     UpdateStatus ("rotate xy/xz");
                 }        //    if (TakingSpinValues)
@@ -913,20 +916,20 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
             //    rotate xw / yz with MMB
             if (!LeftButtonDown && MidButtonDown && !RightButtonDown) { //  SHIFT + MMB
 
-                QPoint rotate = m_MidDownPos-point;        //  store difference from button press position
+                QPoint rotate = m_MidDownPos()-point;        //  store difference from button press position
 
-                if (TakingSpinValues) {
-                    dxw += rotate.x ()/xsize*5;
-                    dx += rotate.y ()/ysize*5;
-                    if (dxw == 0.) ViewChanged = false;
+                if (TakingSpinValues()) {
+                    setdxw(dxw() + rotate.x ()/xsize*5);
+                    setdx(dx() + rotate.y ()/ysize*5);
+                    if (dxw() == 0.) ViewChanged = false;
 
                     UpdateStatus ("taking xw / yz rotation speed");
                 } else {                             		//    immediate movement
-                    m_MidDownPos = point;     //    reset start position for next mouse move
+                    setm_MidDownPos(point);     //    reset start position for next mouse move
 
-                    Rxw -= rotate.x ()/xsize*180;            		//    add xw rotation
-                    m_rotX -= rotate.y ()/ysize*180;            		//    add yz  ( = x in 3D) rotation
-                    if (Rxw == 0.) ViewChanged = false;
+                    setRxw(Rxw() - rotate.x ()/xsize*180);            		//    add xw rotation
+                    setm_rotX(m_rotX() - rotate.y ()/ysize*180);            		//    add yz  ( = x in 3D) rotation
+                    if (Rxw() == 0.) ViewChanged = false;
 
 	            UpdateStatus ("rotate xw/yz");
 	        }        	//    if (TakingSpinValues)
@@ -936,17 +939,17 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
             //    rotate yw / zw with RMB
             if (!LeftButtonDown && !MidButtonDown && RightButtonDown) {    	//  SHIFT + RMB pressed
 
-	        QPoint rotate = m_RightDownPos-point;    		//    store difference from button press position
+	        QPoint rotate = m_RightDownPos()-point;    		//    store difference from button press position
 
-	        if (TakingSpinValues) {                    		//
-	            dyw += rotate.x ()/xsize*5;
-	            dzw += rotate.y ()/ysize*5;                    	//
+	        if (TakingSpinValues()) {                    		//
+	            setdyw(dyw() + rotate.x ()/xsize*5);
+                setdzw(dzw() + rotate.y ()/ysize*5);                    	//
 	            UpdateStatus ("taking yw / zw rotation speed");
 	        } else {                                    		//    immediate movement
-	            m_RightDownPos = point;                		//    reset start position for next mouse move
+                setm_RightDownPos(point);                		//    reset start position for next mouse move
 
-	            Ryw -= rotate.x ()/xsize*180;            		//    add yw rotation
-	            Rzw -= rotate.y ()/ysize*180;            		//    add zw rotation
+                setRyw(Ryw() - rotate.x ()/xsize*180);            		//    add yw rotation
+                setRzw(Ryw() - rotate.y ()/ysize*180);            		//    add zw rotation
 
 	            UpdateStatus ("rotate yw/zw");
 	        }        	//    if (TakingSpinValues)
@@ -960,7 +963,7 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
     if (ViewChanged) {                                    	//    4D viewpoint has changed
         SingletonLog::Instance().log("C4DView::mouseMoveEvent: View changed ()");
 
-        Transform (Rxy, Rxz, Rxw, Ryz, Ryw, Rzw, Tx, Ty, Tz, Tw);   //    apply the 4D transformation
+        Transform (Rxy(), Rxz(), Rxw(), Ryz(), Ryw(), Rzw(), Tx(), Ty(), Tz(), Tw());   //    apply the 4D transformation
         Redraw ();
     } else {					//    4D viewpoint didn't change
 
@@ -971,13 +974,13 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
             //    pan the view with MMB
             if (MidButtonDown && !LeftButtonDown) {		//  MMB
 
-	        QPoint translate = m_MidDownPos-point;    		//    store difference from button press position
+	        QPoint translate = m_MidDownPos()-point;    		//    store difference from button press position
 
-	        if (TakingSpinValues) {    } else {        		//    no translation animation (yet?)
-	            m_MidDownPos = point;                			//    reset start position for next mouse move
+	        if (TakingSpinValues()) {    } else {        		//    no translation animation (yet?)
+	            setm_MidDownPos(point);                			//    reset start position for next mouse move
 
-	            m_transX -= translate.x ()*size/xsize; 		//    add x translation
-	            m_transY += translate.y ()*size/ysize; 		//    add y translation
+                setm_transX(m_transX() - translate.x ()*size/xsize);    //    add x translation
+                setm_transY(m_transY() + translate.y ()*size/ysize);    //    add y translation
 
 	            UpdateStatus ("translate x/y");
 	        }            	//    if (TakingSpinValues)
@@ -987,17 +990,17 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
             //    rotate the view with LMB
             if (LeftButtonDown && !MidButtonDown) {				//  LMB
 
-	        QPoint rotate = m_LeftDownPos-point;        		//    store difference from button press position
+	        QPoint rotate = m_LeftDownPos()-point;        		//    store difference from button press position
 
- 	        if (TakingSpinValues) {                    		//
-	            dx += rotate.x ()/xsize*5;
-	            dy += rotate.y ()/ysize*5;                    	//
+ 	        if (TakingSpinValues()) {                    		//
+                setdx(dx() + rotate.x ()/xsize*5);
+                setdy(dy() + rotate.y ()/ysize*5);                    	//
 	            UpdateStatus ("taking x/y rotation speed");
 	        } else {                                    		//    immediate movement
-	            m_LeftDownPos = point;                		//    reset start position for next mouse move
+	            setm_LeftDownPos(point);                		//    reset start position for next mouse move
 
-	            m_rotX -= rotate.y ()/ysize*180;        		//    add x rotation
-	            m_rotY -= rotate.x ()/xsize*180;        		//    add y rotation
+                setm_rotX(m_rotX() - rotate.y ()/ysize*180);        		//    add x rotation
+                setm_rotY(m_rotY() - rotate.x ()/xsize*180);        		//    add y rotation
 
 	            UpdateStatus ("rotate x/y");
 	        }            	//    if (TakingSpinValues)
@@ -1007,19 +1010,19 @@ void C4DView::mouseMoveEvent (QMouseEvent *e) {
             //    zoom with LMB+RMB
             if (LeftButtonDown && MidButtonDown) {				//  LMB+RMB
 
-                QPoint zoom = m_LeftDownPos-point;        		//    store difference from button press position
+                QPoint zoom = m_LeftDownPos()-point;        		//    store difference from button press position
 
-                if (TakingSpinValues) {                    		//
-	            dz += zoom.x ()/xsize*10;
+                if (TakingSpinValues()) {                    		//
+	            setdz(dz() + zoom.x ()/xsize*10);
 	            UpdateStatus ("taking z rotation speed");
 	        } else {                                    		//    immediate movement
-	            m_LeftDownPos = point;                		//    reset start position for next mouse move
+	            setm_LeftDownPos(point);                		//    reset start position for next mouse move
 
                     if (zoom.x () != 0) {
-                        m_camZ *= 1+zoom.x ()/xsize;            //      scale camera z position
-                        SetupDepthCue (DepthCue3D);
+                        setm_camZ(m_camZ() * (1+zoom.x ()/xsize));            //      scale camera z position
+                        SetupDepthCue (DepthCue3D());
 	            }
-	            m_rotZ -= zoom.y ()/ysize*180;        		//    add z rotation
+                setm_rotZ(m_rotZ() - zoom.y ()/ysize*180);        		//    add z rotation
 
 	            UpdateStatus ("translate/rotate z");
 	        }            	//    if (TakingSpinValues)
@@ -1044,19 +1047,19 @@ void C4DView::mousePressEvent (QMouseEvent *e) {
     Qt::MouseButtons b = e->buttons();
 
     if ((b & Qt::LeftButton) != 0) {
-        m_LeftDownPos = point;
+        setm_LeftDownPos(point);
     }
     if ((b & Qt::MidButton) != 0) {
-        m_MidDownPos = point;
+        setm_MidDownPos(point);
     }
     if ((b & Qt::RightButton) != 0) {
-        m_RightDownPos = point;
+        setm_RightDownPos(point);
         Qt::KeyboardModifiers s = e->modifiers();
         bool AltPressed = s & Qt::AltModifier,
              ControlPressed = s & Qt::ControlModifier,
              ShiftPressed = s & Qt::ShiftModifier;
         if (b == Qt::RightButton && !(AltPressed || ControlPressed || ShiftPressed))
-            menu->exec (this->mapToGlobal(point));
+            menu()->exec (this->mapToGlobal(point));
 //            XQGLWidget::mousePressEvent (e);
     }
 }
@@ -1069,9 +1072,9 @@ void C4DView::mouseReleaseEvent ( QMouseEvent *e) {
 
     Qt::MouseButtons b = e->buttons();
 
-    if (TakingSpinValues) {
+    if (TakingSpinValues()) {
         StartAnimation ();
-        TakingSpinValues = false;
+        setTakingSpinValues(false);
     }
 
     UpdateStatus ("");
@@ -1084,17 +1087,17 @@ void C4DView::mouseReleaseEvent ( QMouseEvent *e) {
 void C4DView::mouseDoubleClickEvent (QMouseEvent *e) {
     SingletonLog::Instance().log("C4DView::mouseDoubleClickEvent ()");
 
-    if (Animated) StopAnimation ();
+    if (Animated()) StopAnimation ();
     else {
-      Tx = Ty = Tz = Tw = 0;
-      Rxy = Rxz = Rxw = Ryz = Ryw = Rzw = 0;
+        setTx(0); setTy(0); setTz(0); setTw(0);
+        setRxy(0); setRxz(0); setRxw(0); setRyz(0); setRyw(0); setRzw(0);
 
-      m_rotX = m_rotY = 15.;
-      m_transX = m_transY = m_rotZ = 0.;
-      m_camZ = -10.;
+        setm_rotX(15); setm_rotY(15); setm_rotZ(0);
+        setm_transX(0); setm_transY(0);
+        setm_camZ(-10);
 
-      Transform (Rxy, Rxz, Rxw, Ryz, Ryw, Rzw, Tx, Ty, Tz, Tw); //    transform
-      Redraw ();                                    		//    implicit OnPaint ()
+        Transform (Rxy(), Rxz(), Rxw(), Ryz(), Ryw(), Rzw(), Tx(), Ty(), Tz(), Tw());
+        Redraw ();                                    		//    implicit OnPaint ()
     }
 
     UpdateStatus ("DoubleClick");
@@ -1150,24 +1153,24 @@ void C4DView::initializeGL (void) {
     //  set background color
     glClearColor (background[0], background[1], background[2], background[3]);
 
-    if (RenderToPixmap /* && CurrentlyRendering */ ) {
+    if (RenderToPixmap() /* && CurrentlyRendering */ ) {
         SingletonLog::Instance().log("  render to pixmap = true");
 
         PreRedraw ();
 
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);   //  clear the window
 
-        if (DisplayPolygons)                            //  this might move to a
+        if (DisplayPolygons())                            //  this might move to a
             glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);  //  special routine "SwitchWireframe()"
         else glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
         glPushMatrix();                                 //  save the transformation Matrix
         // glTranslated(0.0, /*Size ()*.75*/0., 0);     //  set the camera position
 
-        glTranslated (m_transX, m_transY, m_camZ);      //  apply object translation
-        glRotated(m_rotX, 1.0, 0.0, 0.0);               //   -"-    -"-     rotation
-        glRotated(m_rotY, 0.0, 1.0, 0.0);
-        glRotated(m_rotZ, 0.0, 0.0, 1.0);
+        glTranslated (m_transX(), m_transY(), m_camZ());      //  apply object translation
+        glRotated(m_rotX(), 1.0, 0.0, 0.0);               //   -"-    -"-     rotation
+        glRotated(m_rotY(), 0.0, 1.0, 0.0);
+        glRotated(m_rotZ(), 0.0, 0.0, 1.0);
 
 
         SingletonLog::Instance().log("  RenderScene");

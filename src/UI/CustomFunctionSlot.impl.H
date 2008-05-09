@@ -26,14 +26,14 @@ template<class function>
         void C4DView::CustomFunctionSlot<function>::createCustomFunction(
                  C4DView *view) {
             function *tmp = new function (
-                view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
-                view->Values->umin (), view->Values->umax (), view->Values->du (),
-                view->Values->vmin (), view->Values->vmax (), view->Values->dv ());
+                view->Values()->tmin (), view->Values()->tmax (), view->Values()->dt (),
+                view->Values()->umin (), view->Values()->umax (), view->Values()->du (),
+                view->Values()->vmin (), view->Values()->vmax (), view->Values()->dv ());
             if (tmp->isValid()) {
-                    view->F.reset(tmp);
-                    QString sym (((function *)(view->F).get ())->symbolic());
+                    view->setF(tmp);
+                    QString sym (((function *)(view->F()).get ())->symbolic());
 
-                view->AssignValues(view->F);
+                view->AssignValues(view->F());
                 view->Redraw ();
             } else {
                 delete tmp;
@@ -51,13 +51,13 @@ template<class function>
     void C4DView::CustomFunctionSlot<function>::createCustomSurface(
                 C4DView *view) {
         function *tmp = new function (
-            view->Values->tmin (), view->Values->tmax (), view->Values->dt (),
-            view->Values->umin (), view->Values->umax (), view->Values->du ());
+            view->Values()->tmin (), view->Values()->tmax (), view->Values()->dt (),
+            view->Values()->umin (), view->Values()->umax (), view->Values()->du ());
         if (tmp->isValid()) {
-            view->F.reset(tmp);
-            QString sym (((function *)(view->F).get ())->symbolic());
+            view->setF(tmp);
+            QString sym (((function *)(view->F()).get ())->symbolic());
 
-            view->AssignValues(view->F);
+            view->AssignValues(view->F());
             view->Redraw ();
         } else {
             delete tmp;
