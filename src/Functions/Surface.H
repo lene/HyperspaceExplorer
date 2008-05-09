@@ -14,6 +14,82 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
+/// \em SurfaceBase provides a base class for functions which take two parameters
+/** The \em SurfaceBase interface provides abstract members for the evaluation of
+ *  the function values on a two-dimensional grid.
+ *
+ *  abstract member:
+ *      \li Vector &f (double, double);
+ *
+ *  member:
+ *      \li operator () (double t, double u, double);
+ *
+ *  @todo Vector &normal (double, double); - or in base class?
+ *
+ *  \ingroup SurfaceGroup
+ *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
+class SurfaceBase: public Function {
+    public:
+        /** type of the function used to generate values, optimized with a
+         *  reference as return value                                         */
+        typedef VecMath::Vector<4> &function_type(double, double);
+        /// the real, raw type of the function used to generate values
+        typedef VecMath::Vector<4> raw_function_type (double, double);
+
+        SurfaceBase() { }
+        SurfaceBase(const QString &name,
+                    double _tmin, double _tmax, double _dt,
+                    double _umin, double _umax, double _du,
+                    ParameterMap _parms = ParameterMap()):
+                Function(name, _parms),
+                tmin (_tmin), tmax (_tmax), dt (_dt),
+                umin (_umin), umax (_umax), du (_du),
+                tsteps (unsigned ((tmax-tmin)/dt+1)),
+                usteps (unsigned ((umax-umin)/du+1)) { }
+
+    protected:
+        unsigned &getTsteps() { return tsteps; }
+        unsigned getTsteps() const { return tsteps > 0? tsteps: 1; }
+        unsigned &getUsteps() { return usteps; }
+        unsigned getUsteps() const { return usteps > 0? usteps: 1; }
+
+        double &getTmin() { return tmin; }
+        double getTmin() const { return tmin; }
+        double &getTmax() { return tmax; }
+        double getTmax() const { return tmax; }
+        double &getDt() { return dt; }
+        const double &getDt() const { return dt; }
+        double &getUmin() { return umin; }
+        double getUmin() const { return umin; }
+        double &getUmax() { return umax; }
+        double getUmax() const { return umax; }
+        double &getDu() { return du; }
+        const double &getDu() const { return du; }
+
+        /// The mathematical function defining the Function object
+        virtual VecMath::Vector<4> &f(double, double) = 0;
+        /// Function evaluation operator for three parameters
+        /** @param t first argument, e.g. x or t
+         *  @param u second argument, e.g. y or u
+         *  @param v third argument, e.g. z or v
+         *  @return f(t, u, v)                                                */
+        VecMath::Vector<4> &operator () (double u, double v, double = 0) {
+            return f(u,v);
+        }
+
+    private:
+        double tmin, ///< min. value of the first parameter, here called t
+               tmax, ///< min. value of the first parameter, here called t
+               dt,   ///< stepsize in first parameter
+               umin, ///< min. value of the second parameter, here called u
+               umax, ///< min. value of the second parameter, here called u
+               du;   ///< stepsize in second parameter
+        unsigned tsteps, ///< number of steps in t
+                 usteps; ///< number of steps in u
+
+};
+
+
 /** A function from \f$ R^2 \rightarrow R^4 \f$, thus describing a parametrized
  *  surface in hyperspace
  *  \ingroup FunctionGroup
@@ -23,7 +99,8 @@ class Surface: public SurfaceBase {
         Surface();
         Surface (const QString &name,
                  double _umin, double _umax, double _du,
-                 double _vmin, double _vmax, double _dv);
+                 double _vmin, double _vmax, double _dv,
+                 ParameterMap _parms = ParameterMap());
         virtual ~Surface() { }
 
         virtual void Transform (double Rxy, double Rxz, double Rxw,
@@ -53,11 +130,11 @@ class Surface: public SurfaceBase {
 
          void DrawPlane (unsigned);
          void DrawStrip (unsigned);
-
+/*
          double umin, umax, du,
 	            vmin, vmax, dv;
 
-         unsigned usteps, vsteps;
+         unsigned usteps, vsteps;*/
 
          unsigned NumVertices;
 

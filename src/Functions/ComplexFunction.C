@@ -37,12 +37,12 @@ ComplexFunction::~ComplexFunction () { }
 /** allocate and initialize X[][] with values of f()
  *  call Surface::InitMem ()                                                  */
 void ComplexFunction::Initialize () {
-    X = vec4vec2D(usteps+2);
+    X = vec4vec2D(getTsteps()+2);
 
-    for (unsigned u = 0; u <= usteps+1; u++) {
-        X[u].resize(vsteps+2);
-        for (unsigned v = 0; v <= vsteps+1; v++) {
-            X[u][v] = f(umin+u*du, vmin+v*dv);
+    for (unsigned t = 0; t <= getTsteps()+1; t++) {
+        X[t].resize(getUsteps()+2);
+        for (unsigned u = 0; u <= getUsteps()+1; u++) {
+            X[t][u] = f(getTmin()+t*getDt(), getUmin()+u*getDu());
         }
     }
 

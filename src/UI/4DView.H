@@ -142,7 +142,7 @@ class C4DView : public XQGLWidget {
         void AnimationSettings();
         void ApplyChanges(const ParameterMap &);
 
-    protected:
+    private:
         void Transform(double Rxy, double Rxz, double Rxw,
                        double Ryz, double Ryw, double Rzw,
                        double Tx, double Ty, double Tz, double Tw);
@@ -303,7 +303,7 @@ class C4DView : public XQGLWidget {
 
         
     private:                                    //  member variables
-        /// Private class containing the mamber data for the Pimpl idiom
+        /// Private class containing the member data for the Pimpl idiom
         /** I thought it would be a good idea to switch to the Pimpl idiom
          *  (all data in a private inner class, to which the outer class keeps
          *  only a pointer) to cleanly separate implementation and interface.

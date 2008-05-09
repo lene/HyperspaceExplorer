@@ -14,6 +14,95 @@
 
 #include "Function.H"
 
+/// \em RealBase provides a base class for functions which take three parameters
+/** The \em RealBase interface provides abstract members for the evaluation of
+ *  the function values on a three-dimensional grid.
+ *
+ *  abstract member:
+ *      \li Vector &f (double, double);
+ *
+ *  member:
+ *      \li operator () (double t, double u, double);
+ *
+ *  @todo Vector &normal (double, double, double); - or in base class?
+ *
+ *  \ingroup RealGroup
+ *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
+class RealBase: public Function {
+    public:
+        /** type of the function used to generate values, optimized with a
+         *  reference as return value                                         */
+        typedef VecMath::Vector<4> &function_type(double, double, double);
+        /// the real, raw type of the function used to generate values
+        typedef VecMath::Vector<4> raw_function_type (double, double, double);
+
+        RealBase() { }
+        RealBase(const QString &name,
+                 double _tmin, double _tmax, double _dt,
+                 double _umin, double _umax, double _du,
+                 double _vmin, double _vmax, double _dv,
+                 ParameterMap _parms = ParameterMap()):
+                Function(name, _parms),
+                tmin (_tmin), tmax (_tmax), dt (_dt),
+                umin (_umin), umax (_umax), du (_du),
+                vmin (_vmin), vmax (_vmax), dv (_dv),
+                tsteps (unsigned ((tmax-tmin)/dt+1)),
+                usteps (unsigned ((umax-umin)/du+1)),
+                vsteps (unsigned ((vmax-vmin)/dv+1)) { }
+
+    protected:
+        unsigned &getTsteps() { return tsteps; }
+        unsigned getTsteps() const { return tsteps > 0? tsteps: 1; }
+        unsigned &getUsteps() { return usteps; }
+        unsigned getUsteps() const { return usteps > 0? usteps: 1; }
+        unsigned &getVsteps()  { return vsteps; }
+        unsigned getVsteps() const { return vsteps > 0? vsteps: 1; }
+         
+        double &getTmin() { return tmin; }
+        double getTmin() const { return tmin; }
+        double &getTmax() { return tmax; }
+        double getTmax() const { return tmax; }
+        double &getDt() { return dt; }
+        const double &getDt() const { return dt; }
+        double &getUmin() { return umin; }
+        double getUmin() const { return umin; }
+        double &getUmax() { return umax; }
+        double getUmax() const { return umax; }
+        double &getDu() { return du; }
+        const double &getDu() const { return du; }
+        double &getVmin() { return vmin; }
+        double getVmin() const { return vmin; }
+        double &getVmax() { return vmax; }
+        double getVmax() const { return vmax; }
+        double &getDv() { return dv; }
+        const double &getDv() const { return dv; }
+
+        /// The mathematical function defining the Function object
+        virtual VecMath::Vector<4> &f(double, double, double) = 0;
+        /// Function evaluation operator for three parameters
+        /** @param t first argument, e.g. x or t
+         *  @param u second argument, e.g. y or u
+         *  @param v third argument, e.g. z or v
+         *  @return f(t, u, v)                                                */
+        VecMath::Vector<4> &operator () (double t, double u, double v) {
+            return f(t,u,v);
+        }
+
+    private:
+        double tmin, ///< min. value of the first parameter, here called t
+               tmax, ///< min. value of the first parameter, here called t
+               dt,   ///< stepsize in first parameter
+               umin, ///< min. value of the second parameter, here called u
+               umax, ///< min. value of the second parameter, here called u
+               du,   ///< stepsize in second parameter
+               vmin, ///< min. value of the third parameter, here called v
+               vmax, ///< min. value of the third parameter, here called v
+               dv;   ///< stepsize in third parameter
+        unsigned tsteps, ///< number of steps in t
+                 usteps, ///< number of steps in u
+                 vsteps; ///< number of steps in v
+};
+
 /// A \em RealFunction is a mathematical function  \f$ f: R^3 \rightarrow R \f$ .
 /** The function \em f is evaluated on a 3-dimensional cartesian grid. The
  *  function value constitutes the fourth dimension of the Function object:
@@ -62,6 +151,7 @@ class RealFunction: public RealBase {
         vec3vec3D Xscr;   ///< temporary storage for projected function values
         /// temporary storage for the value of the function at a given point
         VecMath::Vector<4> F;
+
 
 };
 

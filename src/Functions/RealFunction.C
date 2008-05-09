@@ -46,16 +46,16 @@ RealFunction::RealFunction(const QString &name,
                  _parms),
         Xtrans(vec4vec3D()), Xscr(vec3vec3D()) {
     if (MemRequired () > Globals::Instance().getMaxMemory()) {
-        cerr << "Using a " << tsteps << "x" << usteps << "x" << vsteps
+        cerr << "Using a " << getTsteps() << "x" << getUsteps() << "x" << getVsteps()
              << " grid would require approx. " << MemRequired () << " MB of memory.\n";
         while (MemRequired () > Globals::Instance().getMaxMemory()) {
-            tsteps--; usteps--; vsteps--;
+            getTsteps()--; getUsteps()--; getVsteps()--;
         }
-        cerr << "Using a " << tsteps << "x" << usteps << "x" << vsteps
+        cerr << "Using a " << getTsteps() << "x" << getUsteps() << "x" << getVsteps()
              << " grid instead." << endl;
-        dt = (tmax-tmin)/tsteps;
-        du = (umax-umin)/usteps;
-        dv = (vmax-vmin)/vsteps;
+        getDt() = (getTmax()-getTmin())/getTsteps();
+        getDu() = (getUmax()-getUmin())/getUsteps();
+        getDv() = (getVmax()-getVmin())/getVsteps();
     }
 }
 
@@ -63,38 +63,38 @@ RealFunction::RealFunction(const QString &name,
 /** Xscr[][][], Xtrans[][][]                */
 void RealFunction::InitMem (void) {
 
-    Xscr.resize(tsteps+2);
-    Xtrans.resize(tsteps+2);
+    Xscr.resize(getTsteps()+2);
+    Xtrans.resize(getTsteps()+2);
 
-    for (unsigned t = 0; t <= tsteps+1; t++) {
+    for (unsigned t = 0; t <= getTsteps()+1; t++) {
 
-        Xscr[t].resize(usteps+2);
-        Xtrans[t].resize(usteps+2);
+        Xscr[t].resize(getUsteps()+2);
+        Xtrans[t].resize(getUsteps()+2);
 
-        for (unsigned u = 0; u <= usteps+1; u++) {
+        for (unsigned u = 0; u <= getUsteps()+1; u++) {
 
-            Xscr[t][u].resize(vsteps+2);
-            Xtrans[t][u].resize(vsteps+2);
-        }                           //  for (unsigned u = 0; u <= usteps+1; u++)
+            Xscr[t][u].resize(getVsteps()+2);
+            Xtrans[t][u].resize(getVsteps()+2);
+        }                           //  for (unsigned u = 0; u <= getUsteps()+1; u++)
 
-    }                               //  for (unsigned t = 0; t <= tsteps+1; t++)
+    }                               //  for (unsigned t = 0; t <= getTsteps()+1; t++)
 }                                   //  InitMem ()
 
 /// Allocate and initialize X[][][] with values of f()
 /** Call InitMem() above */
 void RealFunction::Initialize () {
     double Wmin = 0., Wmax = 0.;
-    X = vec4vec3D(tsteps+2);
+    X = vec4vec3D(getTsteps()+2);
     ColMgrMgr::Instance().setFunction(this);
 
-    for (unsigned t = 0; t <= tsteps+1; t++) {
-        X[t].resize(usteps+2);
+    for (unsigned t = 0; t <= getTsteps()+1; t++) {
+        X[t].resize(getUsteps()+2);
 
-        for (unsigned u = 0; u <= usteps+1; u++) {
-            X[t][u].resize(vsteps+2);
+        for (unsigned u = 0; u <= getUsteps()+1; u++) {
+            X[t][u].resize(getVsteps()+2);
 
-            for (unsigned v = 0; v <= vsteps+1; v++) {
-                double T = tmin+t*dt, U =umin+u*du, V = vmin+v*dv;
+            for (unsigned v = 0; v <= getVsteps()+1; v++) {
+                double T = getTmin()+t*getDt(), U =getUmin()+u*getDu(), V = getVmin()+v*getDv();
                 X[t][u][v] = f (T, U, V);
                 if (X[t][u][v][3] < Wmin) Wmin = X[t][u][v][3];
                 if (X[t][u][v][3] > Wmax) Wmax = X[t][u][v][3];
@@ -102,13 +102,13 @@ void RealFunction::Initialize () {
         }
     }
 
-    for (unsigned t = 0; t <= tsteps+1; t++) {
-        for (unsigned u = 0; u <= usteps+1; u++) {
-            for (unsigned v = 0; v <= vsteps+1; v++) {
+    for (unsigned t = 0; t <= getTsteps()+1; t++) {
+        for (unsigned u = 0; u <= getUsteps()+1; u++) {
+            for (unsigned v = 0; v <= getVsteps()+1; v++) {
                 ColMgrMgr::Instance().calibrateColor(
                     X[t][u][v],
-                    Color(float(t)/float(tsteps), float(u)/float(usteps),
-                          float(v)/float(vsteps),
+                    Color(float(t)/float(getTsteps()), float(u)/float(getUsteps()),
+                          float(v)/float(getVsteps()),
                           (X[t][u][v][3]-Wmin)/(Wmax-Wmin)));
             }
         }
@@ -119,13 +119,13 @@ void RealFunction::Initialize () {
 /// Re-initialize a RealFunction if the definition set has changed
 /** @param tmin minimal value in t
  *  @param tmax maximal value in t
- *  @param dt stepsize in t
+ *  @param getDt() stepsize in t
  *  @param umin minimal value in u
  *  @param umax maximal value in u
- *  @param du stepsize in u
+ *  @param getDu() stepsize in u
  *  @param vmin minimal value in v
  *  @param vmax maximal value in v
- *  @param dv stepsize in v                                                   */
+ *  @param getDv() stepsize in v                                                   */
 void RealFunction::ReInit(double _tmin, double _tmax, double _dt,
                       double _umin, double _umax, double _du,
                       double _vmin, double _vmax, double _dv) {
@@ -133,10 +133,12 @@ void RealFunction::ReInit(double _tmin, double _tmax, double _dt,
     SingletonLog::Instance()  << "Function::ReInit(" << _tmin << ", " << _tmax << ", " << _dt << ", "
 	<< _umin << ", " << _umax<< ", " << _du << ", " << _vmin << ", " << _vmax << ", " << _dv << ")\n";
 
-  tmin = _tmin;   tmax = _tmax;   dt = _dt;
-  umin = _umin;   umax = _umax;   du = _du;
-  vmin = _vmin;   vmax = _vmax;   dv = _dv;
-  tsteps = unsigned ((tmax-tmin)/dt+2); usteps = unsigned ((umax-umin)/du+2); vsteps = unsigned ((vmax-vmin)/dv+2);
+  getTmin() = _tmin;   getTmax() = _tmax;   getDt() = _dt;
+  getUmin() = _umin;   getUmax() = _umax;   getDu() = _du;
+  getVmin() = _vmin;   getVmax() = _vmax;   getDv() = _dv;
+  getTsteps() = unsigned ((getTmax()-getTmin())/getDt()+2);
+  getUsteps() = unsigned ((getUmax()-getUmin())/getDu()+2);
+  getVsteps() = unsigned ((getVmax()-getVmin())/getDv()+2);
 
   Initialize ();
 }
@@ -168,9 +170,9 @@ void RealFunction::Transform (double thetaxy, double thetaxz, double thetaxw,
               Rot = Rxyz*Rxwyz*Ryzw;
     Vector<4> trans = Vector<4>(tx, ty, tz, tw);
 
-    for (unsigned t = 0; t <= tsteps+1; t++)
-        for (unsigned u = 0; u <= usteps+1; u++)
-            for (unsigned v = 0; v <= vsteps+1; v++)
+    for (unsigned t = 0; t <= getTsteps()+1; t++)
+        for (unsigned u = 0; u <= getUsteps()+1; u++)
+            for (unsigned v = 0; v <= getVsteps()+1; v++)
                 Xtrans[t][u][v] = (Rot*X[t][u][v])+trans;
 }
 
@@ -182,9 +184,9 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
     double ProjectionFactor;
     double Wmax = 0, Wmin = 0;
 
-    for (unsigned t = 0; t <= tsteps+1; t++) {
-        for (unsigned u = 0; u <= usteps+1; u++) {
-            for (unsigned v = 0; v <= vsteps+1; v++) {
+    for (unsigned t = 0; t <= getTsteps()+1; t++) {
+        for (unsigned u = 0; u <= getUsteps()+1; u++) {
+            for (unsigned v = 0; v <= getVsteps()+1; v++) {
 
                 if (Xtrans[t][u][v][3] < Wmin) Wmin = Xtrans[t][u][v][3];
                 if (Xtrans[t][u][v][3] > Wmax) Wmax = Xtrans[t][u][v][3];
@@ -200,9 +202,9 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
 
     if (!depthcue4d) return;
 
-    for (unsigned t = 0; t <= tsteps+1; t++)
-        for (unsigned u = 0; u <= usteps+1; u++)
-            for (unsigned v = 0; v <= vsteps+1; v++) {
+    for (unsigned t = 0; t <= getTsteps()+1; t++)
+        for (unsigned u = 0; u <= getUsteps()+1; u++)
+            for (unsigned v = 0; v <= getVsteps()+1; v++) {
                 ColMgrMgr::Instance().depthCueColor(Wmax, Wmin,
                     Xtrans[t][u][v][3], X[t][u][v]);
             }
@@ -211,7 +213,7 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
 /// Draw the projected Function (onto screen or into GL list, as it is)
 /** */
 void RealFunction::Draw (void) {
-    for (unsigned t = 0; t < tsteps; t++)
+    for (unsigned t = 0; t < getTsteps(); t++)
         DrawPlane (t);
 }
 
@@ -236,7 +238,7 @@ Vector<4> &RealFunction::normal (double tt, double uu, double vv) {
 /// Draw the current plane of the projected Function
 /** @param t current t value                                                  */
 void RealFunction::DrawPlane (unsigned t){
-    for (unsigned u = 0; u < usteps; u++)
+    for (unsigned u = 0; u < getUsteps(); u++)
         DrawStrip (t, u);
 }
 
@@ -244,7 +246,7 @@ void RealFunction::DrawPlane (unsigned t){
 /** @param t current t value
  *  @param u current u value                                                  */
 void RealFunction::DrawStrip (unsigned t, unsigned u){
-    for (unsigned v = 0; v < vsteps; v++)
+    for (unsigned v = 0; v < getVsteps(); v++)
         DrawCube (t, u, v);
 }
 

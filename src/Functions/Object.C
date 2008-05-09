@@ -37,7 +37,7 @@ Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
     X(vec4vec1D(NumVertices)), Xtrans(vec4vec1D(NumVertices)), Xscr(vec3vec1D(NumVertices)),
     R(floatvec1D(NumVertices)), G(floatvec1D(NumVertices)), B(floatvec1D(NumVertices)),
     Surface(4) {
-    functionName = name;
+    setfunctionName(name);
 
     for (unsigned i = 0; i < 4; i++) Surface[i].resize(NumSurfaces);
 }
@@ -208,7 +208,7 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
  *  \param _center Center point of the Sponge                                 */
 Sponge::Sponge (unsigned level, unsigned _distance, double _rad, Vector<4> _center):
     Level (level), distance(_distance), rad(_rad), center(_center) {
-    functionName = "4-dimensional Menger Sponge";
+    setfunctionName("4-dimensional Menger Sponge");
 //    clearParameterNames();
     declareParameter("Level", (unsigned)1, level);
     declareParameter("Distance", (unsigned)2, _distance);
@@ -417,7 +417,7 @@ void Pyramid::DeclareTriangle (unsigned i, unsigned a, unsigned b, unsigned c) {
  *  @param center center                                                      */
 Gasket::Gasket (unsigned level, double _rad, Vector<4> _center):
     Level (level), rad(_rad), center(_center) {
-    functionName = "4-dimensional Sierpinski Gasket";
+    setfunctionName("4-dimensional Sierpinski Gasket");
 //    clearParameterNames();
     declareParameter("Level", 3);
     declareParameter("Size", 1.0);
