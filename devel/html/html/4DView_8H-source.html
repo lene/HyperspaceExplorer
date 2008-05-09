@@ -115,10 +115,10 @@
 <a name="l00125"></a>00125         <a class="code" href="classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor.">C4DView</a>(QWidget * = 0);
 <a name="l00126"></a>00126         <span class="keyword">virtual</span> <a class="code" href="classC4DView.html#7d2fd637746d3f3148c904abfcb19806" title="C4DView destructor.">~C4DView</a>();
 <a name="l00127"></a>00127 
-<a name="l00129"></a><a class="code" href="classC4DView.html#50cd0bdd8d4df8eb716691b7cb873de3">00129</a>         <span class="keywordtype">void</span> <a class="code" href="classC4DView.html#50cd0bdd8d4df8eb716691b7cb873de3">setWireframe</a> (<span class="keywordtype">bool</span> wire) { <a class="code" href="classC4DView.html#abe62566f12f502ce84c70315a5a09fb" title="if true, draw solid surfaces">DisplayPolygons</a> = !wire; }
-<a name="l00131"></a><a class="code" href="classC4DView.html#75ddb2c5f106d81db18300d316d86972">00131</a>         <span class="keywordtype">bool</span> <a class="code" href="classC4DView.html#75ddb2c5f106d81db18300d316d86972">getDisplayCoordinates</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classC4DView.html#cb7e608271d4ef0047ba421b650e0772" title="if true, show the 4D coordinate cross">DisplayCoordinates</a>; }
-<a name="l00133"></a><a class="code" href="classC4DView.html#dc4f19f4c1433bbb8bea6c37177adefe">00133</a>         <span class="keywordtype">bool</span> <a class="code" href="classC4DView.html#dc4f19f4c1433bbb8bea6c37177adefe">getRenderToPixmap</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classC4DView.html#6b2f78bc553d6d393bb94e33f01d17f3" title="if true, save images">RenderToPixmap</a>; }
-<a name="l00135"></a><a class="code" href="classC4DView.html#68bbe4bf27aba718c97b3f456cf656e6">00135</a>         <span class="keywordtype">bool</span> <a class="code" href="classC4DView.html#68bbe4bf27aba718c97b3f456cf656e6">getDisplayPolygons</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classC4DView.html#abe62566f12f502ce84c70315a5a09fb" title="if true, draw solid surfaces">DisplayPolygons</a>; }
+<a name="l00129"></a><a class="code" href="classC4DView.html#50cd0bdd8d4df8eb716691b7cb873de3">00129</a>         <span class="keywordtype">void</span> <a class="code" href="classC4DView.html#50cd0bdd8d4df8eb716691b7cb873de3">setWireframe</a> (<span class="keywordtype">bool</span> wire) { setDisplayPolygons(!wire); }
+<a name="l00131"></a><a class="code" href="classC4DView.html#75ddb2c5f106d81db18300d316d86972">00131</a>         <span class="keywordtype">bool</span> <a class="code" href="classC4DView.html#75ddb2c5f106d81db18300d316d86972">getDisplayCoordinates</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> DisplayCoordinates(); }
+<a name="l00133"></a><a class="code" href="classC4DView.html#dc4f19f4c1433bbb8bea6c37177adefe">00133</a>         <span class="keywordtype">bool</span> <a class="code" href="classC4DView.html#dc4f19f4c1433bbb8bea6c37177adefe">getRenderToPixmap</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> RenderToPixmap(); }
+<a name="l00135"></a><a class="code" href="classC4DView.html#68bbe4bf27aba718c97b3f456cf656e6">00135</a>         <span class="keywordtype">bool</span> <a class="code" href="classC4DView.html#68bbe4bf27aba718c97b3f456cf656e6">getDisplayPolygons</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> DisplayPolygons(); }
 <a name="l00136"></a>00136 
 <a name="l00137"></a>00137         <span class="keywordtype">double</span> <a class="code" href="classC4DView.html#8a01e49be6af9cab84880a176b7c42ae" title="rotate in 3D 360 degrees">Benchmark3D</a>(<span class="keywordtype">int</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">bool</span> = <span class="keyword">true</span>);
 <a name="l00138"></a>00138         <span class="keywordtype">double</span> <a class="code" href="classC4DView.html#60f45904ff9b227fdf426b5960fa4130" title="rotate in 4D 360 degrees">Benchmark4D</a>(<span class="keywordtype">int</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">bool</span> = <span class="keyword">true</span>);
@@ -129,9 +129,9 @@
 <a name="l00143"></a>00143         <span class="keywordtype">void</span> <a class="code" href="classC4DView.html#7cdc25eeb13d2f7904348f51ac68b63b" title="Called whenever an object or the parameters have changed.">ApplyChanges</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;);
 <a name="l00144"></a>00144 
 <a name="l00145"></a>00145     <span class="keyword">protected</span>:
-<a name="l00146"></a>00146         <span class="keywordtype">void</span> <a class="code" href="classC4DView.html#16d5190870a166c65a20c59368ca0f2f" title="Overloaded function executing the transform to the default state.">Transform</a>(<span class="keywordtype">double</span> <a class="code" href="classC4DView.html#f616f6f928911482a1289a7b7383e9d6" title="XY angle for the 4D rotation of the object.">Rxy</a>, <span class="keywordtype">double</span> <a class="code" href="classC4DView.html#1de4e8cf82971be49b90642ed1b1ce8f" title="XZ angle for the 4D rotation of the object.">Rxz</a>, <span class="keywordtype">double</span> <a class="code" href="classC4DView.html#ff9f5d182cdc045e3d4fd4caee8b2d78" title="XW angle for the 4D rotation of the object.">Rxw</a>,
-<a name="l00147"></a>00147                        <span class="keywordtype">double</span> <a class="code" href="classC4DView.html#25e68533955f4aeaff3a2598a0e0d22c" title="YZ angle for the 4D rotation of the object.">Ryz</a>, <span class="keywordtype">double</span> <a class="code" href="classC4DView.html#8f3ca9b51d740fc803f909faa91e05e3" title="YW angle for the 4D rotation of the object.">Ryw</a>, <span class="keywordtype">double</span> <a class="code" href="classC4DView.html#df17c0f3427a04cfb4ba26f5975ab8c2" title="ZW angle for the 4D rotation of the object.">Rzw</a>,
-<a name="l00148"></a>00148                        <span class="keywordtype">double</span> <a class="code" href="classC4DView.html#db5cfd77a40b633ec673817596bee941" title="X coordinate for the 4D translation of the object.">Tx</a>, <span class="keywordtype">double</span> <a class="code" href="classC4DView.html#35d5730f883860881c08fd92fb1c45f8" title="Y coordinate for the 4D translation of the object.">Ty</a>, <span class="keywordtype">double</span> <a class="code" href="classC4DView.html#85279ff6a911120f4a639e978aee28a8" title="Z coordinate for the 4D translation of the object.">Tz</a>, <span class="keywordtype">double</span> <a class="code" href="classC4DView.html#220596e2ea0808fd2649bf5e15665c70" title="W coordinate for the 4D translation of the object.">Tw</a>);
+<a name="l00146"></a>00146         <span class="keywordtype">void</span> <a class="code" href="classC4DView.html#16d5190870a166c65a20c59368ca0f2f" title="Overloaded function executing the transform to the default state.">Transform</a>(<span class="keywordtype">double</span> Rxy, <span class="keywordtype">double</span> Rxz, <span class="keywordtype">double</span> Rxw,
+<a name="l00147"></a>00147                        <span class="keywordtype">double</span> Ryz, <span class="keywordtype">double</span> Ryw, <span class="keywordtype">double</span> Rzw,
+<a name="l00148"></a>00148                        <span class="keywordtype">double</span> Tx, <span class="keywordtype">double</span> Ty, <span class="keywordtype">double</span> Tz, <span class="keywordtype">double</span> Tw);
 <a name="l00150"></a><a class="code" href="classC4DView.html#16d5190870a166c65a20c59368ca0f2f">00150</a>         <span class="keywordtype">void</span> <a class="code" href="classC4DView.html#16d5190870a166c65a20c59368ca0f2f" title="Overloaded function executing the transform to the default state.">Transform</a>() { <a class="code" href="classC4DView.html#16d5190870a166c65a20c59368ca0f2f" title="Overloaded function executing the transform to the default state.">Transform</a> (0, 0, 0, 0, 0, 0,  0, 0, 0, 0); }
 <a name="l00151"></a>00151         <span class="keywordtype">void</span> <a class="code" href="classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three-space.">Project</a>();
 <a name="l00152"></a>00152         <span class="keywordtype">void</span> <a class="code" href="classC4DView.html#87493fb1f2d39371ddfd024f72676738" title="draw the projected Object (onto screen or into GL list, as it is)">Draw</a>();
@@ -168,94 +168,253 @@
 <a name="l00183"></a>00183         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classC4DView.html#5f79a84b79c832319a46af95192ad180" title="Resizing routine.">resizeEvent</a>( QResizeEvent * );
 <a name="l00184"></a>00184         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="OpenGL initialization.">initializeGL</a>(<span class="keywordtype">void</span>);
 <a name="l00185"></a>00185 
-<a name="l00186"></a>00186     <span class="keyword">private</span>:                                    <span class="comment">//  member variables</span>
-<a name="l00187"></a><a class="code" href="classC4DView.html#eb29ac45dbb361327d3a896d6cfeb3dc">00187</a>         std::auto_ptr&lt;Function&gt; <a class="code" href="classC4DView.html#eb29ac45dbb361327d3a896d6cfeb3dc" title="the Function object currently displayed">F</a>;  
-<a name="l00188"></a>00188 
-<a name="l00189"></a><a class="code" href="classC4DView.html#85279ff6a911120f4a639e978aee28a8">00189</a>         <span class="keywordtype">double</span> <a class="code" href="classC4DView.html#db5cfd77a40b633ec673817596bee941" title="X coordinate for the 4D translation of the object.">Tx</a>,  
-<a name="l00190"></a>00190                <a class="code" href="classC4DView.html#35d5730f883860881c08fd92fb1c45f8" title="Y coordinate for the 4D translation of the object.">Ty</a>,  
-<a name="l00191"></a>00191                <a class="code" href="classC4DView.html#85279ff6a911120f4a639e978aee28a8" title="Z coordinate for the 4D translation of the object.">Tz</a>,  
-<a name="l00192"></a>00192                <a class="code" href="classC4DView.html#220596e2ea0808fd2649bf5e15665c70" title="W coordinate for the 4D translation of the object.">Tw</a>;  
-<a name="l00193"></a><a class="code" href="classC4DView.html#df17c0f3427a04cfb4ba26f5975ab8c2">00193</a>         <span class="keywordtype">double</span> <a class="code" href="classC4DView.html#f616f6f928911482a1289a7b7383e9d6" title="XY angle for the 4D rotation of the object.">Rxy</a>, 
-<a name="l00194"></a>00194                <a class="code" href="classC4DView.html#1de4e8cf82971be49b90642ed1b1ce8f" title="XZ angle for the 4D rotation of the object.">Rxz</a>, 
-<a name="l00195"></a>00195                <a class="code" href="classC4DView.html#ff9f5d182cdc045e3d4fd4caee8b2d78" title="XW angle for the 4D rotation of the object.">Rxw</a>, 
-<a name="l00196"></a>00196                <a class="code" href="classC4DView.html#25e68533955f4aeaff3a2598a0e0d22c" title="YZ angle for the 4D rotation of the object.">Ryz</a>, 
-<a name="l00197"></a>00197                <a class="code" href="classC4DView.html#8f3ca9b51d740fc803f909faa91e05e3" title="YW angle for the 4D rotation of the object.">Ryw</a>, 
-<a name="l00198"></a>00198                <a class="code" href="classC4DView.html#df17c0f3427a04cfb4ba26f5975ab8c2" title="ZW angle for the 4D rotation of the object.">Rzw</a>; 
-<a name="l00199"></a>00199 
-<a name="l00200"></a><a class="code" href="classC4DView.html#f4c3a85eec507687a6c8582d72d35f8f">00200</a>         GLdouble <a class="code" href="classC4DView.html#f4c3a85eec507687a6c8582d72d35f8f" title="rotation in X">m_rotX</a>;    
-<a name="l00201"></a><a class="code" href="classC4DView.html#e039bceeeedfb04fe7c499a6b3b6b6f5">00201</a>         GLdouble <a class="code" href="classC4DView.html#e039bceeeedfb04fe7c499a6b3b6b6f5" title="rotation in Y">m_rotY</a>;    
-<a name="l00202"></a><a class="code" href="classC4DView.html#46e61c4e6edb2d937edc786a164fd5c1">00202</a>         GLdouble <a class="code" href="classC4DView.html#46e61c4e6edb2d937edc786a164fd5c1" title="rotation in Z">m_rotZ</a>;    
-<a name="l00203"></a><a class="code" href="classC4DView.html#8c1ed22d36c0d09d267ac7acf5c62177">00203</a>         GLdouble <a class="code" href="classC4DView.html#8c1ed22d36c0d09d267ac7acf5c62177" title="translation in X">m_transX</a>;  
-<a name="l00204"></a><a class="code" href="classC4DView.html#cadab1413fbe0090c2977cbde134cdd1">00204</a>         GLdouble <a class="code" href="classC4DView.html#cadab1413fbe0090c2977cbde134cdd1" title="translation in Y">m_transY</a>;  
-<a name="l00205"></a><a class="code" href="classC4DView.html#e1dce655f46f29f97e103657bb32ed92">00205</a>         GLdouble <a class="code" href="classC4DView.html#e1dce655f46f29f97e103657bb32ed92" title="Z coordinate of camera (distance from object).">m_camZ</a>;    
-<a name="l00206"></a>00206 
-<a name="l00207"></a><a class="code" href="classC4DView.html#96287a5656d85fbf043ca2115ba032dc">00207</a>         <span class="keywordtype">double</span> <a class="code" href="classC4DView.html#96287a5656d85fbf043ca2115ba032dc" title="W coordinate of the camera.">CamW</a>;        
-<a name="l00208"></a><a class="code" href="classC4DView.html#3a259a45ebe409bbcbc40194434680ed">00208</a>         <span class="keywordtype">double</span> <a class="code" href="classC4DView.html#3a259a45ebe409bbcbc40194434680ed" title="W coordinate of the screen.">ScrW</a>;        
-<a name="l00209"></a>00209 
-<a name="l00211"></a><a class="code" href="classC4DView.html#1091fdf89eeefab1571c162a2d930d0e">00211</a>         <span class="keywordtype">bool</span> <a class="code" href="classC4DView.html#1091fdf89eeefab1571c162a2d930d0e" title="if true, draw lines antialiased, surfaces transparent">AntiAlias</a>;
-<a name="l00212"></a><a class="code" href="classC4DView.html#abe62566f12f502ce84c70315a5a09fb">00212</a>         <span class="keywordtype">bool</span> <a class="code" href="classC4DView.html#abe62566f12f502ce84c70315a5a09fb" title="if true, draw solid surfaces">DisplayPolygons</a>;       
-<a name="l00213"></a><a class="code" href="classC4DView.html#350c7f9a53d4da61b995ac46775636ae">00213</a>         <span class="keywordtype">bool</span> <a class="code" href="classC4DView.html#350c7f9a53d4da61b995ac46775636ae" title="if true, use lights in rendering">Lighting</a>;              
-<a name="l00214"></a><a class="code" href="classC4DView.html#7cffa336571a0dbe61187ba872198828">00214</a>         <span class="keywordtype">bool</span> <a class="code" href="classC4DView.html#7cffa336571a0dbe61187ba872198828" title="if true, use depth cue">DepthCue3D</a>;            
-<a name="l00215"></a><a class="code" href="classC4DView.html#e4c78c156b6ffb23361ac3ebfb2071f8">00215</a>         <span class="keywordtype">bool</span> <a class="code" href="classC4DView.html#e4c78c156b6ffb23361ac3ebfb2071f8" title="if true, use depth cue in 4D">DepthCue4D</a>;            
-<a name="l00216"></a>00216 
-<a name="l00217"></a><a class="code" href="classC4DView.html#cb7e608271d4ef0047ba421b650e0772">00217</a>         <span class="keywordtype">bool</span> <a class="code" href="classC4DView.html#cb7e608271d4ef0047ba421b650e0772" title="if true, show the 4D coordinate cross">DisplayCoordinates</a>;    
-<a name="l00218"></a><a class="code" href="classC4DView.html#6b2f78bc553d6d393bb94e33f01d17f3">00218</a>         <span class="keywordtype">bool</span> <a class="code" href="classC4DView.html#6b2f78bc553d6d393bb94e33f01d17f3" title="if true, save images">RenderToPixmap</a>;        
-<a name="l00219"></a>00219 
-<a name="l00220"></a><a class="code" href="classC4DView.html#7cb6cee77811f65a77cb0c97bac8203e">00220</a>         QString <a class="code" href="classC4DView.html#7cb6cee77811f65a77cb0c97bac8203e" title="where to save an animation&amp;#39;s frames">animationDirectory</a>; 
-<a name="l00221"></a><a class="code" href="classC4DView.html#e766d45e783ed357a35cb3482b1a4cc6">00221</a>         QString <a class="code" href="classC4DView.html#e766d45e783ed357a35cb3482b1a4cc6" title="prefix of animation frame filenames">animationPrefix</a>;    
-<a name="l00222"></a><a class="code" href="classC4DView.html#099120e62f40d3ba958361c736d5b127">00222</a>         <span class="keywordtype">unsigned</span> <a class="code" href="classC4DView.html#099120e62f40d3ba958361c736d5b127" title="limit for saved animation frames">animationMaxFrames</a>;    
-<a name="l00223"></a><a class="code" href="classC4DView.html#dc3741dcb91695bf84c2f921a0d1ca2f">00223</a>         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <a class="code" href="classC4DView.html#dc3741dcb91695bf84c2f921a0d1ca2f" title="frames per second for animations">animation_fps</a>;   
-<a name="l00224"></a>00224 
-<a name="l00225"></a><a class="code" href="classC4DView.html#a98a366c65ed9c65156d47d09244e08d">00225</a>         GLint <a class="code" href="classC4DView.html#a98a366c65ed9c65156d47d09244e08d" title="a GLList for the display of the object">ObjectList</a>;       
-<a name="l00226"></a><a class="code" href="classC4DView.html#0447c7f6581eb8f83ce1a7b6a254a34a">00226</a>         GLint <a class="code" href="classC4DView.html#0447c7f6581eb8f83ce1a7b6a254a34a" title="a GLList for the display of the coordinates">CoordinateCross</a>;  
-<a name="l00227"></a>00227 
-<a name="l00228"></a><a class="code" href="classC4DView.html#c93c8aafdb0ea0c423778c488659e5d9">00228</a>         <span class="keywordtype">bool</span> <a class="code" href="classC4DView.html#c93c8aafdb0ea0c423778c488659e5d9">Animated</a>;              
-<a name="l00229"></a>00229 
-<a name="l00230"></a><a class="code" href="classC4DView.html#459c2b9c088667794ee7439f3ec871ae">00230</a>         <span class="keywordtype">bool</span> <a class="code" href="classC4DView.html#459c2b9c088667794ee7439f3ec871ae" title="true while mouse button pressed &amp;amp; mouse moved to take movement speed">TakingSpinValues</a>;
-<a name="l00231"></a><a class="code" href="classC4DView.html#11d5c808eca03f51b584e3914be7e3c1">00231</a>         <span class="keywordtype">unsigned</span> <a class="code" href="classC4DView.html#11d5c808eca03f51b584e3914be7e3c1" title="current frame in animation">animationFrame</a>;    
-<a name="l00232"></a>00232 
-<a name="l00233"></a><a class="code" href="classC4DView.html#17f63d856f35e4b651ab7462122f0ea2">00233</a>         <span class="keywordtype">bool</span> <a class="code" href="classC4DView.html#17f63d856f35e4b651ab7462122f0ea2" title="if true, currently rendering an image">CurrentlyRendering</a>;    
-<a name="l00234"></a>00234 
-<a name="l00235"></a><a class="code" href="classC4DView.html#d6eef90e25422bfcfc1663309ed595a0">00235</a>         QPoint <a class="code" href="classC4DView.html#1207eda2b7efe382f85ed4574a0f635d" title="position where the LMB press started">m_LeftDownPos</a>,       
-<a name="l00236"></a>00236                <a class="code" href="classC4DView.html#32d7f659a68895fbc3353c23c65f5d41" title="position where the MMB press started">m_MidDownPos</a>,        
-<a name="l00237"></a>00237                <a class="code" href="classC4DView.html#d6eef90e25422bfcfc1663309ed595a0" title="position where the RMB press started">m_RightDownPos</a>;      
-<a name="l00238"></a>00238 
-<a name="l00240"></a><a class="code" href="classC4DView.html#545e55ae07939317721b12a6da92eb86">00240</a>         QTimer *<a class="code" href="classC4DView.html#545e55ae07939317721b12a6da92eb86" title="times out every X ms to draw new animation frame">AnimationTimer</a>;
-<a name="l00242"></a><a class="code" href="classC4DView.html#ceae252bed8926ed258fdbe764a7ecf2">00242</a>         QTimer *<a class="code" href="classC4DView.html#ceae252bed8926ed258fdbe764a7ecf2" title="times out to change rotation direction">AnimateRandomTimer</a>;
+<a name="l00186"></a>00186         <span class="comment">//  Getters and setters accessing the implementation class's members</span>
+<a name="l00187"></a>00187         <span class="keywordtype">void</span> setF(<a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> *_f) { pImpl-&gt;F.reset(_f); }
+<a name="l00188"></a>00188         <span class="keyword">const</span> std::auto_ptr&lt;Function&gt; &amp;F()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;F; }
+<a name="l00189"></a>00189 
+<a name="l00190"></a>00190         <span class="keywordtype">void</span> setTx(<span class="keywordtype">double</span> _tx) { pImpl-&gt;Tx = _tx; }
+<a name="l00191"></a>00191         <span class="keywordtype">double</span> Tx()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;Tx; }
+<a name="l00192"></a>00192         <span class="keywordtype">void</span> setTy(<span class="keywordtype">double</span> _ty) { pImpl-&gt;Ty = _ty; }
+<a name="l00193"></a>00193         <span class="keywordtype">double</span> Ty()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;Ty; }
+<a name="l00194"></a>00194         <span class="keywordtype">void</span> setTz(<span class="keywordtype">double</span> _tz) { pImpl-&gt;Tz = _tz; }
+<a name="l00195"></a>00195         <span class="keywordtype">double</span> Tz()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;Tz; }
+<a name="l00196"></a>00196         <span class="keywordtype">void</span> setTw(<span class="keywordtype">double</span> _tw) { pImpl-&gt;Tw = _tw; }
+<a name="l00197"></a>00197         <span class="keywordtype">double</span> Tw()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;Tw; }
+<a name="l00198"></a>00198         <span class="keywordtype">void</span> setRxy(<span class="keywordtype">double</span> _rxy) { pImpl-&gt;Rxy = _rxy; }
+<a name="l00199"></a>00199         <span class="keywordtype">double</span> Rxy()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;Rxy; }
+<a name="l00200"></a>00200         <span class="keywordtype">void</span> setRxz(<span class="keywordtype">double</span> _rxz) { pImpl-&gt;Rxz = _rxz; }
+<a name="l00201"></a>00201         <span class="keywordtype">double</span> Rxz()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;Rxz; }
+<a name="l00202"></a>00202         <span class="keywordtype">void</span> setRxw(<span class="keywordtype">double</span> _rxw) { pImpl-&gt;Rxw = _rxw; }
+<a name="l00203"></a>00203         <span class="keywordtype">double</span> Rxw()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;Rxw; }
+<a name="l00204"></a>00204         <span class="keywordtype">void</span> setRyz(<span class="keywordtype">double</span> _ryz) { pImpl-&gt;Ryz = _ryz; }
+<a name="l00205"></a>00205         <span class="keywordtype">double</span> Ryz()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;Ryz; }
+<a name="l00206"></a>00206         <span class="keywordtype">void</span> setRyw(<span class="keywordtype">double</span> _ryw) { pImpl-&gt;Ryw = _ryw; }
+<a name="l00207"></a>00207         <span class="keywordtype">double</span> Ryw()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;Ryw; }
+<a name="l00208"></a>00208         <span class="keywordtype">void</span> setRzw(<span class="keywordtype">double</span> _rzw) { pImpl-&gt;Rzw = _rzw; }
+<a name="l00209"></a>00209         <span class="keywordtype">double</span> Rzw()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;Rzw; }
+<a name="l00210"></a>00210 
+<a name="l00211"></a>00211         <span class="keywordtype">void</span> setm_rotX(GLdouble _rx) { pImpl-&gt;m_rotX = _rx; }
+<a name="l00212"></a>00212         GLdouble m_rotX()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;m_rotX; }
+<a name="l00213"></a>00213         <span class="keywordtype">void</span> setm_rotY(GLdouble _ry) { pImpl-&gt;m_rotY = _ry; }
+<a name="l00214"></a>00214         GLdouble m_rotY()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;m_rotY; }
+<a name="l00215"></a>00215         <span class="keywordtype">void</span> setm_rotZ(GLdouble _rz) { pImpl-&gt;m_rotZ = _rz; }
+<a name="l00216"></a>00216         GLdouble m_rotZ()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;m_rotZ; }
+<a name="l00217"></a>00217         <span class="keywordtype">void</span> setm_transX(GLdouble _tx) { pImpl-&gt;m_transX = _tx; }
+<a name="l00218"></a>00218         GLdouble m_transX()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;m_transX; }
+<a name="l00219"></a>00219         <span class="keywordtype">void</span> setm_transY(GLdouble _ty) { pImpl-&gt;m_transY = _ty; }
+<a name="l00220"></a>00220         GLdouble m_transY()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;m_transY; }
+<a name="l00221"></a>00221         <span class="keywordtype">void</span> setm_camZ(GLdouble _cz) { pImpl-&gt;m_camZ = _cz; }
+<a name="l00222"></a>00222         GLdouble m_camZ()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;m_camZ; }
+<a name="l00223"></a>00223 
+<a name="l00224"></a>00224         <span class="keywordtype">void</span> setCamW(<span class="keywordtype">double</span> _cw) { pImpl-&gt;CamW = _cw; }
+<a name="l00225"></a>00225         <span class="keywordtype">double</span> CamW()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;CamW; }
+<a name="l00226"></a>00226         <span class="keywordtype">void</span> setScrW(<span class="keywordtype">double</span> _sw) { pImpl-&gt;ScrW = _sw; }
+<a name="l00227"></a>00227         <span class="keywordtype">double</span> ScrW()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;ScrW; }
+<a name="l00228"></a>00228 
+<a name="l00229"></a>00229         <span class="keywordtype">void</span> setAntiAlias(<span class="keywordtype">bool</span> b) { pImpl-&gt;AntiAlias = b; }
+<a name="l00230"></a>00230         <span class="keywordtype">bool</span> AntiAlias()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;AntiAlias; }
+<a name="l00231"></a>00231         <span class="keywordtype">void</span> setDisplayPolygons(<span class="keywordtype">bool</span> b) { pImpl-&gt;DisplayPolygons = b; }
+<a name="l00232"></a>00232         <span class="keywordtype">bool</span> DisplayPolygons()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;DisplayPolygons; }
+<a name="l00233"></a>00233         <span class="keywordtype">void</span> setLighting(<span class="keywordtype">bool</span> b) { pImpl-&gt;Lighting = b; }
+<a name="l00234"></a>00234         <span class="keywordtype">bool</span> Lighting()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;Lighting; }
+<a name="l00235"></a>00235         <span class="keywordtype">void</span> setDepthCue3D(<span class="keywordtype">bool</span> b) { pImpl-&gt;DepthCue3D = b; }
+<a name="l00236"></a>00236         <span class="keywordtype">bool</span> DepthCue3D()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;DepthCue3D; }
+<a name="l00237"></a>00237         <span class="keywordtype">void</span> setDepthCue4D(<span class="keywordtype">bool</span> b) { pImpl-&gt;DepthCue4D = b; }
+<a name="l00238"></a>00238         <span class="keywordtype">bool</span> DepthCue4D()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;DepthCue4D; }
+<a name="l00239"></a>00239         <span class="keywordtype">void</span> setDisplayCoordinates(<span class="keywordtype">bool</span> b) { pImpl-&gt;DisplayCoordinates = b; }
+<a name="l00240"></a>00240         <span class="keywordtype">bool</span> DisplayCoordinates()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;DisplayCoordinates; }
+<a name="l00241"></a>00241         <span class="keywordtype">void</span> setRenderToPixmap(<span class="keywordtype">bool</span> b) { pImpl-&gt;RenderToPixmap = b; }
+<a name="l00242"></a>00242         <span class="keywordtype">bool</span> RenderToPixmap()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;RenderToPixmap; }
 <a name="l00243"></a>00243 
-<a name="l00245"></a><a class="code" href="classC4DView.html#01680cf201e442d0568e5880496d74d6">00245</a>         <a class="code" href="classValuesDialogImpl.html">ValuesDialogImpl</a> *<a class="code" href="classC4DView.html#01680cf201e442d0568e5880496d74d6" title="dialog to enter function parameters">Values</a>;
-<a name="l00246"></a>00246 
-<a name="l00247"></a><a class="code" href="classC4DView.html#813e9410b0d5655609b3da15ca471446">00247</a>         <span class="keywordtype">double</span> <a class="code" href="classC4DView.html#eccde127fe4cea16d334b1e68e14e0a1" title="delta values in xy rotation angle - for animations">dxy</a>,     
-<a name="l00248"></a>00248                <a class="code" href="classC4DView.html#6deb7cbfe0ad56bc162a90f1cadd3333" title="delta values in xz rotation angle - for animations">dxz</a>,     
-<a name="l00249"></a>00249                <a class="code" href="classC4DView.html#eb93c8f93ba6b011dd4694d78d4940e2" title="delta values in xw rotation angle - for animations">dxw</a>,     
-<a name="l00250"></a>00250                <a class="code" href="classC4DView.html#802dc6d624a69f8f8c65a99b4b676e48" title="delta values in yz rotation angle - for animations">dyz</a>,     
-<a name="l00251"></a>00251                <a class="code" href="classC4DView.html#11c7bfdf817cf329783fd4fc9bcfe932" title="delta values in yw rotation angle - for animations">dyw</a>,     
-<a name="l00252"></a>00252                <a class="code" href="classC4DView.html#813e9410b0d5655609b3da15ca471446" title="delta values in zw rotation angle - for animations">dzw</a>,     
-<a name="l00253"></a>00253                <a class="code" href="classC4DView.html#d016759aaf2d5bb311bc8e80ed9b337b" title="delta values in x translation - for animations">dx</a>,      
-<a name="l00254"></a>00254                <a class="code" href="classC4DView.html#4c723750173470484a107461148e0960" title="delta values in y translation - for animations">dy</a>,      
-<a name="l00255"></a>00255                <a class="code" href="classC4DView.html#7f09fb0903ba5a2fb70d51b7274cabf0" title="delta values in z translation - for animations">dz</a>;      
-<a name="l00256"></a>00256 
-<a name="l00258"></a><a class="code" href="classC4DView.html#3a944bfbcae2c13b0fcac503d62a60fe">00258</a>         std::vector&lt;std::vector&lt;VecMath::Vector&lt;4&gt; &gt; &gt; <a class="code" href="classC4DView.html#3a944bfbcae2c13b0fcac503d62a60fe" title="endpoints of the lines constituting the 4D coordinate cross">Cross</a>;
-<a name="l00260"></a><a class="code" href="classC4DView.html#0eba9d6ac6f7fe31287fd728ef61266c">00260</a>         std::vector&lt;std::vector&lt;VecMath::Vector&lt;4&gt; &gt; &gt; <a class="code" href="classC4DView.html#0eba9d6ac6f7fe31287fd728ef61266c" title="endpoints of the lines constituting the transformed 4D coordinates">CrossTrans</a>;
-<a name="l00262"></a><a class="code" href="classC4DView.html#4b450c11b94a6dc190fd7b0e8bdb64c1">00262</a>         std::vector&lt;std::vector&lt;VecMath::Vector&lt;3&gt; &gt; &gt; <a class="code" href="classC4DView.html#4b450c11b94a6dc190fd7b0e8bdb64c1" title="endpoints of the lines constituting the projected 4D coordinates">CrossScr</a>;
-<a name="l00263"></a>00263 
-<a name="l00264"></a><a class="code" href="classC4DView.html#9311d9bc1abd37efb55eca7ecbcf964b">00264</a>         <a class="code" href="classMenu4D.html">Menu4D</a> *<a class="code" href="classC4DView.html#9311d9bc1abd37efb55eca7ecbcf964b" title="the popup menu">menu</a>;               
-<a name="l00265"></a>00265 
-<a name="l00266"></a>00266     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classC4DView_1_1CustomFunctionSlot.html" title="Class template to outsource redundant code for customized functions.">CustomFunctionSlot</a>&lt;<a class="code" href="classCustomFunction.html">CustomFunction</a>&gt;;
-<a name="l00267"></a>00267     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classC4DView_1_1CustomFunctionSlot.html" title="Class template to outsource redundant code for customized functions.">CustomFunctionSlot</a>&lt;<a class="code" href="classCustomPolarFunction.html">CustomPolarFunction</a>&gt;;
-<a name="l00268"></a>00268     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classC4DView_1_1CustomFunctionSlot.html" title="Class template to outsource redundant code for customized functions.">CustomFunctionSlot</a>&lt;<a class="code" href="classCustomComplexFunction.html">CustomComplexFunction</a>&gt;;
-<a name="l00269"></a>00269     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classC4DView_1_1CustomFunctionSlot.html" title="Class template to outsource redundant code for customized functions.">CustomFunctionSlot</a>&lt;<a class="code" href="classCustomSurface.html">CustomSurface</a>&gt;;
-<a name="l00270"></a>00270 
-<a name="l00271"></a>00271     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classFunctionSlotHelper.html" title="Single-stop slot for menu QActions generating Function objects.">FunctionSlotHelper</a>;
-<a name="l00272"></a>00272     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classSurfaceSlotHelper.html" title="Single-stop slot for menu QActions generating Surface objects.">SurfaceSlotHelper</a>;
-<a name="l00273"></a>00273 };
-<a name="l00274"></a>00274 
-<a name="l00275"></a>00275 <span class="preprocessor">#include "CustomFunctionSlot.impl.H"</span>
-<a name="l00276"></a>00276 <span class="preprocessor">#include "TemplatedFunctionFactory.impl.H"</span>
-<a name="l00277"></a>00277 
-<a name="l00278"></a>00278 <span class="preprocessor">#endif // !defined(4DVIEW)</span>
+<a name="l00244"></a>00244         <span class="keywordtype">void</span> setanimationDirectory(<span class="keyword">const</span> QString &amp;b) { pImpl-&gt;animationDirectory = b; }
+<a name="l00245"></a>00245         <span class="keyword">const</span> QString &amp; animationDirectory()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;animationDirectory; }
+<a name="l00246"></a>00246         <span class="keywordtype">void</span> setanimationPrefix(<span class="keyword">const</span> QString &amp;b) { pImpl-&gt;animationPrefix = b; }
+<a name="l00247"></a>00247         <span class="keyword">const</span> QString &amp; animationPrefix()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;animationPrefix; }
+<a name="l00248"></a>00248         
+<a name="l00249"></a>00249         <span class="keywordtype">void</span> setanimationFrame(<span class="keywordtype">unsigned</span> b) { pImpl-&gt;animationFrame = b; }
+<a name="l00250"></a>00250         <span class="keywordtype">unsigned</span> animationFrame()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;animationFrame; }
+<a name="l00251"></a>00251         <span class="keywordtype">void</span> setanimationMaxFrames(<span class="keywordtype">unsigned</span> b) { pImpl-&gt;animationMaxFrames = b; }
+<a name="l00252"></a>00252         <span class="keywordtype">unsigned</span> animationMaxFrames()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;animationMaxFrames; }
+<a name="l00253"></a>00253         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> animation_fps()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;animation_fps; }
+<a name="l00254"></a>00254 
+<a name="l00255"></a>00255         <span class="keywordtype">void</span> setObjectList(GLint b) { pImpl-&gt;ObjectList = b; }
+<a name="l00256"></a>00256         GLint ObjectList()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;ObjectList; }
+<a name="l00257"></a>00257         <span class="keywordtype">void</span> setCoordinateCross(GLint b) { pImpl-&gt;CoordinateCross = b; }
+<a name="l00258"></a>00258         GLint CoordinateCross()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;CoordinateCross; }
+<a name="l00259"></a>00259 
+<a name="l00260"></a>00260         <span class="keywordtype">void</span> setAnimated(<span class="keywordtype">bool</span> b) { pImpl-&gt;Animated = b; }
+<a name="l00261"></a>00261         <span class="keywordtype">bool</span> Animated()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;Animated; }
+<a name="l00262"></a>00262         <span class="keywordtype">void</span> setTakingSpinValues(<span class="keywordtype">bool</span> b) { pImpl-&gt;TakingSpinValues = b; }
+<a name="l00263"></a>00263         <span class="keywordtype">bool</span> TakingSpinValues()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;TakingSpinValues; }
+<a name="l00264"></a>00264         <span class="keywordtype">void</span> setCurrentlyRendering(<span class="keywordtype">bool</span> b) { pImpl-&gt;CurrentlyRendering = b; }
+<a name="l00265"></a>00265         <span class="keywordtype">bool</span> CurrentlyRendering()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;CurrentlyRendering; }
+<a name="l00266"></a>00266 
+<a name="l00267"></a>00267         <span class="keywordtype">void</span> setm_LeftDownPos(QPoint b) { pImpl-&gt;m_LeftDownPos = b; }
+<a name="l00268"></a>00268         QPoint m_LeftDownPos()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;m_LeftDownPos; }
+<a name="l00269"></a>00269         <span class="keywordtype">void</span> setm_MidDownPos(QPoint b) { pImpl-&gt;m_MidDownPos = b; }
+<a name="l00270"></a>00270         QPoint m_MidDownPos()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;m_MidDownPos; }
+<a name="l00271"></a>00271         <span class="keywordtype">void</span> setm_RightDownPos(QPoint b) { pImpl-&gt;m_RightDownPos = b; }
+<a name="l00272"></a>00272         QPoint m_RightDownPos()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;m_RightDownPos; }
+<a name="l00273"></a>00273 
+<a name="l00274"></a>00274         <span class="keywordtype">void</span> setAnimationTimer(QTimer * b) { pImpl-&gt;AnimationTimer = b; }
+<a name="l00275"></a>00275         QTimer * AnimationTimer()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;AnimationTimer; }
+<a name="l00276"></a>00276         <span class="keywordtype">void</span> setAnimateRandomTimer(QTimer * b) { pImpl-&gt;AnimateRandomTimer = b; }
+<a name="l00277"></a>00277         QTimer * AnimateRandomTimer()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;AnimateRandomTimer; }
+<a name="l00278"></a>00278 
+<a name="l00279"></a>00279         <span class="keywordtype">void</span> setValues(<a class="code" href="classValuesDialogImpl.html">ValuesDialogImpl</a> * b) { pImpl-&gt;Values = b; }
+<a name="l00280"></a>00280         <a class="code" href="classValuesDialogImpl.html">ValuesDialogImpl</a> * Values()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;Values; }
+<a name="l00281"></a>00281 
+<a name="l00282"></a>00282         <span class="keywordtype">void</span> setdxy(<span class="keywordtype">double</span> _dxy) { pImpl-&gt;dxy = _dxy; }
+<a name="l00283"></a>00283         <span class="keywordtype">double</span> dxy()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;dxy; }
+<a name="l00284"></a>00284         <span class="keywordtype">void</span> setdxz(<span class="keywordtype">double</span> _dxz) { pImpl-&gt;dxz = _dxz; }
+<a name="l00285"></a>00285         <span class="keywordtype">double</span> dxz()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;dxz; }
+<a name="l00286"></a>00286         <span class="keywordtype">void</span> setdxw(<span class="keywordtype">double</span> _dxw) { pImpl-&gt;dxw = _dxw; }
+<a name="l00287"></a>00287         <span class="keywordtype">double</span> dxw()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;dxw; }
+<a name="l00288"></a>00288         <span class="keywordtype">void</span> setdyz(<span class="keywordtype">double</span> _dyz) { pImpl-&gt;dyz = _dyz; }
+<a name="l00289"></a>00289         <span class="keywordtype">double</span> dyz()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;dyz; }
+<a name="l00290"></a>00290         <span class="keywordtype">void</span> setdyw(<span class="keywordtype">double</span> _dyw) { pImpl-&gt;dyw = _dyw; }
+<a name="l00291"></a>00291         <span class="keywordtype">double</span> dyw()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;dyw; }
+<a name="l00292"></a>00292         <span class="keywordtype">void</span> setdzw(<span class="keywordtype">double</span> _dzw) { pImpl-&gt;dzw = _dzw; }
+<a name="l00293"></a>00293         <span class="keywordtype">double</span> dzw()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;dzw; }
+<a name="l00294"></a>00294         <span class="keywordtype">void</span> setdx(<span class="keywordtype">double</span> _dx) { pImpl-&gt;dx = _dx; }
+<a name="l00295"></a>00295         <span class="keywordtype">double</span> dx()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;dx; }
+<a name="l00296"></a>00296         <span class="keywordtype">void</span> setdy(<span class="keywordtype">double</span> _dy) { pImpl-&gt;dy = _dy; }
+<a name="l00297"></a>00297         <span class="keywordtype">double</span> dy()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;dy; }
+<a name="l00298"></a>00298         <span class="keywordtype">void</span> setdz(<span class="keywordtype">double</span> _dz) { pImpl-&gt;dz = _dz; }
+<a name="l00299"></a>00299         <span class="keywordtype">double</span> dz()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;dz; }
+<a name="l00300"></a>00300 
+<a name="l00301"></a>00301         <span class="keywordtype">void</span> setmenu(<a class="code" href="classMenu4D.html">Menu4D</a> * b) { pImpl-&gt;menu = b; }
+<a name="l00302"></a>00302         <a class="code" href="classMenu4D.html">Menu4D</a> * menu()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;menu; }
+<a name="l00303"></a>00303 
+<a name="l00304"></a>00304         
+<a name="l00305"></a>00305     <span class="keyword">private</span>:                                    <span class="comment">//  member variables</span>
+<a name="l00307"></a>00307 <span class="comment"></span>
+<a name="l00331"></a><a class="code" href="structC4DView_1_1Impl.html">00331</a>         <span class="keyword">struct </span><a class="code" href="structC4DView_1_1Impl.html" title="Private class containing the mamber data for the Pimpl idiom.">Impl</a> {
+<a name="l00332"></a>00332             <a class="code" href="structC4DView_1_1Impl.html" title="Private class containing the mamber data for the Pimpl idiom.">Impl</a>(<a class="code" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> *parent):
+<a name="l00333"></a>00333                 <a class="code" href="structC4DView_1_1Impl.html#2b72ba34a0717cf86dd585028a8d4467" title="the Function object currently displayed">F</a>(std::auto_ptr&lt;Function&gt;()),
+<a name="l00334"></a>00334 
+<a name="l00335"></a>00335                 <a class="code" href="structC4DView_1_1Impl.html#2e1143497ad771f69bcb3d84dc246481" title="X coordinate for the 4D translation of the object.">Tx</a> (0), <a class="code" href="structC4DView_1_1Impl.html#937aadc3e51aae5700e29ad458bd687d" title="Y coordinate for the 4D translation of the object.">Ty</a> (0), <a class="code" href="structC4DView_1_1Impl.html#dd7a50748d2af8908e789ba36abe7a56" title="Z coordinate for the 4D translation of the object.">Tz</a> (0), <a class="code" href="structC4DView_1_1Impl.html#ae0c647bf77277c24b87f6778486ee7f" title="W coordinate for the 4D translation of the object.">Tw</a> (0),
+<a name="l00336"></a>00336                 <a class="code" href="structC4DView_1_1Impl.html#95e1e5a5659fc6294cc11d8974374568" title="XY angle for the 4D rotation of the object.">Rxy</a> (0), <a class="code" href="structC4DView_1_1Impl.html#8b23d83333a629cfe2330f93f4296d84" title="XZ angle for the 4D rotation of the object.">Rxz</a> (0), <a class="code" href="structC4DView_1_1Impl.html#4110a883dea58c1363a01d005b09e838" title="XW angle for the 4D rotation of the object.">Rxw</a> (0), <a class="code" href="structC4DView_1_1Impl.html#89befdf3246e15700f49a71f1aabf55f" title="YZ angle for the 4D rotation of the object.">Ryz</a> (0), <a class="code" href="structC4DView_1_1Impl.html#44cabd1baae3cd26314cc2704d7e5072" title="YW angle for the 4D rotation of the object.">Ryw</a> (0), <a class="code" href="structC4DView_1_1Impl.html#1e786f009cd6f1bdeafe04125d6f3b6f" title="ZW angle for the 4D rotation of the object.">Rzw</a> (0),
+<a name="l00337"></a>00337 
+<a name="l00338"></a>00338                 <a class="code" href="structC4DView_1_1Impl.html#6d4dc4785b3f4df70c06fbd7b5f5a3ca" title="rotation in X">m_rotX</a> (15), <a class="code" href="structC4DView_1_1Impl.html#7e79a5f10abb48f382e9328276498a62" title="rotation in Y">m_rotY</a> (15), <a class="code" href="structC4DView_1_1Impl.html#40a4ebb84315eb8a2c317b0be1b0e4bb" title="rotation in Z">m_rotZ</a> (0.),
+<a name="l00339"></a>00339                 <a class="code" href="structC4DView_1_1Impl.html#4567faca093019bde9867d55de2f8625" title="translation in X">m_transX</a> (0), <a class="code" href="structC4DView_1_1Impl.html#d0ecc29a9ded087986e3c0d56ad85c9d" title="translation in Y">m_transY</a> (0), <a class="code" href="structC4DView_1_1Impl.html#521db46a3b0832b8c8b292ac633c0b00" title="Z coordinate of camera (distance from object).">m_camZ</a> (-10.),
+<a name="l00340"></a>00340 
+<a name="l00341"></a>00341                 <a class="code" href="structC4DView_1_1Impl.html#192ba7de2db741f965b51203813ca165" title="W coordinate of the camera.">CamW</a> (-3.), <a class="code" href="structC4DView_1_1Impl.html#a5df6de272ca1c28d980d3ec9c46dbe5" title="W coordinate of the screen.">ScrW</a> (0.),
+<a name="l00342"></a>00342 
+<a name="l00343"></a>00343                 <a class="code" href="structC4DView_1_1Impl.html#a87cecbe7c47c8002f8d889c08945a04" title="if true, draw lines antialiased, surfaces transparent">AntiAlias</a> (<span class="keyword">false</span>), <a class="code" href="structC4DView_1_1Impl.html#604ef3378d1d05fd3f87b73807a406ec" title="if true, draw solid surfaces">DisplayPolygons</a> (<span class="keyword">false</span>), <a class="code" href="structC4DView_1_1Impl.html#d17b279aa2f35bbdac91d616979a2fa8" title="if true, use lights in rendering">Lighting</a> (<span class="keyword">true</span>),
+<a name="l00344"></a>00344                 <a class="code" href="structC4DView_1_1Impl.html#b8b0e1d5cc782c906c2e90fc57bf80d3" title="if true, use depth cue">DepthCue3D</a> (<span class="keyword">false</span>), <a class="code" href="structC4DView_1_1Impl.html#eb1ae6c570224ebaede2a86653967bb7" title="if true, use depth cue in 4D">DepthCue4D</a> (<span class="keyword">false</span>),
+<a name="l00345"></a>00345                 <a class="code" href="structC4DView_1_1Impl.html#57f39f03817730e9c45af09f8f0aef7c" title="if true, show the 4D coordinate cross">DisplayCoordinates</a> (<span class="keyword">false</span>),
+<a name="l00346"></a>00346                 <a class="code" href="structC4DView_1_1Impl.html#2c232c1a3138aa52a4ff1b3c8825eef8" title="if true, save images">RenderToPixmap</a> (<span class="keyword">false</span>),
+<a name="l00347"></a>00347                 <a class="code" href="structC4DView_1_1Impl.html#c3d45bf0171fe1fe3813689ffab77365" title="where to save an animation&amp;#39;s frames">animationDirectory</a>(<span class="stringliteral">"/tmp"</span>),
+<a name="l00348"></a>00348                 <a class="code" href="structC4DView_1_1Impl.html#2406494efc801231c36d4c2248b09afe" title="prefix of animation frame filenames">animationPrefix</a>(<span class="stringliteral">"HyperspaceExplorer_Image"</span>),
+<a name="l00349"></a>00349                 <a class="code" href="structC4DView_1_1Impl.html#33cb657cbba5dec230aa1e8c108af905" title="limit for saved animation frames">animationMaxFrames</a>((<span class="keywordtype">unsigned</span>)-1),
+<a name="l00350"></a>00350                 <a class="code" href="structC4DView_1_1Impl.html#f631fff9f5b4874c5fccf00c7cc19deb" title="frames per second for animations">animation_fps</a> (50),
+<a name="l00351"></a>00351 
+<a name="l00352"></a>00352                 <a class="code" href="structC4DView_1_1Impl.html#bc62e63236ebc41bc0cdb1856b701424" title="a GLList for the display of the object">ObjectList</a> (0), <a class="code" href="structC4DView_1_1Impl.html#dbe47e782fce1bed15f4719090a7302a" title="a GLList for the display of the coordinates">CoordinateCross</a> (0),
+<a name="l00353"></a>00353 
+<a name="l00354"></a>00354                 <a class="code" href="structC4DView_1_1Impl.html#503ce545ecd653b4e7bd9cd3ddee7dc0">Animated</a> (<span class="keyword">false</span>), <a class="code" href="structC4DView_1_1Impl.html#dcef4d021c507cdc6f480f9443d51f31" title="true while mouse button pressed &amp;amp; mouse moved to take movement speed">TakingSpinValues</a> (<span class="keyword">false</span>),
+<a name="l00355"></a>00355                 <a class="code" href="structC4DView_1_1Impl.html#bc804963c638f50c21b36fc80b2218ea" title="if true, currently rendering an image">CurrentlyRendering</a> (<span class="keyword">false</span>),
+<a name="l00356"></a>00356 
+<a name="l00357"></a>00357                 <a class="code" href="structC4DView_1_1Impl.html#8ff8393a464478cf529951c19dff44f1" title="position where the LMB press started">m_LeftDownPos</a> (0,0), <a class="code" href="structC4DView_1_1Impl.html#4a9199ba2e973c40f797654cbe0255c7" title="position where the MMB press started">m_MidDownPos</a> (0,0), <a class="code" href="structC4DView_1_1Impl.html#63db7a403af416fb7a7ecad4ee2722e1" title="position where the RMB press started">m_RightDownPos</a> (0,0),
+<a name="l00358"></a>00358 
+<a name="l00359"></a>00359                 <a class="code" href="structC4DView_1_1Impl.html#e1b669a3fcb19b2cb652fd0e33061602" title="dialog to enter function parameters">Values</a> (<span class="keyword">new</span> <a class="code" href="classValuesDialogImpl.html">ValuesDialogImpl</a> (parent)),
+<a name="l00360"></a>00360                 <a class="code" href="structC4DView_1_1Impl.html#77df73669d8fcb91a99044f1de33dc83" title="delta values in xy rotation angle - for animations">dxy</a> (0), <a class="code" href="structC4DView_1_1Impl.html#808548b90412c3438a0d02d6e8298ac9" title="delta values in xz rotation angle - for animations">dxz</a> (0), <a class="code" href="structC4DView_1_1Impl.html#83cad34eb72145b76e341fea812e1dce" title="delta values in xw rotation angle - for animations">dxw</a> (0), <a class="code" href="structC4DView_1_1Impl.html#f309fef6ba57c3bb007f4f6689244da8" title="delta values in yz rotation angle - for animations">dyz</a> (0), <a class="code" href="structC4DView_1_1Impl.html#d06ace5af4bdf95b0871734cf07d09e9" title="delta values in yw rotation angle - for animations">dyw</a> (0), <a class="code" href="structC4DView_1_1Impl.html#578ef768e98dea6f4e03110f0a0db050" title="delta values in zw rotation angle - for animations">dzw</a> (0),
+<a name="l00361"></a>00361                 <a class="code" href="structC4DView_1_1Impl.html#b8e9095492654d33b17505717b978766" title="delta values in x translation - for animations">dx</a> (0), <a class="code" href="structC4DView_1_1Impl.html#50ca24efb925fc7353043a9ef163879c" title="delta values in y translation - for animations">dy</a> (0), <a class="code" href="structC4DView_1_1Impl.html#11a5c6bb318df27e85b3deb79b64c3e7" title="delta values in z translation - for animations">dz</a> (0) {}
+<a name="l00362"></a>00362 
+<a name="l00363"></a><a class="code" href="structC4DView_1_1Impl.html#2b72ba34a0717cf86dd585028a8d4467">00363</a>             std::auto_ptr&lt;Function&gt; <a class="code" href="structC4DView_1_1Impl.html#2b72ba34a0717cf86dd585028a8d4467" title="the Function object currently displayed">F</a>;  
+<a name="l00364"></a>00364 
+<a name="l00365"></a><a class="code" href="structC4DView_1_1Impl.html#dd7a50748d2af8908e789ba36abe7a56">00365</a>             <span class="keywordtype">double</span> <a class="code" href="structC4DView_1_1Impl.html#2e1143497ad771f69bcb3d84dc246481" title="X coordinate for the 4D translation of the object.">Tx</a>,  
+<a name="l00366"></a>00366                    <a class="code" href="structC4DView_1_1Impl.html#937aadc3e51aae5700e29ad458bd687d" title="Y coordinate for the 4D translation of the object.">Ty</a>,  
+<a name="l00367"></a>00367                    <a class="code" href="structC4DView_1_1Impl.html#dd7a50748d2af8908e789ba36abe7a56" title="Z coordinate for the 4D translation of the object.">Tz</a>,  
+<a name="l00368"></a>00368                    <a class="code" href="structC4DView_1_1Impl.html#ae0c647bf77277c24b87f6778486ee7f" title="W coordinate for the 4D translation of the object.">Tw</a>;  
+<a name="l00369"></a><a class="code" href="structC4DView_1_1Impl.html#1e786f009cd6f1bdeafe04125d6f3b6f">00369</a>             <span class="keywordtype">double</span> <a class="code" href="structC4DView_1_1Impl.html#95e1e5a5659fc6294cc11d8974374568" title="XY angle for the 4D rotation of the object.">Rxy</a>, 
+<a name="l00370"></a>00370                    <a class="code" href="structC4DView_1_1Impl.html#8b23d83333a629cfe2330f93f4296d84" title="XZ angle for the 4D rotation of the object.">Rxz</a>, 
+<a name="l00371"></a>00371                    <a class="code" href="structC4DView_1_1Impl.html#4110a883dea58c1363a01d005b09e838" title="XW angle for the 4D rotation of the object.">Rxw</a>, 
+<a name="l00372"></a>00372                    <a class="code" href="structC4DView_1_1Impl.html#89befdf3246e15700f49a71f1aabf55f" title="YZ angle for the 4D rotation of the object.">Ryz</a>, 
+<a name="l00373"></a>00373                    <a class="code" href="structC4DView_1_1Impl.html#44cabd1baae3cd26314cc2704d7e5072" title="YW angle for the 4D rotation of the object.">Ryw</a>, 
+<a name="l00374"></a>00374                    <a class="code" href="structC4DView_1_1Impl.html#1e786f009cd6f1bdeafe04125d6f3b6f" title="ZW angle for the 4D rotation of the object.">Rzw</a>; 
+<a name="l00375"></a>00375 
+<a name="l00376"></a><a class="code" href="structC4DView_1_1Impl.html#6d4dc4785b3f4df70c06fbd7b5f5a3ca">00376</a>             GLdouble <a class="code" href="structC4DView_1_1Impl.html#6d4dc4785b3f4df70c06fbd7b5f5a3ca" title="rotation in X">m_rotX</a>;    
+<a name="l00377"></a><a class="code" href="structC4DView_1_1Impl.html#7e79a5f10abb48f382e9328276498a62">00377</a>             GLdouble <a class="code" href="structC4DView_1_1Impl.html#7e79a5f10abb48f382e9328276498a62" title="rotation in Y">m_rotY</a>;    
+<a name="l00378"></a><a class="code" href="structC4DView_1_1Impl.html#40a4ebb84315eb8a2c317b0be1b0e4bb">00378</a>             GLdouble <a class="code" href="structC4DView_1_1Impl.html#40a4ebb84315eb8a2c317b0be1b0e4bb" title="rotation in Z">m_rotZ</a>;    
+<a name="l00379"></a><a class="code" href="structC4DView_1_1Impl.html#4567faca093019bde9867d55de2f8625">00379</a>             GLdouble <a class="code" href="structC4DView_1_1Impl.html#4567faca093019bde9867d55de2f8625" title="translation in X">m_transX</a>;  
+<a name="l00380"></a><a class="code" href="structC4DView_1_1Impl.html#d0ecc29a9ded087986e3c0d56ad85c9d">00380</a>             GLdouble <a class="code" href="structC4DView_1_1Impl.html#d0ecc29a9ded087986e3c0d56ad85c9d" title="translation in Y">m_transY</a>;  
+<a name="l00381"></a><a class="code" href="structC4DView_1_1Impl.html#521db46a3b0832b8c8b292ac633c0b00">00381</a>             GLdouble <a class="code" href="structC4DView_1_1Impl.html#521db46a3b0832b8c8b292ac633c0b00" title="Z coordinate of camera (distance from object).">m_camZ</a>;    
+<a name="l00382"></a>00382 
+<a name="l00383"></a><a class="code" href="structC4DView_1_1Impl.html#192ba7de2db741f965b51203813ca165">00383</a>             <span class="keywordtype">double</span> <a class="code" href="structC4DView_1_1Impl.html#192ba7de2db741f965b51203813ca165" title="W coordinate of the camera.">CamW</a>;        
+<a name="l00384"></a><a class="code" href="structC4DView_1_1Impl.html#a5df6de272ca1c28d980d3ec9c46dbe5">00384</a>             <span class="keywordtype">double</span> <a class="code" href="structC4DView_1_1Impl.html#a5df6de272ca1c28d980d3ec9c46dbe5" title="W coordinate of the screen.">ScrW</a>;        
+<a name="l00385"></a>00385 
+<a name="l00387"></a><a class="code" href="structC4DView_1_1Impl.html#a87cecbe7c47c8002f8d889c08945a04">00387</a>             <span class="keywordtype">bool</span> <a class="code" href="structC4DView_1_1Impl.html#a87cecbe7c47c8002f8d889c08945a04" title="if true, draw lines antialiased, surfaces transparent">AntiAlias</a>;
+<a name="l00388"></a><a class="code" href="structC4DView_1_1Impl.html#604ef3378d1d05fd3f87b73807a406ec">00388</a>             <span class="keywordtype">bool</span> <a class="code" href="structC4DView_1_1Impl.html#604ef3378d1d05fd3f87b73807a406ec" title="if true, draw solid surfaces">DisplayPolygons</a>;       
+<a name="l00389"></a><a class="code" href="structC4DView_1_1Impl.html#d17b279aa2f35bbdac91d616979a2fa8">00389</a>             <span class="keywordtype">bool</span> <a class="code" href="structC4DView_1_1Impl.html#d17b279aa2f35bbdac91d616979a2fa8" title="if true, use lights in rendering">Lighting</a>;              
+<a name="l00390"></a><a class="code" href="structC4DView_1_1Impl.html#b8b0e1d5cc782c906c2e90fc57bf80d3">00390</a>             <span class="keywordtype">bool</span> <a class="code" href="structC4DView_1_1Impl.html#b8b0e1d5cc782c906c2e90fc57bf80d3" title="if true, use depth cue">DepthCue3D</a>;            
+<a name="l00391"></a><a class="code" href="structC4DView_1_1Impl.html#eb1ae6c570224ebaede2a86653967bb7">00391</a>             <span class="keywordtype">bool</span> <a class="code" href="structC4DView_1_1Impl.html#eb1ae6c570224ebaede2a86653967bb7" title="if true, use depth cue in 4D">DepthCue4D</a>;            
+<a name="l00392"></a>00392 
+<a name="l00393"></a><a class="code" href="structC4DView_1_1Impl.html#57f39f03817730e9c45af09f8f0aef7c">00393</a>             <span class="keywordtype">bool</span> <a class="code" href="structC4DView_1_1Impl.html#57f39f03817730e9c45af09f8f0aef7c" title="if true, show the 4D coordinate cross">DisplayCoordinates</a>;    
+<a name="l00394"></a><a class="code" href="structC4DView_1_1Impl.html#2c232c1a3138aa52a4ff1b3c8825eef8">00394</a>             <span class="keywordtype">bool</span> <a class="code" href="structC4DView_1_1Impl.html#2c232c1a3138aa52a4ff1b3c8825eef8" title="if true, save images">RenderToPixmap</a>;        
+<a name="l00395"></a>00395 
+<a name="l00396"></a><a class="code" href="structC4DView_1_1Impl.html#c3d45bf0171fe1fe3813689ffab77365">00396</a>             QString <a class="code" href="structC4DView_1_1Impl.html#c3d45bf0171fe1fe3813689ffab77365" title="where to save an animation&amp;#39;s frames">animationDirectory</a>; 
+<a name="l00397"></a><a class="code" href="structC4DView_1_1Impl.html#2406494efc801231c36d4c2248b09afe">00397</a>             QString <a class="code" href="structC4DView_1_1Impl.html#2406494efc801231c36d4c2248b09afe" title="prefix of animation frame filenames">animationPrefix</a>;    
+<a name="l00398"></a><a class="code" href="structC4DView_1_1Impl.html#33cb657cbba5dec230aa1e8c108af905">00398</a>             <span class="keywordtype">unsigned</span> <a class="code" href="structC4DView_1_1Impl.html#33cb657cbba5dec230aa1e8c108af905" title="limit for saved animation frames">animationMaxFrames</a>;    
+<a name="l00399"></a><a class="code" href="structC4DView_1_1Impl.html#f631fff9f5b4874c5fccf00c7cc19deb">00399</a>             <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <a class="code" href="structC4DView_1_1Impl.html#f631fff9f5b4874c5fccf00c7cc19deb" title="frames per second for animations">animation_fps</a>;   
+<a name="l00400"></a>00400 
+<a name="l00401"></a><a class="code" href="structC4DView_1_1Impl.html#bc62e63236ebc41bc0cdb1856b701424">00401</a>             GLint <a class="code" href="structC4DView_1_1Impl.html#bc62e63236ebc41bc0cdb1856b701424" title="a GLList for the display of the object">ObjectList</a>;       
+<a name="l00402"></a><a class="code" href="structC4DView_1_1Impl.html#dbe47e782fce1bed15f4719090a7302a">00402</a>             GLint <a class="code" href="structC4DView_1_1Impl.html#dbe47e782fce1bed15f4719090a7302a" title="a GLList for the display of the coordinates">CoordinateCross</a>;  
+<a name="l00403"></a>00403 
+<a name="l00404"></a><a class="code" href="structC4DView_1_1Impl.html#503ce545ecd653b4e7bd9cd3ddee7dc0">00404</a>             <span class="keywordtype">bool</span> <a class="code" href="structC4DView_1_1Impl.html#503ce545ecd653b4e7bd9cd3ddee7dc0">Animated</a>;              
+<a name="l00405"></a>00405 
+<a name="l00406"></a><a class="code" href="structC4DView_1_1Impl.html#dcef4d021c507cdc6f480f9443d51f31">00406</a>             <span class="keywordtype">bool</span> <a class="code" href="structC4DView_1_1Impl.html#dcef4d021c507cdc6f480f9443d51f31" title="true while mouse button pressed &amp;amp; mouse moved to take movement speed">TakingSpinValues</a>;
+<a name="l00407"></a><a class="code" href="structC4DView_1_1Impl.html#bfbc503157adcc2e33c149c07cdb59ed">00407</a>             <span class="keywordtype">unsigned</span> <a class="code" href="structC4DView_1_1Impl.html#bfbc503157adcc2e33c149c07cdb59ed" title="current frame in animation">animationFrame</a>;    
+<a name="l00408"></a>00408 
+<a name="l00409"></a><a class="code" href="structC4DView_1_1Impl.html#bc804963c638f50c21b36fc80b2218ea">00409</a>             <span class="keywordtype">bool</span> <a class="code" href="structC4DView_1_1Impl.html#bc804963c638f50c21b36fc80b2218ea" title="if true, currently rendering an image">CurrentlyRendering</a>;    
+<a name="l00410"></a>00410 
+<a name="l00411"></a><a class="code" href="structC4DView_1_1Impl.html#63db7a403af416fb7a7ecad4ee2722e1">00411</a>             QPoint <a class="code" href="structC4DView_1_1Impl.html#8ff8393a464478cf529951c19dff44f1" title="position where the LMB press started">m_LeftDownPos</a>,       
+<a name="l00412"></a>00412                    <a class="code" href="structC4DView_1_1Impl.html#4a9199ba2e973c40f797654cbe0255c7" title="position where the MMB press started">m_MidDownPos</a>,        
+<a name="l00413"></a>00413                    <a class="code" href="structC4DView_1_1Impl.html#63db7a403af416fb7a7ecad4ee2722e1" title="position where the RMB press started">m_RightDownPos</a>;      
+<a name="l00414"></a>00414 
+<a name="l00416"></a><a class="code" href="structC4DView_1_1Impl.html#bb8ef7e728ae5c058d60ed7487193e88">00416</a>             QTimer *<a class="code" href="structC4DView_1_1Impl.html#bb8ef7e728ae5c058d60ed7487193e88" title="times out every X ms to draw new animation frame">AnimationTimer</a>;
+<a name="l00418"></a><a class="code" href="structC4DView_1_1Impl.html#47bcadad22a088fad759c3fb2418ebc8">00418</a>             QTimer *<a class="code" href="structC4DView_1_1Impl.html#47bcadad22a088fad759c3fb2418ebc8" title="times out to change rotation direction">AnimateRandomTimer</a>;
+<a name="l00419"></a>00419 
+<a name="l00421"></a><a class="code" href="structC4DView_1_1Impl.html#e1b669a3fcb19b2cb652fd0e33061602">00421</a>             <a class="code" href="classValuesDialogImpl.html">ValuesDialogImpl</a> *<a class="code" href="structC4DView_1_1Impl.html#e1b669a3fcb19b2cb652fd0e33061602" title="dialog to enter function parameters">Values</a>;
+<a name="l00422"></a>00422 
+<a name="l00423"></a><a class="code" href="structC4DView_1_1Impl.html#578ef768e98dea6f4e03110f0a0db050">00423</a>             <span class="keywordtype">double</span> <a class="code" href="structC4DView_1_1Impl.html#77df73669d8fcb91a99044f1de33dc83" title="delta values in xy rotation angle - for animations">dxy</a>,     
+<a name="l00424"></a>00424                    <a class="code" href="structC4DView_1_1Impl.html#808548b90412c3438a0d02d6e8298ac9" title="delta values in xz rotation angle - for animations">dxz</a>,     
+<a name="l00425"></a>00425                    <a class="code" href="structC4DView_1_1Impl.html#83cad34eb72145b76e341fea812e1dce" title="delta values in xw rotation angle - for animations">dxw</a>,     
+<a name="l00426"></a>00426                    <a class="code" href="structC4DView_1_1Impl.html#f309fef6ba57c3bb007f4f6689244da8" title="delta values in yz rotation angle - for animations">dyz</a>,     
+<a name="l00427"></a>00427                    <a class="code" href="structC4DView_1_1Impl.html#d06ace5af4bdf95b0871734cf07d09e9" title="delta values in yw rotation angle - for animations">dyw</a>,     
+<a name="l00428"></a>00428                    <a class="code" href="structC4DView_1_1Impl.html#578ef768e98dea6f4e03110f0a0db050" title="delta values in zw rotation angle - for animations">dzw</a>,     
+<a name="l00429"></a>00429                    <a class="code" href="structC4DView_1_1Impl.html#b8e9095492654d33b17505717b978766" title="delta values in x translation - for animations">dx</a>,      
+<a name="l00430"></a>00430                    <a class="code" href="structC4DView_1_1Impl.html#50ca24efb925fc7353043a9ef163879c" title="delta values in y translation - for animations">dy</a>,      
+<a name="l00431"></a>00431                    <a class="code" href="structC4DView_1_1Impl.html#11a5c6bb318df27e85b3deb79b64c3e7" title="delta values in z translation - for animations">dz</a>;      
+<a name="l00432"></a>00432 
+<a name="l00434"></a><a class="code" href="structC4DView_1_1Impl.html#a2836b5138de91ead6dbc02156e4b03b">00434</a>             std::vector&lt;std::vector&lt;VecMath::Vector&lt;4&gt; &gt; &gt; <a class="code" href="structC4DView_1_1Impl.html#a2836b5138de91ead6dbc02156e4b03b" title="endpoints of the lines constituting the 4D coordinate cross">Cross</a>;
+<a name="l00436"></a><a class="code" href="structC4DView_1_1Impl.html#8a102fbc9feaa7234b3943476274f093">00436</a>             std::vector&lt;std::vector&lt;VecMath::Vector&lt;4&gt; &gt; &gt; <a class="code" href="structC4DView_1_1Impl.html#8a102fbc9feaa7234b3943476274f093" title="endpoints of the lines constituting the transformed 4D coordinates">CrossTrans</a>;
+<a name="l00438"></a><a class="code" href="structC4DView_1_1Impl.html#447ba1ee42cf7280a27bf117e85eeb92">00438</a>             std::vector&lt;std::vector&lt;VecMath::Vector&lt;3&gt; &gt; &gt; <a class="code" href="structC4DView_1_1Impl.html#447ba1ee42cf7280a27bf117e85eeb92" title="endpoints of the lines constituting the projected 4D coordinates">CrossScr</a>;
+<a name="l00439"></a>00439 
+<a name="l00440"></a><a class="code" href="structC4DView_1_1Impl.html#89a7c96b95f1aed9fc92460b5f159607">00440</a>             <a class="code" href="classMenu4D.html">Menu4D</a> *<a class="code" href="structC4DView_1_1Impl.html#89a7c96b95f1aed9fc92460b5f159607" title="the popup menu">menu</a>;               
+<a name="l00441"></a>00441         };
+<a name="l00442"></a>00442 
+<a name="l00443"></a>00443     std::auto_ptr&lt;C4DView::Impl&gt; pImpl;
+<a name="l00444"></a>00444 
+<a name="l00446"></a><a class="code" href="classC4DView.html#3a944bfbcae2c13b0fcac503d62a60fe">00446</a>     std::vector&lt;std::vector&lt;VecMath::Vector&lt;4&gt; &gt; &gt; <a class="code" href="classC4DView.html#3a944bfbcae2c13b0fcac503d62a60fe" title="endpoints of the lines constituting the 4D coordinate cross">Cross</a>;
+<a name="l00448"></a><a class="code" href="classC4DView.html#0eba9d6ac6f7fe31287fd728ef61266c">00448</a>     std::vector&lt;std::vector&lt;VecMath::Vector&lt;4&gt; &gt; &gt; <a class="code" href="classC4DView.html#0eba9d6ac6f7fe31287fd728ef61266c" title="endpoints of the lines constituting the transformed 4D coordinates">CrossTrans</a>;
+<a name="l00450"></a><a class="code" href="classC4DView.html#4b450c11b94a6dc190fd7b0e8bdb64c1">00450</a>     std::vector&lt;std::vector&lt;VecMath::Vector&lt;3&gt; &gt; &gt; <a class="code" href="classC4DView.html#4b450c11b94a6dc190fd7b0e8bdb64c1" title="endpoints of the lines constituting the projected 4D coordinates">CrossScr</a>;
+<a name="l00451"></a>00451 
+<a name="l00452"></a>00452     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classC4DView_1_1CustomFunctionSlot.html" title="Class template to outsource redundant code for customized functions.">CustomFunctionSlot</a>&lt;<a class="code" href="classCustomFunction.html">CustomFunction</a>&gt;;
+<a name="l00453"></a>00453     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classC4DView_1_1CustomFunctionSlot.html" title="Class template to outsource redundant code for customized functions.">CustomFunctionSlot</a>&lt;<a class="code" href="classCustomPolarFunction.html">CustomPolarFunction</a>&gt;;
+<a name="l00454"></a>00454     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classC4DView_1_1CustomFunctionSlot.html" title="Class template to outsource redundant code for customized functions.">CustomFunctionSlot</a>&lt;<a class="code" href="classCustomComplexFunction.html">CustomComplexFunction</a>&gt;;
+<a name="l00455"></a>00455     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classC4DView_1_1CustomFunctionSlot.html" title="Class template to outsource redundant code for customized functions.">CustomFunctionSlot</a>&lt;<a class="code" href="classCustomSurface.html">CustomSurface</a>&gt;;
+<a name="l00456"></a>00456 
+<a name="l00457"></a>00457     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classFunctionSlotHelper.html" title="Single-stop slot for menu QActions generating Function objects.">FunctionSlotHelper</a>;
+<a name="l00458"></a>00458     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classSurfaceSlotHelper.html" title="Single-stop slot for menu QActions generating Surface objects.">SurfaceSlotHelper</a>;
+<a name="l00459"></a>00459 };
+<a name="l00460"></a>00460 
+<a name="l00461"></a>00461 <span class="preprocessor">#include "CustomFunctionSlot.impl.H"</span>
+<a name="l00462"></a>00462 <span class="preprocessor">#include "TemplatedFunctionFactory.impl.H"</span>
+<a name="l00463"></a>00463 
+<a name="l00464"></a>00464 <span class="preprocessor">#endif // !defined(4DVIEW)</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri May 2 19:48:39 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri May 9 19:12:49 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

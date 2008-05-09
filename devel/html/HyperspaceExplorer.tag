@@ -736,361 +736,732 @@
       <anchor>3c797ad72f10f9d43d720a45cd60509a</anchor>
       <arglist>(void)</arglist>
     </member>
-    <member kind="variable" protection="private">
-      <type>std::auto_ptr&lt; Function &gt;</type>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setF</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>d14af93d68b1ee2ad229076c1380079c</anchor>
+      <arglist>(Function *_f)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>const std::auto_ptr&lt; Function &gt; &amp;</type>
       <name>F</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>eb29ac45dbb361327d3a896d6cfeb3dc</anchor>
-      <arglist></arglist>
+      <anchor>c45dda1281a8b4d8b729d451ffb5b869</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setTx</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>e6d27d13f4e169b7ba6203cf10cd08f1</anchor>
+      <arglist>(double _tx)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>double</type>
       <name>Tx</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>db5cfd77a40b633ec673817596bee941</anchor>
-      <arglist></arglist>
+      <anchor>cf7fca5cb78ed435055ccbacab93e51e</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setTy</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>8e0f09a698bfa92f7e4bf75b270be67a</anchor>
+      <arglist>(double _ty)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>double</type>
       <name>Ty</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>35d5730f883860881c08fd92fb1c45f8</anchor>
-      <arglist></arglist>
+      <anchor>20ec201e10f5a3e76a9b071f2900265d</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setTz</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>c1a15b4c56306bbb8157049edef25c7a</anchor>
+      <arglist>(double _tz)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>double</type>
       <name>Tz</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>85279ff6a911120f4a639e978aee28a8</anchor>
-      <arglist></arglist>
+      <anchor>f99d31e1df2f9069919598b2b31cb495</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setTw</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>7d93c2b8c48bfb21dfb5f5383b84cb4f</anchor>
+      <arglist>(double _tw)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>double</type>
       <name>Tw</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>220596e2ea0808fd2649bf5e15665c70</anchor>
-      <arglist></arglist>
+      <anchor>c7a93e4d63610136ec22a9af86990859</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setRxy</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>e2e46dc3d53e72447a11f040e5477c03</anchor>
+      <arglist>(double _rxy)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>double</type>
       <name>Rxy</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>f616f6f928911482a1289a7b7383e9d6</anchor>
-      <arglist></arglist>
+      <anchor>6f769626e4d0e126282954abc0c73734</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setRxz</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>8a6943794325e4f984e992d667f9cf07</anchor>
+      <arglist>(double _rxz)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>double</type>
       <name>Rxz</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>1de4e8cf82971be49b90642ed1b1ce8f</anchor>
-      <arglist></arglist>
+      <anchor>25c82f3ad246130d42a6a4776eabd72f</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setRxw</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>698394604236878bf9e8ed3dca76e975</anchor>
+      <arglist>(double _rxw)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>double</type>
       <name>Rxw</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>ff9f5d182cdc045e3d4fd4caee8b2d78</anchor>
-      <arglist></arglist>
+      <anchor>737938c6d8722fb9a91f1fe9ce21514f</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setRyz</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>ab90430afd25a72bc169d3b3aa0c250a</anchor>
+      <arglist>(double _ryz)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>double</type>
       <name>Ryz</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>25e68533955f4aeaff3a2598a0e0d22c</anchor>
-      <arglist></arglist>
+      <anchor>11f24a60e5070320706c7a5147ed60c2</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setRyw</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>420f87a177c3ca407a587c93f21c205f</anchor>
+      <arglist>(double _ryw)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>double</type>
       <name>Ryw</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>8f3ca9b51d740fc803f909faa91e05e3</anchor>
-      <arglist></arglist>
+      <anchor>8f6ad32931b1b97ac4078d14b086a527</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setRzw</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>a21cbaae3f7a94f18d713b118c053c78</anchor>
+      <arglist>(double _rzw)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>double</type>
       <name>Rzw</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>df17c0f3427a04cfb4ba26f5975ab8c2</anchor>
-      <arglist></arglist>
+      <anchor>6e08d2a51cae63b80eb8c2db0c9376a9</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setm_rotX</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>e4dbc60f5bf18c45b79c7bd4b334b2e8</anchor>
+      <arglist>(GLdouble _rx)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>GLdouble</type>
       <name>m_rotX</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>f4c3a85eec507687a6c8582d72d35f8f</anchor>
-      <arglist></arglist>
+      <anchor>68dc52d5b2768320bff1cf6f78781ea6</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setm_rotY</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>7c59355a48c452868fca1610ea9c03b9</anchor>
+      <arglist>(GLdouble _ry)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>GLdouble</type>
       <name>m_rotY</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>e039bceeeedfb04fe7c499a6b3b6b6f5</anchor>
-      <arglist></arglist>
+      <anchor>8358e725f97742d9429bdc9efc1f723f</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setm_rotZ</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>d0f8fd9c379911caeefc5d414eaed56d</anchor>
+      <arglist>(GLdouble _rz)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>GLdouble</type>
       <name>m_rotZ</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>46e61c4e6edb2d937edc786a164fd5c1</anchor>
-      <arglist></arglist>
+      <anchor>94ace7c9efc400f8738df4dae6c57ce7</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setm_transX</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>f1e7cf5da5fccc21af9ab992836d86d2</anchor>
+      <arglist>(GLdouble _tx)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>GLdouble</type>
       <name>m_transX</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>8c1ed22d36c0d09d267ac7acf5c62177</anchor>
-      <arglist></arglist>
+      <anchor>c40cbc6b3915cd1a9d95d8e29d7025d0</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setm_transY</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>64921961bdf98613e0b95a57aa644560</anchor>
+      <arglist>(GLdouble _ty)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>GLdouble</type>
       <name>m_transY</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>cadab1413fbe0090c2977cbde134cdd1</anchor>
-      <arglist></arglist>
+      <anchor>946dff919e5cee23d259b01f73147d15</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setm_camZ</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>c15f3ca75d9a94905505fe1fb9762278</anchor>
+      <arglist>(GLdouble _cz)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>GLdouble</type>
       <name>m_camZ</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>e1dce655f46f29f97e103657bb32ed92</anchor>
-      <arglist></arglist>
+      <anchor>d81387b19cafe382cb8d3d6b2f420089</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setCamW</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>6ff2213ad71877b3f2fad7cb4c3a32f7</anchor>
+      <arglist>(double _cw)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>double</type>
       <name>CamW</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>96287a5656d85fbf043ca2115ba032dc</anchor>
-      <arglist></arglist>
+      <anchor>6d87c315db886123bc697933917ce9e2</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setScrW</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>1d0a3b31ee9c199b02913a652d6d24a2</anchor>
+      <arglist>(double _sw)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>double</type>
       <name>ScrW</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>3a259a45ebe409bbcbc40194434680ed</anchor>
-      <arglist></arglist>
+      <anchor>8afccb3859458c1f70004151ef6dff80</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setAntiAlias</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>1a313ff59f394c1260a25b2abb416add</anchor>
+      <arglist>(bool b)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>bool</type>
       <name>AntiAlias</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>1091fdf89eeefab1571c162a2d930d0e</anchor>
-      <arglist></arglist>
+      <anchor>730ab9721faffb6f27132249b0dc934f</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setDisplayPolygons</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>f4f7dc0f9089488e57e8ab1e2a47563a</anchor>
+      <arglist>(bool b)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>bool</type>
       <name>DisplayPolygons</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>abe62566f12f502ce84c70315a5a09fb</anchor>
-      <arglist></arglist>
+      <anchor>a916a6e9d67827899cbdb5aca3757344</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setLighting</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>0224f59d0473ac8193ee6b9e42752975</anchor>
+      <arglist>(bool b)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>bool</type>
       <name>Lighting</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>350c7f9a53d4da61b995ac46775636ae</anchor>
-      <arglist></arglist>
+      <anchor>1857368e9b829c49eeb39725b5b1bd06</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setDepthCue3D</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>45f6f0d7acfcbd20597ad574797f3b56</anchor>
+      <arglist>(bool b)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>bool</type>
       <name>DepthCue3D</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>7cffa336571a0dbe61187ba872198828</anchor>
-      <arglist></arglist>
+      <anchor>d72b329338b14cd8cd7054bd9ab6ada4</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setDepthCue4D</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>4fd14d4fbbf502adf21df13c59755187</anchor>
+      <arglist>(bool b)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>bool</type>
       <name>DepthCue4D</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>e4c78c156b6ffb23361ac3ebfb2071f8</anchor>
-      <arglist></arglist>
+      <anchor>199f6bd254cc7d2bb94bc3db5fcb768e</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setDisplayCoordinates</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>700df16a6a80ee40845a71ef5abe6fb2</anchor>
+      <arglist>(bool b)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>bool</type>
       <name>DisplayCoordinates</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>cb7e608271d4ef0047ba421b650e0772</anchor>
-      <arglist></arglist>
+      <anchor>0633e33f22c9442a3da080da44c95256</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setRenderToPixmap</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>e907d355acbcedd3d7050afd96ed5856</anchor>
+      <arglist>(bool b)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>bool</type>
       <name>RenderToPixmap</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>6b2f78bc553d6d393bb94e33f01d17f3</anchor>
-      <arglist></arglist>
+      <anchor>bc2d5684906652fb0b13eec75de4780b</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setanimationDirectory</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>95739fa0b53519e4b65e6858ae7c3679</anchor>
+      <arglist>(const QString &amp;b)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>const QString &amp;</type>
       <name>animationDirectory</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>7cb6cee77811f65a77cb0c97bac8203e</anchor>
-      <arglist></arglist>
+      <anchor>9608e7dd765186a37471947b934f1910</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
-      <type>QString</type>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setanimationPrefix</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>8f4f98e6f315d5ed757255e9db4043e9</anchor>
+      <arglist>(const QString &amp;b)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>const QString &amp;</type>
       <name>animationPrefix</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>e766d45e783ed357a35cb3482b1a4cc6</anchor>
-      <arglist></arglist>
+      <anchor>ac6d91436671898ec36765904b422b47</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
-      <type>unsigned</type>
-      <name>animationMaxFrames</name>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setanimationFrame</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>099120e62f40d3ba958361c736d5b127</anchor>
-      <arglist></arglist>
+      <anchor>3a857a46088bc6168ddf234eda7a3fee</anchor>
+      <arglist>(unsigned b)</arglist>
     </member>
-    <member kind="variable" protection="private">
-      <type>const unsigned</type>
-      <name>animation_fps</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>dc3741dcb91695bf84c2f921a0d1ca2f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>GLint</type>
-      <name>ObjectList</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>a98a366c65ed9c65156d47d09244e08d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>GLint</type>
-      <name>CoordinateCross</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>0447c7f6581eb8f83ce1a7b6a254a34a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>Animated</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>c93c8aafdb0ea0c423778c488659e5d9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>TakingSpinValues</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>459c2b9c088667794ee7439f3ec871ae</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
       <type>unsigned</type>
       <name>animationFrame</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>11d5c808eca03f51b584e3914be7e3c1</anchor>
-      <arglist></arglist>
+      <anchor>d98270d5bafd502d5556fc1d914f5657</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setanimationMaxFrames</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>ae1eee4761e0c45ad051290289db4ff4</anchor>
+      <arglist>(unsigned b)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>unsigned</type>
+      <name>animationMaxFrames</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>9e2861e1a13684c208a0c944108def4f</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>const unsigned</type>
+      <name>animation_fps</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>0199c1874cd38dde53cd85d7959d2d7f</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setObjectList</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>6a91ef85500b929ad9403d62cc75118e</anchor>
+      <arglist>(GLint b)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>GLint</type>
+      <name>ObjectList</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>646e0b61e1634dacf043d20692cb33cc</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setCoordinateCross</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>ddbd7468a38ac997ba7c1741bf59a235</anchor>
+      <arglist>(GLint b)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>GLint</type>
+      <name>CoordinateCross</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>890b368e6451af1fef597099e7399757</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setAnimated</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>8f3f8549b263336dd3fe0f8a19a810e9</anchor>
+      <arglist>(bool b)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>bool</type>
+      <name>Animated</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>8f09d1be7f8e3a1d8e3059cf88c5d70a</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setTakingSpinValues</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>4d2bf540116bd55ad652af9ab6e41771</anchor>
+      <arglist>(bool b)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>bool</type>
+      <name>TakingSpinValues</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>bc459a8072808527f7d6b211607559c7</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setCurrentlyRendering</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>a0ba46f4a9bdc839a90e7893156a5777</anchor>
+      <arglist>(bool b)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>bool</type>
       <name>CurrentlyRendering</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>17f63d856f35e4b651ab7462122f0ea2</anchor>
-      <arglist></arglist>
+      <anchor>7abb14706e24ad8161e334879ff2c931</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setm_LeftDownPos</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>04c0d34323df6ee2c7c5452b10f71a60</anchor>
+      <arglist>(QPoint b)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>QPoint</type>
       <name>m_LeftDownPos</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>1207eda2b7efe382f85ed4574a0f635d</anchor>
-      <arglist></arglist>
+      <anchor>c9c62ea844bce89c29e857f4db5a792c</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setm_MidDownPos</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>52600c452ca185b1ff95e718f74fcd0f</anchor>
+      <arglist>(QPoint b)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>QPoint</type>
       <name>m_MidDownPos</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>32d7f659a68895fbc3353c23c65f5d41</anchor>
-      <arglist></arglist>
+      <anchor>c4889572f3aaff13a4505d96a53928b7</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setm_RightDownPos</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>a339da52e1d88c3ed8ea6595dae47f95</anchor>
+      <arglist>(QPoint b)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>QPoint</type>
       <name>m_RightDownPos</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>d6eef90e25422bfcfc1663309ed595a0</anchor>
-      <arglist></arglist>
+      <anchor>2af17ec8f9f5cad05a400674347681d2</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setAnimationTimer</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>dd6cab0aeee3b4d28ce7077608deac9f</anchor>
+      <arglist>(QTimer *b)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>QTimer *</type>
       <name>AnimationTimer</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>545e55ae07939317721b12a6da92eb86</anchor>
-      <arglist></arglist>
+      <anchor>ff68ae28fb8a03868f9729df70617ffd</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setAnimateRandomTimer</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>098ea4993752703e4a50a987e2e1ebde</anchor>
+      <arglist>(QTimer *b)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>QTimer *</type>
       <name>AnimateRandomTimer</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>ceae252bed8926ed258fdbe764a7ecf2</anchor>
-      <arglist></arglist>
+      <anchor>21fc24f013ccfbf7e5e703e60eca73ae</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setValues</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>7d1b1ba0142b57801c7ee5a378a89774</anchor>
+      <arglist>(ValuesDialogImpl *b)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>ValuesDialogImpl *</type>
       <name>Values</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>01680cf201e442d0568e5880496d74d6</anchor>
-      <arglist></arglist>
+      <anchor>580c9d5495ed83d2d2fd6a1c771cd79a</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setdxy</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>103dce7821b45de1ed01aab87ce5cff5</anchor>
+      <arglist>(double _dxy)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>double</type>
       <name>dxy</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>eccde127fe4cea16d334b1e68e14e0a1</anchor>
-      <arglist></arglist>
+      <anchor>d0d0c0349cdebe561167afb10616a2d3</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setdxz</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>81895ce965d669c72b581b096e9361ea</anchor>
+      <arglist>(double _dxz)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>double</type>
       <name>dxz</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>6deb7cbfe0ad56bc162a90f1cadd3333</anchor>
-      <arglist></arglist>
+      <anchor>e5688525c3f229997a75e7985fa18d50</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setdxw</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>090a0c31178adbd4098b3aed7c47f390</anchor>
+      <arglist>(double _dxw)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>double</type>
       <name>dxw</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>eb93c8f93ba6b011dd4694d78d4940e2</anchor>
-      <arglist></arglist>
+      <anchor>80dd4db75726e18632345c7728d47575</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setdyz</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>a7ebb92d9f8e36dd35fb1679ea4e133b</anchor>
+      <arglist>(double _dyz)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>double</type>
       <name>dyz</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>802dc6d624a69f8f8c65a99b4b676e48</anchor>
-      <arglist></arglist>
+      <anchor>bf96e00d889be3e09f1d625451dab6db</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setdyw</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>efb7a3489f852f8743c697f1d528a9b3</anchor>
+      <arglist>(double _dyw)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>double</type>
       <name>dyw</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>11c7bfdf817cf329783fd4fc9bcfe932</anchor>
-      <arglist></arglist>
+      <anchor>db5a2e8f63177c47986106e14ca4c23e</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setdzw</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>4fa3d2afb0187c84d1e20b9f65a1df4c</anchor>
+      <arglist>(double _dzw)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>double</type>
       <name>dzw</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>813e9410b0d5655609b3da15ca471446</anchor>
-      <arglist></arglist>
+      <anchor>6ce4b0fce30fd409e706bf27b0361f83</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setdx</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>6bce184901b5eddbad60ece1b7f7d87c</anchor>
+      <arglist>(double _dx)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>double</type>
       <name>dx</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>d016759aaf2d5bb311bc8e80ed9b337b</anchor>
-      <arglist></arglist>
+      <anchor>0162fb95e2d5ced3e37b0f86c10d3969</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setdy</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>15a8dd0be3e2c708f1b63bb6e75d68de</anchor>
+      <arglist>(double _dy)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>double</type>
       <name>dy</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>4c723750173470484a107461148e0960</anchor>
-      <arglist></arglist>
+      <anchor>b36c0cfffcb51062077a1e2d3668ea31</anchor>
+      <arglist>() const </arglist>
     </member>
-    <member kind="variable" protection="private">
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setdz</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>f936ff8b1416421636d673b2e3c76a5a</anchor>
+      <arglist>(double _dz)</arglist>
+    </member>
+    <member kind="function" protection="protected">
       <type>double</type>
       <name>dz</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>7f09fb0903ba5a2fb70d51b7274cabf0</anchor>
+      <anchor>a47638011e3cb283af57adc01b950195</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>setmenu</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>72fa76339e39243bdd7bf36a799c5422</anchor>
+      <arglist>(Menu4D *b)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>Menu4D *</type>
+      <name>menu</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>c6a2d7c03c9e3674a35e367076a579f2</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::auto_ptr&lt; C4DView::Impl &gt;</type>
+      <name>pImpl</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>df5d54d0759ca64fc1056441f4b8b682</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -1112,13 +1483,6 @@
       <name>CrossScr</name>
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>4b450c11b94a6dc190fd7b0e8bdb64c1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>Menu4D *</type>
-      <name>menu</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>9311d9bc1abd37efb55eca7ecbcf964b</anchor>
       <arglist></arglist>
     </member>
     <member kind="friend" protection="private">
@@ -1164,6 +1528,7 @@
       <arglist></arglist>
     </member>
     <class kind="class">C4DView::CustomFunctionSlot</class>
+    <class kind="struct">C4DView::Impl</class>
     <class kind="class">C4DView::TemplatedRealFunctionFactory</class>
     <class kind="class">C4DView::TemplatedSurfaceFactory</class>
   </compound>
@@ -1184,6 +1549,402 @@
       <anchorfile>classC4DView_1_1CustomFunctionSlot.html</anchorfile>
       <anchor>2eaaaf653f2d1bbfe3a2b416f33e4b08</anchor>
       <arglist>(C4DView *view)</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>C4DView::Impl</name>
+    <filename>structC4DView_1_1Impl.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>Impl</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>091b6b4b5cd8c7896982cb25b0a51c8f</anchor>
+      <arglist>(C4DView *parent)</arglist>
+    </member>
+    <member kind="variable">
+      <type>std::auto_ptr&lt; Function &gt;</type>
+      <name>F</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>2b72ba34a0717cf86dd585028a8d4467</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>Tx</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>2e1143497ad771f69bcb3d84dc246481</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>Ty</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>937aadc3e51aae5700e29ad458bd687d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>Tz</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>dd7a50748d2af8908e789ba36abe7a56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>Tw</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>ae0c647bf77277c24b87f6778486ee7f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>Rxy</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>95e1e5a5659fc6294cc11d8974374568</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>Rxz</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>8b23d83333a629cfe2330f93f4296d84</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>Rxw</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>4110a883dea58c1363a01d005b09e838</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>Ryz</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>89befdf3246e15700f49a71f1aabf55f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>Ryw</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>44cabd1baae3cd26314cc2704d7e5072</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>Rzw</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>1e786f009cd6f1bdeafe04125d6f3b6f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>GLdouble</type>
+      <name>m_rotX</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>6d4dc4785b3f4df70c06fbd7b5f5a3ca</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>GLdouble</type>
+      <name>m_rotY</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>7e79a5f10abb48f382e9328276498a62</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>GLdouble</type>
+      <name>m_rotZ</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>40a4ebb84315eb8a2c317b0be1b0e4bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>GLdouble</type>
+      <name>m_transX</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>4567faca093019bde9867d55de2f8625</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>GLdouble</type>
+      <name>m_transY</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>d0ecc29a9ded087986e3c0d56ad85c9d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>GLdouble</type>
+      <name>m_camZ</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>521db46a3b0832b8c8b292ac633c0b00</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>CamW</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>192ba7de2db741f965b51203813ca165</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>ScrW</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>a5df6de272ca1c28d980d3ec9c46dbe5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>AntiAlias</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>a87cecbe7c47c8002f8d889c08945a04</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>DisplayPolygons</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>604ef3378d1d05fd3f87b73807a406ec</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>Lighting</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>d17b279aa2f35bbdac91d616979a2fa8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>DepthCue3D</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>b8b0e1d5cc782c906c2e90fc57bf80d3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>DepthCue4D</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>eb1ae6c570224ebaede2a86653967bb7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>DisplayCoordinates</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>57f39f03817730e9c45af09f8f0aef7c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>RenderToPixmap</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>2c232c1a3138aa52a4ff1b3c8825eef8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>animationDirectory</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>c3d45bf0171fe1fe3813689ffab77365</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QString</type>
+      <name>animationPrefix</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>2406494efc801231c36d4c2248b09afe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>unsigned</type>
+      <name>animationMaxFrames</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>33cb657cbba5dec230aa1e8c108af905</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>const unsigned</type>
+      <name>animation_fps</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>f631fff9f5b4874c5fccf00c7cc19deb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>GLint</type>
+      <name>ObjectList</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>bc62e63236ebc41bc0cdb1856b701424</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>GLint</type>
+      <name>CoordinateCross</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>dbe47e782fce1bed15f4719090a7302a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>Animated</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>503ce545ecd653b4e7bd9cd3ddee7dc0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>TakingSpinValues</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>dcef4d021c507cdc6f480f9443d51f31</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>unsigned</type>
+      <name>animationFrame</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>bfbc503157adcc2e33c149c07cdb59ed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>CurrentlyRendering</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>bc804963c638f50c21b36fc80b2218ea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPoint</type>
+      <name>m_LeftDownPos</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>8ff8393a464478cf529951c19dff44f1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPoint</type>
+      <name>m_MidDownPos</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>4a9199ba2e973c40f797654cbe0255c7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPoint</type>
+      <name>m_RightDownPos</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>63db7a403af416fb7a7ecad4ee2722e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QTimer *</type>
+      <name>AnimationTimer</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>bb8ef7e728ae5c058d60ed7487193e88</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QTimer *</type>
+      <name>AnimateRandomTimer</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>47bcadad22a088fad759c3fb2418ebc8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>ValuesDialogImpl *</type>
+      <name>Values</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>e1b669a3fcb19b2cb652fd0e33061602</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>dxy</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>77df73669d8fcb91a99044f1de33dc83</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>dxz</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>808548b90412c3438a0d02d6e8298ac9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>dxw</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>83cad34eb72145b76e341fea812e1dce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>dyz</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>f309fef6ba57c3bb007f4f6689244da8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>dyw</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>d06ace5af4bdf95b0871734cf07d09e9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>dzw</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>578ef768e98dea6f4e03110f0a0db050</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>dx</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>b8e9095492654d33b17505717b978766</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>dy</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>50ca24efb925fc7353043a9ef163879c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>dz</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>11a5c6bb318df27e85b3deb79b64c3e7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::vector&lt; std::vector&lt; VecMath::Vector&lt; 4 &gt; &gt; &gt;</type>
+      <name>Cross</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>a2836b5138de91ead6dbc02156e4b03b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::vector&lt; std::vector&lt; VecMath::Vector&lt; 4 &gt; &gt; &gt;</type>
+      <name>CrossTrans</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>8a102fbc9feaa7234b3943476274f093</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::vector&lt; std::vector&lt; VecMath::Vector&lt; 3 &gt; &gt; &gt;</type>
+      <name>CrossScr</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>447ba1ee42cf7280a27bf117e85eeb92</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>Menu4D *</type>
+      <name>menu</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>89a7c96b95f1aed9fc92460b5f159607</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
