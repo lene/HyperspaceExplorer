@@ -6,7 +6,11 @@ Source distribution
 
 Requirements:
 Linux (*BSD should work, but is not tested yet) (Windows should work in theory)
-Multithreaded Qt >= 4.0 <http://trolltech.com/products/qt>
+
+Multithreaded Qt >= 4.0 <http://trolltech.com/products/qt>. I use Qt version 4.3
+during development, so even if I don't use any features newer than 4.0 I cannot
+guarantee that it will work with older versions of Qt.
+
 OpenGL libraries and header files
 
 Building the executable:
@@ -16,6 +20,11 @@ Building the executable:
 > make
 > make install
 
+HyperspaceExplorer is installed by default in /usr/local, the executable in
+/usr/local/bin and the documentation and optional plugins in
+/usr/local/share/HyperspaceExplorer. Current this behavior can only be
+customized by editing the variable INSTALLDIR in the qmakefile src/src.pro.
+
 If any errors occur, you are on your own, this is still alpha code. You 
 might drop me a line anyway, maybe I am able to help you, and I am highly 
 interested in bug reports.
@@ -23,14 +32,8 @@ interested in bug reports.
 Running
 =======
 
-> cd HyperspaceExplorer
-> export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.
-> ./HyperspaceExplorer
-
-You definitely should run the program from it's own directory if you want to
-define your own functions, because it compiles them as dynamically loadable
-libraries, which are compiled and stored from HyperspaceExplorer's current
-working directory. Sorry about the inconvenience.
+Easy:
+> HyperspaceExplorer
 
 Contacting the author
 =====================

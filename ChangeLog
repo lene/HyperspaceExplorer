@@ -1,8 +1,13 @@
 HyperspaceExplorer Changelog
 =============================
 
+release 0.5.0:
+    * developed a framework to assign generic parameters (of arbitrary type) to
+      any function and control them from a dialog window
     * replaced all arrays with std::vector<>'s
-    
+    * transparence and saving the rendered images as PNG files are official
+      functions now
+
 release 0.4.0:
     * rendering to images is possible now
     * replaced all possible #ifdef DEBUG statements to use SingletonLog

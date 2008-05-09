@@ -151,7 +151,7 @@
     </general>
     <run>
       <directoryradio>executable</directoryradio>
-      <mainprogram>/var/home/helge/workspace/HyperspaceExplorer/HyperspaceExplorer</mainprogram>
+      <mainprogram>/home/helge/workspace/HyperspaceExplorer/HyperspaceExplorer</mainprogram>
       <programargs/>
       <globaldebugarguments/>
       <globalcwd>/home/helge/workspace/HyperspaceExplorer</globalcwd>
@@ -191,7 +191,7 @@
     <bzip>true</bzip>
     <archname>%n-%v</archname>
     <appname>HyperspaceExplorer</appname>
-    <version>0.3.2</version>
+    <version>0.4.0</version>
     <release/>
     <vendor/>
     <licence/>
