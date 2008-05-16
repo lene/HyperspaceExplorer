@@ -14,10 +14,12 @@
 
 /// Abstract base class for all Dialogs which allow entering a custom function
 /** The user can enter a mathematical function in C++ syntax in almost
- *  symbolic notation and get the function compiled and loaded and displayed. \n
+ *  symbolic notation and get the function compiled and loaded and displayed.
+ *
  *  This class contains all the variables and functions common to the four
  *  different function types, the differences being encapsulated in a template
- *  class with auxiliary functions. \n
+ *  class with auxiliary functions.
+ *
  *  This class is abstract. The inheriting classes must implement the members
  *  loadFunction(), functionPresent() and writeSource().
  *  \todo set the function name to symbolic() in the descendants' constructors

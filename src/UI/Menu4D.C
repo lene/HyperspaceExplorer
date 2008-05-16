@@ -9,6 +9,7 @@
 #include "RealFunction.H"
 #include "SlotHelper.H"
 
+/// Disables menu entry if preprocessor variable TESTFEATURES is unset
 inline void TESTED_FEATURE(QAction *item) {
 # ifdef TESTFEATURES
     item->setEnabled (true);
@@ -17,6 +18,7 @@ inline void TESTED_FEATURE(QAction *item) {
 #endif
 }
 
+/// Creates the application's main menu and all its submenus
 Menu4D::Menu4D(C4DView *_parent):
     parent(_parent) {
 
@@ -151,6 +153,8 @@ Menu4D::Menu4D(C4DView *_parent):
     parent->setWireframe (parent->getDisplayPolygons());
 }
 
+/** Add the menu to a QMenuBar
+ *  @param menuBar the menu bar you want augmented with the menu              */
 void Menu4D::addToMenuBar(QMenuBar *menuBar) {
     menuBar->addMenu(functions);
     menuBar->addMenu(appear);
@@ -178,7 +182,9 @@ QAction *Menu4D::insertAction(QMenu *_menu, const QString &title,
 }
 
 /// New version of insertAction() working with the SlotHelper class
-/** @param _menu the menu you want to add the item to
+/** This version is called whenever a new RealFunction should be
+ *  initialized in C4DView
+ *  @param _menu the menu you want to add the item to
  *  @param title the title of the item
  *  @param checkable whether the menu item is checkable                       */
 QAction *Menu4D::insertAction(QMenu *_menu, const QString &title,
@@ -194,7 +200,9 @@ QAction *Menu4D::insertAction(QMenu *_menu, const QString &title,
 }
 
 /// New version of insertAction() working with the SlotHelper class
-/** @param _menu the menu you want to add the item to
+/** This version is called whenever a new Surface should be
+ *  initialized in C4DView
+ *  @param _menu the menu you want to add the item to
  *  @param title the title of the item
  *  @param checkable whether the menu item is checkable                       */
 QAction *Menu4D::insertAction(QMenu *_menu, const QString &title,
@@ -207,11 +215,6 @@ QAction *Menu4D::insertAction(QMenu *_menu, const QString &title,
     menuMap[fr3r].insert(std::pair<QString, QAction *>(title, tmp));
 
     return tmp;
-}
-
-QAction *Menu4D::insertAction(QMenu *_menu, const Function *function,
-                              const char *slot, bool checkable) {
-    return insertAction(_menu, function->getFunctionName(), slot, checkable);
 }
 
 /** search for the supplied String in the list of menu entries in all submenus

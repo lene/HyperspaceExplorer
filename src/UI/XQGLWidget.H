@@ -31,8 +31,8 @@ class XQGLWidget: public QGLWidget {
     Q_OBJECT
 
     public slots:                               //  called when:
-        void ViewPos (double, double, double);  //  - viewing angle is changed
-        void ViewPos (double);                  //  - distance of viewpoint is changed
+//         void ViewPos (double, double, double);  //  - viewing angle is changed
+//         void ViewPos (double);                  //  - distance of viewpoint is changed
 
     public:
         XQGLWidget (QWidget * = 0);
@@ -65,30 +65,7 @@ class XQGLWidget: public QGLWidget {
 
 
     protected slots:
-        void Rotate ();
-        void Help ();
-
-        void SetAlpha (int);
-
-        //  key acceleration handling
-        void Left ();
-        void Right ();
-        void Up ();
-        void Down ();
-        void SLeft ();
-        void SRight ();
-        void SUp ();
-        void SDown ();
-        void CALeft ();
-        void CARight ();
-        void CAUp ();
-        void CADown ();
-
-        void Plus ();
-        void Minus ();
-
-        void A ();
-
+        void Help();
         void about ();
         void aboutQt ();
 
@@ -98,9 +75,9 @@ class XQGLWidget: public QGLWidget {
         void resizeGL (int, int);
         void Draw (void);
 
-        void mousePressEvent (QMouseEvent *);
+/*        void mousePressEvent (QMouseEvent *);
         void mouseReleaseEvent (QMouseEvent *);
-        void mouseMoveEvent (QMouseEvent *);
+        void mouseMoveEvent (QMouseEvent *);*/
         void SetupDepthCue (float, float);
         void InitLight (void);
         void InitShade (void);
@@ -120,6 +97,8 @@ class XQGLWidget: public QGLWidget {
         //  drawing realism states
         bool light, fog, transparent, shade, colors;
         int xpressed, ypressed;
+
+        static GLfloat LightPos[4];
 
 };
 

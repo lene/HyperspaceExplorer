@@ -33,10 +33,11 @@
 #include "Globals.H"
 #include "Help.H"
 
-using std::cerr;
+//using std::cerr;
 using std::endl;
 
-//      XQGLWidget:: public functions
+
+GLfloat XQGLWidget::LightPos[4] = { 4., 4., 8., 0. };
 
 
 /** XQGLWidget constructor; does a lot of initialization to (usually sensible)
@@ -62,7 +63,8 @@ void XQGLWidget::initializeGL (void) {
 
     glClearColor (Background[0], Background[1], Background[2], Background[3]);
                                                 //  set background color
-    if (!doubleBuffer ()) cerr << "Widget is single buffered\n";  //  bad luck; balk but continue
+    if (!doubleBuffer ())                       //  this should happen rarely if ever
+        SingletonLog::Instance().log("Widget is single buffered");  //  complain but continue
 
     InitLight ();                               //  set up lighting parameters
     InitShade ();                               //  ... flat or gouraud shading
@@ -75,13 +77,10 @@ void XQGLWidget::initializeGL (void) {
  *  transparence
  *  @todo hardcoded light position and colors!                                */
 void XQGLWidget::InitLight (void) {
-    static GLfloat LightPos[4] = { 4., 4., 8., 0. };  //  should be a member variable!
-
     if (light) {
         glEnable(GL_LIGHTING);                          //  enable lighting
-        glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, 1);  //  compute specular reflections
-                                                        //  from the origin of the eye
-                                                        //  coordinate system
+        //  compute specular reflections from origin of eye coordinate system
+        glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, 1);
         glLightfv(GL_LIGHT0, GL_POSITION, LightPos);    //  set light position
         glLightfv(GL_LIGHT0, GL_DIFFUSE,
                   Globals::Instance().white());         //  diffuse color
@@ -123,22 +122,10 @@ void XQGLWidget::InitTransparence (void) {
     }
 }
 
-/** changes global transparence Alpha to a
- *  @param a int e [0, 255]                                                   */
-void XQGLWidget::SetAlpha (int a) {
-    Alpha = float (a)/255.;                     //  calculate Alpha
-    InitTransparence ();                        //  change GL state
-    repaint ();                                 //  update picture
-}
-
 void XQGLWidget::paintGL () {
     SingletonLog::Instance().log("XQGLWidget::paintGL()");
 
-#if (QT_VERSION < 300)
-    setCursor (Qt::WaitCursor);                 //  change cursor to 'working'
-#else
     setCursor (QCursor (Qt::WaitCursor));       //  change cursor to 'working'
-#endif
 
     SingletonLog::Instance().log("  glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)");
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   //  clear screen
@@ -163,7 +150,8 @@ void XQGLWidget::Draw (void) {
 }
 
 /** change of viewing distance is handled here too, which is not so clean
- *  programming style...                                                      */
+ *  programming style...
+    \todo eliminate hardcoded constants                                       */
 void XQGLWidget::resizeGL (int width, int height) {
     GLfloat aspect = (float) width / (float) height,
             angle  = .8*atan (2./R)*180./pi,
@@ -186,19 +174,19 @@ void XQGLWidget::resizeGL (int width, int height) {
 
 /** ViewPos (psi, theta, phi)
     called any time the viewing angle is changed on the command widget        */
-void XQGLWidget::ViewPos (double psi_, double theta_, double phi_) {
-    if ((psi != psi_) || (theta != theta_) || (phi != phi_)) {    //  any change?
-        psi = psi_; theta = theta_; phi = phi_; //  update values
-        updateGL (); } }                        //  update picture
+// void XQGLWidget::ViewPos (double psi_, double theta_, double phi_) {
+//     if ((psi != psi_) || (theta != theta_) || (phi != phi_)) {    //  any change?
+//         psi = psi_; theta = theta_; phi = phi_; //  update values
+//         updateGL (); } }                        //  update picture
 
 /** called any time the viewing distance is changed on the command widget     */
-void XQGLWidget::ViewPos (double R_) {
-    if (R != R_ && R_ > 0) {                    //  valid distance?
-        R = R_;                                 //  update value
-        resizeGL (width (), height());          //  update GL state
-        updateGL ();                            //  update picture
-    }
-}
+// void XQGLWidget::ViewPos (double R_) {
+//     if (R != R_ && R_ > 0) {                    //  valid distance?
+//         R = R_;                                 //  update value
+//         resizeGL (width (), height());          //  update GL state
+//         updateGL ();                            //  update picture
+//     }
+// }
 
 void XQGLWidget::SetupDepthCue (float dist, float size) {
   static GLfloat back[4];                       //  copy background color because
@@ -212,217 +200,68 @@ void XQGLWidget::SetupDepthCue (float dist, float size) {
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-//	XQGLWidget menu handling
-//
-////////////////////////////////////////////////////////////////////////////////
-
-/*******************************************************************************
- *  menu callback functions
- */
-//  top level menu
-
-
-/*******************************************************************************
- *  obsolete function to rotate display by 360 degrees, 3 degrees at a time,
- *  without ability to interrupt
- */
-void XQGLWidget::Rotate () {
-  double theta_ = theta;
-  for (double i = 0.; i < 360.; i += 3.) {
-    theta = theta_+i;
-    repaint (); }
-  theta = theta_; }
-
-/*******************************************************************************
- *  display help window (using HARDCODED paths and filenames, YUCK!)
- */
-void XQGLWidget::Help () {
-  static HelpWindow *H;
-  H = new HelpWindow ("Hyperspace_Explorer_Help.html");
-  H->show();
-
-}
-
-
-//  appearance menu
-
-
-
-////////////////////////////////////////////////////////////////////////////////
-//
 //	XQGLWidget mouse handling
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-/*******************************************************************************
- *  mouse press event handler; cares for popping up the menu (RMB), rotating (LMB)
- *  and zooming (MMB)
- *  @param e	Qt's mouse event information structure
- */
-void XQGLWidget::mousePressEvent (QMouseEvent *E) {
-    SingletonLog::Instance() << "XQGLWidget::mousePressEvent ()\n";
-    int ButtonPressed = E->button ();
-    if (ButtonPressed == Qt::RightButton) {
-        SingletonLog::Instance() << "  ButtonPressed == Qt::RightButton\n";
-    } else if (ButtonPressed == Qt::LeftButton) {
-        xpressed = E->x(); ypressed = E->y();
-    } else if (ButtonPressed == Qt::MidButton) {
-        if (E->modifiers() && Qt::ShiftModifier) ViewPos (R+1);
-        else ypressed = E->y();               // ViewPos (R-1); }
-    }
-}
+/** mouse press event handler; cares for popping up the menu (RMB), rotating
+ *  (LMB) and zooming (MMB)
+ *  @param e Qt's mouse event information structure                           */
+// void XQGLWidget::mousePressEvent (QMouseEvent *E) {
+//     SingletonLog::Instance() << "XQGLWidget::mousePressEvent ()\n";
+//     int ButtonPressed = E->button ();
+//     if (ButtonPressed == Qt::RightButton) {
+//         SingletonLog::Instance() << "  ButtonPressed == Qt::RightButton\n";
+//     } else if (ButtonPressed == Qt::LeftButton) {
+//         xpressed = E->x(); ypressed = E->y();
+//     } else if (ButtonPressed == Qt::MidButton) {
+//         if (E->modifiers() && Qt::ShiftModifier) ViewPos (R+1);
+//         else ypressed = E->y();               // ViewPos (R-1); }
+//     }
+// }
 
 
-/*******************************************************************************
- *  mouse release event handler; cares for executing the action associated with
+/** mouse release event handler; cares for executing the action associated with
  *  the mouse button
- *  uses HARDCODED values for zooming!
- *  @param e	Qt's mouse event information structure
- */
-void XQGLWidget::mouseReleaseEvent (QMouseEvent *E) {
-  int ButtonPressed = E->button ();
-  if (ButtonPressed == Qt::LeftButton) {
-    int dx = E->x () - xpressed, dy = E->y () -ypressed,
-      dtheta = dx*90/width (), dpsi   = dy*90/height ();
-    theta += dtheta; psi += dpsi;
-    repaint (); }
-  if (ButtonPressed == Qt::MidButton) {
-    double dr = double (E->y ()-ypressed)/height ()*5.;   //  the 5 may have to be reviewed
-    if (dr) ViewPos (R*pow (1.25, dr));                   //  exponential change (1.25 also)
-    else if (!(E->modifiers() && Qt::ShiftModifier))
-      ViewPos (R/1.25);
-    //    cerr << "dr = " << dr << " R = " <<R << endl;
-  }
-}
+ *  \todo get rid of HARDCODED values for zooming!
+ *  @param e	Qt's mouse event information structure                        */
+// void XQGLWidget::mouseReleaseEvent (QMouseEvent *E) {
+//   int ButtonPressed = E->button ();
+//   if (ButtonPressed == Qt::LeftButton) {
+//     int dx = E->x () - xpressed, dy = E->y () -ypressed,
+//       dtheta = dx*90/width (), dpsi   = dy*90/height ();
+//     theta += dtheta; psi += dpsi;
+//     repaint (); }
+//   if (ButtonPressed == Qt::MidButton) {
+//     double dr = double (E->y ()-ypressed)/height ()*5.;   //  the 5 may have to be reviewed
+//     if (dr) ViewPos (R*pow (1.25, dr));                   //  exponential change (1.25 also)
+//     else if (!(E->modifiers() && Qt::ShiftModifier))
+//       ViewPos (R/1.25);
+//   }
+// }
 
 
-/*******************************************************************************
- *  mouse move event handler; empty, included out of anality or something
- */
-void XQGLWidget::mouseMoveEvent (QMouseEvent *) { }
-
-
-////////////////////////////////////////////////////////////////////////////////
-//
-//	XQGLWidget keyboard accelerators
-//
-////////////////////////////////////////////////////////////////////////////////
-
-/*******************************************************************************
- *  create keyboard accelerators
- */
-#if 0
-void XQGLWidget::SetupAccel (void) {
-  static Q3Accel *accel;
-  accel = new Q3Accel (this);
-
-  accel->connectItem (accel->insertItem (Qt::Key_Left),  this, SLOT (Left ()));
-  accel->connectItem (accel->insertItem (Qt::Key_Right), this, SLOT (Right ()));
-  accel->connectItem (accel->insertItem (Qt::Key_Up),    this, SLOT (Up ()));
-  accel->connectItem (accel->insertItem (Qt::Key_Down),  this, SLOT (Down ()));
-
-  accel->connectItem (accel->insertItem (Qt::Key_Left+Qt::SHIFT),  this, SLOT (SLeft ()));
-  accel->connectItem (accel->insertItem (Qt::Key_Right+Qt::SHIFT), this, SLOT (SRight ()));
-  accel->connectItem (accel->insertItem (Qt::Key_Up+Qt::SHIFT),    this, SLOT (SUp ()));
-  accel->connectItem (accel->insertItem (Qt::Key_Down+Qt::SHIFT),  this, SLOT (SDown ()));
-
-  accel->connectItem (accel->insertItem (Qt::Key_Left+Qt::ALT+Qt::CTRL),  this, SLOT (CALeft ()));
-  accel->connectItem (accel->insertItem (Qt::Key_Right+Qt::ALT+Qt::CTRL), this, SLOT (CARight ()));
-  accel->connectItem (accel->insertItem (Qt::Key_Up+Qt::ALT+Qt::CTRL),    this, SLOT (CAUp ()));
-  accel->connectItem (accel->insertItem (Qt::Key_Down+Qt::ALT+Qt::CTRL),  this, SLOT (CADown ()));
-
-  accel->connectItem (accel->insertItem (Qt::Key_A), this, SLOT (A ()));
-
-  accel->connectItem (accel->insertItem (Qt::Key_Q+Qt::CTRL), qApp, SLOT (quit ())); }
-
-#endif
-/** "Left" key: rotate 5 degrees left */
-void XQGLWidget::Left () {
-  theta -= 5; repaint (); }
-
-/** "Right" key: rotate 5 degrees right */
-void XQGLWidget::Right () {
-  theta += 5; repaint (); }
-
-/** "Up" key: rotate 5 degrees up */
-void XQGLWidget::Up () {
-  psi -= 5; repaint (); }
-
-/** "Down" key: rotate 5 degrees down */
-void XQGLWidget::Down () {
-  psi += 5; repaint (); }
-
-/** Shift-"Left" key: rotate 45 degrees left */
-void XQGLWidget::SLeft () {
-  theta -= 45; repaint (); }
-
-/** Shift-"Right" key: rotate 45 degrees left */
-void XQGLWidget::SRight () {
-  theta += 45; repaint (); }
-
-/** Shift-"Up" key: rotate 45 degrees left */
-void XQGLWidget::SUp () {
-  psi -= 45; repaint (); }
-
-/** Shift-"Down" key: rotate 45 degrees left */
-void XQGLWidget::SDown () {
-  psi += 45; repaint (); }
-
-/** Ctrl-Alt-"Left" key: rotate 1 degrees left */
-void XQGLWidget::CALeft () {
-  theta -= 1; repaint (); }
-
-/** Ctrl-Alt-"Right" key: rotate 1 degrees left */
-void XQGLWidget::CARight () {
-  theta += 1; repaint (); }
-
-/** Ctrl-Alt-"Up" key: rotate 1 degrees left */
-void XQGLWidget::CAUp () {
-  psi -= 1; repaint (); }
-
-/** Ctrl-Alt-"Down" key: rotate 1 degrees left */
-void XQGLWidget::CADown () {
-  psi += 1; repaint (); }
-
-
-/** "A" key: should open a slider to adjust alpha value. not yet implemented
- *  correctly. */
-void XQGLWidget::A () {
-  QSlider *GetAlpha = new QSlider (Qt::Horizontal, this);
-  GetAlpha->setMinimum(0);
-  GetAlpha->setMaximum(255);
-  GetAlpha->setPageStep(64);
-  GetAlpha->setValue(int(Alpha*255));
-  GetAlpha->setTickInterval (16);
-  GetAlpha->setFixedSize (200, 20);
-  GetAlpha->show ();
-
-  connect (GetAlpha, SIGNAL(valueChanged(int)), this, SLOT(SetAlpha(int))); }
-
-
-/** no function */
-void XQGLWidget::Plus () {
-}
-
-/** no function */
-void XQGLWidget::Minus () {
+/** display help window
+ * \todo HARDCODED filename */
+void XQGLWidget::Help () {
+   static HelpWindow *H;
+   H = new HelpWindow ("Hyperspace_Explorer_Help.html");
+   H->show();
 }
 
 /** open an "About"-Dialog */
-void XQGLWidget::about()
-{
-  QMessageBox::about( this, "Hyperspace Explorer",
-		      "<p>A program to view four-dimensional objects "
-		      "using OpenGL and the Qt GUI library.</p>"
-		      "<p>author: "+QString(make_str(PACKAGE_BUGREPORT))+"</p>"
+void XQGLWidget::about() {
+    QMessageBox::about(this, "Hyperspace Explorer",
+                      "<p>A program to view four-dimensional objects "
+                      "using OpenGL and the Qt GUI library.</p>"
+                      "<p>author: "+QString(make_str(PACKAGE_BUGREPORT))+"</p>"
                       "<p>version: "+QString(make_str(PACKAGE_VERSION))+
                               " of "+QString(__DATE__)+"</p>"
-		      );
+              );
 }
 
 
 /** open an "About Qt"-Dialog */
-void XQGLWidget::aboutQt()
-{
+void XQGLWidget::aboutQt() {
   QMessageBox::aboutQt( this, "Hyperspace Explorer" );
 }

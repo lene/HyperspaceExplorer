@@ -10,11 +10,7 @@
 #define GLOBJECT_H
 
 #include <GL/gl.h>
-#include <cstdarg>
-
 #include <vector>
-
-#include "Log.H"
 
 /** class GLObject:
  *  abstract base class for 3D objects. provides a glList containing the
@@ -24,64 +20,25 @@
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class GLObject {
     public:
-        GLObject (GLuint objlist = 0): List () {
-            if (glIsList (objlist)) List.push_back (objlist);
-        }
+        /// initialize a GLObject with a GL List
+        GLObject (GLuint objlist = 0);
+        /// initialize a GLObject with a variable number of GL Lists
+        GLObject (unsigned elements, GLuint objlist, ...);
 
-        GLObject (unsigned elements, GLuint objlist, ...): List () {
-            SingletonLog::Instance() << "    GLObject (" << (long)elements << ", ";
-            if (glIsList (objlist)) {
-                SingletonLog::Instance() << (long)objlist << ", ";
-                List.push_back (objlist);
-            } else {
-                SingletonLog::Instance() << (long)objlist << " not a GL list ";
-            }
+        /// free all GL Lists managed by this GLObject
+        virtual ~GLObject (void);
 
-            va_list argp;
-            va_start (argp, objlist);
+        /// Template Method to draw all GL Lists managed by this GLObject
+        unsigned Draw (void) { return doDraw(); }
 
-            for (unsigned i = 1; i < elements; i++) {
-                objlist = va_arg (argp, GLuint);
-
-                if (glIsList (objlist)) {
-                    SingletonLog::Instance() << (long)objlist << ", ";
-                    List.push_back (objlist);
-                }
-
-                else SingletonLog::Instance() << (long)objlist << " not a GL list ";
-            }
-
-            SingletonLog::Instance() << ")\n";
-
-            va_end (argp);
-        }
-
-
-        virtual ~GLObject (void) {
-            for (unsigned i = 0; i < List.size (); i++)
-                if (glIsList (List[i])) glDeleteLists (List[i], 1);
-        }
-
-        virtual unsigned Draw (void) {
-            SingletonLog::Instance() << "GLObject::Draw (";
-
-            for (unsigned i = 0; i < List.size (); i++) {
-                SingletonLog::Instance() << (long)List[i] << ", ";
-                glCallList (List[i]);
-            }
-            SingletonLog::Instance() << ")\n";
-
-            return 0;
-        }
-
-        operator bool () {
-            if (List.empty ()) return false;
-            for (unsigned i = 0; i < List.size (); i++)
-                if (glIsList (List[i])) return true;
-            return false;
-        }
+        /// true if GLObject contains at least one GL List
+        operator bool ();
 
     private:
-            std::vector<GLuint> List;
+        /// implementation for Template Method Draw()
+        /** kept virtual and private to separate interface and implementation */
+        virtual unsigned doDraw();
+
+        std::vector<GLuint> List;
 };
 #endif
