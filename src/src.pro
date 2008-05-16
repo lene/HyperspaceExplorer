@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-CONFIG = release qt warn_on uic
+CONFIG = debug qt warn_on uic
 
 QT += opengl
 
@@ -45,7 +45,7 @@ HEADERS += UI/4DView.H UI/ComplexDialogImpl.H UI/FunctionDialogImpl.H \
            UI/TemplatedFunctionFactory.impl.H  UI/ValuesDialog.H
 SOURCES += UI/4DView.C UI/Menu4D.C UI/ComplexDialogImpl.C \
            UI/FunctionDialogImpl.C UI/PolarDialogImpl.C UI/SurfaceDialogImpl.C \
-           UI/ValuesDialogImpl.C UI/XQGLWidget.C UI/PluginCreator.C \
+           UI/ValuesDialogImpl.C UI/GLObject.C UI/XQGLWidget.C UI/PluginCreator.C \
            UI/AnimationDialogImpl.C UI/SlotHelper.C
 
 FORMS += UI/ComplexDialog.ui UI/FunctionDialog.ui \
