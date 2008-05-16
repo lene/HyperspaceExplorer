@@ -85,13 +85,15 @@ class Global {
         /** color definition for Grey                                         */
         static Color& grey50() { return Grey50; }
 
-        /** whether to check for memory usage. this member is set or unset from
-            check_proc_meminfo(), depending on the success of that function.  */
-        static bool check_memory;
         /** sqrt (3), stored to save computation time, probably superfluous   */
         const double SR3;
 
+        static bool checkMemory() { return check_memory; }
+
     private:
+        /** whether to check for memory usage. this member is set or unset from
+        check_proc_meminfo(), depending on the success of that function.  */
+        static bool check_memory;
         static unsigned long check_proc_meminfo ();
 
         /** global (YUCK!) background color                                   */

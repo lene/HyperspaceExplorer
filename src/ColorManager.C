@@ -144,8 +144,8 @@ std::pair<vector<Vector<4> >, vector<double> >
 
 void xyz2RGBColorManager::depthCueColor(double wmax, double wmin, double w,
                                         const Vector<4> &x) {
-    float DepthCueFactor = (wmax-w)/(wmax-wmin)*(1.0-offset4Ddepthcue)
-                            +offset4Ddepthcue;
-    col[x] = ((col[x]+(-offset4Ddepthcue))
-                        + offset4Ddepthcue)*DepthCueFactor;
+    float DepthCueFactor = (wmax-w)/(wmax-wmin)*(1.0-getoffset4Ddepthcue())
+                            +getoffset4Ddepthcue();
+    col[x] = ((col[x]+(-getoffset4Ddepthcue()))
+                        + getoffset4Ddepthcue())*DepthCueFactor;
 }

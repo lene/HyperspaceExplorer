@@ -24,10 +24,6 @@ using VecMath::Vector;
 /// Function default c'tor
 /** Zeroes everything       */
 Function::Function ():
-/*    tmin (0),       tmax (0),       dt (0),
-    umin (0),       umax (0),       du (0),
-    vmin (0),       vmax (0),       dv (0),*/
-//     tsteps (0), usteps (0), vsteps (0),
     F (),
     functionName("")//, parameterNames()
 { }
@@ -49,8 +45,6 @@ Function::Function (const QString &name, ParameterMap _parameters):
     functionName(name),// parameterNames(),
     parameters(_parameters) {
     if (MemRequired () > Globals::Instance().getMaxMemory()) {
-//        while (MemRequired () > Globals::Instance().getMaxMemory()) {
-//        }
     }
 }
 

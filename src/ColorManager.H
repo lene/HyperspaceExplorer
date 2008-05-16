@@ -69,6 +69,8 @@ class ColorManager {
         virtual std::string getContents() { return ""; }
 
     protected:
+        double getoffset4Ddepthcue() { return offset4Ddepthcue; }
+        
         /// one-dimensional Color array, implemented as a std::vector
         typedef std::vector<Color> colorvec1D;
         /// two-dimensional Color array, implemented as a nested std::vector
@@ -80,6 +82,7 @@ class ColorManager {
         /// map of Colors, indexed by 4D points
         typedef std::map<VecMath::Vector<4>, Color> colormap;
 
+    private:
         const Function* f;      ///< Function for which to manage colors
 
         /// value to multiply a color with to get its ambient value
@@ -105,7 +108,7 @@ class xyz2RGBColorManager: public ColorManager {
         virtual ~xyz2RGBColorManager() { }
 
         virtual void setFunction(Function *_f) {
-            f = _f;
+            ColorManager::setFunction(_f);
             col.clear();
         }
 
@@ -124,7 +127,7 @@ class xyz2RGBColorManager: public ColorManager {
             return o.str();
         }
 
-    protected:
+    private:
         Color computeColorFromNeighbors(const VecMath::Vector<4> &x);
         std::pair<std::vector<VecMath::Vector<4> >, std::vector<double> >
                 findClosestPoints(const VecMath::Vector<4> &, unsigned = 5);

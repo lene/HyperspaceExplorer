@@ -41,7 +41,7 @@ namespace VecMath {
 
             std::string Print ();
 
-        protected:
+        private:
             /// A static two-dimensional array storing the components
             N M[D][D];
     };

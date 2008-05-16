@@ -169,19 +169,20 @@ class Function {
         /// the name of the function as a free-form string
         QString functionName;
         
-        /// list of the names of parameters to the function
-//        std::vector<QString> parameterNames;
-        
+        /// list of the parameters to the function
         ParameterMap parameters;
+        /// list of the names of parameters to the function
+        /** needed additionally to the ParameterMap, because the map does not
+         *  keep the parameters in the order they are declared
+         *  \todo move this functionality into ParameterMap                   */
+        std::vector<std::string> parameterNames;
 };
 
 /// Add a parameter with a name and a default value to the parameter list
 template <typename T> inline
         void Function::declareParameter(const std::string &_name,
                                         const T &_default) {
-            //  temporary measure to avoid code breaking when newParameterName()
-            //  is replaced with declareParameter()
-//            parameterNames.push_back(QString(_name.c_str()));
+            parameterNames.push_back(_name);
             if (parameters.find(_name) == parameters.end()) {
                 insertParameter(
                     std::make_pair(_name,
@@ -194,9 +195,7 @@ template <typename T> inline
 template <typename T> inline
         void Function::declareParameter(const std::string &_name,
                                         const T &_default, const T &_value) {
-            //  temporary measure to avoid code breaking when newParameterName()
-            //  is replaced with declareParameter()
-//            parameterNames.push_back(QString(_name.c_str()));
+            parameterNames.push_back(_name);
             if (parameters.find(_name) == parameters.end()) {
                 insertParameter(
                     std::make_pair(_name,

@@ -16,23 +16,24 @@
  *  \ingroup FunctionGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class SteinerFunction: public Function {
-public:
-  SteinerFunction();
-  SteinerFunction (double _umin, double _umax, double _ustep,
-		   double _vmin, double _vmax, double _vstep, double _a = 2.);
-  virtual ~SteinerFunction();
+    public:
+        SteinerFunction();
+        SteinerFunction (double _umin, double _umax, double _ustep,
+                         double _vmin, double _vmax, double _vstep, double _a = 2.);
+        virtual ~SteinerFunction();
 
-  virtual void Draw (void);
+        virtual void Draw (void);
 
-protected:
-  Vector &f (double, double);
-  double **df (double, double);
+    protected:
+        Vector &f (double, double);
+        double **df (double, double);
 
-  double a,
-         umin, umax, du,
-         vmin, vmax, dv;
+    private:
+        double a,
+               umin, umax, du,
+               vmin, vmax, dv;
 
-  Vector F;
+        Vector F;
 };
 
 #endif // !defined(STEINER_FUNCTION_H)

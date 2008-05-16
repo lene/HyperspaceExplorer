@@ -52,10 +52,9 @@ class CustomFunction:
                         double _umin, double _umax, double _du,
                         double _vmin, double _vmax, double _dv,
                         bool final = true);
-//        virtual ~CustomFunction();
+        virtual ~CustomFunction() { }
 
     protected:
-//        virtual VecMath::Vector<4> &f (double, double, double);
         virtual RealFunction::function_type f;
 };
 
@@ -68,10 +67,9 @@ class CustomPolarFunction: public CustomFunction {
         CustomPolarFunction (double _tmin, double _tmax, double _dt,
                              double _umin, double _umax, double _du,
                              double _vmin, double _vmax, double _dv);
-//        virtual ~CustomPolarFunction();
+        virtual ~CustomPolarFunction() { }
 
     protected:
-//        virtual VecMath::Vector<4> &f (double, double, double);
         virtual RealFunction::function_type f;
 };
 
@@ -84,7 +82,7 @@ class CustomSurface:
             public:
                 CustomSurface ( double _umin, double _umax, double _du,
                                 double _vmin, double _vmax, double _dv);
-//                virtual ~CustomSurface();
+                virtual ~CustomSurface() { }
 
             protected:
                 virtual Surface::function_type f;
@@ -99,7 +97,7 @@ class CustomComplexFunction:
     public:
         CustomComplexFunction (double _umin, double _umax, double _du,
                                double _vmin, double _vmax, double _dv);
-//        virtual ~CustomComplexFunction();
+        virtual ~CustomComplexFunction() { }
 
     protected:
         ComplexFunction::function_type g;

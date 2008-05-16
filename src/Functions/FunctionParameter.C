@@ -59,3 +59,40 @@ template<>
     value = _value;
 }
 
+FunctionParameter::FunctionParameter(const std::string &_name,
+                                     const std::string &_description):
+    pImpl(new Impl( _name, _description )) {}
+
+FunctionParameter::~FunctionParameter() { delete pImpl; }
+
+FunctionParameter::operator double() { return double(*(pImpl->value)); }
+FunctionParameter::operator unsigned() { return (unsigned)(*(pImpl->value)); }
+FunctionParameter::operator int() { return (int)(*(pImpl->value)); }
+FunctionParameter::operator std::string() { return (std::string)(*(pImpl->value)); }
+
+const std::string &FunctionParameter::getName() const { return pImpl->name; }
+void FunctionParameter::setName ( const std::string &_name ) { pImpl->name = _name; }
+const std::string &FunctionParameter::getDescription() const { return pImpl->description; }
+void FunctionParameter::setDescription (const std::string &_description) {
+    pImpl->description = _description;
+}
+
+FunctionParameterValueBase *FunctionParameter::value() const {
+    return pImpl->value.get();
+}
+
+FunctionParameterValueBase *FunctionParameter::defaultValue() const {
+    return pImpl->defaultValue.get();
+}
+
+void FunctionParameter::setValue(std::string _value) {
+    if (!pImpl->value.get()) {
+#       if 0
+            pImpl->value = std::auto_ptr<FunctionParameterValueBase>(
+            new FunctionParameterValueBase(*pImpl->defaultValue));
+#       endif
+    } else {
+        pImpl->value->setValue(_value.c_str());
+    }
+}
+

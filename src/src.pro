@@ -6,6 +6,9 @@ QT += opengl
 
 VERSION = 0.3.3
 
+###
+###     move all temporary files out of sight into subdirectory tmp
+###
 system(mkdir -p tmp)
 OBJECTS_DIR = tmp
 MOC_DIR = tmp

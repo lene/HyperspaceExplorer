@@ -64,14 +64,23 @@ class Object: public Function {
 
     protected:
         virtual void Initialize();
+        unsigned getNumVertices() const { return NumVertices; }
+
+        //  the following two members are not private because they must be set
+        //  in every derived class and it seems too much hassle to write a
+        //  setter
+        /// the surfaces, stored as vectors of indeces to the points in X
+        uintvec2D Surface;
+        vec4vec1D X;        ///< temporary storage for the function values
+
+    private:
+        vec4vec1D Xtrans;   ///< temp. storage for transformed function values
+        vec3vec1D Xscr;     ///< temporary storage for projected function values
+
         /// number of vertices the object possesses; must be set by implementations
         unsigned NumVertices;
         /// number of surfaces the object possesses; must be set by implementations
         unsigned NumSurfaces;
-
-        vec4vec1D X;        ///< temporary storage for the function values
-        vec4vec1D Xtrans;   ///< temp. storage for transformed function values
-        vec3vec1D Xscr;     ///< temporary storage for projected function values
 
         /** storage for the coloring of the vertices - red component
          *  @todo turn these three arrays into a single array of Color's      */
@@ -82,9 +91,6 @@ class Object: public Function {
         /** storage for the coloring of the vertices - red component
          *  @todo turn these three arrays into a single array of Color's      */
         floatvec1D B;
-
-        /// the surfaces, stored as vectors of indeces to the points in X
-        uintvec2D Surface;
 
         /** A pointless function, but it must be overridden to satisfy the
          *  Function interface. In an Object it is never called because the

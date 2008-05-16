@@ -33,10 +33,10 @@ using VecMath::Matrix;
  *  @param surfaces number of surfaces                                        */
 Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
     Function (),
-    NumVertices (vertices), NumSurfaces (surfaces),
+    Surface(4),
     X(vec4vec1D(NumVertices)), Xtrans(vec4vec1D(NumVertices)), Xscr(vec3vec1D(NumVertices)),
-    R(floatvec1D(NumVertices)), G(floatvec1D(NumVertices)), B(floatvec1D(NumVertices)),
-    Surface(4) {
+    NumVertices (vertices), NumSurfaces (surfaces),
+    R(floatvec1D(NumVertices)), G(floatvec1D(NumVertices)), B(floatvec1D(NumVertices)) {
     setfunctionName(name);
 
     for (unsigned i = 0; i < 4; i++) Surface[i].resize(NumSurfaces);
@@ -268,7 +268,7 @@ void Sponge::Initialize(void) {
         cerr << "Menger sponge of level " << Level
              << " would require approx. " << MemRequired (distance)/1024/1024
              << " MB of memory." << endl;
-            if (Globals::Instance().check_memory) {
+            if (Globals::Instance().checkMemory()) {
                 cerr << "This is more than your available Memory, "
                      << Globals::Instance().getMaxMemory()/1024/1024 << "MB" << endl;
                 while (MemRequired (distance) > Globals::Instance().getMaxMemory())
@@ -378,7 +378,7 @@ void Pyramid::Initialize() {
     X[4] = Vector<4> (0.5, sqrt (3.)/6., 1./sqrt (6.), 1./sqrt (2.));
 
     Vector<4> center_of_mass (0.5, sqrt (3.)/4., sqrt (1./6.), 1./sqrt (8.));
-    for (unsigned i = 0; i < NumVertices; i++)
+    for (unsigned i = 0; i < getNumVertices(); i++)
         X[i] = X[i]*a+center-center_of_mass*a;
 
     DeclareTriangle (0,  0, 1, 2);
@@ -442,7 +442,7 @@ void Gasket::Initialize() {
             cerr << "Sierpinski gasket of level " << Level
                  << " would require approx. " << MemRequired ()/1024/1024
                  << " MB of memory." << endl;
-            if (Globals::Instance().check_memory) {
+            if (Globals::Instance().checkMemory()) {
                 cerr << "This is more than your available Memory of "
                      << Globals::Instance().getMaxMemory()/1024/1024 << "MB." << endl;
                 while (MemRequired () > Globals::Instance().getMaxMemory()) Level--;

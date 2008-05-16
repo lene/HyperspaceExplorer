@@ -168,31 +168,26 @@ template <typename T> class FunctionParameterValue:
 class FunctionParameter {
     public:
         FunctionParameter(const std::string &_name,
-                          const std::string &_description = ""):
-            pImpl(new Impl(_name, _description)) {}
-        ~FunctionParameter() { delete pImpl; }
+                          const std::string &_description = "");
+        ~FunctionParameter();
 
         /// get the value if it is of type double
-        operator double() {
-            return double(*(pImpl->value));
-        }
+        operator double();
         /// get the value if it is of type unsigned
-        operator unsigned() { return (unsigned)(*(pImpl->value));}
+        operator unsigned();
         /// get the value if it is of type int
-        operator int() { return (int)(*(pImpl->value));}
+        operator int();
         /// get the value if it is of type std::string
-        operator std::string() { return (std::string)(*(pImpl->value));}
+        operator std::string();
 
         /// get the name of the function parameter
-        const std::string &getName() const { return pImpl->name; }
+        const std::string &getName() const;
         /// set the name of the function parameter
-        void setName(const std::string &_name) { pImpl->name = _name; }
+        void setName(const std::string &_name);
         /// get the long description of the function parameter
-        const std::string &getDescription() const { return pImpl->description; }
+        const std::string &getDescription() const;
         /// set the long description of the function parameter
-        void setDescription(const std::string &_description) {
-            pImpl->description = _description;
-        }
+        void setDescription(const std::string &_description);
 
         /// set the value of the parameter.
         /** Requires a pointer created by
@@ -200,37 +195,23 @@ class FunctionParameter {
          *  \todo Can't I call createParameterWithValue() from inside
          *        setValue()?                                                 */
         template<typename T> void setValue(FunctionParameterValue<T> *_value) {
-            pImpl->value.reset(_value);
+            pImpl->value.reset ( _value );
         }
 
         /// Set a value from a string, as contained in a QLineEdit
-        void setValue(std::string _value) {
-            if (!pImpl->value.get()) {
-#               if 0
-                pImpl->value = std::auto_ptr<FunctionParameterValueBase>(
-                    new FunctionParameterValueBase(*pImpl->defaultValue));
-#               endif
-            } else {
-                pImpl->value->setValue(_value.c_str());
-            }
-        }
+        void setValue(std::string _value);
 
         /// set the default value of the parameter.
         /** Requires a pointer created by
          *  ParameterFac::createParameterWithDefault().
          *  \todo Can't I call createParameterWithDefault() from inside
          *        setDefaultValue()?                                          */
-        template<typename T> void setDefaultValue(
-                FunctionParameterValue<T> *_defaultValue) {
+        template<typename T> void setDefaultValue(FunctionParameterValue<T> *_defaultValue ) {
             pImpl->defaultValue.reset(_defaultValue);
         }
 
-        FunctionParameterValueBase *value() const {
-            return pImpl->value.get();
-        }
-        FunctionParameterValueBase *defaultValue() const {
-            return pImpl->defaultValue.get();
-        }
+        FunctionParameterValueBase *value() const;
+        FunctionParameterValueBase *defaultValue() const;
 
     private:
         //  these accessors are never used, but i like to keep them around
