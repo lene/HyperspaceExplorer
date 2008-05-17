@@ -33,10 +33,10 @@ using VecMath::Matrix;
  *  @param surfaces number of surfaces                                        */
 Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
     Function (),
-    Surface(4),
-    X(vec4vec1D(NumVertices)), Xtrans(vec4vec1D(NumVertices)), Xscr(vec3vec1D(NumVertices)),
     NumVertices (vertices), NumSurfaces (surfaces),
-    R(floatvec1D(NumVertices)), G(floatvec1D(NumVertices)), B(floatvec1D(NumVertices)) {
+    X(vec4vec1D(NumVertices)), Xtrans(vec4vec1D(NumVertices)), Xscr(vec3vec1D(NumVertices)),
+    R(floatvec1D(NumVertices)), G(floatvec1D(NumVertices)), B(floatvec1D(NumVertices)),
+    Surface(4) {
     setfunctionName(name);
 
     for (unsigned i = 0; i < 4; i++) Surface[i].resize(NumSurfaces);
@@ -378,7 +378,7 @@ void Pyramid::Initialize() {
     X[4] = Vector<4> (0.5, sqrt (3.)/6., 1./sqrt (6.), 1./sqrt (2.));
 
     Vector<4> center_of_mass (0.5, sqrt (3.)/4., sqrt (1./6.), 1./sqrt (8.));
-    for (unsigned i = 0; i < getNumVertices(); i++)
+    for (unsigned i = 0; i < NumVertices; i++)
         X[i] = X[i]*a+center-center_of_mass*a;
 
     DeclareTriangle (0,  0, 1, 2);
