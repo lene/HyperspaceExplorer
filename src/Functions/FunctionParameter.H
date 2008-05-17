@@ -17,6 +17,7 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <stdexcept>
 
 #include "SingletonHolder.H"
 
@@ -84,17 +85,42 @@
  *  \ingroup FunctionParameterGroup                                           */
 class FunctionParameterValueBase {
     public:
+        ///
+        /** Exception thrown when a FunctionParameterValue member not matching
+         *  its template argument is called                                   */
+        struct WrongParameterTypeException: public std::logic_error {
+            WrongParameterTypeException(const std::string &_class,
+                                        const std::string &_function,
+                                        const std::string &_type):
+                std::logic_error("Tried to call default implementation for "+
+                                 _class+"::"+_function+"("+_type+")!") { }
+        };
+
         /* I have to declare the getters and setters for every type of
            derived classes that will be instantiated. PITA.
            what's worse, i have to define no-ops as default implementation,
            because otherwise the templated derived class would remain
            abstract. that totally breaks type-safety during compilation.      */
-        /** \todo throw an "wrong type" exception in the default implementation,
-         *        to be overridden in the derived class template              */
-        virtual void setValue(const double &) { }       ///< set a double parm
-        virtual void setValue(const unsigned &) { }     ///< set an unsigned parm
-        virtual void setValue(const int &) { }          ///< set an int parm
-        virtual void setValue(const std::string &) { }  ///< set a string parm
+        /// set a double parm
+        virtual void setValue(const double &) {
+            throw WrongParameterTypeException("FunctionParameterValueBase",
+                                              "setValue", "double");
+        }
+        /// set an unsigned parm
+        virtual void setValue(const unsigned &) {
+            throw WrongParameterTypeException("FunctionParameterValueBase",
+                                              "setValue", "unsigned");
+        }
+        /// set an int parm
+        virtual void setValue(const int &) {
+            throw WrongParameterTypeException("FunctionParameterValueBase",
+                                              "setValue", "int");
+        }
+        /// set a string parm
+        virtual void setValue(const std::string &) {
+            throw WrongParameterTypeException("FunctionParameterValueBase",
+                                              "setValue", "std::string");
+        }
 
         virtual void setValue(const char *) = 0;
 
@@ -126,15 +152,37 @@ template <typename T> class FunctionParameterValue:
         /// Set a value from a string, as contained in a QLineEdit
         virtual void setValue(const char *);
 
-        /** default implementations for all cast operators that will be
-         *  necessary in template instantiations. The concrete implementations
-         *  will be defined in specializations.
-         *  \todo throw an "wrong type" exception in the default implementation,
-         *        to be overridden in the specialization                      */
-        virtual operator double() { return 0.; }
-        virtual operator unsigned() { return 0; }
-        virtual operator int() { return 0; }
-        virtual operator std::string() { return ""; }
+        /** Default implementation for cast to double. Concrete implementation
+         *  will be defined in FunctionParameterValue<double>.                */
+        virtual operator double() {
+            throw WrongParameterTypeException("FunctionParameterValue",
+                                              "operator double", "");
+            return 0.;
+        }
+
+        /** Default implementation for cast to unsigned. Concrete implementation
+         *  will be defined in FunctionParameterValue<unsigned>.              */
+        virtual operator unsigned() {
+            throw WrongParameterTypeException("FunctionParameterValue",
+                                              "operator unsigned", "");
+            return 0;
+        }
+
+        /** Default implementation for cast to int. Concrete implementation
+         *  will be defined in FunctionParameterValue<int>.                   */
+        virtual operator int() {
+            throw WrongParameterTypeException("FunctionParameterValue",
+                                              "operator int", "");
+             return 0;
+        }
+
+        /** Default implementation for cast to string. Concrete implementation
+         *  will be defined in FunctionParameterValue<string>.                */
+        virtual operator std::string() {
+            throw WrongParameterTypeException("FunctionParameterValue",
+                                              "operator std::string", "");
+             return "";
+        }
 
         virtual std::string toString() {
             std::ostringstream o;

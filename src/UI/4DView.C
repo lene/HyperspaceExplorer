@@ -788,7 +788,6 @@ void C4DView::AssignValues (const std::auto_ptr<Function> &F) {
     }
 
     Values()->setFunction(F);
-
     Transform ();
 
     ColMgrMgr::Instance().setFunction(F.get());
