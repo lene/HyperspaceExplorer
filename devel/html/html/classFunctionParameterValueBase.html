@@ -11,7 +11,6 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -48,9 +47,10 @@ Inheritance diagram for FunctionParameterValueBase:</div>
 <a href="classFunctionParameterValueBase-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionParameterValueBase.html#926882a10c75d392d8384757d8910e68">setValue</a> (const double &amp;)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="926882a10c75d392d8384757d8910e68"></a><!-- doxytag: member="FunctionParameterValueBase::setValue" ref="926882a10c75d392d8384757d8910e68" args="(const double &amp;)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionParameterValueBase.html#926882a10c75d392d8384757d8910e68">setValue</a> (const double &amp;)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">set a double parm  <a href="#926882a10c75d392d8384757d8910e68"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">set a double parm <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c4df9f2381511249aaeeb458c4673875"></a><!-- doxytag: member="FunctionParameterValueBase::setValue" ref="c4df9f2381511249aaeeb458c4673875" args="(const unsigned &amp;)" -->
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionParameterValueBase.html#c4df9f2381511249aaeeb458c4673875">setValue</a> (const unsigned &amp;)</td></tr>
 
@@ -86,6 +86,9 @@ virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 virtual std::string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionParameterValueBase.html#e6671c4b7548b72f3a68248e35201e7f">toString</a> ()=0</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">string representation <br></td></tr>
+<tr><td colspan="2"><br><h2>Classes</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFunctionParameterValueBase_1_1WrongParameterTypeException.html">WrongParameterTypeException</a></td></tr>
+
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 Interface for a value of a function parameter. Inherited by a template class. 
@@ -102,34 +105,10 @@ Should I ever want to add another type of possible function parameter, I must de
 Finally, I had to declare a Factory to create <a class="el" href="classFunctionParameter.html" title="A parameter to a Function with a name, an optional description and a default.">FunctionParameter</a> objects depending on the type of its value in the class <a class="el" href="classParameterFac.html" title="Class with factory methods to create a FunctionParameter.">ParameterFac</a>. There are two ways to create a parameter:<ul>
 <li>either when you want to declare it for a <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> (in the constructor of the concrete <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> object). Then you want to give it a default value. createParameterWithDefault() is the function for that.</li><li>or you want to pass a <a class="el" href="classFunctionParameter.html" title="A parameter to a Function with a name, an optional description and a default.">FunctionParameter</a> to a function to actually set the parameter. createParameterWithValue() does this.</li></ul>
 <p>
-If this elaborate construction of a type system for function parameters strikes you as needlessly complicated, thank the architects of the C++ language for it. (Just kidding. It makes perfect sense to forbid templated functions as virtual members, and I'm sure there is a good reason to forbid abstract classes as container contents. (I just don't see it now, but I did not think hard on it.) C++ is a very clever language) <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="926882a10c75d392d8384757d8910e68"></a><!-- doxytag: member="FunctionParameterValueBase::setValue" ref="926882a10c75d392d8384757d8910e68" args="(const double &amp;)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void FunctionParameterValueBase::setValue           </td>
-          <td>(</td>
-          <td class="paramtype">const double &amp;&nbsp;</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td width="100%"><code> [inline, virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-set a double parm 
-<p>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>throw an "wrong type" exception in the default implementation, to be overridden in the derived class template </dd></dl>
-
-</div>
-</div><p>
-<hr>The documentation for this class was generated from the following file:<ul>
+If this elaborate construction of a type system for function parameters strikes you as needlessly complicated, thank the architects of the C++ language for it. (Just kidding. It makes perfect sense to forbid templated functions as virtual members, and I'm sure there is a good reason to forbid abstract classes as container contents. (I just don't see it now, but I did not think hard on it.) C++ is a very clever language) <hr>The documentation for this class was generated from the following file:<ul>
 <li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="FunctionParameter_8H-source.html">FunctionParameter.H</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri May 9 19:12:49 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 17 18:32:02 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

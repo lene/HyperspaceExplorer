@@ -11,7 +11,6 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="classes.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -46,8 +45,8 @@
 <a name="l00031"></a>00031     Q_OBJECT
 <a name="l00032"></a>00032 
 <a name="l00033"></a>00033     <span class="keyword">public</span> slots:                               <span class="comment">//  called when:</span>
-<a name="l00034"></a>00034         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#29ceaff4a9ff944d7fa1c3497809dd82">ViewPos</a> (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>);  <span class="comment">//  - viewing angle is changed</span>
-<a name="l00035"></a>00035         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#29ceaff4a9ff944d7fa1c3497809dd82">ViewPos</a> (<span class="keywordtype">double</span>);                  <span class="comment">//  - distance of viewpoint is changed</span>
+<a name="l00034"></a>00034 <span class="comment">//         void ViewPos (double, double, double);  //  - viewing angle is changed</span>
+<a name="l00035"></a>00035 <span class="comment">//         void ViewPos (double);                  //  - distance of viewpoint is changed</span>
 <a name="l00036"></a>00036 
 <a name="l00037"></a>00037     <span class="keyword">public</span>:
 <a name="l00038"></a>00038         <a class="code" href="classXQGLWidget.html#85f432f8fe5454ab47b7c1fda0039323">XQGLWidget</a> (QWidget * = 0);
@@ -64,7 +63,7 @@
 <a name="l00049"></a>00049             Background = RGBA;
 <a name="l00050"></a>00050         }
 <a name="l00051"></a>00051 
-<a name="l00052"></a>00052         <span class="keywordtype">void</span> SetBackgroundColor (<span class="keywordtype">float</span> <a class="code" href="classXQGLWidget.html#fc36dd30e32e73098dbefa9fb8d4fe7f" title="viewpoint distance">R</a>, <span class="keywordtype">float</span> G, <span class="keywordtype">float</span> B, <span class="keywordtype">float</span> <a class="code" href="classXQGLWidget.html#1407ff3bb6d52f180e3152268c170841">A</a>) {
+<a name="l00052"></a>00052         <span class="keywordtype">void</span> SetBackgroundColor (<span class="keywordtype">float</span> <a class="code" href="classXQGLWidget.html#fc36dd30e32e73098dbefa9fb8d4fe7f" title="viewpoint distance">R</a>, <span class="keywordtype">float</span> G, <span class="keywordtype">float</span> B, <span class="keywordtype">float</span> A) {
 <a name="l00053"></a>00053             Background = <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> (R, G, B, A);
 <a name="l00054"></a>00054         }
 <a name="l00056"></a><a class="code" href="classXQGLWidget.html#9a1e3002e61b9cd572e05738cff9ec65">00056</a>         <span class="keywordtype">bool</span> &amp;<a class="code" href="classXQGLWidget.html#9a1e3002e61b9cd572e05738cff9ec65">getColors</a>() { <span class="keywordflow">return</span> colors; }
@@ -75,67 +74,46 @@
 <a name="l00065"></a>00065 
 <a name="l00066"></a>00066 
 <a name="l00067"></a>00067     <span class="keyword">protected</span> slots:
-<a name="l00068"></a>00068         <span class="keywordtype">void</span> Rotate ();
-<a name="l00069"></a>00069         <span class="keywordtype">void</span> Help ();
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#1ce4e8bb8be33cec6b537f22383dc7cb">SetAlpha</a> (<span class="keywordtype">int</span>);
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073         <span class="comment">//  key acceleration handling</span>
-<a name="l00074"></a>00074         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#fec2ac2281d670b359fb9477427709a3">Left</a> ();
-<a name="l00075"></a>00075         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#0f547eeeeb537d450ad98ef997a3c8a2">Right</a> ();
-<a name="l00076"></a>00076         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#5fe1a661d1487779dedcb81c8df20566">Up</a> ();
-<a name="l00077"></a>00077         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#2a468256f058a20bd1a38175ee07c9c6">Down</a> ();
-<a name="l00078"></a>00078         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#edec7e3837fad859c9fedb47612c95f6">SLeft</a> ();
-<a name="l00079"></a>00079         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#365d407818722fc180f415deb6706acd">SRight</a> ();
-<a name="l00080"></a>00080         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#8aedcf9f26e9490e5b43a05316da141a">SUp</a> ();
-<a name="l00081"></a>00081         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#5f805b208465835abb6578ea2b8a9d8e">SDown</a> ();
-<a name="l00082"></a>00082         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#be015a7eea04c322413d36199f5761f3">CALeft</a> ();
-<a name="l00083"></a>00083         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#9de89c2937e6b374f54bcb030092f8f8">CARight</a> ();
-<a name="l00084"></a>00084         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#719193b6534d457413cf4ac56a9c6cf9">CAUp</a> ();
-<a name="l00085"></a>00085         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#16d007066fed2d61795438e00c212365">CADown</a> ();
+<a name="l00068"></a>00068         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#b2326fa68fe06bb430ed7ce747d2e046">Help</a>();
+<a name="l00069"></a>00069         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#be958ac396d977eb7279a6347d303f89">about</a> ();
+<a name="l00070"></a>00070         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#5a905b642d68c9a70ad33575a155f895">aboutQt</a> ();
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072     <span class="keyword">protected</span>:                                  <span class="comment">//  OpenGL interface</span>
+<a name="l00073"></a>00073         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#69e77b7b2dc97790205c1887cd7d80ae">initializeGL</a> (<span class="keywordtype">void</span>);
+<a name="l00074"></a>00074         <span class="keywordtype">void</span> paintGL (<span class="keywordtype">void</span>);
+<a name="l00075"></a>00075         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#1f1d84bed197953b9d339ab0495ffd20">resizeGL</a> (<span class="keywordtype">int</span>, <span class="keywordtype">int</span>);
+<a name="l00076"></a>00076         <span class="keywordtype">void</span> Draw (<span class="keywordtype">void</span>);
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078 <span class="comment">/*        void mousePressEvent (QMouseEvent *);</span>
+<a name="l00079"></a>00079 <span class="comment">        void mouseReleaseEvent (QMouseEvent *);</span>
+<a name="l00080"></a>00080 <span class="comment">        void mouseMoveEvent (QMouseEvent *);*/</span>
+<a name="l00081"></a>00081         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#ffa30cf0c781bdd1d13e4a4feb7c53a6">SetupDepthCue</a> (<span class="keywordtype">float</span>, <span class="keywordtype">float</span>);
+<a name="l00082"></a>00082         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#26ff1c69c2921fcd7dbda3ba2e9cc146">InitLight</a> (<span class="keywordtype">void</span>);
+<a name="l00083"></a>00083         <span class="keywordtype">void</span> InitShade (<span class="keywordtype">void</span>);
+<a name="l00084"></a>00084         <span class="keywordtype">void</span> InitFog  (<span class="keywordtype">void</span>);
+<a name="l00085"></a>00085         <span class="keywordtype">void</span> InitTransparence (<span class="keywordtype">void</span>);
 <a name="l00086"></a>00086 
-<a name="l00087"></a>00087         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#fba8e87397fe66b7cd19d45fc591ee00">Plus</a> ();
-<a name="l00088"></a>00088         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#d738f17bb35e7236a962986f75bb2d22">Minus</a> ();
-<a name="l00089"></a>00089 
-<a name="l00090"></a>00090         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#1407ff3bb6d52f180e3152268c170841">A</a> ();
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#be958ac396d977eb7279a6347d303f89">about</a> ();
-<a name="l00093"></a>00093         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#5a905b642d68c9a70ad33575a155f895">aboutQt</a> ();
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095     <span class="keyword">protected</span>:                                  <span class="comment">//  OpenGL interface</span>
-<a name="l00096"></a>00096         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#69e77b7b2dc97790205c1887cd7d80ae">initializeGL</a> (<span class="keywordtype">void</span>);
-<a name="l00097"></a>00097         <span class="keywordtype">void</span> paintGL (<span class="keywordtype">void</span>);
-<a name="l00098"></a>00098         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#1f1d84bed197953b9d339ab0495ffd20">resizeGL</a> (<span class="keywordtype">int</span>, <span class="keywordtype">int</span>);
-<a name="l00099"></a>00099         <span class="keywordtype">void</span> Draw (<span class="keywordtype">void</span>);
+<a name="l00087"></a>00087     <span class="keyword">private</span>:
+<a name="l00088"></a>00088         <a class="code" href="classGLObject.html">GLObject</a> *DrawObject;
+<a name="l00089"></a>00089         <span class="comment">//  geometry states</span>
+<a name="l00090"></a><a class="code" href="classXQGLWidget.html#d9731d1c9aa6017dfe1e6ea650ba835e">00090</a>         <span class="keywordtype">double</span> R,                       
+<a name="l00091"></a>00091                <a class="code" href="classXQGLWidget.html#c07a6942200319cd46f5f71b82237784" title="rotation about x-axis">psi</a>,                     
+<a name="l00092"></a>00092                <a class="code" href="classXQGLWidget.html#d9731d1c9aa6017dfe1e6ea650ba835e" title="rotation about y-axis">theta</a>,                   
+<a name="l00093"></a>00093                <a class="code" href="classXQGLWidget.html#121637b147c4189bf840f38a79c44fa2" title="rotation about z-axis">phi</a>;                     
+<a name="l00094"></a>00094                <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> Background;
+<a name="l00095"></a>00095         GLfloat Alpha;
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097         <span class="comment">//  drawing realism states</span>
+<a name="l00098"></a>00098         <span class="keywordtype">bool</span> light, fog, transparent, shade, colors;
+<a name="l00099"></a>00099         <span class="keywordtype">int</span> xpressed, ypressed;
 <a name="l00100"></a>00100 
-<a name="l00101"></a>00101         <span class="keywordtype">void</span> mousePressEvent (QMouseEvent *);
-<a name="l00102"></a>00102         <span class="keywordtype">void</span> mouseReleaseEvent (QMouseEvent *);
-<a name="l00103"></a>00103         <span class="keywordtype">void</span> mouseMoveEvent (QMouseEvent *);
-<a name="l00104"></a>00104         <span class="keywordtype">void</span> SetupDepthCue (<span class="keywordtype">float</span>, <span class="keywordtype">float</span>);
-<a name="l00105"></a>00105         <span class="keywordtype">void</span> <a class="code" href="classXQGLWidget.html#26ff1c69c2921fcd7dbda3ba2e9cc146">InitLight</a> (<span class="keywordtype">void</span>);
-<a name="l00106"></a>00106         <span class="keywordtype">void</span> InitShade (<span class="keywordtype">void</span>);
-<a name="l00107"></a>00107         <span class="keywordtype">void</span> InitFog  (<span class="keywordtype">void</span>);
-<a name="l00108"></a>00108         <span class="keywordtype">void</span> InitTransparence (<span class="keywordtype">void</span>);
-<a name="l00109"></a>00109 
-<a name="l00110"></a>00110     <span class="keyword">private</span>:
-<a name="l00111"></a>00111         <a class="code" href="classGLObject.html">GLObject</a> *DrawObject;
-<a name="l00112"></a>00112         <span class="comment">//  geometry states</span>
-<a name="l00113"></a><a class="code" href="classXQGLWidget.html#d9731d1c9aa6017dfe1e6ea650ba835e">00113</a>         <span class="keywordtype">double</span> R,                       
-<a name="l00114"></a>00114                <a class="code" href="classXQGLWidget.html#c07a6942200319cd46f5f71b82237784" title="rotation about x-axis">psi</a>,                     
-<a name="l00115"></a>00115                <a class="code" href="classXQGLWidget.html#d9731d1c9aa6017dfe1e6ea650ba835e" title="rotation about y-axis">theta</a>,                   
-<a name="l00116"></a>00116                <a class="code" href="classXQGLWidget.html#121637b147c4189bf840f38a79c44fa2" title="rotation about z-axis">phi</a>;                     
-<a name="l00117"></a>00117                <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> Background;
-<a name="l00118"></a>00118         GLfloat Alpha;
-<a name="l00119"></a>00119 
-<a name="l00120"></a>00120         <span class="comment">//  drawing realism states</span>
-<a name="l00121"></a>00121         <span class="keywordtype">bool</span> light, fog, transparent, shade, colors;
-<a name="l00122"></a>00122         <span class="keywordtype">int</span> xpressed, ypressed;
-<a name="l00123"></a>00123 
-<a name="l00124"></a>00124 };
-<a name="l00125"></a>00125 
-<a name="l00126"></a>00126 <span class="preprocessor">#endif</span>
+<a name="l00101"></a>00101         <span class="keyword">static</span> GLfloat LightPos[4];
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103 };
+<a name="l00104"></a>00104 
+<a name="l00105"></a>00105 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri May 9 19:12:49 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 17 18:32:01 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

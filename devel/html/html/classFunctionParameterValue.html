@@ -11,7 +11,6 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -57,18 +56,12 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set a value from a string, as contained in a QLineEdit. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionParameterValue.html#cbf55f79789e12f6e6b78d6b9b6c7770">operator double</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="075a19bd2e0c9d5b7ea388d415518cde"></a><!-- doxytag: member="FunctionParameterValue::operator unsigned" ref="075a19bd2e0c9d5b7ea388d415518cde" args="()" -->
-virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionParameterValue.html#075a19bd2e0c9d5b7ea388d415518cde">operator unsigned</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionParameterValue.html#075a19bd2e0c9d5b7ea388d415518cde">operator unsigned</a> ()</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">get an unsigned parm <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="81409bf82f1e0344d1b60bb4561bad86"></a><!-- doxytag: member="FunctionParameterValue::operator int" ref="81409bf82f1e0344d1b60bb4561bad86" args="()" -->
-virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionParameterValue.html#81409bf82f1e0344d1b60bb4561bad86">operator int</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionParameterValue.html#81409bf82f1e0344d1b60bb4561bad86">operator int</a> ()</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">get an int parm <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0dab8de459b02b353da7d8ec27fdf26c"></a><!-- doxytag: member="FunctionParameterValue::operator std::string" ref="0dab8de459b02b353da7d8ec27fdf26c" args="()" -->
-virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionParameterValue.html#0dab8de459b02b353da7d8ec27fdf26c">operator std::string</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionParameterValue.html#0dab8de459b02b353da7d8ec27fdf26c">operator std::string</a> ()</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">set a string parm <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3b678c97c0bd27b6c8589557ed6fef9f"></a><!-- doxytag: member="FunctionParameterValue::toString" ref="3b678c97c0bd27b6c8589557ed6fef9f" args="()" -->
 virtual std::string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionParameterValue.html#3b678c97c0bd27b6c8589557ed6fef9f">toString</a> ()</td></tr>
 
@@ -159,16 +152,84 @@ template&lt;typename T&gt; </div>
 <div class="memdoc">
 
 <p>
-default implementations for all cast operators that will be necessary in template instantiations. The concrete implementations will be defined in specializations. <dl compact><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>throw an "wrong type" exception in the default implementation, to be overridden in the specialization </dd></dl>
-
+Default implementation for cast to double. Concrete implementation will be defined in FunctionParameterValue&lt;double&gt;. 
 <p>Implements <a class="el" href="classFunctionParameterValueBase.html#3b3022bc134779596c38ac8f4afa9884">FunctionParameterValueBase</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="075a19bd2e0c9d5b7ea388d415518cde"></a><!-- doxytag: member="FunctionParameterValue::operator unsigned" ref="075a19bd2e0c9d5b7ea388d415518cde" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classFunctionParameterValue.html">FunctionParameterValue</a>&lt; T &gt;::operator unsigned           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Default implementation for cast to unsigned. Concrete implementation will be defined in FunctionParameterValue&lt;unsigned&gt;. 
+<p>Implements <a class="el" href="classFunctionParameterValueBase.html#1cf25f1b6bc62a4a81042a5d00aa7057">FunctionParameterValueBase</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="81409bf82f1e0344d1b60bb4561bad86"></a><!-- doxytag: member="FunctionParameterValue::operator int" ref="81409bf82f1e0344d1b60bb4561bad86" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classFunctionParameterValue.html">FunctionParameterValue</a>&lt; T &gt;::operator int           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Default implementation for cast to int. Concrete implementation will be defined in FunctionParameterValue&lt;int&gt;. 
+<p>Implements <a class="el" href="classFunctionParameterValueBase.html#8863252ecd7d0b17c81fb3e78453029b">FunctionParameterValueBase</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="0dab8de459b02b353da7d8ec27fdf26c"></a><!-- doxytag: member="FunctionParameterValue::operator std::string" ref="0dab8de459b02b353da7d8ec27fdf26c" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classFunctionParameterValue.html">FunctionParameterValue</a>&lt; T &gt;::operator std::string           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Default implementation for cast to string. Concrete implementation will be defined in FunctionParameterValue&lt;string&gt;. 
+<p>Implements <a class="el" href="classFunctionParameterValueBase.html#23b42bb6bca92628fbdb0a184938352b">FunctionParameterValueBase</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following file:<ul>
 <li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="FunctionParameter_8H-source.html">FunctionParameter.H</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri May 9 19:12:49 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 17 18:32:02 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

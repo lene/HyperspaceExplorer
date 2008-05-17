@@ -11,7 +11,6 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -32,7 +31,7 @@
 </h1><!-- doxytag: class="SurfaceBase" --><!-- doxytag: inherits="Function" --><em><a class="el" href="classSurfaceBase.html" title="SurfaceBase provides a base class for functions which take two parameters">SurfaceBase</a></em> provides a base class for functions which take two parameters  
 <a href="#_details">More...</a>
 <p>
-<code>#include &lt;<a class="el" href="Function_8H-source.html">Function.H</a>&gt;</code>
+<code>#include &lt;<a class="el" href="Surface_8H-source.html">Surface.H</a>&gt;</code>
 <p>
 <div class="dynheader">
 Inheritance diagram for SurfaceBase:</div>
@@ -76,10 +75,58 @@ Inheritance diagram for SurfaceBase:</div>
 typedef <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurfaceBase.html#d2203f76756ba3478e3a73dc215fc06a">raw_function_type</a> (double, double)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">the real, raw type of the function used to generate values <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e51173a2ee46a56ccbb02bf9a26ff87f"></a><!-- doxytag: member="SurfaceBase::SurfaceBase" ref="e51173a2ee46a56ccbb02bf9a26ff87f" args="(const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>SurfaceBase</b> (const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c39f68676d595d0b684c3c71f2aa72f1"></a><!-- doxytag: member="SurfaceBase::SurfaceBase" ref="c39f68676d595d0b684c3c71f2aa72f1" args="(const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, ParameterMap _parms=ParameterMap())" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>SurfaceBase</b> (const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, <a class="el" href="classParameterMap.html">ParameterMap</a> _parms=<a class="el" href="classParameterMap.html">ParameterMap</a>())</td></tr>
 
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="761208b17975a6c343774b5ca467ed2b"></a><!-- doxytag: member="SurfaceBase::getTsteps" ref="761208b17975a6c343774b5ca467ed2b" args="()" -->
+unsigned &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getTsteps</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5fd7997c43e9ffd31e2fbaab27eff772"></a><!-- doxytag: member="SurfaceBase::getTsteps" ref="5fd7997c43e9ffd31e2fbaab27eff772" args="() const " -->
+unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><b>getTsteps</b> () const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d8c79625fa46d8c5ebbda58f0dd9eb5d"></a><!-- doxytag: member="SurfaceBase::getUsteps" ref="d8c79625fa46d8c5ebbda58f0dd9eb5d" args="()" -->
+unsigned &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getUsteps</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6d8a3275a973b95be291716078904e54"></a><!-- doxytag: member="SurfaceBase::getUsteps" ref="6d8a3275a973b95be291716078904e54" args="() const " -->
+unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><b>getUsteps</b> () const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="73cd034a8689e0f9fbd796f8e7423fcb"></a><!-- doxytag: member="SurfaceBase::getTmin" ref="73cd034a8689e0f9fbd796f8e7423fcb" args="()" -->
+double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getTmin</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="331f915b27e433bdbcae7b23a6f95150"></a><!-- doxytag: member="SurfaceBase::getTmin" ref="331f915b27e433bdbcae7b23a6f95150" args="() const " -->
+double&nbsp;</td><td class="memItemRight" valign="bottom"><b>getTmin</b> () const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ac9069441800f0bbf3b85b9a7839f56f"></a><!-- doxytag: member="SurfaceBase::getTmax" ref="ac9069441800f0bbf3b85b9a7839f56f" args="()" -->
+double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getTmax</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="487414ac55576adcd49b1931be389f76"></a><!-- doxytag: member="SurfaceBase::getTmax" ref="487414ac55576adcd49b1931be389f76" args="() const " -->
+double&nbsp;</td><td class="memItemRight" valign="bottom"><b>getTmax</b> () const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c1b7c91a12ac9ad433c27d8ad9f6067c"></a><!-- doxytag: member="SurfaceBase::getDt" ref="c1b7c91a12ac9ad433c27d8ad9f6067c" args="()" -->
+double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getDt</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3a9373910f81b3893cc21c809ea69436"></a><!-- doxytag: member="SurfaceBase::getDt" ref="3a9373910f81b3893cc21c809ea69436" args="() const " -->
+const double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getDt</b> () const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ed7d2013bca3eb15eb1abcc8e72cbd58"></a><!-- doxytag: member="SurfaceBase::getUmin" ref="ed7d2013bca3eb15eb1abcc8e72cbd58" args="()" -->
+double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getUmin</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="abc4aff7e78d1de3add2d54f53c9f6f0"></a><!-- doxytag: member="SurfaceBase::getUmin" ref="abc4aff7e78d1de3add2d54f53c9f6f0" args="() const " -->
+double&nbsp;</td><td class="memItemRight" valign="bottom"><b>getUmin</b> () const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5097c9fd6cd4955c2b7b29d4ed7b46bb"></a><!-- doxytag: member="SurfaceBase::getUmax" ref="5097c9fd6cd4955c2b7b29d4ed7b46bb" args="()" -->
+double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getUmax</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="53633255335f97b61c5fe101f2e32dc1"></a><!-- doxytag: member="SurfaceBase::getUmax" ref="53633255335f97b61c5fe101f2e32dc1" args="() const " -->
+double&nbsp;</td><td class="memItemRight" valign="bottom"><b>getUmax</b> () const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b374ba3db9a0339e6a5aaa230d1a76ca"></a><!-- doxytag: member="SurfaceBase::getDu" ref="b374ba3db9a0339e6a5aaa230d1a76ca" args="()" -->
+double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getDu</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7586cb2be4de82c7c9f1d55c3aa31986"></a><!-- doxytag: member="SurfaceBase::getDu" ref="7586cb2be4de82c7c9f1d55c3aa31986" args="() const " -->
+const double &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>getDu</b> () const </td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ba6ce6327e509663e484560f849d03f1"></a><!-- doxytag: member="SurfaceBase::f" ref="ba6ce6327e509663e484560f849d03f1" args="(double, double)=0" -->
 virtual <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurfaceBase.html#ba6ce6327e509663e484560f849d03f1">f</a> (double, double)=0</td></tr>
 
@@ -87,6 +134,39 @@ virtual <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt;
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurfaceBase.html#279eefbc9e2d3733eeae5dee35a62f0b">operator()</a> (double u, double v, double=0)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> evaluation operator for three parameters.  <a href="#279eefbc9e2d3733eeae5dee35a62f0b"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="fa8c885abae834903a65501324167924"></a><!-- doxytag: member="SurfaceBase::tmin" ref="fa8c885abae834903a65501324167924" args="" -->
+double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurfaceBase.html#fa8c885abae834903a65501324167924">tmin</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">min. value of the first parameter, here called t <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b92843a431802d31e4fb5437c0ef5bec"></a><!-- doxytag: member="SurfaceBase::tmax" ref="b92843a431802d31e4fb5437c0ef5bec" args="" -->
+double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurfaceBase.html#b92843a431802d31e4fb5437c0ef5bec">tmax</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">min. value of the first parameter, here called t <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="246a9dc0b6ae2741e5de384201b271fd"></a><!-- doxytag: member="SurfaceBase::dt" ref="246a9dc0b6ae2741e5de384201b271fd" args="" -->
+double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurfaceBase.html#246a9dc0b6ae2741e5de384201b271fd">dt</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">stepsize in first parameter <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2527a0ad8040bdb3df8f9f19e85b18a2"></a><!-- doxytag: member="SurfaceBase::umin" ref="2527a0ad8040bdb3df8f9f19e85b18a2" args="" -->
+double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurfaceBase.html#2527a0ad8040bdb3df8f9f19e85b18a2">umin</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">min. value of the second parameter, here called u <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f2bdc4afb299c0aef8f8191ce465da25"></a><!-- doxytag: member="SurfaceBase::umax" ref="f2bdc4afb299c0aef8f8191ce465da25" args="" -->
+double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurfaceBase.html#f2bdc4afb299c0aef8f8191ce465da25">umax</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">min. value of the second parameter, here called u <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9b643ee7520fbeed4d99d69499f9f3e8"></a><!-- doxytag: member="SurfaceBase::du" ref="9b643ee7520fbeed4d99d69499f9f3e8" args="" -->
+double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurfaceBase.html#9b643ee7520fbeed4d99d69499f9f3e8">du</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">stepsize in second parameter <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="eb5312872b3069a6f9c72c04a62f7942"></a><!-- doxytag: member="SurfaceBase::tsteps" ref="eb5312872b3069a6f9c72c04a62f7942" args="" -->
+unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurfaceBase.html#eb5312872b3069a6f9c72c04a62f7942">tsteps</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">number of steps in t <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f50dc3d9bea41ab2db26b1b91586eab7"></a><!-- doxytag: member="SurfaceBase::usteps" ref="f50dc3d9bea41ab2db26b1b91586eab7" args="" -->
+unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurfaceBase.html#f50dc3d9bea41ab2db26b1b91586eab7">usteps</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">number of steps in u <br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 <em><a class="el" href="classSurfaceBase.html" title="SurfaceBase provides a base class for functions which take two parameters">SurfaceBase</a></em> provides a base class for functions which take two parameters 
@@ -98,7 +178,7 @@ abstract member: <ul>
 member: <ul>
 <li>operator () (double t, double u, double);</li>
 </ul>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>Vector &amp;normal (double, double); - or in base class?</dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000024">Todo:</a></b></dt><dd>Vector &amp;normal (double, double); - or in base class?</dd></dl>
 <dl class="author" compact><dt><b>Author:</b></dt><dd>Helge Preuss &lt;<a href="mailto:scout@hyperspace-travel.de">scout@hyperspace-travel.de</a>&gt; </dd></dl>
 <hr><h2>Member Function Documentation</h2>
 <a class="anchor" name="02cf6fe2a88f04b0a81430b9050622f7"></a><!-- doxytag: member="SurfaceBase::function_type" ref="02cf6fe2a88f04b0a81430b9050622f7" args="(double, double)" -->
@@ -175,14 +255,16 @@ type of the function used to generate values, optimized with a reference as retu
 
 <p>Implements <a class="el" href="classFunction.html#68cf5a6e74a4f6a96893079ace0dc228">Function</a>.</p>
 
+<p>References <a class="el" href="classSurfaceBase.html#ba6ce6327e509663e484560f849d03f1">f()</a>.</p>
+
 <p>Referenced by <a class="el" href="Surface_8C-source.html#l00145">Surface::df()</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following file:<ul>
-<li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="Function_8H-source.html">Function.H</a></ul>
+<li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="Surface_8H-source.html">Surface.H</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri May 9 19:12:50 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 17 18:32:03 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

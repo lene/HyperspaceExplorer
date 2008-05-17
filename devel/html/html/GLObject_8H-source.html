@@ -11,7 +11,6 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="classes.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -28,77 +27,28 @@
 <a name="l00010"></a>00010 <span class="preprocessor"></span><span class="preprocessor">#define GLOBJECT_H</span>
 <a name="l00011"></a>00011 <span class="preprocessor"></span>
 <a name="l00012"></a>00012 <span class="preprocessor">#include &lt;GL/gl.h&gt;</span>
-<a name="l00013"></a>00013 <span class="preprocessor">#include &lt;cstdarg&gt;</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#include &lt;vector&gt;</span>
 <a name="l00014"></a>00014 
-<a name="l00015"></a>00015 <span class="preprocessor">#include &lt;vector&gt;</span>
-<a name="l00016"></a>00016 
-<a name="l00017"></a>00017 <span class="preprocessor">#include "Log.H"</span>
-<a name="l00018"></a>00018 
-<a name="l00025"></a><a class="code" href="classGLObject.html">00025</a> <span class="keyword">class </span><a class="code" href="classGLObject.html">GLObject</a> {
-<a name="l00026"></a>00026     <span class="keyword">public</span>:
-<a name="l00027"></a>00027         <a class="code" href="classGLObject.html">GLObject</a> (GLuint objlist = 0): List () {
-<a name="l00028"></a>00028             <span class="keywordflow">if</span> (glIsList (objlist)) List.push_back (objlist);
-<a name="l00029"></a>00029         }
+<a name="l00021"></a><a class="code" href="classGLObject.html">00021</a> <span class="keyword">class </span><a class="code" href="classGLObject.html">GLObject</a> {
+<a name="l00022"></a>00022     <span class="keyword">public</span>:
+<a name="l00024"></a>00024         <a class="code" href="classGLObject.html#8b1b7ee78b7d0ea198a53ed044b3c4c4" title="initialize a GLObject with a GL List">GLObject</a> (GLuint objlist = 0);
+<a name="l00026"></a>00026         <a class="code" href="classGLObject.html#8b1b7ee78b7d0ea198a53ed044b3c4c4" title="initialize a GLObject with a GL List">GLObject</a> (<span class="keywordtype">unsigned</span> elements, GLuint objlist, ...);
+<a name="l00027"></a>00027 
+<a name="l00029"></a>00029         <span class="keyword">virtual</span> <a class="code" href="classGLObject.html#0cf1d2a782debc36bf07b345a3609fae" title="free all GL Lists managed by this GLObject">~GLObject</a> (<span class="keywordtype">void</span>);
 <a name="l00030"></a>00030 
-<a name="l00031"></a>00031         <a class="code" href="classGLObject.html">GLObject</a> (<span class="keywordtype">unsigned</span> elements, GLuint objlist, ...): List () {
-<a name="l00032"></a>00032             <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">SingletonLog::Instance</a>() &lt;&lt; <span class="stringliteral">"    GLObject ("</span> &lt;&lt; (long)elements &lt;&lt; <span class="stringliteral">", "</span>;
-<a name="l00033"></a>00033             <span class="keywordflow">if</span> (glIsList (objlist)) {
-<a name="l00034"></a>00034                 <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">SingletonLog::Instance</a>() &lt;&lt; (long)objlist &lt;&lt; <span class="stringliteral">", "</span>;
-<a name="l00035"></a>00035                 List.push_back (objlist);
-<a name="l00036"></a>00036             } <span class="keywordflow">else</span> {
-<a name="l00037"></a>00037                 <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">SingletonLog::Instance</a>() &lt;&lt; (long)objlist &lt;&lt; <span class="stringliteral">" not a GL list "</span>;
-<a name="l00038"></a>00038             }
+<a name="l00032"></a><a class="code" href="classGLObject.html#2210f33eb4d6f4d42a8da58b3377385d">00032</a>         <span class="keywordtype">unsigned</span> <a class="code" href="classGLObject.html#2210f33eb4d6f4d42a8da58b3377385d" title="Template Method to draw all GL Lists managed by this GLObject.">Draw</a> (<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> <a class="code" href="classGLObject.html#b0fa52dd27a4ff3b6afa9e55b53b9b0e" title="implementation for Template Method Draw()">doDraw</a>(); }
+<a name="l00033"></a>00033 
+<a name="l00035"></a>00035         <a class="code" href="classGLObject.html#98fdb66cc6be8438515db60d51a77b53" title="true if GLObject contains at least one GL List">operator bool </a>();
+<a name="l00036"></a>00036 
+<a name="l00037"></a>00037     <span class="keyword">private</span>:
 <a name="l00039"></a>00039 
-<a name="l00040"></a>00040             va_list argp;
-<a name="l00041"></a>00041             va_start (argp, objlist);
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 1; i &lt; elements; i++) {
-<a name="l00044"></a>00044                 objlist = va_arg (argp, GLuint);
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046                 <span class="keywordflow">if</span> (glIsList (objlist)) {
-<a name="l00047"></a>00047                     <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">SingletonLog::Instance</a>() &lt;&lt; (long)objlist &lt;&lt; <span class="stringliteral">", "</span>;
-<a name="l00048"></a>00048                     List.push_back (objlist);
-<a name="l00049"></a>00049                 }
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051                 <span class="keywordflow">else</span> <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">SingletonLog::Instance</a>() &lt;&lt; (long)objlist &lt;&lt; <span class="stringliteral">" not a GL list "</span>;
-<a name="l00052"></a>00052             }
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054             <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">SingletonLog::Instance</a>() &lt;&lt; <span class="stringliteral">")\n"</span>;
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056             va_end (argp);
-<a name="l00057"></a>00057         }
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060         <span class="keyword">virtual</span> ~<a class="code" href="classGLObject.html">GLObject</a> (<span class="keywordtype">void</span>) {
-<a name="l00061"></a>00061             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; List.size (); i++)
-<a name="l00062"></a>00062                 <span class="keywordflow">if</span> (glIsList (List[i])) glDeleteLists (List[i], 1);
-<a name="l00063"></a>00063         }
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065         <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> Draw (<span class="keywordtype">void</span>) {
-<a name="l00066"></a>00066             <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">SingletonLog::Instance</a>() &lt;&lt; <span class="stringliteral">"GLObject::Draw ("</span>;
-<a name="l00067"></a>00067 
-<a name="l00068"></a>00068             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; List.size (); i++) {
-<a name="l00069"></a>00069                 <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">SingletonLog::Instance</a>() &lt;&lt; (long)List[i] &lt;&lt; <span class="stringliteral">", "</span>;
-<a name="l00070"></a>00070                 glCallList (List[i]);
-<a name="l00071"></a>00071             }
-<a name="l00072"></a>00072             <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">SingletonLog::Instance</a>() &lt;&lt; <span class="stringliteral">")\n"</span>;
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074             <span class="keywordflow">return</span> 0;
-<a name="l00075"></a>00075         }
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077         operator bool () {
-<a name="l00078"></a>00078             <span class="keywordflow">if</span> (List.empty ()) <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00079"></a>00079             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; List.size (); i++)
-<a name="l00080"></a>00080                 <span class="keywordflow">if</span> (glIsList (List[i])) <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00081"></a>00081             <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00082"></a>00082         }
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084     <span class="keyword">private</span>:
-<a name="l00085"></a>00085             std::vector&lt;GLuint&gt; List;
-<a name="l00086"></a>00086 };
-<a name="l00087"></a>00087 <span class="preprocessor">#endif</span>
+<a name="l00040"></a>00040         <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> <a class="code" href="classGLObject.html#b0fa52dd27a4ff3b6afa9e55b53b9b0e" title="implementation for Template Method Draw()">doDraw</a>();
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042         std::vector&lt;GLuint&gt; List;
+<a name="l00043"></a>00043 };
+<a name="l00044"></a>00044 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri May 9 19:12:49 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 17 18:32:01 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

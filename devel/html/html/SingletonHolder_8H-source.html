@@ -11,7 +11,6 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="classes.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -49,7 +48,7 @@
 <a name="l00044"></a>00044 <span class="keyword">namespace </span>Loki
 <a name="l00045"></a>00045 {
 <a name="l00046"></a>00046 
-<a name="l00054"></a>00054     <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keyword">struct </span>CreateUsingNew
+<a name="l00054"></a><a class="code" href="structLoki_1_1CreateUsingNew.html">00054</a>     <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keyword">struct </span><a class="code" href="structLoki_1_1CreateUsingNew.html">CreateUsingNew</a>
 <a name="l00055"></a>00055     {
 <a name="l00056"></a>00056         <span class="keyword">static</span> T* Create()
 <a name="l00057"></a>00057         { <span class="keywordflow">return</span> <span class="keyword">new</span> T; }
@@ -59,7 +58,7 @@
 <a name="l00061"></a>00061     };
 <a name="l00062"></a>00062 
 <a name="l00071"></a>00071     <span class="keyword">template</span>&lt;<span class="keyword">template</span>&lt;<span class="keyword">class</span>&gt; <span class="keyword">class </span>Alloc&gt;
-<a name="l00072"></a>00072     <span class="keyword">struct </span>CreateUsing
+<a name="l00072"></a><a class="code" href="structLoki_1_1CreateUsing.html">00072</a>     <span class="keyword">struct </span><a class="code" href="structLoki_1_1CreateUsing.html">CreateUsing</a>
 <a name="l00073"></a>00073     {
 <a name="l00074"></a>00074         <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;
 <a name="l00075"></a>00075         <span class="keyword">struct </span>Allocator
@@ -80,7 +79,7 @@
 <a name="l00090"></a>00090         };
 <a name="l00091"></a>00091     };
 <a name="l00092"></a>00092 
-<a name="l00101"></a>00101     <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keyword">struct </span>CreateUsingMalloc
+<a name="l00101"></a><a class="code" href="structLoki_1_1CreateUsingMalloc.html">00101</a>     <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keyword">struct </span><a class="code" href="structLoki_1_1CreateUsingMalloc.html">CreateUsingMalloc</a>
 <a name="l00102"></a>00102     {
 <a name="l00103"></a>00103         <span class="keyword">static</span> T* Create()
 <a name="l00104"></a>00104         {
@@ -97,7 +96,7 @@
 <a name="l00115"></a>00115     };
 <a name="l00116"></a>00116 
 <a name="l00117"></a>00117 
-<a name="l00128"></a>00128     <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keyword">struct </span>CreateStatic
+<a name="l00128"></a><a class="code" href="structLoki_1_1CreateStatic.html">00128</a>     <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keyword">struct </span><a class="code" href="structLoki_1_1CreateStatic.html">CreateStatic</a>
 <a name="l00129"></a>00129     {
 <a name="l00130"></a>00130         <span class="keyword">union </span>MaxAlign
 <a name="l00131"></a>00131         {
@@ -130,13 +129,13 @@
 <a name="l00172"></a>00172     <span class="keyword">template</span>
 <a name="l00173"></a>00173     &lt;
 <a name="l00174"></a>00174         <span class="keyword">typename</span> T,
-<a name="l00175"></a>00175         <span class="keyword">template</span> &lt;<span class="keyword">class</span>&gt; <span class="keyword">class </span>CreationPolicy = CreateUsingNew
+<a name="l00175"></a>00175         <span class="keyword">template</span> &lt;<span class="keyword">class</span>&gt; <span class="keyword">class </span>CreationPolicy = <a class="code" href="structLoki_1_1CreateUsingNew.html">CreateUsingNew</a>
 <a name="l00176"></a>00176     &gt;
-<a name="l00177"></a>00177     <span class="keyword">class </span>SingletonHolder
+<a name="l00177"></a><a class="code" href="classLoki_1_1SingletonHolder.html">00177</a>     <span class="keyword">class </span><a class="code" href="classLoki_1_1SingletonHolder.html">SingletonHolder</a>
 <a name="l00178"></a>00178     {
 <a name="l00179"></a>00179     <span class="keyword">public</span>:
 <a name="l00180"></a>00180 
-<a name="l00182"></a><a class="code" href="classLoki_1_1SingletonHolder.html#90400cb32897f9942958bece12165136">00182</a>         <span class="keyword">typedef</span> T <a class="code" href="classLoki_1_1SingletonHolder.html#90400cb32897f9942958bece12165136" title="Type of the singleton object.">ObjectType</a>;
+<a name="l00182"></a><a class="code" href="classLoki_1_1SingletonHolder.html#2e995720b0baebf24b7cd5501099d80c">00182</a>         <span class="keyword">typedef</span> T <a class="code" href="classLoki_1_1SingletonHolder.html#2e995720b0baebf24b7cd5501099d80c" title="Type of the singleton object.">ObjectType</a>;
 <a name="l00183"></a>00183 
 <a name="l00185"></a>00185         <span class="keyword">static</span> T&amp; <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">Instance</a>();
 <a name="l00186"></a>00186 
@@ -178,7 +177,7 @@
 <a name="l00226"></a>00226         <span class="keyword">class </span>T,
 <a name="l00227"></a>00227         <span class="keyword">template</span> &lt;<span class="keyword">class</span>&gt; <span class="keyword">class </span>CreationPolicy
 <a name="l00228"></a>00228     &gt;
-<a name="l00229"></a>00229     <span class="keyword">inline</span> T&amp; <a class="code" href="classLoki_1_1SingletonHolder.html">SingletonHolder&lt;T, CreationPolicy&gt;::Instance</a>()
+<a name="l00229"></a><a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28">00229</a>     <span class="keyword">inline</span> T&amp; <a class="code" href="classLoki_1_1SingletonHolder.html">SingletonHolder&lt;T, CreationPolicy&gt;::Instance</a>()
 <a name="l00230"></a>00230     {
 <a name="l00231"></a>00231         <span class="keywordflow">if</span> (!pInstance_)
 <a name="l00232"></a>00232         {
@@ -194,7 +193,7 @@
 <a name="l00244"></a>00244         <span class="keyword">class </span>T,
 <a name="l00245"></a>00245         <span class="keyword">template</span> &lt;<span class="keyword">class</span>&gt; <span class="keyword">class </span>CreationPolicy
 <a name="l00246"></a>00246     &gt;
-<a name="l00247"></a>00247     <span class="keywordtype">void</span> SingletonHolder&lt;T, CreationPolicy&gt;::MakeInstance()
+<a name="l00247"></a>00247     <span class="keywordtype">void</span> <a class="code" href="classLoki_1_1SingletonHolder.html">SingletonHolder&lt;T, CreationPolicy&gt;::MakeInstance</a>()
 <a name="l00248"></a>00248     {
 <a name="l00249"></a>00249         <span class="keywordflow">if</span> (!pInstance_)
 <a name="l00250"></a>00250         {
@@ -227,7 +226,7 @@
 <a name="l00290"></a>00290 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
 <a name="l00291"></a>00291 <span class="preprocessor"></span>
 <a name="l00292"></a>00292     <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;
-<a name="l00293"></a>00293     <span class="keyword">class </span>LOKI_SINGLETON_EXPORT Singleton
+<a name="l00293"></a><a class="code" href="classLoki_1_1Singleton.html">00293</a>     <span class="keyword">class </span>LOKI_SINGLETON_EXPORT <a class="code" href="classLoki_1_1Singleton.html">Singleton</a>
 <a name="l00294"></a>00294     {
 <a name="l00295"></a>00295     <span class="keyword">public</span>:
 <a name="l00296"></a>00296         <span class="keyword">static</span> T&amp; <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">Instance</a>();
@@ -250,7 +249,7 @@
 <a name="l00316"></a>00316 
 <a name="l00317"></a>00317 <span class="preprocessor">#endif // end file guardian</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri May 9 19:12:49 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 17 18:32:00 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

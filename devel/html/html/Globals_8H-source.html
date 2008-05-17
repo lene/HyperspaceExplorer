@@ -11,7 +11,6 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="classes.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -85,29 +84,31 @@
 <a name="l00084"></a><a class="code" href="classGlobal.html#c512ceb809cd9a6b401900318d4bbc62">00084</a>         <span class="keyword">static</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a>&amp; <a class="code" href="classGlobal.html#c512ceb809cd9a6b401900318d4bbc62">white</a>() { <span class="keywordflow">return</span> <a class="code" href="classGlobal.html#c057e73b4628f9010a2580ccf21244d3">White</a>; }
 <a name="l00086"></a><a class="code" href="classGlobal.html#2d8afc1687681fc168bb468000fb9326">00086</a>         <span class="keyword">static</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a>&amp; <a class="code" href="classGlobal.html#2d8afc1687681fc168bb468000fb9326">grey50</a>() { <span class="keywordflow">return</span> <a class="code" href="classGlobal.html#ca5d167ac2b151c95be44e3e07bd8c58">Grey50</a>; }
 <a name="l00087"></a>00087 
-<a name="l00090"></a><a class="code" href="classGlobal.html#53d14f4c4fa1472251cb87181a021291">00090</a>         <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="classGlobal.html#53d14f4c4fa1472251cb87181a021291">check_memory</a>;
-<a name="l00092"></a><a class="code" href="classGlobal.html#db311d7f438bfa1f40f030b56e813578">00092</a>         <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="classGlobal.html#db311d7f438bfa1f40f030b56e813578">SR3</a>;
-<a name="l00093"></a>00093 
-<a name="l00094"></a>00094     <span class="keyword">private</span>:
-<a name="l00095"></a>00095         <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="classGlobal.html#ee41dfa8c3f54721609d57c58ae702d8">check_proc_meminfo</a> ();
-<a name="l00096"></a>00096 
-<a name="l00098"></a><a class="code" href="classGlobal.html#2f8f0a44741d3e331a41f0cb7cef5782">00098</a>         <span class="keyword">static</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classGlobal.html#2f8f0a44741d3e331a41f0cb7cef5782">background</a>;
-<a name="l00100"></a><a class="code" href="classGlobal.html#8a4a15ef7b6327aaafec97ba55635e74">00100</a>         <span class="keyword">static</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classGlobal.html#8a4a15ef7b6327aaafec97ba55635e74">fog_color</a>;
-<a name="l00102"></a><a class="code" href="classGlobal.html#c057e73b4628f9010a2580ccf21244d3">00102</a>         <span class="keyword">static</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classGlobal.html#c057e73b4628f9010a2580ccf21244d3">White</a>;
-<a name="l00104"></a><a class="code" href="classGlobal.html#ca5d167ac2b151c95be44e3e07bd8c58">00104</a>         <span class="keyword">static</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classGlobal.html#ca5d167ac2b151c95be44e3e07bd8c58">Grey50</a>;
-<a name="l00105"></a>00105 
-<a name="l00107"></a><a class="code" href="classGlobal.html#9ce07a3f47f79473e32f67eca456f79b">00107</a>         <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="classGlobal.html#9ce07a3f47f79473e32f67eca456f79b">MaximumMemory</a>;
-<a name="l00108"></a>00108 
-<a name="l00110"></a><a class="code" href="classGlobal.html#80cba6b0d930d4f38f01be9a03012b3c">00110</a>         QMainWindow *<a class="code" href="classGlobal.html#80cba6b0d930d4f38f01be9a03012b3c">mainWindow</a>;
-<a name="l00112"></a><a class="code" href="classGlobal.html#85c2751599c677efee668f61fc86e09d">00112</a>         QAction *<a class="code" href="classGlobal.html#85c2751599c677efee668f61fc86e09d">quitAction</a>;
-<a name="l00113"></a>00113 
-<a name="l00114"></a>00114 };
+<a name="l00089"></a><a class="code" href="classGlobal.html#db311d7f438bfa1f40f030b56e813578">00089</a>         <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="classGlobal.html#db311d7f438bfa1f40f030b56e813578">SR3</a>;
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091         <span class="keyword">static</span> <span class="keywordtype">bool</span> checkMemory() { <span class="keywordflow">return</span> <a class="code" href="classGlobal.html#53d14f4c4fa1472251cb87181a021291">check_memory</a>; }
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093     <span class="keyword">private</span>:
+<a name="l00096"></a><a class="code" href="classGlobal.html#53d14f4c4fa1472251cb87181a021291">00096</a>         <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="classGlobal.html#53d14f4c4fa1472251cb87181a021291">check_memory</a>;
+<a name="l00097"></a>00097         <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="classGlobal.html#ee41dfa8c3f54721609d57c58ae702d8">check_proc_meminfo</a> ();
+<a name="l00098"></a>00098 
+<a name="l00100"></a><a class="code" href="classGlobal.html#2f8f0a44741d3e331a41f0cb7cef5782">00100</a>         <span class="keyword">static</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classGlobal.html#2f8f0a44741d3e331a41f0cb7cef5782">background</a>;
+<a name="l00102"></a><a class="code" href="classGlobal.html#8a4a15ef7b6327aaafec97ba55635e74">00102</a>         <span class="keyword">static</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classGlobal.html#8a4a15ef7b6327aaafec97ba55635e74">fog_color</a>;
+<a name="l00104"></a><a class="code" href="classGlobal.html#c057e73b4628f9010a2580ccf21244d3">00104</a>         <span class="keyword">static</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classGlobal.html#c057e73b4628f9010a2580ccf21244d3">White</a>;
+<a name="l00106"></a><a class="code" href="classGlobal.html#ca5d167ac2b151c95be44e3e07bd8c58">00106</a>         <span class="keyword">static</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classGlobal.html#ca5d167ac2b151c95be44e3e07bd8c58">Grey50</a>;
+<a name="l00107"></a>00107 
+<a name="l00109"></a><a class="code" href="classGlobal.html#9ce07a3f47f79473e32f67eca456f79b">00109</a>         <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="classGlobal.html#9ce07a3f47f79473e32f67eca456f79b">MaximumMemory</a>;
+<a name="l00110"></a>00110 
+<a name="l00112"></a><a class="code" href="classGlobal.html#80cba6b0d930d4f38f01be9a03012b3c">00112</a>         QMainWindow *<a class="code" href="classGlobal.html#80cba6b0d930d4f38f01be9a03012b3c">mainWindow</a>;
+<a name="l00114"></a><a class="code" href="classGlobal.html#85c2751599c677efee668f61fc86e09d">00114</a>         QAction *<a class="code" href="classGlobal.html#85c2751599c677efee668f61fc86e09d">quitAction</a>;
 <a name="l00115"></a>00115 
-<a name="l00116"></a>00116 <span class="keyword">typedef</span> <a class="code" href="classLoki_1_1SingletonHolder.html">Loki::SingletonHolder&lt;Global&gt;</a> <a class="code" href="classLoki_1_1SingletonHolder.html">Globals</a>;
+<a name="l00116"></a>00116 };
 <a name="l00117"></a>00117 
-<a name="l00118"></a>00118 <span class="preprocessor">#endif // !defined(GLOBALS_H)</span>
+<a name="l00118"></a>00118 <span class="keyword">typedef</span> <a class="code" href="classLoki_1_1SingletonHolder.html">Loki::SingletonHolder&lt;Global&gt;</a> <a class="code" href="classLoki_1_1SingletonHolder.html">Globals</a>;
+<a name="l00119"></a>00119 
+<a name="l00120"></a>00120 <span class="preprocessor">#endif // !defined(GLOBALS_H)</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri May 9 19:12:49 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 17 18:32:00 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

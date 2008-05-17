@@ -11,7 +11,6 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -28,7 +27,7 @@
   </div>
 </div>
 <div class="contents">
-<h1>C4DView::Impl Struct Reference</h1><!-- doxytag: class="C4DView::Impl" -->Private class containing the mamber data for the Pimpl idiom.  
+<h1>C4DView::Impl Struct Reference</h1><!-- doxytag: class="C4DView::Impl" -->Private class containing the member data for the Pimpl idiom.  
 <a href="#_details">More...</a>
 <p>
 
@@ -263,7 +262,7 @@ std::vector&lt; std::vector<br>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">the popup menu <br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
-Private class containing the mamber data for the Pimpl idiom. 
+Private class containing the member data for the Pimpl idiom. 
 <p>
 I thought it would be a good idea to switch to the Pimpl idiom (all data in a private inner class, to which the outer class keeps only a pointer) to cleanly separate implementation and interface.<p>
 Turns out the idea is not so great, at least not in this case. I had to define a gazillion getters and setters first (none of which were supported by KDevelop or Eclipse/CDT in any way), thereby introducing a gazillion possibilities for typos, which may or may not be detected by the compiler. Then I had to go and change every occurrence of the member variable in the class implementation to its corresponding accessor. Granted, this had been less annoying if I had used Pimpl in the first place, but replacing <div class="fragment"><pre class="fragment"> x++ 
@@ -290,7 +289,7 @@ if true, image is currently animated
 <hr>The documentation for this struct was generated from the following file:<ul>
 <li>workspace/HyperspaceExplorer/src/UI/<a class="el" href="4DView_8H-source.html">4DView.H</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri May 9 19:12:49 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 17 18:32:01 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>
