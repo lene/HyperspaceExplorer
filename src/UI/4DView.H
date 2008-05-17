@@ -85,7 +85,7 @@ class C4DView : public XQGLWidget {
                     virtual Surface *createSurface(C4DView *);
             };
 
-    protected:
+    private:
         /// Class template to outsource redundant code for customized functions
         /** Redundant code for the generation of customized functions is moved
          *  to a slot called by QActions from the QMenu
@@ -137,7 +137,7 @@ class C4DView : public XQGLWidget {
         double Benchmark3D(int, double, double, double, bool = true);
         double Benchmark4D(int, double, double, double, bool = true);
 
-    protected slots:
+    private slots:
         void OnTimer();
         void AnimationSettings();
         void ApplyChanges(const ParameterMap &);
@@ -245,7 +245,7 @@ class C4DView : public XQGLWidget {
         const QString & animationDirectory() const { return pImpl->animationDirectory; }
         void setanimationPrefix(const QString &b) { pImpl->animationPrefix = b; }
         const QString & animationPrefix() const { return pImpl->animationPrefix; }
-        
+
         void setanimationFrame(unsigned b) { pImpl->animationFrame = b; }
         unsigned animationFrame() const { return pImpl->animationFrame; }
         void setanimationMaxFrames(unsigned b) { pImpl->animationMaxFrames = b; }
@@ -301,7 +301,7 @@ class C4DView : public XQGLWidget {
         void setmenu(Menu4D * b) { pImpl->menu = b; }
         Menu4D * menu() const { return pImpl->menu; }
 
-        
+
     private:                                    //  member variables
         /// Private class containing the member data for the Pimpl idiom
         /** I thought it would be a good idea to switch to the Pimpl idiom
