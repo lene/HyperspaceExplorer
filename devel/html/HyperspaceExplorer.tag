@@ -4756,27 +4756,6 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>floatvec1D</type>
-      <name>R</name>
-      <anchorfile>classObject.html</anchorfile>
-      <anchor>61ff801a10427bf1b8a8fb5ec9f9937d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>floatvec1D</type>
-      <name>G</name>
-      <anchorfile>classObject.html</anchorfile>
-      <anchor>770462e34d7856993a31aca7bcc71f94</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>floatvec1D</type>
-      <name>B</name>
-      <anchorfile>classObject.html</anchorfile>
-      <anchor>3a5f711ad4ef87bb9a2c2c78199899d6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="protected">
       <type>uintvec2D</type>
       <name>Surface</name>
       <anchorfile>classObject.html</anchorfile>
