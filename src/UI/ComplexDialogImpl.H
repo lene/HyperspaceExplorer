@@ -22,11 +22,11 @@ class ComplexDialogImpl:
         ComplexDialogImpl (QWidget *parent = 0, Qt::WFlags f = 0);
         virtual ~ComplexDialogImpl() {}
 
-    public slots:
+    private slots:
         virtual bool checkValidity();
         virtual bool loadFunction();
 
-    protected:
+    private:
         virtual bool functionPresent(const QString &);
         virtual void writeSource ();
 };

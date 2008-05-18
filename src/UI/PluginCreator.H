@@ -44,14 +44,6 @@ class PluginCreator {
         QString libraryName () { return LibraryName; }
 
     protected:
-
-        /// Display  and load the selected DLL into current address space
-        virtual bool loadFunction() = 0;
-        /// Loads the dynamic library given by libName, if it exists and can be loaded.
-        virtual bool functionPresent(const QString &) = 0;
-        /// Write a C++ source file containing the given function
-        virtual void writeSource() = 0;
-
         bool loadFunction(const QString &, QDialog *);
         bool checkValidity(const QString &, const QString &, QDialog *);
 
@@ -59,6 +51,13 @@ class PluginCreator {
         bool link (QString);
 
     private:
+        /// Display  and load the selected DLL into current address space
+        virtual bool loadFunction() = 0;
+        /// Loads the dynamic library given by libName, if it exists and can be loaded.
+        virtual bool functionPresent(const QString &) = 0;
+        /// Write a C++ source file containing the given function
+        virtual void writeSource() = 0;
+
         QString LibraryName;    ///< Filename of the DLL to be loaded
 };
 
