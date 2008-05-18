@@ -17,7 +17,6 @@
 #include "Globals.H"
 
 #include "Vector.H"
-#include "GLObject.H"
 
 using std::cerr;
 using std::endl;
