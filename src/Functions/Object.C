@@ -35,7 +35,6 @@ Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
     Function (),
     NumVertices (vertices), NumSurfaces (surfaces),
     X(vec4vec1D(NumVertices)), Xtrans(vec4vec1D(NumVertices)), Xscr(vec3vec1D(NumVertices)),
-    R(floatvec1D(NumVertices)), G(floatvec1D(NumVertices)), B(floatvec1D(NumVertices)),
     Surface(4) {
     setfunctionName(name);
 
@@ -85,9 +84,7 @@ void Object::Transform (double, double, double thetaxw,
 /// Projects an Object into three-space
 /** @param scr_w w coordinate of screen
  *  @param cam_w w coordinate of camera
- *  @param depthcue4d wheter to use hyperfog/dc
- *  @todo change R[], G[], B[] into a single array of Color's
- *  @todo uses hardcoded values!                                              */
+ *  @param depthcue4d wheter to use hyperfog/dc                               */
 void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
     double ProjectionFactor;
     double Wmax = 0, Wmin = 0;
