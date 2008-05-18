@@ -17,6 +17,9 @@
 //                    it since, because it Just Worked(TM) for me.
 //                    Don't be surprised about some peculiarities. I have
 //                    moved on since then.
+//                    20080518: I'm working on getting rid of this module
+//                    entirely, function by function. already weeded out over
+//                    half of the code.
 
 #include <GL/glu.h>
 
@@ -28,13 +31,9 @@
 #include <QSlider>
 
 #include "XQGLWidget.H"
-#include "GLObject.H"
 #include "Log.H"
 #include "Globals.H"
 #include "Help.H"
-
-//using std::cerr;
-using std::endl;
 
 
 GLfloat XQGLWidget::LightPos[4] = { 4., 4., 8., 0. };
@@ -45,7 +44,7 @@ GLfloat XQGLWidget::LightPos[4] = { 4., 4., 8., 0. };
  *  @param parent	parent QWidget, defaults to NULL
  *  @param name		name, defaulting to ""                                */
 XQGLWidget::XQGLWidget (QWidget *parent) :
-    QGLWidget (parent), DrawObject (0),
+    QGLWidget (parent), /*DrawObject (0),*/
     R (10), psi (0), theta (0), phi (0),
     Background (4, 0.25, 0.25, 0.25, 1.), Alpha (1.0),
     light (true), fog (true), transparent (false), shade (true), colors (true) {
@@ -122,33 +121,6 @@ void XQGLWidget::InitTransparence (void) {
     }
 }
 
-void XQGLWidget::paintGL () {
-    SingletonLog::Instance().log("XQGLWidget::paintGL()");
-
-    setCursor (QCursor (Qt::WaitCursor));       //  change cursor to 'working'
-
-    SingletonLog::Instance().log("  glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)");
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   //  clear screen
-
-    glPushMatrix ();                            //  save default view
-    //  glMatrixMode (GL_MODELVIEW);            //  NECESSARY?
-
-    glRotatef (GLfloat (psi),   1., 0., 0.);
-    glRotatef (GLfloat (theta), 0., 1., 0.);
-    glRotatef (GLfloat (phi),   0., 0., 1.);    //  rotate view
-
-    SingletonLog::Instance().log("    if (DrawObject) DrawObject->Draw ()");
-    if (DrawObject) DrawObject->Draw ();        //  draw what's there
-
-    glPopMatrix ();                             //  restore default view
-
-    setCursor (Qt::ArrowCursor);                //  restore cursor
-}
-
-void XQGLWidget::Draw (void) {
-    DrawObject->Draw ();                        //  draw what's there
-}
-
 /** change of viewing distance is handled here too, which is not so clean
  *  programming style...
     \todo eliminate hardcoded constants                                       */
@@ -171,23 +143,6 @@ void XQGLWidget::resizeGL (int width, int height) {
     if (fog) SetupDepthCue (R, 2.);
 }
 
-
-/** ViewPos (psi, theta, phi)
-    called any time the viewing angle is changed on the command widget        */
-// void XQGLWidget::ViewPos (double psi_, double theta_, double phi_) {
-//     if ((psi != psi_) || (theta != theta_) || (phi != phi_)) {    //  any change?
-//         psi = psi_; theta = theta_; phi = phi_; //  update values
-//         updateGL (); } }                        //  update picture
-
-/** called any time the viewing distance is changed on the command widget     */
-// void XQGLWidget::ViewPos (double R_) {
-//     if (R != R_ && R_ > 0) {                    //  valid distance?
-//         R = R_;                                 //  update value
-//         resizeGL (width (), height());          //  update GL state
-//         updateGL ();                            //  update picture
-//     }
-// }
-
 void XQGLWidget::SetupDepthCue (float dist, float size) {
   static GLfloat back[4];                       //  copy background color because
   for (unsigned i = 0; i < 4; i++) back[i] = Background[i];
@@ -197,49 +152,6 @@ void XQGLWidget::SetupDepthCue (float dist, float size) {
   glFogf (GL_FOG_START, dist-size/2.);          //  ...
   glFogf (GL_FOG_END,   dist+size/2.*Globals::Instance().SR3);
 }
-
-////////////////////////////////////////////////////////////////////////////////
-//
-//	XQGLWidget mouse handling
-//
-////////////////////////////////////////////////////////////////////////////////
-
-/** mouse press event handler; cares for popping up the menu (RMB), rotating
- *  (LMB) and zooming (MMB)
- *  @param e Qt's mouse event information structure                           */
-// void XQGLWidget::mousePressEvent (QMouseEvent *E) {
-//     SingletonLog::Instance() << "XQGLWidget::mousePressEvent ()\n";
-//     int ButtonPressed = E->button ();
-//     if (ButtonPressed == Qt::RightButton) {
-//         SingletonLog::Instance() << "  ButtonPressed == Qt::RightButton\n";
-//     } else if (ButtonPressed == Qt::LeftButton) {
-//         xpressed = E->x(); ypressed = E->y();
-//     } else if (ButtonPressed == Qt::MidButton) {
-//         if (E->modifiers() && Qt::ShiftModifier) ViewPos (R+1);
-//         else ypressed = E->y();               // ViewPos (R-1); }
-//     }
-// }
-
-
-/** mouse release event handler; cares for executing the action associated with
- *  the mouse button
- *  \todo get rid of HARDCODED values for zooming!
- *  @param e	Qt's mouse event information structure                        */
-// void XQGLWidget::mouseReleaseEvent (QMouseEvent *E) {
-//   int ButtonPressed = E->button ();
-//   if (ButtonPressed == Qt::LeftButton) {
-//     int dx = E->x () - xpressed, dy = E->y () -ypressed,
-//       dtheta = dx*90/width (), dpsi   = dy*90/height ();
-//     theta += dtheta; psi += dpsi;
-//     repaint (); }
-//   if (ButtonPressed == Qt::MidButton) {
-//     double dr = double (E->y ()-ypressed)/height ()*5.;   //  the 5 may have to be reviewed
-//     if (dr) ViewPos (R*pow (1.25, dr));                   //  exponential change (1.25 also)
-//     else if (!(E->modifiers() && Qt::ShiftModifier))
-//       ViewPos (R/1.25);
-//   }
-// }
-
 
 /** display help window
  * \todo HARDCODED filename */
@@ -259,7 +171,6 @@ void XQGLWidget::about() {
                               " of "+QString(__DATE__)+"</p>"
               );
 }
-
 
 /** open an "About Qt"-Dialog */
 void XQGLWidget::aboutQt() {

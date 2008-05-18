@@ -11,7 +11,7 @@
 
 #include "GLObject.H"
 #include "Log.H"
-
+/*
 GLObject::GLObject (GLuint objlist): List () {
     if (glIsList (objlist)) List.push_back (objlist);
 }
@@ -65,3 +65,4 @@ unsigned GLObject::doDraw (void) {
 
     return 0;
 }
+*/

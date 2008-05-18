@@ -18,7 +18,6 @@
 #include <QGLWidget>
 
 #include "Vector.H"
-#include "GLObject.H"
 
 class Q3PopupMenu;
 class QMouseEvent;
@@ -30,20 +29,8 @@ class XQGLWidget: public QGLWidget {
 
     Q_OBJECT
 
-    public slots:                               //  called when:
-//         void ViewPos (double, double, double);  //  - viewing angle is changed
-//         void ViewPos (double);                  //  - distance of viewpoint is changed
-
     public:
         XQGLWidget (QWidget * = 0);
-        bool SetDrawObject (GLObject *obj) {
-            DrawObject = obj;
-            return *DrawObject;
-        }
-        bool SetDrawObject (GLuint list) {
-            DrawObject = new GLObject (list);
-            return *DrawObject;
-        }
 
         void SetBackgroundColor (const VecMath::Vector<4> &RGBA) {
             Background = RGBA;
@@ -71,13 +58,8 @@ class XQGLWidget: public QGLWidget {
 
     protected:                                  //  OpenGL interface
         void initializeGL (void);
-        void paintGL (void);
         void resizeGL (int, int);
-        void Draw (void);
 
-/*        void mousePressEvent (QMouseEvent *);
-        void mouseReleaseEvent (QMouseEvent *);
-        void mouseMoveEvent (QMouseEvent *);*/
         void SetupDepthCue (float, float);
         void InitLight (void);
         void InitShade (void);
@@ -85,7 +67,6 @@ class XQGLWidget: public QGLWidget {
         void InitTransparence (void);
 
     private:
-        GLObject *DrawObject;
         //  geometry states
         double R,                       ///< viewpoint distance
                psi,                     ///< rotation about x-axis

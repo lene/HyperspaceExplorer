@@ -18,6 +18,7 @@
  *  the Draw () routine must be implemented in the derived classes.
  *  \ingroup UIGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
+/*
 class GLObject {
     public:
         /// initialize a GLObject with a GL List
@@ -37,8 +38,8 @@ class GLObject {
     private:
         /// implementation for Template Method Draw()
         /** kept virtual and private to separate interface and implementation */
-        virtual unsigned doDraw();
+/*        virtual unsigned doDraw();
 
         std::vector<GLuint> List;
-};
+};*/
 #endif
