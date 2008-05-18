@@ -11,76 +11,27 @@
 //      module:       XQGLWidget.H
 //      compile with: make all
 //      contains:     class definition for the extended OpenGL widget
-
 #ifndef XQGLW_H
 #define XQGLW_H
+/*
 
 #include <QGLWidget>
 
 #include "Vector.H"
 
-class Q3PopupMenu;
-class QMouseEvent;
+//class Q3PopupMenu;
+//class QMouseEvent;
 
 /** class XQGLWidget:
  *  implements a QGLWidget
  *  \ingroup UIGroup                                                          */
+/*
 class XQGLWidget: public QGLWidget {
 
     Q_OBJECT
 
     public:
         XQGLWidget (QWidget * = 0);
-
-        void SetBackgroundColor (const VecMath::Vector<4> &RGBA) {
-            Background = RGBA;
-        }
-
-        void SetBackgroundColor (float R, float G, float B, float A) {
-            Background = VecMath::Vector<4> (R, G, B, A);
-        }
-        /// @return whether to use colors in rendering or not
-        bool &getColors() { return colors; }
-        /// @return whether to use shading in rendering or not
-        bool &getShade() { return shade; }
-        /// @return whether to use depth cue/fog in rendering or not
-        bool &getFog() { return fog; }
-        /// @return whether to use lighting in rendering or not
-        bool &getLight() { return light; }
-        /// @return whether to use transparence/line antialiasing or not
-        bool &getTransparent() { return transparent; }
-
-
-    protected slots:
-        void Help();
-        void about ();
-        void aboutQt ();
-
-    protected:                                  //  OpenGL interface
-        void initializeGL (void);
-        void resizeGL (int, int);
-
-        void SetupDepthCue (float, float);
-        void InitLight (void);
-        void InitShade (void);
-        void InitFog  (void);
-        void InitTransparence (void);
-
-    private:
-        //  geometry states
-        double R,                       ///< viewpoint distance
-               psi,                     ///< rotation about x-axis
-               theta,                   ///< rotation about y-axis
-               phi;                     ///< rotation about z-axis
-               VecMath::Vector<4> Background;
-        GLfloat Alpha;
-
-        //  drawing realism states
-        bool light, fog, transparent, shade, colors;
-        int xpressed, ypressed;
-
-        static GLfloat LightPos[4];
-
 };
-
+*/
 #endif

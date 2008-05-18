@@ -31,7 +31,7 @@ class Menu4D: public QMenu {
         typedef std::map<QString, QAction *> ActionMapType;
         /// Manages an ActionMap for each submenu
         typedef std::map<QMenu *, ActionMapType> MenuMapType;
-        
+
         QAction *insertAction(QMenu *, const QString &, const char *,
                               bool = true);
         QAction *insertAction(QMenu *, const QString &,

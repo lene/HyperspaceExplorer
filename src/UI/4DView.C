@@ -16,6 +16,7 @@
 #include "4DView.H"
 #include "Menu4D.H"
 #include "AnimationDialogImpl.H"
+#include "Help.H"
 
 #include "Globals.H"
 #include "Log.H"
@@ -40,6 +41,15 @@ using std::vector;
 using VecMath::Vector;
 using VecMath::Matrix;
 
+GLfloat C4DView::LightPos[4] = { 4., 4., 8., 0. };
+
+template<typename T> T min(const T &a, const T &b) {
+    return (a < b? a: b);
+}
+template<typename T> T max(const T &a, const T &b) {
+    return (a > b? a: b);
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // 	C4DView construction/destruction
 ////////////////////////////////////////////////////////////////////////////////
@@ -51,41 +61,8 @@ using VecMath::Matrix;
  *  and finally creates a Hypercube as the default object to display
  *  @param parent	parent QWidget, defaults to NULL                      */
 C4DView::C4DView(QWidget *parent):
-    XQGLWidget (parent),
-    pImpl(new Impl(this))
-/*
-    F(auto_ptr<Function>()),
-
-    Tx (0), Ty (0), Tz (0), Tw (0),
-    Rxy (0), Rxz (0), Rxw (0), Ryz (0), Ryw (0), Rzw (0),
-
-    m_rotX (15), m_rotY (15), m_rotZ (0.),
-    m_transX (0), m_transY (0), m_camZ (-10.),
-
-    CamW (-3.), ScrW (0.),
-
-    AntiAlias (false), DisplayPolygons (false), Lighting (true),
-    DepthCue3D (false), DepthCue4D (false),
-    DisplayCoordinates (false),
-    RenderToPixmap (false),
-    animationDirectory("/tmp"),
-    animationPrefix("HyperspaceExplorer_Image"),
-    animationMaxFrames((unsigned)-1),
-    animation_fps (50),
-
-    ObjectList (0), CoordinateCross (0),
-
-    Animated (false), TakingSpinValues (false),
-
-     CurrentlyRendering (false),
-
-    m_LeftDownPos (0,0), m_MidDownPos (0,0), m_RightDownPos (0,0),
-
-
-    Values (new ValuesDialogImpl (this)),
-    dxy (0), dxz (0), dxw (0), dyz (0), dyw (0), dzw (0),
-    dx (0), dy (0), dz (0) { */
-    {
+    QGLWidget (parent),
+    pImpl(new Impl(this)) {
 
     InitCross();
 
@@ -108,7 +85,6 @@ C4DView::C4DView(QWidget *parent):
     ObjectHypercube ();
 
     Light ();
-
 }
 
 /// C4DView destructor
@@ -424,6 +400,30 @@ void C4DView::ApplyChanges (const ParameterMap &parms) {
     Redraw ();
 }
 
+/** display help window
+ * \todo HARDCODED filename */
+void C4DView::Help () {
+    static HelpWindow *H;
+    H = new HelpWindow ("Hyperspace_Explorer_Help.html");
+    H->show();
+}
+
+/** open an "About"-Dialog */
+void C4DView::about() {
+    QMessageBox::about(this, "Hyperspace Explorer",
+                       "<p>A program to view four-dimensional objects "
+                               "using OpenGL and the Qt GUI library.</p>"
+                               "<p>author: "+QString(make_str(PACKAGE_BUGREPORT))+"</p>"
+                               "<p>version: "+QString(make_str(PACKAGE_VERSION))+
+                               " of "+QString(__DATE__)+"</p>"
+                      );
+}
+
+/** open an "About Qt"-Dialog */
+void C4DView::aboutQt() {
+    QMessageBox::aboutQt( this, "Hyperspace Explorer" );
+}
+
 /// Application of translations and rotations
 /** Calls F->Transform () and transforms the coordinate cross
  *  @param thetaxy rotation around xy plane (z axis); ignored because 3D rotation takes care of it
@@ -439,12 +439,6 @@ void C4DView::ApplyChanges (const ParameterMap &parms) {
 void C4DView::Transform (double thetaxy, double thetaxz, double thetaxw,
                          double thetayz, double thetayw, double thetazw,
                          double tx, double ty, double tz, double tw) {
-//     SingletonLog::Instance() << "C4DView::Transform ("<< thetaxy << ", "
-//             << thetaxz << ", " << thetaxw << ", "
-//             << thetayz << ", " << thetayw << ", " << thetazw << ", \n"
-//             << "                    "
-//             << tx << ", " << ty << ", " << tz << ", " << tw <<")\n";
-
     if (F().get())
         F()->Transform (thetaxy, thetaxz, thetaxw, thetayz, thetayw, thetazw,
                       tx, ty, tz, tw);
@@ -612,15 +606,27 @@ void C4DView::InitCross() {
 /// Switch 3D depth cue on and off
 /** @param on whether to use fog                                              */
 void C4DView::SetupDepthCue (bool on) {
-    float size = Size ();
     setDepthCue3D(on);
     if (on) {
-        XQGLWidget::SetupDepthCue(
-            fabs(m_camZ())-size/2.,
-            fabs(m_camZ())+size/2.*Globals::Instance().SR3);
+        cerr << "m_camZ(): " << m_camZ() << endl;
+        SetupDepthCue(
+            fabs(m_camZ())-Size()/2.,
+            fabs(m_camZ())+Size()/2.*Globals::Instance().SR3);
         glEnable(GL_FOG);
     }
     else glDisable (GL_FOG);
+}
+
+/// Adjust parameters for depth cue
+/** \todo fill in the meaning of the parameters
+ *  @param dist
+ *  @param size
+ */
+void C4DView::SetupDepthCue (float dist, float size) {
+    glFogi (GL_FOG_MODE,  GL_LINEAR);             //  set fog mode to linear
+    glFogfv(GL_FOG_COLOR, Globals::Instance().FogColor());
+    glFogf (GL_FOG_START, max(dist-size/2., 0.));         //  ...
+    glFogf (GL_FOG_END,   dist+size/2.*Globals::Instance().SR3);
 }
 
 /// draw the coordinate cross (on screen or int GL list)                      */
@@ -1077,7 +1083,7 @@ void C4DView::mouseReleaseEvent ( QMouseEvent *e) {
     }
 
     UpdateStatus ("");
-    if (b == Qt::RightButton) XQGLWidget::mouseReleaseEvent (e);
+    if (b == Qt::RightButton) QGLWidget::mouseReleaseEvent (e);
 }
 
 /// Double click event handler
@@ -1101,7 +1107,7 @@ void C4DView::mouseDoubleClickEvent (QMouseEvent *e) {
 
     UpdateStatus ("DoubleClick");
 
-    XQGLWidget::mouseDoubleClickEvent (e);
+    QGLWidget::mouseDoubleClickEvent (e);
 }
 
 /** paintEvent() */
@@ -1116,7 +1122,7 @@ void C4DView::resizeEvent (QResizeEvent *e) {
              cy = e->size ().height ();
     if (cx == 0 && cy == 0) return;             //  zero size window taken care of
 
-    XQGLWidget::resizeEvent (e);                //  window resizing
+    QGLWidget::resizeEvent (e);                //  window resizing
 
     GLsizei width = cx, height = cy;
     GLdouble aspect = GLdouble (width > 0? width: 1);   //  calculate aspect ratio
@@ -1142,9 +1148,18 @@ void C4DView::resizeEvent (QResizeEvent *e) {
  *
  *  the rest of interesting inits is done in XQGLWidget::initializeGL (), btw.*/
 void C4DView::initializeGL (void) {
-
     SingletonLog::Instance().log("C4DView::initializeGL ()");
-    XQGLWidget::initializeGL ();
+
+    glEnable (GL_DEPTH_TEST);                   //  enable 3D mode, sotosay
+    glEnable (GL_NORMALIZE);                    //  automatically normalize surface normals
+
+    if (!doubleBuffer ())                       //  this should happen rarely if ever
+        SingletonLog::Instance().log("Widget is single buffered");  //  complain but continue
+
+    InitLight ();                               //  set up lighting parameters
+    InitShade ();                               //  ... flat or gouraud shading
+    InitFog ();                                 //  ... depth cue or not
+    InitTransparence ();                        //  ... transparence
 
     glDisable (GL_CULL_FACE);                           //  disable face culling
 
@@ -1178,4 +1193,81 @@ void C4DView::initializeGL (void) {
         glPopMatrix();                                  //  restore transformation Matrix
     }
     SingletonLog::Instance().log("C4DView::initializeGL() done");
+}
+
+/** OpenGL initialization
+ *  setting background colors, setting up lighting, shading, fog and
+ *  transparence
+ *  @todo hardcoded light position and colors!                                */
+void C4DView::InitLight (void) {
+    if (getLight()) {
+        glEnable(GL_LIGHTING);                          //  enable lighting
+        //  compute specular reflections from origin of eye coordinate system
+        glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, 1);
+        glLightfv(GL_LIGHT0, GL_POSITION, LightPos);    //  set light position
+        glLightfv(GL_LIGHT0, GL_DIFFUSE,
+                  Globals::Instance().white());         //  diffuse color
+        glLightfv(GL_LIGHT0, GL_AMBIENT,
+                  Globals::Instance().grey50());        //  ambient color
+        glEnable(GL_LIGHT0);                            //  enable this light
+    } else {
+        glDisable(GL_LIGHTING);                         //  disable lighting
+    }
+}
+
+void C4DView::InitShade (void) {
+    if (getShade()) glShadeModel (GL_SMOOTH);        //  gouraud shading
+    else            glShadeModel (GL_FLAT);          //  flat shading
+}
+
+void C4DView::InitFog  (void) {
+    if (getFog()) {
+        glEnable (GL_FOG);                      //  enable depth cueing
+        SetupDepthCue(
+            fabs(m_camZ())-Size()/2.,
+            fabs(m_camZ())+Size()/2.*Globals::Instance().SR3);
+    } else
+        glDisable (GL_FOG);                     //  disable depth cueing
+}
+
+void C4DView::InitTransparence (void) {
+    if (getTransparent()) {
+        glEnable  (GL_BLEND);                               //  enable blending
+        glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); //  blending function
+        glEnable  (GL_POINT_SMOOTH);                        //  draw smooth points
+        glEnable  (GL_LINE_SMOOTH);                         //  draw smooth lines
+        glEnable  (GL_POLYGON_SMOOTH);                      //  draw smooth surfaces
+//        glDisable (GL_CULL_FACE);                           //  ...why?             *
+    } else {
+        glDisable (GL_BLEND);                               //  disable blending
+        glDisable  (GL_POINT_SMOOTH);                       //  ..
+        glDisable (GL_LINE_SMOOTH);                         //  ..
+        glDisable (GL_POLYGON_SMOOTH);                      //  ..
+//        glEnable  (GL_CULL_FACE);                           //                      *
+    }
+}
+
+/** change of viewing distance is handled here too, which is not so clean
+ *  programming style...
+    \todo eliminate hardcoded constants                                       */
+void C4DView::resizeGL (int width, int height) {
+    GLfloat aspect = (float) width / (float) height,
+            angle  = .8*atan (2./R())*180./pi,
+            across = Globals::Instance().SR3;
+    if (angle < 0) angle = 180+angle;           //  keep positive viewing angle
+
+    glViewport (0, 0, width, height);
+    glMatrixMode (GL_PROJECTION);
+    glLoadIdentity ();
+    gluPerspective (angle, aspect, .25, R()+across);
+    glMatrixMode (GL_MODELVIEW);
+    glLoadIdentity ();
+    gluLookAt (0., 0., 1.,
+	       0., 0., 0.,
+	       0., 1., 0.);
+    glTranslatef (0, 0, -R());
+    if (getFog())
+        SetupDepthCue(
+            fabs(m_camZ())-Size()/2.,
+            fabs(m_camZ())+Size()/2.*Globals::Instance().SR3);
 }

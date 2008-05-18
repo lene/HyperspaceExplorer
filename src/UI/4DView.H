@@ -10,9 +10,10 @@
 #define VIEW_H
 
 #include <QTimer>
+#include <QGLWidget>
 
 #include "ValuesDialogImpl.H"
-#include "XQGLWidget.H"
+//#include "XQGLWidget.H"
 
 class QPaintEvent;
 class QStatusBar;
@@ -56,7 +57,7 @@ class SurfaceFactory {
 /** This class is much too fat and will be split into parts wherever possible
  *  \ingroup UIGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
-class C4DView : public XQGLWidget {
+class C4DView : public QGLWidget {
 
     public:
         /// Class template implementation for a factory creating Function's
@@ -133,6 +134,16 @@ class C4DView : public XQGLWidget {
         bool getRenderToPixmap() const { return RenderToPixmap(); }
         /// @return whether to draw the objects' surfaces or only the edges
         bool getDisplayPolygons() const { return DisplayPolygons(); }
+        /// @return whether to use colors in rendering or not
+        bool &getColors() { return pImpl->colors; }
+        /// @return whether to use shading in rendering or not
+        bool &getShade() { return pImpl->shade; }
+        /// @return whether to use depth cue/fog in rendering or not
+        bool &getFog() { return pImpl->fog; }
+        /// @return whether to use lighting in rendering or not
+        bool &getLight() { return pImpl->light; }
+        /// @return whether to use transparence/line antialiasing or not
+        bool &getTransparent() { return pImpl->transparent; }
 
         double Benchmark3D(int, double, double, double, bool = true);
         double Benchmark4D(int, double, double, double, bool = true);
@@ -141,6 +152,9 @@ class C4DView : public XQGLWidget {
         void OnTimer();
         void AnimationSettings();
         void ApplyChanges(const ParameterMap &);
+        void Help();
+        void about ();
+        void aboutQt ();
 
     private:
         void Transform(double Rxy, double Rxz, double Rxw,
@@ -182,8 +196,18 @@ class C4DView : public XQGLWidget {
         virtual void paintEvent(QPaintEvent *);
         virtual void resizeEvent( QResizeEvent * );
         virtual void initializeGL(void);
+        void resizeGL (int, int);
 
-        //  Getters and setters accessing the implementation class's members
+//         //  Getters and setters accessing the implementation class's members
+//         void SetBackgroundColor (const VecMath::Vector<4> &RGBA) {
+//             pImpl->Background = Color(RGBA);
+//         }
+//
+//         void SetBackgroundColor (float R, float G, float B, float A) {
+//             pImpl->Background = Color(R, G, B, A);
+//         }
+//         Color Background() { return pImpl->Background; }
+
         void setF(Function *_f) { pImpl->F.reset(_f); }
         const std::auto_ptr<Function> &F() const { return pImpl->F; }
 
@@ -240,6 +264,8 @@ class C4DView : public XQGLWidget {
         bool DisplayCoordinates() const { return pImpl->DisplayCoordinates; }
         void setRenderToPixmap(bool b) { pImpl->RenderToPixmap = b; }
         bool RenderToPixmap() const { return pImpl->RenderToPixmap; }
+
+        double R() {return pImpl->R; }
 
         void setanimationDirectory(const QString &b) { pImpl->animationDirectory = b; }
         const QString & animationDirectory() const { return pImpl->animationDirectory; }
@@ -301,6 +327,11 @@ class C4DView : public XQGLWidget {
         void setmenu(Menu4D * b) { pImpl->menu = b; }
         Menu4D * menu() const { return pImpl->menu; }
 
+        void SetupDepthCue (float, float);
+        void InitLight (void);
+        void InitShade (void);
+        void InitFog  (void);
+        void InitTransparence (void);
 
     private:                                    //  member variables
         /// Private class containing the member data for the Pimpl idiom
@@ -330,6 +361,7 @@ class C4DView : public XQGLWidget {
          *  circumstances.                                                    */
         struct Impl {
             Impl(C4DView *parent):
+                Background (0.25, 0.25, 0.25, 1.),
                 F(std::auto_ptr<Function>()),
 
                 Tx (0), Ty (0), Tz (0), Tw (0),
@@ -342,6 +374,7 @@ class C4DView : public XQGLWidget {
 
                 AntiAlias (false), DisplayPolygons (false), Lighting (true),
                 DepthCue3D (false), DepthCue4D (false),
+                light (true), fog (true), transparent (false), shade (true), colors (true),
                 DisplayCoordinates (false),
                 RenderToPixmap (false),
                 animationDirectory("/tmp"),
@@ -359,6 +392,8 @@ class C4DView : public XQGLWidget {
                 Values (new ValuesDialogImpl (parent)),
                 dxy (0), dxz (0), dxw (0), dyz (0), dyw (0), dzw (0),
                 dx (0), dy (0), dz (0) {}
+
+            Color Background;  ///< background color
 
             std::auto_ptr<Function> F;  ///< the Function object currently displayed
 
@@ -389,6 +424,8 @@ class C4DView : public XQGLWidget {
             bool Lighting;              ///< if true, use lights in rendering
             bool DepthCue3D;            ///< if true, use depth cue
             bool DepthCue4D;            ///< if true, use depth cue in 4D
+            bool light, fog, transparent, shade, colors;
+            double R;                       ///< viewpoint distance
 
             bool DisplayCoordinates;    ///< if true, show the 4D coordinate cross
             bool RenderToPixmap;        ///< if true, save images
@@ -438,9 +475,12 @@ class C4DView : public XQGLWidget {
             std::vector<std::vector<VecMath::Vector<3> > > CrossScr;
 
             Menu4D *menu;               ///< the popup menu
+
         };
 
     std::auto_ptr<C4DView::Impl> pImpl;
+
+    static GLfloat LightPos[4]; ///< position of the light
 
     /// endpoints of the lines constituting the 4D coordinate cross
     std::vector<std::vector<VecMath::Vector<4> > > Cross;
