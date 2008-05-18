@@ -5,9 +5,10 @@
 #include <QMenu>
 #include <map>
 
+#include "4DView.H"
+
 class QString;
 class QMenuBar;
-class C4DView;
 class RealFunctionFactory;
 class SurfaceFactory;
 
@@ -16,7 +17,7 @@ class SurfaceFactory;
  *  size.
  *  \ingroup UIGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
-class Menu4D: public QMenu {
+class C4DView::Menu4D: public QMenu {
     public:
         Menu4D(C4DView *);
 

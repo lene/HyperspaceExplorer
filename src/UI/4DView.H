@@ -13,13 +13,11 @@
 #include <QGLWidget>
 
 #include "ValuesDialogImpl.H"
-//#include "XQGLWidget.H"
 
 class QPaintEvent;
 class QStatusBar;
 
 class C4DView;
-class Menu4D;
 class Function;
 class RealFunction;
 class Surface;
@@ -97,6 +95,9 @@ class C4DView : public QGLWidget {
                 static void createCustomFunction(C4DView *view);
                 static void createCustomSurface(C4DView *view);
         };
+
+        class Menu4D;
+        class MouseHandler4D;
 
     Q_OBJECT
 
@@ -197,16 +198,6 @@ class C4DView : public QGLWidget {
         virtual void resizeEvent( QResizeEvent * );
         virtual void initializeGL(void);
         void resizeGL (int, int);
-
-//         //  Getters and setters accessing the implementation class's members
-//         void SetBackgroundColor (const VecMath::Vector<4> &RGBA) {
-//             pImpl->Background = Color(RGBA);
-//         }
-//
-//         void SetBackgroundColor (float R, float G, float B, float A) {
-//             pImpl->Background = Color(R, G, B, A);
-//         }
-//         Color Background() { return pImpl->Background; }
 
         void setF(Function *_f) { pImpl->F.reset(_f); }
         const std::auto_ptr<Function> &F() const { return pImpl->F; }
@@ -324,8 +315,10 @@ class C4DView : public QGLWidget {
         void setdz(double _dz) { pImpl->dz = _dz; }
         double dz() const { return pImpl->dz; }
 
-        void setmenu(Menu4D * b) { pImpl->menu = b; }
-        Menu4D * menu() const { return pImpl->menu; }
+        void setMenu(Menu4D *b) { pImpl->menu = b; }
+        Menu4D *Menu() const { return pImpl->menu; }
+        void setMouseHandler(MouseHandler4D *m) { pImpl->mouseHandler = m; }
+        MouseHandler4D *MouseHandler() const { return pImpl->mouseHandler; }
 
         void SetupDepthCue (float, float);
         void InitLight (void);
@@ -474,8 +467,8 @@ class C4DView : public QGLWidget {
             /// endpoints of the lines constituting the projected 4D coordinates
             std::vector<std::vector<VecMath::Vector<3> > > CrossScr;
 
-            Menu4D *menu;               ///< the popup menu
-
+            Menu4D *menu;               ///< the popup menu and menu bar
+            MouseHandler4D *mouseHandler; ///< handler to delegate mouse events to
         };
 
     std::auto_ptr<C4DView::Impl> pImpl;

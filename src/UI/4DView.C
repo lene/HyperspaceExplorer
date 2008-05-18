@@ -15,6 +15,7 @@
 
 #include "4DView.H"
 #include "Menu4D.H"
+#include "MouseHandler.H"
 #include "AnimationDialogImpl.H"
 #include "Help.H"
 
@@ -75,8 +76,10 @@ C4DView::C4DView(QWidget *parent):
     connect (Values(), SIGNAL (ApplyChanges (const ParameterMap &)),
              this, SLOT (ApplyChanges (const ParameterMap &)));
 
-    setmenu(new Menu4D(this));
-    menu()->addToMenuBar(Globals::Instance().getMainWindow()->menuBar());
+    setMenu(new Menu4D(this));
+    Menu()->addToMenuBar(Globals::Instance().getMainWindow()->menuBar());
+
+    setMouseHandler(new MouseHandler4D(this));
 
     show ();
 
@@ -96,14 +99,14 @@ C4DView::~C4DView() { }
  *  Menu callback function                                                    */
 void C4DView::Wireframe() {
     if (DisplayPolygons()) {
-        menu()->getAction("Wireframe")->setText("Solid");
-        menu()->getAction("Transparence")->setText("Line Antialiasing");
+        Menu()->getAction("Wireframe")->setText("Solid");
+        Menu()->getAction("Transparence")->setText("Line Antialiasing");
     } else {
-        menu()->getAction("Wireframe")->setText("Wireframe");
-        menu()->getAction("Transparence")->setText("Transparence");
+        Menu()->getAction("Wireframe")->setText("Wireframe");
+        Menu()->getAction("Transparence")->setText("Transparence");
         glDisable (GL_CULL_FACE);
     }
-    menu()->getAction("Wireframe")->setChecked (DisplayPolygons());
+    Menu()->getAction("Wireframe")->setChecked (DisplayPolygons());
     setWireframe (DisplayPolygons());
 
     OnPaint ();
@@ -114,7 +117,7 @@ void C4DView::Wireframe() {
  *  menu callback function */
 void C4DView::Coordinates() {
     setDisplayCoordinates(!DisplayCoordinates());
-    menu()->getAction("Coordinate Cross")->setChecked (DisplayCoordinates());
+    Menu()->getAction("Coordinate Cross")->setChecked (DisplayCoordinates());
 
     Redraw ();
 }
@@ -124,7 +127,7 @@ void C4DView::Coordinates() {
  *  menu callback function */
 void C4DView::HyperFog() {
     setDepthCue4D(!DepthCue4D());
-    menu()->getAction("4D Depth Cue")->setChecked (DepthCue4D());
+    Menu()->getAction("4D Depth Cue")->setChecked (DepthCue4D());
 
     Redraw ();
 }
@@ -166,7 +169,7 @@ void C4DView::Light() {
 /** menu callback function */
 void C4DView::Colors () {
     getColors() = !getColors();
-    menu()->getAction("Colors")->setChecked(getColors());
+    Menu()->getAction("Colors")->setChecked(getColors());
     initializeGL ();
     repaint (); }
 
@@ -174,7 +177,7 @@ void C4DView::Colors () {
 /** menu callback function */
 void C4DView::Fog () {
   getFog() = !getFog();
-  menu()->getAction("Depth Cue")->setChecked(getFog());
+  Menu()->getAction("Depth Cue")->setChecked(getFog());
   InitFog ();
   repaint (); }
 
@@ -182,7 +185,7 @@ void C4DView::Fog () {
 /** menu callback function */
 void C4DView::Transparent () {
   getTransparent() = !getTransparent();
-  menu()->getAction("Transparence")->setChecked(getTransparent());
+  Menu()->getAction("Transparence")->setChecked(getTransparent());
   InitTransparence ();
   repaint (); }
 
@@ -190,7 +193,7 @@ void C4DView::Transparent () {
 /** menu callback function */
 void C4DView::Shade () {
   getShade() = !getShade();
-  menu()->getAction("Shading")->setChecked(getShade());
+  Menu()->getAction("Shading")->setChecked(getShade());
   InitShade ();
   repaint (); }
 
@@ -218,13 +221,13 @@ void C4DView::Shade () {
  *  menu callback function */
 void C4DView::RenderToImages() {
   setRenderToPixmap(!RenderToPixmap());
-  menu()->getAction("Render to Images")->setChecked(RenderToPixmap());
+  Menu()->getAction("Render to Images")->setChecked(RenderToPixmap());
 }
 
 /// display a ObjectHypercube object
 /** menu callback function */
 void C4DView::ObjectHypercube() {
-    menu()->updateFunctionMenu("Hypercube");
+    Menu()->updateFunctionMenu("Hypercube");
 
     setF(new Hypercube (/*Values()->a ()*/));
 
@@ -235,7 +238,7 @@ void C4DView::ObjectHypercube() {
 /// display a ObjectHyperpyramid object
 /** menu callback function */
 void C4DView::ObjectHyperpyramid() {
-    menu()->updateFunctionMenu("Hyperpyramid");
+    Menu()->updateFunctionMenu("Hyperpyramid");
 
     setF(new Pyramid (/*2.*Values()->a ()*/));
 
@@ -246,7 +249,7 @@ void C4DView::ObjectHyperpyramid() {
 /// display a ObjectHypersponge object
 /** menu callback function */
 void C4DView::ObjectHypersponge() {
-    menu()->updateFunctionMenu("Menger Sponge");
+    Menu()->updateFunctionMenu("Menger Sponge");
 
     setF(new Sponge ()
 //                unsigned (Values()->a ()), int (Values()->b ()), Values()->c ())
@@ -260,7 +263,7 @@ void C4DView::ObjectHypersponge() {
 /// display a ObjectGasket object
 /** menu callback function */
 void C4DView::ObjectGasket() {
-    menu()->updateFunctionMenu("Sierpinski Gasket");
+    Menu()->updateFunctionMenu("Sierpinski Gasket");
 
     setF(new Gasket (/* unsigned (Values()->a ()), 2.*Values()->b ()*/));
 
@@ -809,306 +812,19 @@ double C4DView::Size () {
               +(Values()->vmax ()-Values()->vmin ())*(Values()->vmax ()-Values()->vmin ()));
 }
 
-/// Mouse move event handler
-/** Awfully long, which is UGLY, but it does not seem to make much sense to
- *  break it up, so here we go \n
- *  Particular mouse move/button/modifier key combinations documented in the
- *  code below
- *  @param e Qt's mouse event information structure                           */
-void C4DView::mouseMoveEvent (QMouseEvent *e) {
-    SingletonLog::Instance() << "C4DView::mouseMoveEvent ("
-                << (long)e->modifiers()<<")\n";
-    QPoint point = e->pos ();
-    Qt::KeyboardModifiers s = e->modifiers();
-    Qt::MouseButtons b = e->buttons();
-
-    bool LeftButtonDown  = b & Qt::LeftButton,
-         MidButtonDown   = b & Qt::MidButton,
-         RightButtonDown = b & Qt::RightButton,
-         AltPressed = s & Qt::AltModifier,
-         ControlPressed = s & Qt::ControlModifier,
-         ShiftPressed = s & Qt::ShiftModifier;
-
-    SingletonLog::Instance() << (LeftButtonDown? "LMB ": "")
-             << (MidButtonDown? "MMB ": "")
-             << (RightButtonDown? "RMB ": "")
-             << (AltPressed? "+ Alt ": "")
-             << (ControlPressed? "+ Ctrl ": "")
-             << (ShiftPressed? "+ Shift ": "") << "\n";
-
-    bool ViewChanged = false;
-
-    double xsize = width (),
-           ysize = height ();
-
-
-    if (xsize == 0 || ysize == 0) return;       //  pathological case better taken care of
-
-    if (AltPressed) setTakingSpinValues(true);
-    else            setTakingSpinValues(false);
-
-    if (ControlPressed) {                                   //  CONTROL pressed
-
-        if (LeftButtonDown || MidButtonDown || RightButtonDown) {   //  CONTROL + any Button
-
-            ViewChanged = true;                         //  mark 4D viewpoint as changed
-
-            double size = Size ();                      //  reference size for the translations
-
-            //    translate x / y with LMB
-            if (LeftButtonDown && !MidButtonDown && !RightButtonDown) { //  CONTROL+LMB pressed
-
-               QPoint translate = m_LeftDownPos()-point;  //  store difference from button press position
-
-               if (TakingSpinValues()) {    } else {      //  no translation animation (yet?)
-                   setm_LeftDownPos(point);               //  reset start position for next mouse move
-
-                   setTx(Tx() - translate.x ()*size/xsize);     //  add x translation
-                   setTy(Ty() + translate.y ()*size/ysize);     //  add y translation
-
-                   UpdateStatus ("translate x/y");
-               }               //    if (TakingSpinValues)
-
-            }                 //    if (LeftButtonDown && !MidButtonDown && !RightButtonDown)
-
-            //    translate z / w with MMB
-            if (MidButtonDown && !LeftButtonDown && !RightButtonDown) { //  CTRL + MMB pressed
-
-                QPoint translate = m_MidDownPos()-point;   //  store difference from button press position
-
-                if (TakingSpinValues()) {    } else {      //  no translation animation (yet?)
-                    setm_MidDownPos(point);                //  reset start position for next mouse move
-
-                    setTz(Tz() - translate.x ()*size/xsize);     //  add z translation
-                    setTw(Tw() + translate.y ()*size/ysize);     //  add w translation
-
-                    UpdateStatus ("translate z/w");
-	        }            //  if (TakingSpinValues)
-
-            }                //  if (MidButtonDown && !LeftButtonDown && !RightButtonDown)
-
-        }                 //    if (LeftButtonDown || MidButtonDown || RightButtonDown)
-
-    }                     //    if (::GetKeyState (VK_CONTROL) < 0)
-
-    if (ShiftPressed) {                     //  rotate 4D viewpoint with SHIFT pressed
-
-        if (LeftButtonDown || MidButtonDown || RightButtonDown) {   //  SHIFT + any button
-
-            ViewChanged = true;                            //  mark 4D viewpoint as changed
-
-            //    rotate xy / xz with LMB
-            if (LeftButtonDown && !MidButtonDown && !RightButtonDown) { //  SHIFT + LMB
-
-                QPoint rotate = m_LeftDownPos()-point;    //  store difference from button press position
-                ViewChanged = false;                    //  takes only xy/xz values, which are
-                                                        //  equivalent to z/y 3D rotation
-
-                if (TakingSpinValues()) {
-                    setdz(dz() + rotate.x ()/xsize*5);
-                    setdy(dy() + rotate.y ()/ysize*5);
-                    UpdateStatus ("taking xy/xz rotation speed");
-                } else {                                //  immediate movement
-                    setm_LeftDownPos(point);              //  reset start position for next mouse move
-
-                    setm_rotZ(m_rotZ() - rotate.x ()/xsize*180);    //  add xy rotation ( = z in 3D)
-                    setm_rotY(m_rotY() - rotate.y ()/ysize*180);    //  add xz rotation ( = y in 3D)
-
-                    UpdateStatus ("rotate xy/xz");
-                }        //    if (TakingSpinValues)
-            }            //    if (LeftButtonDown && !MidButtonDown && !RightButtonDown)
-
-            //    rotate xw / yz with MMB
-            if (!LeftButtonDown && MidButtonDown && !RightButtonDown) { //  SHIFT + MMB
-
-                QPoint rotate = m_MidDownPos()-point;        //  store difference from button press position
-
-                if (TakingSpinValues()) {
-                    setdxw(dxw() + rotate.x ()/xsize*5);
-                    setdx(dx() + rotate.y ()/ysize*5);
-                    if (dxw() == 0.) ViewChanged = false;
-
-                    UpdateStatus ("taking xw / yz rotation speed");
-                } else {                             		//    immediate movement
-                    setm_MidDownPos(point);     //    reset start position for next mouse move
-
-                    setRxw(Rxw() - rotate.x ()/xsize*180);            		//    add xw rotation
-                    setm_rotX(m_rotX() - rotate.y ()/ysize*180);            		//    add yz  ( = x in 3D) rotation
-                    if (Rxw() == 0.) ViewChanged = false;
-
-	            UpdateStatus ("rotate xw/yz");
-	        }        	//    if (TakingSpinValues)
-
-            }          	//    if (!LeftButtonDown && MidButtonDown && !RightButtonDown)
-
-            //    rotate yw / zw with RMB
-            if (!LeftButtonDown && !MidButtonDown && RightButtonDown) {    	//  SHIFT + RMB pressed
-
-	        QPoint rotate = m_RightDownPos()-point;    		//    store difference from button press position
-
-	        if (TakingSpinValues()) {                    		//
-	            setdyw(dyw() + rotate.x ()/xsize*5);
-                setdzw(dzw() + rotate.y ()/ysize*5);                    	//
-	            UpdateStatus ("taking yw / zw rotation speed");
-	        } else {                                    		//    immediate movement
-                setm_RightDownPos(point);                		//    reset start position for next mouse move
-
-                setRyw(Ryw() - rotate.x ()/xsize*180);            		//    add yw rotation
-                setRzw(Ryw() - rotate.y ()/ysize*180);            		//    add zw rotation
-
-	            UpdateStatus ("rotate yw/zw");
-	        }        	//    if (TakingSpinValues)
-
-            }            	//    if (!LeftButtonDown && !MidButtonDown && RightButtonDown)
-
-        }                	//    if (LeftButtonDown || MidButtonDown || RightButtonDown)
-
-    }                     	//    if (::GetKeyState (VK_SHIFT) < 0)
-
-    if (ViewChanged) {                                    	//    4D viewpoint has changed
-        SingletonLog::Instance().log("C4DView::mouseMoveEvent: View changed ()");
-
-        Transform (Rxy(), Rxz(), Rxw(), Ryz(), Ryw(), Rzw(), Tx(), Ty(), Tz(), Tw());   //    apply the 4D transformation
-        Redraw ();
-    } else {					//    4D viewpoint didn't change
-
-        if (LeftButtonDown || MidButtonDown) {		//  LMB or MMB without modifier
-
-            double size = Size ();            	//    reference size for the translations
-
-            //    pan the view with MMB
-            if (MidButtonDown && !LeftButtonDown) {		//  MMB
-
-	        QPoint translate = m_MidDownPos()-point;    		//    store difference from button press position
-
-	        if (TakingSpinValues()) {    } else {        		//    no translation animation (yet?)
-	            setm_MidDownPos(point);                			//    reset start position for next mouse move
-
-                setm_transX(m_transX() - translate.x ()*size/xsize);    //    add x translation
-                setm_transY(m_transY() + translate.y ()*size/ysize);    //    add y translation
-
-	            UpdateStatus ("translate x/y");
-	        }            	//    if (TakingSpinValues)
-
-            }                	//    if (MidButtonDown && !LeftButtonDown)
-
-            //    rotate the view with LMB
-            if (LeftButtonDown && !MidButtonDown) {				//  LMB
-
-	        QPoint rotate = m_LeftDownPos()-point;        		//    store difference from button press position
-
- 	        if (TakingSpinValues()) {                    		//
-                setdx(dx() + rotate.x ()/xsize*5);
-                setdy(dy() + rotate.y ()/ysize*5);                    	//
-	            UpdateStatus ("taking x/y rotation speed");
-	        } else {                                    		//    immediate movement
-	            setm_LeftDownPos(point);                		//    reset start position for next mouse move
-
-                setm_rotX(m_rotX() - rotate.y ()/ysize*180);        		//    add x rotation
-                setm_rotY(m_rotY() - rotate.x ()/xsize*180);        		//    add y rotation
-
-	            UpdateStatus ("rotate x/y");
-	        }            	//    if (TakingSpinValues)
-
-            }                	//    if (LeftButtonDown && !MidButtonDown)
-
-            //    zoom with LMB+RMB
-            if (LeftButtonDown && MidButtonDown) {				//  LMB+RMB
-
-                QPoint zoom = m_LeftDownPos()-point;        		//    store difference from button press position
-
-                if (TakingSpinValues()) {                    		//
-	            setdz(dz() + zoom.x ()/xsize*10);
-	            UpdateStatus ("taking z rotation speed");
-	        } else {                                    		//    immediate movement
-	            setm_LeftDownPos(point);                		//    reset start position for next mouse move
-
-                    if (zoom.x () != 0) {
-                        setm_camZ(m_camZ() * (1+zoom.x ()/xsize));            //      scale camera z position
-                        SetupDepthCue (DepthCue3D());
-	            }
-                setm_rotZ(m_rotZ() - zoom.y ()/ysize*180);        		//    add z rotation
-
-	            UpdateStatus ("translate/rotate z");
-	        }            	//    if (TakingSpinValues)
-
-            }                	//    if (LeftButtonDown && MidButtonDown)
-
-
-        }                   //    if (LeftButtonDown || MidButtonDown)
-
-    }                     //    if (ViewChanged)
-
-    OnPaint ();                					//    redraw the window
+void C4DView::mouseMoveEvent(QMouseEvent *e) {
+    MouseHandler()->mouseMoveEvent(e);
+}
+void C4DView::mousePressEvent(QMouseEvent *e) {
+    MouseHandler()->mousePressEvent(e);
+}
+void C4DView::mouseReleaseEvent(QMouseEvent *e) {
+    MouseHandler()->mouseReleaseEvent(e);
+}
+void C4DView::mouseDoubleClickEvent(QMouseEvent *e) {
+    MouseHandler()->mouseDoubleClickEvent(e);
 }
 
-/// Mouse button event handler
-/** Only sets flags which buttons are down
- *  @param e Qt's mouse event information structure                           */
-void C4DView::mousePressEvent (QMouseEvent *e) {
-    SingletonLog::Instance().log("C4DView::mousePressEvent ()");
-
-    QPoint point = e->pos ();
-    Qt::MouseButtons b = e->buttons();
-
-    if ((b & Qt::LeftButton) != 0) {
-        setm_LeftDownPos(point);
-    }
-    if ((b & Qt::MidButton) != 0) {
-        setm_MidDownPos(point);
-    }
-    if ((b & Qt::RightButton) != 0) {
-        setm_RightDownPos(point);
-        Qt::KeyboardModifiers s = e->modifiers();
-        bool AltPressed = s & Qt::AltModifier,
-             ControlPressed = s & Qt::ControlModifier,
-             ShiftPressed = s & Qt::ShiftModifier;
-        if (b == Qt::RightButton && !(AltPressed || ControlPressed || ShiftPressed))
-            menu()->exec (this->mapToGlobal(point));
-//            XQGLWidget::mousePressEvent (e);
-    }
-}
-
-/// Mouse button release event handler
-/** If taking values for an animation, starts the animation
- *  @param e Qt's mouse event information structure                           */
-void C4DView::mouseReleaseEvent ( QMouseEvent *e) {
-    SingletonLog::Instance().log("C4DView::mouseReleaseEvent ()");
-
-    Qt::MouseButtons b = e->buttons();
-
-    if (TakingSpinValues()) {
-        StartAnimation ();
-        setTakingSpinValues(false);
-    }
-
-    UpdateStatus ("");
-    if (b == Qt::RightButton) QGLWidget::mouseReleaseEvent (e);
-}
-
-/// Double click event handler
-/** Stops animation, if running, or resets transformation values to default
- *  @param e Qt's mouse event information structure                           */
-void C4DView::mouseDoubleClickEvent (QMouseEvent *e) {
-    SingletonLog::Instance().log("C4DView::mouseDoubleClickEvent ()");
-
-    if (Animated()) StopAnimation ();
-    else {
-        setTx(0); setTy(0); setTz(0); setTw(0);
-        setRxy(0); setRxz(0); setRxw(0); setRyz(0); setRyw(0); setRzw(0);
-
-        setm_rotX(15); setm_rotY(15); setm_rotZ(0);
-        setm_transX(0); setm_transY(0);
-        setm_camZ(-10);
-
-        Transform (Rxy(), Rxz(), Rxw(), Ryz(), Ryw(), Rzw(), Tx(), Ty(), Tz(), Tw());
-        Redraw ();                                    		//    implicit OnPaint ()
-    }
-
-    UpdateStatus ("DoubleClick");
-
-    QGLWidget::mouseDoubleClickEvent (e);
-}
 
 /** paintEvent() */
 void C4DView::paintEvent (QPaintEvent *) {
