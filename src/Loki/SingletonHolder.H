@@ -53,9 +53,11 @@ namespace Loki
     ////////////////////////////////////////////////////////////////////////////////
     template <class T> struct CreateUsingNew
     {
+        /// create managed object
         static T* Create()
         { return new T; }
 
+        /// destroy managed object
         static void Destroy(T* p)
         { delete p; }
     };
@@ -100,6 +102,7 @@ namespace Loki
     ////////////////////////////////////////////////////////////////////////////////
     template <class T> struct CreateUsingMalloc
     {
+        /// create managed object
         static T* Create()
         {
             void* p = std::malloc(sizeof(T));
@@ -107,6 +110,7 @@ namespace Loki
             return new(p) T;
         }
 
+        /// destroy managed object
         static void Destroy(T* p)
         {
             p->~T();
@@ -141,12 +145,14 @@ namespace Loki
             int (Test::*pMemberFn_)(int);
         };
 
+        /// create managed object
         static T* Create()
         {
             static MaxAlign staticMemory_;
             return new(&staticMemory_) T;
         }
 
+        /// destroy managed object
         static void Destroy(T* p)
         {
             p->~T();
@@ -186,16 +192,16 @@ namespace Loki
 
     private:
         // Helpers
-        static void MakeInstance();
-        static void DestroySingleton();
+        static void MakeInstance();         ///< create singleton object
+        static void DestroySingleton();     ///< destroy singleton object
 
         // Protection
         SingletonHolder();
 
         // Data
-        typedef T* PtrInstanceType;
-        static PtrInstanceType pInstance_;
-        static bool destroyed_;
+        typedef T* PtrInstanceType;         ///< pointer to singleton object
+        static PtrInstanceType pInstance_;  ///< pointer to singleton object
+        static bool destroyed_;             ///< is singleton object destroyed?
     };
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -293,7 +299,7 @@ namespace Loki
     class LOKI_SINGLETON_EXPORT Singleton
     {
     public:
-        static T& Instance();
+        static T& Instance();   ///< returns the single T object
     };
 
 } // namespace Loki

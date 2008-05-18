@@ -812,15 +812,26 @@ double C4DView::Size () {
               +(Values()->vmax ()-Values()->vmin ())*(Values()->vmax ()-Values()->vmin ()));
 }
 
+/// Mouse move event handler
+/** Delegates to MouseHandler4D::mouseMoveEvent()                             */
 void C4DView::mouseMoveEvent(QMouseEvent *e) {
     MouseHandler()->mouseMoveEvent(e);
 }
+
+/// Mouse press event handler
+/** Delegates to MouseHandler4D::mousePressEvent()                            */
 void C4DView::mousePressEvent(QMouseEvent *e) {
     MouseHandler()->mousePressEvent(e);
 }
+
+/// Mouse release event handler
+/** Delegates to MouseHandler4D::mouseReleaseEvent()                          */
 void C4DView::mouseReleaseEvent(QMouseEvent *e) {
     MouseHandler()->mouseReleaseEvent(e);
 }
+
+/// Double click event handler
+/** Delegates to MouseHandler4D::mouseDoubleClickEvent()                      */
 void C4DView::mouseDoubleClickEvent(QMouseEvent *e) {
     MouseHandler()->mouseDoubleClickEvent(e);
 }

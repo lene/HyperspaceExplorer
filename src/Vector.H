@@ -39,9 +39,9 @@ namespace VecMath {
         /** Doesn't do anything, the lazy bastard! */
         Vector<D, N> () { }
         /// Constructor with variable arglist
-        /** @param x0 first element of the Vector
-         *  @param ... the following elements                                 */
-        Vector<D, N> (N, ... );
+        /** @param x0  the vector's first element
+         *  @param ... the vector's other elements                            */
+        Vector<D, N> (N x0, ... );
 
         //----------  access      ----------
 
@@ -81,14 +81,14 @@ namespace VecMath {
          *  @return *this*s                                                   */
         Vector<D, N> operator* (const N &s) const;
         /// scalar multiplication between two Vectors (dot product)
-        /** @param Y other Vector
+        /** @param X other Vector
          *  @return dot product < *this, Y >                                  */
         N operator* (const Vector<D, N> &X) const;
         /** @param s scalar type
          *  @return *this/s                                                   */
         Vector<D, N> operator/ (const N &s) const;
         /// divide every component of one vector by same component of another
-        /** @param Y other Vector
+        /** @param X other Vector
          *  @return scaled vector                                             */
         Vector<D, N> operator/ (const Vector<D, N> &X) const;
 

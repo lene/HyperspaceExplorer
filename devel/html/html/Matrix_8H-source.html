@@ -33,19 +33,19 @@
 <a name="l00016"></a>00016 <span class="preprocessor">#include "Vector.H"</span>
 <a name="l00017"></a>00017 
 <a name="l00018"></a>00018 <span class="keyword">namespace </span>VecMath {
-<a name="l00024"></a><a class="code" href="classVecMath_1_1Matrix.html">00024</a>     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N = <span class="keywordtype">double</span>&gt; <span class="keyword">class </span><a class="code" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix</a> {
+<a name="l00024"></a><a class="code" href="classVecMath_1_1Matrix.html">00024</a>     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N = <span class="keywordtype">double</span>&gt; <span class="keyword">class </span><a class="code" href="classVecMath_1_1Matrix.html">Matrix</a> {
 <a name="l00025"></a>00025         <span class="keyword">public</span>:
-<a name="l00026"></a>00026             <a class="code" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix&lt;D, N&gt;</a> ();
-<a name="l00027"></a>00027             <a class="code" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix&lt;D, N&gt;</a> (N, N, N, N, N, N);
-<a name="l00028"></a>00028             <a class="code" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix&lt;D, N&gt;</a> (unsigned, unsigned, N);
-<a name="l00029"></a>00029             <span class="keyword">virtual</span> ~<a class="code" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix&lt;D, N&gt;</a> () { }
+<a name="l00026"></a>00026             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> ();
+<a name="l00027"></a>00027             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> (N, N, N, N, N, N);
+<a name="l00028"></a>00028             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> (unsigned, unsigned, N);
+<a name="l00029"></a>00029             <span class="keyword">virtual</span> ~<a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> () { }
 <a name="l00030"></a>00030 
-<a name="l00035"></a><a class="code" href="classVecMath_1_1Matrix.html#23a74a530edd9ae5e54d7b792f7b0d40">00035</a>             N &amp;<a class="code" href="classVecMath_1_1Matrix.html#23a74a530edd9ae5e54d7b792f7b0d40" title="Non-const access operator.">operator () </a>(<span class="keywordtype">unsigned</span> i, <span class="keywordtype">unsigned</span> j) { <span class="keywordflow">return</span> <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j]; }
+<a name="l00035"></a><a class="code" href="classVecMath_1_1Matrix.html#10a5a2dc0327ce50af18806a39e2faa0">00035</a>             N &amp;<a class="code" href="classVecMath_1_1Matrix.html#10a5a2dc0327ce50af18806a39e2faa0">operator () </a>(<span class="keywordtype">unsigned</span> i, <span class="keywordtype">unsigned</span> j) { <span class="keywordflow">return</span> <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j]; }
 <a name="l00036"></a>00036 
-<a name="l00037"></a>00037             <a class="code" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Matrix.html#b560a8ea5f4708be9b5d4164d07ccbb4">operator * </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix&lt;D, N&gt;</a> &amp;) <span class="keyword">const</span>;
+<a name="l00037"></a>00037             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Matrix.html#b560a8ea5f4708be9b5d4164d07ccbb4">operator * </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> &amp;) <span class="keyword">const</span>;
 <a name="l00038"></a>00038             <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Matrix.html#b560a8ea5f4708be9b5d4164d07ccbb4">operator * </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;);
 <a name="l00039"></a>00039 
-<a name="l00040"></a>00040             <a class="code" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Matrix.html#73eff5fdc698d339122b800dc1eeb3aa">operator - </a>();
+<a name="l00040"></a>00040             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Matrix.html#73eff5fdc698d339122b800dc1eeb3aa">operator - </a>();
 <a name="l00041"></a>00041 
 <a name="l00042"></a>00042             std::string <a class="code" href="classVecMath_1_1Matrix.html#f6ef681da5373b7f1214fca37b0dfa7d">Print</a> ();
 <a name="l00043"></a>00043 
@@ -54,7 +54,7 @@
 <a name="l00047"></a>00047     };
 <a name="l00048"></a>00048 
 <a name="l00049"></a>00049 
-<a name="l00051"></a><a class="code" href="classVecMath_1_1Matrix.html#afaeb5312b577fa2bb48e9605e76afd5">00051</a>     <span class="keyword">template</span>&lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; <a class="code" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix&lt;D, N&gt;::Matrix</a> () {
+<a name="l00051"></a><a class="code" href="classVecMath_1_1Matrix.html#afaeb5312b577fa2bb48e9605e76afd5">00051</a>     <span class="keyword">template</span>&lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::Matrix</a> () {
 <a name="l00052"></a>00052         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) {                                      <span class="comment">//      i: row</span>
 <a name="l00053"></a>00053             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++)                            <span class="comment">//      j: col</span>
 <a name="l00054"></a>00054                 <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j] = 0;
@@ -63,7 +63,7 @@
 <a name="l00057"></a>00057     }
 <a name="l00058"></a>00058 
 <a name="l00066"></a>00066     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00067"></a><a class="code" href="classVecMath_1_1Matrix.html#fa3dcfdb384b9d3ad844578451401bc2">00067</a>             <a class="code" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix&lt;D, N&gt;::Matrix</a> (N Rxy, N Rxz, N Rxw, N Ryz, N Ryw, N Rzw) {
+<a name="l00067"></a><a class="code" href="classVecMath_1_1Matrix.html#fa3dcfdb384b9d3ad844578451401bc2">00067</a>             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::Matrix</a> (N Rxy, N Rxz, N Rxw, N Ryz, N Ryw, N Rzw) {
 <a name="l00068"></a>00068         std::cerr &lt;&lt; <span class="stringliteral">"Matrix&lt;"</span> &lt;&lt; D &lt;&lt;<span class="stringliteral">"&gt;::Matrix&lt;"</span> &lt;&lt; D
 <a name="l00069"></a>00069                   &lt;&lt;<span class="stringliteral">"&gt; (Rxy, Rxz, Rxw, Ryz, Ryw, Rzw) not yet implemented!"</span>
 <a name="l00070"></a>00070                   &lt;&lt; std::endl;
@@ -71,7 +71,7 @@
 <a name="l00072"></a>00072     }
 <a name="l00073"></a>00073 
 <a name="l00078"></a>00078     <span class="keyword">template</span>&lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00079"></a><a class="code" href="classVecMath_1_1Matrix.html#110bedf8a53847d2985f57bdb897afe1">00079</a>             <a class="code" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix&lt;D, N&gt;::Matrix</a> (<span class="keywordtype">unsigned</span> ii, <span class="keywordtype">unsigned</span> jj, N Theta) {
+<a name="l00079"></a><a class="code" href="classVecMath_1_1Matrix.html#110bedf8a53847d2985f57bdb897afe1">00079</a>             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::Matrix</a> (<span class="keywordtype">unsigned</span> ii, <span class="keywordtype">unsigned</span> jj, N Theta) {
 <a name="l00080"></a>00080         N c = cos (Theta*pi/180.), s = sin (Theta*pi/180.);
 <a name="l00081"></a>00081         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) {                                      <span class="comment">//      i: row</span>
 <a name="l00082"></a>00082             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++)                            <span class="comment">//      j: col</span>
@@ -83,9 +83,9 @@
 <a name="l00088"></a>00088         <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[jj][ii] = s;
 <a name="l00089"></a>00089     }
 <a name="l00090"></a>00090 
-<a name="l00094"></a>00094     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; <a class="code" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix&lt;D, N&gt;</a>
-<a name="l00095"></a><a class="code" href="classVecMath_1_1Matrix.html#b560a8ea5f4708be9b5d4164d07ccbb4">00095</a>             <a class="code" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix&lt;D, N&gt;::operator * </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix&lt;D, N&gt;</a> &amp;B)<span class="keyword"> const </span>{
-<a name="l00096"></a>00096         <a class="code" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix&lt;D, N&gt;</a> C;
+<a name="l00094"></a>00094     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a>
+<a name="l00095"></a><a class="code" href="classVecMath_1_1Matrix.html#b560a8ea5f4708be9b5d4164d07ccbb4">00095</a>             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::operator * </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> &amp;B)<span class="keyword"> const </span>{
+<a name="l00096"></a>00096         <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> C;
 <a name="l00097"></a>00097         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++)                                        <span class="comment">//      i: row</span>
 <a name="l00098"></a>00098             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++) {                          <span class="comment">//      j: col</span>
 <a name="l00099"></a>00099                 N s = 0;
@@ -97,7 +97,7 @@
 <a name="l00105"></a>00105     }
 <a name="l00106"></a>00106 
 <a name="l00110"></a>00110     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00111"></a><a class="code" href="classVecMath_1_1Matrix.html#c9bb6064bbab4c97f65dbb89b25358a1">00111</a>             <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix&lt;D, N&gt;::operator * </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;V) {
+<a name="l00111"></a><a class="code" href="classVecMath_1_1Matrix.html#da1563139030bb5272c300bf6eaa06d1">00111</a>             <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::operator * </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;V) {
 <a name="l00112"></a>00112         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> W;
 <a name="l00113"></a>00113         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) {                              <span class="comment">//      i: row</span>
 <a name="l00114"></a>00114             N s = 0;
@@ -109,8 +109,8 @@
 <a name="l00120"></a>00120     }
 <a name="l00121"></a>00121 
 <a name="l00124"></a>00124     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00125"></a><a class="code" href="classVecMath_1_1Matrix.html#73eff5fdc698d339122b800dc1eeb3aa">00125</a>             <a class="code" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix&lt;D, N&gt;::operator - </a>() {
-<a name="l00126"></a>00126         <a class="code" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix&lt;D, N&gt;</a> B (*<span class="keyword">this</span>);
+<a name="l00125"></a><a class="code" href="classVecMath_1_1Matrix.html#73eff5fdc698d339122b800dc1eeb3aa">00125</a>             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::operator - </a>() {
+<a name="l00126"></a>00126         <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> B (*<span class="keyword">this</span>);
 <a name="l00127"></a>00127         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++)                                        <span class="comment">//      i: row</span>
 <a name="l00128"></a>00128             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++) {                          <span class="comment">//      j: col</span>
 <a name="l00129"></a>00129                 B.<a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j] = -<a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j];
@@ -119,7 +119,7 @@
 <a name="l00132"></a>00132     }
 <a name="l00133"></a>00133 
 <a name="l00134"></a>00134 
-<a name="l00136"></a><a class="code" href="classVecMath_1_1Matrix.html#f6ef681da5373b7f1214fca37b0dfa7d">00136</a>     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; std::string <a class="code" href="classVecMath_1_1Matrix.html" title="Matrix class that uses template metaprogramming to speed up multiplications.">Matrix&lt;D, N&gt;::Print</a> () {
+<a name="l00136"></a><a class="code" href="classVecMath_1_1Matrix.html#f6ef681da5373b7f1214fca37b0dfa7d">00136</a>     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; std::string <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::Print</a> () {
 <a name="l00137"></a>00137         std::ostringstream o;
 <a name="l00138"></a>00138         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) {
 <a name="l00139"></a>00139             o &lt;&lt; <span class="stringliteral">"|"</span>;
@@ -135,7 +135,7 @@
 <a name="l00149"></a>00149 
 <a name="l00150"></a>00150 <span class="preprocessor">#endif  // !defined(MATRIX_H)</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 17 18:32:00 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 18 21:23:35 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

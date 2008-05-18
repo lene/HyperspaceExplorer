@@ -139,13 +139,6 @@
     <filename>group__LifetimeGroup.html</filename>
   </compound>
   <compound kind="group">
-    <name>VecMathTest</name>
-    <title>Vector and Matrix algebra optimized, in test state</title>
-    <filename>group__VecMathTest.html</filename>
-    <class kind="struct">VecMath::NotYetImplementedException</class>
-    <class kind="class">VecMath::Matrix</class>
-  </compound>
-  <compound kind="group">
     <name>UIGroup</name>
     <title>User Interface</title>
     <filename>group__UIGroup.html</filename>
@@ -155,14 +148,12 @@
     <class kind="class">AnimationDialogImpl</class>
     <class kind="class">ComplexDialogImpl</class>
     <class kind="class">FunctionDialogImpl</class>
-    <class kind="class">GLObject</class>
-    <class kind="class">Menu4D</class>
+    <class kind="class">C4DView::Menu4D</class>
     <class kind="class">PluginCreator</class>
     <class kind="class">PolarDialogImpl</class>
     <class kind="class">SurfaceDialogImpl</class>
     <class kind="class">Ui_ValuesDialog</class>
     <class kind="class">ValuesDialogImpl</class>
-    <class kind="class">XQGLWidget</class>
   </compound>
   <compound kind="group">
     <name>UIHelpers</name>
@@ -200,42 +191,42 @@
       <type>std::ostream &amp;</type>
       <name>operator&lt;&lt;</name>
       <anchorfile>group__VecMath.html</anchorfile>
-      <anchor>gef433144f359a8cda43c2290871425b3</anchor>
+      <anchor>g7c3727e6f85bbbc52c0ef4cb1e1658c3</anchor>
       <arglist>(std::ostream &amp;o, const Vector&lt; D, N &gt; &amp;v)</arglist>
     </member>
     <member kind="function">
       <type>Vector&lt; D &gt;</type>
       <name>cross</name>
       <anchorfile>group__VecMath.html</anchorfile>
-      <anchor>g42f840301b4c197f9e58290655ad7f73</anchor>
+      <anchor>g65ec0cbac29ab530c63be146545c5532</anchor>
       <arglist>(const Vector&lt; D &gt; &amp;, const Vector&lt; D &gt; &amp;)</arglist>
     </member>
     <member kind="function">
       <type>Vector&lt; D &gt;</type>
       <name>cross</name>
       <anchorfile>group__VecMath.html</anchorfile>
-      <anchor>g84360f66f3dcffe78961def5353844f3</anchor>
+      <anchor>g7025733deb7fc498f87ffdf8ceb93fab</anchor>
       <arglist>(const Vector&lt; D &gt; &amp;, const Vector&lt; D &gt; &amp;, const Vector&lt; D &gt; &amp;)</arglist>
     </member>
     <member kind="function">
       <type>Vector&lt; 3, N &gt;</type>
       <name>vcross</name>
       <anchorfile>group__VecMath.html</anchorfile>
-      <anchor>g5f42c95ec973af0eae139718319fc9dd</anchor>
+      <anchor>gebb474b1869607dba1cd231e786a169d</anchor>
       <arglist>(Vector&lt; 3, N &gt; a, Vector&lt; 3, N &gt; b)</arglist>
     </member>
     <member kind="function">
       <type>Vector&lt; 4, N &gt;</type>
       <name>vcross</name>
       <anchorfile>group__VecMath.html</anchorfile>
-      <anchor>g73fe56ecc2d2897eb3f5c1b723536e11</anchor>
+      <anchor>gbdc5bc1e998587a215aff0c5a1a7b95d</anchor>
       <arglist>(Vector&lt; 4, N &gt; a, Vector&lt; 4, N &gt; b, Vector&lt; 4, N &gt; c)</arglist>
     </member>
     <member kind="function">
       <type>Vector&lt; D, N &gt;</type>
       <name>vnormalize</name>
       <anchorfile>group__VecMath.html</anchorfile>
-      <anchor>g4b99a05522c09599748899e794bc65e9</anchor>
+      <anchor>g646679fba90010325c01c937abfb4ea4</anchor>
       <arglist>(const Vector&lt; D, N &gt; &amp;x)</arglist>
     </member>
   </compound>
@@ -286,13 +277,8 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>Base</name>
-    <filename>classBase.html</filename>
-  </compound>
-  <compound kind="class">
     <name>C4DView</name>
     <filename>classC4DView.html</filename>
-    <base>XQGLWidget</base>
     <member kind="slot">
       <type>void</type>
       <name>Wireframe</name>
@@ -462,6 +448,41 @@
       <arglist>() const </arglist>
     </member>
     <member kind="function">
+      <type>bool &amp;</type>
+      <name>getColors</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>d9687bb0368033af4e97f2c4571156d9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool &amp;</type>
+      <name>getShade</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>89dd3e07ddd664711df895975a3d4bcd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool &amp;</type>
+      <name>getFog</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>dabc3be452e44e3101ad2f9f4cee5e4c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool &amp;</type>
+      <name>getLight</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>c83101f5d137e9357245e863a2df7d3e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool &amp;</type>
+      <name>getTransparent</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>5ad3a5d84454cb614b14748d772013b4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
       <type>double</type>
       <name>Benchmark3D</name>
       <anchorfile>classC4DView.html</anchorfile>
@@ -475,26 +496,47 @@
       <anchor>60f45904ff9b227fdf426b5960fa4130</anchor>
       <arglist>(int, double, double, double, bool=true)</arglist>
     </member>
-    <member kind="slot" protection="protected">
+    <member kind="slot" protection="private">
       <type>void</type>
       <name>OnTimer</name>
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>2c45a3e0625e7ee0567630203bbb0360</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="slot" protection="protected">
+    <member kind="slot" protection="private">
       <type>void</type>
       <name>AnimationSettings</name>
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>c781d4f8f3a11fd65fc0c41921460b59</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="slot" protection="protected">
+    <member kind="slot" protection="private">
       <type>void</type>
       <name>ApplyChanges</name>
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>7cdc25eeb13d2f7904348f51ac68b63b</anchor>
       <arglist>(const ParameterMap &amp;)</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>Help</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>aefd85a2c570d47d9d82b1861d73b631</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>about</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>5043ee7707435f83b4a3891a9145452b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private">
+      <type>void</type>
+      <name>aboutQt</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>1a27f7faf0214a769ebd09bd033432e0</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
       <type>void</type>
@@ -684,6 +726,13 @@
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>3c797ad72f10f9d43d720a45cd60509a</anchor>
       <arglist>(void)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>resizeGL</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>ac3d22c30bf8b042077fb31fec2c367b</anchor>
+      <arglist>(int, int)</arglist>
     </member>
     <member kind="function" protection="private">
       <type>void</type>
@@ -1050,6 +1099,13 @@
       <arglist>() const </arglist>
     </member>
     <member kind="function" protection="private">
+      <type>double</type>
+      <name>R</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>26801e5f73e83593acc84edca4c3633c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
       <type>void</type>
       <name>setanimationDirectory</name>
       <anchorfile>classC4DView.html</anchorfile>
@@ -1394,17 +1450,66 @@
     </member>
     <member kind="function" protection="private">
       <type>void</type>
-      <name>setmenu</name>
+      <name>setMenu</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>72fa76339e39243bdd7bf36a799c5422</anchor>
+      <anchor>1c93c4e74f2244fc902a32470607723a</anchor>
       <arglist>(Menu4D *b)</arglist>
     </member>
     <member kind="function" protection="private">
       <type>Menu4D *</type>
-      <name>menu</name>
+      <name>Menu</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>c6a2d7c03c9e3674a35e367076a579f2</anchor>
+      <anchor>9fd23354578b01a6f5bb392cafea4344</anchor>
       <arglist>() const </arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>setMouseHandler</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>5fddc6a3ce9440d06dae3e8fad7e9e11</anchor>
+      <arglist>(MouseHandler4D *m)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>MouseHandler4D *</type>
+      <name>MouseHandler</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>e33037a83f46215a8092b3c7151f421e</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>SetupDepthCue</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>d306f57ab4a1565454abbf7856a88a92</anchor>
+      <arglist>(float, float)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>InitLight</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>03b3ed76ada1847e4b75e19de8c7e6cb</anchor>
+      <arglist>(void)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>InitShade</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>31f530de55047a78f7f29958a4ece8a9</anchor>
+      <arglist>(void)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>InitFog</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>8e209837b51cb976674e81e6359f930d</anchor>
+      <arglist>(void)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>InitTransparence</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>3c423447f2090b7e3e2c791f54244b02</anchor>
+      <arglist>(void)</arglist>
     </member>
     <member kind="variable" protection="private">
       <type>std::auto_ptr&lt; C4DView::Impl &gt;</type>
@@ -1433,6 +1538,13 @@
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>4b450c11b94a6dc190fd7b0e8bdb64c1</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static GLfloat</type>
+      <name>LightPos</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>c2d8375d0e5fd3438d7806e5eadb6740</anchor>
+      <arglist>[4]</arglist>
     </member>
     <member kind="friend" protection="private">
       <type>friend class</type>
@@ -1478,6 +1590,8 @@
     </member>
     <class kind="class">C4DView::CustomFunctionSlot</class>
     <class kind="struct">C4DView::Impl</class>
+    <class kind="class">C4DView::Menu4D</class>
+    <class kind="class">C4DView::MouseHandler4D</class>
     <class kind="class">C4DView::TemplatedRealFunctionFactory</class>
     <class kind="class">C4DView::TemplatedSurfaceFactory</class>
   </compound>
@@ -1509,6 +1623,13 @@
       <anchorfile>structC4DView_1_1Impl.html</anchorfile>
       <anchor>091b6b4b5cd8c7896982cb25b0a51c8f</anchor>
       <arglist>(C4DView *parent)</arglist>
+    </member>
+    <member kind="variable">
+      <type>Color</type>
+      <name>Background</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>5a9e528b32c5c03f9cdb7529209a82bb</anchor>
+      <arglist></arglist>
     </member>
     <member kind="variable">
       <type>std::auto_ptr&lt; Function &gt;</type>
@@ -1676,6 +1797,48 @@
       <name>DepthCue4D</name>
       <anchorfile>structC4DView_1_1Impl.html</anchorfile>
       <anchor>eb1ae6c570224ebaede2a86653967bb7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>light</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>62c68a4cea1d88c46720b042420b84f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>fog</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>415610beba91dc18c72783dfe3e59f35</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>transparent</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>f6801bb89643098b7ecbe44005b2df64</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>shade</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>57121e41390e2b4802cc2147e122c57f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>colors</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>acc63caf8fdd48b6c36a276a1e45da97</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>R</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>4c6c3408be332c0ecd3fada7f5f48da0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -1893,6 +2056,196 @@
       <name>menu</name>
       <anchorfile>structC4DView_1_1Impl.html</anchorfile>
       <anchor>89a7c96b95f1aed9fc92460b5f159607</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>MouseHandler4D *</type>
+      <name>mouseHandler</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>2459988a99bd31873a4c590e01195e19</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>C4DView::Menu4D</name>
+    <filename>classC4DView_1_1Menu4D.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>Menu4D</name>
+      <anchorfile>classC4DView_1_1Menu4D.html</anchorfile>
+      <anchor>1c8271d3064b6fb41f2a86934edf282a</anchor>
+      <arglist>(C4DView *)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateFunctionMenu</name>
+      <anchorfile>classC4DView_1_1Menu4D.html</anchorfile>
+      <anchor>825a245cf67d222bf15c26e5cc7a70b9</anchor>
+      <arglist>(const QString &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>QAction *&amp;</type>
+      <name>getAction</name>
+      <anchorfile>classC4DView_1_1Menu4D.html</anchorfile>
+      <anchor>2dfc9833855fee3fb25d13456f47bc26</anchor>
+      <arglist>(const QString &amp;key)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addToMenuBar</name>
+      <anchorfile>classC4DView_1_1Menu4D.html</anchorfile>
+      <anchor>7ffe2f1f4d1f407ef16fca9c023d4e26</anchor>
+      <arglist>(QMenuBar *menuBar)</arglist>
+    </member>
+    <member kind="typedef" protection="private">
+      <type>std::map&lt; QString, QAction * &gt;</type>
+      <name>ActionMapType</name>
+      <anchorfile>classC4DView_1_1Menu4D.html</anchorfile>
+      <anchor>bb1778aa54f8b2e0663538868e82ff42</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef" protection="private">
+      <type>std::map&lt; QMenu *, ActionMapType &gt;</type>
+      <name>MenuMapType</name>
+      <anchorfile>classC4DView_1_1Menu4D.html</anchorfile>
+      <anchor>4ef420e40c8512de94c4386dd5437a44</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>QAction *</type>
+      <name>insertAction</name>
+      <anchorfile>classC4DView_1_1Menu4D.html</anchorfile>
+      <anchor>80890e8721371e24c7039ce6598c5655</anchor>
+      <arglist>(QMenu *, const QString &amp;, const char *, bool=true)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>QAction *</type>
+      <name>insertAction</name>
+      <anchorfile>classC4DView_1_1Menu4D.html</anchorfile>
+      <anchor>12dab543031d2ebfe7420cfe9d0f21ea</anchor>
+      <arglist>(QMenu *, const QString &amp;, RealFunctionFactory *, bool=true)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>QAction *</type>
+      <name>insertAction</name>
+      <anchorfile>classC4DView_1_1Menu4D.html</anchorfile>
+      <anchor>bde326bf07a4e0b4c666c20f7bb251f2</anchor>
+      <arglist>(QMenu *, const QString &amp;, SurfaceFactory *, bool=true)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>C4DView *</type>
+      <name>parent</name>
+      <anchorfile>classC4DView_1_1Menu4D.html</anchorfile>
+      <anchor>234a8e699bb4ddbf3a531009edac7da8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QMenu *</type>
+      <name>functions</name>
+      <anchorfile>classC4DView_1_1Menu4D.html</anchorfile>
+      <anchor>59dc7c822d693882212ad96f7b1dd2f9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QMenu *</type>
+      <name>appear</name>
+      <anchorfile>classC4DView_1_1Menu4D.html</anchorfile>
+      <anchor>754ce3faa0df6ab0107910a877d53c7c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QMenu *</type>
+      <name>animation</name>
+      <anchorfile>classC4DView_1_1Menu4D.html</anchorfile>
+      <anchor>104f923fca1653c1eb7566ce6ead6ea2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QMenu *</type>
+      <name>help</name>
+      <anchorfile>classC4DView_1_1Menu4D.html</anchorfile>
+      <anchor>6638bcc697359a93455eaf081b4718c6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QMenu *</type>
+      <name>fr3r</name>
+      <anchorfile>classC4DView_1_1Menu4D.html</anchorfile>
+      <anchor>7712db1a12d9b3c76dcbae852e357192</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QMenu *</type>
+      <name>objects</name>
+      <anchorfile>classC4DView_1_1Menu4D.html</anchorfile>
+      <anchor>32e06740a2ed447362e009d58e73d807</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QMenu *</type>
+      <name>surfaces</name>
+      <anchorfile>classC4DView_1_1Menu4D.html</anchorfile>
+      <anchor>2b35d3f7abd2f2a77adc8ccde8acc800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QMenu *</type>
+      <name>fcc</name>
+      <anchorfile>classC4DView_1_1Menu4D.html</anchorfile>
+      <anchor>b24910c9ddbee13e10ce20f8b02be99d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>MenuMapType</type>
+      <name>menuMap</name>
+      <anchorfile>classC4DView_1_1Menu4D.html</anchorfile>
+      <anchor>c2dd48d93e7df06a4f9725e02a1789ee</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>C4DView::MouseHandler4D</name>
+    <filename>classC4DView_1_1MouseHandler4D.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>MouseHandler4D</name>
+      <anchorfile>classC4DView_1_1MouseHandler4D.html</anchorfile>
+      <anchor>b4790b3863d7d7a148236a6ae4ac91fc</anchor>
+      <arglist>(C4DView *)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>mouseMoveEvent</name>
+      <anchorfile>classC4DView_1_1MouseHandler4D.html</anchorfile>
+      <anchor>a81a97ec93c32f1acaa142706b3b6814</anchor>
+      <arglist>(QMouseEvent *)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>mousePressEvent</name>
+      <anchorfile>classC4DView_1_1MouseHandler4D.html</anchorfile>
+      <anchor>3fd72e434043c95051a38c2dbfccab7a</anchor>
+      <arglist>(QMouseEvent *)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>mouseReleaseEvent</name>
+      <anchorfile>classC4DView_1_1MouseHandler4D.html</anchorfile>
+      <anchor>9e5ab5cea257501da2f87c3f13140029</anchor>
+      <arglist>(QMouseEvent *)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>mouseDoubleClickEvent</name>
+      <anchorfile>classC4DView_1_1MouseHandler4D.html</anchorfile>
+      <anchor>681ee2ee24d1528a92b6ec0ff4dad9c2</anchor>
+      <arglist>(QMouseEvent *)</arglist>
+    </member>
+    <member kind="variable">
+      <type>C4DView *</type>
+      <name>parent</name>
+      <anchorfile>classC4DView_1_1MouseHandler4D.html</anchorfile>
+      <anchor>4b4ff1cbc3a9e85f1fd5f6daaef574ea</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -2309,20 +2662,6 @@
     <name>ComplexDialogImpl</name>
     <filename>classComplexDialogImpl.html</filename>
     <base>PluginCreator</base>
-    <member kind="slot" virtualness="virtual">
-      <type>virtual bool</type>
-      <name>checkValidity</name>
-      <anchorfile>classComplexDialogImpl.html</anchorfile>
-      <anchor>8c0f8801288912c8374cd69441cff5db</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" virtualness="virtual">
-      <type>virtual bool</type>
-      <name>loadFunction</name>
-      <anchorfile>classComplexDialogImpl.html</anchorfile>
-      <anchor>3a58825ce6e3bd308916f9ca888dd91a</anchor>
-      <arglist>()</arglist>
-    </member>
     <member kind="function">
       <type></type>
       <name>ComplexDialogImpl</name>
@@ -2330,14 +2669,28 @@
       <anchor>4ff709ebd98f53e5da1b862113eb3d66</anchor>
       <arglist>(QWidget *parent=0, Qt::WFlags f=0)</arglist>
     </member>
-    <member kind="function" protection="protected" virtualness="virtual">
+    <member kind="slot" protection="private" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>checkValidity</name>
+      <anchorfile>classComplexDialogImpl.html</anchorfile>
+      <anchor>8c0f8801288912c8374cd69441cff5db</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>loadFunction</name>
+      <anchorfile>classComplexDialogImpl.html</anchorfile>
+      <anchor>3a58825ce6e3bd308916f9ca888dd91a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private" virtualness="virtual">
       <type>virtual bool</type>
       <name>functionPresent</name>
       <anchorfile>classComplexDialogImpl.html</anchorfile>
       <anchor>e7174b5975f212e06c53bb4f8cf965f8</anchor>
       <arglist>(const QString &amp;)</arglist>
     </member>
-    <member kind="function" protection="protected" virtualness="virtual">
+    <member kind="function" protection="private" virtualness="virtual">
       <type>virtual void</type>
       <name>writeSource</name>
       <anchorfile>classComplexDialogImpl.html</anchorfile>
@@ -2981,20 +3334,6 @@
     <name>FunctionDialogImpl</name>
     <filename>classFunctionDialogImpl.html</filename>
     <base>PluginCreator</base>
-    <member kind="slot" virtualness="virtual">
-      <type>virtual bool</type>
-      <name>checkValidity</name>
-      <anchorfile>classFunctionDialogImpl.html</anchorfile>
-      <anchor>bab23d215be4015efddc7a173f55d65f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" virtualness="virtual">
-      <type>virtual bool</type>
-      <name>loadFunction</name>
-      <anchorfile>classFunctionDialogImpl.html</anchorfile>
-      <anchor>b1716ee7d7cfd63874b8f3db029db031</anchor>
-      <arglist>()</arglist>
-    </member>
     <member kind="function">
       <type></type>
       <name>FunctionDialogImpl</name>
@@ -3002,14 +3341,28 @@
       <anchor>f1a24630efd60292e3a473d9ca447fa7</anchor>
       <arglist>(QWidget *parent=0, Qt::WFlags f=0)</arglist>
     </member>
-    <member kind="function" protection="protected" virtualness="virtual">
+    <member kind="slot" protection="private" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>checkValidity</name>
+      <anchorfile>classFunctionDialogImpl.html</anchorfile>
+      <anchor>bab23d215be4015efddc7a173f55d65f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>loadFunction</name>
+      <anchorfile>classFunctionDialogImpl.html</anchorfile>
+      <anchor>b1716ee7d7cfd63874b8f3db029db031</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private" virtualness="virtual">
       <type>virtual bool</type>
       <name>functionPresent</name>
       <anchorfile>classFunctionDialogImpl.html</anchorfile>
       <anchor>5c1cadd3333c5e6008b54298cce46696</anchor>
       <arglist>(const QString &amp;)</arglist>
     </member>
-    <member kind="function" protection="protected" virtualness="virtual">
+    <member kind="function" protection="private" virtualness="virtual">
       <type>virtual void</type>
       <name>writeSource</name>
       <anchorfile>classFunctionDialogImpl.html</anchorfile>
@@ -3727,59 +4080,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>GLObject</name>
-    <filename>classGLObject.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>GLObject</name>
-      <anchorfile>classGLObject.html</anchorfile>
-      <anchor>8b1b7ee78b7d0ea198a53ed044b3c4c4</anchor>
-      <arglist>(GLuint objlist=0)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>GLObject</name>
-      <anchorfile>classGLObject.html</anchorfile>
-      <anchor>157fbefc3010f38d4bc22b5a41ca2298</anchor>
-      <arglist>(unsigned elements, GLuint objlist,...)</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual</type>
-      <name>~GLObject</name>
-      <anchorfile>classGLObject.html</anchorfile>
-      <anchor>0cf1d2a782debc36bf07b345a3609fae</anchor>
-      <arglist>(void)</arglist>
-    </member>
-    <member kind="function">
-      <type>unsigned</type>
-      <name>Draw</name>
-      <anchorfile>classGLObject.html</anchorfile>
-      <anchor>2210f33eb4d6f4d42a8da58b3377385d</anchor>
-      <arglist>(void)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>operator bool</name>
-      <anchorfile>classGLObject.html</anchorfile>
-      <anchor>98fdb66cc6be8438515db60d51a77b53</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private" virtualness="virtual">
-      <type>virtual unsigned</type>
-      <name>doDraw</name>
-      <anchorfile>classGLObject.html</anchorfile>
-      <anchor>b0fa52dd27a4ff3b6afa9e55b53b9b0e</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>std::vector&lt; GLuint &gt;</type>
-      <name>List</name>
-      <anchorfile>classGLObject.html</anchorfile>
-      <anchor>a142f6b830b6df84750d7d9cdfec29b3</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>GravitationPotential</name>
     <filename>classGravitationPotential.html</filename>
     <base>RealFunction</base>
@@ -4244,143 +4544,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>Menu4D</name>
-    <filename>classMenu4D.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>Menu4D</name>
-      <anchorfile>classMenu4D.html</anchorfile>
-      <anchor>88472d5698340a5090f39f4467edf2cf</anchor>
-      <arglist>(C4DView *)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>updateFunctionMenu</name>
-      <anchorfile>classMenu4D.html</anchorfile>
-      <anchor>aa3fef467995d3701b1aa54e50dd1e39</anchor>
-      <arglist>(const QString &amp;)</arglist>
-    </member>
-    <member kind="function">
-      <type>QAction *&amp;</type>
-      <name>getAction</name>
-      <anchorfile>classMenu4D.html</anchorfile>
-      <anchor>7792476cf4ac47f81252d69cbf7ca52c</anchor>
-      <arglist>(const QString &amp;key)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>addToMenuBar</name>
-      <anchorfile>classMenu4D.html</anchorfile>
-      <anchor>e01f65904e1cb5810ae760cb99565dda</anchor>
-      <arglist>(QMenuBar *menuBar)</arglist>
-    </member>
-    <member kind="typedef" protection="private">
-      <type>std::map&lt; QString, QAction * &gt;</type>
-      <name>ActionMapType</name>
-      <anchorfile>classMenu4D.html</anchorfile>
-      <anchor>9d77617fa92b20610b2c7af71ce9c307</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef" protection="private">
-      <type>std::map&lt; QMenu *, ActionMapType &gt;</type>
-      <name>MenuMapType</name>
-      <anchorfile>classMenu4D.html</anchorfile>
-      <anchor>16034ce8d7c8bb3433b6fb5830261a9f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>QAction *</type>
-      <name>insertAction</name>
-      <anchorfile>classMenu4D.html</anchorfile>
-      <anchor>722cc6d2d4fca574510d5b6f5b7b6449</anchor>
-      <arglist>(QMenu *, const QString &amp;, const char *, bool=true)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>QAction *</type>
-      <name>insertAction</name>
-      <anchorfile>classMenu4D.html</anchorfile>
-      <anchor>2841caf1740ea9885f9e6376e099eddd</anchor>
-      <arglist>(QMenu *, const QString &amp;, RealFunctionFactory *, bool=true)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>QAction *</type>
-      <name>insertAction</name>
-      <anchorfile>classMenu4D.html</anchorfile>
-      <anchor>20552c6d6735d3cf30fb577b424618c7</anchor>
-      <arglist>(QMenu *, const QString &amp;, SurfaceFactory *, bool=true)</arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>C4DView *</type>
-      <name>parent</name>
-      <anchorfile>classMenu4D.html</anchorfile>
-      <anchor>3dbb3295e8653ea4836f7a6e003f2f7b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QMenu *</type>
-      <name>functions</name>
-      <anchorfile>classMenu4D.html</anchorfile>
-      <anchor>3bd1be593925c5b107bd690c002194e8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QMenu *</type>
-      <name>appear</name>
-      <anchorfile>classMenu4D.html</anchorfile>
-      <anchor>ba12a7b1e1ee68cc3d4a274e1b70e2a9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QMenu *</type>
-      <name>animation</name>
-      <anchorfile>classMenu4D.html</anchorfile>
-      <anchor>cf9c72674031073314bbe07db0541ad5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QMenu *</type>
-      <name>help</name>
-      <anchorfile>classMenu4D.html</anchorfile>
-      <anchor>cabcba935440b751f5fcf38bc3e093f3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QMenu *</type>
-      <name>fr3r</name>
-      <anchorfile>classMenu4D.html</anchorfile>
-      <anchor>37866501a2d40412d9173bd4817d952a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QMenu *</type>
-      <name>objects</name>
-      <anchorfile>classMenu4D.html</anchorfile>
-      <anchor>27445c54b995f2e17be6ca7e61c5fc5a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QMenu *</type>
-      <name>surfaces</name>
-      <anchorfile>classMenu4D.html</anchorfile>
-      <anchor>eb2e62145fcf5c64211360b3d7cc67ad</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>QMenu *</type>
-      <name>fcc</name>
-      <anchorfile>classMenu4D.html</anchorfile>
-      <anchor>dcfef3e466a387a964b6bb361b0187e1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>MenuMapType</type>
-      <name>menuMap</name>
-      <anchorfile>classMenu4D.html</anchorfile>
-      <anchor>0f1ae22ea522ece59d48ec5bcda0ba96</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>monochromeColorManager</name>
     <filename>classmonochromeColorManager.html</filename>
     <base>ColorManager</base>
@@ -4688,27 +4851,6 @@
       <anchor>4b0c4aa6bb17649c888f720f96741c6d</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" protection="protected" virtualness="pure">
-      <type>virtual bool</type>
-      <name>loadFunction</name>
-      <anchorfile>classPluginCreator.html</anchorfile>
-      <anchor>934c4708ba3cf6054982d9b0b67e29d2</anchor>
-      <arglist>()=0</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="pure">
-      <type>virtual bool</type>
-      <name>functionPresent</name>
-      <anchorfile>classPluginCreator.html</anchorfile>
-      <anchor>72d965933b305fe25e9e27b9ab88fbb6</anchor>
-      <arglist>(const QString &amp;)=0</arglist>
-    </member>
-    <member kind="function" protection="protected" virtualness="pure">
-      <type>virtual void</type>
-      <name>writeSource</name>
-      <anchorfile>classPluginCreator.html</anchorfile>
-      <anchor>a951c5e85ecfdc22750cb5485c9d5b9e</anchor>
-      <arglist>()=0</arglist>
-    </member>
     <member kind="function" protection="protected">
       <type>bool</type>
       <name>loadFunction</name>
@@ -4736,6 +4878,27 @@
       <anchorfile>classPluginCreator.html</anchorfile>
       <anchor>9f7766eedfa75857a52c2f07d6831bad</anchor>
       <arglist>(QString)</arglist>
+    </member>
+    <member kind="function" protection="private" virtualness="pure">
+      <type>virtual bool</type>
+      <name>loadFunction</name>
+      <anchorfile>classPluginCreator.html</anchorfile>
+      <anchor>934c4708ba3cf6054982d9b0b67e29d2</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" protection="private" virtualness="pure">
+      <type>virtual bool</type>
+      <name>functionPresent</name>
+      <anchorfile>classPluginCreator.html</anchorfile>
+      <anchor>72d965933b305fe25e9e27b9ab88fbb6</anchor>
+      <arglist>(const QString &amp;)=0</arglist>
+    </member>
+    <member kind="function" protection="private" virtualness="pure">
+      <type>virtual void</type>
+      <name>writeSource</name>
+      <anchorfile>classPluginCreator.html</anchorfile>
+      <anchor>a951c5e85ecfdc22750cb5485c9d5b9e</anchor>
+      <arglist>()=0</arglist>
     </member>
     <member kind="variable" protection="private">
       <type>QString</type>
@@ -4781,20 +4944,6 @@
     <name>PolarDialogImpl</name>
     <filename>classPolarDialogImpl.html</filename>
     <base>PluginCreator</base>
-    <member kind="slot" virtualness="virtual">
-      <type>virtual bool</type>
-      <name>checkValidity</name>
-      <anchorfile>classPolarDialogImpl.html</anchorfile>
-      <anchor>cf9f33255a1bd65a1b70475d5fc4f1a8</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" virtualness="virtual">
-      <type>virtual bool</type>
-      <name>loadFunction</name>
-      <anchorfile>classPolarDialogImpl.html</anchorfile>
-      <anchor>e3a5c9fcd53a63338439b8ffbca02673</anchor>
-      <arglist>()</arglist>
-    </member>
     <member kind="function">
       <type></type>
       <name>PolarDialogImpl</name>
@@ -4802,14 +4951,28 @@
       <anchor>32ef3773ec9a225a0d8760b187d65788</anchor>
       <arglist>(QWidget *parent=0, Qt::WFlags f=0)</arglist>
     </member>
-    <member kind="function" protection="protected" virtualness="virtual">
+    <member kind="slot" protection="private" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>checkValidity</name>
+      <anchorfile>classPolarDialogImpl.html</anchorfile>
+      <anchor>cf9f33255a1bd65a1b70475d5fc4f1a8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>loadFunction</name>
+      <anchorfile>classPolarDialogImpl.html</anchorfile>
+      <anchor>e3a5c9fcd53a63338439b8ffbca02673</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private" virtualness="virtual">
       <type>virtual bool</type>
       <name>functionPresent</name>
       <anchorfile>classPolarDialogImpl.html</anchorfile>
       <anchor>6c55103e9be8f4068223c07934bcdcc0</anchor>
       <arglist>(const QString &amp;)</arglist>
     </member>
-    <member kind="function" protection="protected" virtualness="virtual">
+    <member kind="function" protection="private" virtualness="virtual">
       <type>virtual void</type>
       <name>writeSource</name>
       <anchorfile>classPolarDialogImpl.html</anchorfile>
@@ -6034,20 +6197,6 @@
     <name>SurfaceDialogImpl</name>
     <filename>classSurfaceDialogImpl.html</filename>
     <base>PluginCreator</base>
-    <member kind="slot" virtualness="virtual">
-      <type>virtual bool</type>
-      <name>checkValidity</name>
-      <anchorfile>classSurfaceDialogImpl.html</anchorfile>
-      <anchor>c550d0adc24a6184822c8f0949f2dde8</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" virtualness="virtual">
-      <type>virtual bool</type>
-      <name>loadFunction</name>
-      <anchorfile>classSurfaceDialogImpl.html</anchorfile>
-      <anchor>ad946f3182546f50ee84ae134d1196f1</anchor>
-      <arglist>()</arglist>
-    </member>
     <member kind="function">
       <type></type>
       <name>SurfaceDialogImpl</name>
@@ -6055,14 +6204,28 @@
       <anchor>65e1b1a5403b060c4fc10c657643491c</anchor>
       <arglist>(QWidget *parent=0, Qt::WFlags f=0)</arglist>
     </member>
-    <member kind="function" protection="protected" virtualness="virtual">
+    <member kind="slot" protection="private" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>checkValidity</name>
+      <anchorfile>classSurfaceDialogImpl.html</anchorfile>
+      <anchor>c550d0adc24a6184822c8f0949f2dde8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="slot" protection="private" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>loadFunction</name>
+      <anchorfile>classSurfaceDialogImpl.html</anchorfile>
+      <anchor>ad946f3182546f50ee84ae134d1196f1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private" virtualness="virtual">
       <type>virtual bool</type>
       <name>functionPresent</name>
       <anchorfile>classSurfaceDialogImpl.html</anchorfile>
       <anchor>157da54702f3a3731db11480a83d5b93</anchor>
       <arglist>(const QString &amp;)</arglist>
     </member>
-    <member kind="function" protection="protected" virtualness="virtual">
+    <member kind="function" protection="private" virtualness="virtual">
       <type>virtual void</type>
       <name>writeSource</name>
       <anchorfile>classSurfaceDialogImpl.html</anchorfile>
@@ -6576,269 +6739,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>XQGLWidget</name>
-    <filename>classXQGLWidget.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>XQGLWidget</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>85f432f8fe5454ab47b7c1fda0039323</anchor>
-      <arglist>(QWidget *=0)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>SetDrawObject</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>5e63c325977c7f2af7edb7fbb00060f0</anchor>
-      <arglist>(GLObject *obj)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>SetDrawObject</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>4452667e1e8cc368816bfbddcbee5c36</anchor>
-      <arglist>(GLuint list)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>SetBackgroundColor</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>33a2e41222b9255e2b13cc64d0f34f9f</anchor>
-      <arglist>(const VecMath::Vector&lt; 4 &gt; &amp;RGBA)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>SetBackgroundColor</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>c0b6d0e8d75a9038c59f83db71be9921</anchor>
-      <arglist>(float R, float G, float B, float A)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool &amp;</type>
-      <name>getColors</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>9a1e3002e61b9cd572e05738cff9ec65</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>bool &amp;</type>
-      <name>getShade</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>9f5a6811449582aa882fc930477e4885</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>bool &amp;</type>
-      <name>getFog</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>3213378bba161dc44ce934a1ac356a3d</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>bool &amp;</type>
-      <name>getLight</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>d097388a81673c8143e59777c6eb97a2</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>bool &amp;</type>
-      <name>getTransparent</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>6256da71b03cb2385f0197f365978dcd</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>Help</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>b2326fa68fe06bb430ed7ce747d2e046</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>about</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>be958ac396d977eb7279a6347d303f89</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="slot" protection="protected">
-      <type>void</type>
-      <name>aboutQt</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>5a905b642d68c9a70ad33575a155f895</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>initializeGL</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>69e77b7b2dc97790205c1887cd7d80ae</anchor>
-      <arglist>(void)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>paintGL</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>38eb82afe576b7445c9720dc3cba6843</anchor>
-      <arglist>(void)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>resizeGL</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>1f1d84bed197953b9d339ab0495ffd20</anchor>
-      <arglist>(int, int)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>Draw</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>2e642031dfb59ebd190d167d74ae41f3</anchor>
-      <arglist>(void)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>SetupDepthCue</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>ffa30cf0c781bdd1d13e4a4feb7c53a6</anchor>
-      <arglist>(float, float)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>InitLight</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>26ff1c69c2921fcd7dbda3ba2e9cc146</anchor>
-      <arglist>(void)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>InitShade</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>57af4a40809575753d59245131ca9f28</anchor>
-      <arglist>(void)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>InitFog</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>3ef91e9a4c73281099e352cd58f6d1e0</anchor>
-      <arglist>(void)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>InitTransparence</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>fe7d67b5d34a14ae183c1ddef927d80a</anchor>
-      <arglist>(void)</arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>GLObject *</type>
-      <name>DrawObject</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>1efb2a9a604bdf843349a7562ae77ee2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>double</type>
-      <name>R</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>fc36dd30e32e73098dbefa9fb8d4fe7f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>double</type>
-      <name>psi</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>c07a6942200319cd46f5f71b82237784</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>double</type>
-      <name>theta</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>d9731d1c9aa6017dfe1e6ea650ba835e</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>double</type>
-      <name>phi</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>121637b147c4189bf840f38a79c44fa2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>VecMath::Vector&lt; 4 &gt;</type>
-      <name>Background</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>71a090364e22d0d0f14bcce96f81174b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>GLfloat</type>
-      <name>Alpha</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>52ba14c60ea42ef0173bb81fe206c23a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>light</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>1f905c62b66052daf0a5f0b68b8ec1fd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>fog</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>1c3762dcb8959c73ad460449b527fbb3</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>transparent</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>6e3aa1e5ed950e2cddd2677ae9bc4d29</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>shade</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>222d2d3ba9382f2910dcc5238e2b38c4</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>bool</type>
-      <name>colors</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>7de1b140bed3eed70cb6fd8fb56c7757</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>xpressed</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>1a226ba73abe0b7aa26df15e5331b236</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private">
-      <type>int</type>
-      <name>ypressed</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>f07392faf7f6b9ad26db0fcfa4410aea</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" protection="private" static="yes">
-      <type>static GLfloat</type>
-      <name>LightPos</name>
-      <anchorfile>classXQGLWidget.html</anchorfile>
-      <anchor>1c948cb5a0e6f4a382f8ff54aa1d1d6a</anchor>
-      <arglist>[4]</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>xyz2RGBColorManager</name>
     <filename>classxyz2RGBColorManager.html</filename>
     <base>ColorManager</base>
@@ -7183,7 +7083,7 @@
       <type>N &amp;</type>
       <name>operator()</name>
       <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
-      <anchor>23a74a530edd9ae5e54d7b792f7b0d40</anchor>
+      <anchor>10a5a2dc0327ce50af18806a39e2faa0</anchor>
       <arglist>(unsigned i, unsigned j)</arglist>
     </member>
     <member kind="function">
@@ -7197,7 +7097,7 @@
       <type>Vector&lt; D, N &gt;</type>
       <name>operator*</name>
       <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
-      <anchor>c9bb6064bbab4c97f65dbb89b25358a1</anchor>
+      <anchor>da1563139030bb5272c300bf6eaa06d1</anchor>
       <arglist>(const Vector&lt; D, N &gt; &amp;)</arglist>
     </member>
     <member kind="function">
@@ -7214,357 +7114,12 @@
       <anchor>f6ef681da5373b7f1214fca37b0dfa7d</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function">
-      <type></type>
-      <name>Matrix</name>
-      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
-      <anchor>110bedf8a53847d2985f57bdb897afe1</anchor>
-      <arglist>(unsigned, unsigned, N)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>Matrix</name>
-      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
-      <anchor>2cbaca136bfebfeadb1646b49a1ef28c</anchor>
-      <arglist>(bool random)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>Matrix</name>
-      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
-      <anchor>79e43f201d199747ad5bfb7e5c90ee60</anchor>
-      <arglist>(const N a[D][D])</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>Matrix</name>
-      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
-      <anchor>2fcfc3d24f171f0b785568e31246c9b5</anchor>
-      <arglist>(const N *a)</arglist>
-    </member>
-    <member kind="function">
-      <type>N</type>
-      <name>operator()</name>
-      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
-      <anchor>99cf82a7c1bd1af4d1b50927f64aed65</anchor>
-      <arglist>(unsigned i, unsigned j) const </arglist>
-    </member>
-    <member kind="function">
-      <type>N &amp;</type>
-      <name>operator()</name>
-      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
-      <anchor>10a5a2dc0327ce50af18806a39e2faa0</anchor>
-      <arglist>(unsigned i, unsigned j)</arglist>
-    </member>
-    <member kind="function">
-      <type>Matrix&lt; D, N &gt;</type>
-      <name>operator*</name>
-      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
-      <anchor>1f6faf9525beb1bebe0e631db8d409e9</anchor>
-      <arglist>(const Matrix&lt; D, N &gt; &amp;other)</arglist>
-    </member>
-    <member kind="function">
-      <type>Matrix&lt; D, N &gt;</type>
-      <name>operator*=</name>
-      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
-      <anchor>8107ec5c6964bd5715ded0de8a500f26</anchor>
-      <arglist>(const Matrix&lt; D, N &gt; &amp;other)</arglist>
-    </member>
-    <member kind="function">
-      <type>VecMath::Vector&lt; D, N &gt;</type>
-      <name>operator*</name>
-      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
-      <anchor>955315c730d0acf6bc1c44b4dd4351a8</anchor>
-      <arglist>(const VecMath::Vector&lt; D, N &gt; &amp;)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>print</name>
-      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
-      <anchor>ca1a9a5285708e821b35db56226a1f77</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>N</type>
-      <name>det</name>
-      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
-      <anchor>ad3219dd37882f712a68af0f6ce115be</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>Matrix&lt; D-1, N &gt;</type>
-      <name>matrix_minor</name>
-      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
-      <anchor>ebb8b54532f1ad66cef37ea7aba3548a</anchor>
-      <arglist>(unsigned i, unsigned j)</arglist>
-    </member>
-    <member kind="variable" protection="protected">
-      <type>N</type>
-      <name>data_</name>
-      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
-      <anchor>2a642afb497fa4ca0adb485f0e492ee5</anchor>
-      <arglist>[D][D]</arglist>
-    </member>
     <member kind="variable" protection="private">
       <type>N</type>
       <name>M</name>
       <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
       <anchor>b05a96df5ab732804b596f5e34d3216b</anchor>
       <arglist>[D][D]</arglist>
-    </member>
-    <class kind="struct">VecMath::Matrix::ConstructLoop</class>
-    <class kind="struct">VecMath::Matrix::ConstructLoop&lt; D_, 0, 0 &gt;</class>
-    <class kind="struct">VecMath::Matrix::ConstructLoop&lt; D_, 0, j &gt;</class>
-    <class kind="struct">VecMath::Matrix::ConstructLoop&lt; D_, i, 0 &gt;</class>
-    <class kind="struct">VecMath::Matrix::CopyLoop</class>
-    <class kind="struct">VecMath::Matrix::CopyLoop&lt; 0, 0, D_ &gt;</class>
-    <class kind="struct">VecMath::Matrix::CopyLoop&lt; 0, j, D_ &gt;</class>
-    <class kind="struct">VecMath::Matrix::CopyLoop&lt; i, 0, D_ &gt;</class>
-    <class kind="struct">VecMath::Matrix::Multiply</class>
-    <class kind="struct">VecMath::Matrix::MultiplyColLoop</class>
-    <class kind="struct">VecMath::Matrix::MultiplyColLoop&lt; i, 0, D_ &gt;</class>
-    <class kind="struct">VecMath::Matrix::MultiplyInnerLoop</class>
-    <class kind="struct">VecMath::Matrix::MultiplyInnerLoop&lt; i, j, 0, D_ &gt;</class>
-    <class kind="struct">VecMath::Matrix::MultiplyRowLoop</class>
-    <class kind="struct">VecMath::Matrix::MultiplyRowLoop&lt; 0, D_ &gt;</class>
-  </compound>
-  <compound kind="struct">
-    <name>VecMath::Matrix::ConstructLoop</name>
-    <filename>structVecMath_1_1Matrix_1_1ConstructLoop.html</filename>
-    <templarg>D_</templarg>
-    <templarg>i</templarg>
-    <templarg>j</templarg>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>row_loop</name>
-      <anchorfile>structVecMath_1_1Matrix_1_1ConstructLoop.html</anchorfile>
-      <anchor>d4c98ae6c9ced7303b9f4cbebf70ad24</anchor>
-      <arglist>(N a[D][D])</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>col_loop</name>
-      <anchorfile>structVecMath_1_1Matrix_1_1ConstructLoop.html</anchorfile>
-      <anchor>020261e53088f417772d8482366e8947</anchor>
-      <arglist>(N a[D][D])</arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
-    <name>VecMath::Matrix::ConstructLoop&lt; D_, 0, 0 &gt;</name>
-    <filename>structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_010_00_010_01_4.html</filename>
-    <templarg>D_</templarg>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>row_loop</name>
-      <anchorfile>structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_010_00_010_01_4.html</anchorfile>
-      <anchor>bd76d08952638eac75de3605cf3572b6</anchor>
-      <arglist>(N a[D][D])</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>col_loop</name>
-      <anchorfile>structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_010_00_010_01_4.html</anchorfile>
-      <anchor>3466f03ab3f1f55834edf05b18e2943d</anchor>
-      <arglist>(N a[D][D])</arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
-    <name>VecMath::Matrix::ConstructLoop&lt; D_, 0, j &gt;</name>
-    <filename>structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_010_00_01j_01_4.html</filename>
-    <templarg>D_</templarg>
-    <templarg>j</templarg>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>row_loop</name>
-      <anchorfile>structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_010_00_01j_01_4.html</anchorfile>
-      <anchor>ba08387b85702d80f41a5b8d1a38c884</anchor>
-      <arglist>(N a[D][D])</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>col_loop</name>
-      <anchorfile>structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_010_00_01j_01_4.html</anchorfile>
-      <anchor>323e0e6e628e770885d889db9a551e38</anchor>
-      <arglist>(N a[D][D])</arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
-    <name>VecMath::Matrix::ConstructLoop&lt; D_, i, 0 &gt;</name>
-    <filename>structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_01i_00_010_01_4.html</filename>
-    <templarg>D_</templarg>
-    <templarg>i</templarg>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>row_loop</name>
-      <anchorfile>structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_01i_00_010_01_4.html</anchorfile>
-      <anchor>039d3ed367d85985a26743123d7f13bf</anchor>
-      <arglist>(N a[D][D])</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>col_loop</name>
-      <anchorfile>structVecMath_1_1Matrix_1_1ConstructLoop_3_01D___00_01i_00_010_01_4.html</anchorfile>
-      <anchor>ba0a249190fb1eb275da61b4349842da</anchor>
-      <arglist>(N a[D][D])</arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
-    <name>VecMath::Matrix::CopyLoop</name>
-    <filename>structVecMath_1_1Matrix_1_1CopyLoop.html</filename>
-    <templarg>i</templarg>
-    <templarg>j</templarg>
-    <templarg>D_</templarg>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>copy_row</name>
-      <anchorfile>structVecMath_1_1Matrix_1_1CopyLoop.html</anchorfile>
-      <anchor>4ebad8452bedb2841bcb0e93e297c969</anchor>
-      <arglist>(N from[D][D], N to[D][D])</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>copy_col</name>
-      <anchorfile>structVecMath_1_1Matrix_1_1CopyLoop.html</anchorfile>
-      <anchor>ab95906a2a48848c46ca443631a64eb8</anchor>
-      <arglist>(N from[D][D], N to[D][D])</arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
-    <name>VecMath::Matrix::CopyLoop&lt; 0, 0, D_ &gt;</name>
-    <filename>structVecMath_1_1Matrix_1_1CopyLoop_3_010_00_010_00_01D___01_4.html</filename>
-    <templarg>D_</templarg>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>copy_col</name>
-      <anchorfile>structVecMath_1_1Matrix_1_1CopyLoop_3_010_00_010_00_01D___01_4.html</anchorfile>
-      <anchor>2dffd4befd8412f64cc9a0513f4a91fe</anchor>
-      <arglist>(N from[D][D], N to[D][D])</arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
-    <name>VecMath::Matrix::CopyLoop&lt; 0, j, D_ &gt;</name>
-    <filename>structVecMath_1_1Matrix_1_1CopyLoop_3_010_00_01j_00_01D___01_4.html</filename>
-    <templarg>j</templarg>
-    <templarg>D_</templarg>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>copy_row</name>
-      <anchorfile>structVecMath_1_1Matrix_1_1CopyLoop_3_010_00_01j_00_01D___01_4.html</anchorfile>
-      <anchor>73761d9c54126f2cb5396d8e5c9d856e</anchor>
-      <arglist>(N from[D][D], N to[D][D])</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>copy_col</name>
-      <anchorfile>structVecMath_1_1Matrix_1_1CopyLoop_3_010_00_01j_00_01D___01_4.html</anchorfile>
-      <anchor>2600c76a7b627452ec28a319ed8e0fac</anchor>
-      <arglist>(N from[D][D], N to[D][D])</arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
-    <name>VecMath::Matrix::CopyLoop&lt; i, 0, D_ &gt;</name>
-    <filename>structVecMath_1_1Matrix_1_1CopyLoop_3_01i_00_010_00_01D___01_4.html</filename>
-    <templarg>i</templarg>
-    <templarg>D_</templarg>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>copy_col</name>
-      <anchorfile>structVecMath_1_1Matrix_1_1CopyLoop_3_01i_00_010_00_01D___01_4.html</anchorfile>
-      <anchor>ff13ee39bf63e475428398b3349a5d16</anchor>
-      <arglist>(N from[D][D], N to[D][D])</arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
-    <name>VecMath::Matrix::Multiply</name>
-    <filename>structVecMath_1_1Matrix_1_1Multiply.html</filename>
-    <templarg>D_</templarg>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>multiply</name>
-      <anchorfile>structVecMath_1_1Matrix_1_1Multiply.html</anchorfile>
-      <anchor>697bbffbef972c93d87062c3b667638f</anchor>
-      <arglist>(const N a[D][D], const N b[D][D], N c[D][D])</arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
-    <name>VecMath::Matrix::MultiplyColLoop</name>
-    <filename>structVecMath_1_1Matrix_1_1MultiplyColLoop.html</filename>
-    <templarg>i</templarg>
-    <templarg>j</templarg>
-    <templarg>D_</templarg>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>loop</name>
-      <anchorfile>structVecMath_1_1Matrix_1_1MultiplyColLoop.html</anchorfile>
-      <anchor>a0134d77ce1f36e25890f591584cbf0f</anchor>
-      <arglist>(const N a[D][D], const N b[D][D], N c[D][D])</arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
-    <name>VecMath::Matrix::MultiplyColLoop&lt; i, 0, D_ &gt;</name>
-    <filename>structVecMath_1_1Matrix_1_1MultiplyColLoop_3_01i_00_010_00_01D___01_4.html</filename>
-    <templarg>i</templarg>
-    <templarg>D_</templarg>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>loop</name>
-      <anchorfile>structVecMath_1_1Matrix_1_1MultiplyColLoop_3_01i_00_010_00_01D___01_4.html</anchorfile>
-      <anchor>a1d031f96f4438be2dc1f3d8cadd8e20</anchor>
-      <arglist>(const N a[D][D], const N b[D][D], N c[D][D])</arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
-    <name>VecMath::Matrix::MultiplyInnerLoop</name>
-    <filename>structVecMath_1_1Matrix_1_1MultiplyInnerLoop.html</filename>
-    <templarg>i</templarg>
-    <templarg>j</templarg>
-    <templarg>k</templarg>
-    <templarg>D_</templarg>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>loop</name>
-      <anchorfile>structVecMath_1_1Matrix_1_1MultiplyInnerLoop.html</anchorfile>
-      <anchor>5308531d8b81c0510cbd57f0c19fb905</anchor>
-      <arglist>(const N a[D][D], const N b[D][D], N c[D][D])</arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
-    <name>VecMath::Matrix::MultiplyInnerLoop&lt; i, j, 0, D_ &gt;</name>
-    <filename>structVecMath_1_1Matrix_1_1MultiplyInnerLoop_3_01i_00_01j_00_010_00_01D___01_4.html</filename>
-    <templarg>i</templarg>
-    <templarg>j</templarg>
-    <templarg>D_</templarg>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>loop</name>
-      <anchorfile>structVecMath_1_1Matrix_1_1MultiplyInnerLoop_3_01i_00_01j_00_010_00_01D___01_4.html</anchorfile>
-      <anchor>16407b02898e8cb8eadff7e86be709cc</anchor>
-      <arglist>(const N a[D][D], const N b[D][D], N c[D][D])</arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
-    <name>VecMath::Matrix::MultiplyRowLoop</name>
-    <filename>structVecMath_1_1Matrix_1_1MultiplyRowLoop.html</filename>
-    <templarg>i</templarg>
-    <templarg>D_</templarg>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>loop</name>
-      <anchorfile>structVecMath_1_1Matrix_1_1MultiplyRowLoop.html</anchorfile>
-      <anchor>ea4947bfe7d8c1782df64827f8c73770</anchor>
-      <arglist>(const N a[D][D], const N b[D][D], N c[D][D])</arglist>
-    </member>
-  </compound>
-  <compound kind="struct">
-    <name>VecMath::Matrix::MultiplyRowLoop&lt; 0, D_ &gt;</name>
-    <filename>structVecMath_1_1Matrix_1_1MultiplyRowLoop_3_010_00_01D___01_4.html</filename>
-    <templarg>D_</templarg>
-    <member kind="function" static="yes">
-      <type>static void</type>
-      <name>loop</name>
-      <anchorfile>structVecMath_1_1Matrix_1_1MultiplyRowLoop_3_010_00_01D___01_4.html</anchorfile>
-      <anchor>2bead12deb0461d3ce7873ece233dd71</anchor>
-      <arglist>(const N a[D][D], const N b[D][D], N c[D][D])</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -7576,8 +7131,15 @@
       <type></type>
       <name>Vector</name>
       <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>7ce10a3281bba5657868f7817ff06379</anchor>
-      <arglist>(N,...)</arglist>
+      <anchor>63640f08c7793bf37aedf32e552499dd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Vector</name>
+      <anchorfile>classVecMath_1_1Vector.html</anchorfile>
+      <anchor>35fecd02f35c28da27d509468fae1fef</anchor>
+      <arglist>(N x0,...)</arglist>
     </member>
     <member kind="function">
       <type>N &amp;</type>
@@ -7625,111 +7187,6 @@
       <type>Vector&lt; D, N &gt;</type>
       <name>operator+</name>
       <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>c0a5d6a6275a36d6cf01ae0ca93862dd</anchor>
-      <arglist>(const Vector&lt; D, N &gt; &amp;Y)</arglist>
-    </member>
-    <member kind="function">
-      <type>Vector&lt; D, N &gt;</type>
-      <name>operator-</name>
-      <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>84934a5d1548fc800a8524be2e3c090f</anchor>
-      <arglist>(const Vector&lt; D, N &gt; &amp;Y)</arglist>
-    </member>
-    <member kind="function">
-      <type>Vector&lt; D, N &gt;</type>
-      <name>operator*</name>
-      <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>df9a50f7a2cf5b360405ce05a49ad42f</anchor>
-      <arglist>(const N &amp;s)</arglist>
-    </member>
-    <member kind="function">
-      <type>N</type>
-      <name>operator*</name>
-      <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>482500d5c8d51f1a1fb45452947c365e</anchor>
-      <arglist>(const Vector&lt; D, N &gt; &amp;X) const </arglist>
-    </member>
-    <member kind="function">
-      <type>Vector&lt; D, N &gt;</type>
-      <name>operator/</name>
-      <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>99cded84739f77be3d691c65dc8b4439</anchor>
-      <arglist>(const N &amp;s)</arglist>
-    </member>
-    <member kind="function">
-      <type>N</type>
-      <name>sqnorm</name>
-      <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>c60183f68f2d8a6473c64c2e753cd053</anchor>
-      <arglist>(void) const </arglist>
-    </member>
-    <member kind="function">
-      <type>N *</type>
-      <name>data</name>
-      <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>540cec1fb9483d9cad8ea9356525d867</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>Vector</name>
-      <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>63640f08c7793bf37aedf32e552499dd</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>Vector</name>
-      <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>517fef66b018fabab9e91f32ee99e1cc</anchor>
-      <arglist>(N,...)</arglist>
-    </member>
-    <member kind="function">
-      <type>N &amp;</type>
-      <name>operator[]</name>
-      <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>a59a2deeac095d34c178eafb8ef86857</anchor>
-      <arglist>(unsigned i)</arglist>
-    </member>
-    <member kind="function">
-      <type>N</type>
-      <name>operator[]</name>
-      <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>db52104e1fab7ee35c43a9ac21c063ae</anchor>
-      <arglist>(unsigned i) const </arglist>
-    </member>
-    <member kind="function">
-      <type>Vector&lt; D, N &gt; &amp;</type>
-      <name>operator+=</name>
-      <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>b651408fbe63a848fdeca1eda8812727</anchor>
-      <arglist>(const Vector&lt; D, N &gt; &amp;Y)</arglist>
-    </member>
-    <member kind="function">
-      <type>Vector&lt; D, N &gt; &amp;</type>
-      <name>operator-=</name>
-      <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>9952aec037b375082078d802eefe4a28</anchor>
-      <arglist>(const Vector&lt; D, N &gt; &amp;Y)</arglist>
-    </member>
-    <member kind="function">
-      <type>Vector&lt; D, N &gt; &amp;</type>
-      <name>operator*=</name>
-      <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>880e685179a418f5e79da715d1e436a6</anchor>
-      <arglist>(const N &amp;s)</arglist>
-    </member>
-    <member kind="function">
-      <type>Vector&lt; D, N &gt;</type>
-      <name>operator-</name>
-      <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>769cab9bb70e99ffc34fc6a264e09fc1</anchor>
-      <arglist>(void) const </arglist>
-    </member>
-    <member kind="function">
-      <type>Vector&lt; D, N &gt;</type>
-      <name>operator+</name>
-      <anchorfile>classVecMath_1_1Vector.html</anchorfile>
       <anchor>a68deef6f47c2f6550ca05ce7f8bb11c</anchor>
       <arglist>(const Vector&lt; D, N &gt; &amp;Y) const </arglist>
     </member>
@@ -7751,7 +7208,7 @@
       <type>N</type>
       <name>operator*</name>
       <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>88cd95d3d5e5cb2acb15c046f30832a6</anchor>
+      <anchor>482500d5c8d51f1a1fb45452947c365e</anchor>
       <arglist>(const Vector&lt; D, N &gt; &amp;X) const </arglist>
     </member>
     <member kind="function">
@@ -7772,7 +7229,7 @@
       <type>N</type>
       <name>sqnorm</name>
       <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>1ac5b53c857112a28de561ee4c80e6d3</anchor>
+      <anchor>c60183f68f2d8a6473c64c2e753cd053</anchor>
       <arglist>(void) const </arglist>
     </member>
     <member kind="function">
@@ -7796,18 +7253,11 @@
       <anchor>9d4348338bf90f69f8d3979a34fd2e7c</anchor>
       <arglist>(void)</arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static unsigned</type>
-      <name>dimension</name>
-      <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>cfdfd007cda74ebada548887e5bbb016</anchor>
-      <arglist>(void)</arglist>
-    </member>
     <member kind="variable" protection="private">
       <type>N</type>
       <name>x</name>
       <anchorfile>classVecMath_1_1Vector.html</anchorfile>
-      <anchor>5fc498893a35a23282dbfd6fb7784ad9</anchor>
+      <anchor>1ede34e2355b2471d895426042351176</anchor>
       <arglist>[D]</arglist>
     </member>
   </compound>

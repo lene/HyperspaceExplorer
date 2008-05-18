@@ -135,7 +135,9 @@ FILE_PATTERNS          = *.c \
 RECURSIVE              = yes
 EXCLUDE                = 
 EXCLUDE_SYMLINKS       = NO
-EXCLUDE_PATTERNS       = */.svn/*
+EXCLUDE_PATTERNS       = */.svn/* \
+			 */testing/* \
+			 */plugins/*
 EXAMPLE_PATH           = 
 EXAMPLE_PATTERNS       = *
 EXAMPLE_RECURSIVE      = NO

@@ -3,9 +3,12 @@
 
 #include "4DView.H"
 
-/**
-	@author Helge Preuss <scout@hyperspace-travel.de>
-*/
+/** Inner class to C4DView which handles the mouse events
+ *  @author Helge Preuss <scout@hyperspace-travel.de>
+ *  \todo move all state variables concerning mouse handling from C4DView into
+ *  this class and adjust the accessors accordingly
+ * \todo can I get rid of parent? It's annoying to prefix every call to C4DView
+ * member functions with parent->                                             */
 class C4DView::MouseHandler4D {
     public:
         MouseHandler4D(C4DView *);

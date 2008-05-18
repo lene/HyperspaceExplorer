@@ -109,10 +109,10 @@
 <a name="l00092"></a>00092     <span class="keywordtype">double</span> *x; 
 <a name="l00093"></a>00093     <span class="keywordtype">bool</span> own; };
 <a name="l00094"></a>00094  
-<a name="l00095"></a>00095 ostream &amp;<a class="code" href="group__VecMath.html#gef433144f359a8cda43c2290871425b3" title="Vector output operator.">operator &lt;&lt; </a>(ostream &amp;, <span class="keyword">const</span> Vector &amp;);
+<a name="l00095"></a>00095 ostream &amp;<a class="code" href="group__VecMath.html#g7c3727e6f85bbbc52c0ef4cb1e1658c3" title="Vector output operator.">operator &lt;&lt; </a>(ostream &amp;, <span class="keyword">const</span> Vector &amp;);
 <a name="l00096"></a>00096 istream &amp;operator &gt;&gt; (istream &amp;, Vector &amp;);
 <a name="l00097"></a>00097 
-<a name="l00098"></a>00098 Vector <a class="code" href="group__VecMath.html#g84360f66f3dcffe78961def5353844f3" title="specialization for cross product of three 4-Vectors">cross</a> (<span class="keyword">const</span> Vector &amp;, <span class="keyword">const</span> Vector &amp;);
+<a name="l00098"></a>00098 Vector <a class="code" href="group__VecMath.html#g7025733deb7fc498f87ffdf8ceb93fab" title="specialization for cross product of three 4-Vectors">cross</a> (<span class="keyword">const</span> Vector &amp;, <span class="keyword">const</span> Vector &amp;);
 <a name="l00099"></a>00099 
 <a name="l00100"></a>00100 
 <a name="l00101"></a>00101 
@@ -138,10 +138,10 @@
 <a name="l00121"></a>00121 
 <a name="l00122"></a>00122     <span class="comment">//----------  access      ----------</span>
 <a name="l00123"></a>00123 
-<a name="l00124"></a>00124 <span class="keyword">inline</span> <span class="keywordtype">double</span> &amp;<a class="code" href="classVecMath_1_1Vector.html#65b86dd66378dba300f0026a3eb02a95">Vector::operator[] </a>(<span class="keywordtype">unsigned</span> i) { 
+<a name="l00124"></a>00124 <span class="keyword">inline</span> <span class="keywordtype">double</span> &amp;<a class="code" href="classVecMath_1_1Vector.html#65b86dd66378dba300f0026a3eb02a95" title="Returns a reference to component i.">Vector::operator[] </a>(<span class="keywordtype">unsigned</span> i) { 
 <a name="l00125"></a>00125   <span class="keywordflow">return</span> x[i]; }                                                  <span class="comment">//  no boundary checking!</span>
 <a name="l00126"></a>00126 
-<a name="l00127"></a>00127 <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code" href="classVecMath_1_1Vector.html#65b86dd66378dba300f0026a3eb02a95">Vector::operator[] </a>(<span class="keywordtype">unsigned</span> i)<span class="keyword"> const </span>{ 
+<a name="l00127"></a>00127 <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code" href="classVecMath_1_1Vector.html#65b86dd66378dba300f0026a3eb02a95" title="Returns a reference to component i.">Vector::operator[] </a>(<span class="keywordtype">unsigned</span> i)<span class="keyword"> const </span>{ 
 <a name="l00128"></a>00128   <span class="keywordflow">return</span> x[i]; }                                                  <span class="comment">//  -''- !</span>
 <a name="l00129"></a>00129                                                                   <span class="comment">//  valgrind: "Use of uninitialised value of size 8"</span>
 <a name="l00130"></a>00130                                                                   <span class="comment">//  at Vector::operator[](unsigned int) const (numclass.H:128)</span>
@@ -172,7 +172,7 @@
 <a name="l00155"></a>00155   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; dim; i++) Z.x[i] = -x[i] ; 
 <a name="l00156"></a>00156   <span class="keywordflow">return</span> Z; }
 <a name="l00157"></a>00157 
-<a name="l00158"></a>00158 <span class="keyword">inline</span> Vector <a class="code" href="classVecMath_1_1Vector.html#c0a5d6a6275a36d6cf01ae0ca93862dd">Vector::operator+ </a>(<span class="keyword">const</span> Vector &amp;Y) {
+<a name="l00158"></a>00158 <span class="keyword">inline</span> Vector <a class="code" href="classVecMath_1_1Vector.html#a68deef6f47c2f6550ca05ce7f8bb11c">Vector::operator+ </a>(<span class="keyword">const</span> Vector &amp;Y) {
 <a name="l00159"></a>00159   <span class="keyword">static</span> Vector Z;
 <a name="l00160"></a>00160   Z = *<span class="keyword">this</span>;
 <a name="l00161"></a>00161   <span class="keywordflow">return</span> (Z += Y); }
@@ -182,19 +182,19 @@
 <a name="l00165"></a>00165   Z = *<span class="keyword">this</span>;
 <a name="l00166"></a>00166   <span class="keywordflow">return</span> (Z -= Y); }
 <a name="l00167"></a>00167 
-<a name="l00168"></a>00168 <span class="keyword">inline</span> Vector <a class="code" href="classVecMath_1_1Vector.html#df9a50f7a2cf5b360405ce05a49ad42f">Vector::operator* </a>(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;s) {               <span class="comment">//  scalar multiplication</span>
+<a name="l00168"></a>00168 <span class="keyword">inline</span> Vector <a class="code" href="classVecMath_1_1Vector.html#1c92fee3076d3f646e97df2f5f246726">Vector::operator* </a>(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;s) {               <span class="comment">//  scalar multiplication</span>
 <a name="l00169"></a>00169   <span class="comment">/*static*/</span> Vector Z;
 <a name="l00170"></a>00170   Z = *<span class="keyword">this</span>;
 <a name="l00171"></a>00171   <span class="keywordflow">return</span> Z *= s; }
 <a name="l00172"></a>00172 
-<a name="l00173"></a>00173 <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code" href="classVecMath_1_1Vector.html#df9a50f7a2cf5b360405ce05a49ad42f">Vector::operator* </a>(<span class="keyword">const</span> Vector &amp;Y) {               <span class="comment">//  dot product</span>
+<a name="l00173"></a>00173 <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code" href="classVecMath_1_1Vector.html#1c92fee3076d3f646e97df2f5f246726">Vector::operator* </a>(<span class="keyword">const</span> Vector &amp;Y) {               <span class="comment">//  dot product</span>
 <a name="l00174"></a>00174   <span class="keywordtype">double</span> dot = 0.;
 <a name="l00175"></a>00175   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; dim; i++)
 <a name="l00176"></a>00176     <span class="keywordflow">if</span> (x[i]) dot += x[i]*Y.x[i];                                 <span class="comment">//  valgrind barks "Use of uninitialised value of size 8"</span>
 <a name="l00177"></a>00177                                                                   <span class="comment">//  at Vector::operator*(Vector const &amp;) (numclass.H:174)</span>
 <a name="l00178"></a>00178   <span class="keywordflow">return</span> dot; }
 <a name="l00179"></a>00179 
-<a name="l00180"></a>00180 <span class="keyword">inline</span> Vector <a class="code" href="classVecMath_1_1Vector.html#99cded84739f77be3d691c65dc8b4439">Vector::operator/ </a>(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;s) {               <span class="comment">//  scalar multiplication</span>
+<a name="l00180"></a>00180 <span class="keyword">inline</span> Vector <a class="code" href="classVecMath_1_1Vector.html#5b21cec75070d6f476cf4217d4db3d01">Vector::operator/ </a>(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;s) {               <span class="comment">//  scalar multiplication</span>
 <a name="l00181"></a>00181   <span class="keywordflow">return</span> <a class="code" href="classVecMath_1_1Matrix.html#b560a8ea5f4708be9b5d4164d07ccbb4">operator* </a>(1./s); }
 <a name="l00182"></a>00182 
 <a name="l00183"></a>00183 <span class="keyword">inline</span> <span class="keywordtype">bool</span> Vector::operator== (<span class="keyword">const</span> Vector &amp;Y) {
@@ -219,7 +219,7 @@
 <a name="l00202"></a>00202 
 <a name="l00203"></a>00203 <span class="preprocessor">#endif                                                //  NUMCLASS_H</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 17 18:32:00 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 18 21:23:35 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

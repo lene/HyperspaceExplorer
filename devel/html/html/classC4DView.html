@@ -28,20 +28,11 @@
 <h1>C4DView Class Reference<br>
 <small>
 [<a class="el" href="group__UIGroup.html">User Interface</a>]</small>
-</h1><!-- doxytag: class="C4DView" --><!-- doxytag: inherits="XQGLWidget" -->Displays and manipulates four-dimensional Functions in a QGLWidget.  
+</h1><!-- doxytag: class="C4DView" -->Displays and manipulates four-dimensional Functions in a QGLWidget.  
 <a href="#_details">More...</a>
 <p>
 <code>#include &lt;<a class="el" href="4DView_8H-source.html">4DView.H</a>&gt;</code>
 <p>
-<div class="dynheader">
-Inheritance diagram for C4DView:</div>
-<div class="dynsection">
-
-<p><center><img src="classC4DView.png" usemap="#C4DView_map" border="0" alt=""></center>
-<map name="C4DView_map">
-<area href="classXQGLWidget.html" alt="XQGLWidget" shape="rect" coords="0,0,85,24">
-</map>
-</div>
 
 <p>
 <a href="classC4DView-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
@@ -117,6 +108,16 @@ virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#68bbe4bf27aba718c97b3f456cf656e6">getDisplayPolygons</a> () const </td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#d9687bb0368033af4e97f2c4571156d9">getColors</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#89dd3e07ddd664711df895975a3d4bcd">getShade</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#dabc3be452e44e3101ad2f9f4cee5e4c">getFog</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#c83101f5d137e9357245e863a2df7d3e">getLight</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#5ad3a5d84454cb614b14748d772013b4">getTransparent</a> ()</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8a01e49be6af9cab84880a176b7c42ae"></a><!-- doxytag: member="C4DView::Benchmark3D" ref="8a01e49be6af9cab84880a176b7c42ae" args="(int, double, double, double, bool=true)" -->
 double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#8a01e49be6af9cab84880a176b7c42ae">Benchmark3D</a> (int, double, double, double, bool=true)</td></tr>
 
@@ -125,7 +126,7 @@ double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#60f45904ff9b227fdf426b5960fa4130">Benchmark4D</a> (int, double, double, double, bool=true)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">rotate in 4D 360 degrees <br></td></tr>
-<tr><td colspan="2"><br><h2>Protected Slots</h2></td></tr>
+<tr><td colspan="2"><br><h2>Private Slots</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#2c45a3e0625e7ee0567630203bbb0360">OnTimer</a> ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Timer event handler.  <a href="#2c45a3e0625e7ee0567630203bbb0360"></a><br></td></tr>
@@ -135,6 +136,12 @@ double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#7cdc25eeb13d2f7904348f51ac68b63b">ApplyChanges</a> (const <a class="el" href="classParameterMap.html">ParameterMap</a> &amp;)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Called whenever an object or the parameters have changed.  <a href="#7cdc25eeb13d2f7904348f51ac68b63b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#aefd85a2c570d47d9d82b1861d73b631">Help</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#5043ee7707435f83b4a3891a9145452b">about</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#1a27f7faf0214a769ebd09bd033432e0">aboutQt</a> ()</td></tr>
+
 <tr><td colspan="2"><br><h2>Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#6850e75dd5a38a4ffc5d0a1f7bcb953d">Transform</a> (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)</td></tr>
 
@@ -205,10 +212,10 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Mouse move event handler.  <a href="#1b5e87b494b99e3705c64e924480f4ef"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#93fd8d7586928e6cd1b0c7131bff84b2">mousePressEvent</a> (QMouseEvent *)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Mouse button event handler.  <a href="#93fd8d7586928e6cd1b0c7131bff84b2"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Mouse press event handler.  <a href="#93fd8d7586928e6cd1b0c7131bff84b2"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#00949bc8cb7215be6ff50e947d6f576f">mouseReleaseEvent</a> (QMouseEvent *)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Mouse button release event handler.  <a href="#00949bc8cb7215be6ff50e947d6f576f"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Mouse release event handler.  <a href="#00949bc8cb7215be6ff50e947d6f576f"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#6dc432e565b97c2aa6f2273bbe4135c7">mouseDoubleClickEvent</a> (QMouseEvent *)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Double click event handler.  <a href="#6dc432e565b97c2aa6f2273bbe4135c7"></a><br></td></tr>
@@ -220,6 +227,8 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#3c797ad72f10f9d43d720a45cd60509a">initializeGL</a> (void)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">OpenGL initialization.  <a href="#3c797ad72f10f9d43d720a45cd60509a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#ac3d22c30bf8b042077fb31fec2c367b">resizeGL</a> (int, int)</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d14af93d68b1ee2ad229076c1380079c"></a><!-- doxytag: member="C4DView::setF" ref="d14af93d68b1ee2ad229076c1380079c" args="(Function *_f)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setF</b> (<a class="el" href="classFunction.html">Function</a> *_f)</td></tr>
 
@@ -376,6 +385,9 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setRenderToPixmap</b>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bc2d5684906652fb0b13eec75de4780b"></a><!-- doxytag: member="C4DView::RenderToPixmap" ref="bc2d5684906652fb0b13eec75de4780b" args="() const " -->
 bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>RenderToPixmap</b> () const </td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="26801e5f73e83593acc84edca4c3633c"></a><!-- doxytag: member="C4DView::R" ref="26801e5f73e83593acc84edca4c3633c" args="()" -->
+double&nbsp;</td><td class="memItemRight" valign="bottom"><b>R</b> ()</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="95739fa0b53519e4b65e6858ae7c3679"></a><!-- doxytag: member="C4DView::setanimationDirectory" ref="95739fa0b53519e4b65e6858ae7c3679" args="(const QString &amp;b)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setanimationDirectory</b> (const QString &amp;b)</td></tr>
 
@@ -523,11 +535,31 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setdz</b> (double _dz
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a47638011e3cb283af57adc01b950195"></a><!-- doxytag: member="C4DView::dz" ref="a47638011e3cb283af57adc01b950195" args="() const " -->
 double&nbsp;</td><td class="memItemRight" valign="bottom"><b>dz</b> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="72fa76339e39243bdd7bf36a799c5422"></a><!-- doxytag: member="C4DView::setmenu" ref="72fa76339e39243bdd7bf36a799c5422" args="(Menu4D *b)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setmenu</b> (<a class="el" href="classMenu4D.html">Menu4D</a> *b)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1c93c4e74f2244fc902a32470607723a"></a><!-- doxytag: member="C4DView::setMenu" ref="1c93c4e74f2244fc902a32470607723a" args="(Menu4D *b)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setMenu</b> (<a class="el" href="classC4DView_1_1Menu4D.html">Menu4D</a> *b)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c6a2d7c03c9e3674a35e367076a579f2"></a><!-- doxytag: member="C4DView::menu" ref="c6a2d7c03c9e3674a35e367076a579f2" args="() const " -->
-<a class="el" href="classMenu4D.html">Menu4D</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>menu</b> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9fd23354578b01a6f5bb392cafea4344"></a><!-- doxytag: member="C4DView::Menu" ref="9fd23354578b01a6f5bb392cafea4344" args="() const " -->
+<a class="el" href="classC4DView_1_1Menu4D.html">Menu4D</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>Menu</b> () const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5fddc6a3ce9440d06dae3e8fad7e9e11"></a><!-- doxytag: member="C4DView::setMouseHandler" ref="5fddc6a3ce9440d06dae3e8fad7e9e11" args="(MouseHandler4D *m)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setMouseHandler</b> (<a class="el" href="classC4DView_1_1MouseHandler4D.html">MouseHandler4D</a> *m)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e33037a83f46215a8092b3c7151f421e"></a><!-- doxytag: member="C4DView::MouseHandler" ref="e33037a83f46215a8092b3c7151f421e" args="() const " -->
+<a class="el" href="classC4DView_1_1MouseHandler4D.html">MouseHandler4D</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>MouseHandler</b> () const </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#d306f57ab4a1565454abbf7856a88a92">SetupDepthCue</a> (float, float)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adjust parameters for depth cue.  <a href="#d306f57ab4a1565454abbf7856a88a92"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#03b3ed76ada1847e4b75e19de8c7e6cb">InitLight</a> (void)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="31f530de55047a78f7f29958a4ece8a9"></a><!-- doxytag: member="C4DView::InitShade" ref="31f530de55047a78f7f29958a4ece8a9" args="(void)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>InitShade</b> (void)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8e209837b51cb976674e81e6359f930d"></a><!-- doxytag: member="C4DView::InitFog" ref="8e209837b51cb976674e81e6359f930d" args="(void)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>InitFog</b> (void)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3c423447f2090b7e3e2c791f54244b02"></a><!-- doxytag: member="C4DView::InitTransparence" ref="3c423447f2090b7e3e2c791f54244b02" args="(void)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>InitTransparence</b> (void)</td></tr>
 
 <tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="df5d54d0759ca64fc1056441f4b8b682"></a><!-- doxytag: member="C4DView::pImpl" ref="df5d54d0759ca64fc1056441f4b8b682" args="" -->
@@ -548,6 +580,11 @@ std::vector&lt; std::vector<br>
 &lt; <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 3 &gt; &gt; &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#4b450c11b94a6dc190fd7b0e8bdb64c1">CrossScr</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">endpoints of the lines constituting the projected 4D coordinates <br></td></tr>
+<tr><td colspan="2"><br><h2>Static Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c2d8375d0e5fd3438d7806e5eadb6740"></a><!-- doxytag: member="C4DView::LightPos" ref="c2d8375d0e5fd3438d7806e5eadb6740" args="[4]" -->
+static GLfloat&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#c2d8375d0e5fd3438d7806e5eadb6740">LightPos</a> [4] = { 4., 4., 8., 0. }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">position of the light <br></td></tr>
 <tr><td colspan="2"><br><h2>Friends</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e47dce0b05c5aa8b8166aef6df650108"></a><!-- doxytag: member="C4DView::CustomFunctionSlot&lt; CustomFunction &gt;" ref="e47dce0b05c5aa8b8166aef6df650108" args="" -->
 class&nbsp;</td><td class="memItemRight" valign="bottom"><b>CustomFunctionSlot&lt; CustomFunction &gt;</b></td></tr>
@@ -574,6 +611,11 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 <tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structC4DView_1_1Impl.html">Impl</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Private class containing the member data for the Pimpl idiom.  <a href="structC4DView_1_1Impl.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html">Menu4D</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The menu for the <a class="el" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a>.  <a href="classC4DView_1_1Menu4D.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1MouseHandler4D.html">MouseHandler4D</a></td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1TemplatedRealFunctionFactory.html">TemplatedRealFunctionFactory</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class template implementation for a factory creating Function's.  <a href="classC4DView_1_1TemplatedRealFunctionFactory.html#_details">More...</a><br></td></tr>
@@ -612,7 +654,7 @@ does a lot of initialization to (usually sensible) hardcoded default values, ini
   </table>
 </dl>
 
-<p>References <a class="el" href="Menu4D_8C-source.html#l00158">Menu4D::addToMenuBar()</a>, <a class="el" href="4DView_8C-source.html#l00409">ApplyChanges()</a>, <a class="el" href="4DView_8C-source.html#l00589">InitCross()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8C-source.html#l00159">Light()</a>, <a class="el" href="4DView_8C-source.html#l00250">ObjectHypercube()</a>, and <a class="el" href="4DView_8C-source.html#l00362">OnTimer()</a>.</p>
+<p>References <a class="el" href="Menu4D_8C-source.html#l00158">C4DView::Menu4D::addToMenuBar()</a>, <a class="el" href="4DView_8C-source.html#l00388">ApplyChanges()</a>, <a class="el" href="4DView_8C-source.html#l00586">InitCross()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8C-source.html#l00138">Light()</a>, <a class="el" href="4DView_8C-source.html#l00229">ObjectHypercube()</a>, and <a class="el" href="4DView_8C-source.html#l00341">OnTimer()</a>.</p>
 
 </div>
 </div><p>
@@ -638,7 +680,9 @@ Switch between wireframe and solid display.
 Account for antialiasing only in wireframe mode <br>
  Change menu items accordingly <br>
  Menu callback function 
-<p>References <a class="el" href="Menu4D_8C-source.html#l00222">Menu4D::getAction()</a>, <a class="el" href="4DView_8C-source.html#l00562">OnPaint()</a>, and <a class="el" href="4DView_8H-source.html#l00129">setWireframe()</a>.</p>
+<p>References <a class="el" href="Menu4D_8C-source.html#l00222">C4DView::Menu4D::getAction()</a>, <a class="el" href="4DView_8C-source.html#l00559">OnPaint()</a>, and <a class="el" href="4DView_8H-source.html#l00131">setWireframe()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
 </div>
 </div><p>
@@ -662,7 +706,9 @@ switch coordinate cross on or off
 <p>
 change menu items accordingly <br>
  menu callback function 
-<p>References <a class="el" href="Menu4D_8C-source.html#l00222">Menu4D::getAction()</a>, and <a class="el" href="4DView_8C-source.html#l00523">Redraw()</a>.</p>
+<p>References <a class="el" href="Menu4D_8C-source.html#l00222">C4DView::Menu4D::getAction()</a>, and <a class="el" href="4DView_8C-source.html#l00520">Redraw()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
 </div>
 </div><p>
@@ -686,7 +732,9 @@ switch 4D depth cue on or off
 <p>
 change menu items accordingly <br>
  menu callback function 
-<p>References <a class="el" href="Menu4D_8C-source.html#l00222">Menu4D::getAction()</a>, and <a class="el" href="4DView_8C-source.html#l00523">Redraw()</a>.</p>
+<p>References <a class="el" href="Menu4D_8C-source.html#l00222">C4DView::Menu4D::getAction()</a>, and <a class="el" href="4DView_8C-source.html#l00520">Redraw()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
 </div>
 </div><p>
@@ -710,9 +758,9 @@ switch lighting on or off
 <p>
 change menu items accordingly <br>
  menu callback function 
-<p>References <a class="el" href="4DView_8C-source.html#l00562">OnPaint()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00559">OnPaint()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00053">C4DView()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00064">C4DView()</a>, and <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
 </div>
 </div><p>
@@ -735,7 +783,9 @@ change menu items accordingly <br>
 toggle colors 
 <p>
 menu callback function 
-<p>References <a class="el" href="Menu4D_8C-source.html#l00222">Menu4D::getAction()</a>, <a class="el" href="XQGLWidget_8H-source.html#l00056">XQGLWidget::getColors()</a>, and <a class="el" href="4DView_8C-source.html#l01144">initializeGL()</a>.</p>
+<p>References <a class="el" href="Menu4D_8C-source.html#l00222">C4DView::Menu4D::getAction()</a>, <a class="el" href="4DView_8H-source.html#l00139">getColors()</a>, and <a class="el" href="4DView_8C-source.html#l00877">initializeGL()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
 </div>
 </div><p>
@@ -758,7 +808,9 @@ menu callback function
 Toggle fog/depth cue. 
 <p>
 menu callback function 
-<p>References <a class="el" href="Menu4D_8C-source.html#l00222">Menu4D::getAction()</a>, and <a class="el" href="XQGLWidget_8H-source.html#l00060">XQGLWidget::getFog()</a>.</p>
+<p>References <a class="el" href="Menu4D_8C-source.html#l00222">C4DView::Menu4D::getAction()</a>, and <a class="el" href="4DView_8H-source.html#l00143">getFog()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
 </div>
 </div><p>
@@ -781,7 +833,9 @@ menu callback function
 toggle object transparency 
 <p>
 menu callback function 
-<p>References <a class="el" href="Menu4D_8C-source.html#l00222">Menu4D::getAction()</a>, and <a class="el" href="XQGLWidget_8H-source.html#l00064">XQGLWidget::getTransparent()</a>.</p>
+<p>References <a class="el" href="Menu4D_8C-source.html#l00222">C4DView::Menu4D::getAction()</a>, and <a class="el" href="4DView_8H-source.html#l00147">getTransparent()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
 </div>
 </div><p>
@@ -804,7 +858,9 @@ menu callback function
 toggle shading 
 <p>
 menu callback function 
-<p>References <a class="el" href="Menu4D_8C-source.html#l00222">Menu4D::getAction()</a>, and <a class="el" href="XQGLWidget_8H-source.html#l00058">XQGLWidget::getShade()</a>.</p>
+<p>References <a class="el" href="Menu4D_8C-source.html#l00222">C4DView::Menu4D::getAction()</a>, and <a class="el" href="4DView_8H-source.html#l00141">getShade()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
 </div>
 </div><p>
@@ -827,7 +883,9 @@ menu callback function
 run a benchmark test 
 <p>
 menu callback function 
-<p>References <a class="el" href="4DView_8C-source.html#l00320">Benchmark3D()</a>, <a class="el" href="4DView_8C-source.html#l00340">Benchmark4D()</a>, and <a class="el" href="4DView_8C-source.html#l00765">UpdateStatus()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00299">Benchmark3D()</a>, <a class="el" href="4DView_8C-source.html#l00319">Benchmark4D()</a>, and <a class="el" href="4DView_8C-source.html#l00774">UpdateStatus()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
 </div>
 </div><p>
@@ -851,7 +909,9 @@ switch rendering to files on or off
 <p>
 change menu items accordingly <br>
  menu callback function 
-<p>References <a class="el" href="Menu4D_8C-source.html#l00222">Menu4D::getAction()</a>.</p>
+<p>References <a class="el" href="Menu4D_8C-source.html#l00222">C4DView::Menu4D::getAction()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
 </div>
 </div><p>
@@ -874,9 +934,9 @@ change menu items accordingly <br>
 display a ObjectHypercube object 
 <p>
 menu callback function 
-<p>References <a class="el" href="4DView_8C-source.html#l00784">AssignValues()</a>, <a class="el" href="4DView_8C-source.html#l00523">Redraw()</a>, and <a class="el" href="Menu4D_8C-source.html#l00233">Menu4D::updateFunctionMenu()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00793">AssignValues()</a>, <a class="el" href="4DView_8C-source.html#l00520">Redraw()</a>, and <a class="el" href="Menu4D_8C-source.html#l00233">C4DView::Menu4D::updateFunctionMenu()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00053">C4DView()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00064">C4DView()</a>, and <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
 </div>
 </div><p>
@@ -899,7 +959,9 @@ menu callback function
 display a ObjectHyperpyramid object 
 <p>
 menu callback function 
-<p>References <a class="el" href="4DView_8C-source.html#l00784">AssignValues()</a>, <a class="el" href="4DView_8C-source.html#l00523">Redraw()</a>, and <a class="el" href="Menu4D_8C-source.html#l00233">Menu4D::updateFunctionMenu()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00793">AssignValues()</a>, <a class="el" href="4DView_8C-source.html#l00520">Redraw()</a>, and <a class="el" href="Menu4D_8C-source.html#l00233">C4DView::Menu4D::updateFunctionMenu()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
 </div>
 </div><p>
@@ -922,7 +984,9 @@ menu callback function
 display a ObjectHypersponge object 
 <p>
 menu callback function 
-<p>References <a class="el" href="4DView_8C-source.html#l00784">AssignValues()</a>, <a class="el" href="4DView_8C-source.html#l00523">Redraw()</a>, and <a class="el" href="Menu4D_8C-source.html#l00233">Menu4D::updateFunctionMenu()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00793">AssignValues()</a>, <a class="el" href="4DView_8C-source.html#l00520">Redraw()</a>, and <a class="el" href="Menu4D_8C-source.html#l00233">C4DView::Menu4D::updateFunctionMenu()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
 </div>
 </div><p>
@@ -945,7 +1009,9 @@ menu callback function
 display a ObjectGasket object 
 <p>
 menu callback function 
-<p>References <a class="el" href="4DView_8C-source.html#l00784">AssignValues()</a>, <a class="el" href="4DView_8C-source.html#l00523">Redraw()</a>, and <a class="el" href="Menu4D_8C-source.html#l00233">Menu4D::updateFunctionMenu()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00793">AssignValues()</a>, <a class="el" href="4DView_8C-source.html#l00520">Redraw()</a>, and <a class="el" href="Menu4D_8C-source.html#l00233">C4DView::Menu4D::updateFunctionMenu()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
 </div>
 </div><p>
@@ -968,6 +1034,8 @@ menu callback function
 display a customFunction object 
 <p>
 menu callback function 
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="f20dba04d475059869fa8f663fca0ac7"></a><!-- doxytag: member="C4DView::customPolarFunction" ref="f20dba04d475059869fa8f663fca0ac7" args="()" -->
@@ -989,6 +1057,8 @@ menu callback function
 display a customPolarFunction object 
 <p>
 menu callback function 
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="c22a486c7bd7231ed278452281190f03"></a><!-- doxytag: member="C4DView::customSurface" ref="c22a486c7bd7231ed278452281190f03" args="()" -->
@@ -1010,6 +1080,8 @@ menu callback function
 display a customSurface object 
 <p>
 menu callback function 
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="6a39870f461647dd0dacc0d3f683ba56"></a><!-- doxytag: member="C4DView::customComplexFunction" ref="6a39870f461647dd0dacc0d3f683ba56" args="()" -->
@@ -1031,6 +1103,8 @@ menu callback function
 display a customComplexFunction object 
 <p>
 menu callback function 
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="50cd0bdd8d4df8eb716691b7cb873de3"></a><!-- doxytag: member="C4DView::setWireframe" ref="50cd0bdd8d4df8eb716691b7cb873de3" args="(bool wire)" -->
@@ -1056,7 +1130,7 @@ menu callback function
   </table>
 </dl>
 
-<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">Menu4D::Menu4D()</a>, and <a class="el" href="4DView_8C-source.html#l00121">Wireframe()</a>.</p>
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>, and <a class="el" href="4DView_8C-source.html#l00100">Wireframe()</a>.</p>
 
 </div>
 </div><p>
@@ -1078,7 +1152,7 @@ menu callback function
 <p>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to display the 4D coordinate cross or not </dd></dl>
 
-<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">Menu4D::Menu4D()</a>.</p>
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
 </div>
 </div><p>
@@ -1100,7 +1174,7 @@ menu callback function
 <p>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to save the rendered images to an image file </dd></dl>
 
-<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">Menu4D::Menu4D()</a>.</p>
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
 </div>
 </div><p>
@@ -1122,7 +1196,117 @@ menu callback function
 <p>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to draw the objects' surfaces or only the edges </dd></dl>
 
-<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">Menu4D::Menu4D()</a>.</p>
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d9687bb0368033af4e97f2c4571156d9"></a><!-- doxytag: member="C4DView::getColors" ref="d9687bb0368033af4e97f2c4571156d9" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool&amp; C4DView::getColors           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to use colors in rendering or not </dd></dl>
+
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00170">Colors()</a>, and <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="89dd3e07ddd664711df895975a3d4bcd"></a><!-- doxytag: member="C4DView::getShade" ref="89dd3e07ddd664711df895975a3d4bcd" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool&amp; C4DView::getShade           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to use shading in rendering or not </dd></dl>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>, and <a class="el" href="4DView_8C-source.html#l00194">Shade()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="dabc3be452e44e3101ad2f9f4cee5e4c"></a><!-- doxytag: member="C4DView::getFog" ref="dabc3be452e44e3101ad2f9f4cee5e4c" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool&amp; C4DView::getFog           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to use depth cue/fog in rendering or not </dd></dl>
+
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00178">Fog()</a>, <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>, and <a class="el" href="4DView_8C-source.html#l00980">resizeGL()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c83101f5d137e9357245e863a2df7d3e"></a><!-- doxytag: member="C4DView::getLight" ref="c83101f5d137e9357245e863a2df7d3e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool&amp; C4DView::getLight           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to use lighting in rendering or not </dd></dl>
+
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00929">InitLight()</a>, and <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5ad3a5d84454cb614b14748d772013b4"></a><!-- doxytag: member="C4DView::getTransparent" ref="5ad3a5d84454cb614b14748d772013b4" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool&amp; C4DView::getTransparent           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to use transparence/line antialiasing or not </dd></dl>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>, and <a class="el" href="4DView_8C-source.html#l00186">Transparent()</a>.</p>
 
 </div>
 </div><p>
@@ -1135,7 +1319,7 @@ menu callback function
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td width="100%"><code> [protected, slot]</code></td>
+          <td width="100%"><code> [private, slot]</code></td>
         </tr>
       </table>
 </div>
@@ -1146,9 +1330,9 @@ Timer event handler.
 <p>
 Updates values if in the middle of an animation, and renders an image. <br>
  Writes image to file too, if wanted. 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8C-source.html#l00562">OnPaint()</a>, <a class="el" href="4DView_8C-source.html#l00523">Redraw()</a>, <a class="el" href="4DView_8H-source.html#l00150">Transform()</a>, <a class="el" href="4DView_8C-source.html#l00765">UpdateStatus()</a>, and <a class="el" href="4DView_8C-source.html#l00712">writeFrame()</a>.</p>
+<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8C-source.html#l00559">OnPaint()</a>, <a class="el" href="4DView_8C-source.html#l00520">Redraw()</a>, <a class="el" href="4DView_8H-source.html#l00165">Transform()</a>, <a class="el" href="4DView_8C-source.html#l00774">UpdateStatus()</a>, and <a class="el" href="4DView_8C-source.html#l00721">writeFrame()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00053">C4DView()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00064">C4DView()</a>.</p>
 
 </div>
 </div><p>
@@ -1161,7 +1345,7 @@ Updates values if in the middle of an animation, and renders an image. <br>
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td width="100%"><code> [protected, slot]</code></td>
+          <td width="100%"><code> [private, slot]</code></td>
         </tr>
       </table>
 </div>
@@ -1172,7 +1356,9 @@ show a dialog to adjust animation settings
 <p>
 Where to write image files and how many files to write <br>
  menu callback function 
-<p>References <a class="el" href="AnimationDialogImpl_8H-source.html#l00032">AnimationDialogImpl::getDir()</a>, <a class="el" href="AnimationDialogImpl_8H-source.html#l00026">AnimationDialogImpl::getFrames()</a>, <a class="el" href="AnimationDialogImpl_8H-source.html#l00035">AnimationDialogImpl::getPrefix()</a>, and <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
+<p>References <a class="el" href="AnimationDialogImpl_8H-source.html#l00032">AnimationDialogImpl::getDir()</a>, <a class="el" href="AnimationDialogImpl_8H-source.html#l00026">AnimationDialogImpl::getFrames()</a>, <a class="el" href="AnimationDialogImpl_8H-source.html#l00035">AnimationDialogImpl::getPrefix()</a>, and <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
 </div>
 </div><p>
@@ -1186,7 +1372,7 @@ Where to write image files and how many files to write <br>
           <td class="paramtype">const <a class="el" href="classParameterMap.html">ParameterMap</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>parms</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td width="100%"><code> [protected, slot]</code></td>
+          <td width="100%"><code> [private, slot]</code></td>
         </tr>
       </table>
 </div>
@@ -1196,10 +1382,72 @@ Where to write image files and how many files to write <br>
 Called whenever an object or the parameters have changed. 
 <p>
 Sets the parameters, applies the changed parameters to the function object and redraws it 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="ValuesDialogImpl_8C-source.html#l00124">ValuesDialogImpl::print()</a>, <a class="el" href="ParameterMap_8H-source.html#l00041">ParameterMap::print()</a>, <a class="el" href="4DView_8C-source.html#l00523">Redraw()</a>, and <a class="el" href="4DView_8H-source.html#l00150">Transform()</a>.</p>
+<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="ValuesDialogImpl_8C-source.html#l00124">ValuesDialogImpl::print()</a>, <a class="el" href="ParameterMap_8H-source.html#l00041">ParameterMap::print()</a>, <a class="el" href="4DView_8C-source.html#l00520">Redraw()</a>, and <a class="el" href="4DView_8H-source.html#l00165">Transform()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00053">C4DView()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00064">C4DView()</a>.</p>
 
+</div>
+</div><p>
+<a class="anchor" name="aefd85a2c570d47d9d82b1861d73b631"></a><!-- doxytag: member="C4DView::Help" ref="aefd85a2c570d47d9d82b1861d73b631" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Help           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [private, slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+display help window <dl compact><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>HARDCODED filename </dd></dl>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5043ee7707435f83b4a3891a9145452b"></a><!-- doxytag: member="C4DView::about" ref="5043ee7707435f83b4a3891a9145452b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::about           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [private, slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+open an "About"-Dialog 
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="1a27f7faf0214a769ebd09bd033432e0"></a><!-- doxytag: member="C4DView::aboutQt" ref="1a27f7faf0214a769ebd09bd033432e0" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::aboutQt           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [private, slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+open an "About Qt"-Dialog 
 </div>
 </div><p>
 <a class="anchor" name="6850e75dd5a38a4ffc5d0a1f7bcb953d"></a><!-- doxytag: member="C4DView::Transform" ref="6850e75dd5a38a4ffc5d0a1f7bcb953d" args="(double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)" -->
@@ -1293,7 +1541,9 @@ Calls F-&gt;Transform () and transforms the coordinate cross <dl compact><dt><b>
   </table>
 </dl>
 
-<p>References <a class="el" href="4DView_8H-source.html#l00446">Cross</a>, and <a class="el" href="4DView_8H-source.html#l00448">CrossTrans</a>.</p>
+<p>References <a class="el" href="4DView_8H-source.html#l00479">Cross</a>, and <a class="el" href="4DView_8H-source.html#l00481">CrossTrans</a>.</p>
+
+<p>Referenced by <a class="el" href="MouseHandler_8C-source.html#l00305">C4DView::MouseHandler4D::mouseDoubleClickEvent()</a>, and <a class="el" href="MouseHandler_8C-source.html#l00029">C4DView::MouseHandler4D::mouseMoveEvent()</a>.</p>
 
 </div>
 </div><p>
@@ -1317,9 +1567,9 @@ Calls F-&gt;Transform () and transforms the coordinate cross <dl compact><dt><b>
 Projects F and coordinate cross into three-space. 
 <p>
 
-<p>References <a class="el" href="4DView_8H-source.html#l00450">CrossScr</a>, and <a class="el" href="4DView_8H-source.html#l00448">CrossTrans</a>.</p>
+<p>References <a class="el" href="4DView_8H-source.html#l00483">CrossScr</a>, and <a class="el" href="4DView_8H-source.html#l00481">CrossTrans</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00491">PreRedraw()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00488">PreRedraw()</a>.</p>
 
 </div>
 </div><p>
@@ -1343,11 +1593,9 @@ Projects F and coordinate cross into three-space.
 draw the projected <a class="el" href="classObject.html" title="Generalized four-dimensional Object, described by vertexes and surfaces.">Object</a> (onto screen or into GL list, as it is) 
 <p>
 
-<p>Reimplemented from <a class="el" href="classXQGLWidget.html">XQGLWidget</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00637">DrawCoordinates()</a>.</p>
 
-<p>References <a class="el" href="4DView_8C-source.html#l00628">DrawCoordinates()</a>.</p>
-
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00491">PreRedraw()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00488">PreRedraw()</a>.</p>
 
 </div>
 </div><p>
@@ -1370,9 +1618,9 @@ draw the projected <a class="el" href="classObject.html" title="Generalized four
 4D projection stuff 
 <p>
 Separated from the 3D OpenGL handling into this function 
-<p>References <a class="el" href="4DView_8C-source.html#l00483">Draw()</a>, <a class="el" href="4DView_8C-source.html#l00628">DrawCoordinates()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="4DView_8C-source.html#l00467">Project()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00480">Draw()</a>, <a class="el" href="4DView_8C-source.html#l00637">DrawCoordinates()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="4DView_8C-source.html#l00464">Project()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l01144">initializeGL()</a>, <a class="el" href="4DView_8C-source.html#l00523">Redraw()</a>, <a class="el" href="4DView_8C-source.html#l00530">RenderScene()</a>, and <a class="el" href="4DView_8C-source.html#l00712">writeFrame()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00877">initializeGL()</a>, <a class="el" href="4DView_8C-source.html#l00520">Redraw()</a>, <a class="el" href="4DView_8C-source.html#l00527">RenderScene()</a>, and <a class="el" href="4DView_8C-source.html#l00721">writeFrame()</a>.</p>
 
 </div>
 </div><p>
@@ -1396,9 +1644,9 @@ Separated from the 3D OpenGL handling into this function
 Wrapper for redraw handler. 
 <p>
 With an error reporting routine and exit strategy 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="4DView_8C-source.html#l00491">PreRedraw()</a>.</p>
+<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="4DView_8C-source.html#l00488">PreRedraw()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l01144">initializeGL()</a>, and <a class="el" href="4DView_8C-source.html#l00562">OnPaint()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00877">initializeGL()</a>, and <a class="el" href="4DView_8C-source.html#l00559">OnPaint()</a>.</p>
 
 </div>
 </div><p>
@@ -1421,9 +1669,9 @@ With an error reporting routine and exit strategy
 Should be called whenever the object is rotated or translated. 
 <p>
 <a class="el" href="classObject.html" title="Generalized four-dimensional Object, described by vertexes and surfaces.">Object</a> drawing routine: Does all the OpenGL stuff necessary to paint the object on screen 
-<p>References <a class="el" href="4DView_8C-source.html#l00530">RenderScene()</a>, and <a class="el" href="4DView_8C-source.html#l00712">writeFrame()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00527">RenderScene()</a>, and <a class="el" href="4DView_8C-source.html#l00721">writeFrame()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00320">Benchmark3D()</a>, <a class="el" href="4DView_8C-source.html#l00159">Light()</a>, <a class="el" href="4DView_8C-source.html#l00812">mouseMoveEvent()</a>, <a class="el" href="4DView_8C-source.html#l00362">OnTimer()</a>, <a class="el" href="4DView_8C-source.html#l01108">paintEvent()</a>, <a class="el" href="4DView_8C-source.html#l00523">Redraw()</a>, and <a class="el" href="4DView_8C-source.html#l00121">Wireframe()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00299">Benchmark3D()</a>, <a class="el" href="4DView_8C-source.html#l00138">Light()</a>, <a class="el" href="MouseHandler_8C-source.html#l00029">C4DView::MouseHandler4D::mouseMoveEvent()</a>, <a class="el" href="4DView_8C-source.html#l00341">OnTimer()</a>, <a class="el" href="4DView_8C-source.html#l00841">paintEvent()</a>, <a class="el" href="4DView_8C-source.html#l00520">Redraw()</a>, and <a class="el" href="4DView_8C-source.html#l00100">Wireframe()</a>.</p>
 
 </div>
 </div><p>
@@ -1452,9 +1700,9 @@ Switch 3D depth cue on and off.
   </table>
 </dl>
 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="XQGLWidget_8C-source.html#l00191">XQGLWidget::SetupDepthCue()</a>, and <a class="el" href="4DView_8C-source.html#l00800">Size()</a>.</p>
+<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="4DView_8C-source.html#l00809">Size()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00812">mouseMoveEvent()</a>.</p>
+<p>Referenced by <a class="el" href="MouseHandler_8C-source.html#l00029">C4DView::MouseHandler4D::mouseMoveEvent()</a>, and <a class="el" href="4DView_8C-source.html#l00980">resizeGL()</a>.</p>
 
 </div>
 </div><p>
@@ -1478,9 +1726,9 @@ Switch 3D depth cue on and off.
 draw the coordinate cross (on screen or int GL list) */ 
 <p>
 
-<p>References <a class="el" href="4DView_8H-source.html#l00450">CrossScr</a>, and <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
+<p>References <a class="el" href="4DView_8H-source.html#l00483">CrossScr</a>, and <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00483">Draw()</a>, and <a class="el" href="4DView_8C-source.html#l00491">PreRedraw()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00480">Draw()</a>, and <a class="el" href="4DView_8C-source.html#l00488">PreRedraw()</a>.</p>
 
 </div>
 </div><p>
@@ -1503,9 +1751,9 @@ draw the coordinate cross (on screen or int GL list) */
 Err well.. just that! 
 <p>
 Starts AnimationTimer, too... 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="4DView_8C-source.html#l00765">UpdateStatus()</a>.</p>
+<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="4DView_8C-source.html#l00774">UpdateStatus()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l01069">mouseReleaseEvent()</a>, and <a class="el" href="4DView_8C-source.html#l00679">RandomAnimation()</a>.</p>
+<p>Referenced by <a class="el" href="MouseHandler_8C-source.html#l00288">C4DView::MouseHandler4D::mouseReleaseEvent()</a>, and <a class="el" href="4DView_8C-source.html#l00688">RandomAnimation()</a>.</p>
 
 </div>
 </div><p>
@@ -1527,10 +1775,10 @@ Starts AnimationTimer, too...
 <p>
 Starts a random animation. 
 <p>
-xw/yw/zw rotation speed changes every 10 seconds <dl compact><dt><b><a class="el" href="todo.html#_todo000034">Todo:</a></b></dt><dd>make hardcoded duration of rotation change frequency adjustable </dd></dl>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000034">Todo:</a></b></dt><dd>a menu entry for this </dd></dl>
+xw/yw/zw rotation speed changes every 10 seconds <dl compact><dt><b><a class="el" href="todo.html#_todo000027">Todo:</a></b></dt><dd>make hardcoded duration of rotation change frequency adjustable </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000027">Todo:</a></b></dt><dd>a menu entry for this </dd></dl>
 
-<p>References <a class="el" href="4DView_8C-source.html#l00653">StartAnimation()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00662">StartAnimation()</a>.</p>
 
 </div>
 </div><p>
@@ -1553,9 +1801,9 @@ xw/yw/zw rotation speed changes every 10 seconds <dl compact><dt><b><a class="el
 Make a pixmap to to be rendered by the GL widget, and render it. 
 <p>
 this is an embarrassing workaround to make rendering to files work. QGLWidget's renderPixmap() method only produces black frames. Works with QPixmap::grabWindow() instead. 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
+<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00712">writeFrame()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00721">writeFrame()</a>.</p>
 
 </div>
 </div><p>
@@ -1577,9 +1825,9 @@ this is an embarrassing workaround to make rendering to files work. QGLWidget's 
 <p>
 writes a snapshot of the current frame of an animation or interactive display to disk <br>
  updates animationFrame 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8C-source.html#l00695">makePixmap()</a>, and <a class="el" href="4DView_8C-source.html#l00491">PreRedraw()</a>.</p>
+<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8C-source.html#l00704">makePixmap()</a>, and <a class="el" href="4DView_8C-source.html#l00488">PreRedraw()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00562">OnPaint()</a>, and <a class="el" href="4DView_8C-source.html#l00362">OnTimer()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00559">OnPaint()</a>, and <a class="el" href="4DView_8C-source.html#l00341">OnTimer()</a>.</p>
 
 </div>
 </div><p>
@@ -1609,9 +1857,9 @@ Side effect: checks rotation values for overflow and resets them to the interval
   </table>
 </dl>
 
-<p>References <a class="el" href="4DView_8C-source.html#l00741">checkAnglesForOverflow()</a>, and <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00750">checkAnglesForOverflow()</a>, and <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00784">AssignValues()</a>, <a class="el" href="4DView_8C-source.html#l00223">Benchmark()</a>, <a class="el" href="4DView_8C-source.html#l00320">Benchmark3D()</a>, <a class="el" href="4DView_8C-source.html#l00340">Benchmark4D()</a>, <a class="el" href="CustomFunctionSlot_8impl_8H-source.html#l00026">C4DView::CustomFunctionSlot&lt; function &gt;::createCustomFunction()</a>, <a class="el" href="CustomFunctionSlot_8impl_8H-source.html#l00051">C4DView::CustomFunctionSlot&lt; function &gt;::createCustomSurface()</a>, <a class="el" href="4DView_8C-source.html#l01086">mouseDoubleClickEvent()</a>, <a class="el" href="4DView_8C-source.html#l00812">mouseMoveEvent()</a>, <a class="el" href="4DView_8C-source.html#l01069">mouseReleaseEvent()</a>, <a class="el" href="4DView_8C-source.html#l00362">OnTimer()</a>, and <a class="el" href="4DView_8C-source.html#l00653">StartAnimation()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00793">AssignValues()</a>, <a class="el" href="4DView_8C-source.html#l00202">Benchmark()</a>, <a class="el" href="4DView_8C-source.html#l00299">Benchmark3D()</a>, <a class="el" href="4DView_8C-source.html#l00319">Benchmark4D()</a>, <a class="el" href="CustomFunctionSlot_8impl_8H-source.html#l00026">C4DView::CustomFunctionSlot&lt; function &gt;::createCustomFunction()</a>, <a class="el" href="CustomFunctionSlot_8impl_8H-source.html#l00051">C4DView::CustomFunctionSlot&lt; function &gt;::createCustomSurface()</a>, <a class="el" href="MouseHandler_8C-source.html#l00305">C4DView::MouseHandler4D::mouseDoubleClickEvent()</a>, <a class="el" href="MouseHandler_8C-source.html#l00029">C4DView::MouseHandler4D::mouseMoveEvent()</a>, <a class="el" href="MouseHandler_8C-source.html#l00288">C4DView::MouseHandler4D::mouseReleaseEvent()</a>, <a class="el" href="4DView_8C-source.html#l00341">OnTimer()</a>, and <a class="el" href="4DView_8C-source.html#l00662">StartAnimation()</a>.</p>
 
 </div>
 </div><p>
@@ -1640,9 +1888,9 @@ Changes the display on the status bar and the number and names of the parameters
   </table>
 </dl>
 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="ValuesDialogImpl_8C-source.html#l00043">ValuesDialogImpl::setFunction()</a>, <a class="el" href="4DView_8H-source.html#l00150">Transform()</a>, and <a class="el" href="4DView_8C-source.html#l00765">UpdateStatus()</a>.</p>
+<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="ValuesDialogImpl_8C-source.html#l00043">ValuesDialogImpl::setFunction()</a>, <a class="el" href="4DView_8H-source.html#l00165">Transform()</a>, and <a class="el" href="4DView_8C-source.html#l00774">UpdateStatus()</a>.</p>
 
-<p>Referenced by <a class="el" href="CustomFunctionSlot_8impl_8H-source.html#l00026">C4DView::CustomFunctionSlot&lt; function &gt;::createCustomFunction()</a>, <a class="el" href="CustomFunctionSlot_8impl_8H-source.html#l00051">C4DView::CustomFunctionSlot&lt; function &gt;::createCustomSurface()</a>, <a class="el" href="4DView_8C-source.html#l00286">ObjectGasket()</a>, <a class="el" href="4DView_8C-source.html#l00250">ObjectHypercube()</a>, <a class="el" href="4DView_8C-source.html#l00261">ObjectHyperpyramid()</a>, <a class="el" href="4DView_8C-source.html#l00272">ObjectHypersponge()</a>, <a class="el" href="SlotHelper_8C-source.html#l00029">SurfaceSlotHelper::slot()</a>, and <a class="el" href="SlotHelper_8C-source.html#l00019">FunctionSlotHelper::slot()</a>.</p>
+<p>Referenced by <a class="el" href="CustomFunctionSlot_8impl_8H-source.html#l00026">C4DView::CustomFunctionSlot&lt; function &gt;::createCustomFunction()</a>, <a class="el" href="CustomFunctionSlot_8impl_8H-source.html#l00051">C4DView::CustomFunctionSlot&lt; function &gt;::createCustomSurface()</a>, <a class="el" href="4DView_8C-source.html#l00265">ObjectGasket()</a>, <a class="el" href="4DView_8C-source.html#l00229">ObjectHypercube()</a>, <a class="el" href="4DView_8C-source.html#l00240">ObjectHyperpyramid()</a>, <a class="el" href="4DView_8C-source.html#l00251">ObjectHypersponge()</a>, <a class="el" href="SlotHelper_8C-source.html#l00029">SurfaceSlotHelper::slot()</a>, and <a class="el" href="SlotHelper_8C-source.html#l00019">FunctionSlotHelper::slot()</a>.</p>
 
 </div>
 </div><p>
@@ -1666,7 +1914,7 @@ Get size of displayed area.
 <p>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>approximate diameter of definition space </dd></dl>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00812">mouseMoveEvent()</a>, <a class="el" href="4DView_8C-source.html#l01114">resizeEvent()</a>, and <a class="el" href="4DView_8C-source.html#l00614">SetupDepthCue()</a>.</p>
+<p>Referenced by <a class="el" href="MouseHandler_8C-source.html#l00029">C4DView::MouseHandler4D::mouseMoveEvent()</a>, <a class="el" href="4DView_8C-source.html#l00847">resizeEvent()</a>, <a class="el" href="4DView_8C-source.html#l00980">resizeGL()</a>, and <a class="el" href="4DView_8C-source.html#l00611">SetupDepthCue()</a>.</p>
 
 </div>
 </div><p>
@@ -1689,14 +1937,8 @@ Get size of displayed area.
 <p>
 Mouse move event handler. 
 <p>
-Awfully long, which is UGLY, but it does not seem to make much sense to break it up, so here we go <br>
- Particular mouse move/button/modifier key combinations documented in the code below <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>e</em>&nbsp;</td><td>Qt's mouse event information structure </td></tr>
-  </table>
-</dl>
-
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8C-source.html#l00562">OnPaint()</a>, <a class="el" href="4DView_8C-source.html#l00523">Redraw()</a>, <a class="el" href="4DView_8C-source.html#l00614">SetupDepthCue()</a>, <a class="el" href="4DView_8C-source.html#l00800">Size()</a>, <a class="el" href="4DView_8H-source.html#l00150">Transform()</a>, and <a class="el" href="4DView_8C-source.html#l00765">UpdateStatus()</a>.</p>
+Delegates to <a class="el" href="classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler.">MouseHandler4D::mouseMoveEvent()</a> 
+<p>References <a class="el" href="MouseHandler_8C-source.html#l00029">C4DView::MouseHandler4D::mouseMoveEvent()</a>.</p>
 
 </div>
 </div><p>
@@ -1717,15 +1959,10 @@ Awfully long, which is UGLY, but it does not seem to make much sense to break it
 <div class="memdoc">
 
 <p>
-Mouse button event handler. 
+Mouse press event handler. 
 <p>
-Only sets flags which buttons are down <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>e</em>&nbsp;</td><td>Qt's mouse event information structure </td></tr>
-  </table>
-</dl>
-
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
+Delegates to <a class="el" href="classC4DView_1_1MouseHandler4D.html#3fd72e434043c95051a38c2dbfccab7a" title="Mouse button event handler.">MouseHandler4D::mousePressEvent()</a> 
+<p>References <a class="el" href="MouseHandler_8C-source.html#l00261">C4DView::MouseHandler4D::mousePressEvent()</a>.</p>
 
 </div>
 </div><p>
@@ -1746,15 +1983,10 @@ Only sets flags which buttons are down <dl compact><dt><b>Parameters:</b></dt><d
 <div class="memdoc">
 
 <p>
-Mouse button release event handler. 
+Mouse release event handler. 
 <p>
-If taking values for an animation, starts the animation <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>e</em>&nbsp;</td><td>Qt's mouse event information structure </td></tr>
-  </table>
-</dl>
-
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8C-source.html#l00653">StartAnimation()</a>, and <a class="el" href="4DView_8C-source.html#l00765">UpdateStatus()</a>.</p>
+Delegates to <a class="el" href="classC4DView_1_1MouseHandler4D.html#9e5ab5cea257501da2f87c3f13140029" title="Mouse button release event handler.">MouseHandler4D::mouseReleaseEvent()</a> 
+<p>References <a class="el" href="MouseHandler_8C-source.html#l00288">C4DView::MouseHandler4D::mouseReleaseEvent()</a>.</p>
 
 </div>
 </div><p>
@@ -1777,13 +2009,8 @@ If taking values for an animation, starts the animation <dl compact><dt><b>Param
 <p>
 Double click event handler. 
 <p>
-Stops animation, if running, or resets transformation values to default <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>e</em>&nbsp;</td><td>Qt's mouse event information structure </td></tr>
-  </table>
-</dl>
-
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8C-source.html#l00523">Redraw()</a>, <a class="el" href="4DView_8C-source.html#l00664">StopAnimation()</a>, <a class="el" href="4DView_8H-source.html#l00150">Transform()</a>, and <a class="el" href="4DView_8C-source.html#l00765">UpdateStatus()</a>.</p>
+Delegates to <a class="el" href="classC4DView_1_1MouseHandler4D.html#681ee2ee24d1528a92b6ec0ff4dad9c2" title="Double click event handler.">MouseHandler4D::mouseDoubleClickEvent()</a> 
+<p>References <a class="el" href="MouseHandler_8C-source.html#l00305">C4DView::MouseHandler4D::mouseDoubleClickEvent()</a>.</p>
 
 </div>
 </div><p>
@@ -1805,7 +2032,7 @@ Stops animation, if running, or resets transformation values to default <dl comp
 
 <p>
 <a class="el" href="classC4DView.html#5ff6e70d47395827f5ef14793253c8d0">paintEvent()</a> 
-<p>References <a class="el" href="4DView_8C-source.html#l00562">OnPaint()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00559">OnPaint()</a>.</p>
 
 </div>
 </div><p>
@@ -1829,7 +2056,7 @@ Stops animation, if running, or resets transformation values to default <dl comp
 Resizing routine. 
 <p>
 Also, the definition of the GL viewport is done here 
-<p>References <a class="el" href="4DView_8C-source.html#l00800">Size()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00809">Size()</a>.</p>
 
 </div>
 </div><p>
@@ -1853,20 +2080,115 @@ Also, the definition of the GL viewport is done here
 OpenGL initialization. 
 <p>
 Now this is not as boring as it seems, because further work has to be done here: <br>
- <dl compact><dt><b><a class="el" href="todo.html#_todo000036">Todo:</a></b></dt><dd>trying to check for rendering to file, but this doesn't work yet.</dd></dl>
-the rest of interesting inits is done in <a class="el" href="classXQGLWidget.html#69e77b7b2dc97790205c1887cd7d80ae">XQGLWidget::initializeGL</a> (), btw. 
-<p>Reimplemented from <a class="el" href="classXQGLWidget.html#69e77b7b2dc97790205c1887cd7d80ae">XQGLWidget</a>.</p>
+ <dl compact><dt><b><a class="el" href="todo.html#_todo000029">Todo:</a></b></dt><dd>trying to check for rendering to file, but this doesn't work yet.</dd></dl>
+the rest of interesting inits is done in XQGLWidget::initializeGL (), btw. 
+<p>References <a class="el" href="4DView_8C-source.html#l00929">InitLight()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8C-source.html#l00488">PreRedraw()</a>, and <a class="el" href="4DView_8C-source.html#l00527">RenderScene()</a>.</p>
 
-<p>References <a class="el" href="XQGLWidget_8C-source.html#l00058">XQGLWidget::initializeGL()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00229">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8C-source.html#l00491">PreRedraw()</a>, and <a class="el" href="4DView_8C-source.html#l00530">RenderScene()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00170">Colors()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00191">Colors()</a>.</p>
+</div>
+</div><p>
+<a class="anchor" name="ac3d22c30bf8b042077fb31fec2c367b"></a><!-- doxytag: member="C4DView::resizeGL" ref="ac3d22c30bf8b042077fb31fec2c367b" args="(int, int)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::resizeGL           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>height</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+change of viewing distance is handled here too, which is not so clean programming style... <dl compact><dt><b><a class="el" href="todo.html#_todo000031">Todo:</a></b></dt><dd>eliminate hardcoded constants </dd></dl>
+
+<p>References <a class="el" href="4DView_8H-source.html#l00143">getFog()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8C-source.html#l00611">SetupDepthCue()</a>, and <a class="el" href="4DView_8C-source.html#l00809">Size()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d306f57ab4a1565454abbf7856a88a92"></a><!-- doxytag: member="C4DView::SetupDepthCue" ref="d306f57ab4a1565454abbf7856a88a92" args="(float, float)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::SetupDepthCue           </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>dist</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>size</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Adjust parameters for depth cue. 
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000026">Todo:</a></b></dt><dd>fill in the meaning of the parameters </dd></dl>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>dist</em>&nbsp;</td><td></td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td></td></tr>
+  </table>
+</dl>
+
+<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="03b3ed76ada1847e4b75e19de8c7e6cb"></a><!-- doxytag: member="C4DView::InitLight" ref="03b3ed76ada1847e4b75e19de8c7e6cb" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::InitLight           </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+OpenGL initialization setting background colors, setting up lighting, shading, fog and transparence <dl compact><dt><b><a class="el" href="todo.html#_todo000030">Todo:</a></b></dt><dd>hardcoded light position and colors! </dd></dl>
+
+<p>References <a class="el" href="4DView_8H-source.html#l00145">getLight()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="4DView_8H-source.html#l00476">LightPos</a>.</p>
+
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00877">initializeGL()</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/UI/<a class="el" href="4DView_8H-source.html">4DView.H</a><li>workspace/HyperspaceExplorer/src/UI/4DView.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 17 18:32:01 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 18 21:23:36 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

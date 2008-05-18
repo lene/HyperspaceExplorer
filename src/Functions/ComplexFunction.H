@@ -75,6 +75,7 @@ class zA: public ComplexFunction {
             double _vmin, double _vmax, double _dv,
             double _alpha = 2);
         virtual ~zA () { }
+
         virtual void SetParameters(const ParameterMap &parms) {
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
@@ -90,7 +91,7 @@ class zA: public ComplexFunction {
         virtual function_type g;
 
     private:
-        double alpha;
+        double alpha;   ///< Exponent
 };
 
 /** \f$ f(z) = e^{\alpha*z} \f$
