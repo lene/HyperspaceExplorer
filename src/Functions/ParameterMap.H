@@ -42,13 +42,23 @@ public:
         std::ostringstream o;
         o << "[\n";
         for (std::map<std::string, FunctionParameter *>::const_iterator i = begin(); i != end(); ++i) {
-            o << "    " << i->first << ": \t"
-              << i->second->getName() << " = ";
-            o << double(*(i->second)) << "(double), " << unsigned(*(i->second)) << "(unsigned), "
-              << int(*(i->second)) << "(int), \"" << std::string(*(i->second)) << "\"(string)";
-            o << "\n";
+                o << "    " << i->first << ": \t"
+                  << i->second->getName() << " = ";
+                try {
+                    o << "(double)" << double(*(i->second)) << std::endl;
+                }  catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
+                try {
+                    o << "(unsigned)" << unsigned(*(i->second)) << std::endl;
+                }  catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
+                try {
+                    o << "(int)" << int(*(i->second)) << std::endl;
+                }  catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
+                try {
+                    o << "(string)" << std::string(*(i->second)) << std::endl;
+                }  catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
         }
-        o << "]\n" << std::ends;
+        o << "]" << std::endl << std::ends;
+
         return o.str();
     }
 

@@ -155,33 +155,29 @@ template <typename T> class FunctionParameterValue:
         /** Default implementation for cast to double. Concrete implementation
          *  will be defined in FunctionParameterValue<double>.                */
         virtual operator double() {
-            throw WrongParameterTypeException("FunctionParameterValue",
-                                              "operator double", "");
+            throw WrongParameterTypeException("FunctionParameterValue", "operator double", "");
             return 0.;
         }
 
         /** Default implementation for cast to unsigned. Concrete implementation
          *  will be defined in FunctionParameterValue<unsigned>.              */
         virtual operator unsigned() {
-            throw WrongParameterTypeException("FunctionParameterValue",
-                                              "operator unsigned", "");
+            throw WrongParameterTypeException("FunctionParameterValue", "operator unsigned", "");
             return 0;
         }
 
         /** Default implementation for cast to int. Concrete implementation
          *  will be defined in FunctionParameterValue<int>.                   */
         virtual operator int() {
-            throw WrongParameterTypeException("FunctionParameterValue",
-                                              "operator int", "");
-             return 0;
+            throw WrongParameterTypeException("FunctionParameterValue", "operator int", "");
+            return 0;
         }
 
         /** Default implementation for cast to string. Concrete implementation
          *  will be defined in FunctionParameterValue<string>.                */
         virtual operator std::string() {
-            throw WrongParameterTypeException("FunctionParameterValue",
-                                              "operator std::string", "");
-             return "";
+            throw WrongParameterTypeException("FunctionParameterValue", "operator std::string", "");
+            return toString();
         }
 
         virtual std::string toString() {
