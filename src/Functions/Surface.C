@@ -18,8 +18,7 @@ using VecMath::Matrix;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-/** Surface default c'tor \n
- *  zeroes everything    */
+/// Surface default c'tor, zeroes everything   
 Surface::Surface ():
     SurfaceBase("", 0, 0, 0, 0, 0, 0), /*
     umin (0), umax (0), du (0),

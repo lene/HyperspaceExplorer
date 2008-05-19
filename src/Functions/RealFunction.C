@@ -218,7 +218,8 @@ void RealFunction::Draw (void) {
 }
 
 /// Calculate normal to function at a given point in definition set.
-/** No further assumption is made than that f () is continuous. \n
+/** No further assumption is made than that f () is continuous.
+ *
  *  This function is not yet used anywhere, but i like it.
  *  @param tt t value
  *  @param uu u value
