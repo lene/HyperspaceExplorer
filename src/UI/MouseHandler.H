@@ -19,7 +19,19 @@ class C4DView::MouseHandler4D {
         void mouseReleaseEvent( QMouseEvent *);
         void mouseDoubleClickEvent( QMouseEvent *);
 
+    private:
+        void setm_LeftDownPos(QPoint b) { m_LeftDownPos = b; }
+        QPoint LeftDownPos() const { return m_LeftDownPos; }
+        void setm_MidDownPos(QPoint b) { m_MidDownPos = b; }
+        QPoint MidDownPos() const { return m_MidDownPos; }
+        void setm_RightDownPos(QPoint b) { m_RightDownPos = b; }
+        QPoint RightDownPos() const { return m_RightDownPos; }
+
         C4DView *parent;        ///< the C4DView containing this mouse handler
+
+        QPoint m_LeftDownPos,       ///< position where the LMB press started
+        m_MidDownPos,        ///< position where the MMB press started
+        m_RightDownPos;      ///< position where the RMB press started
 
 };
 

@@ -301,13 +301,6 @@ class C4DView : public QGLWidget {
         void setCurrentlyRendering(bool b) { pImpl->CurrentlyRendering = b; }
         bool CurrentlyRendering() const { return pImpl->CurrentlyRendering; }
 
-        void setm_LeftDownPos(QPoint b) { pImpl->m_LeftDownPos = b; }
-        QPoint m_LeftDownPos() const { return pImpl->m_LeftDownPos; }
-        void setm_MidDownPos(QPoint b) { pImpl->m_MidDownPos = b; }
-        QPoint m_MidDownPos() const { return pImpl->m_MidDownPos; }
-        void setm_RightDownPos(QPoint b) { pImpl->m_RightDownPos = b; }
-        QPoint m_RightDownPos() const { return pImpl->m_RightDownPos; }
-
         void setAnimationTimer(QTimer * b) { pImpl->AnimationTimer = b; }
         QTimer * AnimationTimer() const { return pImpl->AnimationTimer; }
         void setAnimateRandomTimer(QTimer * b) { pImpl->AnimateRandomTimer = b; }
@@ -400,8 +393,6 @@ class C4DView : public QGLWidget {
                 Animated (false), TakingSpinValues (false),
                 CurrentlyRendering (false),
 
-                m_LeftDownPos (0,0), m_MidDownPos (0,0), m_RightDownPos (0,0),
-
                 Values (new ValuesDialogImpl (parent)),
                 dxy (0), dxz (0), dxw (0), dyz (0), dyw (0), dzw (0),
                 dx (0), dy (0), dz (0) {}
@@ -457,10 +448,6 @@ class C4DView : public QGLWidget {
             unsigned animationFrame;    ///< current frame in animation
 
             bool CurrentlyRendering;    ///< if true, currently rendering an image
-
-            QPoint m_LeftDownPos,       ///< position where the LMB press started
-                   m_MidDownPos,        ///< position where the MMB press started
-                   m_RightDownPos;      ///< position where the RMB press started
 
             /// times out every X ms to draw new animation frame
             QTimer *AnimationTimer;
