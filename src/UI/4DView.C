@@ -189,18 +189,20 @@ void C4DView::Fog () {
 /// toggle object transparency
 /** menu callback function */
 void C4DView::Transparent () {
-  getTransparent() = !getTransparent();
-  Menu()->getAction("Transparence")->setChecked(getTransparent());
-  InitTransparence ();
-  repaint (); }
+    getTransparent() = !getTransparent();
+    Menu()->getAction("Transparence")->setChecked(getTransparent());
+    InitTransparence ();
+    repaint ();
+}
 
 /// toggle shading
 /** menu callback function */
 void C4DView::Shade () {
-  getShade() = !getShade();
-  Menu()->getAction("Shading")->setChecked(getShade());
-  InitShade ();
-  repaint (); }
+    getShade() = !getShade();
+    Menu()->getAction("Shading")->setChecked(getShade());
+    InitShade ();
+    repaint ();
+}
 
 /// run a benchmark test
   /** menu callback function */
@@ -494,8 +496,6 @@ void C4DView::Draw () {
 /// 4D projection stuff
 /** Separated from the 3D OpenGL handling into this function                  */
 void C4DView::PreRedraw () {
-//    SingletonLog::Instance().log("C4DView::PreRedraw ()");
-
     // this does seem very ineffective to me, deleting and reassigning the GL Lists,
     // but it does not seem to work any other way...?
 
@@ -520,8 +520,6 @@ void C4DView::PreRedraw () {
         Draw ();
 
     glEndList ();
-
-//    SingletonLog::Instance().log("C4DView::PreRedraw () done");
 }
 
 /// Redraw handler
@@ -565,8 +563,6 @@ void C4DView::RenderScene (unsigned /* Frame */) {  //  draw (frame of animation
 /** Object drawing routine: Does all the OpenGL stuff necessary to paint the
  *  object on screen                                                          */
 void C4DView::OnPaint() {
-//    SingletonLog::Instance().log("C4DView::OnPaint ()");
-
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);   //  clear the window
 
     if (DisplayPolygons())                            //  this might move to a special
@@ -996,8 +992,8 @@ void C4DView::resizeGL (int width, int height) {
     glMatrixMode (GL_MODELVIEW);
     glLoadIdentity ();
     gluLookAt (0., 0., 1.,
-	       0., 0., 0.,
-	       0., 1., 0.);
+               0., 0., 0.,
+               0., 1., 0.);
     glTranslatef (0, 0, -R());
     if (getFog())
         SetupDepthCue(
