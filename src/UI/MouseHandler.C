@@ -279,7 +279,6 @@ void C4DView::MouseHandler4D::mousePressEvent (QMouseEvent *e) {
              ShiftPressed = s & Qt::ShiftModifier;
         if (b == Qt::RightButton && !(AltPressed || ControlPressed || ShiftPressed))
             parent->Menu()->exec (parent->mapToGlobal(point));
-//            XQGLWidget::mousePressEvent (e);
     }
 }
 
@@ -289,15 +288,12 @@ void C4DView::MouseHandler4D::mousePressEvent (QMouseEvent *e) {
 void C4DView::MouseHandler4D::mouseReleaseEvent (QMouseEvent *) {
     SingletonLog::Instance().log("C4DView::mouseReleaseEvent ()");
 
-//    Qt::MouseButtons b = e->buttons();
-
     if (parent->TakingSpinValues()) {
         parent->StartAnimation ();
         parent->setTakingSpinValues(false);
     }
 
     parent->UpdateStatus ("");
-//    if (b == Qt::RightButton) QGLWidget::mouseReleaseEvent (e);
 }
 
 /// Double click event handler
@@ -323,8 +319,6 @@ void C4DView::MouseHandler4D::mouseDoubleClickEvent (QMouseEvent *) {
     }
 
     parent->UpdateStatus ("DoubleClick");
-
-//    parent->mouseDoubleClickEvent (e);
 }
 
 
