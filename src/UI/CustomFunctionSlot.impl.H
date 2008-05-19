@@ -18,7 +18,8 @@
 
 /// Factory method to create a new customized Function of type R^3->R
 /** This function template is called by each slot with the correct function
- *  type as template parameter. \n
+ *  type as template parameter.
+ *
  *  Sets F to the newly created Function, checks the corresponding menu item,
  *  updates the ValuesDialog and redraws. Does some error handling in case the
  *  Function could not be loaded.                                             */
@@ -43,7 +44,8 @@ template<class function>
 
 /// Factory method to create a new customized Function of type R^2->R^4
 /** This function template is called by each slot with the correct function
- *  type as template parameter. \n
+ *  type as template parameter.
+ *
  *  Sets F to the newly created Function, checks the corresponding menu item,
  *  updates the ValuesDialog and redraws. Does some error handling in case the
  *  Function could not be loaded.                                             */

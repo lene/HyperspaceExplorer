@@ -94,8 +94,10 @@ C4DView::C4DView(QWidget *parent):
 C4DView::~C4DView() { }
 
 /// Switch between wireframe and solid display
-/** Account for antialiasing only in wireframe mode \n
- *  Change menu items accordingly \n
+/** Account for antialiasing only in wireframe mode
+ *
+ *  Change menu items accordingly
+ *
  *  Menu callback function                                                    */
 void C4DView::Wireframe() {
     if (DisplayPolygons()) {
@@ -112,9 +114,10 @@ void C4DView::Wireframe() {
     OnPaint ();
 }
 
-/// switch coordinate cross on or off
-/** change menu items accordingly \n
- *  menu callback function */
+/// Switch coordinate cross on or off
+/** Change menu items accordingly
+ *
+ *  Menu callback function */
 void C4DView::Coordinates() {
     setDisplayCoordinates(!DisplayCoordinates());
     Menu()->getAction("Coordinate Cross")->setChecked (DisplayCoordinates());
@@ -122,9 +125,10 @@ void C4DView::Coordinates() {
     Redraw ();
 }
 
-/// switch 4D depth cue on or off
-/** change menu items accordingly \n
- *  menu callback function */
+/// Switch 4D depth cue on or off
+/** Change menu items accordingly
+ *
+ *  Menu callback function */
 void C4DView::HyperFog() {
     setDepthCue4D(!DepthCue4D());
     Menu()->getAction("4D Depth Cue")->setChecked (DepthCue4D());
@@ -132,9 +136,10 @@ void C4DView::HyperFog() {
     Redraw ();
 }
 
-/// switch lighting on or off
-/** change menu items accordingly \n
- *  menu callback function */
+/// Switch lighting on or off
+/** Change menu items accordingly
+ *
+ *  Menu callback function */
 void C4DView::Light() {
     setLighting(!Lighting());
     if (Lighting()) {
@@ -216,16 +221,17 @@ void C4DView::Shade () {
       UpdateStatus ();
   }
 
-/// switch rendering to files on or off
-/** change menu items accordingly        \n
- *  menu callback function */
+/// Switch rendering to files on or off
+/** Change menu items accordingly
+ *
+ *  Menu callback function */
 void C4DView::RenderToImages() {
   setRenderToPixmap(!RenderToPixmap());
   Menu()->getAction("Render to Images")->setChecked(RenderToPixmap());
 }
 
-/// display a ObjectHypercube object
-/** menu callback function */
+/// Display a ObjectHypercube object
+/** Menu callback function */
 void C4DView::ObjectHypercube() {
     Menu()->updateFunctionMenu("Hypercube");
 
@@ -235,8 +241,8 @@ void C4DView::ObjectHypercube() {
     Redraw ();
 }
 
-/// display a ObjectHyperpyramid object
-/** menu callback function */
+/// Display a ObjectHyperpyramid object
+/** Menu callback function */
 void C4DView::ObjectHyperpyramid() {
     Menu()->updateFunctionMenu("Hyperpyramid");
 
@@ -336,7 +342,8 @@ double C4DView::Benchmark4D (int num_steps,
 }
 
 /// Timer event handler
-/** Updates values if in the middle of an animation, and renders an image. \n
+/** Updates values if in the middle of an animation, and renders an image.
+ *
  *  Writes image to file too, if wanted.                                      */
 void C4DView::OnTimer() {
     setm_rotX(m_rotX() + dx()); setm_rotY(m_rotY() + dy()); setm_rotZ(m_rotZ() + dz());   //  update 3D viewpoint values
@@ -367,8 +374,9 @@ void C4DView::OnTimer() {
 }
 
 /// show a dialog to adjust animation settings
-/** Where to write image files and how many files to write \n
- *  menu callback function */
+/** Where to write image files and how many files to write.
+ *
+ *  Menu callback function */
 void C4DView::AnimationSettings() {
     AnimationDialogImpl *Dlg = new AnimationDialogImpl;
     if (Dlg->exec () == QDialog::Accepted) {
@@ -698,7 +706,7 @@ void C4DView::RandomAnimation() {
 }
 
 /// Make a pixmap to to be rendered by the GL widget, and render it.
-/** this is an embarrassing workaround to make rendering to files work.
+/** This is an embarrassing workaround to make rendering to files work.
  *  QGLWidget's renderPixmap() method only produces black frames. Works with
  *  QPixmap::grabWindow() instead.                                            */
 QPixmap C4DView::makePixmap() {
@@ -715,9 +723,9 @@ QPixmap C4DView::makePixmap() {
     return pm;
 }
 
-/** writes a snapshot of the current frame of an animation or interactive
- *  display to disk \n
- *  updates animationFrame                                                    */
+/** Writes a snapshot of the current frame of an animation or interactive
+ *  display to disk.
+ *  Updates animationFrame                                                    */
 void C4DView::writeFrame() {
     if (RenderToPixmap() && (animationFrame() <= animationMaxFrames())) {
 
@@ -870,10 +878,8 @@ void C4DView::resizeEvent (QResizeEvent *e) {
 
 /// OpenGL initialization
 /** Now this is not as boring as it seems, because further work has to be done
- *  here: \n
- *  \todo trying to check for rendering to file, but this doesn't work yet.
- *
- *  the rest of interesting inits is done in XQGLWidget::initializeGL (), btw.*/
+ *  here
+ *  \todo trying to check for rendering to file, but this doesn't work yet.   */
 void C4DView::initializeGL (void) {
     SingletonLog::Instance().log("C4DView::initializeGL ()");
 

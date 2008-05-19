@@ -67,7 +67,8 @@ class PluginCreator {
 #include <QMessageBox>
 
 /// Loads the dynamic library given by libName, if it exists and can be loaded.
-/** Then it checks whether a function named \em f() is present. \n
+/** Then it checks whether a function named \em f() is present.
+ *
  *  If so, returns true. Else, gives an error message.
  *
  *  @param F the type of the function to be checked for

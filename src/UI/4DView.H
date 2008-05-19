@@ -32,23 +32,41 @@ class CustomComplexFunction;
 /// \ingroup UIGroup
 
 /// Abstract base class for a factory creating Function's
-/** Separate classes are needed for Functions and Surfaces, because their
+/** Defines the interface a TemplatedRealFunctionFactory<> implements
+ *
+ *  Separate classes are needed for Functions and Surfaces, because their
  *  constructors differ.
  *  \ingroup UIHelpers                                                        */
 class RealFunctionFactory {
     public:
         virtual ~RealFunctionFactory() { }
-        virtual RealFunction *createFunction(C4DView *) = 0;
+        /// Template Method to create a RealFunction
+        RealFunction *createFunction(C4DView *view) {
+            return doCreateFunction(view);
+        }
+
+    private:
+        /// Implementation of TemplateMethod createFunction()
+        virtual RealFunction *doCreateFunction(C4DView *) = 0;
 };
 
 /// Abstract base class for a factory creating Surface's
-/** Separate classes are needed for Functions and Surfaces, because their
+/** Defines the interface a TemplatedSurfaceFactory<> implements
+ *
+ *  Separate classes are needed for Functions and Surfaces, because their
  *  constructors differ.
  *  \ingroup UIHelpers                                                        */
 class SurfaceFactory {
     public:
         virtual ~SurfaceFactory() { }
-        virtual Surface *createSurface(C4DView *) = 0;
+        /// Template Method to create a Surface
+        Surface *createSurface(C4DView *view) {
+            return doCreateSurface(view);
+        }
+
+    private:
+        /// Implementation of TemplateMethod createSurface()
+        virtual Surface *doCreateSurface(C4DView *) = 0;
 };
 
 /// Displays and manipulates four-dimensional Functions in a QGLWidget
@@ -67,8 +85,9 @@ class C4DView : public QGLWidget {
          *  \ingroup UIHelpers                                                */
         template <typename function>
             class TemplatedRealFunctionFactory: public RealFunctionFactory {
-                public:
-                    virtual RealFunction *createFunction(C4DView *);
+                private:
+                    /// Implementation of TemplateMethod createFunction()
+                    virtual RealFunction *doCreateFunction(C4DView *);
             };
 
         /// Class template implementation for a factory creating Surface's
@@ -80,8 +99,9 @@ class C4DView : public QGLWidget {
          *  \ingroup UIHelpers                                                */
         template <typename function>
             class TemplatedSurfaceFactory: public SurfaceFactory {
-                public:
-                    virtual Surface *createSurface(C4DView *);
+                private:
+                    /// Implementation of TemplateMethod createSurface()
+                    virtual Surface *doCreateSurface(C4DView *);
             };
 
     private:

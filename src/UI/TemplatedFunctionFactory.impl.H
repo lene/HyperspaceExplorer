@@ -17,7 +17,7 @@
 /** The type of the created Function is supplied as template parameter to the
  *  TemplatedFunctionFactory object owning this method.                       */
 template<class function>
-    RealFunction *C4DView::TemplatedRealFunctionFactory<function>::createFunction(
+    RealFunction *C4DView::TemplatedRealFunctionFactory<function>::doCreateFunction(
         C4DView *view) {
         return new function (
             view->Values()->tmin (), view->Values()->tmax (), view->Values()->dt (),
@@ -29,7 +29,7 @@ template<class function>
 /** The type of the created Surface is supplied as template parameter to the
  *  TemplatedSurfaceFactory object owning this method.                       */
 template<class function>
-    Surface *C4DView::TemplatedSurfaceFactory<function>::createSurface(
+    Surface *C4DView::TemplatedSurfaceFactory<function>::doCreateSurface(
         C4DView *view) {
         return new function (
             view->Values()->umin (), view->Values()->umax (), view->Values()->du (),

@@ -55,13 +55,17 @@ bool PluginCreator::loadFunction(const QString &type, QDialog *parent) {
 /// Called when the user clicks the OK button in the Function Dialog
 /** Checks whether all fields are filled in, whether the given function
  *  is valid C++ syntax, ie. whether it compiles, and whether the compiled code
- *  links into a dynamic library. \n
- *  As a side effect, it generates this library. \n
+ *  links into a dynamic library.
+ *
+ *  As a side effect, it generates this library.
+ *
  *  Finally, it checks whether the library can be loaded. if so, it accepts the
- *  input. \n
+ *  input.
+ *
  *  Also, this function creates a directory structure "plugins/real" under the
  *  resource directory and changes the CWD to that folder for the duration of
- *  checkValidity (). \n
+ *  checkValidity ().
+ *
  *  The name for this function is chosen rather unfortunately, i admit.
  *
  *  @param type the plugin's function type: real, polar, surface or complex
@@ -107,8 +111,9 @@ bool PluginCreator::checkValidity(const QString &type, const QString &name,
 }
 
 /// Compile the C++ source code written by writeSource()
-/** Display errors and warnings, if they come up. \n
- *  Needs "Vector.H" in the current directory or in the C++ include path.\n
+/** Display errors and warnings, if they come up.
+ *
+ *  Needs "Vector.H" in the current directory or in the C++ include path.
  *  \todo Might tweak the compilation flags a little, or make them variable
  *  @param name the name of the plugin
  *  @return success                                                           */

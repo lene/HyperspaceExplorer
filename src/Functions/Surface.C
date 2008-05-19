@@ -48,8 +48,7 @@ Surface::Surface (const QString &name,
     setfunctionName(name);
 }
 
-/** Initialize the temporary storage areas Xscr[][], Xtrans[][],
- *                                         R[][], G[][], B[][]                */
+/// Initialize the temporary storage areas Xscr[][], Xtrans[][]
 void Surface::InitMem (void) {
     Xscr.resize(getTsteps()+2);
     Xtrans.resize(getTsteps()+2);
@@ -60,8 +59,8 @@ void Surface::InitMem (void) {
     }
 }
 
-/** allocate and initialize X[][] with values of f() \n
- *  call InitMem () above                                                     */
+/// allocate and initialize X[][] with values of f()
+/** call InitMem () above                                                     */
 void Surface::Initialize () {
     double Wmax = 0, Wmin = 0;
     X = vec4vec2D(getTsteps()+2);
@@ -107,16 +106,16 @@ void Surface::ReInit(double, double, double,
     Initialize ();
 }
 
-/** return the approximate amount of memory needed to display a Function of
- *  current definition set \n
- *  uses hardcoded and experimentally found value for memory per cell - ICK!
+/// return the approximate amount of memory needed to display a Function of current definition set
+/** \todo uses hardcoded and experimentally found value for memory per cell
  *  @return approx. mem required                                              */
 unsigned long Surface::MemRequired (void) {
     return (getTsteps()+2)*(getUsteps()+2);
 }
 
-/** calculate normal to function at a given point in definition set \n
- *  no further assumption is made than that f () is continuous \n
+/// calculate normal to function at a given point in definition set
+/** no further assumption is made than that f () is continuous
+ *
  *  this function is not yet used anywhere, but i like it
  *  @param uu u value
  *  @param vv v value
@@ -160,8 +159,8 @@ Function::vec4vec1D Surface::df (double uu, double vv) {
     return DF;
 }
 
-/** transforms a Surface \n
- *  as I look at it, i think this could be optimized by making the transformation
+/// Transforms a Surface
+/** as I look at it, i think this could be optimized by making the transformation
  *  matrices static and only canging the corresponding entries... but how to
  *  make this beautifully, i don't know
  *  @param thetaxy rotation around xy plane (z axis);  ignored because 3D rotation takes care of it

@@ -133,8 +133,10 @@ protected:
 /** A Menger Sponge in three dimensions is a fractal produced by subdividing
  *  a cube and taking away parts of the cube which get subsequentally
  *  smaller. The \em level parameter controls how often this process is repeated,
- *  i.e. how many holes there are in the final object. \n
- *  A four-dimensional Menger Sponge is created analogously from a hypercube.\n
+ *  i.e. how many holes there are in the final object.
+ *
+ *  A four-dimensional Menger Sponge is created analogously from a hypercube.
+ *
  *  The fractal can be further controlled by the \em distance parameter:
  *  \li \em distance = 0: Only the innermost cube is removed, resulting in a
  *      four-dimensional foam with connected body and disjoint holes.

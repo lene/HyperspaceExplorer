@@ -69,13 +69,17 @@ bool FunctionDialogImpl::functionPresent(const QString &libName) {
 /// Called when the user clicks the OK button in the Function Dialog.
 /** Checks whether all fields are filled in, whether the given function
  *  is valid C++ syntax, ie. whether it compiles, and whether the compiled code
- *  links into a dynamic library. \n
- *  As a side effect, it generates this library. \n
+ *  links into a dynamic library.
+ *
+ *  As a side effect, it generates this library.
+ *
  *  Finally, it checks whether the library can be loaded. if so, it accepts the
- *  input. \n
+ *  input.
+ *
  *  Also, this function creates a directory structure "plugins/real" under the
  *  resource directory and changes the CWD to that folder for the duration of
- *  checkValidity (). \n
+ *  checkValidity ().
+ *
  *  The name for this function is chosen rather unfortunately, i admit.
  *
  *  @return success                                                           */
@@ -91,7 +95,8 @@ bool FunctionDialogImpl::checkValidity() {
 
 /// Write a C++ source file containing the given function
 /** Also written is a little framework to make the source file compilable by g++
- *  (there is currently no support for other compilers). \n
+ *  (there is currently no support for other compilers).
+ *
  *  The resulting file "<function-name>.C" defines the function \em f() and the
  *  function \em symbolic(), which returns the function in symbolic terms, not
  *  in C++ syntax.                                                               */
