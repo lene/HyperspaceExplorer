@@ -11,6 +11,7 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -106,7 +107,7 @@ The function which has been entered will then be compiled into a dynamic library
   </table>
 </dl>
 
-<p>References <a class="el" href="FunctionDialogImpl_8C-source.html#l00082">checkValidity()</a>, and <a class="el" href="FunctionDialogImpl_8C-source.html#l00052">loadFunction()</a>.</p>
+<p>References <a class="el" href="FunctionDialogImpl_8C-source.html#l00086">checkValidity()</a>, and <a class="el" href="FunctionDialogImpl_8C-source.html#l00052">loadFunction()</a>.</p>
 
 </div>
 </div><p>
@@ -129,14 +130,14 @@ The function which has been entered will then be compiled into a dynamic library
 <p>
 Called when the user clicks the OK button in the <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> Dialog. 
 <p>
-Checks whether all fields are filled in, whether the given function is valid C++ syntax, ie. whether it compiles, and whether the compiled code links into a dynamic library. <br>
- As a side effect, it generates this library. <br>
- Finally, it checks whether the library can be loaded. if so, it accepts the input. <br>
- Also, this function creates a directory structure "plugins/real" under the resource directory and changes the CWD to that folder for the duration of checkValidity (). <br>
- The name for this function is chosen rather unfortunately, i admit.<p>
+Checks whether all fields are filled in, whether the given function is valid C++ syntax, ie. whether it compiles, and whether the compiled code links into a dynamic library.<p>
+As a side effect, it generates this library.<p>
+Finally, it checks whether the library can be loaded. if so, it accepts the input.<p>
+Also, this function creates a directory structure "plugins/real" under the resource directory and changes the CWD to that folder for the duration of checkValidity ().<p>
+The name for this function is chosen rather unfortunately, i admit.<p>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>success </dd></dl>
 
-<p>References <a class="el" href="PluginCreator_8C-source.html#l00071">PluginCreator::checkValidity()</a>.</p>
+<p>References <a class="el" href="PluginCreator_8C-source.html#l00075">PluginCreator::checkValidity()</a>.</p>
 
 <p>Referenced by <a class="el" href="FunctionDialogImpl_8C-source.html#l00036">FunctionDialogImpl()</a>.</p>
 
@@ -218,8 +219,8 @@ Then checks whether a function named f() is present. if so, returns true. else b
 <p>
 Write a C++ source file containing the given function. 
 <p>
-Also written is a little framework to make the source file compilable by g++ (there is currently no support for other compilers). <br>
- The resulting file "&lt;function-name&gt;.C" defines the function <em>f()</em> and the function <em>symbolic()</em>, which returns the function in symbolic terms, not in C++ syntax. 
+Also written is a little framework to make the source file compilable by g++ (there is currently no support for other compilers).<p>
+The resulting file "&lt;function-name&gt;.C" defines the function <em>f()</em> and the function <em>symbolic()</em>, which returns the function in symbolic terms, not in C++ syntax. 
 <p>Implements <a class="el" href="classPluginCreator.html#a951c5e85ecfdc22750cb5485c9d5b9e">PluginCreator</a>.</p>
 
 </div>
@@ -227,7 +228,7 @@ Also written is a little framework to make the source file compilable by g++ (th
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/UI/<a class="el" href="FunctionDialogImpl_8H-source.html">FunctionDialogImpl.H</a><li>workspace/HyperspaceExplorer/src/UI/FunctionDialogImpl.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 18 21:46:48 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 19 12:18:26 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

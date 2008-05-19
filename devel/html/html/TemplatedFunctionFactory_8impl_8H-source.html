@@ -11,6 +11,7 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="classes.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -32,7 +33,7 @@
 <a name="l00015"></a>00015 <span class="preprocessor"></span>
 <a name="l00017"></a>00017 
 <a name="l00019"></a>00019 <span class="keyword">template</span>&lt;<span class="keyword">class</span> function&gt;
-<a name="l00020"></a><a class="code" href="group__UIHelpers.html#ged16c50d49e40a85f81e1c3f8a98e916">00020</a>     <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> *<a class="code" href="group__UIHelpers.html#ged16c50d49e40a85f81e1c3f8a98e916" title="Factory method to create a Function object.">C4DView::TemplatedRealFunctionFactory&lt;function&gt;::createFunction</a>(
+<a name="l00020"></a><a class="code" href="group__UIHelpers.html#g7d01311aa80799bb82b77d0313f7bdf5">00020</a>     <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> *<a class="code" href="group__UIHelpers.html#g7d01311aa80799bb82b77d0313f7bdf5" title="Implementation of TemplateMethod createFunction().">C4DView::TemplatedRealFunctionFactory&lt;function&gt;::doCreateFunction</a>(
 <a name="l00021"></a>00021         <a class="code" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> *view) {
 <a name="l00022"></a>00022         <span class="keywordflow">return</span> <span class="keyword">new</span> function (
 <a name="l00023"></a>00023             view-&gt;<a class="code" href="classC4DView.html#580c9d5495ed83d2d2fd6a1c771cd79a">Values</a>()-&gt;<a class="code" href="classValuesDialogImpl.html#cf44326524cdb808f3b83f3d6ccd6ce3">tmin</a> (), view-&gt;<a class="code" href="classC4DView.html#580c9d5495ed83d2d2fd6a1c771cd79a">Values</a>()-&gt;<a class="code" href="classValuesDialogImpl.html#9deedc0fea0cc09bbe3e261917e23bac">tmax</a> (), view-&gt;<a class="code" href="classC4DView.html#580c9d5495ed83d2d2fd6a1c771cd79a">Values</a>()-&gt;<a class="code" href="classValuesDialogImpl.html#39541b9109d58b7c3cf6975e881fac59">dt</a> (),
@@ -42,7 +43,7 @@
 <a name="l00027"></a>00027 
 <a name="l00029"></a>00029 
 <a name="l00031"></a>00031 <span class="keyword">template</span>&lt;<span class="keyword">class</span> function&gt;
-<a name="l00032"></a><a class="code" href="classC4DView_1_1TemplatedSurfaceFactory.html#00cfc1d3d1125e22c38325610d10b457">00032</a>     <a class="code" href="classSurface.html">Surface</a> *<a class="code" href="classC4DView_1_1TemplatedSurfaceFactory.html#00cfc1d3d1125e22c38325610d10b457" title="Factory method to create a Surface object.">C4DView::TemplatedSurfaceFactory&lt;function&gt;::createSurface</a>(
+<a name="l00032"></a><a class="code" href="classC4DView_1_1TemplatedSurfaceFactory.html#e10b2482a01aacfb004d30d30cc0695b">00032</a>     <a class="code" href="classSurface.html">Surface</a> *<a class="code" href="classC4DView_1_1TemplatedSurfaceFactory.html#e10b2482a01aacfb004d30d30cc0695b" title="Implementation of TemplateMethod createSurface().">C4DView::TemplatedSurfaceFactory&lt;function&gt;::doCreateSurface</a>(
 <a name="l00033"></a>00033         <a class="code" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> *view) {
 <a name="l00034"></a>00034         <span class="keywordflow">return</span> <span class="keyword">new</span> function (
 <a name="l00035"></a>00035             view-&gt;<a class="code" href="classC4DView.html#580c9d5495ed83d2d2fd6a1c771cd79a">Values</a>()-&gt;<a class="code" href="classValuesDialogImpl.html#c70c7cd9e4ad3296163740fd9808b01f">umin</a> (), view-&gt;<a class="code" href="classC4DView.html#580c9d5495ed83d2d2fd6a1c771cd79a">Values</a>()-&gt;<a class="code" href="classValuesDialogImpl.html#6b9f29acb0cacffc9eb66d9abb40fc01">umax</a> (), view-&gt;<a class="code" href="classC4DView.html#580c9d5495ed83d2d2fd6a1c771cd79a">Values</a>()-&gt;<a class="code" href="classValuesDialogImpl.html#ecdf74cad782692b3d25c3e46061b04e">du</a> (),
@@ -51,7 +52,7 @@
 <a name="l00038"></a>00038 
 <a name="l00039"></a>00039 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 18 21:46:47 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 19 12:18:25 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

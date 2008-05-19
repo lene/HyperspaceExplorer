@@ -581,8 +581,8 @@
 <a name="l00742"></a>00742         
 <a name="l00743"></a>00743         <span class="comment">// Data</span>
 <a name="l00744"></a>00744         <span class="keyword">typedef</span> <span class="keyword">typename</span> ThreadingModel&lt;T*,MutexPolicy&gt;::VolatileType PtrInstanceType;
-<a name="l00745"></a>00745         <span class="keyword">static</span> PtrInstanceType pInstance_;
-<a name="l00746"></a>00746         <span class="keyword">static</span> <span class="keywordtype">bool</span> destroyed_;
+<a name="l00745"></a><a class="code" href="classLoki_1_1SingletonHolder.html#3aaa564fefd318e66188c5f5c61f3fa0">00745</a>         <span class="keyword">static</span> PtrInstanceType pInstance_;
+<a name="l00746"></a><a class="code" href="classLoki_1_1SingletonHolder.html#feb17951ea9358a3f6dbbf3a9ad32d0a">00746</a>         <span class="keyword">static</span> <span class="keywordtype">bool</span> destroyed_;
 <a name="l00747"></a>00747     };
 <a name="l00748"></a>00748     
 <a name="l00750"></a>00750     <span class="comment">// SingletonHolder's data</span>
@@ -668,10 +668,10 @@
 <a name="l00835"></a>00835     <span class="keywordtype">void</span> LOKI_C_CALLING_CONVENTION_QUALIFIER 
 <a name="l00836"></a>00836     SingletonHolder&lt;T, CreationPolicy, L, M, X&gt;::DestroySingleton()
 <a name="l00837"></a>00837     {
-<a name="l00838"></a>00838         assert(!destroyed_);
-<a name="l00839"></a>00839         CreationPolicy&lt;T&gt;::Destroy(pInstance_);
-<a name="l00840"></a>00840         pInstance_ = 0;
-<a name="l00841"></a>00841         destroyed_ = <span class="keyword">true</span>;
+<a name="l00838"></a>00838         assert(!<a class="code" href="classLoki_1_1SingletonHolder.html#feb17951ea9358a3f6dbbf3a9ad32d0a" title="is singleton object destroyed?">destroyed_</a>);
+<a name="l00839"></a>00839         CreationPolicy&lt;T&gt;::Destroy(<a class="code" href="classLoki_1_1SingletonHolder.html#3aaa564fefd318e66188c5f5c61f3fa0" title="pointer to singleton object">pInstance_</a>);
+<a name="l00840"></a>00840         <a class="code" href="classLoki_1_1SingletonHolder.html#3aaa564fefd318e66188c5f5c61f3fa0" title="pointer to singleton object">pInstance_</a> = 0;
+<a name="l00841"></a>00841         <a class="code" href="classLoki_1_1SingletonHolder.html#feb17951ea9358a3f6dbbf3a9ad32d0a" title="is singleton object destroyed?">destroyed_</a> = <span class="keyword">true</span>;
 <a name="l00842"></a>00842     }
 <a name="l00843"></a>00843 
 <a name="l00844"></a>00844 
@@ -705,7 +705,7 @@
 <a name="l00888"></a>00888 <span class="preprocessor">#endif // end file guardian</span>
 <a name="l00889"></a>00889 <span class="preprocessor"></span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri May 9 19:12:49 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 19 12:18:25 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

@@ -11,6 +11,7 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -72,6 +73,7 @@ Inheritance diagram for Surface:</div>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#98f6a79d334e61068031f15ebef90458">Transform</a> (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Transforms a <a class="el" href="classSurface.html">Surface</a>.  <a href="#98f6a79d334e61068031f15ebef90458"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ce4dec89d0480aa9c59b5d0bc578131e"></a><!-- doxytag: member="Surface::Transform" ref="ce4dec89d0480aa9c59b5d0bc578131e" args="(void)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#ce4dec89d0480aa9c59b5d0bc578131e">Transform</a> (void)</td></tr>
 
@@ -93,10 +95,14 @@ virtual unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><b>getDefini
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#e140ab69205e1a6a73459b9e22cda019">Initialize</a> (void)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#f77d456ed7b5d495f4a54978ab5f4acc">InitMem</a> (void)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">allocate and initialize X[][] with values of <a class="el" href="classSurfaceBase.html#ba6ce6327e509663e484560f849d03f1" title="The mathematical function defining the Function object.">f()</a>  <a href="#e140ab69205e1a6a73459b9e22cda019"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f77d456ed7b5d495f4a54978ab5f4acc"></a><!-- doxytag: member="Surface::InitMem" ref="f77d456ed7b5d495f4a54978ab5f4acc" args="(void)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#f77d456ed7b5d495f4a54978ab5f4acc">InitMem</a> (void)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialize the temporary storage areas Xscr[][], Xtrans[][]. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual unsigned long&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#185472961fe456f587c160c2cc6e8545">MemRequired</a> (void)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">return the approximate amount of memory needed to display a <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> of current definition set  <a href="#185472961fe456f587c160c2cc6e8545"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c892c3621a13bb30418c5b2d73763ea2"></a><!-- doxytag: member="Surface::DrawPlane" ref="c892c3621a13bb30418c5b2d73763ea2" args="(unsigned)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>DrawPlane</b> (unsigned)</td></tr>
 
@@ -105,6 +111,7 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>DrawPlane</b> (unsign
 <tr><td colspan="2"><br><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual function_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#19a24f801227ea542d749f94cb3fa44d">normal</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">calculate normal to function at a given point in definition set  <a href="#19a24f801227ea542d749f94cb3fa44d"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2cf4c28a257ce73719c4280d4d6bcbf6"></a><!-- doxytag: member="Surface::NumVertices" ref="2cf4c28a257ce73719c4280d4d6bcbf6" args="" -->
 unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><b>NumVertices</b></td></tr>
 
@@ -297,8 +304,9 @@ A function from <img class="formulaInl" alt="$ R^2 \rightarrow R^4 $" src="form_
 <div class="memdoc">
 
 <p>
-transforms a <a class="el" href="classSurface.html">Surface</a> <br>
- as I look at it, i think this could be optimized by making the transformation matrices static and only canging the corresponding entries... but how to make this beautifully, i don't know <dl compact><dt><b>Parameters:</b></dt><dd>
+Transforms a <a class="el" href="classSurface.html">Surface</a>. 
+<p>
+as I look at it, i think this could be optimized by making the transformation matrices static and only canging the corresponding entries... but how to make this beautifully, i don't know <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>thetaxy</em>&nbsp;</td><td>rotation around xy plane (z axis); ignored because 3D rotation takes care of it </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>thetaxz</em>&nbsp;</td><td>rotation around xz plane (y axis); ignored because 3D rotation takes care of it </td></tr>
@@ -361,7 +369,7 @@ projects a <a class="el" href="classSurface.html">Surface</a> into three-space <
 
 <p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="Surface_8H-source.html#l00144">X</a>.</p>
+<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, and <a class="el" href="Surface_8H-source.html#l00144">X</a>.</p>
 
 </div>
 </div><p>
@@ -385,7 +393,7 @@ projects a <a class="el" href="classSurface.html">Surface</a> into three-space <
 draw the projected <a class="el" href="classSurface.html">Surface</a> (onto screen or into GL list, as it is) 
 <p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
-<p>References <a class="el" href="Surface_8C-source.html#l00233">DrawStrip()</a>.</p>
+<p>References <a class="el" href="Surface_8C-source.html#l00232">DrawStrip()</a>.</p>
 
 </div>
 </div><p>
@@ -473,7 +481,7 @@ re-initialize a <a class="el" href="classSurface.html">Surface</a> if the defini
 
 <p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
-<p>References <a class="el" href="Surface_8C-source.html#l00065">Initialize()</a>.</p>
+<p>References <a class="el" href="Surface_8C-source.html#l00064">Initialize()</a>.</p>
 
 </div>
 </div><p>
@@ -536,37 +544,16 @@ numerical calculation of the derivatives in u and v: <p class="formulaDsp">
 <div class="memdoc">
 
 <p>
-allocate and initialize X[][] with values of <a class="el" href="classSurfaceBase.html#ba6ce6327e509663e484560f849d03f1" title="The mathematical function defining the Function object.">f()</a> <br>
- call InitMem () above 
+allocate and initialize X[][] with values of <a class="el" href="classSurfaceBase.html#ba6ce6327e509663e484560f849d03f1" title="The mathematical function defining the Function object.">f()</a> 
+<p>
+call InitMem () above 
 <p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
 <p>Reimplemented in <a class="el" href="classComplexFunction.html#a978ff4b165e029bb82ba33dce35e4e3">ComplexFunction</a>.</p>
 
-<p>References <a class="el" href="classSurfaceBase.html#ba6ce6327e509663e484560f849d03f1">SurfaceBase::f()</a>, <a class="el" href="Surface_8C-source.html#l00053">InitMem()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="Surface_8H-source.html#l00144">X</a>.</p>
+<p>References <a class="el" href="classSurfaceBase.html#ba6ce6327e509663e484560f849d03f1">SurfaceBase::f()</a>, <a class="el" href="Surface_8C-source.html#l00052">InitMem()</a>, <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, and <a class="el" href="Surface_8H-source.html#l00144">X</a>.</p>
 
-<p>Referenced by <a class="el" href="CustomFunction_8C-source.html#l00143">CustomSurface::CustomSurface()</a>, <a class="el" href="Surface_8C-source.html#l00293">Horizon::Horizon()</a>, <a class="el" href="Surface_8C-source.html#l00099">ReInit()</a>, <a class="el" href="Surface_8C-source.html#l00260">Surface1::Surface1()</a>, and <a class="el" href="Surface_8C-source.html#l00326">Torus3::Torus3()</a>.</p>
-
-</div>
-</div><p>
-<a class="anchor" name="f77d456ed7b5d495f4a54978ab5f4acc"></a><!-- doxytag: member="Surface::InitMem" ref="f77d456ed7b5d495f4a54978ab5f4acc" args="(void)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Surface::InitMem           </td>
-          <td>(</td>
-          <td class="paramtype">void&nbsp;</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td width="100%"><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Initialize the temporary storage areas Xscr[][], Xtrans[][], R[][], G[][], B[][] 
-<p>Referenced by <a class="el" href="Surface_8C-source.html#l00065">Initialize()</a>, and <a class="el" href="ComplexFunction_8C-source.html#l00039">ComplexFunction::Initialize()</a>.</p>
+<p>Referenced by <a class="el" href="CustomFunction_8C-source.html#l00143">CustomSurface::CustomSurface()</a>, <a class="el" href="Surface_8C-source.html#l00292">Horizon::Horizon()</a>, <a class="el" href="Surface_8C-source.html#l00098">ReInit()</a>, <a class="el" href="Surface_8C-source.html#l00259">Surface1::Surface1()</a>, and <a class="el" href="Surface_8C-source.html#l00325">Torus3::Torus3()</a>.</p>
 
 </div>
 </div><p>
@@ -587,8 +574,10 @@ Initialize the temporary storage areas Xscr[][], Xtrans[][], R[][], G[][], B[][]
 <div class="memdoc">
 
 <p>
-return the approximate amount of memory needed to display a <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> of current definition set <br>
- uses hardcoded and experimentally found value for memory per cell - ICK! <dl class="return" compact><dt><b>Returns:</b></dt><dd>approx. mem required </dd></dl>
+return the approximate amount of memory needed to display a <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> of current definition set 
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000019">Todo:</a></b></dt><dd>uses hardcoded and experimentally found value for memory per cell </dd></dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>approx. mem required </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classFunction.html#d6a10b999b0d561d36a473d461c62311">Function</a>.</p>
 
@@ -619,7 +608,7 @@ draw the current strip of the projected <a class="el" href="classSurface.html">S
 
 <p>References <a class="el" href="Surface_8H-source.html#l00144">X</a>.</p>
 
-<p>Referenced by <a class="el" href="Surface_8C-source.html#l00223">Draw()</a>.</p>
+<p>Referenced by <a class="el" href="Surface_8C-source.html#l00222">Draw()</a>.</p>
 
 </div>
 </div><p>
@@ -636,9 +625,10 @@ draw the current strip of the projected <a class="el" href="classSurface.html">S
 <div class="memdoc">
 
 <p>
-calculate normal to function at a given point in definition set <br>
- no further assumption is made than that f () is continuous <br>
- this function is not yet used anywhere, but i like it <dl compact><dt><b>Parameters:</b></dt><dd>
+calculate normal to function at a given point in definition set 
+<p>
+no further assumption is made than that f () is continuous<p>
+this function is not yet used anywhere, but i like it <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>uu</em>&nbsp;</td><td>u value </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>vv</em>&nbsp;</td><td>v value </td></tr>
@@ -651,7 +641,7 @@ calculate normal to function at a given point in definition set <br>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="Surface_8H-source.html">Surface.H</a><li>workspace/HyperspaceExplorer/src/Functions/Surface.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 18 21:46:48 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 19 12:18:26 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

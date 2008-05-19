@@ -11,6 +11,7 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -47,17 +48,24 @@ Inheritance diagram for SurfaceFactory:</div>
 <a href="classSurfaceFactory-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0b854424fb13bc295186e06cd03a1f8f"></a><!-- doxytag: member="SurfaceFactory::createSurface" ref="0b854424fb13bc295186e06cd03a1f8f" args="(C4DView *)=0" -->
-virtual <a class="el" href="classSurface.html">Surface</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>createSurface</b> (<a class="el" href="classC4DView.html">C4DView</a> *)=0</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="46af73cb10b7c9d5254ea04215b2b38f"></a><!-- doxytag: member="SurfaceFactory::createSurface" ref="46af73cb10b7c9d5254ea04215b2b38f" args="(C4DView *view)" -->
+<a class="el" href="classSurface.html">Surface</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurfaceFactory.html#46af73cb10b7c9d5254ea04215b2b38f">createSurface</a> (<a class="el" href="classC4DView.html">C4DView</a> *view)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Template Method to create a <a class="el" href="classSurface.html">Surface</a>. <br></td></tr>
+<tr><td colspan="2"><br><h2>Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="418e211e91fc1b9bf517ef02ff4afc10"></a><!-- doxytag: member="SurfaceFactory::doCreateSurface" ref="418e211e91fc1b9bf517ef02ff4afc10" args="(C4DView *)=0" -->
+virtual <a class="el" href="classSurface.html">Surface</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurfaceFactory.html#418e211e91fc1b9bf517ef02ff4afc10">doCreateSurface</a> (<a class="el" href="classC4DView.html">C4DView</a> *)=0</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Implementation of TemplateMethod <a class="el" href="classSurfaceFactory.html#46af73cb10b7c9d5254ea04215b2b38f" title="Template Method to create a Surface.">createSurface()</a>. <br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 Abstract base class for a factory creating Surface's. 
 <p>
+Defines the interface a TemplatedSurfaceFactory&lt;&gt; implements<p>
 Separate classes are needed for Functions and Surfaces, because their constructors differ. <hr>The documentation for this class was generated from the following file:<ul>
 <li>workspace/HyperspaceExplorer/src/UI/<a class="el" href="4DView_8H-source.html">4DView.H</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 18 21:46:48 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 19 12:18:26 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

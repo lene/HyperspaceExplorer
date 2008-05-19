@@ -11,6 +11,7 @@
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -48,10 +49,10 @@ Inheritance diagram for C4DView::TemplatedSurfaceFactory&lt; function &gt;:</div
 <p>
 <a href="classC4DView_1_1TemplatedSurfaceFactory-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
-<tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classSurface.html">Surface</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1TemplatedSurfaceFactory.html#00cfc1d3d1125e22c38325610d10b457">createSurface</a> (<a class="el" href="classC4DView.html">C4DView</a> *)</td></tr>
+<tr><td colspan="2"><br><h2>Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual <a class="el" href="classSurface.html">Surface</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1TemplatedSurfaceFactory.html#e10b2482a01aacfb004d30d30cc0695b">doCreateSurface</a> (<a class="el" href="classC4DView.html">C4DView</a> *)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Factory method to create a <a class="el" href="classSurface.html">Surface</a> object.  <a href="#00cfc1d3d1125e22c38325610d10b457"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Implementation of TemplateMethod <a class="el" href="classSurfaceFactory.html#46af73cb10b7c9d5254ea04215b2b38f" title="Template Method to create a Surface.">createSurface()</a>.  <a href="#e10b2482a01aacfb004d30d30cc0695b"></a><br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 <h3>template&lt;typename function&gt;<br>
@@ -61,38 +62,39 @@ Class template implementation for a factory creating Surface's.
 <p>
 The type of the <a class="el" href="classSurface.html">Surface</a> to be created by the factory method of this class is passed as a template parameter.<p>
 Separate classes are needed for Functions and Surfaces, because their constructors differ. <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="00cfc1d3d1125e22c38325610d10b457"></a><!-- doxytag: member="C4DView::TemplatedSurfaceFactory::createSurface" ref="00cfc1d3d1125e22c38325610d10b457" args="(C4DView *)" -->
+<a class="anchor" name="e10b2482a01aacfb004d30d30cc0695b"></a><!-- doxytag: member="C4DView::TemplatedSurfaceFactory::doCreateSurface" ref="e10b2482a01aacfb004d30d30cc0695b" args="(C4DView *)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class function&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classSurface.html">Surface</a> * <a class="el" href="classC4DView_1_1TemplatedSurfaceFactory.html">C4DView::TemplatedSurfaceFactory</a>&lt; function &gt;::createSurface           </td>
+          <td class="memname"><a class="el" href="classSurface.html">Surface</a> * <a class="el" href="classC4DView_1_1TemplatedSurfaceFactory.html">C4DView::TemplatedSurfaceFactory</a>&lt; function &gt;::doCreateSurface           </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classC4DView.html">C4DView</a> *&nbsp;</td>
           <td class="paramname"> <em>view</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td width="100%"><code> [inline, virtual]</code></td>
+          <td width="100%"><code> [inline, private, virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-Factory method to create a <a class="el" href="classSurface.html">Surface</a> object. 
+Implementation of TemplateMethod <a class="el" href="classSurfaceFactory.html#46af73cb10b7c9d5254ea04215b2b38f" title="Template Method to create a Surface.">createSurface()</a>. 
 <p>
+Factory method to create a <a class="el" href="classSurface.html">Surface</a> object.<p>
 The type of the created <a class="el" href="classSurface.html">Surface</a> is supplied as template parameter to the <a class="el" href="classC4DView_1_1TemplatedSurfaceFactory.html" title="Class template implementation for a factory creating Surface&#39;s.">TemplatedSurfaceFactory</a> object owning this method. 
-<p>Implements <a class="el" href="classSurfaceFactory.html">SurfaceFactory</a>.</p>
+<p>Implements <a class="el" href="classSurfaceFactory.html#418e211e91fc1b9bf517ef02ff4afc10">SurfaceFactory</a>.</p>
 
-<p>References <a class="el" href="ValuesDialogImpl_8H-source.html#l00057">ValuesDialogImpl::du()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00062">ValuesDialogImpl::dv()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00055">ValuesDialogImpl::umax()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00054">ValuesDialogImpl::umin()</a>, <a class="el" href="4DView_8H-source.html#l00297">C4DView::Values()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00060">ValuesDialogImpl::vmax()</a>, and <a class="el" href="ValuesDialogImpl_8H-source.html#l00059">ValuesDialogImpl::vmin()</a>.</p>
+<p>References <a class="el" href="ValuesDialogImpl_8H-source.html#l00057">ValuesDialogImpl::du()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00062">ValuesDialogImpl::dv()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00055">ValuesDialogImpl::umax()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00054">ValuesDialogImpl::umin()</a>, <a class="el" href="4DView_8H-source.html#l00317">C4DView::Values()</a>, <a class="el" href="ValuesDialogImpl_8H-source.html#l00060">ValuesDialogImpl::vmax()</a>, and <a class="el" href="ValuesDialogImpl_8H-source.html#l00059">ValuesDialogImpl::vmin()</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/UI/<a class="el" href="4DView_8H-source.html">4DView.H</a><li>workspace/HyperspaceExplorer/src/UI/<a class="el" href="TemplatedFunctionFactory_8impl_8H-source.html">TemplatedFunctionFactory.impl.H</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun May 18 21:46:47 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 19 12:18:25 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>
