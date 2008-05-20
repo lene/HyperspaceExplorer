@@ -296,8 +296,6 @@ class C4DView : public QGLWidget {
 
         void setAnimated(bool b) { pImpl->Animated = b; }
         bool Animated() const { return pImpl->Animated; }
-        void setTakingSpinValues(bool b) { pImpl->TakingSpinValues = b; }
-        bool TakingSpinValues() const { return pImpl->TakingSpinValues; }
         void setCurrentlyRendering(bool b) { pImpl->CurrentlyRendering = b; }
         bool CurrentlyRendering() const { return pImpl->CurrentlyRendering; }
 
@@ -390,8 +388,7 @@ class C4DView : public QGLWidget {
 
                 ObjectList (0), CoordinateCross (0),
 
-                Animated (false), TakingSpinValues (false),
-                CurrentlyRendering (false),
+                Animated (false), CurrentlyRendering (false),
 
                 Values (new ValuesDialogImpl (parent)),
                 dxy (0), dxz (0), dxw (0), dyz (0), dyw (0), dzw (0),
@@ -443,8 +440,6 @@ class C4DView : public QGLWidget {
             GLint CoordinateCross;  ///< a GLList for the display of the coordinates
 
             bool Animated;              ///< if true, image is currently animated
-            /// true while mouse button pressed & mouse moved to take movement speed
-            bool TakingSpinValues;
             unsigned animationFrame;    ///< current frame in animation
 
             bool CurrentlyRendering;    ///< if true, currently rendering an image

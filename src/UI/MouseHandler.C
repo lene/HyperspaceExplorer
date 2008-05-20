@@ -16,7 +16,8 @@
 #include "Menu4D.H"
 
 C4DView::MouseHandler4D::MouseHandler4D(C4DView *_parent): parent(_parent),
-    m_LeftDownPos (0,0), m_MidDownPos (0,0), m_RightDownPos (0,0) {}
+    m_LeftDownPos (0,0), m_MidDownPos (0,0), m_RightDownPos (0,0),
+    m_TakingSpinValues (false) {}
 
 C4DView::MouseHandler4D::~MouseHandler4D() {}
 
@@ -28,8 +29,8 @@ C4DView::MouseHandler4D::~MouseHandler4D() {}
  *  code below
  *  @param e Qt's mouse event information structure                           */
 void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
-    SingletonLog::Instance() << "C4DView::mouseMoveEvent ("
-                << (long)e->modifiers()<<")\n";
+    SingletonLog::Instance() << "C4DView::MouseHandler4D::mouseMoveEvent ("
+                << (long)e->modifiers()<<") ";
     QPoint point = e->pos ();
     Qt::KeyboardModifiers s = e->modifiers();
     Qt::MouseButtons b = e->buttons();
@@ -56,8 +57,8 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
 
     if (xsize == 0 || ysize == 0) return;       //  pathological case better taken care of
 
-    if (AltPressed) parent->setTakingSpinValues(true);
-    else            parent->setTakingSpinValues(false);
+    if (AltPressed) setTakingSpinValues(true);
+    else            setTakingSpinValues(false);
 
     if (ControlPressed) {                                   //  CONTROL pressed
 
@@ -72,7 +73,7 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
 
                 QPoint translate = LeftDownPos()-point;  //  store difference from button press position
 
-               if (parent->TakingSpinValues()) {    } else {      //  no translation animation (yet?)
+               if (TakingSpinValues()) {    } else {      //  no translation animation (yet?)
                    setm_LeftDownPos(point);               //  reset start position for next mouse move
 
                    parent->setTx(parent->Tx() - translate.x ()*size/xsize);     //  add x translation
@@ -88,7 +89,7 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
 
                 QPoint translate = MidDownPos()-point;   //  store difference from button press position
 
-                if (parent->TakingSpinValues()) {    } else {      //  no translation animation (yet?)
+                if (TakingSpinValues()) {    } else {      //  no translation animation (yet?)
                     setm_MidDownPos(point);                //  reset start position for next mouse move
 
                     parent->setTz(parent->Tz() - translate.x ()*size/xsize);     //  add z translation
@@ -116,7 +117,7 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
                 ViewChanged = false;                    //  takes only xy/xz values, which are
                                                         //  equivalent to z/y 3D rotation
 
-                if (parent->TakingSpinValues()) {
+                if (TakingSpinValues()) {
                     parent->setdz(parent->dz() + rotate.x ()/xsize*5);
                     parent->setdy(parent->dy() + rotate.y ()/ysize*5);
                     parent->UpdateStatus ("taking xy/xz rotation speed");
@@ -135,7 +136,7 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
 
                 QPoint rotate = MidDownPos()-point;        //  store difference from button press position
 
-                if (parent->TakingSpinValues()) {
+                if (TakingSpinValues()) {
                     parent->setdxw(parent->dxw() + rotate.x ()/xsize*5);
                     parent->setdx(parent->dx() + rotate.y ()/ysize*5);
                     if (parent->dxw() == 0.) ViewChanged = false;
@@ -158,7 +159,7 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
 
                 QPoint rotate = RightDownPos()-point;    		//    store difference from button press position
 
-                if (parent->TakingSpinValues()) {                    		//
+                if (TakingSpinValues()) {                    		//
                     parent->setdyw(parent->dyw() + rotate.x ()/xsize*5);
                     parent->setdzw(parent->dzw() + rotate.y ()/ysize*5);                    	//
                     parent->UpdateStatus ("taking yw / zw rotation speed");
@@ -195,7 +196,7 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
 
                 QPoint translate = MidDownPos()-point;    		//    store difference from button press position
 
-                if (parent->TakingSpinValues()) {    } else {        		//    no translation animation (yet?)
+                if (TakingSpinValues()) {    } else {        		//    no translation animation (yet?)
                     setm_MidDownPos(point);                			//    reset start position for next mouse move
 
                     parent->setm_transX(parent->m_transX() - translate.x ()*size/xsize);    //    add x translation
@@ -211,7 +212,7 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
 
                 QPoint rotate = LeftDownPos()-point;        		//    store difference from button press position
 
-                if (parent->TakingSpinValues()) {                    		//
+                if (TakingSpinValues()) {                    		//
                     parent->setdx(parent->dx() + rotate.x ()/xsize*5);
                     parent->setdy(parent->dy() + rotate.y ()/ysize*5);                    	//
                     parent->UpdateStatus ("taking x/y rotation speed");
@@ -231,7 +232,7 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
 
                 QPoint zoom = LeftDownPos()-point;        		//    store difference from button press position
 
-                if (parent->TakingSpinValues()) {                    		//
+                if (TakingSpinValues()) {                    		//
                     parent->setdz(parent->dz() + zoom.x ()/xsize*10);
                     parent->UpdateStatus ("taking z rotation speed");
 	        } else {                                    		//    immediate movement
@@ -260,7 +261,7 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
 /** Only sets flags which buttons are down
  *  @param e Qt's mouse event information structure                           */
 void C4DView::MouseHandler4D::mousePressEvent (QMouseEvent *e) {
-    SingletonLog::Instance().log("C4DView::mousePressEvent ()");
+    SingletonLog::Instance().log("C4DView::MouseHandler4D::mousePressEvent ()");
 
     QPoint point = e->pos ();
     Qt::MouseButtons b = e->buttons();
@@ -286,11 +287,11 @@ void C4DView::MouseHandler4D::mousePressEvent (QMouseEvent *e) {
 /** If taking values for an animation, starts the animation
  *  @param e Qt's mouse event information structure                           */
 void C4DView::MouseHandler4D::mouseReleaseEvent (QMouseEvent *) {
-    SingletonLog::Instance().log("C4DView::mouseReleaseEvent ()");
+    SingletonLog::Instance().log("C4DView::MouseHandler4D::mouseReleaseEvent ()");
 
-    if (parent->TakingSpinValues()) {
+    if (TakingSpinValues()) {
         parent->StartAnimation ();
-        parent->setTakingSpinValues(false);
+        setTakingSpinValues(false);
     }
 
     parent->UpdateStatus ("");
@@ -300,7 +301,7 @@ void C4DView::MouseHandler4D::mouseReleaseEvent (QMouseEvent *) {
 /** Stops animation, if running, or resets transformation values to default
  *  @param e Qt's mouse event information structure                           */
 void C4DView::MouseHandler4D::mouseDoubleClickEvent (QMouseEvent *) {
-    SingletonLog::Instance().log("C4DView::mouseDoubleClickEvent ()");
+    SingletonLog::Instance().log("C4DView::MouseHandler4D::mouseDoubleClickEvent ()");
 
     if (parent->Animated()) parent->StopAnimation ();
     else {
