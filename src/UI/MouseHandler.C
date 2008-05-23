@@ -15,6 +15,8 @@
 #include "MouseHandler.H"
 #include "Menu4D.H"
 
+using VecMath::Vector;
+
 C4DView::MouseHandler4D::MouseHandler4D(C4DView *_parent): parent(_parent),
     m_LeftDownPos (0,0), m_MidDownPos (0,0), m_RightDownPos (0,0),
     m_TakingSpinValues (false) {}
@@ -76,8 +78,8 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
                if (TakingSpinValues()) {    } else {      //  no translation animation (yet?)
                    setm_LeftDownPos(point);               //  reset start position for next mouse move
 
-                   parent->setTx(parent->Tx() - translate.x ()*size/xsize);     //  add x translation
-                   parent->setTy(parent->Ty() + translate.y ()*size/ysize);     //  add y translation
+                   parent->addT(Vector<4>(-translate.x ()*size/xsize, 0.,0.,0.));     //  add x translation
+                   parent->addT(Vector<4>(0., translate.y ()*size/ysize, 0.,0.));     //  add y translation
 
                    parent->UpdateStatus ("translate x/y");
                }               //    if (TakingSpinValues)
@@ -92,8 +94,8 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
                 if (TakingSpinValues()) {    } else {      //  no translation animation (yet?)
                     setm_MidDownPos(point);                //  reset start position for next mouse move
 
-                    parent->setTz(parent->Tz() - translate.x ()*size/xsize);     //  add z translation
-                    parent->setTw(parent->Tw() + translate.y ()*size/ysize);     //  add w translation
+                    parent->addT(Vector<4>(0.,0.,-translate.x ()*size/xsize, 0.));     //  add z translation
+                    parent->addT(Vector<4>(0.,0.,0., translate.y ()*size/ysize));     //  add w translation
 
                     parent->UpdateStatus ("translate z/w");
 	        }            //  if (TakingSpinValues)
@@ -145,9 +147,9 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
                 } else {                             		//    immediate movement
                     setm_MidDownPos(point);     //    reset start position for next mouse move
 
-                    parent->setRxw(parent->Rxw() - rotate.x ()/xsize*180);            		//    add xw rotation
+                    parent->addR(Vector<6>(0.,0., -rotate.x()/xsize*180., 0.,0.,0.));            		//    add xw rotation
                     parent->setm_rotX(parent->m_rotX() - rotate.y ()/ysize*180);            		//    add yz  ( = x in 3D) rotation
-                    if (parent->Rxw() == 0.) ViewChanged = false;
+                    if (parent->R()[2] == 0.) ViewChanged = false;
 
                     parent->UpdateStatus ("rotate xw/yz");
 	        }        	//    if (TakingSpinValues)
@@ -166,8 +168,8 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
 	        } else {                                    		//    immediate movement
                     setm_RightDownPos(point);                		//    reset start position for next mouse move
 
-                    parent->setRyw(parent->Ryw() - rotate.x ()/xsize*180);            		//    add yw rotation
-                    parent->setRzw(parent->Ryw() - rotate.y ()/ysize*180);            		//    add zw rotation
+                    parent->addR(Vector<6>(0.,0.,0.,-rotate.x()/xsize*180, 0.,0.));            		//    add yw rotation
+                    parent->addR(Vector<6>(0.,0.,0.,0.,0., -rotate.y()/ysize*180));            		//    add zw rotation
 
                     parent->UpdateStatus ("rotate yw/zw");
 	        }        	//    if (TakingSpinValues)
@@ -181,9 +183,9 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
     if (ViewChanged) {                                    	//    4D viewpoint has changed
         SingletonLog::Instance().log("C4DView::mouseMoveEvent: View changed ()");
 
-        parent->Transform (parent->Rxy(), parent->Rxz(), parent->Rxw(),
-                           parent->Ryz(), parent->Ryw(), parent->Rzw(),
-                           parent->Tx(), parent->Ty(), parent->Tz(), parent->Tw());   //    apply the 4D transformation
+        parent->Transform (parent->R()[0], parent->R()[1], parent->R()[2],
+                           parent->R()[3], parent->R()[4], parent->R()[5],
+                           parent->T());   //    apply the 4D transformation
         parent->Redraw ();
     } else {					//    4D viewpoint didn't change
 
@@ -305,17 +307,16 @@ void C4DView::MouseHandler4D::mouseDoubleClickEvent (QMouseEvent *) {
 
     if (parent->Animated()) parent->StopAnimation ();
     else {
-        parent->setTx(0); parent->setTy(0); parent->setTz(0); parent->setTw(0);
-        parent->setRxy(0); parent->setRxz(0); parent->setRxw(0);
-        parent->setRyz(0); parent->setRyw(0); parent->setRzw(0);
+        parent->setT(Vector<4>(0.,0.,0.,0.));
+        parent->setR(Vector<6>(0.,0.,0.,0.,0.,0.));
 
         parent->setm_rotX(15); parent->setm_rotY(15); parent->setm_rotZ(0);
         parent->setm_transX(0); parent->setm_transY(0);
         parent->setm_camZ(-10);
 
-        parent->Transform (parent->Rxy(), parent->Rxz(), parent->Rxw(), parent->Ryz(),
-                           parent->Ryw(), parent->Rzw(),
-                           parent->Tx(), parent->Ty(), parent->Tz(), parent->Tw());
+        parent->Transform (parent->R()[0], parent->R()[1], parent->R()[2],
+                           parent->R()[3], parent->R()[4], parent->R()[5],
+                           parent->T());   //    apply the 4D transformation
         parent->Redraw ();                                    		//    implicit OnPaint ()
     }
 

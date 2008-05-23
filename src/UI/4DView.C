@@ -333,7 +333,7 @@ double C4DView::Benchmark4D (int num_steps,
 
   for (int step = 0; step < num_steps; step++) {
     Rxw += step_xw; Ryw += step_yw; Rzw += step_zw;
-    Transform (0., 0. ,Rxw, 0. , Ryw, Rzw, 0., 0., 0., 0.);
+    Transform (0., 0. ,Rxw, 0. , Ryw, Rzw, VecMath::Vector<4>(0., 0., 0., 0.));
     if (display) {
       Redraw ();
       UpdateStatus (QString::number ((100*step)/num_steps)+"% done");
@@ -348,6 +348,7 @@ double C4DView::Benchmark4D (int num_steps,
  *
  *  Writes image to file too, if wanted.                                      */
 void C4DView::OnTimer() {
+
     setm_rotX(m_rotX() + dx()); setm_rotY(m_rotY() + dy()); setm_rotZ(m_rotZ() + dz());   //  update 3D viewpoint values
 
     SingletonLog::Instance() << "C4DView::OnTimer()\n"
@@ -359,10 +360,11 @@ void C4DView::OnTimer() {
     if (dxy() != 0 || dxz() != 0 || dxw() != 0 ||     //  4D viewpoint animated?
         dyz() != 0 || dyw() != 0 || dzw() != 0 ) {
 
-        setRxy(Rxy() + dxy()); setRxz(Rxz() + dxz()); setRxw(Rxw() + dxw());   //  update values
-        setRyz(Ryz() + dyz()); setRyw(Ryw() + dyw()); setRzw(Rzw() + dzw());   //  update values
+        addR(dR());
+//        setRxy(Rxy() + dxy()); setRxz(Rxz() + dxz()); setRxw(Rxw() + dxw());   //  update values
+//        setRyz(Ryz() + dyz()); setRyw(Ryw() + dyw()); setRzw(Rzw() + dzw());   //  update values
 
-        Transform (Rxy(), Rxz(), Rxw(), Ryz(), Ryw(), Rzw(), Tx(), Ty(), Tz(), Tw());   // transform
+        Transform (R()[0], R()[1], R()[2], R()[3], R()[4], R()[5], T());   // transform
         Redraw ();                                                  // implicit OnPaint()
         } else OnPaint ();                                              // explicit OnPaint()
 
@@ -451,10 +453,10 @@ void C4DView::aboutQt() {
  *  @param tw translation in w direction                            */
 void C4DView::Transform (double thetaxy, double thetaxz, double thetaxw,
                          double thetayz, double thetayw, double thetazw,
-                         double tx, double ty, double tz, double tw) {
+                         const VecMath::Vector<4> &t) {
     if (F().get())
         F()->Transform (thetaxy, thetaxz, thetaxw, thetayz, thetayw, thetazw,
-                      tx, ty, tz, tw);
+                      t[0], t[1], t[2], t[3]);
     else return;
 
     Matrix<4> Rxy = Matrix<4> (0, 1, thetaxy), Rxz = Matrix<4> (0, 2, thetaxz),
@@ -462,11 +464,10 @@ void C4DView::Transform (double thetaxy, double thetaxz, double thetaxw,
               Ryw = Matrix<4> (1, 3, thetayw), Rzw = Matrix<4> (2, 3, thetazw),
               Rxyz = Rxy*Rxz, Rxwyz = Rxw*Ryz, Ryzw = Ryw*Rzw,
               Rot = Rxyz*Rxwyz*Ryzw;
-    Vector<4> trans = Vector<4>(tx, ty, tz, tw);
 
     for (unsigned i = 0; i < 4; i++)
         for (unsigned j = 0; j < 2; j++)
-            CrossTrans[i][j] = (Rot*Cross[i][j])+trans;
+            CrossTrans[i][j] = (Rot*Cross[i][j])+t;
 }
 
 /// Projects F and coordinate cross into three-space
@@ -664,6 +665,11 @@ void C4DView::DrawCoordinates () {
 /// Err well.. just that!
 /** Starts AnimationTimer, too...                                             */
 void C4DView::StartAnimation () {
+    if (dx() == 0 && dy() == 0 && dz() == 0 &&
+        dxy() == 0 && dxz() == 0 && dxw() == 0 && dyz() == 0 && dyw() == 0 && dzw() == 0) {
+        return;
+    }
+
     SingletonLog::Instance().log("C4DView::StartAnimation ()");
 
     setAnimated(true);
@@ -761,12 +767,12 @@ void C4DView::checkAnglesForOverflow() {
     if (m_rotZ() > 360) setm_rotZ(m_rotZ() - 360);
     if (m_rotZ() <-360) setm_rotZ(m_rotZ() + 360);
     if (fabs (m_rotZ()) < 1e-3) setm_rotZ(0);
-    if (Rxw() > 360) setRxw(Rxw() - 360);
-    if (Rxw() <-360) setRxw(Rxw() + 360);
-    if (Ryw() > 360) setRyw(Ryw() - 360);
-    if (Ryw() <-360) setRyw(Ryw() + 360);
-    if (Rzw() > 360) setRzw(Rzw() - 360);
-    if (Rzw() <-360) setRzw(Rzw() + 360);
+    if (R()[2] > 360) addR(Vector<6>(0.,0.,-360.,0.,0.,0.)); // setRxw(Rxw() - 360);
+    if (R()[2] <-360) addR(Vector<6>(0.,0., 360.,0.,0.,0.)); // setRxw(Rxw() + 360);
+    if (R()[4] > 360) addR(Vector<6>(0.,0.,0.,0.,-360.,0.)); // setRyw(Ryw() - 360);
+    if (R()[4] <-360) addR(Vector<6>(0.,0.,0.,0., 360.,0.)); // setRyw(Ryw() + 360);
+    if (R()[5] > 360) addR(Vector<6>(0.,0.,0.,0.,0.,-360.)); // setRzw(Rzw() - 360);
+    if (R()[5] <-360) addR(Vector<6>(0.,0.,0.,0.,0., 360.)); // setRzw(Rzw() + 360);
 }
 
 /// display some info about current object and its transformations
@@ -981,20 +987,20 @@ void C4DView::InitTransparence (void) {
     \todo eliminate hardcoded constants                                       */
 void C4DView::resizeGL (int width, int height) {
     GLfloat aspect = (float) width / (float) height,
-            angle  = .8*atan (2./R())*180./pi,
+            angle  = .8*atan (2./distance())*180./pi,
             across = Globals::Instance().SR3;
     if (angle < 0) angle = 180+angle;           //  keep positive viewing angle
 
     glViewport (0, 0, width, height);
     glMatrixMode (GL_PROJECTION);
     glLoadIdentity ();
-    gluPerspective (angle, aspect, .25, R()+across);
+    gluPerspective (angle, aspect, .25, distance()+across);
     glMatrixMode (GL_MODELVIEW);
     glLoadIdentity ();
     gluLookAt (0., 0., 1.,
                0., 0., 0.,
                0., 1., 0.);
-    glTranslatef (0, 0, -R());
+    glTranslatef (0, 0, -distance());
     if (getFog())
         SetupDepthCue(
             fabs(m_camZ())-Size()/2.,
