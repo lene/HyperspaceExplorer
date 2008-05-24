@@ -224,56 +224,42 @@ class C4DView : public QGLWidget {
 
         void setT(VecMath::Vector<4> _t) { pImpl->T = _t; }
         const VecMath::Vector<4> &T() { return pImpl->T; }
-/*        void setTx(double _tx) { pImpl->T[0] = _tx; }
-        void setTy(double _ty) { pImpl->T[1] = _ty; }
-        void setTz(double _tz) { pImpl->T[2] = _tz; }
-        void setTw(double _tw) { pImpl->T[3] = _tw; }
-*/        void addT(const VecMath::Vector<4> &_dT) { pImpl->T += _dT; }
-        
+        void addT(const VecMath::Vector<4> &_dT) { pImpl->T += _dT; }
+
         void setR(VecMath::Vector<6> _r) { pImpl->R = _r; }
         const VecMath::Vector<6> &R() { return pImpl->R; }
         void addR(const VecMath::Vector<6> &_dR) { pImpl->R += _dR; }
-/*        
-        void setRxy(double _rxy) { pImpl->R[0] = _rxy; }
-        void setRxz(double _rxz) { pImpl->R[1] = _rxz; }
-        void setRxw(double _rxw) { pImpl->R[2] = _rxw; }
-        void setRyz(double _ryz) { pImpl->R[3] = _ryz; }
-        void setRyw(double _ryw) { pImpl->R[4] = _ryw; }
-        void setRzw(double _rzw) { pImpl->R[5] = _rzw; }
-*/
-        const VecMath::Vector<6> &dR() { return pImpl->dR; }
-        
-        void setdxy(double _dxy) { pImpl->dR[0] = _dxy; }
-        double dxy() const { return pImpl->dR[0]; }
-        void setdxz(double _dxz) { pImpl->dR[1] = _dxz; }
-        double dxz() const { return pImpl->dR[1]; }
-        void setdxw(double _dxw) { pImpl->dR[2] = _dxw; }
-        double dxw() const { return pImpl->dR[2]; }
-        void setdyz(double _dyz) { pImpl->dR[3] = _dyz; }
-        double dyz() const { return pImpl->dR[3]; }
-        void setdyw(double _dyw) { pImpl->dR[4] = _dyw; }
-        double dyw() const { return pImpl->dR[4]; }
-        void setdzw(double _dzw) { pImpl->dR[5] = _dzw; }
-        double dzw() const { return pImpl->dR[5]; }
-        void setdx(double _dx) { pImpl->dT[0] = _dx; }
-        double dx() const { return pImpl->dT[0]; }
-        void setdy(double _dy) { pImpl->dT[1] = _dy; }
-        double dy() const { return pImpl->dT[1]; }
-        void setdz(double _dz) { pImpl->dT[2] = _dz; }
-        double dz() const { return pImpl->dT[2]; }
 
-        void setm_rotX(GLdouble _rx) { pImpl->m_rot[0] = _rx; }
-        GLdouble m_rotX() const { return pImpl->m_rot[0]; }
-        void setm_rotY(GLdouble _ry) { pImpl->m_rot[1] = _ry; }
-        GLdouble m_rotY() const { return pImpl->m_rot[1]; }
-        void setm_rotZ(GLdouble _rz) { pImpl->m_rot[2] = _rz; }
-        GLdouble m_rotZ() const { return pImpl->m_rot[2]; }
-        void setm_transX(GLdouble _tx) { pImpl->m_trans[0] = _tx; }
-        GLdouble m_transX() const { return pImpl->m_trans[0]; }
-        void setm_transY(GLdouble _ty) { pImpl->m_trans[1] = _ty; }
-        GLdouble m_transY() const { return pImpl->m_trans[1]; }
-        void setm_camZ(GLdouble _cz) { pImpl->m_camZ = _cz; }
-        GLdouble m_camZ() const { return pImpl->m_camZ; }
+        void setdT(VecMath::Vector<3> _dt) { pImpl->dT = _dt; }
+        const VecMath::Vector<3> &dT() { return pImpl->dT; }
+        void adddT(const VecMath::Vector<3> &_ddT) { pImpl->dT += _ddT; }
+
+        void setdR(VecMath::Vector<6> _dr) { pImpl->dR = _dr; }
+        const VecMath::Vector<6> &dR() { return pImpl->dR; }
+        void adddR(const VecMath::Vector<6> &_ddR) { pImpl->dR += _ddR; }
+
+        void setm_rot(VecMath::Vector<3, GLdouble> _r) {
+            pImpl->m_rot = _r;
+        }
+        const VecMath::Vector<3, GLdouble> &m_rot() {
+            return pImpl->m_rot;
+        }
+        void addm_rot(const VecMath::Vector<3, GLdouble> &_dmr) {
+            pImpl->m_rot += _dmr;
+        }
+
+        void setm_trans(VecMath::Vector<3, GLdouble> _t) {
+            pImpl->m_trans = _t;
+        }
+        const VecMath::Vector<3, GLdouble> &m_trans() {
+            return pImpl->m_trans;
+        }
+        void addm_trans(const VecMath::Vector<3, GLdouble> &_dmt) {
+            pImpl->m_trans += _dmt;
+        }
+
+//        void setm_camZ(GLdouble _cz) { pImpl->m_camZ = _cz; }
+//        GLdouble m_camZ() const { return pImpl->m_camZ; }
 
         void setCamW(double _cw) { pImpl->CamW = _cw; }
         double CamW() const { return pImpl->CamW; }
@@ -370,7 +356,7 @@ class C4DView : public QGLWidget {
 
                 T(0.,0.,0.,0.), R(0.,0.,0.,0.,0.,0.),
                 dT(0.,0.,0.), dR(0.,0.,0.,0.,0.,0.),
-                m_rot(15., 15., 0.), m_trans(0., 0.), m_camZ(-10.),
+                m_rot(15., 15., 0.), m_trans(0., 0.,-10.),
 
                 CamW (-3.), ScrW (0.),
 
@@ -401,8 +387,8 @@ class C4DView : public QGLWidget {
             VecMath::Vector<6> dR;   ///< delta values in angles for 4D rotation - for animations
 
             VecMath::Vector<3, GLdouble> m_rot;     ///< rotation in X, Y and Z
-            VecMath::Vector<3, GLdouble> m_trans;   ///< translation in X and Y
-            GLdouble m_camZ;    ///< Z coordinate of camera (distance from object)
+            /// translation in X and Y, Z coordinate of camera (distance from object)
+            VecMath::Vector<3, GLdouble> m_trans;
 
             double CamW;        ///< W coordinate of the camera
             double ScrW;        ///< W coordinate of the screen

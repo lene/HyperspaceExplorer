@@ -95,6 +95,14 @@ namespace VecMath {
         /** @return the squared norm of the vector, |V|²                      */
         N sqnorm (void) const;
 
+        /// Comparison operator
+        bool operator==(const Vector<D, N> &other) const {
+            for (unsigned i = 0; i < D; i++) {
+                if (x[i] != other[i]) return false;
+            }
+            return true;
+        }
+
         /// Ordering needed to use Vector as key for a std::map
         /** @return whether absolute value of this is less than the other
          *  Vector's                                                          */

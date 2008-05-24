@@ -6,6 +6,7 @@
 
 #include "SingletonHolder.H"
 #include "Globals.H"
+#include "Vector.H"
 
 /** A class to conditionally print debug messages, depending on whether the
  *  preprocessor variable DEBUG is defined
@@ -38,6 +39,19 @@ class Log{
 #           endif
             return *this;
         }
+
+        /** print a Vector without a line break */
+        template<unsigned D> Log &operator<<(const VecMath::Vector<D> &
+#           ifdef DEBUG
+                v
+#           endif
+                       ) {
+#           ifdef DEBUG
+            std::cerr << v;
+            std::cerr.flush();
+#           endif
+            return *this;
+                       }
 
         /** print a long integer without a line break */
         Log &operator<<(long x) {

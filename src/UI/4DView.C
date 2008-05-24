@@ -309,16 +309,19 @@ double C4DView::Benchmark3D (int num_steps,
                              bool display) {
     clock_t stime = clock ();                     //  record start time
 
-    double Rx = m_rotX(), Ry = m_rotY(), Rz = m_rotZ();
+    Vector<3> step(step_x, step_y, step_z);
+//    double Rx = m_rotX(), Ry = m_rotY(), Rz = m_rotZ();
+    Vector<3> R = m_rot();
 
     for (int step = 0; step < num_steps; step++) {
-        setm_rotX(m_rotX() + step_x); setm_rotY(m_rotY() + step_y); setm_rotZ(m_rotZ() + step_z);
+        addm_rot(step);
+//        setm_rotX(m_rotX() + step_x); setm_rotY(m_rotY() + step_y); setm_rotZ(m_rotZ() + step_z);
         if (display) {
             OnPaint ();
             UpdateStatus (QString::number ((100*step)/num_steps)+"% done");
         }
     }
-    setm_rotX(Rx); setm_rotY(Ry); setm_rotZ(Rz);
+    setm_rot(R);
 
   return double (clock ()-stime)/CLOCKS_PER_SEC;
 }
@@ -349,20 +352,16 @@ double C4DView::Benchmark4D (int num_steps,
  *  Writes image to file too, if wanted.                                      */
 void C4DView::OnTimer() {
 
-    setm_rotX(m_rotX() + dx()); setm_rotY(m_rotY() + dy()); setm_rotZ(m_rotZ() + dz());   //  update 3D viewpoint values
+    addm_rot(dT());
+//    setm_rotX(m_rotX() + dT()[0]); setm_rotY(m_rotY() + dT()[1]); setm_rotZ(m_rotZ() + dT()[2]);   //  update 3D viewpoint values
 
     SingletonLog::Instance() << "C4DView::OnTimer()\n"
-            << "  dx = " <<  dx() << "  dy = " <<  dy() << "  dz = " <<  dz() << "\n"
-            << " dxy = " << dxy() << " dxz = " << dxz() << " dxw = " << dxw()
-            << " dyz = " << dyz() << " dyw = " << dyw() << " dzw = " << dzw()
-            << "\n";
+            << "  dT = " << dT() << "\n"
+            << "  dR = " << dR() << "\n";
 
-    if (dxy() != 0 || dxz() != 0 || dxw() != 0 ||     //  4D viewpoint animated?
-        dyz() != 0 || dyw() != 0 || dzw() != 0 ) {
+    if (dR().sqnorm() != 0.) {     //  4D viewpoint animated?
 
         addR(dR());
-//        setRxy(Rxy() + dxy()); setRxz(Rxz() + dxz()); setRxw(Rxw() + dxw());   //  update values
-//        setRyz(Ryz() + dyz()); setRyw(Ryw() + dyw()); setRzw(Rzw() + dzw());   //  update values
 
         Transform (R()[0], R()[1], R()[2], R()[3], R()[4], R()[5], T());   // transform
         Redraw ();                                                  // implicit OnPaint()
@@ -573,10 +572,10 @@ void C4DView::OnPaint() {
     glPushMatrix();                                 //  save transformation Matrix
     // glTranslated(0.0, /*Size ()*.75*/0., 0);     //  set the camera position
 
-    glTranslated (m_transX(), m_transY(), m_camZ());      //  apply object translation
-    glRotated(m_rotX(), 1.0, 0.0, 0.0);               //   -"-    -"-     rotation
-    glRotated(m_rotY(), 0.0, 1.0, 0.0);
-    glRotated(m_rotZ(), 0.0, 0.0, 1.0);
+    glTranslated (m_trans()[0], m_trans()[1], m_trans()[2]);      //  apply object translation
+    glRotated(m_rot()[0], 1.0, 0.0, 0.0);               //   -"-    -"-     rotation
+    glRotated(m_rot()[1], 0.0, 1.0, 0.0);
+    glRotated(m_rot()[2], 0.0, 0.0, 1.0);
 
     RenderScene (0);                                //  draw current frame
 
@@ -616,10 +615,10 @@ void C4DView::InitCross() {
 void C4DView::SetupDepthCue (bool on) {
     setDepthCue3D(on);
     if (on) {
-        cerr << "m_camZ(): " << m_camZ() << endl;
+        cerr << "m_camZ(): " << m_trans()[2] << endl;
         SetupDepthCue(
-            fabs(m_camZ())-Size()/2.,
-            fabs(m_camZ())+Size()/2.*Globals::Instance().SR3);
+            fabs(m_trans()[2])-Size()/2.,
+            fabs(m_trans()[2])+Size()/2.*Globals::Instance().SR3);
         glEnable(GL_FOG);
     }
     else glDisable (GL_FOG);
@@ -665,8 +664,8 @@ void C4DView::DrawCoordinates () {
 /// Err well.. just that!
 /** Starts AnimationTimer, too...                                             */
 void C4DView::StartAnimation () {
-    if (dx() == 0 && dy() == 0 && dz() == 0 &&
-        dxy() == 0 && dxz() == 0 && dxw() == 0 && dyz() == 0 && dyw() == 0 && dzw() == 0) {
+    if (dT() == VecMath::Vector<3>(0.,0.,0.) &&
+        dR() == VecMath::Vector<6>(0.,0.,0.,0.,0.,0.)) {
         return;
     }
 
@@ -684,8 +683,8 @@ void C4DView::StopAnimation () {
     SingletonLog::Instance().log("C4DView::StopAnimation ()");
 
     setAnimated(false);
-    setdxy(0.); setdxz(0.); setdxw(0.); setdyz(0.); setdyw(0.); setdyw(0.);
-    setdx(0.); setdy(0.); setdz(0.);
+    setdR(VecMath::Vector<6>(0.,0.,0.,0.,0.,0.));
+    setdT(VecMath::Vector<3>(0.,0.,0.));
     AnimationTimer()->stop ();
     AnimateRandomTimer()->stop ();
     setCurrentlyRendering(false);
@@ -699,9 +698,7 @@ void C4DView::RandomAnimation() {
     AnimationTimer()->stop ();
     AnimateRandomTimer()->stop ();
 
-    setdxw(float (rand ())/RAND_MAX);
-    setdyw(float (rand ())/RAND_MAX);
-    setdzw(float (rand ())/RAND_MAX);
+    setdR(VecMath::Vector<6>(0.,0.,double(rand ())/RAND_MAX,0.,double(rand ())/RAND_MAX,double(rand ())/RAND_MAX));
     StartAnimation ();
 
     AnimateRandomTimer()->start (10000);
@@ -758,21 +755,21 @@ void C4DView::writeFrame() {
 
 /// Keep all rotation angles in the interval [-360 degrees, 360 degrees]
 void C4DView::checkAnglesForOverflow() {
-    if (m_rotX() > 360) setm_rotX(m_rotX() - 360);
-    if (m_rotX() <-360) setm_rotX(m_rotX() + 360);
-    if (fabs (m_rotX()) < 1e-3) setm_rotX(0);
-    if (m_rotY() > 360) setm_rotY(m_rotY() - 360);
-    if (m_rotY() <-360) setm_rotY(m_rotY() + 360);
-    if (fabs (m_rotY()) < 1e-3) setm_rotY(0);
-    if (m_rotZ() > 360) setm_rotZ(m_rotZ() - 360);
-    if (m_rotZ() <-360) setm_rotZ(m_rotZ() + 360);
-    if (fabs (m_rotZ()) < 1e-3) setm_rotZ(0);
-    if (R()[2] > 360) addR(Vector<6>(0.,0.,-360.,0.,0.,0.)); // setRxw(Rxw() - 360);
-    if (R()[2] <-360) addR(Vector<6>(0.,0., 360.,0.,0.,0.)); // setRxw(Rxw() + 360);
-    if (R()[4] > 360) addR(Vector<6>(0.,0.,0.,0.,-360.,0.)); // setRyw(Ryw() - 360);
-    if (R()[4] <-360) addR(Vector<6>(0.,0.,0.,0., 360.,0.)); // setRyw(Ryw() + 360);
-    if (R()[5] > 360) addR(Vector<6>(0.,0.,0.,0.,0.,-360.)); // setRzw(Rzw() - 360);
-    if (R()[5] <-360) addR(Vector<6>(0.,0.,0.,0.,0., 360.)); // setRzw(Rzw() + 360);
+    if (m_rot()[0] > 360) addm_rot(Vector<3>(-360.,0.,0.));
+    if (m_rot()[0] <-360) addm_rot(Vector<3>( 360.,0.,0.));
+    if (fabs (m_rot()[0]) < 1e-3)  setm_rot(Vector<3>(0., m_rot()[1], m_rot()[2]));
+    if (m_rot()[1] > 360) addm_rot(Vector<3>(0.,-360.,0.));
+    if (m_rot()[1] <-360) addm_rot(Vector<3>(0., 360.,0.));
+    if (fabs (m_rot()[1]) < 1e-3)  setm_rot(Vector<3>(m_rot()[0], 0., m_rot()[2]));
+    if (m_rot()[2] > 360) addm_rot(Vector<3>(0.,0.,-360.));
+    if (m_rot()[2] <-360) addm_rot(Vector<3>(0.,0., 360.));
+    if (fabs (m_rot()[2]) < 1e-3) setm_rot(Vector<3>(m_rot()[0], m_rot()[1], 0.));
+    if (R()[2] > 360) addR(Vector<6>(0.,0.,-360.,0.,0.,0.));
+    if (R()[2] <-360) addR(Vector<6>(0.,0., 360.,0.,0.,0.));
+    if (R()[4] > 360) addR(Vector<6>(0.,0.,0.,0.,-360.,0.));
+    if (R()[4] <-360) addR(Vector<6>(0.,0.,0.,0., 360.,0.));
+    if (R()[5] > 360) addR(Vector<6>(0.,0.,0.,0.,0.,-360.));
+    if (R()[5] <-360) addR(Vector<6>(0.,0.,0.,0.,0., 360.));
 }
 
 /// display some info about current object and its transformations
@@ -916,10 +913,10 @@ void C4DView::initializeGL (void) {
         glPushMatrix();                                 //  save the transformation Matrix
         // glTranslated(0.0, /*Size ()*.75*/0., 0);     //  set the camera position
 
-        glTranslated (m_transX(), m_transY(), m_camZ());      //  apply object translation
-        glRotated(m_rotX(), 1.0, 0.0, 0.0);               //   -"-    -"-     rotation
-        glRotated(m_rotY(), 0.0, 1.0, 0.0);
-        glRotated(m_rotZ(), 0.0, 0.0, 1.0);
+        glTranslated (m_trans()[0], m_trans()[1], m_trans()[2]);      //  apply object translation
+        glRotated(m_rot()[0], 1.0, 0.0, 0.0);               //   -"-    -"-     rotation
+        glRotated(m_rot()[1], 0.0, 1.0, 0.0);
+        glRotated(m_rot()[2], 0.0, 0.0, 1.0);
 
 
         SingletonLog::Instance().log("  RenderScene");
@@ -959,8 +956,8 @@ void C4DView::InitFog  (void) {
     if (getFog()) {
         glEnable (GL_FOG);                      //  enable depth cueing
         SetupDepthCue(
-            fabs(m_camZ())-Size()/2.,
-            fabs(m_camZ())+Size()/2.*Globals::Instance().SR3);
+            fabs(m_trans()[2])-Size()/2.,
+            fabs(m_trans()[2])+Size()/2.*Globals::Instance().SR3);
     } else
         glDisable (GL_FOG);                     //  disable depth cueing
 }
@@ -1003,6 +1000,6 @@ void C4DView::resizeGL (int width, int height) {
     glTranslatef (0, 0, -distance());
     if (getFog())
         SetupDepthCue(
-            fabs(m_camZ())-Size()/2.,
-            fabs(m_camZ())+Size()/2.*Globals::Instance().SR3);
+            fabs(m_trans()[2])-Size()/2.,
+            fabs(m_trans()[2])+Size()/2.*Globals::Instance().SR3);
 }
