@@ -322,5 +322,3 @@ void C4DView::MouseHandler4D::mouseDoubleClickEvent (QMouseEvent *) {
 
     parent->UpdateStatus ("DoubleClick");
 }
-
-
