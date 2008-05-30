@@ -4,7 +4,7 @@ CONFIG = debug qt warn_on uic
 
 QT += opengl
 
-VERSION = 0.3.3
+VERSION = 0.5.1
 
 ###
 ###     move all temporary files out of sight into subdirectory tmp
@@ -75,8 +75,8 @@ HEADERS += Loki/SingletonHolder.H
 INCLUDEPATH += .
 DEPENDPATH += .
 HEADERS += Globals.H Help.H Matrix.H Vector.H Log.H Color.H ColorManager.H \
-           Rotation.H NotYetImplementedException.H
-SOURCES += Globals.C Help.C Main.C ColorManager.C Rotation.C
+           Rotation.H NotYetImplementedException.H Parser.H
+SOURCES += Globals.C Help.C Main.C ColorManager.C Rotation.C Parser.C
 
 ###
 ################################################################################
