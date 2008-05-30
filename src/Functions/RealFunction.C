@@ -75,10 +75,9 @@ void RealFunction::InitMem (void) {
 
             Xscr[t][u].resize(getVsteps()+2);
             Xtrans[t][u].resize(getVsteps()+2);
-        }                           //  for (unsigned u = 0; u <= getUsteps()+1; u++)
-
-    }                               //  for (unsigned t = 0; t <= getTsteps()+1; t++)
-}                                   //  InitMem ()
+        }
+    }
+}
 
 /// Allocate and initialize X[][][] with values of f()
 /** Call InitMem() above */
@@ -125,10 +124,10 @@ void RealFunction::Initialize () {
  *  @param getDu() stepsize in u
  *  @param vmin minimal value in v
  *  @param vmax maximal value in v
- *  @param getDv() stepsize in v                                                   */
+ *  @param getDv() stepsize in v                                              */
 void RealFunction::ReInit(double _tmin, double _tmax, double _dt,
-                      double _umin, double _umax, double _du,
-                      double _vmin, double _vmax, double _dv) {
+                          double _umin, double _umax, double _du,
+                          double _vmin, double _vmax, double _dv) {
 
     SingletonLog::Instance()  << "Function::ReInit(" << _tmin << ", " << _tmax << ", " << _dt << ", "
 	<< _umin << ", " << _umax<< ", " << _du << ", " << _vmin << ", " << _vmax << ", " << _dv << ")\n";
@@ -147,33 +146,16 @@ void RealFunction::ReInit(double _tmin, double _tmax, double _dt,
 /** \todo As I look at it, i think this could be optimized by making the
  *        transformation matrices static and only canging the corresponding
  *        entries... but how to do this beautifully, i don't know
- *  @param thetaxy rotation around xy plane (z axis); should be ignored because
- *                 3D rotation takes care of it, but isn't
- *  @param thetaxz rotation around xz plane (y axis); should be ignored because
- *                 3D rotation takes care of it, but isn't
- *  @param thetaxw rotation around xw plane
- *  @param thetayz rotation around xy plane (x axis); should be ignored because
- *                 3D rotation takes care of it, but isn't
- *  @param thetayw rotation around yw plane
- *  @param thetazw rotation around zw plane
- *  @param tx translation in x direction
- *  @param ty translation in y direction
- *  @param tz translation in z direction
- *  @param tw translation in w direction                                      */
-void RealFunction::Transform (double thetaxy, double thetaxz, double thetaxw,
-                          double thetayz, double thetayw, double thetazw,
-                          double tx, double ty, double tz, double tw) {
-    Matrix<4> Rxy = Matrix<4> (0, 1, thetaxy), Rxz = Matrix<4> (0, 2, thetaxz),
-              Rxw = Matrix<4> (0, 3, thetaxw), Ryz = Matrix<4> (1, 2, thetayz),
-              Ryw = Matrix<4> (1, 3, thetayw), Rzw = Matrix<4> (2, 3, thetazw),
-              Rxyz = Rxy*Rxz, Rxwyz = Rxw*Ryz, Ryzw = Ryw*Rzw,
-              Rot = Rxyz*Rxwyz*Ryzw;
-    Vector<4> trans = Vector<4>(tx, ty, tz, tw);
+ *  @param R rotation
+ *  @param T translation                                                      */
+void RealFunction::Transform (const VecMath::Rotation<4> &R,
+                              const VecMath::Vector<4> &T) {
+    Matrix<4> Rot(R);
 
     for (unsigned t = 0; t <= getTsteps()+1; t++)
         for (unsigned u = 0; u <= getUsteps()+1; u++)
             for (unsigned v = 0; v <= getVsteps()+1; v++)
-                Xtrans[t][u][v] = (Rot*X[t][u][v])+trans;
+                Xtrans[t][u][v] = (Rot*X[t][u][v])+T;
 }
 
 /// Projects a RealFunction into three-space

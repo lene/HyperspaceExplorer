@@ -90,11 +90,12 @@ class Function {
         Function (const QString &name, ParameterMap _parms = ParameterMap());
         virtual ~Function() { }
 
-        virtual void Transform (double Rxy, double Rxz, double Rxw,
-                                double Ryz, double Ryw, double Rzw,
-                                double Tx, double Ty, double Tz, double Tw) = 0;
+        virtual void Transform (const VecMath::Rotation<4> &R,
+//                                double Rxy, double Rxz, double Rxw,
+//                                double Ryz, double Ryw, double Rzw,
+                                const VecMath::Vector<4> &T) = 0;
         /// Overloaded function executing the transform to the default state
-        void Transform (void) { Transform (0, 0, 0, 0, 0, 0,  0, 0, 0, 0); }
+        void Transform() { Transform (VecMath::Rotation<4>(),  VecMath::Vector<4>()); }
 
         virtual void Project (double ScrW, double CamW, bool DepthCue4D) = 0;
         virtual void Draw (void) = 0;

@@ -74,8 +74,9 @@ HEADERS += Loki/SingletonHolder.H
 ###
 INCLUDEPATH += .
 DEPENDPATH += .
-HEADERS += Globals.H Help.H Matrix.H Vector.H Log.H Color.H ColorManager.H
-SOURCES += Globals.C Help.C Main.C ColorManager.C
+HEADERS += Globals.H Help.H Matrix.H Vector.H Log.H Color.H ColorManager.H \
+           Rotation.H NotYetImplementedException.H
+SOURCES += Globals.C Help.C Main.C ColorManager.C Rotation.C
 
 ###
 ################################################################################

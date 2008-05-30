@@ -162,28 +162,14 @@ Function::vec4vec1D Surface::df (double uu, double vv) {
 /** as I look at it, i think this could be optimized by making the transformation
  *  matrices static and only canging the corresponding entries... but how to
  *  make this beautifully, i don't know
- *  @param thetaxy rotation around xy plane (z axis);  ignored because 3D rotation takes care of it
- *  @param thetaxz rotation around xz plane (y axis);  ignored because 3D rotation takes care of it
- *  @param thetaxw rotation around xw plane
- *  @param thetayz rotation around xy plane (x axis);  ignored because 3D rotation takes care of it
- *  @param thetayw rotation around yw plane
- *  @param thetazw rotation around zw plane
- *  @param tx translation in x direction
- *  @param ty translation in y direction
- *  @param tz translation in z direction
- *  @param tw translation in w direction                                      */
-void Surface::Transform (double, double, double thetaxw,
-                         double, double thetayw, double thetazw,
-                         double tx, double ty, double tz, double tw) {
-    Matrix<4> Rxw = Matrix<4> (0, 3, thetaxw),
-              Ryw = Matrix<4> (1, 3, thetayw),
-              Rzw = Matrix<4> (2, 3, thetazw),
-              Rxwyw = Rxw*Ryw, Rot = Rxwyw*Rzw;
-    Vector<4> trans = Vector<4> (tx, ty, tz, tw);
+ *  @param R rotation
+ *  @param T translation                                                      */
+void Surface::Transform (const VecMath::Rotation<4> &R, const VecMath::Vector<4> &T) {
+    Matrix<4> Rot(R);
 
     for (unsigned t = 0; t <= getTsteps()+1; t++)
         for (unsigned u = 0; u <= getUsteps()+1; u++)
-            Xtrans[t][u] = (Rot*X[t][u])+trans;
+            Xtrans[t][u] = (Rot*X[t][u])+T;
 }
 
 /** projects a Surface into three-space

@@ -124,9 +124,8 @@ class RealFunction: public RealBase {
                       ParameterMap _parms = ParameterMap());
         virtual ~RealFunction() { }
 
-        virtual void Transform (double Rxy, double Rxz, double Rxw,
-                                double Ryz, double Ryw, double Rzw,
-                                double Tx, double Ty, double Tz, double Tw);
+        virtual void Transform (const VecMath::Rotation<4> &R,
+                                const VecMath::Vector<4> &T);
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
         virtual void Draw (void);
 

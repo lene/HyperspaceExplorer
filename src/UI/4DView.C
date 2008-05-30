@@ -24,6 +24,7 @@
 #include "ColorManager.H"
 
 #include "Matrix.H"
+#include "Rotation.H"
 
 #include "Function.H"
 #include "Surface.H"
@@ -40,6 +41,7 @@ using std::auto_ptr;
 using std::vector;
 
 using VecMath::Vector;
+using VecMath::Rotation;
 using VecMath::Matrix;
 
 GLfloat C4DView::LightPos[4] = { 4., 4., 8., 0. };
@@ -311,7 +313,7 @@ double C4DView::Benchmark3D (int num_steps,
 
     Vector<3> step(step_x, step_y, step_z);
 //    double Rx = m_rotX(), Ry = m_rotY(), Rz = m_rotZ();
-    Vector<3> R = m_rot();
+    Rotation<3> R = m_rot();
 
     for (int step = 0; step < num_steps; step++) {
         addm_rot(step);
@@ -336,7 +338,8 @@ double C4DView::Benchmark4D (int num_steps,
 
   for (int step = 0; step < num_steps; step++) {
     Rxw += step_xw; Ryw += step_yw; Rzw += step_zw;
-    Transform (0., 0. ,Rxw, 0. , Ryw, Rzw, VecMath::Vector<4>(0., 0., 0., 0.));
+    Transform (VecMath::Rotation<4>(0., 0. ,Rxw, 0. , Ryw, Rzw),
+               VecMath::Vector<4>(0., 0., 0., 0.));
     if (display) {
       Redraw ();
       UpdateStatus (QString::number ((100*step)/num_steps)+"% done");
@@ -352,18 +355,18 @@ double C4DView::Benchmark4D (int num_steps,
  *  Writes image to file too, if wanted.                                      */
 void C4DView::OnTimer() {
 
-    addm_rot(dT());
+    addm_rot(dR3());
 //    setm_rotX(m_rotX() + dT()[0]); setm_rotY(m_rotY() + dT()[1]); setm_rotZ(m_rotZ() + dT()[2]);   //  update 3D viewpoint values
 
     SingletonLog::Instance() << "C4DView::OnTimer()\n"
-            << "  dT = " << dT() << "\n"
+            << "  dT = " << dR3() << "\n"
             << "  dR = " << dR() << "\n";
 
-    if (dR().sqnorm() != 0.) {     //  4D viewpoint animated?
+    if (dR()) {     //  4D viewpoint animated?
 
         addR(dR());
 
-        Transform (R()[0], R()[1], R()[2], R()[3], R()[4], R()[5], T());   // transform
+        Transform (R(), T());   // transform
         Redraw ();                                                  // implicit OnPaint()
         } else OnPaint ();                                              // explicit OnPaint()
 
@@ -440,38 +443,23 @@ void C4DView::aboutQt() {
 
 /// Application of translations and rotations
 /** Calls F->Transform () and transforms the coordinate cross
- *  @param thetaxy rotation around xy plane (z axis); ignored because 3D rotation takes care of it
- *  @param thetaxz rotation around xz plane (y axis); ignored because 3D rotation takes care of it
- *  @param thetaxw rotation around xw plane
- *  @param thetayz rotation around xy plane (x axis); ignored because 3D rotation takes care of it
- *  @param thetayw rotation around yw plane
- *  @param thetazw rotation around zw plane
- *  @param tx translation in x direction
- *  @param ty translation in y direction
- *  @param tz translation in z direction
- *  @param tw translation in w direction                            */
-void C4DView::Transform (double thetaxy, double thetaxz, double thetaxw,
-                         double thetayz, double thetayw, double thetazw,
-                         const VecMath::Vector<4> &t) {
+ *  @param R rotation
+ *  @param T translation                                                      */
+void C4DView::Transform(const VecMath::Rotation<4> &R,
+                        const VecMath::Vector<4> &T) {
     if (F().get())
-        F()->Transform (thetaxy, thetaxz, thetaxw, thetayz, thetayw, thetazw,
-                      t[0], t[1], t[2], t[3]);
+        F()->Transform (R, T);
     else return;
 
-    Matrix<4> Rxy = Matrix<4> (0, 1, thetaxy), Rxz = Matrix<4> (0, 2, thetaxz),
-              Rxw = Matrix<4> (0, 3, thetaxw), Ryz = Matrix<4> (1, 2, thetayz),
-              Ryw = Matrix<4> (1, 3, thetayw), Rzw = Matrix<4> (2, 3, thetazw),
-              Rxyz = Rxy*Rxz, Rxwyz = Rxw*Ryz, Ryzw = Ryw*Rzw,
-              Rot = Rxyz*Rxwyz*Ryzw;
-
+    Matrix<4> Rot(R);
     for (unsigned i = 0; i < 4; i++)
         for (unsigned j = 0; j < 2; j++)
-            CrossTrans[i][j] = (Rot*Cross[i][j])+t;
+            CrossTrans[i][j] = (Rot*Cross[i][j])+T;
 }
 
 /// Projects F and coordinate cross into three-space
 /** */
-void C4DView::Project (void) {
+void C4DView::Project(void) {
     if (F().get()) F()->Project (ScrW(), CamW(), DepthCue4D());
     else return;
 
@@ -487,7 +475,7 @@ void C4DView::Project (void) {
 
 /// draw the projected Object (onto screen or into GL list, as it is)
 /** */
-void C4DView::Draw () {
+void C4DView::Draw() {
     if (DisplayCoordinates()) DrawCoordinates ();
 
     F()->Draw ();
@@ -664,8 +652,7 @@ void C4DView::DrawCoordinates () {
 /// Err well.. just that!
 /** Starts AnimationTimer, too...                                             */
 void C4DView::StartAnimation () {
-    if (dT() == VecMath::Vector<3>(0.,0.,0.) &&
-        dR() == VecMath::Vector<6>(0.,0.,0.,0.,0.,0.)) {
+    if (!dR3() && !dR()) {
         return;
     }
 
@@ -683,8 +670,8 @@ void C4DView::StopAnimation () {
     SingletonLog::Instance().log("C4DView::StopAnimation ()");
 
     setAnimated(false);
-    setdR(VecMath::Vector<6>(0.,0.,0.,0.,0.,0.));
-    setdT(VecMath::Vector<3>(0.,0.,0.));
+    setdR(VecMath::Rotation<4>());
+    setdR3(VecMath::Rotation<3>());
     AnimationTimer()->stop ();
     AnimateRandomTimer()->stop ();
     setCurrentlyRendering(false);
@@ -698,7 +685,7 @@ void C4DView::RandomAnimation() {
     AnimationTimer()->stop ();
     AnimateRandomTimer()->stop ();
 
-    setdR(VecMath::Vector<6>(0.,0.,double(rand ())/RAND_MAX,0.,double(rand ())/RAND_MAX,double(rand ())/RAND_MAX));
+    setdR(VecMath::Rotation<4>(0.,0.,double(rand ())/RAND_MAX,0.,double(rand ())/RAND_MAX,double(rand ())/RAND_MAX));
     StartAnimation ();
 
     AnimateRandomTimer()->start (10000);
@@ -755,21 +742,21 @@ void C4DView::writeFrame() {
 
 /// Keep all rotation angles in the interval [-360 degrees, 360 degrees]
 void C4DView::checkAnglesForOverflow() {
-    if (m_rot()[0] > 360) addm_rot(Vector<3>(-360.,0.,0.));
-    if (m_rot()[0] <-360) addm_rot(Vector<3>( 360.,0.,0.));
-    if (fabs (m_rot()[0]) < 1e-3)  setm_rot(Vector<3>(0., m_rot()[1], m_rot()[2]));
-    if (m_rot()[1] > 360) addm_rot(Vector<3>(0.,-360.,0.));
-    if (m_rot()[1] <-360) addm_rot(Vector<3>(0., 360.,0.));
-    if (fabs (m_rot()[1]) < 1e-3)  setm_rot(Vector<3>(m_rot()[0], 0., m_rot()[2]));
-    if (m_rot()[2] > 360) addm_rot(Vector<3>(0.,0.,-360.));
-    if (m_rot()[2] <-360) addm_rot(Vector<3>(0.,0., 360.));
-    if (fabs (m_rot()[2]) < 1e-3) setm_rot(Vector<3>(m_rot()[0], m_rot()[1], 0.));
-    if (R()[2] > 360) addR(Vector<6>(0.,0.,-360.,0.,0.,0.));
-    if (R()[2] <-360) addR(Vector<6>(0.,0., 360.,0.,0.,0.));
-    if (R()[4] > 360) addR(Vector<6>(0.,0.,0.,0.,-360.,0.));
-    if (R()[4] <-360) addR(Vector<6>(0.,0.,0.,0., 360.,0.));
-    if (R()[5] > 360) addR(Vector<6>(0.,0.,0.,0.,0.,-360.));
-    if (R()[5] <-360) addR(Vector<6>(0.,0.,0.,0.,0., 360.));
+    if (m_rot()[0] > 360) addm_rot(Rotation<3>(-360.,0.,0.));
+    if (m_rot()[0] <-360) addm_rot(Rotation<3>( 360.,0.,0.));
+    if (fabs (m_rot()[0]) < 1e-3)  setm_rot(Rotation<3>(0., m_rot()[1], m_rot()[2]));
+    if (m_rot()[1] > 360) addm_rot(Rotation<3>(0.,-360.,0.));
+    if (m_rot()[1] <-360) addm_rot(Rotation<3>(0., 360.,0.));
+    if (fabs (m_rot()[1]) < 1e-3)  setm_rot(Rotation<3>(m_rot()[0], 0., m_rot()[2]));
+    if (m_rot()[2] > 360) addm_rot(Rotation<3>(0.,0.,-360.));
+    if (m_rot()[2] <-360) addm_rot(Rotation<3>(0.,0., 360.));
+    if (fabs (m_rot()[2]) < 1e-3) setm_rot(Rotation<3>(m_rot()[0], m_rot()[1], 0.));
+    if (R()[2] > 360) addR(Rotation<4>(0.,0.,-360.,0.,0.,0.));
+    if (R()[2] <-360) addR(Rotation<4>(0.,0., 360.,0.,0.,0.));
+    if (R()[4] > 360) addR(Rotation<4>(0.,0.,0.,0.,-360.,0.));
+    if (R()[4] <-360) addR(Rotation<4>(0.,0.,0.,0., 360.,0.));
+    if (R()[5] > 360) addR(Rotation<4>(0.,0.,0.,0.,0.,-360.));
+    if (R()[5] <-360) addR(Rotation<4>(0.,0.,0.,0.,0., 360.));
 }
 
 /// display some info about current object and its transformations

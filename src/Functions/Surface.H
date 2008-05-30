@@ -103,10 +103,8 @@ class Surface: public SurfaceBase {
                  ParameterMap _parms = ParameterMap());
         virtual ~Surface() { }
 
-        virtual void Transform (double Rxy, double Rxz, double Rxw,
-                                double Ryz, double Ryw, double Rzw,
-                                double Tx, double Ty, double Tz, double Tw);
-        void Transform (void) { Transform (0, 0, 0, 0, 0, 0,  0, 0, 0, 0); }
+        virtual void Transform (const VecMath::Rotation<4> &R,
+                                const VecMath::Vector<4> &T);
 
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
         virtual void Draw (void);

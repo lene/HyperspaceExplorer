@@ -14,6 +14,8 @@
 #include <iomanip>
 
 #include "Vector.H"
+#include "NotYetImplementedException.H"
+#include "Globals.H"
 
 namespace VecMath {
     /**  Matrix<D, N>: a DxD matrix of numbers of type N
@@ -34,8 +36,9 @@ namespace VecMath {
              *  \return \f$ M_{ij} \f$                                        */
             N &operator () (unsigned i, unsigned j) { return M[i][j]; }
 
-            Matrix<D, N> operator * (const Matrix<D, N> &) const;
-            Vector<D, N> operator * (const Vector<D, N> &);
+            Matrix<D, N> operator *=(const Matrix<D, N> &);
+            Matrix<D, N> operator *(const Matrix<D, N> &) const;
+            Vector<D, N> operator *(const Vector<D, N> &);
 
             Matrix<D, N> operator - ();
 
@@ -65,9 +68,9 @@ namespace VecMath {
      *  @param Rzw	rotation around zw plane                                  */
     template <unsigned D, typename N>
             Matrix<D, N>::Matrix (N Rxy, N Rxz, N Rxw, N Ryz, N Ryw, N Rzw) {
-        std::cerr << "Matrix<" << D <<">::Matrix<" << D
-                  <<"> (Rxy, Rxz, Rxw, Ryz, Ryw, Rzw) not yet implemented!"
-                  << std::endl;
+        throw NotYetImplementedException(
+            "Matrix<"+Global::itoa(D)+">::Matrix<"+Global::itoa(D)+
+                "> (Rxy, Rxz, Rxw, Ryz, Ryw, Rzw)");
         abort();
     }
 
@@ -89,6 +92,21 @@ namespace VecMath {
     }
 
     /** Matrix multiplication
+     *  @param B Matrix to multiply with
+     *  @return *this * B                                                     */
+    template <unsigned D, typename N> Matrix<D, N>
+            Matrix<D, N>::operator *=(const Matrix<D, N> &B) {
+        for (unsigned i = 0; i < D; i++)            //  i: row
+            for (unsigned j = 0; j < D; j++) {      //  j: col
+                N s = 0;
+                for (unsigned k = 0; k < D; k++)
+                    s += M[i][k]*B.M[k][j];
+                M[i][j] = s;
+            }
+        return *this;
+    }
+
+    /** Matrix multiplication
      *  @param B	Matrix to multiply with
      *  @return	*this * B                                                     */
     template <unsigned D, typename N> Matrix<D, N>
@@ -105,14 +123,14 @@ namespace VecMath {
     }
 
     /** apply the Matrix on a vector
-     *  @param V	Vector to multiply with (project)
-     *  @return	*this * V                                                     */
+     *  @param V Vector to multiply with (project)
+     *  @return *this * V                                                     */
     template <unsigned D, typename N>
             Vector<D, N> Matrix<D, N>::operator * (const Vector<D, N> &V) {
         Vector<D, N> W;
-        for (unsigned i = 0; i < D; i++) {				//	i: row
+        for (unsigned i = 0; i < D; i++) {              //  i: row
             N s = 0;
-            for (unsigned j = 0; j < D; j++)			//	j: col
+            for (unsigned j = 0; j < D; j++)            //  j: col
                 s += M[i][j]*V[j];
             W[i] = s;
         }
@@ -124,8 +142,8 @@ namespace VecMath {
     template <unsigned D, typename N>
             Matrix<D, N> Matrix<D, N>::operator - () {
         Matrix<D, N> B (*this);
-        for (unsigned i = 0; i < D; i++)					//	i: row
-            for (unsigned j = 0; j < D; j++) {				//	j: col
+        for (unsigned i = 0; i < D; i++)                    //  i: row
+            for (unsigned j = 0; j < D; j++) {              //  j: col
                 B.M[i][j] = -M[i][j];
             }
         return B;

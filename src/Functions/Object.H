@@ -39,9 +39,8 @@ class Object: public Function {
                              double, double, double,
                              double, double, double);
 
-        virtual void Transform (double Rxy, double Rxz, double Rxw,
-                                double Ryz, double Ryw, double Rzw,
-                                double Tx, double Ty, double Tz, double Tw);
+        virtual void Transform (const VecMath::Rotation<4> &R,
+                                const VecMath::Vector<4> &T);
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
         virtual void Draw (void);
         virtual VecMath::Vector<4> &operator () (double, double, double) {
@@ -166,9 +165,8 @@ public:
             VecMath::Vector<4> _center = VecMath::Vector<4>(0., 0.,0., 0.));
     virtual ~Sponge ();
 
-    virtual void Transform (double Rxy, double Rxz, double Rxw,
-                            double Ryz, double Ryw, double Rzw,
-                            double Tx, double Ty, double Tz, double Tw);
+    virtual void Transform (const VecMath::Rotation<4> &R,
+                            const VecMath::Vector<4> &T);
     virtual void Project (double ScrW, double CamW, bool DepthCue4D);
     virtual void Draw (void);
 
@@ -267,9 +265,8 @@ class Gasket: public Pyramid {
                 VecMath::Vector<4> Center = VecMath::Vector<4> (0., 0.,0., 0.));
         virtual ~Gasket() { }
 
-        virtual void Transform (double Rxy, double Rxz, double Rxw,
-                                double Ryz, double Ryw, double Rzw,
-                                double Tx, double Ty, double Tz, double Tw);
+        virtual void Transform (const VecMath::Rotation<4> &R,
+                                const VecMath::Vector<4> &T);
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
         virtual void Draw (void);
 

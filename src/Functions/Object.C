@@ -68,18 +68,11 @@ void Object::Initialize() {
  *  @param ty translation in y direction
  *  @param tz translation in z direction
  *  @param tw translation in w direction                                      */
-void Object::Transform (double, double, double thetaxw,
-                        double, double thetayw, double thetazw,
-                        double tx, double ty, double tz, double tw) {
-    Matrix<4> Rxw = Matrix<4> (0, 3, thetaxw),
-                    Ryw = Matrix<4> (1, 3, thetayw),
-                    Rzw = Matrix<4> (2, 3, thetazw),
-                    Rxwyw = Rxw*Ryw,
-                    Rot = Rxwyw*Rzw;
-    Vector<4> trans = Vector<4>(tx, ty, tz, tw);
-
+void Object::Transform (const VecMath::Rotation<4> &R,
+                        const VecMath::Vector<4> &T) {
+    Matrix<4> Rot(R);
     for (unsigned i = 0; i < NumVertices; i++)
-        Xtrans[i] = (Rot*X[i])+trans;
+        Xtrans[i] = (Rot*X[i])+T;
 }
 
 /// Projects an Object into three-space
@@ -146,7 +139,6 @@ Hypercube::Hypercube (double _a, const Vector<4> &_center):
  *  of the Hypercube by declaring the appropriate squares as a list in
  *  \p Surface[][].                                                           */
 void Hypercube::Initialize(void) {
-//    SingletonLog::Instance().log("Hypercube::Initialize()");
     for (int x = 0; x <= 1; x++)
         for (int y = 0; y <= 1; y++)
             for (int z = 0; z <= 1; z++)
@@ -323,14 +315,10 @@ void Sponge::Initialize(void) {
  *  @param ty translation in y direction
  *  @param tz translation in z direction
  *  @param tw translation in w direction                                      */
-void Sponge::Transform (double Thetaxy, double Thetaxz, double Thetaxw,
-                        double Thetayz, double Thetayw, double Thetazw,
-                        double Tx, double Ty, double Tz, double Tw) {
-//    SingletonLog::Instance().log("Sponge::Transform()");
+void Sponge::Transform (const VecMath::Rotation<4> &R,
+                        const VecMath::Vector<4> &T) {
     for (unsigned i = 0; i < List.size (); i++)
-        List[i]->Transform (Thetaxy, Thetaxz, Thetaxw,
-                            Thetayz, Thetayw, Thetazw,
-                            Tx, Ty, Tz, Tw);
+        List[i]->Transform (R, T);
 }
 
 
@@ -489,11 +477,10 @@ void Gasket::Initialize() {
  *  @param ty translation in y direction
  *  @param tz translation in z direction
  *  @param tw translation in w direction                                      */
-void Gasket::Transform (double Thetaxy, double Thetaxz, double Thetaxw, double Thetayz, double Thetayw, double Thetazw,
-                        double Tx, double Ty, double Tz, double Tw) {
+void Gasket::Transform (const VecMath::Rotation<4> &R,
+                        const VecMath::Vector<4> &T) {
     for (unsigned i = 0; i < List.size (); i++)
-        List[i]->Transform (Thetaxy, Thetaxz, Thetaxw, Thetayz, Thetayw, Thetazw,
-                            Tx, Ty, Tz, Tw);
+        List[i]->Transform (R, T);
 }
 
 /// projects a Gasket into three-space

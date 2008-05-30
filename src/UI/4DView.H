@@ -13,6 +13,7 @@
 #include <QGLWidget>
 
 #include "ValuesDialogImpl.H"
+#include "Rotation.H"
 
 class QPaintEvent;
 class QStatusBar;
@@ -178,11 +179,9 @@ class C4DView : public QGLWidget {
         void aboutQt ();
 
     private:
-        void Transform(double Rxy, double Rxz, double Rxw,
-                       double Ryz, double Ryw, double Rzw,
-                       const VecMath::Vector<4> &T);
+        void Transform(const VecMath::Rotation<4> &R, const VecMath::Vector<4> &T);
         /// Overloaded function executing the transform to the default state
-        void Transform() { Transform (0, 0, 0, 0, 0, 0,  VecMath::Vector<4>(0., 0., 0., 0.)); }
+        void Transform() { Transform (VecMath::Rotation<4>(),  VecMath::Vector<4>()); }
         void Project();
         void Draw();
 
@@ -226,25 +225,25 @@ class C4DView : public QGLWidget {
         const VecMath::Vector<4> &T() { return pImpl->T; }
         void addT(const VecMath::Vector<4> &_dT) { pImpl->T += _dT; }
 
-        void setR(VecMath::Vector<6> _r) { pImpl->R = _r; }
-        const VecMath::Vector<6> &R() { return pImpl->R; }
-        void addR(const VecMath::Vector<6> &_dR) { pImpl->R += _dR; }
+        void setR(VecMath::Rotation<4> _r) { pImpl->R = _r; }
+        const VecMath::Rotation<4> &R() { return pImpl->R; }
+        void addR(const VecMath::Rotation<4> &_dR) { pImpl->R += _dR; }
 
-        void setdT(VecMath::Vector<3> _dt) { pImpl->dT = _dt; }
-        const VecMath::Vector<3> &dT() { return pImpl->dT; }
-        void adddT(const VecMath::Vector<3> &_ddT) { pImpl->dT += _ddT; }
+        void setdR3(VecMath::Rotation<3> _dr) { pImpl->dR3 = _dr; }
+        const VecMath::Rotation<3> &dR3() { return pImpl->dR3; }
+        void adddR3(const VecMath::Rotation<3> &_ddr) { pImpl->dR3 += _ddr; }
 
-        void setdR(VecMath::Vector<6> _dr) { pImpl->dR = _dr; }
-        const VecMath::Vector<6> &dR() { return pImpl->dR; }
-        void adddR(const VecMath::Vector<6> &_ddR) { pImpl->dR += _ddR; }
+        void setdR(VecMath::Rotation<4> _dr) { pImpl->dR = _dr; }
+        const VecMath::Rotation<4> &dR() { return pImpl->dR; }
+        void adddR(const VecMath::Rotation<4> &_ddR) { pImpl->dR += _ddR; }
 
-        void setm_rot(VecMath::Vector<3, GLdouble> _r) {
+        void setm_rot(VecMath::Rotation<3, GLdouble> _r) {
             pImpl->m_rot = _r;
         }
-        const VecMath::Vector<3, GLdouble> &m_rot() {
+        const VecMath::Rotation<3, GLdouble> &m_rot() {
             return pImpl->m_rot;
         }
-        void addm_rot(const VecMath::Vector<3, GLdouble> &_dmr) {
+        void addm_rot(const VecMath::Rotation<3, GLdouble> &_dmr) {
             pImpl->m_rot += _dmr;
         }
 
@@ -257,9 +256,6 @@ class C4DView : public QGLWidget {
         void addm_trans(const VecMath::Vector<3, GLdouble> &_dmt) {
             pImpl->m_trans += _dmt;
         }
-
-//        void setm_camZ(GLdouble _cz) { pImpl->m_camZ = _cz; }
-//        GLdouble m_camZ() const { return pImpl->m_camZ; }
 
         void setCamW(double _cw) { pImpl->CamW = _cw; }
         double CamW() const { return pImpl->CamW; }
@@ -355,7 +351,7 @@ class C4DView : public QGLWidget {
                 F(std::auto_ptr<Function>()),
 
                 T(0.,0.,0.,0.), R(0.,0.,0.,0.,0.,0.),
-                dT(0.,0.,0.), dR(0.,0.,0.,0.,0.,0.),
+                dR3(0.,0.,0.), dR(0.,0.,0.,0.,0.,0.),
                 m_rot(15., 15., 0.), m_trans(0., 0.,-10.),
 
                 CamW (-3.), ScrW (0.),
@@ -381,12 +377,12 @@ class C4DView : public QGLWidget {
             std::auto_ptr<Function> F;  ///< the Function object currently displayed
 
             VecMath::Vector<4> T;   ///< coordinates for 4D translation
-            VecMath::Vector<6> R;   ///< angles for 4D rotation
+            VecMath::Rotation<4> R;   ///< angles for 4D rotation
 
-            VecMath::Vector<3> dT;   ///< delta values in 3D translation - for animations
-            VecMath::Vector<6> dR;   ///< delta values in angles for 4D rotation - for animations
+            VecMath::Rotation<3> dR3;   ///< delta values in 3D rotation - for animations
+            VecMath::Rotation<4> dR;   ///< delta values in angles for 4D rotation - for animations
 
-            VecMath::Vector<3, GLdouble> m_rot;     ///< rotation in X, Y and Z
+            VecMath::Rotation<3, GLdouble> m_rot;     ///< rotation in X, Y and Z
             /// translation in X and Y, Z coordinate of camera (distance from object)
             VecMath::Vector<3, GLdouble> m_trans;
 
