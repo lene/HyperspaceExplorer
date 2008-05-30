@@ -118,11 +118,11 @@ typedef std::vector&lt; <a class="el" href="classFunction.html#0c807fd0b7c98ca9c
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> default c'tor.  <a href="#e206568fd4fd4c885e3ccff76345c4e6"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunction.html#54faa047f6af1918e88f662cb5e9bd4b">Function</a> (const QString &amp;name, <a class="el" href="classParameterMap.html">ParameterMap</a> _parms=<a class="el" href="classParameterMap.html">ParameterMap</a>())</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ba589b8ff84f92035c7b74bef6e9c1fc"></a><!-- doxytag: member="Function::Transform" ref="ba589b8ff84f92035c7b74bef6e9c1fc" args="(double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)=0" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>Transform</b> (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)=0</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0a3dff00a3f82504d75f52aa4b77b676"></a><!-- doxytag: member="Function::Transform" ref="0a3dff00a3f82504d75f52aa4b77b676" args="(const VecMath::Rotation&lt; 4 &gt; &amp;R, const VecMath::Vector&lt; 4 &gt; &amp;T)=0" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>Transform</b> (const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;R, const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;T)=0</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="42e2e15e46dc3c126a924ad7701ef69f"></a><!-- doxytag: member="Function::Transform" ref="42e2e15e46dc3c126a924ad7701ef69f" args="(void)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunction.html#42e2e15e46dc3c126a924ad7701ef69f">Transform</a> (void)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1a5bdfce53f7d21a73842e19868e39de"></a><!-- doxytag: member="Function::Transform" ref="1a5bdfce53f7d21a73842e19868e39de" args="()" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunction.html#1a5bdfce53f7d21a73842e19868e39de">Transform</a> ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Overloaded function executing the transform to the default state. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="929005804b69da40687124c28d9116e2"></a><!-- doxytag: member="Function::Project" ref="929005804b69da40687124c28d9116e2" args="(double ScrW, double CamW, bool DepthCue4D)=0" -->
@@ -318,7 +318,7 @@ Zeroes everything
 <p>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>The name of the function in cleartext </dd></dl>
 
-<p>References <a class="el" href="Function_8H-source.html#l00170">functionName</a>.</p>
+<p>References <a class="el" href="Function_8H-source.html#l00171">functionName</a>.</p>
 
 </div>
 </div><p>
@@ -340,7 +340,7 @@ Zeroes everything
 <p>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>number of parameters for the function </dd></dl>
 
-<p>References <a class="el" href="Function_8H-source.html#l00173">parameters</a>.</p>
+<p>References <a class="el" href="Function_8H-source.html#l00174">parameters</a>.</p>
 
 </div>
 </div><p>
@@ -405,9 +405,9 @@ Numerical calculation of the derivatives in t, u and v.
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>gradient in t, u and v as array </dd></dl>
 
-<p>References <a class="el" href="Function_8H-source.html#l00165">F</a>, and <a class="el" href="classFunction.html#68cf5a6e74a4f6a96893079ace0dc228">operator()()</a>.</p>
+<p>References <a class="el" href="Function_8H-source.html#l00166">F</a>, and <a class="el" href="classFunction.html#68cf5a6e74a4f6a96893079ace0dc228">operator()()</a>.</p>
 
-<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00227">RealFunction::normal()</a>.</p>
+<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00210">RealFunction::normal()</a>.</p>
 
 </div>
 </div><p>
@@ -435,7 +435,7 @@ Return the approximate amount of memory needed to display a <a class="el" href="
 
 <p>Reimplemented in <a class="el" href="classGasket.html#e65a8be228108ab1997e0cc80504aa56">Gasket</a>, and <a class="el" href="classSurface.html#185472961fe456f587c160c2cc6e8545">Surface</a>.</p>
 
-<p>Referenced by <a class="el" href="Function_8C-source.html#l00043">Function()</a>, <a class="el" href="Object_8C-source.html#l00257">Sponge::Initialize()</a>, and <a class="el" href="RealFunction_8C-source.html#l00040">RealFunction::RealFunction()</a>.</p>
+<p>Referenced by <a class="el" href="Function_8C-source.html#l00043">Function()</a>, <a class="el" href="Object_8C-source.html#l00249">Sponge::Initialize()</a>, and <a class="el" href="RealFunction_8C-source.html#l00040">RealFunction::RealFunction()</a>.</p>
 
 </div>
 </div><p>
@@ -470,9 +470,9 @@ template&lt;typename T&gt; </div>
 Add a parameter to the list of parameters. 
 <p>
 Add a parameter with a name and a default value to the parameter list. 
-<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, <a class="el" href="Function_8H-source.html#l00178">parameterNames</a>, and <a class="el" href="Function_8H-source.html#l00173">parameters</a>.</p>
+<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, <a class="el" href="Function_8H-source.html#l00179">parameterNames</a>, and <a class="el" href="Function_8H-source.html#l00174">parameters</a>.</p>
 
-<p>Referenced by <a class="el" href="ComplexFunction_8C-source.html#l00178">emz2::emz2()</a>, <a class="el" href="ComplexFunction_8C-source.html#l00150">ez::ez()</a>, <a class="el" href="RealFunction_8C-source.html#l00527">GravitationPotential::GravitationPotential()</a>, <a class="el" href="RealFunction_8C-source.html#l00320">Hypersphere::Hypersphere()</a>, <a class="el" href="RealFunction_8C-source.html#l00785">PolarR::PolarR()</a>, <a class="el" href="RealFunction_8C-source.html#l00695">PolarSin::PolarSin()</a>, <a class="el" href="RealFunction_8C-source.html#l00395">Torus1::Torus1()</a>, <a class="el" href="RealFunction_8C-source.html#l00440">Torus2::Torus2()</a>, and <a class="el" href="ComplexFunction_8C-source.html#l00123">zA::zA()</a>.</p>
+<p>Referenced by <a class="el" href="ComplexFunction_8C-source.html#l00178">emz2::emz2()</a>, <a class="el" href="ComplexFunction_8C-source.html#l00150">ez::ez()</a>, <a class="el" href="RealFunction_8C-source.html#l00510">GravitationPotential::GravitationPotential()</a>, <a class="el" href="RealFunction_8C-source.html#l00303">Hypersphere::Hypersphere()</a>, <a class="el" href="RealFunction_8C-source.html#l00768">PolarR::PolarR()</a>, <a class="el" href="RealFunction_8C-source.html#l00678">PolarSin::PolarSin()</a>, <a class="el" href="RealFunction_8C-source.html#l00378">Torus1::Torus1()</a>, <a class="el" href="RealFunction_8C-source.html#l00423">Torus2::Torus2()</a>, and <a class="el" href="ComplexFunction_8C-source.html#l00123">zA::zA()</a>.</p>
 
 </div>
 </div><p>
@@ -513,7 +513,7 @@ template&lt;typename T&gt; </div>
 Add a parameter to the list of parameters. 
 <p>
 Add a parameter with a name and a default value to the parameter list. 
-<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, <a class="el" href="Function_8H-source.html#l00178">parameterNames</a>, and <a class="el" href="Function_8H-source.html#l00173">parameters</a>.</p>
+<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, <a class="el" href="Function_8H-source.html#l00179">parameterNames</a>, and <a class="el" href="Function_8H-source.html#l00174">parameters</a>.</p>
 
 </div>
 </div><p>
@@ -534,14 +534,14 @@ list of the names of parameters to the function
 <p>
 needed additionally to the <a class="el" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a>, because the map does not keep the parameters in the order they are declared <dl compact><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>move this functionality into <a class="el" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> </dd></dl>
 
-<p>Referenced by <a class="el" href="Function_8H-source.html#l00183">declareParameter()</a>.</p>
+<p>Referenced by <a class="el" href="Function_8H-source.html#l00184">declareParameter()</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="Function_8H-source.html">Function.H</a><li>workspace/HyperspaceExplorer/src/Functions/Function.C<li>workspace/HyperspaceExplorer/src/Functions/FunctionBase.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 19 12:18:26 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 00:40:26 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

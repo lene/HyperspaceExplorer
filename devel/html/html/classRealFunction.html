@@ -63,9 +63,9 @@ Inheritance diagram for RealFunction:</div>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRealFunction.html#330968d75b1e8da0d272360e278799e1">RealFunction</a> (const QString &amp;name, double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv, <a class="el" href="classParameterMap.html">ParameterMap</a> _parms=<a class="el" href="classParameterMap.html">ParameterMap</a>())</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRealFunction.html#ab400a3b8c445044007307fa295f1c89">Transform</a> (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRealFunction.html#dbbc82deb59fbfddd400cb4cc1a003ee">Transform</a> (const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;R, const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;T)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Transforms a <a class="el" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a>.  <a href="#ab400a3b8c445044007307fa295f1c89"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Transforms a <a class="el" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a>.  <a href="#dbbc82deb59fbfddd400cb4cc1a003ee"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRealFunction.html#184141451489cdd8373a47acc9ec673e">Project</a> (double ScrW, double CamW, bool DepthCue4D)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Projects a <a class="el" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> into three-space.  <a href="#184141451489cdd8373a47acc9ec673e"></a><br></td></tr>
@@ -220,69 +220,21 @@ The parent class <em><a class="el" href="classFunction.html" title="A Function i
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="ab400a3b8c445044007307fa295f1c89"></a><!-- doxytag: member="RealFunction::Transform" ref="ab400a3b8c445044007307fa295f1c89" args="(double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)" -->
+<a class="anchor" name="dbbc82deb59fbfddd400cb4cc1a003ee"></a><!-- doxytag: member="RealFunction::Transform" ref="dbbc82deb59fbfddd400cb4cc1a003ee" args="(const VecMath::Rotation&lt; 4 &gt; &amp;R, const VecMath::Vector&lt; 4 &gt; &amp;T)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void RealFunction::Transform           </td>
           <td>(</td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>thetaxy</em>, </td>
+          <td class="paramtype">const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>R</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>thetaxz</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>thetaxw</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>thetayz</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>thetayw</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>thetazw</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>tx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>ty</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>tz</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>tw</em></td><td>&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>T</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -299,22 +251,14 @@ Transforms a <a class="el" href="classRealFunction.html" title="A RealFunction i
 <dl compact><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>As I look at it, i think this could be optimized by making the transformation matrices static and only canging the corresponding entries... but how to do this beautifully, i don't know </dd></dl>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>thetaxy</em>&nbsp;</td><td>rotation around xy plane (z axis); should be ignored because 3D rotation takes care of it, but isn't </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>thetaxz</em>&nbsp;</td><td>rotation around xz plane (y axis); should be ignored because 3D rotation takes care of it, but isn't </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>thetaxw</em>&nbsp;</td><td>rotation around xw plane </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>thetayz</em>&nbsp;</td><td>rotation around xy plane (x axis); should be ignored because 3D rotation takes care of it, but isn't </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>thetayw</em>&nbsp;</td><td>rotation around yw plane </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>thetazw</em>&nbsp;</td><td>rotation around zw plane </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>tx</em>&nbsp;</td><td>translation in x direction </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>ty</em>&nbsp;</td><td>translation in y direction </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>tz</em>&nbsp;</td><td>translation in z direction </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>tw</em>&nbsp;</td><td>translation in w direction </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>R</em>&nbsp;</td><td>rotation </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>T</em>&nbsp;</td><td>translation </td></tr>
   </table>
 </dl>
 
 <p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
-<p>References <a class="el" href="RealFunction_8H-source.html#l00149">X</a>, and <a class="el" href="RealFunction_8H-source.html#l00149">Xtrans</a>.</p>
+<p>References <a class="el" href="RealFunction_8H-source.html#l00148">X</a>, and <a class="el" href="RealFunction_8H-source.html#l00148">Xtrans</a>.</p>
 
 </div>
 </div><p>
@@ -362,7 +306,7 @@ Projects a <a class="el" href="classRealFunction.html" title="A RealFunction is 
 
 <p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
-<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, <a class="el" href="RealFunction_8H-source.html#l00149">X</a>, <a class="el" href="RealFunction_8H-source.html#l00151">Xscr</a>, and <a class="el" href="RealFunction_8H-source.html#l00149">Xtrans</a>.</p>
+<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, <a class="el" href="RealFunction_8H-source.html#l00148">X</a>, <a class="el" href="RealFunction_8H-source.html#l00150">Xscr</a>, and <a class="el" href="RealFunction_8H-source.html#l00148">Xtrans</a>.</p>
 
 </div>
 </div><p>
@@ -388,7 +332,7 @@ Draw the projected <a class="el" href="classFunction.html" title="A Function is 
 
 <p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
-<p>References <a class="el" href="RealFunction_8C-source.html#l00240">DrawPlane()</a>.</p>
+<p>References <a class="el" href="RealFunction_8C-source.html#l00223">DrawPlane()</a>.</p>
 
 </div>
 </div><p>
@@ -478,7 +422,7 @@ Re-initialize a <a class="el" href="classRealFunction.html" title="A RealFunctio
 
 <p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
-<p>References <a class="el" href="RealFunction_8C-source.html#l00085">Initialize()</a>, and <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>.</p>
+<p>References <a class="el" href="RealFunction_8C-source.html#l00084">Initialize()</a>, and <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>.</p>
 
 </div>
 </div><p>
@@ -516,8 +460,8 @@ Re-initialize a <a class="el" href="classRealFunction.html" title="A RealFunctio
 <p>
 Calculate normal to function at a given point in definition set. 
 <p>
-No further assumption is made than that f () is continuous. <br>
- This function is not yet used anywhere, but i like it. <dl compact><dt><b>Parameters:</b></dt><dd>
+No further assumption is made than that f () is continuous.<p>
+This function is not yet used anywhere, but i like it. <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>tt</em>&nbsp;</td><td>t value </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>uu</em>&nbsp;</td><td>u value </td></tr>
@@ -526,7 +470,7 @@ No further assumption is made than that f () is continuous. <br>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>surface normal, normalized </dd></dl>
 
-<p>References <a class="el" href="Function_8C-source.html#l00076">Function::df()</a>, <a class="el" href="Vector_8H-source.html#l00297">VecMath::vcross()</a>, and <a class="el" href="Vector_8H-source.html#l00319">VecMath::vnormalize()</a>.</p>
+<p>References <a class="el" href="Function_8C-source.html#l00076">Function::df()</a>, <a class="el" href="Vector_8H-source.html#l00305">VecMath::vcross()</a>, and <a class="el" href="Vector_8H-source.html#l00327">VecMath::vnormalize()</a>.</p>
 
 </div>
 </div><p>
@@ -555,9 +499,9 @@ Draw the current plane of the projected <a class="el" href="classFunction.html" 
   </table>
 </dl>
 
-<p>References <a class="el" href="RealFunction_8C-source.html#l00248">DrawStrip()</a>.</p>
+<p>References <a class="el" href="RealFunction_8C-source.html#l00231">DrawStrip()</a>.</p>
 
-<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00215">Draw()</a>.</p>
+<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00197">Draw()</a>.</p>
 
 </div>
 </div><p>
@@ -596,9 +540,9 @@ Draw the current strip of the projected <a class="el" href="classFunction.html" 
   </table>
 </dl>
 
-<p>References <a class="el" href="RealFunction_8C-source.html#l00260">DrawCube()</a>.</p>
+<p>References <a class="el" href="RealFunction_8C-source.html#l00243">DrawCube()</a>.</p>
 
-<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00240">DrawPlane()</a>.</p>
+<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00223">DrawPlane()</a>.</p>
 
 </div>
 </div><p>
@@ -644,9 +588,9 @@ Draw the current cube or cell of the projected <a class="el" href="classFunction
   </table>
 </dl>
 
-<p>References <a class="el" href="RealFunction_8H-source.html#l00149">X</a>, and <a class="el" href="RealFunction_8H-source.html#l00151">Xscr</a>.</p>
+<p>References <a class="el" href="RealFunction_8H-source.html#l00148">X</a>, and <a class="el" href="RealFunction_8H-source.html#l00150">Xscr</a>.</p>
 
-<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00248">DrawStrip()</a>.</p>
+<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00231">DrawStrip()</a>.</p>
 
 </div>
 </div><p>
@@ -672,9 +616,9 @@ Allocate and initialize X[][][] with values of <a class="el" href="classRealBase
 Call <a class="el" href="classRealFunction.html#1905c4297b0f6b4f91a3b24b55b62eea" title="Initialize the temporary storage areas.">InitMem()</a> above 
 <p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
-<p>References <a class="el" href="classRealBase.html#c2cd018b4108455a6daa23d78b2064a6">RealBase::f()</a>, <a class="el" href="RealFunction_8C-source.html#l00064">InitMem()</a>, <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, and <a class="el" href="RealFunction_8H-source.html#l00149">X</a>.</p>
+<p>References <a class="el" href="classRealBase.html#c2cd018b4108455a6daa23d78b2064a6">RealBase::f()</a>, <a class="el" href="RealFunction_8C-source.html#l00064">InitMem()</a>, <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, and <a class="el" href="RealFunction_8H-source.html#l00148">X</a>.</p>
 
-<p>Referenced by <a class="el" href="CustomFunction_8C-source.html#l00039">CustomFunction::CustomFunction()</a>, <a class="el" href="CustomFunction_8C-source.html#l00081">CustomPolarFunction::CustomPolarFunction()</a>, <a class="el" href="RealFunction_8C-source.html#l00483">Fr3r::Fr3r()</a>, <a class="el" href="RealFunction_8C-source.html#l00612">Fr3rExp::Fr3rExp()</a>, <a class="el" href="RealFunction_8C-source.html#l00574">Fr3rSin::Fr3rSin()</a>, <a class="el" href="RealFunction_8C-source.html#l00527">GravitationPotential::GravitationPotential()</a>, <a class="el" href="RealFunction_8C-source.html#l00320">Hypersphere::Hypersphere()</a>, <a class="el" href="RealFunction_8C-source.html#l00650">Polar::Polar()</a>, <a class="el" href="RealFunction_8C-source.html#l00785">PolarR::PolarR()</a>, <a class="el" href="RealFunction_8C-source.html#l00695">PolarSin::PolarSin()</a>, <a class="el" href="RealFunction_8C-source.html#l00740">PolarSin2::PolarSin2()</a>, <a class="el" href="RealFunction_8C-source.html#l00129">ReInit()</a>, <a class="el" href="RealFunction_8C-source.html#l00395">Torus1::Torus1()</a>, and <a class="el" href="RealFunction_8C-source.html#l00440">Torus2::Torus2()</a>.</p>
+<p>Referenced by <a class="el" href="CustomFunction_8C-source.html#l00039">CustomFunction::CustomFunction()</a>, <a class="el" href="CustomFunction_8C-source.html#l00081">CustomPolarFunction::CustomPolarFunction()</a>, <a class="el" href="RealFunction_8C-source.html#l00466">Fr3r::Fr3r()</a>, <a class="el" href="RealFunction_8C-source.html#l00595">Fr3rExp::Fr3rExp()</a>, <a class="el" href="RealFunction_8C-source.html#l00557">Fr3rSin::Fr3rSin()</a>, <a class="el" href="RealFunction_8C-source.html#l00510">GravitationPotential::GravitationPotential()</a>, <a class="el" href="RealFunction_8C-source.html#l00303">Hypersphere::Hypersphere()</a>, <a class="el" href="RealFunction_8C-source.html#l00633">Polar::Polar()</a>, <a class="el" href="RealFunction_8C-source.html#l00768">PolarR::PolarR()</a>, <a class="el" href="RealFunction_8C-source.html#l00678">PolarSin::PolarSin()</a>, <a class="el" href="RealFunction_8C-source.html#l00723">PolarSin2::PolarSin2()</a>, <a class="el" href="RealFunction_8C-source.html#l00128">ReInit()</a>, <a class="el" href="RealFunction_8C-source.html#l00378">Torus1::Torus1()</a>, and <a class="el" href="RealFunction_8C-source.html#l00423">Torus2::Torus2()</a>.</p>
 
 </div>
 </div><p>
@@ -698,9 +642,9 @@ Call <a class="el" href="classRealFunction.html#1905c4297b0f6b4f91a3b24b55b62eea
 Initialize the temporary storage areas. 
 <p>
 Xscr[][][], Xtrans[][][] 
-<p>References <a class="el" href="RealFunction_8H-source.html#l00151">Xscr</a>, and <a class="el" href="RealFunction_8H-source.html#l00149">Xtrans</a>.</p>
+<p>References <a class="el" href="RealFunction_8H-source.html#l00150">Xscr</a>, and <a class="el" href="RealFunction_8H-source.html#l00148">Xtrans</a>.</p>
 
-<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00085">Initialize()</a>.</p>
+<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00084">Initialize()</a>.</p>
 
 </div>
 </div><p>
@@ -718,14 +662,14 @@ Xscr[][][], Xtrans[][][]
 
 <p>
 temporary storage for projected function values 
-<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00260">DrawCube()</a>, <a class="el" href="RealFunction_8C-source.html#l00064">InitMem()</a>, and <a class="el" href="RealFunction_8C-source.html#l00183">Project()</a>.</p>
+<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00243">DrawCube()</a>, <a class="el" href="RealFunction_8C-source.html#l00064">InitMem()</a>, and <a class="el" href="RealFunction_8C-source.html#l00165">Project()</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="RealFunction_8H-source.html">RealFunction.H</a><li>workspace/HyperspaceExplorer/src/Functions/RealFunction.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 19 12:18:26 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 00:40:26 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

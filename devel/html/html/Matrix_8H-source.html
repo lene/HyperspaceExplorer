@@ -32,111 +32,126 @@
 <a name="l00014"></a>00014 <span class="preprocessor">#include &lt;iomanip&gt;</span>
 <a name="l00015"></a>00015 
 <a name="l00016"></a>00016 <span class="preprocessor">#include "Vector.H"</span>
-<a name="l00017"></a>00017 
-<a name="l00018"></a>00018 <span class="keyword">namespace </span>VecMath {
-<a name="l00024"></a><a class="code" href="classVecMath_1_1Matrix.html">00024</a>     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N = <span class="keywordtype">double</span>&gt; <span class="keyword">class </span><a class="code" href="classVecMath_1_1Matrix.html">Matrix</a> {
-<a name="l00025"></a>00025         <span class="keyword">public</span>:
-<a name="l00026"></a>00026             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> ();
-<a name="l00027"></a>00027             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> (N, N, N, N, N, N);
-<a name="l00028"></a>00028             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> (unsigned, unsigned, N);
-<a name="l00029"></a>00029             <span class="keyword">virtual</span> ~<a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> () { }
-<a name="l00030"></a>00030 
-<a name="l00035"></a><a class="code" href="classVecMath_1_1Matrix.html#10a5a2dc0327ce50af18806a39e2faa0">00035</a>             N &amp;<a class="code" href="classVecMath_1_1Matrix.html#10a5a2dc0327ce50af18806a39e2faa0">operator () </a>(<span class="keywordtype">unsigned</span> i, <span class="keywordtype">unsigned</span> j) { <span class="keywordflow">return</span> <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j]; }
-<a name="l00036"></a>00036 
-<a name="l00037"></a>00037             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Matrix.html#b560a8ea5f4708be9b5d4164d07ccbb4">operator * </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> &amp;) <span class="keyword">const</span>;
-<a name="l00038"></a>00038             <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Matrix.html#b560a8ea5f4708be9b5d4164d07ccbb4">operator * </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;);
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Matrix.html#73eff5fdc698d339122b800dc1eeb3aa">operator - </a>();
-<a name="l00041"></a>00041 
-<a name="l00042"></a>00042             std::string <a class="code" href="classVecMath_1_1Matrix.html#f6ef681da5373b7f1214fca37b0dfa7d">Print</a> ();
-<a name="l00043"></a>00043 
-<a name="l00044"></a>00044         <span class="keyword">private</span>:
-<a name="l00046"></a><a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b">00046</a>             N <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[D][D];
-<a name="l00047"></a>00047     };
-<a name="l00048"></a>00048 
-<a name="l00049"></a>00049 
-<a name="l00051"></a><a class="code" href="classVecMath_1_1Matrix.html#afaeb5312b577fa2bb48e9605e76afd5">00051</a>     <span class="keyword">template</span>&lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::Matrix</a> () {
-<a name="l00052"></a>00052         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) {                                      <span class="comment">//      i: row</span>
-<a name="l00053"></a>00053             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++)                            <span class="comment">//      j: col</span>
-<a name="l00054"></a>00054                 <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j] = 0;
-<a name="l00055"></a>00055             <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][i] = 1;
-<a name="l00056"></a>00056         }
-<a name="l00057"></a>00057     }
-<a name="l00058"></a>00058 
-<a name="l00066"></a>00066     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00067"></a><a class="code" href="classVecMath_1_1Matrix.html#fa3dcfdb384b9d3ad844578451401bc2">00067</a>             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::Matrix</a> (N Rxy, N Rxz, N Rxw, N Ryz, N Ryw, N Rzw) {
-<a name="l00068"></a>00068         std::cerr &lt;&lt; <span class="stringliteral">"Matrix&lt;"</span> &lt;&lt; D &lt;&lt;<span class="stringliteral">"&gt;::Matrix&lt;"</span> &lt;&lt; D
-<a name="l00069"></a>00069                   &lt;&lt;<span class="stringliteral">"&gt; (Rxy, Rxz, Rxw, Ryz, Ryw, Rzw) not yet implemented!"</span>
-<a name="l00070"></a>00070                   &lt;&lt; std::endl;
-<a name="l00071"></a>00071         abort();
-<a name="l00072"></a>00072     }
-<a name="l00073"></a>00073 
-<a name="l00078"></a>00078     <span class="keyword">template</span>&lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00079"></a><a class="code" href="classVecMath_1_1Matrix.html#110bedf8a53847d2985f57bdb897afe1">00079</a>             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::Matrix</a> (<span class="keywordtype">unsigned</span> ii, <span class="keywordtype">unsigned</span> jj, N Theta) {
-<a name="l00080"></a>00080         N c = cos (Theta*pi/180.), s = sin (Theta*pi/180.);
-<a name="l00081"></a>00081         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) {                                      <span class="comment">//      i: row</span>
-<a name="l00082"></a>00082             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++)                            <span class="comment">//      j: col</span>
-<a name="l00083"></a>00083                 <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j] = 0;
-<a name="l00084"></a>00084             <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][i] = 1;
-<a name="l00085"></a>00085         }
-<a name="l00086"></a>00086         <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[ii][ii] =  <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[jj][jj] = c;
-<a name="l00087"></a>00087         <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[ii][jj] = -s;
-<a name="l00088"></a>00088         <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[jj][ii] = s;
-<a name="l00089"></a>00089     }
-<a name="l00090"></a>00090 
-<a name="l00094"></a>00094     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a>
-<a name="l00095"></a><a class="code" href="classVecMath_1_1Matrix.html#b560a8ea5f4708be9b5d4164d07ccbb4">00095</a>             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::operator * </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> &amp;B)<span class="keyword"> const </span>{
-<a name="l00096"></a>00096         <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> C;
-<a name="l00097"></a>00097         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++)                                        <span class="comment">//      i: row</span>
-<a name="l00098"></a>00098             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++) {                          <span class="comment">//      j: col</span>
-<a name="l00099"></a>00099                 N s = 0;
-<a name="l00100"></a>00100                 <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> k = 0; k &lt; D; k++)
-<a name="l00101"></a>00101                     s += <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][k]*B.<a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[k][j];
-<a name="l00102"></a>00102                 C.<a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j] = s;
-<a name="l00103"></a>00103             }
-<a name="l00104"></a>00104         <span class="keywordflow">return</span> C;
-<a name="l00105"></a>00105     }
-<a name="l00106"></a>00106 
-<a name="l00110"></a>00110     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00111"></a><a class="code" href="classVecMath_1_1Matrix.html#da1563139030bb5272c300bf6eaa06d1">00111</a>             <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::operator * </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;V) {
-<a name="l00112"></a>00112         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> W;
-<a name="l00113"></a>00113         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) {                              <span class="comment">//      i: row</span>
-<a name="l00114"></a>00114             N s = 0;
-<a name="l00115"></a>00115             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++)                    <span class="comment">//      j: col</span>
-<a name="l00116"></a>00116                 s += <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j]*V[j];
-<a name="l00117"></a>00117             W[i] = s;
-<a name="l00118"></a>00118         }
-<a name="l00119"></a>00119         <span class="keywordflow">return</span> W;
-<a name="l00120"></a>00120     }
-<a name="l00121"></a>00121 
-<a name="l00124"></a>00124     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00125"></a><a class="code" href="classVecMath_1_1Matrix.html#73eff5fdc698d339122b800dc1eeb3aa">00125</a>             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::operator - </a>() {
-<a name="l00126"></a>00126         <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> B (*<span class="keyword">this</span>);
-<a name="l00127"></a>00127         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++)                                        <span class="comment">//      i: row</span>
-<a name="l00128"></a>00128             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++) {                          <span class="comment">//      j: col</span>
-<a name="l00129"></a>00129                 B.<a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j] = -<a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j];
-<a name="l00130"></a>00130             }
-<a name="l00131"></a>00131         <span class="keywordflow">return</span> B;
-<a name="l00132"></a>00132     }
-<a name="l00133"></a>00133 
-<a name="l00134"></a>00134 
-<a name="l00136"></a><a class="code" href="classVecMath_1_1Matrix.html#f6ef681da5373b7f1214fca37b0dfa7d">00136</a>     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; std::string <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::Print</a> () {
-<a name="l00137"></a>00137         std::ostringstream o;
-<a name="l00138"></a>00138         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) {
-<a name="l00139"></a>00139             o &lt;&lt; <span class="stringliteral">"|"</span>;
-<a name="l00140"></a>00140             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++)
-<a name="l00141"></a>00141                 o &lt;&lt; std::setw (10) &lt;&lt; std::setprecision (3) &lt;&lt; <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j];
-<a name="l00142"></a>00142             o &lt;&lt; <span class="stringliteral">"|\n"</span>;
-<a name="l00143"></a>00143         }
-<a name="l00144"></a>00144         o &lt;&lt; std::ends;
-<a name="l00145"></a>00145         <span class="keywordflow">return</span> o.str ();
-<a name="l00146"></a>00146     }
-<a name="l00147"></a>00147 
-<a name="l00148"></a>00148 }       <span class="comment">// namespace VecMath</span>
-<a name="l00149"></a>00149 
-<a name="l00150"></a>00150 <span class="preprocessor">#endif  // !defined(MATRIX_H)</span>
+<a name="l00017"></a>00017 <span class="preprocessor">#include "NotYetImplementedException.H"</span>
+<a name="l00018"></a>00018 <span class="preprocessor">#include "Globals.H"</span>
+<a name="l00019"></a>00019 
+<a name="l00020"></a>00020 <span class="keyword">namespace </span>VecMath {
+<a name="l00026"></a><a class="code" href="classVecMath_1_1Matrix.html">00026</a>     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N = <span class="keywordtype">double</span>&gt; <span class="keyword">class </span><a class="code" href="classVecMath_1_1Matrix.html">Matrix</a> {
+<a name="l00027"></a>00027         <span class="keyword">public</span>:
+<a name="l00028"></a>00028             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> ();
+<a name="l00029"></a>00029             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> (N, N, N, N, N, N);
+<a name="l00030"></a>00030             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> (unsigned, unsigned, N);
+<a name="l00031"></a>00031             <span class="keyword">virtual</span> ~<a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> () { }
+<a name="l00032"></a>00032 
+<a name="l00037"></a><a class="code" href="classVecMath_1_1Matrix.html#10a5a2dc0327ce50af18806a39e2faa0">00037</a>             N &amp;<a class="code" href="classVecMath_1_1Matrix.html#10a5a2dc0327ce50af18806a39e2faa0">operator () </a>(<span class="keywordtype">unsigned</span> i, <span class="keywordtype">unsigned</span> j) { <span class="keywordflow">return</span> <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j]; }
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Matrix.html#fa87544cf9d0fc24402203d649ceb78b">operator *=</a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> &amp;);
+<a name="l00040"></a>00040             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Matrix.html#b560a8ea5f4708be9b5d4164d07ccbb4">operator *</a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> &amp;) <span class="keyword">const</span>;
+<a name="l00041"></a>00041             <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Matrix.html#b560a8ea5f4708be9b5d4164d07ccbb4">operator *</a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;);
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Matrix.html#73eff5fdc698d339122b800dc1eeb3aa">operator - </a>();
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045             std::string <a class="code" href="classVecMath_1_1Matrix.html#f6ef681da5373b7f1214fca37b0dfa7d">Print</a> ();
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047         <span class="keyword">private</span>:
+<a name="l00049"></a><a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b">00049</a>             N <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[D][D];
+<a name="l00050"></a>00050     };
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052 
+<a name="l00054"></a><a class="code" href="classVecMath_1_1Matrix.html#afaeb5312b577fa2bb48e9605e76afd5">00054</a>     <span class="keyword">template</span>&lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::Matrix</a> () {
+<a name="l00055"></a>00055         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) {                                      <span class="comment">//      i: row</span>
+<a name="l00056"></a>00056             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++)                            <span class="comment">//      j: col</span>
+<a name="l00057"></a>00057                 <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j] = 0;
+<a name="l00058"></a>00058             <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][i] = 1;
+<a name="l00059"></a>00059         }
+<a name="l00060"></a>00060     }
+<a name="l00061"></a>00061 
+<a name="l00069"></a>00069     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
+<a name="l00070"></a><a class="code" href="classVecMath_1_1Matrix.html#fa3dcfdb384b9d3ad844578451401bc2">00070</a>             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::Matrix</a> (N Rxy, N Rxz, N Rxw, N Ryz, N Ryw, N Rzw) {
+<a name="l00071"></a>00071         <span class="keywordflow">throw</span> <a class="code" href="classNotYetImplementedException.html">NotYetImplementedException</a>(
+<a name="l00072"></a>00072             <span class="stringliteral">"Matrix&lt;"</span>+<a class="code" href="classGlobal.html#41cee4049871dc14b3f7101e40734c16">Global::itoa</a>(D)+<span class="stringliteral">"&gt;::Matrix&lt;"</span>+<a class="code" href="classGlobal.html#41cee4049871dc14b3f7101e40734c16">Global::itoa</a>(D)+
+<a name="l00073"></a>00073                 <span class="stringliteral">"&gt; (Rxy, Rxz, Rxw, Ryz, Ryw, Rzw)"</span>);
+<a name="l00074"></a>00074         abort();
+<a name="l00075"></a>00075     }
+<a name="l00076"></a>00076 
+<a name="l00081"></a>00081     <span class="keyword">template</span>&lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
+<a name="l00082"></a><a class="code" href="classVecMath_1_1Matrix.html#110bedf8a53847d2985f57bdb897afe1">00082</a>             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::Matrix</a> (<span class="keywordtype">unsigned</span> ii, <span class="keywordtype">unsigned</span> jj, N Theta) {
+<a name="l00083"></a>00083         N c = cos (Theta*pi/180.), s = sin (Theta*pi/180.);
+<a name="l00084"></a>00084         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) {                                      <span class="comment">//      i: row</span>
+<a name="l00085"></a>00085             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++)                            <span class="comment">//      j: col</span>
+<a name="l00086"></a>00086                 <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j] = 0;
+<a name="l00087"></a>00087             <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][i] = 1;
+<a name="l00088"></a>00088         }
+<a name="l00089"></a>00089         <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[ii][ii] =  <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[jj][jj] = c;
+<a name="l00090"></a>00090         <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[ii][jj] = -s;
+<a name="l00091"></a>00091         <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[jj][ii] = s;
+<a name="l00092"></a>00092     }
+<a name="l00093"></a>00093 
+<a name="l00097"></a>00097     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a>
+<a name="l00098"></a><a class="code" href="classVecMath_1_1Matrix.html#fa87544cf9d0fc24402203d649ceb78b">00098</a>             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::operator *=</a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> &amp;B) {
+<a name="l00099"></a>00099         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++)            <span class="comment">//  i: row</span>
+<a name="l00100"></a>00100             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++) {      <span class="comment">//  j: col</span>
+<a name="l00101"></a>00101                 N s = 0;
+<a name="l00102"></a>00102                 <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> k = 0; k &lt; D; k++)
+<a name="l00103"></a>00103                     s += <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][k]*B.<a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[k][j];
+<a name="l00104"></a>00104                 <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j] = s;
+<a name="l00105"></a>00105             }
+<a name="l00106"></a>00106         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00107"></a>00107     }
+<a name="l00108"></a>00108 
+<a name="l00112"></a>00112     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a>
+<a name="l00113"></a><a class="code" href="classVecMath_1_1Matrix.html#b560a8ea5f4708be9b5d4164d07ccbb4">00113</a>             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::operator * </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> &amp;B)<span class="keyword"> const </span>{
+<a name="l00114"></a>00114         <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> C;
+<a name="l00115"></a>00115         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++)                                        <span class="comment">//      i: row</span>
+<a name="l00116"></a>00116             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++) {                          <span class="comment">//      j: col</span>
+<a name="l00117"></a>00117                 N s = 0;
+<a name="l00118"></a>00118                 <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> k = 0; k &lt; D; k++)
+<a name="l00119"></a>00119                     s += <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][k]*B.<a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[k][j];
+<a name="l00120"></a>00120                 C.<a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j] = s;
+<a name="l00121"></a>00121             }
+<a name="l00122"></a>00122         <span class="keywordflow">return</span> C;
+<a name="l00123"></a>00123     }
+<a name="l00124"></a>00124 
+<a name="l00128"></a>00128     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
+<a name="l00129"></a><a class="code" href="classVecMath_1_1Matrix.html#da1563139030bb5272c300bf6eaa06d1">00129</a>             <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::operator * </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> &amp;V) {
+<a name="l00130"></a>00130         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;D, N&gt;</a> W;
+<a name="l00131"></a>00131         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) {              <span class="comment">//  i: row</span>
+<a name="l00132"></a>00132             N s = 0;
+<a name="l00133"></a>00133             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++)            <span class="comment">//  j: col</span>
+<a name="l00134"></a>00134                 s += <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j]*V[j];
+<a name="l00135"></a>00135             W[i] = s;
+<a name="l00136"></a>00136         }
+<a name="l00137"></a>00137         <span class="keywordflow">return</span> W;
+<a name="l00138"></a>00138     }
+<a name="l00139"></a>00139 
+<a name="l00142"></a>00142     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
+<a name="l00143"></a><a class="code" href="classVecMath_1_1Matrix.html#73eff5fdc698d339122b800dc1eeb3aa">00143</a>             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::operator - </a>() {
+<a name="l00144"></a>00144         <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> B (*<span class="keyword">this</span>);
+<a name="l00145"></a>00145         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++)                    <span class="comment">//  i: row</span>
+<a name="l00146"></a>00146             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++) {              <span class="comment">//  j: col</span>
+<a name="l00147"></a>00147                 B.<a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j] = -<a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j];
+<a name="l00148"></a>00148             }
+<a name="l00149"></a>00149         <span class="keywordflow">return</span> B;
+<a name="l00150"></a>00150     }
+<a name="l00151"></a>00151 
+<a name="l00152"></a>00152 
+<a name="l00154"></a><a class="code" href="classVecMath_1_1Matrix.html#f6ef681da5373b7f1214fca37b0dfa7d">00154</a>     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; std::string <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::Print</a> () {
+<a name="l00155"></a>00155         std::ostringstream o;
+<a name="l00156"></a>00156         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) {
+<a name="l00157"></a>00157             o &lt;&lt; <span class="stringliteral">"|"</span>;
+<a name="l00158"></a>00158             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++)
+<a name="l00159"></a>00159                 o &lt;&lt; std::setw (10) &lt;&lt; std::setprecision (3) &lt;&lt; <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j];
+<a name="l00160"></a>00160             o &lt;&lt; <span class="stringliteral">"|\n"</span>;
+<a name="l00161"></a>00161         }
+<a name="l00162"></a>00162         o &lt;&lt; std::ends;
+<a name="l00163"></a>00163         <span class="keywordflow">return</span> o.str ();
+<a name="l00164"></a>00164     }
+<a name="l00165"></a>00165 
+<a name="l00166"></a>00166 }       <span class="comment">// namespace VecMath</span>
+<a name="l00167"></a>00167 
+<a name="l00168"></a>00168 <span class="preprocessor">#endif  // !defined(MATRIX_H)</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 19 12:18:25 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 00:40:25 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

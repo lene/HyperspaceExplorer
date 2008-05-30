@@ -23,10 +23,23 @@
 <tr><td colspan="2"><br><h2>Classes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix&lt; D, N &gt;</a></td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVecMath_1_1NumAxes.html">VecMath::NumAxes&lt; D &gt;</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Determine number of rotation axes in D-dimensional space.  <a href="structVecMath_1_1NumAxes.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1RotationAxes.html">VecMath::RotationAxes&lt; D &gt;</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">How to generate a <a class="el" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation</a> matrix from a <a class="el" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation</a> component.  <a href="classVecMath_1_1RotationAxes.html#_details">More...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation&lt; D, N &gt;</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation</a> in D-dimensional space defined by angles about the main axes.  <a href="classVecMath_1_1Rotation.html#_details">More...</a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector&lt; D, N &gt;</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vector&lt;D, N&gt;: a D-dimensional vector of numbers of type N.  <a href="classVecMath_1_1Vector.html#_details">More...</a><br></td></tr>
 <tr><td colspan="2"><br><h2>Functions</h2></td></tr>
+<tr><td class="memTemplParams" nowrap colspan="2">template&lt;unsigned D, typename N&gt; </td></tr>
+<tr><td class="memTemplItemLeft" nowrap align="right" valign="top">std::ostream &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__VecMath.html#g66177497b2b0c964a01d7be1087cdf17">VecMath::operator&lt;&lt;</a> (std::ostream &amp;o, const Rotation&lt; D, N &gt; &amp;v)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation</a> output operator.  <a href="#g66177497b2b0c964a01d7be1087cdf17"></a><br></td></tr>
 <tr><td class="memTemplParams" nowrap colspan="2">template&lt;unsigned D, typename N&gt; </td></tr>
 <tr><td class="memTemplItemLeft" nowrap align="right" valign="top">std::ostream &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__VecMath.html#g7c3727e6f85bbbc52c0ef4cb1e1658c3">VecMath::operator&lt;&lt;</a> (std::ostream &amp;o, const Vector&lt; D, N &gt; &amp;v)</td></tr>
 
@@ -182,6 +195,46 @@ template&lt;unsigned D, typename N&gt; </div>
 
 </div>
 </div><p>
+<a class="anchor" name="g66177497b2b0c964a01d7be1087cdf17"></a><!-- doxytag: member="VecMath::operator&lt;&lt;" ref="g66177497b2b0c964a01d7be1087cdf17" args="(std::ostream &amp;o, const Rotation&lt; D, N &gt; &amp;v)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;unsigned D, typename N&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream&amp; VecMath::operator&lt;&lt;           </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&nbsp;</td>
+          <td class="paramname"> <em>o</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Rotation&lt; D, N &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>v</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<a class="el" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation</a> output operator. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>o</em>&nbsp;</td><td>ostream to push into </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v</em>&nbsp;</td><td><a class="el" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation</a> to print </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>a new ostream to push Rotations and stuff into </dd></dl>
+
+</div>
+</div><p>
 <a class="anchor" name="gbdc5bc1e998587a215aff0c5a1a7b95d"></a><!-- doxytag: member="VecMath::vcross" ref="gbdc5bc1e998587a215aff0c5a1a7b95d" args="(Vector&lt; 4, N &gt; a, Vector&lt; 4, N &gt; b, Vector&lt; 4, N &gt; c)" -->
 <div class="memitem">
 <div class="memproto">
@@ -227,7 +280,7 @@ specialization for cross product of three 4-Vectors
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>a x b x c </dd></dl>
 
-<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00227">RealFunction::normal()</a>.</p>
+<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00210">RealFunction::normal()</a>.</p>
 
 </div>
 </div><p>
@@ -299,14 +352,14 @@ normalizes a 3-Vector out-of-place
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>its normalized value </dd></dl>
 
-<p>References <a class="el" href="Vector_8H-source.html#l00231">VecMath::Vector&lt; D, N &gt;::sqnorm()</a>.</p>
+<p>References <a class="el" href="Vector_8H-source.html#l00239">VecMath::Vector&lt; D, N &gt;::sqnorm()</a>.</p>
 
-<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00227">RealFunction::normal()</a>, and <a class="el" href="Globals_8C-source.html#l00103">Global::vnormalize()</a>.</p>
+<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00210">RealFunction::normal()</a>, and <a class="el" href="Globals_8C-source.html#l00103">Global::vnormalize()</a>.</p>
 
 </div>
 </div><p>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 19 12:18:25 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 00:40:25 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

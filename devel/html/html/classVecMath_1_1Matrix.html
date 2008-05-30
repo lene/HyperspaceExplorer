@@ -46,6 +46,8 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">N &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html#10a5a2dc0327ce50af18806a39e2faa0">operator()</a> (unsigned i, unsigned j)</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classVecMath_1_1Matrix.html">Matrix</a>&lt; D, N &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html#fa87544cf9d0fc24402203d649ceb78b">operator*=</a> (const <a class="el" href="classVecMath_1_1Matrix.html">Matrix</a>&lt; D, N &gt; &amp;)</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classVecMath_1_1Matrix.html">Matrix</a>&lt; D, N &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html#b560a8ea5f4708be9b5d4164d07ccbb4">operator*</a> (const <a class="el" href="classVecMath_1_1Matrix.html">Matrix</a>&lt; D, N &gt; &amp;) const </td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classVecMath_1_1Vector.html">Vector</a>&lt; D, N &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Matrix.html#da1563139030bb5272c300bf6eaa06d1">operator*</a> (const <a class="el" href="classVecMath_1_1Vector.html">Vector</a>&lt; D, N &gt; &amp;)</td></tr>
@@ -91,7 +93,7 @@ template&lt;unsigned D, typename N&gt; </div>
 
 <p>
 default constructor: creates a unit DxD <a class="el" href="classVecMath_1_1Matrix.html">Matrix</a> 
-<p>References <a class="el" href="Matrix_8H-source.html#l00046">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
+<p>References <a class="el" href="Matrix_8H-source.html#l00049">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
 
 </div>
 </div><p>
@@ -158,6 +160,8 @@ creates a DxD rotation <a class="el" href="classVecMath_1_1Matrix.html">Matrix</
   </table>
 </dl>
 
+<p>References <a class="el" href="Globals_8C-source.html#l00082">Global::itoa()</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="110bedf8a53847d2985f57bdb897afe1"></a><!-- doxytag: member="VecMath::Matrix::Matrix" ref="110bedf8a53847d2985f57bdb897afe1" args="(unsigned, unsigned, N)" -->
@@ -202,7 +206,7 @@ creates a rotation about axes ii and jj of angle Theta <dl compact><dt><b>Parame
   </table>
 </dl>
 
-<p>References <a class="el" href="Matrix_8H-source.html#l00046">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
+<p>References <a class="el" href="Matrix_8H-source.html#l00049">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
 
 </div>
 </div><p>
@@ -243,7 +247,37 @@ access operator <dl compact><dt><b>Parameters:</b></dt><dd>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$ M_{ij} $" src="form_41.png"> </dd></dl>
 
-<p>References <a class="el" href="Matrix_8H-source.html#l00046">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
+<p>References <a class="el" href="Matrix_8H-source.html#l00049">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="fa87544cf9d0fc24402203d649ceb78b"></a><!-- doxytag: member="VecMath::Matrix::operator*=" ref="fa87544cf9d0fc24402203d649ceb78b" args="(const Matrix&lt; D, N &gt; &amp;)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;unsigned D, typename N&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classVecMath_1_1Matrix.html">Matrix</a>&lt; D, N &gt; <a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix</a>&lt; D, N &gt;::operator*=           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classVecMath_1_1Matrix.html">Matrix</a>&lt; D, N &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>B</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<a class="el" href="classVecMath_1_1Matrix.html">Matrix</a> multiplication <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>B</em>&nbsp;</td><td><a class="el" href="classVecMath_1_1Matrix.html">Matrix</a> to multiply with </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>*this * B </dd></dl>
+
+<p>References <a class="el" href="Matrix_8H-source.html#l00049">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
 
 </div>
 </div><p>
@@ -273,7 +307,7 @@ template&lt;unsigned D, typename N&gt; </div>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>*this * B </dd></dl>
 
-<p>References <a class="el" href="Matrix_8H-source.html#l00046">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
+<p>References <a class="el" href="Matrix_8H-source.html#l00049">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
 
 </div>
 </div><p>
@@ -303,7 +337,7 @@ apply the <a class="el" href="classVecMath_1_1Matrix.html">Matrix</a> on a vecto
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>*this * V </dd></dl>
 
-<p>References <a class="el" href="Matrix_8H-source.html#l00046">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
+<p>References <a class="el" href="Matrix_8H-source.html#l00049">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
 
 </div>
 </div><p>
@@ -328,7 +362,7 @@ template&lt;unsigned D, typename N&gt; </div>
 <p>
 <a class="el" href="classVecMath_1_1Matrix.html">Matrix</a> negation <dl class="return" compact><dt><b>Returns:</b></dt><dd>- *this </dd></dl>
 
-<p>References <a class="el" href="Matrix_8H-source.html#l00046">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
+<p>References <a class="el" href="Matrix_8H-source.html#l00049">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
 
 </div>
 </div><p>
@@ -351,14 +385,14 @@ template&lt;unsigned D, typename N&gt; </div>
 
 <p>
 output, mainly for debugging purposes 
-<p>References <a class="el" href="Matrix_8H-source.html#l00046">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
+<p>References <a class="el" href="Matrix_8H-source.html#l00049">VecMath::Matrix&lt; D, N &gt;::M</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following file:<ul>
 <li>workspace/HyperspaceExplorer/src/<a class="el" href="Matrix_8H-source.html">Matrix.H</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 19 12:18:26 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 00:40:26 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

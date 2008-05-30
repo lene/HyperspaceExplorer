@@ -55,21 +55,31 @@
 <a name="l00042"></a>00042         std::ostringstream o;
 <a name="l00043"></a>00043         o &lt;&lt; <span class="stringliteral">"[\n"</span>;
 <a name="l00044"></a>00044         <span class="keywordflow">for</span> (std::map&lt;std::string, FunctionParameter *&gt;::const_iterator i = begin(); i != end(); ++i) {
-<a name="l00045"></a>00045             o &lt;&lt; <span class="stringliteral">"    "</span> &lt;&lt; i-&gt;first &lt;&lt; <span class="stringliteral">": \t"</span>
-<a name="l00046"></a>00046               &lt;&lt; i-&gt;second-&gt;getName() &lt;&lt; <span class="stringliteral">" = "</span>;
-<a name="l00047"></a>00047             o &lt;&lt; double(*(i-&gt;second)) &lt;&lt; <span class="stringliteral">"(double), "</span> &lt;&lt; unsigned(*(i-&gt;second)) &lt;&lt; <span class="stringliteral">"(unsigned), "</span>
-<a name="l00048"></a>00048               &lt;&lt; int(*(i-&gt;second)) &lt;&lt; <span class="stringliteral">"(int), \""</span> &lt;&lt; std::string(*(i-&gt;second)) &lt;&lt; <span class="stringliteral">"\"(string)"</span>;
-<a name="l00049"></a>00049             o &lt;&lt; <span class="stringliteral">"\n"</span>;
-<a name="l00050"></a>00050         }
-<a name="l00051"></a>00051         o &lt;&lt; <span class="stringliteral">"]\n"</span> &lt;&lt; std::ends;
-<a name="l00052"></a>00052         <span class="keywordflow">return</span> o.str();
-<a name="l00053"></a>00053     }
-<a name="l00054"></a>00054 
-<a name="l00055"></a>00055 };
-<a name="l00056"></a>00056 
-<a name="l00057"></a>00057 <span class="preprocessor">#endif</span>
+<a name="l00045"></a>00045                 o &lt;&lt; <span class="stringliteral">"    "</span> &lt;&lt; i-&gt;first &lt;&lt; <span class="stringliteral">": \t"</span>
+<a name="l00046"></a>00046                   &lt;&lt; i-&gt;second-&gt;getName() &lt;&lt; <span class="stringliteral">" = "</span>;
+<a name="l00047"></a>00047                 <span class="keywordflow">try</span> {
+<a name="l00048"></a>00048                     o &lt;&lt; <span class="stringliteral">"(double)"</span> &lt;&lt; double(*(i-&gt;second)) &lt;&lt; std::endl;
+<a name="l00049"></a>00049                 }  <span class="keywordflow">catch</span> (<a class="code" href="structFunctionParameterValueBase_1_1WrongParameterTypeException.html">FunctionParameterValueBase::WrongParameterTypeException</a> &amp;e) { }
+<a name="l00050"></a>00050                 <span class="keywordflow">try</span> {
+<a name="l00051"></a>00051                     o &lt;&lt; <span class="stringliteral">"(unsigned)"</span> &lt;&lt; unsigned(*(i-&gt;second)) &lt;&lt; std::endl;
+<a name="l00052"></a>00052                 }  <span class="keywordflow">catch</span> (<a class="code" href="structFunctionParameterValueBase_1_1WrongParameterTypeException.html">FunctionParameterValueBase::WrongParameterTypeException</a> &amp;e) { }
+<a name="l00053"></a>00053                 <span class="keywordflow">try</span> {
+<a name="l00054"></a>00054                     o &lt;&lt; <span class="stringliteral">"(int)"</span> &lt;&lt; int(*(i-&gt;second)) &lt;&lt; std::endl;
+<a name="l00055"></a>00055                 }  <span class="keywordflow">catch</span> (<a class="code" href="structFunctionParameterValueBase_1_1WrongParameterTypeException.html">FunctionParameterValueBase::WrongParameterTypeException</a> &amp;e) { }
+<a name="l00056"></a>00056                 <span class="keywordflow">try</span> {
+<a name="l00057"></a>00057                     o &lt;&lt; <span class="stringliteral">"(string)"</span> &lt;&lt; std::string(*(i-&gt;second)) &lt;&lt; std::endl;
+<a name="l00058"></a>00058                 }  <span class="keywordflow">catch</span> (<a class="code" href="structFunctionParameterValueBase_1_1WrongParameterTypeException.html">FunctionParameterValueBase::WrongParameterTypeException</a> &amp;e) { }
+<a name="l00059"></a>00059         }
+<a name="l00060"></a>00060         o &lt;&lt; <span class="stringliteral">"]"</span> &lt;&lt; std::endl &lt;&lt; std::ends;
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062         <span class="keywordflow">return</span> o.str();
+<a name="l00063"></a>00063     }
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065 };
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 19 12:18:25 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 00:40:25 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

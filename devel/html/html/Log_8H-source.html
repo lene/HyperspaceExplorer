@@ -24,56 +24,82 @@
 <a name="l00006"></a>00006 
 <a name="l00007"></a>00007 <span class="preprocessor">#include "SingletonHolder.H"</span>
 <a name="l00008"></a>00008 <span class="preprocessor">#include "Globals.H"</span>
-<a name="l00009"></a>00009 
-<a name="l00016"></a><a class="code" href="classLog.html">00016</a> <span class="keyword">class </span><a class="code" href="classLog.html">Log</a>{
-<a name="l00017"></a>00017     <span class="keyword">public</span>:
-<a name="l00019"></a><a class="code" href="classLog.html#f966932995045e1463770d3523c953ee">00019</a>         <span class="keywordtype">void</span> <a class="code" href="classLog.html#f966932995045e1463770d3523c953ee">log</a>(std::string
-<a name="l00020"></a>00020 #           ifdef DEBUG
-<a name="l00021"></a>00021                 message
-<a name="l00022"></a>00022 #           endif
-<a name="l00023"></a>00023                 ) {
-<a name="l00024"></a>00024 <span class="preprocessor">#           ifdef DEBUG</span>
-<a name="l00025"></a>00025 <span class="preprocessor"></span>                std::cerr &lt;&lt; message &lt;&lt; std::endl;
-<a name="l00026"></a>00026 <span class="preprocessor">#           endif</span>
-<a name="l00027"></a>00027 <span class="preprocessor"></span>        }
-<a name="l00028"></a>00028 
-<a name="l00030"></a><a class="code" href="classLog.html#4ad2a2bb579c6547bbf929175c83370a">00030</a>         <a class="code" href="classLog.html">Log</a> &amp;<a class="code" href="classLog.html#4ad2a2bb579c6547bbf929175c83370a">operator&lt;&lt;</a>(<span class="keyword">const</span> std::string &amp;
-<a name="l00031"></a>00031 #           ifdef DEBUG
-<a name="l00032"></a>00032                         message
-<a name="l00033"></a>00033 #           endif
-<a name="l00034"></a>00034                        ) {
-<a name="l00035"></a>00035 <span class="preprocessor">#           ifdef DEBUG</span>
-<a name="l00036"></a>00036 <span class="preprocessor"></span>                std::cerr &lt;&lt; message;
-<a name="l00037"></a>00037                 std::cerr.flush();
-<a name="l00038"></a>00038 <span class="preprocessor">#           endif</span>
-<a name="l00039"></a>00039 <span class="preprocessor"></span>            <span class="keywordflow">return</span> *<span class="keyword">this</span>;
-<a name="l00040"></a>00040         }
-<a name="l00041"></a>00041 
-<a name="l00043"></a><a class="code" href="classLog.html#759be4a65a5f0e4bb4a8f87572719626">00043</a>         <a class="code" href="classLog.html">Log</a> &amp;<a class="code" href="classLog.html#4ad2a2bb579c6547bbf929175c83370a">operator&lt;&lt;</a>(<span class="keywordtype">long</span> x) {
-<a name="l00044"></a>00044             <span class="keywordflow">return</span> <a class="code" href="classLog.html#4ad2a2bb579c6547bbf929175c83370a">operator&lt;&lt;</a>(<a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">Globals::Instance</a>().itoa(x));
-<a name="l00045"></a>00045         }
-<a name="l00046"></a>00046 
-<a name="l00048"></a><a class="code" href="classLog.html#b6b9880bbdfcb0524d15bd80ac86e70b">00048</a>         <a class="code" href="classLog.html">Log</a> &amp;<a class="code" href="classLog.html#4ad2a2bb579c6547bbf929175c83370a">operator&lt;&lt;</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> x) {
-<a name="l00049"></a>00049             <span class="keywordflow">return</span> <a class="code" href="classLog.html#4ad2a2bb579c6547bbf929175c83370a">operator&lt;&lt;</a>(<a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">Globals::Instance</a>().itoa(x));
-<a name="l00050"></a>00050         }
-<a name="l00051"></a>00051 
-<a name="l00053"></a><a class="code" href="classLog.html#62f89b754758fd5abab1a0c5aba8d4e0">00053</a>         <a class="code" href="classLog.html">Log</a> &amp;<a class="code" href="classLog.html#4ad2a2bb579c6547bbf929175c83370a">operator&lt;&lt;</a>(<span class="keywordtype">double</span> x) {
-<a name="l00054"></a>00054             <span class="keywordflow">return</span> <a class="code" href="classLog.html#4ad2a2bb579c6547bbf929175c83370a">operator&lt;&lt;</a>(<a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">Globals::Instance</a>().ftoa(x));
+<a name="l00009"></a>00009 <span class="preprocessor">#include "Vector.H"</span>
+<a name="l00010"></a>00010 <span class="preprocessor">#include "Rotation.H"</span>
+<a name="l00011"></a>00011 
+<a name="l00018"></a><a class="code" href="classLog.html">00018</a> <span class="keyword">class </span><a class="code" href="classLog.html">Log</a>{
+<a name="l00019"></a>00019     <span class="keyword">public</span>:
+<a name="l00021"></a><a class="code" href="classLog.html#f966932995045e1463770d3523c953ee">00021</a>         <span class="keywordtype">void</span> <a class="code" href="classLog.html#f966932995045e1463770d3523c953ee">log</a>(std::string
+<a name="l00022"></a>00022 #           ifdef DEBUG
+<a name="l00023"></a>00023                 message
+<a name="l00024"></a>00024 #           endif
+<a name="l00025"></a>00025                 ) {
+<a name="l00026"></a>00026 <span class="preprocessor">#           ifdef DEBUG</span>
+<a name="l00027"></a>00027 <span class="preprocessor"></span>                std::cerr &lt;&lt; message &lt;&lt; std::endl;
+<a name="l00028"></a>00028 <span class="preprocessor">#           endif</span>
+<a name="l00029"></a>00029 <span class="preprocessor"></span>        }
+<a name="l00030"></a>00030 
+<a name="l00032"></a><a class="code" href="classLog.html#4ad2a2bb579c6547bbf929175c83370a">00032</a>         <a class="code" href="classLog.html">Log</a> &amp;<a class="code" href="classLog.html#4ad2a2bb579c6547bbf929175c83370a">operator&lt;&lt;</a>(<span class="keyword">const</span> std::string &amp;
+<a name="l00033"></a>00033 #           ifdef DEBUG
+<a name="l00034"></a>00034                         message
+<a name="l00035"></a>00035 #           endif
+<a name="l00036"></a>00036                        ) {
+<a name="l00037"></a>00037 <span class="preprocessor">#           ifdef DEBUG</span>
+<a name="l00038"></a>00038 <span class="preprocessor"></span>                std::cerr &lt;&lt; message;
+<a name="l00039"></a>00039                 std::cerr.flush();
+<a name="l00040"></a>00040 <span class="preprocessor">#           endif</span>
+<a name="l00041"></a>00041 <span class="preprocessor"></span>            <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00042"></a>00042         }
+<a name="l00043"></a>00043 
+<a name="l00045"></a><a class="code" href="classLog.html#dded3526b14b62d865242bd3075928a7">00045</a>         <span class="keyword">template</span>&lt;<span class="keywordtype">unsigned</span> D&gt; <a class="code" href="classLog.html">Log</a> &amp;operator&lt;&lt;(const VecMath::Vector&lt;D&gt; &amp;
+<a name="l00046"></a>00046 <span class="preprocessor">#           ifdef DEBUG</span>
+<a name="l00047"></a>00047 <span class="preprocessor"></span>                v
+<a name="l00048"></a>00048 <span class="preprocessor">#           endif</span>
+<a name="l00049"></a>00049 <span class="preprocessor"></span>                       ) {
+<a name="l00050"></a>00050 <span class="preprocessor">#           ifdef DEBUG</span>
+<a name="l00051"></a>00051 <span class="preprocessor"></span>            std::cerr &lt;&lt; v;
+<a name="l00052"></a>00052             std::cerr.flush();
+<a name="l00053"></a>00053 <span class="preprocessor">#           endif</span>
+<a name="l00054"></a>00054 <span class="preprocessor"></span>            <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00055"></a>00055         }
 <a name="l00056"></a>00056 
-<a name="l00057"></a>00057     <span class="keyword">private</span>:
-<a name="l00059"></a><a class="code" href="classLog.html#f6071a60aa52b6c1b511f99b4bc1b8fe">00059</a>         <a class="code" href="classLog.html#f6071a60aa52b6c1b511f99b4bc1b8fe">Log</a>() { }
-<a name="l00061"></a>00061         <a class="code" href="classLog.html#f6071a60aa52b6c1b511f99b4bc1b8fe">Log</a>(<span class="keyword">const</span> <a class="code" href="classLog.html">Log</a> &amp;);
-<a name="l00063"></a>00063         <a class="code" href="classLog.html">Log</a> &amp;<a class="code" href="classLog.html#692828ab7538c3ac8219d1ce3f904ca6">operator=</a>(<span class="keyword">const</span> <a class="code" href="classLog.html">Log</a> &amp;);
-<a name="l00065"></a><a class="code" href="classLog.html#0fbfda88fbee5027c89f6eb121059360">00065</a>         <a class="code" href="classLog.html#0fbfda88fbee5027c89f6eb121059360">~Log</a>() { }
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="structLoki_1_1CreateUsingNew.html">Loki::CreateUsingNew</a>&lt;<a class="code" href="classLog.html">Log</a>&gt;;
-<a name="l00068"></a>00068 };
+<a name="l00058"></a><a class="code" href="classLog.html#02912c0c708f37fdc42a8c9109c9a1fe">00058</a>         <span class="keyword">template</span>&lt;<span class="keywordtype">unsigned</span> D&gt; <a class="code" href="classLog.html">Log</a> &amp;operator&lt;&lt;(const VecMath::Rotation&lt;D&gt; &amp;
+<a name="l00059"></a>00059 <span class="preprocessor">#           ifdef DEBUG</span>
+<a name="l00060"></a>00060 <span class="preprocessor"></span>                v
+<a name="l00061"></a>00061 <span class="preprocessor">#           endif</span>
+<a name="l00062"></a>00062 <span class="preprocessor"></span>                       ) {
+<a name="l00063"></a>00063 <span class="preprocessor">#           ifdef DEBUG</span>
+<a name="l00064"></a>00064 <span class="preprocessor"></span>            std::cerr &lt;&lt; v;
+<a name="l00065"></a>00065             std::cerr.flush();
+<a name="l00066"></a>00066 <span class="preprocessor">#           endif</span>
+<a name="l00067"></a>00067 <span class="preprocessor"></span>            <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00068"></a>00068         }
 <a name="l00069"></a>00069 
-<a name="l00070"></a>00070 <span class="keyword">typedef</span> <a class="code" href="classLoki_1_1SingletonHolder.html">Loki::SingletonHolder&lt;Log&gt;</a> <a class="code" href="classLoki_1_1SingletonHolder.html">SingletonLog</a>;
-<a name="l00071"></a>00071 <span class="preprocessor">#endif</span>
+<a name="l00071"></a><a class="code" href="classLog.html#759be4a65a5f0e4bb4a8f87572719626">00071</a>         <a class="code" href="classLog.html">Log</a> &amp;<a class="code" href="classLog.html#4ad2a2bb579c6547bbf929175c83370a">operator&lt;&lt;</a>(<span class="keywordtype">long</span> x) {
+<a name="l00072"></a>00072             <span class="keywordflow">return</span> <a class="code" href="classLog.html#4ad2a2bb579c6547bbf929175c83370a">operator&lt;&lt;</a>(<a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">Globals::Instance</a>().itoa(x));
+<a name="l00073"></a>00073         }
+<a name="l00074"></a>00074 
+<a name="l00076"></a><a class="code" href="classLog.html#b6b9880bbdfcb0524d15bd80ac86e70b">00076</a>         <a class="code" href="classLog.html">Log</a> &amp;<a class="code" href="classLog.html#4ad2a2bb579c6547bbf929175c83370a">operator&lt;&lt;</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> x) {
+<a name="l00077"></a>00077             <span class="keywordflow">return</span> <a class="code" href="classLog.html#4ad2a2bb579c6547bbf929175c83370a">operator&lt;&lt;</a>(<a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">Globals::Instance</a>().itoa(x));
+<a name="l00078"></a>00078         }
+<a name="l00079"></a>00079 
+<a name="l00081"></a><a class="code" href="classLog.html#62f89b754758fd5abab1a0c5aba8d4e0">00081</a>         <a class="code" href="classLog.html">Log</a> &amp;<a class="code" href="classLog.html#4ad2a2bb579c6547bbf929175c83370a">operator&lt;&lt;</a>(<span class="keywordtype">double</span> x) {
+<a name="l00082"></a>00082             <span class="keywordflow">return</span> <a class="code" href="classLog.html#4ad2a2bb579c6547bbf929175c83370a">operator&lt;&lt;</a>(<a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">Globals::Instance</a>().ftoa(x));
+<a name="l00083"></a>00083         }
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085     <span class="keyword">private</span>:
+<a name="l00087"></a><a class="code" href="classLog.html#f6071a60aa52b6c1b511f99b4bc1b8fe">00087</a>         <a class="code" href="classLog.html#f6071a60aa52b6c1b511f99b4bc1b8fe">Log</a>() { }
+<a name="l00089"></a>00089         <a class="code" href="classLog.html#f6071a60aa52b6c1b511f99b4bc1b8fe">Log</a>(<span class="keyword">const</span> <a class="code" href="classLog.html">Log</a> &amp;);
+<a name="l00091"></a>00091         <a class="code" href="classLog.html">Log</a> &amp;<a class="code" href="classLog.html#692828ab7538c3ac8219d1ce3f904ca6">operator=</a>(<span class="keyword">const</span> <a class="code" href="classLog.html">Log</a> &amp;);
+<a name="l00093"></a><a class="code" href="classLog.html#0fbfda88fbee5027c89f6eb121059360">00093</a>         <a class="code" href="classLog.html#0fbfda88fbee5027c89f6eb121059360">~Log</a>() { }
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="structLoki_1_1CreateUsingNew.html">Loki::CreateUsingNew</a>&lt;<a class="code" href="classLog.html">Log</a>&gt;;
+<a name="l00096"></a>00096 };
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098 <span class="keyword">typedef</span> <a class="code" href="classLoki_1_1SingletonHolder.html">Loki::SingletonHolder&lt;Log&gt;</a> <a class="code" href="classLoki_1_1SingletonHolder.html">SingletonLog</a>;
+<a name="l00099"></a>00099 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 19 12:18:25 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 00:40:25 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

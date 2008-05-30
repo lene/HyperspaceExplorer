@@ -57,9 +57,9 @@ Inheritance diagram for Sponge:</div>
 virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSponge.html#7f86fac04936c5486a16a187f32e0e5b">~Sponge</a> ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a> destructor. <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSponge.html#00961c9a2034c8edac7697568e2f6cc8">Transform</a> (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSponge.html#c7f51aa2dcec81e24eda7f4fa1c617a9">Transform</a> (const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;R, const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;T)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Transforms a <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a>.  <a href="#00961c9a2034c8edac7697568e2f6cc8"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Transforms a <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a>.  <a href="#c7f51aa2dcec81e24eda7f4fa1c617a9"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSponge.html#ee14d45eb035e31bf23efe2c45245e6a">Project</a> (double ScrW, double CamW, bool DepthCue4D)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Projects a <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a> into three-space.  <a href="#ee14d45eb035e31bf23efe2c45245e6a"></a><br></td></tr>
@@ -173,69 +173,21 @@ The fractal can be further controlled by the <em>distance</em> parameter: <ul>
 </div>
 </div><p>
 <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="00961c9a2034c8edac7697568e2f6cc8"></a><!-- doxytag: member="Sponge::Transform" ref="00961c9a2034c8edac7697568e2f6cc8" args="(double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)" -->
+<a class="anchor" name="c7f51aa2dcec81e24eda7f4fa1c617a9"></a><!-- doxytag: member="Sponge::Transform" ref="c7f51aa2dcec81e24eda7f4fa1c617a9" args="(const VecMath::Rotation&lt; 4 &gt; &amp;R, const VecMath::Vector&lt; 4 &gt; &amp;T)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Sponge::Transform           </td>
           <td>(</td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>Thetaxy</em>, </td>
+          <td class="paramtype">const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>R</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>Thetaxz</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>Thetaxw</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>Thetayz</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>Thetayw</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>Thetazw</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>Tx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>Ty</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>Tz</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>Tw</em></td><td>&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>T</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -264,9 +216,9 @@ The transformation is achieved by transforming all constituting sub-sponges. <dl
   </table>
 </dl>
 
-<p>Reimplemented from <a class="el" href="classObject.html#325a0b66e653f67de1d26c35022cdaa5">Object</a>.</p>
+<p>Reimplemented from <a class="el" href="classObject.html#16adc37b6a48b1113858b60b861eb1c1">Object</a>.</p>
 
-<p>References <a class="el" href="Object_8H-source.html#l00213">List</a>, and <a class="el" href="Function_8H-source.html#l00097">Function::Transform()</a>.</p>
+<p>References <a class="el" href="Object_8H-source.html#l00211">List</a>, and <a class="el" href="Function_8H-source.html#l00098">Function::Transform()</a>.</p>
 
 </div>
 </div><p>
@@ -314,7 +266,7 @@ The projection is achieved by projecting all constituting sub-sponges. <dl compa
 
 <p>Reimplemented from <a class="el" href="classObject.html#8404a4e0b7cddabbb14797c755c3daa8">Object</a>.</p>
 
-<p>References <a class="el" href="Object_8H-source.html#l00213">List</a>.</p>
+<p>References <a class="el" href="Object_8H-source.html#l00211">List</a>.</p>
 
 </div>
 </div><p>
@@ -340,7 +292,7 @@ Draw the projected <a class="el" href="classSponge.html" title="A four-dimension
 Draws all sub-sponges, recursively. 
 <p>Reimplemented from <a class="el" href="classObject.html#3afa1b9af32b78d81b5de0836c511aeb">Object</a>.</p>
 
-<p>References <a class="el" href="Object_8H-source.html#l00209">Level</a>, and <a class="el" href="Object_8H-source.html#l00213">List</a>.</p>
+<p>References <a class="el" href="Object_8H-source.html#l00207">Level</a>, and <a class="el" href="Object_8H-source.html#l00211">List</a>.</p>
 
 </div>
 </div><p>
@@ -364,7 +316,7 @@ Draws all sub-sponges, recursively.
 
 <p>Reimplemented from <a class="el" href="classHypercube.html">Hypercube</a>.</p>
 
-<p>References <a class="el" href="Object_8H-source.html#l00209">Level</a>.</p>
+<p>References <a class="el" href="Object_8H-source.html#l00207">Level</a>.</p>
 
 </div>
 </div><p>
@@ -396,7 +348,7 @@ It views it as an assembly of <img class="formulaInl" alt="$ 3^4 $" src="form_47
 If the <em>level</em> of the sponge is 1, the sub-sponges are hypercubes. Otherwise, they are Hypersponges with a <em>level</em> reduced by 1. 
 <p>Reimplemented from <a class="el" href="classHypercube.html#790d87e55f2b01d1b339df6f05852ffd">Hypercube</a>.</p>
 
-<p>References <a class="el" href="Object_8H-source.html#l00217">center</a>, <a class="el" href="Object_8H-source.html#l00215">distance</a>, <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, <a class="el" href="Object_8H-source.html#l00209">Level</a>, <a class="el" href="Object_8H-source.html#l00213">List</a>, <a class="el" href="Function_8C-source.html#l00055">Function::MemRequired()</a>, and <a class="el" href="Object_8H-source.html#l00216">rad</a>.</p>
+<p>References <a class="el" href="Object_8H-source.html#l00215">center</a>, <a class="el" href="Object_8H-source.html#l00213">distance</a>, <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, <a class="el" href="Object_8H-source.html#l00207">Level</a>, <a class="el" href="Object_8H-source.html#l00211">List</a>, <a class="el" href="Function_8C-source.html#l00055">Function::MemRequired()</a>, and <a class="el" href="Object_8H-source.html#l00214">rad</a>.</p>
 
 </div>
 </div><p>
@@ -425,7 +377,7 @@ return the approximate amount of memory needed to display a sponge of current <c
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>approx. mem required </dd></dl>
 
-<p>References <a class="el" href="Object_8H-source.html#l00209">Level</a>.</p>
+<p>References <a class="el" href="Object_8H-source.html#l00207">Level</a>.</p>
 
 </div>
 </div><p>
@@ -446,14 +398,14 @@ List of sub-sponges (see <a class="el" href="classSponge.html#b552ce65169a2b44bc
 <p>
 <dl compact><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>Use smart pointers instead of a simple pointer-to-object </dd></dl>
 
-<p>Referenced by <a class="el" href="Object_8C-source.html#l00350">Draw()</a>, <a class="el" href="Object_8C-source.html#l00257">Initialize()</a>, <a class="el" href="Object_8C-source.html#l00342">Project()</a>, <a class="el" href="Object_8H-source.html#l00192">ReInit()</a>, <a class="el" href="Object_8C-source.html#l00326">Transform()</a>, and <a class="el" href="Object_8C-source.html#l00234">~Sponge()</a>.</p>
+<p>Referenced by <a class="el" href="Object_8C-source.html#l00338">Draw()</a>, <a class="el" href="Object_8C-source.html#l00249">Initialize()</a>, <a class="el" href="Object_8C-source.html#l00330">Project()</a>, <a class="el" href="Object_8H-source.html#l00190">ReInit()</a>, <a class="el" href="Object_8C-source.html#l00318">Transform()</a>, and <a class="el" href="Object_8C-source.html#l00226">~Sponge()</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="Object_8H-source.html">Object.H</a><li>workspace/HyperspaceExplorer/src/Functions/Object.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 19 12:18:26 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 00:40:26 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

@@ -241,7 +241,17 @@
     <title>Vector and Matrix algebra</title>
     <filename>group__VecMath.html</filename>
     <class kind="class">VecMath::Matrix</class>
+    <class kind="struct">VecMath::NumAxes</class>
+    <class kind="class">VecMath::RotationAxes</class>
+    <class kind="class">VecMath::Rotation</class>
     <class kind="class">VecMath::Vector</class>
+    <member kind="function">
+      <type>std::ostream &amp;</type>
+      <name>operator&lt;&lt;</name>
+      <anchorfile>group__VecMath.html</anchorfile>
+      <anchor>g66177497b2b0c964a01d7be1087cdf17</anchor>
+      <arglist>(std::ostream &amp;o, const Rotation&lt; D, N &gt; &amp;v)</arglist>
+    </member>
     <member kind="function">
       <type>std::ostream &amp;</type>
       <name>operator&lt;&lt;</name>
@@ -597,8 +607,8 @@
       <type>void</type>
       <name>Transform</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>6850e75dd5a38a4ffc5d0a1f7bcb953d</anchor>
-      <arglist>(double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)</arglist>
+      <anchor>8a51cc06ede29308384576f277a67e19</anchor>
+      <arglist>(const VecMath::Rotation&lt; 4 &gt; &amp;R, const VecMath::Vector&lt; 4 &gt; &amp;T)</arglist>
     </member>
     <member kind="function" protection="private">
       <type>void</type>
@@ -805,227 +815,129 @@
     </member>
     <member kind="function" protection="private">
       <type>void</type>
-      <name>setTx</name>
+      <name>setT</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>e6d27d13f4e169b7ba6203cf10cd08f1</anchor>
-      <arglist>(double _tx)</arglist>
+      <anchor>6b0e16af753c8faf3baac291b50bdb37</anchor>
+      <arglist>(VecMath::Vector&lt; 4 &gt; _t)</arglist>
     </member>
     <member kind="function" protection="private">
-      <type>double</type>
-      <name>Tx</name>
+      <type>const VecMath::Vector&lt; 4 &gt; &amp;</type>
+      <name>T</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>cf7fca5cb78ed435055ccbacab93e51e</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setTy</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>8e0f09a698bfa92f7e4bf75b270be67a</anchor>
-      <arglist>(double _ty)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>double</type>
-      <name>Ty</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>20ec201e10f5a3e76a9b071f2900265d</anchor>
-      <arglist>() const </arglist>
+      <anchor>5cbbef88488967558c45e960a667d822</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
       <type>void</type>
-      <name>setTz</name>
+      <name>addT</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>c1a15b4c56306bbb8157049edef25c7a</anchor>
-      <arglist>(double _tz)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>double</type>
-      <name>Tz</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>f99d31e1df2f9069919598b2b31cb495</anchor>
-      <arglist>() const </arglist>
+      <anchor>b035f874475d1ad203c17f349c041857</anchor>
+      <arglist>(const VecMath::Vector&lt; 4 &gt; &amp;_dT)</arglist>
     </member>
     <member kind="function" protection="private">
       <type>void</type>
-      <name>setTw</name>
+      <name>setR</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>7d93c2b8c48bfb21dfb5f5383b84cb4f</anchor>
-      <arglist>(double _tw)</arglist>
+      <anchor>017ac004b348b8174ffa586ad1a68005</anchor>
+      <arglist>(VecMath::Rotation&lt; 4 &gt; _r)</arglist>
     </member>
     <member kind="function" protection="private">
-      <type>double</type>
-      <name>Tw</name>
+      <type>const VecMath::Rotation&lt; 4 &gt; &amp;</type>
+      <name>R</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>c7a93e4d63610136ec22a9af86990859</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setRxy</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>e2e46dc3d53e72447a11f040e5477c03</anchor>
-      <arglist>(double _rxy)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>double</type>
-      <name>Rxy</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>6f769626e4d0e126282954abc0c73734</anchor>
-      <arglist>() const </arglist>
+      <anchor>94ebd881a91d0b608f4b69598ff0714f</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
       <type>void</type>
-      <name>setRxz</name>
+      <name>addR</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>8a6943794325e4f984e992d667f9cf07</anchor>
-      <arglist>(double _rxz)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>double</type>
-      <name>Rxz</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>25c82f3ad246130d42a6a4776eabd72f</anchor>
-      <arglist>() const </arglist>
+      <anchor>1bb7c7a2df076405aadfb092e198475c</anchor>
+      <arglist>(const VecMath::Rotation&lt; 4 &gt; &amp;_dR)</arglist>
     </member>
     <member kind="function" protection="private">
       <type>void</type>
-      <name>setRxw</name>
+      <name>setdR3</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>698394604236878bf9e8ed3dca76e975</anchor>
-      <arglist>(double _rxw)</arglist>
+      <anchor>bbc2d033b7f721214bf1ec6b7311237d</anchor>
+      <arglist>(VecMath::Rotation&lt; 3 &gt; _dr)</arglist>
     </member>
     <member kind="function" protection="private">
-      <type>double</type>
-      <name>Rxw</name>
+      <type>const VecMath::Rotation&lt; 3 &gt; &amp;</type>
+      <name>dR3</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>737938c6d8722fb9a91f1fe9ce21514f</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setRyz</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>ab90430afd25a72bc169d3b3aa0c250a</anchor>
-      <arglist>(double _ryz)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>double</type>
-      <name>Ryz</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>11f24a60e5070320706c7a5147ed60c2</anchor>
-      <arglist>() const </arglist>
+      <anchor>4338767ea07e6fc2ed80f981525bbe54</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
       <type>void</type>
-      <name>setRyw</name>
+      <name>adddR3</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>420f87a177c3ca407a587c93f21c205f</anchor>
-      <arglist>(double _ryw)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>double</type>
-      <name>Ryw</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>8f6ad32931b1b97ac4078d14b086a527</anchor>
-      <arglist>() const </arglist>
+      <anchor>b3dee71322f74b46d42cbb2a7fdb60ce</anchor>
+      <arglist>(const VecMath::Rotation&lt; 3 &gt; &amp;_ddr)</arglist>
     </member>
     <member kind="function" protection="private">
       <type>void</type>
-      <name>setRzw</name>
+      <name>setdR</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>a21cbaae3f7a94f18d713b118c053c78</anchor>
-      <arglist>(double _rzw)</arglist>
+      <anchor>c16a2f72283a283295e4688d2b8328d2</anchor>
+      <arglist>(VecMath::Rotation&lt; 4 &gt; _dr)</arglist>
     </member>
     <member kind="function" protection="private">
-      <type>double</type>
-      <name>Rzw</name>
+      <type>const VecMath::Rotation&lt; 4 &gt; &amp;</type>
+      <name>dR</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>6e08d2a51cae63b80eb8c2db0c9376a9</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setm_rotX</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>e4dbc60f5bf18c45b79c7bd4b334b2e8</anchor>
-      <arglist>(GLdouble _rx)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>GLdouble</type>
-      <name>m_rotX</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>68dc52d5b2768320bff1cf6f78781ea6</anchor>
-      <arglist>() const </arglist>
+      <anchor>0291884b93abb31f5aa310c10701e9c3</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
       <type>void</type>
-      <name>setm_rotY</name>
+      <name>adddR</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>7c59355a48c452868fca1610ea9c03b9</anchor>
-      <arglist>(GLdouble _ry)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>GLdouble</type>
-      <name>m_rotY</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>8358e725f97742d9429bdc9efc1f723f</anchor>
-      <arglist>() const </arglist>
+      <anchor>a0f793fd49810409fc5f6f7906f2dc53</anchor>
+      <arglist>(const VecMath::Rotation&lt; 4 &gt; &amp;_ddR)</arglist>
     </member>
     <member kind="function" protection="private">
       <type>void</type>
-      <name>setm_rotZ</name>
+      <name>setm_rot</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>d0f8fd9c379911caeefc5d414eaed56d</anchor>
-      <arglist>(GLdouble _rz)</arglist>
+      <anchor>217a71fb5ca598cc159e852bd4d3f92c</anchor>
+      <arglist>(VecMath::Rotation&lt; 3, GLdouble &gt; _r)</arglist>
     </member>
     <member kind="function" protection="private">
-      <type>GLdouble</type>
-      <name>m_rotZ</name>
+      <type>const VecMath::Rotation&lt; 3, GLdouble &gt; &amp;</type>
+      <name>m_rot</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>94ace7c9efc400f8738df4dae6c57ce7</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setm_transX</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>f1e7cf5da5fccc21af9ab992836d86d2</anchor>
-      <arglist>(GLdouble _tx)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>GLdouble</type>
-      <name>m_transX</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>c40cbc6b3915cd1a9d95d8e29d7025d0</anchor>
-      <arglist>() const </arglist>
+      <anchor>45846d7481660ac879e933d8395cf49f</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
       <type>void</type>
-      <name>setm_transY</name>
+      <name>addm_rot</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>64921961bdf98613e0b95a57aa644560</anchor>
-      <arglist>(GLdouble _ty)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>GLdouble</type>
-      <name>m_transY</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>946dff919e5cee23d259b01f73147d15</anchor>
-      <arglist>() const </arglist>
+      <anchor>b7654a2bad6deeb87868385f3bd9c89d</anchor>
+      <arglist>(const VecMath::Rotation&lt; 3, GLdouble &gt; &amp;_dmr)</arglist>
     </member>
     <member kind="function" protection="private">
       <type>void</type>
-      <name>setm_camZ</name>
+      <name>setm_trans</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>c15f3ca75d9a94905505fe1fb9762278</anchor>
-      <arglist>(GLdouble _cz)</arglist>
+      <anchor>57468fd4a12b95ac3703d89db9cea3e3</anchor>
+      <arglist>(VecMath::Vector&lt; 3, GLdouble &gt; _t)</arglist>
     </member>
     <member kind="function" protection="private">
-      <type>GLdouble</type>
-      <name>m_camZ</name>
+      <type>const VecMath::Vector&lt; 3, GLdouble &gt; &amp;</type>
+      <name>m_trans</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>d81387b19cafe382cb8d3d6b2f420089</anchor>
-      <arglist>() const </arglist>
+      <anchor>72ca1b3ddd5fd4dcfc1cb592d6e5c97a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>addm_trans</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>a69265d16f26ed97574de62b0a9780db</anchor>
+      <arglist>(const VecMath::Vector&lt; 3, GLdouble &gt; &amp;_dmt)</arglist>
     </member>
     <member kind="function" protection="private">
       <type>void</type>
@@ -1155,9 +1067,9 @@
     </member>
     <member kind="function" protection="private">
       <type>double</type>
-      <name>R</name>
+      <name>distance</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>26801e5f73e83593acc84edca4c3633c</anchor>
+      <anchor>41727b00738e4af7b6b746fea8230425</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
@@ -1267,20 +1179,6 @@
     </member>
     <member kind="function" protection="private">
       <type>void</type>
-      <name>setTakingSpinValues</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>4d2bf540116bd55ad652af9ab6e41771</anchor>
-      <arglist>(bool b)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>bool</type>
-      <name>TakingSpinValues</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>bc459a8072808527f7d6b211607559c7</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
       <name>setCurrentlyRendering</name>
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>a0ba46f4a9bdc839a90e7893156a5777</anchor>
@@ -1291,48 +1189,6 @@
       <name>CurrentlyRendering</name>
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>7abb14706e24ad8161e334879ff2c931</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setm_LeftDownPos</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>04c0d34323df6ee2c7c5452b10f71a60</anchor>
-      <arglist>(QPoint b)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>QPoint</type>
-      <name>m_LeftDownPos</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>c9c62ea844bce89c29e857f4db5a792c</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setm_MidDownPos</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>52600c452ca185b1ff95e718f74fcd0f</anchor>
-      <arglist>(QPoint b)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>QPoint</type>
-      <name>m_MidDownPos</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>c4889572f3aaff13a4505d96a53928b7</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setm_RightDownPos</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>a339da52e1d88c3ed8ea6595dae47f95</anchor>
-      <arglist>(QPoint b)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>QPoint</type>
-      <name>m_RightDownPos</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>2af17ec8f9f5cad05a400674347681d2</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function" protection="private">
@@ -1375,132 +1231,6 @@
       <name>Values</name>
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>580c9d5495ed83d2d2fd6a1c771cd79a</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setdxy</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>103dce7821b45de1ed01aab87ce5cff5</anchor>
-      <arglist>(double _dxy)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>double</type>
-      <name>dxy</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>d0d0c0349cdebe561167afb10616a2d3</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setdxz</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>81895ce965d669c72b581b096e9361ea</anchor>
-      <arglist>(double _dxz)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>double</type>
-      <name>dxz</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>e5688525c3f229997a75e7985fa18d50</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setdxw</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>090a0c31178adbd4098b3aed7c47f390</anchor>
-      <arglist>(double _dxw)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>double</type>
-      <name>dxw</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>80dd4db75726e18632345c7728d47575</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setdyz</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>a7ebb92d9f8e36dd35fb1679ea4e133b</anchor>
-      <arglist>(double _dyz)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>double</type>
-      <name>dyz</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>bf96e00d889be3e09f1d625451dab6db</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setdyw</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>efb7a3489f852f8743c697f1d528a9b3</anchor>
-      <arglist>(double _dyw)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>double</type>
-      <name>dyw</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>db5a2e8f63177c47986106e14ca4c23e</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setdzw</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>4fa3d2afb0187c84d1e20b9f65a1df4c</anchor>
-      <arglist>(double _dzw)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>double</type>
-      <name>dzw</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>6ce4b0fce30fd409e706bf27b0361f83</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setdx</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>6bce184901b5eddbad60ece1b7f7d87c</anchor>
-      <arglist>(double _dx)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>double</type>
-      <name>dx</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>0162fb95e2d5ced3e37b0f86c10d3969</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setdy</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>15a8dd0be3e2c708f1b63bb6e75d68de</anchor>
-      <arglist>(double _dy)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>double</type>
-      <name>dy</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>b36c0cfffcb51062077a1e2d3668ea31</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setdz</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>f936ff8b1416421636d673b2e3c76a5a</anchor>
-      <arglist>(double _dz)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>double</type>
-      <name>dz</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>a47638011e3cb283af57adc01b950195</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function" protection="private">
@@ -1694,115 +1424,45 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>double</type>
-      <name>Tx</name>
+      <type>VecMath::Vector&lt; 4 &gt;</type>
+      <name>T</name>
       <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>2e1143497ad771f69bcb3d84dc246481</anchor>
+      <anchor>8ea4aaea895e1b93730183ce2358061e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>double</type>
-      <name>Ty</name>
+      <type>VecMath::Rotation&lt; 4 &gt;</type>
+      <name>R</name>
       <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>937aadc3e51aae5700e29ad458bd687d</anchor>
+      <anchor>e5ed1dd715209a6895176c4eb473e36f</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>double</type>
-      <name>Tz</name>
+      <type>VecMath::Rotation&lt; 3 &gt;</type>
+      <name>dR3</name>
       <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>dd7a50748d2af8908e789ba36abe7a56</anchor>
+      <anchor>cc77d24e1ba31a16cb30702577425ba2</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>double</type>
-      <name>Tw</name>
+      <type>VecMath::Rotation&lt; 4 &gt;</type>
+      <name>dR</name>
       <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>ae0c647bf77277c24b87f6778486ee7f</anchor>
+      <anchor>2335e837e02cd34554561045678b97b7</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>double</type>
-      <name>Rxy</name>
+      <type>VecMath::Rotation&lt; 3, GLdouble &gt;</type>
+      <name>m_rot</name>
       <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>95e1e5a5659fc6294cc11d8974374568</anchor>
+      <anchor>e1c0c06ea8688b13f4b0f42efe6e6b6a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>double</type>
-      <name>Rxz</name>
+      <type>VecMath::Vector&lt; 3, GLdouble &gt;</type>
+      <name>m_trans</name>
       <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>8b23d83333a629cfe2330f93f4296d84</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>Rxw</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>4110a883dea58c1363a01d005b09e838</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>Ryz</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>89befdf3246e15700f49a71f1aabf55f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>Ryw</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>44cabd1baae3cd26314cc2704d7e5072</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>Rzw</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>1e786f009cd6f1bdeafe04125d6f3b6f</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>GLdouble</type>
-      <name>m_rotX</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>6d4dc4785b3f4df70c06fbd7b5f5a3ca</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>GLdouble</type>
-      <name>m_rotY</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>7e79a5f10abb48f382e9328276498a62</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>GLdouble</type>
-      <name>m_rotZ</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>40a4ebb84315eb8a2c317b0be1b0e4bb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>GLdouble</type>
-      <name>m_transX</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>4567faca093019bde9867d55de2f8625</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>GLdouble</type>
-      <name>m_transY</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>d0ecc29a9ded087986e3c0d56ad85c9d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>GLdouble</type>
-      <name>m_camZ</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>521db46a3b0832b8c8b292ac633c0b00</anchor>
+      <anchor>4a633c4d2ecbbe0fd8167831145bc42a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -1891,9 +1551,9 @@
     </member>
     <member kind="variable">
       <type>double</type>
-      <name>R</name>
+      <name>distance</name>
       <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>4c6c3408be332c0ecd3fada7f5f48da0</anchor>
+      <anchor>b2b9ba9496df929ed64279da8d75ce82</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -1960,13 +1620,6 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>bool</type>
-      <name>TakingSpinValues</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>dcef4d021c507cdc6f480f9443d51f31</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
       <type>unsigned</type>
       <name>animationFrame</name>
       <anchorfile>structC4DView_1_1Impl.html</anchorfile>
@@ -1978,27 +1631,6 @@
       <name>CurrentlyRendering</name>
       <anchorfile>structC4DView_1_1Impl.html</anchorfile>
       <anchor>bc804963c638f50c21b36fc80b2218ea</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QPoint</type>
-      <name>m_LeftDownPos</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>8ff8393a464478cf529951c19dff44f1</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QPoint</type>
-      <name>m_MidDownPos</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>4a9199ba2e973c40f797654cbe0255c7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>QPoint</type>
-      <name>m_RightDownPos</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>63db7a403af416fb7a7ecad4ee2722e1</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -2020,69 +1652,6 @@
       <name>Values</name>
       <anchorfile>structC4DView_1_1Impl.html</anchorfile>
       <anchor>e1b669a3fcb19b2cb652fd0e33061602</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>dxy</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>77df73669d8fcb91a99044f1de33dc83</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>dxz</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>808548b90412c3438a0d02d6e8298ac9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>dxw</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>83cad34eb72145b76e341fea812e1dce</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>dyz</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>f309fef6ba57c3bb007f4f6689244da8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>dyw</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>d06ace5af4bdf95b0871734cf07d09e9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>dzw</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>578ef768e98dea6f4e03110f0a0db050</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>dx</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>b8e9095492654d33b17505717b978766</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>dy</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>50ca24efb925fc7353043a9ef163879c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>double</type>
-      <name>dz</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>11a5c6bb318df27e85b3deb79b64c3e7</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -2296,11 +1865,95 @@
       <anchor>681ee2ee24d1528a92b6ec0ff4dad9c2</anchor>
       <arglist>(QMouseEvent *)</arglist>
     </member>
-    <member kind="variable">
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>setm_LeftDownPos</name>
+      <anchorfile>classC4DView_1_1MouseHandler4D.html</anchorfile>
+      <anchor>92d1a9fd22803c865cf152191606b43e</anchor>
+      <arglist>(QPoint b)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>QPoint</type>
+      <name>LeftDownPos</name>
+      <anchorfile>classC4DView_1_1MouseHandler4D.html</anchorfile>
+      <anchor>4a49dbaa91cad131251db04800ae3abd</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>setm_MidDownPos</name>
+      <anchorfile>classC4DView_1_1MouseHandler4D.html</anchorfile>
+      <anchor>909181777e8fc6db6c75712debfebb7f</anchor>
+      <arglist>(QPoint b)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>QPoint</type>
+      <name>MidDownPos</name>
+      <anchorfile>classC4DView_1_1MouseHandler4D.html</anchorfile>
+      <anchor>a2558a7d9a20a5d58db50ea1bcd5cc21</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>setm_RightDownPos</name>
+      <anchorfile>classC4DView_1_1MouseHandler4D.html</anchorfile>
+      <anchor>a4f667972a1db23cccac9aed209f1bc7</anchor>
+      <arglist>(QPoint b)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>QPoint</type>
+      <name>RightDownPos</name>
+      <anchorfile>classC4DView_1_1MouseHandler4D.html</anchorfile>
+      <anchor>57f9f2674114a147356973a597b3fb81</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>setTakingSpinValues</name>
+      <anchorfile>classC4DView_1_1MouseHandler4D.html</anchorfile>
+      <anchor>494cf8d0f71605be3ea5a4578ce53df5</anchor>
+      <arglist>(bool b)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>bool</type>
+      <name>TakingSpinValues</name>
+      <anchorfile>classC4DView_1_1MouseHandler4D.html</anchorfile>
+      <anchor>4c95b09d3ea40d76c2e47dc08e0998b4</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="variable" protection="private">
       <type>C4DView *</type>
       <name>parent</name>
       <anchorfile>classC4DView_1_1MouseHandler4D.html</anchorfile>
       <anchor>4b4ff1cbc3a9e85f1fd5f6daaef574ea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPoint</type>
+      <name>m_LeftDownPos</name>
+      <anchorfile>classC4DView_1_1MouseHandler4D.html</anchorfile>
+      <anchor>7daa8d9f9a43f9d014dd2c3db2c1e4e6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPoint</type>
+      <name>m_MidDownPos</name>
+      <anchorfile>classC4DView_1_1MouseHandler4D.html</anchorfile>
+      <anchor>2eb10db3ada376e9cfcf8154f7191df5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>QPoint</type>
+      <name>m_RightDownPos</name>
+      <anchorfile>classC4DView_1_1MouseHandler4D.html</anchorfile>
+      <anchor>b199e14588f77831dedb7433ed64a074</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>bool</type>
+      <name>m_TakingSpinValues</name>
+      <anchorfile>classC4DView_1_1MouseHandler4D.html</anchorfile>
+      <anchor>2200d230bd663feca709116bd4180eda</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -3199,15 +2852,15 @@
       <type>virtual void</type>
       <name>Transform</name>
       <anchorfile>classFunction.html</anchorfile>
-      <anchor>ba589b8ff84f92035c7b74bef6e9c1fc</anchor>
-      <arglist>(double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)=0</arglist>
+      <anchor>0a3dff00a3f82504d75f52aa4b77b676</anchor>
+      <arglist>(const VecMath::Rotation&lt; 4 &gt; &amp;R, const VecMath::Vector&lt; 4 &gt; &amp;T)=0</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>Transform</name>
       <anchorfile>classFunction.html</anchorfile>
-      <anchor>42e2e15e46dc3c126a924ad7701ef69f</anchor>
-      <arglist>(void)</arglist>
+      <anchor>1a5bdfce53f7d21a73842e19868e39de</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="pure">
       <type>virtual void</type>
@@ -3860,8 +3513,8 @@
       <type>virtual void</type>
       <name>Transform</name>
       <anchorfile>classGasket.html</anchorfile>
-      <anchor>1621e2fd3bbdfa08d856267d0946daf4</anchor>
-      <arglist>(double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)</arglist>
+      <anchor>57a1b430a1f1a4a0956ac983a134ac6b</anchor>
+      <arglist>(const VecMath::Rotation&lt; 4 &gt; &amp;R, const VecMath::Vector&lt; 4 &gt; &amp;T)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
@@ -4345,6 +3998,20 @@
       <type>Log &amp;</type>
       <name>operator&lt;&lt;</name>
       <anchorfile>classLog.html</anchorfile>
+      <anchor>dded3526b14b62d865242bd3075928a7</anchor>
+      <arglist>(const VecMath::Vector&lt; D &gt; &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>Log &amp;</type>
+      <name>operator&lt;&lt;</name>
+      <anchorfile>classLog.html</anchorfile>
+      <anchor>02912c0c708f37fdc42a8c9109c9a1fe</anchor>
+      <arglist>(const VecMath::Rotation&lt; D &gt; &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>Log &amp;</type>
+      <name>operator&lt;&lt;</name>
+      <anchorfile>classLog.html</anchorfile>
       <anchor>759be4a65a5f0e4bb4a8f87572719626</anchor>
       <arglist>(long x)</arglist>
     </member>
@@ -4632,6 +4299,17 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>NotYetImplementedException</name>
+    <filename>classNotYetImplementedException.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>NotYetImplementedException</name>
+      <anchorfile>classNotYetImplementedException.html</anchorfile>
+      <anchor>a674914f24f27aeece822be597dfb583</anchor>
+      <arglist>(const std::string &amp;what)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>Object</name>
     <filename>classObject.html</filename>
     <base>Function</base>
@@ -4667,8 +4345,8 @@
       <type>virtual void</type>
       <name>Transform</name>
       <anchorfile>classObject.html</anchorfile>
-      <anchor>325a0b66e653f67de1d26c35022cdaa5</anchor>
-      <arglist>(double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)</arglist>
+      <anchor>16adc37b6a48b1113858b60b861eb1c1</anchor>
+      <arglist>(const VecMath::Rotation&lt; 4 &gt; &amp;R, const VecMath::Vector&lt; 4 &gt; &amp;T)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
@@ -5479,8 +5157,8 @@
       <type>virtual void</type>
       <name>Transform</name>
       <anchorfile>classRealFunction.html</anchorfile>
-      <anchor>ab400a3b8c445044007307fa295f1c89</anchor>
-      <arglist>(double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)</arglist>
+      <anchor>dbbc82deb59fbfddd400cb4cc1a003ee</anchor>
+      <arglist>(const VecMath::Rotation&lt; 4 &gt; &amp;R, const VecMath::Vector&lt; 4 &gt; &amp;T)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
@@ -5659,8 +5337,8 @@
       <type>virtual void</type>
       <name>Transform</name>
       <anchorfile>classSponge.html</anchorfile>
-      <anchor>00961c9a2034c8edac7697568e2f6cc8</anchor>
-      <arglist>(double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)</arglist>
+      <anchor>c7f51aa2dcec81e24eda7f4fa1c617a9</anchor>
+      <arglist>(const VecMath::Rotation&lt; 4 &gt; &amp;R, const VecMath::Vector&lt; 4 &gt; &amp;T)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
@@ -5877,15 +5555,8 @@
       <type>virtual void</type>
       <name>Transform</name>
       <anchorfile>classSurface.html</anchorfile>
-      <anchor>98f6a79d334e61068031f15ebef90458</anchor>
-      <arglist>(double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>Transform</name>
-      <anchorfile>classSurface.html</anchorfile>
-      <anchor>ce4dec89d0480aa9c59b5d0bc578131e</anchor>
-      <arglist>(void)</arglist>
+      <anchor>fd09e20917d1089019851ea52f1fb49c</anchor>
+      <arglist>(const VecMath::Rotation&lt; 4 &gt; &amp;R, const VecMath::Vector&lt; 4 &gt; &amp;T)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual void</type>
@@ -6459,6 +6130,440 @@
   <compound kind="class">
     <name>Ui_ValuesDialog</name>
     <filename>classUi__ValuesDialog.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>setupUi</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>c3f35fcc3a053a5fd7d5c6972d072a7c</anchor>
+      <arglist>(QDialog *ValuesDialog)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>retranslateUi</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>6e4192b89d585bbab3e1f03a0094027b</anchor>
+      <arglist>(QDialog *ValuesDialog)</arglist>
+    </member>
+    <member kind="variable">
+      <type>QWidget *</type>
+      <name>layoutWidget</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>7ce2942af559fd9c0ce23621c0f769a2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QVBoxLayout *</type>
+      <name>vboxLayout</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>e83c454c1e13c61d3bb2f7ce1c05def0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QGroupBox *</type>
+      <name>Grid</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>55a284a814f4c77ee1aff25ae023e7ce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QGridLayout *</type>
+      <name>gridLayout</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>4cabc3bf035e33ec8f63ec3e5f52d595</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>937f5b063063229bc2efd61f201fc917</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>df15da5b3e56ac116dd2cb1adde67724</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSlider *</type>
+      <name>TSlider</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>7a1d12dc830feae4457fe732698aa7d8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TSteps</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>ff54a284c847b823a2107678fe3e5e57</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout1</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>96d7e7d12dfd94836344517044c8f282</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout2</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>8b85642c26756ee265b43652756c9898</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TextLabel12</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>c854e1feb18409494b0efa63a5c25bdb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>TMin</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>199c990023e9204f56e0b5cf521ab696</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout3</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>0d953398e34878e763ae9e3b7062d82b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TextLabel11</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>473f5db97f0bf79fa3bef02e57490811</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>TMax</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>ffe42cda468dee2608fad3e527d0222e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout4</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>45aeaa86574ea0de2f1ee0cce755e091</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>ULabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>5aa3e3930bd101f135572c778534917a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSlider *</type>
+      <name>USlider</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>85b86034f26c7c1c205ffb45fe06fe8d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>USteps</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>da09975156384aa303eb2c4a78cb6700</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout5</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>52fb462742cc2a31f7ee4bf7d392b5f8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout6</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>2ace4469873d6f5de0c62106fd222fa2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TextLabel12_2</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>8777e34c24107164afdb2a256b483f46</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>UMin</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>90b5e6c1744098b439145b1dce07fa6e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout7</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>f240efc78c57df3daabe60eef0afe494</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TextLabel11_2</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>250da7643642260be7892fe96bd56190</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>UMax</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>cc47d392c4ba3b3fae1bba4f30e601c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout8</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>54a5e7fa03d342e3a93bd844e12dbf37</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>VLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>332f7a107b607d33352249b8442abb98</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSlider *</type>
+      <name>VSlider</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>ca86af89757b4fbad6917e5d386b4bb8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>VSteps</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>b9838c99fe6c9d527e6a546504e909f8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout9</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>8adcaade3f319fb2bcfea46ad611e6cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout10</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>ae454ffcffe2ade02f5c78e1d56616e3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TextLabel12_2_2</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>7afedf526683c39ef8f5d875600046c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>VMin</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>3ed2361475ec310caa31ae7f49e191bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout11</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>b443432e6102d3fbbd7007a2a7c65eb5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TextLabel11_2_2</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>3fa692acf363088d626861c73234939c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>VMax</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>3fdd1149f205ad0e7d930580cecccc98</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QGroupBox *</type>
+      <name>Function</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>d9f19cf3468051bbd8afde1d71c7e431</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QGridLayout *</type>
+      <name>gridLayout1</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>3a1c6384782e9f4644bbb96e656d891e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TextLabel13</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>1da2db6780d47e0c9953775592a82ad5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QComboBox *</type>
+      <name>FunctionBox</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>953f1789f3408c7527d114adf3f8d4b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QVBoxLayout *</type>
+      <name>vboxLayout1</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>bc0fe68eba06398ac2c2e48610b3aa95</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout12</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>713f42d09751223932ec5cc9c7dc3511</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout13</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>cccbfbe1db9d9c49e8c026f654257075</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>ALabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>a191886f92d64ec1e014817e524358a0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>A</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>2bb72b733958971b982ceb269b988d63</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout14</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>18ccda14e24d55f582a57caa1ec2f83b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>BLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>434ef2db91aa11fa8e67c373d29149dd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>B</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>606babe3461172ab85f4d21a17a7df70</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout15</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>dfbe366c27f841475c7ae434d0bbeb5d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout16</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>0b9bdf2ca713824732eff993c8d59779</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>CLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>cec9df3bc9d167decb532e31e95d0762</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>C</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>322bd32464ddd0209bebd0dedf1a8abc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout17</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>015403b822699bae82da47b2211893b1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>DLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>3e911621e133dc69130ad9a79e9713cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>D</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>1b25ab0791e849a83f429560b2403fee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout18</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>df89338658e79cdf65ceda64bd0e69e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPushButton *</type>
+      <name>buttonApply</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>a957950d35fd0e2d4507f6791c17445a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPushButton *</type>
+      <name>buttonOk</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>361a4d4ddb0e157519e232900fbec056</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPushButton *</type>
+      <name>buttonCancel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>2b9e8e63267275699acc2e2ab91028f5</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>setupUi</name>
@@ -8226,6 +8331,13 @@
     </member>
     <member kind="function">
       <type>Matrix&lt; D, N &gt;</type>
+      <name>operator*=</name>
+      <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
+      <anchor>fa87544cf9d0fc24402203d649ceb78b</anchor>
+      <arglist>(const Matrix&lt; D, N &gt; &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>Matrix&lt; D, N &gt;</type>
       <name>operator*</name>
       <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
       <anchor>b560a8ea5f4708be9b5d4164d07ccbb4</anchor>
@@ -8258,6 +8370,99 @@
       <anchorfile>classVecMath_1_1Matrix.html</anchorfile>
       <anchor>b05a96df5ab732804b596f5e34d3216b</anchor>
       <arglist>[D][D]</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>VecMath::NumAxes</name>
+    <filename>structVecMath_1_1NumAxes.html</filename>
+    <templarg>D</templarg>
+  </compound>
+  <compound kind="class">
+    <name>VecMath::RotationAxes</name>
+    <filename>classVecMath_1_1RotationAxes.html</filename>
+    <templarg>D</templarg>
+    <member kind="function" static="yes">
+      <type>static unsigned</type>
+      <name>axis</name>
+      <anchorfile>classVecMath_1_1RotationAxes.html</anchorfile>
+      <anchor>903766b44203be27c2dcff5ef1c36053</anchor>
+      <arglist>(unsigned which, unsigned index)</arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static unsigned</type>
+      <name>_axis</name>
+      <anchorfile>classVecMath_1_1RotationAxes.html</anchorfile>
+      <anchor>3bc210e4cd84f708c856e9d665cce3c5</anchor>
+      <arglist>[2][NumAxes&lt; D &gt;::num]</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>VecMath::Rotation</name>
+    <filename>classVecMath_1_1Rotation.html</filename>
+    <templarg>D</templarg>
+    <templarg>N</templarg>
+    <member kind="function">
+      <type></type>
+      <name>Rotation</name>
+      <anchorfile>classVecMath_1_1Rotation.html</anchorfile>
+      <anchor>381bea6da84c7a729c369ae5f00d84a5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Rotation</name>
+      <anchorfile>classVecMath_1_1Rotation.html</anchorfile>
+      <anchor>8169627c23d4ecf6f8d5724a9310a8e8</anchor>
+      <arglist>(N r0,...)</arglist>
+    </member>
+    <member kind="function">
+      <type>N &amp;</type>
+      <name>operator[]</name>
+      <anchorfile>classVecMath_1_1Rotation.html</anchorfile>
+      <anchor>983895e87df442fd68885cddac8bbb20</anchor>
+      <arglist>(unsigned i)</arglist>
+    </member>
+    <member kind="function">
+      <type>N</type>
+      <name>operator[]</name>
+      <anchorfile>classVecMath_1_1Rotation.html</anchorfile>
+      <anchor>790e96010114d3219cf7452676389e74</anchor>
+      <arglist>(unsigned i) const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator Matrix&lt; D, N &gt;</name>
+      <anchorfile>classVecMath_1_1Rotation.html</anchorfile>
+      <anchor>bada28b04afd16a77c258079463174fd</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Rotation&lt; D, N &gt; &amp;</type>
+      <name>operator+=</name>
+      <anchorfile>classVecMath_1_1Rotation.html</anchorfile>
+      <anchor>8094dd821ed9d37dfa162d05750adbe7</anchor>
+      <arglist>(const Rotation&lt; D, N &gt; &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator bool</name>
+      <anchorfile>classVecMath_1_1Rotation.html</anchorfile>
+      <anchor>7171fc9dc7023d1449d50e084265a57c</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>const Vector&lt; NumAxes&lt; D &gt;::num, N &gt;</type>
+      <name>r</name>
+      <anchorfile>classVecMath_1_1Rotation.html</anchorfile>
+      <anchor>d048a5d967bb9b554ed984ada6bc2a75</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Vector&lt; NumAxes&lt; D &gt;::num, N &gt;</type>
+      <name>axis</name>
+      <anchorfile>classVecMath_1_1Rotation.html</anchorfile>
+      <anchor>234ba7e9e05403d496d5a50d9cee3334</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -8369,6 +8574,13 @@
       <anchorfile>classVecMath_1_1Vector.html</anchorfile>
       <anchor>c60183f68f2d8a6473c64c2e753cd053</anchor>
       <arglist>(void) const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchorfile>classVecMath_1_1Vector.html</anchorfile>
+      <anchor>b6e7503d7c1b1f58f59d2fd08ba3396a</anchor>
+      <arglist>(const Vector&lt; D, N &gt; &amp;other) const </arglist>
     </member>
     <member kind="function">
       <type>bool</type>

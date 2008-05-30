@@ -53,9 +53,9 @@ Inheritance diagram for Gasket:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="02cf79a8236f67c60e616d6016ca32b2"></a><!-- doxytag: member="Gasket::Gasket" ref="02cf79a8236f67c60e616d6016ca32b2" args="(unsigned level=1, double rad=1, VecMath::Vector&lt; 4 &gt; Center=VecMath::Vector&lt; 4 &gt;(0., 0., 0., 0.))" -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><b>Gasket</b> (unsigned level=1, double rad=1, <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; Center=<a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt;(0., 0., 0., 0.))</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGasket.html#1621e2fd3bbdfa08d856267d0946daf4">Transform</a> (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGasket.html#57a1b430a1f1a4a0956ac983a134ac6b">Transform</a> (const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;R, const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;T)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Transforms a <a class="el" href="classGasket.html" title="A four-dimensional version of the Sierpinski Gasket.">Gasket</a>.  <a href="#1621e2fd3bbdfa08d856267d0946daf4"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Transforms a <a class="el" href="classGasket.html" title="A four-dimensional version of the Sierpinski Gasket.">Gasket</a>.  <a href="#57a1b430a1f1a4a0956ac983a134ac6b"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGasket.html#cd9211ebec49fe02e9794526afc41194">Project</a> (double ScrW, double CamW, bool DepthCue4D)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">projects a <a class="el" href="classGasket.html" title="A four-dimensional version of the Sierpinski Gasket.">Gasket</a> into three-space  <a href="#cd9211ebec49fe02e9794526afc41194"></a><br></td></tr>
@@ -93,69 +93,21 @@ A four-dimensional version of the Sierpinski <a class="el" href="classGasket.htm
 <p>
 This object is similar to the Menger <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a>, but it uses a Hypersimplex as generator.<p>
 It lacks the <code>distance</code> parameter, because there is only one way to generate a Sierpinski <a class="el" href="classGasket.html" title="A four-dimensional version of the Sierpinski Gasket.">Gasket</a> of level <code>n</code>. Otherwise it is analogous to the Menger <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a> fractal. <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="1621e2fd3bbdfa08d856267d0946daf4"></a><!-- doxytag: member="Gasket::Transform" ref="1621e2fd3bbdfa08d856267d0946daf4" args="(double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw)" -->
+<a class="anchor" name="57a1b430a1f1a4a0956ac983a134ac6b"></a><!-- doxytag: member="Gasket::Transform" ref="57a1b430a1f1a4a0956ac983a134ac6b" args="(const VecMath::Rotation&lt; 4 &gt; &amp;R, const VecMath::Vector&lt; 4 &gt; &amp;T)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Gasket::Transform           </td>
           <td>(</td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>Thetaxy</em>, </td>
+          <td class="paramtype">const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>R</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>Thetaxz</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>Thetaxw</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>Thetayz</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>Thetayw</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>Thetazw</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>Tx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>Ty</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>Tz</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>Tw</em></td><td>&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>T</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -184,9 +136,9 @@ Transforms a <a class="el" href="classGasket.html" title="A four-dimensional ver
   </table>
 </dl>
 
-<p>Reimplemented from <a class="el" href="classObject.html#325a0b66e653f67de1d26c35022cdaa5">Object</a>.</p>
+<p>Reimplemented from <a class="el" href="classObject.html#16adc37b6a48b1113858b60b861eb1c1">Object</a>.</p>
 
-<p>References <a class="el" href="Function_8H-source.html#l00097">Function::Transform()</a>.</p>
+<p>References <a class="el" href="Function_8H-source.html#l00098">Function::Transform()</a>.</p>
 
 </div>
 </div><p>
@@ -283,7 +235,7 @@ This function actually creates the Sierpinski <a class="el" href="classGasket.ht
 
 <p>Reimplemented from <a class="el" href="classPyramid.html#dc837fa34b2f484a0c28da7210677db9">Pyramid</a>.</p>
 
-<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, and <a class="el" href="Object_8C-source.html#l00429">MemRequired()</a>.</p>
+<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, and <a class="el" href="Object_8C-source.html#l00417">MemRequired()</a>.</p>
 
 </div>
 </div><p>
@@ -309,14 +261,14 @@ return the approximate amount of memory needed to display a gasket of current le
 
 <p>Reimplemented from <a class="el" href="classFunction.html#d6a10b999b0d561d36a473d461c62311">Function</a>.</p>
 
-<p>Referenced by <a class="el" href="Object_8C-source.html#l00435">Initialize()</a>.</p>
+<p>Referenced by <a class="el" href="Object_8C-source.html#l00423">Initialize()</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>workspace/HyperspaceExplorer/src/Functions/<a class="el" href="Object_8H-source.html">Object.H</a><li>workspace/HyperspaceExplorer/src/Functions/Object.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon May 19 12:18:26 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 00:40:26 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>
