@@ -103,6 +103,7 @@ class Function {
         virtual void ReInit(double _tmin, double _tmax, double _dt,
                             double _umin, double _umax, double _du,
                             double _vmin, double _vmax, double _dv) = 0;
+        /// Set parameters to the Function
         virtual void SetParameters(const ParameterMap &) {
             std::cerr << "Function::SetParameters()" << std::endl;
         }
@@ -155,7 +156,7 @@ class Function {
         void addVertices(unsigned num) { NumVertices += num; }
 
         void setfunctionName(const QString &_name) { functionName = _name; }
-        
+
     private:
         void insertParameter(
             const std::pair<std::string, FunctionParameter *> &value) {
@@ -169,7 +170,7 @@ class Function {
 
         /// the name of the function as a free-form string
         QString functionName;
-        
+
         /// list of the parameters to the function
         ParameterMap parameters;
         /// list of the names of parameters to the function

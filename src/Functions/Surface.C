@@ -18,7 +18,7 @@ using VecMath::Matrix;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-/// Surface default c'tor, zeroes everything   
+/// Surface default c'tor, zeroes everything
 Surface::Surface ():
     SurfaceBase("", 0, 0, 0, 0, 0, 0), /*
     umin (0), umax (0), du (0),
@@ -305,8 +305,7 @@ Vector<4> &Horizon::f (double t, double phi) {
  *  @param _du stepsize in u
  *  @param _vmin minimal value in v
  *  @param _vmax maximal value in v
- *  @param _dv stepsize in v
- *  @param _rad radius                                                        */
+ *  @param _dv stepsize in v                                                  */
 Torus3::Torus3 (double _umin, double _umax, double _du,
                 double _vmin, double _vmax, double _dv):
         Surface ("Torus 3", _umin, _umax, _du, _vmin, _vmax, _dv) {

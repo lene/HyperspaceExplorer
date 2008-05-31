@@ -46,30 +46,43 @@ class ValuesDialogImpl: public QDialog, public Ui::ValuesDialog {
 
         std::string print ();
 
+        /// lower bound for parameter t
         double tmin () { return atof (Min[0]->text ().toStdString().c_str()); }
+        /// upper bound for parameter t
         double tmax () { return atof (Max[0]->text ().toStdString().c_str()); }
+        /// steps in parameter t
         unsigned tsteps () { return Slider[0]->value (); }
+        /// delta in parameter t
         double dt () { return (tmax ()-tmin ())/double (tsteps ()); }
 
+        /// lower bound for parameter u
         double umin () { return atof (Min[1]->text ().toStdString().c_str()); }
+        /// upper bound for parameter u
         double umax () { return atof (Max[1]->text ().toStdString().c_str()); }
+        /// steps in parameter u
         unsigned usteps () { return Slider[1]->value (); }
+        /// delta in parameter u
         double du () { return (umax ()-umin ())/double (usteps ()); }
 
+        /// lower bound for parameter v
         double vmin () { return atof (Min[2]->text ().toStdString().c_str()); }
+        /// upper bound for parameter v
         double vmax () { return atof (Max[2]->text ().toStdString().c_str()); }
+        /// steps in parameter v
         unsigned vsteps () { return Slider[2]->value (); }
+        /// delta in parameter v
         double dv () { return (vmax ()-vmin ())/double (vsteps ()); }
 
     public slots:
         virtual void accept ();
 
     signals:
+        /// Tell the C4DView to update according to the ParameterMap's values
         void ApplyChanges (const ParameterMap &);
 
     private:
         void setParameters(const ParameterMap &);
-        ParameterMap parameters;
+        ParameterMap parameters;                    ///< parameters to manage
 };
 
 #endif

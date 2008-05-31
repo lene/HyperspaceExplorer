@@ -69,9 +69,8 @@ class SurfaceBase: public Function {
         /// The mathematical function defining the Function object
         virtual VecMath::Vector<4> &f(double, double) = 0;
         /// Function evaluation operator for three parameters
-        /** @param t first argument, e.g. x or t
-         *  @param u second argument, e.g. y or u
-         *  @param v third argument, e.g. z or v
+        /** @param u first argument, e.g. y or u
+         *  @param v second argument, e.g. z or v
          *  @return f(t, u, v)                                                */
         VecMath::Vector<4> &operator () (double u, double v, double = 0) {
             return f(u,v);

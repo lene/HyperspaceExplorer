@@ -51,6 +51,7 @@ bool SurfaceDialogImpl::functionPresent(const QString &libName) {
             functionPresent(libName, this);
 }
 
+/// \see PluginCreator::checkValidity()
 bool SurfaceDialogImpl::checkValidity() {
     if ((nameEdit->text().isEmpty()) || (XEdit->text().isEmpty())
         || (YEdit->text().isEmpty()) || (ZEdit->text().isEmpty())

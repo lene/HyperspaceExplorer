@@ -103,7 +103,7 @@
 <a name="l00101"></a>00101                <span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;_Center = <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a>(0., 0., 0., 0.));
 <a name="l00102"></a>00102     <span class="keyword">virtual</span> ~<a class="code" href="classHypercube.html" title="A four-dimensional cube.">Hypercube</a>() { }
 <a name="l00103"></a>00103 
-<a name="l00104"></a>00104     <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetParameters(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
+<a name="l00104"></a><a class="code" href="classHypercube.html#e405a9eaf0b835a4546aecbb48e938f5">00104</a>     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classHypercube.html#e405a9eaf0b835a4546aecbb48e938f5" title="Set parameters to the Function.">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
 <a name="l00105"></a>00105 <span class="preprocessor">#       if 1</span>
 <a name="l00106"></a>00106 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
 <a name="l00107"></a>00107                  i != parms.end(); ++i) {
@@ -142,7 +142,7 @@
 <a name="l00170"></a>00170     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSponge.html#ee14d45eb035e31bf23efe2c45245e6a" title="Projects a Sponge into three-space.">Project</a> (<span class="keywordtype">double</span> ScrW, <span class="keywordtype">double</span> CamW, <span class="keywordtype">bool</span> DepthCue4D);
 <a name="l00171"></a>00171     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSponge.html#673da787a17189eafade24bf21e82f70" title="Draw the projected Sponge (onto screen or into GL list, as it is).">Draw</a> (<span class="keywordtype">void</span>);
 <a name="l00172"></a>00172 
-<a name="l00173"></a>00173     <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetParameters(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
+<a name="l00173"></a><a class="code" href="classSponge.html#b379dd05d2113837b3101a4b7881715a">00173</a>     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSponge.html#b379dd05d2113837b3101a4b7881715a" title="Set parameters to the Function.">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
 <a name="l00174"></a>00174 <span class="preprocessor">#       if 1</span>
 <a name="l00175"></a>00175 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
 <a name="l00176"></a>00176                  i != parms.end(); ++i) {
@@ -196,7 +196,7 @@
 <a name="l00229"></a>00229              <span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;_Center = <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> (0., 0., 0., 0.));
 <a name="l00230"></a>00230     <span class="keyword">virtual</span> ~<a class="code" href="classPyramid.html" title="A four-dimensional pyramid, also known as hypersimplex.">Pyramid</a>() { }
 <a name="l00231"></a>00231 
-<a name="l00232"></a>00232     <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetParameters(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
+<a name="l00232"></a><a class="code" href="classPyramid.html#29d24610dababa3905aad2b8979a0612">00232</a>     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classPyramid.html#29d24610dababa3905aad2b8979a0612" title="Set parameters to the Function.">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
 <a name="l00233"></a>00233 <span class="preprocessor">#       if 1</span>
 <a name="l00234"></a>00234 <span class="preprocessor"></span>        <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
 <a name="l00235"></a>00235              i != parms.end(); ++i) {
@@ -229,7 +229,7 @@
 <a name="l00270"></a>00270         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classGasket.html#cd9211ebec49fe02e9794526afc41194" title="projects a Gasket into three-space">Project</a> (<span class="keywordtype">double</span> ScrW, <span class="keywordtype">double</span> CamW, <span class="keywordtype">bool</span> DepthCue4D);
 <a name="l00271"></a>00271         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classGasket.html#86e0a72afdfc932b81e6ced27ed3b130" title="draw the projected Gasket (onto screen or into GL list, as it is)">Draw</a> (<span class="keywordtype">void</span>);
 <a name="l00272"></a>00272 
-<a name="l00273"></a>00273         <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetParameters(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
+<a name="l00273"></a><a class="code" href="classGasket.html#cddb72bd882ada85324313792fedfe3e">00273</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classGasket.html#cddb72bd882ada85324313792fedfe3e" title="Set parameters to the Function.">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
 <a name="l00274"></a>00274 <span class="preprocessor">#       if 1</span>
 <a name="l00275"></a>00275 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
 <a name="l00276"></a>00276                  i != parms.end(); ++i) {
@@ -261,7 +261,7 @@
 <a name="l00302"></a>00302 
 <a name="l00303"></a>00303 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 15:27:58 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 16:14:24 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

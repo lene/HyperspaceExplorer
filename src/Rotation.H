@@ -52,21 +52,31 @@ namespace VecMath {
     /// Rotation axes in three dimensions, manually specified
     template <> class RotationAxes<3> {
         public:
+            /** Compute the row/column in a rotation Matrix from the dimension
+             *  of the vector space and the position of the rotation angle in
+             *  the Rotation vector.
+             *  \param which 0 for \p ii or 1 for \p jj
+             *  \param index position in the Rotation vector                  */
             static unsigned axis(unsigned which, unsigned index) {
                 return _axis[which][index];
             }
         private:
-            static const unsigned _axis[2][3];
+            static const unsigned _axis[2][3];  ///< values for \p ii and \p jj
     };
 
     /// Rotation axes in four dimensions, manually specified
     template <> class RotationAxes<4> {
         public:
+            /** Compute the row/column in a rotation Matrix from the dimension
+             *  of the vector space and the position of the rotation angle in
+             *  the Rotation vector.
+             *  \param which 0 for \p ii or 1 for \p jj
+             *  \param index position in the Rotation vector                  */
             static unsigned axis(unsigned which, unsigned index) {
                 return _axis[which][index];
             }
         private:
-            static const unsigned _axis[2][6];
+            static const unsigned _axis[2][6];  ///< values for \p ii and \p jj
     };
 
     /// Rotation in D-dimensional space defined by angles about the main axes
@@ -99,8 +109,8 @@ namespace VecMath {
              *  \see the specializations for 3 and 4 dimensions in Rotation.C */
             operator Matrix<D, N>() const;
 
-            /** @param Y other Rotation
-             *  @return *this+Y                                               */
+            /** @param that other Rotation
+             *  @return *this+that                                               */
             Rotation<D, N> &operator+= (const Rotation<D, N> &);
 
             /// true if rotation is nonzero

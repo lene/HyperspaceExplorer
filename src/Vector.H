@@ -127,7 +127,7 @@ namespace VecMath {
     };
 
     template <unsigned D, typename N>
-            std::ostream &operator << (std::ostream &, const Vector<D> &);
+            std::ostream &operator << (std::ostream &, const Vector<D, N> &);
 
     //------------  Vector member functions
 

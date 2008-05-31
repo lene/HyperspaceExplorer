@@ -57,7 +57,7 @@ class RealBase: public Function {
         unsigned getUsteps() const { return usteps > 0? usteps: 1; }
         unsigned &getVsteps()  { return vsteps; }
         unsigned getVsteps() const { return vsteps > 0? vsteps: 1; }
-         
+
         double &getTmin() { return tmin; }
         double getTmin() const { return tmin; }
         double &getTmax() { return tmax; }
@@ -222,7 +222,9 @@ class Torus1: public RealFunction {
     protected:
         virtual function_type f;
 
-        double R, r, rho;
+        double R;       ///< major radius of the torus
+        double r;       ///< minor radius of the torus
+        double rho;     ///< smallest radius of the torus
 };
 
 
@@ -257,7 +259,8 @@ class Torus2: public RealFunction {
     protected:
         virtual function_type f;
 
-        double R, r;
+        double R;   ///< major radius of the torus
+        double r;   ///< minor radius of the torus
 };
 
 

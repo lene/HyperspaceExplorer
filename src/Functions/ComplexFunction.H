@@ -75,7 +75,7 @@ class zA: public ComplexFunction {
             double _vmin, double _vmax, double _dv,
             double _alpha = 2);
         virtual ~zA () { }
-
+        /// \see Function::SetParameters()
         virtual void SetParameters(const ParameterMap &parms) {
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();

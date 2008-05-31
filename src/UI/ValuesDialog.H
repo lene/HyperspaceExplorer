@@ -299,35 +299,41 @@ class Ui_ValuesDialog {
         //  these members should be private and referred to only by accessors,
         //  but this is the way uic created the class and the derived class
         //  depends too much on them. so i didn't bother.
-        QGridLayout *gridLayout;
-        QVBoxLayout *AllBoundsLayout;
-        QVBoxLayout *AllParametersLayout;
-        QHBoxLayout *ButtonLayout;
+        QGridLayout *gridLayout;            ///< global layout
+        QVBoxLayout *AllBoundsLayout;       ///< layout for the bounds section
+        QVBoxLayout *AllParametersLayout;   ///< layout for the parameters section
+        QHBoxLayout *ButtonLayout;          ///< layout for "Apply" button
 
-        QLabel *gridLabel;
+        QLabel *gridLabel;                  ///< "Grid size and bounds" header
 
+        /// layouts for the bounds sliders and labels
         QHBoxLayout *SliderLayout[maxNumDimensions];
+        /// layouts for each combined bounds selector
         QHBoxLayout *BoundsLayout[maxNumDimensions];
+        /// layouts for each lower bound selector
         QHBoxLayout *MinLayout[maxNumDimensions];
+        /// layouts for each upper bound selector
         QHBoxLayout *MaxLayout[maxNumDimensions];
 
-        QLabel *Label[maxNumDimensions];
-        QSlider *Slider[maxNumDimensions];
-        QLabel *Steps[maxNumDimensions];
-        QLabel *MinLabel[maxNumDimensions];
-        QLineEdit *Min[maxNumDimensions];
-        QLabel *MaxLabel[maxNumDimensions];
-        QLineEdit *Max[maxNumDimensions];
+        QLabel *Label[maxNumDimensions];    ///< "Steps in [t|u|v]"
+        QSlider *Slider[maxNumDimensions];  ///< select number of grid points
+        QLabel *Steps[maxNumDimensions];    ///< display number of grid points
+        QLabel *MinLabel[maxNumDimensions]; ///< labels for lower bound inputs
+        QLineEdit *Min[maxNumDimensions];   ///< input fields for lower bounds
+        QLabel *MaxLabel[maxNumDimensions]; ///< labels for upper bound inputs
+        QLineEdit *Max[maxNumDimensions];   ///< input fields for upper bounds
 
-        QLabel *functionLabel;
+        QLabel *functionLabel;              ///< header for parameter input fields
 
+        /// QHBoxLayout for all parameter input fields
         QHBoxLayout *ParameterLayout[maxNumParameters];
+        /// QHBoxLayout for every line of parameter input fields
         QHBoxLayout *ParameterLineLayout[maxNumParameters/parametersPerLine];
 
-        QLabel *ParameterLabel[maxNumParameters];
-        QLineEdit *Parameter[maxNumParameters];
+        QLabel *ParameterLabel[maxNumParameters];   ///< parameter input labels
+        QLineEdit *Parameter[maxNumParameters];     ///< parameter input fields
 
-        QPushButton *buttonApply;
+        QPushButton *buttonApply;                   ///< "Apply" button
 
 };
 

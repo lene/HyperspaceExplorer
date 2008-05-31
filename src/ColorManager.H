@@ -59,7 +59,7 @@ class ColorManager {
 
         /// Find the color of a given point
         /** @param x four-dimensional coordinate for which the color is sought*/
-        virtual Color getColor(const VecMath::Vector<4> &) = 0;
+        virtual Color getColor(const VecMath::Vector<4> &x) = 0;
 
         /// post-process color at given point to have 4D depth cue
         virtual void depthCueColor(double wmax, double wmin, double w,
@@ -70,7 +70,7 @@ class ColorManager {
 
     protected:
         double getoffset4Ddepthcue() { return offset4Ddepthcue; }
-        
+
         /// one-dimensional Color array, implemented as a std::vector
         typedef std::vector<Color> colorvec1D;
         /// two-dimensional Color array, implemented as a nested std::vector
@@ -103,10 +103,14 @@ class ColorManager {
 /** \ingroup Coloring                                                         */
 class xyz2RGBColorManager: public ColorManager {
     public:
+        /// Given a Function to manage, construct a xyz2RGBColorManager
+        /** \param _f Function to manage    */
         xyz2RGBColorManager(Function *_f):
             ColorManager(_f), col(colormap()) { }
         virtual ~xyz2RGBColorManager() { }
 
+        /// set the managed Function
+        /** \param _f new Function to manage    */
         virtual void setFunction(Function *_f) {
             ColorManager::setFunction(_f);
             col.clear();
@@ -133,7 +137,7 @@ class xyz2RGBColorManager: public ColorManager {
                 findClosestPoints(const VecMath::Vector<4> &, unsigned = 5);
         Color averageColors(const std::vector<Color> &);
 
-        colormap col; ///<
+        colormap col; ///< Here the colors for defined points re stored
 };
 
 /// Plots all points in white

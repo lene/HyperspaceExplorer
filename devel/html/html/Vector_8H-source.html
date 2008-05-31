@@ -107,7 +107,7 @@
 <a name="l00127"></a>00127     };
 <a name="l00128"></a>00128 
 <a name="l00129"></a>00129     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00130"></a>00130             std::ostream &amp;operator &lt;&lt; (std::ostream &amp;, const Vector&lt;D&gt; &amp;);
+<a name="l00130"></a>00130             std::ostream &amp;operator &lt;&lt; (std::ostream &amp;, const Vector&lt;D, N&gt; &amp;);
 <a name="l00131"></a>00131 
 <a name="l00132"></a>00132     <span class="comment">//------------  Vector member functions</span>
 <a name="l00133"></a>00133 
@@ -227,7 +227,7 @@
 <a name="l00247"></a>00247 
 <a name="l00249"></a>00249 
 <a name="l00253"></a>00253     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00254"></a><a class="code" href="group__VecMath.html#g7c3727e6f85bbbc52c0ef4cb1e1658c3">00254</a>             std::ostream &amp;operator &lt;&lt; (std::ostream &amp;o, const Vector&lt;D, N&gt; &amp;v) {
+<a name="l00254"></a><a class="code" href="group__VecMath.html#gef433144f359a8cda43c2290871425b3">00254</a>             std::ostream &amp;operator &lt;&lt; (std::ostream &amp;o, const Vector&lt;D, N&gt; &amp;v) {
 <a name="l00255"></a>00255         <span class="comment">//  i might want to use other brackets one day</span>
 <a name="l00256"></a>00256         o &lt;&lt; <span class="stringliteral">"&lt;"</span>;
 <a name="l00257"></a>00257         <span class="keywordflow">for</span> ( <span class="keywordtype">unsigned</span> i = 0; i &lt; v.dimension ()-1; i++ )
@@ -286,7 +286,7 @@
 <a name="l00335"></a>00335 }
 <a name="l00336"></a>00336 <span class="preprocessor">#endif                                                //  VECTOR_H</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 15:27:59 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 16:14:24 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

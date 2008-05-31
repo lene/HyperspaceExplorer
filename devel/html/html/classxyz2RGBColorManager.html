@@ -53,12 +53,12 @@ Collaboration diagram for xyz2RGBColorManager:</div>
 <a href="classxyz2RGBColorManager-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5293efc1140fb401853a55fe097d6228"></a><!-- doxytag: member="xyz2RGBColorManager::xyz2RGBColorManager" ref="5293efc1140fb401853a55fe097d6228" args="(Function *_f)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>xyz2RGBColorManager</b> (<a class="el" href="classFunction.html">Function</a> *_f)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxyz2RGBColorManager.html#5293efc1140fb401853a55fe097d6228">xyz2RGBColorManager</a> (<a class="el" href="classFunction.html">Function</a> *_f)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0a4bba66a9e813a45c81af287d80fb42"></a><!-- doxytag: member="xyz2RGBColorManager::setFunction" ref="0a4bba66a9e813a45c81af287d80fb42" args="(Function *_f)" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setFunction</b> (<a class="el" href="classFunction.html">Function</a> *_f)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Given a <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> to manage, construct a <a class="el" href="classxyz2RGBColorManager.html" title="maps x, y, z in parameter space to R, G, B">xyz2RGBColorManager</a>.  <a href="#5293efc1140fb401853a55fe097d6228"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxyz2RGBColorManager.html#0a4bba66a9e813a45c81af287d80fb42">setFunction</a> (<a class="el" href="classFunction.html">Function</a> *_f)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">set the managed <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a>  <a href="#0a4bba66a9e813a45c81af287d80fb42"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e234f6fc5aa3de4bb185675542ac821e"></a><!-- doxytag: member="xyz2RGBColorManager::calibrateColor" ref="e234f6fc5aa3de4bb185675542ac821e" args="(const VecMath::Vector&lt; 4 &gt; &amp;x, const Color &amp;_col=Color())" -->
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxyz2RGBColorManager.html#e234f6fc5aa3de4bb185675542ac821e">calibrateColor</a> (const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;x, const <a class="el" href="classColor.html">Color</a> &amp;_col=<a class="el" href="classColor.html">Color</a>())</td></tr>
 
@@ -89,13 +89,71 @@ virtual std::string&nbsp;</td><td class="memItemRight" valign="bottom"><a class=
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Find the average RGBA values from the list of Colors supplied. <br></td></tr>
 <tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="eb8683f850c9d79dc8911e0ecb8e01e8"></a><!-- doxytag: member="xyz2RGBColorManager::col" ref="eb8683f850c9d79dc8911e0ecb8e01e8" args="" -->
-<a class="el" href="classColorManager.html#e092ace0146c74427af31cb4ad0f0221">colormap</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>col</b></td></tr>
+<a class="el" href="classColorManager.html#e092ace0146c74427af31cb4ad0f0221">colormap</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxyz2RGBColorManager.html#eb8683f850c9d79dc8911e0ecb8e01e8">col</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Here the colors for defined points re stored. <br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 maps x, y, z in parameter space to R, G, B 
 <p>
+<hr><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" name="5293efc1140fb401853a55fe097d6228"></a><!-- doxytag: member="xyz2RGBColorManager::xyz2RGBColorManager" ref="5293efc1140fb401853a55fe097d6228" args="(Function *_f)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">xyz2RGBColorManager::xyz2RGBColorManager           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classFunction.html">Function</a> *&nbsp;</td>
+          <td class="paramname"> <em>_f</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Given a <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> to manage, construct a <a class="el" href="classxyz2RGBColorManager.html" title="maps x, y, z in parameter space to R, G, B">xyz2RGBColorManager</a>. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>_f</em>&nbsp;</td><td><a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> to manage </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
 <hr><h2>Member Function Documentation</h2>
+<a class="anchor" name="0a4bba66a9e813a45c81af287d80fb42"></a><!-- doxytag: member="xyz2RGBColorManager::setFunction" ref="0a4bba66a9e813a45c81af287d80fb42" args="(Function *_f)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void xyz2RGBColorManager::setFunction           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classFunction.html">Function</a> *&nbsp;</td>
+          <td class="paramname"> <em>_f</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+set the managed <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>_f</em>&nbsp;</td><td>new <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> to manage </td></tr>
+  </table>
+</dl>
+
+<p>References <a class="el" href="ColorManager_8H-source.html#l00140">col</a>, and <a class="el" href="ColorManager_8H-source.html#l00046">ColorManager::setFunction()</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="87c08aa7c7f3a1f23488ae2cba90aad6"></a><!-- doxytag: member="xyz2RGBColorManager::getColor" ref="87c08aa7c7f3a1f23488ae2cba90aad6" args="(const VecMath::Vector&lt; 4 &gt; &amp;x)" -->
 <div class="memitem">
 <div class="memproto">
@@ -104,7 +162,7 @@ maps x, y, z in parameter space to R, G, B
           <td class="memname">virtual <a class="el" href="classColor.html">Color</a> xyz2RGBColorManager::getColor           </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;&nbsp;</td>
-          <td class="paramname">          </td>
+          <td class="paramname"> <em>x</em>          </td>
           <td>&nbsp;)&nbsp;</td>
           <td width="100%"><code> [virtual]</code></td>
         </tr>
@@ -121,7 +179,7 @@ Find the color of a given point.
   </table>
 </dl>
 
-<p>Implements <a class="el" href="classColorManager.html#73489c44daa1263138b2b22a782e9c53">ColorManager</a>.</p>
+<p>Implements <a class="el" href="classColorManager.html#2aeae9e387ffc3e9c74a0e17064bdce3">ColorManager</a>.</p>
 
 </div>
 </div><p>
@@ -155,7 +213,7 @@ Analogous for <img class="formulaInl" alt="$ G $" src="form_60.png"> in <img cla
   </table>
 </dl>
 
-<p>References <a class="el" href="ColorManager_8C-source.html#l00099">averageColors()</a>, and <a class="el" href="ColorManager_8C-source.html#l00111">findClosestPoints()</a>.</p>
+<p>References <a class="el" href="ColorManager_8C-source.html#l00099">averageColors()</a>, <a class="el" href="ColorManager_8H-source.html#l00140">col</a>, and <a class="el" href="ColorManager_8C-source.html#l00111">findClosestPoints()</a>.</p>
 
 </div>
 </div><p>
@@ -195,6 +253,8 @@ find the closest points in the map of colors
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>two vectors containing the closest points and their distances to x </dd></dl>
 
+<p>References <a class="el" href="ColorManager_8H-source.html#l00140">col</a>.</p>
+
 <p>Referenced by <a class="el" href="ColorManager_8C-source.html#l00076">computeColorFromNeighbors()</a>.</p>
 
 </div>
@@ -202,7 +262,7 @@ find the closest points in the map of colors
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>HyperspaceExplorer/src/<a class="el" href="ColorManager_8H-source.html">ColorManager.H</a><li>HyperspaceExplorer/src/ColorManager.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 15:28:00 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 16:14:28 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

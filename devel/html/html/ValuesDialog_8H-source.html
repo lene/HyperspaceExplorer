@@ -66,185 +66,185 @@
 <a name="l00053"></a>00053                         ValuesDialog-&gt;sizePolicy().hasHeightForWidth());
 <a name="l00054"></a>00054                 ValuesDialog-&gt;setSizePolicy(sizePolicy);
 <a name="l00055"></a>00055                 ValuesDialog-&gt;setSizeGripEnabled(<span class="keyword">false</span>);
-<a name="l00056"></a>00056                 gridLayout = <span class="keyword">new</span> QGridLayout(ValuesDialog);
-<a name="l00057"></a>00057                 gridLayout-&gt;setSpacing(6);
-<a name="l00058"></a>00058                 gridLayout-&gt;setMargin(11);
-<a name="l00059"></a>00059                 gridLayout-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"gridLayout"</span>));
-<a name="l00060"></a>00060                 AllBoundsLayout = <span class="keyword">new</span> QVBoxLayout();
-<a name="l00061"></a>00061                 AllBoundsLayout-&gt;setSpacing(6);
-<a name="l00062"></a>00062                 AllBoundsLayout-&gt;setObjectName(
+<a name="l00056"></a>00056                 <a class="code" href="classUi__ValuesDialog.html#4cabc3bf035e33ec8f63ec3e5f52d595" title="global layout">gridLayout</a> = <span class="keyword">new</span> QGridLayout(ValuesDialog);
+<a name="l00057"></a>00057                 <a class="code" href="classUi__ValuesDialog.html#4cabc3bf035e33ec8f63ec3e5f52d595" title="global layout">gridLayout</a>-&gt;setSpacing(6);
+<a name="l00058"></a>00058                 <a class="code" href="classUi__ValuesDialog.html#4cabc3bf035e33ec8f63ec3e5f52d595" title="global layout">gridLayout</a>-&gt;setMargin(11);
+<a name="l00059"></a>00059                 <a class="code" href="classUi__ValuesDialog.html#4cabc3bf035e33ec8f63ec3e5f52d595" title="global layout">gridLayout</a>-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"gridLayout"</span>));
+<a name="l00060"></a>00060                 <a class="code" href="classUi__ValuesDialog.html#9e3fc0351aba9dcb72e40263a7f7236e" title="layout for the bounds section">AllBoundsLayout</a> = <span class="keyword">new</span> QVBoxLayout();
+<a name="l00061"></a>00061                 <a class="code" href="classUi__ValuesDialog.html#9e3fc0351aba9dcb72e40263a7f7236e" title="layout for the bounds section">AllBoundsLayout</a>-&gt;setSpacing(6);
+<a name="l00062"></a>00062                 <a class="code" href="classUi__ValuesDialog.html#9e3fc0351aba9dcb72e40263a7f7236e" title="layout for the bounds section">AllBoundsLayout</a>-&gt;setObjectName(
 <a name="l00063"></a>00063                         QString::fromUtf8(<span class="stringliteral">"AllBoundsLayout"</span>));
-<a name="l00064"></a>00064                 gridLabel = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00065"></a>00065                 gridLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"gridLabel"</span>));
+<a name="l00064"></a>00064                 <a class="code" href="classUi__ValuesDialog.html#0ba92dabf82c45401a131f7fd57242eb" title="&amp;quot;Grid size and bounds&amp;quot; header">gridLabel</a> = <span class="keyword">new</span> QLabel(ValuesDialog);
+<a name="l00065"></a>00065                 <a class="code" href="classUi__ValuesDialog.html#0ba92dabf82c45401a131f7fd57242eb" title="&amp;quot;Grid size and bounds&amp;quot; header">gridLabel</a>-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"gridLabel"</span>));
 <a name="l00066"></a>00066                 font.setBold(<span class="keyword">true</span>);
 <a name="l00067"></a>00067                 font.setWeight(75);
-<a name="l00068"></a>00068                 gridLabel-&gt;setFont(font);
-<a name="l00069"></a>00069                 gridLabel-&gt;setAlignment(Qt::AlignCenter);
+<a name="l00068"></a>00068                 <a class="code" href="classUi__ValuesDialog.html#0ba92dabf82c45401a131f7fd57242eb" title="&amp;quot;Grid size and bounds&amp;quot; header">gridLabel</a>-&gt;setFont(font);
+<a name="l00069"></a>00069                 <a class="code" href="classUi__ValuesDialog.html#0ba92dabf82c45401a131f7fd57242eb" title="&amp;quot;Grid size and bounds&amp;quot; header">gridLabel</a>-&gt;setAlignment(Qt::AlignCenter);
 <a name="l00070"></a>00070 
-<a name="l00071"></a>00071                 AllBoundsLayout-&gt;addWidget(gridLabel);
+<a name="l00071"></a>00071                 <a class="code" href="classUi__ValuesDialog.html#9e3fc0351aba9dcb72e40263a7f7236e" title="layout for the bounds section">AllBoundsLayout</a>-&gt;addWidget(<a class="code" href="classUi__ValuesDialog.html#0ba92dabf82c45401a131f7fd57242eb" title="&amp;quot;Grid size and bounds&amp;quot; header">gridLabel</a>);
 <a name="l00072"></a>00072             }
 <a name="l00073"></a>00073             <span class="comment">//  defining the grid resolution and bounds</span>
 <a name="l00074"></a>00074             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; <a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>; i++) {
-<a name="l00075"></a>00075                 SliderLayout[i] = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00076"></a>00076                 SliderLayout[i]-&gt;setSpacing(6);
-<a name="l00077"></a>00077                 SliderLayout[i]-&gt;setObjectName(
+<a name="l00075"></a>00075                 <a class="code" href="classUi__ValuesDialog.html#a34663ae2d36e10c2641f99120de1ffe" title="layouts for the bounds sliders and labels">SliderLayout</a>[i] = <span class="keyword">new</span> QHBoxLayout();
+<a name="l00076"></a>00076                 <a class="code" href="classUi__ValuesDialog.html#a34663ae2d36e10c2641f99120de1ffe" title="layouts for the bounds sliders and labels">SliderLayout</a>[i]-&gt;setSpacing(6);
+<a name="l00077"></a>00077                 <a class="code" href="classUi__ValuesDialog.html#a34663ae2d36e10c2641f99120de1ffe" title="layouts for the bounds sliders and labels">SliderLayout</a>[i]-&gt;setObjectName(
 <a name="l00078"></a>00078                         QString::fromUtf8(<span class="stringliteral">"SliderLayout[i]"</span>));
-<a name="l00079"></a>00079                 SliderLayout[i]-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00080"></a>00080                 Label[i] = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00081"></a>00081                 Label[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"Label[i]"</span>));
+<a name="l00079"></a>00079                 <a class="code" href="classUi__ValuesDialog.html#a34663ae2d36e10c2641f99120de1ffe" title="layouts for the bounds sliders and labels">SliderLayout</a>[i]-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00080"></a>00080                 <a class="code" href="classUi__ValuesDialog.html#850cd035e55450f40ac38b8bc5983dfd" title="&amp;quot;Steps in [t|u|v]&amp;quot;">Label</a>[i] = <span class="keyword">new</span> QLabel(ValuesDialog);
+<a name="l00081"></a>00081                 <a class="code" href="classUi__ValuesDialog.html#850cd035e55450f40ac38b8bc5983dfd" title="&amp;quot;Steps in [t|u|v]&amp;quot;">Label</a>[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"Label[i]"</span>));
 <a name="l00082"></a>00082 
-<a name="l00083"></a>00083                 SliderLayout[i]-&gt;addWidget(Label[i]);
+<a name="l00083"></a>00083                 <a class="code" href="classUi__ValuesDialog.html#a34663ae2d36e10c2641f99120de1ffe" title="layouts for the bounds sliders and labels">SliderLayout</a>[i]-&gt;addWidget(<a class="code" href="classUi__ValuesDialog.html#850cd035e55450f40ac38b8bc5983dfd" title="&amp;quot;Steps in [t|u|v]&amp;quot;">Label</a>[i]);
 <a name="l00084"></a>00084 
-<a name="l00085"></a>00085                 Slider[i] = <span class="keyword">new</span> QSlider(ValuesDialog);
-<a name="l00086"></a>00086                 Slider[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"Slider[i]"</span>));
-<a name="l00087"></a>00087                 Slider[i]-&gt;setMinimum(1);
-<a name="l00088"></a>00088                 Slider[i]-&gt;setMaximum(50);
-<a name="l00089"></a>00089                 Slider[i]-&gt;setPageStep(5);
-<a name="l00090"></a>00090                 Slider[i]-&gt;setValue(5);
-<a name="l00091"></a>00091                 Slider[i]-&gt;setOrientation(Qt::Horizontal);
-<a name="l00092"></a>00092                 Slider[i]-&gt;setTickInterval(5);
+<a name="l00085"></a>00085                 <a class="code" href="classUi__ValuesDialog.html#bbe855cfb32300bd78e4f6d5207336bb" title="select number of grid points">Slider</a>[i] = <span class="keyword">new</span> QSlider(ValuesDialog);
+<a name="l00086"></a>00086                 <a class="code" href="classUi__ValuesDialog.html#bbe855cfb32300bd78e4f6d5207336bb" title="select number of grid points">Slider</a>[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"Slider[i]"</span>));
+<a name="l00087"></a>00087                 <a class="code" href="classUi__ValuesDialog.html#bbe855cfb32300bd78e4f6d5207336bb" title="select number of grid points">Slider</a>[i]-&gt;setMinimum(1);
+<a name="l00088"></a>00088                 <a class="code" href="classUi__ValuesDialog.html#bbe855cfb32300bd78e4f6d5207336bb" title="select number of grid points">Slider</a>[i]-&gt;setMaximum(50);
+<a name="l00089"></a>00089                 <a class="code" href="classUi__ValuesDialog.html#bbe855cfb32300bd78e4f6d5207336bb" title="select number of grid points">Slider</a>[i]-&gt;setPageStep(5);
+<a name="l00090"></a>00090                 <a class="code" href="classUi__ValuesDialog.html#bbe855cfb32300bd78e4f6d5207336bb" title="select number of grid points">Slider</a>[i]-&gt;setValue(5);
+<a name="l00091"></a>00091                 <a class="code" href="classUi__ValuesDialog.html#bbe855cfb32300bd78e4f6d5207336bb" title="select number of grid points">Slider</a>[i]-&gt;setOrientation(Qt::Horizontal);
+<a name="l00092"></a>00092                 <a class="code" href="classUi__ValuesDialog.html#bbe855cfb32300bd78e4f6d5207336bb" title="select number of grid points">Slider</a>[i]-&gt;setTickInterval(5);
 <a name="l00093"></a>00093 
-<a name="l00094"></a>00094                 SliderLayout[i]-&gt;addWidget(Slider[i]);
+<a name="l00094"></a>00094                 <a class="code" href="classUi__ValuesDialog.html#a34663ae2d36e10c2641f99120de1ffe" title="layouts for the bounds sliders and labels">SliderLayout</a>[i]-&gt;addWidget(<a class="code" href="classUi__ValuesDialog.html#bbe855cfb32300bd78e4f6d5207336bb" title="select number of grid points">Slider</a>[i]);
 <a name="l00095"></a>00095 
-<a name="l00096"></a>00096                 Steps[i] = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00097"></a>00097                 Steps[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"Steps[i]"</span>));
+<a name="l00096"></a>00096                 <a class="code" href="classUi__ValuesDialog.html#2ad387bdf5db5cf0d8fcc67e3d1a30cb" title="display number of grid points">Steps</a>[i] = <span class="keyword">new</span> QLabel(ValuesDialog);
+<a name="l00097"></a>00097                 <a class="code" href="classUi__ValuesDialog.html#2ad387bdf5db5cf0d8fcc67e3d1a30cb" title="display number of grid points">Steps</a>[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"Steps[i]"</span>));
 <a name="l00098"></a>00098 
-<a name="l00099"></a>00099                 SliderLayout[i]-&gt;addWidget(Steps[i]);
+<a name="l00099"></a>00099                 <a class="code" href="classUi__ValuesDialog.html#a34663ae2d36e10c2641f99120de1ffe" title="layouts for the bounds sliders and labels">SliderLayout</a>[i]-&gt;addWidget(<a class="code" href="classUi__ValuesDialog.html#2ad387bdf5db5cf0d8fcc67e3d1a30cb" title="display number of grid points">Steps</a>[i]);
 <a name="l00100"></a>00100 
-<a name="l00101"></a>00101                 AllBoundsLayout-&gt;addLayout(SliderLayout[i]);
+<a name="l00101"></a>00101                 <a class="code" href="classUi__ValuesDialog.html#9e3fc0351aba9dcb72e40263a7f7236e" title="layout for the bounds section">AllBoundsLayout</a>-&gt;addLayout(<a class="code" href="classUi__ValuesDialog.html#a34663ae2d36e10c2641f99120de1ffe" title="layouts for the bounds sliders and labels">SliderLayout</a>[i]);
 <a name="l00102"></a>00102 
-<a name="l00103"></a>00103                 BoundsLayout[i] = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00104"></a>00104                 BoundsLayout[i]-&gt;setSpacing(6);
-<a name="l00105"></a>00105                 BoundsLayout[i]-&gt;setObjectName(
+<a name="l00103"></a>00103                 <a class="code" href="classUi__ValuesDialog.html#ca700dc2aae888abb4df382893cb834c" title="layouts for each combined bounds selector">BoundsLayout</a>[i] = <span class="keyword">new</span> QHBoxLayout();
+<a name="l00104"></a>00104                 <a class="code" href="classUi__ValuesDialog.html#ca700dc2aae888abb4df382893cb834c" title="layouts for each combined bounds selector">BoundsLayout</a>[i]-&gt;setSpacing(6);
+<a name="l00105"></a>00105                 <a class="code" href="classUi__ValuesDialog.html#ca700dc2aae888abb4df382893cb834c" title="layouts for each combined bounds selector">BoundsLayout</a>[i]-&gt;setObjectName(
 <a name="l00106"></a>00106                         QString::fromUtf8(<span class="stringliteral">"BoundsLayout[i]"</span>));
-<a name="l00107"></a>00107                 BoundsLayout[i]-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00108"></a>00108                 MinLayout[i] = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00109"></a>00109                 MinLayout[i]-&gt;setSpacing(6);
-<a name="l00110"></a>00110                 MinLayout[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"MinLayout[i]"</span>));
-<a name="l00111"></a>00111                 MinLayout[i]-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00112"></a>00112                 MinLabel[i] = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00113"></a>00113                 MinLabel[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"MinLabel[i]"</span>));
+<a name="l00107"></a>00107                 <a class="code" href="classUi__ValuesDialog.html#ca700dc2aae888abb4df382893cb834c" title="layouts for each combined bounds selector">BoundsLayout</a>[i]-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00108"></a>00108                 <a class="code" href="classUi__ValuesDialog.html#7f2230719cc87a195e5957ed0c82dc79" title="layouts for each lower bound selector">MinLayout</a>[i] = <span class="keyword">new</span> QHBoxLayout();
+<a name="l00109"></a>00109                 <a class="code" href="classUi__ValuesDialog.html#7f2230719cc87a195e5957ed0c82dc79" title="layouts for each lower bound selector">MinLayout</a>[i]-&gt;setSpacing(6);
+<a name="l00110"></a>00110                 <a class="code" href="classUi__ValuesDialog.html#7f2230719cc87a195e5957ed0c82dc79" title="layouts for each lower bound selector">MinLayout</a>[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"MinLayout[i]"</span>));
+<a name="l00111"></a>00111                 <a class="code" href="classUi__ValuesDialog.html#7f2230719cc87a195e5957ed0c82dc79" title="layouts for each lower bound selector">MinLayout</a>[i]-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00112"></a>00112                 <a class="code" href="classUi__ValuesDialog.html#fc7323911b6726a0619b65efbaac2763" title="labels for lower bound inputs">MinLabel</a>[i] = <span class="keyword">new</span> QLabel(ValuesDialog);
+<a name="l00113"></a>00113                 <a class="code" href="classUi__ValuesDialog.html#fc7323911b6726a0619b65efbaac2763" title="labels for lower bound inputs">MinLabel</a>[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"MinLabel[i]"</span>));
 <a name="l00114"></a>00114 
-<a name="l00115"></a>00115                 MinLayout[i]-&gt;addWidget(MinLabel[i]);
+<a name="l00115"></a>00115                 <a class="code" href="classUi__ValuesDialog.html#7f2230719cc87a195e5957ed0c82dc79" title="layouts for each lower bound selector">MinLayout</a>[i]-&gt;addWidget(<a class="code" href="classUi__ValuesDialog.html#fc7323911b6726a0619b65efbaac2763" title="labels for lower bound inputs">MinLabel</a>[i]);
 <a name="l00116"></a>00116 
-<a name="l00117"></a>00117                 Min[i] = <span class="keyword">new</span> QLineEdit(ValuesDialog);
-<a name="l00118"></a>00118                 Min[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"Min[i]"</span>));
+<a name="l00117"></a>00117                 <a class="code" href="classUi__ValuesDialog.html#194fef6d5840168a5b7aae997f94046f" title="input fields for lower bounds">Min</a>[i] = <span class="keyword">new</span> QLineEdit(ValuesDialog);
+<a name="l00118"></a>00118                 <a class="code" href="classUi__ValuesDialog.html#194fef6d5840168a5b7aae997f94046f" title="input fields for lower bounds">Min</a>[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"Min[i]"</span>));
 <a name="l00119"></a>00119 
-<a name="l00120"></a>00120                 MinLayout[i]-&gt;addWidget(Min[i]);
+<a name="l00120"></a>00120                 <a class="code" href="classUi__ValuesDialog.html#7f2230719cc87a195e5957ed0c82dc79" title="layouts for each lower bound selector">MinLayout</a>[i]-&gt;addWidget(<a class="code" href="classUi__ValuesDialog.html#194fef6d5840168a5b7aae997f94046f" title="input fields for lower bounds">Min</a>[i]);
 <a name="l00121"></a>00121 
-<a name="l00122"></a>00122                 BoundsLayout[i]-&gt;addLayout(MinLayout[i]);
+<a name="l00122"></a>00122                 <a class="code" href="classUi__ValuesDialog.html#ca700dc2aae888abb4df382893cb834c" title="layouts for each combined bounds selector">BoundsLayout</a>[i]-&gt;addLayout(<a class="code" href="classUi__ValuesDialog.html#7f2230719cc87a195e5957ed0c82dc79" title="layouts for each lower bound selector">MinLayout</a>[i]);
 <a name="l00123"></a>00123 
-<a name="l00124"></a>00124                 MaxLayout[i] = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00125"></a>00125                 MaxLayout[i]-&gt;setSpacing(6);
-<a name="l00126"></a>00126                 MaxLayout[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"MaxLayout[i]"</span>));
-<a name="l00127"></a>00127                 MaxLayout[i]-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00128"></a>00128                 MaxLabel[i] = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00129"></a>00129                 MaxLabel[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"MaxLabel[i]"</span>));
+<a name="l00124"></a>00124                 <a class="code" href="classUi__ValuesDialog.html#9a1c3c546faa262cfe699c3938d2153e" title="layouts for each upper bound selector">MaxLayout</a>[i] = <span class="keyword">new</span> QHBoxLayout();
+<a name="l00125"></a>00125                 <a class="code" href="classUi__ValuesDialog.html#9a1c3c546faa262cfe699c3938d2153e" title="layouts for each upper bound selector">MaxLayout</a>[i]-&gt;setSpacing(6);
+<a name="l00126"></a>00126                 <a class="code" href="classUi__ValuesDialog.html#9a1c3c546faa262cfe699c3938d2153e" title="layouts for each upper bound selector">MaxLayout</a>[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"MaxLayout[i]"</span>));
+<a name="l00127"></a>00127                 <a class="code" href="classUi__ValuesDialog.html#9a1c3c546faa262cfe699c3938d2153e" title="layouts for each upper bound selector">MaxLayout</a>[i]-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00128"></a>00128                 <a class="code" href="classUi__ValuesDialog.html#27bf7aa79b5aabd2501a062f5f2fa0b8" title="labels for upper bound inputs">MaxLabel</a>[i] = <span class="keyword">new</span> QLabel(ValuesDialog);
+<a name="l00129"></a>00129                 <a class="code" href="classUi__ValuesDialog.html#27bf7aa79b5aabd2501a062f5f2fa0b8" title="labels for upper bound inputs">MaxLabel</a>[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"MaxLabel[i]"</span>));
 <a name="l00130"></a>00130 
-<a name="l00131"></a>00131                 MaxLayout[i]-&gt;addWidget(MaxLabel[i]);
+<a name="l00131"></a>00131                 <a class="code" href="classUi__ValuesDialog.html#9a1c3c546faa262cfe699c3938d2153e" title="layouts for each upper bound selector">MaxLayout</a>[i]-&gt;addWidget(<a class="code" href="classUi__ValuesDialog.html#27bf7aa79b5aabd2501a062f5f2fa0b8" title="labels for upper bound inputs">MaxLabel</a>[i]);
 <a name="l00132"></a>00132 
-<a name="l00133"></a>00133                 Max[i] = <span class="keyword">new</span> QLineEdit(ValuesDialog);
-<a name="l00134"></a>00134                 Max[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"Max[i]"</span>));
+<a name="l00133"></a>00133                 <a class="code" href="classUi__ValuesDialog.html#0aed3c74e3407f3055447820f3cd86f1" title="input fields for upper bounds">Max</a>[i] = <span class="keyword">new</span> QLineEdit(ValuesDialog);
+<a name="l00134"></a>00134                 <a class="code" href="classUi__ValuesDialog.html#0aed3c74e3407f3055447820f3cd86f1" title="input fields for upper bounds">Max</a>[i]-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"Max[i]"</span>));
 <a name="l00135"></a>00135 
-<a name="l00136"></a>00136                 MaxLayout[i]-&gt;addWidget(Max[i]);
+<a name="l00136"></a>00136                 <a class="code" href="classUi__ValuesDialog.html#9a1c3c546faa262cfe699c3938d2153e" title="layouts for each upper bound selector">MaxLayout</a>[i]-&gt;addWidget(<a class="code" href="classUi__ValuesDialog.html#0aed3c74e3407f3055447820f3cd86f1" title="input fields for upper bounds">Max</a>[i]);
 <a name="l00137"></a>00137 
-<a name="l00138"></a>00138                 BoundsLayout[i]-&gt;addLayout(MaxLayout[i]);
+<a name="l00138"></a>00138                 <a class="code" href="classUi__ValuesDialog.html#ca700dc2aae888abb4df382893cb834c" title="layouts for each combined bounds selector">BoundsLayout</a>[i]-&gt;addLayout(<a class="code" href="classUi__ValuesDialog.html#9a1c3c546faa262cfe699c3938d2153e" title="layouts for each upper bound selector">MaxLayout</a>[i]);
 <a name="l00139"></a>00139 
-<a name="l00140"></a>00140                 AllBoundsLayout-&gt;addLayout(BoundsLayout[i]);
+<a name="l00140"></a>00140                 <a class="code" href="classUi__ValuesDialog.html#9e3fc0351aba9dcb72e40263a7f7236e" title="layout for the bounds section">AllBoundsLayout</a>-&gt;addLayout(<a class="code" href="classUi__ValuesDialog.html#ca700dc2aae888abb4df382893cb834c" title="layouts for each combined bounds selector">BoundsLayout</a>[i]);
 <a name="l00141"></a>00141             }
 <a name="l00142"></a>00142 
-<a name="l00143"></a>00143             gridLayout-&gt;addLayout(AllBoundsLayout, 0, 0, 1, 1);
+<a name="l00143"></a>00143             <a class="code" href="classUi__ValuesDialog.html#4cabc3bf035e33ec8f63ec3e5f52d595" title="global layout">gridLayout</a>-&gt;addLayout(<a class="code" href="classUi__ValuesDialog.html#9e3fc0351aba9dcb72e40263a7f7236e" title="layout for the bounds section">AllBoundsLayout</a>, 0, 0, 1, 1);
 <a name="l00144"></a>00144 
 <a name="l00145"></a>00145             <span class="comment">//  function parameters - heading and layout</span>
 <a name="l00146"></a>00146             {
-<a name="l00147"></a>00147                 functionLabel = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00148"></a>00148                 functionLabel-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"functionLabel"</span>));
-<a name="l00149"></a>00149                 functionLabel-&gt;setFont(font);
-<a name="l00150"></a>00150                 functionLabel-&gt;setAlignment(Qt::AlignCenter);
+<a name="l00147"></a>00147                 <a class="code" href="classUi__ValuesDialog.html#64c5680f8034342c68839ba741605b66" title="header for parameter input fields">functionLabel</a> = <span class="keyword">new</span> QLabel(ValuesDialog);
+<a name="l00148"></a>00148                 <a class="code" href="classUi__ValuesDialog.html#64c5680f8034342c68839ba741605b66" title="header for parameter input fields">functionLabel</a>-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"functionLabel"</span>));
+<a name="l00149"></a>00149                 <a class="code" href="classUi__ValuesDialog.html#64c5680f8034342c68839ba741605b66" title="header for parameter input fields">functionLabel</a>-&gt;setFont(font);
+<a name="l00150"></a>00150                 <a class="code" href="classUi__ValuesDialog.html#64c5680f8034342c68839ba741605b66" title="header for parameter input fields">functionLabel</a>-&gt;setAlignment(Qt::AlignCenter);
 <a name="l00151"></a>00151 
-<a name="l00152"></a>00152                 gridLayout-&gt;addWidget(functionLabel, 2, 0, 1, 1);
+<a name="l00152"></a>00152                 <a class="code" href="classUi__ValuesDialog.html#4cabc3bf035e33ec8f63ec3e5f52d595" title="global layout">gridLayout</a>-&gt;addWidget(<a class="code" href="classUi__ValuesDialog.html#64c5680f8034342c68839ba741605b66" title="header for parameter input fields">functionLabel</a>, 2, 0, 1, 1);
 <a name="l00153"></a>00153 
-<a name="l00154"></a>00154                 AllParametersLayout = <span class="keyword">new</span> QVBoxLayout();
-<a name="l00155"></a>00155                 AllParametersLayout-&gt;setSpacing(6);
-<a name="l00156"></a>00156                 AllParametersLayout-&gt;setObjectName(
+<a name="l00154"></a>00154                 <a class="code" href="classUi__ValuesDialog.html#79d3f994025217bbcc4b0db4c48e2357" title="layout for the parameters section">AllParametersLayout</a> = <span class="keyword">new</span> QVBoxLayout();
+<a name="l00155"></a>00155                 <a class="code" href="classUi__ValuesDialog.html#79d3f994025217bbcc4b0db4c48e2357" title="layout for the parameters section">AllParametersLayout</a>-&gt;setSpacing(6);
+<a name="l00156"></a>00156                 <a class="code" href="classUi__ValuesDialog.html#79d3f994025217bbcc4b0db4c48e2357" title="layout for the parameters section">AllParametersLayout</a>-&gt;setObjectName(
 <a name="l00157"></a>00157                         QString::fromUtf8(<span class="stringliteral">"AllParametersLayout"</span>));
-<a name="l00158"></a>00158                 AllParametersLayout-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00158"></a>00158                 <a class="code" href="classUi__ValuesDialog.html#79d3f994025217bbcc4b0db4c48e2357" title="layout for the parameters section">AllParametersLayout</a>-&gt;setContentsMargins(0, 0, 0, 0);
 <a name="l00159"></a>00159             }
 <a name="l00160"></a>00160 
 <a name="l00161"></a>00161             <span class="comment">//  function parameters - input fields</span>
 <a name="l00162"></a>00162             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; <a class="code" href="classUi__ValuesDialog.html#1b4d3fca097cbc53827db8f18e33638b" title="maximum number of function parameters to display">maxNumParameters</a>/<a class="code" href="classUi__ValuesDialog.html#9ec22f0535ebacd6dfd57d2790dd9eb7" title="group this many parameter input fields on a line">parametersPerLine</a>; j++) {
-<a name="l00163"></a>00163                 ParameterLineLayout[j] = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00164"></a>00164                 ParameterLineLayout[j]-&gt;setSpacing(6);
-<a name="l00165"></a>00165                 ParameterLineLayout[j]-&gt;setObjectName(
+<a name="l00163"></a>00163                 <a class="code" href="classUi__ValuesDialog.html#45340192c4fee6156dd523613cd3daca" title="QHBoxLayout for every line of parameter input fields.">ParameterLineLayout</a>[j] = <span class="keyword">new</span> QHBoxLayout();
+<a name="l00164"></a>00164                 <a class="code" href="classUi__ValuesDialog.html#45340192c4fee6156dd523613cd3daca" title="QHBoxLayout for every line of parameter input fields.">ParameterLineLayout</a>[j]-&gt;setSpacing(6);
+<a name="l00165"></a>00165                 <a class="code" href="classUi__ValuesDialog.html#45340192c4fee6156dd523613cd3daca" title="QHBoxLayout for every line of parameter input fields.">ParameterLineLayout</a>[j]-&gt;setObjectName(
 <a name="l00166"></a>00166                         QString::fromUtf8(<span class="stringliteral">"ParameterLineLayout[j]"</span>));
-<a name="l00167"></a>00167                 ParameterLineLayout[j]-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00167"></a>00167                 <a class="code" href="classUi__ValuesDialog.html#45340192c4fee6156dd523613cd3daca" title="QHBoxLayout for every line of parameter input fields.">ParameterLineLayout</a>[j]-&gt;setContentsMargins(0, 0, 0, 0);
 <a name="l00168"></a>00168                 <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = <a class="code" href="classUi__ValuesDialog.html#9ec22f0535ebacd6dfd57d2790dd9eb7" title="group this many parameter input fields on a line">parametersPerLine</a>*j;
 <a name="l00169"></a>00169                      i &lt; <a class="code" href="classUi__ValuesDialog.html#9ec22f0535ebacd6dfd57d2790dd9eb7" title="group this many parameter input fields on a line">parametersPerLine</a>*j+<a class="code" href="classUi__ValuesDialog.html#9ec22f0535ebacd6dfd57d2790dd9eb7" title="group this many parameter input fields on a line">parametersPerLine</a>; i++) {
-<a name="l00170"></a>00170                     ParameterLayout[i] = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00171"></a>00171                     ParameterLayout[i]-&gt;setSpacing(6);
-<a name="l00172"></a>00172                     ParameterLayout[i]-&gt;setObjectName(
+<a name="l00170"></a>00170                     <a class="code" href="classUi__ValuesDialog.html#83926ed6f547464131e51d917b52cd2e" title="QHBoxLayout for all parameter input fields.">ParameterLayout</a>[i] = <span class="keyword">new</span> QHBoxLayout();
+<a name="l00171"></a>00171                     <a class="code" href="classUi__ValuesDialog.html#83926ed6f547464131e51d917b52cd2e" title="QHBoxLayout for all parameter input fields.">ParameterLayout</a>[i]-&gt;setSpacing(6);
+<a name="l00172"></a>00172                     <a class="code" href="classUi__ValuesDialog.html#83926ed6f547464131e51d917b52cd2e" title="QHBoxLayout for all parameter input fields.">ParameterLayout</a>[i]-&gt;setObjectName(
 <a name="l00173"></a>00173                             QString::fromUtf8(<span class="stringliteral">"ParameterLayout[i]"</span>));
-<a name="l00174"></a>00174                     ParameterLayout[i]-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00175"></a>00175                     ParameterLabel[i] = <span class="keyword">new</span> QLabel(ValuesDialog);
-<a name="l00176"></a>00176                     ParameterLabel[i]-&gt;setObjectName(
+<a name="l00174"></a>00174                     <a class="code" href="classUi__ValuesDialog.html#83926ed6f547464131e51d917b52cd2e" title="QHBoxLayout for all parameter input fields.">ParameterLayout</a>[i]-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00175"></a>00175                     <a class="code" href="classUi__ValuesDialog.html#e4cf1325fab23285a024abb372659ceb" title="parameter input labels">ParameterLabel</a>[i] = <span class="keyword">new</span> QLabel(ValuesDialog);
+<a name="l00176"></a>00176                     <a class="code" href="classUi__ValuesDialog.html#e4cf1325fab23285a024abb372659ceb" title="parameter input labels">ParameterLabel</a>[i]-&gt;setObjectName(
 <a name="l00177"></a>00177                             QString::fromUtf8(<span class="stringliteral">"ParameterLabel[i]"</span>));
 <a name="l00178"></a>00178 
-<a name="l00179"></a>00179                     ParameterLayout[i]-&gt;addWidget(ParameterLabel[i]);
+<a name="l00179"></a>00179                     <a class="code" href="classUi__ValuesDialog.html#83926ed6f547464131e51d917b52cd2e" title="QHBoxLayout for all parameter input fields.">ParameterLayout</a>[i]-&gt;addWidget(<a class="code" href="classUi__ValuesDialog.html#e4cf1325fab23285a024abb372659ceb" title="parameter input labels">ParameterLabel</a>[i]);
 <a name="l00180"></a>00180 
-<a name="l00181"></a>00181                     Parameter[i] = <span class="keyword">new</span> QLineEdit(ValuesDialog);
-<a name="l00182"></a>00182                     Parameter[i]-&gt;setObjectName(
+<a name="l00181"></a>00181                     <a class="code" href="classUi__ValuesDialog.html#7212d408a6136ef3d6c9d7ed7fbbb00e" title="parameter input fields">Parameter</a>[i] = <span class="keyword">new</span> QLineEdit(ValuesDialog);
+<a name="l00182"></a>00182                     <a class="code" href="classUi__ValuesDialog.html#7212d408a6136ef3d6c9d7ed7fbbb00e" title="parameter input fields">Parameter</a>[i]-&gt;setObjectName(
 <a name="l00183"></a>00183                             QString::fromUtf8(<span class="stringliteral">"Parameter[i]"</span>));
 <a name="l00184"></a>00184 
-<a name="l00185"></a>00185                     ParameterLayout[i]-&gt;addWidget(Parameter[i]);
+<a name="l00185"></a>00185                     <a class="code" href="classUi__ValuesDialog.html#83926ed6f547464131e51d917b52cd2e" title="QHBoxLayout for all parameter input fields.">ParameterLayout</a>[i]-&gt;addWidget(<a class="code" href="classUi__ValuesDialog.html#7212d408a6136ef3d6c9d7ed7fbbb00e" title="parameter input fields">Parameter</a>[i]);
 <a name="l00186"></a>00186 
-<a name="l00187"></a>00187                     ParameterLineLayout[j]-&gt;addLayout(ParameterLayout[i]);
+<a name="l00187"></a>00187                     <a class="code" href="classUi__ValuesDialog.html#45340192c4fee6156dd523613cd3daca" title="QHBoxLayout for every line of parameter input fields.">ParameterLineLayout</a>[j]-&gt;addLayout(<a class="code" href="classUi__ValuesDialog.html#83926ed6f547464131e51d917b52cd2e" title="QHBoxLayout for all parameter input fields.">ParameterLayout</a>[i]);
 <a name="l00188"></a>00188                 }
 <a name="l00189"></a>00189 
 <a name="l00190"></a>00190 
-<a name="l00191"></a>00191                 AllParametersLayout-&gt;addLayout(ParameterLineLayout[j]);
+<a name="l00191"></a>00191                 <a class="code" href="classUi__ValuesDialog.html#79d3f994025217bbcc4b0db4c48e2357" title="layout for the parameters section">AllParametersLayout</a>-&gt;addLayout(<a class="code" href="classUi__ValuesDialog.html#45340192c4fee6156dd523613cd3daca" title="QHBoxLayout for every line of parameter input fields.">ParameterLineLayout</a>[j]);
 <a name="l00192"></a>00192             }
 <a name="l00193"></a>00193 
-<a name="l00194"></a>00194             gridLayout-&gt;addLayout(AllParametersLayout, 4, 0, 1, 1);
+<a name="l00194"></a>00194             <a class="code" href="classUi__ValuesDialog.html#4cabc3bf035e33ec8f63ec3e5f52d595" title="global layout">gridLayout</a>-&gt;addLayout(<a class="code" href="classUi__ValuesDialog.html#79d3f994025217bbcc4b0db4c48e2357" title="layout for the parameters section">AllParametersLayout</a>, 4, 0, 1, 1);
 <a name="l00195"></a>00195 
 <a name="l00196"></a>00196             <span class="comment">//  "Apply" button</span>
 <a name="l00197"></a>00197             {
-<a name="l00198"></a>00198                 ButtonLayout = <span class="keyword">new</span> QHBoxLayout();
-<a name="l00199"></a>00199                 ButtonLayout-&gt;setSpacing(6);
-<a name="l00200"></a>00200                 ButtonLayout-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"ButtonLayout"</span>));
-<a name="l00201"></a>00201                 ButtonLayout-&gt;setContentsMargins(0, 0, 0, 0);
-<a name="l00202"></a>00202                 buttonApply = <span class="keyword">new</span> QPushButton(ValuesDialog);
-<a name="l00203"></a>00203                 buttonApply-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"buttonApply"</span>));
-<a name="l00204"></a>00204                 buttonApply-&gt;setAutoDefault(<span class="keyword">true</span>);
+<a name="l00198"></a>00198                 <a class="code" href="classUi__ValuesDialog.html#c9ea0916517c721266508b172ccff27d" title="layout for &amp;quot;Apply&amp;quot; button">ButtonLayout</a> = <span class="keyword">new</span> QHBoxLayout();
+<a name="l00199"></a>00199                 <a class="code" href="classUi__ValuesDialog.html#c9ea0916517c721266508b172ccff27d" title="layout for &amp;quot;Apply&amp;quot; button">ButtonLayout</a>-&gt;setSpacing(6);
+<a name="l00200"></a>00200                 <a class="code" href="classUi__ValuesDialog.html#c9ea0916517c721266508b172ccff27d" title="layout for &amp;quot;Apply&amp;quot; button">ButtonLayout</a>-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"ButtonLayout"</span>));
+<a name="l00201"></a>00201                 <a class="code" href="classUi__ValuesDialog.html#c9ea0916517c721266508b172ccff27d" title="layout for &amp;quot;Apply&amp;quot; button">ButtonLayout</a>-&gt;setContentsMargins(0, 0, 0, 0);
+<a name="l00202"></a>00202                 <a class="code" href="classUi__ValuesDialog.html#a957950d35fd0e2d4507f6791c17445a" title="&amp;quot;Apply&amp;quot; button">buttonApply</a> = <span class="keyword">new</span> QPushButton(ValuesDialog);
+<a name="l00203"></a>00203                 <a class="code" href="classUi__ValuesDialog.html#a957950d35fd0e2d4507f6791c17445a" title="&amp;quot;Apply&amp;quot; button">buttonApply</a>-&gt;setObjectName(QString::fromUtf8(<span class="stringliteral">"buttonApply"</span>));
+<a name="l00204"></a>00204                 <a class="code" href="classUi__ValuesDialog.html#a957950d35fd0e2d4507f6791c17445a" title="&amp;quot;Apply&amp;quot; button">buttonApply</a>-&gt;setAutoDefault(<span class="keyword">true</span>);
 <a name="l00205"></a>00205 
-<a name="l00206"></a>00206                 ButtonLayout-&gt;addWidget(buttonApply);
-<a name="l00207"></a>00207                 gridLayout-&gt;addLayout(ButtonLayout, 5, 0, 1, 1);
+<a name="l00206"></a>00206                 <a class="code" href="classUi__ValuesDialog.html#c9ea0916517c721266508b172ccff27d" title="layout for &amp;quot;Apply&amp;quot; button">ButtonLayout</a>-&gt;addWidget(<a class="code" href="classUi__ValuesDialog.html#a957950d35fd0e2d4507f6791c17445a" title="&amp;quot;Apply&amp;quot; button">buttonApply</a>);
+<a name="l00207"></a>00207                 <a class="code" href="classUi__ValuesDialog.html#4cabc3bf035e33ec8f63ec3e5f52d595" title="global layout">gridLayout</a>-&gt;addLayout(<a class="code" href="classUi__ValuesDialog.html#c9ea0916517c721266508b172ccff27d" title="layout for &amp;quot;Apply&amp;quot; button">ButtonLayout</a>, 5, 0, 1, 1);
 <a name="l00208"></a>00208             }
 <a name="l00209"></a>00209 
 <a name="l00210"></a>00210             <span class="comment">//  tab order</span>
 <a name="l00211"></a>00211             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; maxNumDimensions; ++i) {
-<a name="l00212"></a>00212                 QWidget::setTabOrder(Slider[i], Min[i]);
-<a name="l00213"></a>00213                 QWidget::setTabOrder(Min[i], Max[i]);
+<a name="l00212"></a>00212                 QWidget::setTabOrder(<a class="code" href="classUi__ValuesDialog.html#bbe855cfb32300bd78e4f6d5207336bb" title="select number of grid points">Slider</a>[i], <a class="code" href="classUi__ValuesDialog.html#194fef6d5840168a5b7aae997f94046f" title="input fields for lower bounds">Min</a>[i]);
+<a name="l00213"></a>00213                 QWidget::setTabOrder(<a class="code" href="classUi__ValuesDialog.html#194fef6d5840168a5b7aae997f94046f" title="input fields for lower bounds">Min</a>[i], <a class="code" href="classUi__ValuesDialog.html#0aed3c74e3407f3055447820f3cd86f1" title="input fields for upper bounds">Max</a>[i]);
 <a name="l00214"></a>00214                 <span class="keywordflow">if</span> (i &lt; maxNumDimensions-1)
-<a name="l00215"></a>00215                     QWidget::setTabOrder(Max[i], Slider[i+1]);
+<a name="l00215"></a>00215                     QWidget::setTabOrder(<a class="code" href="classUi__ValuesDialog.html#0aed3c74e3407f3055447820f3cd86f1" title="input fields for upper bounds">Max</a>[i], <a class="code" href="classUi__ValuesDialog.html#bbe855cfb32300bd78e4f6d5207336bb" title="select number of grid points">Slider</a>[i+1]);
 <a name="l00216"></a>00216             }
-<a name="l00217"></a>00217             QWidget::setTabOrder(Max[maxNumDimensions-1], Parameter[0]);
+<a name="l00217"></a>00217             QWidget::setTabOrder(<a class="code" href="classUi__ValuesDialog.html#0aed3c74e3407f3055447820f3cd86f1" title="input fields for upper bounds">Max</a>[maxNumDimensions-1], <a class="code" href="classUi__ValuesDialog.html#7212d408a6136ef3d6c9d7ed7fbbb00e" title="parameter input fields">Parameter</a>[0]);
 <a name="l00218"></a>00218             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; <a class="code" href="classUi__ValuesDialog.html#1b4d3fca097cbc53827db8f18e33638b" title="maximum number of function parameters to display">maxNumParameters</a>-1; ++i) {
-<a name="l00219"></a>00219                 QWidget::setTabOrder(Parameter[i], Parameter[i+1]);
+<a name="l00219"></a>00219                 QWidget::setTabOrder(<a class="code" href="classUi__ValuesDialog.html#7212d408a6136ef3d6c9d7ed7fbbb00e" title="parameter input fields">Parameter</a>[i], <a class="code" href="classUi__ValuesDialog.html#7212d408a6136ef3d6c9d7ed7fbbb00e" title="parameter input fields">Parameter</a>[i+1]);
 <a name="l00220"></a>00220             }
-<a name="l00221"></a>00221             QWidget::setTabOrder(Parameter[maxNumParameters-1], buttonApply);
+<a name="l00221"></a>00221             QWidget::setTabOrder(<a class="code" href="classUi__ValuesDialog.html#7212d408a6136ef3d6c9d7ed7fbbb00e" title="parameter input fields">Parameter</a>[maxNumParameters-1], <a class="code" href="classUi__ValuesDialog.html#a957950d35fd0e2d4507f6791c17445a" title="&amp;quot;Apply&amp;quot; button">buttonApply</a>);
 <a name="l00222"></a>00222 
 <a name="l00223"></a>00223             <a class="code" href="classUi__ValuesDialog.html#6e4192b89d585bbab3e1f03a0094027b" title="add the text(s) associated with each widget">retranslateUi</a>(ValuesDialog);
 <a name="l00224"></a>00224 
 <a name="l00225"></a>00225             <span class="comment">//  signal/slot connections</span>
 <a name="l00226"></a>00226             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; maxNumDimensions; ++i) {
-<a name="l00227"></a>00227                 QObject::connect(Slider[i], SIGNAL(valueChanged(<span class="keywordtype">int</span>)),
-<a name="l00228"></a>00228                                  Steps[i], SLOT(setNum(<span class="keywordtype">int</span>)));
+<a name="l00227"></a>00227                 QObject::connect(<a class="code" href="classUi__ValuesDialog.html#bbe855cfb32300bd78e4f6d5207336bb" title="select number of grid points">Slider</a>[i], SIGNAL(valueChanged(<span class="keywordtype">int</span>)),
+<a name="l00228"></a>00228                                  <a class="code" href="classUi__ValuesDialog.html#2ad387bdf5db5cf0d8fcc67e3d1a30cb" title="display number of grid points">Steps</a>[i], SLOT(setNum(<span class="keywordtype">int</span>)));
 <a name="l00229"></a>00229                 <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = i+1; j &lt; maxNumDimensions; ++j) {
-<a name="l00230"></a>00230                     QObject::connect(Slider[i], SIGNAL(valueChanged(<span class="keywordtype">int</span>)),
-<a name="l00231"></a>00231                                      Slider[j], SLOT(setValue(<span class="keywordtype">int</span>)));
+<a name="l00230"></a>00230                     QObject::connect(<a class="code" href="classUi__ValuesDialog.html#bbe855cfb32300bd78e4f6d5207336bb" title="select number of grid points">Slider</a>[i], SIGNAL(valueChanged(<span class="keywordtype">int</span>)),
+<a name="l00231"></a>00231                                      <a class="code" href="classUi__ValuesDialog.html#bbe855cfb32300bd78e4f6d5207336bb" title="select number of grid points">Slider</a>[j], SLOT(setValue(<span class="keywordtype">int</span>)));
 <a name="l00232"></a>00232                 }
 <a name="l00233"></a>00233             }
-<a name="l00234"></a>00234             QObject::connect(buttonApply, SIGNAL(clicked()),
+<a name="l00234"></a>00234             QObject::connect(<a class="code" href="classUi__ValuesDialog.html#a957950d35fd0e2d4507f6791c17445a" title="&amp;quot;Apply&amp;quot; button">buttonApply</a>, SIGNAL(clicked()),
 <a name="l00235"></a>00235                              ValuesDialog, SLOT(accept()));
 <a name="l00236"></a>00236 
 <a name="l00237"></a>00237             QMetaObject::connectSlotsByName(ValuesDialog);
@@ -258,51 +258,51 @@
 <a name="l00246"></a>00246                 <span class="stringliteral">"to the displayed four-dimensional function or object.\n"</span>
 <a name="l00247"></a>00247                 <span class="stringliteral">"She can also change the resolution of the grid."</span>, 0,
 <a name="l00248"></a>00248                  QApplication::UnicodeUTF8));
-<a name="l00249"></a>00249             gridLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00249"></a>00249             <a class="code" href="classUi__ValuesDialog.html#0ba92dabf82c45401a131f7fd57242eb" title="&amp;quot;Grid size and bounds&amp;quot; header">gridLabel</a>-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
 <a name="l00250"></a>00250                 <span class="stringliteral">"Grid size and bounds"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00251"></a>00251             Label[0]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00251"></a>00251             <a class="code" href="classUi__ValuesDialog.html#850cd035e55450f40ac38b8bc5983dfd" title="&amp;quot;Steps in [t|u|v]&amp;quot;">Label</a>[0]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
 <a name="l00252"></a>00252                 <span class="stringliteral">"Steps in t"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00253"></a>00253             MinLabel[0]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00253"></a>00253             <a class="code" href="classUi__ValuesDialog.html#fc7323911b6726a0619b65efbaac2763" title="labels for lower bound inputs">MinLabel</a>[0]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
 <a name="l00254"></a>00254                 <span class="stringliteral">"tmin"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00255"></a>00255             MaxLabel[0]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00255"></a>00255             <a class="code" href="classUi__ValuesDialog.html#27bf7aa79b5aabd2501a062f5f2fa0b8" title="labels for upper bound inputs">MaxLabel</a>[0]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
 <a name="l00256"></a>00256                 <span class="stringliteral">"tmax"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00257"></a>00257             Label[1]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00257"></a>00257             <a class="code" href="classUi__ValuesDialog.html#850cd035e55450f40ac38b8bc5983dfd" title="&amp;quot;Steps in [t|u|v]&amp;quot;">Label</a>[1]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
 <a name="l00258"></a>00258                 <span class="stringliteral">"Steps in u"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00259"></a>00259             MinLabel[1]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00259"></a>00259             <a class="code" href="classUi__ValuesDialog.html#fc7323911b6726a0619b65efbaac2763" title="labels for lower bound inputs">MinLabel</a>[1]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
 <a name="l00260"></a>00260                 <span class="stringliteral">"umin"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00261"></a>00261             MaxLabel[1]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00261"></a>00261             <a class="code" href="classUi__ValuesDialog.html#27bf7aa79b5aabd2501a062f5f2fa0b8" title="labels for upper bound inputs">MaxLabel</a>[1]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
 <a name="l00262"></a>00262                 <span class="stringliteral">"umax"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00263"></a>00263             Label[2]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00263"></a>00263             <a class="code" href="classUi__ValuesDialog.html#850cd035e55450f40ac38b8bc5983dfd" title="&amp;quot;Steps in [t|u|v]&amp;quot;">Label</a>[2]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
 <a name="l00264"></a>00264                 <span class="stringliteral">"Steps in v"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00265"></a>00265             MinLabel[2]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00265"></a>00265             <a class="code" href="classUi__ValuesDialog.html#fc7323911b6726a0619b65efbaac2763" title="labels for lower bound inputs">MinLabel</a>[2]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
 <a name="l00266"></a>00266                 <span class="stringliteral">"vmin"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00267"></a>00267             MaxLabel[2]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00267"></a>00267             <a class="code" href="classUi__ValuesDialog.html#27bf7aa79b5aabd2501a062f5f2fa0b8" title="labels for upper bound inputs">MaxLabel</a>[2]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
 <a name="l00268"></a>00268                 <span class="stringliteral">"vmax"</span>, 0, QApplication::UnicodeUTF8));
 <a name="l00269"></a>00269             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; <a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>; ++i) {
-<a name="l00270"></a>00270                 Steps[i]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00270"></a>00270                 <a class="code" href="classUi__ValuesDialog.html#2ad387bdf5db5cf0d8fcc67e3d1a30cb" title="display number of grid points">Steps</a>[i]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
 <a name="l00271"></a>00271                     <span class="stringliteral">"1"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00272"></a>00272                 Min[i]-&gt;setToolTip(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00272"></a>00272                 <a class="code" href="classUi__ValuesDialog.html#194fef6d5840168a5b7aae997f94046f" title="input fields for lower bounds">Min</a>[i]-&gt;setToolTip(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
 <a name="l00273"></a>00273                     <span class="stringliteral">"enter '-pi' if you mean -3.1415..."</span>, 0,
 <a name="l00274"></a>00274                      QApplication::UnicodeUTF8));
-<a name="l00275"></a>00275                 Min[i]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00275"></a>00275                 <a class="code" href="classUi__ValuesDialog.html#194fef6d5840168a5b7aae997f94046f" title="input fields for lower bounds">Min</a>[i]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
 <a name="l00276"></a>00276                     <span class="stringliteral">"-1"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00277"></a>00277                 Max[i]-&gt;setToolTip(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00277"></a>00277                 <a class="code" href="classUi__ValuesDialog.html#0aed3c74e3407f3055447820f3cd86f1" title="input fields for upper bounds">Max</a>[i]-&gt;setToolTip(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
 <a name="l00278"></a>00278                     <span class="stringliteral">"or 'pi' if you want 3.1415..."</span>, 0,
 <a name="l00279"></a>00279                      QApplication::UnicodeUTF8));
-<a name="l00280"></a>00280                 Max[i]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00280"></a>00280                 <a class="code" href="classUi__ValuesDialog.html#0aed3c74e3407f3055447820f3cd86f1" title="input fields for upper bounds">Max</a>[i]-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
 <a name="l00281"></a>00281                     <span class="stringliteral">"1"</span>, 0, QApplication::UnicodeUTF8));
 <a name="l00282"></a>00282             }
-<a name="l00283"></a>00283             functionLabel-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00283"></a>00283             <a class="code" href="classUi__ValuesDialog.html#64c5680f8034342c68839ba741605b66" title="header for parameter input fields">functionLabel</a>-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
 <a name="l00284"></a>00284                 <span class="stringliteral">"Function Parameters"</span>, 0, QApplication::UnicodeUTF8));
 <a name="l00285"></a>00285             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; <a class="code" href="classUi__ValuesDialog.html#1b4d3fca097cbc53827db8f18e33638b" title="maximum number of function parameters to display">maxNumParameters</a>; ++i) {
-<a name="l00286"></a>00286                 ParameterLabel[i]-&gt;setText(QApplication::translate(
+<a name="l00286"></a>00286                 <a class="code" href="classUi__ValuesDialog.html#e4cf1325fab23285a024abb372659ceb" title="parameter input labels">ParameterLabel</a>[i]-&gt;setText(QApplication::translate(
 <a name="l00287"></a>00287                     <span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"Parameter"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00288"></a>00288                 Parameter[i]-&gt;setText(QApplication::translate(
+<a name="l00288"></a>00288                 <a class="code" href="classUi__ValuesDialog.html#7212d408a6136ef3d6c9d7ed7fbbb00e" title="parameter input fields">Parameter</a>[i]-&gt;setText(QApplication::translate(
 <a name="l00289"></a>00289                     <span class="stringliteral">"ValuesDialog"</span>, <span class="stringliteral">"1"</span>, 0, QApplication::UnicodeUTF8));
 <a name="l00290"></a>00290             }
-<a name="l00291"></a>00291             buttonApply-&gt;setToolTip(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00291"></a>00291             <a class="code" href="classUi__ValuesDialog.html#a957950d35fd0e2d4507f6791c17445a" title="&amp;quot;Apply&amp;quot; button">buttonApply</a>-&gt;setToolTip(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
 <a name="l00292"></a>00292                 <span class="stringliteral">"Accept changes and redraw"</span>, 0, QApplication::UnicodeUTF8));
-<a name="l00293"></a>00293             buttonApply-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
+<a name="l00293"></a>00293             <a class="code" href="classUi__ValuesDialog.html#a957950d35fd0e2d4507f6791c17445a" title="&amp;quot;Apply&amp;quot; button">buttonApply</a>-&gt;setText(QApplication::translate(<span class="stringliteral">"ValuesDialog"</span>,
 <a name="l00294"></a>00294                 <span class="stringliteral">"&amp;Apply"</span>, 0, QApplication::UnicodeUTF8));
 <a name="l00295"></a>00295             Q_UNUSED(ValuesDialog);
 <a name="l00296"></a>00296         } <span class="comment">// retranslateUi</span>
@@ -311,45 +311,45 @@
 <a name="l00299"></a>00299         <span class="comment">//  these members should be private and referred to only by accessors,</span>
 <a name="l00300"></a>00300         <span class="comment">//  but this is the way uic created the class and the derived class</span>
 <a name="l00301"></a>00301         <span class="comment">//  depends too much on them. so i didn't bother.</span>
-<a name="l00302"></a>00302         QGridLayout *gridLayout;
-<a name="l00303"></a>00303         QVBoxLayout *AllBoundsLayout;
-<a name="l00304"></a>00304         QVBoxLayout *AllParametersLayout;
-<a name="l00305"></a>00305         QHBoxLayout *ButtonLayout;
+<a name="l00302"></a><a class="code" href="classUi__ValuesDialog.html#4cabc3bf035e33ec8f63ec3e5f52d595">00302</a>         QGridLayout *<a class="code" href="classUi__ValuesDialog.html#4cabc3bf035e33ec8f63ec3e5f52d595" title="global layout">gridLayout</a>;            
+<a name="l00303"></a><a class="code" href="classUi__ValuesDialog.html#9e3fc0351aba9dcb72e40263a7f7236e">00303</a>         QVBoxLayout *<a class="code" href="classUi__ValuesDialog.html#9e3fc0351aba9dcb72e40263a7f7236e" title="layout for the bounds section">AllBoundsLayout</a>;       
+<a name="l00304"></a><a class="code" href="classUi__ValuesDialog.html#79d3f994025217bbcc4b0db4c48e2357">00304</a>         QVBoxLayout *<a class="code" href="classUi__ValuesDialog.html#79d3f994025217bbcc4b0db4c48e2357" title="layout for the parameters section">AllParametersLayout</a>;   
+<a name="l00305"></a><a class="code" href="classUi__ValuesDialog.html#c9ea0916517c721266508b172ccff27d">00305</a>         QHBoxLayout *<a class="code" href="classUi__ValuesDialog.html#c9ea0916517c721266508b172ccff27d" title="layout for &amp;quot;Apply&amp;quot; button">ButtonLayout</a>;          
 <a name="l00306"></a>00306 
-<a name="l00307"></a>00307         QLabel *gridLabel;
+<a name="l00307"></a><a class="code" href="classUi__ValuesDialog.html#0ba92dabf82c45401a131f7fd57242eb">00307</a>         QLabel *<a class="code" href="classUi__ValuesDialog.html#0ba92dabf82c45401a131f7fd57242eb" title="&amp;quot;Grid size and bounds&amp;quot; header">gridLabel</a>;                  
 <a name="l00308"></a>00308 
-<a name="l00309"></a>00309         QHBoxLayout *SliderLayout[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
-<a name="l00310"></a>00310         QHBoxLayout *BoundsLayout[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
-<a name="l00311"></a>00311         QHBoxLayout *MinLayout[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
-<a name="l00312"></a>00312         QHBoxLayout *MaxLayout[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
-<a name="l00313"></a>00313 
-<a name="l00314"></a>00314         QLabel *Label[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
-<a name="l00315"></a>00315         QSlider *Slider[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
-<a name="l00316"></a>00316         QLabel *Steps[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
-<a name="l00317"></a>00317         QLabel *MinLabel[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
-<a name="l00318"></a>00318         QLineEdit *Min[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
-<a name="l00319"></a>00319         QLabel *MaxLabel[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
-<a name="l00320"></a>00320         QLineEdit *Max[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
-<a name="l00321"></a>00321 
-<a name="l00322"></a>00322         QLabel *functionLabel;
-<a name="l00323"></a>00323 
-<a name="l00324"></a>00324         QHBoxLayout *ParameterLayout[<a class="code" href="classUi__ValuesDialog.html#1b4d3fca097cbc53827db8f18e33638b" title="maximum number of function parameters to display">maxNumParameters</a>];
-<a name="l00325"></a>00325         QHBoxLayout *ParameterLineLayout[<a class="code" href="classUi__ValuesDialog.html#1b4d3fca097cbc53827db8f18e33638b" title="maximum number of function parameters to display">maxNumParameters</a>/<a class="code" href="classUi__ValuesDialog.html#9ec22f0535ebacd6dfd57d2790dd9eb7" title="group this many parameter input fields on a line">parametersPerLine</a>];
-<a name="l00326"></a>00326 
-<a name="l00327"></a>00327         QLabel *ParameterLabel[<a class="code" href="classUi__ValuesDialog.html#1b4d3fca097cbc53827db8f18e33638b" title="maximum number of function parameters to display">maxNumParameters</a>];
-<a name="l00328"></a>00328         QLineEdit *Parameter[<a class="code" href="classUi__ValuesDialog.html#1b4d3fca097cbc53827db8f18e33638b" title="maximum number of function parameters to display">maxNumParameters</a>];
-<a name="l00329"></a>00329 
-<a name="l00330"></a>00330         QPushButton *buttonApply;
-<a name="l00331"></a>00331 
-<a name="l00332"></a>00332 };
-<a name="l00333"></a>00333 
-<a name="l00334"></a>00334 <span class="keyword">namespace </span>Ui {
-<a name="l00335"></a>00335     <span class="keyword">class </span>ValuesDialog: <span class="keyword">public</span> <a class="code" href="classUi__ValuesDialog.html" title="Base class for ValuesDialog, originally created by uic (thus the ugliness).">Ui_ValuesDialog</a> {};
-<a name="l00336"></a>00336 } <span class="comment">// namespace Ui</span>
+<a name="l00310"></a><a class="code" href="classUi__ValuesDialog.html#a34663ae2d36e10c2641f99120de1ffe">00310</a>         QHBoxLayout *<a class="code" href="classUi__ValuesDialog.html#a34663ae2d36e10c2641f99120de1ffe" title="layouts for the bounds sliders and labels">SliderLayout</a>[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
+<a name="l00312"></a><a class="code" href="classUi__ValuesDialog.html#ca700dc2aae888abb4df382893cb834c">00312</a>         QHBoxLayout *<a class="code" href="classUi__ValuesDialog.html#ca700dc2aae888abb4df382893cb834c" title="layouts for each combined bounds selector">BoundsLayout</a>[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
+<a name="l00314"></a><a class="code" href="classUi__ValuesDialog.html#7f2230719cc87a195e5957ed0c82dc79">00314</a>         QHBoxLayout *<a class="code" href="classUi__ValuesDialog.html#7f2230719cc87a195e5957ed0c82dc79" title="layouts for each lower bound selector">MinLayout</a>[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
+<a name="l00316"></a><a class="code" href="classUi__ValuesDialog.html#9a1c3c546faa262cfe699c3938d2153e">00316</a>         QHBoxLayout *<a class="code" href="classUi__ValuesDialog.html#9a1c3c546faa262cfe699c3938d2153e" title="layouts for each upper bound selector">MaxLayout</a>[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];
+<a name="l00317"></a>00317 
+<a name="l00318"></a><a class="code" href="classUi__ValuesDialog.html#850cd035e55450f40ac38b8bc5983dfd">00318</a>         QLabel *<a class="code" href="classUi__ValuesDialog.html#850cd035e55450f40ac38b8bc5983dfd" title="&amp;quot;Steps in [t|u|v]&amp;quot;">Label</a>[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];    
+<a name="l00319"></a><a class="code" href="classUi__ValuesDialog.html#bbe855cfb32300bd78e4f6d5207336bb">00319</a>         QSlider *<a class="code" href="classUi__ValuesDialog.html#bbe855cfb32300bd78e4f6d5207336bb" title="select number of grid points">Slider</a>[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];  
+<a name="l00320"></a><a class="code" href="classUi__ValuesDialog.html#2ad387bdf5db5cf0d8fcc67e3d1a30cb">00320</a>         QLabel *<a class="code" href="classUi__ValuesDialog.html#2ad387bdf5db5cf0d8fcc67e3d1a30cb" title="display number of grid points">Steps</a>[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];    
+<a name="l00321"></a><a class="code" href="classUi__ValuesDialog.html#fc7323911b6726a0619b65efbaac2763">00321</a>         QLabel *<a class="code" href="classUi__ValuesDialog.html#fc7323911b6726a0619b65efbaac2763" title="labels for lower bound inputs">MinLabel</a>[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>]; 
+<a name="l00322"></a><a class="code" href="classUi__ValuesDialog.html#194fef6d5840168a5b7aae997f94046f">00322</a>         QLineEdit *<a class="code" href="classUi__ValuesDialog.html#194fef6d5840168a5b7aae997f94046f" title="input fields for lower bounds">Min</a>[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];   
+<a name="l00323"></a><a class="code" href="classUi__ValuesDialog.html#27bf7aa79b5aabd2501a062f5f2fa0b8">00323</a>         QLabel *<a class="code" href="classUi__ValuesDialog.html#27bf7aa79b5aabd2501a062f5f2fa0b8" title="labels for upper bound inputs">MaxLabel</a>[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>]; 
+<a name="l00324"></a><a class="code" href="classUi__ValuesDialog.html#0aed3c74e3407f3055447820f3cd86f1">00324</a>         QLineEdit *<a class="code" href="classUi__ValuesDialog.html#0aed3c74e3407f3055447820f3cd86f1" title="input fields for upper bounds">Max</a>[<a class="code" href="classUi__ValuesDialog.html#96a5028f3e1b19ed10bc3b89d8602df3" title="maximum number of grid dimensions to control">maxNumDimensions</a>];   
+<a name="l00325"></a>00325 
+<a name="l00326"></a><a class="code" href="classUi__ValuesDialog.html#64c5680f8034342c68839ba741605b66">00326</a>         QLabel *<a class="code" href="classUi__ValuesDialog.html#64c5680f8034342c68839ba741605b66" title="header for parameter input fields">functionLabel</a>;              
+<a name="l00327"></a>00327 
+<a name="l00329"></a><a class="code" href="classUi__ValuesDialog.html#83926ed6f547464131e51d917b52cd2e">00329</a>         QHBoxLayout *<a class="code" href="classUi__ValuesDialog.html#83926ed6f547464131e51d917b52cd2e" title="QHBoxLayout for all parameter input fields.">ParameterLayout</a>[<a class="code" href="classUi__ValuesDialog.html#1b4d3fca097cbc53827db8f18e33638b" title="maximum number of function parameters to display">maxNumParameters</a>];
+<a name="l00331"></a><a class="code" href="classUi__ValuesDialog.html#45340192c4fee6156dd523613cd3daca">00331</a>         QHBoxLayout *<a class="code" href="classUi__ValuesDialog.html#45340192c4fee6156dd523613cd3daca" title="QHBoxLayout for every line of parameter input fields.">ParameterLineLayout</a>[<a class="code" href="classUi__ValuesDialog.html#1b4d3fca097cbc53827db8f18e33638b" title="maximum number of function parameters to display">maxNumParameters</a>/<a class="code" href="classUi__ValuesDialog.html#9ec22f0535ebacd6dfd57d2790dd9eb7" title="group this many parameter input fields on a line">parametersPerLine</a>];
+<a name="l00332"></a>00332 
+<a name="l00333"></a><a class="code" href="classUi__ValuesDialog.html#e4cf1325fab23285a024abb372659ceb">00333</a>         QLabel *<a class="code" href="classUi__ValuesDialog.html#e4cf1325fab23285a024abb372659ceb" title="parameter input labels">ParameterLabel</a>[<a class="code" href="classUi__ValuesDialog.html#1b4d3fca097cbc53827db8f18e33638b" title="maximum number of function parameters to display">maxNumParameters</a>];   
+<a name="l00334"></a><a class="code" href="classUi__ValuesDialog.html#7212d408a6136ef3d6c9d7ed7fbbb00e">00334</a>         QLineEdit *<a class="code" href="classUi__ValuesDialog.html#7212d408a6136ef3d6c9d7ed7fbbb00e" title="parameter input fields">Parameter</a>[<a class="code" href="classUi__ValuesDialog.html#1b4d3fca097cbc53827db8f18e33638b" title="maximum number of function parameters to display">maxNumParameters</a>];     
+<a name="l00335"></a>00335 
+<a name="l00336"></a><a class="code" href="classUi__ValuesDialog.html#a957950d35fd0e2d4507f6791c17445a">00336</a>         QPushButton *<a class="code" href="classUi__ValuesDialog.html#a957950d35fd0e2d4507f6791c17445a" title="&amp;quot;Apply&amp;quot; button">buttonApply</a>;                   
 <a name="l00337"></a>00337 
-<a name="l00338"></a>00338 <span class="preprocessor">#endif // UI_VALUESDIALOG_H</span>
+<a name="l00338"></a>00338 };
+<a name="l00339"></a>00339 
+<a name="l00340"></a>00340 <span class="keyword">namespace </span>Ui {
+<a name="l00341"></a>00341     <span class="keyword">class </span>ValuesDialog: <span class="keyword">public</span> <a class="code" href="classUi__ValuesDialog.html" title="Base class for ValuesDialog, originally created by uic (thus the ugliness).">Ui_ValuesDialog</a> {};
+<a name="l00342"></a>00342 } <span class="comment">// namespace Ui</span>
+<a name="l00343"></a>00343 
+<a name="l00344"></a>00344 <span class="preprocessor">#endif // UI_VALUESDIALOG_H</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 15:27:59 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 16:14:24 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>
