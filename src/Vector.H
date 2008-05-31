@@ -23,6 +23,8 @@
 # endif
 
 /// \defgroup VecMath Vector and Matrix algebra
+
+/// Vector and Matrix algebra
 namespace VecMath {
 
     ///  Vector<D, N>: a D-dimensional vector of numbers of type N

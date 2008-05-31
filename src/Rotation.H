@@ -16,7 +16,9 @@ namespace VecMath {
     template <unsigned D> struct NumAxes {
         enum { num = NumAxes<D-1>::num+D-1 };
     };
+    /// Specialization for zero-dimensional space (no rotation possible)
     template <> struct NumAxes<0> { enum { num = 0 }; };
+    /// Specialization for one-dimensional space (no rotation possible)
     template <> struct NumAxes<1> { enum { num = 0 }; };
 
     /// How to generate a Rotation matrix from a Rotation component
@@ -47,27 +49,29 @@ namespace VecMath {
             static unsigned _axis[2][NumAxes<D>::num];
     };
 
-    template <> class RotationAxes<4> {
-        public:
-            static unsigned axis(unsigned which, unsigned index) {
-                return _axis[which][index];
-            }
-        private:
-            static unsigned _axis[2][6];
-    };
-
+    /// Rotation axes in three dimensions, manually specified
     template <> class RotationAxes<3> {
         public:
             static unsigned axis(unsigned which, unsigned index) {
                 return _axis[which][index];
             }
         private:
-            static unsigned _axis[2][3];
+            static const unsigned _axis[2][3];
+    };
+
+    /// Rotation axes in four dimensions, manually specified
+    template <> class RotationAxes<4> {
+        public:
+            static unsigned axis(unsigned which, unsigned index) {
+                return _axis[which][index];
+            }
+        private:
+            static const unsigned _axis[2][6];
     };
 
     /// Rotation in D-dimensional space defined by angles about the main axes
-    /** @param D dimension of the vector
-     *  @param N numerical type of the vector elements
+    /** @param D dimension of the vector space
+     *  @param N numerical type of the rotation angles
      *  \ingroup VecMath
      *  @author Helge Preuss <scout@hyperspace-travel.de>                     */
     template <unsigned D, typename N = double> class Rotation {
