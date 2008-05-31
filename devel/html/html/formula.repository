@@ -1,69 +1,49 @@
-\form#0:$R^3 \rightarrow R$
-\form#1:$r^2 = x^2+y^2+z^2 f(x,y,z) = 1./(r^2+.25)$
-\form#2:\begin{eqnarray*}{r^2 = x^2+y^2+z^2 f(x,y,z) = 1./(r^2+.25)\end{eqnarray*}{
-\form#3:\begin{eqnarray*}{ r^2 & = & x^2+y^2+z^2 f(x,y,z) & = & 1./(r^2+.25) \end{eqnarray*}{
-\form#4:\begin{eqnarray*}{ r^2 & = & x^2+y^2+z^2 \\ f(x,y,z) & = & 1./(r^2+.25) \end{eqnarray*}{
-\form#5:\begin{eqnarray*} { F_0 & = & Radius*sin(\psi)*sin(\theta)*cos(\phi) F_1 & = & Radius*sin(\psi)*sin(\theta)*sin(\phi) F_2 & = & Radius*sin(\psi)*cos(\theta) F_3 & = & Radius*cos(\psi) \end{eqnarray*}
-\form#6:\begin{eqnarray*} { F_0 & = & Radius*sin(\psi)*sin(\theta)*cos(\phi) \\ F_1 & = & Radius*sin(\psi)*sin(\theta)*sin(\phi) \\ F_2 & = & Radius*sin(\psi)*cos(\theta) \\ F_3 & = & Radius*cos(\psi) \end{eqnarray*}
-\form#7:\begin{eqnarray*} { F_0 & = & Radius*\sin(\psi)*\sin(\theta)*\cos(\phi) \\ F_1 & = & Radius*\sin(\psi)*\sin(\theta)*\sin(\phi) \\ F_2 & = & Radius*\sin(\psi)*\cos(\theta) \\ F_3 & = & Radius*\cos(\psi) \end{eqnarray*}
-\form#8:$ f(x,y,z) = \sin (\pi*(x^2+y^2+z^2)) $
-\form#9:$ f(x,y,z) = \exp (x^2+y^2+z^2) $
-\form#10:$ r(\psi, \theta, \phi) = |\sin (Phase*\pi*\psi*\theta*\phi)| $
-\form#11:$ r = \sin(\pi/3.*(\psi+\theta+\phi)) $
-\form#12:$ r = \sqrt(\psi^2+\theta^2+\phi^2) $
-\form#13:$ r = \sqrt{\psi^2+\theta^2+\phi^2} $
-\form#14:$ R^2 \rightarrow R^4 $
-\form#15:\begin{eqnarray*} { F_0 & = & Radius*\sin \theta*\sin \psi; \\ F_1 & = & Radius*\cos \theta*\sin \psi; \\ F_2 & = & Radius*\cos \theta; \\ F_3 & = & Radius*\cos \psi; \end{eqnarray*}
-\form#16:\begin{eqnarray*} { t & = & \theta*\pi \\ p & = & \phi*frac{\pi}{2} \\ F_0 & = (1-\sin{t})*\cos{p} \\ F_1 & = (1-\sin{t})*\sin{p} \\ F_2 & = (1+\sin{t})*\cos{p} \\ F_3 & = (1+\sin{t})*\sin{p} \\ F & = & F*\frac{1}{\sqrt{2}}*\cos{t} \end{eqnarray*}
-\form#17:\begin{eqnarray*}{ F_0 & = & Radius*\sin \theta*\sin \psi; \\ F_1 & = & Radius*\cos \theta*\sin \psi; \\ F_2 & = & Radius*\cos \theta; \\ F_3 & = & Radius*\cos \psi; \end{eqnarray*}{
-\form#18:\begin{eqnarray*}{ t & = & \theta*\pi \\ p & = & \phi*frac{\pi}{2} \\ F_0 & = (1-\sin{t})*\cos{p} \\ F_1 & = (1-\sin{t})*\sin{p} \\ F_2 & = (1+\sin{t})*\cos{p} \\ F_3 & = (1+\sin{t})*\sin{p} \\ F & = & F*\frac{1}{\sqrt{2}}*\cos{t} \end{eqnarray*}{
-\form#19:$ C \rightarrow C $
-\form#20:\begin{eqnarray*}{ F_0 & = & Real(z) \\ F_1 & = & Imag(z) \\ F_2 & = & Real(f(z)) \\ F_3 & = & Imag(f(z)) \end{eqnarray*}{
-\form#21:$ f(z) = z^2 $
-\form#22:$ f(z) = z^3 $
-\form#23:$ f(z) = z^\alpha $
-\form#24:$ f(z) = e^{\alpha*z} $
-\form#25:$ f(z) = e^{-\alpha*z^2} $
-\form#26:$ f(z) = \frac{1}{z} $
-\form#27:$ f(z) = \frac{1}{z^2} $
-\form#28:$ f(z) = \sqrt{z} $
-\form#29:$ f(z) = \ln{z} $
-\form#30:$ f(z) = \sin{z} $
-\form#31:$ f(z) = \cos{z} $
-\form#32:$ f(z) = \sinh{z} $
-\form#33:$ f(z) = \cosh{z} $
-\form#34:$ f(z) = \tan{z} $
-\form#35:$ R^2 $
-\form#36:\[ \frac{df}{du} = \lim_{h \rightarrow \infty} \frac{f(u+h, v) - f(u)}{h}, \frac{df}{dv}\mbox{analogously} \]
-\form#37:$ z^2 $
-\form#38:$ z^3 $
-\form#39:$ e^{-\alpha*z^2} $
-\form#40:$ R^3 \rightarrow R $
-\form#41:$ M_{ij} $
-\form#42:$ f: R^3 \rightarrow R^4 $
-\form#43:$ f: R^3 \rightarrow R $
-\form#44:$ r = r(\psi, \theta, \phi) $
-\form#45:$ f: R^2 \rightarrow R^4 $
-\form#46:$ f: C \rightarrow C $
-\form#47:$ 3^4 $
-\form#48:\[ \frac{df}{dt} = \lim_{h \rightarrow \infty} \frac{f(t+h, v) - f(t)}{h}, \frac{df}{dv},\frac{df}{dv}\mbox{analogously} \]
-\form#49:\[ \frac{df}{dt} = \lim_{h \rightarrow \infty} \frac{f(t+h, v) - f(t)}{h}, \frac{df}{du},\frac{df}{dv}\mbox{analogously} \]
-\form#50:\[ \frac{df}{dt} = \lim_{h \rightarrow 0} \frac{f(t+h, v) - f(t)}{h}, \frac{df}{du},\frac{df}{dv}\mbox{analogously} \]
-\form#51:\[ \frac{df}{du} = \lim_{h \rightarrow 0} \frac{f(u+h, v) - f(u)}{h}, \frac{df}{dv}\mbox{analogously} \]
-\form#52:\[ \frac{df}{dt} = \lim_{h \rightarrow 0} \frac{f(t+h, u, v) - f(t, u, v)}{h}, \frac{df}{du},\frac{df}{dv}\mbox{analogously} \]
-\form#53:\[ \frac{df}{du} = \lim_{h \rightarrow 0} \frac{f(u+h, v) - f(u, v)}{h}, \frac{df}{dv}\mbox{analogously} \]
-\form#54:$ C_ij $
-\form#55:$ C = A*B $
-\form#56:$ A*B $
-\form#57:$ \vec{x} = ( x, y, z, f(x, y, z) ) $
-\form#58:$ R^1 = (R_2-R_1)*\frac{x-x_1}{x_2-x_1}+R_1, R^2 = (R_3-R_1)*\frac{x-x_1}{x_3-x_1}+R_1, ..., R^10 = (R_5-R_4)*\frac{x-x_4}{x_5-x_4}+R_4 $
-\form#59:$ R $
-\form#60:$ G $
-\form#61:$ y $
-\form#62:$ B $
-\form#63:$ z $
-\form#64:$ \alpha $
-\form#65:$ w $
-\form#66:$ R^1 = (R_2-R_1)*\frac{x-x_1}{x_2-x_1}+R_1, R^2 = (R_3-R_1)*\frac{x-x_1}{x_3-x_1}+R_1, ..., R^{10} = (R_5-R_4)*\frac{x-x_4}{x_5-x_4}+R_4 $
-\form#67:\begin{eqnarray*}{ R^1 & = & (R_2-R_1)*\frac{x-x_1}{x_2-x_1}+R_1 \\ R^2 & = & (R_3-R_1)*\frac{x-x_1}{x_3-x_1}+R_1 \\ \ldots \\ R^{10} = (R_5-R_4)*\frac{x-x_4}{x_5-x_4}+R_4 \end{eqnarray*}{
-\form#68:\begin{eqnarray*}{ R^1 & = & (R_2-R_1)*\frac{x-x_1}{x_2-x_1}+R_1 \\ R^2 & = & (R_3-R_1)*\frac{x-x_1}{x_3-x_1}+R_1 \\ \ldots \\ R^{10} & = & (R_5-R_4)*\frac{x-x_4}{x_5-x_4}+R_4 \end{eqnarray*}{
+\form#0:\begin{eqnarray*}{ R^1 & = & (R_2-R_1)*\frac{x-x_1}{x_2-x_1}+R_1 \\ R^2 & = & (R_3-R_1)*\frac{x-x_1}{x_3-x_1}+R_1 \\ \ldots \\ R^{10} & = & (R_5-R_4)*\frac{x-x_4}{x_5-x_4}+R_4 \end{eqnarray*}{
+\form#1:$ R $
+\form#2:$ G $
+\form#3:$ y $
+\form#4:$ B $
+\form#5:$ z $
+\form#6:$ \alpha $
+\form#7:$ w $
+\form#8:$ R^2 $
+\form#9:$ z^2 $
+\form#10:$ z^3 $
+\form#11:$ e^{-\alpha*z^2} $
+\form#12:$ C \rightarrow C $
+\form#13:\begin{eqnarray*}{ F_0 & = & Real(z) \\ F_1 & = & Imag(z) \\ F_2 & = & Real(f(z)) \\ F_3 & = & Imag(f(z)) \end{eqnarray*}{
+\form#14:$ f(z) = z^2 $
+\form#15:$ f(z) = z^3 $
+\form#16:$ f(z) = z^\alpha $
+\form#17:$ f(z) = e^{\alpha*z} $
+\form#18:$ f(z) = e^{-\alpha*z^2} $
+\form#19:$ f(z) = \frac{1}{z} $
+\form#20:$ f(z) = \frac{1}{z^2} $
+\form#21:$ f(z) = \sqrt{z} $
+\form#22:$ f(z) = \ln{z} $
+\form#23:$ f(z) = \sin{z} $
+\form#24:$ f(z) = \cos{z} $
+\form#25:$ f(z) = \sinh{z} $
+\form#26:$ f(z) = \cosh{z} $
+\form#27:$ f(z) = \tan{z} $
+\form#28:$ f: R^3 \rightarrow R $
+\form#29:$ r = r(\psi, \theta, \phi) $
+\form#30:$ f: R^2 \rightarrow R^4 $
+\form#31:$ f: C \rightarrow C $
+\form#32:\[ \frac{df}{dt} = \lim_{h \rightarrow 0} \frac{f(t+h, u, v) - f(t, u, v)}{h}, \frac{df}{du},\frac{df}{dv}\mbox{analogously} \]
+\form#33:$ 3^4 $
+\form#34:$ \vec{x} = ( x, y, z, f(x, y, z) ) $
+\form#35:\begin{eqnarray*} { F_0 & = & Radius*\sin(\psi)*\sin(\theta)*\cos(\phi) \\ F_1 & = & Radius*\sin(\psi)*\sin(\theta)*\sin(\phi) \\ F_2 & = & Radius*\sin(\psi)*\cos(\theta) \\ F_3 & = & Radius*\cos(\psi) \end{eqnarray*}
+\form#36:$R^3 \rightarrow R$
+\form#37:\begin{eqnarray*}{ r^2 & = & x^2+y^2+z^2 \\ f(x,y,z) & = & 1./(r^2+.25) \end{eqnarray*}{
+\form#38:$ f(x,y,z) = \sin (\pi*(x^2+y^2+z^2)) $
+\form#39:$ f(x,y,z) = \exp (x^2+y^2+z^2) $
+\form#40:$ r(\psi, \theta, \phi) = |\sin (Phase*\pi*\psi*\theta*\phi)| $
+\form#41:$ r = \sin(\pi/3.*(\psi+\theta+\phi)) $
+\form#42:$ r = \sqrt{\psi^2+\theta^2+\phi^2} $
+\form#43:\[ \frac{df}{du} = \lim_{h \rightarrow 0} \frac{f(u+h, v) - f(u, v)}{h}, \frac{df}{dv}\mbox{analogously} \]
+\form#44:$ R^2 \rightarrow R^4 $
+\form#45:\begin{eqnarray*}{ F_0 & = & Radius*\sin \theta*\sin \psi; \\ F_1 & = & Radius*\cos \theta*\sin \psi; \\ F_2 & = & Radius*\cos \theta; \\ F_3 & = & Radius*\cos \psi; \end{eqnarray*}{
+\form#46:\begin{eqnarray*}{ t & = & \theta*\pi \\ p & = & \phi*frac{\pi}{2} \\ F_0 & = (1-\sin{t})*\cos{p} \\ F_1 & = (1-\sin{t})*\sin{p} \\ F_2 & = (1+\sin{t})*\cos{p} \\ F_3 & = (1+\sin{t})*\sin{p} \\ F & = & F*\frac{1}{\sqrt{2}}*\cos{t} \end{eqnarray*}{
+\form#47:$ M_{ij} $
+\form#48:$ R^3 \rightarrow R $
