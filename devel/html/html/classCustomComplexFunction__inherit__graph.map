@@ -1,5 +1,6 @@
-<area shape="rect" href="$classComplexFunction.html" title="ComplexFunction" alt="" coords="5,238,136,265">
-<area shape="rect" href="$classSurface.html" title="Surface" alt="" coords="36,161,105,188">
-<area shape="rect" href="$classSurfaceBase.html" title="SurfaceBase provides a base class for functions which take two parameters" alt="" coords="20,84,121,110">
-<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="33,6,108,33">
-<area shape="rect" href="$classCustomFunctionBase.html" title="CustomFunctionBase\&lt; ComplexFunction::function_type \&gt;" alt="" coords="160,238,552,265">
+<area shape="rect" href="$classComplexFunction.html" title="{ComplexFunction\n|# g\l|+ ComplexFunction()\l+ ~ComplexFunction()\l+ SetParameters()\l+ function_type()\l# f()\l# Initialize()\l}" alt="" coords="43,1754,211,1925">
+<area shape="rect" href="$classSurface.html" title="{Surface\n|# normal\l# NumVertices\l# F\l# X\l# Xtrans\l# Xscr\l|+ Surface()\l+ Surface()\l+ ~Surface()\l+ Transform()\l+ Project()\l+ Draw()\l+ ReInit()\l+ Data()\l+ getDefinitionSpaceDimensions()\l# df()\l# Initialize()\l# InitMem()\l# MemRequired()\l# DrawPlane()\l# DrawStrip()\l}" alt="" coords="5,1248,248,1661">
+<area shape="rect" href="$classSurfaceBase.html" title="SurfaceBase provides a base class for functions which take two parameters" alt="" coords="47,628,207,1196">
+<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="5,6,248,574">
+<area shape="rect" href="$classCustomFunctionBase.html" title="{CustomFunctionBase\&lt; ComplexFunction::function_type \&gt;\n|# func\l&#45; handle\l&#45; valid\l|+ CustomFunctionBase()\l+ ~CustomFunctionBase()\l+ symbolic()\l+ isValid()\l# loadFunction()\l# setValid()\l# setInvalid()\l}" alt="" coords="235,1729,627,1950">
+<area shape="rect" href="$classCustomFunctionBase.html" title="{CustomFunctionBase\&lt; function_type \&gt;\n|# func\l&#45; handle\l&#45; valid\l|+ CustomFunctionBase()\l+ ~CustomFunctionBase()\l+ symbolic()\l+ isValid()\l# loadFunction()\l# setValid()\l# setInvalid()\l}" alt="" coords="295,1344,567,1565">

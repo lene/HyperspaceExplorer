@@ -1,5 +1,7 @@
-<area shape="rect" href="$classHypercube.html" title="A four&#45;dimensional cube." alt="" coords="136,295,227,321">
-<area shape="rect" href="$classObject.html" title="Generalized four&#45;dimensional Object, described by vertexes and surfaces." alt="" coords="197,199,259,225">
-<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="209,103,284,129">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="VecMath::Vector\&lt; 4 \&gt;" alt="" coords="5,7,168,33">
-<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="192,7,307,33">
+<area shape="rect" href="$classHypercube.html" title="A four&#45;dimensional cube." alt="" coords="173,2272,317,2478">
+<area shape="rect" href="$classObject.html" title="Generalized four&#45;dimensional Object, described by vertexes and surfaces." alt="" coords="177,1723,420,2206">
+<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="177,1087,420,1655">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="16,623,179,1018">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,159,189,554">
+<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="203,735,355,906">
+<area shape="rect" title="STL class." alt="" coords="479,315,604,398">

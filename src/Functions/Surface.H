@@ -37,6 +37,14 @@ class SurfaceBase: public Function {
         typedef VecMath::Vector<4> raw_function_type (double, double);
 
         SurfaceBase() { }
+        /** \param name a name for the Surface
+         *  \param _tmin lower bound in first parameter
+         *  \param _tmax upper bound in first parameter
+         *  \param _dt stepsize in first parameter
+         *  \param _umin lower bound in second parameter
+         *  \param _umax upper bound in second parameter
+         *  \param _du stepsize in second parameter
+         *  \param _parms parameters to the Surface                           */
         SurfaceBase(const QString &name,
                     double _tmin, double _tmax, double _dt,
                     double _umin, double _umax, double _du,
@@ -127,11 +135,6 @@ class Surface: public SurfaceBase {
 
          void DrawPlane (unsigned);
          void DrawStrip (unsigned);
-/*
-         double umin, umax, du,
-	            vmin, vmax, dv;
-
-         unsigned usteps, vsteps;*/
 
          unsigned NumVertices;
 
