@@ -1,0 +1,5 @@
+<area shape="rect" href="$classPluginCreator.html" title="Abstract base class for all Dialogs which allow entering a custom function." alt="" coords="208,107,315,133">
+<area shape="rect" href="$classComplexDialogImpl.html" title="A Dialog to enter a user&#45;defined complex function, ." alt="" coords="379,12,523,39">
+<area shape="rect" href="$classFunctionDialogImpl.html" title="A Dialog to enter a function from ." alt="" coords="380,88,521,115">
+<area shape="rect" href="$classPolarDialogImpl.html" title="PolarDialogImpl" alt="" coords="391,151,511,177">
+<area shape="rect" href="$classSurfaceDialogImpl.html" title="A Dialog to enter a function from ." alt="" coords="383,208,519,235">

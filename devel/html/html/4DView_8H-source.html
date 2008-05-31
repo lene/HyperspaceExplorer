@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>HyperspaceExplorer: workspace/HyperspaceExplorer/src/UI/4DView.H Source File</title>
+<title>HyperspaceExplorer: HyperspaceExplorer/src/UI/4DView.H Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -16,7 +16,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>workspace/HyperspaceExplorer/src/UI/4DView.H</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<h1>HyperspaceExplorer/src/UI/4DView.H</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
 <a name="l00002"></a>00002 <span class="comment">//      project:      hyperspace explorer</span>
 <a name="l00003"></a>00003 <span class="comment">//      module:</span>
 <a name="l00004"></a>00004 <span class="comment">//      contains:</span>
@@ -93,7 +93,7 @@
 <a name="l00110"></a>00110 
 <a name="l00114"></a><a class="code" href="classC4DView_1_1CustomFunctionSlot.html">00114</a>         <span class="keyword">template</span>&lt;<span class="keyword">class</span> function&gt; <span class="keyword">class </span><a class="code" href="classC4DView_1_1CustomFunctionSlot.html" title="Class template to outsource redundant code for customized functions.">CustomFunctionSlot</a> {
 <a name="l00115"></a>00115             <span class="keyword">public</span>:
-<a name="l00116"></a>00116                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="group__UIHelpers.html#gb4150e26778debfb3de8214203578a41" title="Factory method to create a new customized Function of type R^3-&amp;gt;R.">createCustomFunction</a>(<a class="code" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> *view);
+<a name="l00116"></a>00116                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="group__UIHelpers.html#gb4150e26778debfb3de8214203578a41" title="C++ Template Implementation: CustomFunctionSlot.">createCustomFunction</a>(<a class="code" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> *view);
 <a name="l00117"></a>00117                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1CustomFunctionSlot.html#2eaaaf653f2d1bbfe3a2b416f33e4b08" title="Factory method to create a new customized Function of type R^2-&amp;gt;R^4.">createCustomSurface</a>(<a class="code" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> *view);
 <a name="l00118"></a>00118         };
 <a name="l00119"></a>00119 
@@ -298,7 +298,7 @@
 <a name="l00352"></a>00352 
 <a name="l00353"></a>00353                 <a class="code" href="structC4DView_1_1Impl.html#8ea4aaea895e1b93730183ce2358061e" title="coordinates for 4D translation">T</a>(0.,0.,0.,0.), <a class="code" href="structC4DView_1_1Impl.html#e5ed1dd715209a6895176c4eb473e36f" title="angles for 4D rotation">R</a>(0.,0.,0.,0.,0.,0.),
 <a name="l00354"></a>00354                 <a class="code" href="structC4DView_1_1Impl.html#cc77d24e1ba31a16cb30702577425ba2" title="delta values in 3D rotation - for animations">dR3</a>(0.,0.,0.), <a class="code" href="structC4DView_1_1Impl.html#2335e837e02cd34554561045678b97b7" title="delta values in angles for 4D rotation - for animations">dR</a>(0.,0.,0.,0.,0.,0.),
-<a name="l00355"></a>00355                 <a class="code" href="structC4DView_1_1Impl.html#e1c0c06ea8688b13f4b0f42efe6e6b6a">m_rot</a>(15., 15., 0.), <a class="code" href="structC4DView_1_1Impl.html#4a633c4d2ecbbe0fd8167831145bc42a" title="translation in X and Y, Z coordinate of camera (distance from object)">m_trans</a>(0., 0.,-10.),
+<a name="l00355"></a>00355                 <a class="code" href="structC4DView_1_1Impl.html#e1c0c06ea8688b13f4b0f42efe6e6b6a" title="rotation in X, Y and Z translation in X and Y, Z coordinate of camera (distance from...">m_rot</a>(15., 15., 0.), m_trans(0., 0.,-10.),
 <a name="l00356"></a>00356 
 <a name="l00357"></a>00357                 <a class="code" href="structC4DView_1_1Impl.html#192ba7de2db741f965b51203813ca165" title="W coordinate of the camera.">CamW</a> (-3.), <a class="code" href="structC4DView_1_1Impl.html#a5df6de272ca1c28d980d3ec9c46dbe5" title="W coordinate of the screen.">ScrW</a> (0.),
 <a name="l00358"></a>00358 
@@ -328,9 +328,9 @@
 <a name="l00382"></a><a class="code" href="structC4DView_1_1Impl.html#cc77d24e1ba31a16cb30702577425ba2">00382</a>             <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">VecMath::Rotation&lt;3&gt;</a> <a class="code" href="structC4DView_1_1Impl.html#cc77d24e1ba31a16cb30702577425ba2" title="delta values in 3D rotation - for animations">dR3</a>;   
 <a name="l00383"></a><a class="code" href="structC4DView_1_1Impl.html#2335e837e02cd34554561045678b97b7">00383</a>             <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">VecMath::Rotation&lt;4&gt;</a> <a class="code" href="structC4DView_1_1Impl.html#2335e837e02cd34554561045678b97b7" title="delta values in angles for 4D rotation - for animations">dR</a>;   
 <a name="l00384"></a>00384 
-<a name="l00385"></a><a class="code" href="structC4DView_1_1Impl.html#e1c0c06ea8688b13f4b0f42efe6e6b6a">00385</a>             <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">VecMath::Rotation&lt;3, GLdouble&gt;</a> <a class="code" href="structC4DView_1_1Impl.html#e1c0c06ea8688b13f4b0f42efe6e6b6a">m_rot</a>;     
+<a name="l00385"></a><a class="code" href="structC4DView_1_1Impl.html#e1c0c06ea8688b13f4b0f42efe6e6b6a">00385</a>             <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">VecMath::Rotation&lt;3, GLdouble&gt;</a> <a class="code" href="structC4DView_1_1Impl.html#e1c0c06ea8688b13f4b0f42efe6e6b6a" title="rotation in X, Y and Z translation in X and Y, Z coordinate of camera (distance from...">m_rot</a>;     
 <a name="l00386"></a>00386 
-<a name="l00387"></a><a class="code" href="structC4DView_1_1Impl.html#4a633c4d2ecbbe0fd8167831145bc42a">00387</a>             <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;3, GLdouble&gt;</a> <a class="code" href="structC4DView_1_1Impl.html#4a633c4d2ecbbe0fd8167831145bc42a" title="translation in X and Y, Z coordinate of camera (distance from object)">m_trans</a>;
+<a name="l00387"></a>00387             <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;3, GLdouble&gt;</a> m_trans;
 <a name="l00388"></a>00388 
 <a name="l00389"></a><a class="code" href="structC4DView_1_1Impl.html#192ba7de2db741f965b51203813ca165">00389</a>             <span class="keywordtype">double</span> <a class="code" href="structC4DView_1_1Impl.html#192ba7de2db741f965b51203813ca165" title="W coordinate of the camera.">CamW</a>;        
 <a name="l00390"></a><a class="code" href="structC4DView_1_1Impl.html#a5df6de272ca1c28d980d3ec9c46dbe5">00390</a>             <span class="keywordtype">double</span> <a class="code" href="structC4DView_1_1Impl.html#a5df6de272ca1c28d980d3ec9c46dbe5" title="W coordinate of the screen.">ScrW</a>;        
@@ -364,37 +364,33 @@
 <a name="l00421"></a>00421 
 <a name="l00423"></a><a class="code" href="structC4DView_1_1Impl.html#e1b669a3fcb19b2cb652fd0e33061602">00423</a>             <a class="code" href="classValuesDialogImpl.html">ValuesDialogImpl</a> *<a class="code" href="structC4DView_1_1Impl.html#e1b669a3fcb19b2cb652fd0e33061602" title="dialog to enter function parameters">Values</a>;
 <a name="l00424"></a>00424 
-<a name="l00426"></a><a class="code" href="structC4DView_1_1Impl.html#a2836b5138de91ead6dbc02156e4b03b">00426</a>             std::vector&lt;std::vector&lt;VecMath::Vector&lt;4&gt; &gt; &gt; <a class="code" href="structC4DView_1_1Impl.html#a2836b5138de91ead6dbc02156e4b03b" title="endpoints of the lines constituting the 4D coordinate cross">Cross</a>;
-<a name="l00428"></a><a class="code" href="structC4DView_1_1Impl.html#8a102fbc9feaa7234b3943476274f093">00428</a>             std::vector&lt;std::vector&lt;VecMath::Vector&lt;4&gt; &gt; &gt; <a class="code" href="structC4DView_1_1Impl.html#8a102fbc9feaa7234b3943476274f093" title="endpoints of the lines constituting the transformed 4D coordinates">CrossTrans</a>;
-<a name="l00430"></a><a class="code" href="structC4DView_1_1Impl.html#447ba1ee42cf7280a27bf117e85eeb92">00430</a>             std::vector&lt;std::vector&lt;VecMath::Vector&lt;3&gt; &gt; &gt; <a class="code" href="structC4DView_1_1Impl.html#447ba1ee42cf7280a27bf117e85eeb92" title="endpoints of the lines constituting the projected 4D coordinates">CrossScr</a>;
-<a name="l00431"></a>00431 
-<a name="l00432"></a><a class="code" href="structC4DView_1_1Impl.html#89a7c96b95f1aed9fc92460b5f159607">00432</a>             <a class="code" href="classC4DView_1_1Menu4D.html" title="The menu for the C4DView.">Menu4D</a> *<a class="code" href="structC4DView_1_1Impl.html#89a7c96b95f1aed9fc92460b5f159607" title="the popup menu and menu bar">menu</a>;               
-<a name="l00433"></a><a class="code" href="structC4DView_1_1Impl.html#2459988a99bd31873a4c590e01195e19">00433</a>             <a class="code" href="classC4DView_1_1MouseHandler4D.html">MouseHandler4D</a> *<a class="code" href="structC4DView_1_1Impl.html#2459988a99bd31873a4c590e01195e19" title="handler to delegate mouse events to">mouseHandler</a>; 
-<a name="l00434"></a>00434         };
-<a name="l00435"></a>00435 
-<a name="l00436"></a>00436     std::auto_ptr&lt;C4DView::Impl&gt; pImpl;
-<a name="l00437"></a>00437 
-<a name="l00438"></a><a class="code" href="classC4DView.html#c2d8375d0e5fd3438d7806e5eadb6740">00438</a>     <span class="keyword">static</span> GLfloat <a class="code" href="classC4DView.html#c2d8375d0e5fd3438d7806e5eadb6740" title="position of the light">LightPos</a>[4]; 
+<a name="l00425"></a><a class="code" href="structC4DView_1_1Impl.html#89a7c96b95f1aed9fc92460b5f159607">00425</a>             <a class="code" href="classC4DView_1_1Menu4D.html" title="The menu for the C4DView.">Menu4D</a> *<a class="code" href="structC4DView_1_1Impl.html#89a7c96b95f1aed9fc92460b5f159607" title="the popup menu and menu bar">menu</a>;               
+<a name="l00426"></a><a class="code" href="structC4DView_1_1Impl.html#2459988a99bd31873a4c590e01195e19">00426</a>             <a class="code" href="classC4DView_1_1MouseHandler4D.html">MouseHandler4D</a> *<a class="code" href="structC4DView_1_1Impl.html#2459988a99bd31873a4c590e01195e19" title="handler to delegate mouse events to">mouseHandler</a>; 
+<a name="l00427"></a>00427         };
+<a name="l00428"></a>00428 
+<a name="l00429"></a>00429     std::auto_ptr&lt;C4DView::Impl&gt; pImpl;
+<a name="l00430"></a>00430 
+<a name="l00431"></a><a class="code" href="classC4DView.html#c2d8375d0e5fd3438d7806e5eadb6740">00431</a>     <span class="keyword">static</span> GLfloat <a class="code" href="classC4DView.html#c2d8375d0e5fd3438d7806e5eadb6740" title="position of the light">LightPos</a>[4]; 
+<a name="l00432"></a>00432 
+<a name="l00434"></a><a class="code" href="classC4DView.html#3a944bfbcae2c13b0fcac503d62a60fe">00434</a>     std::vector&lt;std::vector&lt;VecMath::Vector&lt;4&gt; &gt; &gt; <a class="code" href="classC4DView.html#3a944bfbcae2c13b0fcac503d62a60fe" title="endpoints of the lines constituting the 4D coordinate cross">Cross</a>;
+<a name="l00436"></a><a class="code" href="classC4DView.html#0eba9d6ac6f7fe31287fd728ef61266c">00436</a>     std::vector&lt;std::vector&lt;VecMath::Vector&lt;4&gt; &gt; &gt; <a class="code" href="classC4DView.html#0eba9d6ac6f7fe31287fd728ef61266c" title="endpoints of the lines constituting the transformed 4D coordinates">CrossTrans</a>;
+<a name="l00438"></a><a class="code" href="classC4DView.html#4b450c11b94a6dc190fd7b0e8bdb64c1">00438</a>     std::vector&lt;std::vector&lt;VecMath::Vector&lt;3&gt; &gt; &gt; <a class="code" href="classC4DView.html#4b450c11b94a6dc190fd7b0e8bdb64c1" title="endpoints of the lines constituting the projected 4D coordinates">CrossScr</a>;
 <a name="l00439"></a>00439 
-<a name="l00441"></a><a class="code" href="classC4DView.html#3a944bfbcae2c13b0fcac503d62a60fe">00441</a>     std::vector&lt;std::vector&lt;VecMath::Vector&lt;4&gt; &gt; &gt; <a class="code" href="classC4DView.html#3a944bfbcae2c13b0fcac503d62a60fe" title="endpoints of the lines constituting the 4D coordinate cross">Cross</a>;
-<a name="l00443"></a><a class="code" href="classC4DView.html#0eba9d6ac6f7fe31287fd728ef61266c">00443</a>     std::vector&lt;std::vector&lt;VecMath::Vector&lt;4&gt; &gt; &gt; <a class="code" href="classC4DView.html#0eba9d6ac6f7fe31287fd728ef61266c" title="endpoints of the lines constituting the transformed 4D coordinates">CrossTrans</a>;
-<a name="l00445"></a><a class="code" href="classC4DView.html#4b450c11b94a6dc190fd7b0e8bdb64c1">00445</a>     std::vector&lt;std::vector&lt;VecMath::Vector&lt;3&gt; &gt; &gt; <a class="code" href="classC4DView.html#4b450c11b94a6dc190fd7b0e8bdb64c1" title="endpoints of the lines constituting the projected 4D coordinates">CrossScr</a>;
-<a name="l00446"></a>00446 
-<a name="l00447"></a>00447     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classC4DView_1_1CustomFunctionSlot.html" title="Class template to outsource redundant code for customized functions.">CustomFunctionSlot</a>&lt;<a class="code" href="classCustomFunction.html">CustomFunction</a>&gt;;
-<a name="l00448"></a>00448     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classC4DView_1_1CustomFunctionSlot.html" title="Class template to outsource redundant code for customized functions.">CustomFunctionSlot</a>&lt;<a class="code" href="classCustomPolarFunction.html">CustomPolarFunction</a>&gt;;
-<a name="l00449"></a>00449     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classC4DView_1_1CustomFunctionSlot.html" title="Class template to outsource redundant code for customized functions.">CustomFunctionSlot</a>&lt;<a class="code" href="classCustomComplexFunction.html">CustomComplexFunction</a>&gt;;
-<a name="l00450"></a>00450     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classC4DView_1_1CustomFunctionSlot.html" title="Class template to outsource redundant code for customized functions.">CustomFunctionSlot</a>&lt;<a class="code" href="classCustomSurface.html">CustomSurface</a>&gt;;
+<a name="l00440"></a>00440     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classC4DView_1_1CustomFunctionSlot.html" title="Class template to outsource redundant code for customized functions.">CustomFunctionSlot</a>&lt;<a class="code" href="classCustomFunction.html">CustomFunction</a>&gt;;
+<a name="l00441"></a>00441     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classC4DView_1_1CustomFunctionSlot.html" title="Class template to outsource redundant code for customized functions.">CustomFunctionSlot</a>&lt;<a class="code" href="classCustomPolarFunction.html">CustomPolarFunction</a>&gt;;
+<a name="l00442"></a>00442     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classC4DView_1_1CustomFunctionSlot.html" title="Class template to outsource redundant code for customized functions.">CustomFunctionSlot</a>&lt;<a class="code" href="classCustomComplexFunction.html">CustomComplexFunction</a>&gt;;
+<a name="l00443"></a>00443     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classC4DView_1_1CustomFunctionSlot.html" title="Class template to outsource redundant code for customized functions.">CustomFunctionSlot</a>&lt;<a class="code" href="classCustomSurface.html">CustomSurface</a>&gt;;
+<a name="l00444"></a>00444 
+<a name="l00445"></a>00445     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classFunctionSlotHelper.html" title="Single-stop slot for menu QActions generating Function objects.">FunctionSlotHelper</a>;
+<a name="l00446"></a>00446     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classSurfaceSlotHelper.html" title="Single-stop slot for menu QActions generating Surface objects.">SurfaceSlotHelper</a>;
+<a name="l00447"></a>00447 };
+<a name="l00448"></a>00448 
+<a name="l00449"></a>00449 <span class="preprocessor">#include "CustomFunctionSlot.impl.H"</span>
+<a name="l00450"></a>00450 <span class="preprocessor">#include "TemplatedFunctionFactory.impl.H"</span>
 <a name="l00451"></a>00451 
-<a name="l00452"></a>00452     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classFunctionSlotHelper.html" title="Single-stop slot for menu QActions generating Function objects.">FunctionSlotHelper</a>;
-<a name="l00453"></a>00453     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classSurfaceSlotHelper.html" title="Single-stop slot for menu QActions generating Surface objects.">SurfaceSlotHelper</a>;
-<a name="l00454"></a>00454 };
-<a name="l00455"></a>00455 
-<a name="l00456"></a>00456 <span class="preprocessor">#include "CustomFunctionSlot.impl.H"</span>
-<a name="l00457"></a>00457 <span class="preprocessor">#include "TemplatedFunctionFactory.impl.H"</span>
-<a name="l00458"></a>00458 
-<a name="l00459"></a>00459 <span class="preprocessor">#endif // !defined(4DVIEW)</span>
+<a name="l00452"></a>00452 <span class="preprocessor">#endif // !defined(4DVIEW)</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 08:41:35 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 15:27:58 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

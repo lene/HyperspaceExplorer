@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>HyperspaceExplorer: workspace/HyperspaceExplorer/src/Color.H Source File</title>
+<title>HyperspaceExplorer: HyperspaceExplorer/src/Color.H Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -16,7 +16,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>workspace/HyperspaceExplorer/src/Color.H</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<h1>HyperspaceExplorer/src/Color.H</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
 <a name="l00002"></a>00002 
 <a name="l00003"></a>00003 
 <a name="l00004"></a>00004 
@@ -44,16 +44,16 @@
 <a name="l00038"></a><a class="code" href="classColor.html#3ef2ea6a92faf2a560e359cfa75a3597">00038</a>         <span class="keywordtype">float</span> &amp;<a class="code" href="classColor.html#3ef2ea6a92faf2a560e359cfa75a3597" title="the blue component of the color">a</a>() { <span class="keywordflow">return</span> RGBA[3]; }  
 <a name="l00039"></a>00039 
 <a name="l00041"></a><a class="code" href="classColor.html#b64d37c2436bee884af85d80d5cae572">00041</a>         <a class="code" href="classColor.html#b64d37c2436bee884af85d80d5cae572" title="the alpha component of the color">operator float *</a>() { <span class="keywordflow">return</span> RGBA; }
-<a name="l00042"></a>00042         <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#96290badbfa2d5aa740bbea07ee5bdc0">operator *=</a>(<span class="keywordtype">float</span>);
-<a name="l00043"></a>00043         <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#96290badbfa2d5aa740bbea07ee5bdc0">operator *=</a>(<span class="keyword">const</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> &amp;);
-<a name="l00044"></a>00044         <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#2ee47ea7f9fe38c19108842e9b076ec8">operator *</a>(<span class="keywordtype">float</span>);
-<a name="l00045"></a>00045         <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#2ee47ea7f9fe38c19108842e9b076ec8">operator *</a>(<span class="keyword">const</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> &amp;);
-<a name="l00046"></a>00046         <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#7f623d09256dacb4996006382238f787">operator +=</a>(<span class="keywordtype">float</span>);
-<a name="l00047"></a>00047         <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#b4e82d8b087e2bdd8407351c3e3e02bb">operator +</a>(<span class="keywordtype">float</span>);
-<a name="l00048"></a>00048         <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#7f623d09256dacb4996006382238f787">operator +=</a>(<span class="keyword">const</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> &amp;);
-<a name="l00049"></a>00049         <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#b4e82d8b087e2bdd8407351c3e3e02bb">operator +</a>(<span class="keyword">const</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> &amp;);
-<a name="l00050"></a>00050         <span class="keywordtype">void</span> <a class="code" href="classColor.html#6c25bc30b1d2dbd3210d1964fae53742">setComponentLowerLimit</a>(<span class="keywordtype">float</span>);
-<a name="l00051"></a>00051         <span class="keywordtype">void</span> <a class="code" href="classColor.html#90b94d65cd470c2ac979825c0c1b2c20">setComponentUpperLimit</a>(<span class="keywordtype">float</span>);
+<a name="l00042"></a>00042         <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#96290badbfa2d5aa740bbea07ee5bdc0" title="scale the color by a float, keeping the RGB components between 0.0 and 1.0">operator *=</a>(<span class="keywordtype">float</span>);
+<a name="l00043"></a>00043         <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#96290badbfa2d5aa740bbea07ee5bdc0" title="scale the color by a float, keeping the RGB components between 0.0 and 1.0">operator *=</a>(<span class="keyword">const</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> &amp;);
+<a name="l00044"></a>00044         <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#2ee47ea7f9fe38c19108842e9b076ec8" title="scale the color by a float, keeping the RGB components between 0.0 and 1.0">operator *</a>(<span class="keywordtype">float</span>);
+<a name="l00045"></a>00045         <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#2ee47ea7f9fe38c19108842e9b076ec8" title="scale the color by a float, keeping the RGB components between 0.0 and 1.0">operator *</a>(<span class="keyword">const</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> &amp;);
+<a name="l00046"></a>00046         <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#7f623d09256dacb4996006382238f787" title="add a float to the color, keeping the RGB components between 0.0 and 1.0">operator +=</a>(<span class="keywordtype">float</span>);
+<a name="l00047"></a>00047         <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#b4e82d8b087e2bdd8407351c3e3e02bb" title="add a float to the color, keeping the RGB components between 0.0 and 1.0">operator +</a>(<span class="keywordtype">float</span>);
+<a name="l00048"></a>00048         <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#7f623d09256dacb4996006382238f787" title="add a float to the color, keeping the RGB components between 0.0 and 1.0">operator +=</a>(<span class="keyword">const</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> &amp;);
+<a name="l00049"></a>00049         <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#b4e82d8b087e2bdd8407351c3e3e02bb" title="add a float to the color, keeping the RGB components between 0.0 and 1.0">operator +</a>(<span class="keyword">const</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> &amp;);
+<a name="l00050"></a>00050         <span class="keywordtype">void</span> <a class="code" href="classColor.html#6c25bc30b1d2dbd3210d1964fae53742" title="make sure that none of the color components is less than the provided limit">setComponentLowerLimit</a>(<span class="keywordtype">float</span>);
+<a name="l00051"></a>00051         <span class="keywordtype">void</span> <a class="code" href="classColor.html#90b94d65cd470c2ac979825c0c1b2c20" title="make sure that none of the color components is more than the provided limit">setComponentUpperLimit</a>(<span class="keywordtype">float</span>);
 <a name="l00052"></a>00052 
 <a name="l00053"></a>00053         operator std::string()<span class="keyword"> const </span>{
 <a name="l00054"></a>00054             std::ostringstream o;
@@ -80,7 +80,7 @@
 <a name="l00080"></a>00080     <a class="code" href="classColor.html#3ef2ea6a92faf2a560e359cfa75a3597" title="the blue component of the color">a</a>() = x[3];
 <a name="l00081"></a>00081 }
 <a name="l00082"></a>00082 
-<a name="l00085"></a><a class="code" href="classColor.html#96290badbfa2d5aa740bbea07ee5bdc0">00085</a> <span class="keyword">inline</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#96290badbfa2d5aa740bbea07ee5bdc0">Color::operator *=</a>(<span class="keywordtype">float</span> x) {
+<a name="l00085"></a><a class="code" href="classColor.html#96290badbfa2d5aa740bbea07ee5bdc0">00085</a> <span class="keyword">inline</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#96290badbfa2d5aa740bbea07ee5bdc0" title="scale the color by a float, keeping the RGB components between 0.0 and 1.0">Color::operator *=</a>(<span class="keywordtype">float</span> x) {
 <a name="l00086"></a>00086     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; 3; i++) {
 <a name="l00087"></a>00087         RGBA[i] *= x;
 <a name="l00088"></a>00088         <span class="keywordflow">if</span> (RGBA[i] &gt; 1.) RGBA[i] = 1.;
@@ -89,7 +89,7 @@
 <a name="l00091"></a>00091     <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00092"></a>00092 }
 <a name="l00093"></a>00093 
-<a name="l00096"></a><a class="code" href="classColor.html#34ada2ca4d7d1fa7ac9b6b10dc0c4455">00096</a> <span class="keyword">inline</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#96290badbfa2d5aa740bbea07ee5bdc0">Color::operator *=</a>(<span class="keyword">const</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> &amp;x) {
+<a name="l00096"></a><a class="code" href="classColor.html#34ada2ca4d7d1fa7ac9b6b10dc0c4455">00096</a> <span class="keyword">inline</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#96290badbfa2d5aa740bbea07ee5bdc0" title="scale the color by a float, keeping the RGB components between 0.0 and 1.0">Color::operator *=</a>(<span class="keyword">const</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> &amp;x) {
 <a name="l00097"></a>00097     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; 3; i++) {
 <a name="l00098"></a>00098         RGBA[i] *= x.<a class="code" href="classColor.html#945779bc9577f258cff038ed98b1b6e2">RGBA</a>[i];
 <a name="l00099"></a>00099 <span class="preprocessor">#if 0</span>
@@ -100,17 +100,17 @@
 <a name="l00104"></a>00104     <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00105"></a>00105 }
 <a name="l00106"></a>00106 
-<a name="l00109"></a><a class="code" href="classColor.html#2ee47ea7f9fe38c19108842e9b076ec8">00109</a> <span class="keyword">inline</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#2ee47ea7f9fe38c19108842e9b076ec8">Color::operator *</a>(<span class="keywordtype">float</span> x) {
+<a name="l00109"></a><a class="code" href="classColor.html#2ee47ea7f9fe38c19108842e9b076ec8">00109</a> <span class="keyword">inline</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#2ee47ea7f9fe38c19108842e9b076ec8" title="scale the color by a float, keeping the RGB components between 0.0 and 1.0">Color::operator *</a>(<span class="keywordtype">float</span> x) {
 <a name="l00110"></a>00110     <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> tmp(*<span class="keyword">this</span>);
 <a name="l00111"></a>00111     <span class="keywordflow">return</span> (tmp *= x);
 <a name="l00112"></a>00112 }
 <a name="l00113"></a>00113 
-<a name="l00116"></a><a class="code" href="classColor.html#3f50eab1d8d56ff11dd52cd4c575bd5c">00116</a> <span class="keyword">inline</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#2ee47ea7f9fe38c19108842e9b076ec8">Color::operator *</a>(<span class="keyword">const</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> &amp;x) {
+<a name="l00116"></a><a class="code" href="classColor.html#3f50eab1d8d56ff11dd52cd4c575bd5c">00116</a> <span class="keyword">inline</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#2ee47ea7f9fe38c19108842e9b076ec8" title="scale the color by a float, keeping the RGB components between 0.0 and 1.0">Color::operator *</a>(<span class="keyword">const</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> &amp;x) {
 <a name="l00117"></a>00117     <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> tmp(*<span class="keyword">this</span>);
 <a name="l00118"></a>00118     <span class="keywordflow">return</span> (tmp *= x);
 <a name="l00119"></a>00119 }
 <a name="l00120"></a>00120 
-<a name="l00123"></a><a class="code" href="classColor.html#7f623d09256dacb4996006382238f787">00123</a> <span class="keyword">inline</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#7f623d09256dacb4996006382238f787">Color::operator +=</a>(<span class="keywordtype">float</span> x) {
+<a name="l00123"></a><a class="code" href="classColor.html#7f623d09256dacb4996006382238f787">00123</a> <span class="keyword">inline</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#7f623d09256dacb4996006382238f787" title="add a float to the color, keeping the RGB components between 0.0 and 1.0">Color::operator +=</a>(<span class="keywordtype">float</span> x) {
 <a name="l00124"></a>00124     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; 3; i++) {
 <a name="l00125"></a>00125         RGBA[i] += x;
 <a name="l00126"></a>00126         <span class="keywordflow">if</span> (RGBA[i] &gt; 1.) RGBA[i] = 1.;
@@ -119,12 +119,12 @@
 <a name="l00129"></a>00129     <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00130"></a>00130 }
 <a name="l00131"></a>00131 
-<a name="l00134"></a><a class="code" href="classColor.html#b4e82d8b087e2bdd8407351c3e3e02bb">00134</a> <span class="keyword">inline</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#b4e82d8b087e2bdd8407351c3e3e02bb">Color::operator +</a>(<span class="keywordtype">float</span> x) {
+<a name="l00134"></a><a class="code" href="classColor.html#b4e82d8b087e2bdd8407351c3e3e02bb">00134</a> <span class="keyword">inline</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#b4e82d8b087e2bdd8407351c3e3e02bb" title="add a float to the color, keeping the RGB components between 0.0 and 1.0">Color::operator +</a>(<span class="keywordtype">float</span> x) {
 <a name="l00135"></a>00135     <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> tmp(*<span class="keyword">this</span>);
 <a name="l00136"></a>00136     <span class="keywordflow">return</span> (tmp += x);
 <a name="l00137"></a>00137 }
 <a name="l00138"></a>00138 
-<a name="l00141"></a><a class="code" href="classColor.html#ddd202a7c9833daa6bd4ea441635dfff">00141</a> <span class="keyword">inline</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#7f623d09256dacb4996006382238f787">Color::operator +=</a>(<span class="keyword">const</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> &amp;x) {
+<a name="l00141"></a><a class="code" href="classColor.html#ddd202a7c9833daa6bd4ea441635dfff">00141</a> <span class="keyword">inline</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#7f623d09256dacb4996006382238f787" title="add a float to the color, keeping the RGB components between 0.0 and 1.0">Color::operator +=</a>(<span class="keyword">const</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> &amp;x) {
 <a name="l00142"></a>00142     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; 3; i++) {
 <a name="l00143"></a>00143         RGBA[i] += x.<a class="code" href="classColor.html#945779bc9577f258cff038ed98b1b6e2">RGBA</a>[i];
 <a name="l00144"></a>00144 <span class="preprocessor">#if 0</span>
@@ -135,22 +135,22 @@
 <a name="l00149"></a>00149     <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00150"></a>00150 }
 <a name="l00151"></a>00151 
-<a name="l00154"></a><a class="code" href="classColor.html#6ba5a4109c6afe40b45efc7107a9fb76">00154</a> <span class="keyword">inline</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#b4e82d8b087e2bdd8407351c3e3e02bb">Color::operator +</a>(<span class="keyword">const</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> &amp;x) {
+<a name="l00154"></a><a class="code" href="classColor.html#6ba5a4109c6afe40b45efc7107a9fb76">00154</a> <span class="keyword">inline</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="classColor.html#b4e82d8b087e2bdd8407351c3e3e02bb" title="add a float to the color, keeping the RGB components between 0.0 and 1.0">Color::operator +</a>(<span class="keyword">const</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> &amp;x) {
 <a name="l00155"></a>00155     <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> tmp(*<span class="keyword">this</span>);
 <a name="l00156"></a>00156     <span class="keywordflow">return</span> (tmp += x);
 <a name="l00157"></a>00157 }
 <a name="l00158"></a>00158 
-<a name="l00161"></a><a class="code" href="classColor.html#6c25bc30b1d2dbd3210d1964fae53742">00161</a> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classColor.html#6c25bc30b1d2dbd3210d1964fae53742">Color::setComponentLowerLimit</a>(<span class="keywordtype">float</span> l) {
+<a name="l00161"></a><a class="code" href="classColor.html#6c25bc30b1d2dbd3210d1964fae53742">00161</a> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classColor.html#6c25bc30b1d2dbd3210d1964fae53742" title="make sure that none of the color components is less than the provided limit">Color::setComponentLowerLimit</a>(<span class="keywordtype">float</span> l) {
 <a name="l00162"></a>00162     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; 3; i++) <span class="keywordflow">if</span> (RGBA[i] &lt; l) RGBA[i] = l;
 <a name="l00163"></a>00163 }
 <a name="l00164"></a>00164 
-<a name="l00167"></a><a class="code" href="classColor.html#90b94d65cd470c2ac979825c0c1b2c20">00167</a> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classColor.html#90b94d65cd470c2ac979825c0c1b2c20">Color::setComponentUpperLimit</a>(<span class="keywordtype">float</span> u) {
+<a name="l00167"></a><a class="code" href="classColor.html#90b94d65cd470c2ac979825c0c1b2c20">00167</a> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classColor.html#90b94d65cd470c2ac979825c0c1b2c20" title="make sure that none of the color components is more than the provided limit">Color::setComponentUpperLimit</a>(<span class="keywordtype">float</span> u) {
 <a name="l00168"></a>00168     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; 3; i++) if (RGBA[i] &gt; u) RGBA[i] = u;
 <a name="l00169"></a>00169 }
 <a name="l00170"></a>00170 
 <a name="l00171"></a>00171 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 08:41:34 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 15:27:58 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

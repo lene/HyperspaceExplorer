@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>HyperspaceExplorer: workspace/HyperspaceExplorer/src/Matrix.H Source File</title>
+<title>HyperspaceExplorer: HyperspaceExplorer/src/Matrix.H Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -16,13 +16,13 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>workspace/HyperspaceExplorer/src/Matrix.H</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<h1>HyperspaceExplorer/src/Matrix.H</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
 <a name="l00002"></a>00002 <span class="comment">//      project:      hyperspace explorer</span>
 <a name="l00003"></a>00003 <span class="comment">//      module:       Matrix.H</span>
 <a name="l00004"></a>00004 <span class="comment">//      contains:     template declaration and definition of a Matrix class</span>
 <a name="l00005"></a>00005 <span class="comment">//      compile with: make all</span>
-<a name="l00006"></a>00006 <span class="comment">//      author:       helge preuss (scout@hyperspace-travel.de)</span>
-<a name="l00007"></a>00007 <span class="comment">//      license:      GPL (see License.txt)</span>
+<a name="l00006"></a>00006 <span class="comment">//  author:       helge preuss (scout@hyperspace-travel.de)</span>
+<a name="l00007"></a>00007 <span class="comment">//  license:      GPL (see License.txt)</span>
 <a name="l00008"></a>00008 
 <a name="l00009"></a>00009 
 <a name="l00010"></a>00010 <span class="preprocessor">#if !defined(MATRIX_H)</span>
@@ -59,8 +59,8 @@
 <a name="l00051"></a>00051 
 <a name="l00052"></a>00052 
 <a name="l00054"></a><a class="code" href="classVecMath_1_1Matrix.html#afaeb5312b577fa2bb48e9605e76afd5">00054</a>     <span class="keyword">template</span>&lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::Matrix</a> () {
-<a name="l00055"></a>00055         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) {                                      <span class="comment">//      i: row</span>
-<a name="l00056"></a>00056             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++)                            <span class="comment">//      j: col</span>
+<a name="l00055"></a>00055         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) {                  <span class="comment">//  i: row</span>
+<a name="l00056"></a>00056             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++)                <span class="comment">//  j: col</span>
 <a name="l00057"></a>00057                 <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j] = 0;
 <a name="l00058"></a>00058             <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][i] = 1;
 <a name="l00059"></a>00059         }
@@ -77,8 +77,8 @@
 <a name="l00081"></a>00081     <span class="keyword">template</span>&lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
 <a name="l00082"></a><a class="code" href="classVecMath_1_1Matrix.html#110bedf8a53847d2985f57bdb897afe1">00082</a>             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::Matrix</a> (<span class="keywordtype">unsigned</span> ii, <span class="keywordtype">unsigned</span> jj, N Theta) {
 <a name="l00083"></a>00083         N c = cos (Theta*pi/180.), s = sin (Theta*pi/180.);
-<a name="l00084"></a>00084         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) {                                      <span class="comment">//      i: row</span>
-<a name="l00085"></a>00085             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++)                            <span class="comment">//      j: col</span>
+<a name="l00084"></a>00084         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) {                  <span class="comment">//  i: row</span>
+<a name="l00085"></a>00085             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++)                <span class="comment">//  j: col</span>
 <a name="l00086"></a>00086                 <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j] = 0;
 <a name="l00087"></a>00087             <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][i] = 1;
 <a name="l00088"></a>00088         }
@@ -102,8 +102,8 @@
 <a name="l00112"></a>00112     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a>
 <a name="l00113"></a><a class="code" href="classVecMath_1_1Matrix.html#b560a8ea5f4708be9b5d4164d07ccbb4">00113</a>             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::operator * </a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> &amp;B)<span class="keyword"> const </span>{
 <a name="l00114"></a>00114         <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> C;
-<a name="l00115"></a>00115         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++)                                        <span class="comment">//      i: row</span>
-<a name="l00116"></a>00116             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++) {                          <span class="comment">//      j: col</span>
+<a name="l00115"></a>00115         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++)                    <span class="comment">//  i: row</span>
+<a name="l00116"></a>00116             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++) {              <span class="comment">//  j: col</span>
 <a name="l00117"></a>00117                 N s = 0;
 <a name="l00118"></a>00118                 <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> k = 0; k &lt; D; k++)
 <a name="l00119"></a>00119                     s += <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][k]*B.<a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[k][j];
@@ -151,7 +151,7 @@
 <a name="l00167"></a>00167 
 <a name="l00168"></a>00168 <span class="preprocessor">#endif  // !defined(MATRIX_H)</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 08:41:34 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 15:27:58 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

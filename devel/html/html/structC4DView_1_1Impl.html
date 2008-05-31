@@ -31,6 +31,13 @@
 <h1>C4DView::Impl Struct Reference</h1><!-- doxytag: class="C4DView::Impl" -->Private class containing the member data for the Pimpl idiom.  
 <a href="#_details">More...</a>
 <p>
+<div class="dynheader">
+Collaboration diagram for C4DView::Impl:</div>
+<div class="dynsection">
+<p><center><img src="structC4DView_1_1Impl__coll__graph.png" border="0" usemap="#C4DView_1_1Impl__coll__map" alt="Collaboration graph"></center>
+<map name="C4DView_1_1Impl__coll__map">
+<area shape="rect" href="classVecMath_1_1Rotation.html" title="VecMath::Rotation\&lt; 4 \&gt;" alt="" coords="768,22,944,48"><area shape="rect" href="classVecMath_1_1Vector.html" title="VecMath::Vector\&lt; 4 \&gt;" alt="" coords="775,72,937,99"><area shape="rect" href="classVecMath_1_1Rotation.html" title="VecMath::Rotation\&lt; 3 \&gt;" alt="" coords="768,123,944,150"><area shape="rect" href="classC4DView_1_1MouseHandler4D.html" title="C4DView::MouseHandler4D" alt="" coords="759,174,953,200"><area shape="rect" href="classC4DView.html" title="Displays and manipulates four&#45;dimensional Functions in a QGLWidget." alt="" coords="509,198,587,224"><area shape="rect" href="classC4DView_1_1Menu4D.html" title="The menu for the C4DView." alt="" coords="787,224,925,251"><area shape="rect" href="classValuesDialogImpl.html" title="ValuesDialogImpl" alt="" coords="791,275,921,302"><area shape="rect" href="classUi__ValuesDialog.html" title="Base class for ValuesDialog, originally created by uic (thus the ugliness)." alt="" coords="124,266,247,292"><area shape="rect" href="classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="491,316,605,343"><area shape="rect" href="classVecMath_1_1Vector.html" title="VecMath::Vector\&lt; 3, GLdouble \&gt;" alt="" coords="740,326,972,352"><area shape="rect" href="classVecMath_1_1Rotation.html" title="VecMath::Rotation\&lt; 3, GLdouble \&gt;" alt="" coords="735,376,977,403"><area shape="rect" href="classColor.html" title="A class to represent a color value by its RGBA components." alt="" coords="829,427,883,454"></map>
+<center><font size="2">[<a href="graph_legend.html">legend</a>]</font></center></div>
 
 <p>
 <a href="structC4DView_1_1Impl-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
@@ -64,12 +71,13 @@ std::auto_ptr&lt; <a class="el" href="classFunction.html">Function</a> &gt;&nbsp
 <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structC4DView_1_1Impl.html#2335e837e02cd34554561045678b97b7">dR</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">delta values in angles for 4D rotation - for animations <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 3, GLdouble &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structC4DView_1_1Impl.html#e1c0c06ea8688b13f4b0f42efe6e6b6a">m_rot</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e1c0c06ea8688b13f4b0f42efe6e6b6a"></a><!-- doxytag: member="C4DView::Impl::m_rot" ref="e1c0c06ea8688b13f4b0f42efe6e6b6a" args="" -->
+<a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 3, GLdouble &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structC4DView_1_1Impl.html#e1c0c06ea8688b13f4b0f42efe6e6b6a">m_rot</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">rotation in X, Y and Z translation in X and Y, Z coordinate of camera (distance from object) <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4a633c4d2ecbbe0fd8167831145bc42a"></a><!-- doxytag: member="C4DView::Impl::m_trans" ref="4a633c4d2ecbbe0fd8167831145bc42a" args="" -->
-<a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 3, GLdouble &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structC4DView_1_1Impl.html#4a633c4d2ecbbe0fd8167831145bc42a">m_trans</a></td></tr>
+<a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 3, GLdouble &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>m_trans</b></td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">translation in X and Y, Z coordinate of camera (distance from object) <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="192ba7de2db741f965b51203813ca165"></a><!-- doxytag: member="C4DView::Impl::CamW" ref="192ba7de2db741f965b51203813ca165" args="" -->
 double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structC4DView_1_1Impl.html#192ba7de2db741f965b51203813ca165">CamW</a></td></tr>
 
@@ -173,21 +181,6 @@ QTimer *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <a class="el" href="classValuesDialogImpl.html">ValuesDialogImpl</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structC4DView_1_1Impl.html#e1b669a3fcb19b2cb652fd0e33061602">Values</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">dialog to enter function parameters <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a2836b5138de91ead6dbc02156e4b03b"></a><!-- doxytag: member="C4DView::Impl::Cross" ref="a2836b5138de91ead6dbc02156e4b03b" args="" -->
-std::vector&lt; std::vector<br>
-&lt; <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &gt; &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structC4DView_1_1Impl.html#a2836b5138de91ead6dbc02156e4b03b">Cross</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">endpoints of the lines constituting the 4D coordinate cross <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8a102fbc9feaa7234b3943476274f093"></a><!-- doxytag: member="C4DView::Impl::CrossTrans" ref="8a102fbc9feaa7234b3943476274f093" args="" -->
-std::vector&lt; std::vector<br>
-&lt; <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &gt; &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structC4DView_1_1Impl.html#8a102fbc9feaa7234b3943476274f093">CrossTrans</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">endpoints of the lines constituting the transformed 4D coordinates <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="447ba1ee42cf7280a27bf117e85eeb92"></a><!-- doxytag: member="C4DView::Impl::CrossScr" ref="447ba1ee42cf7280a27bf117e85eeb92" args="" -->
-std::vector&lt; std::vector<br>
-&lt; <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 3 &gt; &gt; &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structC4DView_1_1Impl.html#447ba1ee42cf7280a27bf117e85eeb92">CrossScr</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">endpoints of the lines constituting the projected 4D coordinates <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="89a7c96b95f1aed9fc92460b5f159607"></a><!-- doxytag: member="C4DView::Impl::menu" ref="89a7c96b95f1aed9fc92460b5f159607" args="" -->
 <a class="el" href="classC4DView_1_1Menu4D.html">Menu4D</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structC4DView_1_1Impl.html#89a7c96b95f1aed9fc92460b5f159607">menu</a></td></tr>
 
@@ -206,26 +199,10 @@ Turns out the idea is not so great, at least not in this case. I had to define a
 </pre></div> is <em>not</em> increasing readability in any way.<p>
 For that reason I left the two-dimensional vector&lt;&gt;s Cross, CrossTrans and CrossScr out of the inner class.<p>
 A slight improvement in readability comes from the fact that all member variables are now visible as such, because they are called as a function.<p>
-Moral: I think the Pimpl idiom does not make sense in all circumstances. <hr><h2>Member Data Documentation</h2>
-<a class="anchor" name="e1c0c06ea8688b13f4b0f42efe6e6b6a"></a><!-- doxytag: member="C4DView::Impl::m_rot" ref="e1c0c06ea8688b13f4b0f42efe6e6b6a" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt;3, GLdouble&gt; <a class="el" href="structC4DView_1_1Impl.html#e1c0c06ea8688b13f4b0f42efe6e6b6a">C4DView::Impl::m_rot</a>          </td>
-        </tr>
-      </table>
+Moral: I think the Pimpl idiom does not make sense in all circumstances. <hr>The documentation for this struct was generated from the following file:<ul>
+<li>HyperspaceExplorer/src/UI/<a class="el" href="4DView_8H-source.html">4DView.H</a></ul>
 </div>
-<div class="memdoc">
-
-<p>
-rotation in X, Y and Z 
-</div>
-</div><p>
-<hr>The documentation for this struct was generated from the following file:<ul>
-<li>workspace/HyperspaceExplorer/src/UI/<a class="el" href="4DView_8H-source.html">4DView.H</a></ul>
-</div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 08:41:35 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 15:27:59 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

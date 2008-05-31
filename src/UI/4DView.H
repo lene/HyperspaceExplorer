@@ -350,9 +350,8 @@ class C4DView : public QGLWidget {
                 Background (0.25, 0.25, 0.25, 1.),
                 F(std::auto_ptr<Function>()),
 
-                T(0.,0.,0.,0.), R(0.,0.,0.,0.,0.,0.),
-                dR3(0.,0.,0.), dR(0.,0.,0.,0.,0.,0.),
-                m_rot(15., 15., 0.), m_trans(0., 0.,-10.),
+                T(0.,0.,0.,0.), R(0.,0.,0.,0.,0.,0.), dR(0.,0.,0.,0.,0.,0.),
+                m_rot(15., 15., 0.), dR3(0.,0.,0.), m_trans(0., 0.,-10.),
 
                 CamW (-3.), ScrW (0.),
 
@@ -379,10 +378,13 @@ class C4DView : public QGLWidget {
             VecMath::Vector<4> T;   ///< coordinates for 4D translation
             VecMath::Rotation<4> R;   ///< angles for 4D rotation
 
-            VecMath::Rotation<3> dR3;   ///< delta values in 3D rotation - for animations
-            VecMath::Rotation<4> dR;   ///< delta values in angles for 4D rotation - for animations
+            /// delta values in angles for 4D rotation - for animations
+            VecMath::Rotation<4> dR;
 
-            VecMath::Rotation<3, GLdouble> m_rot;     ///< rotation in X, Y and Z
+            /// rotation in X, Y and Z
+            VecMath::Rotation<3, GLdouble> m_rot;
+            /// delta values in 3D rotation - for animations
+            VecMath::Rotation<3, GLdouble> dR3;
             /// translation in X and Y, Z coordinate of camera (distance from object)
             VecMath::Vector<3, GLdouble> m_trans;
 
@@ -421,13 +423,6 @@ class C4DView : public QGLWidget {
 
             /// dialog to enter function parameters
             ValuesDialogImpl *Values;
-
-            /// endpoints of the lines constituting the 4D coordinate cross
-            std::vector<std::vector<VecMath::Vector<4> > > Cross;
-            /// endpoints of the lines constituting the transformed 4D coordinates
-            std::vector<std::vector<VecMath::Vector<4> > > CrossTrans;
-            /// endpoints of the lines constituting the projected 4D coordinates
-            std::vector<std::vector<VecMath::Vector<3> > > CrossScr;
 
             Menu4D *menu;               ///< the popup menu and menu bar
             MouseHandler4D *mouseHandler; ///< handler to delegate mouse events to

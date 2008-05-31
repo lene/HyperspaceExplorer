@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>HyperspaceExplorer: workspace/HyperspaceExplorer/src/Functions/ComplexFunction.H Source File</title>
+<title>HyperspaceExplorer: HyperspaceExplorer/src/Functions/ComplexFunction.H Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -16,13 +16,13 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>workspace/HyperspaceExplorer/src/Functions/ComplexFunction.H</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<h1>HyperspaceExplorer/src/Functions/ComplexFunction.H</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
 <a name="l00002"></a>00002 <span class="comment">//      project:      hyperspace explorer</span>
 <a name="l00003"></a>00003 <span class="comment">//      module:</span>
 <a name="l00004"></a>00004 <span class="comment">//      contains:</span>
 <a name="l00005"></a>00005 <span class="comment">//      compile with: make all</span>
-<a name="l00006"></a>00006 <span class="comment">//      author:       helge preuss (scout@hyperspace-travel.de)</span>
-<a name="l00007"></a>00007 <span class="comment">//      license:      GPL (see License.txt)</span>
+<a name="l00006"></a>00006 <span class="comment">//  author:       helge preuss (scout@hyperspace-travel.de)</span>
+<a name="l00007"></a>00007 <span class="comment">//  license:      GPL (see License.txt)</span>
 <a name="l00008"></a>00008 
 <a name="l00009"></a>00009 
 <a name="l00011"></a>00011 
@@ -57,14 +57,14 @@
 <a name="l00052"></a>00052         <span class="keyword">virtual</span> ~<a class="code" href="classz2.html">z2</a>() { }
 <a name="l00053"></a>00053 
 <a name="l00054"></a>00054     <span class="keyword">protected</span>:
-<a name="l00055"></a><a class="code" href="classz2.html#877021ae4fd62890e7729049ff36980a">00055</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classz2.html#877021ae4fd62890e7729049ff36980a">g</a>;
+<a name="l00055"></a><a class="code" href="classz2.html#877021ae4fd62890e7729049ff36980a">00055</a>     <span class="keyword">virtual</span> function_type <a class="code" href="classz2.html#877021ae4fd62890e7729049ff36980a">g</a>;
 <a name="l00056"></a>00056 };
 <a name="l00057"></a>00057 
 <a name="l00060"></a><a class="code" href="classz3.html">00060</a> <span class="keyword">class </span><a class="code" href="classz3.html">z3</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
 <a name="l00061"></a>00061     <span class="keyword">public</span>:
-<a name="l00062"></a>00062         <a class="code" href="classz3.html#a7f33bef3cdf16605c20fbc90bfa8ffa">z3</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00063"></a>00063             <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00064"></a>00064         <span class="keyword">virtual</span> ~<a class="code" href="classz3.html">z3</a>() { }
+<a name="l00062"></a>00062     <a class="code" href="classz3.html#a7f33bef3cdf16605c20fbc90bfa8ffa">z3</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00063"></a>00063         <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00064"></a>00064     <span class="keyword">virtual</span> ~<a class="code" href="classz3.html">z3</a>() { }
 <a name="l00065"></a>00065 
 <a name="l00066"></a>00066     <span class="keyword">protected</span>:
 <a name="l00067"></a><a class="code" href="classz3.html#9dfc3491ac6e1112bfbd6af3185213f8">00067</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classz3.html#9dfc3491ac6e1112bfbd6af3185213f8">g</a>;
@@ -165,9 +165,9 @@
 <a name="l00172"></a>00172 
 <a name="l00175"></a><a class="code" href="classsqrtz.html">00175</a> <span class="keyword">class </span><a class="code" href="classsqrtz.html">sqrtz</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
 <a name="l00176"></a>00176     <span class="keyword">public</span>:
-<a name="l00177"></a>00177         <a class="code" href="classsqrtz.html#e5f774457375311636cf8790720312b8">sqrtz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00178"></a>00178                <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00179"></a>00179         <span class="keyword">virtual</span> ~<a class="code" href="classsqrtz.html">sqrtz</a> () { }
+<a name="l00177"></a>00177     <a class="code" href="classsqrtz.html#e5f774457375311636cf8790720312b8">sqrtz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00178"></a>00178            <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00179"></a>00179     <span class="keyword">virtual</span> ~<a class="code" href="classsqrtz.html">sqrtz</a> () { }
 <a name="l00180"></a>00180 
 <a name="l00181"></a>00181     <span class="keyword">protected</span>:
 <a name="l00182"></a><a class="code" href="classsqrtz.html#21554d23ad7feca1dc057c1ce37b49ac">00182</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classsqrtz.html#21554d23ad7feca1dc057c1ce37b49ac">g</a>;
@@ -175,9 +175,9 @@
 <a name="l00184"></a>00184 
 <a name="l00187"></a><a class="code" href="classlnz.html">00187</a> <span class="keyword">class </span><a class="code" href="classlnz.html">lnz</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
 <a name="l00188"></a>00188     <span class="keyword">public</span>:
-<a name="l00189"></a>00189         <a class="code" href="classlnz.html#9c702619b9141f558e89172afcef3af3">lnz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00190"></a>00190              <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00191"></a>00191         <span class="keyword">virtual</span> ~<a class="code" href="classlnz.html">lnz</a> () { }
+<a name="l00189"></a>00189     <a class="code" href="classlnz.html#9c702619b9141f558e89172afcef3af3">lnz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00190"></a>00190          <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00191"></a>00191     <span class="keyword">virtual</span> ~<a class="code" href="classlnz.html">lnz</a> () { }
 <a name="l00192"></a>00192 
 <a name="l00193"></a>00193     <span class="keyword">protected</span>:
 <a name="l00194"></a><a class="code" href="classlnz.html#cbfd3ae9c24d00d9f832c6b5c47e6d6e">00194</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classlnz.html#cbfd3ae9c24d00d9f832c6b5c47e6d6e">g</a>;
@@ -185,9 +185,9 @@
 <a name="l00196"></a>00196 
 <a name="l00199"></a><a class="code" href="classsinz.html">00199</a> <span class="keyword">class </span><a class="code" href="classsinz.html">sinz</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
 <a name="l00200"></a>00200     <span class="keyword">public</span>:
-<a name="l00201"></a>00201         <a class="code" href="classsinz.html#106c003cf91f0aae52e54ea050aa85ac">sinz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00202"></a>00202               <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00203"></a>00203         <span class="keyword">virtual</span> ~<a class="code" href="classsinz.html">sinz</a> () { }
+<a name="l00201"></a>00201     <a class="code" href="classsinz.html#106c003cf91f0aae52e54ea050aa85ac">sinz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00202"></a>00202           <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00203"></a>00203     <span class="keyword">virtual</span> ~<a class="code" href="classsinz.html">sinz</a> () { }
 <a name="l00204"></a>00204 
 <a name="l00205"></a>00205     <span class="keyword">protected</span>:
 <a name="l00206"></a><a class="code" href="classsinz.html#fb261d6d8d9c9b5a910b7e896be312b3">00206</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classsinz.html#fb261d6d8d9c9b5a910b7e896be312b3">g</a>;
@@ -195,9 +195,9 @@
 <a name="l00208"></a>00208 
 <a name="l00211"></a><a class="code" href="classcosz.html">00211</a> <span class="keyword">class </span><a class="code" href="classcosz.html">cosz</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
 <a name="l00212"></a>00212     <span class="keyword">public</span>:
-<a name="l00213"></a>00213         <a class="code" href="classcosz.html#51b502bea027c0d691f0e093db0d3e2a">cosz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00214"></a>00214               <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00215"></a>00215         <span class="keyword">virtual</span> ~<a class="code" href="classcosz.html">cosz</a> () { }
+<a name="l00213"></a>00213     <a class="code" href="classcosz.html#51b502bea027c0d691f0e093db0d3e2a">cosz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00214"></a>00214           <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00215"></a>00215     <span class="keyword">virtual</span> ~<a class="code" href="classcosz.html">cosz</a> () { }
 <a name="l00216"></a>00216 
 <a name="l00217"></a>00217     <span class="keyword">protected</span>:
 <a name="l00218"></a><a class="code" href="classcosz.html#558a3b254b3dbf8834a581e37fd0ea8f">00218</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classcosz.html#558a3b254b3dbf8834a581e37fd0ea8f">g</a>;
@@ -205,9 +205,9 @@
 <a name="l00220"></a>00220 
 <a name="l00223"></a><a class="code" href="classsinhz.html">00223</a> <span class="keyword">class </span><a class="code" href="classsinhz.html">sinhz</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
 <a name="l00224"></a>00224     <span class="keyword">public</span>:
-<a name="l00225"></a>00225         <a class="code" href="classsinhz.html#eb81cbd41b41768558e63b9bba02b559">sinhz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00226"></a>00226                <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00227"></a>00227         <span class="keyword">virtual</span> ~<a class="code" href="classsinhz.html">sinhz</a> () { }
+<a name="l00225"></a>00225     <a class="code" href="classsinhz.html#eb81cbd41b41768558e63b9bba02b559">sinhz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00226"></a>00226            <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00227"></a>00227     <span class="keyword">virtual</span> ~<a class="code" href="classsinhz.html">sinhz</a> () { }
 <a name="l00228"></a>00228 
 <a name="l00229"></a>00229     <span class="keyword">protected</span>:
 <a name="l00230"></a><a class="code" href="classsinhz.html#998410f8948ed3f9bb21bab2626da913">00230</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classsinhz.html#998410f8948ed3f9bb21bab2626da913">g</a>;
@@ -215,9 +215,9 @@
 <a name="l00232"></a>00232 
 <a name="l00235"></a><a class="code" href="classcoshz.html">00235</a> <span class="keyword">class </span><a class="code" href="classcoshz.html">coshz</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
 <a name="l00236"></a>00236     <span class="keyword">public</span>:
-<a name="l00237"></a>00237         <a class="code" href="classcoshz.html#0460b05f1d89b00e63e932f7a1dac1cf">coshz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00238"></a>00238                <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00239"></a>00239         <span class="keyword">virtual</span> ~<a class="code" href="classcoshz.html">coshz</a> () { }
+<a name="l00237"></a>00237     <a class="code" href="classcoshz.html#0460b05f1d89b00e63e932f7a1dac1cf">coshz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00238"></a>00238            <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00239"></a>00239     <span class="keyword">virtual</span> ~<a class="code" href="classcoshz.html">coshz</a> () { }
 <a name="l00240"></a>00240 
 <a name="l00241"></a>00241     <span class="keyword">protected</span>:
 <a name="l00242"></a><a class="code" href="classcoshz.html#fa65daf802d43d894d545c6fa28d3c25">00242</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classcoshz.html#fa65daf802d43d894d545c6fa28d3c25">g</a>;
@@ -225,9 +225,9 @@
 <a name="l00244"></a>00244 
 <a name="l00247"></a><a class="code" href="classtanz.html">00247</a> <span class="keyword">class </span><a class="code" href="classtanz.html">tanz</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
 <a name="l00248"></a>00248     <span class="keyword">public</span>:
-<a name="l00249"></a>00249         <a class="code" href="classtanz.html#6b98b0fc0a80f4bbf6d84fbff92a74fd">tanz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00250"></a>00250                  <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00251"></a>00251         <span class="keyword">virtual</span> ~<a class="code" href="classtanz.html">tanz</a> () { }
+<a name="l00249"></a>00249     <a class="code" href="classtanz.html#6b98b0fc0a80f4bbf6d84fbff92a74fd">tanz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00250"></a>00250          <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00251"></a>00251     <span class="keyword">virtual</span> ~<a class="code" href="classtanz.html">tanz</a> () { }
 <a name="l00252"></a>00252 
 <a name="l00253"></a>00253     <span class="keyword">protected</span>:
 <a name="l00254"></a><a class="code" href="classtanz.html#7714095e8de036ba2026c6f520fbb839">00254</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classtanz.html#7714095e8de036ba2026c6f520fbb839">g</a>;
@@ -248,7 +248,7 @@
 <a name="l00271"></a>00271 };
 <a name="l00272"></a>00272 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 08:41:34 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 15:27:58 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>HyperspaceExplorer: workspace/HyperspaceExplorer/src/Functions/RealFunction.H Source File</title>
+<title>HyperspaceExplorer: HyperspaceExplorer/src/Functions/RealFunction.H Source File</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -16,7 +16,7 @@
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-<h1>workspace/HyperspaceExplorer/src/Functions/RealFunction.H</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
+<h1>HyperspaceExplorer/src/Functions/RealFunction.H</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
 <a name="l00002"></a>00002 <span class="comment">// C++ Interface: RealFunction</span>
 <a name="l00003"></a>00003 <span class="comment">//</span>
 <a name="l00004"></a>00004 <span class="comment">// Description:</span>
@@ -133,7 +133,7 @@
 <a name="l00147"></a>00147 
 <a name="l00148"></a><a class="code" href="classRealFunction.html#ed466bcba4e1959d68c4932513612e19">00148</a>         <a class="code" href="classFunction.html#fbc77cb3e6c8ca2c59225db92f5e420c" title="three-dimensional array of Vector&amp;lt;4&amp;gt;, implemented as a nested std::vector">vec4vec3D</a> <a class="code" href="classRealFunction.html#950ebb62a55990cd42ce6ee48aaa9810" title="temporary storage for function values on grid">X</a>,      
 <a name="l00149"></a>00149                   <a class="code" href="classRealFunction.html#ed466bcba4e1959d68c4932513612e19" title="temporary storage for transformed function values">Xtrans</a>; 
-<a name="l00150"></a><a class="code" href="classRealFunction.html#2b4805a60e748aee992f62ac7c9bd4df">00150</a>         <a class="code" href="classFunction.html#f3fbebbb4cb0151aeea503738ad6fd2f" title="three-dimensional array of Vector&amp;lt;3&amp;gt;, implemented as a nested std::vector">vec3vec3D</a> <a class="code" href="classRealFunction.html#2b4805a60e748aee992f62ac7c9bd4df">Xscr</a>;   
+<a name="l00150"></a><a class="code" href="classRealFunction.html#2b4805a60e748aee992f62ac7c9bd4df">00150</a>         <a class="code" href="classFunction.html#f3fbebbb4cb0151aeea503738ad6fd2f" title="three-dimensional array of Vector&amp;lt;3&amp;gt;, implemented as a nested std::vector">vec3vec3D</a> <a class="code" href="classRealFunction.html#2b4805a60e748aee992f62ac7c9bd4df" title="temporary storage for projected function values temporary storage for the value of...">Xscr</a>;   
 <a name="l00151"></a>00151 
 <a name="l00152"></a><a class="code" href="classRealFunction.html#da001f73d52d3267762aed76256be0a9">00152</a>         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> <a class="code" href="classRealFunction.html#da001f73d52d3267762aed76256be0a9" title="temporary storage for the value of the function at a given point">F</a>;
 <a name="l00153"></a>00153 
@@ -152,7 +152,7 @@
 <a name="l00168"></a>00168 
 <a name="l00176"></a><a class="code" href="classHypersphere.html">00176</a> <span class="keyword">class </span><a class="code" href="classHypersphere.html" title="A hypersphere.">Hypersphere</a>: <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> {
 <a name="l00177"></a>00177     <span class="keyword">public</span>:
-<a name="l00178"></a>00178         <a class="code" href="classHypersphere.html#d03be78c012ccd6339a0d37633522635">Hypersphere</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
+<a name="l00178"></a>00178         <a class="code" href="classHypersphere.html#d03be78c012ccd6339a0d37633522635" title="Hypersphere c&amp;#39;tor given a definition set in R³ (as parameter space) and a radius...">Hypersphere</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
 <a name="l00179"></a>00179                      <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
 <a name="l00180"></a>00180                      <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
 <a name="l00181"></a>00181                      <span class="keywordtype">double</span> _rad = 1);
@@ -372,7 +372,7 @@
 <a name="l00433"></a>00433 
 <a name="l00434"></a>00434 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 08:41:34 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 15:27:58 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

@@ -1600,27 +1600,6 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>std::vector&lt; std::vector&lt; VecMath::Vector&lt; 4 &gt; &gt; &gt;</type>
-      <name>Cross</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>a2836b5138de91ead6dbc02156e4b03b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>std::vector&lt; std::vector&lt; VecMath::Vector&lt; 4 &gt; &gt; &gt;</type>
-      <name>CrossTrans</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>8a102fbc9feaa7234b3943476274f093</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>std::vector&lt; std::vector&lt; VecMath::Vector&lt; 3 &gt; &gt; &gt;</type>
-      <name>CrossScr</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>447ba1ee42cf7280a27bf117e85eeb92</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
       <type>Menu4D *</type>
       <name>menu</name>
       <anchorfile>structC4DView_1_1Impl.html</anchorfile>
