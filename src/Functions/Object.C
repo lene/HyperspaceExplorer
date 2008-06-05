@@ -52,22 +52,9 @@ void Object::Initialize() {
 }
 
 /// Transforms an Object
-/** I think this could be optimized by making the transformation
- *  matrices static and only canging the corresponding entries... but how to
- *  make this beautifully, i don't know
- *  @param thetaxy rotation around xy plane (z axis); ignored because 3D
- *                 rotation takes care of it
- *  @param thetaxz rotation around xz plane (y axis); ignored because 3D
- *                 rotation takes care of it
- *  @param thetaxw rotation around xw plane
- *  @param thetayz rotation around xy plane (x axis); ignored because 3D
- *                 rotation takes care of it
- *  @param thetayw rotation around yw plane
- *  @param thetazw rotation around zw plane
- *  @param tx translation in x direction
- *  @param ty translation in y direction
- *  @param tz translation in z direction
- *  @param tw translation in w direction                                      */
+/** @param R rotation
+ *  @param T translation                                                      */
+
 void Object::Transform (const VecMath::Rotation<4> &R,
                         const VecMath::Vector<4> &T) {
     Matrix<4> Rot(R);
@@ -302,19 +289,8 @@ void Sponge::Initialize(void) {
 
 /// Transforms a Sponge
 /** The transformation is achieved by transforming all constituting sub-sponges.
- *  @param thetaxy rotation around xy plane (z axis); ignored because 3D
- *                 rotation takes care of it
- *  @param thetaxz rotation around xz plane (y axis); ignored because 3D
- *                 rotation takes care of it
- *  @param thetaxw rotation around xw plane
- *  @param thetayz rotation around xy plane (x axis); ignored because 3D
- *                 rotation takes care of it
- *  @param thetayw rotation around yw plane
- *  @param thetazw rotation around zw plane
- *  @param tx translation in x direction
- *  @param ty translation in y direction
- *  @param tz translation in z direction
- *  @param tw translation in w direction                                      */
+ *  @param R rotation
+ *  @param T translation                                                      */
 void Sponge::Transform (const VecMath::Rotation<4> &R,
                         const VecMath::Vector<4> &T) {
     for (unsigned i = 0; i < List.size (); i++)
@@ -345,9 +321,9 @@ void Sponge::Draw (void) {
 
 
 /// Pyramid (hypersimplex) constructor
-/** @param center center
+/** @param _center center
  *  @param _a side_length/2                                                   */
-Pyramid::Pyramid (double _a, const Vector<4> &_center):
+Pyramid::Pyramid (double _a, const VecMath::Vector<4> &_center):
     Object ("Hyperpyramid", 5, 10),
     center(_center), a (_a) {
     declareParameter("Size", 1.0);

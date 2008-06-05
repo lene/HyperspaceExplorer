@@ -264,9 +264,9 @@ class Polynomial: public ComplexFunction {
         virtual ~Polynomial () { }
 
     protected:
-        virtual function_type g;
+        virtual function_type g;    ///< function implementation
 
     private:
-        double a[5];
+        double a[5];                ///< coefficients
 };
 #endif

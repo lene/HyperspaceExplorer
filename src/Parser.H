@@ -7,7 +7,7 @@
 class C4DView;
 
 /// Parser reads a file and executes the commands in it in a C4DView
-/** 
+/**
     @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Parser {
 
@@ -18,6 +18,7 @@ class Parser {
     };
 
     public:
+        /// open a parser object for a given filename
         Parser(const std::string &file);
         ~Parser();
 

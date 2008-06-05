@@ -18,20 +18,27 @@
 class SteinerFunction: public Function {
     public:
         SteinerFunction();
+        /// constructor
         SteinerFunction (double _umin, double _umax, double _ustep,
                          double _vmin, double _vmax, double _vstep, double _a = 2.);
         virtual ~SteinerFunction();
 
+        /// draw the projected Surface (onto screen or into GL list, as it is)
         virtual void Draw (void);
 
     protected:
-        Vector &f (double, double);
-        double **df (double, double);
+        /// The mathematical function defining the Function object
+        virtual VecMath::Vector<4> &f(double, double) = 0;
+//        double **df (double, double);
 
     private:
-        double a,
-               umin, umax, du,
-               vmin, vmax, dv;
+        double a,    ///< ?
+               umin, ///< ?
+               umax, ///< ?
+               du,   ///< ?
+               vmin, ///< ?
+               vmax, ///< ?
+               dv;   ///< ?
 
         Vector F;
 };

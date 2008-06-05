@@ -571,13 +571,6 @@
     </member>
     <member kind="function" protection="private">
       <type>void</type>
-      <name>Draw</name>
-      <anchorfile>classC4DView.html</anchorfile>
-      <anchor>87493fb1f2d39371ddfd024f72676738</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
       <name>PreRedraw</name>
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>638fd2fe648c1fcd8f9a3ac03ac8f6b4</anchor>
@@ -2850,10 +2843,10 @@
       <arglist>(const ParameterMap &amp;parms, T &amp;parm, const std::string &amp;key)</arglist>
     </member>
     <member kind="function" virtualness="pure">
-      <type>virtual unsigned</type>
+      <type>virtual const unsigned</type>
       <name>getDefinitionSpaceDimensions</name>
       <anchorfile>classFunction.html</anchorfile>
-      <anchor>734029fa5358d5c59bd908d98d084256</anchor>
+      <anchor>ad8af4396ed5a8034b627cb54bf2cab2</anchor>
       <arglist>()=0</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="pure">
@@ -4294,73 +4287,10 @@
       <arglist>(double, double, double)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual unsigned</type>
-      <name>getTsteps</name>
-      <anchorfile>classObject.html</anchorfile>
-      <anchor>1788b64f26f2e0b0dde1bc9d745a1e9f</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual unsigned</type>
-      <name>getUsteps</name>
-      <anchorfile>classObject.html</anchorfile>
-      <anchor>233a5ba3e17eb319db356c300132ba85</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual unsigned</type>
-      <name>getVsteps</name>
-      <anchorfile>classObject.html</anchorfile>
-      <anchor>1aa24c774545e7ff55b1aad7f3fce385</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual double</type>
-      <name>getTmin</name>
-      <anchorfile>classObject.html</anchorfile>
-      <anchor>77b54e5622f0036cac520dcf954b5bc9</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual double</type>
-      <name>getTmax</name>
-      <anchorfile>classObject.html</anchorfile>
-      <anchor>0a6a405664a329b2b5d0322ea3731b2e</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual double</type>
-      <name>getUmin</name>
-      <anchorfile>classObject.html</anchorfile>
-      <anchor>0d905217992272a7066284511dea0d38</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual double</type>
-      <name>getUmax</name>
-      <anchorfile>classObject.html</anchorfile>
-      <anchor>77d8b699bae8111631611ce526da2f53</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual double</type>
-      <name>getVmin</name>
-      <anchorfile>classObject.html</anchorfile>
-      <anchor>bd4d6ba639eda9b45c722cf80c0be416</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual double</type>
-      <name>getVmax</name>
-      <anchorfile>classObject.html</anchorfile>
-      <anchor>907226e84b30073b27326c86874aa53e</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual unsigned</type>
+      <type>virtual const unsigned</type>
       <name>getDefinitionSpaceDimensions</name>
       <anchorfile>classObject.html</anchorfile>
-      <anchor>715df52e786f724d8978510873327ecf</anchor>
+      <anchor>ddc7550215a7aa8cf5dd0522ef8fbf24</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
@@ -5286,10 +5216,10 @@
       <arglist>(double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual unsigned</type>
+      <type>virtual const unsigned</type>
       <name>getDefinitionSpaceDimensions</name>
       <anchorfile>classRealFunction.html</anchorfile>
-      <anchor>d50fe9ea4ae88d2ed607d82efffec735</anchor>
+      <anchor>8a125d9751f338ec77d2251b82070d4b</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected">
@@ -5566,19 +5496,12 @@
       <anchor>f8d09643c2cedc9b6bfd308415fdd248</anchor>
       <arglist>(void)</arglist>
     </member>
-    <member kind="function" protection="protected">
-      <type>Vector &amp;</type>
+    <member kind="function" protection="protected" virtualness="pure">
+      <type>virtual VecMath::Vector&lt; 4 &gt; &amp;</type>
       <name>f</name>
       <anchorfile>classSteinerFunction.html</anchorfile>
-      <anchor>c281ae5f18e2375b792710c3ccda7acc</anchor>
-      <arglist>(double, double)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>double **</type>
-      <name>df</name>
-      <anchorfile>classSteinerFunction.html</anchorfile>
-      <anchor>347a06fc2f4e0b34f5ced88a0f934b55</anchor>
-      <arglist>(double, double)</arglist>
+      <anchor>184943a51b4ee95fa8fa09b01593ab01</anchor>
+      <arglist>(double, double)=0</arglist>
     </member>
     <member kind="variable" protection="private">
       <type>double</type>
@@ -5691,10 +5614,10 @@
       <arglist>(void)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual unsigned</type>
+      <type>virtual const unsigned</type>
       <name>getDefinitionSpaceDimensions</name>
       <anchorfile>classSurface.html</anchorfile>
-      <anchor>40887c0b67ecc005cbc181ccda034cc0</anchor>
+      <anchor>5e4c6538614d4e5451c95e11cc6c9ebd</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
@@ -5724,13 +5647,6 @@
       <anchorfile>classSurface.html</anchorfile>
       <anchor>185472961fe456f587c160c2cc6e8545</anchor>
       <arglist>(void)</arglist>
-    </member>
-    <member kind="function" protection="protected">
-      <type>void</type>
-      <name>DrawPlane</name>
-      <anchorfile>classSurface.html</anchorfile>
-      <anchor>c892c3621a13bb30418c5b2d73763ea2</anchor>
-      <arglist>(unsigned)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>

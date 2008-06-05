@@ -14,6 +14,16 @@
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
+    <li>
+      <form action="search.php" method="get">
+        <table cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td><label>&nbsp;<u>S</u>earch&nbsp;for&nbsp;</label></td>
+            <td><input type="text" name="query" value="" size="20" accesskey="s"/></td>
+          </tr>
+        </table>
+      </form>
+    </li>
     </ul>
   </div>
   <div class="tabs">
@@ -43,7 +53,7 @@ Collaboration diagram for SteinerFunction:</div>
 <div class="dynsection">
 <p><center><img src="classSteinerFunction__coll__graph.png" border="0" usemap="#SteinerFunction__coll__map" alt="Collaboration graph"></center>
 <map name="SteinerFunction__coll__map">
-<area shape="rect" href="classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="157,1112,400,1680"><area shape="rect" href="classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="16,623,179,1017"><area shape="rect" href="classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,159,189,553"><area shape="rect" href="classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="203,735,355,905"><area shape="rect" title="STL class." alt="" coords="408,315,533,397"></map>
+<area shape="rect" href="classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="157,1112,400,1680"><area shape="rect" href="classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="16,622,179,1017"><area shape="rect" href="classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,158,189,553"><area shape="rect" href="classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="203,734,355,905"><area shape="rect" title="STL class." alt="" coords="408,314,533,397"></map>
 <center><font size="2">[<a href="graph_legend.html">legend</a>]</font></center></div>
 
 <p>
@@ -51,40 +61,47 @@ Collaboration diagram for SteinerFunction:</div>
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f75c1e1d04c4f1de11270e76989bd5e0"></a><!-- doxytag: member="SteinerFunction::SteinerFunction" ref="f75c1e1d04c4f1de11270e76989bd5e0" args="(double _umin, double _umax, double _ustep, double _vmin, double _vmax, double _vstep, double _a=2.)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>SteinerFunction</b> (double _umin, double _umax, double _ustep, double _vmin, double _vmax, double _vstep, double _a=2.)</td></tr>
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSteinerFunction.html#f75c1e1d04c4f1de11270e76989bd5e0">SteinerFunction</a> (double _umin, double _umax, double _ustep, double _vmin, double _vmax, double _vstep, double _a=2.)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">constructor <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f8d09643c2cedc9b6bfd308415fdd248"></a><!-- doxytag: member="SteinerFunction::Draw" ref="f8d09643c2cedc9b6bfd308415fdd248" args="(void)" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>Draw</b> (void)</td></tr>
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSteinerFunction.html#f8d09643c2cedc9b6bfd308415fdd248">Draw</a> (void)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">draw the projected <a class="el" href="classSurface.html">Surface</a> (onto screen or into GL list, as it is) <br></td></tr>
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c281ae5f18e2375b792710c3ccda7acc"></a><!-- doxytag: member="SteinerFunction::f" ref="c281ae5f18e2375b792710c3ccda7acc" args="(double, double)" -->
-Vector &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>f</b> (double, double)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="184943a51b4ee95fa8fa09b01593ab01"></a><!-- doxytag: member="SteinerFunction::f" ref="184943a51b4ee95fa8fa09b01593ab01" args="(double, double)=0" -->
+virtual <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSteinerFunction.html#184943a51b4ee95fa8fa09b01593ab01">f</a> (double, double)=0</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="347a06fc2f4e0b34f5ced88a0f934b55"></a><!-- doxytag: member="SteinerFunction::df" ref="347a06fc2f4e0b34f5ced88a0f934b55" args="(double, double)" -->
-double **&nbsp;</td><td class="memItemRight" valign="bottom"><b>df</b> (double, double)</td></tr>
-
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The mathematical function defining the <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> object. <br></td></tr>
 <tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ef043dfe1e1798290f3745ddac512240"></a><!-- doxytag: member="SteinerFunction::a" ref="ef043dfe1e1798290f3745ddac512240" args="" -->
-double&nbsp;</td><td class="memItemRight" valign="bottom"><b>a</b></td></tr>
+double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSteinerFunction.html#ef043dfe1e1798290f3745ddac512240">a</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">? <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a9926ddc4cde4aecccdc19cfc5801fc4"></a><!-- doxytag: member="SteinerFunction::umin" ref="a9926ddc4cde4aecccdc19cfc5801fc4" args="" -->
-double&nbsp;</td><td class="memItemRight" valign="bottom"><b>umin</b></td></tr>
+double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSteinerFunction.html#a9926ddc4cde4aecccdc19cfc5801fc4">umin</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">? <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f1e55a6bbdad3b19a981e9f3e8c4772f"></a><!-- doxytag: member="SteinerFunction::umax" ref="f1e55a6bbdad3b19a981e9f3e8c4772f" args="" -->
-double&nbsp;</td><td class="memItemRight" valign="bottom"><b>umax</b></td></tr>
+double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSteinerFunction.html#f1e55a6bbdad3b19a981e9f3e8c4772f">umax</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">? <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="fbd1a8e0e4376c491c5e811adb4d5a41"></a><!-- doxytag: member="SteinerFunction::du" ref="fbd1a8e0e4376c491c5e811adb4d5a41" args="" -->
-double&nbsp;</td><td class="memItemRight" valign="bottom"><b>du</b></td></tr>
+double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSteinerFunction.html#fbd1a8e0e4376c491c5e811adb4d5a41">du</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">? <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a05d2007e03fd3669ff1be419ed537bc"></a><!-- doxytag: member="SteinerFunction::vmin" ref="a05d2007e03fd3669ff1be419ed537bc" args="" -->
-double&nbsp;</td><td class="memItemRight" valign="bottom"><b>vmin</b></td></tr>
+double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSteinerFunction.html#a05d2007e03fd3669ff1be419ed537bc">vmin</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">? <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c4583620d0b428836d217db5ca0789fc"></a><!-- doxytag: member="SteinerFunction::vmax" ref="c4583620d0b428836d217db5ca0789fc" args="" -->
-double&nbsp;</td><td class="memItemRight" valign="bottom"><b>vmax</b></td></tr>
+double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSteinerFunction.html#c4583620d0b428836d217db5ca0789fc">vmax</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">? <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="89e75493dbbf5d12a6f87afc6263e0b5"></a><!-- doxytag: member="SteinerFunction::dv" ref="89e75493dbbf5d12a6f87afc6263e0b5" args="" -->
-double&nbsp;</td><td class="memItemRight" valign="bottom"><b>dv</b></td></tr>
+double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSteinerFunction.html#89e75493dbbf5d12a6f87afc6263e0b5">dv</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">? <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4071a5fbd4d419f5f728b050fe9a1a17"></a><!-- doxytag: member="SteinerFunction::F" ref="4071a5fbd4d419f5f728b050fe9a1a17" args="" -->
 Vector&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSteinerFunction.html#4071a5fbd4d419f5f728b050fe9a1a17">F</a></td></tr>
 
@@ -97,7 +114,7 @@ Class defining a Steiner surface <br>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>HyperspaceExplorer/src/Functions/<a class="el" href="SteinerFunction_8H-source.html">SteinerFunction.H</a><li>HyperspaceExplorer/src/Functions/SteinerFunction.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 16:48:08 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 1 10:05:03 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

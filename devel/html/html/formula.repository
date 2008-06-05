@@ -47,3 +47,5 @@
 \form#46:\begin{eqnarray*}{ t & = & \theta*\pi \\ p & = & \phi*frac{\pi}{2} \\ F_0 & = (1-\sin{t})*\cos{p} \\ F_1 & = (1-\sin{t})*\sin{p} \\ F_2 & = (1+\sin{t})*\cos{p} \\ F_3 & = (1+\sin{t})*\sin{p} \\ F & = & F*\frac{1}{\sqrt{2}}*\cos{t} \end{eqnarray*}{
 \form#47:$ M_{ij} $
 \form#48:$ R^3 \rightarrow R $
+\form#49:$ R^3 $
+\form#50:$ R^4 $

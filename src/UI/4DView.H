@@ -183,7 +183,6 @@ class C4DView : public QGLWidget {
         /// Overloaded function executing the transform to the default state
         void Transform() { Transform (VecMath::Rotation<4>(),  VecMath::Vector<4>()); }
         void Project();
-        void Draw();
 
         void PreRedraw();
         void Redraw();

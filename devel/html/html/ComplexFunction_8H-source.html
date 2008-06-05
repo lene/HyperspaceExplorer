@@ -14,6 +14,16 @@
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="classes.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
+    <li>
+      <form action="search.php" method="get">
+        <table cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td><label>&nbsp;<u>S</u>earch&nbsp;for&nbsp;</label></td>
+            <td><input type="text" name="query" value="" size="20" accesskey="s"/></td>
+          </tr>
+        </table>
+      </form>
+    </li>
     </ul>
   </div>
 <h1>HyperspaceExplorer/src/Functions/ComplexFunction.H</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
@@ -234,20 +244,20 @@
 <a name="l00256"></a>00256 
 <a name="l00259"></a><a class="code" href="classPolynomial.html">00259</a> <span class="keyword">class </span><a class="code" href="classPolynomial.html">Polynomial</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
 <a name="l00260"></a>00260     <span class="keyword">public</span>:
-<a name="l00261"></a>00261         <a class="code" href="classPolynomial.html">Polynomial</a>(<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00261"></a>00261         <a class="code" href="classPolynomial.html#5d2e89aac78d8d59d93abbc42d65fc0f" title="constructor">Polynomial</a>(<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
 <a name="l00262"></a>00262                    <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
 <a name="l00263"></a>00263                    <span class="keywordtype">double</span> _a1, <span class="keywordtype">double</span> _a2, <span class="keywordtype">double</span> _a3, <span class="keywordtype">double</span> _a4);
 <a name="l00264"></a>00264         <span class="keyword">virtual</span> ~<a class="code" href="classPolynomial.html">Polynomial</a> () { }
 <a name="l00265"></a>00265 
 <a name="l00266"></a>00266     <span class="keyword">protected</span>:
-<a name="l00267"></a>00267         <span class="keyword">virtual</span> function_type g;
+<a name="l00267"></a><a class="code" href="classPolynomial.html#d77ec1bc3e000fc8d3443f5513f58c6a">00267</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classPolynomial.html#d77ec1bc3e000fc8d3443f5513f58c6a" title="function implementation">g</a>;    
 <a name="l00268"></a>00268 
 <a name="l00269"></a>00269     <span class="keyword">private</span>:
-<a name="l00270"></a>00270         <span class="keywordtype">double</span> a[5];
+<a name="l00270"></a><a class="code" href="classPolynomial.html#742c72cf37506507b1c2fa6d997bf509">00270</a>         <span class="keywordtype">double</span> <a class="code" href="classPolynomial.html#742c72cf37506507b1c2fa6d997bf509" title="coefficients">a</a>[5];                
 <a name="l00271"></a>00271 };
 <a name="l00272"></a>00272 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 16:48:07 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 1 10:05:01 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

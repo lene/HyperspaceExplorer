@@ -27,7 +27,7 @@ using VecMath::Vector;
 using VecMath::Matrix;
 
 /** RealFunction c'tor given a definition set in R³ (as parameter space)
- *  @param name a name for the function
+ *  @param _name a name for the function
  *  @param _tmin minimal value in t
  *  @param _tmax maximal value in t
  *  @param _dt stepsize in t
@@ -36,13 +36,14 @@ using VecMath::Matrix;
  *  @param _du stepsize in u
  *  @param _vmin minimal value in v
  *  @param _vmax maximal value in v
- *  @param _dv stepsize in v                                                  */
-RealFunction::RealFunction(const QString &name,
+ *  @param _dv stepsize in v
+ *  \param _parms function parameters                                         */
+RealFunction::RealFunction(const QString &_name,
                            double _tmin, double _tmax, double _dt,
                            double _umin, double _umax, double _du,
                            double _vmin, double _vmax, double _dv,
                            ParameterMap _parms):
-        RealBase(name, _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv,
+        RealBase(_name, _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv,
                  _parms),
         Xtrans(vec4vec3D()), Xscr(vec3vec3D()) {
     if (MemRequired () > Globals::Instance().getMaxMemory()) {
@@ -116,15 +117,15 @@ void RealFunction::Initialize () {
 }
 
 /// Re-initialize a RealFunction if the definition set has changed
-/** @param tmin minimal value in t
- *  @param tmax maximal value in t
- *  @param getDt() stepsize in t
- *  @param umin minimal value in u
- *  @param umax maximal value in u
- *  @param getDu() stepsize in u
- *  @param vmin minimal value in v
- *  @param vmax maximal value in v
- *  @param getDv() stepsize in v                                              */
+/** @param _tmin minimal value in t
+ *  @param _tmax maximal value in t
+ *  @param _dt stepsize in t
+ *  @param _umin minimal value in u
+ *  @param _umax maximal value in u
+ *  @param _du stepsize in u
+ *  @param _vmin minimal value in v
+ *  @param _vmax maximal value in v
+ *  @param _dv stepsize in v                                              */
 void RealFunction::ReInit(double _tmin, double _tmax, double _dt,
                           double _umin, double _umax, double _du,
                           double _vmin, double _vmax, double _dv) {

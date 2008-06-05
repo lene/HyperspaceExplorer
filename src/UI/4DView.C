@@ -473,16 +473,10 @@ void C4DView::Project(void) {
     }
 }
 
-/// draw the projected Object (onto screen or into GL list, as it is)
-/** */
-void C4DView::Draw() {
-    if (DisplayCoordinates()) DrawCoordinates ();
-
-    F()->Draw ();
-}
-
 /// 4D projection stuff
-/** Separated from the 3D OpenGL handling into this function                  */
+/** Separated from the 3D OpenGL handling into this function
+ *  \todo either PreRedraw() or Draw() should call DrawCoordinates(), but not
+ *        both                                                                */
 void C4DView::PreRedraw () {
     // this does seem very ineffective to me, deleting and reassigning the GL Lists,
     // but it does not seem to work any other way...?
@@ -505,7 +499,7 @@ void C4DView::PreRedraw () {
         glEnd ();
         */
         Project ();
-        Draw ();
+        F()->Draw ();
 
     glEndList ();
 }
@@ -519,7 +513,6 @@ void C4DView::Redraw () {
 /// Wrapper for redraw handler
 /** With an error reporting routine and exit strategy */
 void C4DView::RenderScene (unsigned /* Frame */) {  //  draw (frame of animation)
-    usleep (16000);
     while (!glIsList (ObjectList())) {
 #       ifdef DEBUG
             switch (
@@ -864,8 +857,10 @@ void C4DView::resizeEvent (QResizeEvent *e) {
 
 /// OpenGL initialization
 /** Now this is not as boring as it seems, because further work has to be done
- *  here
- *  \todo trying to check for rendering to file, but this doesn't work yet.   */
+ *  here.
+ *  \todo trying to check for rendering to file, but this doesn't work yet.
+ *  \todo clean up, check what is really needed - in particular it calls
+ *        PreRedraw() twice, once via RenderScene()                           */
 void C4DView::initializeGL (void) {
     SingletonLog::Instance().log("C4DView::initializeGL ()");
 
@@ -880,7 +875,7 @@ void C4DView::initializeGL (void) {
     InitFog ();                                 //  ... depth cue or not
     InitTransparence ();                        //  ... transparence
 
-    glDisable (GL_CULL_FACE);                           //  disable face culling
+    glDisable (GL_CULL_FACE);                   //  disable face culling
 
     float *background = Globals::Instance().BackgroundColor();
     //  set background color
@@ -893,31 +888,29 @@ void C4DView::initializeGL (void) {
 
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);   //  clear the window
 
-        if (DisplayPolygons())                            //  this might move to a
-            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);  //  special routine "SwitchWireframe()"
-        else glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        if (DisplayPolygons())                          //  this might move to a
+            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);  //  special routine
+        else glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //  "SwitchWireframe()"
 
-        glPushMatrix();                                 //  save the transformation Matrix
+        glPushMatrix();                         //  save the transformation Matrix
         // glTranslated(0.0, /*Size ()*.75*/0., 0);     //  set the camera position
 
-        glTranslated (m_trans()[0], m_trans()[1], m_trans()[2]);      //  apply object translation
-        glRotated(m_rot()[0], 1.0, 0.0, 0.0);               //   -"-    -"-     rotation
+        glTranslated (m_trans()[0], m_trans()[1], m_trans()[2]);    //  apply object translation
+        glRotated(m_rot()[0], 1.0, 0.0, 0.0);   //   -"-    -"-     rotation
         glRotated(m_rot()[1], 0.0, 1.0, 0.0);
         glRotated(m_rot()[2], 0.0, 0.0, 1.0);
 
 
         SingletonLog::Instance().log("  RenderScene");
-        RenderScene (0);                                //  draw current frame
+        RenderScene (0);                        //  draw current frame
 
-        glPopMatrix();                                  //  restore transformation Matrix
+        glPopMatrix();                          //  restore transformation Matrix
     }
     SingletonLog::Instance().log("C4DView::initializeGL() done");
 }
 
-/** OpenGL initialization
- *  setting background colors, setting up lighting, shading, fog and
- *  transparence
- *  @todo hardcoded light position and colors!                                */
+/// OpenGL initialization for light(s)
+/** @todo hardcoded light position and colors!                                */
 void C4DView::InitLight (void) {
     if (getLight()) {
         glEnable(GL_LIGHTING);                          //  enable lighting
@@ -934,11 +927,13 @@ void C4DView::InitLight (void) {
     }
 }
 
+/// OpenGL initialization for shading (gouraud or flat shading)
 void C4DView::InitShade (void) {
     if (getShade()) glShadeModel (GL_SMOOTH);        //  gouraud shading
     else            glShadeModel (GL_FLAT);          //  flat shading
 }
 
+/// OpenGL initialization for fog
 void C4DView::InitFog  (void) {
     if (getFog()) {
         glEnable (GL_FOG);                      //  enable depth cueing
@@ -949,6 +944,8 @@ void C4DView::InitFog  (void) {
         glDisable (GL_FOG);                     //  disable depth cueing
 }
 
+/// OpenGL initialization for transparence
+/** @todo is GL_CULL_FACE needed or not?                                      */
 void C4DView::InitTransparence (void) {
     if (getTransparent()) {
         glEnable  (GL_BLEND);                               //  enable blending
@@ -956,13 +953,13 @@ void C4DView::InitTransparence (void) {
         glEnable  (GL_POINT_SMOOTH);                        //  draw smooth points
         glEnable  (GL_LINE_SMOOTH);                         //  draw smooth lines
         glEnable  (GL_POLYGON_SMOOTH);                      //  draw smooth surfaces
-//        glDisable (GL_CULL_FACE);                           //  ...why?             *
+//        glDisable (GL_CULL_FACE);                           //  ...why?            *
     } else {
         glDisable (GL_BLEND);                               //  disable blending
         glDisable  (GL_POINT_SMOOTH);                       //  ..
         glDisable (GL_LINE_SMOOTH);                         //  ..
         glDisable (GL_POLYGON_SMOOTH);                      //  ..
-//        glEnable  (GL_CULL_FACE);                           //                      *
+//        glEnable  (GL_CULL_FACE);                           //                     *
     }
 }
 

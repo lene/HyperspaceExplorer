@@ -1,22 +1,21 @@
-<area shape="rect" href="$classC4DView.html#8f09d1be7f8e3a1d8e3059cf88c5d70a" title="C4DView::Animated" alt="" coords="425,5,572,32">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1792,309,2011,336">
-<area shape="rect" href="$classC4DView.html#94ebd881a91d0b608f4b69598ff0714f" title="C4DView::R" alt="" coords="452,537,545,564">
-<area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Redraw handler." alt="" coords="433,309,564,336">
-<area shape="rect" href="$classC4DView.html#217a71fb5ca598cc159e852bd4d3f92c" title="C4DView::setm_rot" alt="" coords="427,588,571,614">
-<area shape="rect" href="$classC4DView.html#57468fd4a12b95ac3703d89db9cea3e3" title="C4DView::setm_trans" alt="" coords="420,638,577,665">
-<area shape="rect" href="$classC4DView.html#017ac004b348b8174ffa586ad1a68005" title="C4DView::setR" alt="" coords="443,689,555,716">
-<area shape="rect" href="$classC4DView.html#6b0e16af753c8faf3baac291b50bdb37" title="C4DView::setT" alt="" coords="443,740,555,766">
-<area shape="rect" href="$classC4DView.html#45b036ac24d2404ad7bd69139a49b2d8" title="you guessed it" alt="" coords="1143,461,1321,488">
-<area shape="rect" href="$classC4DView.html#5cbbef88488967558c45e960a667d822" title="C4DView::T" alt="" coords="453,790,544,817">
-<area shape="rect" href="$classC4DView.html#8a51cc06ede29308384576f277a67e19" title="Application of translations and rotations." alt="" coords="424,841,573,868">
-<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="412,486,585,513">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="2060,309,2311,336">
-<area shape="rect" href="$classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Should be called whenever the object is rotated or translated." alt="" coords="687,258,823,285">
-<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="1156,258,1308,285">
-<area shape="rect" href="$classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler." alt="" coords="923,258,1093,285">
-<area shape="rect" href="$classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="931,360,1085,386">
-<area shape="rect" href="$classC4DView.html#87493fb1f2d39371ddfd024f72676738" title="draw the projected Object (onto screen or into GL list, as it is)" alt="" coords="1377,258,1495,285">
-<area shape="rect" href="$classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="1549,258,1744,285">
-<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="1372,309,1500,336">
-<area shape="rect" href="$classC4DView.html#99a55bb5dd4ba5f78e31506c55425987" title="Make a pixmap to to be rendered by the GL widget, and render it." alt="" coords="1563,410,1731,437">
-<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="635,562,875,589">
+<area shape="rect" href="$classC4DView.html#8f09d1be7f8e3a1d8e3059cf88c5d70a" title="C4DView::Animated" alt="" coords="425,24,572,50">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1600,277,1819,304">
+<area shape="rect" href="$classC4DView.html#94ebd881a91d0b608f4b69598ff0714f" title="C4DView::R" alt="" coords="452,277,545,304">
+<area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Redraw handler." alt="" coords="433,226,564,253">
+<area shape="rect" href="$classC4DView.html#217a71fb5ca598cc159e852bd4d3f92c" title="C4DView::setm_rot" alt="" coords="427,328,571,354">
+<area shape="rect" href="$classC4DView.html#57468fd4a12b95ac3703d89db9cea3e3" title="C4DView::setm_trans" alt="" coords="420,378,577,405">
+<area shape="rect" href="$classC4DView.html#017ac004b348b8174ffa586ad1a68005" title="C4DView::setR" alt="" coords="443,429,555,456">
+<area shape="rect" href="$classC4DView.html#6b0e16af753c8faf3baac291b50bdb37" title="C4DView::setT" alt="" coords="443,480,555,506">
+<area shape="rect" href="$classC4DView.html#45b036ac24d2404ad7bd69139a49b2d8" title="you guessed it" alt="" coords="665,74,844,101">
+<area shape="rect" href="$classC4DView.html#5cbbef88488967558c45e960a667d822" title="C4DView::T" alt="" coords="453,530,544,557">
+<area shape="rect" href="$classC4DView.html#8a51cc06ede29308384576f277a67e19" title="Application of translations and rotations." alt="" coords="424,581,573,608">
+<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="412,176,585,202">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1868,277,2119,304">
+<area shape="rect" href="$classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Should be called whenever the object is rotated or translated." alt="" coords="687,277,823,304">
+<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="1149,328,1301,354">
+<area shape="rect" href="$classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler." alt="" coords="923,277,1093,304">
+<area shape="rect" href="$classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="931,392,1085,418">
+<area shape="rect" href="$classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="1357,378,1552,405">
+<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="1391,277,1519,304">
+<area shape="rect" href="$classC4DView.html#99a55bb5dd4ba5f78e31506c55425987" title="Make a pixmap to to be rendered by the GL widget, and render it." alt="" coords="1141,404,1309,430">
+<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="635,226,875,253">

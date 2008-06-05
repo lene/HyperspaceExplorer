@@ -71,9 +71,9 @@ class PluginCreator {
  *
  *  If so, returns true. Else, gives an error message.
  *
- *  @param F the type of the function to be checked for
- *  @param libName filename for the selected DLL
- *  @return success                                                           */
+ *  \param libName filename for the selected DLL
+ *  \param parent the Dialog which calls this function
+ *  \return success                                                           */
 template <class F>
         bool PluginCreator::LoadFunctionHelper<F>::functionPresent(
             const QString &libName, QDialog *parent) {

@@ -20,31 +20,28 @@ using VecMath::Matrix;
 
 /// Surface default c'tor, zeroes everything
 Surface::Surface ():
-    SurfaceBase("", 0, 0, 0, 0, 0, 0), /*
-    umin (0), umax (0), du (0),
-    vmin (0), vmax (0), dv (0),
-    usteps (0), vsteps (0), */
-    NumVertices (0),
-    F (4),
+    SurfaceBase("", 0, 0, 0, 0, 0, 0),
+    NumVertices (0), F(),
     Xtrans(vec4vec2D()), Xscr(vec3vec2D()) { }
 
 
 /** Surface c'tor given a definition set in \f$ R^2 \f$ (as parameter space)
- *  @param _umin minimal value in u
- *  @param _umax maximal value in u
- *  @param _du stepsize in u
- *  @param _vmin minimal value in v
- *  @param _vmax maximal value in v
- *  @param _dv stepsize in v                                                  */
-Surface::Surface (const QString &name,
+ *  \param _name name for the function
+ *  \param _umin minimal value in u
+ *  \param _umax maximal value in u
+ *  \param _du stepsize in u
+ *  \param _vmin minimal value in v
+ *  \param _vmax maximal value in v
+ *  \param _dv stepsize in v
+ *  \param _parms Parameter for the function                                  */
+Surface::Surface (const QString &_name,
                   double _umin, double _umax, double _du,
                   double _vmin, double _vmax, double _dv,
-                    ParameterMap _parms):
-    SurfaceBase(name, _umin, _umax, _du, _vmin, _vmax, _dv, _parms),
-    NumVertices (0),
-    F (4),
+                  ParameterMap _parms):
+    SurfaceBase(_name, _umin, _umax, _du, _vmin, _vmax, _dv, _parms),
+    NumVertices (0), F(),
     Xtrans(vec4vec2D()), Xscr(vec3vec2D()) {
-    setfunctionName(name);
+    setfunctionName(_name);
 }
 
 /// Initialize the temporary storage areas Xscr[][], Xtrans[][]
@@ -85,15 +82,12 @@ void Surface::Initialize () {
 }
 
 /** re-initialize a Surface if the definition set has changed
- *  @param tmin minimal value in t (ignored)
- *  @param tmax maximal value in t (ignored)
- *  @param dt stepsize in t (ignored)
- *  @param umin minimal value in u
- *  @param umax maximal value in u
- *  @param du stepsize in u
- *  @param vmin minimal value in v
- *  @param vmax maximal value in v
- *  @param dv stepsize in v                                                   */
+ *  @param _tmin minimal value in t (ignored)
+ *  @param _tmax maximal value in t (ignored)
+ *  @param _dt stepsize in t (ignored)
+ *  @param _umin minimal value in u
+ *  @param _umax maximal value in u
+ *  @param _du stepsize in u                                                  */
 void Surface::ReInit(double, double, double,
                      double _tmin, double _tmax, double _dt,
                      double _umin, double _umax, double _du) {
@@ -213,7 +207,7 @@ void Surface::Draw (void) {
 
 
 /** draw the current strip of the projected Surface
- *  @param u current u value                                                  */
+ *  @param t current t value                                                  */
 void Surface::DrawStrip (unsigned t){
     glBegin (GL_QUAD_STRIP);
 

@@ -131,7 +131,8 @@ class Function {
             std::cerr << ", " << parm << ", " << key << ") \n";
         }
 
-        virtual unsigned getDefinitionSpaceDimensions() = 0;
+        /// number of argument given to the defining function
+        virtual const unsigned getDefinitionSpaceDimensions() = 0;
 
     protected:
         /// Function evaluation operator for three parameters
@@ -166,6 +167,7 @@ class Function {
         /// temporary storage for the value of the function at a given point
         VecMath::Vector<4> F;
 
+        /// counter for assessing how much RM is used
         unsigned NumVertices;
 
         /// the name of the function as a free-form string

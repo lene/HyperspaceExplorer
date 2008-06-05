@@ -1,3 +1,15 @@
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="245,5,464,32">
-<area shape="rect" href="$classFunction.html#d6a10b999b0d561d36a473d461c62311" title="Return the approximate amount of memory needed to display a Function of current definition..." alt="" coords="269,56,440,83">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="513,5,764,32">
+<area shape="rect" href="$classRealBase.html#a738a408ed73025d34db4ff0c4779ce1" title="delta in t" alt="" coords="293,5,416,32">
+<area shape="rect" href="$classRealBase.html#d8aa90547179197a84a55b11fa9efb59" title="delta in u" alt="" coords="291,56,419,83">
+<area shape="rect" href="$classRealBase.html#04608c269de0bb85c988f6f55c246631" title="delta in v" alt="" coords="292,107,417,133">
+<area shape="rect" href="$classRealBase.html#371a8545cd85a218efa8c3d78f1679f7" title="max. value of the first parameter, t" alt="" coords="283,157,427,184">
+<area shape="rect" href="$classRealBase.html#f9dcdf6e54c56a0875afa605bbfafff7" title="min. value of the first parameter, t" alt="" coords="285,208,424,235">
+<area shape="rect" href="$classRealBase.html#13591cf37427643c8cab25ab5e8b05f5" title="number of steps in t" alt="" coords="280,259,429,285">
+<area shape="rect" href="$classRealBase.html#ee1bc70a4396db3d9bbeb814c78e4ad0" title="max. value of the second parameter, u" alt="" coords="281,309,428,336">
+<area shape="rect" href="$classRealBase.html#94d43f8cf311879c3d773bfceb9e04f4" title="min. value of the second parameter, u" alt="" coords="283,360,427,387">
+<area shape="rect" href="$classRealBase.html#484ca78d73b9140e77dc26d626e90b88" title="number of steps in u" alt="" coords="277,411,432,437">
+<area shape="rect" href="$classRealBase.html#1ef508c14939017bf1a7f6953cb76069" title="max. value of the third parameter, v" alt="" coords="281,461,428,488">
+<area shape="rect" href="$classRealBase.html#f79ee0c5a0488dddd613e65f9676b240" title="min. value of the third parameter, v" alt="" coords="284,512,425,539">
+<area shape="rect" href="$classRealBase.html#4c12bdcab988ba1efa81d7f23504bc9d" title="number of steps in v" alt="" coords="279,563,431,589">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="245,613,464,640">
+<area shape="rect" href="$classFunction.html#d6a10b999b0d561d36a473d461c62311" title="Return the approximate amount of memory needed to display a Function of current definition..." alt="" coords="269,664,440,691">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="513,613,764,640">

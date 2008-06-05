@@ -21,8 +21,10 @@
 struct EmptyType {};
 
 /// Generalized four-dimensional Object, described by vertexes and surfaces
-/** an Object is a four-dimensional geometrical object which can not be
- *  described as a mathematical function from R³ to R or from R² to R^4.
+/** An Object is a four-dimensional geometrical object which can not be
+ *  described as a mathematical function from \f$ R^3 \f$ to \f$ R \f$ or from
+ *  \f$ R^2 \f$ to \f$ R^4 \f$.
+ *
  *  Instead it is described as a set of surfaces.
  *  \ingroup FunctionGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
@@ -48,18 +50,8 @@ class Object: public Function {
             return tmp;
         }
 
-        virtual unsigned getTsteps() const { return NumVertices; }
-        virtual unsigned getUsteps() const { return 1; }
-        virtual unsigned getVsteps() const { return 1; }
-
-        virtual double getTmin() const { return -1; }
-        virtual double getTmax() const { return 1; }
-        virtual double getUmin() const { return -1; }
-        virtual double getUmax() const { return 1; }
-        virtual double getVmin() const { return -1; }
-        virtual double getVmax() const { return 1; }
-
-        virtual unsigned getDefinitionSpaceDimensions() { return 0; }
+        /// \see Function::getDefinitionSpaceDimensions()
+        virtual const unsigned getDefinitionSpaceDimensions() { return 0; }
 
     protected:
         virtual void Initialize();
@@ -78,7 +70,8 @@ class Object: public Function {
         /** A pointless function, but it must be overridden to satisfy the
          *  Function interface. In an Object it is never called because the
          *  four-dimensional object is represented by a list of surfaces instead
-         *  of a mathematical function.                                       */
+         *  of a mathematical function.
+         *  \todo throw a std::logic_error                                   */
         virtual VecMath::Vector<4> &f (double, double, double) {
             static VecMath::Vector<4> tmp;
             return tmp;
@@ -244,8 +237,8 @@ protected:
     virtual void Initialize();
     void DeclareTriangle (unsigned, unsigned, unsigned, unsigned);
 
-    VecMath::Vector<4> center;
-    double a;
+    VecMath::Vector<4> center;  ///< location
+    double a;                   ///< size
 };
 
 

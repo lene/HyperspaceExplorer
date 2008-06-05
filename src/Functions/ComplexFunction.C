@@ -422,6 +422,7 @@ complex<double> tanz::g (complex<double> z) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
+/// constructor
 Polynomial::Polynomial (double _umin, double _umax, double _du,
                         double _vmin, double _vmax, double _dv,
                         double _a1, double _a2, double _a3, double _a4):

@@ -14,6 +14,16 @@
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
+    <li>
+      <form action="search.php" method="get">
+        <table cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td><label>&nbsp;<u>S</u>earch&nbsp;for&nbsp;</label></td>
+            <td><input type="text" name="query" value="" size="20" accesskey="s"/></td>
+          </tr>
+        </table>
+      </form>
+    </li>
     </ul>
   </div>
   <div class="tabs">
@@ -39,14 +49,14 @@ Inheritance diagram for Object:</div>
 <div class="dynsection">
 <p><center><img src="classObject__inherit__graph.png" border="0" usemap="#Object__inherit__map" alt="Inheritance graph"></center>
 <map name="Object__inherit__map">
-<area shape="rect" href="classHypercube.html" title="A four&#45;dimensional cube." alt="" coords="5,1155,149,1360"><area shape="rect" href="classPyramid.html" title="A four&#45;dimensional pyramid, also known as hypersimplex." alt="" coords="173,1164,317,1351"><area shape="rect" href="classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="40,7,283,575"><area shape="rect" href="classSponge.html" title="A four&#45;dimensional Menger Sponge." alt="" coords="5,1408,149,1718"><area shape="rect" href="classGasket.html" title="A four&#45;dimensional version of the Sierpinski Gasket." alt="" coords="173,1426,317,1700"></map>
+<area shape="rect" href="classHypercube.html" title="A four&#45;dimensional cube." alt="" coords="5,1000,149,1205"><area shape="rect" href="classPyramid.html" title="A four&#45;dimensional pyramid, also known as hypersimplex." alt="" coords="173,1009,317,1196"><area shape="rect" href="classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="40,7,283,575"><area shape="rect" href="classSponge.html" title="A four&#45;dimensional Menger Sponge." alt="" coords="5,1253,149,1563"><area shape="rect" href="classGasket.html" title="A four&#45;dimensional version of the Sierpinski Gasket." alt="" coords="173,1271,317,1545"></map>
 <center><font size="2">[<a href="graph_legend.html">legend</a>]</font></center></div>
 <div class="dynheader">
 Collaboration diagram for Object:</div>
 <div class="dynsection">
 <p><center><img src="classObject__coll__graph.png" border="0" usemap="#Object__coll__map" alt="Collaboration graph"></center>
 <map name="Object__coll__map">
-<area shape="rect" href="classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="157,1087,400,1655"><area shape="rect" href="classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="16,623,179,1018"><area shape="rect" href="classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,159,189,554"><area shape="rect" href="classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="203,735,355,906"><area shape="rect" title="STL class." alt="" coords="408,315,533,398"></map>
+<area shape="rect" href="classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="157,1087,400,1655"><area shape="rect" href="classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="16,623,179,1017"><area shape="rect" href="classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,159,189,553"><area shape="rect" href="classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="203,735,355,905"><area shape="rect" title="STL class." alt="" coords="408,315,533,397"></map>
 <center><font size="2">[<a href="graph_legend.html">legend</a>]</font></center></div>
 
 <p>
@@ -81,35 +91,7 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 virtual <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObject.html#3dfa9443e4d4b71f1a12827bab2d90f5">operator()</a> (double, double, double)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> evaluation operator for three parameters. <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1788b64f26f2e0b0dde1bc9d745a1e9f"></a><!-- doxytag: member="Object::getTsteps" ref="1788b64f26f2e0b0dde1bc9d745a1e9f" args="() const " -->
-virtual unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><b>getTsteps</b> () const </td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="233a5ba3e17eb319db356c300132ba85"></a><!-- doxytag: member="Object::getUsteps" ref="233a5ba3e17eb319db356c300132ba85" args="() const " -->
-virtual unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><b>getUsteps</b> () const </td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1aa24c774545e7ff55b1aad7f3fce385"></a><!-- doxytag: member="Object::getVsteps" ref="1aa24c774545e7ff55b1aad7f3fce385" args="() const " -->
-virtual unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><b>getVsteps</b> () const </td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="77b54e5622f0036cac520dcf954b5bc9"></a><!-- doxytag: member="Object::getTmin" ref="77b54e5622f0036cac520dcf954b5bc9" args="() const " -->
-virtual double&nbsp;</td><td class="memItemRight" valign="bottom"><b>getTmin</b> () const </td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0a6a405664a329b2b5d0322ea3731b2e"></a><!-- doxytag: member="Object::getTmax" ref="0a6a405664a329b2b5d0322ea3731b2e" args="() const " -->
-virtual double&nbsp;</td><td class="memItemRight" valign="bottom"><b>getTmax</b> () const </td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0d905217992272a7066284511dea0d38"></a><!-- doxytag: member="Object::getUmin" ref="0d905217992272a7066284511dea0d38" args="() const " -->
-virtual double&nbsp;</td><td class="memItemRight" valign="bottom"><b>getUmin</b> () const </td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="77d8b699bae8111631611ce526da2f53"></a><!-- doxytag: member="Object::getUmax" ref="77d8b699bae8111631611ce526da2f53" args="() const " -->
-virtual double&nbsp;</td><td class="memItemRight" valign="bottom"><b>getUmax</b> () const </td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bd4d6ba639eda9b45c722cf80c0be416"></a><!-- doxytag: member="Object::getVmin" ref="bd4d6ba639eda9b45c722cf80c0be416" args="() const " -->
-virtual double&nbsp;</td><td class="memItemRight" valign="bottom"><b>getVmin</b> () const </td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="907226e84b30073b27326c86874aa53e"></a><!-- doxytag: member="Object::getVmax" ref="907226e84b30073b27326c86874aa53e" args="() const " -->
-virtual double&nbsp;</td><td class="memItemRight" valign="bottom"><b>getVmax</b> () const </td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="715df52e786f724d8978510873327ecf"></a><!-- doxytag: member="Object::getDefinitionSpaceDimensions" ref="715df52e786f724d8978510873327ecf" args="()" -->
-virtual unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><b>getDefinitionSpaceDimensions</b> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual const unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObject.html#ddc7550215a7aa8cf5dd0522ef8fbf24">getDefinitionSpaceDimensions</a> ()</td></tr>
 
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="abb0df155c83971e135cc13f9fc28860"></a><!-- doxytag: member="Object::Initialize" ref="abb0df155c83971e135cc13f9fc28860" args="()" -->
@@ -146,7 +128,8 @@ unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 Generalized four-dimensional <a class="el" href="classObject.html" title="Generalized four-dimensional Object, described by vertexes and surfaces.">Object</a>, described by vertexes and surfaces. 
 <p>
-an <a class="el" href="classObject.html" title="Generalized four-dimensional Object, described by vertexes and surfaces.">Object</a> is a four-dimensional geometrical object which can not be described as a mathematical function from R³ to R or from R² to R^4. Instead it is described as a set of surfaces.<p>
+An <a class="el" href="classObject.html" title="Generalized four-dimensional Object, described by vertexes and surfaces.">Object</a> is a four-dimensional geometrical object which can not be described as a mathematical function from <img class="formulaInl" alt="$ R^3 $" src="form_49.png"> to <img class="formulaInl" alt="$ R $" src="form_1.png"> or from <img class="formulaInl" alt="$ R^2 $" src="form_8.png"> to <img class="formulaInl" alt="$ R^4 $" src="form_50.png">.<p>
+Instead it is described as a set of surfaces.<p>
 <dl class="author" compact><dt><b>Author:</b></dt><dd>Helge Preuss &lt;<a href="mailto:scout@hyperspace-travel.de">scout@hyperspace-travel.de</a>&gt; </dd></dl>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="88590464e2e1cb975f59ddb47f4f09b7"></a><!-- doxytag: member="Object::Object" ref="88590464e2e1cb975f59ddb47f4f09b7" args="(const QString &amp;, unsigned, unsigned)" -->
@@ -189,7 +172,7 @@ generic <a class="el" href="classObject.html" title="Generalized four-dimensiona
   </table>
 </dl>
 
-<p>References <a class="el" href="Object_8H-source.html#l00069">NumSurfaces</a>.</p>
+<p>References <a class="el" href="Object_8H-source.html#l00061">NumSurfaces</a>.</p>
 
 </div>
 </div><p>
@@ -222,18 +205,10 @@ generic <a class="el" href="classObject.html" title="Generalized four-dimensiona
 <p>
 Transforms an <a class="el" href="classObject.html" title="Generalized four-dimensional Object, described by vertexes and surfaces.">Object</a>. 
 <p>
-I think this could be optimized by making the transformation matrices static and only canging the corresponding entries... but how to make this beautifully, i don't know <dl compact><dt><b>Parameters:</b></dt><dd>
+<dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>thetaxy</em>&nbsp;</td><td>rotation around xy plane (z axis); ignored because 3D rotation takes care of it </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>thetaxz</em>&nbsp;</td><td>rotation around xz plane (y axis); ignored because 3D rotation takes care of it </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>thetaxw</em>&nbsp;</td><td>rotation around xw plane </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>thetayz</em>&nbsp;</td><td>rotation around xy plane (x axis); ignored because 3D rotation takes care of it </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>thetayw</em>&nbsp;</td><td>rotation around yw plane </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>thetazw</em>&nbsp;</td><td>rotation around zw plane </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>tx</em>&nbsp;</td><td>translation in x direction </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>ty</em>&nbsp;</td><td>translation in y direction </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>tz</em>&nbsp;</td><td>translation in z direction </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>tw</em>&nbsp;</td><td>translation in w direction </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>R</em>&nbsp;</td><td>rotation </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>T</em>&nbsp;</td><td>translation </td></tr>
   </table>
 </dl>
 
@@ -241,7 +216,7 @@ I think this could be optimized by making the transformation matrices static and
 
 <p>Reimplemented in <a class="el" href="classSponge.html#c7f51aa2dcec81e24eda7f4fa1c617a9">Sponge</a>, and <a class="el" href="classGasket.html#57a1b430a1f1a4a0956ac983a134ac6b">Gasket</a>.</p>
 
-<p>References <a class="el" href="Object_8H-source.html#l00071">X</a>, and <a class="el" href="Object_8H-source.html#l00072">Xtrans</a>.</p>
+<p>References <a class="el" href="Object_8H-source.html#l00063">X</a>, and <a class="el" href="Object_8H-source.html#l00064">Xtrans</a>.</p>
 
 </div>
 </div><p>
@@ -291,7 +266,7 @@ Projects an <a class="el" href="classObject.html" title="Generalized four-dimens
 
 <p>Reimplemented in <a class="el" href="classSponge.html#ee14d45eb035e31bf23efe2c45245e6a">Sponge</a>, and <a class="el" href="classGasket.html#cd9211ebec49fe02e9794526afc41194">Gasket</a>.</p>
 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="Object_8H-source.html#l00071">X</a>, <a class="el" href="Object_8H-source.html#l00073">Xscr</a>, and <a class="el" href="Object_8H-source.html#l00072">Xtrans</a>.</p>
+<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="Object_8H-source.html#l00063">X</a>, <a class="el" href="Object_8H-source.html#l00065">Xscr</a>, and <a class="el" href="Object_8H-source.html#l00064">Xtrans</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -301,6 +276,28 @@ Here is the call graph for this function:</div>
 <map name="classObject_8404a4e0b7cddabbb14797c755c3daa8_cgraph_map">
 <area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="168,5,387,32"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="436,5,687,32"></map>
 </div>
+
+</div>
+</div><p>
+<a class="anchor" name="ddc7550215a7aa8cf5dd0522ef8fbf24"></a><!-- doxytag: member="Object::getDefinitionSpaceDimensions" ref="ddc7550215a7aa8cf5dd0522ef8fbf24" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const unsigned Object::getDefinitionSpaceDimensions           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="classFunction.html#ad8af4396ed5a8034b627cb54bf2cab2" title="number of argument given to the defining function">Function::getDefinitionSpaceDimensions()</a> </dd></dl>
+
+<p>Implements <a class="el" href="classFunction.html#ad8af4396ed5a8034b627cb54bf2cab2">Function</a>.</p>
 
 </div>
 </div><p>
@@ -336,13 +333,14 @@ Here is the call graph for this function:</div>
 <div class="memdoc">
 
 <p>
-A pointless function, but it must be overridden to satisfy the <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> interface. In an <a class="el" href="classObject.html" title="Generalized four-dimensional Object, described by vertexes and surfaces.">Object</a> it is never called because the four-dimensional object is represented by a list of surfaces instead of a mathematical function. 
+A pointless function, but it must be overridden to satisfy the <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> interface. In an <a class="el" href="classObject.html" title="Generalized four-dimensional Object, described by vertexes and surfaces.">Object</a> it is never called because the four-dimensional object is represented by a list of surfaces instead of a mathematical function. <dl compact><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>throw a std::logic_error </dd></dl>
+
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>HyperspaceExplorer/src/Functions/<a class="el" href="Object_8H-source.html">Object.H</a><li>HyperspaceExplorer/src/Functions/Object.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 16:48:08 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 1 10:05:02 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

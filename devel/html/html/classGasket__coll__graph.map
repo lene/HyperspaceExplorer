@@ -1,7 +1,7 @@
-<area shape="rect" href="$classPyramid.html" title="A four&#45;dimensional pyramid, also known as hypersimplex." alt="" coords="169,2273,313,2460">
-<area shape="rect" href="$classObject.html" title="Generalized four&#45;dimensional Object, described by vertexes and surfaces." alt="" coords="177,1723,420,2205">
-<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="177,1087,420,1655">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="16,623,179,1017">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,159,189,553">
-<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="203,735,355,905">
-<area shape="rect" title="STL class." alt="" coords="479,315,604,397">
+<area shape="rect" href="$classPyramid.html" title="A four&#45;dimensional pyramid, also known as hypersimplex." alt="" coords="169,2118,313,2305">
+<area shape="rect" href="$classObject.html" title="Generalized four&#45;dimensional Object, described by vertexes and surfaces." alt="" coords="177,1724,420,2049">
+<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="177,1086,420,1654">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="16,622,179,1017">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,158,189,553">
+<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="203,734,355,905">
+<area shape="rect" title="STL class." alt="" coords="479,314,604,397">

@@ -37,6 +37,7 @@ class RealBase: public Function {
         typedef VecMath::Vector<4> raw_function_type (double, double, double);
 
         RealBase() { }
+        /// constructor
         RealBase(const QString &name,
                  double _tmin, double _tmax, double _dt,
                  double _umin, double _umax, double _du,
@@ -51,31 +52,37 @@ class RealBase: public Function {
                 vsteps (unsigned ((vmax-vmin)/dv+1)) { }
 
     protected:
+        /// number of steps in t
         unsigned &getTsteps() { return tsteps; }
+        /// number of steps in t
         unsigned getTsteps() const { return tsteps > 0? tsteps: 1; }
+        /// number of steps in u
         unsigned &getUsteps() { return usteps; }
+        /// number of steps in u
         unsigned getUsteps() const { return usteps > 0? usteps: 1; }
+        /// number of steps in v
         unsigned &getVsteps()  { return vsteps; }
+        /// number of steps in v
         unsigned getVsteps() const { return vsteps > 0? vsteps: 1; }
 
-        double &getTmin() { return tmin; }
-        double getTmin() const { return tmin; }
-        double &getTmax() { return tmax; }
-        double getTmax() const { return tmax; }
-        double &getDt() { return dt; }
-        const double &getDt() const { return dt; }
-        double &getUmin() { return umin; }
-        double getUmin() const { return umin; }
-        double &getUmax() { return umax; }
-        double getUmax() const { return umax; }
-        double &getDu() { return du; }
-        const double &getDu() const { return du; }
-        double &getVmin() { return vmin; }
-        double getVmin() const { return vmin; }
-        double &getVmax() { return vmax; }
-        double getVmax() const { return vmax; }
-        double &getDv() { return dv; }
-        const double &getDv() const { return dv; }
+        double &getTmin() { return tmin; }          ///< min. value of the first parameter, t
+        double getTmin() const { return tmin; }     ///< min. value of the first parameter, t
+        double &getTmax() { return tmax; }          ///< max. value of the first parameter, t
+        double getTmax() const { return tmax; }     ///< max. value of the first parameter, t
+        double &getDt() { return dt; }              ///< delta in t
+        const double &getDt() const { return dt; }  ///< delta in t
+        double &getUmin() { return umin; }          ///< min. value of the second parameter, u
+        double getUmin() const { return umin; }     ///< min. value of the second parameter, u
+        double &getUmax() { return umax; }          ///< max. value of the second parameter, u
+        double getUmax() const { return umax; }     ///< max. value of the second parameter, u
+        double &getDu() { return du; }              ///< delta in u
+        const double &getDu() const { return du; }  ///< delta in u
+        double &getVmin() { return vmin; }          ///< min. value of the third parameter, v
+        double getVmin() const { return vmin; }     ///< min. value of the third parameter, v
+        double &getVmax() { return vmax; }          ///< max. value of the third parameter, v
+        double getVmax() const { return vmax; }     ///< max. value of the third parameter, v
+        double &getDv() { return dv; }              ///< delta in v
+        const double &getDv() const { return dv; }  ///< delta in v
 
         /// The mathematical function defining the Function object
         virtual VecMath::Vector<4> &f(double, double, double) = 0;
@@ -133,7 +140,8 @@ class RealFunction: public RealBase {
                             double _umin, double _umax, double _du,
                             double _vmin, double _vmax, double _dv);
 
-        virtual unsigned getDefinitionSpaceDimensions() { return 3; }
+        /// \see Function::getDefinitionSpaceDimensions()
+        virtual const unsigned getDefinitionSpaceDimensions() { return 3; }
 
     protected:
         VecMath::Vector<4> &normal(double t, double u, double v);
@@ -386,7 +394,7 @@ class PolarSin: public RealFunction {
 
     protected:
         virtual function_type f;
-        double Phase;
+        double Phase;               ///< phase
 };
 
 
@@ -431,7 +439,7 @@ class PolarR: public RealFunction {
 
     protected:
         virtual function_type f;
-        double Phase;
+        double Phase;               ///< phase
 };
 
 #endif

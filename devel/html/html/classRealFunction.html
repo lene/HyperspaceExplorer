@@ -14,6 +14,16 @@
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="classes.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
+    <li>
+      <form action="search.php" method="get">
+        <table cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td><label>&nbsp;<u>S</u>earch&nbsp;for&nbsp;</label></td>
+            <td><input type="text" name="query" value="" size="20" accesskey="s"/></td>
+          </tr>
+        </table>
+      </form>
+    </li>
     </ul>
   </div>
   <div class="tabs">
@@ -67,8 +77,7 @@ Collaboration diagram for RealFunction:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRealFunction.html#cd8338dd5e99de2034682e7b7891219d">ReInit</a> (double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Re-initialize a <a class="el" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> if the definition set has changed.  <a href="#cd8338dd5e99de2034682e7b7891219d"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d50fe9ea4ae88d2ed607d82efffec735"></a><!-- doxytag: member="RealFunction::getDefinitionSpaceDimensions" ref="d50fe9ea4ae88d2ed607d82efffec735" args="()" -->
-virtual unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><b>getDefinitionSpaceDimensions</b> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual const unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRealFunction.html#8a125d9751f338ec77d2251b82070d4b">getDefinitionSpaceDimensions</a> ()</td></tr>
 
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRealFunction.html#fc801388deaab9bb3783ae470891a2d8">normal</a> (double t, double u, double v)</td></tr>
@@ -122,7 +131,7 @@ The parent class <em><a class="el" href="classFunction.html" title="A Function i
           <td class="memname">RealFunction::RealFunction           </td>
           <td>(</td>
           <td class="paramtype">const QString &amp;&nbsp;</td>
-          <td class="paramname"> <em>name</em>, </td>
+          <td class="paramname"> <em>_name</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -196,7 +205,7 @@ The parent class <em><a class="el" href="classFunction.html" title="A Function i
 <p>
 <a class="el" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> c'tor given a definition set in R³ (as parameter space) <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>name</em>&nbsp;</td><td>a name for the function </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_name</em>&nbsp;</td><td>a name for the function </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>_tmin</em>&nbsp;</td><td>minimal value in t </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>_tmax</em>&nbsp;</td><td>maximal value in t </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>_dt</em>&nbsp;</td><td>stepsize in t </td></tr>
@@ -206,10 +215,11 @@ The parent class <em><a class="el" href="classFunction.html" title="A Function i
     <tr><td valign="top"></td><td valign="top"><em>_vmin</em>&nbsp;</td><td>minimal value in v </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>_vmax</em>&nbsp;</td><td>maximal value in v </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>_dv</em>&nbsp;</td><td>stepsize in v </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_parms</em>&nbsp;</td><td>function parameters </td></tr>
   </table>
 </dl>
 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="Function_8C-source.html#l00055">Function::MemRequired()</a>.</p>
+<p>References <a class="el" href="RealFunction_8H-source.html#l00072">RealBase::getDt()</a>, <a class="el" href="RealFunction_8H-source.html#l00078">RealBase::getDu()</a>, <a class="el" href="RealFunction_8H-source.html#l00084">RealBase::getDv()</a>, <a class="el" href="RealFunction_8H-source.html#l00070">RealBase::getTmax()</a>, <a class="el" href="RealFunction_8H-source.html#l00068">RealBase::getTmin()</a>, <a class="el" href="RealFunction_8H-source.html#l00056">RealBase::getTsteps()</a>, <a class="el" href="RealFunction_8H-source.html#l00076">RealBase::getUmax()</a>, <a class="el" href="RealFunction_8H-source.html#l00074">RealBase::getUmin()</a>, <a class="el" href="RealFunction_8H-source.html#l00060">RealBase::getUsteps()</a>, <a class="el" href="RealFunction_8H-source.html#l00082">RealBase::getVmax()</a>, <a class="el" href="RealFunction_8H-source.html#l00080">RealBase::getVmin()</a>, <a class="el" href="RealFunction_8H-source.html#l00064">RealBase::getVsteps()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="Function_8C-source.html#l00055">Function::MemRequired()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -217,7 +227,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classRealFunction_330968d75b1e8da0d272360e278799e1_cgraph.png" border="0" usemap="#classRealFunction_330968d75b1e8da0d272360e278799e1_cgraph_map" alt=""></center>
 <map name="classRealFunction_330968d75b1e8da0d272360e278799e1_cgraph_map">
-<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="245,5,464,32"><area shape="rect" href="classFunction.html#d6a10b999b0d561d36a473d461c62311" title="Return the approximate amount of memory needed to display a Function of current definition..." alt="" coords="269,56,440,83"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="513,5,764,32"></map>
+<area shape="rect" href="classRealBase.html#a738a408ed73025d34db4ff0c4779ce1" title="delta in t" alt="" coords="293,5,416,32"><area shape="rect" href="classRealBase.html#d8aa90547179197a84a55b11fa9efb59" title="delta in u" alt="" coords="291,56,419,83"><area shape="rect" href="classRealBase.html#04608c269de0bb85c988f6f55c246631" title="delta in v" alt="" coords="292,107,417,133"><area shape="rect" href="classRealBase.html#371a8545cd85a218efa8c3d78f1679f7" title="max. value of the first parameter, t" alt="" coords="283,157,427,184"><area shape="rect" href="classRealBase.html#f9dcdf6e54c56a0875afa605bbfafff7" title="min. value of the first parameter, t" alt="" coords="285,208,424,235"><area shape="rect" href="classRealBase.html#13591cf37427643c8cab25ab5e8b05f5" title="number of steps in t" alt="" coords="280,259,429,285"><area shape="rect" href="classRealBase.html#ee1bc70a4396db3d9bbeb814c78e4ad0" title="max. value of the second parameter, u" alt="" coords="281,309,428,336"><area shape="rect" href="classRealBase.html#94d43f8cf311879c3d773bfceb9e04f4" title="min. value of the second parameter, u" alt="" coords="283,360,427,387"><area shape="rect" href="classRealBase.html#484ca78d73b9140e77dc26d626e90b88" title="number of steps in u" alt="" coords="277,411,432,437"><area shape="rect" href="classRealBase.html#1ef508c14939017bf1a7f6953cb76069" title="max. value of the third parameter, v" alt="" coords="281,461,428,488"><area shape="rect" href="classRealBase.html#f79ee0c5a0488dddd613e65f9676b240" title="min. value of the third parameter, v" alt="" coords="284,512,425,539"><area shape="rect" href="classRealBase.html#4c12bdcab988ba1efa81d7f23504bc9d" title="number of steps in v" alt="" coords="279,563,431,589"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="245,613,464,640"><area shape="rect" href="classFunction.html#d6a10b999b0d561d36a473d461c62311" title="Return the approximate amount of memory needed to display a Function of current definition..." alt="" coords="269,664,440,691"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="513,613,764,640"></map>
 </div>
 
 </div>
@@ -251,7 +261,7 @@ Here is the call graph for this function:</div>
 <p>
 Transforms a <a class="el" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a>. 
 <p>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>As I look at it, i think this could be optimized by making the transformation matrices static and only canging the corresponding entries... but how to do this beautifully, i don't know </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000018">Todo:</a></b></dt><dd>As I look at it, i think this could be optimized by making the transformation matrices static and only canging the corresponding entries... but how to do this beautifully, i don't know </dd></dl>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>R</em>&nbsp;</td><td>rotation </td></tr>
@@ -261,7 +271,16 @@ Transforms a <a class="el" href="classRealFunction.html" title="A RealFunction i
 
 <p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
-<p>References <a class="el" href="RealFunction_8H-source.html#l00148">X</a>, and <a class="el" href="RealFunction_8H-source.html#l00148">Xtrans</a>.</p>
+<p>References <a class="el" href="RealFunction_8H-source.html#l00056">RealBase::getTsteps()</a>, <a class="el" href="RealFunction_8H-source.html#l00060">RealBase::getUsteps()</a>, <a class="el" href="RealFunction_8H-source.html#l00064">RealBase::getVsteps()</a>, <a class="el" href="RealFunction_8H-source.html#l00156">X</a>, and <a class="el" href="RealFunction_8H-source.html#l00156">Xtrans</a>.</p>
+
+<p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classRealFunction_dbbc82deb59fbfddd400cb4cc1a003ee_cgraph.png" border="0" usemap="#classRealFunction_dbbc82deb59fbfddd400cb4cc1a003ee_cgraph_map" alt=""></center>
+<map name="classRealFunction_dbbc82deb59fbfddd400cb4cc1a003ee_cgraph_map">
+<area shape="rect" href="classRealBase.html#13591cf37427643c8cab25ab5e8b05f5" title="number of steps in t" alt="" coords="232,6,381,32"><area shape="rect" href="classRealBase.html#484ca78d73b9140e77dc26d626e90b88" title="number of steps in u" alt="" coords="229,56,384,83"><area shape="rect" href="classRealBase.html#4c12bdcab988ba1efa81d7f23504bc9d" title="number of steps in v" alt="" coords="231,107,383,134"></map>
+</div>
 
 </div>
 </div><p>
@@ -309,7 +328,7 @@ Projects a <a class="el" href="classRealFunction.html" title="A RealFunction is 
 
 <p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="RealFunction_8H-source.html#l00148">X</a>, <a class="el" href="RealFunction_8H-source.html#l00150">Xscr</a>, and <a class="el" href="RealFunction_8H-source.html#l00148">Xtrans</a>.</p>
+<p>References <a class="el" href="RealFunction_8H-source.html#l00056">RealBase::getTsteps()</a>, <a class="el" href="RealFunction_8H-source.html#l00060">RealBase::getUsteps()</a>, <a class="el" href="RealFunction_8H-source.html#l00064">RealBase::getVsteps()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="RealFunction_8H-source.html#l00156">X</a>, <a class="el" href="RealFunction_8H-source.html#l00158">Xscr</a>, and <a class="el" href="RealFunction_8H-source.html#l00156">Xtrans</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -317,7 +336,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classRealFunction_184141451489cdd8373a47acc9ec673e_cgraph.png" border="0" usemap="#classRealFunction_184141451489cdd8373a47acc9ec673e_cgraph_map" alt=""></center>
 <map name="classRealFunction_184141451489cdd8373a47acc9ec673e_cgraph_map">
-<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="208,5,427,32"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="476,5,727,32"></map>
+<area shape="rect" href="classRealBase.html#13591cf37427643c8cab25ab5e8b05f5" title="number of steps in t" alt="" coords="243,5,392,32"><area shape="rect" href="classRealBase.html#484ca78d73b9140e77dc26d626e90b88" title="number of steps in u" alt="" coords="240,56,395,82"><area shape="rect" href="classRealBase.html#4c12bdcab988ba1efa81d7f23504bc9d" title="number of steps in v" alt="" coords="241,106,393,133"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="208,157,427,184"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="476,157,727,184"></map>
 </div>
 
 </div>
@@ -344,7 +363,7 @@ Draw the projected <a class="el" href="classFunction.html" title="A Function is 
 
 <p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
-<p>References <a class="el" href="RealFunction_8C-source.html#l00223">DrawPlane()</a>.</p>
+<p>References <a class="el" href="RealFunction_8C-source.html#l00224">DrawPlane()</a>, and <a class="el" href="RealFunction_8H-source.html#l00056">RealBase::getTsteps()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -352,7 +371,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classRealFunction_640817dd87a840f3698e4a931f0e7fc8_cgraph.png" border="0" usemap="#classRealFunction_640817dd87a840f3698e4a931f0e7fc8_cgraph_map" alt=""></center>
 <map name="classRealFunction_640817dd87a840f3698e4a931f0e7fc8_cgraph_map">
-<area shape="rect" href="classRealFunction.html#45794e4c47942b87f76535062cc23423" title="Draw the current plane of the projected Function." alt="" coords="199,5,375,32"><area shape="rect" href="classRealFunction.html#dbafbb0c90473d0b4c3dbc5c3dfdd75a" title="Draw the current strip of the projected Function." alt="" coords="425,5,596,32"><area shape="rect" href="classRealFunction.html#891f30e71e090f4c8cfb0362d1c40cd3" title="Draw the current cube or cell of the projected Function." alt="" coords="645,5,821,32"></map>
+<area shape="rect" href="classRealFunction.html#45794e4c47942b87f76535062cc23423" title="Draw the current plane of the projected Function." alt="" coords="199,56,375,83"><area shape="rect" href="classRealBase.html#13591cf37427643c8cab25ab5e8b05f5" title="number of steps in t" alt="" coords="212,107,361,134"><area shape="rect" href="classRealFunction.html#dbafbb0c90473d0b4c3dbc5c3dfdd75a" title="Draw the current strip of the projected Function." alt="" coords="425,31,596,58"><area shape="rect" href="classRealBase.html#484ca78d73b9140e77dc26d626e90b88" title="number of steps in u" alt="" coords="433,82,588,108"><area shape="rect" href="classRealFunction.html#891f30e71e090f4c8cfb0362d1c40cd3" title="Draw the current cube or cell of the projected Function." alt="" coords="645,6,821,32"><area shape="rect" href="classRealBase.html#4c12bdcab988ba1efa81d7f23504bc9d" title="number of steps in v" alt="" coords="657,56,809,83"></map>
 </div>
 
 </div>
@@ -429,21 +448,21 @@ Re-initialize a <a class="el" href="classRealFunction.html" title="A RealFunctio
 <p>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>tmin</em>&nbsp;</td><td>minimal value in t </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>tmax</em>&nbsp;</td><td>maximal value in t </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>getDt()</em>&nbsp;</td><td>stepsize in t </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>umin</em>&nbsp;</td><td>minimal value in u </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>umax</em>&nbsp;</td><td>maximal value in u </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>getDu()</em>&nbsp;</td><td>stepsize in u </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>vmin</em>&nbsp;</td><td>minimal value in v </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>vmax</em>&nbsp;</td><td>maximal value in v </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>getDv()</em>&nbsp;</td><td>stepsize in v </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_tmin</em>&nbsp;</td><td>minimal value in t </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_tmax</em>&nbsp;</td><td>maximal value in t </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_dt</em>&nbsp;</td><td>stepsize in t </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_umin</em>&nbsp;</td><td>minimal value in u </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_umax</em>&nbsp;</td><td>maximal value in u </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_du</em>&nbsp;</td><td>stepsize in u </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_vmin</em>&nbsp;</td><td>minimal value in v </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_vmax</em>&nbsp;</td><td>maximal value in v </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_dv</em>&nbsp;</td><td>stepsize in v </td></tr>
   </table>
 </dl>
 
 <p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
-<p>References <a class="el" href="RealFunction_8C-source.html#l00084">Initialize()</a>, and <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
+<p>References <a class="el" href="RealFunction_8H-source.html#l00072">RealBase::getDt()</a>, <a class="el" href="RealFunction_8H-source.html#l00078">RealBase::getDu()</a>, <a class="el" href="RealFunction_8H-source.html#l00084">RealBase::getDv()</a>, <a class="el" href="RealFunction_8H-source.html#l00070">RealBase::getTmax()</a>, <a class="el" href="RealFunction_8H-source.html#l00068">RealBase::getTmin()</a>, <a class="el" href="RealFunction_8H-source.html#l00056">RealBase::getTsteps()</a>, <a class="el" href="RealFunction_8H-source.html#l00076">RealBase::getUmax()</a>, <a class="el" href="RealFunction_8H-source.html#l00074">RealBase::getUmin()</a>, <a class="el" href="RealFunction_8H-source.html#l00060">RealBase::getUsteps()</a>, <a class="el" href="RealFunction_8H-source.html#l00082">RealBase::getVmax()</a>, <a class="el" href="RealFunction_8H-source.html#l00080">RealBase::getVmin()</a>, <a class="el" href="RealFunction_8H-source.html#l00064">RealBase::getVsteps()</a>, <a class="el" href="RealFunction_8C-source.html#l00085">Initialize()</a>, and <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -451,8 +470,30 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classRealFunction_cd8338dd5e99de2034682e7b7891219d_cgraph.png" border="0" usemap="#classRealFunction_cd8338dd5e99de2034682e7b7891219d_cgraph_map" alt=""></center>
 <map name="classRealFunction_cd8338dd5e99de2034682e7b7891219d_cgraph_map">
-<area shape="rect" href="classRealFunction.html#37c91ed60f82198f48dfab887dd743c3" title="Allocate and initialize X[][][] with values of f()." alt="" coords="201,56,361,83"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="411,107,629,134"><area shape="rect" href="classRealBase.html#c2cd018b4108455a6daa23d78b2064a6" title="The mathematical function defining the Function object." alt="" coords="475,6,565,32"><area shape="rect" href="classRealFunction.html#1905c4297b0f6b4f91a3b24b55b62eea" title="Initialize the temporary storage areas." alt="" coords="440,56,600,83"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="679,107,929,134"></map>
+<area shape="rect" href="classRealBase.html#a738a408ed73025d34db4ff0c4779ce1" title="delta in t" alt="" coords="459,102,581,129"><area shape="rect" href="classRealBase.html#d8aa90547179197a84a55b11fa9efb59" title="delta in u" alt="" coords="456,153,584,180"><area shape="rect" href="classRealBase.html#04608c269de0bb85c988f6f55c246631" title="delta in v" alt="" coords="457,204,583,230"><area shape="rect" href="classRealBase.html#371a8545cd85a218efa8c3d78f1679f7" title="max. value of the first parameter, t" alt="" coords="209,812,353,838"><area shape="rect" href="classRealBase.html#f9dcdf6e54c56a0875afa605bbfafff7" title="min. value of the first parameter, t" alt="" coords="451,254,589,281"><area shape="rect" href="classRealBase.html#13591cf37427643c8cab25ab5e8b05f5" title="number of steps in t" alt="" coords="729,305,879,332"><area shape="rect" href="classRealBase.html#ee1bc70a4396db3d9bbeb814c78e4ad0" title="max. value of the second parameter, u" alt="" coords="208,862,355,889"><area shape="rect" href="classRealBase.html#94d43f8cf311879c3d773bfceb9e04f4" title="min. value of the second parameter, u" alt="" coords="448,558,592,585"><area shape="rect" href="classRealBase.html#484ca78d73b9140e77dc26d626e90b88" title="number of steps in u" alt="" coords="727,406,881,433"><area shape="rect" href="classRealBase.html#1ef508c14939017bf1a7f6953cb76069" title="max. value of the third parameter, v" alt="" coords="208,913,355,940"><area shape="rect" href="classRealBase.html#f79ee0c5a0488dddd613e65f9676b240" title="min. value of the third parameter, v" alt="" coords="449,609,591,636"><area shape="rect" href="classRealBase.html#4c12bdcab988ba1efa81d7f23504bc9d" title="number of steps in v" alt="" coords="728,508,880,534"><area shape="rect" href="classRealFunction.html#37c91ed60f82198f48dfab887dd743c3" title="Allocate and initialize X[][][] with values of f()." alt="" coords="201,406,361,433"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="411,710,629,737"><area shape="rect" href="classRealBase.html#c2cd018b4108455a6daa23d78b2064a6" title="The mathematical function defining the Function object." alt="" coords="475,457,565,484"><area shape="rect" href="classRealFunction.html#1905c4297b0f6b4f91a3b24b55b62eea" title="Initialize the temporary storage areas." alt="" coords="440,356,600,382"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="679,710,929,737"></map>
 </div>
+
+</div>
+</div><p>
+<a class="anchor" name="8a125d9751f338ec77d2251b82070d4b"></a><!-- doxytag: member="RealFunction::getDefinitionSpaceDimensions" ref="8a125d9751f338ec77d2251b82070d4b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const unsigned RealFunction::getDefinitionSpaceDimensions           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [inline, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="classFunction.html#ad8af4396ed5a8034b627cb54bf2cab2" title="number of argument given to the defining function">Function::getDefinitionSpaceDimensions()</a> </dd></dl>
+
+<p>Implements <a class="el" href="classFunction.html#ad8af4396ed5a8034b627cb54bf2cab2">Function</a>.</p>
 
 </div>
 </div><p>
@@ -538,9 +579,9 @@ Draw the current plane of the projected <a class="el" href="classFunction.html" 
   </table>
 </dl>
 
-<p>References <a class="el" href="RealFunction_8C-source.html#l00231">DrawStrip()</a>.</p>
+<p>References <a class="el" href="RealFunction_8C-source.html#l00232">DrawStrip()</a>, and <a class="el" href="RealFunction_8H-source.html#l00060">RealBase::getUsteps()</a>.</p>
 
-<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00197">Draw()</a>.</p>
+<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00198">Draw()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -548,7 +589,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classRealFunction_45794e4c47942b87f76535062cc23423_cgraph.png" border="0" usemap="#classRealFunction_45794e4c47942b87f76535062cc23423_cgraph_map" alt=""></center>
 <map name="classRealFunction_45794e4c47942b87f76535062cc23423_cgraph_map">
-<area shape="rect" href="classRealFunction.html#dbafbb0c90473d0b4c3dbc5c3dfdd75a" title="Draw the current strip of the projected Function." alt="" coords="233,5,404,32"><area shape="rect" href="classRealFunction.html#891f30e71e090f4c8cfb0362d1c40cd3" title="Draw the current cube or cell of the projected Function." alt="" coords="453,5,629,32"></map>
+<area shape="rect" href="classRealFunction.html#dbafbb0c90473d0b4c3dbc5c3dfdd75a" title="Draw the current strip of the projected Function." alt="" coords="233,30,404,57"><area shape="rect" href="classRealBase.html#484ca78d73b9140e77dc26d626e90b88" title="number of steps in u" alt="" coords="241,81,396,108"><area shape="rect" href="classRealFunction.html#891f30e71e090f4c8cfb0362d1c40cd3" title="Draw the current cube or cell of the projected Function." alt="" coords="453,5,629,32"><area shape="rect" href="classRealBase.html#4c12bdcab988ba1efa81d7f23504bc9d" title="number of steps in v" alt="" coords="465,56,617,82"></map>
 </div>
 
 <p>
@@ -597,9 +638,9 @@ Draw the current strip of the projected <a class="el" href="classFunction.html" 
   </table>
 </dl>
 
-<p>References <a class="el" href="RealFunction_8C-source.html#l00243">DrawCube()</a>.</p>
+<p>References <a class="el" href="RealFunction_8C-source.html#l00244">DrawCube()</a>, and <a class="el" href="RealFunction_8H-source.html#l00064">RealBase::getVsteps()</a>.</p>
 
-<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00223">DrawPlane()</a>.</p>
+<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00224">DrawPlane()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -607,7 +648,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classRealFunction_dbafbb0c90473d0b4c3dbc5c3dfdd75a_cgraph.png" border="0" usemap="#classRealFunction_dbafbb0c90473d0b4c3dbc5c3dfdd75a_cgraph_map" alt=""></center>
 <map name="classRealFunction_dbafbb0c90473d0b4c3dbc5c3dfdd75a_cgraph_map">
-<area shape="rect" href="classRealFunction.html#891f30e71e090f4c8cfb0362d1c40cd3" title="Draw the current cube or cell of the projected Function." alt="" coords="227,5,403,32"></map>
+<area shape="rect" href="classRealFunction.html#891f30e71e090f4c8cfb0362d1c40cd3" title="Draw the current cube or cell of the projected Function." alt="" coords="227,5,403,32"><area shape="rect" href="classRealBase.html#4c12bdcab988ba1efa81d7f23504bc9d" title="number of steps in v" alt="" coords="239,56,391,83"></map>
 </div>
 
 <p>
@@ -663,9 +704,9 @@ Draw the current cube or cell of the projected <a class="el" href="classFunction
   </table>
 </dl>
 
-<p>References <a class="el" href="RealFunction_8H-source.html#l00148">X</a>, and <a class="el" href="RealFunction_8H-source.html#l00150">Xscr</a>.</p>
+<p>References <a class="el" href="RealFunction_8H-source.html#l00156">X</a>, and <a class="el" href="RealFunction_8H-source.html#l00158">Xscr</a>.</p>
 
-<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00231">DrawStrip()</a>.</p>
+<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00232">DrawStrip()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -700,9 +741,9 @@ Allocate and initialize X[][][] with values of <a class="el" href="classRealBase
 Call <a class="el" href="classRealFunction.html#1905c4297b0f6b4f91a3b24b55b62eea" title="Initialize the temporary storage areas.">InitMem()</a> above 
 <p>Implements <a class="el" href="classFunction.html">Function</a>.</p>
 
-<p>References <a class="el" href="classRealBase.html#c2cd018b4108455a6daa23d78b2064a6">RealBase::f()</a>, <a class="el" href="RealFunction_8C-source.html#l00064">InitMem()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="RealFunction_8H-source.html#l00148">X</a>.</p>
+<p>References <a class="el" href="classRealBase.html#c2cd018b4108455a6daa23d78b2064a6">RealBase::f()</a>, <a class="el" href="RealFunction_8H-source.html#l00072">RealBase::getDt()</a>, <a class="el" href="RealFunction_8H-source.html#l00078">RealBase::getDu()</a>, <a class="el" href="RealFunction_8H-source.html#l00084">RealBase::getDv()</a>, <a class="el" href="RealFunction_8H-source.html#l00068">RealBase::getTmin()</a>, <a class="el" href="RealFunction_8H-source.html#l00056">RealBase::getTsteps()</a>, <a class="el" href="RealFunction_8H-source.html#l00074">RealBase::getUmin()</a>, <a class="el" href="RealFunction_8H-source.html#l00060">RealBase::getUsteps()</a>, <a class="el" href="RealFunction_8H-source.html#l00080">RealBase::getVmin()</a>, <a class="el" href="RealFunction_8H-source.html#l00064">RealBase::getVsteps()</a>, <a class="el" href="RealFunction_8C-source.html#l00065">InitMem()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="RealFunction_8H-source.html#l00156">X</a>.</p>
 
-<p>Referenced by <a class="el" href="CustomFunction_8C-source.html#l00039">CustomFunction::CustomFunction()</a>, <a class="el" href="CustomFunction_8C-source.html#l00081">CustomPolarFunction::CustomPolarFunction()</a>, <a class="el" href="RealFunction_8C-source.html#l00466">Fr3r::Fr3r()</a>, <a class="el" href="RealFunction_8C-source.html#l00595">Fr3rExp::Fr3rExp()</a>, <a class="el" href="RealFunction_8C-source.html#l00557">Fr3rSin::Fr3rSin()</a>, <a class="el" href="RealFunction_8C-source.html#l00510">GravitationPotential::GravitationPotential()</a>, <a class="el" href="RealFunction_8C-source.html#l00303">Hypersphere::Hypersphere()</a>, <a class="el" href="RealFunction_8C-source.html#l00633">Polar::Polar()</a>, <a class="el" href="RealFunction_8C-source.html#l00768">PolarR::PolarR()</a>, <a class="el" href="RealFunction_8C-source.html#l00678">PolarSin::PolarSin()</a>, <a class="el" href="RealFunction_8C-source.html#l00723">PolarSin2::PolarSin2()</a>, <a class="el" href="RealFunction_8C-source.html#l00128">ReInit()</a>, <a class="el" href="RealFunction_8C-source.html#l00378">Torus1::Torus1()</a>, and <a class="el" href="RealFunction_8C-source.html#l00423">Torus2::Torus2()</a>.</p>
+<p>Referenced by <a class="el" href="CustomFunction_8C-source.html#l00039">CustomFunction::CustomFunction()</a>, <a class="el" href="CustomFunction_8C-source.html#l00081">CustomPolarFunction::CustomPolarFunction()</a>, <a class="el" href="RealFunction_8C-source.html#l00467">Fr3r::Fr3r()</a>, <a class="el" href="RealFunction_8C-source.html#l00596">Fr3rExp::Fr3rExp()</a>, <a class="el" href="RealFunction_8C-source.html#l00558">Fr3rSin::Fr3rSin()</a>, <a class="el" href="RealFunction_8C-source.html#l00511">GravitationPotential::GravitationPotential()</a>, <a class="el" href="RealFunction_8C-source.html#l00304">Hypersphere::Hypersphere()</a>, <a class="el" href="RealFunction_8C-source.html#l00634">Polar::Polar()</a>, <a class="el" href="RealFunction_8C-source.html#l00769">PolarR::PolarR()</a>, <a class="el" href="RealFunction_8C-source.html#l00679">PolarSin::PolarSin()</a>, <a class="el" href="RealFunction_8C-source.html#l00724">PolarSin2::PolarSin2()</a>, <a class="el" href="RealFunction_8C-source.html#l00129">ReInit()</a>, <a class="el" href="RealFunction_8C-source.html#l00379">Torus1::Torus1()</a>, and <a class="el" href="RealFunction_8C-source.html#l00424">Torus2::Torus2()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -710,7 +751,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classRealFunction_37c91ed60f82198f48dfab887dd743c3_cgraph.png" border="0" usemap="#classRealFunction_37c91ed60f82198f48dfab887dd743c3_cgraph_map" alt=""></center>
 <map name="classRealFunction_37c91ed60f82198f48dfab887dd743c3_cgraph_map">
-<area shape="rect" href="classRealBase.html#c2cd018b4108455a6daa23d78b2064a6" title="The mathematical function defining the Function object." alt="" coords="280,6,371,32"><area shape="rect" href="classRealFunction.html#1905c4297b0f6b4f91a3b24b55b62eea" title="Initialize the temporary storage areas." alt="" coords="245,56,405,83"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="216,107,435,134"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="484,107,735,134"></map>
+<area shape="rect" href="classRealBase.html#c2cd018b4108455a6daa23d78b2064a6" title="The mathematical function defining the Function object." alt="" coords="280,6,371,32"><area shape="rect" href="classRealBase.html#a738a408ed73025d34db4ff0c4779ce1" title="delta in t" alt="" coords="264,56,387,83"><area shape="rect" href="classRealBase.html#d8aa90547179197a84a55b11fa9efb59" title="delta in u" alt="" coords="261,107,389,134"><area shape="rect" href="classRealBase.html#04608c269de0bb85c988f6f55c246631" title="delta in v" alt="" coords="263,158,388,184"><area shape="rect" href="classRealBase.html#f9dcdf6e54c56a0875afa605bbfafff7" title="min. value of the first parameter, t" alt="" coords="256,208,395,235"><area shape="rect" href="classRealBase.html#13591cf37427643c8cab25ab5e8b05f5" title="number of steps in t" alt="" coords="535,272,684,299"><area shape="rect" href="classRealBase.html#94d43f8cf311879c3d773bfceb9e04f4" title="min. value of the second parameter, u" alt="" coords="253,462,397,488"><area shape="rect" href="classRealBase.html#484ca78d73b9140e77dc26d626e90b88" title="number of steps in u" alt="" coords="532,348,687,375"><area shape="rect" href="classRealBase.html#f79ee0c5a0488dddd613e65f9676b240" title="min. value of the third parameter, v" alt="" coords="255,512,396,539"><area shape="rect" href="classRealBase.html#4c12bdcab988ba1efa81d7f23504bc9d" title="number of steps in v" alt="" coords="533,406,685,432"><area shape="rect" href="classRealFunction.html#1905c4297b0f6b4f91a3b24b55b62eea" title="Initialize the temporary storage areas." alt="" coords="245,310,405,336"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="216,563,435,590"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="484,563,735,590"></map>
 </div>
 
 <p>
@@ -744,9 +785,18 @@ Here is the caller graph for this function:</div>
 Initialize the temporary storage areas. 
 <p>
 Xscr[][][], Xtrans[][][] 
-<p>References <a class="el" href="RealFunction_8H-source.html#l00150">Xscr</a>, and <a class="el" href="RealFunction_8H-source.html#l00148">Xtrans</a>.</p>
+<p>References <a class="el" href="RealFunction_8H-source.html#l00056">RealBase::getTsteps()</a>, <a class="el" href="RealFunction_8H-source.html#l00060">RealBase::getUsteps()</a>, <a class="el" href="RealFunction_8H-source.html#l00064">RealBase::getVsteps()</a>, <a class="el" href="RealFunction_8H-source.html#l00158">Xscr</a>, and <a class="el" href="RealFunction_8H-source.html#l00156">Xtrans</a>.</p>
 
-<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00084">Initialize()</a>.</p>
+<p>Referenced by <a class="el" href="RealFunction_8C-source.html#l00085">Initialize()</a>.</p>
+
+<p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classRealFunction_1905c4297b0f6b4f91a3b24b55b62eea_cgraph.png" border="0" usemap="#classRealFunction_1905c4297b0f6b4f91a3b24b55b62eea_cgraph_map" alt=""></center>
+<map name="classRealFunction_1905c4297b0f6b4f91a3b24b55b62eea_cgraph_map">
+<area shape="rect" href="classRealBase.html#13591cf37427643c8cab25ab5e8b05f5" title="number of steps in t" alt="" coords="219,6,368,32"><area shape="rect" href="classRealBase.html#484ca78d73b9140e77dc26d626e90b88" title="number of steps in u" alt="" coords="216,56,371,83"><area shape="rect" href="classRealBase.html#4c12bdcab988ba1efa81d7f23504bc9d" title="number of steps in v" alt="" coords="217,107,369,134"></map>
+</div>
 
 <p>
 <div class="dynheader">
@@ -762,7 +812,7 @@ Here is the caller graph for this function:</div>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>HyperspaceExplorer/src/Functions/<a class="el" href="RealFunction_8H-source.html">RealFunction.H</a><li>HyperspaceExplorer/src/Functions/RealFunction.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat May 31 16:48:08 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 1 10:05:03 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

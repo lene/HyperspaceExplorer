@@ -1,3 +1,6 @@
-<area shape="rect" href="$classRealFunction.html#45794e4c47942b87f76535062cc23423" title="Draw the current plane of the projected Function." alt="" coords="199,5,375,32">
-<area shape="rect" href="$classRealFunction.html#dbafbb0c90473d0b4c3dbc5c3dfdd75a" title="Draw the current strip of the projected Function." alt="" coords="425,5,596,32">
-<area shape="rect" href="$classRealFunction.html#891f30e71e090f4c8cfb0362d1c40cd3" title="Draw the current cube or cell of the projected Function." alt="" coords="645,5,821,32">
+<area shape="rect" href="$classRealFunction.html#45794e4c47942b87f76535062cc23423" title="Draw the current plane of the projected Function." alt="" coords="199,56,375,83">
+<area shape="rect" href="$classRealBase.html#13591cf37427643c8cab25ab5e8b05f5" title="number of steps in t" alt="" coords="212,107,361,134">
+<area shape="rect" href="$classRealFunction.html#dbafbb0c90473d0b4c3dbc5c3dfdd75a" title="Draw the current strip of the projected Function." alt="" coords="425,31,596,58">
+<area shape="rect" href="$classRealBase.html#484ca78d73b9140e77dc26d626e90b88" title="number of steps in u" alt="" coords="433,82,588,108">
+<area shape="rect" href="$classRealFunction.html#891f30e71e090f4c8cfb0362d1c40cd3" title="Draw the current cube or cell of the projected Function." alt="" coords="645,6,821,32">
+<area shape="rect" href="$classRealBase.html#4c12bdcab988ba1efa81d7f23504bc9d" title="number of steps in v" alt="" coords="657,56,809,83">

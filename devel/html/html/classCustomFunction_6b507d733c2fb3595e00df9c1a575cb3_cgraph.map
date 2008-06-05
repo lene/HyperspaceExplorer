@@ -1,7 +1,16 @@
-<area shape="rect" href="$classRealFunction.html#37c91ed60f82198f48dfab887dd743c3" title="Allocate and initialize X[][][] with values of f()." alt="" coords="451,56,611,82">
-<area shape="rect" href="$classPluginCreator.html#4b0c4aa6bb17649c888f720f96741c6d" title="Get the name of the selected dynamic library containing a function." alt="" coords="435,106,627,133">
-<area shape="rect" href="$classCustomFunctionBase.html#d2e4b7516d73ab9ebeb9a33c6708f6b8" title="CustomFunctionBase\&lt; RealFunction::raw_function_type \&gt;::loadFunction" alt="" coords="291,157,771,184">
-<area shape="rect" href="$classRealBase.html#c2cd018b4108455a6daa23d78b2064a6" title="The mathematical function defining the Function object." alt="" coords="883,5,973,32">
-<area shape="rect" href="$classRealFunction.html#1905c4297b0f6b4f91a3b24b55b62eea" title="Initialize the temporary storage areas." alt="" coords="848,56,1008,82">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="819,106,1037,133">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1087,106,1337,133">
+<area shape="rect" href="$classRealFunction.html#37c91ed60f82198f48dfab887dd743c3" title="Allocate and initialize X[][][] with values of f()." alt="" coords="451,284,611,311">
+<area shape="rect" href="$classPluginCreator.html#4b0c4aa6bb17649c888f720f96741c6d" title="Get the name of the selected dynamic library containing a function." alt="" coords="435,335,627,362">
+<area shape="rect" href="$classCustomFunctionBase.html#d2e4b7516d73ab9ebeb9a33c6708f6b8" title="CustomFunctionBase\&lt; RealFunction::raw_function_type \&gt;::loadFunction" alt="" coords="291,386,771,412">
+<area shape="rect" href="$classRealBase.html#c2cd018b4108455a6daa23d78b2064a6" title="The mathematical function defining the Function object." alt="" coords="883,6,973,32">
+<area shape="rect" href="$classRealBase.html#a738a408ed73025d34db4ff0c4779ce1" title="delta in t" alt="" coords="867,56,989,83">
+<area shape="rect" href="$classRealBase.html#d8aa90547179197a84a55b11fa9efb59" title="delta in u" alt="" coords="864,107,992,134">
+<area shape="rect" href="$classRealBase.html#04608c269de0bb85c988f6f55c246631" title="delta in v" alt="" coords="865,158,991,184">
+<area shape="rect" href="$classRealBase.html#f9dcdf6e54c56a0875afa605bbfafff7" title="min. value of the first parameter, t" alt="" coords="859,208,997,235">
+<area shape="rect" href="$classRealBase.html#13591cf37427643c8cab25ab5e8b05f5" title="number of steps in t" alt="" coords="1137,272,1287,299">
+<area shape="rect" href="$classRealBase.html#94d43f8cf311879c3d773bfceb9e04f4" title="min. value of the second parameter, u" alt="" coords="856,462,1000,488">
+<area shape="rect" href="$classRealBase.html#484ca78d73b9140e77dc26d626e90b88" title="number of steps in u" alt="" coords="1135,348,1289,375">
+<area shape="rect" href="$classRealBase.html#f79ee0c5a0488dddd613e65f9676b240" title="min. value of the third parameter, v" alt="" coords="857,512,999,539">
+<area shape="rect" href="$classRealBase.html#4c12bdcab988ba1efa81d7f23504bc9d" title="number of steps in v" alt="" coords="1136,406,1288,432">
+<area shape="rect" href="$classRealFunction.html#1905c4297b0f6b4f91a3b24b55b62eea" title="Initialize the temporary storage areas." alt="" coords="848,310,1008,336">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="819,563,1037,590">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1087,563,1337,590">

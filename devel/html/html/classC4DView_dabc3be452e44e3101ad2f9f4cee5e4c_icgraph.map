@@ -1,2 +1,4 @@
-<area shape="rect" href="$classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="184,5,384,32">
-<area shape="rect" href="$classC4DView.html#ac3d22c30bf8b042077fb31fec2c367b" title="C4DView::resizeGL" alt="" coords="215,56,353,83">
+<area shape="rect" href="$classC4DView.html#8e209837b51cb976674e81e6359f930d" title="OpenGL initialization for fog." alt="" coords="220,6,348,32">
+<area shape="rect" href="$classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="184,56,384,83">
+<area shape="rect" href="$classC4DView.html#ac3d22c30bf8b042077fb31fec2c367b" title="C4DView::resizeGL" alt="" coords="215,107,353,134">
+<area shape="rect" href="$classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="OpenGL initialization." alt="" coords="433,6,585,32">

@@ -56,23 +56,27 @@ class SurfaceBase: public Function {
                 usteps (unsigned ((umax-umin)/du+1)) { }
 
     protected:
+        /// number of steps in t
         unsigned &getTsteps() { return tsteps; }
+        /// number of steps in t
         unsigned getTsteps() const { return tsteps > 0? tsteps: 1; }
+        /// number of steps in u
         unsigned &getUsteps() { return usteps; }
+        /// number of steps in u
         unsigned getUsteps() const { return usteps > 0? usteps: 1; }
 
-        double &getTmin() { return tmin; }
-        double getTmin() const { return tmin; }
-        double &getTmax() { return tmax; }
-        double getTmax() const { return tmax; }
-        double &getDt() { return dt; }
-        const double &getDt() const { return dt; }
-        double &getUmin() { return umin; }
-        double getUmin() const { return umin; }
-        double &getUmax() { return umax; }
-        double getUmax() const { return umax; }
-        double &getDu() { return du; }
-        const double &getDu() const { return du; }
+        double &getTmin() { return tmin; }          ///< min. value of the first parameter, t
+        double getTmin() const { return tmin; }     ///< min. value of the first parameter, t
+        double &getTmax() { return tmax; }          ///< max. value of the first parameter, t
+        double getTmax() const { return tmax; }     ///< max. value of the first parameter, t
+        double &getDt() { return dt; }              ///< delta in t
+        const double &getDt() const { return dt; }  ///< delta in t
+        double &getUmin() { return umin; }          ///< min. value of the second parameter, u
+        double getUmin() const { return umin; }     ///< min. value of the second parameter, u
+        double &getUmax() { return umax; }          ///< max. value of the second parameter, u
+        double getUmax() const { return umax; }     ///< max. value of the second parameter, u
+        double &getDu() { return du; }              ///< delta in u
+        const double &getDu() const { return du; }  ///< delta in u
 
         /// The mathematical function defining the Function object
         virtual VecMath::Vector<4> &f(double, double) = 0;
@@ -120,9 +124,10 @@ class Surface: public SurfaceBase {
                             double _umin, double _umax, double _du,
                             double _vmin, double _vmax, double _dv);
 
-        vec4vec2D Data (void) { return X; }
+        vec4vec2D Data (void) { return X; } ///< direct access to the function values
 
-        virtual unsigned getDefinitionSpaceDimensions() { return 2; }
+        /// \see Function::getDefinitionSpaceDimensions()
+        virtual const unsigned getDefinitionSpaceDimensions() { return 2; }
 
     protected:
          virtual vec4vec1D df (double, double);
@@ -133,19 +138,16 @@ class Surface: public SurfaceBase {
 
          virtual unsigned long MemRequired (void);
 
-         void DrawPlane (unsigned);
          void DrawStrip (unsigned);
 
+         /// redeclare \see Function::NumVertices as protected
          unsigned NumVertices;
 
          VecMath::Vector<4> F;
 
-         /// temporary storage for the function values on the grid
-         vec4vec2D X, Xtrans;
-         vec3vec2D Xscr;
-
-         /// storage for the coloring of the vertices
-//         floatvec2D R, G, B;
+         vec4vec2D X,       ///< temporary storage for the function values on the grid
+                   Xtrans;  ///< temporary storage for the function values on the grid
+         vec3vec2D Xscr;    ///< temporary storage for the function values on the grid
 };
 
 /** An example surface:
