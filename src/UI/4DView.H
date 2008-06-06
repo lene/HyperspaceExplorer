@@ -170,6 +170,15 @@ class C4DView : public QGLWidget {
         double Benchmark3D(int, double, double, double, bool = true);
         double Benchmark4D(int, double, double, double, bool = true);
 
+        /// Makes setting a parameter from the outside possible
+        /** @param parmName Name of the parameter, as defined in the Function
+         *  @param value Parameter value. Type must match exactly.            */
+        template <typename T>
+                void setParameter(const std::string &parmName, const T &value) {
+            ApplyChanges(ParameterMap(parmName, value));
+        }
+        void Transform(const VecMath::Rotation<4> &R, const VecMath::Vector<4> &T);
+
     private slots:
         void OnTimer();
         void AnimationSettings();
@@ -179,7 +188,6 @@ class C4DView : public QGLWidget {
         void aboutQt ();
 
     private:
-        void Transform(const VecMath::Rotation<4> &R, const VecMath::Vector<4> &T);
         /// Overloaded function executing the transform to the default state
         void Transform() { Transform (VecMath::Rotation<4>(),  VecMath::Vector<4>()); }
         void Project();

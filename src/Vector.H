@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 
 # if (!defined __PI)
 #   include <cmath>
@@ -239,7 +240,7 @@ namespace VecMath {
 
     template <unsigned D, typename N>
             N Vector<D, N>::sqnorm (void) const {
-    return operator* (*this);
+        return operator* (*this);
     }
 
 
@@ -249,15 +250,30 @@ namespace VecMath {
     /** \ingroup VecMath
      *  @param o ostream to push into
      *  @param v Vector to print
-     *  @return a new ostream to push Vectors and stuff into                   */
+     *  @return a new ostream to push Vectors and stuff into                  */
     template <unsigned D, typename N>
             std::ostream &operator << (std::ostream &o, const Vector<D, N> &v) {
         //  i might want to use other brackets one day
         o << "<";
-        for ( unsigned i = 0; i < v.dimension ()-1; i++ )
-        o << v[i] << ",";
+        for (unsigned i = 0; i < v.dimension ()-1; i++) o << v[i] << ",";
         o << v[v.dimension ()-1] << ">";
         return o;
+    }
+    
+    /// Vector input operator
+    /** \ingroup VecMath
+     *  @param o istream to read from
+     *  @param v Vector to read
+     *  @return a new istream to read stuff from                              */
+    template <unsigned D, typename N>
+            std::istringstream &operator >> (std::istringstream &in, Vector<D, N> &v) {
+        char bracket;
+        while (bracket != '<' && !in.eof()) { in >> bracket; }
+        for (unsigned i = 0; i < v.dimension ()-1; i++) {
+            in >> v[i] >> bracket;
+        }
+        in >> v[v.dimension ()-1] >> bracket;
+        return in;
     }
 
     /// cross product of two Vectors

@@ -403,8 +403,8 @@ void C4DView::ApplyChanges (const ParameterMap &parms) {
     F().get()->SetParameters(parms);
 
     SingletonLog::Instance() << "C4DView::ApplyChanges ():\n"
-                             << "Parms = " << parms.print() << "\n"
-                             << "Values = " << Values()->print() << "\n";
+                             << "  Parms = " << parms.print() << "\n"
+                             << "  Values = " << Values()->print() << "\n";
 
     F()->ReInit (Values()->tmin (), Values()->tmax (), Values()->dt (),
                Values()->umin (), Values()->umax (), Values()->du (),

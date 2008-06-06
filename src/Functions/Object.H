@@ -164,6 +164,7 @@ public:
     virtual void Draw (void);
 
     virtual void SetParameters(const ParameterMap &parms) {
+        std::cerr << "Sponge::SetParameters(" << parms.print() << ")\n";
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {

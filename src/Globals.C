@@ -75,6 +75,14 @@ double Global::atod (QString s) {
   return s.toDouble ();
 }
 
+int Global::atoi(std::string s) {
+    return QString(s.c_str()).toInt();
+}
+
+unsigned Global::atou(std::string s) {
+    return QString(s.c_str()).toUInt();
+}
+
 /** makes a string  from an integer value
  *  implemented because I called a function itoa () ages ago, for convenience
  *  @param x	number to be converted

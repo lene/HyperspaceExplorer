@@ -117,7 +117,10 @@ namespace VecMath {
             operator bool() const { return axis.sqnorm() != 0.; }
 
             /// access the stored values (needed by output operator <<())
-            const Vector<NumAxes<D>::num, N> r() const { return axis; }
+            const Vector<NumAxes<D>::num, N> &r() const { return axis; }
+
+            /// write access the stored values (needed by input operator >>())
+            Vector<NumAxes<D>::num, N> &r() { return axis; }
 
         private:
             /// Rotation angles are stored as a Vector, operations are delegated
@@ -171,9 +174,20 @@ namespace VecMath {
      *  @return a new ostream to push Rotations and stuff into                */
     template <unsigned D, typename N>
             std::ostream &operator << (std::ostream &o, const Rotation<D, N> &v) {
-                o << v.r();
-                return o;
-            }
+        o << v.r();
+        return o;
+    }
+
+    /// Rotation input operator
+    /** \ingroup VecMath
+     *  @param o istream to read from
+     *  @param v Rotation to read
+     *  @return a new istream to read stuff from                              */
+    template <unsigned D, typename N>
+            std::istringstream &operator >> (std::istringstream &in, Rotation<D, N> &v) {
+        in >> v.r();
+        return in;
+    }
 
 }
 

@@ -24,6 +24,7 @@
 #include "4DView.H"
 #include "Menu4D.H"
 #include "Globals.H"
+#include "Parser.H"
 
 using std::cout;
 using std::cerr;
@@ -38,6 +39,8 @@ using std::vector;
 void help (QString progname) {
   cout << "Usage:" << endl
        << progname.toStdString() << " [--rcdir dir]" << endl
+       << QString(progname.size(), ' ').toStdString()
+       << " [--script scriptfile]" << endl
        << QString(progname.size(), ' ').toStdString()
        << " [--benchmark [number_of_runs]]" << endl
        << QString(progname.size(), ' ').toStdString()
@@ -232,14 +235,34 @@ void benchmark (const unsigned num_runs = 10) {
 /** parses commandline
  *  choices for args:
  *              --rcdir <resource_directory>
+ *              --script <script_file>
  *              --benchmark [number_of_runs]
  *  @param argc number of arguments
  *  @param argv array of arguments                                            */
 void parse (int argc, char *argv[]) {
     for (int i = 0; i < argc; i++) {
-        if (QString (argv[i]) == QString ("--rcdir"))
+        if (QString (argv[i]) == QString ("--rcdir")) {
             if (i+1 < argc)
                 Globals::Instance().rcdirs.append (QString (argv[i+1]));
+        }
+        if (QString (argv[i]) == QString ("--script")) {
+            if (i+1 < argc) {
+                Parser parser(argv[i+1]);
+                C4DView view;
+
+                Globals::Instance().getMainWindow()->setCentralWidget(&view);
+                Globals::Instance().getMainWindow()->resize(580,600);
+
+                Globals::Instance().getMainWindow()->show();
+
+                parser.setView(&view);
+
+                parser.execute();
+//                usleep(2000000);
+                
+                exit(0);
+            }
+        }
         if (QString (argv[i]) == QString ("--help") ||
 	    QString (argv[i]) == QString ("-h")) {
             help (argv[0]);
