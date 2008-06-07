@@ -32,36 +32,6 @@ class Parser {
         C4DView *getView() const { return view; }
 
     private:
-        // currently defined interface follows; this is only a draft
-
-        // statically set the state
-        void setObject();
-        void setParameters();
-        void setTransform();
-
-        // animation commands
-        void setParametersStep();
-        void setTransformStep();
-        void setNumFrames(unsigned);
-        void setLoop(unsigned);
-
-        // view states
-        void setColors(bool);
-        void setShade(bool);
-        void setLighting(bool);
-        void setTransparent(bool);
-        void setWireframe(bool);
-        void setDepthcue3D(bool);
-        void setDepthcue4D(bool);
-        void setCoordinates(bool);
-
-        // saving as images
-        void setRenderToImages(bool);
-        void setImageDir(const std::string &);
-        void setImagePrefix(const std::string &);
-        void setMaxFrames(unsigned);
-
-    private:
         std::vector<std::string> lines;
         C4DView *view;
 };
@@ -73,7 +43,7 @@ class Statement {
         virtual bool execute();
         const std::string &arg() { return m_arg; }
         const Parser *parser() { return m_parser; }
-        
+
     private:
         std::string m_arg;
         const Parser *m_parser;

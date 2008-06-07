@@ -177,7 +177,11 @@ class C4DView : public QGLWidget {
                 void setParameter(const std::string &parmName, const T &value) {
             ApplyChanges(ParameterMap(parmName, value));
         }
-        void Transform(const VecMath::Rotation<4> &R, const VecMath::Vector<4> &T);
+        void applyTransform(const VecMath::Rotation<4> &R,
+                            const VecMath::Vector<4> &T) {
+            Transform(R, T);
+            Redraw();
+        }
 
     private slots:
         void OnTimer();
@@ -188,6 +192,7 @@ class C4DView : public QGLWidget {
         void aboutQt ();
 
     private:
+        void Transform(const VecMath::Rotation<4> &R, const VecMath::Vector<4> &T);
         /// Overloaded function executing the transform to the default state
         void Transform() { Transform (VecMath::Rotation<4>(),  VecMath::Vector<4>()); }
         void Project();

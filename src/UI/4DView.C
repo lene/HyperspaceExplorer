@@ -447,9 +447,8 @@ void C4DView::aboutQt() {
  *  @param T translation                                                      */
 void C4DView::Transform(const VecMath::Rotation<4> &R,
                         const VecMath::Vector<4> &T) {
-    if (F().get())
-        F()->Transform (R, T);
-    else return;
+    if (F().get()) { F()->Transform (R, T); }
+    else { return; }
 
     Matrix<4> Rot(R);
     for (unsigned i = 0; i < 4; i++)

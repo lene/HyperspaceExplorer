@@ -125,12 +125,11 @@ bool XformStmt::execute() {
     std::istringstream s(arg());
     VecMath::Rotation<4> r;
     s >> r;
-    parser()->getView()->Transform(r, VecMath::Vector<4>());
-    cout << "XformStmt::execute(" << arg() << ") - " << r << endl;
+    parser()->getView()->applyTransform(r, VecMath::Vector<4>());
     return true;
 }
 
 bool SleepStmt::execute() {
-    usleep(Globals::Instance().atou(trailing(arg(), " ")));
+    usleep(Globals::Instance().atou(trailing(arg(), " "))*1000);
     return true;
 }
