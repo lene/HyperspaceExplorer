@@ -247,7 +247,7 @@ void parse (int argc, char *argv[]) {
         }
         if (QString (argv[i]) == QString ("--script")) {
             if (i+1 < argc) {
-                Parser parser(argv[i+1]);
+                Script::Parser parser(argv[i+1]);
                 C4DView view;
 
                 Globals::Instance().getMainWindow()->setCentralWidget(&view);
@@ -259,7 +259,7 @@ void parse (int argc, char *argv[]) {
 
                 parser.execute();
 //                usleep(2000000);
-                
+
                 exit(0);
             }
         }
