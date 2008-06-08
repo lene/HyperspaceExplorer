@@ -75,11 +75,15 @@ double Global::atod (QString s) {
   return s.toDouble ();
 }
 
-int Global::atoi(std::string s) {
+double Global::atod (const std::string &s) {
+    return QString(s.c_str()).toDouble ();
+}
+
+int Global::atoi(const std::string &s) {
     return QString(s.c_str()).toInt();
 }
 
-unsigned Global::atou(std::string s) {
+unsigned Global::atou(const std::string &s) {
     return QString(s.c_str()).toUInt();
 }
 

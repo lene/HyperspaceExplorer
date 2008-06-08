@@ -64,8 +64,9 @@ class Global {
         void setFogColor(const Color &rgba) { fog_color = rgba; }
 
         double atod (QString);
-        int atoi(std::string s);
-        unsigned atou(std::string s);
+        double atod (const std::string &);
+        int atoi(const std::string &);
+        unsigned atou(const std::string &);
 
         std::string itoa (int x);
         std::string ftoa (double x);

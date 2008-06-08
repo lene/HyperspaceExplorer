@@ -291,8 +291,12 @@ class C4DView : public QGLWidget {
 
         double distance() {return pImpl->distance; }
 
-        void setanimationDirectory(const QString &b) { pImpl->animationDirectory = b; }
-        const QString & animationDirectory() const { return pImpl->animationDirectory; }
+        void setanimationDirectory(const QString &b) {
+            pImpl->animationDirectory = b;
+        }
+        const QString & animationDirectory() const {
+            return pImpl->animationDirectory;
+        }
         void setanimationPrefix(const QString &b) { pImpl->animationPrefix = b; }
         const QString & animationPrefix() const { return pImpl->animationPrefix; }
 

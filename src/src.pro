@@ -34,6 +34,14 @@ SOURCES += Functions/ComplexFunction.C Functions/CustomFunction.C \
 #          Functions/SteinerFunction.C
 
 ###
+###     Script
+###
+INCLUDEPATH += ./Script
+DEPENDPATH += ./Script
+HEADERS += Script/Parser.H Script/Statement.H
+SOURCES += Script/Parser.C Script/Statement.C
+
+###
 ###     UI
 ###
 INCLUDEPATH += ./UI
@@ -75,8 +83,8 @@ HEADERS += Loki/SingletonHolder.H
 INCLUDEPATH += .
 DEPENDPATH += .
 HEADERS += Globals.H Help.H Matrix.H Vector.H Log.H Color.H ColorManager.H \
-           Rotation.H NotYetImplementedException.H Parser.H
-SOURCES += Globals.C Help.C Main.C ColorManager.C Rotation.C Parser.C
+           Rotation.H NotYetImplementedException.H
+SOURCES += Globals.C Help.C Main.C ColorManager.C Rotation.C
 
 ###
 ################################################################################
