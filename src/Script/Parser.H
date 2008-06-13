@@ -2,12 +2,13 @@
 #define PARSER_H
 
 #include "Parser.H"
+#include "View.H"
 
 #include <string>
 #include <vector>
 #include <stdexcept>
 
-class C4DView;
+//class UI::View;
 
 namespace Script {
 
@@ -35,12 +36,12 @@ namespace Script {
             bool execute();
 
             /// define the view we operate on
-            void setView(C4DView *_view) { view = _view; }
-            C4DView *getView() const { return view; }
+            void setView(UI::View *_view) { view = _view; }
+            UI::View *getView() const { return view; }
 
         private:
             std::vector<std::string> lines;
-            C4DView *view;
+            UI::View *view;
     };
 
 

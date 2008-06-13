@@ -4,18 +4,25 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 
 using std::string;
 using std::vector;
+using std::min;
 
 using std::cout;
 using std::endl;
 
 namespace Script {
     string strip_ws(const string &s) {
-        unsigned start = s.find_first_not_of(" \t\n\r");
-        if (start >= s.length()) return string();
-        return string(s, start, s.find_last_not_of(" \t\n\r")-start+1);
+        unsigned start = s.find_first_not_of(" \t\n\r"),
+                 end = s.find_last_not_of(" \t\n\r")+1;
+        if ((start >= s.length()) || (start >= end)) return string();
+        return string(s, start, end-start);
+    }
+
+    string strip_comments(const string &s) {
+        return strip_ws(string(s, 0, s.find('#')));
     }
 
     bool starts_with(const string &haystack, const string &needle) {
@@ -38,7 +45,7 @@ namespace Script {
             char buffer[4096];
             while(!infile.eof()) {
                 infile.getline(buffer, 4095, '\n');
-                if (!(strip_ws(buffer).empty())) lines.push_back(string(buffer));
+                if (!(strip_comments(buffer).empty())) lines.push_back(strip_comments(buffer));
             }
         }
     }

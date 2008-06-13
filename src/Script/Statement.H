@@ -23,6 +23,15 @@ namespace Script {
             const Parser *m_parser;
     };
 
+    class SizeStmt: public Statement {
+        public:
+            SizeStmt(const Parser *p, const std::string &_arg);
+            virtual bool execute();
+        private:
+            unsigned width;
+            unsigned height;
+    };
+
     class ObjectStmt: public Statement {
         public:
             ObjectStmt(const Parser *p, const std::string &_arg):
@@ -82,6 +91,18 @@ namespace Script {
             virtual bool execute();
         private:
             unsigned msec;
+    };
+
+    class ImgDirStmt: public Statement {
+        public:
+            ImgDirStmt(const Parser *p, const std::string &_arg): Statement(p, _arg) { }
+            virtual bool execute();
+    };
+
+    class ImgPrefixStmt: public Statement {
+        public:
+            ImgPrefixStmt(const Parser *p, const std::string &_arg): Statement(p, _arg) { }
+            virtual bool execute();
     };
 
     class StatementFactory {

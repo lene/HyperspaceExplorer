@@ -6,12 +6,13 @@
 //      author:	      helge preuss (scout@hyperspace-travel.de)
 //      license:      GPL (see License.txt)
 
-#ifndef VIEW_H
-#define VIEW_H
+#ifndef C4DVIEW_H
+#define C4DVIEW_H
 
 #include <QTimer>
 #include <QGLWidget>
 
+#include "View.H"
 #include "ValuesDialogImpl.H"
 #include "Rotation.H"
 
@@ -74,7 +75,7 @@ class SurfaceFactory {
 /** This class is much too fat and will be split into parts wherever possible
  *  \ingroup UIGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
-class C4DView : public QGLWidget {
+class C4DView : public QGLWidget, public UI::View {
 
     public:
         /// Class template implementation for a factory creating Function's
@@ -135,10 +136,10 @@ class C4DView : public QGLWidget {
         void Benchmark();
         void RenderToImages();
 
-        void ObjectHypercube();
-        void ObjectHyperpyramid();
-        void ObjectHypersponge();
-        void ObjectGasket();
+        virtual void ObjectHypercube();
+        virtual void ObjectHyperpyramid();
+        virtual void ObjectHypersponge();
+        virtual void ObjectGasket();
         void customFunction();
         void customPolarFunction();
         void customSurface();
@@ -170,23 +171,39 @@ class C4DView : public QGLWidget {
         double Benchmark3D(int, double, double, double, bool = true);
         double Benchmark4D(int, double, double, double, bool = true);
 
-        /// Makes setting a parameter from the outside possible
-        /** @param parmName Name of the parameter, as defined in the Function
-         *  @param value Parameter value. Type must match exactly.            */
-        template <typename T>
-                void setParameter(const std::string &parmName, const T &value) {
-            ApplyChanges(ParameterMap(parmName, value));
-        }
-        void applyTransform(const VecMath::Rotation<4> &R,
+        virtual void applyTransform(const VecMath::Rotation<4> &R,
                             const VecMath::Vector<4> &T) {
             Transform(R, T);
             Redraw();
         }
 
+        virtual void animate() {
+            for (unsigned i = 0; i < getNumLoops(); i++) {
+                for (unsigned i = 0; i < getNumFrames(); i++) {
+                    addR(dR());
+                    std::cerr << R() << std::endl;
+                    Transform(R(), VecMath::Vector<4>());
+                    Project();
+                    Redraw();
+                }
+            }
+        }
+
+        virtual void setImgDir(const std::string &s) {
+            setanimationDirectory(QString(s.c_str()));
+            setRenderToPixmap(true);
+        }
+        virtual void setImgPrefix(const std::string &s) {
+            setanimationPrefix(QString(s.c_str()));
+            setRenderToPixmap(true);
+        }
+
+        virtual void setSize(unsigned w, unsigned h);
+
     private slots:
         void OnTimer();
         void AnimationSettings();
-        void ApplyChanges(const ParameterMap &);
+        virtual void ApplyChanges(const ParameterMap &);
         void Help();
         void about ();
         void aboutQt ();
@@ -233,23 +250,23 @@ class C4DView : public QGLWidget {
         void setF(Function *_f) { pImpl->F.reset(_f); }
         const std::auto_ptr<Function> &F() const { return pImpl->F; }
 
-        void setT(VecMath::Vector<4> _t) { pImpl->T = _t; }
+        void setT(const VecMath::Vector<4> &_t) { pImpl->T = _t; }
         const VecMath::Vector<4> &T() { return pImpl->T; }
         void addT(const VecMath::Vector<4> &_dT) { pImpl->T += _dT; }
 
-        void setR(VecMath::Rotation<4> _r) { pImpl->R = _r; }
+        void setR(const VecMath::Rotation<4> &_r) { pImpl->R = _r; }
         const VecMath::Rotation<4> &R() { return pImpl->R; }
         void addR(const VecMath::Rotation<4> &_dR) { pImpl->R += _dR; }
 
-        void setdR3(VecMath::Rotation<3> _dr) { pImpl->dR3 = _dr; }
+        void setdR3(const VecMath::Rotation<3> &_dr) { pImpl->dR3 = _dr; }
         const VecMath::Rotation<3> &dR3() { return pImpl->dR3; }
         void adddR3(const VecMath::Rotation<3> &_ddr) { pImpl->dR3 += _ddr; }
 
-        void setdR(VecMath::Rotation<4> _dr) { pImpl->dR = _dr; }
+        virtual void setdR(const VecMath::Rotation<4> &_dr) { pImpl->dR = _dr; }
         const VecMath::Rotation<4> &dR() { return pImpl->dR; }
         void adddR(const VecMath::Rotation<4> &_ddR) { pImpl->dR += _ddR; }
 
-        void setm_rot(VecMath::Rotation<3, GLdouble> _r) {
+        void setm_rot(const VecMath::Rotation<3, GLdouble> &_r) {
             pImpl->m_rot = _r;
         }
         const VecMath::Rotation<3, GLdouble> &m_rot() {
@@ -259,7 +276,7 @@ class C4DView : public QGLWidget {
             pImpl->m_rot += _dmr;
         }
 
-        void setm_trans(VecMath::Vector<3, GLdouble> _t) {
+        void setm_trans(const VecMath::Vector<3, GLdouble> &_t) {
             pImpl->m_trans = _t;
         }
         const VecMath::Vector<3, GLdouble> &m_trans() {
@@ -269,9 +286,9 @@ class C4DView : public QGLWidget {
             pImpl->m_trans += _dmt;
         }
 
-        void setCamW(double _cw) { pImpl->CamW = _cw; }
+        void setCamW(const double &_cw) { pImpl->CamW = _cw; }
         double CamW() const { return pImpl->CamW; }
-        void setScrW(double _sw) { pImpl->ScrW = _sw; }
+        void setScrW(const double &_sw) { pImpl->ScrW = _sw; }
         double ScrW() const { return pImpl->ScrW; }
 
         void setAntiAlias(bool b) { pImpl->AntiAlias = b; }
@@ -378,6 +395,7 @@ class C4DView : public QGLWidget {
                 RenderToPixmap (false),
                 animationDirectory("/tmp"),
                 animationPrefix("HyperspaceExplorer_Image"),
+                animationFrame(0),
                 animationMaxFrames((unsigned)-1),
                 animation_fps (50),
 
@@ -421,6 +439,7 @@ class C4DView : public QGLWidget {
 
             QString animationDirectory; ///< where to save an animation's frames
             QString animationPrefix;    ///< prefix of animation frame filenames
+            unsigned animationFrame;    ///< current frame in animation
             unsigned animationMaxFrames;    ///< limit for saved animation frames
             const unsigned animation_fps;   ///< frames per second for animations
 
@@ -428,7 +447,6 @@ class C4DView : public QGLWidget {
             GLint CoordinateCross;  ///< a GLList for the display of the coordinates
 
             bool Animated;              ///< if true, image is currently animated
-            unsigned animationFrame;    ///< current frame in animation
 
             bool CurrentlyRendering;    ///< if true, currently rendering an image
 
@@ -467,4 +485,4 @@ class C4DView : public QGLWidget {
 #include "CustomFunctionSlot.impl.H"
 #include "TemplatedFunctionFactory.impl.H"
 
-#endif // !defined(4DVIEW)
+#endif // !defined(C4DVIEW)

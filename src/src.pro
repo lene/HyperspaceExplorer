@@ -51,7 +51,7 @@ HEADERS += UI/4DView.H UI/ComplexDialogImpl.H UI/FunctionDialogImpl.H \
            UI/Menu4D.H UI/PluginCreator.H \
            UI/AnimationDialogImpl.H UI/SlotHelper.H UI/CustomFunctionSlot.impl.H \
            UI/TemplatedFunctionFactory.impl.H  UI/ValuesDialog.H \
-           UI/MouseHandler.H
+           UI/MouseHandler.H UI/View.H
 SOURCES += UI/4DView.C UI/Menu4D.C UI/ComplexDialogImpl.C \
            UI/FunctionDialogImpl.C UI/PolarDialogImpl.C UI/SurfaceDialogImpl.C \
            UI/ValuesDialogImpl.C UI/PluginCreator.C \

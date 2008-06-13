@@ -1,7 +1,7 @@
 
+#include "View.H"
 #include "Parser.H"
 #include "Statement.H"
-#include "4DView.H"
 
 #include <iostream>
 
@@ -15,6 +15,17 @@ namespace Script {
 
     bool Statement::execute() {
         cout << "Statement::execute(" << arg() << ")" << endl;
+        return true;
+    }
+
+    SizeStmt::SizeStmt(const Parser *p, const std::string &_arg):
+            Statement(p, _arg) {
+        width = Globals::Instance().atou(leading(arg(), " "));
+        height = Globals::Instance().atou(trailing(arg(), " "));
+    }
+
+    bool SizeStmt::execute() {
+        parser()->getView()->setSize(width, height);
         return true;
     }
 
@@ -64,8 +75,7 @@ namespace Script {
     }
 
     bool DeltaStmt::execute() {
-//        parser()->getView()->applyTransform(r(), VecMath::Vector<4>());
-        cout << "DeltaStmt::execute(" << r() << ")\n";
+        parser()->getView()->setdR(r());
         return true;
     }
 
@@ -75,7 +85,7 @@ namespace Script {
     }
 
     bool FramesStmt::execute() {
-        cout << "FramesStmt::execute(" << frames << ")\n";
+        parser()->getView()->setNumFrames(frames);
         return true;
     }
 
@@ -85,12 +95,12 @@ namespace Script {
     }
 
     bool LoopStmt::execute() {
-        cout << "LoopStmt::execute(" << loops << ")\n";
+        parser()->getView()->setNumLoops(loops);
         return true;
     }
 
     bool AnimateStmt::execute() {
-        cout << "AnimateStmt::execute()\n";
+        parser()->getView()->animate();
         return true;
     }
 
@@ -104,9 +114,21 @@ namespace Script {
         return true;
     }
 
+    bool ImgDirStmt::execute() {
+        parser()->getView()->setImgDir(arg());
+        return true;
+    }
+
+    bool ImgPrefixStmt::execute() {
+        parser()->getView()->setImgPrefix(arg());
+        return true;
+    }
+    
     Statement *StatementFactory::createStatement(const Parser *p,
                                                  const std::string &line) {
-        if (starts_with(line, "object")) {
+        if (starts_with(line, "set_size")) {
+            return new SizeStmt(p, trailing(line, "set_size"));
+        } else if (starts_with(line, "object")) {
             return new ObjectStmt(p, trailing(line, "object"));
         } else if (starts_with(line, "parameter double ")) {
             return new ParmStmt<double>(p, trailing(line, "parameter double"));
@@ -149,9 +171,9 @@ namespace Script {
         } else if (starts_with(line, "coordinates")) {
             return new Statement(p, trailing(line, "coordinates"));
         } else if (starts_with(line, "image_dir")) {
-            return new Statement(p, trailing(line, "image_dir"));
+            return new ImgDirStmt(p, trailing(line, "image_dir"));
         } else if (starts_with(line, "image_prefix")) {
-            return new Statement(p, trailing(line, "image_prefix"));
+            return new ImgPrefixStmt(p, trailing(line, "image_prefix"));
         } else if (starts_with(line, "sleep")) {
             return new SleepStmt(p, trailing(line, "sleep"));
         }

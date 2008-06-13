@@ -95,6 +95,10 @@ C4DView::C4DView(QWidget *parent):
 /// C4DView destructor
 C4DView::~C4DView() { }
 
+void C4DView::setSize(unsigned w, unsigned h) {
+    Globals::Instance().getMainWindow()->resize(w, h);
+}
+
 /// Switch between wireframe and solid display
 /** Account for antialiasing only in wireframe mode
  *
