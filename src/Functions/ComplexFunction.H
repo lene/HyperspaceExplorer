@@ -29,6 +29,7 @@
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class ComplexFunction: public Surface {
     public:
+        ComplexFunction (const QString &name): Surface(name) { }
         ComplexFunction (const QString &name,
                          double _umin, double _umax, double _du,
                          double _vmin, double _vmax, double _dv);
@@ -47,6 +48,7 @@ class ComplexFunction: public Surface {
  *  \ingroup ComplexGroup                                                    */
 class z2: public ComplexFunction {
     public:
+        z2 (): ComplexFunction("z2") { }
         z2 (double _umin, double _umax, double _du,
             double _vmin, double _vmax, double _dv);
         virtual ~z2() { }
@@ -55,22 +57,34 @@ class z2: public ComplexFunction {
 	virtual function_type g;
 };
 
+namespace {
+    Function *createz2() { return new z2(); }
+    const bool registered1 = TheFunctionFactory::Instance().registerFunction("z2", createz2);
+}
+
 /** \f$ f(z) = z^3 \f$
  *  \ingroup ComplexGroup                                                    */
 class z3: public ComplexFunction {
     public:
-	z3 (double _umin, double _umax, double _du,
-	    double _vmin, double _vmax, double _dv);
-	virtual ~z3() { }
+        z3 (): ComplexFunction("z3") { }
+        z3 (double _umin, double _umax, double _du,
+            double _vmin, double _vmax, double _dv);
+        virtual ~z3() { }
 
     protected:
         virtual function_type g;
 };
 
+namespace {
+    Function *createz3() { return new z3(); }
+    const bool registered2 = TheFunctionFactory::Instance().registerFunction("z3", createz3);
+}
+
 /** \f$ f(z) = z^\alpha \f$
  *  \ingroup ComplexGroup                                                    */
 class zA: public ComplexFunction {
     public:
+        zA (): ComplexFunction("zA"), alpha(2) { }
         zA (double _umin, double _umax, double _du,
             double _vmin, double _vmax, double _dv,
             double _alpha = 2);
@@ -94,10 +108,16 @@ class zA: public ComplexFunction {
         double alpha;   ///< Exponent
 };
 
+namespace {
+    Function *createzA() { return new zA(); }
+    const bool registered3 = TheFunctionFactory::Instance().registerFunction("zA", createzA);
+}
+
 /** \f$ f(z) = e^{\alpha*z} \f$
  *  \ingroup ComplexGroup                                                    */
 class ez: public ComplexFunction {
     public:
+        ez (): ComplexFunction("ez"), alpha(2) { }
         ez (double _umin, double _umax, double _du,
             double _vmin, double _vmax, double _dv,
             double _alpha = 2);
@@ -120,10 +140,16 @@ class ez: public ComplexFunction {
         double alpha;
 };
 
+namespace {
+    Function *createez() { return new ez(); }
+    const bool registered4 = TheFunctionFactory::Instance().registerFunction("ez", createez);
+}
+
 /** \f$ f(z) = e^{-\alpha*z^2} \f$
  *  \ingroup ComplexGroup                                                    */
 class emz2: public ComplexFunction {
     public:
+        emz2 (): ComplexFunction("emz2"), alpha(1) { }
         emz2 (double _umin, double _umax, double _du,
               double _vmin, double _vmax, double _dv,
               double _alpha = 1);
@@ -146,10 +172,16 @@ class emz2: public ComplexFunction {
         double alpha;
 };
 
+namespace {
+    Function *createemz2() { return new emz2(); }
+    const bool registered5 = TheFunctionFactory::Instance().registerFunction("emz2", createemz2);
+}
+
 /** \f$ f(z) = \frac{1}{z} \f$
  *  \ingroup ComplexGroup                                                    */
 class zm1: public ComplexFunction {
     public:
+        zm1 (): ComplexFunction("zm1") { }
         zm1 (double _umin, double _umax, double _du,
              double _vmin, double _vmax, double _dv);
         virtual ~zm1 () { }
@@ -158,10 +190,16 @@ class zm1: public ComplexFunction {
         virtual function_type g;
 };
 
+namespace {
+    Function *createzm1() { return new zm1(); }
+    const bool registered6 = TheFunctionFactory::Instance().registerFunction("zm1", createzm1);
+}
+
 /** \f$ f(z) = \frac{1}{z^2} \f$
  *  \ingroup ComplexGroup                                                    */
 class zm2: public ComplexFunction {
     public:
+        zm2 (): ComplexFunction("zm2") { }
         zm2 (double _umin, double _umax, double _du,
              double _vmin, double _vmax, double _dv);
         virtual ~zm2 () { }
@@ -170,89 +208,136 @@ class zm2: public ComplexFunction {
         virtual function_type g;
 };
 
+namespace {
+    Function *createzm2() { return new zm2(); }
+    const bool registered7 = TheFunctionFactory::Instance().registerFunction("zm2", createzm2);
+}
+
 /** \f$ f(z) = \sqrt{z} \f$
  *  \ingroup ComplexGroup                                                    */
 class sqrtz: public ComplexFunction {
     public:
-	sqrtz (double _umin, double _umax, double _du,
-	       double _vmin, double _vmax, double _dv);
-	virtual ~sqrtz () { }
+        sqrtz (): ComplexFunction("sqrtz") { }
+        sqrtz (double _umin, double _umax, double _du,
+               double _vmin, double _vmax, double _dv);
+        virtual ~sqrtz () { }
 
     protected:
         virtual function_type g;
 };
+
+namespace {
+    Function *createsqrtz() { return new sqrtz(); }
+    const bool registered8 = TheFunctionFactory::Instance().registerFunction("sqrtz", createsqrtz);
+}
 
 /** \f$ f(z) = \ln{z} \f$
  *  \ingroup ComplexGroup                                                    */
 class lnz: public ComplexFunction {
     public:
-	lnz (double _umin, double _umax, double _du,
-	     double _vmin, double _vmax, double _dv);
-	virtual ~lnz () { }
+        lnz (): ComplexFunction("lnz") { }
+        lnz (double _umin, double _umax, double _du,
+             double _vmin, double _vmax, double _dv);
+        virtual ~lnz () { }
 
     protected:
         virtual function_type g;
 };
+
+namespace {
+    Function *createlnz() { return new lnz(); }
+    const bool registered9 = TheFunctionFactory::Instance().registerFunction("lnz", createlnz);
+}
 
 /** \f$ f(z) = \sin{z} \f$
  *  \ingroup ComplexGroup                                                    */
 class sinz: public ComplexFunction {
     public:
-	sinz (double _umin, double _umax, double _du,
-	      double _vmin, double _vmax, double _dv);
-	virtual ~sinz () { }
+        sinz (): ComplexFunction("sinz") { }
+        sinz (double _umin, double _umax, double _du,
+              double _vmin, double _vmax, double _dv);
+        virtual ~sinz () { }
 
     protected:
         virtual function_type g;
 };
+
+namespace {
+    Function *createsinz() { return new sinz(); }
+    const bool registered10 = TheFunctionFactory::Instance().registerFunction("sinz", createsinz);
+}
 
 /** \f$ f(z) = \cos{z} \f$
  *  \ingroup ComplexGroup                                                    */
 class cosz: public ComplexFunction {
     public:
-	cosz (double _umin, double _umax, double _du,
-	      double _vmin, double _vmax, double _dv);
-	virtual ~cosz () { }
+        cosz (): ComplexFunction("cosz") { }
+        cosz (double _umin, double _umax, double _du,
+              double _vmin, double _vmax, double _dv);
+        virtual ~cosz () { }
 
     protected:
         virtual function_type g;
 };
+
+namespace {
+    Function *createcosz() { return new cosz(); }
+    const bool registered11 = TheFunctionFactory::Instance().registerFunction("cosz", createcosz);
+}
 
 /** \f$ f(z) = \sinh{z} \f$
  *  \ingroup ComplexGroup                                                    */
 class sinhz: public ComplexFunction {
     public:
-	sinhz (double _umin, double _umax, double _du,
-	       double _vmin, double _vmax, double _dv);
-	virtual ~sinhz () { }
+        sinhz (): ComplexFunction("sinhz") { }
+        sinhz (double _umin, double _umax, double _du,
+               double _vmin, double _vmax, double _dv);
+        virtual ~sinhz () { }
 
     protected:
         virtual function_type g;
 };
+
+namespace {
+    Function *createsinhz() { return new sinhz(); }
+    const bool registered12 = TheFunctionFactory::Instance().registerFunction("sinhz", createsinhz);
+}
 
 /** \f$ f(z) = \cosh{z} \f$
  *  \ingroup ComplexGroup                                                    */
 class coshz: public ComplexFunction {
     public:
-	coshz (double _umin, double _umax, double _du,
-	       double _vmin, double _vmax, double _dv);
-	virtual ~coshz () { }
+        coshz (): ComplexFunction("coshz") { }
+        coshz (double _umin, double _umax, double _du,
+               double _vmin, double _vmax, double _dv);
+        virtual ~coshz () { }
 
     protected:
         virtual function_type g;
 };
+
+namespace {
+    Function *createcoshz() { return new coshz(); }
+    const bool registered13 = TheFunctionFactory::Instance().registerFunction("coshz", createcoshz);
+}
 
 /** \f$ f(z) = \tan{z} \f$
  *  \ingroup ComplexGroup                                                    */
 class tanz: public ComplexFunction {
     public:
-	tanz (double _umin, double _umax, double _du,
-		 double _vmin, double _vmax, double _dv);
-	virtual ~tanz () { }
+        tanz (): ComplexFunction("tanz") { }
+        tanz (double _umin, double _umax, double _du,
+              double _vmin, double _vmax, double _dv);
+        virtual ~tanz () { }
 
     protected:
         virtual function_type g;
 };
+
+namespace {
+    Function *createtanz() { return new tanz(); }
+    const bool registered14 = TheFunctionFactory::Instance().registerFunction("tanz", createtanz);
+}
 
 /** a third-order polynomial of z, not yet implemented
  *  \ingroup ComplexGroup                                                    */

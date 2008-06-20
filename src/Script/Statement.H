@@ -8,7 +8,14 @@ class Parser;
 
 namespace Script {
 
+    class BadStatementException: public std::runtime_error {
+        public:
+                BadStatementException(const std::string &what):
+                    std::runtime_error(what) { }
+    };
+
     class Statement {
+
         public:
             Statement(const Parser *_parser, const std::string &_arg):
                 m_arg(_arg), m_parser(_parser) { }
@@ -21,6 +28,18 @@ namespace Script {
         private:
             std::string m_arg;
             const Parser *m_parser;
+    };
+
+    class BoolStatement: public Statement {
+        public:
+            BoolStatement (const Parser *p, const std::string &_arg);
+            virtual bool execute() = 0;
+
+        protected:
+            bool getValue() { return m_bool; }
+
+        private:
+            bool m_bool;
     };
 
     class SizeStmt: public Statement {
@@ -57,9 +76,21 @@ namespace Script {
             VecMath::Rotation<4> m_r;
     };
 
+    class RotStmt: public XformStmt {
+        public:
+            RotStmt(const Parser *p, const std::string &_arg): XformStmt(p, _arg) { }
+            virtual bool execute();
+    };
+
     class DeltaStmt: public XformStmt {
         public:
             DeltaStmt(const Parser *p, const std::string &_arg): XformStmt(p, _arg) { }
+            virtual bool execute();
+    };
+
+    class RotDeltaStmt: public DeltaStmt {
+        public:
+            RotDeltaStmt(const Parser *p, const std::string &_arg): DeltaStmt(p, _arg) { }
             virtual bool execute();
     };
 
@@ -77,6 +108,54 @@ namespace Script {
             virtual bool execute();
         private:
             unsigned loops;
+    };
+
+    class ColorStmt: public BoolStatement {
+        public:
+            ColorStmt(const Parser *p, const std::string &_arg): BoolStatement(p, _arg) { }
+            virtual bool execute();
+    };
+    
+    class ShadingStmt: public BoolStatement {
+        public:
+            ShadingStmt(const Parser *p, const std::string &_arg): BoolStatement(p, _arg) { }
+            virtual bool execute();
+    };
+
+    class LightStmt: public BoolStatement {
+        public:
+            LightStmt(const Parser *p, const std::string &_arg): BoolStatement(p, _arg) { }
+            virtual bool execute();
+    };
+
+    class TransStmt: public BoolStatement {
+        public:
+            TransStmt(const Parser *p, const std::string &_arg): BoolStatement(p, _arg) { }
+            virtual bool execute();
+    };
+
+    class WireStmt: public BoolStatement {
+        public:
+            WireStmt(const Parser *p, const std::string &_arg): BoolStatement(p, _arg) { }
+            virtual bool execute();
+    };
+
+    class FogStmt: public BoolStatement {
+        public:
+            FogStmt(const Parser *p, const std::string &_arg): BoolStatement(p, _arg) { }
+            virtual bool execute();
+    };
+
+    class Fog4DStmt: public BoolStatement {
+        public:
+            Fog4DStmt(const Parser *p, const std::string &_arg): BoolStatement(p, _arg) { }
+            virtual bool execute();
+    };
+
+    class CoordsStmt: public BoolStatement {
+        public:
+            CoordsStmt(const Parser *p, const std::string &_arg): BoolStatement(p, _arg) { }
+            virtual bool execute();
     };
 
     class AnimateStmt: public Statement {

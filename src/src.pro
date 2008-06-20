@@ -26,11 +26,12 @@ DEPENDPATH += ./Functions
 HEADERS += Functions/ComplexFunction.H Functions/CustomFunction.H \
            Functions/Function.H Functions/Object.H Functions/Surface.H \
            Functions/RealFunction.H  Functions/FunctionParameter.H \
-           Functions/ParameterMap.H
+           Functions/ParameterMap.H FunctionFactory.H
 #          Functions/SteinerFunction.H
 SOURCES += Functions/ComplexFunction.C Functions/CustomFunction.C \
            Functions/Function.C Functions/Surface.C Functions/Object.C \
-           Functions/RealFunction.C  Functions/FunctionParameter.C
+           Functions/RealFunction.C  Functions/FunctionParameter.C \
+           FunctionFactory.C
 #          Functions/SteinerFunction.C
 
 ###

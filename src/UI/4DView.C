@@ -124,8 +124,10 @@ void C4DView::Wireframe() {
 /** Change menu items accordingly
  *
  *  Menu callback function */
-void C4DView::Coordinates() {
-    setDisplayCoordinates(!DisplayCoordinates());
+void C4DView::Coordinates() { setCoordinates(!DisplayCoordinates()); }
+
+void C4DView::setCoordinates(bool coords) {
+    setDisplayCoordinates(coords);
     Menu()->getAction("Coordinate Cross")->setChecked (DisplayCoordinates());
 
     Redraw ();
@@ -135,8 +137,10 @@ void C4DView::Coordinates() {
 /** Change menu items accordingly
  *
  *  Menu callback function */
-void C4DView::HyperFog() {
-    setDepthCue4D(!DepthCue4D());
+void C4DView::HyperFog() { setHyperfog(!DepthCue4D()); }
+
+void C4DView::setHyperfog(bool fog) {
+    setDepthCue4D(fog);
     Menu()->getAction("4D Depth Cue")->setChecked (DepthCue4D());
 
     Redraw ();
@@ -178,33 +182,43 @@ void C4DView::Light() {
 
 /// toggle colors
 /** menu callback function */
-void C4DView::Colors () {
-    getColors() = !getColors();
+void C4DView::Colors () { setColors(!getColors()); }
+
+void C4DView::setColors(bool cols) {
+    getColors() = cols;
     Menu()->getAction("Colors")->setChecked(getColors());
     initializeGL ();
-    repaint (); }
+    repaint ();
+}
 
 /// Toggle fog/depth cue
 /** menu callback function */
-void C4DView::Fog () {
-  getFog() = !getFog();
-  Menu()->getAction("Depth Cue")->setChecked(getFog());
-  InitFog ();
-  repaint (); }
+void C4DView::Fog () { setFog(!getFog()); }
+
+void C4DView::setFog(bool fog) {
+    getFog() = fog;
+    Menu()->getAction("Depth Cue")->setChecked(getFog());
+    InitFog ();
+    repaint ();
+}
 
 /// toggle object transparency
 /** menu callback function */
-void C4DView::Transparent () {
-    getTransparent() = !getTransparent();
-    Menu()->getAction("Transparence")->setChecked(getTransparent());
+void C4DView::Transparent () { setTransparence(!getTransparent()); }
+
+void C4DView::setTransparence (bool trans) {
+    getTransparent() = trans;
+    Menu()->getAction("Transparence")->setChecked(trans);
     InitTransparence ();
     repaint ();
 }
 
 /// toggle shading
 /** menu callback function */
-void C4DView::Shade () {
-    getShade() = !getShade();
+void C4DView::Shade () { setShading(!getShade()); }
+
+void C4DView::setShading(bool shade) {
+    getShade() = shade;
     Menu()->getAction("Shading")->setChecked(getShade());
     InitShade ();
     repaint ();

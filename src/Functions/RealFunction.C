@@ -26,6 +26,14 @@ using std::endl;
 using VecMath::Vector;
 using VecMath::Matrix;
 
+double RealBase::_min = -1.;
+double RealBase::_max =  1.;
+double RealBase::_d = 0.1;
+
+RealFunction::RealFunction(const QString &_name):
+        RealBase(_name, _min, _max, _d, _min, _max, _d, _min, _max, _d,
+                 ParameterMap()) { }
+
 /** RealFunction c'tor given a definition set in R³ (as parameter space)
  *  @param _name a name for the function
  *  @param _tmin minimal value in t

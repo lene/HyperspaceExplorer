@@ -2,6 +2,7 @@
 #include "View.H"
 #include "Parser.H"
 #include "Statement.H"
+#include "FunctionFactory.H"
 
 #include <iostream>
 
@@ -18,6 +19,11 @@ namespace Script {
         return true;
     }
 
+    BoolStatement::BoolStatement(const Parser *p, const std::string &_arg):
+            Statement(p, _arg) {
+        m_bool = (_arg == "1" || _arg == "on" || _arg == "true");
+    }
+
     SizeStmt::SizeStmt(const Parser *p, const std::string &_arg):
             Statement(p, _arg) {
         width = Globals::Instance().atou(leading(arg(), " "));
@@ -32,11 +38,9 @@ namespace Script {
     /** @todo make a map (or something like that) to call the right function for
     *        the string supplied as argument                                     */
     bool ObjectStmt::execute() {
-        if (arg() == "Hypersponge") {
-            parser()->getView()->ObjectHypersponge();
-        } else {
-            cout << "ObjectStmt::execute(" << arg() << ")" << endl;
-        }
+        Function *f = TheFunctionFactory::Instance().createFunction(arg());
+        if (!f) return false;
+        parser()->getView()->setFunction(f);
         return true;
     }
 
@@ -73,9 +77,19 @@ namespace Script {
         parser()->getView()->applyTransform(r(), VecMath::Vector<4>());
         return true;
     }
+    
+    bool RotStmt::execute() {
+        throw BadStatementException(arg());
+        return true;
+    }
 
     bool DeltaStmt::execute() {
         parser()->getView()->setdR(r());
+        return true;
+    }
+
+    bool RotDeltaStmt::execute() {
+        throw BadStatementException(arg());
         return true;
     }
 
@@ -96,6 +110,39 @@ namespace Script {
 
     bool LoopStmt::execute() {
         parser()->getView()->setNumLoops(loops);
+        return true;
+    }
+
+    bool ColorStmt::execute() {
+        parser()->getView()->setColors(getValue());
+        return true;
+    }
+    bool ShadingStmt::execute() {
+        parser()->getView()->setShading(getValue());
+        return true;
+    }
+    bool LightStmt::execute() {
+        parser()->getView()->setLighting(getValue());
+        return true;
+    }
+    bool TransStmt::execute() {
+        parser()->getView()->setTransparence(getValue());
+        return true;
+    }
+    bool WireStmt::execute() {
+        parser()->getView()->setWireframe(getValue());
+        return true;
+    }
+    bool FogStmt::execute() {
+        parser()->getView()->setFog(getValue());
+        return true;
+    }
+    bool Fog4DStmt::execute() {
+        parser()->getView()->setHyperfog(getValue());
+        return true;
+    }
+    bool CoordsStmt::execute(){
+        throw BadStatementException(arg());
         return true;
     }
 
@@ -141,13 +188,13 @@ namespace Script {
         } else if (starts_with(line, "transform ")) {
             return new XformStmt(p, trailing(line, "transform"));
         } else if (starts_with(line, "rotation ")) {
-            return new Statement(p, trailing(line, "rotation"));
+            return new RotStmt(p, trailing(line, "rotation"));
         } else if (starts_with(line, "parameter_step")) {
             return new Statement(p, trailing(line, "parameter_step"));
         } else if (starts_with(line, "transform_step")) {
             return new DeltaStmt(p, trailing(line, "transform_step"));
         } else if (starts_with(line, "rotation_step")) {
-            return new Statement(p, trailing(line, "rotation_step"));
+            return new RotDeltaStmt(p, trailing(line, "rotation_step"));
         } else if (starts_with(line, "frames")) {
             return new FramesStmt(p, trailing(line, "frames"));
         } else if (starts_with(line, "loop")) {
@@ -155,21 +202,21 @@ namespace Script {
         } else if (starts_with(line, "start_animation")) {
             return new AnimateStmt(p);
         } else if (starts_with(line, "colors")) {
-            return new Statement(p, trailing(line, "colors"));
+            return new ColorStmt(p, trailing(line, "colors"));
         } else if (starts_with(line, "shading")) {
-            return new Statement(p, trailing(line, "shading"));
+            return new ShadingStmt(p, trailing(line, "shading"));
         } else if (starts_with(line, "lighting")) {
-            return new Statement(p, trailing(line, "lighting"));
+            return new LightStmt(p, trailing(line, "lighting"));
         } else if (starts_with(line, "transparence")) {
-            return new Statement(p, trailing(line, "transparence"));
+            return new TransStmt(p, trailing(line, "transparence"));
         } else if (starts_with(line, "wireframe")) {
-            return new Statement(p, trailing(line, "wireframe"));
+            return new WireStmt(p, trailing(line, "wireframe"));
         } else if (starts_with(line, "depthcue3d")) {
-            return new Statement(p, trailing(line, "depthcue3d"));
+            return new FogStmt(p, trailing(line, "depthcue3d"));
         } else if (starts_with(line, "depthcue4d")) {
-            return new Statement(p, trailing(line, "depthcue4d"));
+            return new Fog4DStmt(p, trailing(line, "depthcue4d"));
         } else if (starts_with(line, "coordinates")) {
-            return new Statement(p, trailing(line, "coordinates"));
+            return new CoordsStmt(p, trailing(line, "coordinates"));
         } else if (starts_with(line, "image_dir")) {
             return new ImgDirStmt(p, trailing(line, "image_dir"));
         } else if (starts_with(line, "image_prefix")) {
@@ -177,6 +224,6 @@ namespace Script {
         } else if (starts_with(line, "sleep")) {
             return new SleepStmt(p, trailing(line, "sleep"));
         }
-        return new Statement(p, line);
+        throw BadStatementException(line);
     }
 }

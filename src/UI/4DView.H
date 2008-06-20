@@ -200,6 +200,17 @@ class C4DView : public QGLWidget, public UI::View {
 
         virtual void setSize(unsigned w, unsigned h);
 
+        virtual void setColors(bool);
+        virtual void setShading(bool);
+//        virtual void setLighting(bool);
+        virtual void setTransparence(bool);
+//        virtual void setWireframe(bool);
+        virtual void setFog(bool);
+        virtual void setHyperfog(bool);
+        virtual void setCoordinates(bool);
+
+        virtual void setFunction(Function *_f) { setF(_f); }
+
     private slots:
         void OnTimer();
         void AnimationSettings();

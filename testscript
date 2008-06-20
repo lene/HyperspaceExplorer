@@ -1,30 +1,33 @@
-object Hypersponge
-parameter unsigned Distance 3
-parameter unsigned Level 2
-parameter double Size 0.5
+set_size 800 800
 
-transform <0,0,0,0,0,5>
-sleep 100
-transform <0,0,0,5,5,6>
-sleep 100
-transform <0,0,0,10,10,7>
-sleep 100
-transform <0,0,0,15,15,8>
-sleep 100
-transform <0,0,0,20,20,9>
-sleep 100
-transform <0,0,0,25,25,10>
-sleep 100
-transform <0,0,0,30,30,11>
-sleep 100
-transform <0,0,0,35,35,12>
-sleep 100
-transform <0,0,0,40,40,13>
-sleep 100
-transform <0,0,0,45,45,14>
-sleep 100
+object Hypercube
+#parameter unsigned Distance 0
+#parameter unsigned Level 0
+parameter double Size 1
 
-transform_step <0,0,0,1,1,1>
-frames 360
-loop 2
+transform_step <0,0,0,2,2,2>
+frames 180
+loop 1
+
+transparence off
+wireframe off
+
+#image_dir /home/scenes/tmp5
+#image_prefix Sponge
+
+start_animation
+
+object Sponge
+parameter unsigned Level 1
+parameter unsigned Distance 2
+start_animation
+
+object Pyramid
+parameter double Size 2
+#parameter unsigned Distance 3
+start_animation
+
+object Hypersphere
+parameter double Size 5
+parameter unsigned Level 5
 start_animation

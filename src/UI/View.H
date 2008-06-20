@@ -15,9 +15,17 @@
 
 #include "ParameterMap.H"
 
+class Function;
+
 namespace UI {
 
     class View {
+        class FunctionNotSupportedException: public std::runtime_error {
+            public:
+                FunctionNotSupportedException(const std::string &what):
+                    std::runtime_error(what) { }
+        };
+
         public:
             View(): numFrames(1), numLoops(1) { }
 
@@ -37,6 +45,8 @@ namespace UI {
             virtual void ObjectHypersponge() = 0;
             virtual void ObjectGasket() = 0;
 
+            virtual void setFunction(Function *) = 0;
+
             virtual void setdR(const VecMath::Rotation<4> &_dr) = 0;
 
             virtual void setNumFrames(unsigned _numFrames) { numFrames =_numFrames; }
@@ -48,6 +58,17 @@ namespace UI {
             virtual void setImgPrefix(const std::string &) = 0;
 
             virtual void setSize(unsigned, unsigned) = 0;
+
+            virtual void setColors(bool) = 0;
+            virtual void setShading(bool) = 0;
+            virtual void setLighting(bool) = 0;
+            virtual void setTransparence(bool) = 0;
+            virtual void setWireframe(bool) = 0;
+            virtual void setFog(bool) = 0;
+            virtual void setHyperfog(bool) = 0;
+            virtual void setCoordinates(bool) {
+                throw FunctionNotSupportedException("setCoordinates()");
+            }
 
         protected:
             virtual void ApplyChanges(const ParameterMap &) = 0;

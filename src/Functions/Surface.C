@@ -18,9 +18,20 @@ using VecMath::Matrix;
 
 ////////////////////////////////////////////////////////////////////////////////
 
+double SurfaceBase::_min = -1.;
+double SurfaceBase::_max =  1.;
+double SurfaceBase::_d = 0.1;
+
+
 /// Surface default c'tor, zeroes everything
 Surface::Surface ():
     SurfaceBase("", 0, 0, 0, 0, 0, 0),
+    NumVertices (0), F(),
+    Xtrans(vec4vec2D()), Xscr(vec3vec2D()) { }
+
+/// Surface c'tor with a Function name and default grid
+Surface::Surface(const QString &_name):
+    SurfaceBase(_name, _min, _max, _d, _min, _max, _d),
     NumVertices (0), F(),
     Xtrans(vec4vec2D()), Xscr(vec3vec2D()) { }
 

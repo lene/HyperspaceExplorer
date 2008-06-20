@@ -18,6 +18,9 @@
 #include "ParameterMap.H"
 #include "Vector.H"
 
+class Function;
+#include "FunctionFactory.H"
+
 /// \defgroup FunctionGroup Functions and objects
 /// \defgroup RealGroup Functions R^3 -> R
 /// \ingroup FunctionGroup
@@ -58,11 +61,22 @@
  *  other useful members:
  *      \li Transform ()
  *
- *  @todo Vector &normal (double, double, double); - or in derived classes?
- *  @todo  operator () (double t, double u, double v) - ditto
+ *  Function objects can be created directly via their various constructors, or
+ *  via the createFunction() method of the FunctionFactory class. To enable the
+ *  latter, a Function's definition must be augmented by the following code
+ *  (for example):
+ *  \code
+ *  namespace {
+ *      Function *createHypercube() { return new Hypercube(); }
+ *      const bool registered = TheFunctionFactory::Instance().registerFunction("Hypercube", createHypercube);
+ *  }
+ *  \endcode
+ *
+ *  \todo Vector &normal (double, double, double); - or in derived classes?
+ *  \todo  operator () (double t, double u, double v) - ditto
  *
  *  \ingroup FunctionGroup
- *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
+ *  \author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Function {
     public:
         /// one-dimensional array of floats, implemented as a std::vector
@@ -108,9 +122,9 @@ class Function {
             std::cerr << "Function::SetParameters()" << std::endl;
         }
 
-        /** @return The name of the function in cleartext                     */
+        /** \return The name of the function in cleartext                     */
         QString getFunctionName() const { return functionName; }
-        /** @return number of parameters for the function                     */
+        /** \return number of parameters for the function                     */
         unsigned getNumParameters() { return parameters.size(); }
 
         ParameterMap getParameters() { return parameters; }

@@ -118,6 +118,10 @@ protected:
     VecMath::Vector<4> center;
 };
 
+namespace {
+    Function *createHypercube() { return new Hypercube(); }
+    const bool registeredH = TheFunctionFactory::Instance().registerFunction("Hypercube", createHypercube);
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -209,6 +213,10 @@ protected:
     VecMath::Vector<4> center;      ///< center of the sponge
 };
 
+namespace {
+    Function *createSponge() { return new Sponge(); }
+    const bool registeredS = TheFunctionFactory::Instance().registerFunction("Sponge", createSponge);
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -242,6 +250,10 @@ protected:
     double a;                   ///< size
 };
 
+namespace {
+    Function *createPyramid() { return new Pyramid(); }
+    const bool registeredP = TheFunctionFactory::Instance().registerFunction("Pyramid", createPyramid);
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -293,5 +305,10 @@ class Gasket: public Pyramid {
         double rad;
         VecMath::Vector<4> center;
 };
+
+namespace {
+    Function *createGasket() { return new Gasket(); }
+    const bool registeredG = TheFunctionFactory::Instance().registerFunction("Gasket", createGasket);
+}
 
 #endif

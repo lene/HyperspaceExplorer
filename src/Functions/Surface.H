@@ -88,6 +88,10 @@ class SurfaceBase: public Function {
             return f(u,v);
         }
 
+    static double _min,
+                  _max,
+                  _d;
+
     private:
         double tmin, ///< min. value of the first parameter, here called t
                tmax, ///< min. value of the first parameter, here called t
@@ -97,7 +101,6 @@ class SurfaceBase: public Function {
                du;   ///< stepsize in second parameter
         unsigned tsteps, ///< number of steps in t
                  usteps; ///< number of steps in u
-
 };
 
 
@@ -108,6 +111,7 @@ class SurfaceBase: public Function {
 class Surface: public SurfaceBase {
     public:
         Surface();
+        Surface (const QString &name);
         Surface (const QString &name,
                  double _umin, double _umax, double _du,
                  double _vmin, double _vmax, double _dv,
@@ -160,6 +164,7 @@ class Surface: public SurfaceBase {
  *  \ingroup SurfaceGroup                                                    */
 class Surface1: public Surface {
 public:
+    Surface1(): Surface("Surface1") { }
     Surface1 (double _umin, double _umax, double _du,
               double _vmin, double _vmax, double _dv);
     virtual ~Surface1() { }
@@ -167,6 +172,11 @@ public:
 protected:
     virtual function_type f;
 };
+
+namespace {
+    Function *createSurface1() { return new Surface1(); }
+    const bool registeredS1 = TheFunctionFactory::Instance().registerFunction("Surface1", createSurface1);
+}
 
 /** A four-dimensional surface described by Thomas Banchoff
     \f{eqnarray*}{
@@ -181,25 +191,37 @@ protected:
  *  \ingroup SurfaceGroup                                                    */
 class Horizon: public Surface {
 public:
+    Horizon(): Surface("Horizon") { }
     Horizon (double _umin, double _umax, double _du,
-	     double _vmin, double _vmax, double _dv);
+             double _vmin, double _vmax, double _dv);
     virtual ~Horizon () { }
 
 protected:
     virtual function_type f;
 };
 
+namespace {
+    Function *createHorizon() { return new Horizon(); }
+    const bool registeredS2 = TheFunctionFactory::Instance().registerFunction("Horizon", createHorizon);
+}
+
 /** Another torus version, this time as a two-dimensional surface in
  *  four-space
  *  \ingroup SurfaceGroup                                                    */
 class Torus3: public Surface {
 public:
+    Torus3(): Surface("Torus3") { }
     Torus3 (double _umin, double _umax, double _du,
-	    double _vmin, double _vmax, double _dv);
+            double _vmin, double _vmax, double _dv);
     virtual ~Torus3 () { }
 
 protected:
     virtual function_type f;
 };
+
+namespace {
+    Function *createTorus3() { return new Torus3(); }
+    const bool registeredS3 = TheFunctionFactory::Instance().registerFunction("Torus3", createTorus3);
+}
 
 #endif
