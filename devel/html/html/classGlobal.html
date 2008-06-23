@@ -43,7 +43,7 @@ Collaboration diagram for Global:</div>
 <div class="dynsection">
 <p><center><img src="classGlobal__coll__graph.png" border="0" usemap="#Global__coll__map" alt="Collaboration graph"></center>
 <map name="Global__coll__map">
-<area shape="rect" href="classColor.html" title="A class to represent a color value by its RGBA components." alt="" coords="5,6,216,401"></map>
+<area shape="rect" href="classColor.html" title="A class to represent a color value by its RGBA components." alt="" coords="5,6,187,374"></map>
 <center><font size="2">[<a href="graph_legend.html">legend</a>]</font></center></div>
 
 <p>
@@ -71,6 +71,15 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setBackground</b> (co
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setFogColor</b> (const <a class="el" href="classColor.html">Color</a> &amp;rgba)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#46d4d63fb67924db3e1bcf093a917a3f">atod</a> (QString)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8b65c68f5a6c98885f25be5e96274b64"></a><!-- doxytag: member="Global::atod" ref="8b65c68f5a6c98885f25be5e96274b64" args="(const std::string &amp;)" -->
+double&nbsp;</td><td class="memItemRight" valign="bottom"><b>atod</b> (const std::string &amp;)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9699f5a415c29ec1055b218077a53515"></a><!-- doxytag: member="Global::atoi" ref="9699f5a415c29ec1055b218077a53515" args="(const std::string &amp;)" -->
+int&nbsp;</td><td class="memItemRight" valign="bottom"><b>atoi</b> (const std::string &amp;)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ae47a7f3539bb7925a5bf7cb8e84dec8"></a><!-- doxytag: member="Global::atou" ref="ae47a7f3539bb7925a5bf7cb8e84dec8" args="(const std::string &amp;)" -->
+unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><b>atou</b> (const std::string &amp;)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">std::string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobal.html#41cee4049871dc14b3f7101e40734c16">itoa</a> (int x)</td></tr>
 
@@ -281,7 +290,7 @@ define a GL Vertex from a Vector&lt;3&gt; <dl compact><dt><b>Parameters:</b></dt
   </table>
 </dl>
 
-<p>References <a class="el" href="Vector_8H-source.html#l00123">VecMath::Vector&lt; D, N &gt;::data()</a>, and <a class="el" href="Vector_8H-source.html#l00241">VecMath::Vector&lt; D, N &gt;::sqnorm()</a>.</p>
+<p>References <a class="el" href="Vector_8H-source.html#l00124">VecMath::Vector&lt; D, N &gt;::data()</a>, and <a class="el" href="Vector_8H-source.html#l00242">VecMath::Vector&lt; D, N &gt;::sqnorm()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -335,7 +344,7 @@ normalizes a Vector made from 3 doubles out-of-place <dl compact><dt><b>Paramete
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>normalized Vector </dd></dl>
 
-<p>References <a class="el" href="Vector_8H-source.html#l00329">VecMath::vnormalize()</a>.</p>
+<p>References <a class="el" href="Vector_8H-source.html#l00345">VecMath::vnormalize()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -365,7 +374,7 @@ Here is the call graph for this function:</div>
 
 <p>
 maximum amount of memory available for use 
-<p>References <a class="el" href="Globals_8H-source.html#l00111">MaximumMemory</a>.</p>
+<p>References <a class="el" href="Globals_8H-source.html#l00114">MaximumMemory</a>.</p>
 
 </div>
 </div><p>
@@ -386,7 +395,7 @@ maximum amount of memory available for use
 
 <p>
 color definition for White 
-<p>References <a class="el" href="Globals_8H-source.html#l00106">White</a>.</p>
+<p>References <a class="el" href="Globals_8H-source.html#l00109">White</a>.</p>
 
 </div>
 </div><p>
@@ -407,7 +416,7 @@ color definition for White
 
 <p>
 color definition for Grey 
-<p>References <a class="el" href="Globals_8H-source.html#l00108">Grey50</a>.</p>
+<p>References <a class="el" href="Globals_8H-source.html#l00111">Grey50</a>.</p>
 
 </div>
 </div><p>
@@ -429,7 +438,7 @@ color definition for Grey
 <p>
 get the system memory from /proc/meminfo of course, this only works on OS's with /proc filesystem and /proc/meminfo information! relies on /proc/meminfo of being of the format: MemTotal: 506912 kB ... returns 512 MB as default memory size, when /proc/meminfo is not present <dl class="return" compact><dt><b>Returns:</b></dt><dd>total memory size, or 512 MB </dd></dl>
 
-<p>References <a class="el" href="Globals_8H-source.html#l00098">check_memory</a>.</p>
+<p>References <a class="el" href="Globals_8H-source.html#l00101">check_memory</a>.</p>
 
 </div>
 </div><p>
@@ -477,7 +486,7 @@ sqrt (3), stored to save computation time, probably superfluous
 
 <p>
 whether to check for memory usage. this member is set or unset from <a class="el" href="classGlobal.html#ee41dfa8c3f54721609d57c58ae702d8">check_proc_meminfo()</a>, depending on the success of that function. 
-<p>Referenced by <a class="el" href="Globals_8C-source.html#l00118">check_proc_meminfo()</a>.</p>
+<p>Referenced by <a class="el" href="Globals_8C-source.html#l00130">check_proc_meminfo()</a>.</p>
 
 </div>
 </div><p>
@@ -524,7 +533,7 @@ global (YUCK!) fog/depth cue color
 
 <p>
 color definition for White 
-<p>Referenced by <a class="el" href="Globals_8H-source.html#l00086">white()</a>.</p>
+<p>Referenced by <a class="el" href="Globals_8H-source.html#l00089">white()</a>.</p>
 
 </div>
 </div><p>
@@ -541,7 +550,7 @@ color definition for White
 
 <p>
 color definition for Grey 
-<p>Referenced by <a class="el" href="Globals_8H-source.html#l00088">grey50()</a>.</p>
+<p>Referenced by <a class="el" href="Globals_8H-source.html#l00091">grey50()</a>.</p>
 
 </div>
 </div><p>
@@ -559,7 +568,7 @@ color definition for Grey
 <p>
 maximum amount of memory available for use<p>
 maximum memory that should be consumed; calls check_proc_meminfo () above 
-<p>Referenced by <a class="el" href="Globals_8H-source.html#l00083">getMaxMemory()</a>.</p>
+<p>Referenced by <a class="el" href="Globals_8H-source.html#l00086">getMaxMemory()</a>.</p>
 
 </div>
 </div><p>
@@ -596,7 +605,7 @@ global QAction that quits the program
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>HyperspaceExplorer/src/<a class="el" href="Globals_8H-source.html">Globals.H</a><li>HyperspaceExplorer/src/Globals.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 1 10:05:02 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jun 23 12:35:43 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

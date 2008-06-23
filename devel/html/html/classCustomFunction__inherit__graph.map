@@ -1,6 +1,6 @@
-<area shape="rect" href="$classCustomPolarFunction.html" title="{CustomPolarFunction\n|# f\l|+ CustomPolarFunction()\l+ ~CustomPolarFunction()\l}" alt="" coords="239,2018,431,2120">
-<area shape="rect" href="$classRealFunction.html" title="A RealFunction is a mathematical function &#160;." alt="" coords="5,1472,248,1816">
-<area shape="rect" href="$classRealBase.html" title="RealBase provides a base class for functions which take three parameters" alt="" coords="47,628,207,1404">
-<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="5,6,248,574">
-<area shape="rect" href="$classCustomFunctionBase.html" title="{CustomFunctionBase\&lt; RealFunction::raw_function_type \&gt;\n|# func\l&#45; handle\l&#45; valid\l|+ CustomFunctionBase()\l+ ~CustomFunctionBase()\l+ symbolic()\l+ isValid()\l# loadFunction()\l# setValid()\l# setInvalid()\l}" alt="" coords="272,1533,664,1754">
-<area shape="rect" href="$classCustomFunctionBase.html" title="{CustomFunctionBase\&lt; function_type \&gt;\n|# func\l&#45; handle\l&#45; valid\l|+ CustomFunctionBase()\l+ ~CustomFunctionBase()\l+ symbolic()\l+ isValid()\l# loadFunction()\l# setValid()\l# setInvalid()\l}" alt="" coords="332,905,604,1126">
+<area shape="rect" href="$classCustomPolarFunction.html" title="{CustomPolarFunction\n|# f\l|+ CustomPolarFunction()\l+ ~CustomPolarFunction()\l}" alt="" coords="207,1950,372,2046">
+<area shape="rect" href="$classRealFunction.html" title="A RealFunction is a mathematical function &#160;." alt="" coords="5,1416,213,1752">
+<area shape="rect" href="$classRealBase.html" title="RealBase provides a base class for functions which take three parameters" alt="" coords="39,584,180,1352">
+<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="5,6,213,534">
+<area shape="rect" href="$classCustomFunctionBase.html" title="{CustomFunctionBase\&lt; RealFunction::raw_function_type \&gt;\n|# func\l&#45; handle\l&#45; valid\l|+ CustomFunctionBase()\l+ ~CustomFunctionBase()\l+ symbolic()\l+ isValid()\l# loadFunction()\l# setValid()\l# setInvalid()\l}" alt="" coords="237,1480,573,1688">
+<area shape="rect" href="$classCustomFunctionBase.html" title="{CustomFunctionBase\&lt; function_type \&gt;\n|# func\l&#45; handle\l&#45; valid\l|+ CustomFunctionBase()\l+ ~CustomFunctionBase()\l+ symbolic()\l+ isValid()\l# loadFunction()\l# setValid()\l# setInvalid()\l}" alt="" coords="289,864,521,1072">

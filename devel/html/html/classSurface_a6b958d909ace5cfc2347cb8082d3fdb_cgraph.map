@@ -1,13 +1,12 @@
-<area shape="rect" href="$classSurfaceBase.html#c1b7c91a12ac9ad433c27d8ad9f6067c" title="delta in t" alt="" coords="423,6,569,32">
-<area shape="rect" href="$classSurfaceBase.html#b374ba3db9a0339e6a5aaa230d1a76ca" title="delta in u" alt="" coords="421,82,571,108">
-<area shape="rect" href="$classSurfaceBase.html#ac9069441800f0bbf3b85b9a7839f56f" title="max. value of the first parameter, t" alt="" coords="171,107,336,134">
-<area shape="rect" href="$classSurfaceBase.html#73cd034a8689e0f9fbd796f8e7423fcb" title="min. value of the first parameter, t" alt="" coords="415,208,577,235">
-<area shape="rect" href="$classSurfaceBase.html#761208b17975a6c343774b5ca467ed2b" title="number of steps in t" alt="" coords="695,310,865,336">
-<area shape="rect" href="$classSurfaceBase.html#5097c9fd6cd4955c2b7b29d4ed7b46bb" title="max. value of the second parameter, u" alt="" coords="169,259,337,286">
-<area shape="rect" href="$classSurfaceBase.html#ed7d2013bca3eb15eb1abcc8e72cbd58" title="min. value of the second parameter, u" alt="" coords="413,512,579,539">
-<area shape="rect" href="$classSurfaceBase.html#d8c79625fa46d8c5ebbda58f0dd9eb5d" title="number of steps in u" alt="" coords="692,462,868,488">
-<area shape="rect" href="$classSurface.html#e140ab69205e1a6a73459b9e22cda019" title="allocate and initialize X[][] with values of f()" alt="" coords="189,310,317,336">
-<area shape="rect" href="$classSurfaceBase.html#ba6ce6327e509663e484560f849d03f1" title="The mathematical function defining the Function object." alt="" coords="439,411,553,438">
-<area shape="rect" href="$classSurface.html#f77d456ed7b5d495f4a54978ab5f4acc" title="Initialize the temporary storage areas Xscr[][], Xtrans[][]." alt="" coords="432,360,560,387">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="387,259,605,286">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="655,259,905,286">
+<area shape="rect" href="$classSurfaceBase.html#c1b7c91a12ac9ad433c27d8ad9f6067c" title="delta in t" alt="" coords="384,106,509,132">
+<area shape="rect" href="$classSurfaceBase.html#b374ba3db9a0339e6a5aaa230d1a76ca" title="delta in u" alt="" coords="383,156,511,183">
+<area shape="rect" href="$classSurfaceBase.html#ac9069441800f0bbf3b85b9a7839f56f" title="max. value of the first parameter, t" alt="" coords="159,156,300,183">
+<area shape="rect" href="$classSurfaceBase.html#73cd034a8689e0f9fbd796f8e7423fcb" title="min. value of the first parameter, t" alt="" coords="377,207,516,234">
+<area shape="rect" href="$classSurfaceBase.html#761208b17975a6c343774b5ca467ed2b" title="number of steps in t" alt="" coords="593,308,740,335">
+<area shape="rect" href="$classSurfaceBase.html#5097c9fd6cd4955c2b7b29d4ed7b46bb" title="max. value of the second parameter, u" alt="" coords="157,308,301,335">
+<area shape="rect" href="$classSurfaceBase.html#ed7d2013bca3eb15eb1abcc8e72cbd58" title="min. value of the second parameter, u" alt="" coords="376,511,517,538">
+<area shape="rect" href="$classSurfaceBase.html#d8c79625fa46d8c5ebbda58f0dd9eb5d" title="number of steps in u" alt="" coords="593,460,740,487">
+<area shape="rect" href="$classSurface.html#e140ab69205e1a6a73459b9e22cda019" title="allocate and initialize X[][] with values of f()" alt="" coords="171,359,288,386">
+<area shape="rect" href="$classSurfaceBase.html#ba6ce6327e509663e484560f849d03f1" title="The mathematical function defining the Function object." alt="" coords="397,258,496,284">
+<area shape="rect" href="$classSurface.html#f77d456ed7b5d495f4a54978ab5f4acc" title="Initialize the temporary storage areas Xscr[][], Xtrans[][]." alt="" coords="389,410,504,436">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="351,359,543,386">

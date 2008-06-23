@@ -1,28 +1,27 @@
-<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="253,461,571,488">
-<area shape="rect" href="$classC4DView.html#a0f793fd49810409fc5f6f7906f2dc53" title="C4DView::adddR" alt="" coords="651,5,776,32">
-<area shape="rect" href="$classC4DView.html#b3dee71322f74b46d42cbb2a7fdb60ce" title="C4DView::adddR3" alt="" coords="647,56,780,82">
-<area shape="rect" href="$classC4DView.html#b7654a2bad6deeb87868385f3bd9c89d" title="C4DView::addm_rot" alt="" coords="640,106,787,133">
-<area shape="rect" href="$classC4DView.html#a69265d16f26ed97574de62b0a9780db" title="C4DView::addm_trans" alt="" coords="632,157,795,184">
-<area shape="rect" href="$classC4DView.html#1bb7c7a2df076405aadfb092e198475c" title="C4DView::addR" alt="" coords="655,208,772,234">
-<area shape="rect" href="$classC4DView.html#b035f874475d1ad203c17f349c041857" title="C4DView::addT" alt="" coords="656,258,771,285">
-<area shape="rect" href="$classC4DView.html#d72b329338b14cd8cd7054bd9ab6ada4" title="C4DView::DepthCue3D" alt="" coords="629,309,797,336">
-<area shape="rect" href="$classC4DView.html#0291884b93abb31f5aa310c10701e9c3" title="C4DView::dR" alt="" coords="663,360,764,386">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1821,613,2040,640">
-<area shape="rect" href="$classC4DView.html#72ca1b3ddd5fd4dcfc1cb592d6e5c97a" title="C4DView::m_trans" alt="" coords="644,461,783,488">
-<area shape="rect" href="$classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Should be called whenever the object is rotated or translated." alt="" coords="908,562,1044,589">
-<area shape="rect" href="$classC4DView.html#94ebd881a91d0b608f4b69598ff0714f" title="C4DView::R" alt="" coords="667,562,760,589">
-<area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Redraw handler." alt="" coords="648,613,779,640">
-<area shape="rect" href="$classC4DView.html#57468fd4a12b95ac3703d89db9cea3e3" title="C4DView::setm_trans" alt="" coords="635,664,792,690">
-<area shape="rect" href="$classC4DView.html#f46da1a68ffbcc00eddc03df078fe150" title="Switch 3D depth cue on and off." alt="" coords="620,714,807,741">
-<area shape="rect" href="$classC4DView.html#15c8ca4d71f5b5e5b07a959601820f83" title="Get size of displayed area." alt="" coords="920,816,1032,842">
-<area shape="rect" href="$classC4DView.html#5cbbef88488967558c45e960a667d822" title="C4DView::T" alt="" coords="668,816,759,842">
-<area shape="rect" href="$classC4DView.html#8a51cc06ede29308384576f277a67e19" title="Application of translations and rotations." alt="" coords="639,866,788,893">
-<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="627,917,800,944">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="2089,613,2340,640">
-<area shape="rect" href="$classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler." alt="" coords="1144,562,1315,589">
-<area shape="rect" href="$classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="1152,664,1307,690">
-<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="1371,588,1523,614">
-<area shape="rect" href="$classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="1579,562,1773,589">
-<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="1612,613,1740,640">
-<area shape="rect" href="$classC4DView.html#99a55bb5dd4ba5f78e31506c55425987" title="Make a pixmap to to be rendered by the GL widget, and render it." alt="" coords="1363,714,1531,741">
-<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="856,917,1096,944">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="235,461,517,488">
+<area shape="rect" href="$classC4DView.html#a0f793fd49810409fc5f6f7906f2dc53" title="C4DView::adddR" alt="" coords="591,5,708,32">
+<area shape="rect" href="$classC4DView.html#b3dee71322f74b46d42cbb2a7fdb60ce" title="C4DView::adddR3" alt="" coords="588,56,711,82">
+<area shape="rect" href="$classC4DView.html#b7654a2bad6deeb87868385f3bd9c89d" title="C4DView::addm_rot" alt="" coords="583,106,716,133">
+<area shape="rect" href="$classC4DView.html#a69265d16f26ed97574de62b0a9780db" title="C4DView::addm_trans" alt="" coords="577,157,721,184">
+<area shape="rect" href="$classC4DView.html#1bb7c7a2df076405aadfb092e198475c" title="C4DView::addR" alt="" coords="595,208,704,234">
+<area shape="rect" href="$classC4DView.html#b035f874475d1ad203c17f349c041857" title="C4DView::addT" alt="" coords="595,258,704,285">
+<area shape="rect" href="$classC4DView.html#d72b329338b14cd8cd7054bd9ab6ada4" title="C4DView::DepthCue3D" alt="" coords="573,309,725,336">
+<area shape="rect" href="$classC4DView.html#0291884b93abb31f5aa310c10701e9c3" title="C4DView::dR" alt="" coords="600,360,699,386">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1681,613,1873,640">
+<area shape="rect" href="$classC4DView.html#72ca1b3ddd5fd4dcfc1cb592d6e5c97a" title="C4DView::m_trans" alt="" coords="587,461,712,488">
+<area shape="rect" href="$classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Should be called whenever the object is rotated or translated." alt="" coords="829,562,955,589">
+<area shape="rect" href="$classC4DView.html#94ebd881a91d0b608f4b69598ff0714f" title="C4DView::R" alt="" coords="604,562,695,589">
+<area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Redraw handler." alt="" coords="588,613,711,640">
+<area shape="rect" href="$classC4DView.html#3c8461856c1f84ed95d6f4994c69ede3" title="C4DView::setm_trans" alt="" coords="580,664,719,690">
+<area shape="rect" href="$classC4DView.html#f46da1a68ffbcc00eddc03df078fe150" title="Switch 3D depth cue on and off." alt="" coords="567,714,732,741">
+<area shape="rect" href="$classC4DView.html#15c8ca4d71f5b5e5b07a959601820f83" title="Get size of displayed area." alt="" coords="840,816,944,842">
+<area shape="rect" href="$classC4DView.html#5cbbef88488967558c45e960a667d822" title="C4DView::T" alt="" coords="604,816,695,842">
+<area shape="rect" href="$classC4DView.html#8a51cc06ede29308384576f277a67e19" title="Application of translations and rotations." alt="" coords="580,866,719,893">
+<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="573,917,725,944">
+<area shape="rect" href="$classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler." alt="" coords="1052,562,1204,589">
+<area shape="rect" href="$classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="1056,664,1200,690">
+<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="1259,588,1400,614">
+<area shape="rect" href="$classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="1455,562,1631,589">
+<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="1483,613,1603,640">
+<area shape="rect" href="$classC4DView.html#99a55bb5dd4ba5f78e31506c55425987" title="Make a pixmap to to be rendered by the GL widget, and render it." alt="" coords="1253,714,1405,741">
+<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="781,917,1003,944">

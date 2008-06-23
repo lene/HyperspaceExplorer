@@ -1,9 +1,8 @@
-<area shape="rect" href="$classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Should be called whenever the object is rotated or translated." alt="" coords="208,112,344,139">
-<area shape="rect" href="$classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler." alt="" coords="392,73,563,100">
-<area shape="rect" href="$classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="400,149,555,176">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1069,60,1288,87">
-<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="619,73,771,100">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1337,60,1588,87">
-<area shape="rect" href="$classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="827,60,1021,87">
-<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="860,111,988,137">
-<area shape="rect" href="$classC4DView.html#99a55bb5dd4ba5f78e31506c55425987" title="Make a pixmap to to be rendered by the GL widget, and render it." alt="" coords="611,212,779,239">
+<area shape="rect" href="$classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Should be called whenever the object is rotated or translated." alt="" coords="196,112,321,139">
+<area shape="rect" href="$classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler." alt="" coords="372,73,524,100">
+<area shape="rect" href="$classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="376,149,520,176">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1001,60,1193,87">
+<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="579,73,720,100">
+<area shape="rect" href="$classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="775,60,951,87">
+<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="803,111,923,137">
+<area shape="rect" href="$classC4DView.html#99a55bb5dd4ba5f78e31506c55425987" title="Make a pixmap to to be rendered by the GL widget, and render it." alt="" coords="573,212,725,239">

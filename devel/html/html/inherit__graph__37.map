@@ -1,1 +1,5 @@
-<area shape="rect" href="$structVecMath_1_1NumAxes.html" title="Determine number of rotation axes in D&#45;dimensional space." alt="" coords="5,5,192,32">
+<area shape="rect" href="$classLoki_1_1LongevityLifetime_1_1SingletonFixedLongevity.html" title="Add your own lifetimes into the namespace &#39;LongevityLifetime&#39; with your prefered..." alt="" coords="5,31,395,57">
+<area shape="rect" href="$structLoki_1_1LongevityLifetime_1_1DieDirectlyBeforeLast.html" title="Lifetime is a one less than DieLast: 0xFFFFFFFF&#45;1." alt="" coords="443,5,757,32">
+<area shape="rect" href="$structLoki_1_1LongevityLifetime_1_1DieLast.html" title="Longest possible SingletonWithLongevity lifetime: 0xFFFFFFFF." alt="" coords="483,56,717,83">
+<area shape="rect" href="$structLoki_1_1LongevityLifetime_1_1DieAsSmallObjectChild.html" title="Loki::LongevityLifetime::DieAsSmallObjectChild\&lt; T \&gt;" alt="" coords="808,5,1131,32">
+<area shape="rect" href="$structLoki_1_1LongevityLifetime_1_1DieAsSmallObjectParent.html" title="Loki::LongevityLifetime::DieAsSmallObjectParent\&lt; T \&gt;" alt="" coords="807,56,1132,83">

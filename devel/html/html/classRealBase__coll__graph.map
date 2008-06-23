@@ -1,5 +1,5 @@
-<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="157,1087,400,1655">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="16,623,179,1018">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,159,189,554">
-<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="203,735,355,906">
-<area shape="rect" title="STL class." alt="" coords="408,315,533,398">
+<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="140,1013,348,1541">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="16,581,157,949">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,149,168,517">
+<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="181,685,307,845">
+<area shape="rect" title="STL class." alt="" coords="353,293,460,373">

@@ -1,12 +1,11 @@
-<area shape="rect" href="$classFunction.html#a490e914a7cd65862ba7956fd558553e" title="Add a parameter to the list of parameters." alt="" coords="156,81,353,108">
-<area shape="rect" href="$classComplexFunction.html#a978ff4b165e029bb82ba33dce35e4e3" title="ComplexFunction::Initialize" alt="" coords="160,208,349,235">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="403,5,621,32">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="671,5,921,32">
-<area shape="rect" href="$classComplexFunction.html#234485506b16d03867c20e8e8d7e0b21" title="ComplexFunction::f" alt="" coords="440,56,584,83">
-<area shape="rect" href="$classSurfaceBase.html#c1b7c91a12ac9ad433c27d8ad9f6067c" title="delta in t" alt="" coords="439,107,585,133">
-<area shape="rect" href="$classSurfaceBase.html#b374ba3db9a0339e6a5aaa230d1a76ca" title="delta in u" alt="" coords="437,157,587,184">
-<area shape="rect" href="$classSurfaceBase.html#73cd034a8689e0f9fbd796f8e7423fcb" title="min. value of the first parameter, t" alt="" coords="431,208,593,235">
-<area shape="rect" href="$classSurfaceBase.html#761208b17975a6c343774b5ca467ed2b" title="number of steps in t" alt="" coords="711,297,881,324">
-<area shape="rect" href="$classSurfaceBase.html#ed7d2013bca3eb15eb1abcc8e72cbd58" title="min. value of the second parameter, u" alt="" coords="429,309,595,336">
-<area shape="rect" href="$classSurfaceBase.html#d8c79625fa46d8c5ebbda58f0dd9eb5d" title="number of steps in u" alt="" coords="708,385,884,412">
-<area shape="rect" href="$classSurface.html#f77d456ed7b5d495f4a54978ab5f4acc" title="Initialize the temporary storage areas Xscr[][], Xtrans[][]." alt="" coords="448,360,576,387">
+<area shape="rect" href="$classFunction.html#a490e914a7cd65862ba7956fd558553e" title="Add a parameter to the list of parameters." alt="" coords="144,81,312,108">
+<area shape="rect" href="$classComplexFunction.html#a978ff4b165e029bb82ba33dce35e4e3" title="ComplexFunction::Initialize" alt="" coords="143,208,313,234">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="364,5,556,32">
+<area shape="rect" href="$classComplexFunction.html#234485506b16d03867c20e8e8d7e0b21" title="ComplexFunction::f" alt="" coords="396,56,524,82">
+<area shape="rect" href="$classSurfaceBase.html#c1b7c91a12ac9ad433c27d8ad9f6067c" title="delta in t" alt="" coords="397,106,523,133">
+<area shape="rect" href="$classSurfaceBase.html#b374ba3db9a0339e6a5aaa230d1a76ca" title="delta in u" alt="" coords="396,157,524,184">
+<area shape="rect" href="$classSurfaceBase.html#73cd034a8689e0f9fbd796f8e7423fcb" title="min. value of the first parameter, t" alt="" coords="391,208,529,234">
+<area shape="rect" href="$classSurfaceBase.html#761208b17975a6c343774b5ca467ed2b" title="number of steps in t" alt="" coords="607,334,753,361">
+<area shape="rect" href="$classSurfaceBase.html#ed7d2013bca3eb15eb1abcc8e72cbd58" title="min. value of the second parameter, u" alt="" coords="389,309,531,336">
+<area shape="rect" href="$classSurfaceBase.html#d8c79625fa46d8c5ebbda58f0dd9eb5d" title="number of steps in u" alt="" coords="607,397,753,424">
+<area shape="rect" href="$classSurface.html#f77d456ed7b5d495f4a54978ab5f4acc" title="Initialize the temporary storage areas Xscr[][], Xtrans[][]." alt="" coords="403,360,517,386">

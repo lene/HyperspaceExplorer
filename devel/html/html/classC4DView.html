@@ -39,17 +39,22 @@
 <h1>C4DView Class Reference<br>
 <small>
 [<a class="el" href="group__UIGroup.html">User Interface</a>]</small>
-</h1><!-- doxytag: class="C4DView" -->Displays and manipulates four-dimensional Functions in a QGLWidget.  
+</h1><!-- doxytag: class="C4DView" --><!-- doxytag: inherits="UI::View" -->Displays and manipulates four-dimensional Functions in a QGLWidget.  
 <a href="#_details">More...</a>
 <p>
 <code>#include &lt;<a class="el" href="4DView_8H-source.html">4DView.H</a>&gt;</code>
 <p>
 <div class="dynheader">
+Inheritance diagram for C4DView:</div>
+<div class="dynsection">
+<p><center><img src="classC4DView__inherit__graph.png" border="0" usemap="#C4DView__inherit__map" alt="Inheritance graph"></center>
+<center><font size="2">[<a href="graph_legend.html">legend</a>]</font></center></div>
+<div class="dynheader">
 Collaboration diagram for C4DView:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView__coll__graph.png" border="0" usemap="#C4DView__coll__map" alt="Collaboration graph"></center>
 <map name="C4DView__coll__map">
-<area shape="rect" title="STL class." alt="" coords="293,159,419,241"></map>
+<area shape="rect" title="STL class." alt="" coords="423,150,529,230"></map>
 <center><font size="2">[<a href="graph_legend.html">legend</a>]</font></center></div>
 
 <p>
@@ -86,16 +91,16 @@ Collaboration diagram for C4DView:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#85e1779319ecc80e3b98473cbf3a9faa">RenderToImages</a> ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Switch rendering to files on or off.  <a href="#85e1779319ecc80e3b98473cbf3a9faa"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022">ObjectHypercube</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022">ObjectHypercube</a> ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Display a ObjectHypercube object.  <a href="#bc3a4f6e3276734aa70e0853f0df6022"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#951f672d7d323bb799c1ab18d412e1d7">ObjectHyperpyramid</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#951f672d7d323bb799c1ab18d412e1d7">ObjectHyperpyramid</a> ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Display a ObjectHyperpyramid object.  <a href="#951f672d7d323bb799c1ab18d412e1d7"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#395baf447937415a0f3366c4d1c529ee">ObjectHypersponge</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#395baf447937415a0f3366c4d1c529ee">ObjectHypersponge</a> ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">display a ObjectHypersponge object  <a href="#395baf447937415a0f3366c4d1c529ee"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#2b8270b08a2a62faa7381adcd83715af">ObjectGasket</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#2b8270b08a2a62faa7381adcd83715af">ObjectGasket</a> ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">display a ObjectGasket object  <a href="#2b8270b08a2a62faa7381adcd83715af"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#f530ff0aca68b1e08e154a40608c11b3">customFunction</a> ()</td></tr>
@@ -144,6 +149,42 @@ double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#60f45904ff9b227fdf426b5960fa4130">Benchmark4D</a> (int, double, double, double, bool=true)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">rotate in 4D 360 degrees <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="85b4bbf559894040c81d08b8657a1d55"></a><!-- doxytag: member="C4DView::applyTransform" ref="85b4bbf559894040c81d08b8657a1d55" args="(const VecMath::Rotation&lt; 4 &gt; &amp;R, const VecMath::Vector&lt; 4 &gt; &amp;T)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>applyTransform</b> (const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;R, const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;T)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ba68449fe84c206cbd20926378797611"></a><!-- doxytag: member="C4DView::animate" ref="ba68449fe84c206cbd20926378797611" args="()" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>animate</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7921fd7bb829954c2307ff71daebdd89"></a><!-- doxytag: member="C4DView::setImgDir" ref="7921fd7bb829954c2307ff71daebdd89" args="(const std::string &amp;s)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setImgDir</b> (const std::string &amp;s)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ad0b04453c9ba092780d8e22ae36ba8c"></a><!-- doxytag: member="C4DView::setImgPrefix" ref="ad0b04453c9ba092780d8e22ae36ba8c" args="(const std::string &amp;s)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setImgPrefix</b> (const std::string &amp;s)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2c5dae3094d155b16f374dad68c07407"></a><!-- doxytag: member="C4DView::setSize" ref="2c5dae3094d155b16f374dad68c07407" args="(unsigned w, unsigned h)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setSize</b> (unsigned w, unsigned h)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="128fc82da387471fbd9c88fe35263e8f"></a><!-- doxytag: member="C4DView::setColors" ref="128fc82da387471fbd9c88fe35263e8f" args="(bool)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setColors</b> (bool)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7b529adaf92650371f5b6e81dbf4792b"></a><!-- doxytag: member="C4DView::setShading" ref="7b529adaf92650371f5b6e81dbf4792b" args="(bool)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setShading</b> (bool)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="262d0aa0188edc2b262160959ce7d965"></a><!-- doxytag: member="C4DView::setTransparence" ref="262d0aa0188edc2b262160959ce7d965" args="(bool)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setTransparence</b> (bool)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="556e03bfff4b2f369a86edb47f3e4b84"></a><!-- doxytag: member="C4DView::setFog" ref="556e03bfff4b2f369a86edb47f3e4b84" args="(bool)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setFog</b> (bool)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b8007107aba8c57dd39063be93ca8f96"></a><!-- doxytag: member="C4DView::setHyperfog" ref="b8007107aba8c57dd39063be93ca8f96" args="(bool)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setHyperfog</b> (bool)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="eb4ec12aada637e796110fe8172d12ff"></a><!-- doxytag: member="C4DView::setCoordinates" ref="eb4ec12aada637e796110fe8172d12ff" args="(bool)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setCoordinates</b> (bool)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1cb1c0e65ff3650457256f4f8192b70e"></a><!-- doxytag: member="C4DView::setFunction" ref="1cb1c0e65ff3650457256f4f8192b70e" args="(Function *_f)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setFunction</b> (<a class="el" href="classFunction.html">Function</a> *_f)</td></tr>
+
 <tr><td colspan="2"><br><h2>Private Slots</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#2c45a3e0625e7ee0567630203bbb0360">OnTimer</a> ()</td></tr>
 
@@ -151,7 +192,7 @@ double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#c781d4f8f3a11fd65fc0c41921460b59">AnimationSettings</a> ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">show a dialog to adjust animation settings  <a href="#c781d4f8f3a11fd65fc0c41921460b59"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#7cdc25eeb13d2f7904348f51ac68b63b">ApplyChanges</a> (const <a class="el" href="classParameterMap.html">ParameterMap</a> &amp;)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#7cdc25eeb13d2f7904348f51ac68b63b">ApplyChanges</a> (const <a class="el" href="classParameterMap.html">ParameterMap</a> &amp;)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Called whenever an object or the parameters have changed.  <a href="#7cdc25eeb13d2f7904348f51ac68b63b"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView.html#aefd85a2c570d47d9d82b1861d73b631">Help</a> ()</td></tr>
@@ -250,8 +291,8 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setF</b> (<a class="e
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c45dda1281a8b4d8b729d451ffb5b869"></a><!-- doxytag: member="C4DView::F" ref="c45dda1281a8b4d8b729d451ffb5b869" args="() const " -->
 const std::auto_ptr&lt; <a class="el" href="classFunction.html">Function</a> &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>F</b> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6b0e16af753c8faf3baac291b50bdb37"></a><!-- doxytag: member="C4DView::setT" ref="6b0e16af753c8faf3baac291b50bdb37" args="(VecMath::Vector&lt; 4 &gt; _t)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setT</b> (<a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; _t)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0298fb79b894d5f9fe0c2918718fab7c"></a><!-- doxytag: member="C4DView::setT" ref="0298fb79b894d5f9fe0c2918718fab7c" args="(const VecMath::Vector&lt; 4 &gt; &amp;_t)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setT</b> (const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;_t)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5cbbef88488967558c45e960a667d822"></a><!-- doxytag: member="C4DView::T" ref="5cbbef88488967558c45e960a667d822" args="()" -->
 const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>T</b> ()</td></tr>
@@ -259,8 +300,8 @@ const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b035f874475d1ad203c17f349c041857"></a><!-- doxytag: member="C4DView::addT" ref="b035f874475d1ad203c17f349c041857" args="(const VecMath::Vector&lt; 4 &gt; &amp;_dT)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>addT</b> (const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;_dT)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="017ac004b348b8174ffa586ad1a68005"></a><!-- doxytag: member="C4DView::setR" ref="017ac004b348b8174ffa586ad1a68005" args="(VecMath::Rotation&lt; 4 &gt; _r)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setR</b> (<a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; _r)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="848ab529f41e858c486e63937f03034a"></a><!-- doxytag: member="C4DView::setR" ref="848ab529f41e858c486e63937f03034a" args="(const VecMath::Rotation&lt; 4 &gt; &amp;_r)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setR</b> (const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;_r)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="94ebd881a91d0b608f4b69598ff0714f"></a><!-- doxytag: member="C4DView::R" ref="94ebd881a91d0b608f4b69598ff0714f" args="()" -->
 const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>R</b> ()</td></tr>
@@ -268,8 +309,8 @@ const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&l
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1bb7c7a2df076405aadfb092e198475c"></a><!-- doxytag: member="C4DView::addR" ref="1bb7c7a2df076405aadfb092e198475c" args="(const VecMath::Rotation&lt; 4 &gt; &amp;_dR)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>addR</b> (const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;_dR)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bbc2d033b7f721214bf1ec6b7311237d"></a><!-- doxytag: member="C4DView::setdR3" ref="bbc2d033b7f721214bf1ec6b7311237d" args="(VecMath::Rotation&lt; 3 &gt; _dr)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setdR3</b> (<a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 3 &gt; _dr)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="daff8b8bdcacbd89f8cc48972a46acd3"></a><!-- doxytag: member="C4DView::setdR3" ref="daff8b8bdcacbd89f8cc48972a46acd3" args="(const VecMath::Rotation&lt; 3 &gt; &amp;_dr)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setdR3</b> (const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 3 &gt; &amp;_dr)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4338767ea07e6fc2ed80f981525bbe54"></a><!-- doxytag: member="C4DView::dR3" ref="4338767ea07e6fc2ed80f981525bbe54" args="()" -->
 const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 3 &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>dR3</b> ()</td></tr>
@@ -277,8 +318,8 @@ const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&l
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b3dee71322f74b46d42cbb2a7fdb60ce"></a><!-- doxytag: member="C4DView::adddR3" ref="b3dee71322f74b46d42cbb2a7fdb60ce" args="(const VecMath::Rotation&lt; 3 &gt; &amp;_ddr)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>adddR3</b> (const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 3 &gt; &amp;_ddr)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c16a2f72283a283295e4688d2b8328d2"></a><!-- doxytag: member="C4DView::setdR" ref="c16a2f72283a283295e4688d2b8328d2" args="(VecMath::Rotation&lt; 4 &gt; _dr)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setdR</b> (<a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; _dr)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c827f1ccf2d9044f2585d8fff918b2a5"></a><!-- doxytag: member="C4DView::setdR" ref="c827f1ccf2d9044f2585d8fff918b2a5" args="(const VecMath::Rotation&lt; 4 &gt; &amp;_dr)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setdR</b> (const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;_dr)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0291884b93abb31f5aa310c10701e9c3"></a><!-- doxytag: member="C4DView::dR" ref="0291884b93abb31f5aa310c10701e9c3" args="()" -->
 const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>dR</b> ()</td></tr>
@@ -286,8 +327,8 @@ const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&l
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a0f793fd49810409fc5f6f7906f2dc53"></a><!-- doxytag: member="C4DView::adddR" ref="a0f793fd49810409fc5f6f7906f2dc53" args="(const VecMath::Rotation&lt; 4 &gt; &amp;_ddR)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>adddR</b> (const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;_ddR)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="217a71fb5ca598cc159e852bd4d3f92c"></a><!-- doxytag: member="C4DView::setm_rot" ref="217a71fb5ca598cc159e852bd4d3f92c" args="(VecMath::Rotation&lt; 3, GLdouble &gt; _r)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setm_rot</b> (<a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 3, GLdouble &gt; _r)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="36180772cadbb1517885c1a366aca25c"></a><!-- doxytag: member="C4DView::setm_rot" ref="36180772cadbb1517885c1a366aca25c" args="(const VecMath::Rotation&lt; 3, GLdouble &gt; &amp;_r)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setm_rot</b> (const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 3, GLdouble &gt; &amp;_r)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="45846d7481660ac879e933d8395cf49f"></a><!-- doxytag: member="C4DView::m_rot" ref="45846d7481660ac879e933d8395cf49f" args="()" -->
 const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a><br>
@@ -296,8 +337,8 @@ const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a><b
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b7654a2bad6deeb87868385f3bd9c89d"></a><!-- doxytag: member="C4DView::addm_rot" ref="b7654a2bad6deeb87868385f3bd9c89d" args="(const VecMath::Rotation&lt; 3, GLdouble &gt; &amp;_dmr)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>addm_rot</b> (const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 3, GLdouble &gt; &amp;_dmr)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="57468fd4a12b95ac3703d89db9cea3e3"></a><!-- doxytag: member="C4DView::setm_trans" ref="57468fd4a12b95ac3703d89db9cea3e3" args="(VecMath::Vector&lt; 3, GLdouble &gt; _t)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setm_trans</b> (<a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 3, GLdouble &gt; _t)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3c8461856c1f84ed95d6f4994c69ede3"></a><!-- doxytag: member="C4DView::setm_trans" ref="3c8461856c1f84ed95d6f4994c69ede3" args="(const VecMath::Vector&lt; 3, GLdouble &gt; &amp;_t)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setm_trans</b> (const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 3, GLdouble &gt; &amp;_t)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="72ca1b3ddd5fd4dcfc1cb592d6e5c97a"></a><!-- doxytag: member="C4DView::m_trans" ref="72ca1b3ddd5fd4dcfc1cb592d6e5c97a" args="()" -->
 const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a><br>
@@ -306,14 +347,14 @@ const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a><br>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a69265d16f26ed97574de62b0a9780db"></a><!-- doxytag: member="C4DView::addm_trans" ref="a69265d16f26ed97574de62b0a9780db" args="(const VecMath::Vector&lt; 3, GLdouble &gt; &amp;_dmt)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>addm_trans</b> (const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 3, GLdouble &gt; &amp;_dmt)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6ff2213ad71877b3f2fad7cb4c3a32f7"></a><!-- doxytag: member="C4DView::setCamW" ref="6ff2213ad71877b3f2fad7cb4c3a32f7" args="(double _cw)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setCamW</b> (double _cw)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2e8a0ea9818d7ac4abcbd36a5f21e816"></a><!-- doxytag: member="C4DView::setCamW" ref="2e8a0ea9818d7ac4abcbd36a5f21e816" args="(const double &amp;_cw)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setCamW</b> (const double &amp;_cw)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6d87c315db886123bc697933917ce9e2"></a><!-- doxytag: member="C4DView::CamW" ref="6d87c315db886123bc697933917ce9e2" args="() const " -->
 double&nbsp;</td><td class="memItemRight" valign="bottom"><b>CamW</b> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1d0a3b31ee9c199b02913a652d6d24a2"></a><!-- doxytag: member="C4DView::setScrW" ref="1d0a3b31ee9c199b02913a652d6d24a2" args="(double _sw)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setScrW</b> (double _sw)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d4a1a6b6545c751a0e23751bff494a76"></a><!-- doxytag: member="C4DView::setScrW" ref="d4a1a6b6545c751a0e23751bff494a76" args="(const double &amp;_sw)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setScrW</b> (const double &amp;_sw)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8afccb3859458c1f70004151ef6dff80"></a><!-- doxytag: member="C4DView::ScrW" ref="8afccb3859458c1f70004151ef6dff80" args="() const " -->
 double&nbsp;</td><td class="memItemRight" valign="bottom"><b>ScrW</b> () const </td></tr>
@@ -554,7 +595,7 @@ does a lot of initialization to (usually sensible) hardcoded default values, ini
   </table>
 </dl>
 
-<p>References <a class="el" href="Menu4D_8C-source.html#l00158">C4DView::Menu4D::addToMenuBar()</a>, <a class="el" href="4DView_8C-source.html#l00402">ApplyChanges()</a>, <a class="el" href="4DView_8C-source.html#l00571">InitCross()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8C-source.html#l00145">Light()</a>, <a class="el" href="4DView_8C-source.html#l00239">ObjectHypercube()</a>, and <a class="el" href="4DView_8C-source.html#l00356">OnTimer()</a>.</p>
+<p>References <a class="el" href="Menu4D_8C-source.html#l00158">C4DView::Menu4D::addToMenuBar()</a>, <a class="el" href="4DView_8C-source.html#l00420">ApplyChanges()</a>, <a class="el" href="4DView_8C-source.html#l00588">InitCross()</a>, <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8C-source.html#l00153">Light()</a>, <a class="el" href="4DView_8C-source.html#l00257">ObjectHypercube()</a>, and <a class="el" href="4DView_8C-source.html#l00374">OnTimer()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -562,7 +603,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_1d7079e8957ce7e685531a3f9062c468_cgraph.png" border="0" usemap="#classC4DView_1d7079e8957ce7e685531a3f9062c468_cgraph_map" alt=""></center>
 <map name="classC4DView_1d7079e8957ce7e685531a3f9062c468_cgraph_map">
-<area shape="rect" href="classC4DView_1_1Menu4D.html#7ffe2f1f4d1f407ef16fca9c023d4e26" title="C4DView::Menu4D::addToMenuBar" alt="" coords="196,6,436,32"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="485,31,704,58"><area shape="rect" href="classC4DView.html#04a35de24dbf03d029afc5d0be93ec11" title="Initialize the structures to display a four&#45;dimensional coordinate cross." alt="" coords="247,107,385,134"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="753,31,1004,58"></map>
+<area shape="rect" href="classC4DView_1_1Menu4D.html#7ffe2f1f4d1f407ef16fca9c023d4e26" title="C4DView::Menu4D::addToMenuBar" alt="" coords="193,6,415,32"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="465,31,657,58"><area shape="rect" href="classC4DView.html#04a35de24dbf03d029afc5d0be93ec11" title="Initialize the structures to display a four&#45;dimensional coordinate cross." alt="" coords="239,107,369,134"></map>
 </div>
 
 </div>
@@ -589,7 +630,7 @@ Switch between wireframe and solid display.
 Account for antialiasing only in wireframe mode<p>
 Change menu items accordingly<p>
 Menu callback function 
-<p>References <a class="el" href="Menu4D_8C-source.html#l00222">C4DView::Menu4D::getAction()</a>, <a class="el" href="4DView_8C-source.html#l00546">OnPaint()</a>, and <a class="el" href="4DView_8H-source.html#l00152">setWireframe()</a>.</p>
+<p>References <a class="el" href="Menu4D_8C-source.html#l00222">C4DView::Menu4D::getAction()</a>, <a class="el" href="4DView_8C-source.html#l00563">OnPaint()</a>, and <a class="el" href="4DView_8H-source.html#l00153">setWireframe()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
@@ -615,8 +656,6 @@ Switch coordinate cross on or off.
 <p>
 Change menu items accordingly<p>
 Menu callback function 
-<p>References <a class="el" href="Menu4D_8C-source.html#l00222">C4DView::Menu4D::getAction()</a>, and <a class="el" href="4DView_8C-source.html#l00508">Redraw()</a>.</p>
-
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
 </div>
@@ -641,8 +680,6 @@ Switch 4D depth cue on or off.
 <p>
 Change menu items accordingly<p>
 Menu callback function 
-<p>References <a class="el" href="Menu4D_8C-source.html#l00222">C4DView::Menu4D::getAction()</a>, and <a class="el" href="4DView_8C-source.html#l00508">Redraw()</a>.</p>
-
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
 </div>
@@ -667,7 +704,7 @@ Switch lighting on or off.
 <p>
 Change menu items accordingly<p>
 Menu callback function 
-<p>References <a class="el" href="4DView_8C-source.html#l00546">OnPaint()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00563">OnPaint()</a>.</p>
 
 <p>Referenced by <a class="el" href="4DView_8C-source.html#l00066">C4DView()</a>, and <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
@@ -692,7 +729,7 @@ Menu callback function
 toggle colors 
 <p>
 menu callback function 
-<p>References <a class="el" href="Menu4D_8C-source.html#l00222">C4DView::Menu4D::getAction()</a>, <a class="el" href="4DView_8H-source.html#l00160">getColors()</a>, and <a class="el" href="4DView_8C-source.html#l00864">initializeGL()</a>.</p>
+<p>References <a class="el" href="4DView_8H-source.html#l00161">getColors()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
@@ -717,7 +754,7 @@ menu callback function
 Toggle fog/depth cue. 
 <p>
 menu callback function 
-<p>References <a class="el" href="Menu4D_8C-source.html#l00222">C4DView::Menu4D::getAction()</a>, <a class="el" href="4DView_8H-source.html#l00164">getFog()</a>, and <a class="el" href="4DView_8C-source.html#l00937">InitFog()</a>.</p>
+<p>References <a class="el" href="4DView_8H-source.html#l00165">getFog()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
@@ -742,7 +779,7 @@ menu callback function
 toggle object transparency 
 <p>
 menu callback function 
-<p>References <a class="el" href="Menu4D_8C-source.html#l00222">C4DView::Menu4D::getAction()</a>, <a class="el" href="4DView_8H-source.html#l00168">getTransparent()</a>, and <a class="el" href="4DView_8C-source.html#l00949">InitTransparence()</a>.</p>
+<p>References <a class="el" href="4DView_8H-source.html#l00169">getTransparent()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
@@ -767,7 +804,7 @@ menu callback function
 toggle shading 
 <p>
 menu callback function 
-<p>References <a class="el" href="Menu4D_8C-source.html#l00222">C4DView::Menu4D::getAction()</a>, <a class="el" href="4DView_8H-source.html#l00162">getShade()</a>, and <a class="el" href="4DView_8C-source.html#l00931">InitShade()</a>.</p>
+<p>References <a class="el" href="4DView_8H-source.html#l00163">getShade()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
@@ -792,7 +829,7 @@ menu callback function
 run a benchmark test 
 <p>
 menu callback function 
-<p>References <a class="el" href="4DView_8C-source.html#l00309">Benchmark3D()</a>, <a class="el" href="4DView_8C-source.html#l00332">Benchmark4D()</a>, and <a class="el" href="4DView_8C-source.html#l00761">UpdateStatus()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00327">Benchmark3D()</a>, <a class="el" href="4DView_8C-source.html#l00350">Benchmark4D()</a>, and <a class="el" href="4DView_8C-source.html#l00778">UpdateStatus()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
@@ -833,7 +870,7 @@ Menu callback function
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td width="100%"><code> [slot]</code></td>
+          <td width="100%"><code> [virtual, slot]</code></td>
         </tr>
       </table>
 </div>
@@ -843,7 +880,7 @@ Menu callback function
 Display a ObjectHypercube object. 
 <p>
 Menu callback function 
-<p>References <a class="el" href="4DView_8C-source.html#l00780">AssignValues()</a>, <a class="el" href="4DView_8C-source.html#l00508">Redraw()</a>, and <a class="el" href="Menu4D_8C-source.html#l00233">C4DView::Menu4D::updateFunctionMenu()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00797">AssignValues()</a>, <a class="el" href="4DView_8C-source.html#l00525">Redraw()</a>, and <a class="el" href="Menu4D_8C-source.html#l00233">C4DView::Menu4D::updateFunctionMenu()</a>.</p>
 
 <p>Referenced by <a class="el" href="4DView_8C-source.html#l00066">C4DView()</a>, and <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
@@ -858,7 +895,7 @@ Menu callback function
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td width="100%"><code> [slot]</code></td>
+          <td width="100%"><code> [virtual, slot]</code></td>
         </tr>
       </table>
 </div>
@@ -868,7 +905,7 @@ Menu callback function
 Display a ObjectHyperpyramid object. 
 <p>
 Menu callback function 
-<p>References <a class="el" href="4DView_8C-source.html#l00780">AssignValues()</a>, <a class="el" href="4DView_8C-source.html#l00508">Redraw()</a>, and <a class="el" href="Menu4D_8C-source.html#l00233">C4DView::Menu4D::updateFunctionMenu()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00797">AssignValues()</a>, <a class="el" href="4DView_8C-source.html#l00525">Redraw()</a>, and <a class="el" href="Menu4D_8C-source.html#l00233">C4DView::Menu4D::updateFunctionMenu()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
@@ -883,7 +920,7 @@ Menu callback function
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td width="100%"><code> [slot]</code></td>
+          <td width="100%"><code> [virtual, slot]</code></td>
         </tr>
       </table>
 </div>
@@ -893,7 +930,7 @@ Menu callback function
 display a ObjectHypersponge object 
 <p>
 menu callback function 
-<p>References <a class="el" href="4DView_8C-source.html#l00780">AssignValues()</a>, <a class="el" href="4DView_8C-source.html#l00508">Redraw()</a>, and <a class="el" href="Menu4D_8C-source.html#l00233">C4DView::Menu4D::updateFunctionMenu()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00797">AssignValues()</a>, <a class="el" href="4DView_8C-source.html#l00525">Redraw()</a>, and <a class="el" href="Menu4D_8C-source.html#l00233">C4DView::Menu4D::updateFunctionMenu()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
@@ -908,7 +945,7 @@ menu callback function
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td width="100%"><code> [slot]</code></td>
+          <td width="100%"><code> [virtual, slot]</code></td>
         </tr>
       </table>
 </div>
@@ -918,7 +955,7 @@ menu callback function
 display a ObjectGasket object 
 <p>
 menu callback function 
-<p>References <a class="el" href="4DView_8C-source.html#l00780">AssignValues()</a>, <a class="el" href="4DView_8C-source.html#l00508">Redraw()</a>, and <a class="el" href="Menu4D_8C-source.html#l00233">C4DView::Menu4D::updateFunctionMenu()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00797">AssignValues()</a>, <a class="el" href="4DView_8C-source.html#l00525">Redraw()</a>, and <a class="el" href="Menu4D_8C-source.html#l00233">C4DView::Menu4D::updateFunctionMenu()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
@@ -1039,7 +1076,7 @@ menu callback function
   </table>
 </dl>
 
-<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>, and <a class="el" href="4DView_8C-source.html#l00104">Wireframe()</a>.</p>
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>, and <a class="el" href="4DView_8C-source.html#l00108">Wireframe()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -1163,7 +1200,7 @@ Here is the caller graph for this function:</div>
 <p>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to use colors in rendering or not </dd></dl>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00177">Colors()</a>, and <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00185">Colors()</a>, and <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -1194,7 +1231,7 @@ Here is the caller graph for this function:</div>
 <p>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to use shading in rendering or not </dd></dl>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00931">InitShade()</a>, <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>, and <a class="el" href="4DView_8C-source.html#l00202">Shade()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00948">InitShade()</a>, <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>, and <a class="el" href="4DView_8C-source.html#l00218">Shade()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -1225,7 +1262,7 @@ Here is the caller graph for this function:</div>
 <p>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to use depth cue/fog in rendering or not </dd></dl>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00185">Fog()</a>, <a class="el" href="4DView_8C-source.html#l00937">InitFog()</a>, <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>, and <a class="el" href="4DView_8C-source.html#l00969">resizeGL()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00196">Fog()</a>, <a class="el" href="4DView_8C-source.html#l00954">InitFog()</a>, <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>, and <a class="el" href="4DView_8C-source.html#l00986">resizeGL()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -1256,7 +1293,7 @@ Here is the caller graph for this function:</div>
 <p>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to use lighting in rendering or not </dd></dl>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00914">InitLight()</a>, and <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00931">InitLight()</a>, and <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -1287,7 +1324,7 @@ Here is the caller graph for this function:</div>
 <p>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to use transparence/line antialiasing or not </dd></dl>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00949">InitTransparence()</a>, <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>, and <a class="el" href="4DView_8C-source.html#l00193">Transparent()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00966">InitTransparence()</a>, <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>, and <a class="el" href="4DView_8C-source.html#l00207">Transparent()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -1320,7 +1357,7 @@ Timer event handler.
 <p>
 Updates values if in the middle of an animation, and renders an image.<p>
 Writes image to file too, if wanted. 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8C-source.html#l00546">OnPaint()</a>, <a class="el" href="4DView_8C-source.html#l00508">Redraw()</a>, <a class="el" href="4DView_8H-source.html#l00184">Transform()</a>, <a class="el" href="4DView_8C-source.html#l00761">UpdateStatus()</a>, and <a class="el" href="4DView_8C-source.html#l00708">writeFrame()</a>.</p>
+<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8C-source.html#l00563">OnPaint()</a>, <a class="el" href="4DView_8C-source.html#l00525">Redraw()</a>, <a class="el" href="4DView_8H-source.html#l00225">Transform()</a>, <a class="el" href="4DView_8C-source.html#l00778">UpdateStatus()</a>, and <a class="el" href="4DView_8C-source.html#l00725">writeFrame()</a>.</p>
 
 <p>Referenced by <a class="el" href="4DView_8C-source.html#l00066">C4DView()</a>.</p>
 
@@ -1346,7 +1383,7 @@ show a dialog to adjust animation settings
 <p>
 Where to write image files and how many files to write.<p>
 Menu callback function 
-<p>References <a class="el" href="AnimationDialogImpl_8H-source.html#l00032">AnimationDialogImpl::getDir()</a>, <a class="el" href="AnimationDialogImpl_8H-source.html#l00026">AnimationDialogImpl::getFrames()</a>, <a class="el" href="AnimationDialogImpl_8H-source.html#l00035">AnimationDialogImpl::getPrefix()</a>, and <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
+<p>References <a class="el" href="AnimationDialogImpl_8H-source.html#l00032">AnimationDialogImpl::getDir()</a>, <a class="el" href="AnimationDialogImpl_8H-source.html#l00026">AnimationDialogImpl::getFrames()</a>, <a class="el" href="AnimationDialogImpl_8H-source.html#l00035">AnimationDialogImpl::getPrefix()</a>, and <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
@@ -1362,7 +1399,7 @@ Menu callback function
           <td class="paramtype">const <a class="el" href="classParameterMap.html">ParameterMap</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>parms</em>          </td>
           <td>&nbsp;)&nbsp;</td>
-          <td width="100%"><code> [private, slot]</code></td>
+          <td width="100%"><code> [private, virtual, slot]</code></td>
         </tr>
       </table>
 </div>
@@ -1372,7 +1409,7 @@ Menu callback function
 Called whenever an object or the parameters have changed. 
 <p>
 Sets the parameters, applies the changed parameters to the function object and redraws it 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="ValuesDialogImpl_8C-source.html#l00124">ValuesDialogImpl::print()</a>, <a class="el" href="ParameterMap_8H-source.html#l00043">ParameterMap::print()</a>, <a class="el" href="4DView_8C-source.html#l00508">Redraw()</a>, and <a class="el" href="4DView_8H-source.html#l00184">Transform()</a>.</p>
+<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, <a class="el" href="ValuesDialogImpl_8C-source.html#l00124">ValuesDialogImpl::print()</a>, <a class="el" href="ParameterMap_8H-source.html#l00043">ParameterMap::print()</a>, <a class="el" href="4DView_8C-source.html#l00525">Redraw()</a>, and <a class="el" href="4DView_8H-source.html#l00225">Transform()</a>.</p>
 
 <p>Referenced by <a class="el" href="4DView_8C-source.html#l00066">C4DView()</a>.</p>
 
@@ -1394,7 +1431,7 @@ Sets the parameters, applies the changed parameters to the function object and r
 <div class="memdoc">
 
 <p>
-display help window <dl compact><dt><b><a class="el" href="todo.html#_todo000023">Todo:</a></b></dt><dd>HARDCODED filename </dd></dl>
+display help window <dl compact><dt><b><a class="el" href="todo.html#_todo000024">Todo:</a></b></dt><dd>HARDCODED filename </dd></dl>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00022">C4DView::Menu4D::Menu4D()</a>.</p>
 
@@ -1475,7 +1512,7 @@ Calls F-&gt;Transform () and transforms the coordinate cross <dl compact><dt><b>
   </table>
 </dl>
 
-<p>References <a class="el" href="4DView_8H-source.html#l00435">Cross</a>, and <a class="el" href="4DView_8H-source.html#l00437">CrossTrans</a>.</p>
+<p>References <a class="el" href="4DView_8H-source.html#l00481">Cross</a>, and <a class="el" href="4DView_8H-source.html#l00483">CrossTrans</a>.</p>
 
 <p>Referenced by <a class="el" href="MouseHandler_8C-source.html#l00305">C4DView::MouseHandler4D::mouseDoubleClickEvent()</a>, and <a class="el" href="MouseHandler_8C-source.html#l00034">C4DView::MouseHandler4D::mouseMoveEvent()</a>.</p>
 
@@ -1510,9 +1547,9 @@ Here is the caller graph for this function:</div>
 Projects F and coordinate cross into three-space. 
 <p>
 
-<p>References <a class="el" href="4DView_8H-source.html#l00439">CrossScr</a>, and <a class="el" href="4DView_8H-source.html#l00437">CrossTrans</a>.</p>
+<p>References <a class="el" href="4DView_8H-source.html#l00485">CrossScr</a>, and <a class="el" href="4DView_8H-source.html#l00483">CrossTrans</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00480">PreRedraw()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00497">PreRedraw()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -1543,11 +1580,11 @@ Here is the caller graph for this function:</div>
 <p>
 4D projection stuff 
 <p>
-Separated from the 3D OpenGL handling into this function <dl compact><dt><b><a class="el" href="todo.html#_todo000024">Todo:</a></b></dt><dd>either <a class="el" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff">PreRedraw()</a> or Draw() should call <a class="el" href="classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */">DrawCoordinates()</a>, but not both </dd></dl>
+Separated from the 3D OpenGL handling into this function <dl compact><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>either <a class="el" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff">PreRedraw()</a> or Draw() should call <a class="el" href="classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */">DrawCoordinates()</a>, but not both </dd></dl>
 
-<p>References <a class="el" href="4DView_8C-source.html#l00622">DrawCoordinates()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="4DView_8C-source.html#l00462">Project()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00639">DrawCoordinates()</a>, <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, and <a class="el" href="4DView_8C-source.html#l00479">Project()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00864">initializeGL()</a>, <a class="el" href="4DView_8C-source.html#l00508">Redraw()</a>, <a class="el" href="4DView_8C-source.html#l00515">RenderScene()</a>, and <a class="el" href="4DView_8C-source.html#l00708">writeFrame()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00881">initializeGL()</a>, <a class="el" href="4DView_8C-source.html#l00525">Redraw()</a>, <a class="el" href="4DView_8C-source.html#l00532">RenderScene()</a>, and <a class="el" href="4DView_8C-source.html#l00725">writeFrame()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -1555,7 +1592,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_638fd2fe648c1fcd8f9a3ac03ac8f6b4_cgraph.png" border="0" usemap="#classC4DView_638fd2fe648c1fcd8f9a3ac03ac8f6b4_cgraph_map" alt=""></center>
 <map name="classC4DView_638fd2fe648c1fcd8f9a3ac03ac8f6b4_cgraph_map">
-<area shape="rect" href="classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="205,6,400,32"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="448,31,667,58"><area shape="rect" href="classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="239,107,367,134"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="716,31,967,58"></map>
+<area shape="rect" href="classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="199,6,375,32"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="425,31,617,58"><area shape="rect" href="classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="227,107,347,134"></map>
 </div>
 
 <p>
@@ -1589,9 +1626,9 @@ Here is the caller graph for this function:</div>
 Wrapper for redraw handler. 
 <p>
 With an error reporting routine and exit strategy 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="4DView_8C-source.html#l00480">PreRedraw()</a>.</p>
+<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, and <a class="el" href="4DView_8C-source.html#l00497">PreRedraw()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00864">initializeGL()</a>, and <a class="el" href="4DView_8C-source.html#l00546">OnPaint()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00881">initializeGL()</a>, and <a class="el" href="4DView_8C-source.html#l00563">OnPaint()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -1599,7 +1636,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_e0e7e693f0c2ba5afeaea265c8c21895_cgraph.png" border="0" usemap="#classC4DView_e0e7e693f0c2ba5afeaea265c8c21895_cgraph_map" alt=""></center>
 <map name="classC4DView_e0e7e693f0c2ba5afeaea265c8c21895_cgraph_map">
-<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="667,31,885,57"><area shape="rect" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="224,56,376,83"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="935,31,1185,57"><area shape="rect" href="classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="424,81,619,108"><area shape="rect" href="classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="457,132,585,159"></map>
+<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="628,31,820,57"><area shape="rect" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="209,56,351,83"><area shape="rect" href="classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="401,81,577,108"><area shape="rect" href="classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="429,132,549,159"></map>
 </div>
 
 <p>
@@ -1632,9 +1669,9 @@ Here is the caller graph for this function:</div>
 Should be called whenever the object is rotated or translated. 
 <p>
 <a class="el" href="classObject.html" title="Generalized four-dimensional Object, described by vertexes and surfaces.">Object</a> drawing routine: Does all the OpenGL stuff necessary to paint the object on screen 
-<p>References <a class="el" href="4DView_8C-source.html#l00515">RenderScene()</a>, and <a class="el" href="4DView_8C-source.html#l00708">writeFrame()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00532">RenderScene()</a>, and <a class="el" href="4DView_8C-source.html#l00725">writeFrame()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00309">Benchmark3D()</a>, <a class="el" href="4DView_8C-source.html#l00145">Light()</a>, <a class="el" href="MouseHandler_8C-source.html#l00034">C4DView::MouseHandler4D::mouseMoveEvent()</a>, <a class="el" href="4DView_8C-source.html#l00356">OnTimer()</a>, <a class="el" href="4DView_8C-source.html#l00828">paintEvent()</a>, <a class="el" href="4DView_8C-source.html#l00508">Redraw()</a>, and <a class="el" href="4DView_8C-source.html#l00104">Wireframe()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00327">Benchmark3D()</a>, <a class="el" href="4DView_8C-source.html#l00153">Light()</a>, <a class="el" href="MouseHandler_8C-source.html#l00034">C4DView::MouseHandler4D::mouseMoveEvent()</a>, <a class="el" href="4DView_8C-source.html#l00374">OnTimer()</a>, <a class="el" href="4DView_8C-source.html#l00845">paintEvent()</a>, <a class="el" href="4DView_8C-source.html#l00525">Redraw()</a>, and <a class="el" href="4DView_8C-source.html#l00108">Wireframe()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -1642,7 +1679,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_e8db20fdfebe8d979f90ff303305a79d_cgraph.png" border="0" usemap="#classC4DView_e8db20fdfebe8d979f90ff303305a79d_cgraph_map" alt=""></center>
 <map name="classC4DView_e8db20fdfebe8d979f90ff303305a79d_cgraph_map">
-<area shape="rect" href="classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler." alt="" coords="189,73,360,100"><area shape="rect" href="classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="197,149,352,176"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="867,60,1085,87"><area shape="rect" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="416,73,568,100"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1135,60,1385,87"><area shape="rect" href="classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="624,60,819,87"><area shape="rect" href="classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="657,111,785,137"><area shape="rect" href="classC4DView.html#99a55bb5dd4ba5f78e31506c55425987" title="Make a pixmap to to be rendered by the GL widget, and render it." alt="" coords="408,212,576,239"></map>
+<area shape="rect" href="classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler." alt="" coords="183,73,335,100"><area shape="rect" href="classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="187,149,331,176"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="812,60,1004,87"><area shape="rect" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="389,73,531,100"><area shape="rect" href="classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="585,60,761,87"><area shape="rect" href="classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="613,111,733,137"><area shape="rect" href="classC4DView.html#99a55bb5dd4ba5f78e31506c55425987" title="Make a pixmap to to be rendered by the GL widget, and render it." alt="" coords="384,212,536,239"></map>
 </div>
 
 <p>
@@ -1681,9 +1718,9 @@ Switch 3D depth cue on and off.
   </table>
 </dl>
 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="4DView_8C-source.html#l00796">Size()</a>.</p>
+<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, and <a class="el" href="4DView_8C-source.html#l00813">Size()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00937">InitFog()</a>, <a class="el" href="MouseHandler_8C-source.html#l00034">C4DView::MouseHandler4D::mouseMoveEvent()</a>, and <a class="el" href="4DView_8C-source.html#l00969">resizeGL()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00954">InitFog()</a>, <a class="el" href="MouseHandler_8C-source.html#l00034">C4DView::MouseHandler4D::mouseMoveEvent()</a>, and <a class="el" href="4DView_8C-source.html#l00986">resizeGL()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -1691,7 +1728,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_f46da1a68ffbcc00eddc03df078fe150_cgraph.png" border="0" usemap="#classC4DView_f46da1a68ffbcc00eddc03df078fe150_cgraph_map" alt=""></center>
 <map name="classC4DView_f46da1a68ffbcc00eddc03df078fe150_cgraph_map">
-<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="243,5,461,32"><area shape="rect" href="classC4DView.html#15c8ca4d71f5b5e5b07a959601820f83" title="Get size of displayed area." alt="" coords="296,56,408,83"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="511,5,761,32"></map>
+<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="223,5,415,32"><area shape="rect" href="classC4DView.html#15c8ca4d71f5b5e5b07a959601820f83" title="Get size of displayed area." alt="" coords="267,56,371,83"></map>
 </div>
 
 <p>
@@ -1725,9 +1762,9 @@ Here is the caller graph for this function:</div>
 draw the coordinate cross (on screen or int GL list) */ 
 <p>
 
-<p>References <a class="el" href="4DView_8H-source.html#l00439">CrossScr</a>, and <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
+<p>References <a class="el" href="4DView_8H-source.html#l00485">CrossScr</a>, and <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00480">PreRedraw()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00497">PreRedraw()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -1735,7 +1772,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_37a8191d956104629a6182ba86755cd1_cgraph.png" border="0" usemap="#classC4DView_37a8191d956104629a6182ba86755cd1_cgraph_map" alt=""></center>
 <map name="classC4DView_37a8191d956104629a6182ba86755cd1_cgraph_map">
-<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="248,5,467,32"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="516,5,767,32"></map>
+<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="233,5,425,32"></map>
 </div>
 
 <p>
@@ -1768,9 +1805,9 @@ Here is the caller graph for this function:</div>
 Err well.. just that! 
 <p>
 Starts AnimationTimer, too... 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="4DView_8C-source.html#l00761">UpdateStatus()</a>.</p>
+<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, and <a class="el" href="4DView_8C-source.html#l00778">UpdateStatus()</a>.</p>
 
-<p>Referenced by <a class="el" href="MouseHandler_8C-source.html#l00291">C4DView::MouseHandler4D::mouseReleaseEvent()</a>, and <a class="el" href="4DView_8C-source.html#l00677">RandomAnimation()</a>.</p>
+<p>Referenced by <a class="el" href="MouseHandler_8C-source.html#l00291">C4DView::MouseHandler4D::mouseReleaseEvent()</a>, and <a class="el" href="4DView_8C-source.html#l00694">RandomAnimation()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -1778,7 +1815,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_715dbd8c1e15f6d118853e1789d081e7_cgraph.png" border="0" usemap="#classC4DView_715dbd8c1e15f6d118853e1789d081e7_cgraph_map" alt=""></center>
 <map name="classC4DView_715dbd8c1e15f6d118853e1789d081e7_cgraph_map">
-<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="472,5,691,32"><area shape="rect" href="classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="239,56,412,83"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="751,5,1001,32"><area shape="rect" href="classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="461,56,701,83"></map>
+<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="436,5,628,32"><area shape="rect" href="classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="220,56,372,83"><area shape="rect" href="classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="421,56,643,83"></map>
 </div>
 
 <p>
@@ -1810,10 +1847,10 @@ Here is the caller graph for this function:</div>
 <p>
 Starts a random animation. 
 <p>
-xw/yw/zw rotation speed changes every 10 seconds <dl compact><dt><b><a class="el" href="todo.html#_todo000026">Todo:</a></b></dt><dd>make hardcoded duration of rotation change frequency adjustable </dd></dl>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000026">Todo:</a></b></dt><dd>a menu entry for this </dd></dl>
+xw/yw/zw rotation speed changes every 10 seconds <dl compact><dt><b><a class="el" href="todo.html#_todo000027">Todo:</a></b></dt><dd>make hardcoded duration of rotation change frequency adjustable </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000027">Todo:</a></b></dt><dd>a menu entry for this </dd></dl>
 
-<p>References <a class="el" href="4DView_8C-source.html#l00647">StartAnimation()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00664">StartAnimation()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -1821,7 +1858,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_f33c8cf03fcfc94d4c64f9f4454b0339_cgraph.png" border="0" usemap="#classC4DView_f33c8cf03fcfc94d4c64f9f4454b0339_cgraph_map" alt=""></center>
 <map name="classC4DView_f33c8cf03fcfc94d4c64f9f4454b0339_cgraph_map">
-<area shape="rect" href="classC4DView.html#715dbd8c1e15f6d118853e1789d081e7" title="Err well.. just that!" alt="" coords="260,31,441,57"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="725,5,944,32"><area shape="rect" href="classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="492,56,665,83"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1004,5,1255,32"><area shape="rect" href="classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="715,56,955,83"></map>
+<area shape="rect" href="classC4DView.html#715dbd8c1e15f6d118853e1789d081e7" title="Err well.. just that!" alt="" coords="240,31,405,57"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="671,5,863,32"><area shape="rect" href="classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="455,56,607,83"><area shape="rect" href="classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="656,56,877,83"></map>
 </div>
 
 </div>
@@ -1845,9 +1882,9 @@ Here is the call graph for this function:</div>
 Make a pixmap to to be rendered by the GL widget, and render it. 
 <p>
 This is an embarrassing workaround to make rendering to files work. QGLWidget's renderPixmap() method only produces black frames. Works with QPixmap::grabWindow() instead. 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
+<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00708">writeFrame()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00725">writeFrame()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -1855,7 +1892,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_99a55bb5dd4ba5f78e31506c55425987_cgraph.png" border="0" usemap="#classC4DView_99a55bb5dd4ba5f78e31506c55425987_cgraph_map" alt=""></center>
 <map name="classC4DView_99a55bb5dd4ba5f78e31506c55425987_cgraph_map">
-<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="221,5,440,32"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="489,5,740,32"></map>
+<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="207,5,399,32"></map>
 </div>
 
 <p>
@@ -1886,9 +1923,9 @@ Here is the caller graph for this function:</div>
 
 <p>
 Writes a snapshot of the current frame of an animation or interactive display to disk. Updates animationFrame 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8C-source.html#l00691">makePixmap()</a>, and <a class="el" href="4DView_8C-source.html#l00480">PreRedraw()</a>.</p>
+<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8C-source.html#l00708">makePixmap()</a>, and <a class="el" href="4DView_8C-source.html#l00497">PreRedraw()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00546">OnPaint()</a>, and <a class="el" href="4DView_8C-source.html#l00356">OnTimer()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00563">OnPaint()</a>, and <a class="el" href="4DView_8C-source.html#l00374">OnTimer()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -1896,7 +1933,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_54cf3b6bbb8bf1eed47afc6da5fcebe2_cgraph.png" border="0" usemap="#classC4DView_54cf3b6bbb8bf1eed47afc6da5fcebe2_cgraph_map" alt=""></center>
 <map name="classC4DView_54cf3b6bbb8bf1eed47afc6da5fcebe2_cgraph_map">
-<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="669,58,888,85"><area shape="rect" href="classC4DView.html#99a55bb5dd4ba5f78e31506c55425987" title="Make a pixmap to to be rendered by the GL widget, and render it." alt="" coords="211,33,379,60"><area shape="rect" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="219,109,371,136"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="937,58,1188,85"><area shape="rect" href="classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="427,134,621,161"><area shape="rect" href="classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="460,185,588,212"></map>
+<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="625,58,817,85"><area shape="rect" href="classC4DView.html#99a55bb5dd4ba5f78e31506c55425987" title="Make a pixmap to to be rendered by the GL widget, and render it." alt="" coords="197,33,349,60"><area shape="rect" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="203,109,344,136"><area shape="rect" href="classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="399,134,575,161"><area shape="rect" href="classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="427,185,547,212"></map>
 </div>
 
 <p>
@@ -1936,9 +1973,9 @@ Side effect: checks rotation values for overflow and resets them to the interval
   </table>
 </dl>
 
-<p>References <a class="el" href="4DView_8C-source.html#l00737">checkAnglesForOverflow()</a>, and <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00754">checkAnglesForOverflow()</a>, and <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00780">AssignValues()</a>, <a class="el" href="4DView_8C-source.html#l00211">Benchmark()</a>, <a class="el" href="4DView_8C-source.html#l00309">Benchmark3D()</a>, <a class="el" href="4DView_8C-source.html#l00332">Benchmark4D()</a>, <a class="el" href="CustomFunctionSlot_8impl_8H-source.html#l00027">C4DView::CustomFunctionSlot&lt; function &gt;::createCustomFunction()</a>, <a class="el" href="CustomFunctionSlot_8impl_8H-source.html#l00053">C4DView::CustomFunctionSlot&lt; function &gt;::createCustomSurface()</a>, <a class="el" href="MouseHandler_8C-source.html#l00305">C4DView::MouseHandler4D::mouseDoubleClickEvent()</a>, <a class="el" href="MouseHandler_8C-source.html#l00034">C4DView::MouseHandler4D::mouseMoveEvent()</a>, <a class="el" href="MouseHandler_8C-source.html#l00291">C4DView::MouseHandler4D::mouseReleaseEvent()</a>, <a class="el" href="4DView_8C-source.html#l00356">OnTimer()</a>, and <a class="el" href="4DView_8C-source.html#l00647">StartAnimation()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00797">AssignValues()</a>, <a class="el" href="4DView_8C-source.html#l00229">Benchmark()</a>, <a class="el" href="4DView_8C-source.html#l00327">Benchmark3D()</a>, <a class="el" href="4DView_8C-source.html#l00350">Benchmark4D()</a>, <a class="el" href="CustomFunctionSlot_8impl_8H-source.html#l00027">C4DView::CustomFunctionSlot&lt; function &gt;::createCustomFunction()</a>, <a class="el" href="CustomFunctionSlot_8impl_8H-source.html#l00053">C4DView::CustomFunctionSlot&lt; function &gt;::createCustomSurface()</a>, <a class="el" href="MouseHandler_8C-source.html#l00305">C4DView::MouseHandler4D::mouseDoubleClickEvent()</a>, <a class="el" href="MouseHandler_8C-source.html#l00034">C4DView::MouseHandler4D::mouseMoveEvent()</a>, <a class="el" href="MouseHandler_8C-source.html#l00291">C4DView::MouseHandler4D::mouseReleaseEvent()</a>, <a class="el" href="4DView_8C-source.html#l00374">OnTimer()</a>, and <a class="el" href="4DView_8C-source.html#l00664">StartAnimation()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -1946,7 +1983,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_d37702c9ecc5cbf124df84d0263734b9_cgraph.png" border="0" usemap="#classC4DView_d37702c9ecc5cbf124df84d0263734b9_cgraph_map" alt=""></center>
 <map name="classC4DView_d37702c9ecc5cbf124df84d0263734b9_cgraph_map">
-<area shape="rect" href="classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="229,5,469,32"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="240,56,459,83"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="519,56,769,83"></map>
+<area shape="rect" href="classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="208,5,429,32"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="223,56,415,83"></map>
 </div>
 
 <p>
@@ -1985,9 +2022,9 @@ Changes the display on the status bar and the number and names of the parameters
   </table>
 </dl>
 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="ValuesDialogImpl_8C-source.html#l00043">ValuesDialogImpl::setFunction()</a>, <a class="el" href="4DView_8H-source.html#l00184">Transform()</a>, and <a class="el" href="4DView_8C-source.html#l00761">UpdateStatus()</a>.</p>
+<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, <a class="el" href="ValuesDialogImpl_8C-source.html#l00043">ValuesDialogImpl::setFunction()</a>, <a class="el" href="4DView_8H-source.html#l00225">Transform()</a>, and <a class="el" href="4DView_8C-source.html#l00778">UpdateStatus()</a>.</p>
 
-<p>Referenced by <a class="el" href="CustomFunctionSlot_8impl_8H-source.html#l00027">C4DView::CustomFunctionSlot&lt; function &gt;::createCustomFunction()</a>, <a class="el" href="CustomFunctionSlot_8impl_8H-source.html#l00053">C4DView::CustomFunctionSlot&lt; function &gt;::createCustomSurface()</a>, <a class="el" href="4DView_8C-source.html#l00275">ObjectGasket()</a>, <a class="el" href="4DView_8C-source.html#l00239">ObjectHypercube()</a>, <a class="el" href="4DView_8C-source.html#l00250">ObjectHyperpyramid()</a>, <a class="el" href="4DView_8C-source.html#l00261">ObjectHypersponge()</a>, <a class="el" href="SlotHelper_8C-source.html#l00029">SurfaceSlotHelper::slot()</a>, and <a class="el" href="SlotHelper_8C-source.html#l00019">FunctionSlotHelper::slot()</a>.</p>
+<p>Referenced by <a class="el" href="CustomFunctionSlot_8impl_8H-source.html#l00027">C4DView::CustomFunctionSlot&lt; function &gt;::createCustomFunction()</a>, <a class="el" href="CustomFunctionSlot_8impl_8H-source.html#l00053">C4DView::CustomFunctionSlot&lt; function &gt;::createCustomSurface()</a>, <a class="el" href="4DView_8C-source.html#l00293">ObjectGasket()</a>, <a class="el" href="4DView_8C-source.html#l00257">ObjectHypercube()</a>, <a class="el" href="4DView_8C-source.html#l00268">ObjectHyperpyramid()</a>, <a class="el" href="4DView_8C-source.html#l00279">ObjectHypersponge()</a>, <a class="el" href="SlotHelper_8C-source.html#l00029">SurfaceSlotHelper::slot()</a>, and <a class="el" href="SlotHelper_8C-source.html#l00019">FunctionSlotHelper::slot()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -1995,7 +2032,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_e38186ceacf6c4e6b13de7bee6cd8bda_cgraph.png" border="0" usemap="#classC4DView_e38186ceacf6c4e6b13de7bee6cd8bda_cgraph_map" alt=""></center>
 <map name="classC4DView_e38186ceacf6c4e6b13de7bee6cd8bda_cgraph_map">
-<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="496,81,715,108"><area shape="rect" href="classValuesDialogImpl.html#51d28c2eca2e1e35f5aaaab4cceca1be" title="Adjust the display according to the Function whose Parameters are controlled." alt="" coords="225,5,436,32"><area shape="rect" href="classC4DView.html#16d5190870a166c65a20c59368ca0f2f" title="Overloaded function executing the transform to the default state." alt="" coords="256,106,405,133"><area shape="rect" href="classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="244,157,417,184"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="775,81,1025,108"><area shape="rect" href="classValuesDialogImpl.html#9c8ed70c102c1a781f00888c0e3c0f5b" title="Adjust the displayed parameter fields to the parameters the function needs." alt="" coords="489,5,721,32"><area shape="rect" href="classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="485,157,725,184"></map>
+<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="463,81,655,108"><area shape="rect" href="classValuesDialogImpl.html#51d28c2eca2e1e35f5aaaab4cceca1be" title="Adjust the display according to the Function whose Parameters are controlled." alt="" coords="211,5,400,32"><area shape="rect" href="classC4DView.html#16d5190870a166c65a20c59368ca0f2f" title="Overloaded function executing the transform to the default state." alt="" coords="236,106,375,133"><area shape="rect" href="classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="229,157,381,184"><area shape="rect" href="classValuesDialogImpl.html#9c8ed70c102c1a781f00888c0e3c0f5b" title="Adjust the displayed parameter fields to the parameters the function needs." alt="" coords="459,5,659,32"><area shape="rect" href="classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="448,157,669,184"></map>
 </div>
 
 <p>
@@ -2029,7 +2066,7 @@ Get size of displayed area.
 <p>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>approximate diameter of definition space </dd></dl>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00937">InitFog()</a>, <a class="el" href="MouseHandler_8C-source.html#l00034">C4DView::MouseHandler4D::mouseMoveEvent()</a>, <a class="el" href="4DView_8C-source.html#l00834">resizeEvent()</a>, <a class="el" href="4DView_8C-source.html#l00969">resizeGL()</a>, and <a class="el" href="4DView_8C-source.html#l00596">SetupDepthCue()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00954">InitFog()</a>, <a class="el" href="MouseHandler_8C-source.html#l00034">C4DView::MouseHandler4D::mouseMoveEvent()</a>, <a class="el" href="4DView_8C-source.html#l00851">resizeEvent()</a>, <a class="el" href="4DView_8C-source.html#l00986">resizeGL()</a>, and <a class="el" href="4DView_8C-source.html#l00613">SetupDepthCue()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -2070,7 +2107,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_1b5e87b494b99e3705c64e924480f4ef_cgraph.png" border="0" usemap="#classC4DView_1b5e87b494b99e3705c64e924480f4ef_cgraph_map" alt=""></center>
 <map name="classC4DView_1b5e87b494b99e3705c64e924480f4ef_cgraph_map">
-<area shape="rect" href="classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="253,461,571,488"><area shape="rect" href="classC4DView.html#a0f793fd49810409fc5f6f7906f2dc53" title="C4DView::adddR" alt="" coords="651,5,776,32"><area shape="rect" href="classC4DView.html#b3dee71322f74b46d42cbb2a7fdb60ce" title="C4DView::adddR3" alt="" coords="647,56,780,82"><area shape="rect" href="classC4DView.html#b7654a2bad6deeb87868385f3bd9c89d" title="C4DView::addm_rot" alt="" coords="640,106,787,133"><area shape="rect" href="classC4DView.html#a69265d16f26ed97574de62b0a9780db" title="C4DView::addm_trans" alt="" coords="632,157,795,184"><area shape="rect" href="classC4DView.html#1bb7c7a2df076405aadfb092e198475c" title="C4DView::addR" alt="" coords="655,208,772,234"><area shape="rect" href="classC4DView.html#b035f874475d1ad203c17f349c041857" title="C4DView::addT" alt="" coords="656,258,771,285"><area shape="rect" href="classC4DView.html#d72b329338b14cd8cd7054bd9ab6ada4" title="C4DView::DepthCue3D" alt="" coords="629,309,797,336"><area shape="rect" href="classC4DView.html#0291884b93abb31f5aa310c10701e9c3" title="C4DView::dR" alt="" coords="663,360,764,386"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1821,613,2040,640"><area shape="rect" href="classC4DView.html#72ca1b3ddd5fd4dcfc1cb592d6e5c97a" title="C4DView::m_trans" alt="" coords="644,461,783,488"><area shape="rect" href="classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Should be called whenever the object is rotated or translated." alt="" coords="908,562,1044,589"><area shape="rect" href="classC4DView.html#94ebd881a91d0b608f4b69598ff0714f" title="C4DView::R" alt="" coords="667,562,760,589"><area shape="rect" href="classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Redraw handler." alt="" coords="648,613,779,640"><area shape="rect" href="classC4DView.html#57468fd4a12b95ac3703d89db9cea3e3" title="C4DView::setm_trans" alt="" coords="635,664,792,690"><area shape="rect" href="classC4DView.html#f46da1a68ffbcc00eddc03df078fe150" title="Switch 3D depth cue on and off." alt="" coords="620,714,807,741"><area shape="rect" href="classC4DView.html#15c8ca4d71f5b5e5b07a959601820f83" title="Get size of displayed area." alt="" coords="920,816,1032,842"><area shape="rect" href="classC4DView.html#5cbbef88488967558c45e960a667d822" title="C4DView::T" alt="" coords="668,816,759,842"><area shape="rect" href="classC4DView.html#8a51cc06ede29308384576f277a67e19" title="Application of translations and rotations." alt="" coords="639,866,788,893"><area shape="rect" href="classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="627,917,800,944"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="2089,613,2340,640"><area shape="rect" href="classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler." alt="" coords="1144,562,1315,589"><area shape="rect" href="classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="1152,664,1307,690"><area shape="rect" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="1371,588,1523,614"><area shape="rect" href="classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="1579,562,1773,589"><area shape="rect" href="classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="1612,613,1740,640"><area shape="rect" href="classC4DView.html#99a55bb5dd4ba5f78e31506c55425987" title="Make a pixmap to to be rendered by the GL widget, and render it." alt="" coords="1363,714,1531,741"><area shape="rect" href="classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="856,917,1096,944"></map>
+<area shape="rect" href="classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="235,461,517,488"><area shape="rect" href="classC4DView.html#a0f793fd49810409fc5f6f7906f2dc53" title="C4DView::adddR" alt="" coords="591,5,708,32"><area shape="rect" href="classC4DView.html#b3dee71322f74b46d42cbb2a7fdb60ce" title="C4DView::adddR3" alt="" coords="588,56,711,82"><area shape="rect" href="classC4DView.html#b7654a2bad6deeb87868385f3bd9c89d" title="C4DView::addm_rot" alt="" coords="583,106,716,133"><area shape="rect" href="classC4DView.html#a69265d16f26ed97574de62b0a9780db" title="C4DView::addm_trans" alt="" coords="577,157,721,184"><area shape="rect" href="classC4DView.html#1bb7c7a2df076405aadfb092e198475c" title="C4DView::addR" alt="" coords="595,208,704,234"><area shape="rect" href="classC4DView.html#b035f874475d1ad203c17f349c041857" title="C4DView::addT" alt="" coords="595,258,704,285"><area shape="rect" href="classC4DView.html#d72b329338b14cd8cd7054bd9ab6ada4" title="C4DView::DepthCue3D" alt="" coords="573,309,725,336"><area shape="rect" href="classC4DView.html#0291884b93abb31f5aa310c10701e9c3" title="C4DView::dR" alt="" coords="600,360,699,386"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1681,613,1873,640"><area shape="rect" href="classC4DView.html#72ca1b3ddd5fd4dcfc1cb592d6e5c97a" title="C4DView::m_trans" alt="" coords="587,461,712,488"><area shape="rect" href="classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Should be called whenever the object is rotated or translated." alt="" coords="829,562,955,589"><area shape="rect" href="classC4DView.html#94ebd881a91d0b608f4b69598ff0714f" title="C4DView::R" alt="" coords="604,562,695,589"><area shape="rect" href="classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Redraw handler." alt="" coords="588,613,711,640"><area shape="rect" href="classC4DView.html#3c8461856c1f84ed95d6f4994c69ede3" title="C4DView::setm_trans" alt="" coords="580,664,719,690"><area shape="rect" href="classC4DView.html#f46da1a68ffbcc00eddc03df078fe150" title="Switch 3D depth cue on and off." alt="" coords="567,714,732,741"><area shape="rect" href="classC4DView.html#15c8ca4d71f5b5e5b07a959601820f83" title="Get size of displayed area." alt="" coords="840,816,944,842"><area shape="rect" href="classC4DView.html#5cbbef88488967558c45e960a667d822" title="C4DView::T" alt="" coords="604,816,695,842"><area shape="rect" href="classC4DView.html#8a51cc06ede29308384576f277a67e19" title="Application of translations and rotations." alt="" coords="580,866,719,893"><area shape="rect" href="classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="573,917,725,944"><area shape="rect" href="classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler." alt="" coords="1052,562,1204,589"><area shape="rect" href="classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="1056,664,1200,690"><area shape="rect" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="1259,588,1400,614"><area shape="rect" href="classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="1455,562,1631,589"><area shape="rect" href="classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="1483,613,1603,640"><area shape="rect" href="classC4DView.html#99a55bb5dd4ba5f78e31506c55425987" title="Make a pixmap to to be rendered by the GL widget, and render it." alt="" coords="1253,714,1405,741"><area shape="rect" href="classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="781,917,1003,944"></map>
 </div>
 
 </div>
@@ -2103,7 +2140,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_93fd8d7586928e6cd1b0c7131bff84b2_cgraph.png" border="0" usemap="#classC4DView_93fd8d7586928e6cd1b0c7131bff84b2_cgraph_map" alt=""></center>
 <map name="classC4DView_93fd8d7586928e6cd1b0c7131bff84b2_cgraph_map">
-<area shape="rect" href="classC4DView_1_1MouseHandler4D.html#3fd72e434043c95051a38c2dbfccab7a" title="Mouse button event handler." alt="" coords="255,31,572,57"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="621,5,840,32"><area shape="rect" href="classC4DView.html#9fd23354578b01a6f5bb392cafea4344" title="C4DView::Menu" alt="" coords="671,56,791,83"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="889,5,1140,32"></map>
+<area shape="rect" href="classC4DView_1_1MouseHandler4D.html#3fd72e434043c95051a38c2dbfccab7a" title="Mouse button event handler." alt="" coords="232,31,512,57"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="561,5,753,32"><area shape="rect" href="classC4DView.html#9fd23354578b01a6f5bb392cafea4344" title="C4DView::Menu" alt="" coords="601,56,713,83"></map>
 </div>
 
 </div>
@@ -2136,7 +2173,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_00949bc8cb7215be6ff50e947d6f576f_cgraph.png" border="0" usemap="#classC4DView_00949bc8cb7215be6ff50e947d6f576f_cgraph_map" alt=""></center>
 <map name="classC4DView_00949bc8cb7215be6ff50e947d6f576f_cgraph_map">
-<area shape="rect" href="classC4DView_1_1MouseHandler4D.html#9e5ab5cea257501da2f87c3f13140029" title="Mouse button release event handler." alt="" coords="269,26,603,53"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1117,26,1336,53"><area shape="rect" href="classC4DView.html#715dbd8c1e15f6d118853e1789d081e7" title="Err well.. just that!" alt="" coords="652,26,833,53"><area shape="rect" href="classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="884,77,1057,104"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1396,26,1647,53"><area shape="rect" href="classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="1107,77,1347,104"></map>
+<area shape="rect" href="classC4DView_1_1MouseHandler4D.html#9e5ab5cea257501da2f87c3f13140029" title="Mouse button release event handler." alt="" coords="245,26,539,53"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1017,26,1209,53"><area shape="rect" href="classC4DView.html#715dbd8c1e15f6d118853e1789d081e7" title="Err well.. just that!" alt="" coords="587,26,752,53"><area shape="rect" href="classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="801,77,953,104"><area shape="rect" href="classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="1003,77,1224,104"></map>
 </div>
 
 </div>
@@ -2169,7 +2206,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_6dc432e565b97c2aa6f2273bbe4135c7_cgraph.png" border="0" usemap="#classC4DView_6dc432e565b97c2aa6f2273bbe4135c7_cgraph_map" alt=""></center>
 <map name="classC4DView_6dc432e565b97c2aa6f2273bbe4135c7_cgraph_map">
-<area shape="rect" href="classC4DView_1_1MouseHandler4D.html#681ee2ee24d1528a92b6ec0ff4dad9c2" title="Double click event handler." alt="" coords="293,302,651,329"><area shape="rect" href="classC4DView.html#8f09d1be7f8e3a1d8e3059cf88c5d70a" title="C4DView::Animated" alt="" coords="713,24,860,50"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1888,277,2107,304"><area shape="rect" href="classC4DView.html#94ebd881a91d0b608f4b69598ff0714f" title="C4DView::R" alt="" coords="740,277,833,304"><area shape="rect" href="classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Redraw handler." alt="" coords="721,226,852,253"><area shape="rect" href="classC4DView.html#217a71fb5ca598cc159e852bd4d3f92c" title="C4DView::setm_rot" alt="" coords="715,328,859,354"><area shape="rect" href="classC4DView.html#57468fd4a12b95ac3703d89db9cea3e3" title="C4DView::setm_trans" alt="" coords="708,378,865,405"><area shape="rect" href="classC4DView.html#017ac004b348b8174ffa586ad1a68005" title="C4DView::setR" alt="" coords="731,429,843,456"><area shape="rect" href="classC4DView.html#6b0e16af753c8faf3baac291b50bdb37" title="C4DView::setT" alt="" coords="731,480,843,506"><area shape="rect" href="classC4DView.html#45b036ac24d2404ad7bd69139a49b2d8" title="you guessed it" alt="" coords="953,74,1132,101"><area shape="rect" href="classC4DView.html#5cbbef88488967558c45e960a667d822" title="C4DView::T" alt="" coords="741,530,832,557"><area shape="rect" href="classC4DView.html#8a51cc06ede29308384576f277a67e19" title="Application of translations and rotations." alt="" coords="712,581,861,608"><area shape="rect" href="classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="700,176,873,202"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="2156,277,2407,304"><area shape="rect" href="classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Should be called whenever the object is rotated or translated." alt="" coords="975,277,1111,304"><area shape="rect" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="1437,328,1589,354"><area shape="rect" href="classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler." alt="" coords="1211,277,1381,304"><area shape="rect" href="classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="1219,392,1373,418"><area shape="rect" href="classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="1645,378,1840,405"><area shape="rect" href="classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="1679,277,1807,304"><area shape="rect" href="classC4DView.html#99a55bb5dd4ba5f78e31506c55425987" title="Make a pixmap to to be rendered by the GL widget, and render it." alt="" coords="1429,404,1597,430"><area shape="rect" href="classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="923,226,1163,253"></map>
+<area shape="rect" href="classC4DView_1_1MouseHandler4D.html#681ee2ee24d1528a92b6ec0ff4dad9c2" title="Double click event handler." alt="" coords="272,298,592,325"><area shape="rect" href="classC4DView.html#8f09d1be7f8e3a1d8e3059cf88c5d70a" title="C4DView::Animated" alt="" coords="649,20,785,46"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1743,273,1935,300"><area shape="rect" href="classC4DView.html#94ebd881a91d0b608f4b69598ff0714f" title="C4DView::R" alt="" coords="672,273,763,300"><area shape="rect" href="classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Redraw handler." alt="" coords="656,222,779,249"><area shape="rect" href="classC4DView.html#36180772cadbb1517885c1a366aca25c" title="C4DView::setm_rot" alt="" coords="653,324,781,350"><area shape="rect" href="classC4DView.html#3c8461856c1f84ed95d6f4994c69ede3" title="C4DView::setm_trans" alt="" coords="648,374,787,401"><area shape="rect" href="classC4DView.html#848ab529f41e858c486e63937f03034a" title="C4DView::setR" alt="" coords="664,425,771,452"><area shape="rect" href="classC4DView.html#0298fb79b894d5f9fe0c2918718fab7c" title="C4DView::setT" alt="" coords="665,476,769,502"><area shape="rect" href="classC4DView.html#45b036ac24d2404ad7bd69139a49b2d8" title="you guessed it" alt="" coords="872,70,1035,97"><area shape="rect" href="classC4DView.html#5cbbef88488967558c45e960a667d822" title="C4DView::T" alt="" coords="672,526,763,553"><area shape="rect" href="classC4DView.html#8a51cc06ede29308384576f277a67e19" title="Application of translations and rotations." alt="" coords="648,577,787,604"><area shape="rect" href="classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="641,172,793,198"><area shape="rect" href="classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Should be called whenever the object is rotated or translated." alt="" coords="891,273,1016,300"><area shape="rect" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="1320,324,1461,350"><area shape="rect" href="classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler." alt="" coords="1113,273,1265,300"><area shape="rect" href="classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="1117,388,1261,414"><area shape="rect" href="classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="1516,374,1692,401"><area shape="rect" href="classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="1544,273,1664,300"><area shape="rect" href="classC4DView.html#99a55bb5dd4ba5f78e31506c55425987" title="Make a pixmap to to be rendered by the GL widget, and render it." alt="" coords="1315,400,1467,426"><area shape="rect" href="classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="843,222,1064,249"></map>
 </div>
 
 </div>
@@ -2192,7 +2229,7 @@ Here is the call graph for this function:</div>
 
 <p>
 <a class="el" href="classC4DView.html#5ff6e70d47395827f5ef14793253c8d0">paintEvent()</a> 
-<p>References <a class="el" href="4DView_8C-source.html#l00546">OnPaint()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00563">OnPaint()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -2200,7 +2237,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_5ff6e70d47395827f5ef14793253c8d0_cgraph.png" border="0" usemap="#classC4DView_5ff6e70d47395827f5ef14793253c8d0_cgraph_map" alt=""></center>
 <map name="classC4DView_5ff6e70d47395827f5ef14793253c8d0_cgraph_map">
-<area shape="rect" href="classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Should be called whenever the object is rotated or translated." alt="" coords="208,112,344,139"><area shape="rect" href="classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler." alt="" coords="392,73,563,100"><area shape="rect" href="classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="400,149,555,176"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1069,60,1288,87"><area shape="rect" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="619,73,771,100"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1337,60,1588,87"><area shape="rect" href="classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="827,60,1021,87"><area shape="rect" href="classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="860,111,988,137"><area shape="rect" href="classC4DView.html#99a55bb5dd4ba5f78e31506c55425987" title="Make a pixmap to to be rendered by the GL widget, and render it." alt="" coords="611,212,779,239"></map>
+<area shape="rect" href="classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Should be called whenever the object is rotated or translated." alt="" coords="196,112,321,139"><area shape="rect" href="classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler." alt="" coords="372,73,524,100"><area shape="rect" href="classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="376,149,520,176"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1001,60,1193,87"><area shape="rect" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="579,73,720,100"><area shape="rect" href="classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="775,60,951,87"><area shape="rect" href="classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="803,111,923,137"><area shape="rect" href="classC4DView.html#99a55bb5dd4ba5f78e31506c55425987" title="Make a pixmap to to be rendered by the GL widget, and render it." alt="" coords="573,212,725,239"></map>
 </div>
 
 </div>
@@ -2225,7 +2262,7 @@ Here is the call graph for this function:</div>
 Resizing routine. 
 <p>
 Also, the definition of the GL viewport is done here 
-<p>References <a class="el" href="4DView_8C-source.html#l00796">Size()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00813">Size()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -2257,12 +2294,10 @@ Here is the call graph for this function:</div>
 <p>
 OpenGL initialization. 
 <p>
-Now this is not as boring as it seems, because further work has to be done here. <dl compact><dt><b><a class="el" href="todo.html#_todo000028">Todo:</a></b></dt><dd>trying to check for rendering to file, but this doesn't work yet. </dd></dl>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000028">Todo:</a></b></dt><dd>clean up, check what is really needed - in particular it calls <a class="el" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff">PreRedraw()</a> twice, once via <a class="el" href="classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler.">RenderScene()</a> </dd></dl>
+Now this is not as boring as it seems, because further work has to be done here. <dl compact><dt><b><a class="el" href="todo.html#_todo000029">Todo:</a></b></dt><dd>trying to check for rendering to file, but this doesn't work yet. </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000029">Todo:</a></b></dt><dd>clean up, check what is really needed - in particular it calls <a class="el" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff">PreRedraw()</a> twice, once via <a class="el" href="classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler.">RenderScene()</a> </dd></dl>
 
-<p>References <a class="el" href="4DView_8C-source.html#l00937">InitFog()</a>, <a class="el" href="4DView_8C-source.html#l00914">InitLight()</a>, <a class="el" href="4DView_8C-source.html#l00931">InitShade()</a>, <a class="el" href="4DView_8C-source.html#l00949">InitTransparence()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8C-source.html#l00480">PreRedraw()</a>, and <a class="el" href="4DView_8C-source.html#l00515">RenderScene()</a>.</p>
-
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00177">Colors()</a>.</p>
+<p>References <a class="el" href="4DView_8C-source.html#l00954">InitFog()</a>, <a class="el" href="4DView_8C-source.html#l00931">InitLight()</a>, <a class="el" href="4DView_8C-source.html#l00948">InitShade()</a>, <a class="el" href="4DView_8C-source.html#l00966">InitTransparence()</a>, <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8C-source.html#l00497">PreRedraw()</a>, and <a class="el" href="4DView_8C-source.html#l00532">RenderScene()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -2270,7 +2305,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_3c797ad72f10f9d43d720a45cd60509a_cgraph.png" border="0" usemap="#classC4DView_3c797ad72f10f9d43d720a45cd60509a_cgraph_map" alt=""></center>
 <map name="classC4DView_3c797ad72f10f9d43d720a45cd60509a_cgraph_map">
-<area shape="rect" href="classC4DView.html#8e209837b51cb976674e81e6359f930d" title="OpenGL initialization for fog." alt="" coords="476,107,604,134"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="923,259,1141,286"><area shape="rect" href="classC4DView.html#03b3ed76ada1847e4b75e19de8c7e6cb" title="OpenGL initialization for light(s)." alt="" coords="236,310,372,336"><area shape="rect" href="classC4DView.html#31f530de55047a78f7f29958a4ece8a9" title="OpenGL initialization for shading (gouraud or flat shading)." alt="" coords="232,360,376,387"><area shape="rect" href="classC4DView.html#3c423447f2090b7e3e2c791f54244b02" title="OpenGL initialization for transparence." alt="" coords="209,411,399,438"><area shape="rect" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="464,462,616,488"><area shape="rect" href="classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler." alt="" coords="219,512,389,539"><area shape="rect" href="classC4DView.html#dabc3be452e44e3101ad2f9f4cee5e4c" title="C4DView::getFog" alt="" coords="713,6,841,32"><area shape="rect" href="classC4DView.html#f46da1a68ffbcc00eddc03df078fe150" title="Switch 3D depth cue on and off." alt="" coords="684,107,871,134"><area shape="rect" href="classC4DView.html#15c8ca4d71f5b5e5b07a959601820f83" title="Get size of displayed area." alt="" coords="976,82,1088,108"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1191,259,1441,286"><area shape="rect" href="classC4DView.html#c83101f5d137e9357245e863a2df7d3e" title="C4DView::getLight" alt="" coords="472,310,608,336"><area shape="rect" href="classC4DView.html#89dd3e07ddd664711df895975a3d4bcd" title="C4DView::getShade" alt="" coords="467,360,613,387"><area shape="rect" href="classC4DView.html#5ad3a5d84454cb614b14748d772013b4" title="C4DView::getTransparent" alt="" coords="449,411,631,438"><area shape="rect" href="classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="680,399,875,426"><area shape="rect" href="classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="713,462,841,488"></map>
+<area shape="rect" href="classC4DView.html#8e209837b51cb976674e81e6359f930d" title="OpenGL initialization for fog." alt="" coords="441,107,564,134"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="860,259,1052,286"><area shape="rect" href="classC4DView.html#03b3ed76ada1847e4b75e19de8c7e6cb" title="OpenGL initialization for light(s)." alt="" coords="221,310,352,336"><area shape="rect" href="classC4DView.html#31f530de55047a78f7f29958a4ece8a9" title="OpenGL initialization for shading (gouraud or flat shading)." alt="" coords="220,360,353,387"><area shape="rect" href="classC4DView.html#3c423447f2090b7e3e2c791f54244b02" title="OpenGL initialization for transparence." alt="" coords="200,411,373,438"><area shape="rect" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="432,462,573,488"><area shape="rect" href="classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler." alt="" coords="211,512,363,539"><area shape="rect" href="classC4DView.html#dabc3be452e44e3101ad2f9f4cee5e4c" title="C4DView::getFog" alt="" coords="661,6,781,32"><area shape="rect" href="classC4DView.html#f46da1a68ffbcc00eddc03df078fe150" title="Switch 3D depth cue on and off." alt="" coords="639,107,804,134"><area shape="rect" href="classC4DView.html#15c8ca4d71f5b5e5b07a959601820f83" title="Get size of displayed area." alt="" coords="904,82,1008,108"><area shape="rect" href="classC4DView.html#c83101f5d137e9357245e863a2df7d3e" title="C4DView::getLight" alt="" coords="439,310,567,336"><area shape="rect" href="classC4DView.html#89dd3e07ddd664711df895975a3d4bcd" title="C4DView::getShade" alt="" coords="437,360,568,387"><area shape="rect" href="classC4DView.html#5ad3a5d84454cb614b14748d772013b4" title="C4DView::getTransparent" alt="" coords="421,411,584,438"><area shape="rect" href="classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="633,399,809,426"><area shape="rect" href="classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="661,462,781,488"></map>
 </div>
 
 </div>
@@ -2301,9 +2336,9 @@ Here is the call graph for this function:</div>
 <div class="memdoc">
 
 <p>
-change of viewing distance is handled here too, which is not so clean programming style... <dl compact><dt><b><a class="el" href="todo.html#_todo000032">Todo:</a></b></dt><dd>eliminate hardcoded constants </dd></dl>
+change of viewing distance is handled here too, which is not so clean programming style... <dl compact><dt><b><a class="el" href="todo.html#_todo000033">Todo:</a></b></dt><dd>eliminate hardcoded constants </dd></dl>
 
-<p>References <a class="el" href="4DView_8H-source.html#l00164">getFog()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8C-source.html#l00596">SetupDepthCue()</a>, and <a class="el" href="4DView_8C-source.html#l00796">Size()</a>.</p>
+<p>References <a class="el" href="4DView_8H-source.html#l00165">getFog()</a>, <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8C-source.html#l00613">SetupDepthCue()</a>, and <a class="el" href="4DView_8C-source.html#l00813">Size()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -2311,7 +2346,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_ac3d22c30bf8b042077fb31fec2c367b_cgraph.png" border="0" usemap="#classC4DView_ac3d22c30bf8b042077fb31fec2c367b_cgraph_map" alt=""></center>
 <map name="classC4DView_ac3d22c30bf8b042077fb31fec2c367b_cgraph_map">
-<area shape="rect" href="classC4DView.html#dabc3be452e44e3101ad2f9f4cee5e4c" title="C4DView::getFog" alt="" coords="225,5,353,32"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="432,81,651,108"><area shape="rect" href="classC4DView.html#f46da1a68ffbcc00eddc03df078fe150" title="Switch 3D depth cue on and off." alt="" coords="196,107,383,133"><area shape="rect" href="classC4DView.html#15c8ca4d71f5b5e5b07a959601820f83" title="Get size of displayed area." alt="" coords="485,144,597,171"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="700,81,951,108"></map>
+<area shape="rect" href="classC4DView.html#dabc3be452e44e3101ad2f9f4cee5e4c" title="C4DView::getFog" alt="" coords="211,5,331,32"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="404,81,596,108"><area shape="rect" href="classC4DView.html#f46da1a68ffbcc00eddc03df078fe150" title="Switch 3D depth cue on and off." alt="" coords="188,107,353,133"><area shape="rect" href="classC4DView.html#15c8ca4d71f5b5e5b07a959601820f83" title="Get size of displayed area." alt="" coords="448,144,552,171"></map>
 </div>
 
 </div>
@@ -2344,7 +2379,7 @@ Here is the call graph for this function:</div>
 <p>
 Adjust parameters for depth cue. 
 <p>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>fill in the meaning of the parameters </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000026">Todo:</a></b></dt><dd>fill in the meaning of the parameters </dd></dl>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>dist</em>&nbsp;</td><td></td></tr>
@@ -2352,7 +2387,7 @@ Adjust parameters for depth cue.
   </table>
 </dl>
 
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
+<p>References <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -2360,7 +2395,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_d306f57ab4a1565454abbf7856a88a92_cgraph.png" border="0" usemap="#classC4DView_d306f57ab4a1565454abbf7856a88a92_cgraph_map" alt=""></center>
 <map name="classC4DView_d306f57ab4a1565454abbf7856a88a92_cgraph_map">
-<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="243,5,461,32"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="511,5,761,32"></map>
+<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="223,5,415,32"></map>
 </div>
 
 </div>
@@ -2384,11 +2419,11 @@ Here is the call graph for this function:</div>
 <p>
 OpenGL initialization for light(s). 
 <p>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000030">Todo:</a></b></dt><dd>hardcoded light position and colors! </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000031">Todo:</a></b></dt><dd>hardcoded light position and colors! </dd></dl>
 
-<p>References <a class="el" href="4DView_8H-source.html#l00166">getLight()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00235">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, and <a class="el" href="4DView_8H-source.html#l00432">LightPos</a>.</p>
+<p>References <a class="el" href="4DView_8H-source.html#l00167">getLight()</a>, <a class="el" href="Singleton_8h-source.html#l00787">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;::Instance()</a>, and <a class="el" href="4DView_8H-source.html#l00478">LightPos</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00864">initializeGL()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00881">initializeGL()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -2396,7 +2431,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_03b3ed76ada1847e4b75e19de8c7e6cb_cgraph.png" border="0" usemap="#classC4DView_03b3ed76ada1847e4b75e19de8c7e6cb_cgraph_map" alt=""></center>
 <map name="classC4DView_03b3ed76ada1847e4b75e19de8c7e6cb_cgraph_map">
-<area shape="rect" href="classC4DView.html#c83101f5d137e9357245e863a2df7d3e" title="C4DView::getLight" alt="" coords="231,5,367,32"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="189,56,408,83"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="457,56,708,83"></map>
+<area shape="rect" href="classC4DView.html#c83101f5d137e9357245e863a2df7d3e" title="C4DView::getLight" alt="" coords="217,5,345,32"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="185,56,377,83"></map>
 </div>
 
 <p>
@@ -2429,11 +2464,11 @@ Here is the caller graph for this function:</div>
 <p>
 OpenGL initialization for transparence. 
 <p>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000031">Todo:</a></b></dt><dd>is GL_CULL_FACE needed or not? </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000032">Todo:</a></b></dt><dd>is GL_CULL_FACE needed or not? </dd></dl>
 
-<p>References <a class="el" href="4DView_8H-source.html#l00168">getTransparent()</a>.</p>
+<p>References <a class="el" href="4DView_8H-source.html#l00169">getTransparent()</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00864">initializeGL()</a>, and <a class="el" href="4DView_8C-source.html#l00193">Transparent()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00881">initializeGL()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -2458,7 +2493,7 @@ Here is the caller graph for this function:</div>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>HyperspaceExplorer/src/UI/<a class="el" href="4DView_8H-source.html">4DView.H</a><li>HyperspaceExplorer/src/UI/4DView.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 1 10:05:02 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jun 23 12:35:43 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

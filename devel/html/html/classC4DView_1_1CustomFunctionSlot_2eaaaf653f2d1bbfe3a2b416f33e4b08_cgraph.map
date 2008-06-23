@@ -1,27 +1,26 @@
-<area shape="rect" href="$classC4DView.html#e38186ceacf6c4e6b13de7bee6cd8bda" title="Called whenever an object or the parameters have changed." alt="" coords="417,107,585,133">
-<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="655,5,828,32">
-<area shape="rect" href="$classValuesDialogImpl.html#39541b9109d58b7c3cf6975e881fac59" title="delta in parameter t" alt="" coords="425,461,577,488">
-<area shape="rect" href="$classValuesDialogImpl.html#9deedc0fea0cc09bbe3e261917e23bac" title="upper bound for parameter t" alt="" coords="656,411,827,437">
-<area shape="rect" href="$classValuesDialogImpl.html#cf44326524cdb808f3b83f3d6ccd6ce3" title="lower bound for parameter t" alt="" coords="657,512,825,539">
-<area shape="rect" href="$classValuesDialogImpl.html#ecdf74cad782692b3d25c3e46061b04e" title="delta in parameter u" alt="" coords="424,613,579,640">
-<area shape="rect" href="$classValuesDialogImpl.html#6b9f29acb0cacffc9eb66d9abb40fc01" title="upper bound for parameter u" alt="" coords="655,563,828,589">
-<area shape="rect" href="$classValuesDialogImpl.html#c70c7cd9e4ad3296163740fd9808b01f" title="lower bound for parameter u" alt="" coords="656,664,827,691">
-<area shape="rect" href="$classC4DView.html#c45dda1281a8b4d8b729d451ffb5b869" title="C4DView::F" alt="" coords="456,715,547,741">
-<area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Redraw handler." alt="" coords="436,360,567,387">
-<area shape="rect" href="$classC4DView.html#d14af93d68b1ee2ad229076c1380079c" title="C4DView::setF" alt="" coords="445,765,557,792">
-<area shape="rect" href="$classC4DView.html#580c9d5495ed83d2d2fd6a1c771cd79a" title="C4DView::Values" alt="" coords="437,816,565,843">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1643,259,1861,285">
-<area shape="rect" href="$classValuesDialogImpl.html#51d28c2eca2e1e35f5aaaab4cceca1be" title="Adjust the display according to the Function whose Parameters are controlled." alt="" coords="636,107,847,133">
-<area shape="rect" href="$classC4DView.html#16d5190870a166c65a20c59368ca0f2f" title="Overloaded function executing the transform to the default state." alt="" coords="667,56,816,83">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1911,259,2161,285">
-<area shape="rect" href="$classValuesDialogImpl.html#9c8ed70c102c1a781f00888c0e3c0f5b" title="Adjust the displayed parameter fields to the parameters the function needs." alt="" coords="900,107,1132,133">
-<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="896,5,1136,32">
-<area shape="rect" href="$classValuesDialogImpl.html#ff5cf3e627d9325f3bfc55222b8dca18" title="steps in parameter t" alt="" coords="652,461,831,488">
-<area shape="rect" href="$classValuesDialogImpl.html#2ca21cd2065d4d160fe67484162e27fe" title="steps in parameter u" alt="" coords="651,613,832,640">
-<area shape="rect" href="$classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Should be called whenever the object is rotated or translated." alt="" coords="673,309,809,336">
-<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="1192,360,1344,387">
-<area shape="rect" href="$classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler." alt="" coords="931,309,1101,336">
-<area shape="rect" href="$classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="939,259,1093,285">
-<area shape="rect" href="$classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="1400,411,1595,437">
-<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="1433,360,1561,387">
-<area shape="rect" href="$classC4DView.html#99a55bb5dd4ba5f78e31506c55425987" title="Make a pixmap to to be rendered by the GL widget, and render it." alt="" coords="1184,259,1352,285">
+<area shape="rect" href="$classC4DView.html#e38186ceacf6c4e6b13de7bee6cd8bda" title="Called whenever an object or the parameters have changed." alt="" coords="368,107,525,133">
+<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="592,5,744,32">
+<area shape="rect" href="$classValuesDialogImpl.html#39541b9109d58b7c3cf6975e881fac59" title="delta in parameter t" alt="" coords="379,461,515,488">
+<area shape="rect" href="$classValuesDialogImpl.html#9deedc0fea0cc09bbe3e261917e23bac" title="upper bound for parameter t" alt="" coords="592,411,744,437">
+<area shape="rect" href="$classValuesDialogImpl.html#cf44326524cdb808f3b83f3d6ccd6ce3" title="lower bound for parameter t" alt="" coords="592,512,744,539">
+<area shape="rect" href="$classValuesDialogImpl.html#ecdf74cad782692b3d25c3e46061b04e" title="delta in parameter u" alt="" coords="377,613,516,640">
+<area shape="rect" href="$classValuesDialogImpl.html#6b9f29acb0cacffc9eb66d9abb40fc01" title="upper bound for parameter u" alt="" coords="589,563,747,589">
+<area shape="rect" href="$classValuesDialogImpl.html#c70c7cd9e4ad3296163740fd9808b01f" title="lower bound for parameter u" alt="" coords="591,664,745,691">
+<area shape="rect" href="$classC4DView.html#c45dda1281a8b4d8b729d451ffb5b869" title="C4DView::F" alt="" coords="401,715,492,741">
+<area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Redraw handler." alt="" coords="385,360,508,387">
+<area shape="rect" href="$classC4DView.html#d14af93d68b1ee2ad229076c1380079c" title="C4DView::setF" alt="" coords="395,765,499,792">
+<area shape="rect" href="$classC4DView.html#580c9d5495ed83d2d2fd6a1c771cd79a" title="C4DView::Values" alt="" coords="387,816,507,843">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1508,259,1700,285">
+<area shape="rect" href="$classValuesDialogImpl.html#51d28c2eca2e1e35f5aaaab4cceca1be" title="Adjust the display according to the Function whose Parameters are controlled." alt="" coords="573,107,763,133">
+<area shape="rect" href="$classC4DView.html#16d5190870a166c65a20c59368ca0f2f" title="Overloaded function executing the transform to the default state." alt="" coords="599,56,737,83">
+<area shape="rect" href="$classValuesDialogImpl.html#9c8ed70c102c1a781f00888c0e3c0f5b" title="Adjust the displayed parameter fields to the parameters the function needs." alt="" coords="821,107,1021,133">
+<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="811,5,1032,32">
+<area shape="rect" href="$classValuesDialogImpl.html#ff5cf3e627d9325f3bfc55222b8dca18" title="steps in parameter t" alt="" coords="589,461,747,488">
+<area shape="rect" href="$classValuesDialogImpl.html#2ca21cd2065d4d160fe67484162e27fe" title="steps in parameter u" alt="" coords="588,613,748,640">
+<area shape="rect" href="$classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Should be called whenever the object is rotated or translated." alt="" coords="605,309,731,336">
+<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="1085,360,1227,387">
+<area shape="rect" href="$classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler." alt="" coords="845,309,997,336">
+<area shape="rect" href="$classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="849,259,993,285">
+<area shape="rect" href="$classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="1281,411,1457,437">
+<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="1309,360,1429,387">
+<area shape="rect" href="$classC4DView.html#99a55bb5dd4ba5f78e31506c55425987" title="Make a pixmap to to be rendered by the GL widget, and render it." alt="" coords="1080,259,1232,285">

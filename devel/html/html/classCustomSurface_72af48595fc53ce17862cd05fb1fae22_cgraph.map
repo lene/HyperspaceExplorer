@@ -1,13 +1,12 @@
-<area shape="rect" href="$classSurface.html#e140ab69205e1a6a73459b9e22cda019" title="allocate and initialize X[][] with values of f()" alt="" coords="443,208,571,235">
-<area shape="rect" href="$classPluginCreator.html#4b0c4aa6bb17649c888f720f96741c6d" title="Get the name of the selected dynamic library containing a function." alt="" coords="411,259,603,286">
-<area shape="rect" href="$classCustomFunctionBase.html#d2e4b7516d73ab9ebeb9a33c6708f6b8" title="CustomFunctionBase\&lt; Surface::raw_function_type \&gt;::loadFunction" alt="" coords="283,310,731,336">
-<area shape="rect" href="$classSurfaceBase.html#ba6ce6327e509663e484560f849d03f1" title="The mathematical function defining the Function object." alt="" coords="831,6,945,32">
-<area shape="rect" href="$classSurfaceBase.html#c1b7c91a12ac9ad433c27d8ad9f6067c" title="delta in t" alt="" coords="815,56,961,83">
-<area shape="rect" href="$classSurfaceBase.html#b374ba3db9a0339e6a5aaa230d1a76ca" title="delta in u" alt="" coords="813,107,963,134">
-<area shape="rect" href="$classSurfaceBase.html#73cd034a8689e0f9fbd796f8e7423fcb" title="min. value of the first parameter, t" alt="" coords="807,158,969,184">
-<area shape="rect" href="$classSurfaceBase.html#761208b17975a6c343774b5ca467ed2b" title="number of steps in t" alt="" coords="1087,234,1257,260">
-<area shape="rect" href="$classSurfaceBase.html#ed7d2013bca3eb15eb1abcc8e72cbd58" title="min. value of the second parameter, u" alt="" coords="805,259,971,286">
-<area shape="rect" href="$classSurfaceBase.html#d8c79625fa46d8c5ebbda58f0dd9eb5d" title="number of steps in u" alt="" coords="1084,335,1260,362">
-<area shape="rect" href="$classSurface.html#f77d456ed7b5d495f4a54978ab5f4acc" title="Initialize the temporary storage areas Xscr[][], Xtrans[][]." alt="" coords="824,310,952,336">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="779,411,997,438">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1047,411,1297,438">
+<area shape="rect" href="$classSurface.html#e140ab69205e1a6a73459b9e22cda019" title="allocate and initialize X[][] with values of f()" alt="" coords="381,208,499,235">
+<area shape="rect" href="$classPluginCreator.html#4b0c4aa6bb17649c888f720f96741c6d" title="Get the name of the selected dynamic library containing a function." alt="" coords="355,259,525,286">
+<area shape="rect" href="$classCustomFunctionBase.html#d2e4b7516d73ab9ebeb9a33c6708f6b8" title="CustomFunctionBase\&lt; Surface::raw_function_type \&gt;::loadFunction" alt="" coords="248,310,632,336">
+<area shape="rect" href="$classSurfaceBase.html#ba6ce6327e509663e484560f849d03f1" title="The mathematical function defining the Function object." alt="" coords="728,6,827,32">
+<area shape="rect" href="$classSurfaceBase.html#c1b7c91a12ac9ad433c27d8ad9f6067c" title="delta in t" alt="" coords="715,56,840,83">
+<area shape="rect" href="$classSurfaceBase.html#b374ba3db9a0339e6a5aaa230d1a76ca" title="delta in u" alt="" coords="713,107,841,134">
+<area shape="rect" href="$classSurfaceBase.html#73cd034a8689e0f9fbd796f8e7423fcb" title="min. value of the first parameter, t" alt="" coords="708,158,847,184">
+<area shape="rect" href="$classSurfaceBase.html#761208b17975a6c343774b5ca467ed2b" title="number of steps in t" alt="" coords="924,284,1071,311">
+<area shape="rect" href="$classSurfaceBase.html#ed7d2013bca3eb15eb1abcc8e72cbd58" title="min. value of the second parameter, u" alt="" coords="707,259,848,286">
+<area shape="rect" href="$classSurfaceBase.html#d8c79625fa46d8c5ebbda58f0dd9eb5d" title="number of steps in u" alt="" coords="924,347,1071,374">
+<area shape="rect" href="$classSurface.html#f77d456ed7b5d495f4a54978ab5f4acc" title="Initialize the temporary storage areas Xscr[][], Xtrans[][]." alt="" coords="720,310,835,336">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="681,411,873,438">

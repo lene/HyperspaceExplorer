@@ -46,218 +46,303 @@
 <a name="l00019"></a>00019 
 <a name="l00030"></a><a class="code" href="classComplexFunction.html">00030</a> <span class="keyword">class </span><a class="code" href="classComplexFunction.html">ComplexFunction</a>: <span class="keyword">public</span> <a class="code" href="classSurface.html">Surface</a> {
 <a name="l00031"></a>00031     <span class="keyword">public</span>:
-<a name="l00032"></a>00032         <a class="code" href="classComplexFunction.html#1ca44717ee72b524ce3e7afd8d358ca0">ComplexFunction</a> (<span class="keyword">const</span> QString &amp;name,
-<a name="l00033"></a>00033                          <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00034"></a>00034                          <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00035"></a>00035         <span class="keyword">virtual</span> <a class="code" href="classComplexFunction.html#c61debf37f95ee22901d7c086ec098f8">~ComplexFunction</a> ();
-<a name="l00036"></a>00036         <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetParameters (<span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0) { }
-<a name="l00037"></a>00037 
-<a name="l00038"></a>00038         <span class="keyword">typedef</span> std::complex&lt;double&gt; function_type(std::complex &lt;double&gt;) ;
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040     <span class="keyword">protected</span>:
-<a name="l00041"></a>00041         <span class="keyword">virtual</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;<a class="code" href="classComplexFunction.html#234485506b16d03867c20e8e8d7e0b21">f</a> (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>);
-<a name="l00042"></a>00042         <span class="keyword">virtual</span> function_type g = 0;
-<a name="l00043"></a>00043         <span class="keywordtype">void</span> <a class="code" href="classComplexFunction.html#a978ff4b165e029bb82ba33dce35e4e3">Initialize</a> (<span class="keywordtype">void</span>);
-<a name="l00044"></a>00044 };
-<a name="l00045"></a>00045 
-<a name="l00048"></a><a class="code" href="classz2.html">00048</a> <span class="keyword">class </span><a class="code" href="classz2.html">z2</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
-<a name="l00049"></a>00049     <span class="keyword">public</span>:
-<a name="l00050"></a>00050         <a class="code" href="classz2.html#a3275d3d9e8e6b8a1da4139fd6757de9">z2</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00051"></a>00051             <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00052"></a>00052         <span class="keyword">virtual</span> ~<a class="code" href="classz2.html">z2</a>() { }
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054     <span class="keyword">protected</span>:
-<a name="l00055"></a><a class="code" href="classz2.html#877021ae4fd62890e7729049ff36980a">00055</a>     <span class="keyword">virtual</span> function_type <a class="code" href="classz2.html#877021ae4fd62890e7729049ff36980a">g</a>;
-<a name="l00056"></a>00056 };
-<a name="l00057"></a>00057 
-<a name="l00060"></a><a class="code" href="classz3.html">00060</a> <span class="keyword">class </span><a class="code" href="classz3.html">z3</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
-<a name="l00061"></a>00061     <span class="keyword">public</span>:
-<a name="l00062"></a>00062     <a class="code" href="classz3.html#a7f33bef3cdf16605c20fbc90bfa8ffa">z3</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00063"></a>00063         <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00064"></a>00064     <span class="keyword">virtual</span> ~<a class="code" href="classz3.html">z3</a>() { }
-<a name="l00065"></a>00065 
-<a name="l00066"></a>00066     <span class="keyword">protected</span>:
-<a name="l00067"></a><a class="code" href="classz3.html#9dfc3491ac6e1112bfbd6af3185213f8">00067</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classz3.html#9dfc3491ac6e1112bfbd6af3185213f8">g</a>;
-<a name="l00068"></a>00068 };
-<a name="l00069"></a>00069 
-<a name="l00072"></a><a class="code" href="classzA.html">00072</a> <span class="keyword">class </span><a class="code" href="classzA.html">zA</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
-<a name="l00073"></a>00073     <span class="keyword">public</span>:
-<a name="l00074"></a>00074         <a class="code" href="classzA.html#6f23706274665115f7dc2713f41ffe5e">zA</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00075"></a>00075             <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
-<a name="l00076"></a>00076             <span class="keywordtype">double</span> _alpha = 2);
-<a name="l00077"></a>00077         <span class="keyword">virtual</span> ~<a class="code" href="classzA.html">zA</a> () { }
-<a name="l00079"></a><a class="code" href="classzA.html#0e9efa24072615db758fe995335926be">00079</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classzA.html#0e9efa24072615db758fe995335926be">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
-<a name="l00080"></a>00080 <span class="preprocessor">#       if 1</span>
-<a name="l00081"></a>00081 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
-<a name="l00082"></a>00082                  i != parms.end(); ++i) {
-<a name="l00083"></a>00083                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"a"</span>) <a class="code" href="classzA.html#d2e4bc060816cd29d6018f9203fda83f" title="Exponent.">alpha</a> = <span class="keywordtype">double</span>(*i-&gt;second);
-<a name="l00084"></a>00084             }
-<a name="l00085"></a>00085 <span class="preprocessor">#       else</span>
-<a name="l00086"></a>00086 <span class="preprocessor"></span>            <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;Phase, <span class="stringliteral">"a"</span>);
-<a name="l00087"></a>00087 <span class="preprocessor">#       endif</span>
-<a name="l00088"></a>00088 <span class="preprocessor"></span>        }
-<a name="l00089"></a>00089 
-<a name="l00090"></a>00090     <span class="keyword">protected</span>:
-<a name="l00091"></a><a class="code" href="classzA.html#5576b7c32870c9b5204415db7120d8e0">00091</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classzA.html#5576b7c32870c9b5204415db7120d8e0">g</a>;
-<a name="l00092"></a>00092 
-<a name="l00093"></a>00093     <span class="keyword">private</span>:
-<a name="l00094"></a><a class="code" href="classzA.html#d2e4bc060816cd29d6018f9203fda83f">00094</a>         <span class="keywordtype">double</span> <a class="code" href="classzA.html#d2e4bc060816cd29d6018f9203fda83f" title="Exponent.">alpha</a>;   
-<a name="l00095"></a>00095 };
-<a name="l00096"></a>00096 
-<a name="l00099"></a><a class="code" href="classez.html">00099</a> <span class="keyword">class </span><a class="code" href="classez.html">ez</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
-<a name="l00100"></a>00100     <span class="keyword">public</span>:
-<a name="l00101"></a>00101         <a class="code" href="classez.html#d063385199577c6d317c40e5d773bdc5">ez</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00102"></a>00102             <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
-<a name="l00103"></a>00103             <span class="keywordtype">double</span> _alpha = 2);
-<a name="l00104"></a>00104         <span class="keyword">virtual</span> ~<a class="code" href="classez.html">ez</a>() { }
-<a name="l00105"></a><a class="code" href="classez.html#fdb78abe0d9431731a523bb25f1b0de8">00105</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classez.html#fdb78abe0d9431731a523bb25f1b0de8" title="Set parameters to the Function.">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
-<a name="l00106"></a>00106 <span class="preprocessor">#       if 1</span>
-<a name="l00107"></a>00107 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
-<a name="l00108"></a>00108                  i != parms.end(); ++i) {
-<a name="l00109"></a>00109                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"a"</span>) alpha = <span class="keywordtype">double</span>(*i-&gt;second);
-<a name="l00110"></a>00110             }
-<a name="l00111"></a>00111 <span class="preprocessor">#       else</span>
-<a name="l00112"></a>00112 <span class="preprocessor"></span>            <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;Phase, <span class="stringliteral">"a"</span>);
-<a name="l00113"></a>00113 <span class="preprocessor">#       endif</span>
-<a name="l00114"></a>00114 <span class="preprocessor"></span>        }
+<a name="l00032"></a>00032         <a class="code" href="classComplexFunction.html">ComplexFunction</a> (<span class="keyword">const</span> QString &amp;name): <a class="code" href="classSurface.html#8fc57f2a15292135c00545c9d224ec68" title="Surface default c&amp;#39;tor, zeroes everything.">Surface</a>(name) { }
+<a name="l00033"></a>00033         <a class="code" href="classComplexFunction.html">ComplexFunction</a> (<span class="keyword">const</span> QString &amp;name,
+<a name="l00034"></a>00034                          <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00035"></a>00035                          <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00036"></a>00036         <span class="keyword">virtual</span> <a class="code" href="classComplexFunction.html#c61debf37f95ee22901d7c086ec098f8">~ComplexFunction</a> ();
+<a name="l00037"></a>00037         <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetParameters (<span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0) { }
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039         <span class="keyword">typedef</span> std::complex&lt;double&gt; function_type(std::complex &lt;double&gt;) ;
+<a name="l00040"></a>00040 
+<a name="l00041"></a>00041     <span class="keyword">protected</span>:
+<a name="l00042"></a>00042         <span class="keyword">virtual</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;<a class="code" href="classComplexFunction.html#234485506b16d03867c20e8e8d7e0b21">f</a> (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>);
+<a name="l00043"></a>00043         <span class="keyword">virtual</span> function_type g = 0;
+<a name="l00044"></a>00044         <span class="keywordtype">void</span> <a class="code" href="classComplexFunction.html#a978ff4b165e029bb82ba33dce35e4e3">Initialize</a> (<span class="keywordtype">void</span>);
+<a name="l00045"></a>00045 };
+<a name="l00046"></a>00046 
+<a name="l00049"></a><a class="code" href="classz2.html">00049</a> <span class="keyword">class </span><a class="code" href="classz2.html">z2</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
+<a name="l00050"></a>00050     <span class="keyword">public</span>:
+<a name="l00051"></a>00051         <a class="code" href="classz2.html">z2</a> (): <a class="code" href="classComplexFunction.html">ComplexFunction</a>(<span class="stringliteral">"z2"</span>) { }
+<a name="l00052"></a>00052         <a class="code" href="classz2.html">z2</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00053"></a>00053             <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00054"></a>00054         <span class="keyword">virtual</span> ~<a class="code" href="classz2.html">z2</a>() { }
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056     <span class="keyword">protected</span>:
+<a name="l00057"></a><a class="code" href="classz2.html#877021ae4fd62890e7729049ff36980a">00057</a>     <span class="keyword">virtual</span> function_type <a class="code" href="classz2.html#877021ae4fd62890e7729049ff36980a">g</a>;
+<a name="l00058"></a>00058 };
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060 <span class="keyword">namespace </span>{
+<a name="l00061"></a>00061     <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> *createz2() { <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classz2.html">z2</a>(); }
+<a name="l00062"></a>00062     <span class="keyword">const</span> <span class="keywordtype">bool</span> registered1 = <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">TheFunctionFactory::Instance</a>().registerFunction(<span class="stringliteral">"z2"</span>, createz2);
+<a name="l00063"></a>00063 }
+<a name="l00064"></a>00064 
+<a name="l00067"></a><a class="code" href="classz3.html">00067</a> <span class="keyword">class </span><a class="code" href="classz3.html">z3</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
+<a name="l00068"></a>00068     <span class="keyword">public</span>:
+<a name="l00069"></a>00069         <a class="code" href="classz3.html">z3</a> (): <a class="code" href="classComplexFunction.html">ComplexFunction</a>(<span class="stringliteral">"z3"</span>) { }
+<a name="l00070"></a>00070         <a class="code" href="classz3.html">z3</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00071"></a>00071             <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00072"></a>00072         <span class="keyword">virtual</span> ~<a class="code" href="classz3.html">z3</a>() { }
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074     <span class="keyword">protected</span>:
+<a name="l00075"></a><a class="code" href="classz3.html#9dfc3491ac6e1112bfbd6af3185213f8">00075</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classz3.html#9dfc3491ac6e1112bfbd6af3185213f8">g</a>;
+<a name="l00076"></a>00076 };
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078 <span class="keyword">namespace </span>{
+<a name="l00079"></a>00079     <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> *createz3() { <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classz3.html">z3</a>(); }
+<a name="l00080"></a>00080     <span class="keyword">const</span> <span class="keywordtype">bool</span> registered2 = <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">TheFunctionFactory::Instance</a>().registerFunction(<span class="stringliteral">"z3"</span>, createz3);
+<a name="l00081"></a>00081 }
+<a name="l00082"></a>00082 
+<a name="l00085"></a><a class="code" href="classzA.html">00085</a> <span class="keyword">class </span><a class="code" href="classzA.html">zA</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
+<a name="l00086"></a>00086     <span class="keyword">public</span>:
+<a name="l00087"></a>00087         <a class="code" href="classzA.html">zA</a> (): <a class="code" href="classComplexFunction.html">ComplexFunction</a>(<span class="stringliteral">"zA"</span>), <a class="code" href="classzA.html#d2e4bc060816cd29d6018f9203fda83f" title="Exponent.">alpha</a>(2) { }
+<a name="l00088"></a>00088         <a class="code" href="classzA.html">zA</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00089"></a>00089             <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
+<a name="l00090"></a>00090             <span class="keywordtype">double</span> _alpha = 2);
+<a name="l00091"></a>00091         <span class="keyword">virtual</span> ~<a class="code" href="classzA.html">zA</a> () { }
+<a name="l00093"></a><a class="code" href="classzA.html#0e9efa24072615db758fe995335926be">00093</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classzA.html#0e9efa24072615db758fe995335926be">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
+<a name="l00094"></a>00094 <span class="preprocessor">#       if 1</span>
+<a name="l00095"></a>00095 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
+<a name="l00096"></a>00096                  i != parms.end(); ++i) {
+<a name="l00097"></a>00097                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"a"</span>) <a class="code" href="classzA.html#d2e4bc060816cd29d6018f9203fda83f" title="Exponent.">alpha</a> = <span class="keywordtype">double</span>(*i-&gt;second);
+<a name="l00098"></a>00098             }
+<a name="l00099"></a>00099 <span class="preprocessor">#       else</span>
+<a name="l00100"></a>00100 <span class="preprocessor"></span>            <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;Phase, <span class="stringliteral">"a"</span>);
+<a name="l00101"></a>00101 <span class="preprocessor">#       endif</span>
+<a name="l00102"></a>00102 <span class="preprocessor"></span>        }
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104     <span class="keyword">protected</span>:
+<a name="l00105"></a><a class="code" href="classzA.html#5576b7c32870c9b5204415db7120d8e0">00105</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classzA.html#5576b7c32870c9b5204415db7120d8e0">g</a>;
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107     <span class="keyword">private</span>:
+<a name="l00108"></a><a class="code" href="classzA.html#d2e4bc060816cd29d6018f9203fda83f">00108</a>         <span class="keywordtype">double</span> <a class="code" href="classzA.html#d2e4bc060816cd29d6018f9203fda83f" title="Exponent.">alpha</a>;   
+<a name="l00109"></a>00109 };
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111 <span class="keyword">namespace </span>{
+<a name="l00112"></a>00112     <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> *createzA() { <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classzA.html">zA</a>(); }
+<a name="l00113"></a>00113     <span class="keyword">const</span> <span class="keywordtype">bool</span> registered3 = <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">TheFunctionFactory::Instance</a>().registerFunction(<span class="stringliteral">"zA"</span>, createzA);
+<a name="l00114"></a>00114 }
 <a name="l00115"></a>00115 
-<a name="l00116"></a>00116     <span class="keyword">protected</span>:
-<a name="l00117"></a><a class="code" href="classez.html#9518db66e4e846eda5895791c9417fa4">00117</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classez.html#9518db66e4e846eda5895791c9417fa4">g</a>;
-<a name="l00118"></a>00118 
-<a name="l00119"></a>00119     <span class="keyword">private</span>:
-<a name="l00120"></a>00120         <span class="keywordtype">double</span> alpha;
-<a name="l00121"></a>00121 };
-<a name="l00122"></a>00122 
-<a name="l00125"></a><a class="code" href="classemz2.html">00125</a> <span class="keyword">class </span><a class="code" href="classemz2.html">emz2</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
-<a name="l00126"></a>00126     <span class="keyword">public</span>:
-<a name="l00127"></a>00127         <a class="code" href="classemz2.html#9754439ceb4812a1688a34dddaf62451">emz2</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00128"></a>00128               <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
-<a name="l00129"></a>00129               <span class="keywordtype">double</span> _alpha = 1);
-<a name="l00130"></a>00130         <span class="keyword">virtual</span> ~<a class="code" href="classemz2.html">emz2</a>() { }
-<a name="l00131"></a><a class="code" href="classemz2.html#410a42e6418b05bd7afe28a5cd93d116">00131</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classemz2.html#410a42e6418b05bd7afe28a5cd93d116" title="Set parameters to the Function.">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
-<a name="l00132"></a>00132 <span class="preprocessor">#       if 1</span>
-<a name="l00133"></a>00133 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
-<a name="l00134"></a>00134                  i != parms.end(); ++i) {
-<a name="l00135"></a>00135                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"a"</span>) alpha = <span class="keywordtype">double</span>(*i-&gt;second);
-<a name="l00136"></a>00136             }
-<a name="l00137"></a>00137 <span class="preprocessor">#       else</span>
-<a name="l00138"></a>00138 <span class="preprocessor"></span>            <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;Phase, <span class="stringliteral">"a"</span>);
-<a name="l00139"></a>00139 <span class="preprocessor">#       endif</span>
-<a name="l00140"></a>00140 <span class="preprocessor"></span>        }
-<a name="l00141"></a>00141 
-<a name="l00142"></a>00142     <span class="keyword">protected</span>:
-<a name="l00143"></a><a class="code" href="classemz2.html#65b0faaa192623a7b348388c728b4fad">00143</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classemz2.html#65b0faaa192623a7b348388c728b4fad">g</a>;
-<a name="l00144"></a>00144 
-<a name="l00145"></a>00145     <span class="keyword">private</span>:
-<a name="l00146"></a>00146         <span class="keywordtype">double</span> alpha;
-<a name="l00147"></a>00147 };
-<a name="l00148"></a>00148 
-<a name="l00151"></a><a class="code" href="classzm1.html">00151</a> <span class="keyword">class </span><a class="code" href="classzm1.html">zm1</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
-<a name="l00152"></a>00152     <span class="keyword">public</span>:
-<a name="l00153"></a>00153         <a class="code" href="classzm1.html#6a2e26646a2207503e4689f070578e9a">zm1</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00154"></a>00154              <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00155"></a>00155         <span class="keyword">virtual</span> ~<a class="code" href="classzm1.html">zm1</a> () { }
-<a name="l00156"></a>00156 
-<a name="l00157"></a>00157     <span class="keyword">protected</span>:
-<a name="l00158"></a><a class="code" href="classzm1.html#bef9e2f243806657da1426b3406d03c4">00158</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classzm1.html#bef9e2f243806657da1426b3406d03c4">g</a>;
-<a name="l00159"></a>00159 };
-<a name="l00160"></a>00160 
-<a name="l00163"></a><a class="code" href="classzm2.html">00163</a> <span class="keyword">class </span><a class="code" href="classzm2.html">zm2</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
-<a name="l00164"></a>00164     <span class="keyword">public</span>:
-<a name="l00165"></a>00165         <a class="code" href="classzm2.html#fafc50cc03bab616113d7b7e16efc427">zm2</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00166"></a>00166              <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00167"></a>00167         <span class="keyword">virtual</span> ~<a class="code" href="classzm2.html">zm2</a> () { }
-<a name="l00168"></a>00168 
-<a name="l00169"></a>00169     <span class="keyword">protected</span>:
-<a name="l00170"></a><a class="code" href="classzm2.html#2f8c6138a1bae28aff2eb6c515dbbe34">00170</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classzm2.html#2f8c6138a1bae28aff2eb6c515dbbe34">g</a>;
-<a name="l00171"></a>00171 };
-<a name="l00172"></a>00172 
-<a name="l00175"></a><a class="code" href="classsqrtz.html">00175</a> <span class="keyword">class </span><a class="code" href="classsqrtz.html">sqrtz</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
-<a name="l00176"></a>00176     <span class="keyword">public</span>:
-<a name="l00177"></a>00177     <a class="code" href="classsqrtz.html#e5f774457375311636cf8790720312b8">sqrtz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00178"></a>00178            <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00179"></a>00179     <span class="keyword">virtual</span> ~<a class="code" href="classsqrtz.html">sqrtz</a> () { }
-<a name="l00180"></a>00180 
-<a name="l00181"></a>00181     <span class="keyword">protected</span>:
-<a name="l00182"></a><a class="code" href="classsqrtz.html#21554d23ad7feca1dc057c1ce37b49ac">00182</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classsqrtz.html#21554d23ad7feca1dc057c1ce37b49ac">g</a>;
-<a name="l00183"></a>00183 };
-<a name="l00184"></a>00184 
-<a name="l00187"></a><a class="code" href="classlnz.html">00187</a> <span class="keyword">class </span><a class="code" href="classlnz.html">lnz</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
-<a name="l00188"></a>00188     <span class="keyword">public</span>:
-<a name="l00189"></a>00189     <a class="code" href="classlnz.html#9c702619b9141f558e89172afcef3af3">lnz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00190"></a>00190          <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00191"></a>00191     <span class="keyword">virtual</span> ~<a class="code" href="classlnz.html">lnz</a> () { }
+<a name="l00118"></a><a class="code" href="classez.html">00118</a> <span class="keyword">class </span><a class="code" href="classez.html">ez</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
+<a name="l00119"></a>00119     <span class="keyword">public</span>:
+<a name="l00120"></a>00120         <a class="code" href="classez.html">ez</a> (): <a class="code" href="classComplexFunction.html">ComplexFunction</a>(<span class="stringliteral">"ez"</span>), alpha(2) { }
+<a name="l00121"></a>00121         <a class="code" href="classez.html">ez</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00122"></a>00122             <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
+<a name="l00123"></a>00123             <span class="keywordtype">double</span> _alpha = 2);
+<a name="l00124"></a>00124         <span class="keyword">virtual</span> ~<a class="code" href="classez.html">ez</a>() { }
+<a name="l00125"></a><a class="code" href="classez.html#fdb78abe0d9431731a523bb25f1b0de8">00125</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classez.html#fdb78abe0d9431731a523bb25f1b0de8" title="Set parameters to the Function.">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
+<a name="l00126"></a>00126 <span class="preprocessor">#       if 1</span>
+<a name="l00127"></a>00127 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
+<a name="l00128"></a>00128                  i != parms.end(); ++i) {
+<a name="l00129"></a>00129                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"a"</span>) alpha = <span class="keywordtype">double</span>(*i-&gt;second);
+<a name="l00130"></a>00130             }
+<a name="l00131"></a>00131 <span class="preprocessor">#       else</span>
+<a name="l00132"></a>00132 <span class="preprocessor"></span>            <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;Phase, <span class="stringliteral">"a"</span>);
+<a name="l00133"></a>00133 <span class="preprocessor">#       endif</span>
+<a name="l00134"></a>00134 <span class="preprocessor"></span>        }
+<a name="l00135"></a>00135 
+<a name="l00136"></a>00136     <span class="keyword">protected</span>:
+<a name="l00137"></a><a class="code" href="classez.html#9518db66e4e846eda5895791c9417fa4">00137</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classez.html#9518db66e4e846eda5895791c9417fa4">g</a>;
+<a name="l00138"></a>00138 
+<a name="l00139"></a>00139     <span class="keyword">private</span>:
+<a name="l00140"></a>00140         <span class="keywordtype">double</span> alpha;
+<a name="l00141"></a>00141 };
+<a name="l00142"></a>00142 
+<a name="l00143"></a>00143 <span class="keyword">namespace </span>{
+<a name="l00144"></a>00144     <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> *createez() { <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classez.html">ez</a>(); }
+<a name="l00145"></a>00145     <span class="keyword">const</span> <span class="keywordtype">bool</span> registered4 = <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">TheFunctionFactory::Instance</a>().registerFunction(<span class="stringliteral">"ez"</span>, createez);
+<a name="l00146"></a>00146 }
+<a name="l00147"></a>00147 
+<a name="l00150"></a><a class="code" href="classemz2.html">00150</a> <span class="keyword">class </span><a class="code" href="classemz2.html">emz2</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
+<a name="l00151"></a>00151     <span class="keyword">public</span>:
+<a name="l00152"></a>00152         <a class="code" href="classemz2.html">emz2</a> (): <a class="code" href="classComplexFunction.html">ComplexFunction</a>(<span class="stringliteral">"emz2"</span>), alpha(1) { }
+<a name="l00153"></a>00153         <a class="code" href="classemz2.html">emz2</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00154"></a>00154               <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
+<a name="l00155"></a>00155               <span class="keywordtype">double</span> _alpha = 1);
+<a name="l00156"></a>00156         <span class="keyword">virtual</span> ~<a class="code" href="classemz2.html">emz2</a>() { }
+<a name="l00157"></a><a class="code" href="classemz2.html#410a42e6418b05bd7afe28a5cd93d116">00157</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classemz2.html#410a42e6418b05bd7afe28a5cd93d116" title="Set parameters to the Function.">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
+<a name="l00158"></a>00158 <span class="preprocessor">#       if 1</span>
+<a name="l00159"></a>00159 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
+<a name="l00160"></a>00160                  i != parms.end(); ++i) {
+<a name="l00161"></a>00161                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"a"</span>) alpha = <span class="keywordtype">double</span>(*i-&gt;second);
+<a name="l00162"></a>00162             }
+<a name="l00163"></a>00163 <span class="preprocessor">#       else</span>
+<a name="l00164"></a>00164 <span class="preprocessor"></span>            <a class="code" href="classFunction.html#5fdd859f7deb0f6efa36f0b22111b19d" title="Set a parameter with a specified key from a supplied ParameterMap.">setParameter</a>(parms, this-&gt;Phase, <span class="stringliteral">"a"</span>);
+<a name="l00165"></a>00165 <span class="preprocessor">#       endif</span>
+<a name="l00166"></a>00166 <span class="preprocessor"></span>        }
+<a name="l00167"></a>00167 
+<a name="l00168"></a>00168     <span class="keyword">protected</span>:
+<a name="l00169"></a><a class="code" href="classemz2.html#65b0faaa192623a7b348388c728b4fad">00169</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classemz2.html#65b0faaa192623a7b348388c728b4fad">g</a>;
+<a name="l00170"></a>00170 
+<a name="l00171"></a>00171     <span class="keyword">private</span>:
+<a name="l00172"></a>00172         <span class="keywordtype">double</span> alpha;
+<a name="l00173"></a>00173 };
+<a name="l00174"></a>00174 
+<a name="l00175"></a>00175 <span class="keyword">namespace </span>{
+<a name="l00176"></a>00176     <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> *createemz2() { <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classemz2.html">emz2</a>(); }
+<a name="l00177"></a>00177     <span class="keyword">const</span> <span class="keywordtype">bool</span> registered5 = <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">TheFunctionFactory::Instance</a>().registerFunction(<span class="stringliteral">"emz2"</span>, createemz2);
+<a name="l00178"></a>00178 }
+<a name="l00179"></a>00179 
+<a name="l00182"></a><a class="code" href="classzm1.html">00182</a> <span class="keyword">class </span><a class="code" href="classzm1.html">zm1</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
+<a name="l00183"></a>00183     <span class="keyword">public</span>:
+<a name="l00184"></a>00184         <a class="code" href="classzm1.html">zm1</a> (): <a class="code" href="classComplexFunction.html">ComplexFunction</a>(<span class="stringliteral">"zm1"</span>) { }
+<a name="l00185"></a>00185         <a class="code" href="classzm1.html">zm1</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00186"></a>00186              <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00187"></a>00187         <span class="keyword">virtual</span> ~<a class="code" href="classzm1.html">zm1</a> () { }
+<a name="l00188"></a>00188 
+<a name="l00189"></a>00189     <span class="keyword">protected</span>:
+<a name="l00190"></a><a class="code" href="classzm1.html#bef9e2f243806657da1426b3406d03c4">00190</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classzm1.html#bef9e2f243806657da1426b3406d03c4">g</a>;
+<a name="l00191"></a>00191 };
 <a name="l00192"></a>00192 
-<a name="l00193"></a>00193     <span class="keyword">protected</span>:
-<a name="l00194"></a><a class="code" href="classlnz.html#cbfd3ae9c24d00d9f832c6b5c47e6d6e">00194</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classlnz.html#cbfd3ae9c24d00d9f832c6b5c47e6d6e">g</a>;
-<a name="l00195"></a>00195 };
-<a name="l00196"></a>00196 
-<a name="l00199"></a><a class="code" href="classsinz.html">00199</a> <span class="keyword">class </span><a class="code" href="classsinz.html">sinz</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
-<a name="l00200"></a>00200     <span class="keyword">public</span>:
-<a name="l00201"></a>00201     <a class="code" href="classsinz.html#106c003cf91f0aae52e54ea050aa85ac">sinz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00202"></a>00202           <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00203"></a>00203     <span class="keyword">virtual</span> ~<a class="code" href="classsinz.html">sinz</a> () { }
-<a name="l00204"></a>00204 
-<a name="l00205"></a>00205     <span class="keyword">protected</span>:
-<a name="l00206"></a><a class="code" href="classsinz.html#fb261d6d8d9c9b5a910b7e896be312b3">00206</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classsinz.html#fb261d6d8d9c9b5a910b7e896be312b3">g</a>;
-<a name="l00207"></a>00207 };
-<a name="l00208"></a>00208 
-<a name="l00211"></a><a class="code" href="classcosz.html">00211</a> <span class="keyword">class </span><a class="code" href="classcosz.html">cosz</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
-<a name="l00212"></a>00212     <span class="keyword">public</span>:
-<a name="l00213"></a>00213     <a class="code" href="classcosz.html#51b502bea027c0d691f0e093db0d3e2a">cosz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00214"></a>00214           <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00215"></a>00215     <span class="keyword">virtual</span> ~<a class="code" href="classcosz.html">cosz</a> () { }
-<a name="l00216"></a>00216 
-<a name="l00217"></a>00217     <span class="keyword">protected</span>:
-<a name="l00218"></a><a class="code" href="classcosz.html#558a3b254b3dbf8834a581e37fd0ea8f">00218</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classcosz.html#558a3b254b3dbf8834a581e37fd0ea8f">g</a>;
-<a name="l00219"></a>00219 };
-<a name="l00220"></a>00220 
-<a name="l00223"></a><a class="code" href="classsinhz.html">00223</a> <span class="keyword">class </span><a class="code" href="classsinhz.html">sinhz</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
-<a name="l00224"></a>00224     <span class="keyword">public</span>:
-<a name="l00225"></a>00225     <a class="code" href="classsinhz.html#eb81cbd41b41768558e63b9bba02b559">sinhz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00226"></a>00226            <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00227"></a>00227     <span class="keyword">virtual</span> ~<a class="code" href="classsinhz.html">sinhz</a> () { }
+<a name="l00193"></a>00193 <span class="keyword">namespace </span>{
+<a name="l00194"></a>00194     <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> *createzm1() { <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classzm1.html">zm1</a>(); }
+<a name="l00195"></a>00195     <span class="keyword">const</span> <span class="keywordtype">bool</span> registered6 = <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">TheFunctionFactory::Instance</a>().registerFunction(<span class="stringliteral">"zm1"</span>, createzm1);
+<a name="l00196"></a>00196 }
+<a name="l00197"></a>00197 
+<a name="l00200"></a><a class="code" href="classzm2.html">00200</a> <span class="keyword">class </span><a class="code" href="classzm2.html">zm2</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
+<a name="l00201"></a>00201     <span class="keyword">public</span>:
+<a name="l00202"></a>00202         <a class="code" href="classzm2.html">zm2</a> (): <a class="code" href="classComplexFunction.html">ComplexFunction</a>(<span class="stringliteral">"zm2"</span>) { }
+<a name="l00203"></a>00203         <a class="code" href="classzm2.html">zm2</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00204"></a>00204              <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00205"></a>00205         <span class="keyword">virtual</span> ~<a class="code" href="classzm2.html">zm2</a> () { }
+<a name="l00206"></a>00206 
+<a name="l00207"></a>00207     <span class="keyword">protected</span>:
+<a name="l00208"></a><a class="code" href="classzm2.html#2f8c6138a1bae28aff2eb6c515dbbe34">00208</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classzm2.html#2f8c6138a1bae28aff2eb6c515dbbe34">g</a>;
+<a name="l00209"></a>00209 };
+<a name="l00210"></a>00210 
+<a name="l00211"></a>00211 <span class="keyword">namespace </span>{
+<a name="l00212"></a>00212     <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> *createzm2() { <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classzm2.html">zm2</a>(); }
+<a name="l00213"></a>00213     <span class="keyword">const</span> <span class="keywordtype">bool</span> registered7 = <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">TheFunctionFactory::Instance</a>().registerFunction(<span class="stringliteral">"zm2"</span>, createzm2);
+<a name="l00214"></a>00214 }
+<a name="l00215"></a>00215 
+<a name="l00218"></a><a class="code" href="classsqrtz.html">00218</a> <span class="keyword">class </span><a class="code" href="classsqrtz.html">sqrtz</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
+<a name="l00219"></a>00219     <span class="keyword">public</span>:
+<a name="l00220"></a>00220         <a class="code" href="classsqrtz.html">sqrtz</a> (): <a class="code" href="classComplexFunction.html">ComplexFunction</a>(<span class="stringliteral">"sqrtz"</span>) { }
+<a name="l00221"></a>00221         <a class="code" href="classsqrtz.html">sqrtz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00222"></a>00222                <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00223"></a>00223         <span class="keyword">virtual</span> ~<a class="code" href="classsqrtz.html">sqrtz</a> () { }
+<a name="l00224"></a>00224 
+<a name="l00225"></a>00225     <span class="keyword">protected</span>:
+<a name="l00226"></a><a class="code" href="classsqrtz.html#21554d23ad7feca1dc057c1ce37b49ac">00226</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classsqrtz.html#21554d23ad7feca1dc057c1ce37b49ac">g</a>;
+<a name="l00227"></a>00227 };
 <a name="l00228"></a>00228 
-<a name="l00229"></a>00229     <span class="keyword">protected</span>:
-<a name="l00230"></a><a class="code" href="classsinhz.html#998410f8948ed3f9bb21bab2626da913">00230</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classsinhz.html#998410f8948ed3f9bb21bab2626da913">g</a>;
-<a name="l00231"></a>00231 };
-<a name="l00232"></a>00232 
-<a name="l00235"></a><a class="code" href="classcoshz.html">00235</a> <span class="keyword">class </span><a class="code" href="classcoshz.html">coshz</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
-<a name="l00236"></a>00236     <span class="keyword">public</span>:
-<a name="l00237"></a>00237     <a class="code" href="classcoshz.html#0460b05f1d89b00e63e932f7a1dac1cf">coshz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00238"></a>00238            <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00239"></a>00239     <span class="keyword">virtual</span> ~<a class="code" href="classcoshz.html">coshz</a> () { }
-<a name="l00240"></a>00240 
-<a name="l00241"></a>00241     <span class="keyword">protected</span>:
-<a name="l00242"></a><a class="code" href="classcoshz.html#fa65daf802d43d894d545c6fa28d3c25">00242</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classcoshz.html#fa65daf802d43d894d545c6fa28d3c25">g</a>;
-<a name="l00243"></a>00243 };
-<a name="l00244"></a>00244 
-<a name="l00247"></a><a class="code" href="classtanz.html">00247</a> <span class="keyword">class </span><a class="code" href="classtanz.html">tanz</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
-<a name="l00248"></a>00248     <span class="keyword">public</span>:
-<a name="l00249"></a>00249     <a class="code" href="classtanz.html#6b98b0fc0a80f4bbf6d84fbff92a74fd">tanz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00250"></a>00250          <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00251"></a>00251     <span class="keyword">virtual</span> ~<a class="code" href="classtanz.html">tanz</a> () { }
-<a name="l00252"></a>00252 
-<a name="l00253"></a>00253     <span class="keyword">protected</span>:
-<a name="l00254"></a><a class="code" href="classtanz.html#7714095e8de036ba2026c6f520fbb839">00254</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classtanz.html#7714095e8de036ba2026c6f520fbb839">g</a>;
-<a name="l00255"></a>00255 };
-<a name="l00256"></a>00256 
-<a name="l00259"></a><a class="code" href="classPolynomial.html">00259</a> <span class="keyword">class </span><a class="code" href="classPolynomial.html">Polynomial</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
-<a name="l00260"></a>00260     <span class="keyword">public</span>:
-<a name="l00261"></a>00261         <a class="code" href="classPolynomial.html#5d2e89aac78d8d59d93abbc42d65fc0f" title="constructor">Polynomial</a>(<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00262"></a>00262                    <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
-<a name="l00263"></a>00263                    <span class="keywordtype">double</span> _a1, <span class="keywordtype">double</span> _a2, <span class="keywordtype">double</span> _a3, <span class="keywordtype">double</span> _a4);
-<a name="l00264"></a>00264         <span class="keyword">virtual</span> ~<a class="code" href="classPolynomial.html">Polynomial</a> () { }
-<a name="l00265"></a>00265 
-<a name="l00266"></a>00266     <span class="keyword">protected</span>:
-<a name="l00267"></a><a class="code" href="classPolynomial.html#d77ec1bc3e000fc8d3443f5513f58c6a">00267</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classPolynomial.html#d77ec1bc3e000fc8d3443f5513f58c6a" title="function implementation">g</a>;    
-<a name="l00268"></a>00268 
-<a name="l00269"></a>00269     <span class="keyword">private</span>:
-<a name="l00270"></a><a class="code" href="classPolynomial.html#742c72cf37506507b1c2fa6d997bf509">00270</a>         <span class="keywordtype">double</span> <a class="code" href="classPolynomial.html#742c72cf37506507b1c2fa6d997bf509" title="coefficients">a</a>[5];                
-<a name="l00271"></a>00271 };
-<a name="l00272"></a>00272 <span class="preprocessor">#endif</span>
+<a name="l00229"></a>00229 <span class="keyword">namespace </span>{
+<a name="l00230"></a>00230     <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> *createsqrtz() { <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classsqrtz.html">sqrtz</a>(); }
+<a name="l00231"></a>00231     <span class="keyword">const</span> <span class="keywordtype">bool</span> registered8 = <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">TheFunctionFactory::Instance</a>().registerFunction(<span class="stringliteral">"sqrtz"</span>, createsqrtz);
+<a name="l00232"></a>00232 }
+<a name="l00233"></a>00233 
+<a name="l00236"></a><a class="code" href="classlnz.html">00236</a> <span class="keyword">class </span><a class="code" href="classlnz.html">lnz</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
+<a name="l00237"></a>00237     <span class="keyword">public</span>:
+<a name="l00238"></a>00238         <a class="code" href="classlnz.html">lnz</a> (): <a class="code" href="classComplexFunction.html">ComplexFunction</a>(<span class="stringliteral">"lnz"</span>) { }
+<a name="l00239"></a>00239         <a class="code" href="classlnz.html">lnz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00240"></a>00240              <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00241"></a>00241         <span class="keyword">virtual</span> ~<a class="code" href="classlnz.html">lnz</a> () { }
+<a name="l00242"></a>00242 
+<a name="l00243"></a>00243     <span class="keyword">protected</span>:
+<a name="l00244"></a><a class="code" href="classlnz.html#cbfd3ae9c24d00d9f832c6b5c47e6d6e">00244</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classlnz.html#cbfd3ae9c24d00d9f832c6b5c47e6d6e">g</a>;
+<a name="l00245"></a>00245 };
+<a name="l00246"></a>00246 
+<a name="l00247"></a>00247 <span class="keyword">namespace </span>{
+<a name="l00248"></a>00248     <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> *createlnz() { <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classlnz.html">lnz</a>(); }
+<a name="l00249"></a>00249     <span class="keyword">const</span> <span class="keywordtype">bool</span> registered9 = <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">TheFunctionFactory::Instance</a>().registerFunction(<span class="stringliteral">"lnz"</span>, createlnz);
+<a name="l00250"></a>00250 }
+<a name="l00251"></a>00251 
+<a name="l00254"></a><a class="code" href="classsinz.html">00254</a> <span class="keyword">class </span><a class="code" href="classsinz.html">sinz</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
+<a name="l00255"></a>00255     <span class="keyword">public</span>:
+<a name="l00256"></a>00256         <a class="code" href="classsinz.html">sinz</a> (): <a class="code" href="classComplexFunction.html">ComplexFunction</a>(<span class="stringliteral">"sinz"</span>) { }
+<a name="l00257"></a>00257         <a class="code" href="classsinz.html">sinz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00258"></a>00258               <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00259"></a>00259         <span class="keyword">virtual</span> ~<a class="code" href="classsinz.html">sinz</a> () { }
+<a name="l00260"></a>00260 
+<a name="l00261"></a>00261     <span class="keyword">protected</span>:
+<a name="l00262"></a><a class="code" href="classsinz.html#fb261d6d8d9c9b5a910b7e896be312b3">00262</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classsinz.html#fb261d6d8d9c9b5a910b7e896be312b3">g</a>;
+<a name="l00263"></a>00263 };
+<a name="l00264"></a>00264 
+<a name="l00265"></a>00265 <span class="keyword">namespace </span>{
+<a name="l00266"></a>00266     <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> *createsinz() { <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classsinz.html">sinz</a>(); }
+<a name="l00267"></a>00267     <span class="keyword">const</span> <span class="keywordtype">bool</span> registered10 = <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">TheFunctionFactory::Instance</a>().registerFunction(<span class="stringliteral">"sinz"</span>, createsinz);
+<a name="l00268"></a>00268 }
+<a name="l00269"></a>00269 
+<a name="l00272"></a><a class="code" href="classcosz.html">00272</a> <span class="keyword">class </span><a class="code" href="classcosz.html">cosz</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
+<a name="l00273"></a>00273     <span class="keyword">public</span>:
+<a name="l00274"></a>00274         <a class="code" href="classcosz.html">cosz</a> (): <a class="code" href="classComplexFunction.html">ComplexFunction</a>(<span class="stringliteral">"cosz"</span>) { }
+<a name="l00275"></a>00275         <a class="code" href="classcosz.html">cosz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00276"></a>00276               <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00277"></a>00277         <span class="keyword">virtual</span> ~<a class="code" href="classcosz.html">cosz</a> () { }
+<a name="l00278"></a>00278 
+<a name="l00279"></a>00279     <span class="keyword">protected</span>:
+<a name="l00280"></a><a class="code" href="classcosz.html#558a3b254b3dbf8834a581e37fd0ea8f">00280</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classcosz.html#558a3b254b3dbf8834a581e37fd0ea8f">g</a>;
+<a name="l00281"></a>00281 };
+<a name="l00282"></a>00282 
+<a name="l00283"></a>00283 <span class="keyword">namespace </span>{
+<a name="l00284"></a>00284     <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> *createcosz() { <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classcosz.html">cosz</a>(); }
+<a name="l00285"></a>00285     <span class="keyword">const</span> <span class="keywordtype">bool</span> registered11 = <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">TheFunctionFactory::Instance</a>().registerFunction(<span class="stringliteral">"cosz"</span>, createcosz);
+<a name="l00286"></a>00286 }
+<a name="l00287"></a>00287 
+<a name="l00290"></a><a class="code" href="classsinhz.html">00290</a> <span class="keyword">class </span><a class="code" href="classsinhz.html">sinhz</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
+<a name="l00291"></a>00291     <span class="keyword">public</span>:
+<a name="l00292"></a>00292         <a class="code" href="classsinhz.html">sinhz</a> (): <a class="code" href="classComplexFunction.html">ComplexFunction</a>(<span class="stringliteral">"sinhz"</span>) { }
+<a name="l00293"></a>00293         <a class="code" href="classsinhz.html">sinhz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00294"></a>00294                <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00295"></a>00295         <span class="keyword">virtual</span> ~<a class="code" href="classsinhz.html">sinhz</a> () { }
+<a name="l00296"></a>00296 
+<a name="l00297"></a>00297     <span class="keyword">protected</span>:
+<a name="l00298"></a><a class="code" href="classsinhz.html#998410f8948ed3f9bb21bab2626da913">00298</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classsinhz.html#998410f8948ed3f9bb21bab2626da913">g</a>;
+<a name="l00299"></a>00299 };
+<a name="l00300"></a>00300 
+<a name="l00301"></a>00301 <span class="keyword">namespace </span>{
+<a name="l00302"></a>00302     <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> *createsinhz() { <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classsinhz.html">sinhz</a>(); }
+<a name="l00303"></a>00303     <span class="keyword">const</span> <span class="keywordtype">bool</span> registered12 = <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">TheFunctionFactory::Instance</a>().registerFunction(<span class="stringliteral">"sinhz"</span>, createsinhz);
+<a name="l00304"></a>00304 }
+<a name="l00305"></a>00305 
+<a name="l00308"></a><a class="code" href="classcoshz.html">00308</a> <span class="keyword">class </span><a class="code" href="classcoshz.html">coshz</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
+<a name="l00309"></a>00309     <span class="keyword">public</span>:
+<a name="l00310"></a>00310         <a class="code" href="classcoshz.html">coshz</a> (): <a class="code" href="classComplexFunction.html">ComplexFunction</a>(<span class="stringliteral">"coshz"</span>) { }
+<a name="l00311"></a>00311         <a class="code" href="classcoshz.html">coshz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00312"></a>00312                <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00313"></a>00313         <span class="keyword">virtual</span> ~<a class="code" href="classcoshz.html">coshz</a> () { }
+<a name="l00314"></a>00314 
+<a name="l00315"></a>00315     <span class="keyword">protected</span>:
+<a name="l00316"></a><a class="code" href="classcoshz.html#fa65daf802d43d894d545c6fa28d3c25">00316</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classcoshz.html#fa65daf802d43d894d545c6fa28d3c25">g</a>;
+<a name="l00317"></a>00317 };
+<a name="l00318"></a>00318 
+<a name="l00319"></a>00319 <span class="keyword">namespace </span>{
+<a name="l00320"></a>00320     <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> *createcoshz() { <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classcoshz.html">coshz</a>(); }
+<a name="l00321"></a>00321     <span class="keyword">const</span> <span class="keywordtype">bool</span> registered13 = <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">TheFunctionFactory::Instance</a>().registerFunction(<span class="stringliteral">"coshz"</span>, createcoshz);
+<a name="l00322"></a>00322 }
+<a name="l00323"></a>00323 
+<a name="l00326"></a><a class="code" href="classtanz.html">00326</a> <span class="keyword">class </span><a class="code" href="classtanz.html">tanz</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
+<a name="l00327"></a>00327     <span class="keyword">public</span>:
+<a name="l00328"></a>00328         <a class="code" href="classtanz.html">tanz</a> (): <a class="code" href="classComplexFunction.html">ComplexFunction</a>(<span class="stringliteral">"tanz"</span>) { }
+<a name="l00329"></a>00329         <a class="code" href="classtanz.html">tanz</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00330"></a>00330               <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00331"></a>00331         <span class="keyword">virtual</span> ~<a class="code" href="classtanz.html">tanz</a> () { }
+<a name="l00332"></a>00332 
+<a name="l00333"></a>00333     <span class="keyword">protected</span>:
+<a name="l00334"></a><a class="code" href="classtanz.html#7714095e8de036ba2026c6f520fbb839">00334</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classtanz.html#7714095e8de036ba2026c6f520fbb839">g</a>;
+<a name="l00335"></a>00335 };
+<a name="l00336"></a>00336 
+<a name="l00337"></a>00337 <span class="keyword">namespace </span>{
+<a name="l00338"></a>00338     <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> *createtanz() { <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classtanz.html">tanz</a>(); }
+<a name="l00339"></a>00339     <span class="keyword">const</span> <span class="keywordtype">bool</span> registered14 = <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">TheFunctionFactory::Instance</a>().registerFunction(<span class="stringliteral">"tanz"</span>, createtanz);
+<a name="l00340"></a>00340 }
+<a name="l00341"></a>00341 
+<a name="l00344"></a><a class="code" href="classPolynomial.html">00344</a> <span class="keyword">class </span><a class="code" href="classPolynomial.html">Polynomial</a>: <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a> {
+<a name="l00345"></a>00345     <span class="keyword">public</span>:
+<a name="l00346"></a>00346         <a class="code" href="classPolynomial.html#5d2e89aac78d8d59d93abbc42d65fc0f" title="constructor">Polynomial</a>(<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00347"></a>00347                    <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
+<a name="l00348"></a>00348                    <span class="keywordtype">double</span> _a1, <span class="keywordtype">double</span> _a2, <span class="keywordtype">double</span> _a3, <span class="keywordtype">double</span> _a4);
+<a name="l00349"></a>00349         <span class="keyword">virtual</span> ~<a class="code" href="classPolynomial.html">Polynomial</a> () { }
+<a name="l00350"></a>00350 
+<a name="l00351"></a>00351     <span class="keyword">protected</span>:
+<a name="l00352"></a><a class="code" href="classPolynomial.html#d77ec1bc3e000fc8d3443f5513f58c6a">00352</a>         <span class="keyword">virtual</span> function_type <a class="code" href="classPolynomial.html#d77ec1bc3e000fc8d3443f5513f58c6a" title="function implementation">g</a>;    
+<a name="l00353"></a>00353 
+<a name="l00354"></a>00354     <span class="keyword">private</span>:
+<a name="l00355"></a><a class="code" href="classPolynomial.html#742c72cf37506507b1c2fa6d997bf509">00355</a>         <span class="keywordtype">double</span> <a class="code" href="classPolynomial.html#742c72cf37506507b1c2fa6d997bf509" title="coefficients">a</a>[5];                
+<a name="l00356"></a>00356 };
+<a name="l00357"></a>00357 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 1 10:05:01 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jun 23 12:35:41 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

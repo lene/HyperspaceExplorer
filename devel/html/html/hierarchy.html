@@ -39,7 +39,6 @@
 <h1>Class Hierarchy</h1><a href="inherits.html">Go to the graphical class hierarchy</a>
 <p>
 This inheritance list is sorted roughly, but not completely, alphabetically:<ul>
-<li><a class="el" href="classC4DView.html">C4DView</a>
 <li><a class="el" href="classC4DView_1_1CustomFunctionSlot.html">C4DView::CustomFunctionSlot&lt; function &gt;</a>
 <li><a class="el" href="structC4DView_1_1Impl.html">C4DView::Impl</a>
 <li><a class="el" href="classC4DView_1_1Menu4D.html">C4DView::Menu4D</a>
@@ -71,6 +70,13 @@ This inheritance list is sorted roughly, but not completely, alphabetically:<ul>
 <ul>
 <li><a class="el" href="classCustomSurface.html">CustomSurface</a>
 </ul>
+<li><a class="el" href="structLoki_1_1DefaultLifetime.html">Loki::DefaultLifetime&lt; T &gt;</a>
+<li><a class="el" href="classLoki_1_1DeletableSingleton.html">Loki::DeletableSingleton&lt; T &gt;</a>
+<li><a class="el" href="classLoki_1_1FollowIntoDeath.html">Loki::FollowIntoDeath</a>
+<li><a class="el" href="structLoki_1_1FollowIntoDeath_1_1AfterMaster.html">Loki::FollowIntoDeath::AfterMaster&lt; Master &gt;</a>
+<li><a class="el" href="structLoki_1_1FollowIntoDeath_1_1AfterMaster_1_1IsDestroyed.html">Loki::FollowIntoDeath::AfterMaster&lt; Master &gt;::IsDestroyed&lt; F &gt;</a>
+<li><a class="el" href="structLoki_1_1FollowIntoDeath_1_1With.html">Loki::FollowIntoDeath::With&lt; Lifetime &gt;</a>
+<li><a class="el" href="structLoki_1_1FollowIntoDeath_1_1With_1_1AsMasterLifetime.html">Loki::FollowIntoDeath::With&lt; Lifetime &gt;::AsMasterLifetime&lt; Master &gt;</a>
 <li><a class="el" href="classFunction.html">Function</a>
 <ul>
 <li><a class="el" href="classObject.html">Object</a>
@@ -133,6 +139,8 @@ This inheritance list is sorted roughly, but not completely, alphabetically:<ul>
 </ul>
 </ul>
 </ul>
+<li><a class="el" href="classFunctionFactory.html">FunctionFactory</a>
+<li><a class="el" href="classFunctionFactory_1_1BadFunctionException.html">FunctionFactory::BadFunctionException</a>
 <li><a class="el" href="classFunctionParameter.html">FunctionParameter</a>
 <li><a class="el" href="structFunctionParameter_1_1Impl.html">FunctionParameter::Impl</a>
 <li><a class="el" href="classFunctionParameterValueBase.html">FunctionParameterValueBase</a>
@@ -141,18 +149,25 @@ This inheritance list is sorted roughly, but not completely, alphabetically:<ul>
 </ul>
 <li><a class="el" href="structFunctionParameterValueBase_1_1WrongParameterTypeException.html">FunctionParameterValueBase::WrongParameterTypeException</a>
 <li><a class="el" href="classFunctionSlotHelper.html">FunctionSlotHelper</a>
+<li><a class="el" href="classLoki_1_1Functor.html">Loki::Functor&lt; R, TList &gt;</a>
+<li><b>Loki::Private::FunctorImplBase&lt; R &gt;</b><ul>
+<li><a class="el" href="classLoki_1_1FunctorImpl_3_01R_00_01LOKI__TYPELIST__3_07P1_00_01P2_00_01P3_08_4.html">Loki::Loki::FunctorImpl&lt; R, LOKI_TYPELIST_3(P1, P2, P3)&gt;</a>
+</ul>
 <li><a class="el" href="classGlobal.html">Global</a>
 <li><a class="el" href="classHelpWindow.html">HelpWindow</a>
 <li><a class="el" href="classLog.html">Log</a>
 <li><a class="el" href="classLSystem.html">LSystem</a>
 <li><a class="el" href="classVecMath_1_1Matrix.html">VecMath::Matrix&lt; D, N &gt;</a>
+<li><a class="el" href="classLoki_1_1Mutex.html">Loki::Mutex</a>
+<li><a class="el" href="structLoki_1_1NoDestroy.html">Loki::NoDestroy&lt; T &gt;</a>
 <li><a class="el" href="classNotYetImplementedException.html">NotYetImplementedException</a>
 <li><a class="el" href="structVecMath_1_1NumAxes.html">VecMath::NumAxes&lt; D &gt;</a>
 <li><a class="el" href="structVecMath_1_1NumAxes_3_010_01_4.html">VecMath::VecMath::NumAxes&lt; 0 &gt;</a>
 <li><a class="el" href="structVecMath_1_1NumAxes_3_011_01_4.html">VecMath::VecMath::NumAxes&lt; 1 &gt;</a>
 <li><a class="el" href="classParameterFac.html">ParameterFac</a>
 <li><a class="el" href="classParameterMap.html">ParameterMap</a>
-<li><a class="el" href="classParser.html">Parser</a>
+<li><a class="el" href="classScript_1_1Parser.html">Script::Parser</a>
+<li><a class="el" href="classLoki_1_1PhoenixSingleton.html">Loki::PhoenixSingleton&lt; T &gt;</a>
 <li><a class="el" href="classPluginCreator.html">PluginCreator</a>
 <ul>
 <li><a class="el" href="classComplexDialogImpl.html">ComplexDialogImpl</a>
@@ -169,8 +184,37 @@ This inheritance list is sorted roughly, but not completely, alphabetically:<ul>
 <li><a class="el" href="classVecMath_1_1RotationAxes.html">VecMath::RotationAxes&lt; D &gt;</a>
 <li><a class="el" href="classVecMath_1_1RotationAxes_3_013_01_4.html">VecMath::VecMath::RotationAxes&lt; 3 &gt;</a>
 <li><a class="el" href="classVecMath_1_1RotationAxes_3_014_01_4.html">VecMath::VecMath::RotationAxes&lt; 4 &gt;</a>
+<li><a class="el" href="classLoki_1_1SingleThreaded.html">Loki::SingleThreaded&lt; Host, MutexPolicy &gt;</a>
+<li><a class="el" href="structLoki_1_1SingleThreaded_1_1Lock.html">Loki::SingleThreaded&lt; Host, MutexPolicy &gt;::Lock</a>
 <li><a class="el" href="classLoki_1_1Singleton.html">Loki::Singleton&lt; T &gt;</a>
-<li><a class="el" href="classLoki_1_1SingletonHolder.html">Loki::SingletonHolder&lt; T, CreationPolicy &gt;</a>
+<li><a class="el" href="classLoki_1_1LongevityLifetime_1_1SingletonFixedLongevity.html">Loki::LongevityLifetime::SingletonFixedLongevity&lt; Longevity, T &gt;</a>
+<ul>
+<li><a class="el" href="structLoki_1_1LongevityLifetime_1_1DieDirectlyBeforeLast.html">Loki::LongevityLifetime::DieDirectlyBeforeLast&lt; T &gt;</a>
+<ul>
+<li><a class="el" href="structLoki_1_1LongevityLifetime_1_1DieAsSmallObjectChild.html">Loki::LongevityLifetime::DieAsSmallObjectChild&lt; T &gt;</a>
+</ul>
+<li><a class="el" href="structLoki_1_1LongevityLifetime_1_1DieLast.html">Loki::LongevityLifetime::DieLast&lt; T &gt;</a>
+<ul>
+<li><a class="el" href="structLoki_1_1LongevityLifetime_1_1DieAsSmallObjectParent.html">Loki::LongevityLifetime::DieAsSmallObjectParent&lt; T &gt;</a>
+</ul>
+</ul>
+<li><a class="el" href="classLoki_1_1LongevityLifetime_1_1SingletonFixedLongevity.html">Loki::LongevityLifetime::SingletonFixedLongevity&lt; 0, T &gt;</a>
+<ul>
+<li><a class="el" href="structLoki_1_1LongevityLifetime_1_1DieFirst.html">Loki::LongevityLifetime::DieFirst&lt; T &gt;</a>
+</ul>
+<li><a class="el" href="classLoki_1_1LongevityLifetime_1_1SingletonFixedLongevity.html">Loki::LongevityLifetime::SingletonFixedLongevity&lt; 0xFFFFFFFF, T &gt;</a>
+<li><a class="el" href="classLoki_1_1LongevityLifetime_1_1SingletonFixedLongevity.html">Loki::LongevityLifetime::SingletonFixedLongevity&lt; 0xFFFFFFFF-1, T &gt;</a>
+<li><a class="el" href="classLoki_1_1SingletonHolder.html">Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;</a>
+<li><a class="el" href="classLoki_1_1SingletonWithLongevity.html">Loki::SingletonWithLongevity&lt; T &gt;</a>
+<li><a class="el" href="classLoki_1_1SmallObjAllocator.html">Loki::SmallObjAllocator</a>
+<ul>
+<li><a class="el" href="classLoki_1_1AllocatorSingleton.html">Loki::AllocatorSingleton&lt; ThreadingModel, chunkSize, maxSmallObjectSize, objectAlignSize, LifetimePolicy, MutexPolicy &gt;</a>
+</ul>
+<li><a class="el" href="classLoki_1_1SmallObjectBase.html">Loki::SmallObjectBase&lt; ThreadingModel, chunkSize, maxSmallObjectSize, objectAlignSize, LifetimePolicy, MutexPolicy &gt;</a>
+<ul>
+<li><a class="el" href="classLoki_1_1SmallObject.html">Loki::SmallObject&lt; ThreadingModel, chunkSize, maxSmallObjectSize, objectAlignSize, LifetimePolicy, MutexPolicy &gt;</a>
+<li><a class="el" href="classLoki_1_1SmallValueObject.html">Loki::SmallValueObject&lt; ThreadingModel, chunkSize, maxSmallObjectSize, objectAlignSize, LifetimePolicy, MutexPolicy &gt;</a>
+</ul>
 <li><a class="el" href="classSurfaceFactory.html">SurfaceFactory</a>
 <ul>
 <li><a class="el" href="classC4DView_1_1TemplatedSurfaceFactory.html">C4DView::TemplatedSurfaceFactory&lt; function &gt;</a>
@@ -206,11 +250,14 @@ This inheritance list is sorted roughly, but not completely, alphabetically:<ul>
 <li><b>Ui::ValuesDialog</b><ul>
 <li><a class="el" href="classValuesDialogImpl.html">ValuesDialogImpl</a>
 </ul>
-</ul>
+<li><b>Ui::ValuesDialog</b></ul>
 <li><a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector&lt; D, N &gt;</a>
+<li><b>UI::View</b><ul>
+<li><a class="el" href="classC4DView.html">C4DView</a>
+</ul>
 </ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 1 10:05:02 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jun 23 12:35:42 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

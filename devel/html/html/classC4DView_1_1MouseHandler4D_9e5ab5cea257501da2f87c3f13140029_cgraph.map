@@ -1,5 +1,4 @@
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="853,26,1072,53">
-<area shape="rect" href="$classC4DView.html#715dbd8c1e15f6d118853e1789d081e7" title="Err well.. just that!" alt="" coords="388,26,569,53">
-<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="620,77,793,104">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1132,26,1383,53">
-<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="843,77,1083,104">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="777,26,969,53">
+<area shape="rect" href="$classC4DView.html#715dbd8c1e15f6d118853e1789d081e7" title="Err well.. just that!" alt="" coords="347,26,512,53">
+<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="561,77,713,104">
+<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="763,77,984,104">

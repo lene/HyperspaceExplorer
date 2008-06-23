@@ -377,7 +377,7 @@ main();
 
 
 ?>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 1 10:05:03 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jun 23 12:35:45 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

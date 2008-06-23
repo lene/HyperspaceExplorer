@@ -1,10 +1,9 @@
-<area shape="rect" href="$classSurfaceBase.html#ba6ce6327e509663e484560f849d03f1" title="The mathematical function defining the Function object." alt="" coords="236,6,351,32">
-<area shape="rect" href="$classSurfaceBase.html#c1b7c91a12ac9ad433c27d8ad9f6067c" title="delta in t" alt="" coords="220,56,367,83">
-<area shape="rect" href="$classSurfaceBase.html#b374ba3db9a0339e6a5aaa230d1a76ca" title="delta in u" alt="" coords="219,107,368,134">
-<area shape="rect" href="$classSurfaceBase.html#73cd034a8689e0f9fbd796f8e7423fcb" title="min. value of the first parameter, t" alt="" coords="212,158,375,184">
-<area shape="rect" href="$classSurfaceBase.html#761208b17975a6c343774b5ca467ed2b" title="number of steps in t" alt="" coords="492,234,663,260">
-<area shape="rect" href="$classSurfaceBase.html#ed7d2013bca3eb15eb1abcc8e72cbd58" title="min. value of the second parameter, u" alt="" coords="211,259,376,286">
-<area shape="rect" href="$classSurfaceBase.html#d8c79625fa46d8c5ebbda58f0dd9eb5d" title="number of steps in u" alt="" coords="489,335,665,362">
-<area shape="rect" href="$classSurface.html#f77d456ed7b5d495f4a54978ab5f4acc" title="Initialize the temporary storage areas Xscr[][], Xtrans[][]." alt="" coords="229,310,357,336">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="184,411,403,438">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="452,411,703,438">
+<area shape="rect" href="$classSurfaceBase.html#ba6ce6327e509663e484560f849d03f1" title="The mathematical function defining the Function object." alt="" coords="219,6,317,32">
+<area shape="rect" href="$classSurfaceBase.html#c1b7c91a12ac9ad433c27d8ad9f6067c" title="delta in t" alt="" coords="205,56,331,83">
+<area shape="rect" href="$classSurfaceBase.html#b374ba3db9a0339e6a5aaa230d1a76ca" title="delta in u" alt="" coords="204,107,332,134">
+<area shape="rect" href="$classSurfaceBase.html#73cd034a8689e0f9fbd796f8e7423fcb" title="min. value of the first parameter, t" alt="" coords="199,158,337,184">
+<area shape="rect" href="$classSurfaceBase.html#761208b17975a6c343774b5ca467ed2b" title="number of steps in t" alt="" coords="415,284,561,311">
+<area shape="rect" href="$classSurfaceBase.html#ed7d2013bca3eb15eb1abcc8e72cbd58" title="min. value of the second parameter, u" alt="" coords="197,259,339,286">
+<area shape="rect" href="$classSurfaceBase.html#d8c79625fa46d8c5ebbda58f0dd9eb5d" title="number of steps in u" alt="" coords="415,347,561,374">
+<area shape="rect" href="$classSurface.html#f77d456ed7b5d495f4a54978ab5f4acc" title="Initialize the temporary storage areas Xscr[][], Xtrans[][]." alt="" coords="211,310,325,336">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="172,411,364,438">

@@ -95,64 +95,73 @@
 <a name="l00115"></a>00115 
 <a name="l00117"></a><a class="code" href="classVecMath_1_1Rotation.html#7171fc9dc7023d1449d50e084265a57c">00117</a>             <a class="code" href="classVecMath_1_1Rotation.html#7171fc9dc7023d1449d50e084265a57c" title="true if rotation is nonzero">operator bool</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a>.sqnorm() != 0.; }
 <a name="l00118"></a>00118 
-<a name="l00120"></a><a class="code" href="classVecMath_1_1Rotation.html#d048a5d967bb9b554ed984ada6bc2a75">00120</a>             <span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;NumAxes&lt;D&gt;::num</a>, N&gt; <a class="code" href="classVecMath_1_1Rotation.html#d048a5d967bb9b554ed984ada6bc2a75" title="access the stored values (needed by output operator &amp;lt;&amp;lt;())">r</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a>; }
+<a name="l00120"></a><a class="code" href="classVecMath_1_1Rotation.html#c7a3ce61bbe973efb8724e32b5aab83b">00120</a>             <span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;NumAxes&lt;D&gt;::num</a>, N&gt; &amp;<a class="code" href="classVecMath_1_1Rotation.html#c7a3ce61bbe973efb8724e32b5aab83b" title="access the stored values (needed by output operator &amp;lt;&amp;lt;())">r</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a>; }
 <a name="l00121"></a>00121 
-<a name="l00122"></a>00122         <span class="keyword">private</span>:
-<a name="l00124"></a><a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334">00124</a>             <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;NumAxes&lt;D&gt;::num</a>, N&gt; <a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a>;
-<a name="l00125"></a>00125     };
-<a name="l00126"></a>00126 
-<a name="l00127"></a><a class="code" href="classVecMath_1_1Rotation.html#8169627c23d4ecf6f8d5724a9310a8e8">00127</a>     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation&lt;D, N&gt;::Rotation</a> (N r0, ... ):
-<a name="l00128"></a>00128             axis() {
-<a name="l00129"></a>00129         <a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a>[0] = r0;
-<a name="l00130"></a>00130         va_list argp;
-<a name="l00131"></a>00131         va_start (argp, r0);
-<a name="l00132"></a>00132         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 1; i &lt; NumAxes&lt;D&gt;::num; i++) {
-<a name="l00133"></a>00133             <a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a>[i] = va_arg (argp, N);
-<a name="l00134"></a>00134         }
-<a name="l00135"></a>00135         va_end (argp);
-<a name="l00136"></a>00136     }
-<a name="l00137"></a>00137 
-<a name="l00138"></a>00138     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00139"></a><a class="code" href="classVecMath_1_1Rotation.html#983895e87df442fd68885cddac8bbb20">00139</a>             N &amp;<a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation&lt;D, N&gt;::operator[] </a>(<span class="keywordtype">unsigned</span> i) {
-<a name="l00140"></a>00140         assert(i &lt; <a class="code" href="structVecMath_1_1NumAxes.html" title="Determine number of rotation axes in D-dimensional space.">NumAxes&lt;D&gt;::num</a>);
-<a name="l00141"></a>00141         <span class="keywordflow">return</span> <a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a>[i];
-<a name="l00142"></a>00142     }
-<a name="l00143"></a>00143 
-<a name="l00144"></a>00144     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00145"></a><a class="code" href="classVecMath_1_1Rotation.html#790e96010114d3219cf7452676389e74">00145</a>             N <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation&lt;D, N&gt;::operator[] </a>(<span class="keywordtype">unsigned</span> i)<span class="keyword"> const </span>{
-<a name="l00146"></a>00146         assert(i &lt; <a class="code" href="structVecMath_1_1NumAxes.html" title="Determine number of rotation axes in D-dimensional space.">NumAxes&lt;D&gt;::num</a>);
-<a name="l00147"></a>00147         <span class="keywordflow">return</span> <a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a>[i];
-<a name="l00148"></a>00148     }
-<a name="l00149"></a>00149 
-<a name="l00150"></a><a class="code" href="classVecMath_1_1Rotation.html#bada28b04afd16a77c258079463174fd">00150</a>     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation&lt;D, N&gt;::operator Matrix&lt;D, N&gt;</a>()<span class="keyword"> const </span>{
-<a name="l00151"></a>00151         <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> R;
-<a name="l00152"></a>00152         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; NumAxes&lt;D&gt;::num; i++) {
-<a name="l00153"></a>00153             <span class="keywordflow">if</span> (<a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a>[i]) {
-<a name="l00154"></a>00154                 R *= <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a>(<a class="code" href="classVecMath_1_1RotationAxes.html" title="How to generate a Rotation matrix from a Rotation component.">RotationAxes&lt;D&gt;::axis</a>(0, i), <a class="code" href="classVecMath_1_1RotationAxes.html" title="How to generate a Rotation matrix from a Rotation component.">RotationAxes&lt;D&gt;::axis</a>(1, i), <a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a>[i]);
-<a name="l00155"></a>00155             }
-<a name="l00156"></a>00156         }
-<a name="l00157"></a>00157         <span class="keywordflow">return</span> R;
-<a name="l00158"></a>00158     }
-<a name="l00159"></a>00159 
-<a name="l00160"></a>00160     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00161"></a><a class="code" href="classVecMath_1_1Rotation.html#8094dd821ed9d37dfa162d05750adbe7">00161</a>             <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation&lt;D, N&gt;</a> &amp;<a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation&lt;D, N&gt;::operator +=</a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation&lt;D, N&gt;</a>&amp; that) {
-<a name="l00162"></a>00162         <a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a> += that.<a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a>;
-<a name="l00163"></a>00163         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
-<a name="l00164"></a>00164     }
-<a name="l00165"></a>00165     <span class="comment">//------------  important non-member functions for class Rotation</span>
-<a name="l00166"></a>00166 
-<a name="l00168"></a>00168 
-<a name="l00172"></a>00172     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00173"></a><a class="code" href="group__VecMath.html#g66177497b2b0c964a01d7be1087cdf17">00173</a>             std::ostream &amp;operator &lt;&lt; (std::ostream &amp;o, const Rotation&lt;D, N&gt; &amp;v) {
-<a name="l00174"></a>00174                 o &lt;&lt; v.r();
-<a name="l00175"></a>00175                 <span class="keywordflow">return</span> o;
-<a name="l00176"></a>00176             }
-<a name="l00177"></a>00177 
-<a name="l00178"></a>00178 }
-<a name="l00179"></a>00179 
-<a name="l00180"></a>00180 <span class="preprocessor">#endif</span>
+<a name="l00123"></a><a class="code" href="classVecMath_1_1Rotation.html#c9f51647938734894ebeb55309fa55eb">00123</a>             <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;NumAxes&lt;D&gt;::num</a>, N&gt; &amp;<a class="code" href="classVecMath_1_1Rotation.html#c7a3ce61bbe973efb8724e32b5aab83b" title="access the stored values (needed by output operator &amp;lt;&amp;lt;())">r</a>() { <span class="keywordflow">return</span> <a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a>; }
+<a name="l00124"></a>00124 
+<a name="l00125"></a>00125         <span class="keyword">private</span>:
+<a name="l00127"></a><a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334">00127</a>             <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">Vector&lt;NumAxes&lt;D&gt;::num</a>, N&gt; <a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a>;
+<a name="l00128"></a>00128     };
+<a name="l00129"></a>00129 
+<a name="l00130"></a><a class="code" href="classVecMath_1_1Rotation.html#8169627c23d4ecf6f8d5724a9310a8e8">00130</a>     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation&lt;D, N&gt;::Rotation</a> (N r0, ... ):
+<a name="l00131"></a>00131             axis() {
+<a name="l00132"></a>00132         <a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a>[0] = r0;
+<a name="l00133"></a>00133         va_list argp;
+<a name="l00134"></a>00134         va_start (argp, r0);
+<a name="l00135"></a>00135         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 1; i &lt; NumAxes&lt;D&gt;::num; i++) {
+<a name="l00136"></a>00136             <a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a>[i] = va_arg (argp, N);
+<a name="l00137"></a>00137         }
+<a name="l00138"></a>00138         va_end (argp);
+<a name="l00139"></a>00139     }
+<a name="l00140"></a>00140 
+<a name="l00141"></a>00141     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
+<a name="l00142"></a><a class="code" href="classVecMath_1_1Rotation.html#983895e87df442fd68885cddac8bbb20">00142</a>             N &amp;<a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation&lt;D, N&gt;::operator[] </a>(<span class="keywordtype">unsigned</span> i) {
+<a name="l00143"></a>00143         assert(i &lt; <a class="code" href="structVecMath_1_1NumAxes.html" title="Determine number of rotation axes in D-dimensional space.">NumAxes&lt;D&gt;::num</a>);
+<a name="l00144"></a>00144         <span class="keywordflow">return</span> <a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a>[i];
+<a name="l00145"></a>00145     }
+<a name="l00146"></a>00146 
+<a name="l00147"></a>00147     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
+<a name="l00148"></a><a class="code" href="classVecMath_1_1Rotation.html#790e96010114d3219cf7452676389e74">00148</a>             N <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation&lt;D, N&gt;::operator[] </a>(<span class="keywordtype">unsigned</span> i)<span class="keyword"> const </span>{
+<a name="l00149"></a>00149         assert(i &lt; <a class="code" href="structVecMath_1_1NumAxes.html" title="Determine number of rotation axes in D-dimensional space.">NumAxes&lt;D&gt;::num</a>);
+<a name="l00150"></a>00150         <span class="keywordflow">return</span> <a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a>[i];
+<a name="l00151"></a>00151     }
+<a name="l00152"></a>00152 
+<a name="l00153"></a><a class="code" href="classVecMath_1_1Rotation.html#bada28b04afd16a77c258079463174fd">00153</a>     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation&lt;D, N&gt;::operator Matrix&lt;D, N&gt;</a>()<span class="keyword"> const </span>{
+<a name="l00154"></a>00154         <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> R;
+<a name="l00155"></a>00155         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; NumAxes&lt;D&gt;::num; i++) {
+<a name="l00156"></a>00156             <span class="keywordflow">if</span> (<a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a>[i]) {
+<a name="l00157"></a>00157                 R *= <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a>(<a class="code" href="classVecMath_1_1RotationAxes.html" title="How to generate a Rotation matrix from a Rotation component.">RotationAxes&lt;D&gt;::axis</a>(0, i), <a class="code" href="classVecMath_1_1RotationAxes.html" title="How to generate a Rotation matrix from a Rotation component.">RotationAxes&lt;D&gt;::axis</a>(1, i), <a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a>[i]);
+<a name="l00158"></a>00158             }
+<a name="l00159"></a>00159         }
+<a name="l00160"></a>00160         <span class="keywordflow">return</span> R;
+<a name="l00161"></a>00161     }
+<a name="l00162"></a>00162 
+<a name="l00163"></a>00163     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
+<a name="l00164"></a><a class="code" href="classVecMath_1_1Rotation.html#8094dd821ed9d37dfa162d05750adbe7">00164</a>             <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation&lt;D, N&gt;</a> &amp;<a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation&lt;D, N&gt;::operator +=</a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation&lt;D, N&gt;</a>&amp; that) {
+<a name="l00165"></a>00165         <a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a> += that.<a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a>;
+<a name="l00166"></a>00166         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00167"></a>00167     }
+<a name="l00168"></a>00168     <span class="comment">//------------  important non-member functions for class Rotation</span>
+<a name="l00169"></a>00169 
+<a name="l00171"></a>00171 
+<a name="l00175"></a>00175     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
+<a name="l00176"></a><a class="code" href="group__VecMath.html#g66177497b2b0c964a01d7be1087cdf17">00176</a>             std::ostream &amp;operator &lt;&lt; (std::ostream &amp;o, const Rotation&lt;D, N&gt; &amp;v) {
+<a name="l00177"></a>00177         o &lt;&lt; v.r();
+<a name="l00178"></a>00178         <span class="keywordflow">return</span> o;
+<a name="l00179"></a>00179     }
+<a name="l00180"></a>00180 
+<a name="l00182"></a>00182 
+<a name="l00186"></a>00186     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
+<a name="l00187"></a><a class="code" href="group__VecMath.html#g481900ade75f6885f522982564e1f702">00187</a>             std::istringstream &amp;<a class="code" href="group__VecMath.html#g481900ade75f6885f522982564e1f702" title="Rotation input operator.">operator &gt;&gt; </a>(std::istringstream &amp;in, <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation&lt;D, N&gt;</a> &amp;v) {
+<a name="l00188"></a>00188         in &gt;&gt; v.<a class="code" href="classVecMath_1_1Rotation.html#c7a3ce61bbe973efb8724e32b5aab83b" title="access the stored values (needed by output operator &amp;lt;&amp;lt;())">r</a>();
+<a name="l00189"></a>00189         <span class="keywordflow">return</span> in;
+<a name="l00190"></a>00190     }
+<a name="l00191"></a>00191 
+<a name="l00192"></a>00192 }
+<a name="l00193"></a>00193 
+<a name="l00194"></a>00194 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 1 10:05:01 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jun 23 12:35:42 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>
