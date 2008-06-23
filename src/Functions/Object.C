@@ -241,7 +241,7 @@ void Sponge::Initialize(void) {
     else {
         if (distance > 3) distance = 3; 	//  dunno if this is wise
 
-        if (MemRequired (distance) > Globals::Instance().getMaxMemory()) {
+        if (0 && (MemRequired (distance) > Globals::Instance().getMaxMemory())) {
         cerr << "Menger sponge of level " << Level
              << " would require approx. " << MemRequired (distance)/1024/1024
              << " MB of memory." << endl;

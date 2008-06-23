@@ -116,6 +116,12 @@
     </member>
   </compound>
   <compound kind="group">
+    <name>FunctorGroup</name>
+    <title>Function objects</title>
+    <filename>group__FunctorGroup.html</filename>
+    <class kind="class">Loki::Functor</class>
+  </compound>
+  <compound kind="group">
     <name>SingletonGroup</name>
     <title>Singleton</title>
     <filename>group__SingletonGroup.html</filename>
@@ -137,6 +143,55 @@
     <name>LifetimeGroup</name>
     <title>Lifetime policies</title>
     <filename>group__LifetimeGroup.html</filename>
+    <subgroup>LongevityLifetimeGroup</subgroup>
+    <class kind="struct">Loki::DefaultLifetime</class>
+    <class kind="struct">Loki::PhoenixSingleton</class>
+    <class kind="struct">Loki::DeletableSingleton</class>
+    <class kind="struct">Loki::SingletonWithLongevity</class>
+    <class kind="struct">Loki::NoDestroy</class>
+    <class kind="class">Loki::FollowIntoDeath</class>
+    <member kind="function">
+      <type>void</type>
+      <name>SetLongevity</name>
+      <anchorfile>group__LifetimeGroup.html</anchorfile>
+      <anchor>g82d4520d213b3b9ef2090f5e237874cf</anchor>
+      <arglist>(T *pDynObject, unsigned int longevity, Destroyer d)</arglist>
+    </member>
+  </compound>
+  <compound kind="group">
+    <name>LongevityLifetimeGroup</name>
+    <title>LongevityLifetime</title>
+    <filename>group__LongevityLifetimeGroup.html</filename>
+    <namespace>LongevityLifetime</namespace>
+    <class kind="struct">Loki::LongevityLifetime::SingletonFixedLongevity</class>
+    <class kind="struct">Loki::LongevityLifetime::DieLast</class>
+    <class kind="struct">Loki::LongevityLifetime::DieDirectlyBeforeLast</class>
+    <class kind="struct">Loki::LongevityLifetime::DieFirst</class>
+  </compound>
+  <compound kind="group">
+    <name>SmallObjectGroup</name>
+    <title>Small objects</title>
+    <filename>group__SmallObjectGroup.html</filename>
+    <subgroup>SmallObjectGroupInternal</subgroup>
+    <class kind="struct">Loki::LongevityLifetime::DieAsSmallObjectParent</class>
+    <class kind="struct">Loki::LongevityLifetime::DieAsSmallObjectChild</class>
+    <class kind="class">Loki::SmallObjectBase</class>
+    <class kind="class">Loki::SmallObject</class>
+    <class kind="class">Loki::SmallValueObject</class>
+  </compound>
+  <compound kind="group">
+    <name>SmallObjectGroupInternal</name>
+    <title>Internals</title>
+    <filename>group__SmallObjectGroupInternal.html</filename>
+    <class kind="class">Loki::SmallObjAllocator</class>
+    <class kind="class">Loki::AllocatorSingleton</class>
+  </compound>
+  <compound kind="group">
+    <name>ThreadingGroup</name>
+    <title>Threading</title>
+    <filename>group__ThreadingGroup.html</filename>
+    <class kind="class">Loki::Mutex</class>
+    <class kind="class">Loki::SingleThreaded</class>
   </compound>
   <compound kind="group">
     <name>UIGroup</name>
@@ -198,11 +253,25 @@
       <arglist>(std::ostream &amp;o, const Rotation&lt; D, N &gt; &amp;v)</arglist>
     </member>
     <member kind="function">
+      <type>std::istringstream &amp;</type>
+      <name>operator&gt;&gt;</name>
+      <anchorfile>group__VecMath.html</anchorfile>
+      <anchor>g481900ade75f6885f522982564e1f702</anchor>
+      <arglist>(std::istringstream &amp;in, Rotation&lt; D, N &gt; &amp;v)</arglist>
+    </member>
+    <member kind="function">
       <type>std::ostream &amp;</type>
       <name>operator&lt;&lt;</name>
       <anchorfile>group__VecMath.html</anchorfile>
       <anchor>gef433144f359a8cda43c2290871425b3</anchor>
       <arglist>(std::ostream &amp;o, const Vector&lt; D, N &gt; &amp;v)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::istringstream &amp;</type>
+      <name>operator&gt;&gt;</name>
+      <anchorfile>group__VecMath.html</anchorfile>
+      <anchor>g32efe5289273edf4fcd804d59be355b8</anchor>
+      <arglist>(std::istringstream &amp;in, Vector&lt; D, N &gt; &amp;v)</arglist>
     </member>
     <member kind="function">
       <type>Vector&lt; D &gt;</type>
@@ -359,29 +428,29 @@
       <anchor>85e1779319ecc80e3b98473cbf3a9faa</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="slot">
-      <type>void</type>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
       <name>ObjectHypercube</name>
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>bc3a4f6e3276734aa70e0853f0df6022</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="slot">
-      <type>void</type>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
       <name>ObjectHyperpyramid</name>
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>951f672d7d323bb799c1ab18d412e1d7</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="slot">
-      <type>void</type>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
       <name>ObjectHypersponge</name>
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>395baf447937415a0f3366c4d1c529ee</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="slot">
-      <type>void</type>
+    <member kind="slot" virtualness="virtual">
+      <type>virtual void</type>
       <name>ObjectGasket</name>
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>2b8270b08a2a62faa7381adcd83715af</anchor>
@@ -506,6 +575,90 @@
       <anchor>60f45904ff9b227fdf426b5960fa4130</anchor>
       <arglist>(int, double, double, double, bool=true)</arglist>
     </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>applyTransform</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>85b4bbf559894040c81d08b8657a1d55</anchor>
+      <arglist>(const VecMath::Rotation&lt; 4 &gt; &amp;R, const VecMath::Vector&lt; 4 &gt; &amp;T)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>animate</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>ba68449fe84c206cbd20926378797611</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setImgDir</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>7921fd7bb829954c2307ff71daebdd89</anchor>
+      <arglist>(const std::string &amp;s)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setImgPrefix</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>ad0b04453c9ba092780d8e22ae36ba8c</anchor>
+      <arglist>(const std::string &amp;s)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setSize</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>2c5dae3094d155b16f374dad68c07407</anchor>
+      <arglist>(unsigned w, unsigned h)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setColors</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>128fc82da387471fbd9c88fe35263e8f</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setShading</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>7b529adaf92650371f5b6e81dbf4792b</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setTransparence</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>262d0aa0188edc2b262160959ce7d965</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setFog</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>556e03bfff4b2f369a86edb47f3e4b84</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setHyperfog</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>b8007107aba8c57dd39063be93ca8f96</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setCoordinates</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>eb4ec12aada637e796110fe8172d12ff</anchor>
+      <arglist>(bool)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setFunction</name>
+      <anchorfile>classC4DView.html</anchorfile>
+      <anchor>1cb1c0e65ff3650457256f4f8192b70e</anchor>
+      <arglist>(Function *_f)</arglist>
+    </member>
     <member kind="slot" protection="private">
       <type>void</type>
       <name>OnTimer</name>
@@ -520,8 +673,8 @@
       <anchor>c781d4f8f3a11fd65fc0c41921460b59</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="slot" protection="private">
-      <type>void</type>
+    <member kind="slot" protection="private" virtualness="virtual">
+      <type>virtual void</type>
       <name>ApplyChanges</name>
       <anchorfile>classC4DView.html</anchorfile>
       <anchor>7cdc25eeb13d2f7904348f51ac68b63b</anchor>
@@ -755,8 +908,8 @@
       <type>void</type>
       <name>setT</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>6b0e16af753c8faf3baac291b50bdb37</anchor>
-      <arglist>(VecMath::Vector&lt; 4 &gt; _t)</arglist>
+      <anchor>0298fb79b894d5f9fe0c2918718fab7c</anchor>
+      <arglist>(const VecMath::Vector&lt; 4 &gt; &amp;_t)</arglist>
     </member>
     <member kind="function" protection="private">
       <type>const VecMath::Vector&lt; 4 &gt; &amp;</type>
@@ -776,8 +929,8 @@
       <type>void</type>
       <name>setR</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>017ac004b348b8174ffa586ad1a68005</anchor>
-      <arglist>(VecMath::Rotation&lt; 4 &gt; _r)</arglist>
+      <anchor>848ab529f41e858c486e63937f03034a</anchor>
+      <arglist>(const VecMath::Rotation&lt; 4 &gt; &amp;_r)</arglist>
     </member>
     <member kind="function" protection="private">
       <type>const VecMath::Rotation&lt; 4 &gt; &amp;</type>
@@ -797,8 +950,8 @@
       <type>void</type>
       <name>setdR3</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>bbc2d033b7f721214bf1ec6b7311237d</anchor>
-      <arglist>(VecMath::Rotation&lt; 3 &gt; _dr)</arglist>
+      <anchor>daff8b8bdcacbd89f8cc48972a46acd3</anchor>
+      <arglist>(const VecMath::Rotation&lt; 3 &gt; &amp;_dr)</arglist>
     </member>
     <member kind="function" protection="private">
       <type>const VecMath::Rotation&lt; 3 &gt; &amp;</type>
@@ -814,12 +967,12 @@
       <anchor>b3dee71322f74b46d42cbb2a7fdb60ce</anchor>
       <arglist>(const VecMath::Rotation&lt; 3 &gt; &amp;_ddr)</arglist>
     </member>
-    <member kind="function" protection="private">
-      <type>void</type>
+    <member kind="function" protection="private" virtualness="virtual">
+      <type>virtual void</type>
       <name>setdR</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>c16a2f72283a283295e4688d2b8328d2</anchor>
-      <arglist>(VecMath::Rotation&lt; 4 &gt; _dr)</arglist>
+      <anchor>c827f1ccf2d9044f2585d8fff918b2a5</anchor>
+      <arglist>(const VecMath::Rotation&lt; 4 &gt; &amp;_dr)</arglist>
     </member>
     <member kind="function" protection="private">
       <type>const VecMath::Rotation&lt; 4 &gt; &amp;</type>
@@ -839,8 +992,8 @@
       <type>void</type>
       <name>setm_rot</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>217a71fb5ca598cc159e852bd4d3f92c</anchor>
-      <arglist>(VecMath::Rotation&lt; 3, GLdouble &gt; _r)</arglist>
+      <anchor>36180772cadbb1517885c1a366aca25c</anchor>
+      <arglist>(const VecMath::Rotation&lt; 3, GLdouble &gt; &amp;_r)</arglist>
     </member>
     <member kind="function" protection="private">
       <type>const VecMath::Rotation&lt; 3, GLdouble &gt; &amp;</type>
@@ -860,8 +1013,8 @@
       <type>void</type>
       <name>setm_trans</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>57468fd4a12b95ac3703d89db9cea3e3</anchor>
-      <arglist>(VecMath::Vector&lt; 3, GLdouble &gt; _t)</arglist>
+      <anchor>3c8461856c1f84ed95d6f4994c69ede3</anchor>
+      <arglist>(const VecMath::Vector&lt; 3, GLdouble &gt; &amp;_t)</arglist>
     </member>
     <member kind="function" protection="private">
       <type>const VecMath::Vector&lt; 3, GLdouble &gt; &amp;</type>
@@ -881,8 +1034,8 @@
       <type>void</type>
       <name>setCamW</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>6ff2213ad71877b3f2fad7cb4c3a32f7</anchor>
-      <arglist>(double _cw)</arglist>
+      <anchor>2e8a0ea9818d7ac4abcbd36a5f21e816</anchor>
+      <arglist>(const double &amp;_cw)</arglist>
     </member>
     <member kind="function" protection="private">
       <type>double</type>
@@ -895,8 +1048,8 @@
       <type>void</type>
       <name>setScrW</name>
       <anchorfile>classC4DView.html</anchorfile>
-      <anchor>1d0a3b31ee9c199b02913a652d6d24a2</anchor>
-      <arglist>(double _sw)</arglist>
+      <anchor>d4a1a6b6545c751a0e23751bff494a76</anchor>
+      <arglist>(const double &amp;_sw)</arglist>
     </member>
     <member kind="function" protection="private">
       <type>double</type>
@@ -1524,6 +1677,13 @@
     </member>
     <member kind="variable">
       <type>unsigned</type>
+      <name>animationFrame</name>
+      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
+      <anchor>bfbc503157adcc2e33c149c07cdb59ed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>unsigned</type>
       <name>animationMaxFrames</name>
       <anchorfile>structC4DView_1_1Impl.html</anchorfile>
       <anchor>33cb657cbba5dec230aa1e8c108af905</anchor>
@@ -1555,13 +1715,6 @@
       <name>Animated</name>
       <anchorfile>structC4DView_1_1Impl.html</anchorfile>
       <anchor>503ce545ecd653b4e7bd9cd3ddee7dc0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>unsigned</type>
-      <name>animationFrame</name>
-      <anchorfile>structC4DView_1_1Impl.html</anchorfile>
-      <anchor>bfbc503157adcc2e33c149c07cdb59ed</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -2331,6 +2484,13 @@
       <type></type>
       <name>ComplexFunction</name>
       <anchorfile>classComplexFunction.html</anchorfile>
+      <anchor>a9df814735ac9e619569c48a5ab620dd</anchor>
+      <arglist>(const QString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ComplexFunction</name>
+      <anchorfile>classComplexFunction.html</anchorfile>
       <anchor>1ca44717ee72b524ce3e7afd8d358ca0</anchor>
       <arglist>(const QString &amp;name, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)</arglist>
     </member>
@@ -2996,6 +3156,99 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>FunctionFactory</name>
+    <filename>classFunctionFactory.html</filename>
+    <member kind="typedef">
+      <type>Function *(*</type>
+      <name>CreateFunctionCallback</name>
+      <anchorfile>classFunctionFactory.html</anchorfile>
+      <anchor>db679d773ab93bd016901031161934e4</anchor>
+      <arglist>)()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>registerFunction</name>
+      <anchorfile>classFunctionFactory.html</anchorfile>
+      <anchor>140b292b1cb6dc9188805051a15bd14d</anchor>
+      <arglist>(const std::string &amp;name, CreateFunctionCallback creator)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>unregisterFunction</name>
+      <anchorfile>classFunctionFactory.html</anchorfile>
+      <anchor>ef97cd2b9091900bc16cef6120114bf0</anchor>
+      <arglist>(const std::string &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type>Function *</type>
+      <name>createFunction</name>
+      <anchorfile>classFunctionFactory.html</anchorfile>
+      <anchor>8eff61335844e102bdc76c710edd9be3</anchor>
+      <arglist>(const std::string &amp;name)</arglist>
+    </member>
+    <member kind="typedef" protection="private">
+      <type>std::map&lt; std::string, CreateFunctionCallback &gt;</type>
+      <name>CallbackMap</name>
+      <anchorfile>classFunctionFactory.html</anchorfile>
+      <anchor>cfd7d788dd0f22fea0f5af32ac130906</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type></type>
+      <name>FunctionFactory</name>
+      <anchorfile>classFunctionFactory.html</anchorfile>
+      <anchor>3818fde88f978bdea66627e32b1bf4e0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type></type>
+      <name>FunctionFactory</name>
+      <anchorfile>classFunctionFactory.html</anchorfile>
+      <anchor>aebcf7551bbe096d858f8a3825b6365d</anchor>
+      <arglist>(const FunctionFactory &amp;)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>FunctionFactory &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classFunctionFactory.html</anchorfile>
+      <anchor>25a34048bb8b8e770c227328bbfa7190</anchor>
+      <arglist>(const FunctionFactory &amp;)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type></type>
+      <name>~FunctionFactory</name>
+      <anchorfile>classFunctionFactory.html</anchorfile>
+      <anchor>3e08c967981ee4809ffd5826d7d363c2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>CallbackMap</type>
+      <name>callbacks</name>
+      <anchorfile>classFunctionFactory.html</anchorfile>
+      <anchor>00d37d70c75ea68159277c4e9e299e23</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="friend">
+      <type>friend class</type>
+      <name>Loki::CreateUsingNew&lt; FunctionFactory &gt;</name>
+      <anchorfile>classFunctionFactory.html</anchorfile>
+      <anchor>11ab13c8e070ad69bdd838ad3e9b721b</anchor>
+      <arglist></arglist>
+    </member>
+    <class kind="class">FunctionFactory::BadFunctionException</class>
+  </compound>
+  <compound kind="class">
+    <name>FunctionFactory::BadFunctionException</name>
+    <filename>classFunctionFactory_1_1BadFunctionException.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>BadFunctionException</name>
+      <anchorfile>classFunctionFactory_1_1BadFunctionException.html</anchorfile>
+      <anchor>53907a4e0d6723c0228b3acd49d6789b</anchor>
+      <arglist>(const std::string &amp;what)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>FunctionParameter</name>
     <filename>classFunctionParameter.html</filename>
     <member kind="function">
@@ -3562,6 +3815,27 @@
       <anchorfile>classGlobal.html</anchorfile>
       <anchor>46d4d63fb67924db3e1bcf093a917a3f</anchor>
       <arglist>(QString)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>atod</name>
+      <anchorfile>classGlobal.html</anchorfile>
+      <anchor>8b65c68f5a6c98885f25be5e96274b64</anchor>
+      <arglist>(const std::string &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>atoi</name>
+      <anchorfile>classGlobal.html</anchorfile>
+      <anchor>9699f5a415c29ec1055b218077a53515</anchor>
+      <arglist>(const std::string &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>unsigned</type>
+      <name>atou</name>
+      <anchorfile>classGlobal.html</anchorfile>
+      <anchor>ae47a7f3539bb7925a5bf7cb8e84dec8</anchor>
+      <arglist>(const std::string &amp;)</arglist>
     </member>
     <member kind="function">
       <type>std::string</type>
@@ -4401,186 +4675,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>Parser</name>
-    <filename>classParser.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>Parser</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>7bdbdb34c4b5409881a9f7b5a6217d70</anchor>
-      <arglist>(const std::string &amp;file)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>execute</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>53c8a2f033f7494adddaceaed98ff08c</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>setView</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>0e4d7559c440cf398e61d821d22c48b7</anchor>
-      <arglist>(C4DView *)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setObject</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>0ba63f6fcfa96d7979be6698d15b5ce5</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setParameters</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>78cd4976823834bd0301a077bee97e4c</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setTransform</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>6820f1dbf60b0bbc6705bd3c67a4cebb</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setStartTransform</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>c82fd06670ad6f8f296a4d686caac7ec</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setEndTransform</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>222f248c940b0a92510faa9f08c3da46</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setStartParameters</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>b3f8a4025c5aa8280d53f34e05affe3f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setEndParameters</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>faf33057cf574045556ceee89386702d</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setSteps</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>8e8c0678d60194918a7132a792cafe7c</anchor>
-      <arglist>(unsigned)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setLoop</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>a138c8c61ad41cb8bbfc3cf831e1a7e0</anchor>
-      <arglist>(bool)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>animate</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>9a9d3b0b968ce3759a019940a0b90783</anchor>
-      <arglist>(void)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setColors</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>09d408f8414e9f12f84cdca51adb28df</anchor>
-      <arglist>(bool)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setShade</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>24674169c308960e8da78e2f128e7840</anchor>
-      <arglist>(bool)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setLighting</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>4f447a94dbbc3d782cd9840ddb7aa53d</anchor>
-      <arglist>(bool)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setTransparent</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>2796a497e4b1b7b598e189445eca6498</anchor>
-      <arglist>(bool)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setWireframe</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>33f43e82a1234c401bc7bbe3cedb1346</anchor>
-      <arglist>(bool)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setDepthcue3D</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>0959a971a41462d30fa77ca6ce7d1ef0</anchor>
-      <arglist>(bool)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setDepthcue4D</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>bb930a45389996d595944dae5f1e43a0</anchor>
-      <arglist>(bool)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setCoordinates</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>0c3310efcd46d3eacfa7afedf1675a64</anchor>
-      <arglist>(bool)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setRenderToImages</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>079246c888e6ee4cf53e65ec377a80fc</anchor>
-      <arglist>(bool)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setImageDir</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>9e65b2032975677959312c23fd2b5d51</anchor>
-      <arglist>(const std::string &amp;)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setImagePrefix</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>31a87ba3054c0ad0c3fca70967a35234</anchor>
-      <arglist>(const std::string &amp;)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>void</type>
-      <name>setMaxFrames</name>
-      <anchorfile>classParser.html</anchorfile>
-      <anchor>5f2a54c0190b1842a2f68fa60637de25</anchor>
-      <arglist>(unsigned)</arglist>
-    </member>
-    <class kind="class">Parser::BadCommandException</class>
-  </compound>
-  <compound kind="class">
     <name>PluginCreator</name>
     <filename>classPluginCreator.html</filename>
     <member kind="function" virtualness="virtual">
@@ -5091,6 +5185,27 @@
       <anchor>8f529fd1c84d703a9ca7e8d43a16a5fd</anchor>
       <arglist>(double t, double u, double v)</arglist>
     </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static double</type>
+      <name>_min</name>
+      <anchorfile>classRealBase.html</anchorfile>
+      <anchor>69b1d39dab04f315703a3f3f86d1831c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static double</type>
+      <name>_max</name>
+      <anchorfile>classRealBase.html</anchorfile>
+      <anchor>e63cc6ce43e4ece54428359bd8f0ae3d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static double</type>
+      <name>_d</name>
+      <anchorfile>classRealBase.html</anchorfile>
+      <anchor>82f7d3dc2bbbc26555adc0601b6ec9a9</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="variable" protection="private">
       <type>double</type>
       <name>tmin</name>
@@ -5180,6 +5295,13 @@
     <name>RealFunction</name>
     <filename>classRealFunction.html</filename>
     <base>RealBase</base>
+    <member kind="function">
+      <type></type>
+      <name>RealFunction</name>
+      <anchorfile>classRealFunction.html</anchorfile>
+      <anchor>b5572815bf1f02373e5fdfa5c0db300a</anchor>
+      <arglist>(const QString &amp;name)</arglist>
+    </member>
     <member kind="function">
       <type></type>
       <name>RealFunction</name>
@@ -5575,6 +5697,13 @@
       <type></type>
       <name>Surface</name>
       <anchorfile>classSurface.html</anchorfile>
+      <anchor>32fe9c7b6029853daf1da215601db5ed</anchor>
+      <arglist>(const QString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Surface</name>
+      <anchorfile>classSurface.html</anchorfile>
       <anchor>f077894496ec8e23cade9cb9c3249738</anchor>
       <arglist>(const QString &amp;name, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv, ParameterMap _parms=ParameterMap())</arglist>
     </member>
@@ -5868,6 +5997,27 @@
       <anchor>279eefbc9e2d3733eeae5dee35a62f0b</anchor>
       <arglist>(double u, double v, double=0)</arglist>
     </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static double</type>
+      <name>_min</name>
+      <anchorfile>classSurfaceBase.html</anchorfile>
+      <anchor>1574b2795a87891cb5d1d6245ca85ca2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static double</type>
+      <name>_max</name>
+      <anchorfile>classSurfaceBase.html</anchorfile>
+      <anchor>e25019065a91adde8916a96a93176a19</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static double</type>
+      <name>_d</name>
+      <anchorfile>classSurfaceBase.html</anchorfile>
+      <anchor>5bea58758ccf0f1a96bf1f916d479ad3</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="variable" protection="private">
       <type>double</type>
       <name>tmin</name>
@@ -6150,6 +6300,440 @@
   <compound kind="class">
     <name>Ui_ValuesDialog</name>
     <filename>classUi__ValuesDialog.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>setupUi</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>c3f35fcc3a053a5fd7d5c6972d072a7c</anchor>
+      <arglist>(QDialog *ValuesDialog)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>retranslateUi</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>6e4192b89d585bbab3e1f03a0094027b</anchor>
+      <arglist>(QDialog *ValuesDialog)</arglist>
+    </member>
+    <member kind="variable">
+      <type>QWidget *</type>
+      <name>layoutWidget</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>7ce2942af559fd9c0ce23621c0f769a2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QVBoxLayout *</type>
+      <name>vboxLayout</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>e83c454c1e13c61d3bb2f7ce1c05def0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QGroupBox *</type>
+      <name>Grid</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>55a284a814f4c77ee1aff25ae023e7ce</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QGridLayout *</type>
+      <name>gridLayout</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>4cabc3bf035e33ec8f63ec3e5f52d595</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>937f5b063063229bc2efd61f201fc917</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>df15da5b3e56ac116dd2cb1adde67724</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSlider *</type>
+      <name>TSlider</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>7a1d12dc830feae4457fe732698aa7d8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TSteps</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>ff54a284c847b823a2107678fe3e5e57</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout1</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>96d7e7d12dfd94836344517044c8f282</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout2</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>8b85642c26756ee265b43652756c9898</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TextLabel12</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>c854e1feb18409494b0efa63a5c25bdb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>TMin</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>199c990023e9204f56e0b5cf521ab696</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout3</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>0d953398e34878e763ae9e3b7062d82b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TextLabel11</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>473f5db97f0bf79fa3bef02e57490811</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>TMax</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>ffe42cda468dee2608fad3e527d0222e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout4</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>45aeaa86574ea0de2f1ee0cce755e091</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>ULabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>5aa3e3930bd101f135572c778534917a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSlider *</type>
+      <name>USlider</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>85b86034f26c7c1c205ffb45fe06fe8d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>USteps</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>da09975156384aa303eb2c4a78cb6700</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout5</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>52fb462742cc2a31f7ee4bf7d392b5f8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout6</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>2ace4469873d6f5de0c62106fd222fa2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TextLabel12_2</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>8777e34c24107164afdb2a256b483f46</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>UMin</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>90b5e6c1744098b439145b1dce07fa6e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout7</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>f240efc78c57df3daabe60eef0afe494</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TextLabel11_2</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>250da7643642260be7892fe96bd56190</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>UMax</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>cc47d392c4ba3b3fae1bba4f30e601c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout8</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>54a5e7fa03d342e3a93bd844e12dbf37</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>VLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>332f7a107b607d33352249b8442abb98</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QSlider *</type>
+      <name>VSlider</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>ca86af89757b4fbad6917e5d386b4bb8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>VSteps</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>b9838c99fe6c9d527e6a546504e909f8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout9</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>8adcaade3f319fb2bcfea46ad611e6cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout10</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>ae454ffcffe2ade02f5c78e1d56616e3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TextLabel12_2_2</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>7afedf526683c39ef8f5d875600046c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>VMin</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>3ed2361475ec310caa31ae7f49e191bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout11</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>b443432e6102d3fbbd7007a2a7c65eb5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TextLabel11_2_2</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>3fa692acf363088d626861c73234939c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>VMax</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>3fdd1149f205ad0e7d930580cecccc98</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QGroupBox *</type>
+      <name>Function</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>d9f19cf3468051bbd8afde1d71c7e431</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QGridLayout *</type>
+      <name>gridLayout1</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>3a1c6384782e9f4644bbb96e656d891e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>TextLabel13</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>1da2db6780d47e0c9953775592a82ad5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QComboBox *</type>
+      <name>FunctionBox</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>953f1789f3408c7527d114adf3f8d4b0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QVBoxLayout *</type>
+      <name>vboxLayout1</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>bc0fe68eba06398ac2c2e48610b3aa95</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout12</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>713f42d09751223932ec5cc9c7dc3511</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout13</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>cccbfbe1db9d9c49e8c026f654257075</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>ALabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>a191886f92d64ec1e014817e524358a0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>A</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>2bb72b733958971b982ceb269b988d63</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout14</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>18ccda14e24d55f582a57caa1ec2f83b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>BLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>434ef2db91aa11fa8e67c373d29149dd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>B</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>606babe3461172ab85f4d21a17a7df70</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout15</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>dfbe366c27f841475c7ae434d0bbeb5d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout16</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>0b9bdf2ca713824732eff993c8d59779</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>CLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>cec9df3bc9d167decb532e31e95d0762</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>C</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>322bd32464ddd0209bebd0dedf1a8abc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout17</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>015403b822699bae82da47b2211893b1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLabel *</type>
+      <name>DLabel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>3e911621e133dc69130ad9a79e9713cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QLineEdit *</type>
+      <name>D</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>1b25ab0791e849a83f429560b2403fee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QHBoxLayout *</type>
+      <name>hboxLayout18</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>df89338658e79cdf65ceda64bd0e69e8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPushButton *</type>
+      <name>buttonApply</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>a957950d35fd0e2d4507f6791c17445a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPushButton *</type>
+      <name>buttonOk</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>361a4d4ddb0e157519e232900fbec056</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>QPushButton *</type>
+      <name>buttonCancel</name>
+      <anchorfile>classUi__ValuesDialog.html</anchorfile>
+      <anchor>2b9e8e63267275699acc2e2ab91028f5</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>setupUi</name>
@@ -6661,10 +7245,325 @@
       <arglist></arglist>
     </member>
   </compound>
+  <compound kind="namespace">
+    <name>Loki</name>
+    <filename>namespaceLoki.html</filename>
+    <class kind="class">Loki::EmptyType</class>
+    <class kind="class">Loki::FunctorImpl&lt; R, NullType &gt;</class>
+    <class kind="class">Loki::FunctorImpl&lt; R, Seq&lt; P1 &gt; &gt;</class>
+    <class kind="class">Loki::FunctorImpl&lt; R, Seq&lt; P1, P2 &gt; &gt;</class>
+    <class kind="class">Loki::FunctorImpl&lt; R, Seq&lt; P1, P2, P3 &gt; &gt;</class>
+    <class kind="class">Loki::FunctorImpl&lt; R, Seq&lt; P1, P2, P3, P4 &gt; &gt;</class>
+    <class kind="class">Loki::FunctorImpl&lt; R, LOKI_TYPELIST_1(P1)&gt;</class>
+    <class kind="class">Loki::FunctorImpl&lt; R, LOKI_TYPELIST_2(P1, P2)&gt;</class>
+    <class kind="class">Loki::FunctorImpl&lt; R, LOKI_TYPELIST_3(P1, P2, P3)&gt;</class>
+    <class kind="class">Loki::FunctorImpl&lt; R, LOKI_TYPELIST_4(P1, P2, P3, P4)&gt;</class>
+    <class kind="class">Loki::FunctorHandler</class>
+    <class kind="class">Loki::MemFunHandler</class>
+    <class kind="class">Loki::Functor</class>
+    <class kind="class">Loki::NullType</class>
+    <class kind="struct">Loki::Seq</class>
+    <class kind="struct">Loki::Seq&lt;&gt;</class>
+    <class kind="struct">Loki::CreateUsingNew</class>
+    <class kind="struct">Loki::CreateUsing</class>
+    <class kind="struct">Loki::CreateUsingMalloc</class>
+    <class kind="struct">Loki::CreateStatic</class>
+    <class kind="struct">Loki::DefaultLifetime</class>
+    <class kind="struct">Loki::PhoenixSingleton</class>
+    <class kind="struct">Loki::DeletableSingleton</class>
+    <class kind="struct">Loki::SingletonWithLongevity</class>
+    <class kind="struct">Loki::NoDestroy</class>
+    <class kind="class">Loki::FollowIntoDeath</class>
+    <class kind="class">Loki::SingletonHolder</class>
+    <class kind="class">Loki::Singleton</class>
+    <class kind="class">Loki::SmallObjAllocator</class>
+    <class kind="class">Loki::AllocatorSingleton</class>
+    <class kind="class">Loki::SmallObjectBase</class>
+    <class kind="class">Loki::SmallObject</class>
+    <class kind="class">Loki::SmallValueObject</class>
+    <class kind="class">Loki::Mutex</class>
+    <class kind="class">Loki::SingleThreaded</class>
+    <class kind="struct">Loki::Typelist</class>
+    <class kind="struct">Loki::Int2Type</class>
+    <class kind="struct">Loki::Type2Type</class>
+    <class kind="struct">Loki::Select</class>
+    <class kind="struct">Loki::Select&lt; false, T, U &gt;</class>
+    <class kind="struct">Loki::IsSameType</class>
+    <class kind="struct">Loki::IsSameType&lt; T, T &gt;</class>
+    <class kind="struct">Loki::Conversion</class>
+    <class kind="struct">Loki::Conversion&lt; T, T &gt;</class>
+    <class kind="struct">Loki::Conversion&lt; void, T &gt;</class>
+    <class kind="struct">Loki::Conversion&lt; T, void &gt;</class>
+    <class kind="struct">Loki::Conversion&lt; void, void &gt;</class>
+    <class kind="struct">Loki::SuperSubclass</class>
+    <class kind="struct">Loki::SuperSubclass&lt; void, void &gt;</class>
+    <class kind="struct">Loki::SuperSubclass&lt; void, U &gt;</class>
+    <class kind="struct">Loki::SuperSubclass&lt; T, void &gt;</class>
+    <class kind="struct">Loki::SuperSubclassStrict</class>
+    <class kind="struct">Loki::SuperSubclassStrict&lt; void, void &gt;</class>
+    <class kind="struct">Loki::SuperSubclassStrict&lt; void, U &gt;</class>
+    <class kind="struct">Loki::SuperSubclassStrict&lt; T, void &gt;</class>
+    <class kind="struct">Loki::IsCustomUnsignedInt</class>
+    <class kind="struct">Loki::IsCustomSignedInt</class>
+    <class kind="struct">Loki::IsCustomFloat</class>
+    <class kind="class">Loki::TypeTraits</class>
+    <member kind="typedef">
+      <type>void(LOKI_C_CALLING_CONVENTION_QUALIFIER *</type>
+      <name>atexit_pfn_t</name>
+      <anchorfile>namespaceLoki.html</anchorfile>
+      <anchor>ee0a364633a62467e474b1f4c6f019de</anchor>
+      <arglist>)()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchorfile>namespaceLoki.html</anchorfile>
+      <anchor>f3edcfef5331945667c3719de05e9020</anchor>
+      <arglist>(const EmptyType &amp;, const EmptyType &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&lt;</name>
+      <anchorfile>namespaceLoki.html</anchorfile>
+      <anchor>d91ee07d8b5f298cdca793871da9bac0</anchor>
+      <arglist>(const EmptyType &amp;, const EmptyType &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&gt;</name>
+      <anchorfile>namespaceLoki.html</anchorfile>
+      <anchor>a21c33cdc3448e1dc4c7c657e78dc11f</anchor>
+      <arglist>(const EmptyType &amp;, const EmptyType &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetLongevity</name>
+      <anchorfile>group__LifetimeGroup.html</anchorfile>
+      <anchor>g82d4520d213b3b9ef2090f5e237874cf</anchor>
+      <arglist>(T *pDynObject, unsigned int longevity, Destroyer d)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetLongevity</name>
+      <anchorfile>namespaceLoki.html</anchorfile>
+      <anchor>c0616590b1ce8fe3853105359358aa28</anchor>
+      <arglist>(T *pDynObject, unsigned int longevity, typename Private::Deleter&lt; T &gt;::Type d=Private::Deleter&lt; T &gt;::Delete)</arglist>
+    </member>
+    <member kind="function">
+      <type>unsigned int</type>
+      <name>GetLongevity</name>
+      <anchorfile>namespaceLoki.html</anchorfile>
+      <anchor>bd6a1e278e749117c26908963320b02e</anchor>
+      <arglist>(AllocatorSingleton&lt; T, C, M, O, L, X &gt; *)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>Loki::FunctorImpl&lt; R, LOKI_TYPELIST_3(P1, P2, P3)&gt;</name>
+    <filename>classLoki_1_1FunctorImpl_3_01R_00_01LOKI__TYPELIST__3_07P1_00_01P2_00_01P3_08_4.html</filename>
+    <templarg>R</templarg>
+    <templarg>P1</templarg>
+    <templarg>P2</templarg>
+    <templarg>P3</templarg>
+    <member kind="typedef">
+      <type>R</type>
+      <name>ResultType</name>
+      <anchorfile>classLoki_1_1FunctorImpl_3_01R_00_01LOKI__TYPELIST__3_07P1_00_01P2_00_01P3_08_4.html</anchorfile>
+      <anchor>ae95a7793da0be1b86f813be1d442444</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>TypeTraits&lt; P1 &gt;::ParameterType</type>
+      <name>Parm1</name>
+      <anchorfile>classLoki_1_1FunctorImpl_3_01R_00_01LOKI__TYPELIST__3_07P1_00_01P2_00_01P3_08_4.html</anchorfile>
+      <anchor>619b77590d987a1ae9232a2daa98731c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>TypeTraits&lt; P2 &gt;::ParameterType</type>
+      <name>Parm2</name>
+      <anchorfile>classLoki_1_1FunctorImpl_3_01R_00_01LOKI__TYPELIST__3_07P1_00_01P2_00_01P3_08_4.html</anchorfile>
+      <anchor>bf594ab530d797cfd005ab48d68e5438</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>TypeTraits&lt; P3 &gt;::ParameterType</type>
+      <name>Parm3</name>
+      <anchorfile>classLoki_1_1FunctorImpl_3_01R_00_01LOKI__TYPELIST__3_07P1_00_01P2_00_01P3_08_4.html</anchorfile>
+      <anchor>0c9c9ab888ad281a15ebc479e3ae786c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual R</type>
+      <name>operator()</name>
+      <anchorfile>classLoki_1_1FunctorImpl_3_01R_00_01LOKI__TYPELIST__3_07P1_00_01P2_00_01P3_08_4.html</anchorfile>
+      <anchor>b93de7958170a07374eafe12d6779afa</anchor>
+      <arglist>(Parm1, Parm2, Parm3)=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>Loki::Functor</name>
+    <filename>classLoki_1_1Functor.html</filename>
+    <templarg>R</templarg>
+    <templarg>TList</templarg>
+    <member kind="typedef">
+      <type>FunctorImpl&lt; R, TList &gt;</type>
+      <name>Impl</name>
+      <anchorfile>classLoki_1_1Functor.html</anchorfile>
+      <anchor>d341453f89024ff16e357fb21cdb4f29</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>R</type>
+      <name>ResultType</name>
+      <anchorfile>classLoki_1_1Functor.html</anchorfile>
+      <anchor>b2f11ff96aad714a5fc401dc113a003c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>TList</type>
+      <name>ParmList</name>
+      <anchorfile>classLoki_1_1Functor.html</anchorfile>
+      <anchor>ac8084a42cea9f23a40f5ef53ac7764c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>Impl::Parm1</type>
+      <name>Parm1</name>
+      <anchorfile>classLoki_1_1Functor.html</anchorfile>
+      <anchor>9dae1e44e930972899658821958b2335</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>Impl::Parm2</type>
+      <name>Parm2</name>
+      <anchorfile>classLoki_1_1Functor.html</anchorfile>
+      <anchor>81e5b75f9f2cb833a32a343c48488daa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>Impl::Parm3</type>
+      <name>Parm3</name>
+      <anchorfile>classLoki_1_1Functor.html</anchorfile>
+      <anchor>945d941687237f791877c0dcf0417004</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>Impl::Parm4</type>
+      <name>Parm4</name>
+      <anchorfile>classLoki_1_1Functor.html</anchorfile>
+      <anchor>73b70c2b3ab613bc3540b30acac77532</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>Impl *(std::auto_ptr&lt; Impl &gt;::*</type>
+      <name>unspecified_bool_type</name>
+      <anchorfile>classLoki_1_1Functor.html</anchorfile>
+      <anchor>38b6b2a43947cfe159ea8a8fa5504aba</anchor>
+      <arglist>)() const </arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Functor</name>
+      <anchorfile>classLoki_1_1Functor.html</anchorfile>
+      <anchor>097fca42190e38db73e8cce943577d91</anchor>
+      <arglist>(const Functor &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Functor</name>
+      <anchorfile>classLoki_1_1Functor.html</anchorfile>
+      <anchor>0dbdad76ec7c9131bff649010ec2707c</anchor>
+      <arglist>(std::auto_ptr&lt; Impl &gt; spImpl)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Functor</name>
+      <anchorfile>classLoki_1_1Functor.html</anchorfile>
+      <anchor>3cd7ffad8b78b77b47fcce2df3cde334</anchor>
+      <arglist>(Fun fun)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Functor</name>
+      <anchorfile>classLoki_1_1Functor.html</anchorfile>
+      <anchor>f431de46b5d3f1adcbe9777e52cff066</anchor>
+      <arglist>(const PtrObj &amp;p, MemFn memFn)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator unspecified_bool_type</name>
+      <anchorfile>classLoki_1_1Functor.html</anchorfile>
+      <anchor>42a593864d4dbfbcab90169097e0a5de</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Functor &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classLoki_1_1Functor.html</anchorfile>
+      <anchor>30993b4c884e67ad4076a9726dd8a1a3</anchor>
+      <arglist>(const Functor &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>ResultType</type>
+      <name>operator()</name>
+      <anchorfile>classLoki_1_1Functor.html</anchorfile>
+      <anchor>1471990a21ace9cc8aa4b5b357ce9d1b</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>ResultType</type>
+      <name>operator()</name>
+      <anchorfile>classLoki_1_1Functor.html</anchorfile>
+      <anchor>a79230b45a24c56a908c33f6acb89218</anchor>
+      <arglist>(Parm1 p1) const </arglist>
+    </member>
+    <member kind="function">
+      <type>ResultType</type>
+      <name>operator()</name>
+      <anchorfile>classLoki_1_1Functor.html</anchorfile>
+      <anchor>59faa938f355967f3c81f8cb34604f20</anchor>
+      <arglist>(Parm1 p1, Parm2 p2) const </arglist>
+    </member>
+    <member kind="function">
+      <type>ResultType</type>
+      <name>operator()</name>
+      <anchorfile>classLoki_1_1Functor.html</anchorfile>
+      <anchor>1bc35fb315d2e76dadc292887ec80733</anchor>
+      <arglist>(Parm1 p1, Parm2 p2, Parm3 p3) const </arglist>
+    </member>
+    <member kind="function">
+      <type>ResultType</type>
+      <name>operator()</name>
+      <anchorfile>classLoki_1_1Functor.html</anchorfile>
+      <anchor>74e74c9be1519f0ccae9b6b07831c487</anchor>
+      <arglist>(Parm1 p1, Parm2 p2, Parm3 p3, Parm4 p4) const </arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::auto_ptr&lt; Impl &gt;</type>
+      <name>spImpl_</name>
+      <anchorfile>classLoki_1_1Functor.html</anchorfile>
+      <anchor>6297c5a0088da68bc714b847f7cc5d5e</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
   <compound kind="struct">
     <name>Loki::CreateUsingNew</name>
     <filename>structLoki_1_1CreateUsingNew.html</filename>
     <templarg>T</templarg>
+    <member kind="function" static="yes">
+      <type>static T *</type>
+      <name>Create</name>
+      <anchorfile>structLoki_1_1CreateUsingNew.html</anchorfile>
+      <anchor>31964d318aadd16f17c48743fcd50cdf</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Destroy</name>
+      <anchorfile>structLoki_1_1CreateUsingNew.html</anchorfile>
+      <anchor>4188b322ea06b90120d9ebc81e88216f</anchor>
+      <arglist>(T *p)</arglist>
+    </member>
     <member kind="function" static="yes">
       <type>static T *</type>
       <name>Create</name>
@@ -6704,6 +7603,20 @@
       <anchor>ffb9968bbfb43c4199a538f95bc2d2fc</anchor>
       <arglist>(T *p)</arglist>
     </member>
+    <member kind="function" static="yes">
+      <type>static T *</type>
+      <name>Create</name>
+      <anchorfile>structLoki_1_1CreateUsingMalloc.html</anchorfile>
+      <anchor>55bf1f773f835e3b56bf7f51e17f03f6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Destroy</name>
+      <anchorfile>structLoki_1_1CreateUsingMalloc.html</anchorfile>
+      <anchor>ffb9968bbfb43c4199a538f95bc2d2fc</anchor>
+      <arglist>(T *p)</arglist>
+    </member>
   </compound>
   <compound kind="struct">
     <name>Loki::CreateStatic</name>
@@ -6723,18 +7636,236 @@
       <anchor>3566e40a9f08d7756c50a31f5b0f148f</anchor>
       <arglist>(T *p)</arglist>
     </member>
+    <member kind="function" static="yes">
+      <type>static T *</type>
+      <name>Create</name>
+      <anchorfile>structLoki_1_1CreateStatic.html</anchorfile>
+      <anchor>e6e4d0e1496c78a0ac48f196cf0bad07</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>Destroy</name>
+      <anchorfile>structLoki_1_1CreateStatic.html</anchorfile>
+      <anchor>3566e40a9f08d7756c50a31f5b0f148f</anchor>
+      <arglist>(T *p)</arglist>
+    </member>
     <class kind="union">Loki::CreateStatic::MaxAlign</class>
+  </compound>
+  <compound kind="struct">
+    <name>Loki::DefaultLifetime</name>
+    <filename>structLoki_1_1DefaultLifetime.html</filename>
+    <templarg>T</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>ScheduleDestruction</name>
+      <anchorfile>structLoki_1_1DefaultLifetime.html</anchorfile>
+      <anchor>e368711b2fc33401c04cad59dbb78419</anchor>
+      <arglist>(T *, atexit_pfn_t pFun)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>OnDeadReference</name>
+      <anchorfile>structLoki_1_1DefaultLifetime.html</anchorfile>
+      <anchor>c259e7d796d544c1bc3721b00ad2c86c</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>Loki::PhoenixSingleton</name>
+    <filename>classLoki_1_1PhoenixSingleton.html</filename>
+    <templarg>T</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>ScheduleDestruction</name>
+      <anchorfile>classLoki_1_1PhoenixSingleton.html</anchorfile>
+      <anchor>dca8841655ea2d2d39494f1773e1baa3</anchor>
+      <arglist>(T *, atexit_pfn_t pFun)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>OnDeadReference</name>
+      <anchorfile>classLoki_1_1PhoenixSingleton.html</anchorfile>
+      <anchor>bd026bc7d753b645317c5aa9d62ed895</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static bool</type>
+      <name>destroyedOnce_</name>
+      <anchorfile>classLoki_1_1PhoenixSingleton.html</anchorfile>
+      <anchor>794c0451e122c6fa550adfb28ee7e1f7</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>Loki::DeletableSingleton</name>
+    <filename>classLoki_1_1DeletableSingleton.html</filename>
+    <templarg>T</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>ScheduleDestruction</name>
+      <anchorfile>classLoki_1_1DeletableSingleton.html</anchorfile>
+      <anchor>cdb434705832a8dec514cf4a56954cf0</anchor>
+      <arglist>(T *, atexit_pfn_t pFun)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>OnDeadReference</name>
+      <anchorfile>classLoki_1_1DeletableSingleton.html</anchorfile>
+      <anchor>c18984dfcb610ee1979cee691e163d9f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>GracefulDelete</name>
+      <anchorfile>classLoki_1_1DeletableSingleton.html</anchorfile>
+      <anchor>626c2dc57146f1aea6bf911682f8e3e9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected" static="yes">
+      <type>static void</type>
+      <name>atexitCallback</name>
+      <anchorfile>classLoki_1_1DeletableSingleton.html</anchorfile>
+      <anchor>d6a37ac24c1f199967c4908ffdd6f729</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static atexit_pfn_t</type>
+      <name>deleter</name>
+      <anchorfile>classLoki_1_1DeletableSingleton.html</anchorfile>
+      <anchor>0d2bcad67762e4cc88e926386bfab002</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static bool</type>
+      <name>isDead</name>
+      <anchorfile>classLoki_1_1DeletableSingleton.html</anchorfile>
+      <anchor>62fc02272ad280316f3e6fb27272994a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static bool</type>
+      <name>needCallback</name>
+      <anchorfile>classLoki_1_1DeletableSingleton.html</anchorfile>
+      <anchor>5cec2ed562f3292accfa9468c37ea052</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>Loki::SingletonWithLongevity</name>
+    <filename>classLoki_1_1SingletonWithLongevity.html</filename>
+    <templarg>T</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>ScheduleDestruction</name>
+      <anchorfile>classLoki_1_1SingletonWithLongevity.html</anchorfile>
+      <anchor>46c377297e8770861cf5592f1681bdb0</anchor>
+      <arglist>(T *pObj, atexit_pfn_t pFun)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>OnDeadReference</name>
+      <anchorfile>classLoki_1_1SingletonWithLongevity.html</anchorfile>
+      <anchor>a16692d939cc7ca18ea0dc34ea637ea8</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>Loki::NoDestroy</name>
+    <filename>structLoki_1_1NoDestroy.html</filename>
+    <templarg>T</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>ScheduleDestruction</name>
+      <anchorfile>structLoki_1_1NoDestroy.html</anchorfile>
+      <anchor>6c62dfcf936280a3951caba23c4312ca</anchor>
+      <arglist>(T *, atexit_pfn_t)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>OnDeadReference</name>
+      <anchorfile>structLoki_1_1NoDestroy.html</anchorfile>
+      <anchor>247f32f3f188838a244cce638af380f7</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>Loki::FollowIntoDeath</name>
+    <filename>classLoki_1_1FollowIntoDeath.html</filename>
+    <class kind="struct">Loki::FollowIntoDeath::AfterMaster</class>
+    <class kind="class">Loki::FollowIntoDeath::Followers</class>
+    <class kind="struct">Loki::FollowIntoDeath::With</class>
+  </compound>
+  <compound kind="struct">
+    <name>Loki::FollowIntoDeath::AfterMaster</name>
+    <filename>structLoki_1_1FollowIntoDeath_1_1AfterMaster.html</filename>
+    <templarg>Master</templarg>
+    <class kind="struct">Loki::FollowIntoDeath::AfterMaster::IsDestroyed</class>
+  </compound>
+  <compound kind="struct">
+    <name>Loki::FollowIntoDeath::AfterMaster::IsDestroyed</name>
+    <filename>structLoki_1_1FollowIntoDeath_1_1AfterMaster_1_1IsDestroyed.html</filename>
+    <templarg>F</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>ScheduleDestruction</name>
+      <anchorfile>structLoki_1_1FollowIntoDeath_1_1AfterMaster_1_1IsDestroyed.html</anchorfile>
+      <anchor>00bdcb0018e0a678018f9e767caf1d31</anchor>
+      <arglist>(F *, atexit_pfn_t pFun)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>OnDeadReference</name>
+      <anchorfile>structLoki_1_1FollowIntoDeath_1_1AfterMaster_1_1IsDestroyed.html</anchorfile>
+      <anchor>9a2d4a4fa70972a93c4f54f4533e1ad7</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>Loki::FollowIntoDeath::With</name>
+    <filename>structLoki_1_1FollowIntoDeath_1_1With.html</filename>
+    <templarg>Lifetime</templarg>
+    <class kind="struct">Loki::FollowIntoDeath::With::AsMasterLifetime</class>
+  </compound>
+  <compound kind="struct">
+    <name>Loki::FollowIntoDeath::With::AsMasterLifetime</name>
+    <filename>structLoki_1_1FollowIntoDeath_1_1With_1_1AsMasterLifetime.html</filename>
+    <templarg>Master</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>ScheduleDestruction</name>
+      <anchorfile>structLoki_1_1FollowIntoDeath_1_1With_1_1AsMasterLifetime.html</anchorfile>
+      <anchor>ab8622a6b436f51a721b48acf622c800</anchor>
+      <arglist>(Master *pObj, atexit_pfn_t pFun)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>OnDeadReference</name>
+      <anchorfile>structLoki_1_1FollowIntoDeath_1_1With_1_1AsMasterLifetime.html</anchorfile>
+      <anchor>7a6d01c07aeb094a9870bf18bc4f49a8</anchor>
+      <arglist>()</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>Loki::SingletonHolder</name>
     <filename>classLoki_1_1SingletonHolder.html</filename>
     <templarg>T</templarg>
     <templarg>CreationPolicy</templarg>
+    <templarg>LifetimePolicy</templarg>
+    <templarg>ThreadingModel</templarg>
+    <templarg>MutexPolicy</templarg>
     <member kind="typedef">
       <type>T</type>
       <name>ObjectType</name>
       <anchorfile>classLoki_1_1SingletonHolder.html</anchorfile>
-      <anchor>2e995720b0baebf24b7cd5501099d80c</anchor>
+      <anchor>90400cb32897f9942958bece12165136</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>T</type>
+      <name>ObjectType</name>
+      <anchorfile>classLoki_1_1SingletonHolder.html</anchorfile>
+      <anchor>90400cb32897f9942958bece12165136</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" static="yes">
@@ -6744,11 +7875,25 @@
       <anchor>52a113a9dc9aa53a5ab777c573f9fa28</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="function" static="yes">
+      <type>static T &amp;</type>
+      <name>Instance</name>
+      <anchorfile>classLoki_1_1SingletonHolder.html</anchorfile>
+      <anchor>eef8c30eaf5336c25bf0c6ff7b64b68e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="typedef" protection="private">
+      <type>ThreadingModel&lt; T *, MutexPolicy &gt;::VolatileType</type>
+      <name>PtrInstanceType</name>
+      <anchorfile>classLoki_1_1SingletonHolder.html</anchorfile>
+      <anchor>bdc75f6c6bd8e68d4e8f90db5aaafc4b</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="typedef" protection="private">
       <type>T *</type>
       <name>PtrInstanceType</name>
       <anchorfile>classLoki_1_1SingletonHolder.html</anchorfile>
-      <anchor>26a6ec9e3019fc2f8406c5b3c03f0791</anchor>
+      <anchor>338c3d48e13d1ca6ef0bc652b2e695f1</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="private" static="yes">
@@ -6759,10 +7904,24 @@
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="private" static="yes">
-      <type>static void</type>
+      <type>static void LOKI_C_CALLING_CONVENTION_QUALIFIER</type>
       <name>DestroySingleton</name>
       <anchorfile>classLoki_1_1SingletonHolder.html</anchorfile>
       <anchor>fa306d4e67df281b85b0c932cf5186c6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private" static="yes">
+      <type>static void</type>
+      <name>MakeInstance</name>
+      <anchorfile>classLoki_1_1SingletonHolder.html</anchorfile>
+      <anchor>6770e9272efc0a341def45b37bee5d41</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private" static="yes">
+      <type>static void</type>
+      <name>DestroySingleton</name>
+      <anchorfile>classLoki_1_1SingletonHolder.html</anchorfile>
+      <anchor>37255d34c4d081d9b0468f42c09f0d83</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="variable" protection="private" static="yes">
@@ -6791,6 +7950,568 @@
       <anchor>b338e9495ecd5ba5ae62110b0f683656</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="function" static="yes">
+      <type>static T &amp;</type>
+      <name>Instance</name>
+      <anchorfile>classLoki_1_1Singleton.html</anchorfile>
+      <anchor>b338e9495ecd5ba5ae62110b0f683656</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>Loki::SmallObjAllocator</name>
+    <filename>classLoki_1_1SmallObjAllocator.html</filename>
+    <member kind="function">
+      <type>void *</type>
+      <name>Allocate</name>
+      <anchorfile>classLoki_1_1SmallObjAllocator.html</anchorfile>
+      <anchor>589fe436ba59e4bce90ea7e337d77b8a</anchor>
+      <arglist>(std::size_t size, bool doThrow)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Deallocate</name>
+      <anchorfile>classLoki_1_1SmallObjAllocator.html</anchorfile>
+      <anchor>2b669733cfa9dd157603d13d979f8c1c</anchor>
+      <arglist>(void *p, std::size_t size)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Deallocate</name>
+      <anchorfile>classLoki_1_1SmallObjAllocator.html</anchorfile>
+      <anchor>50406896d75a2591d4bd7dc53325e3d6</anchor>
+      <arglist>(void *p)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>GetMaxObjectSize</name>
+      <anchorfile>classLoki_1_1SmallObjAllocator.html</anchorfile>
+      <anchor>e49e9de3fd7b2fd93676cc1d63299b0d</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>GetAlignment</name>
+      <anchorfile>classLoki_1_1SmallObjAllocator.html</anchorfile>
+      <anchor>b1c8a2a3d7e9368ab59422ddd082105c</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>TrimExcessMemory</name>
+      <anchorfile>classLoki_1_1SmallObjAllocator.html</anchorfile>
+      <anchor>6b635664b20a6984303dabde86c8ac83</anchor>
+      <arglist>(void)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>IsCorrupt</name>
+      <anchorfile>classLoki_1_1SmallObjAllocator.html</anchorfile>
+      <anchor>2b7fbd5bf5fc56e45754abd2497ad18f</anchor>
+      <arglist>(void) const </arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type></type>
+      <name>SmallObjAllocator</name>
+      <anchorfile>classLoki_1_1SmallObjAllocator.html</anchorfile>
+      <anchor>3d40b34b1a2d08a6bb9d9fa22ab5ce24</anchor>
+      <arglist>(std::size_t pageSize, std::size_t maxObjectSize, std::size_t objectAlignSize)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type></type>
+      <name>~SmallObjAllocator</name>
+      <anchorfile>classLoki_1_1SmallObjAllocator.html</anchorfile>
+      <anchor>0c861c4605844ee30dbe2a4f533fe2ae</anchor>
+      <arglist>(void)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type></type>
+      <name>SmallObjAllocator</name>
+      <anchorfile>classLoki_1_1SmallObjAllocator.html</anchorfile>
+      <anchor>830e547e97d0b14da81aff6f3e9657d4</anchor>
+      <arglist>(void)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type></type>
+      <name>SmallObjAllocator</name>
+      <anchorfile>classLoki_1_1SmallObjAllocator.html</anchorfile>
+      <anchor>91bf9724f641e616b87ccbc232daa395</anchor>
+      <arglist>(const SmallObjAllocator &amp;)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>SmallObjAllocator &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classLoki_1_1SmallObjAllocator.html</anchorfile>
+      <anchor>90704c9383f3c1e11ce1be826148cbf2</anchor>
+      <arglist>(const SmallObjAllocator &amp;)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>Loki::FixedAllocator *</type>
+      <name>pool_</name>
+      <anchorfile>classLoki_1_1SmallObjAllocator.html</anchorfile>
+      <anchor>fd9e9b0d3727cefd809acd5f62e4af5e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>const std::size_t</type>
+      <name>maxSmallObjectSize_</name>
+      <anchorfile>classLoki_1_1SmallObjAllocator.html</anchorfile>
+      <anchor>19e31f0bac9adbc17c3f782210a25ac8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>const std::size_t</type>
+      <name>objectAlignSize_</name>
+      <anchorfile>classLoki_1_1SmallObjAllocator.html</anchorfile>
+      <anchor>48ce64f65471acd76fc5dfca7dd050d6</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>Loki::AllocatorSingleton</name>
+    <filename>classLoki_1_1AllocatorSingleton.html</filename>
+    <templarg>ThreadingModel</templarg>
+    <templarg>chunkSize</templarg>
+    <templarg>maxSmallObjectSize</templarg>
+    <templarg>objectAlignSize</templarg>
+    <templarg>LifetimePolicy</templarg>
+    <templarg>MutexPolicy</templarg>
+    <base>Loki::SmallObjAllocator</base>
+    <member kind="typedef">
+      <type>AllocatorSingleton&lt; ThreadingModel, chunkSize, maxSmallObjectSize, objectAlignSize, LifetimePolicy &gt;</type>
+      <name>MyAllocator</name>
+      <anchorfile>classLoki_1_1AllocatorSingleton.html</anchorfile>
+      <anchor>47fa2a9f8348fc8ce749221f7bfa7245</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>ThreadingModel&lt; MyAllocator, MutexPolicy &gt;</type>
+      <name>MyThreadingModel</name>
+      <anchorfile>classLoki_1_1AllocatorSingleton.html</anchorfile>
+      <anchor>c9fde708e2ee0bf990c3eaa34422ca25</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>Loki::SingletonHolder&lt; MyAllocator, Loki::CreateStatic, LifetimePolicy, ThreadingModel &gt;</type>
+      <name>MyAllocatorSingleton</name>
+      <anchorfile>classLoki_1_1AllocatorSingleton.html</anchorfile>
+      <anchor>74b23f8327ce4f3d795aa20240deb99e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>AllocatorSingleton</name>
+      <anchorfile>classLoki_1_1AllocatorSingleton.html</anchorfile>
+      <anchor>c1ce92a825643f114d555fea170e2a99</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~AllocatorSingleton</name>
+      <anchorfile>classLoki_1_1AllocatorSingleton.html</anchorfile>
+      <anchor>f4248c104f7c04f4dbef16543083be53</anchor>
+      <arglist>(void)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static AllocatorSingleton &amp;</type>
+      <name>Instance</name>
+      <anchorfile>classLoki_1_1AllocatorSingleton.html</anchorfile>
+      <anchor>0de7839b1e888e11ff44bc50b78ca7d7</anchor>
+      <arglist>(void)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>ClearExtraMemory</name>
+      <anchorfile>classLoki_1_1AllocatorSingleton.html</anchorfile>
+      <anchor>082b4ba1c6574c5bed916c55ecf46e82</anchor>
+      <arglist>(void)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>IsCorrupted</name>
+      <anchorfile>classLoki_1_1AllocatorSingleton.html</anchorfile>
+      <anchor>033978d127f16d2da0fd79d31ee75713</anchor>
+      <arglist>(void)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type></type>
+      <name>AllocatorSingleton</name>
+      <anchorfile>classLoki_1_1AllocatorSingleton.html</anchorfile>
+      <anchor>cf05bdb2a6b611616b7aa733e6a88f76</anchor>
+      <arglist>(const AllocatorSingleton &amp;)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>AllocatorSingleton &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classLoki_1_1AllocatorSingleton.html</anchorfile>
+      <anchor>86e9962a29f762a587c5c4f257e43cf8</anchor>
+      <arglist>(const AllocatorSingleton &amp;)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>Loki::SmallObjectBase</name>
+    <filename>classLoki_1_1SmallObjectBase.html</filename>
+    <templarg>ThreadingModel</templarg>
+    <templarg>chunkSize</templarg>
+    <templarg>maxSmallObjectSize</templarg>
+    <templarg>objectAlignSize</templarg>
+    <templarg>LifetimePolicy</templarg>
+    <templarg>MutexPolicy</templarg>
+    <member kind="typedef">
+      <type>AllocatorSingleton&lt; ThreadingModel, chunkSize, maxSmallObjectSize, objectAlignSize, LifetimePolicy &gt;</type>
+      <name>ObjAllocatorSingleton</name>
+      <anchorfile>classLoki_1_1SmallObjectBase.html</anchorfile>
+      <anchor>d07df1c9ec9c41580e07e32eddcda82d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void *</type>
+      <name>operator new</name>
+      <anchorfile>classLoki_1_1SmallObjectBase.html</anchorfile>
+      <anchor>39f9c8d5b17c09bece34c8a400981970</anchor>
+      <arglist>(std::size_t size)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void *</type>
+      <name>operator new</name>
+      <anchorfile>classLoki_1_1SmallObjectBase.html</anchorfile>
+      <anchor>d212efa68b48292bf8fd2dd158b49400</anchor>
+      <arglist>(std::size_t size, const std::nothrow_t &amp;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void *</type>
+      <name>operator new</name>
+      <anchorfile>classLoki_1_1SmallObjectBase.html</anchorfile>
+      <anchor>dbbe1bde0960a38502af0940004d942f</anchor>
+      <arglist>(std::size_t size, void *place)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>operator delete</name>
+      <anchorfile>classLoki_1_1SmallObjectBase.html</anchorfile>
+      <anchor>698e8b9ebac9df8c03e557c842a59bc5</anchor>
+      <arglist>(void *p, std::size_t size)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>operator delete</name>
+      <anchorfile>classLoki_1_1SmallObjectBase.html</anchorfile>
+      <anchor>b835d84fa8bc1ed3a558dc2e7a7e39ec</anchor>
+      <arglist>(void *p, const std::nothrow_t &amp;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>operator delete</name>
+      <anchorfile>classLoki_1_1SmallObjectBase.html</anchorfile>
+      <anchor>e2da17da13c6c6a0d7e33c9df9eb27f2</anchor>
+      <arglist>(void *p, void *place)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type></type>
+      <name>SmallObjectBase</name>
+      <anchorfile>classLoki_1_1SmallObjectBase.html</anchorfile>
+      <anchor>d1c3a013df6cd2d95908003e006e1515</anchor>
+      <arglist>(const SmallObjectBase &amp;)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>SmallObjectBase &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classLoki_1_1SmallObjectBase.html</anchorfile>
+      <anchor>6e872e4f97b5572c294dc0162cbcccf6</anchor>
+      <arglist>(const SmallObjectBase &amp;)</arglist>
+    </member>
+    <member kind="typedef" protection="private">
+      <type>ThreadingModel&lt; ObjAllocatorSingleton, MutexPolicy &gt;</type>
+      <name>MyThreadingModel</name>
+      <anchorfile>classLoki_1_1SmallObjectBase.html</anchorfile>
+      <anchor>90ac89e260a3b8f0427e8535289925dc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef" protection="private">
+      <type>ObjAllocatorSingleton::MyAllocatorSingleton</type>
+      <name>MyAllocatorSingleton</name>
+      <anchorfile>classLoki_1_1SmallObjectBase.html</anchorfile>
+      <anchor>68898e5adb4be4d8b2527519b220e656</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>Loki::SmallObject</name>
+    <filename>classLoki_1_1SmallObject.html</filename>
+    <templarg>ThreadingModel</templarg>
+    <templarg>chunkSize</templarg>
+    <templarg>maxSmallObjectSize</templarg>
+    <templarg>objectAlignSize</templarg>
+    <templarg>LifetimePolicy</templarg>
+    <templarg>MutexPolicy</templarg>
+    <base>Loki::SmallObjectBase</base>
+    <member kind="function" protection="private">
+      <type></type>
+      <name>SmallObject</name>
+      <anchorfile>classLoki_1_1SmallObject.html</anchorfile>
+      <anchor>96e2281173a793f24c6c63b9c47213c8</anchor>
+      <arglist>(const SmallObject &amp;)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>SmallObject &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classLoki_1_1SmallObject.html</anchorfile>
+      <anchor>b44804989134885b0e9625280c88f3c8</anchor>
+      <arglist>(const SmallObject &amp;)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>Loki::SmallValueObject</name>
+    <filename>classLoki_1_1SmallValueObject.html</filename>
+    <templarg>ThreadingModel</templarg>
+    <templarg>chunkSize</templarg>
+    <templarg>maxSmallObjectSize</templarg>
+    <templarg>objectAlignSize</templarg>
+    <templarg>LifetimePolicy</templarg>
+    <templarg>MutexPolicy</templarg>
+    <base>Loki::SmallObjectBase</base>
+    <member kind="function" protection="protected">
+      <type></type>
+      <name>SmallValueObject</name>
+      <anchorfile>classLoki_1_1SmallValueObject.html</anchorfile>
+      <anchor>e446be83fd90d9369b557a90b2d6f4e5</anchor>
+      <arglist>(const SmallValueObject &amp;)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>SmallValueObject &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classLoki_1_1SmallValueObject.html</anchorfile>
+      <anchor>9cca2d34447dd4ebc4a885cb04f113e4</anchor>
+      <arglist>(const SmallValueObject &amp;)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>Loki::Mutex</name>
+    <filename>classLoki_1_1Mutex.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>Lock</name>
+      <anchorfile>classLoki_1_1Mutex.html</anchorfile>
+      <anchor>190a1d0d81f1a623d4b10c2ef49246df</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Unlock</name>
+      <anchorfile>classLoki_1_1Mutex.html</anchorfile>
+      <anchor>3a6f6671b80b8554af2491c29bf724cd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type></type>
+      <name>Mutex</name>
+      <anchorfile>classLoki_1_1Mutex.html</anchorfile>
+      <anchor>ad80f4b44baebf4b4ae9d8f0d8a84441</anchor>
+      <arglist>(const Mutex &amp;)</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>Mutex &amp;</type>
+      <name>operator=</name>
+      <anchorfile>classLoki_1_1Mutex.html</anchorfile>
+      <anchor>3a89e0fa0a02d47c9a5b66b7759fd2fd</anchor>
+      <arglist>(const Mutex &amp;)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>Loki::SingleThreaded</name>
+    <filename>classLoki_1_1SingleThreaded.html</filename>
+    <templarg>Host</templarg>
+    <templarg>MutexPolicy</templarg>
+    <member kind="typedef">
+      <type>Host</type>
+      <name>VolatileType</name>
+      <anchorfile>classLoki_1_1SingleThreaded.html</anchorfile>
+      <anchor>3fef4723aad84781feda8f50d6751796</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>int</type>
+      <name>IntType</name>
+      <anchorfile>classLoki_1_1SingleThreaded.html</anchorfile>
+      <anchor>277b17f61aa3c5a8f4ff4de9fea0132b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static IntType</type>
+      <name>AtomicAdd</name>
+      <anchorfile>classLoki_1_1SingleThreaded.html</anchorfile>
+      <anchor>bc5edd309278f9824020099c1c355414</anchor>
+      <arglist>(volatile IntType &amp;lval, IntType val)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static IntType</type>
+      <name>AtomicSubtract</name>
+      <anchorfile>classLoki_1_1SingleThreaded.html</anchorfile>
+      <anchor>7f7f55dab1422a52b8b5c21d90c05b03</anchor>
+      <arglist>(volatile IntType &amp;lval, IntType val)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static IntType</type>
+      <name>AtomicMultiply</name>
+      <anchorfile>classLoki_1_1SingleThreaded.html</anchorfile>
+      <anchor>d8540343e6df5fe0f15f0cb2897402ab</anchor>
+      <arglist>(volatile IntType &amp;lval, IntType val)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static IntType</type>
+      <name>AtomicDivide</name>
+      <anchorfile>classLoki_1_1SingleThreaded.html</anchorfile>
+      <anchor>4b93e9d3eb987772117b8a7e66fe426e</anchor>
+      <arglist>(volatile IntType &amp;lval, IntType val)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static IntType</type>
+      <name>AtomicIncrement</name>
+      <anchorfile>classLoki_1_1SingleThreaded.html</anchorfile>
+      <anchor>98929acf64576693c065c1d9560bd40b</anchor>
+      <arglist>(volatile IntType &amp;lval)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static IntType</type>
+      <name>AtomicDecrement</name>
+      <anchorfile>classLoki_1_1SingleThreaded.html</anchorfile>
+      <anchor>ef003bc717978b34a62cdc35b6465924</anchor>
+      <arglist>(volatile IntType &amp;lval)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>AtomicAssign</name>
+      <anchorfile>classLoki_1_1SingleThreaded.html</anchorfile>
+      <anchor>e402f02eefbc022d0da89ae125cca513</anchor>
+      <arglist>(volatile IntType &amp;lval, IntType val)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>AtomicAssign</name>
+      <anchorfile>classLoki_1_1SingleThreaded.html</anchorfile>
+      <anchor>f120eb3c0bb68384d1072b26026a1aec</anchor>
+      <arglist>(IntType &amp;lval, volatile IntType &amp;val)</arglist>
+    </member>
+    <class kind="struct">Loki::SingleThreaded::Lock</class>
+  </compound>
+  <compound kind="struct">
+    <name>Loki::SingleThreaded::Lock</name>
+    <filename>structLoki_1_1SingleThreaded_1_1Lock.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>Lock</name>
+      <anchorfile>structLoki_1_1SingleThreaded_1_1Lock.html</anchorfile>
+      <anchor>4500e2b46f013628ab24de6cb3a4de4e</anchor>
+      <arglist>(const SingleThreaded &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Lock</name>
+      <anchorfile>structLoki_1_1SingleThreaded_1_1Lock.html</anchorfile>
+      <anchor>e2ac78676358c1a5d4bb3f51443af592</anchor>
+      <arglist>(const SingleThreaded *)</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>Loki::LongevityLifetime::SingletonFixedLongevity</name>
+    <filename>classLoki_1_1LongevityLifetime_1_1SingletonFixedLongevity.html</filename>
+    <templarg>Longevity</templarg>
+    <templarg>T</templarg>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>ScheduleDestruction</name>
+      <anchorfile>classLoki_1_1LongevityLifetime_1_1SingletonFixedLongevity.html</anchorfile>
+      <anchor>1d2485084acb6833205c603131c4ede2</anchor>
+      <arglist>(T *pObj, atexit_pfn_t pFun)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>OnDeadReference</name>
+      <anchorfile>classLoki_1_1LongevityLifetime_1_1SingletonFixedLongevity.html</anchorfile>
+      <anchor>7469345a20917d5cb1b5312e77af71e2</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>Loki::LongevityLifetime::DieLast</name>
+    <filename>structLoki_1_1LongevityLifetime_1_1DieLast.html</filename>
+    <templarg>T</templarg>
+    <base>Loki::LongevityLifetime::SingletonFixedLongevity</base>
+  </compound>
+  <compound kind="struct">
+    <name>Loki::LongevityLifetime::DieDirectlyBeforeLast</name>
+    <filename>structLoki_1_1LongevityLifetime_1_1DieDirectlyBeforeLast.html</filename>
+    <templarg>T</templarg>
+    <base>Loki::LongevityLifetime::SingletonFixedLongevity</base>
+  </compound>
+  <compound kind="struct">
+    <name>Loki::LongevityLifetime::DieFirst</name>
+    <filename>structLoki_1_1LongevityLifetime_1_1DieFirst.html</filename>
+    <templarg>T</templarg>
+    <base>SingletonFixedLongevity&lt; 0, T &gt;</base>
+  </compound>
+  <compound kind="struct">
+    <name>Loki::LongevityLifetime::DieAsSmallObjectParent</name>
+    <filename>structLoki_1_1LongevityLifetime_1_1DieAsSmallObjectParent.html</filename>
+    <templarg>T</templarg>
+    <base>Loki::LongevityLifetime::DieLast</base>
+  </compound>
+  <compound kind="struct">
+    <name>Loki::LongevityLifetime::DieAsSmallObjectChild</name>
+    <filename>structLoki_1_1LongevityLifetime_1_1DieAsSmallObjectChild.html</filename>
+    <templarg>T</templarg>
+    <base>Loki::LongevityLifetime::DieDirectlyBeforeLast</base>
+  </compound>
+  <compound kind="namespace">
+    <name>LongevityLifetime</name>
+    <filename>namespaceLongevityLifetime.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>Script::Parser</name>
+    <filename>classScript_1_1Parser.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>Parser</name>
+      <anchorfile>classScript_1_1Parser.html</anchorfile>
+      <anchor>5b7cf8cb8670b41d7e9a98af70a4efd3</anchor>
+      <arglist>(const std::string &amp;file)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>execute</name>
+      <anchorfile>classScript_1_1Parser.html</anchorfile>
+      <anchor>bd95bf7b3ac6458ec9b57e1a312f52e5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setView</name>
+      <anchorfile>classScript_1_1Parser.html</anchorfile>
+      <anchor>96ffff7b1d30842573439ba8c3ae7936</anchor>
+      <arglist>(UI::View *_view)</arglist>
+    </member>
+    <member kind="function">
+      <type>UI::View *</type>
+      <name>getView</name>
+      <anchorfile>classScript_1_1Parser.html</anchorfile>
+      <anchor>9688b748587eb90de82009e704b24783</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::vector&lt; std::string &gt;</type>
+      <name>lines</name>
+      <anchorfile>classScript_1_1Parser.html</anchorfile>
+      <anchor>948c1f2a111017d6e1e17b71fbc4fb23</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>UI::View *</type>
+      <name>view</name>
+      <anchorfile>classScript_1_1Parser.html</anchorfile>
+      <anchor>7753442ef190b5860be24c8f18c90b24</anchor>
+      <arglist></arglist>
+    </member>
+    <class kind="class">Script::Parser::BadCommandException</class>
   </compound>
   <compound kind="namespace">
     <name>VecMath</name>
@@ -6812,11 +8533,25 @@
       <arglist>(std::ostream &amp;o, const Rotation&lt; D, N &gt; &amp;v)</arglist>
     </member>
     <member kind="function">
+      <type>std::istringstream &amp;</type>
+      <name>operator&gt;&gt;</name>
+      <anchorfile>group__VecMath.html</anchorfile>
+      <anchor>g481900ade75f6885f522982564e1f702</anchor>
+      <arglist>(std::istringstream &amp;in, Rotation&lt; D, N &gt; &amp;v)</arglist>
+    </member>
+    <member kind="function">
       <type>std::ostream &amp;</type>
       <name>operator&lt;&lt;</name>
       <anchorfile>group__VecMath.html</anchorfile>
       <anchor>gef433144f359a8cda43c2290871425b3</anchor>
       <arglist>(std::ostream &amp;o, const Vector&lt; D, N &gt; &amp;v)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::istringstream &amp;</type>
+      <name>operator&gt;&gt;</name>
+      <anchorfile>group__VecMath.html</anchorfile>
+      <anchor>g32efe5289273edf4fcd804d59be355b8</anchor>
+      <arglist>(std::istringstream &amp;in, Vector&lt; D, N &gt; &amp;v)</arglist>
     </member>
     <member kind="function">
       <type>Vector&lt; D &gt;</type>
@@ -7053,11 +8788,18 @@
       <arglist>() const </arglist>
     </member>
     <member kind="function">
-      <type>const Vector&lt; NumAxes&lt; D &gt;::num, N &gt;</type>
+      <type>const Vector&lt; NumAxes&lt; D &gt;::num, N &gt; &amp;</type>
       <name>r</name>
       <anchorfile>classVecMath_1_1Rotation.html</anchorfile>
-      <anchor>d048a5d967bb9b554ed984ada6bc2a75</anchor>
+      <anchor>c7a3ce61bbe973efb8724e32b5aab83b</anchor>
       <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>Vector&lt; NumAxes&lt; D &gt;::num, N &gt; &amp;</type>
+      <name>r</name>
+      <anchorfile>classVecMath_1_1Rotation.html</anchorfile>
+      <anchor>c9f51647938734894ebeb55309fa55eb</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="variable" protection="private">
       <type>Vector&lt; NumAxes&lt; D &gt;::num, N &gt;</type>

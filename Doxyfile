@@ -265,7 +265,7 @@ SKIP_FUNCTION_MACROS   = YES
 #---------------------------------------------------------------------------
 # Configuration::additions related to external references   
 #---------------------------------------------------------------------------
-TAGFILES               = 
+TAGFILES               = "libstdc++.tag = http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen"
 GENERATE_TAGFILE       = HyperspaceExplorer.tag
 ALLEXTERNALS           = NO
 EXTERNAL_GROUPS        = YES
