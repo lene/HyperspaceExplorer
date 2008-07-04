@@ -223,6 +223,10 @@ class C4DView : public QGLWidget, public UI::View {
     private:
         void Transform(const VecMath::Rotation<4> &R, const VecMath::Vector<4> &T);
         /// Overloaded function executing the transform to the default state
+        /** Four-dimensional transform is set to no rotation, no translation.
+         *
+         *  Three-dimensional transform is 15 degrees about x and y axis, and
+         *  10 units distance from the camera.                                */
         void Transform() {
             setT(VecMath::Vector<4>());
             setR(VecMath::Rotation<4>());
@@ -231,8 +235,6 @@ class C4DView : public QGLWidget, public UI::View {
             setm_trans(VecMath::Vector<3, GLdouble>(0.,0.,-10.));
 
             Transform (R(), T());   //  apply 4D transformation
-
-//            Transform (VecMath::Rotation<4>(),  VecMath::Vector<4>());
         }
         void Project();
 

@@ -307,13 +307,7 @@ void C4DView::MouseHandler4D::mouseDoubleClickEvent (QMouseEvent *) {
 
     if (parent->Animated()) parent->StopAnimation ();
     else {
-        parent->setT(Vector<4>());
-        parent->setR(Rotation<4>());
-
-        parent->setm_rot(Rotation<3, GLdouble>(15., 15., 0.));
-        parent->setm_trans(Vector<3, GLdouble>(0.,0.,-10.));
-
-        parent->Transform (parent->R(), parent->T());   //  apply 4D transformation
+        parent->Transform();
         parent->Redraw ();                              //  implicit OnPaint ()
     }
 
