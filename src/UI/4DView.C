@@ -69,7 +69,7 @@ C4DView::C4DView(QWidget *parent):
 
     InitCross();
 
-    setAnimationTimer(new QTimer (this));
+    setAnimationTimer(new QTimer(this));
     connect (AnimationTimer(), SIGNAL(timeout()), this, SLOT(OnTimer()));
 
     setAnimateRandomTimer(new QTimer (this));
@@ -83,13 +83,13 @@ C4DView::C4DView(QWidget *parent):
 
     setMouseHandler(new MouseHandler4D(this));
 
-    show ();
+    show();
 
     ColMgrMgr::Instance().setColorManager(new xyz2RGBColorManager(F().get()));
 
-    ObjectHypercube ();
+    ObjectHypercube();
 
-    Light ();
+    Light();
 }
 
 /// C4DView destructor
@@ -808,7 +808,7 @@ void C4DView::AssignValues (const std::auto_ptr<Function> &F) {
     }
 
     Values()->setFunction(F);
-    Transform ();
+    Transform();
 
     ColMgrMgr::Instance().setFunction(F.get());
 

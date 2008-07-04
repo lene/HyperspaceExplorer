@@ -172,7 +172,7 @@ class C4DView : public QGLWidget, public UI::View {
         double Benchmark4D(int, double, double, double, bool = true);
 
         virtual void applyTransform(const VecMath::Rotation<4> &R,
-                            const VecMath::Vector<4> &T) {
+                                    const VecMath::Vector<4> &T) {
             Transform(R, T);
             Redraw();
         }
@@ -223,7 +223,17 @@ class C4DView : public QGLWidget, public UI::View {
     private:
         void Transform(const VecMath::Rotation<4> &R, const VecMath::Vector<4> &T);
         /// Overloaded function executing the transform to the default state
-        void Transform() { Transform (VecMath::Rotation<4>(),  VecMath::Vector<4>()); }
+        void Transform() {
+            setT(VecMath::Vector<4>());
+            setR(VecMath::Rotation<4>());
+
+            setm_rot(VecMath::Rotation<3, GLdouble>(15., 15., 0.));
+            setm_trans(VecMath::Vector<3, GLdouble>(0.,0.,-10.));
+
+            Transform (R(), T());   //  apply 4D transformation
+
+//            Transform (VecMath::Rotation<4>(),  VecMath::Vector<4>());
+        }
         void Project();
 
         void PreRedraw();

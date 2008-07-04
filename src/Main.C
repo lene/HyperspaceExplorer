@@ -258,7 +258,6 @@ void parse (int argc, char *argv[]) {
                 parser.setView(&view);
 
                 parser.execute();
-//                usleep(2000000);
 
                 exit(0);
             }
