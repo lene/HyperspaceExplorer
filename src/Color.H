@@ -16,6 +16,8 @@
 #include <string>
 #include <sstream>
 
+#include <QColor>
+
 #include "Vector.H"
 
 /// A class to represent a color value by its RGBA components
@@ -31,11 +33,16 @@ class Color {
         Color() { r() = g() = b() = a() = 0.; }
         Color(float, float, float, float = 1.);
         Color(const VecMath::Vector<4> &);
+        Color(const QColor &);
 
         float &r() { return RGBA[0]; }  /// the red component of the color
+        float r() const { return RGBA[0]; }  /// the red component of the color
         float &g() { return RGBA[1]; }  /// the green component of the color
+        float g() const { return RGBA[1]; }  /// the green component of the color
         float &b() { return RGBA[2]; }  /// the blue component of the color
+        float b() const { return RGBA[2]; }  /// the blue component of the color
         float &a() { return RGBA[3]; }  /// the alpha component of the color
+        float a() const { return RGBA[3]; }  /// the alpha component of the color
 
         /// direct access to the array of components, needed by OpenGL functions
         operator float *() { return RGBA; }
@@ -50,6 +57,7 @@ class Color {
         void setComponentLowerLimit(float);
         void setComponentUpperLimit(float);
 
+        /// converts the color's RGB values to a string
         operator std::string() const {
             std::ostringstream o;
             o <<"[ "<< RGBA[0] << ", "<< RGBA[1]<< ", "<< RGBA[2]<< " ]"
@@ -58,14 +66,14 @@ class Color {
         }
 
     private:
-        float RGBA[4];  /// the components stored as an array of floats
+        float RGBA[4];  ///< the components stored as an array of floats
 };
 
-/// construct a color from its R, G, B and alpha values
-/// @param _r R value of the color
-/// @param _g G value of the color
-/// @param _b B value of the color
-/// @param _a Alpha value of the color
+/// construct a Color from its R, G, B and alpha values
+/** @param _r R value of the color
+ *  @param _g G value of the color
+ *  @param _b B value of the color
+ *  @param _a Alpha value of the color                                        */
 inline Color::Color(float _r, float _g, float _b, float _a) {
     r() = _r;
     g() = _g;
@@ -73,11 +81,24 @@ inline Color::Color(float _r, float _g, float _b, float _a) {
     a() = _a;
 }
 
+/// construct a Color from a Vector containing its R, G, B and alpha values
+/** @param x RGBA values of the color                                         */
 inline Color::Color(const VecMath::Vector<4> &x) {
     r() = x[0];
     g() = x[1];
     b() = x[2];
     a() = x[3];
+}
+
+/// construct a Color from a QColor
+/** @param col RGBA values of the color                                       */
+inline Color::Color(const QColor &col) {
+    qreal qr, qg, qb, qa;
+    col.getRgbF(&qr, &qg, &qb, &qa);
+    r() = qr;
+    g() = qg;
+    b() = qb;
+    a() = qa;
 }
 
 /// scale the color by a float, keeping the RGB components between 0.0 and 1.0
@@ -141,10 +162,10 @@ inline Color Color::operator +(float x) {
 inline Color Color::operator +=(const Color &x) {
     for (unsigned i = 0; i < 3; i++) {
         RGBA[i] += x.RGBA[i];
-#if 0
-             if (RGBA[i] > 1.) RGBA[i] = 1.;
-             if (RGBA[i] < 0.) RGBA[i] = 0.;
-#endif
+#       if 0
+            if (RGBA[i] > 1.) RGBA[i] = 1.;
+            if (RGBA[i] < 0.) RGBA[i] = 0.;
+#       endif
     }
     return *this;
 }

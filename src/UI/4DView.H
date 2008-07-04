@@ -208,7 +208,8 @@ class C4DView : public QGLWidget, public UI::View {
         virtual void setFog(bool);
         virtual void setHyperfog(bool);
         virtual void setCoordinates(bool);
-
+        virtual void setBackground(const Color &);
+        
         virtual void setFunction(Function *_f) { setF(_f); }
 
     private slots:

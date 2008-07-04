@@ -66,15 +66,18 @@ namespace UI {
             virtual void setWireframe(bool) = 0;
             virtual void setFog(bool) = 0;
             virtual void setHyperfog(bool) = 0;
-            virtual void setCoordinates(bool) {
-                throw FunctionNotSupportedException("setCoordinates()");
-            }
-
+            virtual void setCoordinates(bool) = 0;
+            virtual void setBackground(const Color &) = 0;
+            
         protected:
             virtual void ApplyChanges(const ParameterMap &) = 0;
 
             virtual unsigned getNumFrames() { return numFrames; }
             virtual unsigned getNumLoops() { return numLoops; }
+            virtual void setDefaultBackground() {
+                static Color defaultBackground(0.1, 0.1, 0.1, 1.0);
+                setBackground(defaultBackground);
+            }
 
         private:
             unsigned numFrames;

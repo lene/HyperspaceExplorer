@@ -2,6 +2,7 @@
 
 #include <QShortcut>
 #include <QMenuBar>
+#include <QColorDialog>
 
 #include "Menu4D.H"
 #include "4DView.H"
@@ -30,99 +31,105 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
     ////////////////////////////////////////////////////////////////////////////
     //      "Objects" Menu
     ////////////////////////////////////////////////////////////////////////////
-    fr3r = functions->addMenu("f: R³ -> R");
-    objects = functions->addMenu("Objects");
-    surfaces = functions->addMenu("Surfaces");
-    fcc = surfaces->addMenu("f: C -> C");
-
-    insertAction(fr3r, "1/(r²+1)",
-                 new C4DView::TemplatedRealFunctionFactory<Fr3r>);
-    insertAction(fr3r, "Gravitation Potential",
-                 new C4DView::TemplatedRealFunctionFactory<GravitationPotential>);
-    insertAction(fr3r, "sin (r²)",
-                 new C4DView::TemplatedRealFunctionFactory<Fr3rSin>);
-    insertAction(fr3r, "exp (r²)",
-                 new C4DView::TemplatedRealFunctionFactory<Fr3rExp>);
-    insertAction(fr3r, "Custom function", SLOT(customFunction()));
-
-    insertAction(fr3r, "Polar: r = sin (pi/3.*(t+u+v))",
-                 new C4DView::TemplatedRealFunctionFactory<PolarSin>);
-    insertAction(fr3r, "Polar: r = 1/2+sin (Phase*pi*t*u*v)",
-                 new C4DView::TemplatedRealFunctionFactory<PolarSin2>);
-    insertAction(fr3r, "Polar: r = sqrt (t²+u²+v²)",
-                 new C4DView::TemplatedRealFunctionFactory<PolarR>);
-    insertAction(fr3r, "Custom polar function", SLOT(customPolarFunction()));
-
-    insertAction(objects, "Hypersphere",
-                 new C4DView::TemplatedRealFunctionFactory<Hypersphere>);
-    insertAction(objects, "Hypercube", SLOT(ObjectHypercube()));
-    insertAction(objects, "Hyperpyramid", SLOT(ObjectHyperpyramid()));
-    insertAction(objects, "Menger Sponge", SLOT(ObjectHypersponge()));
-    insertAction(objects, "Sierpinski Gasket", SLOT(ObjectGasket()));
-    insertAction(objects, "Torus 1",
-                 new C4DView::TemplatedRealFunctionFactory<Torus1>);
-    insertAction(objects, "Torus 2",
-                 new C4DView::TemplatedRealFunctionFactory<Torus2>);
-
-    insertAction(surfaces, "Surface 1",
-                 new C4DView::TemplatedSurfaceFactory<Surface1>);
-    insertAction(surfaces, "Horizon",
-                 new C4DView::TemplatedSurfaceFactory<Horizon>);
-    insertAction(surfaces, "Torus 3",
-                 new C4DView::TemplatedSurfaceFactory<Torus3>);
-    insertAction(surfaces, "Custom surface", SLOT(customSurface()));
-
-    insertAction(fcc, "z²",
-                 new C4DView::TemplatedSurfaceFactory<z2>);
-    insertAction(fcc, "z³",
-                 new C4DView::TemplatedSurfaceFactory<z3>);
-    insertAction(fcc, "z^a",
-                 new C4DView::TemplatedSurfaceFactory<zA>);
-    insertAction(fcc, "e^z",
-                 new C4DView::TemplatedSurfaceFactory<ez>);
-    insertAction(fcc, "e^-z²",
-                 new C4DView::TemplatedSurfaceFactory<emz2>);
-    insertAction(fcc, "1/z",
-                 new C4DView::TemplatedSurfaceFactory<zm1>);
-    insertAction(fcc, "1/z²",
-                 new C4DView::TemplatedSurfaceFactory<zm2>);
-    insertAction(fcc, "sqrt (z)",
-                 new C4DView::TemplatedSurfaceFactory<sqrtz>);
-    insertAction(fcc, "ln (z)",
-                 new C4DView::TemplatedSurfaceFactory<lnz>);
-    insertAction(fcc, "sin (z)",
-                 new C4DView::TemplatedSurfaceFactory<sinz>);
-    insertAction(fcc, "cos (z)",
-                 new C4DView::TemplatedSurfaceFactory<cosz>);
-    insertAction(fcc, "sinh (z)",
-                 new C4DView::TemplatedSurfaceFactory<sinhz>);
-    insertAction(fcc, "cosh (z)",
-                 new C4DView::TemplatedSurfaceFactory<coshz>);
-    insertAction(fcc, "tan (z)",
-                 new C4DView::TemplatedSurfaceFactory<tanz>);
-    insertAction(fcc, "Custom complex function", SLOT(customComplexFunction()));
-    TESTED_FEATURE (getAction("Custom complex function"));
-
+    {
+	    fr3r = functions->addMenu("f: R³ -> R");
+	    objects = functions->addMenu("Objects");
+	    surfaces = functions->addMenu("Surfaces");
+	    fcc = surfaces->addMenu("f: C -> C");
+	    {
+		    insertAction(fr3r, "1/(r²+1)",
+		                 new C4DView::TemplatedRealFunctionFactory<Fr3r>);
+		    insertAction(fr3r, "Gravitation Potential",
+		                 new C4DView::TemplatedRealFunctionFactory<GravitationPotential>);
+		    insertAction(fr3r, "sin (r²)",
+		                 new C4DView::TemplatedRealFunctionFactory<Fr3rSin>);
+		    insertAction(fr3r, "exp (r²)",
+		                 new C4DView::TemplatedRealFunctionFactory<Fr3rExp>);
+		    insertAction(fr3r, "Custom function", SLOT(customFunction()));
+		
+		    insertAction(fr3r, "Polar: r = sin (pi/3.*(t+u+v))",
+		                 new C4DView::TemplatedRealFunctionFactory<PolarSin>);
+		    insertAction(fr3r, "Polar: r = 1/2+sin (Phase*pi*t*u*v)",
+		                 new C4DView::TemplatedRealFunctionFactory<PolarSin2>);
+		    insertAction(fr3r, "Polar: r = sqrt (t²+u²+v²)",
+		                 new C4DView::TemplatedRealFunctionFactory<PolarR>);
+		    insertAction(fr3r, "Custom polar function", SLOT(customPolarFunction()));
+	    }
+	    {
+		    insertAction(objects, "Hypersphere",
+		                 new C4DView::TemplatedRealFunctionFactory<Hypersphere>);
+		    insertAction(objects, "Hypercube", SLOT(ObjectHypercube()));
+		    insertAction(objects, "Hyperpyramid", SLOT(ObjectHyperpyramid()));
+		    insertAction(objects, "Menger Sponge", SLOT(ObjectHypersponge()));
+		    insertAction(objects, "Sierpinski Gasket", SLOT(ObjectGasket()));
+		    insertAction(objects, "Torus 1",
+		                 new C4DView::TemplatedRealFunctionFactory<Torus1>);
+		    insertAction(objects, "Torus 2",
+		                 new C4DView::TemplatedRealFunctionFactory<Torus2>);
+	    }
+	    {
+		    insertAction(surfaces, "Surface 1",
+		                 new C4DView::TemplatedSurfaceFactory<Surface1>);
+		    insertAction(surfaces, "Horizon",
+		                 new C4DView::TemplatedSurfaceFactory<Horizon>);
+		    insertAction(surfaces, "Torus 3",
+		                 new C4DView::TemplatedSurfaceFactory<Torus3>);
+		    insertAction(surfaces, "Custom surface", SLOT(customSurface()));
+		    {
+			    insertAction(fcc, "z²",
+			                 new C4DView::TemplatedSurfaceFactory<z2>);
+			    insertAction(fcc, "z³",
+			                 new C4DView::TemplatedSurfaceFactory<z3>);
+			    insertAction(fcc, "z^a",
+			                 new C4DView::TemplatedSurfaceFactory<zA>);
+			    insertAction(fcc, "e^z",
+			                 new C4DView::TemplatedSurfaceFactory<ez>);
+			    insertAction(fcc, "e^-z²",
+			                 new C4DView::TemplatedSurfaceFactory<emz2>);
+			    insertAction(fcc, "1/z",
+			                 new C4DView::TemplatedSurfaceFactory<zm1>);
+			    insertAction(fcc, "1/z²",
+			                 new C4DView::TemplatedSurfaceFactory<zm2>);
+			    insertAction(fcc, "sqrt (z)",
+			                 new C4DView::TemplatedSurfaceFactory<sqrtz>);
+			    insertAction(fcc, "ln (z)",
+			                 new C4DView::TemplatedSurfaceFactory<lnz>);
+			    insertAction(fcc, "sin (z)",
+			                 new C4DView::TemplatedSurfaceFactory<sinz>);
+			    insertAction(fcc, "cos (z)",
+			                 new C4DView::TemplatedSurfaceFactory<cosz>);
+			    insertAction(fcc, "sinh (z)",
+			                 new C4DView::TemplatedSurfaceFactory<sinhz>);
+			    insertAction(fcc, "cosh (z)",
+			                 new C4DView::TemplatedSurfaceFactory<coshz>);
+			    insertAction(fcc, "tan (z)",
+			                 new C4DView::TemplatedSurfaceFactory<tanz>);
+			    insertAction(fcc, "Custom complex function", SLOT(customComplexFunction()));
+			    TESTED_FEATURE (getAction("Custom complex function"));
+		    }
+	    }
+    }
     ////////////////////////////////////////////////////////////////////////////
     //      "Appearance" Menu
     ////////////////////////////////////////////////////////////////////////////
-    insertAction(appear, "Colors", SLOT(Colors ()));
-    insertAction(appear, "Shading", SLOT(Shade()));
-    insertAction(appear, "Depth Cue", SLOT(Fog()));
-    insertAction(appear, "Transparence", SLOT(Transparent()));
-    insertAction(appear, "Lighting", SLOT(Light()));
-    insertAction(appear, "Wireframe", SLOT(Wireframe()), false);
-    insertAction(appear, "Coordinate Cross", SLOT(Coordinates()));
+    {
+        insertAction(appear, "Colors", SLOT(Colors ()));
+        insertAction(appear, "Shading", SLOT(Shade()));
+        insertAction(appear, "Depth Cue", SLOT(Fog()));
+        insertAction(appear, "Transparence", SLOT(Transparent()));
+        insertAction(appear, "Lighting", SLOT(Light()));
+        insertAction(appear, "Wireframe", SLOT(Wireframe()), false);
+        insertAction(appear, "Coordinate Cross", SLOT(Coordinates()));
 
-//    appear->setCheckable (true);
+        appear->addAction("Set Background Color", this, SLOT(setBackground()));
 
-    getAction("Colors")->setChecked(parent->getColors());
-    getAction("Shading")->setChecked(parent->getShade());
-    getAction("Depth Cue")->setChecked(parent->getFog());
-    getAction("Lighting")->setChecked(parent->getLight());
-    getAction("Transparence")->setChecked(parent->getTransparent());
-    getAction("Coordinate Cross")->setChecked(parent->getDisplayCoordinates());
-
+        getAction("Colors")->setChecked(parent->getColors());
+        getAction("Shading")->setChecked(parent->getShade());
+        getAction("Depth Cue")->setChecked(parent->getFog());
+        getAction("Lighting")->setChecked(parent->getLight());
+        getAction("Transparence")->setChecked(parent->getTransparent());
+        getAction("Coordinate Cross")->setChecked(parent->getDisplayCoordinates());
+    }
     insertAction(help, "Online help", SLOT(Help ()), false);
     help->insertSeparator (
         insertAction(help, tr("&About ..."), SLOT(about()), false));
@@ -151,6 +158,10 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
     }
       //      appear->setItemEnabled (transparentAction, DisplayPolygons);
     parent->setWireframe (parent->getDisplayPolygons());
+}
+
+void C4DView::Menu4D::setBackground() {
+    parent->setBackground(Color(QColorDialog::getColor(Qt::white, parent)));
 }
 
 /** Add the menu to a QMenuBar

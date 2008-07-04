@@ -57,8 +57,8 @@ class Global {
 
         int GetGLList();
 
-        Color &BackgroundColor() { return background; }
-        void setBackground(const Color &rgba) { background = rgba; }
+//        Color &BackgroundColor() { return background; }
+//        void setBackground(const Color &rgba) { background = rgba; }
 
         Color &FogColor() { return fog_color; }
         void setFogColor(const Color &rgba) { fog_color = rgba; }
@@ -102,7 +102,7 @@ class Global {
         static unsigned long check_proc_meminfo ();
 
         /** global (YUCK!) background color                                   */
-        static Color background;
+//        static Color background;
         /** global (YUCK!) fog/depth cue color                                */
         static Color fog_color;
         /** color definition for White                                        */

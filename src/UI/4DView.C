@@ -224,6 +224,13 @@ void C4DView::setShading(bool shade) {
     repaint ();
 }
 
+/// set background color
+/** menu callback function */
+void C4DView::setBackground(const Color &col) {
+    glClearColor (col.r(), col.g(), col.b(), col.a());
+    if (glIsList (ObjectList())) OnPaint();
+}
+
 /// run a benchmark test
   /** menu callback function */
   void C4DView::Benchmark() {
@@ -840,7 +847,6 @@ void C4DView::mouseDoubleClickEvent(QMouseEvent *e) {
     MouseHandler()->mouseDoubleClickEvent(e);
 }
 
-
 /** paintEvent() */
 void C4DView::paintEvent (QPaintEvent *) {
     OnPaint ();
@@ -894,9 +900,7 @@ void C4DView::initializeGL (void) {
 
     glDisable (GL_CULL_FACE);                   //  disable face culling
 
-    float *background = Globals::Instance().BackgroundColor();
-    //  set background color
-    glClearColor (background[0], background[1], background[2], background[3]);
+    setDefaultBackground();
 
     if (RenderToPixmap() /* && CurrentlyRendering */ ) {
         SingletonLog::Instance().log("  render to pixmap = true");
@@ -999,6 +1003,7 @@ void C4DView::resizeGL (int width, int height) {
                0., 0., 0.,
                0., 1., 0.);
     glTranslatef (0, 0, -distance());
+
     if (getFog())
         SetupDepthCue(
             fabs(m_trans()[2])-Size()/2.,

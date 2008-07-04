@@ -31,7 +31,7 @@ using VecMath::Vector;
 bool Global::check_memory = false;
 Color Global::White( 1.0, 1.0, 1.0, 1.0 );
 Color Global::Grey50( 0.5, 0.5, 0.5, 1.0 );
-Color Global::background(0.1, 0.1, 0.1, 1.0);
+//Color Global::background(0.1, 0.1, 0.1, 1.0);
 Color Global::fog_color(0.2, 0.2, 0.2, 1.0);
 
 Global::Global():

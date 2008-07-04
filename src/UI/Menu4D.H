@@ -18,6 +18,9 @@ class SurfaceFactory;
  *  \ingroup UIGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class C4DView::Menu4D: public QMenu {
+
+    Q_OBJECT
+
     public:
         Menu4D(C4DView *);
 
@@ -26,6 +29,9 @@ class C4DView::Menu4D: public QMenu {
         QAction *&getAction(const QString &key);
 
         void addToMenuBar(QMenuBar *menuBar);
+
+    public slots:
+        void setBackground();
 
     private:
         /// Assigns a QAction to a menu title
