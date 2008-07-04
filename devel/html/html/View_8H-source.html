@@ -92,26 +92,29 @@
 <a name="l00066"></a>00066             <span class="keyword">virtual</span> <span class="keywordtype">void</span> setWireframe(<span class="keywordtype">bool</span>) = 0;
 <a name="l00067"></a>00067             <span class="keyword">virtual</span> <span class="keywordtype">void</span> setFog(<span class="keywordtype">bool</span>) = 0;
 <a name="l00068"></a>00068             <span class="keyword">virtual</span> <span class="keywordtype">void</span> setHyperfog(<span class="keywordtype">bool</span>) = 0;
-<a name="l00069"></a>00069             <span class="keyword">virtual</span> <span class="keywordtype">void</span> setCoordinates(<span class="keywordtype">bool</span>) {
-<a name="l00070"></a>00070                 <span class="keywordflow">throw</span> FunctionNotSupportedException(<span class="stringliteral">"setCoordinates()"</span>);
-<a name="l00071"></a>00071             }
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073         <span class="keyword">protected</span>:
-<a name="l00074"></a>00074             <span class="keyword">virtual</span> <span class="keywordtype">void</span> ApplyChanges(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;) = 0;
-<a name="l00075"></a>00075 
-<a name="l00076"></a>00076             <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> getNumFrames() { <span class="keywordflow">return</span> numFrames; }
-<a name="l00077"></a>00077             <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> getNumLoops() { <span class="keywordflow">return</span> numLoops; }
-<a name="l00078"></a>00078 
-<a name="l00079"></a>00079         <span class="keyword">private</span>:
-<a name="l00080"></a>00080             <span class="keywordtype">unsigned</span> numFrames;
-<a name="l00081"></a>00081             <span class="keywordtype">unsigned</span> numLoops;
-<a name="l00082"></a>00082     };
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084 }
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086 <span class="preprocessor">#endif</span>
+<a name="l00069"></a>00069             <span class="keyword">virtual</span> <span class="keywordtype">void</span> setCoordinates(<span class="keywordtype">bool</span>) = 0;
+<a name="l00070"></a>00070             <span class="keyword">virtual</span> <span class="keywordtype">void</span> setBackground(<span class="keyword">const</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> &amp;) = 0;
+<a name="l00071"></a>00071             
+<a name="l00072"></a>00072         <span class="keyword">protected</span>:
+<a name="l00073"></a>00073             <span class="keyword">virtual</span> <span class="keywordtype">void</span> ApplyChanges(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;) = 0;
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075             <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> getNumFrames() { <span class="keywordflow">return</span> numFrames; }
+<a name="l00076"></a>00076             <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> getNumLoops() { <span class="keywordflow">return</span> numLoops; }
+<a name="l00077"></a>00077             <span class="keyword">virtual</span> <span class="keywordtype">void</span> setDefaultBackground() {
+<a name="l00078"></a>00078                 <span class="keyword">static</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> defaultBackground(0.1, 0.1, 0.1, 1.0);
+<a name="l00079"></a>00079                 setBackground(defaultBackground);
+<a name="l00080"></a>00080             }
+<a name="l00081"></a>00081 
+<a name="l00082"></a>00082         <span class="keyword">private</span>:
+<a name="l00083"></a>00083             <span class="keywordtype">unsigned</span> numFrames;
+<a name="l00084"></a>00084             <span class="keywordtype">unsigned</span> numLoops;
+<a name="l00085"></a>00085     };
+<a name="l00086"></a>00086 
+<a name="l00087"></a>00087 }
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon Jun 23 12:35:42 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Jul 4 18:01:30 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
 </body>

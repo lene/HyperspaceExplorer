@@ -1,15 +1,9 @@
-<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#681ee2ee24d1528a92b6ec0ff4dad9c2" title="Double click event handler." alt="" coords="272,298,592,325">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#681ee2ee24d1528a92b6ec0ff4dad9c2" title="Double click event handler." alt="" coords="272,146,592,173">
 <area shape="rect" href="$classC4DView.html#8f09d1be7f8e3a1d8e3059cf88c5d70a" title="C4DView::Animated" alt="" coords="649,20,785,46">
 <area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1743,273,1935,300">
-<area shape="rect" href="$classC4DView.html#94ebd881a91d0b608f4b69598ff0714f" title="C4DView::R" alt="" coords="672,273,763,300">
-<area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Redraw handler." alt="" coords="656,222,779,249">
-<area shape="rect" href="$classC4DView.html#36180772cadbb1517885c1a366aca25c" title="C4DView::setm_rot" alt="" coords="653,324,781,350">
-<area shape="rect" href="$classC4DView.html#3c8461856c1f84ed95d6f4994c69ede3" title="C4DView::setm_trans" alt="" coords="648,374,787,401">
-<area shape="rect" href="$classC4DView.html#848ab529f41e858c486e63937f03034a" title="C4DView::setR" alt="" coords="664,425,771,452">
-<area shape="rect" href="$classC4DView.html#0298fb79b894d5f9fe0c2918718fab7c" title="C4DView::setT" alt="" coords="665,476,769,502">
+<area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Redraw handler." alt="" coords="656,248,779,274">
 <area shape="rect" href="$classC4DView.html#45b036ac24d2404ad7bd69139a49b2d8" title="you guessed it" alt="" coords="872,70,1035,97">
-<area shape="rect" href="$classC4DView.html#5cbbef88488967558c45e960a667d822" title="C4DView::T" alt="" coords="672,526,763,553">
-<area shape="rect" href="$classC4DView.html#8a51cc06ede29308384576f277a67e19" title="Application of translations and rotations." alt="" coords="648,577,787,604">
+<area shape="rect" href="$classC4DView.html#8a51cc06ede29308384576f277a67e19" title="Application of translations and rotations." alt="" coords="648,298,787,325">
 <area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="641,172,793,198">
 <area shape="rect" href="$classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Should be called whenever the object is rotated or translated." alt="" coords="891,273,1016,300">
 <area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="1320,324,1461,350">
