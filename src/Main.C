@@ -10,7 +10,9 @@
  *  \section intro Introduction
  *  Hyperspace Explorer is a program that lets you visualize four-dimensional
  *  objects and mathematical functions.
- *  \section tbc Documentation to be continued...                                 */
+ *  \section tbc Documentation to be continued...
+ *  More on this later...
+ */
 
 #include <vector>
 #include <iomanip>

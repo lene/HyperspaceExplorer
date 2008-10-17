@@ -109,4 +109,3 @@ vector.path = $${INSTALLDIR}/share/HyperspaceExplorer/plugins
 doc.files = doc
 doc.path =  $${INSTALLDIR}/share/HyperspaceExplorer
 INSTALLS += target vector doc
-
