@@ -1,0 +1,8 @@
+# generate distribution package
+
+# upload distriution and publish it on SF
+
+# generate and upload documentation
+* doxygen
+* cd devel/html/html
+* rsync -r --exclude=.svn ./ metaldog,hyperspace-expl@web.sourceforge.net:htdocs
