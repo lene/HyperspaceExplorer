@@ -29,6 +29,10 @@
     </blockquote>
     <p><a href="#Parameter_Window">The Parameter Window</a></p>
     <p><a href="#Scripting">Scripting</a></p>
+    <blockquote>
+      <p><a href="#ScriptingCommands">Scripting Commands</a></p>
+      <p><a href="#ExampleScript">Example Script</a></p>
+    </blockquote>
 
     <hr style="width: 100%; height: 2px;">
 
@@ -52,14 +56,14 @@ just a colorful cube on the screen. The purpose of this document is to
 enable you to see what the four dimensional structure of this cube is,
 and to explore many other four dimensional objects. </p>
 
-      <div align="center"> 
+      <div align="center">
         <img src="Hypercube.png" title="Hyperspace Explorer's start window" alt="Hyperspace Explorer's start window" style="width: 290px; height: 300px;" />
         <p>The start window of Hyperspace Explorer</p>
       </div>
     </div>
-    
+
     <hr width="100%" size="2">
-    
+
     <a name="Object_Manipulation" /><h2>Object translation/rotation with the mouse and modifier keys</h2>
     <div align="justify">
       <p>You manipulate the displayed object pressing a mouse button, optionally
@@ -363,7 +367,7 @@ The coordinate cross<br />
       title="The dialog to adjust animation settings"
       alt="The dialog to adjust animation settings" />
     <br />
-    
+
     <h4><a name="Benchmark"></a>Benchmark</h4>
 Okay, this menu point <span style="font-style: italic;">is</span>
 somewhat of a misnomer. What it does is rotating the current object in
@@ -426,9 +430,28 @@ parameters for.<br />
 <br />
 <hr style="width: 100%; height: 2px;">
 <h2><a name="Scripting"></a>Scripting</h2>
-You can supply a script of actions to HyperspaceExplorer by calling it from the 
-command line with <tt>HyperspaceExplorer --script <script_file></tt>.<br />
+<p>You can supply a script of actions to HyperspaceExplorer by calling it from the
+command line with <tt>HyperspaceExplorer --script <script_file></tt>.</p>
+<p>A script is read and executed line after line. Statements define values for
+displayed functions, the functions' parameters, Transformations and view states.</p>
+<p>The scripting language has no control structures. A script is only able to define
+a sequence of events, which are displayed.</p>
+<p>Comments in the script are started with the letter <tt>#</tt>. Everything following a <tt>#</tt> is ignored till the end of the line.
+  <ul>
+    <li>Corollary 1: You can mix statements and comments on the same line.</li>
+    <li>Corollary 2: There is no native support for multi-line comments.</li>
+  </ul>
+</p>
+
+<h3><a name="ScriptingCommands"></a>Scripting Commands</h3>
 <table cellpadding="2" cellspacing="1" border="0" width="100%">
+  <thead>
+    <tr>
+      <th>Statement</th>
+      <th>Parameter(s)</th>
+      <th>Description</th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
       <td valign="top"><tt>set_size</tt></td>
@@ -442,43 +465,43 @@ command line with <tt>HyperspaceExplorer --script <script_file></tt>.<br />
     </tr>
     <tr>
       <td valign="top"><tt>parameter double</tt></td>
-      <td valign="top"><tt>parm (double)</tt></td>
-      <td valign="top"></td>
+      <td valign="top"><tt>parameter_name (string) parameter_value (double)</tt></td>
+      <td valign="top">sets parameter <tt>parameter_name</tt> (of type double) to the previously defined object</td>
     </tr>
     <tr>
       <td valign="top"><tt>parameter int</tt></td>
-      <td valign="top"><tt>parm (int)</tt></td>
-      <td valign="top"></td>
+      <td valign="top"><tt>parameter_name (string) parameter_value (int)</tt></td>
+      <td valign="top">sets integer parameter <tt>parameter_name</tt> to the previously defined object</td>
     </tr>
     <tr>
       <td valign="top"><tt>parameter unsigned</tt></td>
-      <td valign="top"><tt>parm (unsigned)</tt></td>
-      <td valign="top"></td>
+      <td valign="top"><tt>parameter_name (string) parameter_value (unsigned)</tt></td>
+      <td valign="top">sets unsigned integer parameter <tt>parameter_name</tt> to the previously defined object</td>
     </tr>
     <tr>
       <td valign="top"><tt>parameter string</tt></td>
-      <td valign="top"><tt>parm (string)</tt></td>
-      <td valign="top"></td>
+      <td valign="top"><tt>parameter_name (string) parameter_value (string)</tt></td>
+      <td valign="top">sets string parameter <tt>parameter_name</tt> to the previously defined object</td>
     </tr>
     <tr>
       <td valign="top"><tt>transform</tt></td>
-      <td valign="top"><tt>R (rotation&lt;4>)</tt></td>
-      <td valign="top"></td>
+      <td valign="top"><tt>R (rotation&lt;4&gt;)</tt></td>
+      <td valign="top">sets the current transformation of the object; currently, only rotations in four-space are implemented</td>
     </tr>
     <tr>
       <td valign="top"><tt>rotation</tt></td>
-      <td valign="top"><tt> ()</tt></td>
+      <td valign="top"><tt></tt></td>
       <td valign="top">Not yet implemented</td>
     </tr>
     <tr>
       <td valign="top"><tt>parameter_step</tt></td>
-      <td valign="top"><tt> ()</tt></td>
-      <td valign="top"></td>
+      <td valign="top"><tt></tt></td>
+      <td valign="top">Not yet implemented</td>
     </tr>
     <tr>
       <td valign="top"><tt>transform_step</tt></td>
-      <td valign="top"><tt>dR (rotation&lt;4>)</tt></td>
-      <td valign="top"></td>
+      <td valign="top"><tt>dR (rotation&lt;4&gt;)</tt></td>
+      <td valign="top">sets the transformation to undergo for each new frame that is calculated; currently, only rotations in four-space are implemented</td>
     </tr>
     <tr>
       <td valign="top"><tt>rotation_step</tt></td>
@@ -488,75 +511,108 @@ command line with <tt>HyperspaceExplorer --script <script_file></tt>.<br />
     <tr>
       <td valign="top"><tt>frames</tt></td>
       <td valign="top"><tt>num_frames (unsigned)</tt></td>
-      <td valign="top"></td>
+      <td valign="top">Number of frames to calculate</td>
     </tr>
     <tr>
       <td valign="top"><tt>loop</tt></td>
       <td valign="top"><tt>num_loops (unsigned)</tt></td>
-      <td valign="top"></td>
+      <td valign="top">Number of times the <tt>num_frames</tt> frames are looped</td>
     </tr>
     <tr>
       <td valign="top"><tt>start_animation</tt></td>
       <td valign="top"><tt>----</tt></td>
-      <td valign="top"></td>
+      <td valign="top">Starts the animation with the values defined before the current point in the script</td>
     </tr>
     <tr>
       <td valign="top"><tt>colors</tt></td>
       <td valign="top"><tt> (bool)</tt></td>
-      <td valign="top"></td>
+      <td valign="top">Turns display of colors on or off</td>
     </tr>
     <tr>
       <td valign="top"><tt>shading</tt></td>
       <td valign="top"><tt> (bool)</tt></td>
-      <td valign="top"></td>
+      <td valign="top">Turns Gouraud shading on or off</td>
     </tr>
     <tr>
       <td valign="top"><tt>lighting</tt></td>
       <td valign="top"><tt> (bool)</tt></td>
-      <td valign="top"></td>
+      <td valign="top">Turns calculation of lights on or off</td>
     </tr>
     <tr>
       <td valign="top"><tt>transparence</tt></td>
       <td valign="top"><tt> (bool)</tt></td>
-      <td valign="top"></td>
+      <td valign="top">Turns transparence (in solid mode) or line antialiasing (in wireframe mode) on or off</td>
     </tr>
     <tr>
       <td valign="top"><tt>wireframe</tt></td>
       <td valign="top"><tt> (bool)</tt></td>
-      <td valign="top"></td>
+      <td valign="top">Sets wireframe mode (if set to "on") or solid mode ("off")</td>
     </tr>
     <tr>
       <td valign="top"><tt>depthcue3d</tt></td>
       <td valign="top"><tt> (bool)</tt></td>
-      <td valign="top"></td>
+      <td valign="top">Turns fog (depth cue) on or off</td>
     </tr>
     <tr>
       <td valign="top"><tt>depthcue4d</tt></td>
       <td valign="top"><tt> (bool)</tt></td>
-      <td valign="top"></td>
+      <td valign="top">Turns four-dimensional depth cue on or off</td>
     </tr>
     <tr>
       <td valign="top"><tt>coordinates</tt></td>
       <td valign="top"><tt> (bool)</tt></td>
-      <td valign="top"></td>
+      <td valign="top">Turns display of the coordinate cross on or off</td>
     </tr>
     <tr>
       <td valign="top"><tt>image_dir</tt></td>
       <td valign="top"><tt> (string)</tt></td>
-      <td valign="top"></td>
+      <td valign="top">Sets the directory to which image files are written. Also turns on writing the rendered images to files</td>
     </tr>
     <tr>
       <td valign="top"><tt>image_prefix</tt></td>
       <td valign="top"><tt> (string)</tt></td>
-      <td valign="top"></td>
+      <td valign="top">Sets the file name prefix for the written image files. Also turns on writing the rendered images to files</td>
     </tr>
     <tr>
       <td valign="top"><tt>sleep</tt></td>
       <td valign="top"><tt>msecs (unsigned)</tt></td>
-      <td valign="top"></td>
+      <td valign="top">Pauses all activity for the specified number of milliseconds, when execution of the script comes to this statement</td>
     </tr>
   </tbody>
-</tr>
+</table>
+
+<h3><a name="ExampleScript"></a>Example Script</h3>
+<pre>
+set_size 800 800                # show everything in a 800x800 pixel window
+
+object Hypercube                # define a hypercube...
+parameter double Size 1         # ...of edge length 1
+
+# between two consecutive frames, rotate by two degrees each around the xw,
+# yw and zw axes
+transform_step <0,0,0,2,2,2>
+frames 180                      # compute 180 frames - a 360 degree rotation
+loop 1                          # do this exactly once
+
+transparence off                # make the hypercube intransparent
+wireframe off                   # show solid planes
+
+image_dir /tmp                  # write image files to /tmp
+image_prefix Sponge             # the filenames start with "Sponge"
+
+start_animation                 # now execute what was defined before
+
+object Sponge                   # define a four-dimensional Menger Sponge...
+parameter unsigned Level 1      # ... one iteration deep...
+parameter unsigned Distance 2   # ... cutting away cubes up to distance 2 from center
+start_animation                 # execute the animation with the values above
+# values once set, such as transform_step, stay the same until they are changed
+
+object Pyramid                  # display a hypersimplex
+parameter double Size 2         # of edge length 2
+start_animation                 # and animate it as above
+</pre>
+
 <hr style="width: 100%; height: 2px;">
 
 </body>

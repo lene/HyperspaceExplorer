@@ -23,7 +23,10 @@ class HelpWindow : public QMainWindow {
 
     private:
         QTextBrowser* browser;
-  };
+
+        static unsigned defaultWidth;
+        static unsigned defaultHeight;
+};
 
 
 #endif                                          //   HELP_H

@@ -20,6 +20,9 @@
 using std::cerr;
 using std::endl;
 
+unsigned HelpWindow::defaultWidth = 850;
+unsigned HelpWindow::defaultHeight = 720;
+
 /** construct and display a help browser window displaying the Help HTML file
  *  @param home_	name of help file
  *  @param _path	directory of help file
@@ -55,7 +58,7 @@ HelpWindow::HelpWindow( const QString& home_, const QString& _path,
     connect( browser, SIGNAL( highlighted( const QString&) ),
              statusBar(), SLOT( message( const QString&)) );
 
-    resize( 640,700 );
+    resize(defaultWidth, defaultHeight);
 
     browser->setFocus();
 
