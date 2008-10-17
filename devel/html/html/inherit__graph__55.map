@@ -1,5 +1,1 @@
-<area shape="rect" href="$classPluginCreator.html" title="Abstract base class for all Dialogs which allow entering a custom function." alt="" coords="197,107,293,133">
-<area shape="rect" href="$classComplexDialogImpl.html" title="A Dialog to enter a user&#45;defined complex function, ." alt="" coords="359,12,489,39">
-<area shape="rect" href="$classFunctionDialogImpl.html" title="A Dialog to enter a function from ." alt="" coords="359,88,489,115">
-<area shape="rect" href="$classPolarDialogImpl.html" title="PolarDialogImpl" alt="" coords="369,151,479,177">
-<area shape="rect" href="$classSurfaceDialogImpl.html" title="A Dialog to enter a function from ." alt="" coords="363,208,485,235">
+<area shape="rect" href="$classScript_1_1Parser.html" title="Parser reads a file and executes the commands in it in a C4DView." alt="" coords="5,5,99,32">

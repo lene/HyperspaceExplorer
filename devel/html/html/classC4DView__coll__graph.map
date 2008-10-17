@@ -1,1 +1,19 @@
-<area shape="rect" title="STL class." alt="" coords="428,150,535,230">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html" title="{C4DView::MouseHandler4D\n|&#45; parent\l&#45; m_LeftDownPos\l&#45; m_MidDownPos\l&#45; m_RightDownPos\l&#45; m_TakingSpinValues\l|+ MouseHandler4D()\l+ ~MouseHandler4D()\l+ mouseMoveEvent()\l+ mousePressEvent()\l+ mouseReleaseEvent()\l+ mouseDoubleClickEvent()\l&#45; setm_LeftDownPos()\l&#45; LeftDownPos()\l&#45; setm_MidDownPos()\l&#45; MidDownPos()\l&#45; setm_RightDownPos()\l&#45; RightDownPos()\l&#45; setTakingSpinValues()\l&#45; TakingSpinValues()\l}" alt="" coords="1553,5205,1732,5557">
+<area shape="rect" href="$classC4DView_1_1Menu4D.html" title="The menu for the C4DView." alt="" coords="1375,5213,1529,5549">
+<area shape="rect" href="$structC4DView_1_1Impl.html" title="Private class containing the member data for the Pimpl idiom." alt="" coords="876,5685,1031,6341">
+<area shape="rect" href="$classVecMath_1_1Rotation.html" title="{VecMath::Rotation\&lt; 4 \&gt;\n|&#45; axis\l|+ Rotation()\l+ Rotation()\l+ operator[]()\l+ operator[]()\l+ operator Matrix\&lt; D, double \&gt;()\l+ operator+=()\l+ operator bool()\l+ r()\l+ r()\l}" alt="" coords="621,5277,821,5485">
+<area shape="rect" href="$classVecMath_1_1Rotation.html" title="Rotation in D&#45;dimensional space defined by angles about the main axes." alt="" coords="680,3741,853,3949">
+<area shape="rect" href="$classVecMath_1_1Rotation.html" title="{VecMath::Rotation\&lt; 3, GLdouble \&gt;\n|&#45; axis\l|+ Rotation()\l+ Rotation()\l+ operator[]()\l+ operator[]()\l+ operator Matrix\&lt; D, GLdouble \&gt;()\l+ operator+=()\l+ operator bool()\l+ r()\l+ r()\l}" alt="" coords="845,5277,1061,5485">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="381,1733,523,2101">
+<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="448,3581,656,4109">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="124,685,287,1053">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 3, GLdouble \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="104,2205,307,2573">
+<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="723,1837,848,1997">
+<area shape="rect" href="$classValuesDialogImpl.html" title="{ValuesDialogImpl\n|&#45; parameters\l|+ ValuesDialogImpl()\l+ ~ValuesDialogImpl()\l+ setFunction()\l+ print()\l+ tmin()\l+ tmax()\l+ tsteps()\l+ dt()\l+ umin()\l+ umax()\l+ usteps()\l+ du()\l+ vmin()\l+ vmax()\l+ vsteps()\l+ dv()\l+ accept\l&#45; setParameters()\l}" alt="" coords="877,3669,1024,4021">
+<area shape="rect" title="STL class." alt="" coords="544,821,803,917">
+<area shape="rect" title="STL class." alt="" coords="1060,829,1167,909">
+<area shape="rect" title="STL class." alt="" coords="253,3805,371,3885">
+<area shape="rect" title="STL class." alt="" coords="331,829,405,909">
+<area shape="rect" title="STL class." alt="" coords="247,5,399,85">
+<area shape="rect" href="$classUi__ValuesDialog.html" title="Base class for ValuesDialog, originally created by uic (thus the ugliness)." alt="" coords="859,149,1005,1589">
+<area shape="rect" href="$classColor.html" title="A class to represent a color value by its RGBA components." alt="" coords="1169,5157,1351,5605">

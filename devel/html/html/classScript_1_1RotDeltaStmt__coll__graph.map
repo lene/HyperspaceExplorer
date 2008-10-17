@@ -1,0 +1,9 @@
+<area shape="rect" href="$classScript_1_1DeltaStmt.html" title="&quot;transform_step \\em{rotation}&quot;" alt="" coords="231,1592,345,1688">
+<area shape="rect" href="$classScript_1_1XformStmt.html" title="&quot;transform \\em{rotation}&quot;" alt="" coords="228,1429,348,1541">
+<area shape="rect" href="$classScript_1_1Statement.html" title="Base class for all possible statements in a script." alt="" coords="125,1189,237,1333">
+<area shape="rect" href="$classScript_1_1Parser.html" title="Parser reads a file and executes the commands in it in a C4DView." alt="" coords="147,909,240,1069">
+<area shape="rect" title="STL class." alt="" coords="44,149,119,229">
+<area shape="rect" title="STL class." alt="" coords="5,5,157,85">
+<area shape="rect" title="STL class." alt="" coords="148,149,255,229">
+<area shape="rect" href="$classVecMath_1_1Rotation.html" title="{VecMath::Rotation\&lt; 4 \&gt;\n|&#45; axis\l|+ Rotation()\l+ Rotation()\l+ operator[]()\l+ operator[]()\l+ operator Matrix\&lt; D, double \&gt;()\l+ operator+=()\l+ operator bool()\l+ r()\l+ r()\l}" alt="" coords="261,1157,461,1365">
+<area shape="rect" href="$classVecMath_1_1Rotation.html" title="Rotation in D&#45;dimensional space defined by angles about the main axes." alt="" coords="275,885,448,1093">

@@ -1,0 +1,22 @@
+<area shape="rect" href="$classScript_1_1AnimateStmt.html" title="&quot;animate&quot;" alt="" coords="333,229,464,325">
+<area shape="rect" href="$classScript_1_1BoolStatement.html" title="Statement with a single boolean parameter." alt="" coords="488,221,627,333">
+<area shape="rect" href="$classScript_1_1FramesStmt.html" title="&quot;frames \\em{num_frames}&quot;" alt="" coords="651,229,776,325">
+<area shape="rect" href="$classScript_1_1ImgDirStmt.html" title="&quot;image_dir \\em{directory}&quot;" alt="" coords="800,229,925,325">
+<area shape="rect" href="$classScript_1_1ImgPrefixStmt.html" title="&quot;image_prefix \\em{filename_prefix}&quot;" alt="" coords="949,229,1088,325">
+<area shape="rect" href="$classScript_1_1LoopStmt.html" title="&quot;loop \\em{num_loops}&quot;" alt="" coords="1112,229,1224,325">
+<area shape="rect" href="$classScript_1_1ObjectStmt.html" title="&quot;object \\em{object_name}&quot;" alt="" coords="1248,229,1368,325">
+<area shape="rect" href="$classScript_1_1ParmStmt.html" title="&quot;parameter \\em{double|int|unsigned|string} \\em{parameter}&quot;" alt="" coords="1392,197,1536,357">
+<area shape="rect" href="$classScript_1_1SizeStmt.html" title="&quot;size \\em{width} \\em{height} &quot;" alt="" coords="1560,221,1669,333">
+<area shape="rect" href="$classScript_1_1SleepStmt.html" title="&quot;sleep \\em{milliseconds}&quot;" alt="" coords="1693,229,1808,325">
+<area shape="rect" href="$classScript_1_1XformStmt.html" title="&quot;transform \\em{rotation}&quot;" alt="" coords="1832,221,1952,333">
+<area shape="rect" href="$classScript_1_1ColorStmt.html" title="&quot;color \\em{bool}&quot;" alt="" coords="5,405,120,501">
+<area shape="rect" href="$classScript_1_1CoordsStmt.html" title="&quot;coordinates \\em{bool}&quot;" alt="" coords="144,405,267,501">
+<area shape="rect" href="$classScript_1_1Fog4DStmt.html" title="&quot;depthcue4d \\em{bool}&quot;" alt="" coords="291,405,413,501">
+<area shape="rect" href="$classScript_1_1FogStmt.html" title="&quot;depthcue3d \\em{bool}&quot;" alt="" coords="437,405,544,501">
+<area shape="rect" href="$classScript_1_1LightStmt.html" title="&quot;lighting \\em{bool}&quot;" alt="" coords="568,405,683,501">
+<area shape="rect" href="$classScript_1_1ShadingStmt.html" title="&quot;shading \\em{bool}&quot;" alt="" coords="707,405,835,501">
+<area shape="rect" href="$classScript_1_1TransStmt.html" title="&quot;transparence \\em{bool}&quot;" alt="" coords="859,405,973,501">
+<area shape="rect" href="$classScript_1_1WireStmt.html" title="&quot;wireframe \\em{bool}&quot;" alt="" coords="997,405,1109,501">
+<area shape="rect" href="$classScript_1_1DeltaStmt.html" title="&quot;transform_step \\em{rotation}&quot;" alt="" coords="1768,405,1883,501">
+<area shape="rect" href="$classScript_1_1RotStmt.html" title="&quot;rotation \\em{rotation}&quot;" alt="" coords="1907,405,2011,501">
+<area shape="rect" href="$classScript_1_1RotDeltaStmt.html" title="&quot;rotation_step \\em{rotation}&quot;" alt="" coords="1759,549,1892,645">

@@ -1,8 +1,11 @@
-<area shape="rect" href="$classComplexFunction.html" title="{ComplexFunction\n|# g\l|+ ComplexFunction()\l+ ComplexFunction()\l+ ~ComplexFunction()\l+ SetParameters()\l+ function_type()\l# f()\l# Initialize()\l}" alt="" coords="56,2667,200,2843">
-<area shape="rect" href="$classSurface.html" title="{Surface\n|# normal\l# NumVertices\l# F\l# X\l# Xtrans\l# Xscr\l|+ Surface()\l+ Surface()\l+ Surface()\l+ ~Surface()\l+ Transform()\l+ Project()\l+ Draw()\l+ ReInit()\l+ Data()\l+ getDefinitionSpaceDimensions()\l# df()\l# Initialize()\l# InitMem()\l# MemRequired()\l# DrawStrip()\l}" alt="" coords="24,2232,232,2616">
-<area shape="rect" href="$classSurfaceBase.html" title="SurfaceBase provides a base class for functions which take two parameters" alt="" coords="137,1606,279,2182">
-<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="132,1014,340,1542">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="16,582,157,950">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,150,168,518">
-<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="181,686,307,846">
-<area shape="rect" title="STL class." alt="" coords="353,294,460,374">
+<area shape="rect" href="$classComplexFunction.html" title="{ComplexFunction\n|# g\l|+ ComplexFunction()\l+ ComplexFunction()\l+ ~ComplexFunction()\l+ SetParameters()\l+ function_type()\l# f()\l# Initialize()\l}" alt="" coords="137,2667,281,2843">
+<area shape="rect" href="$classSurface.html" title="{Surface\n|# normal\l# NumVertices\l# F\l# X\l# Xtrans\l# Xscr\l|+ Surface()\l+ Surface()\l+ Surface()\l+ ~Surface()\l+ Transform()\l+ Project()\l+ Draw()\l+ ReInit()\l+ Data()\l+ getDefinitionSpaceDimensions()\l# df()\l# Initialize()\l# InitMem()\l# MemRequired()\l# DrawStrip()\l}" alt="" coords="105,2232,313,2616">
+<area shape="rect" href="$classSurfaceBase.html" title="SurfaceBase provides a base class for functions which take two parameters" alt="" coords="217,1605,359,2181">
+<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="211,1013,419,1541">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="93,581,235,949">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,149,168,517">
+<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="259,685,384,845">
+<area shape="rect" title="STL class." alt="" coords="192,285,451,381">
+<area shape="rect" title="STL class." alt="" coords="475,293,581,373">
+<area shape="rect" title="STL class." alt="" coords="605,293,680,373">
+<area shape="rect" title="STL class." alt="" coords="567,5,719,85">

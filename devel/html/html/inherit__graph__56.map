@@ -1,2 +1,23 @@
-<area shape="rect" href="$classSurfaceFactory.html" title="Abstract base class for a factory creating Surface&#39;s." alt="" coords="7,5,108,32">
-<area shape="rect" href="$classC4DView_1_1TemplatedSurfaceFactory.html" title="Class template implementation for a factory creating Surface&#39;s." alt="" coords="157,5,445,32">
+<area shape="rect" href="$classScript_1_1Statement.html" title="Base class for all possible statements in a script." alt="" coords="7,385,119,412">
+<area shape="rect" href="$classScript_1_1AnimateStmt.html" title="&quot;animate&quot;" alt="" coords="175,132,305,159">
+<area shape="rect" href="$classScript_1_1BoolStatement.html" title="Statement with a single boolean parameter." alt="" coords="171,183,309,209">
+<area shape="rect" href="$classScript_1_1FramesStmt.html" title="&quot;frames \\em{num_frames}&quot;" alt="" coords="177,233,303,260">
+<area shape="rect" href="$classScript_1_1ImgDirStmt.html" title="&quot;image_dir \\em{directory}&quot;" alt="" coords="177,284,303,311">
+<area shape="rect" href="$classScript_1_1ImgPrefixStmt.html" title="&quot;image_prefix \\em{filename_prefix}&quot;" alt="" coords="171,335,309,361">
+<area shape="rect" href="$classScript_1_1LoopStmt.html" title="&quot;loop \\em{num_loops}&quot;" alt="" coords="184,385,296,412">
+<area shape="rect" href="$classScript_1_1ObjectStmt.html" title="&quot;object \\em{object_name}&quot;" alt="" coords="180,436,300,463">
+<area shape="rect" href="$classScript_1_1ParmStmt.html" title="&quot;parameter \\em{double|int|unsigned|string} \\em{parameter}&quot;" alt="" coords="168,487,312,513">
+<area shape="rect" href="$classScript_1_1SizeStmt.html" title="&quot;size \\em{width} \\em{height} &quot;" alt="" coords="185,537,295,564">
+<area shape="rect" href="$classScript_1_1SleepStmt.html" title="&quot;sleep \\em{milliseconds}&quot;" alt="" coords="183,588,297,615">
+<area shape="rect" href="$classScript_1_1XformStmt.html" title="&quot;transform \\em{rotation}&quot;" alt="" coords="180,639,300,665">
+<area shape="rect" href="$classScript_1_1ColorStmt.html" title="&quot;color \\em{bool}&quot;" alt="" coords="368,5,483,32">
+<area shape="rect" href="$classScript_1_1CoordsStmt.html" title="&quot;coordinates \\em{bool}&quot;" alt="" coords="364,56,487,83">
+<area shape="rect" href="$classScript_1_1Fog4DStmt.html" title="&quot;depthcue4d \\em{bool}&quot;" alt="" coords="364,107,487,133">
+<area shape="rect" href="$classScript_1_1FogStmt.html" title="&quot;depthcue3d \\em{bool}&quot;" alt="" coords="372,157,479,184">
+<area shape="rect" href="$classScript_1_1LightStmt.html" title="&quot;lighting \\em{bool}&quot;" alt="" coords="368,208,483,235">
+<area shape="rect" href="$classScript_1_1ShadingStmt.html" title="&quot;shading \\em{bool}&quot;" alt="" coords="361,259,489,285">
+<area shape="rect" href="$classScript_1_1TransStmt.html" title="&quot;transparence \\em{bool}&quot;" alt="" coords="368,309,483,336">
+<area shape="rect" href="$classScript_1_1WireStmt.html" title="&quot;wireframe \\em{bool}&quot;" alt="" coords="369,360,481,387">
+<area shape="rect" href="$classScript_1_1DeltaStmt.html" title="&quot;transform_step \\em{rotation}&quot;" alt="" coords="368,613,483,640">
+<area shape="rect" href="$classScript_1_1RotStmt.html" title="&quot;rotation \\em{rotation}&quot;" alt="" coords="373,664,477,691">
+<area shape="rect" href="$classScript_1_1RotDeltaStmt.html" title="&quot;rotation_step \\em{rotation}&quot;" alt="" coords="539,613,672,640">
