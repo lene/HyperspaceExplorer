@@ -3,6 +3,7 @@
 # upload distriution and publish it on SF
 
 # generate and upload documentation
+* edit version number in Doxyfile
 * doxygen
 * cd devel/html/html
 * rsync -r --exclude=.svn ./ metaldog,hyperspace-expl@web.sourceforge.net:htdocs

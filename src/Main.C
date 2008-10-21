@@ -10,8 +10,22 @@
  *  \section intro Introduction
  *  Hyperspace Explorer is a program that lets you visualize four-dimensional
  *  objects and mathematical functions.
- *  \section tbc Documentation to be continued...
- *  More on this later...
+ *
+ *  Just as you can define objects in three-dimensional space, you can define
+ *  objects with four dimensions. And just as three-dimensional objects can be
+ *  projected onto a plane, four-dimensional objects can be projected into
+ *  three-space.
+ *
+ *  This program uses this approach to acquaint you with a couple of
+ *  four-dimensional objects. Four-dimensional objects are projected to three
+ *  dimensions, and then displayed on the computer monitor (after a further
+ *  projection to two dimensions).
+ *
+ *  Every object thus has a is viewed from a viewpoint in four dimensions, as
+ *  well as a viewpoint in three dimensions. That leaves freedom for plenty of
+ *  viewing transformations. You can translate and rotate what is displayed in
+ *  three and four dimensions, to get a better feeling for the objects and for
+ *  four-space manipulations.
  */
 
 #include <vector>
