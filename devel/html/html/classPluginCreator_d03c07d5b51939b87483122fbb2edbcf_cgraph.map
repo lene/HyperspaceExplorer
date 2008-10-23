@@ -1,2 +1,3 @@
-<area shape="rect" href="$classPluginCreator.html#72d965933b305fe25e9e27b9ab88fbb6" title="Loads the dynamic library given by libName, if it exists and can be loaded." alt="" coords="231,5,417,32">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="228,56,420,83">
+<area shape="rect" href="$classPluginCreator.html#72d965933b305fe25e9e27b9ab88fbb6" title="Loads the dynamic library given by libName, if it exists and can be loaded." alt="" coords="243,5,445,32">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="241,56,447,83">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="496,56,736,83">

@@ -1,6 +1,7 @@
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="463,81,655,108">
-<area shape="rect" href="$classValuesDialogImpl.html#51d28c2eca2e1e35f5aaaab4cceca1be" title="Adjust the display according to the Function whose Parameters are controlled." alt="" coords="211,5,400,32">
-<area shape="rect" href="$classC4DView.html#16d5190870a166c65a20c59368ca0f2f" title="Overloaded function executing the transform to the default state." alt="" coords="236,106,375,133">
-<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="229,157,381,184">
-<area shape="rect" href="$classValuesDialogImpl.html#9c8ed70c102c1a781f00888c0e3c0f5b" title="Adjust the displayed parameter fields to the parameters the function needs." alt="" coords="459,5,659,32">
-<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="448,157,669,184">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="484,81,689,108">
+<area shape="rect" href="$classValuesDialogImpl.html#51d28c2eca2e1e35f5aaaab4cceca1be" title="Adjust the display according to the Function whose Parameters are controlled." alt="" coords="219,5,421,32">
+<area shape="rect" href="$classC4DView.html#16d5190870a166c65a20c59368ca0f2f" title="Overloaded function executing the transform to the default state." alt="" coords="247,107,393,133">
+<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="237,157,403,184">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="752,81,992,108">
+<area shape="rect" href="$classValuesDialogImpl.html#9c8ed70c102c1a781f00888c0e3c0f5b" title="Adjust the displayed parameter fields to the parameters the function needs." alt="" coords="477,5,696,32">
+<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="471,157,703,184">

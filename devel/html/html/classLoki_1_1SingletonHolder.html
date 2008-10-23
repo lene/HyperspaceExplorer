@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>HyperspaceExplorer: Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt; Class Template Reference</title>
+<title>HyperspaceExplorer: Loki::SingletonHolder&lt; T, CreationPolicy &gt; Class Template Reference</title>
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 <link href="tabs.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -34,29 +34,25 @@
       <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="namespaceLoki.html">Loki</a>::<a class="el" href="classLoki_1_1SingletonHolder.html">SingletonHolder</a>
+  <div class="navpath"><b>Loki</b>::<a class="el" href="classLoki_1_1SingletonHolder.html">SingletonHolder</a>
   </div>
 </div>
 <div class="contents">
-<h1>Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt; Class Template Reference<br>
+<h1>Loki::SingletonHolder&lt; T, CreationPolicy &gt; Class Template Reference<br>
 <small>
 [<a class="el" href="group__SingletonGroup.html">Singleton</a>]</small>
 </h1><!-- doxytag: class="Loki::SingletonHolder" -->Provides <a class="el" href="classLoki_1_1Singleton.html" title="Convenience template to implement a getter function for a singleton object. Often...">Singleton</a> amenities for a type T To protect that type from spurious instantiations, you have to protect it yourself.  
 <a href="#_details">More...</a>
 <p>
-<code>#include &lt;<a class="el" href="Singleton_8h-source.html">Singleton.h</a>&gt;</code>
+<code>#include &lt;<a class="el" href="SingletonHolder_8H-source.html">SingletonHolder.H</a>&gt;</code>
 <p>
 
 <p>
 <a href="classLoki_1_1SingletonHolder-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="90400cb32897f9942958bece12165136"></a><!-- doxytag: member="Loki::SingletonHolder::ObjectType" ref="90400cb32897f9942958bece12165136" args="" -->
-typedef T&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1SingletonHolder.html#90400cb32897f9942958bece12165136">ObjectType</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Type of the singleton object. <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="90400cb32897f9942958bece12165136"></a><!-- doxytag: member="Loki::SingletonHolder::ObjectType" ref="90400cb32897f9942958bece12165136" args="" -->
-typedef T&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1SingletonHolder.html#90400cb32897f9942958bece12165136">ObjectType</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2e995720b0baebf24b7cd5501099d80c"></a><!-- doxytag: member="Loki::SingletonHolder::ObjectType" ref="2e995720b0baebf24b7cd5501099d80c" args="" -->
+typedef T&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1SingletonHolder.html#2e995720b0baebf24b7cd5501099d80c">ObjectType</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Type of the singleton object. <br></td></tr>
 <tr><td colspan="2"><br><h2>Static Public Member Functions</h2></td></tr>
@@ -64,38 +60,23 @@ typedef T&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 static T &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28">Instance</a> ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a reference to singleton object. <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="eef8c30eaf5336c25bf0c6ff7b64b68e"></a><!-- doxytag: member="Loki::SingletonHolder::Instance" ref="eef8c30eaf5336c25bf0c6ff7b64b68e" args="()" -->
-static T &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1SingletonHolder.html#eef8c30eaf5336c25bf0c6ff7b64b68e">Instance</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a reference to singleton object. <br></td></tr>
 <tr><td colspan="2"><br><h2>Private Types</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bdc75f6c6bd8e68d4e8f90db5aaafc4b"></a><!-- doxytag: member="Loki::SingletonHolder::PtrInstanceType" ref="bdc75f6c6bd8e68d4e8f90db5aaafc4b" args="" -->
-typedef ThreadingModel&lt; T <br>
-*, MutexPolicy &gt;::VolatileType&nbsp;</td><td class="memItemRight" valign="bottom"><b>PtrInstanceType</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="338c3d48e13d1ca6ef0bc652b2e695f1"></a><!-- doxytag: member="Loki::SingletonHolder::PtrInstanceType" ref="338c3d48e13d1ca6ef0bc652b2e695f1" args="" -->
-typedef T *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1SingletonHolder.html#338c3d48e13d1ca6ef0bc652b2e695f1">PtrInstanceType</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="26a6ec9e3019fc2f8406c5b3c03f0791"></a><!-- doxytag: member="Loki::SingletonHolder::PtrInstanceType" ref="26a6ec9e3019fc2f8406c5b3c03f0791" args="" -->
+typedef T *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1SingletonHolder.html#26a6ec9e3019fc2f8406c5b3c03f0791">PtrInstanceType</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">pointer to singleton object <br></td></tr>
 <tr><td colspan="2"><br><h2>Static Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d944c37d85028f4046d4e1f78f133710"></a><!-- doxytag: member="Loki::SingletonHolder::MakeInstance" ref="d944c37d85028f4046d4e1f78f133710" args="()" -->
-static void&nbsp;</td><td class="memItemRight" valign="bottom"><b>MakeInstance</b> ()</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="fa306d4e67df281b85b0c932cf5186c6"></a><!-- doxytag: member="Loki::SingletonHolder::DestroySingleton" ref="fa306d4e67df281b85b0c932cf5186c6" args="()" -->
-static void <br>
-LOKI_C_CALLING_CONVENTION_QUALIFIER&nbsp;</td><td class="memItemRight" valign="bottom"><b>DestroySingleton</b> ()</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6770e9272efc0a341def45b37bee5d41"></a><!-- doxytag: member="Loki::SingletonHolder::MakeInstance" ref="6770e9272efc0a341def45b37bee5d41" args="()" -->
-static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1SingletonHolder.html#6770e9272efc0a341def45b37bee5d41">MakeInstance</a> ()</td></tr>
+static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710">MakeInstance</a> ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">create singleton object <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="37255d34c4d081d9b0468f42c09f0d83"></a><!-- doxytag: member="Loki::SingletonHolder::DestroySingleton" ref="37255d34c4d081d9b0468f42c09f0d83" args="()" -->
-static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1SingletonHolder.html#37255d34c4d081d9b0468f42c09f0d83">DestroySingleton</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="fa306d4e67df281b85b0c932cf5186c6"></a><!-- doxytag: member="Loki::SingletonHolder::DestroySingleton" ref="fa306d4e67df281b85b0c932cf5186c6" args="()" -->
+static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1SingletonHolder.html#fa306d4e67df281b85b0c932cf5186c6">DestroySingleton</a> ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">destroy singleton object <br></td></tr>
 <tr><td colspan="2"><br><h2>Static Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3aaa564fefd318e66188c5f5c61f3fa0"></a><!-- doxytag: member="Loki::SingletonHolder::pInstance_" ref="3aaa564fefd318e66188c5f5c61f3fa0" args="" -->
-static PtrInstanceType&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1SingletonHolder.html#3aaa564fefd318e66188c5f5c61f3fa0">pInstance_</a> = 0</td></tr>
+static <a class="el" href="classLoki_1_1SingletonHolder.html#26a6ec9e3019fc2f8406c5b3c03f0791">PtrInstanceType</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1SingletonHolder.html#3aaa564fefd318e66188c5f5c61f3fa0">pInstance_</a> = 0</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">pointer to singleton object <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="feb17951ea9358a3f6dbbf3a9ad32d0a"></a><!-- doxytag: member="Loki::SingletonHolder::destroyed_" ref="feb17951ea9358a3f6dbbf3a9ad32d0a" args="" -->
@@ -104,26 +85,22 @@ static bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">is singleton object destroyed? <br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename T, template&lt; class &gt; class CreationPolicy = CreateUsingNew, template&lt; class &gt; class LifetimePolicy = DefaultLifetime, template&lt; class, class &gt; class ThreadingModel = LOKI_DEFAULT_THREADING_NO_OBJ_LEVEL, class MutexPolicy = LOKI_DEFAULT_MUTEX&gt;<br>
- class Loki::SingletonHolder&lt; T, CreationPolicy, LifetimePolicy, ThreadingModel, MutexPolicy &gt;</h3>
+<h3>template&lt;typename T, template&lt; class &gt; class CreationPolicy = CreateUsingNew&gt;<br>
+ class Loki::SingletonHolder&lt; T, CreationPolicy &gt;</h3>
 
 Provides <a class="el" href="classLoki_1_1Singleton.html" title="Convenience template to implement a getter function for a singleton object. Often...">Singleton</a> amenities for a type T To protect that type from spurious instantiations, you have to protect it yourself. 
 <p>
-Provides <a class="el" href="classLoki_1_1Singleton.html" title="Convenience template to implement a getter function for a singleton object. Often...">Singleton</a> amenities for a type T To protect that type from spurious instantiations, you have to protect it yourself.<p>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>CreationPolicy</em>&nbsp;</td><td>Creation policy, default: <a class="el" href="structLoki_1_1CreateUsingNew.html" title="Implementation of the CreationPolicy used by SingletonHolder Creates objects using...">CreateUsingNew</a> </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>LifetimePolicy</em>&nbsp;</td><td>Lifetime policy, default: <a class="el" href="structLoki_1_1DefaultLifetime.html" title="Implementation of the LifetimePolicy used by SingletonHolder Schedules an object&#39;s...">DefaultLifetime</a>, </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>ThreadingModel</em>&nbsp;</td><td>Threading policy, default: LOKI_DEFAULT_THREADING_NO_OBJ_LEVEL /////////////////////////////////////////////////////////////////////////////</td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>CreationPolicy</em>&nbsp;</td><td>Creation policy, default: <a class="el" href="structLoki_1_1CreateUsingNew.html" title="Implementation of the CreationPolicy used by SingletonHolder Creates objects using...">CreateUsingNew</a> </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>LifetimePolicy</em>&nbsp;</td><td>Lifetime policy, default: <a class="el" href="structLoki_1_1DefaultLifetime.html" title="Implementation of the LifetimePolicy used by SingletonHolder Schedules an object&#39;s...">DefaultLifetime</a>, </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>LifetimePolicy</em>&nbsp;</td><td>Lifetime policy, default: DefaultLifetime, </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>ThreadingModel</em>&nbsp;</td><td>Threading policy, default: LOKI_DEFAULT_THREADING_NO_OBJ_LEVEL ///////////////////////////////////////////////////////////////////////////// </td></tr>
   </table>
 </dl>
-<hr>The documentation for this class was generated from the following files:<ul>
-<li>HyperspaceExplorer/src/Loki/<a class="el" href="Singleton_8h-source.html">Singleton.h</a><li>HyperspaceExplorer/src/Loki/<a class="el" href="SingletonHolder_8H-source.html">SingletonHolder.H</a></ul>
+<hr>The documentation for this class was generated from the following file:<ul>
+<li>HyperspaceExplorer/src/Loki/<a class="el" href="SingletonHolder_8H-source.html">SingletonHolder.H</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Tue Oct 21 11:06:21 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Thu Oct 23 22:49:23 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

@@ -10,6 +10,7 @@
 
 //class UI::View;
 
+/// Interpreting and executing scripts
 namespace Script {
 
     std::string strip_ws(const std::string &s);

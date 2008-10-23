@@ -20,7 +20,7 @@ namespace Script {
 
     /// \defgroup StatementGroup Statements possible in a script
     /// \ingroup ScriptingGroup
-    
+
     /// Base class for all possible statements in a script
     /** This class represents the class AbstractExpression in the class diagram
      *  for the Interpreter pattern as implemented in the GOF book, p. 245
@@ -55,7 +55,7 @@ namespace Script {
             bool m_bool;
     };
 
-    /// "size \em{width} \em{height} "
+    /// "size <width> <height>"
     /** sets the width and height of the viewport
      *  \ingroup StatementGroup                 */
     class SizeStmt: public Statement {
@@ -67,7 +67,7 @@ namespace Script {
             unsigned height;
     };
 
-    /// "object \em{object_name}"
+    /// "object <object_name>"
     /** sets the object to be displayed to the supplied type
      *  \ingroup StatementGroup                                 */
     class ObjectStmt: public Statement {
@@ -77,7 +77,7 @@ namespace Script {
             virtual bool execute();
     };
 
-    /// "parameter \em{double|int|unsigned|string} \em{parameter}"
+    /// "parameter <double|int|unsigned|string> <parameter>"
     /** sets a parameter of the specified type to the object defined before
      *  \ingroup StatementGroup                                               */
     template <typename T = unsigned> class ParmStmt: public Statement {
@@ -86,7 +86,7 @@ namespace Script {
             virtual bool execute();
     };
 
-    /// "transform \em{rotation}"
+    /// "transform <rotation>"
     /** sets the transform of the current object
      *  \todo add support for translations and 3D rotation
      *  \ingroup StatementGroup                                               */
@@ -102,7 +102,7 @@ namespace Script {
             VecMath::Rotation<4> m_r;
     };
 
-    /// "rotation \em{rotation}"
+    /// "rotation <rotation>"
     /** not yet implemented
      *  \todo implement
      *  \ingroup StatementGroup                                               */
@@ -111,9 +111,9 @@ namespace Script {
             RotStmt(const Parser *p, const std::string &_arg): XformStmt(p, _arg) { }
             virtual bool execute();
     };
-    
-    /// "transform_step \em{rotation}"
-    /** sets the amount of rotation that takes place between two consecutive 
+
+    /// "transform_step <rotation>"
+    /** sets the amount of rotation that takes place between two consecutive
      *  frames
      *  \ingroup StatementGroup                                               */
     class DeltaStmt: public XformStmt {
@@ -122,7 +122,7 @@ namespace Script {
             virtual bool execute();
     };
 
-    /// "rotation_step \em{rotation}"
+    /// "rotation_step <rotation>"
     /** not yet implemented
      *  \todo implement
      *  \ingroup StatementGroup                                               */
@@ -132,7 +132,7 @@ namespace Script {
             virtual bool execute();
     };
 
-    /// "frames \em{num_frames}"
+    /// "frames <num_frames>"
     /** set the number of frames to display
      *  \ingroup StatementGroup                                               */
     class FramesStmt: public Statement {
@@ -143,8 +143,8 @@ namespace Script {
             unsigned frames;
     };
 
-    /// "loop \em{num_loops}"
-    /** set the number of loops, ie. repetitions of \em{num_frames} frames
+    /// "loop <num_loops>"
+    /** set the number of loops, ie. repetitions of \p num_frames frames
      *  \ingroup StatementGroup                                               */
     class LoopStmt: public Statement {
         public:
@@ -153,8 +153,8 @@ namespace Script {
         private:
             unsigned loops;
     };
-    
-    /// "color \em{bool}"
+
+    /// "color <bool>"
     /** coloring on/off
      *  \ingroup StatementGroup                                               */
     class ColorStmt: public BoolStatement {
@@ -162,8 +162,8 @@ namespace Script {
             ColorStmt(const Parser *p, const std::string &_arg): BoolStatement(p, _arg) { }
             virtual bool execute();
     };
-    
-    /// "shading \em{bool}"
+
+    /// "shading <bool>"
     /** shading on/off
      *  \ingroup StatementGroup                                               */
     class ShadingStmt: public BoolStatement {
@@ -172,7 +172,7 @@ namespace Script {
             virtual bool execute();
     };
 
-    /// "lighting \em{bool}"
+    /// "lighting <bool>"
     /** lighting on/off
      *  \ingroup StatementGroup                                               */
     class LightStmt: public BoolStatement {
@@ -180,8 +180,8 @@ namespace Script {
             LightStmt(const Parser *p, const std::string &_arg): BoolStatement(p, _arg) { }
             virtual bool execute();
     };
-    
-    /// "transparence \em{bool}"
+
+    /// "transparence <bool>"
     /** transparence on/off
      *  \ingroup StatementGroup                                               */
     class TransStmt: public BoolStatement {
@@ -189,8 +189,8 @@ namespace Script {
             TransStmt(const Parser *p, const std::string &_arg): BoolStatement(p, _arg) { }
             virtual bool execute();
     };
-    
-    /// "wireframe \em{bool}"
+
+    /// "wireframe <bool>"
     /** wireframe on/off
      *  \ingroup StatementGroup                                               */
     class WireStmt: public BoolStatement {
@@ -198,8 +198,8 @@ namespace Script {
             WireStmt(const Parser *p, const std::string &_arg): BoolStatement(p, _arg) { }
             virtual bool execute();
     };
-    
-    /// "depthcue3d \em{bool}"
+
+    /// "depthcue3d <bool>"
     /** depth cue on/off
      *  \ingroup StatementGroup                                               */
     class FogStmt: public BoolStatement {
@@ -208,7 +208,7 @@ namespace Script {
             virtual bool execute();
     };
 
-    /// "depthcue4d \em{bool}"
+    /// "depthcue4d <bool>"
     /** 4D depth cue on/off
      *  \ingroup StatementGroup                                               */
     class Fog4DStmt: public BoolStatement {
@@ -217,7 +217,7 @@ namespace Script {
             virtual bool execute();
     };
 
-    /// "coordinates \em{bool}"
+    /// "coordinates <bool>"
     /** coordinate cross on/off
      *  \ingroup StatementGroup                                               */
     class CoordsStmt: public BoolStatement {
@@ -235,7 +235,7 @@ namespace Script {
             virtual bool execute();
     };
 
-    /// "sleep \em{milliseconds}"
+    /// "sleep <milliseconds>"
     /** pause for the specified amount of time
      *  \ingroup StatementGroup                                               */
     class SleepStmt: public Statement {
@@ -246,7 +246,7 @@ namespace Script {
             unsigned msec;
     };
 
-    /// "image_dir \em{directory}"
+    /// "image_dir <directory>"
     /** where to store images from now on
      *  \ingroup StatementGroup                                               */
     class ImgDirStmt: public Statement {
@@ -255,7 +255,7 @@ namespace Script {
             virtual bool execute();
     };
 
-    /// "image_prefix \em{filename_prefix}"
+    /// "image_prefix <filename_prefix>"
     /** how to begin filenames for images
      *  \ingroup StatementGroup                                               */
     class ImgPrefixStmt: public Statement {

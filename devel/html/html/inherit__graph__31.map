@@ -1,1 +1,5 @@
-<area shape="rect" href="$structLoki_1_1FollowIntoDeath_1_1With_1_1AsMasterLifetime.html" title="Policy for master." alt="" coords="5,5,416,32">
+<area shape="rect" href="$classPluginCreator.html" title="Abstract base class for all Dialogs which allow entering a custom function." alt="" coords="5,81,109,108">
+<area shape="rect" href="$classComplexDialogImpl.html" title="A Dialog to enter a user&#45;defined complex function, ." alt="" coords="159,5,295,32">
+<area shape="rect" href="$classFunctionDialogImpl.html" title="A Dialog to enter a function from ." alt="" coords="159,56,295,83">
+<area shape="rect" href="$classPolarDialogImpl.html" title="PolarDialogImpl" alt="" coords="169,107,284,133">
+<area shape="rect" href="$classSurfaceDialogImpl.html" title="A Dialog to enter a function from ." alt="" coords="161,157,292,184">

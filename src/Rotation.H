@@ -29,6 +29,11 @@ namespace VecMath {
      *  Unfortunately the position of the angle in the Rotation vector does not
      *  map to the axis indicators \p ii and \p jj straightforwardly. This class
      *  provides the static method axis(), which computes them.
+     *
+     *  In fact, though, it works only in the three- and four-dimensional cases.
+     *  In these dimensions, I have manually specified the axes. For higher
+     *  dimensions, a NotYetImplementedException is thrown.
+     *  \todo Find a generic algorithm for \p D dimensions
      *  \param D dimension of the vector space
      *  \ingroup VecMath                                                      */
     template <unsigned D> class RotationAxes {
