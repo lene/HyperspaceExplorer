@@ -188,23 +188,23 @@ double2Dmap benchmarks_by_style (C4DView & view, const unsigned num_runs,
                                  const unsigned num_steps, const double step) {
     double2Dmap results_by_style;
 
-    view.Wireframe ();
+    view.setWireframe(true);
     results_by_style.insert (
         double2DmapPair (
             "Wireframe",
             run_benchmarks (view, num_runs, num_steps, step)));
-    view.HyperFog ();
+    view.setHyperfog(true);
     results_by_style.insert (
         double2DmapPair (
             "Wireframe + 4D Depth Cue",
             run_benchmarks (view, num_runs, num_steps, step)));
-    view.Wireframe ();
-    view.HyperFog ();
+    view.setWireframe(false);
+    view.setHyperfog(false);
     results_by_style.insert (
         double2DmapPair (
             "Solid",
             run_benchmarks (view, num_runs, num_steps, step)));
-    view.HyperFog ();
+    view.setHyperfog(true);
     results_by_style.insert (
         double2DmapPair (
             "Solid + 4D Depth Cue",

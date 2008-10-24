@@ -120,128 +120,120 @@ class C4DView : public QGLWidget, public UI::View {
 
         class Menu4D;
         class MouseHandler4D;
+        class MenuHandler;
 
     Q_OBJECT
 
     public slots:
-        //  menu items, must be public because called from Menu4D
-        void Wireframe();
-        void Coordinates();
-        void HyperFog();
-        void Light();
-        void Colors();
-        void Fog();
-        void Transparent();
-        void Shade();
-        void Benchmark();
-        void RenderToImages();
-
-        virtual void ObjectHypercube();
-        virtual void ObjectHyperpyramid();
-        virtual void ObjectHypersponge();
-        virtual void ObjectGasket();
-        void customFunction();
-        void customPolarFunction();
-        void customSurface();
-        void customComplexFunction();
 
     public:
         C4DView(QWidget * = 0);
         virtual ~C4DView();
 
-        /// @param wire if true, displays wireframe model; else solid
-        void setWireframe (bool wire) { setDisplayPolygons(!wire); }
-        /// @return whether to display the 4D coordinate cross or not
-        bool getDisplayCoordinates() const { return DisplayCoordinates(); }
-        /// @return whether to save the rendered images to an image file
-        bool getRenderToPixmap() const { return RenderToPixmap(); }
-        /// @return whether to draw the objects' surfaces or only the edges
-        bool getDisplayPolygons() const { return DisplayPolygons(); }
-        /// @return whether to use colors in rendering or not
-        bool &getColors() { return pImpl->colors; }
-        /// @return whether to use shading in rendering or not
-        bool &getShade() { return pImpl->shade; }
-        /// @return whether to use depth cue/fog in rendering or not
-        bool &getFog() { return pImpl->fog; }
-        /// @return whether to use lighting in rendering or not
-        bool &getLight() { return pImpl->light; }
-        /// @return whether to use transparence/line antialiasing or not
-        bool &getTransparent() { return pImpl->transparent; }
+        ////////        Implementations of the View interface        ////////
 
-        double Benchmark3D(int, double, double, double, bool = true);
-        double Benchmark4D(int, double, double, double, bool = true);
+        /// Implementation of UI::View::setFunction
+        virtual void setFunction(Function *_f) { setF(_f); }
 
+        virtual void ObjectHypercube();     ///< Implementation of UI::View::ObjectHypercube
+        virtual void ObjectHyperpyramid();  ///< Implementation of UI::View::ObjectHyperpyramid
+        virtual void ObjectHypersponge();   ///< Implementation of UI::View::ObjectHypersponge
+        virtual void ObjectGasket();        ///< Implementation of UI::View::ObjectGasket
+
+        /// Implementation of UI::View::applyTransform
         virtual void applyTransform(const VecMath::Rotation<4> &R,
-                                    const VecMath::Vector<4> &T) {
-            Transform(R, T);
-            Redraw();
-        }
+                                    const VecMath::Vector<4> &T);
 
-        virtual void animate() {
-            for (unsigned i = 0; i < getNumLoops(); i++) {
-                for (unsigned i = 0; i < getNumFrames(); i++) {
-                    addR(dR());
-                    std::cerr << R() << std::endl;
-                    Transform(R(), VecMath::Vector<4>());
-                    Project();
-                    Redraw();
-                }
-            }
-        }
+        /// Implementation of UI::View::setdR
+        virtual void setdR(const VecMath::Rotation<4> &_dr) { pImpl->dR = _dr; }
 
+        /// Implementation of UI::View::animate
+        virtual void animate();
+
+        /// Implementation of UI::View::setSize
+        virtual void setSize(unsigned w, unsigned h);
+
+        /// Implementation of UI::View::setImgDir
         virtual void setImgDir(const std::string &s) {
             setanimationDirectory(QString(s.c_str()));
             setRenderToPixmap(true);
         }
+
+        /// Implementation of UI::View::setImgPrefix
         virtual void setImgPrefix(const std::string &s) {
             setanimationPrefix(QString(s.c_str()));
             setRenderToPixmap(true);
         }
 
-        virtual void setSize(unsigned w, unsigned h);
-
-        virtual void setColors(bool);
-        virtual void setShading(bool);
-//        virtual void setLighting(bool);
-        virtual void setTransparence(bool);
-//        virtual void setWireframe(bool);
-        virtual void setFog(bool);
-        virtual void setHyperfog(bool);
-        virtual void setCoordinates(bool);
+        /// Implementation of UI::View::setBackground
         virtual void setBackground(const Color &);
-        
-        virtual void setFunction(Function *_f) { setF(_f); }
+        /// Implementation of UI::View::setColors
+        virtual void setColors(bool);
+        /// Implementation of UI::View::setCoordinates
+        virtual void setCoordinates(bool);
+        /// Implementation of UI::View::setFog
+        virtual void setFog(bool);
+        /// Implementation of UI::View::setHyperfog
+        virtual void setHyperfog(bool);
+        /// Implementation of UI::View::setLighting
+        virtual void setLighting(bool b) { pImpl->Lighting = b; }
+        /// Implementation of UI::View::setShading
+        virtual void setShading(bool);
+        /// Implementation of UI::View::setTransparence
+        virtual void setTransparence(bool);
+        /// Implementation of UI::View::setWireframe
+        virtual void setWireframe (bool wire) { setDisplayPolygons(!wire); }
+
+        ////////        getters for the setters defined in View         ////////
+
+        /// \return whether to display the 4D coordinate cross or not
+        bool getDisplayCoordinates() const { return DisplayCoordinates(); }
+        /// \return whether to save the rendered images to an image file
+        bool getRenderToPixmap() const { return RenderToPixmap(); }
+        /// \return whether to draw the objects' surfaces or only the edges
+        bool getDisplayPolygons() const { return DisplayPolygons(); }
+        /// \return whether to use colors in rendering or not
+        bool &getColors() { return pImpl->colors; }
+        /// \return whether to use shading in rendering or not
+        bool &getShade() { return pImpl->shade; }
+        /// \return whether to use depth cue/fog in rendering or not
+        bool &getFog() { return pImpl->fog; }
+        /// \return whether to use lighting in rendering or not
+        bool &getLight() { return pImpl->light; }
+        /// \return whether to use transparence/line antialiasing or not
+        bool &getTransparent() { return pImpl->transparent; }
+
+        /// rotate in 3D 360 degrees
+        double Benchmark3D(int, double, double, double, bool = true);
+        /// rotate in 4D 360 degrees
+        double Benchmark4D(int, double, double, double, bool = true);
 
     private slots:
-        void OnTimer();
-        void AnimationSettings();
+        /// Implementation of UI::View::ApplyChanges
         virtual void ApplyChanges(const ParameterMap &);
-        void Help();
-        void about ();
-        void aboutQt ();
+
+        /// Animation timer event handler
+        void OnAnimationTimer();
 
     private:
+        /// Set the transform for the displayed object (but don't draw it yet)
         void Transform(const VecMath::Rotation<4> &R, const VecMath::Vector<4> &T);
         /// Overloaded function executing the transform to the default state
-        /** Four-dimensional transform is set to no rotation, no translation.
-         *
-         *  Three-dimensional transform is 15 degrees about x and y axis, and
-         *  10 units distance from the camera.                                */
-        void Transform() {
-            setT(VecMath::Vector<4>());
-            setR(VecMath::Rotation<4>());
+        void Transform();
 
-            setm_rot(VecMath::Rotation<3, GLdouble>(15., 15., 0.));
-            setm_trans(VecMath::Vector<3, GLdouble>(0.,0.,-10.));
-
-            Transform (R(), T());   //  apply 4D transformation
-        }
+        /// Execute the projection into three-space (but don't draw it yet either)
         void Project();
 
+        /// Draw the projection into an OpenGL display list, but not yet on screen
         void PreRedraw();
+        /// Draw the transformed and projected function onto the screen
         void Redraw();
-        void RenderScene(unsigned Frame);
+
+        /// Paint event handler, called whenever the object is transformed
         void OnPaint();
+
+        /// Wrapper for displaying OpenGL display lists
+        void RenderScene();
 
         void InitCross();
         void SetupDepthCue(bool);
@@ -261,15 +253,22 @@ class C4DView : public QGLWidget, public UI::View {
 
         double Size();
 
-        // event handlers reimplemented from QWidget or QGLWidget
+        /// Mouse move event handler, reimplemented from QWidget
         virtual void mouseMoveEvent(QMouseEvent *);
+        /// Mouse press event handler, reimplemented from QWidget
         virtual void mousePressEvent(QMouseEvent *);
+        /// Mouse release event handler, reimplemented from QWidget
         virtual void mouseReleaseEvent( QMouseEvent *);
+        /// Double click event handler, reimplemented from QWidget
         virtual void mouseDoubleClickEvent( QMouseEvent *);
+        /// Paint event handler, reimplemented from QGLWidget
         virtual void paintEvent(QPaintEvent *);
+        /// Resizing routine, reimplemented from QGLWidget
         virtual void resizeEvent( QResizeEvent * );
+        /// Called once before the first call to paintGL() or resizeGL(), reimplemented from QGLWidget
         virtual void initializeGL(void);
-        void resizeGL (int, int);
+        /// GL stuff needed in addition to resizeEvent(). Reimplemented from QGLWidget
+        virtual void resizeGL (int, int);
 
         void setF(Function *_f) { pImpl->F.reset(_f); }
         const std::auto_ptr<Function> &F() const { return pImpl->F; }
@@ -286,7 +285,6 @@ class C4DView : public QGLWidget, public UI::View {
         const VecMath::Rotation<3> &dR3() { return pImpl->dR3; }
         void adddR3(const VecMath::Rotation<3> &_ddr) { pImpl->dR3 += _ddr; }
 
-        virtual void setdR(const VecMath::Rotation<4> &_dr) { pImpl->dR = _dr; }
         const VecMath::Rotation<4> &dR() { return pImpl->dR; }
         void adddR(const VecMath::Rotation<4> &_ddR) { pImpl->dR += _ddR; }
 
@@ -319,7 +317,6 @@ class C4DView : public QGLWidget, public UI::View {
         bool AntiAlias() const { return pImpl->AntiAlias; }
         void setDisplayPolygons(bool b) { pImpl->DisplayPolygons = b; }
         bool DisplayPolygons() const { return pImpl->DisplayPolygons; }
-        void setLighting(bool b) { pImpl->Lighting = b; }
         bool Lighting() const { return pImpl->Lighting; }
         void setDepthCue3D(bool b) { pImpl->DepthCue3D = b; }
         bool DepthCue3D() const { return pImpl->DepthCue3D; }
@@ -369,7 +366,10 @@ class C4DView : public QGLWidget, public UI::View {
         Menu4D *Menu() const { return pImpl->menu; }
         void setMouseHandler(MouseHandler4D *m) { pImpl->mouseHandler = m; }
         MouseHandler4D *MouseHandler() const { return pImpl->mouseHandler; }
+        void setMenuHandler(MenuHandler *mh) { pImpl->menuHandler = mh; }
+        MenuHandler *menuHandler() const { return pImpl->menuHandler; }
 
+    private:
         void SetupDepthCue (float, float);
         void InitLight (void);
         void InitShade (void);
@@ -484,6 +484,7 @@ class C4DView : public QGLWidget, public UI::View {
 
             Menu4D *menu;               ///< the popup menu and menu bar
             MouseHandler4D *mouseHandler; ///< handler to delegate mouse events to
+            MenuHandler *menuHandler;   ///< handler for menu events
         };
 
     std::auto_ptr<C4DView::Impl> pImpl;

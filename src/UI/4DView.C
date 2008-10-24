@@ -16,8 +16,7 @@
 #include "4DView.H"
 #include "Menu4D.H"
 #include "MouseHandler.H"
-#include "AnimationDialogImpl.H"
-#include "Help.H"
+#include "MenuHandler.H"
 
 #include "Globals.H"
 #include "Log.H"
@@ -73,13 +72,15 @@ C4DView::C4DView(QWidget *parent):
     InitCross();
 
     setAnimationTimer(new QTimer(this));
-    connect (AnimationTimer(), SIGNAL(timeout()), this, SLOT(OnTimer()));
+    connect (AnimationTimer(), SIGNAL(timeout()), this, SLOT(OnAnimationTimer()));
 
     setAnimateRandomTimer(new QTimer (this));
     //  connect (AnimateRandomTimer, SIGNAL(timeout()), this, SLOT(RandomAnimation()));
 
     connect (Values(), SIGNAL (ApplyChanges (const ParameterMap &)),
              this, SLOT (ApplyChanges (const ParameterMap &)));
+
+    setMenuHandler(new MenuHandler(this));
 
     setMenu(new Menu4D(this));
     Menu()->addToMenuBar(Globals::Instance().getMainWindow()->menuBar());
@@ -92,100 +93,76 @@ C4DView::C4DView(QWidget *parent):
 
     ObjectHypercube();
 
-    Light();
+    menuHandler()->Light();
 }
 
 /// C4DView destructor
 C4DView::~C4DView() { }
 
+////////        Implementations of the View interface        ////////
+
+void C4DView::ObjectHypercube() {
+    Menu()->updateFunctionMenu("Hypercube");
+
+    setF(new Hypercube ());
+
+    AssignValues(F());
+    Redraw ();
+}
+
+void C4DView::ObjectHyperpyramid() {
+    Menu()->updateFunctionMenu("Hyperpyramid");
+
+    setF(new Pyramid ());
+
+    AssignValues(F());
+    Redraw ();
+}
+
+void C4DView::ObjectHypersponge() {
+    Menu()->updateFunctionMenu("Menger Sponge");
+
+    setF(new Sponge ());
+
+    AssignValues(F());
+    Redraw ();
+}
+
+void C4DView::ObjectGasket() {
+    Menu()->updateFunctionMenu("Sierpinski Gasket");
+
+    setF(new Gasket ());
+
+    AssignValues(F());
+    Redraw ();
+}
+
+void C4DView::applyTransform(const VecMath::Rotation<4> &R,
+                             const VecMath::Vector<4> &T) {
+    Transform(R, T);
+    Redraw();
+}
+
+void C4DView::animate() {
+    for (unsigned i = 0; i < getNumLoops(); i++) {
+        for (unsigned i = 0; i < getNumFrames(); i++) {
+            addR(dR());
+            SingletonLog::Instance() << R() << "\n";
+            Transform(R(), VecMath::Vector<4>());
+            Project();
+            Redraw();
+        }
+    }
+}
+
 void C4DView::setSize(unsigned w, unsigned h) {
     Globals::Instance().getMainWindow()->resize(w, h);
 }
 
-/// Switch between wireframe and solid display
-/** Account for antialiasing only in wireframe mode
- *
- *  Change menu items accordingly
- *
- *  Menu callback function                                                    */
-void C4DView::Wireframe() {
-    if (DisplayPolygons()) {
-        Menu()->getAction("Wireframe")->setText("Solid");
-        Menu()->getAction("Transparence")->setText("Line Antialiasing");
-    } else {
-        Menu()->getAction("Wireframe")->setText("Wireframe");
-        Menu()->getAction("Transparence")->setText("Transparence");
-        glDisable (GL_CULL_FACE);
-    }
-    Menu()->getAction("Wireframe")->setChecked (DisplayPolygons());
-    setWireframe (DisplayPolygons());
-
-    OnPaint ();
+void C4DView::setBackground(const Color &col) {
+    glClearColor (col.r(), col.g(), col.b(), col.a());
+    if (glIsList (ObjectList())) OnPaint();
 }
-
-/// Switch coordinate cross on or off
-/** Change menu items accordingly
- *
- *  Menu callback function */
-void C4DView::Coordinates() { setCoordinates(!DisplayCoordinates()); }
-
-void C4DView::setCoordinates(bool coords) {
-    setDisplayCoordinates(coords);
-    Menu()->getAction("Coordinate Cross")->setChecked (DisplayCoordinates());
-
-    Redraw ();
-}
-
-/// Switch 4D depth cue on or off
-/** Change menu items accordingly
- *
- *  Menu callback function */
-void C4DView::HyperFog() { setHyperfog(!DepthCue4D()); }
-
-void C4DView::setHyperfog(bool fog) {
-    setDepthCue4D(fog);
-    Menu()->getAction("4D Depth Cue")->setChecked (DepthCue4D());
-
-    Redraw ();
-}
-
-/// Switch lighting on or off
-/** Change menu items accordingly
- *
- *  Menu callback function */
-void C4DView::Light() {
-    setLighting(!Lighting());
-    if (Lighting()) {
-        glEnable(GL_LIGHTING);                  //  turn on the light
-
-        static GLfloat LightAmbient[]  = { 0.3f, 0.3f, 0.3f, 1.0f }, //  HARDCODED VALUES
-                       LightDiffuse[]  = { 0.9f, 0.9f, 0.9f, 1.0f },
-                       LightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f },
-                       LightPosition[] = { 1.0f, 1.0f, 1.0f, 0.0f }; //  light properties
-
-        glLightfv (GL_LIGHT0, GL_AMBIENT, LightAmbient); // set the light properties
-        glLightfv (GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
-        glLightfv (GL_LIGHT0, GL_SPECULAR, LightSpecular);
-        glLightfv (GL_LIGHT0, GL_POSITION, LightPosition);
-        glEnable  (GL_LIGHT0);   // turn on the light
-    } else {
-        static GLfloat LightAmbient[]  = { 1.0f, 1.0f, 1.0f, 0.0f },
-                       LightPosition[] = { 1.0f, 1.0f, 1.0f, 0.0f }; //      light properties
-
-        glEnable  (GL_LIGHTING);
-        glLightfv (GL_LIGHT0, GL_AMBIENT, LightAmbient); // set the light properties
-        glLightfv (GL_LIGHT0, GL_DIFFUSE, LightAmbient);
-        glLightfv (GL_LIGHT0, GL_SPECULAR, LightAmbient);
-        glLightfv (GL_LIGHT0, GL_POSITION, LightPosition);
-        glEnable  (GL_LIGHT0);    //      turn on the light
-    }
-
-    OnPaint ();
-}
-
-/// toggle colors
-/** menu callback function */
-void C4DView::Colors () { setColors(!getColors()); }
 
 void C4DView::setColors(bool cols) {
     getColors() = cols;
@@ -194,9 +171,12 @@ void C4DView::setColors(bool cols) {
     repaint ();
 }
 
-/// Toggle fog/depth cue
-/** menu callback function */
-void C4DView::Fog () { setFog(!getFog()); }
+void C4DView::setCoordinates(bool coords) {
+    setDisplayCoordinates(coords);
+    Menu()->getAction("Coordinate Cross")->setChecked (DisplayCoordinates());
+
+    Redraw ();
+}
 
 void C4DView::setFog(bool fog) {
     getFog() = fog;
@@ -205,20 +185,12 @@ void C4DView::setFog(bool fog) {
     repaint ();
 }
 
-/// toggle object transparency
-/** menu callback function */
-void C4DView::Transparent () { setTransparence(!getTransparent()); }
+void C4DView::setHyperfog(bool fog) {
+    setDepthCue4D(fog);
+    Menu()->getAction("4D Depth Cue")->setChecked (DepthCue4D());
 
-void C4DView::setTransparence (bool trans) {
-    getTransparent() = trans;
-    Menu()->getAction("Transparence")->setChecked(trans);
-    InitTransparence ();
-    repaint ();
+    Redraw ();
 }
-
-/// toggle shading
-/** menu callback function */
-void C4DView::Shade () { setShading(!getShade()); }
 
 void C4DView::setShading(bool shade) {
     getShade() = shade;
@@ -227,113 +199,15 @@ void C4DView::setShading(bool shade) {
     repaint ();
 }
 
-/// set background color
-/** menu callback function */
-void C4DView::setBackground(const Color &col) {
-    glClearColor (col.r(), col.g(), col.b(), col.a());
-    if (glIsList (ObjectList())) OnPaint();
+void C4DView::setTransparence (bool trans) {
+    getTransparent() = trans;
+    Menu()->getAction("Transparence")->setChecked(trans);
+    InitTransparence ();
+    repaint ();
 }
 
-/// run a benchmark test
-  /** menu callback function */
-  void C4DView::Benchmark() {
-      ostringstream Time;
+////////        end View interface          ////////
 
-      double time_4d = Benchmark4D (360, 1., 0., 0.);
-
-      Time << "4D viewpoint rotation: " << time_4d << " sec."
-              << " (" << 360/1./time_4d << " fps)" << endl;
-
-      float time_3d = Benchmark3D (360, 1., 0., 0.);
-
-      Time << "3D viewpoint rotation: " << time_3d << " sec."
-              << " (" << 360/1./time_3d << " fps)" << ends;
-
-      QMessageBox::information (NULL, "Benchmark results", Time.str ().c_str ());
-      UpdateStatus ();
-  }
-
-/// Switch rendering to files on or off
-/** Change menu items accordingly
- *
- *  Menu callback function */
-void C4DView::RenderToImages() {
-  setRenderToPixmap(!RenderToPixmap());
-  Menu()->getAction("Render to Images")->setChecked(RenderToPixmap());
-}
-
-/// Display a ObjectHypercube object
-/** Menu callback function */
-void C4DView::ObjectHypercube() {
-    Menu()->updateFunctionMenu("Hypercube");
-
-    setF(new Hypercube (/*Values()->a ()*/));
-
-    AssignValues(F());
-    Redraw ();
-}
-
-/// Display a ObjectHyperpyramid object
-/** Menu callback function */
-void C4DView::ObjectHyperpyramid() {
-    Menu()->updateFunctionMenu("Hyperpyramid");
-
-    setF(new Pyramid (/*2.*Values()->a ()*/));
-
-    AssignValues(F());
-    Redraw ();
-}
-
-/// display a ObjectHypersponge object
-/** menu callback function */
-void C4DView::ObjectHypersponge() {
-    Menu()->updateFunctionMenu("Menger Sponge");
-
-    setF(new Sponge ()
-//                unsigned (Values()->a ()), int (Values()->b ()), Values()->c ())
-//            1, 2, 0.8)
-           );
-
-    AssignValues(F());
-    Redraw ();
-}
-
-/// display a ObjectGasket object
-/** menu callback function */
-void C4DView::ObjectGasket() {
-    Menu()->updateFunctionMenu("Sierpinski Gasket");
-
-    setF(new Gasket (/* unsigned (Values()->a ()), 2.*Values()->b ()*/));
-
-    AssignValues(F());
-    Redraw ();
-}
-
-/// display a customFunction object
-/** menu callback function */
-void C4DView::customFunction() {
-    CustomFunctionSlot<CustomFunction>::createCustomFunction(this);
-}
-
-/// display a customPolarFunction object
-/** menu callback function */
-void C4DView::customPolarFunction() {
-    CustomFunctionSlot<CustomPolarFunction>::createCustomFunction(this);
-}
-
-/// display a customSurface object
-/** menu callback function */
-void C4DView::customSurface() {
-    CustomFunctionSlot<CustomSurface>::createCustomSurface(this);
-}
-
-/// display a customComplexFunction object
-/** menu callback function */
-void C4DView::customComplexFunction() {
-    CustomFunctionSlot<CustomComplexFunction>::createCustomSurface(this);
-}
-
-/// rotate in 3D 360 degrees
 double C4DView::Benchmark3D (int num_steps,
                              double step_x, double step_y, double step_z,
                              bool display) {
@@ -356,7 +230,6 @@ double C4DView::Benchmark3D (int num_steps,
   return double (clock ()-stime)/CLOCKS_PER_SEC;
 }
 
-/// rotate in 4D 360 degrees
 double C4DView::Benchmark4D (int num_steps,
                              double step_xw, double step_yw, double step_zw,
                              bool display) {
@@ -377,11 +250,31 @@ double C4DView::Benchmark4D (int num_steps,
   return double (clock ()-stime)/CLOCKS_PER_SEC;
 }
 
-/// Timer event handler
+/// Called whenever an object or the parameters have changed
+/** Sets the parameters, applies the changed parameters to the function object
+ *  and redraws it                                                            */
+void C4DView::ApplyChanges (const ParameterMap &parms) {
+    F().get()->SetParameters(parms);
+
+    SingletonLog::Instance() << "C4DView::ApplyChanges ():\n"
+            << "  Parms = " << parms.print() << "\n"
+            << "  Values = " << Values()->print() << "\n";
+
+    F()->ReInit (Values()->tmin (), Values()->tmax (), Values()->dt (),
+      Values()->umin (), Values()->umax (), Values()->du (),
+             Values()->vmin (), Values()->vmax (), Values()->dv ());
+
+    ColMgrMgr::Instance().setFunction(F().get());
+
+    Transform ();
+
+    Redraw ();
+}
+
 /** Updates values if in the middle of an animation, and renders an image.
  *
  *  Writes image to file too, if wanted.                                      */
-void C4DView::OnTimer() {
+void C4DView::OnAnimationTimer() {
 
     addm_rot(dR3());
 //    setm_rotX(m_rotX() + dT()[0]); setm_rotY(m_rotY() + dT()[1]); setm_rotZ(m_rotZ() + dT()[2]);   //  update 3D viewpoint values
@@ -407,68 +300,6 @@ void C4DView::OnTimer() {
                 +" - Double-click LMB to stop");
 }
 
-/// show a dialog to adjust animation settings
-/** Where to write image files and how many files to write.
- *
- *  Menu callback function */
-void C4DView::AnimationSettings() {
-    AnimationDialogImpl *Dlg = new AnimationDialogImpl;
-    if (Dlg->exec () == QDialog::Accepted) {
-        setanimationMaxFrames(Dlg->getFrames());
-        setanimationDirectory(Dlg->getDir());
-        setanimationPrefix(Dlg->getPrefix());
-        SingletonLog::Instance()
-                << "animationMaxFrames: " << (long)animationMaxFrames()
-                << ", animationDirectory: " << animationDirectory().toStdString()
-                << ", animationPrefix: "<< animationPrefix().toStdString() << "\n";
-    }
-}
-
-/// Called whenever an object or the parameters have changed
-/** Sets the parameters, applies the changed parameters to the function object
- *  and redraws it                                                            */
-void C4DView::ApplyChanges (const ParameterMap &parms) {
-    F().get()->SetParameters(parms);
-
-    SingletonLog::Instance() << "C4DView::ApplyChanges ():\n"
-                             << "  Parms = " << parms.print() << "\n"
-                             << "  Values = " << Values()->print() << "\n";
-
-    F()->ReInit (Values()->tmin (), Values()->tmax (), Values()->dt (),
-               Values()->umin (), Values()->umax (), Values()->du (),
-               Values()->vmin (), Values()->vmax (), Values()->dv ());
-
-    ColMgrMgr::Instance().setFunction(F().get());
-
-    Transform ();
-
-    Redraw ();
-}
-
-/** display help window */
-void C4DView::Help () {
-    static HelpWindow *H;
-    H = new HelpWindow (HelpFile.c_str());
-    H->show();
-}
-
-/** open an "About"-Dialog */
-void C4DView::about() {
-    QMessageBox::about(this, "Hyperspace Explorer",
-                       "<p>A program to view four-dimensional objects "
-                               "using OpenGL and the Qt GUI library.</p>"
-                               "<p>author: "+QString(make_str(PACKAGE_BUGREPORT))+"</p>"
-                               "<p>version: "+QString(make_str(PACKAGE_VERSION))+
-                               " of "+QString(__DATE__)+"</p>"
-                      );
-}
-
-/** open an "About Qt"-Dialog */
-void C4DView::aboutQt() {
-    QMessageBox::aboutQt( this, "Hyperspace Explorer" );
-}
-
-/// Application of translations and rotations
 /** Calls F->Transform () and transforms the coordinate cross
  *  @param R rotation
  *  @param T translation                                                      */
@@ -483,8 +314,21 @@ void C4DView::Transform(const VecMath::Rotation<4> &R,
             CrossTrans[i][j] = (Rot*Cross[i][j])+T;
 }
 
-/// Projects F and coordinate cross into three-space
-/** */
+/** Four-dimensional transform is set to no rotation, no translation.
+ *
+ *  Three-dimensional transform is 15 degrees about x and y axis, and
+ *  10 units distance from the camera.                                */
+void C4DView::Transform() {
+    setT(VecMath::Vector<4>());
+    setR(VecMath::Rotation<4>());
+
+    setm_rot(VecMath::Rotation<3, GLdouble>(15., 15., 0.));
+    setm_trans(VecMath::Vector<3, GLdouble>(0.,0.,-10.));
+
+    Transform (R(), T());   //  apply 4D transformation
+}
+
+/** Projects F and coordinate cross into three-space */
 void C4DView::Project(void) {
     if (F().get()) F()->Project (ScrW(), CamW(), DepthCue4D());
     else return;
@@ -499,7 +343,6 @@ void C4DView::Project(void) {
     }
 }
 
-/// 4D projection stuff
 /** Separated from the 3D OpenGL handling into this function
  *  \todo either PreRedraw() or Draw() should call DrawCoordinates(), but not
  *        both                                                                */
@@ -530,15 +373,39 @@ void C4DView::PreRedraw () {
     glEndList ();
 }
 
-/// Redraw handler
+/** Draws the projected Function into GL display lists, and then draws those
+ *  lists onto the screen                                                     */
 void C4DView::Redraw () {
   PreRedraw ();
   OnPaint ();
 }
 
-/// Wrapper for redraw handler
-/** With an error reporting routine and exit strategy */
-void C4DView::RenderScene (unsigned /* Frame */) {  //  draw (frame of animation)
+/** Paint event handler and object drawing routine: Does all the OpenGL stuff
+ *  necessary to paint the object on screen                                   */
+void C4DView::OnPaint() {
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);   //  clear the window
+
+    if (DisplayPolygons())                              //  this might move to a special
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);      //  routine "SwitchWireframe ()"
+    else glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+    glPushMatrix();                                 //  save transformation Matrix
+    // glTranslated(0.0, /*Size ()*.75*/0., 0);     //  set the camera position
+
+    glTranslated (m_trans()[0], m_trans()[1], m_trans()[2]);      //  apply object translation
+    glRotated(m_rot()[0], 1.0, 0.0, 0.0);               //   -"-    -"-     rotation
+    glRotated(m_rot()[1], 0.0, 1.0, 0.0);
+    glRotated(m_rot()[2], 0.0, 0.0, 1.0);
+
+    RenderScene ();                                //  draw current frame
+
+    glPopMatrix();                                  //  restore transformation Matrix
+
+    swapBuffers ();                                 //  swap the buffers
+}
+
+/** Execute GL display lists, with error reporting and an exit strategy       */
+void C4DView::RenderScene () {  //  draw (frame of animation)
     while (!glIsList (ObjectList())) {
 #       ifdef DEBUG
             switch (
@@ -566,30 +433,6 @@ void C4DView::RenderScene (unsigned /* Frame */) {  //  draw (frame of animation
     if (DisplayCoordinates()) glCallList (CoordinateCross());
 }
 
-/// Should be called whenever the object is rotated or translated
-/** Object drawing routine: Does all the OpenGL stuff necessary to paint the
- *  object on screen                                                          */
-void C4DView::OnPaint() {
-    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);   //  clear the window
-
-    if (DisplayPolygons())                            //  this might move to a special
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);  //  routine "SwitchWireframe ()"
-    else glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-    glPushMatrix();                                 //  save transformation Matrix
-    // glTranslated(0.0, /*Size ()*.75*/0., 0);     //  set the camera position
-
-    glTranslated (m_trans()[0], m_trans()[1], m_trans()[2]);      //  apply object translation
-    glRotated(m_rot()[0], 1.0, 0.0, 0.0);               //   -"-    -"-     rotation
-    glRotated(m_rot()[1], 0.0, 1.0, 0.0);
-    glRotated(m_rot()[2], 0.0, 0.0, 1.0);
-
-    RenderScene (0);                                //  draw current frame
-
-    glPopMatrix();                                  //  restore transformation Matrix
-
-    swapBuffers ();                                 //  swap the buffers
-}
 
 /// Initialize the structures to display a four-dimensional coordinate cross
 void C4DView::InitCross() {
@@ -823,36 +666,31 @@ double C4DView::Size () {
               +(Values()->vmax ()-Values()->vmin ())*(Values()->vmax ()-Values()->vmin ()));
 }
 
-/// Mouse move event handler
 /** Delegates to MouseHandler4D::mouseMoveEvent()                             */
 void C4DView::mouseMoveEvent(QMouseEvent *e) {
     MouseHandler()->mouseMoveEvent(e);
 }
 
-/// Mouse press event handler
 /** Delegates to MouseHandler4D::mousePressEvent()                            */
 void C4DView::mousePressEvent(QMouseEvent *e) {
     MouseHandler()->mousePressEvent(e);
 }
 
-/// Mouse release event handler
 /** Delegates to MouseHandler4D::mouseReleaseEvent()                          */
 void C4DView::mouseReleaseEvent(QMouseEvent *e) {
     MouseHandler()->mouseReleaseEvent(e);
 }
 
-/// Double click event handler
 /** Delegates to MouseHandler4D::mouseDoubleClickEvent()                      */
 void C4DView::mouseDoubleClickEvent(QMouseEvent *e) {
     MouseHandler()->mouseDoubleClickEvent(e);
 }
 
-/** paintEvent() */
+/** \todo move code from OnPaint to paintEvent and eliminate OnPaint          */
 void C4DView::paintEvent (QPaintEvent *) {
     OnPaint ();
 }
 
-/// Resizing routine
 /** Also, the definition of the GL viewport is done here                      */
 void C4DView::resizeEvent (QResizeEvent *e) {
     unsigned cx = e->size ().width (),
@@ -878,9 +716,9 @@ void C4DView::resizeEvent (QResizeEvent *e) {
     glDrawBuffer (GL_BACK);                     //  dump the buffer
 }
 
-/// OpenGL initialization
 /** Now this is not as boring as it seems, because further work has to be done
- *  here.
+ *  here: Set up lights, shading, depth cue and transparence, wireframe mode,
+ *  background, and position the object wrt the camera.
  *  \todo trying to check for rendering to file, but this doesn't work yet.
  *  \todo clean up, check what is really needed - in particular it calls
  *        PreRedraw() twice, once via RenderScene()                           */
@@ -923,7 +761,7 @@ void C4DView::initializeGL (void) {
 
 
         SingletonLog::Instance().log("  RenderScene");
-        RenderScene (0);                        //  draw current frame
+        RenderScene ();                        //  draw current frame
 
         glPopMatrix();                          //  restore transformation Matrix
     }

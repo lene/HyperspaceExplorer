@@ -23,6 +23,12 @@ inline void TESTED_FEATURE(QAction *item) {
 C4DView::Menu4D::Menu4D(C4DView *_parent):
     parent(_parent) {
 
+    if(!parent->menuHandler()) {
+        std::cerr <<
+            "setMenuHandler() must be called before calling setMenu()" << std::endl;
+        abort();
+    }
+
     functions = addMenu(tr("Object"));
     appear = addMenu(tr("Appearance"));
     animation = addMenu(tr("Animation"));
@@ -185,7 +191,7 @@ void C4DView::Menu4D::addToMenuBar(QMenuBar *menuBar) {
 QAction *C4DView::Menu4D::insertAction(QMenu *_menu, const QString &title,
                                        const char *slot, bool checkable) {
     QAction *tmp = _menu->addAction(
-        title, (const QObject *)parent, (const char *)slot,
+        title, (const QObject *)(parent->menuHandler()), (const char *)slot,
         (const QKeySequence &)0);
     tmp->setCheckable(checkable);
     menuMap[_menu].insert(std::pair<QString, QAction *>(title, tmp));
