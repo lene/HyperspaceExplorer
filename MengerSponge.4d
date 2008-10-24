@@ -1,0 +1,36 @@
+set_size 1024 768
+
+object Sponge
+parameter unsigned Distance 0
+parameter unsigned Level 0
+parameter double Size 0.75
+
+transform_step <0,0,0,.2,.2,.2>
+frames 1800
+loop 1
+
+transparence off
+
+image_dir /home/scenes/MengerSponge/tmp/6
+image_prefix Sponge
+
+#start_animation
+
+#parameter unsigned Level 1
+#parameter unsigned Distance 3
+#start_animation
+
+#parameter unsigned Distance 2
+#start_animation
+
+#parameter unsigned Level 2
+#start_animation
+
+#parameter unsigned Distance 3
+#start_animation
+
+parameter unsigned Level 3
+#start_animation
+
+parameter unsigned Distance 2
+start_animation
