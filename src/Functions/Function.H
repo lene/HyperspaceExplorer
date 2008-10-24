@@ -18,7 +18,6 @@
 #include "ParameterMap.H"
 #include "Vector.H"
 
-class Function;
 #include "FunctionFactory.H"
 
 /// \defgroup FunctionGroup Functions and objects

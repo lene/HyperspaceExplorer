@@ -4,6 +4,8 @@
 #include "SingletonHolder.H"
 #include "Function.H"
 
+class Function;
+
 /// Factory class creating Function objects given the name of their class
 /** The factory is instantiated as singleton in the variable (in fact, class)
  *  TheFunctionFactory.
