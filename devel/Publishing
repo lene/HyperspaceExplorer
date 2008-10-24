@@ -26,4 +26,11 @@ rsync ~/workspace/HyperspaceExplorer/HyperspaceExplorer-X.Y.Z.tar.bz2 \
 
 * edit version number in Doxyfile
 * doxygen
-* rsync -rL --delete-after --exclude=.svn devel/html/html/ metaldog,hyperspace-expl@web.sourceforge.net:htdocs
+* rsync -rL --delete-after --exclude=.svn devel/html/html/ \
+  metaldog,hyperspace-expl@web.sourceforge.net:htdocs
+
+
+# create a branch in subversion
+* svn copy \
+  https://hyperspace-expl.svn.sourceforge.net/svnroot/hyperspace-expl/trunk/all \
+  https://hyperspace-expl.svn.sourceforge.net/svnroot/hyperspace-expl/tags/release-X.Y.Z
