@@ -4,7 +4,7 @@ CONFIG = release qt warn_on uic
 
 QT += opengl
 
-VERSION = 0.5.1
+VERSION = 0.6.1
 
 ###
 ###     move all temporary files out of sight into subdirectory tmp
@@ -106,6 +106,6 @@ TARGET = HyperspaceExplorer
 target.path = $${INSTALLDIR}/bin
 vector.files = Vector.H
 vector.path = $${INSTALLDIR}/share/HyperspaceExplorer/plugins
-doc.files = doc
-doc.path =  $${INSTALLDIR}/share/HyperspaceExplorer
-INSTALLS += target vector doc
+docs.files = doc/*
+docs.path =  $${INSTALLDIR}/share/HyperspaceExplorer/doc
+INSTALLS += target vector docs
