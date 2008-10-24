@@ -1,6 +1,11 @@
 HyperspaceExplorer Changelog
 =============================
 
+release 0.6.1:
+    * updated the documentation (online help)
+    * fixed bug in qmakefile that prevented the documentation from being 
+      installed correctly
+
 release 0.6.0:
     * added capability to read scripts
     * added adjustable background color

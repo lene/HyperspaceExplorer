@@ -1,5 +1,5 @@
-Installation instructions for Hyperspace Explorer V0.1.9a
-=========================================================
+Installation instructions for Hyperspace Explorer V0.6.1
+========================================================
 
 Source distribution
 ===================
@@ -14,26 +14,16 @@ guarantee that it will work with older versions of Qt.
 OpenGL libraries and header files
 
 Building the executable:
-> tar jxf HyperspaceExplorer.tar.bz2
+> tar jxf HyperspaceExplorer-X.Y.Z.tar.bz2
 > cd HyperspaceExplorer
 > qmake
 > make
-> make install
+> sudo make install
 
 HyperspaceExplorer is installed by default in /usr/local, the executable in
 /usr/local/bin and the documentation and optional plugins in
 /usr/local/share/HyperspaceExplorer. Current this behavior can only be
 customized by editing the variable INSTALLDIR in the qmakefile src/src.pro.
-
-If any errors occur, you are on your own, this is still alpha code. You 
-might drop me a line anyway, maybe I am able to help you, and I am highly 
-interested in bug reports.
-
-Running
-=======
-
-Easy:
-> HyperspaceExplorer
 
 Contacting the author
 =====================
