@@ -152,7 +152,7 @@ EXCLUDE_PATTERNS       = */.svn/* \
                          */plugins/* \
                          */tmp/*
 EXCLUDE_SYMBOLS        =
-EXAMPLE_PATH           =
+EXAMPLE_PATH           = src
 EXAMPLE_PATTERNS       = *
 EXAMPLE_RECURSIVE      = NO
 IMAGE_PATH             =
