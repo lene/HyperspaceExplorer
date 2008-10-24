@@ -1,19 +1,20 @@
-<area shape="rect" href="$structC4DView_1_1Impl.html" title="Private class containing the member data for the Pimpl idiom." alt="" coords="680,2709,835,3365">
-<area shape="rect" href="$classC4DView.html" title="Displays and manipulates four&#45;dimensional Functions in a QGLWidget." alt="" coords="1224,4021,1400,6517">
-<area shape="rect" href="$classC4DView_1_1Menu4D.html" title="The menu for the C4DView." alt="" coords="900,6581,1055,6917">
-<area shape="rect" href="$classVecMath_1_1Rotation.html" title="{VecMath::Rotation\&lt; 4 \&gt;\n|&#45; axis\l|+ Rotation()\l+ Rotation()\l+ operator[]()\l+ operator[]()\l+ operator Matrix\&lt; D, double \&gt;()\l+ operator+=()\l+ operator bool()\l+ r()\l+ r()\l}" alt="" coords="143,2253,343,2461">
-<area shape="rect" href="$classVecMath_1_1Rotation.html" title="Rotation in D&#45;dimensional space defined by angles about the main axes." alt="" coords="289,1349,463,1557">
-<area shape="rect" href="$classVecMath_1_1Rotation.html" title="{VecMath::Rotation\&lt; 3, GLdouble \&gt;\n|&#45; axis\l|+ Rotation()\l+ Rotation()\l+ operator[]()\l+ operator[]()\l+ operator Matrix\&lt; D, GLdouble \&gt;()\l+ operator+=()\l+ operator bool()\l+ r()\l+ r()\l}" alt="" coords="367,2253,583,2461">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="549,693,691,1061">
-<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="657,1189,865,1717">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="339,205,501,573">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 3, GLdouble \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="5,1741,208,2109">
-<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="773,797,899,957">
-<area shape="rect" href="$classValuesDialogImpl.html" title="{ValuesDialogImpl\n|&#45; parameters\l|+ ValuesDialogImpl()\l+ ~ValuesDialogImpl()\l+ setFunction()\l+ print()\l+ tmin()\l+ tmax()\l+ tsteps()\l+ dt()\l+ umin()\l+ umax()\l+ usteps()\l+ du()\l+ vmin()\l+ vmax()\l+ vsteps()\l+ dv()\l+ accept\l&#45; setParameters()\l}" alt="" coords="889,1277,1036,1629">
-<area shape="rect" title="STL class." alt="" coords="823,341,1081,437">
-<area shape="rect" title="STL class." alt="" coords="1327,349,1433,429">
-<area shape="rect" title="STL class." alt="" coords="1060,1413,1177,1493">
-<area shape="rect" title="STL class." alt="" coords="724,349,799,429">
-<area shape="rect" title="STL class." alt="" coords="685,5,837,85">
-<area shape="rect" href="$classUi__ValuesDialog.html" title="Base class for ValuesDialog, originally created by uic (thus the ugliness)." alt="" coords="1156,149,1303,629">
-<area shape="rect" href="$classColor.html" title="A class to represent a color value by its RGBA components." alt="" coords="741,2133,923,2581">
+<area shape="rect" href="$structC4DView_1_1Impl.html" title="Private class containing the member data for the Pimpl idiom." alt="" coords="792,2661,947,3333">
+<area shape="rect" href="$classC4DView.html" title="Displays and manipulates four&#45;dimensional Functions in a QGLWidget." alt="" coords="1417,3989,1593,6245">
+<area shape="rect" href="$classC4DView_1_1Menu4D.html" title="The menu for the C4DView." alt="" coords="1039,6365,1193,6701">
+<area shape="rect" href="$classUI_1_1View.html" title="Interface to display four&#45;dimensional objects." alt="" coords="1589,3397,1749,3925">
+<area shape="rect" href="$classVecMath_1_1Rotation.html" title="{VecMath::Rotation\&lt; 4 \&gt;\n|&#45; axis\l|+ Rotation()\l+ Rotation()\l+ operator[]()\l+ operator[]()\l+ operator Matrix\&lt; D, double \&gt;()\l+ operator+=()\l+ operator bool()\l+ r()\l+ r()\l}" alt="" coords="984,2253,1184,2461">
+<area shape="rect" href="$classVecMath_1_1Rotation.html" title="Rotation in D&#45;dimensional space defined by angles about the main axes." alt="" coords="1025,1637,1199,1845">
+<area shape="rect" href="$classVecMath_1_1Rotation.html" title="{VecMath::Rotation\&lt; 3, GLdouble \&gt;\n|&#45; axis\l|+ Rotation()\l+ Rotation()\l+ operator[]()\l+ operator[]()\l+ operator Matrix\&lt; D, GLdouble \&gt;()\l+ operator+=()\l+ operator bool()\l+ r()\l+ r()\l}" alt="" coords="539,2253,755,2461">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="165,693,307,1061">
+<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="463,1477,671,2005">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="81,205,244,573">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 3, GLdouble \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="13,1085,216,1453">
+<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="504,797,629,957">
+<area shape="rect" href="$classValuesDialogImpl.html" title="{ValuesDialogImpl\n|&#45; parameters\l|+ ValuesDialogImpl()\l+ ~ValuesDialogImpl()\l+ setFunction()\l+ print()\l+ tmin()\l+ tmax()\l+ tsteps()\l+ dt()\l+ umin()\l+ umax()\l+ usteps()\l+ du()\l+ vmin()\l+ vmax()\l+ vsteps()\l+ dv()\l+ accept\l&#45; setParameters()\l}" alt="" coords="292,1565,439,1917">
+<area shape="rect" title="STL class." alt="" coords="512,341,771,437">
+<area shape="rect" title="STL class." alt="" coords="1175,349,1281,429">
+<area shape="rect" title="STL class." alt="" coords="777,1701,895,1781">
+<area shape="rect" title="STL class." alt="" coords="1796,349,1871,429">
+<area shape="rect" title="STL class." alt="" coords="1757,5,1909,85">
+<area shape="rect" href="$classUi__ValuesDialog.html" title="Base class for ValuesDialog, originally created by uic (thus the ugliness)." alt="" coords="315,149,461,629">
+<area shape="rect" href="$classColor.html" title="A class to represent a color value by its RGBA components." alt="" coords="779,2133,960,2581">

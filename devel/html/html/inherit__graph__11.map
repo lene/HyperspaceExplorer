@@ -1,1 +1,1 @@
-<area shape="rect" href="$classFunctionFactory.html" title="Factory class creating Function objects given the name of their class." alt="" coords="5,5,115,32">
+<area shape="rect" href="$classFunctionFactory_1_1BadFunctionException.html" title="Thrown by createFunction() when name does not map to a function." alt="" coords="5,5,245,32">

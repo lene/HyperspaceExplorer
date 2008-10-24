@@ -1,16 +1,18 @@
-<area shape="rect" href="$classC4DView.html#8e209837b51cb976674e81e6359f930d" title="OpenGL initialization for fog." alt="" coords="441,107,564,133">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="860,259,1052,285">
-<area shape="rect" href="$classC4DView.html#03b3ed76ada1847e4b75e19de8c7e6cb" title="OpenGL initialization for light(s)." alt="" coords="221,309,352,336">
-<area shape="rect" href="$classC4DView.html#31f530de55047a78f7f29958a4ece8a9" title="OpenGL initialization for shading (gouraud or flat shading)." alt="" coords="220,360,353,387">
-<area shape="rect" href="$classC4DView.html#3c423447f2090b7e3e2c791f54244b02" title="OpenGL initialization for transparence." alt="" coords="200,411,373,437">
-<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="432,461,573,488">
-<area shape="rect" href="$classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler." alt="" coords="211,512,363,539">
-<area shape="rect" href="$classC4DView.html#dabc3be452e44e3101ad2f9f4cee5e4c" title="C4DView::getFog" alt="" coords="661,5,781,32">
-<area shape="rect" href="$classC4DView.html#f46da1a68ffbcc00eddc03df078fe150" title="Switch 3D depth cue on and off." alt="" coords="639,107,804,133">
-<area shape="rect" href="$classC4DView.html#15c8ca4d71f5b5e5b07a959601820f83" title="Get size of displayed area." alt="" coords="904,81,1008,108">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1101,259,1325,285">
-<area shape="rect" href="$classC4DView.html#c83101f5d137e9357245e863a2df7d3e" title="C4DView::getLight" alt="" coords="439,309,567,336">
-<area shape="rect" href="$classC4DView.html#89dd3e07ddd664711df895975a3d4bcd" title="C4DView::getShade" alt="" coords="437,360,568,387">
-<area shape="rect" href="$classC4DView.html#5ad3a5d84454cb614b14748d772013b4" title="C4DView::getTransparent" alt="" coords="421,411,584,437">
-<area shape="rect" href="$classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="633,399,809,425">
-<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="661,461,781,488">
+<area shape="rect" href="$classC4DView.html#8e209837b51cb976674e81e6359f930d" title="OpenGL initialization for fog." alt="" coords="468,107,591,133">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="887,259,1079,285">
+<area shape="rect" href="$classC4DView.html#03b3ed76ada1847e4b75e19de8c7e6cb" title="OpenGL initialization for light(s)." alt="" coords="235,309,365,336">
+<area shape="rect" href="$classC4DView.html#31f530de55047a78f7f29958a4ece8a9" title="OpenGL initialization for shading (gouraud or flat shading)." alt="" coords="233,360,367,387">
+<area shape="rect" href="$classC4DView.html#3c423447f2090b7e3e2c791f54244b02" title="OpenGL initialization for transparence." alt="" coords="213,411,387,437">
+<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen." alt="" coords="459,461,600,488">
+<area shape="rect" href="$classC4DView.html#b9561bdd967e89d314f7eda6de32b2bc" title="Wrapper for displaying OpenGL display lists." alt="" coords="224,512,376,539">
+<area shape="rect" href="$classUI_1_1View.html#b1d64f55fd63764b481513f43099cf93" title="Set a default background color." alt="" coords="201,563,399,589">
+<area shape="rect" href="$classC4DView.html#dabc3be452e44e3101ad2f9f4cee5e4c" title="C4DView::getFog" alt="" coords="688,5,808,32">
+<area shape="rect" href="$classC4DView.html#f46da1a68ffbcc00eddc03df078fe150" title="Switch 3D depth cue on and off." alt="" coords="665,107,831,133">
+<area shape="rect" href="$classC4DView.html#15c8ca4d71f5b5e5b07a959601820f83" title="Get size of displayed area." alt="" coords="931,81,1035,108">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1128,259,1352,285">
+<area shape="rect" href="$classC4DView.html#c83101f5d137e9357245e863a2df7d3e" title="C4DView::getLight" alt="" coords="465,309,593,336">
+<area shape="rect" href="$classC4DView.html#89dd3e07ddd664711df895975a3d4bcd" title="C4DView::getShade" alt="" coords="464,360,595,387">
+<area shape="rect" href="$classC4DView.html#5ad3a5d84454cb614b14748d772013b4" title="C4DView::getTransparent" alt="" coords="448,411,611,437">
+<area shape="rect" href="$classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="660,399,836,425">
+<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Execute the projection into three&#45;space (but don&#39;t draw it yet either)." alt="" coords="688,461,808,488">
+<area shape="rect" href="$classUI_1_1View.html#41793c34df5fe332e3eef11cc7e7af58" title="Set the background color." alt="" coords="451,563,608,589">

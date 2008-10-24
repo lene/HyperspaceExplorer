@@ -1,4 +1,19 @@
-<area shape="rect" href="$classC4DView_1_1Menu4D.html#7ffe2f1f4d1f407ef16fca9c023d4e26" title="C4DView::Menu4D::addToMenuBar" alt="" coords="193,5,415,32">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="465,31,657,57">
-<area shape="rect" href="$classC4DView.html#04a35de24dbf03d029afc5d0be93ec11" title="Initialize the structures to display a four&#45;dimensional coordinate cross." alt="" coords="239,107,369,133">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="707,31,931,57">
+<area shape="rect" href="$classC4DView_1_1Menu4D.html#7ffe2f1f4d1f407ef16fca9c023d4e26" title="C4DView::Menu4D::addToMenuBar" alt="" coords="961,25,1183,52">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1689,228,1881,255">
+<area shape="rect" href="$classC4DView.html#04a35de24dbf03d029afc5d0be93ec11" title="Initialize the structures to display a four&#45;dimensional coordinate cross." alt="" coords="216,127,347,153">
+<area shape="rect" href="$classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="193,228,369,255">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1944,228,2168,255">
+<area shape="rect" href="$classC4DView.html#e38186ceacf6c4e6b13de7bee6cd8bda" title="Called whenever an object or the parameters have changed." alt="" coords="1232,380,1389,407">
+<area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Draw the transformed and projected function onto the screen." alt="" coords="484,203,607,229">
+<area shape="rect" href="$classC4DView_1_1Menu4D.html#825a245cf67d222bf15c26e5cc7a70b9" title="C4DView::Menu4D::updateFunctionMenu" alt="" coords="420,253,671,280">
+<area shape="rect" href="$classValuesDialogImpl.html#51d28c2eca2e1e35f5aaaab4cceca1be" title="Adjust the display according to the Function whose Parameters are controlled." alt="" coords="1437,481,1627,508">
+<area shape="rect" href="$classC4DView.html#16d5190870a166c65a20c59368ca0f2f" title="Overloaded function executing the transform to the default state." alt="" coords="1463,329,1601,356">
+<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="1456,431,1608,457">
+<area shape="rect" href="$classValuesDialogImpl.html#9c8ed70c102c1a781f00888c0e3c0f5b" title="Adjust the displayed parameter fields to the parameters the function needs." alt="" coords="1685,481,1885,508">
+<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="1675,431,1896,457">
+<area shape="rect" href="$classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Paint event handler, called whenever the object is transformed." alt="" coords="753,152,879,179">
+<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen." alt="" coords="1240,203,1381,229">
+<area shape="rect" href="$classC4DView.html#b9561bdd967e89d314f7eda6de32b2bc" title="Wrapper for displaying OpenGL display lists." alt="" coords="996,152,1148,179">
+<area shape="rect" href="$classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="1444,279,1620,305">
+<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Execute the projection into three&#45;space (but don&#39;t draw it yet either)." alt="" coords="1472,177,1592,204">
+<area shape="rect" href="$classC4DView_1_1Menu4D.html#2dfc9833855fee3fb25d13456f47bc26" title="C4DView::Menu4D::getAction" alt="" coords="721,253,911,280">
