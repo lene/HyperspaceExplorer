@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMI verified="false" xmi.version="1.2" timestamp="2008-03-04T18:49:57" xmlns:UML="http://schema.omg.org/spec/UML/1.3" >
+ <XMI.header>
+  <XMI.documentation>
+   <XMI.exporter>umbrello uml modeller http://uml.sf.net</XMI.exporter>
+   <XMI.exporterVersion>1.5.8</XMI.exporterVersion>
+   <XMI.exporterEncoding>UnicodeUTF8</XMI.exporterEncoding>
+  </XMI.documentation>
+  <XMI.metamodel xmi.version="1.3" href="UML.xml" xmi.name="UML" />
+ </XMI.header>
+ <XMI.content>
+  <UML:Model isSpecification="false" isAbstract="false" isLeaf="false" xmi.id="m1" isRoot="false" name="UML Model" >
+   <UML:Namespace.ownedElement>
+    <UML:Stereotype visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="folder" name="folder" />
+    <UML:Stereotype visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="datatype" name="datatype" />
+    <UML:Stereotype visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="constructor" name="constructor" />
+    <UML:Model stereotype="folder" visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Logical View" name="Logical View" >
+     <UML:Namespace.ownedElement>
+      <UML:Package stereotype="folder" visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Datatypes" name="Datatypes" >
+       <UML:Namespace.ownedElement>
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uWlMYzd8KUpY" name="int" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="BYnJnWSTKhK6" name="char" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="TdRtziotEYEn" name="bool" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="XrtrJgOUDBn0" name="float" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="fDS0um4NQTFP" name="double" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="C1GOZU94J1wc" name="short" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="4sTqt73L5w77" name="long" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="HVbWslY995bH" name="unsigned int" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="AtI4VzMYsnMj" name="unsigned short" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="sP4xJ95bde5V" name="unsigned long" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="PdcWhEnp75ra" name="string" />
+       </UML:Namespace.ownedElement>
+      </UML:Package>
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="yNDPRHzeBfiV" xmi.id="rNU57JUuwkMS" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="2lJwTeP1hPl2" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="xp08ABm4fN6s" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="yNDPRHzeBfiV" xmi.id="1D6eYAWsiElK" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="5SYngJ5Op8eO" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="xTsaLpeKWEsT" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="yNDPRHzeBfiV" xmi.id="V060CwTFYRYT" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="MCiscFJskFaw" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="xephW968jC5U" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="yNDPRHzeBfiV" xmi.id="6AWnLcGrG2Ir" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="Hn2WnLLhwgy2" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="czRvJfx7hV8A" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="yNDPRHzeBfiV" xmi.id="HB7yfD61Fsgg" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="iwbvmIbw6G4p" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="Arj7aD6Dijni" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="yNDPRHzeBfiV" xmi.id="eK1M1o2Ui4BE" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="TtHBvSOTT4vH" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="qfzMAr7ZIfIZ" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="yNDPRHzeBfiV" xmi.id="BGsStB1jN836" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="SvMn3OuuFi4o" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="MJgu1ybZ728l" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="yNDPRHzeBfiV" xmi.id="NYDSYJB5cF5B" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="NlCx0H8T5noU" client="cTGRskizPmuA" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="cvxHJJZVDOSp" client="ZQBShrZ03z2d" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="ISoTqGHBIyI8" client="ZQBShrZ03z2d" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="HZvU2esDnHwk" client="ZQBShrZ03z2d" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="vuJgBFOi6GU8" client="ZQBShrZ03z2d" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="3w8IrUl2z51U" xmi.id="h7DSLUxOO6fF" parent="Yc0Iw13TmQKW" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="8ZMWOXzR9Qwn" xmi.id="Qtseu2R49xjx" parent="lFvhIfwZnp6D" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="dubFRksLwAaG" xmi.id="prKXWIN8CcWx" parent="24c91M4z5tuh" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="sg0K4yjuQP44" xmi.id="MqQJvdzfic4p" parent="WJFjvjg84DRq" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="MbcOgm3IxlDf" xmi.id="lN2JMhN6kKan" parent="OtZ6TbtLVwOT" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="HjaXPryQYaDt" xmi.id="fLwIe7RMuJyF" parent="lOoVjMIfadR6" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="l3NitgrmVA13" client="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="Murr5quFtUDo" client="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="jlPMuqahp460" client="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="yCkmGom1atjN" client="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="IPzpnZ8OLy14" client="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="7A0Q81UFFKFw" client="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="aP2Hcm2S3ZXN" client="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="mtmnSHA7J3zc" client="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="PXHYaRmyWZ2b" client="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="Qe4wB7VNXt96" client="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="hC59u5YbmJqT" client="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="TSXDjLhdVGj0" client="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="uGW4yMx0qQWb" client="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="kgVY429i3KkU" client="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="xsO4ZizZuW7U" client="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="AMg2qnVfxHPe" client="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="3yTop2wPdNYi" client="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="cMEDknvvcoFN" client="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="0Y6SqMfrVlUT" client="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="zM7S5ZvB1D9H" client="0sfs9b8Bbn8o" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="MbBqJq4LVIZi" xmi.id="KUj6Y9jhillC" parent="0sfs9b8Bbn8o" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="ELkOK7iFAGzS" xmi.id="aOalgExkfSrB" parent="0sfs9b8Bbn8o" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="CLrKO2UnTvFA" xmi.id="RWON4igtJOqA" parent="0sfs9b8Bbn8o" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="ZeeS5ElrWhRM" xmi.id="SXFR9eFL5sSY" parent="0sfs9b8Bbn8o" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="M2nuZUDBgunQ" xmi.id="tDnFnGX8vLXQ" parent="0sfs9b8Bbn8o" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="juJ637qhdDnF" xmi.id="sXy0INWSzSvg" parent="0sfs9b8Bbn8o" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="xZF3jJMFUsnW" xmi.id="07qNbshU6Mnp" parent="0sfs9b8Bbn8o" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="mqGIDR4erVbo" xmi.id="jbV48nMRbBDo" parent="0sfs9b8Bbn8o" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="dNR9fGcjUwb8" xmi.id="Pz5ic101dmjK" parent="0sfs9b8Bbn8o" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="4r0QDJ0OqAdl" xmi.id="7rYincuorVmU" parent="0sfs9b8Bbn8o" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="hrr51bxh7IIl" xmi.id="gatsr6T03uPv" parent="0sfs9b8Bbn8o" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="ADDCUfiG3k3g" xmi.id="qfaIc9AMSEIe" parent="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="6R7rhfnup8Wm" client="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="Ldm8kJuqiS84" client="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="pWXXI2lislPr" client="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="FFV61vvkz7EZ" client="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="7NnRKUEnEOLd" client="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="Vfbj3wNGZUKL" client="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="eqlwBencSuCY" client="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="moCEiOkm0KcT" client="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="bdyBUBHGEm4D" client="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="bjaoTc1QmiDv" client="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="cKGcUQJw3FD5" client="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="vn7x2K2d8lL8" client="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="JlmE4hPlqWCX" client="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="Gyn7Sxcaji3D" client="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="itrmZcJAwNUz" client="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="GitD5NAbMT7X" client="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="4Gk39p1NibnG" client="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="MqU4RFLzCOE8" client="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="LtTAVDeqlxAr" client="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="oDrX9zMDXfBw" client="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="HCCrBOVqkb0g" client="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="uspcTnGhzenE" client="ADDCUfiG3k3g" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="S6Xhz8q2vSm6" xmi.id="13IwiuMCnJBV" parent="ADDCUfiG3k3g" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="0GaAlmZHTilb" xmi.id="nlTGpDOUN4MS" parent="ADDCUfiG3k3g" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="ZRRH3iBaNwdv" xmi.id="i88HG4rjAxHq" parent="ADDCUfiG3k3g" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="kDunZUq4VAnv" xmi.id="VLsOoRGkFcPO" parent="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="rQSmE8m6qNp9" client="kDunZUq4VAnv" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="7epvzd4bCRfI" client="kDunZUq4VAnv" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="DyhXpoTTC9bE" xmi.id="ST5w8DbSNW3K" parent="kDunZUq4VAnv" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="JgZtbbEtfkGz" xmi.id="XdWw8Xq9zrP1" parent="kDunZUq4VAnv" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="S8pllef7EZ7i" xmi.id="S7ChKd2xasCk" parent="kDunZUq4VAnv" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="Yt5KXRIRY1v4" xmi.id="2CDdxVdiSfaK" parent="kDunZUq4VAnv" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="NKdORx5jR9Y3" xmi.id="hWHaa8veHdPf" parent="kDunZUq4VAnv" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="ADDztvA124oA" xmi.id="8timAYNGd3Zp" parent="kDunZUq4VAnv" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="0vCeJuGqlfWL" xmi.id="MGHQNEszJoic" parent="kDunZUq4VAnv" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="eBYIybi1bUX3" xmi.id="JGT8Wx5BQpod" parent="kDunZUq4VAnv" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="YTk3C4m1ZqYq" xmi.id="kXHlnMUZ50pO" parent="kDunZUq4VAnv" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="3TBfetU7ww6u" xmi.id="Abar9y2Zj7Il" parent="kDunZUq4VAnv" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="ayHcaeAmzzoh" xmi.id="8dpbHKk4n3pd" parent="kDunZUq4VAnv" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="KXPEHyJ47IpG" xmi.id="AhdYDJ7ALTVy" parent="kDunZUq4VAnv" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="dYyPT2OfhYTs" xmi.id="uCuoMrXeqmz8" parent="kDunZUq4VAnv" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="yfNuuLgd2YSR" xmi.id="fbRRoSTrTdsM" parent="kDunZUq4VAnv" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="2jGff8CrMUXs" xmi.id="h66fMgJkw3Lg" parent="kDunZUq4VAnv" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="lDodRDE79iRV" xmi.id="HiKikYUxkt7g" parent="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="DCwPWKLYFWa8" client="lDodRDE79iRV" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="SbEh5oq7D0F4" client="lDodRDE79iRV" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="f2wndvN2PrsX" client="lDodRDE79iRV" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="WjUtYMQpA5p2" client="lDodRDE79iRV" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="Pk1uz3b9KzyJ" xmi.id="wyKq1Wnszpoq" parent="lDodRDE79iRV" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="CCDM5x1MrXCC" client="Pk1uz3b9KzyJ" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="Blr1I1D3pFi5" client="Pk1uz3b9KzyJ" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="RqtOudXIO77O" xmi.id="SQYWbism4Ilf" parent="kDunZUq4VAnv" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="oCGI5Iup5S7A" client="RqtOudXIO77O" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="7yqAQwIob356" client="RqtOudXIO77O" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="nCcqJWsEzi7D" client="RqtOudXIO77O" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="cwAZeGlCGJax" client="RqtOudXIO77O" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="7jF58751FkOo" client="RqtOudXIO77O" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="rfu6NIsv8uEi" client="RqtOudXIO77O" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="qus1D8YmD1UD" xmi.id="ftEmAR96zk2E" parent="ADDCUfiG3k3g" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="YmDo0zOoQSGJ" client="qus1D8YmD1UD" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="MLjmlz3ia4fQ" client="qus1D8YmD1UD" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="tlqNkDO0sMsa" client="qus1D8YmD1UD" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="X0KPMBxMGFme" client="qus1D8YmD1UD" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="XEOqr9TisQmo" xmi.id="9TTJ6bR4Uw8v" parent="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="HpyMEAvJ56qm" client="XEOqr9TisQmo" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="9WHCa5zTuN6y" client="XEOqr9TisQmo" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="jt8kfckL92jf" client="XEOqr9TisQmo" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="n4ww6faxmr9V" client="XEOqr9TisQmo" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="Qr1pvZ75BzH1" client="XEOqr9TisQmo" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="Ztnkq2jy5JJr" client="XEOqr9TisQmo" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="ZnXHKdu0RGSk" client="XEOqr9TisQmo" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="c8T3Nul0Pvrt" client="XEOqr9TisQmo" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="wMMBWgm0TMcF" xmi.id="8hc0F1GeAWSF" parent="XEOqr9TisQmo" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="BuPLAtfDtmRe" client="wMMBWgm0TMcF" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="3UxwEOYR8ZYm" client="wMMBWgm0TMcF" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="GGUX31BYNIdt" xmi.id="EQSeAuGJwIWV" parent="wMMBWgm0TMcF" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="pFK4FiQvp6i7" client="GGUX31BYNIdt" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="1weq0Mvj7NFY" client="GGUX31BYNIdt" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="8HP2fFsLUSyY" client="GGUX31BYNIdt" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="wMMBWgm0TMcF" xmi.id="UJNwlLS2Talj" client="GGUX31BYNIdt" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="8rSZRDG8IvXR" client="GGUX31BYNIdt" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="MhAp3j2ba1Bf" client="GGUX31BYNIdt" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="14ab5jGCQZ82" client="GGUX31BYNIdt" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="K49rpgGqMrmN" xmi.id="WgPEA20JuwtM" parent="XEOqr9TisQmo" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="reVY8kPsnNDq" client="K49rpgGqMrmN" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="GAX1VlrcKe2I" client="K49rpgGqMrmN" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="qFS9yaxQaLCC" xmi.id="mCSOotQAK9Hp" parent="K49rpgGqMrmN" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="9GVEmTWcQv5l" client="qFS9yaxQaLCC" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="tMgHGk2ln3wm" client="qFS9yaxQaLCC" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="IH0EY6ghxjAz" client="qFS9yaxQaLCC" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="K49rpgGqMrmN" xmi.id="N7HIoSHNv5D4" client="qFS9yaxQaLCC" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="zhesksxXhr5F" client="qFS9yaxQaLCC" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="0IVwQ2bNWp0r" client="qFS9yaxQaLCC" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="FcTmPUbWNOhD" client="qFS9yaxQaLCC" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="uq33sKLJNgQa" xmi.id="3d32HIOQ5HvI" parent="0sfs9b8Bbn8o" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="bncCPgehEANa" client="FmLuihCM6q8c" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="cTdpeyPF6tTP" client="FmLuihCM6q8c" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="b48EpLaOq1Q1" client="FmLuihCM6q8c" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="8XYzWy0aEeZq" client="FmLuihCM6q8c" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="1vMDuRurW80G" client="FmLuihCM6q8c" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="Ewuk4uy2sqW8" client="FmLuihCM6q8c" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="1fh95S2zEmEf" client="FmLuihCM6q8c" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="11pDl3qPKIjb" client="FmLuihCM6q8c" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="31Bq8hNG3Iih" client="FmLuihCM6q8c" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="RbeSuK9n37W6" client="FmLuihCM6q8c" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="ITaOv9XozItc" client="FmLuihCM6q8c" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="oBMnTDNF0yzs" client="FmLuihCM6q8c" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="2i2sEJM4iIRb" client="FmLuihCM6q8c" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="swKaFj9iTJxk" client="FmLuihCM6q8c" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="oX5NTvPdxnUV" client="yiRQSL8kgLTx" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="dfsJm196WgWG" xmi.id="PvjKhBpVMm7i" client="yiRQSL8kgLTx" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="CMeZ6lFkekJH" client="yiRQSL8kgLTx" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="6VZBnHnAzfyx" xmi.id="xr44yHIZV9aW" parent="GLjjqPUbmWJy" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="6VZBnHnAzfyx" xmi.id="uoVPx5v18cW0" parent="HjaXPryQYaDt" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="RQ2VlSVXdZ0q" client="7fXjgwGe5qgW" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="K9aOB08Iff0K" xmi.id="IyHtXGk4DFY0" client="7fXjgwGe5qgW" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="9q2K3bLSfxI2" client="7fXjgwGe5qgW" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="SgBY9yEbDK8w" xmi.id="PKvoyqdOVmwe" parent="gdgqJslEYVEi" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="DeTW0c1FimMv" client="SgBY9yEbDK8w" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="iskOc4KXSNci" client="SgBY9yEbDK8w" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="CrfOD0yCIVGI" xmi.id="4mP96WUM2b41" parent="SgBY9yEbDK8w" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="t4ELumTgeJDr" client="CrfOD0yCIVGI" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="kUAPmNEXB30N" client="CrfOD0yCIVGI" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="43gmh0Iu6VkB" client="CrfOD0yCIVGI" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="llwqEfzviyIF" client="CrfOD0yCIVGI" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="t9Rm7IIMFX1x" client="CrfOD0yCIVGI" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="1WMG2MBH1XuK" client="CrfOD0yCIVGI" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="abzgKAPnfc8u" client="CrfOD0yCIVGI" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="29jhjpZlFfkJ" client="CrfOD0yCIVGI" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="ujldCMmkq1vA" client="CrfOD0yCIVGI" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="CPK0ODAJHeF9" client="CrfOD0yCIVGI" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="eJ6QWYmzaeUj" client="CrfOD0yCIVGI" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="3hScJwLiOC5V" client="CrfOD0yCIVGI" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="aotKqNxYG5Fe" client="CrfOD0yCIVGI" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="98sNB82FV40T" client="CrfOD0yCIVGI" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="XAeWCVkuEr5j" client="CrfOD0yCIVGI" name="" />
+      <UML:Dependency visibility="public" isSpecification="false" namespace="Logical View" supplier="rNU57JUuwkMS" xmi.id="jhOxWTec1z7x" client="CrfOD0yCIVGI" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="CTPZGRMSgqOp" xmi.id="ql4LPGrkXgvr" parent="GLjjqPUbmWJy" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="CTPZGRMSgqOp" xmi.id="gbKBFF35YNqE" parent="8ZMWOXzR9Qwn" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="8Ke2MJFWu6GK" xmi.id="FdBpBv2r7cKv" parent="GLjjqPUbmWJy" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="8Ke2MJFWu6GK" xmi.id="qRix30s9rU5l" parent="dubFRksLwAaG" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="bcrU5sjmuWvZ" xmi.id="mN6Hzzy7KQrD" parent="GLjjqPUbmWJy" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="bcrU5sjmuWvZ" xmi.id="tkuDAjRVS9Ct" parent="sg0K4yjuQP44" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="ummguXS1rBiS" xmi.id="fsmFGz4O1nrs" parent="GLjjqPUbmWJy" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="ummguXS1rBiS" xmi.id="fA3evtUmFx7J" parent="MbcOgm3IxlDf" name="" />
+      <UML:Package visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="6g4vl8mMBvQ4" comment="//      project:      hyperspace explorer//      module:       Matrix.H//      contains:     template declaration and definition of a Matrix class//      compile with: make all//&#x9;author:&#x9;      helge preuss (scout@hyperspace-travel.de)//&#x9;license:      GPL (see License.txt)" name="VecMath" >
+       <UML:Namespace.ownedElement/>
+      </UML:Package>
+     </UML:Namespace.ownedElement>
+     <XMI.extension xmi.extender="umbrello" >
+      <diagrams>
+       <diagram showopsig="1" linecolor="#ff0000" snapx="10" showattribassocs="1" snapy="10" linewidth="0" showattsig="1" showpackage="1" showstereotype="1" name="class diagram" font="Sans Serif,10,-1,0,50,0,0,0,0,0" canvasheight="417" canvaswidth="614" localid="" snapcsgrid="1" showgrid="1" showops="1" usefillcolor="1" fillcolor="#ffff00" zoom="200" xmi.id="tiEhlFAHk8go" documentation="" showscope="1" snapgrid="1" showatts="1" type="1" >
+        <widgets/>
+        <messages/>
+        <associations/>
+       </diagram>
+      </diagrams>
+     </XMI.extension>
+    </UML:Model>
+    <UML:Model stereotype="folder" visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Use Case View" name="Use Case View" >
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+    <UML:Model stereotype="folder" visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Component View" name="Component View" >
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+    <UML:Model stereotype="folder" visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Deployment View" name="Deployment View" >
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+    <UML:Model stereotype="folder" visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Entity Relationship Model" name="Entity Relationship Model" >
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+   </UML:Namespace.ownedElement>
+  </UML:Model>
+ </XMI.content>
+ <XMI.extensions xmi.extender="umbrello" >
+  <docsettings viewid="tiEhlFAHk8go" uniqueid="AHwECqn3YEBq" documentation="" />
+  <listview>
+   <listitem open="1" type="800" label="Views" >
+    <listitem open="1" type="836" id="Entity Relationship Model" />
+    <listitem open="1" type="827" id="Deployment View" />
+    <listitem open="1" type="821" id="Component View" />
+    <listitem open="1" type="802" id="Use Case View" />
+    <listitem open="1" type="801" id="Logical View" >
+     <listitem open="0" type="830" id="Datatypes" >
+      <listitem open="1" type="829" id="AtI4VzMYsnMj" />
+      <listitem open="1" type="829" id="sP4xJ95bde5V" />
+      <listitem open="1" type="829" id="HVbWslY995bH" />
+      <listitem open="1" type="829" id="PdcWhEnp75ra" />
+      <listitem open="1" type="829" id="C1GOZU94J1wc" />
+      <listitem open="1" type="829" id="4sTqt73L5w77" />
+      <listitem open="1" type="829" id="uWlMYzd8KUpY" />
+      <listitem open="1" type="829" id="XrtrJgOUDBn0" />
+      <listitem open="1" type="829" id="fDS0um4NQTFP" />
+      <listitem open="1" type="829" id="BYnJnWSTKhK6" />
+      <listitem open="1" type="829" id="TdRtziotEYEn" />
+     </listitem>
+     <listitem open="1" type="818" id="6g4vl8mMBvQ4" />
+     <listitem open="0" type="807" id="tiEhlFAHk8go" label="class diagram" />
+    </listitem>
+   </listitem>
+  </listview>
+  <codegeneration>
+   <codegenerator language="C++" />
+  </codegeneration>
+ </XMI.extensions>
+</XMI>

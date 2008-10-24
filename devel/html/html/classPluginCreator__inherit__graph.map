@@ -1,4 +1,4 @@
-<area shape="rect" href="$classComplexDialogImpl.html" title="A Dialog to enter a user&#45;defined complex function, ." alt="" coords="5,277,184,448">
-<area shape="rect" href="$classFunctionDialogImpl.html" title="A Dialog to enter a function from ." alt="" coords="208,277,387,448">
-<area shape="rect" href="$classPolarDialogImpl.html" title="{PolarDialogImpl\n||+ PolarDialogImpl()\l+ ~PolarDialogImpl()\l&#45; functionPresent()\l&#45; writeSource()\l&#45; checkValidity\l&#45; loadFunction\l}" alt="" coords="411,277,565,448">
-<area shape="rect" href="$classSurfaceDialogImpl.html" title="A Dialog to enter a function from ." alt="" coords="589,277,763,448">
+<area shape="rect" href="$classComplexDialogImpl.html" title="A Dialog to enter a user&#45;defined complex function, ." alt="" coords="5,261,163,421">
+<area shape="rect" href="$classFunctionDialogImpl.html" title="A Dialog to enter a function from ." alt="" coords="187,261,344,421">
+<area shape="rect" href="$classPolarDialogImpl.html" title="{PolarDialogImpl\n||+ PolarDialogImpl()\l+ ~PolarDialogImpl()\l&#45; functionPresent()\l&#45; writeSource()\l&#45; checkValidity\l&#45; loadFunction\l}" alt="" coords="368,261,504,421">
+<area shape="rect" href="$classSurfaceDialogImpl.html" title="A Dialog to enter a function from ." alt="" coords="528,261,677,421">

@@ -32,47 +32,49 @@
 <a name="l00004"></a>00004 <span class="preprocessor">#include "SingletonHolder.H"</span>
 <a name="l00005"></a>00005 <span class="preprocessor">#include "Function.H"</span>
 <a name="l00006"></a>00006 
+<a name="l00007"></a>00007 <span class="keyword">class </span><a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a>;
 <a name="l00008"></a>00008 
-<a name="l00024"></a><a class="code" href="classFunctionFactory.html">00024</a> <span class="keyword">class </span><a class="code" href="classFunctionFactory.html" title="Factory class creating Function objects given the name of their class.">FunctionFactory</a> {
-<a name="l00025"></a>00025 
-<a name="l00026"></a>00026     <span class="keyword">public</span>:
-<a name="l00028"></a>00028         <span class="keyword">typedef</span> <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> *(*CreateFunctionCallback)();
-<a name="l00029"></a>00029 
-<a name="l00031"></a><a class="code" href="classFunctionFactory_1_1BadFunctionException.html">00031</a>         <span class="keyword">class </span><a class="code" href="classFunctionFactory_1_1BadFunctionException.html" title="Thrown by createFunction() when name does not map to a function.">BadFunctionException</a>: <span class="keyword">public</span> std::runtime_error {
-<a name="l00032"></a>00032             <span class="keyword">public</span>:
-<a name="l00033"></a>00033                 <a class="code" href="classFunctionFactory_1_1BadFunctionException.html" title="Thrown by createFunction() when name does not map to a function.">BadFunctionException</a>(<span class="keyword">const</span> std::string &amp;what):
-<a name="l00034"></a>00034                     std::runtime_error(what) { }
-<a name="l00035"></a>00035         };
-<a name="l00036"></a>00036 
-<a name="l00037"></a>00037     <span class="keyword">private</span>:
-<a name="l00039"></a><a class="code" href="classFunctionFactory.html#cfd7d788dd0f22fea0f5af32ac130906">00039</a>         <span class="keyword">typedef</span> std::map&lt;std::string, CreateFunctionCallback&gt; <a class="code" href="classFunctionFactory.html#cfd7d788dd0f22fea0f5af32ac130906" title="stores a creator function with a string containing the class name">CallbackMap</a>;
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041     <span class="keyword">public</span>:
-<a name="l00043"></a>00043 
-<a name="l00046"></a>00046         <span class="keywordtype">bool</span> registerFunction(<span class="keyword">const</span> std::string &amp;name, CreateFunctionCallback creator);
-<a name="l00047"></a>00047 
+<a name="l00010"></a>00010 
+<a name="l00026"></a><a class="code" href="classFunctionFactory.html">00026</a> <span class="keyword">class </span><a class="code" href="classFunctionFactory.html" title="Factory class creating Function objects given the name of their class.">FunctionFactory</a> {
+<a name="l00027"></a>00027 
+<a name="l00028"></a>00028     <span class="keyword">public</span>:
+<a name="l00030"></a>00030         <span class="keyword">typedef</span> <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> *(*CreateFunctionCallback)();
+<a name="l00031"></a>00031 
+<a name="l00033"></a><a class="code" href="classFunctionFactory_1_1BadFunctionException.html">00033</a>         <span class="keyword">class </span><a class="code" href="classFunctionFactory_1_1BadFunctionException.html" title="Thrown by createFunction() when name does not map to a function.">BadFunctionException</a>: <span class="keyword">public</span> std::runtime_error {
+<a name="l00034"></a>00034             <span class="keyword">public</span>:
+<a name="l00035"></a>00035                 <a class="code" href="classFunctionFactory_1_1BadFunctionException.html" title="Thrown by createFunction() when name does not map to a function.">BadFunctionException</a>(<span class="keyword">const</span> std::string &amp;what):
+<a name="l00036"></a>00036                     std::runtime_error(what) { }
+<a name="l00037"></a>00037         };
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039     <span class="keyword">private</span>:
+<a name="l00041"></a><a class="code" href="classFunctionFactory.html#cfd7d788dd0f22fea0f5af32ac130906">00041</a>         <span class="keyword">typedef</span> std::map&lt;std::string, CreateFunctionCallback&gt; <a class="code" href="classFunctionFactory.html#cfd7d788dd0f22fea0f5af32ac130906" title="stores a creator function with a string containing the class name">CallbackMap</a>;
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043     <span class="keyword">public</span>:
+<a name="l00045"></a>00045 
+<a name="l00048"></a>00048         <span class="keywordtype">bool</span> registerFunction(<span class="keyword">const</span> std::string &amp;name, CreateFunctionCallback creator);
 <a name="l00049"></a>00049 
-<a name="l00051"></a>00051         <span class="keywordtype">bool</span> unregisterFunction(<span class="keyword">const</span> std::string &amp;name);
-<a name="l00052"></a>00052 
+<a name="l00051"></a>00051 
+<a name="l00053"></a>00053         <span class="keywordtype">bool</span> unregisterFunction(<span class="keyword">const</span> std::string &amp;name);
 <a name="l00054"></a>00054 
-<a name="l00056"></a>00056         <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> *createFunction(<span class="keyword">const</span> std::string &amp;name);
-<a name="l00057"></a>00057 
-<a name="l00058"></a>00058     <span class="keyword">private</span>:
-<a name="l00060"></a><a class="code" href="classFunctionFactory.html#3818fde88f978bdea66627e32b1bf4e0">00060</a>         <a class="code" href="classFunctionFactory.html" title="Factory class creating Function objects given the name of their class.">FunctionFactory</a>(): callbacks() { }
-<a name="l00062"></a>00062         <a class="code" href="classFunctionFactory.html" title="Factory class creating Function objects given the name of their class.">FunctionFactory</a>(<span class="keyword">const</span> <a class="code" href="classFunctionFactory.html" title="Factory class creating Function objects given the name of their class.">FunctionFactory</a> &amp;);
-<a name="l00064"></a>00064         <a class="code" href="classFunctionFactory.html" title="Factory class creating Function objects given the name of their class.">FunctionFactory</a> &amp;operator=(<span class="keyword">const</span> <a class="code" href="classFunctionFactory.html" title="Factory class creating Function objects given the name of their class.">FunctionFactory</a> &amp;);
-<a name="l00066"></a>00066         ~<a class="code" href="classFunctionFactory.html" title="Factory class creating Function objects given the name of their class.">FunctionFactory</a>();
-<a name="l00067"></a>00067 
-<a name="l00068"></a><a class="code" href="classFunctionFactory.html#00d37d70c75ea68159277c4e9e299e23">00068</a>         <a class="code" href="classFunctionFactory.html#cfd7d788dd0f22fea0f5af32ac130906" title="stores a creator function with a string containing the class name">CallbackMap</a> callbacks;  
+<a name="l00056"></a>00056 
+<a name="l00058"></a>00058         <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> *createFunction(<span class="keyword">const</span> std::string &amp;name);
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060     <span class="keyword">private</span>:
+<a name="l00062"></a><a class="code" href="classFunctionFactory.html#3818fde88f978bdea66627e32b1bf4e0">00062</a>         <a class="code" href="classFunctionFactory.html" title="Factory class creating Function objects given the name of their class.">FunctionFactory</a>(): callbacks() { }
+<a name="l00064"></a>00064         <a class="code" href="classFunctionFactory.html" title="Factory class creating Function objects given the name of their class.">FunctionFactory</a>(<span class="keyword">const</span> <a class="code" href="classFunctionFactory.html" title="Factory class creating Function objects given the name of their class.">FunctionFactory</a> &amp;);
+<a name="l00066"></a>00066         <a class="code" href="classFunctionFactory.html" title="Factory class creating Function objects given the name of their class.">FunctionFactory</a> &amp;operator=(<span class="keyword">const</span> <a class="code" href="classFunctionFactory.html" title="Factory class creating Function objects given the name of their class.">FunctionFactory</a> &amp;);
+<a name="l00068"></a>00068         ~<a class="code" href="classFunctionFactory.html" title="Factory class creating Function objects given the name of their class.">FunctionFactory</a>();
 <a name="l00069"></a>00069 
-<a name="l00070"></a>00070     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="structLoki_1_1CreateUsingNew.html" title="Implementation of the CreationPolicy used by SingletonHolder Creates objects using...">Loki::CreateUsingNew</a>&lt;<a class="code" href="classFunctionFactory.html" title="Factory class creating Function objects given the name of their class.">FunctionFactory</a>&gt;;
-<a name="l00071"></a>00071 };
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073 <span class="keyword">typedef</span> <a class="code" href="classLoki_1_1SingletonHolder.html" title="Provides Singleton amenities for a type T To protect that type from spurious instantiations...">Loki::SingletonHolder&lt;FunctionFactory&gt;</a> <a class="code" href="classLoki_1_1SingletonHolder.html" title="Provides Singleton amenities for a type T To protect that type from spurious instantiations...">TheFunctionFactory</a>;
+<a name="l00070"></a><a class="code" href="classFunctionFactory.html#00d37d70c75ea68159277c4e9e299e23">00070</a>         <a class="code" href="classFunctionFactory.html#cfd7d788dd0f22fea0f5af32ac130906" title="stores a creator function with a string containing the class name">CallbackMap</a> callbacks;  
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="structLoki_1_1CreateUsingNew.html" title="Implementation of the CreationPolicy used by SingletonHolder Creates objects using...">Loki::CreateUsingNew</a>&lt;<a class="code" href="classFunctionFactory.html" title="Factory class creating Function objects given the name of their class.">FunctionFactory</a>&gt;;
+<a name="l00073"></a>00073 };
 <a name="l00074"></a>00074 
-<a name="l00075"></a>00075 <span class="preprocessor">#endif</span>
+<a name="l00075"></a>00075 <span class="keyword">typedef</span> <a class="code" href="classLoki_1_1SingletonHolder.html" title="Provides Singleton amenities for a type T To protect that type from spurious instantiations...">Loki::SingletonHolder&lt;FunctionFactory&gt;</a> <a class="code" href="classLoki_1_1SingletonHolder.html" title="Provides Singleton amenities for a type T To protect that type from spurious instantiations...">TheFunctionFactory</a>;
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Thu Oct 23 22:49:21 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Oct 24 17:02:46 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

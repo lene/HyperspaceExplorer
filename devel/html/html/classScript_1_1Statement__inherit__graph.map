@@ -1,22 +1,22 @@
-<area shape="rect" href="$classScript_1_1AnimateStmt.html" title="&quot;animate&quot;" alt="" coords="351,229,492,325">
-<area shape="rect" href="$classScript_1_1BoolStatement.html" title="Statement with a single boolean parameter." alt="" coords="516,221,668,333">
-<area shape="rect" href="$classScript_1_1FramesStmt.html" title="&quot;frames &lt;num_frames&gt;&quot;" alt="" coords="692,229,828,325">
-<area shape="rect" href="$classScript_1_1ImgDirStmt.html" title="&quot;image_dir &lt;directory&gt;&quot;" alt="" coords="852,229,983,325">
-<area shape="rect" href="$classScript_1_1ImgPrefixStmt.html" title="&quot;image_prefix &lt;filename_prefix&gt;&quot;" alt="" coords="1007,229,1153,325">
-<area shape="rect" href="$classScript_1_1LoopStmt.html" title="&quot;loop &lt;num_loops&gt;&quot;" alt="" coords="1177,229,1297,325">
-<area shape="rect" href="$classScript_1_1ObjectStmt.html" title="&quot;object &lt;object_name&gt;&quot;" alt="" coords="1321,229,1452,325">
-<area shape="rect" href="$classScript_1_1ParmStmt.html" title="&quot;parameter &lt;double|int|unsigned|string&gt; &lt;parameter&gt;&quot;" alt="" coords="1476,197,1631,357">
-<area shape="rect" href="$classScript_1_1SizeStmt.html" title="&quot;size &lt;width&gt; &lt;height&gt;&quot;" alt="" coords="1655,221,1772,333">
-<area shape="rect" href="$classScript_1_1SleepStmt.html" title="&quot;sleep &lt;milliseconds&gt;&quot;" alt="" coords="1796,229,1921,325">
-<area shape="rect" href="$classScript_1_1XformStmt.html" title="&quot;transform &lt;rotation&gt;&quot;" alt="" coords="1945,221,2073,333">
-<area shape="rect" href="$classScript_1_1ColorStmt.html" title="&quot;color &lt;bool&gt;&quot;" alt="" coords="5,405,128,501">
-<area shape="rect" href="$classScript_1_1CoordsStmt.html" title="&quot;coordinates &lt;bool&gt;&quot;" alt="" coords="152,405,285,501">
-<area shape="rect" href="$classScript_1_1Fog4DStmt.html" title="&quot;depthcue4d &lt;bool&gt;&quot;" alt="" coords="309,405,440,501">
-<area shape="rect" href="$classScript_1_1FogStmt.html" title="&quot;depthcue3d &lt;bool&gt;&quot;" alt="" coords="464,405,579,501">
-<area shape="rect" href="$classScript_1_1LightStmt.html" title="&quot;lighting &lt;bool&gt;&quot;" alt="" coords="603,405,723,501">
-<area shape="rect" href="$classScript_1_1ShadingStmt.html" title="&quot;shading &lt;bool&gt;&quot;" alt="" coords="747,405,885,501">
-<area shape="rect" href="$classScript_1_1TransStmt.html" title="&quot;transparence &lt;bool&gt;&quot;" alt="" coords="909,405,1035,501">
-<area shape="rect" href="$classScript_1_1WireStmt.html" title="&quot;wireframe &lt;bool&gt;&quot;" alt="" coords="1059,405,1179,501">
-<area shape="rect" href="$classScript_1_1DeltaStmt.html" title="&quot;transform_step &lt;rotation&gt;&quot;" alt="" coords="1877,405,2000,501">
-<area shape="rect" href="$classScript_1_1RotStmt.html" title="&quot;rotation &lt;rotation&gt;&quot;" alt="" coords="2024,405,2136,501">
-<area shape="rect" href="$classScript_1_1RotDeltaStmt.html" title="&quot;rotation_step &lt;rotation&gt;&quot;" alt="" coords="1867,549,2011,645">
+<area shape="rect" href="$classScript_1_1AnimateStmt.html" title="&quot;animate&quot;" alt="" coords="333,229,464,325">
+<area shape="rect" href="$classScript_1_1BoolStatement.html" title="Statement with a single boolean parameter." alt="" coords="488,221,627,333">
+<area shape="rect" href="$classScript_1_1FramesStmt.html" title="&quot;frames &lt;num_frames&gt;&quot;" alt="" coords="651,229,776,325">
+<area shape="rect" href="$classScript_1_1ImgDirStmt.html" title="&quot;image_dir &lt;directory&gt;&quot;" alt="" coords="800,229,925,325">
+<area shape="rect" href="$classScript_1_1ImgPrefixStmt.html" title="&quot;image_prefix &lt;filename_prefix&gt;&quot;" alt="" coords="949,229,1088,325">
+<area shape="rect" href="$classScript_1_1LoopStmt.html" title="&quot;loop &lt;num_loops&gt;&quot;" alt="" coords="1112,229,1224,325">
+<area shape="rect" href="$classScript_1_1ObjectStmt.html" title="&quot;object &lt;object_name&gt;&quot;" alt="" coords="1248,229,1368,325">
+<area shape="rect" href="$classScript_1_1ParmStmt.html" title="&quot;parameter &lt;double|int|unsigned|string&gt; &lt;parameter&gt;&quot;" alt="" coords="1392,197,1536,357">
+<area shape="rect" href="$classScript_1_1SizeStmt.html" title="&quot;size &lt;width&gt; &lt;height&gt;&quot;" alt="" coords="1560,221,1669,333">
+<area shape="rect" href="$classScript_1_1SleepStmt.html" title="&quot;sleep &lt;milliseconds&gt;&quot;" alt="" coords="1693,229,1808,325">
+<area shape="rect" href="$classScript_1_1XformStmt.html" title="&quot;transform &lt;rotation&gt;&quot;" alt="" coords="1832,221,1952,333">
+<area shape="rect" href="$classScript_1_1ColorStmt.html" title="&quot;color &lt;bool&gt;&quot;" alt="" coords="5,405,120,501">
+<area shape="rect" href="$classScript_1_1CoordsStmt.html" title="&quot;coordinates &lt;bool&gt;&quot;" alt="" coords="144,405,267,501">
+<area shape="rect" href="$classScript_1_1Fog4DStmt.html" title="&quot;depthcue4d &lt;bool&gt;&quot;" alt="" coords="291,405,413,501">
+<area shape="rect" href="$classScript_1_1FogStmt.html" title="&quot;depthcue3d &lt;bool&gt;&quot;" alt="" coords="437,405,544,501">
+<area shape="rect" href="$classScript_1_1LightStmt.html" title="&quot;lighting &lt;bool&gt;&quot;" alt="" coords="568,405,683,501">
+<area shape="rect" href="$classScript_1_1ShadingStmt.html" title="&quot;shading &lt;bool&gt;&quot;" alt="" coords="707,405,835,501">
+<area shape="rect" href="$classScript_1_1TransStmt.html" title="&quot;transparence &lt;bool&gt;&quot;" alt="" coords="859,405,973,501">
+<area shape="rect" href="$classScript_1_1WireStmt.html" title="&quot;wireframe &lt;bool&gt;&quot;" alt="" coords="997,405,1109,501">
+<area shape="rect" href="$classScript_1_1DeltaStmt.html" title="&quot;transform_step &lt;rotation&gt;&quot;" alt="" coords="1768,405,1883,501">
+<area shape="rect" href="$classScript_1_1RotStmt.html" title="&quot;rotation &lt;rotation&gt;&quot;" alt="" coords="1907,405,2011,501">
+<area shape="rect" href="$classScript_1_1RotDeltaStmt.html" title="&quot;rotation_step &lt;rotation&gt;&quot;" alt="" coords="1759,549,1892,645">

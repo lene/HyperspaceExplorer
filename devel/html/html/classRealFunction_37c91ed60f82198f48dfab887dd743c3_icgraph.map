@@ -1,14 +1,14 @@
-<area shape="rect" href="$classCustomFunction.html#6b507d733c2fb3595e00df9c1a575cb3" title="CustomFunction::CustomFunction" alt="" coords="248,5,485,32">
-<area shape="rect" href="$classCustomPolarFunction.html#4da5bf879492f3baa2dc472fcfd5b70c" title="CustomPolarFunction::CustomPolarFunction" alt="" coords="216,56,517,83">
-<area shape="rect" href="$classFr3r.html#438c26c506e5fda0242a16ba517a4e5e" title="Fr3r::Fr3r" alt="" coords="327,107,407,133">
-<area shape="rect" href="$classFr3rExp.html#2711de0e8315031811dc0c7c95f80786" title="Fr3rExp::Fr3rExp" alt="" coords="304,157,429,184">
-<area shape="rect" href="$classFr3rSin.html#c26b6a297516602648707d867cd6b4bf" title="Fr3rSin::Fr3rSin" alt="" coords="307,208,427,235">
-<area shape="rect" href="$classGravitationPotential.html#1087fe7d0272f927001e19fba7636f06" title="GravitationPotential::GravitationPotential" alt="" coords="227,259,507,285">
-<area shape="rect" href="$classHypersphere.html#d03be78c012ccd6339a0d37633522635" title="Hypersphere c&#39;tor given a definition set in R³ (as parameter space) and a radius..." alt="" coords="271,309,463,336">
-<area shape="rect" href="$classPolar.html#1915fdb6145030005485f323bbf111fb" title="Polar::Polar" alt="" coords="320,360,413,387">
-<area shape="rect" href="$classPolarR.html#2a3c7f1387bcb12cbd110aba70531209" title="PolarR::PolarR" alt="" coords="312,411,421,437">
-<area shape="rect" href="$classPolarSin.html#740d752f6b10f835495760fdf62aa930" title="PolarSin::PolarSin" alt="" coords="300,461,433,488">
-<area shape="rect" href="$classPolarSin2.html#5595a98e7c1b2862702760b284998c95" title="PolarSin2::PolarSin2" alt="" coords="292,512,441,539">
-<area shape="rect" href="$classRealFunction.html#cd8338dd5e99de2034682e7b7891219d" title="Re&#45;initialize a RealFunction if the definition set has changed." alt="" coords="295,563,439,589">
-<area shape="rect" href="$classTorus1.html#35f93c2495b645c03b5eb1133b1eb040" title="Torus1::Torus1" alt="" coords="311,613,423,640">
-<area shape="rect" href="$classTorus2.html#89902faec35a16ac5bd27e37fd9ca47c" title="Torus2::Torus2" alt="" coords="311,664,423,691">
+<area shape="rect" href="$classCustomFunction.html#6b507d733c2fb3595e00df9c1a575cb3" title="CustomFunction::CustomFunction" alt="" coords="232,5,437,32">
+<area shape="rect" href="$classCustomPolarFunction.html#4da5bf879492f3baa2dc472fcfd5b70c" title="CustomPolarFunction::CustomPolarFunction" alt="" coords="204,56,465,83">
+<area shape="rect" href="$classFr3r.html#438c26c506e5fda0242a16ba517a4e5e" title="Fr3r::Fr3r" alt="" coords="297,107,372,133">
+<area shape="rect" href="$classFr3rExp.html#2711de0e8315031811dc0c7c95f80786" title="Fr3rExp::Fr3rExp" alt="" coords="276,157,393,184">
+<area shape="rect" href="$classFr3rSin.html#c26b6a297516602648707d867cd6b4bf" title="Fr3rSin::Fr3rSin" alt="" coords="280,208,389,235">
+<area shape="rect" href="$classGravitationPotential.html#1087fe7d0272f927001e19fba7636f06" title="GravitationPotential::GravitationPotential" alt="" coords="212,259,457,285">
+<area shape="rect" href="$classHypersphere.html#d03be78c012ccd6339a0d37633522635" title="Hypersphere c&#39;tor given a definition set in R³ (as parameter space) and a radius..." alt="" coords="252,309,417,336">
+<area shape="rect" href="$classPolar.html#1915fdb6145030005485f323bbf111fb" title="Polar::Polar" alt="" coords="292,360,377,387">
+<area shape="rect" href="$classPolarR.html#2a3c7f1387bcb12cbd110aba70531209" title="PolarR::PolarR" alt="" coords="284,411,385,437">
+<area shape="rect" href="$classPolarSin.html#740d752f6b10f835495760fdf62aa930" title="PolarSin::PolarSin" alt="" coords="275,461,395,488">
+<area shape="rect" href="$classPolarSin2.html#5595a98e7c1b2862702760b284998c95" title="PolarSin2::PolarSin2" alt="" coords="268,512,401,539">
+<area shape="rect" href="$classRealFunction.html#cd8338dd5e99de2034682e7b7891219d" title="Re&#45;initialize a RealFunction if the definition set has changed." alt="" coords="268,563,401,589">
+<area shape="rect" href="$classTorus1.html#35f93c2495b645c03b5eb1133b1eb040" title="Torus1::Torus1" alt="" coords="283,613,387,640">
+<area shape="rect" href="$classTorus2.html#89902faec35a16ac5bd27e37fd9ca47c" title="Torus2::Torus2" alt="" coords="283,664,387,691">

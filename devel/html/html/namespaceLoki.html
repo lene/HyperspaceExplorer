@@ -34,45 +34,12 @@
   </div>
 </div>
 <div class="contents">
-<h1>Loki Namespace Reference</h1>All classes of <a class="el" href="namespaceLoki.html" title="All classes of Loki are in the Loki namespace.">Loki</a> are in the <a class="el" href="namespaceLoki.html" title="All classes of Loki are in the Loki namespace.">Loki</a> namespace.  
+<h1>Loki Namespace Reference</h1>The <a class="el" href="namespaceLoki.html" title="The Loki library by Andrei Alexandrescu.">Loki</a> library by Andrei Alexandrescu.  
 <a href="#_details">More...</a>
 <p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><b>EmptyType</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><b>FunctorImpl&lt; R, NullType &gt;</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><b>FunctorImpl&lt; R, Seq&lt; P1 &gt; &gt;</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><b>FunctorImpl&lt; R, Seq&lt; P1, P2 &gt; &gt;</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><b>FunctorImpl&lt; R, Seq&lt; P1, P2, P3 &gt; &gt;</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><b>FunctorImpl&lt; R, Seq&lt; P1, P2, P3, P4 &gt; &gt;</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><b>FunctorImpl&lt; R, LOKI_TYPELIST_1(P1)&gt;</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><b>FunctorImpl&lt; R, LOKI_TYPELIST_2(P1, P2)&gt;</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1FunctorImpl_3_01R_00_01LOKI__TYPELIST__3_07P1_00_01P2_00_01P3_08_4.html">FunctorImpl&lt; R, LOKI_TYPELIST_3(P1, P2, P3)&gt;</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><b>FunctorImpl&lt; R, LOKI_TYPELIST_4(P1, P2, P3, P4)&gt;</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><b>FunctorHandler</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><b>MemFunHandler</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1Functor.html">Functor</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A generalized functor implementation with value semantics.  <a href="classLoki_1_1Functor.html#_details">More...</a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><b>NullType</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>Seq</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>Seq&lt;&gt;</b></td></tr>
-
 <tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structLoki_1_1CreateUsingNew.html">CreateUsingNew</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Implementation of the CreationPolicy used by <a class="el" href="classLoki_1_1SingletonHolder.html" title="Provides Singleton amenities for a type T To protect that type from spurious instantiations...">SingletonHolder</a> Creates objects using a straight call to the new operator /////////////////////////////////////////////////////////////////////////////.  <a href="structLoki_1_1CreateUsingNew.html#_details">More...</a><br></td></tr>
@@ -85,151 +52,22 @@
 <tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structLoki_1_1CreateStatic.html">CreateStatic</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Implementation of the CreationPolicy used by <a class="el" href="classLoki_1_1SingletonHolder.html" title="Provides Singleton amenities for a type T To protect that type from spurious instantiations...">SingletonHolder</a> Creates an object in static memory Implementation is slightly nonportable because it uses the MaxAlign trick (an union of all types to ensure proper memory alignment). This trick is nonportable in theory but highly portable in practice. /////////////////////////////////////////////////////////////////////////////.  <a href="structLoki_1_1CreateStatic.html#_details">More...</a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structLoki_1_1DefaultLifetime.html">DefaultLifetime</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Implementation of the LifetimePolicy used by <a class="el" href="classLoki_1_1SingletonHolder.html" title="Provides Singleton amenities for a type T To protect that type from spurious instantiations...">SingletonHolder</a> Schedules an object's destruction as per C++ rules Forwards to std::atexit /////////////////////////////////////////////////////////////////////////////.  <a href="structLoki_1_1DefaultLifetime.html#_details">More...</a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1PhoenixSingleton.html">PhoenixSingleton</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Implementation of the LifetimePolicy used by <a class="el" href="classLoki_1_1SingletonHolder.html" title="Provides Singleton amenities for a type T To protect that type from spurious instantiations...">SingletonHolder</a> Schedules an object's destruction as per C++ rules, and it allows object recreation by not throwing an exception from OnDeadReference /////////////////////////////////////////////////////////////////////////////.  <a href="classLoki_1_1PhoenixSingleton.html#_details">More...</a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1DeletableSingleton.html">DeletableSingleton</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A <a class="el" href="classLoki_1_1DeletableSingleton.html" title="A DeletableSingleton allows the instantiated singleton to be destroyed at any time...">DeletableSingleton</a> allows the instantiated singleton to be destroyed at any time. The singleton can be reinstantiated at any time, even during program termination. If the singleton exists when the program terminates, it will be automatically deleted.  <a href="classLoki_1_1DeletableSingleton.html#_details">More...</a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1SingletonWithLongevity.html">SingletonWithLongevity</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Implementation of the LifetimePolicy used by <a class="el" href="classLoki_1_1SingletonHolder.html" title="Provides Singleton amenities for a type T To protect that type from spurious instantiations...">SingletonHolder</a> Schedules an object's destruction in order of their longevities Assumes a visible function GetLongevity(T*) that returns the longevity of the object. /////////////////////////////////////////////////////////////////////////////.  <a href="classLoki_1_1SingletonWithLongevity.html#_details">More...</a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="structLoki_1_1NoDestroy.html">NoDestroy</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Implementation of the LifetimePolicy used by <a class="el" href="classLoki_1_1SingletonHolder.html" title="Provides Singleton amenities for a type T To protect that type from spurious instantiations...">SingletonHolder</a> Never destroys the object /////////////////////////////////////////////////////////////////////////////.  <a href="structLoki_1_1NoDestroy.html#_details">More...</a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1FollowIntoDeath.html">FollowIntoDeath</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Lifetime policyfor the <a class="el" href="classLoki_1_1SingletonHolder.html" title="Provides Singleton amenities for a type T To protect that type from spurious instantiations...">SingletonHolder</a> tempalte. Followers will die after the master dies Followers will not die, if<ul>
-<li>master never dies (<a class="el" href="structLoki_1_1NoDestroy.html" title="Implementation of the LifetimePolicy used by SingletonHolder Never destroys the object...">NoDestroy</a> policy)</li><li>master never created</li><li>master dies not in the function registered with atexit</li><li>master dies not by a call of a the atexit registerd function (<a class="el" href="classLoki_1_1DeletableSingleton.html#626c2dc57146f1aea6bf911682f8e3e9" title="delete singleton object manually">DeletableSingleton::GracefulDelete</a>). </li></ul>
- <a href="classLoki_1_1FollowIntoDeath.html#_details">More...</a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1SingletonHolder.html">SingletonHolder</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Provides <a class="el" href="classLoki_1_1Singleton.html" title="Convenience template to implement a getter function for a singleton object. Often...">Singleton</a> amenities for a type T To protect that type from spurious instantiations, you have to protect it yourself.  <a href="classLoki_1_1SingletonHolder.html#_details">More...</a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1Singleton.html">Singleton</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Convenience template to implement a getter function for a singleton object. Often needed in a shared library which hosts singletons.  <a href="classLoki_1_1Singleton.html#_details">More...</a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1SmallObjAllocator.html">SmallObjAllocator</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1AllocatorSingleton.html">AllocatorSingleton</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1SmallObjectBase.html">SmallObjectBase</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1SmallObject.html">SmallObject</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1SmallValueObject.html">SmallValueObject</a></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1Mutex.html">Mutex</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A simple and portable <a class="el" href="classLoki_1_1Mutex.html" title="A simple and portable Mutex. A default policy class for locking objects. ///////////////////////////...">Mutex</a>. A default policy class for locking objects. /////////////////////////////////////////////////////////////////////////////.  <a href="classLoki_1_1Mutex.html#_details">More...</a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoki_1_1SingleThreaded.html">SingleThreaded</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Implementation of the ThreadingModel policy used by various classes Implements a single-threaded model; no synchronization /////////////////////////////////////////////////////////////////////////////.  <a href="classLoki_1_1SingleThreaded.html#_details">More...</a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>Typelist</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>Int2Type</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>Type2Type</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>Select</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>Select&lt; false, T, U &gt;</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>IsSameType</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>IsSameType&lt; T, T &gt;</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>Conversion</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>Conversion&lt; T, T &gt;</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>Conversion&lt; void, T &gt;</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>Conversion&lt; T, void &gt;</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>Conversion&lt; void, void &gt;</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>SuperSubclass</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>SuperSubclass&lt; void, void &gt;</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>SuperSubclass&lt; void, U &gt;</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>SuperSubclass&lt; T, void &gt;</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>SuperSubclassStrict</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>SuperSubclassStrict&lt; void, void &gt;</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>SuperSubclassStrict&lt; void, U &gt;</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>SuperSubclassStrict&lt; T, void &gt;</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>IsCustomUnsignedInt</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>IsCustomSignedInt</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><b>IsCustomFloat</b></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><b>TypeTraits</b></td></tr>
-
-<tr><td colspan="2"><br><h2>Typedefs</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ee0a364633a62467e474b1f4c6f019de"></a><!-- doxytag: member="Loki::atexit_pfn_t" ref="ee0a364633a62467e474b1f4c6f019de" args=")()" -->
-typedef void(LOKI_C_CALLING_CONVENTION_QUALIFIER *&nbsp;</td><td class="memItemRight" valign="bottom"><b>atexit_pfn_t</b> )()</td></tr>
-
-<tr><td colspan="2"><br><h2>Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f3edcfef5331945667c3719de05e9020"></a><!-- doxytag: member="Loki::operator==" ref="f3edcfef5331945667c3719de05e9020" args="(const EmptyType &amp;, const EmptyType &amp;)" -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const EmptyType &amp;, const EmptyType &amp;)</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d91ee07d8b5f298cdca793871da9bac0"></a><!-- doxytag: member="Loki::operator&lt;" ref="d91ee07d8b5f298cdca793871da9bac0" args="(const EmptyType &amp;, const EmptyType &amp;)" -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator&lt;</b> (const EmptyType &amp;, const EmptyType &amp;)</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a21c33cdc3448e1dc4c7c657e78dc11f"></a><!-- doxytag: member="Loki::operator&gt;" ref="a21c33cdc3448e1dc4c7c657e78dc11f" args="(const EmptyType &amp;, const EmptyType &amp;)" -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator&gt;</b> (const EmptyType &amp;, const EmptyType &amp;)</td></tr>
-
-<tr><td class="memTemplParams" nowrap colspan="2"><a class="anchor" name="g82d4520d213b3b9ef2090f5e237874cf"></a><!-- doxytag: member="Loki::SetLongevity" ref="g82d4520d213b3b9ef2090f5e237874cf" args="(T *pDynObject, unsigned int longevity, Destroyer d)" -->
-template&lt;typename T, typename Destroyer&gt; </td></tr>
-<tr><td class="memTemplItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__LifetimeGroup.html#g82d4520d213b3b9ef2090f5e237874cf">SetLongevity</a> (T *pDynObject, unsigned int longevity, Destroyer d)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Assigns an object a longevity; ensures ordered destructions of objects registered thusly during the exit sequence of the application /////////////////////////////////////////////////////////////////////////////. <br></td></tr>
-<tr><td class="memTemplParams" nowrap colspan="2"><a class="anchor" name="c0616590b1ce8fe3853105359358aa28"></a><!-- doxytag: member="Loki::SetLongevity" ref="c0616590b1ce8fe3853105359358aa28" args="(T *pDynObject, unsigned int longevity, typename Private::Deleter&lt; T &gt;::Type d=Private::Deleter&lt; T &gt;::Delete)" -->
-template&lt;typename T&gt; </td></tr>
-<tr><td class="memTemplItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><b>SetLongevity</b> (T *pDynObject, unsigned int longevity, typename Private::Deleter&lt; T &gt;::Type d=Private::Deleter&lt; T &gt;::Delete)</td></tr>
-
-<tr><td class="memTemplParams" nowrap colspan="2">template&lt;template&lt; class, class &gt; class T, std::size_t C, std::size_t M, std::size_t O, template&lt; class &gt; class L, class X&gt; </td></tr>
-<tr><td class="memTemplItemLeft" nowrap align="right" valign="top">unsigned int&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceLoki.html#bd6a1e278e749117c26908963320b02e">GetLongevity</a> (<a class="el" href="classLoki_1_1AllocatorSingleton.html">AllocatorSingleton</a>&lt; T, C, M, O, L, X &gt; *)</td></tr>
-
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
-All classes of <a class="el" href="namespaceLoki.html" title="All classes of Loki are in the Loki namespace.">Loki</a> are in the <a class="el" href="namespaceLoki.html" title="All classes of Loki are in the Loki namespace.">Loki</a> namespace. <hr><h2>Function Documentation</h2>
-<a class="anchor" name="bd6a1e278e749117c26908963320b02e"></a><!-- doxytag: member="Loki::GetLongevity" ref="bd6a1e278e749117c26908963320b02e" args="(AllocatorSingleton&lt; T, C, M, O, L, X &gt; *)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;template&lt; class, class &gt; class T, std::size_t C, std::size_t M, std::size_t O, template&lt; class &gt; class L, class X&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned int Loki::GetLongevity           </td>
-          <td>(</td>
-          <td class="paramtype">AllocatorSingleton&lt; T, C, M, O, L, X &gt; *&nbsp;</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
+The <a class="el" href="namespaceLoki.html" title="The Loki library by Andrei Alexandrescu.">Loki</a> library by Andrei Alexandrescu. 
 <p>
-This standalone function provides the longevity level for Small-Object Allocators which use the <a class="el" href="classLoki_1_1SingletonWithLongevity.html" title="Implementation of the LifetimePolicy used by SingletonHolder Schedules an object&#39;s...">Loki::SingletonWithLongevity</a> policy. The <a class="el" href="classLoki_1_1SingletonWithLongevity.html" title="Implementation of the LifetimePolicy used by SingletonHolder Schedules an object&#39;s...">SingletonWithLongevity</a> class can find this function through argument- dependent lookup.<p>
-<dl class="user" compact><dt><b>Longevity Levels</b></dt><dd>No Small-Object Allocator depends on any other Small-Object allocator, so this does not need to calculate dependency levels among allocators, and it returns just a constant. All allocators must live longer than the objects which use the allocators, it must return a longevity level higher than any such object. </dd></dl>
-
-</div>
-</div><p>
-</div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Tue Oct 21 11:06:21 2008 for HyperspaceExplorer by&nbsp;
+Copyright (c) 2001 by Andrei Alexandrescu<p>
+This code accompanies the book:<p>
+Alexandrescu, Andrei. "Modern C++ Design: Generic Programming and Design Patterns Applied". Copyright (c) 2001. Addison-Wesley.<p>
+Permission to use, copy, modify, distribute and sell this software for any purpose is hereby granted without fee, provided that the above copyright notice appear in all copies and that both that copyright notice and this permission notice appear in supporting documentation.<p>
+The author or Addison-Wesley Longman make no representations about the suitability of this software for any purpose. It is provided "as is" without express or implied warranty. </div>
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Oct 24 17:03:02 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

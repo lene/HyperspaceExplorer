@@ -1,4 +1,4 @@
-This is pdfeTeX, Version 3.141592-1.30.5-2.2 (Web2C 7.5.5) (format=latex 2008.2.6)  31 MAY 2008 16:48
+This is pdfeTeX, Version 3.141592-1.30.5-2.2 (Web2C 7.5.5) (format=latex 2008.3.19)  24 OCT 2008 17:03
 entering extended mode
 **_formulas.tex
 (./_formulas.tex
@@ -54,7 +54,8 @@ File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
 )
 \epsfxsize=\dimen105
 \epsfysize=\dimen106
-) (./_formulas.aux)
+)
+No file _formulas.aux.
 \openout1 = `_formulas.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
@@ -73,7 +74,6 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 5.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 5.
-
 ! Missing } inserted.
 <inserted text> 
                 }
@@ -92,54 +92,54 @@ l.44 \begin{eqnarray*}{ F_0 &
 
 ? 
 [14] [15] [16] [17] [18] [19] [20] [21] [22] [23] [24] [25] [26] [27] [28]
-[29] [30] [31] [32] [33] [34] [35]
+[29] [30] [31] [32] [33] [34] [35] [36] [37]
 ! Missing } inserted.
 <inserted text> 
                 }
-l.110 \begin{eqnarray*} { F_0 &
+l.116 \begin{eqnarray*} { F_0 &
                                 = & Radius*\sin(\psi)*\sin(\theta)*\cos(\phi...
 
 ? 
-[36] [37]
+[38] [39]
 ! Missing } inserted.
 <inserted text> 
                 }
-l.116 \begin{eqnarray*}{ r^2 &
+l.122 \begin{eqnarray*}{ r^2 &
                                = & x^2+y^2+z^2 \\ f(x,y,z) & = & 1./(r^2+.25...
 
 ? 
-[38] [39] [40] [41] [42] [43] [44] [45]
+[40] [41] [42] [43] [44] [45] [46] [47]
 ! Missing } inserted.
 <inserted text> 
                 }
-l.140 \begin{eqnarray*}{ F_0 &
+l.146 \begin{eqnarray*}{ F_0 &
                                = & Radius*\sin \theta*\sin \psi; \\ F_1 & = ...
 
 ? 
-[46]
+[48]
 ! Missing } inserted.
 <inserted text> 
                 }
-l.143 \begin{eqnarray*}{ t &
+l.149 \begin{eqnarray*}{ t &
                              = & \theta*\pi \\ p & = & \phi*frac{\pi}{2} \\ ...
 
 ? 
-[47] [48] [49] (./_formulas.aux) )
+[49] [50] [51] (./_formulas.aux) )
 (\end occurred inside a group at level 5)
 
-### simple group (level 5) entered at line 143 ({)
-### simple group (level 4) entered at line 140 ({)
-### simple group (level 3) entered at line 116 ({)
+### simple group (level 5) entered at line 149 ({)
+### simple group (level 4) entered at line 146 ({)
+### simple group (level 3) entered at line 122 ({)
 ### simple group (level 2) entered at line 44 ({)
 ### simple group (level 1) entered at line 5 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 537 strings out of 94433
- 6252 string characters out of 1175590
+ 535 strings out of 94433
+ 6224 string characters out of 1175589
  54358 words of memory out of 1000000
  3811 multiletter control sequences out of 10000+50000
  3640 words of font info for 14 fonts, out of 500000 for 2000
  580 hyphenation exceptions out of 1000
  32i,7n,21p,276b,158s stack positions out of 1500i,500n,5000p,200000b,5000s
 
-Output written on _formulas.dvi (49 pages, 8472 bytes).
+Output written on _formulas.dvi (51 pages, 8652 bytes).

@@ -1,7 +1,7 @@
-<area shape="rect" href="$classC4DView.html#8e209837b51cb976674e81e6359f930d" title="OpenGL initialization for fog." alt="" coords="497,6,625,32">
-<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="403,82,720,108">
-<area shape="rect" href="$classC4DView.html#5f79a84b79c832319a46af95192ad180" title="Resizing routine." alt="" coords="180,195,340,222">
-<area shape="rect" href="$classC4DView.html#ac3d22c30bf8b042077fb31fec2c367b" title="C4DView::resizeGL" alt="" coords="492,132,631,159">
-<area shape="rect" href="$classC4DView.html#f46da1a68ffbcc00eddc03df078fe150" title="Switch 3D depth cue on and off." alt="" coords="167,94,353,120">
-<area shape="rect" href="$classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="OpenGL initialization." alt="" coords="792,6,944,32">
-<area shape="rect" href="$classC4DView.html#1b5e87b494b99e3705c64e924480f4ef" title="Mouse move event handler." alt="" coords="768,82,968,108">
+<area shape="rect" href="$classC4DView.html#8e209837b51cb976674e81e6359f930d" title="OpenGL initialization for fog." alt="" coords="456,5,579,32">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="376,81,659,108">
+<area shape="rect" href="$classC4DView.html#5f79a84b79c832319a46af95192ad180" title="Resizing routine." alt="" coords="172,195,316,221">
+<area shape="rect" href="$classC4DView.html#ac3d22c30bf8b042077fb31fec2c367b" title="C4DView::resizeGL" alt="" coords="452,132,583,159">
+<area shape="rect" href="$classC4DView.html#f46da1a68ffbcc00eddc03df078fe150" title="Switch 3D depth cue on and off." alt="" coords="161,93,327,120">
+<area shape="rect" href="$classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="OpenGL initialization." alt="" coords="724,5,871,32">
+<area shape="rect" href="$classC4DView.html#1b5e87b494b99e3705c64e924480f4ef" title="Mouse move event handler." alt="" coords="708,81,887,108">

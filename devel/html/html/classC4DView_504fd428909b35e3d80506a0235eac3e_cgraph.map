@@ -1,13 +1,13 @@
-<area shape="rect" href="$classColor.html#3ef2ea6a92faf2a560e359cfa75a3597" title="the blue component of the color" alt="" coords="261,5,331,32">
-<area shape="rect" href="$classColor.html#48ea644ea0e8f943f5049a1fae966c55" title="the green component of the color" alt="" coords="261,56,331,83">
-<area shape="rect" href="$classColor.html#4b63eac9efcfc3f626f10f43f4f13391" title="the red component of the color" alt="" coords="261,107,331,133">
-<area shape="rect" href="$classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Should be called whenever the object is rotated or translated." alt="" coords="229,157,363,184">
-<area shape="rect" href="$classColor.html#9023bb1107a89197950986157c4ef9de" title="Color::r" alt="" coords="263,208,329,235">
-<area shape="rect" href="$classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler." alt="" coords="412,120,577,147">
-<area shape="rect" href="$classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="419,196,571,223">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1076,107,1281,133">
-<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="632,120,784,147">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1331,107,1571,133">
-<area shape="rect" href="$classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="839,107,1025,133">
-<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="869,157,995,184">
-<area shape="rect" href="$classC4DView.html#99a55bb5dd4ba5f78e31506c55425987" title="Make a pixmap to to be rendered by the GL widget, and render it." alt="" coords="627,259,789,285">
+<area shape="rect" href="$classColor.html#3ef2ea6a92faf2a560e359cfa75a3597" title="the blue component of the color" alt="" coords="248,5,312,32">
+<area shape="rect" href="$classColor.html#48ea644ea0e8f943f5049a1fae966c55" title="the green component of the color" alt="" coords="248,56,312,83">
+<area shape="rect" href="$classColor.html#4b63eac9efcfc3f626f10f43f4f13391" title="the red component of the color" alt="" coords="248,107,312,133">
+<area shape="rect" href="$classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Should be called whenever the object is rotated or translated." alt="" coords="217,157,343,184">
+<area shape="rect" href="$classColor.html#9023bb1107a89197950986157c4ef9de" title="Color::r" alt="" coords="248,208,312,235">
+<area shape="rect" href="$classC4DView.html#e0e7e693f0c2ba5afeaea265c8c21895" title="Wrapper for redraw handler." alt="" coords="393,120,545,147">
+<area shape="rect" href="$classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="397,196,541,223">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1023,107,1215,133">
+<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="4D projection stuff" alt="" coords="600,120,741,147">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1264,107,1488,133">
+<area shape="rect" href="$classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="796,107,972,133">
+<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Projects F and coordinate cross into three&#45;space." alt="" coords="824,157,944,184">
+<area shape="rect" href="$classC4DView.html#99a55bb5dd4ba5f78e31506c55425987" title="Make a pixmap to to be rendered by the GL widget, and render it." alt="" coords="595,259,747,285">
