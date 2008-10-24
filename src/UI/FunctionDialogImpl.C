@@ -26,102 +26,106 @@ using std::ofstream;
 
 using VecMath::Vector;
 
-//////////////////////////////////////////////////////////////////////
-// construction / destruction
-//////////////////////////////////////////////////////////////////////
+namespace UI {
+    namespace Dialogs {
+        //////////////////////////////////////////////////////////////////////
+        // construction / destruction
+        //////////////////////////////////////////////////////////////////////
 
-/// FunctionDialogImpl c'tor - displays the dialog
-/** @param parent parent widget (NULL)
- *  @param f window flags                                                     */
-FunctionDialogImpl::FunctionDialogImpl (QWidget *parent, Qt::WFlags f) :
-    QDialog (parent, f) {
-    setupUi(this);
-    connect (okButton, SIGNAL(clicked()), this, SLOT(checkValidity()));
-    connect (loadButton, SIGNAL(clicked()), this, SLOT(loadFunction()));
-    descriptionLabel->hide();
-    descriptionTextEdit->hide();
-    if (layout()) layout()->setSizeConstraint(QLayout::SetFixedSize);
-    show ();
-}
-
-
-/// Display  and load the selected DLL into current address space
-/** Loads a dynamic library, which can be selected by the user on a QFileDialog.
- *  calls loadFunction () below. see there.
- *  @return success (?)                                                       */
-bool FunctionDialogImpl::loadFunction() {
-    return PluginCreator::loadFunction("real", this);
-}
+        /// FunctionDialogImpl c'tor - displays the dialog
+        /** @param parent parent widget (NULL)
+        *  @param f window flags                                                     */
+        FunctionDialogImpl::FunctionDialogImpl (QWidget *parent, Qt::WFlags f) :
+            QDialog (parent, f) {
+            setupUi(this);
+            connect (okButton, SIGNAL(clicked()), this, SLOT(checkValidity()));
+            connect (loadButton, SIGNAL(clicked()), this, SLOT(loadFunction()));
+            descriptionLabel->hide();
+            descriptionTextEdit->hide();
+            if (layout()) layout()->setSizeConstraint(QLayout::SetFixedSize);
+            show ();
+        }
 
 
-/// Loads the dynamic library given by libName, if it exists and can be loaded.
-/** Then checks whether a function named f() is present. if so, returns
- *  true. else borks with an error message.
- *  @param libName filename for the selected DLL
- *  @return success                                                           */
-bool FunctionDialogImpl::functionPresent(const QString &libName) {
-    return PluginCreator::
-        LoadFunctionHelper<Vector<4> (double, double, double)>::
-            functionPresent(libName, this);
-}
+        /// Display  and load the selected DLL into current address space
+        /** Loads a dynamic library, which can be selected by the user on a QFileDialog.
+        *  calls loadFunction () below. see there.
+        *  @return success (?)                                                       */
+        bool FunctionDialogImpl::loadFunction() {
+            return PluginCreator::loadFunction("real", this);
+        }
 
 
-/// Called when the user clicks the OK button in the Function Dialog.
-/** Checks whether all fields are filled in, whether the given function
- *  is valid C++ syntax, ie. whether it compiles, and whether the compiled code
- *  links into a dynamic library.
- *
- *  As a side effect, it generates this library.
- *
- *  Finally, it checks whether the library can be loaded. if so, it accepts the
- *  input.
- *
- *  Also, this function creates a directory structure "plugins/real" under the
- *  resource directory and changes the CWD to that folder for the duration of
- *  checkValidity ().
- *
- *  The name for this function is chosen rather unfortunately, i admit.
- *
- *  @return success                                                           */
-bool FunctionDialogImpl::checkValidity() {
-    if ((nameEdit->text().isEmpty()) || (functionEdit->text().isEmpty())) {
-        QMessageBox::warning (this, "Missing fields",
-                              "Please fill in all fields!");
-        return false;
+        /// Loads the dynamic library given by libName, if it exists and can be loaded.
+        /** Then checks whether a function named f() is present. if so, returns
+        *  true. else borks with an error message.
+        *  @param libName filename for the selected DLL
+        *  @return success                                                           */
+        bool FunctionDialogImpl::functionPresent(const QString &libName) {
+            return PluginCreator::
+                LoadFunctionHelper<Vector<4> (double, double, double)>::
+                    functionPresent(libName, this);
+        }
+
+
+        /// Called when the user clicks the OK button in the Function Dialog.
+        /** Checks whether all fields are filled in, whether the given function
+        *  is valid C++ syntax, ie. whether it compiles, and whether the compiled code
+        *  links into a dynamic library.
+        *
+        *  As a side effect, it generates this library.
+        *
+        *  Finally, it checks whether the library can be loaded. if so, it accepts the
+        *  input.
+        *
+        *  Also, this function creates a directory structure "plugins/real" under the
+        *  resource directory and changes the CWD to that folder for the duration of
+        *  checkValidity ().
+        *
+        *  The name for this function is chosen rather unfortunately, i admit.
+        *
+        *  @return success                                                           */
+        bool FunctionDialogImpl::checkValidity() {
+            if ((nameEdit->text().isEmpty()) || (functionEdit->text().isEmpty())) {
+                QMessageBox::warning (this, "Missing fields",
+                                    "Please fill in all fields!");
+                return false;
+            }
+            return PluginCreator::checkValidity("real", nameEdit->text(), this);
+        }
+
+
+        /// Write a C++ source file containing the given function
+        /** Also written is a little framework to make the source file compilable by g++
+        *  (there is currently no support for other compilers).
+        *
+        *  The resulting file "<function-name>.C" defines the function \em f() and the
+        *  function \em symbolic(), which returns the function in symbolic terms, not
+        *  in C++ syntax.                                                               */
+        void FunctionDialogImpl::writeSource () {
+            ofstream SourceFile ((nameEdit->text().toStdString()+".C").c_str());
+
+            SourceFile << "#include \"Vector.H\"\n\
+        \n\
+        using namespace VecMath;\n\
+        \n\
+        extern \"C\" Vector<4> f (double, double, double);	\n\
+        extern \"C\" char *symbolic ();\n\
+        \n\
+        Vector<4> f (double x, double y, double z) {\n\
+            static Vector<4> F;\n\
+            F[0] = x;\n\
+            F[1] = y;\n\
+            F[2] = z;\n\
+            F[3] = " << functionEdit->text().toStdString() << ";\n\
+        \n\
+            return F; }\n\
+        \n\
+        char *symbolic () {\n\
+            return \"" << functionEdit->text().toStdString() << "\";\n\
+        }\n";
+
+            SourceFile.close ();
+        }
     }
-    return PluginCreator::checkValidity("real", nameEdit->text(), this);
-}
-
-
-/// Write a C++ source file containing the given function
-/** Also written is a little framework to make the source file compilable by g++
- *  (there is currently no support for other compilers).
- *
- *  The resulting file "<function-name>.C" defines the function \em f() and the
- *  function \em symbolic(), which returns the function in symbolic terms, not
- *  in C++ syntax.                                                               */
-void FunctionDialogImpl::writeSource () {
-    ofstream SourceFile ((nameEdit->text().toStdString()+".C").c_str());
-
-    SourceFile << "#include \"Vector.H\"\n\
-\n\
-using namespace VecMath;\n\
-\n\
-extern \"C\" Vector<4> f (double, double, double);	\n\
-extern \"C\" char *symbolic ();\n\
-\n\
-Vector<4> f (double x, double y, double z) {\n\
-    static Vector<4> F;\n\
-    F[0] = x;\n\
-    F[1] = y;\n\
-    F[2] = z;\n\
-    F[3] = " << functionEdit->text().toStdString() << ";\n\
-\n\
-    return F; }\n\
-\n\
-char *symbolic () {\n\
-    return \"" << functionEdit->text().toStdString() << "\";\n\
-}\n";
-
-    SourceFile.close ();
 }

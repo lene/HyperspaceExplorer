@@ -24,10 +24,10 @@
  *  member:
  *      \li operator () (double t, double u, double);
  *
- *  @todo Vector &normal (double, double, double); - or in base class?
+ *  \todo Vector &normal (double, double, double); - or in base class?
  *
  *  \ingroup RealGroup
- *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
+ *  \author Helge Preuss <scout@hyperspace-travel.de>                         */
 class RealBase: public Function {
     public:
         /** type of the function used to generate values, optimized with a

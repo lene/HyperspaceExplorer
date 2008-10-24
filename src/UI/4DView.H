@@ -359,8 +359,8 @@ class C4DView : public QGLWidget, public UI::View {
         void setAnimateRandomTimer(QTimer * b) { pImpl->AnimateRandomTimer = b; }
         QTimer * AnimateRandomTimer() const { return pImpl->AnimateRandomTimer; }
 
-        void setValues(ValuesDialogImpl * b) { pImpl->Values = b; }
-        ValuesDialogImpl * Values() const { return pImpl->Values; }
+        void setValues(UI::Dialogs::ValuesDialogImpl * b) { pImpl->Values = b; }
+        UI::Dialogs::ValuesDialogImpl * Values() const { return pImpl->Values; }
 
         void setMenu(Menu4D *b) { pImpl->menu = b; }
         Menu4D *Menu() const { return pImpl->menu; }
@@ -427,7 +427,7 @@ class C4DView : public QGLWidget, public UI::View {
 
                 Animated (false), CurrentlyRendering (false),
 
-                Values (new ValuesDialogImpl (parent)) {}
+                Values (new UI::Dialogs::ValuesDialogImpl (parent)) {}
 
             Color Background;  ///< background color
 
@@ -480,7 +480,7 @@ class C4DView : public QGLWidget, public UI::View {
             QTimer *AnimateRandomTimer;
 
             /// dialog to enter function parameters
-            ValuesDialogImpl *Values;
+            UI::Dialogs::ValuesDialogImpl *Values;
 
             Menu4D *menu;               ///< the popup menu and menu bar
             MouseHandler4D *mouseHandler; ///< handler to delegate mouse events to

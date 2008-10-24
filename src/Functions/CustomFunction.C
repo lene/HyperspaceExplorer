@@ -23,6 +23,7 @@ using std::cerr;
 using std::endl;
 
 using VecMath::Vector;
+using namespace UI::Dialogs;
 
 /** CustomFunction c'tor given a definition set in R³ (as parameter space) and a
  *  flag indicatin whether this is a test construction or a real one
