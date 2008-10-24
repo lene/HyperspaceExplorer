@@ -1,9 +1,29 @@
 # generate distribution package
 
+* update VERSION in src.pro
+* choose "Distribution & Packaging" from the "Project" menu in KDevelop
+* make sure all needed files are in the file list
+* check "use custom options", "use bzip2 instead of gzip" and set the archive name format to "%n-%v"
+* in the "Package Information" tab, update the version number
+* click "Create Source Archive"
+
+
+# check distribution package
+
+* mkdir -p ~/tmp; cd ~/tmp; rm -rf * .??*
+* tar jxf ~/workspace/HyperspaceExplorer/HyperspaceExplorer-X.Y.Z.tar.bz2
+* cd HyperspaceExplorer; qmake && make -j4 && sudo make install
+* ./HyperspaceExplorer
+
+
 # upload distriution and publish it on SF
 
+rsync ~/workspace/HyperspaceExplorer/HyperspaceExplorer-X.Y.Z.tar.bz2 \
+      metaldog@frs.sourceforge.net:uploads/
+
+
 # generate and upload documentation
+
 * edit version number in Doxyfile
 * doxygen
-* cd devel/html/html
-* rsync -r --exclude=.svn ./ metaldog,hyperspace-expl@web.sourceforge.net:htdocs
+* rsync -rL --delete-after --exclude=.svn devel/html/html/ metaldog,hyperspace-expl@web.sourceforge.net:htdocs
