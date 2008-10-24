@@ -45,10 +45,13 @@ using VecMath::Rotation;
 using VecMath::Matrix;
 
 GLfloat C4DView::LightPos[4] = { 4., 4., 8., 0. };
+std::string  C4DView::HelpFile = "Hyperspace_Explorer_Help.html";
 
+/// \todo obsolete; use std::min
 template<typename T> T min(const T &a, const T &b) {
     return (a < b? a: b);
 }
+/// \todo obsolete; use std::max
 template<typename T> T max(const T &a, const T &b) {
     return (a > b? a: b);
 }
@@ -393,11 +396,11 @@ void C4DView::OnTimer() {
 
         Transform (R(), T());   // transform
         Redraw ();                                                  // implicit OnPaint()
-        } else OnPaint ();                                              // explicit OnPaint()
+    } else OnPaint ();                                              // explicit OnPaint()
 
-        writeFrame();   //  if render to pixmap is selected, do it
+    writeFrame();   //  if render to pixmap is selected, do it
 
-        UpdateStatus (QString("Animation: Frame %1").arg(animationFrame())
+    UpdateStatus (QString("Animation: Frame %1").arg(animationFrame())
                 +(animationMaxFrames() > 0 && animationMaxFrames() < (unsigned)(-1)?
                 QString("/%1").arg(animationMaxFrames()):
                 QString(""))
@@ -442,11 +445,10 @@ void C4DView::ApplyChanges (const ParameterMap &parms) {
     Redraw ();
 }
 
-/** display help window
- * \todo HARDCODED filename */
+/** display help window */
 void C4DView::Help () {
     static HelpWindow *H;
-    H = new HelpWindow ("Hyperspace_Explorer_Help.html");
+    H = new HelpWindow (HelpFile.c_str());
     H->show();
 }
 
@@ -587,8 +589,6 @@ void C4DView::OnPaint() {
     glPopMatrix();                                  //  restore transformation Matrix
 
     swapBuffers ();                                 //  swap the buffers
-
-    writeFrame();
 }
 
 /// Initialize the structures to display a four-dimensional coordinate cross
@@ -745,7 +745,7 @@ void C4DView::writeFrame() {
                 .arg (animationFrame(), animationCiphers)
                 .replace (" ", "0");
         if (tmpPixmap.save (imageFilename, "PNG")) {
-            cerr << "writing "
+            SingletonLog::Instance() << "writing "
                     << imageFilename.toStdString() << " successful! ("
                     << (long)animationFrame() << "/" << (long)animationMaxFrames()
                     << ")\n";

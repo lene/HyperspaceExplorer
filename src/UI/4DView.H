@@ -489,6 +489,7 @@ class C4DView : public QGLWidget, public UI::View {
     std::auto_ptr<C4DView::Impl> pImpl;
 
     static GLfloat LightPos[4]; ///< position of the light
+    static std::string HelpFile;
 
     /// endpoints of the lines constituting the 4D coordinate cross
     std::vector<std::vector<VecMath::Vector<4> > > Cross;
