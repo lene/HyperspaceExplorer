@@ -1,6 +1,7 @@
 # generate distribution package
 
 * update VERSION in src.pro
+* make sure CONFIG is set to release (and not debug)
 * choose "Distribution & Packaging" from the "Project" menu in KDevelop
 * make sure all needed files are in the file list
 * check "use custom options", "use bzip2 instead of gzip" and set the archive name format to "%n-%v"
