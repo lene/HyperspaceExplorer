@@ -79,13 +79,20 @@ HEADERS += Loki/SingletonHolder.H
 #           plugins/sqrsin.C plugins/strange.C
 
 ###
+###     Vector Algebra
+###
+INCLUDEPATH += ./VecMath
+DEPENDPATH += ./VecMath
+HEADERS += VecMath/Matrix.H VecMath/Vector.H VecMath/Rotation.H 
+SOURCES += VecMath/Rotation.C
+
+###
 ###     main directory
 ###
 INCLUDEPATH += .
 DEPENDPATH += .
-HEADERS += Globals.H Help.H Matrix.H Vector.H Log.H Color.H ColorManager.H \
-           Rotation.H NotYetImplementedException.H
-SOURCES += Globals.C Help.C Main.C ColorManager.C Rotation.C
+HEADERS += Globals.H Help.H Log.H Color.H ColorManager.H NotYetImplementedException.H
+SOURCES += Globals.C Help.C Main.C ColorManager.C
 
 ###
 ################################################################################
