@@ -1,1 +1,4 @@
-<area shape="rect" href="$classPyramid.html#9867ed04145e00009d85352f1b15727a" title="Declare a triangle in the Surface array." alt="" coords="176,5,336,32">
+<area shape="rect" href="$classPyramid.html#9867ed04145e00009d85352f1b15727a" title="Declare a triangle in the Surface array." alt="" coords="183,5,353,32">
+<area shape="rect" href="$classObject.html#abb0df155c83971e135cc13f9fc28860" title="Actually create the Object, this method is overridden in child classes." alt="" coords="211,56,325,83">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="404,56,609,83">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="659,56,899,83">

@@ -1,5 +1,6 @@
-<area shape="rect" href="$classFunction.html#a490e914a7cd65862ba7956fd558553e" title="Add a parameter to the list of parameters." alt="" coords="175,5,343,32">
-<area shape="rect" href="$classPyramid.html#dc837fa34b2f484a0c28da7210677db9" title="Actually creates the Pyramid." alt="" coords="199,56,319,83">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="393,5,585,32">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="635,5,859,32">
-<area shape="rect" href="$classPyramid.html#9867ed04145e00009d85352f1b15727a" title="Declare a triangle in the Surface array." alt="" coords="409,56,569,83">
+<area shape="rect" href="$classFunction.html#a490e914a7cd65862ba7956fd558553e" title="Add a parameter to the list of parameters." alt="" coords="181,5,368,32">
+<area shape="rect" href="$classPyramid.html#dc837fa34b2f484a0c28da7210677db9" title="Actually creates the Pyramid." alt="" coords="212,56,337,83">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="639,56,844,83">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="893,56,1133,83">
+<area shape="rect" href="$classPyramid.html#9867ed04145e00009d85352f1b15727a" title="Declare a triangle in the Surface array." alt="" coords="417,56,588,83">
+<area shape="rect" href="$classObject.html#abb0df155c83971e135cc13f9fc28860" title="Actually create the Object, this method is overridden in child classes." alt="" coords="445,107,560,133">
