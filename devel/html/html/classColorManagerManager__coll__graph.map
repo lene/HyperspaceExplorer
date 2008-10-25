@@ -1,10 +1,10 @@
-<area shape="rect" href="$classColorManager.html" title="Interface for all color managers." alt="" coords="343,1669,500,1989">
-<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="263,1077,471,1605">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="80,645,221,1013">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,149,168,517">
-<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="271,749,396,909">
-<area shape="rect" title="STL class." alt="" coords="192,285,451,381">
-<area shape="rect" title="STL class." alt="" coords="573,293,680,373">
-<area shape="rect" title="STL class." alt="" coords="659,541,776,621">
-<area shape="rect" title="STL class." alt="" coords="475,293,549,373">
-<area shape="rect" title="STL class." alt="" coords="435,5,587,85">
+<area shape="rect" href="$classColorManager.html" title="Interface for all color managers." alt="" coords="344,1669,509,1989">
+<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="259,1077,483,1605">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="79,645,231,1013">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,149,176,517">
+<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="279,749,417,909">
+<area shape="rect" title="STL class." alt="" coords="200,285,485,381">
+<area shape="rect" title="STL class." alt="" coords="613,293,728,373">
+<area shape="rect" title="STL class." alt="" coords="701,541,829,621">
+<area shape="rect" title="STL class." alt="" coords="509,293,589,373">
+<area shape="rect" title="STL class." alt="" coords="463,5,631,85">

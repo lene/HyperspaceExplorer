@@ -1,25 +1,25 @@
-<area shape="rect" href="$classC4DView.html#a0f793fd49810409fc5f6f7906f2dc53" title="C4DView::adddR" alt="" coords="361,5,479,32">
-<area shape="rect" href="$classC4DView.html#b3dee71322f74b46d42cbb2a7fdb60ce" title="C4DView::adddR3" alt="" coords="359,56,481,83">
-<area shape="rect" href="$classC4DView.html#b7654a2bad6deeb87868385f3bd9c89d" title="C4DView::addm_rot" alt="" coords="353,107,487,133">
-<area shape="rect" href="$classC4DView.html#a69265d16f26ed97574de62b0a9780db" title="C4DView::addm_trans" alt="" coords="348,157,492,184">
-<area shape="rect" href="$classC4DView.html#1bb7c7a2df076405aadfb092e198475c" title="C4DView::addR" alt="" coords="365,208,475,235">
-<area shape="rect" href="$classC4DView.html#b035f874475d1ad203c17f349c041857" title="C4DView::addT" alt="" coords="365,259,475,285">
-<area shape="rect" href="$classC4DView.html#d72b329338b14cd8cd7054bd9ab6ada4" title="C4DView::DepthCue3D" alt="" coords="344,309,496,336">
-<area shape="rect" href="$classC4DView.html#0291884b93abb31f5aa310c10701e9c3" title="C4DView::dR" alt="" coords="371,360,469,387">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1444,588,1636,615">
-<area shape="rect" href="$classC4DView.html#72ca1b3ddd5fd4dcfc1cb592d6e5c97a" title="C4DView::m_trans" alt="" coords="357,461,483,488">
-<area shape="rect" href="$classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Paint event handler, called whenever the object is transformed." alt="" coords="600,537,725,564">
-<area shape="rect" href="$classC4DView.html#94ebd881a91d0b608f4b69598ff0714f" title="C4DView::R" alt="" coords="375,563,465,589">
-<area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Draw the transformed and projected function onto the screen." alt="" coords="359,613,481,640">
-<area shape="rect" href="$classC4DView.html#3c8461856c1f84ed95d6f4994c69ede3" title="C4DView::setm_trans" alt="" coords="351,664,489,691">
-<area shape="rect" href="$classC4DView.html#f46da1a68ffbcc00eddc03df078fe150" title="Switch 3D depth cue on and off." alt="" coords="337,715,503,741">
-<area shape="rect" href="$classC4DView.html#15c8ca4d71f5b5e5b07a959601820f83" title="Get size of displayed area." alt="" coords="611,765,715,792">
-<area shape="rect" href="$classC4DView.html#5cbbef88488967558c45e960a667d822" title="C4DView::T" alt="" coords="375,816,465,843">
-<area shape="rect" href="$classC4DView.html#8a51cc06ede29308384576f277a67e19" title="Set the transform for the displayed object (but don&#39;t draw it yet)." alt="" coords="351,867,489,893">
-<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="344,917,496,944">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1685,588,1909,615">
-<area shape="rect" href="$classC4DView.html#b9561bdd967e89d314f7eda6de32b2bc" title="Wrapper for displaying OpenGL display lists." alt="" coords="823,537,975,564">
-<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen." alt="" coords="1025,613,1167,640">
-<area shape="rect" href="$classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="1217,613,1393,640">
-<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Execute the projection into three&#45;space (but don&#39;t draw it yet either)." alt="" coords="1245,664,1365,691">
-<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="552,917,773,944">
+<area shape="rect" href="$classC4DView.html#a0f793fd49810409fc5f6f7906f2dc53" title="C4DView::adddR" alt="" coords="387,5,509,32">
+<area shape="rect" href="$classC4DView.html#b3dee71322f74b46d42cbb2a7fdb60ce" title="C4DView::adddR3" alt="" coords="383,56,513,83">
+<area shape="rect" href="$classC4DView.html#b7654a2bad6deeb87868385f3bd9c89d" title="C4DView::addm_rot" alt="" coords="377,107,519,133">
+<area shape="rect" href="$classC4DView.html#a69265d16f26ed97574de62b0a9780db" title="C4DView::addm_trans" alt="" coords="371,157,525,184">
+<area shape="rect" href="$classC4DView.html#1bb7c7a2df076405aadfb092e198475c" title="C4DView::addR" alt="" coords="389,208,507,235">
+<area shape="rect" href="$classC4DView.html#b035f874475d1ad203c17f349c041857" title="C4DView::addT" alt="" coords="391,259,505,285">
+<area shape="rect" href="$classC4DView.html#d72b329338b14cd8cd7054bd9ab6ada4" title="C4DView::DepthCue3D" alt="" coords="367,309,529,336">
+<area shape="rect" href="$classC4DView.html#0291884b93abb31f5aa310c10701e9c3" title="C4DView::dR" alt="" coords="397,360,499,387">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1524,588,1729,615">
+<area shape="rect" href="$classC4DView.html#72ca1b3ddd5fd4dcfc1cb592d6e5c97a" title="C4DView::m_trans" alt="" coords="381,461,515,488">
+<area shape="rect" href="$classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Paint event handler, called whenever the object is transformed." alt="" coords="637,537,771,564">
+<area shape="rect" href="$classC4DView.html#94ebd881a91d0b608f4b69598ff0714f" title="C4DView::R" alt="" coords="401,563,495,589">
+<area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Draw the transformed and projected function onto the screen." alt="" coords="383,613,513,640">
+<area shape="rect" href="$classC4DView.html#3c8461856c1f84ed95d6f4994c69ede3" title="C4DView::setm_trans" alt="" coords="372,664,524,691">
+<area shape="rect" href="$classC4DView.html#f46da1a68ffbcc00eddc03df078fe150" title="Switch 3D depth cue on and off." alt="" coords="359,715,537,741">
+<area shape="rect" href="$classC4DView.html#15c8ca4d71f5b5e5b07a959601820f83" title="Get size of displayed area." alt="" coords="649,765,759,792">
+<area shape="rect" href="$classC4DView.html#5cbbef88488967558c45e960a667d822" title="C4DView::T" alt="" coords="401,816,495,843">
+<area shape="rect" href="$classC4DView.html#8a51cc06ede29308384576f277a67e19" title="Set the transform for the displayed object (but don&#39;t draw it yet)." alt="" coords="375,867,521,893">
+<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="365,917,531,944">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1779,588,2019,615">
+<area shape="rect" href="$classC4DView.html#b9561bdd967e89d314f7eda6de32b2bc" title="Wrapper for displaying OpenGL display lists." alt="" coords="871,537,1036,564">
+<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen." alt="" coords="1085,613,1237,640">
+<area shape="rect" href="$classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="1287,613,1473,640">
+<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Execute the projection into three&#45;space (but don&#39;t draw it yet either)." alt="" coords="1317,664,1443,691">
+<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="588,917,820,944">

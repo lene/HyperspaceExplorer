@@ -230,7 +230,7 @@ Creates the application's main menu and all its submenus.
 <p>
 This Constructor is where the menu structure is defined; if you want to change the menu, do it here.<p>
 Basically this happens by inserting all the menu items and the QActions they trigger manually. The application of TemplatedRealFunctionFactory&lt;Function&gt; as Factory object helps to save a lot of redundant code, but still every menu item must be specified manually. 
-<p>References <a class="el" href="Menu4D_8C-source.html#l00375">about()</a>, <a class="el" href="Menu4D_8H-source.html#l00097">animation</a>, <a class="el" href="Menu4D_8C-source.html#l00335">AnimationSettings()</a>, <a class="el" href="Menu4D_8H-source.html#l00096">appear</a>, <a class="el" href="Menu4D_8C-source.html#l00349">Benchmark()</a>, <a class="el" href="Menu4D_8C-source.html#l00231">Colors()</a>, <a class="el" href="Menu4D_8C-source.html#l00309">Coordinates()</a>, <a class="el" href="Menu4D_8C-source.html#l00225">customComplexFunction()</a>, <a class="el" href="Menu4D_8C-source.html#l00190">customFunction()</a>, <a class="el" href="Menu4D_8C-source.html#l00195">customPolarFunction()</a>, <a class="el" href="Menu4D_8C-source.html#l00220">customSurface()</a>, <a class="el" href="Menu4D_8H-source.html#l00095">fcc</a>, <a class="el" href="Menu4D_8C-source.html#l00241">Fog()</a>, <a class="el" href="Menu4D_8H-source.html#l00092">fr3r</a>, <a class="el" href="Menu4D_8H-source.html#l00091">functions</a>, <a class="el" href="Menu4D_8C-source.html#l00421">getAction()</a>, <a class="el" href="4DView_8H-source.html#l00195">C4DView::getColors()</a>, <a class="el" href="4DView_8H-source.html#l00189">C4DView::getDisplayCoordinates()</a>, <a class="el" href="4DView_8H-source.html#l00193">C4DView::getDisplayPolygons()</a>, <a class="el" href="4DView_8H-source.html#l00199">C4DView::getFog()</a>, <a class="el" href="4DView_8H-source.html#l00201">C4DView::getLight()</a>, <a class="el" href="4DView_8H-source.html#l00191">C4DView::getRenderToPixmap()</a>, <a class="el" href="4DView_8H-source.html#l00197">C4DView::getShade()</a>, <a class="el" href="4DView_8H-source.html#l00203">C4DView::getTransparent()</a>, <a class="el" href="Menu4D_8C-source.html#l00368">Help()</a>, <a class="el" href="Menu4D_8H-source.html#l00098">help</a>, <a class="el" href="Menu4D_8C-source.html#l00320">HyperFog()</a>, <a class="el" href="Menu4D_8C-source.html#l00437">insertAction()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00251">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="Menu4D_8C-source.html#l00256">Light()</a>, <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>, <a class="el" href="Menu4D_8C-source.html#l00215">ObjectGasket()</a>, <a class="el" href="Menu4D_8C-source.html#l00200">ObjectHypercube()</a>, <a class="el" href="Menu4D_8C-source.html#l00205">ObjectHyperpyramid()</a>, <a class="el" href="Menu4D_8C-source.html#l00210">ObjectHypersponge()</a>, <a class="el" href="Menu4D_8H-source.html#l00093">objects</a>, <a class="el" href="Menu4D_8C-source.html#l00328">RenderToImages()</a>, <a class="el" href="Menu4D_8C-source.html#l00314">setBackground()</a>, <a class="el" href="4DView_8H-source.html#l00184">C4DView::setWireframe()</a>, <a class="el" href="Menu4D_8C-source.html#l00236">Shade()</a>, <a class="el" href="Menu4D_8H-source.html#l00094">surfaces</a>, <a class="el" href="Menu4D_8C-source.html#l00246">Transparent()</a>, and <a class="el" href="Menu4D_8C-source.html#l00291">Wireframe()</a>.</p>
+<p>References <a class="el" href="Menu4D_8C-source.html#l00375">about()</a>, <a class="el" href="Menu4D_8H-source.html#l00097">animation</a>, <a class="el" href="Menu4D_8C-source.html#l00335">AnimationSettings()</a>, <a class="el" href="Menu4D_8H-source.html#l00096">appear</a>, <a class="el" href="Menu4D_8C-source.html#l00349">Benchmark()</a>, <a class="el" href="Menu4D_8C-source.html#l00231">Colors()</a>, <a class="el" href="Menu4D_8C-source.html#l00309">Coordinates()</a>, <a class="el" href="Menu4D_8C-source.html#l00225">customComplexFunction()</a>, <a class="el" href="Menu4D_8C-source.html#l00190">customFunction()</a>, <a class="el" href="Menu4D_8C-source.html#l00195">customPolarFunction()</a>, <a class="el" href="Menu4D_8C-source.html#l00220">customSurface()</a>, <a class="el" href="Menu4D_8H-source.html#l00095">fcc</a>, <a class="el" href="Menu4D_8C-source.html#l00241">Fog()</a>, <a class="el" href="Menu4D_8H-source.html#l00092">fr3r</a>, <a class="el" href="Menu4D_8H-source.html#l00091">functions</a>, <a class="el" href="Menu4D_8C-source.html#l00421">getAction()</a>, <a class="el" href="4DView_8H-source.html#l00195">C4DView::getColors()</a>, <a class="el" href="4DView_8H-source.html#l00189">C4DView::getDisplayCoordinates()</a>, <a class="el" href="4DView_8H-source.html#l00193">C4DView::getDisplayPolygons()</a>, <a class="el" href="4DView_8H-source.html#l00199">C4DView::getFog()</a>, <a class="el" href="4DView_8H-source.html#l00201">C4DView::getLight()</a>, <a class="el" href="4DView_8H-source.html#l00191">C4DView::getRenderToPixmap()</a>, <a class="el" href="4DView_8H-source.html#l00197">C4DView::getShade()</a>, <a class="el" href="4DView_8H-source.html#l00203">C4DView::getTransparent()</a>, <a class="el" href="Menu4D_8C-source.html#l00368">Help()</a>, <a class="el" href="Menu4D_8H-source.html#l00098">help</a>, <a class="el" href="Menu4D_8C-source.html#l00320">HyperFog()</a>, <a class="el" href="Menu4D_8C-source.html#l00438">insertAction()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00251">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="Menu4D_8C-source.html#l00256">Light()</a>, <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>, <a class="el" href="Menu4D_8C-source.html#l00215">ObjectGasket()</a>, <a class="el" href="Menu4D_8C-source.html#l00200">ObjectHypercube()</a>, <a class="el" href="Menu4D_8C-source.html#l00205">ObjectHyperpyramid()</a>, <a class="el" href="Menu4D_8C-source.html#l00210">ObjectHypersponge()</a>, <a class="el" href="Menu4D_8H-source.html#l00093">objects</a>, <a class="el" href="Menu4D_8C-source.html#l00328">RenderToImages()</a>, <a class="el" href="Menu4D_8C-source.html#l00314">setBackground()</a>, <a class="el" href="4DView_8H-source.html#l00184">C4DView::setWireframe()</a>, <a class="el" href="Menu4D_8C-source.html#l00236">Shade()</a>, <a class="el" href="Menu4D_8H-source.html#l00094">surfaces</a>, <a class="el" href="Menu4D_8C-source.html#l00246">Transparent()</a>, and <a class="el" href="Menu4D_8C-source.html#l00291">Wireframe()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -843,7 +843,7 @@ Add the menu to a QMenuBar.
 <p>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>menuBar</em>&nbsp;</td><td>the menu bar you want augmented with the menu </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>menuBar</em>&nbsp;</td><td>The menu bar you want augmented with the menu </td></tr>
   </table>
 </dl>
 
@@ -857,7 +857,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_cgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_cgraph_map" alt=""></center>
 <map name="classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_cgraph_map">
-<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="279,5,471,32"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="520,5,744,32"></map>
+<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="289,5,495,32"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="544,5,784,32"></map>
 </div>
 
 <p>
@@ -866,7 +866,7 @@ Here is the caller graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_icgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_icgraph_map" alt=""></center>
 <map name="classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_icgraph_map">
-<area shape="rect" href="classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="279,5,415,32"></map>
+<area shape="rect" href="classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="289,5,428,32"></map>
 </div>
 
 </div>
@@ -892,7 +892,7 @@ Set the selected function as checked and uncheck all the others.
 <p>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>item</em>&nbsp;</td><td>QString the item's title </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>item</em>&nbsp;</td><td>Title of the item whose checking status is toggled </td></tr>
   </table>
 </dl>
 
@@ -944,7 +944,7 @@ Search for the QAction associated with a menu item.
     <tr><td valign="top"></td><td valign="top"><em>key</em>&nbsp;</td><td>The title of the wanted menu item </td></tr>
   </table>
 </dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd>the QAction associated with <code>key</code> </dd></dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>The QAction associated with <code>key</code> </dd></dl>
 
 <p>References <a class="el" href="Menu4D_8H-source.html#l00100">menuMap</a>.</p>
 
@@ -1001,7 +1001,7 @@ Here is the caller graph for this function:</div>
 <p>
 insert a menu item with a specified slot into a specified menu 
 <p>
-insert a menu item with a specified slot into a specified menu AND into the hash map storing the actions by menu title. this is necessary to find the menus whenever you want to change the item titles. <dl compact><dt><b>Parameters:</b></dt><dd>
+Insert a menu item with a specified slot into a specified menu <em>and</em> into the hash map storing the actions by menu title. This is necessary to find the menus whenever you want to change the item titles. <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>_menu</em>&nbsp;</td><td>the menu you want to add the item to </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>title</em>&nbsp;</td><td>the title of the item </td></tr>
@@ -1020,7 +1020,7 @@ Here is the caller graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_1_1Menu4D_80890e8721371e24c7039ce6598c5655_icgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_80890e8721371e24c7039ce6598c5655_icgraph_map" alt=""></center>
 <map name="classC4DView_1_1Menu4D_80890e8721371e24c7039ce6598c5655_icgraph_map">
-<area shape="rect" href="classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="260,5,444,32"></map>
+<area shape="rect" href="classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="268,5,460,32"></map>
 </div>
 
 </div>
@@ -1134,7 +1134,7 @@ This version is called whenever a new <a class="el" href="classSurface.html">Sur
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>HyperspaceExplorer/src/UI/<a class="el" href="Menu4D_8H-source.html">Menu4D.H</a><li>HyperspaceExplorer/src/UI/Menu4D.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Oct 25 16:32:31 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat Oct 25 17:15:27 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>
