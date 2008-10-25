@@ -1,1 +1,2 @@
-<area shape="rect" href="$classFunctionParameter.html" title="A parameter to a Function with a name, an optional description and a default." alt="" coords="5,5,141,32">
+<area shape="rect" href="$classFunctionParameterValueBase.html" title="Interface for a value of a function parameter. Inherited by a template class." alt="" coords="5,5,205,32">
+<area shape="rect" href="$classFunctionParameterValue.html" title="A value for a function parameter. Template depending on its type." alt="" coords="255,5,455,32">

@@ -41,7 +41,7 @@
 <h1>C4DView::Menu4D Class Reference<br>
 <small>
 [<a class="el" href="group__UIGroup.html">User Interface</a>]</small>
-</h1><!-- doxytag: class="C4DView::Menu4D" -->The menu for the <a class="el" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a>.  
+</h1><!-- doxytag: class="C4DView::Menu4D" -->The menu for the <a class="el" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> and handlers for menu events.  
 <a href="#_details">More...</a>
 <p>
 <code>#include &lt;<a class="el" href="Menu4D_8H-source.html">Menu4D.H</a>&gt;</code>
@@ -51,27 +51,95 @@ Collaboration diagram for C4DView::Menu4D:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_1_1Menu4D__coll__graph.png" border="0" usemap="#C4DView_1_1Menu4D__coll__map" alt="Collaboration graph"></center>
 <map name="C4DView_1_1Menu4D__coll__map">
-<area shape="rect" href="structC4DView_1_1Impl.html" title="Private class containing the member data for the Pimpl idiom." alt="" coords="732,2661,900,3333"><area shape="rect" href="classC4DView.html" title="Displays and manipulates four&#45;dimensional Functions in a QGLWidget." alt="" coords="1176,3989,1365,6245"><area shape="rect" href="classC4DView_1_1MouseHandler4D.html" title="{C4DView::MouseHandler4D\n|&#45; parent\l&#45; m_LeftDownPos\l&#45; m_MidDownPos\l&#45; m_RightDownPos\l&#45; m_TakingSpinValues\l|+ MouseHandler4D()\l+ ~MouseHandler4D()\l+ mouseMoveEvent()\l+ mousePressEvent()\l+ mouseReleaseEvent()\l+ mouseDoubleClickEvent()\l&#45; setm_LeftDownPos()\l&#45; LeftDownPos()\l&#45; setm_MidDownPos()\l&#45; MidDownPos()\l&#45; setm_RightDownPos()\l&#45; RightDownPos()\l&#45; setTakingSpinValues()\l&#45; TakingSpinValues()\l}" alt="" coords="1036,6357,1223,6709"><area shape="rect" href="classC4DView_1_1MenuHandler.html" title="Callback functions for menu items." alt="" coords="796,6309,977,6757"><area shape="rect" href="classUI_1_1View.html" title="Interface to display four&#45;dimensional objects." alt="" coords="1247,3397,1420,3925"><area shape="rect" href="classVecMath_1_1Rotation.html" title="{VecMath::Rotation\&lt; 4 \&gt;\n|&#45; axis\l|+ Rotation()\l+ Rotation()\l+ operator[]()\l+ operator[]()\l+ operator Matrix\&lt; D, double \&gt;()\l+ operator+=()\l+ operator bool()\l+ r()\l+ r()\l}" alt="" coords="480,2253,693,2461"><area shape="rect" href="classVecMath_1_1Rotation.html" title="Rotation in D&#45;dimensional space defined by angles about the main axes." alt="" coords="359,1637,543,1845"><area shape="rect" href="classVecMath_1_1Rotation.html" title="{VecMath::Rotation\&lt; 3, GLdouble \&gt;\n|&#45; axis\l|+ Rotation()\l+ Rotation()\l+ operator[]()\l+ operator[]()\l+ operator Matrix\&lt; D, GLdouble \&gt;()\l+ operator+=()\l+ operator bool()\l+ r()\l+ r()\l}" alt="" coords="224,2253,456,2461"><area shape="rect" href="classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="851,637,1003,1005"><area shape="rect" href="classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="948,1477,1172,2005"><area shape="rect" href="classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="645,149,816,517"><area shape="rect" href="classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 3, GLdouble \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="508,1085,724,1453"><area shape="rect" href="classUI_1_1Dialogs_1_1ValuesDialogImpl.html" title="A Dialog to enter parameters for the displayed function." alt="" coords="676,1565,873,1917"><area shape="rect" href="classUI_1_1Dialogs_1_1ValuesDialog.html" title="Base class for ValuesDialogImpl, originally created by uic." alt="" coords="653,581,827,1061"><area shape="rect" href="classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="1027,741,1165,901"><area shape="rect" title="STL class." alt="" coords="953,285,1239,381"><area shape="rect" title="STL class." alt="" coords="1485,293,1600,373"><area shape="rect" title="STL class." alt="" coords="1196,1701,1324,1781"><area shape="rect" title="STL class." alt="" coords="1263,293,1343,373"><area shape="rect" title="STL class." alt="" coords="1185,5,1353,85"><area shape="rect" href="classColor.html" title="A class to represent a color value by its RGBA components." alt="" coords="5,2133,200,2581"></map>
+<area shape="rect" href="structC4DView_1_1Impl.html" title="Private class containing the member data for the Pimpl idiom." alt="" coords="1425,2901,1593,3557"><area shape="rect" href="classC4DView.html" title="Displays and manipulates four&#45;dimensional Functions in a QGLWidget." alt="" coords="436,4213,625,6437"><area shape="rect" href="classC4DView_1_1MouseHandler4D.html" title="{C4DView::MouseHandler4D\n|&#45; parent\l&#45; m_LeftDownPos\l&#45; m_MidDownPos\l&#45; m_RightDownPos\l&#45; m_TakingSpinValues\l|+ MouseHandler4D()\l+ ~MouseHandler4D()\l+ mouseMoveEvent()\l+ mousePressEvent()\l+ mouseReleaseEvent()\l+ mouseDoubleClickEvent()\l&#45; setm_LeftDownPos()\l&#45; LeftDownPos()\l&#45; setm_MidDownPos()\l&#45; MidDownPos()\l&#45; setm_RightDownPos()\l&#45; RightDownPos()\l&#45; setTakingSpinValues()\l&#45; TakingSpinValues()\l}" alt="" coords="1084,6501,1271,6853"><area shape="rect" href="classUI_1_1View.html" title="Interface to display four&#45;dimensional objects." alt="" coords="269,3621,443,4149"><area shape="rect" href="classVecMath_1_1Rotation.html" title="{VecMath::Rotation\&lt; 4 \&gt;\n|&#45; axis\l|+ Rotation()\l+ Rotation()\l+ operator[]()\l+ operator[]()\l+ operator Matrix\&lt; D, double \&gt;()\l+ operator+=()\l+ operator bool()\l+ r()\l+ r()\l}" alt="" coords="1279,2373,1492,2581"><area shape="rect" href="classVecMath_1_1Rotation.html" title="Rotation in D&#45;dimensional space defined by angles about the main axes." alt="" coords="1376,1637,1560,1845"><area shape="rect" href="classVecMath_1_1Rotation.html" title="{VecMath::Rotation\&lt; 3, GLdouble \&gt;\n|&#45; axis\l|+ Rotation()\l+ Rotation()\l+ operator[]()\l+ operator[]()\l+ operator Matrix\&lt; D, GLdouble \&gt;()\l+ operator+=()\l+ operator bool()\l+ r()\l+ r()\l}" alt="" coords="1516,2373,1748,2581"><area shape="rect" href="classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="2017,637,2169,1005"><area shape="rect" href="classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="1057,1477,1281,2005"><area shape="rect" href="classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="2081,149,2252,517"><area shape="rect" href="classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 3, GLdouble \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="2113,1085,2329,1453"><area shape="rect" href="classUI_1_1Dialogs_1_1ValuesDialogImpl.html" title="A Dialog to enter parameters for the displayed function." alt="" coords="1640,1565,1837,1917"><area shape="rect" href="classUI_1_1Dialogs_1_1ValuesDialog.html" title="Base class for ValuesDialogImpl, originally created by uic." alt="" coords="1652,581,1825,1061"><area shape="rect" href="classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="1100,741,1239,901"><area shape="rect" title="STL class." alt="" coords="1009,285,1295,381"><area shape="rect" title="STL class." alt="" coords="448,293,563,373"><area shape="rect" title="STL class." alt="" coords="691,1701,819,1781"><area shape="rect" title="STL class." alt="" coords="901,293,981,373"><area shape="rect" title="STL class." alt="" coords="857,5,1025,85"><area shape="rect" href="classColor.html" title="A class to represent a color value by its RGBA components." alt="" coords="1861,2253,2056,2701"></map>
 <center><font size="2">[<a href="graph_legend.html">legend</a>]</font></center></div>
 
 <p>
 <a href="classC4DView_1_1Menu4D-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Slots</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="fbaf42ff12ed98999a24ef6f26ede8ad"></a><!-- doxytag: member="C4DView::Menu4D::setBackground" ref="fbaf42ff12ed98999a24ef6f26ede8ad" args="()" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setBackground</b> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#930f835f35b6c894674a1970008d16e1">customFunction</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Object/f:R^3 -&gt; R/Custom function" menu item selected  <a href="#930f835f35b6c894674a1970008d16e1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#6fe898e2641531bd28be08cf2532e8d6">customPolarFunction</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Object/f:R^3 -&gt; R/Custom polar function" menu item selected  <a href="#6fe898e2641531bd28be08cf2532e8d6"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#20dc0c0fc296dd6bc1a2d2610bdfdcba">ObjectHypercube</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Object/Objects/Hypercube" menu item selected  <a href="#20dc0c0fc296dd6bc1a2d2610bdfdcba"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#8e14e0295dc33fcc4a691c5b27b58a3b">ObjectHyperpyramid</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Object/Objects/Hyperpyramid" menu item selected  <a href="#8e14e0295dc33fcc4a691c5b27b58a3b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#d7e20841364c0708efd05e67b502cbb6">ObjectHypersponge</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Object/Objects/Menger Sponge" menu item selected  <a href="#d7e20841364c0708efd05e67b502cbb6"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#4e689ad295bbf0728bfc23d277fd9787">ObjectGasket</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Object/Objects/Sierpinski Gasket" menu item selected  <a href="#4e689ad295bbf0728bfc23d277fd9787"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#b269828b3ba3e6595e1f744b772b31f5">customSurface</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Object/Surfaces/Custom surface" menu item selected  <a href="#b269828b3ba3e6595e1f744b772b31f5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#a2285bd960139ee4f64440cd14362573">customComplexFunction</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Object/Surfaces/f:C -&gt; C/Custom complex function" menu item selected  <a href="#a2285bd960139ee4f64440cd14362573"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#43d6dfaf82a5afae0e19fd77acc3ff47">Colors</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Appearance/Colors" menu item selected  <a href="#43d6dfaf82a5afae0e19fd77acc3ff47"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#e014b49d575933c3b606a05b3ba58ba1">Shade</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Appearance/Shading" menu item selected  <a href="#e014b49d575933c3b606a05b3ba58ba1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#677c09c89926bd9992dc406beaf7644a">Fog</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Appearance/Depth Cue" menu item selected  <a href="#677c09c89926bd9992dc406beaf7644a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#c61a26c7a3395c44dff97252dc6db1e1">Transparent</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Appearance/Transparence" menu item selected  <a href="#c61a26c7a3395c44dff97252dc6db1e1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#f6bc75c05ac94a4d3ebbb32de1b71baf">Light</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Appearance/Lighting" menu item selected  <a href="#f6bc75c05ac94a4d3ebbb32de1b71baf"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#a985d893aff9357d3b401ef876d2a877">Wireframe</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Appearance/Wireframe" menu item selected  <a href="#a985d893aff9357d3b401ef876d2a877"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#efc850b7fd2aca11107f07d405a8b772">Coordinates</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Appearance/Coordinate Cross" menu item selected  <a href="#efc850b7fd2aca11107f07d405a8b772"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#fbaf42ff12ed98999a24ef6f26ede8ad">setBackground</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Appearance/Set Background Color" menu item selected  <a href="#fbaf42ff12ed98999a24ef6f26ede8ad"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#5cb56f69aa204260574b9e053b3e0654">HyperFog</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Appearance/4D Depth Cue" menu item selected  <a href="#5cb56f69aa204260574b9e053b3e0654"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#6300044adf9c6488e6123e9f5d8ec4f5">RenderToImages</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Animation/Render to Images" menu item selected  <a href="#6300044adf9c6488e6123e9f5d8ec4f5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#b98370c8ca9459f749a94442f376dcab">AnimationSettings</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Animation/Animation Settings" menu item selected  <a href="#b98370c8ca9459f749a94442f376dcab"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#5aaacc9c9644fa7c8a4b10edcceaeb81">Benchmark</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Animation/Benchmark" menu item selected  <a href="#5aaacc9c9644fa7c8a4b10edcceaeb81"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#2a357dc2af3f585bc7f0d61de75d3347">Help</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Help/Online Help" menu item selected  <a href="#2a357dc2af3f585bc7f0d61de75d3347"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#eb0b3008444081dff830aeaeaae9a93d">about</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Help/About" menu item selected  <a href="#eb0b3008444081dff830aeaeaae9a93d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#48d731bef45599186abf09329b1dd02e">aboutQt</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Help/About Qt" menu item selected  <a href="#48d731bef45599186abf09329b1dd02e"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1c8271d3064b6fb41f2a86934edf282a"></a><!-- doxytag: member="C4DView::Menu4D::Menu4D" ref="1c8271d3064b6fb41f2a86934edf282a" args="(C4DView *)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a">Menu4D</a> (<a class="el" href="classC4DView.html">C4DView</a> *)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a">Menu4D</a> (<a class="el" href="classC4DView.html">C4DView</a> *)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates the application's main menu and all its submenus. <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#825a245cf67d222bf15c26e5cc7a70b9">updateFunctionMenu</a> (const QString &amp;)</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">QAction *&amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#2dfc9833855fee3fb25d13456f47bc26">getAction</a> (const QString &amp;key)</td></tr>
-
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates the application's main menu and all its submenus.  <a href="#1c8271d3064b6fb41f2a86934edf282a"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#7ffe2f1f4d1f407ef16fca9c023d4e26">addToMenuBar</a> (QMenuBar *menuBar)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Add the menu to a QMenuBar.  <a href="#7ffe2f1f4d1f407ef16fca9c023d4e26"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#825a245cf67d222bf15c26e5cc7a70b9">updateFunctionMenu</a> (const QString &amp;)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the selected function as checked and uncheck all the others.  <a href="#825a245cf67d222bf15c26e5cc7a70b9"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">QAction *&amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#2dfc9833855fee3fb25d13456f47bc26">getAction</a> (const QString &amp;key)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Search for the QAction associated with a menu item.  <a href="#2dfc9833855fee3fb25d13456f47bc26"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Private Types</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bb1778aa54f8b2e0663538868e82ff42"></a><!-- doxytag: member="C4DView::Menu4D::ActionMapType" ref="bb1778aa54f8b2e0663538868e82ff42" args="" -->
 typedef std::map&lt; QString, <br>
@@ -86,52 +154,723 @@ typedef std::map&lt; QMenu <br>
 <tr><td colspan="2"><br><h2>Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">QAction *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#80890e8721371e24c7039ce6598c5655">insertAction</a> (QMenu *, const QString &amp;, const char *, bool=true)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">insert a menu item with a specified slot into a specified menu  <a href="#80890e8721371e24c7039ce6598c5655"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">QAction *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#12dab543031d2ebfe7420cfe9d0f21ea">insertAction</a> (QMenu *, const QString &amp;, <a class="el" href="classRealFunctionFactory.html">RealFunctionFactory</a> *, bool=true)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">New version of <a class="el" href="classC4DView_1_1Menu4D.html#80890e8721371e24c7039ce6598c5655">insertAction()</a> working with the SlotHelper class.  <a href="#12dab543031d2ebfe7420cfe9d0f21ea"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">insert a menu item creating a <a class="el" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> object into a specified menu  <a href="#12dab543031d2ebfe7420cfe9d0f21ea"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">QAction *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#bde326bf07a4e0b4c666c20f7bb251f2">insertAction</a> (QMenu *, const QString &amp;, <a class="el" href="classSurfaceFactory.html">SurfaceFactory</a> *, bool=true)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">New version of <a class="el" href="classC4DView_1_1Menu4D.html#80890e8721371e24c7039ce6598c5655">insertAction()</a> working with the SlotHelper class.  <a href="#bde326bf07a4e0b4c666c20f7bb251f2"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">insert a menu item creating a <a class="el" href="classSurface.html">Surface</a> object into a specified menu  <a href="#bde326bf07a4e0b4c666c20f7bb251f2"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="234a8e699bb4ddbf3a531009edac7da8"></a><!-- doxytag: member="C4DView::Menu4D::parent" ref="234a8e699bb4ddbf3a531009edac7da8" args="" -->
-<a class="el" href="classC4DView.html">C4DView</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#234a8e699bb4ddbf3a531009edac7da8">parent</a></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="aa2c5f22c5a51f699e08102aabf0f642"></a><!-- doxytag: member="C4DView::Menu4D::m_parent" ref="aa2c5f22c5a51f699e08102aabf0f642" args="" -->
+<a class="el" href="classC4DView.html">C4DView</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#aa2c5f22c5a51f699e08102aabf0f642">m_parent</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">the <a class="el" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> containing this menu <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="59dc7c822d693882212ad96f7b1dd2f9"></a><!-- doxytag: member="C4DView::Menu4D::functions" ref="59dc7c822d693882212ad96f7b1dd2f9" args="" -->
-QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><b>functions</b></td></tr>
+QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#59dc7c822d693882212ad96f7b1dd2f9">functions</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="754ce3faa0df6ab0107910a877d53c7c"></a><!-- doxytag: member="C4DView::Menu4D::appear" ref="754ce3faa0df6ab0107910a877d53c7c" args="" -->
-QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><b>appear</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The "Object" menu. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="66946f78cc31868173ad756d9a99a411"></a><!-- doxytag: member="C4DView::Menu4D::fr3r" ref="66946f78cc31868173ad756d9a99a411" args="" -->
+QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#66946f78cc31868173ad756d9a99a411">fr3r</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="104f923fca1653c1eb7566ce6ead6ea2"></a><!-- doxytag: member="C4DView::Menu4D::animation" ref="104f923fca1653c1eb7566ce6ead6ea2" args="" -->
-QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><b>animation</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The "Object/f:R^3 -&gt; R" submenu. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9d950cd7b2b0b4c55a07415b0a74de0e"></a><!-- doxytag: member="C4DView::Menu4D::objects" ref="9d950cd7b2b0b4c55a07415b0a74de0e" args="" -->
+QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#9d950cd7b2b0b4c55a07415b0a74de0e">objects</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6638bcc697359a93455eaf081b4718c6"></a><!-- doxytag: member="C4DView::Menu4D::help" ref="6638bcc697359a93455eaf081b4718c6" args="" -->
-QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><b>help</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The "Object/Objects" submenu. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a3097d47b4bcc99af440025ca042bc01"></a><!-- doxytag: member="C4DView::Menu4D::surfaces" ref="a3097d47b4bcc99af440025ca042bc01" args="" -->
+QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#a3097d47b4bcc99af440025ca042bc01">surfaces</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7712db1a12d9b3c76dcbae852e357192"></a><!-- doxytag: member="C4DView::Menu4D::fr3r" ref="7712db1a12d9b3c76dcbae852e357192" args="" -->
-QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><b>fr3r</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The "Object/Surfaces" submenu. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6a5daf7e6632bfa0dd234583952d3519"></a><!-- doxytag: member="C4DView::Menu4D::fcc" ref="6a5daf7e6632bfa0dd234583952d3519" args="" -->
+QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#6a5daf7e6632bfa0dd234583952d3519">fcc</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="32e06740a2ed447362e009d58e73d807"></a><!-- doxytag: member="C4DView::Menu4D::objects" ref="32e06740a2ed447362e009d58e73d807" args="" -->
-QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><b>objects</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The "Object/Surfaces/f:C -&gt; C" submenu. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="cc0d03700588d39665d85ea15b8ac193"></a><!-- doxytag: member="C4DView::Menu4D::appear" ref="cc0d03700588d39665d85ea15b8ac193" args="" -->
+QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#cc0d03700588d39665d85ea15b8ac193">appear</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2b35d3f7abd2f2a77adc8ccde8acc800"></a><!-- doxytag: member="C4DView::Menu4D::surfaces" ref="2b35d3f7abd2f2a77adc8ccde8acc800" args="" -->
-QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><b>surfaces</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The "Appearance" menu. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c7a834a20eee894332f942c5cd48f672"></a><!-- doxytag: member="C4DView::Menu4D::animation" ref="c7a834a20eee894332f942c5cd48f672" args="" -->
+QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#c7a834a20eee894332f942c5cd48f672">animation</a></td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b24910c9ddbee13e10ce20f8b02be99d"></a><!-- doxytag: member="C4DView::Menu4D::fcc" ref="b24910c9ddbee13e10ce20f8b02be99d" args="" -->
-QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><b>fcc</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The "Animation" menu. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="518b44d1ab5b681390e200ac6ab7e846"></a><!-- doxytag: member="C4DView::Menu4D::help" ref="518b44d1ab5b681390e200ac6ab7e846" args="" -->
+QMenu *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#518b44d1ab5b681390e200ac6ab7e846">help</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The "Help" menu. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c2dd48d93e7df06a4f9725e02a1789ee"></a><!-- doxytag: member="C4DView::Menu4D::menuMap" ref="c2dd48d93e7df06a4f9725e02a1789ee" args="" -->
 <a class="el" href="classC4DView_1_1Menu4D.html#4ef420e40c8512de94c4386dd5437a44">MenuMapType</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#c2dd48d93e7df06a4f9725e02a1789ee">menuMap</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Keeps the QActions belonging to the menu entries. <br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
-The menu for the <a class="el" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a>. 
+The menu for the <a class="el" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> and handlers for menu events. 
 <p>
 This class has been outsourced from <a class="el" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> to keep <a class="el" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> to a managable size.<p>
 <dl class="author" compact><dt><b>Author:</b></dt><dd>Helge Preuss &lt;<a href="mailto:scout@hyperspace-travel.de">scout@hyperspace-travel.de</a>&gt; </dd></dl>
+<hr><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" name="1c8271d3064b6fb41f2a86934edf282a"></a><!-- doxytag: member="C4DView::Menu4D::Menu4D" ref="1c8271d3064b6fb41f2a86934edf282a" args="(C4DView *)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">C4DView::Menu4D::Menu4D           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classC4DView.html">C4DView</a> *&nbsp;</td>
+          <td class="paramname"> <em>_parent</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Creates the application's main menu and all its submenus. 
+<p>
+This Constructor is where the menu structure is defined; if you want to change the menu, do it here.<p>
+Basically this happens by inserting all the menu items and the QActions they trigger manually. The application of TemplatedRealFunctionFactory&lt;Function&gt; as Factory object helps to save a lot of redundant code, but still every menu item must be specified manually. 
+<p>References <a class="el" href="Menu4D_8C-source.html#l00375">about()</a>, <a class="el" href="Menu4D_8H-source.html#l00097">animation</a>, <a class="el" href="Menu4D_8C-source.html#l00335">AnimationSettings()</a>, <a class="el" href="Menu4D_8H-source.html#l00096">appear</a>, <a class="el" href="Menu4D_8C-source.html#l00349">Benchmark()</a>, <a class="el" href="Menu4D_8C-source.html#l00231">Colors()</a>, <a class="el" href="Menu4D_8C-source.html#l00309">Coordinates()</a>, <a class="el" href="Menu4D_8C-source.html#l00225">customComplexFunction()</a>, <a class="el" href="Menu4D_8C-source.html#l00190">customFunction()</a>, <a class="el" href="Menu4D_8C-source.html#l00195">customPolarFunction()</a>, <a class="el" href="Menu4D_8C-source.html#l00220">customSurface()</a>, <a class="el" href="Menu4D_8H-source.html#l00095">fcc</a>, <a class="el" href="Menu4D_8C-source.html#l00241">Fog()</a>, <a class="el" href="Menu4D_8H-source.html#l00092">fr3r</a>, <a class="el" href="Menu4D_8H-source.html#l00091">functions</a>, <a class="el" href="Menu4D_8C-source.html#l00421">getAction()</a>, <a class="el" href="4DView_8H-source.html#l00195">C4DView::getColors()</a>, <a class="el" href="4DView_8H-source.html#l00189">C4DView::getDisplayCoordinates()</a>, <a class="el" href="4DView_8H-source.html#l00193">C4DView::getDisplayPolygons()</a>, <a class="el" href="4DView_8H-source.html#l00199">C4DView::getFog()</a>, <a class="el" href="4DView_8H-source.html#l00201">C4DView::getLight()</a>, <a class="el" href="4DView_8H-source.html#l00191">C4DView::getRenderToPixmap()</a>, <a class="el" href="4DView_8H-source.html#l00197">C4DView::getShade()</a>, <a class="el" href="4DView_8H-source.html#l00203">C4DView::getTransparent()</a>, <a class="el" href="Menu4D_8C-source.html#l00368">Help()</a>, <a class="el" href="Menu4D_8H-source.html#l00098">help</a>, <a class="el" href="Menu4D_8C-source.html#l00320">HyperFog()</a>, <a class="el" href="Menu4D_8C-source.html#l00437">insertAction()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00251">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="Menu4D_8C-source.html#l00256">Light()</a>, <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>, <a class="el" href="Menu4D_8C-source.html#l00215">ObjectGasket()</a>, <a class="el" href="Menu4D_8C-source.html#l00200">ObjectHypercube()</a>, <a class="el" href="Menu4D_8C-source.html#l00205">ObjectHyperpyramid()</a>, <a class="el" href="Menu4D_8C-source.html#l00210">ObjectHypersponge()</a>, <a class="el" href="Menu4D_8H-source.html#l00093">objects</a>, <a class="el" href="Menu4D_8C-source.html#l00328">RenderToImages()</a>, <a class="el" href="Menu4D_8C-source.html#l00314">setBackground()</a>, <a class="el" href="4DView_8H-source.html#l00184">C4DView::setWireframe()</a>, <a class="el" href="Menu4D_8C-source.html#l00236">Shade()</a>, <a class="el" href="Menu4D_8H-source.html#l00094">surfaces</a>, <a class="el" href="Menu4D_8C-source.html#l00246">Transparent()</a>, and <a class="el" href="Menu4D_8C-source.html#l00291">Wireframe()</a>.</p>
+
+<p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classC4DView_1_1Menu4D_1c8271d3064b6fb41f2a86934edf282a_cgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_1c8271d3064b6fb41f2a86934edf282a_cgraph_map" alt=""></center>
+<map name="classC4DView_1_1Menu4D_1c8271d3064b6fb41f2a86934edf282a_cgraph_map">
+<area shape="rect" href="classC4DView_1_1Menu4D.html#2dfc9833855fee3fb25d13456f47bc26" title="Search for the QAction associated with a menu item." alt="" coords="259,5,456,32"><area shape="rect" href="classC4DView.html#d9687bb0368033af4e97f2c4571156d9" title="C4DView::getColors" alt="" coords="287,56,428,83"><area shape="rect" href="classC4DView.html#75ddb2c5f106d81db18300d316d86972" title="C4DView::getDisplayCoordinates" alt="" coords="248,107,467,133"><area shape="rect" href="classC4DView.html#68bbe4bf27aba718c97b3f456cf656e6" title="C4DView::getDisplayPolygons" alt="" coords="256,157,459,184"><area shape="rect" href="classC4DView.html#dabc3be452e44e3101ad2f9f4cee5e4c" title="C4DView::getFog" alt="" coords="295,208,420,235"><area shape="rect" href="classC4DView.html#c83101f5d137e9357245e863a2df7d3e" title="C4DView::getLight" alt="" coords="292,259,423,285"><area shape="rect" href="classC4DView.html#dc4f19f4c1433bbb8bea6c37177adefe" title="C4DView::getRenderToPixmap" alt="" coords="253,309,461,336"><area shape="rect" href="classC4DView.html#89dd3e07ddd664711df895975a3d4bcd" title="C4DView::getShade" alt="" coords="287,360,428,387"><area shape="rect" href="classC4DView.html#5ad3a5d84454cb614b14748d772013b4" title="C4DView::getTransparent" alt="" coords="269,411,445,437"><area shape="rect" href="classC4DView_1_1Menu4D.html#80890e8721371e24c7039ce6598c5655" title="insert a menu item with a specified slot into a specified menu" alt="" coords="251,461,464,488"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="255,512,460,539"><area shape="rect" href="classC4DView.html#7576863855bcc3cbd7b41c5f77ab220e" title="Implementation of UI::View::setWireframe." alt="" coords="275,563,440,589"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="515,512,755,539"></map>
+</div>
+
+</div>
+</div><p>
 <hr><h2>Member Function Documentation</h2>
+<a class="anchor" name="930f835f35b6c894674a1970008d16e1"></a><!-- doxytag: member="C4DView::Menu4D::customFunction" ref="930f835f35b6c894674a1970008d16e1" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::customFunction           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Object/f:R^3 -&gt; R/Custom function" menu item selected 
+<p>
+Display a <a class="el" href="classCustomFunction.html">CustomFunction</a> object 
+<p>References <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6fe898e2641531bd28be08cf2532e8d6"></a><!-- doxytag: member="C4DView::Menu4D::customPolarFunction" ref="6fe898e2641531bd28be08cf2532e8d6" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::customPolarFunction           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Object/f:R^3 -&gt; R/Custom polar function" menu item selected 
+<p>
+Display a <a class="el" href="classCustomPolarFunction.html">CustomPolarFunction</a> object 
+<p>References <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="20dc0c0fc296dd6bc1a2d2610bdfdcba"></a><!-- doxytag: member="C4DView::Menu4D::ObjectHypercube" ref="20dc0c0fc296dd6bc1a2d2610bdfdcba" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::ObjectHypercube           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Object/Objects/Hypercube" menu item selected 
+<p>
+Display a <a class="el" href="classHypercube.html" title="A four-dimensional cube.">Hypercube</a> object 
+<p>References <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>, and <a class="el" href="4DView_8C-source.html#l00101">C4DView::ObjectHypercube()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8e14e0295dc33fcc4a691c5b27b58a3b"></a><!-- doxytag: member="C4DView::Menu4D::ObjectHyperpyramid" ref="8e14e0295dc33fcc4a691c5b27b58a3b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::ObjectHyperpyramid           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Object/Objects/Hyperpyramid" menu item selected 
+<p>
+Display a Hyperpyramid object 
+<p>References <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>, and <a class="el" href="4DView_8C-source.html#l00110">C4DView::ObjectHyperpyramid()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d7e20841364c0708efd05e67b502cbb6"></a><!-- doxytag: member="C4DView::Menu4D::ObjectHypersponge" ref="d7e20841364c0708efd05e67b502cbb6" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::ObjectHypersponge           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Object/Objects/Menger Sponge" menu item selected 
+<p>
+Display a Hypersponge object 
+<p>References <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>, and <a class="el" href="4DView_8C-source.html#l00119">C4DView::ObjectHypersponge()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="4e689ad295bbf0728bfc23d277fd9787"></a><!-- doxytag: member="C4DView::Menu4D::ObjectGasket" ref="4e689ad295bbf0728bfc23d277fd9787" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::ObjectGasket           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Object/Objects/Sierpinski Gasket" menu item selected 
+<p>
+Display a <a class="el" href="classGasket.html" title="A four-dimensional version of the Sierpinski Gasket.">Gasket</a> object 
+<p>References <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>, and <a class="el" href="4DView_8C-source.html#l00128">C4DView::ObjectGasket()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b269828b3ba3e6595e1f744b772b31f5"></a><!-- doxytag: member="C4DView::Menu4D::customSurface" ref="b269828b3ba3e6595e1f744b772b31f5" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::customSurface           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Object/Surfaces/Custom surface" menu item selected 
+<p>
+Display a <a class="el" href="classCustomSurface.html">CustomSurface</a> object 
+<p>References <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a2285bd960139ee4f64440cd14362573"></a><!-- doxytag: member="C4DView::Menu4D::customComplexFunction" ref="a2285bd960139ee4f64440cd14362573" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::customComplexFunction           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Object/Surfaces/f:C -&gt; C/Custom complex function" menu item selected 
+<p>
+Display a <a class="el" href="classCustomComplexFunction.html">CustomComplexFunction</a> object 
+<p>References <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="43d6dfaf82a5afae0e19fd77acc3ff47"></a><!-- doxytag: member="C4DView::Menu4D::Colors" ref="43d6dfaf82a5afae0e19fd77acc3ff47" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::Colors           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Appearance/Colors" menu item selected 
+<p>
+Toggle colors 
+<p>References <a class="el" href="4DView_8H-source.html#l00195">C4DView::getColors()</a>, <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>, and <a class="el" href="4DView_8C-source.html#l00164">C4DView::setColors()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e014b49d575933c3b606a05b3ba58ba1"></a><!-- doxytag: member="C4DView::Menu4D::Shade" ref="e014b49d575933c3b606a05b3ba58ba1" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::Shade           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Appearance/Shading" menu item selected 
+<p>
+Toggle shading 
+<p>References <a class="el" href="4DView_8H-source.html#l00197">C4DView::getShade()</a>, <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>, and <a class="el" href="4DView_8C-source.html#l00192">C4DView::setShading()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="677c09c89926bd9992dc406beaf7644a"></a><!-- doxytag: member="C4DView::Menu4D::Fog" ref="677c09c89926bd9992dc406beaf7644a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::Fog           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Appearance/Depth Cue" menu item selected 
+<p>
+Toggle fog/depth cue 
+<p>References <a class="el" href="4DView_8H-source.html#l00199">C4DView::getFog()</a>, <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>, and <a class="el" href="4DView_8C-source.html#l00178">C4DView::setFog()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c61a26c7a3395c44dff97252dc6db1e1"></a><!-- doxytag: member="C4DView::Menu4D::Transparent" ref="c61a26c7a3395c44dff97252dc6db1e1" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::Transparent           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Appearance/Transparence" menu item selected 
+<p>
+Toggle object transparency 
+<p>References <a class="el" href="4DView_8H-source.html#l00203">C4DView::getTransparent()</a>, <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>, and <a class="el" href="4DView_8C-source.html#l00199">C4DView::setTransparence()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f6bc75c05ac94a4d3ebbb32de1b71baf"></a><!-- doxytag: member="C4DView::Menu4D::Light" ref="f6bc75c05ac94a4d3ebbb32de1b71baf" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::Light           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Appearance/Lighting" menu item selected 
+<p>
+Switch lighting on or off<p>
+Change menu items accordingly <dl compact><dt><b><a class="el" href="todo.html#_todo000039">Todo:</a></b></dt><dd>uses hardcoded values for light attributes </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000039">Todo:</a></b></dt><dd>move all the GL stuff away from the menu handler, back into <a class="el" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> </dd></dl>
+
+<p>References <a class="el" href="4DView_8H-source.html#l00319">C4DView::Lighting()</a>, <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>, <a class="el" href="4DView_8C-source.html#l00382">C4DView::OnPaint()</a>, and <a class="el" href="4DView_8H-source.html#l00178">C4DView::setLighting()</a>.</p>
+
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00067">C4DView::C4DView()</a>, and <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a985d893aff9357d3b401ef876d2a877"></a><!-- doxytag: member="C4DView::Menu4D::Wireframe" ref="a985d893aff9357d3b401ef876d2a877" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::Wireframe           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Appearance/Wireframe" menu item selected 
+<p>
+Switch between wireframe and solid display<p>
+Account for antialiasing only in wireframe mode<p>
+Change menu items accordingly 
+<p>References <a class="el" href="4DView_8H-source.html#l00318">C4DView::DisplayPolygons()</a>, <a class="el" href="Menu4D_8C-source.html#l00421">getAction()</a>, <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>, <a class="el" href="4DView_8C-source.html#l00382">C4DView::OnPaint()</a>, and <a class="el" href="4DView_8H-source.html#l00184">C4DView::setWireframe()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="efc850b7fd2aca11107f07d405a8b772"></a><!-- doxytag: member="C4DView::Menu4D::Coordinates" ref="efc850b7fd2aca11107f07d405a8b772" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::Coordinates           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Appearance/Coordinate Cross" menu item selected 
+<p>
+Switch coordinate cross on or off<p>
+Change menu items accordingly 
+<p>References <a class="el" href="4DView_8H-source.html#l00325">C4DView::DisplayCoordinates()</a>, <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>, and <a class="el" href="4DView_8C-source.html#l00171">C4DView::setCoordinates()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="fbaf42ff12ed98999a24ef6f26ede8ad"></a><!-- doxytag: member="C4DView::Menu4D::setBackground" ref="fbaf42ff12ed98999a24ef6f26ede8ad" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::setBackground           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Appearance/Set Background Color" menu item selected 
+<p>
+Pop up a color selector and set the background to the chosen color 
+<p>References <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>, and <a class="el" href="4DView_8C-source.html#l00159">C4DView::setBackground()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5cb56f69aa204260574b9e053b3e0654"></a><!-- doxytag: member="C4DView::Menu4D::HyperFog" ref="5cb56f69aa204260574b9e053b3e0654" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::HyperFog           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Appearance/4D Depth Cue" menu item selected 
+<p>
+Switch 4D depth cue on or off Change menu items accordingly 
+<p>References <a class="el" href="4DView_8H-source.html#l00323">C4DView::DepthCue4D()</a>, <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>, and <a class="el" href="4DView_8C-source.html#l00185">C4DView::setHyperfog()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6300044adf9c6488e6123e9f5d8ec4f5"></a><!-- doxytag: member="C4DView::Menu4D::RenderToImages" ref="6300044adf9c6488e6123e9f5d8ec4f5" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::RenderToImages           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Animation/Render to Images" menu item selected 
+<p>
+Switch rendering to files on or off<p>
+Change menu items accordingly 
+<p>References <a class="el" href="Menu4D_8C-source.html#l00421">getAction()</a>, <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>, <a class="el" href="4DView_8H-source.html#l00327">C4DView::RenderToPixmap()</a>, and <a class="el" href="4DView_8H-source.html#l00326">C4DView::setRenderToPixmap()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b98370c8ca9459f749a94442f376dcab"></a><!-- doxytag: member="C4DView::Menu4D::AnimationSettings" ref="b98370c8ca9459f749a94442f376dcab" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::AnimationSettings           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Animation/Animation Settings" menu item selected 
+<p>
+Show a dialog to adjust animation settings - where to write image files and how many files to write. 
+<p>References <a class="el" href="4DView_8H-source.html#l00334">C4DView::animationDirectory()</a>, <a class="el" href="4DView_8H-source.html#l00343">C4DView::animationMaxFrames()</a>, <a class="el" href="4DView_8H-source.html#l00338">C4DView::animationPrefix()</a>, <a class="el" href="AnimationDialogImpl_8H-source.html#l00034">UI::Dialogs::AnimationDialogImpl::getDir()</a>, <a class="el" href="AnimationDialogImpl_8H-source.html#l00028">UI::Dialogs::AnimationDialogImpl::getFrames()</a>, <a class="el" href="AnimationDialogImpl_8H-source.html#l00037">UI::Dialogs::AnimationDialogImpl::getPrefix()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00251">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>, <a class="el" href="4DView_8H-source.html#l00331">C4DView::setanimationDirectory()</a>, <a class="el" href="4DView_8H-source.html#l00342">C4DView::setanimationMaxFrames()</a>, and <a class="el" href="4DView_8H-source.html#l00337">C4DView::setanimationPrefix()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5aaacc9c9644fa7c8a4b10edcceaeb81"></a><!-- doxytag: member="C4DView::Menu4D::Benchmark" ref="5aaacc9c9644fa7c8a4b10edcceaeb81" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::Benchmark           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Animation/Benchmark" menu item selected 
+<p>
+Run a benchmark test 
+<p>References <a class="el" href="4DView_8C-source.html#l00208">C4DView::Benchmark3D()</a>, <a class="el" href="4DView_8C-source.html#l00230">C4DView::Benchmark4D()</a>, <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>, and <a class="el" href="4DView_8C-source.html#l00625">C4DView::UpdateStatus()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2a357dc2af3f585bc7f0d61de75d3347"></a><!-- doxytag: member="C4DView::Menu4D::Help" ref="2a357dc2af3f585bc7f0d61de75d3347" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::Help           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Help/Online Help" menu item selected 
+<p>
+Display help window 
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="eb0b3008444081dff830aeaeaae9a93d"></a><!-- doxytag: member="C4DView::Menu4D::about" ref="eb0b3008444081dff830aeaeaae9a93d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::about           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Help/About" menu item selected 
+<p>
+Open an "About"-Dialog telling a few basics about the software 
+<p>References <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="48d731bef45599186abf09329b1dd02e"></a><!-- doxytag: member="C4DView::Menu4D::aboutQt" ref="48d731bef45599186abf09329b1dd02e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::aboutQt           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Help/About Qt" menu item selected 
+<p>
+Open an "About Qt"-Dialog 
+<p>References <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7ffe2f1f4d1f407ef16fca9c023d4e26"></a><!-- doxytag: member="C4DView::Menu4D::addToMenuBar" ref="7ffe2f1f4d1f407ef16fca9c023d4e26" args="(QMenuBar *menuBar)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::addToMenuBar           </td>
+          <td>(</td>
+          <td class="paramtype">QMenuBar *&nbsp;</td>
+          <td class="paramname"> <em>menuBar</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Add the menu to a QMenuBar. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>menuBar</em>&nbsp;</td><td>the menu bar you want augmented with the menu </td></tr>
+  </table>
+</dl>
+
+<p>References <a class="el" href="Menu4D_8H-source.html#l00097">animation</a>, <a class="el" href="Menu4D_8H-source.html#l00096">appear</a>, <a class="el" href="Menu4D_8H-source.html#l00091">functions</a>, <a class="el" href="Menu4D_8H-source.html#l00098">help</a>, and <a class="el" href="SingletonHolder_8H-source.html#l00251">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
+
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00067">C4DView::C4DView()</a>.</p>
+
+<p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_cgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_cgraph_map" alt=""></center>
+<map name="classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_cgraph_map">
+<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="279,5,471,32"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="520,5,744,32"></map>
+</div>
+
+<p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_icgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_icgraph_map" alt=""></center>
+<map name="classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_icgraph_map">
+<area shape="rect" href="classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="279,5,415,32"></map>
+</div>
+
+</div>
+</div><p>
 <a class="anchor" name="825a245cf67d222bf15c26e5cc7a70b9"></a><!-- doxytag: member="C4DView::Menu4D::updateFunctionMenu" ref="825a245cf67d222bf15c26e5cc7a70b9" args="(const QString &amp;)" -->
 <div class="memitem">
 <div class="memproto">
@@ -149,15 +888,17 @@ This class has been outsourced from <a class="el" href="classC4DView.html" title
 <div class="memdoc">
 
 <p>
-set the selected function as checked and all the others unchecked <dl compact><dt><b>Parameters:</b></dt><dd>
+Set the selected function as checked and uncheck all the others. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>item</em>&nbsp;</td><td>QString the item's title </td></tr>
   </table>
 </dl>
 
-<p>References <a class="el" href="Menu4D_8C-source.html#l00239">getAction()</a>, and <a class="el" href="Menu4D_8H-source.html#l00053">menuMap</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00095">fcc</a>, <a class="el" href="Menu4D_8H-source.html#l00092">fr3r</a>, <a class="el" href="Menu4D_8H-source.html#l00091">functions</a>, <a class="el" href="Menu4D_8C-source.html#l00421">getAction()</a>, <a class="el" href="Menu4D_8H-source.html#l00100">menuMap</a>, <a class="el" href="Menu4D_8H-source.html#l00093">objects</a>, and <a class="el" href="Menu4D_8H-source.html#l00094">surfaces</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00131">C4DView::ObjectGasket()</a>, <a class="el" href="4DView_8C-source.html#l00104">C4DView::ObjectHypercube()</a>, <a class="el" href="4DView_8C-source.html#l00113">C4DView::ObjectHyperpyramid()</a>, and <a class="el" href="4DView_8C-source.html#l00122">C4DView::ObjectHypersponge()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00128">C4DView::ObjectGasket()</a>, <a class="el" href="4DView_8C-source.html#l00101">C4DView::ObjectHypercube()</a>, <a class="el" href="4DView_8C-source.html#l00110">C4DView::ObjectHyperpyramid()</a>, and <a class="el" href="4DView_8C-source.html#l00119">C4DView::ObjectHypersponge()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -165,7 +906,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_1_1Menu4D_825a245cf67d222bf15c26e5cc7a70b9_cgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_825a245cf67d222bf15c26e5cc7a70b9_cgraph_map" alt=""></center>
 <map name="classC4DView_1_1Menu4D_825a245cf67d222bf15c26e5cc7a70b9_cgraph_map">
-<area shape="rect" href="classC4DView_1_1Menu4D.html#2dfc9833855fee3fb25d13456f47bc26" title="C4DView::Menu4D::getAction" alt="" coords="308,5,497,32"></map>
+<area shape="rect" href="classC4DView_1_1Menu4D.html#2dfc9833855fee3fb25d13456f47bc26" title="Search for the QAction associated with a menu item." alt="" coords="324,5,521,32"></map>
 </div>
 
 <p>
@@ -174,7 +915,7 @@ Here is the caller graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_1_1Menu4D_825a245cf67d222bf15c26e5cc7a70b9_icgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_825a245cf67d222bf15c26e5cc7a70b9_icgraph_map" alt=""></center>
 <map name="classC4DView_1_1Menu4D_825a245cf67d222bf15c26e5cc7a70b9_icgraph_map">
-<area shape="rect" href="classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="328,5,483,32"><area shape="rect" href="classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="317,157,493,184"><area shape="rect" href="classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="308,56,503,83"><area shape="rect" href="classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="311,107,500,133"><area shape="rect" href="classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="553,81,737,108"><area shape="rect" href="classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="577,157,713,184"></map>
+<area shape="rect" href="classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="344,5,509,32"><area shape="rect" href="classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="333,56,520,83"><area shape="rect" href="classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="324,107,529,133"><area shape="rect" href="classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="325,157,528,184"><area shape="rect" href="classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="580,56,719,83"></map>
 </div>
 
 </div>
@@ -196,10 +937,18 @@ Here is the caller graph for this function:</div>
 <div class="memdoc">
 
 <p>
-search for the supplied String in the list of menu entries in all submenus and return the associated QAction 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00053">menuMap</a>.</p>
+Search for the QAction associated with a menu item. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>key</em>&nbsp;</td><td>The title of the wanted menu item </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>the QAction associated with <code>key</code> </dd></dl>
 
-<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00023">Menu4D()</a>, <a class="el" href="MenuHandler_8C-source.html#l00140">C4DView::MenuHandler::RenderToImages()</a>, <a class="el" href="4DView_8C-source.html#l00167">C4DView::setColors()</a>, <a class="el" href="4DView_8C-source.html#l00174">C4DView::setCoordinates()</a>, <a class="el" href="4DView_8C-source.html#l00181">C4DView::setFog()</a>, <a class="el" href="4DView_8C-source.html#l00188">C4DView::setHyperfog()</a>, <a class="el" href="4DView_8C-source.html#l00195">C4DView::setShading()</a>, <a class="el" href="4DView_8C-source.html#l00202">C4DView::setTransparence()</a>, <a class="el" href="Menu4D_8C-source.html#l00250">updateFunctionMenu()</a>, and <a class="el" href="MenuHandler_8C-source.html#l00038">C4DView::MenuHandler::Wireframe()</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00100">menuMap</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>, <a class="el" href="Menu4D_8C-source.html#l00328">RenderToImages()</a>, <a class="el" href="4DView_8C-source.html#l00164">C4DView::setColors()</a>, <a class="el" href="4DView_8C-source.html#l00171">C4DView::setCoordinates()</a>, <a class="el" href="4DView_8C-source.html#l00178">C4DView::setFog()</a>, <a class="el" href="4DView_8C-source.html#l00185">C4DView::setHyperfog()</a>, <a class="el" href="4DView_8C-source.html#l00192">C4DView::setShading()</a>, <a class="el" href="4DView_8C-source.html#l00199">C4DView::setTransparence()</a>, <a class="el" href="Menu4D_8C-source.html#l00402">updateFunctionMenu()</a>, and <a class="el" href="Menu4D_8C-source.html#l00291">Wireframe()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -207,54 +956,7 @@ Here is the caller graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_1_1Menu4D_2dfc9833855fee3fb25d13456f47bc26_icgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_2dfc9833855fee3fb25d13456f47bc26_icgraph_map" alt=""></center>
 <map name="classC4DView_1_1Menu4D_2dfc9833855fee3fb25d13456f47bc26_icgraph_map">
-<area shape="rect" href="classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="793,309,977,336"><area shape="rect" href="classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Implementation of UI::View::setColors." alt="" coords="305,56,439,83"><area shape="rect" href="classC4DView.html#eb4ec12aada637e796110fe8172d12ff" title="Implementation of UI::View::setCoordinates." alt="" coords="291,107,453,133"><area shape="rect" href="classC4DView.html#556e03bfff4b2f369a86edb47f3e4b84" title="Implementation of UI::View::setFog." alt="" coords="313,157,431,184"><area shape="rect" href="classC4DView.html#b8007107aba8c57dd39063be93ca8f96" title="Implementation of UI::View::setHyperfog." alt="" coords="297,208,447,235"><area shape="rect" href="classC4DView.html#7b529adaf92650371f5b6e81dbf4792b" title="Implementation of UI::View::setShading." alt="" coords="301,259,443,285"><area shape="rect" href="classC4DView.html#262d0aa0188edc2b262160959ce7d965" title="Implementation of UI::View::setTransparence." alt="" coords="288,309,456,336"><area shape="rect" href="classC4DView_1_1Menu4D.html#825a245cf67d222bf15c26e5cc7a70b9" title="C4DView::Menu4D::updateFunctionMenu" alt="" coords="247,360,497,387"><area shape="rect" href="classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="568,259,723,285"><area shape="rect" href="classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="557,411,733,437"><area shape="rect" href="classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="548,309,743,336"><area shape="rect" href="classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="551,360,740,387"><area shape="rect" href="classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="817,411,953,437"></map>
-</div>
-
-</div>
-</div><p>
-<a class="anchor" name="7ffe2f1f4d1f407ef16fca9c023d4e26"></a><!-- doxytag: member="C4DView::Menu4D::addToMenuBar" ref="7ffe2f1f4d1f407ef16fca9c023d4e26" args="(QMenuBar *menuBar)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void C4DView::Menu4D::addToMenuBar           </td>
-          <td>(</td>
-          <td class="paramtype">QMenuBar *&nbsp;</td>
-          <td class="paramname"> <em>menuBar</em>          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-Add the menu to a QMenuBar <dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>menuBar</em>&nbsp;</td><td>the menu bar you want augmented with the menu </td></tr>
-  </table>
-</dl>
-
-<p>References <a class="el" href="SingletonHolder_8H-source.html#l00251">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
-
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00068">C4DView::C4DView()</a>.</p>
-
-<p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dynsection">
-<p><center><img src="classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_cgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_cgraph_map" alt=""></center>
-<map name="classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_cgraph_map">
-<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="279,5,471,32"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="520,5,744,32"></map>
-</div>
-
-<p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dynsection">
-<p><center><img src="classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_icgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_icgraph_map" alt=""></center>
-<map name="classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_icgraph_map">
-<area shape="rect" href="classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="279,5,415,32"></map>
+<area shape="rect" href="classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="292,5,484,32"><area shape="rect" href="classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Implementation of UI::View::setColors." alt="" coords="317,56,459,83"><area shape="rect" href="classC4DView.html#eb4ec12aada637e796110fe8172d12ff" title="Implementation of UI::View::setCoordinates." alt="" coords="301,107,475,133"><area shape="rect" href="classC4DView.html#556e03bfff4b2f369a86edb47f3e4b84" title="Implementation of UI::View::setFog." alt="" coords="325,157,451,184"><area shape="rect" href="classC4DView.html#b8007107aba8c57dd39063be93ca8f96" title="Implementation of UI::View::setHyperfog." alt="" coords="309,208,467,235"><area shape="rect" href="classC4DView.html#7b529adaf92650371f5b6e81dbf4792b" title="Implementation of UI::View::setShading." alt="" coords="312,259,464,285"><area shape="rect" href="classC4DView.html#262d0aa0188edc2b262160959ce7d965" title="Implementation of UI::View::setTransparence." alt="" coords="296,309,480,336"><area shape="rect" href="classC4DView_1_1Menu4D.html#825a245cf67d222bf15c26e5cc7a70b9" title="Set the selected function as checked and uncheck all the others." alt="" coords="255,360,521,387"><area shape="rect" href="classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="592,284,757,311"><area shape="rect" href="classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="581,335,768,361"><area shape="rect" href="classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="572,385,777,412"><area shape="rect" href="classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="573,436,776,463"><area shape="rect" href="classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="828,335,967,361"></map>
 </div>
 
 </div>
@@ -297,6 +999,8 @@ Here is the caller graph for this function:</div>
 <div class="memdoc">
 
 <p>
+insert a menu item with a specified slot into a specified menu 
+<p>
 insert a menu item with a specified slot into a specified menu AND into the hash map storing the actions by menu title. this is necessary to find the menus whenever you want to change the item titles. <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>_menu</em>&nbsp;</td><td>the menu you want to add the item to </td></tr>
@@ -306,18 +1010,9 @@ insert a menu item with a specified slot into a specified menu AND into the hash
   </table>
 </dl>
 
-<p>References <a class="el" href="4DView_8H-source.html#l00370">C4DView::menuHandler()</a>, <a class="el" href="Menu4D_8H-source.html#l00053">menuMap</a>, and <a class="el" href="Menu4D_8H-source.html#l00049">parent</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00100">menuMap</a>.</p>
 
-<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00023">Menu4D()</a>.</p>
-
-<p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dynsection">
-<p><center><img src="classC4DView_1_1Menu4D_80890e8721371e24c7039ce6598c5655_cgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_80890e8721371e24c7039ce6598c5655_cgraph_map" alt=""></center>
-<map name="classC4DView_1_1Menu4D_80890e8721371e24c7039ce6598c5655_cgraph_map">
-<area shape="rect" href="classC4DView.html#d991ed13ad9a9d52b91f88a16389e8f4" title="C4DView::menuHandler" alt="" coords="260,5,415,32"></map>
-</div>
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -368,17 +1063,18 @@ Here is the caller graph for this function:</div>
 <div class="memdoc">
 
 <p>
-New version of <a class="el" href="classC4DView_1_1Menu4D.html#80890e8721371e24c7039ce6598c5655">insertAction()</a> working with the SlotHelper class. 
+insert a menu item creating a <a class="el" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> object into a specified menu 
 <p>
-This version is called whenever a new <a class="el" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> should be initialized in <a class="el" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> <dl compact><dt><b>Parameters:</b></dt><dd>
+This version is called whenever a new <a class="el" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> should be initialized and displayed in <a class="el" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>_menu</em>&nbsp;</td><td>the menu you want to add the item to </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>title</em>&nbsp;</td><td>the title of the item </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>factory</em>&nbsp;</td><td>the factory object creating the desired <a class="el" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a> object </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>checkable</em>&nbsp;</td><td>whether the menu item is checkable </td></tr>
   </table>
 </dl>
 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00053">menuMap</a>, and <a class="el" href="Menu4D_8H-source.html#l00049">parent</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">fr3r</a>, <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>, and <a class="el" href="Menu4D_8H-source.html#l00100">menuMap</a>.</p>
 
 </div>
 </div><p>
@@ -420,24 +1116,25 @@ This version is called whenever a new <a class="el" href="classRealFunction.html
 <div class="memdoc">
 
 <p>
-New version of <a class="el" href="classC4DView_1_1Menu4D.html#80890e8721371e24c7039ce6598c5655">insertAction()</a> working with the SlotHelper class. 
+insert a menu item creating a <a class="el" href="classSurface.html">Surface</a> object into a specified menu 
 <p>
-This version is called whenever a new <a class="el" href="classSurface.html">Surface</a> should be initialized in <a class="el" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> <dl compact><dt><b>Parameters:</b></dt><dd>
+This version is called whenever a new <a class="el" href="classSurface.html">Surface</a> should be initialized and displayed in <a class="el" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>_menu</em>&nbsp;</td><td>the menu you want to add the item to </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>title</em>&nbsp;</td><td>the title of the item </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>factory</em>&nbsp;</td><td>the factory object creating the desired <a class="el" href="classSurface.html">Surface</a> object </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>checkable</em>&nbsp;</td><td>whether the menu item is checkable </td></tr>
   </table>
 </dl>
 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00053">menuMap</a>, and <a class="el" href="Menu4D_8H-source.html#l00049">parent</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">fr3r</a>, <a class="el" href="Menu4D_8H-source.html#l00089">m_parent</a>, and <a class="el" href="Menu4D_8H-source.html#l00100">menuMap</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>HyperspaceExplorer/src/UI/<a class="el" href="Menu4D_8H-source.html">Menu4D.H</a><li>HyperspaceExplorer/src/UI/Menu4D.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Oct 25 02:15:07 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat Oct 25 16:32:31 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

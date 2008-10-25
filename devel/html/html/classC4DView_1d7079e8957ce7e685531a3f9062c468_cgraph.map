@@ -1,11 +1,11 @@
-<area shape="rect" href="$classC4DView_1_1Menu4D.html#7ffe2f1f4d1f407ef16fca9c023d4e26" title="C4DView::Menu4D::addToMenuBar" alt="" coords="997,28,1232,55">
+<area shape="rect" href="$classC4DView_1_1Menu4D.html#7ffe2f1f4d1f407ef16fca9c023d4e26" title="Add the menu to a QMenuBar." alt="" coords="997,28,1232,55">
 <area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1860,231,2065,257">
 <area shape="rect" href="$classC4DView.html#04a35de24dbf03d029afc5d0be93ec11" title="Initialize the structures to display a four&#45;dimensional coordinate cross." alt="" coords="220,129,359,156">
 <area shape="rect" href="$classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="196,231,383,257">
 <area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="2157,231,2397,257">
 <area shape="rect" href="$classC4DView.html#e38186ceacf6c4e6b13de7bee6cd8bda" title="Called whenever an object or the parameters have changed." alt="" coords="1280,383,1445,409">
 <area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Draw the transformed and projected function onto the screen." alt="" coords="501,205,632,232">
-<area shape="rect" href="$classC4DView_1_1Menu4D.html#825a245cf67d222bf15c26e5cc7a70b9" title="C4DView::Menu4D::updateFunctionMenu" alt="" coords="433,256,700,283">
+<area shape="rect" href="$classC4DView_1_1Menu4D.html#825a245cf67d222bf15c26e5cc7a70b9" title="Set the selected function as checked and uncheck all the others." alt="" coords="433,256,700,283">
 <area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#dde4d7e444559027ba40b01581fee768" title="Adjust the display according to the Function whose Parameters are controlled." alt="" coords="1493,484,1768,511">
 <area shape="rect" href="$classC4DView.html#16d5190870a166c65a20c59368ca0f2f" title="Overloaded function executing the transform to the default state." alt="" coords="1557,332,1704,359">
 <area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="1548,433,1713,460">
@@ -16,4 +16,4 @@
 <area shape="rect" href="$classC4DView.html#b9561bdd967e89d314f7eda6de32b2bc" title="Wrapper for displaying OpenGL display lists." alt="" coords="1032,155,1197,181">
 <area shape="rect" href="$classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="1537,281,1724,308">
 <area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Execute the projection into three&#45;space (but don&#39;t draw it yet either)." alt="" coords="1568,180,1693,207">
-<area shape="rect" href="$classC4DView_1_1Menu4D.html#2dfc9833855fee3fb25d13456f47bc26" title="C4DView::Menu4D::getAction" alt="" coords="751,256,948,283">
+<area shape="rect" href="$classC4DView_1_1Menu4D.html#2dfc9833855fee3fb25d13456f47bc26" title="Search for the QAction associated with a menu item." alt="" coords="751,256,948,283">

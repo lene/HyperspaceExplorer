@@ -41,7 +41,7 @@
 <h1>UI::Dialogs::ComplexDialogImpl Class Reference<br>
 <small>
 [<a class="el" href="group__UIGroup.html">User Interface</a>]</small>
-</h1><!-- doxytag: class="UI::Dialogs::ComplexDialogImpl" --><!-- doxytag: inherits="PluginCreator" -->A Dialog to enter a user-defined complex function, <img class="formulaInl" alt="$ f: C \rightarrow C $" src="form_31.png">.  
+</h1><!-- doxytag: class="UI::Dialogs::ComplexDialogImpl" --><!-- doxytag: inherits="UI::Dialogs::PluginCreator" -->A Dialog to enter a user-defined complex function, <img class="formulaInl" alt="$ f: C \rightarrow C $" src="form_31.png">.  
 <a href="#_details">More...</a>
 <p>
 <code>#include &lt;<a class="el" href="ComplexDialogImpl_8H-source.html">ComplexDialogImpl.H</a>&gt;</code>
@@ -51,14 +51,14 @@ Inheritance diagram for UI::Dialogs::ComplexDialogImpl:</div>
 <div class="dynsection">
 <p><center><img src="classUI_1_1Dialogs_1_1ComplexDialogImpl__inherit__graph.png" border="0" usemap="#UI_1_1Dialogs_1_1ComplexDialogImpl__inherit__map" alt="Inheritance graph"></center>
 <map name="UI_1_1Dialogs_1_1ComplexDialogImpl__inherit__map">
-<area shape="rect" href="classPluginCreator.html" title="Abstract base class for all Dialogs which allow entering a custom function." alt="" coords="45,5,176,213"></map>
+<area shape="rect" href="classUI_1_1Dialogs_1_1PluginCreator.html" title="Abstract base class for all Dialogs which allow entering a custom function." alt="" coords="23,5,199,213"></map>
 <center><font size="2">[<a href="graph_legend.html">legend</a>]</font></center></div>
 <div class="dynheader">
 Collaboration diagram for UI::Dialogs::ComplexDialogImpl:</div>
 <div class="dynsection">
 <p><center><img src="classUI_1_1Dialogs_1_1ComplexDialogImpl__coll__graph.png" border="0" usemap="#UI_1_1Dialogs_1_1ComplexDialogImpl__coll__map" alt="Collaboration graph"></center>
 <map name="UI_1_1Dialogs_1_1ComplexDialogImpl__coll__map">
-<area shape="rect" href="classPluginCreator.html" title="Abstract base class for all Dialogs which allow entering a custom function." alt="" coords="45,5,176,213"></map>
+<area shape="rect" href="classUI_1_1Dialogs_1_1PluginCreator.html" title="Abstract base class for all Dialogs which allow entering a custom function." alt="" coords="23,5,199,213"></map>
 <center><font size="2">[<a href="graph_legend.html">legend</a>]</font></center></div>
 
 <p>
@@ -140,7 +140,7 @@ The function will then be compiled into a dynamic library and loaded to be displ
 <p>
 this function is called when the user clicks the OK button in the <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> Dialog. checks whether all fields are filled in, whether the given function is valid C++ syntax, ie. whether it compiles, and whether the compiled code links into a dynamic library. as a side effect, it generates this library. finally, it checks whether the library can be loaded. if so, it accepts the input. also, this function creates a directory structure "plugins/real" under the resource directory and changes the CWD to that folder for the duration of checkValidity (). the name for this function is chosen rather unfortunately, i guess. <dl class="return" compact><dt><b>Returns:</b></dt><dd>success </dd></dl>
 
-<p>References <a class="el" href="PluginCreator_8C-source.html#l00075">PluginCreator::checkValidity()</a>.</p>
+<p>References <a class="el" href="PluginCreator_8C-source.html#l00077">UI::Dialogs::PluginCreator::checkValidity()</a>.</p>
 
 <p>Referenced by <a class="el" href="ComplexDialogImpl_8C-source.html#l00035">ComplexDialogImpl()</a>.</p>
 
@@ -164,9 +164,9 @@ this function is called when the user clicks the OK button in the <a class="el" 
 <p>
 display and load the selected DLL into current address space loads a dynamic library, which can be selected by the user on a QFileDialog. calls loadFunction () below. see there. <dl class="return" compact><dt><b>Returns:</b></dt><dd>success (?) </dd></dl>
 
-<p>Implements <a class="el" href="classPluginCreator.html#934c4708ba3cf6054982d9b0b67e29d2">PluginCreator</a>.</p>
+<p>Implements <a class="el" href="classUI_1_1Dialogs_1_1PluginCreator.html#85f6d276197a8429b739b3bbb015d0b2">UI::Dialogs::PluginCreator</a>.</p>
 
-<p>References <a class="el" href="classPluginCreator.html#934c4708ba3cf6054982d9b0b67e29d2">PluginCreator::loadFunction()</a>.</p>
+<p>References <a class="el" href="classUI_1_1Dialogs_1_1PluginCreator.html#85f6d276197a8429b739b3bbb015d0b2">UI::Dialogs::PluginCreator::loadFunction()</a>.</p>
 
 <p>Referenced by <a class="el" href="ComplexDialogImpl_8C-source.html#l00035">ComplexDialogImpl()</a>.</p>
 
@@ -196,7 +196,7 @@ loads the dynamic library given by libName, if it exists and can be loaded. then
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>success </dd></dl>
 
-<p>Implements <a class="el" href="classPluginCreator.html#72d965933b305fe25e9e27b9ab88fbb6">PluginCreator</a>.</p>
+<p>Implements <a class="el" href="classUI_1_1Dialogs_1_1PluginCreator.html#89929e964fad3f59bd7f0319c9c5a033">UI::Dialogs::PluginCreator</a>.</p>
 
 </div>
 </div><p>
@@ -217,14 +217,14 @@ loads the dynamic library given by libName, if it exists and can be loaded. then
 
 <p>
 write a C++ source file, containing the given function and some framework to make it compilable by g++ (there is currently no support for other compilers). the resulting file "&lt;function-name&gt;.C" defines the function f () and the function symbolic (), which returns the function in symbolic terms, not in C++ syntax. 
-<p>Implements <a class="el" href="classPluginCreator.html#a951c5e85ecfdc22750cb5485c9d5b9e">PluginCreator</a>.</p>
+<p>Implements <a class="el" href="classUI_1_1Dialogs_1_1PluginCreator.html#c5f5a53eedde4b496bf35ecee5113d7c">UI::Dialogs::PluginCreator</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>HyperspaceExplorer/src/UI/<a class="el" href="ComplexDialogImpl_8H-source.html">ComplexDialogImpl.H</a><li>HyperspaceExplorer/src/UI/ComplexDialogImpl.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Oct 25 02:15:08 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat Oct 25 16:32:33 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

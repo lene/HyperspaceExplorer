@@ -1,13 +1,13 @@
-<area shape="rect" href="$classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="793,309,977,336">
-<area shape="rect" href="$classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Implementation of UI::View::setColors." alt="" coords="305,56,439,83">
-<area shape="rect" href="$classC4DView.html#eb4ec12aada637e796110fe8172d12ff" title="Implementation of UI::View::setCoordinates." alt="" coords="291,107,453,133">
-<area shape="rect" href="$classC4DView.html#556e03bfff4b2f369a86edb47f3e4b84" title="Implementation of UI::View::setFog." alt="" coords="313,157,431,184">
-<area shape="rect" href="$classC4DView.html#b8007107aba8c57dd39063be93ca8f96" title="Implementation of UI::View::setHyperfog." alt="" coords="297,208,447,235">
-<area shape="rect" href="$classC4DView.html#7b529adaf92650371f5b6e81dbf4792b" title="Implementation of UI::View::setShading." alt="" coords="301,259,443,285">
-<area shape="rect" href="$classC4DView.html#262d0aa0188edc2b262160959ce7d965" title="Implementation of UI::View::setTransparence." alt="" coords="288,309,456,336">
-<area shape="rect" href="$classC4DView_1_1Menu4D.html#825a245cf67d222bf15c26e5cc7a70b9" title="C4DView::Menu4D::updateFunctionMenu" alt="" coords="247,360,497,387">
-<area shape="rect" href="$classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="568,259,723,285">
-<area shape="rect" href="$classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="557,411,733,437">
-<area shape="rect" href="$classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="548,309,743,336">
-<area shape="rect" href="$classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="551,360,740,387">
-<area shape="rect" href="$classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="817,411,953,437">
+<area shape="rect" href="$classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="292,5,484,32">
+<area shape="rect" href="$classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Implementation of UI::View::setColors." alt="" coords="317,56,459,83">
+<area shape="rect" href="$classC4DView.html#eb4ec12aada637e796110fe8172d12ff" title="Implementation of UI::View::setCoordinates." alt="" coords="301,107,475,133">
+<area shape="rect" href="$classC4DView.html#556e03bfff4b2f369a86edb47f3e4b84" title="Implementation of UI::View::setFog." alt="" coords="325,157,451,184">
+<area shape="rect" href="$classC4DView.html#b8007107aba8c57dd39063be93ca8f96" title="Implementation of UI::View::setHyperfog." alt="" coords="309,208,467,235">
+<area shape="rect" href="$classC4DView.html#7b529adaf92650371f5b6e81dbf4792b" title="Implementation of UI::View::setShading." alt="" coords="312,259,464,285">
+<area shape="rect" href="$classC4DView.html#262d0aa0188edc2b262160959ce7d965" title="Implementation of UI::View::setTransparence." alt="" coords="296,309,480,336">
+<area shape="rect" href="$classC4DView_1_1Menu4D.html#825a245cf67d222bf15c26e5cc7a70b9" title="Set the selected function as checked and uncheck all the others." alt="" coords="255,360,521,387">
+<area shape="rect" href="$classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="592,284,757,311">
+<area shape="rect" href="$classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="581,335,768,361">
+<area shape="rect" href="$classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="572,385,777,412">
+<area shape="rect" href="$classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="573,436,776,463">
+<area shape="rect" href="$classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="828,335,967,361">

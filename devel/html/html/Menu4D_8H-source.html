@@ -41,43 +41,75 @@
 <a name="l00013"></a>00013 <span class="keyword">class </span><a class="code" href="classSurfaceFactory.html" title="Abstract base class for a factory creating Surface&amp;#39;s.">SurfaceFactory</a>;
 <a name="l00014"></a>00014 
 <a name="l00016"></a>00016 
-<a name="l00020"></a><a class="code" href="classC4DView_1_1Menu4D.html">00020</a> <span class="keyword">class </span><a class="code" href="classC4DView_1_1Menu4D.html" title="The menu for the C4DView.">C4DView::Menu4D</a>: <span class="keyword">public</span> QMenu {
+<a name="l00020"></a><a class="code" href="classC4DView_1_1Menu4D.html">00020</a> <span class="keyword">class </span><a class="code" href="classC4DView_1_1Menu4D.html" title="The menu for the C4DView and handlers for menu events.">C4DView::Menu4D</a>: <span class="keyword">public</span> QMenu {
 <a name="l00021"></a>00021 
 <a name="l00022"></a>00022     Q_OBJECT
 <a name="l00023"></a>00023 
-<a name="l00024"></a>00024     <span class="keyword">public</span>:
-<a name="l00025"></a>00025         <a class="code" href="classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&amp;#39;s main menu and all its submenus.">Menu4D</a>(<a class="code" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> *);
-<a name="l00026"></a>00026 
-<a name="l00027"></a>00027         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#825a245cf67d222bf15c26e5cc7a70b9">updateFunctionMenu</a>(<span class="keyword">const</span> QString &amp;);
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025     <span class="keyword">public</span>:
+<a name="l00027"></a>00027         <a class="code" href="classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&amp;#39;s main menu and all its submenus.">Menu4D</a>(<a class="code" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> *);
 <a name="l00028"></a>00028 
-<a name="l00029"></a>00029         QAction *&amp;<a class="code" href="classC4DView_1_1Menu4D.html#2dfc9833855fee3fb25d13456f47bc26">getAction</a>(<span class="keyword">const</span> QString &amp;key);
-<a name="l00030"></a>00030 
-<a name="l00031"></a>00031         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#7ffe2f1f4d1f407ef16fca9c023d4e26">addToMenuBar</a>(QMenuBar *menuBar);
-<a name="l00032"></a>00032 
-<a name="l00033"></a>00033     <span class="keyword">public</span> slots:
-<a name="l00034"></a>00034         <span class="keywordtype">void</span> setBackground();
-<a name="l00035"></a>00035 
-<a name="l00036"></a>00036     <span class="keyword">private</span>:
-<a name="l00038"></a><a class="code" href="classC4DView_1_1Menu4D.html#bb1778aa54f8b2e0663538868e82ff42">00038</a>         <span class="keyword">typedef</span> std::map&lt;QString, QAction *&gt; <a class="code" href="classC4DView_1_1Menu4D.html#bb1778aa54f8b2e0663538868e82ff42" title="Assigns a QAction to a menu title.">ActionMapType</a>;
-<a name="l00040"></a><a class="code" href="classC4DView_1_1Menu4D.html#4ef420e40c8512de94c4386dd5437a44">00040</a>         <span class="keyword">typedef</span> std::map&lt;QMenu *, ActionMapType&gt; <a class="code" href="classC4DView_1_1Menu4D.html#4ef420e40c8512de94c4386dd5437a44" title="Manages an ActionMap for each submenu.">MenuMapType</a>;
-<a name="l00041"></a>00041 
-<a name="l00042"></a>00042         QAction *<a class="code" href="classC4DView_1_1Menu4D.html#80890e8721371e24c7039ce6598c5655">insertAction</a>(QMenu *, <span class="keyword">const</span> QString &amp;, <span class="keyword">const</span> <span class="keywordtype">char</span> *,
-<a name="l00043"></a>00043                               <span class="keywordtype">bool</span> = <span class="keyword">true</span>);
-<a name="l00044"></a>00044         QAction *<a class="code" href="classC4DView_1_1Menu4D.html#80890e8721371e24c7039ce6598c5655">insertAction</a>(QMenu *, <span class="keyword">const</span> QString &amp;,
-<a name="l00045"></a>00045                               <a class="code" href="classRealFunctionFactory.html" title="Abstract base class for a factory creating Function&amp;#39;s.">RealFunctionFactory</a> *, <span class="keywordtype">bool</span> = <span class="keyword">true</span>);
-<a name="l00046"></a>00046         QAction *<a class="code" href="classC4DView_1_1Menu4D.html#80890e8721371e24c7039ce6598c5655">insertAction</a>(QMenu *, <span class="keyword">const</span> QString &amp;,
-<a name="l00047"></a>00047                               <a class="code" href="classSurfaceFactory.html" title="Abstract base class for a factory creating Surface&amp;#39;s.">SurfaceFactory</a> *, <span class="keywordtype">bool</span> = <span class="keyword">true</span>);
-<a name="l00048"></a>00048 
-<a name="l00049"></a><a class="code" href="classC4DView_1_1Menu4D.html#234a8e699bb4ddbf3a531009edac7da8">00049</a>         <a class="code" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> *<a class="code" href="classC4DView_1_1Menu4D.html#234a8e699bb4ddbf3a531009edac7da8" title="the C4DView containing this menu">parent</a>;        
-<a name="l00050"></a>00050         QMenu *functions, *appear, *animation, *help,
-<a name="l00051"></a>00051               *fr3r, *objects, *surfaces, *fcc;
-<a name="l00052"></a>00052 
-<a name="l00053"></a><a class="code" href="classC4DView_1_1Menu4D.html#c2dd48d93e7df06a4f9725e02a1789ee">00053</a>         <a class="code" href="classC4DView_1_1Menu4D.html#4ef420e40c8512de94c4386dd5437a44" title="Manages an ActionMap for each submenu.">MenuMapType</a> <a class="code" href="classC4DView_1_1Menu4D.html#c2dd48d93e7df06a4f9725e02a1789ee" title="Keeps the QActions belonging to the menu entries.">menuMap</a>;    
-<a name="l00054"></a>00054 };
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056 <span class="preprocessor">#endif</span>
+<a name="l00029"></a>00029     <span class="keyword">public</span> slots:
+<a name="l00031"></a>00031         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#930f835f35b6c894674a1970008d16e1" title="&amp;quot;Object/f:R^3 -&amp;gt; R/Custom function&amp;quot; menu item selected">customFunction</a>();
+<a name="l00033"></a>00033         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#6fe898e2641531bd28be08cf2532e8d6" title="&amp;quot;Object/f:R^3 -&amp;gt; R/Custom polar function&amp;quot; menu item selected">customPolarFunction</a>();
+<a name="l00035"></a>00035         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#20dc0c0fc296dd6bc1a2d2610bdfdcba" title="&amp;quot;Object/Objects/Hypercube&amp;quot; menu item selected">ObjectHypercube</a>();
+<a name="l00037"></a>00037         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#8e14e0295dc33fcc4a691c5b27b58a3b" title="&amp;quot;Object/Objects/Hyperpyramid&amp;quot; menu item selected">ObjectHyperpyramid</a>();
+<a name="l00039"></a>00039         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#d7e20841364c0708efd05e67b502cbb6" title="&amp;quot;Object/Objects/Menger Sponge&amp;quot; menu item selected">ObjectHypersponge</a>();
+<a name="l00041"></a>00041         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#4e689ad295bbf0728bfc23d277fd9787" title="&amp;quot;Object/Objects/Sierpinski Gasket&amp;quot; menu item selected">ObjectGasket</a>();
+<a name="l00043"></a>00043         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#b269828b3ba3e6595e1f744b772b31f5" title="&amp;quot;Object/Surfaces/Custom surface&amp;quot; menu item selected">customSurface</a>();
+<a name="l00045"></a>00045         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#a2285bd960139ee4f64440cd14362573" title="&amp;quot;Object/Surfaces/f:C -&amp;gt; C/Custom complex function&amp;quot; menu item selected...">customComplexFunction</a>();
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#43d6dfaf82a5afae0e19fd77acc3ff47" title="&amp;quot;Appearance/Colors&amp;quot; menu item selected">Colors</a>();          
+<a name="l00048"></a>00048         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#e014b49d575933c3b606a05b3ba58ba1" title="&amp;quot;Appearance/Shading&amp;quot; menu item selected">Shade</a>();           
+<a name="l00049"></a>00049         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#677c09c89926bd9992dc406beaf7644a" title="&amp;quot;Appearance/Depth Cue&amp;quot; menu item selected">Fog</a>();             
+<a name="l00050"></a>00050         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#c61a26c7a3395c44dff97252dc6db1e1" title="&amp;quot;Appearance/Transparence&amp;quot; menu item selected">Transparent</a>();     
+<a name="l00051"></a>00051         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#f6bc75c05ac94a4d3ebbb32de1b71baf" title="&amp;quot;Appearance/Lighting&amp;quot; menu item selected">Light</a>();           
+<a name="l00052"></a>00052         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#a985d893aff9357d3b401ef876d2a877" title="&amp;quot;Appearance/Wireframe&amp;quot; menu item selected">Wireframe</a>();       
+<a name="l00053"></a>00053         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#efc850b7fd2aca11107f07d405a8b772" title="&amp;quot;Appearance/Coordinate Cross&amp;quot; menu item selected">Coordinates</a>();     
+<a name="l00054"></a>00054         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#fbaf42ff12ed98999a24ef6f26ede8ad" title="&amp;quot;Appearance/Set Background Color&amp;quot; menu item selected">setBackground</a>();   
+<a name="l00055"></a>00055         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#5cb56f69aa204260574b9e053b3e0654" title="&amp;quot;Appearance/4D Depth Cue&amp;quot; menu item selected">HyperFog</a>();        
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#6300044adf9c6488e6123e9f5d8ec4f5" title="&amp;quot;Animation/Render to Images&amp;quot; menu item selected">RenderToImages</a>();  
+<a name="l00058"></a>00058         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#b98370c8ca9459f749a94442f376dcab" title="&amp;quot;Animation/Animation Settings&amp;quot; menu item selected">AnimationSettings</a>(); 
+<a name="l00059"></a>00059         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#5aaacc9c9644fa7c8a4b10edcceaeb81" title="&amp;quot;Animation/Benchmark&amp;quot; menu item selected">Benchmark</a>();       
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#2a357dc2af3f585bc7f0d61de75d3347" title="&amp;quot;Help/Online Help&amp;quot; menu item selected">Help</a>();            
+<a name="l00062"></a>00062         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#eb0b3008444081dff830aeaeaae9a93d" title="&amp;quot;Help/About&amp;quot; menu item selected">about</a> ();          
+<a name="l00063"></a>00063         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#48d731bef45599186abf09329b1dd02e" title="&amp;quot;Help/About Qt&amp;quot; menu item selected">aboutQt</a> ();        
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065     <span class="keyword">public</span>:
+<a name="l00067"></a>00067         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#7ffe2f1f4d1f407ef16fca9c023d4e26" title="Add the menu to a QMenuBar.">addToMenuBar</a>(QMenuBar *menuBar);
+<a name="l00069"></a>00069         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1Menu4D.html#825a245cf67d222bf15c26e5cc7a70b9" title="Set the selected function as checked and uncheck all the others.">updateFunctionMenu</a>(<span class="keyword">const</span> QString &amp;);
+<a name="l00071"></a>00071         QAction *&amp;<a class="code" href="classC4DView_1_1Menu4D.html#2dfc9833855fee3fb25d13456f47bc26" title="Search for the QAction associated with a menu item.">getAction</a>(<span class="keyword">const</span> QString &amp;key);
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073     <span class="keyword">private</span>:
+<a name="l00075"></a><a class="code" href="classC4DView_1_1Menu4D.html#bb1778aa54f8b2e0663538868e82ff42">00075</a>         <span class="keyword">typedef</span> std::map&lt;QString, QAction *&gt; <a class="code" href="classC4DView_1_1Menu4D.html#bb1778aa54f8b2e0663538868e82ff42" title="Assigns a QAction to a menu title.">ActionMapType</a>;
+<a name="l00077"></a><a class="code" href="classC4DView_1_1Menu4D.html#4ef420e40c8512de94c4386dd5437a44">00077</a>         <span class="keyword">typedef</span> std::map&lt;QMenu *, ActionMapType&gt; <a class="code" href="classC4DView_1_1Menu4D.html#4ef420e40c8512de94c4386dd5437a44" title="Manages an ActionMap for each submenu.">MenuMapType</a>;
+<a name="l00078"></a>00078 
+<a name="l00080"></a>00080         QAction *<a class="code" href="classC4DView_1_1Menu4D.html#80890e8721371e24c7039ce6598c5655" title="insert a menu item with a specified slot into a specified menu">insertAction</a>(QMenu *, <span class="keyword">const</span> QString &amp;, <span class="keyword">const</span> <span class="keywordtype">char</span> *,
+<a name="l00081"></a>00081                               <span class="keywordtype">bool</span> = <span class="keyword">true</span>);
+<a name="l00083"></a>00083         QAction *<a class="code" href="classC4DView_1_1Menu4D.html#80890e8721371e24c7039ce6598c5655" title="insert a menu item with a specified slot into a specified menu">insertAction</a>(QMenu *, <span class="keyword">const</span> QString &amp;,
+<a name="l00084"></a>00084                               <a class="code" href="classRealFunctionFactory.html" title="Abstract base class for a factory creating Function&amp;#39;s.">RealFunctionFactory</a> *, <span class="keywordtype">bool</span> = <span class="keyword">true</span>);
+<a name="l00086"></a>00086         QAction *<a class="code" href="classC4DView_1_1Menu4D.html#80890e8721371e24c7039ce6598c5655" title="insert a menu item with a specified slot into a specified menu">insertAction</a>(QMenu *, <span class="keyword">const</span> QString &amp;,
+<a name="l00087"></a>00087                               <a class="code" href="classSurfaceFactory.html" title="Abstract base class for a factory creating Surface&amp;#39;s.">SurfaceFactory</a> *, <span class="keywordtype">bool</span> = <span class="keyword">true</span>);
+<a name="l00088"></a>00088 
+<a name="l00089"></a><a class="code" href="classC4DView_1_1Menu4D.html#aa2c5f22c5a51f699e08102aabf0f642">00089</a>         <a class="code" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> *<a class="code" href="classC4DView_1_1Menu4D.html#aa2c5f22c5a51f699e08102aabf0f642" title="the C4DView containing this menu">m_parent</a>;      
+<a name="l00090"></a>00090 
+<a name="l00091"></a><a class="code" href="classC4DView_1_1Menu4D.html#59dc7c822d693882212ad96f7b1dd2f9">00091</a>         QMenu *<a class="code" href="classC4DView_1_1Menu4D.html#59dc7c822d693882212ad96f7b1dd2f9" title="The &amp;quot;Object&amp;quot; menu.">functions</a>;       
+<a name="l00092"></a><a class="code" href="classC4DView_1_1Menu4D.html#66946f78cc31868173ad756d9a99a411">00092</a>         QMenu *<a class="code" href="classC4DView_1_1Menu4D.html#66946f78cc31868173ad756d9a99a411" title="The &amp;quot;Object/f:R^3 -&amp;gt; R&amp;quot; submenu.">fr3r</a>;            
+<a name="l00093"></a><a class="code" href="classC4DView_1_1Menu4D.html#9d950cd7b2b0b4c55a07415b0a74de0e">00093</a>         QMenu *<a class="code" href="classC4DView_1_1Menu4D.html#9d950cd7b2b0b4c55a07415b0a74de0e" title="The &amp;quot;Object/Objects&amp;quot; submenu.">objects</a>;         
+<a name="l00094"></a><a class="code" href="classC4DView_1_1Menu4D.html#a3097d47b4bcc99af440025ca042bc01">00094</a>         QMenu *<a class="code" href="classC4DView_1_1Menu4D.html#a3097d47b4bcc99af440025ca042bc01" title="The &amp;quot;Object/Surfaces&amp;quot; submenu.">surfaces</a>;        
+<a name="l00095"></a><a class="code" href="classC4DView_1_1Menu4D.html#6a5daf7e6632bfa0dd234583952d3519">00095</a>         QMenu *<a class="code" href="classC4DView_1_1Menu4D.html#6a5daf7e6632bfa0dd234583952d3519" title="The &amp;quot;Object/Surfaces/f:C -&amp;gt; C&amp;quot; submenu.">fcc</a>;             
+<a name="l00096"></a><a class="code" href="classC4DView_1_1Menu4D.html#cc0d03700588d39665d85ea15b8ac193">00096</a>         QMenu *<a class="code" href="classC4DView_1_1Menu4D.html#cc0d03700588d39665d85ea15b8ac193" title="The &amp;quot;Appearance&amp;quot; menu.">appear</a>;          
+<a name="l00097"></a><a class="code" href="classC4DView_1_1Menu4D.html#c7a834a20eee894332f942c5cd48f672">00097</a>         QMenu *<a class="code" href="classC4DView_1_1Menu4D.html#c7a834a20eee894332f942c5cd48f672" title="The &amp;quot;Animation&amp;quot; menu.">animation</a>;       
+<a name="l00098"></a><a class="code" href="classC4DView_1_1Menu4D.html#518b44d1ab5b681390e200ac6ab7e846">00098</a>         QMenu *<a class="code" href="classC4DView_1_1Menu4D.html#518b44d1ab5b681390e200ac6ab7e846" title="The &amp;quot;Help&amp;quot; menu.">help</a>;            
+<a name="l00099"></a>00099 
+<a name="l00100"></a><a class="code" href="classC4DView_1_1Menu4D.html#c2dd48d93e7df06a4f9725e02a1789ee">00100</a>         <a class="code" href="classC4DView_1_1Menu4D.html#4ef420e40c8512de94c4386dd5437a44" title="Manages an ActionMap for each submenu.">MenuMapType</a> <a class="code" href="classC4DView_1_1Menu4D.html#c2dd48d93e7df06a4f9725e02a1789ee" title="Keeps the QActions belonging to the menu entries.">menuMap</a>;    
+<a name="l00101"></a>00101 };
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Oct 25 02:15:06 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat Oct 25 16:32:29 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

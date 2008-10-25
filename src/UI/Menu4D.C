@@ -388,7 +388,7 @@ void C4DView::Menu4D::aboutQt() {
 }
 
 
-/** \param menuBar the menu bar you want augmented with the menu              */
+/** \param menuBar The menu bar you want augmented with the menu              */
 void C4DView::Menu4D::addToMenuBar(QMenuBar *menuBar) {
     menuBar->addMenu(functions);
     menuBar->addMenu(appear);
@@ -398,7 +398,7 @@ void C4DView::Menu4D::addToMenuBar(QMenuBar *menuBar) {
     menuBar->addAction(Globals::Instance().getQuitAction());
 }
 
-/** \param item QString the item's title                                      */
+/** \param item Title of the item whose checking status is toggled            */
 void C4DView::Menu4D::updateFunctionMenu (const QString &item) {
     static QMenu* functionMenuList[] = {
         functions, fr3r, objects, surfaces, fcc
@@ -417,7 +417,7 @@ void C4DView::Menu4D::updateFunctionMenu (const QString &item) {
 }
 
 /** \param key The title of the wanted menu item
- *  \return the QAction associated with \p key                                 */
+ *  \return The QAction associated with \p key                                 */
 QAction *&C4DView::Menu4D::getAction(const QString &key) {
     MenuMapType::iterator it;
     for (it = menuMap.begin(); it != menuMap.end(); ++it) {
@@ -427,8 +427,9 @@ QAction *&C4DView::Menu4D::getAction(const QString &key) {
     throw key+" not found in list of menu entries!";    //  TODO clean exception
 }
 
-/** insert a menu item with a specified slot into a specified menu AND into
- *  the hash map storing the actions by menu title. this is necessary to find
+
+/** Insert a menu item with a specified slot into a specified menu \em and into
+ *  the hash map storing the actions by menu title. This is necessary to find
  *  the menus whenever you want to change the item titles.
  *  \param _menu the menu you want to add the item to
  *  \param title the title of the item
@@ -462,8 +463,8 @@ QAction *C4DView::Menu4D::insertAction(QMenu *_menu, const QString &title,
     return tmp;
 }
 
-/** This version is called whenever a new Surface should be
- *  initialized and displayed in C4DView
+/** This version is called whenever a new Surface should be initialized and
+ *  displayed in C4DView
  *  \param _menu the menu you want to add the item to
  *  \param title the title of the item
  *  \param factory the factory object creating the desired Surface object
