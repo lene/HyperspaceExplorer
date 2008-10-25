@@ -16,7 +16,6 @@
 #include "4DView.H"
 #include "Menu4D.H"
 #include "MouseHandler.H"
-#include "MenuHandler.H"
 
 #include "Globals.H"
 #include "Log.H"
@@ -80,8 +79,6 @@ C4DView::C4DView(QWidget *parent):
     connect (Values(), SIGNAL (ApplyChanges (const ParameterMap &)),
              this, SLOT (ApplyChanges (const ParameterMap &)));
 
-    setMenuHandler(new MenuHandler(this));
-
     setMenu(new Menu4D(this));
     Menu()->addToMenuBar(Globals::Instance().getMainWindow()->menuBar());
 
@@ -93,7 +90,7 @@ C4DView::C4DView(QWidget *parent):
 
     ObjectHypercube();
 
-    menuHandler()->Light();
+    Menu()->Light();
 }
 
 /// C4DView destructor

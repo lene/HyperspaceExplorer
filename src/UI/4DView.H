@@ -120,7 +120,6 @@ class C4DView : public QGLWidget, public UI::View {
 
         class Menu4D;
         class MouseHandler4D;
-        class MenuHandler;
 
     Q_OBJECT
 
@@ -366,8 +365,6 @@ class C4DView : public QGLWidget, public UI::View {
         Menu4D *Menu() const { return pImpl->menu; }
         void setMouseHandler(MouseHandler4D *m) { pImpl->mouseHandler = m; }
         MouseHandler4D *MouseHandler() const { return pImpl->mouseHandler; }
-        void setMenuHandler(MenuHandler *mh) { pImpl->menuHandler = mh; }
-        MenuHandler *menuHandler() const { return pImpl->menuHandler; }
 
     private:
         void SetupDepthCue (float, float);
@@ -484,7 +481,6 @@ class C4DView : public QGLWidget, public UI::View {
 
             Menu4D *menu;               ///< the popup menu and menu bar
             MouseHandler4D *mouseHandler; ///< handler to delegate mouse events to
-            MenuHandler *menuHandler;   ///< handler for menu events
         };
 
     std::auto_ptr<C4DView::Impl> pImpl;
