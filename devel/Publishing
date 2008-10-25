@@ -19,19 +19,24 @@
 
 # upload distriution and publish it on SF
 
-rsync ~/workspace/HyperspaceExplorer/HyperspaceExplorer-X.Y.Z.tar.bz2 \
-      metaldog@frs.sourceforge.net:uploads/
+* rsync ~/workspace/HyperspaceExplorer/HyperspaceExplorer-X.Y.Z.tar.bz2 \
+    metaldog@frs.sourceforge.net:uploads/
+* https://sourceforge.net/project/admin/editpackages.php?group_id=34073
 
 
-# generate and upload documentation
+# generate and upload documentation; remove obsolete documentation files and add new ones
 
 * edit version number in Doxyfile
-* doxygen
+* find devel/html/html  -maxdepth 1 -type f \! -type l | xargs rm
+  yes q | doxygen 2> /dev/null
+  svn up devel/html/ 2>&1 | grep Restored | cut -d ' ' -f 2- | xargs svn del
+  svn st devel/html/html | grep ^? | cut -c 2- | xargs svn add
 * rsync -rL --delete-after --exclude=.svn devel/html/html/ \
   metaldog,hyperspace-expl@web.sourceforge.net:htdocs
 
 
 # create a branch in subversion
+
 * svn copy \
   https://hyperspace-expl.svn.sourceforge.net/svnroot/hyperspace-expl/trunk/all \
   https://hyperspace-expl.svn.sourceforge.net/svnroot/hyperspace-expl/tags/release-X.Y.Z
