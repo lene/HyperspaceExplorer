@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-CONFIG = debug qt warn_on uic
+CONFIG += debug qt warn_on uic
 
 QT += opengl
 
@@ -14,6 +14,7 @@ OBJECTS_DIR = tmp
 MOC_DIR = tmp
 UI_DIR = tmp
 UI_HEADERS_DIR = tmp
+RCC_DIR = tmp
 
 ################################################################################
 ###     subdirectories
@@ -60,6 +61,7 @@ SOURCES += UI/4DView.C UI/Menu4D.C UI/ComplexDialogImpl.C \
            UI/MouseHandler.C
 FORMS += UI/ComplexDialog.ui UI/FunctionDialog.ui \
          UI/PolarDialog.ui UI/SurfaceDialog.ui UI/AnimationDialog.ui
+RESOURCES = UI/AnimationDialog.qrc
 
 ###
 ###     Loki
@@ -99,7 +101,7 @@ SOURCES += Globals.C Help.C Main.C ColorManager.C
 
 INSTALLDIR = "/usr/local"
 DEFINES += PREFIX="$${INSTALLDIR}"
-DEFINES += PACKAGE_BUGREPORT="helge.preuss@gmx.net"
+DEFINES += PACKAGE_BUGREPORT="scout@hyperspace-travel.de"
 DEFINES += PACKAGE_VERSION="$${VERSION}"
 DEFINES += USE_AUTO_PTR
 
