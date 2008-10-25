@@ -185,7 +185,7 @@ void C4DView::MenuHandler::customComplexFunction() {
 /// Show a dialog to adjust animation settings
 /** Where to write image files and how many files to write. */
 void C4DView::MenuHandler::AnimationSettings() {
-    AnimationDialogImpl *Dlg = new AnimationDialogImpl;
+    UI::Dialogs::AnimationDialogImpl *Dlg = new UI::Dialogs::AnimationDialogImpl;
     if (Dlg->exec () == QDialog::Accepted) {
         m_parent->setanimationMaxFrames(Dlg->getFrames());
         m_parent->setanimationDirectory(Dlg->getDir());
