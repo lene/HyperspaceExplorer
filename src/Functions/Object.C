@@ -42,6 +42,14 @@ Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
     for (unsigned i = 0; i < 4; i++) Surface[i].resize(NumSurfaces);
 }
 
+/// Actually create the Object, this method is overridden in child classes
+/** Calibrates the color manager from the vertices of the object.
+ *
+ *  In child classes, this method should be reimplemented to set up the arrays
+ *  \p X and \p Surface. When that is finished, the reimplementation should
+ *  call \code Object::Initialize() \endcode at the end of its own Initialize()
+ *  routine to calibrate the color manager.
+ */
 void Object::Initialize() {
     for (unsigned i = 0; i < NumVertices; i++) {
         ColMgrMgr::Instance().calibrateColor(
