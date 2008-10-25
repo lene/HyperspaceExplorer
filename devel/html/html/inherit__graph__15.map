@@ -1,1 +1,2 @@
-<area shape="rect" href="$structFunctionParameterValueBase_1_1WrongParameterTypeException.html" title="FunctionParameterValueBase::WrongParameterTypeException" alt="" coords="5,5,365,32">
+<area shape="rect" href="$classFunctionParameterValueBase.html" title="Interface for a value of a function parameter. Inherited by a template class." alt="" coords="5,5,205,32">
+<area shape="rect" href="$classFunctionParameterValue.html" title="A value for a function parameter. Template depending on its type." alt="" coords="255,5,455,32">

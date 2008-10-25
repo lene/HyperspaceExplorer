@@ -37,25 +37,29 @@
 <a name="l00009"></a>00009 <span class="preprocessor">#include "ui_FunctionDialog.h"</span>
 <a name="l00010"></a>00010 <span class="preprocessor">#include "PluginCreator.H"</span>
 <a name="l00011"></a>00011 
-<a name="l00013"></a>00013 
-<a name="l00017"></a><a class="code" href="classFunctionDialogImpl.html">00017</a> <span class="keyword">class </span><a class="code" href="classFunctionDialogImpl.html" title="A Dialog to enter a function from .">FunctionDialogImpl</a>:
-<a name="l00018"></a>00018         <span class="keyword">public</span> QDialog, <span class="keyword">public</span> Ui::functionDialog, <span class="keyword">public</span> <a class="code" href="classPluginCreator.html" title="Abstract base class for all Dialogs which allow entering a custom function.">PluginCreator</a> {
-<a name="l00019"></a>00019     Q_OBJECT
-<a name="l00020"></a>00020 
-<a name="l00021"></a>00021     <span class="keyword">public</span>:
-<a name="l00022"></a>00022         <a class="code" href="classFunctionDialogImpl.html#f1a24630efd60292e3a473d9ca447fa7" title="FunctionDialogImpl c&amp;#39;tor - displays the dialog.">FunctionDialogImpl</a> (QWidget *parent = 0, Qt::WFlags f = 0);
-<a name="l00023"></a>00023         <span class="keyword">virtual</span> ~<a class="code" href="classFunctionDialogImpl.html" title="A Dialog to enter a function from .">FunctionDialogImpl</a>() {}
-<a name="l00024"></a>00024 
-<a name="l00025"></a>00025     <span class="keyword">private</span> slots:
-<a name="l00026"></a>00026         <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classFunctionDialogImpl.html#bab23d215be4015efddc7a173f55d65f" title="Called when the user clicks the OK button in the Function Dialog.">checkValidity</a>();
-<a name="l00027"></a>00027         <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classFunctionDialogImpl.html#b1716ee7d7cfd63874b8f3db029db031" title="Display and load the selected DLL into current address space.">loadFunction</a>();
-<a name="l00028"></a>00028 
-<a name="l00029"></a>00029     <span class="keyword">private</span>:
-<a name="l00030"></a>00030         <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classFunctionDialogImpl.html#5c1cadd3333c5e6008b54298cce46696" title="Loads the dynamic library given by libName, if it exists and can be loaded.">functionPresent</a>(<span class="keyword">const</span> QString &amp;);
-<a name="l00031"></a>00031         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classFunctionDialogImpl.html#42b371226c6719adae49e8cb7eb457b1" title="Write a C++ source file containing the given function.">writeSource</a> ();
-<a name="l00032"></a>00032 };
+<a name="l00012"></a>00012 <span class="keyword">namespace </span>UI {
+<a name="l00013"></a>00013     <span class="keyword">namespace </span>Dialogs {
+<a name="l00015"></a>00015 
+<a name="l00019"></a><a class="code" href="classUI_1_1Dialogs_1_1FunctionDialogImpl.html">00019</a>         <span class="keyword">class </span><a class="code" href="classUI_1_1Dialogs_1_1FunctionDialogImpl.html" title="A Dialog to enter a function from .">FunctionDialogImpl</a>:
+<a name="l00020"></a>00020                 <span class="keyword">public</span> QDialog, <span class="keyword">public</span> Ui::functionDialog, <span class="keyword">public</span> <a class="code" href="classPluginCreator.html" title="Abstract base class for all Dialogs which allow entering a custom function.">PluginCreator</a> {
+<a name="l00021"></a>00021             Q_OBJECT
+<a name="l00022"></a>00022 
+<a name="l00023"></a>00023             <span class="keyword">public</span>:
+<a name="l00024"></a>00024                 <a class="code" href="classUI_1_1Dialogs_1_1FunctionDialogImpl.html#6105cae565e06493c189688c7b410efd" title="FunctionDialogImpl c&amp;#39;tor - displays the dialog.">FunctionDialogImpl</a> (QWidget *parent = 0, Qt::WFlags f = 0);
+<a name="l00025"></a>00025                 <span class="keyword">virtual</span> ~<a class="code" href="classUI_1_1Dialogs_1_1FunctionDialogImpl.html" title="A Dialog to enter a function from .">FunctionDialogImpl</a>() {}
+<a name="l00026"></a>00026 
+<a name="l00027"></a>00027             <span class="keyword">private</span> slots:
+<a name="l00028"></a>00028                 <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1Dialogs_1_1FunctionDialogImpl.html#c19fac8c6cf01b98d1b8646bac9c2f75" title="Called when the user clicks the OK button in the Function Dialog.">checkValidity</a>();
+<a name="l00029"></a>00029                 <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1Dialogs_1_1FunctionDialogImpl.html#9e837c5386974e7145eef8e223efe73c" title="Display and load the selected DLL into current address space.">loadFunction</a>();
+<a name="l00030"></a>00030 
+<a name="l00031"></a>00031             <span class="keyword">private</span>:
+<a name="l00032"></a>00032                 <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1Dialogs_1_1FunctionDialogImpl.html#fc592e16bf36eb86c40b790d205c23d2" title="Loads the dynamic library given by libName, if it exists and can be loaded.">functionPresent</a>(<span class="keyword">const</span> QString &amp;);
+<a name="l00033"></a>00033                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1Dialogs_1_1FunctionDialogImpl.html#a749cbee900be40052518cbc3bf6a426" title="Write a C++ source file containing the given function.">writeSource</a> ();
+<a name="l00034"></a>00034         };
+<a name="l00035"></a>00035     }
+<a name="l00036"></a>00036 }
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Oct 24 23:24:03 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat Oct 25 01:44:43 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

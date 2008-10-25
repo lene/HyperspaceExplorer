@@ -37,25 +37,29 @@
 <a name="l00009"></a>00009 <span class="preprocessor">#include "ui_SurfaceDialog.h"</span>
 <a name="l00010"></a>00010 <span class="preprocessor">#include "PluginCreator.H"</span>
 <a name="l00011"></a>00011 
-<a name="l00013"></a>00013 
-<a name="l00017"></a><a class="code" href="classSurfaceDialogImpl.html">00017</a> <span class="keyword">class </span><a class="code" href="classSurfaceDialogImpl.html" title="A Dialog to enter a function from .">SurfaceDialogImpl</a>:
-<a name="l00018"></a>00018         <span class="keyword">public</span> QDialog, <span class="keyword">public</span> Ui::SurfaceDialog, <span class="keyword">public</span> <a class="code" href="classPluginCreator.html" title="Abstract base class for all Dialogs which allow entering a custom function.">PluginCreator</a> {
-<a name="l00019"></a>00019     Q_OBJECT
-<a name="l00020"></a>00020 
-<a name="l00021"></a>00021     <span class="keyword">public</span>:
-<a name="l00022"></a>00022         <a class="code" href="classSurfaceDialogImpl.html#65e1b1a5403b060c4fc10c657643491c">SurfaceDialogImpl</a> (QWidget *parent = 0, Qt::WFlags f = 0);
-<a name="l00023"></a>00023         <span class="keyword">virtual</span> ~<a class="code" href="classSurfaceDialogImpl.html" title="A Dialog to enter a function from .">SurfaceDialogImpl</a>() {}
-<a name="l00024"></a>00024 
-<a name="l00025"></a>00025     <span class="keyword">private</span> slots:
-<a name="l00026"></a>00026         <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classSurfaceDialogImpl.html#c550d0adc24a6184822c8f0949f2dde8">checkValidity</a>();
-<a name="l00027"></a>00027         <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classSurfaceDialogImpl.html#ad946f3182546f50ee84ae134d1196f1" title="Display and load the selected DLL into current address space.">loadFunction</a>();
-<a name="l00028"></a>00028 
-<a name="l00029"></a>00029     <span class="keyword">private</span>:
-<a name="l00030"></a>00030         <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classSurfaceDialogImpl.html#157da54702f3a3731db11480a83d5b93" title="Loads the dynamic library given by libName, if it exists and can be loaded.">functionPresent</a>(<span class="keyword">const</span> QString &amp;);
-<a name="l00031"></a>00031         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSurfaceDialogImpl.html#ec4e55afe7dafd34504f91dfd6718814" title="Write a C++ source file containing the given function.">writeSource</a> ();
-<a name="l00032"></a>00032 };
+<a name="l00012"></a>00012 <span class="keyword">namespace </span>UI {
+<a name="l00013"></a>00013     <span class="keyword">namespace </span>Dialogs {
+<a name="l00015"></a>00015 
+<a name="l00019"></a><a class="code" href="classUI_1_1Dialogs_1_1SurfaceDialogImpl.html">00019</a>         <span class="keyword">class </span><a class="code" href="classUI_1_1Dialogs_1_1SurfaceDialogImpl.html" title="A Dialog to enter a function from .">SurfaceDialogImpl</a>:
+<a name="l00020"></a>00020                 <span class="keyword">public</span> QDialog, <span class="keyword">public</span> Ui::SurfaceDialog, <span class="keyword">public</span> <a class="code" href="classPluginCreator.html" title="Abstract base class for all Dialogs which allow entering a custom function.">PluginCreator</a> {
+<a name="l00021"></a>00021             Q_OBJECT
+<a name="l00022"></a>00022 
+<a name="l00023"></a>00023             <span class="keyword">public</span>:
+<a name="l00024"></a>00024                 <a class="code" href="classUI_1_1Dialogs_1_1SurfaceDialogImpl.html#c8104e16bc7a0903eefd099a9dbc291c">SurfaceDialogImpl</a> (QWidget *parent = 0, Qt::WFlags f = 0);
+<a name="l00025"></a>00025                 <span class="keyword">virtual</span> ~<a class="code" href="classUI_1_1Dialogs_1_1SurfaceDialogImpl.html" title="A Dialog to enter a function from .">SurfaceDialogImpl</a>() {}
+<a name="l00026"></a>00026 
+<a name="l00027"></a>00027             <span class="keyword">private</span> slots:
+<a name="l00028"></a>00028                 <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1Dialogs_1_1SurfaceDialogImpl.html#489d8e68cdf2f988a01d6c9b51374579">checkValidity</a>();
+<a name="l00029"></a>00029                 <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1Dialogs_1_1SurfaceDialogImpl.html#ad12c237797813742aa9dd1aab036fa4" title="Display and load the selected DLL into current address space.">loadFunction</a>();
+<a name="l00030"></a>00030 
+<a name="l00031"></a>00031             <span class="keyword">private</span>:
+<a name="l00032"></a>00032                 <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1Dialogs_1_1SurfaceDialogImpl.html#9d21a47ba540a7dce359faf576c2c750" title="Loads the dynamic library given by libName, if it exists and can be loaded.">functionPresent</a>(<span class="keyword">const</span> QString &amp;);
+<a name="l00033"></a>00033                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1Dialogs_1_1SurfaceDialogImpl.html#28b78fbbda1e770a3d5581aadcc690d6" title="Write a C++ source file containing the given function.">writeSource</a> ();
+<a name="l00034"></a>00034         };
+<a name="l00035"></a>00035     }
+<a name="l00036"></a>00036 }
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Oct 24 23:24:03 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Sat Oct 25 01:44:43 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>
