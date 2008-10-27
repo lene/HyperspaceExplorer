@@ -1,0 +1,1555 @@
+<!DOCTYPE UI><UI version="3.0" stdsetdef="1">
+<class>BallsUI</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>BallsUI</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>333</width>
+            <height>370</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Parameters for bouncing balls</string>
+    </property>
+    <widget class="QLayoutWidget">
+        <property name="name">
+            <cstring>Layout21</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>340</y>
+                <width>330</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <hbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <property name="margin">
+                <number>0</number>
+            </property>
+            <property name="spacing">
+                <number>6</number>
+            </property>
+            <widget class="QProgressBar">
+                <property name="name">
+                    <cstring>TimeProgress</cstring>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>CollisionsLabel</cstring>
+                </property>
+                <property name="text">
+                    <string>     0 Collisions</string>
+                </property>
+            </widget>
+        </hbox>
+    </widget>
+    <widget class="QTabWidget">
+        <property name="name">
+            <cstring>TabWidget</cstring>
+        </property>
+        <property name="enabled">
+            <bool>true</bool>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>330</width>
+                <height>340</height>
+            </rect>
+        </property>
+        <widget class="QWidget">
+            <property name="name">
+                <cstring>tab</cstring>
+            </property>
+            <attribute name="title">
+                <string>System parameters</string>
+            </attribute>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>Layout22</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>0</x>
+                        <y>210</y>
+                        <width>320</width>
+                        <height>92</height>
+                    </rect>
+                </property>
+                <vbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <property name="margin">
+                        <number>0</number>
+                    </property>
+                    <property name="spacing">
+                        <number>6</number>
+                    </property>
+                    <widget class="QLayoutWidget">
+                        <property name="name">
+                            <cstring>Layout19</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <property name="margin">
+                                <number>0</number>
+                            </property>
+                            <property name="spacing">
+                                <number>6</number>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>TextLabel1_8</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>max. t</string>
+                                </property>
+                            </widget>
+                            <widget class="QSlider">
+                                <property name="name">
+                                    <cstring>TMaxSlider</cstring>
+                                </property>
+                                <property name="maxValue">
+                                    <number>100</number>
+                                </property>
+                                <property name="pageStep">
+                                    <number>20</number>
+                                </property>
+                                <property name="value">
+                                    <number>40</number>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="tickmarks">
+                                    <enum>Right</enum>
+                                </property>
+                                <property name="tickInterval">
+                                    <number>20</number>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Duration of the simulation (logarithmic scale)</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>After completion of the indicated time the simulation finishes and prints the count of collisions which have happened</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>TMaxLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>100</string>
+                                </property>
+                            </widget>
+                        </hbox>
+                    </widget>
+                    <widget class="QLayoutWidget">
+                        <property name="name">
+                            <cstring>Layout20</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <property name="margin">
+                                <number>0</number>
+                            </property>
+                            <property name="spacing">
+                                <number>6</number>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>TextLabel1_4</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Delta t</string>
+                                </property>
+                            </widget>
+                            <widget class="QSlider">
+                                <property name="name">
+                                    <cstring>DTSlider</cstring>
+                                </property>
+                                <property name="maxValue">
+                                    <number>100</number>
+                                </property>
+                                <property name="value">
+                                    <number>40</number>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="tickmarks">
+                                    <enum>Right</enum>
+                                </property>
+                                <property name="tickInterval">
+                                    <number>20</number>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Timestep (logarithmic scale)</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>The time difference beween two updates - generally the smaller the more accurate, but also the slower</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>DTLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>0.001</string>
+                                </property>
+                            </widget>
+                        </hbox>
+                    </widget>
+                    <widget class="QLayoutWidget">
+                        <property name="name">
+                            <cstring>Layout21</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <property name="margin">
+                                <number>0</number>
+                            </property>
+                            <property name="spacing">
+                                <number>6</number>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>TextLabel1_5</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Steps between two updates</string>
+                                </property>
+                            </widget>
+                            <widget class="QSlider">
+                                <property name="name">
+                                    <cstring>StepsSlider</cstring>
+                                </property>
+                                <property name="maxValue">
+                                    <number>200</number>
+                                </property>
+                                <property name="pageStep">
+                                    <number>20</number>
+                                </property>
+                                <property name="value">
+                                    <number>20</number>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Calculate steps between two displays</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>Number of steps done between two draw events, without displaying - you'll want to tweak this parameter depending on the number of balls, the dimension of the system and your hardware together with delta t to get the quickest, smoothest motion possible.</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>StepsLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>20</string>
+                                </property>
+                            </widget>
+                        </hbox>
+                    </widget>
+                </vbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>Layout18</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>0</x>
+                        <y>70</y>
+                        <width>181</width>
+                        <height>26</height>
+                    </rect>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <property name="margin">
+                        <number>0</number>
+                    </property>
+                    <property name="spacing">
+                        <number>6</number>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>TextLabel1_6</cstring>
+                        </property>
+                        <property name="enabled">
+                            <bool>true</bool>
+                        </property>
+                        <property name="text">
+                            <string>Dimension</string>
+                        </property>
+                    </widget>
+                    <widget class="QSlider">
+                        <property name="name">
+                            <cstring>DimensionSlider</cstring>
+                        </property>
+                        <property name="enabled">
+                            <bool>false</bool>
+                        </property>
+                        <property name="minValue">
+                            <number>2</number>
+                        </property>
+                        <property name="maxValue">
+                            <number>10</number>
+                        </property>
+                        <property name="pageStep">
+                            <number>1</number>
+                        </property>
+                        <property name="value">
+                            <number>3</number>
+                        </property>
+                        <property name="orientation">
+                            <enum>Horizontal</enum>
+                        </property>
+                        <property name="toolTip" stdset="0">
+                            <string>Dimension of the system</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>DimensionLabel</cstring>
+                        </property>
+                        <property name="text">
+                            <string>3</string>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>Layout23_2</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>0</x>
+                        <y>10</y>
+                        <width>320</width>
+                        <height>58</height>
+                    </rect>
+                </property>
+                <vbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <property name="margin">
+                        <number>0</number>
+                    </property>
+                    <property name="spacing">
+                        <number>6</number>
+                    </property>
+                    <widget class="QLayoutWidget">
+                        <property name="name">
+                            <cstring>Layout15_2</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <property name="margin">
+                                <number>0</number>
+                            </property>
+                            <property name="spacing">
+                                <number>6</number>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>TextLabel1_3_2</cstring>
+                                </property>
+                                <property name="frameShape">
+                                    <enum>MShape</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>MShadow</enum>
+                                </property>
+                                <property name="text">
+                                    <string>Number of Spheres</string>
+                                </property>
+                            </widget>
+                            <widget class="QSlider">
+                                <property name="name">
+                                    <cstring>NumSpheresSlider</cstring>
+                                </property>
+                                <property name="maxValue">
+                                    <number>1000</number>
+                                </property>
+                                <property name="lineStep">
+                                    <number>1</number>
+                                </property>
+                                <property name="pageStep">
+                                    <number>50</number>
+                                </property>
+                                <property name="value">
+                                    <number>350</number>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="tickmarks">
+                                    <enum>Right</enum>
+                                </property>
+                                <property name="tickInterval">
+                                    <number>250</number>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Number of displayed spheres (logarithmic scale)</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>With this slider you can create or destroy balls in the system. Be careful with the amount of balls, you don't want your computer to choke because you've gone too high with this value! The computational complexity grows with the square of the number of balls.</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>NumSpheresLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>25</string>
+                                </property>
+                            </widget>
+                        </hbox>
+                    </widget>
+                    <widget class="QLayoutWidget">
+                        <property name="name">
+                            <cstring>Layout14_3</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <property name="margin">
+                                <number>0</number>
+                            </property>
+                            <property name="spacing">
+                                <number>6</number>
+                            </property>
+                            <widget class="QLayoutWidget">
+                                <property name="name">
+                                    <cstring>Layout13_2</cstring>
+                                </property>
+                                <hbox>
+                                    <property name="name">
+                                        <cstring>unnamed</cstring>
+                                    </property>
+                                    <property name="margin">
+                                        <number>0</number>
+                                    </property>
+                                    <property name="spacing">
+                                        <number>6</number>
+                                    </property>
+                                    <widget class="QLabel">
+                                        <property name="name">
+                                            <cstring>TextLabel1_7_2</cstring>
+                                        </property>
+                                        <property name="text">
+                                            <string>(max.) Radius</string>
+                                        </property>
+                                    </widget>
+                                    <widget class="QSlider">
+                                        <property name="name">
+                                            <cstring>RMaxSlider</cstring>
+                                        </property>
+                                        <property name="minValue">
+                                            <number>0</number>
+                                        </property>
+                                        <property name="maxValue">
+                                            <number>100</number>
+                                        </property>
+                                        <property name="value">
+                                            <number>20</number>
+                                        </property>
+                                        <property name="orientation">
+                                            <enum>Horizontal</enum>
+                                        </property>
+                                        <property name="toolTip" stdset="0">
+                                            <string>maximum radius of the displayed spheres</string>
+                                        </property>
+                                        <property name="whatsThis" stdset="0">
+                                            <string>If 'Random size' is set, this denotes the maximum radius of the spheres. If it is unchecked, all newly generated balls have this radius. This option takes effect only on newly generated balls.</string>
+                                        </property>
+                                    </widget>
+                                    <widget class="QLabel">
+                                        <property name="name">
+                                            <cstring>RMaxLabel</cstring>
+                                        </property>
+                                        <property name="text">
+                                            <string>0.2</string>
+                                        </property>
+                                    </widget>
+                                </hbox>
+                            </widget>
+                            <spacer>
+                                <property name="name" stdset="0">
+                                    <cstring>Spacer2_3</cstring>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="sizeType">
+                                    <enum>Expanding</enum>
+                                </property>
+                                <property name="sizeHint">
+                                    <size>
+                                        <width>20</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                            </spacer>
+                            <widget class="QCheckBox">
+                                <property name="name">
+                                    <cstring>RndSizeCheck</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Random size</string>
+                                </property>
+                                <property name="checked">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>If checked, newly generated balls have random mass and diameter</string>
+                                </property>
+                            </widget>
+                        </hbox>
+                    </widget>
+                </vbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>Layout15</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>0</x>
+                        <y>100</y>
+                        <width>320</width>
+                        <height>102</height>
+                    </rect>
+                </property>
+                <vbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <property name="margin">
+                        <number>0</number>
+                    </property>
+                    <property name="spacing">
+                        <number>6</number>
+                    </property>
+                    <widget class="QLayoutWidget">
+                        <property name="name">
+                            <cstring>Layout16</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <property name="margin">
+                                <number>0</number>
+                            </property>
+                            <property name="spacing">
+                                <number>6</number>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>TextLabel1</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Friction</string>
+                                </property>
+                            </widget>
+                            <widget class="QSlider">
+                                <property name="name">
+                                    <cstring>FrictionSlider</cstring>
+                                </property>
+                                <property name="minValue">
+                                    <number>-100</number>
+                                </property>
+                                <property name="maxValue">
+                                    <number>100</number>
+                                </property>
+                                <property name="lineStep">
+                                    <number>1</number>
+                                </property>
+                                <property name="pageStep">
+                                    <number>25</number>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="tickmarks">
+                                    <enum>Right</enum>
+                                </property>
+                                <property name="tickInterval">
+                                    <number>20</number>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Friction with the walls</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>Set negative to turn on the heat, positive to slow down the system</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>FrictionLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>0.0</string>
+                                </property>
+                            </widget>
+                        </hbox>
+                    </widget>
+                    <widget class="QLayoutWidget">
+                        <property name="name">
+                            <cstring>Layout17</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <property name="margin">
+                                <number>0</number>
+                            </property>
+                            <property name="spacing">
+                                <number>6</number>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>TextLabel1_2</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Gravitation</string>
+                                </property>
+                            </widget>
+                            <widget class="QSlider">
+                                <property name="name">
+                                    <cstring>GravitationSlider</cstring>
+                                </property>
+                                <property name="minValue">
+                                    <number>0</number>
+                                </property>
+                                <property name="maxValue">
+                                    <number>100</number>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="tickmarks">
+                                    <enum>Right</enum>
+                                </property>
+                                <property name="tickInterval">
+                                    <number>20</number>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Gravity of the system</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>GravitationLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>0.0</string>
+                                </property>
+                            </widget>
+                        </hbox>
+                    </widget>
+                    <widget class="QLayoutWidget">
+                        <property name="name">
+                            <cstring>Layout14</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <property name="margin">
+                                <number>0</number>
+                            </property>
+                            <property name="spacing">
+                                <number>6</number>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>TextLabel1_9</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Elasticity</string>
+                                </property>
+                            </widget>
+                            <widget class="QSlider">
+                                <property name="name">
+                                    <cstring>ElasticitySlider</cstring>
+                                </property>
+                                <property name="minValue">
+                                    <number>-100</number>
+                                </property>
+                                <property name="maxValue">
+                                    <number>200</number>
+                                </property>
+                                <property name="lineStep">
+                                    <number>1</number>
+                                </property>
+                                <property name="pageStep">
+                                    <number>25</number>
+                                </property>
+                                <property name="value">
+                                    <number>100</number>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="tickmarks">
+                                    <enum>Right</enum>
+                                </property>
+                                <property name="tickInterval">
+                                    <number>20</number>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Elasticity of the balls</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>Set this to 1 for totally elastic (ping pong) balls, to 0 for totally inelastic (hacky sack) ones. Values above 1 and below 0 are unphysical, but might be interesting.</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>ElasticityLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>1.0</string>
+                                </property>
+                            </widget>
+                        </hbox>
+                    </widget>
+                </vbox>
+            </widget>
+        </widget>
+        <widget class="QWidget">
+            <property name="name">
+                <cstring>tab</cstring>
+            </property>
+            <attribute name="title">
+                <string>View parameters</string>
+            </attribute>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>Layout16</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>0</x>
+                        <y>10</y>
+                        <width>320</width>
+                        <height>23</height>
+                    </rect>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <property name="margin">
+                        <number>0</number>
+                    </property>
+                    <property name="spacing">
+                        <number>6</number>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>TextLabel1_3</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Viewpoint distance</string>
+                        </property>
+                    </widget>
+                    <widget class="QSlider">
+                        <property name="name">
+                            <cstring>XCamSlider</cstring>
+                        </property>
+                        <property name="minValue">
+                            <number>0</number>
+                        </property>
+                        <property name="maxValue">
+                            <number>100</number>
+                        </property>
+                        <property name="lineStep">
+                            <number>1</number>
+                        </property>
+                        <property name="pageStep">
+                            <number>25</number>
+                        </property>
+                        <property name="orientation">
+                            <enum>Horizontal</enum>
+                        </property>
+                        <property name="tickmarks">
+                            <enum>Right</enum>
+                        </property>
+                        <property name="tickInterval">
+                            <number>20</number>
+                        </property>
+                        <property name="toolTip" stdset="0">
+                            <string>Distance of the camera to the origin</string>
+                        </property>
+                        <property name="whatsThis" stdset="0">
+                            <string>This applies to all dimensions, currently it is not possible to change the distance for every dimension independently</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>XCamLabel</cstring>
+                        </property>
+                        <property name="text">
+                            <string>0.0</string>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>Layout20</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>0</x>
+                        <y>40</y>
+                        <width>320</width>
+                        <height>83</height>
+                    </rect>
+                </property>
+                <vbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <property name="margin">
+                        <number>0</number>
+                    </property>
+                    <property name="spacing">
+                        <number>6</number>
+                    </property>
+                    <widget class="QLayoutWidget">
+                        <property name="name">
+                            <cstring>Layout17</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <property name="margin">
+                                <number>0</number>
+                            </property>
+                            <property name="spacing">
+                                <number>6</number>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>TextLabel1_3_3</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>X rotation</string>
+                                </property>
+                            </widget>
+                            <widget class="QSlider">
+                                <property name="name">
+                                    <cstring>XrotSlider</cstring>
+                                </property>
+                                <property name="minValue">
+                                    <number>0</number>
+                                </property>
+                                <property name="maxValue">
+                                    <number>1000</number>
+                                </property>
+                                <property name="lineStep">
+                                    <number>1</number>
+                                </property>
+                                <property name="pageStep">
+                                    <number>250</number>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="tickmarks">
+                                    <enum>Right</enum>
+                                </property>
+                                <property name="tickInterval">
+                                    <number>125</number>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>X rotation speed</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>This applies to all dimensions, currently it is not possible to change the distance for every dimension independently</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>XrotLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>0.0</string>
+                                </property>
+                            </widget>
+                        </hbox>
+                    </widget>
+                    <widget class="QLayoutWidget">
+                        <property name="name">
+                            <cstring>Layout17_2</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <property name="margin">
+                                <number>0</number>
+                            </property>
+                            <property name="spacing">
+                                <number>6</number>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>TextLabel1_3_3_2</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Y rotation</string>
+                                </property>
+                            </widget>
+                            <widget class="QSlider">
+                                <property name="name">
+                                    <cstring>YrotSlider</cstring>
+                                </property>
+                                <property name="minValue">
+                                    <number>0</number>
+                                </property>
+                                <property name="maxValue">
+                                    <number>1000</number>
+                                </property>
+                                <property name="lineStep">
+                                    <number>1</number>
+                                </property>
+                                <property name="pageStep">
+                                    <number>250</number>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="tickmarks">
+                                    <enum>Right</enum>
+                                </property>
+                                <property name="tickInterval">
+                                    <number>125</number>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Y rotation speed</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>This applies to all dimensions, currently it is not possible to change the distance for every dimension independently</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>YrotLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>0.0</string>
+                                </property>
+                            </widget>
+                        </hbox>
+                    </widget>
+                    <widget class="QLayoutWidget">
+                        <property name="name">
+                            <cstring>Layout17_3</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <property name="margin">
+                                <number>0</number>
+                            </property>
+                            <property name="spacing">
+                                <number>6</number>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>TextLabel1_3_3_3</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Z rotation</string>
+                                </property>
+                            </widget>
+                            <widget class="QSlider">
+                                <property name="name">
+                                    <cstring>ZrotSlider</cstring>
+                                </property>
+                                <property name="minValue">
+                                    <number>0</number>
+                                </property>
+                                <property name="maxValue">
+                                    <number>1000</number>
+                                </property>
+                                <property name="lineStep">
+                                    <number>1</number>
+                                </property>
+                                <property name="pageStep">
+                                    <number>250</number>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="tickmarks">
+                                    <enum>Right</enum>
+                                </property>
+                                <property name="tickInterval">
+                                    <number>125</number>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Z rotation speed</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>This applies to all dimensions, currently it is not possible to change the distance for every dimension independently</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>ZrotLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>0.0</string>
+                                </property>
+                            </widget>
+                        </hbox>
+                    </widget>
+                </vbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>Layout20_2</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>0</x>
+                        <y>130</y>
+                        <width>320</width>
+                        <height>83</height>
+                    </rect>
+                </property>
+                <vbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <property name="margin">
+                        <number>0</number>
+                    </property>
+                    <property name="spacing">
+                        <number>6</number>
+                    </property>
+                    <widget class="QLayoutWidget">
+                        <property name="name">
+                            <cstring>Layout17_4</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <property name="margin">
+                                <number>0</number>
+                            </property>
+                            <property name="spacing">
+                                <number>6</number>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>TextLabel1_3_3_4</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>XW rotation</string>
+                                </property>
+                            </widget>
+                            <widget class="QSlider">
+                                <property name="name">
+                                    <cstring>XWrotSlider</cstring>
+                                </property>
+                                <property name="minValue">
+                                    <number>0</number>
+                                </property>
+                                <property name="maxValue">
+                                    <number>1000</number>
+                                </property>
+                                <property name="lineStep">
+                                    <number>1</number>
+                                </property>
+                                <property name="pageStep">
+                                    <number>250</number>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="tickmarks">
+                                    <enum>Right</enum>
+                                </property>
+                                <property name="tickInterval">
+                                    <number>125</number>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>XW rotation speed</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>This applies to all dimensions, currently it is not possible to change the distance for every dimension independently</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>XWrotLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>0.0</string>
+                                </property>
+                            </widget>
+                        </hbox>
+                    </widget>
+                    <widget class="QLayoutWidget">
+                        <property name="name">
+                            <cstring>Layout17_2_2</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <property name="margin">
+                                <number>0</number>
+                            </property>
+                            <property name="spacing">
+                                <number>6</number>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>TextLabel1_3_3_2_2</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>YW rotation</string>
+                                </property>
+                            </widget>
+                            <widget class="QSlider">
+                                <property name="name">
+                                    <cstring>YWrotSlider</cstring>
+                                </property>
+                                <property name="minValue">
+                                    <number>0</number>
+                                </property>
+                                <property name="maxValue">
+                                    <number>1000</number>
+                                </property>
+                                <property name="lineStep">
+                                    <number>1</number>
+                                </property>
+                                <property name="pageStep">
+                                    <number>250</number>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="tickmarks">
+                                    <enum>Right</enum>
+                                </property>
+                                <property name="tickInterval">
+                                    <number>125</number>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>YW rotation speed</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>This applies to all dimensions, currently it is not possible to change the distance for every dimension independently</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>YWrotLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>0.0</string>
+                                </property>
+                            </widget>
+                        </hbox>
+                    </widget>
+                    <widget class="QLayoutWidget">
+                        <property name="name">
+                            <cstring>Layout17_3_2</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <property name="margin">
+                                <number>0</number>
+                            </property>
+                            <property name="spacing">
+                                <number>6</number>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>TextLabel1_3_3_3_2</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>ZW rotation</string>
+                                </property>
+                            </widget>
+                            <widget class="QSlider">
+                                <property name="name">
+                                    <cstring>ZWrotSlider</cstring>
+                                </property>
+                                <property name="minValue">
+                                    <number>0</number>
+                                </property>
+                                <property name="maxValue">
+                                    <number>1000</number>
+                                </property>
+                                <property name="lineStep">
+                                    <number>1</number>
+                                </property>
+                                <property name="pageStep">
+                                    <number>250</number>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="tickmarks">
+                                    <enum>Right</enum>
+                                </property>
+                                <property name="tickInterval">
+                                    <number>125</number>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>ZW rotation speed</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>This applies to all dimensions, currently it is not possible to change the distance for every dimension independently</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>ZWrotLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>0.0</string>
+                                </property>
+                            </widget>
+                        </hbox>
+                    </widget>
+                </vbox>
+            </widget>
+        </widget>
+        <widget class="QWidget">
+            <property name="name">
+                <cstring>tab</cstring>
+            </property>
+            <attribute name="title">
+                <string>Operation</string>
+            </attribute>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>Layout16_2_2</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>0</x>
+                        <y>30</y>
+                        <width>320</width>
+                        <height>30</height>
+                    </rect>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <property name="margin">
+                        <number>0</number>
+                    </property>
+                    <property name="spacing">
+                        <number>6</number>
+                    </property>
+                    <widget class="QCheckBox">
+                        <property name="name">
+                            <cstring>SaveCheck</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Save pictures</string>
+                        </property>
+                    </widget>
+                    <spacer>
+                        <property name="name" stdset="0">
+                            <cstring>Spacer2_2_2_2_2</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Horizontal</enum>
+                        </property>
+                        <property name="sizeType">
+                            <enum>Expanding</enum>
+                        </property>
+                        <property name="sizeHint">
+                            <size>
+                                <width>20</width>
+                                <height>20</height>
+                            </size>
+                        </property>
+                    </spacer>
+                    <widget class="QLayoutWidget">
+                        <property name="name">
+                            <cstring>Layout14_2_2_2</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <property name="margin">
+                                <number>0</number>
+                            </property>
+                            <property name="spacing">
+                                <number>6</number>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>TextLabel1_10_2_2_2</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Prefix</string>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit">
+                                <property name="name">
+                                    <cstring>SaveEdit</cstring>
+                                </property>
+                            </widget>
+                        </hbox>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QCheckBox">
+                <property name="name">
+                    <cstring>DisplayCheck</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>0</x>
+                        <y>0</y>
+                        <width>116</width>
+                        <height>25</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>Display pictures</string>
+                </property>
+                <property name="checked">
+                    <bool>true</bool>
+                </property>
+                <property name="toolTip" stdset="0">
+                    <string>Switch the display on and off</string>
+                </property>
+                <property name="whatsThis" stdset="0">
+                    <string>You might want to turn off the display, if you are generating an animation (with the 'save' option), or simply want to know the number of collisions which have taken place</string>
+                </property>
+            </widget>
+            <widget class="QCheckBox">
+                <property name="name">
+                    <cstring>FullscreenCheck</cstring>
+                </property>
+                <property name="enabled">
+                    <bool>false</bool>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>230</x>
+                        <y>0</y>
+                        <width>90</width>
+                        <height>25</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>Fullscreen</string>
+                </property>
+            </widget>
+        </widget>
+    </widget>
+</widget>
+<connections>
+    <connection>
+        <sender>DimensionSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>DimensionLabel</receiver>
+        <slot>setNum(int)</slot>
+    </connection>
+    <connection>
+        <sender>StepsSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>StepsLabel</receiver>
+        <slot>setNum(int)</slot>
+    </connection>
+    <connection>
+        <sender>DimensionSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BallsUI</receiver>
+        <slot>DimensionChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>FrictionSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BallsUI</receiver>
+        <slot>FrictionChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>GravitationSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BallsUI</receiver>
+        <slot>GravitationChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>ElasticitySlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BallsUI</receiver>
+        <slot>ElasticityChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>TMaxSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BallsUI</receiver>
+        <slot>TMaxChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>DTSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BallsUI</receiver>
+        <slot>DTChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>StepsSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BallsUI</receiver>
+        <slot>StepsChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>NumSpheresSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BallsUI</receiver>
+        <slot>NumSpheresChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>RMaxSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BallsUI</receiver>
+        <slot>RMaxChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>RndSizeCheck</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>BallsUI</receiver>
+        <slot>RndSizeChanged(bool)</slot>
+    </connection>
+    <connection>
+        <sender>SaveCheck</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>BallsUI</receiver>
+        <slot>SaveChanged(bool)</slot>
+    </connection>
+    <connection>
+        <sender>SaveEdit</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>BallsUI</receiver>
+        <slot>SaveNameChanged(const QString&amp;)</slot>
+    </connection>
+    <connection>
+        <sender>XCamSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BallsUI</receiver>
+        <slot>XCamChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>XrotSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BallsUI</receiver>
+        <slot>XrotChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>YrotSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BallsUI</receiver>
+        <slot>YrotChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>ZrotSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BallsUI</receiver>
+        <slot>ZrotChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>XWrotSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BallsUI</receiver>
+        <slot>XWrotChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>YWrotSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BallsUI</receiver>
+        <slot>YWrotChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>ZWrotSlider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>BallsUI</receiver>
+        <slot>ZWrotChanged(int)</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>DimensionSlider</tabstop>
+    <tabstop>FrictionSlider</tabstop>
+    <tabstop>GravitationSlider</tabstop>
+    <tabstop>ElasticitySlider</tabstop>
+    <tabstop>TMaxSlider</tabstop>
+    <tabstop>DTSlider</tabstop>
+    <tabstop>StepsSlider</tabstop>
+</tabstops>
+<slots>
+    <slot access="protected">DimensionChanged(int)</slot>
+    <slot access="protected">DisplayChanged(bool)</slot>
+    <slot access="protected">DTChanged(int)</slot>
+    <slot access="protected">ElasticityChanged(int)</slot>
+    <slot access="protected">FrictionChanged(int)</slot>
+    <slot access="protected">GravitationChanged(int)</slot>
+    <slot access="protected">NumSpheresChanged(int)</slot>
+    <slot access="protected">RMaxChanged(int)</slot>
+    <slot access="protected">RndSizeChanged(bool)</slot>
+    <slot access="protected">SaveChanged(bool)</slot>
+    <slot access="protected">SaveNameChanged(const QString&amp;)</slot>
+    <slot access="protected">StepsChanged(int)</slot>
+    <slot access="protected">TMaxChanged(int)</slot>
+    <slot access="protected">XCamChanged(int)</slot>
+    <slot access="protected">XrotChanged(int)</slot>
+    <slot access="protected">XWrotChanged(int)</slot>
+    <slot access="protected">YrotChanged(int)</slot>
+    <slot access="protected">YWrotChanged(int)</slot>
+    <slot access="protected">ZrotChanged(int)</slot>
+    <slot access="protected">ZWrotChanged(int)</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

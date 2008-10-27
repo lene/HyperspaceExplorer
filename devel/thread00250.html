@@ -1,0 +1,249 @@
+<html><head><title>Qt Interest Archive - Root window question.....</title>
+<style type="text/css">
+<!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+-->
+</style>
+</head><body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr bgcolor="#E5E5E5">
+<td valign=center>
+<a href="http://www.trolltech.com/">
+<font color="#004faf">Trolltech Home</font></a> |
+<a href="http://qt-interest.trolltech.com/"> 
+<font color="#004faf">Qt-interest Home</font></a> |
+<a href="recent-index-0.html">
+<font color="#004faf">Recent Threads</font></a> |
+<a href="thread-index-0.html">
+<font color="#004faf">All Threads</font></a> |
+<a href="author.html">
+<font color="#004faf">Author</font></a> |
+<a href="date.html">
+<font color="#004faf">Date</font></a>
+</td>
+<td align="right" valign="center"><img src="/logo32.png" align="right" width="64" height="32" border="0"></td></tr>
+<tr bgcolor="#E5E5E5">
+<td valign=center colspan="2">
+<a href="thread-index-1.html">All threads index page 2</a>
+</tr>
+</table><h1 align="center">Qt-interest Archive, November 1998<br>Root window question.....</h1>
+
+<hr>
+<a name="msg00250">Message</a> 1 in thread<p>
+<!-- MHonArc v2.5.2 -->
+<!--X-Subject: Root window question..... -->
+<!--X-From-R13: <pbybajdNpbybajd.zy.bet> -->
+<!--X-Date: Wed, 18 Nov 1998 02:56:48 +0100 -->
+<!--X-Message-Id: Pine.LNX.3.96.981117205012.10725B&#45;100000@colonwq.ml.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>Subject</em>: Root window question.....</li>
+<li><em>From</em>: &lt;<A HREF="mailto:colonwq@DOMAIN.HIDDEN">colonwq@xxxxxxxxxxxxxx</A>&gt;</li>
+<li><em>Date</em>: Tue, 17 Nov 1998 21:02:17 -0500 (EST)</li>
+<li><em>To</em>: Qt mailing list &lt;<A HREF="mailto:qt-interest@DOMAIN.HIDDEN">qt-interest@xxxxxxxx</A>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<p>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+This may cross over into a more of a Xlib question but I am trying to get
+the pixmap of my root window of my XWindows.
+
+I do the following:
+	QWidget *d = QApplication::desktop();
+	QPixmap *bob = d-&gt;backgroundPixmap();
+But backgroundPixmap() returns NULL. The QPixmap::grabWindow() function
+does not exactly do what I need because it grabs everything including
+other windows. 
+
+Thanks for any and all help.
+
+Keith
+
+</pre>
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+
+<!--X-User-Footer-End-->
+
+<a name="msg00251">Message</a> 2 in thread<p>
+<!-- MHonArc v2.5.2 -->
+<!--X-Subject: Re: Root window question..... -->
+<!--X-From-R13: "[nggvnf =?WEA&#45;8859&#45;1?C?Satqrt=S5eq"?= <s91&#45;zraNanqn.xgu.fr> -->
+<!--X-Date: Wed, 18 Nov 1998 04:16:36 +0100 -->
+<!--X-Message-Id: 199811180316.EAA19660@sirius.nada.kth.se -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: Pine.LNX.3.96.981117205012.10725B&#45;100000@colonwq.ml.org -->
+<!--X-Head-End-->
+
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>Subject</em>: Re: Root window question.....</li>
+<li><em>From</em>: &quot;Mattias Engdegård&quot; &lt;<A HREF="mailto:f91-men@DOMAIN.HIDDEN">f91-men@xxxxxxxxxxx</A>&gt;</li>
+<li><em>Date</em>: Wed, 18 Nov 1998 04:16:25 +0100 (MET)</li>
+<li><em>Cc</em>: <A HREF="mailto:qt-interest@DOMAIN.HIDDEN">qt-interest@xxxxxxxx</A></li>
+<li><em>To</em>: <A HREF="mailto:colonwq@DOMAIN.HIDDEN">colonwq@xxxxxxxxxxxxxx</A></li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<p>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+&gt;This may cross over into a more of a Xlib question but I am trying to get
+&gt;the pixmap of my root window of my XWindows.
+&gt;
+&gt;I do the following:
+&gt;	QWidget *d = QApplication::desktop();
+&gt;	QPixmap *bob = d-&gt;backgroundPixmap();
+&gt;But backgroundPixmap() returns NULL. The QPixmap::grabWindow() function
+&gt;does not exactly do what I need because it grabs everything including
+&gt;other windows. 
+
+No, QWidget::backgroundPixmap() only returns a pixmap that has been
+set from Qt. There doesn't seem to be direct way to do what you want
+(XGetWindowAttributes() doesn't return the bakground pixmap).
+
+A clever way would be to create a new window using XCreateWindow(), with
+the root as parent, having the same visual, colormap and size as the
+root window and zero border width. Set the override-redirect flag so
+it won't be decorated, and set the background pixmap to ParentRelative.
+Map it at (0,0) and grab the contents, then destroy the window.
+
+Tell me if this works --- I haven't tried it.
+
+</pre>
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+
+<!--X-User-Footer-End-->
+
+<a name="msg00259">Message</a> 3 in thread<p>
+<!-- MHonArc v2.5.2 -->
+<!--X-Subject: Re: Root window question..... -->
+<!--X-From-R13: Dbff Zvaqre <ebffNzrpnyp.pb.mn> -->
+<!--X-Date: Wed, 18 Nov 1998 11:11:45 +0100 -->
+<!--X-Message-Id: Pine.LNX.3.95.981118131835.12462K&#45;100000@wanda.mecalc.co.za -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: Pine.LNX.3.96.981117205012.10725B&#45;100000@colonwq.ml.org -->
+<!--X-Head-End-->
+
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>Subject</em>: Re: Root window question.....</li>
+<li><em>From</em>: Ross Linder &lt;<A HREF="mailto:ross@DOMAIN.HIDDEN">ross@xxxxxxxxxxxx</A>&gt;</li>
+<li><em>Date</em>: Wed, 18 Nov 1998 13:20:05 +0200 (SAT)</li>
+<li><em>Cc</em>: Qt mailing list &lt;<A HREF="mailto:qt-interest@DOMAIN.HIDDEN">qt-interest@xxxxxxxx</A>&gt;</li>
+<li><em>To</em>: <A HREF="mailto:colonwq@DOMAIN.HIDDEN">colonwq@xxxxxxxxxxxxxx</A></li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<p>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+On Tue, 17 Nov 1998 colonwq@colonwq.ml.org wrote:
+
+&gt; This may cross over into a more of a Xlib question but I am trying to get
+&gt; the pixmap of my root window of my XWindows.
+&gt; 
+&gt; I do the following:
+&gt; 	QWidget *d = QApplication::desktop();
+&gt; 	QPixmap *bob = d-&gt;backgroundPixmap();
+&gt; But backgroundPixmap() returns NULL. The QPixmap::grabWindow() function
+&gt; does not exactly do what I need because it grabs everything including
+&gt; other windows. 
+
+Take a look at the source to QtLUG
+<A  HREF="http://zeus.system.co.za/~ross/QtLUG-devel.tgz">http://zeus.system.co.za/~ross/QtLUG-devel.tgz</A> 
+
+They grab the root window mouse pos etc to mirror the display elsewhere.
+
+/Ross
+
+</pre>
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+
+<!--X-User-Footer-End-->
+
