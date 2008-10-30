@@ -118,3 +118,5 @@ vector.path = $${INSTALLDIR}/share/HyperspaceExplorer/plugins
 docs.files = doc/*
 docs.path =  $${INSTALLDIR}/share/HyperspaceExplorer/doc
 INSTALLS += target vector docs
+DISTFILES += ../devel/footer.html
+
