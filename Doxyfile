@@ -266,10 +266,10 @@ SKIP_FUNCTION_MACROS   = YES
 #---------------------------------------------------------------------------
 # Configuration::additions related to external references
 #---------------------------------------------------------------------------
-TAGFILES               = "libstdc++.tag = http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen"
+TAGFILES               = devel/libstdc++.tag
 GENERATE_TAGFILE       = HyperspaceExplorer.tag
 ALLEXTERNALS           = NO
-EXTERNAL_GROUPS        = YES
+EXTERNAL_GROUPS        = NO
 PERL_PATH              = /usr/bin/perl
 #---------------------------------------------------------------------------
 # Configuration options related to the dot tool
