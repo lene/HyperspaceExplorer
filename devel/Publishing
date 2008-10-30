@@ -27,6 +27,7 @@
 # generate and upload documentation; remove obsolete documentation files and add new ones
 
 * edit version number in Doxyfile
+* wget -N -P devel http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/libstdc++.tag
 * find devel/html/html  -maxdepth 1 -type f \! -type l | xargs rm
   yes q | doxygen 2> /dev/null
   svn up devel/html/ 2>&1 | grep Restored | cut -d ' ' -f 2- | xargs svn del
