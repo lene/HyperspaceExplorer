@@ -4,11 +4,10 @@
 /// Description:
 ///
 ///
-/// @author: Helge Preuss <scout@hyperspace-travel.de>, (C) 2008
+/// \author: Helge Preuss <scout@hyperspace-travel.de>, (C) 2008
 ///
 /// Copyright: See COPYING file that comes with this distribution
 ///
-/// \ingroup
 ///
 
 #ifndef FUNCTION_PARAMETER_H
@@ -21,7 +20,7 @@
 
 #include "SingletonHolder.H"
 
-/// \defgroup FunctionParameterGroup
+/// \defgroup FunctionParameterGroup A generalized interface for function parameters of arbitrary type
 /// \ingroup FunctionGroup
 
 /// Interface for a value of a function parameter. Inherited by a template class

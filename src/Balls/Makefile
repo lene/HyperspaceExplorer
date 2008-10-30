@@ -1,9 +1,9 @@
 #
 INCDIR = 
-CFLAGS = -Wall -Wno-sign-compare -ffast-math -march=k6-2 -O6 #0 -g
+CFLAGS = -Wall -Wno-sign-compare
 LFLAGS = -lqt-mt
 GLFLAGS = -lGL -lGLU
-CC = g++-3.2 -ansi -pedantic
+CC = g++ -ansi -pedantic
 MOC = moc
 
 ########  files

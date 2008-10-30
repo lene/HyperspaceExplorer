@@ -7,7 +7,9 @@
 //      license:      GPL (see License.txt)
 
 /** \mainpage HyperspaceExplorer
+ *
  *  \section intro Introduction
+ *
  *  Hyperspace Explorer is a program that lets you visualize four-dimensional
  *  objects and mathematical functions.
  *
@@ -34,11 +36,49 @@
  *  program, see the \ref userdoc.
  *
  *  \page userdoc User Documentation
+ *
  *  The following is the online documentation that is built into Hyperspace
  *  Explorer. It contains everything that is to know about Hyperspace Explorer
  *  from the user's point of view.
  *
  *  \htmlinclude doc/Hyperspace_Explorer_Help.html
+ *
+ *  \page links Links To Pages About Higher-dimensional Geometry
+ *
+ *  <a href="http://www.hyperspace-travel.de/">Hyperspace Travel Guide</a>\n
+ *  My personal page explaining the math behind the projection of four
+ *  dimensional objects to 3D. Also, a tiny zoo of four dimensional objects.
+ *  It is quite badly maintained, I'm afraid.
+ *
+ *  <a href="http://members.aol.com/Polycell/uniform.html">Uniform Polytopes in
+ *  Four Dimensions</a>\n
+ *  George Olshevsky's catalog of polytopes, the four dimensional analogues to
+ *  polyhedra in three-space. Contains many interesting objects and some 3D
+ *  polyhedra too.
+ *
+ *  <a href="http://members.shaw.ca/quadibloc/math/fdiint.htm">The Fourth
+ *  Dimension</a>\n
+ *  A page by John Savard which tries to make some polytopes imaginable, most
+ *  notably the 120-cell. IMHO, it succeeds quite well at that attempt.
+ *
+ *  <a href="http://eusebeia.dyndns.org/4d/geom.html">4D Geometric Objects</a>\n
+ *  A catalog of four dimensional object with an emphasis on rotopes. The same
+ *  site also hosts a little <a href="http://eusebeia.dyndns.org/4d/4dfaq.html">
+ *  4D FAQ</a> and a HOWTO on <a href="http://eusebeia.dyndns.org/4d/vis/vis.html">
+ *  Visualization fo four-dimensional geometry</a>.
+ *
+ *  <a href="http://tetraspace.alkaline.org/phpBB3/index.php">Fourth Dimension:
+ *  Tetraspace</a>\n
+ *  A forum, created by Garrett Jones, dedicated to the discussion of four
+ *  dimensional space. The posts usually have high quality, you can learn a lot
+ *  here. The page also hosts an <a href="http://tetraspace.alkaline.org/">
+ *  Introduction to "The Fourth Dimension"</a> and the <a
+ *  href="http://teamikaria.com/wiki/Main_Page">Higher Dimensions Database</a>.
+ *
+ *  <a href="http://www.polytope.net/hedrondude/polychora.htm">Uniform Polychora
+ *  </a>\n
+ *  This is a site by Jonathan Bowers, cataloguing polychora. I haven't had time
+ *  to check it out yet, but it enjoys a good reputation.
  */
 
 #include <vector>
