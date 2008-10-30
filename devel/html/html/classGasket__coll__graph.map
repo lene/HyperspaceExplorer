@@ -1,10 +1,13 @@
-<area shape="rect" href="$classPyramid.html" title="A four&#45;dimensional pyramid, also known as hypersimplex." alt="" coords="225,1973,361,2149">
-<area shape="rect" href="$classObject.html" title="Generalized four&#45;dimensional Object, described by vertexes and surfaces." alt="" coords="240,1605,464,1909">
-<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="240,1013,464,1541">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="79,581,231,949">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,149,176,517">
-<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="273,685,412,845">
-<area shape="rect" title="STL class." alt="" coords="200,285,485,381">
-<area shape="rect" title="STL class." alt="" coords="613,293,728,373">
-<area shape="rect" title="STL class." alt="" coords="509,293,589,373">
-<area shape="rect" title="STL class." alt="" coords="471,5,639,85">
+<area shape="rect" href="$classPyramid.html" title="A four&#45;dimensional pyramid, also known as hypersimplex." alt="" coords="171,2104,307,2280">
+<area shape="rect" href="$classObject.html" title="Generalized four&#45;dimensional Object, described by vertexes and surfaces." alt="" coords="187,1749,411,2053">
+<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="187,1157,411,1685">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="15,725,167,1093">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,293,176,661">
+<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="577,829,716,989">
+<area shape="rect" href="libstdc++.tag$a01208.html" title="{std::map\&lt; std::string, FunctionParameter * \&gt;\n||}" alt="" coords="519,437,804,517">
+<area shape="rect" href="libstdc++.tag$a01208.html" title="STL class." alt="" coords="507,149,779,229">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="STL class." alt="" coords="265,437,439,517">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; Pyramid * \&gt;\n||}" alt="" coords="385,869,551,949">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; std::string \&gt;\n||}" alt="" coords="191,869,356,949">
+<area shape="rect" href="libstdc++.tag$a00960.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;\n||}" alt="" coords="161,149,380,229">
+<area shape="rect" href="libstdc++.tag$a00961.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;::_Vector_impl\n||}" alt="" coords="117,5,424,85">

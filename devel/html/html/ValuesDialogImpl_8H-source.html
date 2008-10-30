@@ -38,8 +38,8 @@
 <a name="l00010"></a>00010 <span class="preprocessor">#ifndef VALUES_DIALOG_IMPL_H</span>
 <a name="l00011"></a>00011 <span class="preprocessor"></span><span class="preprocessor">#define VALUES_DIALOG_IMPL_H</span>
 <a name="l00012"></a>00012 <span class="preprocessor"></span>
-<a name="l00013"></a>00013 <span class="preprocessor">#include &lt;cstdlib&gt;</span>
-<a name="l00014"></a>00014 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#include &lt;<a class="codeRef" doxygen="libstdc++.tag:" href="a01520.html">cstdlib</a>&gt;</span>
+<a name="l00014"></a>00014 <span class="preprocessor">#include &lt;<a class="codeRef" doxygen="libstdc++.tag:" href="a01602.html">iostream</a>&gt;</span>
 <a name="l00015"></a>00015 
 <a name="l00016"></a>00016 <span class="preprocessor">#include &lt;QSlider&gt;</span>
 <a name="l00017"></a>00017 <span class="preprocessor">#include &lt;QLineEdit&gt;</span>
@@ -62,9 +62,9 @@
 <a name="l00043"></a>00043                 <a class="code" href="classUI_1_1Dialogs_1_1ValuesDialogImpl.html#2dce60279d48c0a56a3bd926467e1730" title="Set up the components of the dialog and displays it.">ValuesDialogImpl</a>(QWidget *parent = 0, Qt::WFlags f = 0);
 <a name="l00044"></a>00044                 <span class="keyword">virtual</span> ~<a class="code" href="classUI_1_1Dialogs_1_1ValuesDialogImpl.html" title="A Dialog to enter parameters for the displayed function.">ValuesDialogImpl</a>() {}
 <a name="l00045"></a>00045 
-<a name="l00046"></a>00046                 <span class="keywordtype">void</span> <a class="code" href="classUI_1_1Dialogs_1_1ValuesDialogImpl.html#dde4d7e444559027ba40b01581fee768" title="Adjust the display according to the Function whose Parameters are controlled.">setFunction</a>(<span class="keyword">const</span> std::auto_ptr&lt;Function&gt; &amp;);
+<a name="l00046"></a>00046                 <span class="keywordtype">void</span> <a class="code" href="classUI_1_1Dialogs_1_1ValuesDialogImpl.html#dde4d7e444559027ba40b01581fee768" title="Adjust the display according to the Function whose Parameters are controlled.">setFunction</a>(<span class="keyword">const</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01015.html" title="STL class.">std::auto_ptr&lt;Function&gt;</a> &amp;);
 <a name="l00047"></a>00047 
-<a name="l00048"></a>00048                 std::string <a class="code" href="classUI_1_1Dialogs_1_1ValuesDialogImpl.html#720bb843e4d99483ddd5325a08de1427" title="output for debugging purposes">print</a> ();
+<a name="l00048"></a>00048                 <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> <a class="code" href="classUI_1_1Dialogs_1_1ValuesDialogImpl.html#720bb843e4d99483ddd5325a08de1427" title="output for debugging purposes">print</a> ();
 <a name="l00049"></a>00049 
 <a name="l00051"></a><a class="code" href="classUI_1_1Dialogs_1_1ValuesDialogImpl.html#072f07410b8416016e23e33118d0b2d4">00051</a>                 <span class="keywordtype">double</span> <a class="code" href="classUI_1_1Dialogs_1_1ValuesDialogImpl.html#072f07410b8416016e23e33118d0b2d4" title="lower bound for parameter t">tmin</a> () { <span class="keywordflow">return</span> atof (<a class="code" href="classUI_1_1Dialogs_1_1ValuesDialog.html#71a115afd336d19c8771675f0f2df3e3" title="input fields for lower bounds">Min</a>[0]-&gt;text ().toStdString().c_str()); }
 <a name="l00053"></a><a class="code" href="classUI_1_1Dialogs_1_1ValuesDialogImpl.html#0a55d967b53b03382d72f4f9b3a8c76b">00053</a>                 <span class="keywordtype">double</span> <a class="code" href="classUI_1_1Dialogs_1_1ValuesDialogImpl.html#0a55d967b53b03382d72f4f9b3a8c76b" title="upper bound for parameter t">tmax</a> () { <span class="keywordflow">return</span> atof (<a class="code" href="classUI_1_1Dialogs_1_1ValuesDialog.html#3c1e95dbb546ab065cf3bc0435f6195f" title="input fields for upper bounds">Max</a>[0]-&gt;text ().toStdString().c_str()); }
@@ -96,7 +96,7 @@
 <a name="l00090"></a>00090 <span class="preprocessor">#endif</span>
 <a name="l00091"></a>00091 <span class="preprocessor"></span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Oct 25 17:15:23 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Thu Oct 30 21:54:07 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

@@ -136,12 +136,12 @@
 <a name="l00151"></a>00151 
 <a name="l00153"></a>00153         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classC4DView.html#2c5dae3094d155b16f374dad68c07407" title="Implementation of UI::View::setSize.">setSize</a>(<span class="keywordtype">unsigned</span> w, <span class="keywordtype">unsigned</span> h);
 <a name="l00154"></a>00154 
-<a name="l00156"></a><a class="code" href="classC4DView.html#7921fd7bb829954c2307ff71daebdd89">00156</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classC4DView.html#7921fd7bb829954c2307ff71daebdd89" title="Implementation of UI::View::setImgDir.">setImgDir</a>(<span class="keyword">const</span> std::string &amp;s) {
+<a name="l00156"></a><a class="code" href="classC4DView.html#7921fd7bb829954c2307ff71daebdd89">00156</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classC4DView.html#7921fd7bb829954c2307ff71daebdd89" title="Implementation of UI::View::setImgDir.">setImgDir</a>(<span class="keyword">const</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;s) {
 <a name="l00157"></a>00157             setanimationDirectory(QString(s.c_str()));
 <a name="l00158"></a>00158             setRenderToPixmap(<span class="keyword">true</span>);
 <a name="l00159"></a>00159         }
 <a name="l00160"></a>00160 
-<a name="l00162"></a><a class="code" href="classC4DView.html#ad0b04453c9ba092780d8e22ae36ba8c">00162</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classC4DView.html#ad0b04453c9ba092780d8e22ae36ba8c" title="Implementation of UI::View::setImgPrefix.">setImgPrefix</a>(<span class="keyword">const</span> std::string &amp;s) {
+<a name="l00162"></a><a class="code" href="classC4DView.html#ad0b04453c9ba092780d8e22ae36ba8c">00162</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classC4DView.html#ad0b04453c9ba092780d8e22ae36ba8c" title="Implementation of UI::View::setImgPrefix.">setImgPrefix</a>(<span class="keyword">const</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;s) {
 <a name="l00163"></a>00163             setanimationPrefix(QString(s.c_str()));
 <a name="l00164"></a>00164             setRenderToPixmap(<span class="keyword">true</span>);
 <a name="l00165"></a>00165         }
@@ -201,7 +201,7 @@
 <a name="l00248"></a>00248         <span class="keywordtype">void</span> <a class="code" href="classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [-360 degrees, 360 degrees].">checkAnglesForOverflow</a>();
 <a name="l00249"></a>00249         <span class="keywordtype">void</span> <a class="code" href="classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations">UpdateStatus</a>(QString = <span class="stringliteral">""</span>);
 <a name="l00250"></a>00250 
-<a name="l00251"></a>00251         <span class="keywordtype">void</span> <a class="code" href="classC4DView.html#e38186ceacf6c4e6b13de7bee6cd8bda" title="Called whenever an object or the parameters have changed.">AssignValues</a>(<span class="keyword">const</span> std::auto_ptr&lt;Function&gt; &amp;);
+<a name="l00251"></a>00251         <span class="keywordtype">void</span> <a class="code" href="classC4DView.html#e38186ceacf6c4e6b13de7bee6cd8bda" title="Called whenever an object or the parameters have changed.">AssignValues</a>(<span class="keyword">const</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01015.html" title="STL class.">std::auto_ptr&lt;Function&gt;</a> &amp;);
 <a name="l00252"></a>00252 
 <a name="l00253"></a>00253         <span class="keywordtype">double</span> <a class="code" href="classC4DView.html#15c8ca4d71f5b5e5b07a959601820f83" title="Get size of displayed area.">Size</a>();
 <a name="l00254"></a>00254 
@@ -214,8 +214,8 @@
 <a name="l00268"></a>00268         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from...">initializeGL</a>(<span class="keywordtype">void</span>);
 <a name="l00270"></a>00270         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classC4DView.html#ac3d22c30bf8b042077fb31fec2c367b" title="GL stuff needed in addition to resizeEvent(). Reimplemented from QGLWidget.">resizeGL</a> (<span class="keywordtype">int</span>, <span class="keywordtype">int</span>);
 <a name="l00271"></a>00271 
-<a name="l00272"></a>00272         <span class="keywordtype">void</span> setF(<a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> *_f) { pImpl-&gt;F.reset(_f); }
-<a name="l00273"></a>00273         <span class="keyword">const</span> std::auto_ptr&lt;Function&gt; &amp;F()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;F; }
+<a name="l00272"></a>00272         <span class="keywordtype">void</span> setF(<a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> *_f) { pImpl-&gt;F.<a class="codeRef" doxygen="libstdc++.tag:" href="a01015.html#1d78a540221e616997c2df6c98dd6765">reset</a>(_f); }
+<a name="l00273"></a>00273         <span class="keyword">const</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01015.html" title="STL class.">std::auto_ptr&lt;Function&gt;</a> &amp;F()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;F; }
 <a name="l00274"></a>00274 
 <a name="l00275"></a>00275         <span class="keywordtype">void</span> setT(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;_t) { pImpl-&gt;T = _t; }
 <a name="l00276"></a>00276         <span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;T() { <span class="keywordflow">return</span> pImpl-&gt;T; }
@@ -271,7 +271,7 @@
 <a name="l00326"></a>00326         <span class="keywordtype">void</span> setRenderToPixmap(<span class="keywordtype">bool</span> b) { pImpl-&gt;RenderToPixmap = b; }
 <a name="l00327"></a>00327         <span class="keywordtype">bool</span> RenderToPixmap()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pImpl-&gt;RenderToPixmap; }
 <a name="l00328"></a>00328 
-<a name="l00329"></a>00329         <span class="keywordtype">double</span> distance() {<span class="keywordflow">return</span> pImpl-&gt;distance; }
+<a name="l00329"></a>00329         <span class="keywordtype">double</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01839.html#g67083dac9c65bbddc8ae5c950ff1c4eb">distance</a>() {<span class="keywordflow">return</span> pImpl-&gt;distance; }
 <a name="l00330"></a>00330 
 <a name="l00331"></a>00331         <span class="keywordtype">void</span> setanimationDirectory(<span class="keyword">const</span> QString &amp;b) {
 <a name="l00332"></a>00332             pImpl-&gt;animationDirectory = b;
@@ -323,7 +323,7 @@
 <a name="l00402"></a><a class="code" href="structC4DView_1_1Impl.html">00402</a>         <span class="keyword">struct </span><a class="code" href="structC4DView_1_1Impl.html" title="Private class containing the member data for the Pimpl idiom.">Impl</a> {
 <a name="l00403"></a>00403             <a class="code" href="structC4DView_1_1Impl.html" title="Private class containing the member data for the Pimpl idiom.">Impl</a>(<a class="code" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> *parent):
 <a name="l00404"></a>00404                 <a class="code" href="structC4DView_1_1Impl.html#5a9e528b32c5c03f9cdb7529209a82bb" title="background color">Background</a> (0.25, 0.25, 0.25, 1.),
-<a name="l00405"></a>00405                 <a class="code" href="structC4DView_1_1Impl.html#2b72ba34a0717cf86dd585028a8d4467" title="the Function object currently displayed">F</a>(std::auto_ptr&lt;Function&gt;()),
+<a name="l00405"></a>00405                 <a class="code" href="structC4DView_1_1Impl.html#2b72ba34a0717cf86dd585028a8d4467" title="the Function object currently displayed">F</a>(<a class="codeRef" doxygen="libstdc++.tag:" href="a01015.html" title="STL class.">std::auto_ptr&lt;Function&gt;</a>()),
 <a name="l00406"></a>00406 
 <a name="l00407"></a>00407                 <a class="code" href="structC4DView_1_1Impl.html#8ea4aaea895e1b93730183ce2358061e" title="coordinates for 4D translation">T</a>(0.,0.,0.,0.), <a class="code" href="structC4DView_1_1Impl.html#e5ed1dd715209a6895176c4eb473e36f" title="angles for 4D rotation">R</a>(0.,0.,0.,0.,0.,0.), <a class="code" href="structC4DView_1_1Impl.html#2335e837e02cd34554561045678b97b7" title="delta values in angles for 4D rotation - for animations">dR</a>(0.,0.,0.,0.,0.,0.),
 <a name="l00408"></a>00408                 <a class="code" href="structC4DView_1_1Impl.html#e1c0c06ea8688b13f4b0f42efe6e6b6a" title="rotation in X, Y and Z">m_rot</a>(15., 15., 0.), <a class="code" href="structC4DView_1_1Impl.html#4f7e166bec3acdf48961d6ca88408eaf" title="delta values in 3D rotation - for animations">dR3</a>(0.,0.,0.), <a class="code" href="structC4DView_1_1Impl.html#4a633c4d2ecbbe0fd8167831145bc42a" title="translation in X and Y, Z coordinate of camera (distance from object)">m_trans</a>(0., 0.,-10.),
@@ -349,7 +349,7 @@
 <a name="l00428"></a>00428 
 <a name="l00429"></a><a class="code" href="structC4DView_1_1Impl.html#5a9e528b32c5c03f9cdb7529209a82bb">00429</a>             <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> <a class="code" href="structC4DView_1_1Impl.html#5a9e528b32c5c03f9cdb7529209a82bb" title="background color">Background</a>;  
 <a name="l00430"></a>00430 
-<a name="l00431"></a><a class="code" href="structC4DView_1_1Impl.html#2b72ba34a0717cf86dd585028a8d4467">00431</a>             std::auto_ptr&lt;Function&gt; <a class="code" href="structC4DView_1_1Impl.html#2b72ba34a0717cf86dd585028a8d4467" title="the Function object currently displayed">F</a>;  
+<a name="l00431"></a><a class="code" href="structC4DView_1_1Impl.html#2b72ba34a0717cf86dd585028a8d4467">00431</a>             <a class="codeRef" doxygen="libstdc++.tag:" href="a01015.html" title="STL class.">std::auto_ptr&lt;Function&gt;</a> <a class="code" href="structC4DView_1_1Impl.html#2b72ba34a0717cf86dd585028a8d4467" title="the Function object currently displayed">F</a>;  
 <a name="l00432"></a>00432 
 <a name="l00433"></a><a class="code" href="structC4DView_1_1Impl.html#8ea4aaea895e1b93730183ce2358061e">00433</a>             <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> <a class="code" href="structC4DView_1_1Impl.html#8ea4aaea895e1b93730183ce2358061e" title="coordinates for 4D translation">T</a>;   
 <a name="l00434"></a><a class="code" href="structC4DView_1_1Impl.html#e5ed1dd715209a6895176c4eb473e36f">00434</a>             <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">VecMath::Rotation&lt;4&gt;</a> <a class="code" href="structC4DView_1_1Impl.html#e5ed1dd715209a6895176c4eb473e36f" title="angles for 4D rotation">R</a>;   
@@ -396,14 +396,14 @@
 <a name="l00483"></a><a class="code" href="structC4DView_1_1Impl.html#2459988a99bd31873a4c590e01195e19">00483</a>             <a class="code" href="classC4DView_1_1MouseHandler4D.html">MouseHandler4D</a> *<a class="code" href="structC4DView_1_1Impl.html#2459988a99bd31873a4c590e01195e19" title="handler to delegate mouse events to">mouseHandler</a>; 
 <a name="l00484"></a>00484         };
 <a name="l00485"></a>00485 
-<a name="l00486"></a>00486     std::auto_ptr&lt;C4DView::Impl&gt; pImpl;
+<a name="l00486"></a>00486     <a class="codeRef" doxygen="libstdc++.tag:" href="a01015.html" title="STL class.">std::auto_ptr&lt;C4DView::Impl&gt;</a> pImpl;
 <a name="l00487"></a>00487 
 <a name="l00488"></a><a class="code" href="classC4DView.html#c2d8375d0e5fd3438d7806e5eadb6740">00488</a>     <span class="keyword">static</span> GLfloat <a class="code" href="classC4DView.html#c2d8375d0e5fd3438d7806e5eadb6740" title="position of the light">LightPos</a>[4]; 
-<a name="l00489"></a>00489     <span class="keyword">static</span> std::string HelpFile;
+<a name="l00489"></a>00489     <span class="keyword">static</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> HelpFile;
 <a name="l00490"></a>00490 
-<a name="l00492"></a><a class="code" href="classC4DView.html#3a944bfbcae2c13b0fcac503d62a60fe">00492</a>     std::vector&lt;std::vector&lt;VecMath::Vector&lt;4&gt; &gt; &gt; <a class="code" href="classC4DView.html#3a944bfbcae2c13b0fcac503d62a60fe" title="endpoints of the lines constituting the 4D coordinate cross">Cross</a>;
-<a name="l00494"></a><a class="code" href="classC4DView.html#0eba9d6ac6f7fe31287fd728ef61266c">00494</a>     std::vector&lt;std::vector&lt;VecMath::Vector&lt;4&gt; &gt; &gt; <a class="code" href="classC4DView.html#0eba9d6ac6f7fe31287fd728ef61266c" title="endpoints of the lines constituting the transformed 4D coordinates">CrossTrans</a>;
-<a name="l00496"></a><a class="code" href="classC4DView.html#4b450c11b94a6dc190fd7b0e8bdb64c1">00496</a>     std::vector&lt;std::vector&lt;VecMath::Vector&lt;3&gt; &gt; &gt; <a class="code" href="classC4DView.html#4b450c11b94a6dc190fd7b0e8bdb64c1" title="endpoints of the lines constituting the projected 4D coordinates">CrossScr</a>;
+<a name="l00492"></a><a class="code" href="classC4DView.html#3a944bfbcae2c13b0fcac503d62a60fe">00492</a>     <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector&lt;std::vector&lt;VecMath::Vector&lt;4&gt;</a> &gt; &gt; <a class="code" href="classC4DView.html#3a944bfbcae2c13b0fcac503d62a60fe" title="endpoints of the lines constituting the 4D coordinate cross">Cross</a>;
+<a name="l00494"></a><a class="code" href="classC4DView.html#0eba9d6ac6f7fe31287fd728ef61266c">00494</a>     <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector&lt;std::vector&lt;VecMath::Vector&lt;4&gt;</a> &gt; &gt; <a class="code" href="classC4DView.html#0eba9d6ac6f7fe31287fd728ef61266c" title="endpoints of the lines constituting the transformed 4D coordinates">CrossTrans</a>;
+<a name="l00496"></a><a class="code" href="classC4DView.html#4b450c11b94a6dc190fd7b0e8bdb64c1">00496</a>     <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector&lt;std::vector&lt;VecMath::Vector&lt;3&gt;</a> &gt; &gt; <a class="code" href="classC4DView.html#4b450c11b94a6dc190fd7b0e8bdb64c1" title="endpoints of the lines constituting the projected 4D coordinates">CrossScr</a>;
 <a name="l00497"></a>00497 
 <a name="l00498"></a>00498     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classC4DView_1_1CustomFunctionSlot.html" title="Class template to outsource redundant code for customized functions.">CustomFunctionSlot</a>&lt;<a class="code" href="classCustomFunction.html">CustomFunction</a>&gt;;
 <a name="l00499"></a>00499     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classC4DView_1_1CustomFunctionSlot.html" title="Class template to outsource redundant code for customized functions.">CustomFunctionSlot</a>&lt;<a class="code" href="classCustomPolarFunction.html">CustomPolarFunction</a>&gt;;
@@ -419,7 +419,7 @@
 <a name="l00509"></a>00509 
 <a name="l00510"></a>00510 <span class="preprocessor">#endif // !defined(C4DVIEW)</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Oct 25 17:15:23 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Thu Oct 30 21:54:07 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

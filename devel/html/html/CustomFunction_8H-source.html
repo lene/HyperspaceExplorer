@@ -118,13 +118,13 @@
 <a name="l00113"></a>00113 
 <a name="l00114"></a>00114     handle = dlopen (libName.toStdString().c_str(), RTLD_LAZY);
 <a name="l00115"></a>00115     <span class="keywordflow">if</span> (!handle) {
-<a name="l00116"></a>00116         std::cerr &lt;&lt; <span class="stringliteral">"Error opening library: "</span> &lt;&lt; dlerror() &lt;&lt; std::endl;
+<a name="l00116"></a>00116         <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <span class="stringliteral">"Error opening library: "</span> &lt;&lt; dlerror() &lt;&lt; <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce">std::endl</a>;
 <a name="l00117"></a>00117         <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00118"></a>00118     }
 <a name="l00119"></a>00119 
 <a name="l00120"></a>00120     func = (function_type *)dlsym(handle, funcName.toStdString().c_str());
 <a name="l00121"></a>00121     <span class="keywordflow">if</span> ((error = dlerror()) != NULL)  {
-<a name="l00122"></a>00122         std::cerr &lt;&lt; <span class="stringliteral">"Error finding function: "</span> &lt;&lt; error &lt;&lt; std::endl;
+<a name="l00122"></a>00122         <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <span class="stringliteral">"Error finding function: "</span> &lt;&lt; error &lt;&lt; <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce">std::endl</a>;
 <a name="l00123"></a>00123         <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00124"></a>00124     }
 <a name="l00125"></a>00125 
@@ -140,14 +140,14 @@
 <a name="l00137"></a>00137     <span class="keyword">static</span> <span class="keywordtype">char</span> *ret;
 <a name="l00138"></a>00138 
 <a name="l00139"></a>00139     <span class="keywordflow">if</span> ((error = dlerror()) != NULL)  {
-<a name="l00140"></a>00140         std::cerr &lt;&lt; <span class="stringliteral">"Error finding symbolic description in "</span> &lt;&lt; error &lt;&lt; std::endl;
+<a name="l00140"></a>00140         <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <span class="stringliteral">"Error finding symbolic description in "</span> &lt;&lt; error &lt;&lt; <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce">std::endl</a>;
 <a name="l00141"></a>00141         <span class="keywordflow">return</span> QString (<span class="stringliteral">"something"</span>);
 <a name="l00142"></a>00142     }
 <a name="l00143"></a>00143     ret=(*sym)();
 <a name="l00144"></a>00144     <span class="keywordflow">return</span> QString (ret);
 <a name="l00145"></a>00145 }
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Oct 25 17:15:22 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Thu Oct 30 21:54:06 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

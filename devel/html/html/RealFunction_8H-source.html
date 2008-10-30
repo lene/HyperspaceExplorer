@@ -148,7 +148,7 @@
 <a name="l00160"></a>00160 
 <a name="l00161"></a><a class="code" href="classRealFunction.html#ed466bcba4e1959d68c4932513612e19">00161</a>         <a class="code" href="classFunction.html#fbc77cb3e6c8ca2c59225db92f5e420c" title="three-dimensional array of Vector&amp;lt;4&amp;gt;, implemented as a nested std::vector">vec4vec3D</a> <a class="code" href="classRealFunction.html#950ebb62a55990cd42ce6ee48aaa9810" title="temporary storage for function values on grid">X</a>,      
 <a name="l00162"></a>00162                   <a class="code" href="classRealFunction.html#ed466bcba4e1959d68c4932513612e19" title="temporary storage for transformed function values">Xtrans</a>; 
-<a name="l00163"></a><a class="code" href="classRealFunction.html#2b4805a60e748aee992f62ac7c9bd4df">00163</a>         <a class="code" href="classFunction.html#f3fbebbb4cb0151aeea503738ad6fd2f" title="three-dimensional array of Vector&amp;lt;3&amp;gt;, implemented as a nested std::vector">vec3vec3D</a> <a class="code" href="classRealFunction.html#2b4805a60e748aee992f62ac7c9bd4df" title="temporary storage for projected function values temporary storage for the value of...">Xscr</a>;   
+<a name="l00163"></a><a class="code" href="classRealFunction.html#2b4805a60e748aee992f62ac7c9bd4df">00163</a>         <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">vec3vec3D</a> <a class="code" href="classRealFunction.html#2b4805a60e748aee992f62ac7c9bd4df" title="temporary storage for projected function values temporary storage for the value of...">Xscr</a>;   
 <a name="l00164"></a>00164 
 <a name="l00165"></a><a class="code" href="classRealFunction.html#da001f73d52d3267762aed76256be0a9">00165</a>         <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> <a class="code" href="classRealFunction.html#da001f73d52d3267762aed76256be0a9" title="temporary storage for the value of the function at a given point">F</a>;
 <a name="l00166"></a>00166 
@@ -199,7 +199,7 @@
 <a name="l00226"></a><a class="code" href="classTorus1.html#c8d5faf8d43130e3aa8b0f58cffbab0e">00226</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classTorus1.html#c8d5faf8d43130e3aa8b0f58cffbab0e" title="Set parameters to the Function.">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
 <a name="l00227"></a>00227     <span class="comment">//  parms["Radius"].value must be set!</span>
 <a name="l00228"></a>00228 <span class="preprocessor">#if 1</span>
-<a name="l00229"></a>00229 <span class="preprocessor"></span>    <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin(); i != parms.end(); ++i) {
+<a name="l00229"></a>00229 <span class="preprocessor"></span>    <span class="keywordflow">for</span> (<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#dd5441755bf0377399da637d0642ebc8">ParameterMap::const_iterator</a> i = parms.<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#fd7a61b93062043afa5b158ada25351e">begin</a>(); i != parms.<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30">end</a>(); ++i) {
 <a name="l00230"></a>00230         <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"Major Radius"</span>) <a class="code" href="classTorus1.html#d8c010a1e3bcc7b43ca15ddb9deb32ff" title="major radius of the torus">R</a> = <span class="keywordtype">double</span>(*i-&gt;second);
 <a name="l00231"></a>00231         <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"Minor Radius"</span>) <a class="code" href="classTorus1.html#b6b7e9f00c1e5a75ece9da15c83ef5c3" title="minor radius of the torus">r</a> = <span class="keywordtype">double</span>(*i-&gt;second);
 <a name="l00232"></a>00232         <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"Micro Radius"</span>) <a class="code" href="classTorus1.html#5d55d3759dd9c227ecc7b5385ee5410b" title="smallest radius of the torus">rho</a> = <span class="keywordtype">double</span>(*i-&gt;second);
@@ -236,8 +236,8 @@
 <a name="l00267"></a><a class="code" href="classTorus2.html#eff2372bb43c897676949bd3d21cc92f">00267</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classTorus2.html#eff2372bb43c897676949bd3d21cc92f" title="Set parameters to the Function.">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
 <a name="l00268"></a>00268             <span class="comment">//  parms["Radius"].value must be set!</span>
 <a name="l00269"></a>00269 <span class="preprocessor">#if 1</span>
-<a name="l00270"></a>00270 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
-<a name="l00271"></a>00271                  i != parms.end(); ++i) {
+<a name="l00270"></a>00270 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#dd5441755bf0377399da637d0642ebc8">ParameterMap::const_iterator</a> i = parms.<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#fd7a61b93062043afa5b158ada25351e">begin</a>();
+<a name="l00271"></a>00271                  i != parms.<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30">end</a>(); ++i) {
 <a name="l00272"></a>00272                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"Major Radius"</span>)
 <a name="l00273"></a>00273                     <a class="code" href="classTorus2.html#0eecd76d70d73b373d489997a5e39fba" title="major radius of the torus">R</a> = <span class="keywordtype">double</span>(*i-&gt;second);
 <a name="l00274"></a>00274                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"Minor Radius"</span>)
@@ -290,8 +290,8 @@
 <a name="l00331"></a>00331         <span class="keyword">virtual</span> ~<a class="code" href="classGravitationPotential.html">GravitationPotential</a> () { }
 <a name="l00332"></a><a class="code" href="classGravitationPotential.html#111c5a6f5a4794afc529c25fd0633d5a">00332</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classGravitationPotential.html#111c5a6f5a4794afc529c25fd0633d5a" title="Set parameters to the Function.">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
 <a name="l00333"></a>00333 <span class="preprocessor">#if 1</span>
-<a name="l00334"></a>00334 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
-<a name="l00335"></a>00335                  i != parms.end(); ++i) {
+<a name="l00334"></a>00334 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#dd5441755bf0377399da637d0642ebc8">ParameterMap::const_iterator</a> i = parms.<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#fd7a61b93062043afa5b158ada25351e">begin</a>();
+<a name="l00335"></a>00335                  i != parms.<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30">end</a>(); ++i) {
 <a name="l00336"></a>00336                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"M"</span>) M = <span class="keywordtype">double</span>(*i-&gt;second);
 <a name="l00337"></a>00337                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"R"</span>) R = <span class="keywordtype">double</span>(*i-&gt;second);
 <a name="l00338"></a>00338             }
@@ -373,8 +373,8 @@
 <a name="l00426"></a>00426 
 <a name="l00427"></a><a class="code" href="classPolarSin.html#026c7ea056660e31972d3dd1062b2e92">00427</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classPolarSin.html#026c7ea056660e31972d3dd1062b2e92" title="Set parameters to the Function.">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
 <a name="l00428"></a>00428 <span class="preprocessor">#       if 1</span>
-<a name="l00429"></a>00429 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
-<a name="l00430"></a>00430                  i != parms.end(); ++i) {
+<a name="l00429"></a>00429 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#dd5441755bf0377399da637d0642ebc8">ParameterMap::const_iterator</a> i = parms.<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#fd7a61b93062043afa5b158ada25351e">begin</a>();
+<a name="l00430"></a>00430                  i != parms.<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30">end</a>(); ++i) {
 <a name="l00431"></a>00431                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"Phase"</span>) <a class="code" href="classPolarSin.html#555d7c189e46b68d0d42648ff9462b36" title="phase">Phase</a> = <span class="keywordtype">double</span>(*i-&gt;second);
 <a name="l00432"></a>00432             }
 <a name="l00433"></a>00433 <span class="preprocessor">#       else</span>
@@ -422,8 +422,8 @@
 <a name="l00481"></a>00481 
 <a name="l00482"></a><a class="code" href="classPolarR.html#1aefb2a16b71009f29dfa25d9ada912c">00482</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classPolarR.html#1aefb2a16b71009f29dfa25d9ada912c" title="Set parameters to the Function.">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
 <a name="l00483"></a>00483 <span class="preprocessor">#       if 1</span>
-<a name="l00484"></a>00484 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
-<a name="l00485"></a>00485                  i != parms.end(); ++i) {
+<a name="l00484"></a>00484 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#dd5441755bf0377399da637d0642ebc8">ParameterMap::const_iterator</a> i = parms.<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#fd7a61b93062043afa5b158ada25351e">begin</a>();
+<a name="l00485"></a>00485                  i != parms.<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30">end</a>(); ++i) {
 <a name="l00486"></a>00486                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"Phase"</span>) <a class="code" href="classPolarR.html#51df4cea866fc51a0d5a6301ace1cb36" title="phase">Phase</a> = <span class="keywordtype">double</span>(*i-&gt;second);
 <a name="l00487"></a>00487             }
 <a name="l00488"></a>00488 <span class="preprocessor">#       else</span>
@@ -443,7 +443,7 @@
 <a name="l00502"></a>00502 
 <a name="l00503"></a>00503 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Oct 25 17:15:23 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Thu Oct 30 21:54:06 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

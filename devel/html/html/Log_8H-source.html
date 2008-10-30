@@ -29,8 +29,8 @@
 <h1>HyperspaceExplorer/src/Log.H</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef LOG_H</span>
 <a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define LOG_H</span>
 <a name="l00003"></a>00003 <span class="preprocessor"></span>
-<a name="l00004"></a>00004 <span class="preprocessor">#include &lt;iostream&gt;</span>
-<a name="l00005"></a>00005 <span class="preprocessor">#include &lt;string&gt;</span>
+<a name="l00004"></a>00004 <span class="preprocessor">#include &lt;<a class="codeRef" doxygen="libstdc++.tag:" href="a01602.html">iostream</a>&gt;</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &lt;<a class="codeRef" doxygen="libstdc++.tag:" href="a01748.html">string</a>&gt;</span>
 <a name="l00006"></a>00006 
 <a name="l00007"></a>00007 <span class="preprocessor">#include "SingletonHolder.H"</span>
 <a name="l00008"></a>00008 <span class="preprocessor">#include "Globals.H"</span>
@@ -39,24 +39,24 @@
 <a name="l00011"></a>00011 
 <a name="l00018"></a><a class="code" href="classLog.html">00018</a> <span class="keyword">class </span><a class="code" href="classLog.html">Log</a>{
 <a name="l00019"></a>00019     <span class="keyword">public</span>:
-<a name="l00021"></a><a class="code" href="classLog.html#f966932995045e1463770d3523c953ee">00021</a>         <span class="keywordtype">void</span> <a class="code" href="classLog.html#f966932995045e1463770d3523c953ee">log</a>(std::string
+<a name="l00021"></a><a class="code" href="classLog.html#f966932995045e1463770d3523c953ee">00021</a>         <span class="keywordtype">void</span> <a class="code" href="classLog.html#f966932995045e1463770d3523c953ee">log</a>(<a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a>
 <a name="l00022"></a>00022 #           ifdef DEBUG
 <a name="l00023"></a>00023                 message
 <a name="l00024"></a>00024 #           endif
 <a name="l00025"></a>00025                 ) {
 <a name="l00026"></a>00026 <span class="preprocessor">#           ifdef DEBUG</span>
-<a name="l00027"></a>00027 <span class="preprocessor"></span>                std::cerr &lt;&lt; message &lt;&lt; std::endl;
+<a name="l00027"></a>00027 <span class="preprocessor"></span>                <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; message &lt;&lt; <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce">std::endl</a>;
 <a name="l00028"></a>00028 <span class="preprocessor">#           endif</span>
 <a name="l00029"></a>00029 <span class="preprocessor"></span>        }
 <a name="l00030"></a>00030 
-<a name="l00032"></a><a class="code" href="classLog.html#4ad2a2bb579c6547bbf929175c83370a">00032</a>         <a class="code" href="classLog.html">Log</a> &amp;<a class="code" href="classLog.html#4ad2a2bb579c6547bbf929175c83370a">operator&lt;&lt;</a>(<span class="keyword">const</span> std::string &amp;
+<a name="l00032"></a><a class="code" href="classLog.html#4ad2a2bb579c6547bbf929175c83370a">00032</a>         <a class="code" href="classLog.html">Log</a> &amp;<a class="code" href="classLog.html#4ad2a2bb579c6547bbf929175c83370a">operator&lt;&lt;</a>(<span class="keyword">const</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;
 <a name="l00033"></a>00033 #           ifdef DEBUG
 <a name="l00034"></a>00034                         message
 <a name="l00035"></a>00035 #           endif
 <a name="l00036"></a>00036                        ) {
 <a name="l00037"></a>00037 <span class="preprocessor">#           ifdef DEBUG</span>
-<a name="l00038"></a>00038 <span class="preprocessor"></span>                std::cerr &lt;&lt; message;
-<a name="l00039"></a>00039                 std::cerr.flush();
+<a name="l00038"></a>00038 <span class="preprocessor"></span>                <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; message;
+<a name="l00039"></a>00039                 <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a>.flush();
 <a name="l00040"></a>00040 <span class="preprocessor">#           endif</span>
 <a name="l00041"></a>00041 <span class="preprocessor"></span>            <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00042"></a>00042         }
@@ -67,8 +67,8 @@
 <a name="l00048"></a>00048 <span class="preprocessor">#           endif</span>
 <a name="l00049"></a>00049 <span class="preprocessor"></span>                       ) {
 <a name="l00050"></a>00050 <span class="preprocessor">#           ifdef DEBUG</span>
-<a name="l00051"></a>00051 <span class="preprocessor"></span>            std::cerr &lt;&lt; v;
-<a name="l00052"></a>00052             std::cerr.flush();
+<a name="l00051"></a>00051 <span class="preprocessor"></span>            <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; v;
+<a name="l00052"></a>00052             <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a>.flush();
 <a name="l00053"></a>00053 <span class="preprocessor">#           endif</span>
 <a name="l00054"></a>00054 <span class="preprocessor"></span>            <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00055"></a>00055         }
@@ -79,8 +79,8 @@
 <a name="l00061"></a>00061 <span class="preprocessor">#           endif</span>
 <a name="l00062"></a>00062 <span class="preprocessor"></span>                       ) {
 <a name="l00063"></a>00063 <span class="preprocessor">#           ifdef DEBUG</span>
-<a name="l00064"></a>00064 <span class="preprocessor"></span>            std::cerr &lt;&lt; v;
-<a name="l00065"></a>00065             std::cerr.flush();
+<a name="l00064"></a>00064 <span class="preprocessor"></span>            <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; v;
+<a name="l00065"></a>00065             <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a>.flush();
 <a name="l00066"></a>00066 <span class="preprocessor">#           endif</span>
 <a name="l00067"></a>00067 <span class="preprocessor"></span>            <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00068"></a>00068         }
@@ -109,7 +109,7 @@
 <a name="l00098"></a>00098 <span class="keyword">typedef</span> <a class="code" href="classLoki_1_1SingletonHolder.html" title="Provides Singleton amenities for a type T To protect that type from spurious instantiations...">Loki::SingletonHolder&lt;Log&gt;</a> <a class="code" href="classLoki_1_1SingletonHolder.html" title="Provides Singleton amenities for a type T To protect that type from spurious instantiations...">SingletonLog</a>;
 <a name="l00099"></a>00099 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Oct 25 17:15:23 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Thu Oct 30 21:54:07 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

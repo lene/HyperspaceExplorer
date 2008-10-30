@@ -1,8 +1,9 @@
-<area shape="rect" href="$classScript_1_1Statement.html" title="Base class for all possible statements in a script." alt="" coords="132,1189,257,1333">
-<area shape="rect" href="$classScript_1_1Parser.html" title="Parser reads a file and executes the commands in it in a C4DView." alt="" coords="156,909,260,1069">
-<area shape="rect" href="$classUI_1_1View.html" title="Interface to display four&#45;dimensional objects." alt="" coords="315,293,488,821">
-<area shape="rect" title="STL class." alt="" coords="49,149,129,229">
-<area shape="rect" title="STL class." alt="" coords="5,5,173,85">
-<area shape="rect" title="STL class." alt="" coords="160,149,275,229">
-<area shape="rect" href="$classVecMath_1_1Rotation.html" title="{VecMath::Rotation\&lt; 4 \&gt;\n|&#45; axis\l|+ Rotation()\l+ Rotation()\l+ operator[]()\l+ operator[]()\l+ operator Matrix\&lt; D, double \&gt;()\l+ operator+=()\l+ operator bool()\l+ r()\l+ r()\l}" alt="" coords="281,1157,495,1365">
-<area shape="rect" href="$classVecMath_1_1Rotation.html" title="Rotation in D&#45;dimensional space defined by angles about the main axes." alt="" coords="296,885,480,1093">
+<area shape="rect" href="$classScript_1_1Statement.html" title="Base class for all possible statements in a script." alt="" coords="59,1333,184,1477">
+<area shape="rect" href="$classScript_1_1Parser.html" title="Parser reads a file and executes the commands in it in a C4DView." alt="" coords="69,1053,173,1213">
+<area shape="rect" href="$classUI_1_1View.html" title="Interface to display four&#45;dimensional objects." alt="" coords="5,437,179,965">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; std::string \&gt;\n||}" alt="" coords="203,661,368,741">
+<area shape="rect" href="libstdc++.tag$a00960.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;\n||}" alt="" coords="237,149,456,229">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="STL class." alt="" coords="136,293,309,373">
+<area shape="rect" href="libstdc++.tag$a00961.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;::_Vector_impl\n||}" alt="" coords="193,5,500,85">
+<area shape="rect" href="$classVecMath_1_1Rotation.html" title="{VecMath::Rotation\&lt; 4 \&gt;\n|&#45; axis\l|+ Rotation()\l+ Rotation()\l+ operator[]()\l+ operator[]()\l+ operator Matrix\&lt; D, double \&gt;()\l+ operator+=()\l+ operator bool()\l+ r()\l+ r()\l}" alt="" coords="208,1301,421,1509">
+<area shape="rect" href="$classVecMath_1_1Rotation.html" title="Rotation in D&#45;dimensional space defined by angles about the main axes." alt="" coords="223,1029,407,1237">

@@ -38,8 +38,8 @@
 <a name="l00010"></a>00010 <span class="preprocessor">#if !defined(MATRIX_H)</span>
 <a name="l00011"></a>00011 <span class="preprocessor"></span><span class="preprocessor">#define MATRIX_H</span>
 <a name="l00012"></a>00012 <span class="preprocessor"></span>
-<a name="l00013"></a>00013 <span class="preprocessor">#include &lt;sstream&gt;</span>
-<a name="l00014"></a>00014 <span class="preprocessor">#include &lt;iomanip&gt;</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#include &lt;<a class="codeRef" doxygen="libstdc++.tag:" href="a01706.html">sstream</a>&gt;</span>
+<a name="l00014"></a>00014 <span class="preprocessor">#include &lt;<a class="codeRef" doxygen="libstdc++.tag:" href="a01598.html">iomanip</a>&gt;</span>
 <a name="l00015"></a>00015 
 <a name="l00016"></a>00016 <span class="preprocessor">#include "Vector.H"</span>
 <a name="l00017"></a>00017 <span class="preprocessor">#include "NotYetImplementedException.H"</span>
@@ -61,7 +61,7 @@
 <a name="l00042"></a>00042 
 <a name="l00043"></a>00043             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;</a> <a class="code" href="classVecMath_1_1Matrix.html#73eff5fdc698d339122b800dc1eeb3aa">operator - </a>();
 <a name="l00044"></a>00044 
-<a name="l00045"></a>00045             std::string <a class="code" href="classVecMath_1_1Matrix.html#f6ef681da5373b7f1214fca37b0dfa7d">Print</a> ();
+<a name="l00045"></a>00045             <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> <a class="code" href="classVecMath_1_1Matrix.html#f6ef681da5373b7f1214fca37b0dfa7d">Print</a> ();
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047         <span class="keyword">private</span>:
 <a name="l00049"></a><a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b">00049</a>             N <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[D][D];
@@ -81,12 +81,12 @@
 <a name="l00071"></a>00071         <span class="keywordflow">throw</span> <a class="code" href="classNotYetImplementedException.html">NotYetImplementedException</a>(
 <a name="l00072"></a>00072             <span class="stringliteral">"Matrix&lt;"</span>+<a class="code" href="classGlobal.html#41cee4049871dc14b3f7101e40734c16">Global::itoa</a>(D)+<span class="stringliteral">"&gt;::Matrix&lt;"</span>+<a class="code" href="classGlobal.html#41cee4049871dc14b3f7101e40734c16">Global::itoa</a>(D)+
 <a name="l00073"></a>00073                 <span class="stringliteral">"&gt; (Rxy, Rxz, Rxw, Ryz, Ryw, Rzw)"</span>);
-<a name="l00074"></a>00074         abort();
+<a name="l00074"></a>00074         <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#e3b91f35a04ada8c900f6046b83fdad5">abort</a>();
 <a name="l00075"></a>00075     }
 <a name="l00076"></a>00076 
 <a name="l00081"></a>00081     <span class="keyword">template</span>&lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
 <a name="l00082"></a><a class="code" href="classVecMath_1_1Matrix.html#110bedf8a53847d2985f57bdb897afe1">00082</a>             <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::Matrix</a> (<span class="keywordtype">unsigned</span> ii, <span class="keywordtype">unsigned</span> jj, N Theta) {
-<a name="l00083"></a>00083         N c = cos (Theta*pi/180.), s = sin (Theta*pi/180.);
+<a name="l00083"></a>00083         N c = <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#767449b2186fae2a30047094e29a323e">cos</a> (Theta*pi/180.), s = <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#071791976a3b20015a79eeea1cf6672a">sin</a> (Theta*pi/180.);
 <a name="l00084"></a>00084         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) {                  <span class="comment">//  i: row</span>
 <a name="l00085"></a>00085             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++)                <span class="comment">//  j: col</span>
 <a name="l00086"></a>00086                 <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j] = 0;
@@ -145,15 +145,15 @@
 <a name="l00150"></a>00150     }
 <a name="l00151"></a>00151 
 <a name="l00152"></a>00152 
-<a name="l00154"></a><a class="code" href="classVecMath_1_1Matrix.html#f6ef681da5373b7f1214fca37b0dfa7d">00154</a>     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; std::string <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::Print</a> () {
-<a name="l00155"></a>00155         std::ostringstream o;
+<a name="l00154"></a><a class="code" href="classVecMath_1_1Matrix.html#f6ef681da5373b7f1214fca37b0dfa7d">00154</a>     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt; <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> <a class="code" href="classVecMath_1_1Matrix.html">Matrix&lt;D, N&gt;::Print</a> () {
+<a name="l00155"></a>00155         <a class="codeRef" doxygen="libstdc++.tag:" href="a01829.html#gdd8337e70853f2c3a15e40572e9cbbe6">std::ostringstream</a> o;
 <a name="l00156"></a>00156         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; D; i++) {
 <a name="l00157"></a>00157             o &lt;&lt; <span class="stringliteral">"|"</span>;
 <a name="l00158"></a>00158             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; D; j++)
-<a name="l00159"></a>00159                 o &lt;&lt; std::setw (10) &lt;&lt; std::setprecision (3) &lt;&lt; <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j];
+<a name="l00159"></a>00159                 o &lt;&lt; <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#bd07880aa68c2ff1d4d4529a976c72b2">std::setw</a> (10) &lt;&lt; <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#d144ea244605dd88248705744073becd">std::setprecision</a> (3) &lt;&lt; <a class="code" href="classVecMath_1_1Matrix.html#b05a96df5ab732804b596f5e34d3216b" title="A static two-dimensional array storing the components.">M</a>[i][j];
 <a name="l00160"></a>00160             o &lt;&lt; <span class="stringliteral">"|\n"</span>;
 <a name="l00161"></a>00161         }
-<a name="l00162"></a>00162         o &lt;&lt; std::ends;
+<a name="l00162"></a>00162         o &lt;&lt; <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#5995b4f91efffb4d046090108b38505a">std::ends</a>;
 <a name="l00163"></a>00163         <span class="keywordflow">return</span> o.str ();
 <a name="l00164"></a>00164     }
 <a name="l00165"></a>00165 
@@ -161,7 +161,7 @@
 <a name="l00167"></a>00167 
 <a name="l00168"></a>00168 <span class="preprocessor">#endif  // !defined(MATRIX_H)</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Oct 25 17:15:22 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Thu Oct 30 21:54:06 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

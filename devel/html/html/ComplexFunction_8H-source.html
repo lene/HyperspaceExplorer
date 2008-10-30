@@ -40,7 +40,7 @@
 <a name="l00013"></a>00013 <span class="preprocessor"></span><span class="preprocessor">#define COMPLEXFUNCTION_H 1</span>
 <a name="l00014"></a>00014 <span class="preprocessor"></span>
 <a name="l00015"></a>00015 
-<a name="l00016"></a>00016 <span class="preprocessor">#include &lt;complex&gt;</span>
+<a name="l00016"></a>00016 <span class="preprocessor">#include &lt;<a class="codeRef" doxygen="libstdc++.tag:" href="a01493.html">complex</a>&gt;</span>
 <a name="l00017"></a>00017 
 <a name="l00018"></a>00018 <span class="preprocessor">#include "Surface.H"</span>
 <a name="l00019"></a>00019 
@@ -53,7 +53,7 @@
 <a name="l00036"></a>00036         <span class="keyword">virtual</span> <a class="code" href="classComplexFunction.html#c61debf37f95ee22901d7c086ec098f8">~ComplexFunction</a> ();
 <a name="l00037"></a>00037         <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetParameters (<span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0, <span class="keywordtype">double</span> = 0) { }
 <a name="l00038"></a>00038 
-<a name="l00039"></a>00039         <span class="keyword">typedef</span> std::complex&lt;double&gt; function_type(std::complex &lt;double&gt;) ;
+<a name="l00039"></a>00039         <span class="keyword">typedef</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01081.html" title="STL class.">std::complex&lt;double&gt;</a> function_type(std::complex &lt;double&gt;) ;
 <a name="l00040"></a>00040 
 <a name="l00041"></a>00041     <span class="keyword">protected</span>:
 <a name="l00042"></a>00042         <span class="keyword">virtual</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;<a class="code" href="classComplexFunction.html#234485506b16d03867c20e8e8d7e0b21">f</a> (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>);
@@ -102,8 +102,8 @@
 <a name="l00091"></a>00091         <span class="keyword">virtual</span> ~<a class="code" href="classzA.html">zA</a> () { }
 <a name="l00093"></a><a class="code" href="classzA.html#0e9efa24072615db758fe995335926be">00093</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classzA.html#0e9efa24072615db758fe995335926be">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
 <a name="l00094"></a>00094 <span class="preprocessor">#       if 1</span>
-<a name="l00095"></a>00095 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
-<a name="l00096"></a>00096                  i != parms.end(); ++i) {
+<a name="l00095"></a>00095 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#dd5441755bf0377399da637d0642ebc8">ParameterMap::const_iterator</a> i = parms.<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#fd7a61b93062043afa5b158ada25351e">begin</a>();
+<a name="l00096"></a>00096                  i != parms.<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30">end</a>(); ++i) {
 <a name="l00097"></a>00097                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"a"</span>) <a class="code" href="classzA.html#d2e4bc060816cd29d6018f9203fda83f" title="Exponent.">alpha</a> = <span class="keywordtype">double</span>(*i-&gt;second);
 <a name="l00098"></a>00098             }
 <a name="l00099"></a>00099 <span class="preprocessor">#       else</span>
@@ -132,8 +132,8 @@
 <a name="l00124"></a>00124         <span class="keyword">virtual</span> ~<a class="code" href="classez.html">ez</a>() { }
 <a name="l00125"></a><a class="code" href="classez.html#fdb78abe0d9431731a523bb25f1b0de8">00125</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classez.html#fdb78abe0d9431731a523bb25f1b0de8" title="Set parameters to the Function.">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
 <a name="l00126"></a>00126 <span class="preprocessor">#       if 1</span>
-<a name="l00127"></a>00127 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
-<a name="l00128"></a>00128                  i != parms.end(); ++i) {
+<a name="l00127"></a>00127 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#dd5441755bf0377399da637d0642ebc8">ParameterMap::const_iterator</a> i = parms.<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#fd7a61b93062043afa5b158ada25351e">begin</a>();
+<a name="l00128"></a>00128                  i != parms.<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30">end</a>(); ++i) {
 <a name="l00129"></a>00129                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"a"</span>) alpha = <span class="keywordtype">double</span>(*i-&gt;second);
 <a name="l00130"></a>00130             }
 <a name="l00131"></a>00131 <span class="preprocessor">#       else</span>
@@ -162,8 +162,8 @@
 <a name="l00156"></a>00156         <span class="keyword">virtual</span> ~<a class="code" href="classemz2.html">emz2</a>() { }
 <a name="l00157"></a><a class="code" href="classemz2.html#410a42e6418b05bd7afe28a5cd93d116">00157</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classemz2.html#410a42e6418b05bd7afe28a5cd93d116" title="Set parameters to the Function.">SetParameters</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;parms) {
 <a name="l00158"></a>00158 <span class="preprocessor">#       if 1</span>
-<a name="l00159"></a>00159 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (ParameterMap::const_iterator i = parms.begin();
-<a name="l00160"></a>00160                  i != parms.end(); ++i) {
+<a name="l00159"></a>00159 <span class="preprocessor"></span>            <span class="keywordflow">for</span> (<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#dd5441755bf0377399da637d0642ebc8">ParameterMap::const_iterator</a> i = parms.<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#fd7a61b93062043afa5b158ada25351e">begin</a>();
+<a name="l00160"></a>00160                  i != parms.<a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30">end</a>(); ++i) {
 <a name="l00161"></a>00161                 <span class="keywordflow">if</span> (i-&gt;second-&gt;getName() == <span class="stringliteral">"a"</span>) alpha = <span class="keywordtype">double</span>(*i-&gt;second);
 <a name="l00162"></a>00162             }
 <a name="l00163"></a>00163 <span class="preprocessor">#       else</span>
@@ -342,7 +342,7 @@
 <a name="l00356"></a>00356 };
 <a name="l00357"></a>00357 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Oct 25 17:15:22 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Thu Oct 30 21:54:06 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

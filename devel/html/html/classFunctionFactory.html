@@ -51,18 +51,18 @@ typedef <a class="el" href="classFunction.html">Function</a> *(*&nbsp;</td><td c
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">callback function generating a <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> and returning a Function* <br></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionFactory.html#140b292b1cb6dc9188805051a15bd14d">registerFunction</a> (const std::string &amp;name, <a class="el" href="classFunctionFactory.html#db679d773ab93bd016901031161934e4">CreateFunctionCallback</a> creator)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionFactory.html#140b292b1cb6dc9188805051a15bd14d">registerFunction</a> (const <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;name, <a class="el" href="classFunctionFactory.html#db679d773ab93bd016901031161934e4">CreateFunctionCallback</a> creator)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Registers a function creating a <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> under the Function's class name.  <a href="#140b292b1cb6dc9188805051a15bd14d"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionFactory.html#ef97cd2b9091900bc16cef6120114bf0">unregisterFunction</a> (const std::string &amp;name)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionFactory.html#ef97cd2b9091900bc16cef6120114bf0">unregisterFunction</a> (const <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;name)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove a <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> class from the factory.  <a href="#ef97cd2b9091900bc16cef6120114bf0"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classFunction.html">Function</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionFactory.html#8eff61335844e102bdc76c710edd9be3">createFunction</a> (const std::string &amp;name)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="classFunction.html">Function</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionFactory.html#8eff61335844e102bdc76c710edd9be3">createFunction</a> (const <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;name)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Create an object derived from <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a>, given the name of its class.  <a href="#8eff61335844e102bdc76c710edd9be3"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Private Types</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="cfd7d788dd0f22fea0f5af32ac130906"></a><!-- doxytag: member="FunctionFactory::CallbackMap" ref="cfd7d788dd0f22fea0f5af32ac130906" args="" -->
-typedef std::map&lt; std::string, <br>
+typedef <a class="elRef" doxygen="libstdc++.tag:" href="a01208.html">std::map</a>&lt; <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a>, <br>
 <a class="el" href="classFunctionFactory.html#db679d773ab93bd016901031161934e4">CreateFunctionCallback</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionFactory.html#cfd7d788dd0f22fea0f5af32ac130906">CallbackMap</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">stores a creator function with a string containing the class name <br></td></tr>
@@ -77,7 +77,7 @@ typedef std::map&lt; std::string, <br>
 
 <tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="00d37d70c75ea68159277c4e9e299e23"></a><!-- doxytag: member="FunctionFactory::callbacks" ref="00d37d70c75ea68159277c4e9e299e23" args="" -->
-<a class="el" href="classFunctionFactory.html#cfd7d788dd0f22fea0f5af32ac130906">CallbackMap</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionFactory.html#00d37d70c75ea68159277c4e9e299e23">callbacks</a></td></tr>
+<a class="elRef" doxygen="libstdc++.tag:" href="a01208.html">CallbackMap</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFunctionFactory.html#00d37d70c75ea68159277c4e9e299e23">callbacks</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Stores the <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> creators. <br></td></tr>
 <tr><td colspan="2"><br><h2>Friends</h2></td></tr>
@@ -166,7 +166,7 @@ disabled destructor
         <tr>
           <td class="memname">bool FunctionFactory::registerFunction           </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&nbsp;</td>
+          <td class="paramtype">const <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>name</em>, </td>
         </tr>
         <tr>
@@ -195,7 +195,16 @@ Registers a function creating a <a class="el" href="classFunction.html" title="A
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>true if registration was successful </dd></dl>
 
-<p>References <a class="el" href="FunctionFactory_8H-source.html#l00070">callbacks</a>.</p>
+<p>References <a class="el" href="FunctionFactory_8H-source.html#l00070">callbacks</a>, and <a class="elRef" doxygen="libstdc++.tag:" href="a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d">std::map&lt; _Key, _Tp, _Compare, _Alloc &gt;::insert()</a>.</p>
+
+<p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classFunctionFactory_140b292b1cb6dc9188805051a15bd14d_cgraph.png" border="0" usemap="#classFunctionFactory_140b292b1cb6dc9188805051a15bd14d_cgraph_map" alt=""></center>
+<map name="classFunctionFactory_140b292b1cb6dc9188805051a15bd14d_cgraph_map">
+<area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d" title="std::map::insert" alt="" coords="275,5,389,32"></map>
+</div>
 
 </div>
 </div><p>
@@ -206,7 +215,7 @@ Registers a function creating a <a class="el" href="classFunction.html" title="A
         <tr>
           <td class="memname">bool FunctionFactory::unregisterFunction           </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&nbsp;</td>
+          <td class="paramtype">const <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>name</em>          </td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
@@ -225,7 +234,16 @@ Remove a <a class="el" href="classFunction.html" title="A Function is a generali
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>true if unregistration was successful </dd></dl>
 
-<p>References <a class="el" href="FunctionFactory_8H-source.html#l00070">callbacks</a>.</p>
+<p>References <a class="el" href="FunctionFactory_8H-source.html#l00070">callbacks</a>, and <a class="elRef" doxygen="libstdc++.tag:" href="a01208.html#8fa2c7574f9fa6ab8119cd54f66d122f">std::map&lt; _Key, _Tp, _Compare, _Alloc &gt;::erase()</a>.</p>
+
+<p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classFunctionFactory_ef97cd2b9091900bc16cef6120114bf0_cgraph.png" border="0" usemap="#classFunctionFactory_ef97cd2b9091900bc16cef6120114bf0_cgraph_map" alt=""></center>
+<map name="classFunctionFactory_ef97cd2b9091900bc16cef6120114bf0_cgraph_map">
+<area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#8fa2c7574f9fa6ab8119cd54f66d122f" title="std::map::erase" alt="" coords="291,5,405,32"></map>
+</div>
 
 </div>
 </div><p>
@@ -236,7 +254,7 @@ Remove a <a class="el" href="classFunction.html" title="A Function is a generali
         <tr>
           <td class="memname"><a class="el" href="classFunction.html">Function</a> * FunctionFactory::createFunction           </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&nbsp;</td>
+          <td class="paramtype">const <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>name</em>          </td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
@@ -255,7 +273,16 @@ Create an object derived from <a class="el" href="classFunction.html" title="A F
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>a newly created object of class "name" </dd></dl>
 
-<p>References <a class="el" href="FunctionFactory_8H-source.html#l00070">callbacks</a>.</p>
+<p>References <a class="el" href="FunctionFactory_8H-source.html#l00070">callbacks</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30">std::map&lt; _Key, _Tp, _Compare, _Alloc &gt;::end()</a>, and <a class="elRef" doxygen="libstdc++.tag:" href="a01208.html#526e24c01961896c5c0c8491d75258be">std::map&lt; _Key, _Tp, _Compare, _Alloc &gt;::find()</a>.</p>
+
+<p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classFunctionFactory_8eff61335844e102bdc76c710edd9be3_cgraph.png" border="0" usemap="#classFunctionFactory_8eff61335844e102bdc76c710edd9be3_cgraph_map" alt=""></center>
+<map name="classFunctionFactory_8eff61335844e102bdc76c710edd9be3_cgraph_map">
+<area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="269,5,373,32"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#526e24c01961896c5c0c8491d75258be" title="std::map::find" alt="" coords="271,56,372,83"></map>
+</div>
 
 </div>
 </div><p>
@@ -282,7 +309,7 @@ disabled assignment operator
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>HyperspaceExplorer/src/Functions/<a class="el" href="FunctionFactory_8H-source.html">FunctionFactory.H</a><li>HyperspaceExplorer/src/Functions/FunctionFactory.C</ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Oct 25 17:15:31 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Thu Oct 30 21:54:10 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

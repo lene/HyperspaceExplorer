@@ -1,13 +1,15 @@
-<area shape="rect" href="$classCustomFunction.html" title="{CustomFunction\n|# f\l|+ CustomFunction()\l+ ~CustomFunction()\l}" alt="" coords="320,2824,467,2920">
-<area shape="rect" href="$classRealFunction.html" title="A RealFunction is a mathematical function &#160;." alt="" coords="87,2437,311,2773">
-<area shape="rect" href="$classRealBase.html" title="RealBase provides a base class for functions which take three parameters" alt="" coords="217,1605,367,2373">
-<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="220,1013,444,1541">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="97,581,249,949">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,149,176,517">
-<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="273,685,412,845">
-<area shape="rect" title="STL class." alt="" coords="200,285,485,381">
-<area shape="rect" title="STL class." alt="" coords="509,293,624,373">
-<area shape="rect" title="STL class." alt="" coords="648,293,728,373">
-<area shape="rect" title="STL class." alt="" coords="604,5,772,85">
-<area shape="rect" href="$classCustomFunctionBase.html" title="{CustomFunctionBase\&lt; RealFunction::raw_function_type \&gt;\n|# func\l&#45; handle\l&#45; valid\l|+ CustomFunctionBase()\l+ ~CustomFunctionBase()\l+ symbolic()\l+ isValid()\l# loadFunction()\l# setValid()\l# setInvalid()\l}" alt="" coords="335,2501,703,2709">
-<area shape="rect" href="$classCustomFunctionBase.html" title="{CustomFunctionBase\&lt; function_type \&gt;\n|# func\l&#45; handle\l&#45; valid\l|+ CustomFunctionBase()\l+ ~CustomFunctionBase()\l+ symbolic()\l+ isValid()\l# loadFunction()\l# setValid()\l# setInvalid()\l}" alt="" coords="392,1885,645,2093">
+<area shape="rect" href="$classCustomFunction.html" title="{CustomFunction\n|# f\l|+ CustomFunction()\l+ ~CustomFunction()\l}" alt="" coords="320,2968,467,3064">
+<area shape="rect" href="$classRealFunction.html" title="A RealFunction is a mathematical function &#160;." alt="" coords="87,2581,311,2917">
+<area shape="rect" href="$classRealBase.html" title="RealBase provides a base class for functions which take three parameters" alt="" coords="217,1749,367,2517">
+<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="220,1157,444,1685">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="97,725,249,1093">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,293,176,661">
+<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="273,829,412,989">
+<area shape="rect" href="libstdc++.tag$a01208.html" title="{std::map\&lt; std::string, FunctionParameter * \&gt;\n||}" alt="" coords="200,437,485,517">
+<area shape="rect" href="libstdc++.tag$a01208.html" title="STL class." alt="" coords="225,149,497,229">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="STL class." alt="" coords="531,437,704,517">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; std::string \&gt;\n||}" alt="" coords="535,869,700,949">
+<area shape="rect" href="libstdc++.tag$a00960.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;\n||}" alt="" coords="648,149,867,229">
+<area shape="rect" href="libstdc++.tag$a00961.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;::_Vector_impl\n||}" alt="" coords="604,5,911,85">
+<area shape="rect" href="$classCustomFunctionBase.html" title="{CustomFunctionBase\&lt; RealFunction::raw_function_type \&gt;\n|# func\l&#45; handle\l&#45; valid\l|+ CustomFunctionBase()\l+ ~CustomFunctionBase()\l+ symbolic()\l+ isValid()\l# loadFunction()\l# setValid()\l# setInvalid()\l}" alt="" coords="335,2645,703,2853">
+<area shape="rect" href="$classCustomFunctionBase.html" title="{CustomFunctionBase\&lt; function_type \&gt;\n|# func\l&#45; handle\l&#45; valid\l|+ CustomFunctionBase()\l+ ~CustomFunctionBase()\l+ symbolic()\l+ isValid()\l# loadFunction()\l# setValid()\l# setInvalid()\l}" alt="" coords="392,2029,645,2237">

@@ -31,7 +31,7 @@
 <a name="l00003"></a>00003 <span class="preprocessor"></span><span class="preprocessor">#define MENU4D_H</span>
 <a name="l00004"></a>00004 <span class="preprocessor"></span>
 <a name="l00005"></a>00005 <span class="preprocessor">#include &lt;QMenu&gt;</span>
-<a name="l00006"></a>00006 <span class="preprocessor">#include &lt;map&gt;</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &lt;<a class="codeRef" doxygen="libstdc++.tag:" href="a01627.html">map</a>&gt;</span>
 <a name="l00007"></a>00007 
 <a name="l00008"></a>00008 <span class="preprocessor">#include "4DView.H"</span>
 <a name="l00009"></a>00009 
@@ -83,8 +83,8 @@
 <a name="l00071"></a>00071         QAction *&amp;<a class="code" href="classC4DView_1_1Menu4D.html#2dfc9833855fee3fb25d13456f47bc26" title="Search for the QAction associated with a menu item.">getAction</a>(<span class="keyword">const</span> QString &amp;key);
 <a name="l00072"></a>00072 
 <a name="l00073"></a>00073     <span class="keyword">private</span>:
-<a name="l00075"></a><a class="code" href="classC4DView_1_1Menu4D.html#bb1778aa54f8b2e0663538868e82ff42">00075</a>         <span class="keyword">typedef</span> std::map&lt;QString, QAction *&gt; <a class="code" href="classC4DView_1_1Menu4D.html#bb1778aa54f8b2e0663538868e82ff42" title="Assigns a QAction to a menu title.">ActionMapType</a>;
-<a name="l00077"></a><a class="code" href="classC4DView_1_1Menu4D.html#4ef420e40c8512de94c4386dd5437a44">00077</a>         <span class="keyword">typedef</span> std::map&lt;QMenu *, ActionMapType&gt; <a class="code" href="classC4DView_1_1Menu4D.html#4ef420e40c8512de94c4386dd5437a44" title="Manages an ActionMap for each submenu.">MenuMapType</a>;
+<a name="l00075"></a><a class="code" href="classC4DView_1_1Menu4D.html#bb1778aa54f8b2e0663538868e82ff42">00075</a>         <span class="keyword">typedef</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html" title="STL class.">std::map&lt;QString, QAction *&gt;</a> <a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html" title="STL class.">ActionMapType</a>;
+<a name="l00077"></a><a class="code" href="classC4DView_1_1Menu4D.html#4ef420e40c8512de94c4386dd5437a44">00077</a>         <span class="keyword">typedef</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html" title="STL class.">std::map&lt;QMenu *, ActionMapType&gt;</a> <a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html" title="STL class.">MenuMapType</a>;
 <a name="l00078"></a>00078 
 <a name="l00080"></a>00080         QAction *<a class="code" href="classC4DView_1_1Menu4D.html#80890e8721371e24c7039ce6598c5655" title="insert a menu item with a specified slot into a specified menu">insertAction</a>(QMenu *, <span class="keyword">const</span> QString &amp;, <span class="keyword">const</span> <span class="keywordtype">char</span> *,
 <a name="l00081"></a>00081                               <span class="keywordtype">bool</span> = <span class="keyword">true</span>);
@@ -104,12 +104,12 @@
 <a name="l00097"></a><a class="code" href="classC4DView_1_1Menu4D.html#c7a834a20eee894332f942c5cd48f672">00097</a>         QMenu *<a class="code" href="classC4DView_1_1Menu4D.html#c7a834a20eee894332f942c5cd48f672" title="The &amp;quot;Animation&amp;quot; menu.">animation</a>;       
 <a name="l00098"></a><a class="code" href="classC4DView_1_1Menu4D.html#518b44d1ab5b681390e200ac6ab7e846">00098</a>         QMenu *<a class="code" href="classC4DView_1_1Menu4D.html#518b44d1ab5b681390e200ac6ab7e846" title="The &amp;quot;Help&amp;quot; menu.">help</a>;            
 <a name="l00099"></a>00099 
-<a name="l00100"></a><a class="code" href="classC4DView_1_1Menu4D.html#c2dd48d93e7df06a4f9725e02a1789ee">00100</a>         <a class="code" href="classC4DView_1_1Menu4D.html#4ef420e40c8512de94c4386dd5437a44" title="Manages an ActionMap for each submenu.">MenuMapType</a> <a class="code" href="classC4DView_1_1Menu4D.html#c2dd48d93e7df06a4f9725e02a1789ee" title="Keeps the QActions belonging to the menu entries.">menuMap</a>;    
+<a name="l00100"></a><a class="code" href="classC4DView_1_1Menu4D.html#c2dd48d93e7df06a4f9725e02a1789ee">00100</a>         <a class="codeRef" doxygen="libstdc++.tag:" href="a01208.html" title="STL class.">MenuMapType</a> <a class="code" href="classC4DView_1_1Menu4D.html#c2dd48d93e7df06a4f9725e02a1789ee" title="Keeps the QActions belonging to the menu entries.">menuMap</a>;    
 <a name="l00101"></a>00101 };
 <a name="l00102"></a>00102 
 <a name="l00103"></a>00103 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Oct 25 17:15:23 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Thu Oct 30 21:54:07 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

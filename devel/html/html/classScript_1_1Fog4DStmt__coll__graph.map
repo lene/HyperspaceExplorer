@@ -1,7 +1,8 @@
-<area shape="rect" href="$classScript_1_1BoolStatement.html" title="Statement with a single boolean parameter." alt="" coords="280,1304,432,1416">
-<area shape="rect" href="$classScript_1_1Statement.html" title="Base class for all possible statements in a script." alt="" coords="293,1109,419,1253">
-<area shape="rect" href="$classScript_1_1Parser.html" title="Parser reads a file and executes the commands in it in a C4DView." alt="" coords="233,885,337,1045">
-<area shape="rect" href="$classUI_1_1View.html" title="Interface to display four&#45;dimensional objects." alt="" coords="5,293,179,821">
-<area shape="rect" title="STL class." alt="" coords="273,149,353,229">
-<area shape="rect" title="STL class." alt="" coords="229,5,397,85">
-<area shape="rect" title="STL class." alt="" coords="392,149,507,229">
+<area shape="rect" href="$classScript_1_1BoolStatement.html" title="Statement with a single boolean parameter." alt="" coords="79,1448,231,1560">
+<area shape="rect" href="$classScript_1_1Statement.html" title="Base class for all possible statements in a script." alt="" coords="92,1253,217,1397">
+<area shape="rect" href="$classScript_1_1Parser.html" title="Parser reads a file and executes the commands in it in a C4DView." alt="" coords="103,1029,207,1189">
+<area shape="rect" href="$classUI_1_1View.html" title="Interface to display four&#45;dimensional objects." alt="" coords="5,437,179,965">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; std::string \&gt;\n||}" alt="" coords="203,661,368,741">
+<area shape="rect" href="libstdc++.tag$a00960.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;\n||}" alt="" coords="232,149,451,229">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="STL class." alt="" coords="131,293,304,373">
+<area shape="rect" href="libstdc++.tag$a00961.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;::_Vector_impl\n||}" alt="" coords="188,5,495,85">

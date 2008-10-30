@@ -111,7 +111,7 @@
 <a name="l00140"></a>00140         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 1; i &lt; NumAxes&lt;D&gt;::num; i++) {
 <a name="l00141"></a>00141             <a class="code" href="classVecMath_1_1Rotation.html#234ba7e9e05403d496d5a50d9cee3334" title="Rotation angles are stored as a Vector, operations are delegated.">axis</a>[i] = va_arg (argp, N);
 <a name="l00142"></a>00142         }
-<a name="l00143"></a>00143         va_end (argp);
+<a name="l00143"></a>00143         <a class="codeRef" doxygen="libstdc++.tag:" href="a01508.html#273fbd4dd7ce1bbc2640606acff5d7e5">va_end</a> (argp);
 <a name="l00144"></a>00144     }
 <a name="l00145"></a>00145 
 <a name="l00146"></a>00146     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
@@ -145,14 +145,14 @@
 <a name="l00174"></a>00174 
 <a name="l00176"></a>00176 
 <a name="l00180"></a>00180     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00181"></a><a class="code" href="group__VecMath.html#g66177497b2b0c964a01d7be1087cdf17">00181</a>             std::ostream &amp;operator &lt;&lt; (std::ostream &amp;o, const Rotation&lt;D, N&gt; &amp;v) {
+<a name="l00181"></a><a class="code" href="group__VecMath.html#g66177497b2b0c964a01d7be1087cdf17">00181</a>             <a class="codeRef" doxygen="libstdc++.tag:" href="a01829.html#ge83348f0f14ec5bf401ed2b962cb6491">std::ostream</a> &amp;operator &lt;&lt; (std::ostream &amp;o, const Rotation&lt;D, N&gt; &amp;v) {
 <a name="l00182"></a>00182         o &lt;&lt; v.r();
 <a name="l00183"></a>00183         <span class="keywordflow">return</span> o;
 <a name="l00184"></a>00184     }
 <a name="l00185"></a>00185 
 <a name="l00187"></a>00187 
 <a name="l00191"></a>00191     <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D, <span class="keyword">typename</span> N&gt;
-<a name="l00192"></a><a class="code" href="group__VecMath.html#g481900ade75f6885f522982564e1f702">00192</a>             std::istringstream &amp;<a class="code" href="group__VecMath.html#g481900ade75f6885f522982564e1f702" title="Rotation input operator.">operator &gt;&gt; </a>(std::istringstream &amp;in, <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation&lt;D, N&gt;</a> &amp;v) {
+<a name="l00192"></a><a class="code" href="group__VecMath.html#g481900ade75f6885f522982564e1f702">00192</a>             <a class="codeRef" doxygen="libstdc++.tag:" href="a01829.html#g880ba9e4dc7f6fff889b8bed31620669">std::istringstream</a> &amp;<a class="code" href="group__VecMath.html#g481900ade75f6885f522982564e1f702" title="Rotation input operator.">operator &gt;&gt; </a>(<a class="codeRef" doxygen="libstdc++.tag:" href="a01829.html#g880ba9e4dc7f6fff889b8bed31620669">std::istringstream</a> &amp;in, <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">Rotation&lt;D, N&gt;</a> &amp;v) {
 <a name="l00193"></a>00193         in &gt;&gt; v.<a class="code" href="classVecMath_1_1Rotation.html#c7a3ce61bbe973efb8724e32b5aab83b" title="access the stored values (needed by output operator &amp;lt;&amp;lt;())">r</a>();
 <a name="l00194"></a>00194         <span class="keywordflow">return</span> in;
 <a name="l00195"></a>00195     }
@@ -161,7 +161,7 @@
 <a name="l00198"></a>00198 
 <a name="l00199"></a>00199 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Oct 25 17:15:23 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Thu Oct 30 21:54:07 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

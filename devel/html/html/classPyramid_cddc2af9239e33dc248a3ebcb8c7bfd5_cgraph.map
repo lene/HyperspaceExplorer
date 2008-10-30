@@ -1,6 +1,11 @@
-<area shape="rect" href="$classFunction.html#a490e914a7cd65862ba7956fd558553e" title="Add a parameter to the list of parameters." alt="" coords="181,5,368,32">
-<area shape="rect" href="$classPyramid.html#dc837fa34b2f484a0c28da7210677db9" title="Actually creates the Pyramid." alt="" coords="212,56,337,83">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="639,56,844,83">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="893,56,1133,83">
-<area shape="rect" href="$classPyramid.html#9867ed04145e00009d85352f1b15727a" title="Declare a triangle in the Surface array." alt="" coords="417,56,588,83">
-<area shape="rect" href="$classObject.html#abb0df155c83971e135cc13f9fc28860" title="Actually create the Object, this method is overridden in child classes." alt="" coords="445,107,560,133">
+<area shape="rect" href="$classFunction.html#a490e914a7cd65862ba7956fd558553e" title="Add a parameter to the list of parameters." alt="" coords="181,132,368,159">
+<area shape="rect" href="$classPyramid.html#dc837fa34b2f484a0c28da7210677db9" title="Actually creates the Pyramid." alt="" coords="212,284,337,311">
+<area shape="rect" href="libstdc++.tag$a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="451,5,555,32">
+<area shape="rect" href="libstdc++.tag$a01208.html#526e24c01961896c5c0c8491d75258be" title="std::map::find" alt="" coords="452,56,553,83">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="639,208,844,235">
+<area shape="rect" href="libstdc++.tag$a01815.html#403e6a8a62730a30d087c2c6b83d5d9a" title="std::make_pair" alt="" coords="448,157,557,184">
+<area shape="rect" href="libstdc++.tag$a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce" title="std::vector::push_back" alt="" coords="425,208,580,235">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="893,208,1133,235">
+<area shape="rect" href="$classPyramid.html#9867ed04145e00009d85352f1b15727a" title="Declare a triangle in the Surface array." alt="" coords="417,259,588,285">
+<area shape="rect" href="$classObject.html#abb0df155c83971e135cc13f9fc28860" title="Actually create the Object, this method is overridden in child classes." alt="" coords="445,309,560,336">
+<area shape="rect" href="libstdc++.tag$a01815.html#b2c9d94b4becdf532618ad9a0a54aade" title="sqrt" alt="" coords="481,360,524,387">

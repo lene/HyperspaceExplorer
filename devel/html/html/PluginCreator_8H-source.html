@@ -75,7 +75,7 @@
 <a name="l00066"></a>00066 }
 <a name="l00067"></a>00067 
 <a name="l00068"></a>00068 <span class="preprocessor">#include &lt;dlfcn.h&gt;</span>
-<a name="l00069"></a>00069 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00069"></a>00069 <span class="preprocessor">#include &lt;<a class="codeRef" doxygen="libstdc++.tag:" href="a01602.html">iostream</a>&gt;</span>
 <a name="l00070"></a>00070 <span class="preprocessor">#include &lt;QFile&gt;</span>
 <a name="l00071"></a>00071 <span class="preprocessor">#include &lt;QMessageBox&gt;</span>
 <a name="l00072"></a>00072 
@@ -92,8 +92,8 @@
 <a name="l00090"></a>00090             <span class="keywordflow">if</span> (!QFile::exists (libName)) {
 <a name="l00091"></a>00091                 QMessageBox::warning (parent, <span class="stringliteral">"Error opening library"</span>,
 <a name="l00092"></a>00092                                     <span class="stringliteral">"Library does not exist: "</span>+libName);
-<a name="l00093"></a>00093                 std::cerr &lt;&lt; <span class="stringliteral">"Library does not exist: "</span>+libName.toStdString()
-<a name="l00094"></a>00094                         &lt;&lt; std::endl;
+<a name="l00093"></a>00093                 <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <span class="stringliteral">"Library does not exist: "</span>+libName.toStdString()
+<a name="l00094"></a>00094                         &lt;&lt; <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce">std::endl</a>;
 <a name="l00095"></a>00095                 <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00096"></a>00096             }
 <a name="l00097"></a>00097 
@@ -108,7 +108,7 @@
 <a name="l00106"></a>00106             <span class="keywordflow">if</span> (f == NULL) {
 <a name="l00107"></a>00107                 <span class="keywordflow">if</span> ((error = dlerror()) != NULL)  {
 <a name="l00108"></a>00108                     QMessageBox::warning (parent, <span class="stringliteral">"Error finding function"</span>, error);
-<a name="l00109"></a>00109                     abort ();
+<a name="l00109"></a>00109                     <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#e3b91f35a04ada8c900f6046b83fdad5">abort</a> ();
 <a name="l00110"></a>00110                     <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00111"></a>00111                 }
 <a name="l00112"></a>00112             }
@@ -121,7 +121,7 @@
 <a name="l00119"></a>00119 }
 <a name="l00120"></a>00120 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Sat Oct 25 17:15:23 2008 for HyperspaceExplorer by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Thu Oct 30 21:54:07 2008 for HyperspaceExplorer by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.6 </small></address>
 </body>

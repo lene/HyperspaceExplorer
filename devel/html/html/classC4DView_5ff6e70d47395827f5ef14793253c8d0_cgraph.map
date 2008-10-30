@@ -1,7 +1,9 @@
-<area shape="rect" href="$classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Paint event handler, called whenever the object is transformed." alt="" coords="203,5,336,32">
-<area shape="rect" href="$classC4DView.html#b9561bdd967e89d314f7eda6de32b2bc" title="Wrapper for displaying OpenGL display lists." alt="" coords="385,5,551,32">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1039,31,1244,57">
-<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen." alt="" coords="600,56,752,83">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1293,31,1533,57">
-<area shape="rect" href="$classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="801,81,988,108">
-<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Execute the projection into three&#45;space (but don&#39;t draw it yet either)." alt="" coords="832,132,957,159">
+<area shape="rect" href="$classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Paint event handler, called whenever the object is transformed." alt="" coords="203,81,336,108">
+<area shape="rect" href="$classC4DView.html#b9561bdd967e89d314f7eda6de32b2bc" title="Wrapper for displaying OpenGL display lists." alt="" coords="385,81,551,108">
+<area shape="rect" href="libstdc++.tag$a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce" title="endl" alt="" coords="653,5,699,32">
+<area shape="rect" href="libstdc++.tag$a01815.html#2107b37641fcd1f3d16ecc9c0a18041f" title="exit" alt="" coords="655,56,697,83">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1039,157,1244,184">
+<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen." alt="" coords="600,183,752,209">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1293,157,1533,184">
+<area shape="rect" href="$classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="801,208,988,235">
+<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Execute the projection into three&#45;space (but don&#39;t draw it yet either)." alt="" coords="832,259,957,285">

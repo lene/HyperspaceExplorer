@@ -1,12 +1,19 @@
-<area shape="rect" href="$classFunction.html#a490e914a7cd65862ba7956fd558553e" title="Add a parameter to the list of parameters." alt="" coords="149,81,336,108">
-<area shape="rect" href="$classComplexFunction.html#a978ff4b165e029bb82ba33dce35e4e3" title="ComplexFunction::Initialize" alt="" coords="152,208,333,235">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="385,5,591,32">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="640,5,880,32">
-<area shape="rect" href="$classComplexFunction.html#234485506b16d03867c20e8e8d7e0b21" title="ComplexFunction::f" alt="" coords="420,56,556,83">
-<area shape="rect" href="$classSurfaceBase.html#c1b7c91a12ac9ad433c27d8ad9f6067c" title="delta in t" alt="" coords="419,107,557,133">
-<area shape="rect" href="$classSurfaceBase.html#b374ba3db9a0339e6a5aaa230d1a76ca" title="delta in u" alt="" coords="417,157,559,184">
-<area shape="rect" href="$classSurfaceBase.html#73cd034a8689e0f9fbd796f8e7423fcb" title="min. value of the first parameter, t" alt="" coords="411,208,565,235">
-<area shape="rect" href="$classSurfaceBase.html#761208b17975a6c343774b5ca467ed2b" title="number of steps in t" alt="" coords="677,297,843,324">
-<area shape="rect" href="$classSurfaceBase.html#ed7d2013bca3eb15eb1abcc8e72cbd58" title="min. value of the second parameter, u" alt="" coords="411,309,565,336">
-<area shape="rect" href="$classSurfaceBase.html#d8c79625fa46d8c5ebbda58f0dd9eb5d" title="number of steps in u" alt="" coords="677,385,843,412">
+<area shape="rect" href="$classFunction.html#a490e914a7cd65862ba7956fd558553e" title="Add a parameter to the list of parameters." alt="" coords="149,132,336,159">
+<area shape="rect" href="$classComplexFunction.html#a978ff4b165e029bb82ba33dce35e4e3" title="ComplexFunction::Initialize" alt="" coords="152,436,333,463">
+<area shape="rect" href="libstdc++.tag$a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="436,107,540,133">
+<area shape="rect" href="libstdc++.tag$a01208.html#526e24c01961896c5c0c8491d75258be" title="std::map::find" alt="" coords="437,157,539,184">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="385,208,591,235">
+<area shape="rect" href="libstdc++.tag$a01815.html#403e6a8a62730a30d087c2c6b83d5d9a" title="std::make_pair" alt="" coords="433,5,543,32">
+<area shape="rect" href="libstdc++.tag$a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce" title="std::vector::push_back" alt="" coords="411,56,565,83">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="640,208,880,235">
+<area shape="rect" href="$classComplexFunction.html#234485506b16d03867c20e8e8d7e0b21" title="ComplexFunction::f" alt="" coords="420,563,556,589">
+<area shape="rect" href="$classSurfaceBase.html#c1b7c91a12ac9ad433c27d8ad9f6067c" title="delta in t" alt="" coords="419,613,557,640">
+<area shape="rect" href="$classSurfaceBase.html#b374ba3db9a0339e6a5aaa230d1a76ca" title="delta in u" alt="" coords="417,664,559,691">
+<area shape="rect" href="$classSurfaceBase.html#73cd034a8689e0f9fbd796f8e7423fcb" title="min. value of the first parameter, t" alt="" coords="411,259,565,285">
+<area shape="rect" href="$classSurfaceBase.html#761208b17975a6c343774b5ca467ed2b" title="number of steps in t" alt="" coords="677,335,843,361">
+<area shape="rect" href="$classSurfaceBase.html#ed7d2013bca3eb15eb1abcc8e72cbd58" title="min. value of the second parameter, u" alt="" coords="411,512,565,539">
+<area shape="rect" href="$classSurfaceBase.html#d8c79625fa46d8c5ebbda58f0dd9eb5d" title="number of steps in u" alt="" coords="677,399,843,425">
 <area shape="rect" href="$classSurface.html#f77d456ed7b5d495f4a54978ab5f4acc" title="Initialize the temporary storage areas Xscr[][], Xtrans[][]." alt="" coords="427,360,549,387">
+<area shape="rect" href="libstdc++.tag$a01419.html#59d21f4ea322bb5166a2de7bbdf55b4c" title="std::vector::resize" alt="" coords="696,449,824,476">
+<area shape="rect" href="libstdc++.tag$a01081.html#72814d117a261bef8be64098e0aa8119" title="std::complex::imag" alt="" coords="693,537,827,564">
+<area shape="rect" href="libstdc++.tag$a01081.html#90731c66edf2f805f5cc8e37b79909cf" title="std::complex::real" alt="" coords="697,588,823,615">
