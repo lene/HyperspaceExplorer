@@ -30,7 +30,7 @@ namespace UI {
         _background (0.25, 0.25, 0.25, 1.),
         _dR(0.,0.,0.,0.,0.,0.),
         _T(0.,0.,0.,0.), _R(0.,0.,0.,0.,0.,0.),
-        _camW (-3.), _scrW (0.), _distance(1.),
+        _camW (-3.), _scrW (0.),
         _numFrames(1), _numLoops(1),
         _writeImages (false),
         _imageDir("/tmp"),

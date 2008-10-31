@@ -132,12 +132,17 @@ namespace UI {
             /// Add a Rotation to the current rotation state
             virtual void adddR(const VecMath::Rotation<4> &);
 
-            void setCamW(const double &_cw) { _camW = _cw; }
+            /// \return W coordinate of the camera
             double CamW() const { return _camW; }
-            void setScrW(const double &_sw) { _scrW = _sw; }
+            /// \param _cw W coordinate of the camera
+            void setCamW(const double &_cw) { _camW = _cw; }
+            /// \return W coordinate of the screen to project onto
             double ScrW() const { return _scrW; }
+            /// \param _sw W coordinate of the screen to project onto
+            void setScrW(const double &_sw) { _scrW = _sw; }
 
-            double distance() {return _distance; }
+            /// Viewport distance; currently fixed to 1
+            double distance() { return 1.; }
 
             /// \return Position of the light
             static GLfloat *getLightPos() { return _lightPos; }
@@ -182,8 +187,6 @@ namespace UI {
 
             double _camW;        ///< W coordinate of the camera
             double _scrW;        ///< W coordinate of the screen
-
-            double _distance;               ///< viewpoint distance
 
             unsigned _numFrames; ///< number of frames for animations
             unsigned _numLoops;  ///< number of loops to repeat an animation

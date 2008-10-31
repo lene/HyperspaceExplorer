@@ -810,21 +810,19 @@ void C4DView::InitFog  (void) {
 }
 
 /// OpenGL initialization for transparence
-/** @todo is GL_CULL_FACE needed or not?                                      */
 void C4DView::InitTransparence (void) {
     if (getTransparence()) {
-        glEnable  (GL_BLEND);                               //  enable blending
+        glEnable (GL_BLEND);                               //  enable blending
         glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); //  blending function
-        glEnable  (GL_POINT_SMOOTH);                        //  draw smooth points
-        glEnable  (GL_LINE_SMOOTH);                         //  draw smooth lines
-        glEnable  (GL_POLYGON_SMOOTH);                      //  draw smooth surfaces
-//        glDisable (GL_CULL_FACE);                           //  ...why?            *
+        glEnable (GL_POINT_SMOOTH);                        //  draw smooth points
+        glEnable (GL_LINE_SMOOTH);                         //  draw smooth lines
+        glEnable (GL_POLYGON_SMOOTH);                      //  draw smooth surfaces
+        glDisable(GL_CULL_FACE);                           //  draw both sides of faces
     } else {
-        glDisable (GL_BLEND);                               //  disable blending
-        glDisable  (GL_POINT_SMOOTH);                       //  ..
-        glDisable (GL_LINE_SMOOTH);                         //  ..
-        glDisable (GL_POLYGON_SMOOTH);                      //  ..
-//        glEnable  (GL_CULL_FACE);                           //                     *
+        glDisable(GL_BLEND);                               //  disable blending
+        glDisable(GL_POINT_SMOOTH);                       //  ..
+        glDisable(GL_LINE_SMOOTH);                         //  ..
+        glDisable(GL_POLYGON_SMOOTH);                      //  ..
     }
 }
 
