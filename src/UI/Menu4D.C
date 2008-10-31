@@ -276,7 +276,7 @@ void C4DView::Menu4D::Wireframe() {
     getAction("Wireframe")->setChecked(_parent->getSolid());
     _parent->setSolid(!_parent->getSolid());
 
-    _parent->OnPaint ();
+    _parent->paintEvent();
 }
 
 /** Switch coordinate cross on or off

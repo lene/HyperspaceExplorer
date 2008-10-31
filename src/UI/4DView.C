@@ -160,7 +160,7 @@ void C4DView::setSize(unsigned w, unsigned h) {
 
 void C4DView::setBackground(const Color &col) {
     glClearColor (col.r(), col.g(), col.b(), col.a());
-    if (glIsList (ObjectList())) OnPaint();
+    if (glIsList (ObjectList())) paintEvent();
 }
 
 void C4DView::setColors(bool cols) {
@@ -216,7 +216,7 @@ void C4DView::setLighting(bool light) {
         glEnable  (GL_LIGHT0);    //      turn on the light
     }
 
-    OnPaint ();
+    paintEvent ();
 }
 
 void C4DView::setShading(bool shade) {
@@ -246,7 +246,7 @@ double C4DView::Benchmark3D (int num_steps,
         addm_rot(step);
 //        setm_rotX(m_rotX() + step_x); setm_rotY(m_rotY() + step_y); setm_rotZ(m_rotZ() + step_z);
         if (display) {
-            OnPaint ();
+            paintEvent ();
             UpdateStatus (QString::number ((100*step)/num_steps)+"% done");
         }
     }
@@ -313,8 +313,8 @@ void C4DView::OnAnimationTimer() {
         addR(getdR());
 
         Transform (R(), T());   // transform
-        Redraw ();                                                  // implicit OnPaint()
-    } else OnPaint ();                                              // explicit OnPaint()
+        Redraw ();                                                  // implicit paintEvent()
+    } else paintEvent ();                                              // explicit paintEvent()
 
     writeFrame();   //  if render to pixmap is selected, do it
 
@@ -395,31 +395,7 @@ void C4DView::PreRedraw () {
  *  lists onto the screen                                                     */
 void C4DView::Redraw () {
   PreRedraw ();
-  OnPaint ();
-}
-
-/** Paint event handler and object drawing routine: Does all the OpenGL stuff
- *  necessary to paint the object on screen                                   */
-void C4DView::OnPaint() {
-    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);   //  clear the window
-
-    if (getSolid())                              //  this might move to a special
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);      //  routine "SwitchWireframe ()"
-    else glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-    glPushMatrix();                                 //  save transformation Matrix
-    // glTranslated(0.0, /*Size ()*.75*/0., 0);     //  set the camera position
-
-    glTranslated (m_trans()[0], m_trans()[1], m_trans()[2]);      //  apply object translation
-    glRotated(m_rot()[0], 1.0, 0.0, 0.0);               //   -"-    -"-     rotation
-    glRotated(m_rot()[1], 0.0, 1.0, 0.0);
-    glRotated(m_rot()[2], 0.0, 0.0, 1.0);
-
-    RenderScene ();                                //  draw current frame
-
-    glPopMatrix();                                  //  restore transformation Matrix
-
-    swapBuffers ();                                 //  swap the buffers
+  paintEvent ();
 }
 
 /** Execute GL display lists, with error reporting and an exit strategy       */
@@ -704,9 +680,30 @@ void C4DView::mouseDoubleClickEvent(QMouseEvent *e) {
     MouseHandler()->mouseDoubleClickEvent(e);
 }
 
-/** \todo move code from OnPaint to paintEvent and eliminate OnPaint          */
+/** Paint event handler and object drawing routine: called whenever the object
+ *  is transformed, Does all the OpenGL stuff necessary to paint the object on
+ *  screen
+ */
 void C4DView::paintEvent (QPaintEvent *) {
-    OnPaint ();
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);   //  clear the window
+
+    if (getSolid())                              //  this might move to a special
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);      //  routine "SwitchWireframe ()"
+    else glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+    glPushMatrix();                                 //  save transformation Matrix
+    // glTranslated(0.0, /*Size ()*.75*/0., 0);     //  set the camera position
+
+    glTranslated (m_trans()[0], m_trans()[1], m_trans()[2]);      //  apply object translation
+    glRotated(m_rot()[0], 1.0, 0.0, 0.0);               //   -"-    -"-     rotation
+    glRotated(m_rot()[1], 0.0, 1.0, 0.0);
+    glRotated(m_rot()[2], 0.0, 0.0, 1.0);
+
+    RenderScene ();                                //  draw current frame
+
+    glPopMatrix();                                  //  restore transformation Matrix
+
+    swapBuffers ();                                 //  swap the buffers
 }
 
 /** Also, the definition of the GL viewport is done here                      */

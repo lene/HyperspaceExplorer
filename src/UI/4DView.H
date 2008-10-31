@@ -193,9 +193,6 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         /// Draw the transformed and projected function onto the screen
         void Redraw();
 
-        /// Paint event handler, called whenever the object is transformed
-        void OnPaint();
-
         /// Wrapper for displaying OpenGL display lists
         void RenderScene();
 
@@ -227,7 +224,7 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         /// Double click event handler, reimplemented from QWidget
         virtual void mouseDoubleClickEvent( QMouseEvent *);
         /// Paint event handler, reimplemented from QGLWidget
-        virtual void paintEvent(QPaintEvent *);
+        virtual void paintEvent(QPaintEvent * = 0);
         /// Resizing routine, reimplemented from QGLWidget
         virtual void resizeEvent( QResizeEvent * );
         /// Called once before the first call to paintGL() or resizeGL(), reimplemented from QGLWidget

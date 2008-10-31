@@ -255,7 +255,7 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
 
     }                           //    if (ViewChanged)
 
-    parent->OnPaint ();                             //    redraw the window
+    parent->paintEvent ();                             //    redraw the window
 }
 
 /// Mouse button event handler
@@ -307,7 +307,7 @@ void C4DView::MouseHandler4D::mouseDoubleClickEvent (QMouseEvent *) {
     if (parent->Animated()) parent->StopAnimation ();
     else {
         parent->Transform();
-        parent->Redraw ();                              //  implicit OnPaint ()
+        parent->Redraw ();                              //  implicit paintEvent ()
     }
 
     parent->UpdateStatus ("DoubleClick");
