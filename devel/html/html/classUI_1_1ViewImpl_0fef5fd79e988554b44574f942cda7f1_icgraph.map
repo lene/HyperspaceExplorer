@@ -1,4 +1,7 @@
-<area shape="rect" href="$classC4DView.html#f33c8cf03fcfc94d4c64f9f4454b0339" title="Starts a random animation." alt="" coords="191,5,375,32">
-<area shape="rect" href="$classC4DView.html#45b036ac24d2404ad7bd69139a49b2d8" title="you guessed it" alt="" coords="201,56,364,83">
-<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#681ee2ee24d1528a92b6ec0ff4dad9c2" title="Double click event handler." alt="" coords="424,56,744,83">
-<area shape="rect" href="$classC4DView.html#6dc432e565b97c2aa6f2273bbe4135c7" title="Double click event handler, reimplemented from QWidget." alt="" coords="793,56,1009,83">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#05da0fec855e93430b72cb325e0a7c87" title="Add a Rotation to the current rotation state." alt="" coords="213,5,352,32">
+<area shape="rect" href="$classC4DView.html#f33c8cf03fcfc94d4c64f9f4454b0339" title="Starts a random animation." alt="" coords="191,56,375,83">
+<area shape="rect" href="$classC4DView.html#45b036ac24d2404ad7bd69139a49b2d8" title="you guessed it" alt="" coords="201,107,364,133">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="443,5,725,32">
+<area shape="rect" href="$classC4DView.html#1b5e87b494b99e3705c64e924480f4ef" title="Mouse move event handler, reimplemented from QWidget." alt="" coords="812,5,991,32">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#681ee2ee24d1528a92b6ec0ff4dad9c2" title="Double click event handler." alt="" coords="424,107,744,133">
+<area shape="rect" href="$classC4DView.html#6dc432e565b97c2aa6f2273bbe4135c7" title="Double click event handler, reimplemented from QWidget." alt="" coords="793,107,1009,133">

@@ -1,14 +1,14 @@
-<area shape="rect" href="$classSurfaceBase.html#c1b7c91a12ac9ad433c27d8ad9f6067c" title="delta in t" alt="" coords="408,44,547,71">
-<area shape="rect" href="$classSurfaceBase.html#b374ba3db9a0339e6a5aaa230d1a76ca" title="delta in u" alt="" coords="407,95,548,121">
-<area shape="rect" href="$classSurfaceBase.html#ac9069441800f0bbf3b85b9a7839f56f" title="max. value of the first parameter, t" alt="" coords="167,601,324,628">
-<area shape="rect" href="$classSurfaceBase.html#73cd034a8689e0f9fbd796f8e7423fcb" title="min. value of the first parameter, t" alt="" coords="400,145,555,172">
-<area shape="rect" href="$classSurfaceBase.html#761208b17975a6c343774b5ca467ed2b" title="number of steps in t" alt="" coords="667,196,832,223">
-<area shape="rect" href="$classSurfaceBase.html#5097c9fd6cd4955c2b7b29d4ed7b46bb" title="max. value of the second parameter, u" alt="" coords="165,652,325,679">
-<area shape="rect" href="$classSurfaceBase.html#ed7d2013bca3eb15eb1abcc8e72cbd58" title="min. value of the second parameter, u" alt="" coords="400,500,555,527">
-<area shape="rect" href="$classSurfaceBase.html#d8c79625fa46d8c5ebbda58f0dd9eb5d" title="number of steps in u" alt="" coords="667,348,832,375">
-<area shape="rect" href="$classSurface.html#e140ab69205e1a6a73459b9e22cda019" title="allocate and initialize X[][] with values of f()" alt="" coords="184,291,307,317">
-<area shape="rect" href="$classSurfaceBase.html#ba6ce6327e509663e484560f849d03f1" title="The mathematical function defining the Function object." alt="" coords="423,399,532,425">
-<area shape="rect" href="$classSurface.html#f77d456ed7b5d495f4a54978ab5f4acc" title="Initialize the temporary storage areas Xscr[][], Xtrans[][]." alt="" coords="416,297,539,324">
-<area shape="rect" href="libstdc++.tag$a01419.html#59d21f4ea322bb5166a2de7bbdf55b4c" title="std::vector::resize" alt="" coords="685,272,813,299">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="375,449,580,476">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="629,449,869,476">
+<area shape="rect" href="$classSurfaceBase.html#c1b7c91a12ac9ad433c27d8ad9f6067c" title="delta in t" alt="" coords="384,43,509,69">
+<area shape="rect" href="$classSurfaceBase.html#b374ba3db9a0339e6a5aaa230d1a76ca" title="delta in u" alt="" coords="383,93,511,120">
+<area shape="rect" href="$classSurfaceBase.html#ac9069441800f0bbf3b85b9a7839f56f" title="max. value of the first parameter, t" alt="" coords="159,600,300,627">
+<area shape="rect" href="$classSurfaceBase.html#73cd034a8689e0f9fbd796f8e7423fcb" title="min. value of the first parameter, t" alt="" coords="377,144,516,171">
+<area shape="rect" href="$classSurfaceBase.html#761208b17975a6c343774b5ca467ed2b" title="number of steps in t" alt="" coords="631,195,777,221">
+<area shape="rect" href="$classSurfaceBase.html#5097c9fd6cd4955c2b7b29d4ed7b46bb" title="max. value of the second parameter, u" alt="" coords="157,651,301,677">
+<area shape="rect" href="$classSurfaceBase.html#ed7d2013bca3eb15eb1abcc8e72cbd58" title="min. value of the second parameter, u" alt="" coords="376,499,517,525">
+<area shape="rect" href="$classSurfaceBase.html#d8c79625fa46d8c5ebbda58f0dd9eb5d" title="number of steps in u" alt="" coords="631,347,777,373">
+<area shape="rect" href="$classSurface.html#e140ab69205e1a6a73459b9e22cda019" title="allocate and initialize X[][] with values of f()" alt="" coords="171,289,288,316">
+<area shape="rect" href="$classSurfaceBase.html#ba6ce6327e509663e484560f849d03f1" title="The mathematical function defining the Function object." alt="" coords="397,397,496,424">
+<area shape="rect" href="$classSurface.html#f77d456ed7b5d495f4a54978ab5f4acc" title="Initialize the temporary storage areas Xscr[][], Xtrans[][]." alt="" coords="389,296,504,323">
+<area shape="rect" href="libstdc++.tag$a01419.html#59d21f4ea322bb5166a2de7bbdf55b4c" title="std::vector::resize" alt="" coords="647,271,761,297">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="351,448,543,475">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="592,448,816,475">

@@ -1,7 +1,8 @@
-<area shape="rect" href="$classC4DView.html#5ec81f7d64c4678cbe44bfad9d2acb65" title="Implementation of UI::View::animate." alt="" coords="268,5,393,32">
-<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="189,56,472,83">
-<area shape="rect" href="$classC4DView.html#715dbd8c1e15f6d118853e1789d081e7" title="Err well.. just that!" alt="" coords="248,107,413,133">
-<area shape="rect" href="$classC4DView.html#1b5e87b494b99e3705c64e924480f4ef" title="Mouse move event handler, reimplemented from QWidget." alt="" coords="577,56,756,83">
-<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#9e5ab5cea257501da2f87c3f13140029" title="Mouse button release event handler." alt="" coords="520,107,813,133">
-<area shape="rect" href="$classC4DView.html#f33c8cf03fcfc94d4c64f9f4454b0339" title="Starts a random animation." alt="" coords="575,157,759,184">
-<area shape="rect" href="$classC4DView.html#00949bc8cb7215be6ff50e947d6f576f" title="Mouse release event handler, reimplemented from QWidget." alt="" coords="863,107,1052,133">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#05da0fec855e93430b72cb325e0a7c87" title="Add a Rotation to the current rotation state." alt="" coords="203,5,341,32">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="408,31,691,57">
+<area shape="rect" href="$classC4DView.html#5ec81f7d64c4678cbe44bfad9d2acb65" title="Implementation of UI::View::animate." alt="" coords="209,107,335,133">
+<area shape="rect" href="$classC4DView.html#715dbd8c1e15f6d118853e1789d081e7" title="Err well.. just that!" alt="" coords="189,157,355,184">
+<area shape="rect" href="$classC4DView.html#1b5e87b494b99e3705c64e924480f4ef" title="Mouse move event handler, reimplemented from QWidget." alt="" coords="751,31,929,57">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#9e5ab5cea257501da2f87c3f13140029" title="Mouse button release event handler." alt="" coords="403,132,696,159">
+<area shape="rect" href="$classC4DView.html#f33c8cf03fcfc94d4c64f9f4454b0339" title="Starts a random animation." alt="" coords="457,183,641,209">
+<area shape="rect" href="$classC4DView.html#00949bc8cb7215be6ff50e947d6f576f" title="Mouse release event handler, reimplemented from QWidget." alt="" coords="745,132,935,159">

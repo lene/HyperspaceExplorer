@@ -1,6 +1,8 @@
-<area shape="rect" href="$classUI_1_1View.html" title="Interface to display four&#45;dimensional objects." alt="" coords="5,421,165,1173">
-<area shape="rect" href="$classVecMath_1_1Rotation.html" title="{VecMath::Rotation\&lt; 4 \&gt;\n|&#45; axis\l|+ Rotation()\l+ Rotation()\l+ operator[]()\l+ operator[]()\l+ operator Matrix\&lt; D, double \&gt;()\l+ operator+=()\l+ operator bool()\l+ r()\l+ r()\l}" alt="" coords="189,693,389,901">
-<area shape="rect" href="$classVecMath_1_1Rotation.html" title="Rotation in D&#45;dimensional space defined by angles about the main axes." alt="" coords="203,149,376,357">
-<area shape="rect" href="libstdc++.tag$a01015.html" title="{std::auto_ptr\&lt; Function \&gt;\n||}" alt="" coords="413,757,571,837">
-<area shape="rect" href="libstdc++.tag$a01015.html" title="STL class." alt="" coords="427,213,557,293">
-<area shape="rect" href="$classColor.html" title="A class to represent a color value by its RGBA components." alt="" coords="595,573,776,1021">
+<area shape="rect" href="$classUI_1_1View.html" title="Interface to display four&#45;dimensional objects." alt="" coords="5,581,165,1333">
+<area shape="rect" href="$classVecMath_1_1Rotation.html" title="{VecMath::Rotation\&lt; 4 \&gt;\n|&#45; axis\l|+ Rotation()\l+ Rotation()\l+ operator[]()\l+ operator[]()\l+ operator Matrix\&lt; D, double \&gt;()\l+ operator+=()\l+ operator bool()\l+ r()\l+ r()\l}" alt="" coords="189,853,389,1061">
+<area shape="rect" href="$classVecMath_1_1Rotation.html" title="Rotation in D&#45;dimensional space defined by angles about the main axes." alt="" coords="203,229,376,437">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ dimension()\l}" alt="" coords="413,773,555,1141">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="403,149,565,517">
+<area shape="rect" href="libstdc++.tag$a01015.html" title="{std::auto_ptr\&lt; Function \&gt;\n||}" alt="" coords="579,917,736,997">
+<area shape="rect" href="libstdc++.tag$a01015.html" title="STL class." alt="" coords="592,293,723,373">
+<area shape="rect" href="$classColor.html" title="A class to represent a color value by its RGBA components." alt="" coords="760,733,941,1181">

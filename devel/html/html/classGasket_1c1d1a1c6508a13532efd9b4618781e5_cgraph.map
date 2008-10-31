@@ -1,8 +1,8 @@
-<area shape="rect" href="libstdc++.tag$a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce" title="endl" alt="" coords="229,5,275,32">
-<area shape="rect" href="$classObject.html#abb0df155c83971e135cc13f9fc28860" title="Actually create the Object, this method is overridden in child classes." alt="" coords="195,56,309,83">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="380,81,585,108">
-<area shape="rect" href="$classGasket.html#e65a8be228108ab1997e0cc80504aa56" title="return the approximate amount of memory needed to display a gasket of current level..." alt="" coords="175,157,329,184">
-<area shape="rect" href="libstdc++.tag$a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce" title="std::vector::push_back" alt="" coords="175,208,329,235">
-<area shape="rect" href="libstdc++.tag$a01815.html#b2c9d94b4becdf532618ad9a0a54aade" title="sqrt" alt="" coords="231,259,273,285">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="635,81,875,108">
-<area shape="rect" href="libstdc++.tag$a01815.html#f7439d6844d2edd47213afb067eaf3c4" title="pow" alt="" coords="460,157,505,184">
+<area shape="rect" href="libstdc++.tag$a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce" title="endl" alt="" coords="219,5,261,32">
+<area shape="rect" href="$classObject.html#abb0df155c83971e135cc13f9fc28860" title="Actually create the Object, this method is overridden in child classes." alt="" coords="184,56,296,83">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="361,81,553,108">
+<area shape="rect" href="$classGasket.html#e65a8be228108ab1997e0cc80504aa56" title="return the approximate amount of memory needed to display a gasket of current level..." alt="" coords="169,157,311,184">
+<area shape="rect" href="libstdc++.tag$a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce" title="std::vector::push_back" alt="" coords="169,208,311,235">
+<area shape="rect" href="libstdc++.tag$a01815.html#b2c9d94b4becdf532618ad9a0a54aade" title="sqrt" alt="" coords="220,259,260,285">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="603,81,827,108">
+<area shape="rect" href="libstdc++.tag$a01815.html#f7439d6844d2edd47213afb067eaf3c4" title="pow" alt="" coords="436,157,479,184">

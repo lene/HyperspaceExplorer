@@ -3,6 +3,7 @@
 <area shape="rect" href="$classC4DView.html#5ff6e70d47395827f5ef14793253c8d0" title="Paint event handler, reimplemented from QGLWidget." alt="" coords="193,233,332,260">
 <area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Draw the transformed and projected function onto the screen." alt="" coords="201,284,324,311">
 <area shape="rect" href="$classC4DView.html#504fd428909b35e3d80506a0235eac3e" title="Re&#45;Implementation of UI::ViewImpl::setBackground." alt="" coords="181,335,344,361">
+<area shape="rect" href="$classC4DView.html#5a783209571030da60229d60dfef66f2" title="Re&#45;Implementation of UI::ViewImpl::setLighting." alt="" coords="191,385,335,412">
 <area shape="rect" href="$classC4DView.html#1b5e87b494b99e3705c64e924480f4ef" title="Mouse move event handler, reimplemented from QWidget." alt="" coords="783,5,961,32">
 <area shape="rect" href="$classC4DView.html#5ec81f7d64c4678cbe44bfad9d2acb65" title="Implementation of UI::View::animate." alt="" coords="491,56,616,83">
 <area shape="rect" href="$classC4DView.html#530cab21c7ae4ab78eeff14e7f89a879" title="Implementation of UI::View::applyTransform." alt="" coords="469,107,637,133">

@@ -1,11 +1,11 @@
-<area shape="rect" href="$classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="241,309,425,336">
-<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen." alt="" coords="476,411,617,437">
-<area shape="rect" href="$classC4DView.html#b9561bdd967e89d314f7eda6de32b2bc" title="Wrapper for displaying OpenGL display lists." alt="" coords="668,309,820,336">
+<area shape="rect" href="$classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="241,284,425,311">
+<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen." alt="" coords="476,385,617,412">
+<area shape="rect" href="$classC4DView.html#b9561bdd967e89d314f7eda6de32b2bc" title="Wrapper for displaying OpenGL display lists." alt="" coords="668,284,820,311">
 <area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Execute the projection into three&#45;space (but don&#39;t draw it yet either)." alt="" coords="273,512,393,539">
-<area shape="rect" href="$classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from..." alt="" coords="869,461,1016,488">
-<area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Draw the transformed and projected function onto the screen." alt="" coords="1084,348,1207,375">
-<area shape="rect" href="$classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="672,360,816,387">
-<area shape="rect" href="$classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Re&#45;Implementation of UI::ViewImpl::setColors." alt="" coords="1079,461,1212,488">
+<area shape="rect" href="$classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from..." alt="" coords="869,379,1016,405">
+<area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Draw the transformed and projected function onto the screen." alt="" coords="1084,316,1207,343">
+<area shape="rect" href="$classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="672,335,816,361">
+<area shape="rect" href="$classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Re&#45;Implementation of UI::ViewImpl::setColors." alt="" coords="1079,379,1212,405">
 <area shape="rect" href="$classC4DView.html#5ec81f7d64c4678cbe44bfad9d2acb65" title="Implementation of UI::View::animate." alt="" coords="1373,512,1499,539">
 <area shape="rect" href="$classC4DView.html#530cab21c7ae4ab78eeff14e7f89a879" title="Implementation of UI::View::applyTransform." alt="" coords="1352,157,1520,184">
 <area shape="rect" href="$classC4DView.html#60f45904ff9b227fdf426b5960fa4130" title="rotate in 4D 360 degrees" alt="" coords="1356,208,1516,235">
@@ -22,7 +22,8 @@
 <area shape="rect" href="$classC4DView.html#6dc432e565b97c2aa6f2273bbe4135c7" title="Double click event handler, reimplemented from QWidget." alt="" coords="1647,360,1863,387">
 <area shape="rect" href="$classC4DView.html#1b5e87b494b99e3705c64e924480f4ef" title="Mouse move event handler, reimplemented from QWidget." alt="" coords="1665,5,1844,32">
 <area shape="rect" href="$classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="1687,56,1823,83">
-<area shape="rect" href="$classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Paint event handler, called whenever the object is transformed." alt="" coords="880,284,1005,311">
-<area shape="rect" href="$classC4DView.html#8a01e49be6af9cab84880a176b7c42ae" title="rotate in 3D 360 degrees" alt="" coords="1065,145,1225,172">
-<area shape="rect" href="$classC4DView.html#5ff6e70d47395827f5ef14793253c8d0" title="Paint event handler, reimplemented from QGLWidget." alt="" coords="1076,196,1215,223">
-<area shape="rect" href="$classC4DView.html#504fd428909b35e3d80506a0235eac3e" title="Re&#45;Implementation of UI::ViewImpl::setBackground." alt="" coords="1064,247,1227,273">
+<area shape="rect" href="$classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Paint event handler, called whenever the object is transformed." alt="" coords="880,215,1005,241">
+<area shape="rect" href="$classC4DView.html#8a01e49be6af9cab84880a176b7c42ae" title="rotate in 3D 360 degrees" alt="" coords="1065,113,1225,140">
+<area shape="rect" href="$classC4DView.html#5ff6e70d47395827f5ef14793253c8d0" title="Paint event handler, reimplemented from QGLWidget." alt="" coords="1076,164,1215,191">
+<area shape="rect" href="$classC4DView.html#504fd428909b35e3d80506a0235eac3e" title="Re&#45;Implementation of UI::ViewImpl::setBackground." alt="" coords="1064,215,1227,241">
+<area shape="rect" href="$classC4DView.html#5a783209571030da60229d60dfef66f2" title="Re&#45;Implementation of UI::ViewImpl::setLighting." alt="" coords="1073,265,1217,292">

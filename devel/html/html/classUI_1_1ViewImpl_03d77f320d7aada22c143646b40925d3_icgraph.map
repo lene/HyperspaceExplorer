@@ -1,12 +1,13 @@
-<area shape="rect" href="$classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from..." alt="" coords="223,88,369,115">
-<area shape="rect" href="$classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="204,151,388,177">
-<area shape="rect" href="$classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Paint event handler, called whenever the object is transformed." alt="" coords="233,227,359,253">
+<area shape="rect" href="$classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from..." alt="" coords="223,95,369,121">
+<area shape="rect" href="$classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="204,157,388,184">
+<area shape="rect" href="$classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Paint event handler, called whenever the object is transformed." alt="" coords="233,233,359,260">
 <area shape="rect" href="$classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Re&#45;Implementation of UI::ViewImpl::setColors." alt="" coords="452,81,585,108">
 <area shape="rect" href="$classC4DView.html#8a01e49be6af9cab84880a176b7c42ae" title="rotate in 3D 360 degrees" alt="" coords="439,132,599,159">
 <area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="668,5,951,32">
 <area shape="rect" href="$classC4DView.html#5ff6e70d47395827f5ef14793253c8d0" title="Paint event handler, reimplemented from QGLWidget." alt="" coords="449,233,588,260">
 <area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Draw the transformed and projected function onto the screen." alt="" coords="457,284,580,311">
 <area shape="rect" href="$classC4DView.html#504fd428909b35e3d80506a0235eac3e" title="Re&#45;Implementation of UI::ViewImpl::setBackground." alt="" coords="437,335,600,361">
+<area shape="rect" href="$classC4DView.html#5a783209571030da60229d60dfef66f2" title="Re&#45;Implementation of UI::ViewImpl::setLighting." alt="" coords="447,385,591,412">
 <area shape="rect" href="$classC4DView.html#1b5e87b494b99e3705c64e924480f4ef" title="Mouse move event handler, reimplemented from QWidget." alt="" coords="1039,5,1217,32">
 <area shape="rect" href="$classC4DView.html#5ec81f7d64c4678cbe44bfad9d2acb65" title="Implementation of UI::View::animate." alt="" coords="747,56,872,83">
 <area shape="rect" href="$classC4DView.html#530cab21c7ae4ab78eeff14e7f89a879" title="Implementation of UI::View::applyTransform." alt="" coords="725,107,893,133">

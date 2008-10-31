@@ -1,17 +1,17 @@
-<area shape="rect" href="$classRealFunction.html#37c91ed60f82198f48dfab887dd743c3" title="Allocate and initialize X[][][] with values of f()." alt="" coords="427,309,581,336">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1PluginCreator.html#82c363a954274814e84ebeb2a61da246" title="Get the name of the selected dynamic library containing a function." alt="" coords="376,360,632,387">
-<area shape="rect" href="$classCustomFunctionBase.html#d2e4b7516d73ab9ebeb9a33c6708f6b8" title="CustomFunctionBase\&lt; RealFunction::raw_function_type \&gt;::loadFunction" alt="" coords="279,411,729,437">
-<area shape="rect" href="$classRealBase.html#c2cd018b4108455a6daa23d78b2064a6" title="The mathematical function defining the Function object." alt="" coords="837,5,928,32">
-<area shape="rect" href="$classRealBase.html#a738a408ed73025d34db4ff0c4779ce1" title="delta in t" alt="" coords="823,56,943,83">
-<area shape="rect" href="$classRealBase.html#d8aa90547179197a84a55b11fa9efb59" title="delta in u" alt="" coords="821,107,944,133">
-<area shape="rect" href="$classRealBase.html#04608c269de0bb85c988f6f55c246631" title="delta in v" alt="" coords="821,157,944,184">
-<area shape="rect" href="$classRealBase.html#f9dcdf6e54c56a0875afa605bbfafff7" title="min. value of the first parameter, t" alt="" coords="815,208,951,235">
-<area shape="rect" href="$classRealBase.html#13591cf37427643c8cab25ab5e8b05f5" title="number of steps in t" alt="" coords="1081,265,1228,292">
-<area shape="rect" href="$classRealBase.html#94d43f8cf311879c3d773bfceb9e04f4" title="min. value of the second parameter, u" alt="" coords="815,512,951,539">
-<area shape="rect" href="$classRealBase.html#484ca78d73b9140e77dc26d626e90b88" title="number of steps in u" alt="" coords="1081,328,1228,355">
-<area shape="rect" href="$classRealBase.html#f79ee0c5a0488dddd613e65f9676b240" title="min. value of the third parameter, v" alt="" coords="815,563,951,589">
-<area shape="rect" href="$classRealBase.html#4c12bdcab988ba1efa81d7f23504bc9d" title="number of steps in v" alt="" coords="1081,404,1228,431">
-<area shape="rect" href="$classRealFunction.html#1905c4297b0f6b4f91a3b24b55b62eea" title="Initialize the temporary storage areas." alt="" coords="805,360,960,387">
-<area shape="rect" href="libstdc++.tag$a01419.html#59d21f4ea322bb5166a2de7bbdf55b4c" title="std::vector::resize" alt="" coords="1091,459,1219,485">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="780,613,985,640">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1035,613,1275,640">
+<area shape="rect" href="$classRealFunction.html#37c91ed60f82198f48dfab887dd743c3" title="Allocate and initialize X[][][] with values of f()." alt="" coords="396,309,543,336">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1PluginCreator.html#82c363a954274814e84ebeb2a61da246" title="Get the name of the selected dynamic library containing a function." alt="" coords="349,360,589,387">
+<area shape="rect" href="$classCustomFunctionBase.html#d2e4b7516d73ab9ebeb9a33c6708f6b8" title="CustomFunctionBase\&lt; RealFunction::raw_function_type \&gt;::loadFunction" alt="" coords="261,411,677,437">
+<area shape="rect" href="$classRealBase.html#c2cd018b4108455a6daa23d78b2064a6" title="The mathematical function defining the Function object." alt="" coords="781,5,864,32">
+<area shape="rect" href="$classRealBase.html#a738a408ed73025d34db4ff0c4779ce1" title="delta in t" alt="" coords="768,56,877,83">
+<area shape="rect" href="$classRealBase.html#d8aa90547179197a84a55b11fa9efb59" title="delta in u" alt="" coords="767,107,879,133">
+<area shape="rect" href="$classRealBase.html#04608c269de0bb85c988f6f55c246631" title="delta in v" alt="" coords="767,157,879,184">
+<area shape="rect" href="$classRealBase.html#f9dcdf6e54c56a0875afa605bbfafff7" title="min. value of the first parameter, t" alt="" coords="761,208,884,235">
+<area shape="rect" href="$classRealBase.html#13591cf37427643c8cab25ab5e8b05f5" title="number of steps in t" alt="" coords="1015,265,1145,292">
+<area shape="rect" href="$classRealBase.html#94d43f8cf311879c3d773bfceb9e04f4" title="min. value of the second parameter, u" alt="" coords="760,512,885,539">
+<area shape="rect" href="$classRealBase.html#484ca78d73b9140e77dc26d626e90b88" title="number of steps in u" alt="" coords="1015,328,1145,355">
+<area shape="rect" href="$classRealBase.html#f79ee0c5a0488dddd613e65f9676b240" title="min. value of the third parameter, v" alt="" coords="760,563,885,589">
+<area shape="rect" href="$classRealBase.html#4c12bdcab988ba1efa81d7f23504bc9d" title="number of steps in v" alt="" coords="1015,404,1145,431">
+<area shape="rect" href="$classRealFunction.html#1905c4297b0f6b4f91a3b24b55b62eea" title="Initialize the temporary storage areas." alt="" coords="749,360,896,387">
+<area shape="rect" href="libstdc++.tag$a01419.html#59d21f4ea322bb5166a2de7bbdf55b4c" title="std::vector::resize" alt="" coords="1023,459,1137,485">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="727,613,919,640">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="968,613,1192,640">

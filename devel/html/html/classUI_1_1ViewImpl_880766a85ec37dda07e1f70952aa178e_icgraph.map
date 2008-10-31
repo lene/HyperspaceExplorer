@@ -1,4 +1,5 @@
 <area shape="rect" href="$classC4DView.html#03b3ed76ada1847e4b75e19de8c7e6cb" title="OpenGL initialization for light(s)." alt="" coords="249,5,380,32">
 <area shape="rect" href="$classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="223,56,407,83">
+<area shape="rect" href="$classC4DView.html#5a783209571030da60229d60dfef66f2" title="Re&#45;Implementation of UI::ViewImpl::setLighting." alt="" coords="243,107,387,133">
 <area shape="rect" href="$classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from..." alt="" coords="456,5,603,32">
 <area shape="rect" href="$classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Re&#45;Implementation of UI::ViewImpl::setColors." alt="" coords="651,5,784,32">

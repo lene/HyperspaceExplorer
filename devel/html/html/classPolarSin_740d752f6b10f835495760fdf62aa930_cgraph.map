@@ -1,20 +1,20 @@
-<area shape="rect" href="$classFunction.html#a490e914a7cd65862ba7956fd558553e" title="Add a parameter to the list of parameters." alt="" coords="184,132,371,159">
-<area shape="rect" href="$classRealFunction.html#37c91ed60f82198f48dfab887dd743c3" title="Allocate and initialize X[][][] with values of f()." alt="" coords="200,487,355,513">
-<area shape="rect" href="libstdc++.tag$a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="471,157,575,184">
-<area shape="rect" href="libstdc++.tag$a01208.html#526e24c01961896c5c0c8491d75258be" title="std::map::find" alt="" coords="472,5,573,32">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="420,208,625,235">
-<area shape="rect" href="libstdc++.tag$a01815.html#403e6a8a62730a30d087c2c6b83d5d9a" title="std::make_pair" alt="" coords="468,56,577,83">
-<area shape="rect" href="libstdc++.tag$a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce" title="std::vector::push_back" alt="" coords="445,107,600,133">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="675,208,915,235">
-<area shape="rect" href="$classRealBase.html#c2cd018b4108455a6daa23d78b2064a6" title="The mathematical function defining the Function object." alt="" coords="477,411,568,437">
-<area shape="rect" href="$classRealBase.html#a738a408ed73025d34db4ff0c4779ce1" title="delta in t" alt="" coords="463,461,583,488">
-<area shape="rect" href="$classRealBase.html#d8aa90547179197a84a55b11fa9efb59" title="delta in u" alt="" coords="461,512,584,539">
-<area shape="rect" href="$classRealBase.html#04608c269de0bb85c988f6f55c246631" title="delta in v" alt="" coords="461,563,584,589">
-<area shape="rect" href="$classRealBase.html#f9dcdf6e54c56a0875afa605bbfafff7" title="min. value of the first parameter, t" alt="" coords="455,613,591,640">
-<area shape="rect" href="$classRealBase.html#13591cf37427643c8cab25ab5e8b05f5" title="number of steps in t" alt="" coords="721,671,868,697">
-<area shape="rect" href="$classRealBase.html#94d43f8cf311879c3d773bfceb9e04f4" title="min. value of the second parameter, u" alt="" coords="455,309,591,336">
-<area shape="rect" href="$classRealBase.html#484ca78d73b9140e77dc26d626e90b88" title="number of steps in u" alt="" coords="721,747,868,773">
-<area shape="rect" href="$classRealBase.html#f79ee0c5a0488dddd613e65f9676b240" title="min. value of the third parameter, v" alt="" coords="455,360,591,387">
-<area shape="rect" href="$classRealBase.html#4c12bdcab988ba1efa81d7f23504bc9d" title="number of steps in v" alt="" coords="721,809,868,836">
-<area shape="rect" href="$classRealFunction.html#1905c4297b0f6b4f91a3b24b55b62eea" title="Initialize the temporary storage areas." alt="" coords="445,715,600,741">
-<area shape="rect" href="libstdc++.tag$a01419.html#59d21f4ea322bb5166a2de7bbdf55b4c" title="std::vector::resize" alt="" coords="731,417,859,444">
+<area shape="rect" href="$classFunction.html#a490e914a7cd65862ba7956fd558553e" title="Add a parameter to the list of parameters." alt="" coords="175,132,343,159">
+<area shape="rect" href="$classRealFunction.html#37c91ed60f82198f48dfab887dd743c3" title="Allocate and initialize X[][][] with values of f()." alt="" coords="185,487,332,513">
+<area shape="rect" href="libstdc++.tag$a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="443,157,536,184">
+<area shape="rect" href="libstdc++.tag$a01208.html#526e24c01961896c5c0c8491d75258be" title="std::map::find" alt="" coords="441,5,537,32">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="393,208,585,235">
+<area shape="rect" href="libstdc++.tag$a01815.html#403e6a8a62730a30d087c2c6b83d5d9a" title="std::make_pair" alt="" coords="440,56,539,83">
+<area shape="rect" href="libstdc++.tag$a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce" title="std::vector::push_back" alt="" coords="419,107,560,133">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="635,208,859,235">
+<area shape="rect" href="$classRealBase.html#c2cd018b4108455a6daa23d78b2064a6" title="The mathematical function defining the Function object." alt="" coords="448,411,531,437">
+<area shape="rect" href="$classRealBase.html#a738a408ed73025d34db4ff0c4779ce1" title="delta in t" alt="" coords="435,461,544,488">
+<area shape="rect" href="$classRealBase.html#d8aa90547179197a84a55b11fa9efb59" title="delta in u" alt="" coords="433,512,545,539">
+<area shape="rect" href="$classRealBase.html#04608c269de0bb85c988f6f55c246631" title="delta in v" alt="" coords="433,563,545,589">
+<area shape="rect" href="$classRealBase.html#f9dcdf6e54c56a0875afa605bbfafff7" title="min. value of the first parameter, t" alt="" coords="428,613,551,640">
+<area shape="rect" href="$classRealBase.html#13591cf37427643c8cab25ab5e8b05f5" title="number of steps in t" alt="" coords="681,671,812,697">
+<area shape="rect" href="$classRealBase.html#94d43f8cf311879c3d773bfceb9e04f4" title="min. value of the second parameter, u" alt="" coords="427,309,552,336">
+<area shape="rect" href="$classRealBase.html#484ca78d73b9140e77dc26d626e90b88" title="number of steps in u" alt="" coords="681,747,812,773">
+<area shape="rect" href="$classRealBase.html#f79ee0c5a0488dddd613e65f9676b240" title="min. value of the third parameter, v" alt="" coords="427,360,552,387">
+<area shape="rect" href="$classRealBase.html#4c12bdcab988ba1efa81d7f23504bc9d" title="number of steps in v" alt="" coords="681,809,812,836">
+<area shape="rect" href="$classRealFunction.html#1905c4297b0f6b4f91a3b24b55b62eea" title="Initialize the temporary storage areas." alt="" coords="416,715,563,741">
+<area shape="rect" href="libstdc++.tag$a01419.html#59d21f4ea322bb5166a2de7bbdf55b4c" title="std::vector::resize" alt="" coords="689,417,804,444">

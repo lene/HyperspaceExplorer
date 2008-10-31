@@ -1,26 +1,27 @@
 <area shape="rect" href="$classC4DView.html#5ec81f7d64c4678cbe44bfad9d2acb65" title="Implementation of UI::View::animate." alt="" coords="1072,5,1197,32">
-<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen." alt="" coords="175,309,316,336">
+<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen." alt="" coords="175,360,316,387">
 <area shape="rect" href="$classC4DView.html#eb4ec12aada637e796110fe8172d12ff" title="Re&#45;Implementation of UI::ViewImpl::setCoordinates." alt="" coords="1053,563,1216,589">
 <area shape="rect" href="$classC4DView.html#b8007107aba8c57dd39063be93ca8f96" title="Re&#45;Implementation of UI::ViewImpl::setHyperfog." alt="" coords="1060,613,1209,640">
-<area shape="rect" href="$classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from..." alt="" coords="568,360,715,387">
+<area shape="rect" href="$classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from..." alt="" coords="568,385,715,412">
 <area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Draw the transformed and projected function onto the screen." alt="" coords="783,309,905,336">
-<area shape="rect" href="$classC4DView.html#b9561bdd967e89d314f7eda6de32b2bc" title="Wrapper for displaying OpenGL display lists." alt="" coords="367,208,519,235">
+<area shape="rect" href="$classC4DView.html#b9561bdd967e89d314f7eda6de32b2bc" title="Wrapper for displaying OpenGL display lists." alt="" coords="367,360,519,387">
 <area shape="rect" href="$classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="371,259,515,285">
-<area shape="rect" href="$classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Re&#45;Implementation of UI::ViewImpl::setColors." alt="" coords="777,360,911,387">
-<area shape="rect" href="$classC4DView.html#530cab21c7ae4ab78eeff14e7f89a879" title="Implementation of UI::View::applyTransform." alt="" coords="1051,461,1219,488">
-<area shape="rect" href="$classC4DView.html#60f45904ff9b227fdf426b5960fa4130" title="rotate in 4D 360 degrees" alt="" coords="1055,512,1215,539">
-<area shape="rect" href="$group__UIHelpers.html#gb4150e26778debfb3de8214203578a41" title="C++ Template Implementation: CustomFunctionSlot." alt="" coords="975,107,1295,133">
-<area shape="rect" href="$classC4DView_1_1CustomFunctionSlot.html#2eaaaf653f2d1bbfe3a2b416f33e4b08" title="Factory method to create a new customized Function of type R^2&#45;&gt;R^4." alt="" coords="977,157,1292,184">
-<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#681ee2ee24d1528a92b6ec0ff4dad9c2" title="Double click event handler." alt="" coords="975,208,1295,235">
+<area shape="rect" href="$classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Re&#45;Implementation of UI::ViewImpl::setColors." alt="" coords="777,385,911,412">
+<area shape="rect" href="$classC4DView.html#530cab21c7ae4ab78eeff14e7f89a879" title="Implementation of UI::View::applyTransform." alt="" coords="1051,157,1219,184">
+<area shape="rect" href="$classC4DView.html#60f45904ff9b227fdf426b5960fa4130" title="rotate in 4D 360 degrees" alt="" coords="1055,208,1215,235">
+<area shape="rect" href="$group__UIHelpers.html#gb4150e26778debfb3de8214203578a41" title="C++ Template Implementation: CustomFunctionSlot." alt="" coords="975,259,1295,285">
+<area shape="rect" href="$classC4DView_1_1CustomFunctionSlot.html#2eaaaf653f2d1bbfe3a2b416f33e4b08" title="Factory method to create a new customized Function of type R^2&#45;&gt;R^4." alt="" coords="977,309,1292,336">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#681ee2ee24d1528a92b6ec0ff4dad9c2" title="Double click event handler." alt="" coords="975,360,1295,387">
 <area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="993,56,1276,83">
-<area shape="rect" href="$classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="1057,259,1212,285">
-<area shape="rect" href="$classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="1047,360,1223,387">
-<area shape="rect" href="$classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="1037,411,1232,437">
-<area shape="rect" href="$classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="1040,309,1229,336">
-<area shape="rect" href="$classC4DView.html#6dc432e565b97c2aa6f2273bbe4135c7" title="Double click event handler, reimplemented from QWidget." alt="" coords="1345,208,1561,235">
+<area shape="rect" href="$classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="1057,411,1212,437">
+<area shape="rect" href="$classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="1047,512,1223,539">
+<area shape="rect" href="$classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="1037,107,1232,133">
+<area shape="rect" href="$classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="1040,461,1229,488">
+<area shape="rect" href="$classC4DView.html#6dc432e565b97c2aa6f2273bbe4135c7" title="Double click event handler, reimplemented from QWidget." alt="" coords="1345,360,1561,387">
 <area shape="rect" href="$classC4DView.html#1b5e87b494b99e3705c64e924480f4ef" title="Mouse move event handler, reimplemented from QWidget." alt="" coords="1364,56,1543,83">
-<area shape="rect" href="$classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="1385,360,1521,387">
+<area shape="rect" href="$classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="1385,512,1521,539">
 <area shape="rect" href="$classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Paint event handler, called whenever the object is transformed." alt="" coords="579,208,704,235">
-<area shape="rect" href="$classC4DView.html#8a01e49be6af9cab84880a176b7c42ae" title="rotate in 3D 360 degrees" alt="" coords="764,259,924,285">
-<area shape="rect" href="$classC4DView.html#5ff6e70d47395827f5ef14793253c8d0" title="Paint event handler, reimplemented from QGLWidget." alt="" coords="775,107,913,133">
-<area shape="rect" href="$classC4DView.html#504fd428909b35e3d80506a0235eac3e" title="Re&#45;Implementation of UI::ViewImpl::setBackground." alt="" coords="763,157,925,184">
+<area shape="rect" href="$classC4DView.html#8a01e49be6af9cab84880a176b7c42ae" title="rotate in 3D 360 degrees" alt="" coords="764,107,924,133">
+<area shape="rect" href="$classC4DView.html#5ff6e70d47395827f5ef14793253c8d0" title="Paint event handler, reimplemented from QGLWidget." alt="" coords="775,157,913,184">
+<area shape="rect" href="$classC4DView.html#504fd428909b35e3d80506a0235eac3e" title="Re&#45;Implementation of UI::ViewImpl::setBackground." alt="" coords="763,208,925,235">
+<area shape="rect" href="$classC4DView.html#5a783209571030da60229d60dfef66f2" title="Re&#45;Implementation of UI::ViewImpl::setLighting." alt="" coords="772,259,916,285">
