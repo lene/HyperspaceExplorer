@@ -27,6 +27,11 @@ namespace UI {
         public:
             ViewImpl();
 
+            /// \return The currently displayed object
+            virtual const std::auto_ptr<Function> &F() const { return _F; }
+            /// Implementation of UI::View::setFunction
+            virtual void setF(Function *_f) { _F.reset(_f); }
+
             /// \return delta values in angles for 4D rotation for animations
             virtual const VecMath::Rotation<4> &getdR() { return _dR; }
             /// Set the rotation step between frames for animations
@@ -109,6 +114,8 @@ namespace UI {
             virtual void setDefaultBackground() { setBackground(defaultBackground); }
 
         private:
+
+            std::auto_ptr<Function> _F;  ///< the Function object currently displayed
 
             bool _colors;       ///< whether to use colors in rendering
             bool _coordinates;  ///< whether to display the 4D coordinate cross

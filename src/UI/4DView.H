@@ -129,9 +129,6 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
 
         ////////        Implementations of the View interface        ////////
 
-        /// Implementation of UI::View::setFunction
-        virtual void setFunction(Function *_f) { setF(_f); }
-
         virtual void ObjectHypercube();     ///< Implementation of UI::View::ObjectHypercube
         virtual void ObjectHyperpyramid();  ///< Implementation of UI::View::ObjectHyperpyramid
         virtual void ObjectHypersponge();   ///< Implementation of UI::View::ObjectHypersponge
@@ -231,9 +228,6 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         /// GL stuff needed in addition to resizeEvent(). Reimplemented from QGLWidget
         virtual void resizeGL (int, int);
 
-        void setF(Function *_f) { _F.reset(_f); }
-        const std::auto_ptr<Function> &F() const { return _F; }
-
         void setT(const VecMath::Vector<4> &_t) { _T = _t; }
         const VecMath::Vector<4> &T() { return _T; }
         void addT(const VecMath::Vector<4> &_dT) { _T += _dT; }
@@ -313,10 +307,8 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
 
     private:                                    //  member variables
 
-        std::auto_ptr<Function> _F;  ///< the Function object currently displayed
-
-        VecMath::Vector<4> _T;   ///< coordinates for 4D translation
-        VecMath::Rotation<4> _R;   ///< angles for 4D rotation
+        VecMath::Vector<4> _T;      ///< coordinates for 4D translation
+        VecMath::Rotation<4> _R;    ///< angles for 4D rotation
 
         /// rotation in X, Y and Z
         VecMath::Rotation<3, GLdouble> _rot;
@@ -328,18 +320,18 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         double _CamW;        ///< W coordinate of the camera
         double _ScrW;        ///< W coordinate of the screen
 
-        double _distance;                       ///< viewpoint distance
+        double _distance;               ///< viewpoint distance
 
-        unsigned _animationFrame;    ///< current frame in animation
-        unsigned _animationMaxFrames;    ///< limit for saved animation frames
-        const unsigned _animation_fps;   ///< frames per second for animations
+        unsigned _animationFrame;       ///< current frame in animation
+        unsigned _animationMaxFrames;   ///< limit for saved animation frames
+        const unsigned _animation_fps;  ///< frames per second for animations
 
-        GLint _ObjectList;       ///< a GLList for the display of the object
-        GLint _CoordinateCross;  ///< a GLList for the display of the coordinates
+        GLint _ObjectList;      ///< a GLList for the display of the object
+        GLint _CoordinateCross; ///< a GLList for the display of the coordinates
 
-        bool _Animated;              ///< if true, image is currently animated
+        bool _Animated;             ///< if true, image is currently animated
 
-        bool _CurrentlyRendering;    ///< if true, currently rendering an image
+        bool _CurrentlyRendering;   ///< if true, currently rendering an image
 
         /// times out every X ms to draw new animation frame
         QTimer *_AnimationTimer;
@@ -349,8 +341,8 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         /// dialog to enter function parameters
         UI::Dialogs::ValuesDialogImpl *_Values;
 
-        Menu4D *_menu;               ///< the popup menu and menu bar
-        MouseHandler4D *_mouseHandler; ///< handler to delegate mouse events to
+        Menu4D *_menu;                  ///< the popup menu and menu bar
+        MouseHandler4D *_mouseHandler;  ///< handler to delegate mouse events to
 
         /// endpoints of the lines constituting the 4D coordinate cross
         std::vector<std::vector<VecMath::Vector<4> > > _Cross;
@@ -359,8 +351,8 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         /// endpoints of the lines constituting the projected 4D coordinates
         std::vector<std::vector<VecMath::Vector<3> > > _CrossScr;
 
-        static GLfloat _LightPos[4]; ///< position of the light
-        static std::string _HelpFile;
+        static GLfloat _LightPos[4];    ///< position of the light
+        static std::string _HelpFile;   ///< Path to the user docs HTML file
 
     friend class CustomFunctionSlot<CustomFunction>;
     friend class CustomFunctionSlot<CustomPolarFunction>;

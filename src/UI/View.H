@@ -38,9 +38,11 @@ namespace UI {
         public:
             View() { }
 
+            /// \return The currently displayed object
+            virtual const std::auto_ptr<Function> &F() const = 0;
             /// Set the currently displayed object to the given Function
             /** \param f The object to be set */
-            virtual void setFunction(Function *f) = 0;
+            virtual void setF(Function *f) = 0;
 
             /// Set the currently displayed object to a hypercube
             /** Necessary because I don't see a way to set the displayed object

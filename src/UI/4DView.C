@@ -67,22 +67,21 @@ template<typename T> T max(const T &a, const T &b) {
 C4DView::C4DView(QWidget *parent):
     QGLWidget (parent),
     ViewImpl(), 
-                _F(std::auto_ptr<Function>()),
 
-                _T(0.,0.,0.,0.), _R(0.,0.,0.,0.,0.,0.),
-                _rot(15., 15., 0.), _dR3(0.,0.,0.), _trans(0., 0.,-10.),
+    _T(0.,0.,0.,0.), _R(0.,0.,0.,0.,0.,0.),
+    _rot(15., 15., 0.), _dR3(0.,0.,0.), _trans(0., 0.,-10.),
 
-                _CamW (-3.), _ScrW (0.),
+    _CamW (-3.), _ScrW (0.),
 
-                _animationFrame(0),
-                _animationMaxFrames((unsigned)-1),
-                _animation_fps (50),
+    _animationFrame(0),
+    _animationMaxFrames((unsigned)-1),
+    _animation_fps (50),
 
-                _ObjectList (0), _CoordinateCross (0),
+    _ObjectList (0), _CoordinateCross (0),
 
-                _Animated (false), _CurrentlyRendering (false),
+    _Animated (false), _CurrentlyRendering (false),
 
-                _Values (new UI::Dialogs::ValuesDialogImpl(this)) {
+    _Values (new UI::Dialogs::ValuesDialogImpl(this)) {
 
     InitCross();
 

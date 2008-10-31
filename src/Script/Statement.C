@@ -40,7 +40,7 @@ namespace Script {
     bool ObjectStmt::execute() {
         Function *f = TheFunctionFactory::Instance().createFunction(arg());
         if (!f) return false;
-        parser()->getView()->setFunction(f);
+        parser()->getView()->setF(f);
         return true;
     }
 
