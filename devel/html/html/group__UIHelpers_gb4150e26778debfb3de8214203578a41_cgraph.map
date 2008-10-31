@@ -27,7 +27,7 @@
 <area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#048c38bc05f745dca34dd68d35cf993e" title="steps in parameter t" alt="" coords="637,639,864,665">
 <area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#9cebd8d993b63d33d3965e03fb51b801" title="steps in parameter u" alt="" coords="636,791,865,817">
 <area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#57b3da19a4f4aa276ecb982031afe128" title="steps in parameter v" alt="" coords="636,943,865,969">
-<area shape="rect" href="$classC4DView.html#e8db20fdfebe8d979f90ff303305a79d" title="Paint event handler, called whenever the object is transformed." alt="" coords="688,411,813,437">
+<area shape="rect" href="$classC4DView.html#be8e58d21b0e1c513b10afa294b162b2" title="Paint event handler, reimplemented from QGLWidget." alt="" coords="681,411,820,437">
 <area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen." alt="" coords="1125,335,1267,361">
 <area shape="rect" href="$classUI_1_1ViewImpl.html#03d77f320d7aada22c143646b40925d3" title="UI::ViewImpl::getSolid" alt="" coords="917,385,1067,412">
 <area shape="rect" href="$classC4DView.html#b9561bdd967e89d314f7eda6de32b2bc" title="Wrapper for displaying OpenGL display lists." alt="" coords="916,436,1068,463">
