@@ -1,3 +1,3 @@
-<area shape="rect" href="$classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from..." alt="" coords="259,5,408,32">
-<area shape="rect" href="$classC4DView.html#262d0aa0188edc2b262160959ce7d965" title="Implementation of UI::View::setTransparence." alt="" coords="241,56,425,83">
-<area shape="rect" href="$classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Implementation of UI::View::setColors." alt="" coords="475,5,616,32">
+<area shape="rect" href="$classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from..." alt="" coords="239,5,385,32">
+<area shape="rect" href="$classC4DView.html#262d0aa0188edc2b262160959ce7d965" title="Re&#45;Implementation of UI::ViewImpl::setTransparence." alt="" coords="228,56,396,83">
+<area shape="rect" href="$classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Re&#45;Implementation of UI::ViewImpl::setColors." alt="" coords="445,5,579,32">

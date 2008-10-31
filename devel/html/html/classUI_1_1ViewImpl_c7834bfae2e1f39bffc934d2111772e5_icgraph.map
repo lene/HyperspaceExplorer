@@ -1,0 +1,5 @@
+<area shape="rect" href="$classC4DView.html#3c423447f2090b7e3e2c791f54244b02" title="OpenGL initialization for transparence." alt="" coords="252,31,425,57">
+<area shape="rect" href="$classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="247,81,431,108">
+<area shape="rect" href="$classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from..." alt="" coords="492,5,639,32">
+<area shape="rect" href="$classC4DView.html#262d0aa0188edc2b262160959ce7d965" title="Re&#45;Implementation of UI::ViewImpl::setTransparence." alt="" coords="481,56,649,83">
+<area shape="rect" href="$classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Re&#45;Implementation of UI::ViewImpl::setColors." alt="" coords="699,5,832,32">

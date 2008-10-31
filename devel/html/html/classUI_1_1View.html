@@ -52,16 +52,19 @@ Inheritance diagram for UI::View:</div>
 <div class="dynsection">
 <p><center><img src="classUI_1_1View__inherit__graph.png" border="0" usemap="#UI_1_1View__inherit__map" alt="Inheritance graph"></center>
 <map name="UI_1_1View__inherit__map">
-<area shape="rect" href="classC4DView.html" title="Displays and manipulates four&#45;dimensional Functions in a QGLWidget." alt="" coords="5,581,195,2805"></map>
+<area shape="rect" href="classUI_1_1ViewImpl.html" title="Interface with attributes to display four&#45;dimensional objects." alt="" coords="13,805,173,1669"><area shape="rect" href="classC4DView.html" title="Displays and manipulates four&#45;dimensional Functions in a QGLWidget." alt="" coords="5,1717,181,3701"></map>
 <center><font size="2">[<a href="graph_legend.html">legend</a>]</font></center></div>
 
 <p>
 <a href="classUI_1_1View-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#14042398d7b1b1901dbdad0f3502fb20">setFunction</a> (<a class="el" href="classFunction.html">Function</a> *f)=0</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual const <a class="elRef" doxygen="libstdc++.tag:" href="a01015.html">std::auto_ptr</a><br>
+&lt; <a class="el" href="classFunction.html">Function</a> &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#7141de03205e44b946a46be7e5775fe2">F</a> () const =0</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the currently displayed object to the given <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a>.  <a href="#14042398d7b1b1901dbdad0f3502fb20"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#a01595ec4f81c2ef329f067cf2902954">setF</a> (<a class="el" href="classFunction.html">Function</a> *f)=0</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the currently displayed object to the given <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a>.  <a href="#a01595ec4f81c2ef329f067cf2902954"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#5a9a55ff5d29a38fa66af97d66b0d861">ObjectHypercube</a> ()=0</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the currently displayed object to a hypercube.  <a href="#5a9a55ff5d29a38fa66af97d66b0d861"></a><br></td></tr>
@@ -81,15 +84,18 @@ Inheritance diagram for UI::View:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#444d2454dd97e95b51dedd2447e69e41">applyTransform</a> (const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;R, const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;T)=0</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Apply the given Transformation to the currently displayed object.  <a href="#444d2454dd97e95b51dedd2447e69e41"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual const <br>
+<a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#5e68b78c7583c1a30cd6e19bffc26845">getdR</a> ()=0</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#2759ba7675f31af6e6d7d10996bd12d2">setdR</a> (const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;_dr)=0</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the rotation step between frames for anumations.  <a href="#2759ba7675f31af6e6d7d10996bd12d2"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="cbf25bbb0733ea68c59cfcbefafeb007"></a><!-- doxytag: member="UI::View::setNumFrames" ref="cbf25bbb0733ea68c59cfcbefafeb007" args="(unsigned _numFrames)" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#cbf25bbb0733ea68c59cfcbefafeb007">setNumFrames</a> (unsigned _numFrames)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the rotation step between frames for animations.  <a href="#2759ba7675f31af6e6d7d10996bd12d2"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ceb49c055077f6ca39553d7298a77b76"></a><!-- doxytag: member="UI::View::setNumFrames" ref="ceb49c055077f6ca39553d7298a77b76" args="(unsigned _numFrames)=0" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#ceb49c055077f6ca39553d7298a77b76">setNumFrames</a> (unsigned _numFrames)=0</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the number of frames for an animation. <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="471348f037c0f25487bbf52f9c4e1a1b"></a><!-- doxytag: member="UI::View::setNumLoops" ref="471348f037c0f25487bbf52f9c4e1a1b" args="(unsigned _numLoops)" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#471348f037c0f25487bbf52f9c4e1a1b">setNumLoops</a> (unsigned _numLoops)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5a97613e79552a0c9784c7c6fd946241"></a><!-- doxytag: member="UI::View::setNumLoops" ref="5a97613e79552a0c9784c7c6fd946241" args="(unsigned _numLoops)=0" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#5a97613e79552a0c9784c7c6fd946241">setNumLoops</a> (unsigned _numLoops)=0</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the number of times <code>_numFrames</code> are repeated. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c3ed9ea47b162537f11866ce362cfbac"></a><!-- doxytag: member="UI::View::animate" ref="c3ed9ea47b162537f11866ce362cfbac" args="()=0" -->
@@ -100,10 +106,14 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#e439f9ec3109bd734dab9aceb552221f">setSize</a> (unsigned, unsigned)=0</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the width and height of the viewport. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual const <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#943765a7c1bf3e90f71547ef8cb7721d">getImgDir</a> ()=0</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1441a46af84f3638e6ff69ddc965efd8"></a><!-- doxytag: member="UI::View::setImgDir" ref="1441a46af84f3638e6ff69ddc965efd8" args="(const std::string &amp;)=0" -->
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#1441a46af84f3638e6ff69ddc965efd8">setImgDir</a> (const <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;)=0</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the directory where to store image files. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual const <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#8d15f9a8fabfe77711d7c272ba49aea6">getImgPrefix</a> ()=0</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0864530a5c989d1cf0e8d38bac7868a3"></a><!-- doxytag: member="UI::View::setImgPrefix" ref="0864530a5c989d1cf0e8d38bac7868a3" args="(const std::string &amp;)=0" -->
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#0864530a5c989d1cf0e8d38bac7868a3">setImgPrefix</a> (const <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;)=0</td></tr>
 
@@ -112,63 +122,78 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#41793c34df5fe332e3eef11cc7e7af58">setBackground</a> (const <a class="el" href="classColor.html">Color</a> &amp;)=0</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the background color. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual const <a class="el" href="classColor.html">Color</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#db1e9225dadf71c1de2a9303c4b86270">getBackground</a> ()=0</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#f25dc77d07bf08f033a1ce80efc69b81">getColors</a> () const =0</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="eb0e8e3e949032128918105d69511648"></a><!-- doxytag: member="UI::View::setColors" ref="eb0e8e3e949032128918105d69511648" args="(bool)=0" -->
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#eb0e8e3e949032128918105d69511648">setColors</a> (bool)=0</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn display of colors on or off. <br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn display of colors in rendering on or off. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#d0a0dae802e350612fa9802879ba567f">getCoordinates</a> () const =0</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7c8d7d7eb501eb893139495320a6ea8a"></a><!-- doxytag: member="UI::View::setCoordinates" ref="7c8d7d7eb501eb893139495320a6ea8a" args="(bool)=0" -->
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#7c8d7d7eb501eb893139495320a6ea8a">setCoordinates</a> (bool)=0</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn display of coordinate crosss on or off. <br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn display of 4D coordinate cross on or off. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#787f16b959e4758753c823f1f7b6997d">getFog</a> () const =0</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="920d5e463e93affe91744e1e2a29ee90"></a><!-- doxytag: member="UI::View::setFog" ref="920d5e463e93affe91744e1e2a29ee90" args="(bool)=0" -->
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#920d5e463e93affe91744e1e2a29ee90">setFog</a> (bool)=0</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn depth cue on or off. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#341c92ca06e0b1ed7143822a9d960181">getHyperfog</a> () const =0</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="535aa8964ad6f108e2a211303a716969"></a><!-- doxytag: member="UI::View::setHyperfog" ref="535aa8964ad6f108e2a211303a716969" args="(bool)=0" -->
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#535aa8964ad6f108e2a211303a716969">setHyperfog</a> (bool)=0</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn depth cue in four dimensions on or off. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#72901b2606c3e1c7a054a97591c3e656">getLighting</a> () const =0</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2b89fbf7b5bfd43c5f319d143c62f8b7"></a><!-- doxytag: member="UI::View::setLighting" ref="2b89fbf7b5bfd43c5f319d143c62f8b7" args="(bool)=0" -->
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#2b89fbf7b5bfd43c5f319d143c62f8b7">setLighting</a> (bool)=0</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn lighting on or off. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#eb23d7befc10c2683e6e529af60d6e64">getShading</a> () const =0</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="952d3f243e8efc213e3d5b0ad73e7326"></a><!-- doxytag: member="UI::View::setShading" ref="952d3f243e8efc213e3d5b0ad73e7326" args="(bool)=0" -->
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#952d3f243e8efc213e3d5b0ad73e7326">setShading</a> (bool)=0</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn gouraud shading on or off. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#e04a1dd4e7ff25405db674eb6e14ae68">getSolid</a> () const =0</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#949ffc0134810c2936733a86b189aa3f">setSolid</a> (bool on)=0</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn wireframe display on or off.  <a href="#949ffc0134810c2936733a86b189aa3f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#7f915fad27490b1a8238bb26a2474c53">getTransparence</a> () const =0</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3bcd31cedf7f168775d195674f073049"></a><!-- doxytag: member="UI::View::setTransparence" ref="3bcd31cedf7f168775d195674f073049" args="(bool)=0" -->
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#3bcd31cedf7f168775d195674f073049">setTransparence</a> (bool)=0</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn transparenc/line antialiasing on or off. <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#83880a3dddfdd7706f23061722d19715">setWireframe</a> (bool wire)=0</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn wireframe display on or off.  <a href="#83880a3dddfdd7706f23061722d19715"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn transparence/line antialiasing on or off. <br></td></tr>
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="610e52cb34fcfda3d7d83b5b53802c99"></a><!-- doxytag: member="UI::View::ApplyChanges" ref="610e52cb34fcfda3d7d83b5b53802c99" args="(const ParameterMap &amp;)=0" -->
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#610e52cb34fcfda3d7d83b5b53802c99">ApplyChanges</a> (const <a class="el" href="classParameterMap.html">ParameterMap</a> &amp;)=0</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Apply changes in parameters and display them. <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8ba209ffca62aa49cc6c1ee31c6dc02f"></a><!-- doxytag: member="UI::View::getNumFrames" ref="8ba209ffca62aa49cc6c1ee31c6dc02f" args="()" -->
-virtual unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#8ba209ffca62aa49cc6c1ee31c6dc02f">getNumFrames</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d11dac3b569b4c79c20a4b15f3f269fe"></a><!-- doxytag: member="UI::View::getNumFrames" ref="d11dac3b569b4c79c20a4b15f3f269fe" args="()=0" -->
+virtual unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#d11dac3b569b4c79c20a4b15f3f269fe">getNumFrames</a> ()=0</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Number of frames for animations. <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="764afc6e606bdc5760e4e4eec932e066"></a><!-- doxytag: member="UI::View::getNumLoops" ref="764afc6e606bdc5760e4e4eec932e066" args="()" -->
-virtual unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#764afc6e606bdc5760e4e4eec932e066">getNumLoops</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="53571fb4bd8354a810da6d44f337eb54"></a><!-- doxytag: member="UI::View::getNumLoops" ref="53571fb4bd8354a810da6d44f337eb54" args="()=0" -->
+virtual unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#53571fb4bd8354a810da6d44f337eb54">getNumLoops</a> ()=0</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Number of loops to repeat an animation. <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b1d64f55fd63764b481513f43099cf93"></a><!-- doxytag: member="UI::View::setDefaultBackground" ref="b1d64f55fd63764b481513f43099cf93" args="()" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#b1d64f55fd63764b481513f43099cf93">setDefaultBackground</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#c86dce95650de2a982e75685246bd8fe">getWriteImages</a> ()=0</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f8740f364582cae91e9d7b2f3c9ccb0a"></a><!-- doxytag: member="UI::View::setWriteImages" ref="f8740f364582cae91e9d7b2f3c9ccb0a" args="(bool)=0" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#f8740f364582cae91e9d7b2f3c9ccb0a">setWriteImages</a> (bool)=0</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turn saving images to file system on or off. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4919ab4549cfbe8fc0bbc4e3897b8172"></a><!-- doxytag: member="UI::View::setDefaultBackground" ref="4919ab4549cfbe8fc0bbc4e3897b8172" args="()=0" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#4919ab4549cfbe8fc0bbc4e3897b8172">setDefaultBackground</a> ()=0</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set a default background color. <br></td></tr>
-<tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="621ef7bbb28a6d0a9b8422520c5a0adc"></a><!-- doxytag: member="UI::View::numFrames" ref="621ef7bbb28a6d0a9b8422520c5a0adc" args="" -->
-unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#621ef7bbb28a6d0a9b8422520c5a0adc">numFrames</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">number of frames for animations <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d51aa71da03b21db1a58c82363aa03a9"></a><!-- doxytag: member="UI::View::numLoops" ref="d51aa71da03b21db1a58c82363aa03a9" args="" -->
-unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#d51aa71da03b21db1a58c82363aa03a9">numLoops</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">number of loops to repeat an animation <br></td></tr>
 <tr><td colspan="2"><br><h2>Classes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View_1_1FunctionNotSupportedException.html">FunctionNotSupportedException</a></td></tr>
 
@@ -178,12 +203,34 @@ unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 Interface to display four-dimensional objects. 
 <p>
 Provides functions to display <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> objects, transform them and animate them. Also to set various viewing states. <hr><h2>Member Function Documentation</h2>
-<a class="anchor" name="14042398d7b1b1901dbdad0f3502fb20"></a><!-- doxytag: member="UI::View::setFunction" ref="14042398d7b1b1901dbdad0f3502fb20" args="(Function *f)=0" -->
+<a class="anchor" name="7141de03205e44b946a46be7e5775fe2"></a><!-- doxytag: member="UI::View::F" ref="7141de03205e44b946a46be7e5775fe2" args="() const =0" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void UI::View::setFunction           </td>
+          <td class="memname">virtual const <a class="elRef" doxygen="libstdc++.tag:" href="a01015.html">std::auto_ptr</a>&lt;<a class="el" href="classFunction.html">Function</a>&gt;&amp; UI::View::F           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>The currently displayed object </dd></dl>
+
+<p>Implemented in <a class="el" href="classUI_1_1ViewImpl.html#7d0098100c1a7e5e9af8808072ab68da">UI::ViewImpl</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a01595ec4f81c2ef329f067cf2902954"></a><!-- doxytag: member="UI::View::setF" ref="a01595ec4f81c2ef329f067cf2902954" args="(Function *f)=0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void UI::View::setF           </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classFunction.html">Function</a> *&nbsp;</td>
           <td class="paramname"> <em>f</em>          </td>
@@ -203,7 +250,7 @@ Set the currently displayed object to the given <a class="el" href="classFunctio
   </table>
 </dl>
 
-<p>Implemented in <a class="el" href="classC4DView.html#1cb1c0e65ff3650457256f4f8192b70e">C4DView</a>.</p>
+<p>Implemented in <a class="el" href="classUI_1_1ViewImpl.html#e04c92a2f0580b1830b1cbfcca1c6715">UI::ViewImpl</a>.</p>
 
 <p>Referenced by <a class="el" href="Statement_8C-source.html#l00040">Script::ObjectStmt::execute()</a>.</p>
 
@@ -211,9 +258,9 @@ Set the currently displayed object to the given <a class="el" href="classFunctio
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dynsection">
-<p><center><img src="classUI_1_1View_14042398d7b1b1901dbdad0f3502fb20_icgraph.png" border="0" usemap="#classUI_1_1View_14042398d7b1b1901dbdad0f3502fb20_icgraph_map" alt=""></center>
-<map name="classUI_1_1View_14042398d7b1b1901dbdad0f3502fb20_icgraph_map">
-<area shape="rect" href="classScript_1_1ObjectStmt.html#3e0556105a96433108763fb3fb0119c0" title="Script::ObjectStmt::execute" alt="" coords="204,5,388,32"></map>
+<p><center><img src="classUI_1_1View_a01595ec4f81c2ef329f067cf2902954_icgraph.png" border="0" usemap="#classUI_1_1View_a01595ec4f81c2ef329f067cf2902954_icgraph_map" alt=""></center>
+<map name="classUI_1_1View_a01595ec4f81c2ef329f067cf2902954_icgraph_map">
+<area shape="rect" href="classScript_1_1ObjectStmt.html#3e0556105a96433108763fb3fb0119c0" title="Script::ObjectStmt::execute" alt="" coords="156,5,324,32"></map>
 </div>
 
 </div>
@@ -399,6 +446,28 @@ The object is redrawn after the Transformation. <dl compact><dt><b>Parameters:</
 
 </div>
 </div><p>
+<a class="anchor" name="5e68b78c7583c1a30cd6e19bffc26845"></a><!-- doxytag: member="UI::View::getdR" ref="5e68b78c7583c1a30cd6e19bffc26845" args="()=0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt;4&gt;&amp; UI::View::getdR           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>delta values in angles for 4D rotation for animations </dd></dl>
+
+<p>Implemented in <a class="el" href="classUI_1_1ViewImpl.html#f7b5919ff7fcd06e8f3445eea3f39d59">UI::ViewImpl</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="2759ba7675f31af6e6d7d10996bd12d2"></a><!-- doxytag: member="UI::View::setdR" ref="2759ba7675f31af6e6d7d10996bd12d2" args="(const VecMath::Rotation&lt; 4 &gt; &amp;_dr)=0" -->
 <div class="memitem">
 <div class="memproto">
@@ -416,27 +485,247 @@ The object is redrawn after the Transformation. <dl compact><dt><b>Parameters:</
 <div class="memdoc">
 
 <p>
-Set the rotation step between frames for anumations. 
+Set the rotation step between frames for animations. 
 <p>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>_dr</em>&nbsp;</td><td>The rotation step between two frames of an animation </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_dr</em>&nbsp;</td><td>Rotation step between two frames of an animation </td></tr>
   </table>
 </dl>
 
-<p>Implemented in <a class="el" href="classC4DView.html#c827f1ccf2d9044f2585d8fff918b2a5">C4DView</a>.</p>
+<p>Implemented in <a class="el" href="classUI_1_1ViewImpl.html#0fef5fd79e988554b44574f942cda7f1">UI::ViewImpl</a>.</p>
 
 </div>
 </div><p>
-<a class="anchor" name="83880a3dddfdd7706f23061722d19715"></a><!-- doxytag: member="UI::View::setWireframe" ref="83880a3dddfdd7706f23061722d19715" args="(bool wire)=0" -->
+<a class="anchor" name="943765a7c1bf3e90f71547ef8cb7721d"></a><!-- doxytag: member="UI::View::getImgDir" ref="943765a7c1bf3e90f71547ef8cb7721d" args="()=0" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void UI::View::setWireframe           </td>
+          <td class="memname">virtual const <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a>&amp; UI::View::getImgDir           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>directory to save images to </dd></dl>
+
+<p>Implemented in <a class="el" href="classUI_1_1ViewImpl.html#3547e7dcf92ec5f4329c03610e992513">UI::ViewImpl</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8d15f9a8fabfe77711d7c272ba49aea6"></a><!-- doxytag: member="UI::View::getImgPrefix" ref="8d15f9a8fabfe77711d7c272ba49aea6" args="()=0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a>&amp; UI::View::getImgPrefix           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>filename prefix for saved images </dd></dl>
+
+<p>Implemented in <a class="el" href="classUI_1_1ViewImpl.html#1514ea64e95ffb856a5bc4595b33df69">UI::ViewImpl</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="db1e9225dadf71c1de2a9303c4b86270"></a><!-- doxytag: member="UI::View::getBackground" ref="db1e9225dadf71c1de2a9303c4b86270" args="()=0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="el" href="classColor.html">Color</a>&amp; UI::View::getBackground           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>The background color </dd></dl>
+
+<p>Implemented in <a class="el" href="classUI_1_1ViewImpl.html#1ba44d8e20d2bbf67ff6a0f318dd3bfb">UI::ViewImpl</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f25dc77d07bf08f033a1ce80efc69b81"></a><!-- doxytag: member="UI::View::getColors" ref="f25dc77d07bf08f033a1ce80efc69b81" args="() const =0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool UI::View::getColors           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to use colors in rendering or not </dd></dl>
+
+<p>Implemented in <a class="el" href="classUI_1_1ViewImpl.html#5513826cce6a6b28e5b5bc84ee2514e4">UI::ViewImpl</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d0a0dae802e350612fa9802879ba567f"></a><!-- doxytag: member="UI::View::getCoordinates" ref="d0a0dae802e350612fa9802879ba567f" args="() const =0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool UI::View::getCoordinates           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to display the 4D coordinate cross or not </dd></dl>
+
+<p>Implemented in <a class="el" href="classUI_1_1ViewImpl.html#756d50cd0f539f632b4ffe0d28f93559">UI::ViewImpl</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="787f16b959e4758753c823f1f7b6997d"></a><!-- doxytag: member="UI::View::getFog" ref="787f16b959e4758753c823f1f7b6997d" args="() const =0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool UI::View::getFog           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to use depth cue/fog in rendering or not </dd></dl>
+
+<p>Implemented in <a class="el" href="classUI_1_1ViewImpl.html#b242e415663c04c3bdad27d7dea64275">UI::ViewImpl</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="341c92ca06e0b1ed7143822a9d960181"></a><!-- doxytag: member="UI::View::getHyperfog" ref="341c92ca06e0b1ed7143822a9d960181" args="() const =0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool UI::View::getHyperfog           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to use four-dimensional depth cue or not </dd></dl>
+
+<p>Implemented in <a class="el" href="classUI_1_1ViewImpl.html#862bf2d8e5cf2372e67c24ef324d1e3a">UI::ViewImpl</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="72901b2606c3e1c7a054a97591c3e656"></a><!-- doxytag: member="UI::View::getLighting" ref="72901b2606c3e1c7a054a97591c3e656" args="() const =0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool UI::View::getLighting           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to use lighting in rendering or not </dd></dl>
+
+<p>Implemented in <a class="el" href="classUI_1_1ViewImpl.html#880766a85ec37dda07e1f70952aa178e">UI::ViewImpl</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="eb23d7befc10c2683e6e529af60d6e64"></a><!-- doxytag: member="UI::View::getShading" ref="eb23d7befc10c2683e6e529af60d6e64" args="() const =0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool UI::View::getShading           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to use shading in rendering or not </dd></dl>
+
+<p>Implemented in <a class="el" href="classUI_1_1ViewImpl.html#ba489ae42c965c3a2b4e20a754d3836d">UI::ViewImpl</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e04a1dd4e7ff25405db674eb6e14ae68"></a><!-- doxytag: member="UI::View::getSolid" ref="e04a1dd4e7ff25405db674eb6e14ae68" args="() const =0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool UI::View::getSolid           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to draw the objects' surfaces </dd></dl>
+
+<p>Implemented in <a class="el" href="classUI_1_1ViewImpl.html#03d77f320d7aada22c143646b40925d3">UI::ViewImpl</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="949ffc0134810c2936733a86b189aa3f"></a><!-- doxytag: member="UI::View::setSolid" ref="949ffc0134810c2936733a86b189aa3f" args="(bool on)=0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void UI::View::setSolid           </td>
           <td>(</td>
           <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>wire</em>          </td>
+          <td class="paramname"> <em>on</em>          </td>
           <td>&nbsp;)&nbsp;</td>
           <td><code> [pure virtual]</code></td>
         </tr>
@@ -449,11 +738,55 @@ Turn wireframe display on or off.
 <p>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>wire</em>&nbsp;</td><td>if true, displays wireframe model; else solid </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>on</em>&nbsp;</td><td>if true, displays wireframe model; else solid </td></tr>
   </table>
 </dl>
 
-<p>Implemented in <a class="el" href="classC4DView.html#7576863855bcc3cbd7b41c5f77ab220e">C4DView</a>.</p>
+<p>Implemented in <a class="el" href="classUI_1_1ViewImpl.html#095604d624fb156d4dc00600bd23265d">UI::ViewImpl</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7f915fad27490b1a8238bb26a2474c53"></a><!-- doxytag: member="UI::View::getTransparence" ref="7f915fad27490b1a8238bb26a2474c53" args="() const =0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool UI::View::getTransparence           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to use transparence/line antialiasing or not </dd></dl>
+
+<p>Implemented in <a class="el" href="classUI_1_1ViewImpl.html#c7834bfae2e1f39bffc934d2111772e5">UI::ViewImpl</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c86dce95650de2a982e75685246bd8fe"></a><!-- doxytag: member="UI::View::getWriteImages" ref="c86dce95650de2a982e75685246bd8fe" args="()=0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool UI::View::getWriteImages           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [protected, pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>whether to save images to file system </dd></dl>
+
+<p>Implemented in <a class="el" href="classUI_1_1ViewImpl.html#c5270e75eabb357f75b0955b8b887cb0">UI::ViewImpl</a>.</p>
 
 </div>
 </div><p>
@@ -463,7 +796,7 @@ Turn wireframe display on or off.
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Thu Oct 30 23:12:09 2008 for HyperspaceExplorer 0.6.1
+                Generated on Fri Oct 31 22:08:31 2008 for HyperspaceExplorer 0.6.1
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.6
                 &nbsp;-&nbsp;

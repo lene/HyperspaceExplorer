@@ -1,1 +1,24 @@
-<area shape="rect" href="$classScript_1_1Parser.html" title="Parser reads a file and executes the commands in it in a C4DView." alt="" coords="5,5,109,32">
+<area shape="rect" href="$classScript_1_1Statement.html" title="Base class for all possible statements in a script." alt="" coords="7,411,119,437">
+<area shape="rect" href="$classScript_1_1AnimateStmt.html" title="&quot;animate&quot;" alt="" coords="175,157,305,184">
+<area shape="rect" href="$classScript_1_1BoolStatement.html" title="Statement with a single boolean parameter." alt="" coords="171,208,309,235">
+<area shape="rect" href="$classScript_1_1FramesStmt.html" title="&quot;frames &lt;num_frames&gt;&quot;" alt="" coords="177,259,303,285">
+<area shape="rect" href="$classScript_1_1ImgDirStmt.html" title="&quot;image_dir &lt;directory&gt;&quot;" alt="" coords="177,309,303,336">
+<area shape="rect" href="$classScript_1_1ImgPrefixStmt.html" title="&quot;image_prefix &lt;filename_prefix&gt;&quot;" alt="" coords="171,360,309,387">
+<area shape="rect" href="$classScript_1_1LoopStmt.html" title="&quot;loop &lt;num_loops&gt;&quot;" alt="" coords="184,411,296,437">
+<area shape="rect" href="$classScript_1_1ObjectStmt.html" title="&quot;object &lt;object_name&gt;&quot;" alt="" coords="180,461,300,488">
+<area shape="rect" href="$classScript_1_1ParmStmt.html" title="&quot;parameter &lt;double|int|unsigned|string&gt; &lt;parameter&gt;&quot;" alt="" coords="168,512,312,539">
+<area shape="rect" href="$classScript_1_1SizeStmt.html" title="&quot;size &lt;width&gt; &lt;height&gt;&quot;" alt="" coords="185,563,295,589">
+<area shape="rect" href="$classScript_1_1SleepStmt.html" title="&quot;sleep &lt;milliseconds&gt;&quot;" alt="" coords="183,613,297,640">
+<area shape="rect" href="$classScript_1_1XformStmt.html" title="&quot;transform &lt;rotation&gt;&quot;" alt="" coords="180,664,300,691">
+<area shape="rect" href="$classScript_1_1ColorStmt.html" title="&quot;color &lt;bool&gt;&quot;" alt="" coords="368,5,483,32">
+<area shape="rect" href="$classScript_1_1CoordsStmt.html" title="&quot;coordinates &lt;bool&gt;&quot;" alt="" coords="364,56,487,83">
+<area shape="rect" href="$classScript_1_1Fog4DStmt.html" title="&quot;depthcue4d &lt;bool&gt;&quot;" alt="" coords="364,107,487,133">
+<area shape="rect" href="$classScript_1_1FogStmt.html" title="&quot;depthcue3d &lt;bool&gt;&quot;" alt="" coords="372,157,479,184">
+<area shape="rect" href="$classScript_1_1LightStmt.html" title="&quot;lighting &lt;bool&gt;&quot;" alt="" coords="368,208,483,235">
+<area shape="rect" href="$classScript_1_1ShadingStmt.html" title="&quot;shading &lt;bool&gt;&quot;" alt="" coords="361,259,489,285">
+<area shape="rect" href="$classScript_1_1SolidStmt.html" title="&quot;solid &lt;bool&gt;&quot;" alt="" coords="369,309,481,336">
+<area shape="rect" href="$classScript_1_1TransStmt.html" title="&quot;transparence &lt;bool&gt;&quot;" alt="" coords="368,360,483,387">
+<area shape="rect" href="$classScript_1_1WireStmt.html" title="&quot;wireframe &lt;bool&gt;&quot;" alt="" coords="369,411,481,437">
+<area shape="rect" href="$classScript_1_1DeltaStmt.html" title="&quot;transform_step &lt;rotation&gt;&quot;" alt="" coords="368,639,483,665">
+<area shape="rect" href="$classScript_1_1RotStmt.html" title="&quot;rotation &lt;rotation&gt;&quot;" alt="" coords="373,689,477,716">
+<area shape="rect" href="$classScript_1_1RotDeltaStmt.html" title="&quot;rotation_step &lt;rotation&gt;&quot;" alt="" coords="539,639,672,665">
