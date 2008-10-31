@@ -86,16 +86,16 @@ class C4DView::Menu4D: public QMenu {
         QAction *insertAction(QMenu *, const QString &,
                               SurfaceFactory *, bool = true);
 
-        C4DView *m_parent;      ///< the C4DView containing this menu
+        C4DView *_parent;       ///< the C4DView containing this menu
 
-        QMenu *functions;       ///< The "Object" menu
-        QMenu *fr3r;            ///< The "Object/f:R^3 -> R" submenu
-        QMenu *objects;         ///< The "Object/Objects" submenu
-        QMenu *surfaces;        ///< The "Object/Surfaces" submenu
-        QMenu *fcc;             ///< The "Object/Surfaces/f:C -> C" submenu
-        QMenu *appear;          ///< The "Appearance" menu
-        QMenu *animation;       ///< The "Animation" menu
-        QMenu *help;            ///< The "Help" menu
+        QMenu *_functions;      ///< The "Object" menu
+        QMenu *_fr3r;           ///< The "Object/f:R^3 -> R" submenu
+        QMenu *_objects;         ///< The "Object/Objects" submenu
+        QMenu *_surfaces;        ///< The "Object/Surfaces" submenu
+        QMenu *_fcc;             ///< The "Object/Surfaces/f:C -> C" submenu
+        QMenu *_appear;          ///< The "Appearance" menu
+        QMenu *_animation;       ///< The "Animation" menu
+        QMenu *_help;            ///< The "Help" menu
 
         MenuMapType menuMap;    ///< Keeps the QActions belonging to the menu entries
 };

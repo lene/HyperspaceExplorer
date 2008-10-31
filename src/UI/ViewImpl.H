@@ -113,6 +113,9 @@ namespace UI {
             /// Set a default background color
             virtual void setDefaultBackground() { setBackground(defaultBackground); }
 
+            /// Add a Rotation to the current rotation state
+            virtual void adddR(const VecMath::Rotation<4> &);
+
         private:
 
             std::auto_ptr<Function> _F;  ///< the Function object currently displayed

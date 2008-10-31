@@ -28,14 +28,20 @@ namespace UI {
         _imageDir("/tmp"),
         _imagePrefix("HyperspaceExplorer_Image") { }
 
+    /** \param s Directory where to store image files */
     void ViewImpl::setImgDir(const std::string &s) {
         _imageDir = s;
         setWriteImages(true);
     }
 
+    /** \param s Filename prefix for saved images */
     void ViewImpl::setImgPrefix(const std::string &s) {
         _imagePrefix = s;
         setWriteImages(true);
     }
 
+    /** \param ddr Rotation to be added to the current Rotation state */
+    void ViewImpl::adddR(const VecMath::Rotation<4> &ddR) {
+        setdR(getdR() + ddR);
+    }
 }

@@ -200,6 +200,38 @@ void C4DView::setHyperfog(bool fog) {
     Redraw ();
 }
 
+/** \todo uses hardcoded values for light attributes */
+void C4DView::setLighting(bool light) {
+    ViewImpl::setLighting(light);
+
+    if (getLighting()) {
+        glEnable(GL_LIGHTING);                  //  turn on the light
+
+        static GLfloat LightAmbient[]  = { 0.3f, 0.3f, 0.3f, 1.0f }, //  HARDCODED VALUES
+                       LightDiffuse[]  = { 0.9f, 0.9f, 0.9f, 1.0f },
+                       LightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f },
+                       LightPosition[] = { 1.0f, 1.0f, 1.0f, 0.0f }; //  light properties
+
+        glLightfv (GL_LIGHT0, GL_AMBIENT, LightAmbient); // set the light properties
+        glLightfv (GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
+        glLightfv (GL_LIGHT0, GL_SPECULAR, LightSpecular);
+        glLightfv (GL_LIGHT0, GL_POSITION, LightPosition);
+        glEnable  (GL_LIGHT0);   // turn on the light
+    } else {
+        static GLfloat LightAmbient[]  = { 1.0f, 1.0f, 1.0f, 0.0f },
+                       LightPosition[] = { 1.0f, 1.0f, 1.0f, 0.0f }; //      light properties
+
+        glEnable  (GL_LIGHTING);
+        glLightfv (GL_LIGHT0, GL_AMBIENT, LightAmbient); // set the light properties
+        glLightfv (GL_LIGHT0, GL_DIFFUSE, LightAmbient);
+        glLightfv (GL_LIGHT0, GL_SPECULAR, LightAmbient);
+        glLightfv (GL_LIGHT0, GL_POSITION, LightPosition);
+        glEnable  (GL_LIGHT0);    //      turn on the light
+    }
+
+    OnPaint ();
+}
+
 void C4DView::setShading(bool shade) {
     ViewImpl::setShading(shade);
     InitShade ();

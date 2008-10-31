@@ -154,6 +154,8 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         virtual void setFog(bool);
         /// Re-Implementation of UI::ViewImpl::setHyperfog
         virtual void setHyperfog(bool);
+        /// Re-Implementation of UI::ViewImpl::setLighting
+        virtual void setLighting(bool);
         /// Re-Implementation of UI::ViewImpl::setShading
         virtual void setShading(bool);
         /// Re-Implementation of UI::ViewImpl::setTransparence
@@ -239,8 +241,6 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         void setdR3(const VecMath::Rotation<3> &_dr) { _dR3 = _dr; }
         const VecMath::Rotation<3> &dR3() { return _dR3; }
         void adddR3(const VecMath::Rotation<3> &_ddr) { _dR3 += _ddr; }
-
-        void adddR(const VecMath::Rotation<4> &_ddR) { setdR(getdR() + _ddR); }
 
         void setm_rot(const VecMath::Rotation<3, GLdouble> &_r) {
             _rot = _r;

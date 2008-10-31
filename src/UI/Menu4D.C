@@ -43,93 +43,93 @@ inline void TESTED_FEATURE(QAction *item) {
  *
  *  Basically this happens by inserting all the menu items and the QActions they
  *  trigger manually. The application of TemplatedRealFunctionFactory<Function>
- *  as Factory object helps to save a lot of redundant code, but still every
+ *  as Factory object _helps to save a lot of redundant code, but still every
  *  menu item must be specified manually.
  */
 C4DView::Menu4D::Menu4D(C4DView *_parent):
-    m_parent(_parent) {
+    _parent(_parent) {
 
-    functions = addMenu(tr("Object"));
-    appear = addMenu(tr("Appearance"));
-    animation = addMenu(tr("Animation"));
-    help = addMenu(tr("Help"));
+    _functions = addMenu(tr("Object"));
+    _appear = addMenu(tr("Appearance"));
+    _animation = addMenu(tr("Animation"));
+    _help = addMenu(tr("Help"));
 
     ////////////////////////////////////////////////////////////////////////////
     //      "Objects" Menu
     ////////////////////////////////////////////////////////////////////////////
     {
-        fr3r = functions->addMenu("f: R³ -> R");
-        objects = functions->addMenu("Objects");
-        surfaces = functions->addMenu("Surfaces");
-        fcc = surfaces->addMenu("f: C -> C");
+        _fr3r = _functions->addMenu("f: R³ -> R");
+        _objects = _functions->addMenu("Objects");
+        _surfaces = _functions->addMenu("Surfaces");
+        _fcc = _surfaces->addMenu("f: C -> C");
         {
-            insertAction(fr3r, "1/(r²+1)",
+            insertAction(_fr3r, "1/(r²+1)",
                          new C4DView::TemplatedRealFunctionFactory<Fr3r>);
-            insertAction(fr3r, "Gravitation Potential",
+            insertAction(_fr3r, "Gravitation Potential",
                          new C4DView::TemplatedRealFunctionFactory<GravitationPotential>);
-            insertAction(fr3r, "sin (r²)",
+            insertAction(_fr3r, "sin (r²)",
                          new C4DView::TemplatedRealFunctionFactory<Fr3rSin>);
-            insertAction(fr3r, "exp (r²)",
+            insertAction(_fr3r, "exp (r²)",
                          new C4DView::TemplatedRealFunctionFactory<Fr3rExp>);
-            insertAction(fr3r, "Custom function", SLOT(customFunction()));
-            insertAction(fr3r, "Polar: r = sin (pi/3.*(t+u+v))",
+            insertAction(_fr3r, "Custom function", SLOT(customFunction()));
+            insertAction(_fr3r, "Polar: r = sin (pi/3.*(t+u+v))",
                          new C4DView::TemplatedRealFunctionFactory<PolarSin>);
-            insertAction(fr3r, "Polar: r = 1/2+sin (Phase*pi*t*u*v)",
+            insertAction(_fr3r, "Polar: r = 1/2+sin (Phase*pi*t*u*v)",
                          new C4DView::TemplatedRealFunctionFactory<PolarSin2>);
-            insertAction(fr3r, "Polar: r = sqrt (t²+u²+v²)",
+            insertAction(_fr3r, "Polar: r = sqrt (t²+u²+v²)",
                          new C4DView::TemplatedRealFunctionFactory<PolarR>);
-            insertAction(fr3r, "Custom polar function", SLOT(customPolarFunction()));
+            insertAction(_fr3r, "Custom polar function", SLOT(customPolarFunction()));
         }
         {
-            insertAction(objects, "Hypersphere",
+            insertAction(_objects, "Hypersphere",
                          new C4DView::TemplatedRealFunctionFactory<Hypersphere>);
-            insertAction(objects, "Hypercube", SLOT(ObjectHypercube()));
-            insertAction(objects, "Hyperpyramid", SLOT(ObjectHyperpyramid()));
-            insertAction(objects, "Menger Sponge", SLOT(ObjectHypersponge()));
-            insertAction(objects, "Sierpinski Gasket", SLOT(ObjectGasket()));
-            insertAction(objects, "Torus 1",
+            insertAction(_objects, "Hypercube", SLOT(ObjectHypercube()));
+            insertAction(_objects, "Hyperpyramid", SLOT(ObjectHyperpyramid()));
+            insertAction(_objects, "Menger Sponge", SLOT(ObjectHypersponge()));
+            insertAction(_objects, "Sierpinski Gasket", SLOT(ObjectGasket()));
+            insertAction(_objects, "Torus 1",
                          new C4DView::TemplatedRealFunctionFactory<Torus1>);
-            insertAction(objects, "Torus 2",
+            insertAction(_objects, "Torus 2",
                          new C4DView::TemplatedRealFunctionFactory<Torus2>);
         }
         {
-            insertAction(surfaces, "Surface 1",
+            insertAction(_surfaces, "Surface 1",
                          new C4DView::TemplatedSurfaceFactory<Surface1>);
-            insertAction(surfaces, "Horizon",
+            insertAction(_surfaces, "Horizon",
                          new C4DView::TemplatedSurfaceFactory<Horizon>);
-            insertAction(surfaces, "Torus 3",
+            insertAction(_surfaces, "Torus 3",
                          new C4DView::TemplatedSurfaceFactory<Torus3>);
-            insertAction(surfaces, "Custom surface", SLOT(customSurface()));
+            insertAction(_surfaces, "Custom surface", SLOT(customSurface()));
             {
-                insertAction(fcc, "z²",
+                insertAction(_fcc, "z²",
                              new C4DView::TemplatedSurfaceFactory<z2>);
-                insertAction(fcc, "z³",
+                insertAction(_fcc, "z³",
                              new C4DView::TemplatedSurfaceFactory<z3>);
-                insertAction(fcc, "z^a",
+                insertAction(_fcc, "z^a",
                              new C4DView::TemplatedSurfaceFactory<zA>);
-                insertAction(fcc, "e^z",
+                insertAction(_fcc, "e^z",
                              new C4DView::TemplatedSurfaceFactory<ez>);
-                insertAction(fcc, "e^-z²",
+                insertAction(_fcc, "e^-z²",
                              new C4DView::TemplatedSurfaceFactory<emz2>);
-                insertAction(fcc, "1/z",
+                insertAction(_fcc, "1/z",
                              new C4DView::TemplatedSurfaceFactory<zm1>);
-                insertAction(fcc, "1/z²",
+                insertAction(_fcc, "1/z²",
                              new C4DView::TemplatedSurfaceFactory<zm2>);
-                insertAction(fcc, "sqrt (z)",
+                insertAction(_fcc, "sqrt (z)",
                              new C4DView::TemplatedSurfaceFactory<sqrtz>);
-                insertAction(fcc, "ln (z)",
+                insertAction(_fcc, "ln (z)",
                              new C4DView::TemplatedSurfaceFactory<lnz>);
-                insertAction(fcc, "sin (z)",
+                insertAction(_fcc, "sin (z)",
                              new C4DView::TemplatedSurfaceFactory<sinz>);
-                insertAction(fcc, "cos (z)",
+                insertAction(_fcc, "cos (z)",
                              new C4DView::TemplatedSurfaceFactory<cosz>);
-                insertAction(fcc, "sinh (z)",
+                insertAction(_fcc, "sinh (z)",
                              new C4DView::TemplatedSurfaceFactory<sinhz>);
-                insertAction(fcc, "cosh (z)",
+                insertAction(_fcc, "cosh (z)",
                             new C4DView::TemplatedSurfaceFactory<coshz>);
-                insertAction(fcc, "tan (z)",
+                insertAction(_fcc, "tan (z)",
                             new C4DView::TemplatedSurfaceFactory<tanz>);
-                insertAction(fcc, "Custom complex function",
+                insertAction(_fcc, "Custom complex function",
                              SLOT(customComplexFunction()));
                 TESTED_FEATURE (getAction("Custom complex function"));
             }
@@ -139,41 +139,41 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
     //      "Appearance" Menu
     ////////////////////////////////////////////////////////////////////////////
     {
-        insertAction(appear, "Colors", SLOT(Colors ()));
-        insertAction(appear, "Shading", SLOT(Shade()));
-        insertAction(appear, "Depth Cue", SLOT(Fog()));
-        insertAction(appear, "Transparence", SLOT(Transparent()));
-        insertAction(appear, "Lighting", SLOT(Light()));
-        insertAction(appear, "Wireframe", SLOT(Wireframe()), false);
-        insertAction(appear, "Coordinate Cross", SLOT(Coordinates()));
+        insertAction(_appear, "Colors", SLOT(Colors ()));
+        insertAction(_appear, "Shading", SLOT(Shade()));
+        insertAction(_appear, "Depth Cue", SLOT(Fog()));
+        insertAction(_appear, "Transparence", SLOT(Transparent()));
+        insertAction(_appear, "Lighting", SLOT(Light()));
+        insertAction(_appear, "Wireframe", SLOT(Wireframe()), false);
+        insertAction(_appear, "Coordinate Cross", SLOT(Coordinates()));
 
-        appear->addAction("Set Background Color", this, SLOT(setBackground()));
+        _appear->addAction("Set Background Color", this, SLOT(setBackground()));
 
-        getAction("Colors")->setChecked(m_parent->getColors());
-        getAction("Shading")->setChecked(m_parent->getShading());
-        getAction("Depth Cue")->setChecked(m_parent->getFog());
-        getAction("Lighting")->setChecked(m_parent->getLighting());
-        getAction("Transparence")->setChecked(m_parent->getTransparence());
-        getAction("Coordinate Cross")->setChecked(m_parent->getCoordinates());
+        getAction("Colors")->setChecked(_parent->getColors());
+        getAction("Shading")->setChecked(_parent->getShading());
+        getAction("Depth Cue")->setChecked(_parent->getFog());
+        getAction("Lighting")->setChecked(_parent->getLighting());
+        getAction("Transparence")->setChecked(_parent->getTransparence());
+        getAction("Coordinate Cross")->setChecked(_parent->getCoordinates());
     }
-    insertAction(help, "Online help", SLOT(Help ()), false);
-    help->insertSeparator (
-        insertAction(help, tr("&About ..."), SLOT(about()), false));
-    insertAction(help, tr("About &Qt ..."), SLOT(about()), false);
+    insertAction(_help, "Online _help", SLOT(Help ()), false);
+    _help->insertSeparator (
+        insertAction(_help, tr("&About ..."), SLOT(about()), false));
+    insertAction(_help, tr("About &Qt ..."), SLOT(about()), false);
 
     addAction(Globals::Instance().getQuitAction());
     insertSeparator(Globals::Instance().getQuitAction());
 
-    insertAction(animation, "Render to Images", SLOT(RenderToImages()));
-    getAction("Render to Images")->setChecked(m_parent->getWriteImages());
+    insertAction(_animation, "Render to Images", SLOT(RenderToImages()));
+    getAction("Render to Images")->setChecked(_parent->getWriteImages());
 
-    insertAction(animation, "Animation Settings", SLOT(AnimationSettings()),
+    insertAction(_animation, "Animation Settings", SLOT(AnimationSettings()),
                  false);
 
-    insertAction(animation, "Benchmark", SLOT (Benchmark()), false);
-    insertAction(appear, "4D Depth Cue", SLOT(HyperFog()));
+    insertAction(_animation, "Benchmark", SLOT (Benchmark()), false);
+    insertAction(_appear, "4D Depth Cue", SLOT(HyperFog()));
 
-    if (m_parent->getSolid()) {
+    if (_parent->getSolid()) {
         getAction("Wireframe")->setText("Solid");
         getAction("Transparence")->setText("Line Antialiasing");
         getAction("Transparence")->setEnabled(true);
@@ -182,109 +182,81 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
         getAction("Wireframe")->setText("Wireframe");
         getAction("Transparence")->setText("Transparence");
     }
-      //      appear->setItemEnabled (transparentAction, DisplayPolygons);
-    m_parent->setSolid(!m_parent->getSolid());
+      //      _appear->setItemEnabled (transparentAction, DisplayPolygons);
+    _parent->setSolid(!_parent->getSolid());
 }
 
 /** Display a CustomFunction object */
 void C4DView::Menu4D::customFunction() {
-    CustomFunctionSlot<CustomFunction>::createCustomFunction(m_parent);
+    CustomFunctionSlot<CustomFunction>::createCustomFunction(_parent);
 }
 
 /** Display a CustomPolarFunction object */
 void C4DView::Menu4D::customPolarFunction() {
-    CustomFunctionSlot<CustomPolarFunction>::createCustomFunction(m_parent);
+    CustomFunctionSlot<CustomPolarFunction>::createCustomFunction(_parent);
 }
 
 /** Display a Hypercube object */
 void C4DView::Menu4D::ObjectHypercube() {
-    m_parent->ObjectHypercube();
+    _parent->ObjectHypercube();
 }
 
 /** Display a Hyperpyramid object */
 void C4DView::Menu4D::ObjectHyperpyramid() {
-    m_parent->ObjectHyperpyramid();
+    _parent->ObjectHyperpyramid();
 }
 
 /** Display a Hypersponge object */
 void C4DView::Menu4D::ObjectHypersponge() {
-    m_parent->ObjectHypersponge();
+    _parent->ObjectHypersponge();
 }
 
 /** Display a Gasket object */
 void C4DView::Menu4D::ObjectGasket() {
-    m_parent->ObjectGasket();
+    _parent->ObjectGasket();
 }
 
 /** Display a CustomSurface object */
 void C4DView::Menu4D::customSurface() {
-    CustomFunctionSlot<CustomSurface>::createCustomSurface(m_parent);
+    CustomFunctionSlot<CustomSurface>::createCustomSurface(_parent);
 }
 
 /** Display a CustomComplexFunction object */
 void C4DView::Menu4D::customComplexFunction() {
-    CustomFunctionSlot<CustomComplexFunction>::createCustomSurface(m_parent);
+    CustomFunctionSlot<CustomComplexFunction>::createCustomSurface(_parent);
 }
 
 
 /** Toggle colors */
 void C4DView::Menu4D::Colors () {
-    m_parent->setColors(!m_parent->getColors());
-    getAction("Colors")->setChecked(m_parent->getColors());
+    _parent->setColors(!_parent->getColors());
+    getAction("Colors")->setChecked(_parent->getColors());
 }
 
 /** Toggle shading */
 void C4DView::Menu4D::Shade () {
-    m_parent->setShading(!m_parent->getShading());
-    getAction("Shading")->setChecked(m_parent->getShading());
+    _parent->setShading(!_parent->getShading());
+    getAction("Shading")->setChecked(_parent->getShading());
 }
 
 /** Toggle fog/depth cue */
 void C4DView::Menu4D::Fog () {
-    m_parent->setFog(!m_parent->getFog());
-    getAction("Depth Cue")->setChecked(m_parent->getFog());
+    _parent->setFog(!_parent->getFog());
+    getAction("Depth Cue")->setChecked(_parent->getFog());
 }
 
 /** Toggle object transparency */
 void C4DView::Menu4D::Transparent () {
-    m_parent->setTransparence(!m_parent->getTransparence());
-    getAction("Transparence")->setChecked(m_parent->getTransparence());
+    _parent->setTransparence(!_parent->getTransparence());
+    getAction("Transparence")->setChecked(_parent->getTransparence());
 }
 
 /** Switch lighting on or off
  *
- *  Change menu items accordingly
- *  \todo uses hardcoded values for light attributes
- *  \todo move all the GL stuff away from the menu handler, back into C4DView
- */
+ *  Change menu items accordingly */
 void C4DView::Menu4D::Light() {
-    m_parent->setLighting(!m_parent->getLighting());
-    if (m_parent->getLighting()) {
-        glEnable(GL_LIGHTING);                  //  turn on the light
-
-        static GLfloat LightAmbient[]  = { 0.3f, 0.3f, 0.3f, 1.0f }, //  HARDCODED VALUES
-        LightDiffuse[]  = { 0.9f, 0.9f, 0.9f, 1.0f },
-        LightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f },
-        LightPosition[] = { 1.0f, 1.0f, 1.0f, 0.0f }; //  light properties
-
-        glLightfv (GL_LIGHT0, GL_AMBIENT, LightAmbient); // set the light properties
-        glLightfv (GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
-        glLightfv (GL_LIGHT0, GL_SPECULAR, LightSpecular);
-        glLightfv (GL_LIGHT0, GL_POSITION, LightPosition);
-        glEnable  (GL_LIGHT0);   // turn on the light
-    } else {
-        static GLfloat LightAmbient[]  = { 1.0f, 1.0f, 1.0f, 0.0f },
-        LightPosition[] = { 1.0f, 1.0f, 1.0f, 0.0f }; //      light properties
-
-        glEnable  (GL_LIGHTING);
-        glLightfv (GL_LIGHT0, GL_AMBIENT, LightAmbient); // set the light properties
-        glLightfv (GL_LIGHT0, GL_DIFFUSE, LightAmbient);
-        glLightfv (GL_LIGHT0, GL_SPECULAR, LightAmbient);
-        glLightfv (GL_LIGHT0, GL_POSITION, LightPosition);
-        glEnable  (GL_LIGHT0);    //      turn on the light
-    }
-
-    m_parent->OnPaint ();
+    _parent->setLighting(!_parent->getLighting());
+    getAction("Lighting")->setChecked(_parent->getLighting());
 }
 
 /** Switch between wireframe and solid display
@@ -293,7 +265,7 @@ void C4DView::Menu4D::Light() {
  *
  *  Change menu items accordingly                   */
 void C4DView::Menu4D::Wireframe() {
-    if (m_parent->getSolid()) {
+    if (_parent->getSolid()) {
         getAction("Wireframe")->setText("Solid");
         getAction("Transparence")->setText("Line Antialiasing");
     } else {
@@ -301,30 +273,30 @@ void C4DView::Menu4D::Wireframe() {
         getAction("Transparence")->setText("Transparence");
         glDisable(GL_CULL_FACE);
     }
-    getAction("Wireframe")->setChecked(m_parent->getSolid());
-    m_parent->setSolid(!m_parent->getSolid());
+    getAction("Wireframe")->setChecked(_parent->getSolid());
+    _parent->setSolid(!_parent->getSolid());
 
-    m_parent->OnPaint ();
+    _parent->OnPaint ();
 }
 
 /** Switch coordinate cross on or off
  *
  *  Change menu items accordingly       */
 void C4DView::Menu4D::Coordinates() {
-    m_parent->setCoordinates(!m_parent->getCoordinates());
-    getAction("Coordinate Cross")->setChecked(m_parent->getCoordinates());
+    _parent->setCoordinates(!_parent->getCoordinates());
+    getAction("Coordinate Cross")->setChecked(_parent->getCoordinates());
 }
 
 /** Pop up a color selector and set the background to the chosen color */
 void C4DView::Menu4D::setBackground() {
-    m_parent->setBackground(Color(QColorDialog::getColor(Qt::white, m_parent)));
+    _parent->setBackground(Color(QColorDialog::getColor(Qt::white, _parent)));
 }
 
 /** Switch 4D depth cue on or off
  *  Change menu items accordingly */
 void C4DView::Menu4D::HyperFog() {
-    m_parent->setHyperfog(!m_parent->getHyperfog());
-    getAction("4D Depth Cue")->setChecked(m_parent->getHyperfog());
+    _parent->setHyperfog(!_parent->getHyperfog());
+    getAction("4D Depth Cue")->setChecked(_parent->getHyperfog());
 }
 
 
@@ -332,22 +304,22 @@ void C4DView::Menu4D::HyperFog() {
  *
  *  Change menu items accordingly        */
 void C4DView::Menu4D::RenderToImages() {
-    m_parent->setWriteImages(!m_parent->getWriteImages());
-    getAction("Render to Images")->setChecked(m_parent->getWriteImages());
+    _parent->setWriteImages(!_parent->getWriteImages());
+    getAction("Render to Images")->setChecked(_parent->getWriteImages());
 }
 
-/** Show a dialog to adjust animation settings - where to write image files and
+/** Show a dialog to adjust _animation settings - where to write image files and
  *  how many files to write. */
 void C4DView::Menu4D::AnimationSettings() {
     UI::Dialogs::AnimationDialogImpl *Dlg = new UI::Dialogs::AnimationDialogImpl;
     if (Dlg->exec () == QDialog::Accepted) {
-        m_parent->setanimationMaxFrames(Dlg->getFrames());
-        m_parent->setImgDir(Dlg->getDir().toAscii().data());
-        m_parent->setImgPrefix(Dlg->getPrefix().toAscii().data());
+        _parent->setanimationMaxFrames(Dlg->getFrames());
+        _parent->setImgDir(Dlg->getDir().toAscii().data());
+        _parent->setImgPrefix(Dlg->getPrefix().toAscii().data());
         SingletonLog::Instance()
-            << "animationMaxFrames: " << (long)m_parent->animationMaxFrames()
-            << ", animationDirectory: " << m_parent->getImgDir()
-            << ", animationPrefix: "<< m_parent->getImgPrefix() << "\n";
+            << "animationMaxFrames: " << (long)_parent->animationMaxFrames()
+            << ", animationDirectory: " << _parent->getImgDir()
+            << ", animationPrefix: "<< _parent->getImgPrefix() << "\n";
     }
 }
 
@@ -355,22 +327,22 @@ void C4DView::Menu4D::AnimationSettings() {
 void C4DView::Menu4D::Benchmark() {
     ostringstream Time;
 
-    double time_4d = m_parent->Benchmark4D (360, 1., 0., 0.);
+    double time_4d = _parent->Benchmark4D (360, 1., 0., 0.);
 
     Time << "4D viewpoint rotation: " << time_4d << " sec."
             << " (" << 360/1./time_4d << " fps)" << endl;
 
-    float time_3d = m_parent->Benchmark3D (360, 1., 0., 0.);
+    float time_3d = _parent->Benchmark3D (360, 1., 0., 0.);
 
     Time << "3D viewpoint rotation: " << time_3d << " sec."
             << " (" << 360/1./time_3d << " fps)" << ends;
 
     QMessageBox::information (NULL, "Benchmark results", Time.str ().c_str ());
-    m_parent->UpdateStatus ();
+    _parent->UpdateStatus ();
 }
 
 
-/** Display help window */
+/** Display _help window */
 void C4DView::Menu4D::Help () {
     static HelpWindow *H;
     H = new HelpWindow (C4DView::_HelpFile.c_str());
@@ -379,8 +351,8 @@ void C4DView::Menu4D::Help () {
 
 /** Open an "About"-Dialog telling a few basics about the software */
 void C4DView::Menu4D::about() {
-    QMessageBox::about(m_parent, "Hyperspace Explorer",
-                       "<p>A program to view four-dimensional objects "
+    QMessageBox::about(_parent, "Hyperspace Explorer",
+                       "<p>A program to view four-dimensional _objects "
                        "using OpenGL and the Qt GUI library.</p>"
                        "<p>author: "+QString(make_str(PACKAGE_BUGREPORT))+"</p>"
                        "<p>version: "+QString(make_str(PACKAGE_VERSION))+
@@ -390,16 +362,16 @@ void C4DView::Menu4D::about() {
 
 /** Open an "About Qt"-Dialog */
 void C4DView::Menu4D::aboutQt() {
-    QMessageBox::aboutQt(m_parent, "Hyperspace Explorer" );
+    QMessageBox::aboutQt(_parent, "Hyperspace Explorer" );
 }
 
 
 /** \param menuBar The menu bar you want augmented with the menu              */
 void C4DView::Menu4D::addToMenuBar(QMenuBar *menuBar) {
-    menuBar->addMenu(functions);
-    menuBar->addMenu(appear);
-    menuBar->addMenu(animation);
-    menuBar->addMenu(help);
+    menuBar->addMenu(_functions);
+    menuBar->addMenu(_appear);
+    menuBar->addMenu(_animation);
+    menuBar->addMenu(_help);
     menuBar->addSeparator();
     menuBar->addAction(Globals::Instance().getQuitAction());
 }
@@ -407,7 +379,7 @@ void C4DView::Menu4D::addToMenuBar(QMenuBar *menuBar) {
 /** \param item Title of the item whose checking status is toggled            */
 void C4DView::Menu4D::updateFunctionMenu (const QString &item) {
     static QMenu* functionMenuList[] = {
-        functions, fr3r, objects, surfaces, fcc
+        _functions, _fr3r, _objects, _surfaces, _fcc
     };
 
     for (unsigned functionIdx = 0; functionIdx < sizeof(functionMenuList);
@@ -461,10 +433,10 @@ QAction *C4DView::Menu4D::insertAction(QMenu *_menu, const QString &title,
                                        RealFunctionFactory *factory,
                                        bool checkable) {
     QAction *tmp = _menu->addAction(title,
-                                    new FunctionSlotHelper(m_parent, factory),
+                                    new FunctionSlotHelper(_parent, factory),
                                     SLOT(slot()), (const QKeySequence &)0);
     tmp->setCheckable(checkable);
-    menuMap[fr3r].insert(std::pair<QString, QAction *>(title, tmp));
+    menuMap[_fr3r].insert(std::pair<QString, QAction *>(title, tmp));
 
     return tmp;
 }
@@ -479,10 +451,10 @@ QAction *C4DView::Menu4D::insertAction(QMenu *_menu, const QString &title,
                                        SurfaceFactory *factory,
                                        bool checkable) {
     QAction *tmp = _menu->addAction(title,
-                                    new SurfaceSlotHelper(m_parent, factory),
+                                    new SurfaceSlotHelper(_parent, factory),
                                     SLOT(slot()), (const QKeySequence &)0);
     tmp->setCheckable(checkable);
-    menuMap[fr3r].insert(std::pair<QString, QAction *>(title, tmp));
+    menuMap[_fr3r].insert(std::pair<QString, QAction *>(title, tmp));
 
     return tmp;
 }
