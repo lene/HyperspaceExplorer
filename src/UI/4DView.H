@@ -235,9 +235,6 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         /// GL stuff needed in addition to resizeEvent(). Reimplemented from QGLWidget
         virtual void resizeGL (int, int);
 
-        const VecMath::Rotation<3> &dR3() { return _dR3; }
-        void adddR3(const VecMath::Rotation<3> &_ddr) { _dR3 += _ddr; }
-
         void setm_rot(const VecMath::Rotation<3, GLdouble> &_r) {
             _rot = _r;
         }
@@ -298,8 +295,6 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
 
         /// rotation in X, Y and Z
         VecMath::Rotation<3, GLdouble> _rot;
-        /// delta values in 3D rotation - for animations
-        VecMath::Rotation<3, GLdouble> _dR3;
         /// translation in X and Y, Z coordinate of camera (distance from object)
         VecMath::Vector<3, GLdouble> _trans;
 

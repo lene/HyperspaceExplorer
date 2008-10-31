@@ -68,7 +68,7 @@ C4DView::C4DView(QWidget *parent):
     QGLWidget (parent),
     ViewImpl(), 
 
-    _rot(15., 15., 0.), _dR3(0.,0.,0.), _trans(0., 0.,-10.),
+    _rot(15., 15., 0.),/* _dR3(0.,0.,0.),*/ _trans(0., 0.,-10.),
 
     _animationFrame(0),
     _animationMaxFrames((unsigned)-1),
@@ -311,11 +311,11 @@ void C4DView::ApplyChanges (const ParameterMap &parms) {
  *  Writes image to file too, if wanted.                                      */
 void C4DView::OnAnimationTimer() {
 
-    addm_rot(dR3());
+//    addm_rot(dR3());
 //    setm_rotX(m_rotX() + dT()[0]); setm_rotY(m_rotY() + dT()[1]); setm_rotZ(m_rotZ() + dT()[2]);   //  update 3D viewpoint values
 
     SingletonLog::Instance() << "C4DView::OnAnimationTimer()\n"
-            << "  dR3 = " << dR3() << "\n"
+//            << "  dR3 = " << dR3() << "\n"
             << "  dR = " << getdR() << "\n";
 
     if (getdR()) {     //  4D viewpoint animated?
@@ -539,7 +539,7 @@ void C4DView::DrawCoordinates () {
 /// Err well.. just that!
 /** Starts AnimationTimer, too...                                             */
 void C4DView::StartAnimation () {
-    if (!dR3() && !getdR()) {
+    if (/*!dR3() &&*/ !getdR()) {
         return;
     }
 

@@ -123,7 +123,7 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
                                                     //  equivalent to z/y 3D rotation
 
                 if (TakingSpinValues()) {
-                    parent->adddR3(Rotation<3>(0.,rotate.y()/xsize*5,rotate.x ()/xsize*5));
+                    parent->adddR(Rotation<4>(0.,rotate.y()/xsize*5,rotate.x ()/xsize*5,0.,0.,0.));
                     parent->UpdateStatus ("taking xy/xz rotation speed");
                 } else {                            //  immediate movement
                     setm_LeftDownPos(point);        //  reset start position for next mouse move
@@ -140,8 +140,7 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
                 QPoint rotate = MidDownPos()-point; //  store difference from button press position
 
                 if (TakingSpinValues()) {
-                    parent->adddR(Rotation<4>(0.,0.,rotate.x()/xsize*5,0.,0.,0.));
-                    parent->adddR3(Rotation<3>(rotate.y()/xsize*5,0.,0.));
+                    parent->adddR(Rotation<4>(rotate.y()/xsize*5,0.,rotate.x()/xsize*5,0.,0.,0.));
                     if (parent->getdR()[3] == 0.) ViewChanged = false;
 
                     parent->UpdateStatus ("taking xw / yz rotation speed");
@@ -214,7 +213,7 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
                 QPoint rotate = LeftDownPos()-point;//    store difference from button press position
 
                 if (TakingSpinValues()) {
-                    parent->adddR3(Rotation<3>(rotate.x ()/xsize*5, rotate.y ()/ysize*5, 0.));
+                    parent->adddR(Rotation<4>(rotate.x ()/xsize*5, rotate.y ()/ysize*5, 0.,0.,0.,0.));
                     parent->UpdateStatus ("taking x/y rotation speed");
 	        } else {                            //    immediate movement
                     setm_LeftDownPos(point);        //    reset start position for next mouse move
@@ -232,7 +231,7 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
                 QPoint zoom = LeftDownPos()-point;  //    store difference from button press position
 
                 if (TakingSpinValues()) {
-                    parent->adddR3(Rotation<3>(0.,0., zoom.x ()/xsize*10));
+                    parent->adddR(Rotation<4>(0.,0., zoom.x ()/xsize*10,0.,0.,0));
                     parent->UpdateStatus ("taking z rotation speed");
 	        } else {                            //  immediate movement
                     setm_LeftDownPos(point);        //  reset start position for next mouse move
