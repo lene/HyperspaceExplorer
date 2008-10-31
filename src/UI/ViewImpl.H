@@ -125,11 +125,14 @@ namespace UI {
             virtual const VecMath::Vector<4> &T() { return _T; }
             virtual void addT(const VecMath::Vector<4> &_dT) { _T += _dT; }
 
+            /// \param _r New rotation state
             virtual void setR(const VecMath::Rotation<4> &_r) { _R = _r; }
+            /// \return Current rotation state
             virtual const VecMath::Rotation<4> &R() { return _R; }
+            /// Add a Rotation to the current rotation state
             virtual void addR(const VecMath::Rotation<4> &_dR) { _R += _dR; }
 
-            /// Add a Rotation to the current rotation state
+            /// Add a Rotation to the current rotation speed
             virtual void adddR(const VecMath::Rotation<4> &);
 
             /// \return W coordinate of the camera
@@ -151,19 +154,19 @@ namespace UI {
             /// \return Color of ambient light
             static GLfloat *getLightAmbient() { return _lightAmbient; }
             /// Set Color of ambient light
-            static void setLightAmbient(const VecMath::Vector<4, GLfloat> &);
+            static void setLightAmbient(const Color &);
             /// \return Color of diffuse light
             static GLfloat *getLightDiffuse() { return _lightDiffuse; }
             /// Set Color of diffuse light
-            static void setLightDiffuse(const VecMath::Vector<4, GLfloat> &);
+            static void setLightDiffuse(const Color &);
             /// \return Color of specular reflections
             static GLfloat *getLightSpecular() { return _lightSpecular; }
             /// Set Color of specular reflections
-            static void setLightSpecular(const VecMath::Vector<4, GLfloat> &);
+            static void setLightSpecular(const Color &);
             /// \return Color for flat, all-ambient lighting
             static GLfloat *getLightFlat() { return _lightFlat; }
             /// Set Color for flat, all-ambient lighting
-            static void setLightFlat(const VecMath::Vector<4, GLfloat> &);
+            static void setLightFlat(const Color &);
 
         private:
 
@@ -202,8 +205,7 @@ namespace UI {
             static GLfloat _lightAmbient[4];    ///< Color of ambient light
             static GLfloat _lightDiffuse[4];    ///< Color of diffuse light
             static GLfloat _lightSpecular[4];   ///< Color of specular reflections
-            /// Color for flat, all-ambient lighting
-            static GLfloat _lightFlat[4];
+            static GLfloat _lightFlat[4];   ///< Color for flat, all-ambient lighting
 
     };
 

@@ -52,7 +52,7 @@ namespace UI {
         setBackground(_defaultBackground);
     }
 
-    /** \param ddr Rotation to be added to the current Rotation state */
+    /** \param ddR Rotation to be added to the current Rotation state */
     void ViewImpl::adddR(const VecMath::Rotation<4> &ddR) {
         setdR(getdR() + ddR);
     }
