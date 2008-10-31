@@ -141,9 +141,6 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         virtual void applyTransform(const VecMath::Rotation<4> &R,
                                     const VecMath::Vector<4> &T);
 
-        /// Implementation of UI::View::setdR
-        virtual void setdR(const VecMath::Rotation<4> &_dr) { _dR = _dr; }
-
         /// Implementation of UI::View::animate
         virtual void animate();
 
@@ -257,8 +254,7 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         const VecMath::Rotation<3> &dR3() { return _dR3; }
         void adddR3(const VecMath::Rotation<3> &_ddr) { _dR3 += _ddr; }
 
-        const VecMath::Rotation<4> &dR() { return _dR; }
-        void adddR(const VecMath::Rotation<4> &_ddR) { _dR += _ddR; }
+        void adddR(const VecMath::Rotation<4> &_ddR) { setdR(getdR() + _ddR); }
 
         void setm_rot(const VecMath::Rotation<3, GLdouble> &_r) {
             _rot = _r;
@@ -337,15 +333,10 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
 
     private:                                    //  member variables
 
-        Color _Background;  ///< background color
-
         std::auto_ptr<Function> _F;  ///< the Function object currently displayed
 
         VecMath::Vector<4> _T;   ///< coordinates for 4D translation
         VecMath::Rotation<4> _R;   ///< angles for 4D rotation
-
-        /// delta values in angles for 4D rotation - for animations
-        VecMath::Rotation<4> _dR;
 
         /// rotation in X, Y and Z
         VecMath::Rotation<3, GLdouble> _rot;
@@ -357,7 +348,6 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         double _CamW;        ///< W coordinate of the camera
         double _ScrW;        ///< W coordinate of the screen
 
-        
         double _distance;                       ///< viewpoint distance
 
         bool _RenderToPixmap;        ///< if true, save images

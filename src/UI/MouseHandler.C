@@ -142,7 +142,7 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
                 if (TakingSpinValues()) {
                     parent->adddR(Rotation<4>(0.,0.,rotate.x()/xsize*5,0.,0.,0.));
                     parent->adddR3(Rotation<3>(rotate.y()/xsize*5,0.,0.));
-                    if (parent->dR()[3] == 0.) ViewChanged = false;
+                    if (parent->getdR()[3] == 0.) ViewChanged = false;
 
                     parent->UpdateStatus ("taking xw / yz rotation speed");
                 } else {                            //    immediate movement

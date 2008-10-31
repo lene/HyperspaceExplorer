@@ -74,9 +74,11 @@ namespace UI {
              */
             virtual void applyTransform(const VecMath::Rotation<4> &R,
                                         const VecMath::Vector<4> &T) = 0;
-            /// Set the rotation step between frames for anumations
-            /** \param _dr The rotation step between two frames of an animation
-             */
+
+            /// \return delta values in angles for 4D rotation for animations
+            virtual const VecMath::Rotation<4> &getdR() = 0;
+            /// Set the rotation step between frames for animations
+            /** \param _dr Rotation step between two frames of an animation   */
             virtual void setdR(const VecMath::Rotation<4> &_dr) = 0;
 
             /// Set the number of frames for an animation
@@ -97,6 +99,8 @@ namespace UI {
 
             /// Set the background color
             virtual void setBackground(const Color &) = 0;
+            /// \return The background color
+            virtual const Color &getBackground() = 0;
             
             /// \return whether to use colors in rendering or not
             virtual bool getColors() const = 0;

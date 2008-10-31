@@ -67,10 +67,9 @@ template<typename T> T max(const T &a, const T &b) {
 C4DView::C4DView(QWidget *parent):
     QGLWidget (parent),
     ViewImpl(), 
-                _Background (0.25, 0.25, 0.25, 1.),
                 _F(std::auto_ptr<Function>()),
 
-                _T(0.,0.,0.,0.), _R(0.,0.,0.,0.,0.,0.), _dR(0.,0.,0.,0.,0.,0.),
+                _T(0.,0.,0.,0.), _R(0.,0.,0.,0.,0.,0.),
                 _rot(15., 15., 0.), _dR3(0.,0.,0.), _trans(0., 0.,-10.),
 
                 _CamW (-3.), _ScrW (0.),
@@ -163,7 +162,7 @@ void C4DView::applyTransform(const VecMath::Rotation<4> &R,
 void C4DView::animate() {
     for (unsigned i = 0; i < getNumLoops(); i++) {
         for (unsigned i = 0; i < getNumFrames(); i++) {
-            addR(dR());
+            addR(getdR());
             SingletonLog::Instance() << R() << "\n";
             Transform(R(), VecMath::Vector<4>());
             Project();
@@ -303,11 +302,11 @@ void C4DView::OnAnimationTimer() {
 
     SingletonLog::Instance() << "C4DView::OnTimer()\n"
             << "  dT = " << dR3() << "\n"
-            << "  dR = " << dR() << "\n";
+            << "  dR = " << getdR() << "\n";
 
-    if (dR()) {     //  4D viewpoint animated?
+    if (getdR()) {     //  4D viewpoint animated?
 
-        addR(dR());
+        addR(getdR());
 
         Transform (R(), T());   // transform
         Redraw ();                                                  // implicit OnPaint()
@@ -527,7 +526,7 @@ void C4DView::DrawCoordinates () {
 /// Err well.. just that!
 /** Starts AnimationTimer, too...                                             */
 void C4DView::StartAnimation () {
-    if (!dR3() && !dR()) {
+    if (!dR3() && !getdR()) {
         return;
     }
 

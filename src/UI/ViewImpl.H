@@ -25,29 +25,29 @@ namespace UI {
     class ViewImpl: public View {
 
         public:
-            ViewImpl():
-                View(),
-                _colors(true), _coordinates(false), _fog(true), _hyperfog(false),
-                _lighting(true), _shading(true), _solid(true), _transparence(false),
-                _numFrames(1), _numLoops(1) { }
+            ViewImpl();
 
-            /// Set the rotation step between frames for anumations
-            /** \param _dr The rotation step between two frames of an animation
-             */
-            virtual void setdR(const VecMath::Rotation<4> &_dr) = 0;
+            /// \return delta values in angles for 4D rotation for animations
+            virtual const VecMath::Rotation<4> &getdR() { return _dR; }
+            /// Set the rotation step between frames for animations
+            /** \param _dr Rotation step between two frames of an animation   */
+            virtual void setdR(const VecMath::Rotation<4> &_dr) { _dR = _dr; }
 
             /// Set the number of frames for an animation
             virtual void setNumFrames(unsigned frames) { _numFrames = frames; }
             /// Set the number of times \p _numFrames are repeated
             virtual void setNumLoops(unsigned loops) { _numLoops = loops; }
 
+            
             /// Set the directory where to store image files
             virtual void setImgDir(const std::string &) = 0;
             /// Set the prefix of image file names, before the frame number and the extension
             virtual void setImgPrefix(const std::string &) = 0;
 
+            /// \return The background color
+            virtual const Color &getBackground() { return _background; }
             /// Set the background color
-            virtual void setBackground(const Color &) = 0;
+            virtual void setBackground(const Color &bg) { _background = bg; }
             
             /// \return whether to use colors in rendering or not
             virtual bool getColors() const { return _colors; }
@@ -90,10 +90,7 @@ namespace UI {
             /// Turn transparenc/line antialiasing on or off
             virtual void setTransparence(bool on) { _transparence = on; }
 
-
         protected:
-            /// Apply changes in parameters and display them
-            virtual void ApplyChanges(const ParameterMap &) = 0;
 
             /// Number of frames for animations
             virtual unsigned getNumFrames() { return _numFrames; }
@@ -101,12 +98,10 @@ namespace UI {
             virtual unsigned getNumLoops() { return _numLoops; }
 
             /// Set a default background color
-            virtual void setDefaultBackground() {
-                static Color defaultBackground(0.1, 0.1, 0.1, 1.0);
-                setBackground(defaultBackground);
-            }
+            virtual void setDefaultBackground() { setBackground(defaultBackground); }
 
         private:
+
             bool _colors;       ///< whether to use colors in rendering
             bool _coordinates;  ///< whether to display the 4D coordinate cross
             bool _fog;          ///< whether to use depth cue/fog in rendering
@@ -116,8 +111,16 @@ namespace UI {
             bool _solid;        ///< whether to draw the objects' surfaces
             bool _transparence; ///< whether to use transparence/line antialiasing
 
+            Color _background;  ///< background color
+
+            /// delta values in angles for 4D rotation - for animations
+            VecMath::Rotation<4> _dR;
+
             unsigned _numFrames; ///< number of frames for animations
             unsigned _numLoops;  ///< number of loops to repeat an animation
+
+            /// Default Color for the background
+            static Color defaultBackground;
     };
 
 }

@@ -58,7 +58,7 @@ SOURCES += UI/4DView.C UI/Menu4D.C UI/ComplexDialogImpl.C \
            UI/FunctionDialogImpl.C UI/PolarDialogImpl.C UI/SurfaceDialogImpl.C \
            UI/ValuesDialogImpl.C UI/PluginCreator.C \
            UI/AnimationDialogImpl.C UI/SlotHelper.C \
-           UI/MouseHandler.C
+           UI/MouseHandler.C UI/ViewImpl.C
 FORMS += UI/ComplexDialog.ui UI/FunctionDialog.ui \
          UI/PolarDialog.ui UI/SurfaceDialog.ui UI/AnimationDialog.ui
 RESOURCES += UI/AnimationDialog.qrc
