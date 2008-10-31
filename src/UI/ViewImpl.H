@@ -38,11 +38,14 @@ namespace UI {
             /// Set the number of times \p _numFrames are repeated
             virtual void setNumLoops(unsigned loops) { _numLoops = loops; }
 
-            
+            /// \return directory to save images to
+            virtual const std::string &getImgDir() { return _imageDir; }
             /// Set the directory where to store image files
-            virtual void setImgDir(const std::string &) = 0;
+            virtual void setImgDir(const std::string &);
+            /// \return filename prefix for saved images
+            virtual const std::string &getImgPrefix() { return _imagePrefix; }
             /// Set the prefix of image file names, before the frame number and the extension
-            virtual void setImgPrefix(const std::string &) = 0;
+            virtual void setImgPrefix(const std::string &);
 
             /// \return The background color
             virtual const Color &getBackground() { return _background; }
@@ -97,6 +100,11 @@ namespace UI {
             /// Number of loops to repeat an animation
             virtual unsigned getNumLoops() { return _numLoops; }
 
+            /// \return whether to save images to file system
+            virtual bool getWriteImages() { return _writeImages; }
+            /// Turn saving images to file system on or off
+            virtual void setWriteImages(bool on) { _writeImages = on; }
+
             /// Set a default background color
             virtual void setDefaultBackground() { setBackground(defaultBackground); }
 
@@ -118,6 +126,10 @@ namespace UI {
 
             unsigned _numFrames; ///< number of frames for animations
             unsigned _numLoops;  ///< number of loops to repeat an animation
+
+            bool _writeImages;  ///< whether to save images to file system
+            std::string _imageDir;      ///< directory to save images to
+            std::string _imagePrefix;   ///< filename prefix for saved images
 
             /// Default Color for the background
             static Color defaultBackground;

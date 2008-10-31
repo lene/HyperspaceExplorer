@@ -22,6 +22,19 @@ namespace UI {
         _lighting(true), _shading(true), _solid(true), _transparence(false),
         _background (0.25, 0.25, 0.25, 1.),
         _dR(0.,0.,0.,0.,0.,0.),
-        _numFrames(1), _numLoops(1) { }
+        _numFrames(1), _numLoops(1),
+        _writeImages (false),
+        _imageDir("/tmp"),
+        _imagePrefix("HyperspaceExplorer_Image") { }
+
+    void ViewImpl::setImgDir(const std::string &s) {
+        _imageDir = s;
+        setWriteImages(true);
+    }
+
+    void ViewImpl::setImgPrefix(const std::string &s) {
+        _imagePrefix = s;
+        setWriteImages(true);
+    }
 
 }

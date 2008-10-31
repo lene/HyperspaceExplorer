@@ -146,11 +146,6 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
 
         /// Implementation of UI::View::setSize
         virtual void setSize(unsigned w, unsigned h);
-        /// Implementation of UI::View::setImgDir
-        virtual void setImgDir(const std::string &s);
-
-        /// Implementation of UI::View::setImgPrefix
-        virtual void setImgPrefix(const std::string &s);
 
         /// Re-Implementation of UI::ViewImpl::setBackground
         virtual void setBackground(const Color &);
@@ -168,9 +163,6 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         virtual void setTransparence(bool);
 
         ////////        getters for the setters defined in View         ////////
-
-        /// \return whether to save the rendered images to an image file
-        virtual bool getRenderToPixmap() const { return RenderToPixmap(); }
 
         /// rotate in 3D 360 degrees
         double Benchmark3D(int, double, double, double, bool = true);
@@ -281,19 +273,7 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         void setScrW(const double &_sw) { _ScrW = _sw; }
         double ScrW() const { return _ScrW; }
 
-        void setRenderToPixmap(bool b) { _RenderToPixmap = b; }
-        bool RenderToPixmap() const { return _RenderToPixmap; }
-
         double distance() {return _distance; }
-
-        void setanimationDirectory(const QString &b) {
-            _animationDirectory = b;
-        }
-        const QString & animationDirectory() const {
-            return _animationDirectory;
-        }
-        void setanimationPrefix(const QString &b) { _animationPrefix = b; }
-        const QString & animationPrefix() const { return _animationPrefix; }
 
         void setanimationFrame(unsigned b) { _animationFrame = b; }
         unsigned animationFrame() const { return _animationFrame; }
@@ -350,10 +330,6 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
 
         double _distance;                       ///< viewpoint distance
 
-        bool _RenderToPixmap;        ///< if true, save images
-
-        QString _animationDirectory; ///< where to save an animation's frames
-        QString _animationPrefix;    ///< prefix of animation frame filenames
         unsigned _animationFrame;    ///< current frame in animation
         unsigned _animationMaxFrames;    ///< limit for saved animation frames
         const unsigned _animation_fps;   ///< frames per second for animations

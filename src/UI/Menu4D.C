@@ -165,7 +165,7 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
     insertSeparator(Globals::Instance().getQuitAction());
 
     insertAction(animation, "Render to Images", SLOT(RenderToImages()));
-    getAction("Render to Images")->setChecked(m_parent->getRenderToPixmap());
+    getAction("Render to Images")->setChecked(m_parent->getWriteImages());
 
     insertAction(animation, "Animation Settings", SLOT(AnimationSettings()),
                  false);
@@ -332,8 +332,8 @@ void C4DView::Menu4D::HyperFog() {
  *
  *  Change menu items accordingly        */
 void C4DView::Menu4D::RenderToImages() {
-    m_parent->setRenderToPixmap(!m_parent->RenderToPixmap());
-    getAction("Render to Images")->setChecked(m_parent->RenderToPixmap());
+    m_parent->setWriteImages(!m_parent->getWriteImages());
+    getAction("Render to Images")->setChecked(m_parent->getWriteImages());
 }
 
 /** Show a dialog to adjust animation settings - where to write image files and
@@ -342,12 +342,12 @@ void C4DView::Menu4D::AnimationSettings() {
     UI::Dialogs::AnimationDialogImpl *Dlg = new UI::Dialogs::AnimationDialogImpl;
     if (Dlg->exec () == QDialog::Accepted) {
         m_parent->setanimationMaxFrames(Dlg->getFrames());
-        m_parent->setanimationDirectory(Dlg->getDir());
-        m_parent->setanimationPrefix(Dlg->getPrefix());
+        m_parent->setImgDir(Dlg->getDir().toAscii().data());
+        m_parent->setImgPrefix(Dlg->getPrefix().toAscii().data());
         SingletonLog::Instance()
             << "animationMaxFrames: " << (long)m_parent->animationMaxFrames()
-            << ", animationDirectory: " << m_parent->animationDirectory().toStdString()
-            << ", animationPrefix: "<< m_parent->animationPrefix().toStdString() << "\n";
+            << ", animationDirectory: " << m_parent->getImgDir()
+            << ", animationPrefix: "<< m_parent->getImgPrefix() << "\n";
     }
 }
 

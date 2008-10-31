@@ -92,8 +92,13 @@ namespace UI {
             /// Set the width and height of the viewport
             virtual void setSize(unsigned, unsigned) = 0;
 
+            /// \return directory to save images to
+            virtual const std::string &getImgDir() = 0;
             /// Set the directory where to store image files
             virtual void setImgDir(const std::string &) = 0;
+
+            /// \return filename prefix for saved images
+            virtual const std::string &getImgPrefix() = 0;
             /// Set the prefix of image file names, before the frame number and the extension
             virtual void setImgPrefix(const std::string &) = 0;
 
@@ -140,9 +145,9 @@ namespace UI {
 
             /// \return whether to use transparence/line antialiasing or not
             virtual bool getTransparence() const = 0;
-            /// Turn transparenc/line antialiasing on or off
+            /// Turn transparence/line antialiasing on or off
             virtual void setTransparence(bool) = 0;
-            
+
         protected:
             /// Apply changes in parameters and display them
             virtual void ApplyChanges(const ParameterMap &) = 0;
@@ -152,9 +157,14 @@ namespace UI {
             /// Number of loops to repeat an animation
             virtual unsigned getNumLoops() = 0;
 
+            /// \return whether to save images to file system
+            virtual bool getWriteImages() = 0;
+            /// Turn saving images to file system on or off
+            virtual void setWriteImages(bool) = 0;
+
             /// Set a default background color
             virtual void setDefaultBackground() = 0;
-            
+
     };
 
 }

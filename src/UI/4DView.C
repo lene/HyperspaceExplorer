@@ -74,9 +74,6 @@ C4DView::C4DView(QWidget *parent):
 
                 _CamW (-3.), _ScrW (0.),
 
-                _RenderToPixmap (false),
-                _animationDirectory("/tmp"),
-                _animationPrefix("HyperspaceExplorer_Image"),
                 _animationFrame(0),
                 _animationMaxFrames((unsigned)-1),
                 _animation_fps (50),
@@ -174,17 +171,6 @@ void C4DView::animate() {
 void C4DView::setSize(unsigned w, unsigned h) {
     Globals::Instance().getMainWindow()->resize(w, h);
 }
-
-void C4DView::setImgDir(const std::string &s) {
-    setanimationDirectory(QString(s.c_str()));
-    setRenderToPixmap(true);
-}
-
-void C4DView::setImgPrefix(const std::string &s) {
-    setanimationPrefix(QString(s.c_str()));
-    setRenderToPixmap(true);
-}
-
 
 void C4DView::setBackground(const Color &col) {
     glClearColor (col.r(), col.g(), col.b(), col.a());
@@ -587,7 +573,7 @@ QPixmap C4DView::makePixmap() {
  *  display to disk.
  *  Updates animationFrame                                                    */
 void C4DView::writeFrame() {
-    if (RenderToPixmap() && (animationFrame() <= animationMaxFrames())) {
+    if (getWriteImages() && (animationFrame() <= animationMaxFrames())) {
 
         setCurrentlyRendering(true);
 
@@ -598,7 +584,9 @@ void C4DView::writeFrame() {
         unsigned animationCiphers = animationMaxFrames() > 0?
                 (unsigned)(log((double)animationMaxFrames())/log(10.))+1: 6;
         QString imageFilename =
-                QString (animationDirectory()+"/"+animationPrefix()+"%1.png")
+                QString (
+                         QString(getImgDir().c_str())+"/"+
+                         QString(getImgPrefix().c_str())+"%1.png")
                 .arg (animationFrame(), animationCiphers)
                 .replace (" ", "0");
         if (tmpPixmap.save (imageFilename, "PNG")) {
@@ -754,7 +742,7 @@ void C4DView::initializeGL (void) {
 
     setDefaultBackground();
 
-    if (RenderToPixmap() /* && CurrentlyRendering */ ) {
+    if (getWriteImages() /* && CurrentlyRendering */ ) {
         SingletonLog::Instance().log("  render to pixmap = true");
 
         PreRedraw ();
