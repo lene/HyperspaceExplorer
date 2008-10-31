@@ -42,8 +42,8 @@ using VecMath::Vector;
 using VecMath::Rotation;
 using VecMath::Matrix;
 
-GLfloat C4DView::LightPos[4] = { 4., 4., 8., 0. };
-std::string  C4DView::HelpFile = "Hyperspace_Explorer_Help.html";
+GLfloat C4DView::_LightPos[4] = { 4., 4., 8., 0. };
+std::string  C4DView::_HelpFile = "Hyperspace_Explorer_Help.html";
 
 /// \todo obsolete; use std::min
 template<typename T> T min(const T &a, const T &b) {
@@ -66,7 +66,27 @@ template<typename T> T max(const T &a, const T &b) {
  *  @param parent	parent QWidget, defaults to NULL                      */
 C4DView::C4DView(QWidget *parent):
     QGLWidget (parent),
-    pImpl(new Impl(this)) {
+    ViewImpl(), 
+                _Background (0.25, 0.25, 0.25, 1.),
+                _F(std::auto_ptr<Function>()),
+
+                _T(0.,0.,0.,0.), _R(0.,0.,0.,0.,0.,0.), _dR(0.,0.,0.,0.,0.,0.),
+                _rot(15., 15., 0.), _dR3(0.,0.,0.), _trans(0., 0.,-10.),
+
+                _CamW (-3.), _ScrW (0.),
+
+                _RenderToPixmap (false),
+                _animationDirectory("/tmp"),
+                _animationPrefix("HyperspaceExplorer_Image"),
+                _animationFrame(0),
+                _animationMaxFrames((unsigned)-1),
+                _animation_fps (50),
+
+                _ObjectList (0), _CoordinateCross (0),
+
+                _Animated (false), _CurrentlyRendering (false),
+
+                _Values (new UI::Dialogs::ValuesDialogImpl(this)) {
 
     InitCross();
 
@@ -156,50 +176,55 @@ void C4DView::setSize(unsigned w, unsigned h) {
     Globals::Instance().getMainWindow()->resize(w, h);
 }
 
+void C4DView::setImgDir(const std::string &s) {
+    setanimationDirectory(QString(s.c_str()));
+    setRenderToPixmap(true);
+}
+
+void C4DView::setImgPrefix(const std::string &s) {
+    setanimationPrefix(QString(s.c_str()));
+    setRenderToPixmap(true);
+}
+
+
 void C4DView::setBackground(const Color &col) {
     glClearColor (col.r(), col.g(), col.b(), col.a());
     if (glIsList (ObjectList())) OnPaint();
 }
 
 void C4DView::setColors(bool cols) {
-    getColors() = cols;
-    Menu()->getAction("Colors")->setChecked(getColors());
+    ViewImpl::setColors(cols);
     initializeGL ();
     repaint ();
 }
 
 void C4DView::setCoordinates(bool coords) {
-    setDisplayCoordinates(coords);
-    Menu()->getAction("Coordinate Cross")->setChecked (DisplayCoordinates());
-
-    Redraw ();
+    ViewImpl::setCoordinates(coords);
+    Project();
+    Redraw();
 }
 
 void C4DView::setFog(bool fog) {
-    getFog() = fog;
-    Menu()->getAction("Depth Cue")->setChecked(getFog());
+    ViewImpl::setFog(fog);
     InitFog ();
     repaint ();
 }
 
 void C4DView::setHyperfog(bool fog) {
-    setDepthCue4D(fog);
-    Menu()->getAction("4D Depth Cue")->setChecked (DepthCue4D());
-
+    ViewImpl::setHyperfog(fog);
+    Project();
     Redraw ();
 }
 
 void C4DView::setShading(bool shade) {
-    getShade() = shade;
-    Menu()->getAction("Shading")->setChecked(getShade());
+    ViewImpl::setShading(shade);
     InitShade ();
     repaint ();
 }
 
 void C4DView::setTransparence (bool trans) {
-    getTransparent() = trans;
-    Menu()->getAction("Transparence")->setChecked(trans);
-    InitTransparence ();
+    ViewImpl::setTransparence(trans);
+    InitTransparence();
     repaint ();
 }
 
@@ -308,7 +333,7 @@ void C4DView::Transform(const VecMath::Rotation<4> &R,
     Matrix<4> Rot(R);
     for (unsigned i = 0; i < 4; i++)
         for (unsigned j = 0; j < 2; j++)
-            CrossTrans[i][j] = (Rot*Cross[i][j])+T;
+            _CrossTrans[i][j] = (Rot*_Cross[i][j])+T;
 }
 
 /** Four-dimensional transform is set to no rotation, no translation.
@@ -327,15 +352,15 @@ void C4DView::Transform() {
 
 /** Projects F and coordinate cross into three-space */
 void C4DView::Project(void) {
-    if (F().get()) F()->Project (ScrW(), CamW(), DepthCue4D());
+    if (F().get()) F()->Project (ScrW(), CamW(), getHyperfog());
     else return;
 
-    if (DisplayCoordinates()) {
+    if (getCoordinates()) {
         for (unsigned i = 0; i < 2; i++)
             for (unsigned j = 0; j < 4; j++) {
-                double ProjectionFactor = (ScrW()-CamW())/(CrossTrans[j][i][3]-CamW());
-                for (unsigned k = 0; k < CrossScr[j][i].dimension(); k++)
-                    CrossScr[j][i][k] = CrossTrans[j][i][k]*ProjectionFactor;
+                double ProjectionFactor = (ScrW()-CamW())/(_CrossTrans[j][i][3]-CamW());
+                for (unsigned k = 0; k < _CrossScr[j][i].dimension(); k++)
+                    _CrossScr[j][i][k] = _CrossTrans[j][i][k]*ProjectionFactor;
             }
     }
 }
@@ -347,26 +372,19 @@ void C4DView::PreRedraw () {
     // this does seem very ineffective to me, deleting and reassigning the GL Lists,
     // but it does not seem to work any other way...?
 
-    if (DisplayCoordinates()) {
+    if (getCoordinates()) {
         if (CoordinateCross()) glDeleteLists (CoordinateCross(), 1);
         setCoordinateCross(Globals::Instance().GetGLList());
         glNewList (CoordinateCross(), GL_COMPILE);
-        DrawCoordinates();
+            DrawCoordinates();
         glEndList();
     }
 
     if (ObjectList()) glDeleteLists(ObjectList(), 1);
     setObjectList(Globals::Instance().GetGLList());
     glNewList (ObjectList(), GL_COMPILE_AND_EXECUTE);
-        /*
-        glBegin (GL_POINTS);
-            setColor (0., 0., 0.);
-            for (unsigned i = 0; i < 160; i++) glVertex3d (0., 0., i/100.);
-        glEnd ();
-        */
         Project ();
         F()->Draw ();
-
     glEndList ();
 }
 
@@ -382,7 +400,7 @@ void C4DView::Redraw () {
 void C4DView::OnPaint() {
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);   //  clear the window
 
-    if (DisplayPolygons())                              //  this might move to a special
+    if (getSolid())                              //  this might move to a special
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);      //  routine "SwitchWireframe ()"
     else glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
@@ -426,41 +444,41 @@ void C4DView::RenderScene () {  //  draw (frame of animation)
 #       endif
     }
 
-    glCallList (ObjectList());                                //  draw the object
-    if (DisplayCoordinates()) glCallList (CoordinateCross());
+    glCallList(ObjectList());                                //  draw the object
+    if (getCoordinates()) glCallList(CoordinateCross());
 }
 
 
 /// Initialize the structures to display a four-dimensional coordinate cross
 void C4DView::InitCross() {
-    Cross = vector<vector<Vector<4> > > (4);
-    CrossTrans = vector<vector<Vector<4> > > (4);
-    CrossScr = vector<vector<Vector<3> > > (4);;
+    _Cross = vector<vector<Vector<4> > > (4);
+    _CrossTrans = vector<vector<Vector<4> > > (4);
+    _CrossScr = vector<vector<Vector<3> > > (4);;
     for (unsigned j = 0; j < 4; j++) {
-        Cross[j].resize(2);
-        CrossTrans[j].resize(2);
-        CrossScr[j].resize(2);
+        _Cross[j].resize(2);
+        _CrossTrans[j].resize(2);
+        _CrossScr[j].resize(2);
         for (unsigned k = 0; k < 2; k++) {
             //  CrossTrans[j][k] = Vector (4, 0., 0., 0., 0.);
-            CrossScr[j][k] = Vector<3> (0., 0., 0.);
+            _CrossScr[j][k] = Vector<3> (0., 0., 0.);
         }
     }
-    Cross[0][0] = Vector<4>(-5., 0., 0., 0.);
-    Cross[0][1] = Vector<4>( 5., 0., 0., 0.);
-    Cross[1][0] = Vector<4>(0., -5., 0., 0.);
-    Cross[1][1] = Vector<4>(0.,  5., 0., 0.);
-    Cross[2][0] = Vector<4>(0., 0., -5., 0.);
-    Cross[2][1] = Vector<4>(0., 0.,  5., 0.);
-    Cross[3][0] = Vector<4>(0., 0., 0., -5.);
-    Cross[3][1] = Vector<4>(0., 0., 0.,  5.);
+    _Cross[0][0] = Vector<4>(-5., 0., 0., 0.);
+    _Cross[0][1] = Vector<4>( 5., 0., 0., 0.);
+    _Cross[1][0] = Vector<4>(0., -5., 0., 0.);
+    _Cross[1][1] = Vector<4>(0.,  5., 0., 0.);
+    _Cross[2][0] = Vector<4>(0., 0., -5., 0.);
+    _Cross[2][1] = Vector<4>(0., 0.,  5., 0.);
+    _Cross[3][0] = Vector<4>(0., 0., 0., -5.);
+    _Cross[3][1] = Vector<4>(0., 0., 0.,  5.);
 }
 
 /// Switch 3D depth cue on and off
 /** @param on whether to use fog                                              */
 void C4DView::SetupDepthCue (bool on) {
-    setDepthCue3D(on);
+    ViewImpl::setFog(on);
     if (on) {
-        cerr << "m_camZ(): " << m_trans()[2] << endl;
+        SingletonLog::Instance() << "m_camZ(): " << m_trans()[2] << "\n";
         SetupDepthCue(
             fabs(m_trans()[2])-Size()/2.,
             fabs(m_trans()[2])+Size()/2.*Globals::Instance().SR3);
@@ -501,7 +519,7 @@ void C4DView::DrawCoordinates () {
         }
         glBegin (GL_LINES);
             for (unsigned i = 0; i < 2; i++)
-                Globals::Instance().glVertex (CrossScr[j][i]);
+                Globals::Instance().glVertex (_CrossScr[j][i]);
         glEnd ();
     }
 }
@@ -744,7 +762,7 @@ void C4DView::initializeGL (void) {
 
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);   //  clear the window
 
-        if (DisplayPolygons())                          //  this might move to a
+        if (getSolid())                          //  this might move to a
             glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);  //  special routine
         else glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //  "SwitchWireframe()"
 
@@ -768,11 +786,11 @@ void C4DView::initializeGL (void) {
 /// OpenGL initialization for light(s)
 /** @todo hardcoded light position and colors!                                */
 void C4DView::InitLight (void) {
-    if (getLight()) {
+    if (getLighting()) {
         glEnable(GL_LIGHTING);                          //  enable lighting
         //  compute specular reflections from origin of eye coordinate system
         glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, 1);
-        glLightfv(GL_LIGHT0, GL_POSITION, LightPos);    //  set light position
+        glLightfv(GL_LIGHT0, GL_POSITION, _LightPos);    //  set light position
         glLightfv(GL_LIGHT0, GL_DIFFUSE,
                   Globals::Instance().white());         //  diffuse color
         glLightfv(GL_LIGHT0, GL_AMBIENT,
@@ -785,8 +803,8 @@ void C4DView::InitLight (void) {
 
 /// OpenGL initialization for shading (gouraud or flat shading)
 void C4DView::InitShade (void) {
-    if (getShade()) glShadeModel (GL_SMOOTH);        //  gouraud shading
-    else            glShadeModel (GL_FLAT);          //  flat shading
+    if (getShading()) glShadeModel (GL_SMOOTH);        //  gouraud shading
+    else              glShadeModel (GL_FLAT);          //  flat shading
 }
 
 /// OpenGL initialization for fog
@@ -803,7 +821,7 @@ void C4DView::InitFog  (void) {
 /// OpenGL initialization for transparence
 /** @todo is GL_CULL_FACE needed or not?                                      */
 void C4DView::InitTransparence (void) {
-    if (getTransparent()) {
+    if (getTransparence()) {
         glEnable  (GL_BLEND);                               //  enable blending
         glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); //  blending function
         glEnable  (GL_POINT_SMOOTH);                        //  draw smooth points

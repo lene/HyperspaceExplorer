@@ -199,6 +199,15 @@ namespace Script {
             virtual bool execute();
     };
 
+    /// "solid <bool>"
+    /** solid on/off - opposite of wireframe on/off
+     *  \ingroup StatementGroup                                               */
+    class SolidStmt: public BoolStatement {
+        public:
+            SolidStmt(const Parser *p, const std::string &_arg): BoolStatement(p, _arg) { }
+            virtual bool execute();
+    };
+
     /// "depthcue3d <bool>"
     /** depth cue on/off
      *  \ingroup StatementGroup                                               */

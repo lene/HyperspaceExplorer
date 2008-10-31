@@ -12,7 +12,7 @@
 #include <QTimer>
 #include <QGLWidget>
 
-#include "View.H"
+#include "ViewImpl.H"
 #include "ValuesDialogImpl.H"
 #include "Rotation.H"
 
@@ -75,7 +75,7 @@ class SurfaceFactory {
 /** This class is much too fat and will be split into parts wherever possible
  *  \ingroup UIGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
-class C4DView : public QGLWidget, public UI::View {
+class C4DView : public QGLWidget, public UI::ViewImpl {
 
     public:
         /// Class template implementation for a factory creating Function's
@@ -123,8 +123,6 @@ class C4DView : public QGLWidget, public UI::View {
 
     Q_OBJECT
 
-    public slots:
-
     public:
         C4DView(QWidget * = 0);
         virtual ~C4DView();
@@ -144,63 +142,38 @@ class C4DView : public QGLWidget, public UI::View {
                                     const VecMath::Vector<4> &T);
 
         /// Implementation of UI::View::setdR
-        virtual void setdR(const VecMath::Rotation<4> &_dr) { pImpl->dR = _dr; }
+        virtual void setdR(const VecMath::Rotation<4> &_dr) { _dR = _dr; }
 
         /// Implementation of UI::View::animate
         virtual void animate();
 
         /// Implementation of UI::View::setSize
         virtual void setSize(unsigned w, unsigned h);
-
         /// Implementation of UI::View::setImgDir
-        virtual void setImgDir(const std::string &s) {
-            setanimationDirectory(QString(s.c_str()));
-            setRenderToPixmap(true);
-        }
+        virtual void setImgDir(const std::string &s);
 
         /// Implementation of UI::View::setImgPrefix
-        virtual void setImgPrefix(const std::string &s) {
-            setanimationPrefix(QString(s.c_str()));
-            setRenderToPixmap(true);
-        }
+        virtual void setImgPrefix(const std::string &s);
 
-        /// Implementation of UI::View::setBackground
+        /// Re-Implementation of UI::ViewImpl::setBackground
         virtual void setBackground(const Color &);
-        /// Implementation of UI::View::setColors
+        /// Re-Implementation of UI::ViewImpl::setColors
         virtual void setColors(bool);
-        /// Implementation of UI::View::setCoordinates
+        /// Re-Implementation of UI::ViewImpl::setCoordinates
         virtual void setCoordinates(bool);
-        /// Implementation of UI::View::setFog
+        /// Re-Implementation of UI::ViewImpl::setFog
         virtual void setFog(bool);
-        /// Implementation of UI::View::setHyperfog
+        /// Re-Implementation of UI::ViewImpl::setHyperfog
         virtual void setHyperfog(bool);
-        /// Implementation of UI::View::setLighting
-        virtual void setLighting(bool b) { pImpl->Lighting = b; }
-        /// Implementation of UI::View::setShading
+        /// Re-Implementation of UI::ViewImpl::setShading
         virtual void setShading(bool);
-        /// Implementation of UI::View::setTransparence
+        /// Re-Implementation of UI::ViewImpl::setTransparence
         virtual void setTransparence(bool);
-        /// Implementation of UI::View::setWireframe
-        virtual void setWireframe (bool wire) { setDisplayPolygons(!wire); }
 
         ////////        getters for the setters defined in View         ////////
 
-        /// \return whether to display the 4D coordinate cross or not
-        bool getDisplayCoordinates() const { return DisplayCoordinates(); }
         /// \return whether to save the rendered images to an image file
-        bool getRenderToPixmap() const { return RenderToPixmap(); }
-        /// \return whether to draw the objects' surfaces or only the edges
-        bool getDisplayPolygons() const { return DisplayPolygons(); }
-        /// \return whether to use colors in rendering or not
-        bool &getColors() { return pImpl->colors; }
-        /// \return whether to use shading in rendering or not
-        bool &getShade() { return pImpl->shade; }
-        /// \return whether to use depth cue/fog in rendering or not
-        bool &getFog() { return pImpl->fog; }
-        /// \return whether to use lighting in rendering or not
-        bool &getLight() { return pImpl->light; }
-        /// \return whether to use transparence/line antialiasing or not
-        bool &getTransparent() { return pImpl->transparent; }
+        virtual bool getRenderToPixmap() const { return RenderToPixmap(); }
 
         /// rotate in 3D 360 degrees
         double Benchmark3D(int, double, double, double, bool = true);
@@ -269,102 +242,91 @@ class C4DView : public QGLWidget, public UI::View {
         /// GL stuff needed in addition to resizeEvent(). Reimplemented from QGLWidget
         virtual void resizeGL (int, int);
 
-        void setF(Function *_f) { pImpl->F.reset(_f); }
-        const std::auto_ptr<Function> &F() const { return pImpl->F; }
+        void setF(Function *_f) { _F.reset(_f); }
+        const std::auto_ptr<Function> &F() const { return _F; }
 
-        void setT(const VecMath::Vector<4> &_t) { pImpl->T = _t; }
-        const VecMath::Vector<4> &T() { return pImpl->T; }
-        void addT(const VecMath::Vector<4> &_dT) { pImpl->T += _dT; }
+        void setT(const VecMath::Vector<4> &_t) { _T = _t; }
+        const VecMath::Vector<4> &T() { return _T; }
+        void addT(const VecMath::Vector<4> &_dT) { _T += _dT; }
 
-        void setR(const VecMath::Rotation<4> &_r) { pImpl->R = _r; }
-        const VecMath::Rotation<4> &R() { return pImpl->R; }
-        void addR(const VecMath::Rotation<4> &_dR) { pImpl->R += _dR; }
+        void setR(const VecMath::Rotation<4> &_r) { _R = _r; }
+        const VecMath::Rotation<4> &R() { return _R; }
+        void addR(const VecMath::Rotation<4> &_dR) { _R += _dR; }
 
-        void setdR3(const VecMath::Rotation<3> &_dr) { pImpl->dR3 = _dr; }
-        const VecMath::Rotation<3> &dR3() { return pImpl->dR3; }
-        void adddR3(const VecMath::Rotation<3> &_ddr) { pImpl->dR3 += _ddr; }
+        void setdR3(const VecMath::Rotation<3> &_dr) { _dR3 = _dr; }
+        const VecMath::Rotation<3> &dR3() { return _dR3; }
+        void adddR3(const VecMath::Rotation<3> &_ddr) { _dR3 += _ddr; }
 
-        const VecMath::Rotation<4> &dR() { return pImpl->dR; }
-        void adddR(const VecMath::Rotation<4> &_ddR) { pImpl->dR += _ddR; }
+        const VecMath::Rotation<4> &dR() { return _dR; }
+        void adddR(const VecMath::Rotation<4> &_ddR) { _dR += _ddR; }
 
         void setm_rot(const VecMath::Rotation<3, GLdouble> &_r) {
-            pImpl->m_rot = _r;
+            _rot = _r;
         }
         const VecMath::Rotation<3, GLdouble> &m_rot() {
-            return pImpl->m_rot;
+            return _rot;
         }
         void addm_rot(const VecMath::Rotation<3, GLdouble> &_dmr) {
-            pImpl->m_rot += _dmr;
+            _rot += _dmr;
         }
 
         void setm_trans(const VecMath::Vector<3, GLdouble> &_t) {
-            pImpl->m_trans = _t;
+            _trans = _t;
         }
         const VecMath::Vector<3, GLdouble> &m_trans() {
-            return pImpl->m_trans;
+            return _trans;
         }
         void addm_trans(const VecMath::Vector<3, GLdouble> &_dmt) {
-            pImpl->m_trans += _dmt;
+            _trans += _dmt;
         }
 
-        void setCamW(const double &_cw) { pImpl->CamW = _cw; }
-        double CamW() const { return pImpl->CamW; }
-        void setScrW(const double &_sw) { pImpl->ScrW = _sw; }
-        double ScrW() const { return pImpl->ScrW; }
+        void setCamW(const double &_cw) { _CamW = _cw; }
+        double CamW() const { return _CamW; }
+        void setScrW(const double &_sw) { _ScrW = _sw; }
+        double ScrW() const { return _ScrW; }
 
-        void setAntiAlias(bool b) { pImpl->AntiAlias = b; }
-        bool AntiAlias() const { return pImpl->AntiAlias; }
-        void setDisplayPolygons(bool b) { pImpl->DisplayPolygons = b; }
-        bool DisplayPolygons() const { return pImpl->DisplayPolygons; }
-        bool Lighting() const { return pImpl->Lighting; }
-        void setDepthCue3D(bool b) { pImpl->DepthCue3D = b; }
-        bool DepthCue3D() const { return pImpl->DepthCue3D; }
-        void setDepthCue4D(bool b) { pImpl->DepthCue4D = b; }
-        bool DepthCue4D() const { return pImpl->DepthCue4D; }
-        void setDisplayCoordinates(bool b) { pImpl->DisplayCoordinates = b; }
-        bool DisplayCoordinates() const { return pImpl->DisplayCoordinates; }
-        void setRenderToPixmap(bool b) { pImpl->RenderToPixmap = b; }
-        bool RenderToPixmap() const { return pImpl->RenderToPixmap; }
+        void setRenderToPixmap(bool b) { _RenderToPixmap = b; }
+        bool RenderToPixmap() const { return _RenderToPixmap; }
 
-        double distance() {return pImpl->distance; }
+        double distance() {return _distance; }
 
         void setanimationDirectory(const QString &b) {
-            pImpl->animationDirectory = b;
+            _animationDirectory = b;
         }
         const QString & animationDirectory() const {
-            return pImpl->animationDirectory;
+            return _animationDirectory;
         }
-        void setanimationPrefix(const QString &b) { pImpl->animationPrefix = b; }
-        const QString & animationPrefix() const { return pImpl->animationPrefix; }
+        void setanimationPrefix(const QString &b) { _animationPrefix = b; }
+        const QString & animationPrefix() const { return _animationPrefix; }
 
-        void setanimationFrame(unsigned b) { pImpl->animationFrame = b; }
-        unsigned animationFrame() const { return pImpl->animationFrame; }
-        void setanimationMaxFrames(unsigned b) { pImpl->animationMaxFrames = b; }
-        unsigned animationMaxFrames() const { return pImpl->animationMaxFrames; }
-        const unsigned animation_fps() const { return pImpl->animation_fps; }
+        void setanimationFrame(unsigned b) { _animationFrame = b; }
+        unsigned animationFrame() const { return _animationFrame; }
+        void setanimationMaxFrames(unsigned b) { _animationMaxFrames = b; }
+        unsigned animationMaxFrames() const { return _animationMaxFrames; }
+        const unsigned animation_fps() const { return _animation_fps; }
 
-        void setObjectList(GLint b) { pImpl->ObjectList = b; }
-        GLint ObjectList() const { return pImpl->ObjectList; }
-        void setCoordinateCross(GLint b) { pImpl->CoordinateCross = b; }
-        GLint CoordinateCross() const { return pImpl->CoordinateCross; }
+        void setObjectList(GLint b) { _ObjectList = b; }
+        GLint ObjectList() const { return _ObjectList; }
+        void setCoordinateCross(GLint b) { _CoordinateCross = b; }
+        GLint CoordinateCross() const { return _CoordinateCross; }
 
-        void setAnimated(bool b) { pImpl->Animated = b; }
-        bool Animated() const { return pImpl->Animated; }
-        void setCurrentlyRendering(bool b) { pImpl->CurrentlyRendering = b; }
-        bool CurrentlyRendering() const { return pImpl->CurrentlyRendering; }
+        void setAnimated(bool b) { _Animated = b; }
+        bool Animated() const { return _Animated; }
+        void setCurrentlyRendering(bool b) { _CurrentlyRendering = b; }
+        bool CurrentlyRendering() const { return _CurrentlyRendering; }
 
-        void setAnimationTimer(QTimer * b) { pImpl->AnimationTimer = b; }
-        QTimer * AnimationTimer() const { return pImpl->AnimationTimer; }
-        void setAnimateRandomTimer(QTimer * b) { pImpl->AnimateRandomTimer = b; }
-        QTimer * AnimateRandomTimer() const { return pImpl->AnimateRandomTimer; }
+        void setAnimationTimer(QTimer * b) { _AnimationTimer = b; }
+        QTimer * AnimationTimer() const { return _AnimationTimer; }
+        void setAnimateRandomTimer(QTimer * b) { _AnimateRandomTimer = b; }
+        QTimer * AnimateRandomTimer() const { return _AnimateRandomTimer; }
 
-        void setValues(UI::Dialogs::ValuesDialogImpl * b) { pImpl->Values = b; }
-        UI::Dialogs::ValuesDialogImpl * Values() const { return pImpl->Values; }
+        void setValues(UI::Dialogs::ValuesDialogImpl * b) { _Values = b; }
+        UI::Dialogs::ValuesDialogImpl * Values() const { return _Values; }
 
-        void setMenu(Menu4D *b) { pImpl->menu = b; }
-        Menu4D *Menu() const { return pImpl->menu; }
-        void setMouseHandler(MouseHandler4D *m) { pImpl->mouseHandler = m; }
-        MouseHandler4D *MouseHandler() const { return pImpl->mouseHandler; }
+        void setMenu(Menu4D *b) { _menu = b; }
+        Menu4D *Menu() const { return _menu; }
+        void setMouseHandler(MouseHandler4D *m) { _mouseHandler = m; }
+        MouseHandler4D *MouseHandler() const { return _mouseHandler; }
 
     private:
         void SetupDepthCue (float, float);
@@ -374,126 +336,65 @@ class C4DView : public QGLWidget, public UI::View {
         void InitTransparence (void);
 
     private:                                    //  member variables
-        /// Private class containing the member data for the Pimpl idiom
-        /** I thought it would be a good idea to switch to the Pimpl idiom
-         *  (all data in a private inner class, to which the outer class keeps
-         *  only a pointer) to cleanly separate implementation and interface.
-         *
-         *  Turns out the idea is not so great, at least not in this case. I
-         *  had to define a gazillion getters and setters first (none of which
-         *  were supported by KDevelop or Eclipse/CDT in any way), thereby
-         *  introducing a gazillion possibilities for typos, which may or may
-         *  not be detected by the compiler. Then I had to go and change every
-         *  occurrence of the member variable in the class implementation to
-         *  its corresponding accessor. Granted, this had been less annoying if
-         *  I had used Pimpl in the first place, but replacing \code x++ \endcode
-         *  with \code setx(x()+1) \endcode is \em not increasing readability in
-         *  any way.
-         *
-         *  For that reason I left the two-dimensional vector<>s Cross,
-         *  CrossTrans and CrossScr out of the inner class.
-         *
-         *  A slight improvement in readability comes from the fact that all
-         *  member variables are now visible as such, because they are called
-         *  as a function.
-         *
-         *  Moral: I think the Pimpl idiom does not make sense in all
-         *  circumstances.                                                    */
-        struct Impl {
-            Impl(C4DView *parent):
-                Background (0.25, 0.25, 0.25, 1.),
-                F(std::auto_ptr<Function>()),
 
-                T(0.,0.,0.,0.), R(0.,0.,0.,0.,0.,0.), dR(0.,0.,0.,0.,0.,0.),
-                m_rot(15., 15., 0.), dR3(0.,0.,0.), m_trans(0., 0.,-10.),
+        Color _Background;  ///< background color
 
-                CamW (-3.), ScrW (0.),
+        std::auto_ptr<Function> _F;  ///< the Function object currently displayed
 
-                AntiAlias (false), DisplayPolygons (false), Lighting (true),
-                DepthCue3D (false), DepthCue4D (false),
-                light (true), fog (true), transparent (false), shade (true), colors (true),
-                DisplayCoordinates (false),
-                RenderToPixmap (false),
-                animationDirectory("/tmp"),
-                animationPrefix("HyperspaceExplorer_Image"),
-                animationFrame(0),
-                animationMaxFrames((unsigned)-1),
-                animation_fps (50),
+        VecMath::Vector<4> _T;   ///< coordinates for 4D translation
+        VecMath::Rotation<4> _R;   ///< angles for 4D rotation
 
-                ObjectList (0), CoordinateCross (0),
+        /// delta values in angles for 4D rotation - for animations
+        VecMath::Rotation<4> _dR;
 
-                Animated (false), CurrentlyRendering (false),
+        /// rotation in X, Y and Z
+        VecMath::Rotation<3, GLdouble> _rot;
+        /// delta values in 3D rotation - for animations
+        VecMath::Rotation<3, GLdouble> _dR3;
+        /// translation in X and Y, Z coordinate of camera (distance from object)
+        VecMath::Vector<3, GLdouble> _trans;
 
-                Values (new UI::Dialogs::ValuesDialogImpl (parent)) {}
+        double _CamW;        ///< W coordinate of the camera
+        double _ScrW;        ///< W coordinate of the screen
 
-            Color Background;  ///< background color
+        
+        double _distance;                       ///< viewpoint distance
 
-            std::auto_ptr<Function> F;  ///< the Function object currently displayed
+        bool _RenderToPixmap;        ///< if true, save images
 
-            VecMath::Vector<4> T;   ///< coordinates for 4D translation
-            VecMath::Rotation<4> R;   ///< angles for 4D rotation
+        QString _animationDirectory; ///< where to save an animation's frames
+        QString _animationPrefix;    ///< prefix of animation frame filenames
+        unsigned _animationFrame;    ///< current frame in animation
+        unsigned _animationMaxFrames;    ///< limit for saved animation frames
+        const unsigned _animation_fps;   ///< frames per second for animations
 
-            /// delta values in angles for 4D rotation - for animations
-            VecMath::Rotation<4> dR;
+        GLint _ObjectList;       ///< a GLList for the display of the object
+        GLint _CoordinateCross;  ///< a GLList for the display of the coordinates
 
-            /// rotation in X, Y and Z
-            VecMath::Rotation<3, GLdouble> m_rot;
-            /// delta values in 3D rotation - for animations
-            VecMath::Rotation<3, GLdouble> dR3;
-            /// translation in X and Y, Z coordinate of camera (distance from object)
-            VecMath::Vector<3, GLdouble> m_trans;
+        bool _Animated;              ///< if true, image is currently animated
 
-            double CamW;        ///< W coordinate of the camera
-            double ScrW;        ///< W coordinate of the screen
+        bool _CurrentlyRendering;    ///< if true, currently rendering an image
 
-            /// if true, draw lines antialiased, surfaces transparent
-            bool AntiAlias;
-            bool DisplayPolygons;       ///< if true, draw solid surfaces
-            bool Lighting;              ///< if true, use lights in rendering
-            bool DepthCue3D;            ///< if true, use depth cue
-            bool DepthCue4D;            ///< if true, use depth cue in 4D
-            bool light, fog, transparent, shade, colors;
-            double distance;                       ///< viewpoint distance
+        /// times out every X ms to draw new animation frame
+        QTimer *_AnimationTimer;
+        /// times out to change rotation direction
+        QTimer *_AnimateRandomTimer;
 
-            bool DisplayCoordinates;    ///< if true, show the 4D coordinate cross
-            bool RenderToPixmap;        ///< if true, save images
+        /// dialog to enter function parameters
+        UI::Dialogs::ValuesDialogImpl *_Values;
 
-            QString animationDirectory; ///< where to save an animation's frames
-            QString animationPrefix;    ///< prefix of animation frame filenames
-            unsigned animationFrame;    ///< current frame in animation
-            unsigned animationMaxFrames;    ///< limit for saved animation frames
-            const unsigned animation_fps;   ///< frames per second for animations
+        Menu4D *_menu;               ///< the popup menu and menu bar
+        MouseHandler4D *_mouseHandler; ///< handler to delegate mouse events to
 
-            GLint ObjectList;       ///< a GLList for the display of the object
-            GLint CoordinateCross;  ///< a GLList for the display of the coordinates
+        /// endpoints of the lines constituting the 4D coordinate cross
+        std::vector<std::vector<VecMath::Vector<4> > > _Cross;
+        /// endpoints of the lines constituting the transformed 4D coordinates
+        std::vector<std::vector<VecMath::Vector<4> > > _CrossTrans;
+        /// endpoints of the lines constituting the projected 4D coordinates
+        std::vector<std::vector<VecMath::Vector<3> > > _CrossScr;
 
-            bool Animated;              ///< if true, image is currently animated
-
-            bool CurrentlyRendering;    ///< if true, currently rendering an image
-
-            /// times out every X ms to draw new animation frame
-            QTimer *AnimationTimer;
-            /// times out to change rotation direction
-            QTimer *AnimateRandomTimer;
-
-            /// dialog to enter function parameters
-            UI::Dialogs::ValuesDialogImpl *Values;
-
-            Menu4D *menu;               ///< the popup menu and menu bar
-            MouseHandler4D *mouseHandler; ///< handler to delegate mouse events to
-        };
-
-    std::auto_ptr<C4DView::Impl> pImpl;
-
-    static GLfloat LightPos[4]; ///< position of the light
-    static std::string HelpFile;
-
-    /// endpoints of the lines constituting the 4D coordinate cross
-    std::vector<std::vector<VecMath::Vector<4> > > Cross;
-    /// endpoints of the lines constituting the transformed 4D coordinates
-    std::vector<std::vector<VecMath::Vector<4> > > CrossTrans;
-    /// endpoints of the lines constituting the projected 4D coordinates
-    std::vector<std::vector<VecMath::Vector<3> > > CrossScr;
+        static GLfloat _LightPos[4]; ///< position of the light
+        static std::string _HelpFile;
 
     friend class CustomFunctionSlot<CustomFunction>;
     friend class CustomFunctionSlot<CustomPolarFunction>;

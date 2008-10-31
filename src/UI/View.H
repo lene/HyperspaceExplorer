@@ -36,7 +36,7 @@ namespace UI {
         };
 
         public:
-            View(): numFrames(1), numLoops(1) { }
+            View() { }
 
             /// Set the currently displayed object to the given Function
             /** \param f The object to be set */
@@ -80,9 +80,9 @@ namespace UI {
             virtual void setdR(const VecMath::Rotation<4> &_dr) = 0;
 
             /// Set the number of frames for an animation
-            virtual void setNumFrames(unsigned _numFrames) { numFrames =_numFrames; }
+            virtual void setNumFrames(unsigned _numFrames) = 0;
             /// Set the number of times \p _numFrames are repeated
-            virtual void setNumLoops(unsigned _numLoops) { numLoops =_numLoops; }
+            virtual void setNumLoops(unsigned _numLoops) = 0;
 
             /// Start the animation with the currently active values
             virtual void animate() = 0;
@@ -97,41 +97,60 @@ namespace UI {
 
             /// Set the background color
             virtual void setBackground(const Color &) = 0;
-            /// Turn display of colors on or off
+            
+            /// \return whether to use colors in rendering or not
+            virtual bool getColors() const = 0;
+            /// Turn display of colors in rendering on or off
             virtual void setColors(bool) = 0;
-            /// Turn display of coordinate crosss on or off
+            
+            /// \return whether to display the 4D coordinate cross or not
+            virtual bool getCoordinates() const = 0;
+            /// Turn display of 4D coordinate cross on or off
             virtual void setCoordinates(bool) = 0;
+            
+            /// \return whether to use depth cue/fog in rendering or not
+            virtual bool getFog() const = 0;
             /// Turn depth cue on or off
             virtual void setFog(bool) = 0;
+
+            /// \return whether to use four-dimensional depth cue or not
+            virtual bool getHyperfog() const = 0;
             /// Turn depth cue in four dimensions on or off
             virtual void setHyperfog(bool) = 0;
+            
+            /// \return whether to use lighting in rendering or not
+            virtual bool getLighting() const = 0;
             /// Turn lighting on or off
             virtual void setLighting(bool) = 0;
+            
+            /// \return whether to use shading in rendering or not
+            virtual bool getShading() const = 0;
             /// Turn gouraud shading on or off
             virtual void setShading(bool) = 0;
+
+            /// \return whether to draw the objects' surfaces
+            virtual bool getSolid() const = 0;
+            /// Turn wireframe display on or off
+            /** \param on if true, displays wireframe model; else solid       */
+            virtual void setSolid(bool on) = 0;
+
+            /// \return whether to use transparence/line antialiasing or not
+            virtual bool getTransparence() const = 0;
             /// Turn transparenc/line antialiasing on or off
             virtual void setTransparence(bool) = 0;
-            /// Turn wireframe display on or off
-            /// \param wire if true, displays wireframe model; else solid
-            virtual void setWireframe(bool wire) = 0;
-
+            
         protected:
             /// Apply changes in parameters and display them
             virtual void ApplyChanges(const ParameterMap &) = 0;
 
             /// Number of frames for animations
-            virtual unsigned getNumFrames() { return numFrames; }
+            virtual unsigned getNumFrames() = 0;
             /// Number of loops to repeat an animation
-            virtual unsigned getNumLoops() { return numLoops; }
-            /// Set a default background color
-            virtual void setDefaultBackground() {
-                static Color defaultBackground(0.1, 0.1, 0.1, 1.0);
-                setBackground(defaultBackground);
-            }
+            virtual unsigned getNumLoops() = 0;
 
-        private:
-            unsigned numFrames; ///< number of frames for animations
-            unsigned numLoops;  ///< number of loops to repeat an animation
+            /// Set a default background color
+            virtual void setDefaultBackground() = 0;
+            
     };
 
 }

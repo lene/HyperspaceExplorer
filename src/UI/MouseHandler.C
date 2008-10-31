@@ -242,7 +242,7 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
                             Vector<3, GLdouble>(parent->m_trans()[0],
                                                 parent->m_trans()[1],
                                                 parent->m_trans()[2]*(1+zoom.x ()/xsize)));
-                        parent->SetupDepthCue (parent->DepthCue3D());
+                        parent->SetupDepthCue (parent->getFog());
                     }
                     parent->addm_rot(Rotation<3>(0.,0.,-zoom.y ()/ysize*180));    //    add z rotation
 

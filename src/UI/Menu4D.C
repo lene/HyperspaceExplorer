@@ -150,11 +150,11 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
         appear->addAction("Set Background Color", this, SLOT(setBackground()));
 
         getAction("Colors")->setChecked(m_parent->getColors());
-        getAction("Shading")->setChecked(m_parent->getShade());
+        getAction("Shading")->setChecked(m_parent->getShading());
         getAction("Depth Cue")->setChecked(m_parent->getFog());
-        getAction("Lighting")->setChecked(m_parent->getLight());
-        getAction("Transparence")->setChecked(m_parent->getTransparent());
-        getAction("Coordinate Cross")->setChecked(m_parent->getDisplayCoordinates());
+        getAction("Lighting")->setChecked(m_parent->getLighting());
+        getAction("Transparence")->setChecked(m_parent->getTransparence());
+        getAction("Coordinate Cross")->setChecked(m_parent->getCoordinates());
     }
     insertAction(help, "Online help", SLOT(Help ()), false);
     help->insertSeparator (
@@ -173,7 +173,7 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
     insertAction(animation, "Benchmark", SLOT (Benchmark()), false);
     insertAction(appear, "4D Depth Cue", SLOT(HyperFog()));
 
-    if (m_parent->getDisplayPolygons()) {
+    if (m_parent->getSolid()) {
         getAction("Wireframe")->setText("Solid");
         getAction("Transparence")->setText("Line Antialiasing");
         getAction("Transparence")->setEnabled(true);
@@ -183,7 +183,7 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
         getAction("Transparence")->setText("Transparence");
     }
       //      appear->setItemEnabled (transparentAction, DisplayPolygons);
-    m_parent->setWireframe (m_parent->getDisplayPolygons());
+    m_parent->setSolid(!m_parent->getSolid());
 }
 
 /** Display a CustomFunction object */
@@ -230,21 +230,25 @@ void C4DView::Menu4D::customComplexFunction() {
 /** Toggle colors */
 void C4DView::Menu4D::Colors () {
     m_parent->setColors(!m_parent->getColors());
+    getAction("Colors")->setChecked(m_parent->getColors());
 }
 
 /** Toggle shading */
 void C4DView::Menu4D::Shade () {
-    m_parent->setShading(!m_parent->getShade());
+    m_parent->setShading(!m_parent->getShading());
+    getAction("Shading")->setChecked(m_parent->getShading());
 }
 
 /** Toggle fog/depth cue */
 void C4DView::Menu4D::Fog () {
     m_parent->setFog(!m_parent->getFog());
+    getAction("Depth Cue")->setChecked(m_parent->getFog());
 }
 
 /** Toggle object transparency */
 void C4DView::Menu4D::Transparent () {
-    m_parent->setTransparence(!m_parent->getTransparent());
+    m_parent->setTransparence(!m_parent->getTransparence());
+    getAction("Transparence")->setChecked(m_parent->getTransparence());
 }
 
 /** Switch lighting on or off
@@ -254,8 +258,8 @@ void C4DView::Menu4D::Transparent () {
  *  \todo move all the GL stuff away from the menu handler, back into C4DView
  */
 void C4DView::Menu4D::Light() {
-    m_parent->setLighting(!m_parent->Lighting());
-    if (m_parent->Lighting()) {
+    m_parent->setLighting(!m_parent->getLighting());
+    if (m_parent->getLighting()) {
         glEnable(GL_LIGHTING);                  //  turn on the light
 
         static GLfloat LightAmbient[]  = { 0.3f, 0.3f, 0.3f, 1.0f }, //  HARDCODED VALUES
@@ -289,16 +293,16 @@ void C4DView::Menu4D::Light() {
  *
  *  Change menu items accordingly                   */
 void C4DView::Menu4D::Wireframe() {
-    if (m_parent->DisplayPolygons()) {
+    if (m_parent->getSolid()) {
         getAction("Wireframe")->setText("Solid");
         getAction("Transparence")->setText("Line Antialiasing");
     } else {
         getAction("Wireframe")->setText("Wireframe");
         getAction("Transparence")->setText("Transparence");
-        glDisable (GL_CULL_FACE);
+        glDisable(GL_CULL_FACE);
     }
-    getAction("Wireframe")->setChecked (m_parent->DisplayPolygons());
-    m_parent->setWireframe (m_parent->DisplayPolygons());
+    getAction("Wireframe")->setChecked(m_parent->getSolid());
+    m_parent->setSolid(!m_parent->getSolid());
 
     m_parent->OnPaint ();
 }
@@ -307,7 +311,8 @@ void C4DView::Menu4D::Wireframe() {
  *
  *  Change menu items accordingly       */
 void C4DView::Menu4D::Coordinates() {
-    m_parent->setCoordinates(!m_parent->DisplayCoordinates());
+    m_parent->setCoordinates(!m_parent->getCoordinates());
+    getAction("Coordinate Cross")->setChecked(m_parent->getCoordinates());
 }
 
 /** Pop up a color selector and set the background to the chosen color */
@@ -318,7 +323,8 @@ void C4DView::Menu4D::setBackground() {
 /** Switch 4D depth cue on or off
  *  Change menu items accordingly */
 void C4DView::Menu4D::HyperFog() {
-    m_parent->setHyperfog(!m_parent->DepthCue4D());
+    m_parent->setHyperfog(!m_parent->getHyperfog());
+    getAction("4D Depth Cue")->setChecked(m_parent->getHyperfog());
 }
 
 
@@ -367,7 +373,7 @@ void C4DView::Menu4D::Benchmark() {
 /** Display help window */
 void C4DView::Menu4D::Help () {
     static HelpWindow *H;
-    H = new HelpWindow (C4DView::HelpFile.c_str());
+    H = new HelpWindow (C4DView::_HelpFile.c_str());
     H->show();
 }
 

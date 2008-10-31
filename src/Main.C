@@ -228,7 +228,7 @@ double2Dmap benchmarks_by_style (C4DView & view, const unsigned num_runs,
                                  const unsigned num_steps, const double step) {
     double2Dmap results_by_style;
 
-    view.setWireframe(true);
+    view.setSolid(false);
     results_by_style.insert (
         double2DmapPair (
             "Wireframe",
@@ -238,7 +238,7 @@ double2Dmap benchmarks_by_style (C4DView & view, const unsigned num_runs,
         double2DmapPair (
             "Wireframe + 4D Depth Cue",
             run_benchmarks (view, num_runs, num_steps, step)));
-    view.setWireframe(false);
+    view.setSolid(true);
     view.setHyperfog(false);
     results_by_style.insert (
         double2DmapPair (

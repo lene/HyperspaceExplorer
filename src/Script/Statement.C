@@ -130,7 +130,11 @@ namespace Script {
         return true;
     }
     bool WireStmt::execute() {
-        parser()->getView()->setWireframe(getValue());
+        parser()->getView()->setSolid(!getValue());
+        return true;
+    }
+    bool SolidStmt::execute() {
+        parser()->getView()->setSolid(getValue());
         return true;
     }
     bool FogStmt::execute() {
