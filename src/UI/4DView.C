@@ -45,15 +45,6 @@ using VecMath::Matrix;
 GLfloat C4DView::_LightPos[4] = { 4., 4., 8., 0. };
 std::string  C4DView::_HelpFile = "Hyperspace_Explorer_Help.html";
 
-/// \todo obsolete; use std::min
-template<typename T> T min(const T &a, const T &b) {
-    return (a < b? a: b);
-}
-/// \todo obsolete; use std::max
-template<typename T> T max(const T &a, const T &b) {
-    return (a > b? a: b);
-}
-
 ////////////////////////////////////////////////////////////////////////////////
 // 	C4DView construction/destruction
 ////////////////////////////////////////////////////////////////////////////////
@@ -74,9 +65,9 @@ C4DView::C4DView(QWidget *parent):
     _animationMaxFrames((unsigned)-1),
     _animation_fps (50),
 
-    _ObjectList (0), _CoordinateCross (0),
-
     _Animated (false), _CurrentlyRendering (false),
+
+    _ObjectList (0), _CoordinateCross (0),
 
     _Values (new UI::Dialogs::ValuesDialogImpl(this)) {
 
@@ -507,7 +498,7 @@ void C4DView::SetupDepthCue (bool on) {
 void C4DView::SetupDepthCue (float dist, float size) {
     glFogi (GL_FOG_MODE,  GL_LINEAR);             //  set fog mode to linear
     glFogfv(GL_FOG_COLOR, Globals::Instance().FogColor());
-    glFogf (GL_FOG_START, max(dist-size/2., 0.));         //  ...
+    glFogf (GL_FOG_START, std::max(dist-size/2., 0.));         //  ...
     glFogf (GL_FOG_END,   dist+size/2.*Globals::Instance().SR3);
 }
 

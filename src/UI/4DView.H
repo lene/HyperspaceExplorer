@@ -302,12 +302,12 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         unsigned _animationMaxFrames;   ///< limit for saved animation frames
         const unsigned _animation_fps;  ///< frames per second for animations
 
-        GLint _ObjectList;      ///< a GLList for the display of the object
-        GLint _CoordinateCross; ///< a GLList for the display of the coordinates
-
         bool _Animated;             ///< if true, image is currently animated
 
         bool _CurrentlyRendering;   ///< if true, currently rendering an image
+
+        GLint _ObjectList;      ///< a GLList for the display of the object
+        GLint _CoordinateCross; ///< a GLList for the display of the coordinates
 
         /// times out every X ms to draw new animation frame
         QTimer *_AnimationTimer;
@@ -330,9 +330,13 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         static GLfloat _LightPos[4];    ///< position of the light
         static std::string _HelpFile;   ///< Path to the user docs HTML file
 
+    /// Factory object, Menu callback, need access to ValuesDialog, F and Redraw
     friend class CustomFunctionSlot<CustomFunction>;
+    /// Factory object, Menu callback, need access to ValuesDialog, F and Redraw
     friend class CustomFunctionSlot<CustomPolarFunction>;
+    /// Factory object, Menu callback, need access to ValuesDialog, F and Redraw
     friend class CustomFunctionSlot<CustomComplexFunction>;
+    /// Factory object, Menu callback, need access to ValuesDialog, F and Redraw
     friend class CustomFunctionSlot<CustomSurface>;
 
     friend class FunctionSlotHelper;
