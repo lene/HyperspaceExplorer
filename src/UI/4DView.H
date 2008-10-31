@@ -165,7 +165,7 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         /// Re-Implementation of UI::ViewImpl::setTransparence
         virtual void setTransparence(bool);
 
-        ////////        getters for the setters defined in View         ////////
+        ////////////////////////////////////////////////////////////////////////
 
         /// rotate in 3D 360 degrees
         double Benchmark3D(int, double, double, double, bool = true);
@@ -261,23 +261,23 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         unsigned animationMaxFrames() const { return _animationMaxFrames; }
         const unsigned animation_fps() const { return _animation_fps; }
 
-        void setObjectList(GLint b) { _ObjectList = b; }
-        GLint ObjectList() const { return _ObjectList; }
-        void setCoordinateCross(GLint b) { _CoordinateCross = b; }
-        GLint CoordinateCross() const { return _CoordinateCross; }
+        void setObjectList(GLint b) { _objectList = b; }
+        GLint ObjectList() const { return _objectList; }
+        void setCoordinateCross(GLint b) { _coordinateCross = b; }
+        GLint CoordinateCross() const { return _coordinateCross; }
 
-        void setAnimated(bool b) { _Animated = b; }
-        bool Animated() const { return _Animated; }
-        void setCurrentlyRendering(bool b) { _CurrentlyRendering = b; }
-        bool CurrentlyRendering() const { return _CurrentlyRendering; }
+        void setAnimated(bool b) { _animated = b; }
+        bool Animated() const { return _animated; }
+        void setCurrentlyRendering(bool b) { _currentlyRendering = b; }
+        bool CurrentlyRendering() const { return _currentlyRendering; }
 
-        void setAnimationTimer(QTimer * b) { _AnimationTimer = b; }
-        QTimer * AnimationTimer() const { return _AnimationTimer; }
-        void setAnimateRandomTimer(QTimer * b) { _AnimateRandomTimer = b; }
-        QTimer * AnimateRandomTimer() const { return _AnimateRandomTimer; }
+        void setAnimationTimer(QTimer * b) { _animationTimer = b; }
+        QTimer * AnimationTimer() const { return _animationTimer; }
+        void setAnimateRandomTimer(QTimer * b) { _animateRandomTimer = b; }
+        QTimer * AnimateRandomTimer() const { return _animateRandomTimer; }
 
-        void setValues(UI::Dialogs::ValuesDialogImpl * b) { _Values = b; }
-        UI::Dialogs::ValuesDialogImpl * Values() const { return _Values; }
+        void setValues(UI::Dialogs::ValuesDialogImpl * b) { _values = b; }
+        UI::Dialogs::ValuesDialogImpl * Values() const { return _values; }
 
         void setMenu(Menu4D *b) { _menu = b; }
         Menu4D *Menu() const { return _menu; }
@@ -302,33 +302,32 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         unsigned _animationMaxFrames;   ///< limit for saved animation frames
         const unsigned _animation_fps;  ///< frames per second for animations
 
-        bool _Animated;             ///< if true, image is currently animated
+        bool _animated;             ///< if true, image is currently animated
 
-        bool _CurrentlyRendering;   ///< if true, currently rendering an image
+        bool _currentlyRendering;   ///< if true, currently rendering an image
 
-        GLint _ObjectList;      ///< a GLList for the display of the object
-        GLint _CoordinateCross; ///< a GLList for the display of the coordinates
+        GLint _objectList;      ///< a GLList for the display of the object
+        GLint _coordinateCross; ///< a GLList for the display of the coordinates
 
         /// times out every X ms to draw new animation frame
-        QTimer *_AnimationTimer;
+        QTimer *_animationTimer;
         /// times out to change rotation direction
-        QTimer *_AnimateRandomTimer;
+        QTimer *_animateRandomTimer;
 
         /// dialog to enter function parameters
-        UI::Dialogs::ValuesDialogImpl *_Values;
+        UI::Dialogs::ValuesDialogImpl *_values;
 
         Menu4D *_menu;                  ///< the popup menu and menu bar
         MouseHandler4D *_mouseHandler;  ///< handler to delegate mouse events to
 
         /// endpoints of the lines constituting the 4D coordinate cross
-        std::vector<std::vector<VecMath::Vector<4> > > _Cross;
+        std::vector<std::vector<VecMath::Vector<4> > > _cross;
         /// endpoints of the lines constituting the transformed 4D coordinates
-        std::vector<std::vector<VecMath::Vector<4> > > _CrossTrans;
+        std::vector<std::vector<VecMath::Vector<4> > > _crossTrans;
         /// endpoints of the lines constituting the projected 4D coordinates
-        std::vector<std::vector<VecMath::Vector<3> > > _CrossScr;
+        std::vector<std::vector<VecMath::Vector<3> > > _crossScr;
 
-        static GLfloat _LightPos[4];    ///< position of the light
-        static std::string _HelpFile;   ///< Path to the user docs HTML file
+        static std::string _helpFile;   ///< Path to the user docs HTML file
 
     /// Factory object, Menu callback, need access to ValuesDialog, F and Redraw
     friend class CustomFunctionSlot<CustomFunction>;

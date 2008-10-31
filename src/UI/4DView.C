@@ -42,8 +42,7 @@ using VecMath::Vector;
 using VecMath::Rotation;
 using VecMath::Matrix;
 
-GLfloat C4DView::_LightPos[4] = { 4., 4., 8., 0. };
-std::string  C4DView::_HelpFile = "Hyperspace_Explorer_Help.html";
+std::string  C4DView::_helpFile = "Hyperspace_Explorer_Help.html";
 
 ////////////////////////////////////////////////////////////////////////////////
 // 	C4DView construction/destruction
@@ -65,11 +64,11 @@ C4DView::C4DView(QWidget *parent):
     _animationMaxFrames((unsigned)-1),
     _animation_fps (50),
 
-    _Animated (false), _CurrentlyRendering (false),
+    _animated (false), _currentlyRendering (false),
 
-    _ObjectList (0), _CoordinateCross (0),
+    _objectList (0), _coordinateCross (0),
 
-    _Values (new UI::Dialogs::ValuesDialogImpl(this)) {
+    _values (new UI::Dialogs::ValuesDialogImpl(this)) {
 
     InitCross();
 
@@ -337,7 +336,7 @@ void C4DView::Transform(const VecMath::Rotation<4> &R,
     Matrix<4> Rot(R);
     for (unsigned i = 0; i < 4; i++)
         for (unsigned j = 0; j < 2; j++)
-            _CrossTrans[i][j] = (Rot*_Cross[i][j])+T;
+            _crossTrans[i][j] = (Rot*_cross[i][j])+T;
 }
 
 /** Four-dimensional transform is set to no rotation, no translation.
@@ -362,9 +361,9 @@ void C4DView::Project(void) {
     if (getCoordinates()) {
         for (unsigned i = 0; i < 2; i++)
             for (unsigned j = 0; j < 4; j++) {
-                double ProjectionFactor = (ScrW()-CamW())/(_CrossTrans[j][i][3]-CamW());
-                for (unsigned k = 0; k < _CrossScr[j][i].dimension(); k++)
-                    _CrossScr[j][i][k] = _CrossTrans[j][i][k]*ProjectionFactor;
+                double ProjectionFactor = (ScrW()-CamW())/(_crossTrans[j][i][3]-CamW());
+                for (unsigned k = 0; k < _crossScr[j][i].dimension(); k++)
+                    _crossScr[j][i][k] = _crossTrans[j][i][k]*ProjectionFactor;
             }
     }
 }
@@ -454,26 +453,26 @@ void C4DView::RenderScene () {  //  draw (frame of animation)
 
 
 void C4DView::InitCross() {
-    _Cross = vector<vector<Vector<4> > > (4);
-    _CrossTrans = vector<vector<Vector<4> > > (4);
-    _CrossScr = vector<vector<Vector<3> > > (4);;
+    _cross = vector<vector<Vector<4> > > (4);
+    _crossTrans = vector<vector<Vector<4> > > (4);
+    _crossScr = vector<vector<Vector<3> > > (4);;
     for (unsigned j = 0; j < 4; j++) {
-        _Cross[j].resize(2);
-        _CrossTrans[j].resize(2);
-        _CrossScr[j].resize(2);
+        _cross[j].resize(2);
+        _crossTrans[j].resize(2);
+        _crossScr[j].resize(2);
         for (unsigned k = 0; k < 2; k++) {
             //  CrossTrans[j][k] = Vector (4, 0., 0., 0., 0.);
-            _CrossScr[j][k] = Vector<3> (0., 0., 0.);
+            _crossScr[j][k] = Vector<3> (0., 0., 0.);
         }
     }
-    _Cross[0][0] = Vector<4>(-5., 0., 0., 0.);
-    _Cross[0][1] = Vector<4>( 5., 0., 0., 0.);
-    _Cross[1][0] = Vector<4>(0., -5., 0., 0.);
-    _Cross[1][1] = Vector<4>(0.,  5., 0., 0.);
-    _Cross[2][0] = Vector<4>(0., 0., -5., 0.);
-    _Cross[2][1] = Vector<4>(0., 0.,  5., 0.);
-    _Cross[3][0] = Vector<4>(0., 0., 0., -5.);
-    _Cross[3][1] = Vector<4>(0., 0., 0.,  5.);
+    _cross[0][0] = Vector<4>(-5., 0., 0., 0.);
+    _cross[0][1] = Vector<4>( 5., 0., 0., 0.);
+    _cross[1][0] = Vector<4>(0., -5., 0., 0.);
+    _cross[1][1] = Vector<4>(0.,  5., 0., 0.);
+    _cross[2][0] = Vector<4>(0., 0., -5., 0.);
+    _cross[2][1] = Vector<4>(0., 0.,  5., 0.);
+    _cross[3][0] = Vector<4>(0., 0., 0., -5.);
+    _cross[3][1] = Vector<4>(0., 0., 0.,  5.);
 }
 
 /// Switch 3D depth cue on and off
@@ -522,7 +521,7 @@ void C4DView::DrawCoordinates () {
         }
         glBegin (GL_LINES);
             for (unsigned i = 0; i < 2; i++)
-                Globals::Instance().glVertex (_CrossScr[j][i]);
+                Globals::Instance().glVertex (_crossScr[j][i]);
         glEnd ();
     }
 }
@@ -794,7 +793,7 @@ void C4DView::InitLight (void) {
         glEnable(GL_LIGHTING);                          //  enable lighting
         //  compute specular reflections from origin of eye coordinate system
         glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, 1);
-        glLightfv(GL_LIGHT0, GL_POSITION, _LightPos);    //  set light position
+        glLightfv(GL_LIGHT0, GL_POSITION, getLightPos());    //  set light position
         glLightfv(GL_LIGHT0, GL_DIFFUSE,
                   Globals::Instance().white());         //  diffuse color
         glLightfv(GL_LIGHT0, GL_AMBIENT,

@@ -345,7 +345,7 @@ void C4DView::Menu4D::Benchmark() {
 /** Display _help window */
 void C4DView::Menu4D::Help () {
     static HelpWindow *H;
-    H = new HelpWindow (C4DView::_HelpFile.c_str());
+    H = new HelpWindow (C4DView::_helpFile.c_str());
     H->show();
 }
 

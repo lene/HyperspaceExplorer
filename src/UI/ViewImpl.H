@@ -119,7 +119,7 @@ namespace UI {
             virtual void setWriteImages(bool on) { _writeImages = on; }
 
             /// Set a default background color
-            virtual void setDefaultBackground() { setBackground(defaultBackground); }
+            virtual void setDefaultBackground();
 
             virtual void setT(const VecMath::Vector<4> &_t) { _T = _t; }
             virtual const VecMath::Vector<4> &T() { return _T; }
@@ -139,6 +139,9 @@ namespace UI {
 
             double distance() {return _distance; }
 
+            static GLfloat *getLightPos() { return _lightPos; }
+            static void setLightPos(const VecMath::Vector<4, GLfloat> &pos);
+            
         private:
 
             std::auto_ptr<Function> _F;  ///< the Function object currently displayed
@@ -172,7 +175,10 @@ namespace UI {
             std::string _imagePrefix;   ///< filename prefix for saved images
 
             /// Default Color for the background
-            static Color defaultBackground;
+            static Color _defaultBackground;
+            /// Position of the light
+            static GLfloat _lightPos[4];
+
     };
 
 }

@@ -14,7 +14,8 @@
 
 namespace UI {
 
-    Color ViewImpl::defaultBackground(0.1, 0.1, 0.1, 1.0);
+    Color ViewImpl::_defaultBackground(0.1, 0.1, 0.1, 1.0);
+    GLfloat ViewImpl::_lightPos[4] = { 4., 4., 8., 0. };
 
     ViewImpl::ViewImpl():
         View(),
@@ -40,6 +41,10 @@ namespace UI {
     void ViewImpl::setImgPrefix(const std::string &s) {
         _imagePrefix = s;
         setWriteImages(true);
+    }
+
+    void ViewImpl::setDefaultBackground() {
+        setBackground(_defaultBackground);
     }
 
     /** \param ddr Rotation to be added to the current Rotation state */
