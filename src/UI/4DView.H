@@ -129,10 +129,14 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
 
         ////////        Implementations of the View interface        ////////
 
-        virtual void ObjectHypercube();     ///< Implementation of UI::View::ObjectHypercube
-        virtual void ObjectHyperpyramid();  ///< Implementation of UI::View::ObjectHyperpyramid
-        virtual void ObjectHypersponge();   ///< Implementation of UI::View::ObjectHypersponge
-        virtual void ObjectGasket();        ///< Implementation of UI::View::ObjectGasket
+        /// Implementation of UI::View::ObjectHypercube
+        virtual void ObjectHypercube();
+        /// Implementation of UI::View::ObjectHyperpyramid
+        virtual void ObjectHyperpyramid();
+        /// Implementation of UI::View::ObjectHypersponge
+        virtual void ObjectHypersponge();
+        /// Implementation of UI::View::ObjectGasket
+        virtual void ObjectGasket();
 
         /// Implementation of UI::View::applyTransform
         virtual void applyTransform(const VecMath::Rotation<4> &R,
@@ -195,6 +199,7 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         /// Wrapper for displaying OpenGL display lists
         void RenderScene();
 
+        /// Initialize structures to display a four-dimensional coordinate cross
         void InitCross();
         void SetupDepthCue(bool);
         void DrawCoordinates(void);
@@ -230,15 +235,6 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         /// GL stuff needed in addition to resizeEvent(). Reimplemented from QGLWidget
         virtual void resizeGL (int, int);
 
-        void setT(const VecMath::Vector<4> &_t) { _T = _t; }
-        const VecMath::Vector<4> &T() { return _T; }
-        void addT(const VecMath::Vector<4> &_dT) { _T += _dT; }
-
-        void setR(const VecMath::Rotation<4> &_r) { _R = _r; }
-        const VecMath::Rotation<4> &R() { return _R; }
-        void addR(const VecMath::Rotation<4> &_dR) { _R += _dR; }
-
-        void setdR3(const VecMath::Rotation<3> &_dr) { _dR3 = _dr; }
         const VecMath::Rotation<3> &dR3() { return _dR3; }
         void adddR3(const VecMath::Rotation<3> &_ddr) { _dR3 += _ddr; }
 
@@ -261,13 +257,6 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         void addm_trans(const VecMath::Vector<3, GLdouble> &_dmt) {
             _trans += _dmt;
         }
-
-        void setCamW(const double &_cw) { _CamW = _cw; }
-        double CamW() const { return _CamW; }
-        void setScrW(const double &_sw) { _ScrW = _sw; }
-        double ScrW() const { return _ScrW; }
-
-        double distance() {return _distance; }
 
         void setanimationFrame(unsigned b) { _animationFrame = b; }
         unsigned animationFrame() const { return _animationFrame; }
@@ -307,20 +296,12 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
 
     private:                                    //  member variables
 
-        VecMath::Vector<4> _T;      ///< coordinates for 4D translation
-        VecMath::Rotation<4> _R;    ///< angles for 4D rotation
-
         /// rotation in X, Y and Z
         VecMath::Rotation<3, GLdouble> _rot;
         /// delta values in 3D rotation - for animations
         VecMath::Rotation<3, GLdouble> _dR3;
         /// translation in X and Y, Z coordinate of camera (distance from object)
         VecMath::Vector<3, GLdouble> _trans;
-
-        double _CamW;        ///< W coordinate of the camera
-        double _ScrW;        ///< W coordinate of the screen
-
-        double _distance;               ///< viewpoint distance
 
         unsigned _animationFrame;       ///< current frame in animation
         unsigned _animationMaxFrames;   ///< limit for saved animation frames

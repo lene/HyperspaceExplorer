@@ -68,10 +68,7 @@ C4DView::C4DView(QWidget *parent):
     QGLWidget (parent),
     ViewImpl(), 
 
-    _T(0.,0.,0.,0.), _R(0.,0.,0.,0.,0.,0.),
     _rot(15., 15., 0.), _dR3(0.,0.,0.), _trans(0., 0.,-10.),
-
-    _CamW (-3.), _ScrW (0.),
 
     _animationFrame(0),
     _animationMaxFrames((unsigned)-1),
@@ -317,8 +314,8 @@ void C4DView::OnAnimationTimer() {
     addm_rot(dR3());
 //    setm_rotX(m_rotX() + dT()[0]); setm_rotY(m_rotY() + dT()[1]); setm_rotZ(m_rotZ() + dT()[2]);   //  update 3D viewpoint values
 
-    SingletonLog::Instance() << "C4DView::OnTimer()\n"
-            << "  dT = " << dR3() << "\n"
+    SingletonLog::Instance() << "C4DView::OnAnimationTimer()\n"
+            << "  dR3 = " << dR3() << "\n"
             << "  dR = " << getdR() << "\n";
 
     if (getdR()) {     //  4D viewpoint animated?
@@ -465,7 +462,6 @@ void C4DView::RenderScene () {  //  draw (frame of animation)
 }
 
 
-/// Initialize the structures to display a four-dimensional coordinate cross
 void C4DView::InitCross() {
     _Cross = vector<vector<Vector<4> > > (4);
     _CrossTrans = vector<vector<Vector<4> > > (4);
@@ -562,7 +558,6 @@ void C4DView::StopAnimation () {
 
     setAnimated(false);
     setdR(VecMath::Rotation<4>());
-    setdR3(VecMath::Rotation<3>());
     AnimationTimer()->stop ();
     AnimateRandomTimer()->stop ();
     setCurrentlyRendering(false);

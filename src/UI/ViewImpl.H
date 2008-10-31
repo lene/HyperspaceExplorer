@@ -18,13 +18,21 @@ namespace UI {
 
     /// Interface with attributes to display four-dimensional objects
     /** This class provides a partial implementation of the class View, with
-     *  the class attributes and their getters and setters
+     *  the class attributes and their getters and setters.
+     *
+     *  It also stores view states, which are common to all implementations,
+     *  such as:
+     *      - The object which is currently displayed
+     *      - The 4D transformation of that object
+     *      - The 4D viewport (camera and screen position)
      *
      *  \ingroup UIGroup
      */
     class ViewImpl: public View {
 
         public:
+
+            /// Initialize the View with default values for all states
             ViewImpl();
 
             /// \return The currently displayed object
@@ -113,8 +121,23 @@ namespace UI {
             /// Set a default background color
             virtual void setDefaultBackground() { setBackground(defaultBackground); }
 
+            virtual void setT(const VecMath::Vector<4> &_t) { _T = _t; }
+            virtual const VecMath::Vector<4> &T() { return _T; }
+            virtual void addT(const VecMath::Vector<4> &_dT) { _T += _dT; }
+
+            virtual void setR(const VecMath::Rotation<4> &_r) { _R = _r; }
+            virtual const VecMath::Rotation<4> &R() { return _R; }
+            virtual void addR(const VecMath::Rotation<4> &_dR) { _R += _dR; }
+
             /// Add a Rotation to the current rotation state
             virtual void adddR(const VecMath::Rotation<4> &);
+
+            void setCamW(const double &_cw) { _camW = _cw; }
+            double CamW() const { return _camW; }
+            void setScrW(const double &_sw) { _scrW = _sw; }
+            double ScrW() const { return _scrW; }
+
+            double distance() {return _distance; }
 
         private:
 
@@ -131,8 +154,15 @@ namespace UI {
 
             Color _background;  ///< background color
 
-            /// delta values in angles for 4D rotation - for animations
+            /// delta values in angles for 4D rotation for animations
             VecMath::Rotation<4> _dR;
+            VecMath::Vector<4> _T;      ///< coordinates for 4D translation
+            VecMath::Rotation<4> _R;    ///< angles for 4D rotation
+
+            double _camW;        ///< W coordinate of the camera
+            double _scrW;        ///< W coordinate of the screen
+
+            double _distance;               ///< viewpoint distance
 
             unsigned _numFrames; ///< number of frames for animations
             unsigned _numLoops;  ///< number of loops to repeat an animation
