@@ -139,9 +139,27 @@ namespace UI {
 
             double distance() {return _distance; }
 
+            /// \return Position of the light
             static GLfloat *getLightPos() { return _lightPos; }
-            static void setLightPos(const VecMath::Vector<4, GLfloat> &pos);
-            
+            /// Set Position of the light
+            static void setLightPos(const VecMath::Vector<4, GLfloat> &);
+            /// \return Color of ambient light
+            static GLfloat *getLightAmbient() { return _lightAmbient; }
+            /// Set Color of ambient light
+            static void setLightAmbient(const VecMath::Vector<4, GLfloat> &);
+            /// \return Color of diffuse light
+            static GLfloat *getLightDiffuse() { return _lightDiffuse; }
+            /// Set Color of diffuse light
+            static void setLightDiffuse(const VecMath::Vector<4, GLfloat> &);
+            /// \return Color of specular reflections
+            static GLfloat *getLightSpecular() { return _lightSpecular; }
+            /// Set Color of specular reflections
+            static void setLightSpecular(const VecMath::Vector<4, GLfloat> &);
+            /// \return Color for flat, all-ambient lighting
+            static GLfloat *getLightFlat() { return _lightFlat; }
+            /// Set Color for flat, all-ambient lighting
+            static void setLightFlat(const VecMath::Vector<4, GLfloat> &);
+
         private:
 
             std::auto_ptr<Function> _F;  ///< the Function object currently displayed
@@ -176,8 +194,13 @@ namespace UI {
 
             /// Default Color for the background
             static Color _defaultBackground;
-            /// Position of the light
-            static GLfloat _lightPos[4];
+            
+            static GLfloat _lightPos[4];        ///< Position of the light
+            static GLfloat _lightAmbient[4];    ///< Color of ambient light
+            static GLfloat _lightDiffuse[4];    ///< Color of diffuse light
+            static GLfloat _lightSpecular[4];   ///< Color of specular reflections
+            /// Color for flat, all-ambient lighting
+            static GLfloat _lightFlat[4];
 
     };
 

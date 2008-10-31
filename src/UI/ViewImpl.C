@@ -16,6 +16,11 @@ namespace UI {
 
     Color ViewImpl::_defaultBackground(0.1, 0.1, 0.1, 1.0);
     GLfloat ViewImpl::_lightPos[4] = { 4., 4., 8., 0. };
+    GLfloat ViewImpl::_lightAmbient[4]  = { 0.3f, 0.3f, 0.3f, 1.0f };
+    GLfloat ViewImpl::_lightDiffuse[4]  = { 0.9f, 0.9f, 0.9f, 1.0f };
+    GLfloat ViewImpl::_lightSpecular[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    GLfloat ViewImpl::_lightFlat[4]  = { 1.0f, 1.0f, 1.0f, 0.0f }; // flat lighting
+
 
     ViewImpl::ViewImpl():
         View(),
