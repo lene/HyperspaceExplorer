@@ -124,11 +124,12 @@ namespace VecMath {
         N *data () { return x; }
 
         /// Convert the Vector into an array of floats, needed by glLightfv()
-        operator const float * () const {
-            static float data[D];
-            for (unsigned i = 0; i < D; i++) data[i] = (float)x[i];
-            return data;
-        }
+        template <typename T>
+            operator const T * () const {
+                static T data[D];
+                for (unsigned i = 0; i < D; i++) data[i] = (T)x[i];
+                return data;
+            }
 
     private:
         N x[D]; ///< A static array storing the components
