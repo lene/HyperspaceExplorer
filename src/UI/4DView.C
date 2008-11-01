@@ -56,7 +56,7 @@ std::string  C4DView::_helpFile = "Hyperspace_Explorer_Help.html";
  *  @param parent	parent QWidget, defaults to NULL                      */
 C4DView::C4DView(QWidget *parent):
     QGLWidget (parent),
-    ViewImpl(), 
+    ViewImpl(),
 
     _rot(15., 15., 0.),/* _dR3(0.,0.,0.),*/ _trans(0., 0.,-10.),
 
@@ -199,13 +199,16 @@ void C4DView::setLighting(bool light) {
         glLightfv (GL_LIGHT0, GL_POSITION, getLightPos());
         glEnable  (GL_LIGHT0);   // turn on the light
     } else {
-
-        glEnable  (GL_LIGHTING);
-        glLightfv (GL_LIGHT0, GL_AMBIENT, getLightFlat()); // set the light properties
-        glLightfv (GL_LIGHT0, GL_DIFFUSE, getLightFlat());
-        glLightfv (GL_LIGHT0, GL_SPECULAR, getLightFlat());
-        glLightfv (GL_LIGHT0, GL_POSITION, getLightPos());
-        glEnable  (GL_LIGHT0);    //      turn on the light
+        if(false){
+            glEnable  (GL_LIGHTING);
+            glLightfv (GL_LIGHT0, GL_AMBIENT, getLightFlat()); // set the light properties
+            glLightfv (GL_LIGHT0, GL_DIFFUSE, getLightFlat());
+            glLightfv (GL_LIGHT0, GL_SPECULAR, getLightFlat());
+            glLightfv (GL_LIGHT0, GL_POSITION, getLightPos());
+            glEnable  (GL_LIGHT0);    //      turn on the light
+        } else {
+            glDisable(GL_LIGHTING);
+        }
     }
 
     paintEvent ();

@@ -61,7 +61,7 @@ SOURCES += UI/4DView.C UI/Menu4D.C UI/ComplexDialogImpl.C \
            UI/MouseHandler.C UI/ViewImpl.C
 FORMS += UI/ComplexDialog.ui UI/FunctionDialog.ui \
          UI/PolarDialog.ui UI/SurfaceDialog.ui UI/AnimationDialog.ui
-RESOURCES += UI/AnimationDialog.qrc
+RESOURCES = UI/AnimationDialog.qrc
 
 ###
 ###     Loki
@@ -93,7 +93,8 @@ SOURCES += VecMath/Rotation.C
 ###
 INCLUDEPATH += .
 DEPENDPATH += .
-HEADERS += Globals.H Help.H Log.H Color.H ColorManager.H NotYetImplementedException.H
+HEADERS += Globals.H Help.H Log.H Color.H ColorManager.H \
+           NotYetImplementedException.H Light.H
 SOURCES += Globals.C Help.C Main.C ColorManager.C
 
 ###
