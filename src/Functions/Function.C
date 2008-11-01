@@ -60,12 +60,12 @@ void Function::setVertex(const VecMath::Vector<4> &X, VecMath::Vector<3> &Xscr) 
             \frac{f(t+h, u, v) - f(t, u, v)}{h},
         \frac{df}{du},\frac{df}{dv}\mbox{analogously}
     \f]
- *  @todo The h value is fixed and hardcoded. better approach, please!
- *  @todo I don't think calling operator() is right. Call f()!
- *  @param tt t value
- *  @param uu u value
- *  @param vv v value
- *  @return gradient in t, u and v as array                                   */
+ *  \todo The h value is fixed and hardcoded. better approach, please!
+ *  \todo I don't think calling operator() is right. Call f()!
+ *  \param tt t value
+ *  \param uu u value
+ *  \param vv v value
+ *  \return gradient in t, u and v as array                                   */
 Function::vec4vec1D Function::df (double tt, double uu, double vv) {
 
     static Vector<4> F0;                //  f (u, v)
