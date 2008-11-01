@@ -142,6 +142,7 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
         insertAction(_appear, "Colors", SLOT(Colors ()));
         insertAction(_appear, "Shading", SLOT(Shade()));
         insertAction(_appear, "Depth Cue", SLOT(Fog()));
+        insertAction(_appear, "4D Depth Cue", SLOT(HyperFog()));
         insertAction(_appear, "Transparence", SLOT(Transparent()));
         insertAction(_appear, "Lighting", SLOT(Light()));
         insertAction(_appear, "Wireframe", SLOT(Wireframe()), false);
@@ -171,8 +172,8 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
                  false);
 
     insertAction(_animation, "Benchmark", SLOT (Benchmark()), false);
-    insertAction(_appear, "4D Depth Cue", SLOT(HyperFog()));
-
+    insertAction(_animation, "Random Animation", SLOT (RandomAnimation()), false);
+    
     if (_parent->getSolid()) {
         getAction("Wireframe")->setText("Solid");
         getAction("Transparence")->setText("Line Antialiasing");
@@ -341,6 +342,14 @@ void C4DView::Menu4D::Benchmark() {
     _parent->UpdateStatus ();
 }
 
+/** Animate the object whith the rotation of the animation changing randomly
+ *  every couple of seconds
+ */
+void C4DView::Menu4D::RandomAnimation() {
+    static bool animated = false;
+    animated = !animated;
+    _parent->RandomAnimation(animated);
+}
 
 /** Display _help window */
 void C4DView::Menu4D::Help () {

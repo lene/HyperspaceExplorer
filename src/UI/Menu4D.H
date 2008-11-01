@@ -57,6 +57,7 @@ class C4DView::Menu4D: public QMenu {
         void RenderToImages();  ///< "Animation/Render to Images" menu item selected
         void AnimationSettings(); ///< "Animation/Animation Settings" menu item selected
         void Benchmark();       ///< "Animation/Benchmark" menu item selected
+        void RandomAnimation(); ///< "Animation/Random Animation" menu item selected
 
         void Help();            ///< "Help/Online Help" menu item selected
         void about ();          ///< "Help/About" menu item selected

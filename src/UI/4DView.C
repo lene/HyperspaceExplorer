@@ -525,14 +525,18 @@ void C4DView::StopAnimation () {
 /** xw/yw/zw rotation speed changes every 10 seconds
  *  @todo make hardcoded duration of rotation change frequency adjustable
  *  @todo a menu entry for this                                               */
-void C4DView::RandomAnimation() {
-    AnimationTimer()->stop ();
-    AnimateRandomTimer()->stop ();
+void C4DView::RandomAnimation(bool start) {
+    if (start) {
+        AnimationTimer()->stop ();
+        AnimateRandomTimer()->stop ();
 
-    setdR(VecMath::Rotation<4>(0.,0.,double(rand ())/RAND_MAX,0.,double(rand ())/RAND_MAX,double(rand ())/RAND_MAX));
-    StartAnimation ();
+        setdR(VecMath::Rotation<4>(0.,0.,double(rand ())/RAND_MAX,0.,double(rand ())/RAND_MAX,double(rand ())/RAND_MAX));
+        StartAnimation ();
 
-    AnimateRandomTimer()->start (10000);
+        AnimateRandomTimer()->start (10000);
+    } else {
+        disconnect(this, SLOT(RandomAnimation()));
+    }
 }
 
 /// Make a pixmap to to be rendered by the GL widget, and render it.

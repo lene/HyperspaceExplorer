@@ -203,7 +203,7 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
 
         void StartAnimation();
         void StopAnimation();
-        void RandomAnimation();
+        void RandomAnimation(bool);
 
         QPixmap makePixmap();
         void writeFrame();
