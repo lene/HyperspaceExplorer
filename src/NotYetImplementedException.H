@@ -5,7 +5,7 @@
 #include <stdexcept>
 
 /**
-	@author Helge Preuss <scout@hyperspace-travel.de>
+    \author Helge Preuss <scout@hyperspace-travel.de>
 */
 class NotYetImplementedException: public std::logic_error {
     public:

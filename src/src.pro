@@ -27,12 +27,12 @@ DEPENDPATH += ./Functions
 HEADERS += Functions/ComplexFunction.H Functions/CustomFunction.H \
            Functions/Function.H Functions/Object.H Functions/Surface.H \
            Functions/RealFunction.H  Functions/FunctionParameter.H \
-           Functions/ParameterMap.H FunctionFactory.H
+           Functions/ParameterMap.H FunctionFactory.H Functions/Rotope.H
 #          Functions/SteinerFunction.H
 SOURCES += Functions/ComplexFunction.C Functions/CustomFunction.C \
            Functions/Function.C Functions/Surface.C Functions/Object.C \
            Functions/RealFunction.C  Functions/FunctionParameter.C \
-           FunctionFactory.C
+           FunctionFactory.C Functions/Rotope.C
 #          Functions/SteinerFunction.C
 
 ###
@@ -93,8 +93,8 @@ SOURCES += VecMath/Rotation.C
 ###
 INCLUDEPATH += .
 DEPENDPATH += .
-HEADERS += Globals.H Help.H Log.H Color.H ColorManager.H \
-    NotYetImplementedException.H Light.H
+HEADERS += Globals.H Help.H Log.H Color.H ColorManager.H NotYetImplementedException.H \
+ Light.H
 SOURCES += Globals.C Help.C Main.C ColorManager.C Light.C
 
 ###

@@ -364,11 +364,15 @@ void setRCFilePath() {
     Globals::Instance().rcdirs.append(prefix+"/share/HyperspaceExplorer");
 }
 
+#include "Rotope.H"
+
 /** initialize and run HyperspaceExplorer
  *  @param argc number of arguments
  *  @param argv array of arguments
  *  @return     exit status                                                   */
 int main (int argc, char *argv[]) {
+//             Rotope R("");
+
     QApplication app (argc, argv);
 
     setRCFilePath();

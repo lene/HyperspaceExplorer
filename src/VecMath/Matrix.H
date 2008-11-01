@@ -19,10 +19,10 @@
 
 namespace VecMath {
     /**  Matrix<D, N>: a DxD matrix of numbers of type N
-     *  @param D dimension of the matrix
-     *  @param N numerical type of the matrix elements
+     *  \param D dimension of the matrix
+     *  \param N numerical type of the matrix elements
      *  \ingroup VecMath
-     *  @author Helge Preuss <scout@hyperspace-travel.de>                     */
+     *  \author Helge Preuss <scout@hyperspace-travel.de>                     */
     template <unsigned D, typename N = double> class Matrix {
         public:
             Matrix<D, N> ();

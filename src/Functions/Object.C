@@ -339,7 +339,7 @@ Pyramid::Pyramid (double _a, const VecMath::Vector<4> &_center):
 }
 
 /// Actually creates the Pyramid
-/** @see Hypercube::Initialize() */
+/** \see Hypercube::Initialize() */
 void Pyramid::Initialize() {
     X[0] = Vector<4> (0.0, 0.0, 0.0, 0.0);
     X[1] = Vector<4> (1.0, 0.0, 0.0, 0.0);
