@@ -14,13 +14,16 @@
 Rotope::Rotope(const QString &name): Object(name, 0, 0) {
     Extrude<4, 0, 3> E;
     std::cerr << "Extrude: "; E.print();
-    taper_base<4> t;
-    t.taper(0,3);
-    std::cerr << "taper_base: "; t.print();
+
+    const unsigned DIM = 10;
+    const unsigned BASE = 0;
+    Extrude<DIM, 0, BASE> E2;
+    taper_base<DIM> t(E2);
+    for (unsigned i = BASE+1; i < DIM; i++) {
+        t.taper(i);
+        std::cerr << "taper_base::taper(" << i <<") "; t.print();
+    }
     throw NotYetImplementedException("Rotope::Rotope()");
 }
 
-
 Rotope::~Rotope() { }
-
-
