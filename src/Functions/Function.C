@@ -30,16 +30,9 @@ Function::Function ():
 
 
 /** Function c'tor given a definition set in R³ (as parameter space)
- *  @param name a name for the function
- *  @param _tmin minimal value in t
- *  @param _tmax maximal value in t
- *  @param _dt stepsize in t
- *  @param _umin minimal value in u
- *  @param _umax maximal value in u
- *  @param _du stepsize in u
- *  @param _vmin minimal value in v
- *  @param _vmax maximal value in v
- *  @param _dv stepsize in v                                                  */
+ *  \param name a name for the function
+ *  \param _parameters
+ */
 Function::Function (const QString &name, ParameterMap _parameters):
     F (),
     functionName(name),// parameterNames(),
@@ -51,7 +44,7 @@ Function::Function (const QString &name, ParameterMap _parameters):
 /// Return the approximate amount of memory needed to display a Function of
 /// current definition set
 /** \todo uses hardcoded and experimentally found value for memory per cell
- *  @return approx. mem required                                              */
+ *  \return approx. mem required                                              */
 unsigned long Function::MemRequired (void) {
   return 0;
 }
