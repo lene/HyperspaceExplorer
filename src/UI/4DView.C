@@ -191,21 +191,8 @@ void C4DView::setLighting(bool light) {
     ViewImpl::setLighting(light);
 
     if (getLighting()) {
-#       if 0
-            glEnable(GL_LIGHTING);                  //  turn on the light
-
-            // set light properties
-            glLightfv (GL_LIGHT0, GL_AMBIENT, getLightAmbient());
-            glLightfv (GL_LIGHT0, GL_DIFFUSE, getLightDiffuse());
-            glLightfv (GL_LIGHT0, GL_SPECULAR, getLightSpecular());
-            glLightfv (GL_LIGHT0, GL_POSITION, getLightPos());
-            glEnable  (GL_LIGHT0);   // turn on the light
-#       else
-//            LightOpenGL *light = new LightOpenGL(ViewImpl::getDefaultLightSource());
         LightOpenGL light(ViewImpl::getDefaultLightSource());
         light.render();
-//        ViewImpl::getDefaultLightSource()->render();
-#       endif
     } else {
 #       if 0
             glEnable  (GL_LIGHTING);

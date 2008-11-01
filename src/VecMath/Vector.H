@@ -123,7 +123,8 @@ namespace VecMath {
         /** Needed by glVertex3dv   */
         N *data () { return x; }
 
-        /// Convert the Vector into an array of floats, needed by glLightfv()
+        /// Convert the Vector into an array of arbitrary objects
+        /** Array of floats is needed by glLightfv() */
         template <typename T>
             operator const T * () const {
                 static T data[D];

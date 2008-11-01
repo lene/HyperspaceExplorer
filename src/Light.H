@@ -9,10 +9,6 @@
  *  the light source, and the color for its ambient value, its diffuse light and
  *  the specular reflections caused by the light source.
  *
- *  In addition to managing the attributes of the light source, as defined in
- *  the class Light, LightSource provides an abstract method render() which must
- *  be implemented in descendants to put the light source into the scene.
- *
  *  \author Helge Preuss <scout@hyperspace-travel.de>
  */
 class LightSource {
@@ -65,19 +61,33 @@ class LightSource {
         Color _specular;    ///< The light source's color for specular reflections
 };
 
+/** In addition to managing the attributes of the light source, as defined in
+ *  the class LightSource, Light provides an abstract method render() which must
+ *  be implemented in descendants to put the light source into the scene.
+ *
+ *  \author Helge Preuss <scout@hyperspace-travel.de>
+ */
 class Light {
     public:
 
+        /// Construct a Light from a LightSource definition
         Light(const LightSource &s): _lightSource(s) { }
+
+        /// Construct a light directly from location and color values
+        /** \param pos The light source's location in homogenous coordinates
+         *  \param a The light source's ambient color
+         *  \param d The light source's diffuse color
+         *  \param s The light source's color for specular reflections
+         */
+        Light(const VecMath::Vector<4> &pos,
+              const Color &a, const Color &d, const Color &s):
+            _lightSource(pos, a, d, s) { }
 
         /// Set the light source into the scene.
         /** The actual rendering of the light source is done in the class
          *  implementing this interface.
          */
-        virtual void render() const {
-            throw std::logic_error("If LightSource::render() is called, the\
-                    developer has done something wrong!");
-        }
+        virtual void render() const = 0;
 
     protected:
 
@@ -102,30 +112,14 @@ class Light {
         LightSource _lightSource;
 };
 
+/// Implementation of a Light for OpenGL
 class LightOpenGL: public Light {
     public:
-        /// Construct a black light source
+        /// Construct a LightOpenGL from a LightSource definition
         LightOpenGL(const LightSource &s): Light(s) { }
 
-        /// Construct a light source with a location and color values
-        /** \param pos The light source's location in homogenous coordinates
-         *  \param a The light source's ambient color
-         *  \param d The light source's diffuse color
-         *  \param s The light source's color for specular reflections
-        LightOpenGL(const VecMath::Vector<4> &pos,
-                    const Color &a, const Color &d, const Color &s):
-            LightSource(pos, a, d, s) { }
-         */
-
-        virtual void render() const {
-            glEnable(GL_LIGHTING);                  //  turn on the light
-
-            glLightfv (GL_LIGHT0, GL_AMBIENT, getAmbient()); // set the light properties
-            glLightfv (GL_LIGHT0, GL_DIFFUSE, getDiffuse());
-            glLightfv (GL_LIGHT0, GL_SPECULAR, getSpecular());
-            glLightfv (GL_LIGHT0, GL_POSITION, getPosition());
-            glEnable  (GL_LIGHT0);   // turn on the light
-        }
+        /// Set the light source into the scene.
+        virtual void render() const;
 };
 
 #endif

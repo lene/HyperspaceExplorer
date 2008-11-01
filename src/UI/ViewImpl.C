@@ -20,11 +20,11 @@ namespace UI {
         Color(0.3, 0.3, 0.3, 1.),
         Color(0.9, 0.9, 0.9, 1.),
         Color(1., 1., 1., 1.));
-/*    GLfloat ViewImpl::_lightAmbient[4]  = {  };
-    GLfloat ViewImpl::_lightDiffuse[4]  = {  };
-    GLfloat ViewImpl::_lightSpecular[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
-*/    GLfloat ViewImpl::_lightFlat[4]  = { 1.0f, 1.0f, 1.0f, 0.0f }; // flat lighting
-
+    LightSource ViewImpl::_flatLightSource (
+        VecMath::Vector<4>( 4., 4., 8., 0.),
+        Color(1., 1., 1., 1.),
+        Color(1., 1., 1., 1.),
+        Color(1., 1., 1., 1.));
 
     ViewImpl::ViewImpl():
         View(),
