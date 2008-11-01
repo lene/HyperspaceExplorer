@@ -40,7 +40,7 @@ namespace VecMath {
         //----------  management  ----------
         /// Default constructor
         /** Doesn't do anything, the lazy bastard! */
-        Vector<D, N> () { }
+        Vector<D, N> ();
         /// Constructor with variable arglist
         /** @param x0  the vector's first element
          *  @param ... the vector's other elements                            */
@@ -142,6 +142,11 @@ namespace VecMath {
     //------------  Vector member functions
 
         //  ------------  management  ------------
+
+    template <unsigned D, typename N>
+            Vector<D, N>::Vector() : x () {
+        for (unsigned i = 0; i < D; i++) x[i] = 0;
+    }
 
     template <unsigned D, typename N>
             Vector<D, N>::Vector (N x0, ... ) :
