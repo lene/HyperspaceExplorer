@@ -10,6 +10,8 @@
 ///
 ///
 #include "Rotope.H"
+#include "Extrusion.H"
+#include "Taper.H"
 
 Rotope::Rotope(const QString &name): Object(name, 0, 0) {
     Extrude<4, 0, 3> E;
