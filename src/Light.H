@@ -10,8 +10,13 @@
 */
 class Light {
     public:
-        Light();
-        ~Light();
+        Light():
+            _position(0.,0.,0.,0.),
+            _ambient(0.,0.,0.,0.),
+            _diffuse(0.,0.,0.,0.),
+            _specular(0.,0.,0.,0.) { }
+
+        virtual ~Light() { }
 
         virtual void render() = 0;
 

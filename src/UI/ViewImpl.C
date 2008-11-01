@@ -1,7 +1,7 @@
 //
 // C++ Implementation: ViewImpl
 //
-// Description: 
+// Description:
 //
 //
 // Author: Helge Preuss <scout@hyperspace-travel.de>, (C) 2008
@@ -46,6 +46,13 @@ namespace UI {
     void ViewImpl::setImgPrefix(const std::string &s) {
         _imagePrefix = s;
         setWriteImages(true);
+    }
+
+    void ViewImpl::removeLight(std::vector<Light *>::iterator i) {
+        if (i >= _lights.end())
+            throw std::logic_error("Tried to remove a light beyond the end of \
+                    the list of lights");
+        _lights.erase(i);
     }
 
     void ViewImpl::setDefaultBackground() {

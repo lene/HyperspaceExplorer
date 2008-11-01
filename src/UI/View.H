@@ -1,7 +1,7 @@
 //
 // C++ Interface: View
 //
-// Description: 
+// Description:
 //
 //
 // Author: Helge Preuss <scout@hyperspace-travel.de>, (C) 2008
@@ -15,7 +15,10 @@
 
 #include "ParameterMap.H"
 
+#include <vector>
+
 class Function;
+class Light;
 
 /// User interface elements
 namespace UI {
@@ -108,17 +111,25 @@ namespace UI {
             virtual void setBackground(const Color &) = 0;
             /// \return The background color
             virtual const Color &getBackground() = 0;
-            
+
+            /// Add a light source to the scene
+            virtual void addLight(Light *) = 0;
+            /// Remove a light source from the scene
+            virtual void removeLight(std::vector<Light *>::iterator) = 0;
+            /// \return All lights in the scene
+            /** \todo Abstract from std::vector and use a generic container */
+            virtual const std::vector<Light *> &getLights() = 0;
+
             /// \return whether to use colors in rendering or not
             virtual bool getColors() const = 0;
             /// Turn display of colors in rendering on or off
             virtual void setColors(bool) = 0;
-            
+
             /// \return whether to display the 4D coordinate cross or not
             virtual bool getCoordinates() const = 0;
             /// Turn display of 4D coordinate cross on or off
             virtual void setCoordinates(bool) = 0;
-            
+
             /// \return whether to use depth cue/fog in rendering or not
             virtual bool getFog() const = 0;
             /// Turn depth cue on or off
@@ -128,12 +139,12 @@ namespace UI {
             virtual bool getHyperfog() const = 0;
             /// Turn depth cue in four dimensions on or off
             virtual void setHyperfog(bool) = 0;
-            
+
             /// \return whether to use lighting in rendering or not
             virtual bool getLighting() const = 0;
             /// Turn lighting on or off
             virtual void setLighting(bool) = 0;
-            
+
             /// \return whether to use shading in rendering or not
             virtual bool getShading() const = 0;
             /// Turn gouraud shading on or off

@@ -1,7 +1,7 @@
 //
 // C++ Interface: ViewImpl
 //
-// Description: 
+// Description:
 //
 //
 // Author: Helge Preuss <scout@hyperspace-travel.de>, (C) 2008
@@ -13,6 +13,7 @@
 #define VIEW_IMPL_H 1
 
 #include "View.H"
+#include "Light.H"
 
 namespace UI {
 
@@ -64,17 +65,26 @@ namespace UI {
             virtual const Color &getBackground() { return _background; }
             /// Set the background color
             virtual void setBackground(const Color &bg) { _background = bg; }
-            
+
+            /// Add a light source to the scene
+            /** \param l Light source added to the scene */
+            virtual void addLight(Light *l) { _lights.push_back(l); }
+            /// Remove a light source from the scene
+            virtual void removeLight(std::vector<Light *>::iterator);
+            /// \return All lights in the scene
+            /** \todo Abstract from std::vector and use a generic container */
+            virtual const std::vector<Light *> &getLights() { return _lights; }
+
             /// \return whether to use colors in rendering or not
             virtual bool getColors() const { return _colors; }
             /// Turn display of colors on or off
             virtual void setColors(bool on) { _colors = on; }
-            
+
             /// \return whether to display the 4D coordinate cross or not
             virtual bool getCoordinates() const { return _coordinates; }
             /// Turn display of coordinate cross on or off
             virtual void setCoordinates(bool on) { _coordinates = on; }
-            
+
             /// \return whether to use depth cue/fog in rendering or not
             virtual bool getFog() const { return _fog; }
             /// Turn depth cue on or off
@@ -181,6 +191,9 @@ namespace UI {
             bool _solid;        ///< whether to draw the objects' surfaces
             bool _transparence; ///< whether to use transparence/line antialiasing
 
+            /// Stores all the lights in the scene
+            /** \todo Abstract from std::vector and use a generic container */
+            std::vector<Light *> _lights;
             Color _background;  ///< background color
 
             /// delta values in angles for 4D rotation for animations
@@ -200,7 +213,7 @@ namespace UI {
 
             /// Default Color for the background
             static Color _defaultBackground;
-            
+
             static GLfloat _lightPos[4];        ///< Position of the light
             static GLfloat _lightAmbient[4];    ///< Color of ambient light
             static GLfloat _lightDiffuse[4];    ///< Color of diffuse light
