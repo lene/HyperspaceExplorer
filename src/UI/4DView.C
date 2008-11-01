@@ -186,6 +186,11 @@ void C4DView::setHyperfog(bool fog) {
     Redraw ();
 }
 
+/** \todo Decide whether to turn lighting off completely, if lighting is
+ *        deselected, or whether to use flat, all-ambient, lighting.
+ *        Another possibility would be to make a three-way switch between full
+ *        lighting, flat lighting and no lighting at all.
+ */
 void C4DView::setLighting(bool light) {
     ViewImpl::setLighting(light);
 
@@ -193,7 +198,7 @@ void C4DView::setLighting(bool light) {
         LightOpenGL light(ViewImpl::getDefaultLightSource());
         light.render();
     } else {
-#       if 1
+#       if 0
             LightOpenGL light(ViewImpl::getFlatLightSource());
             light.render();
 #       else

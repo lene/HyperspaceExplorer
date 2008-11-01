@@ -52,7 +52,7 @@ Inheritance diagram for UI::View:</div>
 <div class="dynsection">
 <p><center><img src="classUI_1_1View__inherit__graph.png" border="0" usemap="#UI_1_1View__inherit__map" alt="Inheritance graph"></center>
 <map name="UI_1_1View__inherit__map">
-<area shape="rect" href="classUI_1_1ViewImpl.html" title="Interface with attributes to display four&#45;dimensional objects." alt="" coords="13,805,173,2165"><area shape="rect" href="classC4DView.html" title="Displays and manipulates four&#45;dimensional Functions in a QGLWidget." alt="" coords="5,2213,181,3845"></map>
+<area shape="rect" href="classUI_1_1ViewImpl.html" title="Interface with attributes to display four&#45;dimensional objects." alt="" coords="12,853,188,2101"><area shape="rect" href="classC4DView.html" title="Displays and manipulates four&#45;dimensional Functions in a QGLWidget." alt="" coords="5,2149,195,3781"></map>
 <center><font size="2">[<a href="graph_legend.html">legend</a>]</font></center></div>
 
 <p>
@@ -123,6 +123,17 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set the background color. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual const <a class="el" href="classColor.html">Color</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#db1e9225dadf71c1de2a9303c4b86270">getBackground</a> ()=0</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5a21b39549de1d9cd2e3e54701bfecec"></a><!-- doxytag: member="UI::View::addLight" ref="5a21b39549de1d9cd2e3e54701bfecec" args="(Light *)=0" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#5a21b39549de1d9cd2e3e54701bfecec">addLight</a> (<a class="el" href="classLight.html">Light</a> *)=0</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Add a light source to the scene. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bfd04d3cbd396df76516c22579c438b8"></a><!-- doxytag: member="UI::View::removeLight" ref="bfd04d3cbd396df76516c22579c438b8" args="(std::vector&lt; Light * &gt;::iterator)=0" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#bfd04d3cbd396df76516c22579c438b8">removeLight</a> (<a class="elRef" doxygen="libstdc++.tag:" href="a01419.html">std::vector</a>&lt; <a class="el" href="classLight.html">Light</a> * &gt;::iterator)=0</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove a light source from the scene. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual const <a class="elRef" doxygen="libstdc++.tag:" href="a01419.html">std::vector</a><br>
+&lt; <a class="el" href="classLight.html">Light</a> * &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#55b44401d1c32701e7761e03e2fd5552">getLights</a> ()=0</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1View.html#f25dc77d07bf08f033a1ce80efc69b81">getColors</a> () const =0</td></tr>
 
@@ -563,6 +574,29 @@ Set the rotation step between frames for animations.
 
 </div>
 </div><p>
+<a class="anchor" name="55b44401d1c32701e7761e03e2fd5552"></a><!-- doxytag: member="UI::View::getLights" ref="55b44401d1c32701e7761e03e2fd5552" args="()=0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="elRef" doxygen="libstdc++.tag:" href="a01419.html">std::vector</a>&lt;<a class="el" href="classLight.html">Light</a> *&gt;&amp; UI::View::getLights           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>All lights in the scene </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000038">Todo:</a></b></dt><dd>Abstract from <a class="elRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector</a> and use a generic container </dd></dl>
+
+<p>Implemented in <a class="el" href="classUI_1_1ViewImpl.html#c82a628c95c20a739f28e1c6566f414a">UI::ViewImpl</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="f25dc77d07bf08f033a1ce80efc69b81"></a><!-- doxytag: member="UI::View::getColors" ref="f25dc77d07bf08f033a1ce80efc69b81" args="() const =0" -->
 <div class="memitem">
 <div class="memproto">
@@ -796,7 +830,7 @@ Turn wireframe display on or off.
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Sat Nov 1 01:23:37 2008 for HyperspaceExplorer 0.6.1
+                Generated on Sat Nov 1 17:51:11 2008 for HyperspaceExplorer 0.6.1
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.6
                 &nbsp;-&nbsp;

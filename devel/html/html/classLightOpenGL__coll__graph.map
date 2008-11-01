@@ -1,0 +1,5 @@
+<area shape="rect" href="$classLight.html" title="{Light\n|&#45; _lightSource\l|+ Light()\l+ Light()\l+ render()\l# getPosition()\l# getAmbient()\l# getDiffuse()\l# getSpecular()\l}" alt="" coords="181,1509,296,1685">
+<area shape="rect" href="$classLightSource.html" title="An interface for the definition of light sources." alt="" coords="177,1157,300,1445">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ operator const T *()\l+ dimension()\l}" alt="" coords="15,637,167,1021">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,149,176,533">
+<area shape="rect" href="$classColor.html" title="A class to represent a color value by its RGBA components." alt="" coords="191,597,385,1061">

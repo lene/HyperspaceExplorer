@@ -135,9 +135,9 @@
 <dd>uses hardcoded and experimentally found value for memory per simplex </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000016"></a> <dl>
-<dt>Member <a class="el" href="classObject.html#c78eebfcc84080ef2e811e9da0c3621e">Object::f</a> (double, double, double) </dt>
-<dd>throw a <a class="elRef" doxygen="libstdc++.tag:" href="a01204.html" title="STL class.">std::logic_error</a> </dd>
+<a class="anchor" name="_todo000021"></a> <dl>
+<dt>Member <a class="el" href="classLightOpenGL.html#61df071bddf2bec6b661cacb92af352a">LightOpenGL::render</a> () const  </dt>
+<dd>GL_LIGHT0 is hardcoded, make this variable. To quote from the OpenGL API docs: "It is always the case that GL_LIGHTi = GL_LIGHT0 + i." </dd>
 </dl>
 <p>
 <a class="anchor" name="_todo000023"></a> <dl>
@@ -167,23 +167,23 @@
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000019"></a> <dl>
+<a class="anchor" name="_todo000018"></a> <dl>
 <dt>Class <a class="el" href="classRealBase.html">RealBase</a>  </dt>
 <dd>Vector &amp;normal (double, double, double); - or in base class?<p>
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000018"></a> <dl>
+<a class="anchor" name="_todo000017"></a> <dl>
 <dt>Member <a class="el" href="classRealFunction.html#dbbc82deb59fbfddd400cb4cc1a003ee">RealFunction::Transform</a> (const VecMath::Rotation&lt; 4 &gt; &amp;R, const VecMath::Vector&lt; 4 &gt; &amp;T) </dt>
 <dd>As I look at it, i think this could be optimized by making the transformation matrices static and only canging the corresponding entries... but how to do this beautifully, i don't know </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000039"></a> <dl>
+<a class="anchor" name="_todo000042"></a> <dl>
 <dt>Member <a class="el" href="classVecMath_1_1Rotation.html#bada28b04afd16a77c258079463174fd">VecMath::Rotation::operator Matrix&lt; D, N &gt;</a> () const  </dt>
 <dd>default implementation does not work correctly yet </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000038"></a> <dl>
+<a class="anchor" name="_todo000041"></a> <dl>
 <dt>Class <a class="el" href="classVecMath_1_1RotationAxes.html">VecMath::RotationAxes&lt; D &gt;</a>  </dt>
 <dd>Find a generic algorithm for <code>D</code> dimensions </dd>
 </dl>
@@ -198,7 +198,7 @@
 <dd>implement </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000017"></a> <dl>
+<a class="anchor" name="_todo000016"></a> <dl>
 <dt>Member <a class="el" href="classSponge.html#599e21656433097f9e7f2ac143a1dc7a">Sponge::List</a>  </dt>
 <dd>Use smart pointers instead of a simple pointer-to-object </dd>
 </dl>
@@ -208,12 +208,12 @@
 <dd>uses hardcoded and experimentally found value for memory per hypercube </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000020"></a> <dl>
+<a class="anchor" name="_todo000019"></a> <dl>
 <dt>Member <a class="el" href="classSurface.html#185472961fe456f587c160c2cc6e8545">Surface::MemRequired</a> (void) </dt>
 <dd>uses hardcoded and experimentally found value for memory per cell </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000021"></a> <dl>
+<a class="anchor" name="_todo000020"></a> <dl>
 <dt>Class <a class="el" href="classSurfaceBase.html">SurfaceBase</a>  </dt>
 <dd>Vector &amp;normal (double, double); - or in base class?<p>
 </dd>
@@ -225,6 +225,21 @@
 </dd>
 </dl>
 <p>
+<a class="anchor" name="_todo000038"></a> <dl>
+<dt>Member <a class="el" href="classUI_1_1View.html#55b44401d1c32701e7761e03e2fd5552">UI::View::getLights</a> ()=0 </dt>
+<dd>Abstract from <a class="elRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector</a> and use a generic container </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000040"></a> <dl>
+<dt>Member <a class="el" href="classUI_1_1ViewImpl.html#b5310b33a0ef7609a707cd806839fb04">UI::ViewImpl::_lights</a>  </dt>
+<dd>Abstract from <a class="elRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector</a> and use a generic container </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000039"></a> <dl>
+<dt>Member <a class="el" href="classUI_1_1ViewImpl.html#c82a628c95c20a739f28e1c6566f414a">UI::ViewImpl::getLights</a> () </dt>
+<dd>Abstract from <a class="elRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector</a> and use a generic container </dd>
+</dl>
+<p>
 <a class="anchor" name="_todo000024"></a> <dl>
 <dt>Class <a class="el" href="classScript_1_1XformStmt.html">Script::XformStmt</a>  </dt>
 <dd>add support for translations and 3D rotation </dd>
@@ -233,7 +248,7 @@
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Sat Nov 1 01:23:33 2008 for HyperspaceExplorer 0.6.1
+                Generated on Sat Nov 1 17:50:26 2008 for HyperspaceExplorer 0.6.1
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.6
                 &nbsp;-&nbsp;

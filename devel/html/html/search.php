@@ -381,7 +381,7 @@ main();
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Sat Nov 1 01:23:37 2008 for HyperspaceExplorer 0.6.1
+                Generated on Sat Nov 1 17:51:16 2008 for HyperspaceExplorer 0.6.1
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.6
                 &nbsp;-&nbsp;

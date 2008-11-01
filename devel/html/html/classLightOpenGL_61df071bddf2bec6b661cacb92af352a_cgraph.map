@@ -1,0 +1,8 @@
+<area shape="rect" href="$classLight.html#a2332c0ee16fc118f349aab1b42fab96" title="Light::getAmbient" alt="" coords="205,5,331,32">
+<area shape="rect" href="$classLight.html#e65ef17266718bb2c23e72790239095f" title="Light::getDiffuse" alt="" coords="209,56,327,83">
+<area shape="rect" href="$classLight.html#a6abf89003d767c58e13e561b3d905e7" title="Light::getPosition" alt="" coords="207,107,329,133">
+<area shape="rect" href="$classLight.html#0a6aa46e46d2c42251e130d3fe4d9256" title="Light::getSpecular" alt="" coords="204,157,332,184">
+<area shape="rect" href="$classLightSource.html#f4b09a4070f6a5eadccf40f64cd69400" title="LightSource::getAmbient" alt="" coords="384,5,552,32">
+<area shape="rect" href="$classLightSource.html#e1dc10220427ce52e2d2eb9f7e9f805f" title="LightSource::getDiffuse" alt="" coords="388,56,548,83">
+<area shape="rect" href="$classLightSource.html#db0cbfc26e31e589a3472972ac05368b" title="LightSource::getPosition" alt="" coords="385,107,551,133">
+<area shape="rect" href="$classLightSource.html#c790dd03a309d10d223bb0956515b79e" title="LightSource::getSpecular" alt="" coords="383,157,553,184">

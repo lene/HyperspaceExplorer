@@ -1,0 +1,7 @@
+<area shape="rect" href="$classLight.html#a6abf89003d767c58e13e561b3d905e7" title="Light::getPosition" alt="" coords="223,31,345,57">
+<area shape="rect" href="$classLightOpenGL.html#61df071bddf2bec6b661cacb92af352a" title="Set the light source into the scene." alt="" coords="396,31,543,57">
+<area shape="rect" href="$classC4DView.html#03b3ed76ada1847e4b75e19de8c7e6cb" title="OpenGL initialization for light(s)." alt="" coords="601,5,732,32">
+<area shape="rect" href="$classC4DView.html#5a783209571030da60229d60dfef66f2" title="Re&#45;Implementation of UI::ViewImpl::setLighting." alt="" coords="592,56,741,83">
+<area shape="rect" href="$classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from..." alt="" coords="791,5,940,32">
+<area shape="rect" href="$classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Re&#45;Implementation of UI::ViewImpl::setColors." alt="" coords="989,5,1131,32">
+<area shape="rect" href="$classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="796,56,935,83">
