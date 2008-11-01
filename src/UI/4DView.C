@@ -58,7 +58,7 @@ C4DView::C4DView(QWidget *parent):
     QGLWidget (parent),
     ViewImpl(),
 
-    _rot(15., 15., 0.),/* _dR3(0.,0.,0.),*/ _trans(0., 0.,-10.),
+    _rot(15., 15., 0.), _trans(0., 0.,-10.),
 
     _animationFrame(0),
     _animationMaxFrames((unsigned)-1),
@@ -76,7 +76,6 @@ C4DView::C4DView(QWidget *parent):
     connect (AnimationTimer(), SIGNAL(timeout()), this, SLOT(OnAnimationTimer()));
 
     setAnimateRandomTimer(new QTimer (this));
-    //  connect (AnimateRandomTimer, SIGNAL(timeout()), this, SLOT(RandomAnimation()));
 
     connect (Values(), SIGNAL (ApplyChanges (const ParameterMap &)),
              this, SLOT (ApplyChanges (const ParameterMap &)));
@@ -194,13 +193,9 @@ void C4DView::setLighting(bool light) {
         LightOpenGL light(ViewImpl::getDefaultLightSource());
         light.render();
     } else {
-#       if 0
-            glEnable  (GL_LIGHTING);
-            glLightfv (GL_LIGHT0, GL_AMBIENT, getLightFlat()); // set the light properties
-            glLightfv (GL_LIGHT0, GL_DIFFUSE, getLightFlat());
-            glLightfv (GL_LIGHT0, GL_SPECULAR, getLightFlat());
-            glLightfv (GL_LIGHT0, GL_POSITION, getLightPos());
-            glEnable  (GL_LIGHT0);    //      turn on the light
+#       if 1
+            LightOpenGL light(ViewImpl::getFlatLightSource());
+            light.render();
 #       else
             glDisable(GL_LIGHTING);
 #       endif

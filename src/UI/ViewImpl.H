@@ -157,8 +157,13 @@ namespace UI {
             /// Viewport distance; currently fixed to 1
             double distance() { return 1.; }
 
+            /// \return Point LightSource with sensible defaults for good light
             static const LightSource &getDefaultLightSource() {
                 return _defaultLightSource;
+            }
+            /// \return LightSource for flat, all-ambient lighting
+            static const LightSource &getFlatLightSource() {
+                return _flatLightSource;
             }
 
         private:
