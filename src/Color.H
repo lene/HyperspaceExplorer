@@ -46,6 +46,7 @@ class Color {
 
         /// direct access to the array of components, needed by OpenGL functions
         operator float *() { return RGBA; }
+        operator const float *() const { return RGBA; }
         Color operator *=(float);
         Color operator *=(const Color &);
         Color operator *(float);

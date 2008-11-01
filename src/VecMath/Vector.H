@@ -123,6 +123,13 @@ namespace VecMath {
         /** Needed by glVertex3dv   */
         N *data () { return x; }
 
+        /// Convert the Vector into an array of floats, needed by glLightfv()
+        operator const float * () const {
+            static float data[D];
+            for (unsigned i = 0; i < D; i++) data[i] = (float)x[i];
+            return data;
+        }
+
     private:
         N x[D]; ///< A static array storing the components
     };
@@ -259,7 +266,7 @@ namespace VecMath {
         o << v[v.dimension ()-1] << ">";
         return o;
     }
-    
+
     /// Vector input operator
     /** \ingroup VecMath
      *  @param o istream to read from

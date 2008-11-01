@@ -92,7 +92,7 @@ C4DView::C4DView(QWidget *parent):
 
     ObjectHypercube();
 
-    Menu()->Light();
+    setLighting(true);
 }
 
 /// C4DView destructor
@@ -191,24 +191,32 @@ void C4DView::setLighting(bool light) {
     ViewImpl::setLighting(light);
 
     if (getLighting()) {
-        glEnable(GL_LIGHTING);                  //  turn on the light
+#       if 0
+            glEnable(GL_LIGHTING);                  //  turn on the light
 
-        glLightfv (GL_LIGHT0, GL_AMBIENT, getLightAmbient()); // set the light properties
-        glLightfv (GL_LIGHT0, GL_DIFFUSE, getLightDiffuse());
-        glLightfv (GL_LIGHT0, GL_SPECULAR, getLightSpecular());
-        glLightfv (GL_LIGHT0, GL_POSITION, getLightPos());
-        glEnable  (GL_LIGHT0);   // turn on the light
+            // set light properties
+            glLightfv (GL_LIGHT0, GL_AMBIENT, getLightAmbient());
+            glLightfv (GL_LIGHT0, GL_DIFFUSE, getLightDiffuse());
+            glLightfv (GL_LIGHT0, GL_SPECULAR, getLightSpecular());
+            glLightfv (GL_LIGHT0, GL_POSITION, getLightPos());
+            glEnable  (GL_LIGHT0);   // turn on the light
+#       else
+//            LightOpenGL *light = new LightOpenGL(ViewImpl::getDefaultLightSource());
+        LightOpenGL light(ViewImpl::getDefaultLightSource());
+        light.render();
+//        ViewImpl::getDefaultLightSource()->render();
+#       endif
     } else {
-        if(false){
+#       if 0
             glEnable  (GL_LIGHTING);
             glLightfv (GL_LIGHT0, GL_AMBIENT, getLightFlat()); // set the light properties
             glLightfv (GL_LIGHT0, GL_DIFFUSE, getLightFlat());
             glLightfv (GL_LIGHT0, GL_SPECULAR, getLightFlat());
             glLightfv (GL_LIGHT0, GL_POSITION, getLightPos());
             glEnable  (GL_LIGHT0);    //      turn on the light
-        } else {
+#       else
             glDisable(GL_LIGHTING);
-        }
+#       endif
     }
 
     paintEvent ();
@@ -788,12 +796,17 @@ void C4DView::InitLight (void) {
         glEnable(GL_LIGHTING);                          //  enable lighting
         //  compute specular reflections from origin of eye coordinate system
         glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, 1);
+#       if 0
         glLightfv(GL_LIGHT0, GL_POSITION, getLightPos());    //  set light position
         glLightfv(GL_LIGHT0, GL_DIFFUSE,
                   Globals::Instance().white());         //  diffuse color
         glLightfv(GL_LIGHT0, GL_AMBIENT,
                   Globals::Instance().grey50());        //  ambient color
         glEnable(GL_LIGHT0);                            //  enable this light
+#       else
+        LightOpenGL light(ViewImpl::getDefaultLightSource());
+        light.render();
+#       endif
     } else {
         glDisable(GL_LIGHTING);                         //  disable lighting
     }

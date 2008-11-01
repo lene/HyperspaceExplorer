@@ -156,7 +156,7 @@ namespace UI {
 
             /// Viewport distance; currently fixed to 1
             double distance() { return 1.; }
-
+/*
             /// \return Position of the light
             static GLfloat *getLightPos() { return _lightPos; }
             /// Set Position of the light
@@ -177,6 +177,10 @@ namespace UI {
             static GLfloat *getLightFlat() { return _lightFlat; }
             /// Set Color for flat, all-ambient lighting
             static void setLightFlat(const Color &);
+*/
+            static const LightSource &getDefaultLightSource() {
+                return _defaultLightSource;
+            }
 
         private:
 
@@ -214,10 +218,7 @@ namespace UI {
             /// Default Color for the background
             static Color _defaultBackground;
 
-            static GLfloat _lightPos[4];        ///< Position of the light
-            static GLfloat _lightAmbient[4];    ///< Color of ambient light
-            static GLfloat _lightDiffuse[4];    ///< Color of diffuse light
-            static GLfloat _lightSpecular[4];   ///< Color of specular reflections
+            static LightSource _defaultLightSource;
             static GLfloat _lightFlat[4];   ///< Color for flat, all-ambient lighting
 
     };
