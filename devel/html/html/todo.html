@@ -30,63 +30,38 @@
 </div>
 <div class="contents">
 <h1><a class="anchor" name="todo">Todo List </a></h1><a class="anchor" name="_todo000027"></a> <dl>
-<dt>Member <a class="el" href="classC4DView.html#5a783209571030da60229d60dfef66f2">C4DView::setLighting</a> (bool) </dt>
-<dd>uses hardcoded values for light attributes </dd>
-</dl>
-<p>
-<a class="anchor" name="_todo000028"></a> <dl>
 <dt>Member <a class="el" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4">C4DView::PreRedraw</a> () </dt>
 <dd>either PreRedraw() or Draw() should call DrawCoordinates(), but not both </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000030"></a> <dl>
+<a class="anchor" name="_todo000029"></a> <dl>
 <dt>Member <a class="el" href="classC4DView.html#f33c8cf03fcfc94d4c64f9f4454b0339">C4DView::RandomAnimation</a> () </dt>
 <dd>make hardcoded duration of rotation change frequency adjustable </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000030"></a> <dl>
+<a class="anchor" name="_todo000029"></a> <dl>
 <dt>Member <a class="el" href="classC4DView.html#f33c8cf03fcfc94d4c64f9f4454b0339">C4DView::RandomAnimation</a> () </dt>
 <dd>a menu entry for this </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000032"></a> <dl>
+<a class="anchor" name="_todo000031"></a> <dl>
 <dt>Member <a class="el" href="classC4DView.html#3c797ad72f10f9d43d720a45cd60509a">C4DView::initializeGL</a> (void) </dt>
 <dd>trying to check for rendering to file, but this doesn't work yet. </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000032"></a> <dl>
+<a class="anchor" name="_todo000031"></a> <dl>
 <dt>Member <a class="el" href="classC4DView.html#3c797ad72f10f9d43d720a45cd60509a">C4DView::initializeGL</a> (void) </dt>
 <dd>clean up, check what is really needed - in particular it calls PreRedraw() twice, once via RenderScene() </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000036"></a> <dl>
+<a class="anchor" name="_todo000033"></a> <dl>
 <dt>Member <a class="el" href="classC4DView.html#ac3d22c30bf8b042077fb31fec2c367b">C4DView::resizeGL</a> (int, int) </dt>
 <dd>eliminate hardcoded constants </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000029"></a> <dl>
+<a class="anchor" name="_todo000028"></a> <dl>
 <dt>Member <a class="el" href="classC4DView.html#d306f57ab4a1565454abbf7856a88a92">C4DView::SetupDepthCue</a> (float, float) </dt>
 <dd>fill in the meaning of the parameters </dd>
-</dl>
-<p>
-<a class="anchor" name="_todo000034"></a> <dl>
-<dt>Member <a class="el" href="classC4DView.html#03b3ed76ada1847e4b75e19de8c7e6cb">C4DView::InitLight</a> (void) </dt>
-<dd>hardcoded light position and colors! </dd>
-</dl>
-<p>
-<a class="anchor" name="_todo000035"></a> <dl>
-<dt>Member <a class="el" href="classC4DView.html#3c423447f2090b7e3e2c791f54244b02">C4DView::InitTransparence</a> (void) </dt>
-<dd>is GL_CULL_FACE needed or not? </dd>
-</dl>
-<p>
-<a class="anchor" name="_todo000037"></a> <dl>
-<dt>Class <a class="el" href="classC4DView_1_1MouseHandler4D.html">C4DView::MouseHandler4D</a>  </dt>
-<dd>move all state variables concerning mouse handling from <a class="el" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> into this class and adjust the accessors accordingly </dd>
-</dl>
-<p>
-<a class="anchor" name="_todo000037"></a> <dl>
-<dt>Class <a class="el" href="classC4DView_1_1MouseHandler4D.html">C4DView::MouseHandler4D</a>  </dt>
-<dd>can I get rid of parent? It's annoying to prefix every call to <a class="el" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> member functions with parent-&gt; </dd>
 </dl>
 <p>
 <a class="anchor" name="_todo000001"></a> <dl>
@@ -175,18 +150,18 @@
 <dd>lines must not be longer than 4095 characters. Everything after that is discarded. This is a limitation of std::ifstream::getline(). </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000040"></a> <dl>
+<a class="anchor" name="_todo000035"></a> <dl>
 <dt>Class <a class="el" href="classUI_1_1Dialogs_1_1PluginCreator.html">UI::Dialogs::PluginCreator</a>  </dt>
 <dd>set the function name to symbolic() in the descendants' constructors<p>
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000039"></a> <dl>
+<a class="anchor" name="_todo000034"></a> <dl>
 <dt>Member <a class="el" href="classUI_1_1Dialogs_1_1PluginCreator.html#b65570039501ddca958fe8bf9728b766">UI::Dialogs::PluginCreator::compile</a> (QString) </dt>
 <dd>Might tweak the compilation flags a little, or make them variable </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000041"></a> <dl>
+<a class="anchor" name="_todo000036"></a> <dl>
 <dt>Class <a class="el" href="classUI_1_1Dialogs_1_1PolarDialogImpl.html">UI::Dialogs::PolarDialogImpl</a>  </dt>
 <dd>Make the above definition mathematically correct<p>
 </dd>
@@ -203,12 +178,12 @@
 <dd>As I look at it, i think this could be optimized by making the transformation matrices static and only canging the corresponding entries... but how to do this beautifully, i don't know </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000044"></a> <dl>
+<a class="anchor" name="_todo000039"></a> <dl>
 <dt>Member <a class="el" href="classVecMath_1_1Rotation.html#bada28b04afd16a77c258079463174fd">VecMath::Rotation::operator Matrix&lt; D, N &gt;</a> () const  </dt>
 <dd>default implementation does not work correctly yet </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000043"></a> <dl>
+<a class="anchor" name="_todo000038"></a> <dl>
 <dt>Class <a class="el" href="classVecMath_1_1RotationAxes.html">VecMath::RotationAxes&lt; D &gt;</a>  </dt>
 <dd>Find a generic algorithm for <code>D</code> dimensions </dd>
 </dl>
@@ -244,7 +219,7 @@
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000042"></a> <dl>
+<a class="anchor" name="_todo000037"></a> <dl>
 <dt>Class <a class="el" href="classUI_1_1Dialogs_1_1ValuesDialogImpl.html">UI::Dialogs::ValuesDialogImpl</a>  </dt>
 <dd>The switching on and off of input fields, depending on which function is selected, is done from <a class="el" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a>. This is of course unfortunate and will be changed.<p>
 </dd>
@@ -258,7 +233,7 @@
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Sat Nov 1 00:08:38 2008 for HyperspaceExplorer 0.6.1
+                Generated on Sat Nov 1 01:06:07 2008 for HyperspaceExplorer 0.6.1
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.6
                 &nbsp;-&nbsp;

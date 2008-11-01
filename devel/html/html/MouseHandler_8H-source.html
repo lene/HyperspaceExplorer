@@ -36,42 +36,42 @@
 <a name="l00003"></a>00003 <span class="preprocessor"></span>
 <a name="l00004"></a>00004 <span class="preprocessor">#include "4DView.H"</span>
 <a name="l00005"></a>00005 
-<a name="l00012"></a><a class="code" href="classC4DView_1_1MouseHandler4D.html">00012</a> <span class="keyword">class </span><a class="code" href="classC4DView_1_1MouseHandler4D.html">C4DView::MouseHandler4D</a> {
-<a name="l00013"></a>00013     <span class="keyword">public</span>:
-<a name="l00014"></a>00014         <a class="code" href="classC4DView_1_1MouseHandler4D.html">MouseHandler4D</a>(<a class="code" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> *);
-<a name="l00015"></a>00015         ~<a class="code" href="classC4DView_1_1MouseHandler4D.html">MouseHandler4D</a>();
-<a name="l00016"></a>00016 
-<a name="l00017"></a>00017         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler.">mouseMoveEvent</a>(QMouseEvent *);
-<a name="l00018"></a>00018         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1MouseHandler4D.html#3fd72e434043c95051a38c2dbfccab7a" title="Mouse button event handler.">mousePressEvent</a>(QMouseEvent *);
-<a name="l00019"></a>00019         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1MouseHandler4D.html#9e5ab5cea257501da2f87c3f13140029" title="Mouse button release event handler.">mouseReleaseEvent</a>( QMouseEvent *);
-<a name="l00020"></a>00020         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1MouseHandler4D.html#681ee2ee24d1528a92b6ec0ff4dad9c2" title="Double click event handler.">mouseDoubleClickEvent</a>( QMouseEvent *);
-<a name="l00021"></a>00021 
-<a name="l00022"></a>00022     <span class="keyword">private</span>:
-<a name="l00023"></a>00023         <span class="keywordtype">void</span> setm_LeftDownPos(QPoint b) { <a class="code" href="classC4DView_1_1MouseHandler4D.html#7daa8d9f9a43f9d014dd2c3db2c1e4e6" title="position where the LMB press started">m_LeftDownPos</a> = b; }
-<a name="l00024"></a>00024         QPoint LeftDownPos()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classC4DView_1_1MouseHandler4D.html#7daa8d9f9a43f9d014dd2c3db2c1e4e6" title="position where the LMB press started">m_LeftDownPos</a>; }
-<a name="l00025"></a>00025         <span class="keywordtype">void</span> setm_MidDownPos(QPoint b) { <a class="code" href="classC4DView_1_1MouseHandler4D.html#2eb10db3ada376e9cfcf8154f7191df5" title="position where the MMB press started">m_MidDownPos</a> = b; }
-<a name="l00026"></a>00026         QPoint MidDownPos()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classC4DView_1_1MouseHandler4D.html#2eb10db3ada376e9cfcf8154f7191df5" title="position where the MMB press started">m_MidDownPos</a>; }
-<a name="l00027"></a>00027         <span class="keywordtype">void</span> setm_RightDownPos(QPoint b) { <a class="code" href="classC4DView_1_1MouseHandler4D.html#b199e14588f77831dedb7433ed64a074" title="position where the RMB press started true while mouse button pressed &amp;amp; mouse...">m_RightDownPos</a> = b; }
-<a name="l00028"></a>00028         QPoint RightDownPos()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classC4DView_1_1MouseHandler4D.html#b199e14588f77831dedb7433ed64a074" title="position where the RMB press started true while mouse button pressed &amp;amp; mouse...">m_RightDownPos</a>; }
-<a name="l00029"></a>00029         <span class="keywordtype">void</span> setTakingSpinValues(<span class="keywordtype">bool</span> b) { m_TakingSpinValues = b; }
-<a name="l00030"></a>00030         <span class="keywordtype">bool</span> TakingSpinValues()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_TakingSpinValues; }
-<a name="l00031"></a>00031 
-<a name="l00032"></a><a class="code" href="classC4DView_1_1MouseHandler4D.html#4b4ff1cbc3a9e85f1fd5f6daaef574ea">00032</a>         <a class="code" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> *<a class="code" href="classC4DView_1_1MouseHandler4D.html#4b4ff1cbc3a9e85f1fd5f6daaef574ea" title="the C4DView containing this mouse handler">parent</a>;        
-<a name="l00033"></a>00033 
-<a name="l00034"></a><a class="code" href="classC4DView_1_1MouseHandler4D.html#b199e14588f77831dedb7433ed64a074">00034</a>         QPoint <a class="code" href="classC4DView_1_1MouseHandler4D.html#7daa8d9f9a43f9d014dd2c3db2c1e4e6" title="position where the LMB press started">m_LeftDownPos</a>,       
-<a name="l00035"></a>00035                <a class="code" href="classC4DView_1_1MouseHandler4D.html#2eb10db3ada376e9cfcf8154f7191df5" title="position where the MMB press started">m_MidDownPos</a>,        
-<a name="l00036"></a>00036                <a class="code" href="classC4DView_1_1MouseHandler4D.html#b199e14588f77831dedb7433ed64a074" title="position where the RMB press started true while mouse button pressed &amp;amp; mouse...">m_RightDownPos</a>;      
-<a name="l00037"></a>00037 
-<a name="l00038"></a>00038         <span class="keywordtype">bool</span> m_TakingSpinValues;
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040 };
-<a name="l00041"></a>00041 
-<a name="l00042"></a>00042 <span class="preprocessor">#endif</span>
+<a name="l00009"></a><a class="code" href="classC4DView_1_1MouseHandler4D.html">00009</a> <span class="keyword">class </span><a class="code" href="classC4DView_1_1MouseHandler4D.html">C4DView::MouseHandler4D</a> {
+<a name="l00010"></a>00010     <span class="keyword">public</span>:
+<a name="l00011"></a>00011         <a class="code" href="classC4DView_1_1MouseHandler4D.html">MouseHandler4D</a>(<a class="code" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> *);
+<a name="l00012"></a>00012         ~<a class="code" href="classC4DView_1_1MouseHandler4D.html">MouseHandler4D</a>();
+<a name="l00013"></a>00013 
+<a name="l00014"></a>00014         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler.">mouseMoveEvent</a>(QMouseEvent *);
+<a name="l00015"></a>00015         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1MouseHandler4D.html#3fd72e434043c95051a38c2dbfccab7a" title="Mouse button event handler.">mousePressEvent</a>(QMouseEvent *);
+<a name="l00016"></a>00016         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1MouseHandler4D.html#9e5ab5cea257501da2f87c3f13140029" title="Mouse button release event handler.">mouseReleaseEvent</a>( QMouseEvent *);
+<a name="l00017"></a>00017         <span class="keywordtype">void</span> <a class="code" href="classC4DView_1_1MouseHandler4D.html#681ee2ee24d1528a92b6ec0ff4dad9c2" title="Double click event handler.">mouseDoubleClickEvent</a>( QMouseEvent *);
+<a name="l00018"></a>00018 
+<a name="l00019"></a>00019     <span class="keyword">private</span>:
+<a name="l00020"></a>00020         <span class="keywordtype">void</span> setm_LeftDownPos(QPoint b) { <a class="code" href="classC4DView_1_1MouseHandler4D.html#7daa8d9f9a43f9d014dd2c3db2c1e4e6" title="position where the LMB press started">m_LeftDownPos</a> = b; }
+<a name="l00021"></a>00021         QPoint LeftDownPos()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classC4DView_1_1MouseHandler4D.html#7daa8d9f9a43f9d014dd2c3db2c1e4e6" title="position where the LMB press started">m_LeftDownPos</a>; }
+<a name="l00022"></a>00022         <span class="keywordtype">void</span> setm_MidDownPos(QPoint b) { <a class="code" href="classC4DView_1_1MouseHandler4D.html#2eb10db3ada376e9cfcf8154f7191df5" title="position where the MMB press started">m_MidDownPos</a> = b; }
+<a name="l00023"></a>00023         QPoint MidDownPos()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classC4DView_1_1MouseHandler4D.html#2eb10db3ada376e9cfcf8154f7191df5" title="position where the MMB press started">m_MidDownPos</a>; }
+<a name="l00024"></a>00024         <span class="keywordtype">void</span> setm_RightDownPos(QPoint b) { <a class="code" href="classC4DView_1_1MouseHandler4D.html#b199e14588f77831dedb7433ed64a074" title="position where the RMB press started true while mouse button pressed &amp;amp; mouse...">m_RightDownPos</a> = b; }
+<a name="l00025"></a>00025         QPoint RightDownPos()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classC4DView_1_1MouseHandler4D.html#b199e14588f77831dedb7433ed64a074" title="position where the RMB press started true while mouse button pressed &amp;amp; mouse...">m_RightDownPos</a>; }
+<a name="l00026"></a>00026         <span class="keywordtype">void</span> setTakingSpinValues(<span class="keywordtype">bool</span> b) { m_TakingSpinValues = b; }
+<a name="l00027"></a>00027         <span class="keywordtype">bool</span> TakingSpinValues()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_TakingSpinValues; }
+<a name="l00028"></a>00028 
+<a name="l00029"></a><a class="code" href="classC4DView_1_1MouseHandler4D.html#4b4ff1cbc3a9e85f1fd5f6daaef574ea">00029</a>         <a class="code" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a> *<a class="code" href="classC4DView_1_1MouseHandler4D.html#4b4ff1cbc3a9e85f1fd5f6daaef574ea" title="the C4DView containing this mouse handler">parent</a>;        
+<a name="l00030"></a>00030 
+<a name="l00031"></a><a class="code" href="classC4DView_1_1MouseHandler4D.html#b199e14588f77831dedb7433ed64a074">00031</a>         QPoint <a class="code" href="classC4DView_1_1MouseHandler4D.html#7daa8d9f9a43f9d014dd2c3db2c1e4e6" title="position where the LMB press started">m_LeftDownPos</a>,       
+<a name="l00032"></a>00032                <a class="code" href="classC4DView_1_1MouseHandler4D.html#2eb10db3ada376e9cfcf8154f7191df5" title="position where the MMB press started">m_MidDownPos</a>,        
+<a name="l00033"></a>00033                <a class="code" href="classC4DView_1_1MouseHandler4D.html#b199e14588f77831dedb7433ed64a074" title="position where the RMB press started true while mouse button pressed &amp;amp; mouse...">m_RightDownPos</a>;      
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035         <span class="keywordtype">bool</span> m_TakingSpinValues;
+<a name="l00036"></a>00036 
+<a name="l00037"></a>00037 };
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039 <span class="preprocessor">#endif</span>
 </pre></div></div>
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Sat Nov 1 00:08:38 2008 for HyperspaceExplorer 0.6.1
+                Generated on Sat Nov 1 01:06:07 2008 for HyperspaceExplorer 0.6.1
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.6
                 &nbsp;-&nbsp;

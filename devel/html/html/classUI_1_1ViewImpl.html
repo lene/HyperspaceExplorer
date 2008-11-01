@@ -52,7 +52,7 @@ Inheritance diagram for UI::ViewImpl:</div>
 <div class="dynsection">
 <p><center><img src="classUI_1_1ViewImpl__inherit__graph.png" border="0" usemap="#UI_1_1ViewImpl__inherit__map" alt="Inheritance graph"></center>
 <map name="UI_1_1ViewImpl__inherit__map">
-<area shape="rect" href="classC4DView.html" title="Displays and manipulates four&#45;dimensional Functions in a QGLWidget." alt="" coords="5,2037,181,3669"><area shape="rect" href="classUI_1_1View.html" title="Interface to display four&#45;dimensional objects." alt="" coords="13,5,173,757"></map>
+<area shape="rect" href="classC4DView.html" title="Displays and manipulates four&#45;dimensional Functions in a QGLWidget." alt="" coords="5,2213,181,3845"><area shape="rect" href="classUI_1_1View.html" title="Interface to display four&#45;dimensional objects." alt="" coords="13,5,173,757"></map>
 <center><font size="2">[<a href="graph_legend.html">legend</a>]</font></center></div>
 <div class="dynheader">
 Collaboration diagram for UI::ViewImpl:</div>
@@ -182,41 +182,61 @@ virtual const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="cbef0ea363c772954b565d331b255c25"></a><!-- doxytag: member="UI::ViewImpl::addT" ref="cbef0ea363c772954b565d331b255c25" args="(const VecMath::Vector&lt; 4 &gt; &amp;_dT)" -->
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>addT</b> (const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;_dT)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="be101a806860df3ab01616e3c092abdc"></a><!-- doxytag: member="UI::ViewImpl::setR" ref="be101a806860df3ab01616e3c092abdc" args="(const VecMath::Rotation&lt; 4 &gt; &amp;_r)" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setR</b> (const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;_r)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#be101a806860df3ab01616e3c092abdc">setR</a> (const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;_r)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a5594df1772137ac86e25b9f8435dc04"></a><!-- doxytag: member="UI::ViewImpl::R" ref="a5594df1772137ac86e25b9f8435dc04" args="()" -->
-virtual const <br>
-<a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>R</b> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual const <br>
+<a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#a5594df1772137ac86e25b9f8435dc04">R</a> ()</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4a1ddf4d94623c7a94e8eb5809acf626"></a><!-- doxytag: member="UI::ViewImpl::addR" ref="4a1ddf4d94623c7a94e8eb5809acf626" args="(const VecMath::Rotation&lt; 4 &gt; &amp;_dR)" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>addR</b> (const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;<a class="el" href="classUI_1_1ViewImpl.html#22bd809158778d99db8e4b0c7d15a94c">_dR</a>)</td></tr>
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#4a1ddf4d94623c7a94e8eb5809acf626">addR</a> (const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;<a class="el" href="classUI_1_1ViewImpl.html#22bd809158778d99db8e4b0c7d15a94c">_dR</a>)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Add a Rotation to the current rotation state. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#05da0fec855e93430b72cb325e0a7c87">adddR</a> (const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Add a Rotation to the current rotation state.  <a href="#05da0fec855e93430b72cb325e0a7c87"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="183f11c8d9d1d0c7fef24e81d379f2f1"></a><!-- doxytag: member="UI::ViewImpl::setCamW" ref="183f11c8d9d1d0c7fef24e81d379f2f1" args="(const double &amp;_cw)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setCamW</b> (const double &amp;_cw)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Add a Rotation to the current rotation speed.  <a href="#05da0fec855e93430b72cb325e0a7c87"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#9abf03872780e6e1af170c44c3bd6138">CamW</a> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9abf03872780e6e1af170c44c3bd6138"></a><!-- doxytag: member="UI::ViewImpl::CamW" ref="9abf03872780e6e1af170c44c3bd6138" args="() const " -->
-double&nbsp;</td><td class="memItemRight" valign="bottom"><b>CamW</b> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#183f11c8d9d1d0c7fef24e81d379f2f1">setCamW</a> (const double &amp;_cw)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="df7b3211b353e810824146ba381b2175"></a><!-- doxytag: member="UI::ViewImpl::setScrW" ref="df7b3211b353e810824146ba381b2175" args="(const double &amp;_sw)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setScrW</b> (const double &amp;_sw)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#4e350b5709828386fd3831f3fbe14ff9">ScrW</a> () const </td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4e350b5709828386fd3831f3fbe14ff9"></a><!-- doxytag: member="UI::ViewImpl::ScrW" ref="4e350b5709828386fd3831f3fbe14ff9" args="() const " -->
-double&nbsp;</td><td class="memItemRight" valign="bottom"><b>ScrW</b> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#df7b3211b353e810824146ba381b2175">setScrW</a> (const double &amp;_sw)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="05ac9d06e1345d952ec67de3226e7472"></a><!-- doxytag: member="UI::ViewImpl::distance" ref="05ac9d06e1345d952ec67de3226e7472" args="()" -->
-double&nbsp;</td><td class="memItemRight" valign="bottom"><b>distance</b> ()</td></tr>
+double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#05ac9d06e1345d952ec67de3226e7472">distance</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Viewport distance; currently fixed to 1. <br></td></tr>
 <tr><td colspan="2"><br><h2>Static Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f3b65022c758ba04c86f69159c883d33"></a><!-- doxytag: member="UI::ViewImpl::getLightPos" ref="f3b65022c758ba04c86f69159c883d33" args="()" -->
-static GLfloat *&nbsp;</td><td class="memItemRight" valign="bottom"><b>getLightPos</b> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static GLfloat *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#f3b65022c758ba04c86f69159c883d33">getLightPos</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0757dbfd6f8cc8d6961c6acd138e647f"></a><!-- doxytag: member="UI::ViewImpl::setLightPos" ref="0757dbfd6f8cc8d6961c6acd138e647f" args="(const VecMath::Vector&lt; 4, GLfloat &gt; &amp;pos)" -->
-static void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setLightPos</b> (const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4, GLfloat &gt; &amp;pos)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="40da3c602097e3029bc337009d3622c6"></a><!-- doxytag: member="UI::ViewImpl::setLightPos" ref="40da3c602097e3029bc337009d3622c6" args="(const VecMath::Vector&lt; 4, GLfloat &gt; &amp;)" -->
+static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#40da3c602097e3029bc337009d3622c6">setLightPos</a> (const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4, GLfloat &gt; &amp;)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set Position of the light. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static GLfloat *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#d665f2f442eb2feac113e11c7d617eeb">getLightAmbient</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8b8b0ee6dc3be236185cf7f798041419"></a><!-- doxytag: member="UI::ViewImpl::setLightAmbient" ref="8b8b0ee6dc3be236185cf7f798041419" args="(const Color &amp;)" -->
+static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#8b8b0ee6dc3be236185cf7f798041419">setLightAmbient</a> (const <a class="el" href="classColor.html">Color</a> &amp;)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set <a class="el" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> of ambient light. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static GLfloat *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#f1e24dbc826227b017d92b3a2568e401">getLightDiffuse</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="297eb5d182f2ca5f76a814b941645054"></a><!-- doxytag: member="UI::ViewImpl::setLightDiffuse" ref="297eb5d182f2ca5f76a814b941645054" args="(const Color &amp;)" -->
+static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#297eb5d182f2ca5f76a814b941645054">setLightDiffuse</a> (const <a class="el" href="classColor.html">Color</a> &amp;)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set <a class="el" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> of diffuse light. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static GLfloat *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#ebd28652ec6c7f6980630cd362caa2b1">getLightSpecular</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="daa4b1991ffb7030149f8b9dedc3e564"></a><!-- doxytag: member="UI::ViewImpl::setLightSpecular" ref="daa4b1991ffb7030149f8b9dedc3e564" args="(const Color &amp;)" -->
+static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#daa4b1991ffb7030149f8b9dedc3e564">setLightSpecular</a> (const <a class="el" href="classColor.html">Color</a> &amp;)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set <a class="el" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> of specular reflections. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static GLfloat *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#a5e302db57de66aeb0c7ecd67b5574b2">getLightFlat</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="806ffa10d54d5e4f51f06da61cb61b6f"></a><!-- doxytag: member="UI::ViewImpl::setLightFlat" ref="806ffa10d54d5e4f51f06da61cb61b6f" args="(const Color &amp;)" -->
+static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#806ffa10d54d5e4f51f06da61cb61b6f">setLightFlat</a> (const <a class="el" href="classColor.html">Color</a> &amp;)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set <a class="el" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> for flat, all-ambient lighting. <br></td></tr>
 <tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6e36b5f4bbd0cac2e3cb96baf8f10bb5"></a><!-- doxytag: member="UI::ViewImpl::_F" ref="6e36b5f4bbd0cac2e3cb96baf8f10bb5" args="" -->
 <a class="elRef" doxygen="libstdc++.tag:" href="a01015.html">std::auto_ptr</a>&lt; <a class="el" href="classFunction.html">Function</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#6e36b5f4bbd0cac2e3cb96baf8f10bb5">_F</a></td></tr>
@@ -278,10 +298,6 @@ double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#7a601d6dcf04af211e267bd961974313">_scrW</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">W coordinate of the screen. <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e4fba21235a4115fdfd96859571045f7"></a><!-- doxytag: member="UI::ViewImpl::_distance" ref="e4fba21235a4115fdfd96859571045f7" args="" -->
-double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#e4fba21235a4115fdfd96859571045f7">_distance</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">viewpoint distance <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3c839926cd7634aa9c5659e5c5b3c815"></a><!-- doxytag: member="UI::ViewImpl::_numFrames" ref="3c839926cd7634aa9c5659e5c5b3c815" args="" -->
 unsigned&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#3c839926cd7634aa9c5659e5c5b3c815">_numFrames</a></td></tr>
 
@@ -311,6 +327,22 @@ static <a class="el" href="classColor.html">Color</a>&nbsp;</td><td class="memIt
 static GLfloat&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#7c0b010bb71a688dd69e3e7b48031cbf">_lightPos</a> [4] = { 4., 4., 8., 0. }</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Position of the light. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="67be7ec784000747da22aeaa5d4c0fbf"></a><!-- doxytag: member="UI::ViewImpl::_lightAmbient" ref="67be7ec784000747da22aeaa5d4c0fbf" args="[4]" -->
+static GLfloat&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#67be7ec784000747da22aeaa5d4c0fbf">_lightAmbient</a> [4] = { 0.3f, 0.3f, 0.3f, 1.0f }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> of ambient light. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="384b5533c60656b6a96f76d8d1c9f937"></a><!-- doxytag: member="UI::ViewImpl::_lightDiffuse" ref="384b5533c60656b6a96f76d8d1c9f937" args="[4]" -->
+static GLfloat&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#384b5533c60656b6a96f76d8d1c9f937">_lightDiffuse</a> [4] = { 0.9f, 0.9f, 0.9f, 1.0f }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> of diffuse light. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a86fd898ac175588786dc1d5b0fc9266"></a><!-- doxytag: member="UI::ViewImpl::_lightSpecular" ref="a86fd898ac175588786dc1d5b0fc9266" args="[4]" -->
+static GLfloat&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#a86fd898ac175588786dc1d5b0fc9266">_lightSpecular</a> [4] = { 1.0f, 1.0f, 1.0f, 1.0f }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> of specular reflections. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="85cf8eb5ec7bc3f9af9c0013f954b6a2"></a><!-- doxytag: member="UI::ViewImpl::_lightFlat" ref="85cf8eb5ec7bc3f9af9c0013f954b6a2" args="[4]" -->
+static GLfloat&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1ViewImpl.html#85cf8eb5ec7bc3f9af9c0013f954b6a2">_lightFlat</a> [4] = { 1.0f, 1.0f, 1.0f, 0.0f }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> for flat, all-ambient lighting. <br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 Interface with attributes to display four-dimensional objects. 
@@ -339,9 +371,9 @@ It also stores view states, which are common to all implementations, such as:<ul
 
 <p>Implements <a class="el" href="classUI_1_1View.html#7141de03205e44b946a46be7e5775fe2">UI::View</a>.</p>
 
-<p>References <a class="el" href="ViewImpl_8H-source.html#l00147">_F</a>.</p>
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00173">_F</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00281">C4DView::ApplyChanges()</a>, <a class="el" href="4DView_8C-source.html#l00057">C4DView::C4DView()</a>, <a class="el" href="CustomFunctionSlot_8impl_8H-source.html#l00027">C4DView::CustomFunctionSlot&lt; function &gt;::createCustomFunction()</a>, <a class="el" href="CustomFunctionSlot_8impl_8H-source.html#l00053">C4DView::CustomFunctionSlot&lt; function &gt;::createCustomSurface()</a>, <a class="el" href="4DView_8C-source.html#l00130">C4DView::ObjectGasket()</a>, <a class="el" href="4DView_8C-source.html#l00103">C4DView::ObjectHypercube()</a>, <a class="el" href="4DView_8C-source.html#l00112">C4DView::ObjectHyperpyramid()</a>, <a class="el" href="4DView_8C-source.html#l00121">C4DView::ObjectHypersponge()</a>, <a class="el" href="4DView_8C-source.html#l00374">C4DView::PreRedraw()</a>, <a class="el" href="4DView_8C-source.html#l00357">C4DView::Project()</a>, <a class="el" href="SlotHelper_8C-source.html#l00029">SurfaceSlotHelper::slot()</a>, <a class="el" href="SlotHelper_8C-source.html#l00019">FunctionSlotHelper::slot()</a>, <a class="el" href="4DView_8C-source.html#l00331">C4DView::Transform()</a>, and <a class="el" href="4DView_8C-source.html#l00622">C4DView::UpdateStatus()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00273">C4DView::ApplyChanges()</a>, <a class="el" href="4DView_8C-source.html#l00057">C4DView::C4DView()</a>, <a class="el" href="CustomFunctionSlot_8impl_8H-source.html#l00027">C4DView::CustomFunctionSlot&lt; function &gt;::createCustomFunction()</a>, <a class="el" href="CustomFunctionSlot_8impl_8H-source.html#l00053">C4DView::CustomFunctionSlot&lt; function &gt;::createCustomSurface()</a>, <a class="el" href="4DView_8C-source.html#l00130">C4DView::ObjectGasket()</a>, <a class="el" href="4DView_8C-source.html#l00103">C4DView::ObjectHypercube()</a>, <a class="el" href="4DView_8C-source.html#l00112">C4DView::ObjectHyperpyramid()</a>, <a class="el" href="4DView_8C-source.html#l00121">C4DView::ObjectHypersponge()</a>, <a class="el" href="4DView_8C-source.html#l00366">C4DView::PreRedraw()</a>, <a class="el" href="4DView_8C-source.html#l00349">C4DView::Project()</a>, <a class="el" href="SlotHelper_8C-source.html#l00029">SurfaceSlotHelper::slot()</a>, <a class="el" href="SlotHelper_8C-source.html#l00019">FunctionSlotHelper::slot()</a>, <a class="el" href="4DView_8C-source.html#l00323">C4DView::Transform()</a>, and <a class="el" href="4DView_8C-source.html#l00614">C4DView::UpdateStatus()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -374,9 +406,9 @@ Here is the caller graph for this function:</div>
 
 <p>Implements <a class="el" href="classUI_1_1View.html#5e68b78c7583c1a30cd6e19bffc26845">UI::View</a>.</p>
 
-<p>References <a class="el" href="ViewImpl_8H-source.html#l00161">_dR</a>.</p>
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00187">_dR</a>.</p>
 
-<p>Referenced by <a class="el" href="ViewImpl_8C-source.html#l00051">adddR()</a>, <a class="el" href="4DView_8C-source.html#l00145">C4DView::animate()</a>, <a class="el" href="MouseHandler_8C-source.html#l00034">C4DView::MouseHandler4D::mouseMoveEvent()</a>, <a class="el" href="4DView_8C-source.html#l00302">C4DView::OnAnimationTimer()</a>, and <a class="el" href="4DView_8C-source.html#l00507">C4DView::StartAnimation()</a>.</p>
+<p>Referenced by <a class="el" href="ViewImpl_8C-source.html#l00056">adddR()</a>, <a class="el" href="4DView_8C-source.html#l00145">C4DView::animate()</a>, <a class="el" href="MouseHandler_8C-source.html#l00034">C4DView::MouseHandler4D::mouseMoveEvent()</a>, <a class="el" href="4DView_8C-source.html#l00294">C4DView::OnAnimationTimer()</a>, and <a class="el" href="4DView_8C-source.html#l00499">C4DView::StartAnimation()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -384,7 +416,7 @@ Here is the caller graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classUI_1_1ViewImpl_f7b5919ff7fcd06e8f3445eea3f39d59_icgraph.png" border="0" usemap="#classUI_1_1ViewImpl_f7b5919ff7fcd06e8f3445eea3f39d59_icgraph_map" alt=""></center>
 <map name="classUI_1_1ViewImpl_f7b5919ff7fcd06e8f3445eea3f39d59_icgraph_map">
-<area shape="rect" href="classUI_1_1ViewImpl.html#05da0fec855e93430b72cb325e0a7c87" title="Add a Rotation to the current rotation state." alt="" coords="203,5,341,32"><area shape="rect" href="classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="408,31,691,57"><area shape="rect" href="classC4DView.html#5ec81f7d64c4678cbe44bfad9d2acb65" title="Implementation of UI::View::animate." alt="" coords="209,107,335,133"><area shape="rect" href="classC4DView.html#715dbd8c1e15f6d118853e1789d081e7" title="Err well.. just that!" alt="" coords="189,157,355,184"><area shape="rect" href="classC4DView.html#1b5e87b494b99e3705c64e924480f4ef" title="Mouse move event handler, reimplemented from QWidget." alt="" coords="751,31,929,57"><area shape="rect" href="classC4DView_1_1MouseHandler4D.html#9e5ab5cea257501da2f87c3f13140029" title="Mouse button release event handler." alt="" coords="403,132,696,159"><area shape="rect" href="classC4DView.html#f33c8cf03fcfc94d4c64f9f4454b0339" title="Starts a random animation." alt="" coords="457,183,641,209"><area shape="rect" href="classC4DView.html#00949bc8cb7215be6ff50e947d6f576f" title="Mouse release event handler, reimplemented from QWidget." alt="" coords="745,132,935,159"></map>
+<area shape="rect" href="classUI_1_1ViewImpl.html#05da0fec855e93430b72cb325e0a7c87" title="Add a Rotation to the current rotation speed." alt="" coords="203,5,341,32"><area shape="rect" href="classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="408,31,691,57"><area shape="rect" href="classC4DView.html#5ec81f7d64c4678cbe44bfad9d2acb65" title="Implementation of UI::View::animate." alt="" coords="209,107,335,133"><area shape="rect" href="classC4DView.html#715dbd8c1e15f6d118853e1789d081e7" title="Err well.. just that!" alt="" coords="189,157,355,184"><area shape="rect" href="classC4DView.html#1b5e87b494b99e3705c64e924480f4ef" title="Mouse move event handler, reimplemented from QWidget." alt="" coords="751,31,929,57"><area shape="rect" href="classC4DView_1_1MouseHandler4D.html#9e5ab5cea257501da2f87c3f13140029" title="Mouse button release event handler." alt="" coords="403,132,696,159"><area shape="rect" href="classC4DView.html#f33c8cf03fcfc94d4c64f9f4454b0339" title="Starts a random animation." alt="" coords="457,183,641,209"><area shape="rect" href="classC4DView.html#00949bc8cb7215be6ff50e947d6f576f" title="Mouse release event handler, reimplemented from QWidget." alt="" coords="745,132,935,159"></map>
 </div>
 
 </div>
@@ -416,9 +448,9 @@ Set the rotation step between frames for animations.
 
 <p>Implements <a class="el" href="classUI_1_1View.html#2759ba7675f31af6e6d7d10996bd12d2">UI::View</a>.</p>
 
-<p>References <a class="el" href="ViewImpl_8H-source.html#l00161">_dR</a>.</p>
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00187">_dR</a>.</p>
 
-<p>Referenced by <a class="el" href="ViewImpl_8C-source.html#l00051">adddR()</a>, <a class="el" href="4DView_8C-source.html#l00536">C4DView::RandomAnimation()</a>, and <a class="el" href="4DView_8C-source.html#l00522">C4DView::StopAnimation()</a>.</p>
+<p>Referenced by <a class="el" href="ViewImpl_8C-source.html#l00056">adddR()</a>, <a class="el" href="4DView_8C-source.html#l00528">C4DView::RandomAnimation()</a>, and <a class="el" href="4DView_8C-source.html#l00514">C4DView::StopAnimation()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -426,7 +458,7 @@ Here is the caller graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classUI_1_1ViewImpl_0fef5fd79e988554b44574f942cda7f1_icgraph.png" border="0" usemap="#classUI_1_1ViewImpl_0fef5fd79e988554b44574f942cda7f1_icgraph_map" alt=""></center>
 <map name="classUI_1_1ViewImpl_0fef5fd79e988554b44574f942cda7f1_icgraph_map">
-<area shape="rect" href="classUI_1_1ViewImpl.html#05da0fec855e93430b72cb325e0a7c87" title="Add a Rotation to the current rotation state." alt="" coords="213,5,352,32"><area shape="rect" href="classC4DView.html#f33c8cf03fcfc94d4c64f9f4454b0339" title="Starts a random animation." alt="" coords="191,56,375,83"><area shape="rect" href="classC4DView.html#45b036ac24d2404ad7bd69139a49b2d8" title="you guessed it" alt="" coords="201,107,364,133"><area shape="rect" href="classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="443,5,725,32"><area shape="rect" href="classC4DView.html#1b5e87b494b99e3705c64e924480f4ef" title="Mouse move event handler, reimplemented from QWidget." alt="" coords="812,5,991,32"><area shape="rect" href="classC4DView_1_1MouseHandler4D.html#681ee2ee24d1528a92b6ec0ff4dad9c2" title="Double click event handler." alt="" coords="424,107,744,133"><area shape="rect" href="classC4DView.html#6dc432e565b97c2aa6f2273bbe4135c7" title="Double click event handler, reimplemented from QWidget." alt="" coords="793,107,1009,133"></map>
+<area shape="rect" href="classUI_1_1ViewImpl.html#05da0fec855e93430b72cb325e0a7c87" title="Add a Rotation to the current rotation speed." alt="" coords="213,5,352,32"><area shape="rect" href="classC4DView.html#f33c8cf03fcfc94d4c64f9f4454b0339" title="Starts a random animation." alt="" coords="191,56,375,83"><area shape="rect" href="classC4DView.html#45b036ac24d2404ad7bd69139a49b2d8" title="you guessed it" alt="" coords="201,107,364,133"><area shape="rect" href="classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="443,5,725,32"><area shape="rect" href="classC4DView.html#1b5e87b494b99e3705c64e924480f4ef" title="Mouse move event handler, reimplemented from QWidget." alt="" coords="812,5,991,32"><area shape="rect" href="classC4DView_1_1MouseHandler4D.html#681ee2ee24d1528a92b6ec0ff4dad9c2" title="Double click event handler." alt="" coords="424,107,744,133"><area shape="rect" href="classC4DView.html#6dc432e565b97c2aa6f2273bbe4135c7" title="Double click event handler, reimplemented from QWidget." alt="" coords="793,107,1009,133"></map>
 </div>
 
 </div>
@@ -451,9 +483,9 @@ Here is the caller graph for this function:</div>
 
 <p>Implements <a class="el" href="classUI_1_1View.html#943765a7c1bf3e90f71547ef8cb7721d">UI::View</a>.</p>
 
-<p>References <a class="el" href="ViewImpl_8H-source.html#l00174">_imageDir</a>.</p>
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00198">_imageDir</a>.</p>
 
-<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00313">C4DView::Menu4D::AnimationSettings()</a>, and <a class="el" href="4DView_8C-source.html#l00567">C4DView::writeFrame()</a>.</p>
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00313">C4DView::Menu4D::AnimationSettings()</a>, and <a class="el" href="4DView_8C-source.html#l00559">C4DView::writeFrame()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -493,7 +525,7 @@ Set the directory where to store image files.
 
 <p>Implements <a class="el" href="classUI_1_1View.html#1441a46af84f3638e6ff69ddc965efd8">UI::View</a>.</p>
 
-<p>References <a class="el" href="ViewImpl_8H-source.html#l00174">_imageDir</a>, and <a class="el" href="ViewImpl_8H-source.html#l00119">setWriteImages()</a>.</p>
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00198">_imageDir</a>, and <a class="el" href="ViewImpl_8H-source.html#l00119">setWriteImages()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00313">C4DView::Menu4D::AnimationSettings()</a>.</p>
 
@@ -528,9 +560,9 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classUI_1_1View.html#8d15f9a8fabfe77711d7c272ba49aea6">UI::View</a>.</p>
 
-<p>References <a class="el" href="ViewImpl_8H-source.html#l00175">_imagePrefix</a>.</p>
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00199">_imagePrefix</a>.</p>
 
-<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00313">C4DView::Menu4D::AnimationSettings()</a>, and <a class="el" href="4DView_8C-source.html#l00567">C4DView::writeFrame()</a>.</p>
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00313">C4DView::Menu4D::AnimationSettings()</a>, and <a class="el" href="4DView_8C-source.html#l00559">C4DView::writeFrame()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -570,7 +602,7 @@ Set the prefix of image file names, before the frame number and the extension.
 
 <p>Implements <a class="el" href="classUI_1_1View.html#0864530a5c989d1cf0e8d38bac7868a3">UI::View</a>.</p>
 
-<p>References <a class="el" href="ViewImpl_8H-source.html#l00175">_imagePrefix</a>, and <a class="el" href="ViewImpl_8H-source.html#l00119">setWriteImages()</a>.</p>
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00199">_imagePrefix</a>, and <a class="el" href="ViewImpl_8H-source.html#l00119">setWriteImages()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00313">C4DView::Menu4D::AnimationSettings()</a>.</p>
 
@@ -605,7 +637,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classUI_1_1View.html#db1e9225dadf71c1de2a9303c4b86270">UI::View</a>.</p>
 
-<p>References <a class="el" href="ViewImpl_8H-source.html#l00158">_background</a>.</p>
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00184">_background</a>.</p>
 
 </div>
 </div><p>
@@ -629,7 +661,7 @@ Here is the call graph for this function:</div>
 
 <p>Implements <a class="el" href="classUI_1_1View.html#f25dc77d07bf08f033a1ce80efc69b81">UI::View</a>.</p>
 
-<p>References <a class="el" href="ViewImpl_8H-source.html#l00149">_colors</a>.</p>
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00175">_colors</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00231">C4DView::Menu4D::Colors()</a>, and <a class="el" href="Menu4D_8C-source.html#l00049">C4DView::Menu4D::Menu4D()</a>.</p>
 
@@ -664,9 +696,9 @@ Here is the caller graph for this function:</div>
 
 <p>Implements <a class="el" href="classUI_1_1View.html#d0a0dae802e350612fa9802879ba567f">UI::View</a>.</p>
 
-<p>References <a class="el" href="ViewImpl_8H-source.html#l00150">_coordinates</a>.</p>
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00176">_coordinates</a>.</p>
 
-<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00285">C4DView::Menu4D::Coordinates()</a>, <a class="el" href="Menu4D_8C-source.html#l00049">C4DView::Menu4D::Menu4D()</a>, <a class="el" href="4DView_8C-source.html#l00374">C4DView::PreRedraw()</a>, <a class="el" href="4DView_8C-source.html#l00357">C4DView::Project()</a>, and <a class="el" href="4DView_8C-source.html#l00402">C4DView::RenderScene()</a>.</p>
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00285">C4DView::Menu4D::Coordinates()</a>, <a class="el" href="Menu4D_8C-source.html#l00049">C4DView::Menu4D::Menu4D()</a>, <a class="el" href="4DView_8C-source.html#l00366">C4DView::PreRedraw()</a>, <a class="el" href="4DView_8C-source.html#l00349">C4DView::Project()</a>, and <a class="el" href="4DView_8C-source.html#l00394">C4DView::RenderScene()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -699,9 +731,9 @@ Here is the caller graph for this function:</div>
 
 <p>Implements <a class="el" href="classUI_1_1View.html#787f16b959e4758753c823f1f7b6997d">UI::View</a>.</p>
 
-<p>References <a class="el" href="ViewImpl_8H-source.html#l00151">_fog</a>.</p>
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00177">_fog</a>.</p>
 
-<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00243">C4DView::Menu4D::Fog()</a>, <a class="el" href="4DView_8C-source.html#l00811">C4DView::InitFog()</a>, <a class="el" href="Menu4D_8C-source.html#l00049">C4DView::Menu4D::Menu4D()</a>, <a class="el" href="MouseHandler_8C-source.html#l00034">C4DView::MouseHandler4D::mouseMoveEvent()</a>, and <a class="el" href="4DView_8C-source.html#l00843">C4DView::resizeGL()</a>.</p>
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00243">C4DView::Menu4D::Fog()</a>, <a class="el" href="4DView_8C-source.html#l00802">C4DView::InitFog()</a>, <a class="el" href="Menu4D_8C-source.html#l00049">C4DView::Menu4D::Menu4D()</a>, <a class="el" href="MouseHandler_8C-source.html#l00034">C4DView::MouseHandler4D::mouseMoveEvent()</a>, and <a class="el" href="4DView_8C-source.html#l00832">C4DView::resizeGL()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -734,9 +766,9 @@ Here is the caller graph for this function:</div>
 
 <p>Implements <a class="el" href="classUI_1_1View.html#341c92ca06e0b1ed7143822a9d960181">UI::View</a>.</p>
 
-<p>References <a class="el" href="ViewImpl_8H-source.html#l00152">_hyperfog</a>.</p>
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00178">_hyperfog</a>.</p>
 
-<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00297">C4DView::Menu4D::HyperFog()</a>, and <a class="el" href="4DView_8C-source.html#l00357">C4DView::Project()</a>.</p>
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00297">C4DView::Menu4D::HyperFog()</a>, and <a class="el" href="4DView_8C-source.html#l00349">C4DView::Project()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -769,9 +801,9 @@ Here is the caller graph for this function:</div>
 
 <p>Implements <a class="el" href="classUI_1_1View.html#72901b2606c3e1c7a054a97591c3e656">UI::View</a>.</p>
 
-<p>References <a class="el" href="ViewImpl_8H-source.html#l00153">_lighting</a>.</p>
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00179">_lighting</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00788">C4DView::InitLight()</a>, <a class="el" href="Menu4D_8C-source.html#l00257">C4DView::Menu4D::Light()</a>, <a class="el" href="Menu4D_8C-source.html#l00049">C4DView::Menu4D::Menu4D()</a>, and <a class="el" href="4DView_8C-source.html#l00191">C4DView::setLighting()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00779">C4DView::InitLight()</a>, <a class="el" href="Menu4D_8C-source.html#l00257">C4DView::Menu4D::Light()</a>, <a class="el" href="Menu4D_8C-source.html#l00049">C4DView::Menu4D::Menu4D()</a>, and <a class="el" href="4DView_8C-source.html#l00190">C4DView::setLighting()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -804,9 +836,9 @@ Here is the caller graph for this function:</div>
 
 <p>Implements <a class="el" href="classUI_1_1View.html#eb23d7befc10c2683e6e529af60d6e64">UI::View</a>.</p>
 
-<p>References <a class="el" href="ViewImpl_8H-source.html#l00154">_shading</a>.</p>
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00180">_shading</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00805">C4DView::InitShade()</a>, <a class="el" href="Menu4D_8C-source.html#l00049">C4DView::Menu4D::Menu4D()</a>, and <a class="el" href="Menu4D_8C-source.html#l00237">C4DView::Menu4D::Shade()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00796">C4DView::InitShade()</a>, <a class="el" href="Menu4D_8C-source.html#l00049">C4DView::Menu4D::Menu4D()</a>, and <a class="el" href="Menu4D_8C-source.html#l00237">C4DView::Menu4D::Shade()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -839,9 +871,9 @@ Here is the caller graph for this function:</div>
 
 <p>Implements <a class="el" href="classUI_1_1View.html#e04a1dd4e7ff25405db674eb6e14ae68">UI::View</a>.</p>
 
-<p>References <a class="el" href="ViewImpl_8H-source.html#l00155">_solid</a>.</p>
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00181">_solid</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00740">C4DView::initializeGL()</a>, <a class="el" href="Menu4D_8C-source.html#l00049">C4DView::Menu4D::Menu4D()</a>, <a class="el" href="4DView_8C-source.html#l00687">C4DView::paintEvent()</a>, and <a class="el" href="Menu4D_8C-source.html#l00267">C4DView::Menu4D::Wireframe()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00732">C4DView::initializeGL()</a>, <a class="el" href="Menu4D_8C-source.html#l00049">C4DView::Menu4D::Menu4D()</a>, <a class="el" href="4DView_8C-source.html#l00679">C4DView::paintEvent()</a>, and <a class="el" href="Menu4D_8C-source.html#l00267">C4DView::Menu4D::Wireframe()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -881,7 +913,7 @@ Turn wireframe display on or off.
 
 <p>Implements <a class="el" href="classUI_1_1View.html#949ffc0134810c2936733a86b189aa3f">UI::View</a>.</p>
 
-<p>References <a class="el" href="ViewImpl_8H-source.html#l00155">_solid</a>.</p>
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00181">_solid</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">C4DView::Menu4D::Menu4D()</a>, and <a class="el" href="Menu4D_8C-source.html#l00267">C4DView::Menu4D::Wireframe()</a>.</p>
 
@@ -916,9 +948,9 @@ Here is the caller graph for this function:</div>
 
 <p>Implements <a class="el" href="classUI_1_1View.html#7f915fad27490b1a8238bb26a2474c53">UI::View</a>.</p>
 
-<p>References <a class="el" href="ViewImpl_8H-source.html#l00156">_transparence</a>.</p>
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00182">_transparence</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00823">C4DView::InitTransparence()</a>, <a class="el" href="Menu4D_8C-source.html#l00049">C4DView::Menu4D::Menu4D()</a>, and <a class="el" href="Menu4D_8C-source.html#l00249">C4DView::Menu4D::Transparent()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00813">C4DView::InitTransparence()</a>, <a class="el" href="Menu4D_8C-source.html#l00049">C4DView::Menu4D::Menu4D()</a>, and <a class="el" href="Menu4D_8C-source.html#l00249">C4DView::Menu4D::Transparent()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -951,9 +983,9 @@ Here is the caller graph for this function:</div>
 
 <p>Implements <a class="el" href="classUI_1_1View.html#c86dce95650de2a982e75685246bd8fe">UI::View</a>.</p>
 
-<p>References <a class="el" href="ViewImpl_8H-source.html#l00173">_writeImages</a>.</p>
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00197">_writeImages</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00740">C4DView::initializeGL()</a>, <a class="el" href="Menu4D_8C-source.html#l00049">C4DView::Menu4D::Menu4D()</a>, <a class="el" href="Menu4D_8C-source.html#l00306">C4DView::Menu4D::RenderToImages()</a>, and <a class="el" href="4DView_8C-source.html#l00567">C4DView::writeFrame()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00732">C4DView::initializeGL()</a>, <a class="el" href="Menu4D_8C-source.html#l00049">C4DView::Menu4D::Menu4D()</a>, <a class="el" href="Menu4D_8C-source.html#l00306">C4DView::Menu4D::RenderToImages()</a>, and <a class="el" href="4DView_8C-source.html#l00559">C4DView::writeFrame()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -962,6 +994,77 @@ Here is the caller graph for this function:</div>
 <p><center><img src="classUI_1_1ViewImpl_c5270e75eabb357f75b0955b8b887cb0_icgraph.png" border="0" usemap="#classUI_1_1ViewImpl_c5270e75eabb357f75b0955b8b887cb0_icgraph_map" alt=""></center>
 <map name="classUI_1_1ViewImpl_c5270e75eabb357f75b0955b8b887cb0_icgraph_map">
 <area shape="rect" href="classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from..." alt="" coords="263,5,409,32"><area shape="rect" href="classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="244,56,428,83"><area shape="rect" href="classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="264,107,408,133"><area shape="rect" href="classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Re&#45;Implementation of UI::ViewImpl::setColors." alt="" coords="477,5,611,32"></map>
+</div>
+
+</div>
+</div><p>
+<a class="anchor" name="be101a806860df3ab01616e3c092abdc"></a><!-- doxytag: member="UI::ViewImpl::setR" ref="be101a806860df3ab01616e3c092abdc" args="(const VecMath::Rotation&lt; 4 &gt; &amp;_r)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void UI::ViewImpl::setR           </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>_r</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, protected, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>_r</em>&nbsp;</td><td>New rotation state </td></tr>
+  </table>
+</dl>
+
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00189">_R</a>.</p>
+
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00338">C4DView::Transform()</a>.</p>
+
+<p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classUI_1_1ViewImpl_be101a806860df3ab01616e3c092abdc_icgraph.png" border="0" usemap="#classUI_1_1ViewImpl_be101a806860df3ab01616e3c092abdc_icgraph_map" alt=""></center>
+<map name="classUI_1_1ViewImpl_be101a806860df3ab01616e3c092abdc_icgraph_map">
+<area shape="rect" href="classC4DView.html#16d5190870a166c65a20c59368ca0f2f" title="Overloaded function executing the transform to the default state." alt="" coords="181,107,320,133"><area shape="rect" href="classC4DView.html#5ec81f7d64c4678cbe44bfad9d2acb65" title="Implementation of UI::View::animate." alt="" coords="391,31,516,57"><area shape="rect" href="classC4DView.html#530cab21c7ae4ab78eeff14e7f89a879" title="Implementation of UI::View::applyTransform." alt="" coords="369,81,537,108"><area shape="rect" href="classC4DView.html#e38186ceacf6c4e6b13de7bee6cd8bda" title="Called whenever an object or the parameters have changed." alt="" coords="375,132,532,159"><area shape="rect" href="classC4DView.html#60f45904ff9b227fdf426b5960fa4130" title="rotate in 4D 360 degrees" alt="" coords="373,183,533,209"><area shape="rect" href="group__UIHelpers.html#gb4150e26778debfb3de8214203578a41" title="C++ Template Implementation: CustomFunctionSlot." alt="" coords="588,5,908,32"><area shape="rect" href="classC4DView_1_1CustomFunctionSlot.html#2eaaaf653f2d1bbfe3a2b416f33e4b08" title="Factory method to create a new customized Function of type R^2&#45;&gt;R^4." alt="" coords="591,56,905,83"><area shape="rect" href="classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="671,107,825,133"><area shape="rect" href="classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="660,157,836,184"><area shape="rect" href="classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="651,208,845,235"><area shape="rect" href="classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="653,259,843,285"><area shape="rect" href="classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="959,157,1095,184"></map>
+</div>
+
+</div>
+</div><p>
+<a class="anchor" name="a5594df1772137ac86e25b9f8435dc04"></a><!-- doxytag: member="UI::ViewImpl::R" ref="a5594df1772137ac86e25b9f8435dc04" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt;4&gt;&amp; UI::ViewImpl::R           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, protected, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>Current rotation state </dd></dl>
+
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00189">_R</a>.</p>
+
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00145">C4DView::animate()</a>, <a class="el" href="4DView_8C-source.html#l00228">C4DView::Benchmark3D()</a>, <a class="el" href="4DView_8C-source.html#l00590">C4DView::checkAnglesForOverflow()</a>, <a class="el" href="MouseHandler_8C-source.html#l00034">C4DView::MouseHandler4D::mouseMoveEvent()</a>, <a class="el" href="4DView_8C-source.html#l00294">C4DView::OnAnimationTimer()</a>, and <a class="el" href="4DView_8C-source.html#l00338">C4DView::Transform()</a>.</p>
+
+<p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classUI_1_1ViewImpl_a5594df1772137ac86e25b9f8435dc04_icgraph.png" border="0" usemap="#classUI_1_1ViewImpl_a5594df1772137ac86e25b9f8435dc04_icgraph_map" alt=""></center>
+<map name="classUI_1_1ViewImpl_a5594df1772137ac86e25b9f8435dc04_icgraph_map">
+<area shape="rect" href="classC4DView.html#5ec81f7d64c4678cbe44bfad9d2acb65" title="Implementation of UI::View::animate." alt="" coords="460,309,585,336"><area shape="rect" href="classC4DView.html#8a01e49be6af9cab84880a176b7c42ae" title="rotate in 3D 360 degrees" alt="" coords="736,5,896,32"><area shape="rect" href="classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="168,208,389,235"><area shape="rect" href="classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="675,259,957,285"><area shape="rect" href="classC4DView.html#16d5190870a166c65a20c59368ca0f2f" title="Overloaded function executing the transform to the default state." alt="" coords="209,360,348,387"><area shape="rect" href="classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="447,208,599,235"><area shape="rect" href="classC4DView.html#e38186ceacf6c4e6b13de7bee6cd8bda" title="Called whenever an object or the parameters have changed." alt="" coords="737,360,895,387"><area shape="rect" href="group__UIHelpers.html#gb4150e26778debfb3de8214203578a41" title="C++ Template Implementation: CustomFunctionSlot." alt="" coords="1025,309,1345,336"><area shape="rect" href="classC4DView_1_1CustomFunctionSlot.html#2eaaaf653f2d1bbfe3a2b416f33e4b08" title="Factory method to create a new customized Function of type R^2&#45;&gt;R^4." alt="" coords="1028,208,1343,235"><area shape="rect" href="classC4DView.html#60f45904ff9b227fdf426b5960fa4130" title="rotate in 4D 360 degrees" alt="" coords="736,411,896,437"><area shape="rect" href="classC4DView_1_1MouseHandler4D.html#681ee2ee24d1528a92b6ec0ff4dad9c2" title="Double click event handler." alt="" coords="656,56,976,83"><area shape="rect" href="classC4DView_1_1MouseHandler4D.html#9e5ab5cea257501da2f87c3f13140029" title="Mouse button release event handler." alt="" coords="1039,157,1332,184"><area shape="rect" href="classC4DView.html#715dbd8c1e15f6d118853e1789d081e7" title="Err well.. just that!" alt="" coords="733,107,899,133"><area shape="rect" href="classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="1108,461,1263,488"><area shape="rect" href="classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="1097,512,1273,539"><area shape="rect" href="classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="1088,360,1283,387"><area shape="rect" href="classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="1091,411,1280,437"><area shape="rect" href="classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="1423,512,1559,539"><area shape="rect" href="classC4DView.html#6dc432e565b97c2aa6f2273bbe4135c7" title="Double click event handler, reimplemented from QWidget." alt="" coords="1077,56,1293,83"><area shape="rect" href="classC4DView.html#1b5e87b494b99e3705c64e924480f4ef" title="Mouse move event handler, reimplemented from QWidget." alt="" coords="1096,259,1275,285"><area shape="rect" href="classC4DView.html#00949bc8cb7215be6ff50e947d6f576f" title="Mouse release event handler, reimplemented from QWidget." alt="" coords="1396,157,1585,184"><area shape="rect" href="classC4DView.html#f33c8cf03fcfc94d4c64f9f4454b0339" title="Starts a random animation." alt="" coords="1093,107,1277,133"><area shape="rect" href="classC4DView.html#530cab21c7ae4ab78eeff14e7f89a879" title="Implementation of UI::View::applyTransform." alt="" coords="439,461,607,488"></map>
 </div>
 
 </div>
@@ -983,11 +1086,11 @@ Here is the caller graph for this function:</div>
 <div class="memdoc">
 
 <p>
-Add a Rotation to the current rotation state. 
+Add a Rotation to the current rotation speed. 
 <p>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>ddr</em>&nbsp;</td><td>Rotation to be added to the current Rotation state </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>ddR</em>&nbsp;</td><td>Rotation to be added to the current Rotation state </td></tr>
   </table>
 </dl>
 
@@ -1015,13 +1118,298 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div><p>
+<a class="anchor" name="9abf03872780e6e1af170c44c3bd6138"></a><!-- doxytag: member="UI::ViewImpl::CamW" ref="9abf03872780e6e1af170c44c3bd6138" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double UI::ViewImpl::CamW           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline, protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>W coordinate of the camera </dd></dl>
+
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00191">_camW</a>.</p>
+
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00349">C4DView::Project()</a>.</p>
+
+<p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classUI_1_1ViewImpl_9abf03872780e6e1af170c44c3bd6138_icgraph.png" border="0" usemap="#classUI_1_1ViewImpl_9abf03872780e6e1af170c44c3bd6138_icgraph_map" alt=""></center>
+<map name="classUI_1_1ViewImpl_9abf03872780e6e1af170c44c3bd6138_icgraph_map">
+<area shape="rect" href="classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Execute the projection into three&#45;space (but don&#39;t draw it yet either)." alt="" coords="197,380,317,407"><area shape="rect" href="classC4DView.html#5ec81f7d64c4678cbe44bfad9d2acb65" title="Implementation of UI::View::animate." alt="" coords="1264,5,1389,32"><area shape="rect" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen." alt="" coords="367,309,508,336"><area shape="rect" href="classC4DView.html#eb4ec12aada637e796110fe8172d12ff" title="Re&#45;Implementation of UI::ViewImpl::setCoordinates." alt="" coords="1245,563,1408,589"><area shape="rect" href="classC4DView.html#b8007107aba8c57dd39063be93ca8f96" title="Re&#45;Implementation of UI::ViewImpl::setHyperfog." alt="" coords="1252,613,1401,640"><area shape="rect" href="classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from..." alt="" coords="760,360,907,387"><area shape="rect" href="classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Draw the transformed and projected function onto the screen." alt="" coords="975,309,1097,336"><area shape="rect" href="classC4DView.html#b9561bdd967e89d314f7eda6de32b2bc" title="Wrapper for displaying OpenGL display lists." alt="" coords="559,208,711,235"><area shape="rect" href="classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="563,259,707,285"><area shape="rect" href="classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Re&#45;Implementation of UI::ViewImpl::setColors." alt="" coords="969,360,1103,387"><area shape="rect" href="classC4DView.html#530cab21c7ae4ab78eeff14e7f89a879" title="Implementation of UI::View::applyTransform." alt="" coords="1243,461,1411,488"><area shape="rect" href="classC4DView.html#60f45904ff9b227fdf426b5960fa4130" title="rotate in 4D 360 degrees" alt="" coords="1247,512,1407,539"><area shape="rect" href="group__UIHelpers.html#gb4150e26778debfb3de8214203578a41" title="C++ Template Implementation: CustomFunctionSlot." alt="" coords="1167,107,1487,133"><area shape="rect" href="classC4DView_1_1CustomFunctionSlot.html#2eaaaf653f2d1bbfe3a2b416f33e4b08" title="Factory method to create a new customized Function of type R^2&#45;&gt;R^4." alt="" coords="1169,157,1484,184"><area shape="rect" href="classC4DView_1_1MouseHandler4D.html#681ee2ee24d1528a92b6ec0ff4dad9c2" title="Double click event handler." alt="" coords="1167,208,1487,235"><area shape="rect" href="classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="1185,56,1468,83"><area shape="rect" href="classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="1249,259,1404,285"><area shape="rect" href="classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="1239,360,1415,387"><area shape="rect" href="classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="1229,411,1424,437"><area shape="rect" href="classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="1232,309,1421,336"><area shape="rect" href="classC4DView.html#6dc432e565b97c2aa6f2273bbe4135c7" title="Double click event handler, reimplemented from QWidget." alt="" coords="1537,208,1753,235"><area shape="rect" href="classC4DView.html#1b5e87b494b99e3705c64e924480f4ef" title="Mouse move event handler, reimplemented from QWidget." alt="" coords="1556,56,1735,83"><area shape="rect" href="classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="1577,360,1713,387"><area shape="rect" href="classC4DView.html#be8e58d21b0e1c513b10afa294b162b2" title="Paint event handler, reimplemented from QGLWidget." alt="" coords="764,208,903,235"><area shape="rect" href="classC4DView.html#8a01e49be6af9cab84880a176b7c42ae" title="rotate in 3D 360 degrees" alt="" coords="956,259,1116,285"><area shape="rect" href="classC4DView.html#504fd428909b35e3d80506a0235eac3e" title="Re&#45;Implementation of UI::ViewImpl::setBackground." alt="" coords="955,107,1117,133"><area shape="rect" href="classC4DView.html#5a783209571030da60229d60dfef66f2" title="Re&#45;Implementation of UI::ViewImpl::setLighting." alt="" coords="964,157,1108,184"></map>
+</div>
+
+</div>
+</div><p>
+<a class="anchor" name="183f11c8d9d1d0c7fef24e81d379f2f1"></a><!-- doxytag: member="UI::ViewImpl::setCamW" ref="183f11c8d9d1d0c7fef24e81d379f2f1" args="(const double &amp;_cw)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UI::ViewImpl::setCamW           </td>
+          <td>(</td>
+          <td class="paramtype">const double &amp;&nbsp;</td>
+          <td class="paramname"> <em>_cw</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>_cw</em>&nbsp;</td><td>W coordinate of the camera </td></tr>
+  </table>
+</dl>
+
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00191">_camW</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="4e350b5709828386fd3831f3fbe14ff9"></a><!-- doxytag: member="UI::ViewImpl::ScrW" ref="4e350b5709828386fd3831f3fbe14ff9" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double UI::ViewImpl::ScrW           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline, protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>W coordinate of the screen to project onto </dd></dl>
+
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00192">_scrW</a>.</p>
+
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00349">C4DView::Project()</a>.</p>
+
+<p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classUI_1_1ViewImpl_4e350b5709828386fd3831f3fbe14ff9_icgraph.png" border="0" usemap="#classUI_1_1ViewImpl_4e350b5709828386fd3831f3fbe14ff9_icgraph_map" alt=""></center>
+<map name="classUI_1_1ViewImpl_4e350b5709828386fd3831f3fbe14ff9_icgraph_map">
+<area shape="rect" href="classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Execute the projection into three&#45;space (but don&#39;t draw it yet either)." alt="" coords="189,380,309,407"><area shape="rect" href="classC4DView.html#5ec81f7d64c4678cbe44bfad9d2acb65" title="Implementation of UI::View::animate." alt="" coords="1256,5,1381,32"><area shape="rect" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen." alt="" coords="359,309,500,336"><area shape="rect" href="classC4DView.html#eb4ec12aada637e796110fe8172d12ff" title="Re&#45;Implementation of UI::ViewImpl::setCoordinates." alt="" coords="1237,563,1400,589"><area shape="rect" href="classC4DView.html#b8007107aba8c57dd39063be93ca8f96" title="Re&#45;Implementation of UI::ViewImpl::setHyperfog." alt="" coords="1244,613,1393,640"><area shape="rect" href="classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from..." alt="" coords="752,360,899,387"><area shape="rect" href="classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Draw the transformed and projected function onto the screen." alt="" coords="967,309,1089,336"><area shape="rect" href="classC4DView.html#b9561bdd967e89d314f7eda6de32b2bc" title="Wrapper for displaying OpenGL display lists." alt="" coords="551,208,703,235"><area shape="rect" href="classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="555,259,699,285"><area shape="rect" href="classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Re&#45;Implementation of UI::ViewImpl::setColors." alt="" coords="961,360,1095,387"><area shape="rect" href="classC4DView.html#530cab21c7ae4ab78eeff14e7f89a879" title="Implementation of UI::View::applyTransform." alt="" coords="1235,461,1403,488"><area shape="rect" href="classC4DView.html#60f45904ff9b227fdf426b5960fa4130" title="rotate in 4D 360 degrees" alt="" coords="1239,512,1399,539"><area shape="rect" href="group__UIHelpers.html#gb4150e26778debfb3de8214203578a41" title="C++ Template Implementation: CustomFunctionSlot." alt="" coords="1159,107,1479,133"><area shape="rect" href="classC4DView_1_1CustomFunctionSlot.html#2eaaaf653f2d1bbfe3a2b416f33e4b08" title="Factory method to create a new customized Function of type R^2&#45;&gt;R^4." alt="" coords="1161,157,1476,184"><area shape="rect" href="classC4DView_1_1MouseHandler4D.html#681ee2ee24d1528a92b6ec0ff4dad9c2" title="Double click event handler." alt="" coords="1159,208,1479,235"><area shape="rect" href="classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="1177,56,1460,83"><area shape="rect" href="classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="1241,259,1396,285"><area shape="rect" href="classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="1231,360,1407,387"><area shape="rect" href="classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="1221,411,1416,437"><area shape="rect" href="classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="1224,309,1413,336"><area shape="rect" href="classC4DView.html#6dc432e565b97c2aa6f2273bbe4135c7" title="Double click event handler, reimplemented from QWidget." alt="" coords="1529,208,1745,235"><area shape="rect" href="classC4DView.html#1b5e87b494b99e3705c64e924480f4ef" title="Mouse move event handler, reimplemented from QWidget." alt="" coords="1548,56,1727,83"><area shape="rect" href="classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="1569,360,1705,387"><area shape="rect" href="classC4DView.html#be8e58d21b0e1c513b10afa294b162b2" title="Paint event handler, reimplemented from QGLWidget." alt="" coords="756,208,895,235"><area shape="rect" href="classC4DView.html#8a01e49be6af9cab84880a176b7c42ae" title="rotate in 3D 360 degrees" alt="" coords="948,259,1108,285"><area shape="rect" href="classC4DView.html#504fd428909b35e3d80506a0235eac3e" title="Re&#45;Implementation of UI::ViewImpl::setBackground." alt="" coords="947,107,1109,133"><area shape="rect" href="classC4DView.html#5a783209571030da60229d60dfef66f2" title="Re&#45;Implementation of UI::ViewImpl::setLighting." alt="" coords="956,157,1100,184"></map>
+</div>
+
+</div>
+</div><p>
+<a class="anchor" name="df7b3211b353e810824146ba381b2175"></a><!-- doxytag: member="UI::ViewImpl::setScrW" ref="df7b3211b353e810824146ba381b2175" args="(const double &amp;_sw)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UI::ViewImpl::setScrW           </td>
+          <td>(</td>
+          <td class="paramtype">const double &amp;&nbsp;</td>
+          <td class="paramname"> <em>_sw</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>_sw</em>&nbsp;</td><td>W coordinate of the screen to project onto </td></tr>
+  </table>
+</dl>
+
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00192">_scrW</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f3b65022c758ba04c86f69159c883d33"></a><!-- doxytag: member="UI::ViewImpl::getLightPos" ref="f3b65022c758ba04c86f69159c883d33" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static GLfloat* UI::ViewImpl::getLightPos           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, static, protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>Position of the light </dd></dl>
+
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00204">_lightPos</a>.</p>
+
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00779">C4DView::InitLight()</a>, and <a class="el" href="4DView_8C-source.html#l00190">C4DView::setLighting()</a>.</p>
+
+<p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classUI_1_1ViewImpl_f3b65022c758ba04c86f69159c883d33_icgraph.png" border="0" usemap="#classUI_1_1ViewImpl_f3b65022c758ba04c86f69159c883d33_icgraph_map" alt=""></center>
+<map name="classUI_1_1ViewImpl_f3b65022c758ba04c86f69159c883d33_icgraph_map">
+<area shape="rect" href="classC4DView.html#03b3ed76ada1847e4b75e19de8c7e6cb" title="OpenGL initialization for light(s)." alt="" coords="231,5,361,32"><area shape="rect" href="classC4DView.html#5a783209571030da60229d60dfef66f2" title="Re&#45;Implementation of UI::ViewImpl::setLighting." alt="" coords="224,56,368,83"><area shape="rect" href="classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from..." alt="" coords="416,5,563,32"><area shape="rect" href="classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Re&#45;Implementation of UI::ViewImpl::setColors." alt="" coords="611,5,744,32"></map>
+</div>
+
+</div>
+</div><p>
+<a class="anchor" name="d665f2f442eb2feac113e11c7d617eeb"></a><!-- doxytag: member="UI::ViewImpl::getLightAmbient" ref="d665f2f442eb2feac113e11c7d617eeb" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static GLfloat* UI::ViewImpl::getLightAmbient           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, static, protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd><a class="el" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> of ambient light </dd></dl>
+
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00205">_lightAmbient</a>.</p>
+
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00190">C4DView::setLighting()</a>.</p>
+
+<p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classUI_1_1ViewImpl_d665f2f442eb2feac113e11c7d617eeb_icgraph.png" border="0" usemap="#classUI_1_1ViewImpl_d665f2f442eb2feac113e11c7d617eeb_icgraph_map" alt=""></center>
+<map name="classUI_1_1ViewImpl_d665f2f442eb2feac113e11c7d617eeb_icgraph_map">
+<area shape="rect" href="classC4DView.html#5a783209571030da60229d60dfef66f2" title="Re&#45;Implementation of UI::ViewImpl::setLighting." alt="" coords="251,5,395,32"></map>
+</div>
+
+</div>
+</div><p>
+<a class="anchor" name="f1e24dbc826227b017d92b3a2568e401"></a><!-- doxytag: member="UI::ViewImpl::getLightDiffuse" ref="f1e24dbc826227b017d92b3a2568e401" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static GLfloat* UI::ViewImpl::getLightDiffuse           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, static, protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd><a class="el" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> of diffuse light </dd></dl>
+
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00206">_lightDiffuse</a>.</p>
+
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00190">C4DView::setLighting()</a>.</p>
+
+<p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classUI_1_1ViewImpl_f1e24dbc826227b017d92b3a2568e401_icgraph.png" border="0" usemap="#classUI_1_1ViewImpl_f1e24dbc826227b017d92b3a2568e401_icgraph_map" alt=""></center>
+<map name="classUI_1_1ViewImpl_f1e24dbc826227b017d92b3a2568e401_icgraph_map">
+<area shape="rect" href="classC4DView.html#5a783209571030da60229d60dfef66f2" title="Re&#45;Implementation of UI::ViewImpl::setLighting." alt="" coords="243,5,387,32"></map>
+</div>
+
+</div>
+</div><p>
+<a class="anchor" name="ebd28652ec6c7f6980630cd362caa2b1"></a><!-- doxytag: member="UI::ViewImpl::getLightSpecular" ref="ebd28652ec6c7f6980630cd362caa2b1" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static GLfloat* UI::ViewImpl::getLightSpecular           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, static, protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd><a class="el" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> of specular reflections </dd></dl>
+
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00207">_lightSpecular</a>.</p>
+
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00190">C4DView::setLighting()</a>.</p>
+
+<p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classUI_1_1ViewImpl_ebd28652ec6c7f6980630cd362caa2b1_icgraph.png" border="0" usemap="#classUI_1_1ViewImpl_ebd28652ec6c7f6980630cd362caa2b1_icgraph_map" alt=""></center>
+<map name="classUI_1_1ViewImpl_ebd28652ec6c7f6980630cd362caa2b1_icgraph_map">
+<area shape="rect" href="classC4DView.html#5a783209571030da60229d60dfef66f2" title="Re&#45;Implementation of UI::ViewImpl::setLighting." alt="" coords="251,5,395,32"></map>
+</div>
+
+</div>
+</div><p>
+<a class="anchor" name="a5e302db57de66aeb0c7ecd67b5574b2"></a><!-- doxytag: member="UI::ViewImpl::getLightFlat" ref="a5e302db57de66aeb0c7ecd67b5574b2" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static GLfloat* UI::ViewImpl::getLightFlat           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, static, protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd><a class="el" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> for flat, all-ambient lighting </dd></dl>
+
+<p>References <a class="el" href="ViewImpl_8H-source.html#l00208">_lightFlat</a>.</p>
+
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00190">C4DView::setLighting()</a>.</p>
+
+<p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classUI_1_1ViewImpl_a5e302db57de66aeb0c7ecd67b5574b2_icgraph.png" border="0" usemap="#classUI_1_1ViewImpl_a5e302db57de66aeb0c7ecd67b5574b2_icgraph_map" alt=""></center>
+<map name="classUI_1_1ViewImpl_a5e302db57de66aeb0c7ecd67b5574b2_icgraph_map">
+<area shape="rect" href="classC4DView.html#5a783209571030da60229d60dfef66f2" title="Re&#45;Implementation of UI::ViewImpl::setLighting." alt="" coords="224,5,368,32"></map>
+</div>
+
+</div>
+</div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li>HyperspaceExplorer/src/UI/<a class="el" href="ViewImpl_8H-source.html">ViewImpl.H</a><li>HyperspaceExplorer/src/UI/ViewImpl.C</ul>
 </div>
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Sat Nov 1 00:08:45 2008 for HyperspaceExplorer 0.6.1
+                Generated on Sat Nov 1 01:06:09 2008 for HyperspaceExplorer 0.6.1
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.6
                 &nbsp;-&nbsp;

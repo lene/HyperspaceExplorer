@@ -24,13 +24,12 @@ C4DView::MouseHandler4D::MouseHandler4D(C4DView *_parent): parent(_parent),
 
 C4DView::MouseHandler4D::~MouseHandler4D() {}
 
-/// Mouse move event handler
 /** Awfully long, which is UGLY, but it does not seem to make much sense to
  *  break it up, so here we go
  *
  *  Particular mouse move/button/modifier key combinations documented in the
  *  code below
- *  @param e Qt's mouse event information structure                           */
+ *  \param e Qt's mouse event information structure                           */
 void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
     SingletonLog::Instance() << "C4DView::MouseHandler4D::mouseMoveEvent ("
                 << (long)e->modifiers()<<") ";
@@ -258,9 +257,8 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
     parent->paintEvent ();                             //    redraw the window
 }
 
-/// Mouse button event handler
 /** Only sets flags which buttons are down
- *  @param e Qt's mouse event information structure                           */
+ *  \param e Qt's mouse event information structure                           */
 void C4DView::MouseHandler4D::mousePressEvent (QMouseEvent *e) {
     SingletonLog::Instance().log("C4DView::MouseHandler4D::mousePressEvent ()");
 
@@ -284,9 +282,8 @@ void C4DView::MouseHandler4D::mousePressEvent (QMouseEvent *e) {
     }
 }
 
-/// Mouse button release event handler
 /** If taking values for an animation, starts the animation
- *  @param e Qt's mouse event information structure                           */
+ *  \param e Qt's mouse event information structure                           */
 void C4DView::MouseHandler4D::mouseReleaseEvent (QMouseEvent *) {
     SingletonLog::Instance().log("C4DView::MouseHandler4D::mouseReleaseEvent ()");
 
@@ -298,9 +295,8 @@ void C4DView::MouseHandler4D::mouseReleaseEvent (QMouseEvent *) {
     parent->UpdateStatus ("");
 }
 
-/// Double click event handler
 /** Stops animation, if running, or resets transformation values to default
- *  @param e Qt's mouse event information structure                           */
+ *  \param e Qt's mouse event information structure                           */
 void C4DView::MouseHandler4D::mouseDoubleClickEvent (QMouseEvent *) {
     SingletonLog::Instance().log("C4DView::MouseHandler4D::mouseDoubleClickEvent ()");
 
