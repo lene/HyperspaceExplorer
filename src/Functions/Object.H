@@ -46,8 +46,7 @@ class Object: public Function {
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
         virtual void Draw (void);
         virtual VecMath::Vector<4> &operator () (double, double, double) {
-            static VecMath::Vector<4> tmp;
-            return tmp;
+            throw std::logic_error("Object::operator() should never be called");
         }
 
         /// \see Function::getDefinitionSpaceDimensions()
@@ -71,10 +70,9 @@ class Object: public Function {
          *  Function interface. In an Object it is never called because the
          *  four-dimensional object is represented by a list of surfaces instead
          *  of a mathematical function.
-         *  \todo throw a std::logic_error                                   */
+         */
         virtual VecMath::Vector<4> &f (double, double, double) {
-            static VecMath::Vector<4> tmp;
-            return tmp;
+            throw std::logic_error("Object::f() should never be called");
         }
 };
 
