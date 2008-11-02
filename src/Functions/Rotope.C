@@ -10,11 +10,11 @@
 ///
 ///
 #include "Rotope.H"
-#include "Extrusion.H"
+#include "Extrude.H"
 #include "Taper.H"
 
 Rotope::Rotope(const QString &name): Object(name, 0, 0) {
-    const unsigned DIM = 10;
+    const unsigned DIM = 4;
     Extrude<DIM, 0, DIM-1> E;
     std::cerr << "Extrude: "; E.print();
 
@@ -22,6 +22,7 @@ Rotope::Rotope(const QString &name): Object(name, 0, 0) {
     Extrude<DIM, 0, BASE> E2;
     Taper<DIM, BASE, DIM-1> T(E2);
     std::cerr << "Taper: "; T.print();
+
     throw NotYetImplementedException("Rotope::Rotope()");
 }
 

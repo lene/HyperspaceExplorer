@@ -137,6 +137,8 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         virtual void ObjectHypersponge();
         /// Implementation of UI::View::ObjectGasket
         virtual void ObjectGasket();
+        /// Implementation of UI::View::ObjectRotope
+        virtual void ObjectRotope();
 
         /// Implementation of UI::View::applyTransform
         virtual void applyTransform(const VecMath::Rotation<4> &R,

@@ -28,6 +28,7 @@
 #include "Surface.H"
 #include "ComplexFunction.H"
 #include "Object.H"
+#include "Rotope.H"
 
 #include "ParameterMap.H"
 
@@ -89,7 +90,8 @@ C4DView::C4DView(QWidget *parent):
 
     ColMgrMgr::Instance().setColorManager(new xyz2RGBColorManager(F().get()));
 
-    ObjectHypercube();
+//    ObjectHypercube();
+    ObjectRotope();
 
     setLighting(true);
 }
@@ -133,6 +135,16 @@ void C4DView::ObjectGasket() {
 
     AssignValues(F());
     Redraw ();
+}
+
+void C4DView::ObjectRotope() {
+    Rotope R("");
+//    Menu()->updateFunctionMenu("Rotope");
+
+//    setF(new Rotope(""));
+
+//    AssignValues(F());
+//    Redraw ();
 }
 
 void C4DView::applyTransform(const VecMath::Rotation<4> &R,

@@ -63,6 +63,10 @@ namespace UI {
             /** Necessary because I don't see a way to set the displayed object
              *  to a generic Object, only to Function s                       */
             virtual void ObjectGasket() = 0;
+            /// Set the currently displayed object to a rotope
+            /** Necessary because I don't see a way to set the displayed object
+             *  to a generic Object, only to Function s                       */
+            virtual void ObjectRotope() = 0;
 
             /// Makes setting a parameter from the outside possible
             /** \param parmName Name of the parameter, as defined in the Function
