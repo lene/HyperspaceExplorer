@@ -39,6 +39,8 @@ class C4DView::Menu4D: public QMenu {
         void ObjectHypersponge();
         /// "Object/Objects/Sierpinski Gasket" menu item selected
         void ObjectGasket();
+        /// "Object/Objects/Rotope" menu item selected
+        void ObjectRotope();
         /// "Object/Surfaces/Custom surface" menu item selected
         void customSurface();
         /// "Object/Surfaces/f:C -> C/Custom complex function" menu item selected

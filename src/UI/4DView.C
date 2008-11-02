@@ -138,13 +138,12 @@ void C4DView::ObjectGasket() {
 }
 
 void C4DView::ObjectRotope() {
-    Rotope R("");
-//    Menu()->updateFunctionMenu("Rotope");
+    Menu()->updateFunctionMenu("Rotope");
 
-//    setF(new Rotope(""));
+    setF(new Rotope(""));
 
-//    AssignValues(F());
-//    Redraw ();
+    AssignValues(F());
+    Redraw ();
 }
 
 void C4DView::applyTransform(const VecMath::Rotation<4> &R,

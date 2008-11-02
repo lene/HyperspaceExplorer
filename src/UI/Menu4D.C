@@ -91,6 +91,8 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
                          new C4DView::TemplatedRealFunctionFactory<Torus1>);
             insertAction(_objects, "Torus 2",
                          new C4DView::TemplatedRealFunctionFactory<Torus2>);
+            insertAction(_objects, "Rotope", SLOT(ObjectRotope()));
+            TESTED_FEATURE(getAction("Rotope"));
         }
         {
             insertAction(_surfaces, "Surface 1",
@@ -173,7 +175,7 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
 
     insertAction(_animation, "Benchmark", SLOT (Benchmark()), false);
     insertAction(_animation, "Random Animation", SLOT (RandomAnimation()), false);
-    
+
     if (_parent->getSolid()) {
         getAction("Wireframe")->setText("Solid");
         getAction("Transparence")->setText("Line Antialiasing");
@@ -215,6 +217,11 @@ void C4DView::Menu4D::ObjectHypersponge() {
 /** Display a Gasket object */
 void C4DView::Menu4D::ObjectGasket() {
     _parent->ObjectGasket();
+}
+
+/** Display a Rotope object */
+void C4DView::Menu4D::ObjectRotope() {
+    _parent->ObjectRotope();
 }
 
 /** Display a CustomSurface object */

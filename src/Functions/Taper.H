@@ -5,7 +5,7 @@
 
 /// Base class for Taper classes, providing the actual taper() function
 /** \param D Dimension of the vector space we're working in
- *  \ingroup ObjectGroup
+ *  \ingroup RotopeGroup
  *  \author Helge Preuss <scout@hyperspace-travel.de>
  */
 template <unsigned D>
@@ -57,7 +57,7 @@ template <unsigned D>
  *  \param Dmin First of the set of dimensions being tapered into
  *  \param Dmax Last of the set of dimensions being tapered into
  *
- *  \ingroup ObjectGroup
+ *  \ingroup RotopeGroup
  *  \author Helge Preuss <scout@hyperspace-travel.de>
  */
 template <unsigned D, unsigned Dmin, unsigned Dmax>
@@ -79,7 +79,7 @@ template <unsigned D, unsigned Dmin, unsigned Dmax>
 /** \param D Dimension of the vector space we're working in
  *  \param Dmin Dimension being tapered into
  *
- *  \ingroup ObjectGroup
+ *  \ingroup RotopeGroup
  *  \author Helge Preuss <scout@hyperspace-travel.de>
  */
 template <unsigned D, unsigned Dmin>

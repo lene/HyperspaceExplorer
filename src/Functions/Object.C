@@ -59,9 +59,9 @@ void Object::Initialize() {
 }
 
 /// Transforms an Object
-/** @param R rotation
- *  @param T translation                                                      */
-
+/** @param R Rotation
+ *  @param T Translation
+ */
 void Object::Transform (const VecMath::Rotation<4> &R,
                         const VecMath::Vector<4> &T) {
     Matrix<4> Rot(R);
@@ -77,7 +77,7 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
     double ProjectionFactor;
     double Wmax = 0, Wmin = 0;
 
-    for (unsigned i = 0; i < X.size(); i++) {
+    for (unsigned i = 0; i < Xtrans.size(); i++) {
         if (depthcue4d) {
             if (Xtrans[i][3] < Wmin) Wmin = Xtrans[i][3];
             if (Xtrans[i][3] > Wmax) Wmax = Xtrans[i][3];

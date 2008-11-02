@@ -4,7 +4,7 @@
 #include "Rotope.H"
 
 /// Base class for Extrude classes, providing the actual extrude() function
-/** \ingroup ObjectGroup
+/** \ingroup RotopeGroup
  *  \author Helge Preuss <scout@hyperspace-travel.de>
  */
 template <unsigned D>
@@ -43,7 +43,7 @@ template <unsigned D>
  *  \param Dmin First of the set of dimensions being tapered into
  *  \param Dmax Last of the set of dimensions being tapered into
  *
- *  \ingroup ObjectGroup
+ *  \ingroup RotopeGroup
  *  \author Helge Preuss <scout@hyperspace-travel.de>
  */
 template <unsigned D, unsigned Dmin, unsigned Dmax>
@@ -76,7 +76,7 @@ template <unsigned D, unsigned Dmin, unsigned Dmax>
 /** \param D Dimension of the vector space we're working in
  *  \param Dmin Dimension being tapered into
  *
- *  \ingroup ObjectGroup
+ *  \ingroup RotopeGroup
  *  \author Helge Preuss <scout@hyperspace-travel.de>
  */
 template <unsigned D, unsigned Dmin>
@@ -134,6 +134,7 @@ template <unsigned D> void extrude_base<D>::extrude(unsigned d) {
             }
     }
     if (vertex_data<D>::dimension() > 1) {
+        for (unsigned i = 0; i < Xold.size(); ++i) std::cerr << Xold[i] << " ";
         /** add the new surface joining the last vertex of the old array to the
             first, together with their extruded vertices
         */
