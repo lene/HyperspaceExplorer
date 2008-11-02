@@ -65,9 +65,8 @@ template <unsigned D, unsigned Dmin, unsigned Dmax>
         public:
             /// Create a Taper object from an already existing object
             Taper(const vertex_data<D> &v): Taper<D, Dmin, Dmax-1>(v) {
-                create();
+                taper_base<D>::taper(Dmax);
             }
-            void create() { taper_base<D>::taper(Dmax); }
     };
 
 /// Specialization of Taper<D,Dmin,Dmax> to end recursion
@@ -80,9 +79,10 @@ template <unsigned D, unsigned Dmin, unsigned Dmax>
 template <unsigned D, unsigned Dmin>
     class Taper<D, Dmin, Dmin>: public taper_base<D> {
         public:
-            Taper(const vertex_data<D> &v): taper_base<D>(v) { create(); }
-
-            void create() { taper_base<D>::taper(Dmin); }
+            /// Create a Taper object from an already existing object
+            Taper(const vertex_data<D> &v): taper_base<D>(v) {
+                taper_base<D>::taper(Dmin);
+            }
     };
 
 /** Generally, a taper action is defined by the following formulas.

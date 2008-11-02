@@ -46,15 +46,17 @@ template <unsigned D>
  *  \ingroup ObjectGroup
  *  \author Helge Preuss <scout@hyperspace-travel.de>
  */
-    template <unsigned D, unsigned Dmin, unsigned Dmax>
-        class Extrude: public Extrude<D, Dmin, Dmax-1> {
-            public:
-                Extrude(): Extrude<D, Dmin, Dmax-1>() { create(); }
-                Extrude(const vertex_data<D> &v): Extrude<D, Dmin, Dmax-1>(v) {
-                    create();
-                }
-
-                void create() { extrude_base<D>::extrude(Dmax); }
+template <unsigned D, unsigned Dmin, unsigned Dmax>
+    class Extrude: public Extrude<D, Dmin, Dmax-1> {
+        public:
+            /// Create an Extrude object from a point
+            Extrude(): Extrude<D, Dmin, Dmax-1>() {
+                extrude_base<D>::extrude(Dmax);
+            }
+            /// Create an Extrude object from an already existing object
+            Extrude(const vertex_data<D> &v): Extrude<D, Dmin, Dmax-1>(v) {
+                extrude_base<D>::extrude(Dmax);
+            }
         };
 
 /// Specialization of Extrude<D,Dmin,Dmax> to end recursion
@@ -64,18 +66,18 @@ template <unsigned D>
  *  \ingroup ObjectGroup
  *  \author Helge Preuss <scout@hyperspace-travel.de>
  */
-    template <unsigned D, unsigned Dmin>
-        class Extrude<D, Dmin, Dmin>: public extrude_base<D> {
-            public:
-                Extrude(): extrude_base<D>() { create(); }
-                Extrude(const vertex_data<D> &v): extrude_base<D>(v) {
-                    create();
-                }
-
-                void create() {
-                    extrude_base<D>::extrude(Dmin);
-                }
-        };
+template <unsigned D, unsigned Dmin>
+    class Extrude<D, Dmin, Dmin>: public extrude_base<D> {
+        public:
+            /// Create an Extrude object from a point
+            Extrude(): extrude_base<D>() {
+                extrude_base<D>::extrude(Dmin);
+            }
+            /// Create an Extrude object from an already existing object
+            Extrude(const vertex_data<D> &v): extrude_base<D>(v) {
+                extrude_base<D>::extrude(Dmin);
+            }
+    };
 
 
 /**
