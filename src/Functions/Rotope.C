@@ -19,6 +19,41 @@
 using VecMath::Vector;
 using VecMath::Matrix;
 
+class RotopeFactory {
+    vertex_data *generate(unsigned extrude, unsigned taper = 0,
+                          unsigned rotate, unsigned torate) {
+        if (extrude+taper+rotate+torate != 4)
+            throw logic_error("Sum of extrusion operations must be 4");
+
+        vertex_data *tmp;
+        switch(extrude) {
+            case 0:
+                tmp = new Extrude<4, 0, 0>();
+                break;
+            case 1:
+                tmp = new Extrude<4, 0, 1>();
+                break;
+            case 2:
+                tmp = new Extrude<4, 0, 2>();
+                break;
+            case 3:
+                tmp = new Extrude<4, 0, 3>();
+                break;
+        }
+        switch(taper) {
+            case 1:
+                tmp = new Taper<4, 3, 3>(*tmp);
+                break;
+            case 2:
+                tmp = new Taper<4, 2, 3>(*tmp);
+                break;
+            case 3:
+                tmp = new Taper<4, 1, 3>(*tmp);
+                break;
+        }
+    }
+};
+
 Rotope::Rotope(const QString &name): Object(name, 0, 0), _rotope(0) {
     const unsigned DIM = 4;
     Extrude<DIM, 0, DIM-1> E;
