@@ -77,6 +77,9 @@ Collaboration diagram for C4DView::Menu4D:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#4e689ad295bbf0728bfc23d277fd9787">ObjectGasket</a> ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Object/Objects/Sierpinski Gasket" menu item selected  <a href="#4e689ad295bbf0728bfc23d277fd9787"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#c0d8e1aa1aee6389c02f456df454b6e6">ObjectRotope</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Object/Objects/Rotope" menu item selected  <a href="#c0d8e1aa1aee6389c02f456df454b6e6"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classC4DView_1_1Menu4D.html#b269828b3ba3e6595e1f744b772b31f5">customSurface</a> ()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Object/Surfaces/Custom surface" menu item selected  <a href="#b269828b3ba3e6595e1f744b772b31f5"></a><br></td></tr>
@@ -234,7 +237,7 @@ Creates the application's main menu and all its submenus.
 <p>
 This Constructor is where the menu structure is defined; if you want to change the menu, do it here.<p>
 Basically this happens by inserting all the menu items and the QActions they trigger manually. The application of TemplatedRealFunctionFactory&lt;Function&gt; as Factory object _helps to save a lot of redundant code, but still every menu item must be specified manually. 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00098">_animation</a>, <a class="el" href="Menu4D_8H-source.html#l00097">_appear</a>, <a class="el" href="Menu4D_8H-source.html#l00096">_fcc</a>, <a class="el" href="Menu4D_8H-source.html#l00093">_fr3r</a>, <a class="el" href="Menu4D_8H-source.html#l00092">_functions</a>, <a class="el" href="Menu4D_8H-source.html#l00099">_help</a>, <a class="el" href="Menu4D_8H-source.html#l00094">_objects</a>, <a class="el" href="Menu4D_8H-source.html#l00095">_surfaces</a>, <a class="el" href="Menu4D_8C-source.html#l00362">about()</a>, <a class="el" href="Menu4D_8C-source.html#l00314">AnimationSettings()</a>, <a class="el" href="Menu4D_8C-source.html#l00328">Benchmark()</a>, <a class="el" href="Menu4D_8C-source.html#l00232">Colors()</a>, <a class="el" href="Menu4D_8C-source.html#l00286">Coordinates()</a>, <a class="el" href="Menu4D_8C-source.html#l00226">customComplexFunction()</a>, <a class="el" href="Menu4D_8C-source.html#l00191">customFunction()</a>, <a class="el" href="Menu4D_8C-source.html#l00196">customPolarFunction()</a>, <a class="el" href="Menu4D_8C-source.html#l00221">customSurface()</a>, <a class="el" href="Menu4D_8C-source.html#l00244">Fog()</a>, <a class="el" href="Menu4D_8C-source.html#l00408">getAction()</a>, <a class="el" href="ViewImpl_8H-source.html#l00079">UI::ViewImpl::getColors()</a>, <a class="el" href="ViewImpl_8H-source.html#l00084">UI::ViewImpl::getCoordinates()</a>, <a class="el" href="ViewImpl_8H-source.html#l00089">UI::ViewImpl::getFog()</a>, <a class="el" href="ViewImpl_8H-source.html#l00099">UI::ViewImpl::getLighting()</a>, <a class="el" href="ViewImpl_8H-source.html#l00104">UI::ViewImpl::getShading()</a>, <a class="el" href="ViewImpl_8H-source.html#l00109">UI::ViewImpl::getSolid()</a>, <a class="el" href="ViewImpl_8H-source.html#l00115">UI::ViewImpl::getTransparence()</a>, <a class="el" href="ViewImpl_8H-source.html#l00127">UI::ViewImpl::getWriteImages()</a>, <a class="el" href="Menu4D_8C-source.html#l00355">Help()</a>, <a class="el" href="Menu4D_8C-source.html#l00298">HyperFog()</a>, <a class="el" href="Menu4D_8C-source.html#l00425">insertAction()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00251">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="Menu4D_8C-source.html#l00258">Light()</a>, <a class="el" href="Menu4D_8C-source.html#l00216">ObjectGasket()</a>, <a class="el" href="Menu4D_8C-source.html#l00201">ObjectHypercube()</a>, <a class="el" href="Menu4D_8C-source.html#l00206">ObjectHyperpyramid()</a>, <a class="el" href="Menu4D_8C-source.html#l00211">ObjectHypersponge()</a>, <a class="el" href="Menu4D_8C-source.html#l00348">RandomAnimation()</a>, <a class="el" href="Menu4D_8C-source.html#l00307">RenderToImages()</a>, <a class="el" href="Menu4D_8C-source.html#l00292">setBackground()</a>, <a class="el" href="ViewImpl_8H-source.html#l00112">UI::ViewImpl::setSolid()</a>, <a class="el" href="Menu4D_8C-source.html#l00238">Shade()</a>, <a class="el" href="Menu4D_8C-source.html#l00250">Transparent()</a>, and <a class="el" href="Menu4D_8C-source.html#l00268">Wireframe()</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00100">_animation</a>, <a class="el" href="Menu4D_8H-source.html#l00099">_appear</a>, <a class="el" href="Menu4D_8H-source.html#l00098">_fcc</a>, <a class="el" href="Menu4D_8H-source.html#l00095">_fr3r</a>, <a class="el" href="Menu4D_8H-source.html#l00094">_functions</a>, <a class="el" href="Menu4D_8H-source.html#l00101">_help</a>, <a class="el" href="Menu4D_8H-source.html#l00096">_objects</a>, <a class="el" href="Menu4D_8H-source.html#l00097">_surfaces</a>, <a class="el" href="Menu4D_8C-source.html#l00369">about()</a>, <a class="el" href="Menu4D_8C-source.html#l00321">AnimationSettings()</a>, <a class="el" href="Menu4D_8C-source.html#l00335">Benchmark()</a>, <a class="el" href="Menu4D_8C-source.html#l00239">Colors()</a>, <a class="el" href="Menu4D_8C-source.html#l00293">Coordinates()</a>, <a class="el" href="Menu4D_8C-source.html#l00233">customComplexFunction()</a>, <a class="el" href="Menu4D_8C-source.html#l00193">customFunction()</a>, <a class="el" href="Menu4D_8C-source.html#l00198">customPolarFunction()</a>, <a class="el" href="Menu4D_8C-source.html#l00228">customSurface()</a>, <a class="el" href="Menu4D_8C-source.html#l00251">Fog()</a>, <a class="el" href="Menu4D_8C-source.html#l00415">getAction()</a>, <a class="el" href="ViewImpl_8H-source.html#l00079">UI::ViewImpl::getColors()</a>, <a class="el" href="ViewImpl_8H-source.html#l00084">UI::ViewImpl::getCoordinates()</a>, <a class="el" href="ViewImpl_8H-source.html#l00089">UI::ViewImpl::getFog()</a>, <a class="el" href="ViewImpl_8H-source.html#l00099">UI::ViewImpl::getLighting()</a>, <a class="el" href="ViewImpl_8H-source.html#l00104">UI::ViewImpl::getShading()</a>, <a class="el" href="ViewImpl_8H-source.html#l00109">UI::ViewImpl::getSolid()</a>, <a class="el" href="ViewImpl_8H-source.html#l00115">UI::ViewImpl::getTransparence()</a>, <a class="el" href="ViewImpl_8H-source.html#l00127">UI::ViewImpl::getWriteImages()</a>, <a class="el" href="Menu4D_8C-source.html#l00362">Help()</a>, <a class="el" href="Menu4D_8C-source.html#l00305">HyperFog()</a>, <a class="el" href="Menu4D_8C-source.html#l00432">insertAction()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00251">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="Menu4D_8C-source.html#l00265">Light()</a>, <a class="el" href="Menu4D_8C-source.html#l00218">ObjectGasket()</a>, <a class="el" href="Menu4D_8C-source.html#l00203">ObjectHypercube()</a>, <a class="el" href="Menu4D_8C-source.html#l00208">ObjectHyperpyramid()</a>, <a class="el" href="Menu4D_8C-source.html#l00213">ObjectHypersponge()</a>, <a class="el" href="Menu4D_8C-source.html#l00223">ObjectRotope()</a>, <a class="el" href="Menu4D_8C-source.html#l00355">RandomAnimation()</a>, <a class="el" href="Menu4D_8C-source.html#l00314">RenderToImages()</a>, <a class="el" href="Menu4D_8C-source.html#l00299">setBackground()</a>, <a class="el" href="ViewImpl_8H-source.html#l00112">UI::ViewImpl::setSolid()</a>, <a class="el" href="Menu4D_8C-source.html#l00245">Shade()</a>, <a class="el" href="Menu4D_8C-source.html#l00257">Transparent()</a>, and <a class="el" href="Menu4D_8C-source.html#l00275">Wireframe()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -242,7 +245,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_1_1Menu4D_1c8271d3064b6fb41f2a86934edf282a_cgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_1c8271d3064b6fb41f2a86934edf282a_cgraph_map" alt=""></center>
 <map name="classC4DView_1_1Menu4D_1c8271d3064b6fb41f2a86934edf282a_cgraph_map">
-<area shape="rect" href="classC4DView_1_1Menu4D.html#2dfc9833855fee3fb25d13456f47bc26" title="Search for the QAction associated with a menu item." alt="" coords="248,56,437,83"><area shape="rect" href="classUI_1_1ViewImpl.html#5513826cce6a6b28e5b5bc84ee2514e4" title="UI::ViewImpl::getColors" alt="" coords="265,107,420,133"><area shape="rect" href="classUI_1_1ViewImpl.html#756d50cd0f539f632b4ffe0d28f93559" title="UI::ViewImpl::getCoordinates" alt="" coords="251,157,435,184"><area shape="rect" href="classUI_1_1ViewImpl.html#b242e415663c04c3bdad27d7dea64275" title="UI::ViewImpl::getFog" alt="" coords="272,208,413,235"><area shape="rect" href="classUI_1_1ViewImpl.html#880766a85ec37dda07e1f70952aa178e" title="UI::ViewImpl::getLighting" alt="" coords="260,259,425,285"><area shape="rect" href="classUI_1_1ViewImpl.html#ba489ae42c965c3a2b4e20a754d3836d" title="UI::ViewImpl::getShading" alt="" coords="261,309,424,336"><area shape="rect" href="classUI_1_1ViewImpl.html#03d77f320d7aada22c143646b40925d3" title="UI::ViewImpl::getSolid" alt="" coords="268,360,417,387"><area shape="rect" href="classUI_1_1ViewImpl.html#c7834bfae2e1f39bffc934d2111772e5" title="UI::ViewImpl::getTransparence" alt="" coords="247,411,439,437"><area shape="rect" href="classUI_1_1ViewImpl.html#c5270e75eabb357f75b0955b8b887cb0" title="UI::ViewImpl::getWriteImages" alt="" coords="248,461,437,488"><area shape="rect" href="classC4DView_1_1Menu4D.html#80890e8721371e24c7039ce6598c5655" title="insert a menu item with a specified slot into a specified menu" alt="" coords="241,512,444,539"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="247,563,439,589"><area shape="rect" href="classUI_1_1ViewImpl.html#095604d624fb156d4dc00600bd23265d" title="Turn wireframe display on or off." alt="" coords="269,613,416,640"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#fd7a61b93062043afa5b158ada25351e" title="std::map::begin" alt="" coords="553,5,657,32"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#f5510c6ab84eb61a7fd8a109dadcf78d" title="std::map::count" alt="" coords="553,56,657,83"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="559,107,652,133"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d" title="std::map::insert" alt="" coords="553,512,657,539"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="493,563,717,589"></map>
+<area shape="rect" href="classC4DView_1_1Menu4D.html#2dfc9833855fee3fb25d13456f47bc26" title="Search for the QAction associated with a menu item." alt="" coords="256,56,453,83"><area shape="rect" href="classUI_1_1ViewImpl.html#5513826cce6a6b28e5b5bc84ee2514e4" title="UI::ViewImpl::getColors" alt="" coords="273,107,436,133"><area shape="rect" href="classUI_1_1ViewImpl.html#756d50cd0f539f632b4ffe0d28f93559" title="UI::ViewImpl::getCoordinates" alt="" coords="257,157,452,184"><area shape="rect" href="classUI_1_1ViewImpl.html#b242e415663c04c3bdad27d7dea64275" title="UI::ViewImpl::getFog" alt="" coords="281,208,428,235"><area shape="rect" href="classUI_1_1ViewImpl.html#880766a85ec37dda07e1f70952aa178e" title="UI::ViewImpl::getLighting" alt="" coords="269,259,440,285"><area shape="rect" href="classUI_1_1ViewImpl.html#ba489ae42c965c3a2b4e20a754d3836d" title="UI::ViewImpl::getShading" alt="" coords="269,309,440,336"><area shape="rect" href="classUI_1_1ViewImpl.html#03d77f320d7aada22c143646b40925d3" title="UI::ViewImpl::getSolid" alt="" coords="279,360,431,387"><area shape="rect" href="classUI_1_1ViewImpl.html#c7834bfae2e1f39bffc934d2111772e5" title="UI::ViewImpl::getTransparence" alt="" coords="252,411,457,437"><area shape="rect" href="classUI_1_1ViewImpl.html#c5270e75eabb357f75b0955b8b887cb0" title="UI::ViewImpl::getWriteImages" alt="" coords="256,461,453,488"><area shape="rect" href="classC4DView_1_1Menu4D.html#80890e8721371e24c7039ce6598c5655" title="insert a menu item with a specified slot into a specified menu" alt="" coords="248,512,461,539"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="252,563,457,589"><area shape="rect" href="classUI_1_1ViewImpl.html#095604d624fb156d4dc00600bd23265d" title="Turn wireframe display on or off." alt="" coords="279,613,431,640"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#fd7a61b93062043afa5b158ada25351e" title="std::map::begin" alt="" coords="573,5,685,32"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#f5510c6ab84eb61a7fd8a109dadcf78d" title="std::map::count" alt="" coords="572,56,687,83"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="577,107,681,133"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d" title="std::map::insert" alt="" coords="572,512,687,539"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="509,563,749,589"></map>
 </div>
 
 </div>
@@ -267,7 +270,7 @@ Here is the call graph for this function:</div>
 "Object/f:R^3 -&gt; R/Custom function" menu item selected 
 <p>
 Display a <a class="el" href="classCustomFunction.html">CustomFunction</a> object 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -292,7 +295,7 @@ Display a <a class="el" href="classCustomFunction.html">CustomFunction</a> objec
 "Object/f:R^3 -&gt; R/Custom polar function" menu item selected 
 <p>
 Display a <a class="el" href="classCustomPolarFunction.html">CustomPolarFunction</a> object 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -317,7 +320,7 @@ Display a <a class="el" href="classCustomPolarFunction.html">CustomPolarFunction
 "Object/Objects/Hypercube" menu item selected 
 <p>
 Display a <a class="el" href="classHypercube.html" title="A four-dimensional cube.">Hypercube</a> object 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>, and <a class="el" href="4DView_8C-source.html#l00104">C4DView::ObjectHypercube()</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>, and <a class="el" href="4DView_8C-source.html#l00104">C4DView::ObjectHypercube()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -342,7 +345,7 @@ Display a <a class="el" href="classHypercube.html" title="A four-dimensional cub
 "Object/Objects/Hyperpyramid" menu item selected 
 <p>
 Display a Hyperpyramid object 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>, and <a class="el" href="4DView_8C-source.html#l00113">C4DView::ObjectHyperpyramid()</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>, and <a class="el" href="4DView_8C-source.html#l00113">C4DView::ObjectHyperpyramid()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -367,7 +370,7 @@ Display a Hyperpyramid object
 "Object/Objects/Menger Sponge" menu item selected 
 <p>
 Display a Hypersponge object 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>, and <a class="el" href="4DView_8C-source.html#l00122">C4DView::ObjectHypersponge()</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>, and <a class="el" href="4DView_8C-source.html#l00122">C4DView::ObjectHypersponge()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -392,7 +395,32 @@ Display a Hypersponge object
 "Object/Objects/Sierpinski Gasket" menu item selected 
 <p>
 Display a <a class="el" href="classGasket.html" title="A four-dimensional version of the Sierpinski Gasket.">Gasket</a> object 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>, and <a class="el" href="4DView_8C-source.html#l00131">C4DView::ObjectGasket()</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>, and <a class="el" href="4DView_8C-source.html#l00131">C4DView::ObjectGasket()</a>.</p>
+
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c0d8e1aa1aee6389c02f456df454b6e6"></a><!-- doxytag: member="C4DView::Menu4D::ObjectRotope" ref="c0d8e1aa1aee6389c02f456df454b6e6" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void C4DView::Menu4D::ObjectRotope           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Object/Objects/Rotope" menu item selected 
+<p>
+Display a <a class="el" href="classRotope.html" title="A four-dimensional Rotope.">Rotope</a> object 
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>, and <a class="el" href="4DView_8C-source.html#l00140">C4DView::ObjectRotope()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -417,7 +445,7 @@ Display a <a class="el" href="classGasket.html" title="A four-dimensional versio
 "Object/Surfaces/Custom surface" menu item selected 
 <p>
 Display a <a class="el" href="classCustomSurface.html">CustomSurface</a> object 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -442,7 +470,7 @@ Display a <a class="el" href="classCustomSurface.html">CustomSurface</a> object
 "Object/Surfaces/f:C -&gt; C/Custom complex function" menu item selected 
 <p>
 Display a <a class="el" href="classCustomComplexFunction.html">CustomComplexFunction</a> object 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -467,7 +495,7 @@ Display a <a class="el" href="classCustomComplexFunction.html">CustomComplexFunc
 "Appearance/Colors" menu item selected 
 <p>
 Toggle colors 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>, <a class="el" href="Menu4D_8C-source.html#l00408">getAction()</a>, <a class="el" href="ViewImpl_8H-source.html#l00079">UI::ViewImpl::getColors()</a>, and <a class="el" href="4DView_8C-source.html#l00177">C4DView::setColors()</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>, <a class="el" href="Menu4D_8C-source.html#l00415">getAction()</a>, <a class="el" href="ViewImpl_8H-source.html#l00079">UI::ViewImpl::getColors()</a>, and <a class="el" href="4DView_8C-source.html#l00176">C4DView::setColors()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -492,7 +520,7 @@ Toggle colors
 "Appearance/Shading" menu item selected 
 <p>
 Toggle shading 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>, <a class="el" href="Menu4D_8C-source.html#l00408">getAction()</a>, <a class="el" href="ViewImpl_8H-source.html#l00104">UI::ViewImpl::getShading()</a>, and <a class="el" href="4DView_8C-source.html#l00224">C4DView::setShading()</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>, <a class="el" href="Menu4D_8C-source.html#l00415">getAction()</a>, <a class="el" href="ViewImpl_8H-source.html#l00104">UI::ViewImpl::getShading()</a>, and <a class="el" href="4DView_8C-source.html#l00223">C4DView::setShading()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -517,7 +545,7 @@ Toggle shading
 "Appearance/Depth Cue" menu item selected 
 <p>
 Toggle fog/depth cue 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>, <a class="el" href="Menu4D_8C-source.html#l00408">getAction()</a>, <a class="el" href="ViewImpl_8H-source.html#l00089">UI::ViewImpl::getFog()</a>, and <a class="el" href="4DView_8C-source.html#l00189">C4DView::setFog()</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>, <a class="el" href="Menu4D_8C-source.html#l00415">getAction()</a>, <a class="el" href="ViewImpl_8H-source.html#l00089">UI::ViewImpl::getFog()</a>, and <a class="el" href="4DView_8C-source.html#l00188">C4DView::setFog()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -542,7 +570,7 @@ Toggle fog/depth cue
 "Appearance/Transparence" menu item selected 
 <p>
 Toggle object transparency 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>, <a class="el" href="Menu4D_8C-source.html#l00408">getAction()</a>, <a class="el" href="ViewImpl_8H-source.html#l00115">UI::ViewImpl::getTransparence()</a>, and <a class="el" href="4DView_8C-source.html#l00230">C4DView::setTransparence()</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>, <a class="el" href="Menu4D_8C-source.html#l00415">getAction()</a>, <a class="el" href="ViewImpl_8H-source.html#l00115">UI::ViewImpl::getTransparence()</a>, and <a class="el" href="4DView_8C-source.html#l00229">C4DView::setTransparence()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -568,7 +596,7 @@ Toggle object transparency
 <p>
 Switch lighting on or off<p>
 Change menu items accordingly 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>, <a class="el" href="Menu4D_8C-source.html#l00408">getAction()</a>, <a class="el" href="ViewImpl_8H-source.html#l00099">UI::ViewImpl::getLighting()</a>, and <a class="el" href="4DView_8C-source.html#l00206">C4DView::setLighting()</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>, <a class="el" href="Menu4D_8C-source.html#l00415">getAction()</a>, <a class="el" href="ViewImpl_8H-source.html#l00099">UI::ViewImpl::getLighting()</a>, and <a class="el" href="4DView_8C-source.html#l00205">C4DView::setLighting()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -595,7 +623,7 @@ Change menu items accordingly
 Switch between wireframe and solid display<p>
 Account for antialiasing only in wireframe mode<p>
 Change menu items accordingly 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>, <a class="el" href="Menu4D_8C-source.html#l00408">getAction()</a>, <a class="el" href="ViewImpl_8H-source.html#l00109">UI::ViewImpl::getSolid()</a>, <a class="el" href="4DView_8C-source.html#l00693">C4DView::paintEvent()</a>, and <a class="el" href="ViewImpl_8H-source.html#l00112">UI::ViewImpl::setSolid()</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>, <a class="el" href="Menu4D_8C-source.html#l00415">getAction()</a>, <a class="el" href="ViewImpl_8H-source.html#l00109">UI::ViewImpl::getSolid()</a>, <a class="el" href="4DView_8C-source.html#l00692">C4DView::paintEvent()</a>, and <a class="el" href="ViewImpl_8H-source.html#l00112">UI::ViewImpl::setSolid()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -621,7 +649,7 @@ Change menu items accordingly
 <p>
 Switch coordinate cross on or off<p>
 Change menu items accordingly 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>, <a class="el" href="Menu4D_8C-source.html#l00408">getAction()</a>, <a class="el" href="ViewImpl_8H-source.html#l00084">UI::ViewImpl::getCoordinates()</a>, and <a class="el" href="4DView_8C-source.html#l00183">C4DView::setCoordinates()</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>, <a class="el" href="Menu4D_8C-source.html#l00415">getAction()</a>, <a class="el" href="ViewImpl_8H-source.html#l00084">UI::ViewImpl::getCoordinates()</a>, and <a class="el" href="4DView_8C-source.html#l00182">C4DView::setCoordinates()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -646,7 +674,7 @@ Change menu items accordingly
 "Appearance/Set Background Color" menu item selected 
 <p>
 Pop up a color selector and set the background to the chosen color 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>, and <a class="el" href="4DView_8C-source.html#l00172">C4DView::setBackground()</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>, and <a class="el" href="4DView_8C-source.html#l00171">C4DView::setBackground()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -671,7 +699,7 @@ Pop up a color selector and set the background to the chosen color
 "Appearance/4D Depth Cue" menu item selected 
 <p>
 Switch 4D depth cue on or off Change menu items accordingly 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>, <a class="el" href="Menu4D_8C-source.html#l00408">getAction()</a>, <a class="el" href="ViewImpl_8H-source.html#l00094">UI::ViewImpl::getHyperfog()</a>, and <a class="el" href="4DView_8C-source.html#l00195">C4DView::setHyperfog()</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>, <a class="el" href="Menu4D_8C-source.html#l00415">getAction()</a>, <a class="el" href="ViewImpl_8H-source.html#l00094">UI::ViewImpl::getHyperfog()</a>, and <a class="el" href="4DView_8C-source.html#l00194">C4DView::setHyperfog()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -697,7 +725,7 @@ Switch 4D depth cue on or off Change menu items accordingly
 <p>
 Switch rendering to files on or off<p>
 Change menu items accordingly 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>, <a class="el" href="Menu4D_8C-source.html#l00408">getAction()</a>, <a class="el" href="ViewImpl_8H-source.html#l00127">UI::ViewImpl::getWriteImages()</a>, and <a class="el" href="ViewImpl_8H-source.html#l00129">UI::ViewImpl::setWriteImages()</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>, <a class="el" href="Menu4D_8C-source.html#l00415">getAction()</a>, <a class="el" href="ViewImpl_8H-source.html#l00127">UI::ViewImpl::getWriteImages()</a>, and <a class="el" href="ViewImpl_8H-source.html#l00129">UI::ViewImpl::setWriteImages()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -722,7 +750,7 @@ Change menu items accordingly
 "Animation/Animation Settings" menu item selected 
 <p>
 Show a dialog to adjust _animation settings - where to write image files and how many files to write. 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>, <a class="el" href="4DView_8H-source.html#l00260">C4DView::animationMaxFrames()</a>, <a class="el" href="AnimationDialogImpl_8H-source.html#l00034">UI::Dialogs::AnimationDialogImpl::getDir()</a>, <a class="el" href="AnimationDialogImpl_8H-source.html#l00028">UI::Dialogs::AnimationDialogImpl::getFrames()</a>, <a class="el" href="ViewImpl_8H-source.html#l00056">UI::ViewImpl::getImgDir()</a>, <a class="el" href="ViewImpl_8H-source.html#l00060">UI::ViewImpl::getImgPrefix()</a>, <a class="el" href="AnimationDialogImpl_8H-source.html#l00037">UI::Dialogs::AnimationDialogImpl::getPrefix()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00251">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8H-source.html#l00259">C4DView::setanimationMaxFrames()</a>, <a class="el" href="ViewImpl_8C-source.html#l00044">UI::ViewImpl::setImgDir()</a>, and <a class="el" href="ViewImpl_8C-source.html#l00050">UI::ViewImpl::setImgPrefix()</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>, <a class="el" href="4DView_8H-source.html#l00260">C4DView::animationMaxFrames()</a>, <a class="el" href="AnimationDialogImpl_8H-source.html#l00034">UI::Dialogs::AnimationDialogImpl::getDir()</a>, <a class="el" href="AnimationDialogImpl_8H-source.html#l00028">UI::Dialogs::AnimationDialogImpl::getFrames()</a>, <a class="el" href="ViewImpl_8H-source.html#l00056">UI::ViewImpl::getImgDir()</a>, <a class="el" href="ViewImpl_8H-source.html#l00060">UI::ViewImpl::getImgPrefix()</a>, <a class="el" href="AnimationDialogImpl_8H-source.html#l00037">UI::Dialogs::AnimationDialogImpl::getPrefix()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00251">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8H-source.html#l00259">C4DView::setanimationMaxFrames()</a>, <a class="el" href="ViewImpl_8C-source.html#l00044">UI::ViewImpl::setImgDir()</a>, and <a class="el" href="ViewImpl_8C-source.html#l00050">UI::ViewImpl::setImgPrefix()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -747,7 +775,7 @@ Show a dialog to adjust _animation settings - where to write image files and how
 "Animation/Benchmark" menu item selected 
 <p>
 Run a benchmark test 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>, <a class="el" href="4DView_8C-source.html#l00238">C4DView::Benchmark3D()</a>, <a class="el" href="4DView_8C-source.html#l00260">C4DView::Benchmark4D()</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce">endl()</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#5995b4f91efffb4d046090108b38505a">ends()</a>, and <a class="el" href="4DView_8C-source.html#l00628">C4DView::UpdateStatus()</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>, <a class="el" href="4DView_8C-source.html#l00237">C4DView::Benchmark3D()</a>, <a class="el" href="4DView_8C-source.html#l00259">C4DView::Benchmark4D()</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce">endl()</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#5995b4f91efffb4d046090108b38505a">ends()</a>, and <a class="el" href="4DView_8C-source.html#l00627">C4DView::UpdateStatus()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -772,7 +800,7 @@ Run a benchmark test
 "Animation/Random Animation" menu item selected 
 <p>
 Animate the object whith the rotation of the animation changing randomly every couple of seconds 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>, and <a class="el" href="4DView_8C-source.html#l00538">C4DView::RandomAnimation()</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>, and <a class="el" href="4DView_8C-source.html#l00537">C4DView::RandomAnimation()</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -822,7 +850,7 @@ Display _help window
 "Help/About" menu item selected 
 <p>
 Open an "About"-Dialog telling a few basics about the software 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -847,7 +875,7 @@ Open an "About"-Dialog telling a few basics about the software
 "Help/About Qt" menu item selected 
 <p>
 Open an "About Qt"-Dialog 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>.</p>
 
 </div>
 </div><p>
@@ -876,7 +904,7 @@ Add the menu to a QMenuBar.
   </table>
 </dl>
 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00098">_animation</a>, <a class="el" href="Menu4D_8H-source.html#l00097">_appear</a>, <a class="el" href="Menu4D_8H-source.html#l00092">_functions</a>, <a class="el" href="Menu4D_8H-source.html#l00099">_help</a>, and <a class="el" href="SingletonHolder_8H-source.html#l00251">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00100">_animation</a>, <a class="el" href="Menu4D_8H-source.html#l00099">_appear</a>, <a class="el" href="Menu4D_8H-source.html#l00094">_functions</a>, <a class="el" href="Menu4D_8H-source.html#l00101">_help</a>, and <a class="el" href="SingletonHolder_8H-source.html#l00251">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
 
 <p>Referenced by <a class="el" href="4DView_8C-source.html#l00058">C4DView::C4DView()</a>.</p>
 
@@ -886,7 +914,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_cgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_cgraph_map" alt=""></center>
 <map name="classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_cgraph_map">
-<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="279,5,471,32"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="520,5,744,32"></map>
+<area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="289,5,495,32"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="544,5,784,32"></map>
 </div>
 
 <p>
@@ -895,7 +923,7 @@ Here is the caller graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_icgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_icgraph_map" alt=""></center>
 <map name="classC4DView_1_1Menu4D_7ffe2f1f4d1f407ef16fca9c023d4e26_icgraph_map">
-<area shape="rect" href="classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="279,5,415,32"></map>
+<area shape="rect" href="classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="289,5,428,32"></map>
 </div>
 
 </div>
@@ -925,9 +953,9 @@ Set the selected function as checked and uncheck all the others.
   </table>
 </dl>
 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00096">_fcc</a>, <a class="el" href="Menu4D_8H-source.html#l00093">_fr3r</a>, <a class="el" href="Menu4D_8H-source.html#l00092">_functions</a>, <a class="el" href="Menu4D_8H-source.html#l00094">_objects</a>, <a class="el" href="Menu4D_8H-source.html#l00095">_surfaces</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01208.html#fd7a61b93062043afa5b158ada25351e">std::map&lt; _Key, _Tp, _Compare, _Alloc &gt;::begin()</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30">std::map&lt; _Key, _Tp, _Compare, _Alloc &gt;::end()</a>, <a class="el" href="Menu4D_8C-source.html#l00408">getAction()</a>, and <a class="el" href="Menu4D_8H-source.html#l00101">menuMap</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00098">_fcc</a>, <a class="el" href="Menu4D_8H-source.html#l00095">_fr3r</a>, <a class="el" href="Menu4D_8H-source.html#l00094">_functions</a>, <a class="el" href="Menu4D_8H-source.html#l00096">_objects</a>, <a class="el" href="Menu4D_8H-source.html#l00097">_surfaces</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01208.html#fd7a61b93062043afa5b158ada25351e">std::map&lt; _Key, _Tp, _Compare, _Alloc &gt;::begin()</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30">std::map&lt; _Key, _Tp, _Compare, _Alloc &gt;::end()</a>, <a class="el" href="Menu4D_8C-source.html#l00415">getAction()</a>, and <a class="el" href="Menu4D_8H-source.html#l00103">menuMap</a>.</p>
 
-<p>Referenced by <a class="el" href="4DView_8C-source.html#l00131">C4DView::ObjectGasket()</a>, <a class="el" href="4DView_8C-source.html#l00104">C4DView::ObjectHypercube()</a>, <a class="el" href="4DView_8C-source.html#l00113">C4DView::ObjectHyperpyramid()</a>, and <a class="el" href="4DView_8C-source.html#l00122">C4DView::ObjectHypersponge()</a>.</p>
+<p>Referenced by <a class="el" href="4DView_8C-source.html#l00131">C4DView::ObjectGasket()</a>, <a class="el" href="4DView_8C-source.html#l00104">C4DView::ObjectHypercube()</a>, <a class="el" href="4DView_8C-source.html#l00113">C4DView::ObjectHyperpyramid()</a>, <a class="el" href="4DView_8C-source.html#l00122">C4DView::ObjectHypersponge()</a>, and <a class="el" href="4DView_8C-source.html#l00140">C4DView::ObjectRotope()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -935,7 +963,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_1_1Menu4D_825a245cf67d222bf15c26e5cc7a70b9_cgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_825a245cf67d222bf15c26e5cc7a70b9_cgraph_map" alt=""></center>
 <map name="classC4DView_1_1Menu4D_825a245cf67d222bf15c26e5cc7a70b9_cgraph_map">
-<area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#fd7a61b93062043afa5b158ada25351e" title="std::map::begin" alt="" coords="547,5,651,32"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="552,107,645,133"><area shape="rect" href="classC4DView_1_1Menu4D.html#2dfc9833855fee3fb25d13456f47bc26" title="Search for the QAction associated with a menu item." alt="" coords="308,56,497,83"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#f5510c6ab84eb61a7fd8a109dadcf78d" title="std::map::count" alt="" coords="547,56,651,83"></map>
+<area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#fd7a61b93062043afa5b158ada25351e" title="std::map::begin" alt="" coords="572,5,684,32"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="576,107,680,133"><area shape="rect" href="classC4DView_1_1Menu4D.html#2dfc9833855fee3fb25d13456f47bc26" title="Search for the QAction associated with a menu item." alt="" coords="324,56,521,83"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#f5510c6ab84eb61a7fd8a109dadcf78d" title="std::map::count" alt="" coords="571,56,685,83"></map>
 </div>
 
 <p>
@@ -944,7 +972,7 @@ Here is the caller graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_1_1Menu4D_825a245cf67d222bf15c26e5cc7a70b9_icgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_825a245cf67d222bf15c26e5cc7a70b9_icgraph_map" alt=""></center>
 <map name="classC4DView_1_1Menu4D_825a245cf67d222bf15c26e5cc7a70b9_icgraph_map">
-<area shape="rect" href="classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="344,5,509,32"><area shape="rect" href="classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="333,56,520,83"><area shape="rect" href="classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="324,107,529,133"><area shape="rect" href="classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="325,157,528,184"></map>
+<area shape="rect" href="classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="344,5,509,32"><area shape="rect" href="classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="333,56,520,83"><area shape="rect" href="classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="324,107,529,133"><area shape="rect" href="classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="325,157,528,184"><area shape="rect" href="classC4DView.html#67910b144c00145b06e592e2b93126f1" title="Implementation of UI::View::ObjectRotope." alt="" coords="344,208,509,235"><area shape="rect" href="classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="580,208,719,235"></map>
 </div>
 
 </div>
@@ -975,9 +1003,9 @@ Search for the QAction associated with a menu item.
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>The QAction associated with <code>key</code> </dd></dl>
 
-<p>References <a class="elRef" doxygen="libstdc++.tag:" href="a01208.html#fd7a61b93062043afa5b158ada25351e">std::map&lt; _Key, _Tp, _Compare, _Alloc &gt;::begin()</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01208.html#f5510c6ab84eb61a7fd8a109dadcf78d">std::map&lt; _Key, _Tp, _Compare, _Alloc &gt;::count()</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30">std::map&lt; _Key, _Tp, _Compare, _Alloc &gt;::end()</a>, and <a class="el" href="Menu4D_8H-source.html#l00101">menuMap</a>.</p>
+<p>References <a class="elRef" doxygen="libstdc++.tag:" href="a01208.html#fd7a61b93062043afa5b158ada25351e">std::map&lt; _Key, _Tp, _Compare, _Alloc &gt;::begin()</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01208.html#f5510c6ab84eb61a7fd8a109dadcf78d">std::map&lt; _Key, _Tp, _Compare, _Alloc &gt;::count()</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30">std::map&lt; _Key, _Tp, _Compare, _Alloc &gt;::end()</a>, and <a class="el" href="Menu4D_8H-source.html#l00103">menuMap</a>.</p>
 
-<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00232">Colors()</a>, <a class="el" href="Menu4D_8C-source.html#l00286">Coordinates()</a>, <a class="el" href="Menu4D_8C-source.html#l00244">Fog()</a>, <a class="el" href="Menu4D_8C-source.html#l00298">HyperFog()</a>, <a class="el" href="Menu4D_8C-source.html#l00258">Light()</a>, <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>, <a class="el" href="Menu4D_8C-source.html#l00307">RenderToImages()</a>, <a class="el" href="Menu4D_8C-source.html#l00238">Shade()</a>, <a class="el" href="Menu4D_8C-source.html#l00250">Transparent()</a>, <a class="el" href="Menu4D_8C-source.html#l00389">updateFunctionMenu()</a>, and <a class="el" href="Menu4D_8C-source.html#l00268">Wireframe()</a>.</p>
+<p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00239">Colors()</a>, <a class="el" href="Menu4D_8C-source.html#l00293">Coordinates()</a>, <a class="el" href="Menu4D_8C-source.html#l00251">Fog()</a>, <a class="el" href="Menu4D_8C-source.html#l00305">HyperFog()</a>, <a class="el" href="Menu4D_8C-source.html#l00265">Light()</a>, <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>, <a class="el" href="Menu4D_8C-source.html#l00314">RenderToImages()</a>, <a class="el" href="Menu4D_8C-source.html#l00245">Shade()</a>, <a class="el" href="Menu4D_8C-source.html#l00257">Transparent()</a>, <a class="el" href="Menu4D_8C-source.html#l00396">updateFunctionMenu()</a>, and <a class="el" href="Menu4D_8C-source.html#l00275">Wireframe()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -985,7 +1013,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_1_1Menu4D_2dfc9833855fee3fb25d13456f47bc26_cgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_2dfc9833855fee3fb25d13456f47bc26_cgraph_map" alt=""></center>
 <map name="classC4DView_1_1Menu4D_2dfc9833855fee3fb25d13456f47bc26_cgraph_map">
-<area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#fd7a61b93062043afa5b158ada25351e" title="std::map::begin" alt="" coords="245,5,349,32"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#f5510c6ab84eb61a7fd8a109dadcf78d" title="std::map::count" alt="" coords="245,56,349,83"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="251,107,344,133"></map>
+<area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#fd7a61b93062043afa5b158ada25351e" title="std::map::begin" alt="" coords="255,5,367,32"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#f5510c6ab84eb61a7fd8a109dadcf78d" title="std::map::count" alt="" coords="253,56,368,83"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="259,107,363,133"></map>
 </div>
 
 <p>
@@ -994,7 +1022,7 @@ Here is the caller graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_1_1Menu4D_2dfc9833855fee3fb25d13456f47bc26_icgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_2dfc9833855fee3fb25d13456f47bc26_icgraph_map" alt=""></center>
 <map name="classC4DView_1_1Menu4D_2dfc9833855fee3fb25d13456f47bc26_icgraph_map">
-<area shape="rect" href="classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="292,31,484,57"><area shape="rect" href="classC4DView_1_1Menu4D.html#825a245cf67d222bf15c26e5cc7a70b9" title="Set the selected function as checked and uncheck all the others." alt="" coords="255,81,521,108"><area shape="rect" href="classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="592,5,757,32"><area shape="rect" href="classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="581,56,768,83"><area shape="rect" href="classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="572,107,777,133"><area shape="rect" href="classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="573,157,776,184"></map>
+<area shape="rect" href="classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="292,56,484,83"><area shape="rect" href="classC4DView_1_1Menu4D.html#825a245cf67d222bf15c26e5cc7a70b9" title="Set the selected function as checked and uncheck all the others." alt="" coords="255,107,521,133"><area shape="rect" href="classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="592,5,757,32"><area shape="rect" href="classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="581,56,768,83"><area shape="rect" href="classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="572,107,777,133"><area shape="rect" href="classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="573,157,776,184"><area shape="rect" href="classC4DView.html#67910b144c00145b06e592e2b93126f1" title="Implementation of UI::View::ObjectRotope." alt="" coords="592,208,757,235"><area shape="rect" href="classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="828,208,967,235"></map>
 </div>
 
 </div>
@@ -1048,7 +1076,7 @@ Insert a menu item with a specified slot into a specified menu <em>and</em> into
   </table>
 </dl>
 
-<p>References <a class="elRef" doxygen="libstdc++.tag:" href="a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d">std::map&lt; _Key, _Tp, _Compare, _Alloc &gt;::insert()</a>, and <a class="el" href="Menu4D_8H-source.html#l00101">menuMap</a>.</p>
+<p>References <a class="elRef" doxygen="libstdc++.tag:" href="a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d">std::map&lt; _Key, _Tp, _Compare, _Alloc &gt;::insert()</a>, and <a class="el" href="Menu4D_8H-source.html#l00103">menuMap</a>.</p>
 
 <p>Referenced by <a class="el" href="Menu4D_8C-source.html#l00049">Menu4D()</a>.</p>
 
@@ -1058,7 +1086,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_1_1Menu4D_80890e8721371e24c7039ce6598c5655_cgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_80890e8721371e24c7039ce6598c5655_cgraph_map" alt=""></center>
 <map name="classC4DView_1_1Menu4D_80890e8721371e24c7039ce6598c5655_cgraph_map">
-<area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d" title="std::map::insert" alt="" coords="259,5,363,32"></map>
+<area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d" title="std::map::insert" alt="" coords="267,5,381,32"></map>
 </div>
 
 <p>
@@ -1067,7 +1095,7 @@ Here is the caller graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_1_1Menu4D_80890e8721371e24c7039ce6598c5655_icgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_80890e8721371e24c7039ce6598c5655_icgraph_map" alt=""></center>
 <map name="classC4DView_1_1Menu4D_80890e8721371e24c7039ce6598c5655_icgraph_map">
-<area shape="rect" href="classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="260,5,444,32"></map>
+<area shape="rect" href="classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="268,5,460,32"></map>
 </div>
 
 </div>
@@ -1121,7 +1149,7 @@ This version is called whenever a new <a class="el" href="classRealFunction.html
   </table>
 </dl>
 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00093">_fr3r</a>, <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d">std::map&lt; _Key, _Tp, _Compare, _Alloc &gt;::insert()</a>, and <a class="el" href="Menu4D_8H-source.html#l00101">menuMap</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00095">_fr3r</a>, <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d">std::map&lt; _Key, _Tp, _Compare, _Alloc &gt;::insert()</a>, and <a class="el" href="Menu4D_8H-source.html#l00103">menuMap</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -1129,7 +1157,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_1_1Menu4D_12dab543031d2ebfe7420cfe9d0f21ea_cgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_12dab543031d2ebfe7420cfe9d0f21ea_cgraph_map" alt=""></center>
 <map name="classC4DView_1_1Menu4D_12dab543031d2ebfe7420cfe9d0f21ea_cgraph_map">
-<area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d" title="std::map::insert" alt="" coords="259,5,363,32"></map>
+<area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d" title="std::map::insert" alt="" coords="267,5,381,32"></map>
 </div>
 
 </div>
@@ -1183,7 +1211,7 @@ This version is called whenever a new <a class="el" href="classSurface.html">Sur
   </table>
 </dl>
 
-<p>References <a class="el" href="Menu4D_8H-source.html#l00093">_fr3r</a>, <a class="el" href="Menu4D_8H-source.html#l00090">_parent</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d">std::map&lt; _Key, _Tp, _Compare, _Alloc &gt;::insert()</a>, and <a class="el" href="Menu4D_8H-source.html#l00101">menuMap</a>.</p>
+<p>References <a class="el" href="Menu4D_8H-source.html#l00095">_fr3r</a>, <a class="el" href="Menu4D_8H-source.html#l00092">_parent</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d">std::map&lt; _Key, _Tp, _Compare, _Alloc &gt;::insert()</a>, and <a class="el" href="Menu4D_8H-source.html#l00103">menuMap</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -1191,7 +1219,7 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classC4DView_1_1Menu4D_bde326bf07a4e0b4c666c20f7bb251f2_cgraph.png" border="0" usemap="#classC4DView_1_1Menu4D_bde326bf07a4e0b4c666c20f7bb251f2_cgraph_map" alt=""></center>
 <map name="classC4DView_1_1Menu4D_bde326bf07a4e0b4c666c20f7bb251f2_cgraph_map">
-<area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d" title="std::map::insert" alt="" coords="259,5,363,32"></map>
+<area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d" title="std::map::insert" alt="" coords="267,5,381,32"></map>
 </div>
 
 </div>
@@ -1202,7 +1230,7 @@ Here is the call graph for this function:</div>
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Sun Nov 2 20:50:56 2008 for HyperspaceExplorer 0.6.2
+                Generated on Sun Nov 2 22:16:21 2008 for HyperspaceExplorer 0.6.2
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.6
                 &nbsp;-&nbsp;

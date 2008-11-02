@@ -86,42 +86,43 @@
 <a name="l00118"></a>00118            <span class="stringliteral">" than the vector space allows"</span>);
 <a name="l00119"></a>00119     }
 <a name="l00120"></a>00120 
-<a name="l00121"></a>00121     <span class="keyword">const</span> vector&lt;Vector&lt;D&gt; &gt; Xold = <a class="code" href="classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place...">vertex_data&lt;D&gt;::X</a>();
+<a name="l00121"></a>00121     <span class="keyword">const</span> vector&lt;Vector&lt;D&gt; &gt; Xold = <a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b" title="The array of vertices.">vertex_data&lt;D&gt;::X</a>();
 <a name="l00122"></a>00122     <span class="keyword">typename</span> <a class="code" href="classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place...">vertex_data&lt;D&gt;::uintvec2D</a> surface_old =
-<a name="l00123"></a>00123             <a class="code" href="classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place...">vertex_data&lt;D&gt;::surface</a>();
+<a name="l00123"></a>00123             <a class="code" href="classvertex__data.html#881c385d02889dd00a63bd02f4133f37" title="The array of surfaces.">vertex_data&lt;D&gt;::surface</a>();
 <a name="l00124"></a>00124 
 <a name="l00125"></a>00125     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; Xold.size(); ++i){
 <a name="l00126"></a>00126         Vector&lt;D&gt; xtmp = Xold[i];
 <a name="l00127"></a>00127         xtmp[d] = 1.;
-<a name="l00128"></a>00128         <a class="code" href="classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place...">vertex_data&lt;D&gt;::X</a>().push_back(xtmp);
+<a name="l00128"></a>00128         <a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b" title="The array of vertices.">vertex_data&lt;D&gt;::X</a>().<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce">push_back</a>(xtmp);
 <a name="l00129"></a>00129 
 <a name="l00130"></a>00130         <span class="keywordflow">if</span> (i != 0) {
-<a name="l00131"></a>00131             <a class="code" href="classvertex__data.html#ccadf4c9af76492b51b795e23278c333" title="add a surface to the array of surfaces">vertex_data&lt;D&gt;::addSurface</a>(i-1, i,
+<a name="l00131"></a>00131             <a class="code" href="classvertex__data.html#ccadf4c9af76492b51b795e23278c333" title="Add a surface to the array of surfaces.">vertex_data&lt;D&gt;::addSurface</a>(i-1, i,
 <a name="l00132"></a>00132                                        <a class="code" href="classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place...">vertex_data&lt;D&gt;::X</a>().size()-1,
 <a name="l00133"></a>00133                                        <a class="code" href="classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place...">vertex_data&lt;D&gt;::X</a>().size()-2);
 <a name="l00134"></a>00134             }
 <a name="l00135"></a>00135     }
 <a name="l00136"></a>00136     <span class="keywordflow">if</span> (<a class="code" href="classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place...">vertex_data&lt;D&gt;::dimension</a>() &gt; 1) {
-<a name="l00140"></a>00140         <a class="code" href="classvertex__data.html#ccadf4c9af76492b51b795e23278c333" title="add a surface to the array of surfaces">vertex_data&lt;D&gt;::addSurface</a>(Xold.size()-1, 0,
-<a name="l00141"></a>00141                                 <a class="code" href="classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place...">vertex_data&lt;D&gt;::X</a>().size()-1, Xold.size());
-<a name="l00147"></a>00147         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; surface_old.size(); ++i) {
-<a name="l00148"></a>00148             <span class="keyword">typename</span> <a class="code" href="classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place...">vertex_data&lt;D&gt;::uintvec1D</a> tmp = surface_old[i];
-<a name="l00149"></a>00149             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; tmp.size(); ++j) {
-<a name="l00150"></a>00150                 tmp[j] += Xold.size();
-<a name="l00151"></a>00151             }
-<a name="l00152"></a>00152             <a class="code" href="classvertex__data.html#ccadf4c9af76492b51b795e23278c333" title="add a surface to the array of surfaces">vertex_data&lt;D&gt;::addSurface</a>(tmp[0], tmp[1], tmp[2], tmp[3]);
-<a name="l00153"></a>00153         }
-<a name="l00154"></a>00154     }
-<a name="l00155"></a>00155 
-<a name="l00156"></a>00156     <a class="code" href="classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place...">vertex_data&lt;D&gt;::dimension</a>()++;   <span class="comment">//  object is now one dimension higher</span>
-<a name="l00157"></a>00157 }
-<a name="l00158"></a>00158 
-<a name="l00159"></a>00159 <span class="preprocessor">#endif</span>
+<a name="l00137"></a>00137         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; Xold.size(); ++i) <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; Xold[i] &lt;&lt; <span class="stringliteral">" "</span>;
+<a name="l00141"></a>00141         <a class="code" href="classvertex__data.html#ccadf4c9af76492b51b795e23278c333" title="Add a surface to the array of surfaces.">vertex_data&lt;D&gt;::addSurface</a>(Xold.size()-1, 0,
+<a name="l00142"></a>00142                                 <a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b" title="The array of vertices.">vertex_data&lt;D&gt;::X</a>().<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#cfe97b143edc1c10b4532ebdb839d83c">size</a>()-1, Xold.size());
+<a name="l00148"></a>00148         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; surface_old.size(); ++i) {
+<a name="l00149"></a>00149             <span class="keyword">typename</span> <a class="code" href="classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place...">vertex_data&lt;D&gt;::uintvec1D</a> tmp = surface_old[i];
+<a name="l00150"></a>00150             <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; tmp.size(); ++j) {
+<a name="l00151"></a>00151                 tmp[j] += Xold.size();
+<a name="l00152"></a>00152             }
+<a name="l00153"></a>00153             <a class="code" href="classvertex__data.html#ccadf4c9af76492b51b795e23278c333" title="Add a surface to the array of surfaces.">vertex_data&lt;D&gt;::addSurface</a>(tmp[0], tmp[1], tmp[2], tmp[3]);
+<a name="l00154"></a>00154         }
+<a name="l00155"></a>00155     }
+<a name="l00156"></a>00156 
+<a name="l00157"></a>00157     <a class="code" href="classvertex__data.html#f8801edd7fc99252e2f38f8cda166ad6" title="Dimension of the object.">vertex_data&lt;D&gt;::dimension</a>()++;   <span class="comment">//  object is now one dimension higher</span>
+<a name="l00158"></a>00158 }
+<a name="l00159"></a>00159 
+<a name="l00160"></a>00160 <span class="preprocessor">#endif</span>
 </pre></div></div>
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Sun Nov 2 20:50:51 2008 for HyperspaceExplorer 0.6.2
+                Generated on Sun Nov 2 22:16:08 2008 for HyperspaceExplorer 0.6.2
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.6
                 &nbsp;-&nbsp;

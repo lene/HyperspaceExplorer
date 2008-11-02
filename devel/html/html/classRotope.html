@@ -39,7 +39,7 @@
 <div class="contents">
 <h1>Rotope Class Reference<br>
 <small>
-[<a class="el" href="group__ObjectGroup.html">Arbitrary four-dimensional objects, described by their surfaces</a>]</small>
+[<a class="el" href="group__RotopeGroup.html">RotopeGroup</a>]</small>
 </h1><!-- doxytag: class="Rotope" --><!-- doxytag: inherits="Object" -->A four-dimensional <a href="http://teamikaria.com/wiki/Rotope">Rotope</a>.  
 <a href="#_details">More...</a>
 <p>
@@ -57,45 +57,84 @@ Collaboration diagram for Rotope:</div>
 <div class="dynsection">
 <p><center><img src="classRotope__coll__graph.png" border="0" usemap="#Rotope__coll__map" alt="Collaboration graph"></center>
 <map name="Rotope__coll__map">
-<area shape="rect" href="classObject.html" title="Generalized four&#45;dimensional Object, described by vertexes and surfaces." alt="" coords="231,1768,455,2040"><area shape="rect" href="classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="231,1189,455,1717"><area shape="rect" href="classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ operator const T *()\l+ dimension()\l}" alt="" coords="77,741,229,1125"><area shape="rect" href="classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,293,176,677"><area shape="rect" href="classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="273,853,412,1013"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html" title="{std::map\&lt; std::string, FunctionParameter * \&gt;\n||}" alt="" coords="200,445,485,525"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html" title="STL class." alt="" coords="224,149,496,229"><area shape="rect" doxygen="libstdc++.tag:" href="a01419.html" title="STL class." alt="" coords="516,445,689,525"><area shape="rect" doxygen="libstdc++.tag:" href="a01419.html" title="{std::vector\&lt; std::string \&gt;\n||}" alt="" coords="520,893,685,973"><area shape="rect" doxygen="libstdc++.tag:" href="a00960.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;\n||}" alt="" coords="647,149,865,229"><area shape="rect" doxygen="libstdc++.tag:" href="a00961.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;::_Vector_impl\n||}" alt="" coords="603,5,909,85"></map>
+<area shape="rect" href="classObject.html" title="Generalized four&#45;dimensional Object, described by vertexes and surfaces." alt="" coords="307,1845,531,2117"><area shape="rect" href="classvertex__data.html" title="{vertex_data\&lt; 4 \&gt;\n|&#45; _dimension\l&#45; _X\l&#45; _surface\l|+ print()\l# vertex_data()\l# addSurface()\l# addSurface()\l# dimension()\l# X()\l# surface()\l}" alt="" coords="497,2440,620,2648"><area shape="rect" href="classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place..." alt="" coords="423,2168,548,2376"><area shape="rect" href="classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="279,1253,503,1781"><area shape="rect" href="classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ operator const T *()\l+ dimension()\l}" alt="" coords="80,741,232,1125"><area shape="rect" href="classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,293,176,677"><area shape="rect" href="classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="276,853,415,1013"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html" title="{std::map\&lt; std::string, FunctionParameter * \&gt;\n||}" alt="" coords="200,445,485,525"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html" title="STL class." alt="" coords="152,149,424,229"><area shape="rect" doxygen="libstdc++.tag:" href="a01419.html" title="STL class." alt="" coords="568,445,741,525"><area shape="rect" doxygen="libstdc++.tag:" href="a01419.html" title="{std::vector\&lt; std::string \&gt;\n||}" alt="" coords="440,893,605,973"><area shape="rect" doxygen="libstdc++.tag:" href="a00960.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;\n||}" alt="" coords="568,149,787,229"><area shape="rect" doxygen="libstdc++.tag:" href="a01419.html" title="{std::vector\&lt; VecMath::Vector\&lt; D \&gt; \&gt;\n||}" alt="" coords="560,1149,800,1229"><area shape="rect" doxygen="libstdc++.tag:" href="a00961.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;::_Vector_impl\n||}" alt="" coords="524,5,831,85"></map>
 <center><font size="2">[<a href="graph_legend.html">legend</a>]</font></center></div>
 
 <p>
 <a href="classRotope-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRotope.html#daecde0bfbfb734b419f77794002372f">Rotope</a> (const QString &amp;)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="daecde0bfbfb734b419f77794002372f"></a><!-- doxytag: member="Rotope::Rotope" ref="daecde0bfbfb734b419f77794002372f" args="(const QString &amp;)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRotope.html#daecde0bfbfb734b419f77794002372f">Rotope</a> (const QString &amp;)</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">C++ Implementation: <a class="el" href="classRotope.html" title="A four-dimensional Rotope.">Rotope</a>.  <a href="#daecde0bfbfb734b419f77794002372f"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct a <a class="el" href="classRotope.html" title="A four-dimensional Rotope.">Rotope</a>. Not yet implemented properly. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRotope.html#666d202b780a32c965278e287cf98aec">Transform</a> (const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;, const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Transforms a <a class="el" href="classRotope.html" title="A four-dimensional Rotope.">Rotope</a>.  <a href="#666d202b780a32c965278e287cf98aec"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="816269d1aee277657aac4081df2d63eb"></a><!-- doxytag: member="Rotope::Draw" ref="816269d1aee277657aac4081df2d63eb" args="(void)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRotope.html#816269d1aee277657aac4081df2d63eb">Draw</a> (void)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Draw the projected <a class="el" href="classRotope.html" title="A four-dimensional Rotope.">Rotope</a> (onto screen or into GL list, as it is). <br></td></tr>
+<tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7132e44d60bf6f35d39ac73f0d03928e"></a><!-- doxytag: member="Rotope::_rotope" ref="7132e44d60bf6f35d39ac73f0d03928e" args="" -->
+<a class="el" href="classvertex__data.html">vertex_data</a>&lt; 4 &gt; *&nbsp;</td><td class="memItemRight" valign="bottom"><b>_rotope</b></td></tr>
+
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 A four-dimensional <a href="http://teamikaria.com/wiki/Rotope">Rotope</a>. 
 <p>
 <dl class="author" compact><dt><b>Author:</b></dt><dd>Helge Preuss &lt;<a href="mailto:scout@hyperspace-travel.de">scout@hyperspace-travel.de</a>&gt; </dd></dl>
-<hr><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" name="daecde0bfbfb734b419f77794002372f"></a><!-- doxytag: member="Rotope::Rotope" ref="daecde0bfbfb734b419f77794002372f" args="(const QString &amp;)" -->
+<hr><h2>Member Function Documentation</h2>
+<a class="anchor" name="666d202b780a32c965278e287cf98aec"></a><!-- doxytag: member="Rotope::Transform" ref="666d202b780a32c965278e287cf98aec" args="(const VecMath::Rotation&lt; 4 &gt; &amp;, const VecMath::Vector&lt; 4 &gt; &amp;)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Rotope::Rotope           </td>
+          <td class="memname">void Rotope::Transform           </td>
           <td>(</td>
-          <td class="paramtype">const QString &amp;&nbsp;</td>
-          <td class="paramname"> <em>name</em>          </td>
-          <td>&nbsp;)&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>R</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>T</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>
-C++ Implementation: <a class="el" href="classRotope.html" title="A four-dimensional Rotope.">Rotope</a>. 
+Transforms a <a class="el" href="classRotope.html" title="A four-dimensional Rotope.">Rotope</a>. 
 <p>
-Description:<p>
-<dl class="author" compact><dt><b>Author:</b></dt><dd>Helge Preuss &lt;<a href="mailto:scout@hyperspace-travel.de">scout@hyperspace-travel.de</a>&gt;, (C) 2008</dd></dl>
-Copyright: See COPYING file that comes with this distribution 
-<p>References <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a>.</p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>R</em>&nbsp;</td><td>Rotation </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>T</em>&nbsp;</td><td>Translation </td></tr>
+  </table>
+</dl>
+
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000023">Todo:</a></b></dt><dd>copy the vertices only once </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classObject.html#16adc37b6a48b1113858b60b861eb1c1">Object</a>.</p>
+
+<p>References <a class="elRef" doxygen="libstdc++.tag:" href="a01419.html#cfe97b143edc1c10b4532ebdb839d83c">std::vector&lt; _Tp, _Alloc &gt;::size()</a>, <a class="el" href="Object_8H-source.html#l00062">Object::X</a>, <a class="el" href="Rotope_8H-source.html#l00042">vertex_data&lt; D &gt;::X()</a>, and <a class="el" href="Object_8H-source.html#l00063">Object::Xtrans</a>.</p>
+
+<p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classRotope_666d202b780a32c965278e287cf98aec_cgraph.png" border="0" usemap="#classRotope_666d202b780a32c965278e287cf98aec_cgraph_map" alt=""></center>
+<map name="classRotope_666d202b780a32c965278e287cf98aec_cgraph_map">
+<area shape="rect" doxygen="libstdc++.tag:" href="a01419.html#cfe97b143edc1c10b4532ebdb839d83c" title="std::vector::size" alt="" coords="188,5,303,32"><area shape="rect" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b" title="The array of vertices." alt="" coords="191,56,300,83"></map>
+</div>
 
 </div>
 </div><p>
@@ -105,7 +144,7 @@ Copyright: See COPYING file that comes with this distribution
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Sun Nov 2 20:51:03 2008 for HyperspaceExplorer 0.6.2
+                Generated on Sun Nov 2 22:16:50 2008 for HyperspaceExplorer 0.6.2
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.6
                 &nbsp;-&nbsp;

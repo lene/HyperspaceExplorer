@@ -32,6 +32,7 @@
   yes q | doxygen 2> /dev/null
   svn up devel/html/ 2>&1 | grep Restored | cut -d ' ' -f 2- | xargs svn del
   svn st devel/html/html | grep ^? | cut -c 2- | xargs svn add
+  svn commit -m "auto-generated documentation"
 * rsync -rL --delete-after --exclude=.svn devel/html/html/ \
   metaldog,hyperspace-expl@web.sourceforge.net:htdocs
 
