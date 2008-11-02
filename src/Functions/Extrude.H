@@ -50,10 +50,23 @@ template <unsigned D, unsigned Dmin, unsigned Dmax>
     class Extrude: public Extrude<D, Dmin, Dmax-1> {
         public:
             /// Create an Extrude object from a point
+            /** \todo Guard against bad template parameters:
+             *        - Dmin >= Dmax
+             *        - Dmin or Dmax >= D
+             *        - Dmin or Dmax >= vertex_data::_dimension
+             *        - vertex_data::_dimension == 0
+             */
             Extrude(): Extrude<D, Dmin, Dmax-1>() {
                 extrude_base<D>::extrude(Dmax);
             }
+
             /// Create an Extrude object from an already existing object
+            /** \todo Guard against bad template parameters:
+             *        - Dmin >= Dmax
+             *        - Dmin or Dmax >= D
+             *        - Dmin or Dmax >= vertex_data::_dimension
+             *        - vertex_data::_dimension == 0
+             */
             Extrude(const vertex_data<D> &v): Extrude<D, Dmin, Dmax-1>(v) {
                 extrude_base<D>::extrude(Dmax);
             }
@@ -70,17 +83,32 @@ template <unsigned D, unsigned Dmin>
     class Extrude<D, Dmin, Dmin>: public extrude_base<D> {
         public:
             /// Create an Extrude object from a point
+            /** \todo Guard against bad template parameters:
+             *        - Dmin >= Dmax
+             *        - Dmin or Dmax >= D
+             *        - Dmin or Dmax >= vertex_data::_dimension
+             */
             Extrude(): extrude_base<D>() {
                 extrude_base<D>::extrude(Dmin);
             }
+
             /// Create an Extrude object from an already existing object
+            /** \todo Guard against bad template parameters:
+             *        - Dmin >= D
+             *        - Dmin >= vertex_data::_dimension
+             */
             Extrude(const vertex_data<D> &v): extrude_base<D>(v) {
                 extrude_base<D>::extrude(Dmin);
             }
     };
 
 
-/**
+/** For each point in the vertex array, a copy is made and shifted along the
+ *  \p d axis. Thus, a point becomes a line when extruded along axis 0, a line
+ *  becomes a square when extruded along axis 1, and so on. A circle becomes a
+ *  cylinder when extruded along axis 2, and similarly with all kinds of
+ *  objects. You get the idea.
+ *
  *  \param d The new dimension into which the object is extruded
  */
 template <unsigned D> void extrude_base<D>::extrude(unsigned d) {
@@ -90,14 +118,42 @@ template <unsigned D> void extrude_base<D>::extrude(unsigned d) {
            " than the vector space allows");
     }
 
-    vector<Vector<D> > Xnew = vertex_data<D>::_X;
+    const vector<Vector<D> > Xold = vertex_data<D>::_X;
+    typename vertex_data<D>::uintvec2D surface_old =
+            vertex_data<D>::_surface;
 
-    for (typename vector<Vector<D> >::iterator i = Xnew.begin();
-        i != Xnew.end(); ++i){
-        Vector<D> xtmp = *i;
+    for (unsigned i = 0; i < Xold.size(); ++i){
+        Vector<D> xtmp = Xold[i];
         xtmp[d] = 1.;
         vertex_data<D>::_X.push_back(xtmp);
+
+        if (i != 0) {
+            vertex_data<D>::addSurface(i-1, i,
+                                       vertex_data<D>::_X.size()-1,
+                                       vertex_data<D>::_X.size()-2);
+            }
     }
+    if (vertex_data<D>::_dimension > 1) {
+        /** add the new surface joining the last vertex of the old array to the
+            first, together with their extruded vertices
+        */
+        vertex_data<D>::addSurface(Xold.size()-1, 0,
+                                vertex_data<D>::_X.size()-1, Xold.size());
+        /** add all surfaces which were in the old vertex array, but extruded
+            along the \p d axis. This is achieved by copying the old surface
+            array and adding the size of the old vertex array to each of the
+            indices therein.
+        */
+        for (unsigned i = 0; i < surface_old.size(); ++i) {
+            typename vertex_data<D>::uintvec1D tmp = surface_old[i];
+            for (unsigned j = 0; j < tmp.size(); ++j) {
+                tmp[j] += Xold.size();
+            }
+            vertex_data<D>::addSurface(tmp[0], tmp[1], tmp[2], tmp[3]);
+        }
+    }
+
+    vertex_data<D>::_dimension++;   //  object is now one dimension higher
 }
 
 #endif

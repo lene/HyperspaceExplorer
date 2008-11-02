@@ -1,5 +1,5 @@
 ///
-/// C++ Implementation: ColorManager
+/// C++ Implementation: Rotope
 ///
 /// Description:
 ///
@@ -14,13 +14,16 @@
 #include "Taper.H"
 
 Rotope::Rotope(const QString &name): Object(name, 0, 0) {
+    Extrude<3,0,2> cube;
+    std::cerr << "cube: "; cube.print();
+
     const unsigned DIM = 4;
     Extrude<DIM, 0, DIM-1> E;
     std::cerr << "Extrude: "; E.print();
 
     const unsigned BASE = 0;
     Extrude<DIM, 0, BASE> E2;
-    Taper<DIM, BASE, DIM-1> T(E2);
+    Taper<DIM, BASE+1, DIM-1> T(E2);
     std::cerr << "Taper: "; T.print();
 
     throw NotYetImplementedException("Rotope::Rotope()");

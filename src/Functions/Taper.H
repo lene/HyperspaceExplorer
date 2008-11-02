@@ -64,6 +64,12 @@ template <unsigned D, unsigned Dmin, unsigned Dmax>
     class Taper: public Taper<D, Dmin, Dmax-1> {
         public:
             /// Create a Taper object from an already existing object
+            /** \todo Guard against bad template parameters:
+             *        - Dmin >= Dmax
+             *        - Dmin or Dmax >= D
+             *        - Dmin or Dmax >= vertex_data::_dimension
+             *        - vertex_data::_dimension == 0
+             */
             Taper(const vertex_data<D> &v): Taper<D, Dmin, Dmax-1>(v) {
                 taper_base<D>::taper(Dmax);
             }
@@ -80,6 +86,11 @@ template <unsigned D, unsigned Dmin>
     class Taper<D, Dmin, Dmin>: public taper_base<D> {
         public:
             /// Create a Taper object from an already existing object
+            /** \todo Guard against bad template parameters:
+             *        - Dmin  >= D
+             *        - Dmin  >= vertex_data::_dimension
+             *        - vertex_data::_dimension == 0
+             */
             Taper(const vertex_data<D> &v): taper_base<D>(v) {
                 taper_base<D>::taper(Dmin);
             }
@@ -133,12 +144,11 @@ template <unsigned D> void taper_base<D>::taper(unsigned d) {
     Vector<D> xnew;     //  connect all vertices to this new vertex
 
     if (!alreadyTapered()) {
-        /*  if this is the first time we taper an object, we must extrude a new
+        /** If this is the first time we taper an object, we must extrude a new
             point above the middle of the old object.
-            for all directions except the newly tapered one, the coordinate value
-            is the mean of the old ones.
-
-            we can skip the test for the dimension tapered into, because it's
+            For all directions except the newly tapered one, the coordinate value
+            is the mean of the old ones.\n
+            We can skip the test for the dimension tapered into, because it's
             all zero by definition anyway.
         */
         for(unsigned i = 0; i < vertex_data<D>::_X.size(); ++i) {
@@ -146,28 +156,28 @@ template <unsigned D> void taper_base<D>::taper(unsigned d) {
         }
         xnew *= 1./vertex_data<D>::_X.size();
 
-        //  by pythagoras! the coordinate tapered into is sqrt(1-1/2^2)
+        /// By Pythagoras! The coordinate tapered into is sqrt(1-1/2^2).
         xnew[d] = sqrt(1.-0.25);
     } else {
-        /*  copy the last tapered point. it serves as reference, because only the
+        /** Copy the last tapered point. It serves as reference, because only the
             coordinate last tapered into changes (it is halved), in addition to
             the newly extruded point.
         */
         xnew = vertex_data<D>::_X.back();
 
         if (_pre_previous_dim < 0) {
-            /*  if we have extruded only once before, we know the short cathetus
+            /** If we have extruded only once before, we know the short cathetus
                 of the right triangle spanned by the back of the equilateral
                 triangle to be 0.5 - half a unit, because it lies in the center
                 of the previous object.
             */
             xnew[d] = sqrt(xnew[_previous_dim]*xnew[_previous_dim]-.25);
-            /*  consequently, in this dimension the new point lies in the center
+            /** Consequently, in this dimension the new point lies in the center
                 of the previous edge.
             */
             xnew[_previous_dim] /= 2.;
         } else {
-            /*  we have stored at least two previous extrusions, the cathetus of
+            /** If we have stored at least two previous extrusions, the cathetus
                 of the new triangle is defined by those.
             */
             xnew[d] = sqrt(fabs(xnew[_previous_dim]*xnew[_previous_dim]-
@@ -179,6 +189,8 @@ template <unsigned D> void taper_base<D>::taper(unsigned d) {
 
     _pre_previous_dim = _previous_dim;
     _previous_dim = d;
+
+    vertex_data<D>::_dimension++;   //  object is now one dimension higher
 }
 
 #endif
