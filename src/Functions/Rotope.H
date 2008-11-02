@@ -31,17 +31,20 @@ template <unsigned D>
                 X().push_back(VecMath::Vector<D>());
             }
 
-            /// add a surface to the array of surfaces
+            /// Add a surface to the array of surfaces
             void addSurface(unsigned, unsigned, unsigned, unsigned);
-            /// add a surface to the array of surfaces
+            /// Add a surface to the array of surfaces
             void addSurface(unsigned, unsigned, unsigned);
 
+            /// Dimension of the object
             unsigned &dimension() { return _dimension; }
+            /// The array of vertices
             std::vector<VecMath::Vector<D> > &X() { return _X; }
+            /// The array of surfaces
             uintvec2D &surface() { return _surface; }
 
         private:
-            unsigned _dimension;
+            unsigned _dimension;                    ///< Dimension of the object
             std::vector<VecMath::Vector<D> > _X;    ///< The array of vertices
             uintvec2D _surface;                     ///< The array of surfaces
 
@@ -54,6 +57,7 @@ template <unsigned D>
  */
 class Rotope : public Object {
     public:
+        /// Construct a Rotope. Not yet implemented properly.
         Rotope(const QString &);
 
         ~Rotope();
