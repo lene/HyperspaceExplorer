@@ -1,5 +1,1 @@
-<area shape="rect" href="$classUI_1_1Dialogs_1_1PluginCreator.html" title="Abstract base class for all Dialogs which allow entering a custom function." alt="" coords="5,81,181,108">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ComplexDialogImpl.html" title="A Dialog to enter a user&#45;defined complex function, ." alt="" coords="229,5,440,32">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1FunctionDialogImpl.html" title="A Dialog to enter a function from ." alt="" coords="231,56,439,83">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1PolarDialogImpl.html" title="A Dialog to enter a function from &#160;in polar coordinates." alt="" coords="240,107,429,133">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1SurfaceDialogImpl.html" title="A Dialog to enter a function from ." alt="" coords="233,157,436,184">
+<area shape="rect" href="$classTaper.html" title="Taper\&lt; D, Dmin, Dmax \&gt;" alt="" coords="5,5,179,32">

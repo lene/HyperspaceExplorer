@@ -3,10 +3,9 @@
 
 #include "Rotope.H"
 
-/**
-	@author Helge Preuss <scout@hyperspace-travel.de>
-*/
-
+/** \ingroup ObjectGroup
+ *  \author Helge Preuss <scout@hyperspace-travel.de>
+ */
 template <unsigned D>
     class extrude_base: public vertex_data<D> {
 
@@ -32,6 +31,9 @@ template <unsigned D>
             }
     };
 
+/** \ingroup ObjectGroup
+ *  \author Helge Preuss <scout@hyperspace-travel.de>
+ */
     template <unsigned D, unsigned Dmin, unsigned Dmax>
         class Extrude: public Extrude<D, Dmin, Dmax-1> {
             public:
@@ -40,6 +42,9 @@ template <unsigned D>
                 void create() { extrude_base<D>::extrude(Dmax); }
         };
 
+/** \ingroup ObjectGroup
+ *  \author Helge Preuss <scout@hyperspace-travel.de>
+ */
     template <unsigned D, unsigned Dmin>
         class Extrude<D, Dmin, Dmin>: public extrude_base<D> {
             public:

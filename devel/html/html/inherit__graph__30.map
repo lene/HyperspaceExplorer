@@ -1,8 +1,1 @@
-<area shape="rect" href="libstdc++.tag$a01109.html" title="STL class." alt="" coords="7,81,111,108">
-<area shape="rect" href="libstdc++.tag$a01204.html" title="STL class." alt="" coords="169,56,279,83">
-<area shape="rect" href="libstdc++.tag$a01313.html" title="STL class." alt="" coords="160,132,288,159">
-<area shape="rect" href="$structFunctionParameterValueBase_1_1WrongParameterTypeException.html" title="FunctionParameterValueBase::WrongParameterTypeException" alt="" coords="336,5,733,32">
-<area shape="rect" href="$classNotYetImplementedException.html" title="NotYetImplementedException" alt="" coords="436,56,633,83">
-<area shape="rect" href="$classFunctionFactory_1_1BadFunctionException.html" title="Thrown by createFunction() when name does not map to a function." alt="" coords="405,107,664,133">
-<area shape="rect" href="$classScript_1_1BadStatementException.html" title="exception thrown when an unknown statement is encountered in a script" alt="" coords="431,157,639,184">
-<area shape="rect" href="$classUI_1_1View_1_1FunctionNotSupportedException.html" title="Thrown when a function is not supported by a View implementation." alt="" coords="399,208,671,235">
+<area shape="rect" href="$classScript_1_1StatementFactory.html" title="Factory object to create Statement objects from a Parser and a given line." alt="" coords="5,5,176,32">

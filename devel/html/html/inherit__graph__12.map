@@ -1,1 +1,2 @@
-<area shape="rect" href="$classFunctionSlotHelper.html" title="Single&#45;stop slot for menu QActions generating Function objects." alt="" coords="7,5,132,32">
+<area shape="rect" href="$classFunctionParameterValueBase.html" title="Interface for a value of a function parameter. Inherited by a template class." alt="" coords="5,5,205,32">
+<area shape="rect" href="$classFunctionParameterValue.html" title="A value for a function parameter. Template depending on its type." alt="" coords="255,5,455,32">

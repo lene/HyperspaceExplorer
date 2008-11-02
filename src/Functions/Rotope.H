@@ -3,8 +3,8 @@
 
 #include <Object.H>
 
-/**
-	@author Helge Preuss <scout@hyperspace-travel.de>
+/** \ingroup ObjectGroup
+ *  \author Helge Preuss <scout@hyperspace-travel.de>
  */
 class Rotope : public Object {
 public:
@@ -17,6 +17,9 @@ public:
 using VecMath::Vector;
 using std::vector;
 
+/** \ingroup ObjectGroup
+ *  \author Helge Preuss <scout@hyperspace-travel.de>
+ */
 template <unsigned D>
     class vertex_data {
         public:

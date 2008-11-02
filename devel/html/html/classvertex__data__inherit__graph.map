@@ -1,0 +1,4 @@
+<area shape="rect" href="$classextrude__base.html" title="{extrude_base\&lt; D \&gt;\n||+ extrude_base()\l+ extrude()\l}" alt="" coords="35,173,171,269">
+<area shape="rect" href="$classtaper__base.html" title="{taper_base\&lt; D \&gt;\n|&#45; _previous_dim\l&#45; _pre_previous_dim\l|+ taper_base()\l+ taper_base()\l+ taper()\l&#45; alreadyTapered()\l}" alt="" coords="211,149,355,293">
+<area shape="rect" href="$classExtrude_3_01D_00_01Dmin_00_01Dmin_01_4.html" title="{Extrude\&lt; D, Dmin, Dmin \&gt;\n||+ Extrude()\l+ create()\l}" alt="" coords="5,349,184,445">
+<area shape="rect" href="$classTaper_3_01D_00_01Dmin_00_01Dmin_01_4.html" title="{Taper\&lt; D, Dmin, Dmin \&gt;\n||+ Taper()\l+ Taper()\l+ create()\l}" alt="" coords="208,341,376,453">

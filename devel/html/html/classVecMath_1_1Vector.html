@@ -64,9 +64,9 @@ Collaboration diagram for VecMath::Vector&lt; D, N &gt;:</div>
 <a href="classVecMath_1_1Vector-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Vector.html#63640f08c7793bf37aedf32e552499dd">Vector</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Vector.html#6f80c73b5f18dcf3f8e36065bdc8b9e5">Vector</a> ()</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default constructor.  <a href="#63640f08c7793bf37aedf32e552499dd"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default constructor.  <a href="#6f80c73b5f18dcf3f8e36065bdc8b9e5"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVecMath_1_1Vector.html#35fecd02f35c28da27d509468fae1fef">Vector</a> (N x0,...)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor with variable arglist.  <a href="#35fecd02f35c28da27d509468fae1fef"></a><br></td></tr>
@@ -137,14 +137,14 @@ Vector&lt;D, N&gt;: a D-dimensional vector of numbers of type N.
 </dl>
 <dl class="author" compact><dt><b>Author:</b></dt><dd>Helge Preuss &lt;<a href="mailto:scout@hyperspace-travel.de">scout@hyperspace-travel.de</a>&gt; </dd></dl>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" name="63640f08c7793bf37aedf32e552499dd"></a><!-- doxytag: member="VecMath::Vector::Vector" ref="63640f08c7793bf37aedf32e552499dd" args="()" -->
+<a class="anchor" name="6f80c73b5f18dcf3f8e36065bdc8b9e5"></a><!-- doxytag: member="VecMath::Vector::Vector" ref="6f80c73b5f18dcf3f8e36065bdc8b9e5" args="()" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;unsigned D, typename N = double&gt; </div>
+template&lt;unsigned D, typename N&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; D, N &gt;::<a class="el" href="classVecMath_1_1Vector.html">Vector</a>           </td>
+          <td class="memname">Vector::Vector           </td>
           <td>(</td>
           <td class="paramname">          </td>
           <td>&nbsp;)&nbsp;</td>
@@ -158,6 +158,8 @@ template&lt;unsigned D, typename N = double&gt; </div>
 Default constructor. 
 <p>
 Doesn't do anything, the lazy bastard! 
+<p>References <a class="el" href="VecMath_2Vector_8H-source.html#l00136">VecMath::Vector&lt; D, N &gt;::x</a>.</p>
+
 </div>
 </div><p>
 <a class="anchor" name="35fecd02f35c28da27d509468fae1fef"></a><!-- doxytag: member="VecMath::Vector::Vector" ref="35fecd02f35c28da27d509468fae1fef" args="(N x0,...)" -->
@@ -287,7 +289,7 @@ template&lt;unsigned D, typename N&gt; </div>
 <p>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>dimension of the <a class="el" href="classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D-dimensional vector of numbers of type N.">Vector</a> (the template parameter D) </dd></dl>
 
-<p>Referenced by <a class="el" href="VecMath_2Vector_8H-source.html#l00278">VecMath::operator&gt;&gt;()</a>.</p>
+<p>Referenced by <a class="el" href="VecMath_2Vector_8H-source.html#l00283">VecMath::operator&gt;&gt;()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -497,7 +499,7 @@ template&lt;unsigned D, typename N&gt; </div>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>*this*s </dd></dl>
 
-<p>Referenced by <a class="el" href="VecMath_2Vector_8H-source.html#l00237">VecMath::Vector&lt; D, N &gt;::operator/()</a>, and <a class="el" href="VecMath_2Vector_8H-source.html#l00251">VecMath::Vector&lt; D, N &gt;::sqnorm()</a>.</p>
+<p>Referenced by <a class="el" href="VecMath_2Vector_8H-source.html#l00242">VecMath::Vector&lt; D, N &gt;::operator/()</a>, and <a class="el" href="VecMath_2Vector_8H-source.html#l00256">VecMath::Vector&lt; D, N &gt;::sqnorm()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -568,7 +570,7 @@ template&lt;unsigned D, typename N&gt; </div>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>*this/s </dd></dl>
 
-<p>References <a class="el" href="VecMath_2Vector_8H-source.html#l00221">VecMath::Vector&lt; D, N &gt;::operator*()</a>.</p>
+<p>References <a class="el" href="VecMath_2Vector_8H-source.html#l00226">VecMath::Vector&lt; D, N &gt;::operator*()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -634,9 +636,9 @@ template&lt;unsigned D, typename N&gt; </div>
 <p>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>the squared norm of the vector, |V|² </dd></dl>
 
-<p>References <a class="el" href="VecMath_2Vector_8H-source.html#l00221">VecMath::Vector&lt; D, N &gt;::operator*()</a>.</p>
+<p>References <a class="el" href="VecMath_2Vector_8H-source.html#l00226">VecMath::Vector&lt; D, N &gt;::operator*()</a>.</p>
 
-<p>Referenced by <a class="el" href="Globals_8H-source.html#l00078">Global::glVertex()</a>, <a class="el" href="VecMath_2Vector_8H-source.html#l00112">VecMath::Vector&lt; VecMath::NumAxes&lt; D &gt;::num, GLdouble &gt;::operator&lt;()</a>, and <a class="el" href="VecMath_2Vector_8H-source.html#l00354">VecMath::vnormalize()</a>.</p>
+<p>Referenced by <a class="el" href="Globals_8H-source.html#l00078">Global::glVertex()</a>, <a class="el" href="VecMath_2Vector_8H-source.html#l00112">VecMath::Vector&lt; VecMath::NumAxes&lt; D &gt;::num, GLdouble &gt;::operator&lt;()</a>, and <a class="el" href="VecMath_2Vector_8H-source.html#l00359">VecMath::vnormalize()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -748,7 +750,7 @@ Array of floats is needed by glLightfv()
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Sat Nov 1 17:51:15 2008 for HyperspaceExplorer 0.6.1
+                Generated on Sun Nov 2 01:48:15 2008 for HyperspaceExplorer 0.6.2
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.6
                 &nbsp;-&nbsp;

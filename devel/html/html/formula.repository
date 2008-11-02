@@ -50,3 +50,12 @@
 \form#49:$ R^3 \rightarrow R $
 \form#50:$ \vec{x} = f(\theta, \phi, \psi) $
 \form#51:$ M_{ij} $
+\form#52:$ X_new_{D} = \frac{X_new_{D}}{2} $
+\form#53:$ X_{new}_{D} = \frac{X_{new}_{D-1}}{2} $
+\form#54:$ D-1 $
+\form#55:$ D $
+\form#56:$ X_{new}_{D-1} = \frac{X_{D-1}}{2} $
+\form#57:$ X_{new}_{D-1} $
+\form#58:$ $
+\form#59:$ X_{D-2} $
+\form#60:$ D-2 $
