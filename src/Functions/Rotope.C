@@ -15,17 +15,19 @@
 #include "Rotope.H"
 #include "Extrude.H"
 #include "Taper.H"
+#include "Rotate.H"
+#include "Torate.H"
 
 using VecMath::Vector;
 using VecMath::Matrix;
 
 class RotopeFactory {
-    vertex_data *generate(unsigned extrude, unsigned taper = 0,
-                          unsigned rotate, unsigned torate) {
+    vertex_data<4> *generate(unsigned extrude, unsigned taper = 0,
+                             unsigned rotate = 0, unsigned torate = 0) {
         if (extrude+taper+rotate+torate != 4)
-            throw logic_error("Sum of extrusion operations must be 4");
+            throw std::logic_error("Sum of extrusion operations must be 4");
 
-        vertex_data *tmp;
+        vertex_data<4> *tmp;
         switch(extrude) {
             case 0:
                 tmp = new Extrude<4, 0, 0>();

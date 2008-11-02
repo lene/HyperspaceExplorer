@@ -90,8 +90,8 @@ C4DView::C4DView(QWidget *parent):
 
     ColMgrMgr::Instance().setColorManager(new xyz2RGBColorManager(F().get()));
 
-//    ObjectHypercube();
-    ObjectRotope();
+    ObjectHypercube();
+//    ObjectRotope();
 
     setLighting(true);
 }
