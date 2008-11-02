@@ -33,13 +33,12 @@ using VecMath::Matrix;
  *  @param surfaces number of surfaces                                        */
 Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
     Function (),
-    NumVertices (vertices), NumSurfaces (surfaces),
-    X(vec4vec1D(NumVertices)), Xtrans(vec4vec1D(NumVertices)), Xscr(vec3vec1D(NumVertices)),
-//    R(floatvec1D(NumVertices)), G(floatvec1D(NumVertices)), B(floatvec1D(NumVertices)),
+//    NumVertices (vertices), NumSurfaces (surfaces),
+    X(vec4vec1D(vertices)), Xtrans(vec4vec1D(vertices)), Xscr(vec3vec1D(vertices)),
     Surface(4) {
     setfunctionName(name);
 
-    for (unsigned i = 0; i < 4; i++) Surface[i].resize(NumSurfaces);
+    for (unsigned i = 0; i < 4; i++) Surface[i].resize(surfaces);
 }
 
 /// Actually create the Object, this method is overridden in child classes
@@ -51,7 +50,7 @@ Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
  *  routine to calibrate the color manager.
  */
 void Object::Initialize() {
-    for (unsigned i = 0; i < NumVertices; i++) {
+    for (unsigned i = 0; i < X.size(); i++) {
         ColMgrMgr::Instance().calibrateColor(
             X[i],
             Color((X[i][0]+1)/2, (X[i][1]+1)/2, (X[i][2]+1)/2,
@@ -66,7 +65,7 @@ void Object::Initialize() {
 void Object::Transform (const VecMath::Rotation<4> &R,
                         const VecMath::Vector<4> &T) {
     Matrix<4> Rot(R);
-    for (unsigned i = 0; i < NumVertices; i++)
+    for (unsigned i = 0; i < X.size(); i++)
         Xtrans[i] = (Rot*X[i])+T;
 }
 
@@ -78,7 +77,7 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
     double ProjectionFactor;
     double Wmax = 0, Wmin = 0;
 
-    for (unsigned i = 0; i < NumVertices; i++) {
+    for (unsigned i = 0; i < X.size(); i++) {
         if (depthcue4d) {
             if (Xtrans[i][3] < Wmin) Wmin = Xtrans[i][3];
             if (Xtrans[i][3] > Wmax) Wmax = Xtrans[i][3];
@@ -93,7 +92,7 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
     if (!depthcue4d) return;
 
     //  apply hyperfog
-    for (unsigned i = 0; i < NumVertices; i++) {
+    for (unsigned i = 0; i < X.size(); i++) {
         ColMgrMgr::Instance().depthCueColor(Wmax, Wmin, Xtrans[i][3], X[i]);
     }
 }
@@ -102,7 +101,7 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
 /// Draw the projected Object (onto screen or into GL list, as it is)
 void Object::Draw () {
     glBegin (GL_QUADS);
-    for (unsigned i = 0; i < NumSurfaces; i++)
+    for (unsigned i = 0; i < Surface[0].size(); i++)
         for (unsigned j = 0; j < 4; j++) {
             setVertex(X[Surface[j][i]], Xscr[Surface[j][i]]);
         }
@@ -348,7 +347,7 @@ void Pyramid::Initialize() {
     X[4] = Vector<4> (0.5, sqrt (3.)/6., 1./sqrt (6.), 1./sqrt (2.));
 
     Vector<4> center_of_mass (0.5, sqrt (3.)/4., sqrt (1./6.), 1./sqrt (8.));
-    for (unsigned i = 0; i < NumVertices; i++)
+    for (unsigned i = 0; i < X.size(); i++)
         X[i] = X[i]*a+center-center_of_mass*a;
 
     DeclareTriangle (0,  0, 1, 2);

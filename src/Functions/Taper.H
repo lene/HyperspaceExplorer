@@ -136,7 +136,7 @@ template <unsigned D> void taper_base<D>::taper(unsigned d) {
             "taper_base::taper() called on a higher dimension than the "
             "vector space allows");
     }
-    if (vertex_data<D>::_X.size() < 2) {
+    if (vertex_data<D>::X().size() < 2) {
         throw std::logic_error(
             "taper_base::taper() can only operate on at least two vertices");
     }
@@ -151,10 +151,10 @@ template <unsigned D> void taper_base<D>::taper(unsigned d) {
             We can skip the test for the dimension tapered into, because it's
             all zero by definition anyway.
         */
-        for(unsigned i = 0; i < vertex_data<D>::_X.size(); ++i) {
-            xnew += vertex_data<D>::_X[i];
+        for(unsigned i = 0; i < vertex_data<D>::X().size(); ++i) {
+            xnew += vertex_data<D>::X()[i];
         }
-        xnew *= 1./vertex_data<D>::_X.size();
+        xnew *= 1./vertex_data<D>::X().size();
 
         /// By Pythagoras! The coordinate tapered into is sqrt(1-1/2^2).
         xnew[d] = sqrt(1.-0.25);
@@ -163,34 +163,44 @@ template <unsigned D> void taper_base<D>::taper(unsigned d) {
             coordinate last tapered into changes (it is halved), in addition to
             the newly extruded point.
         */
-        xnew = vertex_data<D>::_X.back();
+        xnew = vertex_data<D>::X().back();
 
         if (_pre_previous_dim < 0) {
             /** If we have extruded only once before, we know the short cathetus
-                of the right triangle spanned by the back of the equilateral
-                triangle to be 0.5 - half a unit, because it lies in the center
-                of the previous object.
-            */
+             *  of the right triangle spanned by the back of the equilateral
+             *  triangle to be 0.5 - half a unit, because it lies in the center
+             *  of the previous object.
+             */
             xnew[d] = sqrt(xnew[_previous_dim]*xnew[_previous_dim]-.25);
             /** Consequently, in this dimension the new point lies in the center
-                of the previous edge.
-            */
+             *  of the previous edge.
+             */
             xnew[_previous_dim] /= 2.;
         } else {
             /** If we have stored at least two previous extrusions, the cathetus
-                of the new triangle is defined by those.
-            */
+             *  of the new triangle is defined by those.
+             */
             xnew[d] = sqrt(fabs(xnew[_previous_dim]*xnew[_previous_dim]-
                     xnew[_pre_previous_dim]*xnew[_pre_previous_dim]));
             xnew[_previous_dim] /= 2.;
         }
     }
-    vertex_data<D>::_X.push_back(xnew);
+
+    vertex_data<D>::X().push_back(xnew);
+
+    /** Define surfaces now. Every two points from the old object are connected
+     *  to the new point, thus spanning a surface.
+     */
+    for (unsigned i = 0; i < vertex_data<D>::X().size()-1; i++) {
+        for (unsigned j = i+1; j < vertex_data<D>::X().size()-1; j++) {
+            vertex_data<D>::addSurface(i, j, vertex_data<D>::X().size()-1);
+        }
+    }
 
     _pre_previous_dim = _previous_dim;
     _previous_dim = d;
 
-    vertex_data<D>::_dimension++;   //  object is now one dimension higher
+    vertex_data<D>::dimension()++;   //  object is now one dimension higher
 }
 
 #endif

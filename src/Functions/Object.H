@@ -30,9 +30,9 @@ struct EmptyType {};
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Object: public Function {
     public:
-        /// a one-dimensional array of unsigned, implemented as a std::vector
+        /// one-dimensional array of unsigned, implemented as a std::vector
         typedef std::vector<unsigned> uintvec1D;
-        /// a two-dimensional array of unsigned, implemented as a nested std::vector
+        /// two-dimensional array of unsigned, implemented as a nested vector
         typedef std::vector<uintvec1D> uintvec2D;
 
         Object (const QString &, unsigned, unsigned);
@@ -55,9 +55,9 @@ class Object: public Function {
     protected:
         virtual void Initialize();
         /// number of vertices the object possesses; must be set by implementations
-        unsigned NumVertices;
+//        unsigned NumVertices;
         /// number of surfaces the object possesses; must be set by implementations
-        unsigned NumSurfaces;
+//        unsigned NumSurfaces;
 
         vec4vec1D X;        ///< temporary storage for the function values
         vec4vec1D Xtrans;   ///< temp. storage for transformed function values

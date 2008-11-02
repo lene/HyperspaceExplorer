@@ -38,15 +38,23 @@ template <unsigned D>
 
             /// Create an empty array of vertices.
             /** Only derived classes can create a vertex_data object. */
-            vertex_data(): _X(), _surface(), _dimension(0) {
+            vertex_data():_dimension(0), _X(), _surface() {
                 _X.push_back(VecMath::Vector<D>());
             }
 
             /// add a surface to the array of surfaces
             void addSurface(unsigned, unsigned, unsigned, unsigned);
+            /// add a surface to the array of surfaces
+            void addSurface(unsigned, unsigned, unsigned);
+
+            unsigned &dimension() { return _dimension; }
+            std::vector<VecMath::Vector<D> > &X() { return _X; }
+            uintvec2D &surface() { return _surface; }
+
+        private:
+            unsigned _dimension;
             std::vector<VecMath::Vector<D> > _X;    ///< The array of vertices
             uintvec2D _surface;                     ///< The array of surfaces
-            unsigned _dimension;
     };
 
 /*  You shouldn't use "using" directives in a header file, but the code gets
@@ -95,10 +103,26 @@ template <unsigned D> void vertex_data<D>::print() {
  */
 template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
                                                       unsigned v3, unsigned v4) {
+    if (v1 >= _X.size() || v2 >= _X.size() ||
+        v3 >= _X.size() || v4 >= _X.size()) {
+        throw std::out_of_range("vertex_data<D>::addSurface(): index larger "
+                                "than size of vertex array");
+    }
+
     uintvec1D tmp;
     tmp.push_back(v1); tmp.push_back(v2); tmp.push_back(v3); tmp.push_back(v4);
 
     _surface.push_back(tmp);
+}
+
+/** Overloaded version for three vertices
+ *  \param v1 Index (in the vertex array) of the first vertex
+ *  \param v2 Index (in the vertex array) of the second vertex
+ *  \param v3 Index (in the vertex array) of the third vertex
+ */
+template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
+                                                      unsigned v3) {
+    addSurface(v1, v2, v3, v3);
 }
 
 #endif
