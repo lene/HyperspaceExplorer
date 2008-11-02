@@ -1,10 +1,10 @@
-<area shape="rect" href="$classObject.html" title="Generalized four&#45;dimensional Object, described by vertexes and surfaces." alt="" coords="185,813,409,1117">
+<area shape="rect" href="$classObject.html" title="Generalized four&#45;dimensional Object, described by vertexes and surfaces." alt="" coords="185,829,409,1101">
 <area shape="rect" href="$classRealBase.html" title="RealBase provides a base class for functions which take three parameters" alt="" coords="1073,581,1223,1349">
 <area shape="rect" href="$classSteinerFunction.html" title="{SteinerFunction\n|&#45; a\l&#45; umin\l&#45; umax\l&#45; du\l&#45; vmin\l&#45; vmax\l&#45; dv\l&#45; F\l|+ SteinerFunction()\l+ SteinerFunction()\l+ ~SteinerFunction()\l+ Draw()\l# f()\l}" alt="" coords="1247,837,1391,1093">
 <area shape="rect" href="$classSurfaceBase.html" title="SurfaceBase provides a base class for functions which take two parameters" alt="" coords="1844,677,1993,1253">
 <area shape="rect" href="$classHypercube.html" title="A four&#45;dimensional cube." alt="" coords="5,1493,136,1685">
 <area shape="rect" href="$classPyramid.html" title="A four&#45;dimensional pyramid, also known as hypersimplex." alt="" coords="160,1501,296,1677">
-<area shape="rect" href="$classRotope.html" title="{Rotope\n||+ Rotope()\l+ ~Rotope()\l}" alt="" coords="320,1541,413,1637">
+<area shape="rect" href="$classRotope.html" title="A four&#45;dimensional Rotope." alt="" coords="320,1541,413,1637">
 <area shape="rect" href="$classSponge.html" title="A four&#45;dimensional Menger Sponge." alt="" coords="5,1829,136,2117">
 <area shape="rect" href="$classGasket.html" title="A four&#45;dimensional version of the Sierpinski Gasket." alt="" coords="161,1845,292,2101">
 <area shape="rect" href="$classRealFunction.html" title="A RealFunction is a mathematical function &#160;." alt="" coords="1036,1421,1260,1757">

@@ -1,11 +1,10 @@
-<area shape="rect" href="$classC4DView.html#5ec81f7d64c4678cbe44bfad9d2acb65" title="Implementation of UI::View::animate." alt="" coords="215,31,340,57">
-<area shape="rect" href="$classC4DView.html#530cab21c7ae4ab78eeff14e7f89a879" title="Implementation of UI::View::applyTransform." alt="" coords="193,81,361,108">
-<area shape="rect" href="$classC4DView.html#e38186ceacf6c4e6b13de7bee6cd8bda" title="Called whenever an object or the parameters have changed." alt="" coords="199,132,356,159">
-<area shape="rect" href="$classC4DView.html#60f45904ff9b227fdf426b5960fa4130" title="rotate in 4D 360 degrees" alt="" coords="197,183,357,209">
-<area shape="rect" href="$group__UIHelpers.html#gb4150e26778debfb3de8214203578a41" title="C++ Template Implementation: CustomFunctionSlot." alt="" coords="412,5,732,32">
-<area shape="rect" href="$classC4DView_1_1CustomFunctionSlot.html#2eaaaf653f2d1bbfe3a2b416f33e4b08" title="Factory method to create a new customized Function of type R^2&#45;&gt;R^4." alt="" coords="415,56,729,83">
-<area shape="rect" href="$classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="495,107,649,133">
-<area shape="rect" href="$classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="484,157,660,184">
-<area shape="rect" href="$classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="475,208,669,235">
-<area shape="rect" href="$classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="477,259,667,285">
-<area shape="rect" href="$classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="783,157,919,184">
+<area shape="rect" href="$classC4DView.html#5ec81f7d64c4678cbe44bfad9d2acb65" title="Implementation of UI::View::animate." alt="" coords="224,31,355,57">
+<area shape="rect" href="$classC4DView.html#530cab21c7ae4ab78eeff14e7f89a879" title="Implementation of UI::View::applyTransform." alt="" coords="200,81,379,108">
+<area shape="rect" href="$classC4DView.html#e38186ceacf6c4e6b13de7bee6cd8bda" title="Called whenever an object or the parameters have changed." alt="" coords="207,132,372,159">
+<area shape="rect" href="$classC4DView.html#60f45904ff9b227fdf426b5960fa4130" title="rotate in 4D 360 degrees" alt="" coords="205,183,373,209">
+<area shape="rect" href="$group__UIHelpers.html#gb4150e26778debfb3de8214203578a41" title="C++ Template Implementation: CustomFunctionSlot." alt="" coords="428,5,775,32">
+<area shape="rect" href="$classC4DView_1_1CustomFunctionSlot.html#2eaaaf653f2d1bbfe3a2b416f33e4b08" title="Factory method to create a new customized Function of type R^2&#45;&gt;R^4." alt="" coords="431,56,772,83">
+<area shape="rect" href="$classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="519,107,684,133">
+<area shape="rect" href="$classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="508,157,695,184">
+<area shape="rect" href="$classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="499,208,704,235">
+<area shape="rect" href="$classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="500,259,703,285">

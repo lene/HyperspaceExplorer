@@ -1,6 +1,6 @@
-<area shape="rect" href="$classtaper__base.html" title="{taper_base\&lt; D \&gt;\n|&#45; _previous_dim\l&#45; _pre_previous_dim\l|+ taper_base()\l+ taper_base()\l+ taper()\l&#45; alreadyTapered()\l}" alt="" coords="84,728,228,872">
-<area shape="rect" href="$classvertex__data.html" title="{vertex_data\&lt; D \&gt;\n|# _X\l|+ print()\l# vertex_data()\l}" alt="" coords="93,581,219,677">
-<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; Vector\&lt; D \&gt; \&gt;\n||}" alt="" coords="67,437,245,517">
-<area shape="rect" href="libstdc++.tag$a00960.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;\n||}" alt="" coords="107,149,325,229">
+<area shape="rect" href="$classtaper__base.html" title="Base class for Taper classes, providing the actual taper() function." alt="" coords="101,840,245,968">
+<area shape="rect" href="$classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place..." alt="" coords="111,581,236,789">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; VecMath::Vector\&lt; D \&gt; \&gt;\n||}" alt="" coords="53,437,293,517">
+<area shape="rect" href="libstdc++.tag$a00960.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;\n||}" alt="" coords="141,149,360,229">
 <area shape="rect" href="libstdc++.tag$a01419.html" title="STL class." alt="" coords="5,293,179,373">
-<area shape="rect" href="libstdc++.tag$a00961.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;::_Vector_impl\n||}" alt="" coords="63,5,369,85">
+<area shape="rect" href="libstdc++.tag$a00961.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;::_Vector_impl\n||}" alt="" coords="97,5,404,85">

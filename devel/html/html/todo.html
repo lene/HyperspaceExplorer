@@ -29,42 +29,42 @@
   </div>
 </div>
 <div class="contents">
-<h1><a class="anchor" name="todo">Todo List </a></h1><a class="anchor" name="_todo000027"></a> <dl>
+<h1><a class="anchor" name="todo">Todo List </a></h1><a class="anchor" name="_todo000033"></a> <dl>
 <dt>Member <a class="el" href="classC4DView.html#5a783209571030da60229d60dfef66f2">C4DView::setLighting</a> (bool) </dt>
 <dd>Decide whether to turn lighting off completely, if lighting is deselected, or whether to use flat, all-ambient, lighting. Another possibility would be to make a three-way switch between full lighting, flat lighting and no lighting at all. </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000028"></a> <dl>
+<a class="anchor" name="_todo000034"></a> <dl>
 <dt>Member <a class="el" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4">C4DView::PreRedraw</a> () </dt>
 <dd>either PreRedraw() or Draw() should call DrawCoordinates(), but not both </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000030"></a> <dl>
+<a class="anchor" name="_todo000036"></a> <dl>
 <dt>Member <a class="el" href="classC4DView.html#4c6fe19768e9e4e706e0489bc9ca6f96">C4DView::RandomAnimation</a> (bool) </dt>
 <dd>make hardcoded duration of rotation change frequency adjustable </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000030"></a> <dl>
+<a class="anchor" name="_todo000036"></a> <dl>
 <dt>Member <a class="el" href="classC4DView.html#4c6fe19768e9e4e706e0489bc9ca6f96">C4DView::RandomAnimation</a> (bool) </dt>
 <dd>a menu entry for this </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000032"></a> <dl>
+<a class="anchor" name="_todo000038"></a> <dl>
 <dt>Member <a class="el" href="classC4DView.html#3c797ad72f10f9d43d720a45cd60509a">C4DView::initializeGL</a> (void) </dt>
 <dd>trying to check for rendering to file, but this doesn't work yet. </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000032"></a> <dl>
+<a class="anchor" name="_todo000038"></a> <dl>
 <dt>Member <a class="el" href="classC4DView.html#3c797ad72f10f9d43d720a45cd60509a">C4DView::initializeGL</a> (void) </dt>
 <dd>clean up, check what is really needed - in particular it calls PreRedraw() twice, once via RenderScene() </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000034"></a> <dl>
+<a class="anchor" name="_todo000040"></a> <dl>
 <dt>Member <a class="el" href="classC4DView.html#ac3d22c30bf8b042077fb31fec2c367b">C4DView::resizeGL</a> (int, int) </dt>
 <dd>eliminate hardcoded constants </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000029"></a> <dl>
+<a class="anchor" name="_todo000035"></a> <dl>
 <dt>Member <a class="el" href="classC4DView.html#d306f57ab4a1565454abbf7856a88a92">C4DView::SetupDepthCue</a> (float, float) </dt>
 <dd>fill in the meaning of the parameters </dd>
 </dl>
@@ -79,173 +79,215 @@
 <dd>implement a map&lt;Function *, ColorManager *&gt; to store one <a class="el" href="classColorManager.html" title="Interface for all color managers.">ColorManager</a> per function - this will probably break the existing interface </dd>
 </dl>
 <p>
+<a class="anchor" name="_todo000003"></a> <dl>
+<dt>Member <a class="el" href="classExtrude.html#1ae253f82f415daa9edd0d6c668d9159">Extrude::Extrude</a> () </dt>
+<dd>Guard against bad template parameters:<ul>
+<li>Dmin &gt;= Dmax</li><li>Dmin or Dmax &gt;= D</li><li>Dmin or Dmax &gt;= vertex_data::_dimension</li><li>vertex_data::_dimension == 0 </li></ul>
+</dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000004"></a> <dl>
+<dt>Member <a class="el" href="classExtrude.html#8fb664a2e3c458382fab543529fe867e">Extrude::Extrude</a> (const vertex_data&lt; D &gt; &amp;v) </dt>
+<dd>Guard against bad template parameters:<ul>
+<li>Dmin &gt;= Dmax</li><li>Dmin or Dmax &gt;= D</li><li>Dmin or Dmax &gt;= vertex_data::_dimension</li><li>vertex_data::_dimension == 0 </li></ul>
+</dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000005"></a> <dl>
+<dt>Member <a class="el" href="classExtrude_3_01D_00_01Dmin_00_01Dmin_01_4.html#c3d56965f2dcfbcb5742e363dc1f2f7d">Extrude&lt; D, Dmin, Dmin &gt;::Extrude</a> () </dt>
+<dd>Guard against bad template parameters:<ul>
+<li>Dmin &gt;= Dmax</li><li>Dmin or Dmax &gt;= D</li><li>Dmin or Dmax &gt;= vertex_data::_dimension </li></ul>
+</dd>
+</dl>
+<p>
 <a class="anchor" name="_todo000006"></a> <dl>
+<dt>Member <a class="el" href="classExtrude_3_01D_00_01Dmin_00_01Dmin_01_4.html#1fd37678709881d7d40f7eead68b9171">Extrude&lt; D, Dmin, Dmin &gt;::Extrude</a> (const vertex_data&lt; D &gt; &amp;v) </dt>
+<dd>Guard against bad template parameters:<ul>
+<li>Dmin &gt;= D</li><li>Dmin &gt;= vertex_data::_dimension </li></ul>
+</dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000010"></a> <dl>
 <dt>Class <a class="el" href="classFunction.html">Function</a>  </dt>
 <dd>Vector &amp;normal (double, double, double); - or in derived classes? </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000006"></a> <dl>
+<a class="anchor" name="_todo000010"></a> <dl>
 <dt>Class <a class="el" href="classFunction.html">Function</a>  </dt>
 <dd>operator () (double t, double u, double v) - ditto<p>
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000008"></a> <dl>
+<a class="anchor" name="_todo000012"></a> <dl>
 <dt>Member <a class="el" href="classFunction.html#b312b39486784bb4ce427aec71b4722b">Function::parameterNames</a>  </dt>
 <dd>move this functionality into <a class="el" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000004"></a> <dl>
+<a class="anchor" name="_todo000008"></a> <dl>
 <dt>Member <a class="el" href="classFunction.html#7e1d08b78b48b4be45772cec73b926ac">Function::df</a> (double, double, double) </dt>
 <dd>The h value is fixed and hardcoded. better approach, please! </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000004"></a> <dl>
+<a class="anchor" name="_todo000008"></a> <dl>
 <dt>Member <a class="el" href="classFunction.html#7e1d08b78b48b4be45772cec73b926ac">Function::df</a> (double, double, double) </dt>
 <dd>I don't think calling operator() is right. Call f()! </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000010"></a> <dl>
+<a class="anchor" name="_todo000014"></a> <dl>
 <dt>Member <a class="el" href="classFunction.html#7e1d08b78b48b4be45772cec73b926ac">Function::df</a> (double, double, double) </dt>
 <dd>The h value is fixed and hardcoded. better approach, please! </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000010"></a> <dl>
+<a class="anchor" name="_todo000014"></a> <dl>
 <dt>Member <a class="el" href="classFunction.html#7e1d08b78b48b4be45772cec73b926ac">Function::df</a> (double, double, double) </dt>
 <dd>I don't think calling operator() is right. Call f()! </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000003"></a> <dl>
+<a class="anchor" name="_todo000007"></a> <dl>
 <dt>Member <a class="el" href="classFunction.html#d6a10b999b0d561d36a473d461c62311">Function::MemRequired</a> (void) </dt>
 <dd>uses hardcoded and experimentally found value for memory per cell </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000009"></a> <dl>
+<a class="anchor" name="_todo000013"></a> <dl>
 <dt>Member <a class="el" href="classFunction.html#d6a10b999b0d561d36a473d461c62311">Function::MemRequired</a> (void) </dt>
 <dd>uses hardcoded and experimentally found value for memory per cell </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000012"></a> <dl>
+<a class="anchor" name="_todo000016"></a> <dl>
 <dt>Member <a class="el" href="classFunctionParameter.html#d8923ccb1a2c9c86eadf7fd41b06d21b">FunctionParameter::setValue</a> (FunctionParameterValue&lt; T &gt; *_value) </dt>
 <dd>Can't I call createParameterWithValue() from inside setValue()? </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000013"></a> <dl>
+<a class="anchor" name="_todo000017"></a> <dl>
 <dt>Member <a class="el" href="classFunctionParameter.html#d3f0a76d63c6e62533ce95dd19ea6996">FunctionParameter::setDefaultValue</a> (FunctionParameterValue&lt; T &gt; *_defaultValue) </dt>
 <dd>Can't I call createParameterWithDefault() from inside setDefaultValue()? </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000015"></a> <dl>
+<a class="anchor" name="_todo000019"></a> <dl>
 <dt>Member <a class="el" href="classGasket.html#e65a8be228108ab1997e0cc80504aa56">Gasket::MemRequired</a> (void) </dt>
 <dd>uses hardcoded and experimentally found value for memory per simplex </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000021"></a> <dl>
+<a class="anchor" name="_todo000027"></a> <dl>
 <dt>Member <a class="el" href="classLightOpenGL.html#61df071bddf2bec6b661cacb92af352a">LightOpenGL::render</a> () const  </dt>
 <dd>GL_LIGHT0 is hardcoded, make this variable. To quote from the OpenGL API docs: "It is always the case that GL_LIGHTi = GL_LIGHT0 + i." </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000023"></a> <dl>
+<a class="anchor" name="_todo000029"></a> <dl>
 <dt>Member <a class="el" href="classScript_1_1ObjectStmt.html#3e0556105a96433108763fb3fb0119c0">Script::ObjectStmt::execute</a> () </dt>
 <dd>make a map (or something like that) to call the right function for the string supplied as argument </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000022"></a> <dl>
+<a class="anchor" name="_todo000028"></a> <dl>
 <dt>Member <a class="el" href="classScript_1_1Parser.html#5b7cf8cb8670b41d7e9a98af70a4efd3">Script::Parser::Parser</a> (const <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;file) </dt>
 <dd>lines must not be longer than 4095 characters. Everything after that is discarded. This is a limitation of std::ifstream::getline(). </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000036"></a> <dl>
+<a class="anchor" name="_todo000042"></a> <dl>
 <dt>Class <a class="el" href="classUI_1_1Dialogs_1_1PluginCreator.html">UI::Dialogs::PluginCreator</a>  </dt>
 <dd>set the function name to symbolic() in the descendants' constructors<p>
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000035"></a> <dl>
+<a class="anchor" name="_todo000041"></a> <dl>
 <dt>Member <a class="el" href="classUI_1_1Dialogs_1_1PluginCreator.html#b65570039501ddca958fe8bf9728b766">UI::Dialogs::PluginCreator::compile</a> (QString) </dt>
 <dd>Might tweak the compilation flags a little, or make them variable </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000037"></a> <dl>
+<a class="anchor" name="_todo000043"></a> <dl>
 <dt>Class <a class="el" href="classUI_1_1Dialogs_1_1PolarDialogImpl.html">UI::Dialogs::PolarDialogImpl</a>  </dt>
 <dd>Make the above definition mathematically correct<p>
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000018"></a> <dl>
+<a class="anchor" name="_todo000022"></a> <dl>
 <dt>Class <a class="el" href="classRealBase.html">RealBase</a>  </dt>
 <dd>Vector &amp;normal (double, double, double); - or in base class?<p>
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000017"></a> <dl>
+<a class="anchor" name="_todo000021"></a> <dl>
 <dt>Member <a class="el" href="classRealFunction.html#dbbc82deb59fbfddd400cb4cc1a003ee">RealFunction::Transform</a> (const VecMath::Rotation&lt; 4 &gt; &amp;R, const VecMath::Vector&lt; 4 &gt; &amp;T) </dt>
 <dd>As I look at it, i think this could be optimized by making the transformation matrices static and only canging the corresponding entries... but how to do this beautifully, i don't know </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000043"></a> <dl>
+<a class="anchor" name="_todo000049"></a> <dl>
 <dt>Member <a class="el" href="classVecMath_1_1Rotation.html#bada28b04afd16a77c258079463174fd">VecMath::Rotation::operator Matrix&lt; D, N &gt;</a> () const  </dt>
 <dd>default implementation does not work correctly yet </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000042"></a> <dl>
+<a class="anchor" name="_todo000048"></a> <dl>
 <dt>Class <a class="el" href="classVecMath_1_1RotationAxes.html">VecMath::RotationAxes&lt; D &gt;</a>  </dt>
 <dd>Find a generic algorithm for <code>D</code> dimensions </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000026"></a> <dl>
+<a class="anchor" name="_todo000032"></a> <dl>
 <dt>Class <a class="el" href="classScript_1_1RotDeltaStmt.html">Script::RotDeltaStmt</a>  </dt>
 <dd>implement </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000025"></a> <dl>
+<a class="anchor" name="_todo000031"></a> <dl>
 <dt>Class <a class="el" href="classScript_1_1RotStmt.html">Script::RotStmt</a>  </dt>
 <dd>implement </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000016"></a> <dl>
+<a class="anchor" name="_todo000020"></a> <dl>
 <dt>Member <a class="el" href="classSponge.html#599e21656433097f9e7f2ac143a1dc7a">Sponge::List</a>  </dt>
 <dd>Use smart pointers instead of a simple pointer-to-object </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000014"></a> <dl>
+<a class="anchor" name="_todo000018"></a> <dl>
 <dt>Member <a class="el" href="classSponge.html#31290427d5599a4ea65e24b23427eeef">Sponge::MemRequired</a> (unsigned) </dt>
 <dd>uses hardcoded and experimentally found value for memory per hypercube </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000019"></a> <dl>
+<a class="anchor" name="_todo000023"></a> <dl>
 <dt>Member <a class="el" href="classSurface.html#185472961fe456f587c160c2cc6e8545">Surface::MemRequired</a> (void) </dt>
 <dd>uses hardcoded and experimentally found value for memory per cell </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000020"></a> <dl>
+<a class="anchor" name="_todo000024"></a> <dl>
 <dt>Class <a class="el" href="classSurfaceBase.html">SurfaceBase</a>  </dt>
 <dd>Vector &amp;normal (double, double); - or in base class?<p>
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000038"></a> <dl>
+<a class="anchor" name="_todo000025"></a> <dl>
+<dt>Member <a class="el" href="classTaper.html#16c05f94aba267896d7fb909d0f1e8ef">Taper::Taper</a> (const vertex_data&lt; D &gt; &amp;v) </dt>
+<dd>Guard against bad template parameters:<ul>
+<li>Dmin &gt;= Dmax</li><li>Dmin or Dmax &gt;= D</li><li>Dmin or Dmax &gt;= vertex_data::_dimension</li><li>vertex_data::_dimension == 0 </li></ul>
+</dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000026"></a> <dl>
+<dt>Member <a class="el" href="classTaper_3_01D_00_01Dmin_00_01Dmin_01_4.html#56264cae0b56740fce973f4a4323dc58">Taper&lt; D, Dmin, Dmin &gt;::Taper</a> (const vertex_data&lt; D &gt; &amp;v) </dt>
+<dd>Guard against bad template parameters:<ul>
+<li>Dmin &gt;= D</li><li>Dmin &gt;= vertex_data::_dimension</li><li>vertex_data::_dimension == 0 </li></ul>
+</dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000044"></a> <dl>
 <dt>Class <a class="el" href="classUI_1_1Dialogs_1_1ValuesDialogImpl.html">UI::Dialogs::ValuesDialogImpl</a>  </dt>
 <dd>The switching on and off of input fields, depending on which function is selected, is done from <a class="el" href="classC4DView.html" title="Displays and manipulates four-dimensional Functions in a QGLWidget.">C4DView</a>. This is of course unfortunate and will be changed.<p>
 </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000039"></a> <dl>
+<a class="anchor" name="_todo000045"></a> <dl>
 <dt>Member <a class="el" href="classUI_1_1View.html#55b44401d1c32701e7761e03e2fd5552">UI::View::getLights</a> ()=0 </dt>
 <dd>Abstract from <a class="elRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector</a> and use a generic container </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000041"></a> <dl>
+<a class="anchor" name="_todo000047"></a> <dl>
 <dt>Member <a class="el" href="classUI_1_1ViewImpl.html#b5310b33a0ef7609a707cd806839fb04">UI::ViewImpl::_lights</a>  </dt>
 <dd>Abstract from <a class="elRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector</a> and use a generic container </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000040"></a> <dl>
+<a class="anchor" name="_todo000046"></a> <dl>
 <dt>Member <a class="el" href="classUI_1_1ViewImpl.html#c82a628c95c20a739f28e1c6566f414a">UI::ViewImpl::getLights</a> () </dt>
 <dd>Abstract from <a class="elRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector</a> and use a generic container </dd>
 </dl>
 <p>
-<a class="anchor" name="_todo000024"></a> <dl>
+<a class="anchor" name="_todo000030"></a> <dl>
 <dt>Class <a class="el" href="classScript_1_1XformStmt.html">Script::XformStmt</a>  </dt>
 <dd>add support for translations and 3D rotation </dd>
 </dl>
@@ -253,7 +295,7 @@
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Sun Nov 2 01:48:11 2008 for HyperspaceExplorer 0.6.2
+                Generated on Sun Nov 2 20:50:52 2008 for HyperspaceExplorer 0.6.2
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.6
                 &nbsp;-&nbsp;

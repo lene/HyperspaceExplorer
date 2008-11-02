@@ -40,21 +40,24 @@
 <h1>taper_base&lt; D &gt; Class Template Reference<br>
 <small>
 [<a class="el" href="group__ObjectGroup.html">Arbitrary four-dimensional objects, described by their surfaces</a>]</small>
-</h1><!-- doxytag: class="taper_base" --><!-- doxytag: inherits="vertex_data" --><code>#include &lt;<a class="el" href="Taper_8H-source.html">Taper.H</a>&gt;</code>
+</h1><!-- doxytag: class="taper_base" --><!-- doxytag: inherits="vertex_data" -->Base class for <a class="el" href="classTaper.html" title="A class template to execute taper actions on an object.">Taper</a> classes, providing the actual <a class="el" href="classtaper__base.html#1e9ad5f81bf3da49de37114122bcaf67" title="Execute the taper action of the previous object along axis d.">taper()</a> function.  
+<a href="#_details">More...</a>
+<p>
+<code>#include &lt;<a class="el" href="Taper_8H-source.html">Taper.H</a>&gt;</code>
 <p>
 <div class="dynheader">
 Inheritance diagram for taper_base&lt; D &gt;:</div>
 <div class="dynsection">
 <p><center><img src="classtaper__base__inherit__graph.png" border="0" usemap="#taper__base_3_01D_01_4__inherit__map" alt="Inheritance graph"></center>
 <map name="taper__base_3_01D_01_4__inherit__map">
-<area shape="rect" href="classTaper_3_01D_00_01Dmin_00_01Dmin_01_4.html" title="{Taper\&lt; D, Dmin, Dmin \&gt;\n||+ Taper()\l+ Taper()\l+ create()\l}" alt="" coords="5,341,173,453"><area shape="rect" href="classvertex__data.html" title="{vertex_data\&lt; D \&gt;\n|# _X\l|+ print()\l# vertex_data()\l}" alt="" coords="27,5,152,101"></map>
+<area shape="rect" href="classTaper_3_01D_00_01Dmin_00_01Dmin_01_4.html" title="Specialization of Taper&lt;D,Dmin,Dmax&gt; to end recursion." alt="" coords="5,437,173,517"><area shape="rect" href="classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place..." alt="" coords="27,5,152,213"></map>
 <center><font size="2">[<a href="graph_legend.html">legend</a>]</font></center></div>
 <div class="dynheader">
 Collaboration diagram for taper_base&lt; D &gt;:</div>
 <div class="dynsection">
 <p><center><img src="classtaper__base__coll__graph.png" border="0" usemap="#taper__base_3_01D_01_4__coll__map" alt="Collaboration graph"></center>
 <map name="taper__base_3_01D_01_4__coll__map">
-<area shape="rect" href="classvertex__data.html" title="{vertex_data\&lt; D \&gt;\n|# _X\l|+ print()\l# vertex_data()\l}" alt="" coords="93,581,219,677"><area shape="rect" doxygen="libstdc++.tag:" href="a01419.html" title="{std::vector\&lt; Vector\&lt; D \&gt; \&gt;\n||}" alt="" coords="67,437,245,517"><area shape="rect" doxygen="libstdc++.tag:" href="a00960.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;\n||}" alt="" coords="107,149,325,229"><area shape="rect" doxygen="libstdc++.tag:" href="a01419.html" title="STL class." alt="" coords="5,293,179,373"><area shape="rect" doxygen="libstdc++.tag:" href="a00961.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;::_Vector_impl\n||}" alt="" coords="63,5,369,85"></map>
+<area shape="rect" href="classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place..." alt="" coords="111,581,236,789"><area shape="rect" doxygen="libstdc++.tag:" href="a01419.html" title="{std::vector\&lt; VecMath::Vector\&lt; D \&gt; \&gt;\n||}" alt="" coords="53,437,293,517"><area shape="rect" doxygen="libstdc++.tag:" href="a00960.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;\n||}" alt="" coords="141,149,360,229"><area shape="rect" doxygen="libstdc++.tag:" href="a01419.html" title="STL class." alt="" coords="5,293,179,373"><area shape="rect" doxygen="libstdc++.tag:" href="a00961.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;::_Vector_impl\n||}" alt="" coords="97,5,404,85"></map>
 <center><font size="2">[<a href="graph_legend.html">legend</a>]</font></center></div>
 
 <p>
@@ -62,26 +65,36 @@ Collaboration diagram for taper_base&lt; D &gt;:</div>
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="73dc26cdda258e32ce77b1be424d5140"></a><!-- doxytag: member="taper_base::taper_base" ref="73dc26cdda258e32ce77b1be424d5140" args="(const vertex_data&lt; D &gt; &amp;v)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>taper_base</b> (const <a class="el" href="classvertex__data.html">vertex_data</a>&lt; D &gt; &amp;v)</td></tr>
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtaper__base.html#73dc26cdda258e32ce77b1be424d5140">taper_base</a> (const <a class="el" href="classvertex__data.html">vertex_data</a>&lt; D &gt; &amp;v)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Create a <a class="el" href="classtaper__base.html" title="Base class for Taper classes, providing the actual taper() function.">taper_base</a> object from an already existing object. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtaper__base.html#1e9ad5f81bf3da49de37114122bcaf67">taper</a> (unsigned d)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Execute the taper action of the previous object along axis <code>d</code>.  <a href="#1e9ad5f81bf3da49de37114122bcaf67"></a><br></td></tr>
 <tr><td colspan="2"><br><h2>Private Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e8780b1e02545fa56243522c546cde70"></a><!-- doxytag: member="taper_base::alreadyTapered" ref="e8780b1e02545fa56243522c546cde70" args="()" -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>alreadyTapered</b> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtaper__base.html#e8780b1e02545fa56243522c546cde70">alreadyTapered</a> ()</td></tr>
 
 <tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b042b5cc9715381e95b2c77052776aad"></a><!-- doxytag: member="taper_base::_previous_dim" ref="b042b5cc9715381e95b2c77052776aad" args="" -->
-int&nbsp;</td><td class="memItemRight" valign="bottom"><b>_previous_dim</b></td></tr>
+int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtaper__base.html#b042b5cc9715381e95b2c77052776aad">_previous_dim</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Axis the previous <a class="el" href="classtaper__base.html#1e9ad5f81bf3da49de37114122bcaf67" title="Execute the taper action of the previous object along axis d.">taper()</a> action went along. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b45cc71dae4414a9d320b1f2f2a9d195"></a><!-- doxytag: member="taper_base::_pre_previous_dim" ref="b45cc71dae4414a9d320b1f2f2a9d195" args="" -->
-int&nbsp;</td><td class="memItemRight" valign="bottom"><b>_pre_previous_dim</b></td></tr>
+int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtaper__base.html#b45cc71dae4414a9d320b1f2f2a9d195">_pre_previous_dim</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Axis the <a class="el" href="classtaper__base.html#1e9ad5f81bf3da49de37114122bcaf67" title="Execute the taper action of the previous object along axis d.">taper()</a> action before the previous went along. <br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 <h3>template&lt;unsigned D&gt;<br>
  class taper_base&lt; D &gt;</h3>
 
+Base class for <a class="el" href="classTaper.html" title="A class template to execute taper actions on an object.">Taper</a> classes, providing the actual <a class="el" href="classtaper__base.html#1e9ad5f81bf3da49de37114122bcaf67" title="Execute the taper action of the previous object along axis d.">taper()</a> function. 
+<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>D</em>&nbsp;</td><td>Dimension of the vector space we're working in</td></tr>
+  </table>
+</dl>
 <dl class="author" compact><dt><b>Author:</b></dt><dd>Helge Preuss &lt;<a href="mailto:scout@hyperspace-travel.de">scout@hyperspace-travel.de</a>&gt; </dd></dl>
 <hr><h2>Member Function Documentation</h2>
 <a class="anchor" name="1e9ad5f81bf3da49de37114122bcaf67"></a><!-- doxytag: member="taper_base::taper" ref="1e9ad5f81bf3da49de37114122bcaf67" args="(unsigned d)" -->
@@ -103,20 +116,35 @@ template&lt;unsigned D&gt; </div>
 <div class="memdoc">
 
 <p>
+Execute the taper action of the previous object along axis <code>d</code>. 
+<p>
 Generally, a taper action is defined by the following formulas.<p>
 For going from a taper <img class="formulaInl" alt="$ D-1 $" src="form_54.png"> to the next, only the <img class="formulaInl" alt="$ D-1 $" src="form_54.png"> st and <img class="formulaInl" alt="$ D $" src="form_55.png"> th coordinate are affected.<p>
-The new point is extruded above the center of the <img class="formulaInl" alt="$ D-1 $" src="form_54.png"> st coordinate, thus <img class="formulaInl" alt="$ X_{new}_{D-1} = \frac{X_{D-1}}{2} $" src="form_56.png">.<p>
-The <img class="formulaInl" alt="$ D $" src="form_55.png"> th coordinate is found by spanning a right triangle with the sides <img class="formulaInl" alt="$ X_{new}_{D-1} $" src="form_57.png"> and <img class="formulaInl" alt="$ X_{D-2} $" src="form_59.png">.<p>
+The new point is extruded above the center of the <img class="formulaInl" alt="$ D-1 $" src="form_54.png"> st coordinate, thus <img class="formulaInl" alt="$ X_{new}_{D-1} = \frac{X_{D-1} }{2} $" src="form_69.png"> .<p>
+The <img class="formulaInl" alt="$ D $" src="form_55.png"> th coordinate is found by spanning a right triangle with the sides <img class="formulaInl" alt="$ X_{new}_{D-1} $" src="form_57.png"> and <img class="formulaInl" alt="$ X_{D-2} $" src="form_59.png"> , and solving the pythagorean equation for the missing cathetus.<p>
 While these formulas are relatively easy, keep in mind that<ol type=1>
-<li>you must store previous taper actions to remember <img class="formulaInl" alt="$ D-1 $" src="form_54.png"> and <img class="formulaInl" alt="$ D-2 $" src="form_60.png">.</li><li>if you haven't tapered at least twice before, you don't have values for <img class="formulaInl" alt="$ D-1 $" src="form_54.png"> and <img class="formulaInl" alt="$ D-2 $" src="form_60.png">.</li></ol>
+<li>You must store previous taper actions to remember <img class="formulaInl" alt="$ D-1 $" src="form_54.png"> and <img class="formulaInl" alt="$ D-2 $" src="form_60.png"> .</li><li>If you haven't tapered at least twice before, you don't have values for <img class="formulaInl" alt="$ D-1 $" src="form_54.png"> and <img class="formulaInl" alt="$ D-2 $" src="form_60.png">. Thus, you must make up these values. Luckily, this is possible:<ol type=a>
+<li>If we taper for the first time, the new point lies above the center of the old surface. We calculate the mean of all <img class="formulaInl" alt="$ D-1 $" src="form_54.png"> coordinates and extrude above that point. The <img class="formulaInl" alt="$ D $" src="form_55.png"> coordinate is <img class="formulaInl" alt="$ \sqrt{1 - \bar{x_i}^2} $" src="form_65.png">. <img class="formulaInl" alt="$ \bar{x_i} $" src="form_67.png"> is considered to be equal to <img class="formulaInl" alt="$ \frac{1}{2} $" src="form_64.png"> in this function, because I don't see how it could have another value that makes sense.</li><li>If we taper for the second time, we extrude above the center of the <img class="formulaInl" alt="$ D-1 $" src="form_54.png"> st coordinate, so the value for this is halved for the <img class="formulaInl" alt="$ D-1 $" src="form_54.png"> coordinate of the new point. The <img class="formulaInl" alt="$ D $" src="form_55.png"> coordinate is <img class="formulaInl" alt="$ \sqrt{x_{D-1} }^2 - \frac{1}{2^2} } $" src="form_70.png"> , because the second leg of the equilateral triangle was created by the <em>first</em> extrusion and is known to be of length <img class="formulaInl" alt="$ \frac{1}{2} $" src="form_64.png"> .</li></ol>
+</li></ol>
 <p>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>d</em>&nbsp;</td><td>The new dimension into which is tapered </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>d</em>&nbsp;</td><td>The new dimension into which the object is tapered </td></tr>
   </table>
 </dl>
 
-<p>References <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#42fec2f6c6429a447bea8a40720a143a">fabs()</a>, and <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#b2c9d94b4becdf532618ad9a0a54aade">sqrt()</a>.</p>
+<p>
+If this is the first time we taper an object, we must extrude a new point above the middle of the old object. For all directions except the newly tapered one, the coordinate value is the mean of the old ones.<br>
+ We can skip the test for the dimension tapered into, because it's all zero by definition anyway.<p>
+By Pythagoras! The coordinate tapered into is sqrt(1-1/2^2).<p>
+Copy the last tapered point. It serves as reference, because only the coordinate last tapered into changes (it is halved), in addition to the newly extruded point.<p>
+If we have extruded only once before, we know the short cathetus of the right triangle spanned by the back of the equilateral triangle to be 0.5 - half a unit, because it lies in the center of the previous object.<p>
+Consequently, in this dimension the new point lies in the center of the previous edge.<p>
+If we have stored at least two previous extrusions, the cathetus of the new triangle is defined by those.<p>
+Define surfaces now. Every two points from the old object are connected to the new point, thus spanning a surface. 
+<p>References <a class="el" href="Taper_8H-source.html#l00029">taper_base&lt; D &gt;::_pre_previous_dim</a>, <a class="el" href="Taper_8H-source.html#l00027">taper_base&lt; D &gt;::_previous_dim</a>, <a class="el" href="Rotope_8H-source.html#l00104">vertex_data&lt; D &gt;::addSurface()</a>, <a class="el" href="Taper_8H-source.html#l00024">taper_base&lt; D &gt;::alreadyTapered()</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#42fec2f6c6429a447bea8a40720a143a">fabs()</a>, and <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#b2c9d94b4becdf532618ad9a0a54aade">sqrt()</a>.</p>
+
+<p>Referenced by <a class="el" href="Taper_8H-source.html#l00094">Taper&lt; D, Dmin, Dmin &gt;::Taper()</a>, and <a class="el" href="Taper_8H-source.html#l00073">Taper&lt; D, Dmin, Dmax &gt;::Taper()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -124,7 +152,51 @@ Here is the call graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classtaper__base_1e9ad5f81bf3da49de37114122bcaf67_cgraph.png" border="0" usemap="#classtaper__base_1e9ad5f81bf3da49de37114122bcaf67_cgraph_map" alt=""></center>
 <map name="classtaper__base_1e9ad5f81bf3da49de37114122bcaf67_cgraph_map">
-<area shape="rect" doxygen="libstdc++.tag:" href="a01815.html#42fec2f6c6429a447bea8a40720a143a" title="fabs" alt="" coords="183,5,231,32"><area shape="rect" doxygen="libstdc++.tag:" href="a01815.html#b2c9d94b4becdf532618ad9a0a54aade" title="sqrt" alt="" coords="185,56,228,83"></map>
+<area shape="rect" href="classvertex__data.html#ccadf4c9af76492b51b795e23278c333" title="add a surface to the array of surfaces" alt="" coords="193,31,361,57"><area shape="rect" href="classtaper__base.html#e8780b1e02545fa56243522c546cde70" title="taper_base::alreadyTapered" alt="" coords="183,81,372,108"><area shape="rect" doxygen="libstdc++.tag:" href="a01815.html#42fec2f6c6429a447bea8a40720a143a" title="fabs" alt="" coords="253,132,301,159"><area shape="rect" doxygen="libstdc++.tag:" href="a01815.html#b2c9d94b4becdf532618ad9a0a54aade" title="sqrt" alt="" coords="256,183,299,209"><area shape="rect" doxygen="libstdc++.tag:" href="a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce" title="std::vector::push_back" alt="" coords="423,5,577,32"><area shape="rect" doxygen="libstdc++.tag:" href="a01419.html#cfe97b143edc1c10b4532ebdb839d83c" title="std::vector::size" alt="" coords="443,56,557,83"></map>
+</div>
+
+<p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classtaper__base_1e9ad5f81bf3da49de37114122bcaf67_icgraph.png" border="0" usemap="#classtaper__base_1e9ad5f81bf3da49de37114122bcaf67_icgraph_map" alt=""></center>
+<map name="classtaper__base_1e9ad5f81bf3da49de37114122bcaf67_icgraph_map">
+<area shape="rect" href="classTaper_3_01D_00_01Dmin_00_01Dmin_01_4.html#56264cae0b56740fce973f4a4323dc58" title="Create a Taper object from an already existing object." alt="" coords="183,5,393,32"><area shape="rect" href="classTaper.html#16c05f94aba267896d7fb909d0f1e8ef" title="Create a Taper object from an already existing object." alt="" coords="237,56,339,83"></map>
+</div>
+
+</div>
+</div><p>
+<a class="anchor" name="e8780b1e02545fa56243522c546cde70"></a><!-- doxytag: member="taper_base::alreadyTapered" ref="e8780b1e02545fa56243522c546cde70" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;unsigned D&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classtaper__base.html">taper_base</a>&lt; D &gt;::alreadyTapered           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>Whether working on an object that's already a <a class="el" href="classTaper.html" title="A class template to execute taper actions on an object.">Taper</a>. </dd></dl>
+
+<p>References <a class="el" href="Taper_8H-source.html#l00027">taper_base&lt; D &gt;::_previous_dim</a>.</p>
+
+<p>Referenced by <a class="el" href="Taper_8H-source.html#l00132">taper_base&lt; D &gt;::taper()</a>.</p>
+
+<p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classtaper__base_e8780b1e02545fa56243522c546cde70_icgraph.png" border="0" usemap="#classtaper__base_e8780b1e02545fa56243522c546cde70_icgraph_map" alt=""></center>
+<map name="classtaper__base_e8780b1e02545fa56243522c546cde70_icgraph_map">
+<area shape="rect" href="classtaper__base.html#1e9ad5f81bf3da49de37114122bcaf67" title="Execute the taper action of the previous object along axis d." alt="" coords="245,31,373,57"><area shape="rect" href="classTaper_3_01D_00_01Dmin_00_01Dmin_01_4.html#56264cae0b56740fce973f4a4323dc58" title="Create a Taper object from an already existing object." alt="" coords="423,5,633,32"><area shape="rect" href="classTaper.html#16c05f94aba267896d7fb909d0f1e8ef" title="Create a Taper object from an already existing object." alt="" coords="477,56,579,83"></map>
 </div>
 
 </div>
@@ -135,7 +207,7 @@ Here is the call graph for this function:</div>
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Sun Nov 2 01:48:14 2008 for HyperspaceExplorer 0.6.2
+                Generated on Sun Nov 2 20:51:05 2008 for HyperspaceExplorer 0.6.2
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.6
                 &nbsp;-&nbsp;

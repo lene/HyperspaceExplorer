@@ -1,2 +1,2 @@
-<area shape="rect" href="$classtaper__base.html" title="{taper_base\&lt; D \&gt;\n|&#45; _previous_dim\l&#45; _pre_previous_dim\l|+ taper_base()\l+ taper_base()\l+ taper()\l&#45; alreadyTapered()\l}" alt="" coords="17,149,161,293">
-<area shape="rect" href="$classvertex__data.html" title="{vertex_data\&lt; D \&gt;\n|# _X\l|+ print()\l# vertex_data()\l}" alt="" coords="27,5,152,101">
+<area shape="rect" href="$classtaper__base.html" title="Base class for Taper classes, providing the actual taper() function." alt="" coords="17,261,161,389">
+<area shape="rect" href="$classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place..." alt="" coords="27,5,152,213">

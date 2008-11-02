@@ -1,2 +1,2 @@
-<area shape="rect" href="$classextrude__base.html" title="{extrude_base\&lt; D \&gt;\n||+ extrude_base()\l+ extrude()\l}" alt="" coords="27,149,163,245">
-<area shape="rect" href="$classvertex__data.html" title="{vertex_data\&lt; D \&gt;\n|# _X\l|+ print()\l# vertex_data()\l}" alt="" coords="32,5,157,101">
+<area shape="rect" href="$classextrude__base.html" title="Base class for Extrude classes, providing the actual extrude() function." alt="" coords="27,261,163,373">
+<area shape="rect" href="$classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place..." alt="" coords="32,5,157,213">

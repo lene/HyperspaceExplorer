@@ -1,2 +1,2 @@
-<area shape="rect" href="$classTaper_3_01D_00_01Dmin_00_01Dmin_01_4.html" title="{Taper\&lt; D, Dmin, Dmin \&gt;\n||+ Taper()\l+ Taper()\l+ create()\l}" alt="" coords="5,341,173,453">
-<area shape="rect" href="$classvertex__data.html" title="{vertex_data\&lt; D \&gt;\n|# _X\l|+ print()\l# vertex_data()\l}" alt="" coords="27,5,152,101">
+<area shape="rect" href="$classTaper_3_01D_00_01Dmin_00_01Dmin_01_4.html" title="Specialization of Taper&lt;D,Dmin,Dmax&gt; to end recursion." alt="" coords="5,437,173,517">
+<area shape="rect" href="$classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place..." alt="" coords="27,5,152,213">

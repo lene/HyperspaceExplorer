@@ -12,7 +12,7 @@
 <area shape="rect" href="$classSurfaceBase.html" title="SurfaceBase provides a base class for functions which take two parameters" alt="" coords="137,563,236,589">
 <area shape="rect" href="$classHypercube.html" title="A four&#45;dimensional cube." alt="" coords="435,625,520,652">
 <area shape="rect" href="$classPyramid.html" title="A four&#45;dimensional pyramid, also known as hypersimplex." alt="" coords="443,676,512,703">
-<area shape="rect" href="$classRotope.html" title="Rotope" alt="" coords="445,727,509,753">
+<area shape="rect" href="$classRotope.html" title="A four&#45;dimensional Rotope." alt="" coords="445,727,509,753">
 <area shape="rect" href="$classSponge.html" title="A four&#45;dimensional Menger Sponge." alt="" coords="859,625,925,652">
 <area shape="rect" href="$classGasket.html" title="A four&#45;dimensional version of the Sierpinski Gasket." alt="" coords="860,676,924,703">
 <area shape="rect" href="$classRealFunction.html" title="A RealFunction is a mathematical function &#160;." alt="" coords="428,1056,527,1083">

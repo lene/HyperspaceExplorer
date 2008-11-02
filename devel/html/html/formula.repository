@@ -59,3 +59,13 @@
 \form#58:$ $
 \form#59:$ X_{D-2} $
 \form#60:$ D-2 $
+\form#61:$ sqrt{ 1 - \bar{x_i}^2} $
+\form#62:$ sqrt{1 - \bar{x_i}^2} $
+\form#63:$ sqrt{\bar{x_i}^2 - \frac{1}{2^2}} $
+\form#64:$ \frac{1}{2} $
+\form#65:$ \sqrt{1 - \bar{x_i}^2} $
+\form#66:$ \sqrt{\bar{x_i}^2 - \frac{1}{2^2}} $
+\form#67:$ \bar{x_i} $
+\form#68:$ \sqrt{x_{D-1}}^2 - \frac{1}{2^2}} $
+\form#69:$ X_{new}_{D-1} = \frac{X_{D-1} }{2} $
+\form#70:$ \sqrt{x_{D-1} }^2 - \frac{1}{2^2} } $

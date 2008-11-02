@@ -1,34 +1,34 @@
-<area shape="rect" href="$classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="1644,445,1783,472">
-<area shape="rect" href="$group__UIHelpers.html#gb4150e26778debfb3de8214203578a41" title="C++ Template Implementation: CustomFunctionSlot." alt="" coords="1201,293,1548,320">
-<area shape="rect" href="$classC4DView_1_1CustomFunctionSlot.html#2eaaaf653f2d1bbfe3a2b416f33e4b08" title="Factory method to create a new customized Function of type R^2&#45;&gt;R^4." alt="" coords="1204,395,1545,421">
-<area shape="rect" href="$classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="1292,496,1457,523">
-<area shape="rect" href="$classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="1281,445,1468,472">
-<area shape="rect" href="$classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="1272,547,1477,573">
-<area shape="rect" href="$classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="1273,699,1476,725">
-<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen." alt="" coords="344,889,496,916">
-<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Execute the projection into three&#45;space (but don&#39;t draw it yet either)." alt="" coords="169,1155,295,1181">
-<area shape="rect" href="$classC4DView.html#8a51cc06ede29308384576f277a67e19" title="Set the transform for the displayed object (but don&#39;t draw it yet)." alt="" coords="991,1053,1137,1080">
-<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="761,445,927,472">
-<area shape="rect" href="$classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from..." alt="" coords="769,915,919,941">
-<area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Draw the transformed and projected function onto the screen." alt="" coords="999,648,1129,675">
-<area shape="rect" href="$classC4DView.html#b9561bdd967e89d314f7eda6de32b2bc" title="Wrapper for displaying OpenGL display lists." alt="" coords="545,965,711,992">
-<area shape="rect" href="$classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="552,864,704,891">
-<area shape="rect" href="$classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Re&#45;Implementation of UI::ViewImpl::setColors." alt="" coords="993,901,1135,928">
-<area shape="rect" href="$classC4DView.html#5ec81f7d64c4678cbe44bfad9d2acb65" title="Implementation of UI::View::animate." alt="" coords="1309,1205,1440,1232">
-<area shape="rect" href="$classC4DView.html#530cab21c7ae4ab78eeff14e7f89a879" title="Implementation of UI::View::applyTransform." alt="" coords="1285,648,1464,675">
-<area shape="rect" href="$classC4DView.html#60f45904ff9b227fdf426b5960fa4130" title="rotate in 4D 360 degrees" alt="" coords="1291,597,1459,624">
-<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#681ee2ee24d1528a92b6ec0ff4dad9c2" title="Double click event handler." alt="" coords="1204,749,1545,776">
-<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="1224,971,1525,997">
-<area shape="rect" href="$classC4DView.html#eb4ec12aada637e796110fe8172d12ff" title="Re&#45;Implementation of UI::ViewImpl::setCoordinates." alt="" coords="1288,1256,1461,1283">
-<area shape="rect" href="$classC4DView.html#b8007107aba8c57dd39063be93ca8f96" title="Re&#45;Implementation of UI::ViewImpl::setHyperfog." alt="" coords="1296,1067,1453,1093">
-<area shape="rect" href="$classC4DView.html#6dc432e565b97c2aa6f2273bbe4135c7" title="Double click event handler, reimplemented from QWidget." alt="" coords="1599,749,1828,776">
-<area shape="rect" href="$classC4DView.html#1b5e87b494b99e3705c64e924480f4ef" title="Mouse move event handler, reimplemented from QWidget." alt="" coords="1617,971,1809,997">
-<area shape="rect" href="$classC4DView.html#be8e58d21b0e1c513b10afa294b162b2" title="Paint event handler, reimplemented from QGLWidget." alt="" coords="771,965,917,992">
-<area shape="rect" href="$classC4DView.html#8a01e49be6af9cab84880a176b7c42ae" title="rotate in 3D 360 degrees" alt="" coords="980,800,1148,827">
-<area shape="rect" href="$classC4DView.html#504fd428909b35e3d80506a0235eac3e" title="Re&#45;Implementation of UI::ViewImpl::setBackground." alt="" coords="977,1003,1151,1029">
-<area shape="rect" href="$classC4DView.html#5a783209571030da60229d60dfef66f2" title="Re&#45;Implementation of UI::ViewImpl::setLighting." alt="" coords="989,952,1139,979">
-<area shape="rect" href="$classC4DView.html#e38186ceacf6c4e6b13de7bee6cd8bda" title="Called whenever an object or the parameters have changed." alt="" coords="981,445,1147,472">
-<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#9e5ab5cea257501da2f87c3f13140029" title="Mouse button release event handler." alt="" coords="1216,91,1533,117">
-<area shape="rect" href="$classC4DView.html#715dbd8c1e15f6d118853e1789d081e7" title="Err well.. just that!" alt="" coords="977,141,1151,168">
-<area shape="rect" href="$classC4DView.html#00949bc8cb7215be6ff50e947d6f576f" title="Mouse release event handler, reimplemented from QWidget." alt="" coords="1609,91,1817,117">
-<area shape="rect" href="$classC4DView.html#4c6fe19768e9e4e706e0489bc9ca6f96" title="Starts a random animation." alt="" coords="1277,141,1472,168">
+<area shape="rect" href="$classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="1305,101,1444,128">
+<area shape="rect" href="$group__UIHelpers.html#gb4150e26778debfb3de8214203578a41" title="C++ Template Implementation: CustomFunctionSlot." alt="" coords="1201,697,1548,724">
+<area shape="rect" href="$classC4DView_1_1CustomFunctionSlot.html#2eaaaf653f2d1bbfe3a2b416f33e4b08" title="Factory method to create a new customized Function of type R^2&#45;&gt;R^4." alt="" coords="1204,755,1545,781">
+<area shape="rect" href="$classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="1292,253,1457,280">
+<area shape="rect" href="$classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="1281,304,1468,331">
+<area shape="rect" href="$classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="1272,355,1477,381">
+<area shape="rect" href="$classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="1273,405,1476,432">
+<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen." alt="" coords="344,355,496,381">
+<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Execute the projection into three&#45;space (but don&#39;t draw it yet either)." alt="" coords="169,456,295,483">
+<area shape="rect" href="$classC4DView.html#8a51cc06ede29308384576f277a67e19" title="Set the transform for the displayed object (but don&#39;t draw it yet)." alt="" coords="991,1064,1137,1091">
+<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="761,937,927,964">
+<area shape="rect" href="$classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from..." alt="" coords="769,253,919,280">
+<area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Draw the transformed and projected function onto the screen." alt="" coords="999,507,1129,533">
+<area shape="rect" href="$classC4DView.html#b9561bdd967e89d314f7eda6de32b2bc" title="Wrapper for displaying OpenGL display lists." alt="" coords="545,304,711,331">
+<area shape="rect" href="$classC4DView.html#54cf3b6bbb8bf1eed47afc6da5fcebe2" title="C4DView::writeFrame" alt="" coords="552,355,704,381">
+<area shape="rect" href="$classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Re&#45;Implementation of UI::ViewImpl::setColors." alt="" coords="993,253,1135,280">
+<area shape="rect" href="$classC4DView.html#5ec81f7d64c4678cbe44bfad9d2acb65" title="Implementation of UI::View::animate." alt="" coords="1309,557,1440,584">
+<area shape="rect" href="$classC4DView.html#530cab21c7ae4ab78eeff14e7f89a879" title="Implementation of UI::View::applyTransform." alt="" coords="1285,507,1464,533">
+<area shape="rect" href="$classC4DView.html#60f45904ff9b227fdf426b5960fa4130" title="rotate in 4D 360 degrees" alt="" coords="1291,845,1459,872">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#681ee2ee24d1528a92b6ec0ff4dad9c2" title="Double click event handler." alt="" coords="1204,1064,1545,1091">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="1224,975,1525,1001">
+<area shape="rect" href="$classC4DView.html#eb4ec12aada637e796110fe8172d12ff" title="Re&#45;Implementation of UI::ViewImpl::setCoordinates." alt="" coords="1288,633,1461,660">
+<area shape="rect" href="$classC4DView.html#b8007107aba8c57dd39063be93ca8f96" title="Re&#45;Implementation of UI::ViewImpl::setHyperfog." alt="" coords="1296,456,1453,483">
+<area shape="rect" href="$classC4DView.html#6dc432e565b97c2aa6f2273bbe4135c7" title="Double click event handler, reimplemented from QWidget." alt="" coords="1599,1064,1828,1091">
+<area shape="rect" href="$classC4DView.html#1b5e87b494b99e3705c64e924480f4ef" title="Mouse move event handler, reimplemented from QWidget." alt="" coords="1617,975,1809,1001">
+<area shape="rect" href="$classC4DView.html#be8e58d21b0e1c513b10afa294b162b2" title="Paint event handler, reimplemented from QGLWidget." alt="" coords="771,355,917,381">
+<area shape="rect" href="$classC4DView.html#8a01e49be6af9cab84880a176b7c42ae" title="rotate in 3D 360 degrees" alt="" coords="980,608,1148,635">
+<area shape="rect" href="$classC4DView.html#504fd428909b35e3d80506a0235eac3e" title="Re&#45;Implementation of UI::ViewImpl::setBackground." alt="" coords="977,355,1151,381">
+<area shape="rect" href="$classC4DView.html#5a783209571030da60229d60dfef66f2" title="Re&#45;Implementation of UI::ViewImpl::setLighting." alt="" coords="989,304,1139,331">
+<area shape="rect" href="$classC4DView.html#e38186ceacf6c4e6b13de7bee6cd8bda" title="Called whenever an object or the parameters have changed." alt="" coords="981,405,1147,432">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#9e5ab5cea257501da2f87c3f13140029" title="Mouse button release event handler." alt="" coords="1216,1216,1533,1243">
+<area shape="rect" href="$classC4DView.html#715dbd8c1e15f6d118853e1789d081e7" title="Err well.. just that!" alt="" coords="977,1165,1151,1192">
+<area shape="rect" href="$classC4DView.html#00949bc8cb7215be6ff50e947d6f576f" title="Mouse release event handler, reimplemented from QWidget." alt="" coords="1609,1216,1817,1243">
+<area shape="rect" href="$classC4DView.html#4c6fe19768e9e4e706e0489bc9ca6f96" title="Starts a random animation." alt="" coords="1277,1165,1472,1192">

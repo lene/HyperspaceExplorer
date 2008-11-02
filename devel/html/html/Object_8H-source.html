@@ -77,10 +77,10 @@
 <a name="l00054"></a>00054 
 <a name="l00055"></a>00055     <span class="keyword">protected</span>:
 <a name="l00056"></a>00056         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classObject.html#abb0df155c83971e135cc13f9fc28860" title="Actually create the Object, this method is overridden in child classes.">Initialize</a>();
-<a name="l00058"></a><a class="code" href="classObject.html#89cc867189fc1262c9b696f9b489ea18">00058</a>         <span class="keywordtype">unsigned</span> <a class="code" href="classObject.html#89cc867189fc1262c9b696f9b489ea18" title="number of vertices the object possesses; must be set by implementations">NumVertices</a>;
-<a name="l00060"></a><a class="code" href="classObject.html#48f7312dce9f320206095c17eb235bd9">00060</a>         <span class="keywordtype">unsigned</span> <a class="code" href="classObject.html#48f7312dce9f320206095c17eb235bd9" title="number of surfaces the object possesses; must be set by implementations">NumSurfaces</a>;
+<a name="l00058"></a>00058 <span class="comment">//        unsigned NumVertices;</span>
+<a name="l00060"></a>00060 <span class="comment"></span><span class="comment">//        unsigned NumSurfaces;</span>
 <a name="l00061"></a>00061 
-<a name="l00062"></a><a class="code" href="classObject.html#97547b332fe3f47276e035dc770600df">00062</a>         <a class="code" href="classFunction.html#67b6c27b652c41b419602713cd4d72b7" title="one-dimensional array of Vector&amp;lt;4&amp;gt;, implemented as a std::vector">vec4vec1D</a> <a class="code" href="classObject.html#97547b332fe3f47276e035dc770600df" title="temporary storage for the function values">X</a>;        
+<a name="l00062"></a><a class="code" href="classObject.html#97547b332fe3f47276e035dc770600df">00062</a>         <a class="code" href="classFunction.html#67b6c27b652c41b419602713cd4d72b7" title="one-dimensional array of Vector&amp;lt;4&amp;gt;, implemented as a std::vector">vec4vec1D</a> <a class="code" href="classObject.html#97547b332fe3f47276e035dc770600df" title="number of vertices the object possesses; must be set by implementations">X</a>;        
 <a name="l00063"></a><a class="code" href="classObject.html#ef07f5a71e1d1bb0cd05b0386f438d6e">00063</a>         <a class="code" href="classFunction.html#67b6c27b652c41b419602713cd4d72b7" title="one-dimensional array of Vector&amp;lt;4&amp;gt;, implemented as a std::vector">vec4vec1D</a> <a class="code" href="classObject.html#ef07f5a71e1d1bb0cd05b0386f438d6e" title="temp. storage for transformed function values">Xtrans</a>;   
 <a name="l00064"></a><a class="code" href="classObject.html#c6f586998024548c7ac2cfdb5c2e4921">00064</a>         <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">vec3vec1D</a> <a class="code" href="classObject.html#c6f586998024548c7ac2cfdb5c2e4921" title="temporary storage for projected function values">Xscr</a>;     
 <a name="l00065"></a>00065 
@@ -284,7 +284,7 @@
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Sun Nov 2 01:48:10 2008 for HyperspaceExplorer 0.6.2
+                Generated on Sun Nov 2 20:50:51 2008 for HyperspaceExplorer 0.6.2
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.6
                 &nbsp;-&nbsp;

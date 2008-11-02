@@ -1,4 +1,4 @@
-<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; Vector\&lt; D \&gt; \&gt;\n||}" alt="" coords="67,437,245,517">
-<area shape="rect" href="libstdc++.tag$a00960.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;\n||}" alt="" coords="107,149,325,229">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; VecMath::Vector\&lt; D \&gt; \&gt;\n||}" alt="" coords="53,437,293,517">
+<area shape="rect" href="libstdc++.tag$a00960.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;\n||}" alt="" coords="141,149,360,229">
 <area shape="rect" href="libstdc++.tag$a01419.html" title="STL class." alt="" coords="5,293,179,373">
-<area shape="rect" href="libstdc++.tag$a00961.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;::_Vector_impl\n||}" alt="" coords="63,5,369,85">
+<area shape="rect" href="libstdc++.tag$a00961.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;::_Vector_impl\n||}" alt="" coords="97,5,404,85">

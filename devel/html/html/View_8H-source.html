@@ -78,88 +78,90 @@
 <a name="l00061"></a>00061             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#113e7d339a0052c32c4fffa57afc43a6" title="Set the currently displayed object to a hyper-menger sponge.">ObjectHypersponge</a>() = 0;
 <a name="l00063"></a>00063 
 <a name="l00065"></a>00065             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#e35c0da3b921471c0b77bbb332b68960" title="Set the currently displayed object to a hyper-sierpinski gasket.">ObjectGasket</a>() = 0;
-<a name="l00066"></a>00066 
-<a name="l00068"></a>00068 
-<a name="l00070"></a>00070             <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-<a name="l00071"></a><a class="code" href="classUI_1_1View.html#216e2edd7cc1c0fb30b7461ee07425cf">00071</a>                     <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#216e2edd7cc1c0fb30b7461ee07425cf" title="Makes setting a parameter from the outside possible.">setParameter</a>(<span class="keyword">const</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;parmName, <span class="keyword">const</span> T &amp;<a class="codeRef" doxygen="libstdc++.tag:" href="a01846.html#gdf513d2c47a98f2cd60f7dc86a343589">value</a>) {
-<a name="l00072"></a>00072                 <a class="code" href="classUI_1_1View.html#610e52cb34fcfda3d7d83b5b53802c99" title="Apply changes in parameters and display them.">ApplyChanges</a>(<a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a>(parmName, value));
-<a name="l00073"></a>00073             }
-<a name="l00074"></a>00074 
-<a name="l00076"></a>00076 
-<a name="l00080"></a>00080             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#444d2454dd97e95b51dedd2447e69e41" title="Apply the given Transformation to the currently displayed object.">applyTransform</a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">VecMath::Rotation&lt;4&gt;</a> &amp;R,
-<a name="l00081"></a>00081                                         <span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;T) = 0;
-<a name="l00082"></a>00082 
-<a name="l00084"></a>00084             <span class="keyword">virtual</span> <span class="keyword">const</span> <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">VecMath::Rotation&lt;4&gt;</a> &amp;<a class="code" href="classUI_1_1View.html#5e68b78c7583c1a30cd6e19bffc26845">getdR</a>() = 0;
+<a name="l00067"></a>00067 
+<a name="l00069"></a>00069             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#eb2c8eb061245fca636294a82a04e9da" title="Set the currently displayed object to a rotope.">ObjectRotope</a>() = 0;
+<a name="l00070"></a>00070 
+<a name="l00072"></a>00072 
+<a name="l00074"></a>00074             <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<a name="l00075"></a><a class="code" href="classUI_1_1View.html#216e2edd7cc1c0fb30b7461ee07425cf">00075</a>                     <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#216e2edd7cc1c0fb30b7461ee07425cf" title="Makes setting a parameter from the outside possible.">setParameter</a>(<span class="keyword">const</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;parmName, <span class="keyword">const</span> T &amp;<a class="codeRef" doxygen="libstdc++.tag:" href="a01846.html#gdf513d2c47a98f2cd60f7dc86a343589">value</a>) {
+<a name="l00076"></a>00076                 <a class="code" href="classUI_1_1View.html#610e52cb34fcfda3d7d83b5b53802c99" title="Apply changes in parameters and display them.">ApplyChanges</a>(<a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a>(parmName, value));
+<a name="l00077"></a>00077             }
+<a name="l00078"></a>00078 
+<a name="l00080"></a>00080 
+<a name="l00084"></a>00084             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#444d2454dd97e95b51dedd2447e69e41" title="Apply the given Transformation to the currently displayed object.">applyTransform</a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">VecMath::Rotation&lt;4&gt;</a> &amp;R,
+<a name="l00085"></a>00085                                         <span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;T) = 0;
 <a name="l00086"></a>00086 
-<a name="l00087"></a>00087             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#2759ba7675f31af6e6d7d10996bd12d2" title="Set the rotation step between frames for animations.">setdR</a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">VecMath::Rotation&lt;4&gt;</a> &amp;_dr) = 0;
-<a name="l00088"></a>00088 
-<a name="l00090"></a>00090             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#ceb49c055077f6ca39553d7298a77b76" title="Set the number of frames for an animation.">setNumFrames</a>(<span class="keywordtype">unsigned</span> _numFrames) = 0;
-<a name="l00092"></a>00092             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#5a97613e79552a0c9784c7c6fd946241" title="Set the number of times _numFrames are repeated.">setNumLoops</a>(<span class="keywordtype">unsigned</span> _numLoops) = 0;
-<a name="l00093"></a>00093 
-<a name="l00095"></a>00095             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#c3ed9ea47b162537f11866ce362cfbac" title="Start the animation with the currently active values.">animate</a>() = 0;
-<a name="l00096"></a>00096 
-<a name="l00098"></a>00098             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#e439f9ec3109bd734dab9aceb552221f" title="Set the width and height of the viewport.">setSize</a>(<span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>) = 0;
-<a name="l00099"></a>00099 
-<a name="l00101"></a>00101             <span class="keyword">virtual</span> <span class="keyword">const</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;<a class="code" href="classUI_1_1View.html#943765a7c1bf3e90f71547ef8cb7721d">getImgDir</a>() = 0;
-<a name="l00103"></a>00103             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#1441a46af84f3638e6ff69ddc965efd8" title="Set the directory where to store image files.">setImgDir</a>(<span class="keyword">const</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;) = 0;
-<a name="l00104"></a>00104 
-<a name="l00106"></a>00106             <span class="keyword">virtual</span> <span class="keyword">const</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;<a class="code" href="classUI_1_1View.html#8d15f9a8fabfe77711d7c272ba49aea6">getImgPrefix</a>() = 0;
-<a name="l00108"></a>00108             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#0864530a5c989d1cf0e8d38bac7868a3" title="Set the prefix of image file names, before the frame number and the extension.">setImgPrefix</a>(<span class="keyword">const</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;) = 0;
-<a name="l00109"></a>00109 
-<a name="l00111"></a>00111             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#41793c34df5fe332e3eef11cc7e7af58" title="Set the background color.">setBackground</a>(<span class="keyword">const</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> &amp;) = 0;
-<a name="l00113"></a>00113             <span class="keyword">virtual</span> <span class="keyword">const</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> &amp;<a class="code" href="classUI_1_1View.html#db1e9225dadf71c1de2a9303c4b86270">getBackground</a>() = 0;
-<a name="l00114"></a>00114 
-<a name="l00116"></a>00116             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#5a21b39549de1d9cd2e3e54701bfecec" title="Add a light source to the scene.">addLight</a>(<a class="code" href="classLight.html">Light</a> *) = 0;
-<a name="l00118"></a>00118             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#bfd04d3cbd396df76516c22579c438b8" title="Remove a light source from the scene.">removeLight</a>(<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector&lt;Light *&gt;::iterator</a>) = 0;
-<a name="l00120"></a>00120 
-<a name="l00121"></a>00121             <span class="keyword">virtual</span> <span class="keyword">const</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector&lt;Light *&gt;</a> &amp;<a class="code" href="classUI_1_1View.html#55b44401d1c32701e7761e03e2fd5552">getLights</a>() = 0;
-<a name="l00122"></a>00122 
-<a name="l00124"></a>00124             <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1View.html#f25dc77d07bf08f033a1ce80efc69b81">getColors</a>() <span class="keyword">const</span> = 0;
-<a name="l00126"></a>00126             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#eb0e8e3e949032128918105d69511648" title="Turn display of colors in rendering on or off.">setColors</a>(<span class="keywordtype">bool</span>) = 0;
-<a name="l00127"></a>00127 
-<a name="l00129"></a>00129             <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1View.html#d0a0dae802e350612fa9802879ba567f">getCoordinates</a>() <span class="keyword">const</span> = 0;
-<a name="l00131"></a>00131             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#7c8d7d7eb501eb893139495320a6ea8a" title="Turn display of 4D coordinate cross on or off.">setCoordinates</a>(<span class="keywordtype">bool</span>) = 0;
-<a name="l00132"></a>00132 
-<a name="l00134"></a>00134             <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1View.html#787f16b959e4758753c823f1f7b6997d">getFog</a>() <span class="keyword">const</span> = 0;
-<a name="l00136"></a>00136             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#920d5e463e93affe91744e1e2a29ee90" title="Turn depth cue on or off.">setFog</a>(<span class="keywordtype">bool</span>) = 0;
-<a name="l00137"></a>00137 
-<a name="l00139"></a>00139             <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1View.html#341c92ca06e0b1ed7143822a9d960181">getHyperfog</a>() <span class="keyword">const</span> = 0;
-<a name="l00141"></a>00141             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#535aa8964ad6f108e2a211303a716969" title="Turn depth cue in four dimensions on or off.">setHyperfog</a>(<span class="keywordtype">bool</span>) = 0;
-<a name="l00142"></a>00142 
-<a name="l00144"></a>00144             <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1View.html#72901b2606c3e1c7a054a97591c3e656">getLighting</a>() <span class="keyword">const</span> = 0;
-<a name="l00146"></a>00146             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#2b89fbf7b5bfd43c5f319d143c62f8b7" title="Turn lighting on or off.">setLighting</a>(<span class="keywordtype">bool</span>) = 0;
-<a name="l00147"></a>00147 
-<a name="l00149"></a>00149             <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1View.html#eb23d7befc10c2683e6e529af60d6e64">getShading</a>() <span class="keyword">const</span> = 0;
-<a name="l00151"></a>00151             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#952d3f243e8efc213e3d5b0ad73e7326" title="Turn gouraud shading on or off.">setShading</a>(<span class="keywordtype">bool</span>) = 0;
-<a name="l00152"></a>00152 
-<a name="l00154"></a>00154             <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1View.html#e04a1dd4e7ff25405db674eb6e14ae68">getSolid</a>() <span class="keyword">const</span> = 0;
+<a name="l00088"></a>00088             <span class="keyword">virtual</span> <span class="keyword">const</span> <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">VecMath::Rotation&lt;4&gt;</a> &amp;<a class="code" href="classUI_1_1View.html#5e68b78c7583c1a30cd6e19bffc26845">getdR</a>() = 0;
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#2759ba7675f31af6e6d7d10996bd12d2" title="Set the rotation step between frames for animations.">setdR</a>(<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">VecMath::Rotation&lt;4&gt;</a> &amp;_dr) = 0;
+<a name="l00092"></a>00092 
+<a name="l00094"></a>00094             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#ceb49c055077f6ca39553d7298a77b76" title="Set the number of frames for an animation.">setNumFrames</a>(<span class="keywordtype">unsigned</span> _numFrames) = 0;
+<a name="l00096"></a>00096             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#5a97613e79552a0c9784c7c6fd946241" title="Set the number of times _numFrames are repeated.">setNumLoops</a>(<span class="keywordtype">unsigned</span> _numLoops) = 0;
+<a name="l00097"></a>00097 
+<a name="l00099"></a>00099             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#c3ed9ea47b162537f11866ce362cfbac" title="Start the animation with the currently active values.">animate</a>() = 0;
+<a name="l00100"></a>00100 
+<a name="l00102"></a>00102             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#e439f9ec3109bd734dab9aceb552221f" title="Set the width and height of the viewport.">setSize</a>(<span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>) = 0;
+<a name="l00103"></a>00103 
+<a name="l00105"></a>00105             <span class="keyword">virtual</span> <span class="keyword">const</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;<a class="code" href="classUI_1_1View.html#943765a7c1bf3e90f71547ef8cb7721d">getImgDir</a>() = 0;
+<a name="l00107"></a>00107             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#1441a46af84f3638e6ff69ddc965efd8" title="Set the directory where to store image files.">setImgDir</a>(<span class="keyword">const</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;) = 0;
+<a name="l00108"></a>00108 
+<a name="l00110"></a>00110             <span class="keyword">virtual</span> <span class="keyword">const</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;<a class="code" href="classUI_1_1View.html#8d15f9a8fabfe77711d7c272ba49aea6">getImgPrefix</a>() = 0;
+<a name="l00112"></a>00112             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#0864530a5c989d1cf0e8d38bac7868a3" title="Set the prefix of image file names, before the frame number and the extension.">setImgPrefix</a>(<span class="keyword">const</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> &amp;) = 0;
+<a name="l00113"></a>00113 
+<a name="l00115"></a>00115             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#41793c34df5fe332e3eef11cc7e7af58" title="Set the background color.">setBackground</a>(<span class="keyword">const</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> &amp;) = 0;
+<a name="l00117"></a>00117             <span class="keyword">virtual</span> <span class="keyword">const</span> <a class="code" href="classColor.html" title="A class to represent a color value by its RGBA components.">Color</a> &amp;<a class="code" href="classUI_1_1View.html#db1e9225dadf71c1de2a9303c4b86270">getBackground</a>() = 0;
+<a name="l00118"></a>00118 
+<a name="l00120"></a>00120             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#5a21b39549de1d9cd2e3e54701bfecec" title="Add a light source to the scene.">addLight</a>(<a class="code" href="classLight.html">Light</a> *) = 0;
+<a name="l00122"></a>00122             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#bfd04d3cbd396df76516c22579c438b8" title="Remove a light source from the scene.">removeLight</a>(<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector&lt;Light *&gt;::iterator</a>) = 0;
+<a name="l00124"></a>00124 
+<a name="l00125"></a>00125             <span class="keyword">virtual</span> <span class="keyword">const</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector&lt;Light *&gt;</a> &amp;<a class="code" href="classUI_1_1View.html#55b44401d1c32701e7761e03e2fd5552">getLights</a>() = 0;
+<a name="l00126"></a>00126 
+<a name="l00128"></a>00128             <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1View.html#f25dc77d07bf08f033a1ce80efc69b81">getColors</a>() <span class="keyword">const</span> = 0;
+<a name="l00130"></a>00130             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#eb0e8e3e949032128918105d69511648" title="Turn display of colors in rendering on or off.">setColors</a>(<span class="keywordtype">bool</span>) = 0;
+<a name="l00131"></a>00131 
+<a name="l00133"></a>00133             <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1View.html#d0a0dae802e350612fa9802879ba567f">getCoordinates</a>() <span class="keyword">const</span> = 0;
+<a name="l00135"></a>00135             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#7c8d7d7eb501eb893139495320a6ea8a" title="Turn display of 4D coordinate cross on or off.">setCoordinates</a>(<span class="keywordtype">bool</span>) = 0;
+<a name="l00136"></a>00136 
+<a name="l00138"></a>00138             <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1View.html#787f16b959e4758753c823f1f7b6997d">getFog</a>() <span class="keyword">const</span> = 0;
+<a name="l00140"></a>00140             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#920d5e463e93affe91744e1e2a29ee90" title="Turn depth cue on or off.">setFog</a>(<span class="keywordtype">bool</span>) = 0;
+<a name="l00141"></a>00141 
+<a name="l00143"></a>00143             <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1View.html#341c92ca06e0b1ed7143822a9d960181">getHyperfog</a>() <span class="keyword">const</span> = 0;
+<a name="l00145"></a>00145             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#535aa8964ad6f108e2a211303a716969" title="Turn depth cue in four dimensions on or off.">setHyperfog</a>(<span class="keywordtype">bool</span>) = 0;
+<a name="l00146"></a>00146 
+<a name="l00148"></a>00148             <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1View.html#72901b2606c3e1c7a054a97591c3e656">getLighting</a>() <span class="keyword">const</span> = 0;
+<a name="l00150"></a>00150             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#2b89fbf7b5bfd43c5f319d143c62f8b7" title="Turn lighting on or off.">setLighting</a>(<span class="keywordtype">bool</span>) = 0;
+<a name="l00151"></a>00151 
+<a name="l00153"></a>00153             <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1View.html#eb23d7befc10c2683e6e529af60d6e64">getShading</a>() <span class="keyword">const</span> = 0;
+<a name="l00155"></a>00155             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#952d3f243e8efc213e3d5b0ad73e7326" title="Turn gouraud shading on or off.">setShading</a>(<span class="keywordtype">bool</span>) = 0;
 <a name="l00156"></a>00156 
-<a name="l00157"></a>00157             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#949ffc0134810c2936733a86b189aa3f" title="Turn wireframe display on or off.">setSolid</a>(<span class="keywordtype">bool</span> on) = 0;
-<a name="l00158"></a>00158 
-<a name="l00160"></a>00160             <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1View.html#7f915fad27490b1a8238bb26a2474c53">getTransparence</a>() <span class="keyword">const</span> = 0;
-<a name="l00162"></a>00162             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#3bcd31cedf7f168775d195674f073049" title="Turn transparence/line antialiasing on or off.">setTransparence</a>(<span class="keywordtype">bool</span>) = 0;
-<a name="l00163"></a>00163 
-<a name="l00164"></a>00164         <span class="keyword">protected</span>:
-<a name="l00166"></a>00166             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#610e52cb34fcfda3d7d83b5b53802c99" title="Apply changes in parameters and display them.">ApplyChanges</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;) = 0;
+<a name="l00158"></a>00158             <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1View.html#e04a1dd4e7ff25405db674eb6e14ae68">getSolid</a>() <span class="keyword">const</span> = 0;
+<a name="l00160"></a>00160 
+<a name="l00161"></a>00161             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#949ffc0134810c2936733a86b189aa3f" title="Turn wireframe display on or off.">setSolid</a>(<span class="keywordtype">bool</span> on) = 0;
+<a name="l00162"></a>00162 
+<a name="l00164"></a>00164             <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1View.html#7f915fad27490b1a8238bb26a2474c53">getTransparence</a>() <span class="keyword">const</span> = 0;
+<a name="l00166"></a>00166             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#3bcd31cedf7f168775d195674f073049" title="Turn transparence/line antialiasing on or off.">setTransparence</a>(<span class="keywordtype">bool</span>) = 0;
 <a name="l00167"></a>00167 
-<a name="l00169"></a>00169             <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> <a class="code" href="classUI_1_1View.html#d11dac3b569b4c79c20a4b15f3f269fe" title="Number of frames for animations.">getNumFrames</a>() = 0;
-<a name="l00171"></a>00171             <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> <a class="code" href="classUI_1_1View.html#53571fb4bd8354a810da6d44f337eb54" title="Number of loops to repeat an animation.">getNumLoops</a>() = 0;
-<a name="l00172"></a>00172 
-<a name="l00174"></a>00174             <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1View.html#c86dce95650de2a982e75685246bd8fe">getWriteImages</a>() = 0;
-<a name="l00176"></a>00176             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#f8740f364582cae91e9d7b2f3c9ccb0a" title="Turn saving images to file system on or off.">setWriteImages</a>(<span class="keywordtype">bool</span>) = 0;
-<a name="l00177"></a>00177 
-<a name="l00179"></a>00179             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#4919ab4549cfbe8fc0bbc4e3897b8172" title="Set a default background color.">setDefaultBackground</a>() = 0;
-<a name="l00180"></a>00180 
-<a name="l00181"></a>00181     };
-<a name="l00182"></a>00182 
-<a name="l00183"></a>00183 }
+<a name="l00168"></a>00168         <span class="keyword">protected</span>:
+<a name="l00170"></a>00170             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#610e52cb34fcfda3d7d83b5b53802c99" title="Apply changes in parameters and display them.">ApplyChanges</a>(<span class="keyword">const</span> <a class="code" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> &amp;) = 0;
+<a name="l00171"></a>00171 
+<a name="l00173"></a>00173             <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> <a class="code" href="classUI_1_1View.html#d11dac3b569b4c79c20a4b15f3f269fe" title="Number of frames for animations.">getNumFrames</a>() = 0;
+<a name="l00175"></a>00175             <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> <a class="code" href="classUI_1_1View.html#53571fb4bd8354a810da6d44f337eb54" title="Number of loops to repeat an animation.">getNumLoops</a>() = 0;
+<a name="l00176"></a>00176 
+<a name="l00178"></a>00178             <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classUI_1_1View.html#c86dce95650de2a982e75685246bd8fe">getWriteImages</a>() = 0;
+<a name="l00180"></a>00180             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#f8740f364582cae91e9d7b2f3c9ccb0a" title="Turn saving images to file system on or off.">setWriteImages</a>(<span class="keywordtype">bool</span>) = 0;
+<a name="l00181"></a>00181 
+<a name="l00183"></a>00183             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUI_1_1View.html#4919ab4549cfbe8fc0bbc4e3897b8172" title="Set a default background color.">setDefaultBackground</a>() = 0;
 <a name="l00184"></a>00184 
-<a name="l00185"></a>00185 <span class="preprocessor">#endif</span>
+<a name="l00185"></a>00185     };
+<a name="l00186"></a>00186 
+<a name="l00187"></a>00187 }
+<a name="l00188"></a>00188 
+<a name="l00189"></a>00189 <span class="preprocessor">#endif</span>
 </pre></div></div>
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Sun Nov 2 01:48:10 2008 for HyperspaceExplorer 0.6.2
+                Generated on Sun Nov 2 20:50:52 2008 for HyperspaceExplorer 0.6.2
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.6
                 &nbsp;-&nbsp;
