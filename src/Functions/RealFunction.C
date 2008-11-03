@@ -30,21 +30,24 @@ double RealBase::_min = -1.;
 double RealBase::_max =  1.;
 double RealBase::_d = 0.1;
 
+/** RealFunction c'tor given only a name: All grid values are set to defaults
+ *  \param _name a name for the function
+ */
 RealFunction::RealFunction(const QString &_name):
         RealBase(_name, _min, _max, _d, _min, _max, _d, _min, _max, _d,
                  ParameterMap()) { }
 
 /** RealFunction c'tor given a definition set in R³ (as parameter space)
- *  @param _name a name for the function
- *  @param _tmin minimal value in t
- *  @param _tmax maximal value in t
- *  @param _dt stepsize in t
- *  @param _umin minimal value in u
- *  @param _umax maximal value in u
- *  @param _du stepsize in u
- *  @param _vmin minimal value in v
- *  @param _vmax maximal value in v
- *  @param _dv stepsize in v
+ *  \param _name a name for the function
+ *  \param _tmin minimal value in t
+ *  \param _tmax maximal value in t
+ *  \param _dt stepsize in t
+ *  \param _umin minimal value in u
+ *  \param _umax maximal value in u
+ *  \param _du stepsize in u
+ *  \param _vmin minimal value in v
+ *  \param _vmax maximal value in v
+ *  \param _dv stepsize in v
  *  \param _parms function parameters                                         */
 RealFunction::RealFunction(const QString &_name,
                            double _tmin, double _tmax, double _dt,
@@ -125,15 +128,15 @@ void RealFunction::Initialize () {
 }
 
 /// Re-initialize a RealFunction if the definition set has changed
-/** @param _tmin minimal value in t
- *  @param _tmax maximal value in t
- *  @param _dt stepsize in t
- *  @param _umin minimal value in u
- *  @param _umax maximal value in u
- *  @param _du stepsize in u
- *  @param _vmin minimal value in v
- *  @param _vmax maximal value in v
- *  @param _dv stepsize in v                                              */
+/** \param _tmin minimal value in t
+ *  \param _tmax maximal value in t
+ *  \param _dt stepsize in t
+ *  \param _umin minimal value in u
+ *  \param _umax maximal value in u
+ *  \param _du stepsize in u
+ *  \param _vmin minimal value in v
+ *  \param _vmax maximal value in v
+ *  \param _dv stepsize in v                                              */
 void RealFunction::ReInit(double _tmin, double _tmax, double _dt,
                           double _umin, double _umax, double _du,
                           double _vmin, double _vmax, double _dv) {
@@ -155,8 +158,8 @@ void RealFunction::ReInit(double _tmin, double _tmax, double _dt,
 /** \todo As I look at it, i think this could be optimized by making the
  *        transformation matrices static and only canging the corresponding
  *        entries... but how to do this beautifully, i don't know
- *  @param R rotation
- *  @param T translation                                                      */
+ *  \param R rotation
+ *  \param T translation                                                      */
 void RealFunction::Transform (const VecMath::Rotation<4> &R,
                               const VecMath::Vector<4> &T) {
     Matrix<4> Rot(R);
@@ -168,9 +171,9 @@ void RealFunction::Transform (const VecMath::Rotation<4> &R,
 }
 
 /// Projects a RealFunction into three-space
-/** @param scr_w w coordinate of screen
- *  @param cam_w w coordinate of camera
- *  @param depthcue4d whether to use hyperfog/depth cue                       */
+/** \param scr_w w coordinate of screen
+ *  \param cam_w w coordinate of camera
+ *  \param depthcue4d whether to use hyperfog/depth cue                       */
 void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
     double ProjectionFactor;
     double Wmax = 0, Wmin = 0;
@@ -212,10 +215,10 @@ void RealFunction::Draw (void) {
 /** No further assumption is made than that f () is continuous.
  *
  *  This function is not yet used anywhere, but i like it.
- *  @param tt t value
- *  @param uu u value
- *  @param vv v value
- *  @return surface normal, normalized                                        */
+ *  \param tt t value
+ *  \param uu u value
+ *  \param vv v value
+ *  \return surface normal, normalized                                        */
 Vector<4> &RealFunction::normal (double tt, double uu, double vv) {
     static Vector<4> n;
 
@@ -228,15 +231,15 @@ Vector<4> &RealFunction::normal (double tt, double uu, double vv) {
 }
 
 /// Draw the current plane of the projected Function
-/** @param t current t value                                                  */
+/** \param t current t value                                                  */
 void RealFunction::DrawPlane (unsigned t){
     for (unsigned u = 0; u < getUsteps(); u++)
         DrawStrip (t, u);
 }
 
 /// Draw the current strip of the projected Function
-/** @param t current t value
- *  @param u current u value                                                  */
+/** \param t current t value
+ *  \param u current u value                                                  */
 void RealFunction::DrawStrip (unsigned t, unsigned u){
     for (unsigned v = 0; v < getVsteps(); v++)
         DrawCube (t, u, v);
@@ -246,9 +249,9 @@ using std::string;
 using std::setw;
 using std::setprecision;
 /// Draw the current cube or cell of the projected Function
-/** @param t current t value
- *  @param u current u value
- *  @param v current v value                                                  */
+/** \param t current t value
+ *  \param u current u value
+ *  \param v current v value                                                  */
 void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v) {
     static Vector<3> *V = new Vector<3> [8];
 
@@ -299,16 +302,16 @@ void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v) {
 
 /// Hypersphere c'tor given a definition set in R³ (as parameter space) and a
 /// radius
-/** @param _tmin minimal value in t
- *  @param _tmax maximal value in t
- *  @param _dt stepsize in t
- *  @param _umin minimal value in u
- *  @param _umax maximal value in u
- *  @param _du stepsize in u
- *  @param _vmin minimal value in v
- *  @param _vmax maximal value in v
- *  @param _dv stepsize in v
- *  @param _rad radius                                                        */
+/** \param _tmin minimal value in t
+ *  \param _tmax maximal value in t
+ *  \param _dt stepsize in t
+ *  \param _umin minimal value in u
+ *  \param _umax maximal value in u
+ *  \param _du stepsize in u
+ *  \param _vmin minimal value in v
+ *  \param _vmax maximal value in v
+ *  \param _dv stepsize in v
+ *  \param _rad radius                                                        */
 Hypersphere::Hypersphere(double _tmin, double _tmax, double _dt,
                          double _umin, double _umax, double _du,
                          double _vmin, double _vmax, double _dv,
@@ -332,10 +335,10 @@ void Hypersphere::SetParameters(const ParameterMap &parms) {
 }
 
 /// Hypersphere defining function
-/** @param tt		t value
- *  @param uu		u value
- *  @param vv		v value
- *  @return		value of defining function at point in question
+/** \param tt		t value
+ *  \param uu		u value
+ *  \param vv		v value
+ *  \return		value of defining function at point in question
  */
 Vector<4> &Hypersphere::f (double tt, double uu, double vv) {
   double sinphi = sin (pi/2*tt), cosphi = cos (pi/2*tt),	//  hypersphere
@@ -353,10 +356,10 @@ Vector<4> &Hypersphere::f (double tt, double uu, double vv) {
 /// Calculate normal to function at a given point in definition set
 /** Overridden because it's much easier to calculate in a Hypersphere than in
  *  a generic function
- *  @param tt t value
- *  @param uu u value
- *  @param vv v value
- *  @return surface normal, normalized                                        */
+ *  \param tt t value
+ *  \param uu u value
+ *  \param vv v value
+ *  \return surface normal, normalized                                        */
 Vector<4> &Hypersphere::normal (double tt, double uu, double vv) {
     static Vector<4> n;
 
@@ -372,18 +375,18 @@ Vector<4> &Hypersphere::normal (double tt, double uu, double vv) {
 
 /** Torus1 c'tor given a definition set in R³ (as parameter space) and three
  *  radii: major, minor and... what'sitcalled... subminor
- *  @param _tmin	minimal value in t
- *  @param _tmax	maximal value in t
- *  @param _dt		stepsize in t
- *  @param _umin	minimal value in u
- *  @param _umax	maximal value in u
- *  @param _du		stepsize in u
- *  @param _vmin	minimal value in v
- *  @param _vmax	maximal value in v
- *  @param _dv		stepsize in v
- *  @param _R		major radius
- *  @param _r		minor radius
- *  @param _rho		subminor radius */
+ *  \param _tmin	minimal value in t
+ *  \param _tmax	maximal value in t
+ *  \param _dt		stepsize in t
+ *  \param _umin	minimal value in u
+ *  \param _umax	maximal value in u
+ *  \param _du		stepsize in u
+ *  \param _vmin	minimal value in v
+ *  \param _vmax	maximal value in v
+ *  \param _dv		stepsize in v
+ *  \param _R		major radius
+ *  \param _r		minor radius
+ *  \param _rho		subminor radius */
 Torus1::Torus1 (double _tmin, double _tmax, double _dt,
 		double _umin, double _umax, double _du,
 		double _vmin, double _vmax, double _dv,
@@ -398,10 +401,10 @@ Torus1::Torus1 (double _tmin, double _tmax, double _dt,
 }
 
 /** Torus1 defining function
- *  @param tt t value
- *  @param uu u value
- *  @param vv v value
- *  @return value of defining function at point in question                   */
+ *  \param tt t value
+ *  \param uu u value
+ *  \param vv v value
+ *  \return value of defining function at point in question                   */
 Vector<4> &Torus1::f (double tt, double uu, double vv) {
     F[0] =  cos (pi*tt)*(R+cos (pi*uu)*(r+rho*cos (pi*vv)));
     F[1] =  sin (pi*tt)*(R+cos (pi*uu)*(r+rho*cos (pi*vv)));
@@ -417,17 +420,17 @@ Vector<4> &Torus1::f (double tt, double uu, double vv) {
 
 /** Torus2 c'tor given a definition set in R³ (as parameter space) and two
  *  radii - a major and a minor (defining a sphere)
- *  @param _tmin	minimal value in t
- *  @param _tmax	maximal value in t
- *  @param _dt		stepsize in t
- *  @param _umin	minimal value in u
- *  @param _umax	maximal value in u
- *  @param _du		stepsize in u
- *  @param _vmin	minimal value in v
- *  @param _vmax	maximal value in v
- *  @param _dv		stepsize in v
- *  @param _R		major radius
- *  @param _r		minor radius
+ *  \param _tmin	minimal value in t
+ *  \param _tmax	maximal value in t
+ *  \param _dt		stepsize in t
+ *  \param _umin	minimal value in u
+ *  \param _umax	maximal value in u
+ *  \param _du		stepsize in u
+ *  \param _vmin	minimal value in v
+ *  \param _vmax	maximal value in v
+ *  \param _dv		stepsize in v
+ *  \param _R		major radius
+ *  \param _r		minor radius
  */
 Torus2::Torus2 (double _tmin, double _tmax, double _dt,
                 double _umin, double _umax, double _du,
@@ -443,10 +446,10 @@ Torus2::Torus2 (double _tmin, double _tmax, double _dt,
 }
 
 /** Torus2 defining function
- *  @param tt		t value
- *  @param uu		u value
- *  @param vv		v value
- *  @return		value of defining function at point in question
+ *  \param tt		t value
+ *  \param uu		u value
+ *  \param vv		v value
+ *  \return		value of defining function at point in question
  */
 Vector<4> &Torus2::f (double tt, double uu, double vv) {
   F[0] =  cos (pi*tt)*(R+r*cos (pi*uu)*cos (pi*vv));
@@ -462,15 +465,15 @@ Vector<4> &Torus2::f (double tt, double uu, double vv) {
 
 
 /** Fr3r (example R³->R function) c'tor given a definition set in R³
- *  @param _tmin	minimal value in t
- *  @param _tmax	maximal value in t
- *  @param _dt		stepsize in t
- *  @param _umin	minimal value in u
- *  @param _umax	maximal value in u
- *  @param _du		stepsize in u
- *  @param _vmin	minimal value in v
- *  @param _vmax	maximal value in v
- *  @param _dv		stepsize in v
+ *  \param _tmin	minimal value in t
+ *  \param _tmax	maximal value in t
+ *  \param _dt		stepsize in t
+ *  \param _umin	minimal value in u
+ *  \param _umax	maximal value in u
+ *  \param _du		stepsize in u
+ *  \param _vmin	minimal value in v
+ *  \param _vmax	maximal value in v
+ *  \param _dv		stepsize in v
  */
 Fr3r::Fr3r (double _tmin, double _tmax, double _dt,
             double _umin, double _umax, double _du,
@@ -481,10 +484,10 @@ Fr3r::Fr3r (double _tmin, double _tmax, double _dt,
 }
 
 /** Fr3r defining function
- *  @param tt		t value
- *  @param uu		u value
- *  @param vv		v value
- *  @return		value of defining function at point in question
+ *  \param tt		t value
+ *  \param uu		u value
+ *  \param vv		v value
+ *  \return		value of defining function at point in question
  */
 Vector<4> &Fr3r::f (double tt, double uu, double vv) {
   F[0] = tt;
@@ -504,17 +507,17 @@ Vector<4> &Fr3r::f (double tt, double uu, double vv) {
 
 /** GravitationPotential c'tor given a definition set in R³ (as parameter space),
  *  a mass and a radius of a spherical mass
- *  @param _tmin	minimal value in t
- *  @param _tmax	maximal value in t
- *  @param _dt		stepsize in t
- *  @param _umin	minimal value in u
- *  @param _umax	maximal value in u
- *  @param _du		stepsize in u
- *  @param _vmin	minimal value in v
- *  @param _vmax	maximal value in v
- *  @param _dv		stepsize in v
- *  @param _M		Mass
- *  @param _R		radius
+ *  \param _tmin	minimal value in t
+ *  \param _tmax	maximal value in t
+ *  \param _dt		stepsize in t
+ *  \param _umin	minimal value in u
+ *  \param _umax	maximal value in u
+ *  \param _du		stepsize in u
+ *  \param _vmin	minimal value in v
+ *  \param _vmax	maximal value in v
+ *  \param _dv		stepsize in v
+ *  \param _M		Mass
+ *  \param _R		radius
  */
 GravitationPotential::GravitationPotential (double xmin, double xmax, double dx,
                                             double ymin, double ymax, double dy,
@@ -529,10 +532,10 @@ GravitationPotential::GravitationPotential (double xmin, double xmax, double dx,
 }
 
 /** GravitationPotential defining function
- *  @param tt   t value
- *  @param uu   u value
- *  @param vv   v value
- *  @return     value of defining function at point in question
+ *  \param tt   t value
+ *  \param uu   u value
+ *  \param vv   v value
+ *  \return     value of defining function at point in question
  */
 Vector<4> &GravitationPotential::f (double tt, double uu, double vv) {
   const double G = 1;		//  arbitrary value for gravitation constant
@@ -553,15 +556,15 @@ Vector<4> &GravitationPotential::f (double tt, double uu, double vv) {
 
 
 /** Fr3rSin c'tor given a definition set in R³ (as parameter space)
- *  @param _tmin	minimal value in t
- *  @param _tmax	maximal value in t
- *  @param _dt		stepsize in t
- *  @param _umin	minimal value in u
- *  @param _umax	maximal value in u
- *  @param _du		stepsize in u
- *  @param _vmin	minimal value in v
- *  @param _vmax	maximal value in v
- *  @param _dv		stepsize in v
+ *  \param _tmin	minimal value in t
+ *  \param _tmax	maximal value in t
+ *  \param _dt		stepsize in t
+ *  \param _umin	minimal value in u
+ *  \param _umax	maximal value in u
+ *  \param _du		stepsize in u
+ *  \param _vmin	minimal value in v
+ *  \param _vmax	maximal value in v
+ *  \param _dv		stepsize in v
  */
 Fr3rSin::Fr3rSin (double _tmin, double _tmax, double _dt,
 		  double _umin, double _umax, double _du,
@@ -572,10 +575,10 @@ Fr3rSin::Fr3rSin (double _tmin, double _tmax, double _dt,
 }
 
 /** Fr3rSin defining function
- *  @param tt		t value
- *  @param uu		u value
- *  @param vv		v value
- *  @return		sin (pi*(x²+y²+z²))
+ *  \param tt		t value
+ *  \param uu		u value
+ *  \param vv		v value
+ *  \return		sin (pi*(x²+y²+z²))
  */
 Vector<4> &Fr3rSin::f (double tt, double uu, double vv) {
   F[0] = tt;
@@ -591,15 +594,15 @@ Vector<4> &Fr3rSin::f (double tt, double uu, double vv) {
 
 
 /** Fr3rExp c'tor given a definition set in R³ (as parameter space)
- *  @param _tmin	minimal value in t
- *  @param _tmax	maximal value in t
- *  @param _dt		stepsize in t
- *  @param _umin	minimal value in u
- *  @param _umax	maximal value in u
- *  @param _du		stepsize in u
- *  @param _vmin	minimal value in v
- *  @param _vmax	maximal value in v
- *  @param _dv		stepsize in v
+ *  \param _tmin	minimal value in t
+ *  \param _tmax	maximal value in t
+ *  \param _dt		stepsize in t
+ *  \param _umin	minimal value in u
+ *  \param _umax	maximal value in u
+ *  \param _du		stepsize in u
+ *  \param _vmin	minimal value in v
+ *  \param _vmax	maximal value in v
+ *  \param _dv		stepsize in v
  */
 Fr3rExp::Fr3rExp (double _tmin, double _tmax, double _dt,
 		  double _umin, double _umax, double _du,
@@ -610,10 +613,10 @@ Fr3rExp::Fr3rExp (double _tmin, double _tmax, double _dt,
 }
 
 /** Fr3rExp defining function
- *  @param tt		t value
- *  @param uu		u value
- *  @param vv		v value
- *  @return		exp (x²+y²+z²)
+ *  \param tt		t value
+ *  \param uu		u value
+ *  \param vv		v value
+ *  \return		exp (x²+y²+z²)
  */
 Vector<4> &Fr3rExp::f (double tt, double uu, double vv) {
   F[0] = tt;
@@ -629,15 +632,15 @@ Vector<4> &Fr3rExp::f (double tt, double uu, double vv) {
 
 /** Polar (example polar function) c'tor given a definition set in [t, u, v]
  *  as parameter space
- *  @param _tmin	minimal value in t
- *  @param _tmax	maximal value in t
- *  @param _dt		stepsize in t
- *  @param _umin	minimal value in u
- *  @param _umax	maximal value in u
- *  @param _du		stepsize in u
- *  @param _vmin	minimal value in v
- *  @param _vmax	maximal value in v
- *  @param _dv		stepsize in v
+ *  \param _tmin	minimal value in t
+ *  \param _tmax	maximal value in t
+ *  \param _dt		stepsize in t
+ *  \param _umin	minimal value in u
+ *  \param _umax	maximal value in u
+ *  \param _du		stepsize in u
+ *  \param _vmin	minimal value in v
+ *  \param _vmax	maximal value in v
+ *  \param _dv		stepsize in v
  */
 Polar::Polar (double _tmin, double _tmax, double _dt,
 	      double _umin, double _umax, double _du,
@@ -648,10 +651,10 @@ Polar::Polar (double _tmin, double _tmax, double _dt,
 }
 
 /** Polar defining function
- *  @param tt		t value
- *  @param uu		u value
- *  @param vv		v value
- *  @return		value of defining function at point in question
+ *  \param tt		t value
+ *  \param uu		u value
+ *  \param vv		v value
+ *  \return		value of defining function at point in question
  */
 Vector<4> &Polar::f (double tt, double uu, double vv) {
   double sinphi = sin (pi*tt), cosphi = cos (pi*tt),
@@ -673,16 +676,16 @@ Vector<4> &Polar::f (double tt, double uu, double vv) {
 
 /** PolarSin c'tor given a definition set in R³ (as parameter space) and a
  *  phase
- *  @param _tmin	minimal value in t
- *  @param _tmax	maximal value in t
- *  @param _dt		stepsize in t
- *  @param _umin	minimal value in u
- *  @param _umax	maximal value in u
- *  @param _du		stepsize in u
- *  @param _vmin	minimal value in v
- *  @param _vmax	maximal value in v
- *  @param _dv		stepsize in v
- *  @param _phase	phase
+ *  \param _tmin	minimal value in t
+ *  \param _tmax	maximal value in t
+ *  \param _dt		stepsize in t
+ *  \param _umin	minimal value in u
+ *  \param _umax	maximal value in u
+ *  \param _du		stepsize in u
+ *  \param _vmin	minimal value in v
+ *  \param _vmax	maximal value in v
+ *  \param _dv		stepsize in v
+ *  \param _phase	phase
  */
 PolarSin::PolarSin (double _tmin, double _tmax, double _dt,
                     double _umin, double _umax, double _du,
@@ -695,10 +698,10 @@ PolarSin::PolarSin (double _tmin, double _tmax, double _dt,
 }
 
 /** PolarSin defining function
- *  @param tt		t value
- *  @param uu		u value
- *  @param vv		v value
- *  @return		r = 1/2 + |sin (pi*phase*theta*phi*psi)|
+ *  \param tt		t value
+ *  \param uu		u value
+ *  \param vv		v value
+ *  \return		r = 1/2 + |sin (pi*phase*theta*phi*psi)|
  */
 Vector<4> &PolarSin::f (double tt, double uu, double vv) {
   double sinphi = sin (pi*tt), cosphi = cos (pi*tt),
@@ -719,15 +722,15 @@ Vector<4> &PolarSin::f (double tt, double uu, double vv) {
 
 
 /** PolarSin2 c'tor given a definition set in R³ (as parameter space)
- *  @param _tmin	minimal value in t
- *  @param _tmax	maximal value in t
- *  @param _dt		stepsize in t
- *  @param _umin	minimal value in u
- *  @param _umax	maximal value in u
- *  @param _du		stepsize in u
- *  @param _vmin	minimal value in v
- *  @param _vmax	maximal value in v
- *  @param _dv		stepsize in v
+ *  \param _tmin	minimal value in t
+ *  \param _tmax	maximal value in t
+ *  \param _dt		stepsize in t
+ *  \param _umin	minimal value in u
+ *  \param _umax	maximal value in u
+ *  \param _du		stepsize in u
+ *  \param _vmin	minimal value in v
+ *  \param _vmax	maximal value in v
+ *  \param _dv		stepsize in v
  */
 PolarSin2::PolarSin2 (double _tmin, double _tmax, double _dt,
                       double _umin, double _umax, double _du,
@@ -738,10 +741,10 @@ PolarSin2::PolarSin2 (double _tmin, double _tmax, double _dt,
 }
 
 /** PolarSin2 defining function
- *  @param tt		t value
- *  @param uu		u value
- *  @param vv		v value
- *  @return		r = sin (pi/3*(phi+theta+psi))
+ *  \param tt		t value
+ *  \param uu		u value
+ *  \param vv		v value
+ *  \return		r = sin (pi/3*(phi+theta+psi))
  */
 Vector<4> &PolarSin2::f (double tt, double uu, double vv) {
   double sinphi = sin (pi*tt), cosphi = cos (pi*tt),
@@ -763,16 +766,16 @@ Vector<4> &PolarSin2::f (double tt, double uu, double vv) {
 
 /** PolarR c'tor given a definition set in R³ (as parameter space) and a
  *  phase
- *  @param _tmin	minimal value in t
- *  @param _tmax	maximal value in t
- *  @param _dt		stepsize in t
- *  @param _umin	minimal value in u
- *  @param _umax	maximal value in u
- *  @param _du		stepsize in u
- *  @param _vmin	minimal value in v
- *  @param _vmax	maximal value in v
- *  @param _dv		stepsize in v
- *  @param _phase	phase
+ *  \param _tmin	minimal value in t
+ *  \param _tmax	maximal value in t
+ *  \param _dt		stepsize in t
+ *  \param _umin	minimal value in u
+ *  \param _umax	maximal value in u
+ *  \param _du		stepsize in u
+ *  \param _vmin	minimal value in v
+ *  \param _vmax	maximal value in v
+ *  \param _dv		stepsize in v
+ *  \param _phase	phase
  */
 PolarR::PolarR (double _tmin, double _tmax, double _dt,
 		double _umin, double _umax, double _du,
@@ -785,10 +788,10 @@ PolarR::PolarR (double _tmin, double _tmax, double _dt,
 }
 
 /** PolarR defining function
- *  @param tt		t value
- *  @param uu		u value
- *  @param vv		v value
- *  @return		r = sqrt (phi²+theta²+psi²)
+ *  \param tt		t value
+ *  \param uu		u value
+ *  \param vv		v value
+ *  \return		r = sqrt (phi²+theta²+psi²)
  */
 Vector<4> &PolarR::f (double tt, double uu, double vv) {
   double sinphi = sin (pi*tt), cosphi = cos (pi*tt),

@@ -108,6 +108,12 @@ void Object::Draw () {
     glEnd ();
 }
 
+/** Reinitialize an Object. This function is called when the initialization is
+ *  done outside the constructor.
+ *
+ *  Currently it does not differ from Initialize(). In fact, it simply calls
+ *  Initialize().
+ */
 void Object::ReInit (double, double, double,
                      double, double, double,
                      double, double, double) {

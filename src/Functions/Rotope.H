@@ -3,7 +3,8 @@
 
 #include <Object.H>
 
-/** \defgroup RotopeGroup
+/** \defgroup RotopeGroup N-dimensional
+ * <a href="http://teamikaria.com/wiki/Rotope">Rotope</a>s.
  *  \ingroup ObjectGroup
  */
 
@@ -74,6 +75,7 @@ class Rotope : public Object {
         /** \return The name of the function in cleartext                     */
         virtual QString getFunctionName() const { return "Rotope"; }
     private:
+        /// Actual rotope object to which all functions are delegated
         vertex_data<4> *_rotope;
 };
 

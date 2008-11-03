@@ -61,18 +61,16 @@ namespace Script {
             while(!infile.eof()) {
                 infile.getline(buffer, 4095, '\n');
                 if (!(strip_comments(buffer).empty()))
-                    lines.push_back(strip_comments(buffer));
+                    _lines.push_back(strip_comments(buffer));
             }
         }
     }
-
-    Parser::~Parser() { }
 
     /// execute the commands for the current command file
     /** Executes the statements in the file one after the other
      *  @return success                                                       */
     bool Parser::execute() {
-        for(vector<string>::iterator i = lines.begin(); i != lines.end(); i++) {
+        for(vector<string>::iterator i = _lines.begin(); i != _lines.end(); ++i) {
             StatementFactory::createStatement(this, *i)->execute();
         }
         return true;

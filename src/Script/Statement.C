@@ -21,17 +21,17 @@ namespace Script {
 
     BoolStatement::BoolStatement(const Parser *p, const std::string &_arg):
             Statement(p, _arg) {
-        m_bool = (_arg == "1" || _arg == "on" || _arg == "true");
+        _bool = (_arg == "1" || _arg == "on" || _arg == "true");
     }
 
     SizeStmt::SizeStmt(const Parser *p, const std::string &_arg):
             Statement(p, _arg) {
-        width = Globals::Instance().atou(leading(arg(), " "));
-        height = Globals::Instance().atou(trailing(arg(), " "));
+        _width = Globals::Instance().atou(leading(arg(), " "));
+        _height = Globals::Instance().atou(trailing(arg(), " "));
     }
 
     bool SizeStmt::execute() {
-        parser()->getView()->setSize(width, height);
+        parser()->getView()->setSize(_width, _height);
         return true;
     }
 
@@ -70,14 +70,14 @@ namespace Script {
     XformStmt::XformStmt(const Parser *p, const std::string &_arg):
             Statement(p, _arg) {
         std::istringstream s(arg());
-        s >> m_r;
+        s >> _r;
     }
 
     bool XformStmt::execute() {
         parser()->getView()->applyTransform(r(), VecMath::Vector<4>());
         return true;
     }
-    
+
     bool RotStmt::execute() {
         throw BadStatementException(arg());
         return true;
@@ -95,21 +95,21 @@ namespace Script {
 
     FramesStmt::FramesStmt(const Parser *p, const std::string &_arg):
             Statement(p, _arg) {
-        frames = Globals::Instance().atou(trailing(arg(), " "));
+        _frames = Globals::Instance().atou(trailing(arg(), " "));
     }
 
     bool FramesStmt::execute() {
-        parser()->getView()->setNumFrames(frames);
+        parser()->getView()->setNumFrames(_frames);
         return true;
     }
 
     LoopStmt::LoopStmt(const Parser *p, const std::string &_arg):
             Statement(p, _arg) {
-        loops = Globals::Instance().atou(trailing(arg(), " "));
+        _loops = Globals::Instance().atou(trailing(arg(), " "));
     }
 
     bool LoopStmt::execute() {
-        parser()->getView()->setNumLoops(loops);
+        parser()->getView()->setNumLoops(_loops);
         return true;
     }
 
@@ -157,11 +157,11 @@ namespace Script {
 
     SleepStmt::SleepStmt(const Parser *p, const std::string &_arg):
             Statement(p, _arg) {
-        msec = Globals::Instance().atou(trailing(arg(), " "));
+        _msec = Globals::Instance().atou(trailing(arg(), " "));
     }
 
     bool SleepStmt::execute() {
-        usleep(msec*1000);
+        usleep(_msec*1000);
         return true;
     }
 
@@ -174,7 +174,7 @@ namespace Script {
         parser()->getView()->setImgPrefix(arg());
         return true;
     }
-    
+
     Statement *StatementFactory::createStatement(const Parser *p,
                                                  const std::string &line) {
         if (starts_with(line, "set_size")) {

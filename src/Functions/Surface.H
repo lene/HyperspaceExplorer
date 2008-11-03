@@ -15,8 +15,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 /// \em SurfaceBase provides a base class for functions which take two parameters
-/** The \em SurfaceBase interface provides abstract members for the evaluation of
- *  the function values on a two-dimensional grid.
+/** The \em SurfaceBase interface provides abstract members for the evaluation
+ * of the function values on a two-dimensional grid.
  *
  *  abstract member:
  *      \li Vector &f (double, double);
@@ -88,9 +88,9 @@ class SurfaceBase: public Function {
             return f(u,v);
         }
 
-    static double _min,
-                  _max,
-                  _d;
+    static double _min, ///< Default value for lower grid boundary
+                  _max, ///< Default value for upper grid boundary
+                  _d;   ///< Default value for step size
 
     private:
         double tmin, ///< min. value of the first parameter, here called t

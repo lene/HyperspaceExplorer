@@ -25,27 +25,21 @@ namespace Script {
      *  \ingroup ScriptingGroup                                               */
     class Parser {
 
-        class BadCommandException: public std::runtime_error {
-            public:
-                BadCommandException(const std::string &what):
-                    std::runtime_error(what) { }
-        };
-
         public:
             /// open a parser object for a given filename
             Parser(const std::string &file);
-            ~Parser();
 
             /// Execute the commands described in the rc-file
             bool execute();
 
-            /// define the view we operate on
-            void setView(UI::View *_view) { view = _view; }
-            UI::View *getView() const { return view; }
+            /// Define the view we operate on
+            void setView(UI::View *view) { _view = view; }
+            /// \return The view we operate on
+            UI::View *getView() const { return _view; }
 
         private:
-            std::vector<std::string> lines;
-            UI::View *view;
+            std::vector<std::string> _lines;    ///< Lines of the script
+            UI::View *_view;     ///< The View on which we're operating
     };
 
 

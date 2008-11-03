@@ -144,8 +144,10 @@ class xyz2RGBColorManager: public ColorManager {
 /** \ingroup Coloring                                                         */
 class monochromeColorManager: public ColorManager {
     public:
+        /// Given a Function to manage, construct a monochromeColorManager
+        /** \param _f Function to manage    */
         monochromeColorManager(Function *_f): ColorManager(_f) { }
-        ~monochromeColorManager() { }
+        virtual ~monochromeColorManager() { }
         virtual void calibrateColor(const VecMath::Vector<4> &,
                                     const Color & = Color()) { }
         virtual Color getColor(const VecMath::Vector<4> &) {

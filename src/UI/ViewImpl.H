@@ -131,8 +131,12 @@ namespace UI {
             /// Set a default background color
             virtual void setDefaultBackground();
 
+            /// \param _t New translation state
             virtual void setT(const VecMath::Vector<4> &_t) { _T = _t; }
+            /// \return Current translation state
             virtual const VecMath::Vector<4> &T() { return _T; }
+            /// Add a Translation to the current translation state
+            /** \param _dT Delta t */
             virtual void addT(const VecMath::Vector<4> &_dT) { _T += _dT; }
 
             /// \param _r New rotation state

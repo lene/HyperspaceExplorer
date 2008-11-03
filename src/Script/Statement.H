@@ -14,8 +14,9 @@ namespace Script {
     /** \ingroup ScriptingGroup                                               */
     class BadStatementException: public std::runtime_error {
         public:
-                BadStatementException(const std::string &what):
-                    std::runtime_error(what) { }
+            /// Create a BadStatementException
+            BadStatementException(const std::string &what):
+                std::runtime_error(what) { }
     };
 
     /// \defgroup StatementGroup Statements possible in a script
@@ -28,31 +29,42 @@ namespace Script {
     class Statement {
 
         public:
-            Statement(const Parser *_parser, const std::string &_arg):
-                m_arg(_arg), m_parser(_parser) { }
+            /** \param parser The context in which the Statement is executed
+             *  \param arg The argument supplied to the Statement
+             */
+            Statement(const Parser *parser, const std::string &arg):
+                _arg(arg), _parser(parser) { }
+            /// Executes the statement in the current context
             virtual bool execute();
 
         protected:
-            const std::string &arg() { return m_arg; }
-            const Parser *parser() { return m_parser; }
+            /// \return Argument(s) following the statement
+            const std::string &arg() { return _arg; }
+            /// \return The current context
+            const Parser *parser() { return _parser; }
 
         private:
-            std::string m_arg;
-            const Parser *m_parser;
+            std::string _arg;       ///< Argument(s) following the statement
+            const Parser *_parser;  ///< The current context
     };
 
     /// Statement with a single boolean parameter
     /** \ingroup StatementGroup                                               */
     class BoolStatement: public Statement {
         public:
+            /** \param p The context in which the Statement is executed
+             *  \param _arg The argument supplied to the Statement
+             */
             BoolStatement (const Parser *p, const std::string &_arg);
+            /// Executes the statement in the current context
             virtual bool execute() = 0;
 
         protected:
-            bool getValue() { return m_bool; }
+            /// \return The current state
+            bool getValue() { return _bool; }
 
         private:
-            bool m_bool;
+            bool _bool;         ///< The current state
     };
 
     /// "size <width> <height>"
@@ -60,11 +72,15 @@ namespace Script {
      *  \ingroup StatementGroup                 */
     class SizeStmt: public Statement {
         public:
+            /** \param p The context in which the Statement is executed
+             *  \param _arg The argument supplied to the Statement
+             */
             SizeStmt(const Parser *p, const std::string &_arg);
+            /// Executes the statement in the current context
             virtual bool execute();
         private:
-            unsigned width;
-            unsigned height;
+            unsigned _width;    ///< Width of the viewport
+            unsigned _height;   ///< Height of the viewport
     };
 
     /// "object <object_name>"
@@ -72,8 +88,12 @@ namespace Script {
      *  \ingroup StatementGroup                                 */
     class ObjectStmt: public Statement {
         public:
+            /** \param p The context in which the Statement is executed
+             *  \param _arg The argument supplied to the Statement
+             */
             ObjectStmt(const Parser *p, const std::string &_arg):
                     Statement(p, _arg) { }
+            /// Executes the statement in the current context
             virtual bool execute();
     };
 
@@ -82,7 +102,12 @@ namespace Script {
      *  \ingroup StatementGroup                                               */
     template <typename T = unsigned> class ParmStmt: public Statement {
         public:
-            ParmStmt(const Parser *p, const std::string &_arg): Statement(p, _arg) { }
+            /** \param p The context in which the Statement is executed
+             *  \param _arg The argument supplied to the Statement
+             */
+            ParmStmt(const Parser *p, const std::string &_arg):
+                Statement(p, _arg) { }
+            /// Executes the statement in the current context
             virtual bool execute();
     };
 
@@ -92,14 +117,19 @@ namespace Script {
      *  \ingroup StatementGroup                                               */
     class XformStmt: public Statement {
         public:
+            /** \param p The context in which the Statement is executed
+             *  \param _arg The argument supplied to the Statement
+             */
             XformStmt(const Parser *p, const std::string &_arg);
+            /// Executes the statement in the current context
             virtual bool execute();
 
         protected:
-            VecMath::Rotation<4> &r() { return m_r; }
+            /// \return The rotation state of the object
+            VecMath::Rotation<4> &r() { return _r; }
 
         private:
-            VecMath::Rotation<4> m_r;
+            VecMath::Rotation<4> _r;    ///< The rotation state of the object
     };
 
     /// "rotation <rotation>"
@@ -108,7 +138,12 @@ namespace Script {
      *  \ingroup StatementGroup                                               */
     class RotStmt: public XformStmt {
         public:
-            RotStmt(const Parser *p, const std::string &_arg): XformStmt(p, _arg) { }
+            /** \param p The context in which the Statement is executed
+             *  \param _arg The argument supplied to the Statement
+             */
+            RotStmt(const Parser *p, const std::string &_arg):
+                XformStmt(p, _arg) { }
+            /// Executes the statement in the current context
             virtual bool execute();
     };
 
@@ -118,7 +153,12 @@ namespace Script {
      *  \ingroup StatementGroup                                               */
     class DeltaStmt: public XformStmt {
         public:
-            DeltaStmt(const Parser *p, const std::string &_arg): XformStmt(p, _arg) { }
+            /** \param p The context in which the Statement is executed
+             *  \param _arg The argument supplied to the Statement
+             */
+            DeltaStmt(const Parser *p, const std::string &_arg):
+                XformStmt(p, _arg) { }
+            /// Executes the statement in the current context
             virtual bool execute();
     };
 
@@ -128,7 +168,12 @@ namespace Script {
      *  \ingroup StatementGroup                                               */
     class RotDeltaStmt: public DeltaStmt {
         public:
-            RotDeltaStmt(const Parser *p, const std::string &_arg): DeltaStmt(p, _arg) { }
+            /** \param p The context in which the Statement is executed
+             *  \param _arg The argument supplied to the Statement
+             */
+            RotDeltaStmt(const Parser *p, const std::string &_arg):
+                DeltaStmt(p, _arg) { }
+            /// Executes the statement in the current context
             virtual bool execute();
     };
 
@@ -137,10 +182,14 @@ namespace Script {
      *  \ingroup StatementGroup                                               */
     class FramesStmt: public Statement {
         public:
+            /** \param p The context in which the Statement is executed
+             *  \param _arg The argument supplied to the Statement
+             */
             FramesStmt(const Parser *p, const std::string &_arg);
+            /// Executes the statement in the current context
             virtual bool execute();
         private:
-            unsigned frames;
+            unsigned _frames;   ///< Number of frames to display
     };
 
     /// "loop <num_loops>"
@@ -148,10 +197,14 @@ namespace Script {
      *  \ingroup StatementGroup                                               */
     class LoopStmt: public Statement {
         public:
+            /** \param p The context in which the Statement is executed
+             *  \param _arg The argument supplied to the Statement
+             */
             LoopStmt(const Parser *p, const std::string &_arg);
+            /// Executes the statement in the current context
             virtual bool execute();
         private:
-            unsigned loops;
+            unsigned _loops;    ///< Number of times to loop
     };
 
     /// "color <bool>"
@@ -159,7 +212,12 @@ namespace Script {
      *  \ingroup StatementGroup                                               */
     class ColorStmt: public BoolStatement {
         public:
-            ColorStmt(const Parser *p, const std::string &_arg): BoolStatement(p, _arg) { }
+            /** \param p The context in which the Statement is executed
+             *  \param _arg The argument supplied to the Statement
+             */
+            ColorStmt(const Parser *p, const std::string &_arg):
+                BoolStatement(p, _arg) { }
+            /// Executes the statement in the current context
             virtual bool execute();
     };
 
@@ -168,7 +226,12 @@ namespace Script {
      *  \ingroup StatementGroup                                               */
     class ShadingStmt: public BoolStatement {
         public:
-            ShadingStmt(const Parser *p, const std::string &_arg): BoolStatement(p, _arg) { }
+            /** \param p The context in which the Statement is executed
+             *  \param _arg The argument supplied to the Statement
+             */
+            ShadingStmt(const Parser *p, const std::string &_arg):
+                BoolStatement(p, _arg) { }
+            /// Executes the statement in the current context
             virtual bool execute();
     };
 
@@ -177,7 +240,12 @@ namespace Script {
      *  \ingroup StatementGroup                                               */
     class LightStmt: public BoolStatement {
         public:
-            LightStmt(const Parser *p, const std::string &_arg): BoolStatement(p, _arg) { }
+            /** \param p The context in which the Statement is executed
+             *  \param _arg The argument supplied to the Statement
+             */
+            LightStmt(const Parser *p, const std::string &_arg):
+                BoolStatement(p, _arg) { }
+            /// Executes the statement in the current context
             virtual bool execute();
     };
 
@@ -186,7 +254,12 @@ namespace Script {
      *  \ingroup StatementGroup                                               */
     class TransStmt: public BoolStatement {
         public:
-            TransStmt(const Parser *p, const std::string &_arg): BoolStatement(p, _arg) { }
+            /** \param p The context in which the Statement is executed
+             *  \param _arg The argument supplied to the Statement
+             */
+            TransStmt(const Parser *p, const std::string &_arg):
+                BoolStatement(p, _arg) { }
+            /// Executes the statement in the current context
             virtual bool execute();
     };
 
@@ -195,7 +268,12 @@ namespace Script {
      *  \ingroup StatementGroup                                               */
     class WireStmt: public BoolStatement {
         public:
-            WireStmt(const Parser *p, const std::string &_arg): BoolStatement(p, _arg) { }
+            /** \param p The context in which the Statement is executed
+             *  \param _arg The argument supplied to the Statement
+             */
+            WireStmt(const Parser *p, const std::string &_arg):
+                BoolStatement(p, _arg) { }
+            /// Executes the statement in the current context
             virtual bool execute();
     };
 
@@ -204,7 +282,12 @@ namespace Script {
      *  \ingroup StatementGroup                                               */
     class SolidStmt: public BoolStatement {
         public:
-            SolidStmt(const Parser *p, const std::string &_arg): BoolStatement(p, _arg) { }
+            /** \param p The context in which the Statement is executed
+             *  \param _arg The argument supplied to the Statement
+             */
+            SolidStmt(const Parser *p, const std::string &_arg):
+                BoolStatement(p, _arg) { }
+            /// Executes the statement in the current context
             virtual bool execute();
     };
 
@@ -213,7 +296,12 @@ namespace Script {
      *  \ingroup StatementGroup                                               */
     class FogStmt: public BoolStatement {
         public:
-            FogStmt(const Parser *p, const std::string &_arg): BoolStatement(p, _arg) { }
+            /** \param p The context in which the Statement is executed
+             *  \param _arg The argument supplied to the Statement
+             */
+            FogStmt(const Parser *p, const std::string &_arg):
+                BoolStatement(p, _arg) { }
+            /// Executes the statement in the current context
             virtual bool execute();
     };
 
@@ -222,7 +310,12 @@ namespace Script {
      *  \ingroup StatementGroup                                               */
     class Fog4DStmt: public BoolStatement {
         public:
-            Fog4DStmt(const Parser *p, const std::string &_arg): BoolStatement(p, _arg) { }
+            /** \param p The context in which the Statement is executed
+             *  \param _arg The argument supplied to the Statement
+             */
+            Fog4DStmt(const Parser *p, const std::string &_arg):
+                BoolStatement(p, _arg) { }
+            /// Executes the statement in the current context
             virtual bool execute();
     };
 
@@ -231,7 +324,12 @@ namespace Script {
      *  \ingroup StatementGroup                                               */
     class CoordsStmt: public BoolStatement {
         public:
-            CoordsStmt(const Parser *p, const std::string &_arg): BoolStatement(p, _arg) { }
+            /** \param p The context in which the Statement is executed
+             *  \param _arg The argument supplied to the Statement
+             */
+            CoordsStmt(const Parser *p, const std::string &_arg):
+                BoolStatement(p, _arg) { }
+            /// Executes the statement in the current context
             virtual bool execute();
     };
 
@@ -240,7 +338,10 @@ namespace Script {
      *  \ingroup StatementGroup                                               */
     class AnimateStmt: public Statement {
         public:
+            /** \param p The context in which the Statement is executed
+             */
             AnimateStmt(const Parser *p): Statement(p, "") { }
+            /// Executes the statement in the current context
             virtual bool execute();
     };
 
@@ -249,10 +350,14 @@ namespace Script {
      *  \ingroup StatementGroup                                               */
     class SleepStmt: public Statement {
         public:
+            /** \param p The context in which the Statement is executed
+             *  \param _arg The argument supplied to the Statement
+             */
             SleepStmt(const Parser *p, const std::string &_arg);
+            /// Executes the statement in the current context
             virtual bool execute();
         private:
-            unsigned msec;
+            unsigned _msec;     ///< Number of milliseconds to sleep
     };
 
     /// "image_dir <directory>"
@@ -260,7 +365,12 @@ namespace Script {
      *  \ingroup StatementGroup                                               */
     class ImgDirStmt: public Statement {
         public:
-            ImgDirStmt(const Parser *p, const std::string &_arg): Statement(p, _arg) { }
+            /** \param p The context in which the Statement is executed
+             *  \param _arg The argument supplied to the Statement
+             */
+            ImgDirStmt(const Parser *p, const std::string &_arg):
+                Statement(p, _arg) { }
+            /// Executes the statement in the current context
             virtual bool execute();
     };
 
@@ -269,14 +379,21 @@ namespace Script {
      *  \ingroup StatementGroup                                               */
     class ImgPrefixStmt: public Statement {
         public:
-            ImgPrefixStmt(const Parser *p, const std::string &_arg): Statement(p, _arg) { }
+            /** \param p The context in which the Statement is executed
+             *  \param _arg The argument supplied to the Statement
+             */
+            ImgPrefixStmt(const Parser *p, const std::string &_arg):
+                Statement(p, _arg) { }
+            /// Executes the statement in the current context
             virtual bool execute();
     };
 
-    /// Factory object to create Statement objects from a Parser and a given line
+    /// Factory object, creates Statement objects from a Parser and a given line
     /** \ingroup StatementGroup                                               */
     class StatementFactory {
         public:
-            static Statement *createStatement(const Parser *, const std::string &);
+            /// The Factory method
+            static Statement *createStatement(const Parser *,
+                                              const std::string &);
     };
 }

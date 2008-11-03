@@ -4,11 +4,13 @@
 #include <string>
 #include <stdexcept>
 
-/**
-    \author Helge Preuss <scout@hyperspace-travel.de>
-*/
+/** This Exception is thrown when a feature is not yet implemented.
+ *
+ *  \author Helge Preuss <scout@hyperspace-travel.de>
+ */
 class NotYetImplementedException: public std::logic_error {
     public:
+        /// \param what Should contain the name of the throwing class method
         NotYetImplementedException(const std::string &what):
             std::logic_error(what+": Not yet implemented!") {}
 };
