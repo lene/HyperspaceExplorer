@@ -122,7 +122,7 @@ class Function {
         }
 
         /** \return The name of the function in cleartext                     */
-        QString getFunctionName() const { return functionName; }
+        virtual QString getFunctionName() const { return functionName; }
         /** \return number of parameters for the function                     */
         unsigned getNumParameters() { return parameters.size(); }
 

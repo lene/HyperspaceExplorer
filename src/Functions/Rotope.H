@@ -17,17 +17,22 @@
  *  \author Helge Preuss <scout@hyperspace-travel.de>
  */
 template <unsigned D>
-    class vertex_data: public Object {
+    class vertex_data {
 
         public:
             void print();           ///< Output of all vertices
 
         protected:
+
+            /// one-dimensional array of unsigned, implemented as a std::vector
+            typedef std::vector<unsigned> uintvec1D;
+            /// two-dimensional array of unsigned, implemented as a nested vector
+            typedef std::vector<uintvec1D> uintvec2D;
+
             /// Create an empty array of vertices.
             /** Only derived classes can create a vertex_data object. */
             vertex_data():
-                    Object("Rotope", 0, 0),
-                    _dimension(0), _X()/*, _surface() */{
+                    _dimension(0), _X(), _surface() {
                 X().push_back(VecMath::Vector<D>());
             }
 
@@ -66,6 +71,8 @@ class Rotope : public Object {
                                 const VecMath::Vector<4> &);
         virtual void Draw (void);
 
+        /** \return The name of the function in cleartext                     */
+        virtual QString getFunctionName() const { return "Rotope"; }
     private:
         vertex_data<4> *_rotope;
 };

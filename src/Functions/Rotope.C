@@ -66,8 +66,11 @@ Rotope::Rotope(const QString &name): Object(name, 0, 0), _rotope(0) {
     Taper<DIM, BASE+1, DIM-1> T(E2);
     std::cerr << "Taper: "; T.print();
 
-//    throw NotYetImplementedException("Rotope::Rotope()");
     _rotope = new Extrude<4, 0, 3>();
+    for (unsigned i = 0; i < _rotope->X().size(); i++) {
+        X[i] = _rotope->X()[i];     /// \todo use a projection function on vertex_data
+    }
+    Object::Initialize();
 }
 
 Rotope::~Rotope() {
@@ -85,7 +88,6 @@ void Rotope::Transform(const VecMath::Rotation<4> &R,
     }
     Matrix<4> Rot(R);
     for (unsigned i = 0; i < _rotope->X().size(); i++) {
-        X[i] = _rotope->X()[i];  /// \todo copy the vertices only once
         Xtrans[i] = (Rot*X[i])+T;
     }
 }
@@ -98,8 +100,8 @@ void Rotope::Draw () {
     glBegin (GL_QUADS); {
     for (unsigned i = 0; i < _rotope->_surface.size(); i++)
         for (unsigned j = 0; j < 4; j++) {
-            setVertex(_rotope->X()[_rotope->_surface[j][i]],
-                      Xscr[_rotope->_surface[j][i]]);
+            setVertex(_rotope->X()[_rotope->_surface[i][j]],
+                      Xscr[_rotope->_surface[i][j]]);
         }
     }
     glEnd ();

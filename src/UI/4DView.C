@@ -140,7 +140,7 @@ void C4DView::ObjectGasket() {
 void C4DView::ObjectRotope() {
     Menu()->updateFunctionMenu("Rotope");
 
-    setF(new Rotope(""));
+    setF(new Rotope("Rotope - Hypercube"));
 
     AssignValues(F());
     Redraw ();
@@ -240,12 +240,10 @@ double C4DView::Benchmark3D (int num_steps,
     clock_t stime = clock ();                     //  record start time
 
     Vector<3> step(step_x, step_y, step_z);
-//    double Rx = m_rotX(), Ry = m_rotY(), Rz = m_rotZ();
     Rotation<3> R = m_rot();
 
     for (int step = 0; step < num_steps; step++) {
         addm_rot(step);
-//        setm_rotX(m_rotX() + step_x); setm_rotY(m_rotY() + step_y); setm_rotZ(m_rotZ() + step_z);
         if (display) {
             paintEvent ();
             UpdateStatus (QString::number ((100*step)/num_steps)+"% done");
@@ -302,20 +300,16 @@ void C4DView::ApplyChanges (const ParameterMap &parms) {
  *  Writes image to file too, if wanted.                                      */
 void C4DView::OnAnimationTimer() {
 
-//    addm_rot(dR3());
-//    setm_rotX(m_rotX() + dT()[0]); setm_rotY(m_rotY() + dT()[1]); setm_rotZ(m_rotZ() + dT()[2]);   //  update 3D viewpoint values
-
     SingletonLog::Instance() << "C4DView::OnAnimationTimer()\n"
-//            << "  dR3 = " << dR3() << "\n"
             << "  dR = " << getdR() << "\n";
 
     if (getdR()) {     //  4D viewpoint animated?
 
         addR(getdR());
 
-        Transform (R(), T());   // transform
-        Redraw ();                                                  // implicit paintEvent()
-    } else paintEvent ();                                              // explicit paintEvent()
+        Transform (R(), T());           // transform
+        Redraw ();                      // implicit paintEvent()
+    } else paintEvent ();               // explicit paintEvent()
 
     writeFrame();   //  if render to pixmap is selected, do it
 
@@ -646,6 +640,7 @@ void C4DView::UpdateStatus (QString status) {
 void C4DView::AssignValues (const std::auto_ptr<Function> &F) {
 
     if (!F->getFunctionName().isEmpty()) {
+//        std::cerr << F->getFunctionName().toAscii().data() << endl;
         setWindowTitle(F->getFunctionName());
     }
 

@@ -138,7 +138,7 @@ void Hypercube::Initialize(void) {
             for (int z = 0; z <= 1; z++)
                 for (int w = 0; w <= 1; w++) {
                     X[x+2*(y+2*(z+2*w))] =
-                            Vector<4> (2.*x-1., 2.*y-1., 2.*z-1., 2.*w-1.)*a+center;
+                        Vector<4> (2.*x-1., 2.*y-1., 2.*z-1., 2.*w-1.)*a+center;
                 }
 
     DeclareSquare (0,   0, 1, 3, 2);
