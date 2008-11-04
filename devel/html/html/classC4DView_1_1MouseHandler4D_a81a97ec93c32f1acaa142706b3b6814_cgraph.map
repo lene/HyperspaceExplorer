@@ -3,7 +3,7 @@
 <area shape="rect" href="$classC4DView.html#b7654a2bad6deeb87868385f3bd9c89d" title="C4DView::addm_rot" alt="" coords="448,148,589,175">
 <area shape="rect" href="$classC4DView.html#a69265d16f26ed97574de62b0a9780db" title="C4DView::addm_trans" alt="" coords="441,199,596,225">
 <area shape="rect" href="$classUI_1_1ViewImpl.html#4a1ddf4d94623c7a94e8eb5809acf626" title="Add a Rotation to the current rotation state." alt="" coords="1027,433,1163,460">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#cbef0ea363c772954b565d331b255c25" title="UI::ViewImpl::addT" alt="" coords="451,731,587,757">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#cbef0ea363c772954b565d331b255c25" title="Add a Translation to the current translation state." alt="" coords="451,731,587,757">
 <area shape="rect" href="$classUI_1_1ViewImpl.html#b242e415663c04c3bdad27d7dea64275" title="UI::ViewImpl::getFog" alt="" coords="445,781,592,808">
 <area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1665,401,1871,428">
 <area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#4a49dbaa91cad131251db04800ae3abd" title="C4DView::MouseHandler4D::LeftDownPos" alt="" coords="381,832,656,859">

@@ -36,118 +36,122 @@
 <a name="l00003"></a>00003 <span class="preprocessor"></span>
 <a name="l00004"></a>00004 <span class="preprocessor">#include &lt;Object.H&gt;</span>
 <a name="l00005"></a>00005 
-<a name="l00010"></a>00010 
 <a name="l00011"></a>00011 
-<a name="l00019"></a>00019 <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt;
-<a name="l00020"></a><a class="code" href="classvertex__data.html">00020</a>     <span class="keyword">class </span><a class="code" href="classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place...">vertex_data</a>: <span class="keyword">public</span> <a class="code" href="classObject.html" title="Generalized four-dimensional Object, described by vertexes and surfaces.">Object</a> {
-<a name="l00021"></a>00021 
-<a name="l00022"></a>00022         <span class="keyword">public</span>:
-<a name="l00023"></a>00023             <span class="keywordtype">void</span> <a class="code" href="classvertex__data.html#fc1363bce3fd75ed96d9b30059b4d56d" title="Output of all vertices.">print</a>();           
-<a name="l00024"></a>00024 
-<a name="l00025"></a>00025         <span class="keyword">protected</span>:
+<a name="l00012"></a>00012 
+<a name="l00020"></a>00020 <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt;
+<a name="l00021"></a><a class="code" href="classvertex__data.html">00021</a>     <span class="keyword">class </span><a class="code" href="classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place...">vertex_data</a> {
+<a name="l00022"></a>00022 
+<a name="l00023"></a>00023         <span class="keyword">public</span>:
+<a name="l00024"></a>00024             <span class="keywordtype">void</span> <a class="code" href="classvertex__data.html#fc1363bce3fd75ed96d9b30059b4d56d" title="Output of all vertices.">print</a>();           
+<a name="l00025"></a>00025 
+<a name="l00026"></a>00026         <span class="keyword">protected</span>:
 <a name="l00027"></a>00027 
-<a name="l00028"></a><a class="code" href="classvertex__data.html#8de6e3eec7f23d703ff95676cea1d52f">00028</a>             <a class="code" href="classvertex__data.html#8de6e3eec7f23d703ff95676cea1d52f" title="Create an empty array of vertices.">vertex_data</a>():
-<a name="l00029"></a>00029                     <a class="code" href="classObject.html" title="Generalized four-dimensional Object, described by vertexes and surfaces.">Object</a>(<span class="stringliteral">"Rotope"</span>, 0, 0),
-<a name="l00030"></a>00030                     <a class="code" href="classvertex__data.html#2fd43331e30ab7888b6106c95b83056f" title="Dimension of the object.">_dimension</a>(0), <a class="code" href="classvertex__data.html#f4eb1e3d52e7875ed4a05b4347452f14" title="The array of vertices.">_X</a>()<span class="comment">/*, _surface() */</span>{
-<a name="l00031"></a>00031                 <a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b" title="The array of vertices.">X</a>().<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce">push_back</a>(<a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;D&gt;</a>());
-<a name="l00032"></a>00032             }
-<a name="l00033"></a>00033 
-<a name="l00035"></a>00035             <span class="keywordtype">void</span> <a class="code" href="classvertex__data.html#ccadf4c9af76492b51b795e23278c333" title="Add a surface to the array of surfaces.">addSurface</a>(<span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>);
-<a name="l00037"></a>00037             <span class="keywordtype">void</span> <a class="code" href="classvertex__data.html#ccadf4c9af76492b51b795e23278c333" title="Add a surface to the array of surfaces.">addSurface</a>(<span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>);
-<a name="l00038"></a>00038 
-<a name="l00040"></a><a class="code" href="classvertex__data.html#f8801edd7fc99252e2f38f8cda166ad6">00040</a>             <span class="keywordtype">unsigned</span> &amp;<a class="code" href="classvertex__data.html#f8801edd7fc99252e2f38f8cda166ad6" title="Dimension of the object.">dimension</a>() { <span class="keywordflow">return</span> <a class="code" href="classvertex__data.html#2fd43331e30ab7888b6106c95b83056f" title="Dimension of the object.">_dimension</a>; }
-<a name="l00042"></a><a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b">00042</a>             <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector&lt;VecMath::Vector&lt;D&gt;</a> &gt; &amp;<a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b" title="The array of vertices.">X</a>() { <span class="keywordflow">return</span> <a class="code" href="classvertex__data.html#f4eb1e3d52e7875ed4a05b4347452f14" title="The array of vertices.">_X</a>; }
-<a name="l00044"></a><a class="code" href="classvertex__data.html#881c385d02889dd00a63bd02f4133f37">00044</a>             <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">uintvec2D</a> &amp;<a class="code" href="classvertex__data.html#881c385d02889dd00a63bd02f4133f37" title="The array of surfaces.">surface</a>() { <span class="keywordflow">return</span> <a class="code" href="classvertex__data.html#c847dab482eb883cd8a6472724fa6d09" title="The array of surfaces.">_surface</a>; }
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046         <span class="keyword">private</span>:
-<a name="l00047"></a><a class="code" href="classvertex__data.html#2fd43331e30ab7888b6106c95b83056f">00047</a>             <span class="keywordtype">unsigned</span> <a class="code" href="classvertex__data.html#2fd43331e30ab7888b6106c95b83056f" title="Dimension of the object.">_dimension</a>;                    
-<a name="l00048"></a><a class="code" href="classvertex__data.html#f4eb1e3d52e7875ed4a05b4347452f14">00048</a>             <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector&lt;VecMath::Vector&lt;D&gt;</a> &gt; <a class="code" href="classvertex__data.html#f4eb1e3d52e7875ed4a05b4347452f14" title="The array of vertices.">_X</a>;    
-<a name="l00049"></a><a class="code" href="classvertex__data.html#c847dab482eb883cd8a6472724fa6d09">00049</a>             <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">uintvec2D</a> <a class="code" href="classvertex__data.html#c847dab482eb883cd8a6472724fa6d09" title="The array of surfaces.">_surface</a>;                     
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051         <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classRotope.html" title="A four-dimensional Rotope.">Rotope</a>;
-<a name="l00052"></a>00052     };
-<a name="l00053"></a>00053 
-<a name="l00055"></a>00055 
-<a name="l00058"></a><a class="code" href="classRotope.html">00058</a> <span class="keyword">class </span><a class="code" href="classRotope.html" title="A four-dimensional Rotope.">Rotope</a> : <span class="keyword">public</span> <a class="code" href="classObject.html" title="Generalized four-dimensional Object, described by vertexes and surfaces.">Object</a> {
-<a name="l00059"></a>00059     <span class="keyword">public</span>:
-<a name="l00061"></a>00061         <a class="code" href="classRotope.html#daecde0bfbfb734b419f77794002372f" title="Construct a Rotope. Not yet implemented properly.">Rotope</a>(<span class="keyword">const</span> QString &amp;);
-<a name="l00062"></a>00062 
-<a name="l00063"></a>00063         ~<a class="code" href="classRotope.html" title="A four-dimensional Rotope.">Rotope</a>();
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classFunction.html#1a5bdfce53f7d21a73842e19868e39de" title="Overloaded function executing the transform to the default state.">Transform</a> (<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">VecMath::Rotation&lt;4&gt;</a> &amp;,
-<a name="l00066"></a>00066                                 <span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;);
-<a name="l00067"></a>00067         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classRotope.html#816269d1aee277657aac4081df2d63eb" title="Draw the projected Rotope (onto screen or into GL list, as it is).">Draw</a> (<span class="keywordtype">void</span>);
+<a name="l00029"></a><a class="code" href="classvertex__data.html#c526722f899c549c90152eb60191e1f6">00029</a>             <span class="keyword">typedef</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector&lt;unsigned&gt;</a> <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">uintvec1D</a>;
+<a name="l00031"></a><a class="code" href="classvertex__data.html#9cc28530ea2be46f6de4a6a74f37fe1c">00031</a>             <span class="keyword">typedef</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector&lt;uintvec1D&gt;</a> <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html">uintvec2D</a>;
+<a name="l00032"></a>00032 
+<a name="l00034"></a>00034 
+<a name="l00035"></a><a class="code" href="classvertex__data.html#8de6e3eec7f23d703ff95676cea1d52f">00035</a>             <a class="code" href="classvertex__data.html#8de6e3eec7f23d703ff95676cea1d52f" title="Create an empty array of vertices.">vertex_data</a>():
+<a name="l00036"></a>00036                     <a class="code" href="classvertex__data.html#2fd43331e30ab7888b6106c95b83056f" title="Dimension of the object.">_dimension</a>(0), <a class="code" href="classvertex__data.html#f4eb1e3d52e7875ed4a05b4347452f14" title="The array of vertices.">_X</a>(), <a class="code" href="classvertex__data.html#c847dab482eb883cd8a6472724fa6d09" title="The array of surfaces.">_surface</a>() {
+<a name="l00037"></a>00037                 <a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b" title="The array of vertices.">X</a>().<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce">push_back</a>(<a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;D&gt;</a>());
+<a name="l00038"></a>00038             }
+<a name="l00039"></a>00039 
+<a name="l00041"></a>00041             <span class="keywordtype">void</span> <a class="code" href="classvertex__data.html#ccadf4c9af76492b51b795e23278c333" title="Add a surface to the array of surfaces.">addSurface</a>(<span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>);
+<a name="l00043"></a>00043             <span class="keywordtype">void</span> <a class="code" href="classvertex__data.html#ccadf4c9af76492b51b795e23278c333" title="Add a surface to the array of surfaces.">addSurface</a>(<span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>);
+<a name="l00044"></a>00044 
+<a name="l00046"></a><a class="code" href="classvertex__data.html#f8801edd7fc99252e2f38f8cda166ad6">00046</a>             <span class="keywordtype">unsigned</span> &amp;<a class="code" href="classvertex__data.html#f8801edd7fc99252e2f38f8cda166ad6" title="Dimension of the object.">dimension</a>() { <span class="keywordflow">return</span> <a class="code" href="classvertex__data.html#2fd43331e30ab7888b6106c95b83056f" title="Dimension of the object.">_dimension</a>; }
+<a name="l00048"></a><a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b">00048</a>             <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector&lt;VecMath::Vector&lt;D&gt;</a> &gt; &amp;<a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b" title="The array of vertices.">X</a>() { <span class="keywordflow">return</span> <a class="code" href="classvertex__data.html#f4eb1e3d52e7875ed4a05b4347452f14" title="The array of vertices.">_X</a>; }
+<a name="l00050"></a><a class="code" href="classvertex__data.html#881c385d02889dd00a63bd02f4133f37">00050</a>             <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html">uintvec2D</a> &amp;<a class="code" href="classvertex__data.html#881c385d02889dd00a63bd02f4133f37" title="The array of surfaces.">surface</a>() { <span class="keywordflow">return</span> <a class="code" href="classvertex__data.html#c847dab482eb883cd8a6472724fa6d09" title="The array of surfaces.">_surface</a>; }
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052         <span class="keyword">private</span>:
+<a name="l00053"></a><a class="code" href="classvertex__data.html#2fd43331e30ab7888b6106c95b83056f">00053</a>             <span class="keywordtype">unsigned</span> <a class="code" href="classvertex__data.html#2fd43331e30ab7888b6106c95b83056f" title="Dimension of the object.">_dimension</a>;                    
+<a name="l00054"></a><a class="code" href="classvertex__data.html#f4eb1e3d52e7875ed4a05b4347452f14">00054</a>             <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector&lt;VecMath::Vector&lt;D&gt;</a> &gt; <a class="code" href="classvertex__data.html#f4eb1e3d52e7875ed4a05b4347452f14" title="The array of vertices.">_X</a>;    
+<a name="l00055"></a><a class="code" href="classvertex__data.html#c847dab482eb883cd8a6472724fa6d09">00055</a>             <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html">uintvec2D</a> <a class="code" href="classvertex__data.html#c847dab482eb883cd8a6472724fa6d09" title="The array of surfaces.">_surface</a>;                     
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057         <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classRotope.html" title="A four-dimensional Rotope.">Rotope</a>;
+<a name="l00058"></a>00058     };
+<a name="l00059"></a>00059 
+<a name="l00061"></a>00061 
+<a name="l00064"></a><a class="code" href="classRotope.html">00064</a> <span class="keyword">class </span><a class="code" href="classRotope.html" title="A four-dimensional Rotope.">Rotope</a> : <span class="keyword">public</span> <a class="code" href="classObject.html" title="Generalized four-dimensional Object, described by vertexes and surfaces.">Object</a> {
+<a name="l00065"></a>00065     <span class="keyword">public</span>:
+<a name="l00067"></a>00067         <a class="code" href="classRotope.html#daecde0bfbfb734b419f77794002372f" title="Construct a Rotope. Not yet implemented properly.">Rotope</a>(<span class="keyword">const</span> QString &amp;);
 <a name="l00068"></a>00068 
-<a name="l00069"></a>00069     <span class="keyword">private</span>:
-<a name="l00070"></a>00070         <a class="code" href="classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place...">vertex_data&lt;4&gt;</a> *_rotope;
-<a name="l00071"></a>00071 };
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074 <span class="comment">/*  You shouldn't use "using" directives in a header file, but the code gets</span>
-<a name="l00075"></a>00075 <span class="comment">    nearly unreadable otherwise:</span>
-<a name="l00076"></a>00076 <span class="comment">    typename std::vector&lt;VecMath::Vector&lt;D&gt; &gt;::iterator i = _X.begin();</span>
-<a name="l00077"></a>00077 <span class="comment">    And because I'm defining template classes here, code must be written in the</span>
-<a name="l00078"></a>00078 <span class="comment">    header file anyway.</span>
-<a name="l00079"></a>00079 <span class="comment">*/</span>
-<a name="l00080"></a>00080 <span class="keyword">using</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector</a>;
-<a name="l00081"></a>00081 <span class="keyword">using</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector</a>;
+<a name="l00069"></a>00069         ~<a class="code" href="classRotope.html" title="A four-dimensional Rotope.">Rotope</a>();
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classFunction.html#1a5bdfce53f7d21a73842e19868e39de" title="Overloaded function executing the transform to the default state.">Transform</a> (<span class="keyword">const</span> <a class="code" href="classVecMath_1_1Rotation.html" title="Rotation in D-dimensional space defined by angles about the main axes.">VecMath::Rotation&lt;4&gt;</a> &amp;,
+<a name="l00072"></a>00072                                 <span class="keyword">const</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;);
+<a name="l00073"></a>00073         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classRotope.html#816269d1aee277657aac4081df2d63eb" title="Draw the projected Rotope (onto screen or into GL list, as it is).">Draw</a> (<span class="keywordtype">void</span>);
+<a name="l00074"></a>00074 
+<a name="l00076"></a><a class="code" href="classRotope.html#e1b42fb79599e200f9b588131c46de6c">00076</a>         <span class="keyword">virtual</span> QString <a class="code" href="classRotope.html#e1b42fb79599e200f9b588131c46de6c">getFunctionName</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="stringliteral">"Rotope"</span>; }
+<a name="l00077"></a>00077     <span class="keyword">private</span>:
+<a name="l00079"></a><a class="code" href="classRotope.html#7132e44d60bf6f35d39ac73f0d03928e">00079</a>         <a class="code" href="classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place...">vertex_data&lt;4&gt;</a> *<a class="code" href="classRotope.html#7132e44d60bf6f35d39ac73f0d03928e" title="Actual rotope object to which all functions are delegated.">_rotope</a>;
+<a name="l00080"></a>00080 };
+<a name="l00081"></a>00081 
 <a name="l00082"></a>00082 
-<a name="l00083"></a>00083 <span class="preprocessor">#include &lt;<a class="codeRef" doxygen="libstdc++.tag:" href="a01598.html">iomanip</a>&gt;</span>
-<a name="l00084"></a>00084 
-<a name="l00085"></a><a class="code" href="classvertex__data.html#fc1363bce3fd75ed96d9b30059b4d56d">00085</a> <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt; <span class="keywordtype">void</span> <a class="code" href="classvertex__data.html#fc1363bce3fd75ed96d9b30059b4d56d" title="Output of all vertices.">vertex_data&lt;D&gt;::print</a>() {
-<a name="l00086"></a>00086     <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <a class="code" href="classvertex__data.html#2fd43331e30ab7888b6106c95b83056f" title="Dimension of the object.">_dimension</a> &lt;&lt; <span class="stringliteral">"-dimensional object: "</span>;
-<a name="l00087"></a>00087     <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> separator = <span class="stringliteral">""</span>;
-<a name="l00088"></a>00088     <span class="keywordflow">for</span>(<span class="keyword">typename</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">vector</a>&lt;Vector&lt;D&gt; &gt;::iterator i = <a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b" title="The array of vertices.">X</a>().begin();
-<a name="l00089"></a>00089         i != <a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b" title="The array of vertices.">X</a>().<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#dd7408dc09d0a7736ebce9bec0865248">end</a>(); ++i){
-<a name="l00090"></a>00090         <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; separator &lt;&lt; *i;
-<a name="l00091"></a>00091         separator = <span class="stringliteral">", "</span>;
-<a name="l00092"></a>00092     }
-<a name="l00093"></a>00093     <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <span class="stringliteral">"\n"</span>;
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095 <span class="preprocessor">#   if 1</span>
-<a name="l00096"></a>00096 <span class="preprocessor"></span>        <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <span class="stringliteral">"Surfaces: \n"</span>;
-<a name="l00097"></a>00097         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; <a class="code" href="classvertex__data.html#881c385d02889dd00a63bd02f4133f37" title="The array of surfaces.">surface</a>().<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#cfe97b143edc1c10b4532ebdb839d83c">size</a>(); ++i) {
-<a name="l00098"></a>00098             <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#bd07880aa68c2ff1d4d4529a976c72b2">std::setw</a>(4) &lt;&lt; i &lt;&lt; <span class="stringliteral">" ("</span>;
-<a name="l00099"></a>00099             separator = <span class="stringliteral">""</span>;
-<a name="l00100"></a>00100             <span class="keywordflow">for</span> (<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#4bb15e5ed33f993cd79965b6587cf163">uintvec1D::iterator</a> j = <a class="code" href="classvertex__data.html#881c385d02889dd00a63bd02f4133f37" title="The array of surfaces.">surface</a>()[i].begin();
-<a name="l00101"></a>00101                  j != <a class="code" href="classvertex__data.html#881c385d02889dd00a63bd02f4133f37" title="The array of surfaces.">surface</a>()[i].<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#dd7408dc09d0a7736ebce9bec0865248">end</a>(); ++j) {
-<a name="l00102"></a>00102                 <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; separator &lt;&lt; <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#bd07880aa68c2ff1d4d4529a976c72b2">std::setw</a>(4) &lt;&lt; *j;
-<a name="l00103"></a>00103                 separator = <span class="stringliteral">", "</span>;
-<a name="l00104"></a>00104             }
-<a name="l00105"></a>00105             <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <span class="stringliteral">")\n"</span>;
-<a name="l00106"></a>00106         }
-<a name="l00107"></a>00107         <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <span class="stringliteral">"\n"</span>;
-<a name="l00108"></a>00108 <span class="preprocessor">#   endif</span>
-<a name="l00109"></a>00109 <span class="preprocessor"></span>
-<a name="l00110"></a>00110 }
-<a name="l00111"></a>00111 
-<a name="l00118"></a><a class="code" href="classvertex__data.html#ccadf4c9af76492b51b795e23278c333">00118</a> <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt; <span class="keywordtype">void</span> <a class="code" href="classvertex__data.html#ccadf4c9af76492b51b795e23278c333" title="Add a surface to the array of surfaces.">vertex_data&lt;D&gt;::addSurface</a>(<span class="keywordtype">unsigned</span> v1, <span class="keywordtype">unsigned</span> v2,
-<a name="l00119"></a>00119                                                       <span class="keywordtype">unsigned</span> v3, <span class="keywordtype">unsigned</span> v4) {
-<a name="l00120"></a>00120     <span class="keywordflow">if</span> (v1 &gt;= <a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b" title="The array of vertices.">X</a>().size() || v2 &gt;= <a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b" title="The array of vertices.">X</a>().size() ||
-<a name="l00121"></a>00121         v3 &gt;= <a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b" title="The array of vertices.">X</a>().size() || v4 &gt;= <a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b" title="The array of vertices.">X</a>().size()) {
-<a name="l00122"></a>00122         <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <span class="stringliteral">"X.size(): "</span> &lt;&lt; <a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b" title="The array of vertices.">X</a>().<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#cfe97b143edc1c10b4532ebdb839d83c">size</a>() &lt;&lt; <span class="stringliteral">", v1: "</span> &lt;&lt; v1 &lt;&lt; <span class="stringliteral">", v2: "</span> &lt;&lt; v2
-<a name="l00123"></a>00123                 &lt;&lt; <span class="stringliteral">", v3: "</span> &lt;&lt; v3 &lt;&lt; <span class="stringliteral">", v4: "</span> &lt;&lt; v4 &lt;&lt; <span class="stringliteral">"\n"</span>;
-<a name="l00124"></a>00124         <span class="keywordflow">throw</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01265.html" title="STL class.">std::out_of_range</a>(<span class="stringliteral">"vertex_data&lt;D&gt;::addSurface(): index larger "</span>
-<a name="l00125"></a>00125                                 <span class="stringliteral">"than size of vertex array"</span>);
-<a name="l00126"></a>00126     }
-<a name="l00127"></a>00127 
-<a name="l00128"></a>00128     <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">uintvec1D</a> tmp;
-<a name="l00129"></a>00129     tmp.<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce">push_back</a>(v1); tmp.<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce">push_back</a>(v2); tmp.<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce">push_back</a>(v3); tmp.<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce">push_back</a>(v4);
-<a name="l00130"></a>00130 
-<a name="l00131"></a>00131     <a class="code" href="classvertex__data.html#881c385d02889dd00a63bd02f4133f37" title="The array of surfaces.">surface</a>().<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce">push_back</a>(tmp);
-<a name="l00132"></a>00132 }
-<a name="l00133"></a>00133 
-<a name="l00139"></a><a class="code" href="classvertex__data.html#0e02550cbfe19d730213de98dcc5acc4">00139</a> <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt; <span class="keywordtype">void</span> <a class="code" href="classvertex__data.html#ccadf4c9af76492b51b795e23278c333" title="Add a surface to the array of surfaces.">vertex_data&lt;D&gt;::addSurface</a>(<span class="keywordtype">unsigned</span> v1, <span class="keywordtype">unsigned</span> v2,
-<a name="l00140"></a>00140                                                       <span class="keywordtype">unsigned</span> v3) {
-<a name="l00141"></a>00141     <a class="code" href="classvertex__data.html#ccadf4c9af76492b51b795e23278c333" title="Add a surface to the array of surfaces.">addSurface</a>(v1, v2, v3, v3);
-<a name="l00142"></a>00142 }
-<a name="l00143"></a>00143 
-<a name="l00144"></a>00144 <span class="preprocessor">#endif</span>
+<a name="l00083"></a>00083 <span class="comment">/*  You shouldn't use "using" directives in a header file, but the code gets</span>
+<a name="l00084"></a>00084 <span class="comment">    nearly unreadable otherwise:</span>
+<a name="l00085"></a>00085 <span class="comment">    typename std::vector&lt;VecMath::Vector&lt;D&gt; &gt;::iterator i = _X.begin();</span>
+<a name="l00086"></a>00086 <span class="comment">    And because I'm defining template classes here, code must be written in the</span>
+<a name="l00087"></a>00087 <span class="comment">    header file anyway.</span>
+<a name="l00088"></a>00088 <span class="comment">*/</span>
+<a name="l00089"></a>00089 <span class="keyword">using</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector</a>;
+<a name="l00090"></a>00090 <span class="keyword">using</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector</a>;
+<a name="l00091"></a>00091 
+<a name="l00092"></a>00092 <span class="preprocessor">#include &lt;<a class="codeRef" doxygen="libstdc++.tag:" href="a01598.html">iomanip</a>&gt;</span>
+<a name="l00093"></a>00093 
+<a name="l00094"></a><a class="code" href="classvertex__data.html#fc1363bce3fd75ed96d9b30059b4d56d">00094</a> <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt; <span class="keywordtype">void</span> <a class="code" href="classvertex__data.html#fc1363bce3fd75ed96d9b30059b4d56d" title="Output of all vertices.">vertex_data&lt;D&gt;::print</a>() {
+<a name="l00095"></a>00095     <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <a class="code" href="classvertex__data.html#2fd43331e30ab7888b6106c95b83056f" title="Dimension of the object.">_dimension</a> &lt;&lt; <span class="stringliteral">"-dimensional object: "</span>;
+<a name="l00096"></a>00096     <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> separator = <span class="stringliteral">""</span>;
+<a name="l00097"></a>00097     <span class="keywordflow">for</span>(<span class="keyword">typename</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">vector</a>&lt;Vector&lt;D&gt; &gt;::iterator i = <a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b" title="The array of vertices.">X</a>().begin();
+<a name="l00098"></a>00098         i != <a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b" title="The array of vertices.">X</a>().<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#dd7408dc09d0a7736ebce9bec0865248">end</a>(); ++i){
+<a name="l00099"></a>00099         <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; separator &lt;&lt; *i;
+<a name="l00100"></a>00100         separator = <span class="stringliteral">", "</span>;
+<a name="l00101"></a>00101     }
+<a name="l00102"></a>00102     <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <span class="stringliteral">"\n"</span>;
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104 <span class="preprocessor">#   if 1</span>
+<a name="l00105"></a>00105 <span class="preprocessor"></span>        <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <span class="stringliteral">"Surfaces: \n"</span>;
+<a name="l00106"></a>00106         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; <a class="code" href="classvertex__data.html#881c385d02889dd00a63bd02f4133f37" title="The array of surfaces.">surface</a>().<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#cfe97b143edc1c10b4532ebdb839d83c">size</a>(); ++i) {
+<a name="l00107"></a>00107             <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#bd07880aa68c2ff1d4d4529a976c72b2">std::setw</a>(4) &lt;&lt; i &lt;&lt; <span class="stringliteral">" ("</span>;
+<a name="l00108"></a>00108             separator = <span class="stringliteral">""</span>;
+<a name="l00109"></a>00109             <span class="keywordflow">for</span> (<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#4bb15e5ed33f993cd79965b6587cf163">uintvec1D::iterator</a> j = <a class="code" href="classvertex__data.html#881c385d02889dd00a63bd02f4133f37" title="The array of surfaces.">surface</a>()[i].begin();
+<a name="l00110"></a>00110                  j != <a class="code" href="classvertex__data.html#881c385d02889dd00a63bd02f4133f37" title="The array of surfaces.">surface</a>()[i].<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#dd7408dc09d0a7736ebce9bec0865248">end</a>(); ++j) {
+<a name="l00111"></a>00111                 <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; separator &lt;&lt; <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#bd07880aa68c2ff1d4d4529a976c72b2">std::setw</a>(4) &lt;&lt; *j;
+<a name="l00112"></a>00112                 separator = <span class="stringliteral">", "</span>;
+<a name="l00113"></a>00113             }
+<a name="l00114"></a>00114             <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <span class="stringliteral">")\n"</span>;
+<a name="l00115"></a>00115         }
+<a name="l00116"></a>00116         <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <span class="stringliteral">"\n"</span>;
+<a name="l00117"></a>00117 <span class="preprocessor">#   endif</span>
+<a name="l00118"></a>00118 <span class="preprocessor"></span>
+<a name="l00119"></a>00119 }
+<a name="l00120"></a>00120 
+<a name="l00127"></a><a class="code" href="classvertex__data.html#ccadf4c9af76492b51b795e23278c333">00127</a> <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt; <span class="keywordtype">void</span> <a class="code" href="classvertex__data.html#ccadf4c9af76492b51b795e23278c333" title="Add a surface to the array of surfaces.">vertex_data&lt;D&gt;::addSurface</a>(<span class="keywordtype">unsigned</span> v1, <span class="keywordtype">unsigned</span> v2,
+<a name="l00128"></a>00128                                                       <span class="keywordtype">unsigned</span> v3, <span class="keywordtype">unsigned</span> v4) {
+<a name="l00129"></a>00129     <span class="keywordflow">if</span> (v1 &gt;= <a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b" title="The array of vertices.">X</a>().size() || v2 &gt;= <a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b" title="The array of vertices.">X</a>().size() ||
+<a name="l00130"></a>00130         v3 &gt;= <a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b" title="The array of vertices.">X</a>().size() || v4 &gt;= <a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b" title="The array of vertices.">X</a>().size()) {
+<a name="l00131"></a>00131         <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <span class="stringliteral">"X.size(): "</span> &lt;&lt; <a class="code" href="classvertex__data.html#9e96298fd6fb4e18c0a701e7073b0b7b" title="The array of vertices.">X</a>().<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#cfe97b143edc1c10b4532ebdb839d83c">size</a>() &lt;&lt; <span class="stringliteral">", v1: "</span> &lt;&lt; v1 &lt;&lt; <span class="stringliteral">", v2: "</span> &lt;&lt; v2
+<a name="l00132"></a>00132                 &lt;&lt; <span class="stringliteral">", v3: "</span> &lt;&lt; v3 &lt;&lt; <span class="stringliteral">", v4: "</span> &lt;&lt; v4 &lt;&lt; <span class="stringliteral">"\n"</span>;
+<a name="l00133"></a>00133         <span class="keywordflow">throw</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01265.html" title="STL class.">std::out_of_range</a>(<span class="stringliteral">"vertex_data&lt;D&gt;::addSurface(): index larger "</span>
+<a name="l00134"></a>00134                                 <span class="stringliteral">"than size of vertex array"</span>);
+<a name="l00135"></a>00135     }
+<a name="l00136"></a>00136 
+<a name="l00137"></a>00137     <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">uintvec1D</a> tmp;
+<a name="l00138"></a>00138     tmp.<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce">push_back</a>(v1); tmp.<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce">push_back</a>(v2); tmp.<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce">push_back</a>(v3); tmp.<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce">push_back</a>(v4);
+<a name="l00139"></a>00139 
+<a name="l00140"></a>00140     <a class="code" href="classvertex__data.html#881c385d02889dd00a63bd02f4133f37" title="The array of surfaces.">surface</a>().<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce">push_back</a>(tmp);
+<a name="l00141"></a>00141 }
+<a name="l00142"></a>00142 
+<a name="l00148"></a><a class="code" href="classvertex__data.html#0e02550cbfe19d730213de98dcc5acc4">00148</a> <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt; <span class="keywordtype">void</span> <a class="code" href="classvertex__data.html#ccadf4c9af76492b51b795e23278c333" title="Add a surface to the array of surfaces.">vertex_data&lt;D&gt;::addSurface</a>(<span class="keywordtype">unsigned</span> v1, <span class="keywordtype">unsigned</span> v2,
+<a name="l00149"></a>00149                                                       <span class="keywordtype">unsigned</span> v3) {
+<a name="l00150"></a>00150     <a class="code" href="classvertex__data.html#ccadf4c9af76492b51b795e23278c333" title="Add a surface to the array of surfaces.">addSurface</a>(v1, v2, v3, v3);
+<a name="l00151"></a>00151 }
+<a name="l00152"></a>00152 
+<a name="l00153"></a>00153 <span class="preprocessor">#endif</span>
 </pre></div></div>
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Sun Nov 2 22:16:09 2008 for HyperspaceExplorer 0.6.2
+                Generated on Tue Nov 4 01:07:39 2008 for HyperspaceExplorer 0.6.2
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.6
                 &nbsp;-&nbsp;

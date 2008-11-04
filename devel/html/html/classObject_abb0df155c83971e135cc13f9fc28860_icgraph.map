@@ -2,4 +2,8 @@
 <area shape="rect" href="$classPyramid.html#dc837fa34b2f484a0c28da7210677db9" title="Actually creates the Pyramid." alt="" coords="180,56,305,83">
 <area shape="rect" href="$classSponge.html#b552ce65169a2b44bc93e86dbba76a25" title="This function actually creates the hypersponge." alt="" coords="181,107,304,133">
 <area shape="rect" href="$classHypercube.html#790d87e55f2b01d1b339df6f05852ffd" title="Actually creates the Hypercube." alt="" coords="172,157,313,184">
+<area shape="rect" href="$classObject.html#cb280cacb700070c0cccd0bf35225102" title="Object::ReInit" alt="" coords="191,208,295,235">
+<area shape="rect" href="$classRotope.html#daecde0bfbfb734b419f77794002372f" title="Construct a Rotope. Not yet implemented properly." alt="" coords="185,259,300,285">
 <area shape="rect" href="$classPyramid.html#cddc2af9239e33dc248a3ebcb8c7bfd5" title="Pyramid (hypersimplex) constructor." alt="" coords="363,56,491,83">
+<area shape="rect" href="$classGasket.html#d4ff88db24102c117decfc8d4309489a" title="Gasket::ReInit" alt="" coords="373,183,480,209">
+<area shape="rect" href="$classSponge.html#e4ee07a364e503076552de10d5006260" title="Rebuild the Sponge if the parameters have changed." alt="" coords="372,233,481,260">

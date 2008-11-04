@@ -1,4 +1,2 @@
-<area shape="rect" href="$classextrude__base.html" title="Base class for Extrude classes, providing the actual extrude() function." alt="" coords="49,1157,185,1269">
-<area shape="rect" href="$classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place..." alt="" coords="55,901,180,1109">
-<area shape="rect" href="$classObject.html" title="Generalized four&#45;dimensional Object, described by vertexes and surfaces." alt="" coords="5,581,229,853">
-<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="5,5,229,533">
+<area shape="rect" href="$classextrude__base.html" title="Base class for Extrude classes, providing the actual extrude() function." alt="" coords="27,261,163,373">
+<area shape="rect" href="$classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place..." alt="" coords="32,5,157,213">

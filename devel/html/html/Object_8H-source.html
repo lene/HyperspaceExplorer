@@ -57,11 +57,11 @@
 <a name="l00031"></a><a class="code" href="classObject.html">00031</a> <span class="keyword">class </span><a class="code" href="classObject.html" title="Generalized four-dimensional Object, described by vertexes and surfaces.">Object</a>: <span class="keyword">public</span> <a class="code" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> {
 <a name="l00032"></a>00032     <span class="keyword">public</span>:
 <a name="l00034"></a><a class="code" href="classObject.html#6b75a43f15ef4d901ad0c6820bb8b3e0">00034</a>         <span class="keyword">typedef</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector&lt;unsigned&gt;</a> <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">uintvec1D</a>;
-<a name="l00036"></a><a class="code" href="classObject.html#ee0fb4b1bde4a789bbe7382cbb82a9cb">00036</a>         <span class="keyword">typedef</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector&lt;uintvec1D&gt;</a> <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">uintvec2D</a>;
+<a name="l00036"></a><a class="code" href="classObject.html#ee0fb4b1bde4a789bbe7382cbb82a9cb">00036</a>         <span class="keyword">typedef</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">std::vector&lt;uintvec1D&gt;</a> <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html">uintvec2D</a>;
 <a name="l00037"></a>00037 
 <a name="l00038"></a>00038         <a class="code" href="classObject.html#88590464e2e1cb975f59ddb47f4f09b7">Object</a> (<span class="keyword">const</span> QString &amp;, <span class="keywordtype">unsigned</span>, <span class="keywordtype">unsigned</span>);
 <a name="l00039"></a>00039         <span class="keyword">virtual</span> ~<a class="code" href="classObject.html" title="Generalized four-dimensional Object, described by vertexes and surfaces.">Object</a> () { }
-<a name="l00040"></a>00040         <span class="keyword">virtual</span> <span class="keywordtype">void</span> ReInit (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>,
+<a name="l00040"></a>00040         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classObject.html#cb280cacb700070c0cccd0bf35225102">ReInit</a> (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>,
 <a name="l00041"></a>00041                              <span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>,
 <a name="l00042"></a>00042                              <span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>);
 <a name="l00043"></a>00043 
@@ -84,7 +84,7 @@
 <a name="l00063"></a><a class="code" href="classObject.html#ef07f5a71e1d1bb0cd05b0386f438d6e">00063</a>         <a class="code" href="classFunction.html#67b6c27b652c41b419602713cd4d72b7" title="one-dimensional array of Vector&amp;lt;4&amp;gt;, implemented as a std::vector">vec4vec1D</a> <a class="code" href="classObject.html#ef07f5a71e1d1bb0cd05b0386f438d6e" title="temp. storage for transformed function values">Xtrans</a>;   
 <a name="l00064"></a><a class="code" href="classObject.html#c6f586998024548c7ac2cfdb5c2e4921">00064</a>         <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">vec3vec1D</a> <a class="code" href="classObject.html#c6f586998024548c7ac2cfdb5c2e4921" title="temporary storage for projected function values">Xscr</a>;     
 <a name="l00065"></a>00065 
-<a name="l00067"></a><a class="code" href="classObject.html#febafa6727a1d46aaf384fba88f31c1a">00067</a>         <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html" title="STL class.">uintvec2D</a> <a class="code" href="classSurface.html">Surface</a>;
+<a name="l00067"></a><a class="code" href="classObject.html#febafa6727a1d46aaf384fba88f31c1a">00067</a>         <a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html">uintvec2D</a> <a class="code" href="classSurface.html">Surface</a>;
 <a name="l00068"></a>00068 
 <a name="l00074"></a><a class="code" href="classObject.html#c78eebfcc84080ef2e811e9da0c3621e">00074</a>         <span class="keyword">virtual</span> <a class="code" href="classVecMath_1_1Vector.html" title="Vector&amp;lt;D, N&amp;gt;: a D-dimensional vector of numbers of type N.">VecMath::Vector&lt;4&gt;</a> &amp;<a class="code" href="classObject.html#c78eebfcc84080ef2e811e9da0c3621e">f</a> (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>) {
 <a name="l00075"></a>00075             <span class="keywordflow">throw</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01204.html" title="STL class.">std::logic_error</a>(<span class="stringliteral">"Object::f() should never be called"</span>);
@@ -169,7 +169,7 @@
 <a name="l00187"></a>00187                          <span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>,
 <a name="l00188"></a>00188                          <span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>) {
 <a name="l00189"></a>00189         <a class="code" href="classSponge.html#599e21656433097f9e7f2ac143a1dc7a" title="List of sub-sponges (see Initialize()).">List</a>.<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#d46cbc22378f33a2e21bea4b988b9dc7">clear</a>();
-<a name="l00190"></a>00190         Object::ReInit(0,0,0,0,0,0,0,0,0);
+<a name="l00190"></a>00190         <a class="code" href="classObject.html#cb280cacb700070c0cccd0bf35225102">Object::ReInit</a>(0,0,0,0,0,0,0,0,0);
 <a name="l00191"></a>00191     }
 <a name="l00192"></a>00192 
 <a name="l00194"></a><a class="code" href="classSponge.html#7821a0eec75f0d4c75c6e9c1a4ea0d5c">00194</a>     <span class="keyword">virtual</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#a431813f68fa8a80ea10ea2ad21066a2">std::string</a> <a class="code" href="classSponge.html#7821a0eec75f0d4c75c6e9c1a4ea0d5c">description</a> () {
@@ -258,11 +258,11 @@
 <a name="l00288"></a>00288 <span class="preprocessor">#       endif</span>
 <a name="l00289"></a>00289 <span class="preprocessor"></span>        }
 <a name="l00290"></a>00290 
-<a name="l00291"></a>00291         <span class="keyword">virtual</span> <span class="keywordtype">void</span> ReInit (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>,
+<a name="l00291"></a><a class="code" href="classGasket.html#d4ff88db24102c117decfc8d4309489a">00291</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classGasket.html#d4ff88db24102c117decfc8d4309489a">ReInit</a> (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>,
 <a name="l00292"></a>00292                              <span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>,
 <a name="l00293"></a>00293                              <span class="keywordtype">double</span>, <span class="keywordtype">double</span>, <span class="keywordtype">double</span>) {
 <a name="l00294"></a>00294             List.<a class="codeRef" doxygen="libstdc++.tag:" href="a01419.html#d46cbc22378f33a2e21bea4b988b9dc7">clear</a>();
-<a name="l00295"></a>00295             Object::ReInit(0,0,0,0,0,0,0,0,0);
+<a name="l00295"></a>00295             <a class="code" href="classObject.html#cb280cacb700070c0cccd0bf35225102">Object::ReInit</a>(0,0,0,0,0,0,0,0,0);
 <a name="l00296"></a>00296         }
 <a name="l00297"></a>00297 
 <a name="l00298"></a>00298     <span class="keyword">protected</span>:
@@ -284,7 +284,7 @@
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Sun Nov 2 22:16:09 2008 for HyperspaceExplorer 0.6.2
+                Generated on Tue Nov 4 01:07:38 2008 for HyperspaceExplorer 0.6.2
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.6
                 &nbsp;-&nbsp;

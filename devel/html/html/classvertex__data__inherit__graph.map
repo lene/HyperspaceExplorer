@@ -1,7 +1,9 @@
-<area shape="rect" href="$classextrude__base.html" title="Base class for Extrude classes, providing the actual extrude() function." alt="" coords="43,1227,179,1339">
-<area shape="rect" href="$classtaper__base.html" title="Base class for Taper classes, providing the actual taper() function." alt="" coords="212,1219,356,1347">
-<area shape="rect" href="$classvertex__data.html" title="{vertex_data\&lt; 4 \&gt;\n|&#45; _dimension\l&#45; _X\l&#45; _surface\l|+ print()\l# vertex_data()\l# addSurface()\l# addSurface()\l# dimension()\l# X()\l# surface()\l}" alt="" coords="380,1179,503,1387">
-<area shape="rect" href="$classObject.html" title="Generalized four&#45;dimensional Object, described by vertexes and surfaces." alt="" coords="172,584,396,856">
-<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="172,5,396,533">
-<area shape="rect" href="$classExtrude_3_01D_00_01Dmin_00_01Dmin_01_4.html" title="Specialization of Extrude&lt;D,Dmin,Dmax&gt; to end recursion." alt="" coords="5,1437,184,1533">
-<area shape="rect" href="$classTaper_3_01D_00_01Dmin_00_01Dmin_01_4.html" title="Specialization of Taper&lt;D,Dmin,Dmax&gt; to end recursion." alt="" coords="208,1445,376,1525">
+<area shape="rect" href="$classextrude__base.html" title="Base class for Extrude classes, providing the actual extrude() function." alt="" coords="48,325,184,437">
+<area shape="rect" href="$classrotate__base.html" title="Base class for Rotate classes, providing the actual rotate() function." alt="" coords="239,333,364,429">
+<area shape="rect" href="$classtaper__base.html" title="Base class for Taper classes, providing the actual taper() function." alt="" coords="397,317,541,445">
+<area shape="rect" href="$classtorate__base.html" title="Base class for Torate classes, providing the actual torate() function." alt="" coords="565,333,691,429">
+<area shape="rect" href="$classvertex__data.html" title="{vertex_data\&lt; 4 \&gt;\n|&#45; _dimension\l&#45; _X\l&#45; _surface\l|+ print()\l# vertex_data()\l# addSurface()\l# addSurface()\l# dimension()\l# X()\l# surface()\l}" alt="" coords="715,277,837,485">
+<area shape="rect" href="$classExtrude_3_01D_00_01Dmin_00_01Dmin_01_4.html" title="Specialization of Extrude&lt;D,Dmin,Dmax&gt; to end recursion." alt="" coords="5,536,184,632">
+<area shape="rect" href="$classRotate_3_01D_00_01Dmin_00_01Dmin_01_4.html" title="Specialization of Rotate&lt;D,Dmin,Dmax&gt; to end recursion." alt="" coords="208,544,379,624">
+<area shape="rect" href="$classTaper_3_01D_00_01Dmin_00_01Dmin_01_4.html" title="Specialization of Taper&lt;D,Dmin,Dmax&gt; to end recursion." alt="" coords="403,544,571,624">
+<area shape="rect" href="$classTorate_3_01D_00_01Dmin_00_01Dmin_01_4.html" title="Specialization of Torate&lt;D,Dmin,Dmax&gt; to end recursion." alt="" coords="595,544,768,624">

@@ -1,14 +1,6 @@
-<area shape="rect" href="$classextrude__base.html" title="Base class for Extrude classes, providing the actual extrude() function." alt="" coords="541,2363,677,2475">
-<area shape="rect" href="$classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place..." alt="" coords="547,2104,672,2312">
-<area shape="rect" href="$classObject.html" title="Generalized four&#45;dimensional Object, described by vertexes and surfaces." alt="" coords="360,1781,584,2053">
-<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="245,1189,469,1717">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ operator const T *()\l+ dimension()\l}" alt="" coords="57,741,209,1125">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,293,176,677">
-<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="247,853,385,1013">
-<area shape="rect" href="libstdc++.tag$a01208.html" title="{std::map\&lt; std::string, FunctionParameter * \&gt;\n||}" alt="" coords="200,445,485,525">
-<area shape="rect" href="libstdc++.tag$a01208.html" title="STL class." alt="" coords="232,149,504,229">
-<area shape="rect" href="libstdc++.tag$a01419.html" title="STL class." alt="" coords="509,445,683,525">
-<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; std::string \&gt;\n||}" alt="" coords="409,893,575,973">
-<area shape="rect" href="libstdc++.tag$a00960.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;\n||}" alt="" coords="664,149,883,229">
-<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; VecMath::Vector\&lt; D \&gt; \&gt;\n||}" alt="" coords="599,893,839,973">
-<area shape="rect" href="libstdc++.tag$a00961.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;::_Vector_impl\n||}" alt="" coords="620,5,927,85">
+<area shape="rect" href="$classextrude__base.html" title="Base class for Extrude classes, providing the actual extrude() function." alt="" coords="105,840,241,952">
+<area shape="rect" href="$classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place..." alt="" coords="111,581,236,789">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; VecMath::Vector\&lt; D \&gt; \&gt;\n||}" alt="" coords="53,437,293,517">
+<area shape="rect" href="libstdc++.tag$a00960.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;\n||}" alt="" coords="141,149,360,229">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="STL class." alt="" coords="5,293,179,373">
+<area shape="rect" href="libstdc++.tag$a00961.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;::_Vector_impl\n||}" alt="" coords="97,5,404,85">
