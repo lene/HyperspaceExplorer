@@ -1,30 +1,30 @@
-<area shape="rect" href="$classSurfaceFactory.html" title="Abstract base class for a factory creating Surface&#39;s." alt="" coords="1276,4709,1417,4821">
-<area shape="rect" href="$classC4DView.html" title="Displays and manipulates four&#45;dimensional Functions in a QGLWidget." alt="" coords="1559,3941,1748,5589">
-<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html" title="{C4DView::MouseHandler4D\n|&#45; parent\l&#45; m_LeftDownPos\l&#45; m_MidDownPos\l&#45; m_RightDownPos\l&#45; m_TakingSpinValues\l|+ MouseHandler4D()\l+ ~MouseHandler4D()\l+ mouseMoveEvent()\l+ mousePressEvent()\l+ mouseReleaseEvent()\l+ mouseDoubleClickEvent()\l&#45; setm_LeftDownPos()\l&#45; LeftDownPos()\l&#45; setm_MidDownPos()\l&#45; MidDownPos()\l&#45; setm_RightDownPos()\l&#45; RightDownPos()\l&#45; setTakingSpinValues()\l&#45; TakingSpinValues()\l}" alt="" coords="1485,5837,1672,6189">
-<area shape="rect" href="$classC4DView_1_1Menu4D.html" title="The menu for the C4DView and handlers for menu events." alt="" coords="1703,5653,1884,6373">
-<area shape="rect" href="$classUI_1_1ViewImpl.html" title="Interface with attributes to display four&#45;dimensional objects." alt="" coords="965,2629,1141,3877">
-<area shape="rect" href="$classUI_1_1View.html" title="Interface to display four&#45;dimensional objects." alt="" coords="1179,1557,1352,2373">
-<area shape="rect" href="$classVecMath_1_1Rotation.html" title="{VecMath::Rotation\&lt; 4 \&gt;\n|&#45; axis\l|+ Rotation()\l+ Rotation()\l+ operator[]()\l+ operator[]()\l+ operator Matrix\&lt; D, double \&gt;()\l+ operator+=()\l+ operator bool()\l+ r()\l+ r()\l}" alt="" coords="496,1861,709,2069">
-<area shape="rect" href="$classVecMath_1_1Rotation.html" title="Rotation in D&#45;dimensional space defined by angles about the main axes." alt="" coords="444,789,628,997">
-<area shape="rect" href="$classVecMath_1_1Rotation.html" title="{VecMath::Rotation\&lt; 3, GLdouble \&gt;\n|&#45; axis\l|+ Rotation()\l+ Rotation()\l+ operator[]()\l+ operator[]()\l+ operator Matrix\&lt; D, GLdouble \&gt;()\l+ operator+=()\l+ operator bool()\l+ r()\l+ r()\l}" alt="" coords="417,2397,649,2605">
-<area shape="rect" href="$classLightSource.html" title="An interface for the definition of light sources." alt="" coords="799,1821,921,2109">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ operator const T *()\l+ dimension()\l}" alt="" coords="681,701,833,1085">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="399,149,569,533">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 3, GLdouble \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ operator const T *()\l+ dimension()\l}" alt="" coords="212,1149,428,1533">
-<area shape="rect" href="$classColor.html" title="A class to represent a color value by its RGBA components." alt="" coords="864,661,1059,1125">
-<area shape="rect" href="libstdc++.tag$a01015.html" title="{std::auto_ptr\&lt; Function \&gt;\n||}" alt="" coords="1045,1301,1216,1381">
-<area shape="rect" href="libstdc++.tag$a01015.html" title="STL class." alt="" coords="1045,557,1189,637">
-<area shape="rect" href="libstdc++.tag$a01419.html" title="STL class." alt="" coords="1797,853,1971,933">
-<area shape="rect" href="libstdc++.tag$a01208.html" title="STL class." alt="" coords="1155,301,1427,381">
-<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; Light * \&gt;\n||}" alt="" coords="1376,1925,1520,2005">
-<area shape="rect" href="libstdc++.tag$a00960.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;\n||}" alt="" coords="1907,301,2125,381">
-<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; std::vector\&lt; VecMath::Vector\&lt; 4 \&gt; \&gt; \&gt;\n||}" alt="" coords="1904,1925,2227,2005">
-<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; std::vector\&lt; VecMath::Vector\&lt; 3 \&gt; \&gt; \&gt;\n||}" alt="" coords="2251,1925,2573,2005">
-<area shape="rect" href="libstdc++.tag$a00961.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;::_Vector_impl\n||}" alt="" coords="1863,5,2169,85">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html" title="A Dialog to enter parameters for the displayed function." alt="" coords="1555,3077,1752,3429">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialog.html" title="Base class for ValuesDialogImpl, originally created by uic." alt="" coords="1707,1725,1880,2205">
-<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="1544,1885,1683,2045">
-<area shape="rect" href="libstdc++.tag$a01208.html" title="{std::map\&lt; std::string, FunctionParameter * \&gt;\n||}" alt="" coords="1488,853,1773,933">
-<area shape="rect" title="STL class." alt="" coords="2456,3213,2536,3293">
-<area shape="rect" href="libstdc++.tag$a01039.html" title="{std::basic_string\&lt; char \&gt;\n||}" alt="" coords="2597,1925,2765,2005">
-<area shape="rect" href="libstdc++.tag$a01039.html" title="STL class." alt="" coords="2541,853,2821,933">
+<area shape="rect" href="$classSurfaceFactory.html" title="Abstract base class for a factory creating Surface&#39;s." alt="" coords="1225,4709,1353,4821">
+<area shape="rect" href="$classC4DView.html" title="Displays and manipulates four&#45;dimensional Functions in a QGLWidget." alt="" coords="1481,3941,1657,5589">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html" title="{C4DView::MouseHandler4D\n|&#45; parent\l&#45; m_LeftDownPos\l&#45; m_MidDownPos\l&#45; m_RightDownPos\l&#45; m_TakingSpinValues\l|+ MouseHandler4D()\l+ ~MouseHandler4D()\l+ mouseMoveEvent()\l+ mousePressEvent()\l+ mouseReleaseEvent()\l+ mouseDoubleClickEvent()\l&#45; setm_LeftDownPos()\l&#45; LeftDownPos()\l&#45; setm_MidDownPos()\l&#45; MidDownPos()\l&#45; setm_RightDownPos()\l&#45; RightDownPos()\l&#45; setTakingSpinValues()\l&#45; TakingSpinValues()\l}" alt="" coords="1408,5837,1587,6189">
+<area shape="rect" href="$classC4DView_1_1Menu4D.html" title="The menu for the C4DView and handlers for menu events." alt="" coords="1615,5653,1780,6373">
+<area shape="rect" href="$classUI_1_1ViewImpl.html" title="Interface with attributes to display four&#45;dimensional objects." alt="" coords="924,2629,1087,3877">
+<area shape="rect" href="$classUI_1_1View.html" title="Interface to display four&#45;dimensional objects." alt="" coords="1121,1557,1281,2373">
+<area shape="rect" href="$classVecMath_1_1Rotation.html" title="{VecMath::Rotation\&lt; 4 \&gt;\n|&#45; axis\l|+ Rotation()\l+ Rotation()\l+ operator[]()\l+ operator[]()\l+ operator Matrix\&lt; D, N \&gt;()\l+ operator+=()\l+ operator bool()\l+ r()\l+ r()\l}" alt="" coords="505,1861,679,2069">
+<area shape="rect" href="$classVecMath_1_1Rotation.html" title="Rotation in D&#45;dimensional space defined by angles about the main axes." alt="" coords="420,789,593,997">
+<area shape="rect" href="$classVecMath_1_1Rotation.html" title="{VecMath::Rotation\&lt; 3, GLdouble \&gt;\n|&#45; axis\l|+ Rotation()\l+ Rotation()\l+ operator[]()\l+ operator[]()\l+ operator Matrix\&lt; D, N \&gt;()\l+ operator+=()\l+ operator bool()\l+ r()\l+ r()\l}" alt="" coords="417,2397,631,2605">
+<area shape="rect" href="$classLightSource.html" title="An interface for the definition of light sources." alt="" coords="765,1821,880,2109">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ operator const T *()\l+ dimension()\l}" alt="" coords="656,701,797,1085">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="413,149,576,533">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 3, GLdouble \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ operator const T *()\l+ dimension()\l}" alt="" coords="235,1149,437,1533">
+<area shape="rect" href="$classColor.html" title="A class to represent a color value by its RGBA components." alt="" coords="829,661,1011,1125">
+<area shape="rect" href="libstdc++.tag$a01015.html" title="{std::auto_ptr\&lt; Function \&gt;\n||}" alt="" coords="1005,1301,1163,1381">
+<area shape="rect" href="libstdc++.tag$a01015.html" title="STL class." alt="" coords="1023,557,1153,637">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="STL class." alt="" coords="1583,853,1745,933">
+<area shape="rect" href="libstdc++.tag$a01208.html" title="STL class." alt="" coords="1125,301,1376,381">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; Light * \&gt;\n||}" alt="" coords="1305,1925,1444,2005">
+<area shape="rect" href="libstdc++.tag$a00960.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;\n||}" alt="" coords="1924,301,2127,381">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; std::vector\&lt; VecMath::Vector\&lt; 4 \&gt; \&gt; \&gt;\n||}" alt="" coords="1807,1925,2105,2005">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; std::vector\&lt; VecMath::Vector\&lt; 3 \&gt; \&gt; \&gt;\n||}" alt="" coords="2129,1925,2428,2005">
+<area shape="rect" href="libstdc++.tag$a00961.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;::_Vector_impl\n||}" alt="" coords="1883,5,2168,85">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html" title="A Dialog to enter parameters for the displayed function." alt="" coords="1475,3077,1664,3429">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialog.html" title="Base class for ValuesDialogImpl, originally created by uic." alt="" coords="1617,1725,1783,2205">
+<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="1468,1885,1593,2045">
+<area shape="rect" href="libstdc++.tag$a01208.html" title="{std::map\&lt; std::string, FunctionParameter * \&gt;\n||}" alt="" coords="1191,853,1449,933">
+<area shape="rect" title="STL class." alt="" coords="2317,3213,2392,3293">
+<area shape="rect" href="libstdc++.tag$a01039.html" title="{std::basic_string\&lt; char \&gt;\n||}" alt="" coords="2452,1925,2604,2005">
+<area shape="rect" href="libstdc++.tag$a01039.html" title="STL class." alt="" coords="2399,853,2657,933">

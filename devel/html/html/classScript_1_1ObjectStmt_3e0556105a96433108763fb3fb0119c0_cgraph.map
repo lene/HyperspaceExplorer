@@ -1,6 +1,6 @@
-<area shape="rect" href="$classScript_1_1Statement.html#6db04d60777fcdfc101e4a5286e7cdf5" title="Script::Statement::arg" alt="" coords="268,5,420,32">
-<area shape="rect" href="$classScript_1_1Parser.html#9688b748587eb90de82009e704b24783" title="Script::Parser::getView" alt="" coords="265,56,423,83">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="241,107,447,133">
-<area shape="rect" href="$classScript_1_1Statement.html#e753070784bc066628c7bf1b8f535114" title="Script::Statement::parser" alt="" coords="259,157,429,184">
-<area shape="rect" href="$classUI_1_1View.html#a01595ec4f81c2ef329f067cf2902954" title="Set the currently displayed object to the given Function." alt="" coords="291,208,397,235">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="496,107,736,133">
+<area shape="rect" href="$classScript_1_1Statement.html#6db04d60777fcdfc101e4a5286e7cdf5" title="Script::Statement::arg" alt="" coords="252,5,391,32">
+<area shape="rect" href="$classScript_1_1Parser.html#9688b748587eb90de82009e704b24783" title="Script::Parser::getView" alt="" coords="248,56,395,83">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="225,107,417,133">
+<area shape="rect" href="$classScript_1_1Statement.html#e753070784bc066628c7bf1b8f535114" title="Script::Statement::parser" alt="" coords="245,157,397,184">
+<area shape="rect" href="$classUI_1_1View.html#a01595ec4f81c2ef329f067cf2902954" title="Set the currently displayed object to the given Function." alt="" coords="271,208,372,235">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="467,107,691,133">

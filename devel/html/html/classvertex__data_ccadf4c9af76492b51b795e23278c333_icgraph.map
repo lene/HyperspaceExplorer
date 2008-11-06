@@ -1,7 +1,3 @@
-<area shape="rect" href="$classvertex__data.html#0e02550cbfe19d730213de98dcc5acc4" title="Add a surface to the array of surfaces." alt="" coords="225,5,393,32">
-<area shape="rect" href="$classextrude__base.html#f9a78bced49696e27141836f3d6d61ee" title="Extrudes an object along a given dimension." alt="" coords="232,56,387,83">
-<area shape="rect" href="$classtaper__base.html#1e9ad5f81bf3da49de37114122bcaf67" title="Execute the taper action of the previous object along axis d." alt="" coords="245,107,373,133">
-<area shape="rect" href="$classExtrude_3_01D_00_01Dmin_00_01Dmin_01_4.html#c3d56965f2dcfbcb5742e363dc1f2f7d" title="Create an Extrude object from a point." alt="" coords="444,5,676,32">
-<area shape="rect" href="$classExtrude.html#1ae253f82f415daa9edd0d6c668d9159" title="Create an Extrude object from a point." alt="" coords="499,56,621,83">
-<area shape="rect" href="$classTaper_3_01D_00_01Dmin_00_01Dmin_01_4.html#56264cae0b56740fce973f4a4323dc58" title="Create a Taper object from an already existing object." alt="" coords="455,107,665,133">
-<area shape="rect" href="$classTaper.html#16c05f94aba267896d7fb909d0f1e8ef" title="Create a Taper object from an already existing object." alt="" coords="509,157,611,184">
+<area shape="rect" href="$classvertex__data.html#0e02550cbfe19d730213de98dcc5acc4" title="Add a surface to the array of surfaces." alt="" coords="207,5,356,32">
+<area shape="rect" href="$classextrude__base.html#f9a78bced49696e27141836f3d6d61ee" title="Extrudes an object along a given dimension." alt="" coords="212,56,351,83">
+<area shape="rect" href="$classtaper__base.html#1e9ad5f81bf3da49de37114122bcaf67" title="Execute the taper action of the previous object along axis d." alt="" coords="225,107,337,133">

@@ -1,6 +1,10 @@
-<area shape="rect" href="$classRealFunction.html#45794e4c47942b87f76535062cc23423" title="Draw the current plane of the projected Function." alt="" coords="192,56,365,83">
-<area shape="rect" href="$classRealBase.html#13591cf37427643c8cab25ab5e8b05f5" title="number of steps in t" alt="" coords="205,107,352,133">
-<area shape="rect" href="$classRealFunction.html#dbafbb0c90473d0b4c3dbc5c3dfdd75a" title="Draw the current strip of the projected Function." alt="" coords="415,31,580,57">
-<area shape="rect" href="$classRealBase.html#484ca78d73b9140e77dc26d626e90b88" title="number of steps in u" alt="" coords="424,81,571,108">
-<area shape="rect" href="$classRealFunction.html#891f30e71e090f4c8cfb0362d1c40cd3" title="Draw the current cube or cell of the projected Function." alt="" coords="629,5,800,32">
-<area shape="rect" href="$classRealBase.html#4c12bdcab988ba1efa81d7f23504bc9d" title="number of steps in v" alt="" coords="641,56,788,83">
+<area shape="rect" href="$classRealFunction.html#45794e4c47942b87f76535062cc23423" title="Draw the current plane of the projected Function." alt="" coords="184,81,344,108">
+<area shape="rect" href="$classRealBase.html#13591cf37427643c8cab25ab5e8b05f5" title="number of steps in t" alt="" coords="199,132,329,159">
+<area shape="rect" href="$classRealFunction.html#dbafbb0c90473d0b4c3dbc5c3dfdd75a" title="Draw the current strip of the projected Function." alt="" coords="393,56,548,83">
+<area shape="rect" href="$classRealBase.html#484ca78d73b9140e77dc26d626e90b88" title="number of steps in u" alt="" coords="405,107,536,133">
+<area shape="rect" href="$classRealFunction.html#891f30e71e090f4c8cfb0362d1c40cd3" title="Draw the current cube or cell of the projected Function." alt="" coords="599,31,756,57">
+<area shape="rect" href="$classRealBase.html#4c12bdcab988ba1efa81d7f23504bc9d" title="number of steps in v" alt="" coords="612,81,743,108">
+<area shape="rect" href="$classFunction.html#dab9c5dfed7cfe3840ec9a28d2248327" title="Remember that we&#39;ve set some more vertices." alt="" coords="807,5,945,32">
+<area shape="rect" href="$classFunction.html#07cc99ac6516462fbbce9aa5347ef975" title="Set a color and a vertex datum in OpenGL." alt="" coords="813,56,939,83">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="996,56,1188,83">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1237,56,1461,83">

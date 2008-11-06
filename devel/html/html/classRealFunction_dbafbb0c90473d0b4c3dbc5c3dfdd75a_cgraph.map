@@ -1,2 +1,6 @@
-<area shape="rect" href="$classRealFunction.html#891f30e71e090f4c8cfb0362d1c40cd3" title="Draw the current cube or cell of the projected Function." alt="" coords="221,5,392,32">
-<area shape="rect" href="$classRealBase.html#4c12bdcab988ba1efa81d7f23504bc9d" title="number of steps in v" alt="" coords="233,56,380,83">
+<area shape="rect" href="$classRealFunction.html#891f30e71e090f4c8cfb0362d1c40cd3" title="Draw the current cube or cell of the projected Function." alt="" coords="212,31,369,57">
+<area shape="rect" href="$classRealBase.html#4c12bdcab988ba1efa81d7f23504bc9d" title="number of steps in v" alt="" coords="225,81,356,108">
+<area shape="rect" href="$classFunction.html#dab9c5dfed7cfe3840ec9a28d2248327" title="Remember that we&#39;ve set some more vertices." alt="" coords="420,5,559,32">
+<area shape="rect" href="$classFunction.html#07cc99ac6516462fbbce9aa5347ef975" title="Set a color and a vertex datum in OpenGL." alt="" coords="427,56,552,83">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="609,56,801,83">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="851,56,1075,83">

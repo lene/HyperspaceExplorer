@@ -1,7 +1,7 @@
-<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#3fd72e434043c95051a38c2dbfccab7a" title="Mouse button event handler." alt="" coords="249,107,553,133">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="661,5,867,32">
-<area shape="rect" href="$classC4DView.html#9fd23354578b01a6f5bb392cafea4344" title="C4DView::Menu" alt="" coords="705,56,823,83">
-<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#92d1a9fd22803c865cf152191606b43e" title="C4DView::MouseHandler4D::setm_LeftDownPos" alt="" coords="608,107,920,133">
-<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#909181777e8fc6db6c75712debfebb7f" title="C4DView::MouseHandler4D::setm_MidDownPos" alt="" coords="609,157,919,184">
-<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#a4f667972a1db23cccac9aed209f1bc7" title="C4DView::MouseHandler4D::setm_RightDownPos" alt="" coords="604,208,924,235">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="973,5,1213,32">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#3fd72e434043c95051a38c2dbfccab7a" title="Mouse button event handler." alt="" coords="232,107,512,133">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="613,5,805,32">
+<area shape="rect" href="$classC4DView.html#9fd23354578b01a6f5bb392cafea4344" title="C4DView::Menu" alt="" coords="653,56,765,83">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#92d1a9fd22803c865cf152191606b43e" title="C4DView::MouseHandler4D::setm_LeftDownPos" alt="" coords="564,107,855,133">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#909181777e8fc6db6c75712debfebb7f" title="C4DView::MouseHandler4D::setm_MidDownPos" alt="" coords="564,157,855,184">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#a4f667972a1db23cccac9aed209f1bc7" title="C4DView::MouseHandler4D::setm_RightDownPos" alt="" coords="560,208,859,235">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="907,5,1131,32">

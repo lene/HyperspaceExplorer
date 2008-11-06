@@ -1,3 +1,6 @@
-<area shape="rect" href="$classSurface.html#4b6eecac144cb1d0650d711727ecb540" title="Surface::DrawStrip" alt="" coords="176,5,309,32">
-<area shape="rect" href="$classSurfaceBase.html#761208b17975a6c343774b5ca467ed2b" title="number of steps in t" alt="" coords="160,56,325,83">
-<area shape="rect" href="$classSurfaceBase.html#d8c79625fa46d8c5ebbda58f0dd9eb5d" title="number of steps in u" alt="" coords="375,5,540,32">
+<area shape="rect" href="$classSurface.html#4b6eecac144cb1d0650d711727ecb540" title="Surface::DrawStrip" alt="" coords="163,31,288,57">
+<area shape="rect" href="$classSurfaceBase.html#761208b17975a6c343774b5ca467ed2b" title="number of steps in t" alt="" coords="152,81,299,108">
+<area shape="rect" href="$classSurfaceBase.html#d8c79625fa46d8c5ebbda58f0dd9eb5d" title="number of steps in u" alt="" coords="348,5,495,32">
+<area shape="rect" href="$classFunction.html#07cc99ac6516462fbbce9aa5347ef975" title="Set a color and a vertex datum in OpenGL." alt="" coords="359,56,484,83">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="545,56,737,83">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="787,56,1011,83">

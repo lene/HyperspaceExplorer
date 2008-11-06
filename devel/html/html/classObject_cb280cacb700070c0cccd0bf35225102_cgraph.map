@@ -1,4 +1,4 @@
-<area shape="rect" href="$classObject.html#abb0df155c83971e135cc13f9fc28860" title="Actually create the Object, this method is overridden in child classes." alt="" coords="159,56,273,83">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="324,5,529,32">
-<area shape="rect" href="libstdc++.tag$a01419.html#cfe97b143edc1c10b4532ebdb839d83c" title="std::vector::size" alt="" coords="369,56,484,83">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="579,5,819,32">
+<area shape="rect" href="$classObject.html#abb0df155c83971e135cc13f9fc28860" title="Actually create the Object, this method is overridden in child classes." alt="" coords="152,56,264,83">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="313,5,505,32">
+<area shape="rect" href="libstdc++.tag$a01419.html#cfe97b143edc1c10b4532ebdb839d83c" title="std::vector::size" alt="" coords="357,56,461,83">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="555,5,779,32">
