@@ -29,7 +29,7 @@ class SteinerFunction: public Function {
     protected:
         /// The mathematical function defining the Function object
         virtual VecMath::Vector<4> &f(double, double) = 0;
-//        double **df (double, double);
+        virtual VecMath::Vector<4> *df (double, double);
 
     private:
         double a,    ///< ?
@@ -40,7 +40,7 @@ class SteinerFunction: public Function {
                vmax, ///< ?
                dv;   ///< ?
 
-        Vector F;
+        VecMath::Vector<4> F;
 };
 
 #endif // !defined(STEINER_FUNCTION_H)

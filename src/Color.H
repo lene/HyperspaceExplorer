@@ -35,17 +35,18 @@ class Color {
         Color(const VecMath::Vector<4> &);
         Color(const QColor &);
 
-        float &r() { return RGBA[0]; }  /// the red component of the color
-        float r() const { return RGBA[0]; }  /// the red component of the color
-        float &g() { return RGBA[1]; }  /// the green component of the color
-        float g() const { return RGBA[1]; }  /// the green component of the color
-        float &b() { return RGBA[2]; }  /// the blue component of the color
-        float b() const { return RGBA[2]; }  /// the blue component of the color
-        float &a() { return RGBA[3]; }  /// the alpha component of the color
-        float a() const { return RGBA[3]; }  /// the alpha component of the color
+        float &r() { return RGBA[0]; }      ///< the red component of the color
+        float r() const { return RGBA[0]; } ///< the red component of the color
+        float &g() { return RGBA[1]; }      ///< the green component of the color
+        float g() const { return RGBA[1]; } ///< the green component of the color
+        float &b() { return RGBA[2]; }      ///< the blue component of the color
+        float b() const { return RGBA[2]; } ///< the blue component of the color
+        float &a() { return RGBA[3]; }      ///< the alpha component of the color
+        float a() const { return RGBA[3]; } ///< the alpha component of the color
 
         /// direct access to the array of components, needed by OpenGL functions
         operator float *() { return RGBA; }
+        /// direct access to the array of components, needed by OpenGL functions
         operator const float *() const { return RGBA; }
         Color operator *=(float);
         Color operator *=(const Color &);

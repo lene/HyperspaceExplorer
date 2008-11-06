@@ -174,9 +174,9 @@ namespace VecMath {
 
     /// Rotation output operator
     /** \ingroup VecMath
-     *  @param o ostream to push into
-     *  @param v Rotation to print
-     *  @return a new ostream to push Rotations and stuff into                */
+     *  \param o ostream to push into
+     *  \param v Rotation to print
+     *  \return a new ostream to push Rotations and stuff into                */
     template <unsigned D, typename N>
             std::ostream &operator << (std::ostream &o, const Rotation<D, N> &v) {
         o << v.r();
@@ -185,9 +185,9 @@ namespace VecMath {
 
     /// Rotation input operator
     /** \ingroup VecMath
-     *  @param o istream to read from
-     *  @param v Rotation to read
-     *  @return a new istream to read stuff from                              */
+     *  \param in istream to read from
+     *  \param v Rotation to read
+     *  \return a new istream to read stuff from                              */
     template <unsigned D, typename N>
             std::istringstream &operator >> (std::istringstream &in, Rotation<D, N> &v) {
         in >> v.r();

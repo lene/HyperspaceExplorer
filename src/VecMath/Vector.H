@@ -276,9 +276,9 @@ namespace VecMath {
 
     /// Vector input operator
     /** \ingroup VecMath
-     *  @param o istream to read from
-     *  @param v Vector to read
-     *  @return a new istream to read stuff from                              */
+     *  \param in istream to read from
+     *  \param v Vector to read
+     *  \return a new istream to read stuff from                              */
     template <unsigned D, typename N>
             std::istringstream &operator >> (std::istringstream &in, Vector<D, N> &v) {
         char bracket;
@@ -294,9 +294,7 @@ namespace VecMath {
     /** fails for dimensions other than 3 due to lack of template
      *  specialization
      *  \ingroup VecMath
-     *  @param a	first operand of cross product
-     *  @param b	second operand of cross product
-     *  @return	a x b                                                         */
+     *  \return	a x b                                                         */
     template <unsigned D, typename N>
             Vector<D> cross (const Vector<D> &, const Vector<D> &);
 
@@ -304,10 +302,7 @@ namespace VecMath {
     /** fails for dimensions other than 4 due to lack of template
      *  specialization
      *  \ingroup VecMath
-     *  @param a	first operand of cross product
-     *  @param b	second operand of cross product
-     *  @param c	third operand of cross product
-     *  @return	a x b x c                                                     */
+     *  \return	a x b x c                                                     */
     template <unsigned D, typename N>
             Vector<D> cross (const Vector<D> &, const Vector<D> &, const Vector<D> &);
 

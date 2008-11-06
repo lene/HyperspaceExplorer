@@ -11,6 +11,7 @@
 #include "Globals.H"
 #include "SteinerFunction.H"
 
+using VecMath::Vector;
 
 //////////////////////////////////////////////////////////////////////
 // construction / destruction
@@ -54,40 +55,39 @@ SteinerFunction::~SteinerFunction() {
 Vector &SteinerFunction::f (double uu, double vv) {
   F[0] = (a+cos(uu/2)*sin(vv)-sin(uu/2)*sin(2*vv))*cos(uu);	//	klein bottle
   F[1] = (a+cos(uu/2)*sin(vv)-sin(uu/2)*sin(2*vv))*sin(uu);
-  F[2] = sin(uu/2)*sin(vv)+cos(uu/2)*sin(2*vv);				
+  F[2] = sin(uu/2)*sin(vv)+cos(uu/2)*sin(2*vv);
 
 /*	double b=1, c=0.1, n=3;
 	F[0] = a*(1-vv/(2*pi))*cos(n*vv)*(1+cos(uu))+c*cos(n*vv);	//	conic spiral
     F[1] = a*(1-vv/(2*pi))*sin(n*vv)*(1+cos(uu))+c*sin(n*vv);
     F[2] = b*vv/(2*pi)+a*(1-vv/(2*pi))*sin(uu);					*/
 
-  return F; 
+  return F;
 }
 
 
-/*******************************************************************************
- *  hand-rolled implementation of the derivatives in u and v (for klein's bottle)
- *  @param uu		u value
- *  @param vv		v value
- *  @return		gradient in u and v as array
+/** hand-rolled implementation of the derivatives in u and v (for klein's bottle)
+ *  \param uu u value
+ *  \param vv v value
+ *  \return gradient in u and v as array
  */
-Vector *SteinerFunction::df (double uu, double vv) {
-  static Vector F0 (3);			//	f (u, v)
-  static Vector DF[2];
-  
+VecMath::Vector<4> *SteinerFunction::df (double uu, double vv) {
+    static Vector<4> F0 (3);			//	f (u, v)
+    static Vector<4> DF[2];
+
 	//	derive after uu first
-  DF[0][0] = -1/2.*(sin (uu/2)*sin (vv) + cos (uu/2)*sin (2*vv))*cos (uu)
-             -   (a+cos (uu/2)*sin (vv) - sin (uu/2)*sin (2*vv))*sin (uu);
-  DF[0][1] =  1/2.*(sin (uu/2)*sin (vv) + cos (uu/2)*sin (2*vv))*sin (uu)
-             +   (a+cos (uu/2)*sin (vv) - sin (uu/2)*sin (2*vv))*cos (uu);
-  DF[0][2] =  1/2.*(cos (uu/2)*sin (vv) - sin (uu/2)*sin (2*vv));
+    DF[0][0] = -1/2.*(sin (uu/2)*sin (vv) + cos (uu/2)*sin (2*vv))*cos (uu)
+                -   (a+cos (uu/2)*sin (vv) - sin (uu/2)*sin (2*vv))*sin (uu);
+    DF[0][1] =  1/2.*(sin (uu/2)*sin (vv) + cos (uu/2)*sin (2*vv))*sin (uu)
+                +   (a+cos (uu/2)*sin (vv) - sin (uu/2)*sin (2*vv))*cos (uu);
+    DF[0][2] =  1/2.*(cos (uu/2)*sin (vv) - sin (uu/2)*sin (2*vv));
 
-	//	now vv
-  DF[1][0] =	(cos (uu/2)*cos (vv) - 2*sin (uu/2)*cos (2*vv))*cos (uu);
-  DF[1][1] =	(cos (uu/2)*cos (vv) - 2*sin (uu/2)*cos (2*vv))*sin (uu);
-  DF[1][2] =	 sin (uu/2)*cos (vv) + 2*cos (uu/2)*cos (2*vv);
+            //	now vv
+    DF[1][0] =	(cos (uu/2)*cos (vv) - 2*sin (uu/2)*cos (2*vv))*cos (uu);
+    DF[1][1] =	(cos (uu/2)*cos (vv) - 2*sin (uu/2)*cos (2*vv))*sin (uu);
+    DF[1][2] =	 sin (uu/2)*cos (vv) + 2*cos (uu/2)*cos (2*vv);
 
-  return DF; 
+    return DF;
 }
 
 
@@ -106,5 +106,5 @@ void SteinerFunction::Draw (void) {
       glVertex (F);
     }
     glEnd ();
-  }		
+  }
 }

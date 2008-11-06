@@ -19,12 +19,14 @@ using VecMath::Vector;
 
 /** ComplexFunction c'tor given a definition set in \f$ R^2 \f$ (as parameter
  *  space)
- *  @param _umin	minimal value in u
- *  @param _umax	maximal value in u
- *  @param _du		stepsize in u
- *  @param _vmin	minimal value in v
- *  @param _vmax	maximal value in v
- *  @param _dv stepsize in v                                             */
+ *  \param _umin minimal value in u
+ *  \param _umax maximal value in u
+ *  \param _du stepsize in u
+ *  \param _vmin minimal value in v
+ *  \param _vmax maximal value in v
+ *  \param _dv stepsize in v
+ *  \param name The function name
+ */
 ComplexFunction::ComplexFunction (const QString &name,
                                   double _umin, double _umax, double _du,
                                   double _vmin, double _vmax, double _dv):

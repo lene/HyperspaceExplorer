@@ -34,6 +34,7 @@ class Function;
  *  \ingroup Coloring                                                         */
 class ColorManager {
     public:
+        /// Create a ColorManager for a given Function
         ColorManager(const Function *_f):
             f(_f),
             ambientColorModifier(0.5), specularColorModifier(2.),
@@ -69,6 +70,7 @@ class ColorManager {
         virtual std::string getContents() { return ""; }
 
     protected:
+        /// \return offset (minimum color) value for 4D depth cue
         double getoffset4Ddepthcue() { return offset4Ddepthcue; }
 
         /// one-dimensional Color array, implemented as a std::vector
@@ -181,6 +183,7 @@ class ColorManagerManager {
                            const VecMath::Vector<4> &x) {
             colorManager->depthCueColor(wmax, wmin, w, x);
         }
+        /// proxy function for ColorManager::setRGB()
         void setRGB(const Color &_col) { colorManager->setRGB(_col); }
         /// debugging output
         std::string getContents() { return colorManager->getContents(); }
@@ -195,7 +198,7 @@ class ColorManagerManager {
         /** disabled destructor */
         ~ColorManagerManager() { }
 
-        std::auto_ptr<ColorManager> colorManager;
+        std::auto_ptr<ColorManager> colorManager;   ///< The proxied ColorManager
 
         friend class Loki::CreateUsingNew<ColorManagerManager>;
 

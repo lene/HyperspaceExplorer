@@ -29,18 +29,24 @@
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class ComplexFunction: public Surface {
     public:
+        /// Minimal constructor, sets the function name
         ComplexFunction (const QString &name): Surface(name) { }
         ComplexFunction (const QString &name,
                          double _umin, double _umax, double _du,
                          double _vmin, double _vmax, double _dv);
         virtual ~ComplexFunction ();
+        /// Set up to 4 parameters
+        /** Defaults to do nothing, so implementations need not implement it by
+         *  default.
+         */
         virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
-        typedef std::complex<double> function_type(std::complex <double>) ;
+        /// A function from \f$ C \rightarrow C \f$
+        typedef std::complex<double> function_type(std::complex <double>);
 
     protected:
         virtual VecMath::Vector<4> &f (double, double);
-        virtual function_type g = 0;
+        virtual function_type g = 0;    ///< The actual function from C to C
         void Initialize (void);
 };
 

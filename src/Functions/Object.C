@@ -125,9 +125,10 @@ void Object::ReInit (double, double, double,
 
 
 /// Hypercube constructor
-/** @param center center
- *  @param a side_length/2                                                   */
-Hypercube::Hypercube (double a, const Vector<4> &center):
+/** \param center center
+ *  \param a side_length/2
+ */
+Hypercube::Hypercube (double a, const VecMath::Vector<4> &center):
         Object ("Hypercube", 16, 24),
     _a (a), _center(center) {
     declareParameter("Size", 1.0);
@@ -192,15 +193,16 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
     ///////////////////////////////////////////////////////////////////////////////
 
 /// Construct a Hypersponge of level \p level
-/** \param level Level of recursion used in creating the Sponge
+/** \param _level Level of recursion used in creating the Sponge
  *  \param _distance see Initialize()
  *  \param _rad Size of the Sponge - \p _rad is half the side length
  *  \param _center Center point of the Sponge                                 */
-Sponge::Sponge (unsigned level, unsigned _distance, double _rad, Vector<4> _center):
-    Level (level), distance(_distance), rad(_rad), center(_center) {
+Sponge::Sponge (unsigned _level, unsigned _distance, double _rad,
+                VecMath::Vector<4> _center):
+    Level (_level), distance(_distance), rad(_rad), center(_center) {
     setfunctionName("4-dimensional Menger Sponge");
 //    clearParameterNames();
-    declareParameter("Level", (unsigned)1, level);
+    declareParameter("Level", (unsigned)1, _level);
     declareParameter("Distance", (unsigned)2, _distance);
     declareParameter("Size", 0.8, _rad);
 
@@ -245,7 +247,8 @@ Sponge::~Sponge () {
  *      four-dimensional fractal dust.
  *
  *  If the \em level of the sponge is 1, the sub-sponges are hypercubes. Otherwise,
- *  they are Hypersponges with a \em level reduced by 1.                          */
+ *  they are Hypersponges with a \em level reduced by 1.
+ */
 void Sponge::Initialize(void) {
 //    SingletonLog::Instance().log("Sponge::Initialize()");
 
@@ -387,10 +390,10 @@ void Pyramid::DeclareTriangle (unsigned i, unsigned a, unsigned b, unsigned c) {
 
 
 /// Gasket constructor
-/** @param level hyper-sierpinski gasket level
- *  @param rad side_length/2
- *  @param center center                                                      */
-Gasket::Gasket (unsigned level, double _rad, Vector<4> _center):
+/** \param level hyper-sierpinski gasket level
+ *  \param _rad side_length/2
+ *  \param _center center                                                      */
+Gasket::Gasket (unsigned level, double _rad, VecMath::Vector<4> _center):
     Level (level), rad(_rad), center(_center) {
     setfunctionName("4-dimensional Sierpinski Gasket");
 //    clearParameterNames();

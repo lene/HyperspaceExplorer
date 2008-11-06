@@ -27,18 +27,24 @@ template<class function_type>
         /// CustomFunction destructor, closes DLL if necessary
         ~CustomFunctionBase() { if (handle) dlclose (handle); }
         QString symbolic ();
+
+        /// \return Whether loading the library succeeded
         bool isValid() const { return valid; }
 
     protected:
         bool loadFunction (const QString &, QString = "f");
+
+        /// Signify success in loading the function
         void setValid() { valid = true; }
+        /// Signify failure in loading the function
         void setInvalid() { valid = false; }
 
+        /// The function that is called
         function_type *func;
 
     private:
-        void *handle;
-        bool valid;
+        void *handle;   /// Temporary function handle returned by dlopen()
+        bool valid;     /// Whether loading the library succeeded
 };
 
 /** A Function \f$ f: R^3 \rightarrow R \f$, which the user can edit to
@@ -105,8 +111,9 @@ class CustomComplexFunction:
 
 
 /** try to load a DLL and the f() in it
- *  @param libName name of the plugin DLL file
- *  @return success                                                       */
+ *  \param libName name of the plugin DLL file
+ *  \param funcName name of the function to load
+ *  \return success                                                       */
 template<class function_type>
         bool CustomFunctionBase<function_type>::loadFunction(const QString &libName, QString funcName) {
     const char *error;
@@ -126,8 +133,7 @@ template<class function_type>
     return true;
 }
 
-/** @param handle an opened DLL handle
- *  @return custom function in symbolic notation                              */
+/** \return Custom function in symbolic notation */
 template<class function_type>
         QString CustomFunctionBase<function_type>::symbolic () {
     typedef char* STRING;

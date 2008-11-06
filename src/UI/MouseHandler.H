@@ -8,6 +8,7 @@
  */
 class C4DView::MouseHandler4D {
     public:
+        /// Create a MouseHandler4D for a C4DView
         MouseHandler4D(C4DView *);
         ~MouseHandler4D();
 
@@ -34,14 +35,17 @@ class C4DView::MouseHandler4D {
         /// \return position where the RMB press started
         QPoint RightDownPos() const { return m_RightDownPos; }
 
+        /// Set whether mouse button pressed & mouse moved to take movement speed
         void setTakingSpinValues(bool b) { m_TakingSpinValues = b; }
+        /// \return Mouse button pressed & mouse moved to take movement speed?
         bool TakingSpinValues() const { return m_TakingSpinValues; }
 
         C4DView *parent;        ///< the C4DView containing this mouse handler
 
-        QPoint m_LeftDownPos,       ///< position where the LMB press started
-               m_MidDownPos,        ///< position where the MMB press started
-               m_RightDownPos;      ///< position where the RMB press started
+        QPoint m_LeftDownPos;       ///< position where the LMB press started
+        QPoint m_MidDownPos;        ///< position where the MMB press started
+        QPoint m_RightDownPos;      ///< position where the RMB press started
+
         /// true while mouse button pressed & mouse moved to take movement speed
         bool m_TakingSpinValues;
 

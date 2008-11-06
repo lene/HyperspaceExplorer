@@ -27,16 +27,16 @@ using namespace UI::Dialogs;
 
 /** CustomFunction c'tor given a definition set in R³ (as parameter space) and a
  *  flag indicatin whether this is a test construction or a real one
- *  @param _tmin minimal value in t
- *  @param _tmax maximal value in t
- *  @param _dt stepsize in t
- *  @param _umin minimal value in u
- *  @param _umax maximal value in u
- *  @param _du stepsize in u
- *  @param _vmin minimal value in v
- *  @param _vmax maximal value in v
- *  @param _dv stepsize in v
- *  @param _final real construction or test                                   */
+ *  \param _tmin minimal value in t
+ *  \param _tmax maximal value in t
+ *  \param _dt stepsize in t
+ *  \param _umin minimal value in u
+ *  \param _umax maximal value in u
+ *  \param _du stepsize in u
+ *  \param _vmin minimal value in v
+ *  \param _vmax maximal value in v
+ *  \param _dv stepsize in v
+ *  \param final real construction or test                                   */
 CustomFunction::CustomFunction (double _tmin, double _tmax, double _dt,
                                 double _umin, double _umax, double _du,
                                 double _vmin, double _vmax, double _dv,

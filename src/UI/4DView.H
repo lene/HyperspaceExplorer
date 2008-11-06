@@ -234,53 +234,82 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         /// GL stuff needed in addition to resizeEvent(). Reimplemented from QGLWidget
         virtual void resizeGL (int, int);
 
+        /// Set the current 3D rotation state
         void setm_rot(const VecMath::Rotation<3, GLdouble> &_r) {
             _rot = _r;
         }
+        /// \return The current 3D rotation state
         const VecMath::Rotation<3, GLdouble> &m_rot() {
             return _rot;
         }
+        /// Add a translation to the current 3D rotation state
         void addm_rot(const VecMath::Rotation<3, GLdouble> &_dmr) {
             _rot += _dmr;
         }
 
+        /// Set the current 3D translation state
         void setm_trans(const VecMath::Vector<3, GLdouble> &_t) {
             _trans = _t;
         }
+        /// \return The current 3D translation state
         const VecMath::Vector<3, GLdouble> &m_trans() {
             return _trans;
         }
+        /// Add a translation to the current 3D translation state
         void addm_trans(const VecMath::Vector<3, GLdouble> &_dmt) {
             _trans += _dmt;
         }
 
+        /// Set current frame in animation
         void setanimationFrame(unsigned b) { _animationFrame = b; }
+        /// \return current frame in animation
         unsigned animationFrame() const { return _animationFrame; }
+        /// Set limit for saved animation frames
         void setanimationMaxFrames(unsigned b) { _animationMaxFrames = b; }
+        /// \return limit for saved animation frames
         unsigned animationMaxFrames() const { return _animationMaxFrames; }
+        /// \return frames per second for animations
         const unsigned animation_fps() const { return _animation_fps; }
 
+        /// Set a GLList for the display of the object
         void setObjectList(GLint b) { _objectList = b; }
+        /// \return GLList for the display of the object
         GLint ObjectList() const { return _objectList; }
+        /// Set a GLList for the display of the coordinates
         void setCoordinateCross(GLint b) { _coordinateCross = b; }
+        /// \return GLList for the display of the coordinates
         GLint CoordinateCross() const { return _coordinateCross; }
 
+        /// Set if image is currently animated
         void setAnimated(bool b) { _animated = b; }
+        /// \return whether image is currently animated
         bool Animated() const { return _animated; }
+        /// Set if currently rendering an image
         void setCurrentlyRendering(bool b) { _currentlyRendering = b; }
+        /// \return whether currently rendering an image
         bool CurrentlyRendering() const { return _currentlyRendering; }
 
+        /// Set timer that times out every X ms to draw new animation frame
         void setAnimationTimer(QTimer * b) { _animationTimer = b; }
+        /// \return Timer that times out every X ms to draw new animation frame
         QTimer * AnimationTimer() const { return _animationTimer; }
+        /// Set timer that times out to change rotation direction
         void setAnimateRandomTimer(QTimer * b) { _animateRandomTimer = b; }
+        /// \return Timer that times out to change rotation direction
         QTimer * AnimateRandomTimer() const { return _animateRandomTimer; }
 
+        /// Set dialog to enter function parameters
         void setValues(UI::Dialogs::ValuesDialogImpl * b) { _values = b; }
+        /// \return Dialog to enter function parameters
         UI::Dialogs::ValuesDialogImpl * Values() const { return _values; }
 
+        /// Set the popup menu and menu bar
         void setMenu(Menu4D *b) { _menu = b; }
+        /// \return The popup menu and menu bar
         Menu4D *Menu() const { return _menu; }
+        /// Set handler to delegate mouse events to
         void setMouseHandler(MouseHandler4D *m) { _mouseHandler = m; }
+        /// \return Handler to delegate mouse events to
         MouseHandler4D *MouseHandler() const { return _mouseHandler; }
 
     private:

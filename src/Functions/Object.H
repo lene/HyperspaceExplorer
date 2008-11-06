@@ -90,7 +90,7 @@ public:
     }
     /// Construct a hypercube with a side length and a center
     Hypercube (double a,
-               const VecMath::Vector<4> &_Center = VecMath::Vector<4>(0., 0., 0., 0.));
+               const VecMath::Vector<4> &_center = VecMath::Vector<4>(0., 0., 0., 0.));
     virtual ~Hypercube() { }
 
     virtual void SetParameters(const ParameterMap &parms) {

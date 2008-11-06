@@ -282,8 +282,7 @@ void C4DView::MouseHandler4D::mousePressEvent (QMouseEvent *e) {
     }
 }
 
-/** If taking values for an animation, starts the animation
- *  \param e Qt's mouse event information structure                           */
+/// If taking values for an animation, starts the animation
 void C4DView::MouseHandler4D::mouseReleaseEvent (QMouseEvent *) {
     SingletonLog::Instance().log("C4DView::MouseHandler4D::mouseReleaseEvent ()");
 
@@ -295,8 +294,7 @@ void C4DView::MouseHandler4D::mouseReleaseEvent (QMouseEvent *) {
     parent->UpdateStatus ("");
 }
 
-/** Stops animation, if running, or resets transformation values to default
- *  \param e Qt's mouse event information structure                           */
+/// Stops animation, if running, or resets transformation values to default
 void C4DView::MouseHandler4D::mouseDoubleClickEvent (QMouseEvent *) {
     SingletonLog::Instance().log("C4DView::MouseHandler4D::mouseDoubleClickEvent ()");
 
