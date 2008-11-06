@@ -126,10 +126,10 @@ void Object::ReInit (double, double, double,
 
 /// Hypercube constructor
 /** @param center center
- *  @param _a side_length/2                                                   */
-Hypercube::Hypercube (double _a, const Vector<4> &_center):
+ *  @param a side_length/2                                                   */
+Hypercube::Hypercube (double a, const Vector<4> &center):
         Object ("Hypercube", 16, 24),
-    a (_a), center(_center) {
+    _a (a), _center(center) {
     declareParameter("Size", 1.0);
     Initialize();
 }
@@ -144,7 +144,7 @@ void Hypercube::Initialize(void) {
             for (int z = 0; z <= 1; z++)
                 for (int w = 0; w <= 1; w++) {
                     X[x+2*(y+2*(z+2*w))] =
-                        Vector<4> (2.*x-1., 2.*y-1., 2.*z-1., 2.*w-1.)*a+center;
+                        Vector<4> (2.*x-1., 2.*y-1., 2.*z-1., 2.*w-1.)*_a+_center;
                 }
 
     DeclareSquare (0,   0, 1, 3, 2);
@@ -453,19 +453,9 @@ void Gasket::Initialize() {
 }
 
 /// Transforms a Gasket
-/** @param thetaxy rotation around xy plane (z axis); ignored because 3D
- *                  rotation takes care of it
- *  @param thetaxz rotation around xz plane (y axis); ignored because 3D
- *                  rotation takes care of it
- *  @param thetaxw rotation around xw plane
- *  @param thetayz rotation around xy plane (x axis); ignored because 3D
- *                  rotation takes care of it
- *  @param thetayw rotation around yw plane
- *  @param thetazw rotation around zw plane
- *  @param tx translation in x direction
- *  @param ty translation in y direction
- *  @param tz translation in z direction
- *  @param tw translation in w direction                                      */
+/** \param R Rotation
+ *  \param T Translation
+ */
 void Gasket::Transform (const VecMath::Rotation<4> &R,
                         const VecMath::Vector<4> &T) {
     for (unsigned i = 0; i < List.size (); i++)

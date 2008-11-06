@@ -84,11 +84,12 @@ class Object: public Function {
 class Hypercube: public Object {
 public:
     Hypercube (): Object ("Hypercube", 16, 24) {
-        a = 1;
+        _a = 1;
         declareParameter("Size", 1.0);
         Initialize();
     }
-    Hypercube (double _a,
+    /// Construct a hypercube with a side length and a center
+    Hypercube (double a,
                const VecMath::Vector<4> &_Center = VecMath::Vector<4>(0., 0., 0., 0.));
     virtual ~Hypercube() { }
 
@@ -96,24 +97,25 @@ public:
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {
-                if (i->second->getName() == "Size") a = double(*i->second);
+                if (i->second->getName() == "Size") _a = double(*i->second);
             }
 #       else
             setParameter(parms, this->a, "Size");
 #       endif
     }
 
+    /// \return A string carrying a description of the Function
     virtual std::string description () {
         std::ostringstream out;
-        out << "Hypercube (a = " << a << ")" << std::ends;
+        out << "Hypercube (a = " << _a << ")" << std::ends;
         return out.str ();
     }
 protected:
     virtual void Initialize();
     void DeclareSquare (unsigned, unsigned, unsigned, unsigned, unsigned);
 
-    double a;
-    VecMath::Vector<4> center;
+    double _a;                  ///< Side length of the hypercube
+    VecMath::Vector<4> _center; ///< Center of the hypercube
 };
 
 namespace {
@@ -265,6 +267,7 @@ namespace {
  *  \ingroup ObjectGroup                                                      */
 class Gasket: public Pyramid {
     public:
+        /// Create a gasket with a level, size and center
         Gasket (unsigned level = 1, double rad = 1,
                 VecMath::Vector<4> Center = VecMath::Vector<4> (0., 0.,0., 0.));
         virtual ~Gasket() { }
@@ -298,9 +301,9 @@ class Gasket: public Pyramid {
     protected:
         virtual void Initialize();
         virtual unsigned long MemRequired (void);
-        unsigned Level;
-        std::vector<Pyramid *> List;
-        double rad;
+        unsigned Level;                 ///< Recursion depth creating the gasket
+        std::vector<Pyramid *> List;    ///< List of sub-gaskets
+        double rad;                     ///< Scale of the gasket
         VecMath::Vector<4> center;
 };
 

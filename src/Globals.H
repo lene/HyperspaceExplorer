@@ -49,23 +49,33 @@ class Global {
         Global();
 
         /** why tf did i make that global again? damn, i really should write
-         *  comments immediately after writing the code</rant>                */
+         *  comments immediately after writing the code                       */
         QStringList rcdirs;
 
+        /// \return The QAction associated with quitting the application
         QAction *getQuitAction() const { return quitAction; }
+        /// \return The main window of the application
         QMainWindow *getMainWindow() const { return mainWindow; }
 
         int GetGLList();
 
-//        Color &BackgroundColor() { return background; }
-//        void setBackground(const Color &rgba) { background = rgba; }
-
+        /// \return The global fog color
         Color &FogColor() { return fog_color; }
+        /// Set the global fog color
+        /** \param rgba The new fog color */
         void setFogColor(const Color &rgba) { fog_color = rgba; }
 
+        /// Convert a QString to double
+        /** \return The double precision value of the argument */
         double atod (QString);
+        /// Convert a string to unsigned
+        /** \return The double precision value of the argument */
         double atod (const std::string &);
+        /// Convert a string to signed int
+        /** \return The integer value of the argument */
         int atoi(const std::string &);
+        /// Convert a string to unsigned
+        /** \return The unsigned value of the argument */
         unsigned atou(const std::string &);
 
         std::string itoa (int x);
@@ -93,6 +103,7 @@ class Global {
         /** sqrt (3), stored to save computation time, probably superfluous   */
         const double SR3;
 
+        /// \return Whether to check for memory usage
         static bool checkMemory() { return check_memory; }
 
     private:

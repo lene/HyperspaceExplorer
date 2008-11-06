@@ -103,19 +103,23 @@ class Function {
         Function (const QString &name, ParameterMap _parms = ParameterMap());
         virtual ~Function() { }
 
+        /// Execute the desired rotation and translation to the Function object
         virtual void Transform (const VecMath::Rotation<4> &R,
-//                                double Rxy, double Rxz, double Rxw,
-//                                double Ryz, double Ryw, double Rzw,
                                 const VecMath::Vector<4> &T) = 0;
         /// Overloaded function executing the transform to the default state
         void Transform() { Transform (VecMath::Rotation<4>(),  VecMath::Vector<4>()); }
 
+        /// Projects the vertex data to 3D
         virtual void Project (double ScrW, double CamW, bool DepthCue4D) = 0;
+
+        /// Draw the function
         virtual void Draw (void) = 0;
 
+        /// Called when a Function must be created anew
         virtual void ReInit(double _tmin, double _tmax, double _dt,
                             double _umin, double _umax, double _du,
                             double _vmin, double _vmax, double _dv) = 0;
+
         /// Set parameters to the Function
         virtual void SetParameters(const ParameterMap &) {
             std::cerr << "Function::SetParameters()" << std::endl;
@@ -126,7 +130,9 @@ class Function {
         /** \return number of parameters for the function                     */
         unsigned getNumParameters() { return parameters.size(); }
 
+        /// \return The collection of all parameters (and their values)
         ParameterMap getParameters() { return parameters; }
+        /// \return The value of the parameter which is named \p name
         FunctionParameter *getParameter(QString name) {
             return parameters[name.toStdString()];
         }
@@ -151,10 +157,13 @@ class Function {
         /// Function evaluation operator for three parameters
         virtual VecMath::Vector<4> &operator () (double, double, double) = 0;
 
+        /// Set a color and a vertex datum in OpenGL
+        /** \todo Make this independent from the rendering subsystem */
         void setVertex(const VecMath::Vector<4> &X, VecMath::Vector<3> &Xscr);
 
         virtual vec4vec1D df (double, double, double);
 
+        /// This abstract function is called in the constructor of descendants
         virtual void Initialize (void) = 0;
 
         virtual unsigned long MemRequired (void);
@@ -167,11 +176,14 @@ class Function {
         template <typename T> void declareParameter(const std::string &,
                 const T &, const T &);
 
+        /// Remember that we've set some more vertices
         void addVertices(unsigned num) { NumVertices += num; }
 
+        /// Define the name of the Function
         void setfunctionName(const QString &_name) { functionName = _name; }
 
     private:
+        /// Declare a new parameter for the Function
         void insertParameter(
             const std::pair<std::string, FunctionParameter *> &value) {
             parameters.insert(value);

@@ -19,46 +19,69 @@ using namespace std;
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class LSystem {
 public:
-  LSystem (unsigned = 2);
-  LSystem (string, map<string, string>, unsigned = 2);
-  virtual ~LSystem ();
+    /// \todo document me
+    LSystem (unsigned = 2);
+    /// \todo document me
+    LSystem (string, map<string, string>, unsigned = 2);
+    /// \todo document me
+    virtual ~LSystem ();
 
-  void level (unsigned n) { m_level = n; }
-  unsigned level () { return m_level; }
+    /// \todo document me
+    void level (unsigned n) { _level = n; }
+    /// \todo document me
+    unsigned level () { return _level; }
 
-  void axiom (string a) { m_axiom = a; }
-  string axiom () { return m_axiom; }
+    /// \todo document me
+    void axiom (string a) { _axiom = a; }
+    /// \todo document me
+    string axiom () { return _axiom; }
 
-  void set_rule (string key, string rule) { m_rules[key] = rule; }
-  void rules (map<string, string> rules) {m_rules = rules; }
-  map<string, string> rules (void)  { return m_rules; }
+    /// \todo document me
+    void set_rule (string key, string rule) { _rules[key] = rule; }
+    /// \todo document me
+    void rules (map<string, string> rules) {_rules = rules; }
+    /// \todo document me
+    map<string, string> rules (void)  { return _rules; }
 
-  void angle (double angle) { m_angle = angle; }
-  double angle () { return m_angle; }
+    /// \todo document me
+    void angle (double angle) { _angle = angle; }
+    /// \todo document me
+    double angle () { return _angle; }
 
-  void object (string key, string object) { m_object[key] = object; }
-  void object (map<string, string> object);
-  map<string, string> object () { return m_object; }
-  string object (string key) { return m_object[key]; }
+    /// \todo document me
+    void object (string key, string object) { _object[key] = object; }
+    /// \todo document me
+    void object (map<string, string> object);
+    /// \todo document me
+    map<string, string> object () { return _object; }
+    /// \todo document me
+    string object (string key) { return _object[key]; }
 
-  virtual string Expand ();
+    /// \todo document me
+    virtual string Expand ();
 
-  virtual string POV_Source ();
-  virtual void Draw () { throw "nyi!"; }
+    /// \todo document me
+    virtual string POV_Source ();
+    /// \todo document me
+    virtual void Draw () { throw "nyi!"; }
 
 protected:
-  string POV_Header (const string &);
-  string POV_Footer (const Vector &, const Vector &);
-  virtual string POV_Atom (const string &, const string &);	//  one element of the l-system, pov-style
+    /// \todo document me
+    string POV_Header (const string &);
+    /// \todo document me
+    string POV_Footer (const Vector &, const Vector &);
+    /// \todo document me
+    virtual string POV_Atom (const string &, const string &);	//  one element of the l-system, pov-style
 
-  virtual string Expand (string, unsigned);
+    /// \todo document me
+    virtual string Expand (string, unsigned);
 
-  string m_axiom;
-  map<string, string> m_rules;
-  unsigned m_level;
-  double m_scale;
-  double m_angle;
-  map<string, string> m_object;
+    string _axiom;                ///< \todo document me
+    map<string, string> _rules;   ///< \todo document me
+    unsigned _level;              ///< \todo document me
+    double _scale;                ///< \todo document me
+    double _angle;                ///< \todo document me
+    map<string, string> _object;  ///< \todo document me
 };
 
 //  functions defined in LSys_aux.C
@@ -69,13 +92,13 @@ string matrix_outstr (matrix<3> M);
 string vector_outstr (const Vector &V);
 string dtos (const double &);
 void state_push (vector<matrix<3> >&, const matrix<3>&,
-		 vector<Vector>&, const Vector &,
-		 vector<string>&, const string &,
-		 vector<double>&, const double &);
+                 vector<Vector>&, const Vector &,
+                 vector<string>&, const string &,
+                 vector<double>&, const double &);
 void state_pop (vector<matrix<3> >&, matrix<3>&,
-		 vector<Vector>&, Vector &,
-		 vector<string>&, string &,
-		 vector<double>&, double &);
+                 vector<Vector>&, Vector &,
+                 vector<string>&, string &,
+                 vector<double>&, double &);
 void read_file (const string &, unsigned &, string &, map<string, string> &, map<string, string> &);
 void help (const string &);
 

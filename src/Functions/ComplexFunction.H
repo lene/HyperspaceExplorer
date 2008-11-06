@@ -117,16 +117,16 @@ namespace {
  *  \ingroup ComplexGroup                                                    */
 class ez: public ComplexFunction {
     public:
-        ez (): ComplexFunction("ez"), alpha(2) { }
+        ez (): ComplexFunction("ez"), _alpha(2) { }
         ez (double _umin, double _umax, double _du,
             double _vmin, double _vmax, double _dv,
-            double _alpha = 2);
+            double alpha = 2);
         virtual ~ez() { }
         virtual void SetParameters(const ParameterMap &parms) {
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {
-                if (i->second->getName() == "a") alpha = double(*i->second);
+                if (i->second->getName() == "a") _alpha = double(*i->second);
             }
 #       else
             setParameter(parms, this->Phase, "a");
@@ -137,7 +137,7 @@ class ez: public ComplexFunction {
         virtual function_type g;
 
     private:
-        double alpha;
+        double _alpha;          ///< Factor of the exponent
 };
 
 namespace {
@@ -149,16 +149,16 @@ namespace {
  *  \ingroup ComplexGroup                                                    */
 class emz2: public ComplexFunction {
     public:
-        emz2 (): ComplexFunction("emz2"), alpha(1) { }
+        emz2 (): ComplexFunction("emz2"), _alpha(1) { }
         emz2 (double _umin, double _umax, double _du,
               double _vmin, double _vmax, double _dv,
-              double _alpha = 1);
+              double alpha = 1);
         virtual ~emz2() { }
         virtual void SetParameters(const ParameterMap &parms) {
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {
-                if (i->second->getName() == "a") alpha = double(*i->second);
+                if (i->second->getName() == "a") _alpha = double(*i->second);
             }
 #       else
             setParameter(parms, this->Phase, "a");
@@ -169,7 +169,7 @@ class emz2: public ComplexFunction {
         virtual function_type g;
 
     private:
-        double alpha;
+        double _alpha;          ///< Factor of the exponent
 };
 
 namespace {

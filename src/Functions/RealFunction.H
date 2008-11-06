@@ -188,7 +188,7 @@ class RealFunction: public RealBase {
  *  \ingroup RealGroup                                                    */
 class Hypersphere: public RealFunction {
     public:
-        Hypersphere(): RealFunction("Hypersphere"), Radius(1.) { }
+        Hypersphere(): RealFunction("Hypersphere"), _radius(1.) { }
         Hypersphere (double _tmin, double _tmax, double _dt,
                      double _umin, double _umax, double _du,
                      double _vmin, double _vmax, double _dv,
@@ -200,7 +200,7 @@ class Hypersphere: public RealFunction {
         virtual function_type f;
         virtual function_type normal;
 
-        double Radius;
+        double _radius;         ///< Radius of the hypersphere
 };
 
 namespace {
@@ -345,8 +345,8 @@ class GravitationPotential: public RealFunction {
     protected:
         virtual function_type f;
 
-        double M,               //  not really M, but M/R^3
-               R;
+        double M;   ///< Mass of the generating sphere(not really M, but M/R^3)
+        double R;   ///< Radius of the generating sphere
 };
 
 namespace {

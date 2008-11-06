@@ -32,6 +32,7 @@ class FunctionFactory {
         /// Thrown by createFunction() when \p name does not map to a function.
         class BadFunctionException: public std::runtime_error {
             public:
+                /// Create a BadFunctionException
                 BadFunctionException(const std::string &what):
                     std::runtime_error(what) { }
         };

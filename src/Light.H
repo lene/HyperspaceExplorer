@@ -109,6 +109,7 @@ class Light {
         }
 
     private:
+        /// The LightSource object defining the properties of the Light
         LightSource _lightSource;
 };
 

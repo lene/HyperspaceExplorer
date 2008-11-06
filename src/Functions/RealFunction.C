@@ -318,7 +318,7 @@ Hypersphere::Hypersphere(double _tmin, double _tmax, double _dt,
                          double _rad):
         RealFunction ("Hypersphere",
                       _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
-        Radius (_rad) {
+        _radius (_rad) {
     declareParameter("Radius", 1.0);
     Initialize ();
 }
@@ -327,10 +327,10 @@ void Hypersphere::SetParameters(const ParameterMap &parms) {
     //  parms["Radius"].value must be set!
 #if 1
     for (ParameterMap::const_iterator i = parms.begin(); i != parms.end(); ++i) {
-        if (i->second->getName() == "Radius") Radius = double(*i->second);
+        if (i->second->getName() == "Radius") _radius = double(*i->second);
     }
 #else
-    setParameter(parms, this->Radius, "Radius");
+    setParameter(parms, this->_radius, "Radius");
 #endif
 }
 
@@ -344,10 +344,10 @@ Vector<4> &Hypersphere::f (double tt, double uu, double vv) {
   double sinphi = sin (pi/2*tt), cosphi = cos (pi/2*tt),	//  hypersphere
     sintht = sin (pi*uu), costht = cos (pi*uu),
     sinpsi = sin (pi*vv), cospsi = cos (pi*vv);
-  F[0] = Radius*sinpsi*sintht*cosphi;
-  F[1] = Radius*sinpsi*sintht*sinphi;
-  F[2] = Radius*sinpsi*costht;
-  F[3] = Radius*cospsi;
+  F[0] = _radius*sinpsi*sintht*cosphi;
+  F[1] = _radius*sinpsi*sintht*sinphi;
+  F[2] = _radius*sinpsi*costht;
+  F[3] = _radius*cospsi;
 
   return F;
 }
@@ -507,17 +507,17 @@ Vector<4> &Fr3r::f (double tt, double uu, double vv) {
 
 /** GravitationPotential c'tor given a definition set in R³ (as parameter space),
  *  a mass and a radius of a spherical mass
- *  \param _tmin	minimal value in t
- *  \param _tmax	maximal value in t
- *  \param _dt		stepsize in t
- *  \param _umin	minimal value in u
- *  \param _umax	maximal value in u
- *  \param _du		stepsize in u
- *  \param _vmin	minimal value in v
- *  \param _vmax	maximal value in v
- *  \param _dv		stepsize in v
- *  \param _M		Mass
- *  \param _R		radius
+ *  \param xmin minimal value in t
+ *  \param xmax maximal value in t
+ *  \param dx   stepsize in t
+ *  \param ymin minimal value in u
+ *  \param ymax maximal value in u
+ *  \param dy   stepsize in u
+ *  \param zmin minimal value in v
+ *  \param zmax maximal value in v
+ *  \param dz   stepsize in v
+ *  \param _M   Mass of the generating sphere
+ *  \param _R   Radius of the generating sphere
  */
 GravitationPotential::GravitationPotential (double xmin, double xmax, double dx,
                                             double ymin, double ymax, double dy,

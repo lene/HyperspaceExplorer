@@ -88,6 +88,11 @@ class FunctionParameterValueBase {
         /** Exception thrown when a FunctionParameterValue member not matching
          *  its template argument is called                                   */
         struct WrongParameterTypeException: public std::logic_error {
+            /// Create a WrongParameterTypeException
+            /** \param _class Class name
+             *  \param _function Erroneously called function
+             *  \param _type Argument type for \p _function
+             */
             WrongParameterTypeException(const std::string &_class,
                                         const std::string &_function,
                                         const std::string &_type):
@@ -121,6 +126,7 @@ class FunctionParameterValueBase {
                                               "setValue", "std::string");
         }
 
+        /// set a C-string parameter - abstract method
         virtual void setValue(const char *) = 0;
 
         virtual operator double() = 0;                  ///< get a double parm
@@ -146,6 +152,7 @@ class FunctionParameterValueBase {
 template <typename T> class FunctionParameterValue:
         public FunctionParameterValueBase {
     public:
+        /// Construct the FunctionParameterValue object with its actual value
         FunctionParameterValue<T>(const T &_value): value(_value) { }
 
         /// Set a value from a string, as contained in a QLineEdit
@@ -179,13 +186,14 @@ template <typename T> class FunctionParameterValue:
             return toString();
         }
 
+        /// Converts the parameter to string for printing
         virtual std::string toString() {
             std::ostringstream o;
             o << value << std::ends;
             return o.str();
         }
     private:
-        T value;
+        T value;                ///< The actual value of the parameter
 };
 
 /// A parameter to a Function with a name, an optional description and a default
@@ -210,6 +218,7 @@ template <typename T> class FunctionParameterValue:
  *  \ingroup FunctionParameterGroup                                           */
 class FunctionParameter {
     public:
+        /// Construct a FunctionParameter from a name
         FunctionParameter(const std::string &_name,
                           const std::string &_description = "");
         ~FunctionParameter();
@@ -253,34 +262,41 @@ class FunctionParameter {
             pImpl->defaultValue.reset(_defaultValue);
         }
 
+        /// \return Pointer to FunctionParameterValue containing the parameter's value
         FunctionParameterValueBase *value() const;
+        /// \return Default parameter value is no value was given
         FunctionParameterValueBase *defaultValue() const;
 
     private:
-        //  these accessors are never used, but i like to keep them around
-//         std::auto_ptr<FunctionParameterValueBase> value() {
-//             return pImpl->value;
-//         }
-//         const std::auto_ptr<FunctionParameterValueBase> value() const {
-//             return pImpl->value;
-//         }
-//         std::auto_ptr<FunctionParameterValueBase> defaultValue() {
-//             return pImpl->defaultValue;
-//         }
-
+    /*  these accessors are never used, but i like to keep them around
+        std::auto_ptr<FunctionParameterValueBase> value() {
+            return pImpl->value;
+        }
+        const std::auto_ptr<FunctionParameterValueBase> value() const {
+            return pImpl->value;
+        }
+        std::auto_ptr<FunctionParameterValueBase> defaultValue() {
+            return pImpl->defaultValue;
+        }
+    */
         /// Data members for class FunctionParameter
         struct Impl {
+            /// Initialize the data members with empty values
             Impl(const std::string &_name,
-                          const std::string &_description = ""):
-                    name(_name), description(_description), value(0),
-                    defaultValue(0) {}
+                 const std::string &_description = ""):
+                 name(_name), description(_description), value(0),
+                 defaultValue(0) {}
             ~Impl() { }
+            /// Name of the function parameter
             std::string name;
+            /// Description which is shown in the parameter input dialog
             std::string description;
+            /// Pointer to FunctionParameterValue containing the parameter's value
             std::auto_ptr<FunctionParameterValueBase> value;
+            /// Default parameter value is no value was given
             std::auto_ptr<FunctionParameterValueBase> defaultValue;
         };
-        Impl *pImpl;
+        Impl *pImpl;            ///< Pointer to the data member
 };
 
 /// Class with factory methods to create a FunctionParameter

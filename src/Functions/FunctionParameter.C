@@ -12,17 +12,20 @@
 
 #include "FunctionParameter.H"
 
-template<>
-    FunctionParameterValue<double>::FunctionParameterValue(const double &_value):
+/// Specialization for type double
+template<> FunctionParameterValue<double>::FunctionParameterValue(const double &_value):
         value(_value) {}
-template<>
-    FunctionParameterValue<unsigned>::FunctionParameterValue(const unsigned &_value):
+
+/// Specialization for type unsigned
+template<> FunctionParameterValue<unsigned>::FunctionParameterValue(const unsigned &_value):
         value(_value) {}
-template<>
-    FunctionParameterValue<int>::FunctionParameterValue(const int &_value):
+
+/// Specialization for type int
+template<> FunctionParameterValue<int>::FunctionParameterValue(const int &_value):
         value(_value) {}
-template<>
-    FunctionParameterValue<std::string>::FunctionParameterValue(const std::string &_value):
+
+/// Specialization for type string
+template<> FunctionParameterValue<std::string>::FunctionParameterValue(const std::string &_value):
         value(_value) {}
 
 /// Specialization for type double
@@ -42,18 +45,25 @@ template<> FunctionParameterValue<std::string>::operator std::string() {
     return (std::string)value;
 }
 
+/// Specialization for type double
 template<>
     void FunctionParameterValue<double>::setValue(const char * _value) {
     value = atof(_value);
 }
+
+/// Specialization for type unsigned
 template<>
     void FunctionParameterValue<unsigned>::setValue(const char * _value) {
     value = atoi(_value);
 }
+
+/// Specialization for type int
 template<>
     void FunctionParameterValue<int>::setValue(const char * _value) {
     value = atoi(_value);
 }
+
+/// Specialization for type std::string
 template<>
     void FunctionParameterValue<std::string>::setValue(const char * _value) {
     value = _value;

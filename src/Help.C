@@ -24,14 +24,13 @@ unsigned HelpWindow::defaultWidth = 850;
 unsigned HelpWindow::defaultHeight = 720;
 
 /** construct and display a help browser window displaying the Help HTML file
- *  @param home_	name of help file
- *  @param _path	directory of help file
- *  @param parent	parent widget
- *  @param name		widget name                                           */
+ *  \param home_	name of help file
+ *  \param _path	directory of help file
+ *  \param parent	parent widget                                         */
 HelpWindow::HelpWindow( const QString& home_, const QString& _path,
                         QWidget* parent)
     : QMainWindow(parent/*, Qt::WA_DeleteOnClose*/) {
-    browser = new QTextBrowser( this );
+    _browser = new QTextBrowser( this );
     QStringList possiblePaths;
     if (_path.size() > 0) {
         possiblePaths.append(_path+"/");
@@ -46,21 +45,21 @@ HelpWindow::HelpWindow( const QString& home_, const QString& _path,
              ++constIterator)
              possiblePaths.append((*constIterator)+"/doc/");
     }
-    browser->setSearchPaths(possiblePaths);
-    browser->setSource(QUrl(home_));
-    browser->setFrameStyle( QFrame::Panel | QFrame::Sunken );
+    _browser->setSearchPaths(possiblePaths);
+    _browser->setSource(QUrl(home_));
+    _browser->setFrameStyle( QFrame::Panel | QFrame::Sunken );
 
-    setCentralWidget( browser );
+    setCentralWidget( _browser );
 
     if ( !home_.isEmpty() )
-        browser->setSource( home_ );
+        _browser->setSource( home_ );
 
-    connect( browser, SIGNAL( highlighted( const QString&) ),
+    connect( _browser, SIGNAL( highlighted( const QString&) ),
              statusBar(), SLOT( message( const QString&)) );
 
     resize(defaultWidth, defaultHeight);
 
-    browser->setFocus();
+    _browser->setFocus();
 
     setWindowTitle("Hyperspace Explorer Help Browser");
 }

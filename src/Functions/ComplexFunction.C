@@ -146,12 +146,12 @@ complex<double> zA::g (complex<double> z) {
  *  @param _vmin	minimal value in Im (z)
  *  @param _vmax	maximal value in Im (z)
  *  @param _dv		stepsize in Im (z)
- *  @param _alpha	exponent multiplicator                                    */
+ *  @param alpha	exponent multiplicator                                    */
 ez::ez (double _umin, double _umax, double _du,
         double _vmin, double _vmax, double _dv,
-        double _alpha):
+        double alpha):
         ComplexFunction ("e^a*z", _umin, _umax, _du, _vmin, _vmax, _dv),
-    alpha (_alpha) {
+    _alpha (alpha) {
     Initialize ();
     declareParameter("a", 2.0);
 }
@@ -160,26 +160,26 @@ ez::ez (double _umin, double _umax, double _du,
  *  @param z		operand
  *  @return		e^(alpha*z)                                                   */
 complex<double> ez::g (complex<double> z) {
-    return exp (alpha*z);
+    return exp (_alpha*z);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/** e^-\f$ z^2 \f$ c'tor given a definition set in C (as parameter space)
+/** c'tor for \f$ e^{- z^2} \f$ given a definition set in C (as parameter space)
  *  @param _umin	minimal value in Re (z)
  *  @param _umax	maximal value in Re (z)
  *  @param _du		stepsize in Re (z)
  *  @param _vmin	minimal value in Im (z)
  *  @param _vmax	maximal value in Im (z)
  *  @param _dv		stepsize in Im (z)
- *  @param _alpha	exponent multiplicator
+ *  @param alpha	exponent multiplicator
  */
 emz2::emz2 (double _umin, double _umax, double _du,
             double _vmin, double _vmax, double _dv,
-            double _alpha):
+            double alpha):
         ComplexFunction ("e^-a*z²", _umin, _umax, _du, _vmin, _vmax, _dv),
-  alpha (_alpha) {
+  _alpha (alpha) {
   Initialize ();
   declareParameter("a", 1.0);
 }
@@ -189,7 +189,7 @@ emz2::emz2 (double _umin, double _umax, double _du,
  *  @return \f$ e^{-\alpha*z^2} \f$
  */
 complex<double> emz2::g (complex<double> z) {
-  return exp (-alpha*z*z);
+  return exp (-_alpha*z*z);
 }
 
 

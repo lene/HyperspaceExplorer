@@ -22,10 +22,10 @@ class HelpWindow : public QMainWindow {
                    QWidget* parent = 0);
 
     private:
-        QTextBrowser* browser;
+        QTextBrowser* _browser;         ///< Qt widget displaying the help file
 
-        static unsigned defaultWidth;
-        static unsigned defaultHeight;
+        static unsigned defaultWidth;   ///< Default width of the help window
+        static unsigned defaultHeight;  ///< Default height of the help window
 };
 
 

@@ -321,8 +321,8 @@ void C4DView::OnAnimationTimer() {
 }
 
 /** Calls F->Transform () and transforms the coordinate cross
- *  @param R rotation
- *  @param T translation                                                      */
+ *  @param R Rotation
+ *  @param T Translation                                                      */
 void C4DView::Transform(const VecMath::Rotation<4> &R,
                         const VecMath::Vector<4> &T) {
     if (F().get()) { F()->Transform (R, T); }

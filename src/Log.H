@@ -12,7 +12,7 @@
 /** A class to conditionally print debug messages, depending on whether the
  *  preprocessor variable DEBUG is defined
  *
- *  That implies a lot of #ifdef DEBUG in its declaration as well as its
+ *  That implies a lot of \#ifdef DEBUG in its declaration as well as its
  *  definition. Never mind the ugliness.
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Log{
