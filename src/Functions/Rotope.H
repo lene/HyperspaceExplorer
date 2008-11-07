@@ -3,8 +3,7 @@
 
 #include <Object.H>
 
-/** \defgroup RotopeGroup N-dimensional
- * <a href="http://teamikaria.com/wiki/Rotope">Rotope</a>s.
+/** \defgroup RotopeGroup N-dimensional <a href="http://teamikaria.com/wiki/Rotope">Rotope</a>s.
  *  \ingroup ObjectGroup
  */
 
@@ -64,7 +63,7 @@ template <unsigned D>
 class Rotope : public Object {
     public:
         /// Construct a Rotope. Not yet implemented properly.
-        Rotope(const QString &);
+        Rotope();
 
         ~Rotope();
 
@@ -73,7 +72,7 @@ class Rotope : public Object {
         virtual void Draw (void);
 
         /** \return The name of the function in cleartext                     */
-        virtual QString getFunctionName() const { return "Rotope"; }
+//        virtual QString getFunctionName() const { return "Rotope"; }
     private:
         /// Actual rotope object to which all functions are delegated
         vertex_data<4> *_rotope;
@@ -137,6 +136,23 @@ template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
     uintvec1D tmp;
     tmp.push_back(v1); tmp.push_back(v2); tmp.push_back(v3); tmp.push_back(v4);
 
+    /// Test if the new surface is a permutation of a surface already existing
+    for (unsigned i = 0; i < surface().size(); ++i) {
+        vector<bool> found_equal_vertex(surface()[i].size());
+        for (unsigned j = 0; j < surface()[i].size(); ++j) {
+            found_equal_vertex[j] = false;
+            for (unsigned k = 0; k < tmp.size(); ++k) {
+                if (surface()[i][j] == tmp[k]) {
+                    found_equal_vertex[j] = true;
+                }
+            }
+        }
+        bool surfaces_are_equal = true;
+        for (unsigned i = 0; i < found_equal_vertex.size();
+             surfaces_are_equal &= found_equal_vertex[i++]) ;
+        if (surfaces_are_equal) return;
+    }
+
     surface().push_back(tmp);
 }
 
@@ -147,7 +163,9 @@ template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
  */
 template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
                                                       unsigned v3) {
-    addSurface(v1, v2, v3, v3);
-}
+    uintvec1D tmp;
+    tmp.push_back(v1); tmp.push_back(v2); tmp.push_back(v3);
+    surface().push_back(tmp);
+                                                      }
 
 #endif

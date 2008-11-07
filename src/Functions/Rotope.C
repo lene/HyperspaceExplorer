@@ -56,8 +56,8 @@ class RotopeFactory {
     }
 };
 
-Rotope::Rotope(const QString &name): Object(name, 0, 0), _rotope(0) {
-    const unsigned DIM = 4;
+Rotope::Rotope(): Object("Generic Rotope", 0, 0), _rotope(0) {
+    const unsigned DIM = 5;
     Extrude<DIM, 0, DIM-1> E;
     std::cerr << "Extrude: "; E.print();
 
@@ -71,6 +71,8 @@ Rotope::Rotope(const QString &name): Object(name, 0, 0), _rotope(0) {
         X[i] = _rotope->X()[i];     /// \todo use a projection function on vertex_data
     }
     Object::Initialize();
+
+    throw NotYetImplementedException("Rotope::Rotope()");
 }
 
 Rotope::~Rotope() {

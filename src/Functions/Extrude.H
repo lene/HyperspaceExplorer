@@ -122,24 +122,28 @@ template <unsigned D> void extrude_base<D>::extrude(unsigned d) {
     typename vertex_data<D>::uintvec2D surface_old =
             vertex_data<D>::surface();
 
-    for (unsigned i = 0; i < Xold.size(); ++i){
+    /// Extrude vertices into the \p d axis, setting the \p d coordinate to 1
+    for (unsigned i = 0; i < Xold.size(); ++i) {
         Vector<D> xtmp = Xold[i];
         xtmp[d] = 1.;
         vertex_data<D>::X().push_back(xtmp);
-
-        if (i != 0) {
-            vertex_data<D>::addSurface(i-1, i,
-                                       vertex_data<D>::X().size()-1,
-                                       vertex_data<D>::X().size()-2);
-            }
     }
-    if (vertex_data<D>::dimension() > 1) {
-        for (unsigned i = 0; i < Xold.size(); ++i) std::cerr << Xold[i] << " ";
-        /** add the new surface joining the last vertex of the old array to the
-            first, together with their extruded vertices
-        */
-        vertex_data<D>::addSurface(Xold.size()-1, 0,
-                                vertex_data<D>::X().size()-1, Xold.size());
+
+    if (vertex_data<D>::dimension() == 1) {
+        vertex_data<D>::addSurface(0, 1, 3, 2);
+    } else if (vertex_data<D>::dimension() > 1) {
+        /// Extrude surfaces from each edge of the base surface to its image
+        for (unsigned i = 0; i < surface_old.size(); ++i) {
+            for (unsigned j = 0; j < surface_old[i].size(); j++) {
+                unsigned j_ = (j+1)%surface_old[i].size();
+                vertex_data<D>::addSurface(surface_old[i][j],
+                                           surface_old[i][j_],
+                                           surface_old[i][j_]+Xold.size(),
+                                                   surface_old[i][j]+Xold.size());
+            }
+        }
+        // for (unsigned i = 0; i < Xold.size(); ++i) std::cerr << Xold[i] << " ";
+
         /** add all surfaces which were in the old vertex array, but extruded
             along the \p d axis. This is achieved by copying the old surface
             array and adding the size of the old vertex array to each of the
@@ -153,6 +157,8 @@ template <unsigned D> void extrude_base<D>::extrude(unsigned d) {
             vertex_data<D>::addSurface(tmp[0], tmp[1], tmp[2], tmp[3]);
         }
     }
+
+    /// Remove double surfaces from area
 
     vertex_data<D>::dimension()++;   //  object is now one dimension higher
 }
