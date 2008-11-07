@@ -47,23 +47,23 @@ namespace UI {
             setParameters(F->getParameters());
 
             for (unsigned i = 0; i < F->getDefinitionSpaceDimensions(); ++i) {
-                Label[i]->show();
-                Slider[i]->show();
-                Steps[i]->show();
-                MinLabel[i]->show();
-                Min[i]->show();
-                MaxLabel[i]->show();
-                Max[i]->show();
+                if (Label[i]) Label[i]->show();
+                if (Slider[i]) Slider[i]->show();
+                if (Steps[i]) Steps[i]->show();
+                if (MinLabel[i]) MinLabel[i]->show();
+                if (Min[i]) Min[i]->show();
+                if (MaxLabel[i]) MaxLabel[i]->show();
+                if (Max[i]) Max[i]->show();
             }
             for (unsigned i = F->getDefinitionSpaceDimensions();
                 i < maxNumDimensions; ++i) {
-                Label[i]->hide();
-                Slider[i]->hide();
-                Steps[i]->hide();
-                MinLabel[i]->hide();
-                Min[i]->hide();
-                MaxLabel[i]->hide();
-                Max[i]->hide();
+                if (Label[i]) Label[i]->hide();
+                if (Slider[i]) Slider[i]->hide();
+                if (Steps[i]) Steps[i]->hide();
+                if (MinLabel[i]) MinLabel[i]->hide();
+                if (Min[i]) Min[i]->hide();
+                if (MaxLabel[i]) MaxLabel[i]->hide();
+                if (Max[i]) Max[i]->hide();
             }
 
             gridLabel->setVisible(F->getDefinitionSpaceDimensions() > 0);
@@ -72,10 +72,11 @@ namespace UI {
 
         /// Adjust the displayed parameter fields to the parameters the function needs
         /** \li Sets the internal map of parameters to the parameters the Function
-        *      expects
-        *  \li Shows input fields for as many parameters as necessary
-        *  \li Sets the text on these fields to the parameter's name, the tool tip to
-        *      its optional description and the value to its value                   */
+         *      expects
+         *  \li Shows input fields for as many parameters as necessary
+         *  \li Sets the text on these fields to the parameter's name, the tool tip to
+         *      its optional description and the value to its value
+         */
         void ValuesDialogImpl::setParameters(const ParameterMap &parms) {
             parameters = parms;
 
