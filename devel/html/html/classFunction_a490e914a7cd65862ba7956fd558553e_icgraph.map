@@ -1,10 +1,13 @@
-<area shape="rect" href="$classemz2.html#9754439ceb4812a1688a34dddaf62451" title="emz2::emz2" alt="" coords="304,5,389,32">
+<area shape="rect" href="$classemz2.html#0ce1acd591c043889525eea01fe0d58e" title="emz2::emz2" alt="" coords="304,5,389,32">
 <area shape="rect" href="$classez.html#5e39a7aac5086a97940f9d082e284776" title="ez::ez" alt="" coords="321,56,372,83">
-<area shape="rect" href="$classGravitationPotential.html#1087fe7d0272f927001e19fba7636f06" title="GravitationPotential::GravitationPotential" alt="" coords="224,107,469,133">
-<area shape="rect" href="$classHypersphere.html#d03be78c012ccd6339a0d37633522635" title="Hypersphere c&#39;tor given a definition set in R³ (as parameter space) and a radius..." alt="" coords="264,157,429,184">
-<area shape="rect" href="$classPolarR.html#2a3c7f1387bcb12cbd110aba70531209" title="PolarR::PolarR" alt="" coords="296,208,397,235">
-<area shape="rect" href="$classPolarSin.html#740d752f6b10f835495760fdf62aa930" title="PolarSin::PolarSin" alt="" coords="287,259,407,285">
-<area shape="rect" href="$classPyramid.html#cddc2af9239e33dc248a3ebcb8c7bfd5" title="Pyramid (hypersimplex) constructor." alt="" coords="288,309,405,336">
-<area shape="rect" href="$classTorus1.html#35f93c2495b645c03b5eb1133b1eb040" title="Torus1::Torus1" alt="" coords="295,360,399,387">
-<area shape="rect" href="$classTorus2.html#89902faec35a16ac5bd27e37fd9ca47c" title="Torus2::Torus2" alt="" coords="295,411,399,437">
-<area shape="rect" href="$classzA.html#6f23706274665115f7dc2713f41ffe5e" title="zA::zA" alt="" coords="317,461,376,488">
+<area shape="rect" href="$classGasket.html#02cf79a8236f67c60e616d6016ca32b2" title="Create a gasket with a level, size and center." alt="" coords="296,107,397,133">
+<area shape="rect" href="$classGravitationPotential.html#1087fe7d0272f927001e19fba7636f06" title="GravitationPotential::GravitationPotential" alt="" coords="224,157,469,184">
+<area shape="rect" href="$classHypercube.html#cc667dafcc9bdc29cff35e19a284017b" title="Construct a hypercube with a side length and a center." alt="" coords="275,208,419,235">
+<area shape="rect" href="$classHypersphere.html#d03be78c012ccd6339a0d37633522635" title="Hypersphere c&#39;tor given a definition set in R³ (as parameter space) and a radius..." alt="" coords="264,259,429,285">
+<area shape="rect" href="$classPolarR.html#2a3c7f1387bcb12cbd110aba70531209" title="PolarR::PolarR" alt="" coords="296,309,397,336">
+<area shape="rect" href="$classPolarSin.html#740d752f6b10f835495760fdf62aa930" title="PolarSin::PolarSin" alt="" coords="287,360,407,387">
+<area shape="rect" href="$classPyramid.html#cddc2af9239e33dc248a3ebcb8c7bfd5" title="Pyramid (hypersimplex) constructor." alt="" coords="288,411,405,437">
+<area shape="rect" href="$classSponge.html#29a107d06398fd830afbb95ffb9098b2" title="Sponge constructor." alt="" coords="292,461,401,488">
+<area shape="rect" href="$classTorus1.html#35f93c2495b645c03b5eb1133b1eb040" title="Torus1::Torus1" alt="" coords="295,512,399,539">
+<area shape="rect" href="$classTorus2.html#89902faec35a16ac5bd27e37fd9ca47c" title="Torus2::Torus2" alt="" coords="295,563,399,589">
+<area shape="rect" href="$classzA.html#6f23706274665115f7dc2713f41ffe5e" title="zA::zA" alt="" coords="317,613,376,640">
