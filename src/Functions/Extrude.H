@@ -125,7 +125,8 @@ template <unsigned D> void extrude_base<D>::extrude(unsigned d) {
     /// Extrude vertices into the \p d axis, setting the \p d coordinate to 1
     for (unsigned i = 0; i < Xold.size(); ++i) {
         Vector<D> xtmp = Xold[i];
-        xtmp[d] = 1.;
+        xtmp[d] = 0.5;
+        vertex_data<D>::X()[i][d] = -0.5;
         vertex_data<D>::X().push_back(xtmp);
     }
 

@@ -82,8 +82,6 @@ Rotope::~Rotope() {
  */
 void Rotope::Transform(const VecMath::Rotation<4> &R,
                        const VecMath::Vector<4> &T) {
-    SingletonLog::Instance() << "Rotope::Transform()\n";
-
     if (!_rotope) {
         throw std::logic_error("Rotope::Transform(): _rotope is NULL!");
     }
@@ -97,14 +95,13 @@ void Rotope::Transform(const VecMath::Rotation<4> &R,
 
 /// Draw the projected Rotope (onto screen or into GL list, as it is)
 void Rotope::Draw () {
-    SingletonLog::Instance() << "Rotope::Draw()\n";
     if (!_rotope) {
         throw std::logic_error("Rotope::Draw(): _rotope is NULL!");
     }
     glBegin (GL_QUADS); {
     for (unsigned i = 0; i < _rotope->_surface.size(); i++)
         for (unsigned j = 0; j < 4; j++) {
-            setVertex(_rotope->X()[_rotope->_surface[i][j]],
+            setVertex(X[_rotope->_surface[i][j]],
                       Xscr[_rotope->_surface[i][j]]);
         }
     }
