@@ -1,0 +1,8 @@
+<area shape="rect" href="$classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="517,107,653,133">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#3fd72e434043c95051a38c2dbfccab7a" title="Mouse button event handler." alt="" coords="168,5,448,32">
+<area shape="rect" href="$classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="231,107,385,133">
+<area shape="rect" href="$classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="220,157,396,184">
+<area shape="rect" href="$classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="211,208,405,235">
+<area shape="rect" href="$classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="213,259,403,285">
+<area shape="rect" href="$classC4DView.html#67910b144c00145b06e592e2b93126f1" title="Implementation of UI::View::ObjectRotope." alt="" coords="229,309,387,336">
+<area shape="rect" href="$classC4DView.html#93fd8d7586928e6cd1b0c7131bff84b2" title="Mouse press event handler, reimplemented from QWidget." alt="" coords="497,5,673,32">
