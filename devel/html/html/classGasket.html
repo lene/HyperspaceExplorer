@@ -64,10 +64,9 @@ Collaboration diagram for Gasket:</div>
 <a href="classGasket-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="02cf79a8236f67c60e616d6016ca32b2"></a><!-- doxytag: member="Gasket::Gasket" ref="02cf79a8236f67c60e616d6016ca32b2" args="(unsigned level=1, double rad=1, VecMath::Vector&lt; 4 &gt; Center=VecMath::Vector&lt; 4 &gt;(0., 0., 0., 0.))" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGasket.html#02cf79a8236f67c60e616d6016ca32b2">Gasket</a> (unsigned level=1, double <a class="el" href="classGasket.html#d63c710092bb2a22974fb8103a2198d0">rad</a>=1, <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; Center=<a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt;(0., 0., 0., 0.))</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGasket.html#02cf79a8236f67c60e616d6016ca32b2">Gasket</a> (unsigned level=1, double <a class="el" href="classGasket.html#d63c710092bb2a22974fb8103a2198d0">rad</a>=1, <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; Center=<a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt;(0., 0., 0., 0.))</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Create a gasket with a level, size and center. <br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Create a gasket with a level, size and center.  <a href="#02cf79a8236f67c60e616d6016ca32b2"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGasket.html#57a1b430a1f1a4a0956ac983a134ac6b">Transform</a> (const <a class="el" href="classVecMath_1_1Rotation.html">VecMath::Rotation</a>&lt; 4 &gt; &amp;R, const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;T)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Transforms a <a class="el" href="classGasket.html" title="A four-dimensional version of the Sierpinski Gasket.">Gasket</a>.  <a href="#57a1b430a1f1a4a0956ac983a134ac6b"></a><br></td></tr>
@@ -112,7 +111,64 @@ double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 A four-dimensional version of the Sierpinski <a class="el" href="classGasket.html" title="A four-dimensional version of the Sierpinski Gasket.">Gasket</a>. 
 <p>
 This object is similar to the Menger <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a>, but it uses a Hypersimplex as generator.<p>
-It lacks the <code>distance</code> parameter, because there is only one way to generate a Sierpinski <a class="el" href="classGasket.html" title="A four-dimensional version of the Sierpinski Gasket.">Gasket</a> of level <code>n</code>. Otherwise it is analogous to the Menger <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a> fractal. <hr><h2>Member Function Documentation</h2>
+It lacks the <code>distance</code> parameter, because there is only one way to generate a Sierpinski <a class="el" href="classGasket.html" title="A four-dimensional version of the Sierpinski Gasket.">Gasket</a> of level <code>n</code>. Otherwise it is analogous to the Menger <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a> fractal. <hr><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" name="02cf79a8236f67c60e616d6016ca32b2"></a><!-- doxytag: member="Gasket::Gasket" ref="02cf79a8236f67c60e616d6016ca32b2" args="(unsigned level=1, double rad=1, VecMath::Vector&lt; 4 &gt; Center=VecMath::Vector&lt; 4 &gt;(0., 0., 0., 0.))" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Gasket::Gasket           </td>
+          <td>(</td>
+          <td class="paramtype">unsigned&nbsp;</td>
+          <td class="paramname"> <em>level</em> = <code>1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>_rad</em> = <code>1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt;&nbsp;</td>
+          <td class="paramname"> <em>_center</em> = <code><a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt;4&gt;&nbsp;(0.,&nbsp;0.,0.,&nbsp;0.)</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Create a gasket with a level, size and center. 
+<p>
+<a class="el" href="classGasket.html" title="A four-dimensional version of the Sierpinski Gasket.">Gasket</a> constructor.<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>level</em>&nbsp;</td><td>hyper-sierpinski gasket level </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_rad</em>&nbsp;</td><td>side_length/2 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_center</em>&nbsp;</td><td>center </td></tr>
+  </table>
+</dl>
+
+<p>References <a class="el" href="Function_8H-source.html#l00212">Function::declareParameter()</a>, <a class="el" href="Object_8C-source.html#l00415">Initialize()</a>, and <a class="el" href="Function_8H-source.html#l00183">Function::setfunctionName()</a>.</p>
+
+<p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classGasket_02cf79a8236f67c60e616d6016ca32b2_cgraph.png" border="0" usemap="#classGasket_02cf79a8236f67c60e616d6016ca32b2_cgraph_map" alt=""></center>
+<map name="classGasket_02cf79a8236f67c60e616d6016ca32b2_cgraph_map">
+<area shape="rect" href="classFunction.html#a490e914a7cd65862ba7956fd558553e" title="Add a parameter to the list of parameters." alt="" coords="159,157,327,184"><area shape="rect" href="classGasket.html#1c1d1a1c6508a13532efd9b4618781e5" title="This function actually creates the Sierpinski Gasket." alt="" coords="187,284,299,311"><area shape="rect" href="classFunction.html#575a3d4270fb0aa9ec4e4b433ae5bffc" title="Define the name of the Function." alt="" coords="160,335,325,361"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="427,157,520,184"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#526e24c01961896c5c0c8491d75258be" title="std::map::find" alt="" coords="425,5,521,32"><area shape="rect" href="classFunction.html#04cb73563ed4bb916fe52c94b3d25a5c" title="Declare a new parameter for the Function." alt="" coords="393,56,553,83"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="377,259,569,285"><area shape="rect" doxygen="libstdc++.tag:" href="a01815.html#403e6a8a62730a30d087c2c6b83d5d9a" title="std::make_pair" alt="" coords="424,107,523,133"><area shape="rect" doxygen="libstdc++.tag:" href="a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce" title="std::vector::push_back" alt="" coords="403,208,544,235"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d" title="std::map::insert" alt="" coords="679,56,783,83"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="619,259,843,285"><area shape="rect" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce" title="endl" alt="" coords="452,309,495,336"><area shape="rect" href="classGasket.html#e65a8be228108ab1997e0cc80504aa56" title="return the approximate amount of memory needed to display a gasket of current level..." alt="" coords="403,360,544,387"><area shape="rect" doxygen="libstdc++.tag:" href="a01815.html#b2c9d94b4becdf532618ad9a0a54aade" title="sqrt" alt="" coords="453,411,493,437"><area shape="rect" doxygen="libstdc++.tag:" href="a01815.html#f7439d6844d2edd47213afb067eaf3c4" title="pow" alt="" coords="709,360,752,387"></map>
+</div>
+
+</div>
+</div><p>
+<hr><h2>Member Function Documentation</h2>
 <a class="anchor" name="86e0a72afdfc932b81e6ced27ed3b130"></a><!-- doxytag: member="Gasket::Draw" ref="86e0a72afdfc932b81e6ced27ed3b130" args="(void)" -->
 <div class="memitem">
 <div class="memproto">
@@ -171,7 +227,9 @@ This function actually creates the Sierpinski <a class="el" href="classGasket.ht
 
 <p>Reimplemented from <a class="el" href="classPyramid.html#dc837fa34b2f484a0c28da7210677db9">Pyramid</a>.</p>
 
-<p>References <a class="el" href="Object_8H-source.html#l00307">center</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">cerr</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce">endl()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00251">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="Object_8H-source.html#l00304">Level</a>, <a class="el" href="Object_8H-source.html#l00305">List</a>, <a class="el" href="Object_8C-source.html#l00406">MemRequired()</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce">std::vector&lt; _Tp, _Alloc &gt;::push_back()</a>, <a class="el" href="Object_8H-source.html#l00306">rad</a>, and <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#b2c9d94b4becdf532618ad9a0a54aade">sqrt()</a>.</p>
+<p>References <a class="el" href="Object_8H-source.html#l00307">center</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">cerr</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce">endl()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00251">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="Object_8H-source.html#l00304">Level</a>, <a class="el" href="Object_8H-source.html#l00305">List</a>, <a class="el" href="Object_8C-source.html#l00409">MemRequired()</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce">std::vector&lt; _Tp, _Alloc &gt;::push_back()</a>, <a class="el" href="Object_8H-source.html#l00306">rad</a>, and <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#b2c9d94b4becdf532618ad9a0a54aade">sqrt()</a>.</p>
+
+<p>Referenced by <a class="el" href="Object_8C-source.html#l00396">Gasket()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -180,6 +238,15 @@ Here is the call graph for this function:</div>
 <p><center><img src="classGasket_1c1d1a1c6508a13532efd9b4618781e5_cgraph.png" border="0" usemap="#classGasket_1c1d1a1c6508a13532efd9b4618781e5_cgraph_map" alt=""></center>
 <map name="classGasket_1c1d1a1c6508a13532efd9b4618781e5_cgraph_map">
 <area shape="rect" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce" title="endl" alt="" coords="244,5,287,32"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="169,56,361,83"><area shape="rect" href="classGasket.html#e65a8be228108ab1997e0cc80504aa56" title="return the approximate amount of memory needed to display a gasket of current level..." alt="" coords="195,107,336,133"><area shape="rect" doxygen="libstdc++.tag:" href="a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce" title="std::vector::push_back" alt="" coords="195,157,336,184"><area shape="rect" doxygen="libstdc++.tag:" href="a01815.html#b2c9d94b4becdf532618ad9a0a54aade" title="sqrt" alt="" coords="245,208,285,235"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="411,56,635,83"><area shape="rect" doxygen="libstdc++.tag:" href="a01815.html#f7439d6844d2edd47213afb067eaf3c4" title="pow" alt="" coords="501,107,544,133"></map>
+</div>
+
+<p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classGasket_1c1d1a1c6508a13532efd9b4618781e5_icgraph.png" border="0" usemap="#classGasket_1c1d1a1c6508a13532efd9b4618781e5_icgraph_map" alt=""></center>
+<map name="classGasket_1c1d1a1c6508a13532efd9b4618781e5_icgraph_map">
+<area shape="rect" href="classGasket.html#02cf79a8236f67c60e616d6016ca32b2" title="Create a gasket with a level, size and center." alt="" coords="169,5,271,32"></map>
 </div>
 
 </div>
@@ -210,7 +277,7 @@ return the approximate amount of memory needed to display a gasket of current le
 
 <p>References <a class="el" href="Object_8H-source.html#l00304">Level</a>, and <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#f7439d6844d2edd47213afb067eaf3c4">pow()</a>.</p>
 
-<p>Referenced by <a class="el" href="Object_8C-source.html#l00412">Initialize()</a>.</p>
+<p>Referenced by <a class="el" href="Object_8C-source.html#l00415">Initialize()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -227,7 +294,7 @@ Here is the caller graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classGasket_e65a8be228108ab1997e0cc80504aa56_icgraph.png" border="0" usemap="#classGasket_e65a8be228108ab1997e0cc80504aa56_icgraph_map" alt=""></center>
 <map name="classGasket_e65a8be228108ab1997e0cc80504aa56_icgraph_map">
-<area shape="rect" href="classGasket.html#1c1d1a1c6508a13532efd9b4618781e5" title="This function actually creates the Sierpinski Gasket." alt="" coords="199,5,311,32"></map>
+<area shape="rect" href="classGasket.html#1c1d1a1c6508a13532efd9b4618781e5" title="This function actually creates the Sierpinski Gasket." alt="" coords="199,5,311,32"><area shape="rect" href="classGasket.html#02cf79a8236f67c60e616d6016ca32b2" title="Create a gasket with a level, size and center." alt="" coords="361,5,463,32"></map>
 </div>
 
 </div>
@@ -430,7 +497,7 @@ Here is the call graph for this function:</div>
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Thu Nov 6 18:30:47 2008 for HyperspaceExplorer 0.6.2
+                Generated on Fri Nov 7 10:08:03 2008 for HyperspaceExplorer 0.6.2
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.7.1
                 &nbsp;-&nbsp;
