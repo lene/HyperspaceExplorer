@@ -65,8 +65,9 @@ Collaboration diagram for ColorManager:</div>
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3f622f9db654bc2899ba7e045d4b119d"></a><!-- doxytag: member="ColorManager::ColorManager" ref="3f622f9db654bc2899ba7e045d4b119d" args="(const Function *_f)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>ColorManager</b> (const <a class="el" href="classFunction.html">Function</a> *_f)</td></tr>
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColorManager.html#3f622f9db654bc2899ba7e045d4b119d">ColorManager</a> (const <a class="el" href="classFunction.html">Function</a> *_f)</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Create a <a class="el" href="classColorManager.html" title="Interface for all color managers.">ColorManager</a> for a given <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a>. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bb1652a9ccbced5d9bc7bda29ba6f0de"></a><!-- doxytag: member="ColorManager::setFunction" ref="bb1652a9ccbced5d9bc7bda29ba6f0de" args="(const Function *_f)" -->
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColorManager.html#bb1652a9ccbced5d9bc7bda29ba6f0de">setFunction</a> (const <a class="el" href="classFunction.html">Function</a> *_f)</td></tr>
 
@@ -115,8 +116,7 @@ typedef <a class="elRef" doxygen="libstdc++.tag:" href="a01208.html">std::map</a
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">map of Colors, indexed by 4D points <br></td></tr>
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="208ab4fdd39c6fb598450bc597068263"></a><!-- doxytag: member="ColorManager::getoffset4Ddepthcue" ref="208ab4fdd39c6fb598450bc597068263" args="()" -->
-double&nbsp;</td><td class="memItemRight" valign="bottom"><b>getoffset4Ddepthcue</b> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColorManager.html#208ab4fdd39c6fb598450bc597068263">getoffset4Ddepthcue</a> ()</td></tr>
 
 <tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e9121833c447573323407f2261732dc6"></a><!-- doxytag: member="ColorManager::f" ref="e9121833c447573323407f2261732dc6" args="" -->
@@ -179,6 +179,28 @@ Find the color of a given point.
 </dl>
 
 <p>Implemented in <a class="el" href="classxyz2RGBColorManager.html#87c08aa7c7f3a1f23488ae2cba90aad6">xyz2RGBColorManager</a>, and <a class="el" href="classmonochromeColorManager.html#7293c2517301681e819f2de8a6d78fec">monochromeColorManager</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="208ab4fdd39c6fb598450bc597068263"></a><!-- doxytag: member="ColorManager::getoffset4Ddepthcue" ref="208ab4fdd39c6fb598450bc597068263" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ColorManager::getoffset4Ddepthcue           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>offset (minimum color) value for 4D depth cue </dd></dl>
+
+<p>References <a class="el" href="ColorManager_8H-source.html#l00101">offset4Ddepthcue</a>.</p>
 
 </div>
 </div><p>
@@ -246,9 +268,9 @@ uses HARDCODED simple algorithm to set ambient and specular values for a specifi
   </table>
 </dl>
 
-<p>References <a class="el" href="ColorManager_8H-source.html#l00089">ambientColorModifier</a>, <a class="el" href="Color_8H-source.html#l00183">Color::setComponentLowerLimit()</a>, <a class="el" href="ColorManager_8H-source.html#l00095">SHININESS</a>, <a class="el" href="ColorManager_8H-source.html#l00093">specularColorMinimum</a>, and <a class="el" href="ColorManager_8H-source.html#l00091">specularColorModifier</a>.</p>
+<p>References <a class="el" href="ColorManager_8H-source.html#l00091">ambientColorModifier</a>, <a class="el" href="Color_8H-source.html#l00184">Color::setComponentLowerLimit()</a>, <a class="el" href="ColorManager_8H-source.html#l00097">SHININESS</a>, <a class="el" href="ColorManager_8H-source.html#l00095">specularColorMinimum</a>, and <a class="el" href="ColorManager_8H-source.html#l00093">specularColorModifier</a>.</p>
 
-<p>Referenced by <a class="el" href="ColorManager_8H-source.html#l00056">setColor()</a>.</p>
+<p>Referenced by <a class="el" href="ColorManager_8H-source.html#l00057">setColor()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -276,7 +298,7 @@ Here is the caller graph for this function:</div>
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Thu Nov 6 18:30:47 2008 for HyperspaceExplorer 0.6.2
+                Generated on Fri Nov 7 10:08:02 2008 for HyperspaceExplorer 0.6.2
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.7.1
                 &nbsp;-&nbsp;
