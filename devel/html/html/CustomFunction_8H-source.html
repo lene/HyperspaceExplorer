@@ -58,109 +58,111 @@
 <a name="l00026"></a>00026         <a class="code" href="classCustomFunctionBase.html">CustomFunctionBase</a>(): handle (NULL) {}
 <a name="l00028"></a><a class="code" href="classCustomFunctionBase.html#cb395c323a02392fb2dfb46fac141f0d">00028</a>         <a class="code" href="classCustomFunctionBase.html#cb395c323a02392fb2dfb46fac141f0d" title="CustomFunction destructor, closes DLL if necessary.">~CustomFunctionBase</a>() { <span class="keywordflow">if</span> (handle) dlclose (handle); }
 <a name="l00029"></a>00029         QString <a class="code" href="classCustomFunctionBase.html#3060ebeee0e5430aaac08cd2d2031ca7">symbolic</a> ();
-<a name="l00030"></a>00030         <span class="keywordtype">bool</span> isValid()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> valid; }
-<a name="l00031"></a>00031 
-<a name="l00032"></a>00032     <span class="keyword">protected</span>:
-<a name="l00033"></a>00033         <span class="keywordtype">bool</span> <a class="code" href="classCustomFunctionBase.html#d2e4b7516d73ab9ebeb9a33c6708f6b8">loadFunction</a> (<span class="keyword">const</span> QString &amp;, QString = <span class="stringliteral">"f"</span>);
-<a name="l00034"></a>00034         <span class="keywordtype">void</span> setValid() { valid = <span class="keyword">true</span>; }
-<a name="l00035"></a>00035         <span class="keywordtype">void</span> setInvalid() { valid = <span class="keyword">false</span>; }
+<a name="l00030"></a>00030 
+<a name="l00032"></a><a class="code" href="classCustomFunctionBase.html#65eb2e36fd445edeeaaee56b1f352343">00032</a>         <span class="keywordtype">bool</span> <a class="code" href="classCustomFunctionBase.html#65eb2e36fd445edeeaaee56b1f352343">isValid</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classCustomFunctionBase.html#0a8f0d22381cd68f9229024bf75971e3" title="Temporary function handle returned by dlopen().">valid</a>; }
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034     <span class="keyword">protected</span>:
+<a name="l00035"></a>00035         <span class="keywordtype">bool</span> <a class="code" href="classCustomFunctionBase.html#d2e4b7516d73ab9ebeb9a33c6708f6b8">loadFunction</a> (<span class="keyword">const</span> QString &amp;, QString = <span class="stringliteral">"f"</span>);
 <a name="l00036"></a>00036 
-<a name="l00037"></a>00037         function_type *func;
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039     <span class="keyword">private</span>:
-<a name="l00040"></a>00040         <span class="keywordtype">void</span> *handle;
-<a name="l00041"></a>00041         <span class="keywordtype">bool</span> valid;
-<a name="l00042"></a>00042 };
-<a name="l00043"></a>00043 
-<a name="l00047"></a><a class="code" href="classCustomFunction.html">00047</a> <span class="keyword">class </span><a class="code" href="classCustomFunction.html">CustomFunction</a>:
-<a name="l00048"></a>00048         <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a>,
-<a name="l00049"></a>00049         <span class="keyword">public</span> <a class="code" href="classCustomFunctionBase.html">CustomFunctionBase</a>&lt;RealFunction::raw_function_type&gt; {
-<a name="l00050"></a>00050     <span class="keyword">public</span>:
-<a name="l00051"></a>00051         <a class="code" href="classCustomFunction.html#6b507d733c2fb3595e00df9c1a575cb3">CustomFunction</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
-<a name="l00052"></a>00052                         <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00053"></a>00053                         <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
-<a name="l00054"></a>00054                         <span class="keywordtype">bool</span> <span class="keyword">final</span> = <span class="keyword">true</span>);
-<a name="l00055"></a>00055         <span class="keyword">virtual</span> ~<a class="code" href="classCustomFunction.html">CustomFunction</a>() { }
-<a name="l00056"></a>00056 
-<a name="l00057"></a>00057     <span class="keyword">protected</span>:
-<a name="l00058"></a><a class="code" href="classCustomFunction.html#dd9350656e4c9499cdc52dc80543c9b0">00058</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">RealFunction::function_type</a> <a class="code" href="classCustomFunction.html#dd9350656e4c9499cdc52dc80543c9b0">f</a>;
-<a name="l00059"></a>00059 };
-<a name="l00060"></a>00060 
-<a name="l00065"></a><a class="code" href="classCustomPolarFunction.html">00065</a> <span class="keyword">class </span><a class="code" href="classCustomPolarFunction.html">CustomPolarFunction</a>: <span class="keyword">public</span> <a class="code" href="classCustomFunction.html">CustomFunction</a> {
-<a name="l00066"></a>00066     <span class="keyword">public</span>:
-<a name="l00067"></a>00067         <a class="code" href="classCustomPolarFunction.html#4da5bf879492f3baa2dc472fcfd5b70c">CustomPolarFunction</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
-<a name="l00068"></a>00068                              <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00069"></a>00069                              <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00070"></a>00070         <span class="keyword">virtual</span> ~<a class="code" href="classCustomPolarFunction.html">CustomPolarFunction</a>() { }
-<a name="l00071"></a>00071 
-<a name="l00072"></a>00072     <span class="keyword">protected</span>:
-<a name="l00073"></a><a class="code" href="classCustomPolarFunction.html#bb24915afd71420db0befdfa164a1116">00073</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">RealFunction::function_type</a> <a class="code" href="classCustomPolarFunction.html#bb24915afd71420db0befdfa164a1116">f</a>;
-<a name="l00074"></a>00074 };
-<a name="l00075"></a>00075 
-<a name="l00079"></a><a class="code" href="classCustomSurface.html">00079</a> <span class="keyword">class </span><a class="code" href="classCustomSurface.html">CustomSurface</a>:
-<a name="l00080"></a>00080         <span class="keyword">public</span> <a class="code" href="classSurface.html">Surface</a>,
-<a name="l00081"></a>00081         <span class="keyword">public</span> <a class="code" href="classCustomFunctionBase.html">CustomFunctionBase</a>&lt;Surface::raw_function_type&gt; {
-<a name="l00082"></a>00082             <span class="keyword">public</span>:
-<a name="l00083"></a>00083                 <a class="code" href="classCustomSurface.html#72af48595fc53ce17862cd05fb1fae22">CustomSurface</a> ( <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00084"></a>00084                                 <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00085"></a>00085                 <span class="keyword">virtual</span> ~<a class="code" href="classCustomSurface.html">CustomSurface</a>() { }
-<a name="l00086"></a>00086 
-<a name="l00087"></a>00087             <span class="keyword">protected</span>:
-<a name="l00088"></a><a class="code" href="classCustomSurface.html#1d54a8a914cc1d2133dda2d72235eac7">00088</a>                 <span class="keyword">virtual</span> <a class="code" href="classSurfaceBase.html#02cf6fe2a88f04b0a81430b9050622f7">Surface::function_type</a> <a class="code" href="classCustomSurface.html#1d54a8a914cc1d2133dda2d72235eac7">f</a>;
-<a name="l00089"></a>00089         };
-<a name="l00090"></a>00090 
-<a name="l00094"></a><a class="code" href="classCustomComplexFunction.html">00094</a> <span class="keyword">class </span><a class="code" href="classCustomComplexFunction.html">CustomComplexFunction</a>:
-<a name="l00095"></a>00095         <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a>,
-<a name="l00096"></a>00096         <span class="keyword">public</span> <a class="code" href="classCustomFunctionBase.html">CustomFunctionBase</a>&lt;ComplexFunction::function_type&gt; {
-<a name="l00097"></a>00097     <span class="keyword">public</span>:
-<a name="l00098"></a>00098         <a class="code" href="classCustomComplexFunction.html#5d1101707ec8a50c97620c85ce279f24">CustomComplexFunction</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
-<a name="l00099"></a>00099                                <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
-<a name="l00100"></a>00100         <span class="keyword">virtual</span> ~<a class="code" href="classCustomComplexFunction.html">CustomComplexFunction</a>() { }
-<a name="l00101"></a>00101 
-<a name="l00102"></a>00102     <span class="keyword">protected</span>:
-<a name="l00103"></a><a class="code" href="classCustomComplexFunction.html#c5e94e402bf81b2324ade8e60f9d56a3">00103</a>         ComplexFunction::function_type <a class="code" href="classCustomComplexFunction.html#c5e94e402bf81b2324ade8e60f9d56a3">g</a>;
-<a name="l00104"></a>00104 };
-<a name="l00105"></a>00105 
-<a name="l00106"></a>00106 
-<a name="l00110"></a>00110 <span class="keyword">template</span>&lt;<span class="keyword">class</span> function_type&gt;
-<a name="l00111"></a><a class="code" href="classCustomFunctionBase.html#d2e4b7516d73ab9ebeb9a33c6708f6b8">00111</a>         <span class="keywordtype">bool</span> <a class="code" href="classCustomFunctionBase.html#d2e4b7516d73ab9ebeb9a33c6708f6b8">CustomFunctionBase&lt;function_type&gt;::loadFunction</a>(<span class="keyword">const</span> QString &amp;libName, QString funcName) {
-<a name="l00112"></a>00112     <span class="keyword">const</span> <span class="keywordtype">char</span> *error;
-<a name="l00113"></a>00113 
-<a name="l00114"></a>00114     handle = dlopen (libName.toStdString().c_str(), RTLD_LAZY);
-<a name="l00115"></a>00115     <span class="keywordflow">if</span> (!handle) {
-<a name="l00116"></a>00116         <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <span class="stringliteral">"Error opening library: "</span> &lt;&lt; dlerror() &lt;&lt; <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce">std::endl</a>;
-<a name="l00117"></a>00117         <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00118"></a>00118     }
-<a name="l00119"></a>00119 
-<a name="l00120"></a>00120     func = (function_type *)dlsym(handle, funcName.toStdString().c_str());
-<a name="l00121"></a>00121     <span class="keywordflow">if</span> ((error = dlerror()) != NULL)  {
-<a name="l00122"></a>00122         <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <span class="stringliteral">"Error finding function: "</span> &lt;&lt; error &lt;&lt; <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce">std::endl</a>;
-<a name="l00123"></a>00123         <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00124"></a>00124     }
-<a name="l00125"></a>00125 
-<a name="l00126"></a>00126     <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00127"></a>00127 }
-<a name="l00128"></a>00128 
-<a name="l00131"></a>00131 <span class="keyword">template</span>&lt;<span class="keyword">class</span> function_type&gt;
-<a name="l00132"></a><a class="code" href="classCustomFunctionBase.html#3060ebeee0e5430aaac08cd2d2031ca7">00132</a>         QString <a class="code" href="classCustomFunctionBase.html#3060ebeee0e5430aaac08cd2d2031ca7">CustomFunctionBase&lt;function_type&gt;::symbolic</a> () {
-<a name="l00133"></a>00133     <span class="keyword">typedef</span> <span class="keywordtype">char</span>* STRING;
-<a name="l00134"></a>00134     STRING (*sym)();
-<a name="l00135"></a>00135     sym = (STRING (*)())dlsym(handle, <span class="stringliteral">"symbolic"</span>);
-<a name="l00136"></a>00136     <span class="keyword">const</span> <span class="keywordtype">char</span> *error;
-<a name="l00137"></a>00137     <span class="keyword">static</span> <span class="keywordtype">char</span> *ret;
-<a name="l00138"></a>00138 
-<a name="l00139"></a>00139     <span class="keywordflow">if</span> ((error = dlerror()) != NULL)  {
-<a name="l00140"></a>00140         <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <span class="stringliteral">"Error finding symbolic description in "</span> &lt;&lt; error &lt;&lt; <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce">std::endl</a>;
-<a name="l00141"></a>00141         <span class="keywordflow">return</span> QString (<span class="stringliteral">"something"</span>);
-<a name="l00142"></a>00142     }
-<a name="l00143"></a>00143     ret=(*sym)();
-<a name="l00144"></a>00144     <span class="keywordflow">return</span> QString (ret);
-<a name="l00145"></a>00145 }
+<a name="l00038"></a><a class="code" href="classCustomFunctionBase.html#5bfbc3ddb6bf716ec25672e903cca40e">00038</a>         <span class="keywordtype">void</span> <a class="code" href="classCustomFunctionBase.html#5bfbc3ddb6bf716ec25672e903cca40e" title="Signify success in loading the function.">setValid</a>() { <a class="code" href="classCustomFunctionBase.html#0a8f0d22381cd68f9229024bf75971e3" title="Temporary function handle returned by dlopen().">valid</a> = <span class="keyword">true</span>; }
+<a name="l00040"></a><a class="code" href="classCustomFunctionBase.html#deba6cb6f2a94795aac27f22783193b1">00040</a>         <span class="keywordtype">void</span> <a class="code" href="classCustomFunctionBase.html#deba6cb6f2a94795aac27f22783193b1" title="Signify failure in loading the function.">setInvalid</a>() { <a class="code" href="classCustomFunctionBase.html#0a8f0d22381cd68f9229024bf75971e3" title="Temporary function handle returned by dlopen().">valid</a> = <span class="keyword">false</span>; }
+<a name="l00041"></a>00041 
+<a name="l00043"></a><a class="code" href="classCustomFunctionBase.html#e1c85b8492b3259da76fb076d2de9c41">00043</a>         function_type *<a class="code" href="classCustomFunctionBase.html#e1c85b8492b3259da76fb076d2de9c41" title="The function that is called.">func</a>;
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045     <span class="keyword">private</span>:
+<a name="l00046"></a>00046         <span class="keywordtype">void</span> *handle;   
+<a name="l00047"></a><a class="code" href="classCustomFunctionBase.html#0a8f0d22381cd68f9229024bf75971e3">00047</a>         <span class="keywordtype">bool</span> <a class="code" href="classCustomFunctionBase.html#0a8f0d22381cd68f9229024bf75971e3" title="Temporary function handle returned by dlopen().">valid</a>;     
+<a name="l00048"></a>00048 };
+<a name="l00049"></a>00049 
+<a name="l00053"></a><a class="code" href="classCustomFunction.html">00053</a> <span class="keyword">class </span><a class="code" href="classCustomFunction.html">CustomFunction</a>:
+<a name="l00054"></a>00054         <span class="keyword">public</span> <a class="code" href="classRealFunction.html" title="A RealFunction is a mathematical function  .">RealFunction</a>,
+<a name="l00055"></a>00055         <span class="keyword">public</span> <a class="code" href="classCustomFunctionBase.html">CustomFunctionBase</a>&lt;RealFunction::raw_function_type&gt; {
+<a name="l00056"></a>00056     <span class="keyword">public</span>:
+<a name="l00057"></a>00057         <a class="code" href="classCustomFunction.html#6b507d733c2fb3595e00df9c1a575cb3">CustomFunction</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
+<a name="l00058"></a>00058                         <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00059"></a>00059                         <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv,
+<a name="l00060"></a>00060                         <span class="keywordtype">bool</span> <span class="keyword">final</span> = <span class="keyword">true</span>);
+<a name="l00061"></a>00061         <span class="keyword">virtual</span> ~<a class="code" href="classCustomFunction.html">CustomFunction</a>() { }
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063     <span class="keyword">protected</span>:
+<a name="l00064"></a><a class="code" href="classCustomFunction.html#dd9350656e4c9499cdc52dc80543c9b0">00064</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">RealFunction::function_type</a> <a class="code" href="classCustomFunction.html#dd9350656e4c9499cdc52dc80543c9b0">f</a>;
+<a name="l00065"></a>00065 };
+<a name="l00066"></a>00066 
+<a name="l00071"></a><a class="code" href="classCustomPolarFunction.html">00071</a> <span class="keyword">class </span><a class="code" href="classCustomPolarFunction.html">CustomPolarFunction</a>: <span class="keyword">public</span> <a class="code" href="classCustomFunction.html">CustomFunction</a> {
+<a name="l00072"></a>00072     <span class="keyword">public</span>:
+<a name="l00073"></a>00073         <a class="code" href="classCustomPolarFunction.html#4da5bf879492f3baa2dc472fcfd5b70c">CustomPolarFunction</a> (<span class="keywordtype">double</span> _tmin, <span class="keywordtype">double</span> _tmax, <span class="keywordtype">double</span> _dt,
+<a name="l00074"></a>00074                              <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00075"></a>00075                              <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00076"></a>00076         <span class="keyword">virtual</span> ~<a class="code" href="classCustomPolarFunction.html">CustomPolarFunction</a>() { }
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078     <span class="keyword">protected</span>:
+<a name="l00079"></a><a class="code" href="classCustomPolarFunction.html#bb24915afd71420db0befdfa164a1116">00079</a>         <span class="keyword">virtual</span> <a class="code" href="classRealBase.html#e33f099d1ff8b841d0f3961bbdd74618">RealFunction::function_type</a> <a class="code" href="classCustomPolarFunction.html#bb24915afd71420db0befdfa164a1116">f</a>;
+<a name="l00080"></a>00080 };
+<a name="l00081"></a>00081 
+<a name="l00085"></a><a class="code" href="classCustomSurface.html">00085</a> <span class="keyword">class </span><a class="code" href="classCustomSurface.html">CustomSurface</a>:
+<a name="l00086"></a>00086         <span class="keyword">public</span> <a class="code" href="classSurface.html">Surface</a>,
+<a name="l00087"></a>00087         <span class="keyword">public</span> <a class="code" href="classCustomFunctionBase.html">CustomFunctionBase</a>&lt;Surface::raw_function_type&gt; {
+<a name="l00088"></a>00088             <span class="keyword">public</span>:
+<a name="l00089"></a>00089                 <a class="code" href="classCustomSurface.html#72af48595fc53ce17862cd05fb1fae22">CustomSurface</a> ( <span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00090"></a>00090                                 <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00091"></a>00091                 <span class="keyword">virtual</span> ~<a class="code" href="classCustomSurface.html">CustomSurface</a>() { }
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093             <span class="keyword">protected</span>:
+<a name="l00094"></a><a class="code" href="classCustomSurface.html#1d54a8a914cc1d2133dda2d72235eac7">00094</a>                 <span class="keyword">virtual</span> <a class="code" href="classSurfaceBase.html#02cf6fe2a88f04b0a81430b9050622f7">Surface::function_type</a> <a class="code" href="classCustomSurface.html#1d54a8a914cc1d2133dda2d72235eac7">f</a>;
+<a name="l00095"></a>00095         };
+<a name="l00096"></a>00096 
+<a name="l00100"></a><a class="code" href="classCustomComplexFunction.html">00100</a> <span class="keyword">class </span><a class="code" href="classCustomComplexFunction.html">CustomComplexFunction</a>:
+<a name="l00101"></a>00101         <span class="keyword">public</span> <a class="code" href="classComplexFunction.html">ComplexFunction</a>,
+<a name="l00102"></a>00102         <span class="keyword">public</span> <a class="code" href="classCustomFunctionBase.html">CustomFunctionBase</a>&lt;ComplexFunction::function_type&gt; {
+<a name="l00103"></a>00103     <span class="keyword">public</span>:
+<a name="l00104"></a>00104         <a class="code" href="classCustomComplexFunction.html#5d1101707ec8a50c97620c85ce279f24">CustomComplexFunction</a> (<span class="keywordtype">double</span> _umin, <span class="keywordtype">double</span> _umax, <span class="keywordtype">double</span> _du,
+<a name="l00105"></a>00105                                <span class="keywordtype">double</span> _vmin, <span class="keywordtype">double</span> _vmax, <span class="keywordtype">double</span> _dv);
+<a name="l00106"></a>00106         <span class="keyword">virtual</span> ~<a class="code" href="classCustomComplexFunction.html">CustomComplexFunction</a>() { }
+<a name="l00107"></a>00107 
+<a name="l00108"></a>00108     <span class="keyword">protected</span>:
+<a name="l00109"></a><a class="code" href="classCustomComplexFunction.html#c5e94e402bf81b2324ade8e60f9d56a3">00109</a>         <a class="code" href="classComplexFunction.html#1b8acddb789e35834c412b16743d1cb9" title="A function from .">ComplexFunction::function_type</a> <a class="code" href="classCustomComplexFunction.html#c5e94e402bf81b2324ade8e60f9d56a3">g</a>;
+<a name="l00110"></a>00110 };
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112 
+<a name="l00117"></a>00117 <span class="keyword">template</span>&lt;<span class="keyword">class</span> function_type&gt;
+<a name="l00118"></a><a class="code" href="classCustomFunctionBase.html#d2e4b7516d73ab9ebeb9a33c6708f6b8">00118</a>         <span class="keywordtype">bool</span> <a class="code" href="classCustomFunctionBase.html#d2e4b7516d73ab9ebeb9a33c6708f6b8">CustomFunctionBase&lt;function_type&gt;::loadFunction</a>(<span class="keyword">const</span> QString &amp;libName, QString funcName) {
+<a name="l00119"></a>00119     <span class="keyword">const</span> <span class="keywordtype">char</span> *error;
+<a name="l00120"></a>00120 
+<a name="l00121"></a>00121     handle = dlopen (libName.toStdString().c_str(), RTLD_LAZY);
+<a name="l00122"></a>00122     <span class="keywordflow">if</span> (!handle) {
+<a name="l00123"></a>00123         <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <span class="stringliteral">"Error opening library: "</span> &lt;&lt; dlerror() &lt;&lt; <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce">std::endl</a>;
+<a name="l00124"></a>00124         <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00125"></a>00125     }
+<a name="l00126"></a>00126 
+<a name="l00127"></a>00127     <a class="code" href="classCustomFunctionBase.html#e1c85b8492b3259da76fb076d2de9c41" title="The function that is called.">func</a> = (function_type *)dlsym(handle, funcName.toStdString().c_str());
+<a name="l00128"></a>00128     <span class="keywordflow">if</span> ((error = dlerror()) != NULL)  {
+<a name="l00129"></a>00129         <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <span class="stringliteral">"Error finding function: "</span> &lt;&lt; error &lt;&lt; <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce">std::endl</a>;
+<a name="l00130"></a>00130         <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00131"></a>00131     }
+<a name="l00132"></a>00132 
+<a name="l00133"></a>00133     <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00134"></a>00134 }
+<a name="l00135"></a>00135 
+<a name="l00137"></a>00137 <span class="keyword">template</span>&lt;<span class="keyword">class</span> function_type&gt;
+<a name="l00138"></a><a class="code" href="classCustomFunctionBase.html#3060ebeee0e5430aaac08cd2d2031ca7">00138</a>         QString <a class="code" href="classCustomFunctionBase.html#3060ebeee0e5430aaac08cd2d2031ca7">CustomFunctionBase&lt;function_type&gt;::symbolic</a> () {
+<a name="l00139"></a>00139     <span class="keyword">typedef</span> <span class="keywordtype">char</span>* STRING;
+<a name="l00140"></a>00140     STRING (*sym)();
+<a name="l00141"></a>00141     sym = (STRING (*)())dlsym(handle, <span class="stringliteral">"symbolic"</span>);
+<a name="l00142"></a>00142     <span class="keyword">const</span> <span class="keywordtype">char</span> *error;
+<a name="l00143"></a>00143     <span class="keyword">static</span> <span class="keywordtype">char</span> *ret;
+<a name="l00144"></a>00144 
+<a name="l00145"></a>00145     <span class="keywordflow">if</span> ((error = dlerror()) != NULL)  {
+<a name="l00146"></a>00146         <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a> &lt;&lt; <span class="stringliteral">"Error finding symbolic description in "</span> &lt;&lt; error &lt;&lt; <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce">std::endl</a>;
+<a name="l00147"></a>00147         <span class="keywordflow">return</span> QString (<span class="stringliteral">"something"</span>);
+<a name="l00148"></a>00148     }
+<a name="l00149"></a>00149     ret=(*sym)();
+<a name="l00150"></a>00150     <span class="keywordflow">return</span> QString (ret);
+<a name="l00151"></a>00151 }
 </pre></div></div>
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Thu Nov 6 18:30:45 2008 for HyperspaceExplorer 0.6.2
+                Generated on Fri Nov 7 10:07:59 2008 for HyperspaceExplorer 0.6.2
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.7.1
                 &nbsp;-&nbsp;
