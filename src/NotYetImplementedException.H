@@ -12,7 +12,7 @@ class NotYetImplementedException: public std::logic_error {
     public:
         /// \param what Should contain the name of the throwing class method
         NotYetImplementedException(const std::string &what):
-            std::logic_error(what+": Not yet implemented!") {}
+            std::logic_error("\n"+what+":\nNot yet implemented!") {}
 };
 
 #endif
