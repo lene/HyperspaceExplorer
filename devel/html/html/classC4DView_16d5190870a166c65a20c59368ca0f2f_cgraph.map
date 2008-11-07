@@ -1,4 +1,6 @@
-<area shape="rect" href="$classUI_1_1ViewImpl.html#a5594df1772137ac86e25b9f8435dc04" title="UI::ViewImpl::R" alt="" coords="200,5,312,32">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#be101a806860df3ab01616e3c092abdc" title="UI::ViewImpl::setR" alt="" coords="192,56,320,83">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#c116c3e53e586a0036fde67863580190" title="UI::ViewImpl::setT" alt="" coords="193,107,319,133">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#4df75156fbe950971ef1564ba8e873fe" title="UI::ViewImpl::T" alt="" coords="200,157,312,184">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#a5594df1772137ac86e25b9f8435dc04" title="UI::ViewImpl::R" alt="" coords="207,5,319,32">
+<area shape="rect" href="$classC4DView.html#36180772cadbb1517885c1a366aca25c" title="Set the current 3D rotation state." alt="" coords="199,56,327,83">
+<area shape="rect" href="$classC4DView.html#3c8461856c1f84ed95d6f4994c69ede3" title="Set the current 3D translation state." alt="" coords="193,107,332,133">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#be101a806860df3ab01616e3c092abdc" title="UI::ViewImpl::setR" alt="" coords="199,157,327,184">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#c116c3e53e586a0036fde67863580190" title="UI::ViewImpl::setT" alt="" coords="200,208,325,235">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#4df75156fbe950971ef1564ba8e873fe" title="UI::ViewImpl::T" alt="" coords="207,259,319,285">
