@@ -33,7 +33,7 @@ using VecMath::Matrix;
  *  @param surfaces number of surfaces                                        */
 Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
     Function (),
-    X(vec4vec1D(vertices)), Xtrans(vec4vec1D()), Xscr(vec3vec1D()),
+    X(vec4vec1D(vertices)), Xtrans(vec4vec1D(vertices)), Xscr(vec3vec1D()),
     Surface(4) {
     setfunctionName(name);
 
@@ -83,6 +83,8 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
     double ProjectionFactor;
     double Wmax = 0, Wmin = 0;
 
+    Xscr.resize(Xtrans.size());
+
     for (unsigned i = 0; i < Xtrans.size(); i++) {
         if (depthcue4d) {
             if (Xtrans[i][3] < Wmin) Wmin = Xtrans[i][3];
@@ -92,7 +94,7 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
         ProjectionFactor = (scr_w-cam_w)/(Xtrans[i][3]-cam_w);
 
         for (unsigned j = 0; j <= 2; j++)
-            Xscr[i][j] = ProjectionFactor*Xtrans[i][j];
+            Xscr.at(i)[j] = ProjectionFactor*Xtrans[i][j];
     }
 
     if (!depthcue4d) return;
