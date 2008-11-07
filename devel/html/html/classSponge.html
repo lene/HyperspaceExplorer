@@ -156,7 +156,7 @@ The fractal can be further controlled by the <em>distance</em> parameter: <ul>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt;&nbsp;</td>
-          <td class="paramname"> <em>_center</em> = <code><a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt;&nbsp;4&nbsp;&gt;(0.,&nbsp;0.,&nbsp;0.,&nbsp;0.)</code></td><td>&nbsp;</td>
+          <td class="paramname"> <em>_center</em> = <code><a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt;4&gt;(0.,&nbsp;0.,0.,&nbsp;0.)</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -170,6 +170,7 @@ The fractal can be further controlled by the <em>distance</em> parameter: <ul>
 <p>
 <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a> constructor. 
 <p>
+Construct a Hypersponge of level <code>level</code>.<p>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>_level</em>&nbsp;</td><td>hypersponge level </td></tr>
@@ -182,9 +183,24 @@ The fractal can be further controlled by the <em>distance</em> parameter: <ul>
 </ul>
 </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>_rad</em>&nbsp;</td><td>side_length/2 </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>_center</em>&nbsp;</td><td>center </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_center</em>&nbsp;</td><td>center</td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_level</em>&nbsp;</td><td>Level of recursion used in creating the <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a> </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_distance</em>&nbsp;</td><td>see <a class="el" href="classSponge.html#b552ce65169a2b44bc93e86dbba76a25" title="This function actually creates the hypersponge.">Initialize()</a> </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_rad</em>&nbsp;</td><td>Size of the <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a> - <code>_rad</code> is half the side length </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_center</em>&nbsp;</td><td>Center point of the <a class="el" href="classSponge.html" title="A four-dimensional Menger Sponge.">Sponge</a> </td></tr>
   </table>
 </dl>
+
+<p>References <a class="el" href="Function_8H-source.html#l00212">Function::declareParameter()</a>, <a class="el" href="Object_8C-source.html#l00252">Initialize()</a>, and <a class="el" href="Function_8H-source.html#l00183">Function::setfunctionName()</a>.</p>
+
+<p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classSponge_29a107d06398fd830afbb95ffb9098b2_cgraph.png" border="0" usemap="#classSponge_29a107d06398fd830afbb95ffb9098b2_cgraph_map" alt=""></center>
+<map name="classSponge_29a107d06398fd830afbb95ffb9098b2_cgraph_map">
+<area shape="rect" href="classFunction.html#a490e914a7cd65862ba7956fd558553e" title="Add a parameter to the list of parameters." alt="" coords="164,157,332,184"><area shape="rect" href="classSponge.html#b552ce65169a2b44bc93e86dbba76a25" title="This function actually creates the hypersponge." alt="" coords="191,284,305,311"><area shape="rect" href="classFunction.html#575a3d4270fb0aa9ec4e4b433ae5bffc" title="Define the name of the Function." alt="" coords="165,335,331,361"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="432,157,525,184"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#526e24c01961896c5c0c8491d75258be" title="std::map::find" alt="" coords="431,5,527,32"><area shape="rect" href="classFunction.html#04cb73563ed4bb916fe52c94b3d25a5c" title="Declare a new parameter for the Function." alt="" coords="399,56,559,83"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="383,259,575,285"><area shape="rect" doxygen="libstdc++.tag:" href="a01815.html#403e6a8a62730a30d087c2c6b83d5d9a" title="std::make_pair" alt="" coords="429,107,528,133"><area shape="rect" doxygen="libstdc++.tag:" href="a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce" title="std::vector::push_back" alt="" coords="408,208,549,235"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d" title="std::map::insert" alt="" coords="684,56,788,83"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="624,259,848,285"><area shape="rect" doxygen="libstdc++.tag:" href="a01815.html#238e5e294eeb80752bfb1026e68e4bcc" title="abs" alt="" coords="460,309,497,336"><area shape="rect" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce" title="endl" alt="" coords="457,360,500,387"><area shape="rect" href="classFunction.html#d6a10b999b0d561d36a473d461c62311" title="Return the approximate amount of memory needed to display a Function of current definition..." alt="" coords="403,411,555,437"></map>
+</div>
 
 </div>
 </div><p>
@@ -287,6 +303,8 @@ If the <em>level</em> of the sponge is 1, the sub-sponges are hypercubes. Otherw
 
 <p>References <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#238e5e294eeb80752bfb1026e68e4bcc">abs()</a>, <a class="el" href="Object_8H-source.html#l00213">center</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">cerr</a>, <a class="el" href="Object_8H-source.html#l00211">distance</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce">endl()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00251">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="Object_8H-source.html#l00205">Level</a>, <a class="el" href="Object_8H-source.html#l00209">List</a>, <a class="el" href="Function_8C-source.html#l00048">Function::MemRequired()</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce">std::vector&lt; _Tp, _Alloc &gt;::push_back()</a>, and <a class="el" href="Object_8H-source.html#l00212">rad</a>.</p>
 
+<p>Referenced by <a class="el" href="Object_8C-source.html#l00200">Sponge()</a>.</p>
+
 <p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
@@ -294,6 +312,15 @@ Here is the call graph for this function:</div>
 <p><center><img src="classSponge_b552ce65169a2b44bc93e86dbba76a25_cgraph.png" border="0" usemap="#classSponge_b552ce65169a2b44bc93e86dbba76a25_cgraph_map" alt=""></center>
 <map name="classSponge_b552ce65169a2b44bc93e86dbba76a25_cgraph_map">
 <area shape="rect" doxygen="libstdc++.tag:" href="a01815.html#238e5e294eeb80752bfb1026e68e4bcc" title="abs" alt="" coords="249,5,287,32"><area shape="rect" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce" title="endl" alt="" coords="247,56,289,83"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="172,107,364,133"><area shape="rect" href="classFunction.html#d6a10b999b0d561d36a473d461c62311" title="Return the approximate amount of memory needed to display a Function of current definition..." alt="" coords="192,157,344,184"><area shape="rect" doxygen="libstdc++.tag:" href="a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce" title="std::vector::push_back" alt="" coords="197,208,339,235"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="413,107,637,133"></map>
+</div>
+
+<p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classSponge_b552ce65169a2b44bc93e86dbba76a25_icgraph.png" border="0" usemap="#classSponge_b552ce65169a2b44bc93e86dbba76a25_icgraph_map" alt=""></center>
+<map name="classSponge_b552ce65169a2b44bc93e86dbba76a25_icgraph_map">
+<area shape="rect" href="classSponge.html#29a107d06398fd830afbb95ffb9098b2" title="Sponge constructor." alt="" coords="171,5,280,32"></map>
 </div>
 
 </div>
@@ -462,7 +489,7 @@ List of sub-sponges (see <a class="el" href="classSponge.html#b552ce65169a2b44bc
 <p>
 <dl compact><dt><b><a class="el" href="todo.html#_todo000050">Todo:</a></b></dt><dd>Use smart pointers instead of a simple pointer-to-object </dd></dl>
 
-<p>Referenced by <a class="el" href="Object_8C-source.html#l00327">Draw()</a>, <a class="el" href="Object_8C-source.html#l00249">Initialize()</a>, <a class="el" href="Object_8C-source.html#l00319">Project()</a>, <a class="el" href="Object_8H-source.html#l00188">ReInit()</a>, <a class="el" href="Object_8C-source.html#l00307">Transform()</a>, and <a class="el" href="Object_8C-source.html#l00226">~Sponge()</a>.</p>
+<p>Referenced by <a class="el" href="Object_8C-source.html#l00330">Draw()</a>, <a class="el" href="Object_8C-source.html#l00252">Initialize()</a>, <a class="el" href="Object_8C-source.html#l00322">Project()</a>, <a class="el" href="Object_8H-source.html#l00188">ReInit()</a>, <a class="el" href="Object_8C-source.html#l00310">Transform()</a>, and <a class="el" href="Object_8C-source.html#l00228">~Sponge()</a>.</p>
 
 </div>
 </div><p>
@@ -472,7 +499,7 @@ List of sub-sponges (see <a class="el" href="classSponge.html#b552ce65169a2b44bc
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Thu Nov 6 18:30:48 2008 for HyperspaceExplorer 0.6.2
+                Generated on Fri Nov 7 10:08:04 2008 for HyperspaceExplorer 0.6.2
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.7.1
                 &nbsp;-&nbsp;

@@ -65,3 +65,4 @@
 \form#64:\begin{eqnarray*} r^2 & = & x^2+y^2+z^2 \\ f(x,y,z) & = & 1./(r^2+.25) \end{eqnarray*}
 \form#65:\begin{eqnarray*} F_0 & = & Radius*\sin \theta*\sin \psi; \\ F_1 & = & Radius*\cos \theta*\sin \psi; \\ F_2 & = & Radius*\cos \theta; \\ F_3 & = & Radius*\cos \psi; \end{eqnarray*}
 \form#66:\begin{eqnarray*} t & = & \theta*\pi \\ p & = & \phi*frac{\pi}{2} \\ F_0 & = (1-\sin{t})*\cos{p} \\ F_1 & = (1-\sin{t})*\sin{p} \\ F_2 & = (1+\sin{t})*\cos{p} \\ F_3 & = (1+\sin{t})*\sin{p} \\ F & = & F*\frac{1}{\sqrt{2}}*\cos{t} \end{eqnarray*}
+\form#67:$ e^{- z^2} $
