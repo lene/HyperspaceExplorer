@@ -4,7 +4,7 @@ CONFIG += debug qt warn_on uic
 
 QT += opengl
 
-VERSION = 0.6.1
+VERSION = 0.6.2
 
 ###
 ###     move all temporary files out of sight into subdirectory tmp

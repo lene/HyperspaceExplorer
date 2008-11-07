@@ -90,8 +90,8 @@ C4DView::C4DView(QWidget *parent):
 
     ColMgrMgr::Instance().setColorManager(new xyz2RGBColorManager(F().get()));
 
-    ObjectHypercube();
-//    ObjectRotope();
+//    ObjectHypercube();
+    ObjectRotope();
 
     setLighting(true);
 }
@@ -140,7 +140,7 @@ void C4DView::ObjectGasket() {
 void C4DView::ObjectRotope() {
     Menu()->updateFunctionMenu("Rotope");
 
-    setF(new Rotope("Rotope - Hypercube"));
+    setF(new Rotope());
 
     AssignValues(F());
     Redraw ();
@@ -640,7 +640,6 @@ void C4DView::UpdateStatus (QString status) {
 void C4DView::AssignValues (const std::auto_ptr<Function> &F) {
 
     if (!F->getFunctionName().isEmpty()) {
-//        std::cerr << F->getFunctionName().toAscii().data() << endl;
         setWindowTitle(F->getFunctionName());
     }
 

@@ -33,8 +33,7 @@ using VecMath::Matrix;
  *  @param surfaces number of surfaces                                        */
 Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
     Function (),
-//    NumVertices (vertices), NumSurfaces (surfaces),
-    X(vec4vec1D(vertices)), Xtrans(vec4vec1D(vertices)), Xscr(vec3vec1D(vertices)),
+    X(vec4vec1D(vertices)), Xtrans(vec4vec1D()), Xscr(vec3vec1D()),
     Surface(4) {
     setfunctionName(name);
 
@@ -56,6 +55,13 @@ void Object::Initialize() {
             Color((X[i][0]+1)/2, (X[i][1]+1)/2, (X[i][2]+1)/2,
                    .75-(X[i][3]+1)/4));
     }
+}
+
+/** \param newX The array of vertices to be copied to \p X */
+void Object::setX(const vec4vec1D &newX) {
+    X = newX;
+    Xtrans.resize(X.size());
+    Xscr.resize(X.size());
 }
 
 /// Transforms an Object

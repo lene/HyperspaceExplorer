@@ -64,6 +64,9 @@ template <unsigned D>
  *  \author Helge Preuss <scout@hyperspace-travel.de>
  */
 class Rotope : public Object {
+
+    const static unsigned DIM = 4;
+
     public:
         /// Construct a Rotope. Not yet implemented properly.
         Rotope();
@@ -78,7 +81,7 @@ class Rotope : public Object {
 //        virtual QString getFunctionName() const { return "Rotope"; }
     private:
         /// Actual rotope object to which all functions are delegated
-        vertex_data<5> *_rotope;
+        vertex_data<DIM> *_rotope;
 };
 
 
@@ -123,7 +126,8 @@ template <unsigned D> void vertex_data<D>::print() {
 
 /// Project an array of vertices of dimension \p D to dimension \p D_ < \p D
 template <unsigned D, unsigned D_>
-    std::vector<VecMath::Vector<D_> > project(const std::vector<VecMath::Vector<D> > &x) {
+    std::vector<VecMath::Vector<D_> > project(const std::vector<VecMath::Vector<D> > &x,
+                                              double scrW, double camW) {
         if (D_ > D) {
             throw std::logic_error("Tried to project to a higher dimension");
         }
@@ -141,7 +145,7 @@ template <unsigned D, unsigned D_>
 /// Specialization for \p D_ == \p D
 template <unsigned D>
     std::vector<VecMath::Vector<D> > project(
-        const std::vector<VecMath::Vector<D> > &x) {
+        const std::vector<VecMath::Vector<D> > &x, double, double) {
         return x;
     }
 

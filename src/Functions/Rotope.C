@@ -58,7 +58,6 @@ class RotopeFactory {
 
 Rotope::Rotope(): Object("Generic Rotope", 0, 0), _rotope(0) {
 /*
-    const unsigned DIM = 4;
     Extrude<DIM, 0, DIM-1> E;
     std::cerr << "Extrude: "; E.print();
 
@@ -67,16 +66,10 @@ Rotope::Rotope(): Object("Generic Rotope", 0, 0), _rotope(0) {
     Taper<DIM, BASE+1, DIM-1> T(E2);
     std::cerr << "Taper: "; T.print();
 */
-    _rotope = new Extrude<5, 0, 4>();
-    VecMath::Vector<4> viewpoint;
-    std::vector<VecMath::Vector<4> > projection = project<5,4>(_rotope->X());
-/*
-    for (unsigned i = 0; i < _rotope->X().size(); i++) {
-        Object::X[i] = _rotope->X()[i];     /// \todo use a projection function on vertex_data
-    }
+    _rotope = new Extrude<DIM, 0, DIM-1>();
+    setX(project<4>(_rotope->X(), 0., 0.));
+
     Object::Initialize();
-*/
-//    throw NotYetImplementedException("Rotope::Rotope()");
 }
 
 Rotope::~Rotope() {
@@ -90,21 +83,21 @@ Rotope::~Rotope() {
 void Rotope::Transform(const VecMath::Rotation<4> &R,
                        const VecMath::Vector<4> &T) {
     SingletonLog::Instance() << "Rotope::Transform()\n";
-    /*
+
     if (!_rotope) {
         throw std::logic_error("Rotope::Transform(): _rotope is NULL!");
     }
     Matrix<4> Rot(R);
-    for (unsigned i = 0; i < _rotope->X().size(); i++) {
-        Xtrans[i] = (Rot*X[i])+T;
+
+    for (unsigned i = 0; i < X.size(); i++) {
+        Xtrans.at(i) = (Rot*X.at(i))+T;
     }
-    */
+
 }
 
 /// Draw the projected Rotope (onto screen or into GL list, as it is)
 void Rotope::Draw () {
     SingletonLog::Instance() << "Rotope::Draw()\n";
-    /*
     if (!_rotope) {
         throw std::logic_error("Rotope::Draw(): _rotope is NULL!");
     }
@@ -116,5 +109,4 @@ void Rotope::Draw () {
         }
     }
     glEnd ();
-    */
 }

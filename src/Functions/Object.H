@@ -54,10 +54,9 @@ class Object: public Function {
 
     protected:
         virtual void Initialize();
-        /// number of vertices the object possesses; must be set by implementations
-//        unsigned NumVertices;
-        /// number of surfaces the object possesses; must be set by implementations
-//        unsigned NumSurfaces;
+
+        /// Set temporary storage for the function values
+        void setX(const vec4vec1D &);
 
         vec4vec1D X;        ///< temporary storage for the function values
         vec4vec1D Xtrans;   ///< temp. storage for transformed function values
