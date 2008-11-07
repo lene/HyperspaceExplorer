@@ -60,7 +60,7 @@
 <a name="l00028"></a>00028 
 <a name="l00029"></a>00029     <span class="keyword">protected</span>:
 <a name="l00031"></a>00031         <span class="keyword">virtual</span> <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;4&gt;</a> &amp;<a class="code" href="classSteinerFunction.html#184943a51b4ee95fa8fa09b01593ab01" title="The mathematical function defining the Function object.">f</a>(<span class="keywordtype">double</span>, <span class="keywordtype">double</span>) = 0;
-<a name="l00032"></a>00032 <span class="comment">//        double **df (double, double);</span>
+<a name="l00032"></a>00032         <span class="keyword">virtual</span> <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;4&gt;</a> *<a class="code" href="classSteinerFunction.html#a6aea6befae7056cf53d27cc9538511d">df</a> (<span class="keywordtype">double</span>, <span class="keywordtype">double</span>);
 <a name="l00033"></a>00033 
 <a name="l00034"></a>00034     <span class="keyword">private</span>:
 <a name="l00035"></a><a class="code" href="classSteinerFunction.html#a05d2007e03fd3669ff1be419ed537bc">00035</a>         <span class="keywordtype">double</span> <a class="code" href="classSteinerFunction.html#ef043dfe1e1798290f3745ddac512240" title="?">a</a>,    
@@ -71,7 +71,7 @@
 <a name="l00040"></a>00040                <a class="code" href="classSteinerFunction.html#c4583620d0b428836d217db5ca0789fc" title="?">vmax</a>, 
 <a name="l00041"></a>00041                <a class="code" href="classSteinerFunction.html#89e75493dbbf5d12a6f87afc6263e0b5" title="?">dv</a>;   
 <a name="l00042"></a>00042 
-<a name="l00043"></a><a class="code" href="classSteinerFunction.html#4071a5fbd4d419f5f728b050fe9a1a17">00043</a>         Vector <a class="code" href="classSteinerFunction.html#4071a5fbd4d419f5f728b050fe9a1a17" title="temporary storage for the value of the function at a given point">F</a>;
+<a name="l00043"></a><a class="code" href="classSteinerFunction.html#99b93d57460953ae234f87c623a0eb3f">00043</a>         <a class="code" href="classVecMath_1_1Vector.html">VecMath::Vector&lt;4&gt;</a> <a class="code" href="classSteinerFunction.html#99b93d57460953ae234f87c623a0eb3f" title="temporary storage for the value of the function at a given point">F</a>;
 <a name="l00044"></a>00044 };
 <a name="l00045"></a>00045 
 <a name="l00046"></a>00046 <span class="preprocessor">#endif // !defined(STEINER_FUNCTION_H)</span>
@@ -79,7 +79,7 @@
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Thu Nov 6 18:30:46 2008 for HyperspaceExplorer 0.6.2
+                Generated on Fri Nov 7 10:07:59 2008 for HyperspaceExplorer 0.6.2
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.7.1
                 &nbsp;-&nbsp;
