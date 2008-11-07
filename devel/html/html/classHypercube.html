@@ -64,10 +64,9 @@ Collaboration diagram for Hypercube:</div>
 <a href="classHypercube-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d9f890adf89825ce20f9c3eabda998cc"></a><!-- doxytag: member="Hypercube::Hypercube" ref="d9f890adf89825ce20f9c3eabda998cc" args="(double a, const VecMath::Vector&lt; 4 &gt; &amp;_Center=VecMath::Vector&lt; 4 &gt;(0., 0., 0., 0.))" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHypercube.html#d9f890adf89825ce20f9c3eabda998cc">Hypercube</a> (double a, const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;_Center=<a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt;(0., 0., 0., 0.))</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHypercube.html#cc667dafcc9bdc29cff35e19a284017b">Hypercube</a> (double a, const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;<a class="el" href="classHypercube.html#c8b827fd28f917d11e930f9ca69a4d1a">_center</a>=<a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt;(0., 0., 0., 0.))</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct a hypercube with a side length and a center. <br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct a hypercube with a side length and a center.  <a href="#cc667dafcc9bdc29cff35e19a284017b"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e405a9eaf0b835a4546aecbb48e938f5"></a><!-- doxytag: member="Hypercube::SetParameters" ref="e405a9eaf0b835a4546aecbb48e938f5" args="(const ParameterMap &amp;parms)" -->
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHypercube.html#e405a9eaf0b835a4546aecbb48e938f5">SetParameters</a> (const <a class="el" href="classParameterMap.html">ParameterMap</a> &amp;parms)</td></tr>
 
@@ -94,6 +93,56 @@ double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 A four-dimensional cube. 
 <p>
+<hr><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" name="cc667dafcc9bdc29cff35e19a284017b"></a><!-- doxytag: member="Hypercube::Hypercube" ref="cc667dafcc9bdc29cff35e19a284017b" args="(double a, const VecMath::Vector&lt; 4 &gt; &amp;_center=VecMath::Vector&lt; 4 &gt;(0., 0., 0., 0.))" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Hypercube::Hypercube           </td>
+          <td>(</td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt; 4 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>center</em> = <code><a class="el" href="classVecMath_1_1Vector.html">VecMath::Vector</a>&lt;4&gt;(0.,&nbsp;0.,&nbsp;0.,&nbsp;0.)</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Construct a hypercube with a side length and a center. 
+<p>
+<a class="el" href="classHypercube.html" title="A four-dimensional cube.">Hypercube</a> constructor.<p>
+<dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>center</em>&nbsp;</td><td>center </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>a</em>&nbsp;</td><td>side_length/2 </td></tr>
+  </table>
+</dl>
+
+<p>References <a class="el" href="Function_8H-source.html#l00212">Function::declareParameter()</a>, and <a class="el" href="Object_8C-source.html#l00142">Initialize()</a>.</p>
+
+<p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classHypercube_cc667dafcc9bdc29cff35e19a284017b_cgraph.png" border="0" usemap="#classHypercube_cc667dafcc9bdc29cff35e19a284017b_cgraph_map" alt=""></center>
+<map name="classHypercube_cc667dafcc9bdc29cff35e19a284017b_cgraph_map">
+<area shape="rect" href="classFunction.html#a490e914a7cd65862ba7956fd558553e" title="Add a parameter to the list of parameters." alt="" coords="201,157,369,184"><area shape="rect" href="classHypercube.html#790d87e55f2b01d1b339df6f05852ffd" title="Actually creates the Hypercube." alt="" coords="219,259,352,285"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="469,5,563,32"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#526e24c01961896c5c0c8491d75258be" title="std::map::find" alt="" coords="468,56,564,83"><area shape="rect" href="classFunction.html#04cb73563ed4bb916fe52c94b3d25a5c" title="Declare a new parameter for the Function." alt="" coords="436,107,596,133"><area shape="rect" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="420,157,612,184"><area shape="rect" doxygen="libstdc++.tag:" href="a01815.html#403e6a8a62730a30d087c2c6b83d5d9a" title="std::make_pair" alt="" coords="467,208,565,235"><area shape="rect" doxygen="libstdc++.tag:" href="a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce" title="std::vector::push_back" alt="" coords="445,259,587,285"><area shape="rect" doxygen="libstdc++.tag:" href="a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d" title="std::map::insert" alt="" coords="721,107,825,133"><area shape="rect" href="classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="661,157,885,184"><area shape="rect" href="classHypercube.html#0c9fb7fe129ae7e5e2834fd0ea861e8d" title="Declare a square in the Surface array." alt="" coords="433,309,599,336"></map>
+</div>
+
+</div>
+</div><p>
 <hr><h2>Member Function Documentation</h2>
 <a class="anchor" name="0c9fb7fe129ae7e5e2834fd0ea861e8d"></a><!-- doxytag: member="Hypercube::DeclareSquare" ref="0c9fb7fe129ae7e5e2834fd0ea861e8d" args="(unsigned, unsigned, unsigned, unsigned, unsigned)" -->
 <div class="memitem">
@@ -151,7 +200,7 @@ Declare a square in the <code><a class="el" href="classSurface.html">Surface</a>
   </table>
 </dl>
 
-<p>Referenced by <a class="el" href="Object_8C-source.html#l00141">Initialize()</a>.</p>
+<p>Referenced by <a class="el" href="Object_8C-source.html#l00142">Initialize()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -159,7 +208,7 @@ Here is the caller graph for this function:</div>
 <div class="dynsection">
 <p><center><img src="classHypercube_0c9fb7fe129ae7e5e2834fd0ea861e8d_icgraph.png" border="0" usemap="#classHypercube_0c9fb7fe129ae7e5e2834fd0ea861e8d_icgraph_map" alt=""></center>
 <map name="classHypercube_0c9fb7fe129ae7e5e2834fd0ea861e8d_icgraph_map">
-<area shape="rect" href="classHypercube.html#790d87e55f2b01d1b339df6f05852ffd" title="Actually creates the Hypercube." alt="" coords="220,5,353,32"></map>
+<area shape="rect" href="classHypercube.html#790d87e55f2b01d1b339df6f05852ffd" title="Actually creates the Hypercube." alt="" coords="220,5,353,32"><area shape="rect" href="classHypercube.html#cc667dafcc9bdc29cff35e19a284017b" title="Construct a hypercube with a side length and a center." alt="" coords="404,5,548,32"></map>
 </div>
 
 </div>
@@ -221,7 +270,9 @@ sets up the vertices of the <a class="el" href="classHypercube.html" title="A fo
 
 <p>Reimplemented in <a class="el" href="classSponge.html#b552ce65169a2b44bc93e86dbba76a25">Sponge</a>.</p>
 
-<p>References <a class="el" href="Object_8H-source.html#l00117">_a</a>, <a class="el" href="Object_8H-source.html#l00118">_center</a>, <a class="el" href="Object_8C-source.html#l00184">DeclareSquare()</a>, and <a class="el" href="Object_8H-source.html#l00062">Object::X</a>.</p>
+<p>References <a class="el" href="Object_8H-source.html#l00117">_a</a>, <a class="el" href="Object_8H-source.html#l00118">_center</a>, <a class="el" href="Object_8C-source.html#l00185">DeclareSquare()</a>, and <a class="el" href="Object_8H-source.html#l00062">Object::X</a>.</p>
+
+<p>Referenced by <a class="el" href="Object_8C-source.html#l00131">Hypercube()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -232,6 +283,15 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="classHypercube.html#0c9fb7fe129ae7e5e2834fd0ea861e8d" title="Declare a square in the Surface array." alt="" coords="189,5,355,32"></map>
 </div>
 
+<p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dynsection">
+<p><center><img src="classHypercube_790d87e55f2b01d1b339df6f05852ffd_icgraph.png" border="0" usemap="#classHypercube_790d87e55f2b01d1b339df6f05852ffd_icgraph_map" alt=""></center>
+<map name="classHypercube_790d87e55f2b01d1b339df6f05852ffd_icgraph_map">
+<area shape="rect" href="classHypercube.html#cc667dafcc9bdc29cff35e19a284017b" title="Construct a hypercube with a side length and a center." alt="" coords="191,5,335,32"></map>
+</div>
+
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
@@ -240,7 +300,7 @@ Here is the call graph for this function:</div>
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Thu Nov 6 18:30:47 2008 for HyperspaceExplorer 0.6.2
+                Generated on Fri Nov 7 10:08:03 2008 for HyperspaceExplorer 0.6.2
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.7.1
                 &nbsp;-&nbsp;
