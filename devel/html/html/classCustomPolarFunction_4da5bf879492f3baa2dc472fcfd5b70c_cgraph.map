@@ -1,6 +1,8 @@
 <area shape="rect" href="$classRealFunction.html#37c91ed60f82198f48dfab887dd743c3" title="Allocate and initialize X[][][] with values of f()." alt="" coords="452,309,599,336">
 <area shape="rect" href="$classUI_1_1Dialogs_1_1PluginCreator.html#82c363a954274814e84ebeb2a61da246" title="Get the name of the selected dynamic library containing a function." alt="" coords="405,360,645,387">
 <area shape="rect" href="$classCustomFunctionBase.html#d2e4b7516d73ab9ebeb9a33c6708f6b8" title="CustomFunctionBase\&lt; RealFunction::raw_function_type \&gt;::loadFunction" alt="" coords="317,411,733,437">
+<area shape="rect" href="$classCustomFunctionBase.html#deba6cb6f2a94795aac27f22783193b1" title="Signify failure in loading the function." alt="" coords="327,461,724,488">
+<area shape="rect" href="$classCustomFunctionBase.html#5bfbc3ddb6bf716ec25672e903cca40e" title="Signify success in loading the function." alt="" coords="331,512,720,539">
 <area shape="rect" href="$classRealBase.html#c2cd018b4108455a6daa23d78b2064a6" title="The mathematical function defining the Function object." alt="" coords="837,5,920,32">
 <area shape="rect" href="$classRealBase.html#a738a408ed73025d34db4ff0c4779ce1" title="delta in t" alt="" coords="824,56,933,83">
 <area shape="rect" href="$classRealBase.html#d8aa90547179197a84a55b11fa9efb59" title="delta in u" alt="" coords="823,107,935,133">
