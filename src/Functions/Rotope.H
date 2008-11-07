@@ -49,6 +49,9 @@ template <unsigned D>
             uintvec2D &surface() { return _surface; }
 
         private:
+            /// \return Whether argument or permutation of it already in _surface
+            bool checkSurfaceExists(const uintvec1D &);
+            
             unsigned _dimension;                    ///< Dimension of the object
             std::vector<VecMath::Vector<D> > _X;    ///< The array of vertices
             uintvec2D _surface;                     ///< The array of surfaces
@@ -136,24 +139,7 @@ template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
     uintvec1D tmp;
     tmp.push_back(v1); tmp.push_back(v2); tmp.push_back(v3); tmp.push_back(v4);
 
-    /// Test if the new surface is a permutation of a surface already existing
-    for (unsigned i = 0; i < surface().size(); ++i) {
-        vector<bool> found_equal_vertex(surface()[i].size());
-        for (unsigned j = 0; j < surface()[i].size(); ++j) {
-            found_equal_vertex[j] = false;
-            for (unsigned k = 0; k < tmp.size(); ++k) {
-                if (surface()[i][j] == tmp[k]) {
-                    found_equal_vertex[j] = true;
-                }
-            }
-        }
-        bool surfaces_are_equal = true;
-        for (unsigned i = 0; i < found_equal_vertex.size();
-             surfaces_are_equal &= found_equal_vertex[i++]) ;
-        if (surfaces_are_equal) return;
-    }
-
-    surface().push_back(tmp);
+    if (!checkSurfaceExists(tmp)) surface().push_back(tmp);
 }
 
 /** Overloaded version for three vertices
@@ -165,7 +151,44 @@ template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
                                                       unsigned v3) {
     uintvec1D tmp;
     tmp.push_back(v1); tmp.push_back(v2); tmp.push_back(v3);
-    surface().push_back(tmp);
-                                                      }
+    if (!checkSurfaceExists(tmp)) surface().push_back(tmp);
+}
+
+/** Test if a new surface is a permutation of a surface already existing.
+ *  \param newSurface The surface to be tested whether it is already stored
+ */
+template <unsigned D> bool vertex_data<D>::checkSurfaceExists(const uintvec1D &newSurface) {
+
+    for (unsigned i = 0; i < surface().size(); ++i) {
+
+        /// Check for equality against every surface in \p _surface .
+
+        vector<bool> found_equal_vertex(surface()[i].size());
+
+        for (unsigned j = 0; j < surface()[i].size(); ++j) {
+            found_equal_vertex[j] = false;
+            for (unsigned k = 0; k < newSurface.size(); ++k) {
+                if (surface()[i][j] == newSurface[k]) {
+                    found_equal_vertex[j] = true;
+                }
+            }
+        }
+        bool surfaces_are_equal = true;
+
+        /** Because the corners of a surface are all different numbers, if we
+         *  found an equal vertex for each corner, the surface is considered
+         *  equal.
+         *
+         *  That algorithm breaks down if there are surfaces which are odd
+         *  permutations of existing surfaces, eg. (0, 1, 3, 2), (0, 1, 2, 3).
+         *  I don't think such permutations make sense, as the edges of the
+         *  surface would be self-intersecting.
+         */
+        for (unsigned i = 0; i < found_equal_vertex.size();
+             surfaces_are_equal &= found_equal_vertex[i++]) ;
+        if (surfaces_are_equal) return true;
+    }
+    return false;
+}
 
 #endif
