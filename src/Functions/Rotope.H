@@ -51,7 +51,7 @@ template <unsigned D>
         private:
             /// \return Whether argument or permutation of it already in _surface
             bool checkSurfaceExists(const uintvec1D &);
-            
+
             unsigned _dimension;                    ///< Dimension of the object
             std::vector<VecMath::Vector<D> > _X;    ///< The array of vertices
             uintvec2D _surface;                     ///< The array of surfaces
@@ -78,7 +78,7 @@ class Rotope : public Object {
 //        virtual QString getFunctionName() const { return "Rotope"; }
     private:
         /// Actual rotope object to which all functions are delegated
-        vertex_data<4> *_rotope;
+        vertex_data<5> *_rotope;
 };
 
 
@@ -120,6 +120,31 @@ template <unsigned D> void vertex_data<D>::print() {
 
 }
 
+
+/// Project an array of vertices of dimension \p D to dimension \p D_ < \p D
+template <unsigned D, unsigned D_>
+    std::vector<VecMath::Vector<D_> > project(const std::vector<VecMath::Vector<D> > &x) {
+        if (D_ > D) {
+            throw std::logic_error("Tried to project to a higher dimension");
+        }
+        if (D_ == D) {
+            throw std::logic_error("Explicit specialization should be called");
+        }
+
+        throw NotYetImplementedException("template <unsigned D, unsigned D_>\n"
+                "        std::vector<VecMath::Vector<D_> > project(\n"
+                "            const std::vector<VecMath::Vector<D> &x)");
+        std::vector<VecMath::Vector<D_> > v;
+        return v;
+    }
+
+/// Specialization for \p D_ == \p D
+template <unsigned D>
+    std::vector<VecMath::Vector<D> > project(
+        const std::vector<VecMath::Vector<D> > &x) {
+        return x;
+    }
+
 /**
  *  \param v1 Index (in the vertex array) of the first vertex
  *  \param v2 Index (in the vertex array) of the second vertex
@@ -130,8 +155,6 @@ template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
                                                       unsigned v3, unsigned v4) {
     if (v1 >= X().size() || v2 >= X().size() ||
         v3 >= X().size() || v4 >= X().size()) {
-        std::cerr << "X.size(): " << X().size() << ", v1: " << v1 << ", v2: " << v2
-                << ", v3: " << v3 << ", v4: " << v4 << "\n";
         throw std::out_of_range("vertex_data<D>::addSurface(): index larger "
                                 "than size of vertex array");
     }
@@ -149,6 +172,11 @@ template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
  */
 template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
                                                       unsigned v3) {
+    if (v1 >= X().size() || v2 >= X().size() || v3 >= X().size()) {
+        throw std::out_of_range("vertex_data<D>::addSurface(): index larger "
+                                "than size of vertex array");
+    }
+
     uintvec1D tmp;
     tmp.push_back(v1); tmp.push_back(v2); tmp.push_back(v3);
     if (!checkSurfaceExists(tmp)) surface().push_back(tmp);
