@@ -1,6 +1,8 @@
 <area shape="rect" href="$classComplexFunction.html#a978ff4b165e029bb82ba33dce35e4e3" title="ComplexFunction::Initialize" alt="" coords="479,233,649,260">
 <area shape="rect" href="$classUI_1_1Dialogs_1_1PluginCreator.html#82c363a954274814e84ebeb2a61da246" title="Get the name of the selected dynamic library containing a function." alt="" coords="444,284,684,311">
 <area shape="rect" href="$classCustomFunctionBase.html#d2e4b7516d73ab9ebeb9a33c6708f6b8" title="CustomFunctionBase\&lt; ComplexFunction::function_type \&gt;::loadFunction" alt="" coords="357,335,771,361">
+<area shape="rect" href="$classCustomFunctionBase.html#deba6cb6f2a94795aac27f22783193b1" title="Signify failure in loading the function." alt="" coords="367,385,761,412">
+<area shape="rect" href="$classCustomFunctionBase.html#5bfbc3ddb6bf716ec25672e903cca40e" title="Signify success in loading the function." alt="" coords="371,436,757,463">
 <area shape="rect" href="$classComplexFunction.html#234485506b16d03867c20e8e8d7e0b21" title="ComplexFunction::f" alt="" coords="827,31,955,57">
 <area shape="rect" href="$classSurfaceBase.html#c1b7c91a12ac9ad433c27d8ad9f6067c" title="delta in t" alt="" coords="828,81,953,108">
 <area shape="rect" href="$classSurfaceBase.html#b374ba3db9a0339e6a5aaa230d1a76ca" title="delta in u" alt="" coords="827,132,955,159">
