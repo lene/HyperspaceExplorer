@@ -60,29 +60,32 @@ Inheritance diagram for CustomFunctionBase&lt; function_type &gt;:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="classCustomFunction.html">CustomFunction</a> destructor, closes DLL if necessary. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomFunctionBase.html#3060ebeee0e5430aaac08cd2d2031ca7">symbolic</a> ()</td></tr>
 
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="65eb2e36fd445edeeaaee56b1f352343"></a><!-- doxytag: member="CustomFunctionBase::isValid" ref="65eb2e36fd445edeeaaee56b1f352343" args="() const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>isValid</b> () const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomFunctionBase.html#65eb2e36fd445edeeaaee56b1f352343">isValid</a> () const </td></tr>
 
 <tr><td colspan="2"><br><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomFunctionBase.html#d2e4b7516d73ab9ebeb9a33c6708f6b8">loadFunction</a> (const QString &amp;, QString=&quot;f&quot;)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5bfbc3ddb6bf716ec25672e903cca40e"></a><!-- doxytag: member="CustomFunctionBase::setValid" ref="5bfbc3ddb6bf716ec25672e903cca40e" args="()" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setValid</b> ()</td></tr>
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomFunctionBase.html#5bfbc3ddb6bf716ec25672e903cca40e">setValid</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Signify success in loading the function. <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="deba6cb6f2a94795aac27f22783193b1"></a><!-- doxytag: member="CustomFunctionBase::setInvalid" ref="deba6cb6f2a94795aac27f22783193b1" args="()" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setInvalid</b> ()</td></tr>
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomFunctionBase.html#deba6cb6f2a94795aac27f22783193b1">setInvalid</a> ()</td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Signify failure in loading the function. <br></td></tr>
 <tr><td colspan="2"><br><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e1c85b8492b3259da76fb076d2de9c41"></a><!-- doxytag: member="CustomFunctionBase::func" ref="e1c85b8492b3259da76fb076d2de9c41" args="" -->
-function_type *&nbsp;</td><td class="memItemRight" valign="bottom"><b>func</b></td></tr>
+function_type *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomFunctionBase.html#e1c85b8492b3259da76fb076d2de9c41">func</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The function that is called. <br></td></tr>
 <tr><td colspan="2"><br><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="80f923985c3463bddc2e57ff41887d86"></a><!-- doxytag: member="CustomFunctionBase::handle" ref="80f923985c3463bddc2e57ff41887d86" args="" -->
 void *&nbsp;</td><td class="memItemRight" valign="bottom"><b>handle</b></td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0a8f0d22381cd68f9229024bf75971e3"></a><!-- doxytag: member="CustomFunctionBase::valid" ref="0a8f0d22381cd68f9229024bf75971e3" args="" -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>valid</b></td></tr>
+bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomFunctionBase.html#0a8f0d22381cd68f9229024bf75971e3">valid</a></td></tr>
 
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Temporary function handle returned by dlopen(). <br></td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 <h3>template&lt;class function_type&gt;<br>
@@ -90,6 +93,28 @@ bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>valid</b></td></tr>
 
 Base class for custom functions, which can be edited by the user<p>
 <a class="el" href="classCustomFunctionBase.html">CustomFunctionBase</a> contains the functions common to all descendants, if necessary as a template to cater for the varying function types of the different implementations <hr><h2>Member Function Documentation</h2>
+<a class="anchor" name="65eb2e36fd445edeeaaee56b1f352343"></a><!-- doxytag: member="CustomFunctionBase::isValid" ref="65eb2e36fd445edeeaaee56b1f352343" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class function_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classCustomFunctionBase.html">CustomFunctionBase</a>&lt; function_type &gt;::isValid           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>Whether loading the library succeeded </dd></dl>
+
+</div>
+</div><p>
 <a class="anchor" name="d2e4b7516d73ab9ebeb9a33c6708f6b8"></a><!-- doxytag: member="CustomFunctionBase::loadFunction" ref="d2e4b7516d73ab9ebeb9a33c6708f6b8" args="(const QString &amp;, QString=&quot;f&quot;)" -->
 <div class="memitem">
 <div class="memproto">
@@ -121,11 +146,12 @@ template&lt;class function_type &gt; </div>
 try to load a DLL and the f() in it <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>libName</em>&nbsp;</td><td>name of the plugin DLL file </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>funcName</em>&nbsp;</td><td>name of the function to load </td></tr>
   </table>
 </dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>success </dd></dl>
 
-<p>References <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a>, and <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce">std::endl()</a>.</p>
+<p>References <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce">std::endl()</a>, and <a class="el" href="CustomFunction_8H-source.html#l00043">CustomFunctionBase&lt; function_type &gt;::func</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -156,12 +182,7 @@ template&lt;class function_type &gt; </div>
 <div class="memdoc">
 
 <p>
-<dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>handle</em>&nbsp;</td><td>an opened DLL handle </td></tr>
-  </table>
-</dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd>custom function in symbolic notation </dd></dl>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd>Custom function in symbolic notation </dd></dl>
 
 <p>References <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#64ca41bba3155dda187b56928fd61914">std::cerr</a>, and <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce">std::endl()</a>.</p>
 
@@ -182,7 +203,7 @@ Here is the call graph for this function:</div>
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Thu Nov 6 18:30:47 2008 for HyperspaceExplorer 0.6.2
+                Generated on Fri Nov 7 10:08:03 2008 for HyperspaceExplorer 0.6.2
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.7.1
                 &nbsp;-&nbsp;
