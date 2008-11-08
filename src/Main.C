@@ -371,21 +371,35 @@ void setRCFilePath() {
  *  @return     exit status                                                   */
 int main (int argc, char *argv[]) {
 
-    QApplication app (argc, argv);
+    int ret = 1;
 
-    setRCFilePath();
+    try {
+        QApplication app (argc, argv);
 
-    parse (argc, argv);
+        setRCFilePath();
 
-    //  okay to set . last in rc file path? shouldn't it be first?
-    Globals::Instance().rcdirs.append (".");
+        parse (argc, argv);
 
-    C4DView view;
-    Globals::Instance().getMainWindow()->setCentralWidget(&view);
-    Globals::Instance().getMainWindow()->resize(580,600);
+        //  okay to set . last in rc file path? shouldn't it be first?
+        Globals::Instance().rcdirs.append (".");
 
-    Globals::Instance().getMainWindow()->show();
+        C4DView view;
+        Globals::Instance().getMainWindow()->setCentralWidget(&view);
+        Globals::Instance().getMainWindow()->resize(580,600);
 
-    int ret = app.exec ();
+        Globals::Instance().getMainWindow()->show();
+
+        ret = app.exec ();
+    } catch (std::logic_error e) {
+        std::cerr << "The programmer of this software has done something wrong.\n"
+            "You can drop her a message: <scout@hyperspace-travel.de>\n"
+            "or use the bug tracker for Hyperspace Explorer at:\n"
+            "https://sourceforge.net/tracker2/?func=add&group_id=34073&atid=410707\n"
+            "Please add this message to the bug report: \n"
+                << e.what() << "\n\n"
+            "The program will abort now. If you know how to do a stack backtrace,\n"
+            "adding one would be a great help.\n";
+        abort();
+    }
     return ret;
 }

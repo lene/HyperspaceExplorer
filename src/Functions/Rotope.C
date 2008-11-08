@@ -22,18 +22,27 @@
 using VecMath::Vector;
 using VecMath::Matrix;
 
-Rotope::Rotope(): Object("Rotope", 0, 0), _rotope(0) {
-    _rotope = new Extrude<DIM, 0, DIM-1>();
-    setX(_rotope->vertices());
-
-    Object::Initialize();
+Rotope::Rotope(): Object("Rotope: Hypercube", 0, 0),
+        _actions("EEEE"), _rotope(0) {
+    Initialize();
 }
 
 Rotope::Rotope(const std::string &actions):
-        Object(QString("Rotope: ")+actions.c_str(), 0, 0), _rotope(0) {
+        Object(QString("Rotope: ")+actions.c_str(), 0, 0),
+        _actions(actions), _rotope(0) {
+    Initialize();
+}
+
+Rotope::~Rotope() {
+    if (_rotope) delete _rotope;
+}
+
+void Rotope::Initialize() {
     try {
-        _rotope = RotopeFactory::generate(actions);
+        _rotope = RotopeFactory::generate(_actions);
+        declareParameter("Generator", _actions);
     } catch (BadRotopeOperation e) {
+        declareParameter("Generator", string(DIM, 'E'));
         _rotope = new Extrude<DIM, 0, DIM-1>();
         /** \todo Show the warning in a QMessageBox. Currently that does not work
          *  because C4DView::RenderScene() is called before the object has been
@@ -41,20 +50,22 @@ Rotope::Rotope(const std::string &actions):
          */
         /*
         QMessageBox::warning (NULL,
-                              QString("Rotope::Rotope(")+actions.c_str()+")",
-                                      e.what());
+        QString("Rotope::Rotope(")+actions.c_str()+")",
+        e.what());
         */
         std::cerr << e.what() << std::endl;
+    } catch (NotYetImplementedException e) {
+        declareParameter("Generator", string(DIM, 'E'));
+        _rotope = new Extrude<DIM, 0, DIM-1>();
+        /// \todo See above
+        std::cerr << e.what() << std::endl;
     }
+
     setX(_rotope->vertices());
 
     Object::Initialize();
-}
 
-Rotope::~Rotope() {
-    if (_rotope) delete _rotope;
 }
-
 /// Transforms a Rotope
 /** @param R Rotation
  *  @param T Translation

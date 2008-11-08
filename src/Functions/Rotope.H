@@ -25,13 +25,29 @@ class Rotope : public Object {
 
         ~Rotope();
 
+        virtual void Initialize();
+
         virtual void Transform (const VecMath::Rotation<4> &,
                                 const VecMath::Vector<4> &);
         virtual void Draw (void);
+        virtual void SetParameters(const ParameterMap &parms) {
+#       if 1
+            for (ParameterMap::const_iterator i = parms.begin();
+                 i != parms.end(); ++i) {
+                     if (i->second->getName() == "Generator")
+                         _actions = std::string(*i->second);
+                 }
+#       else
+                 setParameter(parms, this->_actions, "Generator");
+#       endif
+        }
+
 
         /** \return The name of the function in cleartext                     */
 //        virtual QString getFunctionName() const { return "Rotope"; }
     private:
+        /// Sequence of extrusion actions needed to generate the Rotope
+        std::string _actions;
         /// Actual rotope object to which all functions are delegated
         RotopeBase *_rotope;
 };
