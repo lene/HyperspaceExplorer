@@ -35,6 +35,7 @@ template <unsigned D, unsigned D_> class Projector: protected Projector<D-1, D_>
 /// Specialization for \p D_ == \p D
 template <unsigned D> class Projector<D, D> {
     public:
+        /// Projection from D dimensions to D dimensions is a no-op
         std::vector<VecMath::Vector<D> > operator()(
             const std::vector<VecMath::Vector<D> > &x, double, double) {
             return x;

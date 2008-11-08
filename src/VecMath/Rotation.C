@@ -10,6 +10,7 @@ namespace VecMath {
         { 0, 0, 0, 1, 1, 2 }, { 1, 2, 3, 2, 3, 3 }
     };
 
+    /// Specialization for a Rotation in four dimensions
     template <> Rotation<4>::operator Matrix<4>() const {
         Matrix<4> Rxy = Matrix<4> (0, 1, axis[0]), Rxz = Matrix<4> (0, 2, axis[1]),
                   Rxw = Matrix<4> (0, 3, axis[2]),  Ryz = Matrix<4> (1, 2, axis[3]),
@@ -20,6 +21,7 @@ namespace VecMath {
         return Rot;
     }
 
+    /// Specialization for a Rotation in three dimensions
     template <> Rotation<3>::operator Matrix<3>() const {
         Matrix<3> Rx = Matrix<3> (1, 2, axis[0]), Ry = Matrix<3> (0, 2, axis[1]),
                   Rz = Matrix<3> (0, 1, axis[2]),

@@ -10,7 +10,7 @@
  */
 class Rotope : public Object {
 
-    const static unsigned DIM = 6;
+    const static unsigned DIM = 6;      ///< Dimension of the Rotope object
 
     public:
         /// Construct a Rotope. Not yet implemented properly.
