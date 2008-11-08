@@ -97,7 +97,7 @@ template <unsigned D>
  */
 class Rotope : public Object {
 
-    const static unsigned DIM = 5;
+    const static unsigned DIM = 4;
 
     public:
         /// Construct a Rotope. Not yet implemented properly.
