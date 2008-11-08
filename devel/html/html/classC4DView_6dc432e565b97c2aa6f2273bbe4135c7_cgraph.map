@@ -1,39 +1,39 @@
-<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#681ee2ee24d1528a92b6ec0ff4dad9c2" title="Double click event handler." alt="" coords="272,727,592,753">
-<area shape="rect" href="$classC4DView.html#e33037a83f46215a8092b3c7151f421e" title="C4DView::MouseHandler" alt="" coords="351,777,513,804">
-<area shape="rect" href="$classC4DView.html#8f09d1be7f8e3a1d8e3059cf88c5d70a" title="C4DView::Animated" alt="" coords="655,448,791,475">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1753,784,1945,811">
-<area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Draw the transformed and projected function onto the screen." alt="" coords="661,499,784,525">
-<area shape="rect" href="$classC4DView.html#45b036ac24d2404ad7bd69139a49b2d8" title="you guessed it" alt="" coords="641,1031,804,1057">
-<area shape="rect" href="$classC4DView.html#8a51cc06ede29308384576f277a67e19" title="Set the transform for the displayed object (but don&#39;t draw it yet)." alt="" coords="1328,689,1467,716">
-<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="647,676,799,703">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1995,784,2219,811">
-<area shape="rect" href="$classC4DView.html#be8e58d21b0e1c513b10afa294b162b2" title="Paint event handler, reimplemented from QGLWidget." alt="" coords="895,372,1033,399">
-<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen." alt="" coords="1327,245,1468,272">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#03d77f320d7aada22c143646b40925d3" title="UI::ViewImpl::getSolid" alt="" coords="1125,321,1275,348">
-<area shape="rect" href="$classC4DView.html#45846d7481660ac879e933d8395cf49f" title="C4DView::m_rot" alt="" coords="1143,423,1257,449">
-<area shape="rect" href="$classC4DView.html#72ca1b3ddd5fd4dcfc1cb592d6e5c97a" title="C4DView::m_trans" alt="" coords="1137,271,1263,297">
-<area shape="rect" href="$classC4DView.html#b9561bdd967e89d314f7eda6de32b2bc" title="Wrapper for displaying OpenGL display lists." alt="" coords="1124,372,1276,399">
-<area shape="rect" href="$classC4DView.html#890b368e6451af1fef597099e7399757" title="C4DView::CoordinateCross" alt="" coords="1525,397,1696,424">
-<area shape="rect" href="libstdc++.tag$a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce" title="endl" alt="" coords="1376,296,1419,323">
-<area shape="rect" href="libstdc++.tag$a01815.html#2107b37641fcd1f3d16ecc9c0a18041f" title="exit" alt="" coords="1377,347,1417,373">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#756d50cd0f539f632b4ffe0d28f93559" title="UI::ViewImpl::getCoordinates" alt="" coords="1757,17,1941,44">
-<area shape="rect" href="$classC4DView.html#646e0b61e1634dacf043d20692cb33cc" title="C4DView::ObjectList" alt="" coords="1541,448,1680,475">
-<area shape="rect" href="$classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="1523,347,1699,373">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#7d0098100c1a7e5e9af8808072ab68da" title="UI::ViewImpl::F" alt="" coords="1793,372,1905,399">
-<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Execute the projection into three&#45;space (but don&#39;t draw it yet either)." alt="" coords="1551,93,1671,120">
-<area shape="rect" href="$classC4DView.html#ddbd7468a38ac997ba7c1741bf59a235" title="Set a GLList for the display of the coordinates." alt="" coords="1517,195,1704,221">
-<area shape="rect" href="$classC4DView.html#6a91ef85500b929ad9403d62cc75118e" title="Set a GLList for the display of the object." alt="" coords="1535,144,1687,171">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#9abf03872780e6e1af170c44c3bd6138" title="UI::ViewImpl::CamW" alt="" coords="1779,169,1920,196">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#862bf2d8e5cf2372e67c24ef324d1e3a" title="UI::ViewImpl::getHyperfog" alt="" coords="1764,68,1935,95">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#4e350b5709828386fd3831f3fbe14ff9" title="UI::ViewImpl::ScrW" alt="" coords="1783,119,1916,145">
-<area shape="rect" href="$classC4DView.html#21fc24f013ccfbf7e5e703e60eca73ae" title="C4DView::AnimateRandomTimer" alt="" coords="861,980,1067,1007">
-<area shape="rect" href="$classC4DView.html#ff68ae28fb8a03868f9729df70617ffd" title="C4DView::AnimationTimer" alt="" coords="879,1031,1049,1057">
-<area shape="rect" href="$classC4DView.html#8f3f8549b263336dd3fe0f8a19a810e9" title="Set if image is currently animated." alt="" coords="889,1081,1039,1108">
-<area shape="rect" href="$classC4DView.html#a0ba46f4a9bdc839a90e7893156a5777" title="Set if currently rendering an image." alt="" coords="863,1132,1065,1159">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#0fef5fd79e988554b44574f942cda7f1" title="Set the rotation step between frames for animations." alt="" coords="897,1183,1031,1209">
-<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="853,625,1075,652">
-<area shape="rect" href="$classC4DView.html#b7654a2bad6deeb87868385f3bd9c89d" title="Add a translation to the current 3D rotation state." alt="" coords="1133,676,1267,703">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#4a1ddf4d94623c7a94e8eb5809acf626" title="Add a Rotation to the current rotation state." alt="" coords="1135,727,1265,753">
-<area shape="rect" href="libstdc++.tag$a01815.html#42fec2f6c6429a447bea8a40720a143a" title="fabs" alt="" coords="1179,524,1221,551">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#a5594df1772137ac86e25b9f8435dc04" title="UI::ViewImpl::R" alt="" coords="1144,575,1256,601">
-<area shape="rect" href="$classC4DView.html#36180772cadbb1517885c1a366aca25c" title="Set the current 3D rotation state." alt="" coords="1136,625,1264,652">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#681ee2ee24d1528a92b6ec0ff4dad9c2" title="Double click event handler." alt="" coords="293,731,651,757">
+<area shape="rect" href="$classC4DView.html#e33037a83f46215a8092b3c7151f421e" title="C4DView::MouseHandler" alt="" coords="384,781,560,808">
+<area shape="rect" href="$classC4DView.html#8f09d1be7f8e3a1d8e3059cf88c5d70a" title="C4DView::Animated" alt="" coords="716,452,863,479">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1896,788,2115,815">
+<area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Draw the transformed and projected function onto the screen." alt="" coords="724,503,855,529">
+<area shape="rect" href="$classC4DView.html#45b036ac24d2404ad7bd69139a49b2d8" title="you guessed it" alt="" coords="700,1035,879,1061">
+<area shape="rect" href="$classC4DView.html#8a51cc06ede29308384576f277a67e19" title="Set the transform for the displayed object (but don&#39;t draw it yet)." alt="" coords="1436,693,1585,720">
+<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="703,680,876,707">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="2164,788,2415,815">
+<area shape="rect" href="$classC4DView.html#be8e58d21b0e1c513b10afa294b162b2" title="Paint event handler, reimplemented from QGLWidget." alt="" coords="972,376,1124,403">
+<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen." alt="" coords="1435,249,1587,276">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#03d77f320d7aada22c143646b40925d3" title="UI::ViewImpl::getSolid" alt="" coords="1223,325,1380,352">
+<area shape="rect" href="$classC4DView.html#45846d7481660ac879e933d8395cf49f" title="C4DView::m_rot" alt="" coords="1240,427,1363,453">
+<area shape="rect" href="$classC4DView.html#72ca1b3ddd5fd4dcfc1cb592d6e5c97a" title="C4DView::m_trans" alt="" coords="1232,275,1371,301">
+<area shape="rect" href="$classC4DView.html#b9561bdd967e89d314f7eda6de32b2bc" title="Wrapper for displaying OpenGL display lists." alt="" coords="1216,376,1387,403">
+<area shape="rect" href="$classC4DView.html#890b368e6451af1fef597099e7399757" title="C4DView::CoordinateCross" alt="" coords="1645,401,1837,428">
+<area shape="rect" href="libstdc++.tag$a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce" title="endl" alt="" coords="1487,300,1535,327">
+<area shape="rect" href="libstdc++.tag$a01815.html#2107b37641fcd1f3d16ecc9c0a18041f" title="exit" alt="" coords="1489,351,1532,377">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#756d50cd0f539f632b4ffe0d28f93559" title="UI::ViewImpl::getCoordinates" alt="" coords="1904,21,2107,48">
+<area shape="rect" href="$classC4DView.html#646e0b61e1634dacf043d20692cb33cc" title="C4DView::ObjectList" alt="" coords="1668,452,1815,479">
+<area shape="rect" href="$classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="1644,351,1839,377">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#7d0098100c1a7e5e9af8808072ab68da" title="UI::ViewImpl::F" alt="" coords="1949,376,2061,403">
+<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Execute the projection into three&#45;space (but don&#39;t draw it yet either)." alt="" coords="1677,97,1805,124">
+<area shape="rect" href="$classC4DView.html#ddbd7468a38ac997ba7c1741bf59a235" title="Set a GLList for the display of the coordinates." alt="" coords="1636,199,1847,225">
+<area shape="rect" href="$classC4DView.html#6a91ef85500b929ad9403d62cc75118e" title="Set a GLList for the display of the object." alt="" coords="1657,148,1825,175">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#9abf03872780e6e1af170c44c3bd6138" title="UI::ViewImpl::CamW" alt="" coords="1932,173,2079,200">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#862bf2d8e5cf2372e67c24ef324d1e3a" title="UI::ViewImpl::getHyperfog" alt="" coords="1913,72,2097,99">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#4e350b5709828386fd3831f3fbe14ff9" title="UI::ViewImpl::ScrW" alt="" coords="1936,123,2075,149">
+<area shape="rect" href="$classC4DView.html#21fc24f013ccfbf7e5e703e60eca73ae" title="C4DView::AnimateRandomTimer" alt="" coords="935,984,1161,1011">
+<area shape="rect" href="$classC4DView.html#ff68ae28fb8a03868f9729df70617ffd" title="C4DView::AnimationTimer" alt="" coords="955,1035,1141,1061">
+<area shape="rect" href="$classC4DView.html#8f3f8549b263336dd3fe0f8a19a810e9" title="Set if image is currently animated." alt="" coords="964,1085,1132,1112">
+<area shape="rect" href="$classC4DView.html#a0ba46f4a9bdc839a90e7893156a5777" title="Set if currently rendering an image." alt="" coords="935,1136,1161,1163">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#0fef5fd79e988554b44574f942cda7f1" title="Set the rotation step between frames for animations." alt="" coords="977,1187,1119,1213">
+<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="928,629,1168,656">
+<area shape="rect" href="$classC4DView.html#b7654a2bad6deeb87868385f3bd9c89d" title="Add a translation to the current 3D rotation state." alt="" coords="1228,680,1375,707">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#4a1ddf4d94623c7a94e8eb5809acf626" title="Add a Rotation to the current rotation state." alt="" coords="1232,731,1371,757">
+<area shape="rect" href="libstdc++.tag$a01815.html#42fec2f6c6429a447bea8a40720a143a" title="fabs" alt="" coords="1277,528,1325,555">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#a5594df1772137ac86e25b9f8435dc04" title="UI::ViewImpl::R" alt="" coords="1244,579,1359,605">
+<area shape="rect" href="$classC4DView.html#36180772cadbb1517885c1a366aca25c" title="Set the current 3D rotation state." alt="" coords="1229,629,1373,656">

@@ -1,13 +1,13 @@
-<area shape="rect" href="$classFunction.html#a490e914a7cd65862ba7956fd558553e" title="Add a parameter to the list of parameters." alt="" coords="175,157,343,184">
-<area shape="rect" href="$classPyramid.html#dc837fa34b2f484a0c28da7210677db9" title="Actually creates the Pyramid." alt="" coords="199,335,319,361">
-<area shape="rect" href="libstdc++.tag$a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="443,5,536,32">
-<area shape="rect" href="libstdc++.tag$a01208.html#526e24c01961896c5c0c8491d75258be" title="std::map::find" alt="" coords="441,56,537,83">
-<area shape="rect" href="$classFunction.html#04cb73563ed4bb916fe52c94b3d25a5c" title="Declare a new parameter for the Function." alt="" coords="409,107,569,133">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="393,157,585,184">
-<area shape="rect" href="libstdc++.tag$a01815.html#403e6a8a62730a30d087c2c6b83d5d9a" title="std::make_pair" alt="" coords="440,208,539,235">
-<area shape="rect" href="libstdc++.tag$a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce" title="std::vector::push_back" alt="" coords="419,259,560,285">
-<area shape="rect" href="libstdc++.tag$a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d" title="std::map::insert" alt="" coords="695,107,799,133">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="635,157,859,184">
-<area shape="rect" href="$classPyramid.html#9867ed04145e00009d85352f1b15727a" title="Declare a triangle in the Surface array." alt="" coords="409,309,569,336">
-<area shape="rect" href="libstdc++.tag$a01419.html#cfe97b143edc1c10b4532ebdb839d83c" title="std::vector::size" alt="" coords="437,360,541,387">
-<area shape="rect" href="libstdc++.tag$a01815.html#b2c9d94b4becdf532618ad9a0a54aade" title="sqrt" alt="" coords="469,411,509,437">
+<area shape="rect" href="$classFunction.html#a490e914a7cd65862ba7956fd558553e" title="Add a parameter to the list of parameters." alt="" coords="188,157,385,184">
+<area shape="rect" href="$classPyramid.html#dc837fa34b2f484a0c28da7210677db9" title="Actually creates the Pyramid." alt="" coords="221,335,352,361">
+<area shape="rect" href="libstdc++.tag$a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="489,5,599,32">
+<area shape="rect" href="libstdc++.tag$a01208.html#526e24c01961896c5c0c8491d75258be" title="std::map::find" alt="" coords="489,56,599,83">
+<area shape="rect" href="$classFunction.html#04cb73563ed4bb916fe52c94b3d25a5c" title="Declare a new parameter for the Function." alt="" coords="451,107,637,133">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="435,157,653,184">
+<area shape="rect" href="libstdc++.tag$a01815.html#403e6a8a62730a30d087c2c6b83d5d9a" title="std::make_pair" alt="" coords="487,208,601,235">
+<area shape="rect" href="libstdc++.tag$a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce" title="std::vector::push_back" alt="" coords="461,259,627,285">
+<area shape="rect" href="libstdc++.tag$a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d" title="std::map::insert" alt="" coords="767,107,889,133">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="703,157,953,184">
+<area shape="rect" href="$classPyramid.html#9867ed04145e00009d85352f1b15727a" title="Declare a triangle in the Surface array." alt="" coords="455,309,633,336">
+<area shape="rect" href="libstdc++.tag$a01419.html#cfe97b143edc1c10b4532ebdb839d83c" title="std::vector::size" alt="" coords="483,360,605,387">
+<area shape="rect" href="libstdc++.tag$a01815.html#b2c9d94b4becdf532618ad9a0a54aade" title="sqrt" alt="" coords="521,411,567,437">

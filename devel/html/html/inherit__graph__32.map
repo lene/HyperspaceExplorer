@@ -1,8 +1,8 @@
-<area shape="rect" href="libstdc++.tag$a01109.html" title="STL class." alt="" coords="5,81,101,108">
-<area shape="rect" href="libstdc++.tag$a01204.html" title="STL class." alt="" coords="157,56,261,83">
-<area shape="rect" href="libstdc++.tag$a01313.html" title="STL class." alt="" coords="151,132,268,159">
-<area shape="rect" href="$structFunctionParameterValueBase_1_1WrongParameterTypeException.html" title="FunctionParameterValueBase::WrongParameterTypeException" alt="" coords="317,5,677,32">
-<area shape="rect" href="$classNotYetImplementedException.html" title="NotYetImplementedException" alt="" coords="405,56,589,83">
-<area shape="rect" href="$classFunctionFactory_1_1BadFunctionException.html" title="Thrown by createFunction() when name does not map to a function." alt="" coords="377,107,617,133">
-<area shape="rect" href="$classScript_1_1BadStatementException.html" title="exception thrown when an unknown statement is encountered in a script" alt="" coords="403,157,592,184">
-<area shape="rect" href="$classUI_1_1View_1_1FunctionNotSupportedException.html" title="Thrown when a function is not supported by a View implementation." alt="" coords="369,208,625,235">
+<area shape="rect" href="libstdc++.tag$a01109.html" title="STL class." alt="" coords="5,81,117,108">
+<area shape="rect" href="libstdc++.tag$a01204.html" title="STL class." alt="" coords="177,56,292,83">
+<area shape="rect" href="libstdc++.tag$a01313.html" title="STL class." alt="" coords="167,132,303,159">
+<area shape="rect" href="$structFunctionParameterValueBase_1_1WrongParameterTypeException.html" title="FunctionParameterValueBase::WrongParameterTypeException" alt="" coords="353,5,769,32">
+<area shape="rect" href="$classNotYetImplementedException.html" title="NotYetImplementedException" alt="" coords="456,56,667,83">
+<area shape="rect" href="$classFunctionFactory_1_1BadFunctionException.html" title="Thrown by createFunction() when name does not map to a function." alt="" coords="427,107,696,133">
+<area shape="rect" href="$classScript_1_1BadStatementException.html" title="exception thrown when an unknown statement is encountered in a script" alt="" coords="451,157,672,184">
+<area shape="rect" href="$classUI_1_1View_1_1FunctionNotSupportedException.html" title="Thrown when a function is not supported by a View implementation." alt="" coords="419,208,704,235">

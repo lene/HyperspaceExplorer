@@ -1,3 +1,5 @@
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="159,5,351,32">
-<area shape="rect" href="libstdc++.tag$a01419.html#cfe97b143edc1c10b4532ebdb839d83c" title="std::vector::size" alt="" coords="203,56,307,83">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="400,5,624,32">
+<area shape="rect" href="libstdc++.tag$a01419.html#e2cf408f9afc965ec7ac2cab448d596f" title="std::vector::at" alt="" coords="223,5,332,32">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="168,56,387,83">
+<area shape="rect" href="libstdc++.tag$a01419.html#59d21f4ea322bb5166a2de7bbdf55b4c" title="std::vector::resize" alt="" coords="209,107,345,133">
+<area shape="rect" href="libstdc++.tag$a01419.html#cfe97b143edc1c10b4532ebdb839d83c" title="std::vector::size" alt="" coords="216,157,339,184">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="436,56,687,83">

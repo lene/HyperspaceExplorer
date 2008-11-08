@@ -1,11 +1,11 @@
-<area shape="rect" href="$classFunction.html#a490e914a7cd65862ba7956fd558553e" title="Add a parameter to the list of parameters." alt="" coords="201,157,369,184">
-<area shape="rect" href="$classHypercube.html#790d87e55f2b01d1b339df6f05852ffd" title="Actually creates the Hypercube." alt="" coords="219,259,352,285">
-<area shape="rect" href="libstdc++.tag$a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="469,5,563,32">
-<area shape="rect" href="libstdc++.tag$a01208.html#526e24c01961896c5c0c8491d75258be" title="std::map::find" alt="" coords="468,56,564,83">
-<area shape="rect" href="$classFunction.html#04cb73563ed4bb916fe52c94b3d25a5c" title="Declare a new parameter for the Function." alt="" coords="436,107,596,133">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="420,157,612,184">
-<area shape="rect" href="libstdc++.tag$a01815.html#403e6a8a62730a30d087c2c6b83d5d9a" title="std::make_pair" alt="" coords="467,208,565,235">
-<area shape="rect" href="libstdc++.tag$a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce" title="std::vector::push_back" alt="" coords="445,259,587,285">
-<area shape="rect" href="libstdc++.tag$a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d" title="std::map::insert" alt="" coords="721,107,825,133">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="661,157,885,184">
-<area shape="rect" href="$classHypercube.html#0c9fb7fe129ae7e5e2834fd0ea861e8d" title="Declare a square in the Surface array." alt="" coords="433,309,599,336">
+<area shape="rect" href="$classFunction.html#a490e914a7cd65862ba7956fd558553e" title="Add a parameter to the list of parameters." alt="" coords="223,157,420,184">
+<area shape="rect" href="$classHypercube.html#790d87e55f2b01d1b339df6f05852ffd" title="Actually creates the Hypercube." alt="" coords="247,259,396,285">
+<area shape="rect" href="libstdc++.tag$a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="524,5,633,32">
+<area shape="rect" href="libstdc++.tag$a01208.html#526e24c01961896c5c0c8491d75258be" title="std::map::find" alt="" coords="524,56,633,83">
+<area shape="rect" href="$classFunction.html#04cb73563ed4bb916fe52c94b3d25a5c" title="Declare a new parameter for the Function." alt="" coords="485,107,672,133">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="469,157,688,184">
+<area shape="rect" href="libstdc++.tag$a01815.html#403e6a8a62730a30d087c2c6b83d5d9a" title="std::make_pair" alt="" coords="521,208,636,235">
+<area shape="rect" href="libstdc++.tag$a01419.html#46ff71bb6fd1bab7b6dc210bf40c57ce" title="std::vector::push_back" alt="" coords="496,259,661,285">
+<area shape="rect" href="libstdc++.tag$a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d" title="std::map::insert" alt="" coords="801,107,924,133">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="737,157,988,184">
+<area shape="rect" href="$classHypercube.html#0c9fb7fe129ae7e5e2834fd0ea861e8d" title="Declare a square in the Surface array." alt="" coords="483,309,675,336">

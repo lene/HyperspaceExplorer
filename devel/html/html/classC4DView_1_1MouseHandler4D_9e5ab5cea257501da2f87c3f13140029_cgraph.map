@@ -1,19 +1,19 @@
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="945,19,1137,45">
-<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#494cf8d0f71605be3ea5a4578ce53df5" title="Set whether mouse button pressed &amp; mouse moved to take movement speed." alt="" coords="348,120,647,147">
-<area shape="rect" href="$classC4DView.html#715dbd8c1e15f6d118853e1789d081e7" title="Err well.. just that!" alt="" coords="415,171,580,197">
-<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="713,323,865,349">
-<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#4c95b09d3ea40d76c2e47dc08e0998b4" title="C4DView::MouseHandler4D::TakingSpinValues" alt="" coords="355,272,640,299">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1200,19,1424,45">
-<area shape="rect" href="$classC4DView.html#0199c1874cd38dde53cd85d7959d2d7f" title="C4DView::animation_fps" alt="" coords="711,69,868,96">
-<area shape="rect" href="$classC4DView.html#ff68ae28fb8a03868f9729df70617ffd" title="C4DView::AnimationTimer" alt="" coords="704,120,875,147">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#f7b5919ff7fcd06e8f3445eea3f39d59" title="UI::ViewImpl::getdR" alt="" coords="721,171,857,197">
-<area shape="rect" href="$classC4DView.html#8f3f8549b263336dd3fe0f8a19a810e9" title="Set if image is currently animated." alt="" coords="715,221,864,248">
-<area shape="rect" href="$classC4DView.html#3a857a46088bc6168ddf234eda7a3fee" title="Set current frame in animation." alt="" coords="697,272,881,299">
-<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="931,297,1152,324">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#7d0098100c1a7e5e9af8808072ab68da" title="UI::ViewImpl::F" alt="" coords="985,348,1097,375">
-<area shape="rect" href="$classC4DView.html#b7654a2bad6deeb87868385f3bd9c89d" title="Add a translation to the current 3D rotation state." alt="" coords="1245,171,1379,197">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#4a1ddf4d94623c7a94e8eb5809acf626" title="Add a Rotation to the current rotation state." alt="" coords="1247,221,1377,248">
-<area shape="rect" href="libstdc++.tag$a01815.html#42fec2f6c6429a447bea8a40720a143a" title="fabs" alt="" coords="1291,272,1333,299">
-<area shape="rect" href="$classC4DView.html#45846d7481660ac879e933d8395cf49f" title="C4DView::m_rot" alt="" coords="1255,323,1369,349">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#a5594df1772137ac86e25b9f8435dc04" title="UI::ViewImpl::R" alt="" coords="1256,373,1368,400">
-<area shape="rect" href="$classC4DView.html#36180772cadbb1517885c1a366aca25c" title="Set the current 3D rotation state." alt="" coords="1248,424,1376,451">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1037,24,1256,51">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#494cf8d0f71605be3ea5a4578ce53df5" title="Set whether mouse button pressed &amp; mouse moved to take movement speed." alt="" coords="387,125,720,152">
+<area shape="rect" href="$classC4DView.html#715dbd8c1e15f6d118853e1789d081e7" title="Err well.. just that!" alt="" coords="463,176,644,203">
+<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="787,328,960,355">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#4c95b09d3ea40d76c2e47dc08e0998b4" title="C4DView::MouseHandler4D::TakingSpinValues" alt="" coords="397,277,709,304">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1316,24,1567,51">
+<area shape="rect" href="$classC4DView.html#0199c1874cd38dde53cd85d7959d2d7f" title="C4DView::animation_fps" alt="" coords="785,75,961,101">
+<area shape="rect" href="$classC4DView.html#ff68ae28fb8a03868f9729df70617ffd" title="C4DView::AnimationTimer" alt="" coords="780,125,967,152">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#f7b5919ff7fcd06e8f3445eea3f39d59" title="UI::ViewImpl::getdR" alt="" coords="801,176,945,203">
+<area shape="rect" href="$classC4DView.html#8f3f8549b263336dd3fe0f8a19a810e9" title="Set if image is currently animated." alt="" coords="789,227,957,253">
+<area shape="rect" href="$classC4DView.html#3a857a46088bc6168ddf234eda7a3fee" title="Set current frame in animation." alt="" coords="768,277,979,304">
+<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="1027,303,1267,329">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#7d0098100c1a7e5e9af8808072ab68da" title="UI::ViewImpl::F" alt="" coords="1091,353,1203,380">
+<area shape="rect" href="$classC4DView.html#b7654a2bad6deeb87868385f3bd9c89d" title="Add a translation to the current 3D rotation state." alt="" coords="1368,176,1515,203">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#4a1ddf4d94623c7a94e8eb5809acf626" title="Add a Rotation to the current rotation state." alt="" coords="1372,227,1511,253">
+<area shape="rect" href="libstdc++.tag$a01815.html#42fec2f6c6429a447bea8a40720a143a" title="fabs" alt="" coords="1417,277,1465,304">
+<area shape="rect" href="$classC4DView.html#45846d7481660ac879e933d8395cf49f" title="C4DView::m_rot" alt="" coords="1380,328,1503,355">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#a5594df1772137ac86e25b9f8435dc04" title="UI::ViewImpl::R" alt="" coords="1384,379,1499,405">
+<area shape="rect" href="$classC4DView.html#36180772cadbb1517885c1a366aca25c" title="Set the current 3D rotation state." alt="" coords="1369,429,1513,456">

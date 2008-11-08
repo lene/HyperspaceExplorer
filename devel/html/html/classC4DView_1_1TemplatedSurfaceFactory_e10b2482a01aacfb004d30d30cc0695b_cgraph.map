@@ -1,9 +1,9 @@
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#b561b67b911b7f242aa6a0a48c594370" title="delta in parameter u" alt="" coords="371,56,581,83">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#79bc2ecceb55d8fe996caa8461b0f9d5" title="upper bound for parameter u" alt="" coords="632,5,859,32">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#f88162efaf834e5984d4d8fe04d44af4" title="lower bound for parameter u" alt="" coords="633,107,857,133">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#f08d237bd18f06ac69fd90122d06bc78" title="delta in parameter v" alt="" coords="371,208,581,235">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#d9bc24310b0b1567cbac85c817828561" title="upper bound for parameter v" alt="" coords="632,157,859,184">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#2f9af8468352e9afd8fb3b3bebd7ee43" title="lower bound for parameter v" alt="" coords="633,259,857,285">
-<area shape="rect" href="$classC4DView.html#ba6f8c8d13241215fc41f88a247cf6a7" title="C4DView::Values" alt="" coords="416,309,536,336">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#9cebd8d993b63d33d3965e03fb51b801" title="steps in parameter u" alt="" coords="631,56,860,83">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#57b3da19a4f4aa276ecb982031afe128" title="steps in parameter v" alt="" coords="631,208,860,235">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#b561b67b911b7f242aa6a0a48c594370" title="delta in parameter u" alt="" coords="420,56,649,83">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#79bc2ecceb55d8fe996caa8461b0f9d5" title="upper bound for parameter u" alt="" coords="703,5,953,32">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#f88162efaf834e5984d4d8fe04d44af4" title="lower bound for parameter u" alt="" coords="705,107,951,133">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#f08d237bd18f06ac69fd90122d06bc78" title="delta in parameter v" alt="" coords="420,208,649,235">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#d9bc24310b0b1567cbac85c817828561" title="upper bound for parameter v" alt="" coords="704,157,952,184">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#2f9af8468352e9afd8fb3b3bebd7ee43" title="lower bound for parameter v" alt="" coords="705,259,951,285">
+<area shape="rect" href="$classC4DView.html#ba6f8c8d13241215fc41f88a247cf6a7" title="C4DView::Values" alt="" coords="471,309,599,336">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#9cebd8d993b63d33d3965e03fb51b801" title="steps in parameter u" alt="" coords="700,56,956,83">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#57b3da19a4f4aa276ecb982031afe128" title="steps in parameter v" alt="" coords="700,208,956,235">

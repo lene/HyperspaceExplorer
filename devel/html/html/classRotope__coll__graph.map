@@ -1,15 +1,15 @@
-<area shape="rect" href="$classObject.html" title="Generalized four&#45;dimensional Object, described by vertexes and surfaces." alt="" coords="396,1781,604,2053">
-<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="445,1189,653,1717">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ operator const T *()\l+ dimension()\l}" alt="" coords="824,741,965,1125">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="853,293,1016,677">
-<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="635,853,760,1013">
-<area shape="rect" href="libstdc++.tag$a01208.html" title="{std::map\&lt; std::string, FunctionParameter * \&gt;\n||}" alt="" coords="571,445,829,525">
-<area shape="rect" href="libstdc++.tag$a01208.html" title="STL class." alt="" coords="568,149,819,229">
-<area shape="rect" href="libstdc++.tag$a01419.html" title="STL class." alt="" coords="151,445,313,525">
-<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; uintvec1D \&gt;\n||}" alt="" coords="9,893,164,973">
-<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; std::string \&gt;\n||}" alt="" coords="457,893,609,973">
-<area shape="rect" href="libstdc++.tag$a00960.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;\n||}" alt="" coords="333,149,536,229">
-<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; VecMath::Vector\&lt; D \&gt; \&gt;\n||}" alt="" coords="195,893,419,973">
-<area shape="rect" href="libstdc++.tag$a00961.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;::_Vector_impl\n||}" alt="" coords="292,5,577,85">
-<area shape="rect" href="$classvertex__data.html" title="{vertex_data\&lt; 4 \&gt;\n|&#45; _dimension\l&#45; _X\l&#45; _surface\l|+ print()\l# vertex_data()\l# addSurface()\l# addSurface()\l# dimension()\l# X()\l# surface()\l}" alt="" coords="249,1813,361,2021">
-<area shape="rect" href="$classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place..." alt="" coords="221,1349,336,1557">
+<area shape="rect" href="$classObject.html" title="Generalized four&#45;dimensional Object, described by vertexes and surfaces." alt="" coords="503,1907,745,2216">
+<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="588,1271,831,1839">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ operator const T *()\l+ dimension()\l}" alt="" coords="951,789,1113,1203">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="987,309,1171,723">
+<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="729,911,881,1081">
+<area shape="rect" href="libstdc++.tag$a01208.html" title="{std::map\&lt; std::string, FunctionParameter * \&gt;\n||}" alt="" coords="651,475,963,557">
+<area shape="rect" href="libstdc++.tag$a01208.html" title="STL class." alt="" coords="652,159,940,241">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="STL class." alt="" coords="171,475,357,557">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; uintvec1D \&gt;\n||}" alt="" coords="5,955,189,1037">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; std::string \&gt;\n||}" alt="" coords="521,955,705,1037">
+<area shape="rect" href="libstdc++.tag$a00960.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;\n||}" alt="" coords="381,159,613,241">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; VecMath::Vector\&lt; D \&gt; \&gt;\n||}" alt="" coords="227,955,491,1037">
+<area shape="rect" href="libstdc++.tag$a00961.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;::_Vector_impl\n||}" alt="" coords="336,7,659,89">
+<area shape="rect" href="$classvertex__data.html" title="{vertex_data\&lt; DIM \&gt;\n|&#45; _dimension\l&#45; _X\l&#45; _surface\l|+ print()\l# vertex_data()\l# addSurface()\l# addSurface()\l# dimension()\l# X()\l# surface()\l&#45; checkSurfaceExists()\l}" alt="" coords="293,1941,456,2181">
+<area shape="rect" href="$classvertex__data.html" title="Base class for all Rotope s. This class may vanish, as Object can take its place..." alt="" coords="255,1435,417,1675">

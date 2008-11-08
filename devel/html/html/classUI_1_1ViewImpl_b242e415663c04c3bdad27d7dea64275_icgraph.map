@@ -1,9 +1,9 @@
-<area shape="rect" href="$classC4DView.html#8e209837b51cb976674e81e6359f930d" title="OpenGL initialization for fog." alt="" coords="227,119,349,145">
-<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="840,88,1123,115">
-<area shape="rect" href="$classC4DView.html#ac3d22c30bf8b042077fb31fec2c367b" title="GL stuff needed in addition to resizeEvent(). Reimplemented from QGLWidget." alt="" coords="916,151,1047,177">
-<area shape="rect" href="$classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="196,245,380,272">
-<area shape="rect" href="$classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from..." alt="" coords="429,43,576,69">
-<area shape="rect" href="$classC4DView.html#556e03bfff4b2f369a86edb47f3e4b84" title="Re&#45;Implementation of UI::ViewImpl::setFog." alt="" coords="444,144,561,171">
-<area shape="rect" href="$classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Re&#45;Implementation of UI::ViewImpl::setColors." alt="" coords="641,43,775,69">
-<area shape="rect" href="$classC4DView.html#f46da1a68ffbcc00eddc03df078fe150" title="Switch 3D depth cue on and off." alt="" coords="625,119,791,145">
-<area shape="rect" href="$classC4DView.html#1b5e87b494b99e3705c64e924480f4ef" title="Mouse move event handler, reimplemented from QWidget." alt="" coords="1172,88,1351,115">
+<area shape="rect" href="$classC4DView.html#8e209837b51cb976674e81e6359f930d" title="OpenGL initialization for fog." alt="" coords="241,120,369,147">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="893,89,1211,116">
+<area shape="rect" href="$classC4DView.html#ac3d22c30bf8b042077fb31fec2c367b" title="GL stuff needed in addition to resizeEvent(). Reimplemented from QGLWidget." alt="" coords="983,152,1121,179">
+<area shape="rect" href="$classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="205,247,405,273">
+<area shape="rect" href="$classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from..." alt="" coords="455,44,607,71">
+<area shape="rect" href="$classC4DView.html#556e03bfff4b2f369a86edb47f3e4b84" title="Re&#45;Implementation of UI::ViewImpl::setFog." alt="" coords="467,145,595,172">
+<area shape="rect" href="$classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Re&#45;Implementation of UI::ViewImpl::setColors." alt="" coords="679,44,823,71">
+<area shape="rect" href="$classC4DView.html#f46da1a68ffbcc00eddc03df078fe150" title="Switch 3D depth cue on and off." alt="" coords="657,120,844,147">
+<area shape="rect" href="$classC4DView.html#1b5e87b494b99e3705c64e924480f4ef" title="Mouse move event handler, reimplemented from QWidget." alt="" coords="1259,89,1459,116">

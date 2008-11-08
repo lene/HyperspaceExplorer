@@ -1,8 +1,8 @@
-<area shape="rect" href="$classFunction.html#7e1d08b78b48b4be45772cec73b926ac" title="Numerical calculation of the derivatives in t, u and v." alt="" coords="219,5,304,32">
-<area shape="rect" href="$group__VecMath.html#gbdc5bc1e998587a215aff0c5a1a7b95d" title="specialization for cross product of three 4&#45;Vectors" alt="" coords="205,56,317,83">
-<area shape="rect" href="$group__VecMath.html#g646679fba90010325c01c937abfb4ea4" title="normalizes a 3&#45;Vector out&#45;of&#45;place" alt="" coords="192,107,331,133">
-<area shape="rect" href="$classFunction.html#68cf5a6e74a4f6a96893079ace0dc228" title="Function evaluation operator for three parameters." alt="" coords="396,5,524,32">
-<area shape="rect" href="libstdc++.tag$a01815.html#e7f46e924ff27422f3a18cfc0df959b9" title="norm" alt="" coords="436,56,484,83">
-<area shape="rect" href="$classVecMath_1_1Vector.html#c60183f68f2d8a6473c64c2e753cd053" title="VecMath::Vector::sqnorm" alt="" coords="379,107,541,133">
-<area shape="rect" href="libstdc++.tag$a01815.html#b2c9d94b4becdf532618ad9a0a54aade" title="sqrt" alt="" coords="440,157,480,184">
-<area shape="rect" href="$classVecMath_1_1Vector.html#1c92fee3076d3f646e97df2f5f246726" title="VecMath::Vector::operator*" alt="" coords="589,107,763,133">
+<area shape="rect" href="$classFunction.html#7e1d08b78b48b4be45772cec73b926ac" title="Numerical calculation of the derivatives in t, u and v." alt="" coords="240,5,336,32">
+<area shape="rect" href="$group__VecMath.html#gbdc5bc1e998587a215aff0c5a1a7b95d" title="specialization for cross product of three 4&#45;Vectors" alt="" coords="225,56,351,83">
+<area shape="rect" href="$group__VecMath.html#g646679fba90010325c01c937abfb4ea4" title="normalizes a 3&#45;Vector out&#45;of&#45;place" alt="" coords="211,107,365,133">
+<area shape="rect" href="$classFunction.html#68cf5a6e74a4f6a96893079ace0dc228" title="Function evaluation operator for three parameters." alt="" coords="432,5,579,32">
+<area shape="rect" href="libstdc++.tag$a01815.html#e7f46e924ff27422f3a18cfc0df959b9" title="norm" alt="" coords="477,56,533,83">
+<area shape="rect" href="$classVecMath_1_1Vector.html#c60183f68f2d8a6473c64c2e753cd053" title="VecMath::Vector::sqnorm" alt="" coords="415,107,596,133">
+<area shape="rect" href="libstdc++.tag$a01815.html#b2c9d94b4becdf532618ad9a0a54aade" title="sqrt" alt="" coords="483,157,528,184">
+<area shape="rect" href="$classVecMath_1_1Vector.html#1c92fee3076d3f646e97df2f5f246726" title="VecMath::Vector::operator*" alt="" coords="647,107,841,133">

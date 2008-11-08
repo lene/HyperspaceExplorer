@@ -1,10 +1,10 @@
-<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="208,157,429,184">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#7d0098100c1a7e5e9af8808072ab68da" title="UI::ViewImpl::F" alt="" coords="263,220,375,247">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="223,296,415,323">
-<area shape="rect" href="$classC4DView.html#b7654a2bad6deeb87868385f3bd9c89d" title="Add a translation to the current 3D rotation state." alt="" coords="523,5,656,32">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#4a1ddf4d94623c7a94e8eb5809acf626" title="Add a Rotation to the current rotation state." alt="" coords="524,56,655,83">
-<area shape="rect" href="libstdc++.tag$a01815.html#42fec2f6c6429a447bea8a40720a143a" title="fabs" alt="" coords="568,107,611,133">
-<area shape="rect" href="$classC4DView.html#45846d7481660ac879e933d8395cf49f" title="C4DView::m_rot" alt="" coords="532,157,647,184">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#a5594df1772137ac86e25b9f8435dc04" title="UI::ViewImpl::R" alt="" coords="533,208,645,235">
-<area shape="rect" href="$classC4DView.html#36180772cadbb1517885c1a366aca25c" title="Set the current 3D rotation state." alt="" coords="525,259,653,285">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="477,309,701,336">
+<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="229,157,469,184">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#7d0098100c1a7e5e9af8808072ab68da" title="UI::ViewImpl::F" alt="" coords="293,220,405,247">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="240,296,459,323">
+<area shape="rect" href="$classC4DView.html#b7654a2bad6deeb87868385f3bd9c89d" title="Add a translation to the current 3D rotation state." alt="" coords="571,5,717,32">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#4a1ddf4d94623c7a94e8eb5809acf626" title="Add a Rotation to the current rotation state." alt="" coords="575,56,713,83">
+<area shape="rect" href="libstdc++.tag$a01815.html#42fec2f6c6429a447bea8a40720a143a" title="fabs" alt="" coords="620,107,668,133">
+<area shape="rect" href="$classC4DView.html#45846d7481660ac879e933d8395cf49f" title="C4DView::m_rot" alt="" coords="583,157,705,184">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#a5594df1772137ac86e25b9f8435dc04" title="UI::ViewImpl::R" alt="" coords="587,208,701,235">
+<area shape="rect" href="$classC4DView.html#36180772cadbb1517885c1a366aca25c" title="Set the current 3D rotation state." alt="" coords="572,259,716,285">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="519,309,769,336">

@@ -1,19 +1,19 @@
-<area shape="rect" href="$classC4DView.html#21fc24f013ccfbf7e5e703e60eca73ae" title="C4DView::AnimateRandomTimer" alt="" coords="241,5,447,32">
-<area shape="rect" href="$classC4DView.html#ff68ae28fb8a03868f9729df70617ffd" title="C4DView::AnimationTimer" alt="" coords="504,43,675,69">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#0fef5fd79e988554b44574f942cda7f1" title="Set the rotation step between frames for animations." alt="" coords="277,107,411,133">
-<area shape="rect" href="$classC4DView.html#715dbd8c1e15f6d118853e1789d081e7" title="Err well.. just that!" alt="" coords="261,183,427,209">
-<area shape="rect" href="$classC4DView.html#0199c1874cd38dde53cd85d7959d2d7f" title="C4DView::animation_fps" alt="" coords="511,93,668,120">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#f7b5919ff7fcd06e8f3445eea3f39d59" title="UI::ViewImpl::getdR" alt="" coords="521,144,657,171">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="745,195,937,221">
-<area shape="rect" href="$classC4DView.html#8f3f8549b263336dd3fe0f8a19a810e9" title="Set if image is currently animated." alt="" coords="515,245,664,272">
-<area shape="rect" href="$classC4DView.html#3a857a46088bc6168ddf234eda7a3fee" title="Set current frame in animation." alt="" coords="497,296,681,323">
-<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="513,347,665,373">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1000,195,1224,221">
-<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="731,347,952,373">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#7d0098100c1a7e5e9af8808072ab68da" title="UI::ViewImpl::F" alt="" coords="785,397,897,424">
-<area shape="rect" href="$classC4DView.html#b7654a2bad6deeb87868385f3bd9c89d" title="Add a translation to the current 3D rotation state." alt="" coords="1045,245,1179,272">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#4a1ddf4d94623c7a94e8eb5809acf626" title="Add a Rotation to the current rotation state." alt="" coords="1047,296,1177,323">
-<area shape="rect" href="libstdc++.tag$a01815.html#42fec2f6c6429a447bea8a40720a143a" title="fabs" alt="" coords="1091,347,1133,373">
-<area shape="rect" href="$classC4DView.html#45846d7481660ac879e933d8395cf49f" title="C4DView::m_rot" alt="" coords="1055,397,1169,424">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#a5594df1772137ac86e25b9f8435dc04" title="UI::ViewImpl::R" alt="" coords="1056,448,1168,475">
-<area shape="rect" href="$classC4DView.html#36180772cadbb1517885c1a366aca25c" title="Set the current 3D rotation state." alt="" coords="1048,499,1176,525">
+<area shape="rect" href="$classC4DView.html#21fc24f013ccfbf7e5e703e60eca73ae" title="C4DView::AnimateRandomTimer" alt="" coords="260,5,487,32">
+<area shape="rect" href="$classC4DView.html#ff68ae28fb8a03868f9729df70617ffd" title="C4DView::AnimationTimer" alt="" coords="548,43,735,69">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#0fef5fd79e988554b44574f942cda7f1" title="Set the rotation step between frames for animations." alt="" coords="303,107,444,133">
+<area shape="rect" href="$classC4DView.html#715dbd8c1e15f6d118853e1789d081e7" title="Err well.. just that!" alt="" coords="283,183,464,209">
+<area shape="rect" href="$classC4DView.html#0199c1874cd38dde53cd85d7959d2d7f" title="C4DView::animation_fps" alt="" coords="553,93,729,120">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#f7b5919ff7fcd06e8f3445eea3f39d59" title="UI::ViewImpl::getdR" alt="" coords="569,144,713,171">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="805,195,1024,221">
+<area shape="rect" href="$classC4DView.html#8f3f8549b263336dd3fe0f8a19a810e9" title="Set if image is currently animated." alt="" coords="557,245,725,272">
+<area shape="rect" href="$classC4DView.html#3a857a46088bc6168ddf234eda7a3fee" title="Set current frame in animation." alt="" coords="536,296,747,323">
+<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="555,347,728,373">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1084,195,1335,221">
+<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="795,347,1035,373">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#7d0098100c1a7e5e9af8808072ab68da" title="UI::ViewImpl::F" alt="" coords="859,397,971,424">
+<area shape="rect" href="$classC4DView.html#b7654a2bad6deeb87868385f3bd9c89d" title="Add a translation to the current 3D rotation state." alt="" coords="1136,245,1283,272">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#4a1ddf4d94623c7a94e8eb5809acf626" title="Add a Rotation to the current rotation state." alt="" coords="1140,296,1279,323">
+<area shape="rect" href="libstdc++.tag$a01815.html#42fec2f6c6429a447bea8a40720a143a" title="fabs" alt="" coords="1185,347,1233,373">
+<area shape="rect" href="$classC4DView.html#45846d7481660ac879e933d8395cf49f" title="C4DView::m_rot" alt="" coords="1148,397,1271,424">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#a5594df1772137ac86e25b9f8435dc04" title="UI::ViewImpl::R" alt="" coords="1152,448,1267,475">
+<area shape="rect" href="$classC4DView.html#36180772cadbb1517885c1a366aca25c" title="Set the current 3D rotation state." alt="" coords="1137,499,1281,525">

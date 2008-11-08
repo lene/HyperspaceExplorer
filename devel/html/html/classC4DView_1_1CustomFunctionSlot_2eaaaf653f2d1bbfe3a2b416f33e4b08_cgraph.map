@@ -1,49 +1,49 @@
-<area shape="rect" href="$classC4DView.html#e38186ceacf6c4e6b13de7bee6cd8bda" title="Called whenever an object or the parameters have changed." alt="" coords="395,385,552,412">
-<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="681,639,833,665">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#7d0098100c1a7e5e9af8808072ab68da" title="UI::ViewImpl::F" alt="" coords="1724,1171,1836,1197">
-<area shape="rect" href="$classC4DView.html#ba6f8c8d13241215fc41f88a247cf6a7" title="C4DView::Values" alt="" coords="697,867,817,893">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#16db20b10087e6c32a73cdf79f7d2f42" title="delta in parameter t" alt="" coords="369,968,577,995">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#0a55d967b53b03382d72f4f9b3a8c76b" title="upper bound for parameter t" alt="" coords="645,917,869,944">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#072f07410b8416016e23e33118d0b2d4" title="lower bound for parameter t" alt="" coords="647,1019,868,1045">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#b561b67b911b7f242aa6a0a48c594370" title="delta in parameter u" alt="" coords="368,1189,579,1216">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#79bc2ecceb55d8fe996caa8461b0f9d5" title="upper bound for parameter u" alt="" coords="644,1171,871,1197">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#f88162efaf834e5984d4d8fe04d44af4" title="lower bound for parameter u" alt="" coords="645,1272,869,1299">
-<area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Draw the transformed and projected function onto the screen." alt="" coords="412,1069,535,1096">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#e04c92a2f0580b1830b1cbfcca1c6715" title="Implementation of UI::View::setFunction." alt="" coords="411,1373,536,1400">
-<area shape="rect" href="libstdc++.tag$a01015.html#bc36e1cfdc9c7940e3fea50de14560cd" title="std::auto_ptr::get" alt="" coords="701,5,813,32">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1684,867,1876,893">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#dde4d7e444559027ba40b01581fee768" title="Adjust the display according to the Function whose Parameters are controlled." alt="" coords="628,259,887,285">
-<area shape="rect" href="$classC4DView.html#16d5190870a166c65a20c59368ca0f2f" title="Overloaded function executing the transform to the default state." alt="" coords="1003,385,1141,412">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1925,867,2149,893">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#1d1c6c3ea67ac213f4ce937ea1601fff" title="Adjust the displayed parameter fields to the parameters the function needs." alt="" coords="936,183,1208,209">
-<area shape="rect" href="libstdc++.tag$a01208.html#fd7a61b93062043afa5b158ada25351e" title="std::map::begin" alt="" coords="1276,107,1380,133">
-<area shape="rect" href="libstdc++.tag$a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="1281,157,1375,184">
-<area shape="rect" href="libstdc++.tag$a01846.html#gdf513d2c47a98f2cd60f7dc86a343589" title="value" alt="" coords="1303,208,1353,235">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#a5594df1772137ac86e25b9f8435dc04" title="UI::ViewImpl::R" alt="" coords="1272,563,1384,589">
-<area shape="rect" href="$classC4DView.html#36180772cadbb1517885c1a366aca25c" title="Set the current 3D rotation state." alt="" coords="1264,461,1392,488">
-<area shape="rect" href="$classC4DView.html#3c8461856c1f84ed95d6f4994c69ede3" title="Set the current 3D translation state." alt="" coords="1259,259,1397,285">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#be101a806860df3ab01616e3c092abdc" title="UI::ViewImpl::setR" alt="" coords="1264,309,1392,336">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#c116c3e53e586a0036fde67863580190" title="UI::ViewImpl::setT" alt="" coords="1265,360,1391,387">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#4df75156fbe950971ef1564ba8e873fe" title="UI::ViewImpl::T" alt="" coords="1272,411,1384,437">
-<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="961,639,1183,665">
-<area shape="rect" href="$classC4DView.html#b7654a2bad6deeb87868385f3bd9c89d" title="Add a translation to the current 3D rotation state." alt="" coords="1261,613,1395,640">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#4a1ddf4d94623c7a94e8eb5809acf626" title="Add a Rotation to the current rotation state." alt="" coords="1263,664,1393,691">
-<area shape="rect" href="libstdc++.tag$a01815.html#42fec2f6c6429a447bea8a40720a143a" title="fabs" alt="" coords="1307,715,1349,741">
-<area shape="rect" href="$classC4DView.html#45846d7481660ac879e933d8395cf49f" title="C4DView::m_rot" alt="" coords="1271,816,1385,843">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#048c38bc05f745dca34dd68d35cf993e" title="steps in parameter t" alt="" coords="644,968,871,995">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#9cebd8d993b63d33d3965e03fb51b801" title="steps in parameter u" alt="" coords="643,1221,872,1248">
-<area shape="rect" href="$classC4DView.html#be8e58d21b0e1c513b10afa294b162b2" title="Paint event handler, reimplemented from QGLWidget." alt="" coords="688,1069,827,1096">
-<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen." alt="" coords="1257,1120,1399,1147">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#03d77f320d7aada22c143646b40925d3" title="UI::ViewImpl::getSolid" alt="" coords="997,1019,1147,1045">
-<area shape="rect" href="$classC4DView.html#72ca1b3ddd5fd4dcfc1cb592d6e5c97a" title="C4DView::m_trans" alt="" coords="1009,1069,1135,1096">
-<area shape="rect" href="$classC4DView.html#b9561bdd967e89d314f7eda6de32b2bc" title="Wrapper for displaying OpenGL display lists." alt="" coords="996,968,1148,995">
-<area shape="rect" href="$classC4DView.html#890b368e6451af1fef597099e7399757" title="C4DView::CoordinateCross" alt="" coords="1456,917,1627,944">
-<area shape="rect" href="libstdc++.tag$a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce" title="endl" alt="" coords="1307,1019,1349,1045">
-<area shape="rect" href="libstdc++.tag$a01815.html#2107b37641fcd1f3d16ecc9c0a18041f" title="exit" alt="" coords="1308,1069,1348,1096">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#756d50cd0f539f632b4ffe0d28f93559" title="UI::ViewImpl::getCoordinates" alt="" coords="1688,1373,1872,1400">
-<area shape="rect" href="$classC4DView.html#646e0b61e1634dacf043d20692cb33cc" title="C4DView::ObjectList" alt="" coords="1472,968,1611,995">
-<area shape="rect" href="$classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="1453,1069,1629,1096">
-<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Execute the projection into three&#45;space (but don&#39;t draw it yet either)." alt="" coords="1481,1221,1601,1248">
-<area shape="rect" href="$classC4DView.html#ddbd7468a38ac997ba7c1741bf59a235" title="Set a GLList for the display of the coordinates." alt="" coords="1448,1272,1635,1299">
-<area shape="rect" href="$classC4DView.html#6a91ef85500b929ad9403d62cc75118e" title="Set a GLList for the display of the object." alt="" coords="1465,1171,1617,1197">
-<area shape="rect" href="libstdc++.tag$a01015.html#1d78a540221e616997c2df6c98dd6765" title="std::auto_ptr::reset" alt="" coords="697,1373,817,1400">
+<area shape="rect" href="$classC4DView.html#e38186ceacf6c4e6b13de7bee6cd8bda" title="Called whenever an object or the parameters have changed." alt="" coords="448,385,616,412">
+<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="753,639,927,665">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#7d0098100c1a7e5e9af8808072ab68da" title="UI::ViewImpl::F" alt="" coords="1912,1171,2024,1197">
+<area shape="rect" href="$classC4DView.html#ba6f8c8d13241215fc41f88a247cf6a7" title="C4DView::Values" alt="" coords="776,867,904,893">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#16db20b10087e6c32a73cdf79f7d2f42" title="delta in parameter t" alt="" coords="419,968,645,995">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#0a55d967b53b03382d72f4f9b3a8c76b" title="upper bound for parameter t" alt="" coords="716,917,964,944">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#072f07410b8416016e23e33118d0b2d4" title="lower bound for parameter t" alt="" coords="719,1019,961,1045">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#b561b67b911b7f242aa6a0a48c594370" title="delta in parameter u" alt="" coords="417,1189,647,1216">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#79bc2ecceb55d8fe996caa8461b0f9d5" title="upper bound for parameter u" alt="" coords="715,1171,965,1197">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#f88162efaf834e5984d4d8fe04d44af4" title="lower bound for parameter u" alt="" coords="717,1272,963,1299">
+<area shape="rect" href="$classC4DView.html#8d3fbc1fbe82b40046652bca8bde9605" title="Draw the transformed and projected function onto the screen." alt="" coords="467,1069,597,1096">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#e04c92a2f0580b1830b1cbfcca1c6715" title="Implementation of UI::View::setFunction." alt="" coords="465,1373,599,1400">
+<area shape="rect" href="libstdc++.tag$a01015.html#bc36e1cfdc9c7940e3fea50de14560cd" title="std::auto_ptr::get" alt="" coords="775,5,905,32">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="1859,867,2077,893">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#dde4d7e444559027ba40b01581fee768" title="Adjust the display according to the Function whose Parameters are controlled." alt="" coords="696,259,984,285">
+<area shape="rect" href="$classC4DView.html#16d5190870a166c65a20c59368ca0f2f" title="Overloaded function executing the transform to the default state." alt="" coords="1112,385,1261,412">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="2127,867,2377,893">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#1d1c6c3ea67ac213f4ce937ea1601fff" title="Adjust the displayed parameter fields to the parameters the function needs." alt="" coords="1032,183,1341,209">
+<area shape="rect" href="libstdc++.tag$a01208.html#fd7a61b93062043afa5b158ada25351e" title="std::map::begin" alt="" coords="1409,107,1529,133">
+<area shape="rect" href="libstdc++.tag$a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="1415,157,1524,184">
+<area shape="rect" href="libstdc++.tag$a01846.html#gdf513d2c47a98f2cd60f7dc86a343589" title="value" alt="" coords="1441,208,1497,235">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#a5594df1772137ac86e25b9f8435dc04" title="UI::ViewImpl::R" alt="" coords="1412,563,1527,589">
+<area shape="rect" href="$classC4DView.html#36180772cadbb1517885c1a366aca25c" title="Set the current 3D rotation state." alt="" coords="1397,461,1541,488">
+<area shape="rect" href="$classC4DView.html#3c8461856c1f84ed95d6f4994c69ede3" title="Set the current 3D translation state." alt="" coords="1391,259,1548,285">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#be101a806860df3ab01616e3c092abdc" title="UI::ViewImpl::setR" alt="" coords="1403,309,1536,336">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#c116c3e53e586a0036fde67863580190" title="UI::ViewImpl::setT" alt="" coords="1403,360,1536,387">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#4df75156fbe950971ef1564ba8e873fe" title="UI::ViewImpl::T" alt="" coords="1413,411,1525,437">
+<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="1067,639,1307,665">
+<area shape="rect" href="$classC4DView.html#b7654a2bad6deeb87868385f3bd9c89d" title="Add a translation to the current 3D rotation state." alt="" coords="1396,613,1543,640">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#4a1ddf4d94623c7a94e8eb5809acf626" title="Add a Rotation to the current rotation state." alt="" coords="1400,664,1539,691">
+<area shape="rect" href="libstdc++.tag$a01815.html#42fec2f6c6429a447bea8a40720a143a" title="fabs" alt="" coords="1445,715,1493,741">
+<area shape="rect" href="$classC4DView.html#45846d7481660ac879e933d8395cf49f" title="C4DView::m_rot" alt="" coords="1408,816,1531,843">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#048c38bc05f745dca34dd68d35cf993e" title="steps in parameter t" alt="" coords="713,968,967,995">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#9cebd8d993b63d33d3965e03fb51b801" title="steps in parameter u" alt="" coords="712,1221,968,1248">
+<area shape="rect" href="$classC4DView.html#be8e58d21b0e1c513b10afa294b162b2" title="Paint event handler, reimplemented from QGLWidget." alt="" coords="764,1069,916,1096">
+<area shape="rect" href="$classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen." alt="" coords="1393,1120,1545,1147">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#03d77f320d7aada22c143646b40925d3" title="UI::ViewImpl::getSolid" alt="" coords="1108,1019,1265,1045">
+<area shape="rect" href="$classC4DView.html#72ca1b3ddd5fd4dcfc1cb592d6e5c97a" title="C4DView::m_trans" alt="" coords="1117,1069,1256,1096">
+<area shape="rect" href="$classC4DView.html#b9561bdd967e89d314f7eda6de32b2bc" title="Wrapper for displaying OpenGL display lists." alt="" coords="1101,968,1272,995">
+<area shape="rect" href="$classC4DView.html#890b368e6451af1fef597099e7399757" title="C4DView::CoordinateCross" alt="" coords="1608,917,1800,944">
+<area shape="rect" href="libstdc++.tag$a01815.html#10ebe236b3a6e1c3f67686162aa3e7ce" title="endl" alt="" coords="1445,1019,1493,1045">
+<area shape="rect" href="libstdc++.tag$a01815.html#2107b37641fcd1f3d16ecc9c0a18041f" title="exit" alt="" coords="1448,1069,1491,1096">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#756d50cd0f539f632b4ffe0d28f93559" title="UI::ViewImpl::getCoordinates" alt="" coords="1867,1373,2069,1400">
+<area shape="rect" href="$classC4DView.html#646e0b61e1634dacf043d20692cb33cc" title="C4DView::ObjectList" alt="" coords="1631,968,1777,995">
+<area shape="rect" href="$classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */" alt="" coords="1607,1069,1801,1096">
+<area shape="rect" href="$classC4DView.html#b9ec4da2c4a27a95302759968c3b9d90" title="Execute the projection into three&#45;space (but don&#39;t draw it yet either)." alt="" coords="1640,1221,1768,1248">
+<area shape="rect" href="$classC4DView.html#ddbd7468a38ac997ba7c1741bf59a235" title="Set a GLList for the display of the coordinates." alt="" coords="1599,1272,1809,1299">
+<area shape="rect" href="$classC4DView.html#6a91ef85500b929ad9403d62cc75118e" title="Set a GLList for the display of the object." alt="" coords="1620,1171,1788,1197">
+<area shape="rect" href="libstdc++.tag$a01015.html#1d78a540221e616997c2df6c98dd6765" title="std::auto_ptr::reset" alt="" coords="768,1373,912,1400">

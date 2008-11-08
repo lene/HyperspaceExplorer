@@ -1,21 +1,21 @@
-<area shape="rect" href="$classC4DView.html#e38186ceacf6c4e6b13de7bee6cd8bda" title="Called whenever an object or the parameters have changed." alt="" coords="272,196,429,223">
-<area shape="rect" href="$group__UIHelpers.html#gb4150e26778debfb3de8214203578a41" title="C++ Template Implementation: CustomFunctionSlot." alt="" coords="577,5,897,32">
-<area shape="rect" href="$classC4DView_1_1CustomFunctionSlot.html#2eaaaf653f2d1bbfe3a2b416f33e4b08" title="Factory method to create a new customized Function of type R^2&#45;&gt;R^4." alt="" coords="580,56,895,83">
-<area shape="rect" href="$classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="952,335,1088,361">
-<area shape="rect" href="$group__UIHelpers.html#g7d01311aa80799bb82b77d0313f7bdf5" title="Implementation of TemplateMethod createFunction()." alt="" coords="173,411,528,437">
-<area shape="rect" href="$classC4DView_1_1TemplatedSurfaceFactory.html#e10b2482a01aacfb004d30d30cc0695b" title="Implementation of TemplateMethod createSurface()." alt="" coords="192,461,509,488">
-<area shape="rect" href="$classC4DView.html#15c8ca4d71f5b5e5b07a959601820f83" title="Get size of displayed area." alt="" coords="299,561,403,588">
-<area shape="rect" href="$classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="660,259,815,285">
-<area shape="rect" href="$classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="649,309,825,336">
-<area shape="rect" href="$classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="640,107,835,133">
-<area shape="rect" href="$classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="643,157,832,184">
-<area shape="rect" href="$classC4DView.html#67910b144c00145b06e592e2b93126f1" title="Implementation of UI::View::ObjectRotope." alt="" coords="659,208,816,235">
-<area shape="rect" href="$classC4DView.html#8e209837b51cb976674e81e6359f930d" title="OpenGL initialization for fog." alt="" coords="676,524,799,551">
-<area shape="rect" href="$classC4DView.html#f46da1a68ffbcc00eddc03df078fe150" title="Switch 3D depth cue on and off." alt="" coords="1143,563,1308,589">
-<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="1357,601,1640,628">
-<area shape="rect" href="$classC4DView.html#ac3d22c30bf8b042077fb31fec2c367b" title="GL stuff needed in addition to resizeEvent(). Reimplemented from QGLWidget." alt="" coords="1433,525,1564,552">
-<area shape="rect" href="$classC4DView.html#5f79a84b79c832319a46af95192ad180" title="Resizing routine, reimplemented from QGLWidget." alt="" coords="665,639,809,665">
-<area shape="rect" href="$classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from..." alt="" coords="947,461,1093,488">
-<area shape="rect" href="$classC4DView.html#556e03bfff4b2f369a86edb47f3e4b84" title="Re&#45;Implementation of UI::ViewImpl::setFog." alt="" coords="961,512,1079,539">
-<area shape="rect" href="$classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Re&#45;Implementation of UI::ViewImpl::setColors." alt="" coords="1159,461,1292,488">
-<area shape="rect" href="$classC4DView.html#1b5e87b494b99e3705c64e924480f4ef" title="Mouse move event handler, reimplemented from QWidget." alt="" coords="1689,601,1868,628">
+<area shape="rect" href="$classC4DView.html#e38186ceacf6c4e6b13de7bee6cd8bda" title="Called whenever an object or the parameters have changed." alt="" coords="297,211,465,237">
+<area shape="rect" href="$group__UIHelpers.html#gb4150e26778debfb3de8214203578a41" title="C++ Template Implementation: CustomFunctionSlot." alt="" coords="629,20,997,47">
+<area shape="rect" href="$classC4DView_1_1CustomFunctionSlot.html#2eaaaf653f2d1bbfe3a2b416f33e4b08" title="Factory method to create a new customized Function of type R^2&#45;&gt;R^4." alt="" coords="632,71,995,97">
+<area shape="rect" href="$classC4DView.html#1d7079e8957ce7e685531a3f9062c468" title="C4DView constructor." alt="" coords="1052,349,1193,376">
+<area shape="rect" href="$group__UIHelpers.html#g7d01311aa80799bb82b77d0313f7bdf5" title="Implementation of TemplateMethod createFunction()." alt="" coords="181,425,581,452">
+<area shape="rect" href="$classC4DView_1_1TemplatedSurfaceFactory.html#e10b2482a01aacfb004d30d30cc0695b" title="Implementation of TemplateMethod createSurface()." alt="" coords="200,476,563,503">
+<area shape="rect" href="$classC4DView.html#15c8ca4d71f5b5e5b07a959601820f83" title="Get size of displayed area." alt="" coords="325,576,437,603">
+<area shape="rect" href="$classC4DView.html#2b8270b08a2a62faa7381adcd83715af" title="Implementation of UI::View::ObjectGasket." alt="" coords="728,223,899,249">
+<area shape="rect" href="$classC4DView.html#bc3a4f6e3276734aa70e0853f0df6022" title="Implementation of UI::View::ObjectHypercube." alt="" coords="716,273,911,300">
+<area shape="rect" href="$classC4DView.html#951f672d7d323bb799c1ab18d412e1d7" title="Implementation of UI::View::ObjectHyperpyramid." alt="" coords="705,121,921,148">
+<area shape="rect" href="$classC4DView.html#395baf447937415a0f3366c4d1c529ee" title="Implementation of UI::View::ObjectHypersponge." alt="" coords="708,172,919,199">
+<area shape="rect" href="$classC4DView.html#67910b144c00145b06e592e2b93126f1" title="Implementation of UI::View::ObjectRotope." alt="" coords="728,324,899,351">
+<area shape="rect" href="$classC4DView.html#8e209837b51cb976674e81e6359f930d" title="OpenGL initialization for fog." alt="" coords="749,539,877,565">
+<area shape="rect" href="$classC4DView.html#f46da1a68ffbcc00eddc03df078fe150" title="Switch 3D depth cue on and off." alt="" coords="1249,577,1436,604">
+<area shape="rect" href="$classC4DView_1_1MouseHandler4D.html#a81a97ec93c32f1acaa142706b3b6814" title="Mouse move event handler." alt="" coords="1485,616,1803,643">
+<area shape="rect" href="$classC4DView.html#ac3d22c30bf8b042077fb31fec2c367b" title="GL stuff needed in addition to resizeEvent(). Reimplemented from QGLWidget." alt="" coords="1575,540,1713,567">
+<area shape="rect" href="$classC4DView.html#5f79a84b79c832319a46af95192ad180" title="Resizing routine, reimplemented from QGLWidget." alt="" coords="733,653,893,680">
+<area shape="rect" href="$classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from..." alt="" coords="1047,476,1199,503">
+<area shape="rect" href="$classC4DView.html#556e03bfff4b2f369a86edb47f3e4b84" title="Re&#45;Implementation of UI::ViewImpl::setFog." alt="" coords="1059,527,1187,553">
+<area shape="rect" href="$classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Re&#45;Implementation of UI::ViewImpl::setColors." alt="" coords="1271,476,1415,503">
+<area shape="rect" href="$classC4DView.html#1b5e87b494b99e3705c64e924480f4ef" title="Mouse move event handler, reimplemented from QWidget." alt="" coords="1851,616,2051,643">

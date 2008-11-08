@@ -1,16 +1,16 @@
-<area shape="rect" href="$classComplexFunction.html#a978ff4b165e029bb82ba33dce35e4e3" title="ComplexFunction::Initialize" alt="" coords="479,233,649,260">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1PluginCreator.html#82c363a954274814e84ebeb2a61da246" title="Get the name of the selected dynamic library containing a function." alt="" coords="444,284,684,311">
-<area shape="rect" href="$classCustomFunctionBase.html#d2e4b7516d73ab9ebeb9a33c6708f6b8" title="CustomFunctionBase\&lt; ComplexFunction::function_type \&gt;::loadFunction" alt="" coords="357,335,771,361">
-<area shape="rect" href="$classCustomFunctionBase.html#deba6cb6f2a94795aac27f22783193b1" title="Signify failure in loading the function." alt="" coords="367,385,761,412">
-<area shape="rect" href="$classCustomFunctionBase.html#5bfbc3ddb6bf716ec25672e903cca40e" title="Signify success in loading the function." alt="" coords="371,436,757,463">
-<area shape="rect" href="$classComplexFunction.html#234485506b16d03867c20e8e8d7e0b21" title="ComplexFunction::f" alt="" coords="827,31,955,57">
-<area shape="rect" href="$classSurfaceBase.html#c1b7c91a12ac9ad433c27d8ad9f6067c" title="delta in t" alt="" coords="828,81,953,108">
-<area shape="rect" href="$classSurfaceBase.html#b374ba3db9a0339e6a5aaa230d1a76ca" title="delta in u" alt="" coords="827,132,955,159">
-<area shape="rect" href="$classSurfaceBase.html#73cd034a8689e0f9fbd796f8e7423fcb" title="min. value of the first parameter, t" alt="" coords="821,183,960,209">
-<area shape="rect" href="$classSurfaceBase.html#761208b17975a6c343774b5ca467ed2b" title="number of steps in t" alt="" coords="1012,259,1159,285">
-<area shape="rect" href="$classSurfaceBase.html#ed7d2013bca3eb15eb1abcc8e72cbd58" title="min. value of the second parameter, u" alt="" coords="820,436,961,463">
-<area shape="rect" href="$classSurfaceBase.html#d8c79625fa46d8c5ebbda58f0dd9eb5d" title="number of steps in u" alt="" coords="1012,323,1159,349">
-<area shape="rect" href="$classSurface.html#f77d456ed7b5d495f4a54978ab5f4acc" title="Initialize the temporary storage areas Xscr[][], Xtrans[][]." alt="" coords="833,335,948,361">
-<area shape="rect" href="libstdc++.tag$a01419.html#59d21f4ea322bb5166a2de7bbdf55b4c" title="std::vector::resize" alt="" coords="1028,373,1143,400">
-<area shape="rect" href="libstdc++.tag$a01081.html#72814d117a261bef8be64098e0aa8119" title="std::complex::imag" alt="" coords="1024,56,1147,83">
-<area shape="rect" href="libstdc++.tag$a01081.html#90731c66edf2f805f5cc8e37b79909cf" title="std::complex::real" alt="" coords="1027,5,1144,32">
+<area shape="rect" href="$classComplexFunction.html#a978ff4b165e029bb82ba33dce35e4e3" title="ComplexFunction::Initialize" alt="" coords="548,233,737,260">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1PluginCreator.html#82c363a954274814e84ebeb2a61da246" title="Get the name of the selected dynamic library containing a function." alt="" coords="508,284,777,311">
+<area shape="rect" href="$classCustomFunctionBase.html#d2e4b7516d73ab9ebeb9a33c6708f6b8" title="CustomFunctionBase\&lt; ComplexFunction::function_type \&gt;::loadFunction" alt="" coords="403,335,883,361">
+<area shape="rect" href="$classCustomFunctionBase.html#deba6cb6f2a94795aac27f22783193b1" title="Signify failure in loading the function." alt="" coords="413,385,872,412">
+<area shape="rect" href="$classCustomFunctionBase.html#5bfbc3ddb6bf716ec25672e903cca40e" title="Signify success in loading the function." alt="" coords="419,436,867,463">
+<area shape="rect" href="$classComplexFunction.html#234485506b16d03867c20e8e8d7e0b21" title="ComplexFunction::f" alt="" coords="941,31,1085,57">
+<area shape="rect" href="$classSurfaceBase.html#c1b7c91a12ac9ad433c27d8ad9f6067c" title="delta in t" alt="" coords="940,81,1087,108">
+<area shape="rect" href="$classSurfaceBase.html#b374ba3db9a0339e6a5aaa230d1a76ca" title="delta in u" alt="" coords="939,132,1088,159">
+<area shape="rect" href="$classSurfaceBase.html#73cd034a8689e0f9fbd796f8e7423fcb" title="min. value of the first parameter, t" alt="" coords="932,183,1095,209">
+<area shape="rect" href="$classSurfaceBase.html#761208b17975a6c343774b5ca467ed2b" title="number of steps in t" alt="" coords="1147,259,1317,285">
+<area shape="rect" href="$classSurfaceBase.html#ed7d2013bca3eb15eb1abcc8e72cbd58" title="min. value of the second parameter, u" alt="" coords="931,436,1096,463">
+<area shape="rect" href="$classSurfaceBase.html#d8c79625fa46d8c5ebbda58f0dd9eb5d" title="number of steps in u" alt="" coords="1144,323,1320,349">
+<area shape="rect" href="$classSurface.html#f77d456ed7b5d495f4a54978ab5f4acc" title="Initialize the temporary storage areas Xscr[][], Xtrans[][]." alt="" coords="949,335,1077,361">
+<area shape="rect" href="libstdc++.tag$a01419.html#59d21f4ea322bb5166a2de7bbdf55b4c" title="std::vector::resize" alt="" coords="1164,373,1300,400">
+<area shape="rect" href="libstdc++.tag$a01081.html#72814d117a261bef8be64098e0aa8119" title="std::complex::imag" alt="" coords="1160,56,1304,83">
+<area shape="rect" href="libstdc++.tag$a01081.html#90731c66edf2f805f5cc8e37b79909cf" title="std::complex::real" alt="" coords="1164,5,1300,32">

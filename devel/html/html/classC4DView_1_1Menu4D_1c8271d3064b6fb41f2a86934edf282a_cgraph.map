@@ -1,17 +1,17 @@
-<area shape="rect" href="$classC4DView_1_1Menu4D.html#2dfc9833855fee3fb25d13456f47bc26" title="Search for the QAction associated with a menu item." alt="" coords="248,56,437,83">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#5513826cce6a6b28e5b5bc84ee2514e4" title="UI::ViewImpl::getColors" alt="" coords="265,107,420,133">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#756d50cd0f539f632b4ffe0d28f93559" title="UI::ViewImpl::getCoordinates" alt="" coords="251,157,435,184">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#b242e415663c04c3bdad27d7dea64275" title="UI::ViewImpl::getFog" alt="" coords="272,208,413,235">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#880766a85ec37dda07e1f70952aa178e" title="UI::ViewImpl::getLighting" alt="" coords="260,259,425,285">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#ba489ae42c965c3a2b4e20a754d3836d" title="UI::ViewImpl::getShading" alt="" coords="261,309,424,336">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#03d77f320d7aada22c143646b40925d3" title="UI::ViewImpl::getSolid" alt="" coords="268,360,417,387">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#c7834bfae2e1f39bffc934d2111772e5" title="UI::ViewImpl::getTransparence" alt="" coords="247,411,439,437">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#c5270e75eabb357f75b0955b8b887cb0" title="UI::ViewImpl::getWriteImages" alt="" coords="248,461,437,488">
-<area shape="rect" href="$classC4DView_1_1Menu4D.html#80890e8721371e24c7039ce6598c5655" title="insert a menu item with a specified slot into a specified menu" alt="" coords="241,512,444,539">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="247,563,439,589">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#095604d624fb156d4dc00600bd23265d" title="Turn wireframe display on or off." alt="" coords="269,613,416,640">
-<area shape="rect" href="libstdc++.tag$a01208.html#fd7a61b93062043afa5b158ada25351e" title="std::map::begin" alt="" coords="553,5,657,32">
-<area shape="rect" href="libstdc++.tag$a01208.html#f5510c6ab84eb61a7fd8a109dadcf78d" title="std::map::count" alt="" coords="553,56,657,83">
-<area shape="rect" href="libstdc++.tag$a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="559,107,652,133">
-<area shape="rect" href="libstdc++.tag$a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d" title="std::map::insert" alt="" coords="553,512,657,539">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="493,563,717,589">
+<area shape="rect" href="$classC4DView_1_1Menu4D.html#2dfc9833855fee3fb25d13456f47bc26" title="Search for the QAction associated with a menu item." alt="" coords="261,56,469,83">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#5513826cce6a6b28e5b5bc84ee2514e4" title="UI::ViewImpl::getColors" alt="" coords="281,107,449,133">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#756d50cd0f539f632b4ffe0d28f93559" title="UI::ViewImpl::getCoordinates" alt="" coords="264,157,467,184">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#b242e415663c04c3bdad27d7dea64275" title="UI::ViewImpl::getFog" alt="" coords="291,208,440,235">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#880766a85ec37dda07e1f70952aa178e" title="UI::ViewImpl::getLighting" alt="" coords="277,259,453,285">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#ba489ae42c965c3a2b4e20a754d3836d" title="UI::ViewImpl::getShading" alt="" coords="276,309,455,336">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#03d77f320d7aada22c143646b40925d3" title="UI::ViewImpl::getSolid" alt="" coords="287,360,444,387">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#c7834bfae2e1f39bffc934d2111772e5" title="UI::ViewImpl::getTransparence" alt="" coords="259,411,472,437">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#c5270e75eabb357f75b0955b8b887cb0" title="UI::ViewImpl::getWriteImages" alt="" coords="263,461,468,488">
+<area shape="rect" href="$classC4DView_1_1Menu4D.html#80890e8721371e24c7039ce6598c5655" title="insert a menu item with a specified slot into a specified menu" alt="" coords="255,512,476,539">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="256,563,475,589">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#095604d624fb156d4dc00600bd23265d" title="Turn wireframe display on or off." alt="" coords="287,613,444,640">
+<area shape="rect" href="libstdc++.tag$a01208.html#fd7a61b93062043afa5b158ada25351e" title="std::map::begin" alt="" coords="592,5,712,32">
+<area shape="rect" href="libstdc++.tag$a01208.html#f5510c6ab84eb61a7fd8a109dadcf78d" title="std::map::count" alt="" coords="591,56,713,83">
+<area shape="rect" href="libstdc++.tag$a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="597,107,707,133">
+<area shape="rect" href="libstdc++.tag$a01208.html#d1f7f9d083edd4d1af36d12592c6fa5d" title="std::map::insert" alt="" coords="591,512,713,539">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="527,563,777,589">

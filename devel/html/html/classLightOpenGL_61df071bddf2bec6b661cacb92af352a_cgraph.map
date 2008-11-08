@@ -1,8 +1,8 @@
-<area shape="rect" href="$classLight.html#a2332c0ee16fc118f349aab1b42fab96" title="Light::getAmbient" alt="" coords="192,5,312,32">
-<area shape="rect" href="$classLight.html#e65ef17266718bb2c23e72790239095f" title="Light::getDiffuse" alt="" coords="196,56,308,83">
-<area shape="rect" href="$classLight.html#a6abf89003d767c58e13e561b3d905e7" title="Light::getPosition" alt="" coords="193,107,311,133">
-<area shape="rect" href="$classLight.html#0a6aa46e46d2c42251e130d3fe4d9256" title="Light::getSpecular" alt="" coords="192,157,312,184">
-<area shape="rect" href="$classLightSource.html#f4b09a4070f6a5eadccf40f64cd69400" title="LightSource::getAmbient" alt="" coords="360,5,517,32">
-<area shape="rect" href="$classLightSource.html#e1dc10220427ce52e2d2eb9f7e9f805f" title="LightSource::getDiffuse" alt="" coords="364,56,513,83">
-<area shape="rect" href="$classLightSource.html#db0cbfc26e31e589a3472972ac05368b" title="LightSource::getPosition" alt="" coords="361,107,516,133">
-<area shape="rect" href="$classLightSource.html#c790dd03a309d10d223bb0956515b79e" title="LightSource::getSpecular" alt="" coords="360,157,517,184">
+<area shape="rect" href="$classLight.html#a2332c0ee16fc118f349aab1b42fab96" title="Light::getAmbient" alt="" coords="209,5,345,32">
+<area shape="rect" href="$classLight.html#e65ef17266718bb2c23e72790239095f" title="Light::getDiffuse" alt="" coords="215,56,340,83">
+<area shape="rect" href="$classLight.html#a6abf89003d767c58e13e561b3d905e7" title="Light::getPosition" alt="" coords="212,107,343,133">
+<area shape="rect" href="$classLight.html#0a6aa46e46d2c42251e130d3fe4d9256" title="Light::getSpecular" alt="" coords="209,157,345,184">
+<area shape="rect" href="$classLightSource.html#f4b09a4070f6a5eadccf40f64cd69400" title="LightSource::getAmbient" alt="" coords="397,5,576,32">
+<area shape="rect" href="$classLightSource.html#e1dc10220427ce52e2d2eb9f7e9f805f" title="LightSource::getDiffuse" alt="" coords="401,56,572,83">
+<area shape="rect" href="$classLightSource.html#db0cbfc26e31e589a3472972ac05368b" title="LightSource::getPosition" alt="" coords="399,107,575,133">
+<area shape="rect" href="$classLightSource.html#c790dd03a309d10d223bb0956515b79e" title="LightSource::getSpecular" alt="" coords="396,157,577,184">

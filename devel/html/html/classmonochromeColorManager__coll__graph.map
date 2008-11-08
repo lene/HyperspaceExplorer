@@ -1,11 +1,11 @@
-<area shape="rect" href="$classColorManager.html" title="Interface for all color managers." alt="" coords="243,1781,400,2101">
-<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="217,1189,425,1717">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ operator const T *()\l+ dimension()\l}" alt="" coords="55,741,196,1125">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,293,168,677">
-<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="259,853,384,1013">
-<area shape="rect" href="libstdc++.tag$a01208.html" title="{std::map\&lt; std::string, FunctionParameter * \&gt;\n||}" alt="" coords="192,445,451,525">
-<area shape="rect" href="libstdc++.tag$a01208.html" title="STL class." alt="" coords="211,149,461,229">
-<area shape="rect" href="libstdc++.tag$a01419.html" title="STL class." alt="" coords="480,445,643,525">
-<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; std::string \&gt;\n||}" alt="" coords="485,893,637,973">
-<area shape="rect" href="libstdc++.tag$a00960.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;\n||}" alt="" coords="599,149,801,229">
-<area shape="rect" href="libstdc++.tag$a00961.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;::_Vector_impl\n||}" alt="" coords="557,5,843,85">
+<area shape="rect" href="$classColorManager.html" title="Interface for all color managers." alt="" coords="279,1907,460,2251">
+<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="248,1271,491,1839">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ operator const T *()\l+ dimension()\l}" alt="" coords="61,789,224,1203">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,309,189,723">
+<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="293,911,445,1081">
+<area shape="rect" href="libstdc++.tag$a01208.html" title="{std::map\&lt; std::string, FunctionParameter * \&gt;\n||}" alt="" coords="213,475,525,557">
+<area shape="rect" href="libstdc++.tag$a01208.html" title="STL class." alt="" coords="248,159,536,241">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="STL class." alt="" coords="557,475,744,557">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; std::string \&gt;\n||}" alt="" coords="559,955,743,1037">
+<area shape="rect" href="libstdc++.tag$a00960.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;\n||}" alt="" coords="699,159,931,241">
+<area shape="rect" href="libstdc++.tag$a00961.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;::_Vector_impl\n||}" alt="" coords="653,7,976,89">

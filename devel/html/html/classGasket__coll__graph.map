@@ -1,13 +1,13 @@
-<area shape="rect" href="$classPyramid.html" title="A four&#45;dimensional pyramid, also known as hypersimplex." alt="" coords="229,2104,355,2280">
-<area shape="rect" href="$classObject.html" title="Generalized four&#45;dimensional Object, described by vertexes and surfaces." alt="" coords="244,1781,452,2053">
-<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="244,1189,452,1717">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ operator const T *()\l+ dimension()\l}" alt="" coords="71,741,212,1125">
-<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,293,168,677">
-<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="261,853,387,1013">
-<area shape="rect" href="libstdc++.tag$a01208.html" title="{std::map\&lt; std::string, FunctionParameter * \&gt;\n||}" alt="" coords="192,445,451,525">
-<area shape="rect" href="libstdc++.tag$a01208.html" title="STL class." alt="" coords="156,149,407,229">
-<area shape="rect" href="libstdc++.tag$a01419.html" title="STL class." alt="" coords="531,445,693,525">
-<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; Pyramid * \&gt;\n||}" alt="" coords="620,893,775,973">
-<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; std::string \&gt;\n||}" alt="" coords="411,893,563,973">
-<area shape="rect" href="libstdc++.tag$a00960.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;\n||}" alt="" coords="436,149,639,229">
-<area shape="rect" href="libstdc++.tag$a00961.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;::_Vector_impl\n||}" alt="" coords="385,5,671,85">
+<area shape="rect" href="$classPyramid.html" title="A four&#45;dimensional pyramid, also known as hypersimplex." alt="" coords="248,2268,392,2455">
+<area shape="rect" href="$classObject.html" title="Generalized four&#45;dimensional Object, described by vertexes and surfaces." alt="" coords="263,1907,505,2216">
+<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="263,1271,505,1839">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="{VecMath::Vector\&lt; 4 \&gt;\n|&#45; x\l|+ Vector()\l+ Vector()\l+ operator[]()\l+ operator[]()\l+ operator+=()\l+ operator&#45;=()\l+ operator*=()\l+ operator&#45;()\l+ operator&#45;()\l+ operator+()\l+ operator*()\l+ operator*()\l+ operator/()\l+ operator/()\l+ sqnorm()\l+ operator==()\l+ operator\&lt;()\l+ data()\l+ operator const T *()\l+ dimension()\l}" alt="" coords="79,789,241,1203">
+<area shape="rect" href="$classVecMath_1_1Vector.html" title="Vector&lt;D, N&gt;: a D&#45;dimensional vector of numbers of type N." alt="" coords="5,309,189,723">
+<area shape="rect" href="$classParameterMap.html" title="A class to store and manage FunctionParameter s." alt="" coords="293,911,445,1081">
+<area shape="rect" href="libstdc++.tag$a01208.html" title="{std::map\&lt; std::string, FunctionParameter * \&gt;\n||}" alt="" coords="213,475,525,557">
+<area shape="rect" href="libstdc++.tag$a01208.html" title="STL class." alt="" coords="172,159,460,241">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="STL class." alt="" coords="611,475,797,557">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; Pyramid * \&gt;\n||}" alt="" coords="715,955,896,1037">
+<area shape="rect" href="libstdc++.tag$a01419.html" title="{std::vector\&lt; std::string \&gt;\n||}" alt="" coords="469,955,653,1037">
+<area shape="rect" href="libstdc++.tag$a00960.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;\n||}" alt="" coords="492,159,724,241">
+<area shape="rect" href="libstdc++.tag$a00961.html" title="{std::_Vector_base\&lt; _Tp, _Alloc \&gt;::_Vector_impl\n||}" alt="" coords="436,7,759,89">

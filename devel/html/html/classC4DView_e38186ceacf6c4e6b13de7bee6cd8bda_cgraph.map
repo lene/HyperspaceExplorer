@@ -1,23 +1,23 @@
-<area shape="rect" href="libstdc++.tag$a01015.html#bc36e1cfdc9c7940e3fea50de14560cd" title="std::auto_ptr::get" alt="" coords="285,157,397,184">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="560,183,752,209">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#dde4d7e444559027ba40b01581fee768" title="Adjust the display according to the Function whose Parameters are controlled." alt="" coords="212,360,471,387">
-<area shape="rect" href="$classC4DView.html#16d5190870a166c65a20c59368ca0f2f" title="Overloaded function executing the transform to the default state." alt="" coords="587,233,725,260">
-<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="265,309,417,336">
-<area shape="rect" href="$classC4DView.html#ba6f8c8d13241215fc41f88a247cf6a7" title="C4DView::Values" alt="" coords="281,411,401,437">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="840,5,1064,32">
-<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#1d1c6c3ea67ac213f4ce937ea1601fff" title="Adjust the displayed parameter fields to the parameters the function needs." alt="" coords="520,588,792,615">
-<area shape="rect" href="libstdc++.tag$a01208.html#fd7a61b93062043afa5b158ada25351e" title="std::map::begin" alt="" coords="900,563,1004,589">
-<area shape="rect" href="libstdc++.tag$a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="905,613,999,640">
-<area shape="rect" href="libstdc++.tag$a01846.html#gdf513d2c47a98f2cd60f7dc86a343589" title="value" alt="" coords="927,664,977,691">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#a5594df1772137ac86e25b9f8435dc04" title="UI::ViewImpl::R" alt="" coords="896,259,1008,285">
-<area shape="rect" href="$classC4DView.html#36180772cadbb1517885c1a366aca25c" title="Set the current 3D rotation state." alt="" coords="888,309,1016,336">
-<area shape="rect" href="$classC4DView.html#3c8461856c1f84ed95d6f4994c69ede3" title="Set the current 3D translation state." alt="" coords="883,56,1021,83">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#be101a806860df3ab01616e3c092abdc" title="UI::ViewImpl::setR" alt="" coords="888,107,1016,133">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#c116c3e53e586a0036fde67863580190" title="UI::ViewImpl::setT" alt="" coords="889,157,1015,184">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#4df75156fbe950971ef1564ba8e873fe" title="UI::ViewImpl::T" alt="" coords="896,208,1008,235">
-<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="545,335,767,361">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#7d0098100c1a7e5e9af8808072ab68da" title="UI::ViewImpl::F" alt="" coords="600,385,712,412">
-<area shape="rect" href="$classC4DView.html#b7654a2bad6deeb87868385f3bd9c89d" title="Add a translation to the current 3D rotation state." alt="" coords="885,360,1019,387">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#4a1ddf4d94623c7a94e8eb5809acf626" title="Add a Rotation to the current rotation state." alt="" coords="887,411,1017,437">
-<area shape="rect" href="libstdc++.tag$a01815.html#42fec2f6c6429a447bea8a40720a143a" title="fabs" alt="" coords="931,461,973,488">
-<area shape="rect" href="$classC4DView.html#45846d7481660ac879e933d8395cf49f" title="C4DView::m_rot" alt="" coords="895,512,1009,539">
+<area shape="rect" href="libstdc++.tag$a01015.html#bc36e1cfdc9c7940e3fea50de14560cd" title="std::auto_ptr::get" alt="" coords="303,157,433,184">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="605,183,824,209">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#dde4d7e444559027ba40b01581fee768" title="Adjust the display according to the Function whose Parameters are controlled." alt="" coords="224,360,512,387">
+<area shape="rect" href="$classC4DView.html#16d5190870a166c65a20c59368ca0f2f" title="Overloaded function executing the transform to the default state." alt="" coords="640,233,789,260">
+<area shape="rect" href="$classC4DView.html#d37702c9ecc5cbf124df84d0263734b9" title="display some info about current object and its transformations" alt="" coords="281,309,455,336">
+<area shape="rect" href="$classC4DView.html#ba6f8c8d13241215fc41f88a247cf6a7" title="C4DView::Values" alt="" coords="304,411,432,437">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="919,5,1169,32">
+<area shape="rect" href="$classUI_1_1Dialogs_1_1ValuesDialogImpl.html#1d1c6c3ea67ac213f4ce937ea1601fff" title="Adjust the displayed parameter fields to the parameters the function needs." alt="" coords="560,588,869,615">
+<area shape="rect" href="libstdc++.tag$a01208.html#fd7a61b93062043afa5b158ada25351e" title="std::map::begin" alt="" coords="984,563,1104,589">
+<area shape="rect" href="libstdc++.tag$a01208.html#1c6e8eff4b690989cc1a3f746e68fb30" title="std::map::end" alt="" coords="989,613,1099,640">
+<area shape="rect" href="libstdc++.tag$a01846.html#gdf513d2c47a98f2cd60f7dc86a343589" title="value" alt="" coords="1016,664,1072,691">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#a5594df1772137ac86e25b9f8435dc04" title="UI::ViewImpl::R" alt="" coords="987,259,1101,285">
+<area shape="rect" href="$classC4DView.html#36180772cadbb1517885c1a366aca25c" title="Set the current 3D rotation state." alt="" coords="972,309,1116,336">
+<area shape="rect" href="$classC4DView.html#3c8461856c1f84ed95d6f4994c69ede3" title="Set the current 3D translation state." alt="" coords="965,56,1123,83">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#be101a806860df3ab01616e3c092abdc" title="UI::ViewImpl::setR" alt="" coords="977,107,1111,133">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#c116c3e53e586a0036fde67863580190" title="UI::ViewImpl::setT" alt="" coords="977,157,1111,184">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#4df75156fbe950971ef1564ba8e873fe" title="UI::ViewImpl::T" alt="" coords="988,208,1100,235">
+<area shape="rect" href="$classC4DView.html#0b8d96f3304d94af1bac8854c908842f" title="Keep all rotation angles in the interval [&#45;360 degrees, 360 degrees]." alt="" coords="595,335,835,361">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#7d0098100c1a7e5e9af8808072ab68da" title="UI::ViewImpl::F" alt="" coords="659,385,771,412">
+<area shape="rect" href="$classC4DView.html#b7654a2bad6deeb87868385f3bd9c89d" title="Add a translation to the current 3D rotation state." alt="" coords="971,360,1117,387">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#4a1ddf4d94623c7a94e8eb5809acf626" title="Add a Rotation to the current rotation state." alt="" coords="975,411,1113,437">
+<area shape="rect" href="libstdc++.tag$a01815.html#42fec2f6c6429a447bea8a40720a143a" title="fabs" alt="" coords="1020,461,1068,488">
+<area shape="rect" href="$classC4DView.html#45846d7481660ac879e933d8395cf49f" title="C4DView::m_rot" alt="" coords="983,512,1105,539">

@@ -1,13 +1,13 @@
-<area shape="rect" href="libstdc++.tag$a01815.html#3ca7b454f96f5beb614a0c05d4cf98d2" title="atan" alt="" coords="249,5,292,32">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#05ac9d06e1345d952ec67de3226e7472" title="Viewport distance; currently fixed to 1." alt="" coords="197,56,344,83">
-<area shape="rect" href="libstdc++.tag$a01815.html#42fec2f6c6429a447bea8a40720a143a" title="fabs" alt="" coords="817,208,860,235">
-<area shape="rect" href="$classUI_1_1ViewImpl.html#b242e415663c04c3bdad27d7dea64275" title="UI::ViewImpl::getFog" alt="" coords="768,360,909,387">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="743,309,935,336">
-<area shape="rect" href="$classC4DView.html#72ca1b3ddd5fd4dcfc1cb592d6e5c97a" title="C4DView::m_trans" alt="" coords="776,461,901,488">
-<area shape="rect" href="$classC4DView.html#f46da1a68ffbcc00eddc03df078fe150" title="Switch 3D depth cue on and off." alt="" coords="188,360,353,387">
-<area shape="rect" href="$classC4DView.html#15c8ca4d71f5b5e5b07a959601820f83" title="Get size of displayed area." alt="" coords="787,512,891,539">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="984,309,1208,336">
-<area shape="rect" href="$classC4DView.html#556e03bfff4b2f369a86edb47f3e4b84" title="Re&#45;Implementation of UI::ViewImpl::setFog." alt="" coords="404,411,521,437">
-<area shape="rect" href="$classC4DView.html#8e209837b51cb976674e81e6359f930d" title="OpenGL initialization for fog." alt="" coords="571,360,693,387">
-<area shape="rect" href="libstdc++.tag$a01815.html#b2c9d94b4becdf532618ad9a0a54aade" title="sqrt" alt="" coords="1076,537,1116,564">
-<area shape="rect" href="$classC4DView.html#ba6f8c8d13241215fc41f88a247cf6a7" title="C4DView::Values" alt="" coords="1036,487,1156,513">
+<area shape="rect" href="libstdc++.tag$a01815.html#3ca7b454f96f5beb614a0c05d4cf98d2" title="atan" alt="" coords="264,5,315,32">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#05ac9d06e1345d952ec67de3226e7472" title="Viewport distance; currently fixed to 1." alt="" coords="209,56,369,83">
+<area shape="rect" href="libstdc++.tag$a01815.html#42fec2f6c6429a447bea8a40720a143a" title="fabs" alt="" coords="869,208,917,235">
+<area shape="rect" href="$classUI_1_1ViewImpl.html#b242e415663c04c3bdad27d7dea64275" title="UI::ViewImpl::getFog" alt="" coords="819,360,968,387">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="784,309,1003,336">
+<area shape="rect" href="$classC4DView.html#72ca1b3ddd5fd4dcfc1cb592d6e5c97a" title="C4DView::m_trans" alt="" coords="824,461,963,488">
+<area shape="rect" href="$classC4DView.html#f46da1a68ffbcc00eddc03df078fe150" title="Switch 3D depth cue on and off." alt="" coords="196,360,383,387">
+<area shape="rect" href="$classC4DView.html#15c8ca4d71f5b5e5b07a959601820f83" title="Get size of displayed area." alt="" coords="837,512,949,539">
+<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="1052,309,1303,336">
+<area shape="rect" href="$classC4DView.html#556e03bfff4b2f369a86edb47f3e4b84" title="Re&#45;Implementation of UI::ViewImpl::setFog." alt="" coords="432,411,560,437">
+<area shape="rect" href="$classC4DView.html#8e209837b51cb976674e81e6359f930d" title="OpenGL initialization for fog." alt="" coords="608,360,736,387">
+<area shape="rect" href="libstdc++.tag$a01815.html#b2c9d94b4becdf532618ad9a0a54aade" title="sqrt" alt="" coords="1155,537,1200,564">
+<area shape="rect" href="$classC4DView.html#ba6f8c8d13241215fc41f88a247cf6a7" title="C4DView::Values" alt="" coords="1113,487,1241,513">
