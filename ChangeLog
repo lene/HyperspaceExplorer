@@ -1,9 +1,25 @@
 HyperspaceExplorer Changelog
 =============================
 
+release 0.6.2:
+    * Separated a lot of code out of C4DView into the interface View and the
+      class ViewImpl. Cleaned up dependencies of Menu4D and MouseHandler on
+      C4DView.
+    * Renamed many of the member variebles so that they begin with a "_".
+      This is the new naming convention for members, which will eventually be
+      implemented throughout the whole code.
+    * Added the project Balls (https://sourceforge.net/projects/bounce-balls/)
+      into the codebase. Haven't connected it to Hyperspace Explorer yet.
+    * Added the testing code for LSystems into the codebase. Not doing anything
+      with it yet either.
+    * Created a subsystem to generate n-dimensional Rotopes
+      (http://teamikaria.com/wiki/Rotope). Practically, this only creates a
+      tesseract right now.
+    * Added a lot of doxygen documentation.
+
 release 0.6.1:
     * updated the documentation (online help)
-    * fixed bug in qmakefile that prevented the documentation from being 
+    * fixed bug in qmakefile that prevented the documentation from being
       installed correctly
 
 release 0.6.0:
