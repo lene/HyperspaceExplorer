@@ -102,10 +102,20 @@ function document() {
     cd ${BASEDIR}/${PROJECTDIR}
 
     wget -N -P devel ${TAGFILE}
-    find ${DOCDIR}/html  -maxdepth 1 -type f \! -type l | xargs rm
-    yes q | doxygen 2> /dev/null
-    svn up ${DOCDIR} 2>&1 | grep Restored | cut -d ' ' -f 2- | xargs svn del
-    svn st ${DOCDIR}/html | grep ^? | cut -c 2- | xargs svn add
+    find ${DOCDIR}/html  -maxdepth 1 -type f \! -type l | \
+        xargs rm
+    yes q | \
+        doxygen 2> /dev/null
+    svn up ${DOCDIR} 2>&1 | \
+        grep Restored | \
+        cut -d ' ' -f 2- | \
+        xargs svn del
+    svn st ${DOCDIR}/html | \
+        grep ^? | \
+        grep -v .map | \
+        grep -v .md5 | \
+        cut -c 2- | \
+        xargs svn add
     svn commit -m "auto-generated documentation"
     rsync -rL --delete-after --exclude=.svn ${DOCDIR}/html/ \
         ${USERNAME},${PROJECTNAME}@web.sourceforge.net:htdocs
