@@ -30,6 +30,7 @@ HEADERS += Functions/ComplexFunction.H Functions/CustomFunction.H \
            Functions/Function.H Functions/Object.H Functions/Surface.H \
            Functions/RealFunction.H  Functions/FunctionParameter.H \
            Functions/ParameterMap.H Functions/FunctionFactory.H \
+           Functions/RotopeBase.H Functions/Projector.H Functions/VertexData.H \
            Functions/Rotope.H Functions/Extrude.H Functions/Taper.H \
            Functions/Rotate.H Functions/Torate.H
 #          Functions/SteinerFunction.H
