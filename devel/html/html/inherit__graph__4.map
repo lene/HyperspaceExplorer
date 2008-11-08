@@ -1,3 +1,0 @@
-<area shape="rect" href="$classColorManager.html" title="Interface for all color managers." alt="" coords="7,31,116,57">
-<area shape="rect" href="$classmonochromeColorManager.html" title="Plots all points in white." alt="" coords="167,5,361,32">
-<area shape="rect" href="$classxyz2RGBColorManager.html" title="maps x, y, z in parameter space to R, G, B" alt="" coords="181,56,347,83">

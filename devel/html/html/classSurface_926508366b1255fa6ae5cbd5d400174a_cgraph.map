@@ -1,6 +1,0 @@
-<area shape="rect" href="$classSurface.html#4b6eecac144cb1d0650d711727ecb540" title="Surface::DrawStrip" alt="" coords="183,31,321,57">
-<area shape="rect" href="$classSurfaceBase.html#761208b17975a6c343774b5ca467ed2b" title="number of steps in t" alt="" coords="167,81,337,108">
-<area shape="rect" href="$classSurfaceBase.html#d8c79625fa46d8c5ebbda58f0dd9eb5d" title="number of steps in u" alt="" coords="387,5,563,32">
-<area shape="rect" href="$classFunction.html#07cc99ac6516462fbbce9aa5347ef975" title="Set a color and a vertex datum in OpenGL." alt="" coords="403,56,547,83">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object." alt="" coords="611,56,829,83">
-<area shape="rect" href="$classLoki_1_1SingletonHolder.html#d944c37d85028f4046d4e1f78f133710" title="create singleton object" alt="" coords="879,56,1129,83">

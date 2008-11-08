@@ -1,6 +1,0 @@
-<area shape="rect" href="$classCustomFunction.html" title="{CustomFunction\n|# f\l|+ CustomFunction()\l+ ~CustomFunction()\l}" alt="" coords="255,1936,415,2037">
-<area shape="rect" href="$classRealFunction.html" title="A RealFunction is a mathematical function &#160;." alt="" coords="5,1524,248,1884">
-<area shape="rect" href="$classRealBase.html" title="RealBase provides a base class for functions which take three parameters" alt="" coords="47,627,207,1456">
-<area shape="rect" href="$classFunction.html" title="A Function is a generalized four&#45;dimensional mathematical function." alt="" coords="5,7,248,575">
-<area shape="rect" href="$classCustomFunctionBase.html" title="{CustomFunctionBase\&lt; RealFunction::raw_function_type \&gt;\n|# func\l&#45; handle\l&#45; valid\l|+ CustomFunctionBase()\l+ ~CustomFunctionBase()\l+ symbolic()\l+ isValid()\l# loadFunction()\l# setValid()\l# setInvalid()\l}" alt="" coords="272,1593,664,1815">
-<area shape="rect" href="$classCustomFunctionBase.html" title="{CustomFunctionBase\&lt; function_type \&gt;\n|# func\l&#45; handle\l&#45; valid\l|+ CustomFunctionBase()\l+ ~CustomFunctionBase()\l+ symbolic()\l+ isValid()\l# loadFunction()\l# setValid()\l# setInvalid()\l}" alt="" coords="332,931,604,1152">

@@ -1,5 +1,0 @@
-<area shape="rect" href="$classC4DView.html#31f530de55047a78f7f29958a4ece8a9" title="OpenGL initialization for shading (gouraud or flat shading)." alt="" coords="263,31,407,57">
-<area shape="rect" href="$classC4DView_1_1Menu4D.html#1c8271d3064b6fb41f2a86934edf282a" title="Creates the application&#39;s main menu and all its submenus." alt="" coords="235,81,435,108">
-<area shape="rect" href="$classC4DView.html#3c797ad72f10f9d43d720a45cd60509a" title="Called once before the first call to paintGL() or resizeGL(), reimplemented from..." alt="" coords="485,5,637,32">
-<area shape="rect" href="$classC4DView.html#7b529adaf92650371f5b6e81dbf4792b" title="Re&#45;Implementation of UI::ViewImpl::setShading." alt="" coords="483,56,640,83">
-<area shape="rect" href="$classC4DView.html#128fc82da387471fbd9c88fe35263e8f" title="Re&#45;Implementation of UI::ViewImpl::setColors." alt="" coords="689,5,833,32">
