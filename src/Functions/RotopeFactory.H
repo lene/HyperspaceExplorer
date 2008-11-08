@@ -22,67 +22,60 @@ using std::string;
 class RotopeFactory {
     public:
     /// Generate a Rotope
-    static RotopeBase *generate(const std::string &actions) {
-        RotopeBase *tmp;
-        switch (actions.length()) {
-            case 0: case 1: case 2: case 3:
-                throw std::logic_error("RotopeFactory::generate() must be called"
-                        " with a dimension of at least 4");
-                break;
-            case 4:
-                tmp = new vertex_data<4>;
-                break;
-            case 5:
-                tmp = new vertex_data<5>;
-                break;
-            case 6:
-                tmp = new vertex_data<6>;
-                break;
-            case 7:
-                tmp = new vertex_data<7>;
-                break;
-            case 8:
-                tmp = new vertex_data<8>;
-                break;
-            case 9:
-                tmp = new vertex_data<9>;
-                break;
-            case 10:
-                tmp = new vertex_data<10>;
-                break;
-            default:
-                throw NotYetImplementedException("RotopeFactory::generate(): "
-                         "Rotopes of dimensions higher than 10 currently not "
-                         "supported");
-        }
-
-        for (unsigned i = 0; i < actions.length(); ++i) {
-            tmp = performAction(actions[i], i, tmp);
-        }
-
-        return tmp;
-    }
+    static RotopeBase *generate(const std::string &actions);
 
     private:
-        template <unsigned D> vertex_data<D> *performAction(char action,
-                unsigned d, vertex_data<D> *rotope) {
-            switch(action) {
-                case 'E': case 'e':
-                    std::cerr << "extrude\n";
-                    return new Extrude<D, d, d+1>(*rotope);
-                    break;
-                case 'T': case 't':
-                    std::cerr << "taper\n";
-                    break;
-                case 'R': case 'r':
-                    throw NotYetImplementedException("RotopeFactory::performAction()"
-                            ": Rotation operation");
-                case 'D': case 'd':
-                    throw NotYetImplementedException("RotopeFactory::performAction()"
-                            ": Displaced rotation operation");
-                default:
-                    throw std::logic_error(string("RotopeFactory::performAction(): "
-                            "Unsupported action \"")+action+string("\""));
-            }
-        }
+
+        template <unsigned D, unsigned d> class RotopeAction:
+        public RotopeAction<D, d-1> {
+            public:
+                vertex_data<D> *operator()(std::string actions,
+                                           vertex_data<D> *rotope) {
+                if (d >= D) {
+                    throw std::logic_error("RotopeFactory::performAction() called "
+                            "on a higher dimension than the vector space allows");
+                }
+
+                if (actions.empty()) return rotope;
+
+                char action = actions[d];
+                actions.erase(d);
+                rotope = RotopeAction<D, d-1>::operator()(actions, rotope);
+
+                switch(action) {
+                    case 'E': case 'e':
+                        return new Extrude<D, d, d>(*rotope);
+                        break;
+                    case 'T': case 't':
+                        return new Taper<D, d, d>(*rotope);
+                        break;
+                    case 'R': case 'r':
+                        return new Rotate<D, d, d>(*rotope);
+                        break;
+                    case 'D': case 'd':
+                        return new Torate<D, d, d>(*rotope);
+                        break;
+                    default:
+                        throw BadRotopeOperation(string("RotopeFactory::performAction(): "
+                                "Unsupported action \"")+action+string("\""));
+                }
+                }
+        };
+
+        template <unsigned D> class RotopeAction<D, 0> {
+            public:
+                vertex_data<D> *operator()(std::string actions,
+                                           vertex_data<D> *rotope) {
+                    switch(actions[0]) {
+                        case 'E': case 'e':
+                            return new Extrude<D, 0, 0>(*rotope);
+                            break;
+                        default:
+                            throw BadRotopeOperation("RotopeFactory::performAction()"
+                                ": First operation must be an extrusion");
+
+                    }
+                    return rotope;
+                }
+        };
 };

@@ -87,7 +87,7 @@ template <unsigned D, unsigned Dmin>
             }
     };
 
-template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
+template <unsigned D> void rotate_base<D>::rotate(unsigned) {
     throw NotYetImplementedException("rotate_base<D>::rotate()");
 }
 

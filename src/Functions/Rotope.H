@@ -4,6 +4,11 @@
 #include <Object.H>
 #include "VertexData.H"
 
+class BadRotopeOperation: public std::logic_error {
+    public:
+        BadRotopeOperation(const std::string &what): std::logic_error(what) {}
+};
+
 /// A four-dimensional <a href="http://teamikaria.com/wiki/Rotope">Rotope</a>.
 /** \ingroup RotopeGroup
  *  \author Helge Preuss <scout@hyperspace-travel.de>

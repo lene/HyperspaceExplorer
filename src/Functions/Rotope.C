@@ -31,8 +31,22 @@ Rotope::Rotope(): Object("Rotope", 0, 0), _rotope(0) {
 
 Rotope::Rotope(const std::string &actions):
         Object(QString("Rotope: ")+actions.c_str(), 0, 0), _rotope(0) {
-//    _rotope = RotopeFactory::generate(actions);
-//    setX(_rotope->vertices());
+    try {
+        _rotope = RotopeFactory::generate(actions);
+    } catch (BadRotopeOperation e) {
+        _rotope = new Extrude<DIM, 0, DIM-1>();
+        /** \todo Show the warning in a QMessageBox. Currently that does not work
+         *  because C4DView::RenderScene() is called before the object has been
+         *  fully initialized.
+         */
+        /*
+        QMessageBox::warning (NULL,
+                              QString("Rotope::Rotope(")+actions.c_str()+")",
+                                      e.what());
+        */
+        std::cerr << e.what() << std::endl;
+    }
+    setX(_rotope->vertices());
 
     Object::Initialize();
 }
@@ -63,9 +77,17 @@ void Rotope::Draw () {
     if (!_rotope) {
         throw std::logic_error("Rotope::Draw(): _rotope is NULL!");
     }
-    glBegin (GL_QUADS); {
-    for (unsigned i = 0; i < _rotope->surface().size(); i++)
-        for (unsigned j = 0; j < 4; j++) {
+
+    unsigned currentPolygonSize = 0;
+    for (unsigned i = 0; i < _rotope->surface().size(); i++) {
+        if (currentPolygonSize != _rotope->surface()[i].size()) {
+            if (currentPolygonSize) glEnd ();
+            currentPolygonSize = _rotope->surface()[i].size();
+            if (currentPolygonSize == 4) glBegin (GL_QUADS);
+            else if (currentPolygonSize == 3) glBegin (GL_TRIANGLES);
+            else throw NotYetImplementedException("Rotope::Draw(): Polygons");
+        }
+        for (unsigned j = 0; j < currentPolygonSize; j++) {
             setVertex(X[_rotope->surface()[i][j]],
                       Xscr[_rotope->surface()[i][j]]);
         }

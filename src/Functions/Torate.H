@@ -87,7 +87,7 @@ template <unsigned D, unsigned Dmin>
             }
     };
 
-template <unsigned D> void torate_base<D>::torate(unsigned d) {
+template <unsigned D> void torate_base<D>::torate(unsigned) {
     throw NotYetImplementedException("torate_base<D>::torate()");
 }
 

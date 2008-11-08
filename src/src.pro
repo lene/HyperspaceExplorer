@@ -37,7 +37,7 @@ HEADERS += Functions/ComplexFunction.H Functions/CustomFunction.H \
 SOURCES += Functions/ComplexFunction.C Functions/CustomFunction.C \
            Functions/Function.C Functions/Surface.C Functions/Object.C \
            Functions/RealFunction.C  Functions/FunctionParameter.C \
-           Functions/FunctionFactory.C Functions/Rotope.C
+           Functions/FunctionFactory.C Functions/Rotope.C Functions/RotopeFactory.C
 #          Functions/SteinerFunction.C
 
 ###
