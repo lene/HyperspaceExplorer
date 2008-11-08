@@ -166,7 +166,7 @@ template <unsigned D> bool vertex_data<D>::checkSurfaceExists(const uintvec1D &n
 template <unsigned D>
     std::vector<VecMath::Vector<4> > vertex_data<D>::vertices() {
         Projector<D, 4> p;
-        return p(X(), 2., 4.);  /// \todo This is hardcoded! Ugh!
+        return p(X(), 2., 8.);  /// \todo This is hardcoded! Ugh!
     }
 
 #endif
