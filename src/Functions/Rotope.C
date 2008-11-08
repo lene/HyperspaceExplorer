@@ -53,7 +53,9 @@ void Rotope::Initialize() {
         QString("Rotope::Rotope(")+actions.c_str()+")",
         e.what());
         */
-        std::cerr << e.what() << std::endl;
+        std::cerr << e.what() << std::endl
+                << "Rendering " << DIM << "-dimensional hypercube instead."
+                << std::endl;
     } catch (NotYetImplementedException e) {
         declareParameter("Generator", string(DIM, 'E'));
         _rotope = new Extrude<DIM, 0, DIM-1>();

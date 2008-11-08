@@ -159,7 +159,9 @@ namespace VecMath {
         Matrix<D, N> R;
         for (unsigned i = 0; i < NumAxes<D>::num; i++) {
             if (axis[i]) {
-                R *= Matrix<D, N>(RotationAxes<D>::axis(0, i), RotationAxes<D>::axis(1, i), axis[i]);
+                R *= Matrix<D, N>(RotationAxes<D>::axis(0, i),
+                                  RotationAxes<D>::axis(1, i),
+                                  axis[i]);
             }
         }
         return R;

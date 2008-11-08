@@ -39,7 +39,8 @@ template <unsigned D>
             virtual uintvec2D &surface() { return _surface; }
             /// The array of vertices, projected to four dimensions if necessary
             virtual std::vector<VecMath::Vector<4> > vertices();
-
+            void Transform(const VecMath::Rotation<D> &R,
+                           const VecMath::Vector<D> &T);
         private:
             /// \return Whether argument or permutation of it already in _surface
             bool checkSurfaceExists(const uintvec1D &);
@@ -165,8 +166,22 @@ template <unsigned D> bool vertex_data<D>::checkSurfaceExists(const uintvec1D &n
 
 template <unsigned D>
     std::vector<VecMath::Vector<4> > vertex_data<D>::vertices() {
+        Transform(VecMath::Rotation<D>(), VecMath::Vector<D>());
         Projector<D, 4> p;
         return p(X(), 2., 8.);  /// \todo This is hardcoded! Ugh!
+    }
+
+template <unsigned D>
+    void vertex_data<D>::Transform(const VecMath::Rotation<D> &R,
+                                   const VecMath::Vector<D> &T) {
+        VecMath::Matrix<D> Rot(R);
+        /*
+        std::cerr << R << "\n"
+                << Rot << "\n";
+        */
+        for(unsigned i = 0; i < _X.size(); ++i){
+            _X[i] = Rot*_X[i]+T;
+        }
     }
 
 #endif

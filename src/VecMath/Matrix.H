@@ -42,12 +42,15 @@ namespace VecMath {
 
             Matrix<D, N> operator - ();
 
-            std::string Print ();
+            std::string Print () const;
 
         private:
             /// A static two-dimensional array storing the components
             N M[D][D];
     };
+
+    template <unsigned D, typename N>
+            std::ostream &operator << (std::ostream &, const Matrix<D, N> &);
 
 
     /** default constructor: creates a unit DxD Matrix                        */
@@ -151,7 +154,7 @@ namespace VecMath {
 
 
     /** output, mainly for debugging purposes                                 */
-    template <unsigned D, typename N> std::string Matrix<D, N>::Print () {
+    template <unsigned D, typename N> std::string Matrix<D, N>::Print () const {
         std::ostringstream o;
         for (unsigned i = 0; i < D; i++) {
             o << "|";
@@ -162,6 +165,17 @@ namespace VecMath {
         o << std::ends;
         return o.str ();
     }
+    /// Matrix output operator
+    /** \ingroup VecMath
+     *  \param o ostream to push into
+     *  \param M Matrix to print
+     *  \return a new ostream to push Matrices and stuff into
+     */
+    template <unsigned D, typename N>
+        std::ostream &operator << (std::ostream &o, const Matrix<D, N> &M) {
+            o << M.Print() << std::endl;
+            return o;
+        }
 
 }       // namespace VecMath
 
