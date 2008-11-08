@@ -23,13 +23,13 @@ function edit() {
     read YES
 
     echo
-    echo 'edit version number in Doxyfile!'
+    echo "change version number in Doxyfile to ${VERSION}!"
     echo
     echo 'hit ENTER to continue'
     read YES
 
     echo
-    echo 'update VERSION in src.pro!'
+    echo "update VERSION in src.pro to ${VERSION}!"
     echo
     echo 'hit ENTER to continue'
     read YES
@@ -82,7 +82,7 @@ function upload() {
         ${USERNAME}@frs.sourceforge.net:uploads/
 
     echo
-    echo '*************************************************************************'
+    echo '*********************************************************************'
     echo
     echo 'now generate the release!'
     echo
@@ -113,8 +113,8 @@ function document() {
         xargs svn del
     svn st ${DOCDIR}/html | \
         grep ^? | \
-        grep -v .map | \
-        grep -v .md5 | \
+        grep -v \*.map | \
+        grep -v \*.md5 | \
         cut -c 2- | \
         xargs svn add
     svn commit -m "auto-generated documentation"
@@ -131,9 +131,9 @@ function branch() {
         ${SVNBASE}/tags/release-${VERSION}
 }
 
-edit
-generate
-check
-upload
-document
-branch
+edit && \
+    generate && \
+    check && \
+    upload && \
+    document && \
+    branch
