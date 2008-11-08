@@ -15,32 +15,33 @@ USERNAME="metaldog"
 set -xv
 
 # things that must be done manually
+function edit() {
+    echo
+    echo 'check release notes and changelog!'
+    echo
+    echo 'hit ENTER to continue'
+    read YES
 
-echo
-echo 'check release notes and changelog!'
-echo
-echo 'hit ENTER to continue'
-read YES
+    echo
+    echo 'edit version number in Doxyfile!'
+    echo
+    echo 'hit ENTER to continue'
+    read YES
 
-echo
-echo 'edit version number in Doxyfile!'
-echo
-echo 'hit ENTER to continue'
-read YES
+    echo
+    echo 'update VERSION in src.pro!'
+    echo
+    echo 'hit ENTER to continue'
+    read YES
 
-echo
-echo 'update VERSION in src.pro!'
-echo
-echo 'hit ENTER to continue'
-read YES
-
-echo
-echo 'make sure CONFIG is set to release (and not debug). ie.:'
-echo '    CONFIG -= debug'
-echo '    CONFIG += release qt warn_on uic'
-echo
-echo 'hit ENTER to continue'
-read YES
+    echo
+    echo 'make sure CONFIG is set to release (and not debug). ie.:'
+    echo '    CONFIG -= debug'
+    echo '    CONFIG += release qt warn_on uic'
+    echo
+    echo 'hit ENTER to continue'
+    read YES
+}
 
 # generate distribution package
 function generate() {
@@ -130,6 +131,7 @@ function branch() {
         ${SVNBASE}/tags/release-${VERSION}
 }
 
+edit
 generate
 check
 upload
