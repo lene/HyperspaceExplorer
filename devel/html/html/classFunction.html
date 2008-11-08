@@ -217,7 +217,7 @@ It also handles <a class="el" href="classFunction.html" title="A Function is a g
 abstract members: <ul>
 <li>Vector &amp;f (double, double, double); </li>
 <li>Transform (double Rxy, double Rxz, double Rxw, double Ryz, double Ryw, double Rzw, double Tx, double Ty, double Tz, double Tw) </li>
-<li><a class="el" href="classProject.html">Project</a> (double ScrW, double CamW, bool DepthCue4D) </li>
+<li>Project (double ScrW, double CamW, bool DepthCue4D) </li>
 <li>Draw () </li>
 <li>ReInit(double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv) </li>
 <li>Initialize ();</li>
@@ -234,8 +234,8 @@ other useful members: <ul>
       <span class="keyword">const</span> <span class="keywordtype">bool</span> registered = <a class="code" href="classLoki_1_1SingletonHolder.html#52a113a9dc9aa53a5ab777c573f9fa28" title="Returns a reference to singleton object.">TheFunctionFactory::Instance</a>().registerFunction(<span class="stringliteral">"Hypercube"</span>, createHypercube);
   }
 </pre></div><p>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>Vector &amp;normal (double, double, double); - or in derived classes? </dd></dl>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>operator () (double t, double u, double v) - ditto</dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000074">Todo:</a></b></dt><dd>Vector &amp;normal (double, double, double); - or in derived classes? </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000074">Todo:</a></b></dt><dd>operator () (double t, double u, double v) - ditto</dd></dl>
 <dl class="author" compact><dt><b>Author:</b></dt><dd>Helge Preuss &lt;<a href="mailto:scout@hyperspace-travel.de">scout@hyperspace-travel.de</a>&gt; </dd></dl>
 <hr><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" name="e206568fd4fd4c885e3ccff76345c4e6"></a><!-- doxytag: member="Function::Function" ref="e206568fd4fd4c885e3ccff76345c4e6" args="()" -->
@@ -432,11 +432,11 @@ Here is the call graph for this function:</div>
 <p>
 Set a color and a vertex datum in OpenGL. 
 <p>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>Make this independent from the rendering subsystem </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000076">Todo:</a></b></dt><dd>Make this independent from the rendering subsystem </dd></dl>
 
 <p>References <a class="el" href="SingletonHolder_8H-source.html#l00251">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>.</p>
 
-<p>Referenced by <a class="el" href="Rotope_8C-source.html#l00088">Rotope::Draw()</a>, <a class="el" href="Object_8C-source.html#l00110">Object::Draw()</a>, <a class="el" href="RealFunction_8C-source.html#l00255">RealFunction::DrawCube()</a>, and <a class="el" href="Surface_8C-source.html#l00222">Surface::DrawStrip()</a>.</p>
+<p>Referenced by <a class="el" href="Rotope_8C-source.html#l00090">Rotope::Draw()</a>, <a class="el" href="Object_8C-source.html#l00110">Object::Draw()</a>, <a class="el" href="RealFunction_8C-source.html#l00255">RealFunction::DrawCube()</a>, and <a class="el" href="Surface_8C-source.html#l00222">Surface::DrawStrip()</a>.</p>
 
 <p>
 <div class="dynheader">
@@ -495,21 +495,8 @@ Numerical calculation of the derivatives in t, u and v.
 <p class="formulaDsp">
 <img class="formulaDsp" alt="\[ \frac{df}{dt} = \lim_{h \rightarrow 0} \frac{f(t+h, u, v) - f(t, u, v)}{h}, \frac{df}{du},\frac{df}{dv}\mbox{analogously} \]" src="form_33.png">
 <p>
- <dl compact><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>The h value is fixed and hardcoded. better approach, please! </dd></dl>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>I don't think calling operator() is right. Call f()! </dd></dl>
-<dl compact><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>tt</em>&nbsp;</td><td>t value </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>uu</em>&nbsp;</td><td>u value </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>vv</em>&nbsp;</td><td>v value </td></tr>
-  </table>
-</dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd>gradient in t, u and v as array</dd></dl>
-<p class="formulaDsp">
-<img class="formulaDsp" alt="\[ \frac{df}{dt} = \lim_{h \rightarrow 0} \frac{f(t+h, u, v) - f(t, u, v)}{h}, \frac{df}{du},\frac{df}{dv}\mbox{analogously} \]" src="form_33.png">
-<p>
- <dl compact><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>The h value is fixed and hardcoded. better approach, please! </dd></dl>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>I don't think calling operator() is right. Call f()! </dd></dl>
+ <dl compact><dt><b><a class="el" href="todo.html#_todo000072">Todo:</a></b></dt><dd>The h value is fixed and hardcoded. better approach, please! </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000072">Todo:</a></b></dt><dd>I don't think calling operator() is right. Call f()! </dd></dl>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>tt</em>&nbsp;</td><td>t value </td></tr>
@@ -562,9 +549,7 @@ Here is the caller graph for this function:</div>
 <p>
 Return the approximate amount of memory needed to display a <a class="el" href="classFunction.html" title="A Function is a generalized four-dimensional mathematical function.">Function</a> of current definition set. 
 <p>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>uses hardcoded and experimentally found value for memory per cell </dd></dl>
-<dl class="return" compact><dt><b>Returns:</b></dt><dd>approx. mem required</dd></dl>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>uses hardcoded and experimentally found value for memory per cell </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000071">Todo:</a></b></dt><dd>uses hardcoded and experimentally found value for memory per cell </dd></dl>
 <dl class="return" compact><dt><b>Returns:</b></dt><dd>approx. mem required </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classGasket.html#e65a8be228108ab1997e0cc80504aa56">Gasket</a>, and <a class="el" href="classSurface.html#185472961fe456f587c160c2cc6e8545">Surface</a>.</p>
@@ -702,19 +687,19 @@ Here is the call graph for this function:</div>
 <p>
 list of the names of parameters to the function 
 <p>
-needed additionally to the <a class="el" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a>, because the map does not keep the parameters in the order they are declared <dl compact><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>move this functionality into <a class="el" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> </dd></dl>
+needed additionally to the <a class="el" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a>, because the map does not keep the parameters in the order they are declared <dl compact><dt><b><a class="el" href="todo.html#_todo000077">Todo:</a></b></dt><dd>move this functionality into <a class="el" href="classParameterMap.html" title="A class to store and manage FunctionParameter s.">ParameterMap</a> </dd></dl>
 
 <p>Referenced by <a class="el" href="Function_8H-source.html#l00212">declareParameter()</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
-<li>HyperspaceExplorer/src/Functions/<a class="el" href="Function_8H-source.html">Function.H</a><li>HyperspaceExplorer/src/Functions/Function.C<li>HyperspaceExplorer/src/Functions/FunctionBase.C</ul>
+<li>HyperspaceExplorer/src/Functions/<a class="el" href="Function_8H-source.html">Function.H</a><li>HyperspaceExplorer/src/Functions/Function.C</ul>
 </div>
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Sat Nov 8 04:11:14 2008 for HyperspaceExplorer 0.6.2
+                Generated on Sat Nov 8 14:17:43 2008 for HyperspaceExplorer 0.6.2
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.6
                 &nbsp;-&nbsp;

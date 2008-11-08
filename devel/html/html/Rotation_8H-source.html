@@ -162,14 +162,16 @@
 <a name="l00194"></a>00194         <span class="keywordflow">return</span> in;
 <a name="l00195"></a>00195     }
 <a name="l00196"></a>00196 
-<a name="l00197"></a>00197 }
-<a name="l00198"></a>00198 
-<a name="l00199"></a>00199 <span class="preprocessor">#endif</span>
+<a name="l00197"></a>00197     <span class="keyword">template</span> &lt;&gt; Rotation&lt;4&gt;::operator Matrix&lt;4&gt;() <span class="keyword">const</span>;
+<a name="l00198"></a>00198     <span class="keyword">template</span> &lt;&gt; Rotation&lt;3&gt;::operator Matrix&lt;3&gt;() <span class="keyword">const</span>;
+<a name="l00199"></a>00199 }
+<a name="l00200"></a>00200 
+<a name="l00201"></a>00201 <span class="preprocessor">#endif</span>
 </pre></div></div>
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Sat Nov 8 04:10:36 2008 for HyperspaceExplorer 0.6.2
+                Generated on Sat Nov 8 14:17:23 2008 for HyperspaceExplorer 0.6.2
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.6
                 &nbsp;-&nbsp;

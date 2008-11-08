@@ -519,7 +519,7 @@ Here is the call graph for this function:</div>
 <p>
 Re-Implementation of <a class="el" href="classUI_1_1ViewImpl.html#a1fe537123240981f3745bade5bc336c" title="Turn lighting on or off.">UI::ViewImpl::setLighting</a>. 
 <p>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000070">Todo:</a></b></dt><dd>Decide whether to turn lighting off completely, if lighting is deselected, or whether to use flat, all-ambient, lighting. Another possibility would be to make a three-way switch between full lighting, flat lighting and no lighting at all. </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000131">Todo:</a></b></dt><dd>Decide whether to turn lighting off completely, if lighting is deselected, or whether to use flat, all-ambient, lighting. Another possibility would be to make a three-way switch between full lighting, flat lighting and no lighting at all. </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classUI_1_1ViewImpl.html#a1fe537123240981f3745bade5bc336c">UI::ViewImpl</a>.</p>
 
@@ -767,7 +767,7 @@ Here is the caller graph for this function:</div>
 <p>
 Draw the projection into an OpenGL display list, but not yet on screen. 
 <p>
-Separated from the 3D OpenGL handling into this function <dl compact><dt><b><a class="el" href="todo.html#_todo000071">Todo:</a></b></dt><dd>either <a class="el" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen.">PreRedraw()</a> or Draw() should call <a class="el" href="classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */">DrawCoordinates()</a>, but not both </dd></dl>
+Separated from the 3D OpenGL handling into this function <dl compact><dt><b><a class="el" href="todo.html#_todo000132">Todo:</a></b></dt><dd>either <a class="el" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen.">PreRedraw()</a> or Draw() should call <a class="el" href="classC4DView.html#37a8191d956104629a6182ba86755cd1" title="draw the coordinate cross (on screen or int GL list) */">DrawCoordinates()</a>, but not both </dd></dl>
 
 <p>References <a class="el" href="4DView_8H-source.html#l00281">CoordinateCross()</a>, <a class="el" href="4DView_8C-source.html#l00477">DrawCoordinates()</a>, <a class="el" href="ViewImpl_8H-source.html#l00040">UI::ViewImpl::F()</a>, <a class="el" href="ViewImpl_8H-source.html#l00084">UI::ViewImpl::getCoordinates()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00251">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8H-source.html#l00277">ObjectList()</a>, <a class="el" href="4DView_8C-source.html#l00352">Project()</a>, <a class="el" href="4DView_8H-source.html#l00279">setCoordinateCross()</a>, and <a class="el" href="4DView_8H-source.html#l00275">setObjectList()</a>.</p>
 
@@ -1036,8 +1036,8 @@ Here is the caller graph for this function:</div>
 <p>
 Starts a random animation. 
 <p>
-xw/yw/zw rotation speed changes every 10 seconds <dl compact><dt><b><a class="el" href="todo.html#_todo000073">Todo:</a></b></dt><dd>make hardcoded duration of rotation change frequency adjustable </dd></dl>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000073">Todo:</a></b></dt><dd>a menu entry for this </dd></dl>
+xw/yw/zw rotation speed changes every 10 seconds <dl compact><dt><b><a class="el" href="todo.html#_todo000134">Todo:</a></b></dt><dd>make hardcoded duration of rotation change frequency adjustable </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000134">Todo:</a></b></dt><dd>a menu entry for this </dd></dl>
 
 <p>References <a class="el" href="4DView_8H-source.html#l00299">AnimateRandomTimer()</a>, <a class="el" href="4DView_8H-source.html#l00295">AnimationTimer()</a>, <a class="el" href="ViewImpl_8H-source.html#l00048">UI::ViewImpl::setdR()</a>, and <a class="el" href="4DView_8C-source.html#l00502">StartAnimation()</a>.</p>
 
@@ -1500,8 +1500,8 @@ Here is the call graph for this function:</div>
 <p>
 Called once before the first call to paintGL() or <a class="el" href="classC4DView.html#ac3d22c30bf8b042077fb31fec2c367b" title="GL stuff needed in addition to resizeEvent(). Reimplemented from QGLWidget.">resizeGL()</a>, reimplemented from QGLWidget. 
 <p>
-Now this is not as boring as it seems, because further work has to be done here: Set up lights, shading, depth cue and transparence, wireframe mode, background, and position the object wrt the camera. <dl compact><dt><b><a class="el" href="todo.html#_todo000075">Todo:</a></b></dt><dd>trying to check for rendering to file, but this doesn't work yet. </dd></dl>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000075">Todo:</a></b></dt><dd>clean up, check what is really needed - in particular it calls <a class="el" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen.">PreRedraw()</a> twice, once via <a class="el" href="classC4DView.html#b9561bdd967e89d314f7eda6de32b2bc" title="Wrapper for displaying OpenGL display lists.">RenderScene()</a> </dd></dl>
+Now this is not as boring as it seems, because further work has to be done here: Set up lights, shading, depth cue and transparence, wireframe mode, background, and position the object wrt the camera. <dl compact><dt><b><a class="el" href="todo.html#_todo000136">Todo:</a></b></dt><dd>trying to check for rendering to file, but this doesn't work yet. </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000136">Todo:</a></b></dt><dd>clean up, check what is really needed - in particular it calls <a class="el" href="classC4DView.html#638fd2fe648c1fcd8f9a3ac03ac8f6b4" title="Draw the projection into an OpenGL display list, but not yet on screen.">PreRedraw()</a> twice, once via <a class="el" href="classC4DView.html#b9561bdd967e89d314f7eda6de32b2bc" title="Wrapper for displaying OpenGL display lists.">RenderScene()</a> </dd></dl>
 
 <p>References <a class="el" href="ViewImpl_8H-source.html#l00109">UI::ViewImpl::getSolid()</a>, <a class="el" href="ViewImpl_8H-source.html#l00127">UI::ViewImpl::getWriteImages()</a>, <a class="el" href="4DView_8C-source.html#l00814">InitFog()</a>, <a class="el" href="4DView_8C-source.html#l00786">InitLight()</a>, <a class="el" href="4DView_8C-source.html#l00808">InitShade()</a>, <a class="el" href="4DView_8C-source.html#l00825">InitTransparence()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00251">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8H-source.html#l00242">m_rot()</a>, <a class="el" href="4DView_8H-source.html#l00255">m_trans()</a>, <a class="el" href="4DView_8C-source.html#l00369">PreRedraw()</a>, <a class="el" href="4DView_8C-source.html#l00397">RenderScene()</a>, and <a class="el" href="ViewImpl_8C-source.html#l00062">UI::ViewImpl::setDefaultBackground()</a>.</p>
 
@@ -1555,7 +1555,7 @@ Here is the caller graph for this function:</div>
 <p>
 GL stuff needed in addition to <a class="el" href="classC4DView.html#5f79a84b79c832319a46af95192ad180" title="Resizing routine, reimplemented from QGLWidget.">resizeEvent()</a>. Reimplemented from QGLWidget. 
 <p>
-change of viewing distance is handled here too, which is not so clean programming style... <dl compact><dt><b><a class="el" href="todo.html#_todo000077">Todo:</a></b></dt><dd>eliminate hardcoded constants </dd></dl>
+change of viewing distance is handled here too, which is not so clean programming style... <dl compact><dt><b><a class="el" href="todo.html#_todo000138">Todo:</a></b></dt><dd>eliminate hardcoded constants </dd></dl>
 
 <p>References <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#3ca7b454f96f5beb614a0c05d4cf98d2">atan()</a>, <a class="el" href="ViewImpl_8H-source.html#l00162">UI::ViewImpl::distance()</a>, <a class="elRef" doxygen="libstdc++.tag:" href="a01815.html#42fec2f6c6429a447bea8a40720a143a">fabs()</a>, <a class="el" href="ViewImpl_8H-source.html#l00089">UI::ViewImpl::getFog()</a>, <a class="el" href="SingletonHolder_8H-source.html#l00251">Loki::SingletonHolder&lt; T, CreationPolicy &gt;::Instance()</a>, <a class="el" href="4DView_8H-source.html#l00255">m_trans()</a>, <a class="el" href="4DView_8C-source.html#l00451">SetupDepthCue()</a>, and <a class="el" href="4DView_8C-source.html#l00656">Size()</a>.</p>
 
@@ -2049,7 +2049,7 @@ Here is the caller graph for this function:</div>
 <p>
 Adjust parameters for depth cue. 
 <p>
-<dl compact><dt><b><a class="el" href="todo.html#_todo000072">Todo:</a></b></dt><dd>fill in the meaning of the parameters </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000133">Todo:</a></b></dt><dd>fill in the meaning of the parameters </dd></dl>
 <dl compact><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>dist</em>&nbsp;</td><td></td></tr>
@@ -2076,7 +2076,7 @@ Here is the call graph for this function:</div>
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Sat Nov 8 04:10:51 2008 for HyperspaceExplorer 0.6.2
+                Generated on Sat Nov 8 14:17:33 2008 for HyperspaceExplorer 0.6.2
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.6
                 &nbsp;-&nbsp;

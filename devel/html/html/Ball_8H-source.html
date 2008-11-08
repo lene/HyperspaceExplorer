@@ -44,140 +44,142 @@
 <a name="l00011"></a>00011 <span class="keywordtype">void</span> glMaterial (GLfloat r,GLfloat g,GLfloat b, GLfloat a = 1.0);
 <a name="l00012"></a>00012 GLint MakeStone (<span class="keywordtype">unsigned</span> segments = 10, <span class="keywordtype">bool</span> fill = <span class="keyword">true</span>, <span class="keywordtype">double</span> radius = 1.);
 <a name="l00013"></a>00013 
-<a name="l00014"></a>00014 <span class="keyword">class </span>BallBase {
-<a name="l00015"></a>00015 <span class="keyword">public</span>:
-<a name="l00016"></a>00016   BallBase ();
-<a name="l00017"></a>00017 
-<a name="l00018"></a>00018   <span class="keyword">static</span> <span class="keywordtype">void</span> setRandomSize (<span class="keywordtype">bool</span> r) { randomSize = r; }
-<a name="l00019"></a>00019   <span class="keyword">static</span> <span class="keywordtype">bool</span> getRandomSize () { <span class="keywordflow">return</span> randomSize; }
-<a name="l00020"></a>00020   <span class="keyword">static</span> <span class="keywordtype">void</span> setRMax (<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;r) { rmax = r; }
-<a name="l00021"></a>00021   <span class="keyword">static</span> <span class="keywordtype">double</span> getRMax () { <span class="keywordflow">return</span> rmax; }
-<a name="l00022"></a>00022 
-<a name="l00023"></a>00023   <span class="keyword">static</span> <span class="keywordtype">void</span> setNumSegments (<span class="keywordtype">unsigned</span> n) { numSegments = n; }
-<a name="l00024"></a>00024   
-<a name="l00025"></a>00025 <span class="keyword">protected</span>:
-<a name="l00026"></a>00026   <span class="keywordtype">double</span> r, m;
+<a name="l00015"></a><a class="code" href="classBallBase.html">00015</a> <span class="keyword">class </span><a class="code" href="classBallBase.html" title="Base class for the bouncing spheres template.">BallBase</a> {
+<a name="l00016"></a>00016 <span class="keyword">public</span>:
+<a name="l00017"></a>00017   <a class="code" href="classBallBase.html" title="Base class for the bouncing spheres template.">BallBase</a> ();
+<a name="l00018"></a>00018 
+<a name="l00020"></a><a class="code" href="classBallBase.html#8b785e66e50b303b44b4c832224218c6">00020</a>   <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classBallBase.html#8b785e66e50b303b44b4c832224218c6">setRandomSize</a> (<span class="keywordtype">bool</span> <a class="code" href="classBallBase.html#743668d2abdd4c9e9e90712a89ec026e">r</a>) { <a class="code" href="classBallBase.html#f135fca39c02f92b075ac95d7831af5b">randomSize</a> = r; }
+<a name="l00022"></a><a class="code" href="classBallBase.html#904c4e411f5b22d3f0b57d8eea3f0dd7">00022</a>   <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="classBallBase.html#904c4e411f5b22d3f0b57d8eea3f0dd7">getRandomSize</a> () { <span class="keywordflow">return</span> <a class="code" href="classBallBase.html#f135fca39c02f92b075ac95d7831af5b">randomSize</a>; }
+<a name="l00024"></a><a class="code" href="classBallBase.html#964b801c98d65938753712274ab1bf54">00024</a>   <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classBallBase.html#964b801c98d65938753712274ab1bf54">setRMax</a> (<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;<a class="code" href="classBallBase.html#743668d2abdd4c9e9e90712a89ec026e">r</a>) { <a class="code" href="classBallBase.html#3ecbfcce6f5612c6436f44b3b798ac79">rmax</a> = r; }
+<a name="l00026"></a><a class="code" href="classBallBase.html#eb1098fd760b1a6157e3c26df656c2f6">00026</a>   <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code" href="classBallBase.html#eb1098fd760b1a6157e3c26df656c2f6">getRMax</a> () { <span class="keywordflow">return</span> <a class="code" href="classBallBase.html#3ecbfcce6f5612c6436f44b3b798ac79">rmax</a>; }
 <a name="l00027"></a>00027 
-<a name="l00028"></a>00028   <span class="keyword">static</span> <span class="keywordtype">bool</span> randomSize;
-<a name="l00029"></a>00029   <span class="keyword">static</span> <span class="keywordtype">double</span> rmax;
-<a name="l00030"></a>00030   <span class="keyword">static</span> <span class="keywordtype">unsigned</span> numSegments;
-<a name="l00031"></a>00031 
-<a name="l00032"></a>00032   <span class="keyword">static</span> GLint ball;
-<a name="l00033"></a>00033 
-<a name="l00034"></a>00034   <span class="keyword">friend</span> <span class="keyword">class </span>BoxBase;
-<a name="l00035"></a>00035   <span class="comment">//  friend bool touch(Ball &amp;, Ball &amp;, double = 0.);</span>
-<a name="l00036"></a>00036   <span class="comment">//  friend bool touch(const Ball &amp;, const Ball &amp;, double = 0.);</span>
-<a name="l00037"></a>00037 };
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039 <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt; <span class="keyword">class </span>Box;
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041 <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt; <span class="keyword">class </span>Ball: <span class="keyword">public</span> BallBase {
-<a name="l00042"></a>00042 <span class="keyword">public</span>:
-<a name="l00043"></a>00043   Ball ();
-<a name="l00044"></a>00044   <span class="keywordtype">void</span> draw ();
-<a name="l00045"></a>00045   <span class="keywordtype">void</span> step (<span class="keywordtype">double</span> dt);
-<a name="l00046"></a>00046   
-<a name="l00047"></a>00047 <span class="keyword">protected</span>:
-<a name="l00048"></a>00048   <span class="keywordtype">void</span> DrawBall (<span class="keyword">const</span> Vec&lt;D&gt; &amp;center, <span class="keywordtype">double</span> r, 
-<a name="l00049"></a>00049          <span class="keyword">const</span> Vec&lt;4&gt; &amp;rgba);
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051   Vec&lt;D&gt; x, v; <span class="comment">// , phi, omega;</span>
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053   <span class="keyword">friend</span> <span class="keyword">class </span>Box&lt;D&gt;;
-<a name="l00054"></a>00054   <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> d&gt; <span class="keyword">friend</span> <span class="keywordtype">bool</span> touch(<span class="keyword">const</span> Ball&lt;d&gt; &amp;, <span class="keyword">const</span> Ball&lt;d&gt; &amp;, <span class="keywordtype">double</span> = 0.);
-<a name="l00055"></a>00055 };
-<a name="l00056"></a>00056 
-<a name="l00057"></a>00057 
-<a name="l00058"></a>00058 <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt;
-<a name="l00059"></a>00059 <span class="keywordtype">bool</span> touch(<span class="keyword">const</span> Ball&lt;D&gt; &amp;ball1, <span class="keyword">const</span> Ball&lt;D&gt; &amp;ball2, <span class="keywordtype">double</span> dist=0.) {
-<a name="l00060"></a>00060   Vec&lt;D&gt; X = ball1.x;           <span class="comment">//  deviation to avoid bickering about 'discarding const qualifiers'</span>
-<a name="l00061"></a>00061   X -= ball2.x;
-<a name="l00062"></a>00062   <span class="keywordflow">return</span> (X.norm () &lt;= ball1.r+ball2.r+dist);
-<a name="l00063"></a>00063 }
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065 
-<a name="l00066"></a>00066 <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt;
-<a name="l00067"></a>00067   <span class="keywordtype">void</span> Ball&lt;D&gt;::DrawBall (<span class="keyword">const</span> Vec&lt;D&gt; &amp;center, <span class="keywordtype">double</span> r, 
-<a name="l00068"></a>00068               <span class="keyword">const</span> Vec&lt;4&gt; &amp;rgba) {
-<a name="l00069"></a>00069   glPushMatrix();
-<a name="l00070"></a>00070   glTranslatef( center[0], center[1], center[2] );
-<a name="l00071"></a>00071   glScalef( r,r,r );
-<a name="l00072"></a>00072   glMaterial( rgba[0], rgba[1], rgba[2], rgba[3]);
-<a name="l00073"></a>00073   <span class="comment">//  i have NO idea why, but the line 'if (ball == 0) ball = MakeStone ();'</span>
-<a name="l00074"></a>00074   <span class="comment">//  in the c'tor is NOT executed. so i have to do it again here. not pretty,</span>
-<a name="l00075"></a>00075   <span class="comment">//  but effective. when i understand the behavior, i will change it. </span>
-<a name="l00076"></a>00076   <span class="keywordflow">if</span> (ball == 0) ball = MakeStone (numSegments);
-<a name="l00077"></a>00077   glCallList (ball);
-<a name="l00078"></a>00078   glPopMatrix();
-<a name="l00079"></a>00079 }
-<a name="l00080"></a>00080 
-<a name="l00081"></a>00081 
-<a name="l00082"></a>00082 <span class="keywordtype">void</span> DefineHypercube ();
-<a name="l00083"></a>00083 
+<a name="l00029"></a><a class="code" href="classBallBase.html#c2804f348ad9db0d1cc942043c8076e1">00029</a>   <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classBallBase.html#c2804f348ad9db0d1cc942043c8076e1">setNumSegments</a> (<span class="keywordtype">unsigned</span> n) { <a class="code" href="classBallBase.html#d48792979cd68fdb66d70dec8d269cac">numSegments</a> = n; }
+<a name="l00030"></a>00030 
+<a name="l00031"></a>00031 <span class="keyword">protected</span>:
+<a name="l00033"></a><a class="code" href="classBallBase.html#743668d2abdd4c9e9e90712a89ec026e">00033</a>     <span class="keywordtype">double</span> <a class="code" href="classBallBase.html#743668d2abdd4c9e9e90712a89ec026e">r</a>;
+<a name="l00035"></a><a class="code" href="classBallBase.html#49325b1f69afd0bb7413e3a0f97df334">00035</a>     <span class="keywordtype">double</span> <a class="code" href="classBallBase.html#49325b1f69afd0bb7413e3a0f97df334">m</a>;
+<a name="l00036"></a>00036 
+<a name="l00038"></a><a class="code" href="classBallBase.html#f135fca39c02f92b075ac95d7831af5b">00038</a>     <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="classBallBase.html#f135fca39c02f92b075ac95d7831af5b">randomSize</a>;
+<a name="l00040"></a><a class="code" href="classBallBase.html#3ecbfcce6f5612c6436f44b3b798ac79">00040</a>     <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code" href="classBallBase.html#3ecbfcce6f5612c6436f44b3b798ac79">rmax</a>;
+<a name="l00042"></a><a class="code" href="classBallBase.html#d48792979cd68fdb66d70dec8d269cac">00042</a>     <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <a class="code" href="classBallBase.html#d48792979cd68fdb66d70dec8d269cac">numSegments</a>;
+<a name="l00043"></a>00043 
+<a name="l00045"></a><a class="code" href="classBallBase.html#d01a718f3ebfd1766a78a49bc6d597b4">00045</a>     <span class="keyword">static</span> GLint <a class="code" href="classBallBase.html#d01a718f3ebfd1766a78a49bc6d597b4">ball</a>;
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047   <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classBoxBase.html" title="Base class and interface for a Box of any dimension.">BoxBase</a>;
+<a name="l00048"></a>00048   <span class="comment">//  friend bool touch(Ball &amp;, Ball &amp;, double = 0.);</span>
+<a name="l00049"></a>00049   <span class="comment">//  friend bool touch(const Ball &amp;, const Ball &amp;, double = 0.);</span>
+<a name="l00050"></a>00050 };
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052 <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt; <span class="keyword">class </span><a class="code" href="classBox.html" title="Hypercube of dimension D, which contains a number of Balls.">Box</a>;
+<a name="l00053"></a>00053 
+<a name="l00055"></a><a class="code" href="classBall.html">00055</a> <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt; <span class="keyword">class </span><a class="code" href="classBall.html" title="Bouncing spheres template.">Ball</a>: <span class="keyword">public</span> <a class="code" href="classBallBase.html" title="Base class for the bouncing spheres template.">BallBase</a> {
+<a name="l00056"></a>00056 <span class="keyword">public</span>:
+<a name="l00057"></a>00057   <a class="code" href="classBall.html" title="Bouncing spheres template.">Ball</a> ();
+<a name="l00059"></a>00059   <span class="keywordtype">void</span> <a class="code" href="classBall.html#0baa1c3449d9bb65956bb2c1b1ade122">draw</a> ();
+<a name="l00061"></a>00061   <span class="keywordtype">void</span> <a class="code" href="classBall.html#696b4c74e7866eebda3d8070bd288f67">step</a> (<span class="keywordtype">double</span> dt);
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063 <span class="keyword">protected</span>:
+<a name="l00065"></a>00065   <span class="keywordtype">void</span> <a class="code" href="classBall.html#ed13dc4856a9e8926c48a8c37ac55b56">DrawBall</a> (<span class="keyword">const</span> Vec&lt;D&gt; &amp;center, <span class="keywordtype">double</span> <a class="code" href="classBallBase.html#743668d2abdd4c9e9e90712a89ec026e">r</a>,
+<a name="l00066"></a>00066          <span class="keyword">const</span> Vec&lt;4&gt; &amp;rgba);
+<a name="l00067"></a>00067 
+<a name="l00069"></a><a class="code" href="classBall.html#f9d6d4df30d62f9456a740c25782a212">00069</a>   Vec&lt;D&gt; <a class="code" href="classBall.html#f9d6d4df30d62f9456a740c25782a212">x</a>;
+<a name="l00071"></a><a class="code" href="classBall.html#488b144e759823c2910c144f0c54dab5">00071</a>   Vec&lt;D&gt; <a class="code" href="classBall.html#488b144e759823c2910c144f0c54dab5">v</a>; <span class="comment">// , phi, omega;</span>
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073   <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classBox.html" title="Hypercube of dimension D, which contains a number of Balls.">Box</a>&lt;D&gt;;
+<a name="l00074"></a>00074   <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> d&gt; <span class="keyword">friend</span> <span class="keywordtype">bool</span> touch(<span class="keyword">const</span> <a class="code" href="classBall.html" title="Bouncing spheres template.">Ball&lt;d&gt;</a> &amp;, <span class="keyword">const</span> <a class="code" href="classBall.html" title="Bouncing spheres template.">Ball&lt;d&gt;</a> &amp;, <span class="keywordtype">double</span> = 0.);
+<a name="l00075"></a>00075 };
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078 <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt;
+<a name="l00079"></a>00079 <span class="keywordtype">bool</span> touch(<span class="keyword">const</span> <a class="code" href="classBall.html" title="Bouncing spheres template.">Ball&lt;D&gt;</a> &amp;ball1, <span class="keyword">const</span> <a class="code" href="classBall.html" title="Bouncing spheres template.">Ball&lt;D&gt;</a> &amp;ball2, <span class="keywordtype">double</span> dist=0.) {
+<a name="l00080"></a>00080   Vec&lt;D&gt; X = ball1.<a class="code" href="classBall.html#f9d6d4df30d62f9456a740c25782a212">x</a>;           <span class="comment">//  deviation to avoid bickering about 'discarding const qualifiers'</span>
+<a name="l00081"></a>00081   X -= ball2.<a class="code" href="classBall.html#f9d6d4df30d62f9456a740c25782a212">x</a>;
+<a name="l00082"></a>00082   <span class="keywordflow">return</span> (X.norm () &lt;= ball1.<a class="code" href="classBallBase.html#743668d2abdd4c9e9e90712a89ec026e">r</a>+ball2.<a class="code" href="classBallBase.html#743668d2abdd4c9e9e90712a89ec026e">r</a>+dist);
+<a name="l00083"></a>00083 }
 <a name="l00084"></a>00084 
-<a name="l00085"></a>00085 <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt;
-<a name="l00086"></a>00086   <span class="keywordtype">void</span> Line (<span class="keyword">const</span> Vec&lt;D&gt; &amp;x0, 
-<a name="l00087"></a>00087        <span class="keyword">const</span> Vec&lt;D&gt; &amp;x1) {
-<a name="l00088"></a>00088     glBegin( GL_LINES );
-<a name="l00089"></a>00089       glVertex3f(x0[0],x0[1],x0[2]);
-<a name="l00090"></a>00090       glVertex3f(x1[0],x1[1],x1[2]);
-<a name="l00091"></a>00091     glEnd();
-<a name="l00092"></a>00092   }
-<a name="l00093"></a>00093 
-<a name="l00094"></a>00094 <span class="comment">//  DrawHypercube (Dimension, vertices[])</span>
-<a name="l00095"></a>00095 <span class="comment">//  draws a hypercube with given vertices on the grounds that any hypercube</span>
-<a name="l00096"></a>00096 <span class="comment">//  is a cube stretched in an additional dimension; a cube is a square pulled</span>
-<a name="l00097"></a>00097 <span class="comment">//  apart, a hypercube a cube pulled apart and so on.</span>
-<a name="l00098"></a>00098 <span class="comment">//  DrawHypercube draws the (two) cubes a dimension lower (recursively calling</span>
-<a name="l00099"></a>00099 <span class="comment">//  itself), and then finishes with drawing the connecting lines which resulted</span>
-<a name="l00100"></a>00100 <span class="comment">//  in pulling the cubes apart along the new dimension.</span>
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086 <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt;
+<a name="l00087"></a><a class="code" href="classBall.html#ed13dc4856a9e8926c48a8c37ac55b56">00087</a>   <span class="keywordtype">void</span> <a class="code" href="classBall.html#ed13dc4856a9e8926c48a8c37ac55b56">Ball&lt;D&gt;::DrawBall</a> (<span class="keyword">const</span> Vec&lt;D&gt; &amp;center, <span class="keywordtype">double</span> r,
+<a name="l00088"></a>00088               <span class="keyword">const</span> Vec&lt;4&gt; &amp;rgba) {
+<a name="l00089"></a>00089   glPushMatrix();
+<a name="l00090"></a>00090   glTranslatef( center[0], center[1], center[2] );
+<a name="l00091"></a>00091   glScalef( r,r,r );
+<a name="l00092"></a>00092   glMaterial( rgba[0], rgba[1], rgba[2], rgba[3]);
+<a name="l00093"></a>00093   <span class="comment">//  i have NO idea why, but the line 'if (ball == 0) ball = MakeStone ();'</span>
+<a name="l00094"></a>00094   <span class="comment">//  in the c'tor is NOT executed. so i have to do it again here. not pretty,</span>
+<a name="l00095"></a>00095   <span class="comment">//  but effective. when i understand the behavior, i will change it.</span>
+<a name="l00096"></a>00096   <span class="keywordflow">if</span> (<a class="code" href="classBallBase.html#d01a718f3ebfd1766a78a49bc6d597b4">ball</a> == 0) <a class="code" href="classBallBase.html#d01a718f3ebfd1766a78a49bc6d597b4">ball</a> = MakeStone (<a class="code" href="classBallBase.html#d48792979cd68fdb66d70dec8d269cac">numSegments</a>);
+<a name="l00097"></a>00097   glCallList (<a class="code" href="classBallBase.html#d01a718f3ebfd1766a78a49bc6d597b4">ball</a>);
+<a name="l00098"></a>00098   glPopMatrix();
+<a name="l00099"></a>00099 }
+<a name="l00100"></a>00100 
 <a name="l00101"></a>00101 
-<a name="l00102"></a>00102 <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt;
-<a name="l00103"></a>00103   <span class="keywordtype">void</span> DrawHypercube (<span class="keywordtype">int</span> d, Vec&lt;D&gt; x[]) {
-<a name="l00104"></a>00104     <span class="keywordflow">if</span> (d &gt; 1) {
-<a name="l00105"></a>00105       <span class="keywordtype">unsigned</span> subhypercubesize = 1&lt;&lt;(d-1);
-<a name="l00106"></a>00106       DrawHypercube (d-1, x);
-<a name="l00107"></a>00107       DrawHypercube (d-1, x+subhypercubesize);
-<a name="l00108"></a>00108 
-<a name="l00109"></a>00109       <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; subhypercubesize; i++)
-<a name="l00110"></a>00110     Line (x[i], x[i+subhypercubesize]);
-<a name="l00111"></a>00111     }
-<a name="l00112"></a>00112     <span class="keywordflow">else</span> Line (x[0],x[1]);
-<a name="l00113"></a>00113   }
-<a name="l00114"></a>00114 
-<a name="l00115"></a>00115 
-<a name="l00116"></a>00116 <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt; Ball&lt;D&gt;::Ball ():
-<a name="l00117"></a>00117   BallBase (), x (), v () {
-<a name="l00118"></a>00118   <span class="keywordflow">if</span> (ball == 0) ball = MakeStone ();
-<a name="l00119"></a>00119   <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; D; i++) {
-<a name="l00120"></a>00120     x[i] = 2.*rnd ()-1.; v[i] = rnd ()-.5; 
-<a name="l00121"></a>00121   }
-<a name="l00122"></a>00122 }
-<a name="l00123"></a>00123 
-<a name="l00124"></a>00124 <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt; <span class="keywordtype">void</span> Ball&lt;D&gt;::step (<span class="keywordtype">double</span> dt) { x += v*dt; }
-<a name="l00125"></a>00125 
-<a name="l00126"></a>00126 <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt; <span class="keywordtype">void</span> Ball&lt;D&gt;::draw () {
-<a name="l00127"></a>00127   <span class="keyword">static</span> Vec&lt;4&gt; color (1., 0.5, 0.1, 1.0);
-<a name="l00128"></a>00128   <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01839.html#g67083dac9c65bbddc8ae5c950ff1c4eb">distance</a> = 0.;
-<a name="l00129"></a>00129 
-<a name="l00130"></a>00130   <span class="keywordflow">if</span> (D &gt; 3) {
-<a name="l00131"></a>00131     Vec&lt;D&gt; xproj;
-<a name="l00132"></a>00132     <span class="keywordtype">double</span> projf;
-<a name="l00133"></a>00133     Box&lt;D&gt;::project (D, x, 1., xproj, projf);
-<a name="l00134"></a>00134     DrawBall (xproj, r*projf, color*projf);
-<a name="l00135"></a>00135   }
-<a name="l00136"></a>00136   <span class="keywordflow">else</span> {
-<a name="l00137"></a>00137     <span class="keyword">const</span> <span class="keywordtype">double</span> dmax = <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#b2c9d94b4becdf532618ad9a0a54aade">sqrt</a> (<span class="keywordtype">double</span> (D));
-<a name="l00138"></a>00138     DrawBall (x, r*(dmax-distance)/dmax, color);
-<a name="l00139"></a>00139   }
-<a name="l00140"></a>00140 }
-<a name="l00141"></a>00141 
-<a name="l00142"></a>00142 <span class="preprocessor">#endif      // BALL_H</span>
+<a name="l00102"></a>00102 <span class="keywordtype">void</span> <a class="code" href="classBox.html#1dd3c5bd4be122b210b4566b77d5ebd6">DefineHypercube</a> ();
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104 
+<a name="l00105"></a>00105 <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt;
+<a name="l00106"></a>00106   <span class="keywordtype">void</span> Line (<span class="keyword">const</span> Vec&lt;D&gt; &amp;x0,
+<a name="l00107"></a>00107        <span class="keyword">const</span> Vec&lt;D&gt; &amp;x1) {
+<a name="l00108"></a>00108     glBegin( GL_LINES );
+<a name="l00109"></a>00109       glVertex3f(x0[0],x0[1],x0[2]);
+<a name="l00110"></a>00110       glVertex3f(x1[0],x1[1],x1[2]);
+<a name="l00111"></a>00111     glEnd();
+<a name="l00112"></a>00112   }
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114 <span class="comment">//  DrawHypercube (Dimension, vertices[])</span>
+<a name="l00115"></a>00115 <span class="comment">//  draws a hypercube with given vertices on the grounds that any hypercube</span>
+<a name="l00116"></a>00116 <span class="comment">//  is a cube stretched in an additional dimension; a cube is a square pulled</span>
+<a name="l00117"></a>00117 <span class="comment">//  apart, a hypercube a cube pulled apart and so on.</span>
+<a name="l00118"></a>00118 <span class="comment">//  DrawHypercube draws the (two) cubes a dimension lower (recursively calling</span>
+<a name="l00119"></a>00119 <span class="comment">//  itself), and then finishes with drawing the connecting lines which resulted</span>
+<a name="l00120"></a>00120 <span class="comment">//  in pulling the cubes apart along the new dimension.</span>
+<a name="l00121"></a>00121 
+<a name="l00122"></a>00122 <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt;
+<a name="l00123"></a>00123   <span class="keywordtype">void</span> DrawHypercube (<span class="keywordtype">int</span> d, Vec&lt;D&gt; <a class="code" href="classBall.html#f9d6d4df30d62f9456a740c25782a212">x</a>[]) {
+<a name="l00124"></a>00124     <span class="keywordflow">if</span> (d &gt; 1) {
+<a name="l00125"></a>00125       <span class="keywordtype">unsigned</span> subhypercubesize = 1&lt;&lt;(d-1);
+<a name="l00126"></a>00126       DrawHypercube (d-1, x);
+<a name="l00127"></a>00127       DrawHypercube (d-1, x+subhypercubesize);
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129       <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> i = 0; i &lt; subhypercubesize; i++)
+<a name="l00130"></a>00130     Line (x[i], x[i+subhypercubesize]);
+<a name="l00131"></a>00131     }
+<a name="l00132"></a>00132     <span class="keywordflow">else</span> Line (x[0],x[1]);
+<a name="l00133"></a>00133   }
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135 
+<a name="l00136"></a>00136 <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt; <a class="code" href="classBall.html" title="Bouncing spheres template.">Ball&lt;D&gt;::Ball</a> ():
+<a name="l00137"></a>00137   <a class="code" href="classBallBase.html" title="Base class for the bouncing spheres template.">BallBase</a> (), x (), <a class="code" href="classBall.html#488b144e759823c2910c144f0c54dab5">v</a> () {
+<a name="l00138"></a>00138   <span class="keywordflow">if</span> (<a class="code" href="classBallBase.html#d01a718f3ebfd1766a78a49bc6d597b4">ball</a> == 0) <a class="code" href="classBallBase.html#d01a718f3ebfd1766a78a49bc6d597b4">ball</a> = MakeStone ();
+<a name="l00139"></a>00139   <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; D; i++) {
+<a name="l00140"></a>00140     x[i] = 2.*rnd ()-1.; <a class="code" href="classBall.html#488b144e759823c2910c144f0c54dab5">v</a>[i] = rnd ()-.5;
+<a name="l00141"></a>00141   }
+<a name="l00142"></a>00142 }
+<a name="l00143"></a>00143 
+<a name="l00144"></a><a class="code" href="classBall.html#696b4c74e7866eebda3d8070bd288f67">00144</a> <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt; <span class="keywordtype">void</span> <a class="code" href="classBall.html#696b4c74e7866eebda3d8070bd288f67">Ball&lt;D&gt;::step</a> (<span class="keywordtype">double</span> dt) { x += <a class="code" href="classBall.html#488b144e759823c2910c144f0c54dab5">v</a>*dt; }
+<a name="l00145"></a>00145 
+<a name="l00146"></a><a class="code" href="classBall.html#0baa1c3449d9bb65956bb2c1b1ade122">00146</a> <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> D&gt; <span class="keywordtype">void</span> <a class="code" href="classBall.html#0baa1c3449d9bb65956bb2c1b1ade122">Ball&lt;D&gt;::draw</a> () {
+<a name="l00147"></a>00147   <span class="keyword">static</span> Vec&lt;4&gt; color (1., 0.5, 0.1, 1.0);
+<a name="l00148"></a>00148   <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="codeRef" doxygen="libstdc++.tag:" href="a01839.html#g67083dac9c65bbddc8ae5c950ff1c4eb">distance</a> = 0.;
+<a name="l00149"></a>00149 
+<a name="l00150"></a>00150   <span class="keywordflow">if</span> (D &gt; 3) {
+<a name="l00151"></a>00151     Vec&lt;D&gt; xproj;
+<a name="l00152"></a>00152     <span class="keywordtype">double</span> projf;
+<a name="l00153"></a>00153     <a class="code" href="classBox.html#06ba4612f475637b3c9680e432ed492d">Box&lt;D&gt;::project</a> (D, x, 1., xproj, projf);
+<a name="l00154"></a>00154     <a class="code" href="classBall.html#ed13dc4856a9e8926c48a8c37ac55b56">DrawBall</a> (xproj, <a class="code" href="classBallBase.html#743668d2abdd4c9e9e90712a89ec026e">r</a>*projf, color*projf);
+<a name="l00155"></a>00155   }
+<a name="l00156"></a>00156   <span class="keywordflow">else</span> {
+<a name="l00157"></a>00157     <span class="keyword">const</span> <span class="keywordtype">double</span> dmax = <a class="codeRef" doxygen="libstdc++.tag:" href="a01815.html#b2c9d94b4becdf532618ad9a0a54aade">sqrt</a> (<span class="keywordtype">double</span> (D));
+<a name="l00158"></a>00158     <a class="code" href="classBall.html#ed13dc4856a9e8926c48a8c37ac55b56">DrawBall</a> (x, <a class="code" href="classBallBase.html#743668d2abdd4c9e9e90712a89ec026e">r</a>*(dmax-distance)/dmax, color);
+<a name="l00159"></a>00159   }
+<a name="l00160"></a>00160 }
+<a name="l00161"></a>00161 
+<a name="l00162"></a>00162 <span class="preprocessor">#endif      // BALL_H</span>
 </pre></div></div>
         <hr size="1">
         <address style="text-align: right;">
             <small>
-                Generated on Sat Nov 8 04:10:33 2008 for HyperspaceExplorer 0.6.2
+                Generated on Sat Nov 8 14:17:16 2008 for HyperspaceExplorer 0.6.2
                 by&nbsp;<a href="http://www.doxygen.org/index.html"><img src="doxygen.png" alt="doxygen" align="middle" border="0"></a>
                 1.5.6
                 &nbsp;-&nbsp;
