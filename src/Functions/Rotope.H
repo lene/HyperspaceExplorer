@@ -8,13 +8,6 @@
  *  \ingroup ObjectGroup
  */
 
-template <bool flag, typename T, typename U> struct Select {
-    typedef T Result;
-};
-template <typename T, typename U> struct Select<false, T, U> {
-    typedef U Result;
-};
-
 /// Interface implemented by all Rotope s
 class RotopeBase {
     public:
@@ -97,7 +90,7 @@ template <unsigned D>
  */
 class Rotope : public Object {
 
-    const static unsigned DIM = 4;
+    const static unsigned DIM = 6;
 
     public:
         /// Construct a Rotope. Not yet implemented properly.
@@ -155,12 +148,25 @@ template <unsigned D> void vertex_data<D>::print() {
 
 }
 
-
+/** \todo make scrW and camW vectors for consecutive operations
+ *  \todo add possibility to transform before projecting
+ */
 template <unsigned D, unsigned D_> class Project: protected Project<D-1, D_> {
     public:
         /// Project an array of vertices of dimension \p D to dimension \p D_ < \p D
-        std::vector<VecMath::Vector<D_> > operator()(const std::vector<VecMath::Vector<D> > &x,
-                                                    double scrW, double camW) {
+        std::vector<VecMath::Vector<D_> > operator()(
+                const std::vector<VecMath::Vector<D> > &x,
+                double scrW, double camW) {
+            if (D_ > D) {
+                throw std::logic_error("Tried to project to a higher dimension");
+            }
+            if (D_ == D) {
+                throw std::logic_error("Explicit specialization should be called");
+            }
+            if (camW <= scrW) {
+                throw std::logic_error("Screen must be closer to object than eye");
+            }
+
             std::vector<VecMath::Vector<D-1> > x_proj(x.size());
 
             for (unsigned i = 0; i < x.size(); i++) {
@@ -170,23 +176,9 @@ template <unsigned D, unsigned D_> class Project: protected Project<D-1, D_> {
                     x_proj.at(i)[j] = ProjectionFactor*x[i][j];
             }
             return Project<D-1, D_>::operator()(x_proj, scrW, camW);
-
-            throw NotYetImplementedException("Project<D, D'>");
-            std::vector<VecMath::Vector<D_> > v;
-            return v;
         }
 };
 
-/*
-/// Specialization for \p D_ == \p D-1
-template <unsigned D> class Project<D, D-1> {
-    std::vector<VecMath::Vector<D-1> > operator()(
-        const std::vector<VecMath::Vector<D> > &x, double, double) {
-        std::vector<VecMath::Vector<D-1> > xx;
-        return xx;
-    }
-};
-*/
 /// Specialization for \p D_ == \p D
 template <unsigned D> class Project<D, D> {
     public:
@@ -273,7 +265,7 @@ template <unsigned D> bool vertex_data<D>::checkSurfaceExists(const uintvec1D &n
 template <unsigned D>
     std::vector<VecMath::Vector<4> > vertex_data<D>::vertices() {
         Project<D, 4> p;
-        return p(X(), 1., 1.);
+        return p(X(), 2., 4.);  /// \todo This is hardcoded! Ugh!
     }
 
 #endif
