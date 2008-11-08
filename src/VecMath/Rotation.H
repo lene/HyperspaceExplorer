@@ -187,11 +187,13 @@ namespace VecMath {
 
     /// Rotation input operator
     /** \ingroup VecMath
-     *  \param in istream to read from
+     *  \param in istringstream to read from
      *  \param v Rotation to read
-     *  \return a new istream to read stuff from                              */
+     *  \return a new istringstream to read stuff from
+     */
     template <unsigned D, typename N>
-            std::istringstream &operator >> (std::istringstream &in, Rotation<D, N> &v) {
+            std::istringstream &operator >> (std::istringstream &in,
+                                             Rotation<D, N> &v) {
         in >> v.r();
         return in;
     }

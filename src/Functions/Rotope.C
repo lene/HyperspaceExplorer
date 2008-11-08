@@ -41,6 +41,12 @@ void Rotope::Initialize() {
     try {
         _rotope = RotopeFactory::generate(_actions);
         declareParameter("Generator", _actions);
+        for(unsigned i = 5; i <= _actions.length(); ++i) {
+            string label = Globals::Instance().itoa(i)+string("D Rotation");
+            std::cerr << label << std::endl;
+            declareParameter(label,
+                             VecMath::Rotation<5>());
+        }
     } catch (BadRotopeOperation e) {
         declareParameter("Generator", string(DIM, 'E'));
         _rotope = new Extrude<DIM, 0, DIM-1>();

@@ -107,7 +107,7 @@ namespace VecMath {
         }
 
         /// Ordering needed to use Vector as key for a std::map
-        /** @return whether absolute value of this is less than the other
+        /** \return whether absolute value of this is less than the other
          *  Vector's                                                          */
         bool operator<(const Vector<D, N> &other) const {
             if (sqnorm() == other.sqnorm()) {
@@ -276,11 +276,13 @@ namespace VecMath {
 
     /// Vector input operator
     /** \ingroup VecMath
-     *  \param in istream to read from
+     *  \param in istringstream to read from
      *  \param v Vector to read
-     *  \return a new istream to read stuff from                              */
+     *  \return a new istringstream to read stuff from
+     */
     template <unsigned D, typename N>
-            std::istringstream &operator >> (std::istringstream &in, Vector<D, N> &v) {
+            std::istringstream &operator >> (std::istringstream &in,
+                                             Vector<D, N> &v) {
         char bracket;
         while (bracket != '<' && !in.eof()) { in >> bracket; }
         for (unsigned i = 0; i < v.dimension ()-1; i++) {

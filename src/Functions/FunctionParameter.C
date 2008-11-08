@@ -28,6 +28,37 @@ template<> FunctionParameterValue<int>::FunctionParameterValue(const int &_value
 template<> FunctionParameterValue<std::string>::FunctionParameterValue(const std::string &_value):
         value(_value) {}
 
+/// Specialization for type VecMath::Rotation<5>
+template<> FunctionParameterValue<VecMath::Rotation<5> >::FunctionParameterValue(
+    const VecMath::Rotation<5> &_value):
+        value(_value) {}
+
+/// Specialization for type VecMath::Rotation<6>
+template<> FunctionParameterValue<VecMath::Rotation<6> >::FunctionParameterValue(
+    const VecMath::Rotation<6> &_value):
+        value(_value) {}
+
+/// Specialization for type VecMath::Rotation<7>
+template<> FunctionParameterValue<VecMath::Rotation<7> >::FunctionParameterValue(
+    const VecMath::Rotation<7> &_value):
+        value(_value) {}
+
+/// Specialization for type VecMath::Rotation<8>
+template<> FunctionParameterValue<VecMath::Rotation<8> >::FunctionParameterValue(
+    const VecMath::Rotation<8> &_value):
+        value(_value) {}
+
+/// Specialization for type VecMath::Rotation<9>
+template<> FunctionParameterValue<VecMath::Rotation<9> >::FunctionParameterValue(
+    const VecMath::Rotation<9> &_value):
+        value(_value) {}
+
+/// Specialization for type VecMath::Rotation<10>
+template<> FunctionParameterValue<VecMath::Rotation<10> >::FunctionParameterValue(
+    const VecMath::Rotation<10> &_value):
+        value(_value) {}
+
+
 /// Specialization for type double
 template<> FunctionParameterValue<double>::operator double() {
     return (double)value;
@@ -43,6 +74,31 @@ template<> FunctionParameterValue<int>::operator int() {
 /// Specialization for type std::string
 template<> FunctionParameterValue<std::string>::operator std::string() {
     return (std::string)value;
+}
+
+/// Specialization for type VecMath::Rotation<5>
+template<> FunctionParameterValue<VecMath::Rotation<5> >::operator VecMath::Rotation<5>() {
+    return (VecMath::Rotation<5>)value;
+}
+/// Specialization for type VecMath::Rotation<6>
+template<> FunctionParameterValue<VecMath::Rotation<6> >::operator VecMath::Rotation<6>() {
+    return (VecMath::Rotation<6>)value;
+}
+/// Specialization for type VecMath::Rotation<7>
+template<> FunctionParameterValue<VecMath::Rotation<7> >::operator VecMath::Rotation<7>() {
+    return (VecMath::Rotation<7>)value;
+}
+/// Specialization for type VecMath::Rotation<8>
+template<> FunctionParameterValue<VecMath::Rotation<8> >::operator VecMath::Rotation<8>() {
+    return (VecMath::Rotation<8>)value;
+}
+/// Specialization for type VecMath::Rotation<9>
+template<> FunctionParameterValue<VecMath::Rotation<9> >::operator VecMath::Rotation<9>() {
+    return (VecMath::Rotation<9>)value;
+}
+/// Specialization for type VecMath::Rotation<10>
+template<> FunctionParameterValue<VecMath::Rotation<10> >::operator VecMath::Rotation<10>() {
+    return (VecMath::Rotation<10>)value;
 }
 
 /// Specialization for type double
@@ -67,6 +123,66 @@ template<>
 template<>
     void FunctionParameterValue<std::string>::setValue(const char * _value) {
     value = _value;
+}
+
+/// Specialization for type VecMath::Rotation<5>
+template<>
+    void FunctionParameterValue<VecMath::Rotation<5> >::setValue(
+        const char * _value) {
+    std::string s(_value);
+    if (!s.find('<') == s.npos) s = '<'+s;
+    std::istringstream i(s);
+    i >> value;
+}
+
+/// Specialization for type VecMath::Rotation<6>
+template<>
+    void FunctionParameterValue<VecMath::Rotation<6> >::setValue(
+        const char * _value) {
+    std::string s(_value);
+    if (!s.find('<') == s.npos) s = '<'+s;
+    std::istringstream i(s);
+    i >> value;
+}
+
+/// Specialization for type VecMath::Rotation<7>
+template<>
+    void FunctionParameterValue<VecMath::Rotation<7> >::setValue(
+        const char * _value) {
+    std::string s(_value);
+    if (!s.find('<') == s.npos) s = '<'+s;
+    std::istringstream i(s);
+    i >> value;
+}
+
+/// Specialization for type VecMath::Rotation<8>
+template<>
+    void FunctionParameterValue<VecMath::Rotation<8> >::setValue(
+        const char * _value) {
+    std::string s(_value);
+    if (!s.find('<') == s.npos) s = '<'+s;
+    std::istringstream i(s);
+    i >> value;
+}
+
+/// Specialization for type VecMath::Rotation<9>
+template<>
+    void FunctionParameterValue<VecMath::Rotation<9> >::setValue(
+        const char * _value) {
+    std::string s(_value);
+    if (!s.find('<') == s.npos) s = '<'+s;
+    std::istringstream i(s);
+    i >> value;
+}
+
+/// Specialization for type VecMath::Rotation<10>
+template<>
+    void FunctionParameterValue<VecMath::Rotation<10> >::setValue(
+        const char * _value) {
+    std::string s(_value);
+    if (!s.find('<') == s.npos) s = '<'+s;
+    std::istringstream i(s);
+    i >> value;
 }
 
 FunctionParameter::FunctionParameter(const std::string &_name,

@@ -19,6 +19,7 @@
 #include <stdexcept>
 
 #include "SingletonHolder.H"
+#include "Rotation.H"
 
 /// \defgroup FunctionParameterGroup A generalized interface for function parameters of arbitrary type
 /// \ingroup FunctionGroup
@@ -100,11 +101,12 @@ class FunctionParameterValueBase {
                                  _class+"::"+_function+"("+_type+")!") { }
         };
 
-        /* I have to declare the getters and setters for every type of
-           derived classes that will be instantiated. PITA.
-           what's worse, i have to define no-ops as default implementation,
-           because otherwise the templated derived class would remain
-           abstract. that totally breaks type-safety during compilation.      */
+        /** I have to declare the getters and setters for every type of
+            derived classes that will be instantiated. PITA.
+            what's worse, i have to define no-ops as default implementation,
+            because otherwise the templated derived class would remain
+            abstract. that totally breaks type-safety during compilation.
+         */
         /// set a double parm
         virtual void setValue(const double &) {
             throw WrongParameterTypeException("FunctionParameterValueBase",
@@ -124,6 +126,54 @@ class FunctionParameterValueBase {
         virtual void setValue(const std::string &) {
             throw WrongParameterTypeException("FunctionParameterValueBase",
                                               "setValue", "std::string");
+        }
+        /// set a Rotation<5> parameter
+        /** setValue() functions for VecMath::Rotation's must be specified
+         *  manually, because you can't have virtual function templates
+         */
+        virtual void setValue(const VecMath::Rotation<5> &) {
+            throw WrongParameterTypeException("FunctionParameterValueBase",
+                                              "setValue", "VecMath::Rotation<5>");
+        }
+        /// set a Rotation<6> parameter
+        /** setValue() functions for VecMath::Rotation's must be specified
+         *  manually, because you can't have virtual function templates
+         */
+        virtual void setValue(const VecMath::Rotation<6> &) {
+            throw WrongParameterTypeException("FunctionParameterValueBase",
+                                              "setValue", "VecMath::Rotation<6>");
+        }
+        /// set a Rotation<7> parameter
+        /** setValue() functions for VecMath::Rotation's must be specified
+         *  manually, because you can't have virtual function templates
+         */
+        virtual void setValue(const VecMath::Rotation<7> &) {
+            throw WrongParameterTypeException("FunctionParameterValueBase",
+                                              "setValue", "VecMath::Rotation<7>");
+        }
+        /// set a Rotation<8> parameter
+        /** setValue() functions for VecMath::Rotation's must be specified
+         *  manually, because you can't have virtual function templates
+         */
+        virtual void setValue(const VecMath::Rotation<8> &) {
+            throw WrongParameterTypeException("FunctionParameterValueBase",
+                                              "setValue", "VecMath::Rotation<8>");
+        }
+        /// set a Rotation<9> parameter
+        /** setValue() functions for VecMath::Rotation's must be specified
+         *  manually, because you can't have virtual function templates
+         */
+        virtual void setValue(const VecMath::Rotation<9> &) {
+            throw WrongParameterTypeException("FunctionParameterValueBase",
+                                              "setValue", "VecMath::Rotation<9>");
+        }
+        /// set a Rotation<10> parameter
+        /** setValue() functions for VecMath::Rotation's must be specified
+         *  manually, because you can't have virtual function templates
+         */
+        virtual void setValue(const VecMath::Rotation<10> &) {
+            throw WrongParameterTypeException("FunctionParameterValueBase",
+                                              "setValue", "VecMath::Rotation<10>");
         }
 
         /// set a C-string parameter - abstract method
@@ -161,29 +211,84 @@ template <typename T> class FunctionParameterValue:
         /** Default implementation for cast to double. Concrete implementation
          *  will be defined in FunctionParameterValue<double>.                */
         virtual operator double() {
-            throw WrongParameterTypeException("FunctionParameterValue", "operator double", "");
+            throw WrongParameterTypeException("FunctionParameterValue",
+                                              "operator double", "");
             return 0.;
         }
 
         /** Default implementation for cast to unsigned. Concrete implementation
          *  will be defined in FunctionParameterValue<unsigned>.              */
         virtual operator unsigned() {
-            throw WrongParameterTypeException("FunctionParameterValue", "operator unsigned", "");
+            throw WrongParameterTypeException("FunctionParameterValue",
+                                              "operator unsigned", "");
             return 0;
         }
 
         /** Default implementation for cast to int. Concrete implementation
          *  will be defined in FunctionParameterValue<int>.                   */
         virtual operator int() {
-            throw WrongParameterTypeException("FunctionParameterValue", "operator int", "");
+            throw WrongParameterTypeException("FunctionParameterValue",
+                                              "operator int", "");
             return 0;
         }
 
         /** Default implementation for cast to string. Concrete implementation
          *  will be defined in FunctionParameterValue<string>.                */
         virtual operator std::string() {
-            throw WrongParameterTypeException("FunctionParameterValue", "operator std::string", "");
+            throw WrongParameterTypeException("FunctionParameterValue",
+                                              "operator std::string", "");
             return toString();
+        }
+
+        /** Default implementation for cast to Rotation<5>. Concrete
+         *  implementation will be defined in FunctionParameterValue<Rotation<5>>.
+         */
+        virtual operator VecMath::Rotation<5>() {
+            throw WrongParameterTypeException("FunctionParameterValue",
+                                              "operator VecMath::Rotation<5>", "");
+            return VecMath::Rotation<5>();
+        }
+
+        /** Default implementation for cast to Rotation<6>. Concrete
+         *  implementation will be defined in FunctionParameterValue<Rotation<6>>.
+         */
+        virtual operator VecMath::Rotation<6>() {
+            throw WrongParameterTypeException("FunctionParameterValue",
+                                              "operator VecMath::Rotation<6>", "");
+            return VecMath::Rotation<6>();
+        }
+
+        /** Default implementation for cast to Rotation<7>. Concrete
+         *  implementation will be defined in FunctionParameterValue<Rotation<7>>.
+         */
+        virtual operator VecMath::Rotation<7>() {
+            throw WrongParameterTypeException("FunctionParameterValue",
+                                              "operator VecMath::Rotation<7>", "");
+            return VecMath::Rotation<7>();
+        }
+        /** Default implementation for cast to Rotation<8>. Concrete
+         *  implementation will be defined in FunctionParameterValue<Rotation<8>>.
+         */
+        virtual operator VecMath::Rotation<8>() {
+            throw WrongParameterTypeException("FunctionParameterValue",
+                                              "operator VecMath::Rotation<8>", "");
+            return VecMath::Rotation<8>();
+        }
+        /** Default implementation for cast to Rotation<9>. Concrete
+         *  implementation will be defined in FunctionParameterValue<Rotation<9>>.
+         */
+        virtual operator VecMath::Rotation<9>() {
+            throw WrongParameterTypeException("FunctionParameterValue",
+                                              "operator VecMath::Rotation<9>", "");
+            return VecMath::Rotation<9>();
+        }
+        /** Default implementation for cast to Rotation<10>. Concrete
+         *  implementation will be defined in FunctionParameterValue<Rotation<10>>.
+         */
+        virtual operator VecMath::Rotation<10>() {
+            throw WrongParameterTypeException("FunctionParameterValue",
+                                              "operator VecMath::Rotation<10>", "");
+            return VecMath::Rotation<10>();
         }
 
         /// Converts the parameter to string for printing
