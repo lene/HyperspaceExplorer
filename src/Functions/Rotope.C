@@ -57,17 +57,8 @@ class RotopeFactory {
 };
 
 Rotope::Rotope(): Object("Generic Rotope", 0, 0), _rotope(0) {
-/*
-    Extrude<DIM, 0, DIM-1> E;
-    std::cerr << "Extrude: "; E.print();
-
-    const unsigned BASE = 0;
-    Extrude<DIM, 0, BASE> E2;
-    Taper<DIM, BASE+1, DIM-1> T(E2);
-    std::cerr << "Taper: "; T.print();
-*/
     _rotope = new Extrude<DIM, 0, DIM-1>();
-    setX(project<4>(_rotope->X(), 0., 0.));
+    setX(_rotope->vertices());
 
     Object::Initialize();
 }
@@ -88,7 +79,7 @@ void Rotope::Transform(const VecMath::Rotation<4> &R,
     Matrix<4> Rot(R);
 
     for (unsigned i = 0; i < X.size(); i++) {
-        Xtrans.at(i) = (Rot*X.at(i))+T;
+        Xtrans[i] = (Rot*X[i])+T;
     }
 
 }
@@ -99,11 +90,12 @@ void Rotope::Draw () {
         throw std::logic_error("Rotope::Draw(): _rotope is NULL!");
     }
     glBegin (GL_QUADS); {
-    for (unsigned i = 0; i < _rotope->_surface.size(); i++)
+    for (unsigned i = 0; i < _rotope->surface().size(); i++)
         for (unsigned j = 0; j < 4; j++) {
-            setVertex(X[_rotope->_surface[i][j]],
-                      Xscr[_rotope->_surface[i][j]]);
+            setVertex(X[_rotope->surface()[i][j]],
+                      Xscr[_rotope->surface()[i][j]]);
         }
     }
     glEnd ();
 }
+

@@ -3,9 +3,44 @@
 
 #include <Object.H>
 
-/** \defgroup RotopeGroup N-dimensional <a href="http://teamikaria.com/wiki/Rotope">Rotope</a>s.
+/** \defgroup RotopeGroup N-dimensional Rotopes.
+ *  For a definition of Rotopes, see http://teamikaria.com/wiki/Rotope
  *  \ingroup ObjectGroup
  */
+
+template <bool flag, typename T, typename U> struct Select {
+    typedef T Result;
+};
+template <typename T, typename U> struct Select<false, T, U> {
+    typedef U Result;
+};
+
+/// Interface implemented by all Rotope s
+class RotopeBase {
+    public:
+        virtual void print() = 0;           ///< Output of all vertices
+
+    protected:
+
+        /// one-dimensional array of unsigned, implemented as a std::vector
+        typedef std::vector<unsigned> uintvec1D;
+        /// two-dimensional array of unsigned, implemented as a nested vector
+        typedef std::vector<uintvec1D> uintvec2D;
+
+        /// Add a surface to the array of surfaces
+        virtual void addSurface(unsigned, unsigned, unsigned, unsigned) = 0;
+        /// Add a surface to the array of surfaces
+        virtual void addSurface(unsigned, unsigned, unsigned) = 0;
+
+        /// Dimension of the object
+        virtual unsigned &dimension() = 0;
+        /// The array of surfaces
+        virtual uintvec2D &surface() = 0;
+        /// The array of vertices, projected to four dimensions if necessary
+        virtual std::vector<VecMath::Vector<4> > vertices() = 0;
+
+    friend class Rotope;
+};
 
 /// Base class for all Rotope s. This class may vanish, as Object can take its place.
 /** Contains an array of vertices (Vectors) and a function to print them. This
@@ -17,17 +52,12 @@
  *  \author Helge Preuss <scout@hyperspace-travel.de>
  */
 template <unsigned D>
-    class vertex_data {
+    class vertex_data: public RotopeBase {
 
         public:
-            void print();           ///< Output of all vertices
+            virtual void print();           ///< Output of all vertices
 
         protected:
-
-            /// one-dimensional array of unsigned, implemented as a std::vector
-            typedef std::vector<unsigned> uintvec1D;
-            /// two-dimensional array of unsigned, implemented as a nested vector
-            typedef std::vector<uintvec1D> uintvec2D;
 
             /// Create an empty array of vertices.
             /** Only derived classes can create a vertex_data object. */
@@ -37,16 +67,18 @@ template <unsigned D>
             }
 
             /// Add a surface to the array of surfaces
-            void addSurface(unsigned, unsigned, unsigned, unsigned);
+            virtual void addSurface(unsigned, unsigned, unsigned, unsigned);
             /// Add a surface to the array of surfaces
-            void addSurface(unsigned, unsigned, unsigned);
+            virtual void addSurface(unsigned, unsigned, unsigned);
 
             /// Dimension of the object
-            unsigned &dimension() { return _dimension; }
+            virtual unsigned &dimension() { return _dimension; }
             /// The array of vertices
             std::vector<VecMath::Vector<D> > &X() { return _X; }
             /// The array of surfaces
-            uintvec2D &surface() { return _surface; }
+            virtual uintvec2D &surface() { return _surface; }
+            /// The array of vertices, projected to four dimensions if necessary
+            virtual std::vector<VecMath::Vector<4> > vertices();
 
         private:
             /// \return Whether argument or permutation of it already in _surface
@@ -65,7 +97,7 @@ template <unsigned D>
  */
 class Rotope : public Object {
 
-    const static unsigned DIM = 4;
+    const static unsigned DIM = 5;
 
     public:
         /// Construct a Rotope. Not yet implemented properly.
@@ -81,7 +113,7 @@ class Rotope : public Object {
 //        virtual QString getFunctionName() const { return "Rotope"; }
     private:
         /// Actual rotope object to which all functions are delegated
-        vertex_data<DIM> *_rotope;
+        RotopeBase *_rotope;
 };
 
 
@@ -124,30 +156,45 @@ template <unsigned D> void vertex_data<D>::print() {
 }
 
 
-/// Project an array of vertices of dimension \p D to dimension \p D_ < \p D
-template <unsigned D, unsigned D_>
-    std::vector<VecMath::Vector<D_> > project(const std::vector<VecMath::Vector<D> > &x,
-                                              double scrW, double camW) {
-        if (D_ > D) {
-            throw std::logic_error("Tried to project to a higher dimension");
-        }
-        if (D_ == D) {
-            throw std::logic_error("Explicit specialization should be called");
-        }
+template <unsigned D, unsigned D_> class Project: protected Project<D-1, D_> {
+    public:
+        /// Project an array of vertices of dimension \p D to dimension \p D_ < \p D
+        std::vector<VecMath::Vector<D_> > operator()(const std::vector<VecMath::Vector<D> > &x,
+                                                    double scrW, double camW) {
+            std::vector<VecMath::Vector<D-1> > x_proj(x.size());
 
-        throw NotYetImplementedException("template <unsigned D, unsigned D_>\n"
-                "        std::vector<VecMath::Vector<D_> > project(\n"
-                "            const std::vector<VecMath::Vector<D> &x)");
-        std::vector<VecMath::Vector<D_> > v;
-        return v;
-    }
+            for (unsigned i = 0; i < x.size(); i++) {
+                double ProjectionFactor = (scrW-camW)/(x[i][D-1]-camW);
 
-/// Specialization for \p D_ == \p D
-template <unsigned D>
-    std::vector<VecMath::Vector<D> > project(
+                for (unsigned j = 0; j < D-1; j++)
+                    x_proj.at(i)[j] = ProjectionFactor*x[i][j];
+            }
+            return Project<D-1, D_>::operator()(x_proj, scrW, camW);
+
+            throw NotYetImplementedException("Project<D, D'>");
+            std::vector<VecMath::Vector<D_> > v;
+            return v;
+        }
+};
+
+/*
+/// Specialization for \p D_ == \p D-1
+template <unsigned D> class Project<D, D-1> {
+    std::vector<VecMath::Vector<D-1> > operator()(
         const std::vector<VecMath::Vector<D> > &x, double, double) {
-        return x;
+        std::vector<VecMath::Vector<D-1> > xx;
+        return xx;
     }
+};
+*/
+/// Specialization for \p D_ == \p D
+template <unsigned D> class Project<D, D> {
+    public:
+        std::vector<VecMath::Vector<D> > operator()(
+            const std::vector<VecMath::Vector<D> > &x, double, double) {
+            return x;
+        }
+};
 
 /**
  *  \param v1 Index (in the vertex array) of the first vertex
@@ -222,5 +269,11 @@ template <unsigned D> bool vertex_data<D>::checkSurfaceExists(const uintvec1D &n
     }
     return false;
 }
+
+template <unsigned D>
+    std::vector<VecMath::Vector<4> > vertex_data<D>::vertices() {
+        Project<D, 4> p;
+        return p(X(), 1., 1.);
+    }
 
 #endif
