@@ -18,6 +18,7 @@
 #include "Function.H"
 #include "Vector.H"
 
+/// Artificial type to use in Typelists
 struct EmptyType {};
 
 /// Generalized four-dimensional Object, described by vertexes and surfaces

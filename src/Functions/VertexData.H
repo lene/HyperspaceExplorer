@@ -19,15 +19,13 @@ template <unsigned D>
         public:
             virtual void print();           ///< Output of all vertices
 
-        protected:
-
             /// Create an empty array of vertices.
-            /** Only derived classes can create a vertex_data object. */
             vertex_data():
                     _dimension(0), _X(), _surface() {
                 X().push_back(VecMath::Vector<D>());
             }
 
+        protected:
             /// Add a surface to the array of surfaces
             virtual void addSurface(unsigned, unsigned, unsigned, unsigned);
             /// Add a surface to the array of surfaces

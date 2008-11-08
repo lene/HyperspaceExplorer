@@ -12,107 +12,164 @@ extern double &rot_xw, &rot_yw, &rot_zw,
 
 extern double rot[][8], drot[][8];
 
+/// Base class and interface for a Box of any dimension
 class BoxBase {
 public:
   BoxBase ();
   virtual ~BoxBase () { };
 
+  /// Set friction for collisions
   static void setFriction(const double &_f) { friction = _f; }
+  /// \return Friction for collisions
   static double getFriction () { return friction; }
+  /// Set elasticity for collisions
   static void setElasticity(const double &_e) { elasticity = _e;}
+  /// \return Elasticity for collisions
   static double getElasticity () { return elasticity; }
+  /// Set gravitation
   static void setGravitation (const double &_g) { gravity = _g; }
+  /// \return Gravitation
   static double getGravitation () { return gravity; }
+  /// \todo document me
   static void setRMax (const double &_g) { BallBase::setRMax (_g); }
+  /// \todo document me
   static double getRMax () { return BallBase::getRMax (); }
+  /// \todo document me
   static void setMaxT(const double &_t) {
     max_t = _t;
-    if (_t <= 0) max_t = 1e310; }
+    if (_t <= 0) max_t = 1e310;
+  }
+  /// \todo document me
   static double getMaxT () { return max_t; }
+  /// \todo document me
   static void setSloppy (bool _s) { sloppy = _s; }
+  /// \todo document me
   static double getSloppy () { return sloppy; }
+  /// \todo document me
   static void setRndSize (bool r) { BallBase::setRandomSize (r); }
+  /// \todo document me
   static double getRndSize () { return BallBase::getRandomSize (); }
 
+  /// \todo document me
   virtual void draw() = 0;
+  /// \todo document me
   virtual void step (const double &) = 0;
 
+  /// \todo document me
   virtual void setNumBalls (unsigned) = 0;
+  /// \todo document me
   virtual unsigned getNumBalls () = 0;
 
+  /// \todo document me
   virtual void setXCam (const double &) = 0;
+  /// \todo document me
   virtual double *getXCam () = 0;
+  /// \todo document me
   virtual unsigned getDimension () = 0;
 
+  /// \todo document me
   double getT () { return t; }
+  /// \todo document me
   unsigned getCollisions () { return num_collisions; }
 
+  /// \todo document me
   void setRotation (unsigned axis1, unsigned axis2, double phi) {
     drot[axis2-1][axis1] = phi;
   }
+  /// \todo document me
   double getRotation (unsigned axis1, unsigned axis2) {
     return drot[axis2-1][axis1];
   }
 
 protected:
+  /// \todo document me
   unsigned num_collisions;
+  /// \todo document me
   double t;
-  
+
+  /// \todo document me
   static double max_t;
+  /// \todo document me
   static double friction;
+  /// \todo document me
   static double elasticity;
+  /// \todo document me
   static double gravity;
 
+  /// \todo document me
   static bool sloppy;
 };
 
-
+/// Hypercube of dimension \p D, which contains a number of Balls
 template <unsigned D> class Box: public BoxBase {
 public:
+  /// \todo document me
   Box (unsigned n = 1);
   virtual ~Box () { };
-  
+
+  /// \todo document me
   virtual void draw();
+  /// \todo document me
   virtual void step (const double &dt);
 
+  /// \todo document me
   virtual void setNumBalls (unsigned n);
+  /// \todo document me
   virtual unsigned getNumBalls () { return balls.size (); }
 
+  /// \todo document me
   virtual unsigned getDimension () { return D; }
-  
+
+  /// \todo document me
   virtual void setXCam (const double &_Xcam) {
     for (int i = 0; i < D; Xcam[i++] = -_Xcam);
   }
+  /// \todo document me
   virtual double *getXCam () { return Xcam; }
 
+  /// \todo document me
   static Vec<D> project (unsigned d,
-				 const Vec<D> &X, const double &r,
-				 Vec<D> &Xproj, double &rproj);
+                         const Vec<D> &X, const double &r,
+                         Vec<D> &Xproj, double &rproj);
 
+  /// \todo document me
   static Vec<D> vertices[1 << D];
 
 protected:
+  /// \todo document me
   Ball<D> *makeBall ();
+  /// \todo document me
   void addBall ();
+  /// \todo document me
   void deleteBall ();
+  /// \todo document me
   void collide (Vec<D> &, Vec<D> &, Vec<D> &,
-		const double &, const double &);
+                const double &, const double &);
+  /// \todo document me
   void rotate (Vec<D> [1<<D]);
+  /// \todo document me
   static void DefineHypercube ();
-  
-  Vec<D> Xmin, Xmax;
+
+  /// \todo document me
+  Vec<D> Xmin;
+  /// \todo document me
+  Vec<D> Xmax;
+  /// \todo document me
   vector<Ball<D> *> balls;
 
+  /// \todo document me
   static Vec<D>   vtrans[1 << D];
+  /// \todo document me
   static matrix<D> R;
+  /// \todo document me
   static double Xcam[D];
 };
 
 template <unsigned D> void Box<D>::rotate (Vec<D> vtrans[1<<D]) {
   for (unsigned i = 1; i < D; i++)
-    for (unsigned j = 0; j < i; j++) 
+    for (unsigned j = 0; j < i; j++)
       rot[i-1][j] = drot[i-1][j]*t;
-  
+
   if (D > 3) R = matrix<D> ();
   for (unsigned i = 3; i < D; i++)
     for (unsigned j = 0; j < i; j++) {
@@ -128,22 +185,22 @@ template <unsigned D> Box<D>::Box (unsigned n):
   for (int i = 0; i < D; i++) {
     Xmin[i]= -1.; Xmax[i] = 1.;
   }
-  
+
   DefineHypercube ();
   DrawHypercube (D, vertices);
-  
+
   setNumBalls (n);
 }
 
 template <unsigned D> Ball<D> *Box<D>::makeBall () {
   Ball<D> *tmp = new Ball<D>;
-  bool touched = true; 
+  bool touched = true;
   while (touched) {
     touched = false;
     for (int j = 0; j < balls.size (); j++)
-      if (touch (*balls[j], *tmp, tmp->r)) 
+      if (touch (*balls[j], *tmp, tmp->r))
 	touched = true;
-	  
+
     if (touched) {
       delete tmp; tmp = new Ball<D>; }
   }
@@ -176,8 +233,8 @@ template <unsigned D> void Box<D>::setNumBalls (unsigned newnum) {
 }
 
 
-template <unsigned D> 
-  void Box<D>::collide (Vec<D> &v1, Vec<D> &v2, 
+template <unsigned D>
+  void Box<D>::collide (Vec<D> &v1, Vec<D> &v2,
 			Vec<D> &dx,
 			const double &m1, const double &m2) {
   if ((v1-v2).sqnorm() == 0) return;
@@ -188,7 +245,7 @@ template <unsigned D>
                  v1tan = v1 - v1rad, v2tan = v2 - v2rad,
                  vcm = (v1rad*m1+v2rad*m2)/(m1+m2),
                  p1rad = (v1rad-vcm)*m1,
-                 v1rad_ = vcm - p1rad/m1*elasticity, 
+                 v1rad_ = vcm - p1rad/m1*elasticity,
                  v2rad_ = vcm + p1rad/m2*elasticity;
   v1 = v1rad_+v1tan;
   v2 = v2rad_+v2tan;
@@ -200,10 +257,10 @@ template <unsigned D> void Box<D>::step (const double &dt) {
     exit (0);
   }
 
-  //  cerr << balls.size () << endl;  
+  //  cerr << balls.size () << endl;
   for (int i = 0; i < balls.size(); i++) {
 
-    for (int j = i+1; j < balls.size(); j++) 
+    for (int j = i+1; j < balls.size(); j++)
       if (touch (*balls[i], *balls[j])) {
 
 	double &m1 = balls[i]->m, &m2 = balls[j]->m;
@@ -243,7 +300,7 @@ template <unsigned D>
 				  const Vec<D> &X, const double &r,
 				  Vec<D> &Xproj, double &rproj) {
   if (d > 3) {
-    Vec<D> Xtrans = R*X; 
+    Vec<D> Xtrans = R*X;
     double projectionfactor = -Xcam[d-1]/(Xtrans[d-1]-Xcam[d-1]);
 
     for (int i = 0; i < d-1; i++)
@@ -274,12 +331,12 @@ template <unsigned D> void Box<D>::draw () {
   glPushMatrix();
   glTranslatef( 0.,0.,0. );
   glScalef( 1.,1.,1. );
-  glMaterial (1.0,0.9,1.0);    
+  glMaterial (1.0,0.9,1.0);
   //  glLineWidth( 2.0 );
 
-  if (D < 4) 
+  if (D < 4)
     DrawHypercube (D, vertices);
-  else {    
+  else {
     rotate (vtrans);
     static double dummy;
     for (unsigned i = 0; i < (1 << D); i++)

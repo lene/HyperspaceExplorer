@@ -11,25 +11,38 @@ double rnd ();
 void glMaterial (GLfloat r,GLfloat g,GLfloat b, GLfloat a = 1.0);
 GLint MakeStone (unsigned segments = 10, bool fill = true, double radius = 1.);
 
+/// Base class for the bouncing spheres template
 class BallBase {
 public:
   BallBase ();
 
+  /// \todo document me
   static void setRandomSize (bool r) { randomSize = r; }
+  /// \todo document me
   static bool getRandomSize () { return randomSize; }
+  /// \todo document me
   static void setRMax (const double &r) { rmax = r; }
+  /// \todo document me
   static double getRMax () { return rmax; }
 
+  /// \todo document me
   static void setNumSegments (unsigned n) { numSegments = n; }
-  
+
 protected:
-  double r, m;
+    /// \todo document me
+    double r;
+    /// \todo document me
+    double m;
 
-  static bool randomSize;
-  static double rmax;
-  static unsigned numSegments;
+    /// \todo document me
+    static bool randomSize;
+    /// \todo document me
+    static double rmax;
+    /// \todo document me
+    static unsigned numSegments;
 
-  static GLint ball;
+    /// \todo document me
+    static GLint ball;
 
   friend class BoxBase;
   //  friend bool touch(Ball &, Ball &, double = 0.);
@@ -38,19 +51,28 @@ protected:
 
 template <unsigned D> class Box;
 
+/// Bouncing spheres template
 template <unsigned D> class Ball: public BallBase {
 public:
   Ball ();
+  /// \todo document me
   void draw ();
+  /// \todo document me
   void step (double dt);
-  
+
 protected:
-  void DrawBall (const Vec<D> &center, double r, 
+  /// \todo document me
+  void DrawBall (const Vec<D> &center, double r,
 		 const Vec<4> &rgba);
 
-  Vec<D> x, v; // , phi, omega;
+  /// \todo document me
+  Vec<D> x;
+  /// \todo document me
+  Vec<D> v; // , phi, omega;
 
+  /// \todo document me
   friend class Box<D>;
+    /// \todo document me
   template <unsigned d> friend bool touch(const Ball<d> &, const Ball<d> &, double = 0.);
 };
 
@@ -64,7 +86,7 @@ bool touch(const Ball<D> &ball1, const Ball<D> &ball2, double dist=0.) {
 
 
 template <unsigned D>
-  void Ball<D>::DrawBall (const Vec<D> &center, double r, 
+  void Ball<D>::DrawBall (const Vec<D> &center, double r,
 			  const Vec<4> &rgba) {
   glPushMatrix();
   glTranslatef( center[0], center[1], center[2] );
@@ -72,7 +94,7 @@ template <unsigned D>
   glMaterial( rgba[0], rgba[1], rgba[2], rgba[3]);
   //  i have NO idea why, but the line 'if (ball == 0) ball = MakeStone ();'
   //  in the c'tor is NOT executed. so i have to do it again here. not pretty,
-  //  but effective. when i understand the behavior, i will change it. 
+  //  but effective. when i understand the behavior, i will change it.
   if (ball == 0) ball = MakeStone (numSegments);
   glCallList (ball);
   glPopMatrix();
@@ -83,7 +105,7 @@ void DefineHypercube ();
 
 
 template <unsigned D>
-  void Line (const Vec<D> &x0, 
+  void Line (const Vec<D> &x0,
 	   const Vec<D> &x1) {
     glBegin( GL_LINES );
       glVertex3f(x0[0],x0[1],x0[2]);
@@ -117,7 +139,7 @@ template <unsigned D> Ball<D>::Ball ():
   BallBase (), x (), v () {
   if (ball == 0) ball = MakeStone ();
   for (int i = 0; i < D; i++) {
-    x[i] = 2.*rnd ()-1.; v[i] = rnd ()-.5; 
+    x[i] = 2.*rnd ()-1.; v[i] = rnd ()-.5;
   }
 }
 

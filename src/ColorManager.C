@@ -42,7 +42,8 @@ void ColorManager::setRGB(const Color &rgb) {
     glMaterialf (GL_FRONT, GL_SHININESS, SHININESS);
 }
 
-void xyz2RGBColorManager::calibrateColor(const Vector<4> &x, const Color &_col) {
+void xyz2RGBColorManager::calibrateColor(const VecMath::Vector<4> &x,
+                                         const Color &_col) {
     col.insert(std::make_pair(x, _col));
 }
 
@@ -51,7 +52,7 @@ void xyz2RGBColorManager::calibrateColor(const Vector<4> &x, const Color &_col) 
  *  its color by averaging over the nearest neighboring points and store its
  *  value for future use
  *  @param x four-dimensional coordinate for which the color is sought        */
-Color xyz2RGBColorManager::getColor(const Vector<4> &x) {
+Color xyz2RGBColorManager::getColor(const VecMath::Vector<4> &x) {
     if (!col.count(x)) col[x] = computeColorFromNeighbors(x);
     return col[x];
 }
@@ -143,7 +144,7 @@ std::pair<vector<Vector<4> >, vector<double> >
 }
 
 void xyz2RGBColorManager::depthCueColor(double wmax, double wmin, double w,
-                                        const Vector<4> &x) {
+                                        const VecMath::Vector<4> &x) {
     float DepthCueFactor = (wmax-w)/(wmax-wmin)*(1.0-getoffset4Ddepthcue());
 //                            +getoffset4Ddepthcue();
     col[x] = ((col[x]+(-getoffset4Ddepthcue()))

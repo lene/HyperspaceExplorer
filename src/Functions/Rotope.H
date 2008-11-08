@@ -15,6 +15,8 @@ class Rotope : public Object {
     public:
         /// Construct a Rotope. Not yet implemented properly.
         Rotope();
+        /// Execute a series of extrusions to construct a Rotope
+        Rotope(const std::string &);
 
         ~Rotope();
 

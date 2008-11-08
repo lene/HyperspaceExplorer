@@ -32,7 +32,7 @@ HEADERS += Functions/ComplexFunction.H Functions/CustomFunction.H \
            Functions/ParameterMap.H Functions/FunctionFactory.H \
            Functions/RotopeBase.H Functions/Projector.H Functions/VertexData.H \
            Functions/Rotope.H Functions/Extrude.H Functions/Taper.H \
-           Functions/Rotate.H Functions/Torate.H
+           Functions/Rotate.H Functions/Torate.H Functions/RotopeFactory.H
 #          Functions/SteinerFunction.H
 SOURCES += Functions/ComplexFunction.C Functions/CustomFunction.C \
            Functions/Function.C Functions/Surface.C Functions/Object.C \

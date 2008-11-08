@@ -17,48 +17,22 @@
 #include "Taper.H"
 #include "Rotate.H"
 #include "Torate.H"
+#include "RotopeFactory.H"
 
 using VecMath::Vector;
 using VecMath::Matrix;
 
-class RotopeFactory {
-    vertex_data<4> *generate(unsigned extrude, unsigned taper = 0,
-                             unsigned rotate = 0, unsigned torate = 0) {
-        if (extrude+taper+rotate+torate != 4)
-            throw std::logic_error("Sum of extrusion operations must be 4");
-
-        vertex_data<4> *tmp;
-        switch(extrude) {
-            case 0:
-                tmp = new Extrude<4, 0, 0>();
-                break;
-            case 1:
-                tmp = new Extrude<4, 0, 1>();
-                break;
-            case 2:
-                tmp = new Extrude<4, 0, 2>();
-                break;
-            case 3:
-                tmp = new Extrude<4, 0, 3>();
-                break;
-        }
-        switch(taper) {
-            case 1:
-                tmp = new Taper<4, 3, 3>(*tmp);
-                break;
-            case 2:
-                tmp = new Taper<4, 2, 3>(*tmp);
-                break;
-            case 3:
-                tmp = new Taper<4, 1, 3>(*tmp);
-                break;
-        }
-    }
-};
-
-Rotope::Rotope(): Object("Generic Rotope", 0, 0), _rotope(0) {
+Rotope::Rotope(): Object("Rotope", 0, 0), _rotope(0) {
     _rotope = new Extrude<DIM, 0, DIM-1>();
     setX(_rotope->vertices());
+
+    Object::Initialize();
+}
+
+Rotope::Rotope(const std::string &actions):
+        Object(QString("Rotope: ")+actions.c_str(), 0, 0), _rotope(0) {
+//    _rotope = RotopeFactory::generate(actions);
+//    setX(_rotope->vertices());
 
     Object::Initialize();
 }
