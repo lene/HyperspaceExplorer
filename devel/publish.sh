@@ -4,7 +4,7 @@
 # needed to publish it on sourceforge, with as little user interaction as
 # possible
 
-VERSION=${1:-"0.6.2"}
+VERSION="0.6.2"
 BASEDIR="${HOME}/workspace"
 PROJECTDIR="HyperspaceExplorer"
 FILENAME="HyperspaceExplorer"
@@ -12,7 +12,45 @@ EXECUTABLE="HyperspaceExplorer"
 PROJECTNAME="hyperspace-expl"
 USERNAME="metaldog"
 
-set -xv
+set +xv
+
+# processes arguments to the script
+function parse_commandline() {
+    edit=0
+    generate=0
+    check=0
+    upload=0
+    document=0
+    branch=0
+
+    while [ $# != 0 ]; do
+        case "$1" in
+            --edit|-e)      edit=1;;
+            --generate|-g)  generate=1;;
+            --check|-c)     check=1;;
+            --upload|-u)    upload=1;;
+            --document|-d)  document=1;;
+            --branch|-b)    branch=1;;
+            --version|-v)   VERSION=$2;
+                            shift;;
+            -* | *)         print_help; exit 1 ;;
+
+        esac
+        shift
+    done
+}
+
+function print_help() {
+    cat << EOF
+            --edit|-e)      edit=1;;
+            --generate|-g)  generate=1;;
+            --check|-c)     check=1;;
+            --upload|-u)    upload=1;;
+            --document|-d)  document=1;;
+            --branch|-b)    branch=1;;
+            --version|-v)   VERSION=$2;
+EOF
+}
 
 # things that must be done manually
 function edit() {
@@ -98,7 +136,7 @@ function upload() {
 # generate and upload documentation; remove obsolete documentation files and add new ones
 function document() {
     TAGFILE="http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/libstdc++.tag"
-    DOCDIR=""
+    DOCDIR="devel/html"
 
     cd ${BASEDIR}/${PROJECTDIR}
 
@@ -107,17 +145,17 @@ function document() {
         xargs rm
     yes q | \
         doxygen 2> /dev/null
-    svn up ${DOCDIR} 2>&1 | \
-        grep Restored | \
-        cut -d ' ' -f 2- | \
-        xargs svn del
-    svn st ${DOCDIR}/html | \
-        grep ^? | \
-        grep -v \*.map | \
-        grep -v \*.md5 | \
-        cut -c 2- | \
-        xargs svn add
-    svn commit -m "auto-generated documentation"
+#    svn up ${DOCDIR} 2>&1 | \
+#        grep Restored | \
+#        cut -d ' ' -f 2- | \
+#        xargs svn del
+#    svn st ${DOCDIR}/html | \
+#        grep ^? | \
+#        grep -v \*.map | \
+#        grep -v \*.md5 | \
+#        cut -c 2- | \
+#        xargs svn add
+#    svn commit -m "auto-generated documentation"
     rsync -rL --delete-after --exclude=.svn ${DOCDIR}/html/ \
         ${USERNAME},${PROJECTNAME}@web.sourceforge.net:htdocs
 }
@@ -131,9 +169,20 @@ function branch() {
         ${SVNBASE}/tags/release-${VERSION}
 }
 
-edit && \
-    generate && \
-    check && \
-    upload && \
-    document && \
-    branch
+parse_commandline $@
+
+if [ $edit -o $generate -o $check -o $upload -o $document -o $branch ]; then
+    test $edit -eq 1 && edit
+    test $generate -eq 1 && generate
+    test $check -eq 1 && check
+    test $upload -eq 1 && upload
+    test $document -eq 1 && document
+    test $branch -eq 1 && branch
+else
+    edit && \
+        generate && \
+        check && \
+        upload && \
+        document && \
+        branch
+fi
