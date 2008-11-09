@@ -84,12 +84,19 @@ namespace VecMath {
             static const unsigned _axis[2][6];  ///< values for \p ii and \p jj
     };
 
+    /// Interface Rotation<D, N> implements
+    /** Currently empty because I need nothing else than he information whether
+     *  a specific object is a Rotation or not
+     */
+    class RotationBase { };
+
     /// Rotation in D-dimensional space defined by angles about the main axes
     /** @param D dimension of the vector space
      *  @param N numerical type of the rotation angles
      *  \ingroup VecMath
      *  @author Helge Preuss <scout@hyperspace-travel.de>                     */
-    template <unsigned D, typename N = double> class Rotation {
+    template <unsigned D, typename N = double> class Rotation:
+            public RotationBase {
 
         public:
             /// default constructor, zero rotation

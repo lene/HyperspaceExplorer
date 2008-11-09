@@ -88,6 +88,12 @@ namespace UI {
             unsigned j = 0;
             for (ParameterMap::const_iterator it = parms.begin();
                 it != parms.end(); ++it, ++j) {
+                try {
+                    VecMath::RotationBase dummy = *(it->second->value());
+                    std::cerr << it->second->getName() << " is a RotationBase\n";
+                } catch (FunctionParameterValueBase::WrongParameterTypeException e) {
+                    std::cerr << it->second->getName() << " is NOT a RotationBase\n";
+                }
                 std::string name = it->second->getName();
                 ParameterLabel[j]->setText(name.c_str());
                 std::string description = it->second->getDescription();

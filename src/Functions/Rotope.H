@@ -34,8 +34,29 @@ class Rotope : public Object {
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {
-                     if (i->second->getName() == "Generator")
+                     if (i->second->getName() == "Generator") {
                          _actions = std::string(*i->second);
+                     }
+                     if (i->second->getName() == "5D Rotation") {
+                         std::cerr << "5D Rotation : "
+                                 << VecMath::Rotation<5>(*i->second) << "\n";
+                     }
+                     if (i->second->getName() == "6D Rotation") {
+                         std::cerr << "6D Rotation : " << VecMath::Rotation<5>(*i->second) << "\n";
+                     }
+                     if (i->second->getName() == "7D Rotation") {
+                         std::cerr << "7D Rotation : " << VecMath::Rotation<5>(*i->second) << "\n";
+                     }
+                     if (i->second->getName() == "8D Rotation") {
+                         std::cerr << "8D Rotation : " << VecMath::Rotation<5>(*i->second) << "\n";
+                     }
+                     if (i->second->getName() == "9D Rotation") {
+                         std::cerr << "9D Rotation : " << VecMath::Rotation<5>(*i->second) << "\n";
+                     }
+                     if (i->second->getName() == "10D Rotation") {
+                         std::cerr << "10D Rotation : " << VecMath::Rotation<5>(*i->second) << "\n";
+                     }
+
                  }
 #       else
                  setParameter(parms, this->_actions, "Generator");

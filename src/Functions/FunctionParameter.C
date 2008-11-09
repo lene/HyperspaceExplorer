@@ -80,24 +80,42 @@ template<> FunctionParameterValue<std::string>::operator std::string() {
 template<> FunctionParameterValue<VecMath::Rotation<5> >::operator VecMath::Rotation<5>() {
     return (VecMath::Rotation<5>)value;
 }
+template<> FunctionParameterValue<VecMath::Rotation<5> >::operator VecMath::RotationBase() {
+    return (VecMath::Rotation<5>)value;
+}
 /// Specialization for type VecMath::Rotation<6>
 template<> FunctionParameterValue<VecMath::Rotation<6> >::operator VecMath::Rotation<6>() {
+    return (VecMath::Rotation<6>)value;
+}
+template<> FunctionParameterValue<VecMath::Rotation<6> >::operator VecMath::RotationBase() {
     return (VecMath::Rotation<6>)value;
 }
 /// Specialization for type VecMath::Rotation<7>
 template<> FunctionParameterValue<VecMath::Rotation<7> >::operator VecMath::Rotation<7>() {
     return (VecMath::Rotation<7>)value;
 }
+template<> FunctionParameterValue<VecMath::Rotation<7> >::operator VecMath::RotationBase() {
+    return (VecMath::Rotation<7>)value;
+}
 /// Specialization for type VecMath::Rotation<8>
 template<> FunctionParameterValue<VecMath::Rotation<8> >::operator VecMath::Rotation<8>() {
+    return (VecMath::Rotation<8>)value;
+}
+template<> FunctionParameterValue<VecMath::Rotation<8> >::operator VecMath::RotationBase() {
     return (VecMath::Rotation<8>)value;
 }
 /// Specialization for type VecMath::Rotation<9>
 template<> FunctionParameterValue<VecMath::Rotation<9> >::operator VecMath::Rotation<9>() {
     return (VecMath::Rotation<9>)value;
 }
+template<> FunctionParameterValue<VecMath::Rotation<9> >::operator VecMath::RotationBase() {
+    return (VecMath::Rotation<9>)value;
+}
 /// Specialization for type VecMath::Rotation<10>
 template<> FunctionParameterValue<VecMath::Rotation<10> >::operator VecMath::Rotation<10>() {
+    return (VecMath::Rotation<10>)value;
+}
+template<> FunctionParameterValue<VecMath::Rotation<10> >::operator VecMath::RotationBase() {
     return (VecMath::Rotation<10>)value;
 }
 

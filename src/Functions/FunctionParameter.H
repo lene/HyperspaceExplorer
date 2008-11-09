@@ -182,7 +182,14 @@ class FunctionParameterValueBase {
         virtual operator double() = 0;                  ///< get a double parm
         virtual operator unsigned() = 0;                ///< get an unsigned parm
         virtual operator int() = 0;                     ///< get an int parm
-        virtual operator std::string() = 0;             ///< set a string parm
+        virtual operator std::string() = 0;             ///< get a string parm
+        virtual operator VecMath::RotationBase() = 0;   ///< get a RotationBase parm
+        virtual operator VecMath::Rotation<5>() = 0;    ///< get a Rotation<5> parm
+        virtual operator VecMath::Rotation<6>() = 0;    ///< get a Rotation<6> parm
+        virtual operator VecMath::Rotation<7>() = 0;    ///< get a Rotation<7> parm
+        virtual operator VecMath::Rotation<8>() = 0;    ///< get a Rotation<8> parm
+        virtual operator VecMath::Rotation<9>() = 0;    ///< get a Rotation<9> parm
+        virtual operator VecMath::Rotation<10>() = 0;   ///< get a Rotation<10> parm
 
         virtual std::string toString() = 0;             ///< string representation
     };
@@ -238,6 +245,15 @@ template <typename T> class FunctionParameterValue:
             throw WrongParameterTypeException("FunctionParameterValue",
                                               "operator std::string", "");
             return toString();
+        }
+
+        /** Default implementation for cast to RotationBase. Concrete
+         *  implementation will be defined in FunctionParameterValue<Rotation<D> >.
+         */
+        virtual operator VecMath::RotationBase() {
+            throw WrongParameterTypeException("FunctionParameterValue",
+                                              "operator VecMath::RotationBase", "");
+            return VecMath::Rotation<5>();
         }
 
         /** Default implementation for cast to Rotation<5>. Concrete
