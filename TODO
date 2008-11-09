@@ -1,0 +1,18 @@
+* rotopes
+  * making them rotate in N dimensions
+    * set the view parameters for each projection independently
+    * apply rotations in N-D
+      * apply changes in the parameter window
+      * make a Qt control for N-D rotations
+      * add templated parameters to function
+  * spherations and torations                                                   0.7.0
+  * support for scripting for the new functions                                 0.7.0
+  * write documentation   -''-                                                  0.7.0
+  * coloring schem that colors surfaces of the same surcell in the same color
+  * compiler warning in ViewImpl.H:33                                           0.7.0
+  * can I get rid of all these switch(dimension) statements and replace them
+    with templates?
+* decouple rendering process
+* namespaces for everything
+* lights
+* 4D data sets
