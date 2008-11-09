@@ -29,4 +29,14 @@ namespace VecMath {
 
         return Rot;
     }
+
+    /// RotationBase output operator
+    /** \ingroup VecMath
+     *  \param o ostream to push into
+     *  \return a new ostream to push Rotations and stuff into                */
+    std::ostream &operator << (std::ostream &o, const RotationBase &v) {
+        o << typeid(v).name();
+        return o;
+    }
+
 }

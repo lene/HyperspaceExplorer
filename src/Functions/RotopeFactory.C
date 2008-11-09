@@ -25,10 +25,20 @@ using std::string;
  */
 RotopeBase *RotopeFactory::generate(const std::string &actions) {
     switch (actions.length()) {
-        case 0: case 1: case 2: case 3:
+        case 0: case 1: // case 2: case 3:
             throw std::logic_error("RotopeFactory::generate() must be called"
                     " with a dimension of at least 4");
             break;
+        case 2: {
+            vertex_data<4> tmp;
+            RotopeAction<4,1> perform;
+            return perform(actions, &tmp);
+        }
+        case 3: {
+            vertex_data<4> tmp;
+            RotopeAction<4,2> perform;
+            return perform(actions, &tmp);
+        }
         case 4: {
             vertex_data<4> tmp;
             RotopeAction<4,3> perform;

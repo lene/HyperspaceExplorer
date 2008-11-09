@@ -22,13 +22,16 @@ template <unsigned D>
 
         protected:
             /// Create an empty array of vertices.
-            vertex_data(): _dimension(0), _X(), _surface() {
+            vertex_data(): _dimension(0), _X(), _surface(), _transform() {
                 X().push_back(VecMath::Vector<D>());
             }
             /// Add a surface to the array of surfaces
             virtual void addSurface(unsigned, unsigned, unsigned, unsigned);
             /// Add a surface to the array of surfaces
             virtual void addSurface(unsigned, unsigned, unsigned);
+
+            /// Perform a \p D -dimensional transformation
+            virtual void addTransform(unsigned, const VecMath::RotationBase *);
 
             /// Actual dimension of the object (in contrast to the vector space)
             virtual unsigned &dimension() { return _dimension; }
@@ -38,9 +41,7 @@ template <unsigned D>
             virtual uintvec2D &surface() { return _surface; }
             /// The array of vertices, projected to four dimensions if necessary
             virtual std::vector<VecMath::Vector<4> > vertices();
-            /// Perform a \p D -dimensional transformation
-            void Transform(const VecMath::Rotation<D> &,
-                           const VecMath::Vector<D> &);
+
         private:
             /// \return Whether argument or permutation of it already in _surface
             bool checkSurfaceExists(const uintvec1D &);
@@ -48,6 +49,9 @@ template <unsigned D>
             unsigned _dimension;                    ///< Dimension of the object
             std::vector<VecMath::Vector<D> > _X;    ///< The array of vertices
             uintvec2D _surface;                     ///< The array of surfaces
+
+            /// List of transformations executed on the object in dimensions > 4
+            std::vector<const VecMath::RotationBase *> _transform;
 
             /// Allow RotopeFactory free access to create vertex_data objects
             friend class RotopeFactory;
@@ -167,7 +171,7 @@ template <unsigned D> bool vertex_data<D>::checkSurfaceExists(const uintvec1D &n
 
 template <unsigned D>
     std::vector<VecMath::Vector<4> > vertex_data<D>::vertices() {
-        Transform(VecMath::Rotation<D>(), VecMath::Vector<D>());
+//        Transform(VecMath::Rotation<D>(), VecMath::Vector<D>());
         Projector<D, 4> p;
         return p(X(), 2., 8.);  /// \todo This is hardcoded! Ugh!
     }
@@ -175,17 +179,26 @@ template <unsigned D>
 /** \param R Rotation component of the transformation
  *  \param T Translation component of the transformation
  */
-template <unsigned D>
+/*template <unsigned D>
     void vertex_data<D>::Transform(const VecMath::Rotation<D> &R,
                                    const VecMath::Vector<D> &T) {
         VecMath::Matrix<D> Rot(R);
-        /*
+        / *
         std::cerr << R << "\n"
                 << Rot << "\n";
-        */
+        * /
         for(unsigned i = 0; i < _X.size(); ++i){
             _X[i] = Rot*_X[i]+T;
         }
     }
+*/
+template <unsigned D>
+    void vertex_data<D>::addTransform(unsigned d,
+                                      const VecMath::RotationBase *R) {
+    std::cerr << "vertex_data<" << D << ">::addTransform("
+            << d << ", " << typeid(R).name() << ")\n";
+    _transform.resize(d+1);
+    _transform[d] = R;
+}
 
 #endif

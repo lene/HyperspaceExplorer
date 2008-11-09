@@ -90,9 +90,11 @@ namespace UI {
                 it != parms.end(); ++it, ++j) {
                 try {
                     VecMath::RotationBase dummy = *(it->second->value());
-                    std::cerr << it->second->getName() << " is a RotationBase\n";
+                    std::cerr << "ValuesDialogImpl::setParameters(): "
+                            << it->second->getName() << " is a Rotation\n";
                 } catch (FunctionParameterValueBase::WrongParameterTypeException e) {
-                    std::cerr << it->second->getName() << " is NOT a RotationBase\n";
+                    std::cerr << "ValuesDialogImpl::setParameters(): "
+                            << it->second->getName() << " is NOT a Rotation\n";
                 }
                 std::string name = it->second->getName();
                 ParameterLabel[j]->setText(name.c_str());

@@ -38,6 +38,7 @@ Rotope::~Rotope() {
 }
 
 void Rotope::Initialize() {
+    std::cerr << "Rotope::Initialize()\n";
     try {
         _rotope = RotopeFactory::generate(_actions);
         declareParameter("Generator", _actions);
@@ -84,6 +85,11 @@ void Rotope::Initialize() {
         _rotope = new Extrude<DIM, 0, DIM-1>();
         /// \todo See above
         std::cerr << e.what() << std::endl;
+    }
+
+    std::cerr << getParameters().print();
+    for (unsigned i = 5; i <= _rotope->dimension(); ++i) {
+        _rotope->addTransform(i, new VecMath::Rotation<5>());
     }
 
     setX(_rotope->vertices());

@@ -181,6 +181,13 @@ namespace VecMath {
     }
     //------------  important non-member functions for class Rotation
 
+
+    /// RotationBase output operator
+    /** \ingroup VecMath
+     *  \param o ostream to push into
+     *  \return a new ostream to push Rotations and stuff into                */
+    std::ostream &operator << (std::ostream &o, const RotationBase &);
+
     /// Rotation output operator
     /** \ingroup VecMath
      *  \param o ostream to push into

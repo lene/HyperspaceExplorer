@@ -140,7 +140,7 @@ void C4DView::ObjectGasket() {
 void C4DView::ObjectRotope() {
     Menu()->updateFunctionMenu("Rotope");
 
-    setF(new Rotope("EEEETT"));
+    setF(new Rotope("EEEE"));
 
     AssignValues(F());
     Redraw ();
@@ -594,13 +594,16 @@ void C4DView::writeFrame() {
 void C4DView::checkAnglesForOverflow() {
     if (m_rot()[0] > 360) addm_rot(Rotation<3>(-360.,0.,0.));
     if (m_rot()[0] <-360) addm_rot(Rotation<3>( 360.,0.,0.));
-    if (fabs (m_rot()[0]) < 1e-3)  setm_rot(Rotation<3>(0., m_rot()[1], m_rot()[2]));
+    if (fabs (m_rot()[0]) < 1e-3)
+        setm_rot(Rotation<3>(0., m_rot()[1], m_rot()[2]));
     if (m_rot()[1] > 360) addm_rot(Rotation<3>(0.,-360.,0.));
     if (m_rot()[1] <-360) addm_rot(Rotation<3>(0., 360.,0.));
-    if (fabs (m_rot()[1]) < 1e-3)  setm_rot(Rotation<3>(m_rot()[0], 0., m_rot()[2]));
+    if (fabs (m_rot()[1]) < 1e-3)
+        setm_rot(Rotation<3>(m_rot()[0], 0., m_rot()[2]));
     if (m_rot()[2] > 360) addm_rot(Rotation<3>(0.,0.,-360.));
     if (m_rot()[2] <-360) addm_rot(Rotation<3>(0.,0., 360.));
-    if (fabs (m_rot()[2]) < 1e-3) setm_rot(Rotation<3>(m_rot()[0], m_rot()[1], 0.));
+    if (fabs (m_rot()[2]) < 1e-3)
+        setm_rot(Rotation<3>(m_rot()[0], m_rot()[1], 0.));
     if (R()[2] > 360) addR(Rotation<4>(0.,0.,-360.,0.,0.,0.));
     if (R()[2] <-360) addR(Rotation<4>(0.,0., 360.,0.,0.,0.));
     if (R()[4] > 360) addR(Rotation<4>(0.,0.,0.,0.,-360.,0.));
@@ -683,9 +686,13 @@ void C4DView::mouseDoubleClickEvent(QMouseEvent *e) {
 void C4DView::paintEvent (QPaintEvent *) {
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);   //  clear the window
 
-    if (getSolid())                              //  this might move to a special
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);      //  routine "SwitchWireframe ()"
-    else glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    if (getSolid()) {                               //  this might move to a
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);  //  special routine
+    }                                               //  "SwitchWireframe ()"
+    else {
+        glLineWidth(1.);
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    }
 
     glPushMatrix();                                 //  save transformation Matrix
     // glTranslated(0.0, /*Size ()*.75*/0., 0);     //  set the camera position
@@ -832,6 +839,7 @@ void C4DView::InitTransparence (void) {
         glDisable(GL_POINT_SMOOTH);                       //  ..
         glDisable(GL_LINE_SMOOTH);                         //  ..
         glDisable(GL_POLYGON_SMOOTH);                      //  ..
+        glDisable(GL_CULL_FACE);                           //  draw both sides of
     }
 }
 

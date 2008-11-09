@@ -143,7 +143,6 @@ template <unsigned D> void extrude_base<D>::extrude(unsigned d) {
                                                    surface_old[i][j]+Xold.size());
             }
         }
-        // for (unsigned i = 0; i < Xold.size(); ++i) std::cerr << Xold[i] << " ";
 
         /** add all surfaces which were in the old vertex array, but extruded
             along the \p d axis. This is achieved by copying the old surface
@@ -158,8 +157,6 @@ template <unsigned D> void extrude_base<D>::extrude(unsigned d) {
             vertex_data<D>::addSurface(tmp[0], tmp[1], tmp[2], tmp[3]);
         }
     }
-
-    /// Remove double surfaces from area
 
     vertex_data<D>::dimension()++;   //  object is now one dimension higher
 }

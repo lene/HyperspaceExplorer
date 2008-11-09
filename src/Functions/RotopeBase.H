@@ -24,6 +24,9 @@ class RotopeBase {
         /// Add a surface to the array of surfaces
         virtual void addSurface(unsigned, unsigned, unsigned) = 0;
 
+        /// Perform a \p D -dimensional transformation
+        virtual void addTransform(unsigned, const VecMath::RotationBase *) = 0;
+
         /// Dimension of the object
         virtual unsigned &dimension() = 0;
         /// The array of surfaces
