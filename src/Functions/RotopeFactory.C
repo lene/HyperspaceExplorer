@@ -18,7 +18,11 @@
 
 using std::string;
 
-/// A very primitive class to generate Rotopes
+/** Takes a list of extrusion actions as string and creates a Rotope of the
+ *  actions, performing them in the order in which they were specified
+ *  \param actions The list of extrusion operations
+ *  \return Rotope generated from \p actions
+ */
 RotopeBase *RotopeFactory::generate(const std::string &actions) {
     switch (actions.length()) {
         case 0: case 1: case 2: case 3:

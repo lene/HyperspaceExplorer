@@ -18,17 +18,31 @@
 
 using std::string;
 
-/// A very primitive class to generate Rotopes
+/// A class to generate Rotopes
+/** Sports a static method generate() which takes a list of extrusion actions as
+ *  string and creates a Rotope of the actions, performing them in the order in
+ *  which they were specified
+ *
+ *  \ingroup RotopeGroup
+ */
 class RotopeFactory {
     public:
-    /// Generate a Rotope
-    static RotopeBase *generate(const std::string &actions);
+        /// Generate a Rotope
+        static RotopeBase *generate(const std::string &actions);
 
     private:
-
+        /// Functor class to perform an extrusion on a Rotope or vertex array
+        /** \param D Dimension of vector space we operate in
+         *  \param d Dimension we want to extrude into
+         */
         template <unsigned D, unsigned d> class RotopeAction:
-        public RotopeAction<D, d-1> {
+                public RotopeAction<D, d-1> {
             public:
+                /// Perform the extrusion operations
+                /** \param actions List of extrusion actions to perform
+                 *  \param rotope Vertices to perform the extrusions on
+                 *  \return New list of vertices, augmented by the extrusion
+                 */
                 vertex_data<D> *operator()(std::string actions,
                                            vertex_data<D> *rotope) {
                 if (d >= D) {
@@ -56,14 +70,16 @@ class RotopeFactory {
                         return new Torate<D, d, d>(*rotope);
                         break;
                     default:
-                        throw BadRotopeOperation(string("RotopeFactory::performAction(): "
-                                "Unsupported action \"")+action+string("\""));
+                        throw BadRotopeOperation("RotopeFactory::performAction()",
+                                                 std::string(1, action));
                 }
-                }
+            }
         };
 
+        /// Specialization for extruding into the dimension 0 to end recursion
         template <unsigned D> class RotopeAction<D, 0> {
             public:
+                /// Perform the extrusion operations
                 vertex_data<D> *operator()(std::string actions,
                                            vertex_data<D> *rotope) {
                     switch(actions[0]) {
@@ -71,8 +87,9 @@ class RotopeFactory {
                             return new Extrude<D, 0, 0>(*rotope);
                             break;
                         default:
-                            throw BadRotopeOperation("RotopeFactory::performAction()"
-                                ": First operation must be an extrusion");
+                            throw BadRotopeOperation("RotopeFactory::performAction()",
+                                                     "First operation must be "
+                                                        "extrusion");
 
                     }
                     return rotope;

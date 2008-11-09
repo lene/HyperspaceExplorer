@@ -4,7 +4,7 @@
 #include "RotopeBase.H"
 #include "Projector.H"
 
-/// Base class for all Rotope s. This class may vanish, as Object can take its place.
+/// Base class for all Rotope s.
 /** Contains an array of vertices (Vectors) and a function to print them. This
  *  is used mainly in the development of Rotope objects.
  *
@@ -19,19 +19,18 @@ template <unsigned D>
         public:
             virtual void print();           ///< Output of all vertices
 
-            /// Create an empty array of vertices.
-            vertex_data():
-                    _dimension(0), _X(), _surface() {
-                X().push_back(VecMath::Vector<D>());
-            }
 
         protected:
+            /// Create an empty array of vertices.
+            vertex_data(): _dimension(0), _X(), _surface() {
+                X().push_back(VecMath::Vector<D>());
+            }
             /// Add a surface to the array of surfaces
             virtual void addSurface(unsigned, unsigned, unsigned, unsigned);
             /// Add a surface to the array of surfaces
             virtual void addSurface(unsigned, unsigned, unsigned);
 
-            /// Dimension of the object
+            /// Actual dimension of the object (in contrast to the vector space)
             virtual unsigned &dimension() { return _dimension; }
             /// The array of vertices
             std::vector<VecMath::Vector<D> > &X() { return _X; }
@@ -39,8 +38,9 @@ template <unsigned D>
             virtual uintvec2D &surface() { return _surface; }
             /// The array of vertices, projected to four dimensions if necessary
             virtual std::vector<VecMath::Vector<4> > vertices();
-            void Transform(const VecMath::Rotation<D> &R,
-                           const VecMath::Vector<D> &T);
+            /// Perform a \p D -dimensional transformation
+            void Transform(const VecMath::Rotation<D> &,
+                           const VecMath::Vector<D> &);
         private:
             /// \return Whether argument or permutation of it already in _surface
             bool checkSurfaceExists(const uintvec1D &);
@@ -49,7 +49,8 @@ template <unsigned D>
             std::vector<VecMath::Vector<D> > _X;    ///< The array of vertices
             uintvec2D _surface;                     ///< The array of surfaces
 
-        friend class Rotope;
+            /// Allow RotopeFactory free access to create vertex_data objects
+            friend class RotopeFactory;
     };
 
 /*  You shouldn't use "using" directives in a header file, but the code gets
@@ -171,6 +172,9 @@ template <unsigned D>
         return p(X(), 2., 8.);  /// \todo This is hardcoded! Ugh!
     }
 
+/** \param R Rotation component of the transformation
+ *  \param T Translation component of the transformation
+ */
 template <unsigned D>
     void vertex_data<D>::Transform(const VecMath::Rotation<D> &R,
                                    const VecMath::Vector<D> &T) {

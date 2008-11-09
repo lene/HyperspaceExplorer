@@ -2,11 +2,12 @@
 #define ROTOPE_BASE_H
 
 /** \defgroup RotopeGroup N-dimensional Rotopes.
- *  For a definition of Rotopes, see http://teamikaria.com/wiki/Rotope
+ *  For a definition of Rotopes, see http://teamikaria.com/wiki/Rotope.
  *  \ingroup ObjectGroup
  */
 
 /// Interface implemented by all Rotope s
+/** \ingroup RotopeGroup */
 class RotopeBase {
     public:
         virtual void print() = 0;           ///< Output of all vertices
@@ -30,6 +31,7 @@ class RotopeBase {
         /// The array of vertices, projected to four dimensions if necessary
         virtual std::vector<VecMath::Vector<4> > vertices() = 0;
 
+    /// Allow Rotope (which is not a RotopeBase, but contains one) free access
     friend class Rotope;
 };
 

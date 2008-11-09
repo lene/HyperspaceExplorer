@@ -4,9 +4,18 @@
 #include <Object.H>
 #include "VertexData.H"
 
+/// Gets thrown when an operation is not yet (or will never be) supported
+/** \ingroup RotopeGroup
+ *  \author Helge Preuss <scout@hyperspace-travel.de>
+ */
 class BadRotopeOperation: public std::logic_error {
     public:
-        BadRotopeOperation(const std::string &what): std::logic_error(what) {}
+        /// Create a BadRotopeOperation
+        /** \param caller The function name throwing the BadRotopeOperation
+         *  \param op The unsupported operation \p caller wanted to perform
+         */
+        BadRotopeOperation(const std::string &caller, const std::string &op):
+            std::logic_error(caller+": "+"Unsupported action \""+op+"\"") {}
 };
 
 /// A four-dimensional <a href="http://teamikaria.com/wiki/Rotope">Rotope</a>.
@@ -15,57 +24,28 @@ class BadRotopeOperation: public std::logic_error {
  */
 class Rotope : public Object {
 
-    const static unsigned DIM = 6;      ///< Dimension of the Rotope object
+    const static unsigned DIM = 6;      ///< Default dimension of Rotope objects
 
     public:
-        /// Construct a Rotope. Not yet implemented properly.
+        /// Construct a default Rotope (\p DIM -dimensional hypercube).
         Rotope();
         /// Execute a series of extrusions to construct a Rotope
         Rotope(const std::string &);
 
         ~Rotope();
 
+        /// Execute the desired extrude actions and declare FunctionParameter s
         virtual void Initialize();
 
+        /// Transforms a Rotope
         virtual void Transform (const VecMath::Rotation<4> &,
                                 const VecMath::Vector<4> &);
+        /// Draw the projected Rotope (onto screen or into GL list, in fact)
         virtual void Draw (void);
-        virtual void SetParameters(const ParameterMap &parms) {
-#       if 1
-            for (ParameterMap::const_iterator i = parms.begin();
-                 i != parms.end(); ++i) {
-                     if (i->second->getName() == "Generator") {
-                         _actions = std::string(*i->second);
-                     }
-                     if (i->second->getName() == "5D Rotation") {
-                         std::cerr << "5D Rotation : "
-                                 << VecMath::Rotation<5>(*i->second) << "\n";
-                     }
-                     if (i->second->getName() == "6D Rotation") {
-                         std::cerr << "6D Rotation : " << VecMath::Rotation<5>(*i->second) << "\n";
-                     }
-                     if (i->second->getName() == "7D Rotation") {
-                         std::cerr << "7D Rotation : " << VecMath::Rotation<5>(*i->second) << "\n";
-                     }
-                     if (i->second->getName() == "8D Rotation") {
-                         std::cerr << "8D Rotation : " << VecMath::Rotation<5>(*i->second) << "\n";
-                     }
-                     if (i->second->getName() == "9D Rotation") {
-                         std::cerr << "9D Rotation : " << VecMath::Rotation<5>(*i->second) << "\n";
-                     }
-                     if (i->second->getName() == "10D Rotation") {
-                         std::cerr << "10D Rotation : " << VecMath::Rotation<5>(*i->second) << "\n";
-                     }
 
-                 }
-#       else
-                 setParameter(parms, this->_actions, "Generator");
-#       endif
-        }
+        /// Set parameters to the Function
+        virtual void SetParameters(const ParameterMap &parms);
 
-
-        /** \return The name of the function in cleartext                     */
-//        virtual QString getFunctionName() const { return "Rotope"; }
     private:
         /// Sequence of extrusion actions needed to generate the Rotope
         std::string _actions;

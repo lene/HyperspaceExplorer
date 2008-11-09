@@ -43,9 +43,26 @@ void Rotope::Initialize() {
         declareParameter("Generator", _actions);
         for(unsigned i = 5; i <= _actions.length(); ++i) {
             string label = Globals::Instance().itoa(i)+string("D Rotation");
-            std::cerr << label << std::endl;
-            declareParameter(label,
-                             VecMath::Rotation<5>());
+            switch(i) {
+                case 5:
+                    declareParameter(label, VecMath::Rotation<5>());
+                    break;
+                case 6:
+                    declareParameter(label, VecMath::Rotation<6>());
+                    break;
+                case 7:
+                    declareParameter(label, VecMath::Rotation<7>());
+                    break;
+                case 8:
+                    declareParameter(label, VecMath::Rotation<8>());
+                    break;
+                case 9:
+                    declareParameter(label, VecMath::Rotation<9>());
+                    break;
+                case 10:
+                    declareParameter(label, VecMath::Rotation<10>());
+                    break;
+            }
         }
     } catch (BadRotopeOperation e) {
         declareParameter("Generator", string(DIM, 'E'));
@@ -74,7 +91,7 @@ void Rotope::Initialize() {
     Object::Initialize();
 
 }
-/// Transforms a Rotope
+
 /** @param R Rotation
  *  @param T Translation
  */
@@ -91,7 +108,6 @@ void Rotope::Transform(const VecMath::Rotation<4> &R,
 
 }
 
-/// Draw the projected Rotope (onto screen or into GL list, as it is)
 void Rotope::Draw () {
     if (!_rotope) {
         throw std::logic_error("Rotope::Draw(): _rotope is NULL!");
@@ -114,3 +130,40 @@ void Rotope::Draw () {
     glEnd ();
 }
 
+void Rotope::SetParameters(const ParameterMap &parms) {
+#   if 1
+        for (ParameterMap::const_iterator i = parms.begin();
+             i != parms.end(); ++i) {
+            if (i->second->getName() == "Generator") {
+                _actions = std::string(*i->second);
+            }
+            if (i->second->getName() == "5D Rotation") {
+                std::cerr << "5D Rotation : "
+                        << VecMath::Rotation<5>(*i->second) << "\n";
+            }
+            if (i->second->getName() == "6D Rotation") {
+                std::cerr << "6D Rotation : "
+                        << VecMath::Rotation<5>(*i->second) << "\n";
+            }
+            if (i->second->getName() == "7D Rotation") {
+                std::cerr << "7D Rotation : "
+                        << VecMath::Rotation<5>(*i->second) << "\n";
+            }
+            if (i->second->getName() == "8D Rotation") {
+                std::cerr << "8D Rotation : "
+                        << VecMath::Rotation<5>(*i->second) << "\n";
+            }
+            if (i->second->getName() == "9D Rotation") {
+                std::cerr << "9D Rotation : "
+                        << VecMath::Rotation<5>(*i->second) << "\n";
+            }
+            if (i->second->getName() == "10D Rotation") {
+                std::cerr << "10D Rotation : "
+                        << VecMath::Rotation<5>(*i->second) << "\n";
+            }
+
+        }
+#   else
+        setParameter(parms, this->_actions, "Generator");
+#   endif
+}

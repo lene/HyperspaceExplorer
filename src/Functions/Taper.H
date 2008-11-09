@@ -102,10 +102,10 @@ template <unsigned D, unsigned Dmin>
  *  \f$ D \f$ th coordinate are affected.
  *
  *  The new point is extruded above the center of the \f$ D-1 \f$ st coordinate,
- *  thus \f$ X_{new}_{D-1} = \frac{X_{D-1} }{2} \f$ .
+ *  thus \f$ X_{new,D-1} = \frac{X_{D-1} }{2} \f$ .
  *
  *  The \f$ D \f$ th coordinate is found by spanning a right triangle with the
- *  sides \f$ X_{new}_{D-1} \f$ and \f$ X_{D-2} \f$ , and solving the pythagorean
+ *  sides \f$ X_{new,D-1} \f$ and \f$ X_{D-2} \f$ , and solving the pythagorean
  *  equation for the missing cathetus.
  *
  *  While these formulas are relatively easy, keep in mind that
