@@ -1,12 +1,10 @@
 TEMPLATE = app
 
-#CONFIG -= debug
-#CONFIG += release qt warn_on uic
 CONFIG += debug qt warn_on uic
 
 QT += opengl
 
-VERSION = 0.6.2
+VERSION = 0.6.1
 
 ###
 ###     move all temporary files out of sight into subdirectory tmp
@@ -30,14 +28,14 @@ HEADERS += Functions/ComplexFunction.H Functions/CustomFunction.H \
            Functions/Function.H Functions/Object.H Functions/Surface.H \
            Functions/RealFunction.H  Functions/FunctionParameter.H \
            Functions/ParameterMap.H Functions/FunctionFactory.H \
-           Functions/RotopeBase.H Functions/Projector.H Functions/VertexData.H \
            Functions/Rotope.H Functions/Extrude.H Functions/Taper.H \
-           Functions/Rotate.H Functions/Torate.H Functions/RotopeFactory.H
+           Functions/Rotate.H Functions/Torate.H
 #          Functions/SteinerFunction.H
 SOURCES += Functions/ComplexFunction.C Functions/CustomFunction.C \
            Functions/Function.C Functions/Surface.C Functions/Object.C \
            Functions/RealFunction.C  Functions/FunctionParameter.C \
-           Functions/FunctionFactory.C Functions/Rotope.C Functions/RotopeFactory.C
+           Functions/FunctionFactory.C Functions/Rotope.C \
+           Functions/RotopeFactory.C
 #          Functions/SteinerFunction.C
 
 ###
@@ -124,5 +122,6 @@ vector.path = $${INSTALLDIR}/share/HyperspaceExplorer/plugins
 docs.files = doc/*
 docs.path =  $${INSTALLDIR}/share/HyperspaceExplorer/doc
 INSTALLS += target vector docs
-DISTFILES += ../devel/footer.html
+DISTFILES += ../devel/footer.html \
+ ../TODO
 
