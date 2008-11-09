@@ -300,9 +300,6 @@ void C4DView::ApplyChanges (const ParameterMap &parms) {
  *  Writes image to file too, if wanted.                                      */
 void C4DView::OnAnimationTimer() {
 
-    SingletonLog::Instance() << "C4DView::OnAnimationTimer()\n"
-            << "  dR = " << getdR() << "\n";
-
     if (getdR()) {     //  4D viewpoint animated?
 
         addR(getdR());

@@ -31,8 +31,6 @@ C4DView::MouseHandler4D::~MouseHandler4D() {}
  *  code below
  *  \param e Qt's mouse event information structure                           */
 void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
-    SingletonLog::Instance() << "C4DView::MouseHandler4D::mouseMoveEvent ("
-                << (long)e->modifiers()<<") ";
     QPoint point = e->pos ();
     Qt::KeyboardModifiers s = e->modifiers();
     Qt::MouseButtons b = e->buttons();
@@ -43,13 +41,6 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
          AltPressed = s & Qt::AltModifier,
          ControlPressed = s & Qt::ControlModifier,
          ShiftPressed = s & Qt::ShiftModifier;
-
-    SingletonLog::Instance() << (LeftButtonDown? "LMB ": "")
-             << (MidButtonDown? "MMB ": "")
-             << (RightButtonDown? "RMB ": "")
-             << (AltPressed? "+ Alt ": "")
-             << (ControlPressed? "+ Ctrl ": "")
-             << (ShiftPressed? "+ Shift ": "") << "\n";
 
     bool ViewChanged = false;
 
@@ -180,8 +171,6 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
     }                           //    if (::GetKeyState (VK_SHIFT) < 0)
 
     if (ViewChanged) {                              //    4D viewpoint has changed
-        SingletonLog::Instance().log("C4DView::mouseMoveEvent: View changed ()");
-
         parent->Transform (parent->R(), parent->T());            //    apply the 4D transformation
         parent->Redraw ();
     } else {                                        //    4D viewpoint didn't change
@@ -260,8 +249,6 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
 /** Only sets flags which buttons are down
  *  \param e Qt's mouse event information structure                           */
 void C4DView::MouseHandler4D::mousePressEvent (QMouseEvent *e) {
-    SingletonLog::Instance().log("C4DView::MouseHandler4D::mousePressEvent ()");
-
     QPoint point = e->pos ();
     Qt::MouseButtons b = e->buttons();
 
@@ -284,8 +271,6 @@ void C4DView::MouseHandler4D::mousePressEvent (QMouseEvent *e) {
 
 /// If taking values for an animation, starts the animation
 void C4DView::MouseHandler4D::mouseReleaseEvent (QMouseEvent *) {
-    SingletonLog::Instance().log("C4DView::MouseHandler4D::mouseReleaseEvent ()");
-
     if (TakingSpinValues()) {
         parent->StartAnimation ();
         setTakingSpinValues(false);
@@ -296,8 +281,6 @@ void C4DView::MouseHandler4D::mouseReleaseEvent (QMouseEvent *) {
 
 /// Stops animation, if running, or resets transformation values to default
 void C4DView::MouseHandler4D::mouseDoubleClickEvent (QMouseEvent *) {
-    SingletonLog::Instance().log("C4DView::MouseHandler4D::mouseDoubleClickEvent ()");
-
     if (parent->Animated()) parent->StopAnimation ();
     else {
         parent->Transform();
