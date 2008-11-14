@@ -22,6 +22,8 @@ template <unsigned D>
         private:
             /// Extrude the object for distance \p dist along axis \p d
             void extrude(unsigned d, double dist, const vector<Vector<D> > &);
+            VecMath::Vector<D> rotate_vertex(const VecMath::Vector<D> &, double,
+                                             unsigned, unsigned);
 
             /// How many segments to use to approximate a circle
             unsigned _numSegments;
@@ -137,43 +139,91 @@ template <unsigned D> void rotate_base<D>::extrude(unsigned d,
 }
 
 template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
+    std::cerr << "rotate_base<" << D << ">::rotate(" << d << ")\n";
     if (d >= D) {
         throw std::logic_error(
            "rotate_base::rotate() called on a higher dimension"
            " than the vector space allows");
     }
-
-    const vector<Vector<D> > Xold = vertex_data<D>::X();
-    vector<double> xaxis(_numSegments);
-    vector<double> displacements(_numSegments);
-
-    for (unsigned i = 1; i <= _numSegments; ++i) {
-        double x = 2./(_numSegments+1)*i-1.;
-        xaxis[i] = x;
-        displacements[i] = sqrt(1.-x*x);
-        std::cerr << displacements[i] << std::endl;
+    if (d == 0) {
+        throw std::logic_error(
+                "rotate_base::rotate() must be called on an object of dimension"
+                " at least 1");
     }
-    for(unsigned i = 0; i < Xold.size(); ++i) {
-        std::vector<VecMath::Vector<D> > tmp;
-        for(unsigned j = 1; j <= _numSegments; ++j) {
-            Vector<D> xtmp = Xold[i];
-            xtmp[d-1] = xaxis[j];
-            xtmp[d] = displacements[j];
-            tmp.push_back(xtmp);
+
+    RotopeBase::uintvec2D surface_old = vertex_data<D>::surface();
+    for (unsigned i = 0; i < surface_old.size(); ++i) {
+
+        std::vector<unsigned> current_surface =
+                vertex_data<D>::surface()[i];
+        if (current_surface.size() < 3)
+            throw new std::logic_error("size of surface < 3");
+
+        unsigned old_current = 0, old_next = 1;
+        for (double rot = M_PI/_numSegments; rot <= 2.*M_PI;
+             rot += M_PI/_numSegments) {
+
+            for (unsigned j = 0; j < current_surface.size(); j += 4) {
+
+                std::cerr << "surface[" << i << "]: (";
+                for (unsigned k = 0; k < current_surface.size(); ++k)
+                    std::cerr << current_surface[k] << " ";
+                std::cerr << ")\n";
+
+                unsigned cur_index = current_surface[j],
+                    next_index = current_surface[(j+1)%current_surface.size()];
+
+                std::cerr << "j: " << j << ": "
+                        << cur_index << "->" << next_index << "\n";
+
+                VecMath::Vector<D> current = vertex_data<D>::X()[cur_index];
+                VecMath::Vector<D> next = vertex_data<D>::X()[next_index];
+                VecMath::Vector<D> rotated_current = rotate_vertex(current, rot,
+                                                                   d, d-1);
+
+                vertex_data<D>::X().push_back(rotated_current);
+
+                if (current_surface.size() == 3) {
+                    // new surface (current, next, rotated)
+                    vertex_data<D>::addSurface(j, (j+1)%3,
+                                               vertex_data<D>::X().size()-1);
+                } else {
+                    VecMath::Vector<D> rotated_next = rotate_vertex(next, rot,
+                                                                    d, d-1);
+                    // new surface (current, next, rotated_next, rotated_current)
+                    vertex_data<D>::X().push_back(rotated_next);
+                    vertex_data<D>::addSurface(old_current, old_next,
+                                               vertex_data<D>::X().size()-1,
+                                               vertex_data<D>::X().size()-2);
+
+                    old_current = vertex_data<D>::X().size()-2;
+                    old_next = vertex_data<D>::X().size()-1;
+                }
+
+                std::cerr << "surface[" << i << "] after addSurface(): (";
+                for (unsigned k = 0; k < current_surface.size(); ++k)
+                    std::cerr << current_surface[k] << " ";
+                std::cerr << ")\n";
+            }
         }
-        typename std::vector<VecMath::Vector<D> >::iterator I =
-                vertex_data<D>::X().begin()+i;
-        vertex_data<D>::X().insert(I, tmp.begin(), tmp.end());
+        // delete surface[i];
+        vertex_data<D>::removeSurface(i);
+        // add caps
     }
-//    extrude(d, displacements[i], Xold);
-//    extrude(d, -displacements[i], Xold);
-
 
     vertex_data<D>::dimension()++;   //  object is now one dimension higher
 
     vertex_data<D>::print();
-
-
-//    throw NotYetImplementedException("rotate_base<D>::rotate()");
 }
+
+template <unsigned D> VecMath::Vector<D> rotate_base<D>::rotate_vertex(
+        const VecMath::Vector<D> &v, double rot,
+        unsigned new_axis, unsigned old_axis) {
+    std::cerr << "rotate_base<" << D << ">::rotate_vertex(" << v << ", " << rot << ", " << new_axis << ", " << old_axis << ")\n";
+    VecMath::Vector<D> v_new(v);
+    v_new[new_axis] = v_new[old_axis]*sin(rot);
+    v_new[old_axis] *= cos(rot);
+    return v_new;
+}
+
 #endif

@@ -126,12 +126,13 @@ void Rotope::Draw () {
             currentPolygonSize = _rotope->surface()[i].size();
             if (currentPolygonSize == 4) glBegin (GL_QUADS);
             else if (currentPolygonSize == 3) glBegin (GL_TRIANGLES);
-            else throw NotYetImplementedException("Rotope::Draw(): Polygons");
+            else glBegin(GL_POLYGON);
         }
         for (unsigned j = 0; j < currentPolygonSize; j++) {
             setVertex(X[_rotope->surface()[i][j]],
                       Xscr[_rotope->surface()[i][j]]);
         }
+        if (currentPolygonSize > 4) glEnd();
     }
     glEnd ();
 }

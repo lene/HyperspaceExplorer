@@ -14,6 +14,7 @@
 #include <cassert>
 
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <sstream>
 
@@ -269,8 +270,9 @@ namespace VecMath {
             std::ostream &operator << (std::ostream &o, const Vector<D, N> &v) {
         //  i might want to use other brackets one day
         o << "<";
-        for (unsigned i = 0; i < v.dimension ()-1; i++) o << v[i] << ",";
-        o << v[v.dimension ()-1] << ">";
+        for (unsigned i = 0; i < v.dimension ()-1; i++)
+            o << std::setprecision(4) << v[i] << ",";
+        o << std::setprecision(4) << v[v.dimension ()-1] << ">";
         return o;
     }
 

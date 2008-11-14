@@ -391,11 +391,12 @@ int main (int argc, char *argv[]) {
 
         ret = app.exec ();
     } catch (std::logic_error e) {
-        std::cerr << "The programmer of this software has done something wrong.\n"
+        std::cerr << "\n\n"
+            "The programmer of this software has done something wrong.\n"
             "You can drop her a message: <scout@hyperspace-travel.de>\n"
             "or use the bug tracker for Hyperspace Explorer at:\n"
             "https://sourceforge.net/tracker2/?func=add&group_id=34073&atid=410707\n"
-            "Please add this message to the bug report: \n"
+            "Please add the following message to the bug report: \n"
                 << e.what() << "\n\n"
             "The program will abort now. If you know how to do a stack backtrace,\n"
             "adding one would be a great help.\n";

@@ -25,10 +25,14 @@ template <unsigned D>
             vertex_data(): _dimension(0), _X(), _surface(), _transform() {
                 X().push_back(VecMath::Vector<D>());
             }
-            /// Add a surface to the array of surfaces
+            /// Add a quadrilateral surface to the array of surfaces
             virtual void addSurface(unsigned, unsigned, unsigned, unsigned);
-            /// Add a surface to the array of surfaces
+            /// Add a triangular surface to the array of surfaces
             virtual void addSurface(unsigned, unsigned, unsigned);
+            /// Add a polygonal surface to the array of surfaces
+            virtual void addSurface(const std::vector<unsigned> &);
+            /// Remove a surface by giving its index in the surface array
+            virtual void removeSurface(unsigned);
 
             /// Perform a \p D -dimensional transformation
             virtual void addTransform(unsigned, const VecMath::RotationBase *);
@@ -70,6 +74,7 @@ using std::vector;
 
 template <unsigned D> void vertex_data<D>::print() {
     std::cerr << _dimension << "-dimensional object: ";
+    std::cerr << X().size() << " vertices\n";
     std::string separator = "";
     for(typename vector<Vector<D> >::iterator i = X().begin();
         i != X().end(); ++i){
@@ -79,7 +84,7 @@ template <unsigned D> void vertex_data<D>::print() {
     std::cerr << "\n";
 
 #   if 1
-        std::cerr << "Surfaces: \n";
+        std::cerr << surface().size() << " surfaces: \n";
         for (unsigned i = 0; i < surface().size(); ++i) {
             std::cerr << std::setw(4) << i << " (";
             separator = "";
@@ -103,6 +108,10 @@ template <unsigned D> void vertex_data<D>::print() {
  */
 template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
                                                       unsigned v3, unsigned v4) {
+#   if 0
+        std::cerr << "addSurface("
+                  << v1 << ", " << v2 << ", " << v3 << ", " << v4 << ")\n";
+#   endif
     if (v1 >= X().size() || v2 >= X().size() ||
         v3 >= X().size() || v4 >= X().size()) {
         throw std::out_of_range("vertex_data<D>::addSurface(): index larger "
@@ -113,6 +122,9 @@ template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
     tmp.push_back(v1); tmp.push_back(v2); tmp.push_back(v3); tmp.push_back(v4);
 
     if (!checkSurfaceExists(tmp)) surface().push_back(tmp);
+#   if 0
+    print();
+#   endif
 }
 
 /** Overloaded version for three vertices
@@ -130,6 +142,27 @@ template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
     uintvec1D tmp;
     tmp.push_back(v1); tmp.push_back(v2); tmp.push_back(v3);
     if (!checkSurfaceExists(tmp)) surface().push_back(tmp);
+}
+
+/** Overloaded version for N vertices
+ *  \param v List of indices in the vertex array
+ */
+template <unsigned D> void vertex_data<D>::addSurface(const std::vector<unsigned> & v) {
+    for (unsigned i = 0; i < v.size(); ++i) {
+        if (v[i] >= X().size()) {
+            throw std::out_of_range("vertex_data<D>::addSurface(): index larger "
+                                    "than size of vertex array");
+        }
+    }
+
+    if (!checkSurfaceExists(v)) surface().push_back(v);
+}
+
+template <unsigned D> void vertex_data<D>::removeSurface(unsigned i) {
+    if (i >= surface.size()) {
+        throw std::logic_error("tried to remove a surface with index greater than array size");
+    }
+    throw NotYetImplementedException("vertex_data<D>::removeSurface()");
 }
 
 /** Test if a new surface is a permutation of a surface already existing.
