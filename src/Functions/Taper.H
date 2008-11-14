@@ -144,6 +144,8 @@ template <unsigned D> void taper_base<D>::taper(unsigned d) {
     Vector<D> xnew;     //  connect all vertices to this new vertex
 
     if (!alreadyTapered()) {
+        /// By Pythagoras! The coordinate tapered into is sqrt(1-1/2^2).
+        double displacement = sqrt(1.-0.25);
         /** If this is the first time we taper an object, we must extrude a new
             point above the middle of the old object.
             For all directions except the newly tapered one, the coordinate value
@@ -153,17 +155,18 @@ template <unsigned D> void taper_base<D>::taper(unsigned d) {
         */
         for(unsigned i = 0; i < vertex_data<D>::X().size(); ++i) {
             xnew += vertex_data<D>::X()[i];
+            vertex_data<D>::X()[i][d] -= displacement;
         }
         xnew *= 1./vertex_data<D>::X().size();
 
-        /// By Pythagoras! The coordinate tapered into is sqrt(1-1/2^2).
-        xnew[d] = sqrt(1.-0.25);
+        xnew[d] = displacement;
     } else {
         /** Copy the last tapered point. It serves as reference, because only the
             coordinate last tapered into changes (it is halved), in addition to
             the newly extruded point.
         */
         xnew = vertex_data<D>::X().back();
+        double displacement;
 
         if (_pre_previous_dim < 0) {
             /** If we have extruded only once before, we know the short cathetus
@@ -171,7 +174,9 @@ template <unsigned D> void taper_base<D>::taper(unsigned d) {
              *  triangle to be 0.5 - half a unit, because it lies in the center
              *  of the previous object.
              */
-            xnew[d] = sqrt(xnew[_previous_dim]*xnew[_previous_dim]-.25);
+            displacement = sqrt(xnew[_previous_dim]*xnew[_previous_dim]-.25);
+            xnew[d] = displacement;
+
             /** Consequently, in this dimension the new point lies in the center
              *  of the previous edge.
              */
@@ -180,10 +185,16 @@ template <unsigned D> void taper_base<D>::taper(unsigned d) {
             /** If we have stored at least two previous extrusions, the cathetus
              *  of the new triangle is defined by those.
              */
-            xnew[d] = sqrt(fabs(xnew[_previous_dim]*xnew[_previous_dim]-
-                    xnew[_pre_previous_dim]*xnew[_pre_previous_dim]));
+            displacement = sqrt(fabs(xnew[_previous_dim]*xnew[_previous_dim]-
+                        xnew[_pre_previous_dim]*xnew[_pre_previous_dim]));
+            xnew[d] = displacement;
+
             xnew[_previous_dim] /= 2.;
         }
+        for(unsigned i = 0; i < vertex_data<D>::X().size(); ++i) {
+            vertex_data<D>::X()[i][d] -= displacement;
+        }
+
     }
 
     vertex_data<D>::X().push_back(xnew);

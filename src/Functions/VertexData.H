@@ -74,14 +74,16 @@ using std::vector;
 
 template <unsigned D> void vertex_data<D>::print() {
     std::cerr << _dimension << "-dimensional object: ";
-    std::cerr << X().size() << " vertices\n";
     std::string separator = "";
+#   if 1
+    std::cerr << X().size() << " vertices\n";
     for(typename vector<Vector<D> >::iterator i = X().begin();
         i != X().end(); ++i){
         std::cerr << separator << *i;
         separator = ", ";
     }
     std::cerr << "\n";
+#   endif
 
 #   if 1
         std::cerr << surface().size() << " surfaces: \n";
@@ -134,6 +136,10 @@ template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
  */
 template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
                                                       unsigned v3) {
+#   if 0
+        std::cerr << "addSurface("
+                  << v1 << ", " << v2 << ", " << v3 <<  ")\n";
+#   endif
     if (v1 >= X().size() || v2 >= X().size() || v3 >= X().size()) {
         throw std::out_of_range("vertex_data<D>::addSurface(): index larger "
                                 "than size of vertex array");
@@ -141,6 +147,7 @@ template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
 
     uintvec1D tmp;
     tmp.push_back(v1); tmp.push_back(v2); tmp.push_back(v3);
+
     if (!checkSurfaceExists(tmp)) surface().push_back(tmp);
 }
 
@@ -158,11 +165,14 @@ template <unsigned D> void vertex_data<D>::addSurface(const std::vector<unsigned
     if (!checkSurfaceExists(v)) surface().push_back(v);
 }
 
-template <unsigned D> void vertex_data<D>::removeSurface(unsigned i) {
-    if (i >= surface.size()) {
+template <unsigned D> void vertex_data<D>::removeSurface(unsigned remove_me) {
+    if (remove_me >= surface().size()) {
         throw std::logic_error("tried to remove a surface with index greater than array size");
     }
-    throw NotYetImplementedException("vertex_data<D>::removeSurface()");
+
+    uintvec2D::iterator i = surface().begin();
+    for(unsigned count = 0; count < remove_me; ++i, ++count);
+    surface().erase(i);
 }
 
 /** Test if a new surface is a permutation of a surface already existing.

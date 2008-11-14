@@ -140,7 +140,7 @@ void C4DView::ObjectGasket() {
 void C4DView::ObjectRotope() {
     Menu()->updateFunctionMenu("Rotope");
 
-    setF(new Rotope("EER"));
+    setF(new Rotope("ETR"));
 
     AssignValues(F());
     Redraw ();
