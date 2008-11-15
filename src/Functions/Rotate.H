@@ -14,7 +14,7 @@ template <unsigned D>
         public:
             /// Create a rotate_base object from an already existing object
             rotate_base(const vertex_data<D> &v):
-                vertex_data<D>(v), _numSegments(8) { }
+                vertex_data<D>(v), _numSegments(3) { }
 
             /// Execute the rotate action of the previous object along axis \p d.
             void rotate(unsigned d);
@@ -139,6 +139,7 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
 
             /// Delete current surface, it has been replaced by a rotation of itself
             vertex_data<D>::removeSurface(i);
+            vertex_data<D>::print();
         }
     }
 
@@ -275,7 +276,6 @@ template <unsigned D> void rotate_base<D>::rotate_polygon(
     const double epsilon = 0.01;
 
     vertex_data<D>::X().push_back(vertex_data<D>::X()[current_surface[0]]);
-    vertex_data<D>::X().push_back(vertex_data<D>::X()[current_surface[1]]);
 
     /** Rotate the current surface through 360 degrees.
      *  \bug Instead of rotating it through 180 degrees and using every
@@ -304,14 +304,15 @@ template <unsigned D> void rotate_base<D>::rotate_polygon(
                         << " cur_index: " << cur_index << " next_index: " << next_index
                         << " size: " << vertex_data<D>::X().size() << "\n";
                 vertex_data<D>::addSurface(cur_index, next_index,
-                                           vertex_data<D>::X().size()-2, vertex_data<D>::X().size()-3);
+                                           vertex_data<D>::X().size()-1,
+                                           vertex_data<D>::X().size()-2);
 //          }
 
         }
         /// Update vertices from which to draw the next surface
         offset += current_surface.size();
     }
-    vertex_data<D>::print();
+//    vertex_data<D>::print();
 }
 
 #endif

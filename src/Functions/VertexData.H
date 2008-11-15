@@ -77,10 +77,11 @@ template <unsigned D> void vertex_data<D>::print() {
     std::string separator = "";
 #   if 1
     std::cerr << X().size() << " vertices\n";
-    for(typename vector<Vector<D> >::iterator i = X().begin();
-        i != X().end(); ++i){
-        std::cerr << separator << *i;
-        separator = ", ";
+    unsigned count = 0;
+    for (typename vector<Vector<D> >::iterator i = X().begin();
+         i != X().end(); ++i, count++){
+        separator = "\n";
+        std::cerr << count << ": " << *i << separator;
     }
     std::cerr << "\n";
 #   endif
