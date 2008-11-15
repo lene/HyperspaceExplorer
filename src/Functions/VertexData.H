@@ -110,10 +110,6 @@ template <unsigned D> void vertex_data<D>::print() {
  */
 template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
                                                       unsigned v3, unsigned v4) {
-#   if 0
-        std::cerr << "addSurface("
-                  << v1 << ", " << v2 << ", " << v3 << ", " << v4 << ")\n";
-#   endif
     if (v1 >= X().size() || v2 >= X().size() ||
         v3 >= X().size() || v4 >= X().size()) {
         throw std::out_of_range("vertex_data<D>::addSurface(): index larger "
@@ -124,9 +120,6 @@ template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
     tmp.push_back(v1); tmp.push_back(v2); tmp.push_back(v3); tmp.push_back(v4);
 
     if (!checkSurfaceExists(tmp)) surface().push_back(tmp);
-#   if 0
-    print();
-#   endif
 }
 
 /** Overloaded version for three vertices
@@ -136,10 +129,6 @@ template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
  */
 template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
                                                       unsigned v3) {
-#   if 0
-        std::cerr << "addSurface("
-                  << v1 << ", " << v2 << ", " << v3 <<  ")\n";
-#   endif
     if (v1 >= X().size() || v2 >= X().size() || v3 >= X().size()) {
         throw std::out_of_range("vertex_data<D>::addSurface(): index larger "
                                 "than size of vertex array");
