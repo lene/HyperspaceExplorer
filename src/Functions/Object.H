@@ -83,7 +83,7 @@ class Object: public Function {
 /** \ingroup ObjectGroup                                                    */
 class Hypercube: public Object {
 public:
-    Hypercube (): Object ("Hypercube", 16, 24) {
+    Hypercube (): Object ("Tesseract", 16, 24) {
         _a = 1;
         declareParameter("Size", 1.0);
         Initialize();
@@ -107,7 +107,7 @@ public:
     /// \return A string carrying a description of the Function
     virtual std::string description () {
         std::ostringstream out;
-        out << "Hypercube (a = " << _a << ")" << std::ends;
+        out << "Tesseract of edge length " << _a << std::ends;
         return out.str ();
     }
 protected:
@@ -120,7 +120,7 @@ protected:
 
 namespace {
     Function *createHypercube() { return new Hypercube(); }
-    const bool registeredH = TheFunctionFactory::Instance().registerFunction("Hypercube", createHypercube);
+    const bool registeredH = TheFunctionFactory::Instance().registerFunction("Tesseract", createHypercube);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -224,7 +224,7 @@ namespace {
 /** \ingroup ObjectGroup                                                    */
 class Pyramid: public Object {
 public:
-    Pyramid (): Object ("Hyperpyramid", 5, 10) {
+    Pyramid (): Object ("Pentachoron", 5, 10) {
         declareParameter("Size", 1.0);
     }
     Pyramid (double _a,
@@ -252,7 +252,9 @@ protected:
 
 namespace {
     Function *createPyramid() { return new Pyramid(); }
-    const bool registeredP = TheFunctionFactory::Instance().registerFunction("Pyramid", createPyramid);
+    const bool registeredP =
+            TheFunctionFactory::Instance().registerFunction("Pentachoron",
+                                                            createPyramid);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -309,7 +311,8 @@ class Gasket: public Pyramid {
 
 namespace {
     Function *createGasket() { return new Gasket(); }
-    const bool registeredG = TheFunctionFactory::Instance().registerFunction("Gasket", createGasket);
+    const bool registeredG =
+            TheFunctionFactory::Instance().registerFunction("Gasket", createGasket);
 }
 
 #endif

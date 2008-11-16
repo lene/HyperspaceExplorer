@@ -46,6 +46,8 @@ template <unsigned D>
             /// The array of vertices, projected to four dimensions if necessary
             virtual std::vector<VecMath::Vector<4> > vertices();
 
+            void printSurface(const uintvec1D &);
+
         private:
             /// \return Whether argument or permutation of it already in _surface
             bool checkSurfaceExists(const uintvec1D &);
@@ -71,6 +73,18 @@ using VecMath::Vector;
 using std::vector;
 
 #include <iomanip>
+template <unsigned D> void vertex_data<D>::printSurface(const uintvec1D &v) {
+    std::cerr << " (";
+    std::string separator = "";
+    for (uintvec1D::const_iterator j = v.begin();
+         j != v.end(); ++j) {
+        std::cerr << separator << std::setw(4) << *j;
+        separator = ", ";
+    }
+    std::cerr << ")\n";
+}
+
+
 
 template <unsigned D> void vertex_data<D>::print() {
     std::cerr << _dimension << "-dimensional object: ";
@@ -89,14 +103,8 @@ template <unsigned D> void vertex_data<D>::print() {
 #   if 1
         std::cerr << surface().size() << " surfaces: \n";
         for (unsigned i = 0; i < surface().size(); ++i) {
-            std::cerr << std::setw(4) << i << " (";
-            separator = "";
-            for (uintvec1D::iterator j = surface()[i].begin();
-                 j != surface()[i].end(); ++j) {
-                std::cerr << separator << std::setw(4) << *j;
-                separator = ", ";
-            }
-            std::cerr << ")\n";
+            std::cerr << std::setw(4) << i;
+            printSurface(surface()[i]);
         }
         std::cerr << "\n";
 #   endif

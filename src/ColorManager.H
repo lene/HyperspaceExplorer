@@ -38,7 +38,7 @@ class ColorManager {
         ColorManager(const Function *_f):
             f(_f),
             ambientColorModifier(0.5), specularColorModifier(2.),
-            specularColorMinimum(0.5), SHININESS(32.), ALPHA(0.9),
+            specularColorMinimum(0.5), SHININESS(32.), ALPHA(0.8),
             offset4Ddepthcue(0.1) { }
 
         virtual ~ColorManager() { }

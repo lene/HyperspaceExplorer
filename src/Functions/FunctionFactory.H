@@ -15,7 +15,9 @@ class Function;
  *  \code
  *  namespace {
  *      Function *createHypercube() { return new Hypercube(); }
- *      const bool registered = TheFunctionFactory::Instance().registerFunction("Hypercube", createHypercube);
+ *      const bool registered =
+ *          TheFunctionFactory::Instance().registerFunction("Hypercube",
+ *                                                          createHypercube);
  *  }
  *  \endcode
  *  Objects are created with, e.g.:
@@ -57,6 +59,8 @@ class FunctionFactory {
         /** \param name The class name of the created Function object
          *  \return a newly created object of class "name"                    */
         Function *createFunction(const std::string &name);
+
+        std::string listFunctions();
 
     private:
         /** disabled default constructor */

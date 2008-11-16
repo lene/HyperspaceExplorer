@@ -14,7 +14,7 @@ template <unsigned D>
         public:
             /// Create a rotate_base object from an already existing object
             rotate_base(const vertex_data<D> &v):
-                vertex_data<D>(v), _numSegments(3) { }
+                vertex_data<D>(v), _numSegments(8) { }
 
             /// Execute the rotate action of the previous object along axis \p d.
             void rotate(unsigned d);
@@ -139,7 +139,7 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
 
             /// Delete current surface, it has been replaced by a rotation of itself
             vertex_data<D>::removeSurface(i);
-            vertex_data<D>::print();
+//            vertex_data<D>::print();
         }
     }
 
@@ -267,6 +267,11 @@ template <unsigned D> void rotate_base<D>::rotate_quad(
     vertex_data<D>::addSurface(new_surface1);
     if (!new_surface2.empty()) vertex_data<D>::addSurface(new_surface2);
 
+    std::cerr << "added surfaces: ";
+    vertex_data<D>::printSurface(new_surface1);
+    std::cerr << ", ";
+    vertex_data<D>::printSurface(new_surface2);
+    std::cerr << "\n";
 }
 
 template <unsigned D> void rotate_base<D>::rotate_polygon(
