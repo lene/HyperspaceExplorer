@@ -51,7 +51,8 @@ class FunctionFactory {
         bool registerFunction(const std::string &name, CreateFunctionCallback creator);
 
         /// Remove a Function class from the factory
-        /** \param name Name of the class which isn't available for creation any more
+        /** \param name Name of the class which isn't available for creation any
+         *      more
          *  \return true if unregistration was successful                     */
         bool unregisterFunction(const std::string &name);
 
@@ -60,7 +61,7 @@ class FunctionFactory {
          *  \return a newly created object of class "name"                    */
         Function *createFunction(const std::string &name);
 
-        std::string listFunctions();
+        std::vector<std::string> listFunctions();
 
     private:
         /** disabled default constructor */
