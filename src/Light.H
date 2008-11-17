@@ -4,7 +4,7 @@
 #include "Vector.H"
 #include "Color.H"
 
-/// An interface for the definition of light sources
+/// An interface for the definition of light sources' attributes
 /** This class is just a POD struct with getters and setters to the location of
  *  the light source, and the color for its ambient value, its diffuse light and
  *  the specular reflections caused by the light source.
@@ -61,6 +61,7 @@ class LightSource {
         Color _specular;    ///< The light source's color for specular reflections
 };
 
+/// An interface for the definition of light sources
 /** In addition to managing the attributes of the light source, as defined in
  *  the class LightSource, Light provides an abstract method render() which must
  *  be implemented in descendants to put the light source into the scene.

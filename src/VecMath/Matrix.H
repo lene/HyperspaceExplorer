@@ -18,8 +18,8 @@
 #include "Globals.H"
 
 namespace VecMath {
-    /**  Matrix<D, N>: a DxD matrix of numbers of type N
-     *  \param D dimension of the matrix
+    ///  Matrix<D, N>: a \a D x \a D matrix of numbers of type \a N
+    /** \param D dimension of the matrix
      *  \param N numerical type of the matrix elements
      *  \ingroup VecMath
      *  \author Helge Preuss <scout@hyperspace-travel.de>                     */

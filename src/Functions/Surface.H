@@ -14,8 +14,8 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
-/// \em SurfaceBase provides a base class for functions which take two parameters
-/** The \em SurfaceBase interface provides abstract members for the evaluation
+/// SurfaceBase provides a base class for functions which take two parameters
+/** The SurfaceBase interface provides abstract members for the evaluation
  * of the function values on a two-dimensional grid.
  *
  *  abstract member:
@@ -104,9 +104,8 @@ class SurfaceBase: public Function {
 };
 
 
-/** A function from \f$ R^2 \rightarrow R^4 \f$, thus describing a parametrized
- *  surface in hyperspace
- *  \ingroup FunctionGroup
+/// Parametrized surface in four-space defined by \f$ f: R^2 \rightarrow R^4 \f$
+/** \ingroup FunctionGroup
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Surface: public SurfaceBase {
     public:
@@ -154,8 +153,8 @@ class Surface: public SurfaceBase {
          vec3vec2D Xscr;    ///< temporary storage for the function values on the grid
 };
 
-/** An example surface:
-    \f{eqnarray*}{
+/// An example surface:
+/** \f{eqnarray*}{
         F_0 & = & Radius*\sin \theta*\sin \psi;   \\
         F_1 & = & Radius*\cos \theta*\sin \psi;   \\
         F_2 & = & Radius*\cos \theta;             \\
@@ -178,8 +177,8 @@ namespace {
     const bool registeredS1 = TheFunctionFactory::Instance().registerFunction("Surface1", createSurface1);
 }
 
-/** A four-dimensional surface described by Thomas Banchoff
-    \f{eqnarray*}{
+/// A four-dimensional surface described by Thomas Banchoff
+/** \f{eqnarray*}{
         t & = & \theta*\pi                  \\
         p & = & \phi*frac{\pi}{2}           \\
         F_0 & = (1-\sin{t})*\cos{p}         \\
@@ -205,9 +204,8 @@ namespace {
     const bool registeredS2 = TheFunctionFactory::Instance().registerFunction("Horizon", createHorizon);
 }
 
-/** Another torus version, this time as a two-dimensional surface in
- *  four-space
- *  \ingroup SurfaceGroup                                                    */
+/// Another torus version, this time as a two-dimensional surface in four-space
+/** \ingroup SurfaceGroup                                                    */
 class Torus3: public Surface {
 public:
     Torus3(): Surface("Torus3") { }

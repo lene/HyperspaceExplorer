@@ -17,8 +17,8 @@
 
 #include "Surface.H"
 
-/** A surface defined as a function \f$ C \rightarrow C \f$, where the surface
- *  in four dimensions is defined as
+/// A surface defined as a function \f$ C \rightarrow C \f$
+/** The surface in four dimensions is defined as
     \f{eqnarray*}{
         F_0 & = & Real(z)    \\
         F_1 & = & Imag(z)    \\
@@ -50,8 +50,8 @@ class ComplexFunction: public Surface {
         void Initialize (void);
 };
 
-/** \f$ f(z) = z^2 \f$
- *  \ingroup ComplexGroup                                                    */
+/// \f$ f(z) = z^2 \f$
+/** \ingroup ComplexGroup                                                    */
 class z2: public ComplexFunction {
     public:
         z2 (): ComplexFunction("z2") { }
@@ -68,8 +68,8 @@ namespace {
     const bool registered1 = TheFunctionFactory::Instance().registerFunction("z2", createz2);
 }
 
-/** \f$ f(z) = z^3 \f$
- *  \ingroup ComplexGroup                                                    */
+/// \f$ f(z) = z^3 \f$
+/** \ingroup ComplexGroup                                                    */
 class z3: public ComplexFunction {
     public:
         z3 (): ComplexFunction("z3") { }
@@ -86,8 +86,8 @@ namespace {
     const bool registered2 = TheFunctionFactory::Instance().registerFunction("z3", createz3);
 }
 
-/** \f$ f(z) = z^\alpha \f$
- *  \ingroup ComplexGroup                                                    */
+/// \f$ f(z) = z^\alpha \f$
+/** \ingroup ComplexGroup                                                    */
 class zA: public ComplexFunction {
     public:
         zA (): ComplexFunction("zA"), alpha(2) { }
@@ -119,8 +119,8 @@ namespace {
     const bool registered3 = TheFunctionFactory::Instance().registerFunction("zA", createzA);
 }
 
-/** \f$ f(z) = e^{\alpha*z} \f$
- *  \ingroup ComplexGroup                                                    */
+/// \f$ f(z) = e^{\alpha*z} \f$
+/** \ingroup ComplexGroup                                                    */
 class ez: public ComplexFunction {
     public:
         ez (): ComplexFunction("ez"), _alpha(2) { }
@@ -151,8 +151,8 @@ namespace {
     const bool registered4 = TheFunctionFactory::Instance().registerFunction("ez", createez);
 }
 
-/** \f$ f(z) = e^{-\alpha*z^2} \f$
- *  \ingroup ComplexGroup                                                    */
+/// \f$ f(z) = e^{-\alpha*z^2} \f$
+/** \ingroup ComplexGroup                                                    */
 class emz2: public ComplexFunction {
     public:
         emz2 (): ComplexFunction("emz2"), _alpha(1) { }
@@ -183,8 +183,8 @@ namespace {
     const bool registered5 = TheFunctionFactory::Instance().registerFunction("emz2", createemz2);
 }
 
-/** \f$ f(z) = \frac{1}{z} \f$
- *  \ingroup ComplexGroup                                                    */
+/// \f$ f(z) = \frac{1}{z} \f$
+/** \ingroup ComplexGroup                                                    */
 class zm1: public ComplexFunction {
     public:
         zm1 (): ComplexFunction("zm1") { }
@@ -201,8 +201,8 @@ namespace {
     const bool registered6 = TheFunctionFactory::Instance().registerFunction("zm1", createzm1);
 }
 
-/** \f$ f(z) = \frac{1}{z^2} \f$
- *  \ingroup ComplexGroup                                                    */
+/// \f$ f(z) = \frac{1}{z^2} \f$
+/** \ingroup ComplexGroup                                                    */
 class zm2: public ComplexFunction {
     public:
         zm2 (): ComplexFunction("zm2") { }
@@ -219,8 +219,8 @@ namespace {
     const bool registered7 = TheFunctionFactory::Instance().registerFunction("zm2", createzm2);
 }
 
-/** \f$ f(z) = \sqrt{z} \f$
- *  \ingroup ComplexGroup                                                    */
+/// \f$ f(z) = \sqrt{z} \f$
+/** \ingroup ComplexGroup                                                    */
 class sqrtz: public ComplexFunction {
     public:
         sqrtz (): ComplexFunction("sqrtz") { }
@@ -237,8 +237,8 @@ namespace {
     const bool registered8 = TheFunctionFactory::Instance().registerFunction("sqrtz", createsqrtz);
 }
 
-/** \f$ f(z) = \ln{z} \f$
- *  \ingroup ComplexGroup                                                    */
+/// \f$ f(z) = \ln{z} \f$
+/** \ingroup ComplexGroup                                                    */
 class lnz: public ComplexFunction {
     public:
         lnz (): ComplexFunction("lnz") { }
@@ -255,8 +255,8 @@ namespace {
     const bool registered9 = TheFunctionFactory::Instance().registerFunction("lnz", createlnz);
 }
 
-/** \f$ f(z) = \sin{z} \f$
- *  \ingroup ComplexGroup                                                    */
+/// \f$ f(z) = \sin{z} \f$
+/** \ingroup ComplexGroup                                                    */
 class sinz: public ComplexFunction {
     public:
         sinz (): ComplexFunction("sinz") { }
@@ -273,8 +273,8 @@ namespace {
     const bool registered10 = TheFunctionFactory::Instance().registerFunction("sinz", createsinz);
 }
 
-/** \f$ f(z) = \cos{z} \f$
- *  \ingroup ComplexGroup                                                    */
+/// \f$ f(z) = \cos{z} \f$
+/** \ingroup ComplexGroup                                                    */
 class cosz: public ComplexFunction {
     public:
         cosz (): ComplexFunction("cosz") { }
@@ -291,8 +291,8 @@ namespace {
     const bool registered11 = TheFunctionFactory::Instance().registerFunction("cosz", createcosz);
 }
 
-/** \f$ f(z) = \sinh{z} \f$
- *  \ingroup ComplexGroup                                                    */
+/// \f$ f(z) = \sinh{z} \f$
+/** \ingroup ComplexGroup                                                    */
 class sinhz: public ComplexFunction {
     public:
         sinhz (): ComplexFunction("sinhz") { }
@@ -309,8 +309,8 @@ namespace {
     const bool registered12 = TheFunctionFactory::Instance().registerFunction("sinhz", createsinhz);
 }
 
-/** \f$ f(z) = \cosh{z} \f$
- *  \ingroup ComplexGroup                                                    */
+/// \f$ f(z) = \cosh{z} \f$
+/** \ingroup ComplexGroup                                                    */
 class coshz: public ComplexFunction {
     public:
         coshz (): ComplexFunction("coshz") { }
@@ -327,8 +327,8 @@ namespace {
     const bool registered13 = TheFunctionFactory::Instance().registerFunction("coshz", createcoshz);
 }
 
-/** \f$ f(z) = \tan{z} \f$
- *  \ingroup ComplexGroup                                                    */
+/// \f$ f(z) = \tan{z} \f$
+/** \ingroup ComplexGroup                                                    */
 class tanz: public ComplexFunction {
     public:
         tanz (): ComplexFunction("tanz") { }
@@ -345,8 +345,8 @@ namespace {
     const bool registered14 = TheFunctionFactory::Instance().registerFunction("tanz", createtanz);
 }
 
-/** a third-order polynomial of z, not yet implemented
- *  \ingroup ComplexGroup                                                    */
+/// a third-order polynomial of z, not yet implemented
+/**  \ingroup ComplexGroup                                                    */
 class Polynomial: public ComplexFunction {
     public:
         Polynomial(double _umin, double _umax, double _du,

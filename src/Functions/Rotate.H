@@ -20,11 +20,16 @@ template <unsigned D>
             void rotate(unsigned d);
 
         private:
+            /// Execute a rotation on a VecMath::Vector
             VecMath::Vector<D> rotate_vertex(const VecMath::Vector<D> &, double,
                                              unsigned, unsigned);
+            /// Execute the rotate action on a line (generating a circle)
             void rotate_line(unsigned);
+            /// Execute the rotate action on a triangle (generating a cone)
             void rotate_triangle(unsigned, const vector<unsigned> &);
+            /// Execute the rotate action on a rectangle (generating a cylinder)
             void rotate_quad(unsigned, const vector<unsigned> &);
+            /// Execute the rotate action on a polygon
             void rotate_polygon(unsigned, const vector<unsigned> &);
 
             /// How many segments to use to approximate a circle
@@ -150,6 +155,11 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
 #   endif
 }
 
+/** \param v The vertex to be rotated about \p rot radians
+ *  \param rot Angle of the rotation, in radians
+ *  \param new_axis Direction to be rotated into
+ *  \param old_axis Axis to be rotated away from
+ */
 template <unsigned D> VecMath::Vector<D> rotate_base<D>::rotate_vertex(
         const VecMath::Vector<D> &v, double rot,
         unsigned new_axis, unsigned old_axis) {
@@ -163,6 +173,9 @@ template <unsigned D> VecMath::Vector<D> rotate_base<D>::rotate_vertex(
     return v_new;
 }
 
+/** \param d Dimension to be rotated into - the vertices are rotated away from
+ *           axis \p d-1
+ */
 template <unsigned D> void rotate_base<D>::rotate_line(unsigned d) {
     std::vector<unsigned> new_surface; ///< defines the disk
     new_surface.push_back(0);
@@ -180,6 +193,10 @@ template <unsigned D> void rotate_base<D>::rotate_line(unsigned d) {
     vertex_data<D>::print();
 }
 
+/** \param d Dimension to be rotated into - the vertices are rotated away from
+ *           axis \p d-1
+ *  \param current_surface The triangular surface to be extruded into a cone
+ */
 template <unsigned D> void rotate_base<D>::rotate_triangle(
         unsigned d, const vector<unsigned> &current_surface) {
 
@@ -217,6 +234,10 @@ template <unsigned D> void rotate_base<D>::rotate_triangle(
     vertex_data<D>::addSurface(new_surface1);
 }
 
+/** \param d Dimension to be rotated into - the vertices are rotated away from
+ *           axis \p d-1
+ *  \param current_surface The rectangular surface to be extruded into a cylinder
+ */
 template <unsigned D> void rotate_base<D>::rotate_quad(
         unsigned d, const vector<unsigned> &current_surface) {
     unsigned old_current = 0;
@@ -274,6 +295,10 @@ template <unsigned D> void rotate_base<D>::rotate_quad(
     std::cerr << "\n";
 }
 
+/** \param d Dimension to be rotated into - the vertices are rotated away from
+ *           axis \p d-1
+ *  \param current_surface The polygonal surface to be extruded into a sphere
+ */
 template <unsigned D> void rotate_base<D>::rotate_polygon(
         unsigned d, const vector<unsigned> &current_surface) {
 

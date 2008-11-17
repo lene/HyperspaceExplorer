@@ -114,12 +114,12 @@ class RealBase: public Function {
                  vsteps; ///< number of steps in v
 };
 
-/// A \em RealFunction is a mathematical function  \f$ f: R^3 \rightarrow R \f$ .
+/// A RealFunction is a mathematical function  \f$ f: R^3 \rightarrow R \f$ .
 /** The function \em f is evaluated on a 3-dimensional cartesian grid. The
  *  function value constitutes the fourth dimension of the Function object:
  *  \f$ \vec{x} = ( x, y, z, f(x, y, z) ) \f$.
  *
- *  The parent class \em Function provides the evaluation on the grid, together
+ *  The parent class Function provides the evaluation on the grid, together
  *  with methods to rotate and translate the grid in 4-space,  to project the
  *  transformed grid onto 3-space, and to draw the projected grid into an OpenGL
  *  display list.
@@ -210,7 +210,8 @@ namespace {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** a four-dimensional torus where there are three radii - one circling about
+/// A <a href="http://teamikaria.com/wiki/Rotope_42">ditorus</a>
+/** A four-dimensional torus where there are three radii - one circling about
  *  the main axis, the second circling perpendicular to the first circle, and
  *  the third circling about the second circle, perpendicular to all other
  *  directions
@@ -253,7 +254,8 @@ namespace {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** a four-dimensional torus where a sphere circles about a center point in a
+/// A <a href="http://teamikaria.com/wiki/Rotope_22">toraspherinder</a>
+/** A four-dimensional torus where a sphere circles about a center point in a
  *  direction perpendicular to all directions making up the sphere
  *  \ingroup RealGroup                                                    */
 class Torus2: public RealFunction {
@@ -294,8 +296,8 @@ namespace {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** an example function from \f$R^3 \rightarrow R\f$
-    \f{eqnarray*}{
+/// an example function from \f$R^3 \rightarrow R\f$
+/** \f{eqnarray*}{
         r^2      & = & x^2+y^2+z^2  \\
         f(x,y,z) & = & 1./(r^2+.25)
     \f}
@@ -319,8 +321,8 @@ namespace {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** a function describing the gravitational potential of a spherical mass
- *  \ingroup RealGroup                                                    */
+/// a function describing the gravitational potential of a spherical mass
+/** \ingroup RealGroup                                                    */
 class GravitationPotential: public RealFunction {
     public:
         GravitationPotential(): RealFunction("GravitationPotential"), M(1.), R(0.25) { }
@@ -356,8 +358,8 @@ namespace {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** \f$ f(x,y,z) = \sin (\pi*(x^2+y^2+z^2)) \f$
- *  \ingroup RealGroup                                                    */
+/// \f$ f(x,y,z) = \sin (\pi*(x^2+y^2+z^2)) \f$
+/** \ingroup RealGroup                                                    */
 class Fr3rSin: public RealFunction {
     public:
         Fr3rSin(): RealFunction("Fr3rSin") { }
@@ -377,8 +379,8 @@ namespace {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** \f$ f(x,y,z) = \exp (x^2+y^2+z^2) \f$
- *  \ingroup RealGroup                                                    */
+/// \f$ f(x,y,z) = \exp (x^2+y^2+z^2) \f$
+/** \ingroup RealGroup                                                    */
 class Fr3rExp: public RealFunction {
     public:
         Fr3rExp(): RealFunction("Fr3rExp") { }
@@ -398,8 +400,8 @@ namespace {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** a hypersphere as an example polar function
- *  \ingroup PolarGroup                                                    */
+/// A hypersphere as an example polar function
+/** \ingroup PolarGroup                                                    */
 class Polar: public RealFunction {
     public:
         Polar (double _tmin, double _tmax, double _dt,
@@ -413,8 +415,8 @@ class Polar: public RealFunction {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** \f$ r(\psi, \theta, \phi) = |\sin (Phase*\pi*\psi*\theta*\phi)| \f$
- *  \ingroup PolarGroup                                                    */
+/// \f$ r(\psi, \theta, \phi) = |\sin (Phase*\pi*\psi*\theta*\phi)| \f$
+/** \ingroup PolarGroup                                                    */
 class PolarSin: public RealFunction {
     public:
         PolarSin(): RealFunction("PolarSin"), Phase(2.) { }
@@ -447,8 +449,8 @@ namespace {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** \f$ r = \sin(\pi/3.*(\psi+\theta+\phi)) \f$
- *  \ingroup PolarGroup                                                    */
+/// \f$ r = \sin(\pi/3.*(\psi+\theta+\phi)) \f$
+/** \ingroup PolarGroup                                                    */
 class PolarSin2: public RealFunction {
     public:
         PolarSin2(): RealFunction("PolarSin2") { }
@@ -468,8 +470,8 @@ namespace {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** \f$ r = \sqrt{\psi^2+\theta^2+\phi^2} \f$
- *  \ingroup PolarGroup                                                    */
+/// \f$ r = \sqrt{\psi^2+\theta^2+\phi^2} \f$
+/** \ingroup PolarGroup                                                    */
 class PolarR: public RealFunction {
     public:
         PolarR(): RealFunction("PolarR"), Phase(2.) { }

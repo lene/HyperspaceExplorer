@@ -60,13 +60,12 @@
 namespace Loki
 {
 
-    ////////////////////////////////////////////////////////////////////////////////
     ///  \struct CreateUsingNew
     ///
     ///  \ingroup CreationGroup
     ///  Implementation of the CreationPolicy used by SingletonHolder
     ///  Creates objects using a straight call to the new operator
-    ////////////////////////////////////////////////////////////////////////////////
+
     template <class T> struct CreateUsingNew
     {
         /// create managed object
@@ -78,14 +77,13 @@ namespace Loki
         { delete p; }
     };
 
-    ////////////////////////////////////////////////////////////////////////////////
     ///  \struct CreateUsing
     ///
     ///  \ingroup CreationGroup
     ///  Implementation of the CreationPolicy used by SingletonHolder
     ///  Creates objects using a custom allocater.
     ///  Usage: e.g. CreateUsing<std::allocator>::Allocator
-    ////////////////////////////////////////////////////////////////////////////////
+
     template<template<class> class Alloc>
     struct CreateUsing
     {
@@ -108,14 +106,13 @@ namespace Loki
         };
     };
 
-    ////////////////////////////////////////////////////////////////////////////////
     ///  \struct CreateUsingMalloc
     ///
     ///  \ingroup CreationGroup
     ///  Implementation of the CreationPolicy used by SingletonHolder
     ///  Creates objects using a call to std::malloc, followed by a call to the
     ///  placement new operator
-    ////////////////////////////////////////////////////////////////////////////////
+
     template <class T> struct CreateUsingMalloc
     {
         /// create managed object
@@ -135,7 +132,6 @@ namespace Loki
     };
 
 
-    ////////////////////////////////////////////////////////////////////////////////
     ///  \struct CreateStatic
     ///
     ///  \ingroup CreationGroup
@@ -144,7 +140,7 @@ namespace Loki
     ///  Implementation is slightly nonportable because it uses the MaxAlign trick
     ///  (an union of all types to ensure proper memory alignment). This trick is
     ///  nonportable in theory but highly portable in practice.
-    ////////////////////////////////////////////////////////////////////////////////
+
     template <class T> struct CreateStatic
     {
         union MaxAlign
@@ -176,8 +172,6 @@ namespace Loki
     };
 
 
-
-    ////////////////////////////////////////////////////////////////////////////////
     ///  \class  SingletonHolder
     ///
     ///  \ingroup SingletonGroup
@@ -190,7 +184,7 @@ namespace Loki
     ///  \param LifetimePolicy Lifetime policy, default: DefaultLifetime,
     ///  \param ThreadingModel Threading policy,
     ///                         default: LOKI_DEFAULT_THREADING_NO_OBJ_LEVEL
-    ////////////////////////////////////////////////////////////////////////////////
+
     template
     <
         typename T,
@@ -293,7 +287,6 @@ namespace Loki
     }
 
 
-    ////////////////////////////////////////////////////////////////////////////////
     ///  \class  Singleton
     ///
     ///  \ingroup SingletonGroup
@@ -305,7 +298,6 @@ namespace Loki
     ///
     ///  see test/SingletonDll
     ///
-    ////////////////////////////////////////////////////////////////////////////////
 
 #ifndef LOKI_SINGLETON_EXPORT
 #define LOKI_SINGLETON_EXPORT

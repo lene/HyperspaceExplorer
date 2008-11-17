@@ -35,11 +35,10 @@ class QString;
 #define stringify(X) #X
 #define make_str(X) stringify(X)
 
-/** As a workaround to end the embarassing practice of keeping global variables,
- *  I have created this class as a singleton. You might also call it a
- *  namespace.
- *
- *  I plan to advance this class to a full-blown registry though. One day.
+/// As a workaround to end the embarassing practice of keeping global variables,
+/// I have created this class as a singleton. You might also call it a
+/// namespace.
+/** I plan to advance this class to a full-blown registry though. One day.
  *
  *  Members are accessed with the SingletonHolder static function, i.e.
  *  Globals::Instance().

@@ -3,9 +3,8 @@
 
 #include "4DView.H"
 
-/** Inner class to C4DView which handles the mouse events
- *  \author Helge Preuss <scout@hyperspace-travel.de>
- */
+/// Inner class to C4DView which handles the mouse events
+/** \author Helge Preuss <scout@hyperspace-travel.de> */
 class C4DView::MouseHandler4D {
     public:
         /// Create a MouseHandler4D for a C4DView

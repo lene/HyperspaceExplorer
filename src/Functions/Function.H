@@ -32,8 +32,8 @@
 /// \defgroup ComplexGroup Functions C -> C
 /// \ingroup SurfaceGroup
 
-/// A \em Function is a generalized four-dimensional mathematical function
-/** The \em Function interface provides abstract members for the evaluation of
+/// A Function is a generalized four-dimensional mathematical function
+/** The Function interface provides abstract members for the evaluation of
  *  the function values, usually on a grid, together with methods to rotate and
  *  translate the resulting four-dimensional geometry in 4-space, to project the
  *  transformed geometry onto 3-space, and to draw the projected grid into an

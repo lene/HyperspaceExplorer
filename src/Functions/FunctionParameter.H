@@ -85,9 +85,8 @@
  *  \ingroup FunctionParameterGroup                                           */
 class FunctionParameterValueBase {
     public:
-        ///
-        /** Exception thrown when a FunctionParameterValue member not matching
-         *  its template argument is called                                   */
+        /// Exception thrown when a FunctionParameterValue member not matching
+        /// its template argument is called
         struct WrongParameterTypeException: public std::logic_error {
             /// Create a WrongParameterTypeException
             /** \param _class Class name

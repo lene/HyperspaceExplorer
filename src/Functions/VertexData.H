@@ -19,7 +19,6 @@ template <unsigned D>
         public:
             virtual void print();           ///< Output of all vertices
 
-
         protected:
             /// Create an empty array of vertices.
             vertex_data(): _dimension(0), _X(), _surface(), _transform() {
@@ -46,6 +45,7 @@ template <unsigned D>
             /// The array of vertices, projected to four dimensions if necessary
             virtual std::vector<VecMath::Vector<4> > vertices();
 
+            /// Output of a single surface
             void printSurface(const uintvec1D &);
 
         private:
@@ -73,6 +73,8 @@ using VecMath::Vector;
 using std::vector;
 
 #include <iomanip>
+
+/** \param v The printed surface as vector of indices into the vertex array */
 template <unsigned D> void vertex_data<D>::printSurface(const uintvec1D &v) {
     std::cerr << " (";
     std::string separator = "";
@@ -83,8 +85,6 @@ template <unsigned D> void vertex_data<D>::printSurface(const uintvec1D &v) {
     }
     std::cerr << ")\n";
 }
-
-
 
 template <unsigned D> void vertex_data<D>::print() {
     std::cerr << _dimension << "-dimensional object: ";
@@ -111,7 +111,7 @@ template <unsigned D> void vertex_data<D>::print() {
 
 }
 
-/**
+/** Add a quadrilateral surface to the array of surfaces
  *  \param v1 Index (in the vertex array) of the first vertex
  *  \param v2 Index (in the vertex array) of the second vertex
  *  \param v3 Index (in the vertex array) of the third vertex
@@ -163,6 +163,8 @@ template <unsigned D> void vertex_data<D>::addSurface(const std::vector<unsigned
     if (!checkSurfaceExists(v)) surface().push_back(v);
 }
 
+/** \param remove_me Index (in the surface array) of the surface to be removed
+ */
 template <unsigned D> void vertex_data<D>::removeSurface(unsigned remove_me) {
     if (remove_me >= surface().size()) {
         throw std::logic_error("tried to remove a surface with index greater than array size");
@@ -217,9 +219,6 @@ template <unsigned D>
         return p(X(), 2., 8.);  /// \todo This is hardcoded! Ugh!
     }
 
-/** \param R Rotation component of the transformation
- *  \param T Translation component of the transformation
- */
 /*template <unsigned D>
     void vertex_data<D>::Transform(const VecMath::Rotation<D> &R,
                                    const VecMath::Vector<D> &T) {
@@ -233,6 +232,9 @@ template <unsigned D>
         }
     }
 */
+/** \param R Rotation component of the transformation
+ *  \param d Dimension on which the transform acts
+ */
 template <unsigned D>
     void vertex_data<D>::addTransform(unsigned d,
                                       const VecMath::RotationBase *R) {

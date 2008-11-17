@@ -14,9 +14,8 @@
 #include "Surface.H"
 
 class QString;
-/** Base class for custom functions, which can be edited by the user
- *
- *  CustomFunctionBase contains the functions common to all descendants, if
+/// Base class for custom functions, which can be edited by the user
+/** CustomFunctionBase contains the functions common to all descendants, if
  *  necessary as a template to cater for the varying function types of the
  *  different implementations
  *  \ingroup FunctionGroup                                                    */
@@ -43,13 +42,12 @@ template<class function_type>
         function_type *func;
 
     private:
-        void *handle;   /// Temporary function handle returned by dlopen()
-        bool valid;     /// Whether loading the library succeeded
+        void *handle;   ///< Temporary function handle returned by dlopen()
+        bool valid;     ///< Whether loading the library succeeded
 };
 
-/** A Function \f$ f: R^3 \rightarrow R \f$, which the user can edit to
- *  have an arbitrary function.
- *  \ingroup RealGroup                                                        */
+/// Function \f$ f: R^3 \rightarrow R \f$, editable to an arbitrary function.
+/** \ingroup RealGroup                                                        */
 class CustomFunction:
         public RealFunction,
         public CustomFunctionBase<RealFunction::raw_function_type> {
@@ -64,9 +62,9 @@ class CustomFunction:
         virtual RealFunction::function_type f;
 };
 
-/** A Function \f$ f: R^3 \rightarrow R \f$, which the user can edit to
- *  have an arbitrary function. The function is interpreted as a four-
- *  dimensional polar function, \f$ r = r(\psi, \theta, \phi) \f$.
+/// Function \f$ f: R^3 \rightarrow R \f$, editable to an arbitrary function
+/** The function is interpreted as a four-dimensional polar function,
+ *  \f$ r = r(\psi, \theta, \phi) \f$.
  *  \ingroup PolarGroup                                                    */
 class CustomPolarFunction: public CustomFunction {
     public:
@@ -79,9 +77,8 @@ class CustomPolarFunction: public CustomFunction {
         virtual RealFunction::function_type f;
 };
 
-/** A Function \f$ f: R^2 \rightarrow R^4 \f$, which the user can edit to
- *  have an arbitrary function.
- *  \ingroup SurfaceGroup                                                     */
+/// Function \f$ f: R^2 \rightarrow R^4 \f$, editable to an arbitrary function
+/** \ingroup SurfaceGroup                                                     */
 class CustomSurface:
         public Surface,
         public CustomFunctionBase<Surface::raw_function_type> {
@@ -94,9 +91,8 @@ class CustomSurface:
                 virtual Surface::function_type f;
         };
 
-/** A Function \f$ f: C \rightarrow C \f$, which the user can edit to
- *  have an arbitrary function.
- *  \ingroup ComplexGroup                                                     */
+/// Function \f$ f: C \rightarrow C \f$, editable to an arbitrary function
+/** \ingroup ComplexGroup                                                     */
 class CustomComplexFunction:
         public ComplexFunction,
         public CustomFunctionBase<ComplexFunction::function_type> {

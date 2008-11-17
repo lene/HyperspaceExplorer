@@ -31,11 +31,17 @@ namespace VecMath {
     }
 
     /// RotationBase output operator
-    /** \ingroup VecMath
+    /** This operator is not intended to be used in a production environment.
+     *  It is defined so it can be overridden using late binding by a Rotation.
+     *  In fact, it simply prints the typeid of the class.
+     *
+     *  \ingroup VecMath
      *  \param o ostream to push into
-     *  \return a new ostream to push Rotations and stuff into                */
-    std::ostream &operator << (std::ostream &o, const RotationBase &v) {
-        o << typeid(v).name();
+     *  \param r the RotationBase to print
+     *  \return a new ostream to push Rotations and stuff into
+     */
+    std::ostream &operator << (std::ostream &o, const RotationBase &r) {
+        o << typeid(r).name();
         return o;
     }
 
