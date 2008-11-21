@@ -4,6 +4,32 @@
 #include "RotopeBase.H"
 #include "Projector.H"
 
+//  utility functions
+    
+/// Print a std::vector on a std::ostream
+/** \param s The ostream to which \p v is sent
+ *  \param v The vector to print
+ *  \return \p s
+ */
+template<typename T> std::ostream& operator<<(std::ostream& s, 
+                                              std::vector<T> const& v) {
+    s << "(";
+    copy(v.begin(), v.end(), std::ostream_iterator<T>(s, " "));
+    s << ")";
+    return s;
+}
+
+/// Find an element in a vector
+/** \param find_me The element to find in the vector \p v
+ *  \param v The vector to search for element \p find_me
+ *  \return The \p vector<T>::iterator pointing to the element or \p v.end() if it is not in \p v
+ */
+template <typename T> typename std::vector<T>::iterator find(T find_me, std::vector<T> &v) {
+    typename std::vector<T>::iterator i = v.begin();
+    while(*i != find_me && i != v.end()) ++i;
+    return i;
+}
+
 /// Base class for all Rotope s.
 /** Contains an array of vertices (Vectors) and a function to print them. This
  *  is used mainly in the development of Rotope objects.
@@ -31,7 +57,7 @@ template <unsigned D>
             /// Add a polygonal surface to the array of surfaces
             virtual void addSurface(const std::vector<unsigned> &);
             /// Remove a surface by giving its index in the surface array
-            virtual void removeSurface(unsigned);
+            virtual void removeSurface(const std::vector<unsigned> &);
 
             /// Perform a \p D -dimensional transformation
             virtual void addTransform(unsigned, const VecMath::RotationBase *);
@@ -128,6 +154,9 @@ template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
     uintvec1D tmp;
     tmp.push_back(v1); tmp.push_back(v2); tmp.push_back(v3); tmp.push_back(v4);
 
+#   if 1
+        std::cerr << "addSurface" << tmp<< "\n";
+#   endif
     if (!checkSurfaceExists(tmp)) surface().push_back(tmp);
 }
 
@@ -165,14 +194,9 @@ template <unsigned D> void vertex_data<D>::addSurface(const std::vector<unsigned
 
 /** \param remove_me Index (in the surface array) of the surface to be removed
  */
-template <unsigned D> void vertex_data<D>::removeSurface(unsigned remove_me) {
-    if (remove_me >= surface().size()) {
-        throw std::logic_error("tried to remove a surface with index greater than array size");
-    }
-
-    uintvec2D::iterator i = surface().begin();
-    for(unsigned count = 0; count < remove_me; ++i, ++count);
-    surface().erase(i);
+template <unsigned D> void vertex_data<D>::removeSurface(const std::vector<unsigned> &remove_me) {
+    uintvec2D::iterator i = find(remove_me, surface());
+    if (i != surface().end()) surface().erase(i);
 }
 
 /** Test if a new surface is a permutation of a surface already existing.

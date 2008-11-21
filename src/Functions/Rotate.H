@@ -14,7 +14,7 @@ template <unsigned D>
         public:
             /// Create a rotate_base object from an already existing object
             rotate_base(const vertex_data<D> &v):
-                vertex_data<D>(v), _numSegments(4) { }
+                vertex_data<D>(v), _numSegments(8) { }
 
             /// Execute the rotate action of the previous object along axis \p d.
             void rotate(unsigned d);
@@ -44,21 +44,21 @@ template <unsigned D>
  *  to illustrate the idea:
  *  \code Extrude<4, 0, 0> line; \endcode
  *  A line in four-space. A point is extruded along dimension 0 (\p x ).
- *  \code Rotate<4, 1, 1> triangle(line); \endcode
- *  An equilateral triangle in the \p xy -plane. The line along \p x is rotated
- *  into the \p y dimension.
- *  \code Rotate<4, 2, 2> tetrahedron1(triangle); \endcode
- *  Create a tetrahedron from an equilateral triangle by rotateing along the \p z
- *  axis.
- *  \code Rotate<4, 1, 2> tetrahedron2(line); \endcode
- *  Create another tetrahedron from a line by rotateing it into the dimensions 1
- *  to 2, ie. along \p y and \p z
+ *  \code Rotate<4, 1, 1> circle(line); \endcode
+ *  A circle in the \p xy -plane. The line along \p x is rotated into the \p y 
+ *  dimension.
+ *  \code Rotate<4, 2, 2> sphere(circle); \endcode
+ *  Create a sphere from a circle by rotating along the \p z axis.
+ *  \code Rotate<4, 1, 2> sphere2(line); \endcode
+ *  Create another sphere from a line by rotating it into the dimensions 1 to 
+ *  2, ie. along \p y and \p z
  *  \code Extrude<4, 0, 1> square;
- * Rotate<4, 2, 2> pyramid(square); \endcode
- *  A four-sided pyramid is created by rotateing a square along the \p z axis.
- *  \code Rotate<4, 1, 3> pentachoron(line); \endcode
- *  A four-dimensional simplex, a pentachoron, is created by rotateing a line
- *  three times.
+ *  Rotate<4, 2, 2> cylinder(square); \endcode
+ *  A cylinder is created by rotateing a square along the \p z axis. Alternately
+ *  you could have extruded a circle.
+ *  \code Rotate<4, 1, 3> glome(line); \endcode
+ *  A four-dimensional sphere, also known as glome, is created by rotating a
+ *  line three times.
  *
  *  \param D Dimension of the vector space we're working in
  *  \param Dmin First of the set of dimensions being rotated into
@@ -125,25 +125,27 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
         RotopeBase::uintvec2D surface_old = vertex_data<D>::surface();
 
         /// Execute the rotation for all surfaces
-        for (unsigned i = 0; i < surface_old.size(); ++i) {
+        for (typename RotopeBase::uintvec2D::iterator i = surface_old.begin();
+             i != surface_old.end(); ++i) {
 
-            std::vector<unsigned> current_surface = surface_old[i];
-            switch (current_surface.size()) {
+            std::cerr << *i << "\n";
+
+            switch (i->size()) {
                 case 0: case 1: case 2:
                     throw new std::logic_error("size of surface < 3");
                     break;
                 case 3:
-                    rotate_triangle(d, current_surface);
+                    rotate_triangle(d, *i);
                     break;
                 case 4:
-                    rotate_quad(d, current_surface);
+                    rotate_quad(d, *i);
                     break;
                 default:
-                    rotate_polygon(d, current_surface);
+                    rotate_polygon(d, *i);
             }
 
             /// Delete current surface, it has been replaced by a rotation of itself
-            vertex_data<D>::removeSurface(i);
+            vertex_data<D>::removeSurface(*i);
 //            vertex_data<D>::print();
         }
     }
@@ -205,12 +207,12 @@ template <unsigned D> void rotate_base<D>::rotate_triangle(
 
     unsigned old_current = 0;
     /** Rotate the current surface through 360 degrees.
-     *  \bug Instead of rotating it through 180 degrees and using every
-     *       vertex, we only take the vertices on one side of the rotation
-     *       axis.
+     *  \bug Instead of rotating it through 180 degrees and using every vertex,
+     *       we only take the vertices on one side of the rotation axis.
      */
-    for (double rot = M_PI/_numSegments; rot <= 2.*M_PI;
-         rot += M_PI/_numSegments) {
+    for (unsigned i = 1; i <= _numSegments; ++i) {
+
+        double rot = 2.*i*M_PI/_numSegments;
 
         unsigned cur_index = current_surface[0],
                  next_index = current_surface[2];
@@ -227,7 +229,7 @@ template <unsigned D> void rotate_base<D>::rotate_triangle(
             new_surface.push_back(vertex_data<D>::X().size()-1);
 
             /// New triangular surface (current, next, rotated_current)
-            vertex_data<D>::addSurface(old_current, 2,
+            vertex_data<D>::addSurface(old_current, next_index,
                                        vertex_data<D>::X().size()-1);
 
             old_current = vertex_data<D>::X().size()-1;
@@ -242,59 +244,57 @@ template <unsigned D> void rotate_base<D>::rotate_triangle(
  */
 template <unsigned D> void rotate_base<D>::rotate_quad(
         unsigned d, const vector<unsigned> &current_surface) {
-    unsigned old_current = 0;
-    unsigned old_next = 1;
-    std::vector<unsigned> new_surface1; ///< defines the first cap
-    new_surface1.push_back(current_surface[0]);
-    std::vector<unsigned> new_surface2; ///< defines the second cap, if any
-    new_surface2.push_back(current_surface[2]);
+    unsigned old_current = current_surface[0];           //  saved index to current vertex
+    unsigned old_next = current_surface[1];              //  saved index to next vertex
+    std::vector<unsigned> bottom;       //  defines the first ("bottom") cap
+    /// Save first vertex of "bottom" cap
+    bottom.push_back(current_surface[0]);
+    /** Save first vertex of "top" cap.
+     *  This relies on quads being defined in the order, 0, 1, 2, 3, where
+     *  vertex 2 and 3 lie in the direction of the extrusion
+     */
+    std::vector<unsigned> top;          //  defines the second ("top") cap
+    top.push_back(current_surface[2]);
 
     /** Rotate the current surface through 360 degrees.
-     *  \bug Instead of rotating it through 180 degrees and using every
-     *       vertex, we only take the vertices on one side of the rotation
-     *       axis.
+     *  \bug Instead of rotating it through 180 degrees and using every vertex,
+     *       we only take the vertices on one side of the rotation axis. Taking
+     *       the indexes on the other side too would be an indexing nightmare.
      */
-    for (double rot = M_PI/_numSegments; rot <= 2.*M_PI;
-         rot += M_PI/_numSegments) {
+    for (unsigned i = 1; i <= _numSegments; ++i) {
 
-        for (unsigned j = 0; j < current_surface.size(); j += 4) {
+        double rot = 2.*i*M_PI/_numSegments;
 
-            unsigned cur_index = current_surface[j];
-            unsigned next_index = current_surface[(j+1)%current_surface.size()];
+        unsigned cur_index = current_surface[0];
+        unsigned next_index = current_surface[1];
 
-            VecMath::Vector<D> current = vertex_data<D>::X()[cur_index];
-            VecMath::Vector<D> next = vertex_data<D>::X()[next_index];
-            VecMath::Vector<D> rotated_current = rotate_vertex(current, rot,
-                                                               d, d-1);
-            VecMath::Vector<D> rotated_next = rotate_vertex(next, rot, d, d-1);
+        VecMath::Vector<D> current = vertex_data<D>::X()[cur_index];
+        VecMath::Vector<D> next = vertex_data<D>::X()[next_index];
 
-            vertex_data<D>::X().push_back(rotated_current);
+        /// New vertices generated by rotation about angle \p rot
+        VecMath::Vector<D> rotated_current = rotate_vertex(current, rot, d, d-1);
+        VecMath::Vector<D> rotated_next = rotate_vertex(next, rot, d, d-1);
 
-            new_surface1.push_back(vertex_data<D>::X().size()-1);
+        vertex_data<D>::X().push_back(rotated_current);
+        vertex_data<D>::X().push_back(rotated_next);
 
-            /// New quad surface (current, next, rotated_next, rotated_current)
-            vertex_data<D>::X().push_back(rotated_next);
-            vertex_data<D>::addSurface(old_current, old_next,
-                                       vertex_data<D>::X().size()-1,
-                                       vertex_data<D>::X().size()-2);
+        /// New quad surface (current, next, rotated_next, rotated_current)
+        vertex_data<D>::addSurface(old_current, old_next,
+                                   vertex_data<D>::X().size()-1,
+                                   vertex_data<D>::X().size()-2);
 
-            /// Update vertices from which to draw the next surface
-            old_current = vertex_data<D>::X().size()-2;
-            old_next = vertex_data<D>::X().size()-1;
+        /// Update vertices from which to draw the next surface
+        old_current = vertex_data<D>::X().size()-2;
+        old_next = vertex_data<D>::X().size()-1;
 
-            /// Add rotated_next to second cap
-            new_surface2.push_back(vertex_data<D>::X().size()-1);
-        }
+        /// Add rotated vertex to bottom cap
+        bottom.push_back(vertex_data<D>::X().size()-2);
+        /// Add rotated_next to second cap
+        top.push_back(vertex_data<D>::X().size()-1);
     }
     /// Add the new circular surfaces ("caps") generated by the rotation
-    vertex_data<D>::addSurface(new_surface1);
-    if (!new_surface2.empty()) vertex_data<D>::addSurface(new_surface2);
-
-    std::cerr << "added surfaces: ";
-    vertex_data<D>::printSurface(new_surface1);
-    std::cerr << ", ";
-    vertex_data<D>::printSurface(new_surface2);
-    std::cerr << "\n";
+    vertex_data<D>::addSurface(bottom);
+    vertex_data<D>::addSurface(top);
 }
 
 /** \param d Dimension to be rotated into - the vertices are rotated away from
@@ -305,17 +305,13 @@ template <unsigned D> void rotate_base<D>::rotate_polygon(
         unsigned d, const vector<unsigned> &current_surface) {
 
     unsigned offset = 0;
-    const double epsilon = 0.01;
 
     vertex_data<D>::X().push_back(vertex_data<D>::X()[current_surface[0]]);
 
-    /** Rotate the current surface through 360 degrees.
-     *  \bug Instead of rotating it through 180 degrees and using every
-     *       vertex, we only take the vertices on one side of the rotation
-     *       axis.
-     */
-    for (double rot = M_PI/_numSegments; rot <= M_PI+epsilon;
-         rot += M_PI/_numSegments) {
+    /// Rotate the current surface through 180 degrees along its central axis
+    for (unsigned i = 1; i <= _numSegments; ++i) {
+
+        double rot = 1.*i*M_PI/_numSegments;
 
         for (unsigned j = 0; j < current_surface.size(); j++) {
 
@@ -330,15 +326,15 @@ template <unsigned D> void rotate_base<D>::rotate_polygon(
             VecMath::Vector<D> rotated_next = rotate_vertex(next, rot, d, d-1);
 
             /// New quad surface (current, next, rotated_next, rotated_current)
-//            if (rotated_next != next) {
-                vertex_data<D>::X().push_back(rotated_next);
-                std::cerr << "j: " << j << "offset: " << offset
-                        << " cur_index: " << cur_index << " next_index: " << next_index
-                        << " size: " << vertex_data<D>::X().size() << "\n";
-                vertex_data<D>::addSurface(cur_index, next_index,
-                                           vertex_data<D>::X().size()-1,
-                                           vertex_data<D>::X().size()-2);
-//          }
+            vertex_data<D>::X().push_back(rotated_next);
+#           if 0
+            std::cerr << "j: " << j << "offset: " << offset
+                      << " cur_index: " << cur_index << " next_index: " << next_index
+                      << " size: " << vertex_data<D>::X().size() << "\n";
+#           endif
+            vertex_data<D>::addSurface(cur_index, next_index,
+                                       vertex_data<D>::X().size()-1,
+                                       vertex_data<D>::X().size()-2);
 
         }
         /// Update vertices from which to draw the next surface

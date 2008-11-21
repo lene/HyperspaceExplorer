@@ -88,8 +88,9 @@ C4DView::C4DView(QWidget *parent):
 
     show();
 
-    ColMgrMgr::Instance().setColorManager(new xyz2RGBColorManager(F().get()));
-
+//    ColMgrMgr::Instance().setColorManager(new xyz2RGBColorManager(F().get()));
+    ColMgrMgr::Instance().setColorManager(new monochromeColorManager(F().get()));
+    
 //    ObjectHypercube();
     ObjectRotope();
 
@@ -140,7 +141,7 @@ void C4DView::ObjectGasket() {
 void C4DView::ObjectRotope() {
     Menu()->updateFunctionMenu("Rotope");
 
-    setF(new Rotope("ERRR"));
+    setF(new Rotope("ERRT"));
 
     AssignValues(F());
     Redraw ();
