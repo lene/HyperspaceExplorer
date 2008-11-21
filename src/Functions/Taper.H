@@ -199,12 +199,15 @@ template <unsigned D> void taper_base<D>::taper(unsigned d) {
 
     vertex_data<D>::X().push_back(xnew);
 
-    /** Define surfaces now. Every two points from the old object are connected
-     *  to the new point, thus spanning a surface.
+    /** Define surfaces now. Every two neighboring points from the old object
+     *  are connected to the new point, thus spanning a surface.
      */
-    for (unsigned i = 0; i < vertex_data<D>::X().size()-1; i++) {
-        for (unsigned j = i+1; j < vertex_data<D>::X().size()-1; j++) {
-            vertex_data<D>::addSurface(i, j, vertex_data<D>::X().size()-1);
+    for (unsigned i = 0; i < vertex_data<D>::surface().size()-1; i++) {
+        for (unsigned j = 0; j < vertex_data<D>::surface()[i].size()-1; j++) {
+            unsigned jnext = (j+1)%vertex_data<D>::surface()[i].size();
+            vertex_data<D>::addSurface(
+                vertex_data<D>::surface()[i][j], vertex_data<D>::surface()[i][jnext],
+                vertex_data<D>::X().size()-1);
         }
     }
 

@@ -9,6 +9,7 @@
   * support for scripting for the new functions                                 0.7.0
   * write documentation   -''-                                                  0.7.0
   * coloring schem that colors surfaces of the same surcell in the same color
+  * coloring scheme that selects color based on w coordinate only
   * compiler warning in ViewImpl.H:33                                           0.7.0
   * can I get rid of all these switch(dimension) statements and replace them
     with templates?
