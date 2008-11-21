@@ -150,3 +150,27 @@ void xyz2RGBColorManager::depthCueColor(double wmax, double wmin, double w,
     col[x] = ((col[x]+(-getoffset4Ddepthcue()))
                         + getoffset4Ddepthcue())*DepthCueFactor;
 }
+
+void depth2RGBColorManager::calibrateColor(const VecMath::Vector<4> &x,
+                                           const Color &) {
+    if (x[3] < _wmin) _wmin = x[3];
+    if (x[3] > _wmax) _wmax = x[3];
+}
+
+
+/// Find the color of a given point
+/** If the point is not stored in the map of already defined points, calculate
+ *  its color by computing its w coordinate
+ *  @param x four-dimensional coordinate for which the color is sought        */
+Color depth2RGBColorManager::getColor(const VecMath::Vector<4> &x) {
+    return computeColorFromW((x[3]-_wmin)/(_wmax-_wmin));
+}
+
+void depth2RGBColorManager::depthCueColor(double, double, double,
+                                        const VecMath::Vector<4> &) { }
+
+Color depth2RGBColorManager::computeColorFromW(double w) {
+    Color c(1.f, 1.f, 1.f);
+    return c;
+}
+

@@ -55,7 +55,7 @@ class ColorManager {
         /// Set current OpenGL color at given point
         /** @param x four-dimensional coordinate for which the color is sought*/
         virtual void setColor(const VecMath::Vector<4> &x) {
-            setRGB(Color(x));
+            setRGB(getColor(x));
         }
 
         /// Find the color of a given point
@@ -142,6 +142,42 @@ class xyz2RGBColorManager: public ColorManager {
         colormap col; ///< Here the colors for defined points re stored
 };
 
+/// maps w coordinate to R, G, B
+/** \ingroup Coloring                                                         */
+class depth2RGBColorManager: public ColorManager {
+    public:
+        /// Given a Function to manage, construct a depth2RGBColorManager
+        /** \param _f Function to manage    */
+        depth2RGBColorManager(Function *_f):
+            ColorManager(_f), _wmin(1e6), _wmax(-1e6) {
+            }
+        virtual ~depth2RGBColorManager() { }
+
+        /// set the managed Function
+        /** \param _f new Function to manage    */
+        virtual void setFunction(Function *_f) {
+            ColorManager::setFunction(_f);
+            _wmin = 1e6; _wmax = 1e6;
+        }
+
+        virtual void calibrateColor(const VecMath::Vector<4> &x,
+                                    const Color &_col = Color());
+        virtual Color getColor(const VecMath::Vector<4> &x);
+        virtual void depthCueColor(double wmax, double wmin, double w,
+                                   const VecMath::Vector<4> &);
+        /// debugging output
+        virtual std::string getContents() {
+            std::ostringstream o;
+            o << "Wmin: " << _wmin << ", Wmax: " << _wmax << std::endl;
+            return o.str();
+        }
+
+    private:
+        Color computeColorFromW(double);
+        double _wmin;
+        double _wmax;
+};
+
 /// Plots all points in white
 /** \ingroup Coloring                                                         */
 class monochromeColorManager: public ColorManager {
@@ -177,7 +213,9 @@ class ColorManagerManager {
             colorManager->calibrateColor(x, _col);
         }
         /// proxy function for ColorManager::setColor()
-        void setColor(const VecMath::Vector<4> &x) { colorManager->setColor(x); }
+        void setColor(const VecMath::Vector<4> &x) { 
+            colorManager->setColor(x); 
+        }
         /// proxy function for ColorManager::depthCueColor()
         void depthCueColor(double wmax, double wmin, double w,
                            const VecMath::Vector<4> &x) {

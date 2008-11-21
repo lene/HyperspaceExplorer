@@ -115,7 +115,7 @@ template <unsigned D> void vertex_data<D>::printSurface(const uintvec1D &v) {
 template <unsigned D> void vertex_data<D>::print() {
     std::cerr << _dimension << "-dimensional object: ";
     std::string separator = "";
-#   if 1
+#   if DEBUG_ROTOPE
     std::cerr << X().size() << " vertices\n";
     unsigned count = 0;
     for (typename vector<Vector<D> >::iterator i = X().begin();
@@ -126,7 +126,7 @@ template <unsigned D> void vertex_data<D>::print() {
     std::cerr << "\n";
 #   endif
 
-#   if 1
+#   if DEBUG_ROTOPE
         std::cerr << surface().size() << " surfaces: \n";
         for (unsigned i = 0; i < surface().size(); ++i) {
             std::cerr << std::setw(4) << i;
@@ -137,7 +137,26 @@ template <unsigned D> void vertex_data<D>::print() {
 
 }
 
-/** Add a quadrilateral surface to the array of surfaces
+/** Add a surface to the array of surfaces
+ *  \param v List of indices in the vertex array
+ */
+template <unsigned D> void vertex_data<D>::addSurface(const std::vector<unsigned> & v) {
+    for (unsigned i = 0; i < v.size(); ++i) {
+        if (v[i] >= X().size()) {
+            throw std::out_of_range("vertex_data<D>::addSurface(): index larger "
+                    "than size of vertex array");
+        }
+    }
+
+    if (!checkSurfaceExists(v)) {
+#       if DEBUG_ROTOPE
+            std::cerr << "addSurface" << v<< "\n";
+#       endif
+        surface().push_back(v);
+    }
+}
+
+/** Overloaded version for 4 vertices
  *  \param v1 Index (in the vertex array) of the first vertex
  *  \param v2 Index (in the vertex array) of the second vertex
  *  \param v3 Index (in the vertex array) of the third vertex
@@ -145,19 +164,15 @@ template <unsigned D> void vertex_data<D>::print() {
  */
 template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
                                                       unsigned v3, unsigned v4) {
-    if (v1 >= X().size() || v2 >= X().size() ||
-        v3 >= X().size() || v4 >= X().size()) {
-        throw std::out_of_range("vertex_data<D>::addSurface(): index larger "
-                                "than size of vertex array");
+    /// If rectangle is degenerate, add a triangle
+    if (v1 == v2 || v1 == v3 || v1 == v4) addSurface(v2, v3, v4);
+    else if (v2 == v3 || v2 == v4) addSurface(v1, v3, v4);
+    else if (v3 == v4) addSurface(v1, v2, v4);
+    else {
+        uintvec1D tmp;
+        tmp.push_back(v1); tmp.push_back(v2); tmp.push_back(v3); tmp.push_back(v4);
+        addSurface(tmp);
     }
-
-    uintvec1D tmp;
-    tmp.push_back(v1); tmp.push_back(v2); tmp.push_back(v3); tmp.push_back(v4);
-
-#   if 1
-        std::cerr << "addSurface" << tmp<< "\n";
-#   endif
-    if (!checkSurfaceExists(tmp)) surface().push_back(tmp);
 }
 
 /** Overloaded version for three vertices
@@ -167,29 +182,12 @@ template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
  */
 template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
                                                       unsigned v3) {
-    if (v1 >= X().size() || v2 >= X().size() || v3 >= X().size()) {
-        throw std::out_of_range("vertex_data<D>::addSurface(): index larger "
-                                "than size of vertex array");
-    }
-
+    /// If triangle is degenerate, do nothing
+    if (v1 == v2 || v1 == v3 || v2 == v3) return;
     uintvec1D tmp;
     tmp.push_back(v1); tmp.push_back(v2); tmp.push_back(v3);
 
-    if (!checkSurfaceExists(tmp)) surface().push_back(tmp);
-}
-
-/** Overloaded version for N vertices
- *  \param v List of indices in the vertex array
- */
-template <unsigned D> void vertex_data<D>::addSurface(const std::vector<unsigned> & v) {
-    for (unsigned i = 0; i < v.size(); ++i) {
-        if (v[i] >= X().size()) {
-            throw std::out_of_range("vertex_data<D>::addSurface(): index larger "
-                                    "than size of vertex array");
-        }
-    }
-
-    if (!checkSurfaceExists(v)) surface().push_back(v);
+    addSurface(tmp);
 }
 
 /** \param remove_me Index (in the surface array) of the surface to be removed
