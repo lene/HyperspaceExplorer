@@ -10,8 +10,7 @@
 
 #include "Color.H"
 #include "Vector.H"
-
-class Function;
+#include "Function.H"
 
 ///
 /// C++ Interface: ColorManager
@@ -44,7 +43,10 @@ class ColorManager {
         virtual ~ColorManager() { }
 
         /// Set the function we are managing
-        virtual void setFunction(const Function *_f) { f = _f; }
+        virtual void setFunction(const Function *_f) { 
+                f = _f;
+                f->calibrateColors();
+        }
 
         /// Point (x, y, z) has color col. This may serve for interpolation.
         virtual void calibrateColor(const VecMath::Vector<4> &x,
@@ -70,8 +72,6 @@ class ColorManager {
         virtual std::string getContents() { return ""; }
 
     protected:
-        /// \return offset (minimum color) value for 4D depth cue
-        double getoffset4Ddepthcue() { return offset4Ddepthcue; }
 
         /// one-dimensional Color array, implemented as a std::vector
         typedef std::vector<Color> colorvec1D;
@@ -83,6 +83,11 @@ class ColorManager {
         typedef std::vector<colorvec3D> colorvec4D;
         /// map of Colors, indexed by 4D points
         typedef std::map<VecMath::Vector<4>, Color> colormap;
+
+        /// \return offset (minimum color) value for 4D depth cue
+        double getoffset4Ddepthcue() { return offset4Ddepthcue; }
+        
+        double getAlpha() { return ALPHA; }
 
     private:
         const Function* f;      ///< Function for which to manage colors
@@ -107,15 +112,15 @@ class xyz2RGBColorManager: public ColorManager {
     public:
         /// Given a Function to manage, construct a xyz2RGBColorManager
         /** \param _f Function to manage    */
-        xyz2RGBColorManager(Function *_f):
+        xyz2RGBColorManager(const Function *_f):
             ColorManager(_f), col(colormap()) { }
         virtual ~xyz2RGBColorManager() { }
 
         /// set the managed Function
         /** \param _f new Function to manage    */
-        virtual void setFunction(Function *_f) {
-            ColorManager::setFunction(_f);
+        virtual void setFunction(const Function *_f) {
             col.clear();
+            ColorManager::setFunction(_f);
         }
 
         virtual void calibrateColor(const VecMath::Vector<4> &x,
@@ -148,16 +153,16 @@ class depth2RGBColorManager: public ColorManager {
     public:
         /// Given a Function to manage, construct a depth2RGBColorManager
         /** \param _f Function to manage    */
-        depth2RGBColorManager(Function *_f):
+        depth2RGBColorManager(const Function *_f):
             ColorManager(_f), _wmin(1e6), _wmax(-1e6) {
             }
         virtual ~depth2RGBColorManager() { }
 
         /// set the managed Function
         /** \param _f new Function to manage    */
-        virtual void setFunction(Function *_f) {
+        virtual void setFunction(const Function *_f) {
+            _wmin = 1e6; _wmax = -1e6;
             ColorManager::setFunction(_f);
-            _wmin = 1e6; _wmax = 1e6;
         }
 
         virtual void calibrateColor(const VecMath::Vector<4> &x,
@@ -184,7 +189,7 @@ class monochromeColorManager: public ColorManager {
     public:
         /// Given a Function to manage, construct a monochromeColorManager
         /** \param _f Function to manage    */
-        monochromeColorManager(Function *_f): ColorManager(_f) { }
+        monochromeColorManager(const Function *_f): ColorManager(_f) { }
         virtual ~monochromeColorManager() { }
         virtual void calibrateColor(const VecMath::Vector<4> &,
                                     const Color & = Color()) { }
@@ -206,7 +211,9 @@ class ColorManagerManager {
             colorManager.reset(cm);
         }
         /// proxy function for ColorManager::setFunction()
-        void setFunction(Function *_f) { colorManager->setFunction(_f); }
+        void setFunction(const Function *_f) {
+            colorManager->setFunction(_f);
+        }
         /// proxy function for ColorManager::calibrateColor()
         void calibrateColor(const VecMath::Vector<4> &x,
                             const Color &_col = Color()) {

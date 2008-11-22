@@ -41,6 +41,7 @@ class Object: public Function {
         virtual void ReInit (double, double, double,
                              double, double, double,
                              double, double, double);
+        virtual void calibrateColors() const;
 
         virtual void Transform (const VecMath::Rotation<4> &R,
                                 const VecMath::Vector<4> &T);

@@ -120,6 +120,9 @@ class Function {
                             double _umin, double _umax, double _du,
                             double _vmin, double _vmax, double _dv) = 0;
 
+        /// Called by the ColorManager after setting the Function on the CM
+        virtual void calibrateColors() const = 0;
+
         /// Set parameters to the Function
         virtual void SetParameters(const ParameterMap &) {
             std::cerr << "Function::SetParameters()" << std::endl;

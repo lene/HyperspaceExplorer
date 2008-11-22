@@ -88,10 +88,9 @@ C4DView::C4DView(QWidget *parent):
 
     show();
 
-    ColMgrMgr::Instance().setColorManager(new xyz2RGBColorManager(F().get()));
-//    ColMgrMgr::Instance().setColorManager(new depth2RGBColorManager(F().get()));
-    
-//    ObjectHypercube();
+//    ColMgrMgr::Instance().setColorManager(new xyz2RGBColorManager(F().get()));
+    ColMgrMgr::Instance().setColorManager(new depth2RGBColorManager(F().get()));
+
     ObjectRotope();
 
     setLighting(true);
@@ -582,7 +581,7 @@ void C4DView::writeFrame() {
             SingletonLog::Instance() << "writing "
                     << imageFilename.toStdString() << " successful! ("
                     << (long)animationFrame() << "/" << (long)animationMaxFrames()
-                    << ")\n";
+                    << ")\r";
         } else {
             SingletonLog::Instance() << "writing "
                     << imageFilename.toStdString() << " failed!\n";

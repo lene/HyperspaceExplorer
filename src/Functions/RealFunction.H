@@ -145,6 +145,9 @@ class RealFunction: public RealBase {
                             double _umin, double _umax, double _du,
                             double _vmin, double _vmax, double _dv);
 
+        /// Called by the ColorManager after setting the Function on the CM
+        virtual void calibrateColors() const;
+
         /// \see Function::getDefinitionSpaceDimensions()
         virtual const unsigned getDefinitionSpaceDimensions() { return 3; }
 

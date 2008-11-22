@@ -94,9 +94,8 @@ void RealFunction::InitMem (void) {
 /// Allocate and initialize X[][][] with values of f()
 /** Call InitMem() above */
 void RealFunction::Initialize () {
-    double Wmin = 0., Wmax = 0.;
     X = vec4vec3D(getTsteps()+2);
-    ColMgrMgr::Instance().setFunction(this);
+//    ColMgrMgr::Instance().setFunction(this);
 
     for (unsigned t = 0; t <= getTsteps()+1; t++) {
         X[t].resize(getUsteps()+2);
@@ -107,6 +106,20 @@ void RealFunction::Initialize () {
             for (unsigned v = 0; v <= getVsteps()+1; v++) {
                 double T = getTmin()+t*getDt(), U =getUmin()+u*getDu(), V = getVmin()+v*getDv();
                 X[t][u][v] = f (T, U, V);
+            }
+        }
+    }
+
+    calibrateColors();
+
+    InitMem ();
+}
+
+void RealFunction::calibrateColors() const {
+    double Wmin = 0., Wmax = 0.;
+    for (unsigned t = 0; t <= getTsteps()+1; t++) {
+        for (unsigned u = 0; u <= getUsteps()+1; u++) {
+            for (unsigned v = 0; v <= getVsteps()+1; v++) {
                 if (X[t][u][v][3] < Wmin) Wmin = X[t][u][v][3];
                 if (X[t][u][v][3] > Wmax) Wmax = X[t][u][v][3];
             }
@@ -124,7 +137,6 @@ void RealFunction::Initialize () {
             }
         }
     }
-    InitMem ();
 }
 
 /// Re-initialize a RealFunction if the definition set has changed

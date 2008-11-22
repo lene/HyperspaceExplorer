@@ -157,7 +157,6 @@ void depth2RGBColorManager::calibrateColor(const VecMath::Vector<4> &x,
     if (x[3] > _wmax) _wmax = x[3];
 }
 
-
 /// Find the color of a given point
 /** If the point is not stored in the map of already defined points, calculate
  *  its color by computing its w coordinate
@@ -170,7 +169,10 @@ void depth2RGBColorManager::depthCueColor(double, double, double,
                                         const VecMath::Vector<4> &) { }
 
 Color depth2RGBColorManager::computeColorFromW(double w) {
-    Color c(1.f, 1.f, 1.f);
-    return c;
+    float R = (w <= 0.2? 1.: (w <= 0.4? 1.-5.*(w-0.2): (w <= 0.8? 0.: 5.*(w-0.8))));
+    float G = (w <= 0.2? 5.*w: (w <= 0.6? 1.: (w <= 0.8? 1.-5*(w-0.6): 0.)));
+    float B = (w <= 0.4? 0.: (w <= 0.6? 5.*(w-0.4): 1.));
+
+    return Color (R, G, B, (2.*getAlpha()-1.)*w+(1.-getAlpha()));
 }
 

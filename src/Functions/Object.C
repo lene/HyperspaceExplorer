@@ -49,6 +49,10 @@ Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
  *  routine to calibrate the color manager.
  */
 void Object::Initialize() {
+    calibrateColors();
+}
+
+void Object::calibrateColors() const {
     for (unsigned i = 0; i < X.size(); i++) {
         ColMgrMgr::Instance().calibrateColor(
             X[i],

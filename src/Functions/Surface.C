@@ -69,13 +69,24 @@ void Surface::InitMem (void) {
 /// allocate and initialize X[][] with values of f()
 /** call InitMem () above                                                     */
 void Surface::Initialize () {
-    double Wmax = 0, Wmin = 0;
     X = vec4vec2D(getTsteps()+2);
-    ColMgrMgr::Instance().setFunction(this);
+//    ColMgrMgr::Instance().setFunction(this);
     for (unsigned t = 0; t <= getTsteps()+1; t++) {
         X[t].resize(getUsteps()+2);
         for (unsigned u = 0; u <= getUsteps()+1; u++) {
             X[t][u] = f (getTmin()+t*getDt(), getUmin()+u*getDu());
+        }
+    }
+
+    calibrateColors();
+
+    InitMem ();
+}
+
+void Surface::calibrateColors() const {
+    double Wmax = 0, Wmin = 0;
+    for (unsigned t = 0; t <= getTsteps()+1; t++) {
+        for (unsigned u = 0; u <= getUsteps()+1; u++) {
             if (X[t][u][3] < Wmin) Wmin = X[t][u][3];
             if (X[t][u][3] > Wmax) Wmax = X[t][u][3];
         }
@@ -88,8 +99,6 @@ void Surface::Initialize () {
                       (Wmax-X[t][u][3])/(Wmax-Wmin)));
         }
     }
-
-    InitMem ();
 }
 
 /** re-initialize a Surface if the definition set has changed

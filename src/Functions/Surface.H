@@ -123,6 +123,9 @@ class Surface: public SurfaceBase {
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
         virtual void Draw (void);
 
+        /// Called by the ColorManager after setting the Function on the CM
+        virtual void calibrateColors() const;
+
         virtual void ReInit(double _tmin, double _tmax, double _dt,
                             double _umin, double _umax, double _du,
                             double _vmin, double _vmax, double _dv);
