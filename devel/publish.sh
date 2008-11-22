@@ -11,7 +11,7 @@ FILENAME="HyperspaceExplorer"
 EXECUTABLE="HyperspaceExplorer"
 PROJECTNAME="hyperspace-expl"
 USERNAME="metaldog"
-
+LINES=$(find . -name *.[CH] -exec cpp -fpreprocessed "{}" \; 2> /dev/null | grep -v ^$ | grep -v ^# | wc -l)
 set +xv
 
 # processes arguments to the script
@@ -145,17 +145,6 @@ function document() {
         xargs rm
     yes q | \
         doxygen 2> /dev/null
-#    svn up ${DOCDIR} 2>&1 | \
-#        grep Restored | \
-#        cut -d ' ' -f 2- | \
-#        xargs svn del
-#    svn st ${DOCDIR}/html | \
-#        grep ^? | \
-#        grep -v \*.map | \
-#        grep -v \*.md5 | \
-#        cut -c 2- | \
-#        xargs svn add
-#    svn commit -m "auto-generated documentation"
     rsync -rL --delete-after --exclude=.svn ${DOCDIR}/html/ \
         ${USERNAME},${PROJECTNAME}@web.sourceforge.net:htdocs
 }
@@ -168,6 +157,8 @@ function branch() {
         ${SVNBASE}/trunk/all \
         ${SVNBASE}/tags/release-${VERSION}
 }
+
+echo $LINES lines of code
 
 parse_commandline $@
 
