@@ -33,6 +33,13 @@
  *  \ingroup Coloring                                                         */
 class ColorManager {
     public:
+        /// Create a ColorManager without a Function
+        ColorManager():
+            f(0),
+            ambientColorModifier(0.5), specularColorModifier(2.),
+            specularColorMinimum(0.5), SHININESS(32.), ALPHA(0.8),
+            offset4Ddepthcue(0.1) { }
+
         /// Create a ColorManager for a given Function
         ColorManager(const Function *_f):
             f(_f),
@@ -43,7 +50,7 @@ class ColorManager {
         virtual ~ColorManager() { }
 
         /// Set the function we are managing
-        virtual void setFunction(const Function *_f) { 
+        virtual void setFunction(const Function *_f) {
                 f = _f;
                 f->calibrateColors();
         }
@@ -86,7 +93,7 @@ class ColorManager {
 
         /// \return offset (minimum color) value for 4D depth cue
         double getoffset4Ddepthcue() { return offset4Ddepthcue; }
-        
+
         double getAlpha() { return ALPHA; }
 
     private:
@@ -106,10 +113,82 @@ class ColorManager {
         double offset4Ddepthcue;
 };
 
+/// Singleton to set the color scheme globally - proxies the color manager
+/** \todo implement a map<Function *, ColorManager *> to store one ColorManager
+ *  per function - this will probably break the existing interface
+ *  \ingroup Coloring                                                         */
+class ColorManagerManager {
+    public:
+        /// callback function generating a ColorManager and returning a ColorManager*
+        typedef ColorManager *(*CreateColMgrCallback)();
+
+        /// determine which coloring scheme to use
+        void setColorManager(ColorManager *cm) {
+            colorManager.reset(cm);
+        }
+        /// proxy function for ColorManager::setFunction()
+        void setFunction(const Function *_f) {
+            colorManager->setFunction(_f);
+        }
+        /// proxy function for ColorManager::calibrateColor()
+        void calibrateColor(const VecMath::Vector<4> &x,
+                            const Color &_col = Color()) {
+            colorManager->calibrateColor(x, _col);
+        }
+        /// proxy function for ColorManager::setColor()
+        void setColor(const VecMath::Vector<4> &x) {
+            colorManager->setColor(x);
+        }
+        /// proxy function for ColorManager::depthCueColor()
+        void depthCueColor(double wmax, double wmin, double w,
+                           const VecMath::Vector<4> &x) {
+            colorManager->depthCueColor(wmax, wmin, w, x);
+        }
+        /// proxy function for ColorManager::setRGB()
+        void setRGB(const Color &_col) { colorManager->setRGB(_col); }
+        /// debugging output
+        std::string getContents() { return colorManager->getContents(); }
+
+        bool registerColorManager(const std::string &name,
+                                  CreateColMgrCallback creator) {
+            return callbacks.insert(CallbackMap::value_type(name, creator)).second;
+        }
+
+        void unregisterColorManager();
+        std::vector<std::string> getRegisteredColorManagers();
+        void setColorManager(const std::string &cm);
+
+    private:
+        /// stores a creator function with a string containing the class name
+        typedef std::map<std::string, CreateColMgrCallback> CallbackMap;
+
+        /** disabled default constructor */
+        ColorManagerManager(): callbacks() { }
+        /** disabled copy constructor */
+        ColorManagerManager(const ColorManagerManager &);
+        /** disabled assignment operator */
+        ColorManagerManager &operator=(const ColorManagerManager &);
+        /** disabled destructor */
+        ~ColorManagerManager() { }
+
+        std::auto_ptr<ColorManager> colorManager;   ///< The proxied ColorManager
+
+        CallbackMap callbacks;
+
+        friend class Loki::CreateUsingNew<ColorManagerManager>;
+
+};
+
+typedef Loki::SingletonHolder<ColorManagerManager> ColMgrMgr;
+
+
 /// maps x, y, z in parameter space to R, G, B
 /** \ingroup Coloring                                                         */
 class xyz2RGBColorManager: public ColorManager {
     public:
+        xyz2RGBColorManager():
+            ColorManager(), col(colormap()) { }
+
         /// Given a Function to manage, construct a xyz2RGBColorManager
         /** \param _f Function to manage    */
         xyz2RGBColorManager(const Function *_f):
@@ -147,15 +226,21 @@ class xyz2RGBColorManager: public ColorManager {
         colormap col; ///< Here the colors for defined points re stored
 };
 
+namespace {
+    ColorManager *createXYZ2RGB() { return new xyz2RGBColorManager(); }
+    const bool registeredC0 =
+            ColMgrMgr::Instance().registerColorManager("XYZ to RGB", createXYZ2RGB);
+}
+
 /// maps w coordinate to R, G, B
 /** \ingroup Coloring                                                         */
 class depth2RGBColorManager: public ColorManager {
     public:
+        depth2RGBColorManager(): ColorManager(), _wmin(1e6), _wmax(-1e6) { }
         /// Given a Function to manage, construct a depth2RGBColorManager
         /** \param _f Function to manage    */
         depth2RGBColorManager(const Function *_f):
-            ColorManager(_f), _wmin(1e6), _wmax(-1e6) {
-            }
+            ColorManager(_f), _wmin(1e6), _wmax(-1e6) { }
         virtual ~depth2RGBColorManager() { }
 
         /// set the managed Function
@@ -183,10 +268,18 @@ class depth2RGBColorManager: public ColorManager {
         double _wmax;
 };
 
+namespace {
+    ColorManager *createDepth2RGB() { return new depth2RGBColorManager(); }
+    const bool registeredC1 =
+            ColMgrMgr::Instance().registerColorManager("W coordinate to RGB",
+                                                       createDepth2RGB);
+}
+
 /// Plots all points in white
 /** \ingroup Coloring                                                         */
 class monochromeColorManager: public ColorManager {
     public:
+        monochromeColorManager(): ColorManager() { }
         /// Given a Function to manage, construct a monochromeColorManager
         /** \param _f Function to manage    */
         monochromeColorManager(const Function *_f): ColorManager(_f) { }
@@ -199,55 +292,11 @@ class monochromeColorManager: public ColorManager {
         virtual void depthCueColor(double, double, double,
                                    const VecMath::Vector<4> &) { }
 };
+namespace {
+    ColorManager *createMonochrome() { return new monochromeColorManager(); }
+    const bool registeredC2 =
+            ColMgrMgr::Instance().registerColorManager("Monochrome",
+                                                       createMonochrome);
+}
 
-/// Singleton to set the color scheme globally - proxies the color manager
-/** \todo implement a map<Function *, ColorManager *> to store one ColorManager
- *  per function - this will probably break the existing interface
- *  \ingroup Coloring                                                         */
-class ColorManagerManager {
-    public:
-        /// determine which coloring scheme to use
-        void setColorManager(ColorManager *cm) {
-            colorManager.reset(cm);
-        }
-        /// proxy function for ColorManager::setFunction()
-        void setFunction(const Function *_f) {
-            colorManager->setFunction(_f);
-        }
-        /// proxy function for ColorManager::calibrateColor()
-        void calibrateColor(const VecMath::Vector<4> &x,
-                            const Color &_col = Color()) {
-            colorManager->calibrateColor(x, _col);
-        }
-        /// proxy function for ColorManager::setColor()
-        void setColor(const VecMath::Vector<4> &x) { 
-            colorManager->setColor(x); 
-        }
-        /// proxy function for ColorManager::depthCueColor()
-        void depthCueColor(double wmax, double wmin, double w,
-                           const VecMath::Vector<4> &x) {
-            colorManager->depthCueColor(wmax, wmin, w, x);
-        }
-        /// proxy function for ColorManager::setRGB()
-        void setRGB(const Color &_col) { colorManager->setRGB(_col); }
-        /// debugging output
-        std::string getContents() { return colorManager->getContents(); }
-
-    private:
-        /** disabled default constructor */
-        ColorManagerManager() { }
-        /** disabled copy constructor */
-        ColorManagerManager(const ColorManagerManager &);
-        /** disabled assignment operator */
-        ColorManagerManager &operator=(const ColorManagerManager &);
-        /** disabled destructor */
-        ~ColorManagerManager() { }
-
-        std::auto_ptr<ColorManager> colorManager;   ///< The proxied ColorManager
-
-        friend class Loki::CreateUsingNew<ColorManagerManager>;
-
-};
-
-typedef Loki::SingletonHolder<ColorManagerManager> ColMgrMgr;
 #endif
