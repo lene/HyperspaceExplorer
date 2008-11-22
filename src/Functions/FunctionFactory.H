@@ -36,7 +36,8 @@ class FunctionFactory {
             public:
                 /// Create a BadFunctionException
                 BadFunctionException(const std::string &what):
-                    std::runtime_error(what) { }
+                    std::runtime_error("\""+what+"\" is not the name of a registered"
+                        " Function") { }
         };
 
     private:

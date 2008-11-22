@@ -22,7 +22,29 @@ using std::vector;
 
 template <typename T> T min(T a, T b) { return (a < b? a: b); }
 
-/// set the current OpenGL color
+ColorManager::ColorManager():
+        f(0),
+        ambientColorModifier(0.5), specularColorModifier(2.),
+        specularColorMinimum(0.5), SHININESS(32.), ALPHA(0.8),
+        offset4Ddepthcue(0.1) { }
+
+/** \param _f The Function for which to manage colors */
+ColorManager::ColorManager(const Function *_f):
+        f(_f),
+        ambientColorModifier(0.5), specularColorModifier(2.),
+        specularColorMinimum(0.5), SHININESS(32.), ALPHA(0.8),
+        offset4Ddepthcue(0.1) { }
+
+void ColorManager::setFunction(const Function *_f) {
+    f = _f;
+    f->calibrateColors();
+}
+
+/** @param x four-dimensional coordinate for which the color is sought*/
+void ColorManager::setColor(const VecMath::Vector<4> &x) {
+    setRGB(getColor(x));
+}
+
 /** uses HARDCODED simple algorithm to set ambient and specular values for a
  *  specific color: if halves resp. dobles them, clipping at 1.0
  *  @todo make the agorithm which computes the ambient and specular values
@@ -42,6 +64,61 @@ void ColorManager::setRGB(const Color &rgb) {
     glMaterialf (GL_FRONT, GL_SHININESS, SHININESS);
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
+ColorManagerManager::BadColorManagerException::BadColorManagerException(
+        const std::string &what):
+        std::runtime_error("\""+what+"\" is not the name of a registered"
+        " ColorManager") { }
+
+void ColorManagerManager::calibrateColor(const VecMath::Vector<4> &x,
+                                         const Color &_col) {
+    colorManager->calibrateColor(x, _col);
+}
+
+void ColorManagerManager::depthCueColor(double wmax, double wmin, double w,
+                                        const VecMath::Vector<4> &x) {
+    colorManager->depthCueColor(wmax, wmin, w, x);
+}
+
+/** \param name The name by which this class is called from outside
+ *  \param creator A function which returns a new instance of the
+ *                 registered ColorManager
+ *  \return Whether the registration succeeded. This return value is
+ *          needed because registration takes place by defining a
+ *          <tt>const bool</tt> in a global anonymous namespace.
+ */
+bool ColorManagerManager::registerColorManager(const std::string &name,
+                                               CreateColMgrCallback creator) {
+    return callbacks.insert(CallbackMap::value_type(name, creator)).second;
+}
+
+/** I can't really think of a reason why one would want to unregister a
+ *  ColorManager at runtime, so this function is just there for the sake
+ *  of completeness. It's a one-liner anyway.
+ *
+ *  \param name The name by which the ColorManager is called from outside
+ */
+bool ColorManagerManager::unregisterColorManager(const std::string &name) {
+    return callbacks.erase(name) == 1;
+}
+
+/** \param name Name the ColorManager is known and registered by
+ */
+void ColorManagerManager::setColorManager(const std::string &name) {
+    CallbackMap::const_iterator i = callbacks.find(name);
+    if (i == callbacks.end()) throw BadColorManagerException(name);
+    setColorManager((i->second)());
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+/** \param _f new Function to manage    */
+void xyz2RGBColorManager::setFunction(const Function *_f) {
+    col.clear();
+    ColorManager::setFunction(_f);
+}
+
 void xyz2RGBColorManager::calibrateColor(const VecMath::Vector<4> &x,
                                          const Color &_col) {
     col.insert(std::make_pair(x, _col));
@@ -55,6 +132,15 @@ void xyz2RGBColorManager::calibrateColor(const VecMath::Vector<4> &x,
 Color xyz2RGBColorManager::getColor(const VecMath::Vector<4> &x) {
     if (!col.count(x)) col[x] = computeColorFromNeighbors(x);
     return col[x];
+}
+
+std::string xyz2RGBColorManager::getContents() {
+    std::ostringstream o;
+    for (colormap::iterator i = col.begin(); i != col.end(); ++i) {
+        o << i->first << " -> " << i->second.operator std::string()
+          << std::endl;
+    }
+    return o.str();
 }
 
 /// Interpolate the color of a point from the colors of its neighbors
@@ -151,6 +237,14 @@ void xyz2RGBColorManager::depthCueColor(double wmax, double wmin, double w,
                         + getoffset4Ddepthcue())*DepthCueFactor;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
+/** \param _f new Function to manage    */
+void depth2RGBColorManager::setFunction(const Function *_f) {
+    _wmin = 1e6; _wmax = -1e6;
+    ColorManager::setFunction(_f);
+}
+
 void depth2RGBColorManager::calibrateColor(const VecMath::Vector<4> &x,
                                            const Color &) {
     if (x[3] < _wmin) _wmin = x[3];
@@ -168,6 +262,16 @@ Color depth2RGBColorManager::getColor(const VecMath::Vector<4> &x) {
 void depth2RGBColorManager::depthCueColor(double, double, double,
                                         const VecMath::Vector<4> &) { }
 
+std::string depth2RGBColorManager::getContents() {
+    std::ostringstream o;
+    o << "Wmin: " << _wmin << ", Wmax: " << _wmax << std::endl;
+    return o.str();
+}
+
+/** \param w w coordinate, normalized to the interval [0..1]
+ *  \return Spectral color, ranging from red for 0 to violet for 1
+ *  \todo Rethink the transparence algorithm
+ */
 Color depth2RGBColorManager::computeColorFromW(double w) {
     float R = (w <= 0.2? 1.: (w <= 0.4? 1.-5.*(w-0.2): (w <= 0.8? 0.: 5.*(w-0.8))));
     float G = (w <= 0.2? 5.*w: (w <= 0.6? 1.: (w <= 0.8? 1.-5*(w-0.6): 0.)));
