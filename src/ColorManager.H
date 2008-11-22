@@ -153,7 +153,7 @@ class ColorManagerManager {
         /// Unregister a ColorManager with the given name
         bool unregisterColorManager(const std::string &);
 
-        /// \todo implement me!
+        /// Returns a list of registered ColorManager s
         std::vector<std::string> getRegisteredColorManagers();
 
         /// Set the ColorManager to a class registered by name

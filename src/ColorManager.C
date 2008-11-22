@@ -103,6 +103,15 @@ bool ColorManagerManager::unregisterColorManager(const std::string &name) {
     return callbacks.erase(name) == 1;
 }
 
+std::vector<std::string> ColorManagerManager::getRegisteredColorManagers() {
+    std::vector<std::string> ret;
+    for (CallbackMap::const_iterator i = callbacks.begin();
+         i != callbacks.end(); ++i) {
+        ret.push_back(i->first);
+    }
+    return ret;
+}
+
 /** \param name Name the ColorManager is known and registered by
  */
 void ColorManagerManager::setColorManager(const std::string &name) {
