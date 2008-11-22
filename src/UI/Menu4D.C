@@ -153,8 +153,6 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
 
         _appear->addAction("Set Background Color", this, SLOT(setBackground()));
 
-        _color = _appear->addMenu("Coloring Schemes");
-
         getAction("Colors")->setChecked(_parent->getColors());
         getAction("Shading")->setChecked(_parent->getShading());
         getAction("Depth Cue")->setChecked(_parent->getFog());
@@ -162,12 +160,16 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
         getAction("Transparence")->setChecked(_parent->getTransparence());
         getAction("Coordinate Cross")->setChecked(_parent->getCoordinates());
         {
+            _color = _appear->addMenu("Coloring Schemes");
+            /// \todo this is just a test for the tear off function!
+            _color->setTearOffEnabled(true);
             std::vector<std::string> colMgrList =
                     ColMgrMgr::Instance().getRegisteredColorManagers();
             for (std::vector<std::string>::const_iterator i = colMgrList.begin();
                  i != colMgrList.end(); ++i) {
                 std::cerr << *i << "\n";
-                insertAction(_color, QString(i->c_str()), SLOT(setBackground()));
+                QAction *tmp = insertAction(_color, QString(i->c_str()));
+                connect(_color, SIGNAL(triggered(QAction *)), this, SLOT(setColorManager(QAction *)));
             }
         }
     }
@@ -319,6 +321,14 @@ void C4DView::Menu4D::HyperFog() {
     getAction("4D Depth Cue")->setChecked(_parent->getHyperfog());
 }
 
+/** Set ColorManager to the selected menu item
+ *  Change menu items accordingly */
+void C4DView::Menu4D::setColorManager(QAction *a) {
+    if (a) ColMgrMgr::Instance().setColorManager(a->text().toStdString());
+    /// \todo recalibrate color manager with current function
+    /// \todo check current menu item, uncheck others
+}
+
 
 /** Switch rendering to files on or off
  *
@@ -430,7 +440,8 @@ QAction *&C4DView::Menu4D::getAction(const QString &key) {
         ActionMapType actionMap = it->second;
         if (actionMap.count(key)) return actionMap[key];
     }
-    throw key+" not found in list of menu entries!";    //  TODO clean exception
+    ///  \todo Throw a real exception
+    throw key+" not found in list of menu entries!";
 }
 
 
@@ -439,13 +450,21 @@ QAction *&C4DView::Menu4D::getAction(const QString &key) {
  *  the menus whenever you want to change the item titles.
  *  \param _menu the menu you want to add the item to
  *  \param title the title of the item
- *  \param slot the function triggered by the item's selection
- *  \param checkable whether the menu item is checkable                       */
+ *  \param slot The function triggered by the item's selection. If it is null,
+ *              you have to connect the returned action to a slot by yourself.
+ *  \param checkable whether the menu item is checkable
+ *  \return The generated QAction
+ */
 QAction *C4DView::Menu4D::insertAction(QMenu *_menu, const QString &title,
                                        const char *slot, bool checkable) {
-    QAction *tmp = _menu->addAction(
-        title, (const QObject *)this, (const char *)slot,
-        (const QKeySequence &)0);
+    QAction *tmp;
+    if (slot) {
+        tmp = _menu->addAction(
+            title, (const QObject *)this, (const char *)slot,
+            (const QKeySequence &)0);
+    }
+    else tmp = _menu->addAction(title);
+
     tmp->setCheckable(checkable);
     menuMap[_menu].insert(std::pair<QString, QAction *>(title, tmp));
     return tmp;

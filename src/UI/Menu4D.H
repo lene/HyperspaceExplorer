@@ -55,6 +55,7 @@ class C4DView::Menu4D: public QMenu {
         void Coordinates();     ///< "Appearance/Coordinate Cross" menu item selected
         void setBackground();   ///< "Appearance/Set Background Color" menu item selected
         void HyperFog();        ///< "Appearance/4D Depth Cue" menu item selected
+        void setColorManager(QAction *); ///< "Appearance/Coloring Scheme" submenu item selected
 
         void RenderToImages();  ///< "Animation/Render to Images" menu item selected
         void AnimationSettings(); ///< "Animation/Animation Settings" menu item selected
@@ -80,7 +81,7 @@ class C4DView::Menu4D: public QMenu {
         typedef std::map<QMenu *, ActionMapType> MenuMapType;
 
         /// insert a menu item with a specified slot into a specified menu
-        QAction *insertAction(QMenu *, const QString &, const char *,
+        QAction *insertAction(QMenu *, const QString &, const char * = 0,
                               bool = true);
         /// insert a menu item creating a RealFunction object into a specified menu
         QAction *insertAction(QMenu *, const QString &,

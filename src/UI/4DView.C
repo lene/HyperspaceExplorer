@@ -88,10 +88,7 @@ C4DView::C4DView(QWidget *parent):
 
     show();
 
-    cerr << ColMgrMgr::Instance().getRegisteredColorManagers() << endl;
-
     ColMgrMgr::Instance().setColorManager("W coordinate to RGB");
-//    ColMgrMgr::Instance().setColorManager("XYZ to RGB");
 
     ObjectRotope();
 
