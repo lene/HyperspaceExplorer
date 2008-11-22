@@ -93,12 +93,13 @@ class C4DView::Menu4D: public QMenu {
 
         QMenu *_functions;      ///< The "Object" menu
         QMenu *_fr3r;           ///< The "Object/f:R^3 -> R" submenu
-        QMenu *_objects;         ///< The "Object/Objects" submenu
-        QMenu *_surfaces;        ///< The "Object/Surfaces" submenu
-        QMenu *_fcc;             ///< The "Object/Surfaces/f:C -> C" submenu
-        QMenu *_appear;          ///< The "Appearance" menu
-        QMenu *_animation;       ///< The "Animation" menu
-        QMenu *_help;            ///< The "Help" menu
+        QMenu *_objects;        ///< The "Object/Objects" submenu
+        QMenu *_surfaces;       ///< The "Object/Surfaces" submenu
+        QMenu *_fcc;            ///< The "Object/Surfaces/f:C -> C" submenu
+        QMenu *_appear;         ///< The "Appearance" menu
+        QMenu *_color;          ///< The "Appearance/Color Schemes" submenu
+        QMenu *_animation;      ///< The "Animation" menu
+        QMenu *_help;           ///< The "Help" menu
 
         MenuMapType menuMap;    ///< Keeps the QActions belonging to the menu entries
 };

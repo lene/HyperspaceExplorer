@@ -24,6 +24,7 @@
 #include "SlotHelper.H"
 #include "AnimationDialogImpl.H"
 #include "Help.H"
+#include "ColorManager.H"
 
 using std::ostringstream;
 using std::endl;
@@ -152,12 +153,23 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
 
         _appear->addAction("Set Background Color", this, SLOT(setBackground()));
 
+        _color = _appear->addMenu("Coloring Schemes");
+
         getAction("Colors")->setChecked(_parent->getColors());
         getAction("Shading")->setChecked(_parent->getShading());
         getAction("Depth Cue")->setChecked(_parent->getFog());
         getAction("Lighting")->setChecked(_parent->getLighting());
         getAction("Transparence")->setChecked(_parent->getTransparence());
         getAction("Coordinate Cross")->setChecked(_parent->getCoordinates());
+        {
+            std::vector<std::string> colMgrList =
+                    ColMgrMgr::Instance().getRegisteredColorManagers();
+            for (std::vector<std::string>::const_iterator i = colMgrList.begin();
+                 i != colMgrList.end(); ++i) {
+                std::cerr << *i << "\n";
+                insertAction(_color, QString(i->c_str()), SLOT(setBackground()));
+            }
+        }
     }
     insertAction(_help, "Online _help", SLOT(Help ()), false);
     _help->insertSeparator (
