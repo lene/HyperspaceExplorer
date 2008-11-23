@@ -322,12 +322,20 @@ void C4DView::Menu4D::HyperFog() {
     getAction("4D Depth Cue")->setChecked(_parent->getHyperfog());
 }
 
-/** Set ColorManager to the selected menu item
- *  Change menu items accordingly */
+/** Set ColorManager to the selected menu item */
 void C4DView::Menu4D::setColorManager(QAction *a) {
-    if (a) ColMgrMgr::Instance().setColorManager(a->text().toStdString());
-    /// \todo recalibrate color manager with current function
-    /// \todo check current menu item, uncheck others
+    if (a) {
+        ColMgrMgr::Instance().setColorManager(a->text().toStdString());
+        _parent->Redraw();
+        /// check current menu item, uncheck others
+        std::vector<std::string> colMgrList =
+                ColMgrMgr::Instance().getRegisteredColorManagers();
+        for (std::vector<std::string>::const_iterator i = colMgrList.begin();
+             i != colMgrList.end(); ++i) {
+            getAction(i->c_str())->setChecked(false);
+        }
+        getAction(a->text())->setChecked(true);
+    }
 }
 
 

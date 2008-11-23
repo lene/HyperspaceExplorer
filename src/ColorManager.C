@@ -38,7 +38,6 @@ ColorManager::ColorManager(Function *_f):
 void ColorManager::setFunction(Function *_f) {
     f = _f;
     f->calibrateColors();
-    f->Transform();
 }
 
 /** @param x four-dimensional coordinate for which the color is sought*/
@@ -82,12 +81,16 @@ void ColorManagerManager::depthCueColor(double wmax, double wmin, double w,
     colorManager->depthCueColor(wmax, wmin, w, x);
 }
 
-/** \param name The name by which this class is called from outside
- *  \param creator A function which returns a new instance of the
- *                 registered ColorManager
+/** \param name The name by which this class is called from outside. This name
+ *              is passed to setColorManager() to select the desired
+ *              ColorManager.
+ *  \param creator A function which returns a new instance of the registered
+ *                 ColorManager
  *  \return Whether the registration succeeded. This return value is
  *          needed because registration takes place by defining a
  *          <tt>const bool</tt> in a global anonymous namespace.
+ *  \see <a href="classColorManager.html#_details">ColorManager</a> for an
+ *       example usage of this function.
  */
 bool ColorManagerManager::registerColorManager(const std::string &name,
                                                CreateColMgrCallback creator) {

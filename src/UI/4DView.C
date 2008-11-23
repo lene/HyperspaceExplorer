@@ -88,7 +88,7 @@ C4DView::C4DView(QWidget *parent):
 
     show();
 
-    ColMgrMgr::Instance().setColorManager("W coordinate to RGB");
+    Menu()->setColorManager(new QAction("W coordinate to RGB", this));
 
     ObjectRotope();
 
@@ -385,8 +385,10 @@ void C4DView::PreRedraw () {
 /** Draws the projected Function into GL display lists, and then draws those
  *  lists onto the screen                                                     */
 void C4DView::Redraw () {
-  PreRedraw ();
-  paintEvent ();
+    if (F().get()) {
+        PreRedraw ();
+        paintEvent ();
+    }
 }
 
 /** Execute GL display lists, with error reporting and an exit strategy       */

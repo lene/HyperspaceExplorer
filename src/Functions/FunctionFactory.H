@@ -14,12 +14,21 @@ class Function;
  *  following (exemplary) code after their declaration in the header file:
  *  \code
  *  namespace {
- *      Function *createHypercube() { return new Hypercube(); }
+ *
+ *      Function *createHypercube() {
+ *          return new Hypercube();
+ *      }
+ *
  *      const bool registered =
  *          TheFunctionFactory::Instance().registerFunction("Hypercube",
  *                                                          createHypercube);
  *  }
  *  \endcode
+ *  Of course, the name of the class and the description passed to
+ *  FunctionFactory::registerFunction() must be changed. The name of the
+ *  variable <tt>registered</tt> must be chosen to be unique in the anonymous
+ *  namespace.
+
  *  Objects are created with, e.g.:
  *  \code
  *  Function *f = TheFunctionFactory::Instance().createFunction("Hypercube");
@@ -62,6 +71,7 @@ class FunctionFactory {
          *  \return a newly created object of class "name"                    */
         Function *createFunction(const std::string &name);
 
+        /// \todo implement me!
         std::vector<std::string> listFunctions();
 
     private:

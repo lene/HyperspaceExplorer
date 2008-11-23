@@ -25,8 +25,8 @@
 /// \defgroup Coloring Functionality for defining color schemes
 /// \ingroup UIGroup
 
-/// Interface for all color managers
-/** sets some values common to all color managers, manages the function
+/// Abstract interface for all color managers
+/** Sets some values common to all color managers, manages the function
  *  belonging to every color manager and has some typedefs for arrays of colors.
  *
  *  But above all, defines the interface every color manager must implement.
@@ -35,15 +35,20 @@
  *  after their declaration in the header file:
  *  \code
  *  namespace {
- *      ColorManager *createXYZ2RGB() { return new xyz2RGBColorManager(); }
+ *
+ *      ColorManager *createXYZ2RGB() {
+ *          return new xyz2RGBColorManager();
+ *      }
+ *
  *      const bool registeredC0 =
  *           ColMgrMgr::Instance().registerColorManager("XYZ to RGB",
  *                                                      createXYZ2RGB);
+ *
  *  }
  *  \endcode
  *  Of course, the name of the class and the description passed to
- *  registerColorManager() must be changed. The name of the variable
- *  <tt>registeredC0</tt> must be chosen to be unique in the anonymous
+ *  ColorManagerManager::registerColorManager() must be changed. The name of the
+ *  variable <tt>registeredC0</tt> must be chosen to be unique in the anonymous
  *  namespace.
  *
  *  \ingroup Coloring                                                         */
