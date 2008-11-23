@@ -29,15 +29,16 @@ ColorManager::ColorManager():
         offset4Ddepthcue(0.1) { }
 
 /** \param _f The Function for which to manage colors */
-ColorManager::ColorManager(const Function *_f):
+ColorManager::ColorManager(Function *_f):
         f(_f),
         ambientColorModifier(0.5), specularColorModifier(2.),
         specularColorMinimum(0.5), SHININESS(32.), ALPHA(0.8),
         offset4Ddepthcue(0.1) { }
 
-void ColorManager::setFunction(const Function *_f) {
+void ColorManager::setFunction(Function *_f) {
     f = _f;
     f->calibrateColors();
+    f->Transform();
 }
 
 /** @param x four-dimensional coordinate for which the color is sought*/
@@ -123,7 +124,7 @@ void ColorManagerManager::setColorManager(const std::string &name) {
 ////////////////////////////////////////////////////////////////////////////////
 
 /** \param _f new Function to manage    */
-void xyz2RGBColorManager::setFunction(const Function *_f) {
+void xyz2RGBColorManager::setFunction(Function *_f) {
     col.clear();
     ColorManager::setFunction(_f);
 }
@@ -249,7 +250,7 @@ void xyz2RGBColorManager::depthCueColor(double wmax, double wmin, double w,
 ////////////////////////////////////////////////////////////////////////////////
 
 /** \param _f new Function to manage    */
-void depth2RGBColorManager::setFunction(const Function *_f) {
+void depth2RGBColorManager::setFunction(Function *_f) {
     _wmin = 1e6; _wmax = -1e6;
     ColorManager::setFunction(_f);
 }

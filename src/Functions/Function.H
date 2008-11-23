@@ -67,7 +67,8 @@
  *  \code
  *  namespace {
  *      Function *createHypercube() { return new Hypercube(); }
- *      const bool registered = TheFunctionFactory::Instance().registerFunction("Hypercube", createHypercube);
+ *      const bool registered =
+ *          TheFunctionFactory::Instance().registerFunction("Hypercube", createHypercube);
  *  }
  *  \endcode
  *
@@ -124,6 +125,11 @@ class Function {
         virtual void calibrateColors() const = 0;
 
         /// Set parameters to the Function
+        /** \todo This function is only there to provide an interface, and it's
+         *  not abstract so that Function s which don't have Parameters don't
+         *  need to reimplement an unneeded method. But the present implementation
+         *  does not make sense.
+         */
         virtual void SetParameters(const ParameterMap &) {
             std::cerr << "Function::SetParameters()" << std::endl;
         }

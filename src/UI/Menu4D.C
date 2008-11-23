@@ -161,18 +161,19 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
         getAction("Coordinate Cross")->setChecked(_parent->getCoordinates());
         {
             _color = _appear->addMenu("Coloring Schemes");
-            /// \todo this is just a test for the tear off function!
-            _color->setTearOffEnabled(true);
             std::vector<std::string> colMgrList =
                     ColMgrMgr::Instance().getRegisteredColorManagers();
             for (std::vector<std::string>::const_iterator i = colMgrList.begin();
                  i != colMgrList.end(); ++i) {
-                std::cerr << *i << "\n";
-                QAction *tmp = insertAction(_color, QString(i->c_str()));
-                connect(_color, SIGNAL(triggered(QAction *)), this, SLOT(setColorManager(QAction *)));
+                insertAction(_color, QString(i->c_str()));
             }
+            connect(_color, SIGNAL(triggered(QAction *)),
+                    this, SLOT(setColorManager(QAction *)));
         }
     }
+    /// \todo this is just a test for the tear off function!
+    _appear->setTearOffEnabled(true);
+
     insertAction(_help, "Online _help", SLOT(Help ()), false);
     _help->insertSeparator (
         insertAction(_help, tr("&About ..."), SLOT(about()), false));

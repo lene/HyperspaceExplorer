@@ -30,6 +30,22 @@
  *  belonging to every color manager and has some typedefs for arrays of colors.
  *
  *  But above all, defines the interface every color manager must implement.
+ *
+ *  Implementing classes must register themselves with the ColorManagerManager
+ *  after their declaration in the header file:
+ *  \code
+ *  namespace {
+ *      ColorManager *createXYZ2RGB() { return new xyz2RGBColorManager(); }
+ *      const bool registeredC0 =
+ *           ColMgrMgr::Instance().registerColorManager("XYZ to RGB",
+ *                                                      createXYZ2RGB);
+ *  }
+ *  \endcode
+ *  Of course, the name of the class and the description passed to
+ *  registerColorManager() must be changed. The name of the variable
+ *  <tt>registeredC0</tt> must be chosen to be unique in the anonymous
+ *  namespace.
+ *
  *  \ingroup Coloring                                                         */
 class ColorManager {
     public:
@@ -37,12 +53,15 @@ class ColorManager {
         ColorManager();
 
         /// Create a ColorManager for a given Function
-        ColorManager(const Function *);
+        ColorManager(Function *);
 
         virtual ~ColorManager() { }
 
         /// Set the function we are managing
-        virtual void setFunction(const Function *);
+        virtual void setFunction(Function *);
+
+        /// Access to the managed Function
+        Function *getFunction() const { return f; }
 
         /// Point (x, y, z) has color col. This may serve for interpolation.
         virtual void calibrateColor(const VecMath::Vector<4> &x,
@@ -85,7 +104,7 @@ class ColorManager {
         double getAlpha() { return ALPHA; }
 
     private:
-        const Function* f;      ///< Function for which to manage colors
+        Function* f;      ///< Function for which to manage colors
 
         /// value to multiply a color with to get its ambient value
         double ambientColorModifier;
@@ -126,10 +145,15 @@ class ColorManagerManager {
         typedef ColorManager *(*CreateColMgrCallback)();
 
         /// determine which coloring scheme to use
-        void setColorManager(ColorManager *cm) { colorManager.reset(cm); }
+        void setColorManager(ColorManager *cm) {
+            Function *ftmp = 0;
+            if (colorManager.get()) ftmp = colorManager->getFunction();
+            colorManager.reset(cm);
+            if (ftmp) cm->setFunction(ftmp);
+        }
 
         /// proxy function for ColorManager::setFunction()
-        void setFunction(const Function *_f) { colorManager->setFunction(_f); }
+        void setFunction(Function *_f) { colorManager->setFunction(_f); }
 
         /// proxy function for ColorManager::calibrateColor()
         void calibrateColor(const VecMath::Vector<4> &, const Color & = Color());
@@ -192,12 +216,12 @@ class xyz2RGBColorManager: public ColorManager {
 
         /// Given a Function to manage, construct a xyz2RGBColorManager
         /** \param _f Function to manage    */
-        xyz2RGBColorManager(const Function *_f): ColorManager(_f), col(colormap()) { }
+        xyz2RGBColorManager(Function *_f): ColorManager(_f), col(colormap()) { }
 
         virtual ~xyz2RGBColorManager() { }
 
         /// set the managed Function
-        virtual void setFunction(const Function *);
+        virtual void setFunction(Function *);
 
         virtual void calibrateColor(const VecMath::Vector<4> &x,
                                     const Color &_col = Color());
@@ -233,13 +257,13 @@ class depth2RGBColorManager: public ColorManager {
 
         /// Given a Function to manage, construct a depth2RGBColorManager
         /** \param _f Function to manage    */
-        depth2RGBColorManager(const Function *_f):
+        depth2RGBColorManager(Function *_f):
             ColorManager(_f), _wmin(1e6), _wmax(-1e6) { }
 
         virtual ~depth2RGBColorManager() { }
 
         /// set the managed Function
-        virtual void setFunction(const Function *);
+        virtual void setFunction(Function *);
 
         virtual void calibrateColor(const VecMath::Vector<4> &,
                                     const Color & = Color());
@@ -275,7 +299,7 @@ class monochromeColorManager: public ColorManager {
 
         /// Given a Function to manage, construct a monochromeColorManager
         /** \param _f Function to manage    */
-        monochromeColorManager(const Function *_f): ColorManager(_f) { }
+        monochromeColorManager(Function *_f): ColorManager(_f) { }
 
         virtual ~monochromeColorManager() { }
 
