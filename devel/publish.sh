@@ -4,14 +4,13 @@
 # needed to publish it on sourceforge, with as little user interaction as
 # possible
 
-VERSION="0.6.2"
 BASEDIR="${HOME}/workspace"
 PROJECTDIR="HyperspaceExplorer"
 FILENAME="HyperspaceExplorer"
 EXECUTABLE="HyperspaceExplorer"
 PROJECTNAME="hyperspace-expl"
 USERNAME="metaldog"
-LINES=$(find . -name *.[CH] -exec cpp -fpreprocessed "{}" \; 2> /dev/null | grep -v ^$ | grep -v ^# | wc -l)
+
 set +xv
 
 # processes arguments to the script
@@ -38,18 +37,22 @@ function parse_commandline() {
         esac
         shift
     done
+    if [ -z "$VERSION" ]; then
+        print_help
+        exit 1
+    fi
 }
 
 function print_help() {
-    cat << EOF
-            --edit|-e)      edit=1;;
-            --generate|-g)  generate=1;;
-            --check|-c)     check=1;;
-            --upload|-u)    upload=1;;
-            --document|-d)  document=1;;
-            --branch|-b)    branch=1;;
-            --version|-v)   VERSION=$2;
-EOF
+    echo $(basename $0) --version\|-v \<VERSION\>
+    echo "          [--edit\|-e]"
+    echo "          [--generate\|-g]"
+    echo "          [--check\|-c]"
+    echo "          [--upload\|-u]"
+    echo "          [--document\|-d]"
+    echo "          [--branch\|-b]"
+    echo "The --version parameter is mandatory."
+    echo "If no step for deployment is specified, all will be executed."
 }
 
 # things that must be done manually
@@ -60,20 +63,30 @@ function edit() {
     echo 'hit ENTER to continue'
     read YES
 
-    echo
-    echo "change version number in Doxyfile to ${VERSION}!"
-    echo
-    echo 'hit ENTER to continue'
-    read YES
+    ver=$(grep -n 'PROJECT_NUMBER' Doxyfile | grep \= | cut -d '=' -f 2)
+    if [ $ver != $VERSION ]; then
+        echo
+        echo "change PROJECT_NUMBER in Doxyfile to ${VERSION}!"
+        echo
+        grep -n PROJECT_NUMBER Doxyfile | grep \=
+        echo
+        echo 'hit ENTER to continue'
+        read YES
+    fi
+
+    ver=$(grep -n 'VERSION[ *]=' src/src.pro | cut -d '=' -f 2)
+    if [ $ver != $VERSION ]; then
+        echo
+        echo "update VERSION in src.pro to ${VERSION}!"
+        echo
+        grep -n 'VERSION[ *]=' src/src.pro
+        echo
+        echo 'hit ENTER to continue'
+        read YES
+    fi
 
     echo
-    echo "update VERSION in src.pro to ${VERSION}!"
-    echo
-    echo 'hit ENTER to continue'
-    read YES
-
-    echo
-    echo 'make sure CONFIG is set to release (and not debug). ie.:'
+    echo 'make sure CONFIG in src/src.pro is set to release (and not debug). ie.:'
     echo '    CONFIG -= debug'
     echo '    CONFIG += release qt warn_on uic'
     echo
@@ -83,17 +96,20 @@ function edit() {
 
 # generate distribution package
 function generate() {
+    # File and directory names which should NOT be included in the archive
     EXCLUDE=".svn tmp testing archive plugins"
-    INCLUDE="src,AUTHORS,COPYING,ChangeLog,Doxyfile,HyperspaceExplorer.pro,INSTALL,License.txt,README,*.4d"
+
+    # File and directory names which SHOULD be included in the archive must be
+    # listed as argument to the tar command below
 
     for exclude in ${EXCLUDE}; do
         EXCLUDE_CLAUSE="${EXCLUDE_CLAUSE} --exclude=${exclude}"
     done
 
     cd ${BASEDIR}/${PROJECTDIR}
-    make clean
-    find . -name \*~ | xargs rm
-    find . -name Makefile | xargs rm
+    test -f Makefile && make clean
+    find . -name \*~ | xargs rm -f
+    find . -name Makefile | xargs rm -f
     cd ${BASEDIR}
     tar ${EXCLUDE_CLAUSE} \
         --create --bzip2 --file ${PROJECTDIR}/${FILENAME}-${VERSION}.tar.bz2 \
@@ -108,7 +124,7 @@ function check() {
         tar jxf ${BASEDIR}/${PROJECTDIR}/${FILENAME}-${VERSION}.tar.bz2 && \
         cd ${PROJECTDIR} && \
         qmake && \
-        make -j4 && \
+        make -j2 && \
         sudo make install && \
         ./${EXECUTABLE} || exit 1
 }
@@ -158,11 +174,17 @@ function branch() {
         ${SVNBASE}/tags/release-${VERSION}
 }
 
-echo $LINES lines of code
 
 parse_commandline $@
 
-if [ $edit -o $generate -o $check -o $upload -o $document -o $branch ]; then
+LINES=$(find . -name *.[CH] -exec cpp -fpreprocessed "{}" \; 2> /dev/null | \
+        grep -v ^$ | \
+        grep -v ^# | \
+        wc -l)
+echo $LINES lines of code
+
+if [ $edit -eq 1 -o $generate -eq 1 -o $check -eq 1 -o $upload -eq 1 \
+        -o $document -eq 1 -o $branch -eq 1 ]; then
     test $edit -eq 1 && edit
     test $generate -eq 1 && generate
     test $check -eq 1 && check
