@@ -502,7 +502,7 @@ void C4DView::StartAnimation () {
         return;
     }
 
-    SingletonLog::Instance().log("C4DView::StartAnimation ()");
+    SingletonLog::Instance().log(__PRETTY_FUNCTION__);
 
     setAnimated(true);
     setanimationFrame(0);
@@ -513,7 +513,7 @@ void C4DView::StartAnimation () {
 
 /// you guessed it
 void C4DView::StopAnimation () {
-    SingletonLog::Instance().log("C4DView::StopAnimation ()");
+    SingletonLog::Instance().log(__PRETTY_FUNCTION__);
 
     setAnimated(false);
     setdR(VecMath::Rotation<4>());
@@ -742,7 +742,7 @@ void C4DView::resizeEvent (QResizeEvent *e) {
  *  \todo clean up, check what is really needed - in particular it calls
  *        PreRedraw() twice, once via RenderScene()                           */
 void C4DView::initializeGL (void) {
-    SingletonLog::Instance().log("C4DView::initializeGL ()");
+    SingletonLog::Instance().log(__PRETTY_FUNCTION__);
 
     glEnable (GL_DEPTH_TEST);                   //  enable 3D mode, sotosay
     glEnable (GL_NORMALIZE);                    //  automatically normalize surface normals
@@ -784,7 +784,7 @@ void C4DView::initializeGL (void) {
 
         glPopMatrix();                          //  restore transformation Matrix
     }
-    SingletonLog::Instance().log("C4DView::initializeGL() done");
+    SingletonLog::Instance().log(__PRETTY_FUNCTION__+std::string(" done"));
 }
 
 /// OpenGL initialization for light(s)

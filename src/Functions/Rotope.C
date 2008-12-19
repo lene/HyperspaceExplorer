@@ -38,7 +38,8 @@ Rotope::~Rotope() {
 }
 
 void Rotope::Initialize() {
-    std::cerr << "Rotope::Initialize()\n";
+    SingletonLog::Instance().log(__PRETTY_FUNCTION__);
+
     try {
         _rotope = RotopeFactory::generate(_actions);
         declareParameter("Generator", _actions);
@@ -87,7 +88,7 @@ void Rotope::Initialize() {
         std::cerr << e.what() << std::endl;
     }
 
-    std::cerr << getParameters().print();
+    SingletonLog::Instance() << getParameters().print();
     for (unsigned i = 5; i <= _rotope->dimension(); ++i) {
         _rotope->addTransform(i, new VecMath::Rotation<5>());
     }

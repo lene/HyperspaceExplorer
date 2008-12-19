@@ -32,8 +32,7 @@ namespace UI {
         _colors(true), _coordinates(false), _fog(true), _hyperfog(false),
         _lighting(true), _shading(true), _solid(true), _transparence(false),
         _background (0.25, 0.25, 0.25, 1.),
-        _dR(0.,0.,0.,0.,0.,0.),
-        _T(0.,0.,0.,0.), _R(0.,0.,0.,0.,0.,0.),
+        _dR(), _T(), _R(),
         _camW (-3.), _scrW (0.),
         _numFrames(1), _numLoops(1),
         _writeImages (false),
@@ -65,6 +64,8 @@ namespace UI {
 
     /** \param ddR Rotation to be added to the current Rotation state */
     void ViewImpl::adddR(const VecMath::Rotation<4> &ddR) {
-        setdR(getdR() + ddR);
+        /// Make sure temporary is not optimized away
+        VecMath::Rotation<4> newR = ddR + getdR();
+        setdR(newR);
     }
 }

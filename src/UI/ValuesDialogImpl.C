@@ -19,6 +19,7 @@
 
 #include "ValuesDialogImpl.H"
 #include "Function.H"
+#include "Log.H"
 
 namespace UI {
     namespace Dialogs {
@@ -90,10 +91,10 @@ namespace UI {
                 it != parms.end(); ++it, ++j) {
                 try {
                     VecMath::RotationBase dummy = *(it->second->value());
-                    std::cerr << "ValuesDialogImpl::setParameters(): "
+                    SingletonLog::Instance() << __PRETTY_FUNCTION__ << ": "
                             << it->second->getName() << " is a Rotation\n";
                 } catch (FunctionParameterValueBase::WrongParameterTypeException e) {
-                    std::cerr << "ValuesDialogImpl::setParameters(): "
+                    SingletonLog::Instance() << __PRETTY_FUNCTION__ << ": "
                             << it->second->getName() << " is NOT a Rotation\n";
                 }
                 std::string name = it->second->getName();

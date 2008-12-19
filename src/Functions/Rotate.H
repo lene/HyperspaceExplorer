@@ -107,7 +107,7 @@ template <unsigned D, unsigned Dmin>
  *           the ( \p d, \p d-1 )-plane.
  */
 template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
-    std::cerr << "rotate_base<" << D << ">::rotate(" << d << ")\n";
+    SingletonLog::Instance().log(__PRETTY_FUNCTION__);
     if (d >= D) {
         throw std::logic_error(
            "rotate_base::rotate() called on a higher dimension"
