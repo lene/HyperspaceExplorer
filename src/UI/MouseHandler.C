@@ -113,7 +113,7 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
                                                     //  equivalent to z/y 3D rotation
 
                 if (TakingSpinValues()) {
-                    parent->adddR(Rotation<4>(0.,rotate.y()/xsize*5,rotate.x ()/xsize*5,0.,0.,0.));
+                    parent->adddR(Rotation<4>(0.,rotate.y()/xsize*2,rotate.x ()/xsize*2,0.,0.,0.));
                     parent->UpdateStatus ("taking xy/xz rotation speed");
                 } else {                            //  immediate movement
                     setm_LeftDownPos(point);        //  reset start position for next mouse move
@@ -130,7 +130,7 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
                 QPoint rotate = MidDownPos()-point; //  store difference from button press position
 
                 if (TakingSpinValues()) {
-                    parent->adddR(Rotation<4>(rotate.y()/xsize*5,0.,rotate.x()/xsize*5,0.,0.,0.));
+                    parent->adddR(Rotation<4>(rotate.y()/xsize*2,0.,rotate.x()/xsize*2,0.,0.,0.));
                     if (parent->getdR()[3] == 0.) ViewChanged = false;
 
                     parent->UpdateStatus ("taking xw / yz rotation speed");
@@ -140,7 +140,7 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
                     //    add xw rotation
                     parent->addR(Rotation<4>(0.,0., -rotate.x()/xsize*180., 0.,0.,0.));
                     //  add yz  ( = x in 3D) rotation
-                    parent->addm_rot(Rotation<3>(-rotate.y()/ysize*180,0.,0.));
+                    parent->addm_rot(Rotation<3>(-rotate.y()/ysize*180.,0.,0.));
                     if (parent->R()[2] == 0.) ViewChanged = false;
 
                     parent->UpdateStatus ("rotate xw/yz");
@@ -154,7 +154,7 @@ void C4DView::MouseHandler4D::mouseMoveEvent (QMouseEvent *e) {
                 QPoint rotate = RightDownPos()-point;   // store difference from button press position
 
                 if (TakingSpinValues()) {
-                    parent->adddR(Rotation<4>(0.,0.,0.,0.,rotate.x()/xsize*5,rotate.y()/ysize*5));
+                    parent->adddR(Rotation<4>(0.,0.,0.,0.,rotate.x()/xsize*2,rotate.y()/ysize*2));
                     parent->UpdateStatus ("taking yw / zw rotation speed");
 	        } else {                            //    immediate movement
                     setm_RightDownPos(point);       //    reset start position for next mouse move
