@@ -1,11 +1,22 @@
 HyperspaceExplorer Changelog
 =============================
 
+release 0.6.3:
+    * Color management works now. Unfortunately, it seems to cause a major
+      performance hit on 4-dimensional transformations. Haven't investigated 
+      that yet.
+    * Developed Rotopes. Rotopes are objects that are created from an object
+      of lower dimension by extrusions, taper operations and rotations. 
+      Currently, only extruding and tapering works.
+      * Worked on N-dimensional rotations as parameters for objects of a 
+        dimension higher than 4.
+    * Cleaned up the Balls code, but haven't integrated it yet.
+
 release 0.6.2:
     * Separated a lot of code out of C4DView into the interface View and the
       class ViewImpl. Cleaned up dependencies of Menu4D and MouseHandler on
       C4DView.
-    * Renamed many of the member variebles so that they begin with a "_".
+    * Renamed many of the member variables so that they begin with a "_".
       This is the new naming convention for members, which will eventually be
       implemented throughout the whole code.
     * Added the project Balls (https://sourceforge.net/projects/bounce-balls/)
