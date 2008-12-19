@@ -35,6 +35,13 @@ class QString;
 #define stringify(X) #X
 #define make_str(X) stringify(X)
 
+/** __PRETTY_FUNCTION__ is a gcc extension. For other compilers, redefine it
+ *  to print filename and line instead of the function signature.
+ */
+//#ifndef __PRETTY_FUNCTION__
+//#   define __PRETTY_FUNCTION__ (std::string(__FILE__)+std::string(" line //")+Globals::Instance().itoa(__LINE__)).c_str()
+//#endif
+
 /// As a workaround to end the embarassing practice of keeping global variables,
 /// I have created this class as a singleton. You might also call it a
 /// namespace.
