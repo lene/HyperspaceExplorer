@@ -92,6 +92,12 @@ function edit() {
     echo
     echo 'hit ENTER to continue'
     read YES
+
+    echo
+    echo 'make sure you have set the startup object to a new one'
+    echo
+    echo 'hit ENTER to continue'
+    read YES
 }
 
 # generate distribution package
