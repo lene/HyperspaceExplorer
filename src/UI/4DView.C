@@ -88,7 +88,7 @@ C4DView::C4DView(QWidget *parent):
 
     show();
 
-    Menu()->setColorManager(new QAction("W coordinate to RGB", this));
+    Menu()->setColorManager(new QAction("XYZ to RGB", this));
 
     ObjectRotope();
 
@@ -139,7 +139,7 @@ void C4DView::ObjectGasket() {
 void C4DView::ObjectRotope() {
     Menu()->updateFunctionMenu("Rotope");
 
-    setF(new Rotope("ERRT"));
+    setF(new Rotope("ERRE"));
 
     AssignValues(F());
     Redraw ();
