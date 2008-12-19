@@ -14,7 +14,7 @@ template <unsigned D>
         public:
             /// Create a rotate_base object from an already existing object
             rotate_base(const vertex_data<D> &v):
-                vertex_data<D>(v), _numSegments(6) { }
+                vertex_data<D>(v), _numSegments(12) { }
 
             /// Execute the rotate action of the previous object along axis \p d.
             void rotate(unsigned d);
