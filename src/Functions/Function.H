@@ -114,6 +114,7 @@ class Function {
         virtual void Project (double ScrW, double CamW, bool DepthCue4D) = 0;
 
         /// Draw the function
+        /** This method is overridden in all descendants */
         virtual void Draw (void) = 0;
 
         /// Called when a Function must be created anew

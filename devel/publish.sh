@@ -148,6 +148,9 @@ function upload() {
     echo
     echo 'https://sourceforge.net/project/admin/editpackages.php?group_id=34073'
     echo
+    echo "Don't forget to edit the Downloads page to have the new release as primary "
+    echo "download file"
+    echo
     echo 'hit ENTER to continue'
     read YES
 

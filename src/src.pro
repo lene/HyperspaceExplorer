@@ -115,6 +115,14 @@ CONFIG(debug){
     DEFINES += DEBUG TESTFEATURES
 }
 
+###
+### turn profiling on in debug mode
+###
+#QMAKE_CFLAGS_DEBUG += -pg
+
+###
+### installation
+###
 DESTDIR = ../
 TARGET = HyperspaceExplorer
 
@@ -124,6 +132,5 @@ vector.path = $${INSTALLDIR}/share/HyperspaceExplorer/plugins
 docs.files = doc/*
 docs.path =  $${INSTALLDIR}/share/HyperspaceExplorer/doc
 INSTALLS += target vector docs
-DISTFILES += ../devel/footer.html \
- ../TODO
+DISTFILES += ../devel/footer.html ../TODO
 
