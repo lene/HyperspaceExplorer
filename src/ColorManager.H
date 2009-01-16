@@ -214,7 +214,18 @@ typedef Loki::SingletonHolder<ColorManagerManager> ColMgrMgr;
 
 
 /// maps x, y, z in parameter space to R, G, B
-/** \ingroup Coloring                                                         */
+/** This algorithm stores every point in a std::map<Vector<4>, Color> for
+ *  reference and if necessary interpolates between stored points.
+ * 
+ *  The algorithm is rather inefficient because of high lookup times in a 
+ *  std::map<Vector<>, anything> - Vector<>s are ordered by their norm, which
+ *  necessitates a s**tload of floating point multiplications.
+ *
+ *  Use the simpler Fastxyz2RGBColorManager. Its only drawback is that it does
+ *  not allow for 4D depth cue yet. This class is kept only for reference and
+ *  may be removed at any time.
+ *
+ *  \ingroup Coloring                                                         */
 class xyz2RGBColorManager: public ColorManager {
     public:
         xyz2RGBColorManager(): ColorManager(), col(colormap()) { }
@@ -255,13 +266,15 @@ namespace {
 }
 
 /// maps x, y, z in parameter space to R, G, B with a faster algorithm
-/** \ingroup Coloring                                                         */
+/** Simply calculates the RGB value of the current point from its place in the
+ *  value space, normalizing to the interval [0..1].
+ *
+ *  \ingroup Coloring                                                         */
 class Fastxyz2RGBColorManager: public ColorManager {
     public:
         Fastxyz2RGBColorManager();
 
         /// Given a Function to manage, construct a xyz2RGBColorManager
-        /** \param _f Function to manage    */
         Fastxyz2RGBColorManager(Function *);
 
         virtual ~Fastxyz2RGBColorManager() { }
@@ -316,7 +329,7 @@ class depth2RGBColorManager: public ColorManager {
 
         virtual Color getColor(const VecMath::Vector<4> &);
 
-        virtual void depthCueColor(double wmax, double wmin, double w,
+        virtual void depthCueColor(double, double, double,
                                    const VecMath::Vector<4> &);
 
         /// debugging output

@@ -299,9 +299,9 @@ std::string Fastxyz2RGBColorManager::getContents() {
     return o.str();
 }
 
-void Fastxyz2RGBColorManager::depthCueColor(double wmax, double wmin, double w,
-                                        const VecMath::Vector<4> &x) {
-}
+/** \todo implement me! */
+void Fastxyz2RGBColorManager::depthCueColor(double, double, double,
+                                            const VecMath::Vector<4> &) { }
 
 ////////////////////////////////////////////////////////////////////////////////
 
