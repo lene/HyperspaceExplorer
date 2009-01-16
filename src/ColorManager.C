@@ -254,16 +254,18 @@ void xyz2RGBColorManager::depthCueColor(double wmax, double wmin, double w,
 
 Fastxyz2RGBColorManager::Fastxyz2RGBColorManager():
         ColorManager(),
-        _xmin(0), _xmax(0), _ymin(0), _ymax(0), _zmin(0), _zmax (0) { }
+        _xmin(0), _xmax(0), _ymin(0), _ymax(0), _zmin(0), _zmax (0), _wmin(0), _wmax (0),
+        _opacityRange(0.6) { }
 
 /** \param _f Function to manage    */
 Fastxyz2RGBColorManager::Fastxyz2RGBColorManager(Function *_f):
         ColorManager(_f),
-        _xmin(0), _xmax(0), _ymin(0), _ymax(0), _zmin(0), _zmax (0) { }
+        _xmin(0), _xmax(0), _ymin(0), _ymax(0), _zmin(0), _zmax (0), _wmin(0), _wmax (0),
+        _opacityRange(0.6) { }
 
 /** \param _f new Function to manage    */
 void Fastxyz2RGBColorManager::setFunction(Function *_f) {
-    _xmin = _xmax = _ymin = _ymax = _zmin = _zmax = 0;
+    _xmin = _xmax = _ymin = _ymax = _zmin = _zmax = _wmin = _wmax = 0;
     ColorManager::setFunction(_f);
 }
 
@@ -275,7 +277,9 @@ void Fastxyz2RGBColorManager::calibrateColor(const VecMath::Vector<4> &x,
     if (x[1] > _ymax) _ymax = x[1];
     if (x[2] < _zmin) _zmin = x[2];
     if (x[2] > _zmax) _zmax = x[2];
-}
+    if (x[3] < _wmin) _wmin = x[3];
+    if (x[3] > _wmax) _wmax = x[3];
+                                             }
 
 /// Find the color of a given point
 /** If the point is not stored in the map of already defined points, calculate
@@ -286,7 +290,8 @@ Color Fastxyz2RGBColorManager::getColor(const VecMath::Vector<4> &x) {
     float R = (x[0]-_xmin)/(_xmax-_xmin);
     float G = (x[1]-_ymin)/(_ymax-_ymin);
     float B = (x[2]-_zmin)/(_zmax-_zmin);
-    return Color(R, G, B);
+    float a = 1. - (x[3]-_wmin)/(_wmax-_wmin)*_opacityRange + _opacityRange/2.;
+    return Color(R, G, B, a);
 }
 
 std::string Fastxyz2RGBColorManager::getContents() {

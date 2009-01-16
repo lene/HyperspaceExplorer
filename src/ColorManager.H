@@ -294,12 +294,16 @@ class Fastxyz2RGBColorManager: public ColorManager {
         virtual std::string getContents();
 
     private:
-        double _xmin;    ///< minimum X coordinate
-        double _xmax;    ///< maximum X coordinate
-        double _ymin;    ///< minimum Y coordinate
-        double _ymax;    ///< maximum Y coordinate
-        double _zmin;    ///< minimum Z coordinate
-        double _zmax;    ///< maximum Z coordinate
+        float _xmin;            ///< minimum X coordinate
+        float _xmax;            ///< maximum X coordinate
+        float _ymin;            ///< minimum Y coordinate
+        float _ymax;            ///< maximum Y coordinate
+        float _zmin;            ///< minimum Z coordinate
+        float _zmax;            ///< maximum Z coordinate
+        float _wmin;            ///< minimum W coordinate
+        float _wmax;            ///< maximum W coordinate
+
+        float _opacityRange;    ///< difference between min and max alpha value
 };
 
 namespace {
