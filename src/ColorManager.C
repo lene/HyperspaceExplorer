@@ -252,6 +252,59 @@ void xyz2RGBColorManager::depthCueColor(double wmax, double wmin, double w,
 
 ////////////////////////////////////////////////////////////////////////////////
 
+Fastxyz2RGBColorManager::Fastxyz2RGBColorManager():
+        ColorManager(),
+        _xmin(0), _xmax(0), _ymin(0), _ymax(0), _zmin(0), _zmax (0) { }
+
+/** \param _f Function to manage    */
+Fastxyz2RGBColorManager::Fastxyz2RGBColorManager(Function *_f):
+        ColorManager(_f),
+        _xmin(0), _xmax(0), _ymin(0), _ymax(0), _zmin(0), _zmax (0) { }
+
+/** \param _f new Function to manage    */
+void Fastxyz2RGBColorManager::setFunction(Function *_f) {
+    _xmin = _xmax = _ymin = _ymax = _zmin = _zmax = 0;
+    ColorManager::setFunction(_f);
+}
+
+void Fastxyz2RGBColorManager::calibrateColor(const VecMath::Vector<4> &x,
+                                             const Color &) {
+    if (x[0] < _xmin) _xmin = x[0];
+    if (x[0] > _xmax) _xmax = x[0];
+    if (x[1] < _ymin) _ymin = x[1];
+    if (x[1] > _ymax) _ymax = x[1];
+    if (x[2] < _zmin) _zmin = x[2];
+    if (x[2] > _zmax) _zmax = x[2];
+}
+
+/// Find the color of a given point
+/** If the point is not stored in the map of already defined points, calculate
+ *  its color by averaging over the nearest neighboring points and store its
+ *  value for future use
+ *  @param x four-dimensional coordinate for which the color is sought        */
+Color Fastxyz2RGBColorManager::getColor(const VecMath::Vector<4> &x) {
+    float R = (x[0]-_xmin)/(_xmax-_xmin);
+    float G = (x[1]-_ymin)/(_ymax-_ymin);
+    float B = (x[2]-_zmin)/(_zmax-_zmin);
+    return Color(R, G, B);
+}
+
+std::string Fastxyz2RGBColorManager::getContents() {
+    std::ostringstream o;
+    o << "xmin: " << _xmin << ", " << "xmax: " << _xmax << ", "
+      << "ymin: " << _ymin << ", " << "ymax: " << _ymax << ", "
+      << "zmin: " << _zmin << ", " << "zmax: " << _zmax
+      << std::endl;
+
+    return o.str();
+}
+
+void Fastxyz2RGBColorManager::depthCueColor(double wmax, double wmin, double w,
+                                        const VecMath::Vector<4> &x) {
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
 /** \param _f new Function to manage    */
 void depth2RGBColorManager::setFunction(Function *_f) {
     _wmin = 1e6; _wmax = -1e6;

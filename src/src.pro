@@ -1,12 +1,12 @@
 TEMPLATE = app
 
-CONFIG -= debug
-CONFIG += release qt warn_on uic
-#CONFIG += debug qt warn_on uic
+#CONFIG -= debug
+#CONFIG += release qt warn_on uic
+CONFIG += debug qt warn_on uic
 
 QT += opengl
 
-VERSION = 0.6.3
+VERSION = 0.6.4
 
 ###
 ###     move all temporary files out of sight into subdirectory tmp
@@ -118,7 +118,8 @@ CONFIG(debug){
 ###
 ### turn profiling on in debug mode
 ###
-#QMAKE_CFLAGS_DEBUG += -pg
+QMAKE_CFLAGS_DEBUG += -pg
+QMAKE_LFLAGS_DEBUG += -pg
 
 ###
 ### installation

@@ -254,6 +254,47 @@ namespace {
             ColMgrMgr::Instance().registerColorManager("XYZ to RGB", createXYZ2RGB);
 }
 
+/// maps x, y, z in parameter space to R, G, B with a faster algorithm
+/** \ingroup Coloring                                                         */
+class Fastxyz2RGBColorManager: public ColorManager {
+    public:
+        Fastxyz2RGBColorManager();
+
+        /// Given a Function to manage, construct a xyz2RGBColorManager
+        /** \param _f Function to manage    */
+        Fastxyz2RGBColorManager(Function *);
+
+        virtual ~Fastxyz2RGBColorManager() { }
+
+        /// set the managed Function
+        virtual void setFunction(Function *);
+
+        virtual void calibrateColor(const VecMath::Vector<4> &,
+                                    const Color & = Color());
+
+        virtual Color getColor(const VecMath::Vector<4> &);
+
+        virtual void depthCueColor(double wmax, double wmin, double w,
+                                   const VecMath::Vector<4> &);
+
+        /// debugging output
+        virtual std::string getContents();
+
+    private:
+        double _xmin;    ///< minimum X coordinate
+        double _xmax;    ///< maximum X coordinate
+        double _ymin;    ///< minimum Y coordinate
+        double _ymax;    ///< maximum Y coordinate
+        double _zmin;    ///< minimum Z coordinate
+        double _zmax;    ///< maximum Z coordinate
+};
+
+namespace {
+    ColorManager *createFastXYZ2RGB() { return new Fastxyz2RGBColorManager(); }
+    const bool registeredC1 =
+            ColMgrMgr::Instance().registerColorManager("XYZ to RGB (fast)", createFastXYZ2RGB);
+}
+
 /// maps w coordinate to R, G, B
 /** \ingroup Coloring                                                         */
 class depth2RGBColorManager: public ColorManager {
@@ -291,7 +332,7 @@ class depth2RGBColorManager: public ColorManager {
 
 namespace {
     ColorManager *createDepth2RGB() { return new depth2RGBColorManager(); }
-    const bool registeredC1 =
+    const bool registeredC2 =
             ColMgrMgr::Instance().registerColorManager("W coordinate to RGB",
                                                        createDepth2RGB);
 }
@@ -321,7 +362,7 @@ class monochromeColorManager: public ColorManager {
 
 namespace {
     ColorManager *createMonochrome() { return new monochromeColorManager(); }
-    const bool registeredC2 =
+    const bool registeredC3 =
             ColMgrMgr::Instance().registerColorManager("Monochrome",
                                                        createMonochrome);
 }

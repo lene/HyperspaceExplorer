@@ -88,7 +88,9 @@ C4DView::C4DView(QWidget *parent):
 
     show();
 
-    Menu()->setColorManager(new QAction("XYZ to RGB", this));
+//    Menu()->setColorManager(new QAction("XYZ to RGB", this));
+    Menu()->setColorManager(new QAction("XYZ to RGB (fast)", this));
+//    Menu()->setColorManager(new QAction("W coordinate to RGB", this));
 
     ObjectRotope();
 
