@@ -172,6 +172,11 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
         }
     }
     /// \todo this is just a test for the tear off function!
+    _functions->setTearOffEnabled(true);
+    _fr3r->setTearOffEnabled(true);
+    _objects->setTearOffEnabled(true);
+    _surfaces->setTearOffEnabled(true);
+    _fcc->setTearOffEnabled(true);
     _appear->setTearOffEnabled(true);
 
     insertAction(_help, "Online _help", SLOT(Help ()), false);
