@@ -52,7 +52,7 @@ class Object: public Function {
         }
 
         /// \see Function::getDefinitionSpaceDimensions()
-        virtual const unsigned getDefinitionSpaceDimensions() { return 0; }
+        virtual unsigned getDefinitionSpaceDimensions() { return 0; }
 
     protected:
         virtual void Initialize();

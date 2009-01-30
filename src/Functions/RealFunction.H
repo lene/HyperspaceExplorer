@@ -149,7 +149,7 @@ class RealFunction: public RealBase {
         virtual void calibrateColors() const;
 
         /// \see Function::getDefinitionSpaceDimensions()
-        virtual const unsigned getDefinitionSpaceDimensions() { return 3; }
+        virtual unsigned getDefinitionSpaceDimensions() { return 3; }
 
     protected:
         VecMath::Vector<4> &normal(double t, double u, double v);

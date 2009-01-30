@@ -133,7 +133,7 @@ class Surface: public SurfaceBase {
         vec4vec2D Data (void) { return X; } ///< direct access to the function values
 
         /// \see Function::getDefinitionSpaceDimensions()
-        virtual const unsigned getDefinitionSpaceDimensions() { return 2; }
+        virtual unsigned getDefinitionSpaceDimensions() { return 2; }
 
     protected:
          virtual vec4vec1D df (double, double);

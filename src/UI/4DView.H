@@ -269,7 +269,7 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         /// \return limit for saved animation frames
         unsigned animationMaxFrames() const { return _animationMaxFrames; }
         /// \return frames per second for animations
-        const unsigned animation_fps() const { return _animation_fps; }
+        unsigned animation_fps() const { return _animation_fps; }
 
         /// Set a GLList for the display of the object
         void setObjectList(GLint b) { _objectList = b; }

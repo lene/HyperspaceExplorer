@@ -4,6 +4,8 @@
 #include "RotopeBase.H"
 #include "Projector.H"
 
+#include <typeinfo>
+
 //  utility functions
     
 /// Print a std::vector on a std::ostream

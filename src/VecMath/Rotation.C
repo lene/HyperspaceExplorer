@@ -1,4 +1,5 @@
 #include "Rotation.H"
+#include <typeinfo>
 
 namespace VecMath {
 

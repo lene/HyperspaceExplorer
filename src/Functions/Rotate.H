@@ -128,7 +128,7 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
         for (typename RotopeBase::uintvec2D::iterator i = surface_old.begin();
              i != surface_old.end(); ++i) {
 
-#           if DEBUG_ROTOPE
+#           if DEBUG_ROTOPES
             std::cerr << *i << "\n";
 #           endif
 

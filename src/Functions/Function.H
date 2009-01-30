@@ -161,7 +161,7 @@ class Function {
         }
 
         /// number of argument given to the defining function
-        virtual const unsigned getDefinitionSpaceDimensions() = 0;
+        virtual unsigned getDefinitionSpaceDimensions() = 0;
 
     protected:
         /// Function evaluation operator for three parameters
