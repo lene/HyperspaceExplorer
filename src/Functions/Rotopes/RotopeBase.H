@@ -3,6 +3,8 @@
 
 #include "uintvec.H"
 
+using VecMath::uintvec;
+
 /** \defgroup RotopeGroup N-dimensional Rotopes.
  *  For a definition of Rotopes, see http://teamikaria.com/wiki/Rotope.
  *  \ingroup ObjectGroup

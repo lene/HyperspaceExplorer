@@ -123,12 +123,12 @@ namespace VecMath {
 
             /** @param that other Rotation
              *  @return *this+that                                               */
-            Rotation<D, N> &operator+= (const Rotation<D, N> &);
+            Rotation<D, N> &operator+= (const Rotation<D, N> &that);
             /** @param that other Rotation
              *  @return *this+that                                               */
-            Rotation<D, N> operator+ (const Rotation<D, N> &) const;
+            Rotation<D, N> operator+ (const Rotation<D, N> &that) const;
 
-            
+
             /// true if rotation is nonzero
             operator bool() const { return axis.sqnorm() != 0.; }
 
@@ -183,12 +183,12 @@ namespace VecMath {
         axis += that.axis;
         return *this;
     }
-    
+
     template <unsigned D, typename N>
-            Rotation<D, N> Rotation<D, N>::operator+ (const Rotation<D, N> &Y) const {
+            Rotation<D, N> Rotation<D, N>::operator+ (const Rotation<D, N> &that) const {
         static Rotation<D, N> Z;
         Z = *this;
-        return (Z += Y);
+        return (Z += that);
     }
 
     //------------  important non-member functions for class Rotation
