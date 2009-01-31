@@ -102,6 +102,8 @@ function edit() {
 
 # generate distribution package
 function generate() {
+    echo "Generating distribution package..."
+
     # File and directory names which should NOT be included in the archive
     EXCLUDE=".svn tmp testing archive plugins"
 
@@ -124,6 +126,8 @@ function generate() {
 
 # check distribution package
 function check() {
+    echo "Checking distribution package..."
+
     mkdir -p ${HOME}/tmp && \
         cd ${HOME}/tmp && \
         rm -rf * .??* && \
@@ -137,6 +141,8 @@ function check() {
 
 # upload distribution and publish it on SF
 function upload() {
+    echo "Uploading package to sf.net..."
+    
     rsync --progress \
         ${BASEDIR}/${PROJECTDIR}/${FILENAME}-${VERSION}.tar.bz2 \
         ${USERNAME}@frs.sourceforge.net:uploads/
@@ -158,8 +164,22 @@ function upload() {
         ${BASEDIR}/${PROJECTDIR}/archive
 }
 
+# create a branch in subversion
+function branch() {
+    echo "Generating branch in subversion repository..."
+
+    SVNBASE="https://hyperspace-expl.svn.sourceforge.net/svnroot/${PROJECTNAME}"
+
+    svn copy \
+        -m "Generated branch for release ${VERSION}" \
+        ${SVNBASE}/trunk/all \
+        ${SVNBASE}/tags/release-${VERSION}
+}
+
 # generate and upload documentation; remove obsolete documentation files and add new ones
 function document() {
+    echo "Generating documentation..."
+    
     TAGFILE="http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/libstdc++.tag"
     DOCDIR="devel/html"
 
@@ -170,17 +190,10 @@ function document() {
         xargs rm
     yes q | \
         doxygen 2> /dev/null
+        
+    echo "Uploading documentation to sf.net..."
     rsync -rL --delete-after --exclude=.svn ${DOCDIR}/html/ \
         ${USERNAME},${PROJECTNAME}@web.sourceforge.net:htdocs
-}
-
-# create a branch in subversion
-function branch() {
-    SVNBASE="https://hyperspace-expl.svn.sourceforge.net/svnroot/${PROJECTNAME}"
-
-    svn copy \
-        ${SVNBASE}/trunk/all \
-        ${SVNBASE}/tags/release-${VERSION}
 }
 
 
@@ -198,13 +211,13 @@ if [ $edit -eq 1 -o $generate -eq 1 -o $check -eq 1 -o $upload -eq 1 \
     test $generate -eq 1 && generate
     test $check -eq 1 && check
     test $upload -eq 1 && upload
-    test $document -eq 1 && document
     test $branch -eq 1 && branch
+    test $document -eq 1 && document
 else
     edit && \
         generate && \
         check && \
         upload && \
-        document && \
-        branch
+        branch && \
+        document
 fi

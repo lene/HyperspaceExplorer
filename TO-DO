@@ -1,0 +1,13 @@
+TODO for finishing of Rotopes:
+
+- store (n-1)-dimensional surfaces (as indices to the vertices) in uintvec<n-1>'s
+  - find a representation for (n-1)-dimensional surfaces abstracted from uintvec<n>
+- when performing a rotation, connect each vertex of a (n-1)-dimensional surface to its image after a rotation
+  - do i have to perform that recursively, until i deal with lines? probably...
+  - the operation should be done simply as surface::rotate()
+  - generalize uintvec<D> to nested_vector<D, T>
+
+- number of segments for rotations should be a parameter in function parameter dialog
+
+- continue with "torations" - or generalize rotations so they can take displacement as a parameter
+  - displacement should be a parameter too

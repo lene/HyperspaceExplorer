@@ -1,6 +1,10 @@
 HyperspaceExplorer Changelog
 =============================
 
+release 0.6.4:
+    * accelerated xyz -> RGB color manager by getting rid of std::map<>
+    * make code compile with gcc 4.3.3
+
 release 0.6.3:
     * Color management works now. Unfortunately, it seems to cause a major
       performance hit on 4-dimensional transformations. Haven't investigated 
