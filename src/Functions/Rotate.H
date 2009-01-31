@@ -14,7 +14,7 @@ template <unsigned D>
         public:
             /// Create a rotate_base object from an already existing object
             rotate_base(const vertex_data<D> &v):
-                vertex_data<D>(v), _numSegments(12) { }
+                vertex_data<D>(v), _numSegments(6) { }
 
             /// Execute the rotate action of the previous object along axis \p d.
             void rotate(unsigned d);
@@ -26,11 +26,11 @@ template <unsigned D>
             /// Execute the rotate action on a line (generating a circle)
             void rotate_line(unsigned);
             /// Execute the rotate action on a triangle (generating a cone)
-            void rotate_triangle(unsigned, const vector<unsigned> &);
+            void rotate_triangle(unsigned, const uintvec<1> &);
             /// Execute the rotate action on a rectangle (generating a cylinder)
-            void rotate_quad(unsigned, const vector<unsigned> &);
+            void rotate_quad(unsigned, const uintvec<1> &);
             /// Execute the rotate action on a polygon
-            void rotate_polygon(unsigned, const vector<unsigned> &);
+            void rotate_polygon(unsigned, const uintvec<1> &);
 
             /// How many segments to use to approximate a circle
             unsigned _numSegments;
@@ -103,11 +103,20 @@ template <unsigned D, unsigned Dmin>
             }
     };
 
-/** \param d The direction into which is extruded. The rotation takes place in
+/** We must implement the following algorithm:
+ *
+ *  For every (\p d - 2)-surface realm in the (\p d - 1)-dimensional object:
+ *      generate a new (\p d - 1)-dimensional object from the (\p d - 2)-surface
+ *      realm and its rotated image
+ *  Repeat until the rotation is full (180 degrees are enough)
+ *
+ *  \param d The direction into which is extruded. The rotation takes place in
  *           the ( \p d, \p d-1 )-plane.
  */
 template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
-    SingletonLog::Instance().log(__PRETTY_FUNCTION__);
+#   if DEBUG_ROTOPES
+        SingletonLog::Instance().log(__PRETTY_FUNCTION__);
+#   endif
     if (d >= D) {
         throw std::logic_error(
            "rotate_base::rotate() called on a higher dimension"
@@ -128,8 +137,8 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
         for (typename RotopeBase::uintvec2D::iterator i = surface_old.begin();
              i != surface_old.end(); ++i) {
 
-#           if DEBUG_ROTOPES
-            std::cerr << *i << "\n";
+#           if DEBUG_ROTOPES >= 2
+                std::cerr << *i << "\n";
 #           endif
 
             switch (i->size()) {
@@ -153,8 +162,8 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
 
     vertex_data<D>::dimension()++;   //  object is now one dimension higher
 
-#   if DEBUG_ROTOPES == 2
-        vertex_data<D>::print();
+#   if DEBUG_ROTOPES 
+    vertex_data<D>::print();
 #   endif
 }
 
@@ -166,9 +175,8 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
 template <unsigned D> VecMath::Vector<D> rotate_base<D>::rotate_vertex(
         const VecMath::Vector<D> &v, double rot,
         unsigned new_axis, unsigned old_axis) {
-#   if 0
-        std::cerr << "rotate_base<" << D << ">::rotate_vertex(" << v << ", "
-                  << rot << ", " << new_axis << ", " << old_axis << ")\n";
+#   if DEBUG_ROTOPES >= 2
+        SingletonLog::Instance().log(__PRETTY_FUNCTION__);
 #   endif
     VecMath::Vector<D> v_new(v);
     v_new[new_axis] = v_new[old_axis]*sin(rot);
@@ -180,7 +188,10 @@ template <unsigned D> VecMath::Vector<D> rotate_base<D>::rotate_vertex(
  *           axis \p d-1
  */
 template <unsigned D> void rotate_base<D>::rotate_line(unsigned d) {
-    std::vector<unsigned> new_surface; // defines the disk
+#   if DEBUG_ROTOPES
+        SingletonLog::Instance().log(__PRETTY_FUNCTION__);
+#   endif
+    uintvec<1> new_surface; // defines the disk
     new_surface.push_back(0);
     vertex_data<D>::X().pop_back();
     for (unsigned i = 1; i <= _numSegments; ++i) {
@@ -199,9 +210,12 @@ template <unsigned D> void rotate_base<D>::rotate_line(unsigned d) {
  *  \param current_surface The triangular surface to be extruded into a cone
  */
 template <unsigned D> void rotate_base<D>::rotate_triangle(
-        unsigned d, const vector<unsigned> &current_surface) {
+        unsigned d, const uintvec<1> &current_surface) {
 
-    std::vector<unsigned> new_surface; //  defines the first cap
+#   if DEBUG_ROTOPES
+        SingletonLog::Instance().log(__PRETTY_FUNCTION__);
+#   endif
+    uintvec<1> new_surface; //  defines the first cap
     new_surface.push_back(current_surface[0]);
 
     unsigned old_current = 0;
@@ -242,18 +256,21 @@ template <unsigned D> void rotate_base<D>::rotate_triangle(
  *  \param current_surface The rectangular surface to be extruded into a cylinder
  */
 template <unsigned D> void rotate_base<D>::rotate_quad(
-        unsigned d, const vector<unsigned> &current_surface) {
+        unsigned d, const uintvec<1> &current_surface) {
+#   if DEBUG_ROTOPES
+        SingletonLog::Instance().log(__PRETTY_FUNCTION__);
+#   endif
     unsigned old_current = current_surface[0];  //  saved index to current vertex
     unsigned old_next = current_surface[1];     //  saved index to next vertex
     
-    std::vector<unsigned> bottom;       //  defines the first ("bottom") cap
+    uintvec<1> bottom;       //  defines the first ("bottom") cap
     /// Save first vertex of "bottom" cap.
     bottom.push_back(current_surface[0]);
     /** Save first vertex of "top" cap.
      *  This relies on quads being defined in the order, 0, 1, 2, 3, where
      *  vertex 2 and 3 lie in the direction of the extrusion.
      */
-    std::vector<unsigned> top;          //  defines the second ("top") cap
+    uintvec<1> top;          //  defines the second ("top") cap
     top.push_back(current_surface[2]);
 
     /** Rotate the current surface through 360 degrees.
@@ -301,16 +318,19 @@ template <unsigned D> void rotate_base<D>::rotate_quad(
  *  \param current_surface The polygonal surface to be extruded into a sphere
  */
 template <unsigned D> void rotate_base<D>::rotate_polygon(
-        unsigned d, const vector<unsigned> &current_surface) {
+        unsigned d, const uintvec<1> &current_surface) {
+#   if DEBUG_ROTOPES
+        SingletonLog::Instance().log(__PRETTY_FUNCTION__);
+#   endif
 
     unsigned offset = 0;
 
     vertex_data<D>::X().push_back(vertex_data<D>::X()[current_surface[0]]);
 
     /// Rotate the current surface through 180 degrees along its central axis
-    for (unsigned i = 1; i <= _numSegments; ++i) {
+    for (unsigned i = 1; i <= (_numSegments+1)/2; ++i) {
 
-        double rot = 1.*i*M_PI/_numSegments;
+        double rot = 1.*i*M_PI/((_numSegments+1)/2);
 
         for (unsigned j = 0; j < current_surface.size(); j++) {
 
@@ -326,7 +346,7 @@ template <unsigned D> void rotate_base<D>::rotate_polygon(
 
             /// New quad surface (current, next, rotated_next, rotated_current)
             vertex_data<D>::X().push_back(rotated_next);
-#           if DEBUG_ROTOPES == 2
+#           if DEBUG_ROTOPES >= 2
             std::cerr << "j: " << j << "offset: " << offset
                       << " cur_index: " << cur_index << " next_index: " << next_index
                       << " size: " << vertex_data<D>::X().size() << "\n";

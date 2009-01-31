@@ -90,8 +90,8 @@ HEADERS += Loki/SingletonHolder.H
 ###
 INCLUDEPATH += ./VecMath
 DEPENDPATH += ./VecMath
-HEADERS += VecMath/Matrix.H VecMath/Vector.H VecMath/Rotation.H
-SOURCES += VecMath/Rotation.C
+HEADERS += VecMath/Matrix.H VecMath/Vector.H VecMath/Rotation.H VecMath/uintvec.H
+SOURCES += VecMath/Rotation.C VecMath/uintvec.C
 
 ###
 ###     main directory

@@ -12,7 +12,6 @@
 /** \param s The ostream to which \p v is sent
  *  \param v The vector to print
  *  \return \p s
- */
 template<typename T> std::ostream& operator<<(std::ostream& s, 
                                               std::vector<T> const& v) {
     s << "(";
@@ -20,6 +19,7 @@ template<typename T> std::ostream& operator<<(std::ostream& s,
     s << ")";
     return s;
 }
+ */
 
 /// Find an element in a vector
 /** \param find_me The element to find in the vector \p v
@@ -57,9 +57,9 @@ template <unsigned D>
             /// Add a triangular surface to the array of surfaces
             virtual void addSurface(unsigned, unsigned, unsigned);
             /// Add a polygonal surface to the array of surfaces
-            virtual void addSurface(const std::vector<unsigned> &);
+            virtual void addSurface(const uintvec<1> &);
             /// Remove a surface by giving its index in the surface array
-            virtual void removeSurface(const std::vector<unsigned> &);
+            virtual void removeSurface(const uintvec1D &);
 
             /// Perform a \p D -dimensional transformation
             virtual void addTransform(unsigned, const VecMath::RotationBase *);
@@ -70,6 +70,8 @@ template <unsigned D>
             std::vector<VecMath::Vector<D> > &X() { return _X; }
             /// The array of surfaces
             virtual uintvec2D &surface() { return _surface; }
+            /// The array of realms
+            virtual uintvec3D &realm() { return _realm; }
             /// The array of vertices, projected to four dimensions if necessary
             virtual std::vector<VecMath::Vector<4> > vertices();
 
@@ -83,6 +85,8 @@ template <unsigned D>
             unsigned _dimension;                    ///< Dimension of the object
             std::vector<VecMath::Vector<D> > _X;    ///< The array of vertices
             uintvec2D _surface;                     ///< The array of surfaces
+            /// The array of realms (3D surfaces of 4D objects)
+            uintvec3D _realm;
 
             /// List of transformations executed on the object in dimensions > 4
             std::vector<const VecMath::RotationBase *> _transform;
@@ -115,10 +119,11 @@ template <unsigned D> void vertex_data<D>::printSurface(const uintvec1D &v) {
 }
 
 template <unsigned D> void vertex_data<D>::print() {
-    std::cerr << _dimension << "-dimensional object: ";
+    std::cerr << _dimension << "-dimensional object";
+
+#   if DEBUG_ROTOPES >= 2
     std::string separator = "";
-#   if DEBUG_ROTOPE
-    std::cerr << X().size() << " vertices\n";
+    std::cerr << ": " << X().size() << " vertices\n";
     unsigned count = 0;
     for (typename vector<Vector<D> >::iterator i = X().begin();
          i != X().end(); ++i, count++){
@@ -128,7 +133,7 @@ template <unsigned D> void vertex_data<D>::print() {
     std::cerr << "\n";
 #   endif
 
-#   if DEBUG_ROTOPE
+#   if DEBUG_ROTOPES >= 2
         std::cerr << surface().size() << " surfaces: \n";
         for (unsigned i = 0; i < surface().size(); ++i) {
             std::cerr << std::setw(4) << i;
@@ -137,12 +142,16 @@ template <unsigned D> void vertex_data<D>::print() {
         std::cerr << "\n";
 #   endif
 
+    std::cerr << "\n" << realm().size() << " realms: \n";
+    realm().print();
+    std::cerr << "\n";
+
 }
 
 /** Add a surface to the array of surfaces
  *  \param v List of indices in the vertex array
  */
-template <unsigned D> void vertex_data<D>::addSurface(const std::vector<unsigned> & v) {
+template <unsigned D> void vertex_data<D>::addSurface(const uintvec<1> & v) {
     for (unsigned i = 0; i < v.size(); ++i) {
         if (v[i] >= X().size()) {
             throw std::out_of_range("vertex_data<D>::addSurface(): index larger "
@@ -151,7 +160,7 @@ template <unsigned D> void vertex_data<D>::addSurface(const std::vector<unsigned
     }
 
     if (!checkSurfaceExists(v)) {
-#       if DEBUG_ROTOPE
+#       if DEBUG_ROTOPES
             std::cerr << "addSurface" << v<< "\n";
 #       endif
         surface().push_back(v);
@@ -194,7 +203,7 @@ template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
 
 /** \param remove_me Index (in the surface array) of the surface to be removed
  */
-template <unsigned D> void vertex_data<D>::removeSurface(const std::vector<unsigned> &remove_me) {
+template <unsigned D> void vertex_data<D>::removeSurface(const uintvec1D &remove_me) {
     uintvec2D::iterator i = find(remove_me, surface());
     if (i != surface().end()) surface().erase(i);
 }

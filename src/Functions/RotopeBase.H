@@ -1,6 +1,8 @@
 #ifndef ROTOPE_BASE_H
 #define ROTOPE_BASE_H
 
+#include "uintvec.H"
+
 /** \defgroup RotopeGroup N-dimensional Rotopes.
  *  For a definition of Rotopes, see http://teamikaria.com/wiki/Rotope.
  *  \ingroup ObjectGroup
@@ -15,9 +17,13 @@ class RotopeBase {
     protected:
 
         /// one-dimensional array of unsigned, implemented as a std::vector
-        typedef std::vector<unsigned> uintvec1D;
+        typedef uintvec<1> uintvec1D;
+//        typedef std::vector<unsigned> uintvec1D;
         /// two-dimensional array of unsigned, implemented as a nested vector
-        typedef std::vector<uintvec1D> uintvec2D;
+        typedef uintvec<2> uintvec2D;
+//        typedef std::vector<uintvec1D> uintvec2D;
+        /// three-dimensional array of unsigned, implemented as a nested vector
+        typedef uintvec<3> uintvec3D;
 
         /// Add a surface to the array of surfaces
         virtual void addSurface(unsigned, unsigned, unsigned, unsigned) = 0;
