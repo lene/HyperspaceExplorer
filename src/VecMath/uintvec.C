@@ -14,12 +14,4 @@
 
 namespace VecMath {
 
-    template<> std::ostream& operator<<(std::ostream& s,
-                                        uintvec<1> const& v) {
-        s << "(";
-        copy(v.begin(), v.end(), std::ostream_iterator<unsigned>(s, " "));
-        s << ")";
-        return s;
-    }
-
 }

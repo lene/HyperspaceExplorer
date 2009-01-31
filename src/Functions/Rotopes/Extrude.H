@@ -33,8 +33,10 @@ template <unsigned D>
  *  A point is extruded into two dimensions, giving a square.
  *  \code Extrude<4, 2, 2> cube; \endcode
  *  The square is extruded into the third dimension to a cube.
- *  \code Taper<4, 1, 1> triangle(line);
- * Extrude<4, 2, 2> prism; \endcode
+ *  \code
+ *    Taper<4, 1, 1> triangle(line);
+ *    Extrude<4, 2, 2> prism;
+ *  \endcode
  *  A line is tapered into a triangle, and then extruded to become a prism.
  *  \code Extrude<4, 0, 3> tesseract; \endcode
  *  Extruding a point i four dimensions gives a hypercube or tesseract.
@@ -119,8 +121,7 @@ template <unsigned D> void extrude_base<D>::extrude(unsigned d) {
     }
 
     const vector<Vector<D> > Xold = vertex_data<D>::X();
-    typename vertex_data<D>::uintvec2D surface_old =
-            vertex_data<D>::surface();
+    uintvec<2> surface_old = vertex_data<D>::surface();
 
     /// Extrude vertices into the \p d axis, setting the \p d coordinate to 1
     for (unsigned i = 0; i < Xold.size(); ++i) {
@@ -150,7 +151,7 @@ template <unsigned D> void extrude_base<D>::extrude(unsigned d) {
             indices therein.
         */
         for (unsigned i = 0; i < surface_old.size(); ++i) {
-            typename vertex_data<D>::uintvec1D tmp = surface_old[i];
+            uintvec<1> tmp = surface_old[i];
             for (unsigned j = 0; j < tmp.size(); ++j) {
                 tmp[j] += Xold.size();
             }

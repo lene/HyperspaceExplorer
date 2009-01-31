@@ -34,7 +34,7 @@ template <unsigned D>
             /// Add a polygonal surface to the array of surfaces
             virtual void addSurface(const uintvec<1> &);
             /// Remove a surface by giving its index in the surface array
-            virtual void removeSurface(const uintvec1D &);
+            virtual void removeSurface(const uintvec<1> &);
 
             /// Perform a \p D -dimensional transformation
             virtual void addTransform(unsigned, const VecMath::RotationBase *);
@@ -44,22 +44,22 @@ template <unsigned D>
             /// The array of vertices
             std::vector<VecMath::Vector<D> > &X() { return _X; }
             /// The array of surfaces
-            virtual uintvec2D &surface() { return _surface; }
+            virtual uintvec<2> &surface() { return _surface; }
             /// The array of realms
             virtual std::vector<Realm<D-1> > &realm() { return _realm; }
             /// The array of vertices, projected to four dimensions if necessary
             virtual std::vector<VecMath::Vector<4> > vertices();
 
             /// Output of a single surface
-            void printSurface(const uintvec1D &);
+            void printSurface(const uintvec<1> &);
 
         private:
             /// \return Whether argument or permutation of it already in _surface
-            bool checkSurfaceExists(const uintvec1D &);
+            bool checkSurfaceExists(const uintvec<1> &);
 
             unsigned _dimension;                    ///< Dimension of the object
             std::vector<VecMath::Vector<D> > _X;    ///< The array of vertices
-            uintvec2D _surface;                     ///< The array of surfaces
+            uintvec<2> _surface;                     ///< The array of surfaces
             /// The array of realms (D-1 dimensional surfaces of D-dimensional object)
             std::vector<Realm<D-1> > _realm;
 
@@ -77,15 +77,16 @@ template <unsigned D>
     header file anyway.
 */
 using VecMath::Vector;
+using VecMath::uintvec;
 using std::vector;
 
 #include <iomanip>
 
 /** \param v The printed surface as vector of indices into the vertex array */
-template <unsigned D> void vertex_data<D>::printSurface(const uintvec1D &v) {
+template <unsigned D> void vertex_data<D>::printSurface(const uintvec<1> &v) {
     std::cerr << " (";
     std::string separator = "";
-    for (uintvec1D::const_iterator j = v.begin();
+    for (uintvec<1>::const_iterator j = v.begin();
          j != v.end(); ++j) {
         std::cerr << separator << std::setw(4) << *j;
         separator = ", ";
@@ -158,7 +159,7 @@ template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
     else if (v2 == v3 || v2 == v4) addSurface(v1, v3, v4);
     else if (v3 == v4) addSurface(v1, v2, v4);
     else {
-        uintvec1D tmp;
+        uintvec<1> tmp;
         tmp.push_back(v1); tmp.push_back(v2); tmp.push_back(v3); tmp.push_back(v4);
         addSurface(tmp);
     }
@@ -173,7 +174,7 @@ template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
                                                       unsigned v3) {
     /// If triangle is degenerate, do nothing
     if (v1 == v2 || v1 == v3 || v2 == v3) return;
-    uintvec1D tmp;
+    uintvec<1> tmp;
     tmp.push_back(v1); tmp.push_back(v2); tmp.push_back(v3);
 
     addSurface(tmp);
@@ -181,15 +182,15 @@ template <unsigned D> void vertex_data<D>::addSurface(unsigned v1, unsigned v2,
 
 /** \param remove_me Index (in the surface array) of the surface to be removed
  */
-template <unsigned D> void vertex_data<D>::removeSurface(const uintvec1D &remove_me) {
-    uintvec2D::iterator i = find(remove_me, surface());
+template <unsigned D> void vertex_data<D>::removeSurface(const uintvec<1> &remove_me) {
+    uintvec<2>::iterator i = find(remove_me, surface());
     if (i != surface().end()) surface().erase(i);
 }
 
 /** Test if a new surface is a permutation of a surface already existing.
  *  \param newSurface The surface to be tested whether it is already stored
  */
-template <unsigned D> bool vertex_data<D>::checkSurfaceExists(const uintvec1D &newSurface) {
+template <unsigned D> bool vertex_data<D>::checkSurfaceExists(const uintvec<1> &newSurface) {
 
     for (unsigned i = 0; i < surface().size(); ++i) {
 

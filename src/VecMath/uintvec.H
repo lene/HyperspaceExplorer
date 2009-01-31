@@ -38,17 +38,25 @@ namespace VecMath {
     *  \ingroup VecMath
     *  \author Helge Preuss <scout@hyperspace-travel.de>
     */
-    template <unsigned D> class uintvec: public uintvec<D-1> {
+    template <typename T, unsigned D> class NestedVector: public NestedVector<T, D-1> {
 
         public:
-            /// Construct an empty uintvec
-            uintvec(): _data() { }
-
             /// Iterator type to loop over elements, read/write - from std::vector
-            typedef typename std::vector<uintvec<D-1> >::iterator iterator;
+            typedef typename std::vector<NestedVector<T, D-1> >::iterator iterator;
 
             /// Iterator type to loop over elements, read only - from std::vector
-            typedef typename std::vector<uintvec<D-1> >::const_iterator const_iterator;
+            typedef typename std::vector<NestedVector<T, D-1> >::const_iterator
+                    const_iterator;
+
+            /// Construct an empty uintvec
+            NestedVector(): _data() { }
+
+            /// Construct an uintvec with \p n empty elements
+            NestedVector(unsigned n): _data(n) { }
+
+            /// Construct an uintvec with \p n empty elements
+            NestedVector(const NestedVector<T, D> &v): NestedVector<T, D-1>(),
+                                                       _data(v.data()) { }
 
             /// Iterator that points to the first element in the vector
             iterator begin() { return data().begin(); }
@@ -64,7 +72,7 @@ namespace VecMath {
 
             /// Add data to the end of the vector
             /** \param x Data to be added */
-            void push_back(const uintvec<D-1> &x) { data().push_back(x); }
+            void push_back(const NestedVector<T, D-1> &x) { data().push_back(x); }
 
             /// Remove element at given position
             /** \param position Iterator pointing to element to be erased
@@ -76,7 +84,7 @@ namespace VecMath {
             /** \param i The index of the element for which data should be accessed
             *  \return Read/write reference to data.
             */
-            uintvec<D-1> &operator [] (unsigned i) {
+            NestedVector<T, D-1> &operator [] (unsigned i) {
                 return data()[i];
             }
 
@@ -84,7 +92,7 @@ namespace VecMath {
             /** \param i The index of the element for which data should be accessed
             *  \return Read-only (constant) reference to data.
             */
-            const uintvec<D-1> &operator [] (unsigned i) const {
+            NestedVector<T, D-1> &operator [] (unsigned i) const {
                 return data()[i];
             }
 
@@ -94,43 +102,50 @@ namespace VecMath {
             /// Returns true if the vector is empty. (Thus begin() would equal end().)
             unsigned empty() const { return data().empty(); }
 
+            /// Resizes the vector to the specified number of elements
+            /** \param new_size Number of elements the vector should contain */
+            void resize(unsigned new_size) { data().resize(new_size); }
+
             /// Returns true if \p other is not equal to \p this
             /** \param other uintvec<D> to compare to */
-            bool operator != (const uintvec<D> &other) {
+            bool operator != (const NestedVector<T, D> &other) {
                 return data() != other.data();
             }
 
             /// Prints the elements of the vector
             void print() const {
-                for (typename std::vector<uintvec<D-1> >::const_iterator i = data().begin();
-                    i != data().end(); ++i) {
+                for (typename std::vector<NestedVector<T, D-1> >::const_iterator
+                     i = data().begin();
+                     i != data().end(); ++i) {
                         i->print();
                     }
             }
 
         protected:
             /// Access to the stored vector
-            std::vector<uintvec<D-1> > &data() { return _data; }
+            std::vector<NestedVector<T, D-1> > &data() { return _data; }
 
             /// Read-only access to the stored vector
-            const std::vector<uintvec<D-1> > &data() const { return _data; }
+            const std::vector<NestedVector<T, D-1> > &data() const { return _data; }
 
         private:
             /// A std::vector of dimensionality \p D - 1
             /** All operations are delegated to this vector. */
-            std::vector<uintvec<D-1> > _data;
+            std::vector<NestedVector<T, D-1> > _data;
     };
 
     /// Specialization of uintvec<D> for \p D = 1
-    template<> class uintvec<1> {
+    template<typename T> class NestedVector<T, 1> {
         public:
-            /// See uintvec<D>::uintvec()
-            uintvec(): _data() { }
-
             /// See uintvec<D>::iterator
-            typedef std::vector<unsigned>::iterator iterator;
+            typedef typename std::vector<T>::iterator iterator;
             /// See uintvec<D>::const_iterator
-            typedef std::vector<unsigned>::const_iterator const_iterator;
+            typedef typename std::vector<T>::const_iterator const_iterator;
+
+            /// See uintvec<D>::uintvec()
+            NestedVector(): _data() { }
+            /// See uintvec<D>::uintvec()
+            NestedVector(unsigned n): _data(n) { }
 
             /// See uintvec<D>::begin()
             iterator begin() { return data().begin(); }
@@ -142,15 +157,15 @@ namespace VecMath {
             const_iterator end() const { return data().end(); }
 
             /// See uintvec<D>::push_back()
-            void push_back(const unsigned &x) { data().push_back(x); }
+            void push_back(const T &x) { data().push_back(x); }
 
             /// See uintvec<D>::erase()
             iterator erase(iterator position) { return data().erase(position); }
 
             /// See uintvec<D>::operator []()
-            unsigned &operator [] (unsigned i) { return data()[i]; }
+            T &operator [] (unsigned i) { return data()[i]; }
             /// See uintvec<D>::operator []()
-            const unsigned &operator [] (unsigned i) const {
+            const T &operator [] (unsigned i) const {
                 return data()[i];
             }
 
@@ -159,28 +174,31 @@ namespace VecMath {
             /// See uintvec<D>::empty()
             unsigned empty() const { return data().empty(); }
 
+            /// See uintvec<D>::resize()
+            void resize(unsigned new_size) { data().resize(new_size); }
+
             /// See uintvec<D>::operator !=()
-            bool operator != (const uintvec<1> &other) {
+            bool operator != (const NestedVector<T, 1> &other) {
                 return data() != other.data();
             }
 
             /// See uintvec<D>::print()
             void print() const {
-                for (std::vector<unsigned>::const_iterator i = data().begin();
-                    i != data().end(); ++i) {
+                for (typename std::vector<T>::const_iterator i = data().begin();
+                     i != data().end(); ++i) {
                         std::cerr << *i << " ";
                     }
             }
 
         protected:
             /// See uintvec<D>::data()
-            std::vector<unsigned> &data() { return _data; }
+            std::vector<T> &data() { return _data; }
             /// See uintvec<D>::data()
-            const std::vector<unsigned> &data() const { return _data; }
+            const std::vector<T> &data() const { return _data; }
 
         private:
-            /// std::vector<unsigned>. All operations are delegated to this vector
-            std::vector<unsigned> _data;
+            /// std::vector<T>. All operations are delegated to this vector
+            std::vector<T> _data;
     };
 
     /// Print a uintvec<D> on a std::ostream
@@ -188,10 +206,10 @@ namespace VecMath {
      *  \param v The vector to print
      *  \return \p s
      */
-    template<unsigned D> std::ostream& operator<<(std::ostream& s,
-                                                  uintvec<D> const& v) {
+    template<typename T, unsigned D> std::ostream& operator<<(std::ostream& s,
+                                                  NestedVector<T, D> const& v) {
         s << "(";
-        copy(v.begin(), v.end(), std::ostream_iterator<uintvec<D-1> >(s, " "));
+        copy(v.begin(), v.end(), std::ostream_iterator<NestedVector<T, D-1> >(s, " "));
         s << ")";
         return s;
     }
@@ -201,7 +219,13 @@ namespace VecMath {
      *  \param v The vector to print
      *  \return \p s
      */
-    template<> std::ostream& operator<<(std::ostream& s, uintvec<1> const& v);
+    template<typename T> std::ostream& operator<<(std::ostream& s,
+                                                  NestedVector<T, 1> const& v) {
+        s << "(";
+        copy(v.begin(), v.end(), std::ostream_iterator<T>(s, " "));
+        s << ")";
+        return s;
+    }
 
     /// Find an element in a uintvec
     /** \param find_me The element to find in the vector \p v
@@ -209,11 +233,29 @@ namespace VecMath {
     *  \return The \p uintvec<D>::iterator pointing to the element or \p v.end() if
     *          it is not in \p v
     */
-    template <unsigned D> typename uintvec<D>::iterator find(uintvec<D-1> const &find_me,
-                                                             uintvec<D> &v) {
+    template <typename T, unsigned D>
+            typename NestedVector<T, D>::iterator find(NestedVector<T, D-1> const &find_me,
+                                                       NestedVector<T, D> &v) {
+        typename NestedVector<T, D>::iterator i = v.begin();
+        while(*i != find_me && i != v.end()) ++i;
+        return i;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+
+    template <unsigned D> struct uintvec: public NestedVector<unsigned, D> {
+        uintvec(): NestedVector<unsigned, D> () { }
+        uintvec(NestedVector<unsigned, D> v): NestedVector<unsigned, D>(v) { }
+    };
+
+    template <unsigned D>
+            typename uintvec<D>::iterator find(uintvec<D-1> const &find_me,
+                                               uintvec<D> &v) {
         typename uintvec<D>::iterator i = v.begin();
         while(*i != find_me && i != v.end()) ++i;
         return i;
     }
 }
+
+
 #endif

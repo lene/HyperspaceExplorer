@@ -17,6 +17,7 @@
 
 #include "Function.H"
 #include "Vector.H"
+#include "uintvec.H"
 
 /// Artificial type to use in Typelists
 struct EmptyType {};
@@ -31,10 +32,6 @@ struct EmptyType {};
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Object: public Function {
     public:
-        /// one-dimensional array of unsigned, implemented as a std::vector
-        typedef std::vector<unsigned> uintvec1D;
-        /// two-dimensional array of unsigned, implemented as a nested vector
-        typedef std::vector<uintvec1D> uintvec2D;
 
         Object (const QString &, unsigned, unsigned);
         virtual ~Object () { }
@@ -65,7 +62,7 @@ class Object: public Function {
         vec3vec1D Xscr;     ///< temporary storage for projected function values
 
         /// the surfaces, stored as vectors of indeces to the points in X
-        uintvec2D Surface;
+        VecMath::uintvec<2> Surface;
 
         /** A pointless function, but it must be overridden to satisfy the
          *  Function interface. In an Object it is never called because the

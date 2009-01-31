@@ -19,10 +19,10 @@ class RotopeBase {
     protected:
 
         /// one-dimensional array of unsigned, implemented as a std::vector
-        typedef uintvec<1> uintvec1D;
+//        typedef uintvec<1> uintvec1D;
 //        typedef std::vector<unsigned> uintvec1D;
         /// two-dimensional array of unsigned, implemented as a nested vector
-        typedef uintvec<2> uintvec2D;
+//        typedef uintvec<2> uintvec2D;
 //        typedef std::vector<uintvec1D> uintvec2D;
         /// three-dimensional array of unsigned, implemented as a nested vector
         typedef uintvec<3> uintvec3D;
@@ -38,7 +38,7 @@ class RotopeBase {
         /// Dimension of the object
         virtual unsigned &dimension() = 0;
         /// The array of surfaces
-        virtual uintvec2D &surface() = 0;
+        virtual uintvec<2> &surface() = 0;
         /// The array of vertices, projected to four dimensions if necessary
         virtual std::vector<VecMath::Vector<4> > vertices() = 0;
 
