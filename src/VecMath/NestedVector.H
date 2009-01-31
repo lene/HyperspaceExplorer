@@ -206,6 +206,7 @@ namespace VecMath {
     /** \param s The ostream to which \p v is sent
      *  \param v The vector to print
      *  \return \p s
+     *  \ingroup VecMath
      */
     template<typename T, unsigned D> std::ostream& operator<<(std::ostream& s,
                                                   NestedVector<T, D> const& v) {
@@ -219,6 +220,7 @@ namespace VecMath {
     /** \param s The ostream to which \p v is sent
      *  \param v The vector to print
      *  \return \p s
+     *  \ingroup VecMath
      */
     template<typename T> std::ostream& operator<<(std::ostream& s,
                                                   NestedVector<T, 1> const& v) {
@@ -231,8 +233,10 @@ namespace VecMath {
     /// Find an element in a NestedVector
     /** \param find_me The element to find in the vector \p v
      *  \param v The vector to search for element \p find_me
-     *  \return The \p NestedVector<T, D>::iterator pointing to the element or
+     *  \return The \p NestedVector<T,D>::iterator pointing to the element or
      *          \p v.end() if it is not in \p v
+     *
+     *  \ingroup VecMath
      */
     template <typename T, unsigned D>
             typename NestedVector<T, D>::iterator find(NestedVector<T, D-1> const &find_me,
