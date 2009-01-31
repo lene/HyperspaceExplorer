@@ -29,16 +29,25 @@ DEPENDPATH += ./Functions
 HEADERS += Functions/ComplexFunction.H Functions/CustomFunction.H \
            Functions/Function.H Functions/Object.H Functions/Surface.H \
            Functions/RealFunction.H  Functions/FunctionParameter.H \
-           Functions/ParameterMap.H Functions/FunctionFactory.H \
-           Functions/Rotope.H Functions/Extrude.H Functions/Taper.H \
-           Functions/Rotate.H Functions/Torate.H
+           Functions/ParameterMap.H Functions/FunctionFactory.H
 #          Functions/SteinerFunction.H
 SOURCES += Functions/ComplexFunction.C Functions/CustomFunction.C \
            Functions/Function.C Functions/Surface.C Functions/Object.C \
            Functions/RealFunction.C  Functions/FunctionParameter.C \
-           Functions/FunctionFactory.C Functions/Rotope.C \
-           Functions/RotopeFactory.C
+           Functions/FunctionFactory.C
 #          Functions/SteinerFunction.C
+
+###
+###     Rotopes
+###
+INCLUDEPATH += ./Functions/Rotopes
+DEPENDPATH += ./Functions/Rotopes
+HEADERS += Functions/Rotopes/Rotope.H Functions/Rotopes/RotopeFactory.H \
+           Functions/Rotopes/Projector.H Functions/Rotopes/RotopeBase.H \
+           Functions/Rotopes/VertexData.H \
+           Functions/Rotopes/Extrude.H Functions/Rotopes/Taper.H \
+           Functions/Rotopes/Rotate.H Functions/Rotopes/Torate.H
+SOURCES += Functions/Rotopes/Rotope.C Functions/Rotopes/RotopeFactory.C
 
 ###
 ###     Script
