@@ -1,7 +1,7 @@
 #ifndef ROTOPE_H
 #define ROTOPE_H
 
-#include <Object.H>
+#include "Object.H"
 #include "VertexData.H"
 
 /// Gets thrown when an operation is not yet (or will never be) supported

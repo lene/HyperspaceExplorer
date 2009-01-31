@@ -44,10 +44,11 @@ INCLUDEPATH += ./Functions/Rotopes
 DEPENDPATH += ./Functions/Rotopes
 HEADERS += Functions/Rotopes/Rotope.H Functions/Rotopes/RotopeFactory.H \
            Functions/Rotopes/Projector.H Functions/Rotopes/RotopeBase.H \
-           Functions/Rotopes/VertexData.H \
+           Functions/Rotopes/VertexData.H Functions/Rotopes/Realm.H \
            Functions/Rotopes/Extrude.H Functions/Rotopes/Taper.H \
            Functions/Rotopes/Rotate.H Functions/Rotopes/Torate.H
-SOURCES += Functions/Rotopes/Rotope.C Functions/Rotopes/RotopeFactory.C
+SOURCES += Functions/Rotopes/Rotope.C Functions/Rotopes/RotopeFactory.C \
+           Functions/Rotopes/Realm.C
 
 ###
 ###     Script

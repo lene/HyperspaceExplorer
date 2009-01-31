@@ -3,16 +3,17 @@
 
 #include "RotopeBase.H"
 #include "Projector.H"
+#include "Realm.H"
 
 #include <typeinfo>
 
 //  utility functions
-    
+
 /// Print a std::vector on a std::ostream
 /** \param s The ostream to which \p v is sent
  *  \param v The vector to print
  *  \return \p s
-template<typename T> std::ostream& operator<<(std::ostream& s, 
+template<typename T> std::ostream& operator<<(std::ostream& s,
                                               std::vector<T> const& v) {
     s << "(";
     copy(v.begin(), v.end(), std::ostream_iterator<T>(s, " "));
@@ -71,7 +72,7 @@ template <unsigned D>
             /// The array of surfaces
             virtual uintvec2D &surface() { return _surface; }
             /// The array of realms
-            virtual uintvec3D &realm() { return _realm; }
+            virtual std::vector<Realm<D-1> > &realm() { return _realm; }
             /// The array of vertices, projected to four dimensions if necessary
             virtual std::vector<VecMath::Vector<4> > vertices();
 
@@ -85,8 +86,8 @@ template <unsigned D>
             unsigned _dimension;                    ///< Dimension of the object
             std::vector<VecMath::Vector<D> > _X;    ///< The array of vertices
             uintvec2D _surface;                     ///< The array of surfaces
-            /// The array of realms (3D surfaces of 4D objects)
-            uintvec3D _realm;
+            /// The array of realms (D-1 dimensional surfaces of D-dimensional object)
+            std::vector<Realm<D-1> > _realm;
 
             /// List of transformations executed on the object in dimensions > 4
             std::vector<const VecMath::RotationBase *> _transform;
@@ -143,7 +144,10 @@ template <unsigned D> void vertex_data<D>::print() {
 #   endif
 
     std::cerr << "\n" << realm().size() << " realms: \n";
-    realm().print();
+    for(typename std::vector<Realm<D-1> >::const_iterator i = realm().begin();
+        i != realm().end(); ++i){
+        i->print();
+    }
     std::cerr << "\n";
 
 }

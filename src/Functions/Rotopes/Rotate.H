@@ -45,12 +45,12 @@ template <unsigned D>
  *  \code Extrude<4, 0, 0> line; \endcode
  *  A line in four-space. A point is extruded along dimension 0 (\p x ).
  *  \code Rotate<4, 1, 1> circle(line); \endcode
- *  A circle in the \p xy -plane. The line along \p x is rotated into the \p y 
+ *  A circle in the \p xy -plane. The line along \p x is rotated into the \p y
  *  dimension.
  *  \code Rotate<4, 2, 2> sphere(circle); \endcode
  *  Create a sphere from a circle by rotating along the \p z axis.
  *  \code Rotate<4, 1, 2> sphere2(line); \endcode
- *  Create another sphere from a line by rotating it into the dimensions 1 to 
+ *  Create another sphere from a line by rotating it into the dimensions 1 to
  *  2, ie. along \p y and \p z
  *  \code Extrude<4, 0, 1> square;
  *  Rotate<4, 2, 2> cylinder(square); \endcode
@@ -131,10 +131,10 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
     if (vertex_data<D>::surface().empty()) {
         rotate_line(d);
     } else {
-        RotopeBase::uintvec2D surface_old = vertex_data<D>::surface();
+        uintvec<2> surface_old = vertex_data<D>::surface();
 
         /// Execute the rotation for all surfaces
-        for (typename RotopeBase::uintvec2D::iterator i = surface_old.begin();
+        for (typename uintvec<2>::iterator i = surface_old.begin();
              i != surface_old.end(); ++i) {
 
 #           if DEBUG_ROTOPES >= 2
@@ -162,7 +162,7 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
 
     vertex_data<D>::dimension()++;   //  object is now one dimension higher
 
-#   if DEBUG_ROTOPES 
+#   if DEBUG_ROTOPES
     vertex_data<D>::print();
 #   endif
 }
@@ -262,7 +262,7 @@ template <unsigned D> void rotate_base<D>::rotate_quad(
 #   endif
     unsigned old_current = current_surface[0];  //  saved index to current vertex
     unsigned old_next = current_surface[1];     //  saved index to next vertex
-    
+
     uintvec<1> bottom;       //  defines the first ("bottom") cap
     /// Save first vertex of "bottom" cap.
     bottom.push_back(current_surface[0]);
