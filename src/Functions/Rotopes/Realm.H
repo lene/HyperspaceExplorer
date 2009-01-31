@@ -11,6 +11,10 @@
 /// \ingroup RotopeGroup
 ///
 
+#ifndef REALM_H
+#define REALM_H
+
+#include "uintvec.H"
 /// ...
 /**
  *  \param D Dimension of the vector space we're working in
@@ -26,3 +30,5 @@ template <unsigned D> class Realm {
     private:
         uintvec<D> _subrealm;
 };
+
+#endif

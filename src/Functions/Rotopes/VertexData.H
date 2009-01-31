@@ -7,32 +7,6 @@
 
 #include <typeinfo>
 
-//  utility functions
-
-/// Print a std::vector on a std::ostream
-/** \param s The ostream to which \p v is sent
- *  \param v The vector to print
- *  \return \p s
-template<typename T> std::ostream& operator<<(std::ostream& s,
-                                              std::vector<T> const& v) {
-    s << "(";
-    copy(v.begin(), v.end(), std::ostream_iterator<T>(s, " "));
-    s << ")";
-    return s;
-}
- */
-
-/// Find an element in a vector
-/** \param find_me The element to find in the vector \p v
- *  \param v The vector to search for element \p find_me
- *  \return The \p vector<T>::iterator pointing to the element or \p v.end() if it is not in \p v
- */
-template <typename T> typename std::vector<T>::iterator find(T find_me, std::vector<T> &v) {
-    typename std::vector<T>::iterator i = v.begin();
-    while(*i != find_me && i != v.end()) ++i;
-    return i;
-}
-
 /// Base class for all Rotope s.
 /** Contains an array of vertices (Vectors) and a function to print them. This
  *  is used mainly in the development of Rotope objects.

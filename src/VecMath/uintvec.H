@@ -1,7 +1,7 @@
 //
 // C++ Interface: uintvec
 //
-// Description: 
+// Description:
 //
 //
 // Author: Helge Preuss <scout@hyperspace-travel.de>, (C) 2009
@@ -9,6 +9,9 @@
 // Copyright: See COPYING file that comes with this distribution
 //
 //
+
+#ifndef UINTVEC_H
+#define UINTVEC_H
 
 #include <vector>
 #include <iostream>
@@ -106,7 +109,7 @@ template<> class uintvec<1> {
  *  \param v The vector to print
  *  \return \p s
  */
-template<unsigned D> std::ostream& operator<<(std::ostream& s, 
+template<unsigned D> std::ostream& operator<<(std::ostream& s,
                                               uintvec<D> const& v) {
     s << "(";
     copy(v.begin(), v.end(), std::ostream_iterator<uintvec<D-1> >(s, " "));
@@ -126,3 +129,5 @@ template <unsigned D> typename uintvec<D>::iterator find(uintvec<D-1> find_me, u
     while(*i != find_me && i != v.end()) ++i;
     return i;
 }
+
+#endif
