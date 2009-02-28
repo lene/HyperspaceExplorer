@@ -44,7 +44,7 @@ template <unsigned D>
             *     -# If we taper for the second time, we extrude above the center of the
             *        \f$ D-1 \f$ st coordinate, so the value for this is halved for the
             *        \f$ D-1 \f$ coordinate of the new point. The \f$ D \f$ coordinate is
-            *        \f$ \sqrt{x_{D-1} }^2 - \frac{1}{2^2} } \f$ , because the second leg of
+            *        \f$ \sqrt{x_{D-1}^2 - \frac{1}{2^2} } \f$ , because the second leg of
             *       the equilateral triangle was created by the \em first extrusion and
             *       is known to be of length \f$ \frac{1}{2} \f$ .
             *

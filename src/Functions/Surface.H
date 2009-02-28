@@ -158,10 +158,10 @@ class Surface: public SurfaceBase {
 
 /// An example surface:
 /** \f{eqnarray*}{
-        F_0 & = & Radius*\sin \theta*\sin \psi;   \\
-        F_1 & = & Radius*\cos \theta*\sin \psi;   \\
-        F_2 & = & Radius*\cos \theta;             \\
-        F_3 & = & Radius*\cos \psi;
+        F_0 & = & Radius*\sin \theta*\sin \psi   \\
+        F_1 & = & Radius*\cos \theta*\sin \psi   \\
+        F_2 & = & Radius*\cos \theta             \\
+        F_3 & = & Radius*\cos \psi
     \f}
  *  \ingroup SurfaceGroup                                                    */
 class Surface1: public Surface {
@@ -177,7 +177,8 @@ protected:
 
 namespace {
     Function *createSurface1() { return new Surface1(); }
-    const bool registeredS1 = TheFunctionFactory::Instance().registerFunction("Surface1", createSurface1);
+    const bool registeredS1 =
+            TheFunctionFactory::Instance().registerFunction("Surface1", createSurface1);
 }
 
 /// A four-dimensional surface described by Thomas Banchoff
@@ -204,7 +205,8 @@ protected:
 
 namespace {
     Function *createHorizon() { return new Horizon(); }
-    const bool registeredS2 = TheFunctionFactory::Instance().registerFunction("Horizon", createHorizon);
+    const bool registeredS2 =
+            TheFunctionFactory::Instance().registerFunction("Horizon", createHorizon);
 }
 
 /// Another torus version, this time as a two-dimensional surface in four-space
@@ -222,7 +224,8 @@ protected:
 
 namespace {
     Function *createTorus3() { return new Torus3(); }
-    const bool registeredS3 = TheFunctionFactory::Instance().registerFunction("Torus3", createTorus3);
+    const bool registeredS3 =
+            TheFunctionFactory::Instance().registerFunction("Torus3", createTorus3);
 }
 
 #endif
