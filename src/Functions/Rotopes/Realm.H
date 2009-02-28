@@ -15,6 +15,9 @@
 #define REALM_H
 
 #include "uintvec.H"
+#include "Vector.H"
+class Rotope;
+
 /// \p D - dimensional surface
 /**
  *  \param D Dimension of the vector space we're working in
@@ -22,24 +25,42 @@
  *  \ingroup RotopeGroup
  *  \author Helge Preuss <scout@hyperspace-travel.de>
  */
-template <unsigned D> class Realm {
+class Realm {
     public:
 
-        Realm(): _subrealm() { }
+        Realm(): _dimension(0), _subrealm(), _index(1) { }
+        Realm(unsigned i): _dimension(0), _subrealm(), _index(i) { }
+        Realm(const std::vector<Realm> &sr): _subrealm(sr), _index() {
+            if(sr.empty()) _dimension = 0;
+            else _dimension = sr[0].dimension()+1;
+        }
 
         /// Returns the number of subrealms the Realm is made of
         unsigned size() const { return _subrealm.size(); }
+        /// Returns the dimension of the realm
+        unsigned dimension() const { return _dimension; }
+        /// Sets the dimension of the realm
+        void setDimension(unsigned d) { _dimension = d; }
         /// Prints the elements of the Realm
-        void print() const { _subrealm.print(); }
+        void print() const;
 
-        Realm<D+1> rotate(double step);
-        Realm<D> rotate_step(double angle);
+        Realm extrude(unsigned delta);
+        Realm rotate(double step);
+        Realm rotate_step(double angle);
 
-        void add(Realm<D> realm);
+        void add(unsigned delta);
+
+        void setSubrealms(std::vector<Realm> sr) { _subrealm = sr; }
+        
+        void draw( Rotope *f) const;
 
     private:
+        /// Dimension of the realm
+        unsigned _dimension;
         /// Subrealms the Realm is made of
-        VecMath::uintvec<D> _subrealm;
+        std::vector<Realm> _subrealm;
+        /// If _dimension == 0, this is the index into the vertex array
+        unsigned _index;
 };
 
 #endif

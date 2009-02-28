@@ -215,6 +215,12 @@ class Function {
          *  keep the parameters in the order they are declared
          *  \todo move this functionality into ParameterMap                   */
         std::vector<std::string> parameterNames;
+        
+        /// Realm needs access to setVertex()
+        /** \todo decouple class Realm - this is a bad solution and only 
+         *  tolerated because I have no better idea! clean it up bitch!
+         */
+        friend class Realm;
 };
 
 /// Add a parameter with a name and a default value to the parameter list

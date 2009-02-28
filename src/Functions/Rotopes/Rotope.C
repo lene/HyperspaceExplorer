@@ -119,23 +119,31 @@ void Rotope::Draw () {
     if (!_rotope) {
         throw std::logic_error("Rotope::Draw(): _rotope is NULL!");
     }
+    std::cout << "Rotope::Draw()" << std::endl;
 
-    unsigned currentPolygonSize = 0;
-    for (unsigned i = 0; i < _rotope->surface().size(); i++) {
-        if (currentPolygonSize != _rotope->surface()[i].size()) {
-            if (currentPolygonSize) glEnd ();
-            currentPolygonSize = _rotope->surface()[i].size();
-            if (currentPolygonSize == 4) glBegin (GL_QUADS);
-            else if (currentPolygonSize == 3) glBegin (GL_TRIANGLES);
-            else glBegin(GL_POLYGON);
+    if (_rotope->realm().size()) {
+        for (std::vector<Realm>::const_iterator i = _rotope->realm().begin();
+             i != _rotope->realm().end(); ++i) {
+            i->draw(this);
         }
-        for (unsigned j = 0; j < currentPolygonSize; j++) {
-            setVertex(X[_rotope->surface()[i][j]],
-                      Xscr[_rotope->surface()[i][j]]);
+    } else {
+        unsigned currentPolygonSize = 0;
+        for (unsigned i = 0; i < _rotope->surface().size(); i++) {
+            if (currentPolygonSize != _rotope->surface()[i].size()) {
+                if (currentPolygonSize) glEnd ();
+                currentPolygonSize = _rotope->surface()[i].size();
+                if (currentPolygonSize == 4) glBegin (GL_QUADS);
+                else if (currentPolygonSize == 3) glBegin (GL_TRIANGLES);
+                else glBegin(GL_POLYGON);
+            }
+            for (unsigned j = 0; j < currentPolygonSize; j++) {
+                setVertex(X[_rotope->surface()[i][j]],
+                        Xscr[_rotope->surface()[i][j]]);
+            }
+            if (currentPolygonSize > 4) glEnd();
         }
-        if (currentPolygonSize > 4) glEnd();
+        glEnd ();
     }
-    glEnd ();
 }
 
 void Rotope::SetParameters(const ParameterMap &parms) {

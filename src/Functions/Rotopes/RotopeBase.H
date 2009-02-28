@@ -2,6 +2,7 @@
 #define ROTOPE_BASE_H
 
 #include "uintvec.H"
+#include "Realm.H"
 
 using VecMath::uintvec;
 
@@ -18,12 +19,6 @@ class RotopeBase {
 
     protected:
 
-        /// one-dimensional array of unsigned, implemented as a std::vector
-//        typedef uintvec<1> uintvec1D;
-//        typedef std::vector<unsigned> uintvec1D;
-        /// two-dimensional array of unsigned, implemented as a nested vector
-//        typedef uintvec<2> uintvec2D;
-//        typedef std::vector<uintvec1D> uintvec2D;
         /// three-dimensional array of unsigned, implemented as a nested vector
         typedef uintvec<3> uintvec3D;
 
@@ -39,6 +34,8 @@ class RotopeBase {
         virtual unsigned &dimension() = 0;
         /// The array of surfaces
         virtual uintvec<2> &surface() = 0;
+        /// The array of realms
+        virtual std::vector<Realm> &realm() = 0;
         /// The array of vertices, projected to four dimensions if necessary
         virtual std::vector<VecMath::Vector<4> > vertices() = 0;
 

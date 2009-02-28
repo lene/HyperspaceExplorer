@@ -3,7 +3,6 @@
 
 #include "RotopeBase.H"
 #include "Projector.H"
-#include "Realm.H"
 
 #include <typeinfo>
 
@@ -46,7 +45,7 @@ template <unsigned D>
             /// The array of surfaces
             virtual uintvec<2> &surface() { return _surface; }
             /// The array of realms
-            virtual std::vector<Realm<D-1> > &realm() { return _realm; }
+            virtual std::vector<Realm> &realm() { return _realm; }
             /// The array of vertices, projected to four dimensions if necessary
             virtual std::vector<VecMath::Vector<4> > vertices();
 
@@ -61,7 +60,7 @@ template <unsigned D>
             std::vector<VecMath::Vector<D> > _X;    ///< The array of vertices
             uintvec<2> _surface;                     ///< The array of surfaces
             /// The array of realms (D-1 dimensional surfaces of D-dimensional object)
-            std::vector<Realm<D-1> > _realm;
+            std::vector<Realm> _realm;
 
             /// List of transformations executed on the object in dimensions > 4
             std::vector<const VecMath::RotationBase *> _transform;
@@ -119,7 +118,7 @@ template <unsigned D> void vertex_data<D>::print() {
 #   endif
 
     std::cerr << "\n" << realm().size() << " realms: \n";
-    for(typename std::vector<Realm<D-1> >::const_iterator i = realm().begin();
+    for(typename std::vector<Realm>::const_iterator i = realm().begin();
         i != realm().end(); ++i){
         i->print();
     }

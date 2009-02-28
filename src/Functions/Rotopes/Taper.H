@@ -17,6 +17,39 @@ template <unsigned D>
                 vertex_data<D>(v), _previous_dim(-1), _pre_previous_dim (-1) { }
 
             /// Execute the taper action of the previous object along axis \p d.
+            /** Generally, a taper action is defined by the following formulas.
+            *
+            *  For going from a taper \f$ D-1 \f$ to the next, only the \f$ D-1 \f$ st and
+            *  \f$ D \f$ th coordinate are affected.
+            *
+            *  The new point is extruded above the center of the \f$ D-1 \f$ st coordinate,
+            *  thus \f$ X_{new,D-1} = \frac{X_{D-1} }{2} \f$ .
+            *
+            *  The \f$ D \f$ th coordinate is found by spanning a right triangle with the
+            *  sides \f$ X_{new,D-1} \f$ and \f$ X_{D-2} \f$ , and solving the pythagorean
+            *  equation for the missing cathetus.
+            *
+            *  While these formulas are relatively easy, keep in mind that
+            *  -# You must store previous taper actions to remember \f$ D-1 \f$ and
+            *     \f$ D-2 \f$ .
+            *  -# If you haven't tapered at least twice before, you don't have values for
+            *     \f$ D-1 \f$ and \f$ D-2 \f$. Thus, you must make up these values.
+            *     Luckily, this is possible:
+            *     -# If we taper for the first time, the new point lies above the center of
+            *        the old surface. We calculate the mean of all \f$ D-1 \f$ coordinates
+            *        and extrude above that point. The \f$ D \f$ coordinate is
+            *        \f$ \sqrt{1 - \bar{x_i}^2} \f$. \f$ \bar{x_i} \f$ is considered to be
+            *        equal to \f$ \frac{1}{2} \f$ in this function, because I don't see how
+            *        it could have another value that makes sense.
+            *     -# If we taper for the second time, we extrude above the center of the
+            *        \f$ D-1 \f$ st coordinate, so the value for this is halved for the
+            *        \f$ D-1 \f$ coordinate of the new point. The \f$ D \f$ coordinate is
+            *        \f$ \sqrt{x_{D-1} }^2 - \frac{1}{2^2} } \f$ , because the second leg of
+            *       the equilateral triangle was created by the \em first extrusion and
+            *       is known to be of length \f$ \frac{1}{2} \f$ .
+            *
+            *  \param d The new dimension into which the object is tapered
+            */
             void taper(unsigned d);
 
         private:
@@ -96,39 +129,6 @@ template <unsigned D, unsigned Dmin>
             }
     };
 
-/** Generally, a taper action is defined by the following formulas.
- *
- *  For going from a taper \f$ D-1 \f$ to the next, only the \f$ D-1 \f$ st and
- *  \f$ D \f$ th coordinate are affected.
- *
- *  The new point is extruded above the center of the \f$ D-1 \f$ st coordinate,
- *  thus \f$ X_{new,D-1} = \frac{X_{D-1} }{2} \f$ .
- *
- *  The \f$ D \f$ th coordinate is found by spanning a right triangle with the
- *  sides \f$ X_{new,D-1} \f$ and \f$ X_{D-2} \f$ , and solving the pythagorean
- *  equation for the missing cathetus.
- *
- *  While these formulas are relatively easy, keep in mind that
- *  -# You must store previous taper actions to remember \f$ D-1 \f$ and
- *     \f$ D-2 \f$ .
- *  -# If you haven't tapered at least twice before, you don't have values for
- *     \f$ D-1 \f$ and \f$ D-2 \f$. Thus, you must make up these values.
- *     Luckily, this is possible:
- *     -# If we taper for the first time, the new point lies above the center of
- *        the old surface. We calculate the mean of all \f$ D-1 \f$ coordinates
- *        and extrude above that point. The \f$ D \f$ coordinate is
- *        \f$ \sqrt{1 - \bar{x_i}^2} \f$. \f$ \bar{x_i} \f$ is considered to be
- *        equal to \f$ \frac{1}{2} \f$ in this function, because I don't see how
- *        it could have another value that makes sense.
- *     -# If we taper for the second time, we extrude above the center of the
- *        \f$ D-1 \f$ st coordinate, so the value for this is halved for the
- *        \f$ D-1 \f$ coordinate of the new point. The \f$ D \f$ coordinate is
- *        \f$ \sqrt{x_{D-1} }^2 - \frac{1}{2^2} } \f$ , because the second leg of
- *       the equilateral triangle was created by the \em first extrusion and
- *       is known to be of length \f$ \frac{1}{2} \f$ .
- *
- *  \param d The new dimension into which the object is tapered
- */
 template <unsigned D> void taper_base<D>::taper(unsigned d) {
 
     if (d >= D) {

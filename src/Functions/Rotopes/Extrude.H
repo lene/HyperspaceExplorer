@@ -18,7 +18,26 @@ template <unsigned D>
             extrude_base(const vertex_data<D> &v): vertex_data<D>(v) { }
 
             /// Extrudes an object along a given dimension
+            /** For each point in the vertex array, a copy is made and shifted along the
+            *  \p d axis. Thus, a point becomes a line when extruded along axis 0, a line
+            *  becomes a square when extruded along axis 1, and so on. A circle becomes a
+            *  cylinder when extruded along axis 2, and similarly with all kinds of
+            *  objects. You get the idea. \see Extrude for more examples.
+            *
+            *  \param d The new dimension into which the object is extruded
+            */
             void extrude(unsigned d);
+
+            /// Old algorithm, kept for reference
+            /** For each point in the vertex array, a copy is made and shifted along the
+            *  \p d axis. Thus, a point becomes a line when extruded along axis 0, a line
+            *  becomes a square when extruded along axis 1, and so on. A circle becomes a
+            *  cylinder when extruded along axis 2, and similarly with all kinds of
+            *  objects. You get the idea.
+            *
+            *  \param d The new dimension into which the object is extruded
+            */
+            void extrude_old(unsigned);
     };
 
 /// A class template to execute extrusion actions on an object
@@ -34,8 +53,8 @@ template <unsigned D>
  *  \code Extrude<4, 2, 2> cube; \endcode
  *  The square is extruded into the third dimension to a cube.
  *  \code
- *    Taper<4, 1, 1> triangle(line);
- *    Extrude<4, 2, 2> prism;
+ *  Taper<4, 1, 1> triangle(line);
+ *  Extrude<4, 2, 2> prism;
  *  \endcode
  *  A line is tapered into a triangle, and then extruded to become a prism.
  *  \code Extrude<4, 0, 3> tesseract; \endcode
@@ -105,15 +124,55 @@ template <unsigned D, unsigned Dmin>
     };
 
 
-/** For each point in the vertex array, a copy is made and shifted along the
- *  \p d axis. Thus, a point becomes a line when extruded along axis 0, a line
- *  becomes a square when extruded along axis 1, and so on. A circle becomes a
- *  cylinder when extruded along axis 2, and similarly with all kinds of
- *  objects. You get the idea.
- *
- *  \param d The new dimension into which the object is extruded
- */
 template <unsigned D> void extrude_base<D>::extrude(unsigned d) {
+#   if 0
+    // kept this to have a working version we can commit to svn
+    extrude_old(d);
+#   else
+    if (d >= D) {
+        throw std::logic_error(
+           "extrude_base::extrude() called on a higher dimension"
+           " than the vector space allows");
+    }
+    std::cout << "extrude_base<D>::extrude(" << d << ")" << std::endl;
+
+    //    realm().push_back(old object)
+    // new object = translate(old object)
+    // foreach (old object subrealms)
+    //   find corresponding subrealm in new object
+    //   realm.push_back(connect (old subrealm, new subrealm))
+    // realm.push_back(new object)
+    VecMath::Vector<D> x;
+    x[d] = 1.;
+    unsigned xsize = vertex_data<D>::X().size();
+    for (unsigned i = 0; i < xsize; ++i) {
+        vertex_data<D>::X()[i] -= x;
+        vertex_data<D>::X().push_back(vertex_data<D>::X()[i]+x*2.);
+    }
+
+    if (d == 0) {
+        vertex_data<D>::realm().push_back(Realm(0));
+        vertex_data<D>::realm().push_back(Realm(1));
+    } else {
+        std::vector<Realm> new_realms;
+        Realm old_realm(vertex_data<D>::realm());
+        new_realms.push_back(old_realm);
+        for (typename std::vector<Realm>::iterator i = vertex_data<D>::realm().begin();
+            i != vertex_data<D>::realm().end(); ++i) {
+            Realm r = i->extrude(xsize);
+            new_realms.push_back(r);
+        }
+        old_realm.add(xsize);
+        new_realms.push_back(old_realm);
+        
+        vertex_data<D>::realm() = new_realms;
+    }
+    
+    vertex_data<D>::dimension()++;   //  object is now one dimension higher
+#   endif
+}
+
+template <unsigned D> void extrude_base<D>::extrude_old(unsigned d) {
     if (d >= D) {
         throw std::logic_error(
            "extrude_base::extrude() called on a higher dimension"
