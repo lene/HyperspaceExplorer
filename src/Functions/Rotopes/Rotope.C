@@ -119,8 +119,7 @@ void Rotope::Draw () {
     if (!_rotope) {
         throw std::logic_error("Rotope::Draw(): _rotope is NULL!");
     }
-    std::cout << "Rotope::Draw()" << std::endl;
-
+    
     if (_rotope->realm().size()) {
         for (std::vector<Realm>::const_iterator i = _rotope->realm().begin();
              i != _rotope->realm().end(); ++i) {
