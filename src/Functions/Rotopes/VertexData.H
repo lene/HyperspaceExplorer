@@ -45,7 +45,7 @@ template <unsigned D>
             /// The array of surfaces
             virtual uintvec<2> &surface() { return _surface; }
             /// The array of realms
-            virtual std::vector<Realm> &realm() { return _realm; }
+            virtual Realm &realm() { return _realm; }
             /// The array of vertices, projected to four dimensions if necessary
             virtual std::vector<VecMath::Vector<4> > vertices();
 
@@ -60,7 +60,7 @@ template <unsigned D>
             std::vector<VecMath::Vector<D> > _X;    ///< The array of vertices
             uintvec<2> _surface;                     ///< The array of surfaces
             /// The array of realms (D-1 dimensional surfaces of D-dimensional object)
-            std::vector<Realm> _realm;
+            Realm _realm;
 
             /// List of transformations executed on the object in dimensions > 4
             std::vector<const VecMath::RotationBase *> _transform;

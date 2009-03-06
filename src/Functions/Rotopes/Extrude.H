@@ -134,14 +134,8 @@ template <unsigned D> void extrude_base<D>::extrude(unsigned d) {
            "extrude_base::extrude() called on a higher dimension"
            " than the vector space allows");
     }
-    std::cout << "extrude_base<D>::extrude(" << d << ")" << std::endl;
+    std::cout << "extrude_base<" << D <<">::extrude(" << d << ") ************************************" << std::endl;
 
-    //    realm().push_back(old object)
-    // new object = translate(old object)
-    // foreach (old object subrealms)
-    //   find corresponding subrealm in new object
-    //   realm.push_back(connect (old subrealm, new subrealm))
-    // realm.push_back(new object)
     VecMath::Vector<D> x;
     x[d] = 1.;
     unsigned xsize = vertex_data<D>::X().size();
@@ -149,12 +143,14 @@ template <unsigned D> void extrude_base<D>::extrude(unsigned d) {
         vertex_data<D>::X()[i] -= x;
         vertex_data<D>::X().push_back(vertex_data<D>::X()[i]+x*2.);
     }
-
+    std::cout << "xsize = " << xsize << std::endl;
     if (d == 0) {
-        vertex_data<D>::realm().push_back(Realm(0));
-        vertex_data<D>::realm().push_back(Realm(1));
+        vertex_data<D>::realm() = Realm(0);
+        std::cout << "before extrude(): "; vertex_data<D>::realm().print(); std::cout << std::endl;
+//        vertex_data<D>::realm() = vertex_data<D>::realm().extrude(1);
+//        vertex_data<D>::realm().push_back(Realm(1));
     } else {
-        std::vector<Realm> new_realms;
+/*        std::vector<Realm> new_realms;
         Realm old_realm(vertex_data<D>::realm());
         new_realms.push_back(old_realm);
         for (typename std::vector<Realm>::iterator i = vertex_data<D>::realm().begin();
@@ -164,9 +160,9 @@ template <unsigned D> void extrude_base<D>::extrude(unsigned d) {
         }
         old_realm.add(xsize);
         new_realms.push_back(old_realm);
-        
-        vertex_data<D>::realm() = new_realms;
+*/
     }
+    vertex_data<D>::realm() = vertex_data<D>::realm().extrude(xsize);
     
     vertex_data<D>::dimension()++;   //  object is now one dimension higher
 #   endif

@@ -43,7 +43,27 @@ void Realm::add(unsigned delta) {
 
 Realm Realm::extrude(unsigned delta) {
     vector<Realm> new_subrealms;
-    if (_subrealm.size()) {
+    cout << "Realm::extrude(" << delta << ")" << endl <<"    size = " << _subrealm.size() << ", dimension = " << _dimension << endl;
+    print(); cout << endl;
+    if (_dimension == 0) {
+        new_subrealms.push_back(_index);
+        new_subrealms.push_back(_index+delta);
+    } else if (_dimension == 1) {
+        // special case: make surfaces so OpenGL can draw them
+        // _subrealm.size() should be 2
+        new_subrealms.push_back(_subrealm[0]._index);
+        new_subrealms.push_back(_subrealm[1]._index);
+        new_subrealms.push_back(_subrealm[1]._index+delta);
+        new_subrealms.push_back(_subrealm[0]._index+delta);
+//        for (unsigned i = 0; i < _subrealm.size(); ++i) {
+//            new_subrealms.push_back(_subrealm[i].extrude(delta));
+//        }
+        Realm new_realm(new_subrealms);
+        new_realm._dimension++;
+        cout << "new realm: " << endl;
+        new_realm.print(); cout << endl;
+        return new_realm;
+    } else {
         Realm copy(*this);
         new_subrealms.push_back(copy);
         for (unsigned i = 0; i < _subrealm.size(); ++i) {
@@ -51,11 +71,10 @@ Realm Realm::extrude(unsigned delta) {
         }
         copy.add(delta);
         new_subrealms.push_back(copy);
-    } else {
-        new_subrealms.push_back(_index);
-        new_subrealms.push_back(_index+delta);
     }
     Realm new_realm(new_subrealms);
+    cout << "new realm: " << endl;
+    new_realm.print(); cout << endl;
     return new_realm;
 }
 
@@ -63,7 +82,7 @@ Realm Realm::extrude(unsigned delta) {
 void Realm::draw(Rotope *f) const {
 #   if 0
         print();
-        std::cout << std::endl;
+        cout << endl;
 #   endif
     switch (_dimension) {
         case 0:
@@ -93,10 +112,12 @@ void Realm::draw(Rotope *f) const {
              *
              *  \todo find an algorithm for this.
              */
-            for (vector<Realm>::const_iterator i = _subrealm.begin();
-                 i != _subrealm.end(); ++i) {
-                i->draw(f);
-            }
+            glBegin(GL_POLYGON);
+                for (vector<Realm>::const_iterator i = _subrealm.begin();
+                     i != _subrealm.end(); ++i) {
+                    f->setVertex(f->X[i->_index], f->Xscr[i->_index]);
+                }
+            glEnd();
             break;
         default:
             /** OpenGL does not allow to draw anything above the dimension of a
@@ -109,23 +130,5 @@ void Realm::draw(Rotope *f) const {
             }
             break;
     }
-    /*
-    unsigned currentPolygonSize = 0;
-    for (unsigned i = 0; i < _rotope->surface().size(); i++) {
-        if (currentPolygonSize != _rotope->surface()[i].size()) {
-            if (currentPolygonSize) glEnd ();
-            currentPolygonSize = _rotope->surface()[i].size();
-            if (currentPolygonSize == 4) glBegin (GL_QUADS);
-            else if (currentPolygonSize == 3) glBegin (GL_TRIANGLES);
-            else glBegin(GL_POLYGON);
-        }
-        for (unsigned j = 0; j < currentPolygonSize; j++) {
-            setVertex(X[_rotope->surface()[i][j]],
-                      Xscr[_rotope->surface()[i][j]]);
-        }
-        if (currentPolygonSize > 4) glEnd();
-    }
-    glEnd ();
-    */
 }
 

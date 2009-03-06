@@ -35,7 +35,7 @@ class RotopeBase {
         /// The array of surfaces
         virtual uintvec<2> &surface() = 0;
         /// The array of realms
-        virtual std::vector<Realm> &realm() = 0;
+        virtual Realm &realm() = 0;
         /// The array of vertices, projected to four dimensions if necessary
         virtual std::vector<VecMath::Vector<4> > vertices() = 0;
 
