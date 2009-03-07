@@ -45,6 +45,7 @@ class Realm {
         void print() const;
 
         Realm extrude(unsigned delta);
+        Realm taper();
         Realm rotate(double step);
         Realm rotate_step(double angle);
 
@@ -57,8 +58,6 @@ class Realm {
         void push_back(const Realm &r) { _subrealm.push_back(r); }
         std::vector<Realm>::iterator begin() {return _subrealm.begin(); }
         std::vector<Realm>::iterator end() {return _subrealm.end(); }
-//        std::vector<Realm>::const_iterator begin() {return _subrealm.begin(); }
-//        std::vector<Realm>::const_iterator end() {return _subrealm.end(); }
     
     private:
         /// Dimension of the realm

@@ -43,39 +43,82 @@ void Realm::add(unsigned delta) {
 
 Realm Realm::extrude(unsigned delta) {
     vector<Realm> new_subrealms;
-    cout << "Realm::extrude(" << delta << ")" << endl <<"    size = " << _subrealm.size() << ", dimension = " << _dimension << endl;
-    print(); cout << endl;
-    if (_dimension == 0) {
-        new_subrealms.push_back(_index);
-        new_subrealms.push_back(_index+delta);
-    } else if (_dimension == 1) {
-        // special case: make surfaces so OpenGL can draw them
-        // _subrealm.size() should be 2
-        new_subrealms.push_back(_subrealm[0]._index);
-        new_subrealms.push_back(_subrealm[1]._index);
-        new_subrealms.push_back(_subrealm[1]._index+delta);
-        new_subrealms.push_back(_subrealm[0]._index+delta);
-//        for (unsigned i = 0; i < _subrealm.size(); ++i) {
-//            new_subrealms.push_back(_subrealm[i].extrude(delta));
-//        }
-        Realm new_realm(new_subrealms);
-        new_realm._dimension++;
-        cout << "new realm: " << endl;
-        new_realm.print(); cout << endl;
-        return new_realm;
-    } else {
-        Realm copy(*this);
-        new_subrealms.push_back(copy);
-        for (unsigned i = 0; i < _subrealm.size(); ++i) {
-            new_subrealms.push_back(_subrealm[i].extrude(delta));
+    
+    /** There is an annoying problem with the circumstance that I'd like to
+     *  store realms as [sets of] point sets of their dimension, and that OpenGL
+     *  needs point sets to draw two dimensional surfaces (as opposed to sets of
+     *  lines). I cannot, therefore, store a two dimensional Realm as a set of
+     *  one dimensional Realm s in any efficient way. I need to treat two
+     *  dimensional Realm s differently.
+     * 
+     *  That leads to special cases for each of the following operations:
+     *  - Going from zero to one dimensions: Make a line from the point and its
+     *    extruded image.
+     *  - Going from one to two dimensions: make a surface from the two end
+     *    points of the line and their extruded images, storing the Realm not
+     *    as a set of lines, but as a set of points and manually setting its
+     *    dimension to two.
+     *  - Going from two to three dimensions: The top and bottom caps can be 
+     *    copies of the current object, as in the default algorithm below, but
+     *    the sides must be treated as lines, and thus repeat the algorithm 
+     *    described above.
+     *  - Default: Top and bottom caps are (shifted) copies of the current 
+     *    Realm, while for the side connections the extrusion algorithm is
+     *    called recursively.
+     */
+    switch(_dimension) {
+        
+        //  Extrude a point to a line
+        case 0: {
+            new_subrealms.push_back(_index);
+            new_subrealms.push_back(_index+delta);
+            Realm new_realm(new_subrealms);
+            return new_realm;
         }
-        copy.add(delta);
-        new_subrealms.push_back(copy);
+        //  Extrude a line to a square
+        case 1: {
+            // special case: make surfaces so OpenGL can draw them
+            // _subrealm.size() should be 2
+            new_subrealms.push_back(_subrealm[0]._index);
+            new_subrealms.push_back(_subrealm[1]._index);
+            new_subrealms.push_back(_subrealm[1]._index+delta);
+            new_subrealms.push_back(_subrealm[0]._index+delta);
+            Realm new_realm(new_subrealms);
+            new_realm._dimension++;
+            
+            return new_realm;
+        }
+        //  Extrude a polygon to a prism
+        case 2: {
+            Realm copy(*this);
+            new_subrealms.push_back(copy);
+            for (unsigned i = 0; i < _subrealm.size(); ++i) {
+                Realm new_subrealm;
+                new_subrealm.push_back(_subrealm[i]._index);
+                new_subrealm.push_back(_subrealm[(i+1)%_subrealm.size()]._index);
+                new_subrealm.push_back(_subrealm[(i+1)%_subrealm.size()]._index+delta);
+                new_subrealm.push_back(_subrealm[i]._index+delta);
+                new_subrealm._dimension = 2;
+                new_subrealms.push_back(new_subrealm);
+            }
+            copy.add(delta);
+            new_subrealms.push_back(copy);
+            Realm new_realm(new_subrealms);
+            return new_realm;
+        }
+        //  Extrude an N-dimensional Realm to a N+1-dimensional one, where N > 2
+        default: {
+            Realm copy(*this);
+            new_subrealms.push_back(copy);
+            for (unsigned i = 0; i < _subrealm.size(); ++i) {
+                new_subrealms.push_back(_subrealm[i].extrude(delta));
+            }
+            copy.add(delta);
+            new_subrealms.push_back(copy);
+            Realm new_realm(new_subrealms);
+            return new_realm;
+        }
     }
-    Realm new_realm(new_subrealms);
-    cout << "new realm: " << endl;
-    new_realm.print(); cout << endl;
-    return new_realm;
 }
 
 /** Draw the Realm using OpenGL. Draws all subrealms recursively. */
