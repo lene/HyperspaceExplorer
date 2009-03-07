@@ -45,7 +45,7 @@ class Realm {
         void print() const;
 
         Realm extrude(unsigned delta);
-        Realm taper();
+        Realm taper(unsigned taper_index);
         Realm rotate(double step);
         Realm rotate_step(double angle);
 

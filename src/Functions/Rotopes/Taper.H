@@ -149,7 +149,8 @@ template <unsigned D> void taper_base<D>::taper(unsigned d) {
         /** If this is the first time we taper an object, we must extrude a new
             point above the middle of the old object.
             For all directions except the newly tapered one, the coordinate value
-            is the mean of the old ones.\n
+            is the mean of the old ones.
+
             We can skip the test for the dimension tapered into, because it's
             all zero by definition anyway.
         */
@@ -199,21 +200,7 @@ template <unsigned D> void taper_base<D>::taper(unsigned d) {
 
     vertex_data<D>::X().push_back(xnew);
 
-    /** Define surfaces now. Every two neighboring points from the old object
-     *  are connected to the new point, thus spanning a surface.
-     */
-    if (!vertex_data<D>::surface().size()) {
-        vertex_data<D>::addSurface(0, 1, 2);
-    } else {
-        for (unsigned i = 0; i < vertex_data<D>::surface().size(); i++) {
-            for (unsigned j = 0; j < vertex_data<D>::surface()[i].size(); j++) {
-                unsigned jnext = (j+1)%vertex_data<D>::surface()[i].size();
-                vertex_data<D>::addSurface(
-                    vertex_data<D>::surface()[i][j], vertex_data<D>::surface()[i][jnext],
-                    vertex_data<D>::X().size()-1);
-            }
-        }
-    }
+    vertex_data<D>::realm() = vertex_data<D>::realm().taper(vertex_data<D>::X().size()-1);
 
     _pre_previous_dim = _previous_dim;
     _previous_dim = d;

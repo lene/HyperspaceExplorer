@@ -121,6 +121,47 @@ Realm Realm::extrude(unsigned delta) {
     }
 }
 
+Realm Realm::taper(unsigned taper_index) {
+    vector<Realm> new_subrealms;
+
+    switch (_dimension) {
+        case 0: {
+            throw std::logic_error(
+                "Realm::taper() can only operate on at least two vertices"
+            );
+        }
+        //  taper a line to a triangle
+        case 1: {
+            _subrealm.push_back(Realm(taper_index));
+            _dimension++;
+            return *this;
+        }
+        //  taper a polygon to a pyramid
+        case 2: {
+            new_subrealms.push_back(*this);
+            for (unsigned i = 0; i < _subrealm.size(); ++i) {
+                Realm new_subrealm;
+                new_subrealm.push_back(_subrealm[i]._index);
+                new_subrealm.push_back(_subrealm[(i+1)%_subrealm.size()]._index);
+                new_subrealm.push_back(taper_index);
+                new_subrealm._dimension = 2;
+                new_subrealms.push_back(new_subrealm);
+            }
+            Realm new_realm(new_subrealms);
+            return new_realm;
+        }
+        //  taper an N-dimensional Realm to a N+1-dimensional one, where N > 2
+        default: {
+            new_subrealms.push_back(*this);
+            for (unsigned i = 0; i < _subrealm.size(); ++i) {
+                new_subrealms.push_back(_subrealm[i].taper(taper_index));
+            }
+            Realm new_realm(new_subrealms);
+            return new_realm;
+        }
+    }
+}
+
 /** Draw the Realm using OpenGL. Draws all subrealms recursively. */
 void Realm::draw(Rotope *f) const {
 #   if 0
