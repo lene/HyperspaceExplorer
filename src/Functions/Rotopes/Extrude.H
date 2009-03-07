@@ -28,16 +28,6 @@ template <unsigned D>
             */
             void extrude(unsigned d);
 
-            /// Old algorithm, kept for reference
-            /** For each point in the vertex array, a copy is made and shifted along the
-            *  \p d axis. Thus, a point becomes a line when extruded along axis 0, a line
-            *  becomes a square when extruded along axis 1, and so on. A circle becomes a
-            *  cylinder when extruded along axis 2, and similarly with all kinds of
-            *  objects. You get the idea.
-            *
-            *  \param d The new dimension into which the object is extruded
-            */
-            void extrude_old(unsigned);
     };
 
 /// A class template to execute extrusion actions on an object
@@ -125,10 +115,6 @@ template <unsigned D, unsigned Dmin>
 
 
 template <unsigned D> void extrude_base<D>::extrude(unsigned d) {
-#   if 0
-    // kept this to have a working version we can commit to svn
-    extrude_old(d);
-#   else
     if (d >= D) {
         throw std::logic_error(
            "extrude_base::extrude() called on a higher dimension"
@@ -147,56 +133,6 @@ template <unsigned D> void extrude_base<D>::extrude(unsigned d) {
     
     vertex_data<D>::realm() = vertex_data<D>::realm().extrude(xsize);
     
-    vertex_data<D>::dimension()++;   //  object is now one dimension higher
-#   endif
-}
-
-template <unsigned D> void extrude_base<D>::extrude_old(unsigned d) {
-    if (d >= D) {
-        throw std::logic_error(
-           "extrude_base::extrude() called on a higher dimension"
-           " than the vector space allows");
-    }
-
-    const vector<Vector<D> > Xold = vertex_data<D>::X();
-    uintvec<2> surface_old = vertex_data<D>::surface();
-
-    /// Extrude vertices into the \p d axis, setting the \p d coordinate to 1
-    for (unsigned i = 0; i < Xold.size(); ++i) {
-        Vector<D> xtmp = Xold[i];
-        xtmp[d] = 1;
-        vertex_data<D>::X()[i][d] = -1;
-        vertex_data<D>::X().push_back(xtmp);
-    }
-
-    if (vertex_data<D>::dimension() == 1) {
-        vertex_data<D>::addSurface(0, 1, 3, 2);
-    } else if (vertex_data<D>::dimension() > 1) {
-        /// Extrude surfaces from each edge of the base surface to its image
-        for (unsigned i = 0; i < surface_old.size(); ++i) {
-            for (unsigned j = 0; j < surface_old[i].size(); j++) {
-                unsigned j_ = (j+1)%surface_old[i].size();
-                vertex_data<D>::addSurface(surface_old[i][j],
-                                           surface_old[i][j_],
-                                           surface_old[i][j_]+Xold.size(),
-                                                   surface_old[i][j]+Xold.size());
-            }
-        }
-
-        /** add all surfaces which were in the old vertex array, but extruded
-            along the \p d axis. This is achieved by copying the old surface
-            array and adding the size of the old vertex array to each of the
-            indices therein.
-        */
-        for (unsigned i = 0; i < surface_old.size(); ++i) {
-            uintvec<1> tmp = surface_old[i];
-            for (unsigned j = 0; j < tmp.size(); ++j) {
-                tmp[j] += Xold.size();
-            }
-            vertex_data<D>::addSurface(tmp[0], tmp[1], tmp[2], tmp[3]);
-        }
-    }
-
     vertex_data<D>::dimension()++;   //  object is now one dimension higher
 }
 
