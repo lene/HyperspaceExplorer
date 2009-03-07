@@ -47,6 +47,8 @@ class Rotope : public Object {
         virtual void SetParameters(const ParameterMap &parms);
 
     private:
+        void Draw(const Realm &);
+
         /// Sequence of extrusion actions needed to generate the Rotope
         std::string _actions;
         /// Actual rotope object to which all functions are delegated

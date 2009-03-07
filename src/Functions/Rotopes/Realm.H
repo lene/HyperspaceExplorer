@@ -51,14 +51,14 @@ class Realm {
 
         void add(unsigned delta);
 
+        const std::vector<Realm> &getSubrealms() const { return _subrealm; }
         void setSubrealms(std::vector<Realm> sr) { _subrealm = sr; }
-        
-        void draw( Rotope *f) const;
 
         void push_back(const Realm &r) { _subrealm.push_back(r); }
-        std::vector<Realm>::iterator begin() {return _subrealm.begin(); }
-        std::vector<Realm>::iterator end() {return _subrealm.end(); }
-    
+        std::vector<Realm>::iterator begin() { return _subrealm.begin(); }
+        std::vector<Realm>::iterator end() { return _subrealm.end(); }
+        operator unsigned() const { return _index; }
+
     private:
         /// Dimension of the realm
         unsigned _dimension;

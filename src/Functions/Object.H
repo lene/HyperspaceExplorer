@@ -72,9 +72,6 @@ class Object: public Function {
         virtual VecMath::Vector<4> &f (double, double, double) {
             throw std::logic_error("Object::f() should never be called");
         }
-        
-        /// \todo decouple class Realm - this is a bad solution and only tolerated because I have no better idea! clean it up bitch!
-        friend class Realm;
 };
 
 

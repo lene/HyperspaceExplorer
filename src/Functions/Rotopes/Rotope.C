@@ -19,8 +19,12 @@
 #include "Torate.H"
 #include "RotopeFactory.H"
 
+using std::vector;
+using std::cerr;
+
 using VecMath::Vector;
 using VecMath::Matrix;
+using VecMath::Rotation;
 
 Rotope::Rotope(): Object("Rotope: Hypercube", 0, 0),
         _actions("EEEE"), _rotope(0) {
@@ -121,10 +125,7 @@ void Rotope::Draw () {
     }
     
     if (_rotope->realm().size()) {
-        for (std::vector<Realm>::const_iterator i = _rotope->realm().begin();
-             i != _rotope->realm().end(); ++i) {
-            i->draw(this);
-        }
+        Draw(_rotope->realm());
     } else {
         unsigned currentPolygonSize = 0;
         for (unsigned i = 0; i < _rotope->surface().size(); i++) {
@@ -145,6 +146,50 @@ void Rotope::Draw () {
     }
 }
 
+void Rotope::Draw(const Realm &realm) {
+    switch (realm.dimension()) {
+        case 0:
+            /** Dimension 0 is a point. Easy to draw ;-) */
+            glBegin(GL_POINTS);
+                setVertex(X[realm], Xscr[realm]);
+            glEnd();
+            break;
+        case 1:
+            /** In one dimension draw a line containing all points the Realm has
+             *  (i.e. 2 points)
+             */
+            glBegin(GL_LINES);
+                for (vector<Realm>::const_iterator i = realm.getSubrealms().begin(); 
+                    i != realm.getSubrealms().end(); ++i) {
+                   setVertex(X[*i], Xscr[*i]);
+                }
+            glEnd();
+            break;
+        case 2:
+            /** In two dimensions, draw a surface. The current implementation
+             *  represents two dimensional surfaces as vector of the form
+             *  \code (0, 1, ..., n) \endcode
+             */
+            glBegin(GL_POLYGON);
+                for (vector<Realm>::const_iterator i = realm.getSubrealms().begin(); 
+                    i != realm.getSubrealms().end(); ++i) {
+                   setVertex(X[*i], Xscr[*i]);
+                }
+            glEnd();
+            break;
+        default:
+            /** OpenGL does not allow to draw anything above the dimension of a
+             *  surface. Recurse to draw the lower order realms, until we find 
+             *  surfaces.
+             */
+            for (vector<Realm>::const_iterator i = realm.getSubrealms().begin(); 
+                 i != realm.getSubrealms().end(); ++i) {
+                Draw(*i);
+            }
+            break;
+    }
+}
+
 void Rotope::SetParameters(const ParameterMap &parms) {
 #   if 1
         for (ParameterMap::const_iterator i = parms.begin();
@@ -153,28 +198,22 @@ void Rotope::SetParameters(const ParameterMap &parms) {
                 _actions = std::string(*i->second);
             }
             if (i->second->getName() == "5D Rotation") {
-                std::cerr << "5D Rotation : "
-                        << VecMath::Rotation<5>(*i->second) << "\n";
+                cerr << "5D Rotation : " << Rotation<5>(*i->second) << "\n";
             }
             if (i->second->getName() == "6D Rotation") {
-                std::cerr << "6D Rotation : "
-                        << VecMath::Rotation<5>(*i->second) << "\n";
+                cerr << "6D Rotation : " << Rotation<5>(*i->second) << "\n";
             }
             if (i->second->getName() == "7D Rotation") {
-                std::cerr << "7D Rotation : "
-                        << VecMath::Rotation<5>(*i->second) << "\n";
+                cerr << "7D Rotation : " << Rotation<5>(*i->second) << "\n";
             }
             if (i->second->getName() == "8D Rotation") {
-                std::cerr << "8D Rotation : "
-                        << VecMath::Rotation<5>(*i->second) << "\n";
+                cerr << "8D Rotation : " << Rotation<5>(*i->second) << "\n";
             }
             if (i->second->getName() == "9D Rotation") {
-                std::cerr << "9D Rotation : "
-                        << VecMath::Rotation<5>(*i->second) << "\n";
+                cerr << "9D Rotation : " << Rotation<5>(*i->second) << "\n";
             }
             if (i->second->getName() == "10D Rotation") {
-                std::cerr << "10D Rotation : "
-                        << VecMath::Rotation<5>(*i->second) << "\n";
+                cerr << "10D Rotation : " << Rotation<5>(*i->second) << "\n";
             }
 
         }
