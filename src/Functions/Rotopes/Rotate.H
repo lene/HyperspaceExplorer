@@ -128,6 +128,24 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
                 " at least 1");
     }
 
+    std::vector<VecMath::Vector<D> > Xold = vertex_data<D>::X();
+    std::vector<Realm> new_realm;
+    for (unsigned i = 1; i <= _numSegments; ++i) {
+        double rot = 2.*i*M_PI/_numSegments;
+        for (typename std::vector<VecMath::Vector<D> >::iterator j = Xold.begin();
+             j != Xold.end(); ++j) {
+                 vertex_data<D>::X().push_back(rotate_vertex(*j, rot, d, d-1));
+        }
+    }
+    
+    for (unsigned i = 0; i < vertex_data<D>::realm().size(); ++i) {
+        for (unsigned j = 0; j < _numSegments; ++j) {
+            new_realm.push_back(vertex_data<D>::realm().rotate_step(i, j*Xold.size(), Xold.size()));
+        }
+    }
+    vertex_data<D>::realm() = new_realm;
+    std::cerr << vertex_data<D>::X() << std::endl;
+/*
     if (vertex_data<D>::surface().empty()) {
         rotate_line(d);
     } else {
@@ -159,7 +177,7 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
 //            vertex_data<D>::print();
         }
     }
-
+*/
     vertex_data<D>::dimension()++;   //  object is now one dimension higher
 
 #   if DEBUG_ROTOPES

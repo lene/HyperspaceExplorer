@@ -47,7 +47,7 @@ class Realm {
         Realm extrude(unsigned delta);
         Realm taper(unsigned taper_index);
         Realm rotate(double step);
-        Realm rotate_step(double angle);
+        Realm rotate_step(unsigned index, unsigned base, unsigned delta);
 
         void add(unsigned delta);
 

@@ -161,3 +161,40 @@ Realm Realm::taper(unsigned taper_index) {
         }
     }
 }
+
+Realm Realm::rotate(double step){
+    switch (_dimension) {
+        case 0: {
+            throw std::logic_error(
+                "Realm::rotate() can only operate on at least two vertices"
+            );
+        }
+        default: {
+            throw NotYetImplementedException("Realm::rotate()");
+        }
+    }
+}
+
+Realm Realm::rotate_step(unsigned index, unsigned base, unsigned delta) {
+    cout << "Realm::rotate_step(" << base << ", " << delta << ")\n";
+    print(); cout << endl;
+    switch (_dimension) {
+        case 0: {
+            throw std::logic_error(
+                "Realm::rotate_step() can only operate on at least two vertices"
+            );
+        }
+        case 1: {
+            vector<Realm> new_subrealms;
+            vector<Realm> temp_subrealms;
+            temp_subrealms.push_back(_subrealm[index]._index+base);
+            temp_subrealms.push_back(_subrealm[index]._index+base+delta);
+            Realm new_realm(temp_subrealms);
+            new_subrealms.push_back(new_realm);
+            return Realm(new_subrealms);
+        }
+        default: {
+            throw NotYetImplementedException("Realm::rotate_step()");
+        }
+    }
+}
