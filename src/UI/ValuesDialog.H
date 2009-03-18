@@ -24,6 +24,8 @@
 #include <QtGui/QSlider>
 #include <QtGui/QVBoxLayout>
 
+#include "UI/ParameterInput.H"
+
 namespace UI {
 
     /// Dialogs for entering values
@@ -186,9 +188,14 @@ namespace UI {
 
                             ParameterLayout[i]->addWidget(ParameterLabel[i]);
 
+#                           ifdef USE_PARAMETER_INPUT
+//                            Parameter[i] = new ParameterInput(ValuesDialog);
+                            Parameter[i] = new ParameterLineEdit(ValuesDialog);
+#                           else
                             Parameter[i] = new QLineEdit(ValuesDialog);
                             Parameter[i]->setObjectName(
                                     QString::fromUtf8("Parameter[i]"));
+#                           endif
 
                             ParameterLayout[i]->addWidget(Parameter[i]);
 
@@ -345,7 +352,11 @@ namespace UI {
                 /// parameter input labels
                 QLabel *ParameterLabel[maxNumParameters];
                 /// parameter input fields
+#               ifdef USE_PARAMETER_INPUT
+                ParameterInput *Parameter[maxNumParameters];
+#               else
                 QLineEdit *Parameter[maxNumParameters];
+#               endif
 
                 QPushButton *buttonApply;                   ///< "Apply" button
 

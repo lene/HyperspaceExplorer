@@ -89,6 +89,8 @@ namespace UI {
             unsigned j = 0;
             for (ParameterMap::const_iterator it = parms.begin();
                 it != parms.end(); ++it, ++j) {
+
+                //  check whether the current parameter is a Rotation - just for kicks
                 try {
                     VecMath::RotationBase dummy = *(it->second->value());
                     SingletonLog::Instance() << __PRETTY_FUNCTION__ << ": "
@@ -97,6 +99,9 @@ namespace UI {
                     SingletonLog::Instance() << __PRETTY_FUNCTION__ << ": "
                             << it->second->getName() << " is NOT a Rotation\n";
                 }
+
+                Parameter[j] = ParameterInputFactory::create(*it->second, this);
+
                 std::string name = it->second->getName();
                 ParameterLabel[j]->setText(name.c_str());
                 std::string description = it->second->getDescription();

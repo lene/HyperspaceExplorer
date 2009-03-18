@@ -33,7 +33,8 @@ Rotope::Rotope(): Object("Rotope: Hypercube", 0, 0),
 
 Rotope::Rotope(const std::string &actions):
         Object(QString("Rotope: ")+actions.c_str(), 0, 0),
-        _actions(actions), _rotope(0) {
+         _rot5D(), _rot6D(), _rot7D(), _rot8D(), _rot9D(), _rot10D(),
+        _numSegments(6), _actions(actions), _rotope(0) {
     Initialize();
 }
 
@@ -51,25 +52,26 @@ void Rotope::Initialize() {
             string label = Globals::Instance().itoa(i)+string("D Rotation");
             switch(i) {
                 case 5:
-                    declareParameter(label, VecMath::Rotation<5>());
+                    declareParameter(label, _rot5D);
                     break;
                 case 6:
-                    declareParameter(label, VecMath::Rotation<6>());
+                    declareParameter(label, _rot6D);
                     break;
                 case 7:
-                    declareParameter(label, VecMath::Rotation<7>());
+                    declareParameter(label, _rot7D);
                     break;
                 case 8:
-                    declareParameter(label, VecMath::Rotation<8>());
+                    declareParameter(label, _rot8D);
                     break;
                 case 9:
-                    declareParameter(label, VecMath::Rotation<9>());
+                    declareParameter(label, _rot9D);
                     break;
                 case 10:
-                    declareParameter(label, VecMath::Rotation<10>());
+                    declareParameter(label, _rot10D);
                     break;
             }
         }
+        declareParameter("Rotation segments", _numSegments);
     } catch (BadRotopeOperation e) {
         declareParameter("Generator", string(DIM, 'E'));
         _rotope = new Extrude<DIM, 0, DIM-1>();
@@ -123,7 +125,7 @@ void Rotope::Draw () {
     if (!_rotope) {
         throw std::logic_error("Rotope::Draw(): _rotope is NULL!");
     }
-    
+
     if (_rotope->realm().size()) {
         Draw(_rotope->realm());
     } else {
@@ -197,23 +199,32 @@ void Rotope::SetParameters(const ParameterMap &parms) {
             if (i->second->getName() == "Generator") {
                 _actions = std::string(*i->second);
             }
+            if (i->second->getName() == "Rotation segments") {
+                _numSegments = unsigned(*i->second);
+            }
             if (i->second->getName() == "5D Rotation") {
-                cerr << "5D Rotation : " << Rotation<5>(*i->second) << "\n";
+                _rot5D =  VecMath::Rotation<5>(*i->second);
+                std::cerr << "5D Rotation : " << _rot5D << "\n";
             }
             if (i->second->getName() == "6D Rotation") {
-                cerr << "6D Rotation : " << Rotation<5>(*i->second) << "\n";
+                _rot6D =  VecMath::Rotation<6>(*i->second);
+                std::cerr << "6D Rotation : " << _rot6D << "\n";
             }
             if (i->second->getName() == "7D Rotation") {
-                cerr << "7D Rotation : " << Rotation<5>(*i->second) << "\n";
+                _rot7D =  VecMath::Rotation<7>(*i->second);
+                std::cerr << "7D Rotation : " << _rot7D << "\n";
             }
             if (i->second->getName() == "8D Rotation") {
-                cerr << "8D Rotation : " << Rotation<5>(*i->second) << "\n";
+                _rot8D =  VecMath::Rotation<8>(*i->second);
+                std::cerr << "8D Rotation : " << _rot8D << "\n";
             }
             if (i->second->getName() == "9D Rotation") {
-                cerr << "9D Rotation : " << Rotation<5>(*i->second) << "\n";
+                _rot9D =  VecMath::Rotation<9>(*i->second);
+                std::cerr << "9D Rotation : " << _rot9D << "\n";
             }
             if (i->second->getName() == "10D Rotation") {
-                cerr << "10D Rotation : " << Rotation<5>(*i->second) << "\n";
+                _rot5D =  VecMath::Rotation<5>(*i->second);
+                std::cerr << "10D Rotation : " << _rot10D << "\n";
             }
 
         }
