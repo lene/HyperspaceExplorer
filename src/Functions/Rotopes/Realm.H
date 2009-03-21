@@ -34,6 +34,7 @@ class Realm {
             if(sr.empty()) _dimension = 0;
             else _dimension = sr[0].dimension()+1;
         }
+        ~Realm() { }
 
         /// Returns the number of subrealms the Realm is made of
         unsigned size() const { return _subrealm.size(); }
@@ -46,7 +47,7 @@ class Realm {
 
         Realm extrude(unsigned delta);
         Realm taper(unsigned taper_index);
-        Realm rotate(double step);
+        Realm rotate(unsigned num_segments, unsigned size);
         Realm rotate_step(unsigned index, unsigned base, unsigned delta);
 
         void add(unsigned delta);
@@ -54,10 +55,12 @@ class Realm {
         const std::vector<Realm> &getSubrealms() const { return _subrealm; }
         void setSubrealms(std::vector<Realm> sr) { _subrealm = sr; }
 
-        void push_back(const Realm &r) { _subrealm.push_back(r); }
+        void push_back(const Realm &r);
+
         std::vector<Realm>::iterator begin() { return _subrealm.begin(); }
         std::vector<Realm>::iterator end() { return _subrealm.end(); }
         operator unsigned() const { return _index; }
+        unsigned &dimension() { return _dimension; }
 
     private:
         /// Dimension of the realm

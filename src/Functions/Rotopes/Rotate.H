@@ -129,55 +129,16 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
     }
 
     std::vector<VecMath::Vector<D> > Xold = vertex_data<D>::X();
-    std::vector<Realm> new_realm;
     for (unsigned i = 1; i <= _numSegments; ++i) {
-        double rot = 2.*i*M_PI/_numSegments;
+        double rot = 1.*i*M_PI/_numSegments;
         for (typename std::vector<VecMath::Vector<D> >::iterator j = Xold.begin();
              j != Xold.end(); ++j) {
                  vertex_data<D>::X().push_back(rotate_vertex(*j, rot, d, d-1));
         }
     }
     
-    for (unsigned i = 0; i < vertex_data<D>::realm().size(); ++i) {
-        for (unsigned j = 0; j < _numSegments; ++j) {
-            new_realm.push_back(vertex_data<D>::realm().rotate_step(i, j*Xold.size(), Xold.size()));
-        }
-    }
-    vertex_data<D>::realm() = new_realm;
-    std::cerr << vertex_data<D>::X() << std::endl;
-/*
-    if (vertex_data<D>::surface().empty()) {
-        rotate_line(d);
-    } else {
-        uintvec<2> surface_old = vertex_data<D>::surface();
-
-        /// Execute the rotation for all surfaces
-        for (typename uintvec<2>::iterator i = surface_old.begin();
-             i != surface_old.end(); ++i) {
-
-#           if DEBUG_ROTOPES >= 2
-                std::cerr << *i << "\n";
-#           endif
-
-            switch (i->size()) {
-                case 0: case 1: case 2:
-                    throw new std::logic_error("size of surface < 3");
-                case 3:
-                    rotate_triangle(d, *i);
-                    break;
-                case 4:
-                    rotate_quad(d, *i);
-                    break;
-                default:
-                    rotate_polygon(d, *i);
-            }
-
-            /// Delete current surface, it has been replaced by a rotation of itself
-            vertex_data<D>::removeSurface(*i);
-//            vertex_data<D>::print();
-        }
-    }
-*/
+    vertex_data<D>::realm().rotate(_numSegments, Xold.size());
+    std::cerr << "rotate_base<" << D << ">::rotate(" << d << ")" << vertex_data<D>::X() << std::endl;
     vertex_data<D>::dimension()++;   //  object is now one dimension higher
 
 #   if DEBUG_ROTOPES

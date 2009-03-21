@@ -100,7 +100,9 @@ namespace UI {
                             << it->second->getName() << " is NOT a Rotation\n";
                 }
 
+#               ifdef USE_PARAMETER_INPUT
                 Parameter[j] = ParameterInputFactory::create(*it->second, this);
+#               endif
 
                 std::string name = it->second->getName();
                 ParameterLabel[j]->setText(name.c_str());
