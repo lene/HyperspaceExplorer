@@ -59,6 +59,8 @@ class Realm {
 
         std::vector<Realm>::iterator begin() { return _subrealm.begin(); }
         std::vector<Realm>::iterator end() { return _subrealm.end(); }
+        std::vector<Realm>::reverse_iterator rbegin() { return _subrealm.rbegin(); }
+        std::vector<Realm>::reverse_iterator rend() { return _subrealm.rend(); }
         operator unsigned() const { return _index; }
         unsigned &dimension() { return _dimension; }
 

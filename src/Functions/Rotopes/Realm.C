@@ -278,18 +278,18 @@ Realm Realm::rotate(unsigned num_segments, unsigned size){
                 Realm new_surface;
                 for (vector<Realm>::iterator j = edges[i].begin(); 
                      j != edges[i].end(); ++j) {
-//                    new_surface.push_back(*j);
+                    new_surface.push_back(*j);
                 }
-                for (vector<Realm>::iterator j = edges[(i+1)%edges.size()].end(); 
-                     j != edges[(i+1)%edges.size()].begin(); --j) {
-//                    new_surface.push_back(*j);
+                for (vector<Realm>::reverse_iterator j = edges[(i+1)%edges.size()].rbegin(); 
+                     j != edges[(i+1)%edges.size()].rend(); ++j) {
+                    new_surface.push_back(*j);
                 }
                 surfaces.push_back(new_surface);
             }
             Realm new_realm(surfaces);
             cout << "new realm: "; new_realm.print(); cout << endl;
             
-            return *this;
+            return new_realm;
         }
         default: {
             vector<Realm> temp_subrealms;
