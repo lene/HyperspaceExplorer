@@ -189,15 +189,17 @@ namespace UI {
                             ParameterLayout[i]->addWidget(ParameterLabel[i]);
 
 #                           ifdef USE_PARAMETER_INPUT
-//                            Parameter[i] = new ParameterInput(ValuesDialog);
                             Parameter[i] = new ParameterLineEdit(ValuesDialog);
+//                            Parameter[i] = ParameterInputFactory::create(
+//                                    FunctionParameter(""), (QWidget *)this);
 #                           else
                             Parameter[i] = new QLineEdit(ValuesDialog);
                             Parameter[i]->setObjectName(
                                     QString::fromUtf8("Parameter[i]"));
 #                           endif
 
-                            ParameterLayout[i]->addWidget(Parameter[i]);
+                            ParameterLayout[i]->addWidget(
+                                    dynamic_cast<QWidget *>(Parameter[i]));
 
                             ParameterLineLayout[j]->addLayout(ParameterLayout[i]);
                         }
@@ -229,11 +231,15 @@ namespace UI {
                         if (i < maxNumDimensions-1)
                             QWidget::setTabOrder(Max[i], Slider[i+1]);
                     }
-                    QWidget::setTabOrder(Max[maxNumDimensions-1], Parameter[0]);
+                    QWidget::setTabOrder(Max[maxNumDimensions-1],
+                                         dynamic_cast<QWidget *>(Parameter[0]));
                     for (unsigned i = 0; i < maxNumParameters-1; ++i) {
-                        QWidget::setTabOrder(Parameter[i], Parameter[i+1]);
+                        QWidget::setTabOrder(dynamic_cast<QWidget *>(Parameter[i]),
+                                             dynamic_cast<QWidget *>(Parameter[i+1]));
                     }
-                    QWidget::setTabOrder(Parameter[maxNumParameters-1], buttonApply);
+                    QWidget::setTabOrder(
+                            dynamic_cast<QWidget *>(Parameter[maxNumParameters-1]),
+                            buttonApply);
 
                     retranslateUi(ValuesDialog);
 
@@ -303,7 +309,8 @@ namespace UI {
                         ParameterLabel[i]->setText(QApplication::translate(
                             "ValuesDialog", "Parameter", 0,
                              QApplication::UnicodeUTF8));
-                        Parameter[i]->setText(QApplication::translate(
+                        //  set 1 as default value (casted to QString)
+                        Parameter[i]->setValue(QApplication::translate(
                             "ValuesDialog", "1", 0, QApplication::UnicodeUTF8));
                     }
                     buttonApply->setToolTip(QApplication::translate("ValuesDialog",

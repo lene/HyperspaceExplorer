@@ -15,36 +15,45 @@ namespace UI {
         /**
                 @author Helge Preuss <scout@hyperspace-travel.de>
         */
-        class ParameterInput : public QWidget {
+        class ParameterInput {
             public:
-
-                ParameterInput(QWidget *parent = 0, Qt::WindowFlags f = 0);
-
-                ~ParameterInput();
-
-                virtual QString text() const = 0;
-                virtual void setText(const QString &) = 0;
+                virtual QString value() const = 0;
+                virtual void setValue(const QString &) = 0;
         };
 
         class ParameterLineEdit: public ParameterInput, public QLineEdit {
             public:
 
-                ParameterLineEdit(QWidget *parent = 0, Qt::WindowFlags f = 0):
-                        ParameterInput(parent, f) { }
+                ParameterLineEdit(QWidget *parent = 0): QLineEdit(parent) { }
 
-                virtual QString text() const { return QLineEdit::text(); }
-                virtual void setText(const QString &s) { QLineEdit::setText(s); }
+                virtual QString value() const { return QLineEdit::text(); }
+                virtual void setValue(const QString &s) { QLineEdit::setText(s); }
         };
 
         class ParameterSpinBox: public ParameterInput, public QSpinBox {
             public:
 
-                ParameterSpinBox(QWidget *parent = 0, Qt::WindowFlags f = 0):
-                    ParameterInput(parent, f) { }
+                ParameterSpinBox(QWidget *parent = 0): QSpinBox(parent) { }
 
-                virtual QString text() const { return QString::number(QSpinBox::value()); }
-                virtual void setText(const QString &s) {
-                    QSpinBox::setValue(s.toInt()); }
+                virtual QString value() const {
+                    return QString::number(QSpinBox::value());
+                }
+                virtual void setValue(const QString &s) {
+                    QSpinBox::setValue(s.toInt());
+                }
+        };
+
+        class ParameterDoubleSpinBox: public ParameterInput, public QDoubleSpinBox {
+            public:
+
+                ParameterDoubleSpinBox(QWidget *parent = 0): QDoubleSpinBox(parent) { }
+
+                virtual QString value() const {
+                    return QString::number(QDoubleSpinBox::value());
+                }
+                virtual void setValue(const QString &s) {
+                    QDoubleSpinBox::setValue(s.toDouble());
+                }
         };
 
         class ParameterInputFactory {

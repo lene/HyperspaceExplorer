@@ -83,7 +83,7 @@ namespace UI {
 
             for (unsigned i = 0; i < maxNumParameters; i++) {
                 ParameterLabel[i]->hide();
-                Parameter[i]->hide();
+                dynamic_cast<QWidget *>(Parameter[i])->hide();
             }
 
             unsigned j = 0;
@@ -102,28 +102,33 @@ namespace UI {
 
 #               ifdef USE_PARAMETER_INPUT
                 Parameter[j] = ParameterInputFactory::create(*it->second, this);
+                //  Store the pointer to QWidget to avoid calling dynamic_cast<> over and over
+                QWidget *ParameterInputAsWidget = dynamic_cast<QWidget *>(Parameter[j]);
+#               else
+//                Parameter[j] = ParameterInputFactory::create(*it->second, this);
 #               endif
+                ParameterLayout[j]->addWidget(ParameterInputAsWidget);
 
                 std::string name = it->second->getName();
                 ParameterLabel[j]->setText(name.c_str());
                 std::string description = it->second->getDescription();
                 if (!description.empty()) {
                     ParameterLabel[j]->setToolTip(description.c_str());
-                    Parameter[j]->setToolTip(description.c_str());
+                    ParameterInputAsWidget->setToolTip(description.c_str());
                 } else {
                     ParameterLabel[j]->setToolTip("");
-                    Parameter[j]->setToolTip("");
+                    ParameterInputAsWidget->setToolTip("");
                 }
                 std::string value = it->second->value()->toString();
                 if (!value.empty()) {
-                    Parameter[j]->setText(value.c_str());
+                    Parameter[j]->setValue(value.c_str());
                 } else {
                     std::string defaultValue = it->second->defaultValue()->toString();
                     if (!defaultValue.empty()) {
-                        Parameter[j]->setText(defaultValue.c_str());
+                        Parameter[j]->setValue(defaultValue.c_str());
                     }
                 }
-                Parameter[j]->show();
+                dynamic_cast<QWidget *>(Parameter[j])->show();
                 ParameterLabel[j]->show();
             }
         }
@@ -134,7 +139,7 @@ namespace UI {
                 std::string parameterName = ParameterLabel[i]->text().toStdString();
                 ParameterMap::iterator it = parameters.find(parameterName);
                 if (it != parameters.end()) {
-                    it->second->setValue(Parameter[i]->text().toStdString());
+                    it->second->setValue(Parameter[i]->value().toStdString());
                 }
             }
             emit ApplyChanges(parameters);
@@ -145,7 +150,7 @@ namespace UI {
             std::ostringstream o;
             o << "ValuesDialogImpl::print():\n";
             for (unsigned i = 0; i < maxNumParameters; ++i)
-                o << "Parameter[" << i << "]: " << Parameter[i]->text ().toStdString() << "\t";
+                o << "Parameter[" << i << "]: " << Parameter[i]->value().toStdString() << "\t";
             o << std::endl;
             for (unsigned i = 0; i < maxNumDimensions; ++i)
                 o << (char)('T'+i) << "min: " << Min[i]->text ().toStdString() << "\t"

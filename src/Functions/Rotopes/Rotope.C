@@ -161,7 +161,7 @@ void Rotope::Draw(const Realm &realm) {
              *  (i.e. 2 points)
              */
             glBegin(GL_LINES);
-                for (vector<Realm>::const_iterator i = realm.getSubrealms().begin(); 
+                for (vector<Realm>::const_iterator i = realm.getSubrealms().begin();
                     i != realm.getSubrealms().end(); ++i) {
                    setVertex(X[*i], Xscr[*i]);
                 }
@@ -173,7 +173,7 @@ void Rotope::Draw(const Realm &realm) {
              *  \code (0, 1, ..., n) \endcode
              */
             glBegin(GL_POLYGON);
-                for (vector<Realm>::const_iterator i = realm.getSubrealms().begin(); 
+                for (vector<Realm>::const_iterator i = realm.getSubrealms().begin();
                     i != realm.getSubrealms().end(); ++i) {
                    setVertex(X[*i], Xscr[*i]);
                 }
@@ -181,10 +181,10 @@ void Rotope::Draw(const Realm &realm) {
             break;
         default:
             /** OpenGL does not allow to draw anything above the dimension of a
-             *  surface. Recurse to draw the lower order realms, until we find 
+             *  surface. Recurse to draw the lower order realms, until we find
              *  surfaces.
              */
-            for (vector<Realm>::const_iterator i = realm.getSubrealms().begin(); 
+            for (vector<Realm>::const_iterator i = realm.getSubrealms().begin();
                  i != realm.getSubrealms().end(); ++i) {
                 Draw(*i);
             }

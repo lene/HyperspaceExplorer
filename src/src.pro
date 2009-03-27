@@ -110,8 +110,12 @@ SOURCES += VecMath/Rotation.C
 INCLUDEPATH += .
 DEPENDPATH += .
 HEADERS += Globals.H Help.H Log.H Color.H ColorManager.H NotYetImplementedException.H \
-           Light.H
-SOURCES += Globals.C Help.C Main.C ColorManager.C Light.C
+           Light.H \
+ RotationControl.H \
+ RotationSlider.H
+SOURCES += Globals.C Help.C Main.C ColorManager.C Light.C \
+ RotationControl.C \
+ RotationSlider.C
 
 ###
 ################################################################################

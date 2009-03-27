@@ -19,22 +19,23 @@ namespace UI {
 
     namespace Dialogs {
 
-        ParameterInput::ParameterInput(QWidget * parent, Qt::WindowFlags f):
-                QWidget(parent, f) { }
-
-        ParameterInput::~ParameterInput() { }
-
         ParameterInput *ParameterInputFactory::create(const FunctionParameter &parameter,
                                                       QWidget *parent) {
             try {
                 double temp = *(parameter.value());
+                ParameterDoubleSpinBox *input = new ParameterDoubleSpinBox(parent);
+                QString s;
+                s.setNum(temp);
+                input->setValue(s);
+                return input;
             } catch (FunctionParameterValueBase::WrongParameterTypeException e) { }
             try {
                 unsigned temp = *(parameter.value());
                 ParameterSpinBox *input = new ParameterSpinBox(parent);
+                input->setMinimum(0);
                 QString s;
                 s.setNum(temp);
-                input->setText(s);
+                input->setValue(s);
                 return input;
             } catch (FunctionParameterValueBase::WrongParameterTypeException e) { }
             try {
@@ -42,13 +43,13 @@ namespace UI {
                 ParameterSpinBox *input = new ParameterSpinBox(parent);
                 QString s;
                 s.setNum(temp);
-                input->setText(s);
+                input->setValue(s);
                 return input;
             } catch (FunctionParameterValueBase::WrongParameterTypeException e) { }
             try {
                 std::string temp = *(parameter.value());
                 ParameterLineEdit *input = new ParameterLineEdit(parent);
-                input->setText(temp.c_str());
+                input->setValue(temp.c_str());
                 return input;
             } catch (FunctionParameterValueBase::WrongParameterTypeException e) { }
             try {
