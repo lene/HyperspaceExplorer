@@ -68,12 +68,14 @@ HEADERS += UI/4DView.H UI/ComplexDialogImpl.H UI/FunctionDialogImpl.H \
            UI/Menu4D.H UI/PluginCreator.H \
            UI/AnimationDialogImpl.H UI/SlotHelper.H UI/CustomFunctionSlot.impl.H \
            UI/TemplatedFunctionFactory.impl.H  UI/ValuesDialog.H \
-           UI/MouseHandler.H UI/View.H UI/ViewImpl.H UI/ParameterInput.H
+           UI/MouseHandler.H UI/View.H UI/ViewImpl.H UI/ParameterInput.H \
+           UI/RotationControl.H UI/RotationSlider.H
 SOURCES += UI/4DView.C UI/Menu4D.C UI/ComplexDialogImpl.C \
            UI/FunctionDialogImpl.C UI/PolarDialogImpl.C UI/SurfaceDialogImpl.C \
            UI/ValuesDialogImpl.C UI/PluginCreator.C \
            UI/AnimationDialogImpl.C UI/SlotHelper.C \
-           UI/MouseHandler.C UI/ViewImpl.C UI/ParameterInput.C
+           UI/MouseHandler.C UI/ViewImpl.C UI/ParameterInput.C \
+           UI/RotationControl.C UI/RotationSlider.C
 FORMS += UI/ComplexDialog.ui UI/FunctionDialog.ui \
          UI/PolarDialog.ui UI/SurfaceDialog.ui UI/AnimationDialog.ui
 RESOURCES = UI/AnimationDialog.qrc
@@ -110,12 +112,8 @@ SOURCES += VecMath/Rotation.C
 INCLUDEPATH += .
 DEPENDPATH += .
 HEADERS += Globals.H Help.H Log.H Color.H ColorManager.H NotYetImplementedException.H \
-           Light.H \
- RotationControl.H \
- RotationSlider.H
-SOURCES += Globals.C Help.C Main.C ColorManager.C Light.C \
- RotationControl.C \
- RotationSlider.C
+           Light.H
+SOURCES += Globals.C Help.C Main.C ColorManager.C Light.C
 
 ###
 ################################################################################
