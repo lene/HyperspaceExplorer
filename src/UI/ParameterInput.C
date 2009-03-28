@@ -55,6 +55,8 @@ namespace UI {
             try {
                 /// return a ParameterInput which controls a Rotation<5>
                 VecMath::Rotation<5> temp = *(parameter.value());
+                ParameterRotationControl *input =
+                        new ParameterRotationControl(&temp, parent);
             } catch (FunctionParameterValueBase::WrongParameterTypeException e) { }
             try {
                 /// return a ParameterInput which controls a Rotation<5>

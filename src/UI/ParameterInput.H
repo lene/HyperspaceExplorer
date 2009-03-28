@@ -6,6 +6,8 @@
 #include <QtGui/QSpinBox>
 
 #include "FunctionParameter.H"
+#include "RotationControl.H"
+#include "Rotation.H"
 
 namespace UI {
 
@@ -53,6 +55,26 @@ namespace UI {
                 }
                 virtual void setValue(const QString &s) {
                     QDoubleSpinBox::setValue(s.toDouble());
+                }
+        };
+
+        class ParameterRotationControl: public ParameterInput, public RotationControl {
+            public:
+
+                ParameterRotationControl(VecMath::RotationBase *rot,
+                                         QWidget *parent = 0):
+                    RotationControl(rot, parent) { }
+
+                virtual QString value() const {
+                    throw NotYetImplementedException(
+                            "ParameterRotationControl::value()");
+                    return QString();
+//                    return QString::number(RotationControl::value());
+                }
+                virtual void setValue(const QString &) {
+                    throw NotYetImplementedException(
+                            "ParameterRotationControl::setValue()");
+//                    RotationControl::setValue(s.toDouble());
                 }
         };
 

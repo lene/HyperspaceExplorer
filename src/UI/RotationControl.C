@@ -11,10 +11,13 @@
 ///
 #include "RotationControl.H"
 
+#include <iostream>
+
 namespace UI {
 
-    RotationControl::RotationControl(VecMath::RotationBase r, QWidget *parent):
+    RotationControl::RotationControl(VecMath::RotationBase *r, QWidget *parent):
             QWidget(parent) {
+        std::cout << "RotationControl::RotationControl(" << *r << ")\n";
     }
 
 }

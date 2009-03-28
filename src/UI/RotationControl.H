@@ -17,7 +17,7 @@ class RotationControl : public QWidget
 {
 Q_OBJECT
 public:
-    RotationControl(VecMath::RotationBase r, QWidget *parent = 0);
+    RotationControl(VecMath::RotationBase *r, QWidget *parent = 0);
 
     std::vector<RotationSlider *> _sliders;
 };

@@ -100,13 +100,10 @@ namespace UI {
                             << it->second->getName() << " is NOT a Rotation\n";
                 }
 
-#               ifdef USE_PARAMETER_INPUT
                 Parameter[j] = ParameterInputFactory::create(*it->second, this);
                 //  Store the pointer to QWidget to avoid calling dynamic_cast<> over and over
                 QWidget *ParameterInputAsWidget = dynamic_cast<QWidget *>(Parameter[j]);
-#               else
-//                Parameter[j] = ParameterInputFactory::create(*it->second, this);
-#               endif
+
                 ParameterLayout[j]->addWidget(ParameterInputAsWidget);
 
                 std::string name = it->second->getName();
