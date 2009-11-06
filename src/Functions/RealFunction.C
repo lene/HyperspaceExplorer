@@ -20,6 +20,8 @@
 #include "Matrix.h"
 #include "RealFunction.h"
 
+#include "Transform.h"
+
 using std::cerr;
 using std::endl;
 
@@ -37,7 +39,7 @@ RealFunction::RealFunction(const QString &_name):
         RealBase(_name, _min, _max, _d, _min, _max, _d, _min, _max, _d,
                  ParameterMap()) { }
 
-/** RealFunction c'tor given a definition set in R³ (as parameter space)
+/** RealFunction c'tor given a definition set in Rï¿½ (as parameter space)
  *  \param _name a name for the function
  *  \param _tmin minimal value in t
  *  \param _tmax maximal value in t
@@ -175,11 +177,8 @@ void RealFunction::ReInit(double _tmin, double _tmax, double _dt,
 void RealFunction::Transform (const VecMath::Rotation<4> &R,
                               const VecMath::Vector<4> &T) {
     Matrix<4> Rot(R);
+    transform< vec4vec3D, 4 >::xform(Rot, T, X, Xtrans);
 
-    for (unsigned t = 0; t <= getTsteps()+1; t++)
-        for (unsigned u = 0; u <= getUsteps()+1; u++)
-            for (unsigned v = 0; v <= getVsteps()+1; v++)
-                Xtrans[t][u][v] = (Rot*X[t][u][v])+T;
 }
 
 /// Projects a RealFunction into three-space
@@ -312,7 +311,7 @@ void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v) {
 ////////////////////////////////////////////////////////////////////////////////
 
 
-/// Hypersphere c'tor given a definition set in R³ (as parameter space) and a
+/// Hypersphere c'tor given a definition set in Rï¿½ (as parameter space) and a
 /// radius
 /** \param _tmin minimal value in t
  *  \param _tmax maximal value in t
@@ -385,7 +384,7 @@ Vector<4> &Hypersphere::normal (double tt, double uu, double vv) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/** Torus1 c'tor given a definition set in R³ (as parameter space) and three
+/** Torus1 c'tor given a definition set in Rï¿½ (as parameter space) and three
  *  radii: major, minor and... what'sitcalled... subminor
  *  \param _tmin	minimal value in t
  *  \param _tmax	maximal value in t
@@ -430,7 +429,7 @@ Vector<4> &Torus1::f (double tt, double uu, double vv) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/** Torus2 c'tor given a definition set in R³ (as parameter space) and two
+/** Torus2 c'tor given a definition set in Rï¿½ (as parameter space) and two
  *  radii - a major and a minor (defining a sphere)
  *  \param _tmin	minimal value in t
  *  \param _tmax	maximal value in t
@@ -476,7 +475,7 @@ Vector<4> &Torus2::f (double tt, double uu, double vv) {
 ////////////////////////////////////////////////////////////////////////////////
 
 
-/** Fr3r (example R³->R function) c'tor given a definition set in R³
+/** Fr3r (example Rï¿½->R function) c'tor given a definition set in Rï¿½
  *  \param _tmin	minimal value in t
  *  \param _tmax	maximal value in t
  *  \param _dt		stepsize in t
@@ -490,7 +489,7 @@ Vector<4> &Torus2::f (double tt, double uu, double vv) {
 Fr3r::Fr3r (double _tmin, double _tmax, double _dt,
             double _umin, double _umax, double _du,
             double _vmin, double _vmax, double _dv):
-    RealFunction ("1/(r²+1)",
+    RealFunction ("1/(rï¿½+1)",
                   _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
   Initialize ();
 }
@@ -517,7 +516,7 @@ Vector<4> &Fr3r::f (double tt, double uu, double vv) {
 ////////////////////////////////////////////////////////////////////////////////
 
 
-/** GravitationPotential c'tor given a definition set in R³ (as parameter space),
+/** GravitationPotential c'tor given a definition set in Rï¿½ (as parameter space),
  *  a mass and a radius of a spherical mass
  *  \param xmin minimal value in t
  *  \param xmax maximal value in t
@@ -567,7 +566,7 @@ Vector<4> &GravitationPotential::f (double tt, double uu, double vv) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/** Fr3rSin c'tor given a definition set in R³ (as parameter space)
+/** Fr3rSin c'tor given a definition set in Rï¿½ (as parameter space)
  *  \param _tmin	minimal value in t
  *  \param _tmax	maximal value in t
  *  \param _dt		stepsize in t
@@ -581,7 +580,7 @@ Vector<4> &GravitationPotential::f (double tt, double uu, double vv) {
 Fr3rSin::Fr3rSin (double _tmin, double _tmax, double _dt,
 		  double _umin, double _umax, double _du,
 		  double _vmin, double _vmax, double _dv):
-        RealFunction ("sin (r²)",
+        RealFunction ("sin (rï¿½)",
                       _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
   Initialize ();
 }
@@ -590,7 +589,7 @@ Fr3rSin::Fr3rSin (double _tmin, double _tmax, double _dt,
  *  \param tt		t value
  *  \param uu		u value
  *  \param vv		v value
- *  \return		sin (pi*(x²+y²+z²))
+ *  \return		sin (pi*(xï¿½+yï¿½+zï¿½))
  */
 Vector<4> &Fr3rSin::f (double tt, double uu, double vv) {
   F[0] = tt;
@@ -605,7 +604,7 @@ Vector<4> &Fr3rSin::f (double tt, double uu, double vv) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/** Fr3rExp c'tor given a definition set in R³ (as parameter space)
+/** Fr3rExp c'tor given a definition set in Rï¿½ (as parameter space)
  *  \param _tmin	minimal value in t
  *  \param _tmax	maximal value in t
  *  \param _dt		stepsize in t
@@ -619,7 +618,7 @@ Vector<4> &Fr3rSin::f (double tt, double uu, double vv) {
 Fr3rExp::Fr3rExp (double _tmin, double _tmax, double _dt,
 		  double _umin, double _umax, double _du,
 		  double _vmin, double _vmax, double _dv):
-        RealFunction ("exp (r²)",
+        RealFunction ("exp (rï¿½)",
                       _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
   Initialize ();
 }
@@ -628,7 +627,7 @@ Fr3rExp::Fr3rExp (double _tmin, double _tmax, double _dt,
  *  \param tt		t value
  *  \param uu		u value
  *  \param vv		v value
- *  \return		exp (x²+y²+z²)
+ *  \return		exp (xï¿½+yï¿½+zï¿½)
  */
 Vector<4> &Fr3rExp::f (double tt, double uu, double vv) {
   F[0] = tt;
@@ -686,7 +685,7 @@ Vector<4> &Polar::f (double tt, double uu, double vv) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/** PolarSin c'tor given a definition set in R³ (as parameter space) and a
+/** PolarSin c'tor given a definition set in Rï¿½ (as parameter space) and a
  *  phase
  *  \param _tmin	minimal value in t
  *  \param _tmax	maximal value in t
@@ -733,7 +732,7 @@ Vector<4> &PolarSin::f (double tt, double uu, double vv) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/** PolarSin2 c'tor given a definition set in R³ (as parameter space)
+/** PolarSin2 c'tor given a definition set in Rï¿½ (as parameter space)
  *  \param _tmin	minimal value in t
  *  \param _tmax	maximal value in t
  *  \param _dt		stepsize in t
@@ -776,7 +775,7 @@ Vector<4> &PolarSin2::f (double tt, double uu, double vv) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/** PolarR c'tor given a definition set in R³ (as parameter space) and a
+/** PolarR c'tor given a definition set in Rï¿½ (as parameter space) and a
  *  phase
  *  \param _tmin	minimal value in t
  *  \param _tmax	maximal value in t
@@ -793,7 +792,7 @@ PolarR::PolarR (double _tmin, double _tmax, double _dt,
 		double _umin, double _umax, double _du,
 		double _vmin, double _vmax, double _dv,
 		double _phase):
-        RealFunction ("Polar: r = sqrt (t²+u²+v²)", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
+        RealFunction ("Polar: r = sqrt (tï¿½+uï¿½+vï¿½)", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv),
   Phase (_phase) {
       declareParameter("Phase", 2.0);
   Initialize ();
@@ -803,7 +802,7 @@ PolarR::PolarR (double _tmin, double _tmax, double _dt,
  *  \param tt		t value
  *  \param uu		u value
  *  \param vv		v value
- *  \return		r = sqrt (phi²+theta²+psi²)
+ *  \return		r = sqrt (phiï¿½+thetaï¿½+psiï¿½)
  */
 Vector<4> &PolarR::f (double tt, double uu, double vv) {
   double sinphi = sin (pi*tt), cosphi = cos (pi*tt),

@@ -29,7 +29,8 @@ DEPENDPATH += ./Functions
 HEADERS += Functions/ComplexFunction.h Functions/CustomFunction.h \
            Functions/Function.h Functions/Object.h Functions/Surface.h \
            Functions/RealFunction.h  Functions/FunctionParameter.h \
-           Functions/ParameterMap.h Functions/FunctionFactory.h
+           Functions/ParameterMap.h Functions/FunctionFactory.h \
+           Functions/Transform.h
 #          Functions/SteinerFunction.h
 SOURCES += Functions/ComplexFunction.C Functions/CustomFunction.C \
            Functions/Function.C Functions/Surface.C Functions/Object.C \

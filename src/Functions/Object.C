@@ -14,6 +14,8 @@
 #include "Log.h"
 
 #include "Matrix.h"
+#include "Transform.h"
+
 #include "Object.h"
 
 using std::cerr;
@@ -75,8 +77,10 @@ void Object::setX(const vec4vec1D &newX) {
 void Object::Transform (const VecMath::Rotation<4> &R,
                         const VecMath::Vector<4> &T) {
     Matrix<4> Rot(R);
-    for (unsigned i = 0; i < X.size(); i++)
+    transform<vec4vec1D, 4>::xform(Rot, T, X, Xtrans);
+/*    for (unsigned i = 0; i < X.size(); i++)
         Xtrans[i] = (Rot*X[i])+T;
+*/
 }
 
 /// Projects an Object into three-space

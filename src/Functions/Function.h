@@ -79,6 +79,7 @@
  *  \author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Function {
     public:
+              
         /// one-dimensional array of floats, implemented as a std::vector
         typedef std::vector<float> floatvec1D;
         /// two-dimensional array of floats, implemented as a nested std::vector

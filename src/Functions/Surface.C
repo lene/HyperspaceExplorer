@@ -11,6 +11,8 @@
 #include "ColorManager.h"
 
 #include "Matrix.h"
+#include "Transform.h"
+
 #include "Surface.h"
 
 using VecMath::Vector;
@@ -181,9 +183,7 @@ Function::vec4vec1D Surface::df (double uu, double vv) {
 void Surface::Transform (const VecMath::Rotation<4> &R, const VecMath::Vector<4> &T) {
     Matrix<4> Rot(R);
 
-    for (unsigned t = 0; t <= getTsteps()+1; t++)
-        for (unsigned u = 0; u <= getUsteps()+1; u++)
-            Xtrans[t][u] = (Rot*X[t][u])+T;
+    transform< vec4vec2D, 4 >::xform(Rot, T, X, Xtrans);
 }
 
 /** projects a Surface into three-space
