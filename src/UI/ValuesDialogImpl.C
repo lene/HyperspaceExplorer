@@ -17,9 +17,9 @@
 #include <iostream>
 #include <iomanip>
 
-#include "ValuesDialogImpl.H"
-#include "Function.H"
-#include "Log.H"
+#include "ValuesDialogImpl.h"
+#include "Function.h"
+#include "Log.h"
 
 namespace UI {
     namespace Dialogs {

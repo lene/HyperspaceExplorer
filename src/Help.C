@@ -14,8 +14,8 @@
 #include <QDir>
 #include <QTextBrowser>
 
-#include "Help.H"
-#include "Globals.H"
+#include "Help.h"
+#include "Globals.h"
 
 using std::cerr;
 using std::endl;

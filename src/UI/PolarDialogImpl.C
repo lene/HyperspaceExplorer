@@ -17,9 +17,9 @@
 #include <fstream>
 #include <dlfcn.h>
 
-#include "PolarDialogImpl.H"
-#include "Vector.H"
-#include "Globals.H"
+#include "PolarDialogImpl.h"
+#include "Vector.h"
+#include "Globals.h"
 
 using std::ofstream;
 

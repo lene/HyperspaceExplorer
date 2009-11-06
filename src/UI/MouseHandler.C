@@ -12,8 +12,8 @@
 
 #include <QMouseEvent>
 
-#include "MouseHandler.H"
-#include "Menu4D.H"
+#include "MouseHandler.h"
+#include "Menu4D.h"
 
 using VecMath::Vector;
 using VecMath::Rotation;

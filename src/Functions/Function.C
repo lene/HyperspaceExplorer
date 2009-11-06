@@ -6,9 +6,9 @@
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
 
-#include "Function.H"
-#include "Log.H"
-#include "ColorManager.H"
+#include "Function.h"
+#include "Log.h"
+#include "ColorManager.h"
 
 using std::cerr;
 using std::endl;

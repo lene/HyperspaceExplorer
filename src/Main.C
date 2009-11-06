@@ -90,10 +90,10 @@
 #include <QString>
 #include <QDir>
 
-#include "4DView.H"
-#include "Menu4D.H"
-#include "Globals.H"
-#include "Parser.H"
+#include "4DView.h"
+#include "Menu4D.h"
+#include "Globals.h"
+#include "Parser.h"
 
 using std::cout;
 using std::cerr;

@@ -7,9 +7,9 @@
 //	license:      GPL (see License.txt)
 
 
-#include "Globals.H"
+#include "Globals.h"
 
-#include "ComplexFunction.H"
+#include "ComplexFunction.h"
 
 using std::complex;
 
@@ -77,7 +77,7 @@ Vector<4> &ComplexFunction::f (double uu, double vv) {
  *  @param _dv		stepsize in Im (z)                                        */
 z2::z2 (double _umin, double _umax, double _du,
         double _vmin, double _vmax, double _dv):
-        ComplexFunction ("z²", _umin, _umax, _du, _vmin, _vmax, _dv) {
+        ComplexFunction ("zï¿½", _umin, _umax, _du, _vmin, _vmax, _dv) {
     Initialize ();
 }
 
@@ -100,7 +100,7 @@ complex<double> z2::g (complex<double> z) {
  *  @param _dv		stepsize in Im (z)                                        */
 z3::z3 (double _umin, double _umax, double _du,
         double _vmin, double _vmax, double _dv):
-        ComplexFunction ("z³", _umin, _umax, _du, _vmin, _vmax, _dv) {
+        ComplexFunction ("zï¿½", _umin, _umax, _du, _vmin, _vmax, _dv) {
     Initialize ();
 }
 
@@ -180,7 +180,7 @@ complex<double> ez::g (complex<double> z) {
 emz2::emz2 (double _umin, double _umax, double _du,
             double _vmin, double _vmax, double _dv,
             double alpha):
-        ComplexFunction ("e^-a*z²", _umin, _umax, _du, _vmin, _vmax, _dv),
+        ComplexFunction ("e^-a*zï¿½", _umin, _umax, _du, _vmin, _vmax, _dv),
   _alpha (alpha) {
   Initialize ();
   declareParameter("a", 1.0);
@@ -234,13 +234,13 @@ complex<double> zm1::g (complex<double> z) {
  */
 zm2::zm2 (double _umin, double _umax, double _du,
 	  double _vmin, double _vmax, double _dv):
-        ComplexFunction ("1/z²", _umin, _umax, _du, _vmin, _vmax, _dv) {
+        ComplexFunction ("1/zï¿½", _umin, _umax, _du, _vmin, _vmax, _dv) {
   Initialize ();
 }
 
 /** z^-2 defining function
  *  @param z		operand
- *  @return		1/z²
+ *  @return		1/zï¿½
  */
 complex<double> zm2::g (complex<double> z) {
   return 1./(z*z);

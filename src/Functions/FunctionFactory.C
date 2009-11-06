@@ -1,4 +1,4 @@
-#include "FunctionFactory.H"
+#include "FunctionFactory.h"
 
 bool FunctionFactory::registerFunction(const std::string &name,
                                        CreateFunctionCallback creator) {

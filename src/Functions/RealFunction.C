@@ -12,13 +12,13 @@
 
 #include <vector>
 
-#include "Globals.H"
-#include "Log.H"
-#include "ColorManager.H"
+#include "Globals.h"
+#include "Log.h"
+#include "ColorManager.h"
 
-#include "Vector.H"
-#include "Matrix.H"
-#include "RealFunction.H"
+#include "Vector.h"
+#include "Matrix.h"
+#include "RealFunction.h"
 
 using std::cerr;
 using std::endl;

@@ -9,12 +9,12 @@
 
 
 
-#include "Globals.H"
-#include "ColorManager.H"
-#include "Log.H"
+#include "Globals.h"
+#include "ColorManager.h"
+#include "Log.h"
 
-#include "Matrix.H"
-#include "Object.H"
+#include "Matrix.h"
+#include "Object.h"
 
 using std::cerr;
 using std::endl;

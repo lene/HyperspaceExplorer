@@ -26,11 +26,11 @@ RCC_DIR = tmp
 ###
 INCLUDEPATH += ./Functions
 DEPENDPATH += ./Functions
-HEADERS += Functions/ComplexFunction.H Functions/CustomFunction.H \
-           Functions/Function.H Functions/Object.H Functions/Surface.H \
-           Functions/RealFunction.H  Functions/FunctionParameter.H \
-           Functions/ParameterMap.H Functions/FunctionFactory.H
-#          Functions/SteinerFunction.H
+HEADERS += Functions/ComplexFunction.h Functions/CustomFunction.h \
+           Functions/Function.h Functions/Object.h Functions/Surface.h \
+           Functions/RealFunction.h  Functions/FunctionParameter.h \
+           Functions/ParameterMap.h Functions/FunctionFactory.h
+#          Functions/SteinerFunction.h
 SOURCES += Functions/ComplexFunction.C Functions/CustomFunction.C \
            Functions/Function.C Functions/Surface.C Functions/Object.C \
            Functions/RealFunction.C  Functions/FunctionParameter.C \
@@ -42,11 +42,11 @@ SOURCES += Functions/ComplexFunction.C Functions/CustomFunction.C \
 ###
 INCLUDEPATH += ./Functions/Rotopes
 DEPENDPATH += ./Functions/Rotopes
-HEADERS += Functions/Rotopes/Rotope.H Functions/Rotopes/RotopeFactory.H \
-           Functions/Rotopes/Projector.H Functions/Rotopes/RotopeBase.H \
-           Functions/Rotopes/VertexData.H Functions/Rotopes/Realm.H \
-           Functions/Rotopes/Extrude.H Functions/Rotopes/Taper.H \
-           Functions/Rotopes/Rotate.H Functions/Rotopes/Torate.H
+HEADERS += Functions/Rotopes/Rotope.h Functions/Rotopes/RotopeFactory.h \
+           Functions/Rotopes/Projector.h Functions/Rotopes/RotopeBase.h \
+           Functions/Rotopes/VertexData.h Functions/Rotopes/Realm.h \
+           Functions/Rotopes/Extrude.h Functions/Rotopes/Taper.h \
+           Functions/Rotopes/Rotate.h Functions/Rotopes/Torate.h
 SOURCES += Functions/Rotopes/Rotope.C Functions/Rotopes/RotopeFactory.C \
            Functions/Rotopes/Realm.C
 
@@ -55,7 +55,7 @@ SOURCES += Functions/Rotopes/Rotope.C Functions/Rotopes/RotopeFactory.C \
 ###
 INCLUDEPATH += ./Script
 DEPENDPATH += ./Script
-HEADERS += Script/Parser.H Script/Statement.H
+HEADERS += Script/Parser.h Script/Statement.h
 SOURCES += Script/Parser.C Script/Statement.C
 
 ###
@@ -63,13 +63,13 @@ SOURCES += Script/Parser.C Script/Statement.C
 ###
 INCLUDEPATH += ./UI
 DEPENDPATH += ./UI
-HEADERS += UI/4DView.H UI/ComplexDialogImpl.H UI/FunctionDialogImpl.H \
-           UI/PolarDialogImpl.H UI/SurfaceDialogImpl.H UI/ValuesDialogImpl.H \
-           UI/Menu4D.H UI/PluginCreator.H \
-           UI/AnimationDialogImpl.H UI/SlotHelper.H UI/CustomFunctionSlot.impl.H \
-           UI/TemplatedFunctionFactory.impl.H  UI/ValuesDialog.H \
-           UI/MouseHandler.H UI/View.H UI/ViewImpl.H UI/ParameterInput.H \
-           UI/RotationControl.H UI/RotationSlider.H
+HEADERS += UI/4DView.h UI/ComplexDialogImpl.h UI/FunctionDialogImpl.h \
+           UI/PolarDialogImpl.h UI/SurfaceDialogImpl.h UI/ValuesDialogImpl.h \
+           UI/Menu4D.h UI/PluginCreator.h \
+           UI/AnimationDialogImpl.h UI/SlotHelper.h UI/CustomFunctionSlot.impl.h \
+           UI/TemplatedFunctionFactory.impl.h  UI/ValuesDialog.h \
+           UI/MouseHandler.h UI/View.h UI/ViewImpl.h UI/ParameterInput.h \
+           UI/RotationControl.h UI/RotationSlider.h
 SOURCES += UI/4DView.C UI/Menu4D.C UI/ComplexDialogImpl.C \
            UI/FunctionDialogImpl.C UI/PolarDialogImpl.C UI/SurfaceDialogImpl.C \
            UI/ValuesDialogImpl.C UI/PluginCreator.C \
@@ -85,7 +85,7 @@ RESOURCES = UI/AnimationDialog.qrc
 ###
 INCLUDEPATH += ./Loki
 DEPENDPATH += ./Loki
-HEADERS += Loki/SingletonHolder.H
+HEADERS += Loki/SingletonHolder.h
 
 ###
 ###     plugins
@@ -102,8 +102,8 @@ HEADERS += Loki/SingletonHolder.H
 ###
 INCLUDEPATH += ./VecMath
 DEPENDPATH += ./VecMath
-HEADERS += VecMath/Matrix.H VecMath/NestedVector.H VecMath/Rotation.H \
-           VecMath/Vector.H  VecMath/uintvec.H
+HEADERS += VecMath/Matrix.h VecMath/NestedVector.h VecMath/Rotation.h \
+           VecMath/Vector.h  VecMath/uintvec.h
 SOURCES += VecMath/Rotation.C
 
 ###
@@ -111,8 +111,8 @@ SOURCES += VecMath/Rotation.C
 ###
 INCLUDEPATH += .
 DEPENDPATH += .
-HEADERS += Globals.H Help.H Log.H Color.H ColorManager.H NotYetImplementedException.H \
-           Light.H
+HEADERS += Globals.h Help.h Log.h Color.h ColorManager.h NotYetImplementedException.h \
+           Light.h
 SOURCES += Globals.C Help.C Main.C ColorManager.C Light.C
 
 ###
@@ -141,7 +141,7 @@ DESTDIR = ../
 TARGET = HyperspaceExplorer
 
 target.path = $${INSTALLDIR}/bin
-vector.files = Vector.H
+vector.files = Vector.h
 vector.path = $${INSTALLDIR}/share/HyperspaceExplorer/plugins
 docs.files = doc/*
 docs.path =  $${INSTALLDIR}/share/HyperspaceExplorer/doc

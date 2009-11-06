@@ -32,6 +32,8 @@
 <option id="gnu.cpp.compiler.option.preprocessor.undef.1025186522" name="Undefined symbols (-U)" superClass="gnu.cpp.compiler.option.preprocessor.undef"/>
 <option id="gnu.cpp.compiler.option.include.paths.1336466147" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/HyperspaceExplorer/src}&quot;"/>
+<listOptionValue builtIn="false" value="/usr/include/qt4/QtGui"/>
+<listOptionValue builtIn="false" value="/usr/include/qt4"/>
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/HyperspaceExplorer/src/Functions}&quot;"/>
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/HyperspaceExplorer/src/Loki}&quot;"/>
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/HyperspaceExplorer/src/Script}&quot;"/>
@@ -84,7 +86,7 @@
 </inputType>
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.assembler.exe.debug.1266777381" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.debug">
-<option id="gnu.both.asm.option.include.paths.601103429" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath"/>
+<option id="gnu.both.asm.option.include.paths.601103429" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths"/>
 <inputType id="cdt.managedbuild.tool.gnu.assembler.input.458909854" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 </tool>
 </toolChain>
@@ -676,6 +678,7 @@
 </profile>
 </scannerConfigBuildInfo>
 </storageModule>
+<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cconfiguration>
 <cconfiguration id="cdt.managedbuild.config.gnu.exe.release.1306977698">
 <storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.gnu.exe.release.1306977698" moduleId="org.eclipse.cdt.core.settings" name="Release">
@@ -698,7 +701,7 @@
 <tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.1116647983" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release">
 <option id="gnu.cpp.compiler.exe.release.option.optimization.level.2018204070" name="Optimization Level" superClass="gnu.cpp.compiler.exe.release.option.optimization.level" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
 <option id="gnu.cpp.compiler.exe.release.option.debugging.level.1553957141" name="Debug Level" superClass="gnu.cpp.compiler.exe.release.option.debugging.level" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
-<option id="gnu.cpp.compiler.option.include.paths.2073586025" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+<option id="gnu.cpp.compiler.option.include.paths.2073586025" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/HyperspaceExplorer/src}&quot;"/>
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/HyperspaceExplorer/src/Functions}&quot;"/>
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/HyperspaceExplorer/src/Loki}&quot;"/>
@@ -1314,6 +1317,7 @@
 </profile>
 </scannerConfigBuildInfo>
 </storageModule>
+<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cconfiguration>
 </storageModule>
 <storageModule moduleId="cdtBuildSystem" version="4.0.0">

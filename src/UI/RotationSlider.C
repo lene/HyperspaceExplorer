@@ -10,7 +10,7 @@
 ///
 ///
 
-#include "RotationSlider.H"
+#include "RotationSlider.h"
 
 #include <cmath>
 

@@ -10,14 +10,14 @@
 ///
 ///
 
-#include "Matrix.H"
+#include "Matrix.h"
 
-#include "Rotope.H"
-#include "Extrude.H"
-#include "Taper.H"
-#include "Rotate.H"
-#include "Torate.H"
-#include "RotopeFactory.H"
+#include "Rotope.h"
+#include "Extrude.h"
+#include "Taper.h"
+#include "Rotate.h"
+#include "Torate.h"
+#include "RotopeFactory.h"
 
 using std::vector;
 using std::cerr;

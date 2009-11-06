@@ -14,9 +14,9 @@
 #include <QAction>
 #include <QMainWindow>
 
-#include "Globals.H"
+#include "Globals.h"
 
-#include "Vector.H"
+#include "Vector.h"
 
 using std::cerr;
 using std::endl;

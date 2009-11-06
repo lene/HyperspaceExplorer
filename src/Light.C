@@ -9,7 +9,7 @@
 /// Copyright: See COPYING file that comes with this distribution
 ///
 ///
-#include "Light.H"
+#include "Light.h"
 
 /// Includes all OpenGL headers in a system-independent way
 #include <QGLWidget>

@@ -15,8 +15,8 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
-#include "Globals.H"
-#include "PluginCreator.H"
+#include "Globals.h"
+#include "PluginCreator.h"
 
 namespace UI {
     namespace Dialogs {

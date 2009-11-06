@@ -14,8 +14,8 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 
-#include "ColorManager.H"
-#include "Function.H"
+#include "ColorManager.h"
+#include "Function.h"
 
 using VecMath::Vector;
 using std::vector;

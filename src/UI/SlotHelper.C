@@ -10,10 +10,10 @@
 //
 //
 
-#include "Menu4D.H"
+#include "Menu4D.h"
 
-#include "SlotHelper.H"
-#include "4DView.H"
+#include "SlotHelper.h"
+#include "4DView.h"
 
 /// Generalized slot. Sets C4DView::F to Function associated with this SlotHelper
 void FunctionSlotHelper::slot() {

@@ -11,12 +11,12 @@
 
 #include <qmessagebox.h>
 
-#include "CustomFunction.H"
+#include "CustomFunction.h"
 
-#include "FunctionDialogImpl.H"
-#include "PolarDialogImpl.H"
-#include "ComplexDialogImpl.H"
-#include "SurfaceDialogImpl.H"
+#include "FunctionDialogImpl.h"
+#include "PolarDialogImpl.h"
+#include "ComplexDialogImpl.h"
+#include "SurfaceDialogImpl.h"
 
 using std::complex;
 using std::cerr;
@@ -25,7 +25,7 @@ using std::endl;
 using VecMath::Vector;
 using namespace UI::Dialogs;
 
-/** CustomFunction c'tor given a definition set in R³ (as parameter space) and a
+/** CustomFunction c'tor given a definition set in Rï¿½ (as parameter space) and a
  *  flag indicatin whether this is a test construction or a real one
  *  \param _tmin minimal value in t
  *  \param _tmax maximal value in t
@@ -68,7 +68,7 @@ Vector<4> &CustomFunction::f (double x, double y, double z) {
 ////////////////////////////////////////////////////////////////////////////////
 
 
-/** CustomPolarFunction c'tor given a definition set in R³ (as parameter space)
+/** CustomPolarFunction c'tor given a definition set in Rï¿½ (as parameter space)
  *  and a flag indicating whether this is a test construction or a real one
  *  @param _tmin minimal value in t
  *  @param _tmax maximal value in t
@@ -133,7 +133,7 @@ complex<double> CustomComplexFunction::g (complex<double> z) {
     return T;
 }
 
-/** CustomSurface c'tor given a definition set in R² (as parameter space) and a
+/** CustomSurface c'tor given a definition set in Rï¿½ (as parameter space) and a
  *  flag indicatin whether this is a test construction or a real one
  *  @param _umin minimal value in u
  *  @param _umax maximal value in u

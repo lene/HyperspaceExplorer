@@ -1,8 +1,8 @@
 
-#include "View.H"
-#include "Parser.H"
-#include "Statement.H"
-#include "FunctionFactory.H"
+#include "View.h"
+#include "Parser.h"
+#include "Statement.h"
+#include "FunctionFactory.h"
 
 #include <iostream>
 

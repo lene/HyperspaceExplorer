@@ -11,7 +11,7 @@
 #include <QFileDialog>
 #include <QString>
 
-#include "AnimationDialogImpl.H"
+#include "AnimationDialogImpl.h"
 
 namespace UI {
     namespace Dialogs {

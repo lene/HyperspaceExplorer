@@ -17,14 +17,14 @@
 #include <QMenuBar>
 #include <QColorDialog>
 
-#include "Menu4D.H"
-#include "4DView.H"
-#include "Globals.H"
-#include "RealFunction.H"
-#include "SlotHelper.H"
-#include "AnimationDialogImpl.H"
-#include "Help.H"
-#include "ColorManager.H"
+#include "Menu4D.h"
+#include "4DView.h"
+#include "Globals.h"
+#include "RealFunction.h"
+#include "SlotHelper.h"
+#include "AnimationDialogImpl.h"
+#include "Help.h"
+#include "ColorManager.h"
 
 using std::ostringstream;
 using std::endl;

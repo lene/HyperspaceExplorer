@@ -12,8 +12,8 @@
 
 #include <string>
 
-#include "ParameterInput.H"
-#include "Rotation.H"
+#include "ParameterInput.h"
+#include "Rotation.h"
 
 namespace UI {
 

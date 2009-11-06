@@ -13,24 +13,24 @@
 #include <QMainWindow>
 #include <QStatusBar>
 
-#include "4DView.H"
-#include "Menu4D.H"
-#include "MouseHandler.H"
+#include "4DView.h"
+#include "Menu4D.h"
+#include "MouseHandler.h"
 
-#include "Globals.H"
-#include "Log.H"
-#include "ColorManager.H"
+#include "Globals.h"
+#include "Log.h"
+#include "ColorManager.h"
 
-#include "Matrix.H"
-#include "Rotation.H"
+#include "Matrix.h"
+#include "Rotation.h"
 
-#include "Function.H"
-#include "Surface.H"
-#include "ComplexFunction.H"
-#include "Object.H"
-#include "Rotope.H"
+#include "Function.h"
+#include "Surface.h"
+#include "ComplexFunction.h"
+#include "Object.h"
+#include "Rotope.h"
 
-#include "ParameterMap.H"
+#include "ParameterMap.h"
 
 using std::ostringstream;
 using std::cerr;

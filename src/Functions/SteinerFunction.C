@@ -8,8 +8,8 @@
 //	license:      GPL (see License.txt)
 
 
-#include "Globals.H"
-#include "SteinerFunction.H"
+#include "Globals.h"
+#include "SteinerFunction.h"
 
 using VecMath::Vector;
 
@@ -18,7 +18,7 @@ using VecMath::Vector;
 //////////////////////////////////////////////////////////////////////
 
 /*******************************************************************************
- *  SteinerFunction c'tor given a definition set in R² (as parameter space)
+ *  SteinerFunction c'tor given a definition set in Rï¿½ (as parameter space)
  *  @param _umin	minimal value in u
  *  @param _umax	maximal value in u
  *  @param _du		stepsize in u

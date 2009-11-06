@@ -17,9 +17,9 @@
 #include <QFileDialog>
 #include <QStringList>
 
-#include "SurfaceDialogImpl.H"
-#include "Vector.H"
-#include "Globals.H"
+#include "SurfaceDialogImpl.h"
+#include "Vector.h"
+#include "Globals.h"
 
 using std::ofstream;
 

@@ -9,9 +9,9 @@
 /// Copyright: See COPYING file that comes with this distribution
 ///
 ///
-#include "Realm.H"
+#include "Realm.h"
 
-#include "Rotope.H"
+#include "Rotope.h"
 
 #include <exception>
 #include <list>

@@ -1,5 +1,5 @@
-#include "Parser.H"
-#include "Statement.H"
+#include "Parser.h"
+#include "Statement.h"
 
 #include <iostream>
 #include <fstream>

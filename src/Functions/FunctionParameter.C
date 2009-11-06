@@ -10,7 +10,7 @@
 //
 //
 
-#include "FunctionParameter.H"
+#include "FunctionParameter.h"
 
 /// Specialization for type double
 template<> FunctionParameterValue<double>::FunctionParameterValue(const double &_value):

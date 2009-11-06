@@ -9,7 +9,7 @@
 /// Copyright: See COPYING file that comes with this distribution
 ///
 ///
-#include "RotationControl.H"
+#include "RotationControl.h"
 
 #include <iostream>
 

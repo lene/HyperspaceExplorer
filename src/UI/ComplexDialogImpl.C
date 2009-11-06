@@ -17,9 +17,9 @@
 #include <fstream>
 #include <dlfcn.h>
 
-#include "ComplexDialogImpl.H"
-#include "Vector.H"
-#include "Globals.H"
+#include "ComplexDialogImpl.h"
+#include "Vector.h"
+#include "Globals.h"
 
 using std::ofstream;
 

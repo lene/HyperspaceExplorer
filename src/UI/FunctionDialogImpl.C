@@ -16,9 +16,9 @@
 #include <QFileDialog>
 #include <QStringList>
 
-#include "Vector.H"
-#include "Globals.H"
-#include "FunctionDialogImpl.H"
+#include "Vector.h"
+#include "Globals.h"
+#include "FunctionDialogImpl.h"
 
 using std::cerr;
 using std::endl;

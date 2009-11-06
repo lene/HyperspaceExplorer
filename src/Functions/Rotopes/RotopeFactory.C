@@ -10,11 +10,11 @@
 ///
 ///
 
-#include "RotopeFactory.H"
-#include "Extrude.H"
-#include "Taper.H"
-#include "Rotate.H"
-#include "Torate.H"
+#include "RotopeFactory.h"
+#include "Extrude.h"
+#include "Taper.h"
+#include "Rotate.h"
+#include "Torate.h"
 
 using std::string;
 

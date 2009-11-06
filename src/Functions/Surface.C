@@ -7,11 +7,11 @@
 //      license:      GPL (see License.txt)
 
 
-#include "Globals.H"
-#include "ColorManager.H"
+#include "Globals.h"
+#include "ColorManager.h"
 
-#include "Matrix.H"
-#include "Surface.H"
+#include "Matrix.h"
+#include "Surface.h"
 
 using VecMath::Vector;
 using VecMath::Matrix;
