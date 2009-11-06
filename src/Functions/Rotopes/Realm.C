@@ -209,7 +209,7 @@ Realm Realm::rotate(unsigned num_segments, unsigned size){
             list<Realm>::iterator i = temp_list.begin();
             ++i;
             list<vector<Realm> >::iterator inew = realms_to_add.begin();
-            for ( ; inew != realms_to_add.end(); ++i, ++inew) {
+            if (false) for ( ; inew != realms_to_add.end(); ++i, ++inew) {
                 cout << "realms to add: ";
                 for (vector<Realm>::iterator j = inew->begin(); j != inew->end(); ++j) {
                     j->print();

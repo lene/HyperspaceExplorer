@@ -52,6 +52,9 @@ template <unsigned D>
             /// Output of a single surface
             void printSurface(const uintvec<1> &);
 
+			/// Print the vertex array with indices
+			void printVertices();
+			
         private:
             /// \return Whether argument or permutation of it already in _surface
             bool checkSurfaceExists(const uintvec<1> &);
@@ -91,6 +94,12 @@ template <unsigned D> void vertex_data<D>::printSurface(const uintvec<1> &v) {
         separator = ", ";
     }
     std::cerr << ")\n";
+}
+
+template <unsigned D> void vertex_data<D>::printVertices() {
+	for (unsigned i = 0; i < X().size(); ++i) {
+		std::cout << i << ": " << X()[i] << std::endl;
+	}
 }
 
 template <unsigned D> void vertex_data<D>::print() {

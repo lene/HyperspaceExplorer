@@ -14,7 +14,7 @@ template <unsigned D>
         public:
             /// Create a rotate_base object from an already existing object
             rotate_base(const vertex_data<D> &v):
-                vertex_data<D>(v), _numSegments(6) { }
+                vertex_data<D>(v), _numSegments(4) { }
 
             /// Execute the rotate action of the previous object along axis \p d.
             void rotate(unsigned d);
@@ -138,7 +138,8 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
     }
     
     vertex_data<D>::realm().rotate(_numSegments, Xold.size());
-    std::cerr << "rotate_base<" << D << ">::rotate(" << d << ")" << vertex_data<D>::X() << std::endl;
+    std::cerr << "rotate_base<" << D << ">::rotate(" << d << ")" << std::endl;
+	vertex_data<D>::printVertices();
     vertex_data<D>::dimension()++;   //  object is now one dimension higher
 
 #   if DEBUG_ROTOPES
