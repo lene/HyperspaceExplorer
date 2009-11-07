@@ -107,6 +107,14 @@ namespace VecMath {
             /** \param new_size Number of elements the vector should contain */
             void resize(unsigned new_size) { data().resize(new_size); }
 
+            /// Resizes the vector to the specified number of elements
+            /** \param new_size Number of elements the vector should contain
+             *  \param x Data with which new elements should be populated
+             */
+            void resize(unsigned new_size, unsigned x) {
+            	data().resize(new_size, x);
+            }
+
             /// Returns true if \p other is not equal to \p this
             /** \param other NestedVector<T, D> to compare to */
             bool operator != (const NestedVector<T, D> &other) {
@@ -177,6 +185,14 @@ namespace VecMath {
 
             /// See NestedVector<T, D>::resize()
             void resize(unsigned new_size) { data().resize(new_size); }
+
+            /// Resizes the vector to the specified number of elements
+            /** \param new_size Number of elements the vector should contain
+             *  \param x Data with which new elements should be populated
+             */
+            void resize(unsigned new_size, unsigned x) {
+            	data().resize(new_size, x);
+            }
 
             /// See NestedVector<T, D>::operator !=()
             bool operator != (const NestedVector<T, 1> &other) {
