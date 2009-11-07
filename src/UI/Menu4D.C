@@ -59,25 +59,25 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
     //      "Objects" Menu
     ////////////////////////////////////////////////////////////////////////////
     {
-        _fr3r = _functions->addMenu("f: R³ -> R");
+        _fr3r = _functions->addMenu("f: Rï¿½ -> R");
         _objects = _functions->addMenu("Objects");
         _surfaces = _functions->addMenu("Surfaces");
         _fcc = _surfaces->addMenu("f: C -> C");
         {
-            insertAction(_fr3r, "1/(r²+1)",
+            insertAction(_fr3r, "1/(rï¿½+1)",
                          new C4DView::TemplatedRealFunctionFactory<Fr3r>);
             insertAction(_fr3r, "Gravitation Potential",
                          new C4DView::TemplatedRealFunctionFactory<GravitationPotential>);
-            insertAction(_fr3r, "sin (r²)",
+            insertAction(_fr3r, "sin (rï¿½)",
                          new C4DView::TemplatedRealFunctionFactory<Fr3rSin>);
-            insertAction(_fr3r, "exp (r²)",
+            insertAction(_fr3r, "exp (rï¿½)",
                          new C4DView::TemplatedRealFunctionFactory<Fr3rExp>);
             insertAction(_fr3r, "Custom function", SLOT(customFunction()));
             insertAction(_fr3r, "Polar: r = sin (pi/3.*(t+u+v))",
                          new C4DView::TemplatedRealFunctionFactory<PolarSin>);
             insertAction(_fr3r, "Polar: r = 1/2+sin (Phase*pi*t*u*v)",
                          new C4DView::TemplatedRealFunctionFactory<PolarSin2>);
-            insertAction(_fr3r, "Polar: r = sqrt (t²+u²+v²)",
+            insertAction(_fr3r, "Polar: r = sqrt (tï¿½+uï¿½+vï¿½)",
                          new C4DView::TemplatedRealFunctionFactory<PolarR>);
             insertAction(_fr3r, "Custom polar function", SLOT(customPolarFunction()));
         }
@@ -94,6 +94,8 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
                          new C4DView::TemplatedRealFunctionFactory<Torus2>);
             insertAction(_objects, "Rotope", SLOT(ObjectRotope()));
             TESTED_FEATURE(getAction("Rotope"));
+            insertAction(_objects, "Alt. Menger Sponge", SLOT(ObjectAltSponge()));
+            TESTED_FEATURE(getAction("Alt. Menger Sponge"));
         }
         {
             insertAction(_surfaces, "Surface 1",
@@ -104,19 +106,19 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
                          new C4DView::TemplatedSurfaceFactory<Torus3>);
             insertAction(_surfaces, "Custom surface", SLOT(customSurface()));
             {
-                insertAction(_fcc, "z²",
+                insertAction(_fcc, "zï¿½",
                              new C4DView::TemplatedSurfaceFactory<z2>);
-                insertAction(_fcc, "z³",
+                insertAction(_fcc, "zï¿½",
                              new C4DView::TemplatedSurfaceFactory<z3>);
                 insertAction(_fcc, "z^a",
                              new C4DView::TemplatedSurfaceFactory<zA>);
                 insertAction(_fcc, "e^z",
                              new C4DView::TemplatedSurfaceFactory<ez>);
-                insertAction(_fcc, "e^-z²",
+                insertAction(_fcc, "e^-zï¿½",
                              new C4DView::TemplatedSurfaceFactory<emz2>);
                 insertAction(_fcc, "1/z",
                              new C4DView::TemplatedSurfaceFactory<zm1>);
-                insertAction(_fcc, "1/z²",
+                insertAction(_fcc, "1/zï¿½",
                              new C4DView::TemplatedSurfaceFactory<zm2>);
                 insertAction(_fcc, "sqrt (z)",
                              new C4DView::TemplatedSurfaceFactory<sqrtz>);
@@ -232,6 +234,11 @@ void C4DView::Menu4D::ObjectHyperpyramid() {
 /** Display a Hypersponge object */
 void C4DView::Menu4D::ObjectHypersponge() {
     _parent->ObjectHypersponge();
+}
+
+/** Display a Hypersponge object */
+void C4DView::Menu4D::ObjectAltSponge() {
+    _parent->ObjectAltSponge();
 }
 
 /** Display a Gasket object */

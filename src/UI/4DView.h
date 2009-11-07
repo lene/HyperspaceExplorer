@@ -135,6 +135,8 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         virtual void ObjectHyperpyramid();
         /// Implementation of UI::View::ObjectHypersponge
         virtual void ObjectHypersponge();
+        /// Implementation of UI::View::ObjectHypersponge
+        virtual void ObjectAltSponge();
         /// Implementation of UI::View::ObjectGasket
         virtual void ObjectGasket();
         /// Implementation of UI::View::ObjectRotope

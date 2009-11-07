@@ -37,6 +37,8 @@ class C4DView::Menu4D: public QMenu {
         void ObjectHyperpyramid();
         /// "Object/Objects/Menger Sponge" menu item selected
         void ObjectHypersponge();
+        /// "Object/Objects/Alt. Menger Sponge" menu item selected
+        void ObjectAltSponge();
         /// "Object/Objects/Sierpinski Gasket" menu item selected
         void ObjectGasket();
         /// "Object/Objects/Rotope" menu item selected

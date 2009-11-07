@@ -110,7 +110,7 @@ public:
     }
 protected:
     virtual void Initialize();
-    void DeclareSquare (unsigned, unsigned, unsigned, unsigned, unsigned);
+    void DeclareSquare (unsigned, unsigned, unsigned, unsigned, unsigned, unsigned = 0);
 
     double _a;                  ///< Side length of the hypercube
     VecMath::Vector<4> _center; ///< Center of the hypercube
@@ -119,6 +119,64 @@ protected:
 namespace {
     Function *createHypercube() { return new Hypercube(); }
     const bool registeredH = TheFunctionFactory::Instance().registerFunction("Tesseract", createHypercube);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+/// An alternative hypersponge implementation with removal of duplicate faces
+class AltSponge: public Hypercube {
+public:
+    /// AltSponge constructor
+    /** @param _level hypersponge level
+     *  @param _distance distance of subcubes to center to be counted as part of
+     *                   the fractal
+     *                   \li = 0: solid hypercube
+     *                   \li = 1: foam
+     *                   \li = 2: sponge
+     *                   \li = 3: dust
+     *                   \li >= 4: nothing
+     *  @param _rad side_length/2
+     *  @param _center center                                                 */
+    AltSponge (unsigned _level = 1, unsigned _distance = 2, double _rad = 0.8,
+            VecMath::Vector<4> _center = VecMath::Vector<4>(0., 0.,0., 0.));
+    virtual ~AltSponge () { }
+
+    virtual void SetParameters(const ParameterMap &parms) {
+        std::cerr << "AltSponge::SetParameters(" << parms.print() << ")\n";
+#       if 1
+            for (ParameterMap::const_iterator i = parms.begin();
+                 i != parms.end(); ++i) {
+                if (i->second->getName() == "Level")
+                    Level = unsigned(*i->second);
+                if (i->second->getName() == "Distance")
+                    distance = unsigned(*i->second);
+                if (i->second->getName() == "Size")
+                    rad = double(*i->second);
+            }
+#       else
+            setParameter(parms, this->Phase, "Phase");
+#       endif
+        }
+
+    /** @return A string with a description of the Hypersponge object         */
+    virtual std::string description () {
+        std::ostringstream out;
+        out << "Alternative Sponge (level = " << Level << ")" << std::ends;
+        return out.str ();
+    }
+
+protected:
+    virtual void Initialize();
+    virtual unsigned long MemRequired (unsigned);
+    unsigned Level;                 ///< Level of the hypersponge
+    int distance;                   ///< max. distance (see Initialize())
+    double rad;                     ///< radius, more correctly size, of the sponge
+    VecMath::Vector<4> center;      ///< center of the sponge
+};
+
+namespace {
+    Function *createAltSponge() { return new AltSponge(); }
+    const bool registeredAS = TheFunctionFactory::Instance().registerFunction("AltSponge", createAltSponge);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

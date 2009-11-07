@@ -129,6 +129,15 @@ void C4DView::ObjectHypersponge() {
     Redraw ();
 }
 
+void C4DView::ObjectAltSponge() {
+    Menu()->updateFunctionMenu("Alt. Menger Sponge");
+
+    setF(new AltSponge ());
+
+    AssignValues(F());
+    Redraw ();
+}
+
 void C4DView::ObjectGasket() {
     Menu()->updateFunctionMenu("Sierpinski Gasket");
 

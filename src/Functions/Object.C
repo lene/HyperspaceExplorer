@@ -18,6 +18,8 @@
 
 #include "Object.h"
 
+#include <limits>
+
 using std::cerr;
 using std::endl;
 
@@ -115,12 +117,19 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
 
 
 /// Draw the projected Object (onto screen or into GL list, as it is)
-void Object::Draw () {
+void Object::Draw() {
+	std::cerr << "Object::Draw ()" << std::endl;
     glBegin (GL_QUADS);
-    for (unsigned i = 0; i < Surface[0].size(); i++)
+    for (unsigned i = 0; i < Surface[0].size(); i++) {
+    	std::cerr << "Drawing surface " << i << ": ";
         for (unsigned j = 0; j < 4; j++) {
-            setVertex(X[Surface[j][i]], Xscr[Surface[j][i]]);
+        	if (Surface[j][i] < X.size() && Surface[j][i] < Xscr.size()) {
+        		std::cerr << X[Surface[j][i]] << ", ";
+        		setVertex(X[Surface[j][i]], Xscr[Surface[j][i]]);
+        	}
         }
+        std::cerr << std::endl;
+    }
     glEnd ();
 }
 
@@ -193,18 +202,170 @@ void Hypercube::Initialize(void) {
 }
 
 /// Declare a square in the \p Surface array
-/** @param i index of the square
- *  @param a index of vertex 1
- *  @param b index of vertex 2
- *  @param c index of vertex 3
- *  @param d index of vertex 4                                                */
-void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, unsigned d) {
-    Surface[0][i] = a;
-    Surface[1][i] = b;
-    Surface[2][i] = c;
-    Surface[3][i] = d;
+/** \param i index of the square
+ *  \param a index of vertex 1
+ *  \param b index of vertex 2
+ *  \param c index of vertex 3
+ *  \param d index of vertex 4
+ *  \param offset if there are multiple cubes, the index of the cube
+ */
+void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, unsigned d, unsigned offset) {
+    Surface[0][i+offset*24] = a+offset*16;
+    Surface[1][i+offset*24] = b+offset*16;
+    Surface[2][i+offset*24] = c+offset*16;
+    Surface[3][i+offset*24] = d+offset*16;
 }
 
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+/// Construct a Hypersponge of level \p level
+/** \param _level Level of recursion used in creating the Sponge
+ *  \param _distance see Initialize()
+ *  \param _rad Size of the Sponge - \p _rad is half the side length
+ *  \param _center Center point of the Sponge                                 */
+AltSponge::AltSponge (unsigned _level, unsigned _distance, double _rad,
+                VecMath::Vector<4> _center):
+    Level (_level), distance(_distance), rad(_rad), center(_center) {
+    setfunctionName("4-dimensional Menger Sponge");
+//    clearParameterNames();
+    declareParameter("Level", (unsigned)1, _level);
+    declareParameter("Distance", (unsigned)2, _distance);
+    declareParameter("Size", 0.8, _rad);
+
+    Initialize();
+}
+
+
+/// return the approximate amount of memory needed to display a sponge of
+/// current \p level and given \p distance
+/** @todo uses hardcoded and experimentally found value for memory per hypercube
+ *  @param distance see Initialize()
+ *  @return approx. mem required                                              */
+unsigned long AltSponge::MemRequired (unsigned distance) {
+    double SpongePerLevel = ((distance == 0)? 81:
+                                (distance == 1)? 72:
+                                    (distance == 2)? 48:
+                                        16);
+    return (unsigned long) ((pow (SpongePerLevel, int (Level))*32)/1024+8)*1024*1024;
+}
+
+/// This function actually creates the hypersponge.
+/** It views it as an assembly
+ *  of \f$ 3^4 \f$ smaller sponges, slicing the sponge in three sub-sponges in
+ *  every one of the four dimensions, and then taking away some of the resulting
+ *  81 smaller sub-sponges.
+ *  \li if the parameter \em distance is zero, it only removes the sub-sponge
+ *      with distance 0 from the center, i.e. the one at the center.
+ *  \li if the parameter \em distance is one, it only removes the sub-sponges
+ *      with distance <= 1, amounting to nine removed sub-sponges. The three-
+ *      dimensional surface of the hypercube enveloping the sponge is not
+ *      breached, because the surface of a hypercube is two units away from the
+ *      center, instead of one unit, as in 3D.
+ *  \li if \em distance = 2, the holes reach the hypercubes surface, giving an
+ *      object analogous to the three-dimensional Menger Sponge.
+ *  \li if \em distance = 3, only the 16 corners of the hypercube remain, giving
+ *      four-dimensional fractal dust.
+ *
+ *  If the \em level of the sponge is 1, the sub-sponges are hypercubes. Otherwise,
+ *  they are Hypersponges with a \em level reduced by 1.
+ *
+ *  \todo Make this a recursive function, resizing the vector of surfaces and
+ *  	vertices with every call.
+ *  \todo remove unused places in the vertices and surfaces arrays.
+ *  \todo remove surfaces which are doubly-used, because they cancel each other.
+ *  \todo make vertices unique in the vertex array, saving a (potentially huge)
+ *  	lot of memory.
+ */
+void AltSponge::Initialize(void) {
+//    SingletonLog::Instance().log("Sponge::Initialize()");
+
+    if (Level < 1)
+    	Hypercube::Initialize();
+    else if (Level == 1) {
+		distance = abs(distance);
+    	if (distance > 3) distance = 3; 	//  dunno if this is wise
+    	distance=2;	//	temp testing value
+        unsigned long SpongePerLevel = ((distance == 0)? 81:
+    									(distance == 1)? 72:
+                                        (distance == 2)? 48:
+                                         16);
+        unsigned TotalCubes = pow(SpongePerLevel, Level);
+        TotalCubes = pow(81, Level);
+        std::cerr << "total cubes: " << TotalCubes << std::endl;
+        X.resize(TotalCubes*16); Xtrans.resize(TotalCubes*16); Xscr.resize(TotalCubes*16);
+        for (unsigned i = 0; i < 4; i++) {
+        	Surface[i].resize(TotalCubes*24, std::numeric_limits<unsigned>::max());
+        }
+
+    	rad = 1.;
+    	for (unsigned current_level = 0; current_level < Level; current_level++) {
+
+    		rad /= 3.;
+
+			for (int x = -1; x <= 1; x++) {
+				for (int y = -1; y <= 1; y++) {
+					for (int z = -1; z <= 1; z++) {
+						for (int w = -1; w <= 1; w++) {
+							if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
+								Vector<4> NewCen =
+										Vector<4> (double (x), double (y),
+												   double (z), double (w))*2*rad;
+								NewCen += center;
+#if 0
+								List.push_back (
+									new Sponge (
+										Level-1, distance, rad/3., NewCen));
+#else
+							    unsigned offset = (x+1)+3*((y+1)+3*((z+1)+3*(w+1)));
+						        std::cerr << "offset: " << offset << ", NewCen: " << NewCen << std::endl;
+
+							    for (int xx = 0; xx <= 1; xx++)
+							        for (int yy = 0; yy <= 1; yy++)
+							            for (int zz = 0; zz <= 1; zz++)
+							                for (int ww = 0; ww <= 1; ww++) {
+							                    X[offset*16+xx+2*(yy+2*(zz+2*ww))] =
+							                        Vector<4> (2.*xx-1., 2.*yy-1., 2.*zz-1., 2.*ww-1.)*rad+NewCen;
+							                }
+
+							    DeclareSquare (0,   0, 1, 3, 2, offset);
+							    DeclareSquare (1,   0, 1, 5, 4, offset);
+							    DeclareSquare (2,   0, 1, 9, 8, offset);
+							    DeclareSquare (3,   0, 2, 6, 4, offset);
+							    DeclareSquare (4,   0, 2,10, 8, offset);
+							    DeclareSquare (5,   0, 4,12, 8, offset);
+							    DeclareSquare (6,   1, 3, 7, 5, offset);
+							    DeclareSquare (7,   1, 3,11, 9, offset);
+							    DeclareSquare (8,   1, 5,13, 9, offset);
+							    DeclareSquare (9,   2, 3, 7, 6, offset);
+							    DeclareSquare (10,  2, 3,11,10, offset);
+							    DeclareSquare (11,  2, 6,14,10, offset);
+							    DeclareSquare (12,  3, 7,15,11, offset);
+							    DeclareSquare (13,  4, 5, 7, 6, offset);
+							    DeclareSquare (14,  4, 5,13,12, offset);
+							    DeclareSquare (15,  4, 6,14,12, offset);
+							    DeclareSquare (16,  5, 7,15,13, offset);
+							    DeclareSquare (17,  6, 7,15,14, offset);
+							    DeclareSquare (18,  8, 9,11,10, offset);
+							    DeclareSquare (19,  8, 9,13,12, offset);
+							    DeclareSquare (20,  8,10,14,12, offset);
+							    DeclareSquare (21,  9,11,15,13, offset);
+							    DeclareSquare (22, 10,11,15,14, offset);
+							    DeclareSquare (23, 12,13,15,14, offset);
+	#endif
+							}
+						}
+					}
+				}
+			}
+    	}
+
+    }
+
+    Object::Initialize();
+
+}
 
     ///////////////////////////////////////////////////////////////////////////////
 
@@ -349,8 +510,7 @@ void Sponge::Draw (void) {
 }
 
 
-    ////////////////////////////////////////////////////////////////////////////
-
+////////////////////////////////////////////////////////////////////////////////
 
 /// Pyramid (hypersimplex) constructor
 /** @param _center center
