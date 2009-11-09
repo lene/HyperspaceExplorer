@@ -81,6 +81,13 @@ namespace VecMath {
              */
             iterator erase(iterator position) { return data().erase(position); }
 
+            /// Remove elements at given range
+            /** \param first Iterator pointing to first element to be erased
+             *  \param last Iterator pointing to one past the last element to be erased. 
+             *  \return An iterator pointing to the next element (or end())
+             */
+            iterator erase(iterator first, iterator last) { return data().erase(first, last); }
+
             /// Subscript access to the data contained in the vector
             /** \param i The index of the element for which data should be accessed
              *  \return Read/write reference to data.
@@ -170,6 +177,13 @@ namespace VecMath {
 
             /// See NestedVector<T, D>::erase()
             iterator erase(iterator position) { return data().erase(position); }
+
+            /// Remove elements at given range
+            /** \param first Iterator pointing to first element to be erased
+             *  \param last Iterator pointing to one past the last element to be erased. 
+             *  \return An iterator pointing to the next element (or end())
+             */
+            iterator erase(iterator first, iterator last) { return data().erase(first, last); }
 
             /// See NestedVector<T, D>::operator []()
             T &operator [] (unsigned i) { return data()[i]; }

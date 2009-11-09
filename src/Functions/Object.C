@@ -36,9 +36,9 @@ using VecMath::Matrix;
  *  @param vertices number of vertices
  *  @param surfaces number of surfaces                                        */
 Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
-    Function (),
-    X(vec4vec1D(vertices)), Xtrans(vec4vec1D(vertices)), Xscr(vec3vec1D()),
-    Surface(4) {
+        Function (),
+        X(vec4vec1D(vertices)), Xtrans(vec4vec1D(vertices)), Xscr(vec3vec1D()),
+        Surface(4) {
     setfunctionName(name);
 
     for (unsigned i = 0; i < 4; i++) Surface[i].resize(surfaces);
@@ -61,7 +61,7 @@ void Object::calibrateColors() const {
         ColMgrMgr::Instance().calibrateColor(
             X[i],
             Color((X[i][0]+1)/2, (X[i][1]+1)/2, (X[i][2]+1)/2,
-                   .75-(X[i][3]+1)/4));
+                  .75-(X[i][3]+1)/4));
     }
 }
 
@@ -80,9 +80,9 @@ void Object::Transform (const VecMath::Rotation<4> &R,
                         const VecMath::Vector<4> &T) {
     Matrix<4> Rot(R);
     transform<vec4vec1D, 4>::xform(Rot, T, X, Xtrans);
-/*    for (unsigned i = 0; i < X.size(); i++)
-        Xtrans[i] = (Rot*X[i])+T;
-*/
+    /*    for (unsigned i = 0; i < X.size(); i++)
+            Xtrans[i] = (Rot*X[i])+T;
+    */
 }
 
 /// Projects an Object into three-space
@@ -118,17 +118,17 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
 
 /// Draw the projected Object (onto screen or into GL list, as it is)
 void Object::Draw() {
-	std::cerr << "Object::Draw ()" << std::endl;
+    std::cerr << "Object::Draw ()" << std::endl;
     glBegin (GL_QUADS);
     for (unsigned i = 0; i < Surface[0].size(); i++) {
-    	std::cerr << "Drawing surface " << i << ": ";
+//        std::cerr << "Drawing surface " << i << ": ";
         for (unsigned j = 0; j < 4; j++) {
-        	if (Surface[j][i] < X.size() && Surface[j][i] < Xscr.size()) {
-        		std::cerr << X[Surface[j][i]] << ", ";
-        		setVertex(X[Surface[j][i]], Xscr[Surface[j][i]]);
-        	}
+            if (Surface[j][i] < X.size() && Surface[j][i] < Xscr.size()) {
+//                std::cerr << X[Surface[j][i]] << ", ";
+                setVertex(X[Surface[j][i]], Xscr[Surface[j][i]]);
+            }
         }
-        std::cerr << std::endl;
+//        std::cerr << std::endl;
     }
     glEnd ();
 }
@@ -155,7 +155,7 @@ void Object::ReInit (double, double, double,
  */
 Hypercube::Hypercube (double a, const VecMath::Vector<4> &center):
         Object ("Hypercube", 16, 24),
-    _a (a), _center(center) {
+        _a (a), _center(center) {
     declareParameter("Size", 1.0);
     Initialize();
 }
@@ -226,8 +226,8 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
  *  \param _rad Size of the Sponge - \p _rad is half the side length
  *  \param _center Center point of the Sponge                                 */
 AltSponge::AltSponge (unsigned _level, unsigned _distance, double _rad,
-                VecMath::Vector<4> _center):
-    Level (_level), distance(_distance), rad(_rad), center(_center) {
+                      VecMath::Vector<4> _center):
+        Level (_level), distance(_distance), rad(_rad), center(_center) {
     setfunctionName("4-dimensional Menger Sponge");
 //    clearParameterNames();
     declareParameter("Level", (unsigned)1, _level);
@@ -245,9 +245,9 @@ AltSponge::AltSponge (unsigned _level, unsigned _distance, double _rad,
  *  @return approx. mem required                                              */
 unsigned long AltSponge::MemRequired (unsigned distance) {
     double SpongePerLevel = ((distance == 0)? 81:
-                                (distance == 1)? 72:
-                                    (distance == 2)? 48:
-                                        16);
+                             (distance == 1)? 72:
+                             (distance == 2)? 48:
+                             16);
     return (unsigned long) ((pow (SpongePerLevel, int (Level))*32)/1024+8)*1024*1024;
 }
 
@@ -272,94 +272,94 @@ unsigned long AltSponge::MemRequired (unsigned distance) {
  *  they are Hypersponges with a \em level reduced by 1.
  *
  *  \todo Make this a recursive function, resizing the vector of surfaces and
- *  	vertices with every call.
+ *    vertices with every call.
  *  \todo remove unused places in the vertices and surfaces arrays.
  *  \todo remove surfaces which are doubly-used, because they cancel each other.
  *  \todo make vertices unique in the vertex array, saving a (potentially huge)
- *  	lot of memory.
+ *    lot of memory.
  */
 void AltSponge::Initialize(void) {
 //    SingletonLog::Instance().log("Sponge::Initialize()");
 
     if (Level < 1)
-    	Hypercube::Initialize();
+        Hypercube::Initialize();
     else if (Level == 1) {
-		distance = abs(distance);
-    	if (distance > 3) distance = 3; 	//  dunno if this is wise
-    	distance=2;	//	temp testing value
+        distance = abs(distance);
+        if (distance > 3) distance = 3;     //  dunno if this is wise
+        distance=2; //  temp testing value
         unsigned long SpongePerLevel = ((distance == 0)? 81:
-    									(distance == 1)? 72:
+                                        (distance == 1)? 72:
                                         (distance == 2)? 48:
-                                         16);
+                                        16);
         unsigned TotalCubes = pow(SpongePerLevel, Level);
         TotalCubes = pow(81, Level);
         std::cerr << "total cubes: " << TotalCubes << std::endl;
-        X.resize(TotalCubes*16); Xtrans.resize(TotalCubes*16); Xscr.resize(TotalCubes*16);
+        X.resize(TotalCubes*16);
+        Xtrans.resize(TotalCubes*16);
+        Xscr.resize(TotalCubes*16);
         for (unsigned i = 0; i < 4; i++) {
-        	Surface[i].resize(TotalCubes*24, std::numeric_limits<unsigned>::max());
+            Surface[i].resize(TotalCubes*24, std::numeric_limits<unsigned>::max());
         }
 
-    	rad = 1.;
-    	for (unsigned current_level = 0; current_level < Level; current_level++) {
+        rad = 1.;
+        for (unsigned current_level = 0; current_level < Level; current_level++) {
 
-    		rad /= 3.;
+            rad /= 3.;
 
-			for (int x = -1; x <= 1; x++) {
-				for (int y = -1; y <= 1; y++) {
-					for (int z = -1; z <= 1; z++) {
-						for (int w = -1; w <= 1; w++) {
-							if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
-								Vector<4> NewCen =
-										Vector<4> (double (x), double (y),
-												   double (z), double (w))*2*rad;
-								NewCen += center;
-#if 0
-								List.push_back (
-									new Sponge (
-										Level-1, distance, rad/3., NewCen));
-#else
-							    unsigned offset = (x+1)+3*((y+1)+3*((z+1)+3*(w+1)));
-						        std::cerr << "offset: " << offset << ", NewCen: " << NewCen << std::endl;
+            for (int x = -1; x <= 1; x++) {
+                for (int y = -1; y <= 1; y++) {
+                    for (int z = -1; z <= 1; z++) {
+                        for (int w = -1; w <= 1; w++) {
+                            if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
+                                Vector<4> NewCen =
+                                    Vector<4> (double (x), double (y),
+                                               double (z), double (w))*2*rad;
+                                NewCen += center;
 
-							    for (int xx = 0; xx <= 1; xx++)
-							        for (int yy = 0; yy <= 1; yy++)
-							            for (int zz = 0; zz <= 1; zz++)
-							                for (int ww = 0; ww <= 1; ww++) {
-							                    X[offset*16+xx+2*(yy+2*(zz+2*ww))] =
-							                        Vector<4> (2.*xx-1., 2.*yy-1., 2.*zz-1., 2.*ww-1.)*rad+NewCen;
-							                }
+                                unsigned offset = (x+1)+3*((y+1)+3*((z+1)+3*(w+1)));
+                                std::cerr << "offset: " << offset << ", NewCen: " << NewCen << std::endl;
 
-							    DeclareSquare (0,   0, 1, 3, 2, offset);
-							    DeclareSquare (1,   0, 1, 5, 4, offset);
-							    DeclareSquare (2,   0, 1, 9, 8, offset);
-							    DeclareSquare (3,   0, 2, 6, 4, offset);
-							    DeclareSquare (4,   0, 2,10, 8, offset);
-							    DeclareSquare (5,   0, 4,12, 8, offset);
-							    DeclareSquare (6,   1, 3, 7, 5, offset);
-							    DeclareSquare (7,   1, 3,11, 9, offset);
-							    DeclareSquare (8,   1, 5,13, 9, offset);
-							    DeclareSquare (9,   2, 3, 7, 6, offset);
-							    DeclareSquare (10,  2, 3,11,10, offset);
-							    DeclareSquare (11,  2, 6,14,10, offset);
-							    DeclareSquare (12,  3, 7,15,11, offset);
-							    DeclareSquare (13,  4, 5, 7, 6, offset);
-							    DeclareSquare (14,  4, 5,13,12, offset);
-							    DeclareSquare (15,  4, 6,14,12, offset);
-							    DeclareSquare (16,  5, 7,15,13, offset);
-							    DeclareSquare (17,  6, 7,15,14, offset);
-							    DeclareSquare (18,  8, 9,11,10, offset);
-							    DeclareSquare (19,  8, 9,13,12, offset);
-							    DeclareSquare (20,  8,10,14,12, offset);
-							    DeclareSquare (21,  9,11,15,13, offset);
-							    DeclareSquare (22, 10,11,15,14, offset);
-							    DeclareSquare (23, 12,13,15,14, offset);
-	#endif
-							}
-						}
-					}
-				}
-			}
-    	}
+                                for (int xx = 0; xx <= 1; xx++)
+                                    for (int yy = 0; yy <= 1; yy++)
+                                        for (int zz = 0; zz <= 1; zz++)
+                                            for (int ww = 0; ww <= 1; ww++) {
+                                                X[offset*16+xx+2*(yy+2*(zz+2*ww))] =
+                                                    Vector<4> (2.*xx-1., 2.*yy-1., 2.*zz-1., 2.*ww-1.)*rad+NewCen;
+                                            }
+
+                                DeclareSquare (0,   0, 1, 3, 2, offset);
+                                DeclareSquare (1,   0, 1, 5, 4, offset);
+                                DeclareSquare (2,   0, 1, 9, 8, offset);
+                                DeclareSquare (3,   0, 2, 6, 4, offset);
+                                DeclareSquare (4,   0, 2,10, 8, offset);
+                                DeclareSquare (5,   0, 4,12, 8, offset);
+                                DeclareSquare (6,   1, 3, 7, 5, offset);
+                                DeclareSquare (7,   1, 3,11, 9, offset);
+                                DeclareSquare (8,   1, 5,13, 9, offset);
+                                DeclareSquare (9,   2, 3, 7, 6, offset);
+                                DeclareSquare (10,  2, 3,11,10, offset);
+                                DeclareSquare (11,  2, 6,14,10, offset);
+                                DeclareSquare (12,  3, 7,15,11, offset);
+                                DeclareSquare (13,  4, 5, 7, 6, offset);
+                                DeclareSquare (14,  4, 5,13,12, offset);
+                                DeclareSquare (15,  4, 6,14,12, offset);
+                                DeclareSquare (16,  5, 7,15,13, offset);
+                                DeclareSquare (17,  6, 7,15,14, offset);
+                                DeclareSquare (18,  8, 9,11,10, offset);
+                                DeclareSquare (19,  8, 9,13,12, offset);
+                                DeclareSquare (20,  8,10,14,12, offset);
+                                DeclareSquare (21,  9,11,15,13, offset);
+                                DeclareSquare (22, 10,11,15,14, offset);
+                                DeclareSquare (23, 12,13,15,14, offset);
+                            }
+                        }
+                    }
+                }
+            }
+            reduceSurfaces();
+            reduceVertices();
+//            removeDuplicateSurfaces();
+        }
 
     }
 
@@ -367,7 +367,70 @@ void AltSponge::Initialize(void) {
 
 }
 
-    ///////////////////////////////////////////////////////////////////////////////
+void AltSponge::reduceSurfaces() {
+  
+    for (unsigned k = 0; k < 4; ++k) {
+        std::cerr << "Pre-Removing: surface [" << k << "].size() = " << Surface[k].size() << std::endl;
+        for (VecMath::uintvec<1>::iterator i = Surface[k].begin(); i != Surface[k].end(); ++i) {
+            if (*i < X.size() || *i < Xscr.size()) continue;
+
+            VecMath::uintvec<1>::iterator j = i;
+            for (j = i+1; j != Surface[k].end(); ++j) {
+                if (*j < X.size() || *j < Xscr.size()) break;
+            }
+
+            Surface[k].erase(i, j);
+        }
+        std::cerr << "Post-Removing: surface [" << k << "].size() = " << Surface[k].size() << std::endl;
+    }
+
+}
+
+void AltSponge::reduceVertices() {
+
+    unsigned i_num = 0;
+    vec4vec1D::iterator itrans = Xtrans.begin();
+    vec3vec1D::iterator iscr = Xscr.begin();
+    
+    for (vec4vec1D::iterator i = X.begin(); i != X.end(); ++i, ++i_num, ++itrans, ++iscr) {
+        
+        std::cerr << i_num << " / " << X.size() << " " << *i;
+
+        for (bool found = true; found; ) {
+            unsigned j_num = i_num+1;
+            vec4vec1D::iterator jtrans = itrans+1;
+            vec3vec1D::iterator jscr = iscr+1;
+            found = false;
+            for (vec4vec1D::iterator j = i+1; j != X.end(); ++j, ++j_num, ++jtrans, ++jscr) {
+
+                if (*i == *j) {
+                    vec4vec1D::iterator equal = j, equal_trans = jtrans;
+                    vec3vec1D::iterator equal_scr = jscr;
+                    unsigned equal_num = j_num;
+
+                    cerr << "element " << i_num << X[i_num] << " equals element " 
+                        << equal_num << X[equal_num] << endl;
+                    // erase equal
+                      X.erase(equal);
+                      Xtrans.erase(equal_trans);
+                      Xscr.erase(equal_scr);
+                    // replace all surface indices pointing to equal_first
+                    for (unsigned k = 0; k < 4; ++k) {
+                        for (VecMath::uintvec<1>::iterator it = Surface[k].begin(); it != Surface[k].end(); ++it) {
+                            if (*it == equal_num) *it = i_num;
+                            else if (*it > equal_num) (*it)--;
+                        }
+                    }
+                    found = true;
+                    break;
+                }
+            }
+        }
+        std::cerr << std::endl;
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
 
 /// Construct a Hypersponge of level \p level
 /** \param _level Level of recursion used in creating the Sponge
@@ -376,7 +439,7 @@ void AltSponge::Initialize(void) {
  *  \param _center Center point of the Sponge                                 */
 Sponge::Sponge (unsigned _level, unsigned _distance, double _rad,
                 VecMath::Vector<4> _center):
-    Level (_level), distance(_distance), rad(_rad), center(_center) {
+        Level (_level), distance(_distance), rad(_rad), center(_center) {
     setfunctionName("4-dimensional Menger Sponge");
 //    clearParameterNames();
     declareParameter("Level", (unsigned)1, _level);
@@ -394,9 +457,9 @@ Sponge::Sponge (unsigned _level, unsigned _distance, double _rad,
  *  @return approx. mem required                                              */
 unsigned long Sponge::MemRequired (unsigned distance) {
     double SpongePerLevel = ((distance == 0)? 81:
-                                (distance == 1)? 72:
-                                    (distance == 2)? 48:
-                                        16);
+                             (distance == 1)? 72:
+                             (distance == 2)? 48:
+                             16);
     return (unsigned long) ((pow (SpongePerLevel, int (Level))*32)/1024+8)*1024*1024;
 }
 
@@ -432,12 +495,12 @@ void Sponge::Initialize(void) {
     if (Level < 1)
         List.push_back (new Hypercube (rad*3./2., center));
     else {
-        if (distance > 3) distance = 3; 	//  dunno if this is wise
+        if (distance > 3) distance = 3;   //  dunno if this is wise
 
         if (0 && (MemRequired (distance) > Globals::Instance().getMaxMemory())) {
-        cerr << "Menger sponge of level " << Level
-             << " would require approx. " << MemRequired (distance)/1024/1024
-             << " MB of memory." << endl;
+            cerr << "Menger sponge of level " << Level
+                 << " would require approx. " << MemRequired (distance)/1024/1024
+                 << " MB of memory." << endl;
             if (Globals::Instance().checkMemory()) {
                 cerr << "This is more than your available Memory, "
                      << Globals::Instance().getMaxMemory()/1024/1024 << "MB" << endl;
@@ -453,22 +516,22 @@ void Sponge::Initialize(void) {
                         if (distance >= 0) {
                             if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
                                 Vector<4> NewCen =
-                                        Vector<4> (double (x), double (y),
-                                                   double (z), double (w))*rad;
+                                    Vector<4> (double (x), double (y),
+                                               double (z), double (w))*rad;
                                 NewCen += center;
                                 List.push_back (
-                                        new Sponge (
-                                            Level-1, distance, rad/3., NewCen));
+                                    new Sponge (
+                                        Level-1, distance, rad/3., NewCen));
                             }
                         } else {
                             if (abs (x)+abs (y)+abs (z)+abs (w) < distance) {
                                 Vector<4> NewCen =
-                                        Vector<4> (double (x), double (y),
-                                                   double (z), double (w))*rad;
+                                    Vector<4> (double (x), double (y),
+                                               double (z), double (w))*rad;
                                 NewCen += center;
                                 List.push_back (
-                                        new Sponge (
-                                            Level-1, distance, rad/3., NewCen));
+                                    new Sponge (
+                                        Level-1, distance, rad/3., NewCen));
                             }
                         }
                     }
@@ -516,8 +579,8 @@ void Sponge::Draw (void) {
 /** @param _center center
  *  @param _a side_length/2                                                   */
 Pyramid::Pyramid (double _a, const VecMath::Vector<4> &_center):
-    Object ("Hyperpyramid", 5, 10),
-    center(_center), a (_a) {
+        Object ("Hyperpyramid", 5, 10),
+        center(_center), a (_a) {
     declareParameter("Size", 1.0);
     Initialize();
 }
@@ -562,7 +625,7 @@ void Pyramid::DeclareTriangle (unsigned i, unsigned a, unsigned b, unsigned c) {
 }
 
 
-    ////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 
 
 /// Gasket constructor
@@ -570,7 +633,7 @@ void Pyramid::DeclareTriangle (unsigned i, unsigned a, unsigned b, unsigned c) {
  *  \param _rad side_length/2
  *  \param _center center                                                      */
 Gasket::Gasket (unsigned level, double _rad, VecMath::Vector<4> _center):
-    Level (level), rad(_rad), center(_center) {
+        Level (level), rad(_rad), center(_center) {
     setfunctionName("4-dimensional Sierpinski Gasket");
 //    clearParameterNames();
     declareParameter("Level", 3);

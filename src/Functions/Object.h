@@ -168,6 +168,10 @@ public:
 protected:
     virtual void Initialize();
     virtual unsigned long MemRequired (unsigned);
+    void reduceSurfaces();
+    void reduceVertices();
+    void removeDuplicateSurfaces();
+    
     unsigned Level;                 ///< Level of the hypersponge
     int distance;                   ///< max. distance (see Initialize())
     double rad;                     ///< radius, more correctly size, of the sponge

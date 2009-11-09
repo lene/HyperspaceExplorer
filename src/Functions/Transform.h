@@ -83,9 +83,9 @@ template <unsigned D, unsigned N> class copy_member_transform< VecMath::Vector<D
     }
 
     void operator() (VecMath::Vector<D> &Xtrans) {
-      std::cerr << m_Rot << " * " << m_X << " + " << m_T;
+//      std::cerr << m_Rot << " * " << m_X << " + " << m_T;
       Xtrans = (m_Rot*m_X)+m_T;
-      std::cerr << Xtrans << std::endl;
+//      std::cerr << Xtrans << std::endl;
     }
 
   private:
