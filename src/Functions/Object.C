@@ -445,6 +445,7 @@ bool isPermutation(unsigned m0, unsigned m1, unsigned m2,
     if (m0 == n2 && isPermutation(m1, m2, n0, n1)) return true;
     return false;
 }
+
 bool isPermutation(unsigned m0, unsigned m1, unsigned m2, unsigned m3,
                    unsigned n0, unsigned n1, unsigned n2, unsigned n3) {
     if (m0 == n0 && isPermutation(m1, m2, m3, n1, n2, n3)) return true;
@@ -463,15 +464,15 @@ void AltSponge::removeDuplicateSurfaces() {
         bool erased = false;
         while (j0 != Surface[0].end()) {
             if (isPermutation(*i0, *i1, *i2, *i3, *j0, *j1, *j2, *j3)) {
-//                Surface[0].erase(i0);
-//                Surface[1].erase(i1);
-//                Surface[2].erase(i2);
-//                Surface[3].erase(i3);
                 Surface[0].erase(j0);
                 Surface[1].erase(j1);
                 Surface[2].erase(j2);
                 Surface[3].erase(j3);
-//                erased = true;
+                Surface[0].erase(i0);
+                Surface[1].erase(i1);
+                Surface[2].erase(i2);
+                Surface[3].erase(i3);
+                erased = true;
             } else {
                 j0++;
                 j1++;
