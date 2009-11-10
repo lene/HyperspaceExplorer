@@ -358,7 +358,7 @@ void AltSponge::Initialize(void) {
             }
             reduceSurfaces();
             reduceVertices();
-//            removeDuplicateSurfaces();
+            removeDuplicateSurfaces();
         }
 
     }
@@ -396,31 +396,33 @@ void AltSponge::reduceVertices() {
         
         std::cerr << i_num << " / " << X.size() << " " << *i;
 
-        for (bool found = true; found; ) {
+        bool found = true;
+        while(found) {
             unsigned j_num = i_num+1;
             vec4vec1D::iterator jtrans = itrans+1;
             vec3vec1D::iterator jscr = iscr+1;
+            
             found = false;
+            
             for (vec4vec1D::iterator j = i+1; j != X.end(); ++j, ++j_num, ++jtrans, ++jscr) {
 
                 if (*i == *j) {
-                    vec4vec1D::iterator equal = j, equal_trans = jtrans;
-                    vec3vec1D::iterator equal_scr = jscr;
-                    unsigned equal_num = j_num;
 
                     cerr << "element " << i_num << X[i_num] << " equals element " 
-                        << equal_num << X[equal_num] << endl;
-                    // erase equal
-                      X.erase(equal);
-                      Xtrans.erase(equal_trans);
-                      Xscr.erase(equal_scr);
-                    // replace all surface indices pointing to equal_first
+                        << j_num << X[j_num] << endl;
+                    // erase equal vertices
+                    X.erase(j);
+                    Xtrans.erase(jtrans);
+                    Xscr.erase(jscr);
+                    
+                    // replace all surface indices pointing to equal vertex
                     for (unsigned k = 0; k < 4; ++k) {
                         for (VecMath::uintvec<1>::iterator it = Surface[k].begin(); it != Surface[k].end(); ++it) {
-                            if (*it == equal_num) *it = i_num;
-                            else if (*it > equal_num) (*it)--;
+                            if (*it == j_num) *it = i_num;
+                            else if (*it > j_num) (*it)--;
                         }
                     }
+
                     found = true;
                     break;
                 }
@@ -428,6 +430,64 @@ void AltSponge::reduceVertices() {
         }
         std::cerr << std::endl;
     }
+}
+
+bool isPermutation(unsigned m0, unsigned m1,
+                   unsigned n0, unsigned n1) {
+    if (m0 == n0 && m1 == n1) return true;
+    if (m0 == n1 && m1 == n0) return true;
+    return false;
+}
+
+bool isPermutation(unsigned m0, unsigned m1, unsigned m2,
+                   unsigned n0, unsigned n1, unsigned n2) {
+    if (m0 == n0 && isPermutation(m1, m2, n1, n2)) return true;
+    if (m0 == n1 && isPermutation(m1, m2, n0, n2)) return true;
+    if (m0 == n2 && isPermutation(m1, m2, n0, n1)) return true;
+    return false;
+}
+bool isPermutation(unsigned m0, unsigned m1, unsigned m2, unsigned m3,
+                   unsigned n0, unsigned n1, unsigned n2, unsigned n3) {
+    if (m0 == n0 && isPermutation(m1, m2, m3, n1, n2, n3)) return true;
+    if (m0 == n1 && isPermutation(m1, m2, m3, n0, n2, n3)) return true;
+    if (m0 == n2 && isPermutation(m1, m2, m3, n0, n1, n3)) return true;
+    if (m0 == n3 && isPermutation(m1, m2, m3, n0, n1, n2)) return true;
+    return false;
+}
+
+void AltSponge::removeDuplicateSurfaces() {
+    VecMath::uintvec<1>::iterator i0 = Surface[0].begin(), i1 = Surface[1].begin(), i2 = Surface[2].begin(), i3 = Surface[3].begin();
+    std::cerr << "Pre-Removing: surface [0].size() = " << Surface[0].size() << std::endl;
+    
+    while (i0 != Surface[0].end()) {
+        VecMath::uintvec<1>::iterator j0 = i0+1, j1 = i1+1, j2 = i2+1, j3 = i3+1;
+        bool erased = false;
+        while (j0 != Surface[0].end()) {
+            if (isPermutation(*i0, *i1, *i2, *i3, *j0, *j1, *j2, *j3)) {
+//                Surface[0].erase(i0);
+//                Surface[1].erase(i1);
+//                Surface[2].erase(i2);
+//                Surface[3].erase(i3);
+                Surface[0].erase(j0);
+                Surface[1].erase(j1);
+                Surface[2].erase(j2);
+                Surface[3].erase(j3);
+//                erased = true;
+            } else {
+                j0++;
+                j1++;
+                j2++;
+                j3++;
+            }
+        }
+        if (!erased) {
+            i0++;
+            i1++;
+            i2++;
+            i3++;
+        }
+    }
+    std::cerr << "Post-Removing: surface [0].size() = " << Surface[0].size() << std::endl;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
