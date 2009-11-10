@@ -118,7 +118,7 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
 
 /// Draw the projected Object (onto screen or into GL list, as it is)
 void Object::Draw() {
-    std::cerr << "Object::Draw ()" << std::endl;
+//    std::cerr << "Object::Draw ()" << std::endl;
     glBegin (GL_QUADS);
     for (unsigned i = 0; i < Surface[0].size(); i++) {
 //        std::cerr << "Drawing surface " << i << ": ";
@@ -392,9 +392,9 @@ void AltSponge::reduceVertices() {
     vec4vec1D::iterator itrans = Xtrans.begin();
     vec3vec1D::iterator iscr = Xscr.begin();
     
+    std::cerr << "vertices before reduction: " << X.size() << std::endl;
     for (vec4vec1D::iterator i = X.begin(); i != X.end(); ++i, ++i_num, ++itrans, ++iscr) {
         
-        std::cerr << i_num << " / " << X.size() << " " << *i;
 
         bool found = true;
         while(found) {
@@ -408,8 +408,6 @@ void AltSponge::reduceVertices() {
 
                 if (*i == *j) {
 
-                    cerr << "element " << i_num << X[i_num] << " equals element " 
-                        << j_num << X[j_num] << endl;
                     // erase equal vertices
                     X.erase(j);
                     Xtrans.erase(jtrans);
@@ -428,8 +426,9 @@ void AltSponge::reduceVertices() {
                 }
             }
         }
-        std::cerr << std::endl;
     }
+
+    std::cerr << "vertices after reduction: " << X.size() << std::endl;
 }
 
 bool isPermutation(unsigned m0, unsigned m1,
