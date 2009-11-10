@@ -19,6 +19,7 @@
 #include "Object.h"
 
 #include <limits>
+#include <algorithm>
 
 using std::cerr;
 using std::endl;
@@ -26,6 +27,7 @@ using std::endl;
 using VecMath::Vector;
 using VecMath::Matrix;
 
+#define DEBUG_STUFF 1
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -79,6 +81,7 @@ void Object::setX(const vec4vec1D &newX) {
 void Object::Transform (const VecMath::Rotation<4> &R,
                         const VecMath::Vector<4> &T) {
     Matrix<4> Rot(R);
+    Xtrans.resize(X.size());
     transform<vec4vec1D, 4>::xform(Rot, T, X, Xtrans);
     /*    for (unsigned i = 0; i < X.size(); i++)
             Xtrans[i] = (Rot*X[i])+T;
@@ -90,11 +93,12 @@ void Object::Transform (const VecMath::Rotation<4> &R,
  *  @param cam_w w coordinate of camera
  *  @param depthcue4d wheter to use hyperfog/dc                               */
 void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
+
     double ProjectionFactor;
     double Wmax = 0, Wmin = 0;
 
     Xscr.resize(Xtrans.size());
-
+    
     for (unsigned i = 0; i < Xtrans.size(); i++) {
         if (depthcue4d) {
             if (Xtrans[i][3] < Wmin) Wmin = Xtrans[i][3];
@@ -103,8 +107,9 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
 
         ProjectionFactor = (scr_w-cam_w)/(Xtrans[i][3]-cam_w);
 
-        for (unsigned j = 0; j <= 2; j++)
-            Xscr.at(i)[j] = ProjectionFactor*Xtrans[i][j];
+        for (unsigned j = 0; j <= 2; j++) {
+            Xscr[i][j] = ProjectionFactor*Xtrans[i][j];
+        }
     }
 
     if (!depthcue4d) return;
@@ -118,17 +123,13 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
 
 /// Draw the projected Object (onto screen or into GL list, as it is)
 void Object::Draw() {
-//    std::cerr << "Object::Draw ()" << std::endl;
     glBegin (GL_QUADS);
     for (unsigned i = 0; i < Surface[0].size(); i++) {
-//        std::cerr << "Drawing surface " << i << ": ";
         for (unsigned j = 0; j < 4; j++) {
             if (Surface[j][i] < X.size() && Surface[j][i] < Xscr.size()) {
-//                std::cerr << X[Surface[j][i]] << ", ";
                 setVertex(X[Surface[j][i]], Xscr[Surface[j][i]]);
             }
         }
-//        std::cerr << std::endl;
     }
     glEnd ();
 }
@@ -281,31 +282,55 @@ unsigned long AltSponge::MemRequired (unsigned distance) {
 void AltSponge::Initialize(void) {
 //    SingletonLog::Instance().log("Sponge::Initialize()");
 
-    if (Level < 1)
-        Hypercube::Initialize();
-    else if (Level == 1) {
-        distance = abs(distance);
-        if (distance > 3) distance = 3;     //  dunno if this is wise
-        distance=2; //  temp testing value
-        unsigned long SpongePerLevel = ((distance == 0)? 81:
-                                        (distance == 1)? 72:
-                                        (distance == 2)? 48:
-                                        16);
-        unsigned TotalCubes = pow(SpongePerLevel, Level);
-        TotalCubes = pow(81, Level);
-        std::cerr << "total cubes: " << TotalCubes << std::endl;
-        X.resize(TotalCubes*16);
-        Xtrans.resize(TotalCubes*16);
-        Xscr.resize(TotalCubes*16);
-        for (unsigned i = 0; i < 4; i++) {
-            Surface[i].resize(TotalCubes*24, std::numeric_limits<unsigned>::max());
-        }
+    distance = abs(distance);
+    if (distance > 3) distance = 3;     //  dunno if this is wise
+//    distance=2; //  temp testing value
+    unsigned long SpongePerLevel = ((distance == 0)? 81:
+                                    (distance == 1)? 72:
+                                    (distance == 2)? 48:
+                                    16);
 
-        rad = 1.;
-        for (unsigned current_level = 0; current_level < Level; current_level++) {
+    for (unsigned current_level = 0; current_level <= Level; current_level++) {
 
-            rad /= 3.;
+#       ifdef DEBUG_STUFF        
+        unsigned TotalCubes = pow(SpongePerLevel, current_level);
+        cerr << "Level: " << current_level << "/" << Level << " -- total cubes: " << TotalCubes << endl;
+#       endif
+        
+        if (current_level < 1) {
 
+            X.resize(16);
+            for (unsigned i = 0; i < 4; i++) {
+                Surface[i].resize(24);
+            }
+            Hypercube::Initialize();
+
+        } else {
+
+            vec4vec1D Xold(X);
+            VecMath::uintvec<2> Sold(Surface);
+            
+            for (unsigned i = 0; i < Xold.size(); ++i) Xold[i] *= 1./3.;
+
+            try {
+                X.resize(SpongePerLevel*X.size());
+                for (unsigned i = 0; i < 4; i++) {
+                    Surface[i].resize(SpongePerLevel*Surface[i].size(),
+                                      std::numeric_limits<unsigned>::max());
+                }
+            } catch (std::bad_alloc) {
+                X.resize(Xold.size());
+                for (unsigned i = 0; i < 4; i++) {
+                    Surface[i].resize(Sold[i].size());
+                }
+                return;
+            }
+
+#           ifdef DEBUG_STUFF        
+            std::cerr << " X.size(): " << X.size() << " Surface[0].size(): " << Surface[0].size();
+#           endif
+            
+            unsigned indexX = 0, indexS = 0;
             for (int x = -1; x <= 1; x++) {
                 for (int y = -1; y <= 1; y++) {
                     for (int z = -1; z <= 1; z++) {
@@ -313,44 +338,24 @@ void AltSponge::Initialize(void) {
                             if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
                                 Vector<4> NewCen =
                                     Vector<4> (double (x), double (y),
-                                               double (z), double (w))*2*rad;
+                                               double (z), double (w))*2./3.;
                                 NewCen += center;
 
-                                unsigned offset = (x+1)+3*((y+1)+3*((z+1)+3*(w+1)));
-                                std::cerr << "offset: " << offset << ", NewCen: " << NewCen << std::endl;
-
-                                for (int xx = 0; xx <= 1; xx++)
-                                    for (int yy = 0; yy <= 1; yy++)
-                                        for (int zz = 0; zz <= 1; zz++)
-                                            for (int ww = 0; ww <= 1; ww++) {
-                                                X[offset*16+xx+2*(yy+2*(zz+2*ww))] =
-                                                    Vector<4> (2.*xx-1., 2.*yy-1., 2.*zz-1., 2.*ww-1.)*rad+NewCen;
-                                            }
-
-                                DeclareSquare (0,   0, 1, 3, 2, offset);
-                                DeclareSquare (1,   0, 1, 5, 4, offset);
-                                DeclareSquare (2,   0, 1, 9, 8, offset);
-                                DeclareSquare (3,   0, 2, 6, 4, offset);
-                                DeclareSquare (4,   0, 2,10, 8, offset);
-                                DeclareSquare (5,   0, 4,12, 8, offset);
-                                DeclareSquare (6,   1, 3, 7, 5, offset);
-                                DeclareSquare (7,   1, 3,11, 9, offset);
-                                DeclareSquare (8,   1, 5,13, 9, offset);
-                                DeclareSquare (9,   2, 3, 7, 6, offset);
-                                DeclareSquare (10,  2, 3,11,10, offset);
-                                DeclareSquare (11,  2, 6,14,10, offset);
-                                DeclareSquare (12,  3, 7,15,11, offset);
-                                DeclareSquare (13,  4, 5, 7, 6, offset);
-                                DeclareSquare (14,  4, 5,13,12, offset);
-                                DeclareSquare (15,  4, 6,14,12, offset);
-                                DeclareSquare (16,  5, 7,15,13, offset);
-                                DeclareSquare (17,  6, 7,15,14, offset);
-                                DeclareSquare (18,  8, 9,11,10, offset);
-                                DeclareSquare (19,  8, 9,13,12, offset);
-                                DeclareSquare (20,  8,10,14,12, offset);
-                                DeclareSquare (21,  9,11,15,13, offset);
-                                DeclareSquare (22, 10,11,15,14, offset);
-                                DeclareSquare (23, 12,13,15,14, offset);
+#                               ifdef DEBUG_STUFF
+                                cerr << "indexX = " << indexX << ", indexS = " << indexS
+                                     << ", NewCen = " << NewCen << endl;
+#                               endif
+                                
+                                for (unsigned i = 0; i < Xold.size(); ++i) {
+                                    X[indexX+i] = Xold[i]+NewCen;
+                                }
+                                for (unsigned k = 0; k < 4; ++k) {
+                                    for (unsigned i = 0; i < Sold[k].size(); ++i) {
+                                        Surface[k][indexS+i] = Sold[k][i]+indexX;
+                                    }
+                                }
+                                indexX += Xold.size();
+                                indexS += Sold[0].size();
                             }
                         }
                     }
@@ -370,48 +375,61 @@ void AltSponge::Initialize(void) {
 void AltSponge::reduceSurfaces() {
   
     for (unsigned k = 0; k < 4; ++k) {
-        std::cerr << "Pre-Removing: surface [" << k << "].size() = " << Surface[k].size() << std::endl;
-        for (VecMath::uintvec<1>::iterator i = Surface[k].begin(); i != Surface[k].end(); ++i) {
-            if (*i < X.size() || *i < Xscr.size()) continue;
 
+#       ifdef DEBUG_STUFF        
+        std::cerr << "Pre-Removing: surface [" << k << "].size() = " << Surface[k].size() << std::endl;
+#       endif
+
+        unsigned i_num = 0;
+        for (VecMath::uintvec<1>::iterator i = Surface[k].begin(); i != Surface[k].end(); ) {
+            if (*i < X.size() || *i < Xscr.size()) {
+              ++i; ++i_num;
+              continue;
+            }
+
+            /*
             VecMath::uintvec<1>::iterator j = i;
             for (j = i+1; j != Surface[k].end(); ++j) {
                 if (*j < X.size() || *j < Xscr.size()) break;
             }
 
             Surface[k].erase(i, j);
+            */
+            Surface[k].erase(i);
         }
+        
+#       ifdef DEBUG_STUFF        
         std::cerr << "Post-Removing: surface [" << k << "].size() = " << Surface[k].size() << std::endl;
+#       endif
+        
     }
 
 }
 
 void AltSponge::reduceVertices() {
 
-    unsigned i_num = 0;
-    vec4vec1D::iterator itrans = Xtrans.begin();
-    vec3vec1D::iterator iscr = Xscr.begin();
+    unsigned i_num = 0, scale = std::max(X.size()/100, (size_t)100);
     
+#   ifdef DEBUG_STUFF        
     std::cerr << "vertices before reduction: " << X.size() << std::endl;
-    for (vec4vec1D::iterator i = X.begin(); i != X.end(); ++i, ++i_num, ++itrans, ++iscr) {
-        
+#   endif
 
+    for (vec4vec1D::iterator i = X.begin(); i != X.end(); ++i, ++i_num) {
+        
+        if (i_num % scale == 0) cerr << i_num << "/" << X.size() << endl;
         bool found = true;
         while(found) {
             unsigned j_num = i_num+1;
-            vec4vec1D::iterator jtrans = itrans+1;
-            vec3vec1D::iterator jscr = iscr+1;
             
             found = false;
             
-            for (vec4vec1D::iterator j = i+1; j != X.end(); ++j, ++j_num, ++jtrans, ++jscr) {
+            /// \todo rewrite using std::remove_if(), but look it up in the c++ standard library first (there are some issues)
+            for (vec4vec1D::iterator j = i+1; j != X.end(); ++j, ++j_num) {
 
                 if (*i == *j) {
 
                     // erase equal vertices
                     X.erase(j);
-                    Xtrans.erase(jtrans);
-                    Xscr.erase(jscr);
                     
                     // replace all surface indices pointing to equal vertex
                     for (unsigned k = 0; k < 4; ++k) {
@@ -428,7 +446,9 @@ void AltSponge::reduceVertices() {
         }
     }
 
+#   ifdef DEBUG_STUFF        
     std::cerr << "vertices after reduction: " << X.size() << std::endl;
+#   endif
 }
 
 bool isPermutation(unsigned m0, unsigned m1,
@@ -459,9 +479,17 @@ void AltSponge::removeDuplicateSurfaces() {
 
     VecMath::uintvec<1>::iterator i[4];
     for (unsigned n = 0; n < 4; ++n) i[n] = Surface[n].begin();
-    std::cerr << "Pre-Removing: surface [0].size() = " << Surface[0].size() << std::endl;
+
+#   ifdef DEBUG_STUFF        
+    std::cerr << "Pre-Removing dups: surface [0].size() = " << Surface[0].size() << std::endl;
+    unsigned i_num = 0, scale = std::max(Surface[0].size()/100, (unsigned)100);
+#   endif
     
     while (i[0] != Surface[0].end()) {
+
+#       ifdef DEBUG_STUFF        
+        if (i_num % scale == 0) cerr << i_num << "/" << Surface[0].size() << endl;
+#       endif
 
         VecMath::uintvec<1>::iterator j[4];
         for (unsigned n = 0; n < 4; ++n) j[n] = i[n]+1;
@@ -485,9 +513,14 @@ void AltSponge::removeDuplicateSurfaces() {
         }
         if (!erased) {
             for (unsigned n = 0; n < 4; ++n) i[n]++;
+            i_num++;
         }
     }
-    std::cerr << "Post-Removing: surface [0].size() = " << Surface[0].size() << std::endl;
+
+#   ifdef DEBUG_STUFF        
+    std::cerr << "Post-Removing dups: surface [0].size() = " << Surface[0].size() << std::endl;
+#   endif
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////
