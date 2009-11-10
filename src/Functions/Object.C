@@ -456,35 +456,35 @@ bool isPermutation(unsigned m0, unsigned m1, unsigned m2, unsigned m3,
 }
 
 void AltSponge::removeDuplicateSurfaces() {
-    VecMath::uintvec<1>::iterator i0 = Surface[0].begin(), i1 = Surface[1].begin(), i2 = Surface[2].begin(), i3 = Surface[3].begin();
+
+    VecMath::uintvec<1>::iterator i[4];
+    for (unsigned n = 0; n < 4; ++n) i[n] = Surface[n].begin();
     std::cerr << "Pre-Removing: surface [0].size() = " << Surface[0].size() << std::endl;
     
-    while (i0 != Surface[0].end()) {
-        VecMath::uintvec<1>::iterator j0 = i0+1, j1 = i1+1, j2 = i2+1, j3 = i3+1;
+    while (i[0] != Surface[0].end()) {
+
+        VecMath::uintvec<1>::iterator j[4];
+        for (unsigned n = 0; n < 4; ++n) j[n] = i[n]+1;
         bool erased = false;
-        while (j0 != Surface[0].end()) {
-            if (isPermutation(*i0, *i1, *i2, *i3, *j0, *j1, *j2, *j3)) {
-                Surface[0].erase(j0);
-                Surface[1].erase(j1);
-                Surface[2].erase(j2);
-                Surface[3].erase(j3);
-                Surface[0].erase(i0);
-                Surface[1].erase(i1);
-                Surface[2].erase(i2);
-                Surface[3].erase(i3);
+        
+        while (j[0] != Surface[0].end()) {
+            if (isPermutation(*i[0], *i[1], *i[2], *i[3], *j[0], *j[1], *j[2], *j[3])) {
+                for (unsigned n = 0; n < 4; ++n) Surface[n].erase(j[n]);
+
+                /** \attention erasing elements and reusing the iterators to
+                 *    point to the shuffled-up next elements seems dangerous. It
+                 *    appears to work, but who knows? This might explode at the
+                 *    worst moment. I don't see an alternative though.
+                 */
+                for (unsigned n = 0; n < 4; ++n) Surface[n].erase(i[n]);
+
                 erased = true;
             } else {
-                j0++;
-                j1++;
-                j2++;
-                j3++;
+                for (unsigned n = 0; n < 4; ++n) j[n]++;
             }
         }
         if (!erased) {
-            i0++;
-            i1++;
-            i2++;
-            i3++;
+            for (unsigned n = 0; n < 4; ++n) i[n]++;
         }
     }
     std::cerr << "Post-Removing: surface [0].size() = " << Surface[0].size() << std::endl;
