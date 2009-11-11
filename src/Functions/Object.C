@@ -28,6 +28,7 @@ using VecMath::Vector;
 using VecMath::Matrix;
 
 #define DEBUG_STUFF 1
+#define USE_LIST 1
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -361,7 +362,7 @@ void AltSponge::Initialize(void) {
                     }
                 }
             }
-            reduceSurfaces();
+
             reduceVertices();
             removeDuplicateSurfaces();
         }
@@ -372,51 +373,29 @@ void AltSponge::Initialize(void) {
 
 }
 
-void AltSponge::reduceSurfaces() {
-  
-    for (unsigned k = 0; k < 4; ++k) {
-
-#       ifdef DEBUG_STUFF        
-        std::cerr << "Pre-Removing: surface [" << k << "].size() = " << Surface[k].size() << std::endl;
-#       endif
-
-        unsigned i_num = 0;
-        for (VecMath::uintvec<1>::iterator i = Surface[k].begin(); i != Surface[k].end(); ) {
-            if (*i < X.size() || *i < Xscr.size()) {
-              ++i; ++i_num;
-              continue;
-            }
-
-            /*
-            VecMath::uintvec<1>::iterator j = i;
-            for (j = i+1; j != Surface[k].end(); ++j) {
-                if (*j < X.size() || *j < Xscr.size()) break;
-            }
-
-            Surface[k].erase(i, j);
-            */
-            Surface[k].erase(i);
-        }
-        
-#       ifdef DEBUG_STUFF        
-        std::cerr << "Post-Removing: surface [" << k << "].size() = " << Surface[k].size() << std::endl;
-#       endif
-        
-    }
-
-}
 
 void AltSponge::reduceVertices() {
 
-    unsigned i_num = 0, scale = std::max(X.size()/100, (size_t)100);
+    unsigned i_num = 0;
     
 #   ifdef DEBUG_STUFF        
+    unsigned scale = std::max(X.size()/100, (size_t)100);
     std::cerr << "vertices before reduction: " << X.size() << std::endl;
 #   endif
 
-    for (vec4vec1D::iterator i = X.begin(); i != X.end(); ++i, ++i_num) {
+#   if USE_LIST
+    typedef std::list<VecMath::Vector<4> > container_type;
+#   else    
+    typedef vec4vec1D container_type;
+#   endif
+
+    container_type X_tmp(X.begin(), X.end());
+    for (container_type::iterator i = X_tmp.begin(); i != X_tmp.end(); ++i, ++i_num) {
         
-        if (i_num % scale == 0) cerr << i_num << "/" << X.size() << endl;
+#       ifdef DEBUG_STUFF        
+        if (i_num % scale == 0) cerr << i_num << "/" << X_tmp.size() << endl;
+#       endif
+
         bool found = true;
         while(found) {
             unsigned j_num = i_num+1;
@@ -424,12 +403,13 @@ void AltSponge::reduceVertices() {
             found = false;
             
             /// \todo rewrite using std::remove_if(), but look it up in the c++ standard library first (there are some issues)
-            for (vec4vec1D::iterator j = i+1; j != X.end(); ++j, ++j_num) {
-
+            container_type::iterator j = i;
+            for (++j; j != X_tmp.end(); ++j, ++j_num) {
+                
                 if (*i == *j) {
 
                     // erase equal vertices
-                    X.erase(j);
+                    X_tmp.erase(j);
                     
                     // replace all surface indices pointing to equal vertex
                     for (unsigned k = 0; k < 4; ++k) {
@@ -447,8 +427,10 @@ void AltSponge::reduceVertices() {
     }
 
 #   ifdef DEBUG_STUFF        
-    std::cerr << "vertices after reduction: " << X.size() << std::endl;
+    std::cerr << "vertices after reduction: " << X_tmp.size() << std::endl;
 #   endif
+    X.resize(X_tmp.size());
+    std::copy(X_tmp.begin(), X_tmp.end(), X.begin());
 }
 
 bool isPermutation(unsigned m0, unsigned m1,
@@ -513,7 +495,11 @@ void AltSponge::removeDuplicateSurfaces() {
         }
         if (!erased) {
             for (unsigned n = 0; n < 4; ++n) i[n]++;
+
+#           ifdef DEBUG_STUFF        
             i_num++;
+#           endif
+
         }
     }
 
