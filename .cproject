@@ -32,12 +32,15 @@
 <option id="gnu.cpp.compiler.option.preprocessor.undef.1025186522" name="Undefined symbols (-U)" superClass="gnu.cpp.compiler.option.preprocessor.undef"/>
 <option id="gnu.cpp.compiler.option.include.paths.1336466147" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/HyperspaceExplorer/src}&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/HyperspaceExplorer/src/Functions/Rotopes}&quot;"/>
 <listOptionValue builtIn="false" value="/usr/include/qt4/QtGui"/>
+<listOptionValue builtIn="false" value="/usr/include/qt4/QtCore"/>
 <listOptionValue builtIn="false" value="/usr/include/qt4"/>
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/HyperspaceExplorer/src/Functions}&quot;"/>
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/HyperspaceExplorer/src/Loki}&quot;"/>
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/HyperspaceExplorer/src/Script}&quot;"/>
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/HyperspaceExplorer/src/UI}&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/HyperspaceExplorer/src/VecMath}&quot;"/>
 </option>
 <option id="gnu.cpp.compiler.option.optimization.flags.1762702531" name="Other optimization flags" superClass="gnu.cpp.compiler.option.optimization.flags"/>
 <option id="gnu.cpp.compiler.option.debugging.other.1672207012" name="Other debugging flags" superClass="gnu.cpp.compiler.option.debugging.other"/>
