@@ -431,14 +431,14 @@ void AltSponge::reduceVertices() {
 }
 
 
-bool isPermutation(unsigned m0, unsigned m1,
+inline bool isPermutation(unsigned m0, unsigned m1,
                    unsigned n0, unsigned n1) {
     if (m0 == n0 && m1 == n1) return true;
     if (m0 == n1 && m1 == n0) return true;
     return false;
 }
 
-bool isPermutation(unsigned m0, unsigned m1, unsigned m2,
+inline bool isPermutation(unsigned m0, unsigned m1, unsigned m2,
                    unsigned n0, unsigned n1, unsigned n2) {
     if (m0 == n0 && isPermutation(m1, m2, n1, n2)) return true;
     if (m0 == n1 && isPermutation(m1, m2, n0, n2)) return true;
@@ -446,7 +446,7 @@ bool isPermutation(unsigned m0, unsigned m1, unsigned m2,
     return false;
 }
 
-bool isPermutation(unsigned m0, unsigned m1, unsigned m2, unsigned m3,
+inline bool isPermutation(unsigned m0, unsigned m1, unsigned m2, unsigned m3,
                    unsigned n0, unsigned n1, unsigned n2, unsigned n3) {
     if (m0 == n0 && isPermutation(m1, m2, m3, n1, n2, n3)) return true;
     if (m0 == n1 && isPermutation(m1, m2, m3, n0, n2, n3)) return true;
