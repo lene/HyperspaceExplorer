@@ -28,7 +28,6 @@ using VecMath::Vector;
 using VecMath::Matrix;
 
 #define DEBUG_STUFF 1
-#define USE_LIST 1
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -458,19 +457,7 @@ bool isPermutation(unsigned m0, unsigned m1, unsigned m2, unsigned m3,
 
 void AltSponge::removeDuplicateSurfaces() {
 
-#   if USE_LIST
-#   ifdef DEBUG_STUFF
-    cerr << "USE LIST" << endl;
-#   endif    
     typedef std::list<VecMath::uintvec<1> > container_type;
-//    container_type S_tmp(Surface.begin(), Surface.end());
-#   else    
-#   ifdef DEBUG_STUFF
-    cerr << "USE VECTOR" << endl;
-#   endif    
-    typedef VecMath::uintvec<2> container_type;
-//    container_type S_tmp(Surface);
-#   endif
 
     container_type S_tmp(Surface.size());
     std::copy(Surface.begin(), Surface.end(), S_tmp.begin());
@@ -486,19 +473,16 @@ void AltSponge::removeDuplicateSurfaces() {
     while (i != S_tmp.end()) {
 
         bool erased = false;
-        VecMath::uintvec<1> I = *i;
 
         container_type::iterator j = i;
         j++;
         
         while (j != S_tmp.end()) {
 
-            VecMath::uintvec<1> J = *j;
-            
-            if (isPermutation(I[0], I[1], I[2], I[3],
-                              J[0], J[1], J[2], J[3])) {
+            if (isPermutation((*i)[0], (*i)[1], (*i)[2], (*i)[3],
+                              (*j)[0], (*j)[1], (*j)[2], (*j)[3])) {
 
-                j = S_tmp.erase(j);
+                S_tmp.erase(j);
                 erased = true;
                 break;
                 
