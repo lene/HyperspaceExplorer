@@ -41,10 +41,10 @@ using VecMath::Matrix;
 Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
         Function (),
         X(vec4vec1D(vertices)), Xtrans(vec4vec1D(vertices)), Xscr(vec3vec1D()),
-        Surface(4) {
+        Surface(surfaces) {
     setfunctionName(name);
 
-    for (unsigned i = 0; i < 4; i++) Surface[i].resize(surfaces);
+    for (unsigned i = 0; i < surfaces; i++) Surface[i].resize(4);
 }
 
 /// Actually create the Object, this method is overridden in child classes
@@ -84,9 +84,6 @@ void Object::Transform (const VecMath::Rotation<4> &R,
     Matrix<4> Rot(R);
     Xtrans.resize(X.size());
     transform<vec4vec1D, 4>::xform(Rot, T, X, Xtrans);
-    /*    for (unsigned i = 0; i < X.size(); i++)
-            Xtrans[i] = (Rot*X[i])+T;
-    */
 }
 
 /// Projects an Object into three-space
@@ -125,10 +122,10 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
 /// Draw the projected Object (onto screen or into GL list, as it is)
 void Object::Draw() {
     glBegin (GL_QUADS);
-    for (unsigned i = 0; i < Surface[0].size(); i++) {
+    for (unsigned i = 0; i < Surface.size(); ++i) {
         for (unsigned j = 0; j < 4; j++) {
-            if (Surface[j][i] < X.size() && Surface[j][i] < Xscr.size()) {
-                setVertex(X[Surface[j][i]], Xscr[Surface[j][i]]);
+            if (Surface[i][j] < X.size() && Surface[i][j] < Xscr.size()) {
+                setVertex(X[Surface[i][j]], Xscr[Surface[i][j]]);
             }
         }
     }
@@ -212,10 +209,10 @@ void Hypercube::Initialize(void) {
  *  \param offset if there are multiple cubes, the index of the cube
  */
 void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, unsigned d, unsigned offset) {
-    Surface[0][i+offset*24] = a+offset*16;
-    Surface[1][i+offset*24] = b+offset*16;
-    Surface[2][i+offset*24] = c+offset*16;
-    Surface[3][i+offset*24] = d+offset*16;
+    Surface[i+offset*24][0] = a+offset*16;
+    Surface[i+offset*24][1] = b+offset*16;
+    Surface[i+offset*24][2] = c+offset*16;
+    Surface[i+offset*24][3] = d+offset*16;
 }
 
 
@@ -301,9 +298,7 @@ void AltSponge::Initialize(void) {
         if (current_level < 1) {
 
             X.resize(16);
-            for (unsigned i = 0; i < 4; i++) {
-                Surface[i].resize(24);
-            }
+            Surface.resize(24);
             Hypercube::Initialize();
 
         } else {
@@ -315,22 +310,14 @@ void AltSponge::Initialize(void) {
 
             try {
                 X.resize(SpongePerLevel*X.size());
-                for (unsigned i = 0; i < 4; i++) {
-                    Surface[i].resize(SpongePerLevel*Surface[i].size(),
-                                      std::numeric_limits<unsigned>::max());
-                }
+                Surface.resize(SpongePerLevel*Surface.size(),
+                               VecMath::uintvec<1>(4));
             } catch (std::bad_alloc) {
                 X.resize(Xold.size());
-                for (unsigned i = 0; i < 4; i++) {
-                    Surface[i].resize(Sold[i].size());
-                }
+                Surface.resize(Sold.size());
                 return;
             }
 
-#           ifdef DEBUG_STUFF        
-            std::cerr << " X.size(): " << X.size() << " Surface[0].size(): " << Surface[0].size();
-#           endif
-            
             unsigned indexX = 0, indexS = 0;
             for (int x = -1; x <= 1; x++) {
                 for (int y = -1; y <= 1; y++) {
@@ -341,22 +328,17 @@ void AltSponge::Initialize(void) {
                                     Vector<4> (double (x), double (y),
                                                double (z), double (w))*2./3.;
                                 NewCen += center;
-
-#                               ifdef DEBUG_STUFF
-                                cerr << "indexX = " << indexX << ", indexS = " << indexS
-                                     << ", NewCen = " << NewCen << endl;
-#                               endif
                                 
                                 for (unsigned i = 0; i < Xold.size(); ++i) {
                                     X[indexX+i] = Xold[i]+NewCen;
                                 }
-                                for (unsigned k = 0; k < 4; ++k) {
-                                    for (unsigned i = 0; i < Sold[k].size(); ++i) {
-                                        Surface[k][indexS+i] = Sold[k][i]+indexX;
+                                for (unsigned i = 0; i < Sold.size(); ++i) {
+                                    for (unsigned k = 0; k < 4; ++k) {
+                                        Surface[indexS+i][k] = Sold[i][k]+indexX;
                                     }
                                 }
                                 indexX += Xold.size();
-                                indexS += Sold[0].size();
+                                indexS += Sold.size();
                             }
                         }
                     }
@@ -374,35 +356,47 @@ void AltSponge::Initialize(void) {
 }
 
 
+#ifdef DEBUG_STUFF
+float time_to_float(clock_t time) {
+    return float(time)/float(CLOCKS_PER_SEC);
+}
+#endif
+
 void AltSponge::reduceVertices() {
 
     unsigned i_num = 0;
     
-#   ifdef DEBUG_STUFF        
-    unsigned scale = std::max(X.size()/100, (size_t)100);
-    std::cerr << "vertices before reduction: " << X.size() << std::endl;
-#   endif
 
 #   if USE_LIST
+#   ifdef DEBUG_STUFF
+    cerr << "USE LIST" << endl;
+#   endif    
     typedef std::list<VecMath::Vector<4> > container_type;
 #   else    
+#   ifdef DEBUG_STUFF
+    cerr << "USE VECTOR" << endl;
+#   endif    
     typedef vec4vec1D container_type;
 #   endif
 
+#   ifdef DEBUG_STUFF
+    std::cerr << "vertices before reduction: " << X.size() << std::endl;
+    clock_t start_time = clock ();                     //  record start time
+#   endif
+
     container_type X_tmp(X.begin(), X.end());
+    
     for (container_type::iterator i = X_tmp.begin(); i != X_tmp.end(); ++i, ++i_num) {
         
-#       ifdef DEBUG_STUFF        
-        if (i_num % scale == 0) cerr << i_num << "/" << X_tmp.size() << endl;
-#       endif
-
         bool found = true;
         while(found) {
             unsigned j_num = i_num+1;
             
             found = false;
             
-            /// \todo rewrite using std::remove_if(), but look it up in the c++ standard library first (there are some issues)
+            /** \todo rewrite using std::remove_if(), but look it up in the c++
+             *  standard library first (there are some issues)
+             */
             container_type::iterator j = i;
             for (++j; j != X_tmp.end(); ++j, ++j_num) {
                 
@@ -412,10 +406,10 @@ void AltSponge::reduceVertices() {
                     X_tmp.erase(j);
                     
                     // replace all surface indices pointing to equal vertex
-                    for (unsigned k = 0; k < 4; ++k) {
-                        for (VecMath::uintvec<1>::iterator it = Surface[k].begin(); it != Surface[k].end(); ++it) {
-                            if (*it == j_num) *it = i_num;
-                            else if (*it > j_num) (*it)--;
+                    for (VecMath::uintvec<2>::iterator it = Surface.begin(); it != Surface.end(); ++it) {
+                        for (unsigned k = 0; k < 4; ++k) {
+                            if ((*it)[k] == j_num) (*it)[k] = i_num;
+                            else if ((*it)[k] > j_num) ((*it)[k])--;
                         }
                     }
 
@@ -426,12 +420,17 @@ void AltSponge::reduceVertices() {
         }
     }
 
-#   ifdef DEBUG_STUFF        
-    std::cerr << "vertices after reduction: " << X_tmp.size() << std::endl;
-#   endif
     X.resize(X_tmp.size());
     std::copy(X_tmp.begin(), X_tmp.end(), X.begin());
+
+#   ifdef DEBUG_STUFF
+    clock_t time_after_reduce = clock ();                     //  record start time
+    std::cerr << "vertices after reduction: " << X_tmp.size() << std::endl;
+    std::cerr << "time for reducing: " << time_to_float(time_after_reduce-start_time) << endl;
+#   endif
+
 }
+
 
 bool isPermutation(unsigned m0, unsigned m1,
                    unsigned n0, unsigned n1) {
@@ -459,52 +458,74 @@ bool isPermutation(unsigned m0, unsigned m1, unsigned m2, unsigned m3,
 
 void AltSponge::removeDuplicateSurfaces() {
 
-    VecMath::uintvec<1>::iterator i[4];
-    for (unsigned n = 0; n < 4; ++n) i[n] = Surface[n].begin();
+#   if USE_LIST
+#   ifdef DEBUG_STUFF
+    cerr << "USE LIST" << endl;
+#   endif    
+    typedef std::list<VecMath::uintvec<1> > container_type;
+//    container_type S_tmp(Surface.begin(), Surface.end());
+#   else    
+#   ifdef DEBUG_STUFF
+    cerr << "USE VECTOR" << endl;
+#   endif    
+    typedef VecMath::uintvec<2> container_type;
+//    container_type S_tmp(Surface);
+#   endif
+
+    container_type S_tmp(Surface.size());
+    std::copy(Surface.begin(), Surface.end(), S_tmp.begin());
+
+    container_type::iterator i = S_tmp.begin();
 
 #   ifdef DEBUG_STUFF        
-    std::cerr << "Pre-Removing dups: surface [0].size() = " << Surface[0].size() << std::endl;
-    unsigned i_num = 0, scale = std::max(Surface[0].size()/100, (unsigned)100);
+    std::cerr << "Pre-Removing dups: surface.size() = " << S_tmp.size() << std::endl;
+    unsigned i_num = 0;
+    clock_t start_time = clock ();                     //  record start time
 #   endif
     
-    while (i[0] != Surface[0].end()) {
+    while (i != S_tmp.end()) {
 
-#       ifdef DEBUG_STUFF        
-        if (i_num % scale == 0) cerr << i_num << "/" << Surface[0].size() << endl;
-#       endif
-
-        VecMath::uintvec<1>::iterator j[4];
-        for (unsigned n = 0; n < 4; ++n) j[n] = i[n]+1;
         bool erased = false;
+        VecMath::uintvec<1> I = *i;
+
+        container_type::iterator j = i;
+        j++;
         
-        while (j[0] != Surface[0].end()) {
-            if (isPermutation(*i[0], *i[1], *i[2], *i[3], *j[0], *j[1], *j[2], *j[3])) {
-                for (unsigned n = 0; n < 4; ++n) Surface[n].erase(j[n]);
+        while (j != S_tmp.end()) {
 
-                /** \attention erasing elements and reusing the iterators to
-                 *    point to the shuffled-up next elements seems dangerous. It
-                 *    appears to work, but who knows? This might explode at the
-                 *    worst moment. I don't see an alternative though.
-                 */
-                for (unsigned n = 0; n < 4; ++n) Surface[n].erase(i[n]);
+            VecMath::uintvec<1> J = *j;
+            
+            if (isPermutation(I[0], I[1], I[2], I[3],
+                              J[0], J[1], J[2], J[3])) {
 
+                j = S_tmp.erase(j);
                 erased = true;
+                break;
+                
             } else {
-                for (unsigned n = 0; n < 4; ++n) j[n]++;
+                j++;
             }
         }
-        if (!erased) {
-            for (unsigned n = 0; n < 4; ++n) i[n]++;
+        
+        if (erased) {
+            i = S_tmp.erase(i);
+        } else {
+            i++;
 
-#           ifdef DEBUG_STUFF        
+#           ifdef DEBUG_STUFF
             i_num++;
 #           endif
 
         }
     }
 
+    Surface.resize(S_tmp.size());
+    std::copy(S_tmp.begin(), S_tmp.end(), Surface.begin());
+
 #   ifdef DEBUG_STUFF        
-    std::cerr << "Post-Removing dups: surface [0].size() = " << Surface[0].size() << std::endl;
+    clock_t time_after_reduce = clock ();                     //  record start time
+    std::cerr << "Post-Removing dups: surface.size() = " << S_tmp.size() << std::endl;
+    std::cerr << "time for reducing: " << time_to_float(time_after_reduce-start_time) << endl;
 #   endif
 
 }
@@ -697,10 +718,10 @@ void Pyramid::Initialize() {
  *  @param b index of vertex 2
  *  @param c index of vertex 3                                                */
 void Pyramid::DeclareTriangle (unsigned i, unsigned a, unsigned b, unsigned c) {
-    Surface[0][i] = a;
-    Surface[1][i] = b;
-    Surface[2][i] = c;
-    Surface[3][i] = c;
+    Surface[i][0] = a;
+    Surface[i][1] = b;
+    Surface[i][2] = c;
+    Surface[i][3] = c;
 }
 
 

@@ -55,7 +55,13 @@ namespace VecMath {
             /// Construct an NestedVector with \p n empty elements
             NestedVector(unsigned n): _data(n) { }
 
-            /// Cpoy construct a NestedVector
+            /// Construct a NestedVector from an iterator range
+            NestedVector(typename std::vector<NestedVector<T, D-1> >::iterator first,
+                         typename std::vector<NestedVector<T, D-1> >::iterator last):
+                    NestedVector<T, D-1>(),
+                    _data(first, last) { }
+
+            /// Copy construct a NestedVector
             NestedVector(const NestedVector<T, D> &v): NestedVector<T, D-1>(),
                                                        _data(v.data()) { }
 
@@ -118,7 +124,7 @@ namespace VecMath {
             /** \param new_size Number of elements the vector should contain
              *  \param x Data with which new elements should be populated
              */
-            void resize(unsigned new_size, unsigned x) {
+            void resize(unsigned new_size, NestedVector<T, D-1> x) {
             	data().resize(new_size, x);
             }
 

@@ -32,7 +32,12 @@ namespace VecMath {
         uintvec(): NestedVector<unsigned, D> () { }
         /// Copy construct a uintvec from a NestedVector<unsigned>
         uintvec(NestedVector<unsigned, D> v): NestedVector<unsigned, D>(v) { }
-    };
+
+        /// Construct a NestedVector from an iterator range
+        uintvec(typename std::vector< uintvec<D-1> >::iterator first,
+                typename std::vector< uintvec<D-1> >::iterator last):
+            NestedVector<unsigned, D>(first, last) { }
+};
 
     /// Find an element in a uintvec
     /** \param find_me The element to find in the vector \p v
