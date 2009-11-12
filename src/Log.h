@@ -26,59 +26,17 @@ class Log{
 #           endif
         }
 
-        /** print a string without a line break */
-        Log &operator<<(const std::string &
+        template <typename T> Log &operator<<(const T &
 #           ifdef DEBUG
-                        message
+                out
 #           endif
-                       ) {
+        ) {
 #           ifdef DEBUG
-                std::cerr << message;
-                std::cerr.flush();
+				std::cerr << out;
+				std::cerr.flush();
 #           endif
-            return *this;
-        }
-
-        /** print a Vector without a line break */
-        template<unsigned D> Log &operator<<(const VecMath::Vector<D> &
-#           ifdef DEBUG
-                v
-#           endif
-                       ) {
-#           ifdef DEBUG
-            std::cerr << v;
-            std::cerr.flush();
-#           endif
-            return *this;
-        }
-
-        /** print a Rotation without a line break */
-        template<unsigned D> Log &operator<<(const VecMath::Rotation<D> &
-#           ifdef DEBUG
-                v
-#           endif
-                       ) {
-#           ifdef DEBUG
-            std::cerr << v;
-            std::cerr.flush();
-#           endif
-            return *this;
-        }
-
-        /** print a long integer without a line break */
-        Log &operator<<(long x) {
-            return operator<<(Globals::Instance().itoa(x));
-        }
-
-        /** print an unsigned long integer without a line break */
-        Log &operator<<(unsigned long x) {
-            return operator<<(Globals::Instance().itoa(x));
-        }
-
-        /** print a double without a line break */
-        Log &operator<<(double x) {
-            return operator<<(Globals::Instance().ftoa(x));
-        }
+			return *this;
+}
 
     private:
         /** disabled default constructor */
