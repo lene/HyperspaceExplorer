@@ -28,6 +28,7 @@
 #include "Surface.h"
 #include "ComplexFunction.h"
 #include "Object.h"
+#include "Sponge.h"
 #include "Rotope.h"
 
 #include "ParameterMap.h"
