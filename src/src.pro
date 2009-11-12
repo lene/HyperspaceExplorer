@@ -30,12 +30,12 @@ HEADERS += Functions/ComplexFunction.h Functions/CustomFunction.h \
            Functions/Function.h Functions/Object.h Functions/Surface.h \
            Functions/RealFunction.h  Functions/FunctionParameter.h \
            Functions/ParameterMap.h Functions/FunctionFactory.h \
-           Functions/Transform.h
+           Functions/Transform.h Functions/Sponge.h
 #          Functions/SteinerFunction.h
 SOURCES += Functions/ComplexFunction.C Functions/CustomFunction.C \
            Functions/Function.C Functions/Surface.C Functions/Object.C \
            Functions/RealFunction.C  Functions/FunctionParameter.C \
-           Functions/FunctionFactory.C
+           Functions/FunctionFactory.C Functions/Sponge.C
 #          Functions/SteinerFunction.C
 
 ###
@@ -121,7 +121,7 @@ SOURCES += Globals.C Help.C Main.C ColorManager.C Light.C
 
 INSTALLDIR = "/usr/local"
 DEFINES += PREFIX="$${INSTALLDIR}"
-DEFINES += PACKAGE_BUGREPORT="scout@hyperspace-travel.de"
+DEFINES += PACKAGE_BUGREPORT="regnans@gmail.com"
 DEFINES += PACKAGE_VERSION="$${VERSION}"
 DEFINES += USE_AUTO_PTR
 

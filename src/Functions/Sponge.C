@@ -1,0 +1,409 @@
+
+#include "Sponge.h"
+
+namespace SpongeUtility {
+
+	float time_to_float(clock_t time) {
+		return float(time)/float(CLOCKS_PER_SEC);
+	}
+
+	inline bool isPermutation(unsigned m0, unsigned m1,
+					   unsigned n0, unsigned n1) {
+		if (m0 == n0 && m1 == n1) return true;
+		if (m0 == n1 && m1 == n0) return true;
+		return false;
+	}
+
+	inline bool isPermutation(unsigned m0, unsigned m1, unsigned m2,
+					   unsigned n0, unsigned n1, unsigned n2) {
+		if (m0 == n0 && isPermutation(m1, m2, n1, n2)) return true;
+		if (m0 == n1 && isPermutation(m1, m2, n0, n2)) return true;
+		if (m0 == n2 && isPermutation(m1, m2, n0, n1)) return true;
+		return false;
+	}
+
+	inline bool isPermutation(unsigned m0, unsigned m1, unsigned m2, unsigned m3,
+					   unsigned n0, unsigned n1, unsigned n2, unsigned n3) {
+		if (m0 == n0 && isPermutation(m1, m2, m3, n1, n2, n3)) return true;
+		if (m0 == n1 && isPermutation(m1, m2, m3, n0, n2, n3)) return true;
+		if (m0 == n2 && isPermutation(m1, m2, m3, n0, n1, n3)) return true;
+		if (m0 == n3 && isPermutation(m1, m2, m3, n0, n1, n2)) return true;
+		return false;
+	}
+
+}
+
+using VecMath::Vector;
+
+/// Construct a Hypersponge of level \p level
+/** \param _level Level of recursion used in creating the Sponge
+ *  \param _distance see Initialize()
+ *  \param _rad Size of the Sponge - \p _rad is half the side length
+ *  \param _center Center point of the Sponge                                 */
+AltSponge::AltSponge (unsigned _level, unsigned _distance, double _rad,
+                      VecMath::Vector<4> _center):
+        Level (_level), distance(_distance), rad(_rad), center(_center) {
+    setfunctionName("4-dimensional Menger Sponge");
+//    clearParameterNames();
+    declareParameter("Level", (unsigned)1, _level);
+    declareParameter("Distance", (unsigned)2, _distance);
+    declareParameter("Size", 0.8, _rad);
+
+    Initialize();
+}
+
+
+/// return the approximate amount of memory needed to display a sponge of
+/// current \p level and given \p distance
+/** @todo uses hardcoded and experimentally found value for memory per hypercube
+ *  @param distance see Initialize()
+ *  @return approx. mem required                                              */
+unsigned long AltSponge::MemRequired (unsigned distance) {
+    double SpongePerLevel = ((distance == 0)? 81:
+                             (distance == 1)? 72:
+                             (distance == 2)? 48:
+                             16);
+    return (unsigned long) ((pow (SpongePerLevel, int (Level))*32)/1024+8)*1024*1024;
+}
+
+/// This function actually creates the hypersponge.
+/** It views it as an assembly
+ *  of \f$ 3^4 \f$ smaller sponges, slicing the sponge in three sub-sponges in
+ *  every one of the four dimensions, and then taking away some of the resulting
+ *  81 smaller sub-sponges.
+ *  \li if the parameter \em distance is zero, it only removes the sub-sponge
+ *      with distance 0 from the center, i.e. the one at the center.
+ *  \li if the parameter \em distance is one, it only removes the sub-sponges
+ *      with distance <= 1, amounting to nine removed sub-sponges. The three-
+ *      dimensional surface of the hypercube enveloping the sponge is not
+ *      breached, because the surface of a hypercube is two units away from the
+ *      center, instead of one unit, as in 3D.
+ *  \li if \em distance = 2, the holes reach the hypercubes surface, giving an
+ *      object analogous to the three-dimensional Menger Sponge.
+ *  \li if \em distance = 3, only the 16 corners of the hypercube remain, giving
+ *      four-dimensional fractal dust.
+ *
+ *  If the \em level of the sponge is 1, the sub-sponges are hypercubes. Otherwise,
+ *  they are Hypersponges with a \em level reduced by 1.
+ *
+ *  \todo Make this a recursive function, resizing the vector of surfaces and
+ *    vertices with every call.
+ *  \todo remove unused places in the vertices and surfaces arrays.
+ *  \todo remove surfaces which are doubly-used, because they cancel each other.
+ *  \todo make vertices unique in the vertex array, saving a (potentially huge)
+ *    lot of memory.
+ */
+void AltSponge::Initialize(void) {
+
+    distance = abs(distance);
+    if (distance > 3) distance = 3;     //  dunno if this is wise
+
+    unsigned long SpongePerLevel = ((distance == 0)? 81:
+                                    (distance == 1)? 72:
+                                    (distance == 2)? 48:
+                                    16);
+    unsigned TotalCubes = pow(SpongePerLevel, Level);
+
+    for (unsigned current_level = 0; current_level <= Level; current_level++) {
+
+        SingletonLog::Instance() << "Level: " << current_level << "/" << Level << " -- total cubes: " << TotalCubes << "\n";
+
+        if (current_level < 1) {
+
+            X.resize(16);
+            Surface.resize(24);
+            Hypercube::Initialize();
+
+        } else {
+
+            vec4vec1D Xold(X);
+            VecMath::uintvec<2> Sold(Surface);
+
+            for (unsigned i = 0; i < Xold.size(); ++i) Xold[i] *= 1./3.;
+
+            try {
+                X.resize(SpongePerLevel*X.size());
+                Surface.resize(SpongePerLevel*Surface.size(),
+                               VecMath::uintvec<1>(4));
+            } catch (std::bad_alloc) {
+                X.resize(Xold.size());
+                Surface.resize(Sold.size());
+                return;
+            }
+
+            unsigned indexX = 0, indexS = 0;
+            for (int x = -1; x <= 1; x++) {
+                for (int y = -1; y <= 1; y++) {
+                    for (int z = -1; z <= 1; z++) {
+                        for (int w = -1; w <= 1; w++) {
+                            if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
+                                Vector<4> NewCen =
+                                    Vector<4> (double (x), double (y),
+                                               double (z), double (w))*2./3.;
+                                NewCen += center;
+
+                                for (unsigned i = 0; i < Xold.size(); ++i) {
+                                    X[indexX+i] = Xold[i]+NewCen;
+                                }
+                                for (unsigned i = 0; i < Sold.size(); ++i) {
+                                    for (unsigned k = 0; k < 4; ++k) {
+                                        Surface[indexS+i][k] = Sold[i][k]+indexX;
+                                    }
+                                }
+                                indexX += Xold.size();
+                                indexS += Sold.size();
+                            }
+                        }
+                    }
+                }
+            }
+
+            reduceVertices();
+            removeDuplicateSurfaces();
+        }
+
+    }
+
+    Object::Initialize();
+
+}
+
+
+void AltSponge::reduceVertices() {
+
+    unsigned i_num = 0;
+
+    //  copy vertex data from a std::vector into a std::list for more efficient erasing
+    typedef std::list<VecMath::Vector<4> > container_type;
+    container_type X_tmp(X.size());
+    std::copy(X.begin(), X.end(), X_tmp.begin());
+
+    SingletonLog::Instance() << "vertices before reduction: " << X.size() << "\n";
+    clock_t start_time = clock ();
+
+    for (container_type::iterator i = X_tmp.begin(); i != X_tmp.end(); ++i, ++i_num) {
+
+        //  used to identify the index of the removed vertex in the Surface array
+        unsigned j_num = i_num+1;
+
+        container_type::iterator j = i;
+        for (++j; j != X_tmp.end(); ++j, ++j_num) {
+
+            if (*i == *j) {
+
+                // erase equal vertices
+                j = X_tmp.erase(j);
+
+                // replace all surface indices pointing to equal vertex
+                for (VecMath::uintvec<2>::iterator it = Surface.begin(); it != Surface.end(); ++it) {
+                    for (unsigned k = 0; k < 4; ++k) {
+                        if ((*it)[k] == j_num) (*it)[k] = i_num;
+                        else if ((*it)[k] > j_num) ((*it)[k])--;
+                    }
+                }
+
+            }
+        }
+    }
+
+    X.resize(X_tmp.size());
+    std::copy(X_tmp.begin(), X_tmp.end(), X.begin());
+
+    SingletonLog::Instance() << "vertices after reduction: " << X_tmp.size() << "\n"
+							 << "time for reducing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
+
+}
+
+
+void AltSponge::removeDuplicateSurfaces() {
+
+    //  copy surface data from a std::vector into a std::list for more efficient erasing
+    typedef std::list<VecMath::uintvec<1> > container_type;
+    container_type S_tmp(Surface.size());
+    std::copy(Surface.begin(), Surface.end(), S_tmp.begin());
+
+    container_type::iterator i = S_tmp.begin();
+    unsigned i_num = 0;
+
+    SingletonLog::Instance() << "Pre-Removing dups: surface.size() = " << S_tmp.size() << "\n";
+    clock_t start_time = clock ();                     //  record start time
+
+    while (i != S_tmp.end()) {
+
+        bool erased = false;
+
+        container_type::iterator j = i;
+        ++j;
+
+        while (j != S_tmp.end()) {
+
+            if (SpongeUtility::isPermutation((*i)[0], (*i)[1], (*i)[2], (*i)[3],
+											 (*j)[0], (*j)[1], (*j)[2], (*j)[3])) {
+
+                S_tmp.erase(j);
+                erased = true;
+                break;
+
+            } else {
+                ++j;
+            }
+        }
+
+        if (erased) {
+            i = S_tmp.erase(i);
+        } else {
+            ++i;
+            i_num++;
+        }
+    }
+
+    Surface.resize(S_tmp.size());
+    std::copy(S_tmp.begin(), S_tmp.end(), Surface.begin());
+
+    SingletonLog::Instance() << "Post-Removing dups: surface.size() = " << S_tmp.size() << "\n"
+							 << "time for reducing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
+
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+/// Construct a Hypersponge of level \p level
+/** \param _level Level of recursion used in creating the Sponge
+ *  \param _distance see Initialize()
+ *  \param _rad Size of the Sponge - \p _rad is half the side length
+ *  \param _center Center point of the Sponge                                 */
+Sponge::Sponge (unsigned _level, unsigned _distance, double _rad,
+                VecMath::Vector<4> _center):
+        Level (_level), distance(_distance), rad(_rad), center(_center) {
+    setfunctionName("4-dimensional Menger Sponge");
+//    clearParameterNames();
+    declareParameter("Level", (unsigned)1, _level);
+    declareParameter("Distance", (unsigned)2, _distance);
+    declareParameter("Size", 0.8, _rad);
+
+    Initialize();
+}
+
+
+/// return the approximate amount of memory needed to display a sponge of
+/// current \p level and given \p distance
+/** @todo uses hardcoded and experimentally found value for memory per hypercube
+ *  @param distance see Initialize()
+ *  @return approx. mem required                                              */
+unsigned long Sponge::MemRequired (unsigned distance) {
+    double SpongePerLevel = ((distance == 0)? 81:
+                             (distance == 1)? 72:
+                             (distance == 2)? 48:
+                             16);
+    return (unsigned long) ((pow (SpongePerLevel, int (Level))*32)/1024+8)*1024*1024;
+}
+
+
+/// Sponge destructor
+Sponge::~Sponge () {
+    List.clear();
+}
+
+/// This function actually creates the hypersponge.
+/** It views it as an assembly
+ *  of \f$ 3^4 \f$ smaller sponges, slicing the sponge in three sub-sponges in
+ *  every one of the four dimensions, and then taking away some of the resulting
+ *  81 smaller sub-sponges.
+ *  \li if the parameter \em distance is zero, it only removes the sub-sponge
+ *      with distance 0 from the center, i.e. the one at the center.
+ *  \li if the parameter \em distance is one, it only removes the sub-sponges
+ *      with distance <= 1, amounting to nine removed sub-sponges. The three-
+ *      dimensional surface of the hypercube enveloping the sponge is not
+ *      breached, because the surface of a hypercube is two units away from the
+ *      center, instead of one unit, as in 3D.
+ *  \li if \em distance = 2, the holes reach the hypercubes surface, giving an
+ *      object analogous to the three-dimensional Menger Sponge.
+ *  \li if \em distance = 3, only the 16 corners of the hypercube remain, giving
+ *      four-dimensional fractal dust.
+ *
+ *  If the \em level of the sponge is 1, the sub-sponges are hypercubes. Otherwise,
+ *  they are Hypersponges with a \em level reduced by 1.
+ */
+void Sponge::Initialize(void) {
+//    SingletonLog::Instance().log("Sponge::Initialize()");
+
+    if (Level < 1)
+        List.push_back (new Hypercube (rad*3./2., center));
+    else {
+        if (distance > 3) distance = 3;   //  dunno if this is wise
+
+        if (0 && (MemRequired (distance) > Globals::Instance().getMaxMemory())) {
+            std::cerr << "Menger sponge of level " << Level
+					  << " would require approx. " << MemRequired (distance)/1024/1024
+					  << " MB of memory." << std::endl;
+            if (Globals::Instance().checkMemory()) {
+            	std::cerr << "This is more than your available Memory, "
+						  << Globals::Instance().getMaxMemory()/1024/1024 << "MB" << std::endl;
+                while (MemRequired (distance) > Globals::Instance().getMaxMemory())
+                    Level--;
+                std::cerr << "Using level " << Level << " instead." << std::endl;
+            }
+        }
+        for (int x = -1; x <= 1; x++) {
+            for (int y = -1; y <= 1; y++) {
+                for (int z = -1; z <= 1; z++) {
+                    for (int w = -1; w <= 1; w++) {
+                        if (distance >= 0) {
+                            if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
+                                Vector<4> NewCen =
+                                    Vector<4> (double (x), double (y),
+                                               double (z), double (w))*rad;
+                                NewCen += center;
+                                List.push_back (
+                                    new Sponge (
+                                        Level-1, distance, rad/3., NewCen));
+                            }
+                        } else {
+                            if (abs (x)+abs (y)+abs (z)+abs (w) < distance) {
+                                Vector<4> NewCen =
+                                    Vector<4> (double (x), double (y),
+                                               double (z), double (w))*rad;
+                                NewCen += center;
+                                List.push_back (
+                                    new Sponge (
+                                        Level-1, distance, rad/3., NewCen));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    Object::Initialize();
+}
+
+/// Transforms a Sponge
+/** The transformation is achieved by transforming all constituting sub-sponges.
+ *  @param R rotation
+ *  @param T translation                                                      */
+void Sponge::Transform (const VecMath::Rotation<4> &R,
+                        const VecMath::Vector<4> &T) {
+    for (unsigned i = 0; i < List.size (); i++)
+        List[i]->Transform (R, T);
+}
+
+
+/// Projects a Sponge into three-space
+/** The projection is achieved by projecting all constituting sub-sponges.
+ *  @param scr_w w coordinate of screen
+ *  @param cam_w w coordinate of camera
+ *  @param depthcue4d wheter to use hyperfog/dc                               */
+void Sponge::Project (double scr_w, double cam_w, bool depthcue4d) {
+//    SingletonLog::Instance().log("Sponge::Project()");
+    for (unsigned i = 0; i < List.size (); i++)
+        List[i]->Project (scr_w, cam_w, depthcue4d);
+}
+
+/// Draw the projected Sponge (onto screen or into GL list, as it is)
+/** Draws all sub-sponges, recursively.                                       */
+void Sponge::Draw (void) {
+    if (Level < 1) List[0]->Draw();
+    else for (unsigned i = 0; i < List.size(); i++) List[i]->Draw();
+}
+
