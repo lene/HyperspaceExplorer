@@ -56,7 +56,15 @@ protected:
     void reduceVertices();
     /// Remove all duplicate surfaces
     void removeDuplicateSurfaces();
-
+    /// When a duplicate vertex is removed, let all surfaces referencing it point to the original vertex.
+    /** Also, all vertices after the removed one are shifted up by one element,
+     *  so the surfaces pointing to them must be updated too.
+     *
+     *  \param original_vertex The vertex, first in the vertex array, that is kept.
+     *  \param duplicate_vertex The removed vertex.
+     */
+    void renumberSurfaces(unsigned original_vertex, unsigned duplicate_vertex);
+    
     unsigned Level;                 ///< Level of the hypersponge
     int distance;                   ///< max. distance (see Initialize())
     double rad;                     ///< radius, more correctly size, of the sponge

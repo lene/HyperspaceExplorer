@@ -18,10 +18,6 @@
 
 #include "Object.h"
 
-#include <limits>
-#include <algorithm>
-#include <time.h>
-
 using std::cerr;
 using std::endl;
 

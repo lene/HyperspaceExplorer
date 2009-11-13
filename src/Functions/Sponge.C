@@ -1,11 +1,20 @@
 
 #include "Sponge.h"
 
+#include "Log.h"
+
+#include <QtConcurrentRun>
+
+#include <time.h>
+
+#define CONCURRENT
+#undef CONCURRENT
+
 namespace SpongeUtility {
 
-	float time_to_float(clock_t time) {
-		return float(time)/float(CLOCKS_PER_SEC);
-	}
+  float time_to_float(clock_t time) {
+    return float(time)/float(CLOCKS_PER_SEC);
+  }
 
 	inline bool isPermutation(unsigned m0, unsigned m1,
 					   unsigned n0, unsigned n1) {
@@ -30,6 +39,18 @@ namespace SpongeUtility {
 		if (m0 == n3 && isPermutation(m1, m2, m3, n0, n1, n2)) return true;
 		return false;
 	}
+
+	#ifdef CONCURRENT
+	void renumber_Surfaces(VecMath::uintvec<2> &Surface, unsigned original_vertex, unsigned duplicate_vertex) {
+	//	SingletonLog::Instance() << "renumberSurfaces(" << original_vertex << " " << duplicate_vertex << "\n";
+		for (VecMath::uintvec<2>::iterator it = Surface.begin(); it != Surface.end(); ++it) {
+			for (unsigned k = 0; k < 4; ++k) {
+				if ((*it)[k] == duplicate_vertex) (*it)[k] = original_vertex;
+				else if ((*it)[k] > duplicate_vertex) (*it)[k]--;
+			}
+		}
+	}
+	#endif
 
 }
 
@@ -168,6 +189,16 @@ void AltSponge::Initialize(void) {
 
 }
 
+void AltSponge::renumberSurfaces(unsigned original_vertex, unsigned duplicate_vertex) {
+//	SingletonLog::Instance() << "renumberSurfaces(" << original_vertex << " " << duplicate_vertex << "\n";
+    for (VecMath::uintvec<2>::iterator it = Surface.begin(); it != Surface.end(); ++it) {
+        for (unsigned k = 0; k < 4; ++k) {
+            if ((*it)[k] == duplicate_vertex) (*it)[k] = original_vertex;
+            else if ((*it)[k] > duplicate_vertex) (*it)[k]--;
+        }
+    }
+}
+
 
 void AltSponge::reduceVertices() {
 
@@ -180,6 +211,10 @@ void AltSponge::reduceVertices() {
 
     SingletonLog::Instance() << "vertices before reduction: " << X.size() << "\n";
     clock_t start_time = clock ();
+    
+#	ifdef CONCURRENT
+    QFuture<void> future;
+#	endif
 
     for (container_type::iterator i = X_tmp.begin(); i != X_tmp.end(); ++i, ++i_num) {
 
@@ -195,13 +230,18 @@ void AltSponge::reduceVertices() {
                 j = X_tmp.erase(j);
 
                 // replace all surface indices pointing to equal vertex
-                for (VecMath::uintvec<2>::iterator it = Surface.begin(); it != Surface.end(); ++it) {
-                    for (unsigned k = 0; k < 4; ++k) {
-                        if ((*it)[k] == j_num) (*it)[k] = i_num;
-                        else if ((*it)[k] > j_num) ((*it)[k])--;
-                    }
-                }
-
+#				ifdef CONCURRENT
+                /* My tries to multithread the replacing of indices are preserved
+                 * here. Apparently multithreading does not speed up the function,
+                 * but instead slows it down, so I'm not finishing this now.
+                 */
+                future.waitForFinished();
+                //	using class function
+//                future = QtConcurrent::run(*this, &AltSponge::renumberSurfaces, i_num, j_num);
+                future = QtConcurrent::run(SpongeUtility::renumber_Surfaces, Surface, i_num, j_num);
+#				else
+                renumberSurfaces(i_num, j_num);
+#               endif
             }
         }
     }
@@ -210,7 +250,7 @@ void AltSponge::reduceVertices() {
     std::copy(X_tmp.begin(), X_tmp.end(), X.begin());
 
     SingletonLog::Instance() << "vertices after reduction: " << X_tmp.size() << "\n"
-							 << "time for reducing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
+                             << "time for reducing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
 
 }
 
@@ -238,7 +278,7 @@ void AltSponge::removeDuplicateSurfaces() {
         while (j != S_tmp.end()) {
 
             if (SpongeUtility::isPermutation((*i)[0], (*i)[1], (*i)[2], (*i)[3],
-											 (*j)[0], (*j)[1], (*j)[2], (*j)[3])) {
+                                             (*j)[0], (*j)[1], (*j)[2], (*j)[3])) {
 
                 S_tmp.erase(j);
                 erased = true;
