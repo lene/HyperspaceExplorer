@@ -115,6 +115,7 @@ unsigned long AltSponge::MemRequired (unsigned distance) {
  *    lot of memory.
  */
 void AltSponge::Initialize(void) {
+    clock_t start_time = clock ();                     //  record start time
 
     distance = abs(distance);
     if (distance > 3) distance = 3;     //  dunno if this is wise
@@ -178,14 +179,17 @@ void AltSponge::Initialize(void) {
                     }
                 }
             }
-
-            reduceVertices();
-            removeDuplicateSurfaces();
+            //	remove duplicate vertices and surfaces, except when we have dust
+			if (distance < 3) {
+				reduceVertices();
+				removeDuplicateSurfaces();
+			}
         }
 
     }
 
     Object::Initialize();
+    SingletonLog::Instance() << "time for initializing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
 
 }
 
@@ -366,6 +370,7 @@ Sponge::~Sponge () {
  */
 void Sponge::Initialize(void) {
 //    SingletonLog::Instance().log("Sponge::Initialize()");
+    clock_t start_time = clock ();                     //  record start time
 
     if (Level < 1)
         List.push_back (new Hypercube (rad*3./2., center));
@@ -416,6 +421,8 @@ void Sponge::Initialize(void) {
     }
 
     Object::Initialize();
+    SingletonLog::Instance() << "time for initializing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
+
 }
 
 /// Transforms a Sponge
