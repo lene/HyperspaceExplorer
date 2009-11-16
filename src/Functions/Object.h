@@ -19,6 +19,8 @@
 #include "Vector.h"
 #include "uintvec.h"
 
+#define USE_INT_INDICES 1
+
 /// Artificial type to use in Typelists
 struct EmptyType {};
 
@@ -114,6 +116,11 @@ protected:
 
     double _a;                  ///< Side length of the hypercube
     VecMath::Vector<4> _center; ///< Center of the hypercube
+
+# if !USE_INT_INDICES
+    std::vector<  VecMath::Vector<4>* [4] > Surface;
+# endif
+
 };
 
 namespace {

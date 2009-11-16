@@ -203,10 +203,17 @@ void Hypercube::Initialize(void) {
  *  \param offset if there are multiple cubes, the index of the cube
  */
 void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, unsigned d, unsigned offset) {
+# if USE_INT_INDICES
     Surface[i+offset*24][0] = a+offset*16;
     Surface[i+offset*24][1] = b+offset*16;
     Surface[i+offset*24][2] = c+offset*16;
     Surface[i+offset*24][3] = d+offset*16;
+# else
+    Surface[i+offset*24][0] = &X[a+offset*16];
+    Surface[i+offset*24][1] = &X[b+offset*16];
+    Surface[i+offset*24][2] = &X[c+offset*16];
+    Surface[i+offset*24][3] = &X[d+offset*16];
+# endif    
 }
 
 

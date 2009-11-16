@@ -92,27 +92,23 @@ unsigned long AltSponge::MemRequired (unsigned distance) {
  *  of \f$ 3^4 \f$ smaller sponges, slicing the sponge in three sub-sponges in
  *  every one of the four dimensions, and then taking away some of the resulting
  *  81 smaller sub-sponges.
- *  \li if the parameter \em distance is zero, it only removes the sub-sponge
+ *  \li if the parameter \p distance is zero, it only removes the sub-sponge
  *      with distance 0 from the center, i.e. the one at the center.
- *  \li if the parameter \em distance is one, it only removes the sub-sponges
+ *  \li if the parameter \p distance is one, it only removes the sub-sponges
  *      with distance <= 1, amounting to nine removed sub-sponges. The three-
  *      dimensional surface of the hypercube enveloping the sponge is not
  *      breached, because the surface of a hypercube is two units away from the
  *      center, instead of one unit, as in 3D.
- *  \li if \em distance = 2, the holes reach the hypercubes surface, giving an
+ *  \li if \p distance = 2, the holes reach the hypercubes surface, giving an
  *      object analogous to the three-dimensional Menger Sponge.
- *  \li if \em distance = 3, only the 16 corners of the hypercube remain, giving
+ *  \li if \p distance = 3, only the 16 corners of the hypercube remain, giving
  *      four-dimensional fractal dust.
  *
- *  If the \em level of the sponge is 1, the sub-sponges are hypercubes. Otherwise,
- *  they are Hypersponges with a \em level reduced by 1.
- *
- *  \todo Make this a recursive function, resizing the vector of surfaces and
- *    vertices with every call.
- *  \todo remove unused places in the vertices and surfaces arrays.
- *  \todo remove surfaces which are doubly-used, because they cancel each other.
- *  \todo make vertices unique in the vertex array, saving a (potentially huge)
- *    lot of memory.
+ *  If the \p level of the sponge is 1, the sub-sponges are hypercubes. Otherwise,
+ *  they are Hypersponges with a \p level reduced by 1.
+ * 
+ * \todo merge joined surfaces into one. not trivial, because the surfaces have
+ *       holes.
  */
 void AltSponge::Initialize(void) {
     clock_t start_time = clock ();                     //  record start time
