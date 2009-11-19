@@ -117,8 +117,15 @@ protected:
     double _a;                  ///< Side length of the hypercube
     VecMath::Vector<4> _center; ///< Center of the hypercube
 
-# if !USE_INT_INDICES
-    std::vector<  VecMath::Vector<4>* [4] > Surface;
+# if USE_INT_INDICES
+    typedef VecMath::uintvec<2> surface_vec_type;
+# else
+
+    typedef VecMath::Vector<4> vertex_type;
+    typedef vertex_type * vertex_ptr_type;
+    typedef std::vector<  vertex_ptr_type[4] > surface_vec_type;
+    surface_vec_type Surface;
+    
 # endif
 
 };

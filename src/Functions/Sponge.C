@@ -87,6 +87,7 @@ unsigned long AltSponge::MemRequired (unsigned distance) {
     return (unsigned long) ((pow (SpongePerLevel, int (Level))*32)/1024+8)*1024*1024;
 }
 
+
 /// This function actually creates the hypersponge.
 /** It views it as an assembly
  *  of \f$ 3^4 \f$ smaller sponges, slicing the sponge in three sub-sponges in
@@ -111,6 +112,11 @@ unsigned long AltSponge::MemRequired (unsigned distance) {
  *       holes.
  */
 void AltSponge::Initialize(void) {
+#if USE_INT_INDICES
+    static unsigned tmp = 4;
+# else    
+    static vertex_ptr_type tmp[4] = {0,0,0,0};
+#endif
     clock_t start_time = clock ();                     //  record start time
 
     distance = abs(distance);
@@ -129,23 +135,28 @@ void AltSponge::Initialize(void) {
         if (current_level < 1) {
 
             X.resize(16);
-            Surface.resize(24);
+            Surface.resize(24, tmp);
+
             Hypercube::Initialize();
 
         } else {
 
             vec4vec1D Xold(X);
-            VecMath::uintvec<2> Sold(Surface);
+            surface_vec_type Sold(Surface);
 
             for (unsigned i = 0; i < Xold.size(); ++i) Xold[i] *= 1./3.;
 
             try {
                 X.resize(SpongePerLevel*X.size());
+# if USE_INT_INDICES
                 Surface.resize(SpongePerLevel*Surface.size(),
                                VecMath::uintvec<1>(4));
+# else
+                Surface.resize(SpongePerLevel*Surface.size(), tmp);
+# endif            
             } catch (std::bad_alloc) {
                 X.resize(Xold.size());
-                Surface.resize(Sold.size());
+                Surface.resize(Sold.size(), tmp);
                 return;
             }
 
