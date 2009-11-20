@@ -149,10 +149,11 @@ void AltSponge::Initialize(void) {
                 Surface.resize(SpongePerLevel*Surface.size());
             } catch (std::bad_alloc) {
                 X.resize(Xold.size());
-                Surface.resize(Sold.size());
+                Surface.resize(Sold.size(), 4);
                 return;
             }
 
+            std::cerr << "Sold " << Sold.size() << ", Surface " << Surface.size() << std::endl;
             unsigned indexX = 0, indexS = 0;
             for (int x = -1; x <= 1; x++) {
                 for (int y = -1; y <= 1; y++) {
@@ -168,9 +169,12 @@ void AltSponge::Initialize(void) {
                                     X[indexX+i] = Xold[i]+NewCen;
                                 }
                                 for (unsigned i = 0; i < Sold.size(); ++i) {
+                                    std::cerr << "current level " << current_level << ", Surface " << Surface.size() << ", indexS " << indexS << ", i " << i << " ";
                                     for (unsigned k = 0; k < 4; ++k) {
-                                        Surface[indexS+i][k] = Sold[i][k]+indexX;
+                                      std::cerr  << " " << k << "/"<< Sold[i].size();
+                                      Surface[indexS+i][k] = Sold[i][k]+indexX;
                                     }
+                                    std::cerr << std::endl;
                                 }
                                 indexX += Xold.size();
                                 indexS += Sold.size();
