@@ -147,7 +147,7 @@ void Object::ReInit (double, double, double,
  *  \param a side_length/2
  */
 Hypercube::Hypercube (double a, const VecMath::Vector<4> &center):
-        Object ("Hypercube", 16, 24),
+        Object ("Hypercube", 16, 24), 
         _a (a), _center(center) {
     declareParameter("Size", 1.0);
     Initialize();
@@ -158,6 +158,9 @@ Hypercube::Hypercube (double a, const VecMath::Vector<4> &center):
  *  of the Hypercube by declaring the appropriate squares as a list in
  *  \p Surface[][].                                                           */
 void Hypercube::Initialize(void) {
+  
+    if (X.size() < 16) X.resize(16);
+  
     for (int x = 0; x <= 1; x++)
         for (int y = 0; y <= 1; y++)
             for (int z = 0; z <= 1; z++)
@@ -204,6 +207,8 @@ void Hypercube::Initialize(void) {
  */
 void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, unsigned d, unsigned offset) {
 # if USE_INT_INDICES
+    if (Surface.size() < i+offset*24) Surface.resize(i+offset*24);
+    if (Surface[i+offset*24].size() < 4) Surface[i+offset*24].resize(4);
     Surface[i+offset*24][0] = a+offset*16;
     Surface[i+offset*24][1] = b+offset*16;
     Surface[i+offset*24][2] = c+offset*16;

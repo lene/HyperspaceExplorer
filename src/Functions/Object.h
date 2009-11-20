@@ -79,23 +79,24 @@ class Object: public Function {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-# if USE_INT_INDICES
-    typedef VecMath::uintvec<2> surface_vec_type;
-# else
+#if USE_INT_INDICES
+typedef VecMath::uintvec<2> surface_vec_type;
+#else
 class SurfaceType {
+
   public:
     typedef VecMath::Vector<4> vertex_type;
     typedef const vertex_type * vertex_ptr_type;
 
-    SurfaceType() { for (unsigned i = 0; i < 4; _vertices[i++] = 0); }
-    SurfaceType(const vertex_type &v0, const vertex_type &v1, 
+    SurfaceType() { for (unsigned i = 0; i < 4; _vertices[i++] = 0) ; }
+    SurfaceType(const vertex_type &v0, const vertex_type &v1,
                 const vertex_type &v2) {
       _vertices[0] = &v0;
       _vertices[1] = &v1;
       _vertices[2] = &v2;
       _vertices[3] = 0;
     }
-    SurfaceType(const vertex_type &v0, const vertex_type &v1, 
+    SurfaceType(const vertex_type &v0, const vertex_type &v1,
                 const vertex_type &v2, const vertex_type &v3) {
       _vertices[0] = &v0;
       _vertices[1] = &v1;
@@ -103,13 +104,14 @@ class SurfaceType {
       _vertices[3] = &v3;
     }
     
-  private:
-    vertex_ptr_type _vertices[4];
+    vertex_ptr_type &operator[](unsigned i) { return _vertices[i]; }
+
+    private:
+      vertex_ptr_type _vertices[4];
 };
+
 typedef std::vector<SurfaceType> surface_vec_type;
-# endif
-
-
+#endif
 /// A four-dimensional cube
 /** \ingroup ObjectGroup                                                    */
 class Hypercube: public Object {
@@ -148,12 +150,9 @@ protected:
     double _a;                  ///< Side length of the hypercube
     VecMath::Vector<4> _center; ///< Center of the hypercube
 
-# if USE_INT_INDICES
-    typedef VecMath::uintvec<2> surface_vec_type;
-# else
-    surface_vec_type Surface;
-# endif
-
+#   if !USE_INT_INDICES
+      surface_vec_type Surface;
+#   endif
 };
 
 namespace {

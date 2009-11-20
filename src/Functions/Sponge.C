@@ -112,172 +112,165 @@ unsigned long AltSponge::MemRequired (unsigned distance) {
  *       holes.
  */
 #if USE_INT_INDICES
-
 void AltSponge::Initialize(void) {
 
-    clock_t start_time = clock ();                     //  record start time
-
-    distance = abs(distance);
-    if (distance > 3) distance = 3;     //  dunno if this is wise
-
+  clock_t start_time = clock ();                     //  record start time
+  
+  distance = abs(distance);
+  if (distance > 3) distance = 3;     //  dunno if this is wise
+    
     unsigned long SpongePerLevel = ((distance == 0)? 81:
-                                    (distance == 1)? 72:
-                                    (distance == 2)? 48:
-                                    16);
-    unsigned TotalCubes = pow(SpongePerLevel, Level);
-
-    for (unsigned current_level = 0; current_level <= Level; current_level++) {
-
-        SingletonLog::Instance() << "Level: " << current_level << "/" << Level << " -- total cubes: " << TotalCubes << "\n";
-
-        if (current_level < 1) {
-
-            X.resize(16);
-            Surface.resize(24);
-
-            Hypercube::Initialize();
-
-        } else {
-
-            vec4vec1D Xold(X);
-            surface_vec_type Sold(Surface);
-
-            for (unsigned i = 0; i < Xold.size(); ++i) Xold[i] *= 1./3.;
-
-            try {
-                X.resize(SpongePerLevel*X.size());
-                Surface.resize(SpongePerLevel*Surface.size());
-            } catch (std::bad_alloc) {
-                X.resize(Xold.size());
-                Surface.resize(Sold.size(), 4);
-                return;
-            }
-
-            std::cerr << "Sold " << Sold.size() << ", Surface " << Surface.size() << std::endl;
-            unsigned indexX = 0, indexS = 0;
-            for (int x = -1; x <= 1; x++) {
-                for (int y = -1; y <= 1; y++) {
-                    for (int z = -1; z <= 1; z++) {
-                        for (int w = -1; w <= 1; w++) {
-                            if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
-                                Vector<4> NewCen =
-                                    Vector<4> (double (x), double (y),
-                                               double (z), double (w))*2./3.;
-                                NewCen += center;
-
-                                for (unsigned i = 0; i < Xold.size(); ++i) {
-                                    X[indexX+i] = Xold[i]+NewCen;
-                                }
-                                for (unsigned i = 0; i < Sold.size(); ++i) {
-                                    std::cerr << "current level " << current_level << ", Surface " << Surface.size() << ", indexS " << indexS << ", i " << i << " ";
-                                    for (unsigned k = 0; k < 4; ++k) {
-                                      std::cerr  << " " << k << "/"<< Sold[i].size();
-                                      Surface[indexS+i][k] = Sold[i][k]+indexX;
-                                    }
-                                    std::cerr << std::endl;
-                                }
-                                indexX += Xold.size();
-                                indexS += Sold.size();
-                            }
-                        }
-                    }
+    (distance == 1)? 72:
+    (distance == 2)? 48:
+    16);
+  unsigned TotalCubes = pow(SpongePerLevel, Level);
+  
+  for (unsigned current_level = 0; current_level <= Level; current_level++) {
+    
+    SingletonLog::Instance() << "Level: " << current_level << "/" << Level << " -- total cubes: " << TotalCubes << "\n";
+    
+    if (current_level < 1) {
+      
+      X.resize(16);
+      Surface.resize(24);
+      
+      Hypercube::Initialize();
+      
+    } else {
+      
+      vec4vec1D Xold(X);
+      surface_vec_type Sold(Surface);
+      
+      for (unsigned i = 0; i < Xold.size(); ++i) Xold[i] *= 1./3.;
+      
+      try {
+        X.resize(SpongePerLevel*X.size());
+        Surface.resize(SpongePerLevel*Surface.size());
+      } catch (std::bad_alloc) {
+        X.resize(Xold.size());
+        Surface.resize(Sold.size());
+        return;
+      }
+      
+      unsigned indexX = 0, indexS = 0;
+      for (int x = -1; x <= 1; x++) {
+        for (int y = -1; y <= 1; y++) {
+          for (int z = -1; z <= 1; z++) {
+            for (int w = -1; w <= 1; w++) {
+              if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
+                Vector<4> NewCen =
+                Vector<4> (double (x), double (y),
+                           double (z), double (w))*2./3.;
+                NewCen += center;
+                           
+                for (unsigned i = 0; i < Xold.size(); ++i) {
+                  X[indexX+i] = Xold[i]+NewCen;
                 }
+                for (unsigned i = 0; i < Sold.size(); ++i) {
+                  if (Surface[indexS+i].size() < 4) Surface[indexS+i].resize(4);
+                  for (unsigned k = 0; k < 4; ++k) {
+                    Surface[indexS+i][k] = Sold[i][k]+indexX;
+                  }
+                }
+                indexX += Xold.size();
+                indexS += Sold.size();
+              }
             }
-            //	remove duplicate vertices and surfaces, except when we have dust
-            if (distance < 3) {
-              reduceVertices();
-              removeDuplicateSurfaces();
-            }
+          }
         }
-
+      }
+      //  remove duplicate vertices and surfaces, except when we have dust
+      if (distance < 3) {
+        reduceVertices();
+        removeDuplicateSurfaces();
+      }
     }
-
-    Object::Initialize();
-    SingletonLog::Instance() << "time for initializing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
-
+    
+  }
+  
+  Object::Initialize();
+  SingletonLog::Instance() << "time for initializing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
+  
 }
-
 #else
-
 void AltSponge::Initialize(void) {
-    clock_t start_time = clock ();                     //  record start time
 
-    distance = abs(distance);
-    if (distance > 3) distance = 3;     //  dunno if this is wise
-
+  clock_t start_time = clock ();                     //  record start time
+  
+  distance = abs(distance);
+  if (distance > 3) distance = 3;     //  dunno if this is wise
+    
     unsigned long SpongePerLevel = ((distance == 0)? 81:
                                     (distance == 1)? 72:
                                     (distance == 2)? 48:
                                     16);
-    unsigned TotalCubes = pow(SpongePerLevel, Level);
-
-    for (unsigned current_level = 0; current_level <= Level; current_level++) {
-
-        SingletonLog::Instance() << "Level: " << current_level << "/" << Level << " -- total cubes: " << TotalCubes << "\n";
-
-        if (current_level < 1) {
-
-            X.resize(16);
-            Surface.resize(24);
-
-            Hypercube::Initialize();
-
-        } else {
-
-            vec4vec1D Xold(X);
-            surface_vec_type Sold(Surface);
-
-            for (unsigned i = 0; i < Xold.size(); ++i) Xold[i] *= 1./3.;
-
-            try {
-                X.resize(SpongePerLevel*X.size());
-                Surface.resize(SpongePerLevel*Surface.size());
-            } catch (std::bad_alloc) {
-                X.resize(Xold.size());
-                Surface.resize(Sold.size());
-                /// \todo give an out-of-memory message 
-                return;
-            }
-
-            unsigned indexX = 0, indexS = 0;
-            for (int x = -1; x <= 1; x++) {
-                for (int y = -1; y <= 1; y++) {
-                    for (int z = -1; z <= 1; z++) {
-                        for (int w = -1; w <= 1; w++) {
-                            if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
-                                Vector<4> NewCen =
-                                    Vector<4> (double (x), double (y),
-                                               double (z), double (w))*2./3.;
-                                NewCen += center;
-
-                                for (unsigned i = 0; i < Xold.size(); ++i) {
-                                    X[indexX+i] = Xold[i]+NewCen;
-                                }
-                                for (unsigned i = 0; i < Sold.size(); ++i) {
-                                    for (unsigned k = 0; k < 4; ++k) {
-                                        Surface[indexS+i][k] = Sold[i][k]+indexX;
-                                    }
-                                }
-                                indexX += Xold.size();
-                                indexS += Sold.size();
-                            }
-                        }
-                    }
+  unsigned TotalCubes = pow(SpongePerLevel, Level);
+  
+  for (unsigned current_level = 0; current_level <= Level; current_level++) {
+    
+    SingletonLog::Instance() << "Level: " << current_level << "/" << Level << " -- total cubes: " << TotalCubes << "\n";
+    
+    if (current_level < 1) {
+      
+      X.resize(16);
+      Surface.resize(24);
+      
+      Hypercube::Initialize();
+      
+    } else {
+      
+      vec4vec1D Xold(X);
+      surface_vec_type Sold(Surface);
+      
+      for (unsigned i = 0; i < Xold.size(); ++i) Xold[i] *= 1./3.;
+      
+      try {
+        X.resize(SpongePerLevel*X.size());
+        Surface.resize(SpongePerLevel*Surface.size());
+      } catch (std::bad_alloc) {
+        X.resize(Xold.size());
+        Surface.resize(Sold.size());
+        /// \todo give an out-of-memory message
+        return;
+      }
+      
+      unsigned indexX = 0, indexS = 0;
+      for (int x = -1; x <= 1; x++) {
+        for (int y = -1; y <= 1; y++) {
+          for (int z = -1; z <= 1; z++) {
+            for (int w = -1; w <= 1; w++) {
+              if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
+                Vector<4> NewCen = Vector<4> (double (x), double (y),
+                                              double (z), double (w))*2./3.;
+                NewCen += center;
+                           
+                for (unsigned i = 0; i < Xold.size(); ++i) {
+                  X[indexX+i] = Xold[i]+NewCen;
                 }
+                for (unsigned i = 0; i < Sold.size(); ++i) {
+                  for (unsigned k = 0; k < 4; ++k) {
+                    Surface[indexS+i][k] = Sold[i][k]+indexX;
+                  }
+                }
+                indexX += Xold.size();
+                indexS += Sold.size();
+              }
             }
-            //  remove duplicate vertices and surfaces, except when we have dust
-/*            if (distance < 3) {
-              reduceVertices();
-              removeDuplicateSurfaces();
-            }
-*/            
+          }
         }
-
+      }
+      //  remove duplicate vertices and surfaces, except when we have dust
+      if (distance < 3) {
+//        reduceVertices();
+//        removeDuplicateSurfaces();
+      }
     }
-
-    Object::Initialize();
-    SingletonLog::Instance() << "time for initializing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
-
+    
+  }
+  
+  Object::Initialize();
+  SingletonLog::Instance() << "time for initializing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
+  
 }
 #endif
 
@@ -397,7 +390,6 @@ void AltSponge::removeDuplicateSurfaces() {
 
 }
 #endif
-
 ///////////////////////////////////////////////////////////////////////////////
 
 /// Construct a Hypersponge of level \p level
