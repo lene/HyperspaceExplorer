@@ -209,10 +209,12 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
     Surface[i+offset*24][2] = c+offset*16;
     Surface[i+offset*24][3] = d+offset*16;
 # else
-    Surface[i+offset*24][0] = &X[a+offset*16];
+    Surface[i+offset*24] = SurfaceType(X[a+offset*16], X[b+offset*16], X[c+offset*16], X[d+offset*16]);
+/*  Surface[i+offset*24][0] = &X[a+offset*16];
     Surface[i+offset*24][1] = &X[b+offset*16];
     Surface[i+offset*24][2] = &X[c+offset*16];
     Surface[i+offset*24][3] = &X[d+offset*16];
+*/
 # endif    
 }
 
