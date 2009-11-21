@@ -6,6 +6,7 @@
 #include <QtConcurrentRun>
 
 #include <time.h>
+#include <algorithm>
 
 #define CONCURRENT
 #undef CONCURRENT
@@ -192,7 +193,9 @@ void AltSponge::Initialize(void) {
   SingletonLog::Instance() << "time for initializing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
   
 }
+
 #else
+
 void AltSponge::Initialize(void) {
 
   clock_t start_time = clock ();                     //  record start time
@@ -224,35 +227,30 @@ void AltSponge::Initialize(void) {
       
       for (unsigned i = 0; i < Xold.size(); ++i) Xold[i] *= 1./3.;
       
-      try {
-        X.resize(SpongePerLevel*X.size());
-        Surface.resize(SpongePerLevel*Surface.size());
-      } catch (std::bad_alloc) {
-        X.resize(Xold.size());
-        Surface.resize(Sold.size());
-        /// \todo give an out-of-memory message
-        return;
-      }
-      
-      unsigned indexX = 0, indexS = 0;
+      unsigned indexS = 0;
       for (int x = -1; x <= 1; x++) {
         for (int y = -1; y <= 1; y++) {
           for (int z = -1; z <= 1; z++) {
             for (int w = -1; w <= 1; w++) {
               if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
                 Vector<4> NewCen = Vector<4> (double (x), double (y),
-                                              double (z), double (w))*2./3.;
-                NewCen += center;
-                           
-                for (unsigned i = 0; i < Xold.size(); ++i) {
-                  X[indexX+i] = Xold[i]+NewCen;
-                }
+                                              double (z), double (w))*2./3. + center;
+
                 for (unsigned i = 0; i < Sold.size(); ++i) {
                   for (unsigned k = 0; k < 4; ++k) {
-                    Surface[indexS+i][k] = Sold[i][k]+indexX;
+                    //  create new vertex and store it if necessary
+                    Vector<4> Xnew = *(Sold[i][k])+NewCen;
+                    vec4vec1D::iterator vec = std::find(X.begin(), X.end(), Xnew);
+                    if (vec == X.end()) {
+                      X.push_back(Xnew);
+                      vec = X.end();
+                      vec--;
+                    }
+                    
+                    //  now store pointer to new vertex in surface array
+                    // Surface[indexS+i][k] = Sold[i][k]+indexX;
                   }
                 }
-                indexX += Xold.size();
                 indexS += Sold.size();
               }
             }
@@ -269,6 +267,9 @@ void AltSponge::Initialize(void) {
   }
   
   Object::Initialize();
+
+  for (surface_vec_type::iterator i = Surface.begin(); i != Surface.end(); ++i) i->print();
+  
   SingletonLog::Instance() << "time for initializing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
   
 }

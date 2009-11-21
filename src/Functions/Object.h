@@ -19,7 +19,7 @@
 #include "Vector.h"
 #include "uintvec.h"
 
-#define USE_INT_INDICES 1
+#define USE_INT_INDICES 0
 
 /// Artificial type to use in Typelists
 struct EmptyType {};
@@ -106,6 +106,11 @@ class SurfaceType {
     
     vertex_ptr_type &operator[](unsigned i) { return _vertices[i]; }
 
+    void print() {
+      for (unsigned i = 0; i < 4; ++i) std::cerr << *(_vertices[i]);
+      std::cerr << std::endl;
+    }
+    
     private:
       vertex_ptr_type _vertices[4];
 };
