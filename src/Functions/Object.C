@@ -141,16 +141,27 @@ void Object::ReInit (double, double, double,
 
 ////////////////////////////////////////////////////////////////////////////////
 
-
 /// Hypercube constructor
 /** \param center center
  *  \param a side_length/2
  */
 Hypercube::Hypercube (double a, const VecMath::Vector<4> &center):
-        Object ("Hypercube", 16, 24), 
-        _a (a), _center(center) {
-    declareParameter("Size", 1.0);
-    Initialize();
+    Object ("Hypercube", 16, 24), 
+    _a (a), _center(center) {
+  declareParameter("Size", 1.0);
+  Initialize();
+}
+
+void Hypercube::Draw() {
+    glBegin (GL_QUADS);
+    for (surface_vec_type::const_iterator i = Surface.begin(); i != Surface.end(); ++i) {
+        for (unsigned j = 0; j < 4; j++) {
+            if ((*i)[j] && i->index(j) < Xscr.size()) {
+                setVertex(*((*i)[j]), Xscr[i->index(j)]);
+            }
+        }
+    }
+    glEnd ();
 }
 
 /// Actually creates the Hypercube
@@ -168,6 +179,8 @@ void Hypercube::Initialize(void) {
                     X[x+2*(y+2*(z+2*w))] =
                         Vector<4> (2.*x-1., 2.*y-1., 2.*z-1., 2.*w-1.)*_a+_center;
                 }
+
+    if (Surface.size() < 24) Surface.resize(24);
 
     DeclareSquare (0,   0, 1, 3, 2);
     DeclareSquare (1,   0, 1, 5, 4);
@@ -211,7 +224,6 @@ void Hypercube::Initialize(void) {
  *  \param offset if there are multiple cubes, the index of the cube
  */
 void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, unsigned d, unsigned offset) {
-  if (Surface.size() < 24) Surface.resize(24);
   if (Surface.size() < i+offset*24) Surface.resize(i+offset*24);
 # if USE_INT_INDICES
     if (Surface[i+offset*24].size() < 4) Surface[i+offset*24].resize(4);
@@ -222,7 +234,7 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
 # else
     std::cerr << "Surface.size() = " << Surface.size() << ", X.size() = " << X.size() 
               << " i: " << i+offset*24 << " a: " << a+offset*16 << " b: " << b+offset*16 << " c: " << c+offset*16 << " d: " << d+offset*16 << std::endl;
-    Surface[i+offset*24] = SurfaceType(X[a+offset*16], X[b+offset*16], X[c+offset*16], X[d+offset*16]);
+    Surface[i+offset*24] = SurfaceType<4, 4>(X, X[a+offset*16], X[b+offset*16], X[c+offset*16], X[d+offset*16]);
 # endif    
 }
 

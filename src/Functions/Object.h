@@ -19,7 +19,7 @@
 #include "Vector.h"
 #include "uintvec.h"
 
-#define USE_INT_INDICES 0
+#define USE_INT_INDICES 1
 
 /// Artificial type to use in Typelists
 struct EmptyType {};
@@ -82,40 +82,63 @@ class Object: public Function {
 #if USE_INT_INDICES
 typedef VecMath::uintvec<2> surface_vec_type;
 #else
-class SurfaceType {
+template <unsigned D, unsigned N_vertex> class SurfaceType {
 
   public:
-    typedef VecMath::Vector<4> vertex_type;
+    typedef VecMath::Vector<D> vertex_type;
     typedef const vertex_type * vertex_ptr_type;
 
-    SurfaceType() { for (unsigned i = 0; i < 4; _vertices[i++] = 0) ; }
-    SurfaceType(const vertex_type &v0, const vertex_type &v1,
+    SurfaceType() { for (unsigned i = 0; i < N_vertex; _vertices[i++] = 0) ; }
+    SurfaceType(const std::vector<vertex_type> &original_container,
+                const vertex_type &v0, const vertex_type &v1,
                 const vertex_type &v2) {
-      _vertices[0] = &v0;
-      _vertices[1] = &v1;
-      _vertices[2] = &v2;
-      _vertices[3] = 0;
+      _vertices[0] = &v0; _indices[0] = index_of(v0, original_container);
+      _vertices[1] = &v1; _indices[1] = index_of(v1, original_container);
+      _vertices[2] = &v2; _indices[2] = index_of(v2, original_container);
+      for (unsigned i = 3; i < N_vertex; ++i) {
+        _vertices[i] = 0;
+        _indices[i] = 0;
+      }
     }
-    SurfaceType(const vertex_type &v0, const vertex_type &v1,
+    SurfaceType(const std::vector<vertex_type> &original_container,
+                const vertex_type &v0, const vertex_type &v1,
                 const vertex_type &v2, const vertex_type &v3) {
-      _vertices[0] = &v0;
-      _vertices[1] = &v1;
-      _vertices[2] = &v2;
-      _vertices[3] = &v3;
+      _vertices[0] = &v0; _indices[0] = index_of(v0, original_container);
+      _vertices[1] = &v1; _indices[1] = index_of(v1, original_container);
+      _vertices[2] = &v2; _indices[2] = index_of(v2, original_container);
+      _vertices[3] = &v3; _indices[3] = index_of(v3, original_container);
+      for (unsigned i = 4; i < N_vertex; ++i) {
+        _vertices[i] = 0;
+        _indices[i] = 0;
+      }
     }
     
-    vertex_ptr_type &operator[](unsigned i) { return _vertices[i]; }
+    const vertex_ptr_type &operator[](unsigned i) const { return _vertices[i]; }
+    unsigned index(unsigned i) const { return _indices[i]; }
 
     void print() {
-      for (unsigned i = 0; i < 4; ++i) std::cerr << *(_vertices[i]);
+      for (unsigned i = 0; i < N_vertex; ++i) 
+        std::cerr << _indices[i] << ": " << *(_vertices[i]) << " ";
       std::cerr << std::endl;
     }
     
     private:
-      vertex_ptr_type _vertices[4];
+      /// a version of std::find() that returns an index instead of an iterator
+      static unsigned index_of(const vertex_type &x, 
+                               const std::vector<vertex_type> &original_container) {
+        // assuming that more surfaces have vertices that have just been added
+        // to the end of original_container
+        for (int i = original_container.size()-1; i >= 0; --i) {
+          if (original_container[i] == x) return i;
+        }
+        throw std::logic_error("SurfaceType::index_of(): Tried to find the index of a vertex that was not in the container");
+      }
+      
+      vertex_ptr_type _vertices[N_vertex];
+      unsigned _indices[N_vertex];
 };
 
-typedef std::vector<SurfaceType> surface_vec_type;
+typedef std::vector< SurfaceType<4, 4> > surface_vec_type;
 #endif
 /// A four-dimensional cube
 /** \ingroup ObjectGroup                                                    */
@@ -148,7 +171,12 @@ public:
         out << "Tesseract of edge length " << _a << std::ends;
         return out.str ();
     }
-protected:
+#   if !USE_INT_INDICES
+      /// reimplement Draw() to make use of the stored vertices (instead of indices)
+      virtual void Draw (void);
+      
+#   endif
+  protected:
     virtual void Initialize();
     void DeclareSquare (unsigned, unsigned, unsigned, unsigned, unsigned, unsigned = 0);
 
