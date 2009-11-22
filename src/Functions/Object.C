@@ -152,6 +152,7 @@ Hypercube::Hypercube (double a, const VecMath::Vector<4> &center):
   Initialize();
 }
 
+#   if !USE_INT_INDICES
 void Hypercube::Draw() {
     glBegin (GL_QUADS);
     for (surface_vec_type::const_iterator i = Surface.begin(); i != Surface.end(); ++i) {
@@ -163,6 +164,7 @@ void Hypercube::Draw() {
     }
     glEnd ();
 }
+#endif
 
 /// Actually creates the Hypercube
 /** sets up the vertices of the Hypercube in \p X[], then sets up the surfaces
