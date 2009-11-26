@@ -12,12 +12,12 @@ public:
     /// AltSponge constructor
     /** @param _level hypersponge level
      *  @param _distance distance of subcubes to center to be counted as part of
-     *                   the fractal
-     *                   \li = 0: solid hypercube
-     *                   \li = 1: foam
-     *                   \li = 2: sponge
-     *                   \li = 3: dust
-     *                   \li >= 4: nothing
+     *    the fractal
+     *      \li = 0: solid hypercube
+     *      \li = 1: foam
+     *      \li = 2: sponge
+     *      \li = 3: dust
+     *      \li >= 4: nothing
      *  @param _rad side_length/2
      *  @param _center center                                                 */
     AltSponge (unsigned _level = 1, unsigned _distance = 2, double _rad = 0.8,

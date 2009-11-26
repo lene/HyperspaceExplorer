@@ -17,45 +17,47 @@ namespace SpongeUtility {
     return float(time)/float(CLOCKS_PER_SEC);
   }
 
-	inline bool isPermutation(unsigned m0, unsigned m1,
-					   unsigned n0, unsigned n1) {
-		if (m0 == n0 && m1 == n1) return true;
-		if (m0 == n1 && m1 == n0) return true;
-		return false;
-	}
+  inline bool isPermutation(unsigned m0, unsigned m1,
+                            unsigned n0, unsigned n1) {
+    if (m0 == n0 && m1 == n1) return true;
+    if (m0 == n1 && m1 == n0) return true;
+    return false;
+  }
 
-	inline bool isPermutation(unsigned m0, unsigned m1, unsigned m2,
-					   unsigned n0, unsigned n1, unsigned n2) {
-		if (m0 == n0 && isPermutation(m1, m2, n1, n2)) return true;
-		if (m0 == n1 && isPermutation(m1, m2, n0, n2)) return true;
-		if (m0 == n2 && isPermutation(m1, m2, n0, n1)) return true;
-		return false;
-	}
+  inline bool isPermutation(unsigned m0, unsigned m1, unsigned m2,
+                            unsigned n0, unsigned n1, unsigned n2) {
+    if (m0 == n0 && isPermutation(m1, m2, n1, n2)) return true;
+    if (m0 == n1 && isPermutation(m1, m2, n0, n2)) return true;
+    if (m0 == n2 && isPermutation(m1, m2, n0, n1)) return true;
+    return false;
+  }
 
-	inline bool isPermutation(unsigned m0, unsigned m1, unsigned m2, unsigned m3,
-					   unsigned n0, unsigned n1, unsigned n2, unsigned n3) {
-		if (m0 == n0 && isPermutation(m1, m2, m3, n1, n2, n3)) return true;
-		if (m0 == n1 && isPermutation(m1, m2, m3, n0, n2, n3)) return true;
-		if (m0 == n2 && isPermutation(m1, m2, m3, n0, n1, n3)) return true;
-		if (m0 == n3 && isPermutation(m1, m2, m3, n0, n1, n2)) return true;
-		return false;
-	}
+  inline bool isPermutation(unsigned m0, unsigned m1, unsigned m2, unsigned m3,
+                            unsigned n0, unsigned n1, unsigned n2, unsigned n3) {
+    if (m0 == n0 && isPermutation(m1, m2, m3, n1, n2, n3)) return true;
+    if (m0 == n1 && isPermutation(m1, m2, m3, n0, n2, n3)) return true;
+    if (m0 == n2 && isPermutation(m1, m2, m3, n0, n1, n3)) return true;
+    if (m0 == n3 && isPermutation(m1, m2, m3, n0, n1, n2)) return true;
+    return false;
+  }
 
-	#ifdef CONCURRENT
-	void renumber_Surfaces(VecMath::uintvec<2> &Surface, unsigned original_vertex, unsigned duplicate_vertex) {
-	//	SingletonLog::Instance() << "renumberSurfaces(" << original_vertex << " " << duplicate_vertex << "\n";
-		for (VecMath::uintvec<2>::iterator it = Surface.begin(); it != Surface.end(); ++it) {
-			for (unsigned k = 0; k < 4; ++k) {
-				if ((*it)[k] == duplicate_vertex) (*it)[k] = original_vertex;
-				else if ((*it)[k] > duplicate_vertex) (*it)[k]--;
-			}
-		}
-	}
-	#endif
+# ifdef CONCURRENT
+  void renumber_Surfaces(VecMath::uintvec<2> &Surface, unsigned original_vertex, unsigned duplicate_vertex) {
+  //  SingletonLog::Instance() << "renumberSurfaces(" << original_vertex << " " << duplicate_vertex << "\n";
+    for (VecMath::uintvec<2>::iterator it = Surface.begin(); it != Surface.end(); ++it) {
+      for (unsigned k = 0; k < 4; ++k) {
+        if ((*it)[k] == duplicate_vertex) (*it)[k] = original_vertex;
+        else if ((*it)[k] > duplicate_vertex) (*it)[k]--;
+      }
+    }
+  }
+# endif
 
 }
 
 using VecMath::Vector;
+using std::cerr;
+using std::endl;
 
 /// Construct a Hypersponge of level \p level
 /** \param _level Level of recursion used in creating the Sponge
@@ -138,12 +140,12 @@ void AltSponge::Initialize(void) {
       Hypercube::Initialize();
       
     } else {
-      
+
       vec4vec1D Xold(X);
       surface_vec_type Sold(Surface);
       
       for (unsigned i = 0; i < Xold.size(); ++i) Xold[i] *= 1./3.;
-      
+
       try {
         X.resize(SpongePerLevel*X.size());
         Surface.resize(SpongePerLevel*Surface.size());
@@ -159,10 +161,7 @@ void AltSponge::Initialize(void) {
           for (int z = -1; z <= 1; z++) {
             for (int w = -1; w <= 1; w++) {
               if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
-                Vector<4> NewCen =
-                Vector<4> (double (x), double (y),
-                           double (z), double (w))*2./3.;
-                NewCen += center;
+                Vector<4> NewCen = Vector<4>((double)x, (double)y, (double)z, (double)w)*2./3.+center;
                            
                 for (unsigned i = 0; i < Xold.size(); ++i) {
                   X[indexX+i] = Xold[i]+NewCen;
@@ -222,44 +221,52 @@ void AltSponge::Initialize(void) {
       
     } else {
       
-      vec4vec1D Xold(X);
+      for (unsigned i = 0; i < X.size(); ++i) cerr << "X[" << i << "]" << X[i]<< endl;
+
       surface_vec_type Sold(Surface);
       
-      for (unsigned i = 0; i < Xold.size(); ++i) Xold[i] *= 1./3.;
-      
-      unsigned indexS = 0;
-      for (int x = -1; x <= 1; x++) {
-        for (int y = -1; y <= 1; y++) {
-          for (int z = -1; z <= 1; z++) {
-            for (int w = -1; w <= 1; w++) {
-              if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
-                Vector<4> NewCen = Vector<4> (double (x), double (y),
-                                              double (z), double (w))*2./3. + center;
+      for (double x = -1; x <= 1; x++) {
+        for (double y = -1; y <= 1; y++) {
+          for (double z = -1; z <= 1; z++) {
+            for (double w = -1; w <= 1; w++) {
+              
+              if (fabs (x)+fabs (y)+fabs (z)+fabs (w) > distance) {
+
+                Vector<4> NewCen = Vector<4> (x, y, z, w)*2./3. + center;
 
                 for (unsigned i = 0; i < Sold.size(); ++i) {
+                  
+                  Vector<4> new_vertices[4];
+                  
                   for (unsigned k = 0; k < 4; ++k) {
-                    //  create new vertex and store it if necessary
-                    Vector<4> Xnew = *(Sold[i][k])+NewCen;
-                    vec4vec1D::iterator vec = std::find(X.begin(), X.end(), Xnew);
-                    if (vec == X.end()) {
-                      X.push_back(Xnew);
-                      vec = X.end();
-                      vec--;
-                    }
                     
-                    //  now store pointer to new vertex in surface array
-                    // Surface[indexS+i][k] = Sold[i][k]+indexX;
+                    //  create new vertex and store it if necessary
+                    Vector<4> xold = *(Sold[i][k]), xnew = xold/3.+NewCen;
+                    cerr << "xold: " << xold << ", xnew: " << xnew << endl;
+                    vec4vec1D::const_iterator vec = std::find(X.begin(), X.end(), xnew);
+                    if (vec == X.end()) {
+                      X.push_back(xnew);
+                      new_vertices[k] = X.back();
+                    } else {
+                      new_vertices[k] = *vec;
+                    }
+
                   }
+                  //  now store pointer to new vertex in surface array
+                  SurfaceType<4,4> new_surface(X, new_vertices[0], new_vertices[1], new_vertices[2], new_vertices[3]);
+                  Surface.push_back(new_surface);
                 }
-                indexS += Sold.size();
+                
               }
+              
             }
           }
         }
       }
-      //  remove duplicate vertices and surfaces, except when we have dust
+      for (unsigned i = 0; i < X.size(); ++i) cerr << "X[" << i << "]" << X[i]<< endl;
+      
+      //  remove duplicate surfaces, except when we have dust
       if (distance < 3) {
-//        reduceVertices();
 //        removeDuplicateSurfaces();
       }
     }
@@ -268,7 +275,7 @@ void AltSponge::Initialize(void) {
   
   Object::Initialize();
 
-  for (surface_vec_type::iterator i = Surface.begin(); i != Surface.end(); ++i) i->print();
+  std::for_each(Surface.begin(), Surface.end(), std::mem_fun_ref(&SurfaceType<4, 4>::print));
   
   SingletonLog::Instance() << "time for initializing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
   

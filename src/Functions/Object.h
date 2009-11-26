@@ -19,7 +19,7 @@
 #include "Vector.h"
 #include "uintvec.h"
 
-#define USE_INT_INDICES 1
+#define USE_INT_INDICES 0
 
 /// Artificial type to use in Typelists
 struct EmptyType {};
