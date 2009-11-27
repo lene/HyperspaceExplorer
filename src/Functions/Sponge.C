@@ -242,7 +242,7 @@ void AltSponge::Initialize(void) {
                     
                     //  create new vertex and store it if necessary
                     Vector<4> xold = *(Sold[i][k]), xnew = xold/3.+NewCen;
-                    cerr << "xold: " << xold << ", xnew: " << xnew << endl;
+//                    cerr << "xold: " << xold << ", xnew: " << xnew << endl;
                     vec4vec1D::const_iterator vec = std::find(X.begin(), X.end(), xnew);
                     if (vec == X.end()) {
                       X.push_back(xnew);
@@ -255,6 +255,14 @@ void AltSponge::Initialize(void) {
                   //  now store pointer to new vertex in surface array
                   SurfaceType<4,4> new_surface(X, new_vertices[0], new_vertices[1], new_vertices[2], new_vertices[3]);
                   Surface.push_back(new_surface);
+                  
+                  //  and remove the old surface
+                  // ...
+                  surface_vec_type::iterator found = std::find(Surface.begin(), Surface.end(), Sold[i]);
+                  if (found != Surface.end()) {
+                    found->print(); cerr << " == " << endl; Sold[i].print();
+                    Surface.erase(std::find(Surface.begin(), Surface.end(), Sold[i]));
+                  }
                 }
                 
               }
@@ -263,7 +271,7 @@ void AltSponge::Initialize(void) {
           }
         }
       }
-      for (unsigned i = 0; i < X.size(); ++i) cerr << "X[" << i << "]" << X[i]<< endl;
+//      for (unsigned i = 0; i < X.size(); ++i) cerr << "X[" << i << "]" << X[i]<< endl;
       
       //  remove duplicate surfaces, except when we have dust
       if (distance < 3) {
@@ -275,7 +283,7 @@ void AltSponge::Initialize(void) {
   
   Object::Initialize();
 
-  std::for_each(Surface.begin(), Surface.end(), std::mem_fun_ref(&SurfaceType<4, 4>::print));
+//  std::for_each(Surface.begin(), Surface.end(), std::mem_fun_ref(&SurfaceType<4, 4>::print));
   
   SingletonLog::Instance() << "time for initializing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
   

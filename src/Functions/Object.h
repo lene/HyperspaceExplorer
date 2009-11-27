@@ -116,6 +116,17 @@ template <unsigned D, unsigned N_vertex> class SurfaceType {
     const vertex_ptr_type &operator[](unsigned i) const { return _vertices[i]; }
     unsigned index(unsigned i) const { return _indices[i]; }
 
+    /// Preliminary version, only for N_vertex = 4
+    bool operator==(const SurfaceType<D, N_vertex> &other) const {
+      return isPermutation(_indices[0], _indices[1], _indices[2], _indices[3], 
+                           other._indices[0], other._indices[1], other._indices[2], other._indices[3]) &&
+             _vertices[0] == other._vertices[0] &&
+             _vertices[1] == other._vertices[1] &&
+             _vertices[2] == other._vertices[2] &&
+             _vertices[3] == other._vertices[3]
+             ; 
+    }
+    
     void print() {
       for (unsigned i = 0; i < N_vertex; ++i) 
         std::cerr << _indices[i] << ": " << *(_vertices[i]) << " ";
@@ -133,6 +144,30 @@ template <unsigned D, unsigned N_vertex> class SurfaceType {
         }
         throw std::logic_error("SurfaceType::index_of(): Tried to find the index of a vertex that was not in the container");
       }
+
+      static inline bool isPermutation(unsigned m0, unsigned m1,
+                                       unsigned n0, unsigned n1) {
+        if (m0 == n0 && m1 == n1) return true;
+        if (m0 == n1 && m1 == n0) return true;
+        return false;
+      }
+
+      static inline bool isPermutation(unsigned m0, unsigned m1, unsigned m2,
+                                       unsigned n0, unsigned n1, unsigned n2) {
+        if (m0 == n0 && isPermutation(m1, m2, n1, n2)) return true;
+        if (m0 == n1 && isPermutation(m1, m2, n0, n2)) return true;
+        if (m0 == n2 && isPermutation(m1, m2, n0, n1)) return true;
+        return false;
+      }
+
+      static inline bool isPermutation(unsigned m0, unsigned m1, unsigned m2, unsigned m3,
+                                       unsigned n0, unsigned n1, unsigned n2, unsigned n3) {
+          if (m0 == n0 && isPermutation(m1, m2, m3, n1, n2, n3)) return true;
+          if (m0 == n1 && isPermutation(m1, m2, m3, n0, n2, n3)) return true;
+          if (m0 == n2 && isPermutation(m1, m2, m3, n0, n1, n3)) return true;
+          if (m0 == n3 && isPermutation(m1, m2, m3, n0, n1, n2)) return true;
+          return false;
+        }
       
       vertex_ptr_type _vertices[N_vertex];
       unsigned _indices[N_vertex];
