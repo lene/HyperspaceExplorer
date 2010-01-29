@@ -89,7 +89,14 @@
 </inputType>
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.assembler.exe.debug.1266777381" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.debug">
-<option id="gnu.both.asm.option.include.paths.601103429" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths"/>
+<option id="gnu.both.asm.option.include.paths.601103429" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
+<listOptionValue builtIn="false" value="/usr/include/qt4"/>
+<listOptionValue builtIn="false" value="/usr/include/qt4/Qt"/>
+<listOptionValue builtIn="false" value="/usr/include/qt4/QtCore"/>
+<listOptionValue builtIn="false" value="/usr/include/qt4/QtGui"/>
+<listOptionValue builtIn="false" value="/usr/include/qt4/QtOpenGL"/>
+<listOptionValue builtIn="false" value="/usr/include/qt4/QtTest"/>
+</option>
 <inputType id="cdt.managedbuild.tool.gnu.assembler.input.458909854" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 </tool>
 </toolChain>
