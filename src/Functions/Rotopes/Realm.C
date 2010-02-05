@@ -279,6 +279,9 @@ Realm Realm::rotate(unsigned num_segments, unsigned size) {
          *  and for the caps: 
          *  [0, 4, 6, 2, 8, 10], [1, 5, 7, 3, 9, 11]
          *
+         *  \todo Revise this documentation.
+         *  \todo Add the caps.
+         *  \todo make this work for arbitrary polygons.
          */
         case 2: {
 
@@ -291,8 +294,12 @@ Realm Realm::rotate(unsigned num_segments, unsigned size) {
                 Realm temp_realm = rotate_step(0, j*size, size);
                 cerr << "temp realm: "; temp_realm.print();
                 temp_subrealms.push_back(temp_realm);
+
+                /** We're adding a square for the opposite side too.
+                 *  \todo Express the above sentence better.
+                 *  \todo is simply adding 2 correct? how to calculate the correct offset?
+                 */
                 Realm temp_copy = temp_realm;
-                /// \todo is that correct?
                 temp_copy.add(2);
                 cerr << "temp copy: "; temp_copy.print();
                 temp_subrealms.push_back(temp_copy);
@@ -351,7 +358,16 @@ Realm Realm::rotate_step(unsigned index, unsigned base, unsigned delta) {
         }
         case 2: {
             vector<Realm> new_subrealms;
+            cerr << endl << "size: " << _subrealm.size() << endl;
             /// split procedure: once for points on the positive and once for negative points
+            /** what happens and actually seems to be necessary here is this.
+             *  when i comment out the second loop in the case of a cylinder only
+             *  half is drawn. in the case of a sphere only a quarter sphere is drawn
+             *  regardless of whether the second loop runs or not.\n
+             *  i suspect that there should be _subrealm.size()/2 loops of length 2.
+             *  in the cylinder case, this happens to be the same as what we have here,
+             *  because _subrealm.size() == 4.
+             */
             for (unsigned i = 0; i < _subrealm.size()/2; ++i) {
                 cerr << "rotating "; _subrealm[i].print();
                 if (_subrealm[i].dimension()) throw new std::logic_error("At this point subrealms should be points");
