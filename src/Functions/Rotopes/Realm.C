@@ -29,17 +29,31 @@ void Realm::push_back(const Realm &r) {
 }
 
 void Realm::print() const {
-    if (_dimension) cout << "[" << _dimension << "] ";
-    cout << "(";
+    const std::string spacer = "    ";
+    static unsigned max_dimension = _dimension;
+    if (_dimension > max_dimension) max_dimension = _dimension;
+
+    if (_dimension) {
+        for (unsigned space = 0; space < max_dimension-_dimension; ++space) cout << spacer;
+        cout << "[" << _dimension << "] ";
+        cout << "(";
+    }
     if (_dimension == 0) cout << _index;
     else {
+        if (_dimension > 2) cout << endl;// << spacer;
         for (vector<Realm>::const_iterator i = _subrealm.begin();
              i != _subrealm.end(); ++i) {
             i->print();
             cout << " ";
         }
     }
-    cout << ")";
+    if (_dimension > 2) {
+        for (unsigned space = 0; space < max_dimension-_dimension; ++space) cout << spacer;
+    }
+    if (_dimension) {
+        cout << ")";
+        cout << endl;
+    }
 }
 
 void Realm::add(unsigned delta) {
