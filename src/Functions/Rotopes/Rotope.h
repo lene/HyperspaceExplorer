@@ -62,7 +62,12 @@ class Rotope : public Object {
         /// Number of segments approximating the object in rotation operations
         unsigned _numSegments;
 
-        void Draw(const Realm &);
+        /// Draw a Realm, which may be a surface of the Rotope or the entire Rotope
+        /** Helper function for Draw(void). Calls itself recursively until the
+         *  Rotope is broken down to a suffieciently small dimension.
+         *  \param realm The Realm to draw into an OpenGL display list.
+         */
+        void Draw(const Realm &realm);
 
         /// Sequence of extrusion actions needed to generate the Rotope
         std::string _actions;

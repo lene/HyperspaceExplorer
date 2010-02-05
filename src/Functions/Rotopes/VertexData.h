@@ -103,36 +103,38 @@ template <unsigned D> void vertex_data<D>::printVertices() {
 }
 
 template <unsigned D> void vertex_data<D>::print() {
-    std::cerr << _dimension << "-dimensional object";
+    std::cout << std::string(80, '-') << std::endl;
+    std::cout << _dimension << "-dimensional object";
 
 #   if DEBUG_ROTOPES >= 2
     std::string separator = "";
-    std::cerr << ": " << X().size() << " vertices\n";
+    std::cout << ": " << X().size() << " vertices\n";
     unsigned count = 0;
     for (typename vector<Vector<D> >::iterator i = X().begin();
          i != X().end(); ++i, count++){
         separator = "\n";
-        std::cerr << count << ": " << *i << separator;
+        std::cout << count << ": " << *i << separator;
     }
-    std::cerr << "\n";
+    std::cout << "\n";
 #   endif
 
 #   if DEBUG_ROTOPES >= 2
-        std::cerr << surface().size() << " surfaces: \n";
+        std::cout << surface().size() << " surfaces: \n";
         for (unsigned i = 0; i < surface().size(); ++i) {
-            std::cerr << std::setw(4) << i;
+            std::cout << std::setw(4) << i;
             printSurface(surface()[i]);
         }
-        std::cerr << "\n";
+        std::cout << "\n";
 #   endif
 
-    std::cerr << "\n" << realm().size() << " realms: \n";
+    std::cout << "\n" << realm().size() << " realms: \n";
     for(typename std::vector<Realm>::const_iterator i = realm().begin();
         i != realm().end(); ++i){
         i->print();
     }
-    std::cerr << "\n";
-
+    std::cout << "\n";
+    printVertices();
+    std::cout << std::string(80, '-') << std::endl;
 }
 
 /** Add a surface to the array of surfaces

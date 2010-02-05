@@ -137,7 +137,7 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
         }
     }
     
-    vertex_data<D>::realm().rotate(_numSegments, Xold.size());
+    vertex_data<D>::realm() = vertex_data<D>::realm().rotate(_numSegments, Xold.size());
     std::cerr << "rotate_base<" << D << ">::rotate(" << d << ")" << std::endl;
 	vertex_data<D>::printVertices();
     vertex_data<D>::dimension()++;   //  object is now one dimension higher

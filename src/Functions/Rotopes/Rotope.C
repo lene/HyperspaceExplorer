@@ -21,6 +21,7 @@
 
 using std::vector;
 using std::cerr;
+using std::endl;
 
 using VecMath::Vector;
 using VecMath::Matrix;
@@ -84,14 +85,14 @@ void Rotope::Initialize() {
         QString("Rotope::Rotope(")+actions.c_str()+")",
         e.what());
         */
-        std::cerr << e.what() << std::endl
+        cerr << e.what() << endl
                 << "Rendering " << DIM << "-dimensional hypercube instead."
-                << std::endl;
+                << endl;
     } catch (NotYetImplementedException e) {
         declareParameter("Generator", string(DIM, 'E'));
         _rotope = new Extrude<DIM, 0, DIM-1>();
         /// \todo See above
-        std::cerr << e.what() << std::endl;
+        cerr << e.what() << endl;
     }
 
     SingletonLog::Instance() << getParameters().print();
@@ -128,7 +129,9 @@ void Rotope::Draw () {
 
     if (_rotope->realm().size()) {
         Draw(_rotope->realm());
+        _rotope->print();
     } else {
+        cerr << "Drawing surfaces" << endl;
         unsigned currentPolygonSize = 0;
         for (unsigned i = 0; i < _rotope->surface().size(); i++) {
             if (currentPolygonSize != _rotope->surface()[i].size()) {
@@ -172,12 +175,20 @@ void Rotope::Draw(const Realm &realm) {
              *  represents two dimensional surfaces as vector of the form
              *  \code (0, 1, ..., n) \endcode
              */
-            glBegin(GL_POLYGON);
+            if (realm.getSubrealms().begin()->dimension() == 0) {
+                glBegin(GL_POLYGON);
+                    for (vector<Realm>::const_iterator i = realm.getSubrealms().begin();
+                         i != realm.getSubrealms().end(); ++i) {
+                        setVertex(X[*i], Xscr[*i]);
+                    }
+                glEnd();
+            } else if (realm.getSubrealms().begin()->dimension() == 1) {
                 for (vector<Realm>::const_iterator i = realm.getSubrealms().begin();
-                    i != realm.getSubrealms().end(); ++i) {
-                   setVertex(X[*i], Xscr[*i]);
+                     i != realm.getSubrealms().end(); ++i) {
+                    Draw(*i);
                 }
-            glEnd();
+            }
+            else throw std::logic_error("Realm contains a subrealm whose dimension is equal or greater than its own. Duh.");
             break;
         default:
             /** OpenGL does not allow to draw anything above the dimension of a
