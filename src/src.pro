@@ -149,3 +149,6 @@ docs.path =  $${INSTALLDIR}/share/HyperspaceExplorer/doc
 INSTALLS += target vector docs
 DISTFILES += ../devel/footer.html ../TODO
 
+###
+### C++0x support
+#QMAKE_CXXFLAGS += -std=c++0x

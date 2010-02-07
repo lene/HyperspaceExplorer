@@ -3,10 +3,12 @@
 ######################################################################
 
 CONFIG += qtestlib
+CONFIG += debug qt warn_on uic
+
 TEMPLATE = app
 TARGET = 
-DEPENDPATH += .
-INCLUDEPATH += .
+DEPENDPATH += . ../src ../src/Functions ../src/Loki ../src/Script ../src/UI ../src/VecMath
+INCLUDEPATH += . ../src ../src/Functions ../src/Loki ../src/Script ../src/UI ../src/VecMath
 
 ###
 ###     move all temporary files out of sight into subdirectory tmp
@@ -21,3 +23,14 @@ RCC_DIR = tmp
 # Input
 HEADERS += BasicTest.h
 SOURCES += BasicTest.cpp
+
+#HEADERS += FunctionTest.h
+#SOURCES += FunctionTest.cpp
+
+#SOURCES += FunctionFactory.C \
+#           ComplexFunction.C \
+#           CustomFunction.C \
+#           Object.C \
+#           RealFunction.C \
+#           Sponge.C \
+#           Surface.C
