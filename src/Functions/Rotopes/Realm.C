@@ -43,7 +43,7 @@ void Realm::print() const {
     else {
         if (_dimension > 2) cout << endl;// << spacer;
         for (vector<Realm>::const_iterator i = _subrealm.begin();
-             i != _subrealm.end(); ++i) {
+                i != _subrealm.end(); ++i) {
             i->print();
             cout << " ";
         }
@@ -61,15 +61,16 @@ void Realm::add(unsigned delta) {
     if (_dimension == 0) _index += delta;
     else {
         for (vector<Realm>::iterator i = _subrealm.begin();
-             i != _subrealm.end(); ++i) {
+                i != _subrealm.end(); ++i) {
             i->add(delta);
         }
     }
 }
 
+
 Realm Realm::extrude(unsigned delta) {
     vector<Realm> new_subrealms;
-    
+
     /** There is an annoying problem with the circumstance that I'd like to
      *  store realms as [sets of] point sets of their dimension, and that OpenGL
      *  needs point sets to draw two dimensional surfaces (as opposed to sets of
@@ -93,98 +94,111 @@ Realm Realm::extrude(unsigned delta) {
      *    called recursively.
      */
     switch(_dimension) {
-        
-        //  Extrude a point to a line
-        case 0: {
-            new_subrealms.push_back(_index);
-            new_subrealms.push_back(_index+delta);
-            Realm new_realm(new_subrealms);
-            return new_realm;
+
+    case 0:
+        return extrudePoint(delta);
+
+    case 1:
+        return extrudeLine(delta);
+
+    case 2: 
+      return extrudePolygon(delta);
+      
+    //  Extrude an N-dimensional Realm to a N+1-dimensional one, where N > 2
+    default: {
+        Realm copy(*this);
+        new_subrealms.push_back(copy);
+        for (unsigned i = 0; i < _subrealm.size(); ++i) {
+            new_subrealms.push_back(_subrealm[i].extrude(delta));
         }
-        //  Extrude a line to a square
-        case 1: {
-            // special case: make surfaces so OpenGL can draw them
-            // _subrealm.size() should be 2
-            new_subrealms.push_back(_subrealm[0]._index);
-            new_subrealms.push_back(_subrealm[1]._index);
-            new_subrealms.push_back(_subrealm[1]._index+delta);
-            new_subrealms.push_back(_subrealm[0]._index+delta);
-            Realm new_realm(new_subrealms);
-            new_realm._dimension++;
-            
-            return new_realm;
-        }
-        //  Extrude a polygon to a prism
-        case 2: {
-            Realm copy(*this);
-            new_subrealms.push_back(copy);
-            for (unsigned i = 0; i < _subrealm.size(); ++i) {
-                Realm new_subrealm;
-                new_subrealm.push_back(_subrealm[i]._index);
-                new_subrealm.push_back(_subrealm[(i+1)%_subrealm.size()]._index);
-                new_subrealm.push_back(_subrealm[(i+1)%_subrealm.size()]._index+delta);
-                new_subrealm.push_back(_subrealm[i]._index+delta);
-                new_subrealm._dimension = 2;
-                new_subrealms.push_back(new_subrealm);
-            }
-            copy.add(delta);
-            new_subrealms.push_back(copy);
-            Realm new_realm(new_subrealms);
-            return new_realm;
-        }
-        //  Extrude an N-dimensional Realm to a N+1-dimensional one, where N > 2
-        default: {
-            Realm copy(*this);
-            new_subrealms.push_back(copy);
-            for (unsigned i = 0; i < _subrealm.size(); ++i) {
-                new_subrealms.push_back(_subrealm[i].extrude(delta));
-            }
-            copy.add(delta);
-            new_subrealms.push_back(copy);
-            Realm new_realm(new_subrealms);
-            return new_realm;
-        }
+        copy.add(delta);
+        new_subrealms.push_back(copy);
+        Realm new_realm(new_subrealms);
+        return new_realm;
     }
+    }
+}
+
+Realm Realm::extrudePoint(unsigned delta) {
+    vector<Realm> new_subrealms;
+    new_subrealms.push_back(_index);
+    new_subrealms.push_back(_index+delta);
+    Realm new_realm(new_subrealms);
+    return new_realm;
+}
+
+Realm Realm::extrudeLine(unsigned delta) {
+    // special case: make surfaces so OpenGL can draw them
+    // _subrealm.size() should be 2
+    vector<Realm> new_subrealms;
+    new_subrealms.push_back(_subrealm[0]._index);
+    new_subrealms.push_back(_subrealm[1]._index);
+    new_subrealms.push_back(_subrealm[1]._index+delta);
+    new_subrealms.push_back(_subrealm[0]._index+delta);
+    Realm new_realm(new_subrealms);
+    new_realm._dimension++;
+
+    return new_realm;
+}
+
+Realm Realm::extrudePolygon(unsigned delta) {
+  vector<Realm> new_subrealms;
+
+  Realm copy(*this);
+  new_subrealms.push_back(copy);
+  for (unsigned i = 0; i < _subrealm.size(); ++i) {
+    Realm new_subrealm;
+    new_subrealm.push_back(_subrealm[i]._index);
+    new_subrealm.push_back(_subrealm[(i+1)%_subrealm.size()]._index);
+    new_subrealm.push_back(_subrealm[(i+1)%_subrealm.size()]._index+delta);
+    new_subrealm.push_back(_subrealm[i]._index+delta);
+    new_subrealm._dimension = 2;
+    new_subrealms.push_back(new_subrealm);
+  }
+          copy.add(delta);
+          new_subrealms.push_back(copy);
+          Realm new_realm(new_subrealms);
+          return new_realm;
 }
 
 Realm Realm::taper(unsigned taper_index) {
     vector<Realm> new_subrealms;
 
     switch (_dimension) {
-        case 0: {
-            throw std::logic_error(
+    case 0: {
+        throw std::logic_error(
                 "Realm::taper() can only operate on at least two vertices"
-            );
+        );
+    }
+    //  taper a line to a triangle
+    case 1: {
+        _subrealm.push_back(Realm(taper_index));
+        _dimension++;
+        return *this;
+    }
+    //  taper a polygon to a pyramid
+    case 2: {
+        new_subrealms.push_back(*this);
+        for (unsigned i = 0; i < _subrealm.size(); ++i) {
+            Realm new_subrealm;
+            new_subrealm.push_back(_subrealm[i]._index);
+            new_subrealm.push_back(_subrealm[(i+1)%_subrealm.size()]._index);
+            new_subrealm.push_back(taper_index);
+            new_subrealm._dimension = 2;
+            new_subrealms.push_back(new_subrealm);
         }
-        //  taper a line to a triangle
-        case 1: {
-            _subrealm.push_back(Realm(taper_index));
-            _dimension++;
-            return *this;
+        Realm new_realm(new_subrealms);
+        return new_realm;
+    }
+    //  taper an N-dimensional Realm to a N+1-dimensional one, where N > 2
+    default: {
+        new_subrealms.push_back(*this);
+        for (unsigned i = 0; i < _subrealm.size(); ++i) {
+            new_subrealms.push_back(_subrealm[i].taper(taper_index));
         }
-        //  taper a polygon to a pyramid
-        case 2: {
-            new_subrealms.push_back(*this);
-            for (unsigned i = 0; i < _subrealm.size(); ++i) {
-                Realm new_subrealm;
-                new_subrealm.push_back(_subrealm[i]._index);
-                new_subrealm.push_back(_subrealm[(i+1)%_subrealm.size()]._index);
-                new_subrealm.push_back(taper_index);
-                new_subrealm._dimension = 2;
-                new_subrealms.push_back(new_subrealm);
-            }
-            Realm new_realm(new_subrealms);
-            return new_realm;
-        }
-        //  taper an N-dimensional Realm to a N+1-dimensional one, where N > 2
-        default: {
-            new_subrealms.push_back(*this);
-            for (unsigned i = 0; i < _subrealm.size(); ++i) {
-                new_subrealms.push_back(_subrealm[i].taper(taper_index));
-            }
-            Realm new_realm(new_subrealms);
-            return new_realm;
-        }
+        Realm new_realm(new_subrealms);
+        return new_realm;
+    }
     }
 }
 
@@ -193,222 +207,222 @@ Realm Realm::rotate(unsigned num_segments, unsigned size) {
 
     if (DEBUG_ROTATE) { cerr << "Realm::rotate(" << num_segments << ", " << size << ")--------------------------\n"; }
     switch (_dimension) {
-        case 0: {
-            throw std::logic_error(
+    case 0: {
+        throw std::logic_error(
                 "Realm::rotate() can only operate on at least two vertices"
-            );
-        }
+        );
+    }
 
-        /** To rotate a line we must do the following.
-         *  
-         *  Rotate both endpoints of the line N times, first the one, then the 
-         *  other. Connect the last rotated image of the first endpoint to the
-         *  original second point and the last rotated image of the second point
-         *  to the first point. If we start with the line [0, 1] and rotate it 
-         *  with \p num_segments = 3, we get [ 0, 2, 3, 1, 4, 5 ].
-         *  
-         */
-        case 1: {
-            //  this case seems to be working properly.
+    /** To rotate a line we must do the following.
+     *
+     *  Rotate both endpoints of the line N times, first the one, then the
+     *  other. Connect the last rotated image of the first endpoint to the
+     *  original second point and the last rotated image of the second point
+     *  to the first point. If we start with the line [0, 1] and rotate it
+     *  with \p num_segments = 3, we get [ 0, 2, 3, 1, 4, 5 ].
+     *
+     */
+    case 1: {
+        //  this case seems to be working properly.
 
-            if (DEBUG_ROTATE) { cerr << "rotating line\n"; }
+        if (DEBUG_ROTATE) { cerr << "rotating line\n"; }
 
-            /// Copy the subrealms to a list for easier insertion
-            list<Realm> temp_list;
+        /// Copy the subrealms to a list for easier insertion
+        list<Realm> temp_list;
 #           if false
-            copy(_subrealm.begin(), _subrealm.end(), temp_list.begin());  // this segfaults! why?
+        copy(_subrealm.begin(), _subrealm.end(), temp_list.begin());  // this segfaults! why?
 #           else
-            for (vector<Realm>::iterator i = _subrealm.begin(); i != _subrealm.end(); ++i) 
-                temp_list.push_back(*i);
+        for (vector<Realm>::iterator i = _subrealm.begin(); i != _subrealm.end(); ++i)
+            temp_list.push_back(*i);
 #           endif
 
-            list<vector<Realm> > realms_to_add;
+        list<vector<Realm> > realms_to_add;
 
-            unsigned index = 0;
-            for (list<Realm>::iterator i = temp_list.begin(); i != temp_list.end(); ++i, ++index) {
-                if (DEBUG_ROTATE) { cout << endl<<"index: " << index << " "; i->print(); cout << endl; }
-                vector<Realm> to_add;
-                for (unsigned j = 0; j < num_segments; ++j) {
-                    to_add.push_back(rotate_step(index, j*size, size));
-                }
-                realms_to_add.push_back(to_add);
-            }
-            list<Realm>::iterator i = temp_list.begin();
-            ++i;
-            list<vector<Realm> >::iterator inew = realms_to_add.begin();
-            if (true) for ( ; inew != realms_to_add.end(); ++i, ++inew) {
-                if (DEBUG_ROTATE) { cout << "realms to add: "; }
-                for (vector<Realm>::iterator j = inew->begin(); j != inew->end(); ++j) {
-                    j->print();
-                }
-                if (DEBUG_ROTATE) { cout << endl; }
-                temp_list.insert(i, inew->begin(), inew->end());
-            }
-
-            /// Copy the subrealms back from the temporary list to a vector
-            _subrealm.clear();
-#           if false
-            copy(temp_list.begin(), temp_list.end(), _subrealm.begin());
-#           else
-            for (list<Realm>::iterator i = temp_list.begin(); i != temp_list.end(); ++i)
-                _subrealm.push_back(*i);
-#           endif
-
-            _dimension++;
-
-            if (DEBUG_ROTATE) {
-                cout << endl;
-                cerr << "/Realm::rotate(" << num_segments << ", " << size << ")------------------------\n";
-            }
-
-            return *this;
-        }
-
-        /** For a two-dimensional surface we have to do the following.
-         * 
-         *  First, because the surface is not stored as a list of lines, but 
-         *  rather as a list of points (because drawing the surface from lines
-         *  would be too tedious in OpenGL) we have to split the surface corner
-         *  points into line segments. Say we have a square defined as [0, 1, 3, 2]
-         *  we must first split it into its edges: [0, 1], [1, 3], [3, 2], [2, 1].
-         * 
-         *  Say we have \p num_segments = 3. What we want in the end is for the 
-         *  sides of the prism: 
-         *  [0, 1, 5, 4], [4, 5, 7, 6], [6, 7, 3, 2], [2, 3, 9, 8], [8, 9, 11, 10],
-         *  [10, 11, 1, 0]
-         *  and for the caps: 
-         *  [0, 4, 6, 2, 8, 10], [1, 5, 7, 3, 9, 11]
-         *
-         *  \todo Revise this documentation.
-         *  \todo Add the caps.
-         *  \todo make this work for arbitrary polygons.
-         */
-        case 2: {
-
-            if (DEBUG_ROTATE) { cerr << "rotating surface: "; print(); cout << endl; }
-
-            /** Create the sides (parallel to the rotation axis).
-             */
-            vector<Realm> temp_subrealms;
+        unsigned index = 0;
+        for (list<Realm>::iterator i = temp_list.begin(); i != temp_list.end(); ++i, ++index) {
+            if (DEBUG_ROTATE) { cout << endl<<"index: " << index << " "; i->print(); cout << endl; }
+            vector<Realm> to_add;
             for (unsigned j = 0; j < num_segments; ++j) {
-                Realm temp_realm = rotate_step(0, j*size, size);
-                cerr << "temp realm: "; temp_realm.print();
-                temp_subrealms.push_back(temp_realm);
-
-                /** We're adding a square for the opposite side too.
-                 *  \todo Express the above sentence better.
-                 *  \todo is simply adding 2 correct? how to calculate the correct offset?
-                 */
-                Realm temp_copy = temp_realm;
-                temp_copy.add(2);
-                cerr << "temp copy: "; temp_copy.print();
-                temp_subrealms.push_back(temp_copy);
-
+                to_add.push_back(rotate_step(index, j*size, size));
             }
+            realms_to_add.push_back(to_add);
+        }
+        list<Realm>::iterator i = temp_list.begin();
+        ++i;
+        list<vector<Realm> >::iterator inew = realms_to_add.begin();
+        if (true) for ( ; inew != realms_to_add.end(); ++i, ++inew) {
+            if (DEBUG_ROTATE) { cout << "realms to add: "; }
+            for (vector<Realm>::iterator j = inew->begin(); j != inew->end(); ++j) {
+                j->print();
+            }
+            if (DEBUG_ROTATE) { cout << endl; }
+            temp_list.insert(i, inew->begin(), inew->end());
+        }
 
-            if (DEBUG_ROTATE) { cout << "new realm: "; Realm(temp_subrealms).print(); cout << endl; }
-            if (DEBUG_ROTATE) { cerr << "/Realm::rotate(" << num_segments << ", " << size << ")------------------------\n"; }
-            return temp_subrealms;
+        /// Copy the subrealms back from the temporary list to a vector
+        _subrealm.clear();
+#           if false
+        copy(temp_list.begin(), temp_list.end(), _subrealm.begin());
+#           else
+        for (list<Realm>::iterator i = temp_list.begin(); i != temp_list.end(); ++i)
+            _subrealm.push_back(*i);
+#           endif
+
+        _dimension++;
+
+        if (DEBUG_ROTATE) {
+            cout << endl;
+            cerr << "/Realm::rotate(" << num_segments << ", " << size << ")------------------------\n";
+        }
+
+        return *this;
+    }
+
+    /** For a two-dimensional surface we have to do the following.
+     *
+     *  First, because the surface is not stored as a list of lines, but
+     *  rather as a list of points (because drawing the surface from lines
+     *  would be too tedious in OpenGL) we have to split the surface corner
+     *  points into line segments. Say we have a square defined as [0, 1, 3, 2]
+     *  we must first split it into its edges: [0, 1], [1, 3], [3, 2], [2, 1].
+     *
+     *  Say we have \p num_segments = 3. What we want in the end is for the
+     *  sides of the prism:
+     *  [0, 1, 5, 4], [4, 5, 7, 6], [6, 7, 3, 2], [2, 3, 9, 8], [8, 9, 11, 10],
+     *  [10, 11, 1, 0]
+     *  and for the caps:
+     *  [0, 4, 6, 2, 8, 10], [1, 5, 7, 3, 9, 11]
+     *
+     *  \todo Revise this documentation.
+     *  \todo Add the caps.
+     *  \todo make this work for arbitrary polygons.
+     */
+    case 2: {
+
+        if (DEBUG_ROTATE) { cerr << "rotating surface: "; print(); cout << endl; }
+
+        /** Create the sides (parallel to the rotation axis).
+         */
+        vector<Realm> temp_subrealms;
+        for (unsigned j = 0; j < num_segments; ++j) {
+            Realm temp_realm = rotate_step(0, j*size, size);
+            cerr << "temp realm: "; temp_realm.print();
+            temp_subrealms.push_back(temp_realm);
+
+            /** We're adding a square for the opposite side too.
+             *  \todo Express the above sentence better.
+             *  \todo is simply adding 2 correct? how to calculate the correct offset?
+             */
+            Realm temp_copy = temp_realm;
+            temp_copy.add(2);
+            cerr << "temp copy: "; temp_copy.print();
+            temp_subrealms.push_back(temp_copy);
+
+        }
+
+        if (DEBUG_ROTATE) { cout << "new realm: "; Realm(temp_subrealms).print(); cout << endl; }
+        if (DEBUG_ROTATE) { cerr << "/Realm::rotate(" << num_segments << ", " << size << ")------------------------\n"; }
+        return temp_subrealms;
 
 #           if false
-            vector<Realm> edges;
-            /** Create the cap (perpendicular to the rotation axis).
-             *
-             *  Make the first edge the first line in the temporary list of
-             *  subrealms (assuming we have a square). To do that remove the
-             *  last two vertices from the square.
-             *  \todo achieve the desired effect for any polygon
-             */
-            Realm first_edge(*this);
-            first_edge._subrealm.pop_back();
-            first_edge._subrealm.pop_back();
-            edges.push_back(first_edge);
+        vector<Realm> edges;
+        /** Create the cap (perpendicular to the rotation axis).
+         *
+         *  Make the first edge the first line in the temporary list of
+         *  subrealms (assuming we have a square). To do that remove the
+         *  last two vertices from the square.
+         *  \todo achieve the desired effect for any polygon
+         */
+        Realm first_edge(*this);
+        first_edge._subrealm.pop_back();
+        first_edge._subrealm.pop_back();
+        edges.push_back(first_edge);
 
-            /// then add the following edges by using only the first point of the edge
-            for (unsigned i = 0; i < temp_subrealms.size(); ++i) {
-                edges.push_back(temp_subrealms[i]._subrealm[0]);
-            }
-            
-            // return new_realm;
+        /// then add the following edges by using only the first point of the edge
+        for (unsigned i = 0; i < temp_subrealms.size(); ++i) {
+            edges.push_back(temp_subrealms[i]._subrealm[0]);
+        }
+
+        // return new_realm;
 #           endif
+    }
+    default: {
+        vector<Realm> temp_subrealms;
+        for (unsigned i = 0; i < _subrealm.size(); ++i) {
+            temp_subrealms.push_back(_subrealm[i].rotate(num_segments, size));
         }
-        default: {
-            vector<Realm> temp_subrealms;
-            for (unsigned i = 0; i < _subrealm.size(); ++i) {
-                temp_subrealms.push_back(_subrealm[i].rotate(num_segments, size));
-            }
-            temp_subrealms.push_back(*this);
-            Realm new_realm(temp_subrealms);
-            if (DEBUG_ROTATE) { cout << "new realm: "; new_realm.print(); cout << endl; }
-            return new_realm;
-        }
+        temp_subrealms.push_back(*this);
+        Realm new_realm(temp_subrealms);
+        if (DEBUG_ROTATE) { cout << "new realm: "; new_realm.print(); cout << endl; }
+        return new_realm;
+    }
     }
 }
 
 Realm Realm::rotate_step(unsigned index, unsigned base, unsigned delta) {
     cout << "Realm::rotate_step(" << index << ", " << base << ", " << delta << "): ";
     switch (_dimension) {
-        case 0: {
-            throw std::logic_error(
+    case 0: {
+        throw std::logic_error(
                 "Realm::rotate_step() can only operate on at least two vertices"
-            );
+        );
+    }
+    case 1: {
+        return Realm(_subrealm[index]._index+base+delta);
+    }
+    case 2: {
+        vector<Realm> new_subrealms;
+        cerr << endl << "size: " << _subrealm.size() << endl;
+        /// split procedure: once for points on the positive and once for negative points
+        /** what happens and actually seems to be necessary here is this.
+         *  when i comment out the second loop in the case of a cylinder only
+         *  half is drawn. in the case of a sphere only a quarter sphere is drawn
+         *  regardless of whether the second loop runs or not.\n
+         *  i suspect that there should be _subrealm.size()/2 loops of length 2.
+         *  in the cylinder case, this happens to be the same as what we have here,
+         *  because _subrealm.size() == 4.
+         */
+        for (unsigned i = 0; i < _subrealm.size()/2; ++i) {
+            cerr << "rotating "; _subrealm[i].print();
+            if (_subrealm[i].dimension()) throw new std::logic_error("At this point subrealms should be points");
+            Realm new_subrealm;
+
+            new_subrealm.push_back(_subrealm[i]+base);
+            new_subrealm.push_back(_subrealm[i]+delta+base);
+
+            new_subrealm.print();
+            new_subrealms.push_back(new_subrealm);
         }
-        case 1: {
-            return Realm(_subrealm[index]._index+base+delta);
+        for (unsigned i = _subrealm.size(); i < _subrealm.size(); ++i) {
+            cerr << "rotating "; _subrealm[i].print();
+            if (_subrealm[i].dimension()) throw new std::logic_error("At this point subrealms should be points");
+            Realm new_subrealm;
+
+            new_subrealm.push_back(_subrealm[i]+base);
+            new_subrealm.push_back(_subrealm[i]+delta+base);
+
+            new_subrealm.print();
+            new_subrealms.push_back(new_subrealm);
         }
-        case 2: {
-            vector<Realm> new_subrealms;
-            cerr << endl << "size: " << _subrealm.size() << endl;
-            /// split procedure: once for points on the positive and once for negative points
-            /** what happens and actually seems to be necessary here is this.
-             *  when i comment out the second loop in the case of a cylinder only
-             *  half is drawn. in the case of a sphere only a quarter sphere is drawn
-             *  regardless of whether the second loop runs or not.\n
-             *  i suspect that there should be _subrealm.size()/2 loops of length 2.
-             *  in the cylinder case, this happens to be the same as what we have here,
-             *  because _subrealm.size() == 4.
-             */
-            for (unsigned i = 0; i < _subrealm.size()/2; ++i) {
-                cerr << "rotating "; _subrealm[i].print();
-                if (_subrealm[i].dimension()) throw new std::logic_error("At this point subrealms should be points");
-                Realm new_subrealm;
 
-                new_subrealm.push_back(_subrealm[i]+base);
-                new_subrealm.push_back(_subrealm[i]+delta+base);
+        vector<Realm> another_temp;
+        for (vector<Realm>::iterator i = new_subrealms[0].begin(); i != new_subrealms[0].end(); ++i)
+            another_temp.push_back(*i);
+        for (vector<Realm>::reverse_iterator i = new_subrealms[1].rbegin(); i != new_subrealms[1].rend(); ++i)
+            another_temp.push_back(*i);
 
-                new_subrealm.print();
-                new_subrealms.push_back(new_subrealm);
-            }
-            for (unsigned i = _subrealm.size(); i < _subrealm.size(); ++i) {
-                cerr << "rotating "; _subrealm[i].print();
-                if (_subrealm[i].dimension()) throw new std::logic_error("At this point subrealms should be points");
-                Realm new_subrealm;
+        Realm new_realm(another_temp);
+        new_realm._dimension++;
+        new_realm.print();
+        //            new_realm.convertToSurface();
 
-                new_subrealm.push_back(_subrealm[i]+base);
-                new_subrealm.push_back(_subrealm[i]+delta+base);
+        //            return *this;
+        return new_realm;
 
-                new_subrealm.print();
-                new_subrealms.push_back(new_subrealm);
-            }
-
-            vector<Realm> another_temp;
-            for (vector<Realm>::iterator i = new_subrealms[0].begin(); i != new_subrealms[0].end(); ++i)
-                another_temp.push_back(*i);
-            for (vector<Realm>::reverse_iterator i = new_subrealms[1].rbegin(); i != new_subrealms[1].rend(); ++i)
-                another_temp.push_back(*i);
-
-            Realm new_realm(another_temp);
-            new_realm._dimension++;
-            new_realm.print();
-//            new_realm.convertToSurface();
-
-//            return *this;
-            return new_realm;
-
-        }
-        default: {
-            throw NotYetImplementedException("Realm::rotate_step()");
-        }
+    }
+    default: {
+        throw NotYetImplementedException("Realm::rotate_step()");
+    }
     }
 }
 
@@ -417,10 +431,10 @@ void Realm::convertToSurface() {
     vector<Realm> temp_vertices;
 
     for (vector<Realm>::iterator j = _subrealm.begin();
-          j != _subrealm.end(); ++j) {
+            j != _subrealm.end(); ++j) {
         if (j->dimension() != 1) throw std::logic_error("All subrealms must have dimension 1");
         temp_vertices.push_back(*(j->begin()));
-     }
+    }
 
     setSubrealms(temp_vertices);
 }

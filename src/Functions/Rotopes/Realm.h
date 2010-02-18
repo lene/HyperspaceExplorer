@@ -120,6 +120,14 @@ class Realm {
 
     private:
 
+      ///  Extrude a point to a line
+      Realm extrudePoint(unsigned delta);
+      ///  Extrude a line to a square
+      Realm extrudeLine(unsigned delta);
+      ///  Extrude a polygon to a prism
+      Realm extrudePolygon(unsigned delta);
+      Realm extrudeObject(unsigned delta);
+      
         /// Create a Realm by extruding edges for one step of a rotation.
         /** The edges of the current Realm are rotated about some (clarify!)
          *  axis. The resulting image is connected to the current Realm,
