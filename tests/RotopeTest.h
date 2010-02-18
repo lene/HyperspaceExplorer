@@ -13,6 +13,11 @@ private slots:
   void initTestCase();
   void cleanupTestCase();
 
+  void oneDimensionalRotope();
+  void square();
+  void triangle();
+  void circle();
+
 private:
   RotopeBase *_rotope;
 
