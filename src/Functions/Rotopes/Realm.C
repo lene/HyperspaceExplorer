@@ -108,8 +108,6 @@ Realm Realm::extrudePoint(unsigned delta) {
 }
 
 Realm Realm::extrudeLine(unsigned delta) {
-    // special case: make surfaces so OpenGL can draw them
-    // _subrealm.size() should be 2
     vector<Realm> new_subrealms;
     new_subrealms.push_back(_subrealm[0]._index);
     new_subrealms.push_back(_subrealm[1]._index);
@@ -226,12 +224,12 @@ Realm Realm::rotateLine(unsigned num_segments, unsigned size) {
 
     /// Copy the subrealms to a list for easier insertion
     list<Realm> temp_list;
-#           if false
+#   if false
     copy(_subrealm.begin(), _subrealm.end(), temp_list.begin());  // this segfaults! why?
-#           else
+#   else
     for (vector<Realm>::iterator i = _subrealm.begin(); i != _subrealm.end(); ++i)
         temp_list.push_back(*i);
-#           endif
+#   endif
 
     list<vector<Realm> > realms_to_add;
 
@@ -258,12 +256,12 @@ Realm Realm::rotateLine(unsigned num_segments, unsigned size) {
 
     /// Copy the subrealms back from the temporary list to a vector
     _subrealm.clear();
-#           if false
+#   if false
     copy(temp_list.begin(), temp_list.end(), _subrealm.begin());
-#           else
+#   else
     for (list<Realm>::iterator i = temp_list.begin(); i != temp_list.end(); ++i)
         _subrealm.push_back(*i);
-#           endif
+#   endif
 
     _dimension++;
 
@@ -320,7 +318,12 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
     if (DEBUG_ROTATE) { cerr << "/Realm::rotate(" << num_segments << ", " << size << ")------------------------\n"; }
     return temp_subrealms;
 
-#           if false
+#   if false
+    rotatePolygonCap(num_segments, size, temp_subrealms);
+#   endif
+}
+
+Realm Realm::rotatePolygonCap(unsigned num_segments, unsigned size, vector<Realm> &temp_subrealms) {
     vector<Realm> edges;
     /** Create the cap (perpendicular to the rotation axis).
      *
@@ -340,7 +343,7 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
     }
 
     // return new_realm;
-#           endif
+
 }
 
 Realm Realm::rotateRealm(unsigned num_segments, unsigned size) {
@@ -355,11 +358,12 @@ Realm Realm::rotateRealm(unsigned num_segments, unsigned size) {
 }
 
 Realm Realm::rotateStep(unsigned index, unsigned base, unsigned delta) {
-    cout << "Realm::rotate_step(" << index << ", " << base << ", " << delta << "): ";
+    if (DEBUG_ROTATE) { cout << "Realm::rotate_step(" << index << ", " << base << ", " << delta << "): "; }
     switch (_dimension) {
     case 0: throw std::logic_error(
             "Realm::rotate_step() can only operate on at least two vertices"
     );
+
     case 1: return Realm(_subrealm[index]._index+base+delta);
     case 2: return rotateStep2D(index, base, delta);
 
@@ -369,7 +373,7 @@ Realm Realm::rotateStep(unsigned index, unsigned base, unsigned delta) {
 
 Realm Realm::rotateStep2D(unsigned index, unsigned base, unsigned delta) {
     vector<Realm> new_subrealms;
-    cerr << endl << "size: " << _subrealm.size() << endl;
+    if (DEBUG_ROTATE) { cerr << endl << "size: " << _subrealm.size() << endl; }
     /// split procedure: once for points on the positive and once for negative points
     /** what happens and actually seems to be necessary here is this.
      *  when i comment out the second loop in the case of a cylinder only
@@ -380,7 +384,7 @@ Realm Realm::rotateStep2D(unsigned index, unsigned base, unsigned delta) {
      *  because _subrealm.size() == 4.
      */
     for (unsigned i = 0; i < _subrealm.size()/2; ++i) {
-        cerr << "rotating "; _subrealm[i].print();
+        if (DEBUG_ROTATE) { cerr << "rotating "; _subrealm[i].print(); }
         if (_subrealm[i].dimension()) throw new std::logic_error("At this point subrealms should be points");
         Realm new_subrealm;
 
@@ -391,7 +395,7 @@ Realm Realm::rotateStep2D(unsigned index, unsigned base, unsigned delta) {
         new_subrealms.push_back(new_subrealm);
     }
     for (unsigned i = _subrealm.size(); i < _subrealm.size(); ++i) {
-        cerr << "rotating "; _subrealm[i].print();
+        if (DEBUG_ROTATE) { cerr << "rotating "; _subrealm[i].print(); }
         if (_subrealm[i].dimension()) throw new std::logic_error("At this point subrealms should be points");
         Realm new_subrealm;
 
@@ -416,6 +420,7 @@ Realm Realm::rotateStep2D(unsigned index, unsigned base, unsigned delta) {
     //            return *this;
     return new_realm;
 }
+
 void Realm::convertToSurface() {
     if (_dimension != 2) throw std::logic_error("convertToSurface() can only be called on a 2D Realm");
     vector<Realm> temp_vertices;

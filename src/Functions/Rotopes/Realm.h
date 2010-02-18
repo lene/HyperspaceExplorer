@@ -123,6 +123,9 @@ private:
     ///  Extrude a point to a line
     Realm extrudePoint(unsigned delta);
     ///  Extrude a line to a square
+    /** special case: make surfaces so OpenGL can draw them.
+     *  \c _subrealm.size() should be 2.
+     */
     Realm extrudeLine(unsigned delta);
     ///  Extrude a polygon to a prism
     Realm extrudePolygon(unsigned delta);
@@ -138,8 +141,9 @@ private:
 
     Realm rotateLine(unsigned num_segments, unsigned size);
     Realm rotatePolygon(unsigned num_segments, unsigned size);
+    Realm rotatePolygonCap(unsigned int num_segments, unsigned int size, std::vector< Realm > &temp_subrealms);
     Realm rotateRealm(unsigned num_segments, unsigned size);
-    
+
     /// Create a Realm by extruding edges for one step of a rotation.
     /** The edges of the current Realm are rotated about some (clarify!)
      *  axis. The resulting image is connected to the current Realm,
@@ -153,9 +157,9 @@ private:
      *  \param delta
      */
     Realm rotateStep(unsigned index, unsigned base, unsigned delta);
-
+    /// Create a three-dimensional Realm from a polygon for one rotation step.
     Realm rotateStep2D(unsigned index, unsigned base, unsigned delta);
-    
+
     /// Convert a set of lines to a surface as a set of points.
     void convertToSurface();
 
