@@ -137,7 +137,9 @@ private:
     Realm taperRealm(unsigned taper_index);
 
     Realm rotateLine(unsigned num_segments, unsigned size);
-
+    Realm rotatePolygon(unsigned num_segments, unsigned size);
+    Realm rotateRealm(unsigned num_segments, unsigned size);
+    
     /// Create a Realm by extruding edges for one step of a rotation.
     /** The edges of the current Realm are rotated about some (clarify!)
      *  axis. The resulting image is connected to the current Realm,
@@ -150,8 +152,10 @@ private:
      *  \param base
      *  \param delta
      */
-    Realm rotate_step(unsigned index, unsigned base, unsigned delta);
+    Realm rotateStep(unsigned index, unsigned base, unsigned delta);
 
+    Realm rotateStep2D(unsigned index, unsigned base, unsigned delta);
+    
     /// Convert a set of lines to a surface as a set of points.
     void convertToSurface();
 
