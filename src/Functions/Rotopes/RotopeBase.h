@@ -17,6 +17,9 @@ class RotopeBase {
     public:
         virtual void print() = 0;           ///< Output of all vertices
 
+        /// The array of realms
+        virtual Realm &realm() = 0;
+
     protected:
 
         /// three-dimensional array of unsigned, implemented as a nested vector
@@ -34,8 +37,6 @@ class RotopeBase {
         virtual unsigned &dimension() = 0;
         /// The array of surfaces
         virtual uintvec<2> &surface() = 0;
-        /// The array of realms
-        virtual Realm &realm() = 0;
         /// The array of vertices, projected to four dimensions if necessary
         virtual std::vector<VecMath::Vector<4> > vertices() = 0;
 

@@ -118,6 +118,11 @@ public:
 
     void setSubrealms(std::vector<Realm> sr) { _subrealm = sr; }
 
+    bool operator==(const Realm &other) const {
+        return (dimension() == other.dimension()) &&
+               (_subrealm == other._subrealm);
+    }
+
 private:
 
     ///  Extrude a point to a line
