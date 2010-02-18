@@ -1,8 +1,8 @@
-TEMPLATE = app
+TEMPLATE = lib
 
 #CONFIG -= debug
 #CONFIG += release qt warn_on uic
-CONFIG += debug qt warn_on uic
+CONFIG += debug qt warn_on uic dll staticlib
 
 QT += opengl
 
@@ -114,7 +114,7 @@ INCLUDEPATH += .
 DEPENDPATH += .
 HEADERS += Globals.h Help.h Log.h Color.h ColorManager.h NotYetImplementedException.h \
            Light.h
-SOURCES += Globals.C Help.C Main.C ColorManager.C Light.C
+SOURCES += Globals.C Help.C ColorManager.C Light.C
 
 ###
 ################################################################################
@@ -138,10 +138,10 @@ QMAKE_LFLAGS_DEBUG += -pg
 ###
 ### installation
 ###
-DESTDIR = ../
+DESTDIR = ../lib
 TARGET = HyperspaceExplorer
 
-target.path = $${INSTALLDIR}/bin
+target.path = $${INSTALLDIR}/lib
 vector.files = Vector.h
 vector.path = $${INSTALLDIR}/share/HyperspaceExplorer/plugins
 docs.files = doc/*

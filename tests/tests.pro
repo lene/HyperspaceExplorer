@@ -5,6 +5,8 @@
 CONFIG += qtestlib
 CONFIG += debug qt warn_on uic
 
+QT += opengl
+
 TEMPLATE = app
 TARGET = 
 DEPENDPATH += . ../src ../src/Functions ../src/Loki ../src/Script ../src/UI ../src/VecMath
@@ -37,3 +39,5 @@ SOURCES += main.cpp \
 #           RealFunction.C \
 #           Sponge.C \
 #           Surface.C
+
+LIBS *= ../lib/libHyperspaceExplorer.a
