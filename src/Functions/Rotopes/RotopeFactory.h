@@ -10,7 +10,6 @@
 ///
 ///
 
-#include "Rotope.h"
 #include "Extrude.h"
 #include "Taper.h"
 #include "Rotate.h"

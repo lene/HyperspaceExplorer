@@ -21,8 +21,11 @@ UI_HEADERS_DIR = tmp
 RCC_DIR = tmp
 
 # Input
-HEADERS += BasicTest.h
-SOURCES += BasicTest.cpp
+HEADERS += BasicTest.h \
+           RotopeTest.h
+SOURCES += main.cpp \
+           BasicTest.cpp \
+           RotopeTest.cpp
 
 #HEADERS += FunctionTest.h
 #SOURCES += FunctionTest.cpp

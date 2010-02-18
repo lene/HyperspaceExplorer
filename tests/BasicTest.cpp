@@ -17,5 +17,3 @@ BasicTest::~BasicTest()
 {
   // TODO Auto-generated destructor stub
 }
-
-QTEST_MAIN(BasicTest)
