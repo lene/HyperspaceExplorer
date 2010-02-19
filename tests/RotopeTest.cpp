@@ -46,10 +46,10 @@ Realm generateSquareRealm() {
 void RotopeTest::squareVertices() {
     setRotope("EE");
 
-    QVERIFY(std::find(_vertices.begin(), _vertices.end(), VecMath::Vector<4>(-1., -1., 0., 0.)) != _vertices.end());
-    QVERIFY(std::find(_vertices.begin(), _vertices.end(), VecMath::Vector<4>(-1.,  1., 0., 0.)) != _vertices.end());
-    QVERIFY(std::find(_vertices.begin(), _vertices.end(), VecMath::Vector<4>( 1., -1., 0., 0.)) != _vertices.end());
-    QVERIFY(std::find(_vertices.begin(), _vertices.end(), VecMath::Vector<4>( 1.,  1., 0., 0.)) != _vertices.end());
+    QVERIFY(isInVertices(VecMath::Vector<4>(-1., -1., 0., 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>(-1.,  1., 0., 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>( 1., -1., 0., 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>( 1.,  1., 0., 0.)));
     QVERIFY(_vertices.size() == 4);
 }
 
@@ -72,9 +72,9 @@ Realm generateTriangleRealm() {
 void RotopeTest::triangleVertices() {
     setRotope("ET");
 
-    QVERIFY(std::find(_vertices.begin(), _vertices.end(), VecMath::Vector<4>(-1., -sqrt(0.75), 0., 0.)) != _vertices.end());
-    QVERIFY(std::find(_vertices.begin(), _vertices.end(), VecMath::Vector<4>( 1., -sqrt(0.75), 0., 0.)) != _vertices.end());
-    QVERIFY(std::find(_vertices.begin(), _vertices.end(), VecMath::Vector<4>( 0.,  sqrt(0.75), 0., 0.)) != _vertices.end());
+    QVERIFY(isInVertices(VecMath::Vector<4>(-1., -sqrt(0.75), 0., 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>( 1., -sqrt(0.75), 0., 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>( 0.,  sqrt(0.75), 0., 0.)));
     QVERIFY(_vertices.size() == 3);
 }
 
@@ -99,8 +99,8 @@ Realm generateCircleRealm() {
 void RotopeTest::circleVertices() {
     setRotope("ER");
 
-    QVERIFY(std::find(_vertices.begin(), _vertices.end(), VecMath::Vector<4>(-1., 0., 0., 0.)) != _vertices.end());
-    QVERIFY(std::find(_vertices.begin(), _vertices.end(), VecMath::Vector<4>( 1., 0., 0., 0.)) != _vertices.end());
+    QVERIFY(isInVertices(VecMath::Vector<4>(-1., 0., 0., 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>( 1., 0., 0., 0.)));
 
     // the line's end points are wrapped to the original points
     // this is implementation dependent, damn
@@ -122,6 +122,10 @@ void RotopeTest::cubeRealm() {
 
 void RotopeTest::cubeVertices() {
     setRotope("EEE");
+    // from now on, i'll only test for a few selected vertices
+    QVERIFY(isInVertices(VecMath::Vector<4>(-1., -1., -1., 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>( 1.,  1.,  1., 0.)));
+    QVERIFY(_vertices.size() == 8);
 }
 
 void RotopeTest::prismRealm() {
@@ -139,26 +143,49 @@ void RotopeTest::prismRealm() {
 
 void RotopeTest::prismVertices() {
     setRotope("ETE");
-
+    QVERIFY(isInVertices(VecMath::Vector<4>(-1., -sqrt(0.75), -1., 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>(-1., -sqrt(0.75),  1., 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>( 0.,  sqrt(0.75),  1., 0.)));
+    QVERIFY(_vertices.size() == 6);
 }
 
 void RotopeTest::cylinder1Realm() {
     setRotope("ERE");
 
+    Realm circle = generateCircleRealm();
+    QVERIFY(_realm.contains(circle));
+    circle.add(2*RotopeTest::_numSegments+2);
+    QVERIFY(_realm.contains(circle));
+    QVERIFY(_realm.size() == 2*RotopeTest::_numSegments+2 + 2);
 }
 
 void RotopeTest::cylinder1Vertices() {
     setRotope("ERE");
+
+    QVERIFY(isInVertices(VecMath::Vector<4>(-1., 0., -1., 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>( 1., 0., -1., 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>( 1., 0.,  1., 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>( 1., 0.,  1., 0.)));
+
+    QVERIFY(_vertices.size() == 2*(2*_numSegments+2));
 
 }
 
 void RotopeTest::cylinder2Realm() {
     setRotope("EER");
 
+    QSKIP("Not sure how to correctly test Realm, and the caps are not yet implemented anyway.", SkipSingle);
+    _rotope->print();
+
 }
 
 void RotopeTest::cylinder2Vertices() {
     setRotope("EER");
+
+    QVERIFY(isInVertices(VecMath::Vector<4>(-1., -1., 0., 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>(-1.,  1., 0., 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>( 1., -1., 0., 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>( 1.,  1., 0., 0.)));
 
 }
 
@@ -174,4 +201,13 @@ void RotopeTest::setRealm() {
 
 void RotopeTest::setVertices() {
     _vertices = _rotope->vertices();
+}
+
+bool RotopeTest::isInVertices(const VecMath::Vector<4> &vertex) const {
+    if (std::find(_vertices.begin(), _vertices.end(), vertex) != _vertices.end()) return true;
+    for (std::vector< VecMath::Vector<4> >::const_iterator i = _vertices.begin();
+            i != _vertices.end(); ++i) {
+        if ((vertex-*i).sqnorm() < EPSILON) return true;
+    }
+    return false;
 }

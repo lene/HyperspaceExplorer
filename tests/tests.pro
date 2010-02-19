@@ -38,4 +38,5 @@ SOURCES += main.cpp \
 #           Sponge.C \
 #           Surface.C
 
+PRE_TARGETDEPS *= ../lib/libHyperspaceExplorer.a
 LIBS *= ../lib/libHyperspaceExplorer.a

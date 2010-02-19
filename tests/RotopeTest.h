@@ -13,6 +13,7 @@ class RotopeTest: public QObject {
 
 public:
   static const unsigned _numSegments = 4;
+  static const double EPSILON = 1.e-8;
 
 private slots:
   void initTestCase();
@@ -40,6 +41,8 @@ private:
   void setRotope(const std::string &generator);
   void setRealm();
   void setVertices();
+
+  bool isInVertices(const VecMath::Vector<4> &vertex) const;
 
   RotopeBase *_rotope;
 

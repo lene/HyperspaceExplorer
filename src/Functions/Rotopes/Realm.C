@@ -293,7 +293,7 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
     vector<Realm> temp_subrealms;
     for (unsigned j = 0; j < num_segments; ++j) {
         Realm temp_realm = rotateStep(0, j*size, size);
-        cerr << "temp realm: "; temp_realm.print();
+        if (DEBUG_ROTATE) { cerr << "temp realm: "; temp_realm.print(); }
         temp_subrealms.push_back(temp_realm);
 
         /** We're adding a square for the opposite side too.
@@ -302,7 +302,7 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
          */
         Realm temp_copy = temp_realm;
         temp_copy.add(2);
-        cerr << "temp copy: "; temp_copy.print();
+        if (DEBUG_ROTATE) { cerr << "temp copy: "; temp_copy.print(); }
         temp_subrealms.push_back(temp_copy);
 
     }
@@ -335,7 +335,7 @@ Realm Realm::rotatePolygonCap(unsigned num_segments, unsigned size, vector<Realm
         edges.push_back(temp_subrealms[i]._subrealm[0]);
     }
 
-    // return new_realm;
+    return edges;
 
 }
 
