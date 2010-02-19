@@ -36,6 +36,17 @@ private slots:
   void cylinder1Vertices();
   void cylinder2Realm();
   void cylinder2Vertices();
+  // I'm leaving out pyramid and tetrahedron, otherwise the number of tests would
+  // explode combinatorically. from here on, i'm only testing interesting objects.
+  void coneRealm();
+  void coneVertices();
+  void sphereRealm();
+  void sphereVertices();
+
+  void tesseractRealm();
+  void tesseractVertices();
+
+  void penteract();
 
 private:
   void setRotope(const std::string &generator);
@@ -43,6 +54,7 @@ private:
   void setVertices();
 
   bool isInVertices(const VecMath::Vector<4> &vertex) const;
+  void printVertices();
 
   RotopeBase *_rotope;
 

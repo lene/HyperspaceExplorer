@@ -152,6 +152,8 @@ void RotopeTest::prismVertices() {
 void RotopeTest::cylinder1Realm() {
     setRotope("ERE");
 
+    QVERIFY(_realm.dimension() == 3);
+
     Realm circle = generateCircleRealm();
     QVERIFY(_realm.contains(circle));
     circle.add(2*RotopeTest::_numSegments+2);
@@ -174,6 +176,8 @@ void RotopeTest::cylinder1Vertices() {
 void RotopeTest::cylinder2Realm() {
     setRotope("EER");
 
+    QVERIFY(_realm.dimension() == 3);
+
     QSKIP("Not sure how to correctly test Realm, and the caps are not yet implemented anyway.", SkipSingle);
     _rotope->print();
 
@@ -187,6 +191,76 @@ void RotopeTest::cylinder2Vertices() {
     QVERIFY(isInVertices(VecMath::Vector<4>( 1., -1., 0., 0.)));
     QVERIFY(isInVertices(VecMath::Vector<4>( 1.,  1., 0., 0.)));
 
+}
+
+void RotopeTest::coneRealm() {
+    setRotope("ERT");
+
+    QVERIFY(_realm.dimension() == 3);
+
+    QVERIFY(_realm.contains(generateCircleRealm()));
+
+    QVERIFY(_realm.size() == 2*RotopeTest::_numSegments+2 + 1);
+}
+
+void RotopeTest::coneVertices() {
+    setRotope("ERT");
+    QVERIFY(isInVertices(VecMath::Vector<4>(-1.,  0., -sqrt(0.75), 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>( 1.,  0., -sqrt(0.75), 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>( 0., -1., -sqrt(0.75), 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>( 0.,  1., -sqrt(0.75), 0.)));
+
+}
+
+void RotopeTest::sphereRealm() {
+    setRotope("ERR");
+
+    QVERIFY(_realm.dimension() == 3);
+
+    _realm.print();
+
+}
+
+void RotopeTest::sphereVertices() {
+    setRotope("ERR");
+    QVERIFY(isInVertices(VecMath::Vector<4>(-1.,  0.,  0., 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>( 1.,  0.,  0., 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>( 0., -1.,  0., 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>( 0.,  1.,  0., 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>( 0.,  0.,  1., 0.)));
+    QVERIFY(isInVertices(VecMath::Vector<4>( 0.,  0., -1., 0.)));
+
+    for (std::vector< VecMath::Vector<4> >::const_iterator i = _vertices.begin();
+            i != _vertices.end(); ++i) {
+        QVERIFY(i->sqnorm() -1 < EPSILON);
+    }
+}
+
+void RotopeTest::tesseractRealm() {
+    setRotope("EEEE");
+    QVERIFY(_realm.dimension() == 4);
+    // test subrealms?
+    QVERIFY(_realm.size() == 8);
+}
+
+void RotopeTest::tesseractVertices() {
+    setRotope("EEEE");
+    for (double x = -1; x <= 1; x += 2) {
+        for (double y = -1; y <= 1; y += 2) {
+            for (double z = -1; z <= 1; z += 2) {
+                for (double w = -1; w <= 1; w += 2) {
+                    QVERIFY(isInVertices(VecMath::Vector<4>(x, y, z, w)));
+                }
+            }
+        }
+    }
+    QVERIFY(_vertices.size() == 16);
+}
+
+void RotopeTest::penteract() {
+    setRotope("EEEEE");
+    // i need to think of ways to test objects with D > 4. later.
+    if (false) printVertices();
 }
 
 void RotopeTest::setRotope(const string &generator) {
@@ -210,4 +284,11 @@ bool RotopeTest::isInVertices(const VecMath::Vector<4> &vertex) const {
         if ((vertex-*i).sqnorm() < EPSILON) return true;
     }
     return false;
+}
+
+void RotopeTest::printVertices() {
+    for (std::vector< VecMath::Vector<4> >::const_iterator i = _vertices.begin();
+            i != _vertices.end(); ++i) {
+        std::cout << *i << std::endl;
+    }
 }
