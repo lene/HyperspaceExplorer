@@ -27,11 +27,10 @@ void RotopeTest::oneDimensionalRotope() {
 }
 
 void RotopeTest::squareRealm() {
-    _rotope = RotopeFactory::generate(std::string("EE"));
-    Realm squareEdges = _rotope->realm();
+    setRotope("EE");
     Realm definedSquare = generateSquareRealm();
 
-    QVERIFY(squareEdges == definedSquare);
+    QVERIFY(_realm == definedSquare);
 }
 
 Realm generateSquareRealm() {
@@ -45,22 +44,20 @@ Realm generateSquareRealm() {
 }
 
 void RotopeTest::squareVertices() {
-    _rotope = RotopeFactory::generate(std::string("EE"));
-    std::vector<VecMath::Vector<4> > vertices = _rotope->vertices();
+    setRotope("EE");
 
-    QVERIFY(std::find(vertices.begin(), vertices.end(), VecMath::Vector<4>(-1., -1., 0., 0.)) != vertices.end());
-    QVERIFY(std::find(vertices.begin(), vertices.end(), VecMath::Vector<4>(-1.,  1., 0., 0.)) != vertices.end());
-    QVERIFY(std::find(vertices.begin(), vertices.end(), VecMath::Vector<4>( 1., -1., 0., 0.)) != vertices.end());
-    QVERIFY(std::find(vertices.begin(), vertices.end(), VecMath::Vector<4>( 1.,  1., 0., 0.)) != vertices.end());
-    QVERIFY(vertices.size() == 4);
+    QVERIFY(std::find(_vertices.begin(), _vertices.end(), VecMath::Vector<4>(-1., -1., 0., 0.)) != _vertices.end());
+    QVERIFY(std::find(_vertices.begin(), _vertices.end(), VecMath::Vector<4>(-1.,  1., 0., 0.)) != _vertices.end());
+    QVERIFY(std::find(_vertices.begin(), _vertices.end(), VecMath::Vector<4>( 1., -1., 0., 0.)) != _vertices.end());
+    QVERIFY(std::find(_vertices.begin(), _vertices.end(), VecMath::Vector<4>( 1.,  1., 0., 0.)) != _vertices.end());
+    QVERIFY(_vertices.size() == 4);
 }
 
 void RotopeTest::triangleRealm() {
-    _rotope = RotopeFactory::generate(std::string("ET"));
-    Realm triangleEdges = _rotope->realm();
+    setRotope("ET");
     Realm definedTriangle = generateTriangleRealm();
 
-    QVERIFY(triangleEdges == definedTriangle);
+    QVERIFY(_realm == definedTriangle);
 }
 
 Realm generateTriangleRealm() {
@@ -73,21 +70,18 @@ Realm generateTriangleRealm() {
 }
 
 void RotopeTest::triangleVertices() {
-    _rotope = RotopeFactory::generate(std::string("ET"));
-    std::vector<VecMath::Vector<4> > vertices = _rotope->vertices();
+    setRotope("ET");
 
-    QVERIFY(std::find(vertices.begin(), vertices.end(), VecMath::Vector<4>(-1., -sqrt(0.75), 0., 0.)) != vertices.end());
-    QVERIFY(std::find(vertices.begin(), vertices.end(), VecMath::Vector<4>( 1., -sqrt(0.75), 0., 0.)) != vertices.end());
-    QVERIFY(std::find(vertices.begin(), vertices.end(), VecMath::Vector<4>( 0.,  sqrt(0.75), 0., 0.)) != vertices.end());
-    QVERIFY(vertices.size() == 3);
+    QVERIFY(std::find(_vertices.begin(), _vertices.end(), VecMath::Vector<4>(-1., -sqrt(0.75), 0., 0.)) != _vertices.end());
+    QVERIFY(std::find(_vertices.begin(), _vertices.end(), VecMath::Vector<4>( 1., -sqrt(0.75), 0., 0.)) != _vertices.end());
+    QVERIFY(std::find(_vertices.begin(), _vertices.end(), VecMath::Vector<4>( 0.,  sqrt(0.75), 0., 0.)) != _vertices.end());
+    QVERIFY(_vertices.size() == 3);
 }
 
 void RotopeTest::circleRealm() {
-    _rotope = RotopeFactory::generate(std::string("ER"));
-    Realm circleEdges = _rotope->realm();
+    setRotope("ER");
     Realm definedCircle = generateCircleRealm();
-
-    QVERIFY(circleEdges == definedCircle);
+    QVERIFY(_realm == definedCircle);
 }
 
 /// this is valid if rotate_base::_numSegments equals 4
@@ -103,40 +97,81 @@ Realm generateCircleRealm() {
 }
 
 void RotopeTest::circleVertices() {
-    _rotope = RotopeFactory::generate(std::string("ER"));
-    std::vector<VecMath::Vector<4> > vertices = _rotope->vertices();
+    setRotope("ER");
 
-    QVERIFY(std::find(vertices.begin(), vertices.end(), VecMath::Vector<4>(-1., 0., 0., 0.)) != vertices.end());
-    QVERIFY(std::find(vertices.begin(), vertices.end(), VecMath::Vector<4>( 1., 0., 0., 0.)) != vertices.end());
+    QVERIFY(std::find(_vertices.begin(), _vertices.end(), VecMath::Vector<4>(-1., 0., 0., 0.)) != _vertices.end());
+    QVERIFY(std::find(_vertices.begin(), _vertices.end(), VecMath::Vector<4>( 1., 0., 0., 0.)) != _vertices.end());
 
     // the line's end points are wrapped to the original points
     // this is implementation dependent, damn
-    QVERIFY(vertices.size() == 2*_numSegments+2);
+    QVERIFY(_vertices.size() == 2*_numSegments+2);
 }
 
 void RotopeTest::cubeRealm() {
-    _rotope = RotopeFactory::generate(std::string("EEE"));
-    Realm cubeSurfaces = _rotope->realm();
-    QVERIFY(cubeSurfaces.dimension() == 3);
+    setRotope("EEE");
+
+    QVERIFY(_realm.dimension() == 3);
 
     Realm square = generateSquareRealm();
-    QVERIFY(cubeSurfaces.contains(square));
+    QVERIFY(_realm.contains(square));
     square.add(4);
-    QVERIFY(cubeSurfaces.contains(square));
+    QVERIFY(_realm.contains(square));
 
-    QVERIFY(cubeSurfaces.size() == 6);
+    QVERIFY(_realm.size() == 6);
+}
+
+void RotopeTest::cubeVertices() {
+    setRotope("EEE");
 }
 
 void RotopeTest::prismRealm() {
-    _rotope = RotopeFactory::generate(std::string("ETE"));
-    Realm prismSurfaces = _rotope->realm();
-    QVERIFY(prismSurfaces.dimension() == 3);
+    setRotope("ETE");
+
+    QVERIFY(_realm.dimension() == 3);
 
     Realm triangle = generateTriangleRealm();
-    QVERIFY(prismSurfaces.contains(triangle));
+    QVERIFY(_realm.contains(triangle));
     triangle.add(4);
-    QVERIFY(prismSurfaces.contains(triangle));
+    QVERIFY(_realm.contains(triangle));
 
-    QVERIFY(prismSurfaces.size() == 5);
+    QVERIFY(_realm.size() == 5);
 }
 
+void RotopeTest::prismVertices() {
+    setRotope("ETE");
+
+}
+
+void RotopeTest::cylinder1Realm() {
+    setRotope("ERE");
+
+}
+
+void RotopeTest::cylinder1Vertices() {
+    setRotope("ERE");
+
+}
+
+void RotopeTest::cylinder2Realm() {
+    setRotope("EER");
+
+}
+
+void RotopeTest::cylinder2Vertices() {
+    setRotope("EER");
+
+}
+
+void RotopeTest::setRotope(const string &generator) {
+    _rotope = RotopeFactory::generate(generator);
+    setRealm();
+    setVertices();
+}
+
+void RotopeTest::setRealm() {
+    _realm = _rotope->realm();
+}
+
+void RotopeTest::setVertices() {
+    _vertices = _rotope->vertices();
+}
