@@ -123,6 +123,8 @@ public:
                (_subrealm == other._subrealm);
     }
 
+    bool contains(const Realm &other);
+
 private:
 
     ///  Extrude a point to a line

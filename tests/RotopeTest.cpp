@@ -26,7 +26,7 @@ void RotopeTest::oneDimensionalRotope() {
     QFAIL("Bad Rotope exception expected, but not thrown");
 }
 
-void RotopeTest::square() {
+void RotopeTest::squareRealm() {
     _rotope = RotopeFactory::generate(std::string("EE"));
     Realm squareEdges = _rotope->realm();
     Realm definedSquare = generateSquareRealm();
@@ -44,7 +44,18 @@ Realm generateSquareRealm() {
     return squareRealm;
 }
 
-void RotopeTest::triangle() {
+void RotopeTest::squareVertices() {
+    _rotope = RotopeFactory::generate(std::string("EE"));
+    std::vector<VecMath::Vector<4> > vertices = _rotope->vertices();
+
+    QVERIFY(std::find(vertices.begin(), vertices.end(), VecMath::Vector<4>(-1., -1., 0., 0.)) != vertices.end());
+    QVERIFY(std::find(vertices.begin(), vertices.end(), VecMath::Vector<4>(-1.,  1., 0., 0.)) != vertices.end());
+    QVERIFY(std::find(vertices.begin(), vertices.end(), VecMath::Vector<4>( 1., -1., 0., 0.)) != vertices.end());
+    QVERIFY(std::find(vertices.begin(), vertices.end(), VecMath::Vector<4>( 1.,  1., 0., 0.)) != vertices.end());
+    QVERIFY(vertices.size() == 4);
+}
+
+void RotopeTest::triangleRealm() {
     _rotope = RotopeFactory::generate(std::string("ET"));
     Realm triangleEdges = _rotope->realm();
     Realm definedTriangle = generateTriangleRealm();
@@ -61,7 +72,17 @@ Realm generateTriangleRealm() {
     return triangleRealm;
 }
 
-void RotopeTest::circle() {
+void RotopeTest::triangleVertices() {
+    _rotope = RotopeFactory::generate(std::string("ET"));
+    std::vector<VecMath::Vector<4> > vertices = _rotope->vertices();
+
+    QVERIFY(std::find(vertices.begin(), vertices.end(), VecMath::Vector<4>(-1., -sqrt(0.75), 0., 0.)) != vertices.end());
+    QVERIFY(std::find(vertices.begin(), vertices.end(), VecMath::Vector<4>( 1., -sqrt(0.75), 0., 0.)) != vertices.end());
+    QVERIFY(std::find(vertices.begin(), vertices.end(), VecMath::Vector<4>( 0.,  sqrt(0.75), 0., 0.)) != vertices.end());
+    QVERIFY(vertices.size() == 3);
+}
+
+void RotopeTest::circleRealm() {
     _rotope = RotopeFactory::generate(std::string("ER"));
     Realm circleEdges = _rotope->realm();
     Realm definedCircle = generateCircleRealm();
@@ -71,17 +92,51 @@ void RotopeTest::circle() {
 
 /// this is valid if rotate_base::_numSegments equals 4
 Realm generateCircleRealm() {
+
     Realm circleRealm;
-    circleRealm.push_back(0);
-    circleRealm.push_back(2);
-    circleRealm.push_back(4);
-    circleRealm.push_back(6);
-    circleRealm.push_back(8);
-    circleRealm.push_back(1);
-    circleRealm.push_back(3);
-    circleRealm.push_back(5);
-    circleRealm.push_back(7);
-    circleRealm.push_back(9);
+    for (unsigned i = 0; i < 2*RotopeTest::_numSegments+2; i += 2)
+        circleRealm.push_back(i);
+    for (unsigned i = 1; i < 2*RotopeTest::_numSegments+2; i += 2)
+        circleRealm.push_back(i);
     circleRealm.setDimension(2);
     return circleRealm;
 }
+
+void RotopeTest::circleVertices() {
+    _rotope = RotopeFactory::generate(std::string("ER"));
+    std::vector<VecMath::Vector<4> > vertices = _rotope->vertices();
+
+    QVERIFY(std::find(vertices.begin(), vertices.end(), VecMath::Vector<4>(-1., 0., 0., 0.)) != vertices.end());
+    QVERIFY(std::find(vertices.begin(), vertices.end(), VecMath::Vector<4>( 1., 0., 0., 0.)) != vertices.end());
+
+    // the line's end points are wrapped to the original points
+    // this is implementation dependent, damn
+    QVERIFY(vertices.size() == 2*_numSegments+2);
+}
+
+void RotopeTest::cubeRealm() {
+    _rotope = RotopeFactory::generate(std::string("EEE"));
+    Realm cubeSurfaces = _rotope->realm();
+    QVERIFY(cubeSurfaces.dimension() == 3);
+
+    Realm square = generateSquareRealm();
+    QVERIFY(cubeSurfaces.contains(square));
+    square.add(4);
+    QVERIFY(cubeSurfaces.contains(square));
+
+    QVERIFY(cubeSurfaces.size() == 6);
+}
+
+void RotopeTest::prismRealm() {
+    _rotope = RotopeFactory::generate(std::string("ETE"));
+    Realm prismSurfaces = _rotope->realm();
+    QVERIFY(prismSurfaces.dimension() == 3);
+
+    Realm triangle = generateTriangleRealm();
+    QVERIFY(prismSurfaces.contains(triangle));
+    triangle.add(4);
+    QVERIFY(prismSurfaces.contains(triangle));
+
+    QVERIFY(prismSurfaces.size() == 5);
+}
+

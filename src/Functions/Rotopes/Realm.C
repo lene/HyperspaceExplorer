@@ -67,6 +67,9 @@ void Realm::add(unsigned delta) {
     }
 }
 
+bool Realm::contains(const Realm &other) {
+    return (std::find(_subrealm.begin(), _subrealm.end(), other) != _subrealm.end());
+}
 
 Realm Realm::extrude(unsigned delta) {
     /** There is an annoying problem with the circumstance that I'd like to
@@ -194,7 +197,7 @@ Realm Realm::taperRealm(unsigned taper_index) {
     return new_realm;
 }
 
-const bool Realm::DEBUG_ROTATE = true;
+const bool Realm::DEBUG_ROTATE = false;
 
 Realm Realm::rotate(unsigned num_segments, unsigned size) {
 
@@ -220,8 +223,6 @@ Realm Realm::rotate(unsigned num_segments, unsigned size) {
 Realm Realm::rotateLine(unsigned num_segments, unsigned size) {
     //  this case seems to be working properly.
 
-    if (DEBUG_ROTATE) { cerr << "rotating line\n"; }
-
     /// Copy the subrealms to a list for easier insertion
     list<Realm> temp_list;
 #   if false
@@ -231,11 +232,10 @@ Realm Realm::rotateLine(unsigned num_segments, unsigned size) {
         temp_list.push_back(*i);
 #   endif
 
-    list<vector<Realm> > realms_to_add;
+    list< vector<Realm> > realms_to_add;
 
     unsigned index = 0;
     for (list<Realm>::iterator i = temp_list.begin(); i != temp_list.end(); ++i, ++index) {
-        if (DEBUG_ROTATE) { cout << endl<<"index: " << index << " "; i->print(); cout << endl; }
         vector<Realm> to_add;
         for (unsigned j = 0; j < num_segments; ++j) {
             to_add.push_back(rotateStep(index, j*size, size));
@@ -244,13 +244,11 @@ Realm Realm::rotateLine(unsigned num_segments, unsigned size) {
     }
     list<Realm>::iterator i = temp_list.begin();
     ++i;
-    list<vector<Realm> >::iterator inew = realms_to_add.begin();
-    if (true) for ( ; inew != realms_to_add.end(); ++i, ++inew) {
-        if (DEBUG_ROTATE) { cout << "realms to add: "; }
+    list< vector<Realm> >::iterator inew = realms_to_add.begin();
+    for ( ; inew != realms_to_add.end(); ++i, ++inew) {
         for (vector<Realm>::iterator j = inew->begin(); j != inew->end(); ++j) {
-            j->print();
+            if (DEBUG_ROTATE) { j->print(); }
         }
-        if (DEBUG_ROTATE) { cout << endl; }
         temp_list.insert(i, inew->begin(), inew->end());
     }
 
@@ -264,11 +262,6 @@ Realm Realm::rotateLine(unsigned num_segments, unsigned size) {
 #   endif
 
     _dimension++;
-
-    if (DEBUG_ROTATE) {
-        cout << endl;
-        cerr << "/Realm::rotate(" << num_segments << ", " << size << ")------------------------\n";
-    }
 
     return *this;
 }
@@ -391,7 +384,7 @@ Realm Realm::rotateStep2D(unsigned index, unsigned base, unsigned delta) {
         new_subrealm.push_back(_subrealm[i]+base);
         new_subrealm.push_back(_subrealm[i]+delta+base);
 
-        new_subrealm.print();
+        if (DEBUG_ROTATE) { new_subrealm.print(); }
         new_subrealms.push_back(new_subrealm);
     }
     for (unsigned i = _subrealm.size(); i < _subrealm.size(); ++i) {
@@ -402,7 +395,7 @@ Realm Realm::rotateStep2D(unsigned index, unsigned base, unsigned delta) {
         new_subrealm.push_back(_subrealm[i]+base);
         new_subrealm.push_back(_subrealm[i]+delta+base);
 
-        new_subrealm.print();
+        if (DEBUG_ROTATE) { new_subrealm.print(); }
         new_subrealms.push_back(new_subrealm);
     }
 
@@ -414,7 +407,7 @@ Realm Realm::rotateStep2D(unsigned index, unsigned base, unsigned delta) {
 
     Realm new_realm(another_temp);
     new_realm._dimension++;
-    new_realm.print();
+    if (DEBUG_ROTATE) { new_realm.print(); }
     //            new_realm.convertToSurface();
 
     //            return *this;

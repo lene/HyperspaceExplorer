@@ -9,14 +9,23 @@ class RotopeTest: public QObject {
 
   Q_OBJECT
 
+public:
+  static const unsigned _numSegments = 4;
+
 private slots:
   void initTestCase();
   void cleanupTestCase();
 
   void oneDimensionalRotope();
-  void square();
-  void triangle();
-  void circle();
+  void squareRealm();
+  void squareVertices();
+  void triangleRealm();
+  void triangleVertices();
+  void circleRealm();
+  void circleVertices();
+
+  void cubeRealm();
+  void prismRealm();
 
 private:
   RotopeBase *_rotope;
