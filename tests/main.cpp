@@ -1,5 +1,6 @@
 
 #include "RotopeTest.h"
+#include "FunctionTest.h"
 
 #include <QtTest/QtTest>
 
@@ -11,9 +12,13 @@ void printSummary(int failedTestSuites) {
 }
 
 int main(int argc, char **argv) {
+    // A QApplication must be instantiated for GUI tests to work. This causes a compiler warning.
+    QApplication *app = new QApplication(argc, argv);
+
     unsigned failedTestSuites = 0;
 
     if (qExec(new RotopeTest)) failedTestSuites++;
+    if (qExec(new FunctionTest)) failedTestSuites++;
 
     printSummary(failedTestSuites);
 

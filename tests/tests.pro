@@ -23,12 +23,11 @@ UI_HEADERS_DIR = tmp
 RCC_DIR = tmp
 
 # Input
-HEADERS += RotopeTest.h
+HEADERS += RotopeTest.h \
+           FunctionTest.h
 SOURCES += main.cpp \
-           RotopeTest.cpp
-
-#HEADERS += FunctionTest.h
-#SOURCES += FunctionTest.cpp
+           RotopeTest.cpp \
+           FunctionTest.cpp
 
 #SOURCES += FunctionFactory.C \
 #           ComplexFunction.C \

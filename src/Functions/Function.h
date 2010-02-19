@@ -20,6 +20,8 @@
 
 #include "FunctionFactory.h"
 
+class FunctionTest;
+
 /// \defgroup FunctionGroup Functions and objects
 /// \defgroup RealGroup Functions R^3 -> R
 /// \ingroup FunctionGroup
@@ -78,6 +80,9 @@
  *  \ingroup FunctionGroup
  *  \author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Function {
+
+    friend class FunctionTest;
+
     public:
               
         /// one-dimensional array of floats, implemented as a std::vector
@@ -203,7 +208,7 @@ class Function {
         /// temporary storage for the value of the function at a given point
         VecMath::Vector<4> F;
 
-        /// counter for assessing how much RM is used
+        /// counter for assessing how much RAM is used
         unsigned NumVertices;
 
         /// the name of the function as a free-form string

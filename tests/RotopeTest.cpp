@@ -9,6 +9,7 @@
 Realm generateSquareRealm();
 Realm generateTriangleRealm();
 Realm generateCircleRealm();
+std::vector<Realm> generateSphereSurfaceSquares();
 
 void RotopeTest::initTestCase() {
 
@@ -217,8 +218,49 @@ void RotopeTest::sphereRealm() {
 
     QVERIFY(_realm.dimension() == 3);
 
+    std::vector<Realm> surfaces = generateSphereSurfaceSquares();
+
+    for (std::vector<Realm>::iterator i = surfaces.begin(); i != surfaces.end(); ++i)
+        QVERIFY(_realm.contains(*i));
+
     _realm.print();
 
+}
+
+std::vector<Realm> generateSphereSurfaceSquares() {
+    std::vector<Realm> partialSphere;
+
+    Realm squareSurface;    //  what is this actually called? damn, can't remember...
+
+    squareSurface.push_back(0);
+    squareSurface.push_back(10);
+    squareSurface.push_back(12);
+    squareSurface.push_back(2);
+    squareSurface.setDimension(2);
+    partialSphere.push_back(squareSurface);
+
+    squareSurface.add(2);
+    partialSphere.push_back(squareSurface);
+
+    squareSurface.add(8);
+    partialSphere.push_back(squareSurface);
+
+    squareSurface.add(2);
+    partialSphere.push_back(squareSurface);
+
+    squareSurface.add(8);
+    partialSphere.push_back(squareSurface);
+
+    squareSurface.add(2);
+    partialSphere.push_back(squareSurface);
+
+    squareSurface.add(8);
+    partialSphere.push_back(squareSurface);
+
+    squareSurface.add(2);
+    partialSphere.push_back(squareSurface);
+
+    return partialSphere;
 }
 
 void RotopeTest::sphereVertices() {

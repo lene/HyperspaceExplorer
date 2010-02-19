@@ -309,11 +309,11 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
 
     if (DEBUG_ROTATE) { cout << "new realm: "; Realm(temp_subrealms).print(); cout << endl; }
     if (DEBUG_ROTATE) { cerr << "/Realm::rotate(" << num_segments << ", " << size << ")------------------------\n"; }
-    return temp_subrealms;
 
 #   if false
     rotatePolygonCap(num_segments, size, temp_subrealms);
 #   endif
+    return temp_subrealms;
 }
 
 Realm Realm::rotatePolygonCap(unsigned num_segments, unsigned size, vector<Realm> &temp_subrealms) {
@@ -335,7 +335,7 @@ Realm Realm::rotatePolygonCap(unsigned num_segments, unsigned size, vector<Realm
         edges.push_back(temp_subrealms[i]._subrealm[0]);
     }
 
-    return edges;
+//    temp_subrealms.push_back(edges);
 
 }
 

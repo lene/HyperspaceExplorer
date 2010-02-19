@@ -62,6 +62,10 @@ public:
 
     /// Returns the number of subrealms the Realm is made of.
     unsigned size() const { return _subrealm.size(); }
+
+    /// Empties the subrealms.
+    void clear() { _subrealm.clear(); }
+
     /// Returns the dimension of the realm.
     unsigned dimension() const { return _dimension; }
     /// Sets the dimension of the realm.

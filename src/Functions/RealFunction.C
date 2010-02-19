@@ -178,7 +178,6 @@ void RealFunction::Transform (const VecMath::Rotation<4> &R,
                               const VecMath::Vector<4> &T) {
     Matrix<4> Rot(R);
     transform< vec4vec3D, 4 >::xform(Rot, T, X, Xtrans);
-
 }
 
 /// Projects a RealFunction into three-space
