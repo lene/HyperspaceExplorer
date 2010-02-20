@@ -5,11 +5,13 @@
 
 class Function;
 
-class FunctionTest: public QObject 
-{
+class FunctionTest: public QObject {
 
   Q_OBJECT
 
+public:
+  ~FunctionTest();
+    
 private slots:
 
   void initTestCase();
@@ -21,7 +23,6 @@ private slots:
   void objectFunction();
 
 private:
-
   Function *_function;
 
 };

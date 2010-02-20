@@ -20,6 +20,8 @@ using VecMath::Rotation;
 using std::cerr;
 using std::endl;
 
+FunctionTest::~FunctionTest() { }
+
 void FunctionTest::initTestCase() {
     ColMgrMgr::Instance().setColorManager("XYZ to RGB");
 }
