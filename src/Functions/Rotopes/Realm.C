@@ -22,6 +22,12 @@ using std::endl;
 using std::vector;
 using std::list;
 
+void Realm::clear() {
+    _subrealm.clear();
+    _dimension = 0;
+    _index = 0;
+}
+
 void Realm::push_back(const Realm &r) {
     if (!_dimension) _dimension = r._dimension+1;
     if (r._dimension != _dimension-1)
@@ -68,7 +74,16 @@ void Realm::add(unsigned delta) {
 }
 
 bool Realm::contains(const Realm &other) {
-    return (std::find(_subrealm.begin(), _subrealm.end(), other) != _subrealm.end());
+    if (std::find(_subrealm.begin(), _subrealm.end(), other) != _subrealm.end()) return true;
+     
+    if (other.dimension() < dimension()-1) {
+        for (vector<Realm>::iterator i = _subrealm.begin();
+             i != _subrealm.end(); ++i) {
+            if (i->contains(other)) return true;
+        }
+    }
+    
+    return false;
 }
 
 Realm Realm::extrude(unsigned delta) {

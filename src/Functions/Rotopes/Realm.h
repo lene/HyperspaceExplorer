@@ -42,7 +42,7 @@ class Realm {
 public:
 
     /// Default constructor: Realm points to the first vertex in the array.
-    Realm(): _dimension(0), _subrealm(), _index(1) { }
+    Realm(): _dimension(0), _subrealm(), _index(0) { }
 
     /// Construct a Realm pointing to a specified vertex.
     /** \param i The index of the vertex in the vertex array.
@@ -63,8 +63,8 @@ public:
     /// Returns the number of subrealms the Realm is made of.
     unsigned size() const { return _subrealm.size(); }
 
-    /// Empties the subrealms.
-    void clear() { _subrealm.clear(); }
+    /// Returns the Realm to a completely empty state
+    void clear();
 
     /// Returns the dimension of the realm.
     unsigned dimension() const { return _dimension; }

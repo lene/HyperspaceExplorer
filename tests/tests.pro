@@ -24,18 +24,12 @@ RCC_DIR = tmp
 
 # Input
 HEADERS += RotopeTest.h \
+           RealmTest.h \
            FunctionTest.h
 SOURCES += main.cpp \
            RotopeTest.cpp \
+           RealmTest.cpp \
            FunctionTest.cpp
-
-#SOURCES += FunctionFactory.C \
-#           ComplexFunction.C \
-#           CustomFunction.C \
-#           Object.C \
-#           RealFunction.C \
-#           Sponge.C \
-#           Surface.C
 
 PRE_TARGETDEPS *= ../lib/libHyperspaceExplorer.a
 LIBS *= ../lib/libHyperspaceExplorer.a
