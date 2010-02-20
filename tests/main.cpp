@@ -9,7 +9,9 @@ using QTest::qExec;
 
 
 void printSummary(int failedTestSuites) {
+    if (failedTestSuites) qDebug() << QString(80, '*');
     qDebug() << failedTestSuites << " Test suites failed.";
+    if (failedTestSuites) qDebug() << QString(80, '*');
 }
 
 int main(int argc, char **argv) {

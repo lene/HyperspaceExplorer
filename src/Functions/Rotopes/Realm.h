@@ -113,7 +113,7 @@ public:
     std::vector<Realm>::reverse_iterator rend() { return _subrealm.rend(); }
 
     /// Makes a Realm of dimension 0 usable as index into the vertex array.
-    operator unsigned() const { return _index; }
+    operator unsigned() const;
 
     /// Dimension of the realm.
     unsigned &dimension() { return _dimension; }

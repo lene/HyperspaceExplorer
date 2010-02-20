@@ -22,6 +22,8 @@
 
 #include "Rotopes/Realm.h"
 
+#include <stdexcept>
+
 std::vector<Realm> createUintVec();
 
 void RealmTest::push_back() {
@@ -78,8 +80,10 @@ void RealmTest::contains() {
     QVERIFY(realm3D.dimension() == 3);
     
     QVERIFY(realm3D.contains(realm2D));
+
     QVERIFY(realm3D.contains(createUintVec()));
     QVERIFY(realm3D.contains(containedRealm));
+    
     QVERIFY(realm3D.contains(1));
     QVERIFY(realm3D.contains(8));
     
@@ -93,6 +97,44 @@ void RealmTest::fromStdVector() {
     QVERIFY(fromUintVec.contains(2));
     QVERIFY(fromUintVec.dimension() == 1);
 }
+
+void RealmTest::operatorUnsigned() {
+    Realm realm(1);
+    QVERIFY(unsigned(realm) == 1);
+    Realm line(createUintVec());
+    try {
+        unsigned int_value = unsigned(line);
+    } catch (std::logic_error e) {
+        return;
+    }
+    QFAIL("expected logic_error");
+}
+
+void RealmTest::extrude() {
+    Realm line(createUintVec());
+    line = line.extrude(2);
+    QVERIFY(line.dimension() == 2);
+    QVERIFY(line.contains(4));
+    QVERIFY(line.contains(3));
+}
+
+void RealmTest::taper() {
+  Realm line(createUintVec());
+  line.taper(3);
+  QVERIFY(line.dimension() == 2);
+  QVERIFY(line.contains(3));
+}
+
+void RealmTest::rotate() {
+  Realm line(createUintVec());
+  line.rotate(2, 2);
+  QVERIFY(line.dimension() == 2);
+  QVERIFY(line.contains(3));
+  QVERIFY(line.contains(4));
+  QVERIFY(line.contains(5));
+  QVERIFY(line.contains(6));
+}
+
 
 std::vector<Realm> createUintVec() {
   std::vector<Realm> unsigneds;

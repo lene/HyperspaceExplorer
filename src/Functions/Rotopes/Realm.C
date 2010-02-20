@@ -14,6 +14,7 @@
 #include "Rotope.h"
 
 #include <exception>
+#include <stdexcept>
 #include <list>
 
 using std::cout;
@@ -73,6 +74,11 @@ void Realm::add(unsigned delta) {
     }
 }
 
+Realm::operator unsigned() const { 
+    if (dimension() == 0) return _index; 
+    throw std::invalid_argument("Only a 0-dimensional Realm can be converted to an unsigned index.");
+}
+    
 bool Realm::contains(const Realm &other) {
     if (std::find(_subrealm.begin(), _subrealm.end(), other) != _subrealm.end()) return true;
      

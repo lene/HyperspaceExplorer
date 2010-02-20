@@ -25,15 +25,21 @@
 
 class RealmTest: public QObject {
   
-  Q_OBJECT
+    Q_OBJECT
 
 private slots:
 
-  void push_back();
-  void add();
-  void clear();
-  void contains();
-  void fromStdVector();
+    void push_back();
+    void add();
+    void clear();
+    void contains();
+    void fromStdVector();
+    void operatorUnsigned();
+    
+    void extrude();
+    void taper();
+    void rotate();
+    
     
 };
 
