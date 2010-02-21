@@ -146,8 +146,8 @@ Realm Realm::extrudeLine(unsigned delta) {
 Realm Realm::extrudePolygon(unsigned delta) {
     vector<Realm> new_subrealms;
 
-    Realm copy(*this);
-    new_subrealms.push_back(copy);
+    Realm copied_realm(*this);
+    new_subrealms.push_back(copied_realm);
     for (unsigned i = 0; i < _subrealm.size(); ++i) {
         Realm new_subrealm;
         new_subrealm.push_back(_subrealm[i]._index);
@@ -157,21 +157,21 @@ Realm Realm::extrudePolygon(unsigned delta) {
         new_subrealm._dimension = 2;
         new_subrealms.push_back(new_subrealm);
     }
-    copy.add(delta);
-    new_subrealms.push_back(copy);
+    copied_realm.add(delta);
+    new_subrealms.push_back(copied_realm);
     Realm new_realm(new_subrealms);
     return new_realm;
 }
 
 Realm Realm::extrudeRealm(unsigned delta) {
     vector<Realm> new_subrealms;
-    Realm copy(*this);
-    new_subrealms.push_back(copy);
+    Realm copied_realm(*this);
+    new_subrealms.push_back(copied_realm);
     for (unsigned i = 0; i < _subrealm.size(); ++i) {
         new_subrealms.push_back(_subrealm[i].extrude(delta));
     }
-    copy.add(delta);
-    new_subrealms.push_back(copy);
+    copied_realm.add(delta);
+    new_subrealms.push_back(copied_realm);
     Realm new_realm(new_subrealms);
     return new_realm;
 }
