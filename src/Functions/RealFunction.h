@@ -161,9 +161,9 @@ class RealFunction: public RealBase {
         virtual void Initialize (void);
         virtual void InitMem (void);
 
-        vec4vec3D X,      ///< temporary storage for function values on grid
-                  Xtrans; ///< temporary storage for transformed function values
-        vec3vec3D Xscr;   ///< temporary storage for projected function values
+        vec4vec3D _X,      ///< temporary storage for function values on grid
+                  _Xtrans; ///< temporary storage for transformed function values
+        vec3vec3D _Xscr;   ///< temporary storage for projected function values
 
 };
 

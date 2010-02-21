@@ -58,7 +58,7 @@ RealFunction::RealFunction(const QString &name,
                            ParameterMap _parms):
         RealBase(name, tmin, tmax, dt, umin, umax, du, vmin, vmax, dv,
                  _parms),
-        Xtrans(vec4vec3D()), Xscr(vec3vec3D()) {
+        _Xtrans(vec4vec3D()), _Xscr(vec3vec3D()) {
     if (MemRequired () > Globals::Instance().getMaxMemory()) {
         cerr << "Using a " << getTsteps() << "x" << getUsteps() << "x" << getVsteps()
              << " grid would require approx. " << MemRequired () << " MB of memory.\n";
@@ -77,18 +77,18 @@ RealFunction::RealFunction(const QString &name,
 /** Xscr[][][], Xtrans[][][]                */
 void RealFunction::InitMem (void) {
 
-    Xscr.resize(getTsteps()+2);
-    Xtrans.resize(getTsteps()+2);
+    _Xscr.resize(getTsteps()+2);
+    _Xtrans.resize(getTsteps()+2);
 
     for (unsigned t = 0; t <= getTsteps()+1; t++) {
 
-        Xscr[t].resize(getUsteps()+2);
-        Xtrans[t].resize(getUsteps()+2);
+        _Xscr[t].resize(getUsteps()+2);
+        _Xtrans[t].resize(getUsteps()+2);
 
         for (unsigned u = 0; u <= getUsteps()+1; u++) {
 
-            Xscr[t][u].resize(getVsteps()+2);
-            Xtrans[t][u].resize(getVsteps()+2);
+            _Xscr[t][u].resize(getVsteps()+2);
+            _Xtrans[t][u].resize(getVsteps()+2);
         }
     }
 }
@@ -96,18 +96,18 @@ void RealFunction::InitMem (void) {
 /// Allocate and initialize X[][][] with values of f()
 /** Call InitMem() above */
 void RealFunction::Initialize () {
-    X = vec4vec3D(getTsteps()+2);
+    _X = vec4vec3D(getTsteps()+2);
 //    ColMgrMgr::Instance().setFunction(this);
 
     for (unsigned t = 0; t <= getTsteps()+1; t++) {
-        X[t].resize(getUsteps()+2);
+        _X[t].resize(getUsteps()+2);
 
         for (unsigned u = 0; u <= getUsteps()+1; u++) {
-            X[t][u].resize(getVsteps()+2);
+            _X[t][u].resize(getVsteps()+2);
 
             for (unsigned v = 0; v <= getVsteps()+1; v++) {
                 double T = getTmin()+t*getDt(), U =getUmin()+u*getDu(), V = getVmin()+v*getDv();
-                X[t][u][v] = f (T, U, V);
+                _X[t][u][v] = f (T, U, V);
             }
         }
     }
@@ -122,8 +122,8 @@ void RealFunction::calibrateColors() const {
     for (unsigned t = 0; t <= getTsteps()+1; t++) {
         for (unsigned u = 0; u <= getUsteps()+1; u++) {
             for (unsigned v = 0; v <= getVsteps()+1; v++) {
-                if (X[t][u][v][3] < Wmin) Wmin = X[t][u][v][3];
-                if (X[t][u][v][3] > Wmax) Wmax = X[t][u][v][3];
+                if (_X[t][u][v][3] < Wmin) Wmin = _X[t][u][v][3];
+                if (_X[t][u][v][3] > Wmax) Wmax = _X[t][u][v][3];
             }
         }
     }
@@ -132,10 +132,10 @@ void RealFunction::calibrateColors() const {
         for (unsigned u = 0; u <= getUsteps()+1; u++) {
             for (unsigned v = 0; v <= getVsteps()+1; v++) {
                 ColMgrMgr::Instance().calibrateColor(
-                    X[t][u][v],
+                    _X[t][u][v],
                     Color(float(t)/float(getTsteps()), float(u)/float(getUsteps()),
                           float(v)/float(getVsteps()),
-                          (X[t][u][v][3]-Wmin)/(Wmax-Wmin)));
+                          (_X[t][u][v][3]-Wmin)/(Wmax-Wmin)));
             }
         }
     }
@@ -177,7 +177,7 @@ void RealFunction::ReInit(double tmin, double tmax, double dt,
 void RealFunction::Transform (const VecMath::Rotation<4> &R,
                               const VecMath::Vector<4> &T) {
     Matrix<4> Rot(R);
-    transform< vec4vec3D, 4 >::xform(Rot, T, X, Xtrans);
+    transform< vec4vec3D, 4 >::xform(Rot, T, _X, _Xtrans);
 }
 
 /// Projects a RealFunction into three-space
@@ -192,13 +192,13 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
         for (unsigned u = 0; u <= getUsteps()+1; u++) {
             for (unsigned v = 0; v <= getVsteps()+1; v++) {
 
-                if (Xtrans[t][u][v][3] < Wmin) Wmin = Xtrans[t][u][v][3];
-                if (Xtrans[t][u][v][3] > Wmax) Wmax = Xtrans[t][u][v][3];
+                if (_Xtrans[t][u][v][3] < Wmin) Wmin = _Xtrans[t][u][v][3];
+                if (_Xtrans[t][u][v][3] > Wmax) Wmax = _Xtrans[t][u][v][3];
 
-                ProjectionFactor = (scr_w-cam_w)/(Xtrans[t][u][v][3]-cam_w);
+                ProjectionFactor = (scr_w-cam_w)/(_Xtrans[t][u][v][3]-cam_w);
 
                 for (unsigned i = 0; i <= 2; i++) {
-                    Xscr[t][u][v][i] = ProjectionFactor*Xtrans[t][u][v][i];
+                    _Xscr[t][u][v][i] = ProjectionFactor*_Xtrans[t][u][v][i];
                 }
             }
         }
@@ -210,7 +210,7 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
         for (unsigned u = 0; u <= getUsteps()+1; u++)
             for (unsigned v = 0; v <= getVsteps()+1; v++) {
                 ColMgrMgr::Instance().depthCueColor(Wmax, Wmin,
-                    Xtrans[t][u][v][3], X[t][u][v]);
+                    _Xtrans[t][u][v][3], _X[t][u][v]);
             }
 }
 
@@ -265,43 +265,43 @@ using std::setprecision;
 void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v) {
     static Vector<3> *V = new Vector<3> [8];
 
-    V[0] = Xscr[t][u][v];     V[1] = Xscr[t][u][v+1];
-    V[2] = Xscr[t][u+1][v];   V[3] = Xscr[t][u+1][v+1];
-    V[4] = Xscr[t+1][u][v];   V[5] = Xscr[t+1][u][v+1];
-    V[6] = Xscr[t+1][u+1][v]; V[7] = Xscr[t+1][u+1][v+1];
+    V[0] = _Xscr[t][u][v];     V[1] = _Xscr[t][u][v+1];
+    V[2] = _Xscr[t][u+1][v];   V[3] = _Xscr[t][u+1][v+1];
+    V[4] = _Xscr[t+1][u][v];   V[5] = _Xscr[t+1][u][v+1];
+    V[6] = _Xscr[t+1][u+1][v]; V[7] = _Xscr[t+1][u+1][v+1];
 
     glBegin (GL_QUAD_STRIP);
     if (t == 0) {
-        setVertex(X[t][u][v], V[0]);
-        setVertex(X[t][u][v+1], V[1]);
+        setVertex(_X[t][u][v], V[0]);
+        setVertex(_X[t][u][v+1], V[1]);
         addVertices(2);
     }
-    setVertex(X[t][u+1][v], V[2]);
-    setVertex(X[t][u+1][v+1], V[3]);
-    setVertex(X[t+1][u+1][v], V[6]);
-    setVertex(X[t+1][u+1][v+1], V[7]);
-    setVertex(X[t+1][u][v], V[4]);
-    setVertex(X[t+1][u][v+1], V[5]);
+    setVertex(_X[t][u+1][v], V[2]);
+    setVertex(_X[t][u+1][v+1], V[3]);
+    setVertex(_X[t+1][u+1][v], V[6]);
+    setVertex(_X[t+1][u+1][v+1], V[7]);
+    setVertex(_X[t+1][u][v], V[4]);
+    setVertex(_X[t+1][u][v+1], V[5]);
     addVertices(6);
     if (u == 0) {
-        setVertex(X[t][u][v], V[0]);
-        setVertex(X[t][u][v+1], V[1]);
+        setVertex(_X[t][u][v], V[0]);
+        setVertex(_X[t][u][v+1], V[1]);
         addVertices(2);
     }
     glEnd ();
 
     glBegin (GL_QUADS);
     if (v == 0) {
-        setVertex(X[t][u][v], V[0]);
-        setVertex(X[t][u+1][v], V[2]);
-        setVertex(X[t+1][u+1][v], V[6]);
-        setVertex(X[t+1][u][v], V[4]);
+        setVertex(_X[t][u][v], V[0]);
+        setVertex(_X[t][u+1][v], V[2]);
+        setVertex(_X[t+1][u+1][v], V[6]);
+        setVertex(_X[t+1][u][v], V[4]);
         addVertices(4);
     }
-    setVertex(X[t][u][v+1], V[1]);
-    setVertex(X[t][u+1][v+1], V[3]);
-    setVertex(X[t+1][u+1][v+1], V[7]);
-    setVertex(X[t+1][u][v+1], V[5]);
+    setVertex(_X[t][u][v+1], V[1]);
+    setVertex(_X[t][u+1][v+1], V[3]);
+    setVertex(_X[t+1][u+1][v+1], V[7]);
+    setVertex(_X[t+1][u][v+1], V[5]);
     addVertices(4);
     glEnd ();
 }

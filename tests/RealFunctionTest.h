@@ -19,9 +19,9 @@ class RealFunctionTest: public QObject {
         }
 
         VecMath::Vector<4> function_value(double tt, double uu, double vv) { return f(tt,uu,vv); }
-        vec4vec3D vertices() { return X; }
-        vec4vec3D transformed_vertices() { return Xtrans; }
-        vec3vec3D projected_vertices() { return Xscr; }
+        vec4vec3D vertices() { return _X; }
+        vec4vec3D transformed_vertices() { return _Xtrans; }
+        vec3vec3D projected_vertices() { return _Xscr; }
 
     protected:
         virtual function_type f;
