@@ -25,11 +25,13 @@ RCC_DIR = tmp
 # Input
 HEADERS += RotopeTest.h \
            RealmTest.h \
+           VectorTest.h \
            RealFunctionTest.h \
            FunctionTest.h
 SOURCES += main.cpp \
            RotopeTest.cpp \
            RealmTest.cpp \
+           VectorTest.cpp \
            RealFunctionTest.cpp \
            FunctionTest.cpp
 

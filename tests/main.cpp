@@ -2,6 +2,7 @@
 #include "RotopeTest.h"
 #include "FunctionTest.h"
 #include "RealFunctionTest.h"
+#include "VectorTest.h"
 #include "RealmTest.h"
 
 #include <QtTest/QtTest>
@@ -23,7 +24,8 @@ int main(int argc, char **argv) {
 
     if (qExec(new RotopeTest)) failedTestSuites++;
     if (qExec(new RealmTest)) failedTestSuites++;
-    if (qExec(new FunctionTest)) failedTestSuites++;
+//    if (qExec(new FunctionTest)) failedTestSuites++;
+    if (qExec(new VectorTest)) failedTestSuites++;
     if (qExec(new RealFunctionTest)) failedTestSuites++;
         
     printSummary(failedTestSuites);
