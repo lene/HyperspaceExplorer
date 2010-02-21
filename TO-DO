@@ -7,6 +7,8 @@ TODO for finishing of Rotopes:
 
 - make the output function of Matrix, Vector, Rotation, NestedVector and whatnot conform to same interface
 
+- write specializations for Vector, Rotation (and Matrix?) that get rid of the varargs c'tor
+
 - combine vertex array with Realm to have a single class for surfaces without interdependence
 
 - when performing a rotation, connect each vertex of a (n-1)-dimensional surface to its image after a rotation

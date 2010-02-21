@@ -14,6 +14,13 @@ class RealFunctionTest: public QObject {
     static const double X_MAX =  1.;
     static const unsigned GRID_SIZE = 5;
 
+    static const double CONSTANT_FUNCTION_VALUE = 1.;
+
+    static const double EPSILON = 1e-8;
+
+    static const double PROJECTION_SCREEN_W = 2.;
+    static const double PROJECTION_CAMERA_W = 4.;
+
     class RealFunctionTestImplementation: public RealFunction {
 
     public:
@@ -51,8 +58,11 @@ class RealFunctionTest: public QObject {
         void rotated360DegreesIsIdentical();
 
         void project();
+        void projectWithDepthCue();
 
         void draw();
+
+        void functionWithParameters();
 
     private:
         RealFunctionTestImplementation *_function;

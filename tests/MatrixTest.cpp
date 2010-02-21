@@ -24,10 +24,10 @@ void MatrixTest::defaultConstructor() {
 void MatrixTest::rotationAboutAxisConstructor() {
     Matrix<3> m(0, 1, 90.);
 
-    QVERIFY(fabs(m(0,0)) < 1e-8);
-    QVERIFY(fabs(m(0,1)+1) < 1e-8);
-    QVERIFY(fabs(m(1,0)-1) < 1e-8);
-    QVERIFY(fabs(m(1,1)) < 1e-8);
+    QVERIFY(fabs(m(0,0)) < EPSILON);
+    QVERIFY(fabs(m(0,1)+1) < EPSILON);
+    QVERIFY(fabs(m(1,0)-1) < EPSILON);
+    QVERIFY(fabs(m(1,1)) < EPSILON);
     QVERIFY(m(2,2) == 1);
 }
 
@@ -35,7 +35,7 @@ void MatrixTest::matrixMultiplication() {
     Matrix<3> m1(0, 1, 90.), m2(0, 1, 180.), u;
     for (unsigned i = 0; i < 3; ++i) {
         for (unsigned j = 0; j < 3; ++j) {
-            QVERIFY(fabs((m1*m1)(i,j)-m2(i,j)) < 1e-8);
+            QVERIFY(fabs((m1*m1)(i,j)-m2(i,j)) < EPSILON);
             QVERIFY((m1*u)(i,j) == m1(i, j));
         }
     }
@@ -46,7 +46,7 @@ void MatrixTest::vectorMultiplication() {
     Vector<3> v(1.,0.,0.);
 
     QVERIFY(u*v == v);
-    QVERIFY((m1*v-Vector<3>(0., 1., 0.)).sqnorm() < 1e-8);
+    QVERIFY((m1*v-Vector<3>(0., 1., 0.)).sqnorm() < EPSILON);
 }
 
 void MatrixTest::print() {

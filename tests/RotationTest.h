@@ -8,6 +8,8 @@ class RotationTest: public QObject {
 
     Q_OBJECT
 
+    static const double EPSILON = 1e-8;
+
 private slots:
     void defaultCtor();
     void varargsCtor();

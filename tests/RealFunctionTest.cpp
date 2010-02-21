@@ -13,7 +13,7 @@ Vector<4> &RealFunctionTest::RealFunctionTestImplementation::f (double tt, doubl
     _F[0] = tt;
     _F[1] = uu;
     _F[2] = vv;
-    _F[3] = 1;
+    _F[3] = CONSTANT_FUNCTION_VALUE;
 
     return _F;
 }
@@ -26,7 +26,14 @@ void RealFunctionTest::cleanupTestCase() { }
 
 void RealFunctionTest::functionValue() {
     _function = new RealFunctionTestImplementation();
-    QVERIFY( (_function->function_value(0,0,0) - Vector<4>(0.,0.,0.,1.)).sqnorm() <= 1e-8 );
+
+    for (double x = X_MIN; x <= X_MAX; x += 1.) {
+        for (double y = X_MIN; y <= X_MAX; y += 1.) {
+            for (double z = X_MIN; z <= X_MAX; z += 1.) {
+                QVERIFY( (_function->function_value(x, y, z) - Vector<4>(x, y, z,CONSTANT_FUNCTION_VALUE)).sqnorm() <= EPSILON );
+            }
+        }
+    }
 }
 
 void RealFunctionTest::meetsFormalRequirements() {
@@ -37,8 +44,7 @@ void RealFunctionTest::meetsFormalRequirements() {
     QVERIFY(_function->vertices()[0].size() >= GRID_SIZE);
     QVERIFY(_function->vertices()[0][0].size() >= GRID_SIZE);
 
-    qDebug() << _function->getNumParameters()
-            << _function->getFunctionName();
+    QVERIFY(_function->getFunctionName() == "RealFunctionTestImplementation");
 }
 
 void RealFunctionTest::boundsAndSteps() {
@@ -62,7 +68,7 @@ void RealFunctionTest::rotateAboutAllAxes() {
             for (unsigned k = 0; k < GRID_SIZE; ++k) {
                 Vector<4> vertex = _function->vertices()[i][j][k],
                           transformed_vertex = _function->transformed_vertices()[i][j][k];
-                QVERIFY((vertex - transformed_vertex).sqnorm() > 1e-8);
+                QVERIFY((vertex - transformed_vertex).sqnorm() > EPSILON);
             }
         }
     }
@@ -78,7 +84,7 @@ void RealFunctionTest::rotated360DegreesIsIdentical() {
             for (unsigned k = 0; k < GRID_SIZE; ++k) {
                 Vector<4> vertex = _function->vertices()[i][j][k],
                           transformed_vertex = _function->transformed_vertices()[i][j][k];
-                QVERIFY((vertex - transformed_vertex).sqnorm() < 1e-8);
+                QVERIFY((vertex - transformed_vertex).sqnorm() < EPSILON);
             }
         }
     }
@@ -87,7 +93,7 @@ void RealFunctionTest::rotated360DegreesIsIdentical() {
 void RealFunctionTest::project() {
     _function = new RealFunctionTestImplementation();
 
-    _function->Project(2, 4, false);
+    _function->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
 
     QVERIFY(_function->projected_vertices().size() >= GRID_SIZE);
     QVERIFY(_function->projected_vertices()[0].size() >= GRID_SIZE);
@@ -102,16 +108,24 @@ void RealFunctionTest::project() {
 //            cerr << endl;
         }
     }
+
     QSKIP("No idea how to correctly test projection yet", SkipSingle);
+}
+
+void RealFunctionTest::projectWithDepthCue() {
+    QSKIP("To do: Test projection with depth cue.", SkipSingle);
 }
 
 void RealFunctionTest::draw() {
     _function = new RealFunctionTestImplementation();
 
-    _function->Project(4, 8, false);
+    _function->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
 
     _function->Draw();
 
     QSKIP("No idea how to correctly test drawing yet", SkipSingle);
+}
 
+void RealFunctionTest::functionWithParameters() {
+    QSKIP("To do: Test function with parameters.", SkipSingle);
 }
