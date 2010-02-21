@@ -31,6 +31,7 @@ void FunctionTest::surfaceFunction() {
     QVERIFY(_function->getDefinitionSpaceDimensions() == 2);
     qDebug() << _function->getNumParameters()
             << _function->getFunctionName();
+    QSKIP("Tests for Surface objects not done yet.", SkipSingle);
 }
 
 void FunctionTest::complexFunction() {
@@ -38,9 +39,12 @@ void FunctionTest::complexFunction() {
     QVERIFY(_function->getDefinitionSpaceDimensions() == 2);
     qDebug() << _function->getNumParameters()
             << _function->getFunctionName();
+    QSKIP("Tests for ComplexFunction objects not done yet.", SkipSingle);
 }
 
 void FunctionTest::objectFunction() {
 //    _function = new Hypercube();
+    QSKIP("Tests for Object objects not done yet.", SkipSingle);
+
 }
 

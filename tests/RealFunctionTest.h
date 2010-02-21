@@ -28,12 +28,19 @@ class RealFunctionTest: public QObject {
     };
 
     private slots:
-    void initTestCase();
-    void cleanupTestCase();
-    void realFunction();
+        void initTestCase();
+        void cleanupTestCase();
+
+        void functionValue();
+        void meetsFormalRequirements();
+        void rotateAboutAllAxes();
+        void rotated360DegreesIsIdentical();
+        void project();
+
+        void draw();
 
     private:
-
+        RealFunctionTestImplementation *_function;
 };
 
 

@@ -11,12 +11,9 @@ Realm generateTriangleRealm();
 Realm generateCircleRealm();
 std::vector<Realm> generateSphereSurfaceSquares();
 
-void RotopeTest::initTestCase() {
+void RotopeTest::initTestCase() { }
 
-}
-
-void RotopeTest::cleanupTestCase() {
-}
+void RotopeTest::cleanupTestCase() { }
 
 void RotopeTest::oneDimensionalRotope() {
     try {
@@ -85,27 +82,29 @@ void RotopeTest::circleRealm() {
     QVERIFY(_realm == definedCircle);
 }
 
-/// this is valid if rotate_base::_numSegments equals 4
 Realm generateCircleRealm() {
-
+    qWarning() << "Assuming that rotate_base::_numSegments equals 4";
     Realm circleRealm;
-    for (unsigned i = 0; i < 2*RotopeTest::_numSegments+2; i += 2)
+    for (unsigned i = 0; i < RotopeTest::numberOfVerticesForCircle(); i += 2)
         circleRealm.push_back(i);
-    for (unsigned i = 1; i < 2*RotopeTest::_numSegments+2; i += 2)
+    for (unsigned i = 1; i < RotopeTest::numberOfVerticesForCircle(); i += 2)
         circleRealm.push_back(i);
     circleRealm.setDimension(2);
     return circleRealm;
 }
 
+unsigned RotopeTest::numberOfVerticesForCircle() {
+    // the line's end points are wrapped to the original points
+    // this is implementation dependent, damn it
+    return 2*_numSegments+2;
+}
 void RotopeTest::circleVertices() {
     setRotope("ER");
 
     QVERIFY(isInVertices(VecMath::Vector<4>(-1., 0., 0., 0.)));
     QVERIFY(isInVertices(VecMath::Vector<4>( 1., 0., 0., 0.)));
 
-    // the line's end points are wrapped to the original points
-    // this is implementation dependent, damn
-    QVERIFY(_vertices.size() == 2*_numSegments+2);
+    QVERIFY(_vertices.size() == numberOfVerticesForCircle());
 }
 
 void RotopeTest::cubeRealm() {
@@ -157,9 +156,9 @@ void RotopeTest::cylinder1Realm() {
 
     Realm circle = generateCircleRealm();
     QVERIFY(_realm.contains(circle));
-    circle.add(2*RotopeTest::_numSegments+2);
+    circle.add(numberOfVerticesForCircle());
     QVERIFY(_realm.contains(circle));
-    QVERIFY(_realm.size() == 2*RotopeTest::_numSegments+2 + 2);
+    QVERIFY(_realm.size() == numberOfVerticesForCircle() + 2);
 }
 
 void RotopeTest::cylinder1Vertices() {
@@ -170,7 +169,7 @@ void RotopeTest::cylinder1Vertices() {
     QVERIFY(isInVertices(VecMath::Vector<4>( 1., 0.,  1., 0.)));
     QVERIFY(isInVertices(VecMath::Vector<4>( 1., 0.,  1., 0.)));
 
-    QVERIFY(_vertices.size() == 2*(2*_numSegments+2));
+    QVERIFY(_vertices.size() == 2*numberOfVerticesForCircle());
 
 }
 
@@ -201,7 +200,7 @@ void RotopeTest::coneRealm() {
 
     QVERIFY(_realm.contains(generateCircleRealm()));
 
-    QVERIFY(_realm.size() == 2*RotopeTest::_numSegments+2 + 1);
+    QVERIFY(_realm.size() == numberOfVerticesForCircle() + 1);
 }
 
 void RotopeTest::coneVertices() {
@@ -225,6 +224,7 @@ void RotopeTest::sphereRealm() {
 
     _realm.print();
 
+    QSKIP("Sphere realm test not done yet.", SkipSingle);
 }
 
 std::vector<Realm> generateSphereSurfaceSquares() {
