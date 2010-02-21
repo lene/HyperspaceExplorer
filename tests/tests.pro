@@ -26,12 +26,14 @@ RCC_DIR = tmp
 HEADERS += RotopeTest.h \
            RealmTest.h \
            VectorTest.h \
+           MatrixTest.h \
            RealFunctionTest.h \
            FunctionTest.h
 SOURCES += main.cpp \
            RotopeTest.cpp \
            RealmTest.cpp \
            VectorTest.cpp \
+           MatrixTest.cpp \
            RealFunctionTest.cpp \
            FunctionTest.cpp
 

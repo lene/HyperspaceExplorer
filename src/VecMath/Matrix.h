@@ -26,7 +26,6 @@ namespace VecMath {
     template <unsigned D, typename N = double> class Matrix {
         public:
             Matrix<D, N> ();
-            Matrix<D, N> (N, N, N, N, N, N);
             Matrix<D, N> (unsigned, unsigned, N);
             virtual ~Matrix<D, N> () { }
 
@@ -60,21 +59,6 @@ namespace VecMath {
                 M[i][j] = 0;
             M[i][i] = 1;
         }
-    }
-
-    /** creates a DxD rotation Matrix, where D=4, not yet implemented
-     *  @param Rxy	rotation around xy plane (z axis)
-     *  @param Rxz	rotation around xz plane (y axis)
-     *  @param Rxw	rotation around xw plane
-     *  @param Ryz	rotation around xy plane (x axis)
-     *  @param Ryw	rotation around yw plane
-     *  @param Rzw	rotation around zw plane                                  */
-    template <unsigned D, typename N>
-            Matrix<D, N>::Matrix (N Rxy, N Rxz, N Rxw, N Ryz, N Ryw, N Rzw) {
-        throw NotYetImplementedException(
-            "Matrix<"+Global::itoa(D)+">::Matrix<"+Global::itoa(D)+
-                "> (Rxy, Rxz, Rxw, Ryz, Ryw, Rzw)");
-        abort();
     }
 
     /** creates a rotation about axes ii and jj of angle Theta
