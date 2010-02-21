@@ -106,7 +106,7 @@ namespace VecMath {
             /** \param i The index of the element for which data should be accessed
              *  \return Read-only (constant) reference to data.
              */
-            NestedVector<T, D-1> &operator [] (unsigned i) const {
+            const NestedVector<T, D-1> &operator [] (unsigned i) const {
                 return data()[i];
             }
 
@@ -130,17 +130,25 @@ namespace VecMath {
 
             /// Returns true if \p other is not equal to \p this
             /** \param other NestedVector<T, D> to compare to */
-            bool operator != (const NestedVector<T, D> &other) {
+            bool operator == (const NestedVector<T, D> &other) const {
+                return data() == other.data();
+            }
+
+            /// Returns true if \p other is not equal to \p this
+            /** \param other NestedVector<T, D> to compare to */
+            bool operator != (const NestedVector<T, D> &other) const {
                 return data() != other.data();
             }
 
             /// Prints the elements of the vector
             void print() const {
+                std::cerr << "< ";
                 for (typename std::vector<NestedVector<T, D-1> >::const_iterator
                      i = data().begin();
                      i != data().end(); ++i) {
                         i->print();
                     }
+                std::cerr << " >";
             }
 
         protected:
@@ -214,6 +222,11 @@ namespace VecMath {
             	data().resize(new_size, x);
             }
 
+            /// See NestedVector<T, D>::operator ==()
+            bool operator == (const NestedVector<T, 1> &other) const {
+                return data() == other.data();
+            }
+
             /// See NestedVector<T, D>::operator !=()
             bool operator != (const NestedVector<T, 1> &other) {
                 return data() != other.data();
@@ -221,10 +234,12 @@ namespace VecMath {
 
             /// See NestedVector<T, D>::print()
             void print() const {
+                std::cerr << "< ";
                 for (typename std::vector<T>::const_iterator i = data().begin();
                      i != data().end(); ++i) {
                         std::cerr << *i << " ";
                     }
+                std::cerr << "> ";
             }
 
         protected:
