@@ -1,6 +1,4 @@
 /*
-    <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) <year>  <name of author>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -34,6 +32,13 @@ void RealmTest::push_back() {
     QVERIFY(realm.contains(1));
     QVERIFY(realm.contains(2));
     QVERIFY(realm.dimension() == 1);
+    
+    try {
+        realm.push_back(realm);
+    } catch (std::invalid_argument e) {
+        return;
+    }
+    QFAIL("Expected invalid_argument");
 }
 
 void RealmTest::add() {

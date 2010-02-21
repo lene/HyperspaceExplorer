@@ -1,6 +1,7 @@
 
 #include "RotopeTest.h"
 #include "FunctionTest.h"
+#include "RealFunctionTest.h"
 #include "RealmTest.h"
 
 #include <QtTest/QtTest>
@@ -21,8 +22,9 @@ int main(int argc, char **argv) {
     unsigned failedTestSuites = 0;
 
     if (qExec(new RotopeTest)) failedTestSuites++;
-    if (qExec(new FunctionTest)) failedTestSuites++;
     if (qExec(new RealmTest)) failedTestSuites++;
+    if (qExec(new FunctionTest)) failedTestSuites++;
+    if (qExec(new RealFunctionTest)) failedTestSuites++;
         
     printSummary(failedTestSuites);
 

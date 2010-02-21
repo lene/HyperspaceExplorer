@@ -17,7 +17,6 @@ private slots:
   void initTestCase();
   void cleanupTestCase();
 
-  void realFunction();
   void surfaceFunction();
   void complexFunction();
   void objectFunction();

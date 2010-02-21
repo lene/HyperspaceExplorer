@@ -32,8 +32,8 @@ void Realm::clear() {
 void Realm::push_back(const Realm &r) {
     if (!_dimension) _dimension = r._dimension+1;
     if (r._dimension != _dimension-1)
-        throw std::logic_error("you can only add realms of dimension this->_dimension-1");
-    _subrealm.push_back(r); 
+        throw std::invalid_argument("you can only add realms of dimension this->_dimension-1");
+    _subrealm.push_back(r);
 }
 
 void Realm::print() const {
