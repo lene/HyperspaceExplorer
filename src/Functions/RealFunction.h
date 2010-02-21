@@ -218,33 +218,33 @@ namespace {
  *  \ingroup PolarGroup                                                    */
 class Torus1: public RealFunction {
     public:
-        Torus1(): RealFunction("Torus1"), R(2.), r(1.), rho(0.5) { }
-        Torus1 (double _tmin, double _tmax, double _dt,
-                double _umin, double _umax, double _du,
-                double _vmin, double _vmax, double _dv,
-                double _R = 2, double _r = 1, double _rho = 0.5);
+        Torus1(): RealFunction("Torus1"), _R(2.), _r(1.), _rho(0.5) { }
+        Torus1 (double tmin, double tmax, double dt,
+                double umin, double umax, double du,
+                double vmin, double vmax, double dv,
+                double R = 2, double r = 1, double rho = 0.5);
         virtual ~Torus1() { }
         virtual void SetParameters(const ParameterMap &parms) {
     //  parms["Radius"].value must be set!
 #if 1
     for (ParameterMap::const_iterator i = parms.begin(); i != parms.end(); ++i) {
-        if (i->second->getName() == "Major Radius") R = double(*i->second);
-        if (i->second->getName() == "Minor Radius") r = double(*i->second);
-        if (i->second->getName() == "Micro Radius") rho = double(*i->second);
+        if (i->second->getName() == "Major Radius") _R = double(*i->second);
+        if (i->second->getName() == "Minor Radius") _r = double(*i->second);
+        if (i->second->getName() == "Micro Radius") _rho = double(*i->second);
     }
 #else
-    setParameter(parms, this->R, "Major Radius");
-    setParameter(parms, this->r, "Minor Radius");
-    setParameter(parms, this->rho, "Micro Radius");
+    setParameter(parms, this->_R, "Major Radius");
+    setParameter(parms, this->_r, "Minor Radius");
+    setParameter(parms, this->_rho, "Micro Radius");
 #endif
 }
 
     protected:
         virtual function_type f;
 
-        double R;       ///< major radius of the torus
-        double r;       ///< minor radius of the torus
-        double rho;     ///< smallest radius of the torus
+        double _R;       ///< major radius of the torus
+        double _r;       ///< minor radius of the torus
+        double _rho;     ///< smallest radius of the torus
 };
 
 namespace {
@@ -260,11 +260,11 @@ namespace {
  *  \ingroup RealGroup                                                    */
 class Torus2: public RealFunction {
     public:
-        Torus2(): RealFunction("Torus2"), R(1.), r(0.5) { }
-        Torus2 (double _tmin, double _tmax, double _dt,
-                double _umin, double _umax, double _du,
-                double _vmin, double _vmax, double _dv,
-                double _R = 1, double _r = 0.5);
+        Torus2(): RealFunction("Torus2"), _R(1.), _r(0.5) { }
+        Torus2 (double tmin, double tmax, double dt,
+                double umin, double umax, double du,
+                double vmin, double vmax, double dv,
+                double R = 1, double r = 0.5);
         virtual ~Torus2 () { }
         virtual void SetParameters(const ParameterMap &parms) {
             //  parms["Radius"].value must be set!
@@ -272,21 +272,21 @@ class Torus2: public RealFunction {
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {
                 if (i->second->getName() == "Major Radius")
-                    R = double(*i->second);
+                    _R = double(*i->second);
                 if (i->second->getName() == "Minor Radius")
-                    r = double(*i->second);
+                    _r = double(*i->second);
             }
 #else
-            setParameter(parms, this->R, "Major Radius");
-            setParameter(parms, this->r, "Minor Radius");
+            setParameter(parms, this->_R, "Major Radius");
+            setParameter(parms, this->_r, "Minor Radius");
 #endif
         }
 
     protected:
         virtual function_type f;
 
-        double R;   ///< major radius of the torus
-        double r;   ///< minor radius of the torus
+        double _R;   ///< major radius of the torus
+        double _r;   ///< minor radius of the torus
 };
 
 namespace {
@@ -305,9 +305,9 @@ namespace {
 class Fr3r: public RealFunction {
     public:
         Fr3r(): RealFunction("Fr3r") { }
-        Fr3r (double _tmin, double _tmax, double _dt,
-              double _umin, double _umax, double _du,
-              double _vmin, double _vmax, double _dv);
+        Fr3r (double tmin, double tmax, double dt,
+              double umin, double umax, double du,
+              double vmin, double vmax, double dv);
         virtual ~Fr3r() { }
 
     protected:
@@ -325,30 +325,30 @@ namespace {
 /** \ingroup RealGroup                                                    */
 class GravitationPotential: public RealFunction {
     public:
-        GravitationPotential(): RealFunction("GravitationPotential"), M(1.), R(0.25) { }
-        GravitationPotential (double _tmin, double _tmax, double _dt,
-                              double _umin, double _umax, double _du,
-                              double _vmin, double _vmax, double _dv,
-                              double _M = 1, double _R = 0.25);
+        GravitationPotential(): RealFunction("GravitationPotential"), _M(1.), _R(0.25) { }
+        GravitationPotential (double tmin, double tmax, double dt,
+                              double umin, double umax, double du,
+                              double vmin, double vmax, double dv,
+                              double M = 1, double R = 0.25);
         virtual ~GravitationPotential () { }
         virtual void SetParameters(const ParameterMap &parms) {
 #if 1
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {
-                if (i->second->getName() == "M") M = double(*i->second);
-                if (i->second->getName() == "R") R = double(*i->second);
+                if (i->second->getName() == "M") _M = double(*i->second);
+                if (i->second->getName() == "R") _R = double(*i->second);
             }
 #else
-            setParameter(parms, this->M, "M");
-            setParameter(parms, this->R, "R");
+            setParameter(parms, this->_M, "M");
+            setParameter(parms, this->_R, "R");
 #endif
         }
 
     protected:
         virtual function_type f;
 
-        double M;   ///< Mass of the generating sphere(not really M, but M/R^3)
-        double R;   ///< Radius of the generating sphere
+        double _M;   ///< Mass of the generating sphere(not really M, but M/R^3)
+        double _R;   ///< Radius of the generating sphere
 };
 
 namespace {
@@ -363,9 +363,9 @@ namespace {
 class Fr3rSin: public RealFunction {
     public:
         Fr3rSin(): RealFunction("Fr3rSin") { }
-        Fr3rSin (double _tmin, double _tmax, double _dt,
-                 double _umin, double _umax, double _du,
-                 double _vmin, double _vmax, double _dv);
+        Fr3rSin (double tmin, double tmax, double dt,
+                 double umin, double umax, double du,
+                 double vmin, double vmax, double dv);
         virtual ~Fr3rSin () { }
 
     protected:
@@ -384,9 +384,9 @@ namespace {
 class Fr3rExp: public RealFunction {
     public:
         Fr3rExp(): RealFunction("Fr3rExp") { }
-        Fr3rExp (double _tmin, double _tmax, double _dt,
-                 double _umin, double _umax, double _du,
-                 double _vmin, double _vmax, double _dv);
+        Fr3rExp (double tmin, double tmax, double dt,
+                 double umin, double umax, double du,
+                 double vmin, double vmax, double dv);
         virtual ~Fr3rExp () { }
 
     protected:
@@ -404,9 +404,9 @@ namespace {
 /** \ingroup PolarGroup                                                    */
 class Polar: public RealFunction {
     public:
-        Polar (double _tmin, double _tmax, double _dt,
-               double _umin, double _umax, double _du,
-               double _vmin, double _vmax, double _dv);
+        Polar (double tmin, double tmax, double dt,
+               double umin, double umax, double du,
+               double vmin, double vmax, double dv);
         virtual ~Polar() { }
 
     protected:
@@ -415,31 +415,31 @@ class Polar: public RealFunction {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/// \f$ r(\psi, \theta, \phi) = |\sin (Phase*\pi*\psi*\theta*\phi)| \f$
+/// \f$ r(\psi, \theta, \phi) = |\sin (_phase*\pi*\psi*\theta*\phi)| \f$
 /** \ingroup PolarGroup                                                    */
 class PolarSin: public RealFunction {
     public:
-        PolarSin(): RealFunction("PolarSin"), Phase(2.) { }
-        PolarSin (double _tmin, double _tmax, double _dt,
-                  double _umin, double _umax, double _du,
-                  double _vmin, double _vmax, double _dv,
-                  double _phase = 2);
+        PolarSin(): RealFunction("PolarSin"), _phase(2.) { }
+        PolarSin (double tmin, double tmax, double dt,
+                  double umin, double umax, double du,
+                  double vmin, double vmax, double dv,
+                  double phase = 2);
         virtual ~PolarSin () { }
 
         virtual void SetParameters(const ParameterMap &parms) {
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {
-                if (i->second->getName() == "Phase") Phase = double(*i->second);
+                if (i->second->getName() == "Phase") _phase = double(*i->second);
             }
 #       else
-            setParameter(parms, this->Phase, "Phase");
+            setParameter(parms, this->_phase, "Phase");
 #       endif
         }
 
     protected:
         virtual function_type f;
-        double Phase;               ///< phase
+        double _phase;               ///< phase
 };
 
 namespace {
@@ -454,9 +454,9 @@ namespace {
 class PolarSin2: public RealFunction {
     public:
         PolarSin2(): RealFunction("PolarSin2") { }
-        PolarSin2 (double _tmin, double _tmax, double _dt,
-                   double _umin, double _umax, double _du,
-                   double _vmin, double _vmax, double _dv);
+        PolarSin2 (double tmin, double tmax, double dt,
+                   double umin, double umax, double du,
+                   double vmin, double vmax, double dv);
         virtual ~PolarSin2 () { }
 
     protected:
@@ -474,7 +474,7 @@ namespace {
 /** \ingroup PolarGroup                                                    */
 class PolarR: public RealFunction {
     public:
-        PolarR(): RealFunction("PolarR"), Phase(2.) { }
+        PolarR(): RealFunction("PolarR"), _phase(2.) { }
         PolarR (double _tmin, double _tmax, double _dt,
                 double _umin, double _umax, double _du,
                 double _vmin, double _vmax, double _dv,
@@ -485,16 +485,16 @@ class PolarR: public RealFunction {
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {
-                if (i->second->getName() == "Phase") Phase = double(*i->second);
+                if (i->second->getName() == "Phase") _phase = double(*i->second);
             }
 #       else
-            setParameter(parms, this->Phase, "Phase");
+            setParameter(parms, this->_phase, "Phase");
 #       endif
         }
 
     protected:
         virtual function_type f;
-        double Phase;               ///< phase
+        double _phase;               ///< phase
 };
 
 namespace {
