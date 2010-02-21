@@ -1,6 +1,6 @@
 TEMPLATE = subdirs
 
-SUBDIRS = src tests main
+SUBDIRS = src main tests
 
 src.path = .
 INSTALLS += src main tests

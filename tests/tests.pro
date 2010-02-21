@@ -28,6 +28,7 @@ HEADERS += RotopeTest.h \
            VectorTest.h \
            MatrixTest.h \
            NestedVectorTest.h \
+           RotationTest.h \
            RealFunctionTest.h \
            FunctionTest.h
 SOURCES += main.cpp \
@@ -36,6 +37,7 @@ SOURCES += main.cpp \
            VectorTest.cpp \
            MatrixTest.cpp \
            NestedVectorTest.cpp \
+           RotationTest.cpp \
            RealFunctionTest.cpp \
            FunctionTest.cpp
 
