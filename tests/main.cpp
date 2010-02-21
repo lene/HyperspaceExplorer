@@ -28,11 +28,11 @@ int main(int argc, char **argv) {
     if (qExec(new VectorTest)) failedTestSuites++;
     if (qExec(new MatrixTest)) failedTestSuites++;
     if (qExec(new NestedVectorTest)) failedTestSuites++;
+    if (qExec(new RotationTest)) failedTestSuites++;
     if (qExec(new RotopeTest)) failedTestSuites++;
     if (qExec(new RealmTest)) failedTestSuites++;
 //    if (qExec(new FunctionTest)) failedTestSuites++;
     if (qExec(new RealFunctionTest)) failedTestSuites++;
-    if (qExec(new RotationTest)) failedTestSuites++;
         
     printSummary(failedTestSuites);
 
