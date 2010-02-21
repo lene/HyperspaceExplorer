@@ -39,50 +39,50 @@ class RealBase: public Function {
         RealBase() { }
         /// constructor
         RealBase(const QString &name,
-                 double _tmin, double _tmax, double _dt,
-                 double _umin, double _umax, double _du,
-                 double _vmin, double _vmax, double _dv,
+                 double tmin, double tmax, double dt,
+                 double umin, double umax, double du,
+                 double vmin, double vmax, double dv,
                  ParameterMap _parms = ParameterMap()):
                 Function(name, _parms),
-                tmin (_tmin), tmax (_tmax), dt (_dt),
-                umin (_umin), umax (_umax), du (_du),
-                vmin (_vmin), vmax (_vmax), dv (_dv),
-                tsteps (unsigned ((tmax-tmin)/dt+1)),
-                usteps (unsigned ((umax-umin)/du+1)),
-                vsteps (unsigned ((vmax-vmin)/dv+1)) { }
+                _tmin (tmin), _tmax (tmax), _dt (dt),
+                _umin (umin), _umax (umax), _du (du),
+                _vmin (vmin), _vmax (vmax), _dv (dv),
+                _tsteps (unsigned ((tmax-tmin)/dt+1)),
+                _usteps (unsigned ((umax-umin)/du+1)),
+                _vsteps (unsigned ((vmax-vmin)/dv+1)) { }
 
     protected:
         /// number of steps in t
-        unsigned &getTsteps() { return tsteps; }
+        unsigned &getTsteps() { return _tsteps; }
         /// number of steps in t
-        unsigned getTsteps() const { return tsteps > 0? tsteps: 1; }
+        unsigned getTsteps() const { return _tsteps > 0? _tsteps: 1; }
         /// number of steps in u
-        unsigned &getUsteps() { return usteps; }
+        unsigned &getUsteps() { return _usteps; }
         /// number of steps in u
-        unsigned getUsteps() const { return usteps > 0? usteps: 1; }
+        unsigned getUsteps() const { return _usteps > 0? _usteps: 1; }
         /// number of steps in v
-        unsigned &getVsteps()  { return vsteps; }
+        unsigned &getVsteps()  { return _vsteps; }
         /// number of steps in v
-        unsigned getVsteps() const { return vsteps > 0? vsteps: 1; }
+        unsigned getVsteps() const { return _vsteps > 0? _vsteps: 1; }
 
-        double &getTmin() { return tmin; }          ///< min. value of the first parameter, t
-        double getTmin() const { return tmin; }     ///< min. value of the first parameter, t
-        double &getTmax() { return tmax; }          ///< max. value of the first parameter, t
-        double getTmax() const { return tmax; }     ///< max. value of the first parameter, t
-        double &getDt() { return dt; }              ///< delta in t
-        const double &getDt() const { return dt; }  ///< delta in t
-        double &getUmin() { return umin; }          ///< min. value of the second parameter, u
-        double getUmin() const { return umin; }     ///< min. value of the second parameter, u
-        double &getUmax() { return umax; }          ///< max. value of the second parameter, u
-        double getUmax() const { return umax; }     ///< max. value of the second parameter, u
-        double &getDu() { return du; }              ///< delta in u
-        const double &getDu() const { return du; }  ///< delta in u
-        double &getVmin() { return vmin; }          ///< min. value of the third parameter, v
-        double getVmin() const { return vmin; }     ///< min. value of the third parameter, v
-        double &getVmax() { return vmax; }          ///< max. value of the third parameter, v
-        double getVmax() const { return vmax; }     ///< max. value of the third parameter, v
-        double &getDv() { return dv; }              ///< delta in v
-        const double &getDv() const { return dv; }  ///< delta in v
+        double &getTmin() { return _tmin; }          ///< min. value of the first parameter, t
+        double getTmin() const { return _tmin; }     ///< min. value of the first parameter, t
+        double &getTmax() { return _tmax; }          ///< max. value of the first parameter, t
+        double getTmax() const { return _tmax; }     ///< max. value of the first parameter, t
+        double &getDt() { return _dt; }              ///< delta in t
+        const double &getDt() const { return _dt; }  ///< delta in t
+        double &getUmin() { return _umin; }          ///< min. value of the second parameter, u
+        double getUmin() const { return _umin; }     ///< min. value of the second parameter, u
+        double &getUmax() { return _umax; }          ///< max. value of the second parameter, u
+        double getUmax() const { return _umax; }     ///< max. value of the second parameter, u
+        double &getDu() { return _du; }              ///< delta in u
+        const double &getDu() const { return _du; }  ///< delta in u
+        double &getVmin() { return _vmin; }          ///< min. value of the third parameter, v
+        double getVmin() const { return _vmin; }     ///< min. value of the third parameter, v
+        double &getVmax() { return _vmax; }          ///< max. value of the third parameter, v
+        double getVmax() const { return _vmax; }     ///< max. value of the third parameter, v
+        double &getDv() { return _dv; }              ///< delta in v
+        const double &getDv() const { return _dv; }  ///< delta in v
 
         /// The mathematical function defining the Function object
         virtual VecMath::Vector<4> &f(double, double, double) = 0;
@@ -100,18 +100,18 @@ class RealBase: public Function {
                       _d;   ///< default value for all stepsizes
 
     private:
-        double tmin, ///< min. value of the first parameter, here called t
-               tmax, ///< min. value of the first parameter, here called t
-               dt,   ///< stepsize in first parameter
-               umin, ///< min. value of the second parameter, here called u
-               umax, ///< min. value of the second parameter, here called u
-               du,   ///< stepsize in second parameter
-               vmin, ///< min. value of the third parameter, here called v
-               vmax, ///< min. value of the third parameter, here called v
-               dv;   ///< stepsize in third parameter
-        unsigned tsteps, ///< number of steps in t
-                 usteps, ///< number of steps in u
-                 vsteps; ///< number of steps in v
+        double _tmin, ///< min. value of the first parameter, here called t
+               _tmax, ///< min. value of the first parameter, here called t
+               _dt,   ///< stepsize in first parameter
+               _umin, ///< min. value of the second parameter, here called u
+               _umax, ///< min. value of the second parameter, here called u
+               _du,   ///< stepsize in second parameter
+               _vmin, ///< min. value of the third parameter, here called v
+               _vmax, ///< min. value of the third parameter, here called v
+               _dv;   ///< stepsize in third parameter
+        unsigned _tsteps, ///< number of steps in t
+                 _usteps, ///< number of steps in u
+                 _vsteps; ///< number of steps in v
 };
 
 /// A RealFunction is a mathematical function  \f$ f: R^3 \rightarrow R \f$ .
@@ -130,9 +130,9 @@ class RealFunction: public RealBase {
     public:
         RealFunction(const QString &name);
         RealFunction (const QString &name,
-                      double _tmin, double _tmax, double _dt,
-                      double _umin, double _umax, double _du,
-                      double _vmin, double _vmax, double _dv,
+                      double tmin, double tmax, double dt,
+                      double umin, double umax, double du,
+                      double vmin, double vmax, double dv,
                       ParameterMap _parms = ParameterMap());
         virtual ~RealFunction() { }
 
@@ -141,9 +141,9 @@ class RealFunction: public RealBase {
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
         virtual void Draw (void);
 
-        virtual void ReInit(double _tmin, double _tmax, double _dt,
-                            double _umin, double _umax, double _du,
-                            double _vmin, double _vmax, double _dv);
+        virtual void ReInit(double tmin, double tmax, double dt,
+                            double umin, double umax, double du,
+                            double vmin, double vmax, double dv);
 
         /// Called by the ColorManager after setting the Function on the CM
         virtual void calibrateColors() const;
@@ -164,9 +164,6 @@ class RealFunction: public RealBase {
         vec4vec3D X,      ///< temporary storage for function values on grid
                   Xtrans; ///< temporary storage for transformed function values
         vec3vec3D Xscr;   ///< temporary storage for projected function values
-        /// temporary storage for the value of the function at a given point
-        VecMath::Vector<4> F;
-
 
 };
 

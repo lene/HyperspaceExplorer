@@ -51,12 +51,12 @@ RealFunction::RealFunction(const QString &_name):
  *  \param _vmax maximal value in v
  *  \param _dv stepsize in v
  *  \param _parms function parameters                                         */
-RealFunction::RealFunction(const QString &_name,
-                           double _tmin, double _tmax, double _dt,
-                           double _umin, double _umax, double _du,
-                           double _vmin, double _vmax, double _dv,
+RealFunction::RealFunction(const QString &name,
+                           double tmin, double tmax, double dt,
+                           double umin, double umax, double du,
+                           double vmin, double vmax, double dv,
                            ParameterMap _parms):
-        RealBase(_name, _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv,
+        RealBase(name, tmin, tmax, dt, umin, umax, du, vmin, vmax, dv,
                  _parms),
         Xtrans(vec4vec3D()), Xscr(vec3vec3D()) {
     if (MemRequired () > Globals::Instance().getMaxMemory()) {
@@ -151,16 +151,16 @@ void RealFunction::calibrateColors() const {
  *  \param _vmin minimal value in v
  *  \param _vmax maximal value in v
  *  \param _dv stepsize in v                                              */
-void RealFunction::ReInit(double _tmin, double _tmax, double _dt,
-                          double _umin, double _umax, double _du,
-                          double _vmin, double _vmax, double _dv) {
+void RealFunction::ReInit(double tmin, double tmax, double dt,
+                          double umin, double umax, double du,
+                          double vmin, double vmax, double dv) {
 
-    SingletonLog::Instance()  << "Function::ReInit(" << _tmin << ", " << _tmax << ", " << _dt << ", "
-	<< _umin << ", " << _umax<< ", " << _du << ", " << _vmin << ", " << _vmax << ", " << _dv << ")\n";
+    SingletonLog::Instance()  << "Function::ReInit(" << tmin << ", " << tmax << ", " << dt << ", "
+	<< umin << ", " << umax<< ", " << du << ", " << vmin << ", " << vmax << ", " << dv << ")\n";
 
-  getTmin() = _tmin;   getTmax() = _tmax;   getDt() = _dt;
-  getUmin() = _umin;   getUmax() = _umax;   getDu() = _du;
-  getVmin() = _vmin;   getVmax() = _vmax;   getDv() = _dv;
+  getTmin() = tmin;   getTmax() = tmax;   getDt() = dt;
+  getUmin() = umin;   getUmax() = umax;   getDu() = du;
+  getVmin() = vmin;   getVmax() = vmax;   getDv() = dv;
   getTsteps() = unsigned ((getTmax()-getTmin())/getDt()+2);
   getUsteps() = unsigned ((getUmax()-getUmin())/getDu()+2);
   getVsteps() = unsigned ((getVmax()-getVmin())/getDv()+2);
@@ -354,12 +354,12 @@ Vector<4> &Hypersphere::f (double tt, double uu, double vv) {
   double sinphi = sin (pi/2*tt), cosphi = cos (pi/2*tt),	//  hypersphere
     sintht = sin (pi*uu), costht = cos (pi*uu),
     sinpsi = sin (pi*vv), cospsi = cos (pi*vv);
-  F[0] = _radius*sinpsi*sintht*cosphi;
-  F[1] = _radius*sinpsi*sintht*sinphi;
-  F[2] = _radius*sinpsi*costht;
-  F[3] = _radius*cospsi;
+  _F[0] = _radius*sinpsi*sintht*cosphi;
+  _F[1] = _radius*sinpsi*sintht*sinphi;
+  _F[2] = _radius*sinpsi*costht;
+  _F[3] = _radius*cospsi;
 
-  return F;
+  return _F;
 }
 
 
@@ -416,12 +416,12 @@ Torus1::Torus1 (double _tmin, double _tmax, double _dt,
  *  \param vv v value
  *  \return value of defining function at point in question                   */
 Vector<4> &Torus1::f (double tt, double uu, double vv) {
-    F[0] =  cos (pi*tt)*(R+cos (pi*uu)*(r+rho*cos (pi*vv)));
-    F[1] =  sin (pi*tt)*(R+cos (pi*uu)*(r+rho*cos (pi*vv)));
-    F[2] =  sin (pi*uu)*(r+rho*cos (pi*vv));
-    F[3] =  rho*sin (pi*vv);
+    _F[0] =  cos (pi*tt)*(R+cos (pi*uu)*(r+rho*cos (pi*vv)));
+    _F[1] =  sin (pi*tt)*(R+cos (pi*uu)*(r+rho*cos (pi*vv)));
+    _F[2] =  sin (pi*uu)*(r+rho*cos (pi*vv));
+    _F[3] =  rho*sin (pi*vv);
 
-    return F;
+    return _F;
 }
 
 
@@ -462,12 +462,12 @@ Torus2::Torus2 (double _tmin, double _tmax, double _dt,
  *  \return		value of defining function at point in question
  */
 Vector<4> &Torus2::f (double tt, double uu, double vv) {
-  F[0] =  cos (pi*tt)*(R+r*cos (pi*uu)*cos (pi*vv));
-  F[1] =  cos (pi*tt)*(R+r*cos (pi*uu)*sin (pi*vv));
-  F[2] =  cos (pi*tt)*(R+r*sin (pi*uu));
-  F[3] =  sin (pi*tt)*R;
+  _F[0] =  cos (pi*tt)*(R+r*cos (pi*uu)*cos (pi*vv));
+  _F[1] =  cos (pi*tt)*(R+r*cos (pi*uu)*sin (pi*vv));
+  _F[2] =  cos (pi*tt)*(R+r*sin (pi*uu));
+  _F[3] =  sin (pi*tt)*R;
 
-  return F;
+  return _F;
 }
 
 
@@ -500,15 +500,15 @@ Fr3r::Fr3r (double _tmin, double _tmax, double _dt,
  *  \return		value of defining function at point in question
  */
 Vector<4> &Fr3r::f (double tt, double uu, double vv) {
-  F[0] = tt;
-  F[1] = uu;
-  F[2] = vv;
+  _F[0] = tt;
+  _F[1] = uu;
+  _F[2] = vv;
   double rsq = tt*tt+uu*uu+vv*vv;
-  F[3] = 1./(rsq+.25);
+  _F[3] = 1./(rsq+.25);
   // sin (pi*(tt*tt+uu*uu+vv*vv));
   // exp (tt*tt+uu*uu+vv*vv);
 
-  return F;
+  return _F;
 }
 
 
@@ -549,16 +549,16 @@ GravitationPotential::GravitationPotential (double xmin, double xmax, double dx,
  */
 Vector<4> &GravitationPotential::f (double tt, double uu, double vv) {
   const double G = 1;		//  arbitrary value for gravitation constant
-  F[0] = tt;
-  F[1] = uu;
-  F[2] = vv;
+  _F[0] = tt;
+  _F[1] = uu;
+  _F[2] = vv;
   double rsq = tt*tt+uu*uu+vv*vv;
   if (rsq > R*R)
-    F[3] = G*M/rsq;
+    _F[3] = G*M/rsq;
   else
-    F[3] = G*M/(R*R*R)*sqrt (rsq);
+    _F[3] = G*M/(R*R*R)*sqrt (rsq);
 
-  return F;
+  return _F;
 }
 
 
@@ -591,12 +591,12 @@ Fr3rSin::Fr3rSin (double _tmin, double _tmax, double _dt,
  *  \return		sin (pi*(x�+y�+z�))
  */
 Vector<4> &Fr3rSin::f (double tt, double uu, double vv) {
-  F[0] = tt;
-  F[1] = uu;
-  F[2] = vv;
-  F[3] = sin (pi*(tt*tt+uu*uu+vv*vv));
+  _F[0] = tt;
+  _F[1] = uu;
+  _F[2] = vv;
+  _F[3] = sin (pi*(tt*tt+uu*uu+vv*vv));
 
-  return F;
+  return _F;
 }
 
 
@@ -629,12 +629,12 @@ Fr3rExp::Fr3rExp (double _tmin, double _tmax, double _dt,
  *  \return		exp (x�+y�+z�)
  */
 Vector<4> &Fr3rExp::f (double tt, double uu, double vv) {
-  F[0] = tt;
-  F[1] = uu;
-  F[2] = vv;
-  F[3] = exp (tt*tt+uu*uu+vv*vv);
+  _F[0] = tt;
+  _F[1] = uu;
+  _F[2] = vv;
+  _F[3] = exp (tt*tt+uu*uu+vv*vv);
 
-  return F; }
+  return _F; }
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -672,12 +672,12 @@ Vector<4> &Polar::f (double tt, double uu, double vv) {
     sinpsi = sin (pi*vv), cospsi = cos (pi*vv),
     Radius = sin (pi/3.*(tt+uu+vv));
 
-  F[0] = Radius*sinpsi*sintht*cosphi;
-  F[1] = Radius*sinpsi*sintht*sinphi;
-  F[2] = Radius*sinpsi*costht;
-  F[3] = Radius*cospsi;
+  _F[0] = Radius*sinpsi*sintht*cosphi;
+  _F[1] = Radius*sinpsi*sintht*sinphi;
+  _F[2] = Radius*sinpsi*costht;
+  _F[3] = Radius*cospsi;
 
-  return F;
+  return _F;
 }
 
 
@@ -719,12 +719,12 @@ Vector<4> &PolarSin::f (double tt, double uu, double vv) {
     sinpsi = sin (pi*vv), cospsi = cos (pi*vv),
     Radius = .5+fabs (sin (Phase*tt*uu*vv*pi));
 
-  F[0] = Radius*sinpsi*sintht*cosphi;
-  F[1] = Radius*sinpsi*sintht*sinphi;
-  F[2] = Radius*sinpsi*costht;
-  F[3] = Radius*cospsi;
+  _F[0] = Radius*sinpsi*sintht*cosphi;
+  _F[1] = Radius*sinpsi*sintht*sinphi;
+  _F[2] = Radius*sinpsi*costht;
+  _F[3] = Radius*cospsi;
 
-  return F;
+  return _F;
 }
 
 
@@ -762,12 +762,12 @@ Vector<4> &PolarSin2::f (double tt, double uu, double vv) {
     sinpsi = sin (pi*vv), cospsi = cos (pi*vv),
     Radius = sin (pi/3.*(tt+uu+vv));
 
-  F[0] = Radius*sinpsi*sintht*cosphi;
-  F[1] = Radius*sinpsi*sintht*sinphi;
-  F[2] = Radius*sinpsi*costht;
-  F[3] = Radius*cospsi;
+  _F[0] = Radius*sinpsi*sintht*cosphi;
+  _F[1] = Radius*sinpsi*sintht*sinphi;
+  _F[2] = Radius*sinpsi*costht;
+  _F[3] = Radius*cospsi;
 
-  return F;
+  return _F;
 }
 
 
@@ -809,10 +809,10 @@ Vector<4> &PolarR::f (double tt, double uu, double vv) {
     sinpsi = sin (pi*vv), cospsi = cos (pi*vv),
     Radius = sqrt (tt*tt+uu*uu+vv*vv);
 
-  F[0] = Radius*sinpsi*sintht*cosphi;
-  F[1] = Radius*sinpsi*sintht*sinphi;
-  F[2] = Radius*sinpsi*costht;
-  F[3] = Radius*cospsi;
+  _F[0] = Radius*sinpsi*sintht*cosphi;
+  _F[1] = Radius*sinpsi*sintht*sinphi;
+  _F[2] = Radius*sinpsi*costht;
+  _F[3] = Radius*cospsi;
 
-  return F;
+  return _F;
 }

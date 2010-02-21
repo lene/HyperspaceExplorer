@@ -24,19 +24,19 @@ using VecMath::Vector;
 /// Function default c'tor
 /** Zeroes everything       */
 Function::Function ():
-    F (),
-    functionName("")//, parameterNames()
+    _F (),
+    _functionName("")//, parameterNames()
 { }
 
 
-/** Function c'tor given a definition set in R³ (as parameter space)
+/** Function c'tor given a definition set in Rï¿½ (as parameter space)
  *  \param name a name for the function
  *  \param _parameters
  */
-Function::Function (const QString &name, ParameterMap _parameters):
-    F (),
-    functionName(name),// parameterNames(),
-    parameters(_parameters) {
+Function::Function (const QString &name, ParameterMap parameters):
+    _F (),
+    _functionName(name),// parameterNames(),
+    _parameters(parameters) {
     if (MemRequired () > Globals::Instance().getMaxMemory()) {
     }
 }
@@ -74,14 +74,14 @@ Function::vec4vec1D Function::df (double tt, double uu, double vv) {
 
     F0 = operator () (tt, uu, vv);
 
-    F = operator () (tt+h, uu, vv);     //  derive after t
-    DF[0] = (F-F0)/h;
+    _F = operator () (tt+h, uu, vv);     //  derive after t
+    DF[0] = (_F-F0)/h;
 
-    F = operator () (tt, uu+h, vv);     //  derive after u
-    DF[1] = (F-F0)/h;
+    _F = operator () (tt, uu+h, vv);     //  derive after u
+    DF[1] = (_F-F0)/h;
 
-    F = operator () (tt, uu, vv+h);     //  derive after v
-    DF[2] = (F-F0)/h;
+    _F = operator () (tt, uu, vv+h);     //  derive after v
+    DF[2] = (_F-F0)/h;
 
     return DF;
 }

@@ -20,8 +20,6 @@
 
 #include "FunctionFactory.h"
 
-class FunctionTest;
-
 /// \defgroup FunctionGroup Functions and objects
 /// \defgroup RealGroup Functions R^3 -> R
 /// \ingroup FunctionGroup
@@ -81,8 +79,6 @@ class FunctionTest;
  *  \author Helge Preuss <scout@hyperspace-travel.de>                         */
 class Function {
 
-    friend class FunctionTest;
-
     public:
               
         /// one-dimensional array of floats, implemented as a std::vector
@@ -107,7 +103,7 @@ class Function {
         typedef std::vector<vec4vec2D> vec4vec3D;
 
         Function();
-        Function (const QString &name, ParameterMap _parms = ParameterMap());
+        Function (const QString &name, ParameterMap parameters = ParameterMap());
         virtual ~Function() { }
 
         /// Execute the desired rotation and translation to the Function object
@@ -142,15 +138,15 @@ class Function {
         }
 
         /** \return The name of the function in cleartext                     */
-        virtual QString getFunctionName() const { return functionName; }
+        virtual QString getFunctionName() const { return _functionName; }
         /** \return number of parameters for the function                     */
-        unsigned getNumParameters() { return parameters.size(); }
+        unsigned getNumParameters() { return _parameters.size(); }
 
         /// \return The collection of all parameters (and their values)
-        ParameterMap getParameters() { return parameters; }
+        ParameterMap getParameters() { return _parameters; }
         /// \return The value of the parameter which is named \p name
         FunctionParameter *getParameter(QString name) {
-            return parameters[name.toStdString()];
+            return _parameters[name.toStdString()];
         }
 
         /// Set a parameter with a specified key from a supplied ParameterMap
@@ -158,7 +154,7 @@ class Function {
                                                 T &parm,
                                                 const std::string &key) {
             std::cerr<< "Function::SetParameter(";
-            for (ParameterMap::const_iterator i = parameters.begin();
+            for (ParameterMap::const_iterator i = _parameters.begin();
                  i != parms.end(); ++i) {
                 std::cerr << i->second->getName() << ", " << T(*(i->second));
                 if (i->second->getName() == key) parm = T(*(i->second));
@@ -193,34 +189,35 @@ class Function {
                 const T &, const T &);
 
         /// Remember that we've set some more vertices
-        void addVertices(unsigned num) { NumVertices += num; }
+        void addVertices(unsigned num) { _numVertices += num; }
 
         /// Define the name of the Function
-        void setfunctionName(const QString &_name) { functionName = _name; }
+        void setfunctionName(const QString &_name) { _functionName = _name; }
+
+        /// temporary storage for the value of the function at a given point
+        VecMath::Vector<4> _F;
 
     private:
         /// Declare a new parameter for the Function
         void insertParameter(
             const std::pair<std::string, FunctionParameter *> &value) {
-            parameters.insert(value);
+            _parameters.insert(value);
         }
 
-        /// temporary storage for the value of the function at a given point
-        VecMath::Vector<4> F;
 
         /// counter for assessing how much RAM is used
-        unsigned NumVertices;
+        unsigned _numVertices;
 
         /// the name of the function as a free-form string
-        QString functionName;
+        QString _functionName;
 
         /// list of the parameters to the function
-        ParameterMap parameters;
-        /// list of the names of parameters to the function
+        ParameterMap _parameters;
+        /// Ordered list of the names of parameters to the function
         /** needed additionally to the ParameterMap, because the map does not
-         *  keep the parameters in the order they are declared
+         *  keep the parameters in the order they are declared.
          *  \todo move this functionality into ParameterMap                   */
-        std::vector<std::string> parameterNames;
+        std::vector<std::string> _parameterNames;
         
 };
 
@@ -228,8 +225,8 @@ class Function {
 template <typename T> inline
         void Function::declareParameter(const std::string &_name,
                                         const T &_default) {
-            parameterNames.push_back(_name);
-            if (parameters.find(_name) == parameters.end()) {
+            _parameterNames.push_back(_name);
+            if (_parameters.find(_name) == _parameters.end()) {
                 insertParameter(
                     std::make_pair(_name,
                         ParameterFactory::Instance().
@@ -241,13 +238,13 @@ template <typename T> inline
 template <typename T> inline
         void Function::declareParameter(const std::string &_name,
                                         const T &_default, const T &_value) {
-            parameterNames.push_back(_name);
-            if (parameters.find(_name) == parameters.end()) {
+            _parameterNames.push_back(_name);
+            if (_parameters.find(_name) == _parameters.end()) {
                 insertParameter(
                     std::make_pair(_name,
                         ParameterFactory::Instance().
                             createParameterWithDefault(_name, _default)));
-                parameters[_name]->setValue(new FunctionParameterValue<T>(_value));
+                _parameters[_name]->setValue(new FunctionParameterValue<T>(_value));
             }
         }
 #endif

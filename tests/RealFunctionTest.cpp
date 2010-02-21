@@ -10,12 +10,12 @@ using std::cerr;
 using std::endl;
 
 Vector<4> &RealFunctionTest::RealFunctionTestImplementation::f (double tt, double uu, double vv) {
-    F[0] = tt;
-    F[1] = uu;
-    F[2] = vv;
-    F[3] = 1;
+    _F[0] = tt;
+    _F[1] = uu;
+    _F[2] = vv;
+    _F[3] = 1;
 
-    return F;
+    return _F;
 }
 
 void RealFunctionTest::initTestCase() {
