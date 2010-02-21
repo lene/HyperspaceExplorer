@@ -245,13 +245,8 @@ Realm Realm::rotateLine(unsigned num_segments, unsigned size) {
     //  this case seems to be working properly.
 
     /// Copy the subrealms to a list for easier insertion
-    list<Realm> temp_list;
-#   if false
-    copy(_subrealm.begin(), _subrealm.end(), temp_list.begin());  // this segfaults! why?
-#   else
-    for (vector<Realm>::iterator i = _subrealm.begin(); i != _subrealm.end(); ++i)
-        temp_list.push_back(*i);
-#   endif
+    list<Realm> temp_list(_subrealm.size());
+    std::copy(_subrealm.begin(), _subrealm.end(), temp_list.begin());
 
     list< vector<Realm> > realms_to_add;
 
@@ -274,13 +269,8 @@ Realm Realm::rotateLine(unsigned num_segments, unsigned size) {
     }
 
     /// Copy the subrealms back from the temporary list to a vector
-    _subrealm.clear();
-#   if false
-    copy(temp_list.begin(), temp_list.end(), _subrealm.begin());
-#   else
-    for (list<Realm>::iterator i = temp_list.begin(); i != temp_list.end(); ++i)
-        _subrealm.push_back(*i);
-#   endif
+    _subrealm.resize(temp_list.size());
+    std::copy(temp_list.begin(), temp_list.end(), _subrealm.begin());
 
     _dimension++;
 
