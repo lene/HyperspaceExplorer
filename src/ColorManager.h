@@ -166,6 +166,10 @@ class ColorManagerManager {
         /// proxy function for ColorManager::setColor()
         void setColor(const VecMath::Vector<4> &x) { colorManager->setColor(x); }
 
+        Color getColor(const VecMath::Vector<4> &x) {
+            return colorManager->getColor(x);
+        }
+
         /// proxy function for ColorManager::depthCueColor()
         void depthCueColor(double wmax, double wmin, double w,
                            const VecMath::Vector<4> &x);
