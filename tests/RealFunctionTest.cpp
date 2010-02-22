@@ -8,6 +8,7 @@ using VecMath::Vector;
 using VecMath::Rotation;
 using std::cerr;
 using std::endl;
+using std::string;
 
 Vector<4> &RealFunctionTest::RealFunctionTestImplementation::f (double tt, double uu, double vv) {
     _F[0] = tt;
@@ -93,27 +94,52 @@ void RealFunctionTest::rotated360DegreesIsIdentical() {
 void RealFunctionTest::project() {
     _function = new RealFunctionTestImplementation();
 
+    _function->Transform(Rotation<4>(), Vector<4>());
     _function->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
 
     QVERIFY(_function->projected_vertices().size() >= GRID_SIZE);
     QVERIFY(_function->projected_vertices()[0].size() >= GRID_SIZE);
     QVERIFY(_function->projected_vertices()[0][0].size() >= GRID_SIZE);
 
+    // intercept theorem gives this factor (constant because f is constant)
+    const double PROJECTION_FACTOR =
+            (PROJECTION_CAMERA_W-PROJECTION_SCREEN_W) /
+            (PROJECTION_CAMERA_W-CONSTANT_FUNCTION_VALUE);
+
     for (unsigned i = 0; i < GRID_SIZE; ++i) {
         for (unsigned j = 0; j < GRID_SIZE; ++j) {
             for (unsigned k = 0; k < GRID_SIZE; ++k) {
+                Vector<4> vertex = _function->vertices()[i][j][k];
                 Vector<3> projected_vertex = _function->projected_vertices()[i][j][k];
-//                cerr << projected_vertex << " ";
+                for(unsigned m = 0; m < 3; ++m) {
+                    QVERIFY(fabs(projected_vertex[m] - vertex[m]*PROJECTION_FACTOR) < EPSILON);
+                }
             }
-//            cerr << endl;
         }
     }
-
-    QSKIP("No idea how to correctly test projection yet", SkipSingle);
 }
 
 void RealFunctionTest::projectWithDepthCue() {
-    QSKIP("To do: Test projection with depth cue.", SkipSingle);
+    _function = new RealFunctionTestImplementation();
+
+    _function->Transform(Rotation<4>(), Vector<4>());
+    _function->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, true);
+
+    for (unsigned i = 0; i < GRID_SIZE; ++i) {
+        for (unsigned j = 0; j < GRID_SIZE; ++j) {
+            for (unsigned k = 0; k < GRID_SIZE; ++k) {
+                Vector<4> vertex = _function->vertices()[i][j][k];
+                Vector<3> projected_vertex = _function->projected_vertices()[i][j][k];
+                Color rgba = ColMgrMgr::Instance().getColor(vertex);
+
+                cerr << vertex << " : " << projected_vertex << " " <<string(rgba).c_str()
+                     << endl;
+            }
+        }
+    }
+
+    QSKIP("Test problem: all W values are equal. Thus the color for all vertices is equal.",
+          SkipSingle);
 }
 
 void RealFunctionTest::draw() {

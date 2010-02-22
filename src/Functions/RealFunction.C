@@ -180,6 +180,18 @@ void RealFunction::Transform (const VecMath::Rotation<4> &R,
     transform< vec4vec3D, 4 >::xform(Rot, T, _X, _Xtrans);
 }
 
+void RealFunction::setDepthCueColors(double Wmax, double Wmin) {
+    for(unsigned t = 0;t <= getTsteps() + 1;t++) {
+        for(unsigned u = 0;u <= getUsteps() + 1;u++) {
+            for(unsigned v = 0;v <= getVsteps() + 1;v++){
+                ColMgrMgr::Instance().depthCueColor(Wmax, Wmin,
+                                                    _Xtrans[t][u][v][3],
+                                                    _X[t][u][v]);
+            }
+        }
+    }
+}
+
 /// Projects a RealFunction into three-space
 /** \param scr_w w coordinate of screen
  *  \param cam_w w coordinate of camera
@@ -204,14 +216,7 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
         }
     }
 
-    if (!depthcue4d) return;
-
-    for (unsigned t = 0; t <= getTsteps()+1; t++)
-        for (unsigned u = 0; u <= getUsteps()+1; u++)
-            for (unsigned v = 0; v <= getVsteps()+1; v++) {
-                ColMgrMgr::Instance().depthCueColor(Wmax, Wmin,
-                    _Xtrans[t][u][v][3], _X[t][u][v]);
-            }
+    if (depthcue4d) setDepthCueColors(Wmax, Wmin);
 }
 
 /// Draw the projected Function (onto screen or into GL list, as it is)
