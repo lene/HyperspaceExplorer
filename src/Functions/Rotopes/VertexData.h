@@ -52,10 +52,19 @@ template <unsigned D>
             /// Output of a single surface
             void printSurface(const uintvec<1> &);
 
-			/// Print the vertex array with indices
-			void printVertices();
-			
+            /// Returns all vertices as a string, sorted in \c num_columns columns.
+            std::string verticesToString(unsigned num_columns);
+
         private:
+
+            const static int PRINT_VERTICES_COLUMN_WIDTH = 40;
+
+            /// Returns a line of \p num_columns vertices as string.
+            /** \param base_index Index of the first vertex that is printed.
+             *  \param num_columns How many vertices are printed in this row.
+             */
+            std::string verticesToStringRow(unsigned base_index, unsigned num_columns);
+
             /// \return Whether argument or permutation of it already in _surface
             bool checkSurfaceExists(const uintvec<1> &);
 
@@ -97,28 +106,39 @@ template <unsigned D> void vertex_data<D>::printSurface(const uintvec<1> &v) {
     std::cerr << ")\n";
 }
 
-template <unsigned D> void vertex_data<D>::printVertices() {
-    const unsigned COLUMN_WIDTH = 40;
-    const unsigned INDEX_WIDTH = 5;
+template <unsigned D> std::string vertex_data<D>::verticesToString(unsigned num_columns) {
 
-    for (unsigned i = 0; i < X().size(); i += 2) {
-        for (unsigned column = 0; column < 2; ++column) {
-            std::ostringstream o;
-            o << X()[i+column] << std::ends;
+    std::ostringstream vertices_outstream;
 
-            std::string vec_as_string = o.str();
-
-            unsigned width =
-                std::max(
-                    0,
-                    int(COLUMN_WIDTH-INDEX_WIDTH-2-vec_as_string.length())
-            );
-            std::cout << std::setw(INDEX_WIDTH) << i+column << ": "
-                    << vec_as_string
-                    << std::string(width, ' ');
-        }
-        std::cout << std::endl;
+    for (unsigned i = 0; i < X().size(); i += num_columns) {
+        vertices_outstream << verticesToStringRow(i, num_columns) << std::endl;
     }
+    vertices_outstream << std::ends;
+
+    return vertices_outstream.str();
+}
+
+template <unsigned D> std::string vertex_data<D>::verticesToStringRow(unsigned base_index, unsigned num_columns) {
+    const unsigned PRINT_VERTICES_INDEX_WIDTH = 5;
+
+    std::ostringstream column_outstream;
+
+    for (unsigned column = 0; column < num_columns; ++column) {
+
+        if (base_index+column >= X().size()) break;
+
+        std::string vec_as_string = X()[base_index+column].toString();
+
+        int fill_width = PRINT_VERTICES_COLUMN_WIDTH-PRINT_VERTICES_INDEX_WIDTH-2-vec_as_string.length(),
+            num_fill_chars = std::max(0, fill_width);
+
+        column_outstream << std::setw(PRINT_VERTICES_INDEX_WIDTH) << base_index+column << ": "
+                << vec_as_string
+                << std::string(num_fill_chars, ' ');
+    }
+    column_outstream << std::ends;
+
+    return column_outstream.str();
 }
 
 template <unsigned D> void vertex_data<D>::print() {
@@ -152,7 +172,9 @@ template <unsigned D> void vertex_data<D>::print() {
         i->print();
     }
     std::cout << "\n";
-    printVertices();
+
+    std::cout << verticesToString(2);
+
     std::cout << std::string(80, '-') << std::endl;
 }
 
