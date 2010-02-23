@@ -96,7 +96,7 @@ namespace VecMath {
          *  @return scaled vector                                             */
         Vector<D, N> operator/ (const Vector<D, N> &X) const;
 
-        /** @return the squared norm of the vector, |V|²                      */
+        /** @return the squared norm of the vector, |V|ï¿½                      */
         N sqnorm (void) const;
 
         /// Comparison operator
@@ -132,6 +132,8 @@ namespace VecMath {
                 for (unsigned i = 0; i < D; i++) data[i] = (T)x[i];
                 return data;
             }
+
+        std::string toString() const;
 
     private:
         N x[D]; ///< A static array storing the components
@@ -258,6 +260,12 @@ namespace VecMath {
         return operator* (*this);
     }
 
+    template <unsigned D, typename N>
+    std::string Vector<D, N>::toString() const {
+        std::ostringstream o;
+        o << *this << std::ends;
+        return o.str();
+    }
 
     //------------  important non-member functions for class Vector
 
