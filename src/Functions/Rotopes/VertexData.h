@@ -153,18 +153,6 @@ template <unsigned D> void vertex_data<D>::print() {
     std::cout << _dimension << "-dimensional object";
 
 #   if DEBUG_ROTOPES >= 2
-    std::string separator = "";
-    std::cout << ": " << X().size() << " vertices\n";
-    unsigned count = 0;
-    for (typename vector<Vector<D> >::iterator i = X().begin();
-         i != X().end(); ++i, count++){
-        separator = "\n";
-        std::cout << count << ": " << *i << separator;
-    }
-    std::cout << "\n";
-#   endif
-
-#   if DEBUG_ROTOPES >= 2
         std::cout << surface().size() << " surfaces: \n";
         for (unsigned i = 0; i < surface().size(); ++i) {
             std::cout << std::setw(4) << i;
