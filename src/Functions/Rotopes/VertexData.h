@@ -42,6 +42,7 @@ template <unsigned D>
             virtual unsigned &dimension() { return _dimension; }
             /// The array of vertices
             std::vector<VecMath::Vector<D> > &X() { return _X; }
+            const std::vector<VecMath::Vector<D> > &X() const { return _X; }
             /// The array of surfaces
             virtual uintvec<2> &surface() { return _surface; }
             /// The array of realms
@@ -53,7 +54,7 @@ template <unsigned D>
             void printSurface(const uintvec<1> &);
 
             /// Returns all vertices as a string, sorted in \c num_columns columns.
-            std::string verticesToString(unsigned num_columns);
+            std::string verticesToString(unsigned num_columns) const;
 
         private:
 
@@ -63,7 +64,7 @@ template <unsigned D>
             /** \param base_index Index of the first vertex that is printed.
              *  \param num_columns How many vertices are printed in this row.
              */
-            std::string verticesToStringRow(unsigned base_index, unsigned num_columns);
+            std::string verticesToStringRow(unsigned base_index, unsigned num_columns) const;
 
             /// \return Whether argument or permutation of it already in _surface
             bool checkSurfaceExists(const uintvec<1> &);
@@ -106,7 +107,8 @@ template <unsigned D> void vertex_data<D>::printSurface(const uintvec<1> &v) {
     std::cerr << ")\n";
 }
 
-template <unsigned D> std::string vertex_data<D>::verticesToString(unsigned num_columns) {
+template <unsigned D> std::string vertex_data<D>::verticesToString(
+        unsigned num_columns) const {
 
     std::ostringstream vertices_outstream;
 
@@ -118,7 +120,8 @@ template <unsigned D> std::string vertex_data<D>::verticesToString(unsigned num_
     return vertices_outstream.str();
 }
 
-template <unsigned D> std::string vertex_data<D>::verticesToStringRow(unsigned base_index, unsigned num_columns) {
+template <unsigned D> std::string vertex_data<D>::verticesToStringRow(
+        unsigned base_index, unsigned num_columns) const {
     const unsigned PRINT_VERTICES_INDEX_WIDTH = 5;
 
     std::ostringstream column_outstream;
