@@ -171,6 +171,8 @@ private:
     /// Create a three-dimensional Realm from a polygon for one rotation step.
     Realm rotateStep2D(unsigned index, unsigned base, unsigned delta);
 
+    Realm generateRectSegment(unsigned i, unsigned base, unsigned delta);
+
     /// Convert a set of lines to a surface as a set of points.
     void convertToSurface();
 

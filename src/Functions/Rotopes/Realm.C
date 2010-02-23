@@ -218,7 +218,7 @@ Realm Realm::taperRealm(unsigned taper_index) {
     return new_realm;
 }
 
-const bool Realm::DEBUG_ROTATE = false;
+const bool Realm::DEBUG_ROTATE = true;
 
 Realm Realm::rotate(unsigned num_segments, unsigned size) {
 
@@ -388,26 +388,10 @@ Realm Realm::rotateStep2D(unsigned index, unsigned base, unsigned delta) {
      *  because _subrealm.size() == 4.
      */
     for (unsigned i = 0; i < _subrealm.size()/2; ++i) {
-        if (DEBUG_ROTATE) { cerr << "rotating "; _subrealm[i].print(); }
-        if (_subrealm[i].dimension()) throw new std::logic_error("At this point subrealms should be points");
-        Realm new_subrealm;
-
-        new_subrealm.push_back(_subrealm[i]+base);
-        new_subrealm.push_back(_subrealm[i]+delta+base);
-
-        if (DEBUG_ROTATE) { new_subrealm.print(); }
-        new_subrealms.push_back(new_subrealm);
+        new_subrealms.push_back(generateRectSegment(i, base, delta));
     }
-    for (unsigned i = _subrealm.size(); i < _subrealm.size(); ++i) {
-        if (DEBUG_ROTATE) { cerr << "rotating "; _subrealm[i].print(); }
-        if (_subrealm[i].dimension()) throw new std::logic_error("At this point subrealms should be points");
-        Realm new_subrealm;
-
-        new_subrealm.push_back(_subrealm[i]+base);
-        new_subrealm.push_back(_subrealm[i]+delta+base);
-
-        if (DEBUG_ROTATE) { new_subrealm.print(); }
-        new_subrealms.push_back(new_subrealm);
+    for (unsigned i = _subrealm.size()/2; i < _subrealm.size(); ++i) {
+        new_subrealms.push_back(generateRectSegment(i, base, delta));
     }
 
     vector<Realm> another_temp;
@@ -419,10 +403,23 @@ Realm Realm::rotateStep2D(unsigned index, unsigned base, unsigned delta) {
     Realm new_realm(another_temp);
     new_realm._dimension++;
     if (DEBUG_ROTATE) { new_realm.print(); }
-    //            new_realm.convertToSurface();
+    //new_realm.convertToSurface();
 
     //            return *this;
     return new_realm;
+}
+
+Realm Realm::generateRectSegment(unsigned i, unsigned base, unsigned delta) {
+    if (DEBUG_ROTATE) { cerr << "rotating "; _subrealm[i].print(); }
+    if (_subrealm[i].dimension()) throw new std::logic_error("At this point subrealms should be points");
+    Realm new_subrealm;
+
+    new_subrealm.push_back(_subrealm[i]+base);
+    new_subrealm.push_back(_subrealm[i]+delta+base);
+
+    if (DEBUG_ROTATE) { new_subrealm.print(); }
+
+    return new_subrealm;
 }
 
 void Realm::convertToSurface() {
