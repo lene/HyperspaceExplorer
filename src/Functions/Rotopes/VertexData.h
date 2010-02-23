@@ -146,7 +146,10 @@ template <unsigned D> std::string vertex_data<D>::verticesToStringRow(
 }
 
 template <unsigned D> void vertex_data<D>::print() {
-    std::cout << std::string(80, '-') << std::endl;
+
+    std::cout
+        << std::string(PRINT_VERTICES_NUM_COLUMNS*PRINT_VERTICES_COLUMN_WIDTH, '-')
+        << std::endl;
     std::cout << _dimension << "-dimensional object";
 
 #   if DEBUG_ROTOPES >= 2
@@ -179,7 +182,9 @@ template <unsigned D> void vertex_data<D>::print() {
 
     std::cout << verticesToString(PRINT_VERTICES_NUM_COLUMNS);
 
-    std::cout << std::string(80, '-') << std::endl;
+    std::cout
+        << std::string(PRINT_VERTICES_NUM_COLUMNS*PRINT_VERTICES_COLUMN_WIDTH, '-')
+        << std::endl;
 }
 
 /** Add a surface to the array of surfaces
