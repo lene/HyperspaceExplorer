@@ -59,6 +59,7 @@ template <unsigned D>
         private:
 
             const static int PRINT_VERTICES_COLUMN_WIDTH = 40;
+            const static int PRINT_VERTICES_NUM_COLUMNS = 2;
 
             /// Returns a line of \p num_columns vertices as string.
             /** \param base_index Index of the first vertex that is printed.
@@ -176,7 +177,7 @@ template <unsigned D> void vertex_data<D>::print() {
     }
     std::cout << "\n";
 
-    std::cout << verticesToString(2);
+    std::cout << verticesToString(PRINT_VERTICES_NUM_COLUMNS);
 
     std::cout << std::string(80, '-') << std::endl;
 }
