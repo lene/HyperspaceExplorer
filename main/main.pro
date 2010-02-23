@@ -10,6 +10,8 @@ INCLUDEPATH += ../src/Functions \
                ../src
 
 SOURCES += Main.C
+
+PRE_TARGETDEPS *= ../lib/libHyperspaceExplorer.a
 LIBS *= ../lib/libHyperspaceExplorer.a
 
 DESTDIR = ..
