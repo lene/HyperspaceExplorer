@@ -83,6 +83,7 @@ using VecMath::uintvec;
 using std::vector;
 
 #include <iomanip>
+#include <algorithm>
 
 /** \param v The printed surface as vector of indices into the vertex array */
 template <unsigned D> void vertex_data<D>::printSurface(const uintvec<1> &v) {
@@ -97,9 +98,27 @@ template <unsigned D> void vertex_data<D>::printSurface(const uintvec<1> &v) {
 }
 
 template <unsigned D> void vertex_data<D>::printVertices() {
-	for (unsigned i = 0; i < X().size(); ++i) {
-		std::cout << i << ": " << X()[i] << std::endl;
-	}
+    const unsigned COLUMN_WIDTH = 40;
+    const unsigned INDEX_WIDTH = 5;
+
+    for (unsigned i = 0; i < X().size(); i += 2) {
+        for (unsigned column = 0; column < 2; ++column) {
+            std::ostringstream o;
+            o << X()[i+column] << std::ends;
+
+            std::string vec_as_string = o.str();
+
+            unsigned width =
+                std::max(
+                    0,
+                    int(COLUMN_WIDTH-INDEX_WIDTH-2-vec_as_string.length())
+            );
+            std::cout << std::setw(INDEX_WIDTH) << i+column << ": "
+                    << vec_as_string
+                    << std::string(width, ' ');
+        }
+        std::cout << std::endl;
+    }
 }
 
 template <unsigned D> void vertex_data<D>::print() {
