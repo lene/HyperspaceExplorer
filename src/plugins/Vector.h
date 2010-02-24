@@ -55,10 +55,10 @@ namespace VecMath {
 
         N sqnorm (void) const;
 
-        N *data () { return x; }
+        N *data () { return _x; }
 
     private:
-        N x[D];
+        N _x[D];
     };
     
     template <unsigned D, typename N> 
@@ -73,13 +73,13 @@ namespace VecMath {
     *  @param ... the following elements                                      */
     template <unsigned D, typename N>
             Vector<D, N>::Vector (N x0, ... ) :
-            x () {
-        x[0] = x0;
+            _x () {
+        _x[0] = x0;
         unsigned i = 0;
         va_list argp;
         va_start (argp, x0);
         for (i = 1; i < D; i++) {
-            x[i] = va_arg (argp, N);
+            _x[i] = va_arg (argp, N);
         }
         va_end (argp);
     }
@@ -92,7 +92,7 @@ namespace VecMath {
     template <unsigned D, typename N> 
             N &Vector<D, N>::operator[] (unsigned i) {
         assert(i < D);
-        return x[i];
+        return _x[i];
     }
 
     /** operator [] returns component i by value
@@ -101,7 +101,7 @@ namespace VecMath {
     template <unsigned D, typename N> 
             N Vector<D, N>::operator[] (unsigned i) const {
         assert(i < D);
-        return x[i];
+        return _x[i];
     }
 
     /** @return dimension of the Vector (the template parameter D)             */
@@ -116,7 +116,7 @@ namespace VecMath {
     *  @return *this+Y                                                        */
     template <unsigned D, typename N>
             Vector<D, N> &Vector<D, N>::operator+= (const Vector<D, N> &Y) {
-    for (unsigned i = 0; i < D; i++) x[i] += Y.x[i];
+    for (unsigned i = 0; i < D; i++) _x[i] += Y._x[i];
     return *this;
     }
 
@@ -124,7 +124,7 @@ namespace VecMath {
     *  @return *this-Y                                                        */
     template <unsigned D, typename N> 
             Vector<D, N> &Vector<D, N>::operator-= (const Vector<D, N> &Y) {
-    for (unsigned i = 0; i < D; i++) x[i] -= Y.x[i];
+    for (unsigned i = 0; i < D; i++) _x[i] -= Y._x[i];
     return *this;
     }
 
@@ -132,7 +132,7 @@ namespace VecMath {
     *  @return *this*s                                                        */
     template <unsigned D, typename N>
             Vector<D, N> &Vector<D, N>::operator*= (const N &s) {
-    for (unsigned i = 0; i < D; i++) x[i] *= s;
+    for (unsigned i = 0; i < D; i++) _x[i] *= s;
     return *this;
     }
 
@@ -141,7 +141,7 @@ namespace VecMath {
             Vector<D, N> Vector<D, N>::operator- (void) const {
         static Vector<D, N> Z;
         Z = *this;
-        for (unsigned i = 0; i < D; i++) Z.x[i] = -x[i] ;
+        for (unsigned i = 0; i < D; i++) Z._x[i] = -_x[i] ;
         return Z;
     }
 
@@ -179,7 +179,7 @@ namespace VecMath {
             N Vector<D, N>::operator* (const Vector<D, N> &Y) const {
     N dot = 0.;
     for (unsigned i = 0; i < D; i++)
-        if (x[i]) dot += x[i]*Y.x[i];
+        if (_x[i]) dot += _x[i]*Y._x[i];
 
     return dot;
     }
@@ -191,7 +191,7 @@ namespace VecMath {
     return operator* (1./s);
     }
 
-    /** @return the squared norm of the vector, |V|²                           */
+    /** @return the squared norm of the vector, |V|ï¿½                           */
     template <unsigned D, typename N>
             N Vector<D, N>::sqnorm (void) const {
     return operator* (*this);

@@ -15,7 +15,7 @@ private slots:
   void rotationAboutAxisConstructor();
   void matrixMultiplication();
   void vectorMultiplication();
-  void print();
+  void toString();
 
 };
 

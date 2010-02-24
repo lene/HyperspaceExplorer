@@ -33,7 +33,8 @@ namespace VecMath {
              *  \param i row index
              *  \param j column index
              *  \return \f$ M_{ij} \f$                                        */
-            N &operator () (unsigned i, unsigned j) { return M[i][j]; }
+            N &operator () (unsigned i, unsigned j) { return _M[i][j]; }
+            const N &operator () (unsigned i, unsigned j) const { return _M[i][j]; }
 
             Matrix<D, N> operator *=(const Matrix<D, N> &);
             Matrix<D, N> operator *(const Matrix<D, N> &) const;
@@ -41,11 +42,13 @@ namespace VecMath {
 
             Matrix<D, N> operator - ();
 
-            std::string Print () const;
+            std::string toString() const;
+            operator std::string() const { return toString(); }
 
         private:
             /// A static two-dimensional array storing the components
-            N M[D][D];
+            N _M[D][D];
+
     };
 
     template <unsigned D, typename N>
@@ -56,8 +59,8 @@ namespace VecMath {
     template<unsigned D, typename N> Matrix<D, N>::Matrix () {
         for (unsigned i = 0; i < D; i++) {					//	i: row
             for (unsigned j = 0; j < D; j++) 				//	j: col
-                M[i][j] = 0;
-            M[i][i] = 1;
+                _M[i][j] = 0;
+            _M[i][i] = 1;
         }
     }
 
@@ -70,12 +73,12 @@ namespace VecMath {
         N c = cos (Theta*pi/180.), s = sin (Theta*pi/180.);
         for (unsigned i = 0; i < D; i++) {					//	i: row
             for (unsigned j = 0; j < D; j++) 				//	j: col
-                M[i][j] = 0;
-            M[i][i] = 1;
+                _M[i][j] = 0;
+            _M[i][i] = 1;
         }
-        M[ii][ii] =  M[jj][jj] = c;
-        M[ii][jj] = -s;
-        M[jj][ii] = s;
+        _M[ii][ii] =  _M[jj][jj] = c;
+        _M[ii][jj] = -s;
+        _M[jj][ii] = s;
     }
 
     /** Matrix multiplication
@@ -87,8 +90,8 @@ namespace VecMath {
             for (unsigned j = 0; j < D; j++) {      //  j: col
                 N s = 0;
                 for (unsigned k = 0; k < D; k++)
-                    s += M[i][k]*B.M[k][j];
-                M[i][j] = s;
+                    s += _M[i][k]*B._M[k][j];
+                _M[i][j] = s;
             }
         return *this;
     }
@@ -103,8 +106,8 @@ namespace VecMath {
             for (unsigned j = 0; j < D; j++) {				//	j: col
                 N s = 0;
                 for (unsigned k = 0; k < D; k++)
-                    s += M[i][k]*B.M[k][j];
-                C.M[i][j] = s;
+                    s += _M[i][k]*B._M[k][j];
+                C._M[i][j] = s;
             }
         return C;
     }
@@ -118,7 +121,7 @@ namespace VecMath {
         for (unsigned i = 0; i < D; i++) {              //  i: row
             N s = 0;
             for (unsigned j = 0; j < D; j++)            //  j: col
-                s += M[i][j]*V[j];
+                s += _M[i][j]*V[j];
             W[i] = s;
         }
         return W;
@@ -131,23 +134,16 @@ namespace VecMath {
         Matrix<D, N> B (*this);
         for (unsigned i = 0; i < D; i++)                    //  i: row
             for (unsigned j = 0; j < D; j++) {              //  j: col
-                B.M[i][j] = -M[i][j];
+                B._M[i][j] = -_M[i][j];
             }
         return B;
     }
 
-
     /** output, mainly for debugging purposes                                 */
-    template <unsigned D, typename N> std::string Matrix<D, N>::Print () const {
+    template <unsigned D, typename N> std::string Matrix<D, N>::toString() const {
         std::ostringstream o;
-        for (unsigned i = 0; i < D; i++) {
-            o << "|";
-            for (unsigned j = 0; j < D; j++)
-                o << std::setw (10) << std::setprecision (3) << M[i][j];
-            o << "|\n";
-        }
-        o << std::ends;
-        return o.str ();
+        o << *this << std::ends;
+        return o.str();
     }
     /// Matrix output operator
     /** \ingroup VecMath
@@ -156,10 +152,15 @@ namespace VecMath {
      *  \return a new ostream to push Matrices and stuff into
      */
     template <unsigned D, typename N>
-        std::ostream &operator << (std::ostream &o, const Matrix<D, N> &M) {
-            o << M.Print() << std::endl;
-            return o;
+    std::ostream &operator << (std::ostream &o, const Matrix<D, N> &M) {
+        for (unsigned i = 0; i < D; i++) {
+            o << "|";
+            for (unsigned j = 0; j < D; j++)
+                o << std::setw (10) << std::setprecision (3) << M(i, j);
+            o << "|" << std::endl;
         }
+        return o;
+    }
 
 }       // namespace VecMath
 

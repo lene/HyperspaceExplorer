@@ -49,7 +49,7 @@ void MatrixTest::vectorMultiplication() {
     QVERIFY((m1*v-Vector<3>(0., 1., 0.)).sqnorm() < EPSILON);
 }
 
-void MatrixTest::print() {
+void MatrixTest::toString() {
     Matrix<3> m;
     for (unsigned i = 0; i < 3; ++i) {
         for (unsigned j = 0; j < 3; ++j) {
@@ -57,7 +57,7 @@ void MatrixTest::print() {
         }
     }
 
-    string s = m.Print();
+    string s = m.toString();
 
     qWarning() << "This test relies on the string representation being sorted row-wise.";
     QVERIFY(s.find("0") != s.npos);

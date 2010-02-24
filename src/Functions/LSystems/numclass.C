@@ -26,31 +26,31 @@ unsigned Vector::DefaultDim = 4;			//  initialize Vector::DefaultDim
     //----------  management  ----------
 
 Vector::Vector (const unsigned n, double x0, ... ) :	//  Vector:: constructor with variable arglist
-    dim (n), x (new double [n]), own (true) {
-  x[0] = x0;
+    dim (n), _x (new double [n]), own (true) {
+  _x[0] = x0;
   unsigned i = 0;
   va_list argp;
   va_start (argp, x0);
   for (i = 1; i < n; i++) { 
-    x[i] = va_arg (argp, double); }
+    _x[i] = va_arg (argp, double); }
   va_end (argp); }
 
 Vector::Vector (const Vector &X, bool deep) :		//  Vector:: copy constructor
     dim (X.dim), own (deep) {
   if (deep) {						//  deep copy
-    x = new double [X.dim]; 
-    for (unsigned i = 0; i < dim; i++) x[i] = X[i]; }
+    _x = new double [X.dim]; 
+    for (unsigned i = 0; i < dim; i++) _x[i] = X[i]; }
   else							//  shallow copy
-    x = X.x; }
+    _x = X._x; }
 
 Vector &Vector::operator= (const Vector &Y) {
   if (dim != Y.dimension ()) {
     invalidate ();					//  free memory 
     dim = Y.dimension ();
-    x = new double [dim]; }
+    _x = new double [dim]; }
 
   if (Y) {						//  copy only valid source Vectors
-    for (unsigned i = 0; i < dim; i++) x[i] = Y[i];	//  copy the elements
+    for (unsigned i = 0; i < dim; i++) _x[i] = Y[i];	//  copy the elements
     own = true; } 
   return *this; }
 

@@ -64,10 +64,8 @@ void VectorTest::smaller() {
 }
 
 void VectorTest::toString() {
-    Vector<3> v1(0., 1., 2.);
-    ostringstream o;
-    o << v1;
-    string s = o.str();
+    Vector<3> v(0., 1., 2.);
+    string s = v.toString();
 
     QVERIFY(s.find("0") != s.npos);
     QVERIFY(s.find("1", s.find("0")) != s.npos);

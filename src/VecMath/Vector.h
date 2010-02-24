@@ -102,7 +102,7 @@ namespace VecMath {
         /// Comparison operator
         bool operator==(const Vector<D, N> &other) const {
             for (unsigned i = 0; i < D; i++) {
-                if (x[i] != other[i]) return false;
+                if (_x[i] != other[i]) return false;
             }
             return true;
         }
@@ -113,8 +113,8 @@ namespace VecMath {
         bool operator<(const Vector<D, N> &other) const {
             if (sqnorm() == other.sqnorm()) {
                 for (unsigned i = 0; i < D; i++) {
-                    if (x[i] < other[i]) return true;
-                    if (x[i] > other[i]) return false;
+                    if (_x[i] < other[i]) return true;
+                    if (_x[i] > other[i]) return false;
                 }
             }
             return sqnorm() < other.sqnorm();
@@ -122,21 +122,22 @@ namespace VecMath {
 
         /// Direct access to the array storing the components
         /** Needed by glVertex3dv   */
-        N *data () { return x; }
+        N *data () { return _x; }
 
         /// Convert the Vector into an array of arbitrary objects
         /** Array of floats is needed by glLightfv() */
         template <typename T>
             operator const T * () const {
                 static T data[D];
-                for (unsigned i = 0; i < D; i++) data[i] = (T)x[i];
+                for (unsigned i = 0; i < D; i++) data[i] = (T)_x[i];
                 return data;
             }
 
         std::string toString() const;
+        operator std::string() const { return toString(); }
 
     private:
-        N x[D]; ///< A static array storing the components
+        N _x[D]; ///< A static array storing the components
     };
 
     template <unsigned D, typename N>
@@ -147,19 +148,19 @@ namespace VecMath {
         //  ------------  management  ------------
 
     template <unsigned D, typename N>
-            Vector<D, N>::Vector() : x () {
-        for (unsigned i = 0; i < D; i++) x[i] = 0;
+            Vector<D, N>::Vector() : _x () {
+        for (unsigned i = 0; i < D; i++) _x[i] = 0;
     }
 
     template <unsigned D, typename N>
             Vector<D, N>::Vector (N x0, ... ) :
-            x () {
-        x[0] = x0;
+            _x () {
+        _x[0] = x0;
         unsigned i = 0;
         va_list argp;
         va_start (argp, x0);
         for (i = 1; i < D; i++) {
-            x[i] = va_arg (argp, N);
+            _x[i] = va_arg (argp, N);
         }
         va_end (argp);
     }
@@ -169,13 +170,13 @@ namespace VecMath {
     template <unsigned D, typename N>
             N &Vector<D, N>::operator[] (unsigned i) {
         assert(i < D);
-        return x[i];
+        return _x[i];
     }
 
     template <unsigned D, typename N>
             N Vector<D, N>::operator[] (unsigned i) const {
         assert(i < D);
-        return x[i];
+        return _x[i];
     }
 
     template <unsigned D, typename N>
@@ -187,19 +188,19 @@ namespace VecMath {
 
     template <unsigned D, typename N>
             Vector<D, N> &Vector<D, N>::operator+= (const Vector<D, N> &Y) {
-        for (unsigned i = 0; i < D; i++) x[i] += Y.x[i];
+        for (unsigned i = 0; i < D; i++) _x[i] += Y._x[i];
         return *this;
     }
 
     template <unsigned D, typename N>
             Vector<D, N> &Vector<D, N>::operator-= (const Vector<D, N> &Y) {
-        for (unsigned i = 0; i < D; i++) x[i] -= Y.x[i];
+        for (unsigned i = 0; i < D; i++) _x[i] -= Y._x[i];
         return *this;
     }
 
     template <unsigned D, typename N>
             Vector<D, N> &Vector<D, N>::operator*= (const N &s) {
-    for (unsigned i = 0; i < D; i++) x[i] *= s;
+    for (unsigned i = 0; i < D; i++) _x[i] *= s;
     return *this;
     }
 
@@ -207,7 +208,7 @@ namespace VecMath {
             Vector<D, N> Vector<D, N>::operator- (void) const {
         static Vector<D, N> Z;
         Z = *this;
-        for (unsigned i = 0; i < D; i++) Z.x[i] = -x[i] ;
+        for (unsigned i = 0; i < D; i++) Z._x[i] = -_x[i] ;
         return Z;
     }
 
@@ -236,7 +237,7 @@ namespace VecMath {
             N Vector<D, N>::operator* (const Vector<D, N> &Y) const {
     N dot = 0.;
     for (unsigned i = 0; i < D; i++)
-        if (x[i]) dot += x[i]*Y.x[i];
+        if (_x[i]) dot += _x[i]*Y._x[i];
 
     return dot;
     }
@@ -250,7 +251,7 @@ namespace VecMath {
             Vector<D, N> Vector<D, N>::operator/ (const Vector<D, N> &X) const {
         Vector<D, N> tmp;
         for (unsigned i = 0; i < D; i++)
-            tmp[i] = x[i]/X[i];
+            tmp[i] = _x[i]/X[i];
         return tmp;
     }
 
