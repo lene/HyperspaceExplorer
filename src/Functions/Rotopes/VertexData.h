@@ -50,9 +50,6 @@ template <unsigned D>
             /// The array of vertices, projected to four dimensions if necessary
             virtual std::vector<VecMath::Vector<4> > vertices();
 
-            /// Output of a single surface
-            void printSurface(const uintvec<1> &);
-
             /// Returns all vertices as a string, sorted in \c num_columns columns.
             std::string verticesToString(unsigned num_columns) const;
 
@@ -61,11 +58,21 @@ template <unsigned D>
             const static int PRINT_VERTICES_COLUMN_WIDTH = 40;
             const static int PRINT_VERTICES_NUM_COLUMNS = 2;
 
+            /// Output of a single surface
+            void printSurface(const uintvec<1> &v,
+                              std::ostream &out = std::cout) const;
+            void printVertices(unsigned num_columns = PRINT_VERTICES_NUM_COLUMNS,
+                               std::ostream &out = std::cout) const;
+
             /// Returns a line of \p num_columns vertices as string.
             /** \param base_index Index of the first vertex that is printed.
              *  \param num_columns How many vertices are printed in this row.
              */
             std::string verticesToStringRow(unsigned base_index, unsigned num_columns) const;
+
+            void printVerticesRow(unsigned base_index,
+                                  unsigned num_columns = PRINT_VERTICES_NUM_COLUMNS,
+                                  std::ostream &out = std::cout) const;
 
             /// \return Whether argument or permutation of it already in _surface
             bool checkSurfaceExists(const uintvec<1> &);
@@ -96,55 +103,6 @@ using std::vector;
 #include <iomanip>
 #include <algorithm>
 
-/** \param v The printed surface as vector of indices into the vertex array */
-template <unsigned D> void vertex_data<D>::printSurface(const uintvec<1> &v) {
-    std::cerr << " (";
-    std::string separator = "";
-    for (uintvec<1>::const_iterator j = v.begin();
-         j != v.end(); ++j) {
-        std::cerr << separator << std::setw(4) << *j;
-        separator = ", ";
-    }
-    std::cerr << ")\n";
-}
-
-template <unsigned D> std::string vertex_data<D>::verticesToString(
-        unsigned num_columns) const {
-
-    std::ostringstream vertices_outstream;
-
-    for (unsigned i = 0; i < X().size(); i += num_columns) {
-        vertices_outstream << verticesToStringRow(i, num_columns) << std::endl;
-    }
-    vertices_outstream << std::ends;
-
-    return vertices_outstream.str();
-}
-
-template <unsigned D> std::string vertex_data<D>::verticesToStringRow(
-        unsigned base_index, unsigned num_columns) const {
-    const unsigned PRINT_VERTICES_INDEX_WIDTH = 5;
-
-    std::ostringstream column_outstream;
-
-    for (unsigned column = 0; column < num_columns; ++column) {
-
-        if (base_index+column >= X().size()) break;
-
-        std::string vec_as_string = X()[base_index+column].toString();
-
-        int fill_width = PRINT_VERTICES_COLUMN_WIDTH-PRINT_VERTICES_INDEX_WIDTH-2-vec_as_string.length(),
-            num_fill_chars = std::max(0, fill_width);
-
-        column_outstream << std::setw(PRINT_VERTICES_INDEX_WIDTH) << base_index+column << ": "
-                << vec_as_string
-                << std::string(num_fill_chars, ' ');
-    }
-    column_outstream << std::ends;
-
-    return column_outstream.str();
-}
-
 template <unsigned D> void vertex_data<D>::print() {
 
     std::cout
@@ -173,6 +131,72 @@ template <unsigned D> void vertex_data<D>::print() {
     std::cout
         << std::string(PRINT_VERTICES_NUM_COLUMNS*PRINT_VERTICES_COLUMN_WIDTH, '-')
         << std::endl;
+}
+
+template <unsigned D> std::string vertex_data<D>::verticesToString(
+        unsigned num_columns) const {
+
+    std::ostringstream vertices_outstream;
+
+    printVertices(num_columns, vertices_outstream);
+    vertices_outstream << std::ends;
+
+    return vertices_outstream.str();
+}
+
+template <unsigned D> void vertex_data<D>::printVertices(unsigned num_columns,
+                                                         std::ostream &out) const {
+    for (unsigned i = 0; i < X().size(); i += num_columns) {
+        out << verticesToStringRow(i, num_columns) << std::endl;
+    }
+}
+
+
+template <unsigned D> std::string vertex_data<D>::verticesToStringRow(
+        unsigned base_index, unsigned num_columns) const {
+
+    std::ostringstream column_outstream;
+
+    printVerticesRow(base_index, num_columns, column_outstream);
+    column_outstream << std::ends;
+
+    return column_outstream.str();
+}
+
+template <unsigned D> void vertex_data<D>::printVerticesRow(unsigned base_index,
+                                                            unsigned num_columns,
+                                                            std::ostream& out) const {
+    const unsigned PRINT_VERTICES_INDEX_WIDTH = 5;
+
+    for (unsigned column = 0; column < num_columns; ++column) {
+
+        if (base_index+column >= X().size()) break;
+
+        std::string vec_as_string = X()[base_index+column].toString();
+
+        int fill_width = PRINT_VERTICES_COLUMN_WIDTH-PRINT_VERTICES_INDEX_WIDTH-2-vec_as_string.length(),
+            num_fill_chars = std::max(0, fill_width);
+
+        out << std::setw(PRINT_VERTICES_INDEX_WIDTH) << base_index+column << ": "
+            << vec_as_string
+            << std::string(num_fill_chars, ' ');
+    }
+    
+}
+
+/** \param v The printed surface as vector of indices into the vertex array
+ *  \param out The stream the surface is printed to
+ */
+template <unsigned D> void vertex_data<D>::printSurface(const uintvec<1> &v,
+                                                        std::ostream &out) const {
+    out << " (";
+    std::string separator = "";
+    for (uintvec<1>::const_iterator j = v.begin();
+         j != v.end(); ++j) {
+        out << separator << std::setw(4) << *j;
+        separator = ", ";
+    }
+    out << ")\n";
 }
 
 /** Add a surface to the array of surfaces
