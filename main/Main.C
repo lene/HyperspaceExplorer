@@ -398,8 +398,7 @@ int main (int argc, char *argv[]) {
             "https://sourceforge.net/tracker2/?func=add&group_id=34073&atid=410707\n"
             "Please add the following message to the bug report: \n"
                 << e.what() << "\n\n"
-            "The program will abort now. If you know how to do a stack backtrace,\n"
-            "adding one would be a great help.\n";
+            "The program will abort now.\n";
         abort();
     }
     return ret;
