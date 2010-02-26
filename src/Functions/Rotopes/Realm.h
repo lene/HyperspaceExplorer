@@ -102,11 +102,16 @@ public:
     /// Add a new subrealm, emulating std::vector<Realm> interface.
     void push_back(const Realm &r);
 
+    /// Merge \p r into the current Realm, keeping the dimension as it is.
+    void merge(const Realm &r);
+
     /// Pointer to first subrealm, emulating std::vector<Realm> interface.
     std::vector<Realm>::iterator begin() { return _subrealm.begin(); }
+    std::vector<Realm>::const_iterator cbegin() const { return _subrealm.begin(); }
 
     /// Pointer past last subrealm, emulating std::vector<Realm> interface.
     std::vector<Realm>::iterator end() { return _subrealm.end(); }
+    std::vector<Realm>::const_iterator cend() const { return _subrealm.end(); }
 
     /// Pointer to last subrealm, emulating std::vector<Realm> interface.
     std::vector<Realm>::reverse_iterator rbegin() { return _subrealm.rbegin(); }

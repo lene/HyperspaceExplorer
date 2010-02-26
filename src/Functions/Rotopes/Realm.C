@@ -37,6 +37,15 @@ void Realm::push_back(const Realm &r) {
     _subrealm.push_back(r);
 }
 
+
+void Realm::merge(const Realm &r) {
+    if (r._dimension != _dimension)
+        throw std::invalid_argument("you can only merge realms of equal dimension");
+
+    for (vector<Realm>::const_iterator i = r.cbegin(); i != r.cend(); ++i)
+        _subrealm.push_back(*i);
+}
+
 std::string Realm::toString() const {
     std::ostringstream realm_outstream;
 
@@ -83,24 +92,24 @@ bool Realm::operator==(const Realm &other) const {
 
     
 bool Realm::contains(const Realm &other) const {
-    cerr << "contains( [" << this->toString() << "], " << other.toString() << ")" << endl;
+    if (DEBUG_ROTATE) cerr << "contains( [" << this->toString() << "], " << other.toString() << ")" << endl;
     if (std::find(_subrealm.begin(), _subrealm.end(), other) != _subrealm.end()) {
-        cerr << "YES! in _subrealm " << "contains(" << this->toString() << ", " << other.toString() << ")" << endl;
+        if (DEBUG_ROTATE) cerr << "YES! in _subrealm " << "contains(" << this->toString() << ", " << other.toString() << ")" << endl;
         return true;
         }
-    cerr << other.toString() << " not found in " << this->toString()
+    if (DEBUG_ROTATE) cerr << other.toString() << " not found in " << this->toString()
          << ". dimension: " << dimension() << " other: " << other.dimension() << endl;
     if (other.dimension() < dimension()) {
         for (vector<Realm>::const_iterator i = _subrealm.begin();
              i != _subrealm.end(); ++i) {
             if (i->contains(other)) {
-                cerr << "YES! "  << "contains(" << this->toString() << ", " << other.toString() << ")" << endl;
+                if (DEBUG_ROTATE) cerr << "YES! "  << "contains(" << this->toString() << ", " << other.toString() << ")" << endl;
                 return true;
             }
         }
     }
     
-    cerr << "NO! " << "contains(" << this->toString() << ", " << other.toString() << ")" << endl;
+    if (DEBUG_ROTATE) cerr << "NO! " << "contains(" << this->toString() << ", " << other.toString() << ")" << endl;
     return false;
 }
 
@@ -311,11 +320,12 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
 
     /** Create the sides (parallel to the rotation axis).
      */
-    vector<Realm> temp_subrealms;
+    Realm temp_subrealms;
+    temp_subrealms.dimension() = 3;
     for (unsigned j = 0; j < num_segments; ++j) {
         Realm temp_realm = rotateStep(0, j*size, size);
         if (DEBUG_ROTATE) { cerr << "temp realm: " << endl << temp_realm.toString(); }
-        temp_subrealms.push_back(temp_realm);
+        temp_subrealms.merge(temp_realm);
 
         /** We're adding a square for the opposite side too.
          *  \todo Express the above sentence better.
@@ -324,7 +334,7 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
         Realm temp_copy = temp_realm;
         temp_copy.add(2);
         if (DEBUG_ROTATE) { cerr << "temp copy: " << temp_copy.toString() << endl; }
-        temp_subrealms.push_back(temp_copy);
+        temp_subrealms.merge(temp_copy);
 
     }
 
@@ -415,11 +425,11 @@ Realm Realm::rotateStep2D(unsigned index, unsigned base, unsigned delta) {
         for (vector<Realm>::reverse_iterator i = new_subrealms[index+1].rbegin(); i != new_subrealms[index+1].rend(); ++i)
             another_temp.push_back(*i);
         another_temp._dimension++;
-        cerr << "another temp 2: [" << another_temp.dimension() << "] " << another_temp.toString() << endl;
+        cerr << "another temp 2: " << another_temp.toString() << endl;
         new_realm.push_back(another_temp);
     }
 //    new_realm._dimension++;
-    if (DEBUG_ROTATE) { cerr << "new realm: [" << new_realm.dimension() << "] " << new_realm.toString() << endl; }
+    if (DEBUG_ROTATE) { cerr << "new realm: " << new_realm.toString() << endl; }
 
     return new_realm;
 }
