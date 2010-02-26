@@ -16,6 +16,9 @@
 
 #include "uintvec.h"
 #include "Vector.h"
+
+#include <string>
+
 class Rotope;
 
 /// \p N - dimensional surface on a vertex array.
@@ -39,6 +42,7 @@ class Rotope;
  *  \author Lene Preuss <lene.preuss@gmail.com>
  */
 class Realm {
+
 public:
 
     /// Default constructor: Realm points to the first vertex in the array.
@@ -70,8 +74,6 @@ public:
     unsigned dimension() const { return _dimension; }
     /// Sets the dimension of the realm.
     void setDimension(unsigned d) { _dimension = d; }
-    /// Prints the elements of the Realm.
-    void print() const;
 
     /// Create a new Realm by extruding the present Realm.
     /** \param delta How many elements there were in the original vertex
@@ -129,7 +131,35 @@ public:
 
     bool contains(const Realm &other);
 
+    std::string toString() const;
+    operator std::string() const { return toString(); }
+
 private:
+
+    class RealmPrinter {
+
+        static const std::string PRINT_DIMENSION_SPACER;
+
+    public:
+        RealmPrinter(const Realm *realm): _realm(realm) { }
+        
+        /// Prints the elements of the Realm.
+        void print(std::ostream &out) const;
+        
+    private:
+        void printHeader(std::ostream &out) const;
+        void printFooter(std::ostream &out) const;
+        void printPoint(std::ostream &out) const;
+        void printSubrealms(std::ostream &out) const;
+        void indentNextLine(std::ostream &out) const;
+
+        const Realm * _realm;
+        /** Highest dimension of a Realm encountered during program run; used for
+         *  print formatting
+         */
+        static unsigned _max_dimension;
+
+    };
 
     ///  Extrude a point to a line
     Realm extrudePoint(unsigned delta);
@@ -183,7 +213,7 @@ private:
     /// If _dimension == 0, this is the index into the vertex array
     unsigned _index;
 
-    const static bool DEBUG_ROTATE;
+    const static bool DEBUG_ROTATE = true;
 
 };
 

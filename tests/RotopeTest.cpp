@@ -222,7 +222,7 @@ void RotopeTest::sphereRealm() {
     for (std::vector<Realm>::iterator i = surfaces.begin(); i != surfaces.end(); ++i)
         QVERIFY(_realm.contains(*i));
 
-    _realm.print();
+    std::cerr << _realm.toString();
 
     QSKIP("Sphere realm test not done yet.", SkipSingle);
 }

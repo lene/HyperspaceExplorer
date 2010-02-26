@@ -16,6 +16,7 @@
 #include <exception>
 #include <stdexcept>
 #include <list>
+#include <sstream>
 
 using std::cout;
 using std::cerr;
@@ -36,32 +37,15 @@ void Realm::push_back(const Realm &r) {
     _subrealm.push_back(r);
 }
 
-void Realm::print() const {
-    const std::string spacer = "    ";
-    static unsigned max_dimension = _dimension;
-    if (_dimension > max_dimension) max_dimension = _dimension;
+std::string Realm::toString() const {
+    std::ostringstream realm_outstream;
 
-    if (_dimension) {
-        for (unsigned space = 0; space < max_dimension-_dimension; ++space) cout << spacer;
-        cout << "[" << _dimension << "] ";
-        cout << "(";
-    }
-    if (_dimension == 0) cout << _index;
-    else {
-        if (_dimension > 2) cout << endl;// << spacer;
-        for (vector<Realm>::const_iterator i = _subrealm.begin();
-                i != _subrealm.end(); ++i) {
-            i->print();
-            cout << " ";
-        }
-    }
-    if (_dimension > 2) {
-        for (unsigned space = 0; space < max_dimension-_dimension; ++space) cout << spacer;
-    }
-    if (_dimension) {
-        cout << ")";
-        cout << endl;
-    }
+    RealmPrinter printer(this);
+    printer.print(realm_outstream);
+    realm_outstream << std::ends;
+
+    return realm_outstream.str();
+
 }
 
 void Realm::add(unsigned delta) {
@@ -92,29 +76,29 @@ bool Realm::contains(const Realm &other) {
     return false;
 }
 
+/** There is an annoying problem with the circumstance that I'd like to
+ *  store realms as [sets of] point sets of their dimension, and that OpenGL
+ *  needs point sets to draw two dimensional surfaces (as opposed to sets of
+ *  lines). I cannot, therefore, store a two dimensional Realm as a set of
+ *  one dimensional Realm s in any efficient way. I need to treat two
+ *  dimensional Realm s differently.
+ *
+ *  That leads to special cases for each of the following operations:
+ *  - Going from zero to one dimensions: Make a line from the point and its
+ *    extruded image.
+ *  - Going from one to two dimensions: make a surface from the two end
+ *    points of the line and their extruded images, storing the Realm not
+ *    as a set of lines, but as a set of points and manually setting its
+ *    dimension to two.
+ *  - Going from two to three dimensions: The top and bottom caps can be
+ *    copies of the current object, as in the default algorithm below, but
+ *    the sides must be treated as lines, and thus repeat the algorithm
+ *    described above.
+ *  - Default: Top and bottom caps are (shifted) copies of the current
+ *    Realm, while for the side connections the extrusion algorithm is
+ *    called recursively.
+ */
 Realm Realm::extrude(unsigned delta) {
-    /** There is an annoying problem with the circumstance that I'd like to
-     *  store realms as [sets of] point sets of their dimension, and that OpenGL
-     *  needs point sets to draw two dimensional surfaces (as opposed to sets of
-     *  lines). I cannot, therefore, store a two dimensional Realm as a set of
-     *  one dimensional Realm s in any efficient way. I need to treat two
-     *  dimensional Realm s differently.
-     * 
-     *  That leads to special cases for each of the following operations:
-     *  - Going from zero to one dimensions: Make a line from the point and its
-     *    extruded image.
-     *  - Going from one to two dimensions: make a surface from the two end
-     *    points of the line and their extruded images, storing the Realm not
-     *    as a set of lines, but as a set of points and manually setting its
-     *    dimension to two.
-     *  - Going from two to three dimensions: The top and bottom caps can be 
-     *    copies of the current object, as in the default algorithm below, but
-     *    the sides must be treated as lines, and thus repeat the algorithm 
-     *    described above.
-     *  - Default: Top and bottom caps are (shifted) copies of the current 
-     *    Realm, while for the side connections the extrusion algorithm is
-     *    called recursively.
-     */
     switch(_dimension) {
     case 0: return extrudePoint(delta);
     case 1: return extrudeLine(delta);
@@ -218,8 +202,6 @@ Realm Realm::taperRealm(unsigned taper_index) {
     return new_realm;
 }
 
-const bool Realm::DEBUG_ROTATE = true;
-
 Realm Realm::rotate(unsigned num_segments, unsigned size) {
 
     if (DEBUG_ROTATE) { cerr << "Realm::rotate(" << num_segments << ", " << size << ")--------------------------\n"; }
@@ -263,7 +245,7 @@ Realm Realm::rotateLine(unsigned num_segments, unsigned size) {
     list< vector<Realm> >::iterator inew = realms_to_add.begin();
     for ( ; inew != realms_to_add.end(); ++i, ++inew) {
         for (vector<Realm>::iterator j = inew->begin(); j != inew->end(); ++j) {
-            if (DEBUG_ROTATE) { j->print(); }
+            if (DEBUG_ROTATE) { cerr << *j; }
         }
         temp_list.insert(i, inew->begin(), inew->end());
     }
@@ -297,14 +279,14 @@ Realm Realm::rotateLine(unsigned num_segments, unsigned size) {
  *  \todo make this work for arbitrary polygons.
  */
 Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
-    if (DEBUG_ROTATE) { cerr << "rotating surface: "; print(); cout << endl; }
+    if (DEBUG_ROTATE) { cerr << "rotating surface: " << toString() << endl; }
 
     /** Create the sides (parallel to the rotation axis).
      */
     vector<Realm> temp_subrealms;
     for (unsigned j = 0; j < num_segments; ++j) {
         Realm temp_realm = rotateStep(0, j*size, size);
-        if (DEBUG_ROTATE) { cerr << "temp realm: "; temp_realm.print(); }
+        if (DEBUG_ROTATE) { cerr << "temp realm: " << endl << temp_realm.toString(); }
         temp_subrealms.push_back(temp_realm);
 
         /** We're adding a square for the opposite side too.
@@ -313,12 +295,12 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
          */
         Realm temp_copy = temp_realm;
         temp_copy.add(2);
-        if (DEBUG_ROTATE) { cerr << "temp copy: "; temp_copy.print(); }
+        if (DEBUG_ROTATE) { cerr << "temp copy: " << endl << temp_copy.toString(); }
         temp_subrealms.push_back(temp_copy);
 
     }
 
-    if (DEBUG_ROTATE) { cout << "new realm: "; Realm(temp_subrealms).print(); cout << endl; }
+    if (DEBUG_ROTATE) { cout << "new realm: " << endl << Realm(temp_subrealms).toString() << endl; }
     if (DEBUG_ROTATE) { cerr << "/Realm::rotate(" << num_segments << ", " << size << ")------------------------\n"; }
 
 #   if false
@@ -357,7 +339,7 @@ Realm Realm::rotateRealm(unsigned num_segments, unsigned size) {
     }
     temp_subrealms.push_back(*this);
     Realm new_realm(temp_subrealms);
-    if (DEBUG_ROTATE) { cout << "new realm: "; new_realm.print(); cout << endl; }
+    if (DEBUG_ROTATE) { cout << "new realm: " << endl << new_realm.toString() << endl; }
     return new_realm;
 }
 
@@ -402,7 +384,7 @@ Realm Realm::rotateStep2D(unsigned index, unsigned base, unsigned delta) {
 
     Realm new_realm(another_temp);
     new_realm._dimension++;
-    if (DEBUG_ROTATE) { new_realm.print(); }
+    if (DEBUG_ROTATE) { cerr << new_realm.toString(); }
     //new_realm.convertToSurface();
 
     //            return *this;
@@ -410,14 +392,14 @@ Realm Realm::rotateStep2D(unsigned index, unsigned base, unsigned delta) {
 }
 
 Realm Realm::generateRectSegment(unsigned i, unsigned base, unsigned delta) {
-    if (DEBUG_ROTATE) { cerr << "rotating "; _subrealm[i].print(); }
+    if (DEBUG_ROTATE) { cerr << "rotating " << _subrealm[i] << ": "; }
     if (_subrealm[i].dimension()) throw new std::logic_error("At this point subrealms should be points");
     Realm new_subrealm;
 
     new_subrealm.push_back(_subrealm[i]+base);
     new_subrealm.push_back(_subrealm[i]+delta+base);
 
-    if (DEBUG_ROTATE) { new_subrealm.print(); }
+    if (DEBUG_ROTATE) { cerr << new_subrealm.toString(); }
 
     return new_subrealm;
 }

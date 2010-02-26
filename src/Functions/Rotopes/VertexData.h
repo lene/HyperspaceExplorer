@@ -122,7 +122,7 @@ template <unsigned D> void vertex_data<D>::print() {
     std::cout << "\n" << realm().size() << " realms: \n";
     for(typename std::vector<Realm>::const_iterator i = realm().begin();
         i != realm().end(); ++i){
-        i->print();
+        std::cout << i->toString();
     }
     std::cout << "\n";
 
