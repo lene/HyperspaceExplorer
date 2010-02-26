@@ -124,12 +124,10 @@ public:
 
     void setSubrealms(std::vector<Realm> sr) { _subrealm = sr; }
 
-    bool operator==(const Realm &other) const {
-        return (dimension() == other.dimension()) &&
-               (_subrealm == other._subrealm);
-    }
+    bool operator==(const Realm &other) const;
 
-    bool contains(const Realm &other);
+    /// Whether a Realm contains another, either directly or in any subrealm
+    bool contains(const Realm &other) const;
 
     std::string toString() const;
     operator std::string() const { return toString(); }
@@ -202,9 +200,6 @@ private:
     Realm rotateStep2D(unsigned index, unsigned base, unsigned delta);
 
     Realm generateRectSegment(unsigned i, unsigned base, unsigned delta);
-
-    /// Convert a set of lines to a surface as a set of points.
-    void convertToSurface();
 
     /// Dimension of the realm
     unsigned _dimension;

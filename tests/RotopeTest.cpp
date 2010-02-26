@@ -6,6 +6,8 @@
 #include "Rotopes/RotopeBase.h"
 #include "Rotopes/RotopeFactory.h"
 
+#include <string>
+
 Realm generateSquareRealm();
 Realm generateTriangleRealm();
 Realm generateCircleRealm();
@@ -215,13 +217,17 @@ void RotopeTest::coneVertices() {
 void RotopeTest::sphereRealm() {
     setRotope("ERR");
 
-    QVERIFY(_realm.dimension() == 3);
+    QVERIFY2(_realm.dimension() == 3, QString::number(_realm.dimension()).toStdString().c_str());
 
     std::vector<Realm> surfaces = generateSphereSurfaceSquares();
 
-    for (std::vector<Realm>::iterator i = surfaces.begin(); i != surfaces.end(); ++i)
-        QVERIFY(_realm.contains(*i));
-
+    for (std::vector<Realm>::iterator i = surfaces.begin(); i != surfaces.end(); ++i) {
+        std::string errmsg = std::string("Realm ").append(i->toString()).append(" not in ").append(_realm.toString());
+        QVERIFY2(
+            _realm.contains(*i),
+            (errmsg).c_str()
+        );                                                                                            
+    }
     std::cerr << _realm.toString();
 
     QSKIP("Sphere realm test not done yet.", SkipSingle);

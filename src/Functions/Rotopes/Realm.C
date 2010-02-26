@@ -52,7 +52,7 @@ void Realm::add(unsigned delta) {
     if (_dimension == 0) _index += delta;
     else {
         for (vector<Realm>::iterator i = _subrealm.begin();
-                i != _subrealm.end(); ++i) {
+             i != _subrealm.end(); ++i) {
             i->add(delta);
         }
     }
@@ -62,17 +62,60 @@ Realm::operator unsigned() const {
     if (dimension() == 0) return _index; 
     throw std::invalid_argument("Only a 0-dimensional Realm can be converted to an unsigned index.");
 }
+
+
+bool Realm::operator==(const Realm &other) const {
+    std::cerr << this->toString() << " == "<< other.toString() << "? " << endl;
+
+    if (dimension() != other.dimension()) {
+            cerr << "no: dimension! " << dimension() << " != " << other.dimension()<< endl;
+        return false;
+    }
+    if (dimension() == 0) {
+        if ((unsigned)*this == (unsigned)other) {
+            cerr << "yes: equal index" << endl;
+            return true;
+        } else {
+//            cerr << "no." << endl;
+            return false;
+        }
+    }
+
+    if (_subrealm.size() != other._subrealm.size()) {
+//        cerr << "no." << endl;
+        return false;
+    }
+
+    for (unsigned i = 0; i < _subrealm.size(); ++i) {
+        if (!(_subrealm[i] == other._subrealm[i])) {
+            cerr << "no: " << _subrealm[i].toString()<< " ==  " << other._subrealm[i].toString()<< endl;
+            return false;
+        }
+    }
+    cerr << "yes." << endl;
+    return true;
+}
+
     
-bool Realm::contains(const Realm &other) {
-    if (std::find(_subrealm.begin(), _subrealm.end(), other) != _subrealm.end()) return true;
-     
-    if (other.dimension() < dimension()-1) {
-        for (vector<Realm>::iterator i = _subrealm.begin();
+bool Realm::contains(const Realm &other) const {
+    cerr << "contains( [" << this->toString() << "], " << other.toString() << ")" << endl;
+    if (std::find(_subrealm.begin(), _subrealm.end(), other) != _subrealm.end()) {
+        cerr << "YES! in _subrealm " << "contains(" << this->toString() << ", " << other.toString() << ")" << endl;
+        return true;
+        }
+    cerr << other.toString() << "not found in" << this->toString() << endl;
+    cerr << "dimension: " << dimension() << " other: " << other.dimension() << endl;
+    if (other.dimension() < dimension()) {
+        for (vector<Realm>::const_iterator i = _subrealm.begin();
              i != _subrealm.end(); ++i) {
-            if (i->contains(other)) return true;
+            if (i->contains(other)) {
+                cerr << "YES! "  << "contains(" << this->toString() << ", " << other.toString() << ")" << endl;
+                return true;
+            }
         }
     }
     
+    cerr << "NO! " << "contains(" << this->toString() << ", " << other.toString() << ")" << endl;
     return false;
 }
 
@@ -295,12 +338,12 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
          */
         Realm temp_copy = temp_realm;
         temp_copy.add(2);
-        if (DEBUG_ROTATE) { cerr << "temp copy: " << endl << temp_copy.toString(); }
+        if (DEBUG_ROTATE) { cerr << "temp copy: " << temp_copy.toString() << endl; }
         temp_subrealms.push_back(temp_copy);
 
     }
 
-    if (DEBUG_ROTATE) { cout << "new realm: " << endl << Realm(temp_subrealms).toString() << endl; }
+    if (DEBUG_ROTATE) { cout << "new realm: " << Realm(temp_subrealms).toString() << endl; }
     if (DEBUG_ROTATE) { cerr << "/Realm::rotate(" << num_segments << ", " << size << ")------------------------\n"; }
 
 #   if false
@@ -372,22 +415,27 @@ Realm Realm::rotateStep2D(unsigned index, unsigned base, unsigned delta) {
     for (unsigned i = 0; i < _subrealm.size()/2; ++i) {
         new_subrealms.push_back(generateRectSegment(i, base, delta));
     }
+    // generate rectangles for the odd indices
     for (unsigned i = _subrealm.size()/2; i < _subrealm.size(); ++i) {
         new_subrealms.push_back(generateRectSegment(i, base, delta));
     }
+    cerr << "new subrealms: " << Realm(new_subrealms).toString() << endl;
 
-    vector<Realm> another_temp;
-    for (vector<Realm>::iterator i = new_subrealms[0].begin(); i != new_subrealms[0].end(); ++i)
-        another_temp.push_back(*i);
-    for (vector<Realm>::reverse_iterator i = new_subrealms[1].rbegin(); i != new_subrealms[1].rend(); ++i)
-        another_temp.push_back(*i);
+    Realm new_realm;
+    for (unsigned index = 0; index < new_subrealms.size(); index += 2) {
+        Realm another_temp;
+        for (vector<Realm>::iterator i = new_subrealms[index].begin(); i != new_subrealms[index].end(); ++i)
+            another_temp.push_back(*i);
+        cerr << "another temp 1: " << Realm(another_temp).toString() << endl;
+        for (vector<Realm>::reverse_iterator i = new_subrealms[index+1].rbegin(); i != new_subrealms[index+1].rend(); ++i)
+            another_temp.push_back(*i);
+        another_temp._dimension++;
+        cerr << "another temp 2: [" << another_temp.dimension() << "] " << another_temp.toString() << endl;
+        new_realm.push_back(another_temp);
+    }
+//    new_realm._dimension++;
+    if (DEBUG_ROTATE) { cerr << "new realm: [" << new_realm.dimension() << "] " << new_realm.toString() << endl; }
 
-    Realm new_realm(another_temp);
-    new_realm._dimension++;
-    if (DEBUG_ROTATE) { cerr << new_realm.toString(); }
-    //new_realm.convertToSurface();
-
-    //            return *this;
     return new_realm;
 }
 
@@ -399,20 +447,7 @@ Realm Realm::generateRectSegment(unsigned i, unsigned base, unsigned delta) {
     new_subrealm.push_back(_subrealm[i]+base);
     new_subrealm.push_back(_subrealm[i]+delta+base);
 
-    if (DEBUG_ROTATE) { cerr << new_subrealm.toString(); }
+    if (DEBUG_ROTATE) { cerr << new_subrealm.toString() << endl; }
 
     return new_subrealm;
-}
-
-void Realm::convertToSurface() {
-    if (_dimension != 2) throw std::logic_error("convertToSurface() can only be called on a 2D Realm");
-    vector<Realm> temp_vertices;
-
-    for (vector<Realm>::iterator j = _subrealm.begin();
-            j != _subrealm.end(); ++j) {
-        if (j->dimension() != 1) throw std::logic_error("All subrealms must have dimension 1");
-        temp_vertices.push_back(*(j->begin()));
-    }
-
-    setSubrealms(temp_vertices);
 }

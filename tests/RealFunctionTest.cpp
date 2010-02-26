@@ -132,8 +132,8 @@ void RealFunctionTest::projectWithDepthCue() {
                 Vector<3> projected_vertex = _function->projected_vertices()[i][j][k];
                 Color rgba = ColMgrMgr::Instance().getColor(vertex);
 
-                cerr << vertex << " : " << projected_vertex << " " <<string(rgba).c_str()
-                     << endl;
+//                cerr << vertex << " : " << projected_vertex << " " <<string(rgba).c_str()
+//                     << endl;
             }
         }
     }

@@ -38,7 +38,9 @@ void Realm::RealmPrinter::printSubrealms(std::ostream &out) const {
     if (_realm->dimension() > 2) out << endl;
     for (vector<Realm>::const_iterator i = _realm->_subrealm.begin();
          i != _realm->_subrealm.end(); ++i) {
-        out << i->toString() << " ";
+        if (i->dimension()) out << "( ";
+        out <<i->toString();
+        if (i->dimension()) out << " ) ";
     }
 }
 
