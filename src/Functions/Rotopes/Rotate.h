@@ -11,10 +11,12 @@
 template <unsigned D>
     class rotate_base: public vertex_data<D> {
 
+        const static unsigned DEFAULT_NUM_SEGMENTS = 6;
+
         public:
             /// Create a rotate_base object from an already existing object
-            rotate_base(const vertex_data<D> &v):
-                vertex_data<D>(v), _numSegments(4) { }
+            rotate_base(const vertex_data<D> &v, unsigned numSegments = DEFAULT_NUM_SEGMENTS):
+                vertex_data<D>(v), _numSegments(numSegments) { }
 
             /// Execute the rotate action of the previous object along axis \p d.
             void rotate(unsigned d);
