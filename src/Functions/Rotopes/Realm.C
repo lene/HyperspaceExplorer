@@ -65,34 +65,19 @@ Realm::operator unsigned() const {
 
 
 bool Realm::operator==(const Realm &other) const {
-    std::cerr << this->toString() << " == "<< other.toString() << "? " << endl;
 
-    if (dimension() != other.dimension()) {
-            cerr << "no: dimension! " << dimension() << " != " << other.dimension()<< endl;
-        return false;
-    }
-    if (dimension() == 0) {
-        if ((unsigned)*this == (unsigned)other) {
-            cerr << "yes: equal index" << endl;
-            return true;
-        } else {
-//            cerr << "no." << endl;
-            return false;
-        }
-    }
+    if (dimension() != other.dimension()) return false;
 
-    if (_subrealm.size() != other._subrealm.size()) {
-//        cerr << "no." << endl;
-        return false;
-    }
+    if (dimension() == 0) return ((unsigned)*this == (unsigned)other);
+
+    if (_subrealm.size() != other._subrealm.size()) return false;
 
     for (unsigned i = 0; i < _subrealm.size(); ++i) {
         if (!(_subrealm[i] == other._subrealm[i])) {
-            cerr << "no: " << _subrealm[i].toString()<< " ==  " << other._subrealm[i].toString()<< endl;
             return false;
         }
     }
-    cerr << "yes." << endl;
+
     return true;
 }
 
@@ -103,8 +88,8 @@ bool Realm::contains(const Realm &other) const {
         cerr << "YES! in _subrealm " << "contains(" << this->toString() << ", " << other.toString() << ")" << endl;
         return true;
         }
-    cerr << other.toString() << "not found in" << this->toString() << endl;
-    cerr << "dimension: " << dimension() << " other: " << other.dimension() << endl;
+    cerr << other.toString() << " not found in " << this->toString()
+         << ". dimension: " << dimension() << " other: " << other.dimension() << endl;
     if (other.dimension() < dimension()) {
         for (vector<Realm>::const_iterator i = _subrealm.begin();
              i != _subrealm.end(); ++i) {

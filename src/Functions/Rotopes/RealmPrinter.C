@@ -1,5 +1,7 @@
 #include "Realm.h"
 
+#include <QtDebug>
+
 using std::vector;
 using std::endl;
 
@@ -10,10 +12,11 @@ void Realm::RealmPrinter::print(std::ostream &out) const {
 
     if (_realm->dimension() > _max_dimension) _max_dimension = _realm->dimension();
 
+    printHeader(out);
     if (_realm->dimension() == 0) printPoint(out);
     else printSubrealms(out);
-
     indentNextLine(out);
+    printFooter(out);
 }
 
 void Realm::RealmPrinter::printHeader(std::ostream &out) const {
@@ -38,9 +41,7 @@ void Realm::RealmPrinter::printSubrealms(std::ostream &out) const {
     if (_realm->dimension() > 2) out << endl;
     for (vector<Realm>::const_iterator i = _realm->_subrealm.begin();
          i != _realm->_subrealm.end(); ++i) {
-        if (i->dimension()) out << "( ";
         out <<i->toString();
-        if (i->dimension()) out << " ) ";
     }
 }
 

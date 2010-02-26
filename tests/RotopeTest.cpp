@@ -217,8 +217,6 @@ void RotopeTest::coneVertices() {
 void RotopeTest::sphereRealm() {
     setRotope("ERR");
 
-    QVERIFY2(_realm.dimension() == 3, QString::number(_realm.dimension()).toStdString().c_str());
-
     std::vector<Realm> surfaces = generateSphereSurfaceSquares();
 
     for (std::vector<Realm>::iterator i = surfaces.begin(); i != surfaces.end(); ++i) {
@@ -229,6 +227,8 @@ void RotopeTest::sphereRealm() {
         );                                                                                            
     }
     std::cerr << _realm.toString();
+    QVERIFY2(_realm.dimension() == 3, (QString("Dimension: ")+QString::number(_realm.dimension())).toStdString().c_str());
+
 
     QSKIP("Sphere realm test not done yet.", SkipSingle);
 }
