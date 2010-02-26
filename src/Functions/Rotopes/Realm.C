@@ -328,24 +328,48 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
     temp_subrealms.setDimension(3);
     for (unsigned j = 0; j < num_segments; ++j) {
         Realm temp_realm = rotateStep(0, j*size, size);
-        if (DEBUG_ROTATE) { cerr << "temp realm: " << endl << temp_realm.toString(); }
+        if (true) { cerr << "temp realm: " << endl << temp_realm.toString(); }
         temp_subrealms.merge(temp_realm);
 
         /** We're adding a square for the opposite side too.
          *  \todo Express the above sentence better.
          *  \todo is simply adding 2 correct? how to calculate the correct offset?
+         * Here is an observation for a full rotation step.
+         * [0, 10, 12, 2] -> [2, 12, 14, 4]     adding 2 is ok.
+         * [4, 14, 16, 6] -> [6, 16, 18, 8]     adding 2 is ok.
+         * [8, 18, 11, 1] -> [1, 11, 13, 3]     adding 2 leads to overflow (>=20), subtracting 7 instead
+         * [3, 13, 15, 5] -> [5, 15, 17, 7]     adding 2 is ok.
+         * [7, 17, 19, 9] -> [9, 19, 10, 0]     adding 2 leads to overflow (>=20), subtracting *9* instead
+         * problems occur with 8 and 9, these are the doubled vertices (0 == 8, 1 == 9).
+         * ok, inconclusive, try again with 6 instead of 4 segments.
+                (0 14 16 2 )    (2 16 18 4 )    ok.
+                (4 18 20 6 )    (6 20 22 8 )    ok.
+                (8 22 24 10 )   (10 24 26 12 )  ok.
+                (12 26 15 1 )   (14 28 17 3 )   overflow.
+                (3 17 19 5 )    (5 19 21 7 )    ok.
+                (7 21 23 9 )    (9 23 25 11 )   ok.
+                (11 25 27 13 )  (13 27 29 15 )  overflow.
+         * again, troubles with the doubles. :-) 12 == 0, 13 == 1. same with
+         * 26 and 27, and so on in 14 increments. the increment is 10 in the
+         * first example. it is always 2*(num)segments+1). 
+         * these doubles are needed though, at least [1, 11, 13, 3] in the first
+         * case. [9, 19, 10, 0] is degenerate and could be dropped.
+         * look again at [8, 18, 11, 1]. adding 2 gives [10, 20, 13, 3]. if i do
+         * %10+1 on the overflowing vertex 10, and its partner accordingly, i get
+         * the desired result. with the second pair though, i'd have to do "+1, %10".
+         * of course, +1%10 would work in the first case too. all these AFTER adding 2.
+         * for the greater number of segments (case 2), let's see.
          */
         Realm temp_copy = temp_realm;
 
         temp_copy.add(MAGIC_OFFSET_ADDED_TO_INDICES);
-        if (DEBUG_ROTATE) { cerr << "temp copy: " << temp_copy.toString() << endl; }
+        if (true) { cerr << "temp copy: " << temp_copy.toString() << endl; }
         if (_associated_vertices.size()) {
             if (DEBUG_ROTATE) cerr << "********" << _associated_vertices.size();
 
             if (temp_copy.maxIndex() >= _associated_vertices.size()) {
                 if (DEBUG_ROTATE) cerr << "   index " << temp_copy.maxIndex() << " >= vertices.size(), " << _associated_vertices.size() << "********" << endl;
                 temp_copy.keepIndicesBelow(_associated_vertices.size());
-//                continue;
             }
 
             if (DEBUG_ROTATE) cerr << "********" << endl;
