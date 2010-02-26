@@ -137,7 +137,7 @@ void RotopeTest::prismRealm() {
 
     Realm triangle = generateTriangleRealm();
     QVERIFY(_realm.contains(triangle));
-    triangle.add(4);
+    triangle.add(3);
     QVERIFY(_realm.contains(triangle));
 
     QVERIFY(_realm.size() == 5);
@@ -269,6 +269,13 @@ std::vector<Realm> generateSphereSurfaceSquares() {
     return partialSphere;
 }
 
+void RotopeTest::sphereRealmFull() {
+    setRotope("ERR");
+    for (unsigned i =0; i < _vertices.size(); ++i) {
+        QVERIFY(_realm.contains(i));
+    }
+    QVERIFY(!(_realm.contains(_vertices.size())));    
+}
 void RotopeTest::sphereVertices() {
     setRotope("ERR");
     QVERIFY(isInVertices(VecMath::Vector<4>(-1.,  0.,  0., 0.)));

@@ -42,6 +42,7 @@ private slots:
   void coneRealm();
   void coneVertices();
   void sphereRealm();
+  void sphereRealmFull();
   void sphereVertices();
 
   void tesseractRealm();
