@@ -58,8 +58,9 @@ std::string Realm::toString() const {
 }
 
 void Realm::add(unsigned delta) {
-    if (_dimension == 0) _index += delta;
-    else {
+    if (_dimension == 0) {
+        _index += delta;
+    } else {
         for (vector<Realm>::iterator i = _subrealm.begin();
              i != _subrealm.end(); ++i) {
             i->add(delta);
@@ -92,13 +93,13 @@ bool Realm::operator==(const Realm &other) const {
 
     
 bool Realm::contains(const Realm &other) const {
-    if (DEBUG_ROTATE) cerr << "contains( [" << this->toString() << "], " << other.toString() << ")" << endl;
+//    if (DEBUG_ROTATE) cerr << "contains( [" << this->toString() << "], " << other.toString() << ")" << endl;
     if (std::find(_subrealm.begin(), _subrealm.end(), other) != _subrealm.end()) {
-        if (DEBUG_ROTATE) cerr << "YES! in _subrealm " << "contains(" << this->toString() << ", " << other.toString() << ")" << endl;
+//        if (DEBUG_ROTATE) cerr << "YES! in _subrealm " << "contains(" << this->toString() << ", " << other.toString() << ")" << endl;
         return true;
         }
-    if (DEBUG_ROTATE) cerr << other.toString() << " not found in " << this->toString()
-         << ". dimension: " << dimension() << " other: " << other.dimension() << endl;
+//    if (DEBUG_ROTATE) cerr << other.toString() << " not found in " << this->toString()
+//         << ". dimension: " << dimension() << " other: " << other.dimension() << endl;
     if (other.dimension() < dimension()) {
         for (vector<Realm>::const_iterator i = _subrealm.begin();
              i != _subrealm.end(); ++i) {
@@ -109,7 +110,7 @@ bool Realm::contains(const Realm &other) const {
         }
     }
     
-    if (DEBUG_ROTATE) cerr << "NO! " << "contains(" << this->toString() << ", " << other.toString() << ")" << endl;
+//    if (DEBUG_ROTATE) cerr << "NO! " << "contains(" << this->toString() << ", " << other.toString() << ")" << endl;
     return false;
 }
 
@@ -316,12 +317,15 @@ Realm Realm::rotateLine(unsigned num_segments, unsigned size) {
  *  \todo make this work for arbitrary polygons.
  */
 Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
+
+    static const unsigned MAGIC_OFFSET_ADDED_TO_INDICES = 2;
+
     if (DEBUG_ROTATE) { cerr << "rotating surface: " << toString() << endl; }
 
     /** Create the sides (parallel to the rotation axis).
      */
     Realm temp_subrealms;
-    temp_subrealms.dimension() = 3;
+    temp_subrealms.setDimension(3);
     for (unsigned j = 0; j < num_segments; ++j) {
         Realm temp_realm = rotateStep(0, j*size, size);
         if (DEBUG_ROTATE) { cerr << "temp realm: " << endl << temp_realm.toString(); }
@@ -332,8 +336,20 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
          *  \todo is simply adding 2 correct? how to calculate the correct offset?
          */
         Realm temp_copy = temp_realm;
-        temp_copy.add(2);
+
+        temp_copy.add(MAGIC_OFFSET_ADDED_TO_INDICES);
         if (DEBUG_ROTATE) { cerr << "temp copy: " << temp_copy.toString() << endl; }
+        if (_associated_vertices.size()) {
+            if (DEBUG_ROTATE) cerr << "********" << _associated_vertices.size();
+
+            if (temp_copy.maxIndex() >= _associated_vertices.size()) {
+                if (DEBUG_ROTATE) cerr << "   index " << temp_copy.maxIndex() << " >= vertices.size(), " << _associated_vertices.size() << "********" << endl;
+                temp_copy.keepIndicesBelow(_associated_vertices.size());
+//                continue;
+            }
+
+            if (DEBUG_ROTATE) cerr << "********" << endl;
+        }
         temp_subrealms.merge(temp_copy);
 
     }
@@ -345,6 +361,28 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
     rotatePolygonCap(num_segments, size, temp_subrealms);
 #   endif
     return temp_subrealms;
+}
+
+unsigned Realm::maxIndex() {
+    if (_dimension == 0) return (unsigned)*this;
+
+    unsigned max_index = 0;
+    for (vector<Realm>::iterator i = _subrealm.begin();
+         i != _subrealm.end(); ++i) {
+        if (i->maxIndex() > max_index) max_index = i->maxIndex();
+    }
+    return max_index;
+}
+
+void Realm::keepIndicesBelow(unsigned max_index) {
+    if (_dimension == 0) {
+        if (_index >= max_index) _index = max_index-1;
+    } else {
+        for (vector<Realm>::iterator i = _subrealm.begin();
+             i != _subrealm.end(); ++i) {
+            i->keepIndicesBelow(max_index);
+        }
+    }
 }
 
 Realm Realm::rotatePolygonCap(unsigned num_segments, unsigned size, vector<Realm> &temp_subrealms) {
@@ -414,21 +452,22 @@ Realm Realm::rotateStep2D(unsigned index, unsigned base, unsigned delta) {
     for (unsigned i = _subrealm.size()/2; i < _subrealm.size(); ++i) {
         new_subrealms.push_back(generateRectSegment(i, base, delta));
     }
-    cerr << "new subrealms: " << Realm(new_subrealms).toString() << endl;
 
     Realm new_realm;
     for (unsigned index = 0; index < new_subrealms.size(); index += 2) {
         Realm another_temp;
+
         for (vector<Realm>::iterator i = new_subrealms[index].begin(); i != new_subrealms[index].end(); ++i)
             another_temp.push_back(*i);
-        cerr << "another temp 1: " << Realm(another_temp).toString() << endl;
+
         for (vector<Realm>::reverse_iterator i = new_subrealms[index+1].rbegin(); i != new_subrealms[index+1].rend(); ++i)
             another_temp.push_back(*i);
+
         another_temp._dimension++;
-        cerr << "another temp 2: " << another_temp.toString() << endl;
+
         new_realm.push_back(another_temp);
     }
-//    new_realm._dimension++;
+
     if (DEBUG_ROTATE) { cerr << "new realm: " << new_realm.toString() << endl; }
 
     return new_realm;

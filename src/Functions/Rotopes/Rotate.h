@@ -20,6 +20,9 @@ template <unsigned D>
             void rotate(unsigned d);
 
         private:
+            /// \todo rename check_argument()
+            void checkBoundaries(unsigned d);
+            
             /// Execute a rotation on a VecMath::Vector
             VecMath::Vector<D> rotate_vertex(const VecMath::Vector<D> &, double,
                                              unsigned, unsigned);
@@ -117,17 +120,9 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
 #   if DEBUG_ROTOPES
         SingletonLog::Instance().log(__PRETTY_FUNCTION__);
 #   endif
-    if (d >= D) {
-        throw std::logic_error(
-           "rotate_base::rotate() called on a higher dimension"
-           " than the vector space allows");
-    }
-    if (d == 0) {
-        throw std::logic_error(
-                "rotate_base::rotate() must be called on an object of dimension"
-                " at least 1");
-    }
 
+    checkBoundaries(d);
+    
     std::vector<VecMath::Vector<D> > Xold = vertex_data<D>::X();
     for (unsigned i = 1; i <= _numSegments; ++i) {
         double rot = 1.*i*M_PI/_numSegments;
@@ -137,20 +132,36 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
         }
     }
     
-    vertex_data<D>::realm() = vertex_data<D>::realm().rotate(_numSegments, Xold.size());
 #   if DEBUG_ROTOPES
-#if false
-    std::cerr << "rotate_base<" << D << ">::rotate(" << d << ")" << std::endl;
-	vertex_data<D>::printVertices();
-#endif
+    std::cerr << "===================================rotate_base<" << D << ">::rotate(" << d << ")"
+              << "  X.size() = " << vertex_data<D>::X().size()
+              << "  vertices.size() = " << vertex_data<D>::vertices().size() << std::endl;    
 #   endif
     vertex_data<D>::dimension()++;   //  object is now one dimension higher
+
+    Realm new_realm = vertex_data<D>::realm();
+    new_realm.setAssociatedVertices(vertex_data<D>::vertices());
+    vertex_data<D>::realm() = new_realm.rotate(_numSegments, Xold.size());
+
 
 #   if DEBUG_ROTOPES
 #if false
     vertex_data<D>::print();
 #endif
 #   endif
+}
+
+template <unsigned D> void rotate_base<D>::checkBoundaries(unsigned d) {
+    if (d >= D) {
+        throw std::invalid_argument(
+           "rotate_base::rotate() called on a higher dimension"
+           " than the vector space allows");
+    }
+    if (d == 0) {
+        throw std::invalid_argument(
+                "rotate_base::rotate() must be called on an object of dimension"
+                " at least 1");
+    }
 }
 
 /** \param v The vertex to be rotated about \p rot radians

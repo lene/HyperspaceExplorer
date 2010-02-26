@@ -228,9 +228,6 @@ void RotopeTest::sphereRealm() {
     }
     std::cerr << _realm.toString();
     QVERIFY2(_realm.dimension() == 3, (QString("Dimension: ")+QString::number(_realm.dimension())).toStdString().c_str());
-
-
-    QSKIP("Sphere realm test not done yet.", SkipSingle);
 }
 
 std::vector<Realm> generateSphereSurfaceSquares() {
@@ -276,6 +273,7 @@ void RotopeTest::sphereRealmFull() {
     }
     QVERIFY(!(_realm.contains(_vertices.size())));    
 }
+
 void RotopeTest::sphereVertices() {
     setRotope("ERR");
     QVERIFY(isInVertices(VecMath::Vector<4>(-1.,  0.,  0., 0.)));

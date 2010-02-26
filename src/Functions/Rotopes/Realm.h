@@ -46,17 +46,17 @@ class Realm {
 public:
 
     /// Default constructor: Realm points to the first vertex in the array.
-    Realm(): _dimension(0), _subrealm(), _index(0) { }
+    Realm(): _dimension(0), _subrealm(), _index(0), _associated_vertices() { }
 
     /// Construct a Realm pointing to a specified vertex.
     /** \param i The index of the vertex in the vertex array.
      */
-    Realm(unsigned i): _dimension(0), _subrealm(), _index(i) { }
+    Realm(unsigned i): _dimension(0), _subrealm(), _index(i), _associated_vertices() { }
 
     /// Construct a Realm from a number of subrealms.
     /** \param sr The subrealms which together make up the new Realm.
      */
-    Realm(const std::vector<Realm> &sr): _subrealm(sr), _index() {
+    Realm(const std::vector<Realm> &sr): _subrealm(sr), _index(), _associated_vertices() {
         if(sr.empty()) _dimension = 0;
         else _dimension = sr[0].dimension()+1;
     }
@@ -75,6 +75,9 @@ public:
     /// Sets the dimension of the realm.
     void setDimension(unsigned d) { _dimension = d; }
 
+    void setAssociatedVertices(const std::vector<VecMath::Vector<4> > &vertex_array) {
+        _associated_vertices = vertex_array;
+    }
     /// Create a new Realm by extruding the present Realm.
     /** \param delta How many elements there were in the original vertex
      *      array - IOW, how much there needs to be added to each index from
@@ -121,9 +124,6 @@ public:
 
     /// Makes a Realm of dimension 0 usable as index into the vertex array.
     operator unsigned() const;
-
-    /// Dimension of the realm.
-    unsigned &dimension() { return _dimension; }
 
     const std::vector<Realm> &getSubrealms() const { return _subrealm; }
 
@@ -206,6 +206,9 @@ private:
 
     Realm generateRectSegment(unsigned i, unsigned base, unsigned delta);
 
+    unsigned maxIndex();
+    void keepIndicesBelow(unsigned max_index);
+    
     /// Dimension of the realm
     unsigned _dimension;
     /// Subrealms the Realm is made of
@@ -213,7 +216,9 @@ private:
     /// If _dimension == 0, this is the index into the vertex array
     unsigned _index;
 
-    const static bool DEBUG_ROTATE = true;
+    std::vector<VecMath::Vector<4> > _associated_vertices;
+
+    const static bool DEBUG_ROTATE = false;
 
 };
 

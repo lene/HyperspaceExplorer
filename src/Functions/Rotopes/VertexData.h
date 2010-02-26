@@ -18,6 +18,9 @@
 template <unsigned D>
     class vertex_data: public RotopeBase {
 
+            const static double PROJECTION_SCREEN_W = 2.;
+            const static double PROJECTION_CAMERA_W = 8.;
+
         public:
             virtual void print();           ///< Output of all vertices
 
@@ -300,7 +303,7 @@ template <unsigned D>
     std::vector<VecMath::Vector<4> > vertex_data<D>::vertices() {
 //        Transform(VecMath::Rotation<D>(), VecMath::Vector<D>());
         Projector<D, 4> p;
-        return p(X(), 2., 8.);  /// \todo This is hardcoded! Ugh!
+        return p(X(), PROJECTION_SCREEN_W, PROJECTION_CAMERA_W);  /// \todo This is hardcoded! Ugh!
     }
 
 /*template <unsigned D>
