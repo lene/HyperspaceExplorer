@@ -123,10 +123,7 @@ template <unsigned D> void vertex_data<D>::print() {
 #   endif
 
     std::cout << "\n" << realm().size() << " realms: \n";
-    for(typename std::vector<Realm>::const_iterator i = realm().begin();
-        i != realm().end(); ++i){
-        std::cout << i->toString();
-    }
+    std::copy(realm().begin(), realm().end(), std::ostream_iterator<std::string>(std::cout, " "));
     std::cout << "\n";
 
     std::cout << verticesToString(PRINT_VERTICES_NUM_COLUMNS);
