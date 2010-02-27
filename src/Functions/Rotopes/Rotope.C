@@ -132,25 +132,6 @@ void Rotope::Draw () {
         _rotope->print();
     } else {
         throw new std::logic_error("Rotope has no Realm member");
-#       if false
-        cerr << "Drawing surfaces" << endl;
-        unsigned currentPolygonSize = 0;
-        for (unsigned i = 0; i < _rotope->surface().size(); i++) {
-            if (currentPolygonSize != _rotope->surface()[i].size()) {
-                if (currentPolygonSize) glEnd ();
-                currentPolygonSize = _rotope->surface()[i].size();
-                if (currentPolygonSize == 4) glBegin (GL_QUADS);
-                else if (currentPolygonSize == 3) glBegin (GL_TRIANGLES);
-                else glBegin(GL_POLYGON);
-            }
-            for (unsigned j = 0; j < currentPolygonSize; j++) {
-                setVertex(X[_rotope->surface()[i][j]],
-                        Xscr[_rotope->surface()[i][j]]);
-            }
-            if (currentPolygonSize > 4) glEnd();
-        }
-        glEnd ();
-#       endif
     }
 }
 
@@ -167,7 +148,7 @@ void Rotope::Draw(const Realm &realm) {
              *  (i.e. 2 points)
              */
             glBegin(GL_LINES);
-                for (vector<Realm>::const_iterator i = realm.getSubrealms().begin();
+                for (Realm::realm_container_type::const_iterator i = realm.getSubrealms().begin();
                     i != realm.getSubrealms().end(); ++i) {
                    setVertex(X[*i], Xscr[*i]);
                 }
@@ -180,13 +161,13 @@ void Rotope::Draw(const Realm &realm) {
              */
             if (realm.getSubrealms().begin()->dimension() == 0) {
                 glBegin(GL_POLYGON);
-                    for (vector<Realm>::const_iterator i = realm.getSubrealms().begin();
+                    for (Realm::realm_container_type::const_iterator i = realm.getSubrealms().begin();
                          i != realm.getSubrealms().end(); ++i) {
                         setVertex(X[*i], Xscr[*i]);
                     }
                 glEnd();
             } else if (realm.getSubrealms().begin()->dimension() == 1) {
-                for (vector<Realm>::const_iterator i = realm.getSubrealms().begin();
+                for (Realm::realm_container_type::const_iterator i = realm.getSubrealms().begin();
                      i != realm.getSubrealms().end(); ++i) {
                     Draw(*i);
                 }
@@ -198,7 +179,7 @@ void Rotope::Draw(const Realm &realm) {
              *  surface. Recurse to draw the lower order realms, until we find
              *  surfaces.
              */
-            for (vector<Realm>::const_iterator i = realm.getSubrealms().begin();
+            for (Realm::realm_container_type::const_iterator i = realm.getSubrealms().begin();
                  i != realm.getSubrealms().end(); ++i) {
                 Draw(*i);
             }

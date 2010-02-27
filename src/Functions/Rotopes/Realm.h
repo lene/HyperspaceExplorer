@@ -40,7 +40,6 @@ class Rotope;
  *  \todo It looks as if it would make sense for Realm to manage the vertex
  *      array too. Look into this.
  *  \todo refactor to have shorter functions.
- *  \todo typedef std::vector<Realm> and use typedef and iterators everywhere.
  *
  *  \ingroup RotopeGroup
  *  \author Lene Preuss <lene.preuss@gmail.com>
@@ -49,6 +48,10 @@ class Realm {
 
 public:
 
+    typedef std::vector<VecMath::Vector<4> > vertex_container_type;
+    /// Must support push_back and forward iterator. Currently also operator[].
+    typedef std::vector<Realm> realm_container_type;
+    
     /// Default constructor: Realm points to the first vertex in the array.
     Realm(): _dimension(0), _subrealm(), _index(0), _associated_vertices() { }
 
@@ -60,7 +63,7 @@ public:
     /// Construct a Realm from a number of subrealms.
     /** \param sr The subrealms which together make up the new Realm.
      */
-    Realm(const std::vector<Realm> &sr): _subrealm(sr), _index(), _associated_vertices() {
+    Realm(const realm_container_type &sr): _subrealm(sr), _index(), _associated_vertices() {
         if(sr.empty()) _dimension = 0;
         else _dimension = sr[0].dimension()+1;
     }
@@ -79,7 +82,7 @@ public:
     /// Sets the dimension of the realm.
     void setDimension(unsigned d) { _dimension = d; }
 
-    void setAssociatedVertices(const std::vector<VecMath::Vector<4> > &vertex_array) {
+    void setAssociatedVertices(const vertex_container_type &vertex_array) {
         _associated_vertices = vertex_array;
     }
     /// Create a new Realm by extruding the present Realm.
@@ -106,32 +109,32 @@ public:
     /// Add an offset to all indices into the vertex array.
     void add(unsigned delta);
 
-    /// Add a new subrealm, emulating std::vector<Realm> interface.
+    /// Add a new subrealm, emulating realm_container_type interface.
     void push_back(const Realm &r);
 
     /// Merge \p r into the current Realm, keeping the dimension as it is.
     void merge(const Realm &r);
 
-    /// Pointer to first subrealm, emulating std::vector<Realm> interface.
-    std::vector<Realm>::iterator begin() { return _subrealm.begin(); }
-    std::vector<Realm>::const_iterator cbegin() const { return _subrealm.begin(); }
+    /// Pointer to first subrealm, emulating realm_container_type interface.
+    realm_container_type::iterator begin() { return _subrealm.begin(); }
+    realm_container_type::const_iterator cbegin() const { return _subrealm.begin(); }
 
-    /// Pointer past last subrealm, emulating std::vector<Realm> interface.
-    std::vector<Realm>::iterator end() { return _subrealm.end(); }
-    std::vector<Realm>::const_iterator cend() const { return _subrealm.end(); }
+    /// Pointer past last subrealm, emulating realm_container_type interface.
+    realm_container_type::iterator end() { return _subrealm.end(); }
+    realm_container_type::const_iterator cend() const { return _subrealm.end(); }
 
-    /// Pointer to last subrealm, emulating std::vector<Realm> interface.
-    std::vector<Realm>::reverse_iterator rbegin() { return _subrealm.rbegin(); }
+    /// Pointer to last subrealm, emulating realm_container_type interface.
+    realm_container_type::reverse_iterator rbegin() { return _subrealm.rbegin(); }
 
-    /// Pointer before first subrealm, emulating std::vector<Realm> interface.
-    std::vector<Realm>::reverse_iterator rend() { return _subrealm.rend(); }
+    /// Pointer before first subrealm, emulating realm_container_type interface.
+    realm_container_type::reverse_iterator rend() { return _subrealm.rend(); }
 
     /// Makes a Realm of dimension 0 usable as index into the vertex array.
     operator unsigned() const;
 
-    const std::vector<Realm> &getSubrealms() const { return _subrealm; }
+    const realm_container_type &getSubrealms() const { return _subrealm; }
 
-    void setSubrealms(std::vector<Realm> sr) { _subrealm = sr; }
+    void setSubrealms(realm_container_type sr) { _subrealm = sr; }
 
     bool operator==(const Realm &other) const;
 
@@ -217,11 +220,11 @@ private:
     /// Dimension of the realm
     unsigned _dimension;
     /// Subrealms the Realm is made of
-    std::vector<Realm> _subrealm;
+    realm_container_type _subrealm;
     /// If _dimension == 0, this is the index into the vertex array
     unsigned _index;
 
-    std::vector<VecMath::Vector<4> > _associated_vertices;
+    vertex_container_type _associated_vertices;
 
     const static bool DEBUG_ROTATE = false;
 

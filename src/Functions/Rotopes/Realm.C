@@ -46,7 +46,7 @@ void Realm::merge(const Realm &r) {
                 "Tried to merge "+r.toString()+" into Realm "+toString()+".\n"
                 "You can only merge realms of equal dimension.");
 
-    for (vector<Realm>::const_iterator i = r.cbegin(); i != r.cend(); ++i)
+    for (realm_container_type::const_iterator i = r.cbegin(); i != r.cend(); ++i)
         _subrealm.push_back(*i);
 }
 
@@ -65,7 +65,7 @@ void Realm::add(unsigned delta) {
     if (_dimension == 0) {
         _index += delta;
     } else {
-        for (vector<Realm>::iterator i = _subrealm.begin();
+        for (realm_container_type::iterator i = _subrealm.begin();
              i != _subrealm.end(); ++i) {
             i->add(delta);
         }
@@ -79,7 +79,7 @@ Realm::operator unsigned() const {
             "Only a 0-dimensional Realm can be converted to an unsigned index.");
 }
 
-
+/** \todo rewrite to make independent of realm_container_type::operator[] */
 bool Realm::operator==(const Realm &other) const {
 
     if (dimension() != other.dimension()) return false;
@@ -105,7 +105,7 @@ bool Realm::contains(const Realm &other) const {
     }
 
     if (other.dimension() < dimension()) {
-        for (vector<Realm>::const_iterator i = _subrealm.begin();
+        for (realm_container_type::const_iterator i = _subrealm.begin();
              i != _subrealm.end(); ++i) {
             if (i->contains(other)) {
                 return true;
@@ -148,19 +148,23 @@ Realm Realm::extrude(unsigned delta) {
 }
 
 Realm Realm::extrudePoint(unsigned delta) {
-    vector<Realm> new_subrealms;
+    realm_container_type new_subrealms;
+
     new_subrealms.push_back(_index);
     new_subrealms.push_back(_index+delta);
+
     Realm new_realm(new_subrealms);
     return new_realm;
 }
 
 Realm Realm::extrudeLine(unsigned delta) {
-    vector<Realm> new_subrealms;
+    realm_container_type new_subrealms;
+
     new_subrealms.push_back(_subrealm[0]._index);
     new_subrealms.push_back(_subrealm[1]._index);
     new_subrealms.push_back(_subrealm[1]._index+delta);
     new_subrealms.push_back(_subrealm[0]._index+delta);
+
     Realm new_realm(new_subrealms);
     new_realm._dimension++;
 
@@ -168,7 +172,7 @@ Realm Realm::extrudeLine(unsigned delta) {
 }
 
 Realm Realm::extrudePolygon(unsigned delta) {
-    vector<Realm> new_subrealms;
+    realm_container_type new_subrealms;
 
     Realm copied_realm(*this);
     new_subrealms.push_back(copied_realm);
@@ -188,7 +192,7 @@ Realm Realm::extrudePolygon(unsigned delta) {
 }
 
 Realm Realm::extrudeRealm(unsigned delta) {
-    vector<Realm> new_subrealms;
+    realm_container_type new_subrealms;
     Realm copied_realm(*this);
     new_subrealms.push_back(copied_realm);
     for (unsigned i = 0; i < _subrealm.size(); ++i) {
@@ -219,7 +223,7 @@ Realm Realm::taperLine(unsigned taper_index) {
 }
 
 Realm Realm::taperPolygon(unsigned taper_index) {
-    vector<Realm> new_subrealms;
+    realm_container_type new_subrealms;
     new_subrealms.push_back(*this);
     for (unsigned i = 0; i < _subrealm.size(); ++i) {
         Realm new_subrealm;
@@ -234,7 +238,7 @@ Realm Realm::taperPolygon(unsigned taper_index) {
 }
 
 Realm Realm::taperRealm(unsigned taper_index) {
-    vector<Realm> new_subrealms;
+    realm_container_type new_subrealms;
     new_subrealms.push_back(*this);
     for (unsigned i = 0; i < _subrealm.size(); ++i) {
         new_subrealms.push_back(_subrealm[i].taper(taper_index));
@@ -272,11 +276,11 @@ Realm Realm::rotateLine(unsigned num_segments, unsigned size) {
     list<Realm> temp_list(_subrealm.size());
     std::copy(_subrealm.begin(), _subrealm.end(), temp_list.begin());
 
-    list< vector<Realm> > realms_to_add;
+    list< realm_container_type > realms_to_add;
 
     unsigned index = 0;
     for (list<Realm>::iterator i = temp_list.begin(); i != temp_list.end(); ++i, ++index) {
-        vector<Realm> to_add;
+        realm_container_type to_add;
         for (unsigned j = 0; j < num_segments; ++j) {
             to_add.push_back(rotateStep(index, j*size, size));
         }
@@ -284,9 +288,9 @@ Realm Realm::rotateLine(unsigned num_segments, unsigned size) {
     }
     list<Realm>::iterator i = temp_list.begin();
     ++i;
-    list< vector<Realm> >::iterator inew = realms_to_add.begin();
+    list< realm_container_type >::iterator inew = realms_to_add.begin();
     for ( ; inew != realms_to_add.end(); ++i, ++inew) {
-        for (vector<Realm>::iterator j = inew->begin(); j != inew->end(); ++j) {
+        for (realm_container_type::iterator j = inew->begin(); j != inew->end(); ++j) {
             if (DEBUG_ROTATE) { cerr << *j; }
         }
         temp_list.insert(i, inew->begin(), inew->end());
@@ -418,7 +422,7 @@ void Realm::addKeepingInRange(unsigned delta, unsigned num_segments, unsigned ro
         throw std::invalid_argument(
                 "generating Realm must be a rectangle: "+toString());
     } else if (_dimension > 2) {
-        for (vector<Realm>::iterator i = _subrealm.begin(); i != _subrealm.end(); ++i) {
+        for (realm_container_type::iterator i = _subrealm.begin(); i != _subrealm.end(); ++i) {
             i->addKeepingInRange(delta, num_segments, rotation_step);
         }
         return;
@@ -503,7 +507,7 @@ unsigned Realm::maxIndex() {
     if (_dimension == 0) return (unsigned)*this;
 
     unsigned max_index = 0;
-    for (vector<Realm>::iterator i = _subrealm.begin();
+    for (realm_container_type::iterator i = _subrealm.begin();
          i != _subrealm.end(); ++i) {
         if (i->maxIndex() > max_index) max_index = i->maxIndex();
     }
@@ -514,15 +518,16 @@ void Realm::keepIndicesBelow(unsigned max_index) {
     if (_dimension == 0) {
         if (_index >= max_index) _index = max_index-1;
     } else {
-        for (vector<Realm>::iterator i = _subrealm.begin();
+        for (realm_container_type::iterator i = _subrealm.begin();
              i != _subrealm.end(); ++i) {
             i->keepIndicesBelow(max_index);
         }
     }
 }
 
-Realm Realm::rotatePolygonCap(unsigned num_segments, unsigned size, vector<Realm> &temp_subrealms) {
-    vector<Realm> edges;
+Realm Realm::rotatePolygonCap(unsigned num_segments, unsigned size, 
+                              realm_container_type &temp_subrealms) {
+    realm_container_type edges;
     /** Create the cap (perpendicular to the rotation axis).
      *
      *  Make the first edge the first line in the temporary list of
@@ -545,7 +550,7 @@ Realm Realm::rotatePolygonCap(unsigned num_segments, unsigned size, vector<Realm
 }
 
 Realm Realm::rotateRealm(unsigned num_segments, unsigned size) {
-    vector<Realm> temp_subrealms;
+    realm_container_type temp_subrealms;
     for (unsigned i = 0; i < _subrealm.size(); ++i) {
         temp_subrealms.push_back(_subrealm[i].rotate(num_segments, size));
     }
@@ -570,7 +575,7 @@ Realm Realm::rotateStep(unsigned index, unsigned base, unsigned delta) {
 }
 
 Realm Realm::rotateStep2D(unsigned index, unsigned base, unsigned delta) {
-    vector<Realm> new_subrealms;
+    realm_container_type new_subrealms;
     if (DEBUG_ROTATE) { cerr << endl << "size: " << _subrealm.size() << endl; }
     /// split procedure: once for points on the positive and once for negative points
     /** what happens and actually seems to be necessary here is this.
@@ -593,11 +598,15 @@ Realm Realm::rotateStep2D(unsigned index, unsigned base, unsigned delta) {
     for (unsigned index = 0; index < new_subrealms.size(); index += 2) {
         Realm another_temp;
 
-        for (vector<Realm>::iterator i = new_subrealms[index].begin(); i != new_subrealms[index].end(); ++i)
+        for (realm_container_type::iterator i = new_subrealms[index].begin();
+             i != new_subrealms[index].end(); ++i) {
             another_temp.push_back(*i);
+        }
 
-        for (vector<Realm>::reverse_iterator i = new_subrealms[index+1].rbegin(); i != new_subrealms[index+1].rend(); ++i)
+        for (realm_container_type::reverse_iterator i = new_subrealms[index+1].rbegin();
+             i != new_subrealms[index+1].rend(); ++i) {
             another_temp.push_back(*i);
+        }
 
         another_temp._dimension++;
 
@@ -610,14 +619,13 @@ Realm Realm::rotateStep2D(unsigned index, unsigned base, unsigned delta) {
 }
 
 Realm Realm::generateRectSegment(unsigned i, unsigned base, unsigned delta) {
-    if (DEBUG_ROTATE) { cerr << "rotating " << _subrealm[i] << ": "; }
+
     if (_subrealm[i].dimension()) throw new std::logic_error("At this point subrealms should be points");
+
     Realm new_subrealm;
 
     new_subrealm.push_back(_subrealm[i]+base);
     new_subrealm.push_back(_subrealm[i]+delta+base);
-
-    if (DEBUG_ROTATE) { cerr << new_subrealm.toString() << endl; }
 
     return new_subrealm;
 }
