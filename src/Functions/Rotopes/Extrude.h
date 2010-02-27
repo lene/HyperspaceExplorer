@@ -10,23 +10,23 @@
 template <unsigned D>
     class extrude_base: public vertex_data<D> {
 
-        public:
+    public:
 
-            /// Create an empty extrude_base object
-            extrude_base(): vertex_data<D>() { }
-            /// Create an extrude_base object from an already existing object
-            extrude_base(const vertex_data<D> &v): vertex_data<D>(v) { }
+        /// Create an empty extrude_base object
+        extrude_base(): vertex_data<D>() { }
+        /// Create an extrude_base object from an already existing object
+        extrude_base(const vertex_data<D> &v): vertex_data<D>(v) { }
 
-            /// Extrudes an object along a given dimension
-            /** For each point in the vertex array, a copy is made and shifted along the
-            *  \p d axis. Thus, a point becomes a line when extruded along axis 0, a line
-            *  becomes a square when extruded along axis 1, and so on. A circle becomes a
-            *  cylinder when extruded along axis 2, and similarly with all kinds of
-            *  objects. You get the idea. \see Extrude for more examples.
-            *
-            *  \param d The new dimension into which the object is extruded
-            */
-            void extrude(unsigned d);
+        /// Extrudes an object along a given dimension
+        /** For each point in the vertex array, a copy is made and shifted along the
+        *  \p d axis. Thus, a point becomes a line when extruded along axis 0, a line
+        *  becomes a square when extruded along axis 1, and so on. A circle becomes a
+        *  cylinder when extruded along axis 2, and similarly with all kinds of
+        *  objects. You get the idea. \see Extrude for more examples.
+        *
+        *  \param d The new dimension into which the object is extruded
+        */
+        void extrude(unsigned d);
 
     };
 
@@ -59,29 +59,29 @@ template <unsigned D>
  */
 template <unsigned D, unsigned Dmin, unsigned Dmax>
     class Extrude: public Extrude<D, Dmin, Dmax-1> {
-        public:
-            /// Create an Extrude object from a point
-            /** \todo Guard against bad template parameters:
-             *        - Dmin >= Dmax
-             *        - Dmin or Dmax >= D
-             *        - Dmin or Dmax >= vertex_data::_dimension
-             *        - vertex_data::_dimension == 0
-             */
-            Extrude(): Extrude<D, Dmin, Dmax-1>() {
-                extrude_base<D>::extrude(Dmax);
-            }
+    public:
+        /// Create an Extrude object from a point
+        /** \todo Guard against bad template parameters:
+         *        - Dmin >= Dmax
+         *        - Dmin or Dmax >= D
+         *        - Dmin or Dmax >= vertex_data::_dimension
+         *        - vertex_data::_dimension == 0
+         */
+        Extrude(): Extrude<D, Dmin, Dmax-1>() {
+            extrude_base<D>::extrude(Dmax);
+        }
 
-            /// Create an Extrude object from an already existing object
-            /** \todo Guard against bad template parameters:
-             *        - Dmin >= Dmax
-             *        - Dmin or Dmax >= D
-             *        - Dmin or Dmax >= vertex_data::_dimension
-             *        - vertex_data::_dimension == 0
-             */
-            Extrude(const vertex_data<D> &v): Extrude<D, Dmin, Dmax-1>(v) {
-                extrude_base<D>::extrude(Dmax);
-            }
-        };
+        /// Create an Extrude object from an already existing object
+        /** \todo Guard against bad template parameters:
+         *        - Dmin >= Dmax
+         *        - Dmin or Dmax >= D
+         *        - Dmin or Dmax >= vertex_data::_dimension
+         *        - vertex_data::_dimension == 0
+         */
+        Extrude(const vertex_data<D> &v): Extrude<D, Dmin, Dmax-1>(v) {
+            extrude_base<D>::extrude(Dmax);
+        }
+    };
 
 /// Specialization of Extrude<D,Dmin,Dmax> to end recursion
 /** \param D Dimension of the vector space we're working in
@@ -92,25 +92,25 @@ template <unsigned D, unsigned Dmin, unsigned Dmax>
  */
 template <unsigned D, unsigned Dmin>
     class Extrude<D, Dmin, Dmin>: public extrude_base<D> {
-        public:
-            /// Create an Extrude object from a point
-            /** \todo Guard against bad template parameters:
-             *        - Dmin >= Dmax
-             *        - Dmin or Dmax >= D
-             *        - Dmin or Dmax >= vertex_data::_dimension
-             */
-            Extrude(): extrude_base<D>() {
-                extrude_base<D>::extrude(Dmin);
-            }
+    public:
+        /// Create an Extrude object from a point
+        /** \todo Guard against bad template parameters:
+         *        - Dmin >= Dmax
+         *        - Dmin or Dmax >= D
+         *        - Dmin or Dmax >= vertex_data::_dimension
+         */
+        Extrude(): extrude_base<D>() {
+            extrude_base<D>::extrude(Dmin);
+        }
 
-            /// Create an Extrude object from an already existing object
-            /** \todo Guard against bad template parameters:
-             *        - Dmin >= D
-             *        - Dmin >= vertex_data::_dimension
-             */
-            Extrude(const vertex_data<D> &v): extrude_base<D>(v) {
-                extrude_base<D>::extrude(Dmin);
-            }
+        /// Create an Extrude object from an already existing object
+        /** \todo Guard against bad template parameters:
+         *        - Dmin >= D
+         *        - Dmin >= vertex_data::_dimension
+         */
+        Extrude(const vertex_data<D> &v): extrude_base<D>(v) {
+            extrude_base<D>::extrude(Dmin);
+        }
     };
 
 
