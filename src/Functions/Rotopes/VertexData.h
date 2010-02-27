@@ -12,6 +12,9 @@
  *
  *  \param D Dimension of the vector space we're working in
  *
+ *  \todo transforming rotopes, allowing for rotation in \p D dimensions and
+ *      scaling.
+ * 
  *  \ingroup RotopeGroup
  *  \author Lene Preuss <lene.preuss@gmail.com>
  */
@@ -34,6 +37,7 @@ template <unsigned D>
         virtual std::string toString();
 
     protected:
+        
         /// Default c'tor. VertexData objects can only be initialized in derived classes.
         VertexData(): _dimension(0), _X(), _transform() {
             X().push_back(VecMath::Vector<D>());
@@ -48,23 +52,35 @@ template <unsigned D>
 
     private:
 
+        unsigned _dimension;                    ///< Dimension of the object
+
+        std::vector<VecMath::Vector<D> > _X;    ///< The array of vertices
+
+        /// The array of realms (D-1 dimensional surfaces of D-dimensional object)
+        Realm _realm;
+
+        /// List of transformations executed on the object in dimensions > 4
+        std::vector<const VecMath::RotationBase *> _transform;
+
+        /// Auxiliary class encapsulating printing and conversion to std::string.
+        /** \todo This class is still a little chaotic. */
         class VertexDataPrinter {
 
             const static int PRINT_VERTICES_COLUMN_WIDTH = 40;
             const static int PRINT_VERTICES_NUM_COLUMNS = 2;
 
         public:
-            VertexDataPrinter(const VertexData *vertexData): _vertexData(vertexData) { }
+            VertexDataPrinter(const VertexData *vertexData):
+                _vertexData(vertexData) { }
 
             void printToStream(std::ostream &out) const;
 
         private:
-            
+
             /// Returns all vertices as a string, sorted in \c num_columns columns.
             std::string verticesToString(unsigned num_columns) const;
 
-
-
+            /// Print vertices to an arbitrary std::ostream.
             void printVertices(unsigned num_columns = PRINT_VERTICES_NUM_COLUMNS,
                                std::ostream &out = std::cout) const;
 
@@ -81,22 +97,12 @@ template <unsigned D>
             const VertexData *_vertexData;
         };
 
-        unsigned _dimension;                    ///< Dimension of the object
-
-        std::vector<VecMath::Vector<D> > _X;    ///< The array of vertices
-
-        /// The array of realms (D-1 dimensional surfaces of D-dimensional object)
-        Realm _realm;
-
-        /// List of transformations executed on the object in dimensions > 4
-        std::vector<const VecMath::RotationBase *> _transform;
-
     /// Allow RotopeFactory free access to create VertexData objects
     friend class RotopeFactory;
     };
 
 /*  You shouldn't use "using" directives in a header file, but the code gets
-    nearly unreadable otherwise. I mean, look at that:
+    nearly unreadable otherwise. I mean, just look at that:
     typename std::vector<VecMath::Vector<D> >::iterator i = _X.begin();
     And because I'm defining template classes here, code must be written in the
     header file anyway.
