@@ -3,7 +3,7 @@
 //      module:
 //      contains:
 //      compile with: make all
-//      author:       helge preuss (scout@hyperspace-travel.de)
+//      author:       helge preuss (lene.preuss@gmail.com)
 //      license:      GPL (see License.txt)
 
 
@@ -31,7 +31,7 @@ struct EmptyType {};
  *
  *  Instead it is described as a set of surfaces.
  *  \ingroup FunctionGroup
- *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
+ *  @author Helge Preuss <lene.preuss@gmail.com>                         */
 class Object: public Function {
     public:
 

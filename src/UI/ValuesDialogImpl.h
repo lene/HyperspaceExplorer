@@ -3,7 +3,7 @@
 //      module:
 //      contains:
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
+//	author:	      helge preuss (lene.preuss@gmail.com)
 //	license:      GPL (see License.txt)
 
 
@@ -35,7 +35,7 @@ namespace UI {
          *  function is selected, is done from C4DView. This is of course
          *  unfortunate and will be changed.
          *  \ingroup UIGroup
-         *  \author Helge Preuss <scout@hyperspace-travel.de>                 */
+         *  \author Helge Preuss <lene.preuss@gmail.com>                 */
         class ValuesDialogImpl: public QDialog, public UI::Dialogs::ValuesDialog {
             Q_OBJECT
 

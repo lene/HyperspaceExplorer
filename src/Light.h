@@ -9,7 +9,7 @@
  *  the light source, and the color for its ambient value, its diffuse light and
  *  the specular reflections caused by the light source.
  *
- *  \author Helge Preuss <scout@hyperspace-travel.de>
+ *  \author Helge Preuss <lene.preuss@gmail.com>
  */
 class LightSource {
     public:
@@ -66,7 +66,7 @@ class LightSource {
  *  the class LightSource, Light provides an abstract method render() which must
  *  be implemented in descendants to put the light source into the scene.
  *
- *  \author Helge Preuss <scout@hyperspace-travel.de>
+ *  \author Helge Preuss <lene.preuss@gmail.com>
  */
 class Light {
     public:

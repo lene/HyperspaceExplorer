@@ -10,7 +10,7 @@
 
 /// A class to store and manage FunctionParameter s
 /**
-    \author Helge Preuss <scout@hyperspace-travel.de>
+    \author Helge Preuss <lene.preuss@gmail.com>
     \ingroup FunctionParameterGroup
 */
 class ParameterMap : public std::map<std::string, FunctionParameter *> {

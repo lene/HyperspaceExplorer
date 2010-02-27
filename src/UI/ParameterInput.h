@@ -15,7 +15,7 @@ namespace UI {
 
         /// Widget with input controls for all types of FunctionParameter
         /**
-                @author Helge Preuss <scout@hyperspace-travel.de>
+                @author Helge Preuss <lene.preuss@gmail.com>
         */
         class ParameterInput {
             public:

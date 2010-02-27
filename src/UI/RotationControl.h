@@ -11,7 +11,7 @@
 namespace UI {
 
 /**
-	@author Helge Preuss <scout@hyperspace-travel.de>
+	@author Helge Preuss <lene.preuss@gmail.com>
 */
 class RotationControl : public QWidget
 {

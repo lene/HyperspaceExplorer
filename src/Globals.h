@@ -4,7 +4,7 @@
 //      contains:     declarations for some global auxiliary functions and
 //		      variables
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
+//	author:	      helge preuss (lene.preuss@gmail.com)
 //	license:      GPL (see License.txt)
 
 
@@ -76,7 +76,7 @@ template <typename T> typename std::vector<T>::iterator find(T find_me, std::vec
  *
  *  Members are accessed with the SingletonHolder static function, i.e.
  *  Globals::Instance().
- *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
+ *  @author Helge Preuss <lene.preuss@gmail.com>                         */
 class Global {
     public:
         Global();

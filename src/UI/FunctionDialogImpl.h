@@ -3,7 +3,7 @@
 //      module:
 //      contains:
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
+//	author:	      helge preuss (lene.preuss@gmail.com)
 //	license:      GPL (see License.txt)
 
 #include "ui_FunctionDialog.h"
@@ -15,7 +15,7 @@ namespace UI {
         /** The function which has been entered will then be compiled into a dynamic
         *  library and loaded to be displayed on screen as a Function.
         *  \ingroup UIGroup
-        *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
+        *  @author Helge Preuss <lene.preuss@gmail.com>                         */
         class FunctionDialogImpl:
                 public QDialog, public Ui::functionDialog, public PluginCreator {
             Q_OBJECT

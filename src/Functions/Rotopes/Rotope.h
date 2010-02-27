@@ -6,7 +6,7 @@
 
 /// Gets thrown when an operation is not yet (or will never be) supported
 /** \ingroup RotopeGroup
- *  \author Helge Preuss <scout@hyperspace-travel.de>
+ *  \author Helge Preuss <lene.preuss@gmail.com>
  */
 class BadRotopeOperation: public std::logic_error {
     public:
@@ -20,7 +20,7 @@ class BadRotopeOperation: public std::logic_error {
 
 /// A four-dimensional <a href="http://teamikaria.com/wiki/Rotope">Rotope</a>.
 /** \ingroup RotopeGroup
- *  \author Helge Preuss <scout@hyperspace-travel.de>
+ *  \author Helge Preuss <lene.preuss@gmail.com>
  */
 class Rotope : public Object {
 

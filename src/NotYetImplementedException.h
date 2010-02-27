@@ -5,7 +5,7 @@
 #include <stdexcept>
 
 /// This Exception is thrown when a feature is not yet implemented.
-/** \author Helge Preuss <scout@hyperspace-travel.de> */
+/** \author Helge Preuss <lene.preuss@gmail.com> */
 class NotYetImplementedException: public std::logic_error {
     public:
         /// \param what Should contain the name of the throwing class method

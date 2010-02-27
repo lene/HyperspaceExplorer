@@ -3,7 +3,7 @@
 //      module:       FunctionDialogImpl.C
 //      contains:     routines needed for the handling of user-generated R^3->R functions
 //      compile with: make
-//	author:	      helge preuss (scout@hyperspace-travel.de)
+//	author:	      helge preuss (lene.preuss@gmail.com)
 //	license:      GPL (see License.txt)
 
 #include <fstream>

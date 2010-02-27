@@ -3,7 +3,7 @@
 //      module:
 //      contains:
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
+//	author:	      helge preuss (lene.preuss@gmail.com)
 //	license:      GPL (see License.txt)
 
 #include <QDialog>
@@ -14,7 +14,7 @@ namespace UI {
     namespace Dialogs {
         /// A Dialog to select settings concerning the writing of animated frames to disk
         /** \ingroup UIGroup
-        *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
+        *  @author Helge Preuss <lene.preuss@gmail.com>                         */
         class AnimationDialogImpl:
                 public QDialog, public Ui::AnimationDialog {
 

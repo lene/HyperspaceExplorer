@@ -6,7 +6,7 @@
 /// Base class for Taper classes, providing the actual taper() function
 /** \param D Dimension of the vector space we're working in
  *  \ingroup RotopeGroup
- *  \author Helge Preuss <scout@hyperspace-travel.de>
+ *  \author Helge Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D>
     class taper_base: public vertex_data<D> {
@@ -91,7 +91,7 @@ template <unsigned D>
  *  \param Dmax Last of the set of dimensions being tapered into
  *
  *  \ingroup RotopeGroup
- *  \author Helge Preuss <scout@hyperspace-travel.de>
+ *  \author Helge Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D, unsigned Dmin, unsigned Dmax>
     class Taper: public Taper<D, Dmin, Dmax-1> {
@@ -113,7 +113,7 @@ template <unsigned D, unsigned Dmin, unsigned Dmax>
  *  \param Dmin Dimension being tapered into
  *
  *  \ingroup RotopeGroup
- *  \author Helge Preuss <scout@hyperspace-travel.de>
+ *  \author Helge Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D, unsigned Dmin>
     class Taper<D, Dmin, Dmin>: public taper_base<D> {

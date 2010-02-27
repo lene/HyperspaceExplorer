@@ -13,7 +13,7 @@
  *  \param D Dimension of the vector space we're working in
  *
  *  \ingroup RotopeGroup
- *  \author Helge Preuss <scout@hyperspace-travel.de>
+ *  \author Lene Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D>
     class vertex_data: public RotopeBase {

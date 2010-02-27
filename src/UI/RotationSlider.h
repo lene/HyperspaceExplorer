@@ -10,7 +10,7 @@ namespace UI {
      *  The number of digits behind the dot is passed to the constructor as
      *  integer parameter.
      *
-     *  \author Helge Preuss <scout@hyperspace-travel.de>
+     *  \author Lene Preuss <lene.preuss@gmail.com>
      */
     class RotationSlider : public QSlider {
         public:

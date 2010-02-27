@@ -11,7 +11,7 @@
  *        separate from projection
  *
  *  \ingroup RotopeGroup
- *  \author Helge Preuss <scout@hyperspace-travel.de>
+ *  \author Helge Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D, unsigned D_> class Projector: protected Projector<D-1, D_> {
     public:

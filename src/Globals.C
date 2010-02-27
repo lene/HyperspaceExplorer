@@ -3,7 +3,7 @@
 //      module:       Globals.C
 //      contains:     definitions of global variables and functions
 //      compile with: make all
-//      author:       helge preuss (scout@hyperspace-travel.de)
+//      author:       lene preuss (lene.preuss@gmail.com)
 //      license:      GPL (see License.txt)
 
 #include <qstring.h>

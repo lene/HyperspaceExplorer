@@ -4,7 +4,7 @@
 //      contains:     four-dimensional objects which cannot be defined as a
 //                    function
 //      compile with: make all
-//      author:       helge preuss (scout@hyperspace-travel.de)
+//      author:       helge preuss (lene.preuss@gmail.com)
 //      license:      GPL (see License.txt)
 
 

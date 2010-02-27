@@ -4,7 +4,7 @@
 // Description:
 //
 //
-// Author: Helge Preuss <scout@hyperspace-travel.de>, (C) 2009
+// Author: Helge Preuss <lene.preuss@gmail.com>, (C) 2009
 //
 // Copyright: See COPYING file that comes with this distribution
 //
@@ -37,7 +37,7 @@ namespace VecMath {
     *  \param D Dimensionality (nesting depth) of the vector
     *
     *  \ingroup VecMath
-    *  \author Helge Preuss <scout@hyperspace-travel.de>
+    *  \author Helge Preuss <lene.preuss@gmail.com>
     */
     template <typename T, unsigned D> class NestedVector: public NestedVector<T, D-1> {
 

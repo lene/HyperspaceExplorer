@@ -3,7 +3,7 @@
 //      module:
 //      contains:
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
+//	author:	      helge preuss (lene.preuss@gmail.com)
 //	license:      GPL (see License.txt)
 
 #ifndef HELP_H
@@ -14,7 +14,7 @@
 class QTextBrowser;
 
 /// A popup window displaying the Hyperspace Explorer online help as HTML
-/** \author Helge Preuss <scout@hyperspace-travel.de>                         */
+/** \author Helge Preuss <lene.preuss@gmail.com>                         */
 class HelpWindow : public QMainWindow {
     Q_OBJECT
     public:

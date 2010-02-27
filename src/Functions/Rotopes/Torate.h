@@ -6,7 +6,7 @@
 /// Base class for Torate classes, providing the actual torate() function
 /** \param D Dimension of the vector space we're working in
  *  \ingroup RotopeGroup
- *  \author Helge Preuss <scout@hyperspace-travel.de>
+ *  \author Helge Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D>
     class torate_base: public vertex_data<D> {
@@ -49,7 +49,7 @@ template <unsigned D>
  *  \param Dmax Last of the set of dimensions being torateed into
  *
  *  \ingroup RotopeGroup
- *  \author Helge Preuss <scout@hyperspace-travel.de>
+ *  \author Helge Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D, unsigned Dmin, unsigned Dmax>
     class Torate: public Torate<D, Dmin, Dmax-1> {
@@ -71,7 +71,7 @@ template <unsigned D, unsigned Dmin, unsigned Dmax>
  *  \param Dmin Dimension being torateed into
  *
  *  \ingroup RotopeGroup
- *  \author Helge Preuss <scout@hyperspace-travel.de>
+ *  \author Helge Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D, unsigned Dmin>
     class Torate<D, Dmin, Dmin>: public torate_base<D> {

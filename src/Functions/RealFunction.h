@@ -4,7 +4,7 @@
 // Description:
 //
 //
-// Author: Helge Preuss <scout@hyperspace-travel.de>, (C) 2008
+// Author: Lene Preuss <lene.preuss@gmail.com>, (C) 2008
 //
 // Copyright: See COPYING file that comes with this distribution
 //
@@ -27,7 +27,7 @@
  *  \todo Vector &normal (double, double, double); - or in base class?
  *
  *  \ingroup RealGroup
- *  \author Helge Preuss <scout@hyperspace-travel.de>                         */
+ *  \author Lene Preuss <lene.preuss@gmail.com>                         */
 class RealBase: public Function {
     public:
         /** type of the function used to generate values, optimized with a
@@ -125,7 +125,7 @@ class RealBase: public Function {
  *  display list.
  *
  *  \ingroup RealGroup
- *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
+ *  @author Lene Preuss <lene.preuss@gmail.com>                         */
 class RealFunction: public RealBase {
     public:
         RealFunction(const QString &name);

@@ -4,7 +4,7 @@
 /// Description: Implementation for createCustomFunction() and
 ///              createCustomSurface()
 ///
-/// @author: Helge Preuss <scout@hyperspace-travel.de>, (C) 2008
+/// @author: Helge Preuss <lene.preuss@gmail.com>, (C) 2008
 ///
 /// Copyright: See COPYING file that comes with this distribution
 ///

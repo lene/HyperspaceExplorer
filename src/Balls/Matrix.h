@@ -3,7 +3,7 @@
 //      module:       Matrix.H
 //      contains:     template declaration and definition of a matrix class
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
+//	author:	      lene preuss (lene.preuss@gmail.com)
 //	license:      GPL (see License.txt)
 
 

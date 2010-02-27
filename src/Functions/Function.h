@@ -3,7 +3,7 @@
 //      contains:     class Function: abstract base class for all that follow
 //		      implementations of the Function class
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
+//	author:	      helge preuss (lene.preuss@gmail.com)
 //	license:      GPL (see License.txt)
 
 
@@ -76,7 +76,7 @@
  *  \todo  operator () (double t, double u, double v) - ditto
  *
  *  \ingroup FunctionGroup
- *  \author Helge Preuss <scout@hyperspace-travel.de>                         */
+ *  \author Helge Preuss <lene.preuss@gmail.com>                         */
 class Function {
 
     public:

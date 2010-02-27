@@ -3,7 +3,7 @@
 //      module:       Vector.H
 //      contains:     class definitions for class Vector
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
+//	author:	      lene preuss (lene.preuss@gmail.com)
 //	license:      GPL (see License.txt)
 
 
@@ -33,7 +33,7 @@ namespace VecMath {
     /** @param D dimension of the vector
      *  @param N numerical type of the vector elements
      *  \ingroup VecMath
-     *  @author Helge Preuss <scout@hyperspace-travel.de>                     */
+     *  @author Lene Preuss <lene.preuss@gmail.com>                     */
     template <unsigned D, typename N = double> class Vector {
 
         public:

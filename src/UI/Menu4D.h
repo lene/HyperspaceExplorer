@@ -16,7 +16,7 @@ class SurfaceFactory;
 /** This class has been outsourced from C4DView to keep C4DView to a managable
  *  size.
  *  \ingroup UIGroup
- *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
+ *  @author Helge Preuss <lene.preuss@gmail.com>                         */
 class C4DView::Menu4D: public QMenu {
 
     Q_OBJECT

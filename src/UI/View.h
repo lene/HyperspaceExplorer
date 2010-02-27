@@ -4,7 +4,7 @@
 // Description:
 //
 //
-// Author: Helge Preuss <scout@hyperspace-travel.de>, (C) 2008
+// Author: Helge Preuss <lene.preuss@gmail.com>, (C) 2008
 //
 // Copyright: See COPYING file that comes with this distribution
 //

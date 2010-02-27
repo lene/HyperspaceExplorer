@@ -3,7 +3,7 @@
 //      module:
 //      contains:
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
+//	author:	      helge preuss (lene.preuss@gmail.com)
 //	license:      GPL (see License.txt)
 
 
@@ -26,7 +26,7 @@
         F_3 & = & Imag(f(z))
     \f}
  *  \ingroup FunctionGroup
- *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
+ *  @author Helge Preuss <lene.preuss@gmail.com>                         */
 class ComplexFunction: public Surface {
     public:
         /// Minimal constructor, sets the function name

@@ -3,7 +3,7 @@
 //      module:
 //      contains:
 //      compile with: make all
-//      author:       helge preuss (scout@hyperspace-travel.de)
+//      author:       lene preuss (lene.preuss@gmail.com)
 //      license:      GPL (see License.txt)
 
 
@@ -27,7 +27,7 @@
  *  @todo Vector &normal (double, double); - or in base class?
  *
  *  \ingroup SurfaceGroup
- *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
+ *  @author Lene Preuss <lene.preuss@gmail.com>                         */
 class SurfaceBase: public Function {
     public:
         /** type of the function used to generate values, optimized with a
@@ -106,7 +106,7 @@ class SurfaceBase: public Function {
 
 /// Parametrized surface in four-space defined by \f$ f: R^2 \rightarrow R^4 \f$
 /** \ingroup FunctionGroup
- *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
+ *  @author Lene Preuss <lene.preuss@gmail.com>                         */
 class Surface: public SurfaceBase {
     public:
         Surface();

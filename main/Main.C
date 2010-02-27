@@ -3,7 +3,7 @@
 //      module:
 //      contains:
 //      compile with: make all
-//      author:       helge preuss (scout@hyperspace-travel.de)
+//      author:       helge preuss (lene.preuss@gmail.com)
 //      license:      GPL (see License.txt)
 
 /** \mainpage HyperspaceExplorer
@@ -393,7 +393,7 @@ int main (int argc, char *argv[]) {
     } catch (std::logic_error e) {
         std::cerr << "\n\n"
             "The programmer of this software has done something wrong.\n"
-            "You can drop her a message: <scout@hyperspace-travel.de>\n"
+            "You can drop her a message: <lene.preuss@gmail.com>\n"
             "or use the bug tracker for Hyperspace Explorer at:\n"
             "https://sourceforge.net/tracker2/?func=add&group_id=34073&atid=410707\n"
             "Please add the following message to the bug report: \n"

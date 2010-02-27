@@ -3,7 +3,7 @@
 //      module:
 //      contains:
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
+//	author:	      helge preuss (lene.preuss@gmail.com)
 //	license:      GPL (see License.txt)
 
 
@@ -59,7 +59,7 @@ namespace UI {
                 || (YEdit->text().isEmpty()) || (ZEdit->text().isEmpty())
                 || (WEdit->text().isEmpty())) {
                 QMessageBox::warning (this, "Missing fields",
-        "Please fill in all fields: A name for the function and a function f:R²->R \
+        "Please fill in all fields: A name for the function and a function f:Rï¿½->R \
         for all four components of the resulting vector!");
                 return false;
             }

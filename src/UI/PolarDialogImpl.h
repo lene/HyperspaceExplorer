@@ -3,7 +3,7 @@
 //      module:
 //      contains:
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
+//	author:	      helge preuss (lene.preuss@gmail.com)
 //	license:      GPL (see License.txt)
 
 #include "ui_PolarDialog.h"
@@ -18,7 +18,7 @@ namespace UI {
          *  loaded to be displayed on screen
          *  \todo Make the above definition mathematically correct
          *  \ingroup UIGroup
-         *  @author Helge Preuss <scout@hyperspace-travel.de>                 */
+         *  @author Helge Preuss <lene.preuss@gmail.com>                 */
         class PolarDialogImpl:
                 public QDialog, public Ui::PolarDialog, public PluginCreator {
             Q_OBJECT

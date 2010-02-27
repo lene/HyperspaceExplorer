@@ -3,7 +3,7 @@
 //      module:       Help.C
 //      contains:     code for displaying the help window
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
+//	author:	      helge preuss (lene.preuss@gmail.com)
 //	license:      GPL (see License.txt)
 
 #include <iostream>

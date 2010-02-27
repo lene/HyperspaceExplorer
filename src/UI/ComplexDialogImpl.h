@@ -3,7 +3,7 @@
 //      module:
 //      contains:
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
+//	author:	      lene preuss (lene.preuss@gmail.com)
 //	license:      GPL (see License.txt)
 
 #include "ui_ComplexDialog.h"
@@ -15,7 +15,7 @@ namespace UI {
         /** The function will then be compiled into a dynamic library and loaded to be
         *  displayed on screen.
         *  \ingroup UIGroup
-        *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
+        *  @author Lene Preuss <lene.preuss@gmail.com>                         */
         class ComplexDialogImpl:
                 public QDialog, public Ui::ComplexDialog, public PluginCreator {
             Q_OBJECT

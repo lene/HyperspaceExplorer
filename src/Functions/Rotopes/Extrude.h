@@ -5,7 +5,7 @@
 
 /// Base class for Extrude classes, providing the actual extrude() function
 /** \ingroup RotopeGroup
- *  \author Helge Preuss <scout@hyperspace-travel.de>
+ *  \author Helge Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D>
     class extrude_base: public vertex_data<D> {
@@ -55,7 +55,7 @@ template <unsigned D>
  *  \param Dmax Last of the set of dimensions being tapered into
  *
  *  \ingroup RotopeGroup
- *  \author Helge Preuss <scout@hyperspace-travel.de>
+ *  \author Helge Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D, unsigned Dmin, unsigned Dmax>
     class Extrude: public Extrude<D, Dmin, Dmax-1> {
@@ -88,7 +88,7 @@ template <unsigned D, unsigned Dmin, unsigned Dmax>
  *  \param Dmin Dimension being tapered into
  *
  *  \ingroup RotopeGroup
- *  \author Helge Preuss <scout@hyperspace-travel.de>
+ *  \author Helge Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D, unsigned Dmin>
     class Extrude<D, Dmin, Dmin>: public extrude_base<D> {

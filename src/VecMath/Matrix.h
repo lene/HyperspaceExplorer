@@ -3,7 +3,7 @@
 //      module:       Matrix.H
 //      contains:     template declaration and definition of a Matrix class
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
+//	author:	      lene preuss (lene.preuss@gmail.com)
 //	license:      GPL (see License.txt)
 
 
@@ -22,7 +22,7 @@ namespace VecMath {
     /** \param D dimension of the matrix
      *  \param N numerical type of the matrix elements
      *  \ingroup VecMath
-     *  \author Helge Preuss <scout@hyperspace-travel.de>                     */
+     *  \author Lene Preuss <lene.preuss@gmail.com>                     */
     template <unsigned D, typename N = double> class Matrix {
         public:
             Matrix<D, N> ();

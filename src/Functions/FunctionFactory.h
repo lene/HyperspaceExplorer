@@ -33,7 +33,7 @@ class Function;
  *  \code
  *  Function *f = TheFunctionFactory::Instance().createFunction("Hypercube");
  *  \endcode
- * \author Helge Preuss <scout@hyperspace-travel.de>                          */
+ * \author Helge Preuss <lene.preuss@gmail.com>                          */
 class FunctionFactory {
 
     public:

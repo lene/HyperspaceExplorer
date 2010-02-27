@@ -12,7 +12,7 @@
 /// Conditionally prints messages, if the preprocessor variable DEBUG is defined
 /** That implies a lot of \#ifdef DEBUG in its declaration as well as its
  *  definition. Never mind the ugliness.
- *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
+ *  @author Helge Preuss <lene.preuss@gmail.com>                         */
 class Log{
     public:
         /** print a string with a line break */
