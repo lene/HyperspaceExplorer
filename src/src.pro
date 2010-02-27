@@ -59,6 +59,7 @@ HEADERS += Functions/Rotopes/Rotope.h \
            Functions/Rotopes/Projector.h \
            Functions/Rotopes/RotopeInterface.h \
            Functions/Rotopes/VertexData.h \
+           Functions/Rotopes/VertexDataPrinter.h \
            Functions/Rotopes/Realm.h \
            Functions/Rotopes/Extrude.h \
            Functions/Rotopes/Taper.h \
