@@ -16,7 +16,7 @@
  *  \author Lene Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D>
-    class vertex_data: public RotopeInterface {
+    class VertexData: public RotopeInterface {
 
         const static double PROJECTION_SCREEN_W = 2.;
         const static double PROJECTION_CAMERA_W = 8.;
@@ -31,7 +31,7 @@ template <unsigned D>
 
     protected:
         /// Create an empty array of vertices.
-        vertex_data(): _dimension(0), _X(), _transform() {
+        VertexData(): _dimension(0), _X(), _transform() {
             X().push_back(VecMath::Vector<D>());
         }
 
@@ -92,14 +92,14 @@ using std::vector;
 #include <iomanip>
 #include <algorithm>
 
-template <unsigned D> std::string vertex_data<D>::toString() {
+template <unsigned D> std::string VertexData<D>::toString() {
     std::ostringstream o;
     printToStream(o);
     o << std::ends;
     return o.str();
 }
 
-template <unsigned D> void vertex_data<D>::printToStream(std::ostream &out) {
+template <unsigned D> void VertexData<D>::printToStream(std::ostream &out) {
 
     out << std::string(PRINT_VERTICES_NUM_COLUMNS*PRINT_VERTICES_COLUMN_WIDTH, '-')
         << std::endl;
@@ -116,7 +116,7 @@ template <unsigned D> void vertex_data<D>::printToStream(std::ostream &out) {
         << std::endl;
 }
 
-template <unsigned D> std::string vertex_data<D>::verticesToString(
+template <unsigned D> std::string VertexData<D>::verticesToString(
         unsigned num_columns) const {
 
     std::ostringstream vertices_outstream;
@@ -127,7 +127,7 @@ template <unsigned D> std::string vertex_data<D>::verticesToString(
     return vertices_outstream.str();
 }
 
-template <unsigned D> void vertex_data<D>::printVertices(unsigned num_columns,
+template <unsigned D> void VertexData<D>::printVertices(unsigned num_columns,
                                                          std::ostream &out) const {
     for (unsigned i = 0; i < X().size(); i += num_columns) {
         out << verticesToStringRow(i, num_columns) << std::endl;
@@ -135,7 +135,7 @@ template <unsigned D> void vertex_data<D>::printVertices(unsigned num_columns,
 }
 
 
-template <unsigned D> std::string vertex_data<D>::verticesToStringRow(
+template <unsigned D> std::string VertexData<D>::verticesToStringRow(
         unsigned base_index, unsigned num_columns) const {
 
     std::ostringstream column_outstream;
@@ -146,7 +146,7 @@ template <unsigned D> std::string vertex_data<D>::verticesToStringRow(
     return column_outstream.str();
 }
 
-template <unsigned D> void vertex_data<D>::printVerticesRow(unsigned base_index,
+template <unsigned D> void VertexData<D>::printVerticesRow(unsigned base_index,
                                                             unsigned num_columns,
                                                             std::ostream& out) const {
     const unsigned PRINT_VERTICES_INDEX_WIDTH = 5;
@@ -168,7 +168,7 @@ template <unsigned D> void vertex_data<D>::printVerticesRow(unsigned base_index,
 }
 
 template <unsigned D>
-    std::vector<VecMath::Vector<4> > vertex_data<D>::vertices() {
+    std::vector<VecMath::Vector<4> > VertexData<D>::vertices() {
 //        Transform(VecMath::Rotation<D>(), VecMath::Vector<D>());
         Projector<D, 4> p;
         return p(X(), PROJECTION_SCREEN_W, PROJECTION_CAMERA_W);  /// \todo This is hardcoded! Ugh!
@@ -178,7 +178,7 @@ template <unsigned D>
  *  \param d Dimension on which the transform acts
  */
 template <unsigned D>
-    void vertex_data<D>::addTransform(unsigned d,
+    void VertexData<D>::addTransform(unsigned d,
                                       const VecMath::RotationBase *R) {
     std::cerr << "vertex_data<" << D << ">::addTransform("
             << d << ", " << typeid(R).name() << ")\n";

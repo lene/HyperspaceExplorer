@@ -42,8 +42,8 @@ class RotopeFactory {
                  *  \param rotope Vertices to perform the extrusions on
                  *  \return New list of vertices, augmented by the extrusion
                  */
-                vertex_data<D> *operator()(std::string actions,
-                                           vertex_data<D> *rotope) {
+                VertexData<D> *operator()(std::string actions,
+                                           VertexData<D> *rotope) {
                 if (d >= D) {
                     throw std::logic_error("RotopeFactory::performAction() called "
                             "on a higher dimension than the vector space allows");
@@ -79,8 +79,8 @@ class RotopeFactory {
         template <unsigned D> class RotopeAction<D, 0> {
             public:
                 /// Perform the extrusion operations
-                vertex_data<D> *operator()(std::string actions,
-                                           vertex_data<D> *rotope) {
+                VertexData<D> *operator()(std::string actions,
+                                           VertexData<D> *rotope) {
                     switch(actions[0]) {
                         case 'E': case 'e':
                             return new Extrude<D, 0, 0>(*rotope);

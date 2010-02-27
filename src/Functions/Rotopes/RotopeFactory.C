@@ -30,47 +30,47 @@ RotopeInterface *RotopeFactory::generate(const std::string &actions) {
                     " with a dimension of at least 2");
             break;
         case 2: {
-            vertex_data<4> tmp;
+            VertexData<4> tmp;
             RotopeAction<4,1> perform;
             return perform(actions, &tmp);
         }
         case 3: {
-            vertex_data<4> tmp;
+            VertexData<4> tmp;
             RotopeAction<4,2> perform;
             return perform(actions, &tmp);
         }
         case 4: {
-            vertex_data<4> tmp;
+            VertexData<4> tmp;
             RotopeAction<4,3> perform;
             return perform(actions, &tmp);
         }
         case 5: {
-            vertex_data<5> tmp;
+            VertexData<5> tmp;
             RotopeAction<5,4> perform;
             return perform(actions, &tmp);
         }
         case 6: {
-            vertex_data<6> tmp;
+            VertexData<6> tmp;
             RotopeAction<6,5> perform;
             return perform(actions, &tmp);
         }
         case 7: {
-            vertex_data<7> tmp;
+            VertexData<7> tmp;
             RotopeAction<7,6> perform;
             return perform(actions, &tmp);
         }
         case 8: {
-            vertex_data<8> tmp;
+            VertexData<8> tmp;
             RotopeAction<8,7> perform;
             return perform(actions, &tmp);
         }
         case 9: {
-            vertex_data<9> tmp;
+            VertexData<9> tmp;
             RotopeAction<9,8> perform;
             return perform(actions, &tmp);
         }
         case 10: {
-            vertex_data<10> tmp;
+            VertexData<10> tmp;
             RotopeAction<10,9> perform;
             return perform(actions, &tmp);
         }
@@ -81,5 +81,5 @@ RotopeInterface *RotopeFactory::generate(const std::string &actions) {
     }
 
     // This is needed to prevent a compiler warning about not returning void
-    return new vertex_data<4>;
+    return new VertexData<4>;
 }

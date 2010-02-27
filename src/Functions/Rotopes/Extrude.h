@@ -8,14 +8,14 @@
  *  \author Helge Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D>
-    class extrude_base: public vertex_data<D> {
+    class extrude_base: public VertexData<D> {
 
     public:
 
         /// Create an empty extrude_base object
-        extrude_base(): vertex_data<D>() { }
+        extrude_base(): VertexData<D>() { }
         /// Create an extrude_base object from an already existing object
-        extrude_base(const vertex_data<D> &v): vertex_data<D>(v) { }
+        extrude_base(const VertexData<D> &v): VertexData<D>(v) { }
 
         /// Extrudes an object along a given dimension
         /** For each point in the vertex array, a copy is made and shifted along the
@@ -78,7 +78,7 @@ template <unsigned D, unsigned Dmin, unsigned Dmax>
          *        - Dmin or Dmax >= vertex_data::_dimension
          *        - vertex_data::_dimension == 0
          */
-        Extrude(const vertex_data<D> &v): Extrude<D, Dmin, Dmax-1>(v) {
+        Extrude(const VertexData<D> &v): Extrude<D, Dmin, Dmax-1>(v) {
             extrude_base<D>::extrude(Dmax);
         }
     };
@@ -108,7 +108,7 @@ template <unsigned D, unsigned Dmin>
          *        - Dmin >= D
          *        - Dmin >= vertex_data::_dimension
          */
-        Extrude(const vertex_data<D> &v): extrude_base<D>(v) {
+        Extrude(const VertexData<D> &v): extrude_base<D>(v) {
             extrude_base<D>::extrude(Dmin);
         }
     };
@@ -123,17 +123,17 @@ template <unsigned D> void extrude_base<D>::extrude(unsigned d) {
 
     VecMath::Vector<D> x;
     x[d] = 1.;
-    unsigned xsize = vertex_data<D>::X().size();
+    unsigned xsize = VertexData<D>::X().size();
     for (unsigned i = 0; i < xsize; ++i) {
-        vertex_data<D>::X()[i] -= x;
-        vertex_data<D>::X().push_back(vertex_data<D>::X()[i]+x*2.);
+        VertexData<D>::X()[i] -= x;
+        VertexData<D>::X().push_back(VertexData<D>::X()[i]+x*2.);
     }
     
-    if (d == 0) vertex_data<D>::realm() = Realm(0);
+    if (d == 0) VertexData<D>::realm() = Realm(0);
     
-    vertex_data<D>::realm() = vertex_data<D>::realm().extrude(xsize);
+    VertexData<D>::realm() = VertexData<D>::realm().extrude(xsize);
     
-    vertex_data<D>::dimension()++;   //  object is now one dimension higher
+    VertexData<D>::dimension()++;   //  object is now one dimension higher
 }
 
 #endif

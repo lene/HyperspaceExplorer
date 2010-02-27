@@ -9,12 +9,12 @@
  *  \author Helge Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D>
-    class taper_base: public vertex_data<D> {
+    class taper_base: public VertexData<D> {
 
         public:
             /// Create a taper_base object from an already existing object
-            taper_base(const vertex_data<D> &v):
-                vertex_data<D>(v), _previous_dim(-1), _pre_previous_dim (-1) { }
+            taper_base(const VertexData<D> &v):
+                VertexData<D>(v), _previous_dim(-1), _pre_previous_dim (-1) { }
 
             /// Execute the taper action of the previous object along axis \p d.
             /** Generally, a taper action is defined by the following formulas.
@@ -103,7 +103,7 @@ template <unsigned D, unsigned Dmin, unsigned Dmax>
              *        - Dmin or Dmax >= vertex_data::_dimension
              *        - vertex_data::_dimension == 0
              */
-            Taper(const vertex_data<D> &v): Taper<D, Dmin, Dmax-1>(v) {
+            Taper(const VertexData<D> &v): Taper<D, Dmin, Dmax-1>(v) {
                 taper_base<D>::taper(Dmax);
             }
     };
@@ -124,7 +124,7 @@ template <unsigned D, unsigned Dmin>
              *        - Dmin  >= vertex_data::_dimension
              *        - vertex_data::_dimension == 0
              */
-            Taper(const vertex_data<D> &v): taper_base<D>(v) {
+            Taper(const VertexData<D> &v): taper_base<D>(v) {
                 taper_base<D>::taper(Dmin);
             }
     };
@@ -136,7 +136,7 @@ template <unsigned D> void taper_base<D>::taper(unsigned d) {
             "taper_base::taper() called on a higher dimension than the "
             "vector space allows");
     }
-    if (vertex_data<D>::X().size() < 2) {
+    if (VertexData<D>::X().size() < 2) {
         throw std::logic_error(
             "taper_base::taper() can only operate on at least two vertices");
     }
@@ -154,11 +154,11 @@ template <unsigned D> void taper_base<D>::taper(unsigned d) {
             We can skip the test for the dimension tapered into, because it's
             all zero by definition anyway.
         */
-        for(unsigned i = 0; i < vertex_data<D>::X().size(); ++i) {
-            xnew += vertex_data<D>::X()[i];
-            vertex_data<D>::X()[i][d] -= displacement;
+        for(unsigned i = 0; i < VertexData<D>::X().size(); ++i) {
+            xnew += VertexData<D>::X()[i];
+            VertexData<D>::X()[i][d] -= displacement;
         }
-        xnew *= 1./vertex_data<D>::X().size();
+        xnew *= 1./VertexData<D>::X().size();
 
         xnew[d] = displacement;
     } else {
@@ -166,7 +166,7 @@ template <unsigned D> void taper_base<D>::taper(unsigned d) {
             coordinate last tapered into changes (it is halved), in addition to
             the newly extruded point.
         */
-        xnew = vertex_data<D>::X().back();
+        xnew = VertexData<D>::X().back();
         double displacement;
 
         if (_pre_previous_dim < 0) {
@@ -192,20 +192,20 @@ template <unsigned D> void taper_base<D>::taper(unsigned d) {
 
             xnew[_previous_dim] /= 2.;
         }
-        for(unsigned i = 0; i < vertex_data<D>::X().size(); ++i) {
-            vertex_data<D>::X()[i][d] -= displacement;
+        for(unsigned i = 0; i < VertexData<D>::X().size(); ++i) {
+            VertexData<D>::X()[i][d] -= displacement;
         }
 
     }
 
-    vertex_data<D>::X().push_back(xnew);
+    VertexData<D>::X().push_back(xnew);
 
-    vertex_data<D>::realm() = vertex_data<D>::realm().taper(vertex_data<D>::X().size()-1);
+    VertexData<D>::realm() = VertexData<D>::realm().taper(VertexData<D>::X().size()-1);
 
     _pre_previous_dim = _previous_dim;
     _previous_dim = d;
 
-    vertex_data<D>::dimension()++;   //  object is now one dimension higher
+    VertexData<D>::dimension()++;   //  object is now one dimension higher
 }
 
 #endif

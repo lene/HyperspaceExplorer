@@ -9,12 +9,12 @@
  *  \author Helge Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D>
-    class torate_base: public vertex_data<D> {
+    class torate_base: public VertexData<D> {
 
         public:
             /// Create a torate_base object from an already existing object
-            torate_base(const vertex_data<D> &v):
-                vertex_data<D>(v) { }
+            torate_base(const VertexData<D> &v):
+                VertexData<D>(v) { }
 
             /// Execute the torate action of the previous object along axis \p d.
             void torate(unsigned d);
@@ -61,7 +61,7 @@ template <unsigned D, unsigned Dmin, unsigned Dmax>
              *        - Dmin or Dmax >= vertex_data::_dimension
              *        - vertex_data::_dimension == 0
              */
-            Torate(const vertex_data<D> &v): Torate<D, Dmin, Dmax-1>(v) {
+            Torate(const VertexData<D> &v): Torate<D, Dmin, Dmax-1>(v) {
                 torate_base<D>::torate(Dmax);
             }
     };
@@ -82,7 +82,7 @@ template <unsigned D, unsigned Dmin>
              *        - Dmin  >= vertex_data::_dimension
              *        - vertex_data::_dimension == 0
              */
-            Torate(const vertex_data<D> &v): torate_base<D>(v) {
+            Torate(const VertexData<D> &v): torate_base<D>(v) {
                 torate_base<D>::torate(Dmin);
             }
     };
