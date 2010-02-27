@@ -14,10 +14,12 @@
 #ifndef REALM_H
 #define REALM_H
 
-#include "uintvec.h"
+//#include "uintvec.h"
 #include "Vector.h"
 
 #include <string>
+#include <list>
+#include <vector>
 
 class Rotope;
 
@@ -49,7 +51,7 @@ class Realm {
 public:
 
     typedef std::vector<VecMath::Vector<4> > vertex_container_type;
-    /// Must support push_back and forward iterator. Currently also operator[].
+    /// Must support push_back, forward iterator, reverse iterator, operator[].
     typedef std::vector<Realm> realm_container_type;
     
     /// Default constructor: Realm points to the first vertex in the array.
@@ -71,71 +73,53 @@ public:
     /// Destructor. Frees managed Realms automatically.
     ~Realm() { }
 
-    /// Returns the number of subrealms the Realm is made of.
+    /// Returns the number of subrealms the Realm is made of, emulating realm_container_type interface.
     unsigned size() const { return _subrealm.size(); }
-
-    /// Returns the Realm to a completely empty state
+    /// Returns the Realm to a completely empty state, emulating realm_container_type interface.
     void clear();
+    /// Add a new subrealm to the list, emulating realm_container_type interface.
+    void push_back(const Realm &r);
+    /// Pointer to first subrealm, emulating realm_container_type interface.
+    realm_container_type::iterator begin() { return _subrealm.begin(); }
+    /// Const pointer to first subrealm, emulating realm_container_type interface.
+    realm_container_type::const_iterator cbegin() const { return _subrealm.begin(); }
+
+    /// Pointer past last subrealm, emulating realm_container_type interface.
+    realm_container_type::iterator end() { return _subrealm.end(); }
+    /// Const pointer past last subrealm, emulating realm_container_type interface.
+    realm_container_type::const_iterator cend() const { return _subrealm.end(); }
+
+    /// Reverse pointer to last subrealm, emulating realm_container_type interface.
+    realm_container_type::reverse_iterator rbegin() { return _subrealm.rbegin(); }
+
+    /// Reverse pointer before first subrealm, emulating realm_container_type interface.
+    realm_container_type::reverse_iterator rend() { return _subrealm.rend(); }
 
     /// Returns the dimension of the realm.
     unsigned dimension() const { return _dimension; }
     /// Sets the dimension of the realm.
     void setDimension(unsigned d) { _dimension = d; }
 
-    void setAssociatedVertices(const vertex_container_type &vertex_array) {
-        _associated_vertices = vertex_array;
-    }
+    /// Makes a Realm of dimension 0 usable as index into the vertex array.
+    operator unsigned() const;
+
     /// Create a new Realm by extruding the present Realm.
-    /** \param delta How many elements there were in the original vertex
-     *      array - IOW, how much there needs to be added to each index from
-     *      the original Realm to be pointing to the corresponding vertex
-     *      in the extruded vertex array. (Gee, that's a mouthful.)
-     */
     Realm extrude(unsigned delta);
 
     /// Create a new Realm by tapering the present Realm.
-    /** \param taper_index Index in the vertex array of the new vertex,
-     *      toward which the object is tapered.
-     */
     Realm taper(unsigned taper_index);
 
     /// Create a new Realm by rotating the present Realm.
-    /** \todo more documentation
-     *  \param num_segments How many segments to use approximating a circle.
-     *  \param size Size of the original vertex array. See extrude().
-     */
     Realm rotate(unsigned num_segments, unsigned size);
-
-    /// Add an offset to all indices into the vertex array.
-    void add(unsigned delta);
-
-    /// Add a new subrealm, emulating realm_container_type interface.
-    void push_back(const Realm &r);
 
     /// Merge \p r into the current Realm, keeping the dimension as it is.
     void merge(const Realm &r);
-
-    /// Pointer to first subrealm, emulating realm_container_type interface.
-    realm_container_type::iterator begin() { return _subrealm.begin(); }
-    realm_container_type::const_iterator cbegin() const { return _subrealm.begin(); }
-
-    /// Pointer past last subrealm, emulating realm_container_type interface.
-    realm_container_type::iterator end() { return _subrealm.end(); }
-    realm_container_type::const_iterator cend() const { return _subrealm.end(); }
-
-    /// Pointer to last subrealm, emulating realm_container_type interface.
-    realm_container_type::reverse_iterator rbegin() { return _subrealm.rbegin(); }
-
-    /// Pointer before first subrealm, emulating realm_container_type interface.
-    realm_container_type::reverse_iterator rend() { return _subrealm.rend(); }
-
-    /// Makes a Realm of dimension 0 usable as index into the vertex array.
-    operator unsigned() const;
 
     const realm_container_type &getSubrealms() const { return _subrealm; }
 
     void setSubrealms(realm_container_type sr) { _subrealm = sr; }
 
+    /// Whether all the elements in two Realms are equal
     bool operator==(const Realm &other) const;
 
     /// Whether a Realm contains another, either directly or in any subrealm
@@ -144,55 +128,44 @@ public:
     std::string toString() const;
     operator std::string() const { return toString(); }
 
+    /// Add an offset to all indices into the vertex array.
+    /** public only to satisfy unit tests.
+     *  \todo find a better way.
+     */
+    void add(unsigned delta);
+
 private:
-
-    class RealmPrinter {
-
-        static const std::string PRINT_DIMENSION_SPACER;
-
-    public:
-        RealmPrinter(const Realm *realm): _realm(realm) { }
-        
-        /// Prints the elements of the Realm.
-        void print(std::ostream &out) const;
-        
-    private:
-        void printHeader(std::ostream &out) const;
-        void printFooter(std::ostream &out) const;
-        void printPoint(std::ostream &out) const;
-        void printSubrealms(std::ostream &out) const;
-        void indentNextLine(std::ostream &out) const;
-
-        const Realm * _realm;
-        /** Highest dimension of a Realm encountered during program run; used for
-         *  print formatting
-         */
-        static unsigned _max_dimension;
-
-    };
 
     ///  Extrude a point to a line
     Realm extrudePoint(unsigned delta);
     ///  Extrude a line to a square
-    /** special case: make surfaces so OpenGL can draw them.
-     *  \c _subrealm.size() should be 2.
-     */
     Realm extrudeLine(unsigned delta);
     ///  Extrude a polygon to a prism
     Realm extrudePolygon(unsigned delta);
     ///  Extrude an N-dimensional Realm to a N+1-dimensional one, where N > 2
     Realm extrudeRealm(unsigned delta);
 
-    //  taper a line to a triangle
+    ///  Taper a line to a triangle
     Realm taperLine(unsigned taper_index);
-    ///  taper a polygon to a pyramid
+    ///  Taper a polygon to a pyramid
     Realm taperPolygon(unsigned taper_index);
-    ///  taper an N-dimensional Realm to a N+1-dimensional one, where N > 2
+    ///  Taper an N-dimensional Realm to a N+1-dimensional one, where N > 2
     Realm taperRealm(unsigned taper_index);
 
+    /// Rotate a line into a polygon approximating a circle.
     Realm rotateLine(unsigned num_segments, unsigned size);
+
+    std::list<realm_container_type> generateListOfPointsToAdd(
+        std::list<Realm> original_list, unsigned num_segments, unsigned size);
+    void insertNewPoints(std::list<Realm> &original_list,
+                         const std::list<Realm::realm_container_type> &new_points);
+
+    /// Rotate a polygon into a quasi-sphere, cylinder or cone.
     Realm rotatePolygon(unsigned num_segments, unsigned size);
-    Realm rotatePolygonCap(unsigned int num_segments, unsigned int size, std::vector< Realm > &temp_subrealms);
+    /// Upper and lower cap for a rotated polygon.
+    Realm rotatePolygonCap(unsigned int num_segments, unsigned int size,
+                           realm_container_type &temp_subrealms);
+    /// Rotate a Realm of at least 3 dimensions.
     Realm rotateRealm(unsigned num_segments, unsigned size);
 
     /// Create a Realm by extruding edges for one step of a rotation.
@@ -213,8 +186,6 @@ private:
 
     Realm generateRectSegment(unsigned i, unsigned base, unsigned delta);
 
-    unsigned maxIndex();
-    void keepIndicesBelow(unsigned max_index);
     void addKeepingInRange(unsigned delta, unsigned total_vertices, unsigned rotation_step);
     
     /// Dimension of the realm
@@ -227,6 +198,32 @@ private:
     vertex_container_type _associated_vertices;
 
     const static bool DEBUG_ROTATE = false;
+
+    /// Auxiliary class encapsulating printing and conversion to std::string.
+    class RealmPrinter {
+
+        static const std::string PRINT_DIMENSION_SPACER;
+
+    public:
+        RealmPrinter(const Realm *realm): _realm(realm) { }
+
+        /// Prints the elements of the Realm.
+        void print(std::ostream &out) const;
+
+    private:
+        void printHeader(std::ostream &out) const;
+        void printFooter(std::ostream &out) const;
+        void printPoint(std::ostream &out) const;
+        void printSubrealms(std::ostream &out) const;
+        void indentNextLine(std::ostream &out) const;
+
+        const Realm * _realm;
+        /** Highest dimension of a Realm encountered during program run; used for
+         *  print formatting
+         */
+        static unsigned _max_dimension;
+
+    };
 
 };
 

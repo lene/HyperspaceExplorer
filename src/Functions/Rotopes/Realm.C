@@ -13,15 +13,12 @@
 
 #include "Rotope.h"
 
-#include <exception>
 #include <stdexcept>
 #include <list>
-#include <sstream>
 
 using std::cout;
 using std::cerr;
 using std::endl;
-using std::vector;
 using std::list;
 
 void Realm::clear() {
@@ -32,13 +29,14 @@ void Realm::clear() {
 
 void Realm::push_back(const Realm &r) {
     if (!_dimension) _dimension = r._dimension+1;
+
     if (r._dimension != _dimension-1)
         throw std::invalid_argument(
                 "Tried to push_back() "+r.toString()+" to Realm "+toString()+".\n"
                 "You can only add realms of dimension this->_dimension-1.");
+    
     _subrealm.push_back(r);
 }
-
 
 void Realm::merge(const Realm &r) {
     if (r._dimension != _dimension)
@@ -58,7 +56,6 @@ std::string Realm::toString() const {
     realm_outstream << std::ends;
 
     return realm_outstream.str();
-
 }
 
 void Realm::add(unsigned delta) {
@@ -88,15 +85,14 @@ bool Realm::operator==(const Realm &other) const {
 
     if (_subrealm.size() != other._subrealm.size()) return false;
 
+    /* comparing _subrealm to other._subrealm does not always return true, even
+     * if the elements are equal. doing it manually. */
     for (unsigned i = 0; i < _subrealm.size(); ++i) {
-        if (!(_subrealm[i] == other._subrealm[i])) {
-            return false;
-        }
+        if (!(_subrealm[i] == other._subrealm[i])) return false;
     }
 
     return true;
 }
-
     
 bool Realm::contains(const Realm &other) const {
 
@@ -125,18 +121,23 @@ bool Realm::contains(const Realm &other) const {
  *
  *  That leads to special cases for each of the following operations:
  *  - Going from zero to one dimensions: Make a line from the point and its
- *    extruded image.
+ *    extruded image. Handled by extrudePoint().
  *  - Going from one to two dimensions: make a surface from the two end
  *    points of the line and their extruded images, storing the Realm not
  *    as a set of lines, but as a set of points and manually setting its
- *    dimension to two.
+ *    dimension to two. Handled by extrudeLine().
  *  - Going from two to three dimensions: The top and bottom caps can be
  *    copies of the current object, as in the default algorithm below, but
  *    the sides must be treated as lines, and thus repeat the algorithm
- *    described above.
+ *    described above. Handled by extrudePolygon.
  *  - Default: Top and bottom caps are (shifted) copies of the current
  *    Realm, while for the side connections the extrusion algorithm is
- *    called recursively.
+ *    called recursively. Handled by extrudeRealm().
+ *
+ *  \param delta How many elements there were in the original vertex array - IOW,
+ *      how much there needs to be added to each index from the original Realm
+ *      to be pointing to the corresponding vertex in the extruded vertex array.
+ *      (Gee, that's a mouthful.)
  */
 Realm Realm::extrude(unsigned delta) {
     switch(_dimension) {
@@ -148,6 +149,10 @@ Realm Realm::extrude(unsigned delta) {
 }
 
 Realm Realm::extrudePoint(unsigned delta) {
+    if (_dimension) {
+        throw std::logic_error("extrudePoint() called on Realm: "+toString());
+    }
+    
     realm_container_type new_subrealms;
 
     new_subrealms.push_back(_index);
@@ -157,7 +162,19 @@ Realm Realm::extrudePoint(unsigned delta) {
     return new_realm;
 }
 
+/** Special case: make surfaces so OpenGL can draw them. \c _subrealm.size()
+ *  should be 2.
+ */
 Realm Realm::extrudeLine(unsigned delta) {
+    if (_dimension != 1) {
+        throw std::logic_error("extrudeLine() called on Realm: "+toString());
+    }
+    if (_subrealm.size() != 2) {
+        throw std::logic_error(
+                "extrudeLine() called on Realm whose size is not exactly 2: "+
+                toString());
+    }
+
     realm_container_type new_subrealms;
 
     new_subrealms.push_back(_subrealm[0]._index);
@@ -172,10 +189,15 @@ Realm Realm::extrudeLine(unsigned delta) {
 }
 
 Realm Realm::extrudePolygon(unsigned delta) {
+    if (_dimension != 2) {
+        throw std::logic_error("extrudePolygon() called on Realm: "+toString());
+    }
+
     realm_container_type new_subrealms;
 
     Realm copied_realm(*this);
     new_subrealms.push_back(copied_realm);
+
     for (unsigned i = 0; i < _subrealm.size(); ++i) {
         Realm new_subrealm;
         new_subrealm.push_back(_subrealm[i]._index);
@@ -185,25 +207,36 @@ Realm Realm::extrudePolygon(unsigned delta) {
         new_subrealm._dimension = 2;
         new_subrealms.push_back(new_subrealm);
     }
+
     copied_realm.add(delta);
     new_subrealms.push_back(copied_realm);
-    Realm new_realm(new_subrealms);
-    return new_realm;
+    
+    return Realm(new_subrealms);
 }
 
 Realm Realm::extrudeRealm(unsigned delta) {
+    if (_dimension < 3) {
+        throw std::logic_error("extrudeRealm() called on Realm: "+toString());
+    }
+
     realm_container_type new_subrealms;
+
     Realm copied_realm(*this);
     new_subrealms.push_back(copied_realm);
+
     for (unsigned i = 0; i < _subrealm.size(); ++i) {
         new_subrealms.push_back(_subrealm[i].extrude(delta));
     }
+
     copied_realm.add(delta);
     new_subrealms.push_back(copied_realm);
-    Realm new_realm(new_subrealms);
-    return new_realm;
+
+    return Realm(new_subrealms);
 }
 
+/** \param taper_index Index in the vertex array of the new vertex, toward which 
+ *      the object is tapered.
+ */
 Realm Realm::taper(unsigned taper_index) {
     switch (_dimension) {
     case 0: throw std::logic_error(
@@ -217,14 +250,29 @@ Realm Realm::taper(unsigned taper_index) {
 }
 
 Realm Realm::taperLine(unsigned taper_index) {
+    if (_dimension != 1) {
+        throw std::logic_error("taperLine() called on Realm: "+toString());
+    }
+    if (_subrealm.size() != 2) {
+        throw std::logic_error(
+                "taperLine() called on Realm whose size is not exactly 2: "+
+                toString());
+    }
+
     _subrealm.push_back(Realm(taper_index));
     _dimension++;
     return *this;
 }
 
 Realm Realm::taperPolygon(unsigned taper_index) {
+    if (_dimension != 2) {
+        throw std::logic_error("taperPolygon() called on Realm: "+toString());
+    }
+
     realm_container_type new_subrealms;
+
     new_subrealms.push_back(*this);
+
     for (unsigned i = 0; i < _subrealm.size(); ++i) {
         Realm new_subrealm;
         new_subrealm.push_back(_subrealm[i]._index);
@@ -233,23 +281,32 @@ Realm Realm::taperPolygon(unsigned taper_index) {
         new_subrealm._dimension = 2;
         new_subrealms.push_back(new_subrealm);
     }
-    Realm new_realm(new_subrealms);
-    return new_realm;
+    
+    return Realm(new_subrealms);
 }
 
 Realm Realm::taperRealm(unsigned taper_index) {
+    if (_dimension < 3) {
+        throw std::logic_error("extrudeRealm() called on Realm: "+toString());
+    }
+
     realm_container_type new_subrealms;
+
     new_subrealms.push_back(*this);
+
     for (unsigned i = 0; i < _subrealm.size(); ++i) {
         new_subrealms.push_back(_subrealm[i].taper(taper_index));
     }
-    Realm new_realm(new_subrealms);
-    return new_realm;
+    
+    return Realm(new_subrealms);;
 }
 
+/** \todo more documentation
+ *  \param num_segments How many segments to use approximating a circle.
+ *  \param size Size of the original vertex array. See extrude().
+ */
 Realm Realm::rotate(unsigned num_segments, unsigned size) {
 
-    if (DEBUG_ROTATE) { cerr << "Realm::rotate(" << num_segments << ", " << size << ")--------------------------\n"; }
     switch (_dimension) {
     case 0: throw std::logic_error(
             "Tried to rotate a point: "+toString()+".\n"
@@ -263,38 +320,23 @@ Realm Realm::rotate(unsigned num_segments, unsigned size) {
 
 /** To rotate a line we must do the following.
  *
- *  Rotate both endpoints of the line N times, first the one, then the
- *  other. Connect the last rotated image of the first endpoint to the
+ *  Rotate both endpoints of the line \p num_segments times, first the one, then
+ *  the other. Connect the last rotated image of the first endpoint to the
  *  original second point and the last rotated image of the second point
- *  to the first point. If we start with the line [0, 1] and rotate it
- *  with \p num_segments = 3, we get [ 0, 2, 3, 1, 4, 5 ].
+ *  to the first point. If we start with the line <tt>[0, 1]</tt> and rotate it
+ *  with \p num_segments = 3, we get <tt>[ 0, 2, 3, 1, 4, 5 ]</tt>.
+ *
+ *  \param num_segments How many segments to use approximating a circle.
+ *  \param size Size of the original vertex array. See extrude().
  */
 Realm Realm::rotateLine(unsigned num_segments, unsigned size) {
-    //  this case seems to be working properly.
 
-    /// Copy the subrealms to a list for easier insertion
+    /// Copy the subrealms to a list for easier insertion in the middle.
     list<Realm> temp_list(_subrealm.size());
     std::copy(_subrealm.begin(), _subrealm.end(), temp_list.begin());
 
-    list< realm_container_type > realms_to_add;
-
-    unsigned index = 0;
-    for (list<Realm>::iterator i = temp_list.begin(); i != temp_list.end(); ++i, ++index) {
-        realm_container_type to_add;
-        for (unsigned j = 0; j < num_segments; ++j) {
-            to_add.push_back(rotateStep(index, j*size, size));
-        }
-        realms_to_add.push_back(to_add);
-    }
-    list<Realm>::iterator i = temp_list.begin();
-    ++i;
-    list< realm_container_type >::iterator inew = realms_to_add.begin();
-    for ( ; inew != realms_to_add.end(); ++i, ++inew) {
-        for (realm_container_type::iterator j = inew->begin(); j != inew->end(); ++j) {
-            if (DEBUG_ROTATE) { cerr << *j; }
-        }
-        temp_list.insert(i, inew->begin(), inew->end());
-    }
+    list< realm_container_type > realms_to_add = generateListOfPointsToAdd(temp_list, num_segments, size);
+    insertNewPoints(temp_list, realms_to_add);
 
     /// Copy the subrealms back from the temporary list to a vector
     _subrealm.resize(temp_list.size());
@@ -305,31 +347,104 @@ Realm Realm::rotateLine(unsigned num_segments, unsigned size) {
     return *this;
 }
 
+list<Realm::realm_container_type> Realm::generateListOfPointsToAdd(
+        list<Realm> original_list, unsigned num_segments, unsigned size) {
+    list< realm_container_type > realms_to_add;
+
+    unsigned index = 0;
+    for (list<Realm>::iterator i = original_list.begin(); i != original_list.end(); ++i, ++index) {
+        realm_container_type to_add;
+        for (unsigned j = 0; j < num_segments; ++j) {
+            to_add.push_back(rotateStep(index, j*size, size));
+        }
+        realms_to_add.push_back(to_add);
+    }
+
+    return realms_to_add;
+}
+
+void Realm::insertNewPoints(list<Realm> &original_list,
+                            const list<Realm::realm_container_type> &new_points) {
+
+    list<Realm>::iterator i = original_list.begin();
+    ++i;
+    
+    for (list< realm_container_type >::const_iterator inew = new_points.begin();
+         inew != new_points.end(); ++i, ++inew) {
+        original_list.insert(i, inew->begin(), inew->end());
+    }
+}
+
 /** For a two-dimensional surface we have to do the following.
  *
- *  First, because the surface is not stored as a list of lines, but
- *  rather as a list of points (because drawing the surface from lines
- *  would be too tedious in OpenGL) we have to split the surface corner
- *  points into line segments. Say we have a square defined as [0, 1, 3, 2]
- *  we must first split it into its edges: [0, 1], [1, 3], [3, 2], [2, 1].
+ *  First, because the surface is not stored as a list of lines, but rather as a list of points
+ *  (because drawing the surface from lines in OpenGL would be too tedious) we have to split the
+ *  surface corner points into line segments. Say we have a square defined as <tt>[0, 1, 3, 2]</tt>
+ *  we must first split it into its edges: <tt>[0, 1], [1, 3], [3, 2], [2, 1]</tt>.
  *
- *  Say we have \p num_segments = 3. What we want in the end is for the
- *  sides of the prism:
- *  [0, 1, 5, 4], [4, 5, 7, 6], [6, 7, 3, 2], [2, 3, 9, 8], [8, 9, 11, 10],
- *  [10, 11, 1, 0]
- *  and for the caps:
- *  [0, 4, 6, 2, 8, 10], [1, 5, 7, 3, 9, 11]
+ *  Say we have \p num_segments = 3. What we want in the end is for the sides of the prism:
+ *  <tt>[0, 1, 5, 4], [4, 5, 7, 6], [6, 7, 3, 2], [2, 3, 9, 8], [8, 9, 11, 10], [10, 11, 1, 0]</tt>
+ *  and for the caps: <tt>[0, 4, 6, 2, 8, 10], [1, 5, 7, 3, 9, 11]</tt>.
+
+ *  Nietzsche said (I paraphrase), "Philosophers are often poor writers because they not only tell 
+ *  us what they think, but also how they developed their thoughts." If I were a good writer, my
+ *  code would express the solution for the numbering and ordering of indices in a "rotated" Realm
+ *  clearly. Because I am not, I include my musings as a reference to whom it may concern.
  *
- *  \todo Revise this documentation.
+ *  A polygon's indices are numbered like this:
+ *  \code
+ *       5 *       * 3
+ *
+ *
+ *  0 * - original-line - * 1
+ *
+ *
+ *       2 *        * 4
+ *  \endcode
+ *
+ *  A rotation step leads to the following situation, unsatisfactorily depicted in ASCII art.
+ *  \code
+ *               5 *           * 3
+ *
+ *             11 *           * 9  <- rotated up
+ *
+ *  0,6,12 *                           * 1,7,13
+ *
+ *
+ *
+ *               2 *-----------* 4
+ *                  \          \      <- one resulting face
+ * rotated down-> 8 *-----------* 10
+ *
+ *  \endcode
+ *  To generate a polygon strip that adds a surface to all these vertices, we connect each
+ *  neighboring pair [original vertex, neighboring vertex] and their rotated images.
+ *  Naively we would just add \p num_segments (6) to connect to the rotated vertex, then add the
+ *  offset 2 to connect to the neighbour in the rotated polygon, then subtract 6 again
+ *  to connect to the neighbor in the original polygon.
+ *  In traversing the list of vertices we must use each vertex twice, because it is part of two
+ *  line segments/resulting faces. The idea is to simply add 2 to each vertex in a face, that would
+ *  lead to the next neighboring face. Let's see how that works out.
+ *  \code
+ *  [0,  6,  8, 2] -> [2,  8, 10, 4]     ok.
+ *  [4, 10,  7, 1] -> [6, 12, 13, 3]     wrong face! 12 and 13 lie across the center.
+ *  [3,  9, 11, 5] -> [5, 11, 13, 7]     wrong face again! 5 and 11 don't neighbor 13 and 7.
+ *  \endcode
+ *  Clearly, if an "overflow" occurs, ie. vertices are connected to other vertices that do not
+ *  result from the same rotation step, errors creep in.
+ *  addKeepingInRange() ensures that the vertices are kept within the same plane:
+ *  \code
+ *  [0,  6,  8, 2] -> [2,  8, 10, 4]
+ *  [4, 10,  7, 1] -> [6, 12, 11, 5]
+ *  [3,  9, 11, 5] -> [5, 11,  6, 0]
+ *  \endcode
+ *
  *  \todo Add the caps.
- *  \todo make this work for arbitrary polygons.
+ *  \todo Fix for triangles.
  */
 Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
 
-    /** the difference between base1 and base2 is usually 2, unless
-      * there are overflows, because of the way the polygon is generated from the two endpoints of a line in the
-      * first place. */
-    static const unsigned MAGIC_OFFSET_ADDED_TO_INDICES = 2;
+    static const unsigned OFFSET_BETWEEN_NEIGHBORING_INDICES = 2;
 
     if (DEBUG_ROTATE) { cerr << "rotating surface: " << toString() << endl; }
 
@@ -342,63 +457,13 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
         if (DEBUG_ROTATE) { cerr << "temp realm: " << endl << temp_realm.toString(); }
         temp_subrealms.merge(temp_realm);
 
-        /** We're adding a square for the opposite side too.
-         *  \todo Express the above sentence better.
-         *  \todo Implement the consequences from the following train of thought.
-         *
-         * Nietzsche said (I paraphrase), "Philosophers are often poor writers because they not only tell us what they
-         * think, but also how they developed their thoughts." If I were a good writer, my code would express the
-         * solution for the numbering and ordering of indices in a "rotated" Realm clearly. Because I am not, I include
-         * my musings as a reference to whom it may concern. 
-         * 
-         * Here is an observation for a full rotation step.
-         * [0, 10, 12, 2] -> [2, 12, 14, 4]     adding 2 is ok.
-         * [4, 14, 16, 6] -> [6, 16, 18, 8]     adding 2 is ok.
-         * [8, 18, 11, 1] -> [1, 11, 13, 3]     adding 2 leads to overflow (>=20), subtracting 7 instead
-         * [3, 13, 15, 5] -> [5, 15, 17, 7]     adding 2 is ok.
-         * [7, 17, 19, 9] -> [9, 19, 10, 0]     adding 2 leads to overflow (>=20), subtracting *9* instead
-         * problems occur with 8 and 9, these are the doubled vertices (0 == 8, 1 == 9).
-         *
-         * ok, inconclusive, try again with 6 instead of 4 segments.
-                (0 14 16 2 )    (2 16 18 4 )    ok.
-                (4 18 20 6 )    (6 20 22 8 )    ok.
-                (8 22 24 10 )   (10 24 26 12 )  ok.
-                (12 26 15 1 )   (14 28 17 3 )   overflow.
-                (3 17 19 5 )    (5 19 21 7 )    ok.
-                (7 21 23 9 )    (9 23 25 11 )   ok.
-                (11 25 27 13 )  (13 27 29 15 )  overflow.
-         * again, troubles with the doubles. :-) 12 == 0, 13 == 1. same with 26 and 27, and so on in 14 increments. the
-         * increment is 10 in the first example. it is always 2*(num_segments+1). 
-         *
-         * these doubles are needed though, at least [1, 11, 13, 3] in the first case. [9, 19, 10, 0] is degenerate and
-         * could be dropped.
-         *
-         * look again at [8, 18, 11, 1]. adding 2 gives [10, 20, 13, 3]. if i do %10+1 on the overflowing vertex 10, and
-         * its partner accordingly, i get the desired result. with the second pair though, i'd have to do "+1, %10".
-         *
-         * of course, +1%10 would work in the first case too. all these AFTER adding 2.
-         *
-         * for the greater number of segments (case 2), let's see:
-         *              +2              +1              %14
-         * (12 26 15 1) -> (14 28 17 3) -> (15 29 17 3) -> (1 15 17 3)
-         * this surface is not present and appears to be needed, it's triangular.
-         *
-         * (11 25 27 13) -> (13 27 29 15) -> (13 27 30 16) -> (13 27 16 2)
-         * another triangular one, if i'm not mistaken.
-         *
-         *
-         */
         Realm temp_copy = temp_realm;
-        temp_copy.setAssociatedVertices(_associated_vertices);
 
-        temp_copy.addKeepingInRange(MAGIC_OFFSET_ADDED_TO_INDICES, size, j);
+        temp_copy.addKeepingInRange(OFFSET_BETWEEN_NEIGHBORING_INDICES, size, j);
         if (DEBUG_ROTATE) { cerr << "temp copy: " << temp_copy.toString() << endl; }
         temp_subrealms.merge(temp_copy);
 
     }
-
-    if (DEBUG_ROTATE) { cout << "new realm: " << Realm(temp_subrealms).toString() << endl; }
-    if (DEBUG_ROTATE) { cerr << "/Realm::rotate(" << num_segments << ", " << size << ")------------------------\n"; }
 
 #   if false
     rotatePolygonCap(num_segments, size, temp_subrealms);
@@ -500,29 +565,6 @@ void Realm::addKeepingInRange(unsigned delta, unsigned num_segments, unsigned ro
     _subrealm[2] = extruded2;
     _subrealm[3] = base2;
 
-}
-
-
-unsigned Realm::maxIndex() {
-    if (_dimension == 0) return (unsigned)*this;
-
-    unsigned max_index = 0;
-    for (realm_container_type::iterator i = _subrealm.begin();
-         i != _subrealm.end(); ++i) {
-        if (i->maxIndex() > max_index) max_index = i->maxIndex();
-    }
-    return max_index;
-}
-
-void Realm::keepIndicesBelow(unsigned max_index) {
-    if (_dimension == 0) {
-        if (_index >= max_index) _index = max_index-1;
-    } else {
-        for (realm_container_type::iterator i = _subrealm.begin();
-             i != _subrealm.end(); ++i) {
-            i->keepIndicesBelow(max_index);
-        }
-    }
 }
 
 Realm Realm::rotatePolygonCap(unsigned num_segments, unsigned size, 
