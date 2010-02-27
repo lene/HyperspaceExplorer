@@ -1,10 +1,7 @@
 #ifndef ROTOPE_BASE_H
 #define ROTOPE_BASE_H
 
-#include "uintvec.h"
 #include "Realm.h"
-
-using VecMath::uintvec;
 
 /** \defgroup RotopeGroup N-dimensional Rotopes.
  *  For a definition of Rotopes, see http://teamikaria.com/wiki/Rotope.
@@ -29,9 +26,6 @@ public:
     virtual void print() = 0;           
 
 protected:
-
-    /// three-dimensional array of unsigned, implemented as a nested vector
-    typedef uintvec<3> uintvec3D;
 
     /// Perform a \p D -dimensional transformation
     virtual void addTransform(unsigned, const VecMath::RotationBase *) = 0;
