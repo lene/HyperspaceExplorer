@@ -409,12 +409,12 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
  *  \param total_vertices number of vertices per polygon, 2*(num_segments+1). aka \c size.
  *  \param rotation_step between 0 and num_segments-1.
  */
-void Realm::addKeepingInRange(unsigned delta, unsigned total_vertices, unsigned rotation_step) {
+void Realm::addKeepingInRange(unsigned delta, unsigned num_segments, unsigned rotation_step) {
     if (_dimension < 2) {
         throw std::invalid_argument("generating Realm must be a rectangle: "+toString());
     } else if (_dimension > 2) {
         for (vector<Realm>::iterator i = _subrealm.begin(); i != _subrealm.end(); ++i) {
-            i->addKeepingInRange(delta, total_vertices, rotation_step);
+            i->addKeepingInRange(delta, num_segments, rotation_step);
         }
         return;
     }
@@ -437,16 +437,39 @@ void Realm::addKeepingInRange(unsigned delta, unsigned total_vertices, unsigned 
      */
     unsigned base1 = _subrealm[0], extruded1 = _subrealm[1],
              base2 = _subrealm[2], extruded2 = _subrealm[3],
+             total_vertices = 2*(num_segments+1),
              min_base_index = rotation_step*(total_vertices),
              max_base_index = rotation_step*(total_vertices+1)-1,
              min_extruded_index = rotation_step*(total_vertices+1),
              max_extruded_index = rotation_step*(total_vertices+2)-1;
 
+    cerr << toString()
+        << " delta: " << delta << " total_vertices: " << total_vertices << " rotation_step " << rotation_step 
+        << " base1: " << base1<< " base2: " << base2
+        << " extruded1: " << extruded1 << " extruded2: " << extruded2
+        << " minb: " << min_base_index << " maxb: " << max_base_index
+        << " mine " << min_extruded_index << " maxe: " << max_extruded_index
+        << endl;
+
     if (base1 >= max_base_index) {
         if (extruded1 < max_extruded_index) {
             throw std::logic_error("if the base index is out of bounds, the extruded must be too! "+toString());
         }
+
         //  add and modulo here
+        base1++;
+        extruded1++;
+        while (base1 > max_base_index || extruded1 > max_extruded_index) {
+            cerr << "base1: " << base1 << " ext1: " << extruded1 << " maxb: " << max_base_index << " maxe: " << max_extruded_index << endl;
+            unsigned i;
+            std::cin >> i;
+            base1 -= total_vertices;
+            extruded1 == total_vertices;
+        }
+        if (base1 < min_base_index || extruded1 < min_extruded_index) {
+            throw new std::logic_error("dropped below boundary");
+        }
+        
     } else if (base2 >= max_base_index) {
         if (extruded2 < max_extruded_index) {
             throw std::logic_error("if the base index is out of bounds, the extruded must be too! "+toString());
