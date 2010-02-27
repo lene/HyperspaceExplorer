@@ -33,14 +33,18 @@ void Realm::clear() {
 void Realm::push_back(const Realm &r) {
     if (!_dimension) _dimension = r._dimension+1;
     if (r._dimension != _dimension-1)
-        throw std::invalid_argument("you can only add realms of dimension this->_dimension-1");
+        throw std::invalid_argument(
+                "Tried to push_back() "+r.toString()+" to Realm "+toString()+".\n"
+                "You can only add realms of dimension this->_dimension-1.");
     _subrealm.push_back(r);
 }
 
 
 void Realm::merge(const Realm &r) {
     if (r._dimension != _dimension)
-        throw std::invalid_argument("you can only merge realms of equal dimension");
+        throw std::invalid_argument(
+                "Tried to merge "+r.toString()+" into Realm "+toString()+".\n"
+                "You can only merge realms of equal dimension.");
 
     for (vector<Realm>::const_iterator i = r.cbegin(); i != r.cend(); ++i)
         _subrealm.push_back(*i);
@@ -70,7 +74,9 @@ void Realm::add(unsigned delta) {
 
 Realm::operator unsigned() const { 
     if (dimension() == 0) return _index; 
-    throw std::invalid_argument("Only a 0-dimensional Realm can be converted to an unsigned index.");
+    throw std::invalid_argument(
+            "Tried to convert Realm "+toString()+" to unsigned.\n"
+            "Only a 0-dimensional Realm can be converted to an unsigned index.");
 }
 
 
@@ -93,24 +99,20 @@ bool Realm::operator==(const Realm &other) const {
 
     
 bool Realm::contains(const Realm &other) const {
-//    if (DEBUG_ROTATE) cerr << "contains( [" << this->toString() << "], " << other.toString() << ")" << endl;
+
     if (std::find(_subrealm.begin(), _subrealm.end(), other) != _subrealm.end()) {
-//        if (DEBUG_ROTATE) cerr << "YES! in _subrealm " << "contains(" << this->toString() << ", " << other.toString() << ")" << endl;
         return true;
-        }
-//    if (DEBUG_ROTATE) cerr << other.toString() << " not found in " << this->toString()
-//         << ". dimension: " << dimension() << " other: " << other.dimension() << endl;
+    }
+
     if (other.dimension() < dimension()) {
         for (vector<Realm>::const_iterator i = _subrealm.begin();
              i != _subrealm.end(); ++i) {
             if (i->contains(other)) {
-                if (DEBUG_ROTATE) cerr << "YES! "  << "contains(" << this->toString() << ", " << other.toString() << ")" << endl;
                 return true;
             }
         }
     }
-    
-//    if (DEBUG_ROTATE) cerr << "NO! " << "contains(" << this->toString() << ", " << other.toString() << ")" << endl;
+
     return false;
 }
 
@@ -201,7 +203,8 @@ Realm Realm::extrudeRealm(unsigned delta) {
 Realm Realm::taper(unsigned taper_index) {
     switch (_dimension) {
     case 0: throw std::logic_error(
-            "Realm::taper() can only operate on at least two vertices"
+            "Tried to taper a point: "+toString()+".\n"
+            "Realm::taper() can only operate on at least two vertices."
     );
     case 1: return taperLine(taper_index);    
     case 2: return taperPolygon(taper_index);
@@ -245,7 +248,8 @@ Realm Realm::rotate(unsigned num_segments, unsigned size) {
     if (DEBUG_ROTATE) { cerr << "Realm::rotate(" << num_segments << ", " << size << ")--------------------------\n"; }
     switch (_dimension) {
     case 0: throw std::logic_error(
-            "Realm::rotate() can only operate on at least two vertices"
+            "Tried to rotate a point: "+toString()+".\n"
+            "Realm::rotate() can only operate on at least two vertices."
     );
     case 1: return rotateLine(num_segments, size);
     case 2: return rotatePolygon(num_segments, size);
@@ -411,7 +415,8 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
  */
 void Realm::addKeepingInRange(unsigned delta, unsigned num_segments, unsigned rotation_step) {
     if (_dimension < 2) {
-        throw std::invalid_argument("generating Realm must be a rectangle: "+toString());
+        throw std::invalid_argument(
+                "generating Realm must be a rectangle: "+toString());
     } else if (_dimension > 2) {
         for (vector<Realm>::iterator i = _subrealm.begin(); i != _subrealm.end(); ++i) {
             i->addKeepingInRange(delta, num_segments, rotation_step);
@@ -419,7 +424,8 @@ void Realm::addKeepingInRange(unsigned delta, unsigned num_segments, unsigned ro
         return;
     }
     if (_subrealm.size() != 4) {
-        throw std::invalid_argument("generating Realm must consist of exactly 4 vertices: "+toString());
+        throw std::invalid_argument(
+                "generating Realm must consist of exactly 4 vertices: "+toString());
     }
     
     add(delta);
@@ -436,20 +442,23 @@ void Realm::addKeepingInRange(unsigned delta, unsigned num_segments, unsigned ro
      * [j*N, ..., j*(N+1)-1], while the extruded points lie in [j*(N+1), ..., j*(N+2)-1].
      */
     unsigned base1 = _subrealm[0], extruded1 = _subrealm[1],
-             base2 = _subrealm[2], extruded2 = _subrealm[3],
+             base2 = _subrealm[3], extruded2 = _subrealm[2],
              total_vertices = 2*(num_segments+1),
-             min_base_index = rotation_step*(total_vertices),
-             max_base_index = rotation_step*(total_vertices+1)-1,
-             min_extruded_index = rotation_step*(total_vertices+1),
-             max_extruded_index = rotation_step*(total_vertices+2)-1;
+             min_base_index = rotation_step*total_vertices,
+             max_base_index = (rotation_step+1)*total_vertices-1,
+             min_extruded_index = max_base_index+1,
+             max_extruded_index = (rotation_step+2)*total_vertices-1;
 
     cerr << toString()
-        << " delta: " << delta << " total_vertices: " << total_vertices << " rotation_step " << rotation_step 
+        << " delta: " << delta << " total_vertices: " << total_vertices << " rotation_step " << rotation_step << endl
+        << " this: " << toString()
         << " base1: " << base1<< " base2: " << base2
-        << " extruded1: " << extruded1 << " extruded2: " << extruded2
+        << " extruded1: " << extruded1 << " extruded2: " << extruded2 << endl
         << " minb: " << min_base_index << " maxb: " << max_base_index
         << " mine " << min_extruded_index << " maxe: " << max_extruded_index
         << endl;
+            
+//  unsigned i; std::cin >> i;
 
     if (base1 >= max_base_index) {
         if (extruded1 < max_extruded_index) {
@@ -461,8 +470,7 @@ void Realm::addKeepingInRange(unsigned delta, unsigned num_segments, unsigned ro
         extruded1++;
         while (base1 > max_base_index || extruded1 > max_extruded_index) {
             cerr << "base1: " << base1 << " ext1: " << extruded1 << " maxb: " << max_base_index << " maxe: " << max_extruded_index << endl;
-            unsigned i;
-            std::cin >> i;
+//  unsigned i; std::cin >> i;
             base1 -= total_vertices;
             extruded1 == total_vertices;
         }
@@ -475,7 +483,22 @@ void Realm::addKeepingInRange(unsigned delta, unsigned num_segments, unsigned ro
             throw std::logic_error("if the base index is out of bounds, the extruded must be too! "+toString());
         }
         //  add and modulo here
+        base2++;
+        extruded2++;
+        while (base2 > max_base_index || extruded2 > max_extruded_index) {
+            cerr << "base2: " << base2 << " ext2: " << extruded2 << " maxb: " << max_base_index << " maxe: " << max_extruded_index << endl;
+//  unsigned i; std::cin >> i;
+            base2 -= total_vertices;
+            extruded2 == total_vertices;
+        }
+        if (base2 < min_base_index || extruded2 < min_extruded_index) {
+            throw new std::logic_error("dropped below boundary");
+        }
     }
+    _subrealm[0] = base1;
+    _subrealm[1] = extruded1;
+    _subrealm[2] = extruded2;
+    _subrealm[3] = base2;
 
     // temporary replacement for real functionality
     if (_associated_vertices.size()) {
