@@ -3,7 +3,7 @@
 
 /// \todo fix in RotopeBase that this must be included firat
 #include "Rotation.h"
-#include "Rotopes/RotopeBase.h"
+#include "Rotopes/RotopeInterface.h"
 #include "Rotopes/RotopeFactory.h"
 
 #include <string>

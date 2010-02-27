@@ -1,7 +1,7 @@
 #ifndef VERTEX_DATA_H
 #define VERTEX_DATA_H
 
-#include "RotopeBase.h"
+#include "RotopeInterface.h"
 #include "Projector.h"
 
 #include <typeinfo>
@@ -16,7 +16,7 @@
  *  \author Lene Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D>
-    class vertex_data: public RotopeBase {
+    class vertex_data: public RotopeInterface {
 
         const static double PROJECTION_SCREEN_W = 2.;
         const static double PROJECTION_CAMERA_W = 8.;

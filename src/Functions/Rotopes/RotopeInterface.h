@@ -12,7 +12,7 @@
 /** \ingroup RotopeGroup 
  *  \author Lene Preuss <lene.preuss@gmail.com>
  */
-class RotopeBase {
+class RotopeInterface {
 
 public:
 

@@ -57,7 +57,7 @@ DEPENDPATH += ./Functions/Rotopes
 HEADERS += Functions/Rotopes/Rotope.h \
            Functions/Rotopes/RotopeFactory.h \
            Functions/Rotopes/Projector.h \
-           Functions/Rotopes/RotopeBase.h \
+           Functions/Rotopes/RotopeInterface.h \
            Functions/Rotopes/VertexData.h \
            Functions/Rotopes/Realm.h \
            Functions/Rotopes/Extrude.h \

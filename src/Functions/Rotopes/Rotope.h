@@ -72,7 +72,7 @@ class Rotope : public Object {
         /// Sequence of extrusion actions needed to generate the Rotope
         std::string _actions;
         /// Actual rotope object to which all functions are delegated
-        RotopeBase *_rotope;
+        RotopeInterface *_rotope;
 };
 
 #endif

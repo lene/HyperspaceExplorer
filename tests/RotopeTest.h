@@ -5,7 +5,7 @@
 
 #include <QtTest/QtTest>
 
-class RotopeBase;
+class RotopeInterface;
 
 class RotopeTest: public QObject {
 
@@ -58,7 +58,7 @@ private:
   bool isInVertices(const VecMath::Vector<4> &vertex) const;
   void printVertices();
 
-  RotopeBase *_rotope;
+  RotopeInterface *_rotope;
 
   Realm _realm;
   std::vector<VecMath::Vector<4> > _vertices;

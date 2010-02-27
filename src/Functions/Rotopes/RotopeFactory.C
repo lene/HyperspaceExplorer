@@ -23,7 +23,7 @@ using std::string;
  *  \param actions The list of extrusion operations
  *  \return Rotope generated from \p actions
  */
-RotopeBase *RotopeFactory::generate(const std::string &actions) {
+RotopeInterface *RotopeFactory::generate(const std::string &actions) {
     switch (actions.length()) {
         case 0: case 1:
             throw std::logic_error("RotopeFactory::generate() must be called"

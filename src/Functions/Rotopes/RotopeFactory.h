@@ -27,7 +27,7 @@ using std::string;
 class RotopeFactory {
     public:
         /// Generate a Rotope
-        static RotopeBase *generate(const std::string &actions);
+        static RotopeInterface *generate(const std::string &actions);
 
     private:
         /// Functor class to perform an extrusion on a Rotope or vertex array
