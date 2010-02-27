@@ -38,8 +38,6 @@ class RotopeBase {
 
         /// Dimension of the object
         virtual unsigned &dimension() = 0;
-        /// The array of surfaces
-        virtual uintvec<2> &surface() = 0;
 
     /// Allow Rotope (which is not a RotopeBase, but contains one) free access
     friend class Rotope;

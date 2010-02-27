@@ -131,6 +131,8 @@ void Rotope::Draw () {
         Draw(_rotope->realm());
         _rotope->print();
     } else {
+        throw new std::logic_error("Rotope has no Realm member");
+#       if false
         cerr << "Drawing surfaces" << endl;
         unsigned currentPolygonSize = 0;
         for (unsigned i = 0; i < _rotope->surface().size(); i++) {
@@ -148,6 +150,7 @@ void Rotope::Draw () {
             if (currentPolygonSize > 4) glEnd();
         }
         glEnd ();
+#       endif
     }
 }
 

@@ -176,7 +176,7 @@ SOURCES += Globals.C \
 
 INSTALLDIR = "/usr/local"
 DEFINES += PREFIX="$${INSTALLDIR}"
-DEFINES += PACKAGE_BUGREPORT="regnans@gmail.com"
+DEFINES += PACKAGE_BUGREPORT="lene.preuss@gmail.com"
 DEFINES += PACKAGE_VERSION="$${VERSION}"
 DEFINES += USE_AUTO_PTR
 
@@ -188,8 +188,8 @@ CONFIG(debug){
 ### turn profiling on in debug mode
 ###
 QMAKE_CFLAGS_DEBUG += -pg -g3 -gdwarf-2
+QMAKE_CXXFLAGS_DEBUF += -pg -g3 -gdwarf-2
 QMAKE_LFLAGS_DEBUG += -pg
-QMAKE_CXXFLAGS += -g3 -gdwarf-2
 ###
 ### installation
 ###
