@@ -11,7 +11,7 @@
 template <unsigned D>
     class rotate_base: public vertex_data<D> {
 
-        const static unsigned DEFAULT_NUM_SEGMENTS = 6;
+        const static unsigned DEFAULT_NUM_SEGMENTS = 4;
 
         public:
             /// Create a rotate_base object from an already existing object
