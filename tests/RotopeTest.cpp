@@ -289,6 +289,11 @@ void RotopeTest::sphereVertices() {
     }
 }
 
+void RotopeTest::rotateTriangle() {
+    QSKIP("Rotating a triangle still segfaults", SkipSingle);
+    setRotope("ETR");
+}
+
 void RotopeTest::tesseractRealm() {
     setRotope("EEEE");
     QVERIFY(_realm.dimension() == 4);

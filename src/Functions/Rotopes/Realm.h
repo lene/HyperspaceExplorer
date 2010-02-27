@@ -186,6 +186,8 @@ private:
 
     Realm generateRectSegment(unsigned i, unsigned base, unsigned delta);
 
+    Realm generateEmpty3DRealm();
+    void addRotationStrip(Realm &all_strips, unsigned rotation_step, unsigned num_segments);
     void addKeepingInRange(unsigned delta, unsigned total_vertices, unsigned rotation_step);
     
     /// Dimension of the realm
@@ -198,6 +200,7 @@ private:
     vertex_container_type _associated_vertices;
 
     const static bool DEBUG_ROTATE = false;
+    static const unsigned OFFSET_BETWEEN_NEIGHBORING_INDICES = 2;
 
     /// Auxiliary class encapsulating printing and conversion to std::string.
     class RealmPrinter {

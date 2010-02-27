@@ -444,31 +444,37 @@ void Realm::insertNewPoints(list<Realm> &original_list,
  */
 Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
 
-    static const unsigned OFFSET_BETWEEN_NEIGHBORING_INDICES = 2;
-
     if (DEBUG_ROTATE) { cerr << "rotating surface: " << toString() << endl; }
 
     /** Create the sides (parallel to the rotation axis).
      */
-    Realm temp_subrealms;
-    temp_subrealms.setDimension(3);
+    Realm temp_subrealms = generateEmpty3DRealm();
+
     for (unsigned j = 0; j < num_segments; ++j) {
-        Realm temp_realm = rotateStep(0, j*size, size);
-        if (DEBUG_ROTATE) { cerr << "temp realm: " << endl << temp_realm.toString(); }
-        temp_subrealms.merge(temp_realm);
-
-        Realm temp_copy = temp_realm;
-
-        temp_copy.addKeepingInRange(OFFSET_BETWEEN_NEIGHBORING_INDICES, size, j);
-        if (DEBUG_ROTATE) { cerr << "temp copy: " << temp_copy.toString() << endl; }
-        temp_subrealms.merge(temp_copy);
-
+        addRotationStrip(temp_subrealms, j, size);
     }
 
 #   if false
     rotatePolygonCap(num_segments, size, temp_subrealms);
 #   endif
     return temp_subrealms;
+}
+
+Realm Realm::generateEmpty3DRealm() {
+    Realm realm;
+    realm.setDimension(3);
+    return realm;
+}
+
+void Realm::addRotationStrip(Realm &all_strips, unsigned rotation_step, unsigned num_segments) {
+        Realm temp_realm = rotateStep(0, rotation_step*num_segments, num_segments);
+        if (DEBUG_ROTATE) { cerr << "temp realm: " << endl << temp_realm.toString(); }
+        all_strips.merge(temp_realm);
+
+        Realm temp_copy = temp_realm;
+        temp_copy.addKeepingInRange(OFFSET_BETWEEN_NEIGHBORING_INDICES, num_segments, rotation_step);
+        if (DEBUG_ROTATE) { cerr << "temp copy: " << temp_copy.toString() << endl; }
+        all_strips.merge(temp_copy);
 }
 
 /** Adds an offset to indices in the realm, generating the rectangle that is
