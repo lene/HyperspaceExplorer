@@ -46,7 +46,7 @@ template <unsigned D>
 template <unsigned D>
     void VertexData<D>::VertexDataPrinter::printVertices(unsigned num_columns,
                                                          std::ostream &out) const {
-    for (unsigned i = 0; i < _vertexData->X().size(); i += num_columns) {
+    for (unsigned i = 0; i < _vertexData->raw_vertices().size(); i += num_columns) {
         out << verticesToStringRow(i, num_columns) << std::endl;
     }
 }
@@ -72,9 +72,9 @@ template <unsigned D>
 
     for (unsigned column = 0; column < num_columns; ++column) {
 
-        if (base_index+column >= _vertexData->X().size()) break;
+        if (base_index+column >= _vertexData->raw_vertices().size()) break;
 
-        std::string vec_as_string = _vertexData->X()[base_index+column].toString();
+        std::string vec_as_string = _vertexData->raw_vertices()[base_index+column].toString();
 
         int fill_width = PRINT_VERTICES_COLUMN_WIDTH-PRINT_VERTICES_INDEX_WIDTH-2-vec_as_string.length(),
             num_fill_chars = std::max(0, fill_width);

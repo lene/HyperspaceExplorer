@@ -123,10 +123,10 @@ template <unsigned D> void extrude_base<D>::extrude(unsigned d) {
 
     VecMath::Vector<D> x;
     x[d] = 1.;
-    unsigned xsize = VertexData<D>::X().size();
+    unsigned xsize = VertexData<D>::raw_vertices().size();
     for (unsigned i = 0; i < xsize; ++i) {
-        VertexData<D>::X()[i] -= x;
-        VertexData<D>::X().push_back(VertexData<D>::X()[i]+x*2.);
+        VertexData<D>::raw_vertices()[i] -= x;
+        VertexData<D>::raw_vertices().push_back(VertexData<D>::raw_vertices()[i]+x*2.);
     }
     
     if (d == 0) VertexData<D>::realm() = Realm(0);

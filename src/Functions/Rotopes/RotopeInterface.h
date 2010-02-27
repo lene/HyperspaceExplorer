@@ -21,7 +21,7 @@ public:
     virtual const Realm &realm() const = 0;
 
     /// The array of vertices, projected to four dimensions if necessary
-    virtual std::vector<VecMath::Vector<4> > vertices() = 0;
+    virtual std::vector<VecMath::Vector<4> > projected_vertices() = 0;
 
     /// Dimension of the object
     virtual unsigned dimension() const = 0;

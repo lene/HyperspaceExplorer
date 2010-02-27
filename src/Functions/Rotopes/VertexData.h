@@ -29,7 +29,7 @@ template <unsigned D>
         virtual Realm &realm() { return _realm; }
         virtual const Realm &realm() const { return _realm; }
 
-        virtual std::vector<VecMath::Vector<4> > vertices();
+        virtual std::vector<VecMath::Vector<4> > projected_vertices();
 
         virtual unsigned dimension() const { return _dimension; }
         virtual unsigned &dimension() { return _dimension; }
@@ -39,22 +39,22 @@ template <unsigned D>
     protected:
         
         /// Default c'tor. VertexData objects can only be initialized in derived classes.
-        VertexData(): _dimension(0), _X(), _transform() {
-            X().push_back(VecMath::Vector<D>());
+        VertexData(): _dimension(0), _raw_vertices(), _transform() {
+            raw_vertices().push_back(VecMath::Vector<D>());
         }
 
         /// Perform a \p D -dimensional transformation
         virtual void addTransform(unsigned, const VecMath::RotationBase *);
 
         /// The array of vertices
-        std::vector<VecMath::Vector<D> > &X() { return _X; }
-        const std::vector<VecMath::Vector<D> > &X() const { return _X; }
+        std::vector<VecMath::Vector<D> > &raw_vertices() { return _raw_vertices; }
+        const std::vector<VecMath::Vector<D> > &raw_vertices() const { return _raw_vertices; }
 
     private:
 
         unsigned _dimension;                    ///< Dimension of the object
 
-        std::vector<VecMath::Vector<D> > _X;    ///< The array of vertices
+        std::vector<VecMath::Vector<D> > _raw_vertices;    ///< The array of vertices
 
         /// The array of realms (D-1 dimensional surfaces of D-dimensional object)
         Realm _realm;
@@ -123,10 +123,10 @@ template <unsigned D> std::string VertexData<D>::toString() {
 
 
 template <unsigned D>
-    std::vector<VecMath::Vector<4> > VertexData<D>::vertices() {
+    std::vector<VecMath::Vector<4> > VertexData<D>::projected_vertices() {
 //        Transform(VecMath::Rotation<D>(), VecMath::Vector<D>());
         Projector<D, 4> p;
-        return p(X(), PROJECTION_SCREEN_W, PROJECTION_CAMERA_W);  /// \todo This is hardcoded! Ugh!
+        return p(raw_vertices(), PROJECTION_SCREEN_W, PROJECTION_CAMERA_W);  /// \todo This is hardcoded! Ugh!
     }
 
 /** \param R Rotation component of the transformation

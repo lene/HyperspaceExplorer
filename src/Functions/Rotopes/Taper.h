@@ -136,7 +136,7 @@ template <unsigned D> void taper_base<D>::taper(unsigned d) {
             "taper_base::taper() called on a higher dimension than the "
             "vector space allows");
     }
-    if (VertexData<D>::X().size() < 2) {
+    if (VertexData<D>::raw_vertices().size() < 2) {
         throw std::logic_error(
             "taper_base::taper() can only operate on at least two vertices");
     }
@@ -154,11 +154,11 @@ template <unsigned D> void taper_base<D>::taper(unsigned d) {
             We can skip the test for the dimension tapered into, because it's
             all zero by definition anyway.
         */
-        for(unsigned i = 0; i < VertexData<D>::X().size(); ++i) {
-            xnew += VertexData<D>::X()[i];
-            VertexData<D>::X()[i][d] -= displacement;
+        for(unsigned i = 0; i < VertexData<D>::raw_vertices().size(); ++i) {
+            xnew += VertexData<D>::raw_vertices()[i];
+            VertexData<D>::raw_vertices()[i][d] -= displacement;
         }
-        xnew *= 1./VertexData<D>::X().size();
+        xnew *= 1./VertexData<D>::raw_vertices().size();
 
         xnew[d] = displacement;
     } else {
@@ -166,7 +166,7 @@ template <unsigned D> void taper_base<D>::taper(unsigned d) {
             coordinate last tapered into changes (it is halved), in addition to
             the newly extruded point.
         */
-        xnew = VertexData<D>::X().back();
+        xnew = VertexData<D>::raw_vertices().back();
         double displacement;
 
         if (_pre_previous_dim < 0) {
@@ -192,15 +192,15 @@ template <unsigned D> void taper_base<D>::taper(unsigned d) {
 
             xnew[_previous_dim] /= 2.;
         }
-        for(unsigned i = 0; i < VertexData<D>::X().size(); ++i) {
-            VertexData<D>::X()[i][d] -= displacement;
+        for(unsigned i = 0; i < VertexData<D>::raw_vertices().size(); ++i) {
+            VertexData<D>::raw_vertices()[i][d] -= displacement;
         }
 
     }
 
-    VertexData<D>::X().push_back(xnew);
+    VertexData<D>::raw_vertices().push_back(xnew);
 
-    VertexData<D>::realm() = VertexData<D>::realm().taper(VertexData<D>::X().size()-1);
+    VertexData<D>::realm() = VertexData<D>::realm().taper(VertexData<D>::raw_vertices().size()-1);
 
     _pre_previous_dim = _previous_dim;
     _previous_dim = d;

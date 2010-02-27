@@ -327,7 +327,7 @@ void RotopeTest::setRealm() {
 }
 
 void RotopeTest::setVertices() {
-    _vertices = _rotope->vertices();
+    _vertices = _rotope->projected_vertices();
 }
 
 bool RotopeTest::isInVertices(const VecMath::Vector<4> &vertex) const {

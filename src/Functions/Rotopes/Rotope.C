@@ -100,7 +100,7 @@ void Rotope::Initialize() {
         _rotope->addTransform(i, new VecMath::Rotation<5>());
     }
 
-    setX(_rotope->vertices());
+    setX(_rotope->projected_vertices());
 
     Object::Initialize();
 
