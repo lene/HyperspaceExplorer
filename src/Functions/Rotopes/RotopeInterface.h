@@ -22,8 +22,11 @@ public:
     /// The array of vertices, projected to four dimensions if necessary
     virtual std::vector<VecMath::Vector<4> > vertices() = 0;
 
+    virtual std::string toString() = 0;
+    operator std::string() { return toString(); }
+    
     /// Output of all vertices
-    virtual void print() = 0;           
+    void print() { std::cout << toString(); }
 
 protected:
 

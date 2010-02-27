@@ -26,7 +26,8 @@ template <unsigned D>
         virtual Realm &realm() { return _realm; }
         /// The array of vertices, projected to four dimensions if necessary
         virtual std::vector<VecMath::Vector<4> > vertices();
-        virtual void print();           ///< Output of all vertices
+
+        virtual std::string toString();
 
     protected:
         /// Create an empty array of vertices.
@@ -43,14 +44,16 @@ template <unsigned D>
         std::vector<VecMath::Vector<D> > &X() { return _X; }
         const std::vector<VecMath::Vector<D> > &X() const { return _X; }
 
-        /// Returns all vertices as a string, sorted in \c num_columns columns.
-        std::string verticesToString(unsigned num_columns) const;
 
     private:
+        /// Returns all vertices as a string, sorted in \c num_columns columns.
+        std::string verticesToString(unsigned num_columns) const;
 
         const static int PRINT_VERTICES_COLUMN_WIDTH = 40;
         const static int PRINT_VERTICES_NUM_COLUMNS = 2;
 
+        void printToStream(std::ostream &out);
+        
         void printVertices(unsigned num_columns = PRINT_VERTICES_NUM_COLUMNS,
                            std::ostream &out = std::cout) const;
 
@@ -89,21 +92,27 @@ using std::vector;
 #include <iomanip>
 #include <algorithm>
 
-template <unsigned D> void vertex_data<D>::print() {
+template <unsigned D> std::string vertex_data<D>::toString() {
+    std::ostringstream o;
+    printToStream(o);
+    o << std::ends;
+    return o.str();
+}
 
-    std::cout
-        << std::string(PRINT_VERTICES_NUM_COLUMNS*PRINT_VERTICES_COLUMN_WIDTH, '-')
+template <unsigned D> void vertex_data<D>::printToStream(std::ostream &out) {
+
+    out << std::string(PRINT_VERTICES_NUM_COLUMNS*PRINT_VERTICES_COLUMN_WIDTH, '-')
         << std::endl;
-    std::cout << _dimension << "-dimensional object";
+    out << _dimension << "-dimensional object";
 
-    std::cout << "\n" << realm().size() << " realms: \n";
-    std::copy(realm().begin(), realm().end(), std::ostream_iterator<std::string>(std::cout, " "));
-    std::cout << "\n";
+    out << "\n" << realm().size() << " realms: \n";
+    std::copy(realm().begin(), realm().end(),
+              std::ostream_iterator<std::string>(out, " "));
+    out << "\n";
 
-    std::cout << verticesToString(PRINT_VERTICES_NUM_COLUMNS);
+    out << verticesToString(PRINT_VERTICES_NUM_COLUMNS);
 
-    std::cout
-        << std::string(PRINT_VERTICES_NUM_COLUMNS*PRINT_VERTICES_COLUMN_WIDTH, '-')
+    out << std::string(PRINT_VERTICES_NUM_COLUMNS*PRINT_VERTICES_COLUMN_WIDTH, '-')
         << std::endl;
 }
 
