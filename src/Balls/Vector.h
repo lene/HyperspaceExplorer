@@ -3,14 +3,14 @@
 //      module:       numclass.H
 //      contains:     class definitions for class Vector
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
+//	author:	      lene preuss (lene.preuss@gmail.com)
 //	license:      GPL (see License.txt)
 
 
 #ifndef NUMCLASS_H
 #define NUMCLASS_H 1
 
-#include <iostream.h>
+#include <iostream>
 #include <stdarg.h>
 #include <string>
 

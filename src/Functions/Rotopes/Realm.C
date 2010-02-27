@@ -335,7 +335,7 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
     temp_subrealms.setDimension(3);
     for (unsigned j = 0; j < num_segments; ++j) {
         Realm temp_realm = rotateStep(0, j*size, size);
-        if (true) { cerr << "temp realm: " << endl << temp_realm.toString(); }
+        if (DEBUG_ROTATE) { cerr << "temp realm: " << endl << temp_realm.toString(); }
         temp_subrealms.merge(temp_realm);
 
         /** We're adding a square for the opposite side too.
@@ -388,7 +388,7 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
         temp_copy.setAssociatedVertices(_associated_vertices);
 
         temp_copy.addKeepingInRange(MAGIC_OFFSET_ADDED_TO_INDICES, size, j);
-        if (true) { cerr << "temp copy: " << temp_copy.toString() << endl; }
+        if (DEBUG_ROTATE) { cerr << "temp copy: " << temp_copy.toString() << endl; }
         temp_subrealms.merge(temp_copy);
 
     }
@@ -449,19 +449,18 @@ void Realm::addKeepingInRange(unsigned delta, unsigned num_segments, unsigned ro
              min_extruded_index = max_base_index+1,
              max_extruded_index = (rotation_step+2)*total_vertices-1;
 
-    cerr << toString()
-        << " delta: " << std::setw(4) << delta << " total_vertices: "<< std::setw(4) << total_vertices << " rotation_step "<< std::setw(4) << rotation_step << endl
-        << " this: " << toString()
-        << " base1: "<< std::setw(4) << base1<< " base2: "<< std::setw(4) << base2
-        << " extruded1: "<< std::setw(4) << extruded1 << " extruded2: "<< std::setw(4) << extruded2 << endl
-        << " minb: "<< std::setw(4) << min_base_index << " maxb: "<< std::setw(4) << max_base_index
-        << " mine "<< std::setw(4) << min_extruded_index << " maxe: "<< std::setw(4) << max_extruded_index
-        << endl;
-            
-//  unsigned i; std::cin >> i;
+    if (DEBUG_ROTATE) {
+        cerr << toString()
+            << " delta: " << std::setw(4) << delta << " total_vertices: "<< std::setw(4) << total_vertices << " rotation_step "<< std::setw(4) << rotation_step << endl
+            << " base1: "<< std::setw(4) << base1<< " base2: "<< std::setw(4) << base2
+            << " extruded1: "<< std::setw(4) << extruded1 << " extruded2: "<< std::setw(4) << extruded2 << endl
+            << " minb: "<< std::setw(4) << min_base_index << " maxb: "<< std::setw(4) << max_base_index
+            << " mine "<< std::setw(4) << min_extruded_index << " maxe: "<< std::setw(4) << max_extruded_index
+            << endl;
+    }
 
-    if (base1 >= max_base_index) {
-        if (extruded1 < max_extruded_index) {
+    if (base1 > max_base_index) {
+        if (extruded1 <= max_extruded_index) {
             throw std::logic_error("if the base index is out of bounds, the extruded must be too! "+toString());
         }
 
@@ -469,8 +468,6 @@ void Realm::addKeepingInRange(unsigned delta, unsigned num_segments, unsigned ro
         base1++;
         extruded1++;
         while (base1 > max_base_index || extruded1 > max_extruded_index) {
-            cerr << "base1: " << base1 << " ext1: " << extruded1 << " maxb: " << max_base_index << " maxe: " << max_extruded_index << endl;
-//  unsigned i; std::cin >> i;
             base1 -= total_vertices;
             extruded1 -= total_vertices;
         }
@@ -478,16 +475,14 @@ void Realm::addKeepingInRange(unsigned delta, unsigned num_segments, unsigned ro
             throw new std::logic_error("dropped below boundary");
         }
         
-    } else if (base2 >= max_base_index) {
-        if (extruded2 < max_extruded_index) {
+    } else if (base2 > max_base_index) {
+        if (extruded2 <= max_extruded_index) {
             throw std::logic_error("if the base index is out of bounds, the extruded must be too! "+toString());
         }
         //  add and modulo here
         base2++;
         extruded2++;
         while (base2 > max_base_index || extruded2 > max_extruded_index) {
-            cerr << "base2: " << base2 << " ext2: " << extruded2 << " maxb: " << max_base_index << " maxe: " << max_extruded_index << endl;
-//  unsigned i; std::cin >> i;
             base2 -= total_vertices;
             extruded2 -= total_vertices;
         }
@@ -495,17 +490,11 @@ void Realm::addKeepingInRange(unsigned delta, unsigned num_segments, unsigned ro
             throw new std::logic_error("dropped below boundary");
         }
     }
+
     _subrealm[0] = base1;
     _subrealm[1] = extruded1;
     _subrealm[2] = extruded2;
     _subrealm[3] = base2;
-
-    // temporary replacement for real functionality
-    if (_associated_vertices.size()) {
-        if (maxIndex() >= _associated_vertices.size()) {
-            keepIndicesBelow(_associated_vertices.size());
-        }
-    }
 
 }
 

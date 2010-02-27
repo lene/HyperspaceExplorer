@@ -205,7 +205,8 @@ template <unsigned D> void vertex_data<D>::printSurface(const uintvec<1> &v,
 template <unsigned D> void vertex_data<D>::addSurface(const uintvec<1> & v) {
     for (unsigned i = 0; i < v.size(); ++i) {
         if (v[i] >= X().size()) {
-            throw std::out_of_range("vertex_data<D>::addSurface(): index larger "
+            throw std::out_of_range(
+                    "vertex_data<D>::addSurface(): index larger "
                     "than size of vertex array");
         }
     }

@@ -134,23 +134,11 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
         }
     }
     
-#   if DEBUG_ROTOPES
-    std::cerr << "===================================rotate_base<" << D << ">::rotate(" << d << ")"
-              << "  X.size() = " << vertex_data<D>::X().size()
-              << "  vertices.size() = " << vertex_data<D>::vertices().size() << std::endl;    
-#   endif
     vertex_data<D>::dimension()++;   //  object is now one dimension higher
 
     Realm new_realm = vertex_data<D>::realm();
     new_realm.setAssociatedVertices(vertex_data<D>::vertices());
     vertex_data<D>::realm() = new_realm.rotate(_numSegments, Xold.size());
-
-
-#   if DEBUG_ROTOPES
-#if false
-    vertex_data<D>::print();
-#endif
-#   endif
 }
 
 template <unsigned D> void rotate_base<D>::checkBoundaries(unsigned d) {

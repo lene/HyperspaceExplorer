@@ -35,8 +35,12 @@ class Rotope;
  *  Realm emulates the interface of std::vector<Realm>, as far as this interface
  *  is used.
  *
+ *  \todo fully understand and document rotating polygons
+ *  \todo add caps for polygons
  *  \todo It looks as if it would make sense for Realm to manage the vertex
- *   array too. Look into this.
+ *      array too. Look into this.
+ *  \todo refactor to have shorter functions.
+ *  \todo typedef std::vector<Realm> and use typedef and iterators everywhere.
  *
  *  \ingroup RotopeGroup
  *  \author Lene Preuss <lene.preuss@gmail.com>
