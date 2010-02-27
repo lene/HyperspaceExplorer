@@ -208,6 +208,7 @@ private:
 
     unsigned maxIndex();
     void keepIndicesBelow(unsigned max_index);
+    void addKeepingInRange(unsigned delta, unsigned total_vertices, unsigned rotation_step);
     
     /// Dimension of the realm
     unsigned _dimension;

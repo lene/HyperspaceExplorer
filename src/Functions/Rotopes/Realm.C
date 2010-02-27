@@ -318,6 +318,9 @@ Realm Realm::rotateLine(unsigned num_segments, unsigned size) {
  */
 Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
 
+    /** the difference between base1 and base2 is usually 2, unless
+      * there are overflows, because of the way the polygon is generated from the two endpoints of a line in the
+      * first place. */
     static const unsigned MAGIC_OFFSET_ADDED_TO_INDICES = 2;
 
     if (DEBUG_ROTATE) { cerr << "rotating surface: " << toString() << endl; }
@@ -333,7 +336,13 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
 
         /** We're adding a square for the opposite side too.
          *  \todo Express the above sentence better.
-         *  \todo is simply adding 2 correct? how to calculate the correct offset?
+         *  \todo Implement the consequences from the following train of thought.
+         *
+         * Nietzsche said (I paraphrase), "Philosophers are often poor writers because they not only tell us what they
+         * think, but also how they developed their thoughts." If I were a good writer, my code would express the
+         * solution for the numbering and ordering of indices in a "rotated" Realm clearly. Because I am not, I include
+         * my musings as a reference to whom it may concern. 
+         * 
          * Here is an observation for a full rotation step.
          * [0, 10, 12, 2] -> [2, 12, 14, 4]     adding 2 is ok.
          * [4, 14, 16, 6] -> [6, 16, 18, 8]     adding 2 is ok.
@@ -341,6 +350,7 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
          * [3, 13, 15, 5] -> [5, 15, 17, 7]     adding 2 is ok.
          * [7, 17, 19, 9] -> [9, 19, 10, 0]     adding 2 leads to overflow (>=20), subtracting *9* instead
          * problems occur with 8 and 9, these are the doubled vertices (0 == 8, 1 == 9).
+         *
          * ok, inconclusive, try again with 6 instead of 4 segments.
                 (0 14 16 2 )    (2 16 18 4 )    ok.
                 (4 18 20 6 )    (6 20 22 8 )    ok.
@@ -349,20 +359,40 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
                 (3 17 19 5 )    (5 19 21 7 )    ok.
                 (7 21 23 9 )    (9 23 25 11 )   ok.
                 (11 25 27 13 )  (13 27 29 15 )  overflow.
-         * again, troubles with the doubles. :-) 12 == 0, 13 == 1. same with
-         * 26 and 27, and so on in 14 increments. the increment is 10 in the
-         * first example. it is always 2*(num)segments+1). 
-         * these doubles are needed though, at least [1, 11, 13, 3] in the first
-         * case. [9, 19, 10, 0] is degenerate and could be dropped.
-         * look again at [8, 18, 11, 1]. adding 2 gives [10, 20, 13, 3]. if i do
-         * %10+1 on the overflowing vertex 10, and its partner accordingly, i get
-         * the desired result. with the second pair though, i'd have to do "+1, %10".
+         * again, troubles with the doubles. :-) 12 == 0, 13 == 1. same with 26 and 27, and so on in 14 increments. the
+         * increment is 10 in the first example. it is always 2*(num_segments+1). 
+         *
+         * these doubles are needed though, at least [1, 11, 13, 3] in the first case. [9, 19, 10, 0] is degenerate and
+         * could be dropped.
+         *
+         * look again at [8, 18, 11, 1]. adding 2 gives [10, 20, 13, 3]. if i do %10+1 on the overflowing vertex 10, and
+         * its partner accordingly, i get the desired result. with the second pair though, i'd have to do "+1, %10".
+         *
          * of course, +1%10 would work in the first case too. all these AFTER adding 2.
-         * for the greater number of segments (case 2), let's see.
+         *
+         * for the greater number of segments (case 2), let's see:
+         *              +2              +1              %14
+         * (12 26 15 1) -> (14 28 17 3) -> (15 29 17 3) -> (1 15 17 3)
+         * this surface is not present and appears to be needed, it's triangular.
+         *
+         * (11 25 27 13) -> (13 27 29 15) -> (13 27 30 16) -> (13 27 16 2)
+         * another triangular one, if i'm not mistaken.
+         *
+         * so how do we
+         *   1. keep the "+1%num_segments" operation constrained to the two
+         *      offending indices, but not the other two?
+         *   2. ensure that the larger of the two indices does not get the
+         *      operation "+1%N", but rather "-N, +1, %N, +N"? or in fact, this is even more complicated, because for
+         *      every rotation step \c j, when we extrude vertices [j*N, ..., j*(N+1)-1] to [j*(N+1), ..., j*(N+2)-1],
+         *      we need the indices to stay in the target range.
+         * What is the target range? Well, every quad can be seen as a pair of pairs of indices:
+         * [ (base1, extruded1), (extruded2, base2)]. the base points need to remain in the base range
+         * [j*N, ..., j*(N+1)-1], while the extruded points lie in [j*(N+1), ..., j*(N+2)-1].
+         *
          */
         Realm temp_copy = temp_realm;
 
-        temp_copy.add(MAGIC_OFFSET_ADDED_TO_INDICES);
+        temp_copy.addKeepingInRange(MAGIC_OFFSET_ADDED_TO_INDICES, size, j);
         if (true) { cerr << "temp copy: " << temp_copy.toString() << endl; }
         if (_associated_vertices.size()) {
             if (DEBUG_ROTATE) cerr << "********" << _associated_vertices.size();
@@ -386,6 +416,19 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
 #   endif
     return temp_subrealms;
 }
+
+/** Adds an offset to indices in the realm, generating the rectangle that is
+ *  generated by rotating the line that is opposite (in the original polygon) of
+ *  the line that generated this realm.
+ *
+ *  \param delta offset to be added to every index in the Realm.
+ *  \param total_vertices number of vertices per polygon, 2*(num_segments+1). aka \c size.
+ *  \param rotation_step between 0 and num_segments-1.
+ */
+void Realm::addKeepingInRange(unsigned delta, unsigned total_vertices, unsigned rotation_step) {
+    add(delta);
+}
+
 
 unsigned Realm::maxIndex() {
     if (_dimension == 0) return (unsigned)*this;
