@@ -294,7 +294,7 @@ namespace VecMath {
     template <unsigned D, typename N>
             std::istringstream &operator >> (std::istringstream &in,
                                              Vector<D, N> &v) {
-        char bracket;
+        char bracket = ' ';
         while (bracket != '<' && !in.eof()) { in >> bracket; }
         for (unsigned i = 0; i < v.dimension ()-1; i++) {
             in >> v[i] >> bracket;
