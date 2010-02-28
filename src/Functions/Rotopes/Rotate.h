@@ -11,34 +11,51 @@
 template <unsigned D>
     class rotate_base: public VertexData<D> {
 
-        const static unsigned DEFAULT_NUM_SEGMENTS = 4;
+    public:
+        /// Create a rotate_base object from an already existing object
+        rotate_base(const VertexData<D> &v):
+            VertexData<D>(v) {
+                _originating_rotope = new VertexData<D>(v);
+            }
 
-        public:
-            /// Create a rotate_base object from an already existing object
-            rotate_base(const VertexData<D> &v, unsigned numSegments = DEFAULT_NUM_SEGMENTS):
-                VertexData<D>(v), _numSegments(numSegments) { }
+        /// Execute the rotate action of the previous object along axis \p d.
+        void rotate(unsigned d);
 
-            /// Execute the rotate action of the previous object along axis \p d.
-            void rotate(unsigned d);
+        /// \todo regenerate after setting _numSegments
+/*        virtual static void setRotationSegments(unsigned numSegments) {
+            std::cerr << "rotate_base::setRotationSegments(" << numSegments << ")\n";
+            _numSegments = numSegments;
+//            regenerate();
+        }
+*/
+    protected:
+        /// Supposed to recreate the object after a parameter has changed.
+        virtual void regenerate() { undo_rotation(); }
+        void undo_rotation() {
+            *this = *_originating_rotope;
+            VertexData<D>::set_raw_vertices(
+                    _originating_rotope->
+                            VertexData<D>::raw_vertices()
+            );
+        }
 
-        private:
-            /// \todo rename check_argument()
-            void checkBoundaries(unsigned d);
-            
-            /// Execute a rotation on a VecMath::Vector
-            VecMath::Vector<D> rotate_vertex(const VecMath::Vector<D> &, double,
-                                             unsigned, unsigned);
-            /// Execute the rotate action on a line (generating a circle)
-            void rotate_line(unsigned);
-            /// Execute the rotate action on a triangle (generating a cone)
-            void rotate_triangle(unsigned, const uintvec<1> &);
-            /// Execute the rotate action on a rectangle (generating a cylinder)
-            void rotate_quad(unsigned, const uintvec<1> &);
-            /// Execute the rotate action on a polygon
-            void rotate_polygon(unsigned, const uintvec<1> &);
+    private:
+        /// \todo rename check_argument()
+        void checkBoundaries(unsigned d);
 
-            /// How many segments to use to approximate a circle
-            unsigned _numSegments;
+        /// Execute a rotation on a VecMath::Vector
+        VecMath::Vector<D> rotate_vertex(const VecMath::Vector<D> &, double,
+                                         unsigned, unsigned);
+        /// Execute the rotate action on a line (generating a circle)
+        void rotate_line(unsigned);
+        /// Execute the rotate action on a triangle (generating a cone)
+        void rotate_triangle(unsigned, const uintvec<1> &);
+        /// Execute the rotate action on a rectangle (generating a cylinder)
+        void rotate_quad(unsigned, const uintvec<1> &);
+        /// Execute the rotate action on a polygon
+        void rotate_polygon(unsigned, const uintvec<1> &);
+
+        const VertexData<D> *_originating_rotope;
     };
 
 /// A class template to execute rotate actions on an object
@@ -48,18 +65,18 @@ template <unsigned D>
  *  As I find the concept hard to explain in words, let me give a few examples
  *  to illustrate the idea:
  *  \code Extrude<4, 0, 0> line; \endcode
- *  A line in four-space. A point is extruded along dimension 0 (\p x ).
+ *  A line in four-space. A point is extruded along dimension 0 ( \p x ).
  *  \code Rotate<4, 1, 1> circle(line); \endcode
- *  A circle in the \p xy -plane. The line along \p x is rotated into the \p y
- *  dimension.
+ *  The line along \p x is rotated into the \p y - dimension resulting in a
+ *  circle in the \p xy -plane.
  *  \code Rotate<4, 2, 2> sphere(circle); \endcode
  *  Create a sphere from a circle by rotating along the \p z axis.
- *  \code Rotate<4, 1, 2> sphere2(line); \endcode
+ *  \code Rotate<4, 1, 2> also_a_sphere(line); \endcode
  *  Create another sphere from a line by rotating it into the dimensions 1 to
- *  2, ie. along \p y and \p z
- *  \code Extrude<4, 0, 1> square;
- *  Rotate<4, 2, 2> cylinder(square); \endcode
- *  A cylinder is created by rotateing a square along the \p z axis. Alternately
+ *  2, ie. along \p y and \p z, in one operation.
+ *  \code  Extrude<4, 0, 1> square;
+ * Rotate<4, 2, 2> cylinder(square); \endcode
+ *  A cylinder is created by rotating a square along the \p z axis. Alternately
  *  you could have extruded a circle.
  *  \code Rotate<4, 1, 3> glome(line); \endcode
  *  A four-dimensional sphere, also known as glome, is created by rotating a
@@ -74,17 +91,18 @@ template <unsigned D>
  */
 template <unsigned D, unsigned Dmin, unsigned Dmax>
     class Rotate: public Rotate<D, Dmin, Dmax-1> {
-        public:
-            /// Create a Rotate object from an already existing object
-            /** \todo Guard against bad template parameters:
-             *        - Dmin >= Dmax
-             *        - Dmin or Dmax >= D
-             *        - Dmin or Dmax >= vertex_data::_dimension
-             *        - vertex_data::_dimension == 0
-             */
-            Rotate(const VertexData<D> &v): Rotate<D, Dmin, Dmax-1>(v) {
-                rotate_base<D>::rotate(Dmax);
-            }
+    public:
+        /// Create a Rotate object from an already existing object
+        /** \todo Guard against bad template parameters:
+         *        - Dmin >= Dmax
+         *        - Dmin or Dmax >= D
+         *        - Dmin or Dmax >= vertex_data::_dimension
+         *        - vertex_data::_dimension == 0
+         */
+        Rotate(const VertexData<D> &v): Rotate<D, Dmin, Dmax-1>(v) {
+            rotate_base<D>::rotate(Dmax);
+        }
+
     };
 
 /// Specialization of Rotate<D,Dmin,Dmax> to end recursion
@@ -96,16 +114,23 @@ template <unsigned D, unsigned Dmin, unsigned Dmax>
  */
 template <unsigned D, unsigned Dmin>
     class Rotate<D, Dmin, Dmin>: public rotate_base<D> {
-        public:
-            /// Create a Rotate object from an already existing object
-            /** \todo Guard against bad template parameters:
-             *        - Dmin  >= D
-             *        - Dmin  >= vertex_data::_dimension
-             *        - vertex_data::_dimension == 0
-             */
-            Rotate(const VertexData<D> &v): rotate_base<D>(v) {
-                rotate_base<D>::rotate(Dmin);
-            }
+    public:
+        /// Create a Rotate object from an already existing object
+        /** \todo Guard against bad template parameters:
+         *        - Dmin  >= D
+         *        - Dmin  >= vertex_data::_dimension
+         *        - vertex_data::_dimension == 0
+         */
+        Rotate(const VertexData<D> &v): rotate_base<D>(v) {
+            rotate_base<D>::rotate(Dmin);
+        }
+
+    protected:
+        virtual void regenerate() {
+            rotate_base<D>::undo_rotation();
+            rotate_base<D>::rotate(Dmin);
+        }
+
     };
 
 /** We must implement the following algorithm:
@@ -126,8 +151,8 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
     checkBoundaries(d);
     
     std::vector<VecMath::Vector<D> > Xold = VertexData<D>::raw_vertices();
-    for (unsigned i = 1; i <= _numSegments; ++i) {
-        double rot = 1.*i*M_PI/_numSegments;
+    for (unsigned i = 1; i <= RotopeInterface::_numSegments; ++i) {
+        double rot = 1.*i*M_PI/RotopeInterface::_numSegments;
         for (typename std::vector<VecMath::Vector<D> >::iterator j = Xold.begin();
              j != Xold.end(); ++j) {
                  VertexData<D>::raw_vertices().push_back(rotate_vertex(*j, rot, d, d-1));
@@ -137,7 +162,7 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
     VertexData<D>::dimension()++;   //  object is now one dimension higher
 
     Realm new_realm = VertexData<D>::realm();
-    VertexData<D>::realm() = new_realm.rotate(_numSegments, Xold.size());
+    VertexData<D>::realm() = new_realm.rotate(RotopeInterface::_numSegments, Xold.size());
 }
 
 template <unsigned D> void rotate_base<D>::checkBoundaries(unsigned d) {
@@ -180,8 +205,8 @@ template <unsigned D> void rotate_base<D>::rotate_line(unsigned d) {
     uintvec<1> new_surface; // defines the disk
     new_surface.push_back(0);
     VertexData<D>::raw_vertices().pop_back();
-    for (unsigned i = 1; i <= _numSegments; ++i) {
-        double rot = 2.*i*M_PI/_numSegments;
+    for (unsigned i = 1; i <= RotopeInterface::_numSegments; ++i) {
+        double rot = 2.*i*M_PI/RotopeInterface::_numSegments;
         VecMath::Vector<D> current = VertexData<D>::raw_vertices()[0];
         VecMath::Vector<D> rotated_current = rotate_vertex(current, rot,
                                                             d, d-1);
@@ -209,9 +234,9 @@ template <unsigned D> void rotate_base<D>::rotate_triangle(
      *  \bug Instead of rotating it through 180 degrees and using every vertex,
      *       we only take the vertices on one side of the rotation axis.
      */
-    for (unsigned i = 1; i <= _numSegments; ++i) {
+    for (unsigned i = 1; i <= RotopeInterface::_numSegments; ++i) {
 
-        double rot = 2.*i*M_PI/_numSegments;
+        double rot = 2.*i*M_PI/RotopeInterface::_numSegments;
 
         unsigned cur_index = current_surface[0],
                  next_index = current_surface[2];
@@ -264,9 +289,9 @@ template <unsigned D> void rotate_base<D>::rotate_quad(
      *       we only take the vertices on one side of the rotation axis. Taking
      *       the indexes on the other side too would be an indexing nightmare.
      */
-    for (unsigned i = 1; i <= _numSegments; ++i) {
+    for (unsigned i = 1; i <= RotopeInterface::_numSegments; ++i) {
 
-        double rot = 2.*i*M_PI/_numSegments;
+        double rot = 2.*i*M_PI/RotopeInterface::_numSegments;
 
         unsigned cur_index = current_surface[0];
         unsigned next_index = current_surface[1];
@@ -314,9 +339,9 @@ template <unsigned D> void rotate_base<D>::rotate_polygon(
     VertexData<D>::raw_vertices().push_back(VertexData<D>::raw_vertices()[current_surface[0]]);
 
     /// Rotate the current surface through 180 degrees along its central axis
-    for (unsigned i = 1; i <= (_numSegments+1)/2; ++i) {
+    for (unsigned i = 1; i <= (RotopeInterface::_numSegments+1)/2; ++i) {
 
-        double rot = 1.*i*M_PI/((_numSegments+1)/2);
+        double rot = 1.*i*M_PI/((RotopeInterface::_numSegments+1)/2);
 
         for (unsigned j = 0; j < current_surface.size(); j++) {
 

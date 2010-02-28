@@ -34,7 +34,15 @@ template <unsigned D>
         virtual unsigned dimension() const { return _dimension; }
         virtual unsigned &dimension() { return _dimension; }
 
+        /// By default, this is a no-op. Must be overridden in Rotations and Torations.
+/*        virtual static void setRotationSegments(unsigned numSegments) {
+            std::cerr << "VertexData::setRotationSegments(" << numSegments << ")\n";
+        }
+*/
         virtual std::string toString();
+
+        /// Read-only access to the list of vertices managed by this object
+        const std::vector<VecMath::Vector<D> > &raw_vertices() const { return _raw_vertices; }
 
     protected:
         
@@ -46,9 +54,12 @@ template <unsigned D>
         /// Perform a \p D -dimensional transformation
         virtual void addTransform(unsigned, const VecMath::RotationBase *);
 
-        /// The array of vertices
+        /// Read/write access to the list of vertices managed by this object
         std::vector<VecMath::Vector<D> > &raw_vertices() { return _raw_vertices; }
-        const std::vector<VecMath::Vector<D> > &raw_vertices() const { return _raw_vertices; }
+        /// Write access to the list of vertices managed by this object
+        void set_raw_vertices(const std::vector<VecMath::Vector<D> > &new_vertices) {
+            _raw_vertices = new_vertices;
+        }
 
     private:
 
@@ -134,7 +145,7 @@ template <unsigned D>
  */
 template <unsigned D>
     void VertexData<D>::addTransform(unsigned d,
-                                      const VecMath::RotationBase *R) {
+                                     const VecMath::RotationBase *R) {
     std::cerr << "vertex_data<" << D << ">::addTransform("
             << d << ", " << typeid(R).name() << ")\n";
     _transform.resize(d+1);

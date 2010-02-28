@@ -2,6 +2,7 @@
 #define ROTOPE_BASE_H
 
 #include "Realm.h"
+#include "Rotation.h"
 
 /** \defgroup RotopeGroup N-dimensional Rotopes.
  *  For a definition of Rotopes, see http://teamikaria.com/wiki/Rotope.
@@ -39,6 +40,11 @@ public:
      */
     virtual unsigned &dimension() = 0;
 
+    /// For rotated objects, set the level of detail of the rendering
+    static void setRotationSegments(unsigned numSegments) {
+        _numSegments = numSegments;
+    }
+
     virtual std::string toString() = 0;
     operator std::string() { return toString(); }
     
@@ -49,6 +55,11 @@ protected:
 
     /// Perform a \p D -dimensional transformation
     virtual void addTransform(unsigned, const VecMath::RotationBase *) = 0;
+
+    /// How many segments to use to approximate a circle
+    static unsigned _numSegments;
+
+    const static unsigned DEFAULT_NUM_SEGMENTS = 4;
 
 /// Allow Rotope (which is not a RotopeBase, but contains one) free access
 friend class Rotope;

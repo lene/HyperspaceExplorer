@@ -47,6 +47,7 @@ void Rotope::Initialize() {
     SingletonLog::Instance().log(__PRETTY_FUNCTION__);
 
     try {
+        RotopeInterface::setRotationSegments(_numSegments);
         _rotope = RotopeFactory::generate(_actions);
         declareParameter("Generator", _actions);
         for(unsigned i = 5; i <= _actions.length(); ++i) {
@@ -129,7 +130,7 @@ void Rotope::Draw () {
 
     if (_rotope->realm().size()) {
         Draw(_rotope->realm());
-        _rotope->print();
+//        _rotope->print();
     } else {
         throw new std::logic_error("Rotope has no Realm member");
     }

@@ -11,13 +11,22 @@
 template <unsigned D>
     class torate_base: public VertexData<D> {
 
-        public:
-            /// Create a torate_base object from an already existing object
-            torate_base(const VertexData<D> &v):
-                VertexData<D>(v) { }
+    public:
+        /// Create a torate_base object from an already existing object
+        torate_base(const VertexData<D> &v):
+            VertexData<D>(v) { }
 
-            /// Execute the torate action of the previous object along axis \p d.
-            void torate(unsigned d);
+        /// Execute the torate action of the previous object along axis \p d.
+        void torate(unsigned d);
+
+        /// \todo regenerate after setting _numSegments
+        virtual void setRotationSegments(unsigned numSegments) {
+            std::cerr << "torate_base::setRotationSegments(" << numSegments << ")\n";
+            _numSegments = numSegments;
+        }
+    private:
+        /// How many segments to use to approximate a circle
+        unsigned _numSegments;
     };
 
 /// A class template to execute torate actions on an object
