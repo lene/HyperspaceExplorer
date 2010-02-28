@@ -55,29 +55,32 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
     _animation = addMenu(tr("Animation"));
     _help = addMenu(tr("Help"));
 
+    QString sup2(QChar(0x00B2));
+    QString sup3(QChar(0x00B3));
+    
     ////////////////////////////////////////////////////////////////////////////
     //      "Objects" Menu
     ////////////////////////////////////////////////////////////////////////////
     {
-        _fr3r = _functions->addMenu("f: R� -> R");
+        _fr3r = _functions->addMenu("f: R"+sup3+" -> R");
         _objects = _functions->addMenu("Objects");
         _surfaces = _functions->addMenu("Surfaces");
         _fcc = _surfaces->addMenu("f: C -> C");
         {
-            insertAction(_fr3r, "1/(r�+1)",
+            insertAction(_fr3r, "1/(r"+sup2+"+1)",
                          new C4DView::TemplatedRealFunctionFactory<Fr3r>);
             insertAction(_fr3r, "Gravitation Potential",
                          new C4DView::TemplatedRealFunctionFactory<GravitationPotential>);
-            insertAction(_fr3r, "sin (r�)",
+            insertAction(_fr3r, "sin (r"+sup2+")",
                          new C4DView::TemplatedRealFunctionFactory<Fr3rSin>);
-            insertAction(_fr3r, "exp (r�)",
+            insertAction(_fr3r, "exp (r"+sup2+")",
                          new C4DView::TemplatedRealFunctionFactory<Fr3rExp>);
             insertAction(_fr3r, "Custom function", SLOT(customFunction()));
             insertAction(_fr3r, "Polar: r = sin (pi/3.*(t+u+v))",
                          new C4DView::TemplatedRealFunctionFactory<PolarSin>);
             insertAction(_fr3r, "Polar: r = 1/2+sin (Phase*pi*t*u*v)",
                          new C4DView::TemplatedRealFunctionFactory<PolarSin2>);
-            insertAction(_fr3r, "Polar: r = sqrt (t�+u�+v�)",
+            insertAction(_fr3r, "Polar: r = sqrt (t"+sup2+"+u"+sup2+"+v"+sup2+")",
                          new C4DView::TemplatedRealFunctionFactory<PolarR>);
             insertAction(_fr3r, "Custom polar function", SLOT(customPolarFunction()));
         }
@@ -93,7 +96,6 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
             insertAction(_objects, "Torus 2",
                          new C4DView::TemplatedRealFunctionFactory<Torus2>);
             insertAction(_objects, "Rotope", SLOT(ObjectRotope()));
-            TESTED_FEATURE(getAction("Rotope"));
             insertAction(_objects, "Alt. Menger Sponge", SLOT(ObjectAltSponge()));
             TESTED_FEATURE(getAction("Alt. Menger Sponge"));
         }
@@ -106,19 +108,19 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
                          new C4DView::TemplatedSurfaceFactory<Torus3>);
             insertAction(_surfaces, "Custom surface", SLOT(customSurface()));
             {
-                insertAction(_fcc, "z�",
+                insertAction(_fcc, "z"+sup2,
                              new C4DView::TemplatedSurfaceFactory<z2>);
-                insertAction(_fcc, "z�",
+                insertAction(_fcc, "z"+sup3,
                              new C4DView::TemplatedSurfaceFactory<z3>);
                 insertAction(_fcc, "z^a",
                              new C4DView::TemplatedSurfaceFactory<zA>);
                 insertAction(_fcc, "e^z",
                              new C4DView::TemplatedSurfaceFactory<ez>);
-                insertAction(_fcc, "e^-z�",
+                insertAction(_fcc, "e^-z"+sup2+"",
                              new C4DView::TemplatedSurfaceFactory<emz2>);
                 insertAction(_fcc, "1/z",
                              new C4DView::TemplatedSurfaceFactory<zm1>);
-                insertAction(_fcc, "1/z�",
+                insertAction(_fcc, "1/z"+sup2+"",
                              new C4DView::TemplatedSurfaceFactory<zm2>);
                 insertAction(_fcc, "sqrt (z)",
                              new C4DView::TemplatedSurfaceFactory<sqrtz>);
@@ -500,6 +502,7 @@ QAction *C4DView::Menu4D::insertAction(QMenu *_menu, const QString &title,
 QAction *C4DView::Menu4D::insertAction(QMenu *_menu, const QString &title,
                                        RealFunctionFactory *factory,
                                        bool checkable) {
+    std::cerr << title.toStdString() << std::endl;
     QAction *tmp = _menu->addAction(title,
                                     new FunctionSlotHelper(_parent, factory),
                                     SLOT(slot()), (const QKeySequence &)0);
