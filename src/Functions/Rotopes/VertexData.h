@@ -34,11 +34,6 @@ template <unsigned D>
         virtual unsigned dimension() const { return _dimension; }
         virtual unsigned &dimension() { return _dimension; }
 
-        /// By default, this is a no-op. Must be overridden in Rotations and Torations.
-/*        virtual static void setRotationSegments(unsigned numSegments) {
-            std::cerr << "VertexData::setRotationSegments(" << numSegments << ")\n";
-        }
-*/
         virtual std::string toString();
 
         /// Read-only access to the list of vertices managed by this object

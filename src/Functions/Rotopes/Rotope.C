@@ -71,6 +71,9 @@ void Rotope::Initialize() {
                 case 10:
                     declareParameter(label, _rot10D);
                     break;
+                default:
+                    throw BadRotopeOperation("Rotope::Initialize()",
+                                             "Rotopes of dimension higher than 10 not supported.");
             }
         }
         declareParameter("Rotation segments", _numSegments);

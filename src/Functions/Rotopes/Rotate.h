@@ -13,35 +13,14 @@ template <unsigned D>
 
     public:
         /// Create a rotate_base object from an already existing object
-        rotate_base(const VertexData<D> &v):
-            VertexData<D>(v) {
-                _originating_rotope = new VertexData<D>(v);
-            }
+        rotate_base(const VertexData<D> &v): VertexData<D>(v) { }
 
         /// Execute the rotate action of the previous object along axis \p d.
         void rotate(unsigned d);
 
-        /// \todo regenerate after setting _numSegments
-/*        virtual static void setRotationSegments(unsigned numSegments) {
-            std::cerr << "rotate_base::setRotationSegments(" << numSegments << ")\n";
-            _numSegments = numSegments;
-//            regenerate();
-        }
-*/
-    protected:
-        /// Supposed to recreate the object after a parameter has changed.
-        virtual void regenerate() { undo_rotation(); }
-        void undo_rotation() {
-            *this = *_originating_rotope;
-            VertexData<D>::set_raw_vertices(
-                    _originating_rotope->
-                            VertexData<D>::raw_vertices()
-            );
-        }
-
     private:
         /// \todo rename check_argument()
-        void checkBoundaries(unsigned d);
+        void checkRotationArguments(unsigned d);
 
         /// Execute a rotation on a VecMath::Vector
         VecMath::Vector<D> rotate_vertex(const VecMath::Vector<D> &, double,
@@ -54,8 +33,6 @@ template <unsigned D>
         void rotate_quad(unsigned, const uintvec<1> &);
         /// Execute the rotate action on a polygon
         void rotate_polygon(unsigned, const uintvec<1> &);
-
-        const VertexData<D> *_originating_rotope;
     };
 
 /// A class template to execute rotate actions on an object
@@ -125,12 +102,6 @@ template <unsigned D, unsigned Dmin>
             rotate_base<D>::rotate(Dmin);
         }
 
-    protected:
-        virtual void regenerate() {
-            rotate_base<D>::undo_rotation();
-            rotate_base<D>::rotate(Dmin);
-        }
-
     };
 
 /** We must implement the following algorithm:
@@ -148,7 +119,7 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
         SingletonLog::Instance().log(__PRETTY_FUNCTION__);
 #   endif
 
-    checkBoundaries(d);
+    checkRotationArguments(d);
     
     std::vector<VecMath::Vector<D> > Xold = VertexData<D>::raw_vertices();
     for (unsigned i = 1; i <= RotopeInterface::_numSegments; ++i) {
@@ -165,7 +136,7 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
     VertexData<D>::realm() = new_realm.rotate(RotopeInterface::_numSegments, Xold.size());
 }
 
-template <unsigned D> void rotate_base<D>::checkBoundaries(unsigned d) {
+template <unsigned D> void rotate_base<D>::checkRotationArguments(unsigned d) {
     if (d >= D) {
         throw std::invalid_argument(
            "rotate_base::rotate() called on a higher dimension"

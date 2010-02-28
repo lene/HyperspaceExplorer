@@ -11,7 +11,7 @@
 Realm generateSquareRealm();
 Realm generateTriangleRealm();
 Realm generateCircleRealm();
-std::vector<Realm> generateSphereSurfaceSquares();
+std::vector<Realm> generatePartialSphereSurfaceSquares();
 
 void RotopeTest::initTestCase() { }
 
@@ -217,7 +217,7 @@ void RotopeTest::coneVertices() {
 void RotopeTest::sphereRealm() {
     setRotope("ERR");
 
-    std::vector<Realm> surfaces = generateSphereSurfaceSquares();
+    std::vector<Realm> surfaces = generatePartialSphereSurfaceSquares();
 
     for (std::vector<Realm>::iterator i = surfaces.begin(); i != surfaces.end(); ++i) {
         std::string errmsg = std::string("Realm ").append(i->toString()).append(" not in ").append(_realm.toString());
@@ -230,10 +230,10 @@ void RotopeTest::sphereRealm() {
     QVERIFY2(_realm.dimension() == 3, (QString("Dimension: ")+QString::number(_realm.dimension())).toStdString().c_str());
 }
 
-std::vector<Realm> generateSphereSurfaceSquares() {
+std::vector<Realm> generatePartialSphereSurfaceSquares() {
     std::vector<Realm> partialSphere;
 
-    Realm squareSurface;    //  what is this actually called? damn, can't remember...
+    Realm squareSurface;    //  what is this rectangular part of a surface actually called? damn, can't remember...
     unsigned VERTICES = RotopeTest::numberOfVerticesForCircle();
 
     squareSurface.push_back(0);
