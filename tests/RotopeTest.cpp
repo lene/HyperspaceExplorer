@@ -290,7 +290,7 @@ void RotopeTest::sphereVertices() {
 }
 
 void RotopeTest::rotateTriangle() {
-    QSKIP("Rotating a triangle still segfaults", SkipSingle);
+//    QSKIP("Rotating a triangle still segfaults", SkipSingle);
     setRotope("ETR");
 }
 

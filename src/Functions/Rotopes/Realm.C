@@ -441,7 +441,6 @@ void Realm::insertNewPoints(list<Realm> &original_list,
  *  \endcode
  *
  *  \todo Add the caps.
- *  \todo Fix for triangles.
  */
 Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
 
@@ -465,7 +464,9 @@ Realm Realm::generateEmpty3DRealm() {
 
 void Realm::addRotationStrip(Realm &all_strips, unsigned rotation_step, unsigned num_segments) {
     Realm temp_realm = rotateStep(0, rotation_step*num_segments, num_segments);
-    if (DEBUG_ROTATE) { cerr << "temp realm: " << endl << temp_realm.toString(); }
+    if (DEBUG_ROTATE) { 
+        cerr << "addRotationStrip(..., " << rotation_step << ", " << num_segments << "): "
+                << "temp realm: " << endl << temp_realm.toString(); }
     all_strips.merge(temp_realm);
 
     Realm temp_copy = temp_realm;
@@ -624,18 +625,21 @@ Realm Realm::rotateStep(unsigned index, unsigned base, unsigned delta) {
     }
 }
 
+/** split procedure: once for points on the positive and once for negative points.
+ *  what happens and actually seems to be necessary here is this.
+ *  when i comment out the second loop in the case of a cylinder only
+ *  half is drawn. in the case of a sphere only a quarter sphere is drawn
+ *  regardless of whether the second loop runs or not.\n
+ *  i suspect that there should be _subrealm.size()/2 loops of length 2.
+ *  in the cylinder case, this happens to be the same as what we have here,
+ *  because _subrealm.size() == 4.
+ * 
+ *  \todo Fix for triangles.
+ */
 Realm Realm::rotateStep2D(unsigned base, unsigned delta) {
     realm_container_type new_subrealms;
     if (DEBUG_ROTATE) { cerr << endl << "size: " << _subrealm.size() << endl; }
-    /// split procedure: once for points on the positive and once for negative points
-    /** what happens and actually seems to be necessary here is this.
-     *  when i comment out the second loop in the case of a cylinder only
-     *  half is drawn. in the case of a sphere only a quarter sphere is drawn
-     *  regardless of whether the second loop runs or not.\n
-     *  i suspect that there should be _subrealm.size()/2 loops of length 2.
-     *  in the cylinder case, this happens to be the same as what we have here,
-     *  because _subrealm.size() == 4.
-     */
+
     for (unsigned i = 0; i < _subrealm.size()/2; ++i) {
         new_subrealms.push_back(generateRectSegment(i, base, delta));
     }
@@ -643,8 +647,10 @@ Realm Realm::rotateStep2D(unsigned base, unsigned delta) {
     for (unsigned i = _subrealm.size()/2; i < _subrealm.size(); ++i) {
         new_subrealms.push_back(generateRectSegment(i, base, delta));
     }
+    cerr << "new subrealms: " << Realm(new_subrealms).toString();
 
     Realm new_realm;
+    // here is the assumption that new_subrealms.size() is even.
     for (unsigned index = 0; index < new_subrealms.size(); index += 2) {
         Realm another_temp;
 
