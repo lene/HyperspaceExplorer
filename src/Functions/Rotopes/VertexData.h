@@ -29,6 +29,8 @@ template <unsigned D>
         virtual Realm &realm() { return _realm; }
         virtual const Realm &realm() const { return _realm; }
 
+        /// Read-only access to the list of vertices managed by this object
+        const std::vector<VecMath::Vector<D> > &raw_vertices() const { return _raw_vertices; }
         virtual std::vector<VecMath::Vector<4> > projected_vertices();
 
         virtual unsigned dimension() const { return _dimension; }
@@ -36,8 +38,6 @@ template <unsigned D>
 
         virtual std::string toString();
 
-        /// Read-only access to the list of vertices managed by this object
-        const std::vector<VecMath::Vector<D> > &raw_vertices() const { return _raw_vertices; }
 
     protected:
         

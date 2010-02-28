@@ -44,7 +44,8 @@ private slots:
   void sphereRealmFull();
   void sphereVertices();
 
-  void rotateTriangle();
+  void rotateTaper();
+  void rotateExtrudedTaper();
   
   void tesseractRealm();
   void tesseractVertices();

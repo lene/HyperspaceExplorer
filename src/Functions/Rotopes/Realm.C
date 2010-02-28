@@ -633,12 +633,20 @@ Realm Realm::rotateStep(unsigned index, unsigned base, unsigned delta) {
  *  i suspect that there should be _subrealm.size()/2 loops of length 2.
  *  in the cylinder case, this happens to be the same as what we have here,
  *  because _subrealm.size() == 4.
- * 
+ *
+ *  \todo Split into smaller functions.
  *  \todo Fix for triangles.
  */
 Realm Realm::rotateStep2D(unsigned base, unsigned delta) {
     realm_container_type new_subrealms;
-    if (DEBUG_ROTATE) { cerr << endl << "size: " << _subrealm.size() << endl; }
+    if (DEBUG_ROTATE) {
+        cerr << endl << "rotateStep2D(" << base << ", " << delta <<"): size: " << _subrealm.size() << endl;
+    }
+
+    if (size() < 4) {
+        throw BadRotopeOperation("Realm::rotateStep2D()",
+                                 "Rotating tapered object is not yet supported.");
+    }
 
     for (unsigned i = 0; i < _subrealm.size()/2; ++i) {
         new_subrealms.push_back(generateRectSegment(i, base, delta));
@@ -647,7 +655,8 @@ Realm Realm::rotateStep2D(unsigned base, unsigned delta) {
     for (unsigned i = _subrealm.size()/2; i < _subrealm.size(); ++i) {
         new_subrealms.push_back(generateRectSegment(i, base, delta));
     }
-    if (DEBUG_ROTATE) { cerr << "new subrealms: " << Realm(new_subrealms).toString(); }
+    if (DEBUG_ROTATE) { 
+        cerr  << "rotateStep2D(" << base << ", " << delta <<"): new subrealms: " << Realm(new_subrealms).toString(); }
 
     Realm new_realm;
     // here is the assumption that new_subrealms.size() is even.
@@ -669,7 +678,7 @@ Realm Realm::rotateStep2D(unsigned base, unsigned delta) {
         new_realm.push_back(another_temp);
     }
 
-    if (DEBUG_ROTATE) { cerr << "new realm: " << new_realm.toString() << endl; }
+    if (DEBUG_ROTATE) { cerr  << "rotateStep2D(" << base << ", " << delta <<"): new realm: " << new_realm.toString() << endl; }
 
     return new_realm;
 }

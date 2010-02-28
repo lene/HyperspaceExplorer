@@ -217,17 +217,14 @@ void RotopeTest::coneVertices() {
 void RotopeTest::sphereRealm() {
     setRotope("ERR");
 
+    QVERIFY2(_realm.dimension() == 3,
+             (QString("Actual dimension: ")+QString::number(_realm.dimension())).toAscii());
+
     std::vector<Realm> surfaces = generatePartialSphereSurfaceSquares();
 
     for (std::vector<Realm>::iterator i = surfaces.begin(); i != surfaces.end(); ++i) {
-        std::string errmsg = std::string("Realm ").append(i->toString()).append(" not in ").append(_realm.toString());
-        QVERIFY2(
-            _realm.contains(*i),
-            (errmsg).c_str()
-        );                                                                                            
+        QVERIFY(_realm.contains(*i));                                                                                            
     }
-    std::cerr << _realm.toString();
-    QVERIFY2(_realm.dimension() == 3, (QString("Dimension: ")+QString::number(_realm.dimension())).toStdString().c_str());
 }
 
 std::vector<Realm> generatePartialSphereSurfaceSquares() {
@@ -290,9 +287,22 @@ void RotopeTest::sphereVertices() {
     }
 }
 
-void RotopeTest::rotateTriangle() {
-    QSKIP("Rotating a triangle still segfaults", SkipSingle);
-    setRotope("ETR");
+void RotopeTest::rotateTaper() {
+    try {
+        setRotope("ETR");
+    } catch (BadRotopeOperation e) {
+        return;
+    }
+    QFAIL("Generating a Rotation of a Taper should throw a BadRotopeOperation.");
+}
+
+void RotopeTest::rotateExtrudedTaper() {
+    try {
+        setRotope("ETER");
+    } catch (BadRotopeOperation e) {
+        return;
+    }
+    QFAIL("Generating a Rotation of an extruded Taper should throw a BadRotopeOperation.");
 }
 
 void RotopeTest::tesseractRealm() {
