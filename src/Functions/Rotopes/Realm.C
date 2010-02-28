@@ -15,6 +15,7 @@
 
 #include <stdexcept>
 #include <list>
+#include <ios>
 
 using std::cout;
 using std::cerr;
@@ -446,18 +447,14 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
 
     if (DEBUG_ROTATE) { cerr << "rotating surface: " << toString() << endl; }
 
-    /** Create the sides (parallel to the rotation axis).
-     */
-    Realm temp_subrealms = generateEmpty3DRealm();
-
+    Realm rotated_walls = generateEmpty3DRealm();
     for (unsigned j = 0; j < num_segments; ++j) {
-        addRotationStrip(temp_subrealms, j, size);
+        addRotationStrip(rotated_walls, j, size);
     }
 
-#   if false
-    rotatePolygonCap(num_segments, size, temp_subrealms);
-#   endif
-    return temp_subrealms;
+    rotatePolygonCap(rotated_walls.getSubrealms());
+
+    return rotated_walls;
 }
 
 Realm Realm::generateEmpty3DRealm() {
@@ -467,14 +464,14 @@ Realm Realm::generateEmpty3DRealm() {
 }
 
 void Realm::addRotationStrip(Realm &all_strips, unsigned rotation_step, unsigned num_segments) {
-        Realm temp_realm = rotateStep(0, rotation_step*num_segments, num_segments);
-        if (DEBUG_ROTATE) { cerr << "temp realm: " << endl << temp_realm.toString(); }
-        all_strips.merge(temp_realm);
+    Realm temp_realm = rotateStep(0, rotation_step*num_segments, num_segments);
+    if (DEBUG_ROTATE) { cerr << "temp realm: " << endl << temp_realm.toString(); }
+    all_strips.merge(temp_realm);
 
-        Realm temp_copy = temp_realm;
-        temp_copy.addKeepingInRange(OFFSET_BETWEEN_NEIGHBORING_INDICES, num_segments, rotation_step);
-        if (DEBUG_ROTATE) { cerr << "temp copy: " << temp_copy.toString() << endl; }
-        all_strips.merge(temp_copy);
+    Realm temp_copy = temp_realm;
+    temp_copy.addStayingWithinSameStrip(num_segments, rotation_step);
+    if (DEBUG_ROTATE) { cerr << "temp copy: " << temp_copy.toString() << endl; }
+    all_strips.merge(temp_copy);
 }
 
 /** Adds an offset to indices in the realm, generating the rectangle that is
@@ -484,117 +481,112 @@ void Realm::addRotationStrip(Realm &all_strips, unsigned rotation_step, unsigned
  *  in other words, transforms a rectangle on a sphere to the rectangle lying
  *  directly across the sphere.
  *
- *  \param delta offset to be added to every index in the Realm.
- *  \param total_vertices number of vertices per polygon, 2*(num_segments+1). aka \c size.
- *  \param rotation_step between 0 and num_segments-1.
+ * - keep the "+1%num_segments" operation constrained to the two offending indices, but not the
+ *   other two.
+ * - ensure that both of the transformed indices stay in the target range, which is the vertices in
+ *   the original strip for the smaller one and the vertices in the rotated strip for the bigger
+ *   one. What is the target range? Well, every quad can be seen as a pair of pairs of indices:
+ *   <tt>[ (base1, extruded1), (extruded2, base2)]</tt>. the base points need to remain in the base
+ *   range <tt>[j*N, ..., j*(N+1)-1]</tt>, while the extruded points lie in
+ *   <tt>[j*(N+1), ..., j*(N+2)-1]</tt>.
+ *
+ *  \param num_segments Number of vertices per polygon.
+ *  \param rotation_step Between 0 and num_segments-1.
  */
-void Realm::addKeepingInRange(unsigned delta, unsigned num_segments, unsigned rotation_step) {
-    if (_dimension < 2) {
-        throw std::invalid_argument(
-                "generating Realm must be a rectangle: "+toString());
-    } else if (_dimension > 2) {
+void Realm::addStayingWithinSameStrip(unsigned num_segments, unsigned rotation_step) {
+
+    if (_dimension > 2) {
         for (realm_container_type::iterator i = _subrealm.begin(); i != _subrealm.end(); ++i) {
-            i->addKeepingInRange(delta, num_segments, rotation_step);
+            i->addStayingWithinSameStrip(num_segments, rotation_step);
         }
         return;
     }
+    checkArgumentsForAddStayingWithinSameStrip();
+    
+    add(OFFSET_BETWEEN_NEIGHBORING_INDICES);
+
+    if (DEBUG_ROTATE) {
+        cerr << toString()
+            << " num_segments: "<< std::setw(4) << num_segments << " rotation_step "<< std::setw(4) << rotation_step << endl;
+    }
+
+    std::pair<unsigned, unsigned> base_extruded1 = wrapToStayWithinStrip(_subrealm[0], _subrealm[1], num_segments, rotation_step);
+    _subrealm[0] = base_extruded1.first;
+    _subrealm[1] = base_extruded1.second;
+
+    std::pair<unsigned, unsigned> base_extruded2 = wrapToStayWithinStrip(_subrealm[3], _subrealm[2], num_segments, rotation_step);
+    _subrealm[3] = base_extruded2.first;
+    _subrealm[2] = base_extruded2.second;
+
+}
+
+void Realm::checkArgumentsForAddStayingWithinSameStrip() {
+
+    if (_dimension < 2) {
+        throw std::invalid_argument("generating Realm must be a rectangle: "+toString());
+    }
+
     if (_subrealm.size() != 4) {
         throw std::invalid_argument(
                 "generating Realm must consist of exactly 4 vertices: "+toString());
     }
-    
-    add(delta);
-
-    /** so how do we
-     *   1. keep the "+1%num_segments" operation constrained to the two
-     *      offending indices, but not the other two?
-     *   2. ensure that the larger of the two indices does not get the
-     *      operation "+1%N", but rather "-N, +1, %N, +N"? or in fact, this is even more complicated, because for
-     *      every rotation step \c j, when we extrude vertices [j*N, ..., j*(N+1)-1] to [j*(N+1), ..., j*(N+2)-1],
-     *      we need the indices to stay in the target range.
-     * What is the target range? Well, every quad can be seen as a pair of pairs of indices:
-     * [ (base1, extruded1), (extruded2, base2)]. the base points need to remain in the base range
-     * [j*N, ..., j*(N+1)-1], while the extruded points lie in [j*(N+1), ..., j*(N+2)-1].
-     */
-    unsigned base1 = _subrealm[0], extruded1 = _subrealm[1],
-             base2 = _subrealm[3], extruded2 = _subrealm[2],
-             total_vertices = 1? num_segments: 2*(num_segments+1),
-             min_base_index = rotation_step*total_vertices,
-             max_base_index = (rotation_step+1)*total_vertices-1,
-             min_extruded_index = max_base_index+1,
-             max_extruded_index = (rotation_step+2)*total_vertices-1;
-
-    if (DEBUG_ROTATE) {
-        cerr << toString()
-            << " delta: " << std::setw(4) << delta << " total_vertices: "<< std::setw(4) << total_vertices << " rotation_step "<< std::setw(4) << rotation_step << endl
-            << " base1: "<< std::setw(4) << base1<< " base2: "<< std::setw(4) << base2
-            << " extruded1: "<< std::setw(4) << extruded1 << " extruded2: "<< std::setw(4) << extruded2 << endl
-            << " minb: "<< std::setw(4) << min_base_index << " maxb: "<< std::setw(4) << max_base_index
-            << " mine "<< std::setw(4) << min_extruded_index << " maxe: "<< std::setw(4) << max_extruded_index
-            << endl;
-    }
-
-    if (base1 > max_base_index) {
-        if (extruded1 <= max_extruded_index) {
-            throw std::logic_error("if the base index is out of bounds, the extruded must be too! "+toString());
-        }
-
-        //  add and modulo here
-        base1++;
-        extruded1++;
-        while (base1 > max_base_index || extruded1 > max_extruded_index) {
-            base1 -= total_vertices;
-            extruded1 -= total_vertices;
-        }
-        if (base1 < min_base_index || extruded1 < min_extruded_index) {
-            throw new std::logic_error("dropped below boundary");
-        }
-        
-    } else if (base2 > max_base_index) {
-        if (extruded2 <= max_extruded_index) {
-            throw std::logic_error("if the base index is out of bounds, the extruded must be too! "+toString());
-        }
-        //  add and modulo here
-        base2++;
-        extruded2++;
-        while (base2 > max_base_index || extruded2 > max_extruded_index) {
-            base2 -= total_vertices;
-            extruded2 -= total_vertices;
-        }
-        if (base2 < min_base_index || extruded2 < min_extruded_index) {
-            throw new std::logic_error("dropped below boundary");
-        }
-    }
-
-    _subrealm[0] = base1;
-    _subrealm[1] = extruded1;
-    _subrealm[2] = extruded2;
-    _subrealm[3] = base2;
-
 }
 
-Realm Realm::rotatePolygonCap(unsigned num_segments, unsigned size, 
-                              realm_container_type &temp_subrealms) {
+std::pair<unsigned, unsigned> Realm::wrapToStayWithinStrip(unsigned base, unsigned extruded,
+                                                           unsigned num_segments, unsigned rotation_step
+                                                           ) {
+    unsigned min_base_index = rotation_step*num_segments,
+             max_base_index = (rotation_step+1)*num_segments-1,
+             min_extruded_index = max_base_index+1,
+             max_extruded_index = (rotation_step+2)*num_segments-1;
+
+    if (base > max_base_index) {
+    
+        if (extruded <= max_extruded_index) {
+            throw std::logic_error(
+                    "If the base index wraps out of the rotation strip, the extruded must too: "
+                    +toString());
+        }
+
+        //  add and modulo here
+        base++;
+        extruded++;
+        while (base > max_base_index || extruded > max_extruded_index) {
+            base -= num_segments;
+            extruded -= num_segments;
+        }
+
+        if (base < min_base_index || extruded < min_extruded_index) {
+            throw new std::logic_error(
+                    "While performing modulo operation, "
+                    "an index dropped out of the current rotation strip!");
+        }
+    }
+    
+    return std::make_pair(base, extruded);
+}
+
+/** Create the cap (perpendicular to the rotation axis).
+ *
+ *  Make the first edge the first line in the temporary list of subrealms (assuming we have a
+ *  square). To do that remove the last two vertices from the square.
+ *
+ *  \todo achieve the desired effect for any polygon
+ */
+Realm Realm::rotatePolygonCap(const realm_container_type &rotated_walls) {
     realm_container_type edges;
-    /** Create the cap (perpendicular to the rotation axis).
-     *
-     *  Make the first edge the first line in the temporary list of
-     *  subrealms (assuming we have a square). To do that remove the
-     *  last two vertices from the square.
-     *  \todo achieve the desired effect for any polygon
-     */
+
     Realm first_edge(*this);
     first_edge._subrealm.pop_back();
     first_edge._subrealm.pop_back();
     edges.push_back(first_edge);
 
     /// then add the following edges by using only the first point of the edge
-    for (unsigned i = 0; i < temp_subrealms.size(); ++i) {
-        edges.push_back(temp_subrealms[i]._subrealm[0]);
+    for (unsigned i = 0; i < rotated_walls.size(); ++i) {
+        edges.push_back(rotated_walls[i]._subrealm[0]);
     }
 
-//    temp_subrealms.push_back(edges);
-
+    return edges;
 }
 
 Realm Realm::rotateRealm(unsigned num_segments, unsigned size) {
@@ -608,6 +600,16 @@ Realm Realm::rotateRealm(unsigned num_segments, unsigned size) {
     return new_realm;
 }
 
+/** The edges of the current Realm are rotated about some (clarify!) axis. The resulting image is
+ *  connected to the current Realm, resulting in a Realm of the same dimension. The total set of
+ *  thusly created Realms, for all degrees from 0 to 360, constitute the surface Realm of the
+ *  rotated object. Phoo, another mouthful.
+ * 
+ *  \todo clarify this documentation.
+ *  \param index Currently only used for lines. Do I really need it? What is it for?
+ *  \param base
+ *  \param delta
+ */
 Realm Realm::rotateStep(unsigned index, unsigned base, unsigned delta) {
     if (DEBUG_ROTATE) { cout << "Realm::rotate_step(" << index << ", " << base << ", " << delta << "): "; }
     switch (_dimension) {
@@ -616,13 +618,13 @@ Realm Realm::rotateStep(unsigned index, unsigned base, unsigned delta) {
     );
 
     case 1: return Realm(_subrealm[index]._index+base+delta);
-    case 2: return rotateStep2D(index, base, delta);
+    case 2: return rotateStep2D(base, delta);
 
     default: throw NotYetImplementedException("Realm::rotate_step()");
     }
 }
 
-Realm Realm::rotateStep2D(unsigned index, unsigned base, unsigned delta) {
+Realm Realm::rotateStep2D(unsigned base, unsigned delta) {
     realm_container_type new_subrealms;
     if (DEBUG_ROTATE) { cerr << endl << "size: " << _subrealm.size() << endl; }
     /// split procedure: once for points on the positive and once for negative points
