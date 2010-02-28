@@ -12,7 +12,6 @@ class RotopeTest: public QObject {
   Q_OBJECT
 
 public:
-  static const unsigned _numSegments = 4;
   static const double EPSILON = 1.e-8;
   static unsigned numberOfVerticesForCircle();
 

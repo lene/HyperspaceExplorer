@@ -35,7 +35,7 @@ Rotope::Rotope(): Object("Rotope: Hypercube", 0, 0),
 Rotope::Rotope(const std::string &actions):
         Object(QString("Rotope: ")+actions.c_str(), 0, 0),
          _rot5D(), _rot6D(), _rot7D(), _rot8D(), _rot9D(), _rot10D(),
-        _numSegments(6), _actions(actions), _rotope(0) {
+        _numSegments(RotopeInterface::DEFAULT_NUM_SEGMENTS), _actions(actions), _rotope(0) {
     Initialize();
 }
 

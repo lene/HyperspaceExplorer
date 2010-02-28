@@ -17,6 +17,8 @@ class RotopeInterface {
 
 public:
 
+    const static unsigned DEFAULT_NUM_SEGMENTS = 8;
+
     /// The array of realms
     virtual Realm &realm() = 0;
     virtual const Realm &realm() const = 0;
@@ -58,8 +60,6 @@ protected:
 
     /// How many segments to use to approximate a circle
     static unsigned _numSegments;
-
-    const static unsigned DEFAULT_NUM_SEGMENTS = 4;
 
 /// Allow Rotope (which is not a RotopeBase, but contains one) free access
 friend class Rotope;

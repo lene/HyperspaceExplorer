@@ -67,7 +67,7 @@ HEADERS += Functions/Rotopes/Rotope.h \
            Functions/Rotopes/Torate.h
 SOURCES += Functions/Rotopes/Rotope.C \
            Functions/Rotopes/RotopeFactory.C \
-           Functions/Rotopes/RotopeInterface.cpp \
+           Functions/Rotopes/RotopeInterface.C \
            Functions/Rotopes/Realm.C \
            Functions/Rotopes/RealmPrinter.C
 

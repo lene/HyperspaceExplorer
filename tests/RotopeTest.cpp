@@ -98,7 +98,7 @@ Realm generateCircleRealm() {
 unsigned RotopeTest::numberOfVerticesForCircle() {
     // the line's end points are wrapped to the original points
     // this is implementation dependent, damn it
-    return 2*_numSegments+2;
+    return 2*RotopeInterface::DEFAULT_NUM_SEGMENTS+2;
 }
 void RotopeTest::circleVertices() {
     setRotope("ER");
@@ -234,10 +234,11 @@ std::vector<Realm> generateSphereSurfaceSquares() {
     std::vector<Realm> partialSphere;
 
     Realm squareSurface;    //  what is this actually called? damn, can't remember...
+    unsigned VERTICES = RotopeTest::numberOfVerticesForCircle();
 
     squareSurface.push_back(0);
-    squareSurface.push_back(10);
-    squareSurface.push_back(12);
+    squareSurface.push_back(VERTICES);
+    squareSurface.push_back(VERTICES+2);
     squareSurface.push_back(2);
     squareSurface.setDimension(2);
     partialSphere.push_back(squareSurface);
@@ -245,19 +246,19 @@ std::vector<Realm> generateSphereSurfaceSquares() {
     squareSurface.add(2);
     partialSphere.push_back(squareSurface);
 
-    squareSurface.add(8);
+    squareSurface.add(VERTICES-2);
     partialSphere.push_back(squareSurface);
 
     squareSurface.add(2);
     partialSphere.push_back(squareSurface);
 
-    squareSurface.add(8);
+    squareSurface.add(VERTICES-2);
     partialSphere.push_back(squareSurface);
 
     squareSurface.add(2);
     partialSphere.push_back(squareSurface);
 
-    squareSurface.add(8);
+    squareSurface.add(VERTICES-2);
     partialSphere.push_back(squareSurface);
 
     squareSurface.add(2);
