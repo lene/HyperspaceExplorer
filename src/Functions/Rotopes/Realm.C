@@ -647,7 +647,7 @@ Realm Realm::rotateStep2D(unsigned base, unsigned delta) {
     for (unsigned i = _subrealm.size()/2; i < _subrealm.size(); ++i) {
         new_subrealms.push_back(generateRectSegment(i, base, delta));
     }
-    cerr << "new subrealms: " << Realm(new_subrealms).toString();
+    if (DEBUG_ROTATE) { cerr << "new subrealms: " << Realm(new_subrealms).toString(); }
 
     Realm new_realm;
     // here is the assumption that new_subrealms.size() is even.

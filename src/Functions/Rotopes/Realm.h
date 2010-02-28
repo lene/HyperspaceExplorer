@@ -194,7 +194,7 @@ private:
     /// If _dimension == 0, this is the index into the vertex array
     unsigned _index;
 
-    const static bool DEBUG_ROTATE = true;
+    const static bool DEBUG_ROTATE = false;
     static const unsigned OFFSET_BETWEEN_NEIGHBORING_INDICES = 2;
 
     /// Auxiliary class encapsulating printing and conversion to std::string.
