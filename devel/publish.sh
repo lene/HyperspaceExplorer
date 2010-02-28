@@ -10,12 +10,14 @@ FILENAME="HyperspaceExplorer"
 EXECUTABLE="HyperspaceExplorer"
 PROJECTNAME="hyperspace-expl"
 USERNAME="metaldog"
+NUM_PARALLEL_MAKE_PROCESSES=3
 
 set +xv
 
 # processes arguments to the script
 function parse_commandline() {
     edit=0
+    test=0
     generate=0
     check=0
     upload=0
@@ -25,6 +27,7 @@ function parse_commandline() {
     while [ $# != 0 ]; do
         case "$1" in
             --edit|-e)      edit=1;;
+            --test|-t)      test=1;;
             --generate|-g)  generate=1;;
             --check|-c)     check=1;;
             --upload|-u)    upload=1;;
@@ -46,6 +49,7 @@ function parse_commandline() {
 function print_help() {
     echo $(basename $0) --version\|-v \<VERSION\>
     echo "          [--edit\|-e]"
+    echo "          [--test\|-t]"
     echo "          [--generate\|-g]"
     echo "          [--check\|-c]"
     echo "          [--upload\|-u]"
@@ -88,16 +92,21 @@ function edit() {
     echo
     echo 'make sure CONFIG in src/src.pro is set to release (and not debug). ie.:'
     echo '    CONFIG -= debug'
-    echo '    CONFIG += release qt warn_on uic'
+    echo '    CONFIG += release qt warn_on uic staticlib'
     echo
     echo 'hit ENTER to continue'
     read YES
 
     echo
-    echo 'make sure you have set the startup object to a new one'
+    echo 'make sure you have set the startup object to a new one in C4DView'
     echo
     echo 'hit ENTER to continue'
     read YES
+}
+
+# run unit tests
+function run_tests() {
+    ./tests/tests || exit 1
 }
 
 # generate distribution package
@@ -105,7 +114,7 @@ function generate() {
     echo "Generating distribution package..."
 
     # File and directory names which should NOT be included in the archive
-    EXCLUDE=".svn tmp testing archive plugins"
+    EXCLUDE=".svn tmp testing archive plugins HyperspaceExplorer-tests"
 
     # File and directory names which SHOULD be included in the archive must be
     # listed as argument to the tar command below
@@ -121,7 +130,7 @@ function generate() {
     cd ${BASEDIR}
     tar ${EXCLUDE_CLAUSE} \
         --create --bzip2 --file ${PROJECTDIR}/${FILENAME}-${VERSION}.tar.bz2 \
-        ${PROJECTDIR}/{src,AUTHORS,COPYING,ChangeLog,Doxyfile,HyperspaceExplorer.pro,INSTALL,License.txt,README,*.4d}
+        ${PROJECTDIR}/{src,main,tests,AUTHORS,COPYING,ChangeLog,Doxyfile,HyperspaceExplorer.pro,INSTALL,License.txt,README,*.4d}
 }
 
 # check distribution package
@@ -134,7 +143,8 @@ function check() {
         tar jxf ${BASEDIR}/${PROJECTDIR}/${FILENAME}-${VERSION}.tar.bz2 && \
         cd ${PROJECTDIR} && \
         qmake && \
-        make -j2 && \
+        make -j${NUM_PARALLEL_MAKE_PROCESSES} && \
+        ./tests/HyperspaceExplorer-tests && \
         sudo make install && \
         ./${EXECUTABLE} || exit 1
 }
@@ -199,15 +209,16 @@ function document() {
 
 parse_commandline $@
 
-LINES=$(find . -name *.[CH] -exec cpp -fpreprocessed "{}" \; 2> /dev/null | \
+LINES=$(find . \( -name \*.[CHh] -or -name \*.cpp \) -and -not -path \*/tmp/\* -exec cpp -fpreprocessed "{}" \; 2> /dev/null | \
         grep -v ^$ | \
         grep -v ^# | \
         wc -l)
 echo $LINES lines of code
 
-if [ $edit -eq 1 -o $generate -eq 1 -o $check -eq 1 -o $upload -eq 1 \
-        -o $document -eq 1 -o $branch -eq 1 ]; then
+if [ $edit -eq 1 -o $test -eq 1 -o $generate -eq 1 -o $check -eq 1 \
+         -o $upload -eq 1 -o $document -eq 1 -o $branch -eq 1 ]; then
     test $edit -eq 1 && edit
+    test $test -eq 1 && run_tests
     test $generate -eq 1 && generate
     test $check -eq 1 && check
     test $upload -eq 1 && upload
@@ -215,6 +226,7 @@ if [ $edit -eq 1 -o $generate -eq 1 -o $check -eq 1 -o $upload -eq 1 \
     test $document -eq 1 && document
 else
     edit && \
+        run_tests && \
         generate && \
         check && \
         upload && \

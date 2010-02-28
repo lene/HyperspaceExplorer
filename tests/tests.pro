@@ -43,3 +43,5 @@ SOURCES += main.cpp \
 
 PRE_TARGETDEPS *= ../lib/libHyperspaceExplorer.a
 LIBS *= ../lib/libHyperspaceExplorer.a
+
+TARGET = HyperspaceExplorer-tests

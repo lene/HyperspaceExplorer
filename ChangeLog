@@ -1,6 +1,15 @@
 HyperspaceExplorer Changelog
 =============================
 
+release 0.7.0:
+    * Added Rotopes to the function menu. Only Extrusion, Tapering and Rotation
+      are currently supported.
+    * Started a test suite. as of now the following classes are tested:
+        * VecMath::Vector, VecMath::Matrix, VecMath::Rotation and
+          VecMath::NestedVector
+        * Realm and several Rotopes
+        * RealFunction (incompletely)
+
 release 0.6.4:
     * accelerated xyz -> RGB color manager by getting rid of std::map<>
     * make code compile with gcc 4.3.3

@@ -502,7 +502,6 @@ QAction *C4DView::Menu4D::insertAction(QMenu *_menu, const QString &title,
 QAction *C4DView::Menu4D::insertAction(QMenu *_menu, const QString &title,
                                        RealFunctionFactory *factory,
                                        bool checkable) {
-    std::cerr << title.toStdString() << std::endl;
     QAction *tmp = _menu->addAction(title,
                                     new FunctionSlotHelper(_parent, factory),
                                     SLOT(slot()), (const QKeySequence &)0);

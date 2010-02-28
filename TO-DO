@@ -11,11 +11,5 @@ TODO for finishing of Rotopes:
 
 - combine vertex array with Realm to have a single class for surfaces without interdependence
 
-- when performing a rotation, connect each vertex of a (n-1)-dimensional surface to its image after a rotation
-  - do i have to perform that recursively, until i deal with lines? probably...
-  - the operation should be done simply as surface::rotate()
-
-- number of segments for rotations should be a parameter in function parameter dialog
-
 - continue with "torations" - or generalize rotations so they can take displacement as a parameter
   - displacement should be a parameter too
