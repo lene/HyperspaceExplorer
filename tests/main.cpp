@@ -30,9 +30,9 @@ int main(int argc, char **argv) {
     if (qExec(new Test_NestedVector)) failedTestSuites++;
     if (qExec(new Test_Rotation)) failedTestSuites++;
     if (qExec(new Test_Realm)) failedTestSuites++;
-//    if (qExec(new Test_Function)) failedTestSuites++;
     if (qExec(new Test_RealFunction)) failedTestSuites++;
     if (qExec(new Test_Rotope)) failedTestSuites++;
+    if (qExec(new Test_Function)) failedTestSuites++;
         
     printSummary(failedTestSuites);
 

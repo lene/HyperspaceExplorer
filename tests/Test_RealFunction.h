@@ -3,7 +3,6 @@
 
 #include <QtTest/QtTest>
 
-
 #include "RealFunction.h"
 
 class Test_RealFunction: public QObject {

@@ -24,7 +24,7 @@
 /// \defgroup FunctionParameterGroup A generalized interface for function parameters of arbitrary type
 /// \ingroup FunctionGroup
 
-/// Interface for a value of a function parameter. Inherited by a template class
+/// Interface for a value of a function parameter. Inherited by a template class.
 /** A lot of fumbling has taken place to make this hierarchy work despite the
  *  limitations of the C++ language, and I'm still not sure everything is clean
  *  and works as it should.
@@ -80,7 +80,7 @@
  *  language for it. (Just kidding. It makes perfect sense to forbid templated
  *  functions as virtual members, and I'm sure there is a good reason to forbid
  *  abstract classes as container contents. (I just don't see it now, but I did
- *  not think hard on it.) C++ is a very clever language)
+ *  not think hard on it.) C++ is a very clever language.)
  *
  *  \ingroup FunctionParameterGroup                                           */
 class FunctionParameterValueBase {
@@ -226,7 +226,8 @@ template <typename T> class FunctionParameterValue:
          *  will be defined in FunctionParameterValue<unsigned>.              */
         virtual operator unsigned() {
             throw WrongParameterTypeException("FunctionParameterValue",
-                                              "operator unsigned", "");
+                                              "operator unsigned ",
+                                              "did you explicitly cast the operand to unsigned? you should");
             return 0;
         }
 
