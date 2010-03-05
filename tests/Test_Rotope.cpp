@@ -81,7 +81,7 @@ void Test_Rotope::triangleVertices() {
 void Test_Rotope::circleRealm() {
     setRotope("ER");
     Realm definedCircle = generateCircleRealm();
-    QVERIFY(_realm == definedCircle);
+    QVERIFY2(_realm == definedCircle, (_realm.toString()+" != "+definedCircle.toString()).c_str());
 }
 
 Realm generateCircleRealm() {

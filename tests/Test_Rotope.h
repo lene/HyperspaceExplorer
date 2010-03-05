@@ -25,9 +25,9 @@ private slots:
   void squareVertices();
   void triangleRealm();
   void triangleVertices();
-  void circleRealm();
   void circleVertices();
-
+  void circleRealm();
+  
   void cubeRealm();
   void cubeVertices();
   void prismRealm();

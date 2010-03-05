@@ -125,14 +125,14 @@ void Test_Realm::extrude() {
 
 void Test_Realm::taper() {
   Realm line(createUintVec());
-  line.taper(3);
+  line = line.taper(3);
   QVERIFY(line.dimension() == 2);
   QVERIFY(line.contains(3));
 }
 
 void Test_Realm::rotate() {
   Realm line(createUintVec());
-  line.rotate(2, 2);
+  line = line.rotate(2, 2);
   QVERIFY(line.dimension() == 2);
   QVERIFY(line.contains(3));
   QVERIFY(line.contains(4));

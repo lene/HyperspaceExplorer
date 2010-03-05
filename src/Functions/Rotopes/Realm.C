@@ -139,7 +139,7 @@ bool Realm::contains(const Realm &other) const {
  *      to be pointing to the corresponding vertex in the extruded vertex array.
  *      (Gee, that's a mouthful.)
  */
-Realm Realm::extrude(unsigned delta) {
+Realm Realm::extrude(unsigned delta) const {
     switch(_dimension) {
     case 0: return extrudePoint(delta);
     case 1: return extrudeLine(delta);
@@ -148,7 +148,7 @@ Realm Realm::extrude(unsigned delta) {
     }
 }
 
-Realm Realm::extrudePoint(unsigned delta) {
+Realm Realm::extrudePoint(unsigned delta) const {
     if (_dimension) {
         throw std::logic_error("extrudePoint() called on Realm: "+toString());
     }
@@ -165,7 +165,7 @@ Realm Realm::extrudePoint(unsigned delta) {
 /** Special case: make surfaces so OpenGL can draw them. \c _subrealm.size()
  *  should be 2.
  */
-Realm Realm::extrudeLine(unsigned delta) {
+Realm Realm::extrudeLine(unsigned delta) const {
     if (_dimension != 1) {
         throw std::logic_error("extrudeLine() called on Realm: "+toString());
     }
@@ -188,7 +188,7 @@ Realm Realm::extrudeLine(unsigned delta) {
     return new_realm;
 }
 
-Realm Realm::extrudePolygon(unsigned delta) {
+Realm Realm::extrudePolygon(unsigned delta) const {
     if (_dimension != 2) {
         throw std::logic_error("extrudePolygon() called on Realm: "+toString());
     }
@@ -197,7 +197,7 @@ Realm Realm::extrudePolygon(unsigned delta) {
 
     Realm copied_realm(*this);
     new_subrealms.push_back(copied_realm);
-
+    
     for (unsigned i = 0; i < _subrealm.size(); ++i) {
         Realm new_subrealm;
         new_subrealm.push_back(_subrealm[i]._index);
@@ -214,7 +214,7 @@ Realm Realm::extrudePolygon(unsigned delta) {
     return Realm(new_subrealms);
 }
 
-Realm Realm::extrudeRealm(unsigned delta) {
+Realm Realm::extrudeRealm(unsigned delta) const {
     if (_dimension < 3) {
         throw std::logic_error("extrudeRealm() called on Realm: "+toString());
     }
@@ -237,7 +237,7 @@ Realm Realm::extrudeRealm(unsigned delta) {
 /** \param taper_index Index in the vertex array of the new vertex, toward which 
  *      the object is tapered.
  */
-Realm Realm::taper(unsigned taper_index) {
+Realm Realm::taper(unsigned taper_index) const {
     switch (_dimension) {
     case 0: throw std::logic_error(
             "Tried to taper a point: "+toString()+".\n"
@@ -249,7 +249,7 @@ Realm Realm::taper(unsigned taper_index) {
     }
 }
 
-Realm Realm::taperLine(unsigned taper_index) {
+Realm Realm::taperLine(unsigned taper_index) const {
     if (_dimension != 1) {
         throw std::logic_error("taperLine() called on Realm: "+toString());
     }
@@ -259,12 +259,13 @@ Realm Realm::taperLine(unsigned taper_index) {
                 toString());
     }
 
-    _subrealm.push_back(Realm(taper_index));
-    _dimension++;
-    return *this;
+    Realm triangle(*this);
+    triangle.push_back(Realm(taper_index));
+    triangle._dimension++;
+    return triangle;
 }
 
-Realm Realm::taperPolygon(unsigned taper_index) {
+Realm Realm::taperPolygon(unsigned taper_index) const {
     if (_dimension != 2) {
         throw std::logic_error("taperPolygon() called on Realm: "+toString());
     }
@@ -285,7 +286,7 @@ Realm Realm::taperPolygon(unsigned taper_index) {
     return Realm(new_subrealms);
 }
 
-Realm Realm::taperRealm(unsigned taper_index) {
+Realm Realm::taperRealm(unsigned taper_index) const {
     if (_dimension < 3) {
         throw std::logic_error("extrudeRealm() called on Realm: "+toString());
     }
@@ -305,7 +306,7 @@ Realm Realm::taperRealm(unsigned taper_index) {
  *  \param num_segments How many segments to use approximating a circle.
  *  \param size Size of the original vertex array. See extrude().
  */
-Realm Realm::rotate(unsigned num_segments, unsigned size) {
+Realm Realm::rotate(unsigned num_segments, unsigned size) const {
 
     switch (_dimension) {
     case 0: throw std::logic_error(
@@ -329,7 +330,7 @@ Realm Realm::rotate(unsigned num_segments, unsigned size) {
  *  \param num_segments How many segments to use approximating a circle.
  *  \param size Size of the original vertex array. See extrude().
  */
-Realm Realm::rotateLine(unsigned num_segments, unsigned size) {
+Realm Realm::rotateLine(unsigned num_segments, unsigned size) const {
 
     /// Copy the subrealms to a list for easier insertion in the middle.
     list<Realm> temp_list(_subrealm.size());
@@ -339,16 +340,16 @@ Realm Realm::rotateLine(unsigned num_segments, unsigned size) {
     insertNewPoints(temp_list, realms_to_add);
 
     /// Copy the subrealms back from the temporary list to a vector
-    _subrealm.resize(temp_list.size());
-    std::copy(temp_list.begin(), temp_list.end(), _subrealm.begin());
+    realm_container_type new_subrealms(temp_list.size());
+    std::copy(temp_list.begin(), temp_list.end(), new_subrealms.begin());
 
-    _dimension++;
-
-    return *this;
+    Realm circle(new_subrealms);
+    circle._dimension++;
+    return circle;
 }
 
 list<Realm::realm_container_type> Realm::generateListOfPointsToAdd(
-        list<Realm> original_list, unsigned num_segments, unsigned size) {
+        list<Realm> original_list, unsigned num_segments, unsigned size) const {
     list< realm_container_type > realms_to_add;
 
     unsigned index = 0;
@@ -364,7 +365,7 @@ list<Realm::realm_container_type> Realm::generateListOfPointsToAdd(
 }
 
 void Realm::insertNewPoints(list<Realm> &original_list,
-                            const list<Realm::realm_container_type> &new_points) {
+                            const list<Realm::realm_container_type> &new_points) const {
 
     list<Realm>::iterator i = original_list.begin();
     ++i;
@@ -441,7 +442,7 @@ void Realm::insertNewPoints(list<Realm> &original_list,
  *
  *  \todo Add the caps.
  */
-Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) {
+Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) const {
 
     if (DEBUG_ROTATE) { cerr << "rotating surface: " << toString() << endl; }
 
@@ -461,7 +462,7 @@ Realm Realm::generateEmpty3DRealm() {
     return realm;
 }
 
-void Realm::addRotationStrip(Realm &all_strips, unsigned rotation_step, unsigned num_segments) {
+void Realm::addRotationStrip(Realm &all_strips, unsigned rotation_step, unsigned num_segments) const {
     Realm temp_realm = rotateStep(0, rotation_step*num_segments, num_segments);
     if (DEBUG_ROTATE) { 
         cerr << "addRotationStrip(..., " << rotation_step << ", " << num_segments << "): "
@@ -490,14 +491,14 @@ void Realm::addRotationStrip(Realm &all_strips, unsigned rotation_step, unsigned
  *   range <tt>[j*N, ..., j*(N+1)-1]</tt>, while the extruded points lie in
  *   <tt>[j*(N+1), ..., j*(N+2)-1]</tt>.
  *
- *  \param num_segments Number of vertices per polygon.
+ *  \param total_vertices Number of vertices per polygon.
  *  \param rotation_step Between 0 and num_segments-1.
  */
-void Realm::addStayingWithinSameStrip(unsigned num_segments, unsigned rotation_step) {
+void Realm::addStayingWithinSameStrip(unsigned total_vertices, unsigned rotation_step)   {
 
     if (_dimension > 2) {
         for (realm_container_type::iterator i = _subrealm.begin(); i != _subrealm.end(); ++i) {
-            i->addStayingWithinSameStrip(num_segments, rotation_step);
+          i->addStayingWithinSameStrip(total_vertices, rotation_step);
         }
         return;
     }
@@ -507,20 +508,20 @@ void Realm::addStayingWithinSameStrip(unsigned num_segments, unsigned rotation_s
 
     if (DEBUG_ROTATE) {
         cerr << toString()
-            << " num_segments: "<< std::setw(4) << num_segments << " rotation_step "<< std::setw(4) << rotation_step << endl;
+            << " num_segments: "<< std::setw(4) << total_vertices << " rotation_step "<< std::setw(4) << rotation_step << endl;
     }
 
-    std::pair<unsigned, unsigned> base_extruded1 = wrapToStayWithinStrip(_subrealm[0], _subrealm[1], num_segments, rotation_step);
+    std::pair<unsigned, unsigned> base_extruded1 = wrapToStayWithinStrip(_subrealm[0], _subrealm[1], total_vertices, rotation_step);
     _subrealm[0] = base_extruded1.first;
     _subrealm[1] = base_extruded1.second;
 
-    std::pair<unsigned, unsigned> base_extruded2 = wrapToStayWithinStrip(_subrealm[3], _subrealm[2], num_segments, rotation_step);
+    std::pair<unsigned, unsigned> base_extruded2 = wrapToStayWithinStrip(_subrealm[3], _subrealm[2], total_vertices, rotation_step);
     _subrealm[3] = base_extruded2.first;
     _subrealm[2] = base_extruded2.second;
 
 }
 
-void Realm::checkArgumentsForAddStayingWithinSameStrip() {
+void Realm::checkArgumentsForAddStayingWithinSameStrip() const {
 
     if (_dimension < 2) {
         throw std::invalid_argument("generating Realm must be a rectangle: "+toString());
@@ -534,7 +535,7 @@ void Realm::checkArgumentsForAddStayingWithinSameStrip() {
 
 std::pair<unsigned, unsigned> Realm::wrapToStayWithinStrip(unsigned base, unsigned extruded,
                                                            unsigned num_segments, unsigned rotation_step
-                                                           ) {
+                                                           ) const {
     unsigned min_base_index = rotation_step*num_segments,
              max_base_index = (rotation_step+1)*num_segments-1,
              min_extruded_index = max_base_index+1,
@@ -573,7 +574,7 @@ std::pair<unsigned, unsigned> Realm::wrapToStayWithinStrip(unsigned base, unsign
  *
  *  \todo achieve the desired effect for any polygon
  */
-Realm Realm::rotatePolygonCap(const realm_container_type &rotated_walls) {
+Realm Realm::rotatePolygonCap(const realm_container_type &rotated_walls) const {
     realm_container_type edges;
 
     Realm first_edge(*this);
@@ -589,7 +590,7 @@ Realm Realm::rotatePolygonCap(const realm_container_type &rotated_walls) {
     return edges;
 }
 
-Realm Realm::rotateRealm(unsigned num_segments, unsigned size) {
+Realm Realm::rotateRealm(unsigned num_segments, unsigned size) const {
     realm_container_type temp_subrealms;
     for (unsigned i = 0; i < _subrealm.size(); ++i) {
         temp_subrealms.push_back(_subrealm[i].rotate(num_segments, size));
@@ -610,7 +611,7 @@ Realm Realm::rotateRealm(unsigned num_segments, unsigned size) {
  *  \param base
  *  \param delta
  */
-Realm Realm::rotateStep(unsigned index, unsigned base, unsigned delta) {
+Realm Realm::rotateStep(unsigned index, unsigned base, unsigned delta) const {
     if (DEBUG_ROTATE) { cout << "Realm::rotate_step(" << index << ", " << base << ", " << delta << "): "; }
     switch (_dimension) {
     case 0: throw std::logic_error(
@@ -636,7 +637,7 @@ Realm Realm::rotateStep(unsigned index, unsigned base, unsigned delta) {
  *  \todo Split into smaller functions.
  *  \todo Fix for triangles.
  */
-Realm Realm::rotateStep2D(unsigned base, unsigned delta) {
+Realm Realm::rotateStep2D(unsigned base, unsigned delta) const {
     realm_container_type new_subrealms;
     if (DEBUG_ROTATE) {
         cerr << endl << "rotateStep2D(" << base << ", " << delta <<"): size: " << _subrealm.size() << endl;
@@ -682,7 +683,7 @@ Realm Realm::rotateStep2D(unsigned base, unsigned delta) {
     return new_realm;
 }
 
-Realm Realm::generateRectSegment(unsigned i, unsigned base, unsigned delta) {
+Realm Realm::generateRectSegment(unsigned i, unsigned base, unsigned delta) const {
 
     if (_subrealm[i].dimension()) throw new std::logic_error("At this point subrealms should be points");
 
