@@ -157,6 +157,13 @@ void Test_Realm::toString() {
   QVERIFY(stringRepresentation.find("[2]") != std::string::npos);
 }
 
+void Test_Realm::merge() {
+  Realm fromUintVec(createUintVec());
+  fromUintVec.merge(createUintVec());
+  
+  QVERIFY(fromUintVec.dimension() == 1);
+  QVERIFY(fromUintVec.size() == 4);
+}
 
 std::vector<Realm> createUintVec() {
   std::vector<Realm> unsigneds;
