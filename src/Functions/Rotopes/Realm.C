@@ -52,8 +52,7 @@ void Realm::merge(const Realm &r) {
 std::string Realm::toString() const {
     std::ostringstream realm_outstream;
 
-    RealmPrinter printer(this);
-    printer.print(realm_outstream);
+    RealmPrinter(this).print(realm_outstream);
     realm_outstream << std::ends;
 
     return realm_outstream.str();

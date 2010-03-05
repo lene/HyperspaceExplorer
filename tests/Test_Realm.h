@@ -35,6 +35,7 @@ private slots:
     void contains();
     void fromStdVector();
     void operatorUnsigned();
+    void toString();
     
     void extrude();
     void taper();

@@ -140,6 +140,23 @@ void Test_Realm::rotate() {
   QVERIFY(line.contains(6));
 }
 
+void Test_Realm::toString() {
+  Realm fromUintVec(createUintVec());
+  std::string stringRepresentation = fromUintVec.toString();
+  
+  QVERIFY(stringRepresentation.find("[1]") != std::string::npos);
+  for (std::vector<Realm>::const_iterator it = fromUintVec.cbegin(); it != fromUintVec.cend(); ++ it) {
+    QVERIFY(stringRepresentation.find(QString::number((unsigned)(*it)).toStdString()) != std::string::npos);
+  }
+  
+  Realm realm2D;
+  realm2D.push_back(fromUintVec);
+  realm2D.push_back(fromUintVec);
+  
+  stringRepresentation = realm2D.toString();
+  QVERIFY(stringRepresentation.find("[2]") != std::string::npos);
+}
+
 
 std::vector<Realm> createUintVec() {
   std::vector<Realm> unsigneds;
