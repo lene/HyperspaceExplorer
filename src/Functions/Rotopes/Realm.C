@@ -444,8 +444,6 @@ void Realm::insertNewPoints(list<Realm> &original_list,
  */
 Realm Realm::rotatedPolygon(unsigned num_segments, unsigned size) const {
 
-    if (DEBUG_ROTATE) { cerr << "rotating surface: " << toString() << endl; }
-
     Realm rotated_walls = generateEmpty3DRealm();
     for (unsigned j = 0; j < num_segments; ++j) {
         addRotationStrip(rotated_walls, j, size);
@@ -506,11 +504,6 @@ void Realm::addStayingWithinSameStrip(unsigned total_vertices, unsigned rotation
     
     addOffset(OFFSET_BETWEEN_NEIGHBORING_INDICES);
 
-    if (DEBUG_ROTATE) {
-        cerr << toString()
-            << " num_segments: "<< std::setw(4) << total_vertices << " rotation_step "<< std::setw(4) << rotation_step << endl;
-    }
-
     std::pair<unsigned, unsigned> base_extruded1 = wrapToStayWithinStrip(_subrealm[0].toIndex(), _subrealm[1].toIndex(), total_vertices, rotation_step);
     _subrealm[0] = base_extruded1.first;
     _subrealm[1] = base_extruded1.second;
@@ -522,7 +515,6 @@ void Realm::addStayingWithinSameStrip(unsigned total_vertices, unsigned rotation
 }
 
 void Realm::checkArgumentsForAddStayingWithinSameStrip() const {
-
     if (_dimension < 2) {
         throw std::invalid_argument("generating Realm must be a rectangle: "+toString());
     }
@@ -597,7 +589,7 @@ Realm Realm::rotatedRealm(unsigned num_segments, unsigned size) const {
     }
     temp_subrealms.push_back(*this);
     Realm new_realm(temp_subrealms);
-    if (DEBUG_ROTATE) { cout << "new realm: " << endl << new_realm.toString() << endl; }
+
     return new_realm;
 }
 
@@ -612,14 +604,13 @@ Realm Realm::rotatedRealm(unsigned num_segments, unsigned size) const {
  *  \param delta
  */
 Realm Realm::rotateStep(unsigned index, unsigned base, unsigned delta) const {
-    if (DEBUG_ROTATE) { cout << "Realm::rotate_step(" << index << ", " << base << ", " << delta << "): "; }
     switch (_dimension) {
     case 0: throw std::logic_error(
             "Realm::rotate_step() can only operate on at least two vertices"
     );
 
     case 1: return Realm(_subrealm[index]._index+base+delta);
-    case 2: return rotateStep2D(base, delta);
+    case 2: return generateStripBetweenGreatCircles(base, delta);
 
     default: throw NotYetImplementedException("Realm::rotate_step()");
     }
@@ -637,50 +628,50 @@ Realm Realm::rotateStep(unsigned index, unsigned base, unsigned delta) const {
  *  \todo Split into smaller functions.
  *  \todo Fix for triangles.
  */
-Realm Realm::rotateStep2D(unsigned base, unsigned delta) const {
-    realm_container_type new_subrealms;
-    if (DEBUG_ROTATE) {
-        cerr << endl << "rotateStep2D(" << base << ", " << delta <<"): size: " << _subrealm.size() << endl;
-    }
+Realm Realm::generateStripBetweenGreatCircles(unsigned base, unsigned delta) const {
 
     if (size() < 4) {
         throw BadRotopeOperation("Realm::rotateStep2D()",
                                  "Rotating tapered object is not yet supported.");
     }
 
-    for (unsigned i = 0; i < _subrealm.size()/2; ++i) {
-        new_subrealms.push_back(generateRectSegment(i, base, delta));
-    }
-    // generate rectangles for the odd indices
-    for (unsigned i = _subrealm.size()/2; i < _subrealm.size(); ++i) {
-        new_subrealms.push_back(generateRectSegment(i, base, delta));
-    }
-    if (DEBUG_ROTATE) { 
-        cerr  << "rotateStep2D(" << base << ", " << delta <<"): new subrealms: " << Realm(new_subrealms).toString(); }
+    realm_container_type new_subrealms = rectsBetweenGreatCircles(base, delta);
 
     Realm new_realm;
     // here is the assumption that new_subrealms.size() is even.
     for (unsigned index = 0; index < new_subrealms.size(); index += 2) {
-        Realm another_temp;
-
-        for (realm_container_type::iterator i = new_subrealms[index].begin();
-             i != new_subrealms[index].end(); ++i) {
-            another_temp.push_back(*i);
-        }
-
-        for (realm_container_type::reverse_iterator i = new_subrealms[index+1].rbegin();
-             i != new_subrealms[index+1].rend(); ++i) {
-            another_temp.push_back(*i);
-        }
-
-        another_temp._dimension++;
-
-        new_realm.push_back(another_temp);
+        new_realm.push_back(reorderRectsBetweenGreatCircles(new_subrealms, index));
     }
 
-    if (DEBUG_ROTATE) { cerr  << "rotateStep2D(" << base << ", " << delta <<"): new realm: " << new_realm.toString() << endl; }
-
     return new_realm;
+}
+
+Realm::realm_container_type Realm::rectsBetweenGreatCircles(unsigned int base, unsigned int delta) const {
+    realm_container_type new_subrealms;
+    
+    for (unsigned i = 0; i < _subrealm.size(); ++i) {
+        new_subrealms.push_back(generateRectSegment(i, base, delta));
+    }
+
+    return new_subrealms;
+}
+
+Realm Realm::reorderRectsBetweenGreatCircles(Realm::realm_container_type subrealms, unsigned index) const {
+    Realm another_temp;
+
+    for (realm_container_type::iterator i = subrealms[index].begin();
+         i != subrealms[index].end(); ++i) {
+        another_temp.push_back(*i);
+    }
+
+    for (realm_container_type::reverse_iterator i = subrealms[index+1].rbegin();
+         i != subrealms[index+1].rend(); ++i) {
+        another_temp.push_back(*i);
+    }
+
+    another_temp._dimension++;
+
+    return another_temp;
 }
 
 Realm Realm::generateRectSegment(unsigned i, unsigned base, unsigned delta) const {
