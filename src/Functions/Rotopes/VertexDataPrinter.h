@@ -21,8 +21,10 @@ template <unsigned D>
     out << _vertexData->dimension() << "-dimensional object";
 
     out << "\n" << _vertexData->realm().size() << " realms: \n";
-    std::copy(_vertexData->realm().cbegin(), _vertexData->realm().cend(),
-              std::ostream_iterator<std::string>(out, " "));
+    for (Realm::realm_container_type::const_iterator it = _vertexData->realm().begin();
+         it != _vertexData->realm().end(); ++it) {
+      out << it->toString() << " ";
+    }
     out << "\n";
 
     out << verticesToString(PRINT_VERTICES_NUM_COLUMNS);

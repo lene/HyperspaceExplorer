@@ -69,7 +69,7 @@ void Realm::addOffset(unsigned delta) {
     }
 }
 
-Realm::operator unsigned() const { 
+unsigned Realm::toIndex() const { 
     if (dimension() == 0) return _index; 
     throw std::invalid_argument(
             "Tried to convert Realm "+toString()+" to unsigned.\n"
@@ -81,7 +81,7 @@ bool Realm::operator==(const Realm &other) const {
 
     if (dimension() != other.dimension()) return false;
 
-    if (dimension() == 0) return ((unsigned)*this == (unsigned)other);
+    if (dimension() == 0) return (toIndex() == other.toIndex());
 
     if (_subrealm.size() != other._subrealm.size()) return false;
 
@@ -511,11 +511,11 @@ void Realm::addStayingWithinSameStrip(unsigned total_vertices, unsigned rotation
             << " num_segments: "<< std::setw(4) << total_vertices << " rotation_step "<< std::setw(4) << rotation_step << endl;
     }
 
-    std::pair<unsigned, unsigned> base_extruded1 = wrapToStayWithinStrip(_subrealm[0], _subrealm[1], total_vertices, rotation_step);
+    std::pair<unsigned, unsigned> base_extruded1 = wrapToStayWithinStrip(_subrealm[0].toIndex(), _subrealm[1].toIndex(), total_vertices, rotation_step);
     _subrealm[0] = base_extruded1.first;
     _subrealm[1] = base_extruded1.second;
 
-    std::pair<unsigned, unsigned> base_extruded2 = wrapToStayWithinStrip(_subrealm[3], _subrealm[2], total_vertices, rotation_step);
+    std::pair<unsigned, unsigned> base_extruded2 = wrapToStayWithinStrip(_subrealm[3].toIndex(), _subrealm[2].toIndex(), total_vertices, rotation_step);
     _subrealm[3] = base_extruded2.first;
     _subrealm[2] = base_extruded2.second;
 
@@ -689,8 +689,8 @@ Realm Realm::generateRectSegment(unsigned i, unsigned base, unsigned delta) cons
 
     Realm new_subrealm;
 
-    new_subrealm.push_back(_subrealm[i]+base);
-    new_subrealm.push_back(_subrealm[i]+delta+base);
+    new_subrealm.push_back(_subrealm[i].toIndex()+base);
+    new_subrealm.push_back(_subrealm[i].toIndex()+delta+base);
 
     return new_subrealm;
 }

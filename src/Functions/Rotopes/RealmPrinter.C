@@ -34,7 +34,7 @@ void Realm::RealmPrinter::printFooter(std::ostream &out) const {
 }
 
 void Realm::RealmPrinter::printPoint(std::ostream &out) const {
-    out << (unsigned)(*_realm) << " ";
+    out << _realm->toIndex() << " ";
 }
 
 void Realm::RealmPrinter::printSubrealms(std::ostream &out) const {

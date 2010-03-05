@@ -34,7 +34,7 @@ private slots:
     void clear();
     void contains();
     void fromStdVector();
-    void operatorUnsigned();
+    void toIndex();
     void toString();
     void merge();
     

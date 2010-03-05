@@ -103,12 +103,12 @@ void Test_Realm::fromStdVector() {
     QVERIFY(fromUintVec.dimension() == 1);
 }
 
-void Test_Realm::operatorUnsigned() {
+void Test_Realm::toIndex() {
     Realm realm(1);
-    QVERIFY(unsigned(realm) == 1);
+    QVERIFY(realm.toIndex() == 1);
     Realm line(createUintVec());
     try {
-        unsigned int_value = unsigned(line);
+        unsigned int_value = line.toIndex();
     } catch (std::logic_error e) {
         return;
     }
@@ -146,7 +146,7 @@ void Test_Realm::toString() {
   
   QVERIFY(stringRepresentation.find("[1]") != std::string::npos);
   for (std::vector<Realm>::const_iterator it = fromUintVec.cbegin(); it != fromUintVec.cend(); ++ it) {
-    QVERIFY(stringRepresentation.find(QString::number((unsigned)(*it)).toStdString()) != std::string::npos);
+    QVERIFY(stringRepresentation.find(QString::number(it->toIndex()).toStdString()) != std::string::npos);
   }
   
   Realm realm2D;

@@ -101,7 +101,7 @@ public:
     void setDimension(unsigned d) { _dimension = d; }
 
     /// Makes a Realm of dimension 0 usable as index into the vertex array.
-    operator unsigned() const;
+    unsigned toIndex() const;
 
     /// Create a new Realm by extruding the present Realm.
     Realm extruded(unsigned delta) const;
@@ -126,7 +126,6 @@ public:
     bool contains(const Realm &other) const;
 
     std::string toString() const;
-    operator std::string() const { return toString(); }
 
     /// Add an offset to all indices into the vertex array.
     /** public only to satisfy unit tests.

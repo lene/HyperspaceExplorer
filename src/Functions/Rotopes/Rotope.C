@@ -144,7 +144,7 @@ void Rotope::Draw(const Realm &realm) {
         case 0:
             /** Dimension 0 is a point. Easy to draw ;-) */
             glBegin(GL_POINTS);
-                setVertex(X[realm], Xscr[realm]);
+                setVertex(X[realm.toIndex()], Xscr[realm.toIndex()]);
             glEnd();
             break;
         case 1:
@@ -154,7 +154,7 @@ void Rotope::Draw(const Realm &realm) {
             glBegin(GL_LINES);
                 for (Realm::realm_container_type::const_iterator i = realm.getSubrealms().begin();
                     i != realm.getSubrealms().end(); ++i) {
-                   setVertex(X[*i], Xscr[*i]);
+                   setVertex(X[i->toIndex()], Xscr[i->toIndex()]);
                 }
             glEnd();
             break;
@@ -167,7 +167,7 @@ void Rotope::Draw(const Realm &realm) {
                 glBegin(GL_POLYGON);
                     for (Realm::realm_container_type::const_iterator i = realm.getSubrealms().begin();
                          i != realm.getSubrealms().end(); ++i) {
-                        setVertex(X[*i], Xscr[*i]);
+                        setVertex(X[i->toIndex()], Xscr[i->toIndex()]);
                     }
                 glEnd();
             } else if (realm.getSubrealms().begin()->dimension() == 1) {

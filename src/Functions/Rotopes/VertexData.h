@@ -76,7 +76,7 @@ template <unsigned D>
             const static int PRINT_VERTICES_NUM_COLUMNS = 2;
 
         public:
-            VertexDataPrinter(const VertexData *vertexData):
+            VertexDataPrinter(VertexData *vertexData):
                 _vertexData(vertexData) { }
 
             void printToStream(std::ostream &out) const;
@@ -100,7 +100,7 @@ template <unsigned D>
                                   unsigned num_columns = PRINT_VERTICES_NUM_COLUMNS,
                                   std::ostream &out = std::cout) const;
 
-            const VertexData *_vertexData;
+            VertexData *_vertexData;
         };
 
     /// Allow RotopeFactory free access to create VertexData objects
