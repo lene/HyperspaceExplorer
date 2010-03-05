@@ -7,7 +7,7 @@
 
 class RotopeInterface;
 
-class RotopeTest: public QObject {
+class Test_Rotope: public QObject {
 
   Q_OBJECT
 

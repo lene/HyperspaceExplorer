@@ -16,7 +16,7 @@
 
 */
 
-#include "RealmTest.h"
+#include "Test_Realm.h"
 
 #include "Rotopes/Realm.h"
 
@@ -24,7 +24,7 @@
 
 std::vector<Realm> createUintVec();
 
-void RealmTest::push_back() {
+void Test_Realm::push_back() {
     Realm realm;
     realm.push_back(1);
     realm.push_back(2);
@@ -41,7 +41,7 @@ void RealmTest::push_back() {
     QFAIL("Expected invalid_argument");
 }
 
-void RealmTest::add() {
+void Test_Realm::add() {
     Realm realm;
     realm.push_back(1);
 
@@ -50,7 +50,7 @@ void RealmTest::add() {
     QVERIFY(realm.contains(2));
 }
 
-void RealmTest::clear() {
+void Test_Realm::clear() {
     Realm realm;
     realm.push_back(1);
     
@@ -60,7 +60,7 @@ void RealmTest::clear() {
     QVERIFY(realm.dimension() == 0);
 }
 
-void RealmTest::contains() {
+void Test_Realm::contains() {
     Realm containedRealm(createUintVec());
     Realm realm2D;
     realm2D.push_back(containedRealm);
@@ -94,7 +94,7 @@ void RealmTest::contains() {
     
 }
 
-void RealmTest::fromStdVector() {
+void Test_Realm::fromStdVector() {
     
     Realm fromUintVec(createUintVec());
     
@@ -103,7 +103,7 @@ void RealmTest::fromStdVector() {
     QVERIFY(fromUintVec.dimension() == 1);
 }
 
-void RealmTest::operatorUnsigned() {
+void Test_Realm::operatorUnsigned() {
     Realm realm(1);
     QVERIFY(unsigned(realm) == 1);
     Realm line(createUintVec());
@@ -115,7 +115,7 @@ void RealmTest::operatorUnsigned() {
     QFAIL("expected logic_error");
 }
 
-void RealmTest::extrude() {
+void Test_Realm::extrude() {
     Realm line(createUintVec());
     line = line.extrude(2);
     QVERIFY(line.dimension() == 2);
@@ -123,14 +123,14 @@ void RealmTest::extrude() {
     QVERIFY(line.contains(3));
 }
 
-void RealmTest::taper() {
+void Test_Realm::taper() {
   Realm line(createUintVec());
   line.taper(3);
   QVERIFY(line.dimension() == 2);
   QVERIFY(line.contains(3));
 }
 
-void RealmTest::rotate() {
+void Test_Realm::rotate() {
   Realm line(createUintVec());
   line.rotate(2, 2);
   QVERIFY(line.dimension() == 2);

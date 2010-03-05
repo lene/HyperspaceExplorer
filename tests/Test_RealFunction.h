@@ -6,7 +6,7 @@
 
 #include "RealFunction.h"
 
-class RealFunctionTest: public QObject {
+class Test_RealFunction: public QObject {
 
     Q_OBJECT
 

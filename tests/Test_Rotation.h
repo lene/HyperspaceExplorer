@@ -4,7 +4,7 @@
 #include <QtTest/QtTest>
 
 
-class RotationTest: public QObject {
+class Test_Rotation: public QObject {
 
     Q_OBJECT
 

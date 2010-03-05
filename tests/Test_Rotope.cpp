@@ -1,5 +1,5 @@
 
-#include "RotopeTest.h"
+#include "Test_Rotope.h"
 
 /// \todo fix in RotopeBase that this must be included firat
 #include "Rotation.h"
@@ -13,11 +13,11 @@ Realm generateTriangleRealm();
 Realm generateCircleRealm();
 std::vector<Realm> generatePartialSphereSurfaceSquares();
 
-void RotopeTest::initTestCase() { }
+void Test_Rotope::initTestCase() { }
 
-void RotopeTest::cleanupTestCase() { }
+void Test_Rotope::cleanupTestCase() { }
 
-void RotopeTest::oneDimensionalRotope() {
+void Test_Rotope::oneDimensionalRotope() {
     try {
         _rotope = RotopeFactory::generate(std::string("E"));
     } catch (std::logic_error e) {
@@ -26,7 +26,7 @@ void RotopeTest::oneDimensionalRotope() {
     QFAIL("Bad Rotope exception expected, but not thrown");
 }
 
-void RotopeTest::squareRealm() {
+void Test_Rotope::squareRealm() {
     setRotope("EE");
     Realm definedSquare = generateSquareRealm();
 
@@ -43,7 +43,7 @@ Realm generateSquareRealm() {
     return squareRealm;
 }
 
-void RotopeTest::squareVertices() {
+void Test_Rotope::squareVertices() {
     setRotope("EE");
 
     QVERIFY(isInVertices(VecMath::Vector<4>(-1., -1., 0., 0.)));
@@ -53,7 +53,7 @@ void RotopeTest::squareVertices() {
     QVERIFY(_vertices.size() == 4);
 }
 
-void RotopeTest::triangleRealm() {
+void Test_Rotope::triangleRealm() {
     setRotope("ET");
     Realm definedTriangle = generateTriangleRealm();
 
@@ -69,7 +69,7 @@ Realm generateTriangleRealm() {
     return triangleRealm;
 }
 
-void RotopeTest::triangleVertices() {
+void Test_Rotope::triangleVertices() {
     setRotope("ET");
 
     QVERIFY(isInVertices(VecMath::Vector<4>(-1., -sqrt(0.75), 0., 0.)));
@@ -78,29 +78,28 @@ void RotopeTest::triangleVertices() {
     QVERIFY(_vertices.size() == 3);
 }
 
-void RotopeTest::circleRealm() {
+void Test_Rotope::circleRealm() {
     setRotope("ER");
     Realm definedCircle = generateCircleRealm();
     QVERIFY(_realm == definedCircle);
 }
 
 Realm generateCircleRealm() {
-    qWarning() << "Assuming that rotate_base::_numSegments equals 4";
     Realm circleRealm;
-    for (unsigned i = 0; i < RotopeTest::numberOfVerticesForCircle(); i += 2)
+    for (unsigned i = 0; i < Test_Rotope::numberOfVerticesForCircle(); i += 2)
         circleRealm.push_back(i);
-    for (unsigned i = 1; i < RotopeTest::numberOfVerticesForCircle(); i += 2)
+    for (unsigned i = 1; i < Test_Rotope::numberOfVerticesForCircle(); i += 2)
         circleRealm.push_back(i);
     circleRealm.setDimension(2);
     return circleRealm;
 }
 
-unsigned RotopeTest::numberOfVerticesForCircle() {
+unsigned Test_Rotope::numberOfVerticesForCircle() {
     // the line's end points are wrapped to the original points
     // this is implementation dependent, damn it
     return 2*RotopeInterface::DEFAULT_NUM_SEGMENTS+2;
 }
-void RotopeTest::circleVertices() {
+void Test_Rotope::circleVertices() {
     setRotope("ER");
 
     QVERIFY(isInVertices(VecMath::Vector<4>(-1., 0., 0., 0.)));
@@ -109,7 +108,7 @@ void RotopeTest::circleVertices() {
     QVERIFY(_vertices.size() == numberOfVerticesForCircle());
 }
 
-void RotopeTest::cubeRealm() {
+void Test_Rotope::cubeRealm() {
     setRotope("EEE");
 
     QVERIFY(_realm.dimension() == 3);
@@ -122,7 +121,7 @@ void RotopeTest::cubeRealm() {
     QVERIFY(_realm.size() == 6);
 }
 
-void RotopeTest::cubeVertices() {
+void Test_Rotope::cubeVertices() {
     setRotope("EEE");
     // from now on, i'll only test for a few selected vertices
     QVERIFY(isInVertices(VecMath::Vector<4>(-1., -1., -1., 0.)));
@@ -130,7 +129,7 @@ void RotopeTest::cubeVertices() {
     QVERIFY(_vertices.size() == 8);
 }
 
-void RotopeTest::prismRealm() {
+void Test_Rotope::prismRealm() {
     setRotope("ETE");
 
     QVERIFY(_realm.dimension() == 3);
@@ -143,7 +142,7 @@ void RotopeTest::prismRealm() {
     QVERIFY(_realm.size() == 5);
 }
 
-void RotopeTest::prismVertices() {
+void Test_Rotope::prismVertices() {
     setRotope("ETE");
     QVERIFY(isInVertices(VecMath::Vector<4>(-1., -sqrt(0.75), -1., 0.)));
     QVERIFY(isInVertices(VecMath::Vector<4>(-1., -sqrt(0.75),  1., 0.)));
@@ -151,7 +150,7 @@ void RotopeTest::prismVertices() {
     QVERIFY(_vertices.size() == 6);
 }
 
-void RotopeTest::cylinder1Realm() {
+void Test_Rotope::cylinder1Realm() {
     setRotope("ERE");
 
     QVERIFY(_realm.dimension() == 3);
@@ -163,7 +162,7 @@ void RotopeTest::cylinder1Realm() {
     QVERIFY(_realm.size() == numberOfVerticesForCircle() + 2);
 }
 
-void RotopeTest::cylinder1Vertices() {
+void Test_Rotope::cylinder1Vertices() {
     setRotope("ERE");
 
     QVERIFY(isInVertices(VecMath::Vector<4>(-1., 0., -1., 0.)));
@@ -175,7 +174,7 @@ void RotopeTest::cylinder1Vertices() {
 
 }
 
-void RotopeTest::cylinder2Realm() {
+void Test_Rotope::cylinder2Realm() {
     setRotope("EER");
 
     QVERIFY(_realm.dimension() == 3);
@@ -185,7 +184,7 @@ void RotopeTest::cylinder2Realm() {
 
 }
 
-void RotopeTest::cylinder2Vertices() {
+void Test_Rotope::cylinder2Vertices() {
     setRotope("EER");
 
     QVERIFY(isInVertices(VecMath::Vector<4>(-1., -1., 0., 0.)));
@@ -195,7 +194,7 @@ void RotopeTest::cylinder2Vertices() {
 
 }
 
-void RotopeTest::coneRealm() {
+void Test_Rotope::coneRealm() {
     setRotope("ERT");
 
     QVERIFY(_realm.dimension() == 3);
@@ -205,7 +204,7 @@ void RotopeTest::coneRealm() {
     QVERIFY(_realm.size() == numberOfVerticesForCircle() + 1);
 }
 
-void RotopeTest::coneVertices() {
+void Test_Rotope::coneVertices() {
     setRotope("ERT");
     QVERIFY(isInVertices(VecMath::Vector<4>(-1.,  0., -sqrt(0.75), 0.)));
     QVERIFY(isInVertices(VecMath::Vector<4>( 1.,  0., -sqrt(0.75), 0.)));
@@ -214,7 +213,7 @@ void RotopeTest::coneVertices() {
 
 }
 
-void RotopeTest::sphereRealm() {
+void Test_Rotope::sphereRealm() {
     setRotope("ERR");
 
     QVERIFY2(_realm.dimension() == 3,
@@ -231,7 +230,7 @@ std::vector<Realm> generatePartialSphereSurfaceSquares() {
     std::vector<Realm> partialSphere;
 
     Realm squareSurface;    //  what is this rectangular part of a surface actually called? damn, can't remember...
-    unsigned VERTICES = RotopeTest::numberOfVerticesForCircle();
+    unsigned VERTICES = Test_Rotope::numberOfVerticesForCircle();
 
     squareSurface.push_back(0);
     squareSurface.push_back(VERTICES);
@@ -264,7 +263,7 @@ std::vector<Realm> generatePartialSphereSurfaceSquares() {
     return partialSphere;
 }
 
-void RotopeTest::sphereRealmFull() {
+void Test_Rotope::sphereRealmFull() {
     setRotope("ERR");
     for (unsigned i =0; i < _vertices.size(); ++i) {
         QVERIFY(_realm.contains(i));
@@ -272,7 +271,7 @@ void RotopeTest::sphereRealmFull() {
     QVERIFY(!(_realm.contains(_vertices.size())));    
 }
 
-void RotopeTest::sphereVertices() {
+void Test_Rotope::sphereVertices() {
     setRotope("ERR");
     QVERIFY(isInVertices(VecMath::Vector<4>(-1.,  0.,  0., 0.)));
     QVERIFY(isInVertices(VecMath::Vector<4>( 1.,  0.,  0., 0.)));
@@ -287,7 +286,7 @@ void RotopeTest::sphereVertices() {
     }
 }
 
-void RotopeTest::rotateTaper() {
+void Test_Rotope::rotateTaper() {
     try {
         setRotope("ETR");
     } catch (BadRotopeOperation e) {
@@ -296,7 +295,7 @@ void RotopeTest::rotateTaper() {
     QFAIL("Generating a Rotation of a Taper should throw a BadRotopeOperation.");
 }
 
-void RotopeTest::rotateExtrudedTaper() {
+void Test_Rotope::rotateExtrudedTaper() {
     try {
         setRotope("ETER");
     } catch (BadRotopeOperation e) {
@@ -305,14 +304,14 @@ void RotopeTest::rotateExtrudedTaper() {
     QFAIL("Generating a Rotation of an extruded Taper should throw a BadRotopeOperation.");
 }
 
-void RotopeTest::tesseractRealm() {
+void Test_Rotope::tesseractRealm() {
     setRotope("EEEE");
     QVERIFY(_realm.dimension() == 4);
     // test subrealms?
     QVERIFY(_realm.size() == 8);
 }
 
-void RotopeTest::tesseractVertices() {
+void Test_Rotope::tesseractVertices() {
     setRotope("EEEE");
     for (double x = -1; x <= 1; x += 2) {
         for (double y = -1; y <= 1; y += 2) {
@@ -326,27 +325,27 @@ void RotopeTest::tesseractVertices() {
     QVERIFY(_vertices.size() == 16);
 }
 
-void RotopeTest::penteract() {
+void Test_Rotope::penteract() {
     setRotope("EEEEE");
     // i need to think of ways to test objects with D > 4. later.
     if (false) printVertices();
 }
 
-void RotopeTest::setRotope(const string &generator) {
+void Test_Rotope::setRotope(const string &generator) {
     _rotope = RotopeFactory::generate(generator);
     setRealm();
     setVertices();
 }
 
-void RotopeTest::setRealm() {
+void Test_Rotope::setRealm() {
     _realm = _rotope->realm();
 }
 
-void RotopeTest::setVertices() {
+void Test_Rotope::setVertices() {
     _vertices = _rotope->projected_vertices();
 }
 
-bool RotopeTest::isInVertices(const VecMath::Vector<4> &vertex) const {
+bool Test_Rotope::isInVertices(const VecMath::Vector<4> &vertex) const {
     if (std::find(_vertices.begin(), _vertices.end(), vertex) != _vertices.end()) return true;
     for (std::vector< VecMath::Vector<4> >::const_iterator i = _vertices.begin();
             i != _vertices.end(); ++i) {
@@ -355,7 +354,7 @@ bool RotopeTest::isInVertices(const VecMath::Vector<4> &vertex) const {
     return false;
 }
 
-void RotopeTest::printVertices() {
+void Test_Rotope::printVertices() {
     for (std::vector< VecMath::Vector<4> >::const_iterator i = _vertices.begin();
             i != _vertices.end(); ++i) {
         std::cout << *i << std::endl;

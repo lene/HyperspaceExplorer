@@ -5,7 +5,7 @@
  *      Author: helge
  */
 
-#include "FunctionTest.h"
+#include "Test_Function.h"
 
 #include "RealFunction.h"
 #include "Surface.h"
@@ -16,17 +16,17 @@
 #include <cstdlib>
 
 
-FunctionTest::~FunctionTest() { }
+Test_Function::~Test_Function() { }
 
-void FunctionTest::initTestCase() {
+void Test_Function::initTestCase() {
     ColMgrMgr::Instance().setColorManager("XYZ to RGB");
 }
 
-void FunctionTest::cleanupTestCase() {
+void Test_Function::cleanupTestCase() {
 
 }
 
-void FunctionTest::surfaceFunction() {
+void Test_Function::surfaceFunction() {
     _function = new Horizon();
     QVERIFY(_function->getDefinitionSpaceDimensions() == 2);
     qDebug() << _function->getNumParameters()
@@ -34,7 +34,7 @@ void FunctionTest::surfaceFunction() {
     QSKIP("Tests for Surface objects not done yet.", SkipSingle);
 }
 
-void FunctionTest::complexFunction() {
+void Test_Function::complexFunction() {
     _function = new z3();
     QVERIFY(_function->getDefinitionSpaceDimensions() == 2);
     qDebug() << _function->getNumParameters()
@@ -42,7 +42,7 @@ void FunctionTest::complexFunction() {
     QSKIP("Tests for ComplexFunction objects not done yet.", SkipSingle);
 }
 
-void FunctionTest::objectFunction() {
+void Test_Function::objectFunction() {
 //    _function = new Hypercube();
     QSKIP("Tests for Object objects not done yet.", SkipSingle);
 

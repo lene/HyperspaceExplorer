@@ -1,5 +1,5 @@
 
-#include "NestedVectorTest.h"
+#include "Test_NestedVector.h"
 
 #include "NestedVector.h"
 
@@ -7,8 +7,8 @@
 
 using VecMath::NestedVector;
 
-void NestedVectorTest::push_back_1D() {
-    NestedVectorTest::Vector1D v;
+void Test_NestedVector::push_back_1D() {
+    Test_NestedVector::Vector1D v;
 
     v.push_back(1);
 
@@ -16,7 +16,7 @@ void NestedVectorTest::push_back_1D() {
         QFAIL("1 not found.");
 }
 
-void NestedVectorTest::push_back_2D() {
+void Test_NestedVector::push_back_2D() {
     Vector2D v;
     Vector1D v1 = generate1DVector();
 
@@ -26,15 +26,15 @@ void NestedVectorTest::push_back_2D() {
         QFAIL("1D vector not found.");
 }
 
-NestedVectorTest::Vector1D NestedVectorTest::generate1DVector(
-        NestedVectorTest::stored_type start_value, unsigned size) {
+Test_NestedVector::Vector1D Test_NestedVector::generate1DVector(
+        Test_NestedVector::stored_type start_value, unsigned size) {
     Vector1D v;
     for (unsigned i = start_value; i < start_value+size; i++)
         v.push_back(i);
     return v;
 }
 
-void NestedVectorTest::testGenerate2DVector() {
+void Test_NestedVector::testGenerate2DVector() {
     stored_type start_value = 0;
     unsigned size = 3;
 
@@ -47,7 +47,7 @@ void NestedVectorTest::testGenerate2DVector() {
 
 }
 
-void NestedVectorTest::erase() {
+void Test_NestedVector::erase() {
     Vector2D v = generate2DVector();
 
     v.erase(v.begin());
@@ -56,8 +56,8 @@ void NestedVectorTest::erase() {
     QVERIFY(v.size() == 2);
 }
 
-NestedVectorTest::Vector2D NestedVectorTest::generate2DVector(
-        NestedVectorTest::stored_type start_value, unsigned size) {
+Test_NestedVector::Vector2D Test_NestedVector::generate2DVector(
+        Test_NestedVector::stored_type start_value, unsigned size) {
     Vector2D v;
     for (unsigned i = start_value; i < start_value+size*size; i += size) {
         v.push_back(generate1DVector(i, size));
@@ -66,7 +66,7 @@ NestedVectorTest::Vector2D NestedVectorTest::generate2DVector(
     return v;
 }
 
-void NestedVectorTest::resize() {
+void Test_NestedVector::resize() {
     Vector2D v;
     QVERIFY(v.size() == 0);
 

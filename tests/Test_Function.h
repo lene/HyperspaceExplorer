@@ -5,12 +5,12 @@
 
 class Function;
 
-class FunctionTest: public QObject {
+class Test_Function: public QObject {
 
   Q_OBJECT
 
 public:
-  ~FunctionTest();
+  ~Test_Function();
     
 private slots:
 

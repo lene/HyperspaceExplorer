@@ -4,7 +4,7 @@
 #include <QtTest/QtTest>
 
 
-class MatrixTest: public QObject {
+class Test_Matrix: public QObject {
 
   Q_OBJECT
 

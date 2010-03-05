@@ -1,5 +1,5 @@
 
-#include "RealFunctionTest.h"
+#include "Test_RealFunction.h"
 
 #include "RealFunction.h"
 #include "ColorManager.h"
@@ -10,7 +10,7 @@ using std::cerr;
 using std::endl;
 using std::string;
 
-Vector<4> &RealFunctionTest::RealFunctionTestImplementation::f (double tt, double uu, double vv) {
+Vector<4> &Test_RealFunction::RealFunctionTestImplementation::f (double tt, double uu, double vv) {
     _F[0] = tt;
     _F[1] = uu;
     _F[2] = vv;
@@ -19,13 +19,13 @@ Vector<4> &RealFunctionTest::RealFunctionTestImplementation::f (double tt, doubl
     return _F;
 }
 
-void RealFunctionTest::initTestCase() {
+void Test_RealFunction::initTestCase() {
     ColMgrMgr::Instance().setColorManager("XYZ to RGB");
 }
 
-void RealFunctionTest::cleanupTestCase() { }
+void Test_RealFunction::cleanupTestCase() { }
 
-void RealFunctionTest::functionValue() {
+void Test_RealFunction::functionValue() {
     _function = new RealFunctionTestImplementation();
 
     for (double x = X_MIN; x <= X_MAX; x += 1.) {
@@ -37,7 +37,7 @@ void RealFunctionTest::functionValue() {
     }
 }
 
-void RealFunctionTest::meetsFormalRequirements() {
+void Test_RealFunction::meetsFormalRequirements() {
     _function = new RealFunctionTestImplementation();
 
     QVERIFY(_function->getDefinitionSpaceDimensions() == 3);
@@ -48,14 +48,14 @@ void RealFunctionTest::meetsFormalRequirements() {
     QVERIFY(_function->getFunctionName() == "RealFunctionTestImplementation");
 }
 
-void RealFunctionTest::boundsAndSteps() {
+void Test_RealFunction::boundsAndSteps() {
     _function = new RealFunctionTestImplementation();
     QVERIFY(_function->xsteps() == GRID_SIZE);
     QVERIFY(_function->ysteps() == GRID_SIZE);
     QVERIFY(_function->zsteps() == GRID_SIZE);
 }
 
-void RealFunctionTest::rotateAboutAllAxes() {
+void Test_RealFunction::rotateAboutAllAxes() {
     _function = new RealFunctionTestImplementation();
 
     _function->Transform(Rotation<4>(90., 0., 0., 0., 0., 90.), Vector<4>());
@@ -75,7 +75,7 @@ void RealFunctionTest::rotateAboutAllAxes() {
     }
 }
 
-void RealFunctionTest::rotated360DegreesIsIdentical() {
+void Test_RealFunction::rotated360DegreesIsIdentical() {
     _function = new RealFunctionTestImplementation();
 
     _function->Transform(Rotation<4>(360., 360., 360., 360., 360., 360.), Vector<4>());
@@ -91,7 +91,7 @@ void RealFunctionTest::rotated360DegreesIsIdentical() {
     }
 }
 
-void RealFunctionTest::project() {
+void Test_RealFunction::project() {
     _function = new RealFunctionTestImplementation();
 
     _function->Transform(Rotation<4>(), Vector<4>());
@@ -119,7 +119,7 @@ void RealFunctionTest::project() {
     }
 }
 
-void RealFunctionTest::projectWithDepthCue() {
+void Test_RealFunction::projectWithDepthCue() {
     _function = new RealFunctionTestImplementation();
 
     _function->Transform(Rotation<4>(), Vector<4>());
@@ -142,7 +142,7 @@ void RealFunctionTest::projectWithDepthCue() {
           SkipSingle);
 }
 
-void RealFunctionTest::draw() {
+void Test_RealFunction::draw() {
     _function = new RealFunctionTestImplementation();
 
     _function->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
@@ -152,6 +152,6 @@ void RealFunctionTest::draw() {
     QSKIP("No idea how to correctly test drawing yet", SkipSingle);
 }
 
-void RealFunctionTest::functionWithParameters() {
+void Test_RealFunction::functionWithParameters() {
     QSKIP("To do: Test function with parameters.", SkipSingle);
 }

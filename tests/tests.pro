@@ -23,23 +23,23 @@ UI_HEADERS_DIR = tmp
 RCC_DIR = tmp
 
 # Input
-HEADERS += RotopeTest.h \
-           RealmTest.h \
-           VectorTest.h \
-           MatrixTest.h \
-           NestedVectorTest.h \
-           RotationTest.h \
-           RealFunctionTest.h \
-           FunctionTest.h
+HEADERS += Test_Rotope.h \
+           Test_Realm.h \
+           Test_Vector.h \
+           Test_Matrix.h \
+           Test_NestedVector.h \
+           Test_Rotation.h \
+           Test_RealFunction.h \
+           Test_Function.h
 SOURCES += main.cpp \
-           RotopeTest.cpp \
-           RealmTest.cpp \
-           VectorTest.cpp \
-           MatrixTest.cpp \
-           NestedVectorTest.cpp \
-           RotationTest.cpp \
-           RealFunctionTest.cpp \
-           FunctionTest.cpp
+           Test_Rotope.cpp \
+           Test_Realm.cpp \
+           Test_Vector.cpp \
+           Test_Matrix.cpp \
+           Test_NestedVector.cpp \
+           Test_Rotation.cpp \
+           Test_RealFunction.cpp \
+           Test_Function.cpp
 
 PRE_TARGETDEPS *= ../lib/libHyperspaceExplorer.a
 LIBS *= ../lib/libHyperspaceExplorer.a

@@ -1,12 +1,12 @@
 
-#include "RotopeTest.h"
-#include "FunctionTest.h"
-#include "RealFunctionTest.h"
-#include "VectorTest.h"
-#include "MatrixTest.h"
-#include "NestedVectorTest.h"
-#include "RotationTest.h"
-#include "RealmTest.h"
+#include "Test_Rotope.h"
+#include "Test_Function.h"
+#include "Test_RealFunction.h"
+#include "Test_Vector.h"
+#include "Test_Matrix.h"
+#include "Test_NestedVector.h"
+#include "Test_Rotation.h"
+#include "Test_Realm.h"
 
 #include <QtTest/QtTest>
 
@@ -26,13 +26,13 @@ int main(int argc, char **argv) {
     unsigned failedTestSuites = 0;
 
     if (qExec(new VectorTest)) failedTestSuites++;
-    if (qExec(new MatrixTest)) failedTestSuites++;
-    if (qExec(new NestedVectorTest)) failedTestSuites++;
-    if (qExec(new RotationTest)) failedTestSuites++;
-    if (qExec(new RealmTest)) failedTestSuites++;
-//    if (qExec(new FunctionTest)) failedTestSuites++;
-    if (qExec(new RealFunctionTest)) failedTestSuites++;
-    if (qExec(new RotopeTest)) failedTestSuites++;
+    if (qExec(new Test_Matrix)) failedTestSuites++;
+    if (qExec(new Test_NestedVector)) failedTestSuites++;
+    if (qExec(new Test_Rotation)) failedTestSuites++;
+    if (qExec(new Test_Realm)) failedTestSuites++;
+//    if (qExec(new Test_Function)) failedTestSuites++;
+    if (qExec(new Test_RealFunction)) failedTestSuites++;
+    if (qExec(new Test_Rotope)) failedTestSuites++;
         
     printSummary(failedTestSuites);
 

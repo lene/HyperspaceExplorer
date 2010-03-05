@@ -1,5 +1,5 @@
 
-#include "MatrixTest.h"
+#include "Test_Matrix.h"
 
 #include "Matrix.h"
 
@@ -11,7 +11,7 @@ using VecMath::Vector;
 using std::ostringstream;
 using std::string;
 
-void MatrixTest::defaultConstructor() {
+void Test_Matrix::defaultConstructor() {
     Matrix<3> m;
     for (unsigned i = 0; i < 3; ++i) {
         for (unsigned j = 0; j < 3; ++j) {
@@ -21,7 +21,7 @@ void MatrixTest::defaultConstructor() {
     }
 }
 
-void MatrixTest::rotationAboutAxisConstructor() {
+void Test_Matrix::rotationAboutAxisConstructor() {
     Matrix<3> m(0, 1, 90.);
 
     QVERIFY(fabs(m(0,0)) < EPSILON);
@@ -31,7 +31,7 @@ void MatrixTest::rotationAboutAxisConstructor() {
     QVERIFY(m(2,2) == 1);
 }
 
-void MatrixTest::matrixMultiplication() {
+void Test_Matrix::matrixMultiplication() {
     Matrix<3> m1(0, 1, 90.), m2(0, 1, 180.), u;
     for (unsigned i = 0; i < 3; ++i) {
         for (unsigned j = 0; j < 3; ++j) {
@@ -41,7 +41,7 @@ void MatrixTest::matrixMultiplication() {
     }
 }
 
-void MatrixTest::vectorMultiplication() {
+void Test_Matrix::vectorMultiplication() {
     Matrix<3> m1(0,1,90.), u;
     Vector<3> v(1.,0.,0.);
 
@@ -49,7 +49,7 @@ void MatrixTest::vectorMultiplication() {
     QVERIFY((m1*v-Vector<3>(0., 1., 0.)).sqnorm() < EPSILON);
 }
 
-void MatrixTest::toString() {
+void Test_Matrix::toString() {
     Matrix<3> m;
     for (unsigned i = 0; i < 3; ++i) {
         for (unsigned j = 0; j < 3; ++j) {

@@ -23,7 +23,7 @@
 
 #include <QtTest/QtTest>
 
-class RealmTest: public QObject {
+class Test_Realm: public QObject {
   
     Q_OBJECT
 
