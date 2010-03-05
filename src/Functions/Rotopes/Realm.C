@@ -58,13 +58,13 @@ std::string Realm::toString() const {
     return realm_outstream.str();
 }
 
-void Realm::add(unsigned delta) {
+void Realm::addOffset(unsigned delta) {
     if (_dimension == 0) {
         _index += delta;
     } else {
         for (realm_container_type::iterator i = _subrealm.begin();
              i != _subrealm.end(); ++i) {
-            i->add(delta);
+            i->addOffset(delta);
         }
     }
 }
@@ -139,16 +139,16 @@ bool Realm::contains(const Realm &other) const {
  *      to be pointing to the corresponding vertex in the extruded vertex array.
  *      (Gee, that's a mouthful.)
  */
-Realm Realm::extrude(unsigned delta) const {
+Realm Realm::extruded(unsigned delta) const {
     switch(_dimension) {
-    case 0: return extrudePoint(delta);
-    case 1: return extrudeLine(delta);
-    case 2: return extrudePolygon(delta);
-    default: return extrudeRealm(delta);
+    case 0: return extrudedPoint(delta);
+    case 1: return extrudedLine(delta);
+    case 2: return extrudedPolygon(delta);
+    default: return extrudedRealm(delta);
     }
 }
 
-Realm Realm::extrudePoint(unsigned delta) const {
+Realm Realm::extrudedPoint(unsigned delta) const {
     if (_dimension) {
         throw std::logic_error("extrudePoint() called on Realm: "+toString());
     }
@@ -165,7 +165,7 @@ Realm Realm::extrudePoint(unsigned delta) const {
 /** Special case: make surfaces so OpenGL can draw them. \c _subrealm.size()
  *  should be 2.
  */
-Realm Realm::extrudeLine(unsigned delta) const {
+Realm Realm::extrudedLine(unsigned delta) const {
     if (_dimension != 1) {
         throw std::logic_error("extrudeLine() called on Realm: "+toString());
     }
@@ -188,7 +188,7 @@ Realm Realm::extrudeLine(unsigned delta) const {
     return new_realm;
 }
 
-Realm Realm::extrudePolygon(unsigned delta) const {
+Realm Realm::extrudedPolygon(unsigned delta) const {
     if (_dimension != 2) {
         throw std::logic_error("extrudePolygon() called on Realm: "+toString());
     }
@@ -208,13 +208,13 @@ Realm Realm::extrudePolygon(unsigned delta) const {
         new_subrealms.push_back(new_subrealm);
     }
 
-    copied_realm.add(delta);
+    copied_realm.addOffset(delta);
     new_subrealms.push_back(copied_realm);
     
     return Realm(new_subrealms);
 }
 
-Realm Realm::extrudeRealm(unsigned delta) const {
+Realm Realm::extrudedRealm(unsigned delta) const {
     if (_dimension < 3) {
         throw std::logic_error("extrudeRealm() called on Realm: "+toString());
     }
@@ -225,10 +225,10 @@ Realm Realm::extrudeRealm(unsigned delta) const {
     new_subrealms.push_back(copied_realm);
 
     for (unsigned i = 0; i < _subrealm.size(); ++i) {
-        new_subrealms.push_back(_subrealm[i].extrude(delta));
+        new_subrealms.push_back(_subrealm[i].extruded(delta));
     }
 
-    copied_realm.add(delta);
+    copied_realm.addOffset(delta);
     new_subrealms.push_back(copied_realm);
 
     return Realm(new_subrealms);
@@ -237,19 +237,19 @@ Realm Realm::extrudeRealm(unsigned delta) const {
 /** \param taper_index Index in the vertex array of the new vertex, toward which 
  *      the object is tapered.
  */
-Realm Realm::taper(unsigned taper_index) const {
+Realm Realm::tapered(unsigned taper_index) const {
     switch (_dimension) {
     case 0: throw std::logic_error(
             "Tried to taper a point: "+toString()+".\n"
             "Realm::taper() can only operate on at least two vertices."
     );
-    case 1: return taperLine(taper_index);    
-    case 2: return taperPolygon(taper_index);
-    default: return taperRealm(taper_index);
+    case 1: return taperedLine(taper_index);    
+    case 2: return taperedPolygon(taper_index);
+    default: return taperedRealm(taper_index);
     }
 }
 
-Realm Realm::taperLine(unsigned taper_index) const {
+Realm Realm::taperedLine(unsigned taper_index) const {
     if (_dimension != 1) {
         throw std::logic_error("taperLine() called on Realm: "+toString());
     }
@@ -265,7 +265,7 @@ Realm Realm::taperLine(unsigned taper_index) const {
     return triangle;
 }
 
-Realm Realm::taperPolygon(unsigned taper_index) const {
+Realm Realm::taperedPolygon(unsigned taper_index) const {
     if (_dimension != 2) {
         throw std::logic_error("taperPolygon() called on Realm: "+toString());
     }
@@ -286,7 +286,7 @@ Realm Realm::taperPolygon(unsigned taper_index) const {
     return Realm(new_subrealms);
 }
 
-Realm Realm::taperRealm(unsigned taper_index) const {
+Realm Realm::taperedRealm(unsigned taper_index) const {
     if (_dimension < 3) {
         throw std::logic_error("extrudeRealm() called on Realm: "+toString());
     }
@@ -296,7 +296,7 @@ Realm Realm::taperRealm(unsigned taper_index) const {
     new_subrealms.push_back(*this);
 
     for (unsigned i = 0; i < _subrealm.size(); ++i) {
-        new_subrealms.push_back(_subrealm[i].taper(taper_index));
+        new_subrealms.push_back(_subrealm[i].tapered(taper_index));
     }
     
     return Realm(new_subrealms);;
@@ -306,16 +306,16 @@ Realm Realm::taperRealm(unsigned taper_index) const {
  *  \param num_segments How many segments to use approximating a circle.
  *  \param size Size of the original vertex array. See extrude().
  */
-Realm Realm::rotate(unsigned num_segments, unsigned size) const {
+Realm Realm::rotated(unsigned num_segments, unsigned size) const {
 
     switch (_dimension) {
     case 0: throw std::logic_error(
             "Tried to rotate a point: "+toString()+".\n"
             "Realm::rotate() can only operate on at least two vertices."
     );
-    case 1: return rotateLine(num_segments, size);
-    case 2: return rotatePolygon(num_segments, size);
-    default: return rotateRealm(num_segments, size);
+    case 1: return rotatedLine(num_segments, size);
+    case 2: return rotatedPolygon(num_segments, size);
+    default: return rotatedRealm(num_segments, size);
     }
 }
 
@@ -330,7 +330,7 @@ Realm Realm::rotate(unsigned num_segments, unsigned size) const {
  *  \param num_segments How many segments to use approximating a circle.
  *  \param size Size of the original vertex array. See extrude().
  */
-Realm Realm::rotateLine(unsigned num_segments, unsigned size) const {
+Realm Realm::rotatedLine(unsigned num_segments, unsigned size) const {
 
     /// Copy the subrealms to a list for easier insertion in the middle.
     list<Realm> temp_list(_subrealm.size());
@@ -442,7 +442,7 @@ void Realm::insertNewPoints(list<Realm> &original_list,
  *
  *  \todo Add the caps.
  */
-Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) const {
+Realm Realm::rotatedPolygon(unsigned num_segments, unsigned size) const {
 
     if (DEBUG_ROTATE) { cerr << "rotating surface: " << toString() << endl; }
 
@@ -451,7 +451,7 @@ Realm Realm::rotatePolygon(unsigned num_segments, unsigned size) const {
         addRotationStrip(rotated_walls, j, size);
     }
 
-    rotatePolygonCap(rotated_walls.getSubrealms());
+    rotatedPolygonCap(rotated_walls.getSubrealms());
 
     return rotated_walls;
 }
@@ -504,7 +504,7 @@ void Realm::addStayingWithinSameStrip(unsigned total_vertices, unsigned rotation
     }
     checkArgumentsForAddStayingWithinSameStrip();
     
-    add(OFFSET_BETWEEN_NEIGHBORING_INDICES);
+    addOffset(OFFSET_BETWEEN_NEIGHBORING_INDICES);
 
     if (DEBUG_ROTATE) {
         cerr << toString()
@@ -574,7 +574,7 @@ std::pair<unsigned, unsigned> Realm::wrapToStayWithinStrip(unsigned base, unsign
  *
  *  \todo achieve the desired effect for any polygon
  */
-Realm Realm::rotatePolygonCap(const realm_container_type &rotated_walls) const {
+Realm Realm::rotatedPolygonCap(const realm_container_type &rotated_walls) const {
     realm_container_type edges;
 
     Realm first_edge(*this);
@@ -590,10 +590,10 @@ Realm Realm::rotatePolygonCap(const realm_container_type &rotated_walls) const {
     return edges;
 }
 
-Realm Realm::rotateRealm(unsigned num_segments, unsigned size) const {
+Realm Realm::rotatedRealm(unsigned num_segments, unsigned size) const {
     realm_container_type temp_subrealms;
     for (unsigned i = 0; i < _subrealm.size(); ++i) {
-        temp_subrealms.push_back(_subrealm[i].rotate(num_segments, size));
+        temp_subrealms.push_back(_subrealm[i].rotated(num_segments, size));
     }
     temp_subrealms.push_back(*this);
     Realm new_realm(temp_subrealms);

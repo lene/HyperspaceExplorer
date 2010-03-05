@@ -200,7 +200,7 @@ template <unsigned D> void taper_base<D>::taper(unsigned d) {
 
     VertexData<D>::raw_vertices().push_back(xnew);
 
-    VertexData<D>::realm() = VertexData<D>::realm().taper(VertexData<D>::raw_vertices().size()-1);
+    VertexData<D>::realm() = VertexData<D>::realm().tapered(VertexData<D>::raw_vertices().size()-1);
 
     _pre_previous_dim = _previous_dim;
     _previous_dim = d;

@@ -132,7 +132,7 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
     
     VertexData<D>::dimension()++;   //  object is now one dimension higher
 
-    VertexData<D>::realm() = VertexData<D>::realm().rotate(RotopeInterface::_numSegments, Xold.size());
+    VertexData<D>::realm() = VertexData<D>::realm().rotated(RotopeInterface::_numSegments, Xold.size());
 }
 
 template <unsigned D> void rotate_base<D>::checkRotationArguments(unsigned d) {

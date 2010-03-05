@@ -115,7 +115,7 @@ void Test_Rotope::cubeRealm() {
 
     Realm square = generateSquareRealm();
     QVERIFY(_realm.contains(square));
-    square.add(4);
+    square.addOffset(4);
     QVERIFY(_realm.contains(square));
 
     QVERIFY(_realm.size() == 6);
@@ -136,7 +136,7 @@ void Test_Rotope::prismRealm() {
 
     Realm triangle = generateTriangleRealm();
     QVERIFY(_realm.contains(triangle));
-    triangle.add(3);
+    triangle.addOffset(3);
     QVERIFY(_realm.contains(triangle));
 
     QVERIFY(_realm.size() == 5);
@@ -157,7 +157,7 @@ void Test_Rotope::cylinder1Realm() {
 
     Realm circle = generateCircleRealm();
     QVERIFY(_realm.contains(circle));
-    circle.add(numberOfVerticesForCircle());
+    circle.addOffset(numberOfVerticesForCircle());
     QVERIFY(_realm.contains(circle));
     QVERIFY(_realm.size() == numberOfVerticesForCircle() + 2);
 }
@@ -239,25 +239,25 @@ std::vector<Realm> generatePartialSphereSurfaceSquares() {
     squareSurface.setDimension(2);
     partialSphere.push_back(squareSurface);
 
-    squareSurface.add(2);
+    squareSurface.addOffset(2);
     partialSphere.push_back(squareSurface);
 
-    squareSurface.add(VERTICES-2);
+    squareSurface.addOffset(VERTICES-2);
     partialSphere.push_back(squareSurface);
 
-    squareSurface.add(2);
+    squareSurface.addOffset(2);
     partialSphere.push_back(squareSurface);
 
-    squareSurface.add(VERTICES-2);
+    squareSurface.addOffset(VERTICES-2);
     partialSphere.push_back(squareSurface);
 
-    squareSurface.add(2);
+    squareSurface.addOffset(2);
     partialSphere.push_back(squareSurface);
 
-    squareSurface.add(VERTICES-2);
+    squareSurface.addOffset(VERTICES-2);
     partialSphere.push_back(squareSurface);
 
-    squareSurface.add(2);
+    squareSurface.addOffset(2);
     partialSphere.push_back(squareSurface);
 
     return partialSphere;

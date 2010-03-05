@@ -45,7 +45,7 @@ void Test_Realm::add() {
     Realm realm;
     realm.push_back(1);
 
-    realm.add(1);
+    realm.addOffset(1);
     
     QVERIFY(realm.contains(2));
 }
@@ -64,7 +64,7 @@ void Test_Realm::contains() {
     Realm containedRealm(createUintVec());
     Realm realm2D;
     realm2D.push_back(containedRealm);
-    containedRealm.add(2);
+    containedRealm.addOffset(2);
     realm2D.push_back(containedRealm);
     
     QVERIFY(realm2D.dimension() == 2);
@@ -79,7 +79,7 @@ void Test_Realm::contains() {
     
     Realm realm3D;
     realm3D.push_back(realm2D);
-    realm2D.add(4);
+    realm2D.addOffset(4);
     realm3D.push_back(realm2D);
     
     QVERIFY(realm3D.dimension() == 3);
@@ -117,7 +117,7 @@ void Test_Realm::operatorUnsigned() {
 
 void Test_Realm::extrude() {
     Realm line(createUintVec());
-    line = line.extrude(2);
+    line = line.extruded(2);
     QVERIFY(line.dimension() == 2);
     QVERIFY(line.contains(4));
     QVERIFY(line.contains(3));
@@ -125,14 +125,14 @@ void Test_Realm::extrude() {
 
 void Test_Realm::taper() {
   Realm line(createUintVec());
-  line = line.taper(3);
+  line = line.tapered(3);
   QVERIFY(line.dimension() == 2);
   QVERIFY(line.contains(3));
 }
 
 void Test_Realm::rotate() {
   Realm line(createUintVec());
-  line = line.rotate(2, 2);
+  line = line.rotated(2, 2);
   QVERIFY(line.dimension() == 2);
   QVERIFY(line.contains(3));
   QVERIFY(line.contains(4));

@@ -104,13 +104,13 @@ public:
     operator unsigned() const;
 
     /// Create a new Realm by extruding the present Realm.
-    Realm extrude(unsigned delta) const;
+    Realm extruded(unsigned delta) const;
 
     /// Create a new Realm by tapering the present Realm.
-    Realm taper(unsigned taper_index) const;
+    Realm tapered(unsigned taper_index) const;
 
     /// Create a new Realm by rotating the present Realm.
-    Realm rotate(unsigned num_segments, unsigned size) const;
+    Realm rotated(unsigned num_segments, unsigned size) const;
 
     /// Merge \p r into the current Realm, keeping the dimension as it is.
     void merge(const Realm &r);
@@ -132,28 +132,28 @@ public:
     /** public only to satisfy unit tests.
      *  \todo find a better way.
      */
-    void add(unsigned delta);
+    void addOffset(unsigned delta);
 
 private:
 
     ///  Extrude a point to a line
-    Realm extrudePoint(unsigned delta) const;
+    Realm extrudedPoint(unsigned delta) const;
     ///  Extrude a line to a square
-    Realm extrudeLine(unsigned delta) const;
+    Realm extrudedLine(unsigned delta) const;
     ///  Extrude a polygon to a prism
-    Realm extrudePolygon(unsigned delta) const;
+    Realm extrudedPolygon(unsigned delta) const;
     ///  Extrude an N-dimensional Realm to a N+1-dimensional one, where N > 2
-    Realm extrudeRealm(unsigned delta) const;
+    Realm extrudedRealm(unsigned delta) const;
 
     ///  Taper a line to a triangle
-    Realm taperLine(unsigned taper_index) const;
+    Realm taperedLine(unsigned taper_index) const;
     ///  Taper a polygon to a pyramid
-    Realm taperPolygon(unsigned taper_index) const;
+    Realm taperedPolygon(unsigned taper_index) const;
     ///  Taper an N-dimensional Realm to a N+1-dimensional one, where N > 2
-    Realm taperRealm(unsigned taper_index) const;
+    Realm taperedRealm(unsigned taper_index) const;
 
     /// Rotate a line into a polygon approximating a circle.
-    Realm rotateLine(unsigned num_segments, unsigned size) const;
+    Realm rotatedLine(unsigned num_segments, unsigned size) const;
 
     std::list<realm_container_type> generateListOfPointsToAdd(
         std::list<Realm> original_list, 
@@ -162,11 +162,11 @@ private:
                          const std::list<Realm::realm_container_type> &new_points) const;
 
     /// Rotate a polygon into a quasi-sphere, cylinder or cone.
-    Realm rotatePolygon(unsigned num_segments, unsigned size) const;
+    Realm rotatedPolygon(unsigned num_segments, unsigned size) const;
     /// Upper and lower cap for a rotated polygon.
-    Realm rotatePolygonCap(const realm_container_type &temp_subrealms) const;
+    Realm rotatedPolygonCap(const realm_container_type &temp_subrealms) const;
     /// Rotate a Realm of at least 3 dimensions.
-    Realm rotateRealm(unsigned num_segments, unsigned size) const;
+    Realm rotatedRealm(unsigned num_segments, unsigned size) const;
 
     /// Create a Realm by extruding edges for one step of a rotation.
     Realm rotateStep(unsigned index, unsigned base, unsigned delta) const;

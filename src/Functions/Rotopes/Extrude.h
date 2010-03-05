@@ -131,7 +131,7 @@ template <unsigned D> void extrude_base<D>::extrude(unsigned d) {
     
     if (d == 0) VertexData<D>::realm() = Realm(0);
     
-    VertexData<D>::realm() = VertexData<D>::realm().extrude(xsize);
+    VertexData<D>::realm() = VertexData<D>::realm().extruded(xsize);
     
     VertexData<D>::dimension()++;   //  object is now one dimension higher
 }
