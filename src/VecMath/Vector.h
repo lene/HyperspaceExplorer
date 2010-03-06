@@ -134,7 +134,6 @@ namespace VecMath {
             }
 
         std::string toString() const;
-        operator std::string() const { return toString(); }
 
     private:
         N _x[D]; ///< A static array storing the components
