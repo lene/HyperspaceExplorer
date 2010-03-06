@@ -46,6 +46,11 @@ class Test_Function: public QObject {
     ParameterTestImplementation();
   };
   
+  class RotationParameterTestImplementation: public FunctionTestImplementation {
+    public:
+      RotationParameterTestImplementation();
+  };
+  
 public:
   ~Test_Function();
     

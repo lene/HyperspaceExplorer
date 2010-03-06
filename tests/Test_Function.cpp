@@ -63,6 +63,10 @@ Test_Function::ParameterTestImplementation::ParameterTestImplementation() {
   declareParameter("looks like unsigned, but is int", 1);
 }
 
+Test_Function::RotationParameterTestImplementation::RotationParameterTestImplementation() {
+  declareParameter("rotation parameter", VecMath::Rotation<5>());
+}
+
 Test_Function::~Test_Function() { }
 
 void Test_Function::initTestCase() { }
@@ -185,8 +189,28 @@ void Test_Function::functionValue() {
 }
 
 void Test_Function::rotationAsParameter() {
-  QSKIP("To Do!", SkipSingle);
-  //  declareParameter("rotation parameter", VecMath::Rotation<4>());
+  RotationParameterTestImplementation f;
+  FunctionParameter *parameter = f.getParameter("rotation parameter");
+  VecMath::Rotation<5> rot = parameter->value()->operator VecMath::Rotation<5>();
   
+  QVERIFY2(rot == VecMath::Rotation<5>(), rot.toString().c_str());
+  
+  ParameterMap newParameters = f.getParameters();
+  std::string parameterName = "rotation parameter";
+  ParameterMap::iterator it = newParameters.find(parameterName);
+  if (it != newParameters.end()) {
+    parameter = it->second;
+    parameter->setValue(VecMath::Rotation<5>(0., 1., 2., 3., 4., 5., 6., 7., 8., 9.).toString());
+  } else {
+    QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.print()).c_str());
+  }
+  f.SetParameters(newParameters);
+  
+  parameter = f.getParameter("rotation parameter");
+  rot = parameter->value()->operator VecMath::Rotation<5>();
+  
+  for (unsigned i = 0; i < VecMath::NumAxes<5>::num; ++i) {
+    QVERIFY(rot[i] == i);
+  }
 }
 
