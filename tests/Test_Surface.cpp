@@ -37,19 +37,17 @@ void Test_Surface::cleanupTestCase() { }
 void Test_Surface::functionValue() {
   _function = new SurfaceTestImplementation();
 
-    for (double x = X_MIN; x <= X_MAX; x += 1.) {
-        for (double y = X_MIN; y <= X_MAX; y += 1.) {
-            for (double z = X_MIN; z <= X_MAX; z += 1.) {
-                QVERIFY( (_function->function_value(x, y, z) - Vector<4>(x, y, z,CONSTANT_FUNCTION_VALUE)).sqnorm() <= EPSILON );
-            }
-        }
+  for (double x = X_MIN; x <= X_MAX; x += 1.) {
+    for (double y = X_MIN; y <= X_MAX; y += 1.) {
+      QVERIFY( (_function->function_value(x, y) - Vector<4>(x, y, CONSTANT_FUNCTION_VALUE,CONSTANT_FUNCTION_VALUE)).sqnorm() <= EPSILON );
     }
+  }
 }
 
 void Test_Surface::meetsFormalRequirements() {
   _function = new SurfaceTestImplementation();
 
-    QVERIFY(_function->getDefinitionSpaceDimensions() == 3);
+    QVERIFY(_function->getDefinitionSpaceDimensions() == 2);
     QVERIFY(_function->vertices().size() >= GRID_SIZE);
     QVERIFY(_function->vertices()[0].size() >= GRID_SIZE);
 

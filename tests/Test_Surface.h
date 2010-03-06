@@ -26,7 +26,7 @@ class Test_Surface: public QObject {
     public:
       SurfaceTestImplementation();
 
-      VecMath::Vector<4> function_value(double tt, double uu, double) { return f(tt,uu); }
+      VecMath::Vector<4> function_value(double tt, double uu) { return f(tt,uu); }
       vec4vec2D vertices() { return _X; }
       vec4vec2D transformed_vertices() { return _Xtrans; }
       vec3vec2D projected_vertices() { return _Xscr; }
