@@ -200,7 +200,8 @@ function document() {
         xargs rm
     yes q | \
         doxygen 2> /dev/null
-        
+
+    echo
     echo "Uploading documentation to sf.net..."
     rsync -rL --delete-after --exclude=.svn ${DOCDIR}/html/ \
         ${USERNAME},${PROJECTNAME}@web.sourceforge.net:htdocs
