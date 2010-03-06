@@ -30,6 +30,7 @@ HEADERS += Test_Rotope.h \
            Test_NestedVector.h \
            Test_Rotation.h \
            Test_RealFunction.h \
+           Test_Surface.h \
            Test_Function.h
 SOURCES += main.cpp \
            Test_Rotope.cpp \
@@ -39,6 +40,7 @@ SOURCES += main.cpp \
            Test_NestedVector.cpp \
            Test_Rotation.cpp \
            Test_RealFunction.cpp \
+           Test_Surface.cpp \
            Test_Function.cpp
 
 PRE_TARGETDEPS *= ../lib/libHyperspaceExplorer.a

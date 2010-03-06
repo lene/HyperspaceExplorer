@@ -2,6 +2,7 @@
 #include "Test_Rotope.h"
 #include "Test_Function.h"
 #include "Test_RealFunction.h"
+#include "Test_Surface.h"
 #include "Test_Vector.h"
 #include "Test_Matrix.h"
 #include "Test_NestedVector.h"
@@ -30,9 +31,10 @@ int main(int argc, char **argv) {
     if (qExec(new Test_NestedVector)) failedTestSuites++;
     if (qExec(new Test_Rotation)) failedTestSuites++;
     if (qExec(new Test_Realm)) failedTestSuites++;
-    if (qExec(new Test_RealFunction)) failedTestSuites++;
     if (qExec(new Test_Rotope)) failedTestSuites++;
     if (qExec(new Test_Function)) failedTestSuites++;
+    if (qExec(new Test_RealFunction)) failedTestSuites++;
+    if (qExec(new Test_Surface)) failedTestSuites++;
         
     printSummary(failedTestSuites);
 

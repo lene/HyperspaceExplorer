@@ -29,13 +29,13 @@ double SurfaceBase::_d = 0.1;
 Surface::Surface ():
     SurfaceBase("", 0, 0, 0, 0, 0, 0),
     NumVertices (0), F(),
-    Xtrans(vec4vec2D()), Xscr(vec3vec2D()) { }
+    _Xtrans(vec4vec2D()), _Xscr(vec3vec2D()) { }
 
 /// Surface c'tor with a Function name and default grid
 Surface::Surface(const QString &_name):
     SurfaceBase(_name, _min, _max, _d, _min, _max, _d),
     NumVertices (0), F(),
-    Xtrans(vec4vec2D()), Xscr(vec3vec2D()) { }
+    _Xtrans(vec4vec2D()), _Xscr(vec3vec2D()) { }
 
 
 /** Surface c'tor given a definition set in \f$ R^2 \f$ (as parameter space)
@@ -53,30 +53,30 @@ Surface::Surface (const QString &_name,
                   ParameterMap _parms):
     SurfaceBase(_name, _umin, _umax, _du, _vmin, _vmax, _dv, _parms),
     NumVertices (0), F(),
-    Xtrans(vec4vec2D()), Xscr(vec3vec2D()) {
+    _Xtrans(vec4vec2D()), _Xscr(vec3vec2D()) {
     setfunctionName(_name);
 }
 
 /// Initialize the temporary storage areas Xscr[][], Xtrans[][]
 void Surface::InitMem (void) {
-    Xscr.resize(getTsteps()+2);
-    Xtrans.resize(getTsteps()+2);
+    _Xscr.resize(getTsteps()+2);
+    _Xtrans.resize(getTsteps()+2);
 
     for (unsigned t = 0; t <= getTsteps()+1; t++) {
-        Xscr[t].resize(getUsteps()+2);
-        Xtrans[t].resize(getUsteps()+2);
+        _Xscr[t].resize(getUsteps()+2);
+        _Xtrans[t].resize(getUsteps()+2);
     }
 }
 
 /// allocate and initialize X[][] with values of f()
 /** call InitMem () above                                                     */
 void Surface::Initialize () {
-    X = vec4vec2D(getTsteps()+2);
+    _X = vec4vec2D(getTsteps()+2);
 //    ColMgrMgr::Instance().setFunction(this);
     for (unsigned t = 0; t <= getTsteps()+1; t++) {
-        X[t].resize(getUsteps()+2);
+        _X[t].resize(getUsteps()+2);
         for (unsigned u = 0; u <= getUsteps()+1; u++) {
-            X[t][u] = f (getTmin()+t*getDt(), getUmin()+u*getDu());
+            _X[t][u] = f (getTmin()+t*getDt(), getUmin()+u*getDu());
         }
     }
 
@@ -89,16 +89,16 @@ void Surface::calibrateColors() const {
     double Wmax = 0, Wmin = 0;
     for (unsigned t = 0; t <= getTsteps()+1; t++) {
         for (unsigned u = 0; u <= getUsteps()+1; u++) {
-            if (X[t][u][3] < Wmin) Wmin = X[t][u][3];
-            if (X[t][u][3] > Wmax) Wmax = X[t][u][3];
+            if (_X[t][u][3] < Wmin) Wmin = _X[t][u][3];
+            if (_X[t][u][3] > Wmax) Wmax = _X[t][u][3];
         }
     }
     for (unsigned t = 0; t <= getTsteps()+1; t++) {
         for (unsigned u = 0; u <= getUsteps()+1; u++) {
             ColMgrMgr::Instance().calibrateColor(
-                X[t][u],
+                _X[t][u],
                 Color(float(t)/float(getTsteps()), float(u)/float(getUsteps()),
-                      (Wmax-X[t][u][3])/(Wmax-Wmin)));
+                      (Wmax-_X[t][u][3])/(Wmax-Wmin)));
         }
     }
 }
@@ -183,7 +183,7 @@ Function::vec4vec1D Surface::df (double uu, double vv) {
 void Surface::Transform (const VecMath::Rotation<4> &R, const VecMath::Vector<4> &T) {
     Matrix<4> Rot(R);
 
-    transform< vec4vec2D, 4 >::xform(Rot, T, X, Xtrans);
+    transform< vec4vec2D, 4 >::xform(Rot, T, _X, _Xtrans);
 }
 
 /** projects a Surface into three-space
@@ -197,13 +197,13 @@ void Surface::Project (double scr_w, double cam_w, bool depthcue4d) {
     for (unsigned t = 0; t <= getTsteps()+1; t++)
         for (unsigned u = 0; u <= getUsteps()+1; u++) {
 
-            if (Xtrans[t][u][3] < Wmin) Wmin = Xtrans[t][u][3];
-            if (Xtrans[t][u][3] > Wmax) Wmax = Xtrans[t][u][3];
+            if (_Xtrans[t][u][3] < Wmin) Wmin = _Xtrans[t][u][3];
+            if (_Xtrans[t][u][3] > Wmax) Wmax = _Xtrans[t][u][3];
 
-            ProjectionFactor = (scr_w-cam_w)/(Xtrans[t][u][3]-cam_w);
+            ProjectionFactor = (scr_w-cam_w)/(_Xtrans[t][u][3]-cam_w);
 
             for (unsigned i = 0; i <= 2; i++)
-                Xscr[t][u][i] = ProjectionFactor*Xtrans[t][u][i];
+                _Xscr[t][u][i] = ProjectionFactor*_Xtrans[t][u][i];
     }
 
     if (!depthcue4d) return;
@@ -211,8 +211,8 @@ void Surface::Project (double scr_w, double cam_w, bool depthcue4d) {
     for (unsigned t = 0; t <= getTsteps()+1; t++)
         for (unsigned u = 0; u <= getUsteps()+1; u++) {
             ColMgrMgr::Instance().depthCueColor(Wmax, Wmin,
-                    Xtrans[t][u][3],
-                    X[t][u]);
+                    _Xtrans[t][u][3],
+                    _X[t][u]);
         }
 }
 
@@ -231,13 +231,13 @@ void Surface::Draw (void) {
 void Surface::DrawStrip (unsigned t){
     glBegin (GL_QUAD_STRIP);
 
-    setVertex(X[t][0], Xscr[t][0]);
-    setVertex(X[t+1][0], Xscr[t+1][0]);
+    setVertex(_X[t][0], _Xscr[t][0]);
+    setVertex(_X[t+1][0], _Xscr[t+1][0]);
     NumVertices += 2;
 
     for (unsigned u = 1; u <= getUsteps(); u++) {
-        setVertex(X[t][u], Xscr[t][u]);
-        setVertex(X[t+1][u], Xscr[t+1][u]);
+        setVertex(_X[t][u], _Xscr[t][u]);
+        setVertex(_X[t+1][u], _Xscr[t+1][u]);
         NumVertices += 2;
     }
 

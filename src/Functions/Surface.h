@@ -130,7 +130,7 @@ class Surface: public SurfaceBase {
                             double _umin, double _umax, double _du,
                             double _vmin, double _vmax, double _dv);
 
-        vec4vec2D Data (void) { return X; } ///< direct access to the function values
+        vec4vec2D Data (void) { return _X; } ///< direct access to the function values
 
         /// \see Function::getDefinitionSpaceDimensions()
         virtual unsigned getDefinitionSpaceDimensions() { return 2; }
@@ -151,9 +151,9 @@ class Surface: public SurfaceBase {
 
          VecMath::Vector<4> F;
 
-         vec4vec2D X,       ///< temporary storage for the function values on the grid
-                   Xtrans;  ///< temporary storage for the function values on the grid
-         vec3vec2D Xscr;    ///< temporary storage for the function values on the grid
+         vec4vec2D _X,       ///< temporary storage for the function values on the grid
+                   _Xtrans;  ///< temporary storage for the function values on the grid
+         vec3vec2D _Xscr;    ///< temporary storage for the function values on the grid
 };
 
 /// An example surface:

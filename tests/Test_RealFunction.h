@@ -13,6 +13,7 @@ class Test_RealFunction: public QObject {
     static const double X_MAX =  1.;
     static const unsigned GRID_SIZE = 5;
 
+    const static QString TEST_FUNCTION_NAME;
     static const double CONSTANT_FUNCTION_VALUE = 1.;
 
     static const double EPSILON = 1e-8;
@@ -23,14 +24,7 @@ class Test_RealFunction: public QObject {
     class RealFunctionTestImplementation: public RealFunction {
 
     public:
-        RealFunctionTestImplementation():
-            RealFunction(
-                    "RealFunctionTestImplementation",
-                    X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1),
-                    X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1),
-                    X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1)) {
-            Initialize();
-        }
+        RealFunctionTestImplementation();
 
         VecMath::Vector<4> function_value(double tt, double uu, double vv) { return f(tt,uu,vv); }
         vec4vec3D vertices() { return _X; }
@@ -60,8 +54,6 @@ class Test_RealFunction: public QObject {
         void projectWithDepthCue();
 
         void draw();
-
-        void functionWithParameters();
 
     private:
         RealFunctionTestImplementation *_function;
