@@ -15,14 +15,24 @@
 */
 class ParameterMap : public std::map<std::string, FunctionParameter *> {
 public:
+
+    class NonexistentParameterAccessed: public std::invalid_argument {
+    public:
+      NonexistentParameterAccessed(const std::string &which):
+        std::invalid_argument("Tried to access parameter \""+which+"\"") { }
+    };
+    
     ParameterMap(): std::map<std::string, FunctionParameter *> () { }
+    
     /// Create a ParameterMap containing one parameter
     template<typename T1> ParameterMap(const std::string &_name1,
                                        const T1 &_value1):
             std::map<std::string, FunctionParameter *> () {
         insertByValue(_name1, _value1);
     }
+    
     ~ParameterMap() { }
+    
     /// Insert a parameter with a name and an actual value
     template <typename T> void insertByValue(const std::string _name,
                                              const T &_value) {
@@ -31,6 +41,7 @@ public:
                     ParameterFactory::Instance().
                             createParameterWithValue(_name, _value)));
         }
+        
     /// Insert a parameter with a name and a default value
     template <typename T> void insertByDefault(const std::string _name,
                                                const T &_default) {
@@ -39,6 +50,14 @@ public:
                     ParameterFactory::Instance().
                             createParameterWithDefault(_name, _default)));
         }
+
+    FunctionParameter *operator[](const std::string &_name) {
+      if (find(_name) == end()) {
+        throw ParameterMap::NonexistentParameterAccessed(_name);
+      }
+      return std::map<std::string, FunctionParameter *>::operator[](_name);
+    }
+
     /// return a string representation for debugging purposes
     std::string print() const {
         std::ostringstream o;

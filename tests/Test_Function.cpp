@@ -30,7 +30,16 @@ Test_Function::FunctionTestImplementation::FunctionTestImplementation():
 }
 
 void Test_Function::FunctionTestImplementation::SetParameters(const ParameterMap& parms) {
-  Function::SetParameters(parms);
+#if 1
+  for (ParameterMap::const_iterator i = parms.begin(); i != parms.end(); ++i) {
+    if (i->second->getName() == "double parameter") _doubleParm = double(*i->second);
+    if (i->second->getName() == "unsigned parameter") _unsignedParm = unsigned(*i->second);
+    if (i->second->getName() == "int parameter") _intParm = int(*i->second);
+    if (i->second->getName() == "string parameter") _stringParm = std::string(*i->second);
+  }
+#else
+    setParameter(parms, this->_radius, "Radius");
+#endif
 }
 
 
@@ -81,9 +90,20 @@ void Test_Function::parameters() {
   QVERIFY(parameters.find("string parameter") != parameters.end());
   
   QVERIFY(double(*(parameters.find("double parameter")->second->value())) == 1.0);
+  FunctionParameter *parameter = _function->getParameter("double parameter");
+  QVERIFY(double(*(parameter->value())) == 1.0);
+  
   QVERIFY(unsigned(*(parameters.find("unsigned parameter")->second->value())) == 1);
+  parameter = _function->getParameter("unsigned parameter");
+  QVERIFY(unsigned(*(parameter->value())) == 1);
+
   QVERIFY(int(*(parameters.find("int parameter")->second->value())) == -1);
+  parameter = _function->getParameter("int parameter");
+  QVERIFY(int(*(parameter->value())) == -1);  
+
   QVERIFY(std::string(*(parameters.find("string parameter")->second->value())) == "a string");
+  parameter = _function->getParameter("string parameter");
+  QVERIFY(std::string(*(parameter->value())) == "a string");
 }
 
 void Test_Function::parameterWithoutCast() {
@@ -98,9 +118,52 @@ void Test_Function::parameterWithoutCast() {
 }
 
 void Test_Function::setParameters() {
-  QFAIL("NYI");
+  
+  ParameterMap newParameters = _function->getParameters();
+  std::string parameterName = "double parameter";
+  ParameterMap::iterator it = newParameters.find(parameterName);
+  if (it != newParameters.end()) {
+    it->second->setValue("2.0");
+  } else {
+    QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.print()).c_str());
+  }
+  QVERIFY(double(*(newParameters.find("double parameter")->second->value())) == 2.0);
+
+  parameterName = "unsigned parameter";
+  it = newParameters.find(parameterName);
+  if (it != newParameters.end()) {
+    it->second->setValue("2");
+  } else {
+    QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.print()).c_str());
+  }
+  QVERIFY(unsigned(*(newParameters.find("unsigned parameter")->second->value())) == 2);
+
+  parameterName = "int parameter";
+  it = newParameters.find(parameterName);
+  if (it != newParameters.end()) {
+    it->second->setValue("-2");
+  } else {
+    QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.print()).c_str());
+  }
+  QVERIFY(int(*(newParameters.find("int parameter")->second->value())) == -2);
+  
+  parameterName = "string parameter";
+  it = newParameters.find(parameterName);
+  if (it != newParameters.end()) {
+    it->second->setValue("another string");
+  } else {
+    QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.print()).c_str());
+  }
+  QVERIFY(std::string(*(newParameters.find("string parameter")->second->value())) == "another string");
+  
 }
 
 void Test_Function::accessedNonexistentParameter() {
-  QFAIL("NYI");
+  try {
+    FunctionParameter *parameter = _function->getParameter("nonexistent parameter");
+  } catch (ParameterMap::NonexistentParameterAccessed &e) {
+    return;
+  }
+  
+  QFAIL("ParameterMap::NonexistentParameterAccessed exception expected");
 }

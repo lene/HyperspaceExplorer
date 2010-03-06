@@ -145,8 +145,9 @@ class Function {
         /// \return The collection of all parameters (and their values)
         ParameterMap getParameters() { return _parameters; }
         /// \return The value of the parameter which is named \p name
-        FunctionParameter *getParameter(QString name) {
-            return _parameters[name.toStdString()];
+        FunctionParameter *getParameter(const QString &name) {
+          std::string key = name.toStdString();
+          return _parameters[key];
         }
 
         /// Set a parameter with a specified key from a supplied ParameterMap

@@ -24,10 +24,17 @@ class Test_Function: public QObject {
     virtual void calibrateColors() const;
     virtual unsigned getDefinitionSpaceDimensions();
     void SetParameters(const ParameterMap &parms);
+
+    double _doubleParm;
+    unsigned _unsignedParm;
+    int _intParm;
+    std::string _stringParm;
+    
     
   protected:
     virtual VecMath::Vector<4> &operator () (double x, double y, double z);
     virtual void Initialize (void);
+
   };
 
   class ParameterTestImplementation: public FunctionTestImplementation {
