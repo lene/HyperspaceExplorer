@@ -54,7 +54,18 @@ class Test_RealFunction: public QObject {
         void projectWithDepthCue();
 
         void draw();
-
+        
+        void torus1();
+        void torus2();
+        void fr3r();
+        void gravitationPotential();
+        void fr3rSin();
+        void fr3rExp();
+        void polar();
+        void polarSin();
+        void polarSin2();
+        void polarR();
+        
     private:
         RealFunctionTestImplementation *_function;
 };

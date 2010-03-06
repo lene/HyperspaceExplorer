@@ -164,3 +164,52 @@ void Test_RealFunction::draw() {
     QSKIP("No idea how to correctly test drawing yet", SkipSingle);
 }
 
+void Test_RealFunction::torus1() {
+  Fr3r f;
+  QVERIFY(f(0.,0.,0.) == 0.);
+}
+
+void Test_RealFunction::torus2() {
+  Fr3r f;
+  QVERIFY(f(0.,0.,0.) == 0.);
+}
+
+void Test_RealFunction::fr3r() {
+  Fr3r f;
+  QVERIFY(f(0.,0.,0.) == 0.);
+}
+
+void Test_RealFunction::gravitationPotential() {
+  Fr3r f;
+  QVERIFY(f(0.,0.,0.) == 0.);
+}
+
+void Test_RealFunction::fr3rSin() {
+  Fr3r f;
+  QVERIFY(f(0.,0.,0.) == 0.);
+}
+
+void Test_RealFunction::fr3rExp() {
+  Fr3r f;
+  QVERIFY(f(0.,0.,0.) == 0.);
+}
+
+void Test_RealFunction::polar() {
+  Fr3r f;
+  QVERIFY(f(0.,0.,0.) == 0.);
+}
+
+void Test_RealFunction::polarSin() {
+  Fr3r f;
+  QVERIFY(f(0.,0.,0.) == 0.);
+}
+
+void Test_RealFunction::polarSin2() {
+  Fr3r f;
+  QVERIFY(f(0.,0.,0.) == 0.);
+}
+
+void Test_RealFunction::polarR() {
+  Fr3r f;
+  QVERIFY(f(0.,0.,0.) == 0.);
+}

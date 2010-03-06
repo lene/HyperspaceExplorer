@@ -148,3 +148,71 @@ void Test_Surface::draw() {
   QSKIP("No idea how to correctly test drawing yet", SkipSingle);
 }
 
+void Test_Surface::surface1()
+{
+
+}
+void Test_Surface::horizon()
+{
+
+}
+void Test_Surface::torus3()
+{
+
+}
+void Test_Surface::z2()
+{
+
+}
+void Test_Surface::z3()
+{
+
+}
+void Test_Surface::zA()
+{
+
+}
+void Test_Surface::ez()
+{
+
+}
+void Test_Surface::emz2()
+{
+
+}
+void Test_Surface::zm1()
+{
+
+}
+void Test_Surface::zm2()
+{
+
+}
+void Test_Surface::sqrtz()
+{
+
+}
+void Test_Surface::lnz()
+{
+
+}
+void Test_Surface::sinz()
+{
+
+}
+void Test_Surface::cosz()
+{
+
+}
+void Test_Surface::sinhz()
+{
+
+}
+void Test_Surface::coshz()
+{
+
+}
+void Test_Surface::tanz()
+{
+
+}

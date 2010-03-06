@@ -51,6 +51,15 @@ class RealBase: public Function {
                 _usteps (unsigned ((umax-umin)/du+1)),
                 _vsteps (unsigned ((vmax-vmin)/dv+1)) { }
 
+        /// Function evaluation operator for three parameters
+        /** @param t first argument, e.g. x or t
+         *  @param u second argument, e.g. y or u
+         *  @param v third argument, e.g. z or v
+         *  @return f(t, u, v)                                                */
+        VecMath::Vector<4> &operator () (double t, double u, double v) {
+            return f(t,u,v);
+        }
+
     protected:
         /// number of steps in t
         unsigned &getTsteps() { return _tsteps; }
@@ -86,14 +95,6 @@ class RealBase: public Function {
 
         /// The mathematical function defining the Function object
         virtual VecMath::Vector<4> &f(double, double, double) = 0;
-        /// Function evaluation operator for three parameters
-        /** @param t first argument, e.g. x or t
-         *  @param u second argument, e.g. y or u
-         *  @param v third argument, e.g. z or v
-         *  @return f(t, u, v)                                                */
-        VecMath::Vector<4> &operator () (double t, double u, double v) {
-            return f(t,u,v);
-        }
 
         static double _min, ///< default value for all lower bounds
                       _max, ///< default value for all upper bounds
