@@ -137,6 +137,8 @@ namespace VecMath {
 
             /// write access the stored values (needed by input operator >>())
             Vector<NumAxes<D>::num, N> &r() { return axis; }
+            
+            std::string toString() const { return axis.toString(); }
 
         private:
             /// Rotation angles are stored as a Vector, operations are delegated
