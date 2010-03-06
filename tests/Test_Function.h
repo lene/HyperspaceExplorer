@@ -14,6 +14,10 @@ class Test_Function: public QObject {
   class FunctionTestImplementation: public Function {
   public:
     FunctionTestImplementation();
+
+    VecMath::Vector<4> f() { return VecMath::Vector<4>(0.,0.,0.,_doubleParm); }
+    void SetParameters(const ParameterMap &parms);
+    
     virtual void Transform (const VecMath::Rotation<4> &R,
                             const VecMath::Vector<4> &T);
     virtual void Project (double, double, bool);
@@ -23,7 +27,7 @@ class Test_Function: public QObject {
                         double _vmin, double _vmax, double _dv);
     virtual void calibrateColors() const;
     virtual unsigned getDefinitionSpaceDimensions();
-    void SetParameters(const ParameterMap &parms);
+
 
     double _doubleParm;
     unsigned _unsignedParm;
@@ -56,6 +60,8 @@ private slots:
   void parameterWithoutCast();
   void setParameters();
   void accessedNonexistentParameter();
+  void functionValue();
+  void rotationAsParameter();
 
 private:
   Function *_function;

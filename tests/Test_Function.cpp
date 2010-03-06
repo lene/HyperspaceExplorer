@@ -26,7 +26,6 @@ Test_Function::FunctionTestImplementation::FunctionTestImplementation():
   declareParameter("unsigned parameter", (unsigned)1);
   declareParameter("int parameter", -1);
   declareParameter("string parameter", std::string("a string"));
-//  declareParameter("rotation parameter", VecMath::Rotation<4>());
 }
 
 void Test_Function::FunctionTestImplementation::SetParameters(const ParameterMap& parms) {
@@ -45,7 +44,7 @@ void Test_Function::FunctionTestImplementation::SetParameters(const ParameterMap
 
 VecMath::Vector< 4 >& Test_Function::FunctionTestImplementation::operator()(double x, double y, double z) {
   static VecMath::Vector<4> F;
-  F = VecMath::Vector<4>(x, y, z, 1.0);
+  F = VecMath::Vector<4>(x, y, z, _doubleParm);
   return F;
 }
 
@@ -167,3 +166,27 @@ void Test_Function::accessedNonexistentParameter() {
   
   QFAIL("ParameterMap::NonexistentParameterAccessed exception expected");
 }
+
+void Test_Function::functionValue() {
+  FunctionTestImplementation function;
+  ParameterMap newParameters = function.getParameters();
+  std::string parameterName = "double parameter";
+  ParameterMap::iterator it = newParameters.find(parameterName);
+  if (it != newParameters.end()) {
+    it->second->setValue(QString::number(sqrt(2.)).toStdString());
+  } else {
+    QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.print()).c_str());
+  }
+  function.SetParameters(newParameters);
+  
+  VecMath::Vector<4> f = function.f();
+
+  QVERIFY2((f - VecMath::Vector<4>(0., 0., 0., sqrt(2.))).sqnorm() < 1e-8, f.toString().c_str());
+}
+
+void Test_Function::rotationAsParameter() {
+  QSKIP("To Do!", SkipSingle);
+  //  declareParameter("rotation parameter", VecMath::Rotation<4>());
+  
+}
+
