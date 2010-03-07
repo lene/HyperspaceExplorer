@@ -30,8 +30,8 @@ public:
     ParameterMap(): std::map<std::string, FunctionParameter *> () { }
     
     /// Create a ParameterMap containing one parameter
-    template<typename T1> ParameterMap(const std::string &name,
-                                       const T1 &value):
+    template<typename T> ParameterMap(const std::string &name,
+                                      const T &value):
             std::map<std::string, FunctionParameter *> () {
         insertByValue(name, value);
     }
@@ -83,9 +83,13 @@ public:
     
 };
 
+/// Specialization for type \c double, which has no toString() method.
 template <> void ParameterMap::set(const std::string &name, const double &value);
+/// Specialization for type \c unsigned, which has no toString() method.
 template <> void ParameterMap::set(const std::string &name, const unsigned &value);
+/// Specialization for type \c int, which has no toString() method.
 template <> void ParameterMap::set(const std::string &name, const int &value);
+/// Specialization for type \c std::string, which has no toString() method.
 template <> void ParameterMap::set(const std::string &name, const std::string &value);
 
 #endif

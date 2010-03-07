@@ -81,6 +81,23 @@ void Test_Function::instantiate() {
              _function->getFunctionName().toAscii());
 }
 
+void Test_Function::functionValue() {
+  FunctionTestImplementation function;
+  ParameterMap newParameters = function.getParameters();
+  std::string parameterName = "double parameter";
+  ParameterMap::iterator it = newParameters.find(parameterName);
+  if (it != newParameters.end()) {
+    it->second->setValue(QString::number(sqrt(2.)).toStdString());
+  } else {
+    QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.toString()).c_str());
+  }
+    function.SetParameters(newParameters);
+    
+    VecMath::Vector<4> f = function.f();
+    
+    QVERIFY2((f - VecMath::Vector<4>(0., 0., 0., sqrt(2.))).sqnorm() < 1e-8, f.toString().c_str());
+}
+
 void Test_Function::parameters() {
   QVERIFY2(_function->getNumParameters() == TEST_FUNCTION_NUM_PARAMETERS,
            QString::number(_function->getNumParameters()).toAscii());
@@ -107,6 +124,8 @@ void Test_Function::parameters() {
   QVERIFY(std::string(*(parameters.find("string parameter")->second->value())) == "a string");
   parameter = _function->getParameter("string parameter");
   QVERIFY(std::string(*(parameter->value())) == "a string");
+  
+  QVERIFY(double(*(_function->getParameterValue("double parameter"))) == 1.0);
 }
 
 void Test_Function::parameter_get() {
@@ -198,23 +217,6 @@ void Test_Function::accessedNonexistentParameter() {
   }
   
   QFAIL("ParameterMap::NonexistentParameterAccessed exception expected");
-}
-
-void Test_Function::functionValue() {
-  FunctionTestImplementation function;
-  ParameterMap newParameters = function.getParameters();
-  std::string parameterName = "double parameter";
-  ParameterMap::iterator it = newParameters.find(parameterName);
-  if (it != newParameters.end()) {
-    it->second->setValue(QString::number(sqrt(2.)).toStdString());
-  } else {
-    QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.toString()).c_str());
-  }
-  function.SetParameters(newParameters);
-  
-  VecMath::Vector<4> f = function.f();
-
-  QVERIFY2((f - VecMath::Vector<4>(0., 0., 0., sqrt(2.))).sqnorm() < 1e-8, f.toString().c_str());
 }
 
 void Test_Function::rotationAsParameter() {

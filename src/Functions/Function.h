@@ -145,11 +145,14 @@ class Function {
         /// \return The collection of all parameters (and their values)
         ParameterMap getParameters() { return _parameters; }
         /// \return The value of the parameter which is named \p name
-        FunctionParameter *getParameter(const QString &name) {
-          std::string key = name.toStdString();
-          return _parameters.getParameter(key);
+        FunctionParameter *getParameter(const std::string &name) {
+          return _parameters.getParameter(name);
         }
 
+        FunctionParameterValueBase *getParameterValue(const std::string &name) {
+          return _parameters.getValue(name);
+        }
+    
         /// Set a parameter with a specified key from a supplied ParameterMap
         template <typename T> void setParameter(const ParameterMap &parms,
                                                 T &parm,
@@ -181,7 +184,6 @@ class Function {
 
         virtual unsigned long MemRequired (void);
 
-//        void clearParameterNames() { parameterNames.clear(); }
         /// Add a parameter to the list of parameters
         template <typename T> void declareParameter(const std::string &,
                                                     const T &);
@@ -200,11 +202,9 @@ class Function {
 
     private:
         /// Declare a new parameter for the Function
-        void insertParameter(
-            const std::pair<std::string, FunctionParameter *> &value) {
-            _parameters.insert(value);
+        void insertParameter(const std::string &name, FunctionParameter *defaultValue) {
+          _parameters.insert(std::make_pair(name, defaultValue));
         }
-
 
         /// counter for assessing how much RAM is used
         unsigned _numVertices;
@@ -214,38 +214,30 @@ class Function {
 
         /// list of the parameters to the function
         ParameterMap _parameters;
-        /// Ordered list of the names of parameters to the function
-        /** needed additionally to the ParameterMap, because the map does not
-         *  keep the parameters in the order they are declared.
-         *  \todo move this functionality into ParameterMap                   */
-        std::vector<std::string> _parameterNames;
         
 };
 
 /// Add a parameter with a name and a default value to the parameter list
 template <typename T> inline
-        void Function::declareParameter(const std::string &_name,
-                                        const T &_default) {
-            _parameterNames.push_back(_name);
-            if (_parameters.find(_name) == _parameters.end()) {
-                insertParameter(
-                    std::make_pair(_name,
-                        ParameterFactory::Instance().
-                            createParameterWithDefault(_name, _default)));
-            }
-        }
+    void Function::declareParameter(const std::string &name,
+                                    const T &defaultValue) {
+      if (_parameters.find(name) != _parameters.end()) return;
+      
+      insertParameter(
+          name,
+          ParameterFactory::Instance().createParameterWithDefault(name, defaultValue));
+    }
 
 /// Add a parameter with a name and a default value to the parameter list
 template <typename T> inline
-        void Function::declareParameter(const std::string &_name,
-                                        const T &_default, const T &_value) {
-            _parameterNames.push_back(_name);
-            if (_parameters.find(_name) == _parameters.end()) {
-                insertParameter(
-                    std::make_pair(_name,
-                        ParameterFactory::Instance().
-                            createParameterWithDefault(_name, _default)));
-                _parameters[_name]->setValue(new FunctionParameterValue<T>(_value));
-            }
-        }
+    void Function::declareParameter(const std::string &name,
+                                    const T &defaultValue, const T &value) {
+      if (_parameters.find(name) != _parameters.end()) return;
+                
+      insertParameter(
+          name,
+          ParameterFactory::Instance().createParameterWithDefault(name, defaultValue));
+      _parameters[name]->setValue(new FunctionParameterValue<T>(value));
+    }
+
 #endif
