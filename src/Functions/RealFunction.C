@@ -658,8 +658,8 @@ Vector<4> &Fr3rExp::f (double tt, double uu, double vv) {
  *  \param dv	stepsize in v
  */
 Polar::Polar(double tmin, double tmax, double dt,
-	     double umin, double umax, double du,
-	     double vmin, double vmax, double dv):
+             double umin, double umax, double du,
+             double vmin, double vmax, double dv):
   RealFunction ("Polar: Hypersphere",
                 tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) {
   Initialize ();

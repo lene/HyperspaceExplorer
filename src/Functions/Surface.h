@@ -55,6 +55,14 @@ class SurfaceBase: public Function {
                 tsteps (unsigned ((tmax-tmin)/dt+1)),
                 usteps (unsigned ((umax-umin)/du+1)) { }
 
+        /// Function evaluation operator for three parameters
+        /** @param u first argument, e.g. y or u
+         *  @param v second argument, e.g. z or v
+         *  @return f(t, u, v)                                                */
+        VecMath::Vector<4> &operator () (double u, double v, double = 0) {
+            return f(u,v);
+        }
+
     protected:
         /// number of steps in t
         unsigned &getTsteps() { return tsteps; }
@@ -80,13 +88,6 @@ class SurfaceBase: public Function {
 
         /// The mathematical function defining the Function object
         virtual VecMath::Vector<4> &f(double, double) = 0;
-        /// Function evaluation operator for three parameters
-        /** @param u first argument, e.g. y or u
-         *  @param v second argument, e.g. z or v
-         *  @return f(t, u, v)                                                */
-        VecMath::Vector<4> &operator () (double u, double v, double = 0) {
-            return f(u,v);
-        }
 
     static double _min, ///< Default value for lower grid boundary
                   _max, ///< Default value for upper grid boundary

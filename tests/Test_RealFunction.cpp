@@ -165,51 +165,51 @@ void Test_RealFunction::draw() {
 }
 
 void Test_RealFunction::torus1() {
-  Fr3r f;
-  QVERIFY(f(0.,0.,0.) == 0.);
+  Torus1 f;
+  f(0.,0.,0.);
 }
 
 void Test_RealFunction::torus2() {
-  Fr3r f;
-  QVERIFY(f(0.,0.,0.) == 0.);
+  Torus2 f;
+  f(0.,0.,0.);
 }
 
 void Test_RealFunction::fr3r() {
   Fr3r f;
-  QVERIFY(f(0.,0.,0.) == 0.);
+  f(0.,0.,0.);
 }
 
 void Test_RealFunction::gravitationPotential() {
-  Fr3r f;
-  QVERIFY(f(0.,0.,0.) == 0.);
+  GravitationPotential f;
+  f(0.,0.,0.);
 }
 
 void Test_RealFunction::fr3rSin() {
-  Fr3r f;
-  QVERIFY(f(0.,0.,0.) == 0.);
+  Fr3rSin f;
+  f(0.,0.,0.);
 }
 
 void Test_RealFunction::fr3rExp() {
-  Fr3r f;
-  QVERIFY(f(0.,0.,0.) == 0.);
+  Fr3rExp f;
+  f(0.,0.,0.);
 }
 
 void Test_RealFunction::polar() {
-  Fr3r f;
-  QVERIFY(f(0.,0.,0.) == 0.);
+  Polar f(-1, 1, .1, -1, 1, .1, -1, 1, .1);
+  f(0.,0.,0.);
 }
 
 void Test_RealFunction::polarSin() {
-  Fr3r f;
-  QVERIFY(f(0.,0.,0.) == 0.);
+  PolarSin f;
+  f(0.,0.,0.);
 }
 
 void Test_RealFunction::polarSin2() {
-  Fr3r f;
-  QVERIFY(f(0.,0.,0.) == 0.);
+  PolarSin2 f;
+  f(0.,0.,0.);
 }
 
 void Test_RealFunction::polarR() {
-  Fr3r f;
-  QVERIFY(f(0.,0.,0.) == 0.);
+  PolarR f;
+  f(0.,0.,0.);
 }

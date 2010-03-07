@@ -57,20 +57,20 @@ class Test_Surface: public QObject {
         void surface1();
         void horizon();
         void torus3();
-        void z2();
-        void z3();
-        void zA();
-        void ez();
-        void emz2();
-        void zm1();
-        void zm2();
-        void sqrtz();
-        void lnz();
-        void sinz();
-        void cosz();
-        void sinhz();
-        void coshz();
-        void tanz();
+        void t_z2();
+        void t_z3();
+        void t_zA();
+        void t_ez();
+        void t_emz2();
+        void t_zm1();
+        void t_zm2();
+        void t_sqrtz();
+        void t_lnz();
+        void t_sinz();
+        void t_cosz();
+        void t_sinhz();
+        void t_coshz();
+        void t_tanz();
         
     private:
         SurfaceTestImplementation *_function;

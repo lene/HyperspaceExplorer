@@ -1,6 +1,7 @@
 
 #include "Test_Surface.h"
 
+#include "ComplexFunction.h"
 #include "ColorManager.h"
 
 using VecMath::Vector;
@@ -148,71 +149,71 @@ void Test_Surface::draw() {
   QSKIP("No idea how to correctly test drawing yet", SkipSingle);
 }
 
-void Test_Surface::surface1()
-{
-
+void Test_Surface::surface1() {
+  Surface1 f;
+  f(0, 0);
 }
-void Test_Surface::horizon()
-{
-
+void Test_Surface::horizon() {
+  Horizon f;
+  f(0, 0);
 }
-void Test_Surface::torus3()
-{
-
+void Test_Surface::torus3() {
+  Torus3 f;
+  f(0, 0);
 }
-void Test_Surface::z2()
-{
-
+void Test_Surface::t_z2() {
+  z2 f;
+  f(0, 0);
 }
-void Test_Surface::z3()
-{
-
+void Test_Surface::t_z3() {
+  z3 f;
+  f(0, 0);
 }
-void Test_Surface::zA()
-{
-
+void Test_Surface::t_zA() {
+  zA f;
+  f(0, 0);
 }
-void Test_Surface::ez()
-{
-
+void Test_Surface::t_ez() {
+  ez f;
+  f(0, 0);
 }
-void Test_Surface::emz2()
-{
-
+void Test_Surface::t_emz2() {
+  emz2 f;
+  f(0, 0);
 }
-void Test_Surface::zm1()
-{
-
+void Test_Surface::t_zm1() {
+  zm1 f;
+  f(0, 0);
 }
-void Test_Surface::zm2()
-{
-
+void Test_Surface::t_zm2() {
+  zm2 f;
+  f(0, 0);
 }
-void Test_Surface::sqrtz()
-{
-
+void Test_Surface::t_sqrtz() {
+  sqrtz f;
+  f(0, 0);
 }
-void Test_Surface::lnz()
-{
-
+void Test_Surface::t_lnz() {
+  lnz f;
+  f(0, 0);
 }
-void Test_Surface::sinz()
-{
-
+void Test_Surface::t_sinz() {
+  sinz  f;
+  f(0, 0);
 }
-void Test_Surface::cosz()
-{
-
+void Test_Surface::t_cosz() {
+  cosz f;
+  f(0, 0);
 }
-void Test_Surface::sinhz()
-{
-
+void Test_Surface::t_sinhz() {
+  sinhz f;
+  f(0, 0);
 }
-void Test_Surface::coshz()
-{
-
+void Test_Surface::t_coshz() {
+  coshz f;
+  f(0, 0);
 }
-void Test_Surface::tanz()
-{
-
+void Test_Surface::t_tanz() {
+  tanz f;
+  f(0, 0);
 }
