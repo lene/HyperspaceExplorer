@@ -51,15 +51,12 @@ public:
           ParameterFactory::Instance().createParameterWithDefault(name, defaultValue)));
         }
 
-    FunctionParameter *operator[](const std::string &name);
+    FunctionParameter *getParameter(const std::string &name);
     
-    FunctionParameterValueBase *get(const std::string &name) {
-      return (*this)[name]->value();
-    }
+    FunctionParameterValueBase *getValue(const std::string &name);
 
     template <typename T> void set(const std::string &name, const T &value) {
-      ParameterMap::iterator it = findOrThrow(name);
-      it->second->setValue(value.toString());
+      getParameter(name)->setValue(value.toString());
     }
     
     /// return a string representation for debugging purposes

@@ -2,30 +2,29 @@
 
 #include <QString>
 
-FunctionParameter *ParameterMap::operator[](const std::string &_name) {
-  if (findOrThrow(_name) == end()) {
-    throw ParameterMap::NonexistentParameterAccessed(_name);
-  }
-  return std::map<std::string, FunctionParameter *>::operator[](_name);
+FunctionParameter *ParameterMap::getParameter(const std::string &name) {
+  ParameterMap::iterator it = findOrThrow(name);
+  return it->second;
+}
+
+FunctionParameterValueBase* ParameterMap::getValue(const std::string& name) {
+  return getParameter(name)->value();
 }
 
 template<> void ParameterMap::set(const std::string &name, const double &value) {
-  ParameterMap::iterator it = findOrThrow(name);
-  it->second->setValue(QString::number(value).toStdString());
+  getParameter(name)->setValue(QString::number(value).toStdString()); 
 }
 
 template<> void ParameterMap::set(const std::string &name, const unsigned &value) {
-  ParameterMap::iterator it = findOrThrow(name);
-  it->second->setValue(QString::number(value).toStdString());
+  getParameter(name)->setValue(QString::number(value).toStdString()); 
 }
 
 template<> void ParameterMap::set(const std::string &name, const int &value) {
-  ParameterMap::iterator it = findOrThrow(name);
-  it->second->setValue(QString::number(value).toStdString());
+  getParameter(name)->setValue(QString::number(value).toStdString()); 
 }
 
 template<> void ParameterMap::set(const std::string &name, const std::string &value) {
-  findOrThrow(name)->second->setValue(value);
+  getParameter(name)->setValue(value);
 }
 
 std::string ParameterMap::print() const {    
