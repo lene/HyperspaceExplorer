@@ -17,16 +17,44 @@ std::string ParameterMap::print() const {
     // try casting to every known type, only print if cast succeeds
     try {
       o << "(double)" << double(*(i->second)) << std::endl;
-    }  catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
+      continue;
+    } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {
       o << "(unsigned)" << unsigned(*(i->second)) << std::endl;
-    }  catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
+      continue;
+    } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {
       o << "(int)" << int(*(i->second)) << std::endl;
-    }  catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
+      continue;
+    } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {
       o << "(string)" << std::string(*(i->second)) << std::endl;
-    }  catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
+      continue;
+    } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
+    try {
+      o << "(Rotation<5>)" << i->second->value()->operator VecMath::Rotation<5>();
+      continue;
+    } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
+    try {
+      o << "(Rotation<6>)" << i->second->value()->operator VecMath::Rotation<6>();
+      continue;
+    } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
+    try {
+      o << "(Rotation<7>)" << i->second->value()->operator VecMath::Rotation<7>();
+      continue;
+    } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
+    try {
+      o << "(Rotation<8>)" << i->second->value()->operator VecMath::Rotation<8>();
+      continue;
+    } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
+    try {
+      o << "(Rotation<9>)" << i->second->value()->operator VecMath::Rotation<9>();
+      continue;
+    } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
+    try {
+      o << "(Rotation<10>)" << i->second->value()->operator VecMath::Rotation<10>();
+      continue;
+    } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
   }
   o << "]" << std::endl << std::ends;
 

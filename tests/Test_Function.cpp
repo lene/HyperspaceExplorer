@@ -212,5 +212,10 @@ void Test_Function::rotationAsParameter() {
   for (unsigned i = 0; i < VecMath::NumAxes<5>::num; ++i) {
     QVERIFY(rot[i] == i);
   }
+  
+  std::string parameterAsString = f.getParameters().print();
+  for (char c = '0'; c <= '9'; ++c) {
+    QVERIFY2(parameterAsString.find(c) != std::string::npos, parameterAsString.c_str());
+  }
 }
 
