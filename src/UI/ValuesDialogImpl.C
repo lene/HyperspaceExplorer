@@ -134,9 +134,12 @@ namespace UI {
         void ValuesDialogImpl::accept () {
             for (unsigned i = 0; i < maxNumParameters; ++i) {
                 std::string parameterName = ParameterLabel[i]->text().toStdString();
-                ParameterMap::iterator it = parameters.findOrThrow(parameterName);
-                if (it != parameters.end()) {
-                    it->second->setValue(Parameter[i]->value().toStdString());
+                try {
+                  FunctionParameter *parameter = parameters.getParameter(parameterName);
+                  parameter->setValue(Parameter[i]->value().toStdString());
+                } catch (const ParameterMap::NonexistentParameterAccessed &e) {
+                  /// default parameter names in hidden fields of the dialog
+                  /// \todo remove those fields instead of catching the exception
                 }
             }
             emit ApplyChanges(parameters);
