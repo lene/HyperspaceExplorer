@@ -51,40 +51,10 @@ public:
                             createParameterWithDefault(_name, _default)));
         }
 
-    FunctionParameter *operator[](const std::string &_name) {
-      if (find(_name) == end()) {
-        throw ParameterMap::NonexistentParameterAccessed(_name);
-      }
-      return std::map<std::string, FunctionParameter *>::operator[](_name);
-    }
+    FunctionParameter *operator[](const std::string &_name);
 
     /// return a string representation for debugging purposes
-    std::string print() const {
-        std::ostringstream o;
-        o << "[\n";
-        for (std::map<std::string, FunctionParameter *>::const_iterator i = begin();
-             i != end(); ++i) {
-                o << "    " << i->first << ": \t"
-                  << i->second->getName() << " = ";
-                // try casting to every known type, only print if cast succeeds
-                try {
-                    o << "(double)" << double(*(i->second)) << std::endl;
-                }  catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
-                try {
-                    o << "(unsigned)" << unsigned(*(i->second)) << std::endl;
-                }  catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
-                try {
-                    o << "(int)" << int(*(i->second)) << std::endl;
-                }  catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
-                try {
-                    o << "(string)" << std::string(*(i->second)) << std::endl;
-                }  catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
-        }
-        o << "]" << std::endl << std::ends;
-
-        return o.str();
-    }
-
+    std::string print() const;
 };
 
 #endif

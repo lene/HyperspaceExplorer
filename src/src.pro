@@ -45,6 +45,7 @@ SOURCES += Functions/ComplexFunction.C \
            Functions/Object.C \
            Functions/RealFunction.C \
            Functions/FunctionParameter.C \
+           Functions/ParameterMap.C \
            Functions/FunctionFactory.C \
            Functions/Sponge.C
 #          Functions/SteinerFunction.C
