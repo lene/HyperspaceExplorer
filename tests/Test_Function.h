@@ -62,6 +62,8 @@ private slots:
   void instantiate();
 
   void parameters();
+  void parameter_get();
+  void parameter_set();
   void parameterWithoutCast();
   void setParameters();
   void accessedNonexistentParameter();

@@ -109,6 +109,27 @@ void Test_Function::parameters() {
   QVERIFY(std::string(*(parameter->value())) == "a string");
 }
 
+void Test_Function::parameter_get() {
+  QVERIFY(double(*(_function->getParameters().get("double parameter"))) == 1.0);
+  QVERIFY(unsigned(*(_function->getParameters().get("unsigned parameter"))) == 1);
+  QVERIFY(int(*(_function->getParameters().get("int parameter"))) == -1);
+  QVERIFY(std::string(*(_function->getParameters().get("string parameter"))) == "a string");
+  
+  RotationParameterTestImplementation f;
+  QVERIFY(f.getParameters().get("rotation parameter")->operator VecMath::Rotation<5>()[0] == 0.);
+}
+
+void Test_Function::parameter_set() {
+  _function->getParameters().set("double parameter", 4.0);
+  QVERIFY(double(*(_function->getParameters().get("double parameter"))) == 4.0);
+  _function->getParameters().set("unsigned parameter", 4);
+  QVERIFY(unsigned(*(_function->getParameters().get("unsigned parameter"))) == 4);
+  _function->getParameters().set("int parameter", -4);
+  QVERIFY(int(*(_function->getParameters().get("int parameter"))) == -4);
+  _function->getParameters().set("string parameter", std::string("yet another string"));
+  QVERIFY(std::string(*(_function->getParameters().get("string parameter"))) == "yet another string");
+}
+
 void Test_Function::parameterWithoutCast() {
   ParameterTestImplementation function;
   ParameterMap parameters = function.getParameters();

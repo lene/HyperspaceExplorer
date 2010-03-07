@@ -134,7 +134,7 @@ namespace UI {
         void ValuesDialogImpl::accept () {
             for (unsigned i = 0; i < maxNumParameters; ++i) {
                 std::string parameterName = ParameterLabel[i]->text().toStdString();
-                ParameterMap::iterator it = parameters.find(parameterName);
+                ParameterMap::iterator it = parameters.findOrThrow(parameterName);
                 if (it != parameters.end()) {
                     it->second->setValue(Parameter[i]->value().toStdString());
                 }

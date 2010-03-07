@@ -25,36 +25,53 @@ public:
     ParameterMap(): std::map<std::string, FunctionParameter *> () { }
     
     /// Create a ParameterMap containing one parameter
-    template<typename T1> ParameterMap(const std::string &_name1,
-                                       const T1 &_value1):
+    template<typename T1> ParameterMap(const std::string &name,
+                                       const T1 &value):
             std::map<std::string, FunctionParameter *> () {
-        insertByValue(_name1, _value1);
+        insertByValue(name, value);
     }
     
     ~ParameterMap() { }
     
     /// Insert a parameter with a name and an actual value
-    template <typename T> void insertByValue(const std::string _name,
-                                             const T &_value) {
-        insert(
-                std::make_pair(_name,
-                    ParameterFactory::Instance().
-                            createParameterWithValue(_name, _value)));
+    template <typename T> void insertByValue(const std::string name,
+                                             const T &value) {
+      insert(
+        std::make_pair(
+          name,
+          ParameterFactory::Instance().createParameterWithValue(name, value)));
         }
         
     /// Insert a parameter with a name and a default value
-    template <typename T> void insertByDefault(const std::string _name,
-                                               const T &_default) {
-            insert(
-                std::make_pair(_name,
-                    ParameterFactory::Instance().
-                            createParameterWithDefault(_name, _default)));
+    template <typename T> void insertByDefault(const std::string name,
+                                               const T &defaultValue) {
+      insert(
+        std::make_pair(
+          name,
+          ParameterFactory::Instance().createParameterWithDefault(name, defaultValue)));
         }
 
-    FunctionParameter *operator[](const std::string &_name);
+    FunctionParameter *operator[](const std::string &name);
+    
+    FunctionParameterValueBase *get(const std::string &name) {
+      return (*this)[name]->value();
+    }
 
+    template <typename T> void set(const std::string &name, const T &value) {
+      ParameterMap::iterator it = findOrThrow(name);
+      it->second->setValue(value.toString());
+    }
+    
     /// return a string representation for debugging purposes
     std::string print() const;
+    
+    ParameterMap::iterator findOrThrow(const std::string &name);
+    
 };
+
+template <> void ParameterMap::set(const std::string &name, const double &value);
+template <> void ParameterMap::set(const std::string &name, const unsigned &value);
+template <> void ParameterMap::set(const std::string &name, const int &value);
+template <> void ParameterMap::set(const std::string &name, const std::string &value);
 
 #endif
