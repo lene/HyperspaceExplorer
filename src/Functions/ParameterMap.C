@@ -84,5 +84,5 @@ std::string ParameterMap::print() const {
 ParameterMap::iterator ParameterMap::findOrThrow(const std::string& name) {
   std::map<std::string, FunctionParameter *>::iterator it = find(name);
   if (it != end()) return it;
-  throw ParameterMap::NonexistentParameterAccessed(name);
+  throw ParameterMap::NonexistentParameterAccessed(name, *this);
 }

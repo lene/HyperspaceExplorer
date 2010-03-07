@@ -18,8 +18,8 @@ public:
 
     class NonexistentParameterAccessed: public std::invalid_argument {
     public:
-      NonexistentParameterAccessed(const std::string &which):
-        std::invalid_argument("Tried to access parameter \""+which+"\"") { }
+      NonexistentParameterAccessed(const std::string &which, const ParameterMap &map):
+        std::invalid_argument("Tried to access parameter \""+which+"\" in ParameterMap "+map.print()) { }
     };
     
     ParameterMap(): std::map<std::string, FunctionParameter *> () { }
@@ -62,6 +62,7 @@ public:
     /// return a string representation for debugging purposes
     std::string print() const;
     
+  private:
     ParameterMap::iterator findOrThrow(const std::string &name);
     
 };
