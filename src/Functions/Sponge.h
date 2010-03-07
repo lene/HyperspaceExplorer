@@ -25,7 +25,7 @@ public:
     virtual ~AltSponge () { }
 
     virtual void SetParameters(const ParameterMap &parms) {
-        std::cerr << "AltSponge::SetParameters(" << parms.print() << ")\n";
+        std::cerr << "AltSponge::SetParameters(" << parms.toString() << ")\n";
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {
@@ -121,7 +121,7 @@ public:
     virtual void Draw (void);
 
     virtual void SetParameters(const ParameterMap &parms) {
-        std::cerr << "Sponge::SetParameters(" << parms.print() << ")\n";
+        std::cerr << "Sponge::SetParameters(" << parms.toString() << ")\n";
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {

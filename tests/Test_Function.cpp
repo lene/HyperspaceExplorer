@@ -157,7 +157,7 @@ void Test_Function::setParameters() {
   if (it != newParameters.end()) {
     it->second->setValue("2.0");
   } else {
-    QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.print()).c_str());
+    QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.toString()).c_str());
   }
   QVERIFY(double(*(newParameters.find("double parameter")->second->value())) == 2.0);
 
@@ -166,7 +166,7 @@ void Test_Function::setParameters() {
   if (it != newParameters.end()) {
     it->second->setValue("2");
   } else {
-    QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.print()).c_str());
+    QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.toString()).c_str());
   }
   QVERIFY(unsigned(*(newParameters.find("unsigned parameter")->second->value())) == 2);
 
@@ -175,7 +175,7 @@ void Test_Function::setParameters() {
   if (it != newParameters.end()) {
     it->second->setValue("-2");
   } else {
-    QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.print()).c_str());
+    QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.toString()).c_str());
   }
   QVERIFY(int(*(newParameters.find("int parameter")->second->value())) == -2);
   
@@ -184,7 +184,7 @@ void Test_Function::setParameters() {
   if (it != newParameters.end()) {
     it->second->setValue("another string");
   } else {
-    QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.print()).c_str());
+    QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.toString()).c_str());
   }
   QVERIFY(std::string(*(newParameters.find("string parameter")->second->value())) == "another string");
   
@@ -208,7 +208,7 @@ void Test_Function::functionValue() {
   if (it != newParameters.end()) {
     it->second->setValue(QString::number(sqrt(2.)).toStdString());
   } else {
-    QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.print()).c_str());
+    QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.toString()).c_str());
   }
   function.SetParameters(newParameters);
   
@@ -231,7 +231,7 @@ void Test_Function::rotationAsParameter() {
     parameter = it->second;
     parameter->setValue(VecMath::Rotation<5>(0., 1., 2., 3., 4., 5., 6., 7., 8., 9.).toString());
   } else {
-    QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.print()).c_str());
+    QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.toString()).c_str());
   }
   f.SetParameters(newParameters);
   
@@ -242,7 +242,7 @@ void Test_Function::rotationAsParameter() {
     QVERIFY(rot[i] == i);
   }
   
-  std::string parameterAsString = f.getParameters().print();
+  std::string parameterAsString = f.getParameters().toString();
   for (char c = '0'; c <= '9'; ++c) {
     QVERIFY2(parameterAsString.find(c) != std::string::npos, parameterAsString.c_str());
   }

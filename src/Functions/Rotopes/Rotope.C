@@ -99,7 +99,7 @@ void Rotope::Initialize() {
         cerr << e.what() << endl;
     }
 
-    SingletonLog::Instance() << getParameters().print();
+    SingletonLog::Instance() << getParameters().toString();
     for (unsigned i = 5; i <= _rotope->dimension(); ++i) {
         _rotope->addTransform(i, new VecMath::Rotation<5>());
     }

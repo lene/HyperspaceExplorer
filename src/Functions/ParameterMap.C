@@ -2,32 +2,18 @@
 
 #include <QString>
 
+/** \throw NonexistentParameterAccessed if \p name is not a key. */
 FunctionParameter *ParameterMap::getParameter(const std::string &name) {
   ParameterMap::iterator it = findOrThrow(name);
   return it->second;
 }
 
+/** \throw NonexistentParameterAccessed if \p name is not a key. */
 FunctionParameterValueBase* ParameterMap::getValue(const std::string& name) {
   return getParameter(name)->value();
 }
 
-template<> void ParameterMap::set(const std::string &name, const double &value) {
-  getParameter(name)->setValue(QString::number(value).toStdString()); 
-}
-
-template<> void ParameterMap::set(const std::string &name, const unsigned &value) {
-  getParameter(name)->setValue(QString::number(value).toStdString()); 
-}
-
-template<> void ParameterMap::set(const std::string &name, const int &value) {
-  getParameter(name)->setValue(QString::number(value).toStdString()); 
-}
-
-template<> void ParameterMap::set(const std::string &name, const std::string &value) {
-  getParameter(name)->setValue(value);
-}
-
-std::string ParameterMap::print() const {    
+std::string ParameterMap::toString() const {    
   std::ostringstream o;
   o << "[\n";
   for (std::map<std::string, FunctionParameter *>::const_iterator i = begin();
@@ -81,8 +67,25 @@ std::string ParameterMap::print() const {
   return o.str();
 }
 
+/** \throw NonexistentParameterAccessed if \p name is not a key. */
 ParameterMap::iterator ParameterMap::findOrThrow(const std::string& name) {
   std::map<std::string, FunctionParameter *>::iterator it = find(name);
   if (it != end()) return it;
   throw ParameterMap::NonexistentParameterAccessed(name, *this);
+}
+
+template<> void ParameterMap::set(const std::string &name, const double &value) {
+  getParameter(name)->setValue(QString::number(value).toStdString()); 
+}
+
+template<> void ParameterMap::set(const std::string &name, const unsigned &value) {
+  getParameter(name)->setValue(QString::number(value).toStdString()); 
+}
+
+template<> void ParameterMap::set(const std::string &name, const int &value) {
+  getParameter(name)->setValue(QString::number(value).toStdString()); 
+}
+
+template<> void ParameterMap::set(const std::string &name, const std::string &value) {
+  getParameter(name)->setValue(value);
 }
