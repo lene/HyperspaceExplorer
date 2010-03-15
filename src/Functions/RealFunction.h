@@ -15,7 +15,7 @@
 #include "Function.h"
 
 #ifdef NEW_FUNCTION_HIERARCHY
-#include "FunctionValueGrid.h"
+# include "FunctionValueGrid.h"
 #endif
 
 /// \em RealBase provides a base class for functions which take three parameters

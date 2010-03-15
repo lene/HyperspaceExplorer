@@ -17,7 +17,6 @@
 
 #include "ParameterMap.h"
 #include "Vector.h"
-#include "VectorFunction.h"
 
 #include "FunctionFactory.h"
 

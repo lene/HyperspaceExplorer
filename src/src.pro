@@ -28,7 +28,7 @@ INCLUDEPATH += ./Functions
 DEPENDPATH += ./Functions
 HEADERS += Functions/ComplexFunction.h \
            Functions/CustomFunction.h \
-	   Functions/VectorFunction.h \
+	   Functions/ParametricFunction.h \
 	   Functions/FunctionValueGrid.h \
 	   Functions/Function.h \
            Functions/Object.h \

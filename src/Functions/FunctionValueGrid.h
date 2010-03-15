@@ -21,7 +21,7 @@
 #ifndef FUNCTIONVALUEGRID_H
 #define FUNCTIONVALUEGRID_H
 
-#include "VectorFunction.h"
+#include "ParametricFunction.h"
 
 #include "NestedVector.h"
 #include "Vector.h"
@@ -30,7 +30,7 @@ template <unsigned definition_space_dimension, unsigned value_space_dimension>
   class FunctionValueGrid {
     public:
 
-      typedef VectorFunction<definition_space_dimension, value_space_dimension> function_type;
+      typedef ParametricFunction<definition_space_dimension, value_space_dimension> function_type;
       typedef VecMath::Vector<value_space_dimension> boundary_type;
       typedef VecMath::Vector<value_space_dimension, unsigned> grid_size_type;
       
@@ -45,11 +45,11 @@ template <unsigned definition_space_dimension, unsigned value_space_dimension>
       
     private:
 
+      function_type *_f;
       boundary_type _x_min;
       boundary_type _x_max;
       grid_size_type _grid_size;
       VecMath::NestedVector< VecMath::Vector<definition_space_dimension>, value_space_dimension > _function_values;
-      function_type *_f;
 };
 
 template <unsigned definition_space_dimension, unsigned value_space_dimension>
