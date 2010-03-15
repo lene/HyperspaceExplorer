@@ -1,5 +1,5 @@
-#ifndef Test_ParametricFunction_H_
-#define Test_ParametricFunction_H_
+#ifndef TEST_PARAMETRICFUNCTION_H_
+#define TEST_PARAMETRICFUNCTION_H_
 
 #include <QtTest/QtTest>
 
