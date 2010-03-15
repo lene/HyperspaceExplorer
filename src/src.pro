@@ -1,8 +1,8 @@
 TEMPLATE = lib
 
-CONFIG -= debug
-CONFIG += release qt warn_on uic staticlib
-#CONFIG += debug qt warn_on uic dll staticlib
+#CONFIG -= debug
+#CONFIG += release qt warn_on uic staticlib
+CONFIG += debug qt warn_on uic dll staticlib
 
 QT += opengl
 
@@ -28,7 +28,9 @@ INCLUDEPATH += ./Functions
 DEPENDPATH += ./Functions
 HEADERS += Functions/ComplexFunction.h \
            Functions/CustomFunction.h \
-           Functions/Function.h \
+	   Functions/VectorFunction.h \
+	   Functions/FunctionValueGrid.h \
+	   Functions/Function.h \
            Functions/Object.h \
            Functions/Surface.h \
            Functions/RealFunction.h \
@@ -184,8 +186,8 @@ DEFINES += PACKAGE_VERSION="$${VERSION}"
 DEFINES += USE_AUTO_PTR
 
 CONFIG(debug){
-#    DEFINES += DEBUG TESTFEATURES DEBUG_ROTOPES
-    DEFINES += DEBUG TESTFEATURES
+#    DEFINES += DEBUG TESTFEATURES NEW_FUNCTION_HIERARCHY
+    DEFINES += DEBUG TESTFEATURES 
 }
 
 ###
