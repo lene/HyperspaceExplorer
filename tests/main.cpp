@@ -8,6 +8,7 @@
 #include "Test_NestedVector.h"
 #include "Test_Rotation.h"
 #include "Test_Realm.h"
+#include "Test_ParametricFunction.h"
 
 #include <QtTest/QtTest>
 
@@ -35,6 +36,7 @@ int main(int argc, char **argv) {
     if (qExec(new Test_Function)) failedTestSuites++;
     if (qExec(new Test_RealFunction)) failedTestSuites++;
     if (qExec(new Test_Surface)) failedTestSuites++;
+    if (qExec(new Test_ParametricFunction)) failedTestSuites++;
         
     printSummary(failedTestSuites);
 

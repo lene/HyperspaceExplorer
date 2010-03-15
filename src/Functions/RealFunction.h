@@ -14,10 +14,6 @@
 
 #include "Function.h"
 
-#ifdef NEW_FUNCTION_HIERARCHY
-# include "FunctionValueGrid.h"
-#endif
-
 /// \em RealBase provides a base class for functions which take three parameters
 /** The \em RealBase interface provides abstract members for the evaluation of
  *  the function values on a three-dimensional grid.
@@ -117,9 +113,6 @@ class RealBase: public Function {
         unsigned _tsteps, ///< number of steps in t
                  _usteps, ///< number of steps in u
                  _vsteps; ///< number of steps in v
-#       ifdef NEW_FUNCTION_HIERARCHY
-        FunctionValueGrid<4, 3> _ftemp;
-#       endif 
 };
 
 /// A RealFunction is a mathematical function  \f$ f: R^3 \rightarrow R \f$ .

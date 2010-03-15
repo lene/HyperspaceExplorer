@@ -24,6 +24,8 @@
 #include "ParameterMap.h"
 #include "Vector.h"
 
+#include <tr1/memory>
+ 
 template <unsigned definition_space_dimension, unsigned parameter_space_dimension>
   class ParametricFunction {
 
@@ -37,23 +39,20 @@ template <unsigned definition_space_dimension, unsigned parameter_space_dimensio
         /** \return number of parameters for the function                     */
         unsigned getNumParameters() { return _parameters.size(); }
 
-        /// \return The collection of all parameters (and their values)
-        ParameterMap getParameters() { return _parameters; }
-        /// \return The value of the parameter which is named \p name
-        FunctionParameter *getParameter(const std::string &name) {
+        /// \return Pointer to the FunctionParameter which is named \p name
+        std::tr1::shared_ptr<FunctionParameter> getParameter(const std::string &name) {
           return _parameters.getParameter(name);
         }
-        FunctionParameterValueBase *getParameterValue(const std::string &name) {
+        
+        /// \return Pointer to the FunctionParameterValue which is named \p name
+        std::tr1::shared_ptr<FunctionParameterValueBase> getParameterValue(const std::string &name) {
           return _parameters.getValue(name);
         }
     
     protected:
       /// Add a parameter to the list of parameters
       template <typename T> void declareParameter(const std::string &parameter_name,
-                                                  const T &);
-      /// Add a parameter to the list of parameters
-      template <typename T> void declareParameter(const std::string &,
-                                                  const T &, const T &);
+                                                  const T &parameter_value);
 
     private:
       ParameterMap _parameters;

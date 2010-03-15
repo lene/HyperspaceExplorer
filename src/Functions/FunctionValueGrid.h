@@ -26,13 +26,17 @@
 #include "NestedVector.h"
 #include "Vector.h"
 
-template <unsigned definition_space_dimension, unsigned value_space_dimension>
+#include <tr1/memory>
+
+template <unsigned definition_space_dimension, unsigned parameter_space_dimension>
   class FunctionValueGrid {
     public:
 
-      typedef ParametricFunction<definition_space_dimension, value_space_dimension> function_type;
-      typedef VecMath::Vector<value_space_dimension> boundary_type;
-      typedef VecMath::Vector<value_space_dimension, unsigned> grid_size_type;
+      typedef ParametricFunction<definition_space_dimension, parameter_space_dimension> function_type;
+      typedef std::tr1::shared_ptr<function_type> function_ptr_type;
+      typedef VecMath::Vector<parameter_space_dimension> boundary_type;
+      typedef VecMath::Vector<parameter_space_dimension, unsigned> grid_size_type;
+      typedef VecMath::NestedVector< VecMath::Vector<definition_space_dimension>, parameter_space_dimension > value_storage_type;
       
       FunctionValueGrid();
       FunctionValueGrid(const FunctionValueGrid::function_type &f);
@@ -45,24 +49,24 @@ template <unsigned definition_space_dimension, unsigned value_space_dimension>
       
     private:
 
-      function_type *_f;
+      function_ptr_type _f;
       boundary_type _x_min;
       boundary_type _x_max;
       grid_size_type _grid_size;
-      VecMath::NestedVector< VecMath::Vector<definition_space_dimension>, value_space_dimension > _function_values;
+      value_storage_type _function_values;
 };
 
-template <unsigned definition_space_dimension, unsigned value_space_dimension>
-  FunctionValueGrid<definition_space_dimension, value_space_dimension>::FunctionValueGrid():
+template <unsigned definition_space_dimension, unsigned parameter_space_dimension>
+  FunctionValueGrid<definition_space_dimension, parameter_space_dimension>::FunctionValueGrid():
     _f(), _x_min(), _x_max(), _grid_size(), _function_values() { }
 
-template <unsigned definition_space_dimension, unsigned value_space_dimension>
-  FunctionValueGrid<definition_space_dimension, value_space_dimension>::FunctionValueGrid(
+template <unsigned definition_space_dimension, unsigned parameter_space_dimension>
+  FunctionValueGrid<definition_space_dimension, parameter_space_dimension>::FunctionValueGrid(
         const FunctionValueGrid::function_type &f):
     _f(&f), _x_min(), _x_max(), _grid_size(), _function_values() { }
 
-template <unsigned definition_space_dimension, unsigned value_space_dimension>
-  FunctionValueGrid<definition_space_dimension, value_space_dimension>::FunctionValueGrid(
+template <unsigned definition_space_dimension, unsigned parameter_space_dimension>
+  FunctionValueGrid<definition_space_dimension, parameter_space_dimension>::FunctionValueGrid(
         const FunctionValueGrid::function_type &f,
         const FunctionValueGrid::boundary_type &x_min,
         const FunctionValueGrid::boundary_type &x_max,
