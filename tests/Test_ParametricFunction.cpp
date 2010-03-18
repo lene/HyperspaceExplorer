@@ -71,12 +71,16 @@ void Test_ParametricFunction::definedParametersHaveCorrectValues() {
   QVERIFY(std::string(*(parameters.find("string parameter")->second->value())) == Test_ParametricFunction::STRING_PARAMETER_VALUE);
   parameter = _function->getParameter("string parameter");
   QVERIFY(std::string(*(parameter->value())) == Test_ParametricFunction::STRING_PARAMETER_VALUE);
-    
+  
 }
 
 void Test_ParametricFunction::getParameterValueWorks() {
+  std::cerr << _function->getParameters().toString() << endl;
+  FunctionParameterValueBase *b = _function->getParameters().getParameter("double parameter")->value();
+  FunctionParameterValueBase *b2 = _function->getParameterValue("double parameter");
+  std::cerr << b << " " << b2 << std::endl;
+  double d = b->toDouble();
 
-  QVERIFY(_function->getParameterValue("double parameter")->toDouble() == Test_ParametricFunction::DOUBLE_PARAMETER_VALUE);
-  
+  QVERIFY(d == Test_ParametricFunction::DOUBLE_PARAMETER_VALUE);
 }
 

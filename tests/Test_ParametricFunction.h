@@ -15,7 +15,7 @@ class Test_ParametricFunction: public QObject {
   public:
     ParametricFunctionTestImplementation();
     
-    virtual return_type f(const argument_type &x) { return VecMath::Vector<4>(0.,0.,0.,1.); }
+    virtual return_type f(const argument_type &) { return VecMath::Vector<4>(0.,0.,0.,1.); }
   };
   
 public:
