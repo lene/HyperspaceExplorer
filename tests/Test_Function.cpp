@@ -125,10 +125,6 @@ void Test_Function::parameters() {
   parameter = _function->getParameter("string parameter");
   QVERIFY(std::string(*(parameter->value())) == "a string");
   
-  QVERIFY(double(*(_function->getParameterValue("double parameter"))) == 1.0);
-  QVERIFY(unsigned(*(_function->getParameterValue("unsigned parameter"))) == 1);
-  QVERIFY(int(*(_function->getParameterValue("int parameter"))) == -1);
-  QVERIFY(std::string(*(_function->getParameterValue("string parameter"))) == "a string");
 }
 
 void Test_Function::parameter_get() {
