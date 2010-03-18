@@ -33,24 +33,26 @@ template <unsigned definition_space_dimension, unsigned parameter_space_dimensio
       
       typedef VecMath::Vector<parameter_space_dimension> argument_type;
       typedef VecMath::Vector<definition_space_dimension> return_type;
+
+      virtual ~ParametricFunction() { }
       
       virtual return_type f(const argument_type &x) = 0;
 
-        /** \return number of parameters for the function                     */
-        unsigned getNumParameters() { return _parameters.size(); }
+      /** \return number of parameters for the function                     */
+      unsigned getNumParameters() { return _parameters.size(); }
 
-        /// \return The collection of all parameters (and their values)
-        ParameterMap getParameters() { return _parameters; }
+      /// \return The collection of all parameters (and their values)
+      ParameterMap getParameters() { return _parameters; }
 
-        /// \return Pointer to the FunctionParameter which is named \p name
-        std::tr1::shared_ptr<FunctionParameter> getParameter(const std::string &name) {
-          return std::tr1::shared_ptr<FunctionParameter>(_parameters.getParameter(name));
-        }
+      /// \return Pointer to the FunctionParameter which is named \p name
+      std::tr1::shared_ptr<FunctionParameter> getParameter(const std::string &name) {
+        return std::tr1::shared_ptr<FunctionParameter>(_parameters.getParameter(name));
+      }
         
-        /// \return Pointer to the FunctionParameterValue which is named \p name
-        std::tr1::shared_ptr<FunctionParameterValueBase> getParameterValue(const std::string &name) {
-          return std::tr1::shared_ptr<FunctionParameterValueBase>(_parameters.getValue(name));
-        }
+      /// \return Pointer to the FunctionParameterValue which is named \p name
+      std::tr1::shared_ptr<FunctionParameterValueBase> getParameterValue(const std::string &name) {
+        return std::tr1::shared_ptr<FunctionParameterValueBase>(_parameters.getValue(name));
+      }
     
     protected:
       /// Add a parameter to the list of parameters

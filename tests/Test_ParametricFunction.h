@@ -12,15 +12,16 @@
 class Test_ParametricFunction: public QObject {
 
   Q_OBJECT
-
-  class ParametricFunctionTestImplementation: public ParametricFunction<4,3> {
-  public:
-    ParametricFunctionTestImplementation();
-    
-    virtual return_type f(const argument_type &) { return VecMath::Vector<4>(0.,0.,0.,1.); }
-  };
   
 public:
+  
+  class ParametricFunctionTestImplementation: public ParametricFunction<4,3> {
+    public:
+      ParametricFunctionTestImplementation();
+      
+      virtual return_type f(const argument_type &) { return VecMath::Vector<4>(0.,0.,0.,1.); }
+  };
+  
   ~Test_ParametricFunction();
     
 private slots:

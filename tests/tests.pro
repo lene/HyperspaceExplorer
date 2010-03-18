@@ -32,6 +32,7 @@ HEADERS += Test_Rotope.h \
            Test_RealFunction.h \
            Test_Surface.h \
            Test_ParametricFunction.h \
+           Test_FunctionValueGrid.h \
            Test_Function.h
 SOURCES += main.cpp \
            Test_Rotope.cpp \
@@ -43,6 +44,7 @@ SOURCES += main.cpp \
            Test_RealFunction.cpp \
            Test_Surface.cpp \
            Test_ParametricFunction.cpp \
+           Test_FunctionValueGrid.cpp \
            Test_Function.cpp
 
 PRE_TARGETDEPS *= ../lib/libHyperspaceExplorer.a
