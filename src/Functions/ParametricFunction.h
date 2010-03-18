@@ -39,23 +39,67 @@ template <unsigned definition_space_dimension, unsigned parameter_space_dimensio
         /** \return number of parameters for the function                     */
         unsigned getNumParameters() { return _parameters.size(); }
 
+        /// \return The collection of all parameters (and their values)
+        ParameterMap getParameters() { return _parameters; }
+
         /// \return Pointer to the FunctionParameter which is named \p name
         std::tr1::shared_ptr<FunctionParameter> getParameter(const std::string &name) {
-          return _parameters.getParameter(name);
+          return std::tr1::shared_ptr<FunctionParameter>(_parameters.getParameter(name));
         }
         
         /// \return Pointer to the FunctionParameterValue which is named \p name
         std::tr1::shared_ptr<FunctionParameterValueBase> getParameterValue(const std::string &name) {
-          return _parameters.getValue(name);
+          return std::tr1::shared_ptr<FunctionParameterValueBase>(_parameters.getValue(name));
         }
     
     protected:
       /// Add a parameter to the list of parameters
       template <typename T> void declareParameter(const std::string &parameter_name,
+                                                  const T &parameter_default_value);
+      /// Add a parameter to the list of parameters
+      template <typename T> void declareParameter(const std::string &parameter_name,
+                                                  const T &parameter_default_value, 
                                                   const T &parameter_value);
 
     private:
+      
+      /// Declare a new parameter for the Function
+      void insertParameter(const std::string &name, FunctionParameter *defaultValue) {
+        _parameters.insert(std::make_pair(name, defaultValue));
+      }
+
       ParameterMap _parameters;
 };
+
+/// Add a parameter with a name and a default value to the parameter list
+template <unsigned definition_space_dimension, unsigned parameter_space_dimension> 
+template<typename T>
+inline
+void ParametricFunction<definition_space_dimension, parameter_space_dimension>::declareParameter(
+    const std::string &parameter_name,
+    const T &parameter_default_value) {
+  if (_parameters.find(parameter_name) != _parameters.end()) return;
+      
+      insertParameter(
+                parameter_name,
+                      ParameterFactory::Instance().createParameterWithDefault(parameter_name, parameter_default_value));
+    }
+
+/// Add a parameter with a name and a default value to the parameter list
+template <unsigned definition_space_dimension, unsigned parameter_space_dimension> 
+  template<typename T>
+inline
+void ParametricFunction<definition_space_dimension, parameter_space_dimension>::declareParameter(
+    const std::string& parameter_name, 
+    const T& parameter_default_value, 
+    const T& parameter_value) {
+  if (_parameters.find(parameter_name) != _parameters.end()) return;
+                
+  insertParameter(
+          parameter_name,
+          ParameterFactory::Instance().createParameterWithDefault(parameter_name, parameter_default_value));
+          
+  _parameters[parameter_name]->setValue(new FunctionParameterValue<T>(parameter_value));
+}
 
 #endif // VECTORFUNCTION_H
