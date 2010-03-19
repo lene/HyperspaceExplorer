@@ -36,7 +36,14 @@ std::string ParameterMap::toString() const {
       continue;
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {
-      o << "(string)" << std::string(*(i->second)) << std::endl;
+      std::string value = std::string(*(i->second));
+      o << "(string)" << value;
+      {
+        o << " (";
+        for(unsigned i = 0; i < value.length();++i) o << int(value[i]) << " ";
+        o << ")";
+      }
+      o << std::endl;
       continue;
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {

@@ -49,7 +49,7 @@ void Test_ParametricFunction::definedParametersArePresent() {
   QVERIFY2(_function->getNumParameters() == TEST_FUNCTION_NUM_PARAMETERS,
            QString::number(_function->getNumParameters()).toAscii());
 
-  ParameterMap parameters = _function->getParameters();
+  ParameterMap parameters = _function->getParameterMap();
 
   QVERIFY(parameters.find("double parameter") != parameters.end());
   QVERIFY(parameters.find("unsigned parameter") != parameters.end());
@@ -60,7 +60,7 @@ void Test_ParametricFunction::definedParametersArePresent() {
 
 void Test_ParametricFunction::definedParametersHaveCorrectValues() {
 
-  ParameterMap parameters = _function->getParameters();
+  ParameterMap parameters = _function->getParameterMap();
 
   QVERIFY(double(*(parameters.find("double parameter")->second->value())) == Test_ParametricFunction::DOUBLE_PARAMETER_VALUE);
 # ifdef USE_SHARED_PTR
@@ -109,42 +109,43 @@ void Test_ParametricFunction::getParameterValueWorks() {
   QVERIFY(_function->getParameterValue("double parameter")->toDouble() == Test_ParametricFunction::DOUBLE_PARAMETER_VALUE);
   QVERIFY(_function->getParameterValue("unsigned parameter")->toUnsigned() == Test_ParametricFunction::UNSIGNED_PARAMETER_VALUE);
   QVERIFY(_function->getParameterValue("int parameter")->toInt() == Test_ParametricFunction::INT_PARAMETER_VALUE);
+  cerr << _function->getParameterMap().toString();
   shared_ptr< FunctionParameterValueBase > val(_function->getParameterValue("string parameter"));
   std::string string_parameter = val->toString();
-  std::cerr << "\"" << string_parameter << "\"  = ";
+  std::cerr << "In map:  \"" << string_parameter << "\"  = ";
   for(unsigned i = 0; i < string_parameter.length();++i) std::cerr << int(string_parameter[i]) << " ";
   std::cerr << std::endl;
-  std::cerr << "\"" << Test_ParametricFunction::STRING_PARAMETER_VALUE << "\"  = ";
+  std::cerr << "Default: \"" << Test_ParametricFunction::STRING_PARAMETER_VALUE << "\"  = ";
   for(unsigned i = 0; i < Test_ParametricFunction::STRING_PARAMETER_VALUE.length();++i) std::cerr << int(Test_ParametricFunction::STRING_PARAMETER_VALUE[i]) << " ";
   std::cerr << std::endl;
 
   std::cerr << string_parameter.compare(Test_ParametricFunction::STRING_PARAMETER_VALUE)  << " " << string_parameter.length() << " " << Test_ParametricFunction::STRING_PARAMETER_VALUE.length() << std::endl;
 
   QVERIFY2(string_parameter == Test_ParametricFunction::STRING_PARAMETER_VALUE,
-           (string_parameter.append(" != ").append(Test_ParametricFunction::STRING_PARAMETER_VALUE)).c_str());
+           (string_parameter+" != "+Test_ParametricFunction::STRING_PARAMETER_VALUE).c_str());
 
 }
 
 void Test_ParametricFunction::settingParameters() {
 
-  _function->getParameters().set("double parameter", 4.0);
-  QVERIFY(double(*(_function->getParameters().getValue("double parameter"))) == 4.0);
+  _function->getParameterMap().set("double parameter", 4.0);
+  QVERIFY(double(*(_function->getParameterMap().getValue("double parameter"))) == 4.0);
 
-  _function->getParameters().set("unsigned parameter", 4);
-  QVERIFY(unsigned(*(_function->getParameters().getValue("unsigned parameter"))) == 4);
+  _function->getParameterMap().set("unsigned parameter", 4);
+  QVERIFY(unsigned(*(_function->getParameterMap().getValue("unsigned parameter"))) == 4);
 
-  _function->getParameters().set("int parameter", -4);
-  QVERIFY(int(*(_function->getParameters().getValue("int parameter"))) == -4);
+  _function->getParameterMap().set("int parameter", -4);
+  QVERIFY(int(*(_function->getParameterMap().getValue("int parameter"))) == -4);
 
-  _function->getParameters().set("rotation parameter", VecMath::Rotation<5>(1., 2., 3., 4., 5., 6., 7., 8., 9., 10.));
-  VecMath::Rotation<5> rot = _function->getParameters().getValue("rotation parameter")->operator VecMath::Rotation<5>();
+  _function->getParameterMap().set("rotation parameter", VecMath::Rotation<5>(1., 2., 3., 4., 5., 6., 7., 8., 9., 10.));
+  VecMath::Rotation<5> rot = _function->getParameterMap().getValue("rotation parameter")->operator VecMath::Rotation<5>();
   for (unsigned i = 0; i < VecMath::NumAxes<5>::num; ++i) {
     QVERIFY(rot[i] == i+1);
   }
 
   QSKIP("segfaults when trying to set a string parameter", SkipSingle);
-  _function->getParameters().set("string parameter", std::string("yet another string"));
-  QVERIFY(std::string(*(_function->getParameters().getValue("string parameter"))) == "yet another string");
+  _function->getParameterMap().set("string parameter", std::string("yet another string"));
+  QVERIFY(std::string(*(_function->getParameterMap().getValue("string parameter"))) == "yet another string");
 
 }
 
@@ -163,7 +164,7 @@ void Test_ParametricFunction::accessedNonexistentParameter() {
 
 void Test_ParametricFunction::setParameters() {
 
-  ParameterMap newParameters = _function->getParameters();
+  ParameterMap newParameters = _function->getParameterMap();
 
   std::string parameterName = "double parameter";
   ParameterMap::iterator it = newParameters.find(parameterName);

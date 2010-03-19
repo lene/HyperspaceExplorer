@@ -46,7 +46,7 @@ template <unsigned definition_space_dimension, unsigned parameter_space_dimensio
       unsigned getNumParameters() { return _parameters.size(); }
 
       /// \return The collection of all parameters (and their values)
-      ParameterMap getParameters() { return _parameters; }
+      ParameterMap getParameterMap() { return _parameters; }
 
       /// \return Pointer to the FunctionParameter which is named \p name
 #ifdef USE_SHARED_PTR
@@ -94,7 +94,7 @@ void ParametricFunction<definition_space_dimension, parameter_space_dimension>::
   if (_parameters.find(parameter_name) != _parameters.end()) return;
 
   _parameters.insertByDefault(parameter_name, parameter_default_value);
-  std::cerr << _parameters.toString() << std::endl;
+//  std::cerr << _parameters.toString() << std::endl;
 }
 
 /// Add a parameter with a name and a default value to the parameter list
