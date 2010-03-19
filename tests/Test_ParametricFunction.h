@@ -12,18 +12,18 @@
 class Test_ParametricFunction: public QObject {
 
   Q_OBJECT
-  
+
 public:
-  
+
   class ParametricFunctionTestImplementation: public ParametricFunction<4,3> {
     public:
       ParametricFunctionTestImplementation();
-      
+
       virtual return_type f(const argument_type &) { return VecMath::Vector<4>(0.,0.,0.,1.); }
   };
-  
+
   ~Test_ParametricFunction();
-    
+
 private slots:
 
   void initTestCase();
@@ -33,21 +33,23 @@ private slots:
   void definedParametersHaveCorrectValues();
   void getParameterValueWorks();
   void settingParameters();
-  void parameterWithoutCast();
   void accessedNonexistentParameter();
   void setParameters();
   void functionValue();
-  
+
 private:
+
+  void initializeFunction();
+
   std::tr1::shared_ptr< ParametricFunction<4, 3> > _function;
-  
+
   const static unsigned TEST_FUNCTION_NUM_PARAMETERS = 5;
   const static double DOUBLE_PARAMETER_VALUE;
   const static unsigned UNSIGNED_PARAMETER_VALUE;
   const static int INT_PARAMETER_VALUE;
   const static std::string STRING_PARAMETER_VALUE;
   const static VecMath::Rotation<5> ROTATION_PARAMETER_VALUE;
-  
+
 };
 
 

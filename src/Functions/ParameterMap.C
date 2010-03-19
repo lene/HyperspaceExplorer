@@ -10,14 +10,16 @@ FunctionParameter *ParameterMap::getParameter(const std::string &name) {
 
 /** \throw NonexistentParameterAccessed if \p name is not a key. */
 FunctionParameterValueBase* ParameterMap::getValue(const std::string& name) {
+//  std::cerr << "getValue(" << name << ")" << std::endl;
   return getParameter(name)->value();
 }
 
-std::string ParameterMap::toString() const {    
+std::string ParameterMap::toString() const {
   std::ostringstream o;
   o << "[\n";
   for (std::map<std::string, FunctionParameter *>::const_iterator i = begin();
        i != end(); ++i) {
+//    std::cerr << "[" << i->first << "]: " << typeid(i->second).name() << " " << i->second << std::endl;
     o << "    " << i->first << ": \t"
       << i->second->getName() << " = ";
     // try casting to every known type, only print if cast succeeds
@@ -38,27 +40,27 @@ std::string ParameterMap::toString() const {
       continue;
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {
-      o << "(Rotation<5>)" << i->second->value()->operator VecMath::Rotation<5>();
+      o << "(Rotation<5>)" << i->second->value()->operator VecMath::Rotation<5>() << std::endl;
       continue;
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {
-      o << "(Rotation<6>)" << i->second->value()->operator VecMath::Rotation<6>();
+      o << "(Rotation<6>)" << i->second->value()->operator VecMath::Rotation<6>() << std::endl;
       continue;
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {
-      o << "(Rotation<7>)" << i->second->value()->operator VecMath::Rotation<7>();
+      o << "(Rotation<7>)" << i->second->value()->operator VecMath::Rotation<7>() << std::endl;
       continue;
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {
-      o << "(Rotation<8>)" << i->second->value()->operator VecMath::Rotation<8>();
+      o << "(Rotation<8>)" << i->second->value()->operator VecMath::Rotation<8>() << std::endl;
       continue;
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {
-      o << "(Rotation<9>)" << i->second->value()->operator VecMath::Rotation<9>();
+      o << "(Rotation<9>)" << i->second->value()->operator VecMath::Rotation<9>() << std::endl;
       continue;
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {
-      o << "(Rotation<10>)" << i->second->value()->operator VecMath::Rotation<10>();
+      o << "(Rotation<10>)" << i->second->value()->operator VecMath::Rotation<10>() << std::endl;
       continue;
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
   }
@@ -75,15 +77,15 @@ ParameterMap::iterator ParameterMap::findOrThrow(const std::string& name) {
 }
 
 template<> void ParameterMap::set(const std::string &name, const double &value) {
-  getParameter(name)->setValue(QString::number(value).toStdString()); 
+  getParameter(name)->setValue(QString::number(value).toStdString());
 }
 
 template<> void ParameterMap::set(const std::string &name, const unsigned &value) {
-  getParameter(name)->setValue(QString::number(value).toStdString()); 
+  getParameter(name)->setValue(QString::number(value).toStdString());
 }
 
 template<> void ParameterMap::set(const std::string &name, const int &value) {
-  getParameter(name)->setValue(QString::number(value).toStdString()); 
+  getParameter(name)->setValue(QString::number(value).toStdString());
 }
 
 template<> void ParameterMap::set(const std::string &name, const std::string &value) {

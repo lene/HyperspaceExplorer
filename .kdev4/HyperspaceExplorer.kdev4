@@ -30,7 +30,7 @@ Arguments=
 Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x00)
 Dependency Action=Nothing
 EnvironmentGroup=default
-Executable=file:///home/lene/workspace/HyperspaceExplorer/tests/tests
+Executable=file:///home/helge/workspace/HyperspaceExplorer/tests/HyperspaceExplorer-tests
 Working Directory=
 isExecutable=true
 

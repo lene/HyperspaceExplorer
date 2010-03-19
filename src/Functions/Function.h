@@ -80,7 +80,7 @@
 class Function {
 
     public:
-              
+
         /// one-dimensional array of floats, implemented as a std::vector
         typedef std::vector<float> floatvec1D;
         /// two-dimensional array of floats, implemented as a nested std::vector
@@ -152,18 +152,15 @@ class Function {
         FunctionParameterValueBase *getParameterValue(const std::string &name) {
           return _parameters.getValue(name);
         }
-    
+
         /// Set a parameter with a specified key from a supplied ParameterMap
         template <typename T> void setParameter(const ParameterMap &parms,
                                                 T &parm,
                                                 const std::string &key) {
-            std::cerr<< "Function::SetParameter(";
             for (ParameterMap::const_iterator i = _parameters.begin();
                  i != parms.end(); ++i) {
-                std::cerr << i->second->getName() << ", " << T(*(i->second));
                 if (i->second->getName() == key) parm = T(*(i->second));
             }
-            std::cerr << ", " << parm << ", " << key << ") \n";
         }
 
         /// number of argument given to the defining function
@@ -214,7 +211,7 @@ class Function {
 
         /// list of the parameters to the function
         ParameterMap _parameters;
-        
+
 };
 
 /// Add a parameter with a name and a default value to the parameter list
@@ -222,7 +219,7 @@ template <typename T> inline
     void Function::declareParameter(const std::string &name,
                                     const T &defaultValue) {
       if (_parameters.find(name) != _parameters.end()) return;
-      
+
       insertParameter(
           name,
           ParameterFactory::Instance().createParameterWithDefault(name, defaultValue));
@@ -233,7 +230,7 @@ template <typename T> inline
     void Function::declareParameter(const std::string &name,
                                     const T &defaultValue, const T &value) {
       if (_parameters.find(name) != _parameters.end()) return;
-                
+
       insertParameter(
           name,
           ParameterFactory::Instance().createParameterWithDefault(name, defaultValue));

@@ -1,6 +1,6 @@
 /*
     <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) <year>  <name of author>
+    Copyright (C) 2010  Lene Preuss <lene.preuss@gmail.com>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,18 +24,22 @@
 #include "ParameterMap.h"
 #include "Vector.h"
 
+#undef USE_SHARED_PTR
+
+#ifdef USE_SHARED_PTR
 #include <tr1/memory>
- 
+#endif
+
 template <unsigned definition_space_dimension, unsigned parameter_space_dimension>
   class ParametricFunction {
 
     public:
-      
+
       typedef VecMath::Vector<parameter_space_dimension> argument_type;
       typedef VecMath::Vector<definition_space_dimension> return_type;
 
       virtual ~ParametricFunction() { }
-      
+
       virtual return_type f(const argument_type &x) = 0;
 
       /** \return number of parameters for the function                     */
@@ -45,62 +49,63 @@ template <unsigned definition_space_dimension, unsigned parameter_space_dimensio
       ParameterMap getParameters() { return _parameters; }
 
       /// \return Pointer to the FunctionParameter which is named \p name
+#ifdef USE_SHARED_PTR
       std::tr1::shared_ptr<FunctionParameter> getParameter(const std::string &name) {
         return std::tr1::shared_ptr<FunctionParameter>(_parameters.getParameter(name));
       }
-        
+#     else
+      FunctionParameter* getParameter(const std::string &name) {
+        return _parameters.getParameter(name);
+      }
+#     endif
+
       /// \return Pointer to the FunctionParameterValue which is named \p name
+#ifdef USE_SHARED_PTR
       std::tr1::shared_ptr<FunctionParameterValueBase> getParameterValue(const std::string &name) {
         return std::tr1::shared_ptr<FunctionParameterValueBase>(_parameters.getValue(name));
       }
-    
+#     else
+      FunctionParameterValueBase* getParameterValue(const std::string &name) {
+        return _parameters.getValue(name);
+      }
+#     endif
+
     protected:
       /// Add a parameter to the list of parameters
       template <typename T> void declareParameter(const std::string &parameter_name,
                                                   const T &parameter_default_value);
       /// Add a parameter to the list of parameters
       template <typename T> void declareParameter(const std::string &parameter_name,
-                                                  const T &parameter_default_value, 
+                                                  const T &parameter_default_value,
                                                   const T &parameter_value);
 
     private:
-      
-      /// Declare a new parameter for the Function
-      void insertParameter(const std::string &name, FunctionParameter *defaultValue) {
-        _parameters.insert(std::make_pair(name, defaultValue));
-      }
 
       ParameterMap _parameters;
 };
 
 /// Add a parameter with a name and a default value to the parameter list
-template <unsigned definition_space_dimension, unsigned parameter_space_dimension> 
+template <unsigned definition_space_dimension, unsigned parameter_space_dimension>
 template<typename T>
 inline
 void ParametricFunction<definition_space_dimension, parameter_space_dimension>::declareParameter(
     const std::string &parameter_name,
     const T &parameter_default_value) {
   if (_parameters.find(parameter_name) != _parameters.end()) return;
-      
-      insertParameter(
-                parameter_name,
-                      ParameterFactory::Instance().createParameterWithDefault(parameter_name, parameter_default_value));
-    }
+
+  _parameters.insertByDefault(parameter_name, parameter_default_value);
+  std::cerr << _parameters.toString() << std::endl;
+}
 
 /// Add a parameter with a name and a default value to the parameter list
-template <unsigned definition_space_dimension, unsigned parameter_space_dimension> 
+template <unsigned definition_space_dimension, unsigned parameter_space_dimension>
   template<typename T>
 inline
 void ParametricFunction<definition_space_dimension, parameter_space_dimension>::declareParameter(
-    const std::string& parameter_name, 
-    const T& parameter_default_value, 
+    const std::string& parameter_name,
+    const T& parameter_default_value,
     const T& parameter_value) {
-  if (_parameters.find(parameter_name) != _parameters.end()) return;
-                
-  insertParameter(
-          parameter_name,
-          ParameterFactory::Instance().createParameterWithDefault(parameter_name, parameter_default_value));
-          
+  declareParameter(parameter_name, parameter_default_value);
   _parameters[parameter_name]->setValue(new FunctionParameterValue<T>(parameter_value));
 }
 
