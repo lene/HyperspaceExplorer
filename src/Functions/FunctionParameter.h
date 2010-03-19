@@ -354,6 +354,11 @@ class FunctionParameter {
         /// get the value if it is of type std::string
         operator std::string();
 
+        double toDouble() { return operator double(); }
+        unsigned toUnsigned() { return operator unsigned(); }
+        int toInt() { return operator int(); }
+        std::string toString() { return operator std::string(); }
+
         /// get the name of the function parameter
         const std::string &getName() const;
         /// set the name of the function parameter

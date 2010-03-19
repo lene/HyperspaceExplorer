@@ -5,12 +5,25 @@
 /** \throw NonexistentParameterAccessed if \p name is not a key. */
 FunctionParameter *ParameterMap::getParameter(const std::string &name) {
   ParameterMap::iterator it = findOrThrow(name);
+  std::cerr << "getParameter(" << name << ")";
+  if (name == "string parameter") {
+    std::string v = it->second->toString();
+    std::cerr << v;
+    for(unsigned i = 0; i < v.length();++i) std::cerr << ", " << int(v[i]);
+  }
+  std::cerr  << std::endl;
   return it->second;
 }
 
 /** \throw NonexistentParameterAccessed if \p name is not a key. */
 FunctionParameterValueBase* ParameterMap::getValue(const std::string& name) {
-//  std::cerr << "getValue(" << name << ")" << std::endl;
+  std::cerr << "getValue(" << name << ")";
+  if (name == "string parameter") {
+    std::string v = getParameter(name)->value()->toString();
+    std::cerr << v;
+    for(unsigned i = 0; i < v.length();++i) std::cerr << ". " << int(v[i]);
+  }
+  std::cerr  << std::endl;
   return getParameter(name)->value();
 }
 
