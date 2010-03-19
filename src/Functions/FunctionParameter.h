@@ -17,6 +17,7 @@
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
+#include <tr1/memory>
 
 #include "SingletonHolder.h"
 #include "Rotation.h"
@@ -28,7 +29,7 @@
 /** A lot of fumbling has taken place to make this hierarchy work despite the limitations of the
  *  C++ language, and I'm still not sure everything is clean and works as it should.
  *
- *  The objections of the classes based on FunctionParameterValueBase and declared in this file 
+ *  The objections of the classes based on FunctionParameterValueBase and declared in this file
  *  are as follows:
  *   - present a unified interface to get and set function parameters of any type
  *   - these parameters must know their own type
@@ -46,7 +47,7 @@
  *  implements the abstract FunctionParameterValueBase.
  *
  *  FunctionParameterValueBase defines the (virtual, of course) interface a FunctionParameterValue
- *  implements. Because virtual functions can not be defined as templates, I have to define 
+ *  implements. Because virtual functions can not be defined as templates, I have to define
  *  setValue() for every type that can be used as a function parameter, and I also have to declare
  *  all casting operators which will serve as accessor to the value.
  *
@@ -54,7 +55,7 @@
  *  function template. The cast operators are declared abstract in the base class, with a no-operation
  *  implementation in the derived class template and a specialization for every type that the template
  *  will be instantiated for. The cast operators must also be declared in the FunctionParameter class,
- *  which delegates them to the FunctionParameterValue object it holds. In that way, you can cast a 
+ *  which delegates them to the FunctionParameterValue object it holds. In that way, you can cast a
  *  FunctionParameter object to a desired type, and thus get access to its value.
  *
  *  Should I ever want to add another type of possible function parameter, I must declare a setValue()
@@ -67,12 +68,12 @@
  *   - either when you want to declare it for a Function (in the constructor of the concrete Function
  *      object). Then you want to give it a default value. createParameterWithDefault() is the function
  *      for that.
- *   - or you want to pass a FunctionParameter to a function to actually set the parameter. 
+ *   - or you want to pass a FunctionParameter to a function to actually set the parameter.
  *      createParameterWithValue() does this.
  *
  *  If this elaborate construction of a type system for function parameters strikes you as needlessly
  *  complicated, thank the architects of the C++ language for it. (Just kidding. It makes perfect
- *  sense to forbid templated functions as virtual members, and I'm sure there is a good reason to 
+ *  sense to forbid templated functions as virtual members, and I'm sure there is a good reason to
  *  forbid abstract classes as container contents. (I just don't see it now, but I did not think hard
  *  on it.) C++ is a very clever language.)
  *
@@ -97,7 +98,7 @@ class FunctionParameterValueBase {
      *  instantiated. PITA.
      *
      *  what's worse, i have to define no-ops as default implementation, because otherwise the
-     *  templated derived class would remain abstract. that totally breaks type-safety during 
+     *  templated derived class would remain abstract. that totally breaks type-safety during
      *  compilation.
      */
     /// set a double parm
@@ -183,12 +184,12 @@ class FunctionParameterValueBase {
     virtual operator VecMath::Rotation<8>() = 0;    ///< get a Rotation<8> parm
     virtual operator VecMath::Rotation<9>() = 0;    ///< get a Rotation<9> parm
     virtual operator VecMath::Rotation<10>() = 0;   ///< get a Rotation<10> parm
-        
+
     double toDouble() { return operator double(); }
     unsigned toUnsigned() { return operator unsigned(); }
     int toInt() { return operator int(); }
-    virtual std::string toString() = 0;             ///< string representation
-        
+    virtual std::string toString() { return operator std::string(); }             ///< string representation
+
   protected:
 
 };
@@ -248,7 +249,7 @@ template <typename T> class FunctionParameterValue:
         }
 
         /** Default implementation for cast to RotationBase. Concrete
-         *  implementation will be defined in FunctionParameterValue<Rotation<D> >.
+         *  implementation will be defined in FunctionParameterValue< Rotation<D> >.
          */
         virtual operator VecMath::RotationBase() {
             throw WrongParameterTypeException("FunctionParameterValue",
@@ -257,7 +258,7 @@ template <typename T> class FunctionParameterValue:
         }
 
         /** Default implementation for cast to Rotation<5>. Concrete
-         *  implementation will be defined in FunctionParameterValue<Rotation<5>>.
+         *  implementation will be defined in FunctionParameterValue< Rotation<5> >.
          */
         virtual operator VecMath::Rotation<5>() {
             throw WrongParameterTypeException("FunctionParameterValue",
@@ -266,7 +267,7 @@ template <typename T> class FunctionParameterValue:
         }
 
         /** Default implementation for cast to Rotation<6>. Concrete
-         *  implementation will be defined in FunctionParameterValue<Rotation<6>>.
+         *  implementation will be defined in FunctionParameterValue< Rotation<6> >.
          */
         virtual operator VecMath::Rotation<6>() {
             throw WrongParameterTypeException("FunctionParameterValue",
@@ -275,7 +276,7 @@ template <typename T> class FunctionParameterValue:
         }
 
         /** Default implementation for cast to Rotation<7>. Concrete
-         *  implementation will be defined in FunctionParameterValue<Rotation<7>>.
+         *  implementation will be defined in FunctionParameterValue< Rotation<7> >.
          */
         virtual operator VecMath::Rotation<7>() {
             throw WrongParameterTypeException("FunctionParameterValue",
@@ -283,7 +284,7 @@ template <typename T> class FunctionParameterValue:
             return VecMath::Rotation<7>();
         }
         /** Default implementation for cast to Rotation<8>. Concrete
-         *  implementation will be defined in FunctionParameterValue<Rotation<8>>.
+         *  implementation will be defined in FunctionParameterValue< Rotation<8> >.
          */
         virtual operator VecMath::Rotation<8>() {
             throw WrongParameterTypeException("FunctionParameterValue",
@@ -291,7 +292,7 @@ template <typename T> class FunctionParameterValue:
             return VecMath::Rotation<8>();
         }
         /** Default implementation for cast to Rotation<9>. Concrete
-         *  implementation will be defined in FunctionParameterValue<Rotation<9>>.
+         *  implementation will be defined in FunctionParameterValue< Rotation<9> >.
          */
         virtual operator VecMath::Rotation<9>() {
             throw WrongParameterTypeException("FunctionParameterValue",
@@ -299,7 +300,7 @@ template <typename T> class FunctionParameterValue:
             return VecMath::Rotation<9>();
         }
         /** Default implementation for cast to Rotation<10>. Concrete
-         *  implementation will be defined in FunctionParameterValue<Rotation<10>>.
+         *  implementation will be defined in FunctionParameterValue< Rotation<10> >.
          */
         virtual operator VecMath::Rotation<10>() {
             throw WrongParameterTypeException("FunctionParameterValue",
@@ -368,7 +369,7 @@ class FunctionParameter {
          *  \todo Can't I call createParameterWithValue() from inside
          *        setValue()?                                                 */
         template<typename T> void setValue(FunctionParameterValue<T> *_value) {
-            pImpl->value.reset ( _value );
+            m_value.reset( _value );
         }
 
         /// Set a value from a string, as contained in a QLineEdit
@@ -380,7 +381,7 @@ class FunctionParameter {
          *  \todo Can't I call createParameterWithDefault() from inside
          *        setDefaultValue()?                                          */
         template<typename T> void setDefaultValue(FunctionParameterValue<T> *_defaultValue ) {
-            pImpl->defaultValue.reset(_defaultValue);
+            m_defaultValue.reset(_defaultValue);
         }
 
         /// \return Pointer to FunctionParameterValue containing the parameter's value
@@ -389,24 +390,14 @@ class FunctionParameter {
         FunctionParameterValueBase *defaultValue() const;
 
     private:
-        /// Data members for class FunctionParameter
-        struct Impl {
-            /// Initialize the data members with empty values
-            Impl(const std::string &_name,
-                 const std::string &_description = ""):
-                 name(_name), description(_description), value(0),
-                 defaultValue(0) {}
-            ~Impl() { }
-            /// Name of the function parameter
-            std::string name;
-            /// Description which is shown in the parameter input dialog
-            std::string description;
-            /// Pointer to FunctionParameterValue containing the parameter's value
-            std::auto_ptr<FunctionParameterValueBase> value;
-            /// Default parameter value is no value was given
-            std::auto_ptr<FunctionParameterValueBase> defaultValue;
-        };
-        Impl *pImpl;            ///< Pointer to the data member
+        /// Name of the function parameter
+        std::string name;
+        /// Description which is shown in the parameter input dialog
+        std::string description;
+        /// Pointer to FunctionParameterValue containing the parameter's value
+        std::tr1::shared_ptr<FunctionParameterValueBase> m_value;
+        /// Default parameter value is no value was given
+        std::tr1::shared_ptr<FunctionParameterValueBase> m_defaultValue;
 };
 
 /// Class with factory methods to create a FunctionParameter

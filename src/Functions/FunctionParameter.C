@@ -60,21 +60,13 @@ template<> FunctionParameterValue<VecMath::Rotation<10> >::FunctionParameterValu
 
 
 /// Specialization for type double
-template<> FunctionParameterValue<double>::operator double() {
-    return (double)value;
-}
+template<> FunctionParameterValue<double>::operator double() { return value; }
 /// Specialization for type unsigned
-template<> FunctionParameterValue<unsigned>::operator unsigned() {
-    return (unsigned)value;
-}
+template<> FunctionParameterValue<unsigned>::operator unsigned() { return value; }
 /// Specialization for type int
-template<> FunctionParameterValue<int>::operator int() {
-    return (int)value;
-}
+template<> FunctionParameterValue<int>::operator int() { return value; }
 /// Specialization for type std::string
-template<> FunctionParameterValue<std::string>::operator std::string() {
-    return (std::string)value;
-}
+template<> FunctionParameterValue<std::string>::operator std::string() { return value; }
 
 /// Specialization for type VecMath::Rotation<5>
 template<> FunctionParameterValue<VecMath::Rotation<5> >::operator VecMath::Rotation<5>() {
@@ -211,38 +203,31 @@ template<>
 
 FunctionParameter::FunctionParameter(const std::string &_name,
                                      const std::string &_description):
-    pImpl(new Impl( _name, _description )) {}
+    name(_name), description(_description), m_value(), m_defaultValue() { }
 
-FunctionParameter::~FunctionParameter() { delete pImpl; }
+FunctionParameter::~FunctionParameter() { }
 
-FunctionParameter::operator double() { return double(*(pImpl->value)); }
-FunctionParameter::operator unsigned() { return (unsigned)(*(pImpl->value)); }
-FunctionParameter::operator int() { return (int)(*(pImpl->value)); }
-FunctionParameter::operator std::string() { return (std::string)(*(pImpl->value)); }
+FunctionParameter::operator double() { return double(*m_value); }
+FunctionParameter::operator unsigned() { return (unsigned)(*m_value); }
+FunctionParameter::operator int() { return (int)(*m_value); }
+FunctionParameter::operator std::string() { return (std::string)(*m_value); }
 
-const std::string &FunctionParameter::getName() const { return pImpl->name; }
-void FunctionParameter::setName ( const std::string &_name ) { pImpl->name = _name; }
-const std::string &FunctionParameter::getDescription() const { return pImpl->description; }
+const std::string &FunctionParameter::getName() const { return name; }
+void FunctionParameter::setName ( const std::string &_name ) { name = _name; }
+const std::string &FunctionParameter::getDescription() const { return description; }
 void FunctionParameter::setDescription (const std::string &_description) {
-    pImpl->description = _description;
+    description = _description;
 }
 
 FunctionParameterValueBase *FunctionParameter::value() const {
-    return pImpl->value.get();
+    return m_value.get();
 }
 
 FunctionParameterValueBase *FunctionParameter::defaultValue() const {
-    return pImpl->defaultValue.get();
+    return m_defaultValue.get();
 }
 
 void FunctionParameter::setValue(std::string _value) {
-    if (!pImpl->value.get()) {
-#       if 0
-            pImpl->value = std::auto_ptr<FunctionParameterValueBase>(
-            new FunctionParameterValueBase(*pImpl->defaultValue));
-#       endif
-    } else {
-        pImpl->value->setValue(_value.c_str());
-    }
+    if (value()) m_value->setValue(_value.c_str());
 }
 
