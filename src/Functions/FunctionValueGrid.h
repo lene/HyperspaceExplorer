@@ -48,6 +48,8 @@ template <unsigned definition_space_dimension, unsigned parameter_space_dimensio
       void setGridSize(const FunctionValueGrid::grid_size_type &grid_size);
       void setBoundaries(const FunctionValueGrid::boundary_type &x_min, const FunctionValueGrid::boundary_type &x_max);
       
+      const value_storage_type &getValues() const { return _function_values; }
+      
     private:
 
       void recalculate_grid();
@@ -109,7 +111,8 @@ struct LoopHelper {
     );
     
     void recalculateOneDimensionOfGrid(
-        VecMath::NestedVector< VecMath::Vector<definition_space_dimension>, dimension > &values
+        VecMath::NestedVector< VecMath::Vector<definition_space_dimension>, dimension > &values,
+        VecMath::Vector<parameter_space_dimension> &current_x
     );
     
   private:
@@ -132,7 +135,8 @@ struct LoopHelper< definition_space_dimension, parameter_space_dimension, 1 > {
     );
 
     void recalculateOneDimensionOfGrid(
-        VecMath::NestedVector< VecMath::Vector<definition_space_dimension>, 1 > &values
+        VecMath::NestedVector< VecMath::Vector<definition_space_dimension>, 1 > &values,
+        VecMath::Vector<parameter_space_dimension> &current_x
     );
 
   private:
@@ -147,7 +151,8 @@ template <unsigned definition_space_dimension, unsigned parameter_space_dimensio
   void FunctionValueGrid<definition_space_dimension, parameter_space_dimension>::recalculate_grid() {
     LoopHelper< definition_space_dimension, parameter_space_dimension, parameter_space_dimension > looper(
       _x_min, _x_max, _grid_size, _f);
-    looper.recalculateOneDimensionOfGrid(_function_values);
+    VecMath::Vector<parameter_space_dimension> x = _x_min;
+    looper.recalculateOneDimensionOfGrid(_function_values, x);
 }
 
 
@@ -171,7 +176,8 @@ template <unsigned definition_space_dimension, unsigned parameter_space_dimensio
 void 
 LoopHelper<definition_space_dimension, parameter_space_dimension, dimension>::
 recalculateOneDimensionOfGrid(
-      VecMath::NestedVector< VecMath::Vector<definition_space_dimension>, dimension > &values) {
+      VecMath::NestedVector< VecMath::Vector<definition_space_dimension>, dimension > &values,
+      VecMath::Vector<parameter_space_dimension> &current_x) {
   unsigned grid_size_in_current_dim = _grid_size[dimension-1];
   double x_min_in_current_dim = _x_min[dimension-1];
   double x_max_in_current_dim = _x_max[dimension-1];
@@ -182,7 +188,8 @@ recalculateOneDimensionOfGrid(
     double x = (x_max_in_current_dim-x_min_in_current_dim)*(double)i/(double)(grid_size_in_current_dim-1)+x_min_in_current_dim;
     LoopHelper< definition_space_dimension, parameter_space_dimension, dimension-1 > sub_looper(
       _x_min, _x_max, _grid_size, _f);
-    sub_looper.recalculateOneDimensionOfGrid(values[i]);
+    current_x[dimension-1] = x;
+    sub_looper.recalculateOneDimensionOfGrid(values[i], current_x);
   }
 }
 
@@ -190,7 +197,8 @@ template <unsigned definition_space_dimension, unsigned parameter_space_dimensio
 void 
 LoopHelper<definition_space_dimension, parameter_space_dimension, 1>::
 recalculateOneDimensionOfGrid(
-      VecMath::NestedVector< VecMath::Vector<definition_space_dimension>, 1> &values) {
+      VecMath::NestedVector< VecMath::Vector<definition_space_dimension>, 1> &values,
+      VecMath::Vector<parameter_space_dimension> &current_x) {
   unsigned grid_size_in_current_dim = _grid_size[0];
   double x_min_in_current_dim = _x_min[0];
   double x_max_in_current_dim = _x_max[0];
@@ -199,7 +207,12 @@ recalculateOneDimensionOfGrid(
 
   for (unsigned i = 0; i < grid_size_in_current_dim; ++i) {
     double x = (x_max_in_current_dim-x_min_in_current_dim)*(double)i/(double)(grid_size_in_current_dim-1)+x_min_in_current_dim;
-    values[i] = VecMath::Vector<definition_space_dimension>();
+    current_x[0] = x;
+    VecMath::Vector<definition_space_dimension> fx = _f->f(current_x);
+#   if 0
+    std::cerr << current_x << " -> " << fx << std::endl;
+#   endif    
+    values[i] = fx;
   }
 }
 

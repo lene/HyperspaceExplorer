@@ -19,7 +19,9 @@ public:
     public:
       ParametricFunctionTestImplementation();
 
-      virtual return_type f(const argument_type &) { return VecMath::Vector<4>(0.,0.,0.,1.); }
+      virtual return_type f(const argument_type &) { return VecMath::Vector<4>(0.,0.,0.,CONST_FUNCTION_W); }
+      
+      const static double CONST_FUNCTION_W = 1.;
   };
 
   ~Test_ParametricFunction();
