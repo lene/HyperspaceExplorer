@@ -6,11 +6,11 @@
 FunctionParameter *ParameterMap::getParameter(const std::string &name) {
   ParameterMap::iterator it = findOrThrow(name);
   std::cerr << "getParameter(" << name << ")";
-  if (name == "string parameter") {
+//  if (name == "string parameter") {
     std::string v = it->second->toString();
     std::cerr << v;
     for(unsigned i = 0; i < v.length();++i) std::cerr << ", " << int(v[i]);
-  }
+//  }
   std::cerr  << std::endl;
   return it->second;
 }

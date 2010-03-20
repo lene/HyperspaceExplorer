@@ -214,7 +214,7 @@ FunctionParameter::~FunctionParameter() { }
 FunctionParameter::operator double() { return double(*m_value); }
 FunctionParameter::operator unsigned() { return (unsigned)(*m_value); }
 FunctionParameter::operator int() { return (int)(*m_value); }
-FunctionParameter::operator std::string() { return (std::string)(*m_value); }
+FunctionParameter::operator std::string() { return m_value->toString(); }
 
 const std::string &FunctionParameter::getName() const { return name; }
 void FunctionParameter::setName ( const std::string &_name ) { name = _name; }

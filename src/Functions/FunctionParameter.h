@@ -188,7 +188,7 @@ class FunctionParameterValueBase {
     double toDouble() { return operator double(); }
     unsigned toUnsigned() { return operator unsigned(); }
     int toInt() { return operator int(); }
-    virtual std::string toString() { return operator std::string(); }             ///< string representation
+    virtual std::string toString() = 0;             ///< string representation
 
   protected:
 
@@ -228,7 +228,7 @@ template <typename T> class FunctionParameterValue:
         virtual operator unsigned() {
             throw WrongParameterTypeException("FunctionParameterValue",
                                               "operator unsigned ",
-                                              "did you explicitly cast the operand to unsigned? you should");
+                                              "did you explicitly cast the operand to unsigned? you should!");
             return 0;
         }
 
@@ -311,9 +311,10 @@ template <typename T> class FunctionParameterValue:
         /// Converts the parameter to string for printing
         virtual std::string toString() {
             std::ostringstream o;
-            o << value << std::ends;
+            o << value;
             return o.str();
         }
+        
     private:
         T value;                ///< The actual value of the parameter
 };
