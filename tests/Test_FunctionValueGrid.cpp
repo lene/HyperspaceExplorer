@@ -15,7 +15,6 @@ const Vector<3, unsigned> Test_FunctionValueGrid::DEFAULT_GRID(
   Test_FunctionValueGrid::DEFAULT_GRID_SIZE, Test_FunctionValueGrid::DEFAULT_GRID_SIZE, Test_FunctionValueGrid::DEFAULT_GRID_SIZE
 );
 
-
 class SummedArgsTestImplementation: public ParametricFunction<4,3> {
   public:
     SummedArgsTestImplementation(): min_w(1e8), max_w(-1e8) { }
