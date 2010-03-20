@@ -39,8 +39,8 @@ template <unsigned definition_space_dimension, unsigned parameter_space_dimensio
       typedef VecMath::NestedVector< VecMath::Vector<definition_space_dimension>, parameter_space_dimension > value_storage_type;
       
       FunctionValueGrid();
-      FunctionValueGrid(function_ptr_type f);
-      FunctionValueGrid(function_ptr_type f,
+      FunctionValueGrid(const function_ptr_type &f);
+      FunctionValueGrid(const function_ptr_type &f,
                         const FunctionValueGrid::boundary_type &x_min, const FunctionValueGrid::boundary_type &x_max,
                         const FunctionValueGrid::grid_size_type &grid_size);
       virtual ~FunctionValueGrid() { }
@@ -67,12 +67,12 @@ template <unsigned definition_space_dimension, unsigned parameter_space_dimensio
 
 template <unsigned definition_space_dimension, unsigned parameter_space_dimension>
   FunctionValueGrid<definition_space_dimension, parameter_space_dimension>::FunctionValueGrid(
-        FunctionValueGrid::function_ptr_type f):
+        const FunctionValueGrid::function_ptr_type &f):
     _f(f), _x_min(), _x_max(), _grid_size(), _function_values() { }
 
 template <unsigned definition_space_dimension, unsigned parameter_space_dimension>
   FunctionValueGrid<definition_space_dimension, parameter_space_dimension>::FunctionValueGrid(
-          FunctionValueGrid::function_ptr_type f,
+        const FunctionValueGrid::function_ptr_type &f,
         const FunctionValueGrid::boundary_type &x_min,
         const FunctionValueGrid::boundary_type &x_max,
         const FunctionValueGrid::grid_size_type &grid_size):

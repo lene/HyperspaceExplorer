@@ -37,8 +37,8 @@ int main(int argc, char **argv) {
     if (qExec(new Test_Function)) failedTestSuites++;
     if (qExec(new Test_RealFunction)) failedTestSuites++;
     if (qExec(new Test_Surface)) failedTestSuites++;
-    if (qExec(new Test_FunctionValueGrid)) failedTestSuites++;
     if (qExec(new Test_ParametricFunction)) failedTestSuites++;
+    if (qExec(new Test_FunctionValueGrid)) failedTestSuites++;
                 
     printSummary(failedTestSuites);
 
