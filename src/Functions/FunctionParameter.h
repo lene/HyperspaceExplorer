@@ -173,6 +173,11 @@ class FunctionParameterValueBase {
     /// set a C-string parameter
     virtual void setValue(const char *) = 0;
 
+    virtual double toDouble() = 0;
+    virtual unsigned toUnsigned() = 0;
+    virtual int toInt() = 0;
+    virtual std::string toString() = 0;             ///< string representation
+
     virtual operator VecMath::RotationBase() = 0;   ///< get a RotationBase parameter
     virtual operator VecMath::Rotation<5>() = 0;    ///< get a Rotation<5> parm
     virtual operator VecMath::Rotation<6>() = 0;    ///< get a Rotation<6> parm
@@ -180,17 +185,6 @@ class FunctionParameterValueBase {
     virtual operator VecMath::Rotation<8>() = 0;    ///< get a Rotation<8> parm
     virtual operator VecMath::Rotation<9>() = 0;    ///< get a Rotation<9> parm
     virtual operator VecMath::Rotation<10>() = 0;   ///< get a Rotation<10> parm
-
-    double toDouble() { return operator double(); }
-    unsigned toUnsigned() { return operator unsigned(); }
-    int toInt() { return operator int(); }
-    virtual std::string toString() = 0;             ///< string representation
-
-  protected:
-    virtual operator double() = 0;                  ///< get a double parameter
-    virtual operator unsigned() = 0;                ///< get an unsigned parameter
-    virtual operator int() = 0;                     ///< get an int parameter
-    virtual operator std::string() = 0;             ///< get a string parameter
 
 };
 
@@ -215,7 +209,38 @@ template <typename T> class FunctionParameterValue:
         /// Set a value from a string, as contained in a QLineEdit
         virtual void setValue(const char *);
 
+        /** Default implementation for cast to double. Concrete implementation
+         *  will be defined in FunctionParameterValue<double>.                */
+        virtual double toDouble() {
+            throw WrongParameterTypeException("FunctionParameterValue",
+                                              "toDouble()", "");
+            return 0.;
+        }
+	
+        /** Default implementation for cast to unsigned. Concrete implementation
+         *  will be defined in FunctionParameterValue<unsigned>.              */
+        virtual unsigned toUnsigned() {
+            throw WrongParameterTypeException("FunctionParameterValue",
+                                              "operator unsigned ",
+                                              "did you explicitly cast the operand to unsigned? you should!");
+            return 0;
+        }
 
+        /** Default implementation for cast to int. Concrete implementation
+         *  will be defined in FunctionParameterValue<int>.                   */
+        virtual int toInt() {
+            throw WrongParameterTypeException("FunctionParameterValue",
+                                              "operator int", "");
+            return 0;
+        }
+
+        /// Converts the parameter to string for printing
+        virtual std::string toString() {
+            std::ostringstream o;
+            o << value;
+            return o.str();
+        }
+        
         /** Default implementation for cast to RotationBase. Concrete
          *  implementation will be defined in FunctionParameterValue< Rotation<D> >.
          */
@@ -274,48 +299,6 @@ template <typename T> class FunctionParameterValue:
             throw WrongParameterTypeException("FunctionParameterValue",
                                               "operator VecMath::Rotation<10>", "");
             return VecMath::Rotation<10>();
-        }
-
-        /// Converts the parameter to string for printing
-        virtual std::string toString() {
-            std::ostringstream o;
-            o << value;
-            return o.str();
-        }
-        
-    protected:
-      
-              /** Default implementation for cast to double. Concrete implementation
-         *  will be defined in FunctionParameterValue<double>.                */
-        virtual operator double() {
-            throw WrongParameterTypeException("FunctionParameterValue",
-                                              "operator double", "");
-            return 0.;
-        }
-
-        /** Default implementation for cast to unsigned. Concrete implementation
-         *  will be defined in FunctionParameterValue<unsigned>.              */
-        virtual operator unsigned() {
-            throw WrongParameterTypeException("FunctionParameterValue",
-                                              "operator unsigned ",
-                                              "did you explicitly cast the operand to unsigned? you should!");
-            return 0;
-        }
-
-        /** Default implementation for cast to int. Concrete implementation
-         *  will be defined in FunctionParameterValue<int>.                   */
-        virtual operator int() {
-            throw WrongParameterTypeException("FunctionParameterValue",
-                                              "operator int", "");
-            return 0;
-        }
-
-        /** Default implementation for cast to string. Concrete implementation
-         *  will be defined in FunctionParameterValue<string>.                */
-        virtual operator std::string() {
-            throw WrongParameterTypeException("FunctionParameterValue",
-                                              "operator std::string", "");
-            return toString();
         }
 
     private:

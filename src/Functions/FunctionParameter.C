@@ -60,13 +60,11 @@ template<> FunctionParameterValue<VecMath::Rotation<10> >::FunctionParameterValu
 
 
 /// Specialization for type double
-template<> FunctionParameterValue<double>::operator double() { return value; }
+template<> double FunctionParameterValue<double>::toDouble() { return value; }
 /// Specialization for type unsigned
-template<> FunctionParameterValue<unsigned>::operator unsigned() { return value; }
+template<> unsigned FunctionParameterValue<unsigned>::toUnsigned() { return value; }
 /// Specialization for type int
-template<> FunctionParameterValue<int>::operator int() { return value; }
-/// Specialization for type std::string
-template<> FunctionParameterValue<std::string>::operator std::string() { return value; }
+template<> int FunctionParameterValue<int>::toInt() { return value; }
 
 /// Specialization for type VecMath::Rotation<5>
 template<> FunctionParameterValue<VecMath::Rotation<5> >::operator VecMath::Rotation<5>() {
