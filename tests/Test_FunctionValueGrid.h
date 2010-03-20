@@ -19,6 +19,7 @@ private slots:
   void functionValues();
   void changeGridSize();
   void inhomogenousGridSize();
+  void nonconstantFunctionAndBoundaries();
 
 private:
   
@@ -30,6 +31,9 @@ private:
   const static double DEFAULT_X_MAX =  1.;
   const static unsigned DEFAULT_GRID_SIZE = 10;
   
+  const static VecMath::Vector<3> DEFAULT_XMIN;
+  const static VecMath::Vector<3> DEFAULT_XMAX;
+  const static VecMath::Vector<3, unsigned> DEFAULT_GRID;
 };
 
 
