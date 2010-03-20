@@ -19,7 +19,7 @@
 
 namespace VecMath {
 
-    /// A \p D -dimensionally nested vector of objects of type \p T
+    /// A \p D -dimensionally nested std::vector of objects of type \p T
     /** As always, an example is more illustrative than a lengthy description:
     *  \code
     *    NestedVector<unsigned, 1> v1;

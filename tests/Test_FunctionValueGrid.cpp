@@ -4,7 +4,7 @@
 
 using std::tr1::shared_ptr;
 
-void Test_FunctionValueGrid::initialize() {
+void Test_FunctionValueGrid::initializeGrid() {
   FunctionValueGrid<4, 3> grid1();
   
   Test_ParametricFunction::ParametricFunctionTestImplementation *f = new Test_ParametricFunction::ParametricFunctionTestImplementation();
@@ -14,6 +14,6 @@ void Test_FunctionValueGrid::initialize() {
   VecMath::Vector<3> xmin(-1., -1., -1.);
   VecMath::Vector<3> xmax(1., 1., 1.);
   VecMath::Vector<3, unsigned> grid_size(10, 10, 10);
-  FunctionValueGrid<4, 3> grid3(pf, xmin, xmax, grid_size);
+  FunctionValueGrid<4, 3> grid3(pf, xmin, xmax, grid_size); 
  
 }

@@ -51,7 +51,7 @@ template <unsigned definition_space_dimension, unsigned parameter_space_dimensio
     private:
 
       void recalculate_grid();
-      
+            
       function_ptr_type _f;
       boundary_type _x_min;
       boundary_type _x_max;
@@ -98,9 +98,42 @@ template <unsigned definition_space_dimension, unsigned parameter_space_dimensio
   if (_grid_size.sqnorm()) recalculate_grid();
 }
 
+template <unsigned definition_space_dimension, unsigned parameter_space_dimension, unsigned dimension>
+struct LoopHelper {
+    void recalculateOneDimensionOfGrid(
+        VecMath::NestedVector< VecMath::Vector<definition_space_dimension>, dimension > &values
+    );
+};
+
+template <unsigned definition_space_dimension, unsigned parameter_space_dimension>
+struct LoopHelper< definition_space_dimension, parameter_space_dimension, 1 > {
+    void recalculateOneDimensionOfGrid(
+        VecMath::NestedVector< VecMath::Vector<definition_space_dimension>, 1 > &values
+    );
+};
+
 template <unsigned definition_space_dimension, unsigned parameter_space_dimension>
   void FunctionValueGrid<definition_space_dimension, parameter_space_dimension>::recalculate_grid() {
+    LoopHelper< definition_space_dimension, parameter_space_dimension, parameter_space_dimension > looper;
+    looper.recalculateOneDimensionOfGrid(_function_values);
+}
+
+
+template <unsigned definition_space_dimension, unsigned parameter_space_dimension, unsigned dimension>
+void 
+LoopHelper<definition_space_dimension, parameter_space_dimension, dimension>::
+recalculateOneDimensionOfGrid(
+      VecMath::NestedVector< VecMath::Vector<definition_space_dimension>, dimension > &values) {
     
 }
+
+template <unsigned definition_space_dimension, unsigned parameter_space_dimension>
+void 
+LoopHelper<definition_space_dimension, parameter_space_dimension, 1u>::
+recalculateOneDimensionOfGrid(
+      VecMath::NestedVector< VecMath::Vector<definition_space_dimension>, 1u> &values) {
     
+}
+
+
 #endif // FUNCTIONVALUEGRID_H
