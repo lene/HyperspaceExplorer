@@ -207,9 +207,9 @@ FunctionParameter::FunctionParameter(const std::string &_name,
 
 FunctionParameter::~FunctionParameter() { }
 
-FunctionParameter::operator double() { return double(*m_value); }
-FunctionParameter::operator unsigned() { return (unsigned)(*m_value); }
-FunctionParameter::operator int() { return (int)(*m_value); }
+FunctionParameter::operator double() { return m_value->toDouble(); }
+FunctionParameter::operator unsigned() { return m_value->toUnsigned(); }
+FunctionParameter::operator int() { return m_value->toInt(); }
 FunctionParameter::operator std::string() { return m_value->toString(); }
 
 const std::string &FunctionParameter::getName() const { return name; }

@@ -230,9 +230,9 @@ class Torus1: public RealFunction {
     //  parms["Radius"].value must be set!
 #if 1
     for (ParameterMap::const_iterator i = parms.begin(); i != parms.end(); ++i) {
-        if (i->second->getName() == "Major Radius") _R = double(*i->second);
-        if (i->second->getName() == "Minor Radius") _r = double(*i->second);
-        if (i->second->getName() == "Micro Radius") _rho = double(*i->second);
+        if (i->second->getName() == "Major Radius") _R = i->second->toDouble();
+        if (i->second->getName() == "Minor Radius") _r = i->second->toDouble();
+        if (i->second->getName() == "Micro Radius") _rho = i->second->toDouble();
     }
 #else
     setParameter(parms, this->_R, "Major Radius");
@@ -274,9 +274,9 @@ class Torus2: public RealFunction {
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {
                 if (i->second->getName() == "Major Radius")
-                    _R = double(*i->second);
+                    _R = i->second->toDouble();
                 if (i->second->getName() == "Minor Radius")
-                    _r = double(*i->second);
+                    _r = i->second->toDouble();
             }
 #else
             setParameter(parms, this->_R, "Major Radius");
@@ -337,8 +337,8 @@ class GravitationPotential: public RealFunction {
 #if 1
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {
-                if (i->second->getName() == "M") _M = double(*i->second);
-                if (i->second->getName() == "R") _R = double(*i->second);
+                if (i->second->getName() == "M") _M = i->second->toDouble();
+                if (i->second->getName() == "R") _R = i->second->toDouble();
             }
 #else
             setParameter(parms, this->_M, "M");
@@ -432,7 +432,7 @@ class PolarSin: public RealFunction {
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {
-                if (i->second->getName() == "Phase") _phase = double(*i->second);
+                if (i->second->getName() == "Phase") _phase = i->second->toDouble();
             }
 #       else
             setParameter(parms, this->_phase, "Phase");
@@ -487,7 +487,7 @@ class PolarR: public RealFunction {
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {
-                if (i->second->getName() == "Phase") _phase = double(*i->second);
+                if (i->second->getName() == "Phase") _phase = i->second->toDouble();
             }
 #       else
             setParameter(parms, this->_phase, "Phase");

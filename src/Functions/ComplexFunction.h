@@ -100,7 +100,7 @@ class zA: public ComplexFunction {
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {
-                if (i->second->getName() == "a") alpha = double(*i->second);
+                if (i->second->getName() == "a") alpha = i->second->toDouble();
             }
 #       else
             setParameter(parms, this->Phase, "a");
@@ -132,7 +132,7 @@ class ez: public ComplexFunction {
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {
-                if (i->second->getName() == "a") _alpha = double(*i->second);
+                if (i->second->getName() == "a") _alpha = i->second->toDouble();
             }
 #       else
             setParameter(parms, this->Phase, "a");
@@ -164,7 +164,7 @@ class emz2: public ComplexFunction {
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {
-                if (i->second->getName() == "a") _alpha = double(*i->second);
+                if (i->second->getName() == "a") _alpha = i->second->toDouble();
             }
 #       else
             setParameter(parms, this->Phase, "a");

@@ -22,20 +22,19 @@ std::string ParameterMap::toString() const {
       << i->second->getName() << " = ";
     // try casting to every known type, only print if cast succeeds
     try {
-      o << "(double)" << double(*(i->second)) << std::endl;
+      o << "(double)" << i->second->toDouble() << std::endl;
       continue;
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {
-      o << "(unsigned)" << unsigned(*(i->second)) << std::endl;
+      o << "(unsigned)" << i->second->toUnsigned() << std::endl;
       continue;
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {
-      o << "(int)" << int(*(i->second)) << std::endl;
+      o << "(int)" << i->second->toInt() << std::endl;
       continue;
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {
-      std::string value = std::string(*(i->second));
-      o << "(string)" << value << std::endl;
+      o << "(string)" << i->second->toString() << std::endl;
       continue;
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {

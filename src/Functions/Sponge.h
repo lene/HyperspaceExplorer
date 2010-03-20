@@ -30,11 +30,11 @@ public:
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {
                 if (i->second->getName() == "Level")
-                    Level = unsigned(*i->second);
+                    Level = i->second->toUnsigned();
                 if (i->second->getName() == "Distance")
-                    distance = unsigned(*i->second);
+                    distance = i->second->toInt();
                 if (i->second->getName() == "Size")
-                    rad = double(*i->second);
+                    rad = i->second->toDouble();
             }
 #       else
             setParameter(parms, this->Phase, "Phase");
@@ -126,11 +126,11 @@ public:
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {
                 if (i->second->getName() == "Level")
-                    Level = unsigned(*i->second);
+                    Level = i->second->toUnsigned();
                 if (i->second->getName() == "Distance")
-                    distance = unsigned(*i->second);
+                    distance = i->second->toInt();
                 if (i->second->getName() == "Size")
-                    rad = double(*i->second);
+                    rad = i->second->toDouble();
             }
 #       else
             setParameter(parms, this->Phase, "Phase");

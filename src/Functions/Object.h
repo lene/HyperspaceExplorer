@@ -193,7 +193,7 @@ public:
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {
-                if (i->second->getName() == "Size") _a = double(*i->second);
+                if (i->second->getName() == "Size") _a = i->second->toDouble();
             }
 #       else
             setParameter(parms, this->a, "Size");
@@ -245,7 +245,7 @@ public:
 #       if 1
         for (ParameterMap::const_iterator i = parms.begin();
              i != parms.end(); ++i) {
-                 if (i->second->getName() == "Size") a = double(*i->second);
+                 if (i->second->getName() == "Size") a = i->second->toDouble();
              }
 #       else
              setParameter(parms, this->a, "Size");
@@ -294,9 +294,9 @@ class Gasket: public Pyramid {
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {
                 if (i->second->getName() == "Level")
-                    Level = unsigned(*i->second);
+                    Level = i->second->toUnsigned();
                 if (i->second->getName() == "Size")
-                    rad = double(*i->second);
+                    rad = i->second->toDouble();
             }
 #       else
             setParameter(parms, this->Phase, "Phase");

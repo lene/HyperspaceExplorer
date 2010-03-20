@@ -63,37 +63,37 @@ void Test_ParametricFunction::definedParametersHaveCorrectValues() {
 
   ParameterMap parameters = _function->getParameterMap();
 
-  QVERIFY(double(*(parameters.find("double parameter")->second->value())) == Test_ParametricFunction::DOUBLE_PARAMETER_VALUE);
+  QVERIFY(parameters.find("double parameter")->second->value()->toDouble() == Test_ParametricFunction::DOUBLE_PARAMETER_VALUE);
 # ifdef USE_SHARED_PTR
   shared_ptr<FunctionParameter> parameter(_function->getParameter("double parameter"));
 # else
   FunctionParameter *parameter = _function->getParameter("double parameter");
 #endif
-  QVERIFY(double(*(parameter->value())) == Test_ParametricFunction::DOUBLE_PARAMETER_VALUE);
+  QVERIFY(parameter->value()->toDouble() == Test_ParametricFunction::DOUBLE_PARAMETER_VALUE);
 
-  QVERIFY(unsigned(*(parameters.find("unsigned parameter")->second->value())) == Test_ParametricFunction::UNSIGNED_PARAMETER_VALUE);
+  QVERIFY(parameters.find("unsigned parameter")->second->value()->toUnsigned() == Test_ParametricFunction::UNSIGNED_PARAMETER_VALUE);
 # ifdef USE_SHARED_PTR
   parameter.reset(_function->getParameter("unsigned parameter"));
 # else
   parameter = _function->getParameter("unsigned parameter");
 # endif
-  QVERIFY(unsigned(*(parameter->value())) == Test_ParametricFunction::UNSIGNED_PARAMETER_VALUE);
+  QVERIFY(parameter->value()->toUnsigned() == Test_ParametricFunction::UNSIGNED_PARAMETER_VALUE);
 
-  QVERIFY(int(*(parameters.find("int parameter")->second->value())) == Test_ParametricFunction::INT_PARAMETER_VALUE);
+  QVERIFY(parameters.find("int parameter")->second->value()->toInt() == Test_ParametricFunction::INT_PARAMETER_VALUE);
 # ifdef USE_SHARED_PTR
   parameter.reset(_function->getParameter("int parameter"));
 # else
   parameter = _function->getParameter("int parameter");
 # endif
-  QVERIFY(int(*(parameter->value())) == Test_ParametricFunction::INT_PARAMETER_VALUE);
+  QVERIFY(parameter->value()->toInt() == Test_ParametricFunction::INT_PARAMETER_VALUE);
 
-  QVERIFY(std::string(*(parameters.find("string parameter")->second->value())) == Test_ParametricFunction::STRING_PARAMETER_VALUE);
+  QVERIFY(parameters.find("string parameter")->second->value()->toString() == Test_ParametricFunction::STRING_PARAMETER_VALUE);
 # ifdef USE_SHARED_PTR
   parameter.reset(_function->getParameter("string parameter"));
 # else
   parameter = _function->getParameter("string parameter");
 # endif
-  QVERIFY(std::string(*(parameter->value())) == Test_ParametricFunction::STRING_PARAMETER_VALUE);
+  QVERIFY(parameter->value()->toString() == Test_ParametricFunction::STRING_PARAMETER_VALUE);
 
   QVERIFY(parameters.find("rotation parameter")->second->value()->operator VecMath::Rotation<5>() == Test_ParametricFunction::ROTATION_PARAMETER_VALUE);
 # ifdef USE_SHARED_PTR
@@ -118,13 +118,13 @@ void Test_ParametricFunction::getParameterValueWorks() {
 void Test_ParametricFunction::settingParameters() {
 
   _function->getParameterMap().set("double parameter", 4.0);
-  QVERIFY(double(*(_function->getParameterMap().getValue("double parameter"))) == 4.0);
+  QVERIFY(_function->getParameterMap().getValue("double parameter")->toDouble() == 4.0);
 
   _function->getParameterMap().set("unsigned parameter", 4);
-  QVERIFY(unsigned(*(_function->getParameterMap().getValue("unsigned parameter"))) == 4);
+  QVERIFY(_function->getParameterMap().getValue("unsigned parameter")->toUnsigned() == 4);
 
   _function->getParameterMap().set("int parameter", -4);
-  QVERIFY(int(*(_function->getParameterMap().getValue("int parameter"))) == -4);
+  QVERIFY(_function->getParameterMap().getValue("int parameter")->toInt() == -4);
 
   _function->getParameterMap().set("rotation parameter", VecMath::Rotation<5>(1., 2., 3., 4., 5., 6., 7., 8., 9., 10.));
   VecMath::Rotation<5> rot = _function->getParameterMap().getValue("rotation parameter")->operator VecMath::Rotation<5>();
@@ -133,7 +133,7 @@ void Test_ParametricFunction::settingParameters() {
   }
 
   _function->getParameterMap().set("string parameter", std::string("yet another string"));
-  QVERIFY(std::string(*(_function->getParameterMap().getValue("string parameter"))) == "yet another string");
+  QVERIFY(_function->getParameterMap().getValue("string parameter")->toString() == "yet another string");
 
 }
 
@@ -160,7 +160,7 @@ void Test_ParametricFunction::setParameters() {
   } else {
     QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.toString()).c_str());
   }
-  QVERIFY(double(*(newParameters.find("double parameter")->second->value())) == 2.0);
+  QVERIFY(newParameters.find("double parameter")->second->value()->toDouble() == 2.0);
 
   parameterName = "unsigned parameter";
   it = newParameters.find(parameterName);
@@ -169,7 +169,7 @@ void Test_ParametricFunction::setParameters() {
   } else {
     QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.toString()).c_str());
   }
-  QVERIFY(unsigned(*(newParameters.find("unsigned parameter")->second->value())) == 2);
+  QVERIFY(newParameters.find("unsigned parameter")->second->value()->toUnsigned() == 2);
 
   parameterName = "int parameter";
   it = newParameters.find(parameterName);
@@ -178,7 +178,7 @@ void Test_ParametricFunction::setParameters() {
   } else {
     QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.toString()).c_str());
   }
-  QVERIFY(int(*(newParameters.find("int parameter")->second->value())) == -2);
+  QVERIFY(newParameters.find("int parameter")->second->value()->toInt() == -2);
 
   parameterName = "string parameter";
   it = newParameters.find(parameterName);
@@ -187,7 +187,7 @@ void Test_ParametricFunction::setParameters() {
   } else {
     QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.toString()).c_str());
   }
-  QVERIFY(std::string(*(newParameters.find("string parameter")->second->value())) == "another string");
+  QVERIFY(newParameters.find("string parameter")->second->value()->toString() == "another string");
 
 }
 

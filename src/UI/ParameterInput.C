@@ -22,7 +22,7 @@ namespace UI {
         ParameterInput *ParameterInputFactory::create(const FunctionParameter &parameter,
                                                       QWidget *parent) {
             try {
-                double temp = *(parameter.value());
+                double temp = parameter.value()->toDouble();
                 ParameterDoubleSpinBox *input = new ParameterDoubleSpinBox(parent);
                 QString s;
                 s.setNum(temp);
@@ -30,7 +30,7 @@ namespace UI {
                 return input;
             } catch (FunctionParameterValueBase::WrongParameterTypeException e) { }
             try {
-                unsigned temp = *(parameter.value());
+                unsigned temp = parameter.value()->toUnsigned();
                 ParameterSpinBox *input = new ParameterSpinBox(parent);
                 input->setMinimum(0);
                 QString s;
@@ -39,7 +39,7 @@ namespace UI {
                 return input;
             } catch (FunctionParameterValueBase::WrongParameterTypeException e) { }
             try {
-                int temp = *(parameter.value());
+                int temp = parameter.value()->toInt();
                 ParameterSpinBox *input = new ParameterSpinBox(parent);
                 QString s;
                 s.setNum(temp);
@@ -47,7 +47,7 @@ namespace UI {
                 return input;
             } catch (FunctionParameterValueBase::WrongParameterTypeException e) { }
             try {
-                std::string temp = *(parameter.value());
+                std::string temp = parameter.value()->toString();
                 ParameterLineEdit *input = new ParameterLineEdit(parent);
                 input->setValue(temp.c_str());
                 return input;
