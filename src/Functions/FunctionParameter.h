@@ -16,11 +16,7 @@
 #include "FunctionParameterValue.h"
 
 #include <string>
-#include <iostream>
-#include <sstream>
 #include <tr1/memory>
-
-#include "SingletonHolder.h"
 
 /// A parameter to a Function with a name, an optional description and a default
 /** This class stores a FunctionParameterValue for the value of the parameter,
@@ -43,10 +39,15 @@
  *  \see FunctionParameterValueBase
  *  \ingroup FunctionParameterGroup                                           */
 class FunctionParameter {
+
     public:
+      
+        typedef std::tr1::shared_ptr< FunctionParameterValueBase > value_ptr_type;
+        typedef std::tr1::shared_ptr< FunctionParameter > parameter_ptr_type;
+  
         /// Construct a FunctionParameter from a name
-        FunctionParameter(const std::string &name,
-                          const std::string &description = "");
+        FunctionParameter(const std::string &name, const std::string &description = "");
+        
         ~FunctionParameter();
 
         double toDouble() const;
@@ -63,95 +64,44 @@ class FunctionParameter {
 
         /// get the name of the function parameter
         const std::string &getName() const;
+        
         /// set the name of the function parameter
         void setName(const std::string &name);
+        
         /// get the long description of the function parameter
         const std::string &getDescription() const;
+        
         /// set the long description of the function parameter
         void setDescription(const std::string &description);
 
         /// set the value of the parameter.
-        /** Requires a pointer created by ParameterFac::createParameterWithValue().
-         *  \todo Can't I call createParameterWithValue() from inside
-         *        setValue()?                                                 */
-        template<typename T> void setValue(
-          std::tr1::shared_ptr< FunctionParameterValue<T> > value) {
-            _value.reset( value );
-        }
-        void setValue(
-          std::tr1::shared_ptr< FunctionParameterValueBase > value) {
-          _value = value;
-        }
+        void setValue(FunctionParameter::value_ptr_type value);
+        
         /// Set a value from a string, as contained in a QLineEdit
         void setValue(const std::string &newValue);
 
         /// set the default value of the parameter.
-        /** Requires a pointer created by ParameterFac::createParameterWithDefault().
-         *  \todo Can't I call createParameterWithDefault() from inside
-         *        setDefaultValue()?                                          */
-        template<typename T> void setDefaultValue(
-          std::tr1::shared_ptr< FunctionParameterValue<T> > defaultValue ) {
-            _defaultValue.reset(defaultValue);
-        }
-        void setDefaultValue(
-          std::tr1::shared_ptr< FunctionParameterValueBase > defaultValue) {
-          _defaultValue = defaultValue;
-        }
+        void setDefaultValue(FunctionParameter::value_ptr_type defaultValue);
 
         /// \return Pointer to FunctionParameterValue containing the parameter's value
-        std::tr1::shared_ptr<FunctionParameterValueBase> value() const;
+        FunctionParameter::value_ptr_type value() const;
+        
         /// \return Default parameter value is no value was given
-        std::tr1::shared_ptr<FunctionParameterValueBase> defaultValue() const;
+        FunctionParameter::value_ptr_type defaultValue() const;
 
     private:
 
         /// Name of the function parameter
         std::string _name;
+        
         /// Description which is shown in the parameter input dialog
         std::string _description;
+        
         /// Pointer to FunctionParameterValue containing the parameter's value
-        std::tr1::shared_ptr<FunctionParameterValueBase> _value;
+        FunctionParameter::value_ptr_type _value;
+        
         /// Default parameter value is no value was given
-        std::tr1::shared_ptr<FunctionParameterValueBase> _defaultValue;
+        FunctionParameter::value_ptr_type _defaultValue;
 };
-
-/// Class with factory methods to create a FunctionParameter
-/** \see FunctionParameterValueBase
- *  \ingroup FunctionParameterGroup                                           */
-class FunctionParameterFactory {
-    public:
-        /// Create a FunctionParameter from a value of type T
-        template <typename T>
-            std::tr1::shared_ptr<FunctionParameter> createParameterWithValue(
-                    const std::string &_name, const T &_value) {
-            std::tr1::shared_ptr< FunctionParameter > tmp(new FunctionParameter(_name));
-            tmp->setValue(
-                std::tr1::shared_ptr< FunctionParameterValueBase >(
-                    new FunctionParameterValue<T>(_value)));
-
-            return tmp;
-        }
-
-        /// Create a FunctionParameter from a default value of type T
-        template <typename T>
-            std::tr1::shared_ptr<FunctionParameter> createParameterWithDefault(
-                    const std::string &_name, const T &_default,
-                    const std::string &_description = "") {
-            std::tr1::shared_ptr<FunctionParameter> tmp(new FunctionParameter(_name, _description));
-            tmp->setDefaultValue(
-                std::tr1::shared_ptr<FunctionParameterValueBase>(
-                    new FunctionParameterValue<T>(_default)));
-            tmp->setValue(
-                std::tr1::shared_ptr<FunctionParameterValueBase>(
-                    new FunctionParameterValue<T>(_default)));
-
-            return tmp;
-        }
-};
-
-/// Declare ParameterFac as a singleton and generate access to it
-/** \see FunctionParameterValueBase
- *  \ingroup FunctionParameterGroup                                           */
-typedef Loki::SingletonHolder<FunctionParameterFactory> TheFunctionParameterFactory;
 
 #endif

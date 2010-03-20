@@ -24,11 +24,7 @@
 #include "ParameterMap.h"
 #include "Vector.h"
 
-#define USE_SHARED_PTR
-
-#ifdef USE_SHARED_PTR
 #include <tr1/memory>
-#endif
 
 template <unsigned definition_space_dimension, unsigned parameter_space_dimension>
   class ParametricFunction {
@@ -49,26 +45,14 @@ template <unsigned definition_space_dimension, unsigned parameter_space_dimensio
       ParameterMap getParameterMap() { return _parameters; }
 
       /// \return Pointer to the FunctionParameter which is named \p name
-#ifdef USE_SHARED_PTR
-      std::tr1::shared_ptr<FunctionParameter> getParameter(const std::string &name) {
-        return std::tr1::shared_ptr<FunctionParameter>(_parameters.getParameter(name));
+      FunctionParameter::parameter_ptr_type getParameter(const std::string &name) {
+        return FunctionParameter::parameter_ptr_type(_parameters.getParameter(name));
       }
-#     else
-      FunctionParameter* getParameter(const std::string &name) {
-        return _parameters.getParameter(name);
-      }
-#     endif
 
       /// \return Pointer to the FunctionParameterValue which is named \p name
-#ifdef USE_SHARED_PTR
-      std::tr1::shared_ptr<FunctionParameterValueBase> getParameterValue(const std::string &name) {
-        return std::tr1::shared_ptr<FunctionParameterValueBase>(_parameters.getValue(name));
+      FunctionParameter::value_ptr_type getParameterValue(const std::string &name) {
+        return FunctionParameter::value_ptr_type(_parameters.getValue(name));
       }
-#     else
-      FunctionParameterValueBase* getParameterValue(const std::string &name) {
-        return _parameters.getValue(name);
-      }
-#     endif
 
     protected:
       /// Add a parameter to the list of parameters

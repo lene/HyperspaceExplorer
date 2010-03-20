@@ -64,11 +64,7 @@ void Test_ParametricFunction::definedParametersHaveCorrectValues() {
   ParameterMap parameters = _function->getParameterMap();
 
   QVERIFY(parameters.find("double parameter")->second->value()->toDouble() == Test_ParametricFunction::DOUBLE_PARAMETER_VALUE);
-# ifdef USE_SHARED_PTR
-  shared_ptr<FunctionParameter> parameter(_function->getParameter("double parameter"));
-# else
-  FunctionParameter *parameter = _function->getParameter("double parameter");
-#endif
+  FunctionParameter::parameter_ptr_type parameter(_function->getParameter("double parameter"));
   QVERIFY(parameter->value()->toDouble() == Test_ParametricFunction::DOUBLE_PARAMETER_VALUE);
 
   QVERIFY(parameters.find("unsigned parameter")->second->value()->toUnsigned() == Test_ParametricFunction::UNSIGNED_PARAMETER_VALUE);
@@ -124,7 +120,7 @@ void Test_ParametricFunction::settingParameters() {
 void Test_ParametricFunction::accessedNonexistentParameter() {
 
   try {
-    shared_ptr<FunctionParameter> parameter(_function->getParameter("nonexistent parameter"));
+   FunctionParameter::parameter_ptr_type parameter(_function->getParameter("nonexistent parameter"));
   } catch (ParameterMap::NonexistentParameterAccessed &e) {
     return;
   }

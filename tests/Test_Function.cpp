@@ -110,7 +110,7 @@ void Test_Function::parameters() {
   QVERIFY(parameters.find("string parameter") != parameters.end());
   
   QVERIFY(parameters.find("double parameter")->second->value()->toDouble() == 1.0);
-  std::tr1::shared_ptr< FunctionParameter > parameter = _function->getParameter("double parameter");
+  FunctionParameter::parameter_ptr_type parameter = _function->getParameter("double parameter");
   QVERIFY(parameter->value()->toDouble() == 1.0);
   
   QVERIFY(parameters.find("unsigned parameter")->second->value()->toUnsigned() == 1);
@@ -210,7 +210,7 @@ void Test_Function::setParameters() {
 
 void Test_Function::accessedNonexistentParameter() {
   try {
-    std::tr1::shared_ptr< FunctionParameter > parameter = _function->getParameter("nonexistent parameter");
+    FunctionParameter::parameter_ptr_type parameter = _function->getParameter("nonexistent parameter");
   } catch (ParameterMap::NonexistentParameterAccessed &e) {
     return;
   }
@@ -220,7 +220,7 @@ void Test_Function::accessedNonexistentParameter() {
 
 void Test_Function::rotationAsParameter() {
   RotationParameterTestImplementation f;
-  std::tr1::shared_ptr< FunctionParameter > parameter = f.getParameter("rotation parameter");
+  FunctionParameter::parameter_ptr_type parameter = f.getParameter("rotation parameter");
   VecMath::Rotation<5> rot = parameter->value()->toRotation5();
   
   QVERIFY2(rot == VecMath::Rotation<5>(), rot.toString().c_str());

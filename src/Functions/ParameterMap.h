@@ -5,7 +5,7 @@
 #include <map>
 #include <sstream>
 
-#include "FunctionParameter.h"
+#include "FunctionParameterFactory.h"
 #include "Log.h"
 
 /// A class to store and manage FunctionParameter s
@@ -13,7 +13,10 @@
     \author Helge Preuss <lene.preuss@gmail.com>
     \ingroup FunctionParameterGroup
 */
-class ParameterMap : public std::map< std::string, std::tr1::shared_ptr<FunctionParameter> > {
+class ParameterMap : public std::map< std::string, FunctionParameter::parameter_ptr_type > {
+  
+  typedef std::map< std::string, FunctionParameter::parameter_ptr_type > map_type;
+  
 public:
 
     /// Exception that is thrown when a key is accessed that is not present in a ParameterMap.
@@ -27,20 +30,18 @@ public:
         std::invalid_argument("Tried to access parameter \""+which+"\" in ParameterMap "+map.toString()) { }
     };
     
-    ParameterMap(): std::map< std::string, std::tr1::shared_ptr<FunctionParameter> > () { }
+    ParameterMap(): ParameterMap::map_type() { }
     
     /// Create a ParameterMap containing one parameter
-    template<typename T> ParameterMap(const std::string &name,
-                                      const T &value):
-            std::map< std::string, std::tr1::shared_ptr<FunctionParameter> > () {
+    template<typename T> ParameterMap(const std::string &name, const T &value):
+            ParameterMap::map_type() {
         insertByValue(name, value);
     }
     
     ~ParameterMap() { }
     
     /// Insert a parameter with a name and an actual value
-    template <typename T> void insertByValue(const std::string name,
-                                             const T &value) {
+    template <typename T> void insertByValue(const std::string name, const T &value) {
       insert(
         std::make_pair(
           name,
@@ -48,8 +49,7 @@ public:
         }
         
     /// Insert a parameter with a name and a default value
-    template <typename T> void insertByDefault(const std::string name,
-                                               const T &defaultValue) {
+    template <typename T> void insertByDefault(const std::string name, const T &defaultValue) {
       insert(
         std::make_pair(
           name,
@@ -57,10 +57,10 @@ public:
         }
 
     /// \return The FunctionParameter * that is stored under the key \p name.
-    std::tr1::shared_ptr< FunctionParameter > getParameter(const std::string &name);
+    FunctionParameter::parameter_ptr_type getParameter(const std::string &name);
     
     /// \return The FunctionParameterValue * that is stored under the key \p name.
-    std::tr1::shared_ptr< FunctionParameterValueBase> getValue(const std::string &name);
+    FunctionParameter::value_ptr_type getValue(const std::string &name);
 
     /// Sets the value of the parameter stored under the key \p name to \p value.
     /** \param T The type of parameter that is to be changed. \p T must be either
@@ -78,6 +78,7 @@ public:
     std::string toString() const;
     
   private:
+
     /// \return iterator pointing to the element with key \p name.
     ParameterMap::iterator findOrThrow(const std::string &name);
     

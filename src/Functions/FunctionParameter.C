@@ -49,15 +49,30 @@ void FunctionParameter::setDescription (const std::string &description) {
     _description = description;
 }
 
-std::tr1::shared_ptr< FunctionParameterValueBase > FunctionParameter::value() const {
-    return _value;
-}
-
-std::tr1::shared_ptr< FunctionParameterValueBase > FunctionParameter::defaultValue() const {
-    return _defaultValue;
+/** Requires a pointer created by FunctionParameterFactory::createParameterWithValue().
+ *  \todo Can't I call createParameterWithValue() from inside
+ *        setValue()?                                                 
+ */
+void FunctionParameter::setValue(FunctionParameter::value_ptr_type value) {
+  _value = value;
 }
 
 void FunctionParameter::setValue(const std::string &newValue) {
     if (value()) _value->setValue(newValue.c_str());
 }
 
+/** Requires a pointer created by FunctionParameterFactory::createParameterWithDefault().
+ *  \todo Can't I call createParameterWithDefault() from inside
+ *        setDefaultValue()?                                          
+ */
+void FunctionParameter::setDefaultValue(FunctionParameter::value_ptr_type defaultValue) {
+  _defaultValue = defaultValue;
+}
+
+FunctionParameter::value_ptr_type FunctionParameter::value() const {
+    return _value;
+}
+
+FunctionParameter::value_ptr_type FunctionParameter::defaultValue() const {
+    return _defaultValue;
+}

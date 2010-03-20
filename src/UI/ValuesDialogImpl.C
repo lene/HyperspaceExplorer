@@ -135,7 +135,7 @@ namespace UI {
             for (unsigned i = 0; i < maxNumParameters; ++i) {
                 std::string parameterName = ParameterLabel[i]->text().toStdString();
                 try {
-                  std::tr1::shared_ptr< FunctionParameter > parameter(parameters.getParameter(parameterName));
+                  FunctionParameter::parameter_ptr_type parameter(parameters.getParameter(parameterName));
                   parameter->setValue(Parameter[i]->value().toStdString());
                 } catch (const ParameterMap::NonexistentParameterAccessed &e) {
                   /// default parameter names in hidden fields of the dialog

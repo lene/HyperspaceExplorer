@@ -3,20 +3,20 @@
 #include <QString>
 
 /** \throw NonexistentParameterAccessed if \p name is not a key. */
-std::tr1::shared_ptr< FunctionParameter > ParameterMap::getParameter(const std::string &name) {
+FunctionParameter::parameter_ptr_type ParameterMap::getParameter(const std::string &name) {
   ParameterMap::iterator it = findOrThrow(name);
   return it->second;
 }
 
 /** \throw NonexistentParameterAccessed if \p name is not a key. */
-std::tr1::shared_ptr< FunctionParameterValueBase > ParameterMap::getValue(const std::string& name) {
+FunctionParameter::value_ptr_type ParameterMap::getValue(const std::string& name) {
   return getParameter(name)->value();
 }
 
 std::string ParameterMap::toString() const {
   std::ostringstream o;
   o << "[\n";
-  for (std::map<std::string, std::tr1::shared_ptr< FunctionParameter > >::const_iterator i = begin();
+  for (map_type::const_iterator i = begin();
        i != end(); ++i) {
     o << "    " << i->first << ": \t"
       << i->second->getName() << " = ";
@@ -69,7 +69,7 @@ std::string ParameterMap::toString() const {
 
 /** \throw NonexistentParameterAccessed if \p name is not a key. */
 ParameterMap::iterator ParameterMap::findOrThrow(const std::string& name) {
-  std::map<std::string, std::tr1::shared_ptr< FunctionParameter > >::iterator it = find(name);
+  map_type::iterator it = find(name);
   if (it != end()) return it;
   throw ParameterMap::NonexistentParameterAccessed(name, *this);
 }

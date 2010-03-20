@@ -37,6 +37,7 @@ HEADERS += Functions/ComplexFunction.h \
            Functions/FunctionParameterValueBase.h \
            Functions/FunctionParameterValue.h \
            Functions/FunctionParameter.h \
+           Functions/FunctionParameterFactory.h \
            Functions/ParameterMap.h \
            Functions/FunctionFactory.h \
            Functions/Transform.h \
