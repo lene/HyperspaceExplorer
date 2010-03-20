@@ -4,7 +4,7 @@
 /// Description:
 ///
 ///
-/// \author: Helge Preuss <lene.preuss@gmail.com>, (C) 2008
+/// \author: Lene Preuss <lene.preuss@gmail.com>, (C) 2008
 ///
 /// Copyright: See COPYING file that comes with this distribution
 ///
@@ -45,8 +45,8 @@
 class FunctionParameter {
     public:
         /// Construct a FunctionParameter from a name
-        FunctionParameter(const std::string &_name,
-                          const std::string &_description = "");
+        FunctionParameter(const std::string &name,
+                          const std::string &description = "");
         ~FunctionParameter();
 
         double toDouble() const;
@@ -64,29 +64,29 @@ class FunctionParameter {
         /// get the name of the function parameter
         const std::string &getName() const;
         /// set the name of the function parameter
-        void setName(const std::string &_name);
+        void setName(const std::string &name);
         /// get the long description of the function parameter
         const std::string &getDescription() const;
         /// set the long description of the function parameter
-        void setDescription(const std::string &_description);
+        void setDescription(const std::string &description);
 
         /// set the value of the parameter.
         /** Requires a pointer created by ParameterFac::createParameterWithValue().
          *  \todo Can't I call createParameterWithValue() from inside
          *        setValue()?                                                 */
-        template<typename T> void setValue(FunctionParameterValue<T> *_value) {
-            m_value.reset( _value );
+        template<typename T> void setValue(FunctionParameterValue<T> *value) {
+            _value.reset( value );
         }
 
         /// Set a value from a string, as contained in a QLineEdit
-        void setValue(std::string _value);
+        void setValue(const std::string &newValue);
 
         /// set the default value of the parameter.
         /** Requires a pointer created by ParameterFac::createParameterWithDefault().
          *  \todo Can't I call createParameterWithDefault() from inside
          *        setDefaultValue()?                                          */
-        template<typename T> void setDefaultValue(FunctionParameterValue<T> *_defaultValue ) {
-            m_defaultValue.reset(_defaultValue);
+        template<typename T> void setDefaultValue(FunctionParameterValue<T> *defaultValue ) {
+            _defaultValue.reset(defaultValue);
         }
 
         /// \return Pointer to FunctionParameterValue containing the parameter's value
@@ -97,13 +97,13 @@ class FunctionParameter {
     private:
 
 	/// Name of the function parameter
-        std::string name;
+        std::string _name;
         /// Description which is shown in the parameter input dialog
-        std::string description;
+        std::string _description;
         /// Pointer to FunctionParameterValue containing the parameter's value
-        std::tr1::shared_ptr<FunctionParameterValueBase> m_value;
+        std::tr1::shared_ptr<FunctionParameterValueBase> _value;
         /// Default parameter value is no value was given
-        std::tr1::shared_ptr<FunctionParameterValueBase> m_defaultValue;
+        std::tr1::shared_ptr<FunctionParameterValueBase> _defaultValue;
 };
 
 /// Class with factory methods to create a FunctionParameter

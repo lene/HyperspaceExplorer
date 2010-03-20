@@ -39,7 +39,7 @@ template <typename T> class FunctionParameterValue:
         public FunctionParameterValueBase {
     public:
         /// Construct the FunctionParameterValue object with its actual value
-        FunctionParameterValue<T>(const T &_value): value(_value) { }
+        FunctionParameterValue<T>(const T &_value): _value(_value) { }
 
         /// Set a value from a string, as contained in a QLineEdit
         virtual void setValue(const char *);
@@ -72,7 +72,7 @@ template <typename T> class FunctionParameterValue:
         /// Converts the parameter to string for printing
         virtual std::string toString() const {
             std::ostringstream o;
-            o << value;
+            o << _value;
             return o.str();
         }
         
@@ -138,7 +138,7 @@ template <typename T> class FunctionParameterValue:
 
     private:
 
-      T value;                ///< The actual value of the parameter
+      T _value;                ///< The actual value of the parameter
 };
 
 #endif // FUNCTIONPARAMETERVALUE_H
