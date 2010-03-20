@@ -41,3 +41,43 @@ void Test_FunctionValueGrid::functionValues() {
     }
   }
 }
+
+void Test_FunctionValueGrid::changeGridSize() {
+  const unsigned newGridSize = 5;
+  FunctionValueGrid<4, 3>::grid_size_type newGrid(newGridSize, newGridSize, newGridSize);
+
+  _grid->setGridSize(newGrid);
+  
+  FunctionValueGrid<4, 3>::value_storage_type values = _grid->getValues();
+  QVERIFY(values.size() == newGridSize);
+  QVERIFY(values[0].size() == newGridSize);
+  QVERIFY(values[0][0].size() == newGridSize);
+  
+  resetGridSize();
+}
+
+void Test_FunctionValueGrid::inhomogenousGridSize() {
+  FunctionValueGrid<4, 3>::grid_size_type newGrid(5, 10, 15);
+
+  _grid->setGridSize(newGrid);
+  
+  FunctionValueGrid<4, 3>::value_storage_type values = _grid->getValues();
+  QVERIFY(values.size() == 15);
+  QVERIFY(values[0].size() == 10);
+  QVERIFY(values[0][0].size() == 5);
+
+  for (unsigned i = 0; i < values.size(); ++i) {
+    for (unsigned j = 0; j < values[0].size(); ++j) {
+      for (unsigned k = 0; k < values[0][0].size(); ++k) {
+        QVERIFY(values[i][j][k] == VecMath::Vector<4>(0., 0., 0., Test_ParametricFunction::ParametricFunctionTestImplementation::CONST_FUNCTION_W));
+      }
+    }
+  }
+  
+  resetGridSize();
+}
+
+void Test_FunctionValueGrid::resetGridSize() {
+  FunctionValueGrid<4, 3>::grid_size_type oldGrid(DEFAULT_GRID_SIZE, DEFAULT_GRID_SIZE, DEFAULT_GRID_SIZE);
+  _grid->setGridSize(oldGrid);
+}

@@ -17,8 +17,12 @@ private slots:
   
   void initializeGrid();
   void functionValues();
+  void changeGridSize();
+  void inhomogenousGridSize();
 
 private:
+  
+  void resetGridSize();
   
   std::tr1::shared_ptr< FunctionValueGrid<4, 3> > _grid;
   
