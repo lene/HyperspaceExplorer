@@ -95,13 +95,13 @@ void Test_ParametricFunction::definedParametersHaveCorrectValues() {
 # endif
   QVERIFY(parameter->value()->toString() == Test_ParametricFunction::STRING_PARAMETER_VALUE);
 
-  QVERIFY(parameters.find("rotation parameter")->second->value()->operator VecMath::Rotation<5>() == Test_ParametricFunction::ROTATION_PARAMETER_VALUE);
+  QVERIFY(parameters.find("rotation parameter")->second->value()->toRotation5() == Test_ParametricFunction::ROTATION_PARAMETER_VALUE);
 # ifdef USE_SHARED_PTR
   parameter.reset(_function->getParameter("rotation parameter"));
 # else
   parameter = _function->getParameter("rotation parameter");
 # endif
-  QVERIFY(parameter->value()->operator VecMath::Rotation<5>() == Test_ParametricFunction::ROTATION_PARAMETER_VALUE);
+  QVERIFY(parameter->value()->toRotation5() == Test_ParametricFunction::ROTATION_PARAMETER_VALUE);
 
 }
 
@@ -127,7 +127,7 @@ void Test_ParametricFunction::settingParameters() {
   QVERIFY(_function->getParameterMap().getValue("int parameter")->toInt() == -4);
 
   _function->getParameterMap().set("rotation parameter", VecMath::Rotation<5>(1., 2., 3., 4., 5., 6., 7., 8., 9., 10.));
-  VecMath::Rotation<5> rot = _function->getParameterMap().getValue("rotation parameter")->operator VecMath::Rotation<5>();
+  VecMath::Rotation<5> rot = _function->getParameterMap().getValue("rotation parameter")->toRotation5();
   for (unsigned i = 0; i < VecMath::NumAxes<5>::num; ++i) {
     QVERIFY(rot[i] == i+1);
   }

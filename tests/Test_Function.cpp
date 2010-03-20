@@ -134,7 +134,7 @@ void Test_Function::parameter_get() {
   QVERIFY(_function->getParameters().getValue("string parameter")->toString() == "a string");
   
   RotationParameterTestImplementation f;
-  QVERIFY(f.getParameters().getValue("rotation parameter")->operator VecMath::Rotation<5>()[0] == 0.);
+  QVERIFY(f.getParameters().getValue("rotation parameter")->toRotation5()[0] == 0.);
 }
 
 void Test_Function::parameter_set() {
@@ -149,7 +149,7 @@ void Test_Function::parameter_set() {
   
   RotationParameterTestImplementation f;
   f.getParameters().set("rotation parameter", VecMath::Rotation<5>(0., 1., 2., 3., 4., 5., 6., 7., 8., 9.));
-  VecMath::Rotation<5> rot = f.getParameters().getValue("rotation parameter")->operator VecMath::Rotation<5>();
+  VecMath::Rotation<5> rot = f.getParameters().getValue("rotation parameter")->toRotation5();
   
   for (unsigned i = 0; i < VecMath::NumAxes<5>::num; ++i) {
     QVERIFY(rot[i] == i);
@@ -221,7 +221,7 @@ void Test_Function::accessedNonexistentParameter() {
 void Test_Function::rotationAsParameter() {
   RotationParameterTestImplementation f;
   FunctionParameter *parameter = f.getParameter("rotation parameter");
-  VecMath::Rotation<5> rot = parameter->value()->operator VecMath::Rotation<5>();
+  VecMath::Rotation<5> rot = parameter->value()->toRotation5();
   
   QVERIFY2(rot == VecMath::Rotation<5>(), rot.toString().c_str());
   
@@ -237,7 +237,7 @@ void Test_Function::rotationAsParameter() {
   f.SetParameters(newParameters);
   
   parameter = f.getParameter("rotation parameter");
-  rot = parameter->value()->operator VecMath::Rotation<5>();
+  rot = parameter->value()->toRotation5();
   
   for (unsigned i = 0; i < VecMath::NumAxes<5>::num; ++i) {
     QVERIFY(rot[i] == i);

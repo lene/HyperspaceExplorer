@@ -38,27 +38,27 @@ std::string ParameterMap::toString() const {
       continue;
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {
-      o << "(Rotation<5>)" << i->second->value()->operator VecMath::Rotation<5>() << std::endl;
+      o << "(Rotation<5>)" << i->second->value()->toRotation5() << std::endl;
       continue;
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {
-      o << "(Rotation<6>)" << i->second->value()->operator VecMath::Rotation<6>() << std::endl;
+      o << "(Rotation<6>)" << i->second->value()->toRotation6() << std::endl;
       continue;
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {
-      o << "(Rotation<7>)" << i->second->value()->operator VecMath::Rotation<7>() << std::endl;
+      o << "(Rotation<7>)" << i->second->value()->toRotation7() << std::endl;
       continue;
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {
-      o << "(Rotation<8>)" << i->second->value()->operator VecMath::Rotation<8>() << std::endl;
+      o << "(Rotation<8>)" << i->second->value()->toRotation8() << std::endl;
       continue;
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {
-      o << "(Rotation<9>)" << i->second->value()->operator VecMath::Rotation<9>() << std::endl;
+      o << "(Rotation<9>)" << i->second->value()->toRotation9() << std::endl;
       continue;
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {
-      o << "(Rotation<10>)" << i->second->value()->operator VecMath::Rotation<10>() << std::endl;
+      o << "(Rotation<10>)" << i->second->value()->toRotation10() << std::endl;
       continue;
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
   }

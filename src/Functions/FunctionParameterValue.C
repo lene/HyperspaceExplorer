@@ -75,51 +75,51 @@ template<> unsigned FunctionParameterValue<unsigned>::toUnsigned() { return valu
 template<> int FunctionParameterValue<int>::toInt() { return value; }
 
 /// Specialization for type VecMath::Rotation<5>
-template<> FunctionParameterValue<VecMath::Rotation<5> >::operator VecMath::Rotation<5>() {
+template<> VecMath::Rotation<5> FunctionParameterValue<VecMath::Rotation<5> >::toRotation5() {
     return (VecMath::Rotation<5>)value;
 }
 /// Specialization for type VecMath::Rotation<5>
-template<> FunctionParameterValue<VecMath::Rotation<5> >::operator VecMath::RotationBase() {
+template<> VecMath::RotationBase FunctionParameterValue<VecMath::Rotation<5> >::toRotationBase() {
     return (VecMath::Rotation<5>)value;
 }
 /// Specialization for type VecMath::Rotation<6>
-template<> FunctionParameterValue<VecMath::Rotation<6> >::operator VecMath::Rotation<6>() {
+template<> VecMath::Rotation<6> FunctionParameterValue<VecMath::Rotation<6> >::toRotation6() {
     return (VecMath::Rotation<6>)value;
 }
 /// Specialization for type VecMath::Rotation<6>
-template<> FunctionParameterValue<VecMath::Rotation<6> >::operator VecMath::RotationBase() {
+template<> VecMath::RotationBase FunctionParameterValue<VecMath::Rotation<6> >::toRotationBase() {
     return (VecMath::Rotation<6>)value;
 }
 /// Specialization for type VecMath::Rotation<7>
-template<> FunctionParameterValue<VecMath::Rotation<7> >::operator VecMath::Rotation<7>() {
+template<> VecMath::Rotation<7> FunctionParameterValue<VecMath::Rotation<7> >::toRotation7() {
     return (VecMath::Rotation<7>)value;
 }
 /// Specialization for type VecMath::Rotation<7>
-template<> FunctionParameterValue<VecMath::Rotation<7> >::operator VecMath::RotationBase() {
+template<> VecMath::RotationBase FunctionParameterValue<VecMath::Rotation<7> >::toRotationBase() {
     return (VecMath::Rotation<7>)value;
 }
 /// Specialization for type VecMath::Rotation<8>
-template<> FunctionParameterValue<VecMath::Rotation<8> >::operator VecMath::Rotation<8>() {
+template<> VecMath::Rotation<8> FunctionParameterValue<VecMath::Rotation<8> >::toRotation8() {
     return (VecMath::Rotation<8>)value;
 }
 /// Specialization for type VecMath::Rotation<8>
-template<> FunctionParameterValue<VecMath::Rotation<8> >::operator VecMath::RotationBase() {
+template<> VecMath::RotationBase FunctionParameterValue<VecMath::Rotation<8> >::toRotationBase() {
     return (VecMath::Rotation<8>)value;
 }
 /// Specialization for type VecMath::Rotation<9>
-template<> FunctionParameterValue<VecMath::Rotation<9> >::operator VecMath::Rotation<9>() {
+template<> VecMath::Rotation<9> FunctionParameterValue<VecMath::Rotation<9> >::toRotation9() {
     return (VecMath::Rotation<9>)value;
 }
 /// Specialization for type VecMath::Rotation<9>
-template<> FunctionParameterValue<VecMath::Rotation<9> >::operator VecMath::RotationBase() {
+template<> VecMath::RotationBase FunctionParameterValue<VecMath::Rotation<9> >::toRotationBase() {
     return (VecMath::Rotation<9>)value;
 }
 /// Specialization for type VecMath::Rotation<10>
-template<> FunctionParameterValue<VecMath::Rotation<10> >::operator VecMath::Rotation<10>() {
+template<> VecMath::Rotation<10> FunctionParameterValue<VecMath::Rotation<10> >::toRotation10() {
     return (VecMath::Rotation<10>)value;
 }
 /// Specialization for type VecMath::Rotation<10>
-template<> FunctionParameterValue<VecMath::Rotation<10> >::operator VecMath::RotationBase() {
+template<> VecMath::RotationBase FunctionParameterValue<VecMath::Rotation<10> >::toRotationBase() {
     return (VecMath::Rotation<10>)value;
 }
 

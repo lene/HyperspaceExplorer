@@ -54,31 +54,30 @@ namespace UI {
             } catch (FunctionParameterValueBase::WrongParameterTypeException e) { }
             try {
                 /// return a ParameterInput which controls a Rotation<5>
-                VecMath::Rotation<5> temp = *(parameter.value());
+                VecMath::Rotation<5> temp = parameter.toRotation5();
                 ParameterRotationControl *input =
                         new ParameterRotationControl(&temp, parent);
             } catch (FunctionParameterValueBase::WrongParameterTypeException e) { }
             try {
-                /// return a ParameterInput which controls a Rotation<5>
-                VecMath::Rotation<6> temp = *(parameter.value());
+                /// return a ParameterInput which controls a Rotation<6>
+                VecMath::Rotation<6> temp = parameter.toRotation6();
             } catch (FunctionParameterValueBase::WrongParameterTypeException e) { }
             try {
-                /// return a ParameterInput which controls a Rotation<5>
-                VecMath::Rotation<7> temp = *(parameter.value());
+                /// return a ParameterInput which controls a Rotation<7>
+                VecMath::Rotation<7> temp = parameter.toRotation7();
             } catch (FunctionParameterValueBase::WrongParameterTypeException e) { }
             try {
-                /// return a ParameterInput which controls a Rotation<5>
-                VecMath::Rotation<8> temp = *(parameter.value());
+                /// return a ParameterInput which controls a Rotation<8>
+                VecMath::Rotation<8> temp = parameter.toRotation8();
             } catch (FunctionParameterValueBase::WrongParameterTypeException e) { }
             try {
-                /// return a ParameterInput which controls a Rotation<5>
-                VecMath::Rotation<9> temp = *(parameter.value());
+                /// return a ParameterInput which controls a Rotation<9>
+                VecMath::Rotation<9> temp = parameter.toRotation9();
             } catch (FunctionParameterValueBase::WrongParameterTypeException e) { }
             try {
-                /// return a ParameterInput which controls a Rotation<5>
-                VecMath::Rotation<10> temp = *(parameter.value());
+                /// return a ParameterInput which controls a Rotation<10>
+                VecMath::Rotation<10> temp = parameter.toRotation10();
             } catch (FunctionParameterValueBase::WrongParameterTypeException e) { }
-
 
         }
 

@@ -202,27 +202,27 @@ void Rotope::SetParameters(const ParameterMap &parms) {
                 _numSegments = i->second->toUnsigned();
             }
             if (i->second->getName() == "5D Rotation") {
-                _rot5D =  i->second->operator VecMath::Rotation<5>();
+                _rot5D =  i->second->toRotation5();
                 std::cerr << "5D Rotation : " << _rot5D << "\n";
             }
             if (i->second->getName() == "6D Rotation") {
-                _rot6D =  i->second->operator VecMath::Rotation<6>();
+                _rot6D =  i->second->toRotation6();
                 std::cerr << "6D Rotation : " << _rot6D << "\n";
             }
             if (i->second->getName() == "7D Rotation") {
-                _rot7D =  i->second->operator VecMath::Rotation<7>();
+                _rot7D =  i->second->toRotation7();
                 std::cerr << "7D Rotation : " << _rot7D << "\n";
             }
             if (i->second->getName() == "8D Rotation") {
-                _rot8D =  i->second->operator VecMath::Rotation<8>();
+                _rot8D =  i->second->toRotation8();
                 std::cerr << "8D Rotation : " << _rot8D << "\n";
             }
             if (i->second->getName() == "9D Rotation") {
-                _rot9D =  i->second->operator VecMath::Rotation<9>();
+                _rot9D =  i->second->toRotation9();
                 std::cerr << "9D Rotation : " << _rot9D << "\n";
             }
             if (i->second->getName() == "10D Rotation") {
-                _rot10D =  i->second->operator VecMath::Rotation<10>();
+                _rot10D =  i->second->toRotation10();
                 std::cerr << "10D Rotation : " << _rot10D << "\n";
             }
 

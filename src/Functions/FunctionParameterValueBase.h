@@ -173,21 +173,21 @@ class FunctionParameterValueBase {
                                         "setValue", "VecMath::Rotation<10>");
     }
 
-    /// set a C-string parameter
+    /// set a parameter using a C-style string, distinguishing from a std::string
     virtual void setValue(const char *) = 0;
 
-    virtual double toDouble() = 0;
-    virtual unsigned toUnsigned() = 0;
-    virtual int toInt() = 0;
-    virtual std::string toString() = 0;             ///< string representation
+    virtual double toDouble() = 0;			///< get a double parameter
+    virtual unsigned toUnsigned() = 0;			///< get an unsigned parameter
+    virtual int toInt() = 0;				///< get an integer parameter
+    virtual std::string toString() = 0;                 ///< string representation
 
-    virtual operator VecMath::RotationBase() = 0;   ///< get a RotationBase parameter
-    virtual operator VecMath::Rotation<5>() = 0;    ///< get a Rotation<5> parm
-    virtual operator VecMath::Rotation<6>() = 0;    ///< get a Rotation<6> parm
-    virtual operator VecMath::Rotation<7>() = 0;    ///< get a Rotation<7> parm
-    virtual operator VecMath::Rotation<8>() = 0;    ///< get a Rotation<8> parm
-    virtual operator VecMath::Rotation<9>() = 0;    ///< get a Rotation<9> parm
-    virtual operator VecMath::Rotation<10>() = 0;   ///< get a Rotation<10> parm
+    virtual VecMath::RotationBase toRotationBase() = 0; ///< get a RotationBase parameter
+    virtual VecMath::Rotation<5> toRotation5() = 0;     ///< get a Rotation<5> parm
+    virtual VecMath::Rotation<6> toRotation6() = 0;     ///< get a Rotation<6> parm
+    virtual VecMath::Rotation<7> toRotation7() = 0;     ///< get a Rotation<7> parm
+    virtual VecMath::Rotation<8> toRotation8() = 0;     ///< get a Rotation<8> parm
+    virtual VecMath::Rotation<9> toRotation9() = 0;     ///< get a Rotation<9> parm
+    virtual VecMath::Rotation<10> toRotation10() = 0;   ///< get a Rotation<10> parm
 
 };
 

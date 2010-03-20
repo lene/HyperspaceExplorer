@@ -22,8 +22,6 @@
 
 #include "SingletonHolder.h"
 
-
-
 /// A parameter to a Function with a name, an optional description and a default
 /** This class stores a FunctionParameterValue for the value of the parameter,
  *  and one for its default value. It also stores strings to provide the name of
@@ -51,17 +49,17 @@ class FunctionParameter {
                           const std::string &_description = "");
         ~FunctionParameter();
 
-        double toDouble() { return operator double(); }
-        unsigned toUnsigned() { return operator unsigned(); }
-        int toInt() { return operator int(); }
-        std::string toString() { return operator std::string(); }
+        double toDouble() const;
+        unsigned toUnsigned() const;
+        int toInt() const;
+        std::string toString() const;
 
-        operator VecMath::Rotation<5>() { return m_value->operator VecMath::Rotation<5>(); } 
-        operator VecMath::Rotation<6>() { return m_value->operator VecMath::Rotation<6>(); } 
-        operator VecMath::Rotation<7>() { return m_value->operator VecMath::Rotation<7>(); } 
-        operator VecMath::Rotation<8>() { return m_value->operator VecMath::Rotation<8>(); } 
-        operator VecMath::Rotation<9>() { return m_value->operator VecMath::Rotation<9>(); } 
-        operator VecMath::Rotation<10>() { return m_value->operator VecMath::Rotation<10>(); } 
+        VecMath::Rotation<5> toRotation5() const;
+        VecMath::Rotation<6> toRotation6() const;
+        VecMath::Rotation<7> toRotation7() const;
+        VecMath::Rotation<8> toRotation8() const;
+        VecMath::Rotation<9> toRotation9() const;
+        VecMath::Rotation<10> toRotation10() const;
 
         /// get the name of the function parameter
         const std::string &getName() const;
@@ -99,14 +97,6 @@ class FunctionParameter {
         FunctionParameterValueBase *defaultValue() const;
 
     private:
-        /// get the value if it is of type double
-        operator double();
-        /// get the value if it is of type unsigned
-        operator unsigned();
-        /// get the value if it is of type int
-        operator int();
-        /// get the value if it is of type std::string
-        operator std::string();
 
 	/// Name of the function parameter
         std::string name;
@@ -149,7 +139,6 @@ class FunctionParameterFactory {
 /// Declare ParameterFac as a singleton and generate access to it
 /** \see FunctionParameterValueBase
  *  \ingroup FunctionParameterGroup                                           */
-
 typedef Loki::SingletonHolder<FunctionParameterFactory> TheFunctionParameterFactory;
 
 #endif
