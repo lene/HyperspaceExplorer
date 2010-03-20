@@ -1,10 +1,10 @@
 //
 // C++ Implementation: FunctionParameter
 //
-// Description:
+// Description: 
 //
 //
-// Author: Helge Preuss <lene.preuss@gmail.com>, (C) 2008
+// Author: Lene Preuss <lene.preuss@gmail.com>, (C) 2008
 //
 // Copyright: See COPYING file that comes with this distribution
 //
@@ -66,11 +66,7 @@ template<> FunctionParameterValue<unsigned>::operator unsigned() { return value;
 /// Specialization for type int
 template<> FunctionParameterValue<int>::operator int() { return value; }
 /// Specialization for type std::string
-template<> FunctionParameterValue<std::string>::operator std::string() {
-  std::cerr << "FunctionParameterValue<std::string>::operator std::string(): " << value;
-  for(unsigned i = 0; i < value.length();++i) std::cerr << " " << int(value[i]);
-  std::cerr  << std::endl;
-  return value; }
+template<> FunctionParameterValue<std::string>::operator std::string() { return value; }
 
 /// Specialization for type VecMath::Rotation<5>
 template<> FunctionParameterValue<VecMath::Rotation<5> >::operator VecMath::Rotation<5>() {

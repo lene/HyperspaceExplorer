@@ -2,7 +2,8 @@
  * FunctionTest.cpp
  *
  *  Created on: Feb 19, 2010
- *      Author: helge
+ *  Author: lene.preuss@gmail.com
+ *  License: GPL V2 (see COPYING)
  */
 
 #include "Test_ParametricFunction.h"
@@ -108,22 +109,10 @@ void Test_ParametricFunction::getParameterValueWorks() {
 
   QVERIFY(_function->getParameterValue("double parameter")->toDouble() == Test_ParametricFunction::DOUBLE_PARAMETER_VALUE);
   QVERIFY(_function->getParameterValue("unsigned parameter")->toUnsigned() == Test_ParametricFunction::UNSIGNED_PARAMETER_VALUE);
-  QVERIFY(_function->getParameterValue("int parameter")->toInt() == Test_ParametricFunction::INT_PARAMETER_VALUE);
-  cerr << _function->getParameterMap().toString();
-  shared_ptr< FunctionParameterValueBase > val(_function->getParameterValue("string parameter"));
-  std::string string_parameter = val->toString();
-  std::cerr << "In map:  \"" << string_parameter << "\"  = ";
-  for(unsigned i = 0; i < string_parameter.length();++i) std::cerr << int(string_parameter[i]) << " ";
-  std::cerr << std::endl;
-  std::cerr << "Default: \"" << Test_ParametricFunction::STRING_PARAMETER_VALUE << "\"  = ";
-  for(unsigned i = 0; i < Test_ParametricFunction::STRING_PARAMETER_VALUE.length();++i) std::cerr << int(Test_ParametricFunction::STRING_PARAMETER_VALUE[i]) << " ";
-  std::cerr << std::endl;
-
-  std::cerr << string_parameter.compare(Test_ParametricFunction::STRING_PARAMETER_VALUE)  << " " << string_parameter.length() << " " << Test_ParametricFunction::STRING_PARAMETER_VALUE.length() << std::endl;
-
-  QVERIFY2(string_parameter == Test_ParametricFunction::STRING_PARAMETER_VALUE,
-           (string_parameter+" != "+Test_ParametricFunction::STRING_PARAMETER_VALUE).c_str());
-
+  QVERIFY2(_function->getParameterValue("int parameter")->toInt() == Test_ParametricFunction::INT_PARAMETER_VALUE,
+	   QString::number(_function->getParameterValue("int parameter")->toInt()).toAscii());
+  QVERIFY2(_function->getParameterValue("string parameter")->toString() == Test_ParametricFunction::STRING_PARAMETER_VALUE,
+           _function->getParameterValue("string parameter")->toString().c_str());
 }
 
 void Test_ParametricFunction::settingParameters() {
@@ -143,15 +132,12 @@ void Test_ParametricFunction::settingParameters() {
     QVERIFY(rot[i] == i+1);
   }
 
-  QSKIP("segfaults when trying to set a string parameter", SkipSingle);
   _function->getParameterMap().set("string parameter", std::string("yet another string"));
   QVERIFY(std::string(*(_function->getParameterMap().getValue("string parameter"))) == "yet another string");
 
 }
 
 void Test_ParametricFunction::accessedNonexistentParameter() {
-
-  QSKIP("segfaultsblearghlatorzbabe", SkipSingle);
 
   try {
     shared_ptr<FunctionParameter> parameter(_function->getParameter("nonexistent parameter"));
@@ -197,7 +183,6 @@ void Test_ParametricFunction::setParameters() {
   parameterName = "string parameter";
   it = newParameters.find(parameterName);
   if (it != newParameters.end()) {
-    QSKIP("segfaults when trying to set a string parameter", SkipSingle);
     it->second->setValue("another string");
   } else {
     QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.toString()).c_str());

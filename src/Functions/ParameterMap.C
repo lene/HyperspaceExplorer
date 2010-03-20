@@ -5,25 +5,11 @@
 /** \throw NonexistentParameterAccessed if \p name is not a key. */
 FunctionParameter *ParameterMap::getParameter(const std::string &name) {
   ParameterMap::iterator it = findOrThrow(name);
-  std::cerr << "getParameter(" << name << ")";
-//  if (name == "string parameter") {
-    std::string v = it->second->toString();
-    std::cerr << v;
-    for(unsigned i = 0; i < v.length();++i) std::cerr << ", " << int(v[i]);
-//  }
-  std::cerr  << std::endl;
   return it->second;
 }
 
 /** \throw NonexistentParameterAccessed if \p name is not a key. */
 FunctionParameterValueBase* ParameterMap::getValue(const std::string& name) {
-  std::cerr << "getValue(" << name << ")";
-  if (name == "string parameter") {
-    std::string v = getParameter(name)->value()->toString();
-    std::cerr << v;
-    for(unsigned i = 0; i < v.length();++i) std::cerr << ". " << int(v[i]);
-  }
-  std::cerr  << std::endl;
   return getParameter(name)->value();
 }
 
@@ -32,7 +18,6 @@ std::string ParameterMap::toString() const {
   o << "[\n";
   for (std::map<std::string, FunctionParameter *>::const_iterator i = begin();
        i != end(); ++i) {
-//    std::cerr << "[" << i->first << "]: " << typeid(i->second).name() << " " << i->second << std::endl;
     o << "    " << i->first << ": \t"
       << i->second->getName() << " = ";
     // try casting to every known type, only print if cast succeeds
@@ -50,13 +35,7 @@ std::string ParameterMap::toString() const {
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {
       std::string value = std::string(*(i->second));
-      o << "(string)" << value;
-      {
-        o << " (";
-        for(unsigned i = 0; i < value.length();++i) o << int(value[i]) << " ";
-        o << ")";
-      }
-      o << std::endl;
+      o << "(string)" << value << std::endl;
       continue;
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
     try {
