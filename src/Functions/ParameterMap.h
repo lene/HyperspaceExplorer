@@ -44,7 +44,7 @@ public:
       insert(
         std::make_pair(
           name,
-          ParameterFactory::Instance().createParameterWithValue(name, value)));
+          TheFunctionParameterFactory::Instance().createParameterWithValue(name, value)));
         }
         
     /// Insert a parameter with a name and a default value
@@ -53,7 +53,7 @@ public:
       insert(
         std::make_pair(
           name,
-          ParameterFactory::Instance().createParameterWithDefault(name, defaultValue)));
+          TheFunctionParameterFactory::Instance().createParameterWithDefault(name, defaultValue)));
         }
 
     /// \return The FunctionParameter * that is stored under the key \p name.

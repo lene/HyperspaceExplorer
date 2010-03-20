@@ -28,12 +28,14 @@ INCLUDEPATH += ./Functions
 DEPENDPATH += ./Functions
 HEADERS += Functions/ComplexFunction.h \
            Functions/CustomFunction.h \
-	   Functions/ParametricFunction.h \
-	   Functions/FunctionValueGrid.h \
-	   Functions/Function.h \
+	       Functions/ParametricFunction.h \
+    	   Functions/FunctionValueGrid.h \
+	       Functions/Function.h \
            Functions/Object.h \
            Functions/Surface.h \
            Functions/RealFunction.h \
+           Functions/FunctionParameterValueBase.h \
+           Functions/FunctionParameterValue.h \
            Functions/FunctionParameter.h \
            Functions/ParameterMap.h \
            Functions/FunctionFactory.h \
@@ -46,6 +48,7 @@ SOURCES += Functions/ComplexFunction.C \
            Functions/Surface.C \
            Functions/Object.C \
            Functions/RealFunction.C \
+           Functions/FunctionParameterValue.C \
            Functions/FunctionParameter.C \
            Functions/ParameterMap.C \
            Functions/FunctionFactory.C \

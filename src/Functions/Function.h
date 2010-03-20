@@ -222,7 +222,7 @@ template <typename T> inline
 
       insertParameter(
           name,
-          ParameterFactory::Instance().createParameterWithDefault(name, defaultValue));
+          TheFunctionParameterFactory::Instance().createParameterWithDefault(name, defaultValue));
     }
 
 /// Add a parameter with a name and a default value to the parameter list
@@ -233,7 +233,7 @@ template <typename T> inline
 
       insertParameter(
           name,
-          ParameterFactory::Instance().createParameterWithDefault(name, defaultValue));
+          TheFunctionParameterFactory::Instance().createParameterWithDefault(name, defaultValue));
       _parameters[name]->setValue(new FunctionParameterValue<T>(value));
     }
 
