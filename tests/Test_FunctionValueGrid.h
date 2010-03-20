@@ -13,7 +13,10 @@ class Test_FunctionValueGrid: public QObject {
 
 private slots:
   
+  void initTestCase();
+  
   void initializeGrid();
+  void functionValues();
 
 private:
   
