@@ -72,35 +72,19 @@ void Test_ParametricFunction::definedParametersHaveCorrectValues() {
   QVERIFY(parameter->value()->toDouble() == Test_ParametricFunction::DOUBLE_PARAMETER_VALUE);
 
   QVERIFY(parameters.find("unsigned parameter")->second->value()->toUnsigned() == Test_ParametricFunction::UNSIGNED_PARAMETER_VALUE);
-# ifdef USE_SHARED_PTR
-  parameter.reset(_function->getParameter("unsigned parameter"));
-# else
   parameter = _function->getParameter("unsigned parameter");
-# endif
   QVERIFY(parameter->value()->toUnsigned() == Test_ParametricFunction::UNSIGNED_PARAMETER_VALUE);
 
   QVERIFY(parameters.find("int parameter")->second->value()->toInt() == Test_ParametricFunction::INT_PARAMETER_VALUE);
-# ifdef USE_SHARED_PTR
-  parameter.reset(_function->getParameter("int parameter"));
-# else
   parameter = _function->getParameter("int parameter");
-# endif
   QVERIFY(parameter->value()->toInt() == Test_ParametricFunction::INT_PARAMETER_VALUE);
 
   QVERIFY(parameters.find("string parameter")->second->value()->toString() == Test_ParametricFunction::STRING_PARAMETER_VALUE);
-# ifdef USE_SHARED_PTR
-  parameter.reset(_function->getParameter("string parameter"));
-# else
   parameter = _function->getParameter("string parameter");
-# endif
   QVERIFY(parameter->value()->toString() == Test_ParametricFunction::STRING_PARAMETER_VALUE);
 
   QVERIFY(parameters.find("rotation parameter")->second->value()->toRotation5() == Test_ParametricFunction::ROTATION_PARAMETER_VALUE);
-# ifdef USE_SHARED_PTR
-  parameter.reset(_function->getParameter("rotation parameter"));
-# else
   parameter = _function->getParameter("rotation parameter");
-# endif
   QVERIFY(parameter->value()->toRotation5() == Test_ParametricFunction::ROTATION_PARAMETER_VALUE);
 
 }

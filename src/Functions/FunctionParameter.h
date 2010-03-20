@@ -74,10 +74,14 @@ class FunctionParameter {
         /** Requires a pointer created by ParameterFac::createParameterWithValue().
          *  \todo Can't I call createParameterWithValue() from inside
          *        setValue()?                                                 */
-        template<typename T> void setValue(FunctionParameterValue<T> *value) {
+        template<typename T> void setValue(
+          std::tr1::shared_ptr< FunctionParameterValue<T> > value) {
             _value.reset( value );
         }
-
+        void setValue(
+          std::tr1::shared_ptr< FunctionParameterValueBase > value) {
+          _value = value;
+        }
         /// Set a value from a string, as contained in a QLineEdit
         void setValue(const std::string &newValue);
 
@@ -85,18 +89,23 @@ class FunctionParameter {
         /** Requires a pointer created by ParameterFac::createParameterWithDefault().
          *  \todo Can't I call createParameterWithDefault() from inside
          *        setDefaultValue()?                                          */
-        template<typename T> void setDefaultValue(FunctionParameterValue<T> *defaultValue ) {
+        template<typename T> void setDefaultValue(
+          std::tr1::shared_ptr< FunctionParameterValue<T> > defaultValue ) {
             _defaultValue.reset(defaultValue);
+        }
+        void setDefaultValue(
+          std::tr1::shared_ptr< FunctionParameterValueBase > defaultValue) {
+          _defaultValue = defaultValue;
         }
 
         /// \return Pointer to FunctionParameterValue containing the parameter's value
-        FunctionParameterValueBase *value() const;
+        std::tr1::shared_ptr<FunctionParameterValueBase> value() const;
         /// \return Default parameter value is no value was given
-        FunctionParameterValueBase *defaultValue() const;
+        std::tr1::shared_ptr<FunctionParameterValueBase> defaultValue() const;
 
     private:
 
-	/// Name of the function parameter
+        /// Name of the function parameter
         std::string _name;
         /// Description which is shown in the parameter input dialog
         std::string _description;
@@ -113,22 +122,28 @@ class FunctionParameterFactory {
     public:
         /// Create a FunctionParameter from a value of type T
         template <typename T>
-                FunctionParameter *createParameterWithValue(
+            std::tr1::shared_ptr<FunctionParameter> createParameterWithValue(
                     const std::string &_name, const T &_value) {
-            FunctionParameter *tmp = new FunctionParameter(_name);
-            tmp->setValue(new FunctionParameterValue<T>(_value));
+            std::tr1::shared_ptr< FunctionParameter > tmp(new FunctionParameter(_name));
+            tmp->setValue(
+                std::tr1::shared_ptr< FunctionParameterValueBase >(
+                    new FunctionParameterValue<T>(_value)));
 
             return tmp;
         }
 
         /// Create a FunctionParameter from a default value of type T
         template <typename T>
-                FunctionParameter *createParameterWithDefault(
+            std::tr1::shared_ptr<FunctionParameter> createParameterWithDefault(
                     const std::string &_name, const T &_default,
                     const std::string &_description = "") {
-            FunctionParameter *tmp = new FunctionParameter(_name, _description);
-            tmp->setDefaultValue(new FunctionParameterValue<T>(_default));
-            tmp->setValue(new FunctionParameterValue<T>(_default));
+            std::tr1::shared_ptr<FunctionParameter> tmp(new FunctionParameter(_name, _description));
+            tmp->setDefaultValue(
+                std::tr1::shared_ptr<FunctionParameterValueBase>(
+                    new FunctionParameterValue<T>(_default)));
+            tmp->setValue(
+                std::tr1::shared_ptr<FunctionParameterValueBase>(
+                    new FunctionParameterValue<T>(_default)));
 
             return tmp;
         }

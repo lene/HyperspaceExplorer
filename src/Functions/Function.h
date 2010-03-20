@@ -145,11 +145,11 @@ class Function {
         /// \return The collection of all parameters (and their values)
         ParameterMap getParameters() { return _parameters; }
         /// \return The value of the parameter which is named \p name
-        FunctionParameter *getParameter(const std::string &name) {
+        std::tr1::shared_ptr<FunctionParameter> getParameter(const std::string &name) {
           return _parameters.getParameter(name);
         }
 
-        FunctionParameterValueBase *getParameterValue(const std::string &name) {
+        std::tr1::shared_ptr<FunctionParameterValueBase> getParameterValue(const std::string &name) {
           return _parameters.getValue(name);
         }
 
@@ -199,7 +199,7 @@ class Function {
 
     private:
         /// Declare a new parameter for the Function
-        void insertParameter(const std::string &name, FunctionParameter *defaultValue) {
+        void insertParameter(const std::string &name, std::tr1::shared_ptr<FunctionParameter> defaultValue) {
           _parameters.insert(std::make_pair(name, defaultValue));
         }
 
@@ -234,7 +234,9 @@ template <typename T> inline
       insertParameter(
           name,
           TheFunctionParameterFactory::Instance().createParameterWithDefault(name, defaultValue));
-      _parameters[name]->setValue(new FunctionParameterValue<T>(value));
+      _parameters[name]->setValue(
+          std::tr1::shared_ptr< FunctionParameterValueBase >(
+              new FunctionParameterValue<T>(value)));
     }
 
 #endif

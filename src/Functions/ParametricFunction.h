@@ -24,7 +24,7 @@
 #include "ParameterMap.h"
 #include "Vector.h"
 
-#undef USE_SHARED_PTR
+#define USE_SHARED_PTR
 
 #ifdef USE_SHARED_PTR
 #include <tr1/memory>

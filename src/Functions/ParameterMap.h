@@ -13,7 +13,7 @@
     \author Helge Preuss <lene.preuss@gmail.com>
     \ingroup FunctionParameterGroup
 */
-class ParameterMap : public std::map<std::string, FunctionParameter *> {
+class ParameterMap : public std::map< std::string, std::tr1::shared_ptr<FunctionParameter> > {
 public:
 
     /// Exception that is thrown when a key is accessed that is not present in a ParameterMap.
@@ -27,12 +27,12 @@ public:
         std::invalid_argument("Tried to access parameter \""+which+"\" in ParameterMap "+map.toString()) { }
     };
     
-    ParameterMap(): std::map<std::string, FunctionParameter *> () { }
+    ParameterMap(): std::map< std::string, std::tr1::shared_ptr<FunctionParameter> > () { }
     
     /// Create a ParameterMap containing one parameter
     template<typename T> ParameterMap(const std::string &name,
                                       const T &value):
-            std::map<std::string, FunctionParameter *> () {
+            std::map< std::string, std::tr1::shared_ptr<FunctionParameter> > () {
         insertByValue(name, value);
     }
     
@@ -57,10 +57,10 @@ public:
         }
 
     /// \return The FunctionParameter * that is stored under the key \p name.
-    FunctionParameter *getParameter(const std::string &name);
+    std::tr1::shared_ptr< FunctionParameter > getParameter(const std::string &name);
     
     /// \return The FunctionParameterValue * that is stored under the key \p name.
-    FunctionParameterValueBase *getValue(const std::string &name);
+    std::tr1::shared_ptr< FunctionParameterValueBase> getValue(const std::string &name);
 
     /// Sets the value of the parameter stored under the key \p name to \p value.
     /** \param T The type of parameter that is to be changed. \p T must be either

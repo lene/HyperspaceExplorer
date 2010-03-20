@@ -49,12 +49,12 @@ void FunctionParameter::setDescription (const std::string &description) {
     _description = description;
 }
 
-FunctionParameterValueBase *FunctionParameter::value() const {
-    return _value.get();
+std::tr1::shared_ptr< FunctionParameterValueBase > FunctionParameter::value() const {
+    return _value;
 }
 
-FunctionParameterValueBase *FunctionParameter::defaultValue() const {
-    return _defaultValue.get();
+std::tr1::shared_ptr< FunctionParameterValueBase > FunctionParameter::defaultValue() const {
+    return _defaultValue;
 }
 
 void FunctionParameter::setValue(const std::string &newValue) {
