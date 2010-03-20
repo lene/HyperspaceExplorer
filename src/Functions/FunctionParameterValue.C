@@ -68,58 +68,58 @@ template<> FunctionParameterValue<VecMath::Rotation<10> >::FunctionParameterValu
 
 
 /// Specialization for type double
-template<> double FunctionParameterValue<double>::toDouble() { return value; }
+template<> double FunctionParameterValue<double>::toDouble() const { return value; }
 /// Specialization for type unsigned
-template<> unsigned FunctionParameterValue<unsigned>::toUnsigned() { return value; }
+template<> unsigned FunctionParameterValue<unsigned>::toUnsigned() const { return value; }
 /// Specialization for type int
-template<> int FunctionParameterValue<int>::toInt() { return value; }
+template<> int FunctionParameterValue<int>::toInt() const { return value; }
 
 /// Specialization for type VecMath::Rotation<5>
-template<> VecMath::Rotation<5> FunctionParameterValue<VecMath::Rotation<5> >::toRotation5() {
+template<> VecMath::Rotation<5> FunctionParameterValue<VecMath::Rotation<5> >::toRotation5() const {
     return (VecMath::Rotation<5>)value;
 }
 /// Specialization for type VecMath::Rotation<5>
-template<> VecMath::RotationBase FunctionParameterValue<VecMath::Rotation<5> >::toRotationBase() {
+template<> VecMath::RotationBase FunctionParameterValue<VecMath::Rotation<5> >::toRotationBase() const {
     return (VecMath::Rotation<5>)value;
 }
 /// Specialization for type VecMath::Rotation<6>
-template<> VecMath::Rotation<6> FunctionParameterValue<VecMath::Rotation<6> >::toRotation6() {
+template<> VecMath::Rotation<6> FunctionParameterValue<VecMath::Rotation<6> >::toRotation6() const {
     return (VecMath::Rotation<6>)value;
 }
 /// Specialization for type VecMath::Rotation<6>
-template<> VecMath::RotationBase FunctionParameterValue<VecMath::Rotation<6> >::toRotationBase() {
+template<> VecMath::RotationBase FunctionParameterValue<VecMath::Rotation<6> >::toRotationBase() const {
     return (VecMath::Rotation<6>)value;
 }
 /// Specialization for type VecMath::Rotation<7>
-template<> VecMath::Rotation<7> FunctionParameterValue<VecMath::Rotation<7> >::toRotation7() {
+template<> VecMath::Rotation<7> FunctionParameterValue<VecMath::Rotation<7> >::toRotation7() const {
     return (VecMath::Rotation<7>)value;
 }
 /// Specialization for type VecMath::Rotation<7>
-template<> VecMath::RotationBase FunctionParameterValue<VecMath::Rotation<7> >::toRotationBase() {
+template<> VecMath::RotationBase FunctionParameterValue<VecMath::Rotation<7> >::toRotationBase() const {
     return (VecMath::Rotation<7>)value;
 }
 /// Specialization for type VecMath::Rotation<8>
-template<> VecMath::Rotation<8> FunctionParameterValue<VecMath::Rotation<8> >::toRotation8() {
+template<> VecMath::Rotation<8> FunctionParameterValue<VecMath::Rotation<8> >::toRotation8() const {
     return (VecMath::Rotation<8>)value;
 }
 /// Specialization for type VecMath::Rotation<8>
-template<> VecMath::RotationBase FunctionParameterValue<VecMath::Rotation<8> >::toRotationBase() {
+template<> VecMath::RotationBase FunctionParameterValue<VecMath::Rotation<8> >::toRotationBase() const {
     return (VecMath::Rotation<8>)value;
 }
 /// Specialization for type VecMath::Rotation<9>
-template<> VecMath::Rotation<9> FunctionParameterValue<VecMath::Rotation<9> >::toRotation9() {
+template<> VecMath::Rotation<9> FunctionParameterValue<VecMath::Rotation<9> >::toRotation9() const {
     return (VecMath::Rotation<9>)value;
 }
 /// Specialization for type VecMath::Rotation<9>
-template<> VecMath::RotationBase FunctionParameterValue<VecMath::Rotation<9> >::toRotationBase() {
+template<> VecMath::RotationBase FunctionParameterValue<VecMath::Rotation<9> >::toRotationBase() const {
     return (VecMath::Rotation<9>)value;
 }
 /// Specialization for type VecMath::Rotation<10>
-template<> VecMath::Rotation<10> FunctionParameterValue<VecMath::Rotation<10> >::toRotation10() {
+template<> VecMath::Rotation<10> FunctionParameterValue<VecMath::Rotation<10> >::toRotation10() const {
     return (VecMath::Rotation<10>)value;
 }
 /// Specialization for type VecMath::Rotation<10>
-template<> VecMath::RotationBase FunctionParameterValue<VecMath::Rotation<10> >::toRotationBase() {
+template<> VecMath::RotationBase FunctionParameterValue<VecMath::Rotation<10> >::toRotationBase() const {
     return (VecMath::Rotation<10>)value;
 }
 

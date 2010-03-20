@@ -237,7 +237,7 @@ void Test_Function::rotationAsParameter() {
   f.SetParameters(newParameters);
   
   parameter = f.getParameter("rotation parameter");
-  rot = parameter->value()->toRotation5();
+  rot = parameter->toRotation5();
   
   for (unsigned i = 0; i < VecMath::NumAxes<5>::num; ++i) {
     QVERIFY(rot[i] == i);

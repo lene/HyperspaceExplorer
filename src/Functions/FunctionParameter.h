@@ -71,8 +71,7 @@ class FunctionParameter {
         void setDescription(const std::string &_description);
 
         /// set the value of the parameter.
-        /** Requires a pointer created by
-         *  ParameterFac::createParameterWithValue().
+        /** Requires a pointer created by ParameterFac::createParameterWithValue().
          *  \todo Can't I call createParameterWithValue() from inside
          *        setValue()?                                                 */
         template<typename T> void setValue(FunctionParameterValue<T> *_value) {
@@ -83,8 +82,7 @@ class FunctionParameter {
         void setValue(std::string _value);
 
         /// set the default value of the parameter.
-        /** Requires a pointer created by
-         *  ParameterFac::createParameterWithDefault().
+        /** Requires a pointer created by ParameterFac::createParameterWithDefault().
          *  \todo Can't I call createParameterWithDefault() from inside
          *        setDefaultValue()?                                          */
         template<typename T> void setDefaultValue(FunctionParameterValue<T> *_defaultValue ) {

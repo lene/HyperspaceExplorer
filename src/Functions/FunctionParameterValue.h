@@ -46,7 +46,7 @@ template <typename T> class FunctionParameterValue:
 
         /** Default implementation for cast to double. Concrete implementation
          *  will be defined in FunctionParameterValue<double>.                */
-        virtual double toDouble() {
+        virtual double toDouble() const {
             throw WrongParameterTypeException("FunctionParameterValue",
                                               "toDouble()", "");
             return 0.;
@@ -54,7 +54,7 @@ template <typename T> class FunctionParameterValue:
 	
         /** Default implementation for cast to unsigned. Concrete implementation
          *  will be defined in FunctionParameterValue<unsigned>.              */
-        virtual unsigned toUnsigned() {
+        virtual unsigned toUnsigned() const {
             throw WrongParameterTypeException("FunctionParameterValue",
                                               "operator unsigned ",
                                               "did you explicitly cast the operand to unsigned? you should!");
@@ -63,14 +63,14 @@ template <typename T> class FunctionParameterValue:
 
         /** Default implementation for cast to int. Concrete implementation
          *  will be defined in FunctionParameterValue<int>.                   */
-        virtual int toInt() {
+        virtual int toInt() const {
             throw WrongParameterTypeException("FunctionParameterValue",
                                               "operator int", "");
             return 0;
         }
 
         /// Converts the parameter to string for printing
-        virtual std::string toString() {
+        virtual std::string toString() const {
             std::ostringstream o;
             o << value;
             return o.str();
@@ -79,7 +79,7 @@ template <typename T> class FunctionParameterValue:
         /** Default implementation for cast to RotationBase. Concrete
          *  implementation will be defined in FunctionParameterValue< Rotation<D> >.
          */
-        virtual VecMath::RotationBase toRotationBase() {
+        virtual VecMath::RotationBase toRotationBase() const {
             throw WrongParameterTypeException("FunctionParameterValue",
                                               "operator VecMath::RotationBase", "");
             return VecMath::Rotation<5>();
@@ -88,7 +88,7 @@ template <typename T> class FunctionParameterValue:
         /** Default implementation for cast to Rotation<5>. Concrete
          *  implementation will be defined in FunctionParameterValue< Rotation<5> >.
          */
-        virtual VecMath::Rotation<5> toRotation5() {
+        virtual VecMath::Rotation<5> toRotation5() const {
             throw WrongParameterTypeException("FunctionParameterValue",
                                               "operator VecMath::Rotation<5>", "");
             return VecMath::Rotation<5>();
@@ -97,7 +97,7 @@ template <typename T> class FunctionParameterValue:
         /** Default implementation for cast to Rotation<6>. Concrete
          *  implementation will be defined in FunctionParameterValue< Rotation<6> >.
          */
-        virtual VecMath::Rotation<6> toRotation6() {
+        virtual VecMath::Rotation<6> toRotation6() const {
             throw WrongParameterTypeException("FunctionParameterValue",
                                               "operator VecMath::Rotation<6>", "");
             return VecMath::Rotation<6>();
@@ -106,7 +106,7 @@ template <typename T> class FunctionParameterValue:
         /** Default implementation for cast to Rotation<7>. Concrete
          *  implementation will be defined in FunctionParameterValue< Rotation<7> >.
          */
-        virtual VecMath::Rotation<7> toRotation7() {
+        virtual VecMath::Rotation<7> toRotation7() const {
             throw WrongParameterTypeException("FunctionParameterValue",
                                               "operator VecMath::Rotation<7>", "");
             return VecMath::Rotation<7>();
@@ -114,7 +114,7 @@ template <typename T> class FunctionParameterValue:
         /** Default implementation for cast to Rotation<8>. Concrete
          *  implementation will be defined in FunctionParameterValue< Rotation<8> >.
          */
-        virtual VecMath::Rotation<8> toRotation8() {
+        virtual VecMath::Rotation<8> toRotation8() const {
             throw WrongParameterTypeException("FunctionParameterValue",
                                               "operator VecMath::Rotation<8>", "");
             return VecMath::Rotation<8>();
@@ -122,7 +122,7 @@ template <typename T> class FunctionParameterValue:
         /** Default implementation for cast to Rotation<9>. Concrete
          *  implementation will be defined in FunctionParameterValue< Rotation<9> >.
          */
-        virtual VecMath::Rotation<9> toRotation9() {
+        virtual VecMath::Rotation<9> toRotation9() const {
             throw WrongParameterTypeException("FunctionParameterValue",
                                               "operator VecMath::Rotation<9>", "");
             return VecMath::Rotation<9>();
@@ -130,7 +130,7 @@ template <typename T> class FunctionParameterValue:
         /** Default implementation for cast to Rotation<10>. Concrete
          *  implementation will be defined in FunctionParameterValue< Rotation<10> >.
          */
-        virtual VecMath::Rotation<10> toRotation10() {
+        virtual VecMath::Rotation<10> toRotation10() const {
             throw WrongParameterTypeException("FunctionParameterValue",
                                               "operator VecMath::Rotation<10>", "");
             return VecMath::Rotation<10>();
