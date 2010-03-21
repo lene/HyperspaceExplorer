@@ -35,7 +35,7 @@ void Test_FunctionValueGrid::initTestCase() {
   Test_ParametricFunction::ParametricFunctionTestImplementation *f = new Test_ParametricFunction::ParametricFunctionTestImplementation();
   shared_ptr<ParametricFunction<4, 3> > pf(f);
   
-  _grid = shared_ptr< FunctionValueGrid<4, 3> >(new FunctionValueGrid<4, 3>(pf, DEFAULT_XMIN, DEFAULT_XMAX, DEFAULT_GRID));
+  _grid = shared_ptr< FunctionValueGrid<4, 3> >(new FunctionValueGrid<4, 3>(pf, DEFAULT_GRID, DEFAULT_XMIN, DEFAULT_XMAX));
 
 }
 
@@ -45,11 +45,13 @@ void Test_FunctionValueGrid::initializeGrid() {
   Test_ParametricFunction::ParametricFunctionTestImplementation *f = new Test_ParametricFunction::ParametricFunctionTestImplementation();
   shared_ptr<ParametricFunction<4, 3> > pf(f);
   FunctionValueGrid<4, 3> grid2(pf);
-  
-  FunctionValueGrid<4, 3> grid3(pf, DEFAULT_XMIN, DEFAULT_XMAX, DEFAULT_GRID);
+
+  FunctionValueGrid<4, 3> grid3(pf, DEFAULT_GRID);
+
+  FunctionValueGrid<4, 3> grid4(pf, DEFAULT_GRID, DEFAULT_XMIN, DEFAULT_XMAX);
  
 }
-
+ 
 void Test_FunctionValueGrid::functionValues() {
   FunctionValueGrid<4, 3>::value_storage_type values = _grid->getValues();
   for (unsigned i = 0; i < DEFAULT_GRID_SIZE; ++i) {
@@ -99,7 +101,7 @@ void Test_FunctionValueGrid::inhomogenousGridSize() {
 void Test_FunctionValueGrid::nonconstantFunctionAndBoundaries() {
   SummedArgsTestImplementation *f = new SummedArgsTestImplementation();
   shared_ptr<ParametricFunction<4, 3> > pf(f);
-  FunctionValueGrid<4, 3> grid(pf, DEFAULT_XMIN, DEFAULT_XMAX, DEFAULT_GRID);
+  FunctionValueGrid<4, 3> grid(pf, DEFAULT_GRID, DEFAULT_XMIN, DEFAULT_XMAX);
   QVERIFY(f->max_w > f->min_w);
   
   FunctionValueGrid<4, 3>::value_storage_type values = grid.getValues();

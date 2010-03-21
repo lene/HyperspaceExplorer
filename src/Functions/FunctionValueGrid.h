@@ -29,25 +29,37 @@
 
 #include <tr1/memory>
 
-/// Values of a ParametricFunction stored on a grid representation of its parameter space
-/** \param N The dimension of the definition vector space.
+/// Values of a ParametricFunction stored on a grid representation of its parameter space.
+/** This class evaluates the parametric equation represented by a ParametricFunction
+ *  on points throughout its definition space and stores the values of the function
+ *  at those points in a \p P dimensional grid.
+ *
+ *  \param N The dimension of the definition vector space.
  *  \param P The dimension of the parameter vector space.
  */
 template <unsigned N, unsigned P>
   class FunctionValueGrid {
+  
     public:
 
+      /// The type of the function whose values are stored in this class.
       typedef ParametricFunction<N, P> function_type;
+      /// The type of pointers to function_type, used for late binding.
       typedef std::tr1::shared_ptr<function_type> function_ptr_type;
+      /// The type of the lower and upper bounds of the definition space.
       typedef VecMath::Vector<P> boundary_type;
+      /// Type for storing the size of the grid in all required dimensions.
       typedef VecMath::Vector<P, unsigned> grid_size_type;
+      /// Type for the storage of the function values on all grid points.
       typedef VecMath::NestedVector< VecMath::Vector<N>, P > value_storage_type;
       
       FunctionValueGrid();
       FunctionValueGrid(const function_ptr_type &f);
       FunctionValueGrid(const function_ptr_type &f,
-                        const FunctionValueGrid::boundary_type &x_min, const FunctionValueGrid::boundary_type &x_max,
                         const FunctionValueGrid::grid_size_type &grid_size);
+      FunctionValueGrid(const function_ptr_type &f,
+                        const FunctionValueGrid::grid_size_type &grid_size,
+                        const FunctionValueGrid::boundary_type &x_min, const FunctionValueGrid::boundary_type &x_max);
       virtual ~FunctionValueGrid() { }
 
       void setGridSize(const FunctionValueGrid::grid_size_type &grid_size);
@@ -75,14 +87,25 @@ template <unsigned N, unsigned P>
 template <unsigned N, unsigned P>
   FunctionValueGrid<N, P>::FunctionValueGrid(
         const FunctionValueGrid::function_ptr_type &f):
-    _f(f), _x_min(), _x_max(), _grid_size(), _function_values() { }
+    _f(f), _x_min(), _x_max(), _grid_size(), _function_values() { 
+  setBoundaries(f->getDefaultXMin(), f->getDefaultXMax());    
+}
 
 template <unsigned N, unsigned P>
   FunctionValueGrid<N, P>::FunctionValueGrid(
         const FunctionValueGrid::function_ptr_type &f,
-        const FunctionValueGrid::boundary_type &x_min,
-        const FunctionValueGrid::boundary_type &x_max,
         const FunctionValueGrid::grid_size_type &grid_size):
+      _f(f), _x_min(), _x_max(), _grid_size(), _function_values() {
+    setGridSize(grid_size);
+    setBoundaries(f->getDefaultXMin(), f->getDefaultXMax());
+  }
+
+template <unsigned N, unsigned P>
+  FunctionValueGrid<N, P>::FunctionValueGrid(
+        const FunctionValueGrid::function_ptr_type &f,
+        const FunctionValueGrid::grid_size_type &grid_size,
+        const FunctionValueGrid::boundary_type &x_min,
+        const FunctionValueGrid::boundary_type &x_max):
       _f(f), _x_min(), _x_max(), _grid_size(), _function_values() {
     setGridSize(grid_size);
     setBoundaries(x_min, x_max);  

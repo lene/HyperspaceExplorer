@@ -26,19 +26,21 @@
 
 #include <tr1/memory>
 
-/// A function describing a \p P -dimensional surface in \p N -dimensional space
+/// A function describing a \p P dimensional surface in \p N dimensional space
 /** See also http://en.wikipedia.org/wiki/Parametric_surface for an explanation
- *  of two-dimensional surfaces in three-dimensional space, or ParametricFunction<3, 2>.
+ *  of two-dimensional surfaces in three-dimensional space, ie. a
+ *  ParametricFunction < 3, 2 >.
  *
  *  A ParametricFunction has the following attributes:
  *  - A name.
  *  - An optional longer description.
- *  - An optional set of paramters, such as the radius of a sphere.
- *  - A definition space in \f$ R^P \f$.
- *  It also has a mathematical function \f$ f: R^P \rightarrow \R^N \f$ which
+ *  - An optional set of parameters, such as the radius of a sphere.
+ *  - A definition space in \f$ R^P \f$. It defaults to extending from -1 to 1
+ *    in every coordinate of the parameter vector space.
+ *  It also has a mathematical function \f$ f: R^P \rightarrow R^N \f$ which
  *  defines the parametric \p P -surface in \p N -space. This function must be
- *  implemented in a daughter class of ParametricFunction<N, P> as the pure
- *  virtual function f().
+ *  implemented in a daughter class of ParametricFunction < N, P > as the pure
+ *  virtual function \see f().
  *
  *  \param N The dimension of the definition vector space.
  *  \param P The dimension of the parameter vector space.
@@ -48,7 +50,9 @@ template <unsigned N, unsigned P>
 
     public:
 
+      /// The argument type for the function - a \p P dimensional Vector.
       typedef VecMath::Vector<P> argument_type;
+      /// The return type of the function - a \p N dimensional Vector.
       typedef VecMath::Vector<N> return_type;
 
       ParametricFunction(): 
@@ -58,24 +62,31 @@ template <unsigned N, unsigned P>
         
       virtual ~ParametricFunction() { }
 
+      /// The function defining the parametric equation for the \p P -surface.
+      /** Implement this in every derived class.
+       *  \param x Value of the parameter to be evaluated.
+       *  \return The evaluation of the parametric equation at point \p x.
+       */
       virtual return_type f(const argument_type &x) = 0;
 
+      /// \return The name of the function as string.
       std::string getName() const { return _function_name; }
       
+      /// \return An optional description of the function.
       std::string getDescription() const { return _function_description; }
       
-      /** \return number of parameters for the function                     */
+      /// \return Number of additional parameters for the function.                  
       unsigned getNumParameters() const { return _parameters.size(); }
 
-      /// \return The collection of all parameters (and their values)
+      /// \return The collection of all additional parameters (and their values).
       ParameterMap getParameterMap() const { return _parameters; }
 
-      /// \return Pointer to the FunctionParameter which is named \p name
+      /// \return Pointer to the FunctionParameter which is named \p name.
       FunctionParameter::parameter_ptr_type getParameter(const std::string &name) {
         return FunctionParameter::parameter_ptr_type(_parameters.getParameter(name));
       }
 
-      /// \return Pointer to the FunctionParameterValue which is named \p name
+      /// \return Pointer to the FunctionParameterValue which is named \p name.
       FunctionParameter::value_ptr_type getParameterValue(const std::string &name) {
         return FunctionParameter::value_ptr_type(_parameters.getValue(name));
       }
@@ -87,8 +98,10 @@ template <unsigned N, unsigned P>
 
     protected:
 
+      /// Give the function a name - only allowed for classes implementing ParametricFunction.
       void setName(const std::string &newName) { _function_name = newName; }
 
+      /// Give the function a description - only allowed for classes implementing ParametricFunction.
       void setDescription(const std::string &newDescription) { _function_description = newDescription; }
 
       /// Add a parameter with a name and a default value to the parameter list
@@ -100,6 +113,7 @@ template <unsigned N, unsigned P>
                                                   const T &parameter_default_value,
                                                   const T &parameter_value);
 
+      /// Change the definition space on which this function is evaluated by default.
       void setDefaultBoundaries(const ParametricFunction::argument_type &x_min, 
                                 const ParametricFunction::argument_type &x_max);
 
@@ -112,7 +126,9 @@ template <unsigned N, unsigned P>
       ParametricFunction::argument_type _default_x_max;
 };
 
-/** \param x_min L
+/** \param x_min Lower boundary of the default definition space.
+ *  \param x_max Upper boundary of the default definition space.
+ */
 template <unsigned N, unsigned P>
 inline
 void ParametricFunction<N, P>::setDefaultBoundaries(
