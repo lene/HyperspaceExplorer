@@ -7,6 +7,7 @@
 
 class RotopeInterface;
 
+/// Unit tests for Rotopes
 class Test_Rotope: public QObject {
 
   Q_OBJECT

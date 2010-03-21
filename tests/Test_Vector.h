@@ -3,7 +3,7 @@
 
 #include <QtTest/QtTest>
 
-
+/// Unit tests for class VecMath::Vector
 class Test_Vector: public QObject {
 
     Q_OBJECT

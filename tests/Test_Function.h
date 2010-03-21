@@ -5,8 +5,7 @@
 
 #include "Function.h"
 
-class Function;
-
+/// Unit tests for class Function
 class Test_Function: public QObject {
 
   Q_OBJECT

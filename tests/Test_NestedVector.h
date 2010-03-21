@@ -5,6 +5,7 @@
 
 #include "NestedVector.h"
 
+/// Unit tests for class VecMath::NestedVector
 class Test_NestedVector: public QObject {
 
   Q_OBJECT

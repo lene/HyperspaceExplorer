@@ -5,6 +5,7 @@
 
 #include "RealFunction.h"
 
+/// Unit tests for class RealFunction and its implementations
 class Test_RealFunction: public QObject {
 
     Q_OBJECT

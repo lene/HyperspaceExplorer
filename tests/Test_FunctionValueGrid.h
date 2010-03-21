@@ -7,6 +7,7 @@
 
 #include <tr1/memory>
 
+/// Unit tests for class FunctionValueGrid
 class Test_FunctionValueGrid: public QObject {
 
   Q_OBJECT

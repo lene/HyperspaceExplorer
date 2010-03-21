@@ -1,6 +1,6 @@
 /*
-    <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) <year>  <name of author>
+    Hyperspace Explorer - vizualizing higher-dimensional geometry
+    Copyright (C) 2010  Lene Preuss <lene.preuss@gmail.com>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@
 
 #include <QtTest/QtTest>
 
+/// Unit tests for class Realm
 class Test_Realm: public QObject {
   
     Q_OBJECT

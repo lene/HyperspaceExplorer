@@ -5,6 +5,7 @@
 
 #include "Surface.h"
 
+/// Unit tests for class Surface and its implementations
 class Test_Surface: public QObject {
 
     Q_OBJECT

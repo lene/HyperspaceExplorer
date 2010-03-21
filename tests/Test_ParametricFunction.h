@@ -9,6 +9,7 @@
 
 #include <tr1/memory>
 
+/// Unit tests for class ParametricFunction
 class Test_ParametricFunction: public QObject {
 
   Q_OBJECT

@@ -3,7 +3,7 @@
 
 #include <QtTest/QtTest>
 
-
+/// Unit tests for class VecMath::Rotation
 class Test_Rotation: public QObject {
 
     Q_OBJECT
