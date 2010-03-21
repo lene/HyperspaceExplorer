@@ -1,3 +1,24 @@
+/*
+    Hyperspace Explorer - vizualizing higher-dimensional geometry
+    Copyright (C) 2010  Lene Preuss <lene.preuss@gmail.com>
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+    (Seriously, has anyone ever done this?)
+
+*/
+
 #ifndef LOOP_HELPER_H
 #define LOOP_HELPER_H
 
@@ -20,6 +41,7 @@ class LoopHelper {
         std::tr1::shared_ptr< ParametricFunction< N, P > > f
     );
     
+    /// Loop over one dimension, if necessary loop over lower dimensions too.
     void recalculateOneDimensionOfGrid(
         VecMath::NestedVector< VecMath::Vector<N>, dimension > &values,
         VecMath::Vector<P> &current_x
@@ -40,7 +62,7 @@ class LoopHelper< N, P, 1 > {
 
   public:
     
-    /// Set the function, boundaries and grid size we're working with
+    /// Set the function, boundaries and grid size we're working with.
     LoopHelper(
         const VecMath::Vector<P> &x_min,
         const VecMath::Vector<P> &x_max,
@@ -48,6 +70,7 @@ class LoopHelper< N, P, 1 > {
         std::tr1::shared_ptr< ParametricFunction< N, P > > f
     );
 
+    /// Loop over one dimension, evaluating _f and filling \p values.
     void recalculateOneDimensionOfGrid(
         VecMath::NestedVector< VecMath::Vector<N>, 1 > &values,
         VecMath::Vector<P> &current_x

@@ -15,6 +15,7 @@
     You should have received a copy of the GNU General Public License along
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+    (Seriously, has anyone ever done this?)
 
 */
 
@@ -37,6 +38,7 @@
  *  - An optional set of parameters, such as the radius of a sphere.
  *  - A definition space in \f$ R^P \f$. It defaults to extending from -1 to 1
  *    in every coordinate of the parameter vector space.
+ *
  *  It also has a mathematical function \f$ f: R^P \rightarrow R^N \f$ which
  *  defines the parametric \p P -surface in \p N -space. This function must be
  *  implemented in a daughter class of ParametricFunction < N, P > as the pure
