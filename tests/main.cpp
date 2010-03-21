@@ -28,7 +28,7 @@ int main(int argc, char **argv) {
 
     unsigned failedTestSuites = 0;
 
-    if (qExec(new VectorTest)) failedTestSuites++;
+    if (qExec(new Test_Vector)) failedTestSuites++;
     if (qExec(new Test_Matrix)) failedTestSuites++;
     if (qExec(new Test_NestedVector)) failedTestSuites++;
     if (qExec(new Test_Rotation)) failedTestSuites++;

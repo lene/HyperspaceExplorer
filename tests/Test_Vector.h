@@ -4,7 +4,7 @@
 #include <QtTest/QtTest>
 
 
-class VectorTest: public QObject {
+class Test_Vector: public QObject {
 
     Q_OBJECT
 
