@@ -464,7 +464,7 @@ QAction *&C4DView::Menu4D::getAction(const QString &key) {
         if (actionMap.count(key)) return actionMap[key];
     }
     ///  \todo Throw a real exception
-    throw key+" not found in list of menu entries!";
+    throw std::logic_error((key+" not found in list of menu entries!").toStdString());
 }
 
 

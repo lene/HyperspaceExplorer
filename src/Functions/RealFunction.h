@@ -327,7 +327,11 @@ namespace {
 /** \ingroup RealGroup                                                    */
 class GravitationPotential: public RealFunction {
     public:
-        GravitationPotential(): RealFunction("GravitationPotential"), _M(1.), _R(0.25) { }
+        GravitationPotential(): RealFunction("GravitationPotential"), _M(1.), _R(0.25) {
+          std::cerr << "default c'tor" << std::endl;
+          doCharacteristicStuff();
+        }
+        
         GravitationPotential (double tmin, double tmax, double dt,
                               double umin, double umax, double du,
                               double vmin, double vmax, double dv,
@@ -347,6 +351,9 @@ class GravitationPotential: public RealFunction {
         }
 
     protected:
+      
+        void doCharacteristicStuff();
+        
         virtual function_type f;
 
         double _M;   ///< Mass of the generating sphere(not really M, but M/R^3)

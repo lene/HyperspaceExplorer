@@ -150,7 +150,9 @@ void C4DView::ObjectGasket() {
 
 void C4DView::ObjectRotope() {
     Menu()->updateFunctionMenu("Rotope");
-
+//    setF(new GravitationPotential());
+//    setF(new GravitationPotential(-1, 1, 0.5, -1, 1, 0.5, -1, 1, 0.5));
+//    F()->ReInit(-1, 1, 0.5, -1, 1, 0.5, -1, 1, 0.5);
     setF(new Rotope("ERRE"));
 
     AssignValues(F());

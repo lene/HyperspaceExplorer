@@ -98,7 +98,7 @@ void RealFunction::InitMem (void) {
 void RealFunction::Initialize () {
     _X = vec4vec3D(getTsteps()+2);
 //    ColMgrMgr::Instance().setFunction(this);
-
+//    std::cerr << "RealFunction::Initialize() tsteps: " << getTsteps() <<  " usteos: " << getUsteps() << " vsteps: " << getVsteps() << std::endl;
     for (unsigned t = 0; t <= getTsteps()+1; t++) {
         _X[t].resize(getUsteps()+2);
 
@@ -111,6 +111,7 @@ void RealFunction::Initialize () {
             }
         }
     }
+//    std::cerr << "Initialize: _X.size(): " << _X.size() << std::endl;
 
     calibrateColors();
 
@@ -118,11 +119,12 @@ void RealFunction::Initialize () {
 }
 
 void RealFunction::calibrateColors() const {
+//  std::cerr << "calibrateColors: _X.size(): " << _X.size() << std::endl;
     double Wmin = 0., Wmax = 0.;
     for (unsigned t = 0; t <= getTsteps()+1; t++) {
         for (unsigned u = 0; u <= getUsteps()+1; u++) {
             for (unsigned v = 0; v <= getVsteps()+1; v++) {
-                if (_X[t][u][v][3] < Wmin) Wmin = _X[t][u][v][3];
+                if (_X[t][u][v][3] < Wmin) Wmin = _X[t][u][v][3]; 
                 if (_X[t][u][v][3] > Wmax) Wmax = _X[t][u][v][3];
             }
         }
@@ -155,8 +157,11 @@ void RealFunction::ReInit(double tmin, double tmax, double dt,
                           double umin, double umax, double du,
                           double vmin, double vmax, double dv) {
 
-    SingletonLog::Instance()  << "Function::ReInit(" << tmin << ", " << tmax << ", " << dt << ", "
-	<< umin << ", " << umax<< ", " << du << ", " << vmin << ", " << vmax << ", " << dv << ")\n";
+    SingletonLog::Instance()  
+      << "RealFunction::ReInit(" 
+      << tmin << ", " << tmax << ", " << dt << ", "
+      << umin << ", " << umax<< ", " << du << ", " 
+      << vmin << ", " << vmax << ", " << dv << ")\n";
 
   getTmin() = tmin;   getTmax() = tmax;   getDt() = dt;
   getUmin() = umin;   getUmax() = umax;   getDu() = du;
@@ -403,9 +408,9 @@ Vector<4> &Hypersphere::normal (double tt, double uu, double vv) {
  *  \param _r		minor radius
  *  \param _rho		subminor radius */
 Torus1::Torus1 (double tmin, double tmax, double dt,
-		double umin, double umax, double du,
-		double vmin, double vmax, double dv,
-		double R, double r, double rho):
+                double umin, double umax, double du,
+                double vmin, double vmax, double dv,
+                double R, double r, double rho):
     RealFunction ("Torus 1",
                 tmin, tmax, dt, umin, umax, du, vmin, vmax, dv),
     _R (R), _r (r), _rho (rho) {
@@ -493,7 +498,7 @@ Vector<4> &Torus2::f (double tt, double uu, double vv) {
 Fr3r::Fr3r (double tmin, double tmax, double dt,
             double umin, double umax, double du,
             double vmin, double vmax, double dv):
-    RealFunction ("1/(rÂ²+1)",
+    RealFunction ("1/(r²+1)",
                   tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) {
   Initialize ();
 }
@@ -541,9 +546,22 @@ GravitationPotential::GravitationPotential (double xmin, double xmax, double dx,
         RealFunction ("Gravitation Potential",
                       xmin, xmax, dx, ymin, ymax, dy, zmin, zmax, dz),
   _M (M), _R (R) {
+#if 0    
+  std::cerr << "c'tor(" 
+  << xmin << ", " << xmax << ", " << dx << ", "
+  << ymin << ", " << ymax << ", " << dy << ", "
+  << zmin << ", " << zmax << ", " << dz << ", "
+  << M << ", " << R << ")"
+  << std::endl;
+#endif  
+  doCharacteristicStuff();
+}
+void GravitationPotential::doCharacteristicStuff() {
       declareParameter("M", 1.0);
       declareParameter("R", 0.25);
+//      std::cerr << "doCharacteristicStuff():" << std::endl;
       Initialize ();
+//      std::cerr << getParameters().toString() << std::endl;
 }
 
 /** GravitationPotential defining function
@@ -553,7 +571,7 @@ GravitationPotential::GravitationPotential (double xmin, double xmax, double dx,
  *  \return     value of defining function at point in question
  */
 Vector<4> &GravitationPotential::f (double tt, double uu, double vv) {
-  const double G = 1;		//  arbitrary value for gravitation constant
+  const double G = 1;     //  arbitrary value for gravitation constant
   _F[0] = tt;
   _F[1] = uu;
   _F[2] = vv;
@@ -584,7 +602,7 @@ Vector<4> &GravitationPotential::f (double tt, double uu, double vv) {
 Fr3rSin::Fr3rSin (double tmin, double tmax, double dt,
 		  double umin, double umax, double du,
 		  double vmin, double vmax, double dv):
-        RealFunction ("sin (rÂ²)",
+        RealFunction ("sin (r²)",
                       tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) {
   Initialize ();
 }

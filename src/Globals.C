@@ -6,17 +6,19 @@
 //      author:       lene preuss (lene.preuss@gmail.com)
 //      license:      GPL (see License.txt)
 
-#include <qstring.h>
-#include <fstream>
-#include <sstream>
+#include "Globals.h"
+
+#include "Vector.h"
 
 #include <QApplication>
 #include <QAction>
 #include <QMainWindow>
+#include <QString>
 
-#include "Globals.h"
+#include <fstream>
+#include <sstream>
 
-#include "Vector.h"
+
 
 using std::cerr;
 using std::endl;
@@ -106,6 +108,12 @@ string Global::ftoa (double x) {
     o << x << ends;
     return o.str ();
 }
+
+void Global::glVertex(Vector< 3 >& V) {
+//  std::cerr << V.toString() << std::endl;
+  if (std::isfinite (V.sqnorm()))
+    glVertex3dv (V.data());
+        }
 
 /** normalizes a Vector made from 3 doubles out-of-place
  *  @param xx	x component of Vector to be normalized

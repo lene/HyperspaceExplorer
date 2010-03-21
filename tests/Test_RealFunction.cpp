@@ -12,6 +12,8 @@ using std::string;
 
 const QString Test_RealFunction::TEST_FUNCTION_NAME = "FunctionTestImplementation";
 
+void testFunction(RealFunction &f);
+
 Test_RealFunction::RealFunctionTestImplementation::RealFunctionTestImplementation():
     RealFunction(
                  Test_RealFunction::TEST_FUNCTION_NAME,
@@ -165,51 +167,67 @@ void Test_RealFunction::draw() {
 }
 
 void Test_RealFunction::torus1() {
-  Torus1 f;
-  f(0.,0.,0.);
+  Torus1 f(-1, 1, .5, -1, 1, .5, -1, 1, .5);
+  testFunction(f);
 }
 
 void Test_RealFunction::torus2() {
-  Torus2 f;
-  f(0.,0.,0.);
+  Torus2 f(-1, 1, .5, -1, 1, .5, -1, 1, .5);
+  testFunction(f);
 }
 
 void Test_RealFunction::fr3r() {
-  Fr3r f;
-  f(0.,0.,0.);
+  Fr3r f(-1, 1, .5, -1, 1, .5, -1, 1, .5);
+  testFunction(f);
 }
 
 void Test_RealFunction::gravitationPotential() {
-  GravitationPotential f;
-  f(0.,0.,0.);
+  GravitationPotential f(-1, 1, .5, -1, 1, .5, -1, 1, .5);
+  testFunction(f);
 }
 
 void Test_RealFunction::fr3rSin() {
-  Fr3rSin f;
-  f(0.,0.,0.);
+  Fr3rSin f(-1, 1, .5, -1, 1, .5, -1, 1, .5);
+  testFunction(f);
 }
 
 void Test_RealFunction::fr3rExp() {
-  Fr3rExp f;
-  f(0.,0.,0.);
+  Fr3rExp f(-1, 1, .5, -1, 1, .5, -1, 1, .5);
+  testFunction(f);
 }
 
 void Test_RealFunction::polar() {
-  Polar f(-1, 1, .1, -1, 1, .1, -1, 1, .1);
-  f(0.,0.,0.);
+  Polar f(-1, 1, .5, -1, 1, .5, -1, 1, .5);
+  testFunction(f);
 }
 
 void Test_RealFunction::polarSin() {
-  PolarSin f;
-  f(0.,0.,0.);
+  PolarSin f(-1, 1, .5, -1, 1, .5, -1, 1, .5);
+  testFunction(f);
 }
 
 void Test_RealFunction::polarSin2() {
-  PolarSin2 f;
-  f(0.,0.,0.);
+  PolarSin2 f(-1, 1, .5, -1, 1, .5, -1, 1, .5);
+  testFunction(f);
 }
 
 void Test_RealFunction::polarR() {
-  PolarR f;
+  PolarR f(-1, 1, .5, -1, 1, .5, -1, 1, .5);
+  testFunction(f);
+}
+
+template<typename T> T random_number() {
+  return (T)qrand()/(T)RAND_MAX;
+}
+
+void testFunction(RealFunction &f) {
+  qsrand(1);
+  ParameterMap parameters = f.getParameters();
+//  cerr << f.getFunctionName().toStdString() << " parameters ("<< parameters.size() << "): " << parameters.toString() << endl;
   f(0.,0.,0.);
+  VecMath::Rotation<4> r(random_number<double>(), random_number<double>(), random_number<double>(), random_number<double>(), random_number<double>(), random_number<double>());
+  VecMath::Vector<4> t(random_number<double>(), random_number<double>(), random_number<double>(), random_number<double>());
+  f.Transform(r, t);
+  f.Project(2., 4., false);
+  f.Draw();
 }

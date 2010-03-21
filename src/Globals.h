@@ -118,10 +118,7 @@ class Global {
 
         /** define a GL Vertex from a Vector<3>
          *  @param V the vertex to be defined                                 */
-        void glVertex (VecMath::Vector<3> &V) {
-            if (std::isfinite (V.sqnorm()))
-               glVertex3dv (V.data());
-        }
+        void glVertex (VecMath::Vector<3> &V);
 
         VecMath::Vector<3> vnormalize (double xx, double yy, double zz);
 

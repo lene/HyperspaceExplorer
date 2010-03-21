@@ -550,7 +550,7 @@ std::pair<unsigned, unsigned> Realm::wrapToStayWithinStrip(unsigned base, unsign
         }
 
         if (base < min_base_index || extruded < min_extruded_index) {
-            throw new std::logic_error(
+            throw std::logic_error(
                     "While performing modulo operation, "
                     "an index dropped out of the current rotation strip!");
         }
@@ -676,7 +676,7 @@ Realm Realm::reorderRectsBetweenGreatCircles(Realm::realm_container_type subreal
 
 Realm Realm::generateRectSegment(unsigned i, unsigned base, unsigned delta) const {
 
-    if (_subrealm[i].dimension()) throw new std::logic_error("At this point subrealms should be points");
+    if (_subrealm[i].dimension()) throw std::logic_error("At this point subrealms should be points");
 
     Realm new_subrealm;
 
