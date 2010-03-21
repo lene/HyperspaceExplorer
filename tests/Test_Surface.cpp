@@ -10,6 +10,8 @@ using std::cerr;
 using std::endl;
 using std::string;
 
+void testFunction(Surface &f);
+
 const QString Test_Surface::TEST_FUNCTION_NAME = "FunctionTestImplementation";
 
 Test_Surface::SurfaceTestImplementation::SurfaceTestImplementation():
@@ -150,70 +152,86 @@ void Test_Surface::draw() {
 }
 
 void Test_Surface::surface1() {
-  Surface1 f;
-  f(0, 0);
+  Surface1 f(-1., 1., 0.5, -1., 1., 0.5);
+  testFunction(f);
 }
 void Test_Surface::horizon() {
-  Horizon f;
-  f(0, 0);
+  Horizon f(-1., 1., 0.5, -1., 1., 0.5);
+  testFunction(f);
 }
 void Test_Surface::torus3() {
-  Torus3 f;
-  f(0, 0);
+  Torus3 f(-1., 1., 0.5, -1., 1., 0.5);
+  testFunction(f);
 }
 void Test_Surface::t_z2() {
-  z2 f;
-  f(0, 0);
+  z2 f(-1., 1., 0.5, -1., 1., 0.5);
+  testFunction(f);
 }
 void Test_Surface::t_z3() {
-  z3 f;
-  f(0, 0);
+  z3 f(-1., 1., 0.5, -1., 1., 0.5);
+  testFunction(f);
 }
 void Test_Surface::t_zA() {
-  zA f;
-  f(0, 0);
+  zA f(-1., 1., 0.5, -1., 1., 0.5);
+  testFunction(f);
 }
 void Test_Surface::t_ez() {
-  ez f;
-  f(0, 0);
+  ez f(-1., 1., 0.5, -1., 1., 0.5);
+  testFunction(f);
 }
 void Test_Surface::t_emz2() {
-  emz2 f;
-  f(0, 0);
+  emz2 f(-1., 1., 0.5, -1., 1., 0.5);
+  testFunction(f);
 }
 void Test_Surface::t_zm1() {
-  zm1 f;
-  f(0, 0);
+  zm1 f(-1., 1., 0.5, -1., 1., 0.5);
+  testFunction(f);
 }
 void Test_Surface::t_zm2() {
-  zm2 f;
-  f(0, 0);
+  zm2 f(-1., 1., 0.5, -1., 1., 0.5);
+  testFunction(f);
 }
 void Test_Surface::t_sqrtz() {
-  sqrtz f;
-  f(0, 0);
+  sqrtz f(-1., 1., 0.5, -1., 1., 0.5);
+  testFunction(f);
 }
 void Test_Surface::t_lnz() {
-  lnz f;
-  f(0, 0);
+  lnz f(-1., 1., 0.5, -1., 1., 0.5);
+  testFunction(f);
 }
 void Test_Surface::t_sinz() {
-  sinz  f;
-  f(0, 0);
+  sinz  f(-1., 1., 0.5, -1., 1., 0.5);
+  testFunction(f);
 }
 void Test_Surface::t_cosz() {
-  cosz f;
-  f(0, 0);
+  cosz f(-1., 1., 0.5, -1., 1., 0.5);
+  testFunction(f);
 }
 void Test_Surface::t_sinhz() {
-  sinhz f;
-  f(0, 0);
+  sinhz f(-1., 1., 0.5, -1., 1., 0.5);
+  testFunction(f);
 }
 void Test_Surface::t_coshz() {
-  coshz f;
-  f(0, 0);
+  coshz f(-1., 1., 0.5, -1., 1., 0.5);
+  testFunction(f);
 }
 void Test_Surface::t_tanz() {
-  tanz f;
-  f(0, 0);
+  tanz f(-1., 1., 0.5, -1., 1., 0.5);
+  testFunction(f);
+}
+
+template<typename T> T random_number() {
+  return (T)qrand()/(T)RAND_MAX;
+}
+
+void testFunction(Surface &f) {
+  qsrand(1);
+  ParameterMap parameters = f.getParameters();
+//  cerr << f.getFunctionName().toStdString() << " parameters ("<< parameters.size() << "): " << parameters.toString() << endl;
+  f(0.,0.);
+  VecMath::Rotation<4> r(random_number<double>(), random_number<double>(), random_number<double>(), random_number<double>(), random_number<double>(), random_number<double>());
+  VecMath::Vector<4> t(random_number<double>(), random_number<double>(), random_number<double>(), random_number<double>());
+  f.Transform(r, t);
+  f.Project(2., 4., false);
+  f.Draw();
 }
