@@ -1,5 +1,5 @@
 /*
-    <one line to give the program's name and a brief idea of what it does.>
+    Hyperspace Explorer - vizualizing higher-dimensional geometry
     Copyright (C) 2010  Lene Preuss <lene.preuss@gmail.com>
 
     This program is free software; you can redistribute it and/or modify
@@ -26,23 +26,49 @@
 
 #include <tr1/memory>
 
-template <unsigned definition_space_dimension, unsigned parameter_space_dimension>
+/// A function describing a \p P -dimensional surface in \p N -dimensional space
+/** See also http://en.wikipedia.org/wiki/Parametric_surface for an explanation
+ *  of two-dimensional surfaces in three-dimensional space, or ParametricFunction<3, 2>.
+ *
+ *  A ParametricFunction has the following attributes:
+ *  - A name.
+ *  - An optional longer description.
+ *  - An optional set of paramters, such as the radius of a sphere.
+ *  - A definition space in \f$ R^P \f$.
+ *  It also has a mathematical function \f$ f: R^P \rightarrow \R^N \f$ which
+ *  defines the parametric \p P -surface in \p N -space. This function must be
+ *  implemented in a daughter class of ParametricFunction<N, P> as the pure
+ *  virtual function f().
+ *
+ *  \param N The dimension of the definition vector space.
+ *  \param P The dimension of the parameter vector space.
+ */
+template <unsigned N, unsigned P>
   class ParametricFunction {
 
     public:
 
-      typedef VecMath::Vector<parameter_space_dimension> argument_type;
-      typedef VecMath::Vector<definition_space_dimension> return_type;
+      typedef VecMath::Vector<P> argument_type;
+      typedef VecMath::Vector<N> return_type;
 
+      ParametricFunction(): 
+        _function_name(), _function_description(),
+        _parameters(), 
+        _default_x_min(-1.), _default_x_max(1.) { }
+        
       virtual ~ParametricFunction() { }
 
       virtual return_type f(const argument_type &x) = 0;
 
+      std::string getName() const { return _function_name; }
+      
+      std::string getDescription() const { return _function_description; }
+      
       /** \return number of parameters for the function                     */
-      unsigned getNumParameters() { return _parameters.size(); }
+      unsigned getNumParameters() const { return _parameters.size(); }
 
       /// \return The collection of all parameters (and their values)
-      ParameterMap getParameterMap() { return _parameters; }
+      ParameterMap getParameterMap() const { return _parameters; }
 
       /// \return Pointer to the FunctionParameter which is named \p name
       FunctionParameter::parameter_ptr_type getParameter(const std::string &name) {
@@ -53,39 +79,71 @@ template <unsigned definition_space_dimension, unsigned parameter_space_dimensio
       FunctionParameter::value_ptr_type getParameterValue(const std::string &name) {
         return FunctionParameter::value_ptr_type(_parameters.getValue(name));
       }
+      
+      /// \return The lower boundary in parameter space which is set initially.
+      ParametricFunction::argument_type getDefaultXMin() const { return _default_x_min; }
+      /// \return The upper boundary in parameter space which is set initially.
+      ParametricFunction::argument_type getDefaultXMax() const { return _default_x_max; }
 
     protected:
-      /// Add a parameter to the list of parameters
+
+      void setName(const std::string &newName) { _function_name = newName; }
+
+      void setDescription(const std::string &newDescription) { _function_description = newDescription; }
+
+      /// Add a parameter with a name and a default value to the parameter list
       template <typename T> void declareParameter(const std::string &parameter_name,
                                                   const T &parameter_default_value);
-      /// Add a parameter to the list of parameters
+
+      /// Add a parameter with a name, a value and a default value to the parameter list
       template <typename T> void declareParameter(const std::string &parameter_name,
                                                   const T &parameter_default_value,
                                                   const T &parameter_value);
 
+      void setDefaultBoundaries(const ParametricFunction::argument_type &x_min, 
+                                const ParametricFunction::argument_type &x_max);
+
     private:
 
+      std::string _function_name;
+      std::string _function_description;
       ParameterMap _parameters;
+      ParametricFunction::argument_type _default_x_min;
+      ParametricFunction::argument_type _default_x_max;
 };
 
-/// Add a parameter with a name and a default value to the parameter list
-template <unsigned definition_space_dimension, unsigned parameter_space_dimension>
+/** \param x_min L
+template <unsigned N, unsigned P>
+inline
+void ParametricFunction<N, P>::setDefaultBoundaries(
+  const ParametricFunction<N, P>::argument_type& x_min, 
+  const ParametricFunction<N, P>::argument_type& x_max) {
+  _default_x_min = x_min;
+  _default_x_max = x_max;
+}
+
+/** \param parameter_name Name of the parameter.
+ *  \param parameter_default_value Default value for the parameter.
+ */
+template <unsigned N, unsigned P>
 template<typename T>
 inline
-void ParametricFunction<definition_space_dimension, parameter_space_dimension>::declareParameter(
+void ParametricFunction<N, P>::declareParameter(
     const std::string &parameter_name,
     const T &parameter_default_value) {
   if (_parameters.find(parameter_name) != _parameters.end()) return;
 
   _parameters.insertByDefault(parameter_name, parameter_default_value);
-//  std::cerr << _parameters.toString() << std::endl;
 }
 
-/// Add a parameter with a name and a default value to the parameter list
-template <unsigned definition_space_dimension, unsigned parameter_space_dimension>
+/** \param parameter_name Name of the parameter.
+ *  \param parameter_default_value Default value for the parameter.
+ *  \param parameter_value Actual value of the parameter.
+ */
+template <unsigned N, unsigned P>
   template<typename T>
 inline
-void ParametricFunction<definition_space_dimension, parameter_space_dimension>::declareParameter(
+void ParametricFunction<N, P>::declareParameter(
     const std::string& parameter_name,
     const T& parameter_default_value,
     const T& parameter_value) {

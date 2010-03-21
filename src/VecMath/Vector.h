@@ -39,13 +39,16 @@ namespace VecMath {
         public:
 
         //----------  management  ----------
-        /// Default constructor
+        /// Default constructor.
         /** Doesn't do anything, the lazy bastard! */
         Vector<D, N> ();
-        /// Constructor with variable arglist
-        /** @param x0  the vector's first element
-         *  @param ... the vector's other elements                            */
-        Vector<D, N> (N x0, ... );
+        /// Make all elements have the same size.
+        /** \param x The number all Vector components are set to. */
+        Vector<D, N> (const N &x);
+        /// Constructor with variable argument list.
+        /** @param x0  the vector's first element.
+         *  @param ... the vector's other elements.                           */
+        Vector<D, N> (N x0, N x1, ... );
 
         //----------  access      ----------
 
@@ -147,18 +150,24 @@ namespace VecMath {
         //  ------------  management  ------------
 
     template <unsigned D, typename N>
-            Vector<D, N>::Vector() : _x () {
+            Vector<D, N>::Vector() : _x() {
         for (unsigned i = 0; i < D; i++) _x[i] = 0;
     }
 
     template <unsigned D, typename N>
-            Vector<D, N>::Vector (N x0, ... ) :
+            Vector<D, N>::Vector(const N &x) : _x() {
+        for (unsigned i = 0; i < D; i++) _x[i] = x;
+    }
+
+    template <unsigned D, typename N>
+            Vector<D, N>::Vector (N x0, N x1, ... ) :
             _x () {
         _x[0] = x0;
+        _x[1] = x1;
         unsigned i = 0;
         va_list argp;
-        va_start (argp, x0);
-        for (i = 1; i < D; i++) {
+        va_start (argp, x1);
+        for (i = 2; i < D; i++) {
             _x[i] = va_arg (argp, N);
         }
         va_end (argp);
