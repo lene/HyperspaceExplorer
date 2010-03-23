@@ -33,7 +33,7 @@ void Test_Transformation::initTestCase() {
   
   _grid = shared_ptr< FunctionValueGrid<4, 3> >(
       new FunctionValueGrid<4, 3>(pf, 
-                                  Vector<3, unsigned>(10, 10, 10), 
+                                  Vector<3, unsigned>(5, 5, 5), 
                                   Vector<3>(-1., -1., -1.), 
                                   Vector<3>(1., 1., 1.)));
 
@@ -41,7 +41,10 @@ void Test_Transformation::initTestCase() {
   Vector<4> trans(1., 1., 1., 1.);
   Transformation<4, 3> transform(rot, trans);
   
-  transform.transform(_grid->getValues());
+  FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
+  
+  _grid->getValues().print();
+  g.print();
 }
 
 void Test_Transformation::cleanupTestCase() {

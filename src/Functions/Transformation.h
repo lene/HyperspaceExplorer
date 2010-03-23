@@ -62,8 +62,8 @@ template <unsigned N, unsigned P, typename TransformationPolicy>
 typename Transformation<N, P, TransformationPolicy>::value_storage_type Transformation<N, P, TransformationPolicy>::transform(
   const value_storage_type &operand) {
   TransformationPolicy p;
-  /* value_storage_type v = */p.transform(operand, _transform, _translation);
-  return operand;
+  
+  return p.transform(operand, _transform, _translation);
 }
 
 template <unsigned N, unsigned P>
@@ -98,13 +98,14 @@ SimpleTransformationPolicy<N, P>::transform(
         const VecMath::Matrix<N> &transform, 
         const VecMath::Vector<N> &translation
 ) {
-  
-//  for (typename value_storage_type::iterator it = operand.begin(); it != operand.end(); ++it) {
-    for (unsigned i = 0; i < operand.size(); ++i) {
-      Transformation<N, P-1, SimpleTransformationPolicy<N, P-1> > sub_transform(transform, translation);
-      sub_transform.transform(operand[i]);
+  value_storage_type v(operand.size());  
+    
+  for (unsigned i = 0; i < operand.size(); ++i) {
+    Transformation<N, P-1, SimpleTransformationPolicy<N, P-1> > sub_transform(transform, translation);
+    v[i] = sub_transform.transform(operand[i]);
   }
-  return operand;
+  
+  return v;
 }
 
 template <unsigned N>
@@ -115,10 +116,11 @@ SimpleTransformationPolicy<N, 1>::transform(
         const VecMath::Vector<N> &translation
 ) {
   value_storage_type v(operand.size());
-//  for (typename value_storage_type::iterator it = operand.begin(); it != operand.end(); ++it) {
+
   for (unsigned i = 0; i < operand.size(); ++i) {
     v[i] = transform*operand[i]+translation;
   }
+  
   return v;
 }
 

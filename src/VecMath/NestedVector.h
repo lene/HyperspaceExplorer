@@ -148,7 +148,7 @@ namespace VecMath {
                      i != data().end(); ++i) {
                         i->print();
                     }
-                std::cerr << " >";
+                std::cerr << " >" << std::endl;
             }
 
         protected:
