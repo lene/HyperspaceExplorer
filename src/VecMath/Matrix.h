@@ -38,7 +38,7 @@ namespace VecMath {
 
             Matrix<D, N> operator *=(const Matrix<D, N> &);
             Matrix<D, N> operator *(const Matrix<D, N> &) const;
-            Vector<D, N> operator *(const Vector<D, N> &);
+            Vector<D, N> operator *(const Vector<D, N> &) const;
 
             Matrix<D, N> operator - ();
 
@@ -114,9 +114,10 @@ namespace VecMath {
 
     /** apply the Matrix on a vector
      *  @param V Vector to multiply with (project)
-     *  @return *this * V                                                     */
+     *  @return *this * V                                                     
+     */
     template <unsigned D, typename N>
-            Vector<D, N> Matrix<D, N>::operator * (const Vector<D, N> &V) {
+            Vector<D, N> Matrix<D, N>::operator * (const Vector<D, N> &V) const{
         Vector<D, N> W;
         for (unsigned i = 0; i < D; i++) {              //  i: row
             N s = 0;

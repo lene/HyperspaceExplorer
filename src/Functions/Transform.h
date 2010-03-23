@@ -1,7 +1,6 @@
 /*
-    <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) 2009 Lene Preuss <regnans
-    
+    Hyperspace Explorer - vizualizing higher-dimensional geometry
+    Copyright (C) 2009  Lene Preuss <lene.preuss@gmail.com>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

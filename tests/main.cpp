@@ -10,6 +10,7 @@
 #include "Test_Realm.h"
 #include "Test_ParametricFunction.h"
 #include "Test_FunctionValueGrid.h"
+#include "Test_Transformation.h"
 
 #include <QtTest/QtTest>
 
@@ -39,6 +40,7 @@ int main(int argc, char **argv) {
     if (qExec(new Test_Surface)) failedTestSuites++;
     if (qExec(new Test_ParametricFunction)) failedTestSuites++;
     if (qExec(new Test_FunctionValueGrid)) failedTestSuites++;
+    if (qExec(new Test_Transformation)) failedTestSuites++;
                 
     printSummary(failedTestSuites);
 
