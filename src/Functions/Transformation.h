@@ -25,8 +25,14 @@
 
 #include "Matrix.h"
 
+/// Forward declaration needed to make the SimpleTransformationPolicy a default template parameter for Transformation.
 template <unsigned N, unsigned P> class SimpleTransformationPolicy;
 
+/// Policy-based class template to apply a geometrical transformation on a set of vertices.
+/** \param N Dimension of the vertices.
+ *  \param P Dimension of the parameter space.
+ *  \param TransformationPolicy The class executing the actual transform on the set of vertices.
+ */
 template <unsigned N, unsigned P, typename TransformationPolicy = SimpleTransformationPolicy <N, P> >
 class Transformation {
   
@@ -38,8 +44,15 @@ class Transformation {
     Transformation(const VecMath::Rotation<N> &rotation, 
                    const VecMath::Vector<N> &translation, 
                    const VecMath::Vector<N> scale);
+    /// Initialize a Transformation with a transformation matrix and a translation vector.
+    /** NB There is an implicit cast from class Rotation to Matrix, so you can use a
+     *  Rotation instead.
+     *  \param transform The \p N x \p N Matrix to apply to all vertices.
+     *  \param translation The translation Vector to add to all vertices.
+     */
     Transformation(const VecMath::Matrix<N> &transform, const VecMath::Vector<N> &translation);
     
+    /// Execute the transform on a set of vertices.
     value_storage_type transform(const value_storage_type &operand);
     
   private:
@@ -61,11 +74,16 @@ Transformation<N, P, TransformationPolicy>::Transformation(const VecMath::Matrix
 template <unsigned N, unsigned P, typename TransformationPolicy>
 typename Transformation<N, P, TransformationPolicy>::value_storage_type Transformation<N, P, TransformationPolicy>::transform(
   const value_storage_type &operand) {
-  TransformationPolicy p;
+  TransformationPolicy p(_transform, _translation);
   
-  return p.transform(operand, _transform, _translation);
+  return p.transform(operand);
 }
 
+
+/// Policy class template that contains the actual implementation of the transformation algorithm for Transformation.
+/** \param N Dimension of the vertices.
+ *  \param P Dimension of the parameter space.
+ */
 template <unsigned N, unsigned P>
 class SimpleTransformationPolicy {
   
@@ -73,10 +91,15 @@ class SimpleTransformationPolicy {
   
     typedef typename FunctionValueGrid< N, P >::value_storage_type value_storage_type;
 
-    value_storage_type transform(
-        const value_storage_type &operand,
-        const VecMath::Matrix<N> &transform, 
-        const VecMath::Vector<N> &translation);
+    SimpleTransformationPolicy(const VecMath::Matrix<N> &transform, 
+                               const VecMath::Vector<N> &translation): _transform(transform), _translation(translation) { }
+    value_storage_type transform(const value_storage_type &operand);
+    
+  private:
+    
+    VecMath::Matrix<N> _transform;
+    VecMath::Vector<N> _translation;
+    
 };
 
 template <unsigned N> class SimpleTransformationPolicy< N, 1 > {
@@ -85,23 +108,26 @@ template <unsigned N> class SimpleTransformationPolicy< N, 1 > {
 
     typedef typename FunctionValueGrid< N, 1 >::value_storage_type value_storage_type;
 
-    value_storage_type transform(
-        const value_storage_type &operand,
-        const VecMath::Matrix<N> &transform, 
-        const VecMath::Vector<N> &translation);
+    SimpleTransformationPolicy(const VecMath::Matrix<N> &transform, 
+                               const VecMath::Vector<N> &translation): _transform(transform), _translation(translation) { }
+    value_storage_type transform(const value_storage_type &operand);
+    
+  private:
+    
+    VecMath::Matrix<N> _transform;
+    VecMath::Vector<N> _translation;
+    
 };
 
 template <unsigned N, unsigned P>
 typename SimpleTransformationPolicy<N, P>::value_storage_type 
 SimpleTransformationPolicy<N, P>::transform(
-        const SimpleTransformationPolicy<N, P>::value_storage_type &operand,
-        const VecMath::Matrix<N> &transform, 
-        const VecMath::Vector<N> &translation
+        const value_storage_type &operand
 ) {
   value_storage_type v(operand.size());  
     
   for (unsigned i = 0; i < operand.size(); ++i) {
-    Transformation<N, P-1, SimpleTransformationPolicy<N, P-1> > sub_transform(transform, translation);
+    Transformation<N, P-1, SimpleTransformationPolicy<N, P-1> > sub_transform(_transform, _translation);
     v[i] = sub_transform.transform(operand[i]);
   }
   
@@ -111,14 +137,12 @@ SimpleTransformationPolicy<N, P>::transform(
 template <unsigned N>
 typename SimpleTransformationPolicy<N, 1>::value_storage_type 
 SimpleTransformationPolicy<N, 1>::transform(
-        const SimpleTransformationPolicy<N, 1>::value_storage_type &operand,
-        const VecMath::Matrix<N> &transform, 
-        const VecMath::Vector<N> &translation
+        const value_storage_type &operand
 ) {
   value_storage_type v(operand.size());
 
   for (unsigned i = 0; i < operand.size(); ++i) {
-    v[i] = transform*operand[i]+translation;
+    v[i] = _transform*operand[i]+_translation;
   }
   
   return v;
