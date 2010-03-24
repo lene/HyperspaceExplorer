@@ -43,7 +43,7 @@ class Transformation {
     Transformation();
     Transformation(const VecMath::Rotation<N> &rotation, 
                    const VecMath::Vector<N> &translation, 
-                   const VecMath::Vector<N> scale);
+                   const VecMath::Vector<N> &scale);
     /// Initialize a Transformation with a transformation matrix and a translation vector.
     /** NB There is an implicit cast from class Rotation to Matrix, so you can use a
      *  Rotation instead.
@@ -65,6 +65,14 @@ class Transformation {
 template <unsigned N, unsigned P, typename TransformationPolicy>
 Transformation<N, P, TransformationPolicy>::Transformation():
   _transform(), _translation() { }
+
+template <unsigned N, unsigned P, typename TransformationPolicy>
+Transformation<N, P, TransformationPolicy>::Transformation(const VecMath::Rotation<N> &rotation, 
+                                                           const VecMath::Vector<N> &translation,
+                                                           const VecMath::Vector<N> &scale):
+  _transform(rotation), _translation(translation) { 
+  _transform.scale(scale);
+}
 
 template <unsigned N, unsigned P, typename TransformationPolicy>
 Transformation<N, P, TransformationPolicy>::Transformation(const VecMath::Matrix<N> &transform, 

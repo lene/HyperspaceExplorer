@@ -44,6 +44,10 @@ class Test_Transformation: public QObject {
     void rotate180DegreesIsNegative();
     void rotate360DegreesIsEqual_data();
     void rotate360DegreesIsEqual();
+    void translationAddsVector_data();
+    void translationAddsVector();
+    void scaleScales_data();
+    void scaleScales();
     
   private:
 

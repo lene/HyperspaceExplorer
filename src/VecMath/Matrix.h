@@ -37,11 +37,15 @@ namespace VecMath {
             const N &operator () (unsigned i, unsigned j) const { return _M[i][j]; }
 
             Matrix<D, N> operator *=(const Matrix<D, N> &);
+            Matrix<D, N> operator *=(const N &);
             Matrix<D, N> operator *(const Matrix<D, N> &) const;
             Vector<D, N> operator *(const Vector<D, N> &) const;
+            Vector<D, N> operator *(const N &) const;
 
             Matrix<D, N> operator - ();
 
+            void scale(const Vector<D, N> &);
+            
             std::string toString() const;
             operator std::string() const { return toString(); }
 
@@ -140,6 +144,12 @@ namespace VecMath {
         return B;
     }
 
+    template <unsigned D, typename N>
+            void Matrix<D, N>::scale(const Vector<D, N> &s) {
+      for (unsigned i = 0; i < s.dimension(); ++i) {
+        
+      }
+    }
     /** output, mainly for debugging purposes                                 */
     template <unsigned D, typename N> std::string Matrix<D, N>::toString() const {
         std::ostringstream o;

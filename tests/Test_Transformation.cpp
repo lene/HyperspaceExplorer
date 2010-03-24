@@ -52,6 +52,7 @@ void Test_Transformation::cleanupTestCase() {
 }
 
 Q_DECLARE_METATYPE(Rotation<4>)
+Q_DECLARE_METATYPE(Vector<4>)
 
 void Test_Transformation::rotationPreservesNorm_data() {
   QTest::addColumn< Rotation<4> >("rotation");
@@ -165,10 +166,64 @@ void Test_Transformation::rotate360DegreesIsEqual() {
   for (unsigned i = 0; i < g.size(); ++i) {
     for (unsigned j = 0; j < g.size(); ++j) {
       for (unsigned k = 0; k < g.size(); ++k) {
-        if (g[i][j][k] != _grid->getValues()[i][j][k]) {
-          QVERIFY((g[i][j][k] - _grid->getValues()[i][j][k]).sqnorm() < 1e-8);
-        }
+        QVERIFY((g[i][j][k] - _grid->getValues()[i][j][k]).sqnorm() < 1e-8);
       }
     }
   }
+}
+
+void Test_Transformation::translationAddsVector_data() {
+  QTest::addColumn< Vector<4> >("translation");
+  
+  QTest::newRow("x+1") << Vector<4>(1., 0., 0., 0.);
+  QTest::newRow("x-1") << Vector<4>(-1., 0., 0., 0.);
+  QTest::newRow("0") << Vector<4>(0., 0., 0., 0.);
+}
+
+void Test_Transformation::translationAddsVector() {
+  Rotation<4> rotation(0., 0., 0., 0., 0., 0.);
+  QFETCH(Vector<4>, translation);
+
+  Transformation<4, 3> transform(rotation, translation);
+
+  FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
+
+  for (unsigned i = 0; i < g.size(); ++i) {
+    for (unsigned j = 0; j < g.size(); ++j) {
+      for (unsigned k = 0; k < g.size(); ++k) {
+        QVERIFY((g[i][j][k] - _grid->getValues()[i][j][k]-translation).sqnorm() < 1e-8);
+      }
+    }
+  }
+}
+
+void Test_Transformation::scaleScales_data() {
+  QTest::addColumn< Vector<4> >("scale");
+  
+  QTest::newRow("x*2") << Vector<4>(2., 1., 1., 1.);
+  QTest::newRow("y*2") << Vector<4>(2., 1., 1., 1.);
+  QTest::newRow("1") << Vector<4>(1., 1., 1., 1.);
+  QTest::newRow("negative") << Vector<4>(-1., -1., -1., -1.);
+  QTest::newRow("0") << Vector<4>(1., 1., 1., 1.);
+
+}
+
+void Test_Transformation::scaleScales(){
+
+  Rotation<4> rotation(0., 0., 0., 0., 0., 0.);
+  Vector<4> translation(0.);
+  QFETCH(Vector<4>, scale);
+
+  Transformation<4, 3> transform(rotation, translation, scale);
+
+  FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
+
+  for (unsigned i = 0; i < g.size(); ++i) {
+    for (unsigned j = 0; j < g.size(); ++j) {
+      for (unsigned k = 0; k < g.size(); ++k) {
+        QVERIFY((g[i][j][k] - _grid->getValues()[i][j][k]-translation).sqnorm() < 1e-8);
+      }
+    }
+  }
+  
 }
