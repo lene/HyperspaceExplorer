@@ -134,8 +134,6 @@ class Surface: public SurfaceBase {
                             double _umin, double _umax, double _du,
                             double _vmin, double _vmax, double _dv);
 
-        vec4vec2D Data (void) { return _X; } ///< direct access to the function values
-
         /// \see Function::getDefinitionSpaceDimensions()
         virtual unsigned getDefinitionSpaceDimensions() { return 2; }
 
