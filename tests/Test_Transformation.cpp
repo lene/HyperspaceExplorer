@@ -35,7 +35,7 @@ void Test_Transformation::initTestCase() {
   
   _grid = shared_ptr< FunctionValueGrid<4, 3> >(
       new FunctionValueGrid<4, 3>(pf, 
-                                  Vector<3, unsigned>(5, 5, 5), 
+                                  Vector<3, unsigned>(3, 3, 3), 
                                   Vector<3>(-1., -1., -1.), 
                                   Vector<3>(1., 1., 1.)));
 
@@ -221,7 +221,10 @@ void Test_Transformation::scaleScales(){
   for (unsigned i = 0; i < g.size(); ++i) {
     for (unsigned j = 0; j < g.size(); ++j) {
       for (unsigned k = 0; k < g.size(); ++k) {
-        QVERIFY((g[i][j][k] - _grid->getValues()[i][j][k]-translation).sqnorm() < 1e-8);
+        for (unsigned n = 0; n < g[i][j][k].dimension(); ++n) {
+          double difference = g[i][j][k][n] - scale[n]*_grid->getValues()[i][j][k][n];
+          QVERIFY2(fabs(difference) < 1e-8, QString::number(difference).toAscii());
+        }
       }
     }
   }

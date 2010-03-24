@@ -144,10 +144,15 @@ namespace VecMath {
         return B;
     }
 
+    /** Scale the Matrix separately for each dimension
+     *  \param s Scaling factor.
+     */
     template <unsigned D, typename N>
             void Matrix<D, N>::scale(const Vector<D, N> &s) {
       for (unsigned i = 0; i < s.dimension(); ++i) {
-        
+        for (unsigned j = 0; j < s.dimension(); ++j) {
+          _M[i][j] *= s[i];
+        }
       }
     }
     /** output, mainly for debugging purposes                                 */
