@@ -234,4 +234,5 @@ void testFunction(Surface &f) {
   f.Transform(r, t);
   f.Project(2., 4., false);
   f.Draw();
+  f.ReInit(-2., 2., 0.2, -2., 2., 0.2, 1., 1., 1.);
 }

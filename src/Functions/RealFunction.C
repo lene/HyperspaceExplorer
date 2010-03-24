@@ -156,13 +156,13 @@ void RealFunction::calibrateColors() const {
 void RealFunction::ReInit(double tmin, double tmax, double dt,
                           double umin, double umax, double du,
                           double vmin, double vmax, double dv) {
-
+  #if 0
     SingletonLog::Instance()  
       << "RealFunction::ReInit(" 
       << tmin << ", " << tmax << ", " << dt << ", "
       << umin << ", " << umax<< ", " << du << ", " 
       << vmin << ", " << vmax << ", " << dv << ")\n";
-
+  #endif
   getTmin() = tmin;   getTmax() = tmax;   getDt() = dt;
   getUmin() = umin;   getUmax() = umax;   getDu() = du;
   getVmin() = vmin;   getVmax() = vmax;   getDv() = dv;
