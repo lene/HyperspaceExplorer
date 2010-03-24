@@ -261,8 +261,8 @@ namespace VecMath {
      */
     template<typename T, unsigned D> std::ostream& operator<<(std::ostream& s,
                                                   NestedVector<T, D> const& v) {
-        s << "(";
-        copy(v.begin(), v.end(), std::ostream_iterator<NestedVector<T, D-1> >(s, " "));
+        s << "(\n";
+        copy(v.begin(), v.end(), std::ostream_iterator<NestedVector<T, D-1> >(s, "\n"));
         s << ")";
         return s;
     }
@@ -275,7 +275,7 @@ namespace VecMath {
      */
     template<typename T> std::ostream& operator<<(std::ostream& s,
                                                   NestedVector<T, 1> const& v) {
-        s << "(";
+        s << "  (";
         copy(v.begin(), v.end(), std::ostream_iterator<T>(s, " "));
         s << ")";
         return s;

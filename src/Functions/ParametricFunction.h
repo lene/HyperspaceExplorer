@@ -94,9 +94,9 @@ template <unsigned N, unsigned P>
       }
       
       /// \return The lower boundary in parameter space which is set initially.
-      ParametricFunction::argument_type getDefaultXMin() const { return _default_x_min; }
+      argument_type getDefaultXMin() const { return _default_x_min; }
       /// \return The upper boundary in parameter space which is set initially.
-      ParametricFunction::argument_type getDefaultXMax() const { return _default_x_max; }
+      argument_type getDefaultXMax() const { return _default_x_max; }
 
     protected:
 
@@ -124,8 +124,8 @@ template <unsigned N, unsigned P>
       std::string _function_name;
       std::string _function_description;
       ParameterMap _parameters;
-      ParametricFunction::argument_type _default_x_min;
-      ParametricFunction::argument_type _default_x_max;
+      argument_type _default_x_min;
+      argument_type _default_x_max;
 };
 
 /** \param x_min Lower boundary of the default definition space.

@@ -35,6 +35,15 @@ class Test_Transformation: public QObject {
     
     void initTestCase();
     void cleanupTestCase();
+
+    void rotationPreservesNorm_data();
+    void rotationPreservesNorm();
+    void rotate90DegreesIsOrthogonal_data();
+    void rotate90DegreesIsOrthogonal();
+    void rotate180DegreesIsNegative_data();
+    void rotate180DegreesIsNegative();
+    void rotate360DegreesIsEqual_data();
+    void rotate360DegreesIsEqual();
     
   private:
 

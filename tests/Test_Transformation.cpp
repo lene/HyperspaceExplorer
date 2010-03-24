@@ -24,7 +24,9 @@
 
 using VecMath::Vector;
 using VecMath::Rotation;
+using VecMath::Matrix;
 using std::tr1::shared_ptr;
+using std::cerr;
 
 void Test_Transformation::initTestCase() {
   
@@ -43,10 +45,130 @@ void Test_Transformation::initTestCase() {
   
   FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
   
-  _grid->getValues().print();
-  g.print();
 }
 
 void Test_Transformation::cleanupTestCase() {
 
+}
+
+Q_DECLARE_METATYPE(Rotation<4>)
+
+void Test_Transformation::rotationPreservesNorm_data() {
+  QTest::addColumn< Rotation<4> >("rotation");
+  QTest::newRow("Zero rotation") << Rotation<4>(0., 0., 0., 0., 0., 0.);
+  QTest::newRow("Random rotation") << Rotation<4>(1., 2., 3., 4., 5., 6.);
+  QTest::newRow("90 degrees") << Rotation<4>(90., 0., 0., 0., 0., 0.);
+  QTest::newRow("180 degrees") << Rotation<4>(180., 0., 0., 0., 0., 0.);
+  QTest::newRow("Random negative rotation") << Rotation<4>(-1., -2., -3., -4., -5., -6.);
+}
+
+void Test_Transformation::rotationPreservesNorm() {
+
+  QFETCH(Rotation<4>, rotation);
+
+  Vector<4> trans(0.);
+  Transformation<4, 3> transform(rotation, trans);
+
+  FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
+  
+  for (unsigned i = 0; i < g.size(); ++i) {
+    for (unsigned j = 0; j < g.size(); ++j) {
+      for (unsigned k = 0; k < g.size(); ++k) {
+        QVERIFY2(fabs(g[i][j][k].sqnorm() - _grid->getValues()[i][j][k].sqnorm()) < 1e-8, 
+                 (QString::number(g[i][j][k].sqnorm()) + " != "+ QString::number(_grid->getValues()[i][j][k].sqnorm())).toAscii() 
+        );
+      }
+    }
+  }
+}
+
+
+void Test_Transformation::rotate90DegreesIsOrthogonal_data() {
+  QTest::addColumn< Rotation<4> >("rotation");
+  QTest::newRow("xy") << Rotation<4>(90., 0., 0., 0., 0., 0.);
+  QTest::newRow("xz") << Rotation<4>(0., 90., 0., 0., 0., 0.);
+  QTest::newRow("xw") << Rotation<4>(0., 0., 90., 0., 0., 0.);
+  QTest::newRow("yz") << Rotation<4>(0., 0., 0., 90., 0., 0.);
+  QTest::newRow("yw") << Rotation<4>(0., 0., 0., 0., 90., 0.);
+  QTest::newRow("zw") << Rotation<4>(0., 0., 0., 0., 0., 90.);
+  QTest::newRow("what the hell, all axes at once ;-)") << Rotation<4>(90., 90., 90., 90., 90., 90.);
+}
+
+void Test_Transformation::rotate90DegreesIsOrthogonal() {
+  QFETCH(Rotation<4>, rotation);
+  
+  Vector<4> trans(0.);
+  Transformation<4, 3> transform(rotation, trans);
+
+  FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
+  
+  for (unsigned i = 0; i < g.size(); ++i) {
+    for (unsigned j = 0; j < g.size(); ++j) {
+      for (unsigned k = 0; k < g.size(); ++k) {
+        if (g[i][j][k] != _grid->getValues()[i][j][k]) {
+          QVERIFY(g[i][j][k] * _grid->getValues()[i][j][k]< 1e-8);
+        }
+      }
+    }
+  }
+}
+
+void Test_Transformation::rotate180DegreesIsNegative_data() {
+  QTest::addColumn< Rotation<4> >("rotation");
+  QTest::newRow("xy") << Rotation<4>(180., 0., 0., 0., 0., 0.);
+  QTest::newRow("xz") << Rotation<4>(0., 180., 0., 0., 0., 0.);
+  QTest::newRow("xw") << Rotation<4>(0., 0., 180., 0., 0., 0.);
+  QTest::newRow("yz") << Rotation<4>(0., 0., 0., 180., 0., 0.);
+  QTest::newRow("yw") << Rotation<4>(0., 0., 0., 0., 180., 0.);
+  QTest::newRow("zw") << Rotation<4>(0., 0., 0., 0., 0., 180.);
+  QTest::newRow("what the hell, all axes at once ;-)") << Rotation<4>(180., 180., 180., 180., 180., 180.);
+}
+
+void Test_Transformation::rotate180DegreesIsNegative() {
+  QFETCH(Rotation<4>, rotation);
+  
+  Vector<4> trans(0.);
+  Transformation<4, 3> transform(rotation, trans);
+
+  FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
+  
+  for (unsigned i = 0; i < g.size(); ++i) {
+    for (unsigned j = 0; j < g.size(); ++j) {
+      for (unsigned k = 0; k < g.size(); ++k) {
+        if (g[i][j][k] != _grid->getValues()[i][j][k]) {
+          QVERIFY((g[i][j][k] + _grid->getValues()[i][j][k]).sqnorm() < 1e-8);
+        }
+      }
+    }
+  }
+}
+
+void Test_Transformation::rotate360DegreesIsEqual_data() {
+  QTest::addColumn< Rotation<4> >("rotation");
+  QTest::newRow("xy") << Rotation<4>(360., 0., 0., 0., 0., 0.);
+  QTest::newRow("xz") << Rotation<4>(0., 360., 0., 0., 0., 0.);
+  QTest::newRow("xw") << Rotation<4>(0., 0., 360., 0., 0., 0.);
+  QTest::newRow("yz") << Rotation<4>(0., 0., 0., 360., 0., 0.);
+  QTest::newRow("yw") << Rotation<4>(0., 0., 0., 0., 360., 0.);
+  QTest::newRow("zw") << Rotation<4>(0., 0., 0., 0., 0., 360.);
+  QTest::newRow("what the hell, all axes at once ;-)") << Rotation<4>(360., 360., 360., 360., 360., 360.);
+}
+
+void Test_Transformation::rotate360DegreesIsEqual() {
+  QFETCH(Rotation<4>, rotation);
+  
+  Vector<4> trans(0.);
+  Transformation<4, 3> transform(rotation, trans);
+
+  FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
+  
+  for (unsigned i = 0; i < g.size(); ++i) {
+    for (unsigned j = 0; j < g.size(); ++j) {
+      for (unsigned k = 0; k < g.size(); ++k) {
+        if (g[i][j][k] != _grid->getValues()[i][j][k]) {
+          QVERIFY((g[i][j][k] - _grid->getValues()[i][j][k]).sqnorm() < 1e-8);
+        }
+      }
+    }
+  }
 }
