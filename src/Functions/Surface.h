@@ -198,6 +198,10 @@ protected:
     std::tr1::shared_ptr<DefiningFunction> _function;
     FunctionValueGrid<4, 2> _X_as_grid;
     FunctionValueGrid<4, 2>::value_storage_type _Xtrans_as_grid;
+    
+    mutable vec4vec2D _X_temp;
+    mutable vec4vec2D _Xtrans_temp;
+    
 };
 
 namespace {

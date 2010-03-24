@@ -273,14 +273,12 @@ Surface1::Surface1 (double _umin, double _umax, double _du,
     for (unsigned t = 0; t <= usteps+1; t++) {
         _Xscr[t].resize(vsteps+2);
     }
-
-//    Initialize ();
 }
 
 void Surface1::Transform ( const VecMath::Rotation< 4 >& R, const VecMath::Vector< 4 >& T ) {
-//    Surface::Transform ( R, T );
   Transformation<4, 2> xform(R, T);
   _Xtrans_as_grid = xform.transform(_X_as_grid.getValues());
+  _Xtrans_temp.clear();
 }
 
 void Surface1::ReInit ( double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv, double, double, double) {
@@ -300,30 +298,29 @@ void Surface1::ReInit ( double _umin, double _umax, double _du, double _vmin, do
     getUmin() = _vmin; getUmax() = _vmax; getDu() = _dv;
     getTsteps() = unsigned ((getTmax()-getTmin())/getDt()+1);
     getUsteps() = unsigned ((getUmax()-getUmin())/getDu()+1);
+    
+    _X_temp.clear();
 }
 
 Function::vec4vec2D Surface1::X() const {
-    static vec4vec2D temp2D;
-    temp2D.clear();
-    
-    for (VecMath::NestedVector< Vector<4>, 2>::const_iterator it = _X_as_grid.getValues().begin();
-         it != _X_as_grid.getValues().end(); ++it) {
-      vec4vec1D temp1D;    
-      for (VecMath::NestedVector< Vector<4>, 1>::const_iterator jt = it->begin();
-         jt != it->end(); ++jt) {
-        temp1D.push_back(*jt);
+
+    if (_X_temp.empty()) {
+      for (VecMath::NestedVector< Vector<4>, 2>::const_iterator it = _X_as_grid.getValues().begin();
+          it != _X_as_grid.getValues().end(); ++it) {
+        vec4vec1D temp1D;    
+        for (VecMath::NestedVector< Vector<4>, 1>::const_iterator jt = it->begin();
+          jt != it->end(); ++jt) {
+          temp1D.push_back(*jt);
+        }
+        _X_temp.push_back(temp1D);
       }
-      temp2D.push_back(temp1D);
     }
-    
-    return temp2D;
+    return _X_temp;
 }
 
 Function::vec4vec2D Surface1::Xtrans() const {
-//    return Surface::Xtrans();
-    static vec4vec2D temp2D;
-    temp2D.clear();
-    
+
+   if (_Xtrans_temp.empty()) {
     for (VecMath::NestedVector< Vector<4>, 2>::const_iterator it = _Xtrans_as_grid.begin();
          it != _Xtrans_as_grid.end(); ++it) {
       vec4vec1D temp1D;    
@@ -331,10 +328,10 @@ Function::vec4vec2D Surface1::Xtrans() const {
          jt != it->end(); ++jt) {
         temp1D.push_back(*jt);
       }
-      temp2D.push_back(temp1D);
+      _Xtrans_temp.push_back(temp1D);
     }
-    
-    return temp2D;
+   }
+  return _Xtrans_temp;
 }
 
 /** Surface1 defining function
