@@ -15,8 +15,11 @@
 
 #include "Surface.h"
 
+#include "Transformation.h"
+
 using VecMath::Vector;
 using VecMath::Matrix;
+using std::tr1::shared_ptr;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -89,16 +92,16 @@ void Surface::calibrateColors() const {
     double Wmax = 0, Wmin = 0;
     for (unsigned t = 0; t <= getTsteps()+1; t++) {
         for (unsigned u = 0; u <= getUsteps()+1; u++) {
-            if (_X[t][u][3] < Wmin) Wmin = _X[t][u][3];
-            if (_X[t][u][3] > Wmax) Wmax = _X[t][u][3];
+            if (X()[t][u][3] < Wmin) Wmin = X()[t][u][3];
+            if (X()[t][u][3] > Wmax) Wmax = X()[t][u][3];
         }
     }
     for (unsigned t = 0; t <= getTsteps()+1; t++) {
         for (unsigned u = 0; u <= getUsteps()+1; u++) {
             ColMgrMgr::Instance().calibrateColor(
-                _X[t][u],
+                X()[t][u],
                 Color(float(t)/float(getTsteps()), float(u)/float(getUsteps()),
-                      (Wmax-_X[t][u][3])/(Wmax-Wmin)));
+                      (Wmax-X()[t][u][3])/(Wmax-Wmin)));
         }
     }
 }
@@ -197,13 +200,13 @@ void Surface::Project (double scr_w, double cam_w, bool depthcue4d) {
     for (unsigned t = 0; t <= getTsteps()+1; t++)
         for (unsigned u = 0; u <= getUsteps()+1; u++) {
 
-            if (_Xtrans[t][u][3] < Wmin) Wmin = _Xtrans[t][u][3];
-            if (_Xtrans[t][u][3] > Wmax) Wmax = _Xtrans[t][u][3];
+            if (Xtrans()[t][u][3] < Wmin) Wmin = Xtrans()[t][u][3];
+            if (Xtrans()[t][u][3] > Wmax) Wmax = Xtrans()[t][u][3];
 
-            ProjectionFactor = (scr_w-cam_w)/(_Xtrans[t][u][3]-cam_w);
+            ProjectionFactor = (scr_w-cam_w)/(Xtrans()[t][u][3]-cam_w);
 
             for (unsigned i = 0; i <= 2; i++)
-                _Xscr[t][u][i] = ProjectionFactor*_Xtrans[t][u][i];
+                _Xscr[t][u][i] = ProjectionFactor*Xtrans()[t][u][i];
     }
 
     if (!depthcue4d) return;
@@ -211,8 +214,8 @@ void Surface::Project (double scr_w, double cam_w, bool depthcue4d) {
     for (unsigned t = 0; t <= getTsteps()+1; t++)
         for (unsigned u = 0; u <= getUsteps()+1; u++) {
             ColMgrMgr::Instance().depthCueColor(Wmax, Wmin,
-                    _Xtrans[t][u][3],
-                    _X[t][u]);
+                    Xtrans()[t][u][3],
+                    X()[t][u]);
         }
 }
 
@@ -231,13 +234,13 @@ void Surface::Draw (void) {
 void Surface::DrawStrip (unsigned t){
     glBegin (GL_QUAD_STRIP);
 
-    setVertex(_X[t][0], _Xscr[t][0]);
-    setVertex(_X[t+1][0], _Xscr[t+1][0]);
+    setVertex(X()[t][0], _Xscr[t][0]);
+    setVertex(X()[t+1][0], _Xscr[t+1][0]);
     NumVertices += 2;
 
     for (unsigned u = 1; u <= getUsteps(); u++) {
-        setVertex(_X[t][u], _Xscr[t][u]);
-        setVertex(_X[t+1][u], _Xscr[t+1][u]);
+        setVertex(X()[t][u], _Xscr[t][u]);
+        setVertex(X()[t+1][u], _Xscr[t+1][u]);
         NumVertices += 2;
     }
 
@@ -257,8 +260,81 @@ void Surface::DrawStrip (unsigned t){
  *  @param _dv stepsize in v                                                  */
 Surface1::Surface1 (double _umin, double _umax, double _du,
                     double _vmin, double _vmax, double _dv):
-        Surface ("Surface 1", _umin, _umax, _du, _vmin, _vmax, _dv) {
-    Initialize ();
+        Surface ("Surface 1", _umin, _umax, _du, _vmin, _vmax, _dv), _function(new DefiningFunction) {
+    _X_as_grid = FunctionValueGrid<4, 2>(_function);
+    _X_as_grid.setBoundaries(Vector<2>(_umin, _vmin), Vector<2>(_umax, _vmax));
+    unsigned usteps = unsigned((_umax-_umin)/_du+1);
+    unsigned vsteps = unsigned((_vmax-_vmin)/_dv+1);
+    std::cerr << " usteps " << usteps << " vsteps " << vsteps << " getTsteps() " << getTsteps() << " getUsteps  " << getUsteps() << std::endl;
+    _X_as_grid.setGridSize(Vector<2, unsigned>(usteps+3, vsteps+3));
+
+    _Xscr.resize(usteps+2);
+
+    for (unsigned t = 0; t <= usteps+1; t++) {
+        _Xscr[t].resize(vsteps+2);
+    }
+
+//    Initialize ();
+}
+
+void Surface1::Transform ( const VecMath::Rotation< 4 >& R, const VecMath::Vector< 4 >& T ) {
+//    Surface::Transform ( R, T );
+  Transformation<4, 2> xform(R, T);
+  _Xtrans_as_grid = xform.transform(_X_as_grid.getValues());
+}
+
+void Surface1::ReInit ( double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv, double, double, double) {
+    _X_as_grid.setBoundaries(Vector<2>(_umin, _vmin), Vector<2>(_umax, _vmax));
+    unsigned usteps = unsigned((_umax-_umin)/_du+1);
+    unsigned vsteps = unsigned((_vmax-_vmin)/_dv+1);
+    std::cerr << " usteps " << usteps << " vsteps " << vsteps << " getTsteps() " << getTsteps() << " getUsteps  " << getUsteps() << std::endl;
+    _X_as_grid.setGridSize(Vector<2, unsigned>(usteps+3, vsteps+3));
+
+    _Xscr.resize(usteps+2);
+
+    for (unsigned t = 0; t <= usteps+1; t++) {
+        _Xscr[t].resize(vsteps+2);
+    }
+
+    getTmin() = _umin; getTmax() = _umax; getDt() = _du;
+    getUmin() = _vmin; getUmax() = _vmax; getDu() = _dv;
+    getTsteps() = unsigned ((getTmax()-getTmin())/getDt()+1);
+    getUsteps() = unsigned ((getUmax()-getUmin())/getDu()+1);
+}
+
+Function::vec4vec2D Surface1::X() const {
+    static vec4vec2D temp2D;
+    temp2D.clear();
+    
+    for (VecMath::NestedVector< Vector<4>, 2>::const_iterator it = _X_as_grid.getValues().begin();
+         it != _X_as_grid.getValues().end(); ++it) {
+      vec4vec1D temp1D;    
+      for (VecMath::NestedVector< Vector<4>, 1>::const_iterator jt = it->begin();
+         jt != it->end(); ++jt) {
+        temp1D.push_back(*jt);
+      }
+      temp2D.push_back(temp1D);
+    }
+    
+    return temp2D;
+}
+
+Function::vec4vec2D Surface1::Xtrans() const {
+//    return Surface::Xtrans();
+    static vec4vec2D temp2D;
+    temp2D.clear();
+    
+    for (VecMath::NestedVector< Vector<4>, 2>::const_iterator it = _Xtrans_as_grid.begin();
+         it != _Xtrans_as_grid.end(); ++it) {
+      vec4vec1D temp1D;    
+      for (VecMath::NestedVector< Vector<4>, 1>::const_iterator jt = it->begin();
+         jt != it->end(); ++jt) {
+        temp1D.push_back(*jt);
+      }
+      temp2D.push_back(temp1D);
+    }
+    
+    return temp2D;
 }
 
 /** Surface1 defining function
@@ -266,16 +342,26 @@ Surface1::Surface1 (double _umin, double _umax, double _du,
  *  @param vv v value
  *  @return (sintht*sinpsi, costht*sinpsi, costht, cospsi)                    */
 Vector<4> &Surface1::f (double uu, double vv) {
-    double sintht = sin (pi*uu), costht = cos (pi*uu),
-           sinpsi = sin (pi*vv), cospsi = cos (pi*vv),
-           Radius = 1;
-    F[0] = Radius*sintht*sinpsi;
-    F[1] = Radius*costht*sinpsi;
-    F[2] = Radius*costht;
-    F[3] = Radius*cospsi;
+  Vector<2> x(uu, vv);
+  F = _function->f(x);
 
-    return F;
+  return F;
 }
+
+Vector<4> Surface1::DefiningFunction::f (const Vector<2> &x) {
+  double uu = x[0], vv = x[1];
+  double sintht = sin (pi*uu), costht = cos (pi*uu),
+         sinpsi = sin (pi*vv), cospsi = cos (pi*vv),
+         Radius = 1;
+  Vector<4> F;
+  F[0] = Radius*sintht*sinpsi;
+  F[1] = Radius*costht*sinpsi;
+  F[2] = Radius*costht;
+  F[3] = Radius*cospsi;
+
+  return F;
+}
+
 
 
 ///////////////////////////////////////////////////////////////////////////////

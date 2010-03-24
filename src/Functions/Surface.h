@@ -12,6 +12,9 @@
 
 #include "Function.h"
 
+#include "ParametricFunction.h"
+#include "FunctionValueGrid.h"
+
 ////////////////////////////////////////////////////////////////////////////////
 
 /// SurfaceBase provides a base class for functions which take two parameters
@@ -147,6 +150,9 @@ class Surface: public SurfaceBase {
 
          void DrawStrip (unsigned);
 
+         virtual vec4vec2D X() const { return _X; }
+         virtual vec4vec2D Xtrans() const { return _Xtrans; }
+         
          /// redeclare \see Function::NumVertices as protected
          unsigned NumVertices;
 
@@ -172,8 +178,26 @@ public:
               double _vmin, double _vmax, double _dv);
     virtual ~Surface1() { }
 
+    virtual void Transform (const VecMath::Rotation<4> &R,
+                            const VecMath::Vector<4> &T);
+    virtual void ReInit(double _tmin, double _tmax, double _dt,
+                        double _umin, double _umax, double _du,
+                        double _vmin, double _vmax, double _dv);
+
 protected:
     virtual function_type f;
+    virtual vec4vec2D X() const;
+    virtual vec4vec2D Xtrans() const;
+    
+  private:
+
+    class DefiningFunction: public ParametricFunction<4, 2> {
+      public:
+        virtual return_type f(const argument_type &x);
+    };
+    std::tr1::shared_ptr<DefiningFunction> _function;
+    FunctionValueGrid<4, 2> _X_as_grid;
+    FunctionValueGrid<4, 2>::value_storage_type _Xtrans_as_grid;
 };
 
 namespace {
