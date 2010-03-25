@@ -142,6 +142,9 @@ class Surface: public SurfaceBase {
         virtual vec4vec1D df (double, double);
         virtual function_type normal;
 
+        virtual VecMath::NestedVector< VecMath::Vector<4>, 2 > X() const;
+        virtual VecMath::NestedVector< VecMath::Vector<4>, 2 > Xtrans() const;
+
         void Initialize (void);
         void InitMem (void);
 
@@ -149,8 +152,8 @@ class Surface: public SurfaceBase {
 
         void DrawStrip (unsigned);
 
-        virtual VecMath::NestedVector< VecMath::Vector<4>, 2 > X() const;
-        virtual VecMath::NestedVector< VecMath::Vector<4>, 2 > Xtrans() const;
+        void setBoundariesAndStepwidth(double _tmin, double _tmax, double _dt,
+                                       double _umin, double _umax, double _du);
          
         /// redeclare \see Function::NumVertices as protected
         unsigned NumVertices;
@@ -161,6 +164,11 @@ class Surface: public SurfaceBase {
         vec4vec2D _Xtrans;  ///< temporary storage for the function values on the grid
         vec3vec2D _Xscr;    ///< temporary storage for the function values on the grid
         
+    std::tr1::shared_ptr< ParametricFunction<4, 2> > _function;
+    FunctionValueGrid<4, 2> _X_as_grid;
+    FunctionValueGrid<4, 2>::value_storage_type _Xtrans_as_grid;
+        
+  private:
     mutable VecMath::NestedVector< VecMath::Vector<4>, 2 > _X_temp;
     mutable VecMath::NestedVector< VecMath::Vector<4>, 2 > _Xtrans_temp;
         
@@ -181,8 +189,6 @@ public:
               double _vmin, double _vmax, double _dv);
     virtual ~Surface1() { }
 
-    virtual void Transform (const VecMath::Rotation<4> &R,
-                            const VecMath::Vector<4> &T);
     virtual void ReInit(double _tmin, double _tmax, double _dt,
                         double _umin, double _umax, double _du,
                         double _vmin, double _vmax, double _dv);
@@ -198,9 +204,6 @@ protected:
       public:
         virtual return_type f(const argument_type &x);
     };
-    std::tr1::shared_ptr<DefiningFunction> _function;
-    FunctionValueGrid<4, 2> _X_as_grid;
-    FunctionValueGrid<4, 2>::value_storage_type _Xtrans_as_grid;
         
 };
 

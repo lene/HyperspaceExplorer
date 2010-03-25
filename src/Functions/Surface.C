@@ -76,7 +76,15 @@ void Surface::InitMem (void) {
 /// allocate and initialize X[][] with values of f()
 /** call InitMem () above                                                     */
 void Surface::Initialize () {
-    _X = vec4vec2D(getTsteps()+2);
+
+  if (_function) {
+    _X_as_grid = FunctionValueGrid<4, 2>(_function, 
+                                        Vector<2, unsigned>(getTsteps()+3, getUsteps()+3), 
+                                        Vector<2>(getTmin(), getUmin()), 
+                                        Vector<2>(getTmax(), getUmax()));
+  }
+  
+  _X = vec4vec2D(getTsteps()+2);
 //    ColMgrMgr::Instance().setFunction(this);
     for (unsigned t = 0; t <= getTsteps()+1; t++) {
         _X[t].resize(getUsteps()+2);
@@ -120,12 +128,16 @@ void Surface::calibrateColors() const {
 void Surface::ReInit(double, double, double,
                      double _tmin, double _tmax, double _dt,
                      double _umin, double _umax, double _du) {
+    setBoundariesAndStepwidth(_tmin, _tmax, _dt, _umin, _umax, _du);
+    Initialize ();
+}
+
+void Surface::setBoundariesAndStepwidth(double _tmin, double _tmax, double _dt,
+                                        double _umin, double _umax, double _du) {
     getTmin() = _tmin; getTmax() = _tmax; getDt() = _dt;
     getUmin() = _umin; getUmax() = _umax; getDu() = _du;
     getTsteps() = unsigned ((getTmax()-getTmin())/getDt()+1);
     getUsteps() = unsigned ((getUmax()-getUmin())/getDu()+1);
-
-    Initialize ();
 }
 
 /// return the approximate amount of memory needed to display a Function of current definition set
@@ -193,6 +205,8 @@ void Surface::Transform (const VecMath::Rotation<4> &R, const VecMath::Vector<4>
     transform< vec4vec2D, 4 >::xform(Rot, T, _X, _Xtrans);
     
     _Xtrans_temp.clear();
+  Transformation<4, 2> xform(R, T);
+  _Xtrans_as_grid = xform.transform(_X_as_grid.getValues());
 }
 
 /** projects a Surface into three-space
@@ -253,22 +267,6 @@ void Surface::DrawStrip (unsigned t){
     glEnd ();
 }
 
-
-Function::vec4vec2D fromNestedVector(const NestedVector< Vector<4>, 2 > &X) {
-  
-  Function::vec4vec2D temp;
-  for (NestedVector< Vector<4>, 2>::const_iterator it = X.begin();
-       it != X.end(); ++it) {
-    Function::vec4vec1D temp1D;    
-    for (NestedVector< Vector<4>, 1>::const_iterator jt = it->begin();
-         jt != it->end(); ++jt) {
-      temp1D.push_back(*jt);
-    }
-    temp.push_back(temp1D);
-  }
-  return temp;
-}
-
 NestedVector< Vector<4>, 2 > toNestedVector(const Function::vec4vec2D &v) {
 
   NestedVector< Vector<4>, 2 > temp2D;
@@ -311,46 +309,21 @@ NestedVector< Vector<4>, 2 > Surface::Xtrans() const {
  *  @param _dv stepsize in v                                                  */
 Surface1::Surface1 (double _umin, double _umax, double _du,
                     double _vmin, double _vmax, double _dv):
-        Surface ("Surface 1", _umin, _umax, _du, _vmin, _vmax, _dv), _function(new DefiningFunction) {
-    _X_as_grid = FunctionValueGrid<4, 2>(_function);
-    _X_as_grid.setBoundaries(Vector<2>(_umin, _vmin), Vector<2>(_umax, _vmax));
-    unsigned usteps = unsigned((_umax-_umin)/_du+1);
-    unsigned vsteps = unsigned((_vmax-_vmin)/_dv+1);
-    std::cerr << " usteps " << usteps << " vsteps " << vsteps << " getTsteps() " << getTsteps() << " getUsteps  " << getUsteps() << std::endl;
-    _X_as_grid.setGridSize(Vector<2, unsigned>(usteps+3, vsteps+3));
-
-    _Xscr.resize(usteps+2);
-
-    for (unsigned t = 0; t <= usteps+1; t++) {
-        _Xscr[t].resize(vsteps+2);
-    }
-}
-
-void Surface1::Transform ( const VecMath::Rotation< 4 >& R, const VecMath::Vector< 4 >& T ) {
-  Transformation<4, 2> xform(R, T);
-  _Xtrans_as_grid = xform.transform(_X_as_grid.getValues());
-  _Xtrans_temp.clear();
-}
-
-void Surface1::ReInit ( double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv, double, double, double) {
-    _X_as_grid.setBoundaries(Vector<2>(_umin, _vmin), Vector<2>(_umax, _vmax));
-    unsigned usteps = unsigned((_umax-_umin)/_du+1);
-    unsigned vsteps = unsigned((_vmax-_vmin)/_dv+1);
-    std::cerr << " usteps " << usteps << " vsteps " << vsteps << " getTsteps() " << getTsteps() << " getUsteps  " << getUsteps() << std::endl;
-    _X_as_grid.setGridSize(Vector<2, unsigned>(usteps+3, vsteps+3));
-
-    _Xscr.resize(usteps+2);
-
-    for (unsigned t = 0; t <= usteps+1; t++) {
-        _Xscr[t].resize(vsteps+2);
-    }
-
-    getTmin() = _umin; getTmax() = _umax; getDt() = _du;
-    getUmin() = _vmin; getUmax() = _vmax; getDu() = _dv;
-    getTsteps() = unsigned ((getTmax()-getTmin())/getDt()+1);
-    getUsteps() = unsigned ((getUmax()-getUmin())/getDu()+1);
+        Surface ("Surface 1", _umin, _umax, _du, _vmin, _vmax, _dv) {
     
-    _X_temp.clear();
+    _function = shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction);
+    Initialize();
+}
+
+void Surface1::ReInit(double _umin, double _umax, double _du, 
+                      double _vmin, double _vmax, double _dv, 
+                      double, double, double) {
+    unsigned usteps = unsigned((_umax-_umin)/_du+1);
+    unsigned vsteps = unsigned((_vmax-_vmin)/_dv+1);
+    _X_as_grid.setBoundaries(Vector<2>(_umin, _vmin), Vector<2>(_umax, _vmax));
+    _X_as_grid.setGridSize(Vector<2, unsigned>(usteps+3, vsteps+3));
+
+    Surface::ReInit(0., 0., 0., _umin, _umax, _du, _vmin, _vmax, _dv);
 }
 
 
