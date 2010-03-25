@@ -14,6 +14,7 @@
 
 #include "ParametricFunction.h"
 #include "FunctionValueGrid.h"
+#include "NestedVector.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -138,27 +139,31 @@ class Surface: public SurfaceBase {
         virtual unsigned getDefinitionSpaceDimensions() { return 2; }
 
     protected:
-         virtual vec4vec1D df (double, double);
-         virtual function_type normal;
+        virtual vec4vec1D df (double, double);
+        virtual function_type normal;
 
-         void Initialize (void);
-         void InitMem (void);
+        void Initialize (void);
+        void InitMem (void);
 
-         virtual unsigned long MemRequired (void);
+        virtual unsigned long MemRequired (void);
 
-         void DrawStrip (unsigned);
+        void DrawStrip (unsigned);
 
-         virtual vec4vec2D X() const { return _X; }
-         virtual vec4vec2D Xtrans() const { return _Xtrans; }
+        virtual VecMath::NestedVector< VecMath::Vector<4>, 2 > X() const;
+        virtual VecMath::NestedVector< VecMath::Vector<4>, 2 > Xtrans() const;
          
-         /// redeclare \see Function::NumVertices as protected
-         unsigned NumVertices;
+        /// redeclare \see Function::NumVertices as protected
+        unsigned NumVertices;
 
-         VecMath::Vector<4> F;
+        VecMath::Vector<4> F;
 
-         vec4vec2D _X,       ///< temporary storage for the function values on the grid
-                   _Xtrans;  ///< temporary storage for the function values on the grid
-         vec3vec2D _Xscr;    ///< temporary storage for the function values on the grid
+        vec4vec2D _X;       ///< temporary storage for the function values on the grid
+        vec4vec2D _Xtrans;  ///< temporary storage for the function values on the grid
+        vec3vec2D _Xscr;    ///< temporary storage for the function values on the grid
+        
+    mutable vec4vec2D _X_temp;
+    mutable vec4vec2D _Xtrans_temp;
+        
 };
 
 /// An example surface:
@@ -184,8 +189,8 @@ public:
 
 protected:
     virtual function_type f;
-    virtual vec4vec2D X() const;
-    virtual vec4vec2D Xtrans() const;
+    virtual VecMath::NestedVector< VecMath::Vector<4>, 2 > X() const;
+    virtual VecMath::NestedVector< VecMath::Vector<4>, 2 > Xtrans() const;
     
   private:
 
@@ -196,10 +201,7 @@ protected:
     std::tr1::shared_ptr<DefiningFunction> _function;
     FunctionValueGrid<4, 2> _X_as_grid;
     FunctionValueGrid<4, 2>::value_storage_type _Xtrans_as_grid;
-    
-    mutable vec4vec2D _X_temp;
-    mutable vec4vec2D _Xtrans_temp;
-    
+        
 };
 
 namespace {

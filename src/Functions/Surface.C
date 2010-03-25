@@ -248,6 +248,35 @@ void Surface::DrawStrip (unsigned t){
 }
 
 
+Function::vec4vec2D fromNestedVector(const VecMath::NestedVector< VecMath::Vector<4>, 2 > &X) {
+  
+  Function::vec4vec2D temp;
+  for (VecMath::NestedVector< Vector<4>, 2>::const_iterator it = X.begin();
+       it != X.end(); ++it) {
+    Function::vec4vec1D temp1D;    
+    for (VecMath::NestedVector< Vector<4>, 1>::const_iterator jt = it->begin();
+         jt != it->end(); ++jt) {
+      temp1D.push_back(*jt);
+    }
+    temp.push_back(temp1D);
+  }
+  return temp;
+}
+
+VecMath::NestedVector< VecMath::Vector<4>, 2 > Surface::X() const {
+    if (_X_temp.empty()) {
+      _X_temp = fromNestedVector(_X);
+    }
+    return _X_temp;
+}
+
+VecMath::NestedVector< VecMath::Vector<4>, 2 > Surface::Xtrans() const {
+   if (_Xtrans_temp.empty()) {
+     _Xtrans_temp = fromNestedVector(_Xtrans);
+   }
+  return _Xtrans_temp;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 
 
@@ -302,37 +331,6 @@ void Surface1::ReInit ( double _umin, double _umax, double _du, double _vmin, do
     _X_temp.clear();
 }
 
-Function::vec4vec2D Surface1::X() const {
-
-    if (_X_temp.empty()) {
-      for (VecMath::NestedVector< Vector<4>, 2>::const_iterator it = _X_as_grid.getValues().begin();
-          it != _X_as_grid.getValues().end(); ++it) {
-        vec4vec1D temp1D;    
-        for (VecMath::NestedVector< Vector<4>, 1>::const_iterator jt = it->begin();
-          jt != it->end(); ++jt) {
-          temp1D.push_back(*jt);
-        }
-        _X_temp.push_back(temp1D);
-      }
-    }
-    return _X_temp;
-}
-
-Function::vec4vec2D Surface1::Xtrans() const {
-
-   if (_Xtrans_temp.empty()) {
-    for (VecMath::NestedVector< Vector<4>, 2>::const_iterator it = _Xtrans_as_grid.begin();
-         it != _Xtrans_as_grid.end(); ++it) {
-      vec4vec1D temp1D;    
-      for (VecMath::NestedVector< Vector<4>, 1>::const_iterator jt = it->begin();
-         jt != it->end(); ++jt) {
-        temp1D.push_back(*jt);
-      }
-      _Xtrans_temp.push_back(temp1D);
-    }
-   }
-  return _Xtrans_temp;
-}
 
 /** Surface1 defining function
  *  @param uu u value
