@@ -116,6 +116,9 @@ namespace VecMath {
             /// Returns true if the vector is empty. (Thus begin() would equal end().)
             unsigned empty() const { return data().empty(); }
 
+            /// Erases all the elements, and calls clear() on them recursively.
+            void clear();
+            
             /// Resizes the vector to the specified number of elements
             /** \param new_size Number of elements the vector should contain */
             void resize(unsigned new_size) { data().resize(new_size); }
@@ -211,6 +214,8 @@ namespace VecMath {
             /// See NestedVector<T, D>::empty()
             unsigned empty() const { return data().empty(); }
 
+            void clear() { data().clear(); }
+            
             /// See NestedVector<T, D>::resize()
             void resize(unsigned new_size) { data().resize(new_size); }
 
@@ -297,6 +302,12 @@ namespace VecMath {
         return i;
     }
 
+    template <typename T, unsigned D> void NestedVector<T, D>::clear() {
+      for (typename NestedVector<T, D>::iterator i = data().begin(); i != data().end(); ++i) {
+        i->clear();
+      }
+      data().clear();
+    }
 }
 
 

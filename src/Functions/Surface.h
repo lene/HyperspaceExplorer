@@ -161,8 +161,8 @@ class Surface: public SurfaceBase {
         vec4vec2D _Xtrans;  ///< temporary storage for the function values on the grid
         vec3vec2D _Xscr;    ///< temporary storage for the function values on the grid
         
-    mutable vec4vec2D _X_temp;
-    mutable vec4vec2D _Xtrans_temp;
+    mutable VecMath::NestedVector< VecMath::Vector<4>, 2 > _X_temp;
+    mutable VecMath::NestedVector< VecMath::Vector<4>, 2 > _Xtrans_temp;
         
 };
 
@@ -189,8 +189,8 @@ public:
 
 protected:
     virtual function_type f;
-    virtual VecMath::NestedVector< VecMath::Vector<4>, 2 > X() const;
-    virtual VecMath::NestedVector< VecMath::Vector<4>, 2 > Xtrans() const;
+    virtual VecMath::NestedVector< VecMath::Vector<4>, 2 > X() const { return _X_as_grid.getValues(); }
+    virtual VecMath::NestedVector< VecMath::Vector<4>, 2 > Xtrans() const { return _Xtrans_as_grid; }
     
   private:
 

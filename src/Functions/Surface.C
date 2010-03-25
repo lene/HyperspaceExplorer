@@ -17,6 +17,8 @@
 
 #include "Transformation.h"
 
+
+using VecMath::NestedVector;
 using VecMath::Vector;
 using VecMath::Matrix;
 using std::tr1::shared_ptr;
@@ -83,6 +85,8 @@ void Surface::Initialize () {
         }
     }
 
+    _X_temp.clear();
+    
     calibrateColors();
 
     InitMem ();
@@ -187,6 +191,8 @@ void Surface::Transform (const VecMath::Rotation<4> &R, const VecMath::Vector<4>
     Matrix<4> Rot(R);
 
     transform< vec4vec2D, 4 >::xform(Rot, T, _X, _Xtrans);
+    
+    _Xtrans_temp.clear();
 }
 
 /** projects a Surface into three-space
@@ -248,13 +254,13 @@ void Surface::DrawStrip (unsigned t){
 }
 
 
-Function::vec4vec2D fromNestedVector(const VecMath::NestedVector< VecMath::Vector<4>, 2 > &X) {
+Function::vec4vec2D fromNestedVector(const NestedVector< Vector<4>, 2 > &X) {
   
   Function::vec4vec2D temp;
-  for (VecMath::NestedVector< Vector<4>, 2>::const_iterator it = X.begin();
+  for (NestedVector< Vector<4>, 2>::const_iterator it = X.begin();
        it != X.end(); ++it) {
     Function::vec4vec1D temp1D;    
-    for (VecMath::NestedVector< Vector<4>, 1>::const_iterator jt = it->begin();
+    for (NestedVector< Vector<4>, 1>::const_iterator jt = it->begin();
          jt != it->end(); ++jt) {
       temp1D.push_back(*jt);
     }
@@ -263,16 +269,32 @@ Function::vec4vec2D fromNestedVector(const VecMath::NestedVector< VecMath::Vecto
   return temp;
 }
 
-VecMath::NestedVector< VecMath::Vector<4>, 2 > Surface::X() const {
+NestedVector< Vector<4>, 2 > toNestedVector(const Function::vec4vec2D &v) {
+
+  NestedVector< Vector<4>, 2 > temp2D;
+  for (Function::vec4vec2D::const_iterator it = v.begin();
+       it != v.end(); ++it) {
+    NestedVector< Vector<4>, 1> temp1D;    
+    for (Function::vec4vec1D::const_iterator jt = it->begin();
+         jt != it->end(); ++jt) {
+      temp1D.push_back(*jt);
+    }
+    temp2D.push_back(temp1D);
+  }
+  return temp2D;
+  
+}
+
+NestedVector< Vector<4>, 2 > Surface::X() const {
     if (_X_temp.empty()) {
-      _X_temp = fromNestedVector(_X);
+      _X_temp = toNestedVector(_X);
     }
     return _X_temp;
 }
 
-VecMath::NestedVector< VecMath::Vector<4>, 2 > Surface::Xtrans() const {
+NestedVector< Vector<4>, 2 > Surface::Xtrans() const {
    if (_Xtrans_temp.empty()) {
-     _Xtrans_temp = fromNestedVector(_Xtrans);
+     _Xtrans_temp = toNestedVector(_Xtrans);
    }
   return _Xtrans_temp;
 }
