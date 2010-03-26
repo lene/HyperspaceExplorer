@@ -114,9 +114,9 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
                              new C4DView::TemplatedSurfaceFactory<z3>);
                 insertAction(_fcc, "z^a",
                              new C4DView::TemplatedSurfaceFactory<zA>);
-                insertAction(_fcc, "e^z",
+                insertAction(_fcc, "e^a*z",
                              new C4DView::TemplatedSurfaceFactory<ez>);
-                insertAction(_fcc, "e^-z"+sup2+"",
+                insertAction(_fcc, "e^-a*z"+sup2+"",
                              new C4DView::TemplatedSurfaceFactory<emz2>);
                 insertAction(_fcc, "1/z",
                              new C4DView::TemplatedSurfaceFactory<zm1>);
@@ -463,8 +463,19 @@ QAction *&C4DView::Menu4D::getAction(const QString &key) {
         ActionMapType actionMap = it->second;
         if (actionMap.count(key)) return actionMap[key];
     }
+    
     ///  \todo Throw a real exception
-    throw std::logic_error((key+" not found in list of menu entries!").toStdString());
+    QString mapKeys;
+    for (it = menuMap.begin(); it != menuMap.end(); ++it) {
+      mapKeys += "( ";
+      ActionMapType actionMap = it->second;
+      for (ActionMapType::iterator jt = actionMap.begin(); jt != actionMap.end(); ++jt) {
+        mapKeys += jt->first+", ";
+      }
+      mapKeys += " )\n";
+    }
+    throw std::logic_error(
+      (key+" not found in list of menu entries:\n"+ mapKeys).toStdString());
 }
 
 

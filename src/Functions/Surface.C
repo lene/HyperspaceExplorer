@@ -215,11 +215,11 @@ Function::vec4vec1D Surface::df (double uu, double vv) {
  *  @param R rotation
  *  @param T translation                                                      */
 void Surface::Transform (const VecMath::Rotation<4> &R, const VecMath::Vector<4> &T) {
-    Matrix<4> Rot(R);
+  Matrix<4> Rot(R);
 
-    transform< vec4vec2D, 4 >::xform(Rot, T, _X, _Xtrans);
+  transform< vec4vec2D, 4 >::xform(Rot, T, _X, _Xtrans);
     
-    _Xtrans_temp.clear();
+  _Xtrans_temp.clear();
   Transformation<4, 2> xform(R, T);
   _Xtrans_as_grid = xform.transform(_X_as_grid.getValues());
 }
@@ -235,13 +235,13 @@ void Surface::Project (double scr_w, double cam_w, bool depthcue4d) {
     for (unsigned t = 0; t <= getTsteps()+1; t++)
         for (unsigned u = 0; u <= getUsteps()+1; u++) {
 
-            if (Xtrans()[t][u][3] < Wmin) Wmin = Xtrans()[t][u][3];
-            if (Xtrans()[t][u][3] > Wmax) Wmax = Xtrans()[t][u][3];
+          if (Xtrans()[t][u][3] < Wmin) Wmin = Xtrans()[t][u][3];
+          if (Xtrans()[t][u][3] > Wmax) Wmax = Xtrans()[t][u][3];
 
-            ProjectionFactor = (scr_w-cam_w)/(Xtrans()[t][u][3]-cam_w);
+          ProjectionFactor = (scr_w-cam_w)/(Xtrans()[t][u][3]-cam_w);
 
-            for (unsigned i = 0; i <= 2; i++)
-                _Xscr[t][u][i] = ProjectionFactor*Xtrans()[t][u][i];
+          for (unsigned i = 0; i <= 2; i++)
+            _Xscr[t][u][i] = ProjectionFactor*Xtrans()[t][u][i];
     }
 
     if (!depthcue4d) return;
@@ -369,8 +369,7 @@ Horizon::Horizon (double _umin, double _umax, double _du,
 }
 
 Vector<4> Horizon::DefiningFunction::f (const Vector<2> &x) {
-  double t = x[0], phi = x[1];
-  t *= pi; phi *= pi/2;
+  double t = x[0]*pi, phi = x[1]*pi/2.;
   
   Vector<4> F;
   F[0] = (1-sin (t))*cos (phi);
@@ -395,6 +394,7 @@ Vector<4> Horizon::DefiningFunction::f (const Vector<2> &x) {
 Torus3::Torus3 (double _umin, double _umax, double _du,
                 double _vmin, double _vmax, double _dv):
         Surface ("Torus 3", _umin, _umax, _du, _vmin, _vmax, _dv) {
+    _function = shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction);
     Initialize ();
 }
 
@@ -402,12 +402,14 @@ Torus3::Torus3 (double _umin, double _umax, double _du,
  *  @param theta u value
  *  @param phi v value
  *  @return (costht, sintht, cosphi, sinphi)                                  */
-Vector<4> &Torus3::f (double theta, double phi) {
-    theta *= pi; phi *= pi;
-    F[0] = cos (theta);
-    F[1] = sin (theta);
-    F[2] = cos (phi);
-    F[3] = sin (phi);
+Vector<4> Torus3::DefiningFunction::f (const Vector<2> &x) {
+  double theta = x[0]*pi, phi = x[1]*pi;
 
-    return F;
+  Vector<4> F;
+  F[0] = cos (theta);
+  F[1] = sin (theta);
+  F[2] = cos (phi);
+  F[3] = sin (phi);
+
+  return F;
 }

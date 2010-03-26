@@ -12,8 +12,12 @@
 #include "ComplexFunction.h"
 
 using std::complex;
+using std::tr1::shared_ptr;
 
 using VecMath::Vector;
+
+const QString ComplexFunction::sup2 = QString(QChar(0x00B2));
+const QString ComplexFunction::sup3 = QString(QChar(0x00B3));
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -31,39 +35,25 @@ ComplexFunction::ComplexFunction (const QString &name,
                                   double _umin, double _umax, double _du,
                                   double _vmin, double _vmax, double _dv):
   Surface (name, _umin, _umax, _du, _vmin, _vmax, _dv) {
+    _function = shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction(this));
 }
 
 /** ComplexFunction destructor                                                */
 ComplexFunction::~ComplexFunction () { }
 
-/** allocate and initialize X[][] with values of f()
- *  call Surface::InitMem ()                                                  */
-void ComplexFunction::Initialize () {
-    _X = vec4vec2D(getTsteps()+2);
 
-    for (unsigned t = 0; t <= getTsteps()+1; t++) {
-        _X[t].resize(getUsteps()+2);
-        for (unsigned u = 0; u <= getUsteps()+1; u++) {
-            _X[t][u] = f(getTmin()+t*getDt(), getUmin()+u*getDu());
-        }
-    }
+ParametricFunction< 4, 2 >::return_type ComplexFunction::DefiningFunction::f(const ParametricFunction< 4, 2 >::argument_type& x) {
 
-    InitMem ();
-}
+  complex<double> z(x[0], x[1]), w = _complex_function->g(z);
+  
+  Vector<4> F;
+  F[0] = x[0];
+  F[1] = x[1];
+  F[2] = w.real();
+  F[3] = w.imag();
 
+  return F;
 
-/** ComplexFunction defining function calling g () and returning (z, g (z))
- *  @param uu Re (z)
- *  @param vv Im (z)
- *  @return value of defining function at point in question                   */
-Vector<4> &ComplexFunction::f (double uu, double vv) {
-    complex<double> z (uu, vv), w = g (z);
-    F[0] = uu;
-    F[1] = vv;
-    F[2] = w.real ();
-    F[3] = w.imag ();
-
-    return F;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -77,7 +67,7 @@ Vector<4> &ComplexFunction::f (double uu, double vv) {
  *  @param _dv		stepsize in Im (z)                                        */
 z2::z2 (double _umin, double _umax, double _du,
         double _vmin, double _vmax, double _dv):
-        ComplexFunction ("z�", _umin, _umax, _du, _vmin, _vmax, _dv) {
+        ComplexFunction ("z"+ComplexFunction::sup2, _umin, _umax, _du, _vmin, _vmax, _dv) {
     Initialize ();
 }
 
@@ -100,7 +90,7 @@ complex<double> z2::g (complex<double> z) {
  *  @param _dv		stepsize in Im (z)                                        */
 z3::z3 (double _umin, double _umax, double _du,
         double _vmin, double _vmax, double _dv):
-        ComplexFunction ("z�", _umin, _umax, _du, _vmin, _vmax, _dv) {
+        ComplexFunction ("z"+ComplexFunction::sup3, _umin, _umax, _du, _vmin, _vmax, _dv) {
     Initialize ();
 }
 
@@ -180,7 +170,7 @@ complex<double> ez::g (complex<double> z) {
 emz2::emz2 (double _umin, double _umax, double _du,
             double _vmin, double _vmax, double _dv,
             double alpha):
-        ComplexFunction ("e^-a*z�", _umin, _umax, _du, _vmin, _vmax, _dv),
+        ComplexFunction ("e^-a*z"+ComplexFunction::sup2, _umin, _umax, _du, _vmin, _vmax, _dv),
   _alpha (alpha) {
   Initialize ();
   declareParameter("a", 1.0);
@@ -234,7 +224,7 @@ complex<double> zm1::g (complex<double> z) {
  */
 zm2::zm2 (double _umin, double _umax, double _du,
 	  double _vmin, double _vmax, double _dv):
-        ComplexFunction ("1/z�", _umin, _umax, _du, _vmin, _vmax, _dv) {
+        ComplexFunction ("1/z"+ComplexFunction::sup2, _umin, _umax, _du, _vmin, _vmax, _dv) {
   Initialize ();
 }
 
@@ -286,7 +276,7 @@ complex<double> sqrtz::g (complex<double> z) {
  */
 lnz::lnz (double _umin, double _umax, double _du,
 	  double _vmin, double _vmax, double _dv):
-        ComplexFunction ("ln z", _umin, _umax, _du, _vmin, _vmax, _dv) {
+        ComplexFunction ("ln (z)", _umin, _umax, _du, _vmin, _vmax, _dv) {
   Initialize ();
 }
 
@@ -312,7 +302,7 @@ complex<double> lnz::g (complex<double> z) {
  */
 sinz::sinz (double _umin, double _umax, double _du,
 	    double _vmin, double _vmax, double _dv):
-        ComplexFunction ("sin z", _umin, _umax, _du, _vmin, _vmax, _dv) {
+        ComplexFunction ("sin (z)", _umin, _umax, _du, _vmin, _vmax, _dv) {
   Initialize ();
 }
 
@@ -338,7 +328,7 @@ complex<double> sinz::g (complex<double> z) {
  */
 cosz::cosz (double _umin, double _umax, double _du,
 	    double _vmin, double _vmax, double _dv):
-        ComplexFunction ("cos z", _umin, _umax, _du, _vmin, _vmax, _dv) {
+        ComplexFunction ("cos (z)", _umin, _umax, _du, _vmin, _vmax, _dv) {
   Initialize ();
 }
 
@@ -362,7 +352,7 @@ complex<double> cosz::g (complex<double> z) {
  *  @param _dv stepsize in Im (z)                                             */
 sinhz::sinhz (double _umin, double _umax, double _du,
 	      double _vmin, double _vmax, double _dv):
-        ComplexFunction ("sinh z", _umin, _umax, _du, _vmin, _vmax, _dv) {
+        ComplexFunction ("sinh (z)", _umin, _umax, _du, _vmin, _vmax, _dv) {
   Initialize ();
 }
 
@@ -386,7 +376,7 @@ complex<double> sinhz::g (complex<double> z) {
  *  @param _dv		stepsize in Im (z)                                    */
 coshz::coshz (double _umin, double _umax, double _du,
 	      double _vmin, double _vmax, double _dv):
-        ComplexFunction ("cosh z", _umin, _umax, _du, _vmin, _vmax, _dv) {
+        ComplexFunction ("cosh (z)", _umin, _umax, _du, _vmin, _vmax, _dv) {
   Initialize ();
 }
 
@@ -410,7 +400,7 @@ complex<double> coshz::g (complex<double> z) {
  *  @param _dv		stepsize in Im (z)                                    */
 tanz::tanz (double _umin, double _umax, double _du,
 	    double _vmin, double _vmax, double _dv):
-        ComplexFunction ("tan z", _umin, _umax, _du, _vmin, _vmax, _dv) {
+        ComplexFunction ("tan (z)", _umin, _umax, _du, _vmin, _vmax, _dv) {
   Initialize ();
 }
 

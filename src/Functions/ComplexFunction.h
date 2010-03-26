@@ -13,9 +13,9 @@
 #define COMPLEXFUNCTION_H 1
 
 
-#include <complex>
-
 #include "Surface.h"
+
+#include <complex>
 
 /// A surface defined as a function \f$ C \rightarrow C \f$
 /** The surface in four dimensions is defined as
@@ -28,7 +28,7 @@
  *  \ingroup FunctionGroup
  *  @author Helge Preuss <lene.preuss@gmail.com>                         */
 class ComplexFunction: public Surface {
-    public:
+public:
         /// Minimal constructor, sets the function name
         ComplexFunction (const QString &name): Surface(name) { }
         ComplexFunction (const QString &name,
@@ -44,10 +44,26 @@ class ComplexFunction: public Surface {
         /// A function from \f$ C \rightarrow C \f$
         typedef std::complex<double> function_type(std::complex <double>);
 
-    protected:
-        virtual VecMath::Vector<4> &f (double, double);
-        virtual function_type g = 0;    ///< The actual function from C to C
-        void Initialize (void);
+protected:
+
+  virtual function_type g = 0;    ///< The actual function from C to C
+  
+  const static QString sup2;
+  const static QString sup3;
+      
+private:
+  
+  struct DefiningFunction: public ParametricFunction<4, 2> {
+    
+    DefiningFunction(ComplexFunction *parent): _complex_function(parent) { }
+    virtual return_type f(const argument_type &x);
+    
+  private:
+    
+//    std::tr1::shared_ptr<ComplexFunction> _complex_function;
+        ComplexFunction * _complex_function;
+  };
+
 };
 
 /// \f$ f(z) = z^2 \f$
@@ -123,7 +139,7 @@ namespace {
 /** \ingroup ComplexGroup                                                    */
 class ez: public ComplexFunction {
     public:
-        ez (): ComplexFunction("ez"), _alpha(2) { }
+        ez (): ComplexFunction("e^a*z"), _alpha(2) { }
         ez (double _umin, double _umax, double _du,
             double _vmin, double _vmax, double _dv,
             double alpha = 2);
@@ -148,7 +164,7 @@ class ez: public ComplexFunction {
 
 namespace {
     Function *createez() { return new ez(); }
-    const bool registered4 = TheFunctionFactory::Instance().registerFunction("ez", createez);
+    const bool registered4 = TheFunctionFactory::Instance().registerFunction("e^a*z", createez);
 }
 
 /// \f$ f(z) = e^{-\alpha*z^2} \f$
