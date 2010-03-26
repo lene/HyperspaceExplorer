@@ -101,22 +101,30 @@ void Surface::Initialize () {
 }
 
 void Surface::calibrateColors() const {
-    double Wmax = 0, Wmin = 0;
-    for (unsigned t = 0; t <= getTsteps()+1; t++) {
-        for (unsigned u = 0; u <= getUsteps()+1; u++) {
-          std::cerr << "t: " << t << " u: " << u <<std::endl;
-            if (X()[t][u][3] < Wmin) Wmin = X()[t][u][3];
-            if (X()[t][u][3] > Wmax) Wmax = X()[t][u][3];
-        }
-    }
-    for (unsigned t = 0; t <= getTsteps()+1; t++) {
+
+  std::pair< double, double > Wext = findExtremesInW();
+  
+  for (unsigned t = 0; t <= getTsteps()+1; t++) {
         for (unsigned u = 0; u <= getUsteps()+1; u++) {
             ColMgrMgr::Instance().calibrateColor(
                 X()[t][u],
                 Color(float(t)/float(getTsteps()), float(u)/float(getUsteps()),
-                      (Wmax-X()[t][u][3])/(Wmax-Wmin)));
+                      (Wext.second-X()[t][u][3])/(Wext.second-Wext.first)));
         }
     }
+}
+
+std::pair< double, double > Surface::findExtremesInW() const {
+  double Wmax = 0, Wmin = 0;
+  
+  for (unsigned t = 0; t <= getTsteps()+1; t++) {
+    for (unsigned u = 0; u <= getUsteps()+1; u++) {
+      if (X()[t][u][3] < Wmin) Wmin = X()[t][u][3];
+      if (X()[t][u][3] > Wmax) Wmax = X()[t][u][3];
+    }
+  }
+
+  return std::make_pair(Wmin, Wmax);
 }
 
 /** re-initialize a Surface if the definition set has changed
@@ -291,14 +299,19 @@ NestedVector< Vector<4>, 2 > toNestedVector(const Function::vec4vec2D &v) {
 }
 
 NestedVector< Vector<4>, 2 > Surface::X() const {
-    if (_X_temp.empty()) {
-      _X_temp = toNestedVector(_X);
-    }
-    return _X_temp;
+  if (_function) return _X_as_grid.getValues();
+  
+  if (_X_temp.empty()) {
+    _X_temp = toNestedVector(_X);
+  }
+  return _X_temp;
 }
 
 NestedVector< Vector<4>, 2 > Surface::Xtrans() const {
-   if (_Xtrans_temp.empty()) {
+
+  if (_function) return _Xtrans_as_grid;
+  
+  if (_Xtrans_temp.empty()) {
      _Xtrans_temp = toNestedVector(_Xtrans);
    }
   return _Xtrans_temp;
@@ -320,17 +333,6 @@ Surface1::Surface1 (double _umin, double _umax, double _du,
     
     _function = shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction);
     Initialize();
-}
-
-/** Surface1 defining function
- *  @param uu u value
- *  @param vv v value
- *  @return (sintht*sinpsi, costht*sinpsi, costht, cospsi)                    */
-Vector<4> &Surface1::f (double uu, double vv) {
-  Vector<2> x(uu, vv);
-  F = _function->f(x);
-
-  return F;
 }
 
 Vector<4> Surface1::DefiningFunction::f (const Vector<2> &x) {

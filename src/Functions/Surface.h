@@ -16,6 +16,8 @@
 #include "FunctionValueGrid.h"
 #include "NestedVector.h"
 
+#include <utility>
+
 ////////////////////////////////////////////////////////////////////////////////
 
 /// SurfaceBase provides a base class for functions which take two parameters
@@ -141,6 +143,7 @@ class Surface: public SurfaceBase {
     protected:
         virtual vec4vec1D df (double, double);
         virtual function_type normal;
+        virtual VecMath::Vector<4> &f(double, double) { return F; }
 
         virtual VecMath::NestedVector< VecMath::Vector<4>, 2 > X() const;
         virtual VecMath::NestedVector< VecMath::Vector<4>, 2 > Xtrans() const;
@@ -169,6 +172,9 @@ class Surface: public SurfaceBase {
     FunctionValueGrid<4, 2>::value_storage_type _Xtrans_as_grid;
         
   private:
+    
+    std::pair<double, double> findExtremesInW() const;
+    
     mutable VecMath::NestedVector< VecMath::Vector<4>, 2 > _X_temp;
     mutable VecMath::NestedVector< VecMath::Vector<4>, 2 > _Xtrans_temp;
         
@@ -188,18 +194,13 @@ public:
     Surface1 (double _umin, double _umax, double _du,
               double _vmin, double _vmax, double _dv);
     virtual ~Surface1() { }
-
-protected:
-    virtual function_type f;
-    virtual VecMath::NestedVector< VecMath::Vector<4>, 2 > X() const { return _X_as_grid.getValues(); }
-    virtual VecMath::NestedVector< VecMath::Vector<4>, 2 > Xtrans() const { return _Xtrans_as_grid; }
     
-  private:
+private:
 
-    class DefiningFunction: public ParametricFunction<4, 2> {
-      public:
-        virtual return_type f(const argument_type &x);
-    };
+  class DefiningFunction: public ParametricFunction<4, 2> {
+  public:
+    virtual return_type f(const argument_type &x);
+  };
         
 };
 

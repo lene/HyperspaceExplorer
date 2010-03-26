@@ -223,7 +223,7 @@ namespace VecMath {
             /** \param new_size Number of elements the vector should contain
              *  \param x Data with which new elements should be populated
              */
-            void resize(unsigned new_size, unsigned x) {
+            void resize(unsigned new_size, T x) {
             	data().resize(new_size, x);
             }
 
