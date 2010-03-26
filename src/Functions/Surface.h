@@ -189,10 +189,6 @@ public:
               double _vmin, double _vmax, double _dv);
     virtual ~Surface1() { }
 
-    virtual void ReInit(double _tmin, double _tmax, double _dt,
-                        double _umin, double _umax, double _du,
-                        double _vmin, double _vmax, double _dv);
-
 protected:
     virtual function_type f;
     virtual VecMath::NestedVector< VecMath::Vector<4>, 2 > X() const { return _X_as_grid.getValues(); }

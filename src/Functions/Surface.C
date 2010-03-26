@@ -79,7 +79,7 @@ void Surface::Initialize () {
 
   if (_function) {
     _X_as_grid = FunctionValueGrid<4, 2>(_function, 
-                                        Vector<2, unsigned>(getTsteps()+3, getUsteps()+3), 
+                                        Vector<2, unsigned>(getTsteps()+2, getUsteps()+2), 
                                         Vector<2>(getTmin(), getUmin()), 
                                         Vector<2>(getTmax(), getUmax()));
   }
@@ -104,6 +104,7 @@ void Surface::calibrateColors() const {
     double Wmax = 0, Wmin = 0;
     for (unsigned t = 0; t <= getTsteps()+1; t++) {
         for (unsigned u = 0; u <= getUsteps()+1; u++) {
+          std::cerr << "t: " << t << " u: " << u <<std::endl;
             if (X()[t][u][3] < Wmin) Wmin = X()[t][u][3];
             if (X()[t][u][3] > Wmax) Wmax = X()[t][u][3];
         }
@@ -128,8 +129,14 @@ void Surface::calibrateColors() const {
 void Surface::ReInit(double, double, double,
                      double _tmin, double _tmax, double _dt,
                      double _umin, double _umax, double _du) {
-    setBoundariesAndStepwidth(_tmin, _tmax, _dt, _umin, _umax, _du);
-    Initialize ();
+  setBoundariesAndStepwidth(_tmin, _tmax, _dt, _umin, _umax, _du);
+  
+  Initialize ();
+
+  if (_function) {
+    _X_as_grid.setBoundaries(Vector<2>(getTmin(), getUmin()), Vector<2>(getTmax(), getUmax()));
+    _X_as_grid.setGridSize(Vector<2, unsigned>(getTsteps()+2, getUsteps()+2));
+  }
 }
 
 void Surface::setBoundariesAndStepwidth(double _tmin, double _tmax, double _dt,
@@ -314,18 +321,6 @@ Surface1::Surface1 (double _umin, double _umax, double _du,
     _function = shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction);
     Initialize();
 }
-
-void Surface1::ReInit(double _umin, double _umax, double _du, 
-                      double _vmin, double _vmax, double _dv, 
-                      double, double, double) {
-    unsigned usteps = unsigned((_umax-_umin)/_du+1);
-    unsigned vsteps = unsigned((_vmax-_vmin)/_dv+1);
-    _X_as_grid.setBoundaries(Vector<2>(_umin, _vmin), Vector<2>(_umax, _vmax));
-    _X_as_grid.setGridSize(Vector<2, unsigned>(usteps+3, vsteps+3));
-
-    Surface::ReInit(0., 0., 0., _umin, _umax, _du, _vmin, _vmax, _dv);
-}
-
 
 /** Surface1 defining function
  *  @param uu u value
