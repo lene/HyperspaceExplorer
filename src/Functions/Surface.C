@@ -364,24 +364,23 @@ Vector<4> Surface1::DefiningFunction::f (const Vector<2> &x) {
 Horizon::Horizon (double _umin, double _umax, double _du,
                   double _vmin, double _vmax, double _dv):
     Surface ("Horizon", _umin, _umax, _du, _vmin, _vmax, _dv) {
+    _function = shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction);
     Initialize ();
 }
 
-/** Horizon defining function
- *  @param uu u value
- *  @param vv v value
- *  @return aah, see below */
-Vector<4> &Horizon::f (double t, double phi) {
-    t *= pi; phi *= pi/2;
-    F[0] = (1-sin (t))*cos (phi);
-    F[1] = (1-sin (t))*sin (phi);
-    F[2] = (1+sin (t))*cos (phi);
-    F[3] = (1+sin (t))*sin (phi);
-    F *= 1./sqrt (2.)*cos (t);
+Vector<4> Horizon::DefiningFunction::f (const Vector<2> &x) {
+  double t = x[0], phi = x[1];
+  t *= pi; phi *= pi/2;
+  
+  Vector<4> F;
+  F[0] = (1-sin (t))*cos (phi);
+  F[1] = (1-sin (t))*sin (phi);
+  F[2] = (1+sin (t))*cos (phi);
+  F[3] = (1+sin (t))*sin (phi);
+  F *= 1./sqrt (2.)*cos (t);
 
-    return F;
+  return F;
 }
-
 
 ////////////////////////////////////////////////////////////////////////////////
 

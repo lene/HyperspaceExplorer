@@ -197,8 +197,7 @@ public:
     
 private:
 
-  class DefiningFunction: public ParametricFunction<4, 2> {
-  public:
+  struct DefiningFunction: public ParametricFunction<4, 2> {
     virtual return_type f(const argument_type &x);
   };
         
@@ -228,8 +227,12 @@ public:
              double _vmin, double _vmax, double _dv);
     virtual ~Horizon () { }
 
-protected:
-    virtual function_type f;
+private:
+
+  struct DefiningFunction: public ParametricFunction<4, 2> {
+    virtual return_type f(const argument_type &x);
+  };
+
 };
 
 namespace {
