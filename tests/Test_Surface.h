@@ -12,7 +12,7 @@ class Test_Surface: public QObject {
 
     static const double X_MIN = -1.;
     static const double X_MAX =  1.;
-    static const unsigned GRID_SIZE = 20;
+    static const unsigned GRID_SIZE = 5;
 
     const static QString TEST_FUNCTION_NAME;
     static const double CONSTANT_FUNCTION_VALUE = 1.;
@@ -27,16 +27,20 @@ class Test_Surface: public QObject {
     public:
       SurfaceTestImplementation();
 
-      VecMath::Vector<4> function_value(double tt, double uu) { return f(tt,uu); }
-      vec4vec2D vertices() { return _X; }
-      vec4vec2D transformed_vertices() { return _Xtrans; }
+      VecMath::Vector<4> function_value(double tt, double uu) { return _function->f(VecMath::Vector<2>(tt,uu)); }
+      VecMath::NestedVector< VecMath::Vector<4>, 2 > vertices() { return X(); }
+      VecMath::NestedVector< VecMath::Vector<4>, 2 > transformed_vertices() { return Xtrans(); }
       vec3vec2D projected_vertices() { return _Xscr; }
 
       unsigned xsteps() const { return getTsteps(); }
       unsigned ysteps() const { return getUsteps(); }
 
-    protected:
-      virtual function_type f;
+    private:
+        
+      struct DefiningFunction: public ParametricFunction<4, 2> {
+        virtual return_type f(const argument_type &x);
+      };
+      
     };
 
     private slots:

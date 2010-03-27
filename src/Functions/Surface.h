@@ -163,8 +163,6 @@ class Surface: public SurfaceBase {
 
         VecMath::Vector<4> F;
 
-        vec4vec2D _X;       ///< temporary storage for the function values on the grid
-        vec4vec2D _Xtrans;  ///< temporary storage for the function values on the grid
         vec3vec2D _Xscr;    ///< temporary storage for the function values on the grid
         
     std::tr1::shared_ptr< ParametricFunction<4, 2> > _function;
@@ -174,9 +172,6 @@ class Surface: public SurfaceBase {
   private:
     
     std::pair<double, double> findExtremesInW() const;
-    
-    mutable VecMath::NestedVector< VecMath::Vector<4>, 2 > _X_temp;
-    mutable VecMath::NestedVector< VecMath::Vector<4>, 2 > _Xtrans_temp;
         
 };
 

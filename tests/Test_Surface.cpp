@@ -4,11 +4,14 @@
 #include "ComplexFunction.h"
 #include "ColorManager.h"
 
+#include <tr1/memory>
+
 using VecMath::Vector;
 using VecMath::Rotation;
 using std::cerr;
 using std::endl;
 using std::string;
+using std::tr1::shared_ptr;
 
 void testFunction(Surface &f);
 
@@ -19,16 +22,14 @@ Test_Surface::SurfaceTestImplementation::SurfaceTestImplementation():
             Test_Surface::TEST_FUNCTION_NAME,
             X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1),
             X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1)) {
+  _function = shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction);
   Initialize();
 }
 
-Vector<4> &Test_Surface::SurfaceTestImplementation::f (double tt, double uu) {
-    _F[0] = tt;
-    _F[1] = uu;
-    _F[2] = CONSTANT_FUNCTION_VALUE;
-    _F[3] = CONSTANT_FUNCTION_VALUE;
-
-    return _F;
+Vector<4> Test_Surface::SurfaceTestImplementation::DefiningFunction::f (const Vector<2> &x) {
+  
+  Vector<4>F(x[0], x[1], CONSTANT_FUNCTION_VALUE, CONSTANT_FUNCTION_VALUE);
+  return F;
 }
 
 void Test_Surface::initTestCase() {
@@ -42,7 +43,12 @@ void Test_Surface::functionValue() {
 
   for (double x = X_MIN; x <= X_MAX; x += 1.) {
     for (double y = X_MIN; y <= X_MAX; y += 1.) {
-      QVERIFY( (_function->function_value(x, y) - Vector<4>(x, y, CONSTANT_FUNCTION_VALUE,CONSTANT_FUNCTION_VALUE)).sqnorm() <= EPSILON );
+      cerr << Vector<4>(x, y, CONSTANT_FUNCTION_VALUE,CONSTANT_FUNCTION_VALUE) << endl;
+      QVERIFY2( 
+        (_function->function_value(x, y) - Vector<4>(x, y, CONSTANT_FUNCTION_VALUE,CONSTANT_FUNCTION_VALUE)).sqnorm() <= EPSILON,
+        (QString::number(x).toStdString()+", "+QString::number(y).toStdString()+" -> "+_function->function_value(x, y).toString()+
+         " != "+Vector<4>(x, y, CONSTANT_FUNCTION_VALUE,CONSTANT_FUNCTION_VALUE).toString()).c_str()
+        );
     }
   }
 }
@@ -144,6 +150,7 @@ void Test_Surface::projectWithDepthCue() {
 void Test_Surface::draw() {
   _function = new SurfaceTestImplementation();
 
+  _function->Transform(Rotation<4>(), Vector<4>());
   _function->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
 
   _function->Draw();

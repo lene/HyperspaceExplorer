@@ -34,13 +34,13 @@ double SurfaceBase::_d = 0.1;
 Surface::Surface ():
     SurfaceBase("", 0, 0, 0, 0, 0, 0),
     NumVertices (0), F(),
-    _Xtrans(vec4vec2D()), _Xscr(vec3vec2D()) { }
+    _Xscr(vec3vec2D()) { }
 
 /// Surface c'tor with a Function name and default grid
 Surface::Surface(const QString &_name):
     SurfaceBase(_name, _min, _max, _d, _min, _max, _d),
     NumVertices (0), F(),
-    _Xtrans(vec4vec2D()), _Xscr(vec3vec2D()) { }
+    _Xscr(vec3vec2D()) { }
 
 
 /** Surface c'tor given a definition set in \f$ R^2 \f$ (as parameter space)
@@ -58,18 +58,16 @@ Surface::Surface (const QString &_name,
                   ParameterMap _parms):
     SurfaceBase(_name, _umin, _umax, _du, _vmin, _vmax, _dv, _parms),
     NumVertices (0), F(),
-    _Xtrans(vec4vec2D()), _Xscr(vec3vec2D()) {
+    _Xscr(vec3vec2D()) {
     setfunctionName(_name);
 }
 
 /// Initialize the temporary storage areas Xscr[][], Xtrans[][]
 void Surface::InitMem (void) {
     _Xscr.resize(getTsteps()+2);
-    _Xtrans.resize(getTsteps()+2);
 
     for (unsigned t = 0; t <= getTsteps()+1; t++) {
         _Xscr[t].resize(getUsteps()+2);
-        _Xtrans[t].resize(getUsteps()+2);
     }
 }
 
@@ -77,24 +75,11 @@ void Surface::InitMem (void) {
 /** call InitMem () above                                                     */
 void Surface::Initialize () {
 
-  if (_function) {
     _X_as_grid = FunctionValueGrid<4, 2>(_function, 
-                                        Vector<2, unsigned>(getTsteps()+2, getUsteps()+2), 
-                                        Vector<2>(getTmin(), getUmin()), 
-                                        Vector<2>(getTmax(), getUmax()));
-  }
+                                         Vector<2, unsigned>(getTsteps()+2, getUsteps()+2), 
+                                         Vector<2>(getTmin(), getUmin()), 
+                                         Vector<2>(getTmax(), getUmax()));
   
-  _X = vec4vec2D(getTsteps()+2);
-//    ColMgrMgr::Instance().setFunction(this);
-    for (unsigned t = 0; t <= getTsteps()+1; t++) {
-        _X[t].resize(getUsteps()+2);
-        for (unsigned u = 0; u <= getUsteps()+1; u++) {
-            _X[t][u] = f (getTmin()+t*getDt(), getUmin()+u*getDu());
-        }
-    }
-
-    _X_temp.clear();
-    
     calibrateColors();
 
     InitMem ();
@@ -141,10 +126,6 @@ void Surface::ReInit(double, double, double,
   
   Initialize ();
 
-  if (_function) {
-    _X_as_grid.setBoundaries(Vector<2>(getTmin(), getUmin()), Vector<2>(getTmax(), getUmax()));
-    _X_as_grid.setGridSize(Vector<2, unsigned>(getTsteps()+2, getUsteps()+2));
-  }
 }
 
 void Surface::setBoundariesAndStepwidth(double _tmin, double _tmax, double _dt,
@@ -172,10 +153,10 @@ unsigned long Surface::MemRequired (void) {
 Vector<4> &Surface::normal (double uu, double vv) {
     static Vector<4> n;
 
-    Function::vec4vec1D D = df (uu, vv);
+    Function::vec4vec1D D = df(uu, vv);
 
-    n = VecMath::vcross (D[0], D[1], D[2]);
-    VecMath::vnormalize (n);
+    n = VecMath::vcross(D[0], D[1], D[2]);
+    VecMath::vnormalize(n);
 
     return n;
 }
@@ -197,11 +178,11 @@ Function::vec4vec1D Surface::df (double uu, double vv) {
 
     static Function::vec4vec1D DF(3);
 
-    F0 = operator () (uu, vv);
+    F0 = operator() (uu, vv);
 
-    F = operator () (uu+h, vv); //  derive after u
+    F = operator() (uu+h, vv); //  derive after u
     DF[0] = (F-F0)/h;
-    F = operator () (uu, vv+h); //  derive after v
+    F = operator() (uu, vv+h); //  derive after v
     DF[1] = (F-F0)/h;
     DF[2] = (F-F0)/h;           //  are you sure this is correct?
 
@@ -215,11 +196,6 @@ Function::vec4vec1D Surface::df (double uu, double vv) {
  *  @param R rotation
  *  @param T translation                                                      */
 void Surface::Transform (const VecMath::Rotation<4> &R, const VecMath::Vector<4> &T) {
-  Matrix<4> Rot(R);
-
-  transform< vec4vec2D, 4 >::xform(Rot, T, _X, _Xtrans);
-    
-  _Xtrans_temp.clear();
   Transformation<4, 2> xform(R, T);
   _Xtrans_as_grid = xform.transform(_X_as_grid.getValues());
 }
@@ -299,22 +275,11 @@ NestedVector< Vector<4>, 2 > toNestedVector(const Function::vec4vec2D &v) {
 }
 
 NestedVector< Vector<4>, 2 > Surface::X() const {
-  if (_function) return _X_as_grid.getValues();
-  
-  if (_X_temp.empty()) {
-    _X_temp = toNestedVector(_X);
-  }
-  return _X_temp;
+  return _X_as_grid.getValues();
 }
 
 NestedVector< Vector<4>, 2 > Surface::Xtrans() const {
-
-  if (_function) return _Xtrans_as_grid;
-  
-  if (_Xtrans_temp.empty()) {
-     _Xtrans_temp = toNestedVector(_Xtrans);
-   }
-  return _Xtrans_temp;
+  return _Xtrans_as_grid;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
