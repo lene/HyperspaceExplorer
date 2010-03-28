@@ -25,8 +25,10 @@
 using std::cerr;
 using std::endl;
 
+using VecMath::NestedVector;
 using VecMath::Vector;
 using VecMath::Matrix;
+using std::tr1::shared_ptr;
 
 double RealBase::_min = -1.;
 double RealBase::_max =  1.;
@@ -58,7 +60,8 @@ RealFunction::RealFunction(const QString &name,
                            ParameterMap _parms):
         RealBase(name, tmin, tmax, dt, umin, umax, du, vmin, vmax, dv,
                  _parms),
-        _Xtrans(vec4vec3D()), _Xscr(vec3vec3D()) {
+        _Xscr(vec3vec3D()),
+        _Xtrans(vec4vec3D()) {
     if (MemRequired () > Globals::Instance().getMaxMemory()) {
         cerr << "Using a " << getTsteps() << "x" << getUsteps() << "x" << getVsteps()
              << " grid would require approx. " << MemRequired () << " MB of memory.\n";
@@ -263,6 +266,44 @@ void RealFunction::DrawPlane (unsigned t){
 void RealFunction::DrawStrip (unsigned t, unsigned u){
     for (unsigned v = 0; v < getVsteps(); v++)
         DrawCube (t, u, v);
+}
+
+NestedVector< Vector<4>, 3 > toNestedVector(const Function::vec4vec3D &v) {
+
+  NestedVector< Vector<4>, 3 > temp3D;
+  
+  for (Function::vec4vec3D::const_iterator it = v.begin(); it != v.end(); ++it) {
+  
+    NestedVector< Vector<4>, 2 > temp2D;
+    for (Function::vec4vec2D::const_iterator jt = it->begin(); jt != it->end(); ++jt) {
+    
+      NestedVector< Vector<4>, 1> temp1D;    
+      for (Function::vec4vec1D::const_iterator kt = jt->begin(); kt != jt->end(); ++kt) {
+        temp1D.push_back(*kt);
+      }
+      temp2D.push_back(temp1D);
+    }
+    temp3D.push_back(temp2D);
+  }
+  return temp3D;
+}
+
+VecMath::NestedVector< Vector< 4 >, 3 > RealFunction::X() const {
+ if (_function) return _X_grid.getValues();
+       
+     if (_X_temp.empty()) {    
+       _X_temp = toNestedVector(_X);   
+     }   
+     return _X_temp;
+}
+
+VecMath::NestedVector< Vector< 4 >, 3 > RealFunction::Xtrans() const {
+  if (_function) return _Xtrans_grid;   
+       
+     if (_Xtrans_temp.empty()) {   
+        _Xtrans_temp = toNestedVector(_Xtrans);    
+      }    
+     return _Xtrans_temp;
 }
 
 using std::string;

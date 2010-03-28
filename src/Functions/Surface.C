@@ -33,13 +33,11 @@ double SurfaceBase::_d = 0.1;
 /// Surface default c'tor, zeroes everything
 Surface::Surface ():
     SurfaceBase("", 0, 0, 0, 0, 0, 0),
-    NumVertices (0), F(),
     _Xscr(vec3vec2D()) { }
 
 /// Surface c'tor with a Function name and default grid
 Surface::Surface(const QString &_name):
     SurfaceBase(_name, _min, _max, _d, _min, _max, _d),
-    NumVertices (0), F(),
     _Xscr(vec3vec2D()) { }
 
 
@@ -57,7 +55,6 @@ Surface::Surface (const QString &_name,
                   double _vmin, double _vmax, double _dv,
                   ParameterMap _parms):
     SurfaceBase(_name, _umin, _umax, _du, _vmin, _vmax, _dv, _parms),
-    NumVertices (0), F(),
     _Xscr(vec3vec2D()) {
     setfunctionName(_name);
 }
@@ -75,7 +72,7 @@ void Surface::InitMem (void) {
 /** call InitMem () above                                                     */
 void Surface::Initialize () {
 
-    _X_as_grid = FunctionValueGrid<4, 2>(_function, 
+    _X = FunctionValueGrid<4, 2>(_function, 
                                          Vector<2, unsigned>(getTsteps()+2, getUsteps()+2), 
                                          Vector<2>(getTmin(), getUmin()), 
                                          Vector<2>(getTmax(), getUmax()));
@@ -99,6 +96,8 @@ void Surface::calibrateColors() const {
     }
 }
 
+/** \return Maxima and minima in the W dimension
+ */
 std::pair< double, double > Surface::findExtremesInW() const {
   double Wmax = 0, Wmin = 0;
   
@@ -173,7 +172,7 @@ Vector<4> &Surface::normal (double uu, double vv) {
  *  @return gradient in t, u and v as array                                   */
 Function::vec4vec1D Surface::df (double uu, double vv) {
 
-    static Vector<4> F0;        //  f (u, v)
+    static Vector<4> F0, F;        //  f (u, v)
     static double h = 1e-5;     //  maybe tweak to get best results
 
     static Function::vec4vec1D DF(3);
@@ -190,20 +189,17 @@ Function::vec4vec1D Surface::df (double uu, double vv) {
 }
 
 /// Transforms a Surface
-/** as I look at it, i think this could be optimized by making the transformation
- *  matrices static and only canging the corresponding entries... but how to
- *  make this beautifully, i don't know
- *  @param R rotation
- *  @param T translation                                                      */
+/** \param R rotation
+ *  \param T translation                                                      */
 void Surface::Transform (const VecMath::Rotation<4> &R, const VecMath::Vector<4> &T) {
   Transformation<4, 2> xform(R, T);
-  _Xtrans_as_grid = xform.transform(_X_as_grid.getValues());
+  _Xtrans = xform.transform(_X.getValues());
 }
 
 /** projects a Surface into three-space
- *  @param scr_w w coordinate of screen
- *  @param cam_w w coordinate of camera
- *  @param depthcue4d wheter to use hyperfog/depth cue                        */
+ *  \param scr_w w coordinate of screen
+ *  \param cam_w w coordinate of camera
+ *  \param depthcue4d whether to use hyperfog/depth cue                        */
 void Surface::Project (double scr_w, double cam_w, bool depthcue4d) {
     double ProjectionFactor;
     double Wmax = 0, Wmin = 0;
@@ -233,8 +229,6 @@ void Surface::Project (double scr_w, double cam_w, bool depthcue4d) {
 
 /** draw the projected Surface (onto screen or into GL list, as it is)        */
 void Surface::Draw (void) {
-    NumVertices = 0;
-
     for (unsigned t = 0; t < getTsteps(); t++)
         DrawStrip (t);
 }
@@ -247,12 +241,10 @@ void Surface::DrawStrip (unsigned t){
 
     setVertex(X()[t][0], _Xscr[t][0]);
     setVertex(X()[t+1][0], _Xscr[t+1][0]);
-    NumVertices += 2;
 
     for (unsigned u = 1; u <= getUsteps(); u++) {
         setVertex(X()[t][u], _Xscr[t][u]);
         setVertex(X()[t+1][u], _Xscr[t+1][u]);
-        NumVertices += 2;
     }
 
     glEnd ();
@@ -275,11 +267,11 @@ NestedVector< Vector<4>, 2 > toNestedVector(const Function::vec4vec2D &v) {
 }
 
 NestedVector< Vector<4>, 2 > Surface::X() const {
-  return _X_as_grid.getValues();
+  return _X.getValues();
 }
 
 NestedVector< Vector<4>, 2 > Surface::Xtrans() const {
-  return _Xtrans_as_grid;
+  return _Xtrans;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

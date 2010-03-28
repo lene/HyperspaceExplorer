@@ -36,6 +36,9 @@
  *
  *  \param N The dimension of the definition vector space.
  *  \param P The dimension of the parameter vector space.
+ *
+ *  \ingroup FunctionGroup
+ *  @author Lene Preuss <lene.preuss@gmail.com>                         
  */
 template <unsigned N, unsigned P>
   class FunctionValueGrid {

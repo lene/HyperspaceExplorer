@@ -23,6 +23,10 @@
 
 #include "Function.h"
 
+#include "ParametricFunction.h"
+#include "FunctionValueGrid.h"
+#include "NestedVector.h"
+
 /// \em RealBase provides a base class for functions which take three parameters
 /** The \em RealBase interface provides abstract members for the evaluation of
  *  the function values on a three-dimensional grid.
@@ -171,11 +175,22 @@ class RealFunction: public RealBase {
         virtual void Initialize (void);
         virtual void InitMem (void);
 
-        vec4vec3D _X,      ///< temporary storage for function values on grid
-                  _Xtrans; ///< temporary storage for transformed function values
+        VecMath::NestedVector< VecMath::Vector<4>, 3 > X() const;
+        VecMath::NestedVector< VecMath::Vector<4>, 3 > Xtrans() const;
+
         vec3vec3D _Xscr;   ///< temporary storage for projected function values
-private:
+    vec4vec3D _X,      ///< temporary storage for function values on grid
+              _Xtrans; ///< temporary storage for transformed function values
+
+    std::tr1::shared_ptr< ParametricFunction<4, 3> > _function;
+  private:
+    
     void setDepthCueColors(double Wmax, double Wmin);
+    FunctionValueGrid<4, 3> _X_grid;
+    FunctionValueGrid<4, 3>::value_storage_type _Xtrans_grid;
+    
+    mutable VecMath::NestedVector< VecMath::Vector<4>, 3 > _X_temp;    
+    mutable VecMath::NestedVector< VecMath::Vector<4>, 3 > _Xtrans_temp;    
 };
 
 

@@ -61,14 +61,6 @@ class SurfaceBase: public Function {
                 tsteps (unsigned ((tmax-tmin)/dt+1)),
                 usteps (unsigned ((umax-umin)/du+1)) { }
 
-        /// Function evaluation operator for three parameters
-        /** @param u first argument, e.g. y or u
-         *  @param v second argument, e.g. z or v
-         *  @return f(t, u, v)                                                */
-        VecMath::Vector<4> &operator () (double u, double v, double = 0) {
-            return f(u,v);
-        }
-
     protected:
         /// number of steps in t
         unsigned &getTsteps() { return tsteps; }
@@ -92,9 +84,6 @@ class SurfaceBase: public Function {
         double &getDu() { return du; }              ///< delta in u
         const double &getDu() const { return du; }  ///< delta in u
 
-        /// The mathematical function defining the Function object
-        virtual VecMath::Vector<4> &f(double, double) = 0;
-
     static double _min, ///< Default value for lower grid boundary
                   _max, ///< Default value for upper grid boundary
                   _d;   ///< Default value for step size
@@ -113,7 +102,8 @@ class SurfaceBase: public Function {
 
 /// Parametrized surface in four-space defined by \f$ f: R^2 \rightarrow R^4 \f$
 /** \ingroup FunctionGroup
- *  @author Lene Preuss <lene.preuss@gmail.com>                         */
+ *  @author Lene Preuss <lene.preuss@gmail.com>                         
+ */
 class Surface: public SurfaceBase {
     public:
         Surface();
@@ -140,13 +130,22 @@ class Surface: public SurfaceBase {
         /// \see Function::getDefinitionSpaceDimensions()
         virtual unsigned getDefinitionSpaceDimensions() { return 2; }
 
+        /// Function evaluation operator for three parameters
+        /** @param u first argument, e.g. y or u
+         *  @param v second argument, e.g. z or v
+         *  @return f(t, u, v)                                                */
+        VecMath::Vector<4> &operator () (double u, double v, double = 0) {
+          static VecMath::Vector<4> F;
+          F = _function->f(VecMath::Vector<2>(u, v));
+          return F;
+        }
+
     protected:
         virtual vec4vec1D df (double, double);
         virtual function_type normal;
-        virtual VecMath::Vector<4> &f(double, double) { return F; }
 
-        virtual VecMath::NestedVector< VecMath::Vector<4>, 2 > X() const;
-        virtual VecMath::NestedVector< VecMath::Vector<4>, 2 > Xtrans() const;
+        VecMath::NestedVector< VecMath::Vector<4>, 2 > X() const;
+        VecMath::NestedVector< VecMath::Vector<4>, 2 > Xtrans() const;
 
         void Initialize (void);
         void InitMem (void);
@@ -155,24 +154,19 @@ class Surface: public SurfaceBase {
 
         void DrawStrip (unsigned);
 
-        void setBoundariesAndStepwidth(double _tmin, double _tmax, double _dt,
-                                       double _umin, double _umax, double _du);
-         
-        /// redeclare \see Function::NumVertices as protected
-        unsigned NumVertices;
-
-        VecMath::Vector<4> F;
-
         vec3vec2D _Xscr;    ///< temporary storage for the function values on the grid
         
     std::tr1::shared_ptr< ParametricFunction<4, 2> > _function;
-    FunctionValueGrid<4, 2> _X_as_grid;
-    FunctionValueGrid<4, 2>::value_storage_type _Xtrans_as_grid;
         
   private:
     
+    void setBoundariesAndStepwidth(double _tmin, double _tmax, double _dt,
+                                   double _umin, double _umax, double _du);
+
     std::pair<double, double> findExtremesInW() const;
         
+    FunctionValueGrid<4, 2> _X;
+    FunctionValueGrid<4, 2>::value_storage_type _Xtrans;
 };
 
 /// An example surface:
