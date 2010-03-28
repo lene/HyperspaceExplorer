@@ -179,10 +179,12 @@ class RealFunction: public RealBase {
         VecMath::NestedVector< VecMath::Vector<4>, 3 > Xtrans() const;
 
         vec3vec3D _Xscr;   ///< temporary storage for projected function values
+        
     vec4vec3D _X,      ///< temporary storage for function values on grid
               _Xtrans; ///< temporary storage for transformed function values
 
     std::tr1::shared_ptr< ParametricFunction<4, 3> > _function;
+    
   private:
     
     void setDepthCueColors(double Wmax, double Wmin);

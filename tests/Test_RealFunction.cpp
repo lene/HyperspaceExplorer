@@ -167,52 +167,52 @@ void Test_RealFunction::draw() {
 }
 
 void Test_RealFunction::torus1() {
-  Torus1 f(-1, 1, .5, -1, 1, .5, -1, 1, .5);
+  Torus1 f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
   testFunction(f);
 }
 
 void Test_RealFunction::torus2() {
-  Torus2 f(-1, 1, .5, -1, 1, .5, -1, 1, .5);
+  Torus2 f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
   testFunction(f);
 }
 
 void Test_RealFunction::fr3r() {
-  Fr3r f(-1, 1, .5, -1, 1, .5, -1, 1, .5);
+  Fr3r f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
   testFunction(f);
 }
 
 void Test_RealFunction::gravitationPotential() {
-  GravitationPotential f(-1, 1, .5, -1, 1, .5, -1, 1, .5);
+  GravitationPotential f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
   testFunction(f);
 }
 
 void Test_RealFunction::fr3rSin() {
-  Fr3rSin f(-1, 1, .5, -1, 1, .5, -1, 1, .5);
+  Fr3rSin f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
   testFunction(f);
 }
 
 void Test_RealFunction::fr3rExp() {
-  Fr3rExp f(-1, 1, .5, -1, 1, .5, -1, 1, .5);
+  Fr3rExp f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
   testFunction(f);
 }
 
 void Test_RealFunction::polar() {
-  Polar f(-1, 1, .5, -1, 1, .5, -1, 1, .5);
+  Polar f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
   testFunction(f);
 }
 
 void Test_RealFunction::polarSin() {
-  PolarSin f(-1, 1, .5, -1, 1, .5, -1, 1, .5);
+  PolarSin f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
   testFunction(f);
 }
 
 void Test_RealFunction::polarSin2() {
-  PolarSin2 f(-1, 1, .5, -1, 1, .5, -1, 1, .5);
+  PolarSin2 f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
   testFunction(f);
 }
 
 void Test_RealFunction::polarR() {
-  PolarR f(-1, 1, .5, -1, 1, .5, -1, 1, .5);
+  PolarR f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
   testFunction(f);
 }
 
