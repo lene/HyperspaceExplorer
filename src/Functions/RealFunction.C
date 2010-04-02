@@ -83,17 +83,10 @@ RealFunction::RealFunction(const QString &name,
 void RealFunction::InitMem (void) {
 
   _Xscr.resize(getTsteps()+2);
-//  _Xtrans.resize(getTsteps()+2);
-
   for (unsigned t = 0; t <= getTsteps()+1; t++) {
-
     _Xscr[t].resize(getUsteps()+2);
-//    _Xtrans[t].resize(getUsteps()+2);
-
     for (unsigned u = 0; u <= getUsteps()+1; u++) {
-
       _Xscr[t][u].resize(getVsteps()+2);
-//      _Xtrans[t][u].resize(getVsteps()+2);
     }
   }
 }
@@ -101,10 +94,10 @@ void RealFunction::InitMem (void) {
 /// Allocate and initialize X[][][] with values of f()
 /** Call InitMem() above */
 void RealFunction::Initialize () {
-  _X_grid = FunctionValueGrid<4, 3>(_function,
-                                    Vector<3, unsigned>(getTsteps()+2, getUsteps()+2, getVsteps()+2),
-                                    Vector<3>(getTmin(), getUmin(), getVmin()),
-                                    Vector<3>(getTmax(), getUmax(), getVmax()));
+  _X = FunctionValueGrid<4, 3>(_function,
+                               Vector<3, unsigned>(getTsteps()+2, getUsteps()+2, getVsteps()+2),
+                               Vector<3>(getTmin(), getUmin(), getVmin()),
+                               Vector<3>(getTmax(), getUmax(), getVmax()));
  
   calibrateColors();
 
@@ -113,22 +106,7 @@ void RealFunction::Initialize () {
 
 void RealFunction::calibrateColors() const {
 
-  double Wmin = 0., Wmax = 0.;
-  for (unsigned t = 0; t < getTsteps(); t++) {
-    for (unsigned u = 0; u <= getUsteps()+1; u++) {
-      for (unsigned v = 0; v <= getVsteps()+1; v++) {
-#if 0
-        std::cerr << "t: " << t << "/" << getTsteps() << "(" << _X.size() << ")" 
-                  << " u: " << u << "/" << getUsteps() << "(" << _X[t].size() << ")"  
-                  << " v: " << v << "/" << getVsteps() << "(" << _X[t][u].size() << ")"  
-                  << _X[t][u][v] << " " << X()[t][u][v]
-                  << std::endl;
-#endif                  
-        if (X()[t][u][v][3] < Wmin) Wmin = X()[t][u][v][3]; 
-        if (X()[t][u][v][3] > Wmax) Wmax = X()[t][u][v][3];
-      }
-    }
-  }
+  std::pair< double, double > Wext = findExtremesInW();
 
   for (unsigned t = 0; t <= getTsteps(); t++) {
     for (unsigned u = 0; u <= getUsteps()+1; u++) {
@@ -137,10 +115,25 @@ void RealFunction::calibrateColors() const {
             X()[t][u][v],
             Color(float(t)/float(getTsteps()), float(u)/float(getUsteps()),
                   float(v)/float(getVsteps()),
-                  (X()[t][u][v][3]-Wmin)/(Wmax-Wmin)));
+                  (X()[t][u][v][3]-Wext.first)/(Wext.second-Wext.first)));
       }
     }
   }
+}
+
+std::pair< double, double > RealFunction::findExtremesInW() const {
+
+  double Wmin = 0., Wmax = 0.;
+  for (unsigned t = 0; t < getTsteps(); t++) {
+    for (unsigned u = 0; u <= getUsteps()+1; u++) {
+      for (unsigned v = 0; v <= getVsteps()+1; v++) {
+        if (X()[t][u][v][3] < Wmin) Wmin = X()[t][u][v][3]; 
+        if (X()[t][u][v][3] > Wmax) Wmax = X()[t][u][v][3];
+      }
+    }
+  }
+
+  return std::make_pair(Wmin, Wmax);
 }
 
 /// Re-initialize a RealFunction if the definition set has changed
@@ -157,22 +150,22 @@ void RealFunction::ReInit(double tmin, double tmax, double dt,
                           double umin, double umax, double du,
                           double vmin, double vmax, double dv) {
 
+  setBoundariesAndStepwidth(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
+
+  Initialize ();
+  
+}
+
+void RealFunction::setBoundariesAndStepwidth(double tmin, double tmax, double dt, 
+                                             double umin, double umax, double du,
+                                             double vmin, double vmax, double dv) {
   getTmin() = tmin;   getTmax() = tmax;   getDt() = dt;
   getUmin() = umin;   getUmax() = umax;   getDu() = du;
   getVmin() = vmin;   getVmax() = vmax;   getDv() = dv;
   getTsteps() = unsigned ((getTmax()-getTmin())/getDt()+2);
   getUsteps() = unsigned ((getUmax()-getUmin())/getDu()+2);
   getVsteps() = unsigned ((getVmax()-getVmin())/getDv()+2);
-
-  if (_function) {   
-    _X_grid.setBoundaries(Vector<3>(getTmin(), getUmin(), getVmin()), Vector<3>(getTmax(), getUmax(), getVmax()));   
-    _X_grid.setGridSize(Vector<3, unsigned>(getTsteps()+2, getUsteps()+2, getVsteps()+2));    
-  }
-
-  Initialize ();
-  
 }
-
 
 /// Transforms a RealFunction
 /** \todo As I look at it, i think this could be optimized by making the
@@ -183,7 +176,7 @@ void RealFunction::ReInit(double tmin, double tmax, double dt,
 void RealFunction::Transform (const VecMath::Rotation<4> &R,
                               const VecMath::Vector<4> &T) {
   Transformation<4, 3> xform(R, T);
-  _Xtrans_grid = xform.transform(_X_grid.getValues());
+  _Xtrans = xform.transform(_X.getValues());
 }
 
 void RealFunction::setDepthCueColors(double Wmax, double Wmin) {
@@ -295,11 +288,11 @@ NestedVector< Vector<4>, 3 > toNestedVector(const Function::vec4vec3D &v) {
 }
 
 VecMath::NestedVector< Vector< 4 >, 3 > RealFunction::X() const {
-  return _X_grid.getValues();
+  return _X.getValues();
 }
 
 VecMath::NestedVector< Vector< 4 >, 3 > RealFunction::Xtrans() const {
-  return _Xtrans_grid;   
+  return _Xtrans;   
 }
 
 using std::string;
@@ -398,11 +391,11 @@ ParametricFunction< 4, 3 >::return_type Hypersphere::DefiningFunction::f(
   const ParametricFunction< 4, 3 >::argument_type& x) {
 
   double sinphi = sin(pi/2*x[0]), 
-    cosphi = cos(pi/2*x[0]),
-    sintht = sin(pi*x[1]), 
-    costht = cos(pi*x[1]),
-    sinpsi = sin(pi*x[2]), 
-    cospsi = cos(pi*x[2]);
+         cosphi = cos(pi/2*x[0]),
+         sintht = sin(pi*x[1]), 
+         costht = cos(pi*x[1]),
+         sinpsi = sin(pi*x[2]), 
+         cospsi = cos(pi*x[2]);
   
   Vector<4> F;
   F[0] = _parent->_radius*sinpsi*sintht*cosphi;
@@ -457,12 +450,12 @@ Torus1::Torus1 (double tmin, double tmax, double dt,
                 tmin, tmax, dt, umin, umax, du, vmin, vmax, dv),
     _R (R), _r (r), _rho (rho) {
       
-      _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+  _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
       
-      declareParameter("Major Radius", 2.0);
-      declareParameter("Minor Radius", 1.0);
-      declareParameter("Micro Radius", 0.5);
-      Initialize ();
+  declareParameter("Major Radius", 2.0);
+  declareParameter("Minor Radius", 1.0);
+  declareParameter("Micro Radius", 0.5);
+  Initialize ();
 }
 
 ParametricFunction< 4, 3 >::return_type Torus1::DefiningFunction::f(
@@ -503,12 +496,12 @@ Torus2::Torus2 (double tmin, double tmax, double dt,
                 tmin, tmax, dt, umin, umax, du, vmin, vmax, dv),
   _R (R), _r (r) {
       
-    _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+  _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
           
-    declareParameter("Major Radius", 1.0);
-    declareParameter("Minor Radius", 0.5);
+  declareParameter("Major Radius", 1.0);
+  declareParameter("Minor Radius", 0.5);
 
-      Initialize ();
+  Initialize ();
 }
 
 ParametricFunction< 4, 3 >::return_type 
@@ -590,22 +583,13 @@ GravitationPotential::GravitationPotential (double xmin, double xmax, double dx,
       
   _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
       
-#if 0    
-  std::cerr << "c'tor(" 
-  << xmin << ", " << xmax << ", " << dx << ", "
-  << ymin << ", " << ymax << ", " << dy << ", "
-  << zmin << ", " << zmax << ", " << dz << ", "
-  << M << ", " << R << ")"
-  << std::endl;
-#endif  
   doCharacteristicStuff();
 }
+
 void GravitationPotential::doCharacteristicStuff() {
       declareParameter("M", 1.0);
       declareParameter("R", 0.25);
-//      std::cerr << "doCharacteristicStuff():" << std::endl;
       Initialize ();
-//      std::cerr << getParameters().toString() << std::endl;
 }
 
 ParametricFunction< 4, 3 >::return_type 

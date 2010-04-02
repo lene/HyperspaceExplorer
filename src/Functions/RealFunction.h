@@ -141,29 +141,29 @@ class RealBase: public Function {
  *  \ingroup RealGroup
  *  @author Lene Preuss <lene.preuss@gmail.com>                         */
 class RealFunction: public RealBase {
-    public:
-        RealFunction(const QString &name);
-        RealFunction (const QString &name,
-                      double tmin, double tmax, double dt,
-                      double umin, double umax, double du,
-                      double vmin, double vmax, double dv,
-                      ParameterMap _parms = ParameterMap());
-        virtual ~RealFunction() { }
+  public:
+    RealFunction(const QString &name);
+    RealFunction (const QString &name,
+                  double tmin, double tmax, double dt,
+                  double umin, double umax, double du,
+                  double vmin, double vmax, double dv,
+                  ParameterMap _parms = ParameterMap());
+    virtual ~RealFunction() { }
 
-        virtual void Transform (const VecMath::Rotation<4> &R,
-                                const VecMath::Vector<4> &T);
-        virtual void Project (double ScrW, double CamW, bool DepthCue4D);
-        virtual void Draw (void);
+    virtual void Transform (const VecMath::Rotation<4> &R,
+                            const VecMath::Vector<4> &T);
+    virtual void Project (double ScrW, double CamW, bool DepthCue4D);
+    virtual void Draw (void);
 
-        virtual void ReInit(double tmin, double tmax, double dt,
-                            double umin, double umax, double du,
-                            double vmin, double vmax, double dv);
+    virtual void ReInit(double tmin, double tmax, double dt,
+                        double umin, double umax, double du,
+                        double vmin, double vmax, double dv);
 
-        /// Called by the ColorManager after setting the Function on the CM
-        virtual void calibrateColors() const;
+    /// Called by the ColorManager after setting the Function on the CM
+    virtual void calibrateColors() const;
 
-        /// \see Function::getDefinitionSpaceDimensions()
-        virtual unsigned getDefinitionSpaceDimensions() { return 3; }
+    /// \see Function::getDefinitionSpaceDimensions()
+    virtual unsigned getDefinitionSpaceDimensions() { return 3; }
 
   protected:
     
@@ -171,35 +171,35 @@ class RealFunction: public RealBase {
     
     VecMath::Vector<4> &normal(double t, double u, double v);
 
-        void DrawPlane (unsigned);
-        void DrawStrip (unsigned, unsigned);
-        void DrawCube (unsigned, unsigned, unsigned);
+    void DrawPlane (unsigned);
+    void DrawStrip (unsigned, unsigned);
+    void DrawCube (unsigned, unsigned, unsigned);
 
-        virtual void Initialize (void);
-        virtual void InitMem (void);
+    virtual void Initialize (void);
+    virtual void InitMem (void);
 
-        VecMath::NestedVector< VecMath::Vector<4>, 3 > X() const;
-        VecMath::NestedVector< VecMath::Vector<4>, 3 > Xtrans() const;
+    VecMath::NestedVector< VecMath::Vector<4>, 3 > X() const;
+    VecMath::NestedVector< VecMath::Vector<4>, 3 > Xtrans() const;
 
-        vec3vec3D _Xscr;   ///< temporary storage for projected function values
+    vec3vec3D _Xscr;   ///< temporary storage for projected function values
         
     std::tr1::shared_ptr< ParametricFunction<4, 3> > _function;
     
   private:
     
     void setDepthCueColors(double Wmax, double Wmin);
-    FunctionValueGrid<4, 3> _X_grid;
-    FunctionValueGrid<4, 3>::value_storage_type _Xtrans_grid;
+
+    void setBoundariesAndStepwidth(double tmin, double tmax, double dt,
+                                   double umin, double umax, double du,
+                                   double vmin, double vmax, double dv);
+                                   
+    std::pair<double, double> findExtremesInW() const;
+    
+    FunctionValueGrid<4, 3> _X;
+    FunctionValueGrid<4, 3>::value_storage_type _Xtrans;
 
 };
 
-
-/*******************************************************************************
- *
- *  classes which implement RealFunction::f (double, double, double) follow
- *  the descendants may also implement Function::df () and Function::normal (),
- *  but need not
- */
 
 ////////////////////////////////////////////////////////////////////////////////
 
