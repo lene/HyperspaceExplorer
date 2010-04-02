@@ -135,12 +135,12 @@ void RealFunction::Initialize () {
 }
 
 void RealFunction::calibrateColors() const {
-cerr << X() << endl;
+
   double Wmin = 0., Wmax = 0.;
   for (unsigned t = 0; t < getTsteps(); t++) {
     for (unsigned u = 0; u <= getUsteps()+1; u++) {
       for (unsigned v = 0; v <= getVsteps()+1; v++) {
-#if 1
+#if 0
         std::cerr << "t: " << t << "/" << getTsteps() << "(" << _X.size() << ")" 
                   << " u: " << u << "/" << getUsteps() << "(" << _X[t].size() << ")"  
                   << " v: " << v << "/" << getVsteps() << "(" << _X[t][u].size() << ")"  
@@ -410,6 +410,9 @@ Hypersphere::Hypersphere(double tmin, double tmax, double dt,
         RealFunction ("Hypersphere",
                       tmin, tmax, dt, umin, umax, du, vmin, vmax, dv),
         _radius (rad) {
+      
+    _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+      
     declareParameter("Radius", 1.0);
     Initialize ();
 }
@@ -432,15 +435,24 @@ void Hypersphere::SetParameters(const ParameterMap &parms) {
  *  \return		value of defining function at point in question
  */
 Vector<4> &Hypersphere::f (double tt, double uu, double vv) {
-  double sinphi = sin (pi/2*tt), cosphi = cos (pi/2*tt),	//  hypersphere
-    sintht = sin (pi*uu), costht = cos (pi*uu),
-    sinpsi = sin (pi*vv), cospsi = cos (pi*vv);
-  _F[0] = _radius*sinpsi*sintht*cosphi;
-  _F[1] = _radius*sinpsi*sintht*sinphi;
-  _F[2] = _radius*sinpsi*costht;
-  _F[3] = _radius*cospsi;
+  _F = _function->f(Vector<3>(tt, uu, vv));
+  return _F;  
+}
 
-  return _F;
+ParametricFunction< 4, 3 >::return_type Hypersphere::DefiningFunction::f(
+  const ParametricFunction< 4, 3 >::argument_type& x)
+{
+  double sinphi = sin(pi/2*x[0]), cosphi = cos(pi/2*x[0]),  //  hypersphere
+    sintht = sin(pi*x[1]), costht = cos(pi*x[1]),
+    sinpsi = sin(pi*x[2]), cospsi = cos(pi*x[2]);
+  Vector<4> F;
+  F[0] = _parent->_radius*sinpsi*sintht*cosphi;
+  F[1] = _parent->_radius*sinpsi*sintht*sinphi;
+  F[2] = _parent->_radius*sinpsi*costht;
+  F[3] = _parent->_radius*cospsi;
+
+  return F;
+
 }
 
 
@@ -541,6 +553,9 @@ Torus2::Torus2 (double tmin, double tmax, double dt,
   RealFunction ("Torus 2",
                 tmin, tmax, dt, umin, umax, du, vmin, vmax, dv),
   _R (R), _r (r) {
+      
+    _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+          
     declareParameter("Major Radius", 1.0);
     declareParameter("Minor Radius", 0.5);
 
@@ -554,14 +569,21 @@ Torus2::Torus2 (double tmin, double tmax, double dt,
  *  \return		value of defining function at point in question
  */
 Vector<4> &Torus2::f (double tt, double uu, double vv) {
-  _F[0] =  cos (pi*tt)*(_R+_r*cos (pi*uu)*cos (pi*vv));
-  _F[1] =  cos (pi*tt)*(_R+_r*cos (pi*uu)*sin (pi*vv));
-  _F[2] =  cos (pi*tt)*(_R+_r*sin (pi*uu));
-  _F[3] =  sin (pi*tt)*_R;
-
+  _F = _function->f(Vector<3>(tt, uu, vv));
   return _F;
 }
 
+ParametricFunction< 4, 3 >::return_type 
+Torus2::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x) {
+  Vector<4> F;
+  F[0] =  cos(pi*x[0])*(_parent->_R+_parent->_r*cos(pi*x[1])*cos(pi*x[2]));
+  F[1] =  cos(pi*x[0])*(_parent->_R+_parent->_r*cos(pi*x[1])*sin(pi*x[2]));
+  F[2] =  cos(pi*x[0])*(_parent->_R+_parent->_r*sin(pi*x[1]));
+  F[3] =  sin(pi*x[0])*_parent->_R;
+
+  return F;
+
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -582,6 +604,9 @@ Fr3r::Fr3r (double tmin, double tmax, double dt,
             double vmin, double vmax, double dv):
     RealFunction ("1/(r²+1)",
                   tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) {
+      
+  _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+      
   Initialize ();
 }
 
@@ -592,17 +617,24 @@ Fr3r::Fr3r (double tmin, double tmax, double dt,
  *  \return		value of defining function at point in question
  */
 Vector<4> &Fr3r::f (double tt, double uu, double vv) {
-  _F[0] = tt;
-  _F[1] = uu;
-  _F[2] = vv;
-  double rsq = tt*tt+uu*uu+vv*vv;
-  _F[3] = 1./(rsq+.25);
-  // sin (pi*(tt*tt+uu*uu+vv*vv));
-  // exp (tt*tt+uu*uu+vv*vv);
-
+  _F = _function->f(Vector<3>(tt, uu, vv));
   return _F;
 }
 
+ParametricFunction< 4, 3 >::return_type 
+Fr3r::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x) {
+  Vector<4> F;
+  F[0] = x[0];
+  F[1] = x[1];
+  F[2] = x[2];
+  double rsq = x[0]*x[0]+x[1]*x[1]+x[2]*x[2];
+  F[3] = 1./(rsq+.25);
+  // sin (pi*(x[0]*x[0]+x[1]*x[1]+x[2]*x[2]));
+  // exp (x[0]*x[0]+x[1]*x[1]+x[2]*x[2]);
+
+  return F;
+
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -628,6 +660,9 @@ GravitationPotential::GravitationPotential (double xmin, double xmax, double dx,
         RealFunction ("Gravitation Potential",
                       xmin, xmax, dx, ymin, ymax, dy, zmin, zmax, dz),
   _M (M), _R (R) {
+      
+  _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+      
 #if 0    
   std::cerr << "c'tor(" 
   << xmin << ", " << xmax << ", " << dx << ", "
@@ -653,19 +688,26 @@ void GravitationPotential::doCharacteristicStuff() {
  *  \return     value of defining function at point in question
  */
 Vector<4> &GravitationPotential::f (double tt, double uu, double vv) {
-  const double G = 1;     //  arbitrary value for gravitation constant
-  _F[0] = tt;
-  _F[1] = uu;
-  _F[2] = vv;
-  double rsq = tt*tt+uu*uu+vv*vv;
-  if (rsq > _R*_R)
-    _F[3] = G*_M/rsq;
-  else
-    _F[3] = G*_M/(_R*_R*_R)*sqrt (rsq);
-
+  _F = _function->f(Vector<3>(tt, uu, vv));
   return _F;
 }
 
+ParametricFunction< 4, 3 >::return_type GravitationPotential::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x)
+{
+  const double G = 1;     //  arbitrary value for gravitation constant
+  Vector<4> F;
+  F[0] = x[0];
+  F[1] = x[1];
+  F[2] = x[2];
+  double rsq = x[0]*x[0]+x[1]*x[1]+x[2]*x[2];
+  if (rsq > _parent->_R*_parent->_R)
+    F[3] = G*_parent->_M/rsq;
+  else
+    F[3] = G*_parent->_M/(_parent->_R*_parent->_R*_parent->_R)*sqrt (rsq);
+
+  return F;
+
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -682,10 +724,13 @@ Vector<4> &GravitationPotential::f (double tt, double uu, double vv) {
  *  \param dv	stepsize in v
  */
 Fr3rSin::Fr3rSin (double tmin, double tmax, double dt,
-		  double umin, double umax, double du,
-		  double vmin, double vmax, double dv):
+                  double umin, double umax, double du,
+                  double vmin, double vmax, double dv):
         RealFunction ("sin (r²)",
                       tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) {
+      
+  _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+      
   Initialize ();
 }
 
@@ -696,14 +741,21 @@ Fr3rSin::Fr3rSin (double tmin, double tmax, double dt,
  *  \return		sin (pi*(xï¿½+yï¿½+zï¿½))
  */
 Vector<4> &Fr3rSin::f (double tt, double uu, double vv) {
-  _F[0] = tt;
-  _F[1] = uu;
-  _F[2] = vv;
-  _F[3] = sin (pi*(tt*tt+uu*uu+vv*vv));
-
+  _F = _function->f(Vector<3>(tt, uu, vv));
   return _F;
 }
 
+ParametricFunction< 4, 3 >::return_type Fr3rSin::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x)
+{
+  Vector<4> F;
+  F[0] = x[0];
+  F[1] = x[1];
+  F[2] = x[2];
+  F[3] = sin (pi*(x[0]*x[0]+x[1]*x[1]+x[2]*x[2]));
+
+  return F;
+
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -720,10 +772,13 @@ Vector<4> &Fr3rSin::f (double tt, double uu, double vv) {
  *  \param dv	stepsize in v
  */
 Fr3rExp::Fr3rExp (double tmin, double tmax, double dt,
-		  double umin, double umax, double du,
-		  double vmin, double vmax, double dv):
-        RealFunction ("exp (rÂ²)",
+                  double umin, double umax, double du,
+                  double vmin, double vmax, double dv):
+        RealFunction ("exp (r²)",
                       tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) {
+      
+  _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+      
   Initialize ();
 }
 
@@ -734,13 +789,21 @@ Fr3rExp::Fr3rExp (double tmin, double tmax, double dt,
  *  \return		exp (xï¿½+yï¿½+zï¿½)
  */
 Vector<4> &Fr3rExp::f (double tt, double uu, double vv) {
-  _F[0] = tt;
-  _F[1] = uu;
-  _F[2] = vv;
-  _F[3] = exp (tt*tt+uu*uu+vv*vv);
+  _F = _function->f(Vector<3>(tt, uu, vv));
+  return _F;
+}
 
-  return _F; }
+ParametricFunction< 4, 3 >::return_type 
+Fr3rExp::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x) {
+  Vector<4> F;
+  F[0] = x[0];
+  F[1] = x[1];
+  F[2] = x[2];
+  F[3] = exp (x[0]*x[0]+x[1]*x[1]+x[2]*x[2]);
 
+  return F; 
+
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -762,6 +825,9 @@ Polar::Polar(double tmin, double tmax, double dt,
              double vmin, double vmax, double dv):
   RealFunction ("Polar: Hypersphere",
                 tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) {
+      
+  _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+      
   Initialize ();
 }
 
@@ -772,19 +838,26 @@ Polar::Polar(double tmin, double tmax, double dt,
  *  \return		value of defining function at point in question
  */
 Vector<4> &Polar::f (double tt, double uu, double vv) {
-  double sinphi = sin (pi*tt), cosphi = cos (pi*tt),
-    sintht = sin (pi*uu), costht = cos (pi*uu),
-    sinpsi = sin (pi*vv), cospsi = cos (pi*vv),
-    Radius = sin (pi/3.*(tt+uu+vv));
-
-  _F[0] = Radius*sinpsi*sintht*cosphi;
-  _F[1] = Radius*sinpsi*sintht*sinphi;
-  _F[2] = Radius*sinpsi*costht;
-  _F[3] = Radius*cospsi;
-
+  _F = _function->f(Vector<3>(tt, uu, vv));
   return _F;
 }
 
+ParametricFunction< 4, 3 >::return_type Polar::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x)
+{
+  double sinphi = sin (pi*x[0]), cosphi = cos (pi*x[0]),
+    sintht = sin (pi*x[1]), costht = cos (pi*x[1]),
+    sinpsi = sin (pi*x[2]), cospsi = cos (pi*x[2]),
+    Radius = sin (pi/3.*(x[0]+x[1]+x[2]));
+
+  Vector<4> F;
+  F[0] = Radius*sinpsi*sintht*cosphi;
+  F[1] = Radius*sinpsi*sintht*sinphi;
+  F[2] = Radius*sinpsi*costht;
+  F[3] = Radius*cospsi;
+
+  return F;
+
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -809,6 +882,9 @@ PolarSin::PolarSin (double tmin, double tmax, double dt,
         RealFunction ("Polar: r = 1/2+sin (Phase*pi*t*u*v)",
                       tmin, tmax, dt, umin, umax, du, vmin, vmax, dv),
     _phase (phase) {
+      
+    _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+      
     declareParameter("Phase", 2.0);
     Initialize ();
 }
@@ -820,19 +896,26 @@ PolarSin::PolarSin (double tmin, double tmax, double dt,
  *  \return		r = 1/2 + |sin (pi*phase*theta*phi*psi)|
  */
 Vector<4> &PolarSin::f (double tt, double uu, double vv) {
-  double sinphi = sin (pi*tt), cosphi = cos (pi*tt),
-    sintht = sin (pi*uu), costht = cos (pi*uu),
-    sinpsi = sin (pi*vv), cospsi = cos (pi*vv),
-    Radius = .5+fabs (sin (_phase*tt*uu*vv*pi));
-
-  _F[0] = Radius*sinpsi*sintht*cosphi;
-  _F[1] = Radius*sinpsi*sintht*sinphi;
-  _F[2] = Radius*sinpsi*costht;
-  _F[3] = Radius*cospsi;
-
+  _F = _function->f(Vector<3>(tt, uu, vv));
   return _F;
 }
 
+ParametricFunction< 4, 3 >::return_type PolarSin::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x)
+{
+  double sinphi = sin (pi*x[0]), cosphi = cos (pi*x[0]),
+    sintht = sin (pi*x[1]), costht = cos (pi*x[1]),
+    sinpsi = sin (pi*x[2]), cospsi = cos (pi*x[2]),
+    Radius = .5+fabs (sin (_parent->_phase*x[0]*x[1]*x[2]*pi));
+
+  Vector<4> F;
+  F[0] = Radius*sinpsi*sintht*cosphi;
+  F[1] = Radius*sinpsi*sintht*sinphi;
+  F[2] = Radius*sinpsi*costht;
+  F[3] = Radius*cospsi;
+
+  return F;
+
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -853,7 +936,10 @@ PolarSin2::PolarSin2 (double tmin, double tmax, double dt,
                       double vmin, double vmax, double dv):
         RealFunction ("Polar: r = sin (pi/3.*(t+u+v))",
                       tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) {
-    Initialize ();
+      
+  _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+      
+  Initialize ();
 }
 
 /** PolarSin2 defining function
@@ -863,19 +949,26 @@ PolarSin2::PolarSin2 (double tmin, double tmax, double dt,
  *  \return		r = sin (pi/3*(phi+theta+psi))
  */
 Vector<4> &PolarSin2::f (double tt, double uu, double vv) {
-  double sinphi = sin (pi*tt), cosphi = cos (pi*tt),
-    sintht = sin (pi*uu), costht = cos (pi*uu),
-    sinpsi = sin (pi*vv), cospsi = cos (pi*vv),
-    Radius = sin (pi/3.*(tt+uu+vv));
-
-  _F[0] = Radius*sinpsi*sintht*cosphi;
-  _F[1] = Radius*sinpsi*sintht*sinphi;
-  _F[2] = Radius*sinpsi*costht;
-  _F[3] = Radius*cospsi;
-
+  _F = _function->f(Vector<3>(tt, uu, vv));
   return _F;
 }
 
+ParametricFunction< 4, 3 >::return_type PolarSin2::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x)
+{
+  double sinphi = sin (pi*x[0]), cosphi = cos (pi*x[0]),
+    sintht = sin (pi*x[1]), costht = cos (pi*x[1]),
+    sinpsi = sin (pi*x[2]), cospsi = cos (pi*x[2]),
+    Radius = sin (pi/3.*(x[0]+x[1]+x[2]));
+
+  Vector<4> F;
+  F[0] = Radius*sinpsi*sintht*cosphi;
+  F[1] = Radius*sinpsi*sintht*sinphi;
+  F[2] = Radius*sinpsi*costht;
+  F[3] = Radius*cospsi;
+
+  return F;
+
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -894,13 +987,16 @@ Vector<4> &PolarSin2::f (double tt, double uu, double vv) {
  *  \param phase phase
  */
 PolarR::PolarR (double tmin, double tmax, double dt,
-		double umin, double umax, double du,
-		double vmin, double vmax, double dv,
-		double phase):
+                double umin, double umax, double du,
+                double vmin, double vmax, double dv,
+                double phase):
         RealFunction ("Polar: r = sqrt (tÂ²+uÂ²+vÂ²)",
                       tmin, tmax, dt, umin, umax, du, vmin, vmax, dv),
         _phase (phase) {
-      declareParameter("Phase", 2.0);
+      
+  _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+      
+  declareParameter("Phase", 2.0);
   Initialize ();
 }
 
@@ -911,15 +1007,23 @@ PolarR::PolarR (double tmin, double tmax, double dt,
  *  \return		r = sqrt (phiï¿½+thetaï¿½+psiï¿½)
  */
 Vector<4> &PolarR::f (double tt, double uu, double vv) {
-  double sinphi = sin (pi*tt), cosphi = cos (pi*tt),
-    sintht = sin (pi*uu), costht = cos (pi*uu),
-    sinpsi = sin (pi*vv), cospsi = cos (pi*vv),
-    Radius = sqrt (tt*tt+uu*uu+vv*vv);
-
-  _F[0] = Radius*sinpsi*sintht*cosphi;
-  _F[1] = Radius*sinpsi*sintht*sinphi;
-  _F[2] = Radius*sinpsi*costht;
-  _F[3] = Radius*cospsi;
-
+  _F = _function->f(Vector<3>(tt, uu, vv));
   return _F;
+}
+
+ParametricFunction< 4, 3 >::return_type PolarR::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x)
+{
+  double sinphi = sin (pi*x[0]), cosphi = cos (pi*x[0]),
+    sintht = sin (pi*x[1]), costht = cos (pi*x[1]),
+    sinpsi = sin (pi*x[2]), cospsi = cos (pi*x[2]),
+    Radius = sqrt (x[0]*x[0]+x[1]*x[1]+x[2]*x[2]);
+
+  Vector<4> F;
+  F[0] = Radius*sinpsi*sintht*cosphi;
+  F[1] = Radius*sinpsi*sintht*sinphi;
+  F[2] = Radius*sinpsi*costht;
+  F[3] = Radius*cospsi;
+
+  return F;
+
 }

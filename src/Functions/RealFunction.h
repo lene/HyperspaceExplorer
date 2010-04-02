@@ -215,20 +215,38 @@ class RealFunction: public RealBase {
     \f}
  *  \ingroup RealGroup                                                    */
 class Hypersphere: public RealFunction {
-    public:
-        Hypersphere(): RealFunction("Hypersphere"), _radius(1.) { }
-        Hypersphere (double _tmin, double _tmax, double _dt,
-                     double _umin, double _umax, double _du,
-                     double _vmin, double _vmax, double _dv,
-                     double _rad = 1);
-        virtual ~Hypersphere() { }
-        virtual void SetParameters(const ParameterMap &);
 
-    protected:
-        virtual function_type f;
-        virtual function_type normal;
+  public:
+  
+    Hypersphere(): RealFunction("Hypersphere"), _radius(1.) { }
+    Hypersphere (double _tmin, double _tmax, double _dt,
+                 double _umin, double _umax, double _du,
+                 double _vmin, double _vmax, double _dv,
+                 double _rad = 1);
+    virtual ~Hypersphere() { }
+    virtual void SetParameters(const ParameterMap &);
+  
+  protected:
+    
+    class DefiningFunction: public ParametricFunction<4, 3> {
+      
+      public:
+        
+        DefiningFunction(Hypersphere *parent): _parent(parent) { }
+        virtual return_type f(const argument_type &x);
+    
+      private:    
 
-        double _radius;         ///< Radius of the hypersphere
+        /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
+        Hypersphere* _parent;
+
+    };
+        
+    virtual function_type f;
+    virtual function_type normal;
+
+    double _radius;         ///< Radius of the hypersphere
+    
 };
 
 namespace {
@@ -271,7 +289,9 @@ class Torus1: public RealFunction {
   protected:
     
     class DefiningFunction: public ParametricFunction<4, 3> {
+
       public:
+      
         DefiningFunction(Torus1 *parent): _parent(parent) { }
         virtual return_type f(const argument_type &x);
     
@@ -324,7 +344,22 @@ class Torus2: public RealFunction {
 #endif
         }
 
-    protected:
+  protected:
+
+    class DefiningFunction: public ParametricFunction<4, 3> {
+      
+      public:
+        
+        DefiningFunction(Torus2 *parent): _parent(parent) { }
+        virtual return_type f(const argument_type &x);
+    
+      private:    
+
+        /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
+        Torus2* _parent;
+
+    };
+      
         virtual function_type f;
 
         double _R;   ///< major radius of the torus
@@ -353,6 +388,19 @@ class Fr3r: public RealFunction {
         virtual ~Fr3r() { }
 
     protected:
+    class DefiningFunction: public ParametricFunction<4, 3> {
+      
+      public:
+        
+        DefiningFunction(Fr3r *parent): _parent(parent) { }
+        virtual return_type f(const argument_type &x);
+    
+      private:    
+
+        /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
+        Fr3r* _parent;
+
+    };
         virtual function_type f;
 };
 
@@ -392,6 +440,19 @@ class GravitationPotential: public RealFunction {
 
     protected:
       
+    class DefiningFunction: public ParametricFunction<4, 3> {
+      
+      public:
+        
+        DefiningFunction(GravitationPotential *parent): _parent(parent) { }
+        virtual return_type f(const argument_type &x);
+    
+      private:    
+
+        /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
+        GravitationPotential* _parent;
+
+    };
         void doCharacteristicStuff();
         
         virtual function_type f;
@@ -418,6 +479,19 @@ class Fr3rSin: public RealFunction {
         virtual ~Fr3rSin () { }
 
     protected:
+    class DefiningFunction: public ParametricFunction<4, 3> {
+      
+      public:
+        
+        DefiningFunction(Fr3rSin *parent): _parent(parent) { }
+        virtual return_type f(const argument_type &x);
+    
+      private:    
+
+        /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
+        Fr3rSin* _parent;
+
+    };
         virtual function_type f;
 };
 
@@ -439,6 +513,19 @@ class Fr3rExp: public RealFunction {
         virtual ~Fr3rExp () { }
 
     protected:
+    class DefiningFunction: public ParametricFunction<4, 3> {
+      
+      public:
+        
+        DefiningFunction(Fr3rExp *parent): _parent(parent) { }
+        virtual return_type f(const argument_type &x);
+    
+      private:    
+
+        /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
+        Fr3rExp* _parent;
+
+    };
         virtual function_type f;
 };
 
@@ -459,6 +546,19 @@ class Polar: public RealFunction {
         virtual ~Polar() { }
 
     protected:
+    class DefiningFunction: public ParametricFunction<4, 3> {
+      
+      public:
+        
+        DefiningFunction(Polar *parent): _parent(parent) { }
+        virtual return_type f(const argument_type &x);
+    
+      private:    
+
+        /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
+        Polar* _parent;
+
+    };
         virtual function_type f;
 };
 
@@ -487,6 +587,19 @@ class PolarSin: public RealFunction {
         }
 
     protected:
+    class DefiningFunction: public ParametricFunction<4, 3> {
+      
+      public:
+        
+        DefiningFunction(PolarSin *parent): _parent(parent) { }
+        virtual return_type f(const argument_type &x);
+    
+      private:    
+
+        /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
+        PolarSin* _parent;
+
+    };
         virtual function_type f;
         double _phase;               ///< phase
 };
@@ -509,6 +622,19 @@ class PolarSin2: public RealFunction {
         virtual ~PolarSin2 () { }
 
     protected:
+    class DefiningFunction: public ParametricFunction<4, 3> {
+      
+      public:
+        
+        DefiningFunction(PolarSin2 *parent): _parent(parent) { }
+        virtual return_type f(const argument_type &x);
+    
+      private:    
+
+        /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
+        PolarSin2* _parent;
+
+    };
         virtual function_type f;
 };
 
@@ -542,6 +668,19 @@ class PolarR: public RealFunction {
         }
 
     protected:
+    class DefiningFunction: public ParametricFunction<4, 3> {
+      
+      public:
+        
+        DefiningFunction(PolarR *parent): _parent(parent) { }
+        virtual return_type f(const argument_type &x);
+    
+      private:    
+
+        /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
+        PolarR* _parent;
+
+    };
         virtual function_type f;
         double _phase;               ///< phase
 };
