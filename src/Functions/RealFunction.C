@@ -102,13 +102,12 @@ void RealFunction::InitMem (void) {
 /** Call InitMem() above */
 void RealFunction::Initialize () {
   if (_function) {
-    cerr << "function exists" << endl;
     _X_grid = FunctionValueGrid<4, 3>(_function,
                                       Vector<3, unsigned>(getTsteps()+2, getUsteps()+2, getVsteps()+2),
                                       Vector<3>(getTmin(), getUmin(), getVmin()),
                                       Vector<3>(getTmax(), getUmax(), getVmax()));
   } 
-//  else {
+  else {
     _X = vec4vec3D(getTsteps()+2);
   //    ColMgrMgr::Instance().setFunction(this);
   //    std::cerr << "RealFunction::Initialize() tsteps: " << getTsteps() <<  " usteos: " << getUsteps() << " vsteps: " << getVsteps() << std::endl;
@@ -126,7 +125,7 @@ void RealFunction::Initialize () {
         }
       }
     }
-//  }
+  }
     _X_temp.clear();
  
   calibrateColors();
@@ -209,7 +208,7 @@ void RealFunction::Transform (const VecMath::Rotation<4> &R,
   transform< vec4vec3D, 4 >::xform(Rot, T, _X, _Xtrans);
   
   if (_function) {
-    _Xtrans_temp.clear();   
+    _Xtrans_temp.clear();
     Transformation<4, 3> xform(R, T);
     _Xtrans_grid = xform.transform(_X_grid.getValues());
   }
@@ -238,7 +237,7 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
   for (unsigned t = 0; t <= getTsteps()+1; t++) {
     for (unsigned u = 0; u <= getUsteps()+1; u++) {
       for (unsigned v = 0; v <= getVsteps()+1; v++) {
-
+        
         if (Xtrans()[t][u][v][3] < Wmin) Wmin = Xtrans()[t][u][v][3];
         if (Xtrans()[t][u][v][3] > Wmax) Wmax = Xtrans()[t][u][v][3];
 
@@ -259,6 +258,11 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
 void RealFunction::Draw (void) {
   for (unsigned t = 0; t < getTsteps(); t++)
     DrawPlane (t);
+}
+
+Vector<4> &RealFunction::f (double tt, double uu, double vv) {
+  _F = _function->f(Vector<3>(tt, uu, vv));
+  return _F;
 }
 
 /// Calculate normal to function at a given point in definition set.
@@ -320,7 +324,8 @@ NestedVector< Vector<4>, 3 > toNestedVector(const Function::vec4vec3D &v) {
 
 VecMath::NestedVector< Vector< 4 >, 3 > RealFunction::X() const {
   if (_function) return _X_grid.getValues();
-       
+
+  throw std::logic_error("function grid not present");
   if (_X_temp.empty()) {    
     _X_temp = toNestedVector(_X);   
   }
@@ -330,6 +335,7 @@ VecMath::NestedVector< Vector< 4 >, 3 > RealFunction::X() const {
 VecMath::NestedVector< Vector< 4 >, 3 > RealFunction::Xtrans() const {
   if (_function) return _Xtrans_grid;   
        
+  throw std::logic_error("function grid not present");
   if (_Xtrans_temp.empty()) {   
     _Xtrans_temp = toNestedVector(_Xtrans);    
   }    

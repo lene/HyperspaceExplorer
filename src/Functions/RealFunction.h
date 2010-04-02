@@ -165,8 +165,11 @@ class RealFunction: public RealBase {
         /// \see Function::getDefinitionSpaceDimensions()
         virtual unsigned getDefinitionSpaceDimensions() { return 3; }
 
-    protected:
-        VecMath::Vector<4> &normal(double t, double u, double v);
+  protected:
+    
+    virtual function_type f;
+    
+    VecMath::Vector<4> &normal(double t, double u, double v);
 
         void DrawPlane (unsigned);
         void DrawStrip (unsigned, unsigned);

@@ -28,8 +28,8 @@ class Test_RealFunction: public QObject {
         RealFunctionTestImplementation();
 
         VecMath::Vector<4> function_value(double tt, double uu, double vv) { return f(tt,uu,vv); }
-        vec4vec3D vertices() { return _X; }
-        vec4vec3D transformed_vertices() { return _Xtrans; }
+        VecMath::NestedVector<VecMath::Vector<4>, 3> vertices() { return X(); }
+        VecMath::NestedVector<VecMath::Vector<4>, 3> transformed_vertices() { return Xtrans(); }
         vec3vec3D projected_vertices() { return _Xscr; }
 
         unsigned xsteps() const { return getTsteps(); }
@@ -37,6 +37,13 @@ class Test_RealFunction: public QObject {
         unsigned zsteps() const { return getVsteps(); }
 
     protected:
+        class DefiningFunction: public ParametricFunction<4, 3> {
+          
+          public:
+            
+            virtual return_type f(const argument_type &x);
+        };    
+
         virtual function_type f;
     };
 
