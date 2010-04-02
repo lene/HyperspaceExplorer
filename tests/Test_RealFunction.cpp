@@ -230,5 +230,5 @@ void testFunction(RealFunction &f) {
   f.Transform(r, t);
   f.Project(2., 4., false);
   f.Draw();
-  f.ReInit(-2., 2., 0.4, -2., 2., 0.4, -2., 2., 0.5);
+  f.ReInit(-2., 2., 0.8, -2., 2., 0.8, -2., 2., 1.0);
 }

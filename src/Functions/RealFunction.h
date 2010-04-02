@@ -245,34 +245,48 @@ namespace {
  *  directions
  *  \ingroup PolarGroup                                                    */
 class Torus1: public RealFunction {
-    public:
-        Torus1(): RealFunction("Torus1"), _R(2.), _r(1.), _rho(0.5) { }
-        Torus1 (double tmin, double tmax, double dt,
-                double umin, double umax, double du,
-                double vmin, double vmax, double dv,
-                double R = 2, double r = 1, double rho = 0.5);
-        virtual ~Torus1() { }
-        virtual void SetParameters(const ParameterMap &parms) {
-    //  parms["Radius"].value must be set!
-#if 1
-    for (ParameterMap::const_iterator i = parms.begin(); i != parms.end(); ++i) {
+
+  public:
+    Torus1(): RealFunction("Torus1"), _R(2.), _r(1.), _rho(0.5) { }
+    Torus1 (double tmin, double tmax, double dt,
+            double umin, double umax, double du,
+            double vmin, double vmax, double dv,
+            double R = 2, double r = 1, double rho = 0.5);
+    virtual ~Torus1() { }
+    virtual void SetParameters(const ParameterMap &parms) {
+      //  parms["Radius"].value must be set!
+#     if 1
+      for (ParameterMap::const_iterator i = parms.begin(); i != parms.end(); ++i) {
         if (i->second->getName() == "Major Radius") _R = i->second->toDouble();
         if (i->second->getName() == "Minor Radius") _r = i->second->toDouble();
         if (i->second->getName() == "Micro Radius") _rho = i->second->toDouble();
+      }
+#     else
+        setParameter(parms, this->_R, "Major Radius");
+        setParameter(parms, this->_r, "Minor Radius");
+        setParameter(parms, this->_rho, "Micro Radius");
+#     endif
     }
-#else
-    setParameter(parms, this->_R, "Major Radius");
-    setParameter(parms, this->_r, "Minor Radius");
-    setParameter(parms, this->_rho, "Micro Radius");
-#endif
-}
 
-    protected:
-        virtual function_type f;
+  protected:
+    
+    class DefiningFunction: public ParametricFunction<4, 3> {
+      public:
+        DefiningFunction(Torus1 *parent): _parent(parent) { }
+        virtual return_type f(const argument_type &x);
+    
+      private:    
 
-        double _R;       ///< major radius of the torus
-        double _r;       ///< minor radius of the torus
-        double _rho;     ///< smallest radius of the torus
+        /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
+        Torus1* _parent;
+
+    };
+    
+    virtual function_type f;
+
+    double _R;       ///< major radius of the torus
+    double _r;       ///< minor radius of the torus
+    double _rho;     ///< smallest radius of the torus
 };
 
 namespace {

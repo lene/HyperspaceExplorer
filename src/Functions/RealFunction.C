@@ -101,23 +101,33 @@ void RealFunction::InitMem (void) {
 /// Allocate and initialize X[][][] with values of f()
 /** Call InitMem() above */
 void RealFunction::Initialize () {
-  _X = vec4vec3D(getTsteps()+2);
-//    ColMgrMgr::Instance().setFunction(this);
-//    std::cerr << "RealFunction::Initialize() tsteps: " << getTsteps() <<  " usteos: " << getUsteps() << " vsteps: " << getVsteps() << std::endl;
-  for (unsigned t = 0; t <= getTsteps()+1; t++) {
-    _X[t].resize(getUsteps()+2);
+  if (_function) {
+    cerr << "function exists" << endl;
+    _X_grid = FunctionValueGrid<4, 3>(_function,
+                                      Vector<3, unsigned>(getTsteps()+2, getUsteps()+2, getVsteps()+2),
+                                      Vector<3>(getTmin(), getUmin(), getVmin()),
+                                      Vector<3>(getTmax(), getUmax(), getVmax()));
+  } 
+//  else {
+    _X = vec4vec3D(getTsteps()+2);
+  //    ColMgrMgr::Instance().setFunction(this);
+  //    std::cerr << "RealFunction::Initialize() tsteps: " << getTsteps() <<  " usteos: " << getUsteps() << " vsteps: " << getVsteps() << std::endl;
+    for (unsigned t = 0; t <= getTsteps()+1; t++) {
+      _X[t].resize(getUsteps()+2);
 
-    for (unsigned u = 0; u <= getUsteps()+1; u++) {
-      _X[t][u].resize(getVsteps()+2);
+      for (unsigned u = 0; u <= getUsteps()+1; u++) {
+        _X[t][u].resize(getVsteps()+2);
 
-      for (unsigned v = 0; v <= getVsteps()+1; v++) {
-        double T = getTmin()+t*getDt(), U =getUmin()+u*getDu(), V = getVmin()+v*getDv();
-        _X[t][u][v] = f (T, U, V);
+        for (unsigned v = 0; v <= getVsteps()+1; v++) {
+//          cerr << "t: " << t << "/" << _X.size() << " u: " << u << "/" << _X[t].size()  << " v: " << v << "/" << _X[t][u].size() << endl;
+          double T = getTmin()+t*getDt(), U =getUmin()+u*getDu(), V = getVmin()+v*getDv();
+          _X[t][u][v] = 
+          f(T, U, V);
+        }
       }
     }
-  }
- 
-  _X_temp.clear();
+//  }
+    _X_temp.clear();
  
   calibrateColors();
 
@@ -125,12 +135,12 @@ void RealFunction::Initialize () {
 }
 
 void RealFunction::calibrateColors() const {
-
+cerr << X() << endl;
   double Wmin = 0., Wmax = 0.;
-  for (unsigned t = 0; t <= getTsteps()+1; t++) {
+  for (unsigned t = 0; t < getTsteps(); t++) {
     for (unsigned u = 0; u <= getUsteps()+1; u++) {
       for (unsigned v = 0; v <= getVsteps()+1; v++) {
-#if 0
+#if 1
         std::cerr << "t: " << t << "/" << getTsteps() << "(" << _X.size() << ")" 
                   << " u: " << u << "/" << getUsteps() << "(" << _X[t].size() << ")"  
                   << " v: " << v << "/" << getVsteps() << "(" << _X[t][u].size() << ")"  
@@ -143,7 +153,7 @@ void RealFunction::calibrateColors() const {
     }
   }
 
-  for (unsigned t = 0; t <= getTsteps()+1; t++) {
+  for (unsigned t = 0; t <= getTsteps(); t++) {
     for (unsigned u = 0; u <= getUsteps()+1; u++) {
       for (unsigned v = 0; v <= getVsteps()+1; v++) {
         ColMgrMgr::Instance().calibrateColor(
@@ -177,8 +187,15 @@ void RealFunction::ReInit(double tmin, double tmax, double dt,
   getUsteps() = unsigned ((getUmax()-getUmin())/getDu()+2);
   getVsteps() = unsigned ((getVmax()-getVmin())/getDv()+2);
 
+  if (_function) {   
+    _X_grid.setBoundaries(Vector<3>(getTmin(), getUmin(), getVmin()), Vector<3>(getTmax(), getUmax(), getVmax()));   
+    _X_grid.setGridSize(Vector<3, unsigned>(getTsteps()+2, getUsteps()+2, getVsteps()+2));    
+  }
+
   Initialize ();
+  
 }
+
 
 /// Transforms a RealFunction
 /** \todo As I look at it, i think this could be optimized by making the
@@ -291,31 +308,32 @@ NestedVector< Vector<4>, 3 > toNestedVector(const Function::vec4vec3D &v) {
       for (Function::vec4vec1D::const_iterator kt = jt->begin(); kt != jt->end(); ++kt) {
         temp1D.push_back(*kt);
       }
+      
       temp2D.push_back(temp1D);
     }
+    
     temp3D.push_back(temp2D);
   }
 
   return temp3D;
-  
 }
 
 VecMath::NestedVector< Vector< 4 >, 3 > RealFunction::X() const {
- if (_function) return _X_grid.getValues();
+  if (_function) return _X_grid.getValues();
        
-     if (_X_temp.empty()) {    
-       _X_temp = toNestedVector(_X);   
-     }   
-     return _X_temp;
+  if (_X_temp.empty()) {    
+    _X_temp = toNestedVector(_X);   
+  }
+  return _X_temp;
 }
 
 VecMath::NestedVector< Vector< 4 >, 3 > RealFunction::Xtrans() const {
   if (_function) return _Xtrans_grid;   
        
-     if (_Xtrans_temp.empty()) {   
-        _Xtrans_temp = toNestedVector(_Xtrans);    
-      }    
-     return _Xtrans_temp;
+  if (_Xtrans_temp.empty()) {   
+    _Xtrans_temp = toNestedVector(_Xtrans);    
+  }    
+  return _Xtrans_temp;
 }
 
 using std::string;
@@ -467,6 +485,9 @@ Torus1::Torus1 (double tmin, double tmax, double dt,
     RealFunction ("Torus 1",
                 tmin, tmax, dt, umin, umax, du, vmin, vmax, dv),
     _R (R), _r (r), _rho (rho) {
+      
+      _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+      
       declareParameter("Major Radius", 2.0);
       declareParameter("Minor Radius", 1.0);
       declareParameter("Micro Radius", 0.5);
@@ -479,12 +500,20 @@ Torus1::Torus1 (double tmin, double tmax, double dt,
  *  \param vv v value
  *  \return value of defining function at point in question                   */
 Vector<4> &Torus1::f (double tt, double uu, double vv) {
-    _F[0] =  cos (pi*tt)*(_R+cos (pi*uu)*(_r+_rho*cos (pi*vv)));
-    _F[1] =  sin (pi*tt)*(_R+cos (pi*uu)*(_r+_rho*cos (pi*vv)));
-    _F[2] =  sin (pi*uu)*(_r+_rho*cos (pi*vv));
-    _F[3] =  _rho*sin (pi*vv);
+  _F = _function->f(Vector<3>(tt, uu, vv));
+  return _F;
+}
 
-    return _F;
+ParametricFunction< 4, 3 >::return_type Torus1::DefiningFunction::f(
+  const ParametricFunction< 4, 3 >::argument_type& x) {
+
+  VecMath::Vector<4> F;
+  F[0] =  cos(pi*x[0])*(_parent->_R+cos(pi*x[1])*(_parent->_r+_parent->_rho*cos(pi*x[2])));
+  F[1] =  sin(pi*x[0])*(_parent->_R+cos(pi*x[1])*(_parent->_r+_parent->_rho*cos(pi*x[2])));
+  F[2] =  sin(pi*x[1])*(_parent->_r+_parent->_rho*cos(pi*x[2]));
+  F[3] =  _parent->_rho*sin(pi*x[2]);
+
+  return F;
 }
 
 

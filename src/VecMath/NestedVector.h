@@ -145,7 +145,7 @@ namespace VecMath {
 
             /// Prints the elements of the vector
             void print() const {
-                std::cerr << "< ";
+                std::cerr << data().size() << " elements: " << "< ";
                 for (typename std::vector<NestedVector<T, D-1> >::const_iterator
                      i = data().begin();
                      i != data().end(); ++i) {
@@ -247,15 +247,21 @@ namespace VecMath {
                 std::cerr << "> ";
             }
 
+            static bool print_num_elements() { return PRINT_NUM_ELEMENTS; }
+            static unsigned max_dimension() { return MAX_DIMENSION; }
+
         protected:
             /// See NestedVector<T, D>::data()
             std::vector<T> &data() { return _data; }
             /// See NestedVector<T, D>::data()
-            const std::vector<T> &data() const { return _data; }
+            const std::vector<T> &data() const { return _data; }            
 
         private:
             /// std::vector<T>. All operations are delegated to this vector
             std::vector<T> _data;
+            
+            static const bool PRINT_NUM_ELEMENTS = false;
+            static const unsigned MAX_DIMENSION = 4;
     };
 
     /// Print a NestedVector<T, D> on a std::ostream
@@ -266,8 +272,12 @@ namespace VecMath {
      */
     template<typename T, unsigned D> std::ostream& operator<<(std::ostream& s,
                                                   NestedVector<T, D> const& v) {
+                
+        if (NestedVector<T, 1>::print_num_elements()) s << v.size() << " elements: ";
+        for (unsigned i = NestedVector<T, 1>::max_dimension(); i > D; --i) s << "  ";
         s << "(\n";
         copy(v.begin(), v.end(), std::ostream_iterator<NestedVector<T, D-1> >(s, "\n"));
+        for (unsigned i = NestedVector<T, 1>::max_dimension(); i > D; --i) s << "  ";
         s << ")";
         return s;
     }
@@ -280,8 +290,11 @@ namespace VecMath {
      */
     template<typename T> std::ostream& operator<<(std::ostream& s,
                                                   NestedVector<T, 1> const& v) {
-        s << "  (";
+        if (NestedVector<T, 1>::print_num_elements()) s << v.size() << " elements: ";
+        for (unsigned i = NestedVector<T, 1>::max_dimension(); i > 1; --i) s << "  ";
+        s << "(";
         copy(v.begin(), v.end(), std::ostream_iterator<T>(s, " "));
+        for (unsigned i = NestedVector<T, 1>::max_dimension(); i > 1; --i) s << "  ";
         s << ")";
         return s;
     }

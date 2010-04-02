@@ -59,9 +59,9 @@ private:
     virtual return_type f(const argument_type &x);
     
   private:
-    
-//    std::tr1::shared_ptr<ComplexFunction> _complex_function;
-        ComplexFunction * _complex_function;
+
+    /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
+    ComplexFunction * _complex_function;
   };
 
 };
