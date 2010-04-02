@@ -86,11 +86,9 @@ class C4DView::Menu4D: public QMenu {
         QAction *insertAction(QMenu *, const QString &, const char * = 0,
                               bool = true);
         /// insert a menu item creating a RealFunction object into a specified menu
-        QAction *insertAction(QMenu *, const QString &,
-                              RealFunctionFactory *, bool = true);
+        QAction *insertAction(QMenu *, RealFunctionFactory *, bool = true);
         /// insert a menu item creating a Surface object into a specified menu
-        QAction *insertAction(QMenu *, const QString &,
-                              SurfaceFactory *, bool = true);
+        QAction *insertAction(QMenu *, SurfaceFactory *, bool = true);
 
         C4DView *_parent;       ///< the C4DView containing this menu
 
@@ -104,7 +102,7 @@ class C4DView::Menu4D: public QMenu {
         QMenu *_animation;      ///< The "Animation" menu
         QMenu *_help;           ///< The "Help" menu
 
-        MenuMapType menuMap;    ///< Keeps the QActions belonging to the menu entries
+        MenuMapType _menuMap;    ///< Keeps the QActions belonging to the menu entries
 };
 
 #endif

@@ -446,7 +446,7 @@ Torus1::Torus1 (double tmin, double tmax, double dt,
                 double umin, double umax, double du,
                 double vmin, double vmax, double dv,
                 double R, double r, double rho):
-    RealFunction ("Torus 1",
+    RealFunction ("Ditorus",
                 tmin, tmax, dt, umin, umax, du, vmin, vmax, dv),
     _R (R), _r (r), _rho (rho) {
       
@@ -492,7 +492,7 @@ Torus2::Torus2 (double tmin, double tmax, double dt,
                 double umin, double umax, double du,
                 double vmin, double vmax, double dv,
                 double R, double r):
-  RealFunction ("Torus 2",
+  RealFunction ("Toraspherinder",
                 tmin, tmax, dt, umin, umax, du, vmin, vmax, dv),
   _R (R), _r (r) {
       
@@ -519,7 +519,7 @@ Torus2::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x) 
 ////////////////////////////////////////////////////////////////////////////////
 
 
-/** Fr3r (example RÂ³->R function) c'tor given a definition set in RÂ³
+/** Fr3r (example R³->R function) c'tor given a definition set in R³
  *  \param tmin	minimal value in t
  *  \param tmax	maximal value in t
  *  \param dt	stepsize in t
@@ -583,13 +583,10 @@ GravitationPotential::GravitationPotential (double xmin, double xmax, double dx,
       
   _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
       
-  doCharacteristicStuff();
-}
-
-void GravitationPotential::doCharacteristicStuff() {
-      declareParameter("M", 1.0);
-      declareParameter("R", 0.25);
-      Initialize ();
+  declareParameter("M", 1.0);
+  declareParameter("R", 0.25);
+  
+  Initialize ();
 }
 
 ParametricFunction< 4, 3 >::return_type 
@@ -843,7 +840,7 @@ PolarR::PolarR (double tmin, double tmax, double dt,
                 double umin, double umax, double du,
                 double vmin, double vmax, double dv,
                 double phase):
-        RealFunction ("Polar: r = sqrt (tÂ²+uÂ²+vÂ²)",
+        RealFunction ("Polar: r = sqrt (t²+u²+v²)",
                       tmin, tmax, dt, umin, umax, du, vmin, vmax, dv),
         _phase (phase) {
       

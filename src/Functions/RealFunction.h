@@ -262,7 +262,7 @@ namespace {
 class Torus1: public RealFunction {
 
   public:
-    Torus1(): RealFunction("Torus1"), _R(2.), _r(1.), _rho(0.5) { }
+    Torus1(): RealFunction("Ditorus"), _R(2.), _r(1.), _rho(0.5) { }
     Torus1 (double tmin, double tmax, double dt,
             double umin, double umax, double du,
             double vmin, double vmax, double dv,
@@ -307,7 +307,7 @@ class Torus1: public RealFunction {
 
 namespace {
     Function *createTorus1() { return new Torus1(); }
-    const bool registeredR2 = TheFunctionFactory::Instance().registerFunction("Torus1", createTorus1);
+    const bool registeredR2 = TheFunctionFactory::Instance().registerFunction("Ditorus", createTorus1);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -318,7 +318,7 @@ namespace {
  *  \ingroup RealGroup                                                    */
 class Torus2: public RealFunction {
     public:
-        Torus2(): RealFunction("Torus2"), _R(1.), _r(0.5) { }
+        Torus2(): RealFunction("Toraspherinder"), _R(1.), _r(0.5) { }
         Torus2 (double tmin, double tmax, double dt,
                 double umin, double umax, double du,
                 double vmin, double vmax, double dv,
@@ -362,7 +362,7 @@ class Torus2: public RealFunction {
 
 namespace {
     Function *createTorus2() { return new Torus2(); }
-    const bool registeredR3 = TheFunctionFactory::Instance().registerFunction("Torus2", createTorus2);
+    const bool registeredR3 = TheFunctionFactory::Instance().registerFunction("Toraspherinder", createTorus2);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -375,7 +375,7 @@ namespace {
  *  \ingroup RealGroup                                                    */
 class Fr3r: public RealFunction {
     public:
-        Fr3r(): RealFunction("Fr3r") { }
+        Fr3r(): RealFunction("1/(r²+1)") { }
         Fr3r (double tmin, double tmax, double dt,
               double umin, double umax, double du,
               double vmin, double vmax, double dv);
@@ -399,7 +399,7 @@ class Fr3r: public RealFunction {
 
 namespace {
     Function *createFr3r() { return new Fr3r(); }
-    const bool registeredR4 = TheFunctionFactory::Instance().registerFunction("Fr3r", createFr3r);
+    const bool registeredR4 = TheFunctionFactory::Instance().registerFunction("1/(r²+1)", createFr3r);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -407,18 +407,18 @@ namespace {
 /// a function describing the gravitational potential of a spherical mass
 /** \ingroup RealGroup                                                    */
 class GravitationPotential: public RealFunction {
-    public:
-        GravitationPotential(): RealFunction("GravitationPotential"), _M(1.), _R(0.25) {
-          std::cerr << "default c'tor" << std::endl;
-          doCharacteristicStuff();
-        }
+
+  public:
+    
+    GravitationPotential(): RealFunction("Gravitation Potential"), _M(1.), _R(0.25) { }
         
-        GravitationPotential (double tmin, double tmax, double dt,
+    GravitationPotential (double tmin, double tmax, double dt,
                               double umin, double umax, double du,
                               double vmin, double vmax, double dv,
                               double M = 1, double R = 0.25);
-        virtual ~GravitationPotential () { }
-        virtual void SetParameters(const ParameterMap &parms) {
+    virtual ~GravitationPotential () { }
+    
+    virtual void SetParameters(const ParameterMap &parms) {
 #if 1
             for (ParameterMap::const_iterator i = parms.begin();
                  i != parms.end(); ++i) {
@@ -447,15 +447,13 @@ class GravitationPotential: public RealFunction {
 
     };
 
-    void doCharacteristicStuff();
-
     double _M;   ///< Mass of the generating sphere(not really M, but M/R^3)
     double _R;   ///< Radius of the generating sphere
 };
 
 namespace {
     Function *createGravitationPotential() { return new GravitationPotential(); }
-    const bool registeredR5 = TheFunctionFactory::Instance().registerFunction("GravitationPotential", createGravitationPotential);
+    const bool registeredR5 = TheFunctionFactory::Instance().registerFunction("Gravitation Potential", createGravitationPotential);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -464,7 +462,7 @@ namespace {
 /** \ingroup RealGroup                                                    */
 class Fr3rSin: public RealFunction {
     public:
-        Fr3rSin(): RealFunction("Fr3rSin") { }
+        Fr3rSin(): RealFunction("sin (r²)") { }
         Fr3rSin (double tmin, double tmax, double dt,
                  double umin, double umax, double du,
                  double vmin, double vmax, double dv);
@@ -488,7 +486,7 @@ class Fr3rSin: public RealFunction {
 
 namespace {
     Function *createFr3rSin() { return new Fr3rSin(); }
-    const bool registeredR6 = TheFunctionFactory::Instance().registerFunction("Fr3rSin", createFr3rSin);
+    const bool registeredR6 = TheFunctionFactory::Instance().registerFunction("sin (r²)", createFr3rSin);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -497,7 +495,7 @@ namespace {
 /** \ingroup RealGroup                                                    */
 class Fr3rExp: public RealFunction {
     public:
-        Fr3rExp(): RealFunction("Fr3rExp") { }
+        Fr3rExp(): RealFunction("exp (r²)") { }
         Fr3rExp (double tmin, double tmax, double dt,
                  double umin, double umax, double du,
                  double vmin, double vmax, double dv);
@@ -521,7 +519,7 @@ class Fr3rExp: public RealFunction {
 
 namespace {
     Function *createFr3rExp() { return new Fr3rExp(); }
-    const bool registeredR7 = TheFunctionFactory::Instance().registerFunction("Fr3rExp", createFr3rExp);
+    const bool registeredR7 = TheFunctionFactory::Instance().registerFunction("exp (r²)", createFr3rExp);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -557,7 +555,7 @@ class Polar: public RealFunction {
 /** \ingroup PolarGroup                                                    */
 class PolarSin: public RealFunction {
     public:
-        PolarSin(): RealFunction("PolarSin"), _phase(2.) { }
+        PolarSin(): RealFunction("Polar: r = 1/2+sin (Phase*pi*t*u*v)"), _phase(2.) { }
         PolarSin (double tmin, double tmax, double dt,
                   double umin, double umax, double du,
                   double vmin, double vmax, double dv,
@@ -595,7 +593,7 @@ class PolarSin: public RealFunction {
 
 namespace {
     Function *createPolarSin() { return new PolarSin(); }
-    const bool registeredR8 = TheFunctionFactory::Instance().registerFunction("PolarSin", createPolarSin);
+    const bool registeredR8 = TheFunctionFactory::Instance().registerFunction("Polar: r = 1/2+sin (Phase*pi*t*u*v)", createPolarSin);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -604,7 +602,7 @@ namespace {
 /** \ingroup PolarGroup                                                    */
 class PolarSin2: public RealFunction {
     public:
-        PolarSin2(): RealFunction("PolarSin2") { }
+        PolarSin2(): RealFunction("Polar: r = sin (pi/3.*(t+u+v))") { }
         PolarSin2 (double tmin, double tmax, double dt,
                    double umin, double umax, double du,
                    double vmin, double vmax, double dv);
@@ -628,7 +626,7 @@ class PolarSin2: public RealFunction {
 
 namespace {
     Function *createPolarSin2() { return new PolarSin2(); }
-    const bool registeredR9 = TheFunctionFactory::Instance().registerFunction("PolarSin2", createPolarSin2);
+    const bool registeredR9 = TheFunctionFactory::Instance().registerFunction("Polar: r = sin (pi/3.*(t+u+v))", createPolarSin2);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -637,7 +635,7 @@ namespace {
 /** \ingroup PolarGroup                                                    */
 class PolarR: public RealFunction {
     public:
-        PolarR(): RealFunction("PolarR"), _phase(2.) { }
+        PolarR(): RealFunction("Polar: r = sqrt (t²+u²+v²)"), _phase(2.) { }
         PolarR (double _tmin, double _tmax, double _dt,
                 double _umin, double _umax, double _du,
                 double _vmin, double _vmax, double _dv,
@@ -675,7 +673,7 @@ class PolarR: public RealFunction {
 
 namespace {
     Function *createPolarR() { return new PolarR(); }
-    const bool registeredR10 = TheFunctionFactory::Instance().registerFunction("PolarR", createPolarR);
+    const bool registeredR10 = TheFunctionFactory::Instance().registerFunction("Polar: r = sqrt (t²+u²+v²)", createPolarR);
 }
 
 #endif

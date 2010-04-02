@@ -19,10 +19,16 @@
 template<class function>
     RealFunction *C4DView::TemplatedRealFunctionFactory<function>::doCreateFunction(
         C4DView *view) {
-        return new function (
+        return new function(
             view->Values()->tmin (), view->Values()->tmax (), view->Values()->dt (),
             view->Values()->umin (), view->Values()->umax (), view->Values()->du (),
             view->Values()->vmin (), view->Values()->vmax (), view->Values()->dv ());
+    }
+
+template<class function>
+    QString C4DView::TemplatedRealFunctionFactory<function>::doGetFunctionName() {
+      function* f(new function());
+      return f->getFunctionName();
     }
 
 /// Factory method to create a Surface object
@@ -34,6 +40,12 @@ template<class function>
         return new function (
             view->Values()->umin (), view->Values()->umax (), view->Values()->du (),
             view->Values()->vmin (), view->Values()->vmax (), view->Values()->dv ());
+    }
+
+template<class function>
+    QString C4DView::TemplatedSurfaceFactory<function>::doGetFunctionName() {
+      function* f(new function());
+      return f->getFunctionName();
     }
 
 #endif

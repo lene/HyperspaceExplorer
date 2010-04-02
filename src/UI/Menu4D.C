@@ -67,75 +67,48 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
         _surfaces = _functions->addMenu("Surfaces");
         _fcc = _surfaces->addMenu("f: C -> C");
         {
-            insertAction(_fr3r, "1/(r"+sup2+"+1)",
-                         new C4DView::TemplatedRealFunctionFactory<Fr3r>);
-            insertAction(_fr3r, "Gravitation Potential",
-                         new C4DView::TemplatedRealFunctionFactory<GravitationPotential>);
-            insertAction(_fr3r, "sin (r"+sup2+")",
-                         new C4DView::TemplatedRealFunctionFactory<Fr3rSin>);
-            insertAction(_fr3r, "exp (r"+sup2+")",
-                         new C4DView::TemplatedRealFunctionFactory<Fr3rExp>);
+            insertAction(_fr3r, new C4DView::TemplatedRealFunctionFactory<Fr3r>);
+            insertAction(_fr3r, new C4DView::TemplatedRealFunctionFactory<GravitationPotential>);
+            insertAction(_fr3r, new C4DView::TemplatedRealFunctionFactory<Fr3rSin>);
+            insertAction(_fr3r, new C4DView::TemplatedRealFunctionFactory<Fr3rExp>);
             insertAction(_fr3r, "Custom function", SLOT(customFunction()));
-            insertAction(_fr3r, "Polar: r = sin (pi/3.*(t+u+v))",
-                         new C4DView::TemplatedRealFunctionFactory<PolarSin>);
-            insertAction(_fr3r, "Polar: r = 1/2+sin (Phase*pi*t*u*v)",
-                         new C4DView::TemplatedRealFunctionFactory<PolarSin2>);
-            insertAction(_fr3r, "Polar: r = sqrt (t"+sup2+"+u"+sup2+"+v"+sup2+")",
-                         new C4DView::TemplatedRealFunctionFactory<PolarR>);
+            insertAction(_fr3r, new C4DView::TemplatedRealFunctionFactory<PolarSin>);
+            insertAction(_fr3r, new C4DView::TemplatedRealFunctionFactory<PolarSin2>);
+            insertAction(_fr3r, new C4DView::TemplatedRealFunctionFactory<PolarR>);
             insertAction(_fr3r, "Custom polar function", SLOT(customPolarFunction()));
         }
         {
-            insertAction(_objects, "Hypersphere",
-                         new C4DView::TemplatedRealFunctionFactory<Hypersphere>);
+            insertAction(_objects, new C4DView::TemplatedRealFunctionFactory<Hypersphere>);
             insertAction(_objects, "Hypercube", SLOT(ObjectHypercube()));
             insertAction(_objects, "Hyperpyramid", SLOT(ObjectHyperpyramid()));
             insertAction(_objects, "Menger Sponge", SLOT(ObjectHypersponge()));
             insertAction(_objects, "Sierpinski Gasket", SLOT(ObjectGasket()));
-            insertAction(_objects, "Torus 1",
-                         new C4DView::TemplatedRealFunctionFactory<Torus1>);
-            insertAction(_objects, "Torus 2",
-                         new C4DView::TemplatedRealFunctionFactory<Torus2>);
+            insertAction(_objects, new C4DView::TemplatedRealFunctionFactory<Torus1>);
+            insertAction(_objects, new C4DView::TemplatedRealFunctionFactory<Torus2>);
             insertAction(_objects, "Rotope", SLOT(ObjectRotope()));
             insertAction(_objects, "Alt. Menger Sponge", SLOT(ObjectAltSponge()));
             TESTED_FEATURE(getAction("Alt. Menger Sponge"));
         }
         {
-            insertAction(_surfaces, "Surface 1",
-                         new C4DView::TemplatedSurfaceFactory<Surface1>);
-            insertAction(_surfaces, "Horizon",
-                         new C4DView::TemplatedSurfaceFactory<Horizon>);
-            insertAction(_surfaces, "Torus 3",
-                         new C4DView::TemplatedSurfaceFactory<Torus3>);
+            insertAction(_surfaces, new C4DView::TemplatedSurfaceFactory<Surface1>);
+            insertAction(_surfaces, new C4DView::TemplatedSurfaceFactory<Horizon>);
+            insertAction(_surfaces, new C4DView::TemplatedSurfaceFactory<Torus3>);
             insertAction(_surfaces, "Custom surface", SLOT(customSurface()));
             {
-                insertAction(_fcc, "z"+sup2,
-                             new C4DView::TemplatedSurfaceFactory<z2>);
-                insertAction(_fcc, "z"+sup3,
-                             new C4DView::TemplatedSurfaceFactory<z3>);
-                insertAction(_fcc, "z^a",
-                             new C4DView::TemplatedSurfaceFactory<zA>);
-                insertAction(_fcc, "e^a*z",
-                             new C4DView::TemplatedSurfaceFactory<ez>);
-                insertAction(_fcc, "e^-a*z"+sup2+"",
-                             new C4DView::TemplatedSurfaceFactory<emz2>);
-                insertAction(_fcc, "1/z",
-                             new C4DView::TemplatedSurfaceFactory<zm1>);
-                insertAction(_fcc, "1/z"+sup2+"",
-                             new C4DView::TemplatedSurfaceFactory<zm2>);
-                insertAction(_fcc, "sqrt (z)",
-                             new C4DView::TemplatedSurfaceFactory<sqrtz>);
-                insertAction(_fcc, "ln (z)",
-                             new C4DView::TemplatedSurfaceFactory<lnz>);
-                insertAction(_fcc, "sin (z)",
-                             new C4DView::TemplatedSurfaceFactory<sinz>);
-                insertAction(_fcc, "cos (z)",
-                             new C4DView::TemplatedSurfaceFactory<cosz>);
-                insertAction(_fcc, "sinh (z)",
-                             new C4DView::TemplatedSurfaceFactory<sinhz>);
-                insertAction(_fcc, "cosh (z)",
-                            new C4DView::TemplatedSurfaceFactory<coshz>);
-                insertAction(_fcc, "tan (z)",
-                            new C4DView::TemplatedSurfaceFactory<tanz>);
+                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<z2>);
+                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<z3>);
+                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<zA>);
+                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<ez>);
+                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<emz2>);
+                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<zm1>);
+                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<zm2>);
+                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<sqrtz>);
+                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<lnz>);
+                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<sinz>);
+                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<cosz>);
+                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<sinhz>);
+                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<coshz>);
+                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<tanz>);
                 insertAction(_fcc, "Custom complex function",
                              SLOT(customComplexFunction()));
                 TESTED_FEATURE (getAction("Custom complex function"));
@@ -445,7 +418,7 @@ void C4DView::Menu4D::updateFunctionMenu (const QString &item) {
 
     for (unsigned functionIdx = 0; functionIdx < sizeof(functionMenuList);
          ++functionIdx) {
-             ActionMapType actionMap = menuMap[functionMenuList[functionIdx]];
+             ActionMapType actionMap = _menuMap[functionMenuList[functionIdx]];
              for (ActionMapType::iterator it = actionMap.begin();
                   it != actionMap.end(); ++it) {
                       it->second->setChecked(false);
@@ -459,14 +432,13 @@ void C4DView::Menu4D::updateFunctionMenu (const QString &item) {
  *  \return The QAction associated with \p key                                 */
 QAction *&C4DView::Menu4D::getAction(const QString &key) {
     MenuMapType::iterator it;
-    for (it = menuMap.begin(); it != menuMap.end(); ++it) {
+    for (it = _menuMap.begin(); it != _menuMap.end(); ++it) {
         ActionMapType actionMap = it->second;
         if (actionMap.count(key)) return actionMap[key];
     }
     
-    ///  \todo Throw a real exception
     QString mapKeys;
-    for (it = menuMap.begin(); it != menuMap.end(); ++it) {
+    for (it = _menuMap.begin(); it != _menuMap.end(); ++it) {
       mapKeys += "( ";
       ActionMapType actionMap = it->second;
       for (ActionMapType::iterator jt = actionMap.begin(); jt != actionMap.end(); ++jt) {
@@ -500,7 +472,7 @@ QAction *C4DView::Menu4D::insertAction(QMenu *_menu, const QString &title,
     else tmp = _menu->addAction(title);
 
     tmp->setCheckable(checkable);
-    menuMap[_menu].insert(std::pair<QString, QAction *>(title, tmp));
+    _menuMap[_menu].insert(std::pair<QString, QAction *>(title, tmp));
     return tmp;
 }
 
@@ -510,16 +482,15 @@ QAction *C4DView::Menu4D::insertAction(QMenu *_menu, const QString &title,
  *  \param title the title of the item
  *  \param factory the factory object creating the desired RealFunction object
  *  \param checkable whether the menu item is checkable                       */
-QAction *C4DView::Menu4D::insertAction(QMenu *_menu, const QString &title,
-                                       RealFunctionFactory *factory,
-                                       bool checkable) {
-    QAction *tmp = _menu->addAction(title,
-                                    new FunctionSlotHelper(_parent, factory),
-                                    SLOT(slot()), (const QKeySequence &)0);
-    tmp->setCheckable(checkable);
-    menuMap[_fr3r].insert(std::pair<QString, QAction *>(title, tmp));
+QAction *C4DView::Menu4D::insertAction(QMenu *_menu, RealFunctionFactory *factory, bool checkable) {
+  QString title = factory->functionName();
+  QAction *tmp = _menu->addAction(title,
+                                  new FunctionSlotHelper(_parent, factory),
+                                  SLOT(slot()), (const QKeySequence &)0);
+  tmp->setCheckable(checkable);
+  _menuMap[_fr3r].insert(std::pair<QString, QAction *>(title, tmp));
 
-    return tmp;
+  return tmp;
 }
 
 /** This version is called whenever a new Surface should be initialized and
@@ -528,15 +499,14 @@ QAction *C4DView::Menu4D::insertAction(QMenu *_menu, const QString &title,
  *  \param title the title of the item
  *  \param factory the factory object creating the desired Surface object
  *  \param checkable whether the menu item is checkable                       */
-QAction *C4DView::Menu4D::insertAction(QMenu *_menu, const QString &title,
-                                       SurfaceFactory *factory,
-                                       bool checkable) {
-    QAction *tmp = _menu->addAction(title,
-                                    new SurfaceSlotHelper(_parent, factory),
-                                    SLOT(slot()), (const QKeySequence &)0);
-    tmp->setCheckable(checkable);
-    menuMap[_fr3r].insert(std::pair<QString, QAction *>(title, tmp));
+QAction *C4DView::Menu4D::insertAction(QMenu *_menu, SurfaceFactory *factory, bool checkable) {
+  QString title = factory->functionName();
+  QAction *tmp = _menu->addAction(title,
+                                  new SurfaceSlotHelper(_parent, factory),
+                                  SLOT(slot()), (const QKeySequence &)0);
+  tmp->setCheckable(checkable);
+  _menuMap[_fr3r].insert(std::pair<QString, QAction *>(title, tmp));
 
-    return tmp;
+  return tmp;
 }
 
