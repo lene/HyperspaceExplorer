@@ -183,9 +183,6 @@ class RealFunction: public RealBase {
 
         vec3vec3D _Xscr;   ///< temporary storage for projected function values
         
-    vec4vec3D _X,      ///< temporary storage for function values on grid
-              _Xtrans; ///< temporary storage for transformed function values
-
     std::tr1::shared_ptr< ParametricFunction<4, 3> > _function;
     
   private:
@@ -193,9 +190,7 @@ class RealFunction: public RealBase {
     void setDepthCueColors(double Wmax, double Wmin);
     FunctionValueGrid<4, 3> _X_grid;
     FunctionValueGrid<4, 3>::value_storage_type _Xtrans_grid;
-    
-    mutable VecMath::NestedVector< VecMath::Vector<4>, 3 > _X_temp;    
-    mutable VecMath::NestedVector< VecMath::Vector<4>, 3 > _Xtrans_temp;    
+
 };
 
 
@@ -245,7 +240,6 @@ class Hypersphere: public RealFunction {
 
     };
         
-    virtual function_type f;
     virtual function_type normal;
 
     double _radius;         ///< Radius of the hypersphere
@@ -274,6 +268,7 @@ class Torus1: public RealFunction {
             double vmin, double vmax, double dv,
             double R = 2, double r = 1, double rho = 0.5);
     virtual ~Torus1() { }
+
     virtual void SetParameters(const ParameterMap &parms) {
       //  parms["Radius"].value must be set!
 #     if 1
@@ -304,8 +299,6 @@ class Torus1: public RealFunction {
         Torus1* _parent;
 
     };
-    
-    virtual function_type f;
 
     double _R;       ///< major radius of the torus
     double _r;       ///< minor radius of the torus
@@ -362,11 +355,9 @@ class Torus2: public RealFunction {
         Torus2* _parent;
 
     };
-      
-        virtual function_type f;
-
-        double _R;   ///< major radius of the torus
-        double _r;   ///< minor radius of the torus
+   
+    double _R;   ///< major radius of the torus
+    double _r;   ///< minor radius of the torus
 };
 
 namespace {
@@ -404,7 +395,6 @@ class Fr3r: public RealFunction {
         Fr3r* _parent;
 
     };
-        virtual function_type f;
 };
 
 namespace {
@@ -456,12 +446,11 @@ class GravitationPotential: public RealFunction {
         GravitationPotential* _parent;
 
     };
-        void doCharacteristicStuff();
-        
-        virtual function_type f;
 
-        double _M;   ///< Mass of the generating sphere(not really M, but M/R^3)
-        double _R;   ///< Radius of the generating sphere
+    void doCharacteristicStuff();
+
+    double _M;   ///< Mass of the generating sphere(not really M, but M/R^3)
+    double _R;   ///< Radius of the generating sphere
 };
 
 namespace {
@@ -495,7 +484,6 @@ class Fr3rSin: public RealFunction {
         Fr3rSin* _parent;
 
     };
-        virtual function_type f;
 };
 
 namespace {
@@ -529,7 +517,6 @@ class Fr3rExp: public RealFunction {
         Fr3rExp* _parent;
 
     };
-        virtual function_type f;
 };
 
 namespace {
@@ -562,7 +549,6 @@ class Polar: public RealFunction {
         Polar* _parent;
 
     };
-        virtual function_type f;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -603,8 +589,8 @@ class PolarSin: public RealFunction {
         PolarSin* _parent;
 
     };
-        virtual function_type f;
-        double _phase;               ///< phase
+
+    double _phase;               ///< phase
 };
 
 namespace {
@@ -638,7 +624,6 @@ class PolarSin2: public RealFunction {
         PolarSin2* _parent;
 
     };
-        virtual function_type f;
 };
 
 namespace {
@@ -684,8 +669,8 @@ class PolarR: public RealFunction {
         PolarR* _parent;
 
     };
-        virtual function_type f;
-        double _phase;               ///< phase
+
+    double _phase;               ///< phase
 };
 
 namespace {
