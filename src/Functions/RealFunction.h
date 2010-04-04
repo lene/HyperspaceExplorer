@@ -64,15 +64,6 @@ class RealBase: public Function {
                 _usteps (unsigned ((umax-umin)/du+1)),
                 _vsteps (unsigned ((vmax-vmin)/dv+1)) { }
 
-        /// Function evaluation operator for three parameters
-        /** @param t first argument, e.g. x or t
-         *  @param u second argument, e.g. y or u
-         *  @param v third argument, e.g. z or v
-         *  @return f(t, u, v)                                                */
-        VecMath::Vector<4> &operator () (double t, double u, double v) {
-            return f(t,u,v);
-        }
-
     protected:
         /// number of steps in t
         unsigned &getTsteps() { return _tsteps; }
@@ -105,9 +96,6 @@ class RealBase: public Function {
         double getVmax() const { return _vmax; }     ///< max. value of the third parameter, v
         double &getDv() { return _dv; }              ///< delta in v
         const double &getDv() const { return _dv; }  ///< delta in v
-
-        /// The mathematical function defining the Function object
-        virtual VecMath::Vector<4> &f(double, double, double) = 0;
 
         static double _min, ///< default value for all lower bounds
                       _max, ///< default value for all upper bounds
@@ -143,11 +131,11 @@ class RealBase: public Function {
 class RealFunction: public RealBase {
   public:
     RealFunction(const QString &name);
-    RealFunction (const QString &name,
-                  double tmin, double tmax, double dt,
-                  double umin, double umax, double du,
-                  double vmin, double vmax, double dv,
-                  ParameterMap _parms = ParameterMap());
+    RealFunction(const QString &name,
+                 double tmin, double tmax, double dt,
+                 double umin, double umax, double du,
+                 double vmin, double vmax, double dv,
+                 ParameterMap _parms = ParameterMap());
     virtual ~RealFunction() { }
 
     virtual void Transform (const VecMath::Rotation<4> &R,
@@ -165,9 +153,18 @@ class RealFunction: public RealBase {
     /// \see Function::getDefinitionSpaceDimensions()
     virtual unsigned getDefinitionSpaceDimensions() { return 3; }
 
+        /// Function evaluation operator for three parameters
+        /** @param t first argument, e.g. x or t
+         *  @param u second argument, e.g. y or u
+         *  @param v third argument, e.g. z or v
+         *  @return f(t, u, v)                                                */
+        VecMath::Vector<4> &operator () (double t, double u, double v) {
+          static VecMath::Vector<4> F;
+          F = _function->f(VecMath::Vector<3>(t, u, v));
+          return F;
+        }
+
   protected:
-    
-    virtual function_type f;
     
     VecMath::Vector<4> &normal(double t, double u, double v);
 

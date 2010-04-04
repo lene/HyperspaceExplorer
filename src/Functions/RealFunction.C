@@ -20,9 +20,8 @@
 #include "Matrix.h"
 #include "RealFunction.h"
 
-#include "Transform.h"
-
 #include "Transformation.h"
+#include "Projection.h"
 
 using std::cerr;
 using std::endl;
@@ -225,11 +224,6 @@ void RealFunction::Draw (void) {
     DrawPlane (t);
 }
 
-Vector<4> &RealFunction::f (double tt, double uu, double vv) {
-  _F = _function->f(Vector<3>(tt, uu, vv));
-  return _F;
-}
-
 /// Calculate normal to function at a given point in definition set.
 /** No further assumption is made than that f () is continuous.
  *
@@ -350,8 +344,7 @@ void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v) {
 ////////////////////////////////////////////////////////////////////////////////
 
 
-/// Hypersphere c'tor given a definition set in Rï¿½ (as parameter space) and a
-/// radius
+/// Hypersphere c'tor given a definition set in R³ (as parameter space) and a radius
 /** \param _tmin minimal value in t
  *  \param _tmax maximal value in t
  *  \param _dt stepsize in t
@@ -418,7 +411,7 @@ ParametricFunction< 4, 3 >::return_type Hypersphere::DefiningFunction::f(
 Vector<4> &Hypersphere::normal (double tt, double uu, double vv) {
     static Vector<4> n;
 
-  n = f (tt, uu, vv);
+  n = operator() (tt, uu, vv);
   VecMath::vnormalize (n);
 
   return n;
@@ -428,7 +421,7 @@ Vector<4> &Hypersphere::normal (double tt, double uu, double vv) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/** Torus1 c'tor given a definition set in Rï¿½ (as parameter space) and three
+/** Torus1 c'tor given a definition set in R³ (as parameter space) and three
  *  radii: major, minor and... what'sitcalled... subminor
  *  \param _tmin	minimal value in t
  *  \param _tmax	maximal value in t

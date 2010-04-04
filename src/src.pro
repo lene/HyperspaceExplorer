@@ -32,6 +32,7 @@ HEADERS += Functions/ComplexFunction.h \
     	   Functions/FunctionValueGrid.h \
     	   Functions/LoopHelper.h \
     	   Functions/Transformation.h \
+    	   Functions/Projection.h \
 	       Functions/Function.h \
            Functions/Object.h \
            Functions/Surface.h \
