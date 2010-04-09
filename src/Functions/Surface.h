@@ -144,8 +144,8 @@ class Surface: public SurfaceBase {
         virtual vec4vec1D df (double, double);
         virtual function_type normal;
 
-        VecMath::NestedVector< VecMath::Vector<4>, 2 > X() const;
-        VecMath::NestedVector< VecMath::Vector<4>, 2 > Xtrans() const;
+        const VecMath::NestedVector< VecMath::Vector<4>, 2 > &X() const;
+        const VecMath::NestedVector< VecMath::Vector<4>, 2 > &Xtrans() const;
 
         void Initialize (void);
         void InitMem (void);

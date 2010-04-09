@@ -258,34 +258,11 @@ void RealFunction::DrawStrip (unsigned t, unsigned u){
     DrawCube (t, u, v);
 }
 
-NestedVector< Vector<4>, 3 > toNestedVector(const Function::vec4vec3D &v) {
-
-  NestedVector< Vector<4>, 3 > temp3D;
-  
-  for (Function::vec4vec3D::const_iterator it = v.begin(); it != v.end(); ++it) {
-  
-    NestedVector< Vector<4>, 2 > temp2D;
-    for (Function::vec4vec2D::const_iterator jt = it->begin(); jt != it->end(); ++jt) {
-    
-      NestedVector< Vector<4>, 1> temp1D;    
-      for (Function::vec4vec1D::const_iterator kt = jt->begin(); kt != jt->end(); ++kt) {
-        temp1D.push_back(*kt);
-      }
-      
-      temp2D.push_back(temp1D);
-    }
-    
-    temp3D.push_back(temp2D);
-  }
-
-  return temp3D;
-}
-
-VecMath::NestedVector< Vector< 4 >, 3 > RealFunction::X() const {
+const VecMath::NestedVector< Vector< 4 >, 3 > &RealFunction::X() const {
   return _X.getValues();
 }
 
-VecMath::NestedVector< Vector< 4 >, 3 > RealFunction::Xtrans() const {
+const VecMath::NestedVector< Vector< 4 >, 3 > &RealFunction::Xtrans() const {
   return _Xtrans;   
 }
 

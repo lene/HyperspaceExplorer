@@ -8,8 +8,6 @@
 
 #include "Globals.h"
 
-#include "Vector.h"
-
 #include <QApplication>
 #include <QAction>
 #include <QMainWindow>
@@ -18,7 +16,9 @@
 #include <fstream>
 #include <sstream>
 
-
+#include "Vector.h"
+#include "NestedVector.h"
+#include "Function.h"
 
 using std::cerr;
 using std::endl;
@@ -28,6 +28,7 @@ using std::ostringstream;
 using std::ends;
 
 using VecMath::Vector;
+using VecMath::NestedVector;
 
 
 bool Global::check_memory = false;
@@ -147,6 +148,46 @@ unsigned long Global::check_proc_meminfo () {
     in >> meminfo;
     check_memory = true;
     return strtoul (meminfo.c_str (), NULL, 10)*1024;
+}
+
+
+NestedVector< Vector<4>, 2 > toNestedVector(const Function::vec4vec2D &v) {
+
+  NestedVector< Vector<4>, 2 > temp2D;
+  for (Function::vec4vec2D::const_iterator it = v.begin();
+       it != v.end(); ++it) {
+    NestedVector< Vector<4>, 1> temp1D;    
+    for (Function::vec4vec1D::const_iterator jt = it->begin();
+         jt != it->end(); ++jt) {
+      temp1D.push_back(*jt);
+    }
+    temp2D.push_back(temp1D);
+  }
+  return temp2D;
+  
+}
+
+NestedVector< Vector<4>, 3 > toNestedVector(const Function::vec4vec3D &v) {
+
+  NestedVector< Vector<4>, 3 > temp3D;
+  
+  for (Function::vec4vec3D::const_iterator it = v.begin(); it != v.end(); ++it) {
+  
+    NestedVector< Vector<4>, 2 > temp2D;
+    for (Function::vec4vec2D::const_iterator jt = it->begin(); jt != it->end(); ++jt) {
+    
+      NestedVector< Vector<4>, 1> temp1D;    
+      for (Function::vec4vec1D::const_iterator kt = jt->begin(); kt != jt->end(); ++kt) {
+        temp1D.push_back(*kt);
+      }
+      
+      temp2D.push_back(temp1D);
+    }
+    
+    temp3D.push_back(temp2D);
+  }
+
+  return temp3D;
 }
 
 /** maximum memory that should be consumed; calls check_proc_meminfo () above */

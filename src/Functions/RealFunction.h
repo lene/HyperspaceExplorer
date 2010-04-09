@@ -175,8 +175,8 @@ class RealFunction: public RealBase {
     virtual void Initialize (void);
     virtual void InitMem (void);
 
-    VecMath::NestedVector< VecMath::Vector<4>, 3 > X() const;
-    VecMath::NestedVector< VecMath::Vector<4>, 3 > Xtrans() const;
+    const VecMath::NestedVector< VecMath::Vector<4>, 3 > &X() const;
+    const VecMath::NestedVector< VecMath::Vector<4>, 3 > &Xtrans() const;
 
     vec3vec3D _Xscr;   ///< temporary storage for projected function values
         
@@ -410,9 +410,9 @@ class GravitationPotential: public RealFunction {
     GravitationPotential(): RealFunction("Gravitation Potential"), _M(1.), _R(0.25) { }
         
     GravitationPotential (double tmin, double tmax, double dt,
-                              double umin, double umax, double du,
-                              double vmin, double vmax, double dv,
-                              double M = 1, double R = 0.25);
+                          double umin, double umax, double du,
+                          double vmin, double vmax, double dv,
+                          double M = 1, double R = 0.25);
     virtual ~GravitationPotential () { }
     
     virtual void SetParameters(const ParameterMap &parms) {

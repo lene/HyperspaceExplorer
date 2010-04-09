@@ -249,27 +249,11 @@ void Surface::DrawStrip (unsigned t){
     glEnd ();
 }
 
-NestedVector< Vector<4>, 2 > toNestedVector(const Function::vec4vec2D &v) {
-
-  NestedVector< Vector<4>, 2 > temp2D;
-  for (Function::vec4vec2D::const_iterator it = v.begin();
-       it != v.end(); ++it) {
-    NestedVector< Vector<4>, 1> temp1D;    
-    for (Function::vec4vec1D::const_iterator jt = it->begin();
-         jt != it->end(); ++jt) {
-      temp1D.push_back(*jt);
-    }
-    temp2D.push_back(temp1D);
-  }
-  return temp2D;
-  
-}
-
-NestedVector< Vector<4>, 2 > Surface::X() const {
+const NestedVector< Vector<4>, 2 > &Surface::X() const {
   return _X.getValues();
 }
 
-NestedVector< Vector<4>, 2 > Surface::Xtrans() const {
+const NestedVector< Vector<4>, 2 > &Surface::Xtrans() const {
   return _Xtrans;
 }
 

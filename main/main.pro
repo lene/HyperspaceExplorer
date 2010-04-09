@@ -24,3 +24,7 @@ docs.files = doc/*
 docs.path =  $${INSTALLDIR}/share/HyperspaceExplorer/doc
 INSTALLS += target vector docs
 DISTFILES += ../devel/footer.html ../TODO
+
+QMAKE_CFLAGS_DEBUG += -pg -g3 -gdwarf-2
+QMAKE_CXXFLAGS_DEBUG += -pg -g3 -gdwarf-2
+QMAKE_LFLAGS_DEBUG += -pg
