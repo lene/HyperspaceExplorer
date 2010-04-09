@@ -57,14 +57,14 @@ template <unsigned N, unsigned Nnew, unsigned P>
 VecMath::NestedVector< VecMath::Vector<Nnew>, P >
 SimpleProjectionPolicy< N, Nnew, P >::project(
 const VecMath::NestedVector< VecMath::Vector<N>, P > &values) {
-
+  
   VecMath::NestedVector< VecMath::Vector<Nnew>, P > v(values.size());
   
   for (unsigned i = 0; i < values.size(); ++i) {
     SimpleProjectionPolicy<N, Nnew, P-1> p(_screen_W, _camera_W, _depthCue4D);
     v[i] = p.project(values[i]);
   }
-  
+
   return v;
   
 }
@@ -73,18 +73,20 @@ template <unsigned N, unsigned Nnew>
 VecMath::NestedVector< VecMath::Vector<Nnew>, 1 >
 SimpleProjectionPolicy< N, Nnew, 1 >::project(
 const VecMath::NestedVector< VecMath::Vector<N>, 1 > &values) {
-  
-  VecMath::NestedVector< VecMath::Vector<Nnew>, 1 > v(values.size());
-  
+
+  VecMath::NestedVector< VecMath::Vector<N-1>, 1 > v(values.size());
+
   for (unsigned i = 0; i < values.size(); ++i) {
-    double ProjectionFactor = (_screen_W-_camera_W)/(values[i][N-1]-_camera_W);
+
+    double projectionFactor = (_screen_W-_camera_W)/(values[i][N-1]-_camera_W);
     
-    for (unsigned j = 0; j < N-1; j++)
-      v[i][j] = ProjectionFactor*values[i][j];
-    
-  }
+    for (unsigned j = 0; j < N-1; ++j) v[i][j] = projectionFactor*values[i][j];
   
-  return v;
+  }
+
+  SimpleProjectionPolicy<N-1, Nnew, 1> p(_screen_W, _camera_W, _depthCue4D);
+  
+  return p.project(v);
   
 }
 

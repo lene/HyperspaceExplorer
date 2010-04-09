@@ -124,15 +124,15 @@ template <unsigned N, unsigned Nnew> class SimpleProjectionPolicy<N, Nnew, 1> {
     
 };
 
-template <unsigned N, unsigned P> class SimpleProjectionPolicy<N, N, P> {
+template <unsigned N> class SimpleProjectionPolicy<N, N, 1> {
   
   public:
     
     SimpleProjectionPolicy(double scrW, double camW, bool depthCue4D):
         _screen_W(scrW), _camera_W(camW), _depthCue4D(depthCue4D) { }
 
-    VecMath::NestedVector< VecMath::Vector<N>, P > project(
-        const VecMath::NestedVector< VecMath::Vector<N>, P > &values) {
+    VecMath::NestedVector< VecMath::Vector<N>, 1 > project(
+        const VecMath::NestedVector< VecMath::Vector<N>, 1 > &values) {
       return values;
     }
     
