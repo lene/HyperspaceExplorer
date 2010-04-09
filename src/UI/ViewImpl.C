@@ -28,7 +28,7 @@ namespace UI {
 
     ViewImpl::ViewImpl():
         View(),
-        _F(std::auto_ptr<Function>()),
+        _F(std::tr1::shared_ptr<Function>()),
         _colors(true), _coordinates(false), _fog(true), _hyperfog(false),
         _lighting(true), _shading(true), _solid(true), _transparence(false),
         _background (0.25, 0.25, 0.25, 1.),

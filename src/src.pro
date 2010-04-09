@@ -218,4 +218,4 @@ DISTFILES += ../devel/footer.html ../TODO
 
 ###
 ### C++0x support
-#QMAKE_CXXFLAGS += -std=c++0x
+QMAKE_CXXFLAGS += -std=c++0x

@@ -243,7 +243,7 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         void checkAnglesForOverflow();
         void UpdateStatus(QString = "");
 
-        void AssignValues(const std::auto_ptr<Function> &);
+        void AssignValues(const std::tr1::shared_ptr<Function> &);
 
         double Size();
 

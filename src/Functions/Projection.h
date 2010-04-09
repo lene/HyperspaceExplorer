@@ -23,11 +23,18 @@
 
 #include <NestedVector.h>
 
-#include <array>
+#include <tr1/array>
 
 template <unsigned N, unsigned Nnew, unsigned P> class Projection {
   
   public:
+    
+    class PointList {
+      public:
+        
+      private:
+        std::tr1::array< VecMath::Vector<N>, N-Nnew > _points;
+    };
     
     Projection(const VecMath::Vector<N> viewpoint, const VecMath::Vector<N> eye, 
                double screenDistance, bool depthCue4D);
@@ -38,8 +45,8 @@ template <unsigned N, unsigned Nnew, unsigned P> class Projection {
     
   private:
     
-    std::tr1::array< VecMath::Vector<N>, N-Nnew > _viewpoint;
-    std::tr1::array< VecMath::Vector<N>, N-Nnew > _eye; 
+    PointList _viewpoint;
+    PointList _eye; 
     std::tr1::array< double, N-Nnew > _screen_distance;
     std::tr1::array< bool, N-Nnew > _depth_cue_4d;
     

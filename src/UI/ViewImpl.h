@@ -37,7 +37,7 @@ namespace UI {
             ViewImpl();
 
             /// \return The currently displayed object
-            virtual const std::auto_ptr<Function> &F() const { return _F; }
+            virtual const std::tr1::shared_ptr<Function> &F() const { return _F; }
             /// Implementation of UI::View::setFunction
             virtual void setF(Function *_f) { _F.reset(_f); }
 
@@ -172,7 +172,7 @@ namespace UI {
 
         private:
 
-            std::auto_ptr<Function> _F;  ///< the Function object currently displayed
+            std::tr1::shared_ptr<Function> _F;  ///< the Function object currently displayed
 
             bool _colors;       ///< whether to use colors in rendering
             bool _coordinates;  ///< whether to display the 4D coordinate cross

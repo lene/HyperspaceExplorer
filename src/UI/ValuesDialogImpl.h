@@ -43,7 +43,7 @@ namespace UI {
                 ValuesDialogImpl(QWidget *parent = 0, Qt::WFlags f = 0);
                 virtual ~ValuesDialogImpl() {}
 
-                void setFunction(const std::auto_ptr<Function> &);
+                void setFunction(const std::tr1::shared_ptr<Function> &);
 
                 std::string print ();
 

@@ -42,7 +42,7 @@ namespace UI {
             View() { }
 
             /// \return The currently displayed object
-            virtual const std::auto_ptr<Function> &F() const = 0;
+            virtual const std::tr1::shared_ptr<Function> &F() const = 0;
             /// Set the currently displayed object to the given Function
             /** \param f The object to be set */
             virtual void setF(Function *f) = 0;
