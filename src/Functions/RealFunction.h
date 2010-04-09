@@ -194,6 +194,7 @@ class RealFunction: public RealBase {
     
     FunctionValueGrid<4, 3> _X;
     FunctionValueGrid<4, 3>::value_storage_type _Xtrans;
+    VecMath::NestedVector< VecMath::Vector<3>, 3 > _Xscr_as_grid;
 
 };
 

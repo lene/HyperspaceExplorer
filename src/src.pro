@@ -28,12 +28,14 @@ INCLUDEPATH += ./Functions
 DEPENDPATH += ./Functions
 HEADERS += Functions/ComplexFunction.h \
            Functions/CustomFunction.h \
-	       Functions/ParametricFunction.h \
-    	   Functions/FunctionValueGrid.h \
-    	   Functions/LoopHelper.h \
-    	   Functions/Transformation.h \
-    	   Functions/Projection.h \
-	       Functions/Function.h \
+	         Functions/ParametricFunction.h \
+    	     Functions/FunctionValueGrid.h \
+    	     Functions/LoopHelper.h \
+           Functions/Transformation.h \
+           Functions/Transformation.impl.h \
+           Functions/Projection.h \
+           Functions/Projection.impl.h \
+	         Functions/Function.h \
            Functions/Object.h \
            Functions/Surface.h \
            Functions/RealFunction.h \

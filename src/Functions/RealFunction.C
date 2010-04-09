@@ -195,6 +195,10 @@ void RealFunction::setDepthCueColors(double Wmax, double Wmin) {
  *  \param cam_w w coordinate of camera
  *  \param depthcue4d whether to use hyperfog/depth cue                       */
 void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
+  
+  Projection<4, 3, 3> p(scr_w, cam_w, depthcue4d);
+  _Xscr_as_grid = p.project(Xtrans());
+  
   double ProjectionFactor;
   double Wmax = 0, Wmin = 0;
 
