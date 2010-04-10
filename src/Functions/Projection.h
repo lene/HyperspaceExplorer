@@ -24,26 +24,28 @@
 #include "Vector.h"
 #include "NestedVector.h"
 
-#include <tr1/array>
-#include <bitset>
-
 /// Forward declaration needed to make the SimpleTransformationPolicy a default template parameter for Transformation.
 template <unsigned N, unsigned Nnew, unsigned P> class SimpleProjectionPolicy;
 
 template <unsigned size, typename T> class ArrayList {
   public:
-    T head();
-    std::tr1::array<T, size-1> tail();
+    ArrayList(): _elements() { }
+    ArrayList(T *elements): _elements(elements) { }
+    T head() { return _elements[0]; }
+    ArrayList<size-1, T> tail();
+
   private:
-    std::tr1::array<T, size> _elements;
+    T _elements[size];
 };
 
 template <typename T> class ArrayList<1, T> {
   public:
-    T head();
-    std::tr1::array<T, 0> tail();
+    ArrayList(): _elements() { }
+    ArrayList(T *elements): _elements(elements) { }
+    T head() { return _elements[0]; }
+    
   private:
-    std::tr1::array<T, 1> _elements;
+    T _elements[1];
 };
 
 /// Class that projects a \p N dimensional vertex array to \p Nnew dimensions.
