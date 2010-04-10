@@ -1,6 +1,6 @@
 /*
-    <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) <year>  <name of author>
+    Hyperspace Explorer - vizualizing higher-dimensional geometry
+    Copyright (C) 2010  Lene Preuss <lene.preuss@gmail.com>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,36 +17,22 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 */
+#ifndef ARRAYLIST_IMPL_H
+#define ARRAYLIST_IMPL_H
 
-#ifndef TEST_PROJECTION_H
-#define TEST_PROJECTION_H
+#include "ArrayList.h"
 
-#include <QtTest/QtTest>
+#include <cstdarg>
 
-#include "Projection.h"
-
-class Test_Projection: public QObject {
-    
-  Q_OBJECT
-
-  static const double EPSILON = 1.e-8;
+template <unsigned size, typename T> ArrayList<size, T>::ArrayList(T x0, ...) { 
+  _elements[0] = x0;
   
-  private slots:
-    
-    void initTestCase();
-    void cleanupTestCase();
-    
-    void project1D();
-    void project1D_data();
+  va_list argp;
+  va_start (argp, x0);
+  for (unsigned i = 1; i < size; ++i) {
+    _elements[i] = va_arg(argp, T);
+  }
+  va_end (argp);
+}
 
-    void project5to3();
-    void project5to3_data();
-    
-    void project2D();
-    void project2D_data();
-    
-    void projectWithViewpoints();
-    
-};
-
-#endif // TEST_PROJECTION_H
+#endif

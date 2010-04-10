@@ -28,14 +28,14 @@ INCLUDEPATH += ./Functions
 DEPENDPATH += ./Functions
 HEADERS += Functions/ComplexFunction.h \
            Functions/CustomFunction.h \
-	         Functions/ParametricFunction.h \
-    	     Functions/FunctionValueGrid.h \
-    	     Functions/LoopHelper.h \
+           Functions/ParametricFunction.h \
+           Functions/FunctionValueGrid.h \
+           Functions/LoopHelper.h \
            Functions/Transformation.h \
            Functions/Transformation.impl.h \
            Functions/Projection.h \
            Functions/Projection.impl.h \
-	         Functions/Function.h \
+           Functions/Function.h \
            Functions/Object.h \
            Functions/Surface.h \
            Functions/RealFunction.h \
@@ -161,7 +161,9 @@ HEADERS += Loki/SingletonHolder.h
 ###
 INCLUDEPATH += ./VecMath
 DEPENDPATH += ./VecMath
-HEADERS += VecMath/Matrix.h \
+HEADERS += VecMath/ArrayList.h \
+           VecMath/ArrayList.impl.h \
+           VecMath/Matrix.h \
            VecMath/NestedVector.h \
            VecMath/Rotation.h \
            VecMath/Vector.h \
@@ -195,7 +197,7 @@ DEFINES += PACKAGE_VERSION="$${VERSION}"
 DEFINES += USE_AUTO_PTR
 
 CONFIG(debug){
-    DEFINES += DEBUG TESTFEATURES 
+    DEFINES += DEBUG TESTFEATURES
 }
 
 ###

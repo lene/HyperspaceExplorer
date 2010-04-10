@@ -183,3 +183,12 @@ void Test_Projection::project2D() {
   }
 
 }
+
+void Test_Projection::projectWithViewpoints() {
+  
+  Projection<4, 3, 1> p(ArrayList<1, Vector<4> >(Vector<4>(0., 0., 0., 0.)),
+                        ArrayList<1, Vector<4> >(Vector<4>(0., 0., 0., 3.)),
+                        ArrayList<1, double>(1.),
+                        ArrayList<1, bool>(false));
+ 
+}

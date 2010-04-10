@@ -26,9 +26,20 @@
 #include <stdexcept>
 #include <sstream>
 
+using VecMath::Vector;
+
+template <unsigned N, unsigned Nnew, unsigned P, class Policy>
+Projection<N, Nnew, P, Policy>::Projection(
+const PointList &viewpoint, const PointList &eye,
+const DistanceList &screenDistance, const BoolList &depthCue4D):
+    _viewpoint(viewpoint), _eye(eye), _screen_distance(screenDistance), _depth_cue_4d(depthCue4D) {
+  checkConsistency();
+}
+
 template <unsigned N, unsigned Nnew, unsigned P, class Policy>
 Projection<N, Nnew, P, Policy>::Projection(double scrW, double camW, bool depthCue4D):
     _screen_W(scrW), _camera_W(camW), _depthCue4D(depthCue4D) {
+  _viewpoint = makeViewPointList();
   checkConsistency();
 }
 
@@ -51,6 +62,16 @@ void Projection<N, Nnew, P, Policy>::checkDimensions() {
   if (Nnew > N) throw std::logic_error("Tried to project to a higher dimension");
   if (Nnew == N) throw std::logic_error("Explicit specialization should be called");
 }
+
+template <unsigned N, unsigned Nnew, unsigned P, class Policy>
+typename Projection<N, Nnew, P, Policy>::PointList 
+Projection<N, Nnew, P, Policy>::makeViewPointList() {
+  PointList p(Vector<N>(0.));
+  return p;
+}
+
+
+
 
 
 template <unsigned N, unsigned Nnew, unsigned P>

@@ -167,10 +167,9 @@ namespace VecMath {
             _x () {
         _x[0] = x0;
         _x[1] = x1;
-        unsigned i = 0;
         va_list argp;
         va_start (argp, x1);
-        for (i = 2; i < D; i++) {
+        for (unsigned i = 2; i < D; i++) {
             _x[i] = va_arg (argp, N);
         }
         va_end (argp);

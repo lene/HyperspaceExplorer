@@ -23,30 +23,11 @@
 
 #include "Vector.h"
 #include "NestedVector.h"
+#include "ArrayList.h"
 
 /// Forward declaration needed to make the SimpleTransformationPolicy a default template parameter for Transformation.
 template <unsigned N, unsigned Nnew, unsigned P> class SimpleProjectionPolicy;
 
-template <unsigned size, typename T> class ArrayList {
-  public:
-    ArrayList(): _elements() { }
-    ArrayList(T *elements): _elements(elements) { }
-    T head() { return _elements[0]; }
-    ArrayList<size-1, T> tail();
-
-  private:
-    T _elements[size];
-};
-
-template <typename T> class ArrayList<1, T> {
-  public:
-    ArrayList(): _elements() { }
-    ArrayList(T *elements): _elements(elements) { }
-    T head() { return _elements[0]; }
-    
-  private:
-    T _elements[1];
-};
 
 /// Class that projects a \p N dimensional vertex array to \p Nnew dimensions.
 /** \param N Original dimension of the Vector s to project.
@@ -79,6 +60,11 @@ template <unsigned N, unsigned Nnew, unsigned P, typename Policy = SimpleProject
     void checkConsistency();
     /// Check whether the template is instantiated with sensible values for the dimensions
     void checkDimensions();
+    
+    PointList makeViewPointList();
+    PointList makeEyePointList(double camW);
+    DistanceList makeScreenDistanceList(double scrW);
+    BoolList makeDepthCueList(bool depthCue4D);
     
     PointList _viewpoint;
     PointList _eye; 
