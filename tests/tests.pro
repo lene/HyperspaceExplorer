@@ -8,7 +8,7 @@ CONFIG += debug qt warn_on uic
 QT += opengl
 
 TEMPLATE = app
-TARGET = 
+TARGET =
 DEPENDPATH += . ../src ../src/Functions ../src/Loki ../src/Script ../src/UI ../src/VecMath
 INCLUDEPATH += . ../src ../src/Functions ../src/Loki ../src/Script ../src/UI ../src/VecMath
 
@@ -34,6 +34,7 @@ HEADERS += Test_Rotope.h \
            Test_ParametricFunction.h \
            Test_FunctionValueGrid.h \
            Test_Transformation.h \
+           Test_Projection.h \
            Test_Function.h
 SOURCES += main.cpp \
            Test_Rotope.cpp \
@@ -47,6 +48,7 @@ SOURCES += main.cpp \
            Test_ParametricFunction.cpp \
            Test_FunctionValueGrid.cpp \
            Test_Transformation.cpp \
+           Test_Projection.cpp \
            Test_Function.cpp
 
 PRE_TARGETDEPS *= ../lib/libHyperspaceExplorer.a

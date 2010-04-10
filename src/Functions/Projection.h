@@ -21,7 +21,8 @@
 #ifndef PROJECTION_H
 #define PROJECTION_H
 
-#include <NestedVector.h>
+#include "Vector.h"
+#include "NestedVector.h"
 
 #include <tr1/array>
 #include <bitset>
