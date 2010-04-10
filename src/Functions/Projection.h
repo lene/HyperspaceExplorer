@@ -69,7 +69,7 @@ template <unsigned N, unsigned Nnew, unsigned P, typename Policy = SimpleProject
     PointList _viewpoint;
     PointList _eye; 
     DistanceList _screen_distance;
-    BoolList _depth_cue_4d;
+    BoolList _depth_cue;
 
     double _screen_W;
     double _camera_W;

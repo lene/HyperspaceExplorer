@@ -31,8 +31,8 @@ using VecMath::Vector;
 template <unsigned N, unsigned Nnew, unsigned P, class Policy>
 Projection<N, Nnew, P, Policy>::Projection(
 const PointList &viewpoint, const PointList &eye,
-const DistanceList &screenDistance, const BoolList &depthCue4D):
-    _viewpoint(viewpoint), _eye(eye), _screen_distance(screenDistance), _depth_cue_4d(depthCue4D) {
+const DistanceList &screenDistance, const BoolList &depthCue):
+    _viewpoint(viewpoint), _eye(eye), _screen_distance(screenDistance), _depth_cue(depthCue) {
   checkConsistency();
 }
 
@@ -40,6 +40,9 @@ template <unsigned N, unsigned Nnew, unsigned P, class Policy>
 Projection<N, Nnew, P, Policy>::Projection(double scrW, double camW, bool depthCue4D):
     _screen_W(scrW), _camera_W(camW), _depthCue4D(depthCue4D) {
   _viewpoint = makeViewPointList();
+  _eye = makeEyePointList(camW);
+  _screen_distance = makeScreenDistanceList(scrW);
+  _depth_cue = makeDepthCueList(depthCue4D);
   checkConsistency();
 }
 
@@ -67,11 +70,37 @@ template <unsigned N, unsigned Nnew, unsigned P, class Policy>
 typename Projection<N, Nnew, P, Policy>::PointList 
 Projection<N, Nnew, P, Policy>::makeViewPointList() {
   PointList p(Vector<N>(0.));
+  std::cerr << "makeViewPointList: " << p.toString() << std::endl;
   return p;
 }
 
+template <unsigned N, unsigned Nnew, unsigned P, class Policy>
+typename Projection<N, Nnew, P, Policy>::PointList 
+Projection<N, Nnew, P, Policy>::makeEyePointList(double camW) {
+  PointList p(Vector<N>(0.));
+  for (unsigned i = Nnew; i < N; ++i) {
+    p[i-Nnew][i] = camW;
+  }
+  std::cerr << "makeEyePointList: " << p.toString() << std::endl;
 
+  return p;
+}
 
+template <unsigned N, unsigned Nnew, unsigned P, class Policy>
+typename Projection<N, Nnew, P, Policy>::DistanceList  
+Projection<N, Nnew, P, Policy>::makeScreenDistanceList(double scrW) {
+  DistanceList p(scrW);
+  std::cerr << "makeScreenDistanceList: " << p.toString() << std::endl;
+  return p;
+}
+
+template <unsigned N, unsigned Nnew, unsigned P, class Policy>
+typename Projection<N, Nnew, P, Policy>::BoolList 
+Projection<N, Nnew, P, Policy>::makeDepthCueList(bool depthCue) {
+  BoolList p(depthCue);
+  std::cerr << "makeDepthCueList: " << p.toString() << std::endl;
+  return p;
+}
 
 
 template <unsigned N, unsigned Nnew, unsigned P>

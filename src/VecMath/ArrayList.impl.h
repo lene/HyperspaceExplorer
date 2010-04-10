@@ -22,17 +22,28 @@
 
 #include "ArrayList.h"
 
+#include <sstream>
 #include <cstdarg>
 
-template <unsigned size, typename T> ArrayList<size, T>::ArrayList(T x0, ...) { 
-  _elements[0] = x0;
-  
-  va_list argp;
-  va_start (argp, x0);
-  for (unsigned i = 1; i < size; ++i) {
-    _elements[i] = va_arg(argp, T);
+template <unsigned size, typename T> ArrayList<size, T>::ArrayList(T x0) { 
+  for (unsigned i = 0; i < size; ++i) {
+    _elements[i] = x0;
   }
-  va_end (argp);
+}
+
+template <unsigned size, typename T> std::string ArrayList<size, T>::toString() const {
+  std::ostringstream o;
+  o << "[";
+  for (unsigned i = 0; i < size-1; ++i) o << _elements[i] << ", ";
+  o << _elements[size-1];
+  o << "]";
+  return o.str();
+}
+
+template <typename T> std::string ArrayList<1, T>::toString() const {
+  std::ostringstream o;
+  o << "[" << _elements[0] << "]";
+  return o.str();
 }
 
 #endif

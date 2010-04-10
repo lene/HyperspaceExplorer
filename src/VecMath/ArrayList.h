@@ -21,28 +21,40 @@
 #ifndef ARRAYLIST_H
 #define ARRAYLIST_H
 
+#include <string>
+
 template <unsigned size, typename T> class ArrayList {
   public:
     ArrayList(): _elements() { }
-    ArrayList(T *elements): _elements(elements) { }
-    ArrayList(T x0, ...);
+    ArrayList(T x0);
     
-    T head() { return _elements[0]; }
+    T head() const { return _elements[0]; }
     ArrayList<size-1, T> tail();
 
+    T &operator[](unsigned i) { return _elements[i]; }
+    const T &operator[](unsigned i) const { return _elements[i]; }
+    
+    std::string toString() const;
+    
   private:
+    ArrayList(T *elements): _elements(elements) { }
     T _elements[size];
 };
 
 template <typename T> class ArrayList<1, T> {
   public:
     ArrayList(): _elements() { }
-    ArrayList(T *elements): _elements(elements) { }
     ArrayList(T x0) { _elements[0] = x0; }
     
-    T head() { return _elements[0]; }
+    T head() const { return _elements[0]; }
     
+    T &operator[](unsigned i) { return _elements[i]; }
+    const T &operator[](unsigned i) const { return _elements[i]; }
+
+    std::string toString() const;
+
   private:
+    ArrayList(T *elements): _elements(elements) { }
     T _elements[1];
 };
 
