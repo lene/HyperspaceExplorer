@@ -29,6 +29,36 @@
 template <unsigned N, unsigned Nnew, unsigned P> class SimpleProjectionPolicy;
 
 
+template <unsigned N, unsigned Nnew> class ViewpointList {
+
+  public:
+    
+    ViewpointList(): _elements() { 
+      _elements.first = VecMath::Vector<N>(); 
+      _elements.second = ViewpointList<N-1, Nnew>();
+    }
+    ViewpointList(double camW): _elements() {
+      _elements.first = VecMath::Vector<N>(); 
+      _elements.first[N-1] = camW;
+      _elements.second = ViewpointList<N-1, Nnew>(camW);
+    }
+    const VecMath::Vector<N> &head() const { return _elements.first; }
+    VecMath::Vector<N> &head() { return _elements.first; }
+    const ViewpointList<N-1, Nnew> &tail() const { return _elements.second; }
+    ViewpointList<N-1, Nnew> &tail() { return _elements.second; }
+    std::string toString() const { return _elements.first.toString()+", "+_elements.second.toString(); }
+
+  private:
+    std::pair< VecMath::Vector<N>, ViewpointList<N-1, Nnew> > _elements;
+};
+
+template <unsigned N> class ViewpointList<N, N> {
+  public:
+    ViewpointList() { }
+    ViewpointList(double) { }
+    std::string toString() const { return ""; }
+};
+
 /// Class that projects a \p N dimensional vertex array to \p Nnew dimensions.
 /** \param N Original dimension of the Vector s to project.
  *  \param Nnew Dimension to project into.
@@ -39,7 +69,7 @@ template <unsigned N, unsigned Nnew, unsigned P, typename Policy = SimpleProject
   
   public:
 
-    typedef ArrayList< N-Nnew, VecMath::Vector<N> > PointList;
+    typedef ViewpointList< N, Nnew > PointList;
     typedef ArrayList< N-Nnew, double > DistanceList;
     typedef ArrayList< N-Nnew, bool > BoolList;
 
@@ -71,27 +101,28 @@ template <unsigned N, unsigned Nnew, unsigned P, typename Policy = SimpleProject
     DistanceList _screen_distance;
     BoolList _depth_cue;
 
-    double _screen_W;
-    double _camera_W;
-    bool _depthCue4D;
-
 };
 
 template <unsigned N, unsigned Nnew, unsigned P> class SimpleProjectionPolicy {
   
   public:
 
-    SimpleProjectionPolicy(double scrW, double camW, bool depthCue4D):
-        _screen_W(scrW), _camera_W(camW), _depthCue4D(depthCue4D) { }
+    SimpleProjectionPolicy(typename Projection<N, Nnew, P>::PointList viewpoint, 
+                           typename Projection<N, Nnew, P>::PointList eye,
+                           typename Projection<N, Nnew, P>::DistanceList screen_distance,
+                           typename Projection<N, Nnew, P>::BoolList depth_cue):
+                           _viewpoint(viewpoint), _eye(eye), 
+                           _screen_distance(screen_distance), _depth_cue(depth_cue) { }
 
     VecMath::NestedVector< VecMath::Vector<Nnew>, P > project(
         const VecMath::NestedVector< VecMath::Vector<N>, P > &values);
 
   private:
 
-    double _screen_W;
-    double _camera_W;
-    bool _depthCue4D;
+    typename Projection<N, Nnew, P>::PointList _viewpoint;
+    typename Projection<N, Nnew, P>::PointList _eye; 
+    typename Projection<N, Nnew, P>::DistanceList _screen_distance;
+    typename Projection<N, Nnew, P>::BoolList _depth_cue;
     
 };
 
@@ -99,17 +130,22 @@ template <unsigned N, unsigned Nnew> class SimpleProjectionPolicy<N, Nnew, 1> {
   
   public:
     
-    SimpleProjectionPolicy(double scrW, double camW, bool depthCue4D):
-        _screen_W(scrW), _camera_W(camW), _depthCue4D(depthCue4D) { }
+    SimpleProjectionPolicy(typename Projection<N, Nnew, 1>::PointList viewpoint, 
+                           typename Projection<N, Nnew, 1>::PointList eye,
+                           typename Projection<N, Nnew, 1>::DistanceList screen_distance,
+                           typename Projection<N, Nnew, 1>::BoolList depth_cue):
+                           _viewpoint(viewpoint), _eye(eye), 
+                           _screen_distance(screen_distance), _depth_cue(depth_cue) { }
     
     VecMath::NestedVector< VecMath::Vector<Nnew>, 1 > project(
         const VecMath::NestedVector< VecMath::Vector<N>, 1 > &values);
     
   private:
     
-    double _screen_W;
-    double _camera_W;
-    bool _depthCue4D;
+    typename Projection<N, Nnew, 1>::PointList _viewpoint;
+    typename Projection<N, Nnew, 1>::PointList _eye; 
+    typename Projection<N, Nnew, 1>::DistanceList _screen_distance;
+    typename Projection<N, Nnew, 1>::BoolList _depth_cue;
     
 };
 
@@ -117,19 +153,15 @@ template <unsigned N> class SimpleProjectionPolicy<N, N, 1> {
   
   public:
     
-    SimpleProjectionPolicy(double scrW, double camW, bool depthCue4D):
-        _screen_W(scrW), _camera_W(camW), _depthCue4D(depthCue4D) { }
+    SimpleProjectionPolicy(typename Projection<N, N, 1>::PointList, 
+                           typename Projection<N, N, 1>::PointList,
+                           typename Projection<N, N, 1>::DistanceList,
+                           typename Projection<N, N, 1>::BoolList) { }
 
     VecMath::NestedVector< VecMath::Vector<N>, 1 > project(
         const VecMath::NestedVector< VecMath::Vector<N>, 1 > &values) {
       return values;
     }
-    
-  private:
-    
-    double _screen_W;
-    double _camera_W;
-    bool _depthCue4D;
     
 };
 

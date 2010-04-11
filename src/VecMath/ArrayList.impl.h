@@ -25,25 +25,22 @@
 #include <sstream>
 #include <cstdarg>
 
-template <unsigned size, typename T> ArrayList<size, T>::ArrayList(T x0) { 
+template <unsigned size, typename T> ArrayList<size, T>::ArrayList(T x0):_elements() { 
   for (unsigned i = 0; i < size; ++i) {
-    _elements[i] = x0;
+    _elements.first = x0;
+    _elements.second = ArrayList<size-1, T>(x0);
   }
 }
 
+
 template <unsigned size, typename T> std::string ArrayList<size, T>::toString() const {
   std::ostringstream o;
-  o << "[";
-  for (unsigned i = 0; i < size-1; ++i) o << _elements[i] << ", ";
-  o << _elements[size-1];
-  o << "]";
+  o << _elements.first << ", " << _elements.second.toString();
   return o.str();
 }
 
-template <typename T> std::string ArrayList<1, T>::toString() const {
-  std::ostringstream o;
-  o << "[" << _elements[0] << "]";
-  return o.str();
+template <typename T> std::string ArrayList<0, T>::toString() const {
+  return "";
 }
 
 #endif

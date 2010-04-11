@@ -23,39 +23,38 @@
 
 #include <string>
 
+/** \param size Number of elements in the ArrayList.
+ *  \param T Type of the stored elements.
+ */
 template <unsigned size, typename T> class ArrayList {
   public:
+    /// Create an ArrayList with default-constructed elements.
     ArrayList(): _elements() { }
+    /// Create an ArrayList with all elements initialized to \p x0.
     ArrayList(T x0);
     
-    T head() const { return _elements[0]; }
-    ArrayList<size-1, T> tail();
+    /// Return the first element of an ArrayList.
+    T head() const { return _elements.first; }
+    /// Return an ArrayList that contains all but the first element.
+    ArrayList<size-1, T> tail() const { return _elements.second; }
 
-    T &operator[](unsigned i) { return _elements[i]; }
-    const T &operator[](unsigned i) const { return _elements[i]; }
+    /// Read-write access to an element of the ArrayList.
+//    T &operator[](unsigned i) { return _elements[i]; }
+    /// Read-only access to an element of the ArrayList.
+//    const T &operator[](unsigned i) const { return _elements[i]; }
     
     std::string toString() const;
     
   private:
-    ArrayList(T *elements): _elements(elements) { }
-    T _elements[size];
+    std::pair<T, ArrayList<size-1, T> > _elements;
 };
 
-template <typename T> class ArrayList<1, T> {
+template <typename T> class ArrayList<0, T> {
   public:
-    ArrayList(): _elements() { }
-    ArrayList(T x0) { _elements[0] = x0; }
-    
-    T head() const { return _elements[0]; }
-    
-    T &operator[](unsigned i) { return _elements[i]; }
-    const T &operator[](unsigned i) const { return _elements[i]; }
-
+    ArrayList() { }
+    ArrayList(T) { }
     std::string toString() const;
 
-  private:
-    ArrayList(T *elements): _elements(elements) { }
-    T _elements[1];
 };
 
 #include "ArrayList.impl.h"

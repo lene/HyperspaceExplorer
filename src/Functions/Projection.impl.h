@@ -27,6 +27,7 @@
 #include <sstream>
 
 using VecMath::Vector;
+using VecMath::NestedVector;
 
 template <unsigned N, unsigned Nnew, unsigned P, class Policy>
 Projection<N, Nnew, P, Policy>::Projection(
@@ -37,8 +38,7 @@ const DistanceList &screenDistance, const BoolList &depthCue):
 }
 
 template <unsigned N, unsigned Nnew, unsigned P, class Policy>
-Projection<N, Nnew, P, Policy>::Projection(double scrW, double camW, bool depthCue4D):
-    _screen_W(scrW), _camera_W(camW), _depthCue4D(depthCue4D) {
+Projection<N, Nnew, P, Policy>::Projection(double scrW, double camW, bool depthCue4D) {
   _viewpoint = makeViewPointList();
   _eye = makeEyePointList(camW);
   _screen_distance = makeScreenDistanceList(scrW);
@@ -50,7 +50,7 @@ template <unsigned N, unsigned Nnew, unsigned P, class Policy>
 VecMath::NestedVector< VecMath::Vector<Nnew>, P >
 Projection<N, Nnew, P, Policy>::project(
 const VecMath::NestedVector< VecMath::Vector<N>, P > &values) {
-  Policy p(_screen_W, _camera_W, _depthCue4D);
+  Policy p(_viewpoint, _eye, _screen_distance, _depth_cue);
   return p.project(values);
 }
 
@@ -69,7 +69,7 @@ void Projection<N, Nnew, P, Policy>::checkDimensions() {
 template <unsigned N, unsigned Nnew, unsigned P, class Policy>
 typename Projection<N, Nnew, P, Policy>::PointList 
 Projection<N, Nnew, P, Policy>::makeViewPointList() {
-  PointList p(Vector<N>(0.));
+  PointList p;
   std::cerr << "makeViewPointList: " << p.toString() << std::endl;
   return p;
 }
@@ -77,10 +77,7 @@ Projection<N, Nnew, P, Policy>::makeViewPointList() {
 template <unsigned N, unsigned Nnew, unsigned P, class Policy>
 typename Projection<N, Nnew, P, Policy>::PointList 
 Projection<N, Nnew, P, Policy>::makeEyePointList(double camW) {
-  PointList p(Vector<N>(0.));
-  for (unsigned i = Nnew; i < N; ++i) {
-    p[i-Nnew][i] = camW;
-  }
+  PointList p(camW);
   std::cerr << "makeEyePointList: " << p.toString() << std::endl;
 
   return p;
@@ -108,10 +105,10 @@ VecMath::NestedVector< VecMath::Vector<Nnew>, P >
 SimpleProjectionPolicy< N, Nnew, P >::project(
 const VecMath::NestedVector< VecMath::Vector<N>, P > &values) {
   
-  VecMath::NestedVector< VecMath::Vector<Nnew>, P > v(values.size());
+  NestedVector< Vector<Nnew>, P > v(values.size());
   
   for (unsigned i = 0; i < values.size(); ++i) {
-    SimpleProjectionPolicy<N, Nnew, P-1> p(_screen_W, _camera_W, _depthCue4D);
+    SimpleProjectionPolicy<N, Nnew, P-1> p(_viewpoint, _eye, _screen_distance, _depth_cue);
     v[i] = p.project(values[i]);
   }
 
@@ -124,19 +121,25 @@ VecMath::NestedVector< VecMath::Vector<Nnew>, 1 >
 SimpleProjectionPolicy< N, Nnew, 1 >::project(
 const VecMath::NestedVector< VecMath::Vector<N>, 1 > &values) {
 
-  VecMath::NestedVector< VecMath::Vector<N-1>, 1 > v(values.size());
+  NestedVector< Vector<N-1>, 1 > downprojected(values.size());
 
+  double _screen_W = _screen_distance.head();
+  double _camera_W = _eye.head()[N-1];
   for (unsigned i = 0; i < values.size(); ++i) {
 
     double projectionFactor = (_screen_W-_camera_W)/(values[i][N-1]-_camera_W);
     
-    for (unsigned j = 0; j < N-1; ++j) v[i][j] = projectionFactor*values[i][j];
+    for (unsigned j = 0; j < N-1; ++j) downprojected[i][j] = projectionFactor*values[i][j];
   
   }
 
-  SimpleProjectionPolicy<N-1, Nnew, 1> p(_screen_W, _camera_W, _depthCue4D);
+  ViewpointList<N-1, Nnew> v = _viewpoint.tail();
+  ViewpointList<N-1, Nnew> e = _eye.tail();
+  ArrayList<N-Nnew-1, double > s = _screen_distance.tail();
+  ArrayList<N-Nnew-1, bool > d = _depth_cue.tail();
+  SimpleProjectionPolicy<N-1, Nnew, 1> p(v, e, s, d);
   
-  return p.project(v);
+  return p.project(downprojected);
   
 }
 
