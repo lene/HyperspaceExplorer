@@ -25,11 +25,9 @@
 #include <sstream>
 #include <cstdarg>
 
-template <unsigned size, typename T> ArrayList<size, T>::ArrayList(T x0):_elements() { 
-  for (unsigned i = 0; i < size; ++i) {
-    _elements.first = x0;
-    _elements.second = ArrayList<size-1, T>(x0);
-  }
+template <unsigned size, typename T> ArrayList<size, T>::ArrayList(const T &x): _elements() { 
+  _elements.first = x;
+  _elements.second = ArrayList<size-1, T>(x);
 }
 
 

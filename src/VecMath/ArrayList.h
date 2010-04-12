@@ -31,7 +31,7 @@ template <unsigned size, typename T> class ArrayList {
     /// Create an ArrayList with default-constructed elements.
     ArrayList(): _elements() { }
     /// Create an ArrayList with all elements initialized to \p x0.
-    ArrayList(T x0);
+    ArrayList(const T &x);
     
     /// Return the first element of an ArrayList.
     T head() const { return _elements.first; }
@@ -39,10 +39,11 @@ template <unsigned size, typename T> class ArrayList {
     ArrayList<size-1, T> tail() const { return _elements.second; }
 
     /// Read-write access to an element of the ArrayList.
-//    T &operator[](unsigned i) { return _elements[i]; }
+    T &operator[](unsigned i);
     /// Read-only access to an element of the ArrayList.
-//    const T &operator[](unsigned i) const { return _elements[i]; }
-    
+    const T &operator[](unsigned i) const;
+
+    /// String representation.
     std::string toString() const;
     
   private:

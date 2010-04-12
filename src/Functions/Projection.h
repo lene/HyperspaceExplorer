@@ -28,30 +28,79 @@
 /// Forward declaration needed to make the SimpleTransformationPolicy a default template parameter for Transformation.
 template <unsigned N, unsigned Nnew, unsigned P> class SimpleProjectionPolicy;
 
-
+/// A list of Vector s of dimension \p Nnew+1 through \p N.
+/** These are used in storing the view points and camera positions when projecting
+ *  a point in \p N space into \p Nnew dimensions. Every projection from one
+ *  dimension to the next lower dimension needs a Vector of the original dimension
+ *  as camera position and one as view point.
+ */
 template <unsigned N, unsigned Nnew> class ViewpointList {
 
   public:
     
+    /// Creates a ViewpointList with all elements at the origin.
     ViewpointList(): _elements() { 
       _elements.first = VecMath::Vector<N>(); 
       _elements.second = ViewpointList<N-1, Nnew>();
     }
+    
+    /// Creates a list of Vector s whose highest element is set to \p camW.
     ViewpointList(double camW): _elements() {
       _elements.first = VecMath::Vector<N>(); 
       _elements.first[N-1] = camW;
       _elements.second = ViewpointList<N-1, Nnew>(camW);
     }
+
+    ViewpointList(const VecMath::Vector<N> &single_element);
+    ViewpointList(const VecMath::Vector<N> &head, const ViewpointList<N-1, Nnew> &tail);
+    
+    /// Return the first element of a ViewpointList.
     const VecMath::Vector<N> &head() const { return _elements.first; }
+    /// Return the first element of a ViewpointList.
     VecMath::Vector<N> &head() { return _elements.first; }
+    /// Return a ViewpointList that contains all but the first element.
     const ViewpointList<N-1, Nnew> &tail() const { return _elements.second; }
+    /// Return a ViewpointList that contains all but the first element.
     ViewpointList<N-1, Nnew> &tail() { return _elements.second; }
+
+    template <unsigned i> VecMath::Vector<N-i> get() {
+      if (i == 0) return head();
+      return tail().get<i-1>();
+    }
+//    template <> VecMath::Vector<N> get<0>() { return head(); } 
+
+    /// String representation.
     std::string toString() const { return _elements.first.toString()+", "+_elements.second.toString(); }
 
+    static ViewpointList make(const VecMath::Vector<N>   &x0);
+    static ViewpointList make(const VecMath::Vector<N>   &x0, const VecMath::Vector<N-1> &x1);
+    static ViewpointList make(const VecMath::Vector<N>   &x0, const VecMath::Vector<N-1> &x1, 
+                              const VecMath::Vector<N-2> &x2);
+    static ViewpointList make(const VecMath::Vector<N>   &x0, const VecMath::Vector<N-1> &x1, 
+                              const VecMath::Vector<N-2> &x2, const VecMath::Vector<N-3> &x3);
+    static ViewpointList make(const VecMath::Vector<N>   &x0, const VecMath::Vector<N-1> &x1, 
+                              const VecMath::Vector<N-2> &x2, const VecMath::Vector<N-3> &x3, 
+                              const VecMath::Vector<N-4> &x4);
+    static ViewpointList make(const VecMath::Vector<N>   &x0, const VecMath::Vector<N-1> &x1, 
+                              const VecMath::Vector<N-2> &x2, const VecMath::Vector<N-3> &x3, 
+                              const VecMath::Vector<N-4> &x4, const VecMath::Vector<N-5> &x5);
+    static ViewpointList make(const VecMath::Vector<N>   &x0, const VecMath::Vector<N-1> &x1, 
+                              const VecMath::Vector<N-2> &x2, const VecMath::Vector<N-3> &x3, 
+                              const VecMath::Vector<N-4> &x4, const VecMath::Vector<N-5> &x5, 
+                              const VecMath::Vector<N-6> &x6);
+    static ViewpointList make(const VecMath::Vector<N>   &x0, const VecMath::Vector<N-1> &x1, 
+                              const VecMath::Vector<N-2> &x2, const VecMath::Vector<N-3> &x3, 
+                              const VecMath::Vector<N-4> &x4, const VecMath::Vector<N-5> &x5, 
+                              const VecMath::Vector<N-6> &x6, const VecMath::Vector<N-7> &x7);
+    
   private:
+    
+    /// The elements of the list are stored as a tuple, recursively defined.
     std::pair< VecMath::Vector<N>, ViewpointList<N-1, Nnew> > _elements;
 };
 
+/// Specialization of ViewpointList for a projection from \p N space to \p N space - which does nothing.
+/** Needed to end recursion. */
 template <unsigned N> class ViewpointList<N, N> {
   public:
     ViewpointList() { }
