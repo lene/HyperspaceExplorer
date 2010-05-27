@@ -269,7 +269,7 @@ const NestedVector< Vector<4>, 2 > &Surface::Xtrans() const {
  *  @param _dv stepsize in v                                                  */
 Surface1::Surface1 (double _umin, double _umax, double _du,
                     double _vmin, double _vmax, double _dv):
-        Surface ("Surface 1", _umin, _umax, _du, _vmin, _vmax, _dv) {
+        Surface ("Surface1", _umin, _umax, _du, _vmin, _vmax, _dv) {
     
     _function = shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction);
     Initialize();

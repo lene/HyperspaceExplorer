@@ -50,15 +50,15 @@
  *  \ingroup FunctionGroup
  *  @author Lene Preuss <lene.preuss@gmail.com>                         
  */
-template <unsigned N, unsigned P>
+template <unsigned N, unsigned P, typename NUM = double>
   class ParametricFunction {
 
     public:
 
       /// The argument type for the function - a \p P dimensional Vector.
-      typedef VecMath::Vector<P> argument_type;
+      typedef VecMath::Vector<P, NUM> argument_type;
       /// The return type of the function - a \p N dimensional Vector.
-      typedef VecMath::Vector<N> return_type;
+      typedef VecMath::Vector<N, NUM> return_type;
 
       ParametricFunction(): 
         _function_name(), _function_description(),
@@ -134,11 +134,11 @@ template <unsigned N, unsigned P>
 /** \param x_min Lower boundary of the default definition space.
  *  \param x_max Upper boundary of the default definition space.
  */
-template <unsigned N, unsigned P>
+template <unsigned N, unsigned P, typename NUM>
 inline
-void ParametricFunction<N, P>::setDefaultBoundaries(
-  const ParametricFunction<N, P>::argument_type& x_min, 
-  const ParametricFunction<N, P>::argument_type& x_max) {
+void ParametricFunction<N, P, NUM>::setDefaultBoundaries(
+  const ParametricFunction<N, P, NUM>::argument_type& x_min, 
+  const ParametricFunction<N, P, NUM>::argument_type& x_max) {
   _default_x_min = x_min;
   _default_x_max = x_max;
 }
@@ -146,10 +146,10 @@ void ParametricFunction<N, P>::setDefaultBoundaries(
 /** \param parameter_name Name of the parameter.
  *  \param parameter_default_value Default value for the parameter.
  */
-template <unsigned N, unsigned P>
+template <unsigned N, unsigned P, typename NUM>
 template<typename T>
 inline
-void ParametricFunction<N, P>::declareParameter(
+void ParametricFunction<N, P, NUM>::declareParameter(
     const std::string &parameter_name,
     const T &parameter_default_value) {
   if (_parameters.find(parameter_name) != _parameters.end()) return;
@@ -161,10 +161,10 @@ void ParametricFunction<N, P>::declareParameter(
  *  \param parameter_default_value Default value for the parameter.
  *  \param parameter_value Actual value of the parameter.
  */
-template <unsigned N, unsigned P>
+template <unsigned N, unsigned P, typename NUM>
   template<typename T>
 inline
-void ParametricFunction<N, P>::declareParameter(
+void ParametricFunction<N, P, NUM>::declareParameter(
     const std::string& parameter_name,
     const T& parameter_default_value,
     const T& parameter_value) {

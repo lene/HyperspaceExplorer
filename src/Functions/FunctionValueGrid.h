@@ -40,21 +40,21 @@
  *  \ingroup FunctionGroup
  *  @author Lene Preuss <lene.preuss@gmail.com>                         
  */
-template <unsigned N, unsigned P>
+template <unsigned N, unsigned P, typename NUM = double>
   class FunctionValueGrid {
   
     public:
 
       /// The type of the function whose values are stored in this class.
-      typedef ParametricFunction<N, P> function_type;
+      typedef ParametricFunction<N, P, NUM> function_type;
       /// The type of pointers to function_type, used for late binding.
       typedef std::tr1::shared_ptr<function_type> function_ptr_type;
       /// The type of the lower and upper bounds of the definition space.
-      typedef VecMath::Vector<P> boundary_type;
+      typedef VecMath::Vector<P, NUM> boundary_type;
       /// Type for storing the size of the grid in all required dimensions.
       typedef VecMath::Vector<P, unsigned> grid_size_type;
       /// Type for the storage of the function values on all grid points.
-      typedef VecMath::NestedVector< VecMath::Vector<N>, P > value_storage_type;
+      typedef VecMath::NestedVector< VecMath::Vector<N, NUM>, P > value_storage_type;
       
       /// Create an empty grid.
       FunctionValueGrid();
@@ -93,14 +93,14 @@ template <unsigned N, unsigned P>
       const static double EPSILON = 1e-8;
 };
 
-template <unsigned N, unsigned P>
-  FunctionValueGrid<N, P>::FunctionValueGrid():
+template <unsigned N, unsigned P, typename NUM>
+  FunctionValueGrid<N, P, NUM>::FunctionValueGrid():
     _f(), _x_min(), _x_max(), _grid_size(), _function_values() { }
 
 /** \param f The function whose values are stored on its definition space.
  */
-template <unsigned N, unsigned P>
-  FunctionValueGrid<N, P>::FunctionValueGrid(
+template <unsigned N, unsigned P, typename NUM>
+  FunctionValueGrid<N, P, NUM>::FunctionValueGrid(
         const FunctionValueGrid::function_ptr_type &f):
     _f(f), _x_min(), _x_max(), _grid_size(), _function_values() { 
   setBoundaries(f->getDefaultXMin(), f->getDefaultXMax());    
@@ -109,8 +109,8 @@ template <unsigned N, unsigned P>
 /** \param f The function whose values are stored on its definition space.
  *  \param grid_size The size of the grid in each of its dimensions.
  */
-template <unsigned N, unsigned P>
-  FunctionValueGrid<N, P>::FunctionValueGrid(
+template <unsigned N, unsigned P, typename NUM>
+  FunctionValueGrid<N, P, NUM>::FunctionValueGrid(
         const FunctionValueGrid::function_ptr_type &f,
         const FunctionValueGrid::grid_size_type &grid_size):
       _f(f), _x_min(), _x_max(), _grid_size(), _function_values() {
@@ -123,8 +123,8 @@ template <unsigned N, unsigned P>
  *  \param x_min Lower boundary of the definition space.
  *  \param x_max Upper boundary of the definition space.
  */
-template <unsigned N, unsigned P>
-  FunctionValueGrid<N, P>::FunctionValueGrid(
+template <unsigned N, unsigned P, typename NUM>
+  FunctionValueGrid<N, P, NUM>::FunctionValueGrid(
         const FunctionValueGrid::function_ptr_type &f,
         const FunctionValueGrid::grid_size_type &grid_size,
         const FunctionValueGrid::boundary_type &x_min,
@@ -136,8 +136,8 @@ template <unsigned N, unsigned P>
 
 /** \param grid_size The new grid size. 
  */
-template <unsigned N, unsigned P>
-  void FunctionValueGrid<N, P>::setGridSize(
+template <unsigned N, unsigned P, typename NUM>
+  void FunctionValueGrid<N, P, NUM>::setGridSize(
     const FunctionValueGrid::grid_size_type &grid_size) {
   if (grid_size == _grid_size) return;
   _grid_size = grid_size;
@@ -147,8 +147,8 @@ template <unsigned N, unsigned P>
 /** \param x_min Lower boundary of the definition space.
  *  \param x_max Upper boundary of the definition space.
  */
-template <unsigned N, unsigned P>
-  void FunctionValueGrid<N, P>::setBoundaries(
+template <unsigned N, unsigned P, typename NUM>
+  void FunctionValueGrid<N, P, NUM>::setBoundaries(
     const FunctionValueGrid::boundary_type &x_min, const FunctionValueGrid::boundary_type &x_max) {
   if ((_x_max-x_max).sqnorm() < EPSILON && (_x_min-x_min).sqnorm() < EPSILON) return;
   _x_min = x_min;
@@ -158,8 +158,8 @@ template <unsigned N, unsigned P>
 
 /** Initialize a LoopHelper and set it off.
  */
-template <unsigned N, unsigned P>
-  void FunctionValueGrid<N, P>::recalculate_grid() {
+template <unsigned N, unsigned P, typename NUM>
+  void FunctionValueGrid<N, P, NUM>::recalculate_grid() {
     LoopHelper< N, P, P > looper(
       _x_min, _x_max, _grid_size, _f);
     VecMath::Vector<P> x = _x_min;
