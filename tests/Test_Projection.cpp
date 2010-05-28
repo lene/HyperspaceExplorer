@@ -22,13 +22,19 @@
 
 #include "Vector.h"
 
+#include <complex>
+
 using VecMath::Vector;
 using VecMath::NestedVector;
+
+using std::complex;
 
 typedef NestedVector< Vector<4>, 1 > storage1D;
 typedef NestedVector< Vector<3>, 1 > projected1D;
 typedef NestedVector< Vector<4, float>, 1 > storage1Dfloat;
 typedef NestedVector< Vector<3, float>, 1 > projected1Dfloat;
+typedef NestedVector< Vector< 4, complex<double> >, 1 > storage1Dcomplex;
+typedef NestedVector< Vector< 3, complex<double> >, 1 > projected1Dcomplex;
 typedef NestedVector< Vector<5>, 1 > storage1D5;
 typedef NestedVector< Vector<4>, 2 > storage2D;
 typedef NestedVector< Vector<3>, 2 > projected2D;
@@ -238,4 +244,63 @@ void Test_Projection::projectFloats() {
         QVERIFY2((target[i]-projected_data[i]).sqnorm() < EPSILON,
                  (target[i].toString()+" != expected "+projected_data[i].toString()).c_str());
     }
+}
+
+Q_DECLARE_METATYPE(complex< double >)
+Q_DECLARE_METATYPE(storage1Dcomplex)
+Q_DECLARE_METATYPE(projected1Dcomplex)
+
+projected1Dcomplex expected(complex< double > x, complex< double > y, complex< double > z) {
+    projected1Dcomplex temp;
+    temp.push_back(VecMath::makeVector(x, y, z));
+    return temp;
+}
+
+storage1Dcomplex given(complex< double > x, complex< double > y, complex< double > z, complex< double > w) {
+    storage1Dcomplex temp;
+    temp.push_back(VecMath::makeVector(x, y, z, w));
+    return temp;
+}
+
+void Test_Projection::projectComplex_data() {
+    QTest::addColumn< storage1Dcomplex >("vertex_data");
+    QTest::addColumn< complex< double > >("screen_w");
+    QTest::addColumn< complex< double > >("camera_w");
+    QTest::addColumn< projected1Dcomplex >("projected_data");
+
+    QTest::newRow("x")
+        << given(complex< double >(1.), complex< double >(0.), complex< double >(0.), complex< double >(0.))
+        << complex< double >(1.) << complex< double >(3.)
+        << expected(complex< double >(2./3.), complex< double >(0.), complex< double >(0.));
+    QTest::newRow("y")
+        << given(complex< double >(0.), complex< double >(1.), complex< double >(0.), complex< double >(0.))
+        << complex< double >(1.) << complex< double >(3.)
+        << expected(complex< double >(0.), complex< double >(2./3.), complex< double >(0.));
+    QTest::newRow("z")
+        << given(complex< double >(0.), complex< double >(0.), complex< double >(1.), complex< double >(0.))
+        << complex< double >(1.) << complex< double >(3.)
+        << expected(complex< double >(0.), complex< double >(0.), complex< double >(2./3.));
+    QTest::newRow("w")
+        << given(complex< double >(0.), complex< double >(0.), complex< double >(0.), complex< double >(1.))
+        << complex< double >(1.) << complex< double >(3.)
+        << expected(complex< double >(0.), complex< double >(0.), complex< double >(0.));
+
+}
+
+void Test_Projection::projectComplex() {
+
+    QFETCH(storage1Dcomplex, vertex_data);
+    QFETCH(complex< double >, screen_w);
+    QFETCH(complex< double >, camera_w);
+    QFETCH(projected1Dcomplex, projected_data);
+
+    Projection<4, 3, 1, complex< double > > p(screen_w, camera_w, false);
+
+    projected1Dcomplex target = p.project(vertex_data);
+
+    for (unsigned i = 0; i < target.size(); ++i) {
+        QVERIFY2(abs( (target[i]-projected_data[i]).sqnorm() ) < EPSILON,
+                 (target[i].toString()+" != expected "+projected_data[i].toString()).c_str());
+    }
+
 }

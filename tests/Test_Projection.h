@@ -47,8 +47,14 @@ class Test_Projection: public QObject {
 
     void projectWithViewpoints();
 
+    /// Test whether projection works with data type float instead of double.
     void projectFloats();
     void projectFloats_data();
+
+    /// Test whether projection works with data type complex<double> too.
+    void projectComplex();
+    void projectComplex_data();
+
 };
 
 #endif // TEST_PROJECTION_H
