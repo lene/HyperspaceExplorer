@@ -26,27 +26,29 @@
 #include "Projection.h"
 
 class Test_Projection: public QObject {
-    
+
   Q_OBJECT
 
   static const double EPSILON = 1.e-8;
-  
+
   private slots:
-    
+
     void initTestCase();
     void cleanupTestCase();
-    
+
     void project1D();
     void project1D_data();
 
     void project5to3();
     void project5to3_data();
-    
+
     void project2D();
     void project2D_data();
-    
+
     void projectWithViewpoints();
-    
+
+    void projectFloats();
+    void projectFloats_data();
 };
 
 #endif // TEST_PROJECTION_H

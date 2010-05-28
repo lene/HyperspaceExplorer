@@ -37,27 +37,27 @@ template <unsigned N, unsigned Nnew, unsigned P, typename NUM> class SimpleProje
 template <unsigned N, unsigned Nnew, typename NUM = double> class ViewpointList {
 
   public:
-    
+
     /// Creates a ViewpointList with all elements at the origin.
-    ViewpointList(): _elements() { 
-      _elements.first = VecMath::Vector<N, NUM>(); 
+    ViewpointList(): _elements() {
+      _elements.first = VecMath::Vector<N, NUM>();
       _elements.second = ViewpointList<N-1, Nnew, NUM>();
     }
-    
+
     /// Creates a list of Vector s whose highest element is set to \p camW.
-    ViewpointList(double camW): _elements() {
-      _elements.first = VecMath::Vector<N, NUM>(); 
+    ViewpointList(NUM camW): _elements() {
+      _elements.first = VecMath::Vector<N, NUM>();
       _elements.first[N-1] = camW;
       _elements.second = ViewpointList<N-1, Nnew, NUM>(camW);
     }
 
     ViewpointList(const VecMath::Vector<N, NUM> &single_element);
     ViewpointList(const VecMath::Vector<N, NUM> &head, const ViewpointList<N-1, Nnew, NUM> &tail);
-    
+
     /// Return the first element of a ViewpointList.
     const VecMath::Vector<N, NUM> &head() const { return _elements.first; }
     /// Return the first element of a ViewpointList.
-    VecMath::Vector<N> &head() { return _elements.first; }
+    VecMath::Vector<N, NUM> &head() { return _elements.first; }
     /// Return a ViewpointList that contains all but the first element.
     const ViewpointList<N-1, Nnew, NUM> &tail() const { return _elements.second; }
     /// Return a ViewpointList that contains all but the first element.
@@ -67,34 +67,34 @@ template <unsigned N, unsigned Nnew, typename NUM = double> class ViewpointList 
       if (i == 0) return head();
       return tail().get<i-1>();
     }
-//    template <> VecMath::Vector<N> get<0>() { return head(); } 
+//    template <> VecMath::Vector<N> get<0>() { return head(); }
 
     /// String representation.
     std::string toString() const { return _elements.first.toString()+", "+_elements.second.toString(); }
 
     static ViewpointList make(const VecMath::Vector<N, NUM>   &x0);
     static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1);
-    static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1, 
+    static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1,
                               const VecMath::Vector<N-2, NUM> &x2);
-    static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1, 
+    static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1,
                               const VecMath::Vector<N-2, NUM> &x2, const VecMath::Vector<N-3, NUM> &x3);
-    static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1, 
-                              const VecMath::Vector<N-2, NUM> &x2, const VecMath::Vector<N-3, NUM> &x3, 
+    static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1,
+                              const VecMath::Vector<N-2, NUM> &x2, const VecMath::Vector<N-3, NUM> &x3,
                               const VecMath::Vector<N-4, NUM> &x4);
-    static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1, 
-                              const VecMath::Vector<N-2, NUM> &x2, const VecMath::Vector<N-3, NUM> &x3, 
+    static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1,
+                              const VecMath::Vector<N-2, NUM> &x2, const VecMath::Vector<N-3, NUM> &x3,
                               const VecMath::Vector<N-4, NUM> &x4, const VecMath::Vector<N-5, NUM> &x5);
-    static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1, 
-                              const VecMath::Vector<N-2, NUM> &x2, const VecMath::Vector<N-3, NUM> &x3, 
-                              const VecMath::Vector<N-4, NUM> &x4, const VecMath::Vector<N-5, NUM> &x5, 
+    static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1,
+                              const VecMath::Vector<N-2, NUM> &x2, const VecMath::Vector<N-3, NUM> &x3,
+                              const VecMath::Vector<N-4, NUM> &x4, const VecMath::Vector<N-5, NUM> &x5,
                               const VecMath::Vector<N-6, NUM> &x6);
-    static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1, 
-                              const VecMath::Vector<N-2, NUM> &x2, const VecMath::Vector<N-3, NUM> &x3, 
-                              const VecMath::Vector<N-4, NUM> &x4, const VecMath::Vector<N-5, NUM> &x5, 
+    static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1,
+                              const VecMath::Vector<N-2, NUM> &x2, const VecMath::Vector<N-3, NUM> &x3,
+                              const VecMath::Vector<N-4, NUM> &x4, const VecMath::Vector<N-5, NUM> &x5,
                               const VecMath::Vector<N-6, NUM> &x6, const VecMath::Vector<N-7, NUM> &x7);
-    
+
   private:
-    
+
     /// The elements of the list are stored as a tuple, recursively defined.
     std::pair< VecMath::Vector<N, NUM>, ViewpointList<N-1, Nnew, NUM> > _elements;
 };
@@ -104,7 +104,7 @@ template <unsigned N, unsigned Nnew, typename NUM = double> class ViewpointList 
 template <unsigned N, typename NUM> class ViewpointList<N, N, NUM> {
   public:
     ViewpointList() { }
-    ViewpointList(double) { }
+    ViewpointList(NUM) { }
     std::string toString() const { return ""; }
 };
 
@@ -114,12 +114,12 @@ template <unsigned N, typename NUM> class ViewpointList<N, N, NUM> {
  *  \param P Dimension of parameter space of the projected vertex array.
  *  \param Policy The class executing the actual projection on the vertices.
  */
-template <unsigned N, unsigned Nnew, unsigned P, typename NUM, typename Policy = SimpleProjectionPolicy <N, Nnew, P, NUM> > class Projection {
-  
+template <unsigned N, unsigned Nnew, unsigned P, typename NUM = double, typename Policy = SimpleProjectionPolicy <N, Nnew, P, NUM> > class Projection {
+
   public:
 
-    typedef ViewpointList< N, Nnew > PointList;
-    typedef ArrayList< N-Nnew, double > DistanceList;
+    typedef ViewpointList< N, Nnew, NUM > PointList;
+    typedef ArrayList< N-Nnew, NUM > DistanceList;
     typedef ArrayList< N-Nnew, bool > BoolList;
 
     /// Create a Projection with arbitrary view- and camera points for each dimension.
@@ -127,11 +127,11 @@ template <unsigned N, unsigned Nnew, unsigned P, typename NUM, typename Policy =
                const DistanceList &screenDistance, const BoolList &depthCue4D);
 
     /// Create a Projection with view point at the origin, eye on the \em w axis and equal screen and eye distances in all dimensions.
-    Projection(double scrW, double camW, bool depthCue4D);
+    Projection(NUM scrW, NUM camW, bool depthCue4D);
 
     /// Execute the Projection on a \p P dimensional field of \p N dimensional vertices.
-    VecMath::NestedVector< VecMath::Vector<Nnew>, P > project(
-            const VecMath::NestedVector< VecMath::Vector<N>, P > &values);
+    VecMath::NestedVector< VecMath::Vector<Nnew, NUM>, P > project(
+            const VecMath::NestedVector< VecMath::Vector<N, NUM>, P > &values);
 
   private:
 
@@ -139,70 +139,70 @@ template <unsigned N, unsigned Nnew, unsigned P, typename NUM, typename Policy =
     void checkConsistency();
     /// Check whether the template is instantiated with sensible values for the dimensions
     void checkDimensions();
-    
+
     PointList makeViewPointList();
-    PointList makeEyePointList(double camW);
-    DistanceList makeScreenDistanceList(double scrW);
+    PointList makeEyePointList(NUM camW);
+    DistanceList makeScreenDistanceList(NUM scrW);
     BoolList makeDepthCueList(bool depthCue4D);
-    
+
     PointList _viewpoint;
-    PointList _eye; 
+    PointList _eye;
     DistanceList _screen_distance;
     BoolList _depth_cue;
 
 };
 
 template <unsigned N, unsigned Nnew, unsigned P, typename NUM> class SimpleProjectionPolicy {
-  
+
   public:
 
-    SimpleProjectionPolicy(typename Projection<N, Nnew, P, NUM>::PointList viewpoint, 
+    SimpleProjectionPolicy(typename Projection<N, Nnew, P, NUM>::PointList viewpoint,
                            typename Projection<N, Nnew, P, NUM>::PointList eye,
                            typename Projection<N, Nnew, P, NUM>::DistanceList screen_distance,
                            typename Projection<N, Nnew, P, NUM>::BoolList depth_cue):
-                           _viewpoint(viewpoint), _eye(eye), 
+                           _viewpoint(viewpoint), _eye(eye),
                            _screen_distance(screen_distance), _depth_cue(depth_cue) { }
 
-    VecMath::NestedVector< VecMath::Vector<Nnew>, P > project(
-        const VecMath::NestedVector< VecMath::Vector<N>, P > &values);
+    VecMath::NestedVector< VecMath::Vector<Nnew, NUM>, P > project(
+        const VecMath::NestedVector< VecMath::Vector<N, NUM>, P > &values);
 
   private:
 
     typename Projection<N, Nnew, P, NUM>::PointList _viewpoint;
-    typename Projection<N, Nnew, P, NUM>::PointList _eye; 
+    typename Projection<N, Nnew, P, NUM>::PointList _eye;
     typename Projection<N, Nnew, P, NUM>::DistanceList _screen_distance;
     typename Projection<N, Nnew, P, NUM>::BoolList _depth_cue;
-    
+
 };
 
 template <unsigned N, unsigned Nnew, typename NUM> class SimpleProjectionPolicy<N, Nnew, 1, NUM> {
-  
+
   public:
-    
-    SimpleProjectionPolicy(typename Projection<N, Nnew, 1, NUM>::PointList viewpoint, 
+
+    SimpleProjectionPolicy(typename Projection<N, Nnew, 1, NUM>::PointList viewpoint,
                            typename Projection<N, Nnew, 1, NUM>::PointList eye,
                            typename Projection<N, Nnew, 1, NUM>::DistanceList screen_distance,
                            typename Projection<N, Nnew, 1, NUM>::BoolList depth_cue):
-                           _viewpoint(viewpoint), _eye(eye), 
+                           _viewpoint(viewpoint), _eye(eye),
                            _screen_distance(screen_distance), _depth_cue(depth_cue) { }
-    
-    VecMath::NestedVector< VecMath::Vector<Nnew>, 1 > project(
-        const VecMath::NestedVector< VecMath::Vector<N>, 1 > &values);
-    
+
+    VecMath::NestedVector< VecMath::Vector<Nnew, NUM>, 1 > project(
+        const VecMath::NestedVector< VecMath::Vector<N, NUM>, 1 > &values);
+
   private:
-    
+
     typename Projection<N, Nnew, 1, NUM>::PointList _viewpoint;
-    typename Projection<N, Nnew, 1, NUM>::PointList _eye; 
+    typename Projection<N, Nnew, 1, NUM>::PointList _eye;
     typename Projection<N, Nnew, 1, NUM>::DistanceList _screen_distance;
     typename Projection<N, Nnew, 1, NUM>::BoolList _depth_cue;
-    
+
 };
 
-template <unsigned N> class SimpleProjectionPolicy<N, N, 1, NUM> {
-  
+template <unsigned N, typename NUM> class SimpleProjectionPolicy<N, N, 1, NUM> {
+
   public:
-    
-    SimpleProjectionPolicy(typename Projection<N, N, 1, NUM>::PointList, 
+
+    SimpleProjectionPolicy(typename Projection<N, N, 1, NUM>::PointList,
                            typename Projection<N, N, 1, NUM>::PointList,
                            typename Projection<N, N, 1, NUM>::DistanceList,
                            typename Projection<N, N, 1, NUM>::BoolList) { }
@@ -211,7 +211,7 @@ template <unsigned N> class SimpleProjectionPolicy<N, N, 1, NUM> {
         const VecMath::NestedVector< VecMath::Vector<N, NUM>, 1 > &values) {
       return values;
     }
-    
+
 };
 
 #include "Projection.impl.h"
