@@ -28,11 +28,11 @@
 #include <tr1/memory>
 
 class Test_Transformation: public QObject {
-    
+
   Q_OBJECT
-    
+
   private slots:
-    
+
     void initTestCase();
     void cleanupTestCase();
 
@@ -48,7 +48,10 @@ class Test_Transformation: public QObject {
     void translationAddsVector();
     void scaleScales_data();
     void scaleScales();
-    
+
+    void rotateFloats_data();
+    void rotateFloats();
+
   private:
 
       std::tr1::shared_ptr< FunctionValueGrid<4, 3> > _grid;
