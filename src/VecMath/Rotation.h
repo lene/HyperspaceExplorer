@@ -137,7 +137,7 @@ namespace VecMath {
 
             /// write access the stored values (needed by input operator >>())
             Vector<NumAxes<D>::num, N> &r() { return axis; }
-            
+
             std::string toString() const { return axis.toString(); }
 
         private:
@@ -224,6 +224,36 @@ namespace VecMath {
                                              Rotation<D, N> &v) {
         in >> v.r();
         return in;
+    }
+
+    /// Generator function for a 3-dimensional Rotation
+    template <typename N> Rotation<3, N> makeRotation(
+            N const &r0, N const &r1, N const &r2) {
+
+        Rotation<3, N> r;
+
+        r[0] = r0;
+        r[1] = r1;
+        r[2] = r2;
+
+        return r;
+    }
+
+    /// Generator function for a 4-dimensional Rotation
+    template <typename N> Rotation<4, N> makeRotation(
+            N const &r0, N const &r1, N const &r2, N const &r3, N const &r4,
+            N const &r5) {
+
+        Rotation<4, N> r;
+
+        r[0] = r0;
+        r[1] = r1;
+        r[2] = r2;
+        r[3] = r3;
+        r[4] = r4;
+        r[5] = r5;
+
+        return r;
     }
 
 }
