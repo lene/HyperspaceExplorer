@@ -109,7 +109,7 @@ namespace VecMath {
             }
             return true;
         }
-        
+
         /// Comparison operator: Test for inequality
         bool operator!=(const Vector<D, N> &other) const { return !operator ==(other); }
 
@@ -380,5 +380,155 @@ namespace VecMath {
         for ( unsigned i = 0; i < D; i++ ) n[i] = x[i]/norm;
         return n;
     }
+
+    //------------  functions that generate a Vector without taking resort to variable arglists
+
+    /// Generator function for a 2-dimensional Vector
+    template <typename N> Vector<2, N> makeVector(N const &x0, N const &x1) {
+        Vector<2, N> x;
+
+        x[0] = x0;
+        x[1] = x1;
+
+        return x;
+    }
+
+    /// Generator function for a 3-dimensional Vector
+    template <typename N> Vector<3, N> makeVector(
+            N const &x0, N const &x1, N const &x2) {
+
+        Vector<3, N> x;
+
+        x[0] = x0;
+        x[1] = x1;
+        x[2] = x2;
+
+        return x;
+    }
+
+    /// Generator function for a 4-dimensional Vector
+    template <typename N> Vector<4, N> makeVector(
+            N const &x0, N const &x1, N const &x2, N const &x3) {
+
+        Vector<4, N> x;
+
+        x[0] = x0;
+        x[1] = x1;
+        x[2] = x2;
+        x[3] = x3;
+
+        return x;
+    }
+
+    /// Generator function for a 5-dimensional Vector
+    template <typename N> Vector<5, N> makeVector(
+            N const &x0, N const &x1, N const &x2, N const &x3, N const &x4) {
+
+        Vector<5, N> x;
+
+        x[0] = x0;
+        x[1] = x1;
+        x[2] = x2;
+        x[3] = x3;
+        x[4] = x4;
+
+        return x;
+    }
+
+    /// Generator function for a 6-dimensional Vector
+    template <typename N> Vector<6, N> makeVector(
+            N const &x0, N const &x1, N const &x2, N const &x3, N const &x4,
+            N const &x5) {
+
+        Vector<6, N> x;
+
+        x[0] = x0;
+        x[1] = x1;
+        x[2] = x2;
+        x[3] = x3;
+        x[4] = x4;
+        x[5] = x5;
+
+        return x;
+    }
+
+    /// Generator function for a 7-dimensional Vector
+    template <typename N> Vector<7, N> makeVector(
+            N const &x0, N const &x1, N const &x2, N const &x3, N const &x4,
+            N const &x5, N const &x6) {
+
+        Vector<7, N> x;
+
+        x[0] = x0;
+        x[1] = x1;
+        x[2] = x2;
+        x[3] = x3;
+        x[4] = x4;
+        x[5] = x5;
+        x[6] = x6;
+
+        return x;
+    }
+
+    /// Generator function for a 8-dimensional Vector
+    template <typename N> Vector<8, N> makeVector(
+            N const &x0, N const &x1, N const &x2, N const &x3, N const &x4,
+            N const &x5, N const &x6, N const &x7) {
+
+        Vector<8, N> x;
+
+        x[0] = x0;
+        x[1] = x1;
+        x[2] = x2;
+        x[3] = x3;
+        x[4] = x4;
+        x[5] = x5;
+        x[6] = x6;
+        x[7] = x7;
+
+        return x;
+    }
+
+    /// Generator function for a 9-dimensional Vector
+    template <typename N> Vector<9, N> makeVector(
+            N const &x0, N const &x1, N const &x2, N const &x3, N const &x4,
+            N const &x5, N const &x6, N const &x7, N const &x8) {
+
+        Vector<9, N> x;
+
+        x[0] = x0;
+        x[1] = x1;
+        x[2] = x2;
+        x[3] = x3;
+        x[4] = x4;
+        x[5] = x5;
+        x[6] = x6;
+        x[7] = x7;
+        x[8] = x8;
+
+        return x;
+    }
+
+    /// Generator function for a 10-dimensional Vector
+    template <typename N> Vector<10, N> makeVector(
+            N const &x0, N const &x1, N const &x2, N const &x3, N const &x4,
+            N const &x5, N const &x6, N const &x7, N const &x8, N const &x9) {
+
+        Vector<10, N> x;
+
+        x[0] = x0;
+        x[1] = x1;
+        x[2] = x2;
+        x[3] = x3;
+        x[4] = x4;
+        x[5] = x5;
+        x[6] = x6;
+        x[7] = x7;
+        x[8] = x8;
+        x[9] = x9;
+
+        return x;
+    }
+
 }
 #endif                                                //  VECTOR_H
