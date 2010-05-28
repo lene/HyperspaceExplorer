@@ -32,20 +32,20 @@ template <unsigned N, unsigned P, typename NUM = double> class SimpleTransformat
 /** \param N Dimension of the vertices.
  *  \param P Dimension of the parameter space.
  *  \param TransformationPolicy The class executing the actual transform on the set of vertices.
- * 
+ *
  *  \todo typedefs for translation and rotation types
  */
-template <unsigned N, unsigned P, typename NUM = double, 
+template <unsigned N, unsigned P, typename NUM = double,
           typename TransformationPolicy = SimpleTransformationPolicy <N, P, NUM> >
 class Transformation {
-  
+
   public:
 
     typedef typename FunctionValueGrid< N, P, NUM >::value_storage_type value_storage_type;
 
     Transformation();
-    Transformation(const VecMath::Rotation<N, NUM> &rotation, 
-                   const VecMath::Vector<N, NUM> &translation, 
+    Transformation(const VecMath::Rotation<N, NUM> &rotation,
+                   const VecMath::Vector<N, NUM> &translation,
                    const VecMath::Vector<N, NUM> &scale);
     /// Initialize a Transformation with a transformation matrix and a translation vector.
     /** NB There is an implicit cast from class Rotation to Matrix, so you can use a
@@ -54,15 +54,15 @@ class Transformation {
      *  \param translation The translation Vector to add to all vertices.
      */
     Transformation(const VecMath::Matrix<N, NUM> &transform, const VecMath::Vector<N, NUM> &translation);
-    
+
     /// Execute the transform on a set of vertices.
     value_storage_type transform(const value_storage_type &operand);
-    
+
   private:
 
     VecMath::Matrix<N, NUM> _transform;
     VecMath::Vector<N, NUM> _translation;
-    
+
 };
 
 /// Policy class template that contains the actual implementation of the transformation algorithm for Transformation.
@@ -71,37 +71,37 @@ class Transformation {
  */
 template <unsigned N, unsigned P, typename NUM>
 class SimpleTransformationPolicy {
-  
-  public:
-  
-    typedef typename FunctionValueGrid< N, P >::value_storage_type value_storage_type;
 
-    SimpleTransformationPolicy(const VecMath::Matrix<N, NUM> &transform, 
+  public:
+
+    typedef typename FunctionValueGrid< N, P, NUM >::value_storage_type value_storage_type;
+
+    SimpleTransformationPolicy(const VecMath::Matrix<N, NUM> &transform,
                                const VecMath::Vector<N, NUM> &translation): _transform(transform), _translation(translation) { }
     value_storage_type transform(const value_storage_type &operand);
-    
+
   private:
-    
-    VecMath::Matrix<N> _transform;
-    VecMath::Vector<N> _translation;
-    
+
+    VecMath::Matrix<N, NUM> _transform;
+    VecMath::Vector<N, NUM> _translation;
+
 };
 
 template <unsigned N, typename NUM> class SimpleTransformationPolicy< N, 1, NUM > {
-  
+
   public:
 
-    typedef typename FunctionValueGrid< N, 1 >::value_storage_type value_storage_type;
+      typedef typename FunctionValueGrid< N, 1, NUM >::value_storage_type value_storage_type;
 
-    SimpleTransformationPolicy(const VecMath::Matrix<N> &transform, 
-                               const VecMath::Vector<N> &translation): _transform(transform), _translation(translation) { }
+    SimpleTransformationPolicy(const VecMath::Matrix<N, NUM> &transform,
+                               const VecMath::Vector<N, NUM> &translation): _transform(transform), _translation(translation) { }
     value_storage_type transform(const value_storage_type &operand);
-    
+
   private:
-    
-    VecMath::Matrix<N> _transform;
-    VecMath::Vector<N> _translation;
-    
+
+    VecMath::Matrix<N, NUM> _transform;
+    VecMath::Vector<N, NUM> _translation;
+
 };
 
 #include "Transformation.impl.h"

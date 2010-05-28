@@ -79,8 +79,6 @@ template <unsigned N, unsigned Nnew, unsigned P, typename NUM, class Policy>
 typename Projection<N, Nnew, P, NUM, Policy>::PointList
 Projection<N, Nnew, P, NUM, Policy>::makeEyePointList(NUM camW) {
   PointList p(camW);
-  std::cerr << "makeEyePointList: " << p.toString() << std::endl;
-
   return p;
 }
 
@@ -88,7 +86,6 @@ template <unsigned N, unsigned Nnew, unsigned P, typename NUM, class Policy>
 typename Projection<N, Nnew, P, NUM, Policy>::DistanceList
 Projection<N, Nnew, P, NUM, Policy>::makeScreenDistanceList(NUM scrW) {
   DistanceList p(scrW);
-  std::cerr << "makeScreenDistanceList: " << p.toString() << std::endl;
   return p;
 }
 
@@ -96,7 +93,6 @@ template <unsigned N, unsigned Nnew, unsigned P, typename NUM, class Policy>
 typename Projection<N, Nnew, P, NUM, Policy>::BoolList
 Projection<N, Nnew, P, NUM, Policy>::makeDepthCueList(bool depthCue) {
   BoolList p(depthCue);
-  std::cerr << "makeDepthCueList: " << p.toString() << std::endl;
   return p;
 }
 

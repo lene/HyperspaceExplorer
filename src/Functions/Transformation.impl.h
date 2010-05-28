@@ -28,43 +28,44 @@ Transformation<N, P, NUM, TransformationPolicy>::Transformation():
   _transform(), _translation() { }
 
 template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
-Transformation<N, P, NUM, TransformationPolicy>::Transformation(const VecMath::Rotation<N, NUM> &rotation, 
+Transformation<N, P, NUM, TransformationPolicy>::Transformation(const VecMath::Rotation<N, NUM> &rotation,
                                                            const VecMath::Vector<N, NUM> &translation,
                                                            const VecMath::Vector<N, NUM> &scale):
-  _transform(rotation), _translation(translation) { 
+  _transform(rotation), _translation(translation) {
   _transform.scale(scale);
 }
 
 template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
-Transformation<N, P, NUM, TransformationPolicy>::Transformation(const VecMath::Matrix<N, NUM> &transform, 
+Transformation<N, P, NUM, TransformationPolicy>::Transformation(const VecMath::Matrix<N, NUM> &transform,
                                                            const VecMath::Vector<N, NUM> &translation):
   _transform(transform), _translation(translation) { }
 
 template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
-typename Transformation<N, P, NUM, TransformationPolicy>::value_storage_type Transformation<N, P, NUM, TransformationPolicy>::transform(
+typename Transformation<N, P, NUM, TransformationPolicy>::value_storage_type
+Transformation<N, P, NUM, TransformationPolicy>::transform(
   const value_storage_type &operand) {
   TransformationPolicy p(_transform, _translation);
-  
+
   return p.transform(operand);
 }
 
 template <unsigned N, unsigned P, typename NUM>
-typename SimpleTransformationPolicy<N, P, NUM>::value_storage_type 
+typename SimpleTransformationPolicy<N, P, NUM>::value_storage_type
 SimpleTransformationPolicy<N, P, NUM>::transform(
         const value_storage_type &operand
 ) {
-  value_storage_type v(operand.size());  
-    
+  value_storage_type v(operand.size());
+
   for (unsigned i = 0; i < operand.size(); ++i) {
-    Transformation<N, P-1, NUM, SimpleTransformationPolicy<N, P-1> > sub_transform(_transform, _translation);
+    Transformation<N, P-1, NUM, SimpleTransformationPolicy<N, P-1, NUM> > sub_transform(_transform, _translation);
     v[i] = sub_transform.transform(operand[i]);
   }
-  
+
   return v;
 }
 
 template <unsigned N, typename NUM>
-typename SimpleTransformationPolicy<N, 1, NUM>::value_storage_type 
+typename SimpleTransformationPolicy<N, 1, NUM>::value_storage_type
 SimpleTransformationPolicy<N, 1, NUM>::transform(
         const value_storage_type &operand
 ) {
@@ -73,7 +74,7 @@ SimpleTransformationPolicy<N, 1, NUM>::transform(
   for (unsigned i = 0; i < operand.size(); ++i) {
     v[i] = _transform*operand[i]+_translation;
   }
-  
+
   return v;
 }
 
