@@ -128,7 +128,7 @@ const VecMath::NestedVector< VecMath::Vector<N, NUM>, 1 > &values) {
   NUM _camera_W = _eye.head()[N-1];
   for (unsigned i = 0; i < values.size(); ++i) {
 
-    double projectionFactor = (_screen_W-_camera_W)/(values[i][N-1]-_camera_W);
+    NUM projectionFactor = (_screen_W-_camera_W)/(values[i][N-1]-_camera_W);
 
     for (unsigned j = 0; j < N-1; ++j) downprojected[i][j] = projectionFactor*values[i][j];
 
