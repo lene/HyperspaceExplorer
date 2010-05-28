@@ -246,8 +246,7 @@ namespace VecMath {
     template <unsigned D, typename N>
             N Vector<D, N>::operator* (const Vector<D, N> &Y) const {
     N dot = 0.;
-    for (unsigned i = 0; i < D; i++)
-        if (_x[i]) dot += _x[i]*Y._x[i];
+    for (unsigned i = 0; i < D; i++) dot += _x[i]*Y._x[i];
 
     return dot;
     }
