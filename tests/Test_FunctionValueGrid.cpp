@@ -19,14 +19,14 @@ class SummedArgsTestImplementation: public ParametricFunction<4,3> {
   public:
     SummedArgsTestImplementation(): min_w(1e8), max_w(-1e8) { }
 
-    virtual return_type f(const argument_type &x) { 
+    virtual return_type f(const argument_type &x) {
       double sum = 0;
       for (unsigned i = 0; i < argument_type::dimension(); ++i) sum += x[i];
       if (sum < min_w) min_w = sum;
       if (sum > max_w) max_w = sum;
-      return Vector<4>(x[0], x[1], x[2], sum); 
+      return Vector<4>(x[0], x[1], x[2], sum);
     }
-    
+
     double min_w, max_w;
 };
 
@@ -34,14 +34,14 @@ void Test_FunctionValueGrid::initTestCase() {
 
   Test_ParametricFunction::ParametricFunctionTestImplementation *f = new Test_ParametricFunction::ParametricFunctionTestImplementation();
   shared_ptr<ParametricFunction<4, 3> > pf(f);
-  
+
   _grid = shared_ptr< FunctionValueGrid<4, 3> >(new FunctionValueGrid<4, 3>(pf, DEFAULT_GRID, DEFAULT_XMIN, DEFAULT_XMAX));
 
 }
 
 void Test_FunctionValueGrid::initializeGrid() {
   FunctionValueGrid<4, 3> grid1();
-  
+
   Test_ParametricFunction::ParametricFunctionTestImplementation *f = new Test_ParametricFunction::ParametricFunctionTestImplementation();
   shared_ptr<ParametricFunction<4, 3> > pf(f);
   FunctionValueGrid<4, 3> grid2(pf);
@@ -49,9 +49,9 @@ void Test_FunctionValueGrid::initializeGrid() {
   FunctionValueGrid<4, 3> grid3(pf, DEFAULT_GRID);
 
   FunctionValueGrid<4, 3> grid4(pf, DEFAULT_GRID, DEFAULT_XMIN, DEFAULT_XMAX);
- 
+
 }
- 
+
 void Test_FunctionValueGrid::functionValues() {
   FunctionValueGrid<4, 3>::value_storage_type values = _grid->getValues();
   for (unsigned i = 0; i < DEFAULT_GRID_SIZE; ++i) {
@@ -68,12 +68,12 @@ void Test_FunctionValueGrid::changeGridSize() {
   FunctionValueGrid<4, 3>::grid_size_type newGrid(newGridSize, newGridSize, newGridSize);
 
   _grid->setGridSize(newGrid);
-  
+
   FunctionValueGrid<4, 3>::value_storage_type values = _grid->getValues();
   QVERIFY(values.size() == newGridSize);
   QVERIFY(values[0].size() == newGridSize);
   QVERIFY(values[0][0].size() == newGridSize);
-  
+
   resetGridSize();
 }
 
@@ -81,7 +81,7 @@ void Test_FunctionValueGrid::inhomogenousGridSize() {
   FunctionValueGrid<4, 3>::grid_size_type newGrid(5, 10, 15);
 
   _grid->setGridSize(newGrid);
-  
+
   FunctionValueGrid<4, 3>::value_storage_type values = _grid->getValues();
   QVERIFY(values.size() == 15);
   QVERIFY(values[0].size() == 10);
@@ -94,7 +94,7 @@ void Test_FunctionValueGrid::inhomogenousGridSize() {
       }
     }
   }
-  
+
   resetGridSize();
 }
 
@@ -103,7 +103,7 @@ void Test_FunctionValueGrid::nonconstantFunctionAndBoundaries() {
   shared_ptr<ParametricFunction<4, 3> > pf(f);
   FunctionValueGrid<4, 3> grid(pf, DEFAULT_GRID, DEFAULT_XMIN, DEFAULT_XMAX);
   QVERIFY(f->max_w > f->min_w);
-  
+
   FunctionValueGrid<4, 3>::value_storage_type values = grid.getValues();
   for (unsigned i = 0; i < DEFAULT_GRID_SIZE; ++i) {
     for (unsigned j = 0; j < DEFAULT_GRID_SIZE; ++j) {
@@ -123,4 +123,70 @@ void Test_FunctionValueGrid::nonconstantFunctionAndBoundaries() {
 void Test_FunctionValueGrid::resetGridSize() {
   FunctionValueGrid<4, 3>::grid_size_type oldGrid(DEFAULT_GRID_SIZE, DEFAULT_GRID_SIZE, DEFAULT_GRID_SIZE);
   _grid->setGridSize(oldGrid);
+}
+
+
+class AverageParametricFunction: public ParametricFunction<4,3, float> {
+    public:
+        AverageParametricFunction() { }
+        virtual return_type f(const argument_type &x) {
+            return VecMath::makeVector(x[0],x[1],x[2],(x[0]+x[1]+x[2])/3.f);
+        }
+};
+const Vector<3, float> DEFAULT_FLOAT_XMIN = VecMath::makeVector(-1.f, -1.f, -1.f);
+const Vector<3, float> DEFAULT_FLOAT_XMAX = VecMath::makeVector(-1.f, -1.f, -1.f);
+
+void Test_FunctionValueGrid::floatValues() {
+
+    shared_ptr< ParametricFunction<4, 3, float> > pf(new AverageParametricFunction());
+
+    shared_ptr< FunctionValueGrid<4, 3, float> > float_grid = shared_ptr< FunctionValueGrid<4, 3, float> > (new FunctionValueGrid<4, 3, float>(pf, DEFAULT_GRID, DEFAULT_FLOAT_XMIN, DEFAULT_FLOAT_XMAX));
+
+    FunctionValueGrid<4, 3, float>::value_storage_type values = float_grid->getValues();
+    for (unsigned i = 0; i < DEFAULT_GRID_SIZE; ++i) {
+        for (unsigned j = 0; j < DEFAULT_GRID_SIZE; ++j) {
+            for (unsigned k = 0; k < DEFAULT_GRID_SIZE; ++k) {
+                if (fabs(values[i][j][k][3] - (values[i][j][k][0]+values[i][j][k][1]+values[i][j][k][2])/3.) > 1e-6) {
+                    QFAIL(values[i][j][k].toString().c_str());
+                }
+
+            }
+        }
+    }
+
+}
+
+
+#include <complex>
+using std::complex;
+
+class AverageComplexParametricFunction: public ParametricFunction< 4,3, complex<double> > {
+    public:
+        AverageComplexParametricFunction() { }
+        virtual return_type f(const argument_type &x) {
+            return VecMath::makeVector(x[0],x[1],x[2],(x[0]+x[1]+x[2])/complex<double>(3.));
+        }
+};
+const Vector< 3, complex<double> > DEFAULT_COMPLEX_XMIN = VecMath::makeVector(complex<double>(-1.), complex<double>(-1.), complex<double>(-1.));
+const Vector< 3, complex<double> > DEFAULT_COMPLEX_XMAX = VecMath::makeVector(complex<double>(-1.), complex<double>(-1.), complex<double>(-1.));
+
+void Test_FunctionValueGrid::complexValues() {
+    shared_ptr< ParametricFunction< 4, 3, complex<double> > > pf(new AverageComplexParametricFunction());
+
+    shared_ptr< FunctionValueGrid< 4, 3, complex<double> > > complex_grid =
+        shared_ptr< FunctionValueGrid< 4, 3, complex<double> > > (
+            new FunctionValueGrid< 4, 3, complex<double> >(pf, DEFAULT_GRID, DEFAULT_COMPLEX_XMIN, DEFAULT_COMPLEX_XMAX)
+        );
+
+    FunctionValueGrid<4, 3, complex<double> >::value_storage_type values = complex_grid->getValues();
+    for (unsigned i = 0; i < DEFAULT_GRID_SIZE; ++i) {
+        for (unsigned j = 0; j < DEFAULT_GRID_SIZE; ++j) {
+            for (unsigned k = 0; k < DEFAULT_GRID_SIZE; ++k) {
+                if (abs(values[i][j][k][3] - (values[i][j][k][0]+values[i][j][k][1]+values[i][j][k][2])/3.) > 1e-6) {
+                    QFAIL(values[i][j][k].toString().c_str());
+                }
+
+            }
+        }
+    }
 }

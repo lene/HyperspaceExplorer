@@ -226,6 +226,8 @@ namespace VecMath {
         return in;
     }
 
+    //------------  functions that generate a Rotation without resorting to variable arglists
+
     /// Generator function for a 3-dimensional Rotation
     template <typename N> Rotation<3, N> makeRotation(
             N const &r0, N const &r1, N const &r2) {

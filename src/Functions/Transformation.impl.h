@@ -48,6 +48,7 @@ Transformation<N, P, NUM, TransformationPolicy>::transform(
 
   return p.transform(operand);
 }
+#include <QDebug>
 
 template <unsigned N, unsigned P, typename NUM>
 typename SimpleTransformationPolicy<N, P, NUM>::value_storage_type
@@ -55,9 +56,13 @@ SimpleTransformationPolicy<N, P, NUM>::transform(
         const value_storage_type &operand
 ) {
   value_storage_type v(operand.size());
-
+  Transformation<N, P-1, NUM, SimpleTransformationPolicy<N, P-1, NUM> > sub_transform(_transform, _translation);
+# if 0
+  qDebug() << "SimpleTransformationPolicy<" << N << ", " << P << ", NUM>::transform("
+           << operand.toString().c_str()
+           << ")";
+# endif
   for (unsigned i = 0; i < operand.size(); ++i) {
-    Transformation<N, P-1, NUM, SimpleTransformationPolicy<N, P-1, NUM> > sub_transform(_transform, _translation);
     v[i] = sub_transform.transform(operand[i]);
   }
 
@@ -74,7 +79,11 @@ SimpleTransformationPolicy<N, 1, NUM>::transform(
   for (unsigned i = 0; i < operand.size(); ++i) {
     v[i] = _transform*operand[i]+_translation;
   }
-
+# if 0
+  qDebug()
+    << operand.toString().c_str() << " * " << _transform.toString().c_str() << " + " << _translation.toString().c_str()
+    << " = " << v.toString().c_str();
+# endif
   return v;
 }
 

@@ -17,6 +17,8 @@
 #include <iostream>
 #include <iterator>
 
+#include <sstream>
+
 namespace VecMath {
 
     /// A \p D -dimensionally nested std::vector of objects of type \p T
@@ -89,7 +91,7 @@ namespace VecMath {
 
             /// Remove elements at given range
             /** \param first Iterator pointing to first element to be erased
-             *  \param last Iterator pointing to one past the last element to be erased. 
+             *  \param last Iterator pointing to one past the last element to be erased.
              *  \return An iterator pointing to the next element (or end())
              */
             iterator erase(iterator first, iterator last) { return data().erase(first, last); }
@@ -118,7 +120,7 @@ namespace VecMath {
 
             /// Erases all the elements, and calls clear() on them recursively.
             void clear();
-            
+
             /// Resizes the vector to the specified number of elements
             /** \param new_size Number of elements the vector should contain */
             void resize(unsigned new_size) { data().resize(new_size); }
@@ -141,6 +143,12 @@ namespace VecMath {
             /** \param other NestedVector<T, D> to compare to */
             bool operator != (const NestedVector<T, D> &other) const {
                 return data() != other.data();
+            }
+
+            std::string toString() const {
+                std::ostringstream o;
+                o << *this;
+                return o.str();
             }
 
             /// Prints the elements of the vector
@@ -197,7 +205,7 @@ namespace VecMath {
 
             /// Remove elements at given range
             /** \param first Iterator pointing to first element to be erased
-             *  \param last Iterator pointing to one past the last element to be erased. 
+             *  \param last Iterator pointing to one past the last element to be erased.
              *  \return An iterator pointing to the next element (or end())
              */
             iterator erase(iterator first, iterator last) { return data().erase(first, last); }
@@ -215,7 +223,7 @@ namespace VecMath {
             unsigned empty() const { return data().empty(); }
 
             void clear() { data().clear(); }
-            
+
             /// See NestedVector<T, D>::resize()
             void resize(unsigned new_size) { data().resize(new_size); }
 
@@ -237,6 +245,12 @@ namespace VecMath {
                 return data() != other.data();
             }
 
+            std::string toString() const {
+                std::ostringstream o;
+                o << *this;
+                return o.str();
+            }
+
             /// See NestedVector<T, D>::print()
             void print() const {
                 std::cerr << "< ";
@@ -254,12 +268,12 @@ namespace VecMath {
             /// See NestedVector<T, D>::data()
             std::vector<T> &data() { return _data; }
             /// See NestedVector<T, D>::data()
-            const std::vector<T> &data() const { return _data; }            
+            const std::vector<T> &data() const { return _data; }
 
         private:
             /// std::vector<T>. All operations are delegated to this vector
             std::vector<T> _data;
-            
+
             static const bool PRINT_NUM_ELEMENTS = false;
             static const unsigned MAX_DIMENSION = 4;
     };
@@ -272,7 +286,7 @@ namespace VecMath {
      */
     template<typename T, unsigned D> std::ostream& operator<<(std::ostream& s,
                                                   NestedVector<T, D> const& v) {
-                
+
         if (NestedVector<T, 1>::print_num_elements()) s << v.size() << " elements: ";
         for (unsigned i = NestedVector<T, 1>::max_dimension(); i > D; --i) s << "  ";
         s << "(\n";

@@ -49,6 +49,8 @@ class Test_Transformation: public QObject {
     void scaleScales_data();
     void scaleScales();
 
+    void rotateFloatVector();
+
     void rotateFloats_data();
     void rotateFloats();
 
