@@ -23,19 +23,15 @@ using VecMath::Vector;
 
 /// Function default c'tor
 /** Zeroes everything       */
-Function::Function ():
-    _F (),
-    _functionName("")//, parameterNames()
-{ }
+Function::Function (): _F () { }
 
 
 /** Function c'tor given a definition set in R� (as parameter space)
  *  \param name a name for the function
  *  \param _parameters
  */
-Function::Function (const QString &name, ParameterMap parameters):
+Function::Function (ParameterMap parameters):
     _F (),
-    _functionName(name),// parameterNames(),
     _parameters(parameters) {
     if (MemRequired () > Globals::Instance().getMaxMemory()) {
     }

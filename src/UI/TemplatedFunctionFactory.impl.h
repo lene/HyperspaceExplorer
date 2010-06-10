@@ -26,7 +26,7 @@ template<class function>
     }
 
 template<class function>
-    QString C4DView::TemplatedRealFunctionFactory<function>::doGetFunctionName() {
+    std::string C4DView::TemplatedRealFunctionFactory<function>::doGetFunctionName() {
       function* f(new function());
       return f->getFunctionName();
     }
@@ -43,7 +43,7 @@ template<class function>
     }
 
 template<class function>
-    QString C4DView::TemplatedSurfaceFactory<function>::doGetFunctionName() {
+    std::string C4DView::TemplatedSurfaceFactory<function>::doGetFunctionName() {
       function* f(new function());
       return f->getFunctionName();
     }

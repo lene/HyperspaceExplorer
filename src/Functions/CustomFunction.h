@@ -25,7 +25,7 @@ template<class function_type>
         CustomFunctionBase(): handle (NULL) {}
         /// CustomFunction destructor, closes DLL if necessary
         ~CustomFunctionBase() { if (handle) dlclose (handle); }
-        QString symbolic ();
+        QString symbolic () const;
 
         /// \return Whether loading the library succeeded
         bool isValid() const { return valid; }
@@ -58,6 +58,8 @@ class CustomFunction:
                         bool final = true);
         virtual ~CustomFunction() { }
 
+        virtual std::string getFunctionName() const;
+
     protected:
         virtual RealFunction::function_type f;
 };
@@ -73,6 +75,8 @@ class CustomPolarFunction: public CustomFunction {
                              double _vmin, double _vmax, double _dv);
         virtual ~CustomPolarFunction() { }
 
+        virtual std::string getFunctionName() const;
+
     protected:
         virtual RealFunction::function_type f;
 };
@@ -82,14 +86,16 @@ class CustomPolarFunction: public CustomFunction {
 class CustomSurface:
         public Surface,
         public CustomFunctionBase<Surface::raw_function_type> {
-            public:
-                CustomSurface ( double _umin, double _umax, double _du,
-                                double _vmin, double _vmax, double _dv);
-                virtual ~CustomSurface() { }
+    public:
+        CustomSurface (double _umin, double _umax, double _du,
+                       double _vmin, double _vmax, double _dv);
+        virtual ~CustomSurface() { }
 
-            protected:
-                virtual Surface::function_type f;
-        };
+        virtual std::string getFunctionName() const;
+
+    protected:
+        virtual Surface::function_type f;
+};
 
 /// Function \f$ f: C \rightarrow C \f$, editable to an arbitrary function
 /** \ingroup ComplexGroup                                                     */
@@ -100,6 +106,8 @@ class CustomComplexFunction:
         CustomComplexFunction (double _umin, double _umax, double _du,
                                double _vmin, double _vmax, double _dv);
         virtual ~CustomComplexFunction() { }
+
+        virtual std::string getFunctionName() const;
 
     protected:
         ComplexFunction::function_type g;
@@ -131,7 +139,7 @@ template<class function_type>
 
 /** \return Custom function in symbolic notation */
 template<class function_type>
-        QString CustomFunctionBase<function_type>::symbolic () {
+QString CustomFunctionBase<function_type>::symbolic () const {
     typedef char* STRING;
     STRING (*sym)();
     sym = (STRING (*)())dlsym(handle, "symbolic");

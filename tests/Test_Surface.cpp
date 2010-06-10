@@ -15,19 +15,17 @@ using std::tr1::shared_ptr;
 
 void testFunction(Surface &f);
 
-const QString Test_Surface::TEST_FUNCTION_NAME = "FunctionTestImplementation";
+const std::string Test_Surface::TEST_FUNCTION_NAME = "FunctionTestImplementation";
 
 Test_Surface::SurfaceTestImplementation::SurfaceTestImplementation():
-    Surface(
-            Test_Surface::TEST_FUNCTION_NAME,
-            X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1),
+    Surface(X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1),
             X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1)) {
   _function = shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction);
   Initialize();
 }
 
 Vector<4> Test_Surface::SurfaceTestImplementation::DefiningFunction::f (const Vector<2> &x) {
-  
+
   Vector<4>F(x[0], x[1], CONSTANT_FUNCTION_VALUE, CONSTANT_FUNCTION_VALUE);
   return F;
 }
@@ -44,7 +42,7 @@ void Test_Surface::functionValue() {
   for (double x = X_MIN; x <= X_MAX; x += 1.) {
     for (double y = X_MIN; y <= X_MAX; y += 1.) {
       cerr << Vector<4>(x, y, CONSTANT_FUNCTION_VALUE,CONSTANT_FUNCTION_VALUE) << endl;
-      QVERIFY2( 
+      QVERIFY2(
         (_function->function_value(x, y) - Vector<4>(x, y, CONSTANT_FUNCTION_VALUE,CONSTANT_FUNCTION_VALUE)).sqnorm() <= EPSILON,
         (QString::number(x).toStdString()+", "+QString::number(y).toStdString()+" -> "+_function->function_value(x, y).toString()+
          " != "+Vector<4>(x, y, CONSTANT_FUNCTION_VALUE,CONSTANT_FUNCTION_VALUE).toString()).c_str()

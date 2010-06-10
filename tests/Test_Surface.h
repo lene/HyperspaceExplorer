@@ -14,7 +14,7 @@ class Test_Surface: public QObject {
     static const double X_MAX =  1.;
     static const unsigned GRID_SIZE = 5;
 
-    const static QString TEST_FUNCTION_NAME;
+    const static std::string TEST_FUNCTION_NAME;
     static const double CONSTANT_FUNCTION_VALUE = 1.;
 
     static const double EPSILON = 1e-8;
@@ -26,6 +26,7 @@ class Test_Surface: public QObject {
 
     public:
       SurfaceTestImplementation();
+      virtual std::string getFunctionName() const { return TEST_FUNCTION_NAME; }
 
       VecMath::Vector<4> function_value(double tt, double uu) { return _function->f(VecMath::Vector<2>(tt,uu)); }
       VecMath::NestedVector< VecMath::Vector<4>, 2 > vertices() { return X(); }
@@ -36,11 +37,11 @@ class Test_Surface: public QObject {
       unsigned ysteps() const { return getUsteps(); }
 
     private:
-        
+
       struct DefiningFunction: public ParametricFunction<4, 2> {
         virtual return_type f(const argument_type &x);
       };
-      
+
     };
 
     private slots:
@@ -76,7 +77,7 @@ class Test_Surface: public QObject {
         void t_sinhz();
         void t_coshz();
         void t_tanz();
-        
+
     private:
         SurfaceTestImplementation *_function;
 };

@@ -31,12 +31,7 @@ double SurfaceBase::_d = 0.1;
 
 /// Surface default c'tor, zeroes everything
 Surface::Surface ():
-    SurfaceBase("", 0, 0, 0, 0, 0, 0),
-    _Xscr(vec3vec2D()) { }
-
-/// Surface c'tor with a Function name and default grid
-Surface::Surface(const QString &_name):
-    SurfaceBase(_name, _min, _max, _d, _min, _max, _d),
+    SurfaceBase(_min, _max, _d, _min, _max, _d),
     _Xscr(vec3vec2D()) { }
 
 
@@ -49,14 +44,11 @@ Surface::Surface(const QString &_name):
  *  \param _vmax maximal value in v
  *  \param _dv stepsize in v
  *  \param _parms Parameter for the function                                  */
-Surface::Surface (const QString &_name,
-                  double _umin, double _umax, double _du,
+Surface::Surface (double _umin, double _umax, double _du,
                   double _vmin, double _vmax, double _dv,
                   ParameterMap _parms):
-    SurfaceBase(_name, _umin, _umax, _du, _vmin, _vmax, _dv, _parms),
-    _Xscr(vec3vec2D()) {
-    setfunctionName(_name);
-}
+    SurfaceBase(_umin, _umax, _du, _vmin, _vmax, _dv, _parms),
+    _Xscr(vec3vec2D()) { }
 
 /// Initialize the temporary storage areas Xscr[][], Xtrans[][]
 void Surface::InitMem (void) {
@@ -71,11 +63,11 @@ void Surface::InitMem (void) {
 /** call InitMem () above                                                     */
 void Surface::Initialize () {
 
-    _X = FunctionValueGrid<4, 2>(_function, 
-                                         Vector<2, unsigned>(getTsteps()+2, getUsteps()+2), 
-                                         Vector<2>(getTmin(), getUmin()), 
+    _X = FunctionValueGrid<4, 2>(_function,
+                                         Vector<2, unsigned>(getTsteps()+2, getUsteps()+2),
+                                         Vector<2>(getTmin(), getUmin()),
                                          Vector<2>(getTmax(), getUmax()));
-  
+
     calibrateColors();
 
     InitMem ();
@@ -84,7 +76,7 @@ void Surface::Initialize () {
 void Surface::calibrateColors() const {
 
   std::pair< double, double > Wext = findExtremesInW();
-  
+
   for (unsigned t = 0; t <= getTsteps()+1; t++) {
         for (unsigned u = 0; u <= getUsteps()+1; u++) {
             ColMgrMgr::Instance().calibrateColor(
@@ -99,7 +91,7 @@ void Surface::calibrateColors() const {
  */
 std::pair< double, double > Surface::findExtremesInW() const {
   double Wmax = 0, Wmin = 0;
-  
+
   for (unsigned t = 0; t <= getTsteps()+1; t++) {
     for (unsigned u = 0; u <= getUsteps()+1; u++) {
       if (X()[t][u][3] < Wmin) Wmin = X()[t][u][3];
@@ -121,7 +113,7 @@ void Surface::ReInit(double, double, double,
                      double _tmin, double _tmax, double _dt,
                      double _umin, double _umax, double _du) {
   setBoundariesAndStepwidth(_tmin, _tmax, _dt, _umin, _umax, _du);
-  
+
   Initialize ();
 
 }
@@ -269,8 +261,8 @@ const NestedVector< Vector<4>, 2 > &Surface::Xtrans() const {
  *  @param _dv stepsize in v                                                  */
 Surface1::Surface1 (double _umin, double _umax, double _du,
                     double _vmin, double _vmax, double _dv):
-        Surface ("Surface1", _umin, _umax, _du, _vmin, _vmax, _dv) {
-    
+        Surface (_umin, _umax, _du, _vmin, _vmax, _dv) {
+
     _function = shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction);
     Initialize();
 }
@@ -303,14 +295,14 @@ Vector<4> Surface1::DefiningFunction::f (const Vector<2> &x) {
  *  @param _dv stepsize in v                                                  */
 Horizon::Horizon (double _umin, double _umax, double _du,
                   double _vmin, double _vmax, double _dv):
-    Surface ("Horizon", _umin, _umax, _du, _vmin, _vmax, _dv) {
+    Surface (_umin, _umax, _du, _vmin, _vmax, _dv) {
     _function = shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction);
     Initialize ();
 }
 
 Vector<4> Horizon::DefiningFunction::f (const Vector<2> &x) {
   double t = x[0]*pi, phi = x[1]*pi/2.;
-  
+
   Vector<4> F;
   F[0] = (1-sin (t))*cos (phi);
   F[1] = (1-sin (t))*sin (phi);
@@ -333,7 +325,7 @@ Vector<4> Horizon::DefiningFunction::f (const Vector<2> &x) {
  *  @param _dv stepsize in v                                                  */
 Torus3::Torus3 (double _umin, double _umax, double _du,
                 double _vmin, double _vmax, double _dv):
-        Surface ("Torus 3", _umin, _umax, _du, _vmin, _vmax, _dv) {
+        Surface (_umin, _umax, _du, _vmin, _vmax, _dv) {
     _function = shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction);
     Initialize ();
 }

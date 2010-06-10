@@ -25,7 +25,7 @@ using std::endl;
 using VecMath::Vector;
 using namespace UI::Dialogs;
 
-/** CustomFunction c'tor given a definition set in R� (as parameter space) and a
+/** CustomFunction c'tor given a definition set in \f$ R^3 \f$ (as parameter space) and a
  *  flag indicatin whether this is a test construction or a real one
  *  \param _tmin minimal value in t
  *  \param _tmax maximal value in t
@@ -41,7 +41,7 @@ CustomFunction::CustomFunction (double _tmin, double _tmax, double _dt,
                                 double _umin, double _umax, double _du,
                                 double _vmin, double _vmax, double _dv,
                                 bool final):
-    RealFunction ("Custom function yet without a name", _tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
+    RealFunction (_tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
     if (final) {
         FunctionDialogImpl *Dlg = new FunctionDialogImpl ();
 
@@ -51,6 +51,10 @@ CustomFunction::CustomFunction (double _tmin, double _tmax, double _dt,
             setValid();
         } else setInvalid();
     }
+}
+
+std::string CustomFunction::getFunctionName() const {
+    return symbolic().toStdString();
 }
 
 /** CustomFunction defining function; calls loaded function
@@ -68,7 +72,7 @@ Vector<4> &CustomFunction::f (double x, double y, double z) {
 ////////////////////////////////////////////////////////////////////////////////
 
 
-/** CustomPolarFunction c'tor given a definition set in R� (as parameter space)
+/** CustomPolarFunction c'tor given a definition set in \f$ R^3 \f$ (as parameter space)
  *  and a flag indicating whether this is a test construction or a real one
  *  @param _tmin minimal value in t
  *  @param _tmax maximal value in t
@@ -92,6 +96,11 @@ CustomPolarFunction::CustomPolarFunction (double _tmin, double _tmax, double _dt
     } else setInvalid();
 }
 
+std::string CustomPolarFunction::getFunctionName() const {
+    return CustomFunction::getFunctionName();
+}
+
+
 /** CustomPolarFunction defining function; calls loaded function
  *  @param x x value (these would really be phi, theta, psi)
  *  @param y y value
@@ -104,7 +113,7 @@ Vector<4> &CustomPolarFunction::f (double x, double y, double z) {
 }
 
 
-/** CustomComplexFunction c'tor given a definition set in C (as parameter space) and a
+/** CustomComplexFunction c'tor given a definition set in \f$ C \f$ (as parameter space) and a
  *  flag indicatin whether this is a test construction or a real one
  *  @param _umin minimal value in u
  *  @param _umax maximal value in u
@@ -114,7 +123,7 @@ Vector<4> &CustomPolarFunction::f (double x, double y, double z) {
  *  @param _dv stepsize in v                                             */
 CustomComplexFunction::CustomComplexFunction (double _umin, double _umax, double _du,
                                               double _vmin, double _vmax, double _dv):
-        ComplexFunction ("Custom complex function yet without a name", _umin, _umax, _du, _vmin, _vmax, _dv) {
+        ComplexFunction (_umin, _umax, _du, _vmin, _vmax, _dv) {
     ComplexDialogImpl *Dlg = new ComplexDialogImpl ();
 
     if (Dlg->exec () == QDialog::Accepted &&
@@ -122,6 +131,10 @@ CustomComplexFunction::CustomComplexFunction (double _umin, double _umax, double
         Initialize ();
         setValid();
     } else setInvalid();
+}
+
+std::string CustomComplexFunction::getFunctionName() const {
+    return symbolic().toStdString();
 }
 
 /** CustomComplexFunction defining function; calls loaded function
@@ -133,7 +146,7 @@ complex<double> CustomComplexFunction::g (complex<double> z) {
     return T;
 }
 
-/** CustomSurface c'tor given a definition set in R� (as parameter space) and a
+/** CustomSurface c'tor given a definition set in \f$ R^3 \f$ (as parameter space) and a
  *  flag indicatin whether this is a test construction or a real one
  *  @param _umin minimal value in u
  *  @param _umax maximal value in u
@@ -143,7 +156,7 @@ complex<double> CustomComplexFunction::g (complex<double> z) {
  *  @param _dv stepsize in v                                                  */
 CustomSurface::CustomSurface (double _umin, double _umax, double _du,
                               double _vmin, double _vmax, double _dv):
-        Surface ("Custom surface yet without a name", _umin, _umax, _du, _vmin, _vmax, _dv) {
+        Surface (_umin, _umax, _du, _vmin, _vmax, _dv) {
     SurfaceDialogImpl *Dlg = new SurfaceDialogImpl ();
 
     if (Dlg->exec () == QDialog::Accepted) {
@@ -152,6 +165,11 @@ CustomSurface::CustomSurface (double _umin, double _umax, double _du,
         setValid();
     } else setInvalid();
 }
+
+std::string CustomSurface::getFunctionName() const {
+    return symbolic().toStdString();
+}
+
 
 /** CustomFunction defining function; calls loaded function
  *  @param u u value

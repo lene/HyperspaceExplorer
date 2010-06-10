@@ -32,11 +32,10 @@ using VecMath::Matrix;
  *  @param name name of the object
  *  @param vertices number of vertices
  *  @param surfaces number of surfaces                                        */
-Object::Object (const QString &name, unsigned vertices, unsigned surfaces):
+Object::Object (unsigned vertices, unsigned surfaces):
         Function (),
         X(vec4vec1D(vertices)), Xtrans(vec4vec1D(vertices)), Xscr(vec3vec1D()),
         Surface(surfaces) {
-    setfunctionName(name);
 
     for (unsigned i = 0; i < surfaces; i++) Surface[i].resize(4);
 }
@@ -146,7 +145,7 @@ void Object::ReInit (double, double, double,
  *  \param a side_length/2
  */
 Hypercube::Hypercube (double a, const VecMath::Vector<4> &center):
-    Object ("Hypercube", 16, 24), 
+    Object (16, 24),
     _a (a), _center(center) {
   declareParameter("Size", 1.0);
   Initialize();
@@ -171,9 +170,9 @@ void Hypercube::Draw() {
  *  of the Hypercube by declaring the appropriate squares as a list in
  *  \p Surface[][].                                                           */
 void Hypercube::Initialize(void) {
-  
+
     if (X.size() < 16) X.resize(16);
-  
+
     for (int x = 0; x <= 1; x++)
         for (int y = 0; y <= 1; y++)
             for (int z = 0; z <= 1; z++)
@@ -210,11 +209,11 @@ void Hypercube::Initialize(void) {
     DeclareSquare (23, 12,13,15,14);
 
     Object::Initialize();
-    
+
 #   if !USE_INT_INDICES
       for (surface_vec_type::iterator i = Surface.begin(); i != Surface.end(); ++i) i->print();
 #   endif
-    
+
 }
 
 /// Declare a square in the \p Surface array
@@ -234,10 +233,10 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
     Surface[i+offset*24][2] = c+offset*16;
     Surface[i+offset*24][3] = d+offset*16;
 # else
-    std::cerr << "Surface.size() = " << Surface.size() << ", X.size() = " << X.size() 
+    std::cerr << "Surface.size() = " << Surface.size() << ", X.size() = " << X.size()
               << " i: " << i+offset*24 << " a: " << a+offset*16 << " b: " << b+offset*16 << " c: " << c+offset*16 << " d: " << d+offset*16 << std::endl;
     Surface[i+offset*24] = SurfaceType<4, 4>(X, X[a+offset*16], X[b+offset*16], X[c+offset*16], X[d+offset*16]);
-# endif    
+# endif
 }
 
 
@@ -250,7 +249,7 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
 /** @param _center center
  *  @param _a side_length/2                                                   */
 Pyramid::Pyramid (double _a, const VecMath::Vector<4> &_center):
-        Object ("Hyperpyramid", 5, 10),
+        Object (5, 10),
         center(_center), a (_a) {
     declareParameter("Size", 1.0);
     Initialize();
@@ -305,7 +304,7 @@ void Pyramid::DeclareTriangle (unsigned i, unsigned a, unsigned b, unsigned c) {
  *  \param _center center                                                      */
 Gasket::Gasket (unsigned level, double _rad, VecMath::Vector<4> _center):
         Level (level), rad(_rad), center(_center) {
-    setfunctionName("4-dimensional Sierpinski Gasket");
+//    setfunctionName("4-dimensional Sierpinski Gasket");
 //    clearParameterNames();
     declareParameter("Level", 3);
     declareParameter("Size", 1.0);

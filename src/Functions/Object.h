@@ -35,7 +35,7 @@ struct EmptyType {};
 class Object: public Function {
     public:
 
-        Object (const QString &, unsigned, unsigned);
+        Object (unsigned, unsigned);
         virtual ~Object () { }
         virtual void ReInit (double, double, double,
                              double, double, double,
@@ -112,30 +112,30 @@ template <unsigned D, unsigned N_vertex> class SurfaceType {
         _indices[i] = 0;
       }
     }
-    
+
     const vertex_ptr_type &operator[](unsigned i) const { return _vertices[i]; }
     unsigned index(unsigned i) const { return _indices[i]; }
 
     /// Preliminary version, only for N_vertex = 4
     bool operator==(const SurfaceType<D, N_vertex> &other) const {
-      return isPermutation(_indices[0], _indices[1], _indices[2], _indices[3], 
+      return isPermutation(_indices[0], _indices[1], _indices[2], _indices[3],
                            other._indices[0], other._indices[1], other._indices[2], other._indices[3]) &&
              _vertices[0] == other._vertices[0] &&
              _vertices[1] == other._vertices[1] &&
              _vertices[2] == other._vertices[2] &&
              _vertices[3] == other._vertices[3]
-             ; 
+             ;
     }
-    
+
     void print() {
-      for (unsigned i = 0; i < N_vertex; ++i) 
+      for (unsigned i = 0; i < N_vertex; ++i)
         std::cerr << _indices[i] << ": " << *(_vertices[i]) << " ";
       std::cerr << std::endl;
     }
-    
+
     private:
       /// a version of std::find() that returns an index instead of an iterator
-      static unsigned index_of(const vertex_type &x, 
+      static unsigned index_of(const vertex_type &x,
                                const std::vector<vertex_type> &original_container) {
         // assuming that more surfaces have vertices that have just been added
         // to the end of original_container
@@ -168,7 +168,7 @@ template <unsigned D, unsigned N_vertex> class SurfaceType {
           if (m0 == n3 && isPermutation(m1, m2, m3, n0, n1, n2)) return true;
           return false;
         }
-      
+
       vertex_ptr_type _vertices[N_vertex];
       unsigned _indices[N_vertex];
 };
@@ -179,7 +179,7 @@ typedef std::vector< SurfaceType<4, 4> > surface_vec_type;
 /** \ingroup ObjectGroup                                                    */
 class Hypercube: public Object {
 public:
-    Hypercube (): Object ("Tesseract", 16, 24) {
+    Hypercube (): Object (16, 24) {
         _a = 1;
         declareParameter("Size", 1.0);
         Initialize();
@@ -188,6 +188,8 @@ public:
     Hypercube (double a,
                const VecMath::Vector<4> &_center = VecMath::Vector<4>(0., 0., 0., 0.));
     virtual ~Hypercube() { }
+
+    virtual std::string getFunctionName() const { return "Tesseract"; }
 
     virtual void SetParameters(const ParameterMap &parms) {
 #       if 1
@@ -209,7 +211,7 @@ public:
 #   if !USE_INT_INDICES
       /// reimplement Draw() to make use of the stored vertices (instead of indices)
       virtual void Draw (void);
-      
+
 #   endif
   protected:
     virtual void Initialize();
@@ -234,12 +236,14 @@ namespace {
 /** \ingroup ObjectGroup                                                    */
 class Pyramid: public Object {
 public:
-    Pyramid (): Object ("Pentachoron", 5, 10) {
+    Pyramid (): Object (5, 10) {
         declareParameter("Size", 1.0);
     }
     Pyramid (double _a,
              const VecMath::Vector<4> &_Center = VecMath::Vector<4> (0., 0., 0., 0.));
     virtual ~Pyramid() { }
+
+    virtual std::string getFunctionName() const { return "Pentachoron"; }
 
     virtual void SetParameters(const ParameterMap &parms) {
 #       if 1

@@ -38,11 +38,11 @@ double RealBase::_d = 0.1;
 /** RealFunction c'tor given only a name: All grid values are set to defaults
  *  \param _name a name for the function
  */
-RealFunction::RealFunction(const QString &_name):
-    RealBase(_name, _min, _max, _d, _min, _max, _d, _min, _max, _d,
-         ParameterMap()) { }
+RealFunction::RealFunction():
+    RealBase(_min, _max, _d, _min, _max, _d, _min, _max, _d,
+             ParameterMap()) { }
 
-/** RealFunction c'tor given a definition set in Rï¿½ (as parameter space)
+/** RealFunction c'tor given a definition set in \f$ R^3 \f$ (as parameter space)
  *  \param _name a name for the function
  *  \param _tmin minimal value in t
  *  \param _tmax maximal value in t
@@ -54,15 +54,14 @@ RealFunction::RealFunction(const QString &_name):
  *  \param _vmax maximal value in v
  *  \param _dv stepsize in v
  *  \param _parms function parameters                               */
-RealFunction::RealFunction(const QString &name,
-                           double tmin, double tmax, double dt,
+RealFunction::RealFunction(double tmin, double tmax, double dt,
                            double umin, double umax, double du,
                            double vmin, double vmax, double dv,
                            ParameterMap _parms):
-        RealBase(name, tmin, tmax, dt, umin, umax, du, vmin, vmax, dv,
+        RealBase(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv,
                  _parms),
         _Xscr(vec3vec3D()) {
-          
+
   if (MemRequired () > Globals::Instance().getMaxMemory()) {
     cerr << "Using a " << getTsteps() << "x" << getUsteps() << "x" << getVsteps()
          << " grid would require approx. " << MemRequired () << " MB of memory.\n";
@@ -97,7 +96,7 @@ void RealFunction::Initialize () {
                                Vector<3, unsigned>(getTsteps()+2, getUsteps()+2, getVsteps()+2),
                                Vector<3>(getTmin(), getUmin(), getVmin()),
                                Vector<3>(getTmax(), getUmax(), getVmax()));
- 
+
   calibrateColors();
 
   InitMem ();
@@ -126,7 +125,7 @@ std::pair< double, double > RealFunction::findExtremesInW() const {
   for (unsigned t = 0; t < getTsteps(); t++) {
     for (unsigned u = 0; u <= getUsteps()+1; u++) {
       for (unsigned v = 0; v <= getVsteps()+1; v++) {
-        if (X()[t][u][v][3] < Wmin) Wmin = X()[t][u][v][3]; 
+        if (X()[t][u][v][3] < Wmin) Wmin = X()[t][u][v][3];
         if (X()[t][u][v][3] > Wmax) Wmax = X()[t][u][v][3];
       }
     }
@@ -152,10 +151,10 @@ void RealFunction::ReInit(double tmin, double tmax, double dt,
   setBoundariesAndStepwidth(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
 
   Initialize ();
-  
+
 }
 
-void RealFunction::setBoundariesAndStepwidth(double tmin, double tmax, double dt, 
+void RealFunction::setBoundariesAndStepwidth(double tmin, double tmax, double dt,
                                              double umin, double umax, double du,
                                              double vmin, double vmax, double dv) {
   getTmin() = tmin;   getTmax() = tmax;   getDt() = dt;
@@ -195,17 +194,17 @@ void RealFunction::setDepthCueColors(double Wmax, double Wmin) {
  *  \param cam_w w coordinate of camera
  *  \param depthcue4d whether to use hyperfog/depth cue                       */
 void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
-  
+
   Projection<4, 3, 3> p(scr_w, cam_w, depthcue4d);
   _Xscr_as_grid = p.project(Xtrans());
-  
+
   double ProjectionFactor;
   double Wmax = 0, Wmin = 0;
 
   for (unsigned t = 0; t <= getTsteps()+1; t++) {
     for (unsigned u = 0; u <= getUsteps()+1; u++) {
       for (unsigned v = 0; v <= getVsteps()+1; v++) {
-        
+
         if (Xtrans()[t][u][v][3] < Wmin) Wmin = Xtrans()[t][u][v][3];
         if (Xtrans()[t][u][v][3] > Wmax) Wmax = Xtrans()[t][u][v][3];
 
@@ -267,7 +266,7 @@ const VecMath::NestedVector< Vector< 4 >, 3 > &RealFunction::X() const {
 }
 
 const VecMath::NestedVector< Vector< 4 >, 3 > &RealFunction::Xtrans() const {
-  return _Xtrans;   
+  return _Xtrans;
 }
 
 using std::string;
@@ -325,7 +324,7 @@ void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v) {
 ////////////////////////////////////////////////////////////////////////////////
 
 
-/// Hypersphere c'tor given a definition set in R³ (as parameter space) and a radius
+/// Hypersphere c'tor given a definition set in \f$ R^3 \f$ (as parameter space) and a radius
 /** \param _tmin minimal value in t
  *  \param _tmax maximal value in t
  *  \param _dt stepsize in t
@@ -340,12 +339,11 @@ Hypersphere::Hypersphere(double tmin, double tmax, double dt,
                          double umin, double umax, double du,
                          double vmin, double vmax, double dv,
                          double rad):
-        RealFunction ("Hypersphere",
-                      tmin, tmax, dt, umin, umax, du, vmin, vmax, dv),
+        RealFunction (tmin, tmax, dt, umin, umax, du, vmin, vmax, dv),
         _radius (rad) {
-      
+
     _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
-      
+
     declareParameter("Radius", 1.0);
     Initialize ();
 }
@@ -364,13 +362,13 @@ void Hypersphere::SetParameters(const ParameterMap &parms) {
 ParametricFunction< 4, 3 >::return_type Hypersphere::DefiningFunction::f(
   const ParametricFunction< 4, 3 >::argument_type& x) {
 
-  double sinphi = sin(pi/2*x[0]), 
+  double sinphi = sin(pi/2*x[0]),
          cosphi = cos(pi/2*x[0]),
-         sintht = sin(pi*x[1]), 
+         sintht = sin(pi*x[1]),
          costht = cos(pi*x[1]),
-         sinpsi = sin(pi*x[2]), 
+         sinpsi = sin(pi*x[2]),
          cospsi = cos(pi*x[2]);
-  
+
   Vector<4> F;
   F[0] = _parent->_radius*sinpsi*sintht*cosphi;
   F[1] = _parent->_radius*sinpsi*sintht*sinphi;
@@ -402,7 +400,7 @@ Vector<4> &Hypersphere::normal (double tt, double uu, double vv) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/** Torus1 c'tor given a definition set in R³ (as parameter space) and three
+/** Torus1 c'tor given a definition set in \f$ R^3 \f$ (as parameter space) and three
  *  radii: major, minor and... what'sitcalled... subminor
  *  \param _tmin	minimal value in t
  *  \param _tmax	maximal value in t
@@ -420,12 +418,11 @@ Torus1::Torus1 (double tmin, double tmax, double dt,
                 double umin, double umax, double du,
                 double vmin, double vmax, double dv,
                 double R, double r, double rho):
-    RealFunction ("Ditorus",
-                tmin, tmax, dt, umin, umax, du, vmin, vmax, dv),
+    RealFunction (tmin, tmax, dt, umin, umax, du, vmin, vmax, dv),
     _R (R), _r (r), _rho (rho) {
-      
+
   _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
-      
+
   declareParameter("Major Radius", 2.0);
   declareParameter("Minor Radius", 1.0);
   declareParameter("Micro Radius", 0.5);
@@ -448,7 +445,7 @@ ParametricFunction< 4, 3 >::return_type Torus1::DefiningFunction::f(
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/** Torus2 c'tor given a definition set in RÂ³ (as parameter space) and two
+/** Torus2 c'tor given a definition set in \f$ R^3 \f$ (as parameter space) and two
  *  radii - a major and a minor (defining a sphere)
  *  \param tmin	minimal value in t
  *  \param tmax	maximal value in t
@@ -466,19 +463,18 @@ Torus2::Torus2 (double tmin, double tmax, double dt,
                 double umin, double umax, double du,
                 double vmin, double vmax, double dv,
                 double R, double r):
-  RealFunction ("Toraspherinder",
-                tmin, tmax, dt, umin, umax, du, vmin, vmax, dv),
+  RealFunction (tmin, tmax, dt, umin, umax, du, vmin, vmax, dv),
   _R (R), _r (r) {
-      
+
   _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
-          
+
   declareParameter("Major Radius", 1.0);
   declareParameter("Minor Radius", 0.5);
 
   Initialize ();
 }
 
-ParametricFunction< 4, 3 >::return_type 
+ParametricFunction< 4, 3 >::return_type
 Torus2::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x) {
   Vector<4> F;
   F[0] =  cos(pi*x[0])*(_parent->_R+_parent->_r*cos(pi*x[1])*cos(pi*x[2]));
@@ -493,7 +489,7 @@ Torus2::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x) 
 ////////////////////////////////////////////////////////////////////////////////
 
 
-/** Fr3r (example R³->R function) c'tor given a definition set in R³
+/** Fr3r (example \f$ R^3 \rightarrow R \f$ function) c'tor given a definition set in \f$ R^3 \f$
  *  \param tmin	minimal value in t
  *  \param tmax	maximal value in t
  *  \param dt	stepsize in t
@@ -507,15 +503,14 @@ Torus2::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x) 
 Fr3r::Fr3r (double tmin, double tmax, double dt,
             double umin, double umax, double du,
             double vmin, double vmax, double dv):
-    RealFunction ("1/(r²+1)",
-                  tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) {
-      
+    RealFunction (tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) {
+
   _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
-      
+
   Initialize ();
 }
 
-ParametricFunction< 4, 3 >::return_type 
+ParametricFunction< 4, 3 >::return_type
 Fr3r::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x) {
   Vector<4> F;
   F[0] = x[0];
@@ -533,7 +528,7 @@ Fr3r::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x) {
 ////////////////////////////////////////////////////////////////////////////////
 
 
-/** GravitationPotential c'tor given a definition set in RÂ³ (as parameter space),
+/** GravitationPotential c'tor given a definition set in \f$ R^3 \f$ (as parameter space),
  *  a mass and a radius of a spherical mass
  *  \param xmin minimal value in t
  *  \param xmax maximal value in t
@@ -551,19 +546,18 @@ GravitationPotential::GravitationPotential (double xmin, double xmax, double dx,
                                             double ymin, double ymax, double dy,
                                             double zmin, double zmax, double dz,
                                             double M, double R):
-        RealFunction ("Gravitation Potential",
-                      xmin, xmax, dx, ymin, ymax, dy, zmin, zmax, dz),
+        RealFunction (xmin, xmax, dx, ymin, ymax, dy, zmin, zmax, dz),
   _M (M), _R (R) {
-      
+
   _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
-      
+
   declareParameter("M", 1.0);
   declareParameter("R", 0.25);
-  
+
   Initialize ();
 }
 
-ParametricFunction< 4, 3 >::return_type 
+ParametricFunction< 4, 3 >::return_type
 GravitationPotential::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x) {
   const double G = 1;     //  arbitrary value for gravitation constant
   Vector<4> F;
@@ -583,7 +577,7 @@ GravitationPotential::DefiningFunction::f(const ParametricFunction< 4, 3 >::argu
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/** Fr3rSin c'tor given a definition set in Rï¿½ (as parameter space)
+/** Fr3rSin c'tor given a definition set in \f$ R^3 \f$ (as parameter space)
  *  \param tmin	minimal value in t
  *  \param tmax	maximal value in t
  *  \param dt	stepsize in t
@@ -597,15 +591,14 @@ GravitationPotential::DefiningFunction::f(const ParametricFunction< 4, 3 >::argu
 Fr3rSin::Fr3rSin (double tmin, double tmax, double dt,
                   double umin, double umax, double du,
                   double vmin, double vmax, double dv):
-        RealFunction ("sin (r²)",
-                      tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) {
-      
+        RealFunction (tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) {
+
   _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
-      
+
   Initialize ();
 }
 
-ParametricFunction< 4, 3 >::return_type 
+ParametricFunction< 4, 3 >::return_type
 Fr3rSin::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x) {
   Vector<4> F;
   F[0] = x[0];
@@ -620,7 +613,7 @@ Fr3rSin::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x)
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/** Fr3rExp c'tor given a definition set in Rï¿½ (as parameter space)
+/** Fr3rExp c'tor given a definition set in \f$ R^3 \f$ (as parameter space)
  *  \param tmin	minimal value in t
  *  \param tmax	maximal value in t
  *  \param dt	stepsize in t
@@ -634,15 +627,14 @@ Fr3rSin::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x)
 Fr3rExp::Fr3rExp (double tmin, double tmax, double dt,
                   double umin, double umax, double du,
                   double vmin, double vmax, double dv):
-        RealFunction ("exp (r²)",
-                      tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) {
-      
+        RealFunction (tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) {
+
   _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
-      
+
   Initialize ();
 }
 
-ParametricFunction< 4, 3 >::return_type 
+ParametricFunction< 4, 3 >::return_type
 Fr3rExp::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x) {
   Vector<4> F;
   F[0] = x[0];
@@ -650,7 +642,7 @@ Fr3rExp::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x)
   F[2] = x[2];
   F[3] = exp (x[0]*x[0]+x[1]*x[1]+x[2]*x[2]);
 
-  return F; 
+  return F;
 
 }
 
@@ -672,15 +664,14 @@ Fr3rExp::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x)
 Polar::Polar(double tmin, double tmax, double dt,
              double umin, double umax, double du,
              double vmin, double vmax, double dv):
-  RealFunction ("Polar: Hypersphere",
-                tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) {
-      
+  RealFunction (tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) {
+
   _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
-      
+
   Initialize ();
 }
 
-ParametricFunction< 4, 3 >::return_type 
+ParametricFunction< 4, 3 >::return_type
 Polar::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x) {
   double sinphi = sin (pi*x[0]), cosphi = cos (pi*x[0]),
     sintht = sin (pi*x[1]), costht = cos (pi*x[1]),
@@ -700,7 +691,7 @@ Polar::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/** PolarSin c'tor given a definition set in RÂ³ (as parameter space) and a
+/** PolarSin c'tor given a definition set in \f$ R^3 \f$ (as parameter space) and a
  *  phase
  *  \param tmin	minimal value in t
  *  \param tmax	maximal value in t
@@ -717,24 +708,23 @@ PolarSin::PolarSin (double tmin, double tmax, double dt,
                     double umin, double umax, double du,
                     double vmin, double vmax, double dv,
                     double phase):
-        RealFunction ("Polar: r = 1/2+sin (Phase*pi*t*u*v)",
-                      tmin, tmax, dt, umin, umax, du, vmin, vmax, dv),
+        RealFunction (tmin, tmax, dt, umin, umax, du, vmin, vmax, dv),
     _phase (phase) {
-      
+
     _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
-      
+
     declareParameter("Phase", 2.0);
     Initialize ();
 }
 
-ParametricFunction< 4, 3 >::return_type 
+ParametricFunction< 4, 3 >::return_type
 PolarSin::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x) {
 
-  double sinphi = sin (pi*x[0]), 
+  double sinphi = sin (pi*x[0]),
     cosphi = cos (pi*x[0]),
-    sintht = sin (pi*x[1]), 
+    sintht = sin (pi*x[1]),
     costht = cos (pi*x[1]),
-    sinpsi = sin (pi*x[2]), 
+    sinpsi = sin (pi*x[2]),
     cospsi = cos (pi*x[2]),
     Radius = .5+fabs (sin (_parent->_phase*x[0]*x[1]*x[2]*pi));
 
@@ -751,7 +741,7 @@ PolarSin::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/** PolarSin2 c'tor given a definition set in RÂ³ (as parameter space)
+/** PolarSin2 c'tor given a definition set in \f$ R^3 \f$ (as parameter space)
  *  \param tmin	minimal value in t
  *  \param tmax	maximal value in t
  *  \param dt	stepsize in t
@@ -765,22 +755,21 @@ PolarSin::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x
 PolarSin2::PolarSin2 (double tmin, double tmax, double dt,
                       double umin, double umax, double du,
                       double vmin, double vmax, double dv):
-        RealFunction ("Polar: r = sin (pi/3.*(t+u+v))",
-                      tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) {
-      
+        RealFunction (tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) {
+
   _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
-      
+
   Initialize ();
 }
 
-ParametricFunction< 4, 3 >::return_type 
+ParametricFunction< 4, 3 >::return_type
 PolarSin2::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x) {
 
-  double sinphi = sin (pi*x[0]), 
+  double sinphi = sin (pi*x[0]),
          cosphi = cos (pi*x[0]),
-         sintht = sin (pi*x[1]), 
+         sintht = sin (pi*x[1]),
          costht = cos (pi*x[1]),
-         sinpsi = sin (pi*x[2]), 
+         sinpsi = sin (pi*x[2]),
          cospsi = cos (pi*x[2]),
          Radius = sin (pi/3.*(x[0]+x[1]+x[2]));
 
@@ -797,7 +786,7 @@ PolarSin2::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& 
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/** PolarR c'tor given a definition set in RÂ³ (as parameter space) and a
+/** PolarR c'tor given a definition set in \f$ R^3 \f$ (as parameter space) and a
  *  phase
  *  \param tmin	minimal value in t
  *  \param tmax	maximal value in t
@@ -814,24 +803,23 @@ PolarR::PolarR (double tmin, double tmax, double dt,
                 double umin, double umax, double du,
                 double vmin, double vmax, double dv,
                 double phase):
-        RealFunction ("Polar: r = sqrt (t²+u²+v²)",
-                      tmin, tmax, dt, umin, umax, du, vmin, vmax, dv),
+        RealFunction (tmin, tmax, dt, umin, umax, du, vmin, vmax, dv),
         _phase (phase) {
-      
+
   _function = shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
-      
+
   declareParameter("Phase", 2.0);
   Initialize ();
 }
 
-ParametricFunction< 4, 3 >::return_type 
+ParametricFunction< 4, 3 >::return_type
 PolarR::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x) {
-  
-  double sinphi = sin (pi*x[0]), 
+
+  double sinphi = sin (pi*x[0]),
          cosphi = cos (pi*x[0]),
-         sintht = sin (pi*x[1]), 
+         sintht = sin (pi*x[1]),
          costht = cos (pi*x[1]),
-         sinpsi = sin (pi*x[2]), 
+         sinpsi = sin (pi*x[2]),
          cospsi = cos (pi*x[2]),
          Radius = sqrt (x[0]*x[0]+x[1]*x[1]+x[2]*x[2]);
 

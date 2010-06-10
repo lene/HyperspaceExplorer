@@ -49,14 +49,13 @@ class RealBase: public Function {
         /// the real, raw type of the function used to generate values
         typedef VecMath::Vector<4> raw_function_type (double, double, double);
 
-        RealBase() { }
+        RealBase(): Function() { }
         /// constructor
-        RealBase(const QString &name,
-                 double tmin, double tmax, double dt,
+        RealBase(double tmin, double tmax, double dt,
                  double umin, double umax, double du,
                  double vmin, double vmax, double dv,
                  ParameterMap _parms = ParameterMap()):
-                Function(name, _parms),
+                Function(_parms),
                 _tmin (tmin), _tmax (tmax), _dt (dt),
                 _umin (umin), _umax (umax), _du (du),
                 _vmin (vmin), _vmax (vmax), _dv (dv),
@@ -130,9 +129,8 @@ class RealBase: public Function {
  *  @author Lene Preuss <lene.preuss@gmail.com>                         */
 class RealFunction: public RealBase {
   public:
-    RealFunction(const QString &name);
-    RealFunction(const QString &name,
-                 double tmin, double tmax, double dt,
+    RealFunction();
+    RealFunction(double tmin, double tmax, double dt,
                  double umin, double umax, double du,
                  double vmin, double vmax, double dv,
                  ParameterMap _parms = ParameterMap());
@@ -165,7 +163,7 @@ class RealFunction: public RealBase {
         }
 
   protected:
-    
+
     VecMath::Vector<4> &normal(double t, double u, double v);
 
     void DrawPlane (unsigned);
@@ -179,19 +177,19 @@ class RealFunction: public RealBase {
     const VecMath::NestedVector< VecMath::Vector<4>, 3 > &Xtrans() const;
 
     vec3vec3D _Xscr;   ///< temporary storage for projected function values
-        
+
     std::tr1::shared_ptr< ParametricFunction<4, 3> > _function;
-    
+
   private:
-    
+
     void setDepthCueColors(double Wmax, double Wmin);
 
     void setBoundariesAndStepwidth(double tmin, double tmax, double dt,
                                    double umin, double umax, double du,
                                    double vmin, double vmax, double dv);
-                                   
+
     std::pair<double, double> findExtremesInW() const;
-    
+
     FunctionValueGrid<4, 3> _X;
     FunctionValueGrid<4, 3>::value_storage_type _Xtrans;
     VecMath::NestedVector< VecMath::Vector<3>, 3 > _Xscr_as_grid;
@@ -213,35 +211,36 @@ class RealFunction: public RealBase {
 class Hypersphere: public RealFunction {
 
   public:
-  
-    Hypersphere(): RealFunction("Hypersphere"), _radius(1.) { }
+
+    Hypersphere(): RealFunction(), _radius(1.) { }
     Hypersphere (double _tmin, double _tmax, double _dt,
                  double _umin, double _umax, double _du,
                  double _vmin, double _vmax, double _dv,
                  double _rad = 1);
     virtual ~Hypersphere() { }
     virtual void SetParameters(const ParameterMap &);
-  
+    virtual std::string getFunctionName() const { return "Hypersphere"; }
+
   protected:
-    
+
     class DefiningFunction: public ParametricFunction<4, 3> {
-      
+
       public:
-        
+
         DefiningFunction(Hypersphere *parent): _parent(parent) { }
         virtual return_type f(const argument_type &x);
-    
-      private:    
+
+      private:
 
         /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
         Hypersphere* _parent;
 
     };
-        
+
     virtual function_type normal;
 
     double _radius;         ///< Radius of the hypersphere
-    
+
 };
 
 namespace {
@@ -260,12 +259,14 @@ namespace {
 class Torus1: public RealFunction {
 
   public:
-    Torus1(): RealFunction("Ditorus"), _R(2.), _r(1.), _rho(0.5) { }
+    Torus1(): RealFunction(), _R(2.), _r(1.), _rho(0.5) { }
     Torus1 (double tmin, double tmax, double dt,
             double umin, double umax, double du,
             double vmin, double vmax, double dv,
             double R = 2, double r = 1, double rho = 0.5);
     virtual ~Torus1() { }
+
+    virtual std::string getFunctionName() const { return "Ditorus"; }
 
     virtual void SetParameters(const ParameterMap &parms) {
       //  parms["Radius"].value must be set!
@@ -283,15 +284,15 @@ class Torus1: public RealFunction {
     }
 
   protected:
-    
+
     class DefiningFunction: public ParametricFunction<4, 3> {
 
       public:
-      
+
         DefiningFunction(Torus1 *parent): _parent(parent) { }
         virtual return_type f(const argument_type &x);
-    
-      private:    
+
+      private:
 
         /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
         Torus1* _parent;
@@ -316,12 +317,15 @@ namespace {
  *  \ingroup RealGroup                                                    */
 class Torus2: public RealFunction {
     public:
-        Torus2(): RealFunction("Toraspherinder"), _R(1.), _r(0.5) { }
+        Torus2(): RealFunction(), _R(1.), _r(0.5) { }
         Torus2 (double tmin, double tmax, double dt,
                 double umin, double umax, double du,
                 double vmin, double vmax, double dv,
                 double R = 1, double r = 0.5);
         virtual ~Torus2 () { }
+
+        virtual std::string getFunctionName() const { return "Toraspherinder"; }
+
         virtual void SetParameters(const ParameterMap &parms) {
             //  parms["Radius"].value must be set!
 #if 1
@@ -341,19 +345,19 @@ class Torus2: public RealFunction {
   protected:
 
     class DefiningFunction: public ParametricFunction<4, 3> {
-      
+
       public:
-        
+
         DefiningFunction(Torus2 *parent): _parent(parent) { }
         virtual return_type f(const argument_type &x);
-    
-      private:    
+
+      private:
 
         /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
         Torus2* _parent;
 
     };
-   
+
     double _R;   ///< major radius of the torus
     double _r;   ///< minor radius of the torus
 };
@@ -373,21 +377,23 @@ namespace {
  *  \ingroup RealGroup                                                    */
 class Fr3r: public RealFunction {
     public:
-        Fr3r(): RealFunction("1/(r²+1)") { }
+        Fr3r(): RealFunction() { }
         Fr3r (double tmin, double tmax, double dt,
               double umin, double umax, double du,
               double vmin, double vmax, double dv);
         virtual ~Fr3r() { }
 
+        virtual std::string getFunctionName() const { return "1/(rï¿½+1)"; }
+
     protected:
     class DefiningFunction: public ParametricFunction<4, 3> {
-      
+
       public:
-        
+
         DefiningFunction(Fr3r *parent): _parent(parent) { }
         virtual return_type f(const argument_type &x);
-    
-      private:    
+
+      private:
 
         /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
         Fr3r* _parent;
@@ -397,7 +403,7 @@ class Fr3r: public RealFunction {
 
 namespace {
     Function *createFr3r() { return new Fr3r(); }
-    const bool registeredR4 = TheFunctionFactory::Instance().registerFunction("1/(r²+1)", createFr3r);
+    const bool registeredR4 = TheFunctionFactory::Instance().registerFunction("1/(rï¿½+1)", createFr3r);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -407,15 +413,17 @@ namespace {
 class GravitationPotential: public RealFunction {
 
   public:
-    
-    GravitationPotential(): RealFunction("Gravitation Potential"), _M(1.), _R(0.25) { }
-        
+
+    GravitationPotential(): RealFunction(), _M(1.), _R(0.25) { }
+
     GravitationPotential (double tmin, double tmax, double dt,
                           double umin, double umax, double du,
                           double vmin, double vmax, double dv,
                           double M = 1, double R = 0.25);
     virtual ~GravitationPotential () { }
-    
+
+    virtual std::string getFunctionName() const { return "Gravitation Potential"; }
+
     virtual void SetParameters(const ParameterMap &parms) {
 #if 1
             for (ParameterMap::const_iterator i = parms.begin();
@@ -430,15 +438,15 @@ class GravitationPotential: public RealFunction {
         }
 
     protected:
-      
+
     class DefiningFunction: public ParametricFunction<4, 3> {
-      
+
       public:
-        
+
         DefiningFunction(GravitationPotential *parent): _parent(parent) { }
         virtual return_type f(const argument_type &x);
-    
-      private:    
+
+      private:
 
         /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
         GravitationPotential* _parent;
@@ -460,21 +468,23 @@ namespace {
 /** \ingroup RealGroup                                                    */
 class Fr3rSin: public RealFunction {
     public:
-        Fr3rSin(): RealFunction("sin (r²)") { }
+        Fr3rSin(): RealFunction() { }
         Fr3rSin (double tmin, double tmax, double dt,
                  double umin, double umax, double du,
                  double vmin, double vmax, double dv);
         virtual ~Fr3rSin () { }
 
+        virtual std::string getFunctionName() const { return "sin (rï¿½)"; }
+
     protected:
     class DefiningFunction: public ParametricFunction<4, 3> {
-      
+
       public:
-        
+
         DefiningFunction(Fr3rSin *parent): _parent(parent) { }
         virtual return_type f(const argument_type &x);
-    
-      private:    
+
+      private:
 
         /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
         Fr3rSin* _parent;
@@ -484,7 +494,7 @@ class Fr3rSin: public RealFunction {
 
 namespace {
     Function *createFr3rSin() { return new Fr3rSin(); }
-    const bool registeredR6 = TheFunctionFactory::Instance().registerFunction("sin (r²)", createFr3rSin);
+    const bool registeredR6 = TheFunctionFactory::Instance().registerFunction("sin (rï¿½)", createFr3rSin);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -493,21 +503,23 @@ namespace {
 /** \ingroup RealGroup                                                    */
 class Fr3rExp: public RealFunction {
     public:
-        Fr3rExp(): RealFunction("exp (r²)") { }
+        Fr3rExp(): RealFunction() { }
         Fr3rExp (double tmin, double tmax, double dt,
                  double umin, double umax, double du,
                  double vmin, double vmax, double dv);
         virtual ~Fr3rExp () { }
 
+        virtual std::string getFunctionName() const { return "exp (rï¿½)"; }
+
     protected:
     class DefiningFunction: public ParametricFunction<4, 3> {
-      
+
       public:
-        
+
         DefiningFunction(Fr3rExp *parent): _parent(parent) { }
         virtual return_type f(const argument_type &x);
-    
-      private:    
+
+      private:
 
         /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
         Fr3rExp* _parent;
@@ -517,7 +529,7 @@ class Fr3rExp: public RealFunction {
 
 namespace {
     Function *createFr3rExp() { return new Fr3rExp(); }
-    const bool registeredR7 = TheFunctionFactory::Instance().registerFunction("exp (r²)", createFr3rExp);
+    const bool registeredR7 = TheFunctionFactory::Instance().registerFunction("exp (rï¿½)", createFr3rExp);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -533,13 +545,13 @@ class Polar: public RealFunction {
 
     protected:
     class DefiningFunction: public ParametricFunction<4, 3> {
-      
+
       public:
-        
+
         DefiningFunction(Polar *parent): _parent(parent) { }
         virtual return_type f(const argument_type &x);
-    
-      private:    
+
+      private:
 
         /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
         Polar* _parent;
@@ -553,12 +565,14 @@ class Polar: public RealFunction {
 /** \ingroup PolarGroup                                                    */
 class PolarSin: public RealFunction {
     public:
-        PolarSin(): RealFunction("Polar: r = 1/2+sin (Phase*pi*t*u*v)"), _phase(2.) { }
+        PolarSin(): RealFunction(), _phase(2.) { }
         PolarSin (double tmin, double tmax, double dt,
                   double umin, double umax, double du,
                   double vmin, double vmax, double dv,
                   double phase = 2);
         virtual ~PolarSin () { }
+
+        virtual std::string getFunctionName() const { return "Polar: r = 1/2+sin (Phase*pi*t*u*v)"; }
 
         virtual void SetParameters(const ParameterMap &parms) {
 #       if 1
@@ -573,13 +587,13 @@ class PolarSin: public RealFunction {
 
     protected:
     class DefiningFunction: public ParametricFunction<4, 3> {
-      
+
       public:
-        
+
         DefiningFunction(PolarSin *parent): _parent(parent) { }
         virtual return_type f(const argument_type &x);
-    
-      private:    
+
+      private:
 
         /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
         PolarSin* _parent;
@@ -600,21 +614,23 @@ namespace {
 /** \ingroup PolarGroup                                                    */
 class PolarSin2: public RealFunction {
     public:
-        PolarSin2(): RealFunction("Polar: r = sin (pi/3.*(t+u+v))") { }
+        PolarSin2(): RealFunction() { }
         PolarSin2 (double tmin, double tmax, double dt,
                    double umin, double umax, double du,
                    double vmin, double vmax, double dv);
         virtual ~PolarSin2 () { }
 
+        virtual std::string getFunctionName() const { return "Polar: r = sin (pi/3.*(t+u+v))"; }
+
     protected:
     class DefiningFunction: public ParametricFunction<4, 3> {
-      
+
       public:
-        
+
         DefiningFunction(PolarSin2 *parent): _parent(parent) { }
         virtual return_type f(const argument_type &x);
-    
-      private:    
+
+      private:
 
         /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
         PolarSin2* _parent;
@@ -633,12 +649,14 @@ namespace {
 /** \ingroup PolarGroup                                                    */
 class PolarR: public RealFunction {
     public:
-        PolarR(): RealFunction("Polar: r = sqrt (t²+u²+v²)"), _phase(2.) { }
+        PolarR(): RealFunction(), _phase(2.) { }
         PolarR (double _tmin, double _tmax, double _dt,
                 double _umin, double _umax, double _du,
                 double _vmin, double _vmax, double _dv,
                 double _phase = 2);
         virtual ~PolarR () { }
+
+        virtual std::string getFunctionName() const { return "Polar: r = sqrt (tï¿½+uï¿½+vï¿½)"; }
 
         virtual void SetParameters(const ParameterMap &parms) {
 #       if 1
@@ -653,13 +671,13 @@ class PolarR: public RealFunction {
 
     protected:
     class DefiningFunction: public ParametricFunction<4, 3> {
-      
+
       public:
-        
+
         DefiningFunction(PolarR *parent): _parent(parent) { }
         virtual return_type f(const argument_type &x);
-    
-      private:    
+
+      private:
 
         /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
         PolarR* _parent;
@@ -671,7 +689,7 @@ class PolarR: public RealFunction {
 
 namespace {
     Function *createPolarR() { return new PolarR(); }
-    const bool registeredR10 = TheFunctionFactory::Instance().registerFunction("Polar: r = sqrt (t²+u²+v²)", createPolarR);
+    const bool registeredR10 = TheFunctionFactory::Instance().registerFunction("Polar: r = sqrt (tï¿½+uï¿½+vï¿½)", createPolarR);
 }
 
 #endif

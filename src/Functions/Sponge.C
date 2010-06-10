@@ -116,7 +116,7 @@ using std::endl;
 AltSponge::AltSponge (unsigned _level, unsigned _distance, double _rad,
                       VecMath::Vector<4> _center):
         Level (_level), distance(_distance), rad(_rad), center(_center) {
-    setfunctionName("4-dimensional Menger Sponge");
+//    setfunctionName("4-dimensional Menger Sponge");
 //    clearParameterNames();
     declareParameter("Level", (unsigned)1, _level);
     declareParameter("Distance", (unsigned)2, _distance);
@@ -159,7 +159,7 @@ unsigned long AltSponge::MemRequired (unsigned distance) {
  *
  *  If the \p level of the sponge is 1, the sub-sponges are hypercubes. Otherwise,
  *  they are Hypersponges with a \p level reduced by 1.
- * 
+ *
  * \todo merge joined surfaces into one. not trivial, because the surfaces have
  *       holes.
  */
@@ -167,32 +167,32 @@ unsigned long AltSponge::MemRequired (unsigned distance) {
 void AltSponge::Initialize(void) {
 
   clock_t start_time = clock ();                     //  record start time
-  
+
   distance = abs(distance);
   if (distance > 3) distance = 3;     //  dunno if this is wise
-    
+
     unsigned long SpongePerLevel = ((distance == 0)? 81:
     (distance == 1)? 72:
     (distance == 2)? 48:
     16);
   unsigned TotalCubes = pow(SpongePerLevel, Level);
-  
+
   for (unsigned current_level = 0; current_level <= Level; current_level++) {
-    
+
     SingletonLog::Instance() << "Level: " << current_level << "/" << Level << " -- total cubes: " << TotalCubes << "\n";
-    
+
     if (current_level < 1) {
-      
+
       X.resize(16);
       Surface.resize(24);
-      
+
       Hypercube::Initialize();
-      
+
     } else {
 
       vec4vec1D Xold(X);
       surface_vec_type Sold(Surface);
-      
+
       for (unsigned i = 0; i < Xold.size(); ++i) Xold[i] *= 1./3.;
 
       try {
@@ -203,7 +203,7 @@ void AltSponge::Initialize(void) {
         Surface.resize(Sold.size());
         return;
       }
-      
+
       unsigned indexX = 0, indexS = 0;
       for (int x = -1; x <= 1; x++) {
         for (int y = -1; y <= 1; y++) {
@@ -211,7 +211,7 @@ void AltSponge::Initialize(void) {
             for (int w = -1; w <= 1; w++) {
               if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
                 Vector<4> NewCen = Vector<4>((double)x, (double)y, (double)z, (double)w)*2./3.+center;
-                           
+
                 for (unsigned i = 0; i < Xold.size(); ++i) {
                   X[indexX+i] = Xold[i]+NewCen;
                 }
@@ -234,12 +234,12 @@ void AltSponge::Initialize(void) {
         removeDuplicateSurfaces();
       }
     }
-    
+
   }
-  
+
   Object::Initialize();
   SingletonLog::Instance() << "time for initializing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
-  
+
 }
 
 #else
@@ -247,48 +247,48 @@ void AltSponge::Initialize(void) {
 void AltSponge::Initialize(void) {
 
   clock_t start_time = clock ();                     //  record start time
-  
+
   distance = abs(distance);
   if (distance > 3) distance = 3;     //  dunno if this is wise
-    
+
     unsigned long SpongePerLevel = ((distance == 0)? 81:
                                     (distance == 1)? 72:
                                     (distance == 2)? 48:
                                     16);
   unsigned TotalCubes = pow(SpongePerLevel, Level);
-  
+
   for (unsigned current_level = 0; current_level <= Level; current_level++) {
-    
+
     SingletonLog::Instance() << "Level: " << current_level << "/" << Level << " -- total cubes: " << TotalCubes << "\n";
-    
+
     if (current_level < 1) {
-      
+
       X.resize(16);
       Surface.resize(24);
-      
+
       Hypercube::Initialize();
-      
+
     } else {
-      
+
       for (unsigned i = 0; i < X.size(); ++i) cerr << "X[" << i << "]" << X[i]<< endl;
 
       surface_vec_type Sold(Surface);
-      
+
       for (double x = -1; x <= 1; x++) {
         for (double y = -1; y <= 1; y++) {
           for (double z = -1; z <= 1; z++) {
             for (double w = -1; w <= 1; w++) {
-              
+
               if (fabs (x)+fabs (y)+fabs (z)+fabs (w) > distance) {
 
                 Vector<4> NewCen = Vector<4> (x, y, z, w)*2./3. + center;
 
                 for (unsigned i = 0; i < Sold.size(); ++i) {
-                  
+
                   Vector<4> new_vertices[4];
-                  
+
                   for (unsigned k = 0; k < 4; ++k) {
-                    
+
                     //  create new vertex and store it if necessary
                     Vector<4> xold = *(Sold[i][k]), xnew = xold/3.+NewCen;
 //                    cerr << "xold: " << xold << ", xnew: " << xnew << endl;
@@ -304,7 +304,7 @@ void AltSponge::Initialize(void) {
                   //  now store pointer to new vertex in surface array
                   SurfaceType<4,4> new_surface(X, new_vertices[0], new_vertices[1], new_vertices[2], new_vertices[3]);
                   Surface.push_back(new_surface);
-                  
+
                   //  and remove the old surface
                   // ...
                   surface_vec_type::iterator found = std::find(Surface.begin(), Surface.end(), Sold[i]);
@@ -313,29 +313,29 @@ void AltSponge::Initialize(void) {
                     Surface.erase(std::find(Surface.begin(), Surface.end(), Sold[i]));
                   }
                 }
-                
+
               }
-              
+
             }
           }
         }
       }
 //      for (unsigned i = 0; i < X.size(); ++i) cerr << "X[" << i << "]" << X[i]<< endl;
-      
+
       //  remove duplicate surfaces, except when we have dust
       if (distance < 3) {
 //        removeDuplicateSurfaces();
       }
     }
-    
+
   }
-  
+
   Object::Initialize();
 
 //  std::for_each(Surface.begin(), Surface.end(), std::mem_fun_ref(&SurfaceType<4, 4>::print));
-  
+
   SingletonLog::Instance() << "time for initializing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
-  
+
 }
 #endif
 
@@ -361,7 +361,7 @@ void AltSponge::reduceVertices() {
 
     SingletonLog::Instance() << "vertices before reduction: " << X.size() << "\n";
     clock_t start_time = clock ();
-    
+
 #	ifdef CONCURRENT
     QFuture<void> future;
 #	endif
@@ -465,7 +465,7 @@ void AltSponge::removeDuplicateSurfaces() {
 Sponge::Sponge (unsigned _level, unsigned _distance, double _rad,
                 VecMath::Vector<4> _center):
         Level (_level), distance(_distance), rad(_rad), center(_center) {
-    setfunctionName("4-dimensional Menger Sponge");
+//    setfunctionName("4-dimensional Menger Sponge");
 //    clearParameterNames();
     declareParameter("Level", (unsigned)1, _level);
     declareParameter("Distance", (unsigned)2, _distance);

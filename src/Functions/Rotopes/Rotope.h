@@ -34,6 +34,8 @@ class Rotope : public Object {
 
         ~Rotope();
 
+        virtual std::string getFunctionName() const;
+
         /// Execute the desired extrude actions and declare FunctionParameter s
         virtual void Initialize();
 

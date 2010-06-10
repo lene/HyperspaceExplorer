@@ -19,7 +19,7 @@
 void FunctionSlotHelper::slot() {
     view->setF(functionFactory->createFunction(view));
 
-    view->Menu()->updateFunctionMenu(view->F()->getFunctionName());
+    view->Menu()->updateFunctionMenu(view->F()->getFunctionName().c_str());
     view->AssignValues(view->F());
 
     view->Redraw();
@@ -29,7 +29,7 @@ void FunctionSlotHelper::slot() {
 void SurfaceSlotHelper::slot() {
     view->setF(surfaceFactory->createSurface(view));
 
-    view->Menu()->updateFunctionMenu(view->F()->getFunctionName());
+    view->Menu()->updateFunctionMenu(view->F()->getFunctionName().c_str());
     view->AssignValues(view->F());
     view->Redraw();
 }

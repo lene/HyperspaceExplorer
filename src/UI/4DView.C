@@ -643,9 +643,9 @@ void C4DView::UpdateStatus (QString status) {
     }
 
     Globals::Instance().getMainWindow()->statusBar()->showMessage(
-                      F()->getFunctionName()+status);
+                      F()->getFunctionName().c_str()+status);
 
-    setWindowTitle(F()->getFunctionName()+status);
+    setWindowTitle(F()->getFunctionName().c_str()+status);
 }
 
 /// Called whenever an object or the parameters have changed
@@ -654,8 +654,8 @@ void C4DView::UpdateStatus (QString status) {
  *  @param F the Function object for which the ValuesDialog is changed        */
 void C4DView::AssignValues (const std::tr1::shared_ptr<Function> &F) {
 
-    if (!F->getFunctionName().isEmpty()) {
-        setWindowTitle(F->getFunctionName());
+    if (!F->getFunctionName().empty()) {
+        setWindowTitle(F->getFunctionName().c_str());
     }
 
     Values()->setFunction(F);

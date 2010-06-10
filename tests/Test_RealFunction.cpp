@@ -15,9 +15,7 @@ const QString Test_RealFunction::TEST_FUNCTION_NAME = "FunctionTestImplementatio
 void testFunction(RealFunction &f);
 
 Test_RealFunction::RealFunctionTestImplementation::RealFunctionTestImplementation():
-    RealFunction(
-                 Test_RealFunction::TEST_FUNCTION_NAME,
-                 X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1),
+    RealFunction(X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1),
                  X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1),
                  X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1)) {
     _function = std::tr1::shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction());
@@ -29,7 +27,7 @@ Vector<4> &Test_RealFunction::RealFunctionTestImplementation::f (double tt, doub
   return _F;
 }
 
-ParametricFunction< 4, 3 >::return_type 
+ParametricFunction< 4, 3 >::return_type
 Test_RealFunction::RealFunctionTestImplementation::DefiningFunction::f(
   const ParametricFunction< 4, 3 >::argument_type& x) {
   return VecMath::Vector<4>(x[0], x[1], x[2], CONSTANT_FUNCTION_VALUE);
@@ -61,7 +59,7 @@ void Test_RealFunction::meetsFormalRequirements() {
     QVERIFY(_function->vertices()[0].size() >= GRID_SIZE);
     QVERIFY(_function->vertices()[0][0].size() >= GRID_SIZE);
 
-    QVERIFY(_function->getFunctionName() == Test_RealFunction::TEST_FUNCTION_NAME);
+    QVERIFY(_function->getFunctionName() == Test_RealFunction::TEST_FUNCTION_NAME.toStdString());
 }
 
 void Test_RealFunction::boundsAndSteps() {
@@ -201,11 +199,6 @@ void Test_RealFunction::fr3rSin() {
 
 void Test_RealFunction::fr3rExp() {
   Fr3rExp f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
-  testFunction(f);
-}
-
-void Test_RealFunction::polar() {
-  Polar f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
   testFunction(f);
 }
 

@@ -27,6 +27,8 @@ class Test_RealFunction: public QObject {
     public:
         RealFunctionTestImplementation();
 
+        virtual std::string getFunctionName() const { return TEST_FUNCTION_NAME.toStdString(); }
+
         VecMath::Vector<4> function_value(double tt, double uu, double vv) { return f(tt,uu,vv); }
         VecMath::NestedVector<VecMath::Vector<4>, 3> vertices() { return X(); }
         VecMath::NestedVector<VecMath::Vector<4>, 3> transformed_vertices() { return Xtrans(); }
@@ -38,11 +40,11 @@ class Test_RealFunction: public QObject {
 
     protected:
         class DefiningFunction: public ParametricFunction<4, 3> {
-          
+
           public:
-            
+
             virtual return_type f(const argument_type &x);
-        };    
+        };
 
         virtual function_type f;
     };
@@ -62,18 +64,17 @@ class Test_RealFunction: public QObject {
         void projectWithDepthCue();
 
         void draw();
-        
+
         void torus1();
         void torus2();
         void fr3r();
         void gravitationPotential();
         void fr3rSin();
         void fr3rExp();
-        void polar();
         void polarSin();
         void polarSin2();
         void polarR();
-        
+
     private:
         RealFunctionTestImplementation *_function;
 };

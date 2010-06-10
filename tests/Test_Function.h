@@ -14,9 +14,11 @@ class Test_Function: public QObject {
   public:
     FunctionTestImplementation();
 
+    virtual std::string getFunctionName() const { return TEST_FUNCTION_NAME; }
+
     VecMath::Vector<4> f() { return VecMath::Vector<4>(0.,0.,0.,_doubleParm); }
     void SetParameters(const ParameterMap &parms);
-    
+
     virtual void Transform (const VecMath::Rotation<4> &R,
                             const VecMath::Vector<4> &T);
     virtual void Project (double, double, bool);
@@ -32,8 +34,8 @@ class Test_Function: public QObject {
     unsigned _unsignedParm;
     int _intParm;
     std::string _stringParm;
-    
-    
+
+
   protected:
     virtual VecMath::Vector<4> &operator () (double x, double y, double z);
     virtual void Initialize (void);
@@ -44,15 +46,15 @@ class Test_Function: public QObject {
   public:
     ParameterTestImplementation();
   };
-  
+
   class RotationParameterTestImplementation: public FunctionTestImplementation {
     public:
       RotationParameterTestImplementation();
   };
-  
+
 public:
   ~Test_Function();
-    
+
 private slots:
 
   void initTestCase();
@@ -71,8 +73,8 @@ private slots:
 
 private:
   Function *_function;
-  
-  const static QString TEST_FUNCTION_NAME;
+
+  const static std::string TEST_FUNCTION_NAME;
   const static unsigned TEST_FUNCTION_DIMENSIONS = 3;
   const static unsigned TEST_FUNCTION_NUM_PARAMETERS = 4;
 

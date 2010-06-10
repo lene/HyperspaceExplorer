@@ -30,9 +30,8 @@
 class ComplexFunction: public Surface {
 public:
         /// Minimal constructor, sets the function name
-        ComplexFunction (const QString &name): Surface(name) { }
-        ComplexFunction (const QString &name,
-                         double _umin, double _umax, double _du,
+        ComplexFunction (): Surface() { }
+        ComplexFunction (double _umin, double _umax, double _du,
                          double _vmin, double _vmax, double _dv);
         virtual ~ComplexFunction ();
         /// Set up to 4 parameters
@@ -47,17 +46,17 @@ public:
 protected:
 
   virtual function_type g = 0;    ///< The actual function from C to C
-  
+
   const static QString sup2;
   const static QString sup3;
-      
+
 private:
-  
+
   struct DefiningFunction: public ParametricFunction<4, 2> {
-    
+
     DefiningFunction(ComplexFunction *parent): _complex_function(parent) { }
     virtual return_type f(const argument_type &x);
-    
+
   private:
 
     /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
@@ -70,10 +69,12 @@ private:
 /** \ingroup ComplexGroup                                                    */
 class z2: public ComplexFunction {
     public:
-        z2 (): ComplexFunction("z2") { }
+        z2 (): ComplexFunction() { }
         z2 (double _umin, double _umax, double _du,
             double _vmin, double _vmax, double _dv);
         virtual ~z2() { }
+
+        virtual std::string getFunctionName() const { return "z2"; } //"z"+ComplexFunction::sup2,
 
     protected:
 	virtual function_type g;
@@ -88,10 +89,12 @@ namespace {
 /** \ingroup ComplexGroup                                                    */
 class z3: public ComplexFunction {
     public:
-        z3 (): ComplexFunction("z3") { }
+        z3 (): ComplexFunction() { }
         z3 (double _umin, double _umax, double _du,
             double _vmin, double _vmax, double _dv);
         virtual ~z3() { }
+
+        virtual std::string getFunctionName() const { return "z3"; } //"z"+ComplexFunction::sup3,
 
     protected:
         virtual function_type g;
@@ -106,11 +109,14 @@ namespace {
 /** \ingroup ComplexGroup                                                    */
 class zA: public ComplexFunction {
     public:
-        zA (): ComplexFunction("zA"), alpha(2) { }
+        zA (): ComplexFunction(), alpha(2) { }
         zA (double _umin, double _umax, double _du,
             double _vmin, double _vmax, double _dv,
             double _alpha = 2);
         virtual ~zA () { }
+
+        virtual std::string getFunctionName() const { return "zA"; }
+
         /// \see Function::SetParameters()
         virtual void SetParameters(const ParameterMap &parms) {
 #       if 1
@@ -139,11 +145,14 @@ namespace {
 /** \ingroup ComplexGroup                                                    */
 class ez: public ComplexFunction {
     public:
-        ez (): ComplexFunction("e^a*z"), _alpha(2) { }
+        ez (): ComplexFunction(), _alpha(2) { }
         ez (double _umin, double _umax, double _du,
             double _vmin, double _vmax, double _dv,
             double alpha = 2);
         virtual ~ez() { }
+
+        virtual std::string getFunctionName() const { return "e^a*z"; }
+
         virtual void SetParameters(const ParameterMap &parms) {
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
@@ -171,11 +180,14 @@ namespace {
 /** \ingroup ComplexGroup                                                    */
 class emz2: public ComplexFunction {
     public:
-        emz2 (): ComplexFunction("emz2"), _alpha(1) { }
+        emz2 (): ComplexFunction(), _alpha(1) { }
         emz2 (double _umin, double _umax, double _du,
               double _vmin, double _vmax, double _dv,
               double alpha = 1);
         virtual ~emz2() { }
+
+        virtual std::string getFunctionName() const { return "emz2"; } // "e^-a*z"+ComplexFunction::sup2,
+
         virtual void SetParameters(const ParameterMap &parms) {
 #       if 1
             for (ParameterMap::const_iterator i = parms.begin();
@@ -203,10 +215,12 @@ namespace {
 /** \ingroup ComplexGroup                                                    */
 class zm1: public ComplexFunction {
     public:
-        zm1 (): ComplexFunction("zm1") { }
+        zm1 (): ComplexFunction() { }
         zm1 (double _umin, double _umax, double _du,
              double _vmin, double _vmax, double _dv);
         virtual ~zm1 () { }
+
+        virtual std::string getFunctionName() const { return "zm1"; }
 
     protected:
         virtual function_type g;
@@ -221,10 +235,12 @@ namespace {
 /** \ingroup ComplexGroup                                                    */
 class zm2: public ComplexFunction {
     public:
-        zm2 (): ComplexFunction("zm2") { }
+        zm2 (): ComplexFunction() { }
         zm2 (double _umin, double _umax, double _du,
              double _vmin, double _vmax, double _dv);
         virtual ~zm2 () { }
+
+        virtual std::string getFunctionName() const { return "zm2"; } // "1/z"+ComplexFunction::sup2,
 
     protected:
         virtual function_type g;
@@ -239,10 +255,12 @@ namespace {
 /** \ingroup ComplexGroup                                                    */
 class sqrtz: public ComplexFunction {
     public:
-        sqrtz (): ComplexFunction("sqrtz") { }
+        sqrtz (): ComplexFunction() { }
         sqrtz (double _umin, double _umax, double _du,
                double _vmin, double _vmax, double _dv);
         virtual ~sqrtz () { }
+
+        virtual std::string getFunctionName() const { return "sqrtz"; }
 
     protected:
         virtual function_type g;
@@ -257,10 +275,12 @@ namespace {
 /** \ingroup ComplexGroup                                                    */
 class lnz: public ComplexFunction {
     public:
-        lnz (): ComplexFunction("lnz") { }
+        lnz (): ComplexFunction() { }
         lnz (double _umin, double _umax, double _du,
              double _vmin, double _vmax, double _dv);
         virtual ~lnz () { }
+
+        virtual std::string getFunctionName() const { return "lnz"; }
 
     protected:
         virtual function_type g;
@@ -275,10 +295,12 @@ namespace {
 /** \ingroup ComplexGroup                                                    */
 class sinz: public ComplexFunction {
     public:
-        sinz (): ComplexFunction("sinz") { }
+        sinz (): ComplexFunction() { }
         sinz (double _umin, double _umax, double _du,
               double _vmin, double _vmax, double _dv);
         virtual ~sinz () { }
+
+        virtual std::string getFunctionName() const { return "sinz"; }
 
     protected:
         virtual function_type g;
@@ -293,10 +315,12 @@ namespace {
 /** \ingroup ComplexGroup                                                    */
 class cosz: public ComplexFunction {
     public:
-        cosz (): ComplexFunction("cosz") { }
+        cosz (): ComplexFunction() { }
         cosz (double _umin, double _umax, double _du,
               double _vmin, double _vmax, double _dv);
         virtual ~cosz () { }
+
+        virtual std::string getFunctionName() const { return "cosz"; }
 
     protected:
         virtual function_type g;
@@ -311,10 +335,12 @@ namespace {
 /** \ingroup ComplexGroup                                                    */
 class sinhz: public ComplexFunction {
     public:
-        sinhz (): ComplexFunction("sinhz") { }
+        sinhz (): ComplexFunction() { }
         sinhz (double _umin, double _umax, double _du,
                double _vmin, double _vmax, double _dv);
         virtual ~sinhz () { }
+
+        virtual std::string getFunctionName() const { return "sinhz"; }
 
     protected:
         virtual function_type g;
@@ -329,10 +355,12 @@ namespace {
 /** \ingroup ComplexGroup                                                    */
 class coshz: public ComplexFunction {
     public:
-        coshz (): ComplexFunction("coshz") { }
+        coshz (): ComplexFunction() { }
         coshz (double _umin, double _umax, double _du,
                double _vmin, double _vmax, double _dv);
         virtual ~coshz () { }
+
+        virtual std::string getFunctionName() const { return "coshz"; }
 
     protected:
         virtual function_type g;
@@ -347,10 +375,12 @@ namespace {
 /** \ingroup ComplexGroup                                                    */
 class tanz: public ComplexFunction {
     public:
-        tanz (): ComplexFunction("tanz") { }
+        tanz (): ComplexFunction() { }
         tanz (double _umin, double _umax, double _du,
               double _vmin, double _vmax, double _dv);
         virtual ~tanz () { }
+
+        virtual std::string getFunctionName() const { return "tanz"; }
 
     protected:
         virtual function_type g;

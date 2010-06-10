@@ -18,10 +18,10 @@
 using std::cerr;
 using std::endl;
 
-const QString Test_Function::TEST_FUNCTION_NAME = "FunctionTestImplementation";
+const std::string Test_Function::TEST_FUNCTION_NAME = "FunctionTestImplementation";
 
-Test_Function::FunctionTestImplementation::FunctionTestImplementation(): 
-    Function(Test_Function::TEST_FUNCTION_NAME) {
+Test_Function::FunctionTestImplementation::FunctionTestImplementation():
+    Function() {
   declareParameter("double parameter", 1.0);
   declareParameter("unsigned parameter", (unsigned)1);
   declareParameter("int parameter", -1);
@@ -75,10 +75,10 @@ void Test_Function::cleanupTestCase() { }
 
 void Test_Function::instantiate() {
     _function = new FunctionTestImplementation();
-    QVERIFY2(_function->getDefinitionSpaceDimensions() == TEST_FUNCTION_DIMENSIONS, 
+    QVERIFY2(_function->getDefinitionSpaceDimensions() == TEST_FUNCTION_DIMENSIONS,
              QString::number(_function->getDefinitionSpaceDimensions()).toAscii());
-    QVERIFY2(_function->getFunctionName() == TEST_FUNCTION_NAME, 
-             _function->getFunctionName().toAscii());
+    QVERIFY2(_function->getFunctionName() == TEST_FUNCTION_NAME,
+             _function->getFunctionName().c_str());
 }
 
 void Test_Function::functionValue() {
@@ -92,39 +92,39 @@ void Test_Function::functionValue() {
     QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.toString()).c_str());
   }
     function.SetParameters(newParameters);
-    
+
     VecMath::Vector<4> f = function.f();
-    
+
     QVERIFY2((f - VecMath::Vector<4>(0., 0., 0., sqrt(2.))).sqnorm() < 1e-8, f.toString().c_str());
 }
 
 void Test_Function::parameters() {
   QVERIFY2(_function->getNumParameters() == TEST_FUNCTION_NUM_PARAMETERS,
            QString::number(_function->getNumParameters()).toAscii());
-           
+
   ParameterMap parameters = _function->getParameters();
 
   QVERIFY(parameters.find("double parameter") != parameters.end());
   QVERIFY(parameters.find("unsigned parameter") != parameters.end());
   QVERIFY(parameters.find("int parameter") != parameters.end());
   QVERIFY(parameters.find("string parameter") != parameters.end());
-  
+
   QVERIFY(parameters.find("double parameter")->second->value()->toDouble() == 1.0);
   FunctionParameter::parameter_ptr_type parameter = _function->getParameter("double parameter");
   QVERIFY(parameter->value()->toDouble() == 1.0);
-  
+
   QVERIFY(parameters.find("unsigned parameter")->second->value()->toUnsigned() == 1);
   parameter = _function->getParameter("unsigned parameter");
   QVERIFY(parameter->value()->toUnsigned() == 1);
 
   QVERIFY(parameters.find("int parameter")->second->value()->toInt() == -1);
   parameter = _function->getParameter("int parameter");
-  QVERIFY(parameter->value()->toInt() == -1);  
+  QVERIFY(parameter->value()->toInt() == -1);
 
   QVERIFY(parameters.find("string parameter")->second->value()->toString() == "a string");
   parameter = _function->getParameter("string parameter");
   QVERIFY(parameter->value()->toString() == "a string");
-  
+
 }
 
 void Test_Function::parameter_get() {
@@ -132,7 +132,7 @@ void Test_Function::parameter_get() {
   QVERIFY(_function->getParameters().getValue("unsigned parameter")->toUnsigned() == 1);
   QVERIFY(_function->getParameters().getValue("int parameter")->toInt() == -1);
   QVERIFY(_function->getParameters().getValue("string parameter")->toString() == "a string");
-  
+
   RotationParameterTestImplementation f;
   QVERIFY(f.getParameters().getValue("rotation parameter")->toRotation5()[0] == 0.);
 }
@@ -146,11 +146,11 @@ void Test_Function::parameter_set() {
   QVERIFY(_function->getParameters().getValue("int parameter")->toInt() == -4);
   _function->getParameters().set("string parameter", std::string("yet another string"));
   QVERIFY(_function->getParameters().getValue("string parameter")->toString() == "yet another string");
-  
+
   RotationParameterTestImplementation f;
   f.getParameters().set("rotation parameter", VecMath::Rotation<5>(0., 1., 2., 3., 4., 5., 6., 7., 8., 9.));
   VecMath::Rotation<5> rot = f.getParameters().getValue("rotation parameter")->toRotation5();
-  
+
   for (unsigned i = 0; i < VecMath::NumAxes<5>::num; ++i) {
     QVERIFY(rot[i] == i);
   }
@@ -168,7 +168,7 @@ void Test_Function::parameterWithoutCast() {
 }
 
 void Test_Function::setParameters() {
-  
+
   ParameterMap newParameters = _function->getParameters();
   std::string parameterName = "double parameter";
   ParameterMap::iterator it = newParameters.find(parameterName);
@@ -196,7 +196,7 @@ void Test_Function::setParameters() {
     QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.toString()).c_str());
   }
   QVERIFY(newParameters.find("int parameter")->second->value()->toInt() == -2);
-  
+
   parameterName = "string parameter";
   it = newParameters.find(parameterName);
   if (it != newParameters.end()) {
@@ -205,7 +205,7 @@ void Test_Function::setParameters() {
     QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.toString()).c_str());
   }
   QVERIFY(newParameters.find("string parameter")->second->value()->toString() == "another string");
-  
+
 }
 
 void Test_Function::accessedNonexistentParameter() {
@@ -214,7 +214,7 @@ void Test_Function::accessedNonexistentParameter() {
   } catch (ParameterMap::NonexistentParameterAccessed &e) {
     return;
   }
-  
+
   QFAIL("ParameterMap::NonexistentParameterAccessed exception expected");
 }
 
@@ -222,9 +222,9 @@ void Test_Function::rotationAsParameter() {
   RotationParameterTestImplementation f;
   FunctionParameter::parameter_ptr_type parameter = f.getParameter("rotation parameter");
   VecMath::Rotation<5> rot = parameter->value()->toRotation5();
-  
+
   QVERIFY2(rot == VecMath::Rotation<5>(), rot.toString().c_str());
-  
+
   ParameterMap newParameters = f.getParameters();
   std::string parameterName = "rotation parameter";
   ParameterMap::iterator it = newParameters.find(parameterName);
@@ -235,14 +235,14 @@ void Test_Function::rotationAsParameter() {
     QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.toString()).c_str());
   }
   f.SetParameters(newParameters);
-  
+
   parameter = f.getParameter("rotation parameter");
   rot = parameter->toRotation5();
-  
+
   for (unsigned i = 0; i < VecMath::NumAxes<5>::num; ++i) {
     QVERIFY(rot[i] == i);
   }
-  
+
   std::string parameterAsString = f.getParameters().toString();
   for (char c = '0'; c <= '9'; ++c) {
     QVERIFY2(parameterAsString.find(c) != std::string::npos, parameterAsString.c_str());

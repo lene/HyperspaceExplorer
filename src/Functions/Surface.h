@@ -42,7 +42,7 @@ class SurfaceBase: public Function {
         /// the real, raw type of the function used to generate values
         typedef VecMath::Vector<4> raw_function_type (double, double);
 
-        SurfaceBase() { }
+        SurfaceBase(): Function() { }
         /** \param name a name for the Surface
          *  \param _tmin lower bound in first parameter
          *  \param _tmax upper bound in first parameter
@@ -51,11 +51,10 @@ class SurfaceBase: public Function {
          *  \param _umax upper bound in second parameter
          *  \param _du stepsize in second parameter
          *  \param _parms parameters to the Surface                           */
-        SurfaceBase(const QString &name,
-                    double _tmin, double _tmax, double _dt,
+        SurfaceBase(double _tmin, double _tmax, double _dt,
                     double _umin, double _umax, double _du,
                     ParameterMap _parms = ParameterMap()):
-                Function(name, _parms),
+                Function(_parms),
                 tmin (_tmin), tmax (_tmax), dt (_dt),
                 umin (_umin), umax (_umax), du (_du),
                 tsteps (unsigned ((tmax-tmin)/dt+1)),
@@ -102,14 +101,12 @@ class SurfaceBase: public Function {
 
 /// Parametrized surface in four-space defined by \f$ f: R^2 \rightarrow R^4 \f$
 /** \ingroup FunctionGroup
- *  @author Lene Preuss <lene.preuss@gmail.com>                         
+ *  @author Lene Preuss <lene.preuss@gmail.com>
  */
 class Surface: public SurfaceBase {
     public:
         Surface();
-        Surface (const QString &name);
-        Surface (const QString &name,
-                 double _umin, double _umax, double _du,
+        Surface (double _umin, double _umax, double _du,
                  double _vmin, double _vmax, double _dv,
                  ParameterMap _parms = ParameterMap());
         virtual ~Surface() { }
@@ -155,16 +152,16 @@ class Surface: public SurfaceBase {
         void DrawStrip (unsigned);
 
         vec3vec2D _Xscr;    ///< temporary storage for the function values on the grid
-        
+
     std::tr1::shared_ptr< ParametricFunction<4, 2> > _function;
-        
+
   private:
-    
+
     void setBoundariesAndStepwidth(double _tmin, double _tmax, double _dt,
                                    double _umin, double _umax, double _du);
 
     std::pair<double, double> findExtremesInW() const;
-        
+
     FunctionValueGrid<4, 2> _X;
     FunctionValueGrid<4, 2>::value_storage_type _Xtrans;
 };
@@ -179,17 +176,19 @@ class Surface: public SurfaceBase {
  *  \ingroup SurfaceGroup                                                    */
 class Surface1: public Surface {
 public:
-    Surface1(): Surface("Surface1") { }
+    Surface1(): Surface() { }
     Surface1 (double _umin, double _umax, double _du,
               double _vmin, double _vmax, double _dv);
     virtual ~Surface1() { }
-    
+
+    virtual std::string getFunctionName() const { return "Surface1"; }
+
 private:
 
   struct DefiningFunction: public ParametricFunction<4, 2> {
     virtual return_type f(const argument_type &x);
   };
-        
+
 };
 
 namespace {
@@ -211,10 +210,12 @@ namespace {
  *  \ingroup SurfaceGroup                                                    */
 class Horizon: public Surface {
 public:
-    Horizon(): Surface("Horizon") { }
+    Horizon(): Surface() { }
     Horizon (double _umin, double _umax, double _du,
              double _vmin, double _vmax, double _dv);
     virtual ~Horizon () { }
+
+    virtual std::string getFunctionName() const { return "Horizon"; }
 
 private:
 
@@ -234,10 +235,12 @@ namespace {
 /** \ingroup SurfaceGroup                                                    */
 class Torus3: public Surface {
 public:
-    Torus3(): Surface("Torus3") { }
+    Torus3(): Surface() { }
     Torus3 (double _umin, double _umax, double _du,
             double _vmin, double _vmax, double _dv);
     virtual ~Torus3 () { }
+
+    virtual std::string getFunctionName() const { return "Torus3"; }
 
 private:
 

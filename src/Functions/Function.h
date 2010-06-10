@@ -103,7 +103,7 @@ class Function {
         typedef std::vector<vec4vec2D> vec4vec3D;
 
         Function();
-        Function (const QString &name, ParameterMap parameters = ParameterMap());
+        Function (ParameterMap parameters);
         virtual ~Function() { }
 
         /// Execute the desired rotation and translation to the Function object
@@ -138,7 +138,7 @@ class Function {
         }
 
         /** \return The name of the function in cleartext                     */
-        virtual QString getFunctionName() const { return _functionName; }
+        virtual std::string getFunctionName() const = 0;
         /** \return number of parameters for the function                     */
         unsigned getNumParameters() { return _parameters.size(); }
 
@@ -192,7 +192,7 @@ class Function {
         void addVertices(unsigned num) { _numVertices += num; }
 
         /// Define the name of the Function
-        void setfunctionName(const QString &_name) { _functionName = _name; }
+//        void setfunctionName(const QString &_name) { _functionName = _name; }
 
         /// temporary storage for the value of the function at a given point
         VecMath::Vector<4> _F;
@@ -205,9 +205,6 @@ class Function {
 
         /// counter for assessing how much RAM is used
         unsigned _numVertices;
-
-        /// the name of the function as a free-form string
-        QString _functionName;
 
         /// list of the parameters to the function
         ParameterMap _parameters;

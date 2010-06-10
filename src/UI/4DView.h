@@ -40,24 +40,24 @@ class CustomComplexFunction;
  *  constructors differ.
  *  \ingroup UIHelpers                                                        */
 class RealFunctionFactory {
-  
+
   public:
     virtual ~RealFunctionFactory() { }
-    
+
     /// Template Method to create a RealFunction
     RealFunction *createFunction(C4DView *view) {
       return doCreateFunction(view);
     }
-        
-    QString functionName() { return doGetFunctionName(); }
-        
+
+    std::string functionName() { return doGetFunctionName(); }
+
   private:
-      
+
     /// Implementation of TemplateMethod createFunction()
     virtual RealFunction *doCreateFunction(C4DView *) = 0;
-    
-    virtual QString doGetFunctionName() = 0;
-    
+
+    virtual std::string doGetFunctionName() = 0;
+
 };
 
 /// Abstract base class for a factory creating Surface's
@@ -69,22 +69,22 @@ class RealFunctionFactory {
 class SurfaceFactory {
 
   public:
-  
+
     virtual ~SurfaceFactory() { }
-    
+
     /// Template Method to create a Surface
     Surface *createSurface(C4DView *view) {
       return doCreateSurface(view);
     }
 
-    QString functionName() { return doGetFunctionName(); }
+    std::string functionName() { return doGetFunctionName(); }
 
   private:
-  
+
     /// Implementation of TemplateMethod createSurface()
     virtual Surface *doCreateSurface(C4DView *) = 0;
 
-    virtual QString doGetFunctionName() = 0;
+    virtual std::string doGetFunctionName() = 0;
 
 };
 
@@ -95,24 +95,24 @@ class SurfaceFactory {
 class C4DView : public QGLWidget, public UI::ViewImpl {
 
   public:
-  
+
     /// Class template implementation for a factory creating Function's
     /** The type of the Function to be created by the factory method of this
      *  class is passed as a template parameter.
      *
      *  Separate classes are needed for Functions and Surfaces, because
      *  their constructors differ.
-     *  \ingroup UIHelpers                                                
+     *  \ingroup UIHelpers
      */
     template <typename function>
       class TemplatedRealFunctionFactory: public RealFunctionFactory {
-      
+
         private:
-        
+
           /// Implementation of TemplateMethod createFunction()
           virtual RealFunction *doCreateFunction(C4DView *);
-          virtual QString doGetFunctionName();
-            
+          virtual std::string doGetFunctionName();
+
       };
 
       /// Class template implementation for a factory creating Surface's
@@ -121,17 +121,17 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
        *
        *  Separate classes are needed for Functions and Surfaces, because
        *  their constructors differ.
-       *  \ingroup UIHelpers                                                
+       *  \ingroup UIHelpers
        */
       template <typename function>
         class TemplatedSurfaceFactory: public SurfaceFactory {
-        
+
           private:
-          
+
             /// Implementation of TemplateMethod createSurface()
             virtual Surface *doCreateSurface(C4DView *);
-            virtual QString doGetFunctionName();
-            
+            virtual std::string doGetFunctionName();
+
         };
 
     private:

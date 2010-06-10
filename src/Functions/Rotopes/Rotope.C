@@ -27,13 +27,13 @@ using VecMath::Vector;
 using VecMath::Matrix;
 using VecMath::Rotation;
 
-Rotope::Rotope(): Object("Rotope: Hypercube", 0, 0),
+Rotope::Rotope(): Object(0, 0),
         _actions("EEEE"), _rotope(0) {
     Initialize();
 }
 
 Rotope::Rotope(const std::string &actions):
-        Object(QString("Rotope: ")+actions.c_str(), 0, 0),
+        Object(0, 0),
          _rot5D(), _rot6D(), _rot7D(), _rot8D(), _rot9D(), _rot10D(),
         _numSegments(RotopeInterface::DEFAULT_NUM_SEGMENTS), _actions(actions), _rotope(0) {
     Initialize();
@@ -41,6 +41,10 @@ Rotope::Rotope(const std::string &actions):
 
 Rotope::~Rotope() {
     if (_rotope) delete _rotope;
+}
+
+std::string Rotope::getFunctionName() const {
+    return "Rotope: "+_actions;
 }
 
 void Rotope::Initialize() {

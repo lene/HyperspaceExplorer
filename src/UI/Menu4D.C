@@ -57,7 +57,7 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
 
     QString sup2(QChar(0x00B2));
     QString sup3(QChar(0x00B3));
-    
+
     ////////////////////////////////////////////////////////////////////////////
     //      "Objects" Menu
     ////////////////////////////////////////////////////////////////////////////
@@ -436,7 +436,7 @@ QAction *&C4DView::Menu4D::getAction(const QString &key) {
         ActionMapType actionMap = it->second;
         if (actionMap.count(key)) return actionMap[key];
     }
-    
+
     QString mapKeys;
     for (it = _menuMap.begin(); it != _menuMap.end(); ++it) {
       mapKeys += "( ";
@@ -483,7 +483,7 @@ QAction *C4DView::Menu4D::insertAction(QMenu *_menu, const QString &title,
  *  \param factory the factory object creating the desired RealFunction object
  *  \param checkable whether the menu item is checkable                       */
 QAction *C4DView::Menu4D::insertAction(QMenu *_menu, RealFunctionFactory *factory, bool checkable) {
-  QString title = factory->functionName();
+  QString title(factory->functionName().c_str());
   QAction *tmp = _menu->addAction(title,
                                   new FunctionSlotHelper(_parent, factory),
                                   SLOT(slot()), (const QKeySequence &)0);
@@ -500,7 +500,7 @@ QAction *C4DView::Menu4D::insertAction(QMenu *_menu, RealFunctionFactory *factor
  *  \param factory the factory object creating the desired Surface object
  *  \param checkable whether the menu item is checkable                       */
 QAction *C4DView::Menu4D::insertAction(QMenu *_menu, SurfaceFactory *factory, bool checkable) {
-  QString title = factory->functionName();
+  QString title(factory->functionName().c_str());
   QAction *tmp = _menu->addAction(title,
                                   new SurfaceSlotHelper(_parent, factory),
                                   SLOT(slot()), (const QKeySequence &)0);
