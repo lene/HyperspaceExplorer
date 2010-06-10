@@ -39,7 +39,7 @@ const DistanceList &screenDistance, const BoolList &depthCue):
 
 template <unsigned N, unsigned Nnew, unsigned P, typename NUM, class Policy>
 Projection<N, Nnew, P, NUM, Policy>::Projection(NUM scrW, NUM camW, bool depthCue4D) {
-  _viewpoint = makeViewPointList();
+  _viewpoint = makeOriginViewPointList();
   _eye = makeEyePointList(camW);
   _screen_distance = makeScreenDistanceList(scrW);
   _depth_cue = makeDepthCueList(depthCue4D);
@@ -69,9 +69,8 @@ void Projection<N, Nnew, P, NUM, Policy>::checkDimensions() {
 
 template <unsigned N, unsigned Nnew, unsigned P, typename NUM, class Policy>
 typename Projection<N, Nnew, P, NUM, Policy>::PointList
-Projection<N, Nnew, P, NUM, Policy>::makeViewPointList() {
+Projection<N, Nnew, P, NUM, Policy>::makeOriginViewPointList() {
   PointList p;
-  std::cerr << "makeViewPointList: " << p.toString() << std::endl;
   return p;
 }
 

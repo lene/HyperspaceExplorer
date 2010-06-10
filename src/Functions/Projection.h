@@ -140,7 +140,7 @@ template <unsigned N, unsigned Nnew, unsigned P, typename NUM = double, typename
     /// Check whether the template is instantiated with sensible values for the dimensions
     void checkDimensions();
 
-    PointList makeViewPointList();
+    PointList makeOriginViewPointList();
     PointList makeEyePointList(NUM camW);
     DistanceList makeScreenDistanceList(NUM scrW);
     BoolList makeDepthCueList(bool depthCue4D);
