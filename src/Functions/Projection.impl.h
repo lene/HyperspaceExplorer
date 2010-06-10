@@ -60,10 +60,11 @@ void Projection<N, Nnew, P, NUM, Policy>::checkConsistency() {
   checkDimensions();
 }
 
-/** \todo don't throw exceptions, throw compilation errors! */
 template <unsigned N, unsigned Nnew, unsigned P, typename NUM, class Policy>
 void Projection<N, Nnew, P, NUM, Policy>::checkDimensions() {
-  if (Nnew > N) throw std::logic_error("Tried to project to a higher dimension");
+# if Nnew > N
+#   error "Tried to project to a higher dimension"
+# endif
   if (Nnew == N) throw std::logic_error("Explicit specialization should be called");
 }
 
