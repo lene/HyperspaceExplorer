@@ -1,6 +1,9 @@
 HyperspaceExplorer Changelog
 =============================
 
+release 0.7.1:
+    * Based Functions (but not Objects yet) on FunctionValueGrid
+
 release 0.7.0:
     * Added Rotopes to the function menu. Only Extrusion, Tapering and Rotation
       are currently supported.
@@ -16,12 +19,12 @@ release 0.6.4:
 
 release 0.6.3:
     * Color management works now. Unfortunately, it seems to cause a major
-      performance hit on 4-dimensional transformations. Haven't investigated 
+      performance hit on 4-dimensional transformations. Haven't investigated
       that yet.
     * Developed Rotopes. Rotopes are objects that are created from an object
-      of lower dimension by extrusions, taper operations and rotations. 
+      of lower dimension by extrusions, taper operations and rotations.
       Currently, only extruding and tapering works.
-      * Worked on N-dimensional rotations as parameters for objects of a 
+      * Worked on N-dimensional rotations as parameters for objects of a
         dimension higher than 4.
     * Cleaned up the Balls code, but haven't integrated it yet.
 

@@ -130,6 +130,12 @@ class Global {
         /** color definition for Grey                                         */
         static Color& grey50() { return Grey50; }
 
+        /// A (I hope) Editor-independent repersentation of "²"
+        static std::string sup2();
+
+        /// A (I hope) Editor-independent repersentation of "³"
+        static std::string sup3();
+
         /** sqrt (3), stored to save computation time, probably superfluous   */
         const double SR3;
 

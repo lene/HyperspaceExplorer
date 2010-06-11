@@ -159,6 +159,19 @@ unsigned long Global::check_proc_meminfo() {
     return strtoul (meminfo.c_str (), NULL, 10)*1024;
 }
 
+std::string Global::sup2() {
+    return "²";
+    static QString qsup2(QChar(0x00B2));
+    static std::string sup2_(qsup2.toStdString());
+    return sup2_;
+}
+
+std::string Global::sup3() {
+    return "³";
+    static QString qsup3(QChar(0x00B3));
+    static std::string sup3_(qsup3.toStdString());
+    return sup3_;
+}
 
 NestedVector< Vector<4>, 2 > toNestedVector(const Function::vec4vec2D &v) {
 

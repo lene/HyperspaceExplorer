@@ -381,7 +381,7 @@ class Fr3r: public RealFunction {
               double vmin, double vmax, double dv);
         virtual ~Fr3r() { }
 
-        virtual std::string getFunctionName() const { return "1/(r�+1)"; }
+        virtual std::string getFunctionName() const { return "1/(r"+Globals::Instance().sup2()+"+1)"; }
 
     protected:
     class DefiningFunction: public ParametricFunction<4, 3> {

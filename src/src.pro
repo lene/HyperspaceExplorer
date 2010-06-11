@@ -1,12 +1,12 @@
 TEMPLATE = lib
 
-#CONFIG -= debug
-#CONFIG += release qt warn_on uic staticlib
-CONFIG += debug qt warn_on uic dll staticlib
+CONFIG -= debug
+CONFIG += release qt warn_on uic staticlib
+#CONFIG += debug qt warn_on uic dll staticlib
 
 QT += opengl
 
-VERSION = 0.7.0
+VERSION = 0.7.1
 
 ###
 ###     move all temporary files out of sight into subdirectory tmp
