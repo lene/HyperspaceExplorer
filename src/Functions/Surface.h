@@ -151,7 +151,7 @@ class Surface: public SurfaceBase {
 
         void DrawStrip (unsigned);
 
-    std::tr1::shared_ptr< ParametricFunction<4, 2> > _function;
+        std::tr1::shared_ptr< ParametricFunction<4, 2> > _function;
 
   private:
 
@@ -166,7 +166,7 @@ class Surface: public SurfaceBase {
 
 };
 
-/// An example surface:
+/// An example surface.
 /** \f{eqnarray*}{
         F_0 & = & Radius*\sin \theta*\sin \psi   \\
         F_1 & = & Radius*\cos \theta*\sin \psi   \\
@@ -197,7 +197,7 @@ namespace {
             TheFunctionFactory::Instance().registerFunction(createSurface1);
 }
 
-/// A four-dimensional surface described by Thomas Banchoff
+/// A four-dimensional surface described by Thomas Banchoff.
 /** \f{eqnarray*}{
         t & = & \theta*\pi                  \\
         p & = & \phi*frac{\pi}{2}           \\
@@ -231,7 +231,7 @@ namespace {
             TheFunctionFactory::Instance().registerFunction(createHorizon);
 }
 
-/// Another torus version, this time as a two-dimensional surface in four-space
+/// Another torus version, this one as a two-dimensional surface in four-space.
 /** \ingroup SurfaceGroup                                                    */
 class Torus3: public Surface {
 public:

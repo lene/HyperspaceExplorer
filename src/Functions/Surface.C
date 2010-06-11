@@ -199,7 +199,7 @@ void Surface::Project (double scr_w, double cam_w, bool depthcue4d) {
 
 /** draw the projected Surface (onto screen or into GL list, as it is)        */
 void Surface::Draw (void) {
-    for (unsigned t = 0; t < getTsteps(); t++)
+    for (unsigned t = 0; t <= getTsteps(); t++)
         DrawStrip (t);
 }
 
@@ -209,13 +209,13 @@ void Surface::Draw (void) {
 void Surface::DrawStrip (unsigned t){
     glBegin (GL_QUAD_STRIP);
 
-    setVertex(X()[t][0], Xscr()[t][0]);
-    setVertex(X()[t+1][0], Xscr()[t+1][0]);
-
-    for (unsigned u = 1; u <= getUsteps(); u++) {
+    for (unsigned u = 0; u <= getUsteps(); u++) {
         setVertex(X()[t][u], Xscr()[t][u]);
         setVertex(X()[t+1][u], Xscr()[t+1][u]);
     }
+
+    setVertex(X()[t][0], Xscr()[t][0]);
+    setVertex(X()[t+1][0], Xscr()[t+1][0]);
 
     glEnd ();
 }
