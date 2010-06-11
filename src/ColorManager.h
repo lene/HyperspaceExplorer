@@ -142,43 +142,42 @@ class ColorManagerManager {
     public:
         /// Thrown by createColorManager() when \p name does not map to a ColorManager.
         struct BadColorManagerException: public std::runtime_error {
-            /// Create a BadFunctionException
+            /// Create a BadFunctionException.
             BadColorManagerException(const std::string &);
+        };
+
+        /// Thrown if a ColorManager function is called before a ColorManager has been set.
+        struct ColorManagerUnsetException: public std::logic_error {
+            /// Create a ColorManagerUnsetException.
+            ColorManagerUnsetException(const std::string &);
         };
 
         /// callback function generating a ColorManager and returning a ColorManager*
         typedef ColorManager *(*CreateColMgrCallback)();
 
         /// determine which coloring scheme to use
-        void setColorManager(ColorManager *cm) {
-            Function *ftmp = 0;
-            if (colorManager.get()) ftmp = colorManager->getFunction();
-            colorManager.reset(cm);
-            if (ftmp) cm->setFunction(ftmp);
-        }
+        void setColorManager(ColorManager *cm);
 
         /// proxy function for ColorManager::setFunction()
-        void setFunction(Function *_f) { colorManager->setFunction(_f); }
+        void setFunction(Function *_f);
 
         /// proxy function for ColorManager::calibrateColor()
         void calibrateColor(const VecMath::Vector<4> &, const Color & = Color());
 
         /// proxy function for ColorManager::setColor()
-        void setColor(const VecMath::Vector<4> &x) { colorManager->setColor(x); }
+        void setColor(const VecMath::Vector<4> &x);
 
-        Color getColor(const VecMath::Vector<4> &x) {
-            return colorManager->getColor(x);
-        }
+        Color getColor(const VecMath::Vector<4> &x);
 
         /// proxy function for ColorManager::depthCueColor()
         void depthCueColor(double wmax, double wmin, double w,
                            const VecMath::Vector<4> &x);
 
         /// proxy function for ColorManager::setRGB()
-        void setRGB(const Color &_col) { colorManager->setRGB(_col); }
+        void setRGB(const Color &_col);
 
         /// debugging output
-        std::string getContents() { return colorManager->getContents(); }
+        std::string getContents();
 
         /// Register a ColorManager class with a name, so we can instantiate it
         bool registerColorManager(const std::string &, CreateColMgrCallback);
@@ -191,6 +190,9 @@ class ColorManagerManager {
 
         /// Set the ColorManager to a class registered by name
         void setColorManager(const std::string &);
+
+        /// Returns whether a ColorManager has already been set.
+        bool isColorManagerSet() const;
 
     private:
         /// stores a creator function with a string containing the class name
@@ -220,8 +222,8 @@ typedef Loki::SingletonHolder<ColorManagerManager> ColMgrMgr;
 /// maps x, y, z in parameter space to R, G, B
 /** This algorithm stores every point in a std::map<Vector<4>, Color> for
  *  reference and if necessary interpolates between stored points.
- * 
- *  The algorithm is rather inefficient because of high lookup times in a 
+ *
+ *  The algorithm is rather inefficient because of high lookup times in a
  *  std::map<Vector<>, anything> - Vector<>s are ordered by their norm, which
  *  necessitates a s**tload of floating point multiplications.
  *

@@ -86,9 +86,9 @@ class Global {
         QStringList rcdirs;
 
         /// \return The QAction associated with quitting the application
-        QAction *getQuitAction() const { return quitAction; }
+        QAction *getQuitAction();
         /// \return The main window of the application
-        QMainWindow *getMainWindow() const { return mainWindow; }
+        QMainWindow *getMainWindow();
 
         int GetGLList();
 

@@ -38,11 +38,20 @@ Color Global::Grey50( 0.5, 0.5, 0.5, 1.0 );
 Color Global::fog_color(0.2, 0.2, 0.2, 1.0);
 
 Global::Global():
-    SR3(sqrt(3.)),
-    mainWindow(new QMainWindow),
-    quitAction(new QAction(QObject::tr("&Quit"), NULL)) {
-    quitAction->setShortcut(QObject::tr("Ctrl+Q"));
-    QObject::connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
+    SR3(sqrt(3.)), mainWindow(NULL), quitAction(NULL) { }
+
+QAction* Global::getQuitAction() {
+    if (!quitAction) {
+        quitAction = new QAction(QObject::tr("&Quit"), NULL);
+        quitAction->setShortcut(QObject::tr("Ctrl+Q"));
+        QObject::connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
+    }
+    return quitAction;
+}
+
+QMainWindow* Global::getMainWindow() {
+    if (!mainWindow) mainWindow = new QMainWindow;
+    return mainWindow;
 }
 
 /** debug function for OpenGL commands; outputs all current GL errors on cerr
@@ -64,8 +73,8 @@ void Global::CheckGLErrors (const char *
 int Global::GetGLList() {
     int MyList = 1;
 
-    //	find a free GL list
-    while (glIsList (MyList) == GL_TRUE) MyList++;
+    // find a free GL list
+    while (glIsList(MyList) == GL_TRUE) MyList++;
 
     return MyList;
 }
@@ -74,12 +83,12 @@ int Global::GetGLList() {
  *  implemented because I called a function atod () ages ago, for convenience
  *  @param s	string to be converted
  *  @return	its numerical value                                           */
-double Global::atod (QString s) {
-  return s.toDouble ();
+double Global::atod(QString s) {
+  return s.toDouble();
 }
 
 double Global::atod (const std::string &s) {
-    return QString(s.c_str()).toDouble ();
+    return QString(s.c_str()).toDouble();
 }
 
 int Global::atoi(const std::string &s) {
@@ -94,7 +103,7 @@ unsigned Global::atou(const std::string &s) {
  *  implemented because I called a function itoa () ages ago, for convenience
  *  @param x	number to be converted
  *  @return	its string representation                                     */
-string Global::itoa (int x) {
+string Global::itoa(int x) {
 	ostringstream o;
 	o << x << ends;
 	return o.str ();
@@ -104,7 +113,7 @@ string Global::itoa (int x) {
  *  implemented because I called a function ftoa () ages ago, for convenience
  *  @param x	number to be converted
  *  @return	its string representation                                     */
-string Global::ftoa (double x) {
+string Global::ftoa(double x) {
     ostringstream o;
     o << x << ends;
     return o.str ();
@@ -113,15 +122,15 @@ string Global::ftoa (double x) {
 void Global::glVertex(Vector< 3 >& V) {
 //  std::cerr << V.toString() << std::endl;
   if (std::isfinite (V.sqnorm()))
-    glVertex3dv (V.data());
-        }
+    glVertex3dv(V.data());
+}
 
 /** normalizes a Vector made from 3 doubles out-of-place
  *  @param xx	x component of Vector to be normalized
  *  @param yy	y component of Vector to be normalized
  *  @param zz	z component of Vector to be normalized
  *  @return	normalized Vector                                             */
-Vector<3> Global::vnormalize (double xx, double yy, double zz) {
+Vector<3> Global::vnormalize(double xx, double yy, double zz) {
     static Vector<3> x;
 
     x[0] = xx; x[1] = yy; x[2] = zz;
@@ -136,8 +145,8 @@ Vector<3> Global::vnormalize (double xx, double yy, double zz) {
  *  ...
  *  returns 512 MB as default memory size, when /proc/meminfo is not present
  *  @return	total memory size, or 512 MB                                  */
-unsigned long Global::check_proc_meminfo () {
-    ifstream in ("/proc/meminfo");
+unsigned long Global::check_proc_meminfo() {
+    ifstream in("/proc/meminfo");
     if (!in) {
         cerr << "no /proc/meminfo - setting Memory limit of 512 MB" << endl;
         check_memory = false;
@@ -156,7 +165,7 @@ NestedVector< Vector<4>, 2 > toNestedVector(const Function::vec4vec2D &v) {
   NestedVector< Vector<4>, 2 > temp2D;
   for (Function::vec4vec2D::const_iterator it = v.begin();
        it != v.end(); ++it) {
-    NestedVector< Vector<4>, 1> temp1D;    
+    NestedVector< Vector<4>, 1> temp1D;
     for (Function::vec4vec1D::const_iterator jt = it->begin();
          jt != it->end(); ++jt) {
       temp1D.push_back(*jt);
@@ -164,26 +173,26 @@ NestedVector< Vector<4>, 2 > toNestedVector(const Function::vec4vec2D &v) {
     temp2D.push_back(temp1D);
   }
   return temp2D;
-  
+
 }
 
 NestedVector< Vector<4>, 3 > toNestedVector(const Function::vec4vec3D &v) {
 
   NestedVector< Vector<4>, 3 > temp3D;
-  
+
   for (Function::vec4vec3D::const_iterator it = v.begin(); it != v.end(); ++it) {
-  
+
     NestedVector< Vector<4>, 2 > temp2D;
     for (Function::vec4vec2D::const_iterator jt = it->begin(); jt != it->end(); ++jt) {
-    
-      NestedVector< Vector<4>, 1> temp1D;    
+
+      NestedVector< Vector<4>, 1> temp1D;
       for (Function::vec4vec1D::const_iterator kt = jt->begin(); kt != jt->end(); ++kt) {
         temp1D.push_back(*kt);
       }
-      
+
       temp2D.push_back(temp1D);
     }
-    
+
     temp3D.push_back(temp2D);
   }
 
@@ -191,4 +200,4 @@ NestedVector< Vector<4>, 3 > toNestedVector(const Function::vec4vec3D &v) {
 }
 
 /** maximum memory that should be consumed; calls check_proc_meminfo () above */
-unsigned long Global::MaximumMemory = check_proc_meminfo ();
+unsigned long Global::MaximumMemory = check_proc_meminfo();
