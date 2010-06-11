@@ -128,7 +128,7 @@ namespace VecMath {
 
         /// Direct access to the array storing the components
         /** Needed by glVertex3dv   */
-        N *data () { return _x; }
+        const N *data () const { return _x; }
 
         /// Convert the Vector into an array of arbitrary objects
         /** Array of floats is needed by glLightfv() */

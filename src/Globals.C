@@ -119,7 +119,7 @@ string Global::ftoa(double x) {
     return o.str ();
 }
 
-void Global::glVertex(Vector< 3 >& V) {
+void Global::glVertex(const Vector< 3 >& V) {
 //  std::cerr << V.toString() << std::endl;
   if (std::isfinite (V.sqnorm()))
     glVertex3dv(V.data());
