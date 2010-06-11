@@ -75,7 +75,7 @@ ColorManagerManager::BadColorManagerException::BadColorManagerException(
  */
 ColorManagerManager::ColorManagerUnsetException::ColorManagerUnsetException(
     const std::string &functionName):
-    std::logic_error("ColorManagerManager::"+functionName+"() called before a ColorManager wa set") { }
+    std::logic_error("ColorManagerManager::"+functionName+"() called before a ColorManager was set") { }
 
 void ColorManagerManager::setColorManager(ColorManager* cm) {
     Function *ftmp = 0;
@@ -90,40 +90,40 @@ bool ColorManagerManager::isColorManagerSet() const {
 
 void ColorManagerManager::setFunction(Function* _f) {
     if (isColorManagerSet()) colorManager->setFunction(_f);
-    throw ColorManagerUnsetException("setFunction");
+//    throw ColorManagerUnsetException("setFunction");
 }
 
 void ColorManagerManager::calibrateColor(const VecMath::Vector<4> &x,
                                          const Color &_col) {
     if (isColorManagerSet()) colorManager->calibrateColor(x, _col);
-    throw ColorManagerUnsetException("calibrateColor");
+//    throw ColorManagerUnsetException("calibrateColor");
 }
 
 void ColorManagerManager::setColor(const VecMath::Vector< 4 >& x) {
     if (isColorManagerSet()) colorManager->setColor(x);
-    throw ColorManagerUnsetException("setColor");
+//    throw ColorManagerUnsetException("setColor");
 }
 
 Color ColorManagerManager::getColor(const VecMath::Vector< 4 >& x) {
     if (isColorManagerSet()) return colorManager->getColor(x);
-    throw ColorManagerUnsetException("getColor");
+//    throw ColorManagerUnsetException("getColor");
 }
 
 void ColorManagerManager::depthCueColor(double wmax, double wmin, double w,
                                         const VecMath::Vector<4> &x) {
     if (isColorManagerSet()) return colorManager->depthCueColor(wmax, wmin, w, x);
-    throw ColorManagerUnsetException("depthCueColor");
+//    throw ColorManagerUnsetException("depthCueColor");
 }
 
 void ColorManagerManager::setRGB(const Color& _col)
 {
     if (isColorManagerSet()) colorManager->setRGB(_col);
-    throw ColorManagerUnsetException("setRGB");
+//    throw ColorManagerUnsetException("setRGB");
 }
 
 std::string ColorManagerManager::getContents() {
     if (isColorManagerSet()) return colorManager->getContents();
-    throw ColorManagerUnsetException("setRGB");
+//    throw ColorManagerUnsetException("setRGB");
 }
 
 /** \param name The name by which this class is called from outside. This name

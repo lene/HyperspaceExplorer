@@ -55,10 +55,9 @@ class FunctionFactory {
 
     public:
         /// Registers a function creating a Function under the Function's class name
-        /** \param name The class name of the created Function object
-         *  \param creator Callback function creating an object of the desired class
+        /** \param creator Callback function creating an object of the desired class
          *  \return true if registration was successful                       */
-        bool registerFunction(const std::string &name, CreateFunctionCallback creator);
+        bool registerFunction(CreateFunctionCallback creator);
 
         /// Remove a Function class from the factory
         /** \param name Name of the class which isn't available for creation any

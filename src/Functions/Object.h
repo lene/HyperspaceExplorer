@@ -179,13 +179,8 @@ typedef std::vector< SurfaceType<4, 4> > surface_vec_type;
 /** \ingroup ObjectGroup                                                    */
 class Hypercube: public Object {
 public:
-    Hypercube (): Object (16, 24) {
-        _a = 1;
-        declareParameter("Size", 1.0);
-        Initialize();
-    }
     /// Construct a hypercube with a side length and a center
-    Hypercube (double a,
+    Hypercube (double a = 1.,
                const VecMath::Vector<4> &_center = VecMath::Vector<4>(0., 0., 0., 0.));
     virtual ~Hypercube() { }
 
@@ -226,8 +221,8 @@ public:
 };
 
 namespace {
-    Function *createHypercube() { return new Hypercube(); }
-    const bool registeredH = TheFunctionFactory::Instance().registerFunction("Tesseract", createHypercube);
+    Function *createHypercube() { return new Hypercube; }
+    const bool registeredH = TheFunctionFactory::Instance().registerFunction(createHypercube);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -267,8 +262,7 @@ protected:
 namespace {
     Function *createPyramid() { return new Pyramid(); }
     const bool registeredP =
-            TheFunctionFactory::Instance().registerFunction("Pentachoron",
-                                                            createPyramid);
+            TheFunctionFactory::Instance().registerFunction(createPyramid);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -326,7 +320,7 @@ class Gasket: public Pyramid {
 namespace {
     Function *createGasket() { return new Gasket(); }
     const bool registeredG =
-            TheFunctionFactory::Instance().registerFunction("Gasket", createGasket);
+            TheFunctionFactory::Instance().registerFunction(createGasket);
 }
 
 #endif

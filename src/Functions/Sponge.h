@@ -64,7 +64,7 @@ protected:
      *  \param duplicate_vertex The removed vertex.
      */
     void renumberSurfaces(unsigned original_vertex, unsigned duplicate_vertex);
-    
+
     unsigned Level;                 ///< Level of the hypersponge
     int distance;                   ///< max. distance (see Initialize())
     double rad;                     ///< radius, more correctly size, of the sponge
@@ -73,7 +73,7 @@ protected:
 
 namespace {
     Function *createAltSponge() { return new AltSponge(); }
-    const bool registeredAS = TheFunctionFactory::Instance().registerFunction("AltSponge", createAltSponge);
+    const bool registeredAS = TheFunctionFactory::Instance().registerFunction(createAltSponge);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -168,7 +168,7 @@ protected:
 
 namespace {
     Function *createSponge() { return new Sponge(); }
-    const bool registeredS = TheFunctionFactory::Instance().registerFunction("Sponge", createSponge);
+    const bool registeredS = TheFunctionFactory::Instance().registerFunction(createSponge);
 }
 
 #endif

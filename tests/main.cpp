@@ -12,6 +12,7 @@
 #include "Test_FunctionValueGrid.h"
 #include "Test_Transformation.h"
 #include "Test_Projection.h"
+#include "Test_FunctionFactory.h"
 
 #include <QtTest/QtTest>
 
@@ -43,7 +44,8 @@ int main(int argc, char **argv) {
     if (qExec(new Test_ParametricFunction)) failedTestSuites++;
     if (qExec(new Test_Transformation)) failedTestSuites++;
     if (qExec(new Test_Projection)) failedTestSuites++;
-                
+    if (qExec(new Test_FunctionFactory)) failedTestSuites++;
+
     printSummary(failedTestSuites);
 
     return failedTestSuites;

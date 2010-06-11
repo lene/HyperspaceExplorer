@@ -238,8 +238,9 @@ void AltSponge::Initialize(void) {
   }
 
   Object::Initialize();
+  #   if 0
   SingletonLog::Instance() << "time for initializing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
-
+#endif
 }
 
 #else
@@ -258,9 +259,9 @@ void AltSponge::Initialize(void) {
   unsigned TotalCubes = pow(SpongePerLevel, Level);
 
   for (unsigned current_level = 0; current_level <= Level; current_level++) {
-
+#   if 0
     SingletonLog::Instance() << "Level: " << current_level << "/" << Level << " -- total cubes: " << TotalCubes << "\n";
-
+#   endif
     if (current_level < 1) {
 
       X.resize(16);
@@ -269,8 +270,9 @@ void AltSponge::Initialize(void) {
       Hypercube::Initialize();
 
     } else {
-
+#     if 0
       for (unsigned i = 0; i < X.size(); ++i) cerr << "X[" << i << "]" << X[i]<< endl;
+#     endif
 
       surface_vec_type Sold(Surface);
 
@@ -309,7 +311,9 @@ void AltSponge::Initialize(void) {
                   // ...
                   surface_vec_type::iterator found = std::find(Surface.begin(), Surface.end(), Sold[i]);
                   if (found != Surface.end()) {
-                    found->print(); cerr << " == " << endl; Sold[i].print();
+#                   if 0
+                      found->print(); cerr << " == " << endl; Sold[i].print();
+#                   endif
                     Surface.erase(std::find(Surface.begin(), Surface.end(), Sold[i]));
                   }
                 }
@@ -333,9 +337,9 @@ void AltSponge::Initialize(void) {
   Object::Initialize();
 
 //  std::for_each(Surface.begin(), Surface.end(), std::mem_fun_ref(&SurfaceType<4, 4>::print));
-
+#   if 0
   SingletonLog::Instance() << "time for initializing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
-
+#endif
 }
 #endif
 
@@ -525,11 +529,11 @@ void Sponge::Initialize(void) {
 
         if (0 && (MemRequired (distance) > Globals::Instance().getMaxMemory())) {
             std::cerr << "Menger sponge of level " << Level
-					  << " would require approx. " << MemRequired (distance)/1024/1024
-					  << " MB of memory." << std::endl;
+                      << " would require approx. " << MemRequired (distance)/1024/1024
+                      << " MB of memory." << std::endl;
             if (Globals::Instance().checkMemory()) {
-            	std::cerr << "This is more than your available Memory, "
-						  << Globals::Instance().getMaxMemory()/1024/1024 << "MB" << std::endl;
+                std::cerr << "This is more than your available Memory, "
+                          << Globals::Instance().getMaxMemory()/1024/1024 << "MB" << std::endl;
                 while (MemRequired (distance) > Globals::Instance().getMaxMemory())
                     Level--;
                 std::cerr << "Using level " << Level << " instead." << std::endl;
@@ -567,8 +571,9 @@ void Sponge::Initialize(void) {
     }
 
     Object::Initialize();
+#   if 0
     SingletonLog::Instance() << "time for initializing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
-
+#   endif
 }
 
 /// Transforms a Sponge

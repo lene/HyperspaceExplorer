@@ -26,15 +26,17 @@ using VecMath::Vector;
 Function::Function (): _F () { }
 
 
-/** Function c'tor given a definition set in R� (as parameter space)
+/** Function c'tor given a definition set in \f$ R^3 \f$ (as parameter space)
  *  \param name a name for the function
  *  \param _parameters
  */
 Function::Function (ParameterMap parameters):
     _F (),
     _parameters(parameters) {
-    if (MemRequired () > Globals::Instance().getMaxMemory()) {
+# if 0
+    if (MemRequired() > Globals::Instance().getMaxMemory()) {
     }
+# endif
 }
 
 /// Return the approximate amount of memory needed to display a Function of

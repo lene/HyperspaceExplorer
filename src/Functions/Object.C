@@ -211,7 +211,9 @@ void Hypercube::Initialize(void) {
     Object::Initialize();
 
 #   if !USE_INT_INDICES
-      for (surface_vec_type::iterator i = Surface.begin(); i != Surface.end(); ++i) i->print();
+#     if 0
+        for (surface_vec_type::iterator i = Surface.begin(); i != Surface.end(); ++i) i->print();
+#     endif
 #   endif
 
 }
@@ -233,8 +235,10 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
     Surface[i+offset*24][2] = c+offset*16;
     Surface[i+offset*24][3] = d+offset*16;
 # else
-    std::cerr << "Surface.size() = " << Surface.size() << ", X.size() = " << X.size()
+#     if 0
+        std::cerr << "Surface.size() = " << Surface.size() << ", X.size() = " << X.size()
               << " i: " << i+offset*24 << " a: " << a+offset*16 << " b: " << b+offset*16 << " c: " << c+offset*16 << " d: " << d+offset*16 << std::endl;
+#     endif
     Surface[i+offset*24] = SurfaceType<4, 4>(X, X[a+offset*16], X[b+offset*16], X[c+offset*16], X[d+offset*16]);
 # endif
 }
@@ -311,8 +315,7 @@ Gasket::Gasket (unsigned level, double _rad, VecMath::Vector<4> _center):
     Initialize();
 }
 
-/// return the approximate amount of memory needed to display a gasket of
-/// current level
+/// return the approximate amount of memory needed to display a gasket of current level
 /** @todo uses hardcoded and experimentally found value for memory per simplex
  *  @return approx. mem required                                             */
 unsigned long Gasket::MemRequired (void) {

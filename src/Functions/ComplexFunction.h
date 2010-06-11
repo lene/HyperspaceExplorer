@@ -82,7 +82,7 @@ class z2: public ComplexFunction {
 
 namespace {
     Function *createz2() { return new z2(); }
-    const bool registered1 = TheFunctionFactory::Instance().registerFunction("z2", createz2);
+    const bool registered1 = TheFunctionFactory::Instance().registerFunction(createz2);
 }
 
 /// \f$ f(z) = z^3 \f$
@@ -102,7 +102,7 @@ class z3: public ComplexFunction {
 
 namespace {
     Function *createz3() { return new z3(); }
-    const bool registered2 = TheFunctionFactory::Instance().registerFunction("z3", createz3);
+    const bool registered2 = TheFunctionFactory::Instance().registerFunction(createz3);
 }
 
 /// \f$ f(z) = z^\alpha \f$
@@ -138,7 +138,7 @@ class zA: public ComplexFunction {
 
 namespace {
     Function *createzA() { return new zA(); }
-    const bool registered3 = TheFunctionFactory::Instance().registerFunction("zA", createzA);
+    const bool registered3 = TheFunctionFactory::Instance().registerFunction(createzA);
 }
 
 /// \f$ f(z) = e^{\alpha*z} \f$
@@ -173,7 +173,7 @@ class ez: public ComplexFunction {
 
 namespace {
     Function *createez() { return new ez(); }
-    const bool registered4 = TheFunctionFactory::Instance().registerFunction("e^a*z", createez);
+    const bool registered4 = TheFunctionFactory::Instance().registerFunction(createez);
 }
 
 /// \f$ f(z) = e^{-\alpha*z^2} \f$
@@ -208,7 +208,7 @@ class emz2: public ComplexFunction {
 
 namespace {
     Function *createemz2() { return new emz2(); }
-    const bool registered5 = TheFunctionFactory::Instance().registerFunction("emz2", createemz2);
+    const bool registered5 = TheFunctionFactory::Instance().registerFunction(createemz2);
 }
 
 /// \f$ f(z) = \frac{1}{z} \f$
@@ -228,7 +228,7 @@ class zm1: public ComplexFunction {
 
 namespace {
     Function *createzm1() { return new zm1(); }
-    const bool registered6 = TheFunctionFactory::Instance().registerFunction("zm1", createzm1);
+    const bool registered6 = TheFunctionFactory::Instance().registerFunction(createzm1);
 }
 
 /// \f$ f(z) = \frac{1}{z^2} \f$
@@ -248,7 +248,7 @@ class zm2: public ComplexFunction {
 
 namespace {
     Function *createzm2() { return new zm2(); }
-    const bool registered7 = TheFunctionFactory::Instance().registerFunction("zm2", createzm2);
+    const bool registered7 = TheFunctionFactory::Instance().registerFunction(createzm2);
 }
 
 /// \f$ f(z) = \sqrt{z} \f$
@@ -268,7 +268,7 @@ class sqrtz: public ComplexFunction {
 
 namespace {
     Function *createsqrtz() { return new sqrtz(); }
-    const bool registered8 = TheFunctionFactory::Instance().registerFunction("sqrtz", createsqrtz);
+    const bool registered8 = TheFunctionFactory::Instance().registerFunction(createsqrtz);
 }
 
 /// \f$ f(z) = \ln{z} \f$
@@ -288,7 +288,7 @@ class lnz: public ComplexFunction {
 
 namespace {
     Function *createlnz() { return new lnz(); }
-    const bool registered9 = TheFunctionFactory::Instance().registerFunction("lnz", createlnz);
+    const bool registered9 = TheFunctionFactory::Instance().registerFunction(createlnz);
 }
 
 /// \f$ f(z) = \sin{z} \f$
@@ -308,7 +308,7 @@ class sinz: public ComplexFunction {
 
 namespace {
     Function *createsinz() { return new sinz(); }
-    const bool registered10 = TheFunctionFactory::Instance().registerFunction("sinz", createsinz);
+    const bool registered10 = TheFunctionFactory::Instance().registerFunction(createsinz);
 }
 
 /// \f$ f(z) = \cos{z} \f$
@@ -328,7 +328,7 @@ class cosz: public ComplexFunction {
 
 namespace {
     Function *createcosz() { return new cosz(); }
-    const bool registered11 = TheFunctionFactory::Instance().registerFunction("cosz", createcosz);
+    const bool registered11 = TheFunctionFactory::Instance().registerFunction(createcosz);
 }
 
 /// \f$ f(z) = \sinh{z} \f$
@@ -348,7 +348,7 @@ class sinhz: public ComplexFunction {
 
 namespace {
     Function *createsinhz() { return new sinhz(); }
-    const bool registered12 = TheFunctionFactory::Instance().registerFunction("sinhz", createsinhz);
+    const bool registered12 = TheFunctionFactory::Instance().registerFunction(createsinhz);
 }
 
 /// \f$ f(z) = \cosh{z} \f$
@@ -368,7 +368,7 @@ class coshz: public ComplexFunction {
 
 namespace {
     Function *createcoshz() { return new coshz(); }
-    const bool registered13 = TheFunctionFactory::Instance().registerFunction("coshz", createcoshz);
+    const bool registered13 = TheFunctionFactory::Instance().registerFunction(createcoshz);
 }
 
 /// \f$ f(z) = \tan{z} \f$
@@ -388,7 +388,7 @@ class tanz: public ComplexFunction {
 
 namespace {
     Function *createtanz() { return new tanz(); }
-    const bool registered14 = TheFunctionFactory::Instance().registerFunction("tanz", createtanz);
+    const bool registered14 = TheFunctionFactory::Instance().registerFunction(createtanz);
 }
 
 /// a third-order polynomial of z, not yet implemented
