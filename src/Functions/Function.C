@@ -21,14 +21,11 @@ using VecMath::Vector;
 //////////////////////////////////////////////////////////////////////
 
 
-/// Function default c'tor
 /** Zeroes everything       */
 Function::Function (): _F () { }
 
 
-/** Function c'tor given a definition set in \f$ R^3 \f$ (as parameter space)
- *  \param name a name for the function
- *  \param _parameters
+/** \param _parameters Parameters for the Function.
  */
 Function::Function (ParameterMap parameters):
     _F (),
@@ -39,12 +36,20 @@ Function::Function (ParameterMap parameters):
 # endif
 }
 
-/// Return the approximate amount of memory needed to display a Function of
-/// current definition set
+
+/** \todo This function is only there to provide an interface, and it's
+*  not abstract so that Function s which don't have Parameters don't
+*  need to reimplement an unneeded method. But the present implementation
+*  does not make sense.
+*/
+void Function::SetParameters(const ParameterMap& ) {
+    std::cerr << "Function::SetParameters()" << std::endl;
+}
+
 /** \todo uses hardcoded and experimentally found value for memory per cell
- *  \return approx. mem required                                              */
+*  \return approx. mem required                                              */
 unsigned long Function::MemRequired (void) {
-  return 0;
+    return 0;
 }
 
 void Function::setVertex(const VecMath::Vector<4> &X, VecMath::Vector<3> &Xscr) {
@@ -52,7 +57,6 @@ void Function::setVertex(const VecMath::Vector<4> &X, VecMath::Vector<3> &Xscr) 
     Globals::Instance().glVertex(Xscr);
 }
 
-/// Numerical calculation of the derivatives in t, u and v
 /** \f[
         \frac{df}{dt} = \lim_{h \rightarrow 0}
             \frac{f(t+h, u, v) - f(t, u, v)}{h},

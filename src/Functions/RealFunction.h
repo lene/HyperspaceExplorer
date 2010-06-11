@@ -151,16 +151,16 @@ class RealFunction: public RealBase {
     /// \see Function::getDefinitionSpaceDimensions()
     virtual unsigned getDefinitionSpaceDimensions() { return 3; }
 
-        /// Function evaluation operator for three parameters
-        /** @param t first argument, e.g. x or t
-         *  @param u second argument, e.g. y or u
-         *  @param v third argument, e.g. z or v
-         *  @return f(t, u, v)                                                */
-        VecMath::Vector<4> &operator () (double t, double u, double v) {
-          static VecMath::Vector<4> F;
-          F = _function->f(VecMath::Vector<3>(t, u, v));
-          return F;
-        }
+    /// Function evaluation operator for three parameters
+    /** @param t first argument, e.g. x or t
+     *  @param u second argument, e.g. y or u
+     *  @param v third argument, e.g. z or v
+     *  @return f(t, u, v)                                                */
+    VecMath::Vector<4> &operator () (double t, double u, double v) {
+        static VecMath::Vector<4> F;
+        F = _function->f(VecMath::Vector<3>(t, u, v));
+        return F;
+    }
 
   protected:
 
@@ -171,12 +171,11 @@ class RealFunction: public RealBase {
     void DrawCube (unsigned, unsigned, unsigned);
 
     virtual void Initialize (void);
-    virtual void InitMem (void);
+//    virtual void InitMem (void);
 
     const VecMath::NestedVector< VecMath::Vector<4>, 3 > &X() const;
     const VecMath::NestedVector< VecMath::Vector<4>, 3 > &Xtrans() const;
-
-    vec3vec3D _Xscr;   ///< temporary storage for projected function values
+    const VecMath::NestedVector< VecMath::Vector<3>, 3 > &Xscr() const;
 
     std::tr1::shared_ptr< ParametricFunction<4, 3> > _function;
 

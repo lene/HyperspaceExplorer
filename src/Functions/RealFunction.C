@@ -59,8 +59,9 @@ RealFunction::RealFunction(double tmin, double tmax, double dt,
                            double vmin, double vmax, double dv,
                            ParameterMap _parms):
         RealBase(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv,
-                 _parms),
-        _Xscr(vec3vec3D()) {
+                 _parms)
+//                 , _Xscr(vec3vec3D())
+        {
 
   if (MemRequired () > Globals::Instance().getMaxMemory()) {
     cerr << "Using a " << getTsteps() << "x" << getUsteps() << "x" << getVsteps()
@@ -78,16 +79,7 @@ RealFunction::RealFunction(double tmin, double tmax, double dt,
 
 /// Initialize the temporary storage areas
 /** Xscr[][][], Xtrans[][][]              */
-void RealFunction::InitMem (void) {
-
-  _Xscr.resize(getTsteps()+2);
-  for (unsigned t = 0; t <= getTsteps()+1; t++) {
-    _Xscr[t].resize(getUsteps()+2);
-    for (unsigned u = 0; u <= getUsteps()+1; u++) {
-      _Xscr[t][u].resize(getVsteps()+2);
-    }
-  }
-}
+//void RealFunction::InitMem (void) { }
 
 /// Allocate and initialize X[][][] with values of f()
 /** Call InitMem() above */
@@ -99,7 +91,7 @@ void RealFunction::Initialize () {
 
   calibrateColors();
 
-  InitMem ();
+//  InitMem ();
 }
 
 void RealFunction::calibrateColors() const {
@@ -197,7 +189,7 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
 
   Projection<4, 3, 3> p(scr_w, cam_w, depthcue4d);
   _Xscr_as_grid = p.project(Xtrans());
-
+/*
   double ProjectionFactor;
   double Wmax = 0, Wmin = 0;
 
@@ -218,6 +210,7 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
   }
 
   if (depthcue4d) setDepthCueColors(Wmax, Wmin);
+*/
 }
 
 /// Draw the projected Function (onto screen or into GL list, as it is)
@@ -269,6 +262,11 @@ const VecMath::NestedVector< Vector< 4 >, 3 > &RealFunction::Xtrans() const {
   return _Xtrans;
 }
 
+const VecMath::NestedVector< Vector< 3 >, 3 >& RealFunction::Xscr() const {
+    return _Xscr_as_grid;
+}
+
+
 using std::string;
 using std::setw;
 using std::setprecision;
@@ -277,12 +275,13 @@ using std::setprecision;
  *  \param u current u value
  *  \param v current v value                                                  */
 void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v) {
+    /// \todo don't use a malloc'ed pointer
     static Vector<3> *V = new Vector<3> [8];
 
-    V[0] = _Xscr[t][u][v];     V[1] = _Xscr[t][u][v+1];
-    V[2] = _Xscr[t][u+1][v];   V[3] = _Xscr[t][u+1][v+1];
-    V[4] = _Xscr[t+1][u][v];   V[5] = _Xscr[t+1][u][v+1];
-    V[6] = _Xscr[t+1][u+1][v]; V[7] = _Xscr[t+1][u+1][v+1];
+    V[0] = Xscr()[t][u][v];     V[1] = Xscr()[t][u][v+1];
+    V[2] = Xscr()[t][u+1][v];   V[3] = Xscr()[t][u+1][v+1];
+    V[4] = Xscr()[t+1][u][v];   V[5] = Xscr()[t+1][u][v+1];
+    V[6] = Xscr()[t+1][u+1][v]; V[7] = Xscr()[t+1][u+1][v+1];
 
     glBegin (GL_QUAD_STRIP);
     if (t == 0) {

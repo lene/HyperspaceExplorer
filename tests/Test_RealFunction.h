@@ -32,7 +32,7 @@ class Test_RealFunction: public QObject {
         VecMath::Vector<4> function_value(double tt, double uu, double vv) { return f(tt,uu,vv); }
         VecMath::NestedVector<VecMath::Vector<4>, 3> vertices() { return X(); }
         VecMath::NestedVector<VecMath::Vector<4>, 3> transformed_vertices() { return Xtrans(); }
-        vec3vec3D projected_vertices() { return _Xscr; }
+        VecMath::NestedVector<VecMath::Vector<3>, 3> projected_vertices() { return Xscr(); }
 
         unsigned xsteps() const { return getTsteps(); }
         unsigned ysteps() const { return getUsteps(); }

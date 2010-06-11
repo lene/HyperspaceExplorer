@@ -102,7 +102,9 @@ class Function {
         /// three-dimensional array of Vector<4>, implemented as a nested std::vector
         typedef std::vector<vec4vec2D> vec4vec3D;
 
+        /// Function default c'tor
         Function();
+        /// Function c'tor given a definition set in \f$ R^3 \f$ (as parameter space)
         Function (ParameterMap parameters);
         virtual ~Function() { }
 
@@ -116,7 +118,6 @@ class Function {
         virtual void Project (double ScrW, double CamW, bool DepthCue4D) = 0;
 
         /// Draw the function
-        /** This method is overridden in all descendants */
         virtual void Draw (void) = 0;
 
         /// Called when a Function must be created anew
@@ -127,28 +128,27 @@ class Function {
         /// Called by the ColorManager after setting the Function on the CM
         virtual void calibrateColors() const = 0;
 
-        /// Set parameters to the Function
-        /** \todo This function is only there to provide an interface, and it's
-         *  not abstract so that Function s which don't have Parameters don't
-         *  need to reimplement an unneeded method. But the present implementation
-         *  does not make sense.
-         */
-        virtual void SetParameters(const ParameterMap &) {
-            std::cerr << "Function::SetParameters()" << std::endl;
-        }
-
         /** \return The name of the function in cleartext                     */
         virtual std::string getFunctionName() const = 0;
-        /** \return number of parameters for the function                     */
-        unsigned getNumParameters() { return _parameters.size(); }
+
+        /// number of argument given to the defining function
+        virtual unsigned getDefinitionSpaceDimensions() = 0;
+
+        /// Set parameters to the Function
+        virtual void SetParameters(const ParameterMap &);
 
         /// \return The collection of all parameters (and their values)
         ParameterMap getParameters() { return _parameters; }
+
         /// \return The value of the parameter which is named \p name
         FunctionParameter::parameter_ptr_type getParameter(const std::string &name) {
           return _parameters.getParameter(name);
         }
 
+        /** \return number of parameters for the function                     */
+        unsigned getNumParameters() { return _parameters.size(); }
+
+        /** \return Value of the parameter with the name \p name.             */
         FunctionParameter::value_ptr_type getParameterValue(const std::string &name) {
           return _parameters.getValue(name);
         }
@@ -156,15 +156,7 @@ class Function {
         /// Set a parameter with a specified key from a supplied ParameterMap
         template <typename T> void setParameter(const ParameterMap &parms,
                                                 T &parm,
-                                                const std::string &key) {
-            for (ParameterMap::const_iterator i = _parameters.begin();
-                 i != parms.end(); ++i) {
-                if (i->second->getName() == key) parm = T(*(i->second));
-            }
-        }
-
-        /// number of argument given to the defining function
-        virtual unsigned getDefinitionSpaceDimensions() = 0;
+                                                const std::string &key);
 
     protected:
         /// Function evaluation operator for three parameters
@@ -174,11 +166,13 @@ class Function {
         /** \todo Make this independent from the rendering subsystem */
         void setVertex(const VecMath::Vector<4> &X, VecMath::Vector<3> &Xscr);
 
+        /// Numerical calculation of the derivatives in t, u and v
         virtual vec4vec1D df (double, double, double);
 
         /// This abstract function is called in the constructor of descendants
         virtual void Initialize (void) = 0;
 
+        /// Return the approximate amount of memory needed to display a Function of current definition set
         virtual unsigned long MemRequired (void);
 
         /// Add a parameter to the list of parameters
@@ -190,9 +184,6 @@ class Function {
 
         /// Remember that we've set some more vertices
         void addVertices(unsigned num) { _numVertices += num; }
-
-        /// Define the name of the Function
-//        void setfunctionName(const QString &_name) { _functionName = _name; }
 
         /// temporary storage for the value of the function at a given point
         VecMath::Vector<4> _F;
@@ -235,5 +226,15 @@ template <typename T> inline
           FunctionParameter::value_ptr_type(
               new FunctionParameterValue<T>(value)));
     }
+
+template <typename T> inline
+    void Function::setParameter(const ParameterMap &parms,
+                                T &parm,
+                                const std::string &key) {
+        for (ParameterMap::const_iterator i = _parameters.begin();
+        i != parms.end(); ++i) {
+            if (i->second->getName() == key) parm = T(*(i->second));
+        }
+}
 
 #endif
