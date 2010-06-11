@@ -15,6 +15,7 @@
 #include "Surface.h"
 
 #include "Transformation.h"
+#include "Projection.h"
 
 
 using VecMath::NestedVector;
@@ -30,9 +31,7 @@ double SurfaceBase::_d = 0.1;
 
 
 /// Surface default c'tor, zeroes everything
-Surface::Surface ():
-    SurfaceBase(_min, _max, _d, _min, _max, _d),
-    _Xscr(vec3vec2D()) { }
+Surface::Surface (): SurfaceBase(_min, _max, _d, _min, _max, _d) { }
 
 
 /** Surface c'tor given a definition set in \f$ R^2 \f$ (as parameter space)
@@ -47,17 +46,7 @@ Surface::Surface ():
 Surface::Surface (double _umin, double _umax, double _du,
                   double _vmin, double _vmax, double _dv,
                   ParameterMap _parms):
-    SurfaceBase(_umin, _umax, _du, _vmin, _vmax, _dv, _parms),
-    _Xscr(vec3vec2D()) { }
-
-/// Initialize the temporary storage areas Xscr[][], Xtrans[][]
-void Surface::InitMem (void) {
-    _Xscr.resize(getTsteps()+2);
-
-    for (unsigned t = 0; t <= getTsteps()+1; t++) {
-        _Xscr[t].resize(getUsteps()+2);
-    }
-}
+    SurfaceBase(_umin, _umax, _du, _vmin, _vmax, _dv, _parms) { }
 
 /// allocate and initialize X[][] with values of f()
 /** call InitMem () above                                                     */
@@ -69,8 +58,6 @@ void Surface::Initialize () {
                                          Vector<2>(getTmax(), getUmax()));
 
     calibrateColors();
-
-    InitMem ();
 }
 
 void Surface::calibrateColors() const {
@@ -192,29 +179,21 @@ void Surface::Transform (const VecMath::Rotation<4> &R, const VecMath::Vector<4>
  *  \param cam_w w coordinate of camera
  *  \param depthcue4d whether to use hyperfog/depth cue                        */
 void Surface::Project (double scr_w, double cam_w, bool depthcue4d) {
-    double ProjectionFactor;
-    double Wmax = 0, Wmin = 0;
 
-    for (unsigned t = 0; t <= getTsteps()+1; t++)
-        for (unsigned u = 0; u <= getUsteps()+1; u++) {
+    Projection<4, 3, 2> p(scr_w, cam_w, depthcue4d);
+    _Xscr = p.project(Xtrans());
 
-          if (Xtrans()[t][u][3] < Wmin) Wmin = Xtrans()[t][u][3];
-          if (Xtrans()[t][u][3] > Wmax) Wmax = Xtrans()[t][u][3];
-
-          ProjectionFactor = (scr_w-cam_w)/(Xtrans()[t][u][3]-cam_w);
-
-          for (unsigned i = 0; i <= 2; i++)
-            _Xscr[t][u][i] = ProjectionFactor*Xtrans()[t][u][i];
+    if (depthcue4d) {
+        std::pair< double, double > Wext = findExtremesInW();
+        for (unsigned t = 0; t <= getTsteps()+1; t++) {
+            for (unsigned u = 0; u <= getUsteps()+1; u++) {
+                ColMgrMgr::Instance().depthCueColor(Wext.first, Wext.second,
+                                                    Xtrans()[t][u][3],
+                                                    X()[t][u]);
+            }
+        }
     }
 
-    if (!depthcue4d) return;
-
-    for (unsigned t = 0; t <= getTsteps()+1; t++)
-        for (unsigned u = 0; u <= getUsteps()+1; u++) {
-            ColMgrMgr::Instance().depthCueColor(Wmax, Wmin,
-                    Xtrans()[t][u][3],
-                    X()[t][u]);
-        }
 }
 
 
@@ -230,12 +209,12 @@ void Surface::Draw (void) {
 void Surface::DrawStrip (unsigned t){
     glBegin (GL_QUAD_STRIP);
 
-    setVertex(X()[t][0], _Xscr[t][0]);
-    setVertex(X()[t+1][0], _Xscr[t+1][0]);
+    setVertex(X()[t][0], Xscr()[t][0]);
+    setVertex(X()[t+1][0], Xscr()[t+1][0]);
 
     for (unsigned u = 1; u <= getUsteps(); u++) {
-        setVertex(X()[t][u], _Xscr[t][u]);
-        setVertex(X()[t+1][u], _Xscr[t+1][u]);
+        setVertex(X()[t][u], Xscr()[t][u]);
+        setVertex(X()[t+1][u], Xscr()[t+1][u]);
     }
 
     glEnd ();
@@ -247,6 +226,10 @@ const NestedVector< Vector<4>, 2 > &Surface::X() const {
 
 const NestedVector< Vector<4>, 2 > &Surface::Xtrans() const {
   return _Xtrans;
+}
+
+const VecMath::NestedVector< Vector< 3 >, 2 >& Surface::Xscr() const {
+  return _Xscr;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

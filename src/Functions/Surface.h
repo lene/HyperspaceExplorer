@@ -143,15 +143,13 @@ class Surface: public SurfaceBase {
 
         const VecMath::NestedVector< VecMath::Vector<4>, 2 > &X() const;
         const VecMath::NestedVector< VecMath::Vector<4>, 2 > &Xtrans() const;
+        const VecMath::NestedVector< VecMath::Vector<3>, 2 > &Xscr() const;
 
         void Initialize (void);
-        void InitMem (void);
 
         virtual unsigned long MemRequired (void);
 
         void DrawStrip (unsigned);
-
-        vec3vec2D _Xscr;    ///< temporary storage for the function values on the grid
 
     std::tr1::shared_ptr< ParametricFunction<4, 2> > _function;
 
@@ -164,6 +162,8 @@ class Surface: public SurfaceBase {
 
     FunctionValueGrid<4, 2> _X;
     FunctionValueGrid<4, 2>::value_storage_type _Xtrans;
+    VecMath::NestedVector< VecMath::Vector<3>, 2 > _Xscr;
+
 };
 
 /// An example surface:

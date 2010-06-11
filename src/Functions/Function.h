@@ -164,7 +164,7 @@ class Function {
 
         /// Set a color and a vertex datum in OpenGL
         /** \todo Make this independent from the rendering subsystem */
-        void setVertex(const VecMath::Vector<4> &X, VecMath::Vector<3> &Xscr);
+        void setVertex(const VecMath::Vector<4> &X, const VecMath::Vector<3> &Xscr);
 
         /// Numerical calculation of the derivatives in t, u and v
         virtual vec4vec1D df (double, double, double);

@@ -171,7 +171,6 @@ class RealFunction: public RealBase {
     void DrawCube (unsigned, unsigned, unsigned);
 
     virtual void Initialize (void);
-//    virtual void InitMem (void);
 
     const VecMath::NestedVector< VecMath::Vector<4>, 3 > &X() const;
     const VecMath::NestedVector< VecMath::Vector<4>, 3 > &Xtrans() const;
@@ -191,7 +190,7 @@ class RealFunction: public RealBase {
 
     FunctionValueGrid<4, 3> _X;
     FunctionValueGrid<4, 3>::value_storage_type _Xtrans;
-    VecMath::NestedVector< VecMath::Vector<3>, 3 > _Xscr_as_grid;
+    VecMath::NestedVector< VecMath::Vector<3>, 3 > _Xscr;
 
 };
 

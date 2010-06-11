@@ -58,10 +58,7 @@ RealFunction::RealFunction(double tmin, double tmax, double dt,
                            double umin, double umax, double du,
                            double vmin, double vmax, double dv,
                            ParameterMap _parms):
-        RealBase(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv,
-                 _parms)
-//                 , _Xscr(vec3vec3D())
-        {
+        RealBase(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv, _parms) {
 
   if (MemRequired () > Globals::Instance().getMaxMemory()) {
     cerr << "Using a " << getTsteps() << "x" << getUsteps() << "x" << getVsteps()
@@ -77,12 +74,7 @@ RealFunction::RealFunction(double tmin, double tmax, double dt,
   }
 }
 
-/// Initialize the temporary storage areas
-/** Xscr[][][], Xtrans[][][]              */
-//void RealFunction::InitMem (void) { }
-
-/// Allocate and initialize X[][][] with values of f()
-/** Call InitMem() above */
+/// Allocate and initialize X[][][] with values of f().
 void RealFunction::Initialize () {
   _X = FunctionValueGrid<4, 3>(_function,
                                Vector<3, unsigned>(getTsteps()+2, getUsteps()+2, getVsteps()+2),
@@ -91,7 +83,6 @@ void RealFunction::Initialize () {
 
   calibrateColors();
 
-//  InitMem ();
 }
 
 void RealFunction::calibrateColors() const {
@@ -158,10 +149,7 @@ void RealFunction::setBoundariesAndStepwidth(double tmin, double tmax, double dt
 }
 
 /// Transforms a RealFunction
-/** \todo As I look at it, i think this could be optimized by making the
- *        transformation matrices static and only canging the corresponding
- *        entries... but how to do this beautifully, i don't know
- *  \param R rotation
+/** \param R rotation
  *  \param T translation                                                      */
 void RealFunction::Transform (const VecMath::Rotation<4> &R,
                               const VecMath::Vector<4> &T) {
@@ -188,29 +176,12 @@ void RealFunction::setDepthCueColors(double Wmax, double Wmin) {
 void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
 
   Projection<4, 3, 3> p(scr_w, cam_w, depthcue4d);
-  _Xscr_as_grid = p.project(Xtrans());
-/*
-  double ProjectionFactor;
-  double Wmax = 0, Wmin = 0;
+  _Xscr = p.project(Xtrans());
 
-  for (unsigned t = 0; t <= getTsteps()+1; t++) {
-    for (unsigned u = 0; u <= getUsteps()+1; u++) {
-      for (unsigned v = 0; v <= getVsteps()+1; v++) {
-
-        if (Xtrans()[t][u][v][3] < Wmin) Wmin = Xtrans()[t][u][v][3];
-        if (Xtrans()[t][u][v][3] > Wmax) Wmax = Xtrans()[t][u][v][3];
-
-        ProjectionFactor = (scr_w-cam_w)/(Xtrans()[t][u][v][3]-cam_w);
-
-        for (unsigned i = 0; i <= 2; i++) {
-          _Xscr[t][u][v][i] = ProjectionFactor*Xtrans()[t][u][v][i];
-        }
-      }
-    }
+  if (depthcue4d) {
+    std::pair< double, double > Wext = findExtremesInW();
+    setDepthCueColors(Wext.first, Wext.second);
   }
-
-  if (depthcue4d) setDepthCueColors(Wmax, Wmin);
-*/
 }
 
 /// Draw the projected Function (onto screen or into GL list, as it is)
@@ -263,7 +234,7 @@ const VecMath::NestedVector< Vector< 4 >, 3 > &RealFunction::Xtrans() const {
 }
 
 const VecMath::NestedVector< Vector< 3 >, 3 >& RealFunction::Xscr() const {
-    return _Xscr_as_grid;
+    return _Xscr;
 }
 
 

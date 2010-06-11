@@ -31,7 +31,7 @@ class Test_Surface: public QObject {
       VecMath::Vector<4> function_value(double tt, double uu) { return _function->f(VecMath::Vector<2>(tt,uu)); }
       VecMath::NestedVector< VecMath::Vector<4>, 2 > vertices() { return X(); }
       VecMath::NestedVector< VecMath::Vector<4>, 2 > transformed_vertices() { return Xtrans(); }
-      vec3vec2D projected_vertices() { return _Xscr; }
+      VecMath::NestedVector< VecMath::Vector<3>, 2 > projected_vertices() { return Xscr(); }
 
       unsigned xsteps() const { return getTsteps(); }
       unsigned ysteps() const { return getUsteps(); }
