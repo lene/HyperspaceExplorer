@@ -30,8 +30,8 @@
 namespace VecMath {
 
     ///  Vector<D, N>: a D-dimensional vector of numbers of type N
-    /** @param D dimension of the vector
-     *  @param N numerical type of the vector elements
+    /** @tparam D dimension of the vector
+     *  @tparam N numerical type of the vector elements
      *  \ingroup VecMath
      *  @author Lene Preuss <lene.preuss@gmail.com>                     */
     template <unsigned D, typename N = double> class Vector {

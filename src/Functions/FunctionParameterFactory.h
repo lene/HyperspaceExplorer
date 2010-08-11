@@ -31,8 +31,10 @@
 class FunctionParameterFactory {
 
 public:
-    
-    /// Create a FunctionParameter from a value of type T
+
+    /// Create a FunctionParameter from a value of type \p T
+    /** \tparam T Type of the parameter to be declared.
+     */
     template <typename T>
         FunctionParameter::parameter_ptr_type createParameterWithValue(
             const std::string &name, const T &value,
@@ -44,7 +46,9 @@ public:
         return tmp;
     }
 
-    /// Create a FunctionParameter from a default value of type T
+    /// Create a FunctionParameter from a default value of type  \p T
+    /** \tparam T Type of the parameter to be declared.
+     */
     template <typename T>
         FunctionParameter::parameter_ptr_type createParameterWithDefault(
                 const std::string &name, const T &defaultValue,

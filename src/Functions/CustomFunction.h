@@ -18,6 +18,7 @@ class QString;
 /** CustomFunctionBase contains the functions common to all descendants, if
  *  necessary as a template to cater for the varying function types of the
  *  different implementations
+ *  \tparam function_type
  *  \ingroup FunctionGroup                                                    */
 template<class function_type>
         class CustomFunctionBase {

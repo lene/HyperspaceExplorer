@@ -33,6 +33,10 @@ template <unsigned N, unsigned Nnew, unsigned P, typename NUM> class SimpleProje
  *  a point in \p N space into \p Nnew dimensions. Every projection from one
  *  dimension to the next lower dimension needs a Vector of the original dimension
  *  as camera position and one as view point.
+
+ *  \tparam N The dimension of the original vector space.
+ *  \tparam Nnew The dimension of the vector space into which is projected.
+ *  \tparam NUM The numeric type of the \c Vector s.
  */
 template <unsigned N, unsigned Nnew, typename NUM = double> class ViewpointList {
 
@@ -63,6 +67,9 @@ template <unsigned N, unsigned Nnew, typename NUM = double> class ViewpointList 
     /// Return a ViewpointList that contains all but the first element.
     ViewpointList<N-1, Nnew, NUM> &tail() { return _elements.second; }
 
+    /// Returns element \p i from the list.
+    /** \tparam i The index of the requested element.
+     */
     template <unsigned i> VecMath::Vector<N-i, NUM> get() {
       if (i == 0) return head();
       return tail().get<i-1>();
@@ -100,7 +107,10 @@ template <unsigned N, unsigned Nnew, typename NUM = double> class ViewpointList 
 };
 
 /// Specialization of ViewpointList for a projection from \p N space to \p N space - which does nothing.
-/** Needed to end recursion. */
+/** Needed to end recursion.
+ *  \tparam N The dimension of the vector space.
+ *  \tparam NUM The numeric type of the \c Vector s.
+ */
 template <unsigned N, typename NUM> class ViewpointList<N, N, NUM> {
   public:
     ViewpointList() { }
@@ -109,40 +119,62 @@ template <unsigned N, typename NUM> class ViewpointList<N, N, NUM> {
 };
 
 /// Class that projects a \p N dimensional vertex array to \p Nnew dimensions.
-/** \param N Original dimension of the Vector s to project.
- *  \param Nnew Dimension to project into.
- *  \param P Dimension of parameter space of the projected vertex array.
- *  \param Policy The class executing the actual projection on the vertices.
+/** \tparam N Original dimension of the \c Vector s to project.
+ *  \tparam Nnew Dimension to project into.
+ *  \tparam P Dimension of parameter space of the projected vertex array.
+ *  \tparam NUM The numeric type of the \c Vector s.
+ *  \tparam Policy The class executing the actual projection on the vertices.
  */
 template <unsigned N, unsigned Nnew, unsigned P, typename NUM = double, typename Policy = SimpleProjectionPolicy <N, Nnew, P, NUM> > class Projection {
 
   public:
 
+    /// Type of the list of view points and camera positions.
     typedef ViewpointList< N, Nnew, NUM > PointList;
+    /// Type of the list of screen distances from the camera.
     typedef ArrayList< N-Nnew, NUM > DistanceList;
+    /// Type of the list of bools deciding whether each projection uses depth cue or not.
     typedef ArrayList< N-Nnew, bool > BoolList;
 
     /// Create a Projection with arbitrary view- and camera points for each dimension.
+    /** \param viewpoint List of view points for the downprojection in each dimension.
+     *  \param eye List of camera positions for the downprojection in each dimension.
+     *  \param screenDistance List of screen distances for the downprojection in each
+     *      dimension.
+     *  \param depthCue4D List of flags whether depth cue is used for the downprojection
+     *      in each dimension.
+     */
     Projection(const PointList &viewpoint, const PointList &eye,
                const DistanceList &screenDistance, const BoolList &depthCue4D);
 
-    /// Create a Projection with view point at the origin, eye on the \em w axis and equal screen and eye distances in all dimensions.
+    /// Create a Projection with view point at the origin and same parameters for each dimension.
+    /** Camera is on the axis which is projected along at distance \p camW from
+     *  the origin, the screen has distance \p scrW and \p depthCue4D indicates
+     *  if depth cue is used, the same in every projection that is done to project
+     *  from \p N to \p Nnew.
+     */
     Projection(NUM scrW, NUM camW, bool depthCue4D);
 
     /// Execute the Projection on a \p P dimensional field of \p N dimensional vertices.
+    /** \param values The vertices which are projected to \p Nnew- space.
+     */
     VecMath::NestedVector< VecMath::Vector<Nnew, NUM>, P > project(
             const VecMath::NestedVector< VecMath::Vector<N, NUM>, P > &values);
 
   private:
 
-    /// Check whether tis Projection is created with sensible parameters
+    /// Check whether this Projection is created with sensible parameters.
     void checkConsistency();
-    /// Check whether the template is instantiated with sensible values for the dimensions
+    /// Check whether the template is instantiated with sensible values for the dimensions.
     void checkDimensions();
 
+    /// Generates a ViewpointList looking at the origin in every dimension.
     PointList makeOriginViewPointList();
+    /// Generates a list of camera positions \p camW units away from the origin in every dimension.
     PointList makeEyePointList(NUM camW);
+    /// Generates a list of screen distances \p scrW units away each.
     DistanceList makeScreenDistanceList(NUM scrW);
+    /// Generates a list of bools which all are equal to \p depthCue4D.
     BoolList makeDepthCueList(bool depthCue4D);
 
     PointList _viewpoint;
@@ -152,6 +184,12 @@ template <unsigned N, unsigned Nnew, unsigned P, typename NUM = double, typename
 
 };
 
+/// Default Projection policy; single threaded, no optimizations.
+/** \tparam N Original dimension of the \c Vector s to project.
+ *  \tparam Nnew Dimension to project into.
+ *  \tparam P Dimension of parameter space of the projected vertex array.
+ *  \tparam NUM The numeric type of the \c Vector s.
+ */
 template <unsigned N, unsigned Nnew, unsigned P, typename NUM> class SimpleProjectionPolicy {
 
   public:
@@ -163,6 +201,7 @@ template <unsigned N, unsigned Nnew, unsigned P, typename NUM> class SimpleProje
                            _viewpoint(viewpoint), _eye(eye),
                            _screen_distance(screen_distance), _depth_cue(depth_cue) { }
 
+    /// Execute the Projection on the given grid of \p values.
     VecMath::NestedVector< VecMath::Vector<Nnew, NUM>, P > project(
         const VecMath::NestedVector< VecMath::Vector<N, NUM>, P > &values);
 
@@ -175,6 +214,12 @@ template <unsigned N, unsigned Nnew, unsigned P, typename NUM> class SimpleProje
 
 };
 
+/// Default Projection policy - specialization to end recursion.
+/** Operates on a one-dimensional vector of \c Vector s.
+ *  \tparam N Original dimension of the \c Vector s to project.
+ *  \tparam Nnew Dimension to project into.
+ *  \tparam NUM The numeric type of the \c Vector s.
+ */
 template <unsigned N, unsigned Nnew, typename NUM> class SimpleProjectionPolicy<N, Nnew, 1, NUM> {
 
   public:
@@ -198,6 +243,12 @@ template <unsigned N, unsigned Nnew, typename NUM> class SimpleProjectionPolicy<
 
 };
 
+/// Default Projection policy - specialization to end recursion.
+/** Operates on a one-dimensional vector of \c Vector s, projecting from \p N-
+ *  space to \p N- space - in other words, does nothing at all.
+ *  \tparam N Original dimension of the \c Vector s to project.
+ *  \tparam NUM The numeric type of the \c Vector s.
+ */
 template <unsigned N, typename NUM> class SimpleProjectionPolicy<N, N, 1, NUM> {
 
   public:

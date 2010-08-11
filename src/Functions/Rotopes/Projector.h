@@ -3,8 +3,8 @@
 
 /// A functor class to project a \p D -dimensional object to \p D-1 dimensions
 /**
- *  \param D Original dimension of the object
- *  \param D_ Dimension to project onto
+ *  \tparam D Original dimension of the object
+ *  \tparam D_ Dimension to project onto
  *
  *  \todo make scrW and camW vectors for consecutive operations
  *  \todo add possibility to transform before projecting - or make a process
@@ -96,6 +96,8 @@ template <unsigned D, unsigned D_> class Projector: protected Projector<D-1, D_>
 };
 
 /// Specialization for \p D_ == \p D
+/** \tparam D Original dimension of the object
+ */
 template <unsigned D> class Projector<D, D> {
     public:
         /// Projection from D dimensions to D dimensions is a no-op

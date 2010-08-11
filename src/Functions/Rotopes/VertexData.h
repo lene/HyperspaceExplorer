@@ -10,11 +10,11 @@
 /** Contains an array of vertices (Vectors) and a function to print them. This
  *  is used mainly in the development of Rotope objects.
  *
- *  \param D Dimension of the vector space we're working in
+ *  \tparam D Dimension of the vector space we're working in
  *
  *  \todo transforming rotopes, allowing for rotation in \p D dimensions and
  *      scaling.
- * 
+ *
  *  \ingroup RotopeGroup
  *  \author Lene Preuss <lene.preuss@gmail.com>
  */
@@ -25,7 +25,7 @@ template <unsigned D>
         const static double PROJECTION_CAMERA_W = 8.;
 
     public:
-        
+
         virtual Realm &realm() { return _realm; }
         virtual const Realm &realm() const { return _realm; }
 
@@ -40,7 +40,7 @@ template <unsigned D>
 
 
     protected:
-        
+
         /// Default c'tor. VertexData objects can only be initialized in derived classes.
         VertexData(): _dimension(0), _raw_vertices(), _transform() {
             raw_vertices().push_back(VecMath::Vector<D>());

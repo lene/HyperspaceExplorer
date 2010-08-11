@@ -28,6 +28,12 @@
 #include <tr1/memory>
 
 /// Class that applies a function on every value in a NestedVector
+/** \tparam N The dimension of the definition vector space.
+ *  \tparam P The dimension of the parameter vector space.
+ *  \tparam dimension The dimension (in parameter vector space) we currently
+ *      loop over.
+ *  \tparam NUM The numeric type managed by the grid.
+ */
 template <unsigned N, unsigned P, unsigned dimension, typename NUM>
 class LoopHelper {
 

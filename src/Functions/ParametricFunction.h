@@ -44,11 +44,12 @@
  *  implemented in a daughter class of ParametricFunction < N, P > as the pure
  *  virtual function \see f().
  *
- *  \param N The dimension of the definition vector space.
- *  \param P The dimension of the parameter vector space.
+ *  \tparam N The dimension of the definition vector space.
+ *  \tparam P The dimension of the parameter vector space.
+ *  \tparam NUM The numeric type managed by the grid.
  *
  *  \ingroup FunctionGroup
- *  @author Lene Preuss <lene.preuss@gmail.com>                         
+ *  @author Lene Preuss <lene.preuss@gmail.com>
  */
 template <unsigned N, unsigned P, typename NUM = double>
   class ParametricFunction {
@@ -60,11 +61,11 @@ template <unsigned N, unsigned P, typename NUM = double>
       /// The return type of the function - a \p N dimensional Vector.
       typedef VecMath::Vector<N, NUM> return_type;
 
-      ParametricFunction(): 
+      ParametricFunction():
         _function_name(), _function_description(),
-        _parameters(), 
+        _parameters(),
         _default_x_min(-1.), _default_x_max(1.) { }
-        
+
       virtual ~ParametricFunction() { }
 
       /// The function defining the parametric equation for the \p P -surface.
@@ -76,11 +77,11 @@ template <unsigned N, unsigned P, typename NUM = double>
 
       /// \return The name of the function as string.
       std::string getName() const { return _function_name; }
-      
+
       /// \return An optional description of the function.
       std::string getDescription() const { return _function_description; }
-      
-      /// \return Number of additional parameters for the function.                  
+
+      /// \return Number of additional parameters for the function.
       unsigned getNumParameters() const { return _parameters.size(); }
 
       /// \return The collection of all additional parameters (and their values).
@@ -95,7 +96,7 @@ template <unsigned N, unsigned P, typename NUM = double>
       FunctionParameter::value_ptr_type getParameterValue(const std::string &name) {
         return FunctionParameter::value_ptr_type(_parameters.getValue(name));
       }
-      
+
       /// \return The lower boundary in parameter space which is set initially.
       argument_type getDefaultXMin() const { return _default_x_min; }
       /// \return The upper boundary in parameter space which is set initially.
@@ -110,16 +111,20 @@ template <unsigned N, unsigned P, typename NUM = double>
       void setDescription(const std::string &newDescription) { _function_description = newDescription; }
 
       /// Add a parameter with a name and a default value to the parameter list
+      /** \tparam T Type of the parameter to be declared.
+       */
       template <typename T> void declareParameter(const std::string &parameter_name,
                                                   const T &parameter_default_value);
 
       /// Add a parameter with a name, a value and a default value to the parameter list
+      /** \tparam T Type of the parameter to be declared.
+       */
       template <typename T> void declareParameter(const std::string &parameter_name,
                                                   const T &parameter_default_value,
                                                   const T &parameter_value);
 
       /// Change the definition space on which this function is evaluated by default.
-      void setDefaultBoundaries(const ParametricFunction::argument_type &x_min, 
+      void setDefaultBoundaries(const ParametricFunction::argument_type &x_min,
                                 const ParametricFunction::argument_type &x_max);
 
     private:
@@ -137,7 +142,7 @@ template <unsigned N, unsigned P, typename NUM = double>
 template <unsigned N, unsigned P, typename NUM>
 inline
 void ParametricFunction<N, P, NUM>::setDefaultBoundaries(
-  const ParametricFunction<N, P, NUM>::argument_type& x_min, 
+  const ParametricFunction<N, P, NUM>::argument_type& x_min,
   const ParametricFunction<N, P, NUM>::argument_type& x_max) {
   _default_x_min = x_min;
   _default_x_max = x_max;

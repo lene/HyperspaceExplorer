@@ -31,7 +31,7 @@ namespace UI {
             /// Class template with a static function to simulate a function template.
             /** The function \em functionPresent() tries to load a dynamic library
             *  containing a function \em f() with a variable signature.
-            *  @param F the type of function to be loaded                            */
+            *  @tparam F the type of function to be loaded                            */
             template <class F> class LoadFunctionHelper {
                 public:
                     static bool functionPresent(const QString &, QDialog *);
@@ -77,6 +77,7 @@ namespace UI {
         *
         *  If so, returns true. Else, gives an error message.
         *
+        *  \tparam F The type of Function to be created.
         *  \param libName filename for the selected DLL
         *  \param parent the Dialog which calls this function
         *  \return success                                                           */

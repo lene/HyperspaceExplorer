@@ -34,8 +34,9 @@
  *  on points throughout its definition space and stores the values of the function
  *  at those points in a \p P dimensional grid.
  *
- *  \param N The dimension of the definition vector space.
- *  \param P The dimension of the parameter vector space.
+ *  \tparam N The dimension of the definition vector space.
+ *  \tparam P The dimension of the parameter vector space.
+ *  \tparam NUM The numeric type managed by the grid.
  *
  *  \ingroup FunctionGroup
  *  @author Lene Preuss <lene.preuss@gmail.com>

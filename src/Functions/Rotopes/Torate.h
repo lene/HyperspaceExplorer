@@ -4,7 +4,7 @@
 #include "Rotope.h"
 
 /// Base class for Torate classes, providing the actual torate() function
-/** \param D Dimension of the vector space we're working in
+/** \tparam D Dimension of the vector space we're working in
  *  \ingroup RotopeGroup
  *  \author Helge Preuss <lene.preuss@gmail.com>
  */
@@ -53,9 +53,9 @@ template <unsigned D>
  *  A four-dimensional simplex, a pentachoron, is created by torateing a line
  *  three times.
  *
- *  \param D Dimension of the vector space we're working in
- *  \param Dmin First of the set of dimensions being torateed into
- *  \param Dmax Last of the set of dimensions being torateed into
+ *  \tparam D Dimension of the vector space we're working in
+ *  \tparam Dmin First of the set of dimensions being torateed into
+ *  \tparam Dmax Last of the set of dimensions being torateed into
  *
  *  \ingroup RotopeGroup
  *  \author Helge Preuss <lene.preuss@gmail.com>
@@ -76,8 +76,8 @@ template <unsigned D, unsigned Dmin, unsigned Dmax>
     };
 
 /// Specialization of Torate<D,Dmin,Dmax> to end recursion
-/** \param D Dimension of the vector space we're working in
- *  \param Dmin Dimension being torateed into
+/** \tparam D Dimension of the vector space we're working in
+ *  \tparam Dmin Dimension being torateed into
  *
  *  \ingroup RotopeGroup
  *  \author Helge Preuss <lene.preuss@gmail.com>

@@ -31,8 +31,8 @@ class RotopeFactory {
 
     private:
         /// Functor class to perform an extrusion on a Rotope or vertex array
-        /** \param D Dimension of vector space we operate in
-         *  \param d Dimension we want to extrude into
+        /** \tparam D Dimension of vector space we operate in
+         *  \tparam d Dimension we want to extrude into
          */
         template <unsigned D, unsigned d> class RotopeAction:
                 public RotopeAction<D, d-1> {
@@ -76,6 +76,8 @@ class RotopeFactory {
         };
 
         /// Specialization for extruding into the dimension 0 to end recursion
+        /** \tparam D Dimension of vector space we operate in
+         */
         template <unsigned D> class RotopeAction<D, 0> {
             public:
                 /// Perform the extrusion operations

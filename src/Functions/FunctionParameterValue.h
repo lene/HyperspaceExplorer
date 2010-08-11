@@ -33,6 +33,8 @@
  *      of the operator T() - so it needs to declare all of them)
  *   - stores a T and gives access to it via the cast operator
  *
+ *  \tparam T Type of the parameter to be declared.
+ *
  *  \see FunctionParameterValueBase
  *  \ingroup FunctionParameterGroup                                           */
 template <typename T> class FunctionParameterValue:
@@ -51,7 +53,7 @@ template <typename T> class FunctionParameterValue:
                                               "toDouble()", "");
             return 0.;
         }
-	
+
         /** Default implementation for cast to unsigned. Concrete implementation
          *  will be defined in FunctionParameterValue<unsigned>.              */
         virtual unsigned toUnsigned() const {
@@ -75,7 +77,7 @@ template <typename T> class FunctionParameterValue:
             o << _value;
             return o.str();
         }
-        
+
         /** Default implementation for cast to RotationBase. Concrete
          *  implementation will be defined in FunctionParameterValue< Rotation<D> >.
          */

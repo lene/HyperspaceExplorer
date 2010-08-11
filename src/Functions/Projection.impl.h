@@ -54,12 +54,16 @@ const VecMath::NestedVector< VecMath::Vector<N, NUM>, P > &values) {
   return p.project(values);
 }
 
-
+/** \todo check view points, eye points and distances.
+ */
 template <unsigned N, unsigned Nnew, unsigned P, typename NUM, class Policy>
 void Projection<N, Nnew, P, NUM, Policy>::checkConsistency() {
   checkDimensions();
 }
 
+/** \todo I would prefer a compilation error to throwing an exception when \p N
+ *      equals \p Nnew, but I don't see how to achieve this.
+ */
 template <unsigned N, unsigned Nnew, unsigned P, typename NUM, class Policy>
 void Projection<N, Nnew, P, NUM, Policy>::checkDimensions() {
 # if Nnew > N

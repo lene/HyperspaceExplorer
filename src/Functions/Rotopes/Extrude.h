@@ -4,7 +4,8 @@
 #include "Rotope.h"
 
 /// Base class for Extrude classes, providing the actual extrude() function
-/** \ingroup RotopeGroup
+/** \tparam D Dimension of the vector space we're working in
+ *  \ingroup RotopeGroup
  *  \author Helge Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D>
@@ -50,9 +51,9 @@ template <unsigned D>
  *  \code Extrude<4, 0, 3> tesseract; \endcode
  *  Extruding a point i four dimensions gives a hypercube or tesseract.
  *
- *  \param D Dimension of the vector space we're working in
- *  \param Dmin First of the set of dimensions being tapered into
- *  \param Dmax Last of the set of dimensions being tapered into
+ *  \tparam D Dimension of the vector space we're working in
+ *  \tparam Dmin First of the set of dimensions being tapered into
+ *  \tparam Dmax Last of the set of dimensions being tapered into
  *
  *  \ingroup RotopeGroup
  *  \author Helge Preuss <lene.preuss@gmail.com>
@@ -84,8 +85,8 @@ template <unsigned D, unsigned Dmin, unsigned Dmax>
     };
 
 /// Specialization of Extrude<D,Dmin,Dmax> to end recursion
-/** \param D Dimension of the vector space we're working in
- *  \param Dmin Dimension being tapered into
+/** \tparam D Dimension of the vector space we're working in
+ *  \tparam Dmin Dimension being tapered into
  *
  *  \ingroup RotopeGroup
  *  \author Helge Preuss <lene.preuss@gmail.com>
@@ -128,11 +129,11 @@ template <unsigned D> void extrude_base<D>::extrude(unsigned d) {
         VertexData<D>::raw_vertices()[i] -= x;
         VertexData<D>::raw_vertices().push_back(VertexData<D>::raw_vertices()[i]+x*2.);
     }
-    
+
     if (d == 0) VertexData<D>::realm() = Realm(0);
-    
+
     VertexData<D>::realm() = VertexData<D>::realm().extruded(xsize);
-    
+
     VertexData<D>::dimension()++;   //  object is now one dimension higher
 }
 

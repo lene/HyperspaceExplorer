@@ -11,7 +11,7 @@ namespace VecMath {
     /// Determine number of rotation axes in D-dimensional space
     /** The number of rotation axes is computed at compile time. It is accessed
      *  as NumAxes<D>::num.
-     *  \param D dimension of the vector space
+     *  \tparam D dimension of the vector space
      *  \ingroup VecMath                                                      */
     template <unsigned D> struct NumAxes {
         enum { num = NumAxes<D-1>::num+D-1 };
@@ -34,7 +34,7 @@ namespace VecMath {
      *  In these dimensions, I have manually specified the axes. For higher
      *  dimensions, a NotYetImplementedException is thrown.
      *  \todo Find a generic algorithm for \p D dimensions
-     *  \param D dimension of the vector space
+     *  \tparam D dimension of the vector space
      *  \ingroup VecMath                                                      */
     template <unsigned D> class RotationAxes {
         public:
@@ -91,8 +91,8 @@ namespace VecMath {
     class RotationBase { };
 
     /// Rotation in D-dimensional space defined by angles about the main axes
-    /** @param D dimension of the vector space
-     *  @param N numerical type of the rotation angles
+    /** @tparam D dimension of the vector space
+     *  @tparam N numerical type of the rotation angles
      *  \ingroup VecMath
      *  @author Helge Preuss <lene.preuss@gmail.com>                     */
     template <unsigned D, typename N = double> class Rotation:

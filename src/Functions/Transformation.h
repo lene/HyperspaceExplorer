@@ -29,9 +29,10 @@
 template <unsigned N, unsigned P, typename NUM = double> class SimpleTransformationPolicy;
 
 /// Policy-based class template to apply a geometrical transformation on a set of vertices.
-/** \param N Dimension of the vertices.
- *  \param P Dimension of the parameter space.
- *  \param TransformationPolicy The class executing the actual transform on the set of vertices.
+/** \tparam N Dimension of the vertices.
+ *  \tparam P Dimension of the parameter space.
+ *  \tparam NUM The numeric type of the \c Vector s.
+ *  \tparam TransformationPolicy The class executing the actual transform on the set of vertices.
  *
  *  \todo typedefs for translation and rotation types
  */
@@ -66,8 +67,11 @@ class Transformation {
 };
 
 /// Policy class template that contains the actual implementation of the transformation algorithm for Transformation.
-/** \param N Dimension of the vertices.
- *  \param P Dimension of the parameter space.
+/** This class implements a single-threaded transformation algorithm without
+ *  any optimizations.
+ *  \tparam N Dimension of the vertices.
+ *  \tparam P Dimension of the parameter space.
+ *  \tparam NUM The numeric type of the \c Vector s.
  */
 template <unsigned N, unsigned P, typename NUM>
 class SimpleTransformationPolicy {
@@ -87,6 +91,10 @@ class SimpleTransformationPolicy {
 
 };
 
+/// Specialization to end recursion - transform a one-dimensional vector of Vector s.
+/** \tparam N Dimension of the vertices.
+ *  \tparam NUM The numeric type of the \c Vector s.
+ */
 template <unsigned N, typename NUM> class SimpleTransformationPolicy< N, 1, NUM > {
 
   public:

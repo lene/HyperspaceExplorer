@@ -19,8 +19,8 @@
 
 namespace VecMath {
     ///  Matrix<D, N>: a \a D x \a D matrix of numbers of type \a N
-    /** \param D dimension of the matrix
-     *  \param N numerical type of the matrix elements
+    /** \tparam D dimension of the matrix
+     *  \tparam N numerical type of the matrix elements
      *  \ingroup VecMath
      *  \author Lene Preuss <lene.preuss@gmail.com>                     */
     template <unsigned D, typename N = double> class Matrix {
@@ -45,7 +45,7 @@ namespace VecMath {
             Matrix<D, N> operator - ();
 
             void scale(const Vector<D, N> &);
-            
+
             std::string toString() const;
             operator std::string() const { return toString(); }
 
@@ -118,7 +118,7 @@ namespace VecMath {
 
     /** apply the Matrix on a vector
      *  @param V Vector to multiply with (project)
-     *  @return *this * V                                                     
+     *  @return *this * V
      */
     template <unsigned D, typename N>
             Vector<D, N> Matrix<D, N>::operator * (const Vector<D, N> &V) const{

@@ -22,7 +22,7 @@ namespace VecMath {
      *  It is necessary to write a class for that because C++ does not support
      *  template typedefs.
      *
-     *  \param D Dimensionality (nesting depth) of the vector
+     *  \tparam D Dimensionality (nesting depth) of the vector
      *
      *  \ingroup VecMath
      *  \author Helge Preuss <lene.preuss@gmail.com>

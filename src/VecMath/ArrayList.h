@@ -23,8 +23,8 @@
 
 #include <string>
 
-/** \param size Number of elements in the ArrayList.
- *  \param T Type of the stored elements.
+/** \tparam size Number of elements in the ArrayList.
+ *  \tparam T Type of the stored elements.
  */
 template <unsigned size, typename T> class ArrayList {
   public:
@@ -32,7 +32,7 @@ template <unsigned size, typename T> class ArrayList {
     ArrayList(): _elements() { }
     /// Create an ArrayList with all elements initialized to \p x0.
     ArrayList(const T &x);
-    
+
     /// Return the first element of an ArrayList.
     T head() const { return _elements.first; }
     /// Return an ArrayList that contains all but the first element.
@@ -45,7 +45,7 @@ template <unsigned size, typename T> class ArrayList {
 
     /// String representation.
     std::string toString() const;
-    
+
   private:
     std::pair<T, ArrayList<size-1, T> > _elements;
 };

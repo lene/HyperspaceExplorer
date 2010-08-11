@@ -14,9 +14,9 @@
     \ingroup FunctionParameterGroup
 */
 class ParameterMap : public std::map< std::string, FunctionParameter::parameter_ptr_type > {
-  
+
   typedef std::map< std::string, FunctionParameter::parameter_ptr_type > map_type;
-  
+
 public:
 
     /// Exception that is thrown when a key is accessed that is not present in a ParameterMap.
@@ -29,26 +29,32 @@ public:
       NonexistentParameterAccessed(const std::string &which, const ParameterMap &map):
         std::invalid_argument("Tried to access parameter \""+which+"\" in ParameterMap "+map.toString()) { }
     };
-    
+
     ParameterMap(): ParameterMap::map_type() { }
-    
+
     /// Create a ParameterMap containing one parameter
+    /** \tparam T The type of the parameter that is in the map.
+     */
     template<typename T> ParameterMap(const std::string &name, const T &value):
             ParameterMap::map_type() {
         insertByValue(name, value);
     }
-    
+
     ~ParameterMap() { }
-    
+
     /// Insert a parameter with a name and an actual value
+    /** \tparam T The type of the parameter that is inserted.
+     */
     template <typename T> void insertByValue(const std::string name, const T &value) {
       insert(
         std::make_pair(
           name,
           TheFunctionParameterFactory::Instance().createParameterWithValue(name, value)));
         }
-        
+
     /// Insert a parameter with a name and a default value
+    /** \tparam T The type of the parameter that is inserted.
+     */
     template <typename T> void insertByDefault(const std::string name, const T &defaultValue) {
       insert(
         std::make_pair(
@@ -58,30 +64,30 @@ public:
 
     /// \return The FunctionParameter * that is stored under the key \p name.
     FunctionParameter::parameter_ptr_type getParameter(const std::string &name);
-    
+
     /// \return The FunctionParameterValue * that is stored under the key \p name.
     FunctionParameter::value_ptr_type getValue(const std::string &name);
 
     /// Sets the value of the parameter stored under the key \p name to \p value.
-    /** \param T The type of parameter that is to be changed. \p T must be either
+    /** \tparam T The type of parameter that is to be changed. \p T must be either
      *    of a class that has the toString() method, or one of the primitive types
      *    for which explicit specializations are listed below.
      *  \param name Key of the parameter that is to be set.
      *  \param value The new value for parameter \p name.
-     *  \throw NonexistentParameterAccessed if \p name is not a key. 
+     *  \throw NonexistentParameterAccessed if \p name is not a key.
      */
     template <typename T> void set(const std::string &name, const T &value) {
       getParameter(name)->setValue(value.toString());
     }
-    
+
     /// \return String representation for debugging purposes
     std::string toString() const;
-    
+
   private:
 
     /// \return iterator pointing to the element with key \p name.
     ParameterMap::iterator findOrThrow(const std::string &name);
-    
+
 };
 
 /// Specialization for type \c double, which has no toString() method.

@@ -102,6 +102,7 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
      *
      *  Separate classes are needed for Functions and Surfaces, because
      *  their constructors differ.
+     *  \tparam function The type of \c RealFunction created by this factory.
      *  \ingroup UIHelpers
      */
     template <typename function>
@@ -121,6 +122,7 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
        *
        *  Separate classes are needed for Functions and Surfaces, because
        *  their constructors differ.
+       *  \tparam function The type of \c Surface created by this factory.
        *  \ingroup UIHelpers
        */
       template <typename function>
@@ -138,7 +140,7 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         /// Class template to outsource redundant code for customized functions
         /** Redundant code for the generation of customized functions is moved
          *  to a slot called by QActions from the QMenu
-         *  @param function the Function to be created in the slot
+         *  \tparam function the Function to be created in the slot
          *  \ingroup UIHelpers                                                 */
         template<class function> class CustomFunctionSlot {
             public:

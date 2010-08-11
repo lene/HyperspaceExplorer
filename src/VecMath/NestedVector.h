@@ -35,8 +35,8 @@ namespace VecMath {
     *  in HyperspaceExplorer. It does not inherit from std::vector, but it behaves
     *  like one.
     *
-    *  \param T Type that is eventually stored
-    *  \param D Dimensionality (nesting depth) of the vector
+    *  \tparam T Type that is eventually stored
+    *  \tparam D Dimensionality (nesting depth) of the vector
     *
     *  \ingroup VecMath
     *  \author Helge Preuss <lene.preuss@gmail.com>

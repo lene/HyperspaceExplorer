@@ -154,6 +154,8 @@ class Function {
         }
 
         /// Set a parameter with a specified key from a supplied ParameterMap
+        /** \tparam T Type of the parameter to be set.
+         */
         template <typename T> void setParameter(const ParameterMap &parms,
                                                 T &parm,
                                                 const std::string &key);
@@ -176,9 +178,13 @@ class Function {
         virtual unsigned long MemRequired (void);
 
         /// Add a parameter to the list of parameters
+        /** \tparam T Type of the parameter to be declared.
+         */
         template <typename T> void declareParameter(const std::string &,
                                                     const T &);
         /// Add a parameter to the list of parameters
+        /** \tparam T Type of the parameter to be declared.
+         */
         template <typename T> void declareParameter(const std::string &,
                 const T &, const T &);
 

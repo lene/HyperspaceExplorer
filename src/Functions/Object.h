@@ -82,6 +82,11 @@ class Object: public Function {
 #if USE_INT_INDICES
 typedef VecMath::uintvec<2> surface_vec_type;
 #else
+/// Defines a surface element in \p D -space.
+/**
+ *  \tparam D Dimension of vector space the surface is defined in.
+ *  \tparam N_vertex Number of vertices per surface element / polygon.
+ */
 template <unsigned D, unsigned N_vertex> class SurfaceType {
 
   public:

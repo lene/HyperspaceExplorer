@@ -4,7 +4,7 @@
 #include "Rotope.h"
 
 /// Base class for Rotate classes, providing the actual rotate() function
-/** \param D Dimension of the vector space we're working in
+/** \tparam D Dimension of the vector space we're working in
  *  \ingroup RotopeGroup
  *  \author Helge Preuss <lene.preuss@gmail.com>
  */
@@ -59,9 +59,9 @@ template <unsigned D>
  *  A four-dimensional sphere, also known as glome, is created by rotating a
  *  line three times.
  *
- *  \param D Dimension of the vector space we're working in
- *  \param Dmin First of the set of dimensions being rotated into
- *  \param Dmax Last of the set of dimensions being rotated into
+ *  \tparam D Dimension of the vector space we're working in
+ *  \tparam Dmin First of the set of dimensions being rotated into
+ *  \tparam Dmax Last of the set of dimensions being rotated into
  *
  *  \ingroup RotopeGroup
  *  \author Helge Preuss <lene.preuss@gmail.com>
@@ -83,8 +83,8 @@ template <unsigned D, unsigned Dmin, unsigned Dmax>
     };
 
 /// Specialization of Rotate<D,Dmin,Dmax> to end recursion
-/** \param D Dimension of the vector space we're working in
- *  \param Dmin Dimension being rotated into
+/** \tparam D Dimension of the vector space we're working in
+ *  \tparam Dmin Dimension being rotated into
  *
  *  \ingroup RotopeGroup
  *  \author Helge Preuss <lene.preuss@gmail.com>
@@ -120,7 +120,7 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
 #   endif
 
     checkRotationArguments(d);
-    
+
     std::vector<VecMath::Vector<D> > Xold = VertexData<D>::raw_vertices();
     for (unsigned i = 1; i <= RotopeInterface::_numSegments; ++i) {
         double rot = 1.*i*M_PI/RotopeInterface::_numSegments;
@@ -129,7 +129,7 @@ template <unsigned D> void rotate_base<D>::rotate(unsigned d) {
                  VertexData<D>::raw_vertices().push_back(rotate_vertex(*j, rot, d, d-1));
         }
     }
-    
+
     VertexData<D>::dimension()++;   //  object is now one dimension higher
 
     VertexData<D>::realm() = VertexData<D>::realm().rotated(RotopeInterface::_numSegments, Xold.size());

@@ -19,9 +19,9 @@ class RealFunctionFactory;
 class SurfaceFactory;
 
 /// Single-stop slot for menu QActions generating Function objects
-/** The mission is to have a single function to serve as slot for all menu
- *  Actions which generate a new Function. After all, this could be done with a
- *  template.
+/** Your mission, should you choose to accept it, is to have a single function
+ *  to serve as slot for all menu Actions which generate a new Function. After
+ *  all, this could be done with a template.
  *
  *  In fact, it's not quite so easy and we need an indirection. Also, one
  *  function is not enough because Surface objects have a constructor different
