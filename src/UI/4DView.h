@@ -49,6 +49,7 @@ class RealFunctionFactory {
       return doCreateFunction(view);
     }
 
+    /// The function name as a std::string.
     std::string functionName() { return doGetFunctionName(); }
 
   private:
@@ -56,6 +57,7 @@ class RealFunctionFactory {
     /// Implementation of TemplateMethod createFunction()
     virtual RealFunction *doCreateFunction(C4DView *) = 0;
 
+    /// Implementation of Template Method functionName().
     virtual std::string doGetFunctionName() = 0;
 
 };
@@ -77,13 +79,15 @@ class SurfaceFactory {
       return doCreateSurface(view);
     }
 
+    /// The function name as a std::string.
     std::string functionName() { return doGetFunctionName(); }
 
   private:
 
-    /// Implementation of TemplateMethod createSurface()
+    /// Implementation of Template Method createSurface()
     virtual Surface *doCreateSurface(C4DView *) = 0;
 
+    /// Implementation of Template Method functionName().
     virtual std::string doGetFunctionName() = 0;
 
 };

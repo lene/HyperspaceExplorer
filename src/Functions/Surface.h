@@ -43,8 +43,7 @@ class SurfaceBase: public Function {
         typedef VecMath::Vector<4> raw_function_type (double, double);
 
         SurfaceBase(): Function() { }
-        /** \param name a name for the Surface
-         *  \param _tmin lower bound in first parameter
+        /** \param _tmin lower bound in first parameter
          *  \param _tmax upper bound in first parameter
          *  \param _dt stepsize in first parameter
          *  \param _umin lower bound in second parameter
@@ -141,8 +140,11 @@ class Surface: public SurfaceBase {
         virtual vec4vec1D df (double, double);
         virtual function_type normal;
 
+        /// Array of function values.
         const VecMath::NestedVector< VecMath::Vector<4>, 2 > &X() const;
+        /// Array of function values after transform.
         const VecMath::NestedVector< VecMath::Vector<4>, 2 > &Xtrans() const;
+        /// Array of projected function values.
         const VecMath::NestedVector< VecMath::Vector<3>, 2 > &Xscr() const;
 
         void Initialize (void);
@@ -151,17 +153,22 @@ class Surface: public SurfaceBase {
 
         void DrawStrip (unsigned);
 
+        /// Pointer to the actual ParametricFunction doing all the work.
         std::tr1::shared_ptr< ParametricFunction<4, 2> > _function;
 
   private:
 
-    void setBoundariesAndStepwidth(double _tmin, double _tmax, double _dt,
-                                   double _umin, double _umax, double _du);
+    /// Set up the grid using boundaries and stepwidth.
+    void setBoundariesAndStepwidth(double tmin, double tmax, double dt,
+                                   double umin, double umax, double du);
 
     std::pair<double, double> findExtremesInW() const;
 
+    /// Array of function values.
     FunctionValueGrid<4, 2> _X;
+    /// Array of function values after transform.
     FunctionValueGrid<4, 2>::value_storage_type _Xtrans;
+    /// Array of projected function values.
     VecMath::NestedVector< VecMath::Vector<3>, 2 > _Xscr;
 
 };
@@ -185,6 +192,7 @@ public:
 
 private:
 
+  /// ParametricFunction that defines Surface1
   struct DefiningFunction: public ParametricFunction<4, 2> {
     virtual return_type f(const argument_type &x);
   };
@@ -219,6 +227,7 @@ public:
 
 private:
 
+    /// ParametricFunction that defines Horizon
   struct DefiningFunction: public ParametricFunction<4, 2> {
     virtual return_type f(const argument_type &x);
   };
@@ -244,6 +253,7 @@ public:
 
 private:
 
+    /// ParametricFunction that defines Torus3
   struct DefiningFunction: public ParametricFunction<4, 2> {
     virtual return_type f(const argument_type &x);
   };

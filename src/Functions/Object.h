@@ -90,10 +90,16 @@ typedef VecMath::uintvec<2> surface_vec_type;
 template <unsigned D, unsigned N_vertex> class SurfaceType {
 
   public:
+
+    /// The type of the \p D -dimensional vertices.
     typedef VecMath::Vector<D> vertex_type;
+    /// Pointer to vertex_type.
     typedef const vertex_type * vertex_ptr_type;
 
+    /// Construct an empty SurfaceType.
     SurfaceType() { for (unsigned i = 0; i < N_vertex; _vertices[i++] = 0) ; }
+
+    /// Construct a SurfaceType with a vertex array and three vertices.
     SurfaceType(const std::vector<vertex_type> &original_container,
                 const vertex_type &v0, const vertex_type &v1,
                 const vertex_type &v2) {
@@ -105,6 +111,8 @@ template <unsigned D, unsigned N_vertex> class SurfaceType {
         _indices[i] = 0;
       }
     }
+
+    /// Construct a SurfaceType with a vertex array and four vertices.
     SurfaceType(const std::vector<vertex_type> &original_container,
                 const vertex_type &v0, const vertex_type &v1,
                 const vertex_type &v2, const vertex_type &v3) {
@@ -118,7 +126,10 @@ template <unsigned D, unsigned N_vertex> class SurfaceType {
       }
     }
 
+    /// Returns the \p i -th vertex.
     const vertex_ptr_type &operator[](unsigned i) const { return _vertices[i]; }
+
+    /// Returns the \p i -th index into the vertices array.
     unsigned index(unsigned i) const { return _indices[i]; }
 
     /// Preliminary version, only for N_vertex = 4
@@ -132,6 +143,7 @@ template <unsigned D, unsigned N_vertex> class SurfaceType {
              ;
     }
 
+    /// Debugging output
     void print() {
       for (unsigned i = 0; i < N_vertex; ++i)
         std::cerr << _indices[i] << ": " << *(_vertices[i]) << " ";
@@ -150,6 +162,7 @@ template <unsigned D, unsigned N_vertex> class SurfaceType {
         throw std::logic_error("SurfaceType::index_of(): Tried to find the index of a vertex that was not in the container");
       }
 
+      /// Whether the tuple (n0, n1) is a permutation of (m0, m1).
       static inline bool isPermutation(unsigned m0, unsigned m1,
                                        unsigned n0, unsigned n1) {
         if (m0 == n0 && m1 == n1) return true;
@@ -157,6 +170,7 @@ template <unsigned D, unsigned N_vertex> class SurfaceType {
         return false;
       }
 
+      /// Whether the tuple (n0, n1, n2) is a permutation of (m0, m1, m2).
       static inline bool isPermutation(unsigned m0, unsigned m1, unsigned m2,
                                        unsigned n0, unsigned n1, unsigned n2) {
         if (m0 == n0 && isPermutation(m1, m2, n1, n2)) return true;
@@ -165,6 +179,7 @@ template <unsigned D, unsigned N_vertex> class SurfaceType {
         return false;
       }
 
+      /// Whether the tuple (n0, n1, n2, n3) is a permutation of (m0, m1, m2, m3).
       static inline bool isPermutation(unsigned m0, unsigned m1, unsigned m2, unsigned m3,
                                        unsigned n0, unsigned n1, unsigned n2, unsigned n3) {
           if (m0 == n0 && isPermutation(m1, m2, m3, n1, n2, n3)) return true;
@@ -174,7 +189,14 @@ template <unsigned D, unsigned N_vertex> class SurfaceType {
           return false;
         }
 
+      /// Array of vertices the Surface consists of
+      /** \todo why not a vector or something?
+       */
       vertex_ptr_type _vertices[N_vertex];
+
+      /// Array of indices pointing into _vertices.
+      /** \todo why not a vector or something?
+       */
       unsigned _indices[N_vertex];
 };
 

@@ -21,12 +21,20 @@
 template <unsigned D>
     class VertexData: public RotopeInterface {
 
+        /// Hardcoded screen distance for generation of the Projection in projected_vertices().
+        /** \todo un-hardcode this (configure from Rotope)
+         */
         const static double PROJECTION_SCREEN_W = 2.;
+        /// Hardcoded camera w coordinate for generation of the Projection in projected_vertices().
+        /** \todo un-hardcode this (configure from Rotope)
+         */
         const static double PROJECTION_CAMERA_W = 8.;
 
     public:
 
+        /// The array of realms (D-1 dimensional surfaces of D-dimensional object)
         virtual Realm &realm() { return _realm; }
+        /// The array of realms (D-1 dimensional surfaces of D-dimensional object)
         virtual const Realm &realm() const { return _realm; }
 
         /// Read-only access to the list of vertices managed by this object
@@ -36,6 +44,7 @@ template <unsigned D>
         virtual unsigned dimension() const { return _dimension; }
         virtual unsigned &dimension() { return _dimension; }
 
+        /// String representation.
         virtual std::string toString();
 
 
@@ -72,13 +81,18 @@ template <unsigned D>
         /** \todo This class is still a little chaotic. */
         class VertexDataPrinter {
 
+            /// How many characters fit in a column.
             const static int PRINT_VERTICES_COLUMN_WIDTH = 40;
+            /// In how many columns the output is ordered.
             const static int PRINT_VERTICES_NUM_COLUMNS = 2;
 
         public:
+
+            /// Initializes a VertexDataPrinter with a VertexData object.
             VertexDataPrinter(VertexData *vertexData):
                 _vertexData(vertexData) { }
 
+            /// Prints the VertexData object on stream \p out.
             void printToStream(std::ostream &out) const;
 
         private:
@@ -96,10 +110,12 @@ template <unsigned D>
              */
             std::string verticesToStringRow(unsigned base_index, unsigned num_columns) const;
 
+            /// Prints a line of \p num_columns vertices on \p out.
             void printVerticesRow(unsigned base_index,
                                   unsigned num_columns = PRINT_VERTICES_NUM_COLUMNS,
                                   std::ostream &out = std::cout) const;
 
+            /// The VertexData object that is printed.
             VertexData *_vertexData;
         };
 

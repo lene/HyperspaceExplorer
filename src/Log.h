@@ -15,7 +15,8 @@
  *  @author Helge Preuss <lene.preuss@gmail.com>                         */
 class Log{
     public:
-        /** print a string with a line break */
+        /** print a string with a line break
+         */
         void log(std::string
 #           ifdef DEBUG
                 message
@@ -26,6 +27,8 @@ class Log{
 #           endif
         }
 
+        /** print a string without a line break
+         */
         template <typename T> Log &operator<<(const T &
 #           ifdef DEBUG
                 out

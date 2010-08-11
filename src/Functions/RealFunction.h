@@ -172,24 +172,34 @@ class RealFunction: public RealBase {
 
     virtual void Initialize (void);
 
+    /// Array of function values.
     const VecMath::NestedVector< VecMath::Vector<4>, 3 > &X() const;
+    /// Array of function values after transform.
     const VecMath::NestedVector< VecMath::Vector<4>, 3 > &Xtrans() const;
+    /// Array of projected function values.
     const VecMath::NestedVector< VecMath::Vector<3>, 3 > &Xscr() const;
 
+    /// Pointer to the actual ParametricFunction doing all the work.
     std::tr1::shared_ptr< ParametricFunction<4, 3> > _function;
 
   private:
 
+    /// Initialize depth cue.
     void setDepthCueColors(double Wmax, double Wmin);
 
+    /// Set up the grid using boundaries and stepwidth.
     void setBoundariesAndStepwidth(double tmin, double tmax, double dt,
                                    double umin, double umax, double du,
                                    double vmin, double vmax, double dv);
 
+    /// Finds maximum and minimum function value in w.
     std::pair<double, double> findExtremesInW() const;
 
+    /// Array of function values.
     FunctionValueGrid<4, 3> _X;
+    /// Array of function values after transform.
     FunctionValueGrid<4, 3>::value_storage_type _Xtrans;
+    /// Array of projected function values.
     VecMath::NestedVector< VecMath::Vector<3>, 3 > _Xscr;
 
 };
@@ -221,6 +231,7 @@ class Hypersphere: public RealFunction {
 
   protected:
 
+    /// ParametricFunction that defines Hypersphere
     class DefiningFunction: public ParametricFunction<4, 3> {
 
       public:
@@ -283,6 +294,7 @@ class Torus1: public RealFunction {
 
   protected:
 
+    /// ParametricFunction that defines Torus1
     class DefiningFunction: public ParametricFunction<4, 3> {
 
       public:
@@ -342,6 +354,7 @@ class Torus2: public RealFunction {
 
   protected:
 
+    /// ParametricFunction that defines Torus2
     class DefiningFunction: public ParametricFunction<4, 3> {
 
       public:
@@ -384,6 +397,8 @@ class Fr3r: public RealFunction {
         virtual std::string getFunctionName() const { return "1/(r"+Globals::Instance().sup2()+"+1)"; }
 
     protected:
+
+    /// ParametricFunction that defines Fr3r
     class DefiningFunction: public ParametricFunction<4, 3> {
 
       public:
@@ -437,6 +452,7 @@ class GravitationPotential: public RealFunction {
 
     protected:
 
+    /// ParametricFunction that defines GravitationPotential
     class DefiningFunction: public ParametricFunction<4, 3> {
 
       public:
@@ -475,6 +491,8 @@ class Fr3rSin: public RealFunction {
         virtual std::string getFunctionName() const { return "sin (r�)"; }
 
     protected:
+
+    /// ParametricFunction that defines Fr3rSin
     class DefiningFunction: public ParametricFunction<4, 3> {
 
       public:
@@ -510,6 +528,8 @@ class Fr3rExp: public RealFunction {
         virtual std::string getFunctionName() const { return "exp (r�)"; }
 
     protected:
+
+    /// ParametricFunction that defines Fr3rExp
     class DefiningFunction: public ParametricFunction<4, 3> {
 
       public:
@@ -542,6 +562,8 @@ class Polar: public RealFunction {
         virtual ~Polar() { }
 
     protected:
+
+    /// ParametricFunction that defines Polar
     class DefiningFunction: public ParametricFunction<4, 3> {
 
       public:
@@ -584,6 +606,8 @@ class PolarSin: public RealFunction {
         }
 
     protected:
+
+    /// ParametricFunction that defines PolarSin
     class DefiningFunction: public ParametricFunction<4, 3> {
 
       public:
@@ -621,6 +645,8 @@ class PolarSin2: public RealFunction {
         virtual std::string getFunctionName() const { return "Polar: r = sin (pi/3.*(t+u+v))"; }
 
     protected:
+
+    /// ParametricFunction that defines PolarSin2
     class DefiningFunction: public ParametricFunction<4, 3> {
 
       public:
@@ -668,6 +694,8 @@ class PolarR: public RealFunction {
         }
 
     protected:
+
+    /// ParametricFunction that defines PolarR
     class DefiningFunction: public ParametricFunction<4, 3> {
 
       public:

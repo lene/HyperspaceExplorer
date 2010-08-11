@@ -36,29 +36,27 @@ double RealBase::_max =  1.;
 double RealBase::_d = 0.1;
 
 /** RealFunction c'tor given only a name: All grid values are set to defaults
- *  \param _name a name for the function
  */
 RealFunction::RealFunction():
     RealBase(_min, _max, _d, _min, _max, _d, _min, _max, _d,
              ParameterMap()) { }
 
 /** RealFunction c'tor given a definition set in \f$ R^3 \f$ (as parameter space)
- *  \param _name a name for the function
- *  \param _tmin minimal value in t
- *  \param _tmax maximal value in t
- *  \param _dt stepsize in t
- *  \param _umin minimal value in u
- *  \param _umax maximal value in u
- *  \param _du stepsize in u
- *  \param _vmin minimal value in v
- *  \param _vmax maximal value in v
- *  \param _dv stepsize in v
- *  \param _parms function parameters                               */
+ *  \param tmin minimal value in t
+ *  \param tmax maximal value in t
+ *  \param dt stepsize in t
+ *  \param umin minimal value in u
+ *  \param umax maximal value in u
+ *  \param du stepsize in u
+ *  \param vmin minimal value in v
+ *  \param vmax maximal value in v
+ *  \param dv stepsize in v
+ *  \param parms function parameters                               */
 RealFunction::RealFunction(double tmin, double tmax, double dt,
                            double umin, double umax, double du,
                            double vmin, double vmax, double dv,
-                           ParameterMap _parms):
-        RealBase(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv, _parms) {
+                           ParameterMap parms):
+        RealBase(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv, parms) {
 
   if (MemRequired () > Globals::Instance().getMaxMemory()) {
     cerr << "Using a " << getTsteps() << "x" << getUsteps() << "x" << getVsteps()
@@ -118,15 +116,16 @@ std::pair< double, double > RealFunction::findExtremesInW() const {
 }
 
 /// Re-initialize a RealFunction if the definition set has changed
-/** \param _tmin minimal value in t
- *  \param _tmax maximal value in t
- *  \param _dt stepsize in t
- *  \param _umin minimal value in u
- *  \param _umax maximal value in u
- *  \param _du stepsize in u
- *  \param _vmin minimal value in v
- *  \param _vmax maximal value in v
- *  \param _dv stepsize in v                                              */
+/** \param tmin minimal value in t
+ *  \param tmax maximal value in t
+ *  \param dt stepsize in t
+ *  \param umin minimal value in u
+ *  \param umax maximal value in u
+ *  \param du stepsize in u
+ *  \param vmin minimal value in v
+ *  \param vmax maximal value in v
+ *  \param dv stepsize in v
+ */
 void RealFunction::ReInit(double tmin, double tmax, double dt,
                           double umin, double umax, double du,
                           double vmin, double vmax, double dv) {
@@ -137,6 +136,16 @@ void RealFunction::ReInit(double tmin, double tmax, double dt,
 
 }
 
+/** \param tmin minimal value in t
+ *  \param tmax maximal value in t
+ *  \param dt stepsize in t
+ *  \param umin minimal value in u
+ *  \param umax maximal value in u
+ *  \param du stepsize in u
+ *  \param vmin minimal value in v
+ *  \param vmax maximal value in v
+ *  \param dv stepsize in v
+ */
 void RealFunction::setBoundariesAndStepwidth(double tmin, double tmax, double dt,
                                              double umin, double umax, double du,
                                              double vmin, double vmax, double dv) {
@@ -295,16 +304,16 @@ void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v) {
 
 
 /// Hypersphere c'tor given a definition set in \f$ R^3 \f$ (as parameter space) and a radius
-/** \param _tmin minimal value in t
- *  \param _tmax maximal value in t
- *  \param _dt stepsize in t
- *  \param _umin minimal value in u
- *  \param _umax maximal value in u
- *  \param _du stepsize in u
- *  \param _vmin minimal value in v
- *  \param _vmax maximal value in v
- *  \param _dv stepsize in v
- *  \param _rad radius                                                        */
+/** \param tmin minimal value in t
+ *  \param tmax maximal value in t
+ *  \param dt stepsize in t
+ *  \param umin minimal value in u
+ *  \param umax maximal value in u
+ *  \param du stepsize in u
+ *  \param vmin minimal value in v
+ *  \param vmax maximal value in v
+ *  \param dv stepsize in v
+ *  \param rad radius                                                        */
 Hypersphere::Hypersphere(double tmin, double tmax, double dt,
                          double umin, double umax, double du,
                          double vmin, double vmax, double dv,
@@ -372,18 +381,18 @@ Vector<4> &Hypersphere::normal (double tt, double uu, double vv) {
 
 /** Torus1 c'tor given a definition set in \f$ R^3 \f$ (as parameter space) and three
  *  radii: major, minor and... what'sitcalled... subminor
- *  \param _tmin	minimal value in t
- *  \param _tmax	maximal value in t
- *  \param _dt		stepsize in t
- *  \param _umin	minimal value in u
- *  \param _umax	maximal value in u
- *  \param _du		stepsize in u
- *  \param _vmin	minimal value in v
- *  \param _vmax	maximal value in v
- *  \param _dv		stepsize in v
- *  \param _R		major radius
- *  \param _r		minor radius
- *  \param _rho		subminor radius */
+ *  \param tmin	    minimal value in t
+ *  \param tmax	    maximal value in t
+ *  \param dt		stepsize in t
+ *  \param umin	    minimal value in u
+ *  \param umax	    maximal value in u
+ *  \param du		stepsize in u
+ *  \param vmin	    minimal value in v
+ *  \param vmax	    maximal value in v
+ *  \param dv		stepsize in v
+ *  \param R		major radius
+ *  \param r		minor radius
+ *  \param rho		subminor radius */
 Torus1::Torus1 (double tmin, double tmax, double dt,
                 double umin, double umax, double du,
                 double vmin, double vmax, double dv,
@@ -509,8 +518,8 @@ Fr3r::DefiningFunction::f(const ParametricFunction< 4, 3 >::argument_type& x) {
  *  \param zmin minimal value in v
  *  \param zmax maximal value in v
  *  \param dz   stepsize in v
- *  \param _M   Mass of the generating sphere
- *  \param _R   Radius of the generating sphere
+ *  \param M   Mass of the generating sphere
+ *  \param R   Radius of the generating sphere
  */
 GravitationPotential::GravitationPotential (double xmin, double xmax, double dx,
                                             double ymin, double ymax, double dy,

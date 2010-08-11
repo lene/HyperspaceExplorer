@@ -47,6 +47,7 @@ namespace VecMath {
         Vector<D, N> (const N &x);
         /// Constructor with variable argument list.
         /** @param x0  the vector's first element.
+         *  @param x1  the vector's second element.
          *  @param ... the vector's other elements.                           */
         Vector<D, N> (N x0, N x1, ... );
 
@@ -131,7 +132,10 @@ namespace VecMath {
         const N *data () const { return _x; }
 
         /// Convert the Vector into an array of arbitrary objects
-        /** Array of floats is needed by glLightfv() */
+        /** Array of floats is needed by glLightfv()
+         *  \tparam T The type of objects the vector elements are converted to.
+         *      A cast operator to \p T objects must exist for type \p N.
+         */
         template <typename T>
             operator const T * () const {
                 static T data[D];
@@ -139,6 +143,7 @@ namespace VecMath {
                 return data;
             }
 
+        /// Convert Vector to a std::string.
         std::string toString() const;
 
     private:
@@ -146,7 +151,7 @@ namespace VecMath {
     };
 
     template <unsigned D, typename N>
-            std::ostream &operator << (std::ostream &, const Vector<D, N> &);
+            std::ostream &operator << (std::ostream &s, const Vector<D, N> &v);
 
     //------------  Vector member functions
 
@@ -281,9 +286,12 @@ namespace VecMath {
 
     /// Vector output operator
     /** \ingroup VecMath
+     *  @tparam D dimension of the vector
+     *  @tparam N numerical type of the vector elements
      *  @param o ostream to push into
      *  @param v Vector to print
-     *  @return a new ostream to push Vectors and stuff into                  */
+     *  @return \p o; a new ostream to push Vectors and stuff into
+     */
     template <unsigned D, typename N>
             std::ostream &operator << (std::ostream &o, const Vector<D, N> &v) {
         //  i might want to use other brackets one day
@@ -296,9 +304,11 @@ namespace VecMath {
 
     /// Vector input operator
     /** \ingroup VecMath
+     *  @tparam D dimension of the vector
+     *  @tparam N numerical type of the vector elements
      *  \param in istringstream to read from
      *  \param v Vector to read
-     *  \return a new istringstream to read stuff from
+     *  \return \p in - a new istringstream to read stuff from
      */
     template <unsigned D, typename N>
             std::istringstream &operator >> (std::istringstream &in,
@@ -312,28 +322,43 @@ namespace VecMath {
         return in;
     }
 
-    /// cross product of two Vectors
-    /** fails for dimensions other than 3 due to lack of template
-     *  specialization
+    /// Cross product of two Vector s. This is only mathematically defined for \p D = 3.
+    /** Fails for dimensions other than 3 due to lack of template specialization.
+     *
      *  \ingroup VecMath
-     *  \return	a x b                                                         */
+     *  @tparam D dimension of the vector
+     *  @tparam N numerical type of the vector elements
+     *  \param a First operand of cross product.
+     *  \param b Second operand of cross product.
+     *  \return \p a \c x \p b
+     */
     template <unsigned D, typename N>
-            Vector<D> cross (const Vector<D> &, const Vector<D> &);
+            Vector<D, N> cross (const Vector<D, N> &a, const Vector<D, N> &b);
 
-    /// specialization for cross product of three 4-Vectors
-    /** fails for dimensions other than 4 due to lack of template
-     *  specialization
+    /// Cross product of three Vector s. This is only mathematically defined for \p D = 4.
+    /** Fails for dimensions other than 4 due to lack of template specialization.
+     *
      *  \ingroup VecMath
-     *  \return	a x b x c                                                     */
-    template <unsigned D, typename N>
-            Vector<D> cross (const Vector<D> &, const Vector<D> &, const Vector<D> &);
+     *  @tparam D dimension of the vector
+     *  @tparam N numerical type of the vector elements
+     *  \param a First operand of cross product.
+     *  \param b Second operand of cross product.
+     *  \param c Third operand of cross product.
+     *  \return \p a \c x \p b \c x \p c
+     */
+     template <unsigned D, typename N>
+            Vector<D, N> cross (const Vector<D, N> &a, const Vector<D, N> &b, const Vector<D, N> &c);
 
-    /// specialization for cross product of two 3-Vectors
-    /** \ingroup VecMath
+    /// Cross product of two 3-Vectors.
+    /** Specialization of the function template for \p D = 3.
+     *
+     *  \ingroup VecMath
+     *  @tparam N numerical type of the vector elements
      *  @param a first operand of cross product
      *  @param b second operand of cross product
-     *  @return a x b                                                         */
-    template <typename N>
+     *  \return \p a \c x \p b
+     */
+     template <typename N>
             Vector<3, N> vcross (Vector<3, N> a, Vector<3, N> b) {
         static Vector<3, N> c;
 
@@ -344,13 +369,17 @@ namespace VecMath {
         return c;
     }
 
-    /// specialization for cross product of three 4-Vectors
-    /** \ingroup VecMath
-     * @param a	first operand of cross product
-     * @param b	second operand of cross product
-     * @param c	third operand of cross product
-     * @return	a x b x c                                                     */
-    template <typename N>
+    /// Cross product of three 4-Vectors
+    /** Specialization of the function template for \p D = 4.
+     *
+     *  \ingroup VecMath
+     *  @tparam N numerical type of the vector elements.
+     *  @param a first operand of cross product.
+     *  @param b second operand of cross product.
+     *  @param c third operand of cross product.
+     *  \return \p a \c x \p b \c x \p c
+     */
+     template <typename N>
             Vector<4, N> vcross (Vector<4, N> a, Vector<4, N> b, Vector<4, N> c) {
         static Vector<4, N> d;
         N A = b[0]*c[1]-b[1]*c[0],
@@ -368,10 +397,13 @@ namespace VecMath {
         return d;
     }
 
-    /// normalizes a 3-Vector out-of-place
+    /// Normalizes a 3-Vector out-of-place
     /** \ingroup VecMath
+     *  @tparam D dimension of the vector
+     *  @tparam N numerical type of the vector elements
      *  @param x Vector to be normalized
-     *  @return its normalized value                                          */
+     *  @return its normalized value
+     */
     template <unsigned D, typename N>
             Vector<D, N> vnormalize( const Vector<D, N> &x ) {
         static Vector<D, N> n;
@@ -383,6 +415,11 @@ namespace VecMath {
     //------------  functions that generate a Vector without taking resort to variable arglists
 
     /// Generator function for a 2-dimensional Vector
+    /** \ingroup VecMath
+     *  \tparam N numerical type of the vector elements.
+     *  \param x0 first element of the Vector.
+     *  \param x1 second element of the Vector.
+     */
     template <typename N> Vector<2, N> makeVector(N const &x0, N const &x1) {
         Vector<2, N> x;
 
@@ -393,6 +430,12 @@ namespace VecMath {
     }
 
     /// Generator function for a 3-dimensional Vector
+    /** \ingroup VecMath
+     *  \tparam N numerical type of the vector elements.
+     *  \param x0 first element of the Vector.
+     *  \param x1 second element of the Vector.
+     *  \param x2 third element of the Vector.
+     */
     template <typename N> Vector<3, N> makeVector(
             N const &x0, N const &x1, N const &x2) {
 
@@ -406,6 +449,13 @@ namespace VecMath {
     }
 
     /// Generator function for a 4-dimensional Vector
+    /** \ingroup VecMath
+     *  \tparam N numerical type of the vector elements.
+     *  \param x0 first element of the Vector.
+     *  \param x1 second element of the Vector.
+     *  \param x2 third element of the Vector.
+     *  \param x3 fourth element of the Vector.
+     */
     template <typename N> Vector<4, N> makeVector(
             N const &x0, N const &x1, N const &x2, N const &x3) {
 
@@ -420,6 +470,14 @@ namespace VecMath {
     }
 
     /// Generator function for a 5-dimensional Vector
+    /** \ingroup VecMath
+     *  \tparam N numerical type of the vector elements.
+     *  \param x0 first element of the Vector.
+     *  \param x1 second element of the Vector.
+     *  \param x2 third element of the Vector.
+     *  \param x3 fourth element of the Vector.
+     *  \param x4 fifth element of the Vector.
+     */
     template <typename N> Vector<5, N> makeVector(
             N const &x0, N const &x1, N const &x2, N const &x3, N const &x4) {
 
@@ -435,6 +493,15 @@ namespace VecMath {
     }
 
     /// Generator function for a 6-dimensional Vector
+    /** \ingroup VecMath
+     *  \tparam N numerical type of the vector elements.
+     *  \param x0 first element of the Vector.
+     *  \param x1 second element of the Vector.
+     *  \param x2 third element of the Vector.
+     *  \param x3 fourth element of the Vector.
+     *  \param x4 fifth element of the Vector.
+     *  \param x5 sixth element of the Vector.
+     */
     template <typename N> Vector<6, N> makeVector(
             N const &x0, N const &x1, N const &x2, N const &x3, N const &x4,
             N const &x5) {
@@ -452,6 +519,16 @@ namespace VecMath {
     }
 
     /// Generator function for a 7-dimensional Vector
+    /** \ingroup VecMath
+     *  \tparam N numerical type of the vector elements.
+     *  \param x0 first element of the Vector.
+     *  \param x1 second element of the Vector.
+     *  \param x2 third element of the Vector.
+     *  \param x3 fourth element of the Vector.
+     *  \param x4 fifth element of the Vector.
+     *  \param x5 sixth element of the Vector.
+     *  \param x6 seventh element of the Vector.
+     */
     template <typename N> Vector<7, N> makeVector(
             N const &x0, N const &x1, N const &x2, N const &x3, N const &x4,
             N const &x5, N const &x6) {
@@ -470,6 +547,17 @@ namespace VecMath {
     }
 
     /// Generator function for a 8-dimensional Vector
+    /** \ingroup VecMath
+     *  \tparam N numerical type of the vector elements.
+     *  \param x0 first element of the Vector.
+     *  \param x1 second element of the Vector.
+     *  \param x2 third element of the Vector.
+     *  \param x3 fourth element of the Vector.
+     *  \param x4 fifth element of the Vector.
+     *  \param x5 sixth element of the Vector.
+     *  \param x6 seventh element of the Vector.
+     *  \param x7 eighth element of the Vector.
+     */
     template <typename N> Vector<8, N> makeVector(
             N const &x0, N const &x1, N const &x2, N const &x3, N const &x4,
             N const &x5, N const &x6, N const &x7) {
@@ -489,6 +577,18 @@ namespace VecMath {
     }
 
     /// Generator function for a 9-dimensional Vector
+    /** \ingroup VecMath
+     *  \tparam N numerical type of the vector elements.
+     *  \param x0 first element of the Vector.
+     *  \param x1 second element of the Vector.
+     *  \param x2 third element of the Vector.
+     *  \param x3 fourth element of the Vector.
+     *  \param x4 fifth element of the Vector.
+     *  \param x5 sixth element of the Vector.
+     *  \param x6 seventh element of the Vector.
+     *  \param x7 eighth element of the Vector.
+     *  \param x8 ninth element of the Vector.
+     */
     template <typename N> Vector<9, N> makeVector(
             N const &x0, N const &x1, N const &x2, N const &x3, N const &x4,
             N const &x5, N const &x6, N const &x7, N const &x8) {
@@ -509,6 +609,19 @@ namespace VecMath {
     }
 
     /// Generator function for a 10-dimensional Vector
+    /** \ingroup VecMath
+     *  \tparam N numerical type of the vector elements.
+     *  \param x0 first element of the Vector.
+     *  \param x1 second element of the Vector.
+     *  \param x2 third element of the Vector.
+     *  \param x3 fourth element of the Vector.
+     *  \param x4 fifth element of the Vector.
+     *  \param x5 sixth element of the Vector.
+     *  \param x6 seventh element of the Vector.
+     *  \param x7 eighth element of the Vector.
+     *  \param x8 ninth element of the Vector.
+     *  \param x9 tenth element of the Vector.
+     */
     template <typename N> Vector<10, N> makeVector(
             N const &x0, N const &x1, N const &x2, N const &x3, N const &x4,
             N const &x5, N const &x6, N const &x7, N const &x8, N const &x9) {

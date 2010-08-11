@@ -90,13 +90,15 @@ namespace Loki
         template <class T>
         struct Allocator
         {
-            static Alloc<T> allocator;
+            static Alloc<T> allocator;  ///< Allocator instance.
 
+            /// Creates a new \p T.
             static T* Create()
             {
                 return new (allocator.allocate(1)) T;
             }
 
+            /// Destroys a \p T.
             static void Destroy(T* p)
             {
                 //allocator.destroy(p);
@@ -143,18 +145,19 @@ namespace Loki
 
     template <class T> struct CreateStatic
     {
+        /// Auxiliary class to find the maximum alignment size
         union MaxAlign
         {
-            char t_[sizeof(T)];
-            short int shortInt_;
-            int int_;
-            long int longInt_;
-            float float_;
-            double double_;
-            long double longDouble_;
+            char t_[sizeof(T)];             ///< \c sizeof(\p T)
+            short int shortInt_;            ///< short int
+            int int_;                       ///< int
+            long int longInt_;              ///< long int
+            float float_;                   ///< float
+            double double_;                 ///< double
+            long double longDouble_;        ///< long double
             struct Test;
-            int Test::* pMember_;
-            int (Test::*pMemberFn_)(int);
+            int Test::* pMember_;           ///< Member variable
+            int (Test::*pMemberFn_)(int);   ///< Member function
         };
 
         /// create managed object

@@ -23,6 +23,7 @@
 
 #include <string>
 
+/// A list of elements of arbitrary type defined at compile time.
 /** \tparam size Number of elements in the ArrayList.
  *  \tparam T Type of the stored elements.
  */
@@ -30,7 +31,7 @@ template <unsigned size, typename T> class ArrayList {
   public:
     /// Create an ArrayList with default-constructed elements.
     ArrayList(): _elements() { }
-    /// Create an ArrayList with all elements initialized to \p x0.
+    /// Create an ArrayList with all elements initialized to \p x.
     ArrayList(const T &x);
 
     /// Return the first element of an ArrayList.
@@ -50,6 +51,9 @@ template <unsigned size, typename T> class ArrayList {
     std::pair<T, ArrayList<size-1, T> > _elements;
 };
 
+/// An empty ArrayList. Specialization to end recursion.
+/** \tparam T Type of the stored elements.
+ */
 template <typename T> class ArrayList<0, T> {
   public:
     ArrayList() { }

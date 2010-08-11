@@ -55,9 +55,13 @@ class LoopHelper {
 
   private:
 
+    /// Lower boundary of grid on which the ParametricFunction is applied.
     VecMath::Vector<P, NUM> _x_min;
+    /// Upper boundary of grid on which the ParametricFunction is applied.
     VecMath::Vector<P, NUM> _x_max;
+    /// Vector of grid sizes.
     VecMath::Vector<P, unsigned> _grid_size;
+    /// The function to be evaluated on every grid point.
     std::tr1::shared_ptr< ParametricFunction< N, P, NUM > > _f;
 
 };
@@ -84,9 +88,13 @@ class LoopHelper< N, P, 1, NUM > {
 
   private:
 
+    /// Lower boundary of grid on which the ParametricFunction is applied.
     VecMath::Vector<P, NUM> _x_min;
+    /// Upper boundary of grid on which the ParametricFunction is applied.
     VecMath::Vector<P, NUM> _x_max;
+    /// Vector of grid sizes.
     VecMath::Vector<P, unsigned> _grid_size;
+    /// The function to be evaluated on every grid point.
     std::tr1::shared_ptr< ParametricFunction< N, P, NUM > > _f;
 };
 

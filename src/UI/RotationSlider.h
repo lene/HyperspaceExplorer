@@ -14,14 +14,17 @@ namespace UI {
      */
     class RotationSlider : public QSlider {
         public:
+
+            /// Constructs a RotationSlider with given stepsize in degrees.
             RotationSlider(unsigned precision = 2, QWidget *parent = 0);
 
-            ~RotationSlider() { }
-
+            /// Returns the value of the slider.
             virtual double value() const;
+            /// Sets the value to \p rot.
             virtual void setValue(double rot);
 
         private:
+            /// How big the stepsize is (in degrees).
             double _precision;
     };
 

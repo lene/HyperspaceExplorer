@@ -29,24 +29,30 @@ namespace VecMath {
             Matrix<D, N> (unsigned, unsigned, N);
             virtual ~Matrix<D, N> () { }
 
-            /** access operator
-             *  \param i row index
+            /// Access operator
+            /** \param i row index
              *  \param j column index
              *  \return \f$ M_{ij} \f$                                        */
             N &operator () (unsigned i, unsigned j) { return _M[i][j]; }
+            /// Constant access operator
+            /** \param i row index
+             *  \param j column index
+             *  \return \f$ M_{ij} \f$                                        */
             const N &operator () (unsigned i, unsigned j) const { return _M[i][j]; }
 
             Matrix<D, N> operator *=(const Matrix<D, N> &);
-            Matrix<D, N> operator *=(const N &);
+//            Matrix<D, N> operator *=(const N &);
             Matrix<D, N> operator *(const Matrix<D, N> &) const;
             Vector<D, N> operator *(const Vector<D, N> &) const;
-            Vector<D, N> operator *(const N &) const;
+//            Vector<D, N> operator *(const N &) const;
 
             Matrix<D, N> operator - ();
 
             void scale(const Vector<D, N> &);
 
+            /// output, mainly for debugging purposes
             std::string toString() const;
+            /// Alias for toString()
             operator std::string() const { return toString(); }
 
         private:
@@ -59,10 +65,10 @@ namespace VecMath {
             std::ostream &operator << (std::ostream &, const Matrix<D, N> &);
 
 
-    /** default constructor: creates a unit DxD Matrix                        */
+    /// default constructor: creates a unit DxD Matrix
     template<unsigned D, typename N> Matrix<D, N>::Matrix () {
-        for (unsigned i = 0; i < D; i++) {					//	i: row
-            for (unsigned j = 0; j < D; j++) 				//	j: col
+        for (unsigned i = 0; i < D; i++) {                  //  i: row
+            for (unsigned j = 0; j < D; j++)                //  j: col
                 _M[i][j] = 0;
             _M[i][i] = 1;
         }
@@ -155,14 +161,18 @@ namespace VecMath {
         }
       }
     }
-    /** output, mainly for debugging purposes                                 */
+
+    /// output, mainly for debugging purposes
     template <unsigned D, typename N> std::string Matrix<D, N>::toString() const {
         std::ostringstream o;
         o << *this << std::ends;
         return o.str();
     }
+
     /// Matrix output operator
     /** \ingroup VecMath
+     *  \tparam D dimension of the matrix
+     *  \tparam N numerical type of the matrix elements
      *  \param o ostream to push into
      *  \param M Matrix to print
      *  \return a new ostream to push Matrices and stuff into

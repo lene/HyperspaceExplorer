@@ -10,16 +10,19 @@
 
 namespace UI {
 
-/**
-	@author Helge Preuss <lene.preuss@gmail.com>
+/// QWidget to edit the value of a VecMath::Rotation.
+/** @author Helge Preuss <lene.preuss@gmail.com>
 */
-class RotationControl : public QWidget
-{
+class RotationControl : public QWidget {
 Q_OBJECT
 public:
-    RotationControl(VecMath::RotationBase *r, QWidget *parent = 0);
 
-    std::vector<RotationSlider *> _sliders;
+  /// Creates a RotationControl for a given Rotation object.
+  RotationControl(VecMath::RotationBase *r, QWidget *parent = 0);
+
+private:
+  /// The actual RotationSlider widgets controlling rotation about each axis.
+  std::vector<RotationSlider *> _sliders;
 };
 
 }

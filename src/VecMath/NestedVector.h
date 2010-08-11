@@ -145,6 +145,7 @@ namespace VecMath {
                 return data() != other.data();
             }
 
+            /// Convert NestedVector to a std::string.
             std::string toString() const {
                 std::ostringstream o;
                 o << *this;
@@ -222,6 +223,7 @@ namespace VecMath {
             /// See NestedVector<T, D>::empty()
             unsigned empty() const { return data().empty(); }
 
+            /// See NestedVector<T, D>::clear()
             void clear() { data().clear(); }
 
             /// See NestedVector<T, D>::resize()
@@ -245,6 +247,7 @@ namespace VecMath {
                 return data() != other.data();
             }
 
+            /// Convert NestedVector to a std::string.
             std::string toString() const {
                 std::ostringstream o;
                 o << *this;
@@ -261,7 +264,9 @@ namespace VecMath {
                 std::cerr << "> ";
             }
 
+            /// Whether to print the number of elements with operator <<().
             static bool print_num_elements() { return PRINT_NUM_ELEMENTS; }
+            /// How deep to insert maximally with operator <<().
             static unsigned max_dimension() { return MAX_DIMENSION; }
 
         protected:
@@ -271,10 +276,12 @@ namespace VecMath {
             const std::vector<T> &data() const { return _data; }
 
         private:
-            /// std::vector<T>. All operations are delegated to this vector
+            /// std::vector<T>. All operations are delegated to this vector.
             std::vector<T> _data;
 
+            /// Compile-time configuration: Whether to print the number of elements with operator <<().
             static const bool PRINT_NUM_ELEMENTS = false;
+            /// Compile-time configuration: How deep to insert maximally with operator <<().
             static const unsigned MAX_DIMENSION = 4;
     };
 

@@ -42,12 +42,21 @@ class Transformation {
 
   public:
 
+    /// Type for the storage of the function values on all grid points.
     typedef typename FunctionValueGrid< N, P, NUM >::value_storage_type value_storage_type;
 
+    /// Initialize an identity Transformation.
     Transformation();
+
+    /// Initialize a Transformation with a Rotation, a translation Vector and a scaling Vector.
+    /** \param rotation The amount the target is rotated.
+     *  \param translation The translation Vector to add to all vertices.
+     *  \param scale Scale the target, with independent values for each direction.
+     */
     Transformation(const VecMath::Rotation<N, NUM> &rotation,
                    const VecMath::Vector<N, NUM> &translation,
                    const VecMath::Vector<N, NUM> &scale);
+
     /// Initialize a Transformation with a transformation matrix and a translation vector.
     /** NB There is an implicit cast from class Rotation to Matrix, so you can use a
      *  Rotation instead.
@@ -61,8 +70,8 @@ class Transformation {
 
   private:
 
-    VecMath::Matrix<N, NUM> _transform;
-    VecMath::Vector<N, NUM> _translation;
+    VecMath::Matrix<N, NUM> _transform;     ///< Rotation/scale part of the Transformation.
+    VecMath::Vector<N, NUM> _translation;   ///< Translation part of the Transformation.
 
 };
 
@@ -78,16 +87,23 @@ class SimpleTransformationPolicy {
 
   public:
 
+    /// Type for the storage of the function values on all grid points.
     typedef typename FunctionValueGrid< N, P, NUM >::value_storage_type value_storage_type;
 
+    /// Initialize a SimpleTransformationPolicy with a transformation matrix and a translation vector.
+    /** \param transform The \p N x \p N Matrix to apply to all vertices.
+     *  \param translation The translation Vector to add to all vertices.
+     */
     SimpleTransformationPolicy(const VecMath::Matrix<N, NUM> &transform,
                                const VecMath::Vector<N, NUM> &translation): _transform(transform), _translation(translation) { }
+
+    /// Execute the transform on a set of vertices.
     value_storage_type transform(const value_storage_type &operand);
 
   private:
 
-    VecMath::Matrix<N, NUM> _transform;
-    VecMath::Vector<N, NUM> _translation;
+    VecMath::Matrix<N, NUM> _transform;     ///< Rotation/scale part of the Transformation.
+    VecMath::Vector<N, NUM> _translation;   ///< Translation part of the Transformation.
 
 };
 
@@ -99,16 +115,23 @@ template <unsigned N, typename NUM> class SimpleTransformationPolicy< N, 1, NUM 
 
   public:
 
-      typedef typename FunctionValueGrid< N, 1, NUM >::value_storage_type value_storage_type;
+    /// Type for the storage of the function values on all grid points.
+    typedef typename FunctionValueGrid< N, 1, NUM >::value_storage_type value_storage_type;
 
+    /// Initialize a SimpleTransformationPolicy with a transformation matrix and a translation vector.
+    /** \param transform The \p N x \p N Matrix to apply to all vertices.
+     *  \param translation The translation Vector to add to all vertices.
+     */
     SimpleTransformationPolicy(const VecMath::Matrix<N, NUM> &transform,
                                const VecMath::Vector<N, NUM> &translation): _transform(transform), _translation(translation) { }
+
+    /// Execute the transform on a set of vertices.
     value_storage_type transform(const value_storage_type &operand);
 
   private:
 
-    VecMath::Matrix<N, NUM> _transform;
-    VecMath::Vector<N, NUM> _translation;
+    VecMath::Matrix<N, NUM> _transform;     ///< Rotation/scale part of the Transformation.
+    VecMath::Vector<N, NUM> _translation;   ///< Translation part of the Transformation.
 
 };
 

@@ -10,17 +10,19 @@
  */
 
 /// Interface implemented by all Rotope s
-/** \ingroup RotopeGroup 
+/** \ingroup RotopeGroup
  *  \author Lene Preuss <lene.preuss@gmail.com>
  */
 class RotopeInterface {
 
 public:
 
+    /// How many segments a rotation operation has by default.
     const static unsigned DEFAULT_NUM_SEGMENTS = 8;
 
     /// The array of realms
     virtual Realm &realm() = 0;
+    /// The array of realms
     virtual const Realm &realm() const = 0;
 
     /// The array of vertices, projected to four dimensions if necessary
@@ -47,9 +49,11 @@ public:
         _numSegments = numSegments;
     }
 
+    /// String representation
     virtual std::string toString() = 0;
+    /// String representation
     operator std::string() { return toString(); }
-    
+
     /// Output of all vertices
     void print() { std::cout << toString(); }
 

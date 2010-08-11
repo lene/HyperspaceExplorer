@@ -15,6 +15,7 @@
 */
 class ParameterMap : public std::map< std::string, FunctionParameter::parameter_ptr_type > {
 
+  /// Type of the container used to actually store the FunctionParameter s.
   typedef std::map< std::string, FunctionParameter::parameter_ptr_type > map_type;
 
 public:

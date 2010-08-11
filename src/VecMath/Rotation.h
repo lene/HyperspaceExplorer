@@ -121,11 +121,16 @@ namespace VecMath {
              *  \see the specializations for 3 and 4 dimensions in Rotation.C */
             operator Matrix<D, N>() const;
 
+            /// Adds another Rotation to \c this.
             /** @param that other Rotation
-             *  @return *this+that                                               */
+             *  @return \c *this+that
+             */
             Rotation<D, N> &operator+= (const Rotation<D, N> &that);
+            /// Returns the sum of two Rotation s.
             /** @param that other Rotation
-             *  @return *this+that                                               */
+             *  @return \c *this+that
+             *  \todo Move out of class.
+             */
             Rotation<D, N> operator+ (const Rotation<D, N> &that) const;
 
 
@@ -138,6 +143,7 @@ namespace VecMath {
             /// write access the stored values (needed by input operator >>())
             Vector<NumAxes<D>::num, N> &r() { return axis; }
 
+            /// Convert Rotation to a std::string.
             std::string toString() const { return axis.toString(); }
 
         private:

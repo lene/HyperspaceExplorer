@@ -52,6 +52,7 @@ protected:
 
 private:
 
+  /// ParametricFunction that defines this function
   struct DefiningFunction: public ParametricFunction<4, 2> {
 
     DefiningFunction(ComplexFunction *parent): _complex_function(parent) { }

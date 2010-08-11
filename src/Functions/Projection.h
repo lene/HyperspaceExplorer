@@ -55,7 +55,9 @@ template <unsigned N, unsigned Nnew, typename NUM = double> class ViewpointList 
       _elements.second = ViewpointList<N-1, Nnew, NUM>(camW);
     }
 
+    /// Construct a ViewpointList with a single element.
     ViewpointList(const VecMath::Vector<N, NUM> &single_element);
+    /// Construct a ViewpointList from an element and another ViewpointList.
     ViewpointList(const VecMath::Vector<N, NUM> &head, const ViewpointList<N-1, Nnew, NUM> &tail);
 
     /// Return the first element of a ViewpointList.
@@ -79,22 +81,74 @@ template <unsigned N, unsigned Nnew, typename NUM = double> class ViewpointList 
     /// String representation.
     std::string toString() const { return _elements.first.toString()+", "+_elements.second.toString(); }
 
+    /// Constructs a ViewpointList with one Member.
+    /** \param x0 Viewpoint in Projection in first dimension.
+     */
     static ViewpointList make(const VecMath::Vector<N, NUM>   &x0);
+    /// Constructs a ViewpointList with two Members.
+    /** \param x0 Viewpoint in Projection in first dimension.
+     *  \param x1 Viewpoint in Projection in second dimension.
+     */
     static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1);
+    /// Constructs a ViewpointList with three Members.
+    /** \param x0 Viewpoint in Projection in first dimension.
+     *  \param x1 Viewpoint in Projection in second dimension.
+     *  \param x2 Viewpoint in Projection in third dimension.
+     */
     static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1,
                               const VecMath::Vector<N-2, NUM> &x2);
+    /// Constructs a ViewpointList with four Members.
+    /** \param x0 Viewpoint in Projection in first dimension.
+     *  \param x1 Viewpoint in Projection in second dimension.
+     *  \param x2 Viewpoint in Projection in third dimension.
+     *  \param x3 Viewpoint in Projection in fourth dimension.
+     */
     static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1,
                               const VecMath::Vector<N-2, NUM> &x2, const VecMath::Vector<N-3, NUM> &x3);
+    /// Constructs a ViewpointList with five Members.
+    /** \param x0 Viewpoint in Projection in first dimension.
+     *  \param x1 Viewpoint in Projection in second dimension.
+     *  \param x2 Viewpoint in Projection in third dimension.
+     *  \param x3 Viewpoint in Projection in fourth dimension.
+     *  \param x4 Viewpoint in Projection in fifth dimension.
+     */
     static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1,
                               const VecMath::Vector<N-2, NUM> &x2, const VecMath::Vector<N-3, NUM> &x3,
                               const VecMath::Vector<N-4, NUM> &x4);
+    /// Constructs a ViewpointList with six Members.
+    /** \param x0 Viewpoint in Projection in first dimension.
+     *  \param x1 Viewpoint in Projection in second dimension.
+     *  \param x2 Viewpoint in Projection in third dimension.
+     *  \param x3 Viewpoint in Projection in fourth dimension.
+     *  \param x4 Viewpoint in Projection in fifth dimension.
+     *  \param x5 Viewpoint in Projection in sixth dimension.
+     */
     static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1,
                               const VecMath::Vector<N-2, NUM> &x2, const VecMath::Vector<N-3, NUM> &x3,
                               const VecMath::Vector<N-4, NUM> &x4, const VecMath::Vector<N-5, NUM> &x5);
+    /// Constructs a ViewpointList with seven Members.
+    /** \param x0 Viewpoint in Projection in first dimension.
+     *  \param x1 Viewpoint in Projection in second dimension.
+     *  \param x2 Viewpoint in Projection in third dimension.
+     *  \param x3 Viewpoint in Projection in fourth dimension.
+     *  \param x4 Viewpoint in Projection in fifth dimension.
+     *  \param x5 Viewpoint in Projection in sixth dimension.
+     *  \param x6 Viewpoint in Projection in seventh dimension.
+     */
     static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1,
                               const VecMath::Vector<N-2, NUM> &x2, const VecMath::Vector<N-3, NUM> &x3,
                               const VecMath::Vector<N-4, NUM> &x4, const VecMath::Vector<N-5, NUM> &x5,
                               const VecMath::Vector<N-6, NUM> &x6);
+    /// Constructs a ViewpointList with eight Members.
+    /** \param x0 Viewpoint in Projection in first dimension.
+     *  \param x1 Viewpoint in Projection in second dimension.
+     *  \param x2 Viewpoint in Projection in third dimension.
+     *  \param x3 Viewpoint in Projection in fourth dimension.
+     *  \param x4 Viewpoint in Projection in fifth dimension.
+     *  \param x5 Viewpoint in Projection in sixth dimension.
+     *  \param x6 Viewpoint in Projection in seventh dimension.
+     *  \param x7 Viewpoint in Projection in eight dimension.
+     */
     static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1,
                               const VecMath::Vector<N-2, NUM> &x2, const VecMath::Vector<N-3, NUM> &x3,
                               const VecMath::Vector<N-4, NUM> &x4, const VecMath::Vector<N-5, NUM> &x5,
@@ -113,8 +167,11 @@ template <unsigned N, unsigned Nnew, typename NUM = double> class ViewpointList 
  */
 template <unsigned N, typename NUM> class ViewpointList<N, N, NUM> {
   public:
+    /// Constructs empty ViewpointList.
     ViewpointList() { }
+    /// Constructs empty ViewpointList.
     ViewpointList(NUM) { }
+    /// String representation.
     std::string toString() const { return ""; }
 };
 
@@ -177,9 +234,13 @@ template <unsigned N, unsigned Nnew, unsigned P, typename NUM = double, typename
     /// Generates a list of bools which all are equal to \p depthCue4D.
     BoolList makeDepthCueList(bool depthCue4D);
 
+    /// List of view points for the downprojection in each dimension.
     PointList _viewpoint;
+    /// List of camera positions for the downprojection in each dimension.
     PointList _eye;
+    /// List of screen distances for the downprojection in each dimension.
     DistanceList _screen_distance;
+    /// List of flags whether depth cue is used for the downprojection in each dimension.
     BoolList _depth_cue;
 
 };
@@ -194,6 +255,14 @@ template <unsigned N, unsigned Nnew, unsigned P, typename NUM> class SimpleProje
 
   public:
 
+    /// Create a SimpleProjectionPolicy with arbitrary view- and camera points for each dimension.
+    /** \param viewpoint List of view points for the downprojection in each dimension.
+     *  \param eye List of camera positions for the downprojection in each dimension.
+     *  \param screen_distance List of screen distances for the downprojection in each
+     *      dimension.
+     *  \param depth_cue List of flags whether depth cue is used for the downprojection
+     *      in each dimension.
+     */
     SimpleProjectionPolicy(typename Projection<N, Nnew, P, NUM>::PointList viewpoint,
                            typename Projection<N, Nnew, P, NUM>::PointList eye,
                            typename Projection<N, Nnew, P, NUM>::DistanceList screen_distance,
@@ -207,9 +276,13 @@ template <unsigned N, unsigned Nnew, unsigned P, typename NUM> class SimpleProje
 
   private:
 
+    /// List of view points for the downprojection in each dimension.
     typename Projection<N, Nnew, P, NUM>::PointList _viewpoint;
+    /// List of camera positions for the downprojection in each dimension.
     typename Projection<N, Nnew, P, NUM>::PointList _eye;
+    /// List of screen distances for the downprojection in each dimension.
     typename Projection<N, Nnew, P, NUM>::DistanceList _screen_distance;
+    /// List of flags whether depth cue is used for the downprojection in each dimension.
     typename Projection<N, Nnew, P, NUM>::BoolList _depth_cue;
 
 };
@@ -224,6 +297,14 @@ template <unsigned N, unsigned Nnew, typename NUM> class SimpleProjectionPolicy<
 
   public:
 
+    /// Create a SimpleProjectionPolicy with arbitrary view- and camera points for each dimension.
+    /** \param viewpoint List of view points for the downprojection in each dimension.
+     *  \param eye List of camera positions for the downprojection in each dimension.
+     *  \param screen_distance List of screen distances for the downprojection in each
+     *      dimension.
+     *  \param depth_cue List of flags whether depth cue is used for the downprojection
+     *      in each dimension.
+     */
     SimpleProjectionPolicy(typename Projection<N, Nnew, 1, NUM>::PointList viewpoint,
                            typename Projection<N, Nnew, 1, NUM>::PointList eye,
                            typename Projection<N, Nnew, 1, NUM>::DistanceList screen_distance,
@@ -231,14 +312,19 @@ template <unsigned N, unsigned Nnew, typename NUM> class SimpleProjectionPolicy<
                            _viewpoint(viewpoint), _eye(eye),
                            _screen_distance(screen_distance), _depth_cue(depth_cue) { }
 
+    /// Execute the Projection on the given grid of \p values.
     VecMath::NestedVector< VecMath::Vector<Nnew, NUM>, 1 > project(
         const VecMath::NestedVector< VecMath::Vector<N, NUM>, 1 > &values);
 
   private:
 
+    /// List of view points for the downprojection in each dimension.
     typename Projection<N, Nnew, 1, NUM>::PointList _viewpoint;
+    /// List of camera positions for the downprojection in each dimension.
     typename Projection<N, Nnew, 1, NUM>::PointList _eye;
+    /// List of screen distances for the downprojection in each dimension.
     typename Projection<N, Nnew, 1, NUM>::DistanceList _screen_distance;
+    /// List of flags whether depth cue is used for the downprojection in each dimension.
     typename Projection<N, Nnew, 1, NUM>::BoolList _depth_cue;
 
 };
@@ -253,11 +339,13 @@ template <unsigned N, typename NUM> class SimpleProjectionPolicy<N, N, 1, NUM> {
 
   public:
 
+    /// Create a SimpleProjectionPolicy whose view- and camera points are ignored.
     SimpleProjectionPolicy(typename Projection<N, N, 1, NUM>::PointList,
                            typename Projection<N, N, 1, NUM>::PointList,
                            typename Projection<N, N, 1, NUM>::DistanceList,
                            typename Projection<N, N, 1, NUM>::BoolList) { }
 
+    /// Returns the given grid of \p values.
     VecMath::NestedVector< VecMath::Vector<N, NUM>, 1 > project(
         const VecMath::NestedVector< VecMath::Vector<N, NUM>, 1 > &values) {
       return values;

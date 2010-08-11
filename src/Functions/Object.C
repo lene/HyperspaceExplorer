@@ -29,7 +29,6 @@ using VecMath::Matrix;
 
 /** generic Object constructor; only allocates necessary arrays, children must
  *  fill them in their c'tor
- *  @param name name of the object
  *  @param vertices number of vertices
  *  @param surfaces number of surfaces                                        */
 Object::Object (unsigned vertices, unsigned surfaces):

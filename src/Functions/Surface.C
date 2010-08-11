@@ -35,7 +35,6 @@ Surface::Surface (): SurfaceBase(_min, _max, _d, _min, _max, _d) { }
 
 
 /** Surface c'tor given a definition set in \f$ R^2 \f$ (as parameter space)
- *  \param _name name for the function
  *  \param _umin minimal value in u
  *  \param _umax maximal value in u
  *  \param _du stepsize in u
@@ -105,10 +104,17 @@ void Surface::ReInit(double, double, double,
 
 }
 
-void Surface::setBoundariesAndStepwidth(double _tmin, double _tmax, double _dt,
-                                        double _umin, double _umax, double _du) {
-    getTmin() = _tmin; getTmax() = _tmax; getDt() = _dt;
-    getUmin() = _umin; getUmax() = _umax; getDu() = _du;
+/** \param tmin minimal value in t
+ *  \param tmax maximal value in t
+ *  \param dt stepsize in t
+ *  \param umin minimal value in u
+ *  \param umax maximal value in u
+ *  \param du stepsize in u
+ */
+void Surface::setBoundariesAndStepwidth(double tmin, double tmax, double dt,
+                                        double umin, double umax, double du) {
+    getTmin() = tmin; getTmax() = tmax; getDt() = dt;
+    getUmin() = umin; getUmax() = umax; getDu() = du;
     getTsteps() = unsigned ((getTmax()-getTmin())/getDt()+1);
     getUsteps() = unsigned ((getUmax()-getUmin())/getDu()+1);
 }

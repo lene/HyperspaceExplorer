@@ -129,10 +129,15 @@ template <unsigned N, unsigned P, typename NUM = double>
 
     private:
 
+      /// Name for the function.
       std::string _function_name;
+      /// Slightly more exhaustive description of the function.
       std::string _function_description;
+      /// List of FunctionParameter s the function might have.
       ParameterMap _parameters;
+      /// Default lower boundary of definition space.
       argument_type _default_x_min;
+      /// Default upper boundary of definition space.
       argument_type _default_x_max;
 };
 
