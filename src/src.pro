@@ -33,6 +33,8 @@ HEADERS += Functions/ComplexFunction.h \
            Functions/LoopHelper.h \
            Functions/Transformation.h \
            Functions/Transformation.impl.h \
+           Functions/ViewpointList.h \
+           Functions/ViewpointList.impl.h \
            Functions/Projection.h \
            Functions/Projection.impl.h \
            Functions/Function.h \

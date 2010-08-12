@@ -42,7 +42,7 @@ template <unsigned size, typename T> T &ArrayList<size, T>::operator[](unsigned 
 
 /** \param i Index of the element accessed. No boundary checking is performed.
  */
-template <unsigned size, typename T> T ArrayList<size, T>::operator[](unsigned i) const {
+template <unsigned size, typename T> const T &ArrayList<size, T>::operator[](unsigned i) const {
     if (i == 0) return head();
     return tail()[i-1];
 }

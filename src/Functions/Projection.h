@@ -23,157 +23,11 @@
 
 #include "Vector.h"
 #include "NestedVector.h"
+#include "ViewpointList.h"
 #include "ArrayList.h"
 
 /// Forward declaration needed to make the SimpleTransformationPolicy a default template parameter for Transformation.
 template <unsigned N, unsigned Nnew, unsigned P, typename NUM> class SimpleProjectionPolicy;
-
-/// A list of Vector s of dimension \p Nnew+1 through \p N.
-/** These are used in storing the view points and camera positions when projecting
- *  a point in \p N space into \p Nnew dimensions. Every projection from one
- *  dimension to the next lower dimension needs a Vector of the original dimension
- *  as camera position and one as view point.
-
- *  \tparam N The dimension of the original vector space.
- *  \tparam Nnew The dimension of the vector space into which is projected.
- *  \tparam NUM The numeric type of the \c Vector s.
- */
-template <unsigned N, unsigned Nnew, typename NUM = double> class ViewpointList {
-
-  public:
-
-    /// Creates a ViewpointList with all elements at the origin.
-    ViewpointList(): _elements() {
-      _elements.first = VecMath::Vector<N, NUM>();
-      _elements.second = ViewpointList<N-1, Nnew, NUM>();
-    }
-
-    /// Creates a list of Vector s whose highest element is set to \p camW.
-    ViewpointList(NUM camW): _elements() {
-      _elements.first = VecMath::Vector<N, NUM>();
-      _elements.first[N-1] = camW;
-      _elements.second = ViewpointList<N-1, Nnew, NUM>(camW);
-    }
-
-    /// Construct a ViewpointList with a single element.
-    ViewpointList(const VecMath::Vector<N, NUM> &single_element);
-    /// Construct a ViewpointList from an element and another ViewpointList.
-    ViewpointList(const VecMath::Vector<N, NUM> &head, const ViewpointList<N-1, Nnew, NUM> &tail);
-
-    /// Return the first element of a ViewpointList.
-    const VecMath::Vector<N, NUM> &head() const { return _elements.first; }
-    /// Return the first element of a ViewpointList.
-    VecMath::Vector<N, NUM> &head() { return _elements.first; }
-    /// Return a ViewpointList that contains all but the first element.
-    const ViewpointList<N-1, Nnew, NUM> &tail() const { return _elements.second; }
-    /// Return a ViewpointList that contains all but the first element.
-    ViewpointList<N-1, Nnew, NUM> &tail() { return _elements.second; }
-
-    /// Returns element \p i from the list.
-    /** \tparam i The index of the requested element.
-     */
-    template <unsigned i> VecMath::Vector<N-i, NUM> get() {
-      if (i == 0) return head();
-      return tail().get<i-1>();
-    }
-//    template <> VecMath::Vector<N> get<0>() { return head(); }
-
-    /// String representation.
-    std::string toString() const { return _elements.first.toString()+", "+_elements.second.toString(); }
-
-    /// Constructs a ViewpointList with one Member.
-    /** \param x0 Viewpoint in Projection in first dimension.
-     */
-    static ViewpointList make(const VecMath::Vector<N, NUM>   &x0);
-    /// Constructs a ViewpointList with two Members.
-    /** \param x0 Viewpoint in Projection in first dimension.
-     *  \param x1 Viewpoint in Projection in second dimension.
-     */
-    static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1);
-    /// Constructs a ViewpointList with three Members.
-    /** \param x0 Viewpoint in Projection in first dimension.
-     *  \param x1 Viewpoint in Projection in second dimension.
-     *  \param x2 Viewpoint in Projection in third dimension.
-     */
-    static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1,
-                              const VecMath::Vector<N-2, NUM> &x2);
-    /// Constructs a ViewpointList with four Members.
-    /** \param x0 Viewpoint in Projection in first dimension.
-     *  \param x1 Viewpoint in Projection in second dimension.
-     *  \param x2 Viewpoint in Projection in third dimension.
-     *  \param x3 Viewpoint in Projection in fourth dimension.
-     */
-    static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1,
-                              const VecMath::Vector<N-2, NUM> &x2, const VecMath::Vector<N-3, NUM> &x3);
-    /// Constructs a ViewpointList with five Members.
-    /** \param x0 Viewpoint in Projection in first dimension.
-     *  \param x1 Viewpoint in Projection in second dimension.
-     *  \param x2 Viewpoint in Projection in third dimension.
-     *  \param x3 Viewpoint in Projection in fourth dimension.
-     *  \param x4 Viewpoint in Projection in fifth dimension.
-     */
-    static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1,
-                              const VecMath::Vector<N-2, NUM> &x2, const VecMath::Vector<N-3, NUM> &x3,
-                              const VecMath::Vector<N-4, NUM> &x4);
-    /// Constructs a ViewpointList with six Members.
-    /** \param x0 Viewpoint in Projection in first dimension.
-     *  \param x1 Viewpoint in Projection in second dimension.
-     *  \param x2 Viewpoint in Projection in third dimension.
-     *  \param x3 Viewpoint in Projection in fourth dimension.
-     *  \param x4 Viewpoint in Projection in fifth dimension.
-     *  \param x5 Viewpoint in Projection in sixth dimension.
-     */
-    static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1,
-                              const VecMath::Vector<N-2, NUM> &x2, const VecMath::Vector<N-3, NUM> &x3,
-                              const VecMath::Vector<N-4, NUM> &x4, const VecMath::Vector<N-5, NUM> &x5);
-    /// Constructs a ViewpointList with seven Members.
-    /** \param x0 Viewpoint in Projection in first dimension.
-     *  \param x1 Viewpoint in Projection in second dimension.
-     *  \param x2 Viewpoint in Projection in third dimension.
-     *  \param x3 Viewpoint in Projection in fourth dimension.
-     *  \param x4 Viewpoint in Projection in fifth dimension.
-     *  \param x5 Viewpoint in Projection in sixth dimension.
-     *  \param x6 Viewpoint in Projection in seventh dimension.
-     */
-    static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1,
-                              const VecMath::Vector<N-2, NUM> &x2, const VecMath::Vector<N-3, NUM> &x3,
-                              const VecMath::Vector<N-4, NUM> &x4, const VecMath::Vector<N-5, NUM> &x5,
-                              const VecMath::Vector<N-6, NUM> &x6);
-    /// Constructs a ViewpointList with eight Members.
-    /** \param x0 Viewpoint in Projection in first dimension.
-     *  \param x1 Viewpoint in Projection in second dimension.
-     *  \param x2 Viewpoint in Projection in third dimension.
-     *  \param x3 Viewpoint in Projection in fourth dimension.
-     *  \param x4 Viewpoint in Projection in fifth dimension.
-     *  \param x5 Viewpoint in Projection in sixth dimension.
-     *  \param x6 Viewpoint in Projection in seventh dimension.
-     *  \param x7 Viewpoint in Projection in eight dimension.
-     */
-    static ViewpointList make(const VecMath::Vector<N, NUM>   &x0, const VecMath::Vector<N-1, NUM> &x1,
-                              const VecMath::Vector<N-2, NUM> &x2, const VecMath::Vector<N-3, NUM> &x3,
-                              const VecMath::Vector<N-4, NUM> &x4, const VecMath::Vector<N-5, NUM> &x5,
-                              const VecMath::Vector<N-6, NUM> &x6, const VecMath::Vector<N-7, NUM> &x7);
-
-  private:
-
-    /// The elements of the list are stored as a tuple, recursively defined.
-    std::pair< VecMath::Vector<N, NUM>, ViewpointList<N-1, Nnew, NUM> > _elements;
-};
-
-/// Specialization of ViewpointList for a projection from \p N space to \p N space - which does nothing.
-/** Needed to end recursion.
- *  \tparam N The dimension of the vector space.
- *  \tparam NUM The numeric type of the \c Vector s.
- */
-template <unsigned N, typename NUM> class ViewpointList<N, N, NUM> {
-  public:
-    /// Constructs empty ViewpointList.
-    ViewpointList() { }
-    /// Constructs empty ViewpointList.
-    ViewpointList(NUM) { }
-    /// String representation.
-    std::string toString() const { return ""; }
-};
 
 /// Class that projects a \p N dimensional vertex array to \p Nnew dimensions.
 /** \tparam N Original dimension of the \c Vector s to project.
@@ -194,27 +48,13 @@ template <unsigned N, unsigned Nnew, unsigned P, typename NUM = double, typename
     typedef ArrayList< N-Nnew, bool > BoolList;
 
     /// Create a Projection with arbitrary view- and camera points for each dimension.
-    /** \param viewpoint List of view points for the downprojection in each dimension.
-     *  \param eye List of camera positions for the downprojection in each dimension.
-     *  \param screenDistance List of screen distances for the downprojection in each
-     *      dimension.
-     *  \param depthCue4D List of flags whether depth cue is used for the downprojection
-     *      in each dimension.
-     */
     Projection(const PointList &viewpoint, const PointList &eye,
                const DistanceList &screenDistance, const BoolList &depthCue4D);
 
     /// Create a Projection with view point at the origin and same parameters for each dimension.
-    /** Camera is on the axis which is projected along at distance \p camW from
-     *  the origin, the screen has distance \p scrW and \p depthCue4D indicates
-     *  if depth cue is used, the same in every projection that is done to project
-     *  from \p N to \p Nnew.
-     */
     Projection(NUM scrW, NUM camW, bool depthCue4D);
 
     /// Execute the Projection on a \p P dimensional field of \p N dimensional vertices.
-    /** \param values The vertices which are projected to \p Nnew- space.
-     */
     VecMath::NestedVector< VecMath::Vector<Nnew, NUM>, P > project(
             const VecMath::NestedVector< VecMath::Vector<N, NUM>, P > &values);
 
