@@ -24,12 +24,28 @@
 
 #include <sstream>
 #include <cstdarg>
+#include <stdexcept>
 
-template <unsigned size, typename T> ArrayList<size, T>::ArrayList(const T &x): _elements() { 
+/** \param x The value all elements of \c this are initialized to.
+ */
+template <unsigned size, typename T> ArrayList<size, T>::ArrayList(const T &x): _elements() {
   _elements.first = x;
   _elements.second = ArrayList<size-1, T>(x);
 }
 
+/** \param i Index of the element accessed. No boundary checking is performed.
+ */
+template <unsigned size, typename T> T &ArrayList<size, T>::operator[](unsigned i) {
+    if (i == 0) return head();
+    return tail()[i-1];
+}
+
+/** \param i Index of the element accessed. No boundary checking is performed.
+ */
+template <unsigned size, typename T> T ArrayList<size, T>::operator[](unsigned i) const {
+    if (i == 0) return head();
+    return tail()[i-1];
+}
 
 template <unsigned size, typename T> std::string ArrayList<size, T>::toString() const {
   std::ostringstream o;
