@@ -136,6 +136,8 @@ class ColorManager {
  *
  *  \todo implement a map<Function *, ColorManager *> to store one ColorManager
  *  per function - this will probably break the existing interface
+ *  \todo Shouldn't htis class implement the ColorManager interface? It delegates
+ *  all calls to a ColorManager and serves as one, doesn't it?
  *
  *  \ingroup Coloring                                                         */
 class ColorManagerManager {
@@ -167,6 +169,7 @@ class ColorManagerManager {
         /// proxy function for ColorManager::setColor()
         void setColor(const VecMath::Vector<4> &x);
 
+        /// proxy function for ColorManager::getColor()
         Color getColor(const VecMath::Vector<4> &x);
 
         /// proxy function for ColorManager::depthCueColor()

@@ -25,7 +25,7 @@ using VecMath::Vector;
 Function::Function (): _F () { }
 
 
-/** \param _parameters Parameters for the Function.
+/** \param parameters Parameters for the Function.
  */
 Function::Function (ParameterMap parameters):
     _F (),

@@ -113,6 +113,7 @@ template <typename T> class FunctionParameterValue:
                                               "operator VecMath::Rotation<7>", "");
             return VecMath::Rotation<7>();
         }
+
         /** Default implementation for cast to Rotation<8>. Concrete
          *  implementation will be defined in FunctionParameterValue< Rotation<8> >.
          */
@@ -121,6 +122,7 @@ template <typename T> class FunctionParameterValue:
                                               "operator VecMath::Rotation<8>", "");
             return VecMath::Rotation<8>();
         }
+
         /** Default implementation for cast to Rotation<9>. Concrete
          *  implementation will be defined in FunctionParameterValue< Rotation<9> >.
          */
@@ -129,6 +131,7 @@ template <typename T> class FunctionParameterValue:
                                               "operator VecMath::Rotation<9>", "");
             return VecMath::Rotation<9>();
         }
+
         /** Default implementation for cast to Rotation<10>. Concrete
          *  implementation will be defined in FunctionParameterValue< Rotation<10> >.
          */

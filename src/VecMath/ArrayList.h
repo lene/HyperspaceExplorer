@@ -48,6 +48,7 @@ template <unsigned size, typename T> class ArrayList {
     std::string toString() const;
 
   private:
+    /// Stores the elements of the list in a pair of an element and a shorter list.
     std::pair<T, ArrayList<size-1, T> > _elements;
 };
 
@@ -56,8 +57,11 @@ template <unsigned size, typename T> class ArrayList {
  */
 template <typename T> class ArrayList<0, T> {
   public:
+    /// Empty List.
     ArrayList() { }
+    /// Empty List.
     ArrayList(T) { }
+    /// Empty String.
     std::string toString() const;
 
 };

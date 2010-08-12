@@ -35,10 +35,10 @@ class Log{
 #           endif
         ) {
 #           ifdef DEBUG
-				std::cerr << out;
-				std::cerr.flush();
+                std::cerr << out;
+                std::cerr.flush();
 #           endif
-			return *this;
+            return *this;
 }
 
     private:

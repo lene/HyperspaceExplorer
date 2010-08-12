@@ -41,42 +41,52 @@
 class FunctionParameter {
 
     public:
-      
+
+        /// Pointer to the parameter's value
         typedef std::tr1::shared_ptr< FunctionParameterValueBase > value_ptr_type;
+        /// Pointer to the parameter
         typedef std::tr1::shared_ptr< FunctionParameter > parameter_ptr_type;
-  
+
         /// Construct a FunctionParameter from a name
         FunctionParameter(const std::string &name, const std::string &description = "");
-        
-        ~FunctionParameter();
 
+        /// Conversion to \c double
         double toDouble() const;
+        /// Conversion to \c unsigned
         unsigned toUnsigned() const;
+        /// Conversion to \c int
         int toInt() const;
+        /// Conversion to \c std::string
         std::string toString() const;
 
+        /// Conversion to \c Rotation<5>
         VecMath::Rotation<5> toRotation5() const;
+        /// Conversion to \c Rotation<6>
         VecMath::Rotation<6> toRotation6() const;
+        /// Conversion to \c Rotation<7>
         VecMath::Rotation<7> toRotation7() const;
+        /// Conversion to \c Rotation<8>
         VecMath::Rotation<8> toRotation8() const;
+        /// Conversion to \c Rotation<9>
         VecMath::Rotation<9> toRotation9() const;
+        /// Conversion to \c Rotation<10>
         VecMath::Rotation<10> toRotation10() const;
 
         /// get the name of the function parameter
         const std::string &getName() const;
-        
+
         /// set the name of the function parameter
         void setName(const std::string &name);
-        
+
         /// get the long description of the function parameter
         const std::string &getDescription() const;
-        
+
         /// set the long description of the function parameter
         void setDescription(const std::string &description);
 
         /// set the value of the parameter.
         void setValue(FunctionParameter::value_ptr_type value);
-        
+
         /// Set a value from a string, as contained in a QLineEdit
         void setValue(const std::string &newValue);
 
@@ -85,7 +95,7 @@ class FunctionParameter {
 
         /// \return Pointer to FunctionParameterValue containing the parameter's value
         FunctionParameter::value_ptr_type value() const;
-        
+
         /// \return Default parameter value is no value was given
         FunctionParameter::value_ptr_type defaultValue() const;
 
@@ -93,13 +103,13 @@ class FunctionParameter {
 
         /// Name of the function parameter
         std::string _name;
-        
+
         /// Description which is shown in the parameter input dialog
         std::string _description;
-        
+
         /// Pointer to FunctionParameterValue containing the parameter's value
         FunctionParameter::value_ptr_type _value;
-        
+
         /// Default parameter value is no value was given
         FunctionParameter::value_ptr_type _defaultValue;
 };

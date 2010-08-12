@@ -47,7 +47,9 @@ protected:
 
   virtual function_type g = 0;    ///< The actual function from C to C
 
+  /// "²" as QString
   const static QString sup2;
+  /// "³" as QString
   const static QString sup3;
 
 private:

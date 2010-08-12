@@ -84,10 +84,15 @@ template <unsigned N, unsigned P, typename NUM = double>
       /// Loop over the entire definition space and fill the grid with the function values at those points.
       void recalculate_grid();
 
+      /// The ParametricFunction that evaluates the points on the grid.
       function_ptr_type _f;
+      /// Lower boundary of the grid in all dimensions.
       boundary_type _x_min;
+      /// Upper boundary of the grid in all dimensions.
       boundary_type _x_max;
+      /// Number of points on the grid in all dimensions.
       grid_size_type _grid_size;
+      /// The actual function values on the grid.
       value_storage_type _function_values;
 
       /// \todo this should be somewhere global.

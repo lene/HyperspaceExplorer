@@ -29,7 +29,6 @@ const QString ComplexFunction::sup3 = QString(QChar(0x00B3));
  *  \param _vmin minimal value in v
  *  \param _vmax maximal value in v
  *  \param _dv stepsize in v
- *  \param name The function name
  */
 ComplexFunction::ComplexFunction (double _umin, double _umax, double _du,
                                   double _vmin, double _vmax, double _dv):

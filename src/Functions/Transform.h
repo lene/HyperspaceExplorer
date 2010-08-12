@@ -161,6 +161,12 @@ template <unsigned N> class copy_member_transform< VecMath::Vector<N>, N > {
 template <typename Type, unsigned N> class call_parameters_transform {
   public:
 
+    /// Executes the transform on the vertex.
+    /** \param Rot The rotation Matrix to be executed.
+     *  \param T The Translation to be applied.
+     *  \param X The vertex to be transformed.
+     *  \param Xtrans The transformed vertex.
+     */
     void operator() (VecMath::Matrix<N> &Rot,
                      const VecMath::Vector<N> &T,
                      const Type &X, Type &Xtrans);
@@ -174,6 +180,12 @@ template <typename Type, unsigned N> class call_parameters_transform {
  */
 template <typename Type, unsigned N> class call_parameters_transform< std::vector<Type>, N > {
   public:
+    /// Static convenience function easing the initialization of the transformation.
+    /** \param Rot The rotation Matrix to be executed.
+     *  \param T The Translation to be applied.
+     *  \param X The vertex to be transformed.
+     *  \param Xtrans The transformed vertex.
+     */
     static void xform(VecMath::Matrix<N> &Rot,
                       const VecMath::Vector<N> &T,
                       const std::vector<Type> &X,
@@ -182,6 +194,12 @@ template <typename Type, unsigned N> class call_parameters_transform< std::vecto
         trans(Rot, T, X, Xtrans);
     }
 
+    /// Executes the transform on the vertex.
+    /** \param Rot The rotation Matrix to be executed.
+     *  \param T The Translation to be applied.
+     *  \param X The vertex to be transformed.
+     *  \param Xtrans The transformed vertex.
+     */
     void operator() (VecMath::Matrix<N> &Rot,
                      const VecMath::Vector<N> &T,
                      const std::vector<Type> &X, std::vector<Type> &Xtrans) {
@@ -203,6 +221,12 @@ template <typename Type, unsigned N> class call_parameters_transform< std::vecto
 template <unsigned N> class call_parameters_transform< VecMath::Vector<N>, N > {
   public:
 
+    /// Static convenience function easing the initialization of the transformation.
+    /** \param Rot The rotation Matrix to be executed.
+     *  \param T The Translation to be applied.
+     *  \param X The vertex to be transformed.
+     *  \param Xtrans The transformed vertex.
+     */
     static void xform(VecMath::Matrix<N> &Rot,
                                           const VecMath::Vector<N> &T,
                                           const VecMath::Vector<N> &X, VecMath::Vector<N> &Xtrans) {
@@ -210,6 +234,12 @@ template <unsigned N> class call_parameters_transform< VecMath::Vector<N>, N > {
         trans(Rot, T, X, Xtrans);
     }
 
+    /// Executes the transform on the vertex.
+    /** \param Rot The rotation Matrix to be executed.
+     *  \param T The Translation to be applied.
+     *  \param X The vertex to be transformed.
+     *  \param Xtrans The transformed vertex.
+     */
     void operator() (VecMath::Matrix<N> &Rot, const VecMath::Vector<N> &T,
                      const VecMath::Vector<N> &X, VecMath::Vector<N> &Xtrans) {
         Xtrans = (Rot*X)+T;

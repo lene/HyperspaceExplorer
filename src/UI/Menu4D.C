@@ -484,7 +484,6 @@ QAction *C4DView::Menu4D::insertAction(QMenu *_menu, const QString &title,
 /** This version is called whenever a new RealFunction should be
  *  initialized and displayed in C4DView
  *  \param _menu the menu you want to add the item to
- *  \param title the title of the item
  *  \param factory the factory object creating the desired RealFunction object
  *  \param checkable whether the menu item is checkable                       */
 QAction *C4DView::Menu4D::insertAction(QMenu *_menu, RealFunctionFactory *factory, bool checkable) {
@@ -501,7 +500,6 @@ QAction *C4DView::Menu4D::insertAction(QMenu *_menu, RealFunctionFactory *factor
 /** This version is called whenever a new Surface should be initialized and
  *  displayed in C4DView
  *  \param _menu the menu you want to add the item to
- *  \param title the title of the item
  *  \param factory the factory object creating the desired Surface object
  *  \param checkable whether the menu item is checkable                       */
 QAction *C4DView::Menu4D::insertAction(QMenu *_menu, SurfaceFactory *factory, bool checkable) {
