@@ -37,6 +37,7 @@ HEADERS += Functions/ComplexFunction.h \
            Functions/ViewpointList.impl.h \
            Functions/Projection.h \
            Functions/Projection.impl.h \
+	   Functions/GridDrawer.h \
            Functions/Function.h \
            Functions/Object.h \
            Functions/Surface.h \

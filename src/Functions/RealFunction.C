@@ -193,31 +193,20 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
   }
 }
 
+#include "GridDrawer.h"
+
 /// Draw the projected Function (onto screen or into GL list, as it is)
 /** */
 void RealFunction::Draw (void) {
-  for (unsigned t = 0; t < getTsteps(); t++)
-    DrawPlane (t);
+# ifdef USE_GRID_DRAWER
+    GridDrawer<3> draw(Xscr(), NULL);
+    draw.execute();
+# else
+    for (unsigned t = 0; t < getTsteps(); t++)
+      DrawPlane (t);
+# endif
 }
 
-/// Calculate normal to function at a given point in definition set.
-/** No further assumption is made than that f () is continuous.
- *
- *  This function is not yet used anywhere, but i like it.
- *  \param tt t value
- *  \param uu u value
- *  \param vv v value
- *  \return surface normal, normalized                                        */
-Vector<4> &RealFunction::normal (double tt, double uu, double vv) {
-  static Vector<4> n;
-
-  Function::vec4vec1D D = df (tt, uu, vv);
-
-  n = VecMath::vcross (D[0], D[1], D[2]);
-  VecMath::vnormalize (n);
-
-  return n;
-}
 
 /// Draw the current plane of the projected Function
 /** \param t current t value                                                  */
@@ -234,22 +223,6 @@ void RealFunction::DrawStrip (unsigned t, unsigned u){
     DrawCube (t, u, v);
 }
 
-const VecMath::NestedVector< Vector< 4 >, 3 > &RealFunction::X() const {
-  return _X.getValues();
-}
-
-const VecMath::NestedVector< Vector< 4 >, 3 > &RealFunction::Xtrans() const {
-  return _Xtrans;
-}
-
-const VecMath::NestedVector< Vector< 3 >, 3 >& RealFunction::Xscr() const {
-    return _Xscr;
-}
-
-
-using std::string;
-using std::setw;
-using std::setprecision;
 /// Draw the current cube or cell of the projected Function
 /** \param t current t value
  *  \param u current u value
@@ -297,6 +270,37 @@ void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v) {
     setVertex(X()[t+1][u][v+1], V[5]);
     addVertices(4);
     glEnd ();
+}
+
+/// Calculate normal to function at a given point in definition set.
+/** No further assumption is made than that f () is continuous.
+ *
+ *  This function is not yet used anywhere, but i like it.
+ *  \param tt t value
+ *  \param uu u value
+ *  \param vv v value
+ *  \return surface normal, normalized                                        */
+Vector<4> &RealFunction::normal (double tt, double uu, double vv) {
+  static Vector<4> n;
+
+  Function::vec4vec1D D = df (tt, uu, vv);
+
+  n = VecMath::vcross (D[0], D[1], D[2]);
+  VecMath::vnormalize (n);
+
+  return n;
+}
+
+const VecMath::NestedVector< Vector< 4 >, 3 > &RealFunction::X() const {
+  return _X.getValues();
+}
+
+const VecMath::NestedVector< Vector< 4 >, 3 > &RealFunction::Xtrans() const {
+  return _Xtrans;
+}
+
+const VecMath::NestedVector< Vector< 3 >, 3 >& RealFunction::Xscr() const {
+    return _Xscr;
 }
 
 
