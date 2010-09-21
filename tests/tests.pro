@@ -59,3 +59,5 @@ LIBS *= ../lib/libHyperspaceExplorer.a
 DEFINES += NEW_FUNCTION_HIERARCHY
 
 TARGET = HyperspaceExplorer-tests
+
+QMAKE_POST_LINK = ./HyperspaceExplorer-tests
