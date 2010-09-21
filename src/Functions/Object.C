@@ -112,7 +112,7 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
 
 
 /// Draw the projected Object (onto screen or into GL list, as it is)
-void Object::Draw() {
+void Object::Draw(UI::View *view) {
     glBegin (GL_QUADS);
     for (unsigned i = 0; i < Surface.size(); ++i) {
         for (unsigned j = 0; j < 4; j++) {
@@ -151,7 +151,7 @@ Hypercube::Hypercube (double a, const VecMath::Vector<4> &center):
 }
 
 #   if !USE_INT_INDICES
-void Hypercube::Draw() {
+void Hypercube::Draw(UI::View *view) {
     glBegin (GL_QUADS);
     for (surface_vec_type::const_iterator i = Surface.begin(); i != Surface.end(); ++i) {
         for (unsigned j = 0; j < 4; j++) {
@@ -387,6 +387,6 @@ void Gasket::Project (double scr_w, double cam_w, bool depthcue4d) {
 
 /// draw the projected Gasket (onto screen or into GL list, as it is)
 /** */
-void Gasket::Draw (void) {
-    for (unsigned i = 0; i < List.size (); i++) List[i]->Draw ();
+void Gasket::Draw (UI::View* view) {
+    for (unsigned i = 0; i < List.size (); i++) List[i]->Draw(view);
 }

@@ -20,6 +20,10 @@
 
 #include "FunctionFactory.h"
 
+namespace UI {
+  class View;
+}
+
 /// \defgroup FunctionGroup Functions and objects
 /// \defgroup RealGroup Functions R^3 -> R
 /// \ingroup FunctionGroup
@@ -118,7 +122,7 @@ class Function {
         virtual void Project (double ScrW, double CamW, bool DepthCue4D) = 0;
 
         /// Draw the function
-        virtual void Draw (void) = 0;
+        virtual void Draw (UI::View *) = 0;
 
         /// Called when a Function must be created anew
         virtual void ReInit(double _tmin, double _tmax, double _dt,

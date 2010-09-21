@@ -21,8 +21,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef GRID_DRAWER_H
 #define GRID_DRAWER_H
 
-/// define this if ou want the GridDrawer do the drawing work
-#undef USE_GRID_DRAWER
+/// define this if you want the GridDrawer do the drawing work
+//#define USE_GRID_DRAWER
 
 #include <View.h>
 
@@ -59,6 +59,7 @@ GridDrawer<P>::GridDrawer(const VecMath::NestedVector< VecMath::Vector<3>, P > &
     _x_scr(x_scr), _view(view) { }
 
 template <unsigned P> void GridDrawer<P>::execute() {
+  std::cerr << "GridDrawer<" << P << ">::execute()\n";
   for (unsigned i = 0; i < _x_scr.size(); ++i) {
     GridDrawer<P-1> sub_drawer(_x_scr[i], _view);
     sub_drawer.execute();
@@ -68,10 +69,27 @@ template <unsigned P> void GridDrawer<P>::execute() {
 template<> class GridDrawer<1> {
   public:
 
-    GridDrawer(const VecMath::NestedVector< VecMath::Vector<3>, 1 > &x_scr, UI::View *view) { }
+    GridDrawer(const VecMath::NestedVector< VecMath::Vector<3>, 1 > &x_scr, UI::View *view):
+    _x_scr(x_scr), _view(view) { }
 
-    void execute() { }
+    void execute() {
+      std::cerr << "GridDrawer<1>::execute()\n";
+    }
+
+  private:
+
+    const VecMath::NestedVector< VecMath::Vector<3>, 1 > &_x_scr;
+    UI::View *_view;
 
 };
+/*
+template<> GridDrawer<1>::GridDrawer(const VecMath::NestedVector< VecMath::Vector<3>, 1 > &x_scr,
+                                     UI::View *view):
+  _x_scr(x_scr), _view(view) { }
+
+template<> void GridDrawer<1>::execute() {
+  std::cerr << "GridDrawer<1>::execute()\n";
+}
+*/
 
 #endif

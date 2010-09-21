@@ -389,7 +389,7 @@ void C4DView::PreRedraw () {
     setObjectList(Globals::Instance().GetGLList());
     glNewList (ObjectList(), GL_COMPILE_AND_EXECUTE);
         Project ();
-        F()->Draw ();
+        F()->Draw(this);
     glEndList ();
 }
 

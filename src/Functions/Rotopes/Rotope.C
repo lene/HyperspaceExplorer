@@ -130,7 +130,7 @@ void Rotope::Transform(const VecMath::Rotation<4> &R,
 
 }
 
-void Rotope::Draw () {
+void Rotope::Draw (UI::View *view) {
     if (!_rotope) {
         throw std::logic_error("Rotope::Draw(): _rotope is NULL!");
     }

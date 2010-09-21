@@ -139,7 +139,7 @@ class RealFunction: public RealBase {
     virtual void Transform (const VecMath::Rotation<4> &R,
                             const VecMath::Vector<4> &T);
     virtual void Project (double ScrW, double CamW, bool DepthCue4D);
-    virtual void Draw (void);
+    virtual void Draw (UI::View *view);
 
     virtual void ReInit(double tmin, double tmax, double dt,
                         double umin, double umax, double du,

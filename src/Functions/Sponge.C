@@ -600,8 +600,8 @@ void Sponge::Project (double scr_w, double cam_w, bool depthcue4d) {
 
 /// Draw the projected Sponge (onto screen or into GL list, as it is)
 /** Draws all sub-sponges, recursively.                                       */
-void Sponge::Draw (void) {
-    if (Level < 1) List[0]->Draw();
-    else for (unsigned i = 0; i < List.size(); i++) List[i]->Draw();
+void Sponge::Draw (UI::View *view) {
+    if (Level < 1) List[0]->Draw(view);
+    else for (unsigned i = 0; i < List.size(); i++) List[i]->Draw(view);
 }
 

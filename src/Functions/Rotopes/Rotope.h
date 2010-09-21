@@ -43,7 +43,7 @@ class Rotope : public Object {
         virtual void Transform (const VecMath::Rotation<4> &,
                                 const VecMath::Vector<4> &);
         /// Draw the projected Rotope (onto screen or into GL list, in fact)
-        virtual void Draw (void);
+        virtual void Draw (UI::View *view);
 
         /// Set parameters to the Function
         virtual void SetParameters(const ParameterMap &parms);

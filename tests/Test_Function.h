@@ -22,7 +22,7 @@ class Test_Function: public QObject {
     virtual void Transform (const VecMath::Rotation<4> &R,
                             const VecMath::Vector<4> &T);
     virtual void Project (double, double, bool);
-    virtual void Draw (void);
+    virtual void Draw (UI::View*);
     virtual void ReInit(double _tmin, double _tmax, double _dt,
                         double _umin, double _umax, double _du,
                         double _vmin, double _vmax, double _dv);

@@ -204,7 +204,7 @@ void Surface::Project (double scr_w, double cam_w, bool depthcue4d) {
 
 
 /** draw the projected Surface (onto screen or into GL list, as it is)        */
-void Surface::Draw (void) {
+void Surface::Draw (UI::View *view) {
     for (unsigned t = 0; t <= getTsteps(); t++)
         DrawStrip (t);
 }

@@ -151,7 +151,7 @@ void Test_Surface::draw() {
   _function->Transform(Rotation<4>(), Vector<4>());
   _function->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
 
-  _function->Draw();
+  _function->Draw(NULL);
 
   QSKIP("No idea how to correctly test drawing yet", SkipSingle);
 }
@@ -238,6 +238,6 @@ void testFunction(Surface &f) {
   VecMath::Vector<4> t(random_number<double>(), random_number<double>(), random_number<double>(), random_number<double>());
   f.Transform(r, t);
   f.Project(2., 4., false);
-  f.Draw();
+  f.Draw(NULL);
   f.ReInit(1., 1., 1., -2., 2., 0.2, -2., 2., 0.2);
 }

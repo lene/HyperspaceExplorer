@@ -114,7 +114,7 @@ class Surface: public SurfaceBase {
                                 const VecMath::Vector<4> &T);
 
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
-        virtual void Draw (void);
+        virtual void Draw (UI::View *view);
 
         /// Called by the ColorManager after setting the Function on the CM
         virtual void calibrateColors() const;

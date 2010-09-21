@@ -10,18 +10,19 @@
 //
 //
 
-#include <vector>
+#include "RealFunction.h"
+
+#include "Transformation.h"
+#include "Projection.h"
+
+#include "Vector.h"
+#include "Matrix.h"
 
 #include "Globals.h"
 #include "Log.h"
 #include "ColorManager.h"
 
-#include "Vector.h"
-#include "Matrix.h"
-#include "RealFunction.h"
-
-#include "Transformation.h"
-#include "Projection.h"
+#include <vector>
 
 using std::cerr;
 using std::endl;
@@ -197,8 +198,10 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
 
 /// Draw the projected Function (onto screen or into GL list, as it is)
 /** */
-void RealFunction::Draw (void) {
+void RealFunction::Draw (UI::View *view) {
+std::cerr << "Draw" << std::endl;
 # ifdef USE_GRID_DRAWER
+std::cerr << "USE_GRID_DRAWER" << std::endl;
     GridDrawer<3> draw(Xscr(), NULL);
     draw.execute();
 # else
