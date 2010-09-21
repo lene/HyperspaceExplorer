@@ -35,6 +35,7 @@ HEADERS += Test_Rotope.h \
            Test_FunctionValueGrid.h \
            Test_Transformation.h \
            Test_Projection.h \
+           Test_GridDrawer.h \
            Test_FunctionFactory.h \
            Test_Function.h
 SOURCES += main.cpp \
@@ -50,6 +51,7 @@ SOURCES += main.cpp \
            Test_FunctionValueGrid.cpp \
            Test_Transformation.cpp \
            Test_Projection.cpp \
+           Test_GridDrawer.cpp \
            Test_FunctionFactory.cpp \
            Test_Function.cpp
 

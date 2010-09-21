@@ -12,41 +12,62 @@
 #include "Test_FunctionValueGrid.h"
 #include "Test_Transformation.h"
 #include "Test_Projection.h"
+#include "Test_GridDrawer.h"
 #include "Test_FunctionFactory.h"
 
 #include <QtTest/QtTest>
 
 using QTest::qExec;
 
+class TestRunner {
 
-void printSummary(int failedTestSuites) {
-    if (failedTestSuites) qDebug() << QString(80, '*');
-    qDebug() << failedTestSuites << " Test suites failed.";
-    if (failedTestSuites) qDebug() << QString(80, '*');
-}
+  public:
+
+    TestRunner(): executedTestSuites(0), failedTestSuites(0) { }
+
+    void run(QObject *test) {
+      if (qExec(test)) failedTestSuites++;
+      executedTestSuites++;
+    }
+
+    void printSummary() const {
+      if (failedTestSuites) qDebug() << QString(80, '*');
+      qDebug() << failedTestSuites << " Test suites out of " << executedTestSuites << " failed.";
+      if (failedTestSuites) qDebug() << QString(80, '*');
+    }
+
+    unsigned exitValue() const { return failedTestSuites; }
+
+  private:
+    unsigned executedTestSuites;
+    unsigned failedTestSuites;
+
+};
+
 
 int main(int argc, char **argv) {
     // A QApplication must be instantiated for GUI tests to work. This causes a compiler warning.
     QApplication *app = new QApplication(argc, argv);
 
-    unsigned failedTestSuites = 0;
+    TestRunner runner;
 
-    if (qExec(new Test_Vector)) failedTestSuites++;
-    if (qExec(new Test_Matrix)) failedTestSuites++;
-    if (qExec(new Test_NestedVector)) failedTestSuites++;
-    if (qExec(new Test_Rotation)) failedTestSuites++;
-    if (qExec(new Test_Realm)) failedTestSuites++;
-    if (qExec(new Test_Rotope)) failedTestSuites++;
-    if (qExec(new Test_Function)) failedTestSuites++;
-    if (qExec(new Test_RealFunction)) failedTestSuites++;
-    if (qExec(new Test_Surface)) failedTestSuites++;
-    if (qExec(new Test_FunctionValueGrid)) failedTestSuites++;
-    if (qExec(new Test_ParametricFunction)) failedTestSuites++;
-    if (qExec(new Test_Transformation)) failedTestSuites++;
-    if (qExec(new Test_Projection)) failedTestSuites++;
-    if (qExec(new Test_FunctionFactory)) failedTestSuites++;
+    runner.run(new Test_Vector);
+    runner.run(new Test_Matrix);
+    runner.run(new Test_NestedVector);
+    runner.run(new Test_Rotation);
+    runner.run(new Test_Realm);
+    runner.run(new Test_Rotope);
+    runner.run(new Test_Function);
+    runner.run(new Test_RealFunction);
+    runner.run(new Test_Surface);
+    runner.run(new Test_FunctionValueGrid);
+    runner.run(new Test_ParametricFunction);
+    runner.run(new Test_Transformation);
+    runner.run(new Test_Projection);
+    runner.run(new Test_GridDrawer);
+    runner.run(new Test_FunctionFactory);
 
-    printSummary(failedTestSuites);
+    runner.printSummary();
 
-    return failedTestSuites;
+    return runner.exitValue();
 }
