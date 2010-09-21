@@ -22,9 +22,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define GRID_DRAWER_H
 
 /// define this if you want the GridDrawer do the drawing work
-//#define USE_GRID_DRAWER
+#define USE_GRID_DRAWER
 
 #include <View.h>
+#include <NestedVector.h>
 
 /// Draws a ParametricFunction projected to 3-space.
 /** This class evaluates the parametric equation represented by a ParametricFunction
@@ -33,63 +34,43 @@ with this program; if not, write to the Free Software Foundation, Inc.,
  *
  *  \tparam P The dimension of the parameter vector space.
  *  \tparam NUM The numeric type managed by the grid.
+ *  \tparam D Dimension of the projected vertices - if you find a reason for
+ *            \p D being anything other than 3, I'd be interested to hear it ;-)
  *
  *  \ingroup FunctionGroup
  *  @author Lene Preuss <lene.preuss@gmail.com>
  */
-template <unsigned P>
+template <unsigned P, typename NUM = double, unsigned D = 3>
 class GridDrawer {
   public:
 
-    GridDrawer(const VecMath::NestedVector< VecMath::Vector<3>, P > &x_scr, UI::View *view);
+    GridDrawer(const VecMath::NestedVector< VecMath::Vector<D, NUM>, P > &x_scr, UI::View *view);
 
     void execute();
 
   private:
 
-    const VecMath::NestedVector< VecMath::Vector<3>, P > &_x_scr;
+    const VecMath::NestedVector< VecMath::Vector<D, NUM>, P > &_x_scr;
     UI::View *_view;
 
 };
 
-
-template <unsigned P>
-GridDrawer<P>::GridDrawer(const VecMath::NestedVector< VecMath::Vector<3>, P > &x_scr,
-                          UI::View *view):
-    _x_scr(x_scr), _view(view) { }
-
-template <unsigned P> void GridDrawer<P>::execute() {
-  std::cerr << "GridDrawer<" << P << ">::execute()\n";
-  for (unsigned i = 0; i < _x_scr.size(); ++i) {
-    GridDrawer<P-1> sub_drawer(_x_scr[i], _view);
-    sub_drawer.execute();
-  }
-}
-
-template<> class GridDrawer<1> {
+template<typename NUM, unsigned D> class GridDrawer<1, NUM, D> {
   public:
 
-    GridDrawer(const VecMath::NestedVector< VecMath::Vector<3>, 1 > &x_scr, UI::View *view):
-    _x_scr(x_scr), _view(view) { }
+    GridDrawer(const VecMath::NestedVector< VecMath::Vector<D, NUM>, 1 > &x_scr, UI::View *view);
 
-    void execute() {
-      std::cerr << "GridDrawer<1>::execute()\n";
-    }
+    void execute();
 
   private:
 
-    const VecMath::NestedVector< VecMath::Vector<3>, 1 > &_x_scr;
+    void DrawCube (unsigned t, unsigned u, unsigned v);
+
+    const VecMath::NestedVector< VecMath::Vector<D, NUM>, 1 > &_x_scr;
     UI::View *_view;
 
 };
-/*
-template<> GridDrawer<1>::GridDrawer(const VecMath::NestedVector< VecMath::Vector<3>, 1 > &x_scr,
-                                     UI::View *view):
-  _x_scr(x_scr), _view(view) { }
 
-template<> void GridDrawer<1>::execute() {
-  std::cerr << "GridDrawer<1>::execute()\n";
-}
-*/
+#include "GridDrawer.impl.h"
 
 #endif

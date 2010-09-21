@@ -38,6 +38,7 @@ HEADERS += Functions/ComplexFunction.h \
            Functions/Projection.h \
            Functions/Projection.impl.h \
 	   Functions/GridDrawer.h \
+	   Functions/GridDrawer.impl.h \
            Functions/Function.h \
            Functions/Object.h \
            Functions/Surface.h \
