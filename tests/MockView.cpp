@@ -48,41 +48,24 @@ void MockView::drawLine(const VecMath::Vector< 4 >&, const VecMath::Vector< 4 >&
   throw NotYetImplementedException("MockView::drawLine");
 }
 
-void MockView::drawQuadrangle(const VecMath::Vector< 4 >&, const VecMath::Vector< 4 >&, 
-                              const VecMath::Vector< 4 >&, const VecMath::Vector< 4 >&, 
-                              const VecMath::Vector< 3 >&, const VecMath::Vector< 3 >&, 
-                              const VecMath::Vector< 3 >&, const VecMath::Vector< 3 >&) {
-  throw NotYetImplementedException("MockView::drawQuadrangle");
-}
-
-void MockView::drawCube(const VecMath::NestedVector< VecMath::Vector<4>, 3 > &X,
-                        unsigned t, unsigned u, unsigned v,
-                        const VecMath::Vector< 3 >& v0, const VecMath::Vector< 3 >& v1,
-                        const VecMath::Vector< 3 >& v2, const VecMath::Vector< 3 >& v3,
-                        const VecMath::Vector< 3 >& v4, const VecMath::Vector< 3 >& v5,
-                        const VecMath::Vector< 3 >& v6, const VecMath::Vector< 3 >& v7) {
+void MockView::drawQuadrangle(const VecMath::Vector< 4 > &x0, const VecMath::Vector< 4 > &x1, 
+                              const VecMath::Vector< 4 > &x2, const VecMath::Vector< 4 > &x3, 
+                              const VecMath::Vector< 3 > &xscr0, const VecMath::Vector< 3 > &xscr1, 
+                              const VecMath::Vector< 3 > &xscr2, const VecMath::Vector< 3 > &xscr3) {
   if (pImpl_->verbose_) {
-    std::cerr << "drawCube(" << v0 << ", " << v1 << ", " << v2 << ", " << v3 << ", "
-                             << v4 << ", " << v5 << ", " << v6 << ", " << v7 << ")" << std::endl;
+    std::cerr << "drawQuadrangle(" << x0 << ", " << x1 << ", " << x2 << ", " << x3 << ", \n"
+              << "               " << xscr0 << ", " << xscr1 << ", " << xscr2 << ", " << xscr3 << ")" << std::endl;
   }
 
-  add_if_not(pImpl_->drawnVertices_, v0);
-  add_if_not(pImpl_->drawnVertices_, v1);
-  add_if_not(pImpl_->drawnVertices_, v2);
-  add_if_not(pImpl_->drawnVertices_, v3);
-  add_if_not(pImpl_->drawnVertices_, v4);
-  add_if_not(pImpl_->drawnVertices_, v5);
-  add_if_not(pImpl_->drawnVertices_, v6);
-  add_if_not(pImpl_->drawnVertices_, v7);
+  add_if_not(pImpl_->drawnVertices_, xscr0);
+  add_if_not(pImpl_->drawnVertices_, xscr1);
+  add_if_not(pImpl_->drawnVertices_, xscr2);
+  add_if_not(pImpl_->drawnVertices_, xscr3);
 
-  add_if_not(pImpl_->originalVertices_, X[t][u][v]);
-  add_if_not(pImpl_->originalVertices_, X[t][u][v+1]);
-  add_if_not(pImpl_->originalVertices_, X[t][u+1][v]);
-  add_if_not(pImpl_->originalVertices_, X[t][u+1][v+1]);
-  add_if_not(pImpl_->originalVertices_, X[t+1][u][v]);
-  add_if_not(pImpl_->originalVertices_, X[t+1][u][v+1]);
-  add_if_not(pImpl_->originalVertices_, X[t+1][u+1][v]);
-  add_if_not(pImpl_->originalVertices_, X[t+1][u+1][v+1]);
+  add_if_not(pImpl_->originalVertices_, x0);
+  add_if_not(pImpl_->originalVertices_, x1);
+  add_if_not(pImpl_->originalVertices_, x2);
+  add_if_not(pImpl_->originalVertices_, x3);
 }
 
 bool MockView::isVertexDrawn(const VecMath::Vector<3>& vertex) const {
