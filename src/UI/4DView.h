@@ -203,6 +203,11 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         /// Re-Implementation of UI::ViewImpl::setTransparence
         virtual void setTransparence(bool);
 
+        virtual void drawCube(const VecMath::Vector< 3 >& v0, const VecMath::Vector< 3 >& v1,
+                              const VecMath::Vector< 3 >& v2, const VecMath::Vector< 3 >& v3,
+                              const VecMath::Vector< 3 >& v4, const VecMath::Vector< 3 >& v5,
+                              const VecMath::Vector< 3 >& v6, const VecMath::Vector< 3 >& v7);
+
         ////////////////////////////////////////////////////////////////////////
 
         /// rotate in 3D 360 degrees

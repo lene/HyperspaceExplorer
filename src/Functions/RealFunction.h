@@ -166,9 +166,9 @@ class RealFunction: public RealBase {
 
     VecMath::Vector<4> &normal(double t, double u, double v);
 
-    void DrawPlane (unsigned);
-    void DrawStrip (unsigned, unsigned);
-    void DrawCube (unsigned, unsigned, unsigned);
+    void DrawPlane (unsigned, UI::View *view);
+    void DrawStrip (unsigned, unsigned, UI::View *view);
+    void DrawCube (unsigned, unsigned, unsigned, UI::View *view);
 
     virtual void Initialize (void);
 

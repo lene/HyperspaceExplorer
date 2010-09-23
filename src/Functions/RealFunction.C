@@ -199,38 +199,38 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
 /// Draw the projected Function (onto screen or into GL list, as it is)
 /** */
 void RealFunction::Draw (UI::View *view) {
-std::cerr << "Draw" << std::endl;
 # ifdef USE_GRID_DRAWER
+std::cerr << "RealFunction::Draw" << std::endl;
 std::cerr << "USE_GRID_DRAWER" << std::endl;
     GridDrawer<3> draw(Xscr(), NULL);
     draw.execute();
 # else
     for (unsigned t = 0; t < getTsteps(); t++)
-      DrawPlane (t);
+      DrawPlane (t, view);
 # endif
 }
 
 
 /// Draw the current plane of the projected Function
 /** \param t current t value                                                  */
-void RealFunction::DrawPlane (unsigned t){
+void RealFunction::DrawPlane (unsigned t, UI::View *view){
   for (unsigned u = 0; u < getUsteps(); u++)
-    DrawStrip (t, u);
+    DrawStrip (t, u, view);
 }
 
 /// Draw the current strip of the projected Function
 /** \param t current t value
  *  \param u current u value                                                  */
-void RealFunction::DrawStrip (unsigned t, unsigned u){
+void RealFunction::DrawStrip (unsigned t, unsigned u, UI::View *view){
   for (unsigned v = 0; v < getVsteps(); v++)
-    DrawCube (t, u, v);
+    DrawCube (t, u, v, view);
 }
 
 /// Draw the current cube or cell of the projected Function
 /** \param t current t value
  *  \param u current u value
  *  \param v current v value                                                  */
-void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v) {
+void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v, UI::View* view) {
     /// \todo don't use a malloc'ed pointer
     static Vector<3> *V = new Vector<3> [8];
 
@@ -239,6 +239,9 @@ void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v) {
     V[4] = Xscr()[t+1][u][v];   V[5] = Xscr()[t+1][u][v+1];
     V[6] = Xscr()[t+1][u+1][v]; V[7] = Xscr()[t+1][u+1][v+1];
 
+#if 0
+    view->drawCube(V[0], V[1], V[2], V[3], V[4], V[5], V[6], V[7]);
+#else
     glBegin (GL_QUAD_STRIP);
     if (t == 0) {
         setVertex(X()[t][u][v], V[0]);
@@ -273,6 +276,7 @@ void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v) {
     setVertex(X()[t+1][u][v+1], V[5]);
     addVertices(4);
     glEnd ();
+#endif
 }
 
 /// Calculate normal to function at a given point in definition set.

@@ -22,7 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define GRID_DRAWER_H
 
 /// define this if you want the GridDrawer do the drawing work
-#define USE_GRID_DRAWER
+#undef USE_GRID_DRAWER
 
 #include <View.h>
 #include <NestedVector.h>

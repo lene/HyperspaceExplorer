@@ -242,6 +242,48 @@ void C4DView::setTransparence (bool trans) {
     repaint ();
 }
 
+void C4DView::drawCube(const VecMath::Vector< 3 >& v0, const VecMath::Vector< 3 >& v1,
+                       const VecMath::Vector< 3 >& v2, const VecMath::Vector< 3 >& v3,
+                       const VecMath::Vector< 3 >& v4, const VecMath::Vector< 3 >& v5,
+                       const VecMath::Vector< 3 >& v6, const VecMath::Vector< 3 >& v7) {
+#if 0
+  glBegin (GL_QUAD_STRIP);
+  if (t == 0) {
+    setVertex(X()[t][u][v], v0);
+    setVertex(X()[t][u][v+1], v1);
+    addVertices(2);
+  }
+  setVertex(X()[t][u+1][v], v2);
+  setVertex(X()[t][u+1][v+1], v3);
+  setVertex(X()[t+1][u+1][v], v6);
+  setVertex(X()[t+1][u+1][v+1], v7);
+  setVertex(X()[t+1][u][v], v4);
+  setVertex(X()[t+1][u][v+1], v5);
+  addVertices(6);
+  if (u == 0) {
+    setVertex(X()[t][u][v], v0);
+    setVertex(X()[t][u][v+1], v1);
+    addVertices(2);
+  }
+  glEnd ();
+
+  glBegin (GL_QUADS);
+  if (v == 0) {
+    setVertex(X()[t][u][v], v0);
+    setVertex(X()[t][u+1][v], v2);
+    setVertex(X()[t+1][u+1][v], v6);
+    setVertex(X()[t+1][u][v], v4);
+    addVertices(4);
+  }
+  setVertex(X()[t][u][v+1], v1);
+  setVertex(X()[t][u+1][v+1], v3);
+  setVertex(X()[t+1][u+1][v+1], v7);
+  setVertex(X()[t+1][u][v+1], v5);
+  addVertices(4);
+  glEnd ();
+#endif
+}
+
 ////////        end View interface          ////////
 
 double C4DView::Benchmark3D (int num_steps,

@@ -40,6 +40,7 @@ namespace UI {
 
         public:
             View() { }
+            virtual ~View() { }
 
             /// \return The currently displayed object
             virtual const std::tr1::shared_ptr<Function> &F() const = 0;
@@ -165,6 +166,10 @@ namespace UI {
             /// Turn transparence/line antialiasing on or off
             virtual void setTransparence(bool) = 0;
 
+            virtual void drawCube(const VecMath::Vector<3> &v0, const VecMath::Vector<3> &v1,
+                                  const VecMath::Vector<3> &v2, const VecMath::Vector<3> &v3,
+                                  const VecMath::Vector<3> &v4, const VecMath::Vector<3> &v5,
+                                  const VecMath::Vector<3> &v6, const VecMath::Vector<3> &v7) = 0;
         protected:
             /// Apply changes in parameters and display them
             virtual void ApplyChanges(const ParameterMap &) = 0;
