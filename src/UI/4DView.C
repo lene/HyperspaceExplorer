@@ -275,23 +275,16 @@ void C4DView::drawCube(const VecMath::NestedVector< VecMath::Vector<4>, 3 > &X,
     drawQuadrangle(X[t][u][v], X[t][u][v+1], X[t][u+1][v+1], X[t][u+1][v],
                    v0, v1, v3, v2);
   }
-
-  glBegin (GL_QUAD_STRIP);
-
-  drawVertex(X[t][u+1][v], v2);
-  drawVertex(X[t][u+1][v+1], v3);
-  drawVertex(X[t+1][u+1][v], v6);
-  drawVertex(X[t+1][u+1][v+1], v7);
-  drawVertex(X[t+1][u][v], v4);
-  drawVertex(X[t+1][u][v+1], v5);
-
-  glEnd ();
+  
+  drawQuadrangle(X[t][u+1][v], X[t][u+1][v+1], X[t+1][u+1][v+1], X[t+1][u+1][v],
+                 v2, v3, v7, v6);
+  drawQuadrangle(X[t+1][u+1][v], X[t+1][u+1][v+1], X[t+1][u][v+1], X[t+1][u][v],
+                 v6, v7, v5, v4);
 
   if (u == 0) {
     drawQuadrangle(X[t+1][u][v], X[t+1][u][v+1], X[t][u][v+1], X[t][u][v],
                    v4, v5, v1, v0);
   }
-
 
   if (v == 0) {
     drawQuadrangle(X[t][u][v], X[t][u+1][v], X[t+1][u+1][v], X[t+1][u][v],
