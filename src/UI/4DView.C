@@ -270,13 +270,13 @@ void C4DView::drawCube(const VecMath::NestedVector< VecMath::Vector<4>, 3 > &X,
                        const VecMath::Vector< 3 >& v2, const VecMath::Vector< 3 >& v3,
                        const VecMath::Vector< 3 >& v4, const VecMath::Vector< 3 >& v5,
                        const VecMath::Vector< 3 >& v6, const VecMath::Vector< 3 >& v7) {
-
-  glBegin (GL_QUAD_STRIP);
   
   if (t == 0) {
-    drawVertex(X[t][u][v], v0);
-    drawVertex(X[t][u][v+1], v1);
+    drawQuadrangle(X[t][u][v], X[t][u][v+1], X[t][u+1][v+1], X[t][u+1][v],
+                   v0, v1, v3, v2);
   }
+
+  glBegin (GL_QUAD_STRIP);
 
   drawVertex(X[t][u+1][v], v2);
   drawVertex(X[t][u+1][v+1], v3);
@@ -285,12 +285,13 @@ void C4DView::drawCube(const VecMath::NestedVector< VecMath::Vector<4>, 3 > &X,
   drawVertex(X[t+1][u][v], v4);
   drawVertex(X[t+1][u][v+1], v5);
 
+  glEnd ();
+
   if (u == 0) {
-    drawVertex(X[t][u][v], v0);
-    drawVertex(X[t][u][v+1], v1);
+    drawQuadrangle(X[t+1][u][v], X[t+1][u][v+1], X[t][u][v+1], X[t][u][v],
+                   v4, v5, v1, v0);
   }
 
-  glEnd ();
 
   if (v == 0) {
     drawQuadrangle(X[t][u][v], X[t][u+1][v], X[t+1][u+1][v], X[t+1][u][v],
