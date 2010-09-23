@@ -178,36 +178,9 @@ namespace UI {
 
         private:
 
-            std::tr1::shared_ptr<Function> _F;  ///< the Function object currently displayed
-
-            bool _colors;       ///< whether to use colors in rendering
-            bool _coordinates;  ///< whether to display the 4D coordinate cross
-            bool _fog;          ///< whether to use depth cue/fog in rendering
-            bool _hyperfog;     ///< whether to use four-dimensional depth cue
-            bool _lighting;     ///< whether to use lighting in rendering
-            bool _shading;      ///< whether to use shading in rendering
-            bool _solid;        ///< whether to draw the objects' surfaces
-            bool _transparence; ///< whether to use transparence/line antialiasing
-
-            /// Stores all the lights in the scene
-            /** \todo Abstract from std::vector and use a generic container */
-            std::vector<Light *> _lights;
-            Color _background;  ///< background color
-
-            /// delta values in angles for 4D rotation for animations
-            VecMath::Rotation<4> _dR;
-            VecMath::Vector<4> _T;      ///< coordinates for 4D translation
-            VecMath::Rotation<4> _R;    ///< angles for 4D rotation
-
-            double _camW;        ///< W coordinate of the camera
-            double _scrW;        ///< W coordinate of the screen
-
-            unsigned _numFrames; ///< number of frames for animations
-            unsigned _numLoops;  ///< number of loops to repeat an animation
-
-            bool _writeImages;  ///< whether to save images to file system
-            std::string _imageDir;      ///< directory to save images to
-            std::string _imagePrefix;   ///< filename prefix for saved images
+            class Impl;
+            
+            Impl *pImpl_;
 
             /// Default Color for the background
             static Color _defaultBackground;
@@ -216,7 +189,7 @@ namespace UI {
             static LightSource _defaultLightSource;
             /// LightSource for flat, all-ambient lighting
             static LightSource _flatLightSource;
-
+        
     };
 
 }
