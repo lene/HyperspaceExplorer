@@ -58,6 +58,18 @@ namespace UI {
         _lights.erase(i);
     }
 
+    void ViewImpl::drawTriangle(const VecMath::Vector< 4 >&, const VecMath::Vector< 4 >&, 
+                                const VecMath::Vector< 4 >&,
+                                const VecMath::Vector< 3 >&, const VecMath::Vector< 3 >&, 
+                                const VecMath::Vector< 3 >&) {
+      throw NotYetImplementedException("drawTriangle()");
+    }
+
+    void ViewImpl::drawPolygon(const std::vector< VecMath::Vector< 4 > >&, 
+                               const std::vector< VecMath::Vector< 3 > >&) {
+      throw NotYetImplementedException("drawPolygon()");
+    }
+
     void ViewImpl::setDefaultBackground() {
         setBackground(_defaultBackground);
     }

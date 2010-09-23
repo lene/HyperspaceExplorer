@@ -113,9 +113,19 @@ namespace UI {
 
             /// \return whether to use transparence/line antialiasing or not
             virtual bool getTransparence() const { return _transparence; }
-            /// Turn transparenc/line antialiasing on or off
+            /// Turn transparence/line antialiasing on or off
             virtual void setTransparence(bool on) { _transparence = on; }
 
+            /// drawTriangle() is a convenience function that may not be implemented in all Views - this implementation throws an exception
+            virtual void drawTriangle(const VecMath::Vector< 4 >&, const VecMath::Vector< 4 >&, 
+                                      const VecMath::Vector< 4 >&, 
+                                      const VecMath::Vector< 3 >&, const VecMath::Vector< 3 >&, 
+                                      const VecMath::Vector< 3 >&);
+            /// drawPolygon() is a convenience function that may not be implemented in all Views - this implementation throws an exception
+            virtual void drawPolygon(const std::vector< VecMath::Vector< 4 > >&, 
+                                     const std::vector< VecMath::Vector< 3 > >&);
+            
+            
         protected:
 
             /// Number of frames for animations

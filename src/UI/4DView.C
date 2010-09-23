@@ -247,28 +247,16 @@ void C4DView::drawVertex(const VecMath::Vector< 4 >& x, const VecMath::Vector< 3
   Globals::Instance().glVertex(xscr);
 }
 
-void C4DView::drawLine(const VecMath::Vector< 4 >& x0, const VecMath::Vector< 4 >& x1, 
-                       const VecMath::Vector< 3 >& xscr0, const VecMath::Vector< 3 >& xscr1) {
+void C4DView::drawLine(const VecMath::Vector< 4 >&, const VecMath::Vector< 4 >&, 
+                       const VecMath::Vector< 3 >&, const VecMath::Vector< 3 >&) {
   throw NotYetImplementedException("C4DView::drawLine");
 }
 
-void C4DView::drawTriangle(const VecMath::Vector< 4 >& x0, const VecMath::Vector< 4 >& x1, 
-                           const VecMath::Vector< 4 >& x2, 
-                           const VecMath::Vector< 3 >& xscr0, const VecMath::Vector< 3 >& xscr1, 
-                           const VecMath::Vector< 3 >& xscr2) {
-  throw NotYetImplementedException("C4DView::drawTriangle");
-}
-
-void C4DView::drawQuadrangle(const VecMath::Vector< 4 >& x0, const VecMath::Vector< 4 >& x1, 
-                             const VecMath::Vector< 4 >& x2, const VecMath::Vector< 4 >& x3, 
-                             const VecMath::Vector< 3 >& xscr0, const VecMath::Vector< 3 >& xscr1, 
-                             const VecMath::Vector< 3 >& xscr2, const VecMath::Vector< 3 >& xscr3) {
+void C4DView::drawQuadrangle(const VecMath::Vector< 4 >&, const VecMath::Vector< 4 >&, 
+                             const VecMath::Vector< 4 >&, const VecMath::Vector< 4 >&, 
+                             const VecMath::Vector< 3 >&, const VecMath::Vector< 3 >&, 
+                             const VecMath::Vector< 3 >&, const VecMath::Vector< 3 >&) {
   throw NotYetImplementedException("C4DView::drawQuadrangle");
-}
-
-void C4DView::drawPolygon(const std::vector< Vector< 4 > >& x, 
-                          const std::vector< Vector< 3 > >& xscr) {
-  throw NotYetImplementedException("C4DView::drawPolygon");
 }
 
 void C4DView::drawCube(const VecMath::NestedVector< VecMath::Vector<4>, 3 > &X,
@@ -277,7 +265,7 @@ void C4DView::drawCube(const VecMath::NestedVector< VecMath::Vector<4>, 3 > &X,
                        const VecMath::Vector< 3 >& v2, const VecMath::Vector< 3 >& v3,
                        const VecMath::Vector< 3 >& v4, const VecMath::Vector< 3 >& v5,
                        const VecMath::Vector< 3 >& v6, const VecMath::Vector< 3 >& v7) {
-#if 1
+
   glBegin (GL_QUAD_STRIP);
   if (t == 0) {
     drawVertex(X[t][u][v], v0);
@@ -312,7 +300,7 @@ void C4DView::drawCube(const VecMath::NestedVector< VecMath::Vector<4>, 3 > &X,
   drawVertex(X[t+1][u][v+1], v5);
 //  addVertices(4);
   glEnd ();
-#endif
+
 }
 
 ////////        end View interface          ////////

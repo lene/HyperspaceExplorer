@@ -39,31 +39,20 @@ void add_if_not(COLL &collection, const ELEM &element) {
 
 MockView::MockView(bool verbose): pImpl_(new Impl(verbose)) { }
 
-void MockView::drawVertex(const VecMath::Vector< 4 >& x, const VecMath::Vector< 3 >& xscr) {
+void MockView::drawVertex(const VecMath::Vector< 4 >&, const VecMath::Vector< 3 >&) {
   throw NotYetImplementedException("MockView::drawVertex");
 }
 
-void MockView::drawLine(const VecMath::Vector< 4 >& x0, const VecMath::Vector< 4 >& x1, 
-                        const VecMath::Vector< 3 >& xscr0, const VecMath::Vector< 3 >& xscr1) {
+void MockView::drawLine(const VecMath::Vector< 4 >&, const VecMath::Vector< 4 >&, 
+                        const VecMath::Vector< 3 >&, const VecMath::Vector< 3 >&) {
   throw NotYetImplementedException("MockView::drawLine");
 }
 
-void MockView::drawTriangle(const VecMath::Vector< 4 >& x0, const VecMath::Vector< 4 >& x1, 
-                            const VecMath::Vector< 4 >& x2, 
-                            const VecMath::Vector< 3 >& xscr0, const VecMath::Vector< 3 >& xscr1, 
-                            const VecMath::Vector< 3 >& xscr2) {
-  throw NotYetImplementedException("MockView::drawTriangle");
-}
-
-void MockView::drawQuadrangle(const VecMath::Vector< 4 >& x0, const VecMath::Vector< 4 >& x1, 
-                              const VecMath::Vector< 4 >& x2, const VecMath::Vector< 4 >& x3, 
-                              const VecMath::Vector< 3 >& xscr0, const VecMath::Vector< 3 >& xscr1, 
-                              const VecMath::Vector< 3 >& xscr2, const VecMath::Vector< 3 >& xscr3) {
+void MockView::drawQuadrangle(const VecMath::Vector< 4 >&, const VecMath::Vector< 4 >&, 
+                              const VecMath::Vector< 4 >&, const VecMath::Vector< 4 >&, 
+                              const VecMath::Vector< 3 >&, const VecMath::Vector< 3 >&, 
+                              const VecMath::Vector< 3 >&, const VecMath::Vector< 3 >&) {
   throw NotYetImplementedException("MockView::drawQuadrangle");
-}
-
-void MockView::drawPolygon(const std::vector< Vector< 4 > >& x0, const std::vector< Vector< 3 > >& xscr0) {
-  throw NotYetImplementedException("MockView::drawPolygon");
 }
 
 void MockView::drawCube(const VecMath::NestedVector< VecMath::Vector<4>, 3 > &X,
