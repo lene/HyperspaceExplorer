@@ -63,7 +63,6 @@ class RealBase: public Function {
                 _usteps (unsigned ((umax-umin)/du+1)),
                 _vsteps (unsigned ((vmax-vmin)/dv+1)) { }
 
-    protected:
         /// number of steps in t
         unsigned &getTsteps() { return _tsteps; }
         /// number of steps in t
@@ -76,6 +75,8 @@ class RealBase: public Function {
         unsigned &getVsteps()  { return _vsteps; }
         /// number of steps in v
         unsigned getVsteps() const { return _vsteps > 0? _vsteps: 1; }
+
+    protected:
 
         double &getTmin() { return _tmin; }          ///< min. value of the first parameter, t
         double getTmin() const { return _tmin; }     ///< min. value of the first parameter, t

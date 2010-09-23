@@ -23,25 +23,28 @@ class TestRunner {
 
   public:
 
-    TestRunner(): executedTestSuites(0), failedTestSuites(0) { }
+    TestRunner(): executedTestSuites_(0), failedTestSuites_(0), startTime_(clock()) { }
 
     void run(QObject *test) {
-      if (qExec(test)) failedTestSuites++;
-      executedTestSuites++;
+      if (qExec(test)) failedTestSuites_++;
+      executedTestSuites_++;
     }
 
     void printSummary() const {
-      if (failedTestSuites) qDebug() << QString(80, '*');
-      qDebug() << failedTestSuites << " Test suites out of " << executedTestSuites << " failed.";
-      if (failedTestSuites) qDebug() << QString(80, '*');
+      double timeElapsed = double(clock()-startTime_)/CLOCKS_PER_SEC;
+      if (failedTestSuites_) qDebug() << QString(80, '*');
+      qDebug() << "Tests finished in " << timeElapsed << " seconds.";
+      qDebug() << failedTestSuites_ << " Test suites out of " << executedTestSuites_ << " failed.";
+      if (failedTestSuites_) qDebug() << QString(80, '*');
     }
 
-    unsigned exitValue() const { return failedTestSuites; }
+    unsigned exitValue() const { return failedTestSuites_; }
 
   private:
-    unsigned executedTestSuites;
-    unsigned failedTestSuites;
+    unsigned executedTestSuites_;
+    unsigned failedTestSuites_;
 
+    clock_t startTime_;
 };
 
 

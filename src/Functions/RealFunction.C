@@ -239,44 +239,8 @@ void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v, UI::View* view)
     V[4] = Xscr()[t+1][u][v];   V[5] = Xscr()[t+1][u][v+1];
     V[6] = Xscr()[t+1][u+1][v]; V[7] = Xscr()[t+1][u+1][v+1];
 
-#if 0
-    view->drawCube(V[0], V[1], V[2], V[3], V[4], V[5], V[6], V[7]);
-#else
-    glBegin (GL_QUAD_STRIP);
-    if (t == 0) {
-        setVertex(X()[t][u][v], V[0]);
-        setVertex(X()[t][u][v+1], V[1]);
-        addVertices(2);
-    }
-    setVertex(X()[t][u+1][v], V[2]);
-    setVertex(X()[t][u+1][v+1], V[3]);
-    setVertex(X()[t+1][u+1][v], V[6]);
-    setVertex(X()[t+1][u+1][v+1], V[7]);
-    setVertex(X()[t+1][u][v], V[4]);
-    setVertex(X()[t+1][u][v+1], V[5]);
-    addVertices(6);
-    if (u == 0) {
-        setVertex(X()[t][u][v], V[0]);
-        setVertex(X()[t][u][v+1], V[1]);
-        addVertices(2);
-    }
-    glEnd ();
-
-    glBegin (GL_QUADS);
-    if (v == 0) {
-        setVertex(X()[t][u][v], V[0]);
-        setVertex(X()[t][u+1][v], V[2]);
-        setVertex(X()[t+1][u+1][v], V[6]);
-        setVertex(X()[t+1][u][v], V[4]);
-        addVertices(4);
-    }
-    setVertex(X()[t][u][v+1], V[1]);
-    setVertex(X()[t][u+1][v+1], V[3]);
-    setVertex(X()[t+1][u+1][v+1], V[7]);
-    setVertex(X()[t+1][u][v+1], V[5]);
-    addVertices(4);
-    glEnd ();
-#endif
+    view->drawCube(X(), t, u, v,
+                   V[0], V[1], V[2], V[3], V[4], V[5], V[6], V[7]);
 }
 
 /// Calculate normal to function at a given point in definition set.

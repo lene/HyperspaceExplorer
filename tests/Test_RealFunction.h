@@ -5,9 +5,7 @@
 
 #include "RealFunction.h"
 
-namespace UI {
-  class View;
-}
+class MockView;
 
 /// Unit tests for class RealFunction and its implementations
 class Test_RealFunction: public QObject {
@@ -26,36 +24,11 @@ class Test_RealFunction: public QObject {
     static const double PROJECTION_SCREEN_W = 2.;
     static const double PROJECTION_CAMERA_W = 4.;
 
-    class RealFunctionTestImplementation: public RealFunction {
-
-    public:
-        RealFunctionTestImplementation();
-
-        virtual std::string getFunctionName() const { return TEST_FUNCTION_NAME.toStdString(); }
-
-        VecMath::Vector<4> function_value(double tt, double uu, double vv) { return f(tt,uu,vv); }
-        VecMath::NestedVector<VecMath::Vector<4>, 3> vertices() { return X(); }
-        VecMath::NestedVector<VecMath::Vector<4>, 3> transformed_vertices() { return Xtrans(); }
-        VecMath::NestedVector<VecMath::Vector<3>, 3> projected_vertices() { return Xscr(); }
-
-        unsigned xsteps() const { return getTsteps(); }
-        unsigned ysteps() const { return getUsteps(); }
-        unsigned zsteps() const { return getVsteps(); }
-
-    protected:
-        class DefiningFunction: public ParametricFunction<4, 3> {
-
-          public:
-
-            virtual return_type f(const argument_type &x);
-        };
-
-        virtual function_type f;
-    };
+    class RealFunctionTestImplementation;
 
     private slots:
         void initTestCase();
-        void cleanupTestCase();
+        void init();
 
         void functionValue();
         void meetsFormalRequirements();
@@ -82,9 +55,10 @@ class Test_RealFunction: public QObject {
     private:
 
       void testFunction(RealFunction &f);
+      void testAllVerticesDrawn(RealFunction* f);
 
       RealFunctionTestImplementation *function_;
-      UI::View *view_;
+      MockView *view_;
 };
 
 

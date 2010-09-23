@@ -12,6 +12,33 @@ using std::cerr;
 using std::endl;
 using std::string;
 
+class Test_RealFunction::RealFunctionTestImplementation: public RealFunction {
+
+  public:
+    RealFunctionTestImplementation();
+
+    virtual std::string getFunctionName() const { return TEST_FUNCTION_NAME.toStdString(); }
+
+    VecMath::Vector<4> function_value(double tt, double uu, double vv) { return f(tt,uu,vv); }
+    VecMath::NestedVector<VecMath::Vector<4>, 3> vertices() { return X(); }
+    VecMath::NestedVector<VecMath::Vector<4>, 3> transformed_vertices() { return Xtrans(); }
+    VecMath::NestedVector<VecMath::Vector<3>, 3> projected_vertices() { return Xscr(); }
+
+    unsigned xsteps() const { return getTsteps(); }
+    unsigned ysteps() const { return getUsteps(); }
+    unsigned zsteps() const { return getVsteps(); }
+
+  protected:
+    class DefiningFunction: public ParametricFunction<4, 3> {
+
+      public:
+
+        virtual return_type f(const argument_type &x);
+    };
+
+    virtual function_type f;
+};
+
 const QString Test_RealFunction::TEST_FUNCTION_NAME = "FunctionTestImplementation";
 
 
@@ -36,10 +63,11 @@ Test_RealFunction::RealFunctionTestImplementation::DefiningFunction::f(
 
 void Test_RealFunction::initTestCase() {
     ColMgrMgr::Instance().setColorManager("XYZ to RGB");
-    view_ = new MockView;
 }
 
-void Test_RealFunction::cleanupTestCase() { }
+void Test_RealFunction::init() {
+  view_ = new MockView;
+}
 
 void Test_RealFunction::functionValue() {
     function_ = new RealFunctionTestImplementation();
@@ -171,7 +199,18 @@ void Test_RealFunction::draw() {
 
     function_->Draw(view_);
 
-    QSKIP("No idea how to correctly test drawing yet", SkipSingle);
+    QVERIFY(view_->numVerticesDrawn() >= (GRID_SIZE+1)*(GRID_SIZE+1)*(GRID_SIZE+1));
+
+    for (unsigned i = 0; i < GRID_SIZE; ++i) {
+      for (unsigned j = 0; j < GRID_SIZE; ++j) {
+        for (unsigned k = 0; k < GRID_SIZE; ++k) {
+          Vector<4> vertex = function_->vertices()[i][j][k];
+          Vector<3> projected_vertex = function_->projected_vertices()[i][j][k];
+          QVERIFY(view_->isVertexDrawn(projected_vertex));
+          QVERIFY(view_->isVertexPresent(vertex));
+        }
+      }
+    }
 }
 
 void Test_RealFunction::torus1() {
@@ -228,10 +267,43 @@ void Test_RealFunction::testFunction(RealFunction &f) {
   ParameterMap parameters = f.getParameters();
 //  cerr << f.getFunctionName().toStdString() << " parameters ("<< parameters.size() << "): " << parameters.toString() << endl;
   f(0.,0.,0.);
-  VecMath::Rotation<4> r(random_number<double>(), random_number<double>(), random_number<double>(), random_number<double>(), random_number<double>(), random_number<double>());
-  VecMath::Vector<4> t(random_number<double>(), random_number<double>(), random_number<double>(), random_number<double>());
+
+  VecMath::Vector<4> t0;
+  VecMath::Rotation<4> r0;
+
+  f.Transform(r0, t0);
+  f.Project(2., 4., false);
+  f.Draw(view_);
+
+//  testAllVerticesDrawn(&f);
+
+  VecMath::Rotation<4> r(random_number<double>(), random_number<double>(), random_number<double>(),
+                         random_number<double>(), random_number<double>(), random_number<double>());
+  VecMath::Vector<4> t(random_number<double>(), random_number<double>(),
+                       random_number<double>(), random_number<double>());
+
   f.Transform(r, t);
   f.Project(2., 4., false);
   f.Draw(view_);
+
   f.ReInit(-2., 2., 0.8, -2., 2., 0.8, -2., 2., 1.0);
+
 }
+
+void Test_RealFunction::testAllVerticesDrawn(RealFunction *f) {
+//  view_->printVertices();
+  for (unsigned i = 0; i < f->getTsteps(); ++i) {
+    for (unsigned j = 0; j < f->getUsteps(); ++j) {
+      for (unsigned k = 0; k < f->getVsteps(); ++k) {
+        Vector<4> vertex = f->operator()(i, j, k);
+# if 0
+        Vector<3> projected_vertex = f->projected_vertices()[i][j][k];
+        QVERIFY(view_->isVertexDrawn(projected_vertex));
+#endif
+        QVERIFY2(view_->isVertexPresent(vertex), vertex.toString().c_str());
+      }
+    }
+  }
+
+}
+
