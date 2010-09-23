@@ -5,6 +5,10 @@
 
 #include "RealFunction.h"
 
+namespace UI {
+  class View;
+}
+
 /// Unit tests for class RealFunction and its implementations
 class Test_RealFunction: public QObject {
 
@@ -76,7 +80,11 @@ class Test_RealFunction: public QObject {
         void polarR();
 
     private:
-        RealFunctionTestImplementation *_function;
+
+      void testFunction(RealFunction &f);
+
+      RealFunctionTestImplementation *function_;
+      UI::View *view_;
 };
 
 

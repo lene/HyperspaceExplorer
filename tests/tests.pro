@@ -23,7 +23,8 @@ UI_HEADERS_DIR = tmp
 RCC_DIR = tmp
 
 # Input
-HEADERS += Test_Rotope.h \
+HEADERS += MockView.h \
+           Test_Rotope.h \
            Test_Realm.h \
            Test_Vector.h \
            Test_Matrix.h \
@@ -39,6 +40,7 @@ HEADERS += Test_Rotope.h \
            Test_FunctionFactory.h \
            Test_Function.h
 SOURCES += main.cpp \
+           MockView.cpp \
            Test_Rotope.cpp \
            Test_Realm.cpp \
            Test_Vector.cpp \

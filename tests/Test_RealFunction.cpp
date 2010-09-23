@@ -1,6 +1,8 @@
 
 #include "Test_RealFunction.h"
 
+#include "MockView.h"
+
 #include "RealFunction.h"
 #include "ColorManager.h"
 
@@ -12,7 +14,6 @@ using std::string;
 
 const QString Test_RealFunction::TEST_FUNCTION_NAME = "FunctionTestImplementation";
 
-void testFunction(RealFunction &f);
 
 Test_RealFunction::RealFunctionTestImplementation::RealFunctionTestImplementation():
     RealFunction(X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1),
@@ -35,54 +36,55 @@ Test_RealFunction::RealFunctionTestImplementation::DefiningFunction::f(
 
 void Test_RealFunction::initTestCase() {
     ColMgrMgr::Instance().setColorManager("XYZ to RGB");
+    view_ = new MockView;
 }
 
 void Test_RealFunction::cleanupTestCase() { }
 
 void Test_RealFunction::functionValue() {
-    _function = new RealFunctionTestImplementation();
+    function_ = new RealFunctionTestImplementation();
 
     for (double x = X_MIN; x <= X_MAX; x += 1.) {
         for (double y = X_MIN; y <= X_MAX; y += 1.) {
             for (double z = X_MIN; z <= X_MAX; z += 1.) {
-                QVERIFY( (_function->function_value(x, y, z) - Vector<4>(x, y, z,CONSTANT_FUNCTION_VALUE)).sqnorm() <= EPSILON );
+                QVERIFY( (function_->function_value(x, y, z) - Vector<4>(x, y, z,CONSTANT_FUNCTION_VALUE)).sqnorm() <= EPSILON );
             }
         }
     }
 }
 
 void Test_RealFunction::meetsFormalRequirements() {
-    _function = new RealFunctionTestImplementation();
+    function_ = new RealFunctionTestImplementation();
 
-    QVERIFY(_function->getDefinitionSpaceDimensions() == 3);
-    QVERIFY(_function->vertices().size() >= GRID_SIZE);
-    QVERIFY(_function->vertices()[0].size() >= GRID_SIZE);
-    QVERIFY(_function->vertices()[0][0].size() >= GRID_SIZE);
+    QVERIFY(function_->getDefinitionSpaceDimensions() == 3);
+    QVERIFY(function_->vertices().size() >= GRID_SIZE);
+    QVERIFY(function_->vertices()[0].size() >= GRID_SIZE);
+    QVERIFY(function_->vertices()[0][0].size() >= GRID_SIZE);
 
-    QVERIFY(_function->getFunctionName() == Test_RealFunction::TEST_FUNCTION_NAME.toStdString());
+    QVERIFY(function_->getFunctionName() == Test_RealFunction::TEST_FUNCTION_NAME.toStdString());
 }
 
 void Test_RealFunction::boundsAndSteps() {
-    _function = new RealFunctionTestImplementation();
-    QVERIFY(_function->xsteps() == GRID_SIZE);
-    QVERIFY(_function->ysteps() == GRID_SIZE);
-    QVERIFY(_function->zsteps() == GRID_SIZE);
+    function_ = new RealFunctionTestImplementation();
+    QVERIFY(function_->xsteps() == GRID_SIZE);
+    QVERIFY(function_->ysteps() == GRID_SIZE);
+    QVERIFY(function_->zsteps() == GRID_SIZE);
 }
 
 void Test_RealFunction::rotateAboutAllAxes() {
-    _function = new RealFunctionTestImplementation();
+    function_ = new RealFunctionTestImplementation();
 
-    _function->Transform(Rotation<4>(90., 0., 0., 0., 0., 90.), Vector<4>());
+    function_->Transform(Rotation<4>(90., 0., 0., 0., 0., 90.), Vector<4>());
 
-    QVERIFY(_function->transformed_vertices().size() >= GRID_SIZE);
-    QVERIFY(_function->transformed_vertices()[0].size() >= GRID_SIZE);
-    QVERIFY(_function->transformed_vertices()[0][0].size() >= GRID_SIZE);
+    QVERIFY(function_->transformed_vertices().size() >= GRID_SIZE);
+    QVERIFY(function_->transformed_vertices()[0].size() >= GRID_SIZE);
+    QVERIFY(function_->transformed_vertices()[0][0].size() >= GRID_SIZE);
 
     for (unsigned i = 0; i < GRID_SIZE; ++i) {
         for (unsigned j = 0; j < GRID_SIZE; ++j) {
             for (unsigned k = 0; k < GRID_SIZE; ++k) {
-                Vector<4> vertex = _function->vertices()[i][j][k],
-                          transformed_vertex = _function->transformed_vertices()[i][j][k];
+                Vector<4> vertex = function_->vertices()[i][j][k],
+                          transformed_vertex = function_->transformed_vertices()[i][j][k];
                 QVERIFY((vertex - transformed_vertex).sqnorm() > EPSILON);
             }
         }
@@ -90,15 +92,15 @@ void Test_RealFunction::rotateAboutAllAxes() {
 }
 
 void Test_RealFunction::rotated360DegreesIsIdentical() {
-    _function = new RealFunctionTestImplementation();
+    function_ = new RealFunctionTestImplementation();
 
-    _function->Transform(Rotation<4>(360., 360., 360., 360., 360., 360.), Vector<4>());
+    function_->Transform(Rotation<4>(360., 360., 360., 360., 360., 360.), Vector<4>());
 
     for (unsigned i = 0; i < GRID_SIZE; ++i) {
         for (unsigned j = 0; j < GRID_SIZE; ++j) {
             for (unsigned k = 0; k < GRID_SIZE; ++k) {
-                Vector<4> vertex = _function->vertices()[i][j][k],
-                          transformed_vertex = _function->transformed_vertices()[i][j][k];
+                Vector<4> vertex = function_->vertices()[i][j][k],
+                          transformed_vertex = function_->transformed_vertices()[i][j][k];
                 QVERIFY((vertex - transformed_vertex).sqnorm() < EPSILON);
             }
         }
@@ -106,14 +108,14 @@ void Test_RealFunction::rotated360DegreesIsIdentical() {
 }
 
 void Test_RealFunction::project() {
-    _function = new RealFunctionTestImplementation();
+    function_ = new RealFunctionTestImplementation();
 
-    _function->Transform(Rotation<4>(), Vector<4>());
-    _function->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
+    function_->Transform(Rotation<4>(), Vector<4>());
+    function_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
 
-    QVERIFY(_function->projected_vertices().size() >= GRID_SIZE);
-    QVERIFY(_function->projected_vertices()[0].size() >= GRID_SIZE);
-    QVERIFY(_function->projected_vertices()[0][0].size() >= GRID_SIZE);
+    QVERIFY(function_->projected_vertices().size() >= GRID_SIZE);
+    QVERIFY(function_->projected_vertices()[0].size() >= GRID_SIZE);
+    QVERIFY(function_->projected_vertices()[0][0].size() >= GRID_SIZE);
 
     // intercept theorem gives this factor (constant because f is constant)
     const double PROJECTION_FACTOR =
@@ -123,8 +125,8 @@ void Test_RealFunction::project() {
     for (unsigned i = 0; i < GRID_SIZE; ++i) {
         for (unsigned j = 0; j < GRID_SIZE; ++j) {
             for (unsigned k = 0; k < GRID_SIZE; ++k) {
-                Vector<4> vertex = _function->vertices()[i][j][k];
-                Vector<3> projected_vertex = _function->projected_vertices()[i][j][k];
+                Vector<4> vertex = function_->vertices()[i][j][k];
+                Vector<3> projected_vertex = function_->projected_vertices()[i][j][k];
                 cerr << projected_vertex << " == " << vertex*PROJECTION_FACTOR << "?" << endl;
                 QSKIP("not solved yet why this fails.", SkipSingle);
                 for(unsigned m = 0; m < 3; ++m) {
@@ -138,16 +140,16 @@ void Test_RealFunction::project() {
 }
 
 void Test_RealFunction::projectWithDepthCue() {
-    _function = new RealFunctionTestImplementation();
+    function_ = new RealFunctionTestImplementation();
 
-    _function->Transform(Rotation<4>(), Vector<4>());
-    _function->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, true);
+    function_->Transform(Rotation<4>(), Vector<4>());
+    function_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, true);
 
     for (unsigned i = 0; i < GRID_SIZE; ++i) {
         for (unsigned j = 0; j < GRID_SIZE; ++j) {
             for (unsigned k = 0; k < GRID_SIZE; ++k) {
-                Vector<4> vertex = _function->vertices()[i][j][k];
-                Vector<3> projected_vertex = _function->projected_vertices()[i][j][k];
+                Vector<4> vertex = function_->vertices()[i][j][k];
+                Vector<3> projected_vertex = function_->projected_vertices()[i][j][k];
                 Color rgba = ColMgrMgr::Instance().getColor(vertex);
 
 //                cerr << vertex << " : " << projected_vertex << " " <<string(rgba).c_str()
@@ -162,12 +164,12 @@ void Test_RealFunction::projectWithDepthCue() {
 }
 
 void Test_RealFunction::draw() {
-    _function = new RealFunctionTestImplementation();
+    function_ = new RealFunctionTestImplementation();
 
-    _function->Transform(Rotation<4>(), Vector<4>());
-    _function->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
+    function_->Transform(Rotation<4>(), Vector<4>());
+    function_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
 
-    _function->Draw(NULL);
+    function_->Draw(view_);
 
     QSKIP("No idea how to correctly test drawing yet", SkipSingle);
 }
@@ -221,7 +223,7 @@ template<typename T> T random_number() {
   return (T)qrand()/(T)RAND_MAX;
 }
 
-void testFunction(RealFunction &f) {
+void Test_RealFunction::testFunction(RealFunction &f) {
   qsrand(1);
   ParameterMap parameters = f.getParameters();
 //  cerr << f.getFunctionName().toStdString() << " parameters ("<< parameters.size() << "): " << parameters.toString() << endl;
@@ -230,6 +232,6 @@ void testFunction(RealFunction &f) {
   VecMath::Vector<4> t(random_number<double>(), random_number<double>(), random_number<double>(), random_number<double>());
   f.Transform(r, t);
   f.Project(2., 4., false);
-  f.Draw(NULL);
+  f.Draw(view_);
   f.ReInit(-2., 2., 0.8, -2., 2., 0.8, -2., 2., 1.0);
 }
