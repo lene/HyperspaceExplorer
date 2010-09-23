@@ -7,7 +7,17 @@
 /** This does not have any implementation yet
  */
 class MockView: public UI::ViewImpl {
+  
   public:
+  
+    template <unsigned D>
+    struct Face {
+      Face(const VecMath::Vector<D> &v0, const VecMath::Vector<D> &v1, 
+           const VecMath::Vector<D> &v2, const VecMath::Vector<D> &v3);
+      bool operator==(const Face<D> &other) const;
+      std::vector< VecMath::Vector<D> > vertex_;
+    };
+    
     MockView(bool verbose = false);
     virtual void ObjectHypercube() {}
     virtual void ObjectHyperpyramid() {}
@@ -33,6 +43,8 @@ class MockView: public UI::ViewImpl {
     /// Returns the number of drawn vertices
     unsigned numVerticesDrawn() const;
 
+    template <unsigned D> bool isFaceDrawn(const Face<D> &face) const;
+    
     /// Debugging output
     void printVertices() const;
 

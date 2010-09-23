@@ -125,6 +125,7 @@ namespace UI {
             virtual void drawPolygon(const std::vector< VecMath::Vector< 4 > >&, 
                                      const std::vector< VecMath::Vector< 3 > >&);
 
+            /// Generic implementation of drawCube() in terms of drawQuadrangle()
             virtual void drawCube(const VecMath::NestedVector< VecMath::Vector< 4 >, 3 >& X, 
                                   unsigned int t, unsigned int u, unsigned int v, 
                                   const VecMath::Vector< 3 >& v0, const VecMath::Vector< 3 >& v1, 

@@ -11,6 +11,7 @@ struct MockView::Impl {
   bool verbose_;
   vector< Vector<4> > originalVertices_;
   vector< Vector<3> > drawnVertices_;
+  vector< Face<3> > drawnFaces_;
 
 };
 
@@ -35,6 +36,26 @@ void add_if_not(COLL &collection, const ELEM &element) {
   if (!is_in(collection, element)) {
     collection.push_back(element);
   }
+}
+
+template <unsigned D>
+MockView::Face<D>::Face(const VecMath::Vector< D >& v0, const VecMath::Vector< D >& v1, 
+                     const VecMath::Vector< D >& v2, const VecMath::Vector< D >& v3): vertex_() {
+  vertex_.push_back(v0);
+  vertex_.push_back(v1);
+  vertex_.push_back(v2);
+  vertex_.push_back(v3);
+}
+
+template <unsigned D>
+bool MockView::Face<D>::operator==(const Face< D >& other) const {
+  if (vertex_.size() != other.vertex_.size()) return false;
+
+  for (size_t i = 0; i < vertex_.size(); ++i) {
+    if ((vertex_[i]-other.vertex_[i]).sqnorm() > EPSILON) return false;
+  }
+  
+  return true;
 }
 
 MockView::MockView(bool verbose): pImpl_(new Impl(verbose)) { }
@@ -66,6 +87,8 @@ void MockView::drawQuadrangle(const VecMath::Vector< 4 > &x0, const VecMath::Vec
   add_if_not(pImpl_->originalVertices_, x1);
   add_if_not(pImpl_->originalVertices_, x2);
   add_if_not(pImpl_->originalVertices_, x3);
+  
+  add_if_not(pImpl_->drawnFaces_, Face<3>(xscr0, xscr1, xscr2, xscr3));
 }
 
 bool MockView::isVertexDrawn(const VecMath::Vector<3>& vertex) const {
@@ -80,6 +103,10 @@ unsigned MockView::numVerticesDrawn() const {
   return pImpl_->drawnVertices_.size();
 }
 
+template <unsigned D>
+bool MockView::isFaceDrawn(const Face<D>& face) const {
+  return is_in(pImpl_->drawnFaces_, face);
+}
 
 template <unsigned D> void printVertex(const VecMath::Vector<D> &vertex) {
   std::cerr << vertex << " ";
