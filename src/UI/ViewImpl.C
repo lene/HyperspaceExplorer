@@ -39,11 +39,27 @@ namespace UI {
         _imageDir("/tmp"),
         _imagePrefix("HyperspaceExplorer_Image") { }
 
+    const std::tr1::shared_ptr< Function >& ViewImpl::F() const { return _F; }
+
+    void ViewImpl::setF(Function* _f) { _F.reset(_f); }
+    
+    const VecMath::Rotation< 4 >& ViewImpl::getdR() { return _dR; }
+    
+    void ViewImpl::setdR(const VecMath::Rotation< 4 >& _dr) { _dR = _dr; }
+    
+    void ViewImpl::setNumFrames(unsigned int frames) { _numFrames = frames; }
+    
+    void ViewImpl::setNumLoops(unsigned int loops) { _numLoops = loops; }    
+
+    const std::string& ViewImpl::getImgDir() { return _imageDir; }
+
     /** \param s Directory where to store image files */
     void ViewImpl::setImgDir(const std::string &s) {
         _imageDir = s;
         setWriteImages(true);
     }
+
+    const std::string& ViewImpl::getImgPrefix() { return _imagePrefix; }
 
     /** \param s Filename prefix for saved images */
     void ViewImpl::setImgPrefix(const std::string &s) {
@@ -51,12 +67,52 @@ namespace UI {
         setWriteImages(true);
     }
 
+    const Color& ViewImpl::getBackground() { return _background; }
+
+    void ViewImpl::setBackground(const Color& bg) { _background = bg; }
+
+    void ViewImpl::addLight(Light* l) { _lights.push_back(l); }
+
     void ViewImpl::removeLight(std::vector<Light *>::iterator i) {
         if (i >= _lights.end())
             throw std::logic_error("Tried to remove a light beyond the end of \
                     the list of lights");
         _lights.erase(i);
     }
+
+    const std::vector< Light* >& ViewImpl::getLights() { return _lights; }
+
+    bool ViewImpl::getColors() const { return _colors; }
+    
+    void ViewImpl::setColors(bool on) { _colors = on; }
+    
+    bool ViewImpl::getCoordinates() const { return _coordinates; }
+    
+    void ViewImpl::setCoordinates(bool on) { _coordinates = on; }
+
+    bool ViewImpl::getFog() const { return _fog; }
+
+    void ViewImpl::setFog(bool on) { _fog = on; }
+    
+    bool ViewImpl::getHyperfog() const { return _hyperfog; }
+    
+    void ViewImpl::setHyperfog(bool on) { _hyperfog = on; }
+    
+    bool ViewImpl::getLighting() const { return _lighting; }    
+
+    void ViewImpl::setLighting(bool on) { _lighting = on; }
+
+    bool ViewImpl::getShading() const { return _shading; }
+
+    void ViewImpl::setShading(bool on) { _shading = on; }
+    
+    bool ViewImpl::getSolid() const { return _solid; }
+    
+    void ViewImpl::setSolid(bool on) { _solid = on; }
+    
+    bool ViewImpl::getTransparence() const { return _transparence; }
+    
+    void ViewImpl::setTransparence(bool on) { _transparence = on; }
 
     void ViewImpl::drawTriangle(const VecMath::Vector< 4 >&, const VecMath::Vector< 4 >&, 
                                 const VecMath::Vector< 4 >&,
@@ -70,9 +126,27 @@ namespace UI {
       throw NotYetImplementedException("drawPolygon()");
     }
 
-    void ViewImpl::setDefaultBackground() {
-        setBackground(_defaultBackground);
-    }
+    unsigned int ViewImpl::getNumFrames() { return _numFrames; }
+    
+    unsigned int ViewImpl::getNumLoops() { return _numLoops; }
+    
+    bool ViewImpl::getWriteImages() { return _writeImages; }
+
+    void ViewImpl::setWriteImages(bool on) { _writeImages = on; }
+
+    void ViewImpl::setDefaultBackground() { setBackground(_defaultBackground); }
+    
+    void ViewImpl::setT(const VecMath::Vector< 4 >& _t) { _T = _t; }
+
+    const VecMath::Vector< 4 >& ViewImpl::T() { return _T; }
+
+    void ViewImpl::addT(const VecMath::Vector< 4 >& _dT) { _T += _dT; }
+    
+    void ViewImpl::setR(const VecMath::Rotation< 4 >& _r) { _R = _r; }
+
+    const VecMath::Rotation< 4 >& ViewImpl::R() { return _R; }
+
+    void ViewImpl::addR(const VecMath::Rotation< 4 >& _dR) { _R += _dR; }
 
     /** \param ddR Rotation to be added to the current Rotation state */
     void ViewImpl::adddR(const VecMath::Rotation<4> &ddR) {
@@ -80,4 +154,19 @@ namespace UI {
         VecMath::Rotation<4> newR = ddR + getdR();
         setdR(newR);
     }
+    
+    double ViewImpl::CamW() const { return _camW; }
+    
+    void ViewImpl::setCamW(const double& _cw) { _camW = _cw; }
+    
+    double ViewImpl::ScrW() const { return _scrW; }
+    
+    void ViewImpl::setScrW(const double& _sw) { _scrW = _sw; }
+    
+    double ViewImpl::distance() { return 1.; }
+    
+    const LightSource& ViewImpl::getDefaultLightSource() { return _defaultLightSource; }
+    
+    const LightSource& ViewImpl::getFlatLightSource() { return _flatLightSource; }
+
 }

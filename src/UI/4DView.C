@@ -267,23 +267,24 @@ void C4DView::drawCube(const VecMath::NestedVector< VecMath::Vector<4>, 3 > &X,
                        const VecMath::Vector< 3 >& v6, const VecMath::Vector< 3 >& v7) {
 
   glBegin (GL_QUAD_STRIP);
+  
   if (t == 0) {
     drawVertex(X[t][u][v], v0);
     drawVertex(X[t][u][v+1], v1);
-//    addVertices(2);
   }
+
   drawVertex(X[t][u+1][v], v2);
   drawVertex(X[t][u+1][v+1], v3);
   drawVertex(X[t+1][u+1][v], v6);
   drawVertex(X[t+1][u+1][v+1], v7);
   drawVertex(X[t+1][u][v], v4);
   drawVertex(X[t+1][u][v+1], v5);
-//  addVertices(6);
+
   if (u == 0) {
     drawVertex(X[t][u][v], v0);
     drawVertex(X[t][u][v+1], v1);
-//    addVertices(2);
   }
+
   glEnd ();
 
   glBegin (GL_QUADS);
@@ -292,13 +293,13 @@ void C4DView::drawCube(const VecMath::NestedVector< VecMath::Vector<4>, 3 > &X,
     drawVertex(X[t][u+1][v], v2);
     drawVertex(X[t+1][u+1][v], v6);
     drawVertex(X[t+1][u][v], v4);
-//    addVertices(4);
   }
+
   drawVertex(X[t][u][v+1], v1);
   drawVertex(X[t][u+1][v+1], v3);
   drawVertex(X[t+1][u+1][v+1], v7);
   drawVertex(X[t+1][u][v+1], v5);
-//  addVertices(4);
+
   glEnd ();
 
 }
