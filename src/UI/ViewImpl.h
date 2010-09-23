@@ -124,7 +124,13 @@ namespace UI {
             /// drawPolygon() is a convenience function that may not be implemented in all Views - this implementation throws an exception
             virtual void drawPolygon(const std::vector< VecMath::Vector< 4 > >&, 
                                      const std::vector< VecMath::Vector< 3 > >&);
-            
+
+            virtual void drawCube(const VecMath::NestedVector< VecMath::Vector< 4 >, 3 >& X, 
+                                  unsigned int t, unsigned int u, unsigned int v, 
+                                  const VecMath::Vector< 3 >& v0, const VecMath::Vector< 3 >& v1, 
+                                  const VecMath::Vector< 3 >& v2, const VecMath::Vector< 3 >& v3, 
+                                  const VecMath::Vector< 3 >& v4, const VecMath::Vector< 3 >& v5,
+                                  const VecMath::Vector< 3 >& v6, const VecMath::Vector< 3 >& v7);
             
         protected:
 

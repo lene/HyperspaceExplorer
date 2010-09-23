@@ -210,12 +210,6 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
                                     const VecMath::Vector< 4 > &x2, const VecMath::Vector< 4 > &x3,
                                     const VecMath::Vector< 3 > &xscr0, const VecMath::Vector< 3 > &xscr1,
                                     const VecMath::Vector< 3 > &xscr2, const VecMath::Vector< 3 > &xscr3);
-        virtual void drawCube(const VecMath::NestedVector< VecMath::Vector<4>, 3 > &X,
-                              unsigned t, unsigned u, unsigned v,
-                              const VecMath::Vector< 3 >& v0, const VecMath::Vector< 3 >& v1,
-                              const VecMath::Vector< 3 >& v2, const VecMath::Vector< 3 >& v3,
-                              const VecMath::Vector< 3 >& v4, const VecMath::Vector< 3 >& v5,
-                              const VecMath::Vector< 3 >& v6, const VecMath::Vector< 3 >& v7);
 
         ////////////////////////////////////////////////////////////////////////
 

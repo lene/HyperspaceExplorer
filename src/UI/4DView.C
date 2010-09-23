@@ -264,38 +264,6 @@ void C4DView::drawQuadrangle(const VecMath::Vector<4> &x0, const VecMath::Vector
   glEnd();
 }
 
-void C4DView::drawCube(const VecMath::NestedVector< VecMath::Vector<4>, 3 > &X,
-                       unsigned t, unsigned u, unsigned v,
-                       const VecMath::Vector< 3 >& v0, const VecMath::Vector< 3 >& v1,
-                       const VecMath::Vector< 3 >& v2, const VecMath::Vector< 3 >& v3,
-                       const VecMath::Vector< 3 >& v4, const VecMath::Vector< 3 >& v5,
-                       const VecMath::Vector< 3 >& v6, const VecMath::Vector< 3 >& v7) {
-  
-  if (t == 0) {
-    drawQuadrangle(X[t][u][v], X[t][u][v+1], X[t][u+1][v+1], X[t][u+1][v],
-                   v0, v1, v3, v2);
-  }
-  
-  drawQuadrangle(X[t][u+1][v], X[t][u+1][v+1], X[t+1][u+1][v+1], X[t+1][u+1][v],
-                 v2, v3, v7, v6);
-  drawQuadrangle(X[t+1][u+1][v], X[t+1][u+1][v+1], X[t+1][u][v+1], X[t+1][u][v],
-                 v6, v7, v5, v4);
-
-  if (u == 0) {
-    drawQuadrangle(X[t+1][u][v], X[t+1][u][v+1], X[t][u][v+1], X[t][u][v],
-                   v4, v5, v1, v0);
-  }
-
-  if (v == 0) {
-    drawQuadrangle(X[t][u][v], X[t][u+1][v], X[t+1][u+1][v], X[t+1][u][v],
-                   v0, v2, v6, v4);
-  }
-
-  drawQuadrangle(X[t][u][v+1], X[t][u+1][v+1], X[t+1][u+1][v+1], X[t+1][u][v+1],
-                 v1, v3, v7, v5);
-
-}
-
 ////////        end View interface          ////////
 
 double C4DView::Benchmark3D (int num_steps,
