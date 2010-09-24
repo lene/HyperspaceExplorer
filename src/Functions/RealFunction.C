@@ -108,6 +108,20 @@ void RealFunction::for_each(Function::function_on_fourspace_vertex apply) {
         apply(X()[t][u][v]);
 }
 
+void RealFunction::for_each(Function::function_on_fourspace_and_transformed_vertex apply) {
+  for (unsigned t = 0; t < getTsteps(); t++)
+    for (unsigned u = 0; u < getUsteps(); u++)
+      for (unsigned v = 0; v < getVsteps(); v++)
+        apply(X()[t][u][v], Xtrans()[t][u][v]);
+}
+
+void RealFunction::for_each(Function::function_on_fourspace_transformed_and_projected_vertex apply) {
+  for (unsigned t = 0; t < getTsteps(); t++)
+    for (unsigned u = 0; u < getUsteps(); u++)
+      for (unsigned v = 0; v < getVsteps(); v++)
+        apply(X()[t][u][v], Xtrans()[t][u][v], Xscr()[t][u][v]);
+}
+
 void RealFunction::for_each(Function::function_on_projected_vertex apply) {
   for (unsigned t = 0; t < getTsteps(); t++)
     for (unsigned u = 0; u < getUsteps(); u++)

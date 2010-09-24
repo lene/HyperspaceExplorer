@@ -55,7 +55,6 @@ unsigned int Test_Function::FunctionTestImplementation::getDefinitionSpaceDimens
 void Test_Function::FunctionTestImplementation::for_each(Function::function_on_fourspace_vertex apply) { }
 void Test_Function::FunctionTestImplementation::for_each(Function::function_on_projected_vertex apply) { }
 
-
 void Test_Function::FunctionTestImplementation::Initialize(void) { }
 void Test_Function::FunctionTestImplementation::ReInit(double, double, double, double, double, double, double, double, double) { }
 void Test_Function::FunctionTestImplementation::calibrateColors() const { }

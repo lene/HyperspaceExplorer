@@ -106,8 +106,15 @@ class Function {
         /// three-dimensional array of Vector<4>, implemented as a nested std::vector
         typedef std::vector<vec4vec2D> vec4vec3D;
 
-        /// function that is applied on the original and transformed vertices
+        /// function that is applied on the original vertices
         typedef void(*function_on_fourspace_vertex)(const VecMath::Vector<4> &);
+        /// function that is applied on the original and transformed vertices
+        typedef void(*function_on_fourspace_and_transformed_vertex)(const VecMath::Vector<4> &,
+                                                                    const VecMath::Vector<4> &);
+        /// function that is applied on the original and transformed vertices
+        typedef void(*function_on_fourspace_transformed_and_projected_vertex)(const VecMath::Vector<4> &,
+                                                                              const VecMath::Vector<4> &,
+                                                                              const VecMath::Vector<3> &);
         /// function that is applied on vertices transformed and projected into 3-space
         typedef void(*function_on_projected_vertex)(const VecMath::Vector<3> &);
 
@@ -169,7 +176,25 @@ class Function {
                                                 T &parm,
                                                 const std::string &key);
 
+        /// Loop over all vertices managed by the Function and call apply on them.
         virtual void for_each(function_on_fourspace_vertex apply) = 0;
+        /// Loop over all vertices managed by the Function and their transformed
+        /// images and call apply on them.
+        /** This function is not pure virtual because it would be too tedious to
+         *  require all implementing classes to provide an implementation.
+         *
+         *  The default implementation provided here throws an exception.
+         */
+        virtual void for_each(function_on_fourspace_and_transformed_vertex apply);
+        /// Loop over all vertices managed by the Function, their transformed images
+        /// and the projection into three-space and call apply on them.
+        /** This function is not pure virtual because it would be too tedious to
+        *  require all implementing classes to provide an implementation.
+        *
+        *  The default implementation provided here throws an exception.
+        */
+        virtual void for_each(function_on_fourspace_transformed_and_projected_vertex apply);
+        /// Loop over all vertices managed by the Function and call apply on them.
         virtual void for_each(function_on_projected_vertex apply) = 0;
 
     protected:

@@ -46,6 +46,14 @@ void Function::SetParameters(const ParameterMap& ) {
     std::cerr << "Function::SetParameters()" << std::endl;
 }
 
+void Function::for_each(Function::function_on_fourspace_and_transformed_vertex apply) {
+  throw NotYetImplementedException("for_each(function_on_fourspace_and_transformed_vertex)");
+}
+
+void Function::for_each(Function::function_on_fourspace_transformed_and_projected_vertex apply) {
+  throw NotYetImplementedException("for_each(function_on_fourspace_transformed_and_projected_vertex)");
+}
+
 /** \todo uses hardcoded and experimentally found value for memory per cell
 *  \return approx. mem required                                              */
 unsigned long Function::MemRequired (void) {

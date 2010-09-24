@@ -12,6 +12,27 @@ using std::cerr;
 using std::endl;
 using std::string;
 
+/// Stores a pointer to the view used by Test_RealFunction for global functions used by Function::for_each
+MockView *globalView = NULL;
+
+void checkVertexPresent(const VecMath::Vector<4> &v) {
+  QVERIFY2(globalView->isVertexPresent(v), v.toString().c_str());
+}
+
+void checkVertexDrawn(const VecMath::Vector<3> &v) {
+  QVERIFY2(globalView->isVertexDrawn(v), v.toString().c_str());
+}
+
+void checkVerticesEqual(const VecMath::Vector<4> &v1, const VecMath::Vector<4> &v2) {
+  QVERIFY((v1 - v2).sqnorm() < 1e-6);
+}
+
+
+void checkVerticesNotEqual(const VecMath::Vector<4> &v1, const VecMath::Vector<4> &v2) {
+  QVERIFY((v1 - v2).sqnorm() > 1e-6);
+}
+
+
 class Test_RealFunction::RealFunctionTestImplementation: public RealFunction {
 
   public:
@@ -108,15 +129,7 @@ void Test_RealFunction::rotateAboutAllAxes() {
     QVERIFY(function_->transformed_vertices()[0].size() >= GRID_SIZE);
     QVERIFY(function_->transformed_vertices()[0][0].size() >= GRID_SIZE);
 
-    for (unsigned i = 0; i < GRID_SIZE; ++i) {
-        for (unsigned j = 0; j < GRID_SIZE; ++j) {
-            for (unsigned k = 0; k < GRID_SIZE; ++k) {
-                Vector<4> vertex = function_->vertices()[i][j][k],
-                          transformed_vertex = function_->transformed_vertices()[i][j][k];
-                QVERIFY((vertex - transformed_vertex).sqnorm() > EPSILON);
-            }
-        }
-    }
+    function_->for_each(checkVerticesNotEqual);
 }
 
 void Test_RealFunction::rotated360DegreesIsIdentical() {
@@ -124,15 +137,7 @@ void Test_RealFunction::rotated360DegreesIsIdentical() {
 
     function_->Transform(Rotation<4>(360., 360., 360., 360., 360., 360.), Vector<4>());
 
-    for (unsigned i = 0; i < GRID_SIZE; ++i) {
-        for (unsigned j = 0; j < GRID_SIZE; ++j) {
-            for (unsigned k = 0; k < GRID_SIZE; ++k) {
-                Vector<4> vertex = function_->vertices()[i][j][k],
-                          transformed_vertex = function_->transformed_vertices()[i][j][k];
-                QVERIFY((vertex - transformed_vertex).sqnorm() < EPSILON);
-            }
-        }
-    }
+    function_->for_each(checkVerticesEqual);
 }
 
 void Test_RealFunction::project() {
@@ -167,29 +172,25 @@ void Test_RealFunction::project() {
     }
 }
 
+void checkGetColorRuns(const VecMath::Vector<4> &x,
+                       const VecMath::Vector<4> &,
+                       const VecMath::Vector<3> &) {
+  Color rgba = ColMgrMgr::Instance().getColor(x);
+}
+
 void Test_RealFunction::projectWithDepthCue() {
     function_ = new RealFunctionTestImplementation();
 
     function_->Transform(Rotation<4>(), Vector<4>());
     function_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, true);
 
-    for (unsigned i = 0; i < GRID_SIZE; ++i) {
-        for (unsigned j = 0; j < GRID_SIZE; ++j) {
-            for (unsigned k = 0; k < GRID_SIZE; ++k) {
-                Vector<4> vertex = function_->vertices()[i][j][k];
-                Vector<3> projected_vertex = function_->projected_vertices()[i][j][k];
-                Color rgba = ColMgrMgr::Instance().getColor(vertex);
-
-//                cerr << vertex << " : " << projected_vertex << " " <<string(rgba).c_str()
-//                     << endl;
-            }
-        }
-    }
+    function_->for_each(checkGetColorRuns);
 
     QSKIP("All W values are equal. \nThus the color for all vertices is equal. \n"
           "Nothing meaningful to test. \nTo do: write a class with varying function values.",
           SkipSingle);
 }
+
 
 void Test_RealFunction::draw() {
     function_ = new RealFunctionTestImplementation();
@@ -201,16 +202,10 @@ void Test_RealFunction::draw() {
 
     QVERIFY(view_->numVerticesDrawn() >= (GRID_SIZE+1)*(GRID_SIZE+1)*(GRID_SIZE+1));
 
-    for (unsigned i = 0; i < GRID_SIZE; ++i) {
-      for (unsigned j = 0; j < GRID_SIZE; ++j) {
-        for (unsigned k = 0; k < GRID_SIZE; ++k) {
-          Vector<4> vertex = function_->vertices()[i][j][k];
-          Vector<3> projected_vertex = function_->projected_vertices()[i][j][k];
-          QVERIFY(view_->isVertexDrawn(projected_vertex));
-          QVERIFY(view_->isVertexPresent(vertex));
-        }
-      }
-    }
+    globalView = view_;
+
+    function_->for_each(checkVertexPresent);
+    function_->for_each(checkVertexDrawn);
 }
 
 void Test_RealFunction::torus1() {
@@ -306,12 +301,6 @@ void Test_RealFunction::testNonzeroRotationRuns(RealFunction& f) {
 
 void testReinitRuns(RealFunction& f) {
   f.ReInit(-2., 2., 0.8, -2., 2., 0.8, -2., 2., 1.0);
-}
-
-MockView *globalView = NULL;
-
-void checkVertexPresent(const VecMath::Vector<4> &v) {
-  QVERIFY2(globalView->isVertexPresent(v), v.toString().c_str());
 }
 
 void Test_RealFunction::testAllVerticesDrawn(RealFunction *f) {

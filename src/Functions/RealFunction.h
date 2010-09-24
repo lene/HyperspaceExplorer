@@ -166,6 +166,8 @@ class RealFunction: public RealBase {
     }
 
     virtual void for_each(function_on_fourspace_vertex apply);
+    virtual void for_each(function_on_fourspace_and_transformed_vertex apply);
+    virtual void for_each(function_on_fourspace_transformed_and_projected_vertex apply);
     virtual void for_each(function_on_projected_vertex apply);
 
   protected:
