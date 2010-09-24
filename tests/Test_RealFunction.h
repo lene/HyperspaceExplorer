@@ -55,11 +55,16 @@ class Test_RealFunction: public QObject {
     private:
 
       void testFunction(RealFunction &f);
+      void testDrawDrawsAllVertices(RealFunction &f);
+      void testNonzeroRotationRuns(RealFunction &f);
       void testAllVerticesDrawn(RealFunction* f);
 
       RealFunctionTestImplementation *function_;
       MockView *view_;
 };
 
+void testGetParametersRuns(RealFunction &f);
+void testFunctionEvaluationRuns(RealFunction &f);
+void testReinitRuns(RealFunction &f);
 
 #endif /* REALFUNCTIONTEST_H_ */

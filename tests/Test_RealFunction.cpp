@@ -263,19 +263,36 @@ template<typename T> T random_number() {
 }
 
 void Test_RealFunction::testFunction(RealFunction &f) {
-  qsrand(1);
+
+  testGetParametersRuns(f);
+
+  testFunctionEvaluationRuns(f);
+
+  testDrawDrawsAllVertices(f);
+
+  testNonzeroRotationRuns(f);
+
+  testReinitRuns(f);
+}
+
+void testGetParametersRuns(RealFunction& f) {
   ParameterMap parameters = f.getParameters();
-//  cerr << f.getFunctionName().toStdString() << " parameters ("<< parameters.size() << "): " << parameters.toString() << endl;
+}
+
+void testFunctionEvaluationRuns(RealFunction& f) {
   f(0.,0.,0.);
+}
 
-  VecMath::Vector<4> t0;
-  VecMath::Rotation<4> r0;
-
-  f.Transform(r0, t0);
+void Test_RealFunction::testDrawDrawsAllVertices(RealFunction& f) {
+  f.Transform(VecMath::Rotation<4>(), VecMath::Vector<4>());
   f.Project(2., 4., false);
   f.Draw(view_);
 
-//  testAllVerticesDrawn(&f);
+  testAllVerticesDrawn(&f);
+}
+
+void Test_RealFunction::testNonzeroRotationRuns(RealFunction& f) {
+  qsrand(1);
 
   VecMath::Rotation<4> r(random_number<double>(), random_number<double>(), random_number<double>(),
                          random_number<double>(), random_number<double>(), random_number<double>());
@@ -285,25 +302,20 @@ void Test_RealFunction::testFunction(RealFunction &f) {
   f.Transform(r, t);
   f.Project(2., 4., false);
   f.Draw(view_);
+}
 
+void testReinitRuns(RealFunction& f) {
   f.ReInit(-2., 2., 0.8, -2., 2., 0.8, -2., 2., 1.0);
+}
 
+MockView *globalView = NULL;
+
+void checkVertexPresent(const VecMath::Vector<4> &v) {
+  QVERIFY2(globalView->isVertexPresent(v), v.toString().c_str());
 }
 
 void Test_RealFunction::testAllVerticesDrawn(RealFunction *f) {
-//  view_->printVertices();
-  for (unsigned i = 0; i < f->getTsteps(); ++i) {
-    for (unsigned j = 0; j < f->getUsteps(); ++j) {
-      for (unsigned k = 0; k < f->getVsteps(); ++k) {
-        Vector<4> vertex = f->operator()(i, j, k);
-# if 0
-        Vector<3> projected_vertex = f->projected_vertices()[i][j][k];
-        QVERIFY(view_->isVertexDrawn(projected_vertex));
-#endif
-        QVERIFY2(view_->isVertexPresent(vertex), vertex.toString().c_str());
-      }
-    }
-  }
-
+  globalView = view_;
+  f->for_each(checkVertexPresent);
 }
 
