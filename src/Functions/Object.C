@@ -7,7 +7,7 @@
 //      author:       helge preuss (lene.preuss@gmail.com)
 //      license:      GPL (see License.txt)
 
-
+#include "Object.h"
 
 #include "Globals.h"
 #include "ColorManager.h"
@@ -15,8 +15,8 @@
 
 #include "Matrix.h"
 #include "Transform.h"
+#include "View.h"
 
-#include "Object.h"
 
 using std::cerr;
 using std::endl;
@@ -110,9 +110,14 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
     }
 }
 
-#include <GL/gl.h>
 /// Draw the projected Object (onto screen or into GL list, as it is)
 void Object::Draw(UI::View *view) {
+#if 1
+  for (unsigned i = 0; i < Surface.size(); ++i) {
+    view->drawQuadrangle(X[Surface[i][0]], X[Surface[i][1]], X[Surface[i][2]], X[Surface[i][3]], 
+                         Xscr[Surface[i][0]], Xscr[Surface[i][1]], Xscr[Surface[i][2]], Xscr[Surface[i][3]]);
+  }
+#else
     glBegin (GL_QUADS);
     for (unsigned i = 0; i < Surface.size(); ++i) {
         for (unsigned j = 0; j < 4; j++) {
@@ -122,6 +127,7 @@ void Object::Draw(UI::View *view) {
         }
     }
     glEnd ();
+#endif    
 }
 
 /** Reinitialize an Object. This function is called when the initialization is
@@ -160,7 +166,13 @@ Hypercube::Hypercube (double a, const VecMath::Vector<4> &center):
 
 #   if !USE_INT_INDICES
 void Hypercube::Draw(UI::View *view) {
-    glBegin (GL_QUADS);
+#if 1
+    for (surface_vec_type::const_iterator i = Surface.begin(); i != Surface.end(); ++i) {
+      view->drawQuadrangle(*((*i)[0]), *((*i)[1]), *((*i)[2]), *((*i)[3]), 
+                         Xscr[i->index(0)], Xscr[i->index(1)], Xscr[i->index(2)], Xscr[i->index(3)]);
+  }
+#else
+  glBegin (GL_QUADS);
     for (surface_vec_type::const_iterator i = Surface.begin(); i != Surface.end(); ++i) {
         for (unsigned j = 0; j < 4; j++) {
             if ((*i)[j] && i->index(j) < Xscr.size()) {
@@ -169,6 +181,7 @@ void Hypercube::Draw(UI::View *view) {
         }
     }
     glEnd ();
+#endif
 }
 #endif
 
