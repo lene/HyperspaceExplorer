@@ -12,6 +12,7 @@
 #include <QMouseEvent>
 #include <QMainWindow>
 #include <QStatusBar>
+#include <QMessageBox>
 
 #include "4DView.h"
 #include "Menu4D.h"

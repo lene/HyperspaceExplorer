@@ -29,6 +29,7 @@
 #include <sstream>
 
 #include <GL/gl.h>
+#include <GL/glu.h>
 
 using VecMath::Vector;
 using std::string;
@@ -54,7 +55,7 @@ namespace Util {
     #   ifdef DEBUG
     GLenum error;
     while ((error = glGetError ()) != GL_NO_ERROR)
-      cerr << "GL Err: " << op << ": " << gluErrorString (error) << endl;
+      std::cerr << "GL Err: " << op << ": " << gluErrorString (error) << std::endl;
     #   endif
   }
 

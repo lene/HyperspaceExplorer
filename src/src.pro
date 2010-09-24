@@ -1,8 +1,8 @@
 TEMPLATE = lib
 
-CONFIG -= debug
-CONFIG += release qt warn_on uic staticlib
-#CONFIG += debug qt warn_on uic dll staticlib
+#CONFIG -= debug
+#CONFIG += release qt warn_on uic staticlib
+CONFIG += debug qt warn_on uic dll staticlib
 
 QT += opengl
 

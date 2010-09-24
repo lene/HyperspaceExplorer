@@ -154,7 +154,7 @@ class Surface: public SurfaceBase {
 
         virtual unsigned long MemRequired (void);
 
-        void DrawStrip (unsigned);
+        void DrawStrip (unsigned t, UI::View *view);
 
         /// Pointer to the actual ParametricFunction doing all the work.
         std::tr1::shared_ptr< ParametricFunction<4, 2> > _function;
