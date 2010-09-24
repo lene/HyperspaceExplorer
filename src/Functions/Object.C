@@ -110,7 +110,7 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
     }
 }
 
-
+#include <GL/gl.h>
 /// Draw the projected Object (onto screen or into GL list, as it is)
 void Object::Draw(UI::View *view) {
     glBegin (GL_QUADS);

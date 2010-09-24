@@ -4,7 +4,7 @@
 #include "Vector.h"
 #include "Matrix.h"
 #include "NotYetImplementedException.h"
-#include "Globals.h"
+#include "Util.h"
 
 namespace VecMath {
 

@@ -214,6 +214,7 @@ void Surface::Project (double scr_w, double cam_w, bool depthcue4d) {
 
 }
 
+#include <GL/gl.h>
 
 /** draw the projected Surface (onto screen or into GL list, as it is)        */
 void Surface::Draw (UI::View *view) {

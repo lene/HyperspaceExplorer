@@ -43,7 +43,7 @@ double RealBase::_d = 0.1;
 RealFunction::RealFunction():
     RealBase(_min, _max, _d, _min, _max, _d, _min, _max, _d,
              ParameterMap()) { }
-
+ 
 /** RealFunction c'tor given a definition set in \f$ R^3 \f$ (as parameter space)
  *  \param tmin minimal value in t
  *  \param tmax maximal value in t

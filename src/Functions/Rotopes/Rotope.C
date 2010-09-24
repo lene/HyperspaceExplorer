@@ -143,6 +143,8 @@ void Rotope::Draw (UI::View *view) {
     }
 }
 
+#include <GL/gl.h>
+
 void Rotope::Draw(const Realm &realm) {
     switch (realm.dimension()) {
         case 0:

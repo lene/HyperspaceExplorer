@@ -19,6 +19,7 @@
 #include "Vector.h"
 #include "NestedVector.h"
 #include "Function.h"
+#include "Color.h"
 
 using std::cerr;
 using std::endl;
@@ -30,129 +31,55 @@ using std::ends;
 using VecMath::Vector;
 using VecMath::NestedVector;
 
+struct Global::Impl {
 
-bool Global::check_memory = false;
-Color Global::White( 1.0, 1.0, 1.0, 1.0 );
-Color Global::Grey50( 0.5, 0.5, 0.5, 1.0 );
+  Impl(): mainWindow(NULL), quitAction(NULL) { }
+ 
+  /** whether to check for memory usage. this member is set or unset from
+   *  check_proc_meminfo(), depending on the success of that function.  
+   */
+  static bool check_memory;
+  static unsigned long check_proc_meminfo ();
+
+  /** global (YUCK!) background color                                   */
+//        static Color background;
+  /** global (YUCK!) fog/depth cue color                                */
+  static Color fog_color;
+  /** color definition for White                                        */
+  static Color White;
+  /** color definition for Grey                                         */
+  static Color Grey50;
+
+  /** maximum amount of memory available for use                        */
+  static unsigned long MaximumMemory;
+
+  /** main window of the application                                    */
+  QMainWindow *mainWindow;
+  /** global QAction that quits the program                             */
+  QAction *quitAction;
+  
+};
+
+bool Global::Impl::check_memory = false;
+Color Global::Impl::White( 1.0, 1.0, 1.0, 1.0 );
+Color Global::Impl::Grey50( 0.5, 0.5, 0.5, 1.0 );
 //Color Global::background(0.1, 0.1, 0.1, 1.0);
-Color Global::fog_color(0.2, 0.2, 0.2, 1.0);
+Color Global::Impl::fog_color(0.2, 0.2, 0.2, 1.0);
 
-Global::Global():
-    SR3(sqrt(3.)), mainWindow(NULL), quitAction(NULL) { }
+Global::Global(): SR3(sqrt(3.)), pImpl_(new Impl) { }
 
 QAction* Global::getQuitAction() {
-    if (!quitAction) {
-        quitAction = new QAction(QObject::tr("&Quit"), NULL);
-        quitAction->setShortcut(QObject::tr("Ctrl+Q"));
-        QObject::connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
+    if (!pImpl_->quitAction) {
+        pImpl_->quitAction = new QAction(QObject::tr("&Quit"), NULL);
+        pImpl_->quitAction->setShortcut(QObject::tr("Ctrl+Q"));
+        QObject::connect(pImpl_->quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     }
-    return quitAction;
+    return pImpl_->quitAction;
 }
 
 QMainWindow* Global::getMainWindow() {
-    if (!mainWindow) mainWindow = new QMainWindow;
-    return mainWindow;
-}
-
-
-namespace Util {
-
-  /** debug function for OpenGL commands; outputs all current GL errors on cerr
-  *  @param op optional repetition of last GL command                          */
-  void CheckGLErrors (const char *
-  #ifdef DEBUG
-  op
-  #endif
-  ) {
-    #   ifdef DEBUG
-    GLenum error;
-    while ((error = glGetError ()) != GL_NO_ERROR)
-      cerr << "GL Err: " << op << ": " << gluErrorString (error) << endl;
-    #   endif
-  }
-
-  /** find the ID of the first free GL list
-  *  @return first free GL list                                           */
-  int GetGLList() {
-    int MyList = 1;
-
-    // find a free GL list
-    while (glIsList(MyList) == GL_TRUE) MyList++;
-
-    return MyList;
-  }
-
-  void glVertex(const Vector< 3 >& V) {
-    if (std::isfinite (V.sqnorm()))
-      glVertex3dv(V.data());
-  }
-
-  /** normalizes a Vector made from 3 doubles out-of-place
-  *  @param xx x component of Vector to be normalized
-  *  @param yy y component of Vector to be normalized
-  *  @param zz z component of Vector to be normalized
-  *  @return normalized Vector                                             */
-  Vector<3> vnormalize(double xx, double yy, double zz) {
-    static Vector<3> x;
-
-    x[0] = xx; x[1] = yy; x[2] = zz;
-    return VecMath::vnormalize(x);
-  }
-
-  /** makes a double precision value from a QString
-  *  implemented because I called a function atod () ages ago, for convenience
-  *  @param s  string to be converted
-  *  @return its numerical value                                           */
-  double atod(QString s) {
-    return s.toDouble();
-  }
-
-  double atod (const std::string &s) {
-    return QString(s.c_str()).toDouble();
-  }
-
-  int atoi(const std::string &s) {
-    return QString(s.c_str()).toInt();
-  }
-
-  unsigned atou(const std::string &s) {
-    return QString(s.c_str()).toUInt();
-  }
-
-  /** makes a string  from an integer value
-  *  implemented because I called a function itoa () ages ago, for convenience
-  *  @param x	number to be converted
-  *  @return	its string representation                                     */
-  string itoa(int x) {
-    ostringstream o;
-    o << x;
-    return o.str ();
-  }
-
-  /** makes a string  from a double value
-  *  implemented because I called a function ftoa () ages ago, for convenience
-  *  @param x  number to be converted
-  *  @return its string representation                                     */
-  string ftoa(double x) {
-    ostringstream o;
-    o << x;
-    return o.str ();
-  }
-
-  std::string sup2() {
-    return "²";
-    static QString qsup2(QChar(0x00B2));
-    static std::string sup2_(qsup2.toStdString());
-    return sup2_;
-  }
-
-  std::string sup3() {
-    return "³";
-    static QString qsup3(QChar(0x00B3));
-    static std::string sup3_(qsup3.toStdString());
-    return sup3_;
-  }
-
+    if (!pImpl_->mainWindow) pImpl_->mainWindow = new QMainWindow;
+    return pImpl_->mainWindow;
 }
 
 /** get the system memory from /proc/meminfo
@@ -163,7 +90,7 @@ namespace Util {
  *  ...
  *  returns 512 MB as default memory size, when /proc/meminfo is not present
  *  @return	total memory size, or 512 MB                                  */
-unsigned long Global::check_proc_meminfo() {
+unsigned long Global::Impl::check_proc_meminfo() {
     ifstream in("/proc/meminfo");
     if (!in) {
         cerr << "no /proc/meminfo - setting Memory limit of 512 MB" << endl;
@@ -216,5 +143,17 @@ NestedVector< Vector<4>, 3 > toNestedVector(const Function::vec4vec3D &v) {
   return temp3D;
 }
 
+Color& Global::FogColor() { return pImpl_->fog_color; }
+
+void Global::setFogColor(const Color& rgba) { pImpl_->fog_color = rgba; }
+
+long unsigned int Global::getMaxMemory() { return Impl::MaximumMemory; }
+
+Color& Global::white() { return Impl::White; }
+
+Color& Global::grey50() { return Impl::Grey50; }
+
+bool Global::checkMemory() { return Impl::check_memory; }
+
 /** maximum memory that should be consumed; calls check_proc_meminfo () above */
-unsigned long Global::MaximumMemory = check_proc_meminfo();
+unsigned long Global::Impl::MaximumMemory = Global::Impl::check_proc_meminfo();

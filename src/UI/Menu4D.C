@@ -17,6 +17,7 @@
 #include <QShortcut>
 #include <QMenuBar>
 #include <QColorDialog>
+#include <QMessageBox>
 
 #include "Menu4D.h"
 #include "4DView.h"
