@@ -14,6 +14,8 @@
 
 #include "Surface.h"
 
+#include "View.h"
+
 #include "Transformation.h"
 #include "Projection.h"
 
@@ -214,38 +216,20 @@ void Surface::Project (double scr_w, double cam_w, bool depthcue4d) {
 
 }
 
-#include <GL/gl.h>
-#include <View.h>
-
 /** draw the projected Surface (onto screen or into GL list, as it is)        */
 void Surface::Draw (UI::View *view) {
     for (unsigned t = 0; t <= getTsteps(); t++)
         DrawStrip (t, view);
 }
 
-
 /** draw the current strip of the projected Surface
  *  @param t current t value                                                  */
 void Surface::DrawStrip (unsigned t, UI::View *view) {
 
-#if 1
   for (unsigned u = 0; u <= getUsteps(); u++) {
     view->drawQuadrangle(X()[t][u], X()[t+1][u], X()[t+1][u+1], X()[t][u+1],
                          Xscr()[t][u], Xscr()[t+1][u], Xscr()[t+1][u+1], Xscr()[t][u+1]);
   }
-#else   
-  glBegin (GL_QUAD_STRIP);
-
-    for (unsigned u = 0; u <= getUsteps(); u++) {
-        setVertex(X()[t][u], Xscr()[t][u]);
-        setVertex(X()[t+1][u], Xscr()[t+1][u]);
-    }
-
-    setVertex(X()[t][0], Xscr()[t][0]);
-    setVertex(X()[t+1][0], Xscr()[t+1][0]);
-
-    glEnd ();
-#endif    
 }
 
 const NestedVector< Vector<4>, 2 > &Surface::X() const {
