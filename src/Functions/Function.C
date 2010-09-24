@@ -62,7 +62,7 @@ unsigned long Function::MemRequired (void) {
 
 void Function::setVertex(const VecMath::Vector< 4 >& X, const VecMath::Vector< 3 >& Xscr) {
     ColMgrMgr::Instance().setColor(X);
-    Globals::Instance().glVertex(Xscr);
+    Util::glVertex(Xscr);
 }
 
 /** \f[

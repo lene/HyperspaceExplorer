@@ -42,33 +42,67 @@ class QString;
 //#   define __PRETTY_FUNCTION__ (std::string(__FILE__)+std::string(" line //")+Globals::Instance().itoa(__LINE__)).c_str()
 //#endif
 
-//  utility functions
+///  Utility functions
+namespace Util {
 
-/// Print a std::vector on a std::ostream
-/** \param s The ostream to which \p v is sent
- *  \param v The vector to print
- *  \return \p s
- */
-template<typename T> std::ostream& operator<<(std::ostream& s,
-                                              std::vector<T> const& v) {
+  /// Print a std::vector on a std::ostream
+  /** \param s The ostream to which \p v is sent
+  *  \param v The vector to print
+  *  \return \p s
+  */
+  template<typename T> std::ostream& operator<<(std::ostream& s,
+                                                std::vector<T> const& v) {
     s << "(";
     copy(v.begin(), v.end(), std::ostream_iterator<T>(s, " "));
     s << ")";
     return s;
-}
+  }
 
-/// Find an element in a vector
-/** \param find_me The element to find in the vector \p v
- *  \param v The vector to search for element \p find_me
- *  \return The \p vector<T>::iterator pointing to the element or \p v.end() if
- *          it is not in \p v
- */
-template <typename T> typename std::vector<T>::iterator find(T find_me, std::vector<T> &v) {
+  /// Find an element in a vector
+  /** \param find_me The element to find in the vector \p v
+  *  \param v The vector to search for element \p find_me
+  *  \return The \p vector<T>::iterator pointing to the element or \p v.end() if
+  *          it is not in \p v
+  */
+  template <typename T> typename std::vector<T>::iterator find(T find_me, std::vector<T> &v) {
     typename std::vector<T>::iterator i = v.begin();
     while(*i != find_me && i != v.end()) ++i;
     return i;
-}
+  }
 
+  int GetGLList();
+
+  void CheckGLErrors (const char *op = 0);
+
+  /** define a GL Vertex from a Vector<3>
+  *  @param V the vertex to be defined                                 */
+  void glVertex (const VecMath::Vector<3> &V);
+
+  VecMath::Vector<3> vnormalize (double xx, double yy, double zz);
+
+  std::string itoa (int x);
+  /// Convert a QString to double
+  /** \return The double precision value of the argument */
+  double atod (QString);
+  /// Convert a string to unsigned
+  /** \return The double precision value of the argument */
+  double atod (const std::string &);
+  /// Convert a string to signed int
+  /** \return The integer value of the argument */
+  int atoi(const std::string &);
+  /// Convert a string to unsigned
+  /** \return The unsigned value of the argument */
+  unsigned atou(const std::string &);
+
+  std::string ftoa (double x);
+
+  /// A (I hope) Editor-independent repersentation of "²"
+  std::string sup2();
+
+  /// A (I hope) Editor-independent repersentation of "³"
+  std::string sup3();
+
+}
 /// As a workaround to end the embarassing practice of keeping global variables,
 /// I have created this class as a singleton. You might also call it a
 /// namespace.
@@ -90,37 +124,12 @@ class Global {
         /// \return The main window of the application
         QMainWindow *getMainWindow();
 
-        int GetGLList();
 
         /// \return The global fog color
         Color &FogColor() { return fog_color; }
         /// Set the global fog color
         /** \param rgba The new fog color */
         void setFogColor(const Color &rgba) { fog_color = rgba; }
-
-        /// Convert a QString to double
-        /** \return The double precision value of the argument */
-        double atod (QString);
-        /// Convert a string to unsigned
-        /** \return The double precision value of the argument */
-        double atod (const std::string &);
-        /// Convert a string to signed int
-        /** \return The integer value of the argument */
-        int atoi(const std::string &);
-        /// Convert a string to unsigned
-        /** \return The unsigned value of the argument */
-        unsigned atou(const std::string &);
-
-        std::string itoa (int x);
-        std::string ftoa (double x);
-
-        void CheckGLErrors (const char *op = 0);
-
-        /** define a GL Vertex from a Vector<3>
-         *  @param V the vertex to be defined                                 */
-        void glVertex (const VecMath::Vector<3> &V);
-
-        VecMath::Vector<3> vnormalize (double xx, double yy, double zz);
 
         /** maximum amount of memory available for use                        */
         static unsigned long getMaxMemory() { return MaximumMemory; }
@@ -129,12 +138,6 @@ class Global {
         static Color& white() { return White; }
         /** color definition for Grey                                         */
         static Color& grey50() { return Grey50; }
-
-        /// A (I hope) Editor-independent repersentation of "²"
-        static std::string sup2();
-
-        /// A (I hope) Editor-independent repersentation of "³"
-        static std::string sup3();
 
         /** sqrt (3), stored to save computation time, probably superfluous   */
         const double SR3;

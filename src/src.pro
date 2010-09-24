@@ -185,11 +185,13 @@ HEADERS += Globals.h \
            Color.h \
            ColorManager.h \
            NotYetImplementedException.h \
-           Light.h
+           Light.h \
+           ScopedTimer.h
 SOURCES += Globals.C \
            Help.C \
            ColorManager.C \
-           Light.C
+           Light.C \
+           ScopedTimer.cpp
 
 ###
 ################################################################################

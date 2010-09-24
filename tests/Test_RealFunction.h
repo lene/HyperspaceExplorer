@@ -17,12 +17,6 @@ class Test_RealFunction: public QObject {
     static const unsigned GRID_SIZE = 5;
 
     const static QString TEST_FUNCTION_NAME;
-    static const double CONSTANT_FUNCTION_VALUE = 1.;
-
-    static const double EPSILON = 1e-8;
-
-    static const double PROJECTION_SCREEN_W = 2.;
-    static const double PROJECTION_CAMERA_W = 4.;
 
     class RealFunctionTestImplementation;
 
@@ -62,6 +56,13 @@ class Test_RealFunction: public QObject {
       RealFunctionTestImplementation *function_;
       MockView *view_;
 };
+
+static const double CONSTANT_FUNCTION_VALUE = 1.;
+
+static const double PROJECTION_SCREEN_W = 2.;
+static const double PROJECTION_CAMERA_W = 4.;
+
+static const double EPSILON = 1e-8;
 
 void testGetParametersRuns(RealFunction &f);
 void testFunctionEvaluationRuns(RealFunction &f);

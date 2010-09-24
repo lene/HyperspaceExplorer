@@ -14,6 +14,7 @@
 
 #include "Transformation.h"
 #include "Projection.h"
+#include "GridDrawer.h"
 
 #include "Vector.h"
 #include "Matrix.h"
@@ -21,6 +22,7 @@
 #include "Globals.h"
 #include "Log.h"
 #include "ColorManager.h"
+#include "ScopedTimer.h"
 
 #include <vector>
 
@@ -222,15 +224,13 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
   }
 }
 
-#include "GridDrawer.h"
-
 /// Draw the projected Function (onto screen or into GL list, as it is)
 /** */
 void RealFunction::Draw (UI::View *view) {
+//  ScopedTimer timer("Draw()");
 # ifdef USE_GRID_DRAWER
-std::cerr << "RealFunction::Draw" << std::endl;
 std::cerr << "USE_GRID_DRAWER" << std::endl;
-    GridDrawer<3> draw(Xscr(), NULL);
+    GridDrawer<3> draw(X(), Xscr(), view);
     draw.execute();
 # else
     for (unsigned t = 0; t < getTsteps(); t++)
@@ -242,6 +242,7 @@ std::cerr << "USE_GRID_DRAWER" << std::endl;
 /// Draw the current plane of the projected Function
 /** \param t current t value                                                  */
 void RealFunction::DrawPlane (unsigned t, UI::View *view){
+//  ScopedTimer timer("RealFunction::DrawPlane()");
   for (unsigned u = 0; u < getUsteps(); u++)
     DrawStrip (t, u, view);
 }

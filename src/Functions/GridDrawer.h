@@ -55,6 +55,27 @@ class GridDrawer {
 
 };
 
+template<typename NUM, unsigned D> class GridDrawer<3, NUM, D> {
+  public:
+
+    GridDrawer(const VecMath::NestedVector< VecMath::Vector<4, NUM>, 3 > &x,
+               const VecMath::NestedVector< VecMath::Vector<D, NUM>, 3 > &x_scr,
+               UI::View *view);
+
+    void execute();
+
+  private:
+
+    void drawPlane (unsigned t);
+    void drawStrip (unsigned t, unsigned u);
+    void drawCube (unsigned t, unsigned u, unsigned v);
+
+    const VecMath::NestedVector< VecMath::Vector<4, NUM>, 3 > &x_;
+    const VecMath::NestedVector< VecMath::Vector<D, NUM>, 3 > &x_scr_;
+    UI::View *view_;
+
+};
+
 template<typename NUM, unsigned D> class GridDrawer<1, NUM, D> {
   public:
 

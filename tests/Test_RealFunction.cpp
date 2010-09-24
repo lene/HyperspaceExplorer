@@ -24,14 +24,17 @@ void checkVertexDrawn(const VecMath::Vector<3> &v) {
 }
 
 void checkVerticesEqual(const VecMath::Vector<4> &v1, const VecMath::Vector<4> &v2) {
-  QVERIFY((v1 - v2).sqnorm() < 1e-6);
+  QVERIFY((v1 - v2).sqnorm() < EPSILON);
 }
 
 
 void checkVerticesNotEqual(const VecMath::Vector<4> &v1, const VecMath::Vector<4> &v2) {
-  QVERIFY((v1 - v2).sqnorm() > 1e-6);
+  QVERIFY((v1 - v2).sqnorm() > EPSILON);
 }
 
+template<typename T> T random_number() {
+  return (T)qrand()/(T)RAND_MAX;
+}
 
 class Test_RealFunction::RealFunctionTestImplementation: public RealFunction {
 
@@ -140,6 +143,22 @@ void Test_RealFunction::rotated360DegreesIsIdentical() {
     function_->for_each(checkVerticesEqual);
 }
 
+// intercept theorem gives this factor (constant because f is constant)
+const double PROJECTION_FACTOR =
+  (PROJECTION_CAMERA_W-PROJECTION_SCREEN_W) /
+  (PROJECTION_CAMERA_W-CONSTANT_FUNCTION_VALUE);
+
+void checkProjectProjects(const VecMath::Vector<4> &x,
+                          const VecMath::Vector<4> &,
+                          const VecMath::Vector<3> &xscr) {
+  cerr << xscr << " == " << x*PROJECTION_FACTOR << "?" << endl;
+  for(unsigned m = 0; m < 3; ++m) {
+    QVERIFY2(fabs(xscr[m] - x[m]*PROJECTION_FACTOR) < EPSILON,
+             (xscr.toString()+std::string(" != ")+(x*PROJECTION_FACTOR).toString()).c_str()
+             );
+  }
+}
+
 void Test_RealFunction::project() {
     function_ = new RealFunctionTestImplementation();
 
@@ -150,26 +169,8 @@ void Test_RealFunction::project() {
     QVERIFY(function_->projected_vertices()[0].size() >= GRID_SIZE);
     QVERIFY(function_->projected_vertices()[0][0].size() >= GRID_SIZE);
 
-    // intercept theorem gives this factor (constant because f is constant)
-    const double PROJECTION_FACTOR =
-            (PROJECTION_CAMERA_W-PROJECTION_SCREEN_W) /
-            (PROJECTION_CAMERA_W-CONSTANT_FUNCTION_VALUE);
-
-    for (unsigned i = 0; i < GRID_SIZE; ++i) {
-        for (unsigned j = 0; j < GRID_SIZE; ++j) {
-            for (unsigned k = 0; k < GRID_SIZE; ++k) {
-                Vector<4> vertex = function_->vertices()[i][j][k];
-                Vector<3> projected_vertex = function_->projected_vertices()[i][j][k];
-                cerr << projected_vertex << " == " << vertex*PROJECTION_FACTOR << "?" << endl;
-                QSKIP("not solved yet why this fails.", SkipSingle);
-                for(unsigned m = 0; m < 3; ++m) {
-                    QVERIFY2(fabs(projected_vertex[m] - vertex[m]*PROJECTION_FACTOR) < EPSILON,
-                             (projected_vertex.toString()+std::string(" != ")+(vertex*PROJECTION_FACTOR).toString()).c_str()
-                             );
-                }
-            }
-        }
-    }
+    QSKIP("not solved yet why this fails.", SkipSingle);
+    function_->for_each(checkProjectProjects);
 }
 
 void checkGetColorRuns(const VecMath::Vector<4> &x,
@@ -251,10 +252,6 @@ void Test_RealFunction::polarSin2() {
 void Test_RealFunction::polarR() {
   PolarR f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
   testFunction(f);
-}
-
-template<typename T> T random_number() {
-  return (T)qrand()/(T)RAND_MAX;
 }
 
 void Test_RealFunction::testFunction(RealFunction &f) {

@@ -244,17 +244,17 @@ void C4DView::setTransparence (bool trans) {
 
 void C4DView::drawVertex(const VecMath::Vector< 4 >& x, const VecMath::Vector< 3 >& xscr) {
   ColMgrMgr::Instance().setColor(x);
-  Globals::Instance().glVertex(xscr);
+  Util::glVertex(xscr);
 }
 
-void C4DView::drawLine(const VecMath::Vector< 4 >&, const VecMath::Vector< 4 >&, 
+void C4DView::drawLine(const VecMath::Vector< 4 >&, const VecMath::Vector< 4 >&,
                        const VecMath::Vector< 3 >&, const VecMath::Vector< 3 >&) {
   throw NotYetImplementedException("C4DView::drawLine");
 }
 
-void C4DView::drawQuadrangle(const VecMath::Vector<4> &x0, const VecMath::Vector<4> &x1, 
-                             const VecMath::Vector<4> &x2, const VecMath::Vector<4> &x3, 
-                             const VecMath::Vector<3> &xscr0, const VecMath::Vector<3> &xscr1, 
+void C4DView::drawQuadrangle(const VecMath::Vector<4> &x0, const VecMath::Vector<4> &x1,
+                             const VecMath::Vector<4> &x2, const VecMath::Vector<4> &x3,
+                             const VecMath::Vector<3> &xscr0, const VecMath::Vector<3> &xscr1,
                              const VecMath::Vector<3> &xscr2, const VecMath::Vector<3> &xscr3) {
   glBegin (GL_QUADS);
     drawVertex(x0, xscr0);
@@ -401,14 +401,14 @@ void C4DView::PreRedraw () {
 
     if (getCoordinates()) {
         if (CoordinateCross()) glDeleteLists (CoordinateCross(), 1);
-        setCoordinateCross(Globals::Instance().GetGLList());
+        setCoordinateCross(Util::GetGLList());
         glNewList (CoordinateCross(), GL_COMPILE);
             DrawCoordinates();
         glEndList();
     }
 
     if (ObjectList()) glDeleteLists(ObjectList(), 1);
-    setObjectList(Globals::Instance().GetGLList());
+    setObjectList(Util::GetGLList());
     glNewList (ObjectList(), GL_COMPILE_AND_EXECUTE);
         Project ();
         F()->Draw(this);
@@ -431,7 +431,7 @@ void C4DView::RenderScene () {  //  draw (frame of animation)
             switch (
                 QMessageBox::warning (
                     NULL, "C4DView::RenderScene",
-                    ("ObjectList No. "+Globals::Instance().itoa (ObjectList())+
+                    ("ObjectList No. "+Util::itoa (ObjectList())+
                      " is not a GL list!").c_str (),
                     "Retry", "Die", 0, 0, 1)) {
                 case 0: PreRedraw ();
@@ -442,7 +442,7 @@ void C4DView::RenderScene () {  //  draw (frame of animation)
             sleep (1);
 #       else
             cerr << "C4DView::RenderScene ():  "
-                 << "ObjectList No. " << Globals::Instance().itoa(ObjectList())
+                 << "ObjectList No. " << Util::itoa(ObjectList())
                  << " is not a GL list!" << endl;
             sleep (1);
             PreRedraw ();
@@ -523,7 +523,7 @@ void C4DView::DrawCoordinates () {
         }
         glBegin (GL_LINES);
             for (unsigned i = 0; i < 2; i++)
-                Globals::Instance().glVertex (_crossScr[j][i]);
+                Util::glVertex (_crossScr[j][i]);
         glEnd ();
     }
 }

@@ -55,7 +55,7 @@ void Rotope::Initialize() {
         _rotope = RotopeFactory::generate(_actions);
         declareParameter("Generator", _actions);
         for(unsigned i = 5; i <= _actions.length(); ++i) {
-            string label = Globals::Instance().itoa(i)+string("D Rotation");
+          string label = Util::itoa(i)+string("D Rotation");
             switch(i) {
                 case 5:
                     declareParameter(label, _rot5D);

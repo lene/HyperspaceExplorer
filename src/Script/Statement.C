@@ -26,8 +26,8 @@ namespace Script {
 
     SizeStmt::SizeStmt(const Parser *p, const std::string &_arg):
             Statement(p, _arg) {
-        _width = Globals::Instance().atou(leading(arg(), " "));
-        _height = Globals::Instance().atou(trailing(arg(), " "));
+        _width = Util::atou(leading(arg(), " "));
+        _height = Util::atou(trailing(arg(), " "));
     }
 
     bool SizeStmt::execute() {
@@ -46,19 +46,19 @@ namespace Script {
 
     template <> bool ParmStmt<double>::execute() {
         parser()->getView()->setParameter(leading(arg(), " "),
-                Globals::Instance().atod(trailing(arg(), " ")));
+                Util::atod(trailing(arg(), " ")));
         return true;
     }
 
     template <> bool ParmStmt<int>::execute() {
         parser()->getView()->setParameter(leading(arg(), " "),
-               Globals::Instance().atoi(trailing(arg(), " ")));
+               Util::atoi(trailing(arg(), " ")));
         return true;
     }
 
     template <> bool ParmStmt<unsigned>::execute() {
         parser()->getView()->setParameter(leading(arg(), " "),
-               Globals::Instance().atou(trailing(arg(), " ")));
+               Util::atou(trailing(arg(), " ")));
         return true;
     }
 
@@ -95,7 +95,7 @@ namespace Script {
 
     FramesStmt::FramesStmt(const Parser *p, const std::string &_arg):
             Statement(p, _arg) {
-        _frames = Globals::Instance().atou(trailing(arg(), " "));
+        _frames = Util::atou(trailing(arg(), " "));
     }
 
     bool FramesStmt::execute() {
@@ -105,7 +105,7 @@ namespace Script {
 
     LoopStmt::LoopStmt(const Parser *p, const std::string &_arg):
             Statement(p, _arg) {
-        _loops = Globals::Instance().atou(trailing(arg(), " "));
+        _loops = Util::atou(trailing(arg(), " "));
     }
 
     bool LoopStmt::execute() {
@@ -157,7 +157,7 @@ namespace Script {
 
     SleepStmt::SleepStmt(const Parser *p, const std::string &_arg):
             Statement(p, _arg) {
-        _msec = Globals::Instance().atou(trailing(arg(), " "));
+        _msec = Util::atou(trailing(arg(), " "));
     }
 
     bool SleepStmt::execute() {

@@ -45,9 +45,9 @@ namespace VecMath {
              *  \param index position in the Rotation vector                  */
             static unsigned axis(unsigned which, unsigned index) {
                 throw NotYetImplementedException(
-                        "RotationAxes<"+Globals::Instance().itoa(D)+">::axis("+
-                        Globals::Instance().itoa(which)+", "+
-                        Globals::Instance().itoa(index)+")");
+                        "RotationAxes<"+Util::itoa(D)+">::axis("+
+                        Util::itoa(which)+", "+
+                        Util::itoa(index)+")");
             }
         private:
             /// explicitly stores the values for \p ii and \p jj
