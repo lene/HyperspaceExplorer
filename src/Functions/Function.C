@@ -9,6 +9,7 @@
 #include "Function.h"
 #include "Log.h"
 #include "ColorManager.h"
+#include "ParameterMap.h"
 
 using std::cerr;
 using std::endl;

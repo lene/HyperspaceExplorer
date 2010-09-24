@@ -11,6 +11,8 @@
 
 #include "ComplexFunction.h"
 
+#include <QString>
+
 using std::complex;
 using std::tr1::shared_ptr;
 

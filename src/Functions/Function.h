@@ -10,19 +10,21 @@
 #if !defined(FUNCTION_H)
 #define FUNCTION_H
 
-#include <vector>
-#include <map>
-
-#include <QString>
-
-#include "ParameterMap.h"
-#include "Vector.h"
-
+//#include "ParameterMap.h"
+#include "FunctionParameter.h"
 #include "FunctionFactory.h"
+
+#include <vector>
 
 namespace UI {
   class View;
 }
+
+namespace VecMath {
+    template <unsigned D, typename N> class Rotation;
+    template <unsigned D, typename N> class Vector;
+}
+class ParameterMap;
 
 /// \defgroup FunctionGroup Functions and objects
 /// \defgroup RealGroup Functions R^3 -> R
@@ -93,30 +95,30 @@ class Function {
         typedef std::vector<floatvec2D> floatvec3D;
 
         /// one-dimensional array of Vector<3>, implemented as a std::vector
-        typedef std::vector<VecMath::Vector<3> > vec3vec1D;
+        typedef std::vector<VecMath::Vector<3, double> > vec3vec1D;
         /// two-dimensional array of Vector<3>, implemented as a nested std::vector
         typedef std::vector<vec3vec1D> vec3vec2D;
         /// three-dimensional array of Vector<3>, implemented as a nested std::vector
         typedef std::vector<vec3vec2D> vec3vec3D;
 
         /// one-dimensional array of Vector<4>, implemented as a std::vector
-        typedef std::vector<VecMath::Vector<4> > vec4vec1D;
+        typedef std::vector<VecMath::Vector<4, double> > vec4vec1D;
         /// two-dimensional array of Vector<4>, implemented as a nested std::vector
         typedef std::vector<vec4vec1D> vec4vec2D;
         /// three-dimensional array of Vector<4>, implemented as a nested std::vector
         typedef std::vector<vec4vec2D> vec4vec3D;
 
         /// function that is applied on the original vertices
-        typedef void(*function_on_fourspace_vertex)(const VecMath::Vector<4> &);
+        typedef void(*function_on_fourspace_vertex)(const VecMath::Vector<4, double> &);
         /// function that is applied on the original and transformed vertices
-        typedef void(*function_on_fourspace_and_transformed_vertex)(const VecMath::Vector<4> &,
-                                                                    const VecMath::Vector<4> &);
+        typedef void(*function_on_fourspace_and_transformed_vertex)(const VecMath::Vector<4, double> &,
+                                                                    const VecMath::Vector<4, double> &);
         /// function that is applied on the original and transformed vertices
-        typedef void(*function_on_fourspace_transformed_and_projected_vertex)(const VecMath::Vector<4> &,
-                                                                              const VecMath::Vector<4> &,
-                                                                              const VecMath::Vector<3> &);
+        typedef void(*function_on_fourspace_transformed_and_projected_vertex)(const VecMath::Vector<4, double> &,
+                                                                              const VecMath::Vector<4, double> &,
+                                                                              const VecMath::Vector<3, double> &);
         /// function that is applied on vertices transformed and projected into 3-space
-        typedef void(*function_on_projected_vertex)(const VecMath::Vector<3> &);
+        typedef void(*function_on_projected_vertex)(const VecMath::Vector<3, double> &);
 
         /// Function default c'tor
         Function();
@@ -125,8 +127,8 @@ class Function {
         virtual ~Function();
 
         /// Execute the desired rotation and translation to the Function object
-        virtual void Transform (const VecMath::Rotation<4> &R,
-                                const VecMath::Vector<4> &T) = 0;
+        virtual void Transform (const VecMath::Rotation<4, double> &R,
+                                const VecMath::Vector<4, double> &T) = 0;
         /// Overloaded function executing the transform to the default state
         void resetTransform();
 

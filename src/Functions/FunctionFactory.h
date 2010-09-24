@@ -4,6 +4,8 @@
 #include "SingletonHolder.h"
 #include "Function.h"
 
+#include <map>
+
 class Function;
 
 /// Factory class creating Function objects given the name of their class

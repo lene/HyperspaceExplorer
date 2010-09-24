@@ -15,6 +15,7 @@
 #include <sstream>
 #include <string>
 
+#include "ParameterMap.h"
 #include "Function.h"
 #include "Vector.h"
 #include "uintvec.h"
