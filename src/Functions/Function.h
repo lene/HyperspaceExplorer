@@ -122,13 +122,13 @@ class Function {
         Function();
         /// Function c'tor given a definition set in \f$ R^3 \f$ (as parameter space)
         Function (ParameterMap parameters);
-        virtual ~Function() { }
+        virtual ~Function();
 
         /// Execute the desired rotation and translation to the Function object
         virtual void Transform (const VecMath::Rotation<4> &R,
                                 const VecMath::Vector<4> &T) = 0;
         /// Overloaded function executing the transform to the default state
-        void Transform() { Transform (VecMath::Rotation<4>(),  VecMath::Vector<4>()); }
+        void resetTransform();
 
         /// Projects the vertex data to 3D
         virtual void Project (double ScrW, double CamW, bool DepthCue4D) = 0;
@@ -154,20 +154,16 @@ class Function {
         virtual void SetParameters(const ParameterMap &);
 
         /// \return The collection of all parameters (and their values)
-        ParameterMap getParameters() { return _parameters; }
+        ParameterMap getParameters();
 
         /// \return The value of the parameter which is named \p name
-        FunctionParameter::parameter_ptr_type getParameter(const std::string &name) {
-          return _parameters.getParameter(name);
-        }
+        FunctionParameter::parameter_ptr_type getParameter(const std::string &name);
 
         /** \return number of parameters for the function                     */
-        unsigned getNumParameters() { return _parameters.size(); }
+        unsigned getNumParameters();
 
         /** \return Value of the parameter with the name \p name.             */
-        FunctionParameter::value_ptr_type getParameterValue(const std::string &name) {
-          return _parameters.getValue(name);
-        }
+        FunctionParameter::value_ptr_type getParameterValue(const std::string &name);
 
         /// Set a parameter with a specified key from a supplied ParameterMap
         /** \tparam T Type of the parameter to be set.
@@ -221,59 +217,11 @@ class Function {
         template <typename T> void declareParameter(const std::string &,
                 const T &, const T &);
 
-        /// Remember that we've set some more vertices
-        void addVertices(unsigned num) { _numVertices += num; }
-
-        /// temporary storage for the value of the function at a given point
-        VecMath::Vector<4> _F;
-
     private:
-        /// Declare a new parameter for the Function
-        void insertParameter(const std::string &name, FunctionParameter::parameter_ptr_type defaultValue) {
-          _parameters.insert(std::make_pair(name, defaultValue));
-        }
 
-        /// counter for assessing how much RAM is used
-        unsigned _numVertices;
-
-        /// list of the parameters to the function
-        ParameterMap _parameters;
-
+      class Impl;
+      Impl *pImpl_;
 };
 
-/// Add a parameter with a name and a default value to the parameter list
-template <typename T> inline
-    void Function::declareParameter(const std::string &name,
-                                    const T &defaultValue) {
-      if (_parameters.find(name) != _parameters.end()) return;
-
-      insertParameter(
-          name,
-          TheFunctionParameterFactory::Instance().createParameterWithDefault(name, defaultValue));
-    }
-
-/// Add a parameter with a name and a default value to the parameter list
-template <typename T> inline
-    void Function::declareParameter(const std::string &name,
-                                    const T &defaultValue, const T &value) {
-      if (_parameters.find(name) != _parameters.end()) return;
-
-      insertParameter(
-          name,
-          TheFunctionParameterFactory::Instance().createParameterWithDefault(name, defaultValue));
-      _parameters[name]->setValue(
-          FunctionParameter::value_ptr_type(
-              new FunctionParameterValue<T>(value)));
-    }
-
-template <typename T> inline
-    void Function::setParameter(const ParameterMap &parms,
-                                T &parm,
-                                const std::string &key) {
-        for (ParameterMap::const_iterator i = _parameters.begin();
-        i != parms.end(); ++i) {
-            if (i->second->getName() == key) parm = T(*(i->second));
-        }
-}
 
 #endif

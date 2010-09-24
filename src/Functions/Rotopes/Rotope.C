@@ -150,33 +150,18 @@ void Rotope::drawRealm(const Realm &realm, UI::View *view) {
     switch (realm.dimension()) {
         case 0:
           /** Dimension 0 is a point. Easy to draw ;-) */
-#if 1
           view->drawVertex(X[realm.toIndex()], Xscr[realm.toIndex()]);
-#else
-            glBegin(GL_POINTS);
-                setVertex(X[realm.toIndex()], Xscr[realm.toIndex()]);
-            glEnd();
-#endif            
             break;
         case 1:
             /** In one dimension draw a line containing all points the Realm has
              *  (i.e. 2 points)
              */
-#if 1
             for (unsigned i = 0; i < realm.getSubrealms().size()-1; ++i) {
               Realm current = realm.getSubrealms()[i];
               Realm next = realm.getSubrealms()[i+1];
               view->drawLine(X[current.toIndex()], X[next.toIndex()],
                              Xscr[current.toIndex()], Xscr[next.toIndex()]);
             }
-#else
-            glBegin(GL_LINES);
-                for (Realm::realm_container_type::const_iterator i = realm.getSubrealms().begin();
-                    i != realm.getSubrealms().end(); ++i) {
-                   setVertex(X[i->toIndex()], Xscr[i->toIndex()]);
-                }
-            glEnd();
-#endif            
             break;
         case 2:
             /** In two dimensions, draw a surface. The current implementation

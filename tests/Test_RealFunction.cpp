@@ -75,8 +75,9 @@ Test_RealFunction::RealFunctionTestImplementation::RealFunctionTestImplementatio
 }
 
 Vector<4> &Test_RealFunction::RealFunctionTestImplementation::f (double tt, double uu, double vv) {
-  _F = _function->f(Vector<3>(tt, uu, vv));
-  return _F;
+  static Vector<4> F;
+  F = _function->f(Vector<3>(tt, uu, vv));
+  return F;
 }
 
 ParametricFunction< 4, 3 >::return_type
