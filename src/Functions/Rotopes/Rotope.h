@@ -69,7 +69,7 @@ class Rotope : public Object {
          *  Rotope is broken down to a suffieciently small dimension.
          *  \param realm The Realm to draw into an OpenGL display list.
          */
-        void Draw(const Realm &realm);
+        void drawRealm(const Realm &realm, UI::View *view);
 
         /// Sequence of extrusion actions needed to generate the Rotope
         std::string _actions;

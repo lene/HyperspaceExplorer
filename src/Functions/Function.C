@@ -60,11 +60,6 @@ unsigned long Function::MemRequired (void) {
     return 0;
 }
 
-void Function::setVertex(const VecMath::Vector< 4 >& X, const VecMath::Vector< 3 >& Xscr) {
-    ColMgrMgr::Instance().setColor(X);
-    Util::glVertex(Xscr);
-}
-
 /** \f[
         \frac{df}{dt} = \lim_{h \rightarrow 0}
             \frac{f(t+h, u, v) - f(t, u, v)}{h},

@@ -210,7 +210,8 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
                                     const VecMath::Vector< 4 > &x2, const VecMath::Vector< 4 > &x3,
                                     const VecMath::Vector< 3 > &xscr0, const VecMath::Vector< 3 > &xscr1,
                                     const VecMath::Vector< 3 > &xscr2, const VecMath::Vector< 3 > &xscr3);
-
+        virtual void drawPolygon(const std::vector< VecMath::Vector< 4 > >&x , 
+                                 const std::vector< VecMath::Vector< 3 > >&xscr );
         ////////////////////////////////////////////////////////////////////////
 
         /// rotate in 3D 360 degrees

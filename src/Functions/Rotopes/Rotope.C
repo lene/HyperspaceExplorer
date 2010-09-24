@@ -136,7 +136,7 @@ void Rotope::Draw (UI::View *view) {
     }
 
     if (_rotope->realm().size()) {
-        Draw(_rotope->realm());
+        drawRealm(_rotope->realm(), view);
 //        _rotope->print();
     } else {
         throw new std::logic_error("Rotope has no Realm member");
@@ -144,25 +144,39 @@ void Rotope::Draw (UI::View *view) {
 }
 
 #include <GL/gl.h>
+#include "View.h"
 
-void Rotope::Draw(const Realm &realm) {
+void Rotope::drawRealm(const Realm &realm, UI::View *view) {
     switch (realm.dimension()) {
         case 0:
-            /** Dimension 0 is a point. Easy to draw ;-) */
+          /** Dimension 0 is a point. Easy to draw ;-) */
+#if 1
+          view->drawVertex(X[realm.toIndex()], Xscr[realm.toIndex()]);
+#else
             glBegin(GL_POINTS);
                 setVertex(X[realm.toIndex()], Xscr[realm.toIndex()]);
             glEnd();
+#endif            
             break;
         case 1:
             /** In one dimension draw a line containing all points the Realm has
              *  (i.e. 2 points)
              */
+#if 1
+            for (unsigned i = 0; i < realm.getSubrealms().size()-1; ++i) {
+              Realm current = realm.getSubrealms()[i];
+              Realm next = realm.getSubrealms()[i+1];
+              view->drawLine(X[current.toIndex()], X[next.toIndex()],
+                             Xscr[current.toIndex()], Xscr[next.toIndex()]);
+            }
+#else
             glBegin(GL_LINES);
                 for (Realm::realm_container_type::const_iterator i = realm.getSubrealms().begin();
                     i != realm.getSubrealms().end(); ++i) {
                    setVertex(X[i->toIndex()], Xscr[i->toIndex()]);
                 }
             glEnd();
+#endif            
             break;
         case 2:
             /** In two dimensions, draw a surface. The current implementation
@@ -170,16 +184,27 @@ void Rotope::Draw(const Realm &realm) {
              *  \code (0, 1, ..., n) \endcode
              */
             if (realm.getSubrealms().begin()->dimension() == 0) {
-                glBegin(GL_POLYGON);
+#if 1
+              vector< Vector<4> > original_vertices;
+              vector< Vector<3> > projected_vertices;
+              for (Realm::realm_container_type::const_iterator i = realm.getSubrealms().begin();
+                   i != realm.getSubrealms().end(); ++i) {
+                original_vertices.push_back(X[i->toIndex()]);
+                projected_vertices.push_back(Xscr[i->toIndex()]);
+              }
+              view->drawPolygon(original_vertices, projected_vertices);
+#else
+              glBegin(GL_POLYGON);
                     for (Realm::realm_container_type::const_iterator i = realm.getSubrealms().begin();
                          i != realm.getSubrealms().end(); ++i) {
                         setVertex(X[i->toIndex()], Xscr[i->toIndex()]);
                     }
                 glEnd();
+#endif
             } else if (realm.getSubrealms().begin()->dimension() == 1) {
                 for (Realm::realm_container_type::const_iterator i = realm.getSubrealms().begin();
                      i != realm.getSubrealms().end(); ++i) {
-                    Draw(*i);
+                    drawRealm(*i, view);
                 }
             }
             else throw std::logic_error("Realm contains a subrealm whose dimension is equal or greater than its own. Duh.");
@@ -191,7 +216,7 @@ void Rotope::Draw(const Realm &realm) {
              */
             for (Realm::realm_container_type::const_iterator i = realm.getSubrealms().begin();
                  i != realm.getSubrealms().end(); ++i) {
-                Draw(*i);
+              drawRealm(*i, view);
             }
             break;
     }

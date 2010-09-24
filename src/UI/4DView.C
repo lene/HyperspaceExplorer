@@ -265,6 +265,14 @@ void C4DView::drawQuadrangle(const VecMath::Vector<4> &x0, const VecMath::Vector
   glEnd();
 }
 
+void C4DView::drawPolygon(const std::vector< Vector< 4 > >& x, const std::vector< Vector< 3 > >& xscr) {
+  glBegin(GL_POLYGON);
+    for (unsigned i = 0; i < x.size(); ++i) {
+      drawVertex(x[i], xscr[i]);
+    }
+  glEnd();
+}
+
 ////////        end View interface          ////////
 
 double C4DView::Benchmark3D (int num_steps,
