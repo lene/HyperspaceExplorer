@@ -40,8 +40,8 @@ HelpWindow::HelpWindow( const QString& home_, const QString& _path,
         possiblePaths.append(_path+"/src/doc/");
         possiblePaths.append(QDir::currentPath()+"/Documentation/");
     } else {
-         for (QStringList::const_iterator constIterator = Globals::Instance().rcdirs.constBegin();
-              constIterator != Globals::Instance().rcdirs.constEnd();
+         for (QStringList::const_iterator constIterator = Globals::Instance().rcdirs().constBegin();
+              constIterator != Globals::Instance().rcdirs().constEnd();
              ++constIterator)
              possiblePaths.append((*constIterator)+"/doc/");
     }

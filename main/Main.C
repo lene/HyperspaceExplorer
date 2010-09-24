@@ -312,7 +312,7 @@ void parse (int argc, char *argv[]) {
     for (int i = 0; i < argc; i++) {
         if (QString (argv[i]) == QString ("--rcdir")) {
             if (i+1 < argc)
-                Globals::Instance().rcdirs.append (QString (argv[i+1]));
+                Globals::Instance().rcdirs().append (QString (argv[i+1]));
         }
         if (QString (argv[i]) == QString ("--script")) {
             if (i+1 < argc) {
@@ -358,10 +358,10 @@ void setRCFilePath() {
         symlink ((qApp->applicationDirPath()+"/Vector.H").toAscii(),
                   (QDir::home().absolutePath()+"/"+rcdir+"/plugins/Vector.H").toAscii());
     }
-    Globals::Instance().rcdirs.append (QDir::home ().absolutePath ()+"/"+rcdir);
+    Globals::Instance().rcdirs().append (QDir::home ().absolutePath ()+"/"+rcdir);
 
     QString prefix(make_str(PREFIX));
-    Globals::Instance().rcdirs.append(prefix+"/share/HyperspaceExplorer");
+    Globals::Instance().rcdirs().append(prefix+"/share/HyperspaceExplorer");
 }
 
 
@@ -381,7 +381,7 @@ int main (int argc, char *argv[]) {
         parse (argc, argv);
 
         //  okay to set . last in rc file path? shouldn't it be first?
-        Globals::Instance().rcdirs.append (".");
+        Globals::Instance().rcdirs().append (".");
 
         C4DView view;
         Globals::Instance().getMainWindow()->setCentralWidget(&view);

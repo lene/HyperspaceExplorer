@@ -12,6 +12,7 @@
 #include <QAction>
 #include <QMainWindow>
 #include <QString>
+#include <QStringList>
 
 #include <fstream>
 #include <sstream>
@@ -33,7 +34,7 @@ using VecMath::NestedVector;
 
 struct Global::Impl {
 
-  Impl(): mainWindow(NULL), quitAction(NULL) { }
+  Impl(): mainWindow(NULL), quitAction(NULL), rcdirs() { }
  
   /** whether to check for memory usage. this member is set or unset from
    *  check_proc_meminfo(), depending on the success of that function.  
@@ -57,6 +58,8 @@ struct Global::Impl {
   QMainWindow *mainWindow;
   /** global QAction that quits the program                             */
   QAction *quitAction;
+
+  QStringList rcdirs;
   
 };
 
@@ -67,6 +70,8 @@ Color Global::Impl::Grey50( 0.5, 0.5, 0.5, 1.0 );
 Color Global::Impl::fog_color(0.2, 0.2, 0.2, 1.0);
 
 Global::Global(): SR3(sqrt(3.)), pImpl_(new Impl) { }
+
+QStringList& Global::rcdirs() { return pImpl_->rcdirs; }
 
 QAction* Global::getQuitAction() {
     if (!pImpl_->quitAction) {

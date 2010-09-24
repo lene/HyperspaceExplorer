@@ -11,20 +11,13 @@
 #if !defined(GLOBALS_H)
 #define GLOBALS_H
 
-#include <string>
-#include <cmath>
-
-//#include <QMessageBox>
-#include <QStringList>
-
-//#include "Vector.h"
 #include "SingletonHolder.h"
 
 class Color;
 
 class QAction;
 class QMainWindow;
-class QString;
+class QStringList;
 
 /// As a workaround to end the embarassing practice of keeping global variables,
 /// I have created this class as a singleton. You might also call it a
@@ -35,12 +28,14 @@ class QString;
  *  Globals::Instance().
  *  @author Helge Preuss <lene.preuss@gmail.com>                         */
 class Global {
+  
     public:
-        Global();
+  
+      Global();
 
         /** why tf did i make that global again? damn, i really should write
          *  comments immediately after writing the code                       */
-        QStringList rcdirs;
+        QStringList &rcdirs();
 
         /// \return The QAction associated with quitting the application
         QAction *getQuitAction();

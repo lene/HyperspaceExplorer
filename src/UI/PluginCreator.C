@@ -30,8 +30,8 @@ namespace UI {
         bool PluginCreator::loadFunction(const QString &type, QDialog *parent) {
             QString libName;
             //  iterate through resource directories until plugin subdirectory found
-            for (QStringList::Iterator it = Globals::Instance().rcdirs.begin();
-                it != Globals::Instance().rcdirs.end();
+            for (QStringList::Iterator it = Globals::Instance().rcdirs().begin();
+                it != Globals::Instance().rcdirs().end();
                 ++it ) {
                 QDir current (*it);
                 if (current.exists ("plugins/"+type)) {  //  plugin subdir present?
@@ -77,7 +77,7 @@ namespace UI {
         bool PluginCreator::checkValidity(const QString &type, const QString &name,
                                         QDialog *parent) {
             QString currentPath = QDir::currentPath();
-            QDir::setCurrent (*(Globals::Instance().rcdirs.begin()));
+            QDir::setCurrent (*(Globals::Instance().rcdirs().begin()));
 
             if (!QDir::current ().exists ("plugins"))
                 QDir::current ().mkdir ("plugins");
@@ -121,7 +121,7 @@ namespace UI {
         *  @return success                                                           */
         bool PluginCreator::compile (QString name) {
             QString compileCommand = "g++ -I.. -I../.. -I"
-                    +Globals::Instance().rcdirs.join("/plugins -I")+"/plugins"
+                    +Globals::Instance().rcdirs().join("/plugins -I")+"/plugins"
                     +" -g -c -Wall -fPIC \""
                     +name
                     +".C\" > /tmp/HyperspaceExplorer.compile.errors 2>&1";
