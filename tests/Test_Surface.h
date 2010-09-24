@@ -5,6 +5,8 @@
 
 #include "Surface.h"
 
+class MockView;
+
 /// Unit tests for class Surface and its implementations
 class Test_Surface: public QObject {
 
@@ -45,8 +47,9 @@ class Test_Surface: public QObject {
     };
 
     private slots:
-      void initTestCase();
-      void cleanupTestCase();
+
+        void initTestCase();
+        void init();
 
         void functionValue();
         void meetsFormalRequirements();
@@ -79,7 +82,11 @@ class Test_Surface: public QObject {
         void t_tanz();
 
     private:
-        SurfaceTestImplementation *_function;
+      
+      void testFunction(Surface &f);
+
+      SurfaceTestImplementation *_function;
+      MockView *view_;
 };
 
 

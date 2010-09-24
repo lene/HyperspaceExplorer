@@ -228,9 +228,8 @@ void Surface::Draw (UI::View *view) {
  *  @param t current t value                                                  */
 void Surface::DrawStrip (unsigned t, UI::View *view) {
 
-#if 0
+#if 1
   for (unsigned u = 0; u <= getUsteps(); u++) {
-    std::cerr << t << "/" << getTsteps() << ", " << u << "/" << getUsteps() << endl;
     view->drawQuadrangle(X()[t][u], X()[t+1][u], X()[t+1][u+1], X()[t][u+1],
                          Xscr()[t][u], Xscr()[t+1][u], Xscr()[t+1][u+1], Xscr()[t][u+1]);
   }

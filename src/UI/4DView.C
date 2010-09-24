@@ -257,6 +257,7 @@ void C4DView::drawQuadrangle(const VecMath::Vector<4> &x0, const VecMath::Vector
                              const VecMath::Vector<4> &x2, const VecMath::Vector<4> &x3,
                              const VecMath::Vector<3> &xscr0, const VecMath::Vector<3> &xscr1,
                              const VecMath::Vector<3> &xscr2, const VecMath::Vector<3> &xscr3) {
+std::cerr << "drawQuadrangle()\n";
   glBegin (GL_QUADS);
     drawVertex(x0, xscr0);
     drawVertex(x1, xscr1);

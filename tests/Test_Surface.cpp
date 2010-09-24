@@ -1,6 +1,8 @@
 
 #include "Test_Surface.h"
 
+#include "MockView.h"
+
 #include "ComplexFunction.h"
 #include "ColorManager.h"
 
@@ -34,7 +36,9 @@ void Test_Surface::initTestCase() {
     ColMgrMgr::Instance().setColorManager("XYZ to RGB");
 }
 
-void Test_Surface::cleanupTestCase() { }
+void Test_Surface::init() {
+  view_ = new MockView;
+}
 
 void Test_Surface::functionValue() {
   _function = new SurfaceTestImplementation();
@@ -151,7 +155,7 @@ void Test_Surface::draw() {
   _function->Transform(Rotation<4>(), Vector<4>());
   _function->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
 
-  _function->Draw(NULL);
+  _function->Draw(view_);
 
   QSKIP("No idea how to correctly test drawing yet", SkipSingle);
 }
@@ -229,7 +233,7 @@ template<typename T> T random_number() {
   return (T)qrand()/(T)RAND_MAX;
 }
 
-void testFunction(Surface &f) {
+void Test_Surface::testFunction(Surface &f) {
   qsrand(1);
   ParameterMap parameters = f.getParameters();
 //  cerr << f.getFunctionName().toStdString() << " parameters ("<< parameters.size() << "): " << parameters.toString() << endl;
@@ -238,6 +242,6 @@ void testFunction(Surface &f) {
   VecMath::Vector<4> t(random_number<double>(), random_number<double>(), random_number<double>(), random_number<double>());
   f.Transform(r, t);
   f.Project(2., 4., false);
-  f.Draw(NULL);
+  f.Draw(view_);
   f.ReInit(1., 1., 1., -2., 2., 0.2, -2., 2., 0.2);
 }
