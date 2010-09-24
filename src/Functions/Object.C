@@ -137,6 +137,14 @@ void Object::ReInit (double, double, double,
     Initialize();
 }
 
+void Object::for_each(Function::function_on_fourspace_vertex apply) {
+  std::for_each(X.begin(), X.end(), apply);
+}
+
+void Object::for_each(Function::function_on_projected_vertex apply) {
+  std::for_each(Xscr.begin(), Xscr.end(), apply);
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 /// Hypercube constructor

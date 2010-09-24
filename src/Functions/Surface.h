@@ -126,6 +126,9 @@ class Surface: public SurfaceBase {
         /// \see Function::getDefinitionSpaceDimensions()
         virtual unsigned getDefinitionSpaceDimensions() { return 2; }
 
+        virtual void for_each(function_on_fourspace_vertex apply);
+        virtual void for_each(function_on_projected_vertex apply);
+
         /// Function evaluation operator for three parameters
         /** @param u first argument, e.g. y or u
          *  @param v second argument, e.g. z or v

@@ -104,6 +104,18 @@ void Surface::ReInit(double, double, double,
 
 }
 
+void Surface::for_each(Function::function_on_fourspace_vertex apply) {
+  for (unsigned t = 0; t < getTsteps(); t++)
+    for (unsigned u = 0; u < getUsteps(); u++)
+      apply(X()[t][u]);
+}
+
+void Surface::for_each(Function::function_on_projected_vertex apply) {
+  for (unsigned t = 0; t < getTsteps(); t++)
+    for (unsigned u = 0; u < getUsteps(); u++)
+      apply(Xscr()[t][u]);
+}
+
 /** \param tmin minimal value in t
  *  \param tmax maximal value in t
  *  \param dt stepsize in t

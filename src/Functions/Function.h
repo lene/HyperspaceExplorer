@@ -106,6 +106,11 @@ class Function {
         /// three-dimensional array of Vector<4>, implemented as a nested std::vector
         typedef std::vector<vec4vec2D> vec4vec3D;
 
+        /// function that is applied on the original and transformed vertices
+        typedef void(*function_on_fourspace_vertex)(const VecMath::Vector<4> &);
+        /// function that is applied on vertices transformed and projected into 3-space
+        typedef void(*function_on_projected_vertex)(const VecMath::Vector<3> &);
+
         /// Function default c'tor
         Function();
         /// Function c'tor given a definition set in \f$ R^3 \f$ (as parameter space)
@@ -163,6 +168,9 @@ class Function {
         template <typename T> void setParameter(const ParameterMap &parms,
                                                 T &parm,
                                                 const std::string &key);
+
+        virtual void for_each(function_on_fourspace_vertex apply) = 0;
+        virtual void for_each(function_on_projected_vertex apply) = 0;
 
     protected:
         /// Function evaluation operator for three parameters

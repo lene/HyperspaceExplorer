@@ -101,6 +101,20 @@ void RealFunction::calibrateColors() const {
   }
 }
 
+void RealFunction::for_each(Function::function_on_fourspace_vertex apply) {
+  for (unsigned t = 0; t < getTsteps(); t++)
+    for (unsigned u = 0; u < getUsteps(); u++)
+      for (unsigned v = 0; v < getVsteps(); v++)
+        apply(X()[t][u][v]);
+}
+
+void RealFunction::for_each(Function::function_on_projected_vertex apply) {
+  for (unsigned t = 0; t < getTsteps(); t++)
+    for (unsigned u = 0; u < getUsteps(); u++)
+      for (unsigned v = 0; v < getVsteps(); v++)
+        apply(Xscr()[t][u][v]);
+}
+
 std::pair< double, double > RealFunction::findExtremesInW() const {
 
   double Wmin = 0., Wmax = 0.;

@@ -53,6 +53,9 @@ class Object: public Function {
         /// \see Function::getDefinitionSpaceDimensions()
         virtual unsigned getDefinitionSpaceDimensions() { return 0; }
 
+        virtual void for_each(function_on_fourspace_vertex apply);
+        virtual void for_each(function_on_projected_vertex apply);
+
     protected:
         virtual void Initialize();
 

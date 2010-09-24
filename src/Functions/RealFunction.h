@@ -63,39 +63,39 @@ class RealBase: public Function {
                 _usteps (unsigned ((umax-umin)/du+1)),
                 _vsteps (unsigned ((vmax-vmin)/dv+1)) { }
 
-        /// number of steps in t
-        unsigned &getTsteps() { return _tsteps; }
-        /// number of steps in t
-        unsigned getTsteps() const { return _tsteps > 0? _tsteps: 1; }
-        /// number of steps in u
-        unsigned &getUsteps() { return _usteps; }
-        /// number of steps in u
-        unsigned getUsteps() const { return _usteps > 0? _usteps: 1; }
-        /// number of steps in v
-        unsigned &getVsteps()  { return _vsteps; }
-        /// number of steps in v
-        unsigned getVsteps() const { return _vsteps > 0? _vsteps: 1; }
-
     protected:
 
-        double &getTmin() { return _tmin; }          ///< min. value of the first parameter, t
-        double getTmin() const { return _tmin; }     ///< min. value of the first parameter, t
-        double &getTmax() { return _tmax; }          ///< max. value of the first parameter, t
-        double getTmax() const { return _tmax; }     ///< max. value of the first parameter, t
-        double &getDt() { return _dt; }              ///< delta in t
-        const double &getDt() const { return _dt; }  ///< delta in t
-        double &getUmin() { return _umin; }          ///< min. value of the second parameter, u
-        double getUmin() const { return _umin; }     ///< min. value of the second parameter, u
-        double &getUmax() { return _umax; }          ///< max. value of the second parameter, u
-        double getUmax() const { return _umax; }     ///< max. value of the second parameter, u
-        double &getDu() { return _du; }              ///< delta in u
-        const double &getDu() const { return _du; }  ///< delta in u
-        double &getVmin() { return _vmin; }          ///< min. value of the third parameter, v
-        double getVmin() const { return _vmin; }     ///< min. value of the third parameter, v
-        double &getVmax() { return _vmax; }          ///< max. value of the third parameter, v
-        double getVmax() const { return _vmax; }     ///< max. value of the third parameter, v
-        double &getDv() { return _dv; }              ///< delta in v
-        const double &getDv() const { return _dv; }  ///< delta in v
+      /// number of steps in t
+      unsigned &getTsteps() { return _tsteps; }
+      /// number of steps in t
+      unsigned getTsteps() const { return _tsteps > 0? _tsteps: 1; }
+      /// number of steps in u
+      unsigned &getUsteps() { return _usteps; }
+      /// number of steps in u
+      unsigned getUsteps() const { return _usteps > 0? _usteps: 1; }
+      /// number of steps in v
+      unsigned &getVsteps()  { return _vsteps; }
+      /// number of steps in v
+      unsigned getVsteps() const { return _vsteps > 0? _vsteps: 1; }
+
+      double &getTmin() { return _tmin; }          ///< min. value of the first parameter, t
+      double getTmin() const { return _tmin; }     ///< min. value of the first parameter, t
+      double &getTmax() { return _tmax; }          ///< max. value of the first parameter, t
+      double getTmax() const { return _tmax; }     ///< max. value of the first parameter, t
+      double &getDt() { return _dt; }              ///< delta in t
+      const double &getDt() const { return _dt; }  ///< delta in t
+      double &getUmin() { return _umin; }          ///< min. value of the second parameter, u
+      double getUmin() const { return _umin; }     ///< min. value of the second parameter, u
+      double &getUmax() { return _umax; }          ///< max. value of the second parameter, u
+      double getUmax() const { return _umax; }     ///< max. value of the second parameter, u
+      double &getDu() { return _du; }              ///< delta in u
+      const double &getDu() const { return _du; }  ///< delta in u
+      double &getVmin() { return _vmin; }          ///< min. value of the third parameter, v
+      double getVmin() const { return _vmin; }     ///< min. value of the third parameter, v
+      double &getVmax() { return _vmax; }          ///< max. value of the third parameter, v
+      double getVmax() const { return _vmax; }     ///< max. value of the third parameter, v
+      double &getDv() { return _dv; }              ///< delta in v
+      const double &getDv() const { return _dv; }  ///< delta in v
 
         static double _min, ///< default value for all lower bounds
                       _max, ///< default value for all upper bounds
@@ -129,7 +129,9 @@ class RealBase: public Function {
  *  \ingroup RealGroup
  *  @author Lene Preuss <lene.preuss@gmail.com>                         */
 class RealFunction: public RealBase {
+
   public:
+
     RealFunction();
     RealFunction(double tmin, double tmax, double dt,
                  double umin, double umax, double du,
@@ -162,6 +164,9 @@ class RealFunction: public RealBase {
         F = _function->f(VecMath::Vector<3>(t, u, v));
         return F;
     }
+
+    virtual void for_each(function_on_fourspace_vertex apply);
+    virtual void for_each(function_on_projected_vertex apply);
 
   protected:
 
