@@ -42,12 +42,8 @@
  *  \ingroup RealGroup
  *  \author Lene Preuss <lene.preuss@gmail.com>                         */
 class RealBase: public Function {
+
     public:
-        /** type of the function used to generate values, optimized with a
-         *  reference as return value                                         */
-        typedef VecMath::Vector<4> &function_type(double, double, double);
-        /// the real, raw type of the function used to generate values
-        typedef VecMath::Vector<4> raw_function_type (double, double, double);
 
         RealBase(): Function() { }
         /// constructor
@@ -97,9 +93,9 @@ class RealBase: public Function {
       double &getDv() { return _dv; }              ///< delta in v
       const double &getDv() const { return _dv; }  ///< delta in v
 
-        static double _min, ///< default value for all lower bounds
-                      _max, ///< default value for all upper bounds
-                      _d;   ///< default value for all stepsizes
+      static double min_; ///< default value for all lower bounds
+      static double max_; ///< default value for all upper bounds
+      static double d_;   ///< default value for all stepsizes
 
     private:
         double _tmin, ///< min. value of the first parameter, here called t
@@ -132,6 +128,11 @@ class RealFunction: public RealBase {
 
   public:
 
+        /** type of the function used to generate values, optimized with a
+         *  reference as return value                                         */
+        typedef VecMath::Vector<4> &function_type(double, double, double);
+        /// the real, raw type of the function used to generate values
+        typedef VecMath::Vector<4> raw_function_type (double, double, double);
     RealFunction();
     RealFunction(double tmin, double tmax, double dt,
                  double umin, double umax, double du,

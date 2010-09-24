@@ -34,14 +34,14 @@ using VecMath::Vector;
 using VecMath::Matrix;
 using std::tr1::shared_ptr;
 
-double RealBase::_min = -1.;
-double RealBase::_max =  1.;
-double RealBase::_d = 0.1;
+double RealBase::min_ = -1.;
+double RealBase::max_ =  1.;
+double RealBase::d_ = 0.1;
 
 /** RealFunction c'tor given only a name: All grid values are set to defaults
  */
 RealFunction::RealFunction():
-    RealBase(_min, _max, _d, _min, _max, _d, _min, _max, _d,
+    RealBase(min_, max_, d_, min_, max_, d_, min_, max_, d_,
              ParameterMap()) { }
  
 /** RealFunction c'tor given a definition set in \f$ R^3 \f$ (as parameter space)

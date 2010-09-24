@@ -8,7 +8,6 @@
 
 #include "Function.h"
 #include "Log.h"
-#include "ColorManager.h"
 #include "ParameterMap.h"
 
 using std::cerr;
@@ -26,9 +25,6 @@ struct Function::Impl {
         void insertParameter(const std::string &name, FunctionParameter::parameter_ptr_type defaultValue) {
           _parameters.insert(std::make_pair(name, defaultValue));
         }
-
-        /// counter for assessing how much RAM is used
-        unsigned _numVertices;
 
         /// list of the parameters to the function
         ParameterMap _parameters;
