@@ -43,21 +43,18 @@
  *
  *  \ingroup RealGroup
  *  \author Lene Preuss <lene.preuss@gmail.com>                         */
-class RealBase: public Function {
+class RealFunctionDefinitionRange {
 
     public:
 
 //        RealBase(): Function() { }
         /// constructor
-        RealBase(double tmin, double tmax, double dt,
+        RealFunctionDefinitionRange(double tmin, double tmax, double dt,
                  double umin, double umax, double du,
-                 double vmin, double vmax, double dv,
-                 ParameterMap _parms = ParameterMap()):
-                Function(_parms),
+                 double vmin, double vmax, double dv):
                 tDefinitionSpace_(tmin, tmax, dt),
                 uDefinitionSpace_(umin, umax, du),
                 vDefinitionSpace_(vmin, vmax, dv) { }
-    protected:
 
       /// number of steps in t
       unsigned getTsteps() const { return tDefinitionSpace_.getNumSteps(); }
@@ -118,7 +115,7 @@ class RealBase: public Function {
  *
  *  \ingroup RealGroup
  *  @author Lene Preuss <lene.preuss@gmail.com>                         */
-class RealFunction: public RealBase {
+class RealFunction: public Function {
 
   public:
 
@@ -182,6 +179,10 @@ class RealFunction: public RealBase {
     /// Array of projected function values.
     const VecMath::NestedVector< VecMath::Vector<3>, 3 > &Xscr() const;
 
+    unsigned getTsteps() const { return definitionRange_.getTsteps(); }
+    unsigned getUsteps() const { return definitionRange_.getUsteps(); }
+    unsigned getVsteps() const { return definitionRange_.getVsteps(); }
+    
     /// Pointer to the actual ParametricFunction doing all the work.
     std::tr1::shared_ptr< ParametricFunction<4, 3> > _function;
 
@@ -198,6 +199,7 @@ class RealFunction: public RealBase {
     /// Finds maximum and minimum function value in w.
     std::pair<double, double> findExtremesInW() const;
 
+    RealFunctionDefinitionRange definitionRange_;
     /// Array of function values.
     FunctionValueGrid<4, 3> _X;
     /// Array of function values after transform.
