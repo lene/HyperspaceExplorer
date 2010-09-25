@@ -28,6 +28,7 @@ class DefinitionSpaceRange {
     DefinitionSpaceRange();
     DefinitionSpaceRange(double minValue, double maxValue, double stepsize);
     DefinitionSpaceRange(double minValue, double maxValue, unsigned numSteps);
+    ~DefinitionSpaceRange();
   
     double getMinValue() const;
     void setMinValue(double minValue);

@@ -72,11 +72,11 @@ void Function::SetParameters(const ParameterMap& ) {
 }
 ParameterMap Function::getParameters() { return pImpl_->_parameters; }
 
-void Function::for_each(Function::function_on_fourspace_and_transformed_vertex apply) {
+void Function::for_each(Function::function_on_fourspace_and_transformed_vertex) {
   throw NotYetImplementedException("for_each(function_on_fourspace_and_transformed_vertex)");
 }
 
-void Function::for_each(Function::function_on_fourspace_transformed_and_projected_vertex apply) {
+void Function::for_each(Function::function_on_fourspace_transformed_and_projected_vertex) {
   throw NotYetImplementedException("for_each(function_on_fourspace_transformed_and_projected_vertex)");
 }
 

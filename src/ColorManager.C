@@ -107,6 +107,7 @@ void ColorManagerManager::setColor(const VecMath::Vector< 4 >& x) {
 Color ColorManagerManager::getColor(const VecMath::Vector< 4 >& x) {
     if (isColorManagerSet()) return colorManager->getColor(x);
 //    throw ColorManagerUnsetException("getColor");
+    return Color();
 }
 
 void ColorManagerManager::depthCueColor(double wmax, double wmin, double w,
@@ -124,6 +125,7 @@ void ColorManagerManager::setRGB(const Color& _col)
 std::string ColorManagerManager::getContents() {
     if (isColorManagerSet()) return colorManager->getContents();
 //    throw ColorManagerUnsetException("setRGB");
+    return "";
 }
 
 /** \param name The name by which this class is called from outside. This name

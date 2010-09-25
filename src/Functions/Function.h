@@ -196,9 +196,15 @@ class Function {
 
     protected:
         /// Function evaluation operator for three parameters
+        /** \todo this is not general enough. should take the number of arguments
+         *  that are actually needed.
+         */
         virtual VecMath::Vector<4> &operator () (double, double, double) = 0;
 
         /// Numerical calculation of the derivatives in t, u and v
+        /** \todo this is not general enough. should take the number of arguments
+         *  that are actually needed.
+         */
         virtual vec4vec1D df (double, double, double);
 
         /// This abstract function is called in the constructor of descendants

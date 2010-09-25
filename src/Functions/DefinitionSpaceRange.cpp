@@ -73,6 +73,8 @@ DefinitionSpaceRange::DefinitionSpaceRange(double minValue, double maxValue, dou
 DefinitionSpaceRange::DefinitionSpaceRange(double minValue, double maxValue, unsigned int numSteps):
   pImpl_(new Impl(minValue, maxValue, numSteps)) { }
 
+DefinitionSpaceRange::~DefinitionSpaceRange() { }
+
 double DefinitionSpaceRange::getMaxValue() const { return pImpl_->maxValue_; }
 void DefinitionSpaceRange::setMaxValue(double maxValue) {
   pImpl_->maxValue_ = maxValue;

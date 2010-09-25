@@ -2,10 +2,10 @@
 #include "Sponge.h"
 
 #include "Log.h"
+#include "ScopedTimer.h"
 
 #include <QtConcurrentRun>
 
-#include <time.h>
 #include <algorithm>
 
 #define CONCURRENT
@@ -139,6 +139,7 @@ unsigned long AltSponge::MemRequired (unsigned distance) {
     return (unsigned long) ((pow (SpongePerLevel, int (Level))*32)/1024+8)*1024*1024;
 }
 
+#undef DEBUG_SPONGE
 
 /// This function actually creates the hypersponge.
 /** It views it as an assembly
@@ -166,8 +167,6 @@ unsigned long AltSponge::MemRequired (unsigned distance) {
 #if USE_INT_INDICES
 void AltSponge::Initialize(void) {
 
-  clock_t start_time = clock ();                     //  record start time
-
   distance = abs(distance);
   if (distance > 3) distance = 3;     //  dunno if this is wise
 
@@ -178,8 +177,9 @@ void AltSponge::Initialize(void) {
   unsigned TotalCubes = pow(SpongePerLevel, Level);
 
   for (unsigned current_level = 0; current_level <= Level; current_level++) {
-
+#   ifdef DEBUG_SPONGE
     SingletonLog::Instance() << "Level: " << current_level << "/" << Level << " -- total cubes: " << TotalCubes << "\n";
+#   endif
 
     if (current_level < 1) {
 
@@ -238,28 +238,30 @@ void AltSponge::Initialize(void) {
   }
 
   Object::Initialize();
-  #   if 0
+# ifdef DEBUG_SPONGE
   SingletonLog::Instance() << "time for initializing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
-#endif
+# endif
 }
 
 #else
 
 void AltSponge::Initialize(void) {
 
-  clock_t start_time = clock ();                     //  record start time
+# ifdef DEBUG_SPONGE
+  ScopedTimer timer("AltSponge::Initialize()");
+# endif
 
   distance = abs(distance);
   if (distance > 3) distance = 3;     //  dunno if this is wise
 
+
+  for (unsigned current_level = 0; current_level <= Level; current_level++) {
+#   ifdef DEBUG_SPONGE
     unsigned long SpongePerLevel = ((distance == 0)? 81:
                                     (distance == 1)? 72:
                                     (distance == 2)? 48:
                                     16);
-  unsigned TotalCubes = pow(SpongePerLevel, Level);
-
-  for (unsigned current_level = 0; current_level <= Level; current_level++) {
-#   if 0
+    unsigned TotalCubes = pow(SpongePerLevel, Level);
     SingletonLog::Instance() << "Level: " << current_level << "/" << Level << " -- total cubes: " << TotalCubes << "\n";
 #   endif
     if (current_level < 1) {
@@ -270,7 +272,7 @@ void AltSponge::Initialize(void) {
       Hypercube::Initialize();
 
     } else {
-#     if 0
+#     ifdef DEBUG_SPONGE
       for (unsigned i = 0; i < X.size(); ++i) cerr << "X[" << i << "]" << X[i]<< endl;
 #     endif
 
@@ -311,7 +313,7 @@ void AltSponge::Initialize(void) {
                   // ...
                   surface_vec_type::iterator found = std::find(Surface.begin(), Surface.end(), Sold[i]);
                   if (found != Surface.end()) {
-#                   if 0
+#                   ifdef DEBUG_SPONGE
                       found->print(); cerr << " == " << endl; Sold[i].print();
 #                   endif
                     Surface.erase(std::find(Surface.begin(), Surface.end(), Sold[i]));
@@ -337,7 +339,7 @@ void AltSponge::Initialize(void) {
   Object::Initialize();
 
 //  std::for_each(Surface.begin(), Surface.end(), std::mem_fun_ref(&SurfaceType<4, 4>::print));
-#   if 0
+#ifdef DEBUG_SPONGE
   SingletonLog::Instance() << "time for initializing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
 #endif
 }
@@ -519,8 +521,10 @@ Sponge::~Sponge () {
  *  they are Hypersponges with a \em level reduced by 1.
  */
 void Sponge::Initialize(void) {
-//    SingletonLog::Instance().log("Sponge::Initialize()");
-    clock_t start_time = clock ();                     //  record start time
+    
+# ifdef DEBUG_SPONGE
+  ScopedTimer timer("Sponge::Initialize()");
+# endif
 
     if (Level < 1)
         List.push_back (new Hypercube (rad*3./2., center));
@@ -571,7 +575,7 @@ void Sponge::Initialize(void) {
     }
 
     Object::Initialize();
-#   if 0
+#   ifdef DEBUG_SPONGE
     SingletonLog::Instance() << "time for initializing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
 #   endif
 }
