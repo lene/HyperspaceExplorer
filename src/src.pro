@@ -28,6 +28,7 @@ INCLUDEPATH += ./Functions
 DEPENDPATH += ./Functions
 HEADERS += Functions/ComplexFunction.h \
            Functions/CustomFunction.h \
+           Functions/DefinitionSpaceRange.h \
            Functions/ParametricFunction.h \
            Functions/FunctionValueGrid.h \
            Functions/LoopHelper.h \
@@ -37,8 +38,8 @@ HEADERS += Functions/ComplexFunction.h \
            Functions/ViewpointList.impl.h \
            Functions/Projection.h \
            Functions/Projection.impl.h \
-	   Functions/GridDrawer.h \
-	   Functions/GridDrawer.impl.h \
+           Functions/GridDrawer.h \
+           Functions/GridDrawer.impl.h \
            Functions/Function.h \
            Functions/Object.h \
            Functions/Surface.h \
@@ -54,6 +55,7 @@ HEADERS += Functions/ComplexFunction.h \
 #          Functions/SteinerFunction.h
 SOURCES += Functions/ComplexFunction.C \
            Functions/CustomFunction.C \
+           Functions/DefinitionSpaceRange.cpp \
            Functions/Function.C \
            Functions/Surface.C \
            Functions/Object.C \

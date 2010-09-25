@@ -27,6 +27,8 @@
 #include "FunctionValueGrid.h"
 #include "NestedVector.h"
 
+#include "DefinitionSpaceRange.h"
+
 /// \em RealBase provides a base class for functions which take three parameters
 /** The \em RealBase interface provides abstract members for the evaluation of
  *  the function values on a three-dimensional grid.
@@ -45,71 +47,63 @@ class RealBase: public Function {
 
     public:
 
-        RealBase(): Function() { }
+//        RealBase(): Function() { }
         /// constructor
         RealBase(double tmin, double tmax, double dt,
                  double umin, double umax, double du,
                  double vmin, double vmax, double dv,
                  ParameterMap _parms = ParameterMap()):
                 Function(_parms),
-                _tmin (tmin), _tmax (tmax), _dt (dt),
-                _umin (umin), _umax (umax), _du (du),
-                _vmin (vmin), _vmax (vmax), _dv (dv),
-                _tsteps (unsigned ((tmax-tmin)/dt+1)),
-                _usteps (unsigned ((umax-umin)/du+1)),
-                _vsteps (unsigned ((vmax-vmin)/dv+1)) { }
-
+                tDefinitionSpace_(tmin, tmax, dt),
+                uDefinitionSpace_(umin, umax, du),
+                vDefinitionSpace_(vmin, vmax, dv) { }
     protected:
 
       /// number of steps in t
-      unsigned &getTsteps() { return _tsteps; }
+      unsigned getTsteps() const { return tDefinitionSpace_.getNumSteps(); }
       /// number of steps in t
-      unsigned getTsteps() const { return _tsteps > 0? _tsteps: 1; }
+      void setTsteps(unsigned numSteps) { tDefinitionSpace_.setNumSteps(numSteps); }
+      void decrementTsteps() { setTsteps(getTsteps()-1); }
       /// number of steps in u
-      unsigned &getUsteps() { return _usteps; }
+      unsigned getUsteps() const { return uDefinitionSpace_.getNumSteps(); }
       /// number of steps in u
-      unsigned getUsteps() const { return _usteps > 0? _usteps: 1; }
+      void setUsteps(unsigned numSteps) { uDefinitionSpace_.setNumSteps(numSteps); }
+      void decrementUsteps() { setUsteps(getUsteps()-1); }
       /// number of steps in v
-      unsigned &getVsteps()  { return _vsteps; }
+      unsigned getVsteps() const { return vDefinitionSpace_.getNumSteps(); }
       /// number of steps in v
-      unsigned getVsteps() const { return _vsteps > 0? _vsteps: 1; }
+      void setVsteps(unsigned numSteps) { vDefinitionSpace_.setNumSteps(numSteps); }
+      void decrementVsteps() { setVsteps(getVsteps()-1); }
 
-      double &getTmin() { return _tmin; }          ///< min. value of the first parameter, t
-      double getTmin() const { return _tmin; }     ///< min. value of the first parameter, t
-      double &getTmax() { return _tmax; }          ///< max. value of the first parameter, t
-      double getTmax() const { return _tmax; }     ///< max. value of the first parameter, t
-      double &getDt() { return _dt; }              ///< delta in t
-      const double &getDt() const { return _dt; }  ///< delta in t
-      double &getUmin() { return _umin; }          ///< min. value of the second parameter, u
-      double getUmin() const { return _umin; }     ///< min. value of the second parameter, u
-      double &getUmax() { return _umax; }          ///< max. value of the second parameter, u
-      double getUmax() const { return _umax; }     ///< max. value of the second parameter, u
-      double &getDu() { return _du; }              ///< delta in u
-      const double &getDu() const { return _du; }  ///< delta in u
-      double &getVmin() { return _vmin; }          ///< min. value of the third parameter, v
-      double getVmin() const { return _vmin; }     ///< min. value of the third parameter, v
-      double &getVmax() { return _vmax; }          ///< max. value of the third parameter, v
-      double getVmax() const { return _vmax; }     ///< max. value of the third parameter, v
-      double &getDv() { return _dv; }              ///< delta in v
-      const double &getDv() const { return _dv; }  ///< delta in v
+      void setTmin(double tmin) { tDefinitionSpace_.setMinValue(tmin); }
+      double getTmin() const { return tDefinitionSpace_.getMinValue(); }
+      void setTmax(double tmax) { tDefinitionSpace_.setMaxValue(tmax); }
+      double getTmax() const { return tDefinitionSpace_.getMaxValue(); }
+      void setDt(double dt) { tDefinitionSpace_.setStepsize(dt); }
+      double getDt() const { return tDefinitionSpace_.getStepsize(); }
+      void setUmin(double umin) { uDefinitionSpace_.setMinValue(umin); }
+      double getUmin() const { return uDefinitionSpace_.getMinValue(); }     ///< min. value of the first parameter, t
+      void setUmax(double umax) { uDefinitionSpace_.setMaxValue(umax); }
+      double getUmax() const { return uDefinitionSpace_.getMaxValue(); }     ///< min. value of the first parameter, t
+      void setDu(double du) { uDefinitionSpace_.setStepsize(du); }
+      double getDu() const { return uDefinitionSpace_.getStepsize(); }  ///< delta in t
+      void setVmin(double vmin) { vDefinitionSpace_.setMinValue(vmin); }
+      double getVmin() const { return vDefinitionSpace_.getMinValue(); }     ///< min. value of the first parameter, t
+      void setVmax(double vmax) { vDefinitionSpace_.setMaxValue(vmax); }
+      double getVmax() const { return vDefinitionSpace_.getMaxValue(); }     ///< min. value of the first parameter, t
+      void setDv(double dv) { vDefinitionSpace_.setStepsize(dv); }
+      double getDv() const { return vDefinitionSpace_.getStepsize(); }  ///< delta in t
 
       static double min_; ///< default value for all lower bounds
       static double max_; ///< default value for all upper bounds
       static double d_;   ///< default value for all stepsizes
 
     private:
-        double _tmin, ///< min. value of the first parameter, here called t
-               _tmax, ///< min. value of the first parameter, here called t
-               _dt,   ///< stepsize in first parameter
-               _umin, ///< min. value of the second parameter, here called u
-               _umax, ///< min. value of the second parameter, here called u
-               _du,   ///< stepsize in second parameter
-               _vmin, ///< min. value of the third parameter, here called v
-               _vmax, ///< min. value of the third parameter, here called v
-               _dv;   ///< stepsize in third parameter
-        unsigned _tsteps, ///< number of steps in t
-                 _usteps, ///< number of steps in u
-                 _vsteps; ///< number of steps in v
+      
+      DefinitionSpaceRange tDefinitionSpace_;
+      DefinitionSpaceRange uDefinitionSpace_;
+      DefinitionSpaceRange vDefinitionSpace_;
+
 };
 
 /// A RealFunction is a mathematical function  \f$ f: R^3 \rightarrow R \f$ .

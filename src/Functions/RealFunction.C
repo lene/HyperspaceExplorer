@@ -65,13 +65,13 @@ RealFunction::RealFunction(double tmin, double tmax, double dt,
     cerr << "Using a " << getTsteps() << "x" << getUsteps() << "x" << getVsteps()
          << " grid would require approx. " << MemRequired () << " MB of memory.\n";
     while (MemRequired () > Globals::Instance().getMaxMemory()) {
-      getTsteps()--; getUsteps()--; getVsteps()--;
+      decrementTsteps(); decrementUsteps(); decrementVsteps();
     }
     cerr << "Using a " << getTsteps() << "x" << getUsteps() << "x" << getVsteps()
          << " grid instead." << endl;
-    getDt() = (getTmax()-getTmin())/getTsteps();
-    getDu() = (getUmax()-getUmin())/getUsteps();
-    getDv() = (getVmax()-getVmin())/getVsteps();
+    setDt((getTmax()-getTmin())/getTsteps());
+    setDu((getUmax()-getUmin())/getUsteps());
+    setDv((getVmax()-getVmin())/getVsteps());
   }
 }
 
@@ -180,12 +180,12 @@ void RealFunction::ReInit(double tmin, double tmax, double dt,
 void RealFunction::setBoundariesAndStepwidth(double tmin, double tmax, double dt,
                                              double umin, double umax, double du,
                                              double vmin, double vmax, double dv) {
-  getTmin() = tmin;   getTmax() = tmax;   getDt() = dt;
-  getUmin() = umin;   getUmax() = umax;   getDu() = du;
-  getVmin() = vmin;   getVmax() = vmax;   getDv() = dv;
-  getTsteps() = unsigned ((getTmax()-getTmin())/getDt()+2);
-  getUsteps() = unsigned ((getUmax()-getUmin())/getDu()+2);
-  getVsteps() = unsigned ((getVmax()-getVmin())/getDv()+2);
+  setTmin(tmin);   setTmax(tmax);   setDt(dt);
+  setUmin(umin);   setUmax(umax);   setDu(du);
+  setVmin(vmin);   setVmax(vmax);   setDv(dv);
+  setTsteps(unsigned((getTmax()-getTmin())/getDt()+2));
+  setUsteps(unsigned((getUmax()-getUmin())/getDu()+2));
+  setVsteps(unsigned((getVmax()-getVmin())/getDv()+2));
 }
 
 /// Transforms a RealFunction
