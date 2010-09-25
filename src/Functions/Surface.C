@@ -26,13 +26,16 @@ using VecMath::Matrix;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-double SurfaceBase::_min = -1.;
-double SurfaceBase::_max =  1.;
-double SurfaceBase::_d = 0.1;
+double SurfaceDefinitionRange::_min = -1.;
+double SurfaceDefinitionRange::_max =  1.;
+double SurfaceDefinitionRange::_d = 0.1;
 
 
 /// Surface default c'tor, zeroes everything
-Surface::Surface (): SurfaceBase(_min, _max, _d, _min, _max, _d) { }
+Surface::Surface (): 
+  Function(ParameterMap()),
+  definitionRange_(SurfaceDefinitionRange::_min, SurfaceDefinitionRange::_max, SurfaceDefinitionRange::_d, 
+                   SurfaceDefinitionRange::_min, SurfaceDefinitionRange::_max, SurfaceDefinitionRange::_d) { }
 
 
 /** Surface c'tor given a definition set in \f$ R^2 \f$ (as parameter space)
@@ -46,16 +49,19 @@ Surface::Surface (): SurfaceBase(_min, _max, _d, _min, _max, _d) { }
 Surface::Surface (double _umin, double _umax, double _du,
                   double _vmin, double _vmax, double _dv,
                   ParameterMap _parms):
-    SurfaceBase(_umin, _umax, _du, _vmin, _vmax, _dv, _parms) { }
+    Function(_parms),
+    definitionRange_(_umin, _umax, _du, _vmin, _vmax, _dv) { }
+
+Surface::~Surface() { }
 
 /// allocate and initialize X[][] with values of f()
 /** call InitMem () above                                                     */
 void Surface::Initialize () {
 
     _X = FunctionValueGrid<4, 2>(_function,
-                                         Vector<2, unsigned>(getTsteps()+2, getUsteps()+2),
-                                         Vector<2>(getTmin(), getUmin()),
-                                         Vector<2>(getTmax(), getUmax()));
+                                 Vector<2, unsigned>(getTsteps()+2, getUsteps()+2),
+                                         Vector<2>(definitionRange_.getTmin(), definitionRange_.getUmin()),
+                                         Vector<2>(definitionRange_.getTmax(), definitionRange_.getUmax()));
 
     calibrateColors();
 }
@@ -105,6 +111,8 @@ void Surface::ReInit(double, double, double,
 
 }
 
+unsigned int Surface::getDefinitionSpaceDimensions() { return 2; }
+
 void Surface::for_each(Function::function_on_fourspace_vertex apply) {
   for (unsigned t = 0; t < getTsteps(); t++)
     for (unsigned u = 0; u < getUsteps(); u++)
@@ -117,6 +125,12 @@ void Surface::for_each(Function::function_on_projected_vertex apply) {
       apply(Xscr()[t][u]);
 }
 
+Vector< 4 >& Surface::operator()(double u, double v, double ) {
+  static VecMath::Vector<4> F;
+  F = _function->f(VecMath::Vector<2>(u, v));
+  return F;
+}
+
 /** \param tmin minimal value in t
  *  \param tmax maximal value in t
  *  \param dt stepsize in t
@@ -126,17 +140,10 @@ void Surface::for_each(Function::function_on_projected_vertex apply) {
  */
 void Surface::setBoundariesAndStepwidth(double tmin, double tmax, double dt,
                                         double umin, double umax, double du) {
-    getTmin() = tmin; getTmax() = tmax; getDt() = dt;
-    getUmin() = umin; getUmax() = umax; getDu() = du;
-    getTsteps() = unsigned ((getTmax()-getTmin())/getDt()+1);
-    getUsteps() = unsigned ((getUmax()-getUmin())/getDu()+1);
-}
-
-/// return the approximate amount of memory needed to display a Function of current definition set
-/** \todo uses hardcoded and experimentally found value for memory per cell
- *  @return approx. mem required                                              */
-unsigned long Surface::MemRequired (void) {
-    return (getTsteps()+2)*(getUsteps()+2);
+    definitionRange_.getTmin() = tmin; definitionRange_.getTmax() = tmax; definitionRange_.getDt() = dt;
+    definitionRange_.getUmin() = umin; definitionRange_.getUmax() = umax; definitionRange_.getDu() = du;
+    definitionRange_.getTsteps() = unsigned ((definitionRange_.getTmax()-definitionRange_.getTmin())/definitionRange_.getDt()+1);
+    definitionRange_.getUsteps() = unsigned ((definitionRange_.getUmax()-definitionRange_.getUmin())/definitionRange_.getDu()+1);
 }
 
 /// calculate normal to function at a given point in definition set
@@ -230,6 +237,10 @@ void Surface::DrawStrip (unsigned t, UI::View *view) {
                          Xscr()[t][u], Xscr()[t+1][u], Xscr()[t+1][u+1], Xscr()[t][u+1]);
   }
 }
+
+unsigned int Surface::getTsteps() const { return definitionRange_.getTsteps(); }
+
+unsigned int Surface::getUsteps() const { return definitionRange_.getUsteps(); }
 
 const NestedVector< Vector<4>, 2 > &Surface::X() const {
   return _X.getValues();

@@ -34,15 +34,9 @@
  *
  *  \ingroup SurfaceGroup
  *  @author Lene Preuss <lene.preuss@gmail.com>                         */
-class SurfaceBase: public Function {
+class SurfaceDefinitionRange {
     public:
-        /** type of the function used to generate values, optimized with a
-         *  reference as return value                                         */
-        typedef VecMath::Vector<4> &function_type(double, double);
-        /// the real, raw type of the function used to generate values
-        typedef VecMath::Vector<4> raw_function_type (double, double);
 
-        SurfaceBase(): Function() { }
         /** \param _tmin lower bound in first parameter
          *  \param _tmax upper bound in first parameter
          *  \param _dt stepsize in first parameter
@@ -50,16 +44,13 @@ class SurfaceBase: public Function {
          *  \param _umax upper bound in second parameter
          *  \param _du stepsize in second parameter
          *  \param _parms parameters to the Surface                           */
-        SurfaceBase(double _tmin, double _tmax, double _dt,
-                    double _umin, double _umax, double _du,
-                    ParameterMap _parms = ParameterMap()):
-                Function(_parms),
+        SurfaceDefinitionRange(double _tmin, double _tmax, double _dt,
+                               double _umin, double _umax, double _du):
                 tmin (_tmin), tmax (_tmax), dt (_dt),
                 umin (_umin), umax (_umax), du (_du),
                 tsteps (unsigned ((tmax-tmin)/dt+1)),
                 usteps (unsigned ((umax-umin)/du+1)) { }
 
-    protected:
         /// number of steps in t
         unsigned &getTsteps() { return tsteps; }
         /// number of steps in t
@@ -102,13 +93,21 @@ class SurfaceBase: public Function {
 /** \ingroup FunctionGroup
  *  @author Lene Preuss <lene.preuss@gmail.com>
  */
-class Surface: public SurfaceBase {
-    public:
-        Surface();
+class Surface: public Function {
+
+  public:
+
+      /** type of the function used to generate values, optimized with a
+       *  reference as return value                                         */
+      typedef VecMath::Vector<4> &function_type(double, double);
+      /// the real, raw type of the function used to generate values
+      typedef VecMath::Vector<4> raw_function_type (double, double);
+      
+      Surface();
         Surface (double _umin, double _umax, double _du,
                  double _vmin, double _vmax, double _dv,
                  ParameterMap _parms = ParameterMap());
-        virtual ~Surface() { }
+        virtual ~Surface();
 
         virtual void Transform (const VecMath::Rotation<4> &R,
                                 const VecMath::Vector<4> &T);
@@ -124,7 +123,7 @@ class Surface: public SurfaceBase {
                             double _vmin, double _vmax, double _dv);
 
         /// \see Function::getDefinitionSpaceDimensions()
-        virtual unsigned getDefinitionSpaceDimensions() { return 2; }
+        virtual unsigned getDefinitionSpaceDimensions();
 
         virtual void for_each(function_on_fourspace_vertex apply);
         virtual void for_each(function_on_projected_vertex apply);
@@ -133,15 +132,19 @@ class Surface: public SurfaceBase {
         /** @param u first argument, e.g. y or u
          *  @param v second argument, e.g. z or v
          *  @return f(t, u, v)                                                */
-        VecMath::Vector<4> &operator () (double u, double v, double = 0) {
-          static VecMath::Vector<4> F;
-          F = _function->f(VecMath::Vector<2>(u, v));
-          return F;
-        }
+        VecMath::Vector<4> &operator () (double u, double v, double = 0);
 
     protected:
         virtual vec4vec1D df (double, double);
         virtual function_type normal;
+
+        void Initialize (void);
+
+        /// Pointer to the actual ParametricFunction doing all the work.
+        std::tr1::shared_ptr< ParametricFunction<4, 2> > _function;
+        
+        unsigned getTsteps() const;
+        unsigned getUsteps() const;
 
         /// Array of function values.
         const VecMath::NestedVector< VecMath::Vector<4>, 2 > &X() const;
@@ -150,22 +153,17 @@ class Surface: public SurfaceBase {
         /// Array of projected function values.
         const VecMath::NestedVector< VecMath::Vector<3>, 2 > &Xscr() const;
 
-        void Initialize (void);
-
-        virtual unsigned long MemRequired (void);
-
-        void DrawStrip (unsigned t, UI::View *view);
-
-        /// Pointer to the actual ParametricFunction doing all the work.
-        std::tr1::shared_ptr< ParametricFunction<4, 2> > _function;
-
   private:
+
+    void DrawStrip (unsigned t, UI::View *view);
 
     /// Set up the grid using boundaries and stepwidth.
     void setBoundariesAndStepwidth(double tmin, double tmax, double dt,
                                    double umin, double umax, double du);
 
     std::pair<double, double> findExtremesInW() const;
+
+    SurfaceDefinitionRange definitionRange_;
 
     /// Array of function values.
     FunctionValueGrid<4, 2> _X;
