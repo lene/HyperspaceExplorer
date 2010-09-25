@@ -45,6 +45,7 @@ HEADERS += Functions/ComplexFunction.h \
            Functions/Object.h \
            Functions/Surface.h \
            Functions/RealFunction.h \
+           Functions/RealFunctionImplementations.h \
            Functions/FunctionParameterValueBase.h \
            Functions/FunctionParameterValue.h \
            Functions/FunctionParameter.h \
@@ -61,6 +62,7 @@ SOURCES += Functions/ComplexFunction.C \
            Functions/Surface.C \
            Functions/Object.C \
            Functions/RealFunction.C \
+           Functions/RealFunctionImplementations.cpp \
            Functions/FunctionParameterValue.C \
            Functions/FunctionParameter.C \
            Functions/ParameterMap.C \

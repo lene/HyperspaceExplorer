@@ -3,7 +3,7 @@
 
 #include "MockView.h"
 
-#include "RealFunction.h"
+#include "RealFunctionImplementations.h"
 #include "ColorManager.h"
 
 using VecMath::Vector;
