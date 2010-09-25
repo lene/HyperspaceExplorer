@@ -42,19 +42,19 @@
  *  \todo Vector &normal (double, double, double); - or in base class?
  *
  *  \ingroup RealGroup
- *  \author Lene Preuss <lene.preuss@gmail.com>                         */
+ *  \author Lene Preuss <lene.preuss@gmail.com>                         
+ */
 class RealFunctionDefinitionRange {
 
     public:
 
-//        RealBase(): Function() { }
         /// constructor
         RealFunctionDefinitionRange(double tmin, double tmax, double dt,
-                 double umin, double umax, double du,
-                 double vmin, double vmax, double dv):
-                tDefinitionSpace_(tmin, tmax, dt),
-                uDefinitionSpace_(umin, umax, du),
-                vDefinitionSpace_(vmin, vmax, dv) { }
+                                    double umin, double umax, double du,
+                                    double vmin, double vmax, double dv):
+          tDefinitionSpace_(tmin, tmax, dt),
+          uDefinitionSpace_(umin, umax, du),
+          vDefinitionSpace_(vmin, vmax, dv) { }
 
       /// number of steps in t
       unsigned getTsteps() const { return tDefinitionSpace_.getNumSteps(); }
@@ -79,17 +79,17 @@ class RealFunctionDefinitionRange {
       void setDt(double dt) { tDefinitionSpace_.setStepsize(dt); }
       double getDt() const { return tDefinitionSpace_.getStepsize(); }
       void setUmin(double umin) { uDefinitionSpace_.setMinValue(umin); }
-      double getUmin() const { return uDefinitionSpace_.getMinValue(); }     ///< min. value of the first parameter, t
+      double getUmin() const { return uDefinitionSpace_.getMinValue(); } 
       void setUmax(double umax) { uDefinitionSpace_.setMaxValue(umax); }
-      double getUmax() const { return uDefinitionSpace_.getMaxValue(); }     ///< min. value of the first parameter, t
+      double getUmax() const { return uDefinitionSpace_.getMaxValue(); }
       void setDu(double du) { uDefinitionSpace_.setStepsize(du); }
-      double getDu() const { return uDefinitionSpace_.getStepsize(); }  ///< delta in t
+      double getDu() const { return uDefinitionSpace_.getStepsize(); }  
       void setVmin(double vmin) { vDefinitionSpace_.setMinValue(vmin); }
-      double getVmin() const { return vDefinitionSpace_.getMinValue(); }     ///< min. value of the first parameter, t
+      double getVmin() const { return vDefinitionSpace_.getMinValue(); }
       void setVmax(double vmax) { vDefinitionSpace_.setMaxValue(vmax); }
-      double getVmax() const { return vDefinitionSpace_.getMaxValue(); }     ///< min. value of the first parameter, t
+      double getVmax() const { return vDefinitionSpace_.getMaxValue(); }
       void setDv(double dv) { vDefinitionSpace_.setStepsize(dv); }
-      double getDv() const { return vDefinitionSpace_.getStepsize(); }  ///< delta in t
+      double getDv() const { return vDefinitionSpace_.getStepsize(); }  
 
       static double min_; ///< default value for all lower bounds
       static double max_; ///< default value for all upper bounds
@@ -119,17 +119,19 @@ class RealFunction: public Function {
 
   public:
 
-        /** type of the function used to generate values, optimized with a
-         *  reference as return value                                         */
-        typedef VecMath::Vector<4> &function_type(double, double, double);
-        /// the real, raw type of the function used to generate values
-        typedef VecMath::Vector<4> raw_function_type (double, double, double);
+    /** type of the function used to generate values, optimized with a
+     *  reference as return value                                         
+     */
+    typedef VecMath::Vector<4> &function_type(double, double, double);
+    /// the real, raw type of the function used to generate values
+    typedef VecMath::Vector<4> raw_function_type (double, double, double);
+    
     RealFunction();
     RealFunction(double tmin, double tmax, double dt,
                  double umin, double umax, double du,
                  double vmin, double vmax, double dv,
                  ParameterMap _parms = ParameterMap());
-    virtual ~RealFunction() { }
+    virtual ~RealFunction();
 
     virtual void Transform (const VecMath::Rotation<4> &R,
                             const VecMath::Vector<4> &T);
@@ -144,18 +146,14 @@ class RealFunction: public Function {
     virtual void calibrateColors() const;
 
     /// \see Function::getDefinitionSpaceDimensions()
-    virtual unsigned getDefinitionSpaceDimensions() { return 3; }
+    virtual unsigned getDefinitionSpaceDimensions();
 
     /// Function evaluation operator for three parameters
     /** @param t first argument, e.g. x or t
      *  @param u second argument, e.g. y or u
      *  @param v third argument, e.g. z or v
      *  @return f(t, u, v)                                                */
-    VecMath::Vector<4> &operator () (double t, double u, double v) {
-        static VecMath::Vector<4> F;
-        F = _function->f(VecMath::Vector<3>(t, u, v));
-        return F;
-    }
+    VecMath::Vector<4> &operator () (double t, double u, double v);
 
     virtual void for_each(function_on_fourspace_vertex apply);
     virtual void for_each(function_on_fourspace_and_transformed_vertex apply);
@@ -166,12 +164,17 @@ class RealFunction: public Function {
 
     VecMath::Vector<4> &normal(double t, double u, double v);
 
-    void DrawPlane (unsigned, UI::View *view);
-    void DrawStrip (unsigned, unsigned, UI::View *view);
-    void DrawCube (unsigned, unsigned, unsigned, UI::View *view);
-
     virtual void Initialize (void);
 
+    /// Pointer to the actual ParametricFunction doing all the work.
+    std::tr1::shared_ptr< ParametricFunction<4, 3> > _function;
+
+    // The following functions are protected only so that unit tests can access them.
+    
+    unsigned getTsteps() const;
+    unsigned getUsteps() const;
+    unsigned getVsteps() const;
+    
     /// Array of function values.
     const VecMath::NestedVector< VecMath::Vector<4>, 3 > &X() const;
     /// Array of function values after transform.
@@ -179,34 +182,11 @@ class RealFunction: public Function {
     /// Array of projected function values.
     const VecMath::NestedVector< VecMath::Vector<3>, 3 > &Xscr() const;
 
-    unsigned getTsteps() const { return definitionRange_.getTsteps(); }
-    unsigned getUsteps() const { return definitionRange_.getUsteps(); }
-    unsigned getVsteps() const { return definitionRange_.getVsteps(); }
-    
-    /// Pointer to the actual ParametricFunction doing all the work.
-    std::tr1::shared_ptr< ParametricFunction<4, 3> > _function;
-
   private:
-
-    /// Initialize depth cue.
-    void setDepthCueColors(double Wmax, double Wmin);
-
-    /// Set up the grid using boundaries and stepwidth.
-    void setBoundariesAndStepwidth(double tmin, double tmax, double dt,
-                                   double umin, double umax, double du,
-                                   double vmin, double vmax, double dv);
-
-    /// Finds maximum and minimum function value in w.
-    std::pair<double, double> findExtremesInW() const;
-
-    RealFunctionDefinitionRange definitionRange_;
-    /// Array of function values.
-    FunctionValueGrid<4, 3> _X;
-    /// Array of function values after transform.
-    FunctionValueGrid<4, 3>::value_storage_type _Xtrans;
-    /// Array of projected function values.
-    VecMath::NestedVector< VecMath::Vector<3>, 3 > _Xscr;
-
+    
+    class Impl;
+    Impl *pImpl_;
+    
 };
 
 

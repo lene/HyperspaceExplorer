@@ -38,14 +38,130 @@ double RealFunctionDefinitionRange::min_ = -1.;
 double RealFunctionDefinitionRange::max_ =  1.;
 double RealFunctionDefinitionRange::d_ = 0.1;
 
+struct RealFunction::Impl {
+  
+    Impl(double tmin, double tmax, double dt,
+         double umin, double umax, double du,
+         double vmin, double vmax, double dv): 
+      definitionRange_(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) { }
+
+      const VecMath::NestedVector< Vector< 4 >, 3 > &X() const { return _X.getValues(); }
+
+      /// Initialize depth cue.
+    void setDepthCueColors(double Wmax, double Wmin);
+
+    /// Set up the grid using boundaries and stepwidth.
+    void setBoundariesAndStepwidth(double tmin, double tmax, double dt,
+                                   double umin, double umax, double du,
+                                   double vmin, double vmax, double dv);
+
+    /// Finds maximum and minimum function value in w.
+    std::pair<double, double> findExtremesInW() const;
+
+    void DrawPlane (unsigned, UI::View *view);
+    void DrawStrip (unsigned, unsigned, UI::View *view);
+    void DrawCube (unsigned, unsigned, unsigned, UI::View *view);
+    
+    RealFunctionDefinitionRange definitionRange_;
+    /// Array of function values.
+    FunctionValueGrid<4, 3> _X;
+    /// Array of function values after transform.
+    FunctionValueGrid<4, 3>::value_storage_type _Xtrans;
+    /// Array of projected function values.
+    VecMath::NestedVector< VecMath::Vector<3>, 3 > _Xscr;
+
+};
+
+void RealFunction::Impl::setDepthCueColors(double Wmax, double Wmin) {
+  for(unsigned t = 0;t <= definitionRange_.getTsteps() + 1;t++) {
+    for(unsigned u = 0;u <= definitionRange_.getUsteps() + 1;u++) {
+      for(unsigned v = 0;v <= definitionRange_.getVsteps() + 1;v++){
+        ColMgrMgr::Instance().depthCueColor(Wmax, Wmin,
+                                            _Xtrans[t][u][v][3],
+                                            X()[t][u][v]);
+      }
+    }
+  }
+}
+
+/** \param tmin minimal value in t
+ *  \param tmax maximal value in t
+ *  \param dt stepsize in t
+ *  \param umin minimal value in u
+ *  \param umax maximal value in u
+ *  \param du stepsize in u
+ *  \param vmin minimal value in v
+ *  \param vmax maximal value in v
+ *  \param dv stepsize in v
+ */
+void RealFunction::Impl::setBoundariesAndStepwidth(double tmin, double tmax, double dt,
+                                             double umin, double umax, double du,
+                                             double vmin, double vmax, double dv) {
+  definitionRange_.setTmin(tmin);   definitionRange_.setTmax(tmax);   definitionRange_.setDt(dt);
+  definitionRange_.setUmin(umin);   definitionRange_.setUmax(umax);   definitionRange_.setDu(du);
+  definitionRange_.setVmin(vmin);   definitionRange_.setVmax(vmax);   definitionRange_.setDv(dv);
+  definitionRange_.setTsteps(unsigned((definitionRange_.getTmax()-definitionRange_.getTmin())/definitionRange_.getDt()+2));
+  definitionRange_.setUsteps(unsigned((definitionRange_.getUmax()-definitionRange_.getUmin())/definitionRange_.getDu()+2));
+  definitionRange_.setVsteps(unsigned((definitionRange_.getVmax()-definitionRange_.getVmin())/definitionRange_.getDv()+2));
+}
+
+std::pair< double, double > RealFunction::Impl::findExtremesInW() const {
+
+  double Wmin = 0., Wmax = 0.;
+  for (unsigned t = 0; t < definitionRange_.getTsteps(); t++) {
+    for (unsigned u = 0; u <= definitionRange_.getUsteps()+1; u++) {
+      for (unsigned v = 0; v <= definitionRange_.getVsteps()+1; v++) {
+        if (X()[t][u][v][3] < Wmin) Wmin = X()[t][u][v][3];
+        if (X()[t][u][v][3] > Wmax) Wmax = X()[t][u][v][3];
+      }
+    }
+  }
+
+  return std::make_pair(Wmin, Wmax);
+}
+
+
+/// Draw the current plane of the projected Function
+/** \param t current t value                                                  */
+void RealFunction::Impl::DrawPlane (unsigned t, UI::View *view){
+//  ScopedTimer timer("RealFunction::DrawPlane()");
+  for (unsigned u = 0; u < definitionRange_.getUsteps(); u++)
+    DrawStrip (t, u, view);
+}
+
+/// Draw the current strip of the projected Function
+/** \param t current t value
+ *  \param u current u value                                                  */
+void RealFunction::Impl::DrawStrip (unsigned t, unsigned u, UI::View *view){
+  for (unsigned v = 0; v < definitionRange_.getVsteps(); v++)
+    DrawCube (t, u, v, view);
+}
+
+/// Draw the current cube or cell of the projected Function
+/** \param t current t value
+ *  \param u current u value
+ *  \param v current v value                                                  */
+void RealFunction::Impl::DrawCube (unsigned t, unsigned u, unsigned v, UI::View* view) {
+    /// \todo don't use a malloc'ed pointer
+    static Vector<3> *V = new Vector<3> [8];
+
+    V[0] = _Xscr[t][u][v];     V[1] = _Xscr[t][u][v+1];
+    V[2] = _Xscr[t][u+1][v];   V[3] = _Xscr[t][u+1][v+1];
+    V[4] = _Xscr[t+1][u][v];   V[5] = _Xscr[t+1][u][v+1];
+    V[6] = _Xscr[t+1][u+1][v]; V[7] = _Xscr[t+1][u+1][v+1];
+
+    view->drawCube(X(), t, u, v,
+                   V[0], V[1], V[2], V[3], V[4], V[5], V[6], V[7]);
+}
+
 /** RealFunction c'tor given only a name: All grid values are set to defaults
  */
 RealFunction::RealFunction():
   Function(ParameterMap()),
-    definitionRange_(
+    pImpl_(new Impl(
       RealFunctionDefinitionRange::min_, RealFunctionDefinitionRange::max_, RealFunctionDefinitionRange::d_, 
       RealFunctionDefinitionRange::min_, RealFunctionDefinitionRange::max_, RealFunctionDefinitionRange::d_, 
-      RealFunctionDefinitionRange::min_, RealFunctionDefinitionRange::max_, RealFunctionDefinitionRange::d_) { }
+      RealFunctionDefinitionRange::min_, RealFunctionDefinitionRange::max_, RealFunctionDefinitionRange::d_)) { }
  
 /** RealFunction c'tor given a definition set in \f$ R^3 \f$ (as parameter space)
  *  \param tmin minimal value in t
@@ -62,35 +178,45 @@ RealFunction::RealFunction(double tmin, double tmax, double dt,
                            double umin, double umax, double du,
                            double vmin, double vmax, double dv,
                            ParameterMap parms):
-  Function(parms),
-  definitionRange_(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) {
+  Function(parms), pImpl_(new Impl(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv)) {
 
   if (MemRequired () > Globals::Instance().getMaxMemory()) {
-    cerr << "Using a " << definitionRange_.getTsteps() << "x" 
-                       << definitionRange_.getUsteps() << "x" 
-                       << definitionRange_.getVsteps()
+    cerr << "Using a " << pImpl_->definitionRange_.getTsteps() << "x" 
+                       << pImpl_->definitionRange_.getUsteps() << "x" 
+                       << pImpl_->definitionRange_.getVsteps()
          << " grid would require approx. " << MemRequired () << " MB of memory.\n";
     while (MemRequired () > Globals::Instance().getMaxMemory()) {
-      definitionRange_.decrementTsteps(); 
-      definitionRange_.decrementUsteps(); 
-      definitionRange_.decrementVsteps();
+      pImpl_->definitionRange_.decrementTsteps(); 
+      pImpl_->definitionRange_.decrementUsteps(); 
+      pImpl_->definitionRange_.decrementVsteps();
     }
-    cerr << "Using a " << definitionRange_.getTsteps() << "x" 
-                       << definitionRange_.getUsteps() << "x" 
-                       << definitionRange_.getVsteps()
+    cerr << "Using a " << pImpl_->definitionRange_.getTsteps() << "x" 
+                       << pImpl_->definitionRange_.getUsteps() << "x" 
+                       << pImpl_->definitionRange_.getVsteps()
          << " grid instead." << endl;
-    definitionRange_.setDt((definitionRange_.getTmax()-definitionRange_.getTmin())/definitionRange_.getTsteps());
-    definitionRange_.setDu((definitionRange_.getUmax()-definitionRange_.getUmin())/definitionRange_.getUsteps());
-    definitionRange_.setDv((definitionRange_.getVmax()-definitionRange_.getVmin())/definitionRange_.getVsteps());
+    pImpl_->definitionRange_.setDt((pImpl_->definitionRange_.getTmax()-pImpl_->definitionRange_.getTmin()) /
+                                    pImpl_->definitionRange_.getTsteps());
+    pImpl_->definitionRange_.setDu((pImpl_->definitionRange_.getUmax()-pImpl_->definitionRange_.getUmin()) /
+                                    pImpl_->definitionRange_.getUsteps());
+    pImpl_->definitionRange_.setDv((pImpl_->definitionRange_.getVmax()-pImpl_->definitionRange_.getVmin()) /
+                                    pImpl_->definitionRange_.getVsteps());
   }
 }
 
+RealFunction::~RealFunction() { }
+
 /// Allocate and initialize X[][][] with values of f().
 void RealFunction::Initialize () {
-  _X = FunctionValueGrid<4, 3>(_function,
-                               Vector<3, unsigned>(definitionRange_.getTsteps()+2, definitionRange_.getUsteps()+2, definitionRange_.getVsteps()+2),
-                               Vector<3>(definitionRange_.getTmin(), definitionRange_.getUmin(), definitionRange_.getVmin()),
-                               Vector<3>(definitionRange_.getTmax(), definitionRange_.getUmax(), definitionRange_.getVmax()));
+  pImpl_->_X = FunctionValueGrid<4, 3>(_function,
+                               Vector<3, unsigned>(pImpl_->definitionRange_.getTsteps()+2, 
+                                                   pImpl_->definitionRange_.getUsteps()+2, 
+                                                   pImpl_->definitionRange_.getVsteps()+2),
+                               Vector<3>(pImpl_->definitionRange_.getTmin(), 
+                                         pImpl_->definitionRange_.getUmin(), 
+                                         pImpl_->definitionRange_.getVmin()),
+                               Vector<3>(pImpl_->definitionRange_.getTmax(), 
+                                         pImpl_->definitionRange_.getUmax(), 
+                                         pImpl_->definitionRange_.getVmax()));
 
   calibrateColors();
 
@@ -98,63 +224,62 @@ void RealFunction::Initialize () {
 
 void RealFunction::calibrateColors() const {
 
-  std::pair< double, double > Wext = findExtremesInW();
+  std::pair< double, double > Wext = pImpl_->findExtremesInW();
 
-  for (unsigned t = 0; t <= definitionRange_.getTsteps(); t++) {
-    for (unsigned u = 0; u <= definitionRange_.getUsteps()+1; u++) {
-      for (unsigned v = 0; v <= definitionRange_.getVsteps()+1; v++) {
+  for (unsigned t = 0; t <= pImpl_->definitionRange_.getTsteps(); t++) {
+    for (unsigned u = 0; u <= pImpl_->definitionRange_.getUsteps()+1; u++) {
+      for (unsigned v = 0; v <= pImpl_->definitionRange_.getVsteps()+1; v++) {
         ColMgrMgr::Instance().calibrateColor(
             X()[t][u][v],
-            Color(float(t)/float(definitionRange_.getTsteps()), float(u)/float(definitionRange_.getUsteps()),
-                  float(v)/float(definitionRange_.getVsteps()),
+            Color(float(t)/float(pImpl_->definitionRange_.getTsteps()), 
+                  float(u)/float(pImpl_->definitionRange_.getUsteps()),
+                  float(v)/float(pImpl_->definitionRange_.getVsteps()),
                   (X()[t][u][v][3]-Wext.first)/(Wext.second-Wext.first)));
       }
     }
   }
 }
 
+unsigned int RealFunction::getDefinitionSpaceDimensions() { return 3; }
+
+Vector<4>& RealFunction::operator()(double t, double u, double v) {
+  static VecMath::Vector<4> F;
+  F = _function->f(VecMath::Vector<3>(t, u, v));
+  return F;
+}
+
 void RealFunction::for_each(Function::function_on_fourspace_vertex apply) {
-  for (unsigned t = 0; t < definitionRange_.getTsteps(); t++)
-    for (unsigned u = 0; u < definitionRange_.getUsteps(); u++)
-      for (unsigned v = 0; v < definitionRange_.getVsteps(); v++)
+  for (unsigned t = 0; t < pImpl_->definitionRange_.getTsteps(); t++)
+    for (unsigned u = 0; u < pImpl_->definitionRange_.getUsteps(); u++)
+      for (unsigned v = 0; v < pImpl_->definitionRange_.getVsteps(); v++)
         apply(X()[t][u][v]);
 }
 
 void RealFunction::for_each(Function::function_on_fourspace_and_transformed_vertex apply) {
-  for (unsigned t = 0; t < definitionRange_.getTsteps(); t++)
-    for (unsigned u = 0; u < definitionRange_.getUsteps(); u++)
-      for (unsigned v = 0; v < definitionRange_.getVsteps(); v++)
+  for (unsigned t = 0; t < pImpl_->definitionRange_.getTsteps(); t++)
+    for (unsigned u = 0; u < pImpl_->definitionRange_.getUsteps(); u++)
+      for (unsigned v = 0; v < pImpl_->definitionRange_.getVsteps(); v++)
         apply(X()[t][u][v], Xtrans()[t][u][v]);
 }
 
 void RealFunction::for_each(Function::function_on_fourspace_transformed_and_projected_vertex apply) {
-  for (unsigned t = 0; t < definitionRange_.getTsteps(); t++)
-    for (unsigned u = 0; u < definitionRange_.getUsteps(); u++)
-      for (unsigned v = 0; v < definitionRange_.getVsteps(); v++)
+  for (unsigned t = 0; t < pImpl_->definitionRange_.getTsteps(); t++)
+    for (unsigned u = 0; u < pImpl_->definitionRange_.getUsteps(); u++)
+      for (unsigned v = 0; v < pImpl_->definitionRange_.getVsteps(); v++)
         apply(X()[t][u][v], Xtrans()[t][u][v], Xscr()[t][u][v]);
 }
 
 void RealFunction::for_each(Function::function_on_projected_vertex apply) {
-  for (unsigned t = 0; t < definitionRange_.getTsteps(); t++)
-    for (unsigned u = 0; u < definitionRange_.getUsteps(); u++)
-      for (unsigned v = 0; v < definitionRange_.getVsteps(); v++)
+  for (unsigned t = 0; t < pImpl_->definitionRange_.getTsteps(); t++)
+    for (unsigned u = 0; u < pImpl_->definitionRange_.getUsteps(); u++)
+      for (unsigned v = 0; v < pImpl_->definitionRange_.getVsteps(); v++)
         apply(Xscr()[t][u][v]);
 }
 
-std::pair< double, double > RealFunction::findExtremesInW() const {
+unsigned int RealFunction::getTsteps() const { return pImpl_->definitionRange_.getTsteps(); }
+unsigned int RealFunction::getUsteps() const { return pImpl_->definitionRange_.getUsteps(); }
+unsigned int RealFunction::getVsteps() const { return pImpl_->definitionRange_.getVsteps(); }
 
-  double Wmin = 0., Wmax = 0.;
-  for (unsigned t = 0; t < definitionRange_.getTsteps(); t++) {
-    for (unsigned u = 0; u <= definitionRange_.getUsteps()+1; u++) {
-      for (unsigned v = 0; v <= definitionRange_.getVsteps()+1; v++) {
-        if (X()[t][u][v][3] < Wmin) Wmin = X()[t][u][v][3];
-        if (X()[t][u][v][3] > Wmax) Wmax = X()[t][u][v][3];
-      }
-    }
-  }
-
-  return std::make_pair(Wmin, Wmax);
-}
 
 /// Re-initialize a RealFunction if the definition set has changed
 /** \param tmin minimal value in t
@@ -171,32 +296,12 @@ void RealFunction::ReInit(double tmin, double tmax, double dt,
                           double umin, double umax, double du,
                           double vmin, double vmax, double dv) {
 
-  setBoundariesAndStepwidth(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
+  pImpl_->setBoundariesAndStepwidth(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
 
   Initialize ();
 
 }
 
-/** \param tmin minimal value in t
- *  \param tmax maximal value in t
- *  \param dt stepsize in t
- *  \param umin minimal value in u
- *  \param umax maximal value in u
- *  \param du stepsize in u
- *  \param vmin minimal value in v
- *  \param vmax maximal value in v
- *  \param dv stepsize in v
- */
-void RealFunction::setBoundariesAndStepwidth(double tmin, double tmax, double dt,
-                                             double umin, double umax, double du,
-                                             double vmin, double vmax, double dv) {
-  definitionRange_.setTmin(tmin);   definitionRange_.setTmax(tmax);   definitionRange_.setDt(dt);
-  definitionRange_.setUmin(umin);   definitionRange_.setUmax(umax);   definitionRange_.setDu(du);
-  definitionRange_.setVmin(vmin);   definitionRange_.setVmax(vmax);   definitionRange_.setDv(dv);
-  definitionRange_.setTsteps(unsigned((definitionRange_.getTmax()-definitionRange_.getTmin())/definitionRange_.getDt()+2));
-  definitionRange_.setUsteps(unsigned((definitionRange_.getUmax()-definitionRange_.getUmin())/definitionRange_.getDu()+2));
-  definitionRange_.setVsteps(unsigned((definitionRange_.getVmax()-definitionRange_.getVmin())/definitionRange_.getDv()+2));
-}
 
 /// Transforms a RealFunction
 /** \param R rotation
@@ -204,19 +309,7 @@ void RealFunction::setBoundariesAndStepwidth(double tmin, double tmax, double dt
 void RealFunction::Transform (const VecMath::Rotation<4> &R,
                               const VecMath::Vector<4> &T) {
   Transformation<4, 3> xform(R, T);
-  _Xtrans = xform.transform(_X.getValues());
-}
-
-void RealFunction::setDepthCueColors(double Wmax, double Wmin) {
-  for(unsigned t = 0;t <= definitionRange_.getTsteps() + 1;t++) {
-    for(unsigned u = 0;u <= definitionRange_.getUsteps() + 1;u++) {
-      for(unsigned v = 0;v <= definitionRange_.getVsteps() + 1;v++){
-        ColMgrMgr::Instance().depthCueColor(Wmax, Wmin,
-                                            Xtrans()[t][u][v][3],
-                                            X()[t][u][v]);
-      }
-    }
-  }
+  pImpl_->_Xtrans = xform.transform(X());
 }
 
 /// Projects a RealFunction into three-space
@@ -226,11 +319,11 @@ void RealFunction::setDepthCueColors(double Wmax, double Wmin) {
 void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
 
   Projection<4, 3, 3> p(scr_w, cam_w, depthcue4d);
-  _Xscr = p.project(Xtrans());
+  pImpl_->_Xscr = p.project(Xtrans());
 
   if (depthcue4d) {
-    std::pair< double, double > Wext = findExtremesInW();
-    setDepthCueColors(Wext.first, Wext.second);
+    std::pair< double, double > Wext = pImpl_->findExtremesInW();
+    pImpl_->setDepthCueColors(Wext.first, Wext.second);
   }
 }
 
@@ -243,43 +336,9 @@ std::cerr << "USE_GRID_DRAWER" << std::endl;
     GridDrawer<3> draw(X(), Xscr(), view);
     draw.execute();
 # else
-    for (unsigned t = 0; t < definitionRange_.getTsteps(); t++)
-      DrawPlane (t, view);
+    for (unsigned t = 0; t < pImpl_->definitionRange_.getTsteps(); t++)
+      pImpl_->DrawPlane (t, view);
 # endif
-}
-
-
-/// Draw the current plane of the projected Function
-/** \param t current t value                                                  */
-void RealFunction::DrawPlane (unsigned t, UI::View *view){
-//  ScopedTimer timer("RealFunction::DrawPlane()");
-  for (unsigned u = 0; u < definitionRange_.getUsteps(); u++)
-    DrawStrip (t, u, view);
-}
-
-/// Draw the current strip of the projected Function
-/** \param t current t value
- *  \param u current u value                                                  */
-void RealFunction::DrawStrip (unsigned t, unsigned u, UI::View *view){
-  for (unsigned v = 0; v < definitionRange_.getVsteps(); v++)
-    DrawCube (t, u, v, view);
-}
-
-/// Draw the current cube or cell of the projected Function
-/** \param t current t value
- *  \param u current u value
- *  \param v current v value                                                  */
-void RealFunction::DrawCube (unsigned t, unsigned u, unsigned v, UI::View* view) {
-    /// \todo don't use a malloc'ed pointer
-    static Vector<3> *V = new Vector<3> [8];
-
-    V[0] = Xscr()[t][u][v];     V[1] = Xscr()[t][u][v+1];
-    V[2] = Xscr()[t][u+1][v];   V[3] = Xscr()[t][u+1][v+1];
-    V[4] = Xscr()[t+1][u][v];   V[5] = Xscr()[t+1][u][v+1];
-    V[6] = Xscr()[t+1][u+1][v]; V[7] = Xscr()[t+1][u+1][v+1];
-
-    view->drawCube(X(), t, u, v,
-                   V[0], V[1], V[2], V[3], V[4], V[5], V[6], V[7]);
 }
 
 /// Calculate normal to function at a given point in definition set.
@@ -302,15 +361,15 @@ Vector<4> &RealFunction::normal (double tt, double uu, double vv) {
 }
 
 const VecMath::NestedVector< Vector< 4 >, 3 > &RealFunction::X() const {
-  return _X.getValues();
+  return pImpl_->X();
 }
 
 const VecMath::NestedVector< Vector< 4 >, 3 > &RealFunction::Xtrans() const {
-  return _Xtrans;
+  return pImpl_->_Xtrans;
 }
 
 const VecMath::NestedVector< Vector< 3 >, 3 >& RealFunction::Xscr() const {
-    return _Xscr;
+    return pImpl_->_Xscr;
 }
 
 
