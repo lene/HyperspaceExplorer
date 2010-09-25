@@ -23,6 +23,7 @@
 #include "4DView.h"
 #include "Globals.h"
 #include "RealFunctionImplementations.h"
+#include "SurfaceImplementations.h"
 #include "SlotHelper.h"
 #include "AnimationDialogImpl.h"
 #include "Help.h"

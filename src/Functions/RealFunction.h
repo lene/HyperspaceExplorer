@@ -24,10 +24,7 @@
 #include "Function.h"
 
 #include "ParametricFunction.h"
-#include "FunctionValueGrid.h"
 #include "NestedVector.h"
-
-#include "DefinitionRangeOfDimension.h"
 
 /// A RealFunction is a mathematical function  \f$ f: R^3 \rightarrow R \f$ .
 /** The function \em f is evaluated on a 3-dimensional cartesian grid. The
@@ -75,10 +72,6 @@ class RealFunction: public Function {
     virtual unsigned getDefinitionSpaceDimensions();
 
     /// Function evaluation operator for three parameters
-    /** @param t first argument, e.g. x or t
-     *  @param u second argument, e.g. y or u
-     *  @param v third argument, e.g. z or v
-     *  @return f(t, u, v)                                                */
     VecMath::Vector<4> &operator () (double t, double u, double v);
 
     virtual void for_each(function_on_fourspace_vertex apply);
@@ -114,9 +107,5 @@ class RealFunction: public Function {
     Impl *pImpl_;
     
 };
-
-
-////////////////////////////////////////////////////////////////////////////////
-
 
 #endif

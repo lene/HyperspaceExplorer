@@ -12,6 +12,10 @@
 
 #include "RealFunction.h"
 
+#include "DefinitionRangeOfDimension.h"
+
+#include "FunctionValueGrid.h"
+
 #include "Transformation.h"
 #include "Projection.h"
 #include "GridDrawer.h"
@@ -65,12 +69,9 @@ class RealFunctionDefinitionRange: public DefinitionRangeOfDimension<3> {
     void decrementTsteps() { setTsteps(getTsteps()-1); }
 
     unsigned getUsteps() const { return getNumSteps(1); }
-    /// number of steps in u
     void setUsteps(unsigned numSteps) { setNumSteps(1, numSteps); }
     void decrementUsteps() { setUsteps(getUsteps()-1); }
-    /// number of steps in v
     unsigned getVsteps() const { return getNumSteps(2); }
-    /// number of steps in v
     void setVsteps(unsigned numSteps) { setNumSteps(2, numSteps); }
     void decrementVsteps() { setVsteps(getVsteps()-1); }
 
@@ -80,12 +81,14 @@ class RealFunctionDefinitionRange: public DefinitionRangeOfDimension<3> {
     double getTmax() const { return getMaxValue(0); }
     void setDt(double dt) { setStepsize(0, dt); }
     double getDt() const { return getStepsize(0); }
+
     void setUmin(double umin) { setMinValue(1, umin); }
     double getUmin() const { return getMinValue(1); } 
     void setUmax(double umax) { setMaxValue(1, umax); }
     double getUmax() const { return getMaxValue(1); }
     void setDu(double du) { setStepsize(1, du); }
     double getDu() const { return getStepsize(1); }  
+    
     void setVmin(double vmin) { setMinValue(2, vmin); }
     double getVmin() const { return getMinValue(2); }
     void setVmax(double vmax) { setMaxValue(2, vmax); }
@@ -307,6 +310,11 @@ void RealFunction::calibrateColors() const {
 
 unsigned int RealFunction::getDefinitionSpaceDimensions() { return 3; }
 
+/** @param t first argument, e.g. x or t
+ *  @param u second argument, e.g. y or u
+ *  @param v third argument, e.g. z or v
+ *  @return f(t, u, v)                                                
+ */
 Vector<4>& RealFunction::operator()(double t, double u, double v) {
   static VecMath::Vector<4> F;
   F = _function->f(VecMath::Vector<3>(t, u, v));
@@ -436,8 +444,3 @@ const VecMath::NestedVector< Vector< 4 >, 3 > &RealFunction::Xtrans() const {
 const VecMath::NestedVector< Vector< 3 >, 3 >& RealFunction::Xscr() const {
     return pImpl_->_Xscr;
 }
-
-
-////////////////////////////////////////////////////////////////////////////////
-
-

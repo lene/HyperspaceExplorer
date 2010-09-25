@@ -44,6 +44,7 @@ HEADERS += Functions/ComplexFunction.h \
            Functions/Function.h \
            Functions/Object.h \
            Functions/Surface.h \
+           Functions/SurfaceImplementations.h \
            Functions/RealFunction.h \
            Functions/RealFunctionImplementations.h \
            Functions/FunctionParameterValueBase.h \
@@ -60,6 +61,7 @@ SOURCES += Functions/ComplexFunction.C \
            Functions/DefinitionSpaceRange.cpp \
            Functions/Function.C \
            Functions/Surface.C \
+           Functions/SurfaceImplementations.cpp \
            Functions/Object.C \
            Functions/RealFunction.C \
            Functions/RealFunctionImplementations.cpp \

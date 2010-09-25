@@ -3,6 +3,7 @@
 
 #include "MockView.h"
 
+#include "SurfaceImplementations.h"
 #include "ComplexFunction.h"
 #include "ColorManager.h"
 
