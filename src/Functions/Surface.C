@@ -16,9 +16,13 @@
 
 #include "View.h"
 
+#include "FunctionValueGrid.h"
 #include "Transformation.h"
 #include "Projection.h"
 
+#include "DefinitionRangeOfDimension.h"
+
+#include <utility>
 
 using VecMath::NestedVector;
 using VecMath::Vector;
@@ -38,58 +42,48 @@ using VecMath::Matrix;
  *
  *  \ingroup SurfaceGroup
  *  @author Lene Preuss <lene.preuss@gmail.com>                         */
-class SurfaceDefinitionRange {
-    public:
+class SurfaceDefinitionRange: public DefinitionRangeOfDimension<2> {
+  public:
 
-        /** \param _tmin lower bound in first parameter
-         *  \param _tmax upper bound in first parameter
-         *  \param _dt stepsize in first parameter
-         *  \param _umin lower bound in second parameter
-         *  \param _umax upper bound in second parameter
-         *  \param _du stepsize in second parameter
-         *  \param _parms parameters to the Surface                           */
-        SurfaceDefinitionRange(double _tmin, double _tmax, double _dt,
-                               double _umin, double _umax, double _du):
-                tmin (_tmin), tmax (_tmax), dt (_dt),
-                umin (_umin), umax (_umax), du (_du),
-                tsteps (unsigned ((tmax-tmin)/dt+1)),
-                usteps (unsigned ((umax-umin)/du+1)) { }
+    /** \param _tmin lower bound in first parameter
+     *  \param _tmax upper bound in first parameter
+     *  \param _dt stepsize in first parameter
+     *  \param _umin lower bound in second parameter
+     *  \param _umax upper bound in second parameter
+     *  \param _du stepsize in second parameter
+     */
+    SurfaceDefinitionRange(double tmin, double tmax, double dt,
+                           double umin, double umax, double du) {
+      setRange(0, DefinitionSpaceRange(tmin, tmax, dt));
+      setRange(1, DefinitionSpaceRange(umin, umax, du));
+    }
 
-        /// number of steps in t
-        unsigned &getTsteps() { return tsteps; }
-        /// number of steps in t
-        unsigned getTsteps() const { return tsteps > 0? tsteps: 1; }
-        /// number of steps in u
-        unsigned &getUsteps() { return usteps; }
-        /// number of steps in u
-        unsigned getUsteps() const { return usteps > 0? usteps: 1; }
+    unsigned getTsteps() const { return getNumSteps(0); }
+    void setTsteps(unsigned numSteps) { setNumSteps(0, numSteps); }
+    void decrementTsteps() { setTsteps(getTsteps()-1); }
 
-        double &getTmin() { return tmin; }          ///< min. value of the first parameter, t
-        double getTmin() const { return tmin; }     ///< min. value of the first parameter, t
-        double &getTmax() { return tmax; }          ///< max. value of the first parameter, t
-        double getTmax() const { return tmax; }     ///< max. value of the first parameter, t
-        double &getDt() { return dt; }              ///< delta in t
-        const double &getDt() const { return dt; }  ///< delta in t
-        double &getUmin() { return umin; }          ///< min. value of the second parameter, u
-        double getUmin() const { return umin; }     ///< min. value of the second parameter, u
-        double &getUmax() { return umax; }          ///< max. value of the second parameter, u
-        double getUmax() const { return umax; }     ///< max. value of the second parameter, u
-        double &getDu() { return du; }              ///< delta in u
-        const double &getDu() const { return du; }  ///< delta in u
+    unsigned getUsteps() const { return getNumSteps(1); }
+    void setUsteps(unsigned numSteps) { setNumSteps(1, numSteps); }
+    void decrementUsteps() { setUsteps(getUsteps()-1); }
+
+    void setTmin(double tmin) { setMinValue(0, tmin); }
+    double getTmin() const { return getMinValue(0); }
+    void setTmax(double tmax) { setMaxValue(0, tmax); }
+    double getTmax() const { return getMaxValue(0); }
+    void setDt(double dt) { setStepsize(0, dt); }
+    double getDt() const { return getStepsize(0); }
+
+    void setUmin(double umin) { setMinValue(1, umin); }
+    double getUmin() const { return getMinValue(1); } 
+    void setUmax(double umax) { setMaxValue(1, umax); }
+    double getUmax() const { return getMaxValue(1); }
+    void setDu(double du) { setStepsize(1, du); }
+    double getDu() const { return getStepsize(1); }  
 
     static double _min, ///< Default value for lower grid boundary
                   _max, ///< Default value for upper grid boundary
                   _d;   ///< Default value for step size
 
-    private:
-        double tmin, ///< min. value of the first parameter, here called t
-               tmax, ///< min. value of the first parameter, here called t
-               dt,   ///< stepsize in first parameter
-               umin, ///< min. value of the second parameter, here called u
-               umax, ///< min. value of the second parameter, here called u
-               du;   ///< stepsize in second parameter
-        unsigned tsteps, ///< number of steps in t
-                 usteps; ///< number of steps in u
 };
 
 double SurfaceDefinitionRange::_min = -1.;
@@ -156,10 +150,10 @@ std::pair< double, double > Surface::Impl::findExtremesInW() const {
  */
 void Surface::Impl::setBoundariesAndStepwidth(double tmin, double tmax, double dt,
                                         double umin, double umax, double du) {
-    definitionRange_.getTmin() = tmin; definitionRange_.getTmax() = tmax; definitionRange_.getDt() = dt;
-    definitionRange_.getUmin() = umin; definitionRange_.getUmax() = umax; definitionRange_.getDu() = du;
-    definitionRange_.getTsteps() = unsigned ((definitionRange_.getTmax()-definitionRange_.getTmin())/definitionRange_.getDt()+1);
-    definitionRange_.getUsteps() = unsigned ((definitionRange_.getUmax()-definitionRange_.getUmin())/definitionRange_.getDu()+1);
+  definitionRange_.setTmin(tmin);   definitionRange_.setTmax(tmax);   definitionRange_.setDt(dt);
+  definitionRange_.setUmin(umin);   definitionRange_.setUmax(umax);   definitionRange_.setDu(du);
+  definitionRange_.setTsteps(unsigned((definitionRange_.getTmax()-definitionRange_.getTmin())/definitionRange_.getDt()+2));
+  definitionRange_.setUsteps(unsigned((definitionRange_.getUmax()-definitionRange_.getUmin())/definitionRange_.getDu()+2));
 }
 
 /// Surface default c'tor, zeroes everything
@@ -236,12 +230,28 @@ void Surface::for_each(Function::function_on_fourspace_vertex apply) {
       apply(X()[t][u]);
 }
 
+void Surface::for_each(function_on_fourspace_and_transformed_vertex apply) {
+  for (unsigned t = 0; t < getTsteps(); t++)
+    for (unsigned u = 0; u < getUsteps(); u++)
+      apply(X()[t][u], Xtrans()[t][u]);
+}
+
+void Surface::for_each(function_on_fourspace_transformed_and_projected_vertex apply) {
+  for (unsigned t = 0; t < getTsteps(); t++)
+    for (unsigned u = 0; u < getUsteps(); u++)
+      apply(X()[t][u], Xtrans()[t][u], Xscr()[t][u]);
+}
+
 void Surface::for_each(Function::function_on_projected_vertex apply) {
   for (unsigned t = 0; t < getTsteps(); t++)
     for (unsigned u = 0; u < getUsteps(); u++)
       apply(Xscr()[t][u]);
 }
 
+/** @param u first argument, e.g. y or u
+ *  @param v second argument, e.g. z or v
+ *  @return f(t, u, v)                                                
+ */
 Vector< 4 >& Surface::operator()(double u, double v, double ) {
   static VecMath::Vector<4> F;
   F = _function->f(VecMath::Vector<2>(u, v));

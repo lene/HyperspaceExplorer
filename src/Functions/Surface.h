@@ -13,10 +13,8 @@
 #include "Function.h"
 
 #include "ParametricFunction.h"
-#include "FunctionValueGrid.h"
 #include "NestedVector.h"
 
-#include <utility>
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -30,61 +28,59 @@ class Surface: public Function {
 
   public:
 
-      /** type of the function used to generate values, optimized with a
-       *  reference as return value                                         */
-      typedef VecMath::Vector<4> &function_type(double, double);
-      /// the real, raw type of the function used to generate values
-      typedef VecMath::Vector<4> raw_function_type (double, double);
+    /** type of the function used to generate values, optimized with a
+     *  reference as return value                                         */
+    typedef VecMath::Vector<4> &function_type(double, double);
+    /// the real, raw type of the function used to generate values
+    typedef VecMath::Vector<4> raw_function_type (double, double);
       
-      Surface();
-        Surface (double _umin, double _umax, double _du,
-                 double _vmin, double _vmax, double _dv,
-                 ParameterMap _parms = ParameterMap());
-        virtual ~Surface();
+    Surface();
+    Surface (double _umin, double _umax, double _du,
+             double _vmin, double _vmax, double _dv,
+             ParameterMap _parms = ParameterMap());
+    virtual ~Surface();
 
-        virtual void Transform (const VecMath::Rotation<4> &R,
-                                const VecMath::Vector<4> &T);
+    virtual void Transform (const VecMath::Rotation<4> &R,
+                            const VecMath::Vector<4> &T);
+    virtual void Project (double ScrW, double CamW, bool DepthCue4D);
+    virtual void Draw (UI::View *view);
 
-        virtual void Project (double ScrW, double CamW, bool DepthCue4D);
-        virtual void Draw (UI::View *view);
+    virtual void ReInit(double _tmin, double _tmax, double _dt,
+                        double _umin, double _umax, double _du,
+                        double _vmin, double _vmax, double _dv);
 
-        /// Called by the ColorManager after setting the Function on the CM
-        virtual void calibrateColors() const;
+    /// Called by the ColorManager after setting the Function on the CM
+    virtual void calibrateColors() const;
 
-        virtual void ReInit(double _tmin, double _tmax, double _dt,
-                            double _umin, double _umax, double _du,
-                            double _vmin, double _vmax, double _dv);
+    /// \see Function::getDefinitionSpaceDimensions()
+    virtual unsigned getDefinitionSpaceDimensions();
 
-        /// \see Function::getDefinitionSpaceDimensions()
-        virtual unsigned getDefinitionSpaceDimensions();
+    /// Function evaluation operator for three parameters
+    VecMath::Vector<4> &operator () (double u, double v, double = 0);
 
-        virtual void for_each(function_on_fourspace_vertex apply);
-        virtual void for_each(function_on_projected_vertex apply);
+    virtual void for_each(function_on_fourspace_vertex apply);
+    virtual void for_each(function_on_fourspace_and_transformed_vertex apply);
+    virtual void for_each(function_on_fourspace_transformed_and_projected_vertex apply);
+    virtual void for_each(function_on_projected_vertex apply);
 
-        /// Function evaluation operator for three parameters
-        /** @param u first argument, e.g. y or u
-         *  @param v second argument, e.g. z or v
-         *  @return f(t, u, v)                                                */
-        VecMath::Vector<4> &operator () (double u, double v, double = 0);
+  protected:
+    virtual vec4vec1D df (double, double);
+    virtual function_type normal;
 
-    protected:
-        virtual vec4vec1D df (double, double);
-        virtual function_type normal;
+    void Initialize (void);
 
-        void Initialize (void);
-
-        /// Pointer to the actual ParametricFunction doing all the work.
-        std::tr1::shared_ptr< ParametricFunction<4, 2> > _function;
+    /// Pointer to the actual ParametricFunction doing all the work.
+    std::tr1::shared_ptr< ParametricFunction<4, 2> > _function;
         
-        unsigned getTsteps() const;
-        unsigned getUsteps() const;
+    unsigned getTsteps() const;
+    unsigned getUsteps() const;
 
-        /// Array of function values.
-        const VecMath::NestedVector< VecMath::Vector<4>, 2 > &X() const;
-        /// Array of function values after transform.
-        const VecMath::NestedVector< VecMath::Vector<4>, 2 > &Xtrans() const;
-        /// Array of projected function values.
-        const VecMath::NestedVector< VecMath::Vector<3>, 2 > &Xscr() const;
+    /// Array of function values.
+    const VecMath::NestedVector< VecMath::Vector<4>, 2 > &X() const;
+    /// Array of function values after transform.
+    const VecMath::NestedVector< VecMath::Vector<4>, 2 > &Xtrans() const;
+    /// Array of projected function values.
+    const VecMath::NestedVector< VecMath::Vector<3>, 2 > &Xscr() const;
 
   private:
 

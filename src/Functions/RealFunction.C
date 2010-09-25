@@ -71,6 +71,7 @@ class RealFunctionDefinitionRange: public DefinitionRangeOfDimension<3> {
     unsigned getUsteps() const { return getNumSteps(1); }
     void setUsteps(unsigned numSteps) { setNumSteps(1, numSteps); }
     void decrementUsteps() { setUsteps(getUsteps()-1); }
+
     unsigned getVsteps() const { return getNumSteps(2); }
     void setVsteps(unsigned numSteps) { setNumSteps(2, numSteps); }
     void decrementVsteps() { setVsteps(getVsteps()-1); }
