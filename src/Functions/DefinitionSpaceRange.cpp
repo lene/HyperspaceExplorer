@@ -21,6 +21,8 @@
 #include "DefinitionSpaceRange.h"
 
 struct DefinitionSpaceRange::Impl {
+
+  Impl(): minValue_(0), maxValue_(0), stepsize_(0), numSteps_(1) { }
   
   Impl(double minValue, double maxValue, double stepsize): 
     minValue_(minValue), maxValue_(maxValue), stepsize_(stepsize) {
@@ -59,6 +61,7 @@ void DefinitionSpaceRange::Impl::recalibrateNumSteps() {
     numSteps_ = (unsigned)((maxValue_-minValue_)/stepsize_)+1;
 }
 
+DefinitionSpaceRange::DefinitionSpaceRange(): pImpl_(new Impl()) { }
 
 DefinitionSpaceRange::DefinitionSpaceRange(double minValue, double maxValue, double stepsize):
   pImpl_(new Impl(minValue, maxValue, stepsize)) { }

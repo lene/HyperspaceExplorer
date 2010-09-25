@@ -34,6 +34,72 @@ using VecMath::Vector;
 using VecMath::Matrix;
 using std::tr1::shared_ptr;
 
+/// \em RealBase provides a base class for functions which take three parameters
+/** The \em RealBase interface provides abstract members for the evaluation of
+ *  the function values on a three-dimensional grid.
+ *
+ *  abstract member:
+ *      \li Vector &f (double, double);
+ *
+ *  member:
+ *      \li operator () (double t, double u, double);
+ *
+ *  \todo Vector &normal (double, double, double); - or in base class?
+ *
+ *  \ingroup RealGroup
+ *  \author Lene Preuss <lene.preuss@gmail.com>                         
+ */
+class RealFunctionDefinitionRange: public DefinitionRangeOfDimension<3> {
+
+  public:
+
+    RealFunctionDefinitionRange(double tmin, double tmax, double dt,
+                                double umin, double umax, double du,
+                                double vmin, double vmax, double dv) {
+      setRange(0, DefinitionSpaceRange(tmin, tmax, dt));
+      setRange(1, DefinitionSpaceRange(umin, umax, du));
+      setRange(2, DefinitionSpaceRange(vmin, vmax, dv));       
+    }
+
+    unsigned getTsteps() const { return getNumSteps(0); }
+    void setTsteps(unsigned numSteps) { setNumSteps(0, numSteps); }
+    void decrementTsteps() { setTsteps(getTsteps()-1); }
+
+    unsigned getUsteps() const { return getNumSteps(1); }
+    /// number of steps in u
+    void setUsteps(unsigned numSteps) { setNumSteps(1, numSteps); }
+    void decrementUsteps() { setUsteps(getUsteps()-1); }
+    /// number of steps in v
+    unsigned getVsteps() const { return getNumSteps(2); }
+    /// number of steps in v
+    void setVsteps(unsigned numSteps) { setNumSteps(2, numSteps); }
+    void decrementVsteps() { setVsteps(getVsteps()-1); }
+
+    void setTmin(double tmin) { setMinValue(0, tmin); }
+    double getTmin() const { return getMinValue(0); }
+    void setTmax(double tmax) { setMaxValue(0, tmax); }
+    double getTmax() const { return getMaxValue(0); }
+    void setDt(double dt) { setStepsize(0, dt); }
+    double getDt() const { return getStepsize(0); }
+    void setUmin(double umin) { setMinValue(1, umin); }
+    double getUmin() const { return getMinValue(1); } 
+    void setUmax(double umax) { setMaxValue(1, umax); }
+    double getUmax() const { return getMaxValue(1); }
+    void setDu(double du) { setStepsize(1, du); }
+    double getDu() const { return getStepsize(1); }  
+    void setVmin(double vmin) { setMinValue(2, vmin); }
+    double getVmin() const { return getMinValue(2); }
+    void setVmax(double vmax) { setMaxValue(2, vmax); }
+    double getVmax() const { return getMaxValue(2); }
+    void setDv(double dv) { setStepsize(2, dv); }
+    double getDv() const { return getStepsize(2); }  
+
+    static double min_; ///< default value for all lower bounds
+    static double max_; ///< default value for all upper bounds
+    static double d_;   ///< default value for all stepsizes
+
+};
+
 double RealFunctionDefinitionRange::min_ = -1.;
 double RealFunctionDefinitionRange::max_ =  1.;
 double RealFunctionDefinitionRange::d_ = 0.1;
@@ -134,7 +200,7 @@ void RealFunction::Impl::DrawPlane (unsigned t, UI::View *view){
  *  \param u current u value                                                  */
 void RealFunction::Impl::DrawStrip (unsigned t, unsigned u, UI::View *view){
   for (unsigned v = 0; v < definitionRange_.getVsteps(); v++)
-    DrawCube (t, u, v, view);
+    DrawCube (t, u, v, view); 
 }
 
 /// Draw the current cube or cell of the projected Function

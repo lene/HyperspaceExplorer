@@ -25,6 +25,7 @@ class DefinitionSpaceRange {
   
   public:
 
+    DefinitionSpaceRange();
     DefinitionSpaceRange(double minValue, double maxValue, double stepsize);
     DefinitionSpaceRange(double minValue, double maxValue, unsigned numSteps);
   
