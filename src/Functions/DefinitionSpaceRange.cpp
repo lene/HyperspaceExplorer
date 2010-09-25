@@ -20,6 +20,10 @@
 
 #include "DefinitionSpaceRange.h"
 
+double DefinitionSpaceRange::defaultMin = -1.;
+double DefinitionSpaceRange::defaultMax =  1.;
+double DefinitionSpaceRange::defaultStep = 0.1;
+
 struct DefinitionSpaceRange::Impl {
 
   Impl(): minValue_(0), maxValue_(0), stepsize_(0), numSteps_(1) { }

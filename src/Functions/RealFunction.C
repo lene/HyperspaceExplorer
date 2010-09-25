@@ -14,28 +14,20 @@
 
 #include "DefinitionRangeOfDimension.h"
 
-#include "FunctionValueGrid.h"
-
 #include "Transformation.h"
 #include "Projection.h"
 #include "GridDrawer.h"
 
-#include "Vector.h"
-#include "Matrix.h"
-
-#include "Globals.h"
-#include "Log.h"
 #include "ColorManager.h"
-#include "ScopedTimer.h"
 
-#include <vector>
+//#include "Log.h"
+//#include "ScopedTimer.h"
 
 using std::cerr;
 using std::endl;
 
 using VecMath::NestedVector;
 using VecMath::Vector;
-using VecMath::Matrix;
 
 /// \em RealBase provides a base class for functions which take three parameters
 /** The \em RealBase interface provides abstract members for the evaluation of
@@ -97,15 +89,7 @@ class RealFunctionDefinitionRange: public DefinitionRangeOfDimension<3> {
     void setDv(double dv) { setStepsize(2, dv); }
     double getDv() const { return getStepsize(2); }  
 
-    static double min_; ///< default value for all lower bounds
-    static double max_; ///< default value for all upper bounds
-    static double d_;   ///< default value for all stepsizes
-
 };
-
-double RealFunctionDefinitionRange::min_ = -1.;
-double RealFunctionDefinitionRange::max_ =  1.;
-double RealFunctionDefinitionRange::d_ = 0.1;
 
 struct RealFunction::Impl {
   
@@ -228,9 +212,9 @@ void RealFunction::Impl::DrawCube (unsigned t, unsigned u, unsigned v, UI::View*
 RealFunction::RealFunction():
   Function(ParameterMap()),
     pImpl_(new Impl(
-      RealFunctionDefinitionRange::min_, RealFunctionDefinitionRange::max_, RealFunctionDefinitionRange::d_, 
-      RealFunctionDefinitionRange::min_, RealFunctionDefinitionRange::max_, RealFunctionDefinitionRange::d_, 
-      RealFunctionDefinitionRange::min_, RealFunctionDefinitionRange::max_, RealFunctionDefinitionRange::d_)) { }
+      DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep, 
+      DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep, 
+      DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep)) { }
  
 /** RealFunction c'tor given a definition set in \f$ R^3 \f$ (as parameter space)
  *  \param tmin minimal value in t

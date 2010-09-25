@@ -6,27 +6,19 @@
 //      author:       helge preuss (lene.preuss@gmail.com)
 //      license:      GPL (see License.txt)
 
-
-#include "Globals.h"
-#include "ColorManager.h"
-
-#include "Matrix.h"
-
 #include "Surface.h"
+
+#include "ColorManager.h"
 
 #include "View.h"
 
-#include "FunctionValueGrid.h"
 #include "Transformation.h"
 #include "Projection.h"
 
 #include "DefinitionRangeOfDimension.h"
 
-#include <utility>
-
 using VecMath::NestedVector;
 using VecMath::Vector;
-using VecMath::Matrix;
 
 /// SurfaceBase provides a base class for functions which take two parameters
 /** The SurfaceBase interface provides abstract members for the evaluation
@@ -80,15 +72,7 @@ class SurfaceDefinitionRange: public DefinitionRangeOfDimension<2> {
     void setDu(double du) { setStepsize(1, du); }
     double getDu() const { return getStepsize(1); }  
 
-    static double _min, ///< Default value for lower grid boundary
-                  _max, ///< Default value for upper grid boundary
-                  _d;   ///< Default value for step size
-
 };
-
-double SurfaceDefinitionRange::_min = -1.;
-double SurfaceDefinitionRange::_max =  1.;
-double SurfaceDefinitionRange::_d = 0.1;
 
 struct Surface::Impl {
   
@@ -159,8 +143,9 @@ void Surface::Impl::setBoundariesAndStepwidth(double tmin, double tmax, double d
 /// Surface default c'tor, zeroes everything
 Surface::Surface (): 
   Function(ParameterMap()),
-  pImpl_(new Impl(SurfaceDefinitionRange::_min, SurfaceDefinitionRange::_max, SurfaceDefinitionRange::_d, 
-                  SurfaceDefinitionRange::_min, SurfaceDefinitionRange::_max, SurfaceDefinitionRange::_d)) { }
+  pImpl_(new Impl(
+    DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep, 
+    DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep)) { }
 
 
 /** Surface c'tor given a definition set in \f$ R^2 \f$ (as parameter space)

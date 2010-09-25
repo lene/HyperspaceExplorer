@@ -41,6 +41,10 @@ class DefinitionSpaceRange {
     unsigned getNumSteps() const;
     void setNumSteps(unsigned numSteps);
     
+    static double defaultMin,   ///< Default value for lower grid boundary
+                  defaultMax,   ///< Default value for upper grid boundary
+                  defaultStep;  ///< Default value for step size
+
   private:
     
     class Impl;
