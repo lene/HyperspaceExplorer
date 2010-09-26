@@ -1,7 +1,7 @@
 
 #include "Test_Rotation.h"
 
-#include "Rotation.h"
+#include "Rotation.impl.h"
 #include "Matrix.impl.h"
 
 #include <sstream>

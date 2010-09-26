@@ -14,6 +14,8 @@
 
 #include "MultiDimensionalVector.h"
 
+#include "Rotation.impl.h"
+
 namespace UI {
 
     Color ViewImpl::_defaultBackground(0.1, 0.1, 0.1, 1.0);

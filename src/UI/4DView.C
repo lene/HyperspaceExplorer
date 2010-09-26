@@ -22,8 +22,8 @@
 #include "Log.h"
 #include "ColorManager.h"
 
-#include "Matrix.h"
-#include "Rotation.h"
+#include "Matrix.impl.h"
+#include "Rotation.impl.h"
 
 #include "Function.h"
 #include "Surface.h"

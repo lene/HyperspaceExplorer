@@ -13,6 +13,8 @@
 #include "Sponge.h"
 #include "ColorManager.h"
 
+#include "Rotation.impl.h"
+
 #include <cstdlib>
 
 using std::cerr;

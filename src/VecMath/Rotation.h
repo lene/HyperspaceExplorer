@@ -170,53 +170,6 @@ namespace VecMath {
             Vector<NumAxes<D>::num, N> axis;
     };
 
-    template <unsigned D, typename N> Rotation<D, N>::Rotation (N r0, ... ):
-            axis() {
-        axis[0] = r0;
-        va_list argp;
-        va_start (argp, r0);
-        for (unsigned i = 1; i < NumAxes<D>::num; i++) {
-            axis[i] = va_arg (argp, N);
-        }
-        va_end (argp);
-    }
-
-    template <unsigned D, typename N>
-            N &Rotation<D, N>::operator[] (unsigned i) {
-        assert(i < NumAxes<D>::num);
-        return axis[i];
-    }
-
-    template <unsigned D, typename N>
-            N Rotation<D, N>::operator[] (unsigned i) const {
-        assert(i < NumAxes<D>::num);
-        return axis[i];
-    }
-
-    template <unsigned D, typename N> Rotation<D, N>::operator Matrix<D, N>() const {
-        Matrix<D, N> R;
-        for (unsigned i = 0; i < NumAxes<D>::num; i++) {
-            if (axis[i]) {
-                R *= Matrix<D, N>(RotationAxes<D>::axis(0, i),
-                                  RotationAxes<D>::axis(1, i),
-                                  axis[i]);
-            }
-        }
-        return R;
-    }
-
-    template <unsigned D, typename N>
-            Rotation<D, N> &Rotation<D, N>::operator +=(const Rotation<D, N>& that) {
-        axis += that.axis;
-        return *this;
-    }
-
-    template <unsigned D, typename N>
-            Rotation<D, N> Rotation<D, N>::operator+ (const Rotation<D, N> &that) const {
-        static Rotation<D, N> Z;
-        Z = *this;
-        return (Z += that);
-    }
 
     //------------  important non-member functions for class Rotation
 
