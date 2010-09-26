@@ -30,14 +30,14 @@
 template <unsigned size, typename T> class ArrayList {
   public:
     /// Create an ArrayList with default-constructed elements.
-    ArrayList(): _elements() { }
+    ArrayList();
     /// Create an ArrayList with all elements initialized to \p x.
     ArrayList(const T &x);
 
     /// Return the first element of an ArrayList.
-    T head() const { return _elements.first; }
+    T head() const;
     /// Return an ArrayList that contains all but the first element.
-    ArrayList<size-1, T> tail() const { return _elements.second; }
+    ArrayList<size-1, T> tail() const;
 
     /// Read-write access to an element of the ArrayList.
     T &operator[](unsigned i);
@@ -58,9 +58,9 @@ template <unsigned size, typename T> class ArrayList {
 template <typename T> class ArrayList<0, T> {
   public:
     /// Empty List.
-    ArrayList() { }
+    ArrayList();
     /// Empty List.
-    ArrayList(T) { }
+    ArrayList(T);
     /// Empty String.
     std::string toString() const;
 
