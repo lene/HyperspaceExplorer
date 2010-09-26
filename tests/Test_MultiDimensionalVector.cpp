@@ -56,6 +56,38 @@ void Test_MultiDimensionalVector::erase() {
     QVERIFY(v.size() == 2);
 }
 
+void testForEach(unsigned &i) { i = 2; }
+
+void Test_MultiDimensionalVector::for_each() {
+  Vector2D v = generate2DVector();
+  
+  v.for_each(testForEach);
+  
+  for (unsigned i = 0; i < v.size(); ++i) {
+    for (unsigned j = 0; j < v[i].size(); ++j) {
+      QVERIFY(v[i][j] == 2);
+    }
+  }
+}
+
+unsigned sum_of_all_elements = 0;
+void testForEachConst(const unsigned &i) { sum_of_all_elements += i; }
+
+unsigned calculateSumForSize(unsigned size) {
+  unsigned n = size*size;
+  unsigned sum = 0;
+  for (unsigned i = 0; i < n; ++i) sum += i;
+  return sum;
+}
+
+void Test_MultiDimensionalVector::for_each_const() {
+  Vector2D v = generate2DVector();
+
+  v.for_each(testForEachConst);
+  
+  QVERIFY(sum_of_all_elements == calculateSumForSize(3));
+}
+
 Test_MultiDimensionalVector::Vector2D Test_MultiDimensionalVector::generate2DVector(
         Test_MultiDimensionalVector::stored_type start_value, unsigned size) {
     Vector2D v;

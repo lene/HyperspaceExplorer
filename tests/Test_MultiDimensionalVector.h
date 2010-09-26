@@ -23,6 +23,9 @@ private slots:
   void erase();
   void resize();
 
+  void for_each();
+  void for_each_const();
+  
 private:
   Test_MultiDimensionalVector::Vector1D generate1DVector(
           Test_MultiDimensionalVector::stored_type start_value = 0, unsigned size = 3);

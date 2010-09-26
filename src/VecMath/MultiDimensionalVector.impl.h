@@ -20,6 +20,10 @@
 
 #include "MultiDimensionalVector.h"
 
+#include <algorithm>
+#include <sstream>
+#include <iostream>
+
 namespace VecMath {
 
 template <typename T, unsigned D> 
@@ -146,6 +150,20 @@ bool MultiDimensionalVector<T, D>::operator == (const MultiDimensionalVector<T, 
 template <typename T, unsigned D> 
 bool MultiDimensionalVector<T, D>::operator != (const MultiDimensionalVector<T, D> &other) const {
   return data() != other.data();
+}
+
+template <typename T, unsigned D> 
+void MultiDimensionalVector<T, D>::for_each(function_on_element f) {
+  for (iterator i = begin(); i != end(); ++i) {
+    i->for_each(f);
+  }
+}
+
+template <typename T, unsigned D> 
+void MultiDimensionalVector<T, D>::for_each(function_on_const_element f) const {
+  for (const_iterator i = begin(); i != end(); ++i) {
+    i->for_each(f);
+  }
 }
 
 template <typename T, unsigned D> 
@@ -326,6 +344,16 @@ bool MultiDimensionalVector<T, 1>::operator == (const MultiDimensionalVector<T, 
 template <typename T>
 bool MultiDimensionalVector<T, 1>::operator != (const MultiDimensionalVector<T, 1> &other) const {
   return data() != other.data();
+}
+
+template <typename T> 
+void MultiDimensionalVector<T, 1>::for_each(function_on_element f) {
+  std::for_each(begin(), end(), f);
+}
+
+template <typename T> 
+void MultiDimensionalVector<T, 1>::for_each(function_on_const_element f) const {
+  std::for_each(begin(), end(), f);
 }
 
 template <typename T>

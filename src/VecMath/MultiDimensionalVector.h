@@ -122,6 +122,12 @@ namespace VecMath {
       /// Returns true if \p other is not equal to \p this
       bool operator != (const MultiDimensionalVector<T, D> &other) const;
 
+      /// Apply a mutating function on every element of a MultiDimensionalVector
+      void for_each(function_on_element f);
+
+      /// Apply a non-mutating function on every element of a MultiDimensionalVector
+      void for_each(function_on_const_element f) const;
+      
       /// Convert NestedVector to a std::string.
       std::string toString() const;
 
@@ -151,18 +157,7 @@ namespace VecMath {
   typename MultiDimensionalVector<T, D>::iterator find(MultiDimensionalVector<T, D-1> const &find_me,
                                                        MultiDimensionalVector<T, D> &v);
 
-# if FOR_EACH_WORKS
-  /// Apply a mutating function on every element of a MultiDimensionalVector
-  template <typename T, unsigned D>
-  void for_each(MultiDimensionalVector<T, D> &v, 
-                MultiDimensionalVector<T, D>::function_on_element f);
-
-  /// Apply a non-mutating function on every element of a MultiDimensionalVector
-  template <typename T, unsigned D>
-  void for_each(const MultiDimensionalVector<T, D> &v, 
-                MultiDimensionalVector<T, D>::function_on_const_element f);
-# endif                
-
+                                                       
   /// Specialization of NestedVector<T, D> for \p D = 1
   template<typename T> 
   class MultiDimensionalVector<T, 1> {
@@ -227,6 +222,12 @@ namespace VecMath {
       /// See MultiDimensionalVector<T, D>::operator !=()
       bool operator != (const MultiDimensionalVector<T, 1> &other) const;
 
+      /// Apply a mutating function on every element of a MultiDimensionalVector
+      void for_each(function_on_element f);
+
+      /// Apply a non-mutating function on every element of a MultiDimensionalVector
+      void for_each(function_on_const_element f) const;
+      
       /// Convert MultiDimensionalVector to a std::string.
       std::string toString() const;
 
@@ -258,18 +259,6 @@ namespace VecMath {
   /// Print a MultiDimensionalVector<T, 1> on a std::ostream
   template<typename T> 
   std::ostream& operator<<(std::ostream& s, MultiDimensionalVector<T, 1> const& v);
-
-# if FOR_EACH_WORKS
-  /// Apply a mutating function on every element of a MultiDimensionalVector
-  template <typename T>
-  void for_each(MultiDimensionalVector<T, 1> &v, 
-                MultiDimensionalVector<T, 1>::function_on_element f);
-
-  /// Apply a non-mutating function on every element of a MultiDimensionalVector
-  template <typename T>
-  void for_each(const MultiDimensionalVector<T, 1> &v, 
-                MultiDimensionalVector<T, 1>::function_on_const_element f);
-# endif
 
 }
 
