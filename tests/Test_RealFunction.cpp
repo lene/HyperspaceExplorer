@@ -3,6 +3,8 @@
 
 #include "MockView.h"
 
+#include "MultiDimensionalVector.impl.h"
+
 #include "RealFunctionImplementations.h"
 #include "ColorManager.h"
 

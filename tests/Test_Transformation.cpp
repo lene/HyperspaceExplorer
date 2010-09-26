@@ -24,6 +24,8 @@
 
 #include "Test_ParametricFunction.h"
 
+#include "MultiDimensionalVector.impl.h"
+
 using VecMath::Vector;
 using VecMath::Rotation;
 using VecMath::Matrix;

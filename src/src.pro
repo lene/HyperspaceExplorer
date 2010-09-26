@@ -178,6 +178,7 @@ HEADERS += VecMath/ArrayList.h \
            VecMath/Matrix.h \
            VecMath/Matrix.impl.h \
            VecMath/MultiDimensionalVector.h \
+           VecMath/MultiDimensionalVector.impl.h \
            VecMath/Rotation.h \
            VecMath/Vector.h \
            VecMath/uintvec.h

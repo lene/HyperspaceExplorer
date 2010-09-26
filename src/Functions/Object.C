@@ -17,6 +17,7 @@
 #include "Transform.h"
 #include "View.h"
 
+#include "MultiDimensionalVector.impl.h"
 
 using std::cerr;
 using std::endl;

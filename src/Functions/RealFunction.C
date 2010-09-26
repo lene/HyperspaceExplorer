@@ -17,6 +17,7 @@
 #include "Transformation.impl.h"
 #include "Projection.impl.h"
 #include "GridDrawer.impl.h"
+#include "MultiDimensionalVector.impl.h"
 
 #include "ColorManager.h"
 

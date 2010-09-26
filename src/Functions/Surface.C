@@ -14,6 +14,7 @@
 
 #include "Transformation.impl.h"
 #include "Projection.impl.h"
+#include "MultiDimensionalVector.impl.h"
 
 #include "DefinitionRangeOfDimension.impl.h"
 

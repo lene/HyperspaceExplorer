@@ -2,6 +2,8 @@
 #include "Test_FunctionValueGrid.h"
 #include "Test_ParametricFunction.h"
 
+#include "MultiDimensionalVector.impl.h"
+
 using std::tr1::shared_ptr;
 using VecMath::Vector;
 

@@ -1,7 +1,7 @@
 
 #include "Test_MultiDimensionalVector.h"
 
-//#include "MultiDimensionalVector.h"
+#include "MultiDimensionalVector.impl.h"
 
 #include <algorithm>
 

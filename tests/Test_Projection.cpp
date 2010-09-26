@@ -22,6 +22,7 @@
 
 #include "Vector.h"
 #include "Projection.impl.h"
+#include "MultiDimensionalVector.impl.h"
 
 #include <complex>
 

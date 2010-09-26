@@ -18,7 +18,7 @@
 #include <sstream>
 
 #include "Vector.h"
-#include "MultiDimensionalVector.h"
+#include "MultiDimensionalVector.impl.h"
 #include "Function.h"
 #include "Color.h"
 
