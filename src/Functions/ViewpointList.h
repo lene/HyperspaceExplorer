@@ -119,6 +119,4 @@ template <unsigned N, typename NUM> class ViewpointList<N, N, NUM> {
     std::string toString() const { return ""; }
 };
 
-#include "ViewpointList.impl.h"
-
 #endif

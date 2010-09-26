@@ -20,6 +20,8 @@
 
 #include "Test_Transformation.h"
 
+#include "Transformation.impl.h"
+
 #include "Test_ParametricFunction.h"
 
 using VecMath::Vector;

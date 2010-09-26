@@ -14,9 +14,9 @@
 
 #include "DefinitionRangeOfDimension.impl.h"
 
-#include "Transformation.h"
-#include "Projection.h"
-#include "GridDrawer.h"
+#include "Transformation.impl.h"
+#include "Projection.impl.h"
+#include "GridDrawer.impl.h"
 
 #include "ColorManager.h"
 

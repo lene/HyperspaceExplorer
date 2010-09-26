@@ -21,6 +21,7 @@
 #include "Test_GridDrawer.h"
 
 #include "Vector.h"
+#include "GridDrawer.impl.h"
 
 #include <complex>
 

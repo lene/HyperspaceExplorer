@@ -135,6 +135,4 @@ template <unsigned N, typename NUM> class SimpleTransformationPolicy< N, 1, NUM 
 
 };
 
-#include "Transformation.impl.h"
-
 #endif // TRANSFORMATION_H

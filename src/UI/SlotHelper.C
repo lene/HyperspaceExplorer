@@ -14,6 +14,8 @@
 
 #include "SlotHelper.h"
 #include "4DView.h"
+#include "CustomFunctionSlot.impl.h"
+#include "TemplatedFunctionFactory.impl.h"
 
 /// Generalized slot. Sets C4DView::F to Function associated with this SlotHelper
 void FunctionSlotHelper::slot() {

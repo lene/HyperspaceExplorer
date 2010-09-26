@@ -21,6 +21,7 @@
 #include "Test_Projection.h"
 
 #include "Vector.h"
+#include "Projection.impl.h"
 
 #include <complex>
 

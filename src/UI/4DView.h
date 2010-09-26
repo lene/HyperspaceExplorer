@@ -415,7 +415,4 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
     friend class SurfaceSlotHelper;
 };
 
-#include "CustomFunctionSlot.impl.h"
-#include "TemplatedFunctionFactory.impl.h"
-
 #endif // !defined(C4DVIEW)

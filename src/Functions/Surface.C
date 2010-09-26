@@ -12,8 +12,8 @@
 
 #include "View.h"
 
-#include "Transformation.h"
-#include "Projection.h"
+#include "Transformation.impl.h"
+#include "Projection.impl.h"
 
 #include "DefinitionRangeOfDimension.impl.h"
 

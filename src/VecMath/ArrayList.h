@@ -66,6 +66,4 @@ template <typename T> class ArrayList<0, T> {
 
 };
 
-#include "ArrayList.impl.h"
-
 #endif // ARRAYLIST_H

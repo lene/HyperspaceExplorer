@@ -92,6 +92,4 @@ template<typename NUM, unsigned D> class GridDrawer<1, NUM, D> {
 
 };
 
-#include "GridDrawer.impl.h"
-
 #endif

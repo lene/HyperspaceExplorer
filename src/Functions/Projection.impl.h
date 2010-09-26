@@ -21,7 +21,9 @@
 #ifndef PROJECTION_IMPL_H
 #define PROJECTION_IMPL_H
 
-#include <Projection.h>
+#include "Projection.h"
+#include "ViewpointList.impl.h"
+#include "ArrayList.impl.h"
 
 #include <stdexcept>
 #include <sstream>

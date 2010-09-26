@@ -193,6 +193,4 @@ template <unsigned N, typename NUM> class SimpleProjectionPolicy<N, N, 1, NUM> {
 
 };
 
-#include "Projection.impl.h"
-
 #endif // PROJECTION_H
