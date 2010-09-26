@@ -15,7 +15,7 @@
 #include "Transformation.h"
 #include "Projection.h"
 
-#include "DefinitionRangeOfDimension.h"
+#include "DefinitionRangeOfDimension.impl.h"
 
 using VecMath::NestedVector;
 using VecMath::Vector;

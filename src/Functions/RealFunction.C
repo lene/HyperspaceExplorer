@@ -12,7 +12,7 @@
 
 #include "RealFunction.h"
 
-#include "DefinitionRangeOfDimension.h"
+#include "DefinitionRangeOfDimension.impl.h"
 
 #include "Transformation.h"
 #include "Projection.h"
@@ -95,10 +95,22 @@ struct RealFunction::Impl {
   
     Impl(double tmin, double tmax, double dt,
          double umin, double umax, double du,
-         double vmin, double vmax, double dv): 
-      definitionRange_(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) { }
+         double vmin, double vmax, double dv);
 
-      const VecMath::NestedVector< Vector< 4 >, 3 > &X() const { return _X.getValues(); }
+    void Transform (const VecMath::Rotation<4> &R, const VecMath::Vector<4> &T);
+    void Project (double ScrW, double CamW, bool DepthCue4D);
+    void Draw (UI::View *view);
+    
+    void calibrateColors() const;
+         
+    void for_each(function_on_fourspace_vertex apply);
+    void for_each(function_on_fourspace_and_transformed_vertex apply);
+    void for_each(function_on_fourspace_transformed_and_projected_vertex apply);
+    void for_each(function_on_projected_vertex apply);
+
+    const VecMath::NestedVector< Vector< 4 >, 3 > &X() const { return _X.getValues(); }
+    const VecMath::NestedVector< VecMath::Vector<4>, 3 > &Xtrans() const { return _Xtrans; }
+    const VecMath::NestedVector< VecMath::Vector<3>, 3 > &Xscr() const { return _Xscr; }
 
       /// Initialize depth cue.
     void setDepthCueColors(double Wmax, double Wmin);
@@ -124,6 +136,85 @@ struct RealFunction::Impl {
     VecMath::NestedVector< VecMath::Vector<3>, 3 > _Xscr;
 
 };
+
+RealFunction::Impl::Impl(double tmin, double tmax, double dt, 
+                         double umin, double umax, double du, 
+                         double vmin, double vmax, double dv):
+  definitionRange_(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) { }
+
+void RealFunction::Impl::Transform(const VecMath::Rotation< 4 >& R, const VecMath::Vector< 4 >& T) {
+  Transformation<4, 3> xform(R, T);
+  _Xtrans = xform.transform(X());
+}
+
+void RealFunction::Impl::Project(double scr_w, double cam_w, bool depthcue4d) {
+  Projection<4, 3, 3> p(scr_w, cam_w, depthcue4d);
+  _Xscr = p.project(Xtrans());
+
+  if (depthcue4d) {
+    std::pair< double, double > Wext = findExtremesInW();
+    setDepthCueColors(Wext.first, Wext.second);
+  }
+}
+
+void RealFunction::Impl::Draw(UI::View* view) {
+//  ScopedTimer timer("Draw()");
+# ifdef USE_GRID_DRAWER
+std::cerr << "USE_GRID_DRAWER" << std::endl;
+    GridDrawer<3> draw(X(), Xscr(), view);
+    draw.execute();
+# else
+    for (unsigned t = 0; t < definitionRange_.getTsteps(); t++)
+      DrawPlane (t, view);
+# endif
+
+}
+
+void RealFunction::Impl::calibrateColors() const {
+
+  std::pair< double, double > Wext = findExtremesInW();
+
+  for (unsigned t = 0; t <= definitionRange_.getTsteps(); t++) {
+    for (unsigned u = 0; u <= definitionRange_.getUsteps()+1; u++) {
+      for (unsigned v = 0; v <= definitionRange_.getVsteps()+1; v++) {
+        ColMgrMgr::Instance().calibrateColor(
+            X()[t][u][v],
+            Color(float(t)/float(definitionRange_.getTsteps()), 
+                  float(u)/float(definitionRange_.getUsteps()),
+                  float(v)/float(definitionRange_.getVsteps()),
+                  (X()[t][u][v][3]-Wext.first)/(Wext.second-Wext.first)));
+      }
+    }
+  }
+}
+
+void RealFunction::Impl::for_each(Function::function_on_fourspace_vertex apply) {
+  for (unsigned t = 0; t < definitionRange_.getTsteps(); t++)
+    for (unsigned u = 0; u < definitionRange_.getUsteps(); u++)
+      for (unsigned v = 0; v < definitionRange_.getVsteps(); v++)
+        apply(X()[t][u][v]);
+}
+
+void RealFunction::Impl::for_each(Function::function_on_fourspace_and_transformed_vertex apply) {
+  for (unsigned t = 0; t < definitionRange_.getTsteps(); t++)
+    for (unsigned u = 0; u < definitionRange_.getUsteps(); u++)
+      for (unsigned v = 0; v < definitionRange_.getVsteps(); v++)
+        apply(X()[t][u][v], Xtrans()[t][u][v]);
+}
+
+void RealFunction::Impl::for_each(Function::function_on_fourspace_transformed_and_projected_vertex apply) {
+  for (unsigned t = 0; t < definitionRange_.getTsteps(); t++)
+    for (unsigned u = 0; u < definitionRange_.getUsteps(); u++)
+      for (unsigned v = 0; v < definitionRange_.getVsteps(); v++)
+        apply(X()[t][u][v], Xtrans()[t][u][v], Xscr()[t][u][v]);
+}
+
+void RealFunction::Impl::for_each(Function::function_on_projected_vertex apply) {
+  for (unsigned t = 0; t < definitionRange_.getTsteps(); t++)
+    for (unsigned u = 0; u < definitionRange_.getUsteps(); u++)
+      for (unsigned v = 0; v < definitionRange_.getVsteps(); v++)
+        apply(Xscr()[t][u][v]);
+}
 
 void RealFunction::Impl::setDepthCueColors(double Wmax, double Wmin) {
   for(unsigned t = 0;t <= definitionRange_.getTsteps() + 1;t++) {
@@ -231,66 +322,27 @@ RealFunction::RealFunction(double tmin, double tmax, double dt,
                            double umin, double umax, double du,
                            double vmin, double vmax, double dv,
                            ParameterMap parms):
-  Function(parms), pImpl_(new Impl(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv)) {
-
-  if (MemRequired () > Globals::Instance().getMaxMemory()) {
-    cerr << "Using a " << pImpl_->definitionRange_.getTsteps() << "x" 
-                       << pImpl_->definitionRange_.getUsteps() << "x" 
-                       << pImpl_->definitionRange_.getVsteps()
-         << " grid would require approx. " << MemRequired () << " MB of memory.\n";
-    while (MemRequired () > Globals::Instance().getMaxMemory()) {
-      pImpl_->definitionRange_.decrementTsteps(); 
-      pImpl_->definitionRange_.decrementUsteps(); 
-      pImpl_->definitionRange_.decrementVsteps();
-    }
-    cerr << "Using a " << pImpl_->definitionRange_.getTsteps() << "x" 
-                       << pImpl_->definitionRange_.getUsteps() << "x" 
-                       << pImpl_->definitionRange_.getVsteps()
-         << " grid instead." << endl;
-    pImpl_->definitionRange_.setDt((pImpl_->definitionRange_.getTmax()-pImpl_->definitionRange_.getTmin()) /
-                                    pImpl_->definitionRange_.getTsteps());
-    pImpl_->definitionRange_.setDu((pImpl_->definitionRange_.getUmax()-pImpl_->definitionRange_.getUmin()) /
-                                    pImpl_->definitionRange_.getUsteps());
-    pImpl_->definitionRange_.setDv((pImpl_->definitionRange_.getVmax()-pImpl_->definitionRange_.getVmin()) /
-                                    pImpl_->definitionRange_.getVsteps());
-  }
-}
+  Function(parms), pImpl_(new Impl(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv)) { }
 
 RealFunction::~RealFunction() { }
 
 /// Allocate and initialize X[][][] with values of f().
 void RealFunction::Initialize () {
-  pImpl_->_X = FunctionValueGrid<4, 3>(_function,
-                               Vector<3, unsigned>(pImpl_->definitionRange_.getTsteps()+2, 
-                                                   pImpl_->definitionRange_.getUsteps()+2, 
-                                                   pImpl_->definitionRange_.getVsteps()+2),
-                               Vector<3>(pImpl_->definitionRange_.getTmin(), 
-                                         pImpl_->definitionRange_.getUmin(), 
-                                         pImpl_->definitionRange_.getVmin()),
-                               Vector<3>(pImpl_->definitionRange_.getTmax(), 
-                                         pImpl_->definitionRange_.getUmax(), 
-                                         pImpl_->definitionRange_.getVmax()));
+  
+  Vector<3, unsigned> numSteps = pImpl_->definitionRange_.getNumSteps();
+  Vector<3, double> min = pImpl_->definitionRange_.getMinValue();
+  Vector<3, double> max = pImpl_->definitionRange_.getMaxValue();
+  
+  pImpl_->_X = FunctionValueGrid<4, 3>(
+    _function, numSteps.operator+(2), min, max
+  );
 
   calibrateColors();
 
 }
 
 void RealFunction::calibrateColors() const {
-
-  std::pair< double, double > Wext = pImpl_->findExtremesInW();
-
-  for (unsigned t = 0; t <= pImpl_->definitionRange_.getTsteps(); t++) {
-    for (unsigned u = 0; u <= pImpl_->definitionRange_.getUsteps()+1; u++) {
-      for (unsigned v = 0; v <= pImpl_->definitionRange_.getVsteps()+1; v++) {
-        ColMgrMgr::Instance().calibrateColor(
-            X()[t][u][v],
-            Color(float(t)/float(pImpl_->definitionRange_.getTsteps()), 
-                  float(u)/float(pImpl_->definitionRange_.getUsteps()),
-                  float(v)/float(pImpl_->definitionRange_.getVsteps()),
-                  (X()[t][u][v][3]-Wext.first)/(Wext.second-Wext.first)));
-      }
-    }
-  }
+  pImpl_->calibrateColors();
 }
 
 unsigned int RealFunction::getDefinitionSpaceDimensions() { return 3; }
@@ -307,31 +359,19 @@ Vector<4>& RealFunction::operator()(double t, double u, double v) {
 }
 
 void RealFunction::for_each(Function::function_on_fourspace_vertex apply) {
-  for (unsigned t = 0; t < pImpl_->definitionRange_.getTsteps(); t++)
-    for (unsigned u = 0; u < pImpl_->definitionRange_.getUsteps(); u++)
-      for (unsigned v = 0; v < pImpl_->definitionRange_.getVsteps(); v++)
-        apply(X()[t][u][v]);
+  pImpl_->for_each(apply);
 }
 
 void RealFunction::for_each(Function::function_on_fourspace_and_transformed_vertex apply) {
-  for (unsigned t = 0; t < pImpl_->definitionRange_.getTsteps(); t++)
-    for (unsigned u = 0; u < pImpl_->definitionRange_.getUsteps(); u++)
-      for (unsigned v = 0; v < pImpl_->definitionRange_.getVsteps(); v++)
-        apply(X()[t][u][v], Xtrans()[t][u][v]);
+  pImpl_->for_each(apply);
 }
 
 void RealFunction::for_each(Function::function_on_fourspace_transformed_and_projected_vertex apply) {
-  for (unsigned t = 0; t < pImpl_->definitionRange_.getTsteps(); t++)
-    for (unsigned u = 0; u < pImpl_->definitionRange_.getUsteps(); u++)
-      for (unsigned v = 0; v < pImpl_->definitionRange_.getVsteps(); v++)
-        apply(X()[t][u][v], Xtrans()[t][u][v], Xscr()[t][u][v]);
+  pImpl_->for_each(apply);
 }
 
 void RealFunction::for_each(Function::function_on_projected_vertex apply) {
-  for (unsigned t = 0; t < pImpl_->definitionRange_.getTsteps(); t++)
-    for (unsigned u = 0; u < pImpl_->definitionRange_.getUsteps(); u++)
-      for (unsigned v = 0; v < pImpl_->definitionRange_.getVsteps(); v++)
-        apply(Xscr()[t][u][v]);
+  pImpl_->for_each(apply);
 }
 
 unsigned int RealFunction::getTsteps() const { return pImpl_->definitionRange_.getTsteps(); }
@@ -340,16 +380,6 @@ unsigned int RealFunction::getVsteps() const { return pImpl_->definitionRange_.g
 
 
 /// Re-initialize a RealFunction if the definition set has changed
-/** \param tmin minimal value in t
- *  \param tmax maximal value in t
- *  \param dt stepsize in t
- *  \param umin minimal value in u
- *  \param umax maximal value in u
- *  \param du stepsize in u
- *  \param vmin minimal value in v
- *  \param vmax maximal value in v
- *  \param dv stepsize in v
- */
 void RealFunction::ReInit(double tmin, double tmax, double dt,
                           double umin, double umax, double du,
                           double vmin, double vmax, double dv) {
@@ -360,14 +390,12 @@ void RealFunction::ReInit(double tmin, double tmax, double dt,
 
 }
 
-
 /// Transforms a RealFunction
 /** \param R rotation
  *  \param T translation                                                      */
 void RealFunction::Transform (const VecMath::Rotation<4> &R,
                               const VecMath::Vector<4> &T) {
-  Transformation<4, 3> xform(R, T);
-  pImpl_->_Xtrans = xform.transform(X());
+  pImpl_->Transform(R, T);
 }
 
 /// Projects a RealFunction into three-space
@@ -375,28 +403,13 @@ void RealFunction::Transform (const VecMath::Rotation<4> &R,
  *  \param cam_w w coordinate of camera
  *  \param depthcue4d whether to use hyperfog/depth cue                       */
 void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
-
-  Projection<4, 3, 3> p(scr_w, cam_w, depthcue4d);
-  pImpl_->_Xscr = p.project(Xtrans());
-
-  if (depthcue4d) {
-    std::pair< double, double > Wext = pImpl_->findExtremesInW();
-    pImpl_->setDepthCueColors(Wext.first, Wext.second);
-  }
+  pImpl_->Project(scr_w, cam_w, depthcue4d);
 }
 
 /// Draw the projected Function (onto screen or into GL list, as it is)
 /** */
 void RealFunction::Draw (UI::View *view) {
-//  ScopedTimer timer("Draw()");
-# ifdef USE_GRID_DRAWER
-std::cerr << "USE_GRID_DRAWER" << std::endl;
-    GridDrawer<3> draw(X(), Xscr(), view);
-    draw.execute();
-# else
-    for (unsigned t = 0; t < pImpl_->definitionRange_.getTsteps(); t++)
-      pImpl_->DrawPlane (t, view);
-# endif
+  pImpl_->Draw(view);
 }
 
 /// Calculate normal to function at a given point in definition set.

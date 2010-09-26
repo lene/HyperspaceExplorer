@@ -23,35 +23,33 @@
 
 #include "DefinitionSpaceRange.h"
 
+namespace VecMath {
+  template<unsigned D, class N> class Vector;
+}
+
 template<unsigned D> class DefinitionRangeOfDimension {
   
   public:
     
-    double getMinValue(unsigned i) const { return range_[i].getMinValue(); }
-    void setMinValue(unsigned i, double minValue) {
-      range_[i].setMinValue(minValue);
-    }
+    double getMinValue(unsigned i) const;
+    VecMath::Vector<D, double> getMinValue() const;
+    void setMinValue(unsigned i, double minValue);
     
-    double getMaxValue(unsigned i) const { return range_[i].getMaxValue(); }
-    void setMaxValue(unsigned i, double maxValue) {
-      range_[i].setMaxValue(maxValue);
-    }
+    double getMaxValue(unsigned i) const;
+    VecMath::Vector<D, double> getMaxValue() const;
+    void setMaxValue(unsigned i, double maxValue);
     
-    double getStepsize(unsigned i) const { return range_[i].getStepsize(); }
-    void setStepsize(unsigned i, double stepsize) {
-      range_[i].setStepsize(stepsize);
-    }
+    double getStepsize(unsigned i) const;
+    VecMath::Vector<D, double> getStepsize() const;
+    void setStepsize(unsigned i, double stepsize);
     
-    unsigned getNumSteps(unsigned i) const { return range_[i].getNumSteps(); }
-    void setNumSteps(unsigned i, unsigned numSteps) {
-      range_[i].setNumSteps(numSteps);
-    }
+    unsigned getNumSteps(unsigned i) const;
+    VecMath::Vector<D, unsigned> getNumSteps() const;
+    void setNumSteps(unsigned i, unsigned numSteps);
 
   protected:
     
-    void setRange(unsigned i, const DefinitionSpaceRange &range) {
-      range_[i] = range;
-    }
+    void setRange(unsigned i, const DefinitionSpaceRange &range);
     
   private:
     

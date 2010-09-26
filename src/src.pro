@@ -30,6 +30,7 @@ HEADERS += Functions/ComplexFunction.h \
            Functions/CustomFunction.h \
            Functions/DefinitionSpaceRange.h \
            Functions/DefinitionRangeOfDimension.h \
+           Functions/DefinitionRangeOfDimension.impl.h \
            Functions/ParametricFunction.h \
            Functions/FunctionValueGrid.h \
            Functions/LoopHelper.h \
