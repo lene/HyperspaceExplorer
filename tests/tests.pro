@@ -28,7 +28,7 @@ HEADERS += MockView.h \
            Test_Realm.h \
            Test_Vector.h \
            Test_Matrix.h \
-           Test_NestedVector.h \
+           Test_MultiDimensionalVector.h \
            Test_Rotation.h \
            Test_RealFunction.h \
            Test_Surface.h \
@@ -39,13 +39,12 @@ HEADERS += MockView.h \
            Test_GridDrawer.h \
            Test_FunctionFactory.h \
            Test_Function.h
-SOURCES += main.cpp \
-           MockView.cpp \
+SOURCES += MockView.cpp \
            Test_Rotope.cpp \
            Test_Realm.cpp \
            Test_Vector.cpp \
            Test_Matrix.cpp \
-           Test_NestedVector.cpp \
+           Test_MultiDimensionalVector.cpp \
            Test_Rotation.cpp \
            Test_RealFunction.cpp \
            Test_Surface.cpp \
@@ -55,7 +54,8 @@ SOURCES += main.cpp \
            Test_Projection.cpp \
            Test_GridDrawer.cpp \
            Test_FunctionFactory.cpp \
-           Test_Function.cpp
+           Test_Function.cpp \
+           main.cpp
 
 PRE_TARGETDEPS *= ../lib/libHyperspaceExplorer.a
 LIBS *= ../lib/libHyperspaceExplorer.a

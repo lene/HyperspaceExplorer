@@ -22,12 +22,12 @@
 #ifndef LOOP_HELPER_H
 #define LOOP_HELPER_H
 
-#include "NestedVector.h"
+#include "MultiDimensionalVector.h"
 #include "Vector.h"
 
 #include <tr1/memory>
 
-/// Class that applies a function on every value in a NestedVector
+/// Class that applies a function on every value in a MultiDimensionalVector
 /** \tparam N The dimension of the definition vector space.
  *  \tparam P The dimension of the parameter vector space.
  *  \tparam dimension The dimension (in parameter vector space) we currently
@@ -49,7 +49,7 @@ class LoopHelper {
 
     /// Loop over one dimension, if necessary loop over lower dimensions too.
     void recalculateOneDimensionOfGrid(
-        VecMath::NestedVector< VecMath::Vector<N, NUM>, dimension > &values,
+        VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, dimension > &values,
         VecMath::Vector<P, NUM> &current_x
     );
 
@@ -82,7 +82,7 @@ class LoopHelper< N, P, 1, NUM > {
 
     /// Loop over one dimension, evaluating _f and filling \p values.
     void recalculateOneDimensionOfGrid(
-        VecMath::NestedVector< VecMath::Vector<N, NUM>, 1 > &values,
+        VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, 1 > &values,
         VecMath::Vector<P, NUM> &current_x
     );
 
@@ -118,7 +118,7 @@ template <unsigned N, unsigned P, unsigned dimension, typename NUM>
 void
 LoopHelper<N, P, dimension, NUM>::
 recalculateOneDimensionOfGrid(
-      VecMath::NestedVector< VecMath::Vector<N, NUM>, dimension > &values,
+      VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, dimension > &values,
       VecMath::Vector<P, NUM> &current_x) {
   unsigned grid_size_in_current_dim = _grid_size[dimension-1];
   NUM x_min_in_current_dim = _x_min[dimension-1];
@@ -139,7 +139,7 @@ template <unsigned N, unsigned P, typename NUM>
 void
 LoopHelper<N, P, 1, NUM>::
 recalculateOneDimensionOfGrid(
-      VecMath::NestedVector< VecMath::Vector<N, NUM>, 1> &values,
+      VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, 1> &values,
       VecMath::Vector<P, NUM> &current_x) {
   unsigned grid_size_in_current_dim = _grid_size[0];
   NUM x_min_in_current_dim = _x_min[0];

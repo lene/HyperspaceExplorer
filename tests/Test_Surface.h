@@ -31,9 +31,9 @@ class Test_Surface: public QObject {
       virtual std::string getFunctionName() const { return TEST_FUNCTION_NAME; }
 
       VecMath::Vector<4> function_value(double tt, double uu) { return _function->f(VecMath::Vector<2>(tt,uu)); }
-      VecMath::NestedVector< VecMath::Vector<4>, 2 > vertices() { return X(); }
-      VecMath::NestedVector< VecMath::Vector<4>, 2 > transformed_vertices() { return Xtrans(); }
-      VecMath::NestedVector< VecMath::Vector<3>, 2 > projected_vertices() { return Xscr(); }
+      VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > vertices() { return X(); }
+      VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > transformed_vertices() { return Xtrans(); }
+      VecMath::MultiDimensionalVector< VecMath::Vector<3>, 2 > projected_vertices() { return Xscr(); }
 
       unsigned xsteps() const { return getTsteps(); }
       unsigned ysteps() const { return getUsteps(); }

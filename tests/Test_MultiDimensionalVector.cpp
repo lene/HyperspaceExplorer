@@ -1,14 +1,14 @@
 
-#include "Test_NestedVector.h"
+#include "Test_MultiDimensionalVector.h"
 
-#include "NestedVector.h"
+//#include "MultiDimensionalVector.h"
 
 #include <algorithm>
 
-using VecMath::NestedVector;
+using VecMath::MultiDimensionalVector;
 
-void Test_NestedVector::push_back_1D() {
-    Test_NestedVector::Vector1D v;
+void Test_MultiDimensionalVector::push_back_1D() {
+    Test_MultiDimensionalVector::Vector1D v;
 
     v.push_back(1);
 
@@ -16,7 +16,7 @@ void Test_NestedVector::push_back_1D() {
         QFAIL("1 not found.");
 }
 
-void Test_NestedVector::push_back_2D() {
+void Test_MultiDimensionalVector::push_back_2D() {
     Vector2D v;
     Vector1D v1 = generate1DVector();
 
@@ -26,15 +26,15 @@ void Test_NestedVector::push_back_2D() {
         QFAIL("1D vector not found.");
 }
 
-Test_NestedVector::Vector1D Test_NestedVector::generate1DVector(
-        Test_NestedVector::stored_type start_value, unsigned size) {
+Test_MultiDimensionalVector::Vector1D Test_MultiDimensionalVector::generate1DVector(
+        Test_MultiDimensionalVector::stored_type start_value, unsigned size) {
     Vector1D v;
     for (unsigned i = start_value; i < start_value+size; i++)
         v.push_back(i);
     return v;
 }
 
-void Test_NestedVector::testGenerate2DVector() {
+void Test_MultiDimensionalVector::testGenerate2DVector() {
     stored_type start_value = 0;
     unsigned size = 3;
 
@@ -47,7 +47,7 @@ void Test_NestedVector::testGenerate2DVector() {
 
 }
 
-void Test_NestedVector::erase() {
+void Test_MultiDimensionalVector::erase() {
     Vector2D v = generate2DVector();
 
     v.erase(v.begin());
@@ -56,8 +56,8 @@ void Test_NestedVector::erase() {
     QVERIFY(v.size() == 2);
 }
 
-Test_NestedVector::Vector2D Test_NestedVector::generate2DVector(
-        Test_NestedVector::stored_type start_value, unsigned size) {
+Test_MultiDimensionalVector::Vector2D Test_MultiDimensionalVector::generate2DVector(
+        Test_MultiDimensionalVector::stored_type start_value, unsigned size) {
     Vector2D v;
     for (unsigned i = start_value; i < start_value+size*size; i += size) {
         v.push_back(generate1DVector(i, size));
@@ -66,7 +66,7 @@ Test_NestedVector::Vector2D Test_NestedVector::generate2DVector(
     return v;
 }
 
-void Test_NestedVector::resize() {
+void Test_MultiDimensionalVector::resize() {
     Vector2D v;
     QVERIFY(v.size() == 0);
 

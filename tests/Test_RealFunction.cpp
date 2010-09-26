@@ -44,9 +44,9 @@ class Test_RealFunction::RealFunctionTestImplementation: public RealFunction {
     virtual std::string getFunctionName() const { return TEST_FUNCTION_NAME.toStdString(); }
 
     VecMath::Vector<4> function_value(double tt, double uu, double vv) { return f(tt,uu,vv); }
-    VecMath::NestedVector<VecMath::Vector<4>, 3> vertices() { return X(); }
-    VecMath::NestedVector<VecMath::Vector<4>, 3> transformed_vertices() { return Xtrans(); }
-    VecMath::NestedVector<VecMath::Vector<3>, 3> projected_vertices() { return Xscr(); }
+    VecMath::MultiDimensionalVector<VecMath::Vector<4>, 3> vertices() { return X(); }
+    VecMath::MultiDimensionalVector<VecMath::Vector<4>, 3> transformed_vertices() { return Xtrans(); }
+    VecMath::MultiDimensionalVector<VecMath::Vector<3>, 3> projected_vertices() { return Xscr(); }
 
     unsigned xsteps() const { return getTsteps(); }
     unsigned ysteps() const { return getUsteps(); }

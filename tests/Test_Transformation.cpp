@@ -262,7 +262,7 @@ using VecMath::makeRotation;
 using VecMath::makeVector;
 
 void Test_Transformation::rotateFloatVector() {
-    VecMath::NestedVector<Vector<4, float>, 1> vec;
+    VecMath::MultiDimensionalVector<Vector<4, float>, 1> vec;
     vec.push_back(makeVector(1.f, 0.f, 0.f, 0.f));
     Vector<4, float> trans(0.);
 

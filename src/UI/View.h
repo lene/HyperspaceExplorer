@@ -20,7 +20,7 @@
 class Function;
 class Light;
 namespace VecMath {
-  template <typename T, unsigned D> class NestedVector;
+  template <typename T, unsigned D> class MultiDimensionalVector;
 }
 
 /// User interface elements
@@ -182,7 +182,7 @@ namespace UI {
                                         const VecMath::Vector< 3 > &xscr2, const VecMath::Vector< 3 > &xscr3) = 0;
             virtual void drawPolygon(const std::vector< VecMath::Vector< 4 > > &x0, 
                                      const std::vector< VecMath::Vector< 3 > > &xscr0) = 0;
-            virtual void drawCube(const VecMath::NestedVector< VecMath::Vector<4>, 3 > &X,
+            virtual void drawCube(const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 3 > &X,
                                   unsigned t, unsigned u, unsigned v,
                                   const VecMath::Vector<3> &v0, const VecMath::Vector<3> &v1,
                                   const VecMath::Vector<3> &v2, const VecMath::Vector<3> &v3,

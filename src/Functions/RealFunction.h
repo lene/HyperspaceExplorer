@@ -24,7 +24,7 @@
 #include "Function.h"
 
 #include "ParametricFunction.h"
-#include "NestedVector.h"
+#include "MultiDimensionalVector.h"
 
 /// A RealFunction is a mathematical function  \f$ f: R^3 \rightarrow R \f$ .
 /** The function \em f is evaluated on a 3-dimensional cartesian grid. The
@@ -95,11 +95,11 @@ class RealFunction: public Function {
     unsigned getVsteps() const;
     
     /// Array of function values.
-    const VecMath::NestedVector< VecMath::Vector<4>, 3 > &X() const;
+    const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 3 > &X() const;
     /// Array of function values after transform.
-    const VecMath::NestedVector< VecMath::Vector<4>, 3 > &Xtrans() const;
+    const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 3 > &Xtrans() const;
     /// Array of projected function values.
-    const VecMath::NestedVector< VecMath::Vector<3>, 3 > &Xscr() const;
+    const VecMath::MultiDimensionalVector< VecMath::Vector<3>, 3 > &Xscr() const;
 
   private:
     

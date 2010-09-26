@@ -26,7 +26,7 @@
 using std::cerr;
 using std::endl;
 
-using VecMath::NestedVector;
+using VecMath::MultiDimensionalVector;
 using VecMath::Vector;
 
 /// \em RealBase provides a base class for functions which take three parameters
@@ -110,9 +110,9 @@ class RealFunction::Impl {
     void for_each(function_on_fourspace_transformed_and_projected_vertex apply);
     void for_each(function_on_projected_vertex apply);
 
-    const VecMath::NestedVector< Vector< 4 >, 3 > &X() const { return _X.getValues(); }
-    const VecMath::NestedVector< VecMath::Vector<4>, 3 > &Xtrans() const { return _Xtrans; }
-    const VecMath::NestedVector< VecMath::Vector<3>, 3 > &Xscr() const { return _Xscr; }
+    const VecMath::MultiDimensionalVector< Vector< 4 >, 3 > &X() const { return _X.getValues(); }
+    const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 3 > &Xtrans() const { return _Xtrans; }
+    const VecMath::MultiDimensionalVector< VecMath::Vector<3>, 3 > &Xscr() const { return _Xscr; }
 
     /// Set up the grid using boundaries and stepwidth.
     void setBoundariesAndStepwidth(double tmin, double tmax, double dt,
@@ -136,7 +136,7 @@ class RealFunction::Impl {
     /// Array of function values after transform.
     FunctionValueGrid<4, 3>::value_storage_type _Xtrans;
     /// Array of projected function values.
-    VecMath::NestedVector< VecMath::Vector<3>, 3 > _Xscr;
+    VecMath::MultiDimensionalVector< VecMath::Vector<3>, 3 > _Xscr;
 
 };
 
@@ -434,14 +434,14 @@ Vector<4> &RealFunction::normal (double tt, double uu, double vv) {
   return n;
 }
 
-const VecMath::NestedVector< Vector< 4 >, 3 > &RealFunction::X() const {
+const VecMath::MultiDimensionalVector< Vector< 4 >, 3 > &RealFunction::X() const {
   return pImpl_->X();
 }
 
-const VecMath::NestedVector< Vector< 4 >, 3 > &RealFunction::Xtrans() const {
+const VecMath::MultiDimensionalVector< Vector< 4 >, 3 > &RealFunction::Xtrans() const {
   return pImpl_->Xtrans();
 }
 
-const VecMath::NestedVector< Vector< 3 >, 3 >& RealFunction::Xscr() const {
+const VecMath::MultiDimensionalVector< Vector< 3 >, 3 >& RealFunction::Xscr() const {
     return pImpl_->Xscr();
 }

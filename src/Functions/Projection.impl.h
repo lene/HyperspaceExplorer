@@ -29,7 +29,7 @@
 #include <sstream>
 
 using VecMath::Vector;
-using VecMath::NestedVector;
+using VecMath::MultiDimensionalVector;
 
 /** \param viewpoint List of view points for the downprojection in each dimension.
  *  \param eye List of camera positions for the downprojection in each dimension.
@@ -63,9 +63,9 @@ Projection<N, Nnew, P, NUM, Policy>::Projection(NUM scrW, NUM camW, bool depthCu
 /** \param values The vertices which are projected to \p Nnew- space.
  */
 template <unsigned N, unsigned Nnew, unsigned P, typename NUM, class Policy>
-VecMath::NestedVector< VecMath::Vector<Nnew, NUM>, P >
+VecMath::MultiDimensionalVector< VecMath::Vector<Nnew, NUM>, P >
 Projection<N, Nnew, P, NUM, Policy>::project(
-const VecMath::NestedVector< VecMath::Vector<N, NUM>, P > &values) {
+const VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, P > &values) {
   Policy p(_viewpoint, _eye, _screen_distance, _depth_cue);
   return p.project(values);
 }
@@ -118,11 +118,11 @@ Projection<N, Nnew, P, NUM, Policy>::makeDepthCueList(bool depthCue) {
 
 
 template <unsigned N, unsigned Nnew, unsigned P, typename NUM>
-VecMath::NestedVector< VecMath::Vector<Nnew, NUM>, P >
+VecMath::MultiDimensionalVector< VecMath::Vector<Nnew, NUM>, P >
 SimpleProjectionPolicy< N, Nnew, P, NUM >::project(
-const VecMath::NestedVector< VecMath::Vector<N, NUM>, P > &values) {
+const VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, P > &values) {
 
-  NestedVector< Vector<Nnew, NUM>, P > v(values.size());
+  MultiDimensionalVector< Vector<Nnew, NUM>, P > v(values.size());
 
   for (unsigned i = 0; i < values.size(); ++i) {
     SimpleProjectionPolicy<N, Nnew, P-1, NUM> p(_viewpoint, _eye, _screen_distance, _depth_cue);
@@ -134,11 +134,11 @@ const VecMath::NestedVector< VecMath::Vector<N, NUM>, P > &values) {
 }
 
 template <unsigned N, unsigned Nnew, typename NUM>
-VecMath::NestedVector< VecMath::Vector<Nnew, NUM>, 1 >
+VecMath::MultiDimensionalVector< VecMath::Vector<Nnew, NUM>, 1 >
 SimpleProjectionPolicy< N, Nnew, 1, NUM >::project(
-const VecMath::NestedVector< VecMath::Vector<N, NUM>, 1 > &values) {
+const VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, 1 > &values) {
 
-  NestedVector< Vector<N-1, NUM>, 1 > downprojected(values.size());
+  MultiDimensionalVector< Vector<N-1, NUM>, 1 > downprojected(values.size());
 
   NUM _screen_W = _screen_distance.head();
   NUM _camera_W = _eye.head()[N-1];

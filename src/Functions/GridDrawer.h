@@ -24,8 +24,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 /// define this if you want the GridDrawer do the drawing work
 #undef USE_GRID_DRAWER
 
-#include <View.h>
-#include <NestedVector.h>
+#include "View.h"
+#include "MultiDimensionalVector.h"
 
 /// Draws a ParametricFunction projected to 3-space.
 /** This class evaluates the parametric equation represented by a ParametricFunction
@@ -44,13 +44,13 @@ template <unsigned P, typename NUM = double, unsigned D = 3>
 class GridDrawer {
   public:
 
-    GridDrawer(const VecMath::NestedVector< VecMath::Vector<D, NUM>, P > &x_scr, UI::View *view);
+    GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, P > &x_scr, UI::View *view);
 
     void execute();
 
   private:
 
-    const VecMath::NestedVector< VecMath::Vector<D, NUM>, P > &_x_scr;
+    const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, P > &_x_scr;
     UI::View *_view;
 
 };
@@ -58,8 +58,8 @@ class GridDrawer {
 template<typename NUM, unsigned D> class GridDrawer<3, NUM, D> {
   public:
 
-    GridDrawer(const VecMath::NestedVector< VecMath::Vector<4, NUM>, 3 > &x,
-               const VecMath::NestedVector< VecMath::Vector<D, NUM>, 3 > &x_scr,
+    GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, 3 > &x,
+               const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 3 > &x_scr,
                UI::View *view);
 
     void execute();
@@ -70,8 +70,8 @@ template<typename NUM, unsigned D> class GridDrawer<3, NUM, D> {
     void drawStrip (unsigned t, unsigned u);
     void drawCube (unsigned t, unsigned u, unsigned v);
 
-    const VecMath::NestedVector< VecMath::Vector<4, NUM>, 3 > &x_;
-    const VecMath::NestedVector< VecMath::Vector<D, NUM>, 3 > &x_scr_;
+    const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, 3 > &x_;
+    const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 3 > &x_scr_;
     UI::View *view_;
 
 };
@@ -79,7 +79,7 @@ template<typename NUM, unsigned D> class GridDrawer<3, NUM, D> {
 template<typename NUM, unsigned D> class GridDrawer<1, NUM, D> {
   public:
 
-    GridDrawer(const VecMath::NestedVector< VecMath::Vector<D, NUM>, 1 > &x_scr, UI::View *view);
+    GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 1 > &x_scr, UI::View *view);
 
     void execute();
 
@@ -87,7 +87,7 @@ template<typename NUM, unsigned D> class GridDrawer<1, NUM, D> {
 
     void DrawCube (unsigned t, unsigned u, unsigned v);
 
-    const VecMath::NestedVector< VecMath::Vector<D, NUM>, 1 > &_x_scr;
+    const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 1 > &_x_scr;
     UI::View *_view;
 
 };

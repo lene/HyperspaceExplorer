@@ -18,7 +18,7 @@
 #include <sstream>
 
 #include "Vector.h"
-#include "NestedVector.h"
+#include "MultiDimensionalVector.h"
 #include "Function.h"
 #include "Color.h"
 
@@ -30,7 +30,7 @@ using std::ostringstream;
 using std::ends;
 
 using VecMath::Vector;
-using VecMath::NestedVector;
+using VecMath::MultiDimensionalVector;
 
 struct Global::Impl {
 
@@ -109,12 +109,12 @@ unsigned long Global::Impl::check_proc_meminfo() {
     return strtoul (meminfo.c_str (), NULL, 10)*1024;
 }
 
-NestedVector< Vector<4>, 2 > toNestedVector(const Function::vec4vec2D &v) {
+MultiDimensionalVector< Vector<4>, 2 > toMultiDimensionalVector(const Function::vec4vec2D &v) {
 
-  NestedVector< Vector<4>, 2 > temp2D;
+  MultiDimensionalVector< Vector<4>, 2 > temp2D;
   for (Function::vec4vec2D::const_iterator it = v.begin();
        it != v.end(); ++it) {
-    NestedVector< Vector<4>, 1> temp1D;
+    MultiDimensionalVector< Vector<4>, 1> temp1D;
     for (Function::vec4vec1D::const_iterator jt = it->begin();
          jt != it->end(); ++jt) {
       temp1D.push_back(*jt);
@@ -125,16 +125,16 @@ NestedVector< Vector<4>, 2 > toNestedVector(const Function::vec4vec2D &v) {
 
 }
 
-NestedVector< Vector<4>, 3 > toNestedVector(const Function::vec4vec3D &v) {
+MultiDimensionalVector< Vector<4>, 3 > toMultiDimensionalVector(const Function::vec4vec3D &v) {
 
-  NestedVector< Vector<4>, 3 > temp3D;
+  MultiDimensionalVector< Vector<4>, 3 > temp3D;
 
   for (Function::vec4vec3D::const_iterator it = v.begin(); it != v.end(); ++it) {
 
-    NestedVector< Vector<4>, 2 > temp2D;
+    MultiDimensionalVector< Vector<4>, 2 > temp2D;
     for (Function::vec4vec2D::const_iterator jt = it->begin(); jt != it->end(); ++jt) {
 
-      NestedVector< Vector<4>, 1> temp1D;
+      MultiDimensionalVector< Vector<4>, 1> temp1D;
       for (Function::vec4vec1D::const_iterator kt = jt->begin(); kt != jt->end(); ++kt) {
         temp1D.push_back(*kt);
       }

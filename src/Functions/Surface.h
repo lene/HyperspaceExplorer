@@ -13,7 +13,7 @@
 #include "Function.h"
 
 #include "ParametricFunction.h"
-#include "NestedVector.h"
+#include "MultiDimensionalVector.h"
 
 #include <tr1/memory>
 
@@ -77,11 +77,11 @@ class Surface: public Function {
     unsigned getUsteps() const;
 
     /// Array of function values.
-    const VecMath::NestedVector< VecMath::Vector<4>, 2 > &X() const;
+    const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > &X() const;
     /// Array of function values after transform.
-    const VecMath::NestedVector< VecMath::Vector<4>, 2 > &Xtrans() const;
+    const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > &Xtrans() const;
     /// Array of projected function values.
-    const VecMath::NestedVector< VecMath::Vector<3>, 2 > &Xscr() const;
+    const VecMath::MultiDimensionalVector< VecMath::Vector<3>, 2 > &Xscr() const;
 
   private:
 

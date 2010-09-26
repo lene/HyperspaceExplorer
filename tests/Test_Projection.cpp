@@ -26,19 +26,19 @@
 #include <complex>
 
 using VecMath::Vector;
-using VecMath::NestedVector;
+using VecMath::MultiDimensionalVector;
 
 using std::complex;
 
-typedef NestedVector< Vector<4>, 1 > storage1D;
-typedef NestedVector< Vector<3>, 1 > projected1D;
-typedef NestedVector< Vector<4, float>, 1 > storage1Dfloat;
-typedef NestedVector< Vector<3, float>, 1 > projected1Dfloat;
-typedef NestedVector< Vector< 4, complex<double> >, 1 > storage1Dcomplex;
-typedef NestedVector< Vector< 3, complex<double> >, 1 > projected1Dcomplex;
-typedef NestedVector< Vector<5>, 1 > storage1D5;
-typedef NestedVector< Vector<4>, 2 > storage2D;
-typedef NestedVector< Vector<3>, 2 > projected2D;
+typedef MultiDimensionalVector< Vector<4>, 1 > storage1D;
+typedef MultiDimensionalVector< Vector<3>, 1 > projected1D;
+typedef MultiDimensionalVector< Vector<4, float>, 1 > storage1Dfloat;
+typedef MultiDimensionalVector< Vector<3, float>, 1 > projected1Dfloat;
+typedef MultiDimensionalVector< Vector< 4, complex<double> >, 1 > storage1Dcomplex;
+typedef MultiDimensionalVector< Vector< 3, complex<double> >, 1 > projected1Dcomplex;
+typedef MultiDimensionalVector< Vector<5>, 1 > storage1D5;
+typedef MultiDimensionalVector< Vector<4>, 2 > storage2D;
+typedef MultiDimensionalVector< Vector<3>, 2 > projected2D;
 
 
 void Test_Projection::initTestCase() { }
@@ -130,17 +130,17 @@ void Test_Projection::project5to3() {
 Q_DECLARE_METATYPE(storage2D)
 Q_DECLARE_METATYPE(projected2D)
 
-template <unsigned D> NestedVector<Vector<D>, 2> given(
+template <unsigned D> MultiDimensionalVector<Vector<D>, 2> given(
     Vector<D> v00, Vector<D> v01, Vector<D> v10, Vector<D> v11) {
-  NestedVector<Vector<D>, 1> v0;
+  MultiDimensionalVector<Vector<D>, 1> v0;
   v0.push_back(v00);
   v0.push_back(v01);
 
-  NestedVector<Vector<D>, 1> v1;
+  MultiDimensionalVector<Vector<D>, 1> v1;
   v1.push_back(v10);
   v1.push_back(v11);
 
-  NestedVector<Vector<D>, 2> temp;
+  MultiDimensionalVector<Vector<D>, 2> temp;
   temp.push_back(v0);
   temp.push_back(v1);
 

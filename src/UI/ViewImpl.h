@@ -126,7 +126,7 @@ namespace UI {
                                      const std::vector< VecMath::Vector< 3 > >&);
 
             /// Generic implementation of drawCube() in terms of drawQuadrangle()
-            virtual void drawCube(const VecMath::NestedVector< VecMath::Vector< 4 >, 3 >& X, 
+            virtual void drawCube(const VecMath::MultiDimensionalVector< VecMath::Vector< 4 >, 3 >& X, 
                                   unsigned int t, unsigned int u, unsigned int v, 
                                   const VecMath::Vector< 3 >& v0, const VecMath::Vector< 3 >& v1, 
                                   const VecMath::Vector< 3 >& v2, const VecMath::Vector< 3 >& v3, 

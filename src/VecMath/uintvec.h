@@ -21,12 +21,12 @@
 #ifndef UINTVEC_H
 #define UINTVEC_H
 
-#include "NestedVector.h"
+#include "MultiDimensionalVector.h"
 
 namespace VecMath {
 
-    /// A NestedVector of unsignd ints
-    /** uintvec<D> is just a shortcut for writing NestedVector<unsigned, D>.
+    /// A MultiDimensionalVector of unsignd ints
+    /** uintvec<D> is just a shortcut for writing MultiDimensionalVector<unsigned, D>.
      *  It is necessary to write a class for that because C++ does not support
      *  template typedefs.
      *
@@ -35,16 +35,16 @@ namespace VecMath {
      *  \ingroup VecMath
      *  \author Helge Preuss <lene.preuss@gmail.com>
      */
-    template <unsigned D> struct uintvec: public NestedVector<unsigned, D> {
+    template <unsigned D> struct uintvec: public MultiDimensionalVector<unsigned, D> {
         /// Construct an empty uintvec
-        uintvec(): NestedVector<unsigned, D> () { }
-        /// Copy construct a uintvec from a NestedVector<unsigned>
-        uintvec(NestedVector<unsigned, D> v): NestedVector<unsigned, D>(v) { }
+        uintvec(): MultiDimensionalVector<unsigned, D> () { }
+        /// Copy construct a uintvec from a MultiDimensionalVector<unsigned>
+        uintvec(MultiDimensionalVector<unsigned, D> v): MultiDimensionalVector<unsigned, D>(v) { }
 
-        /// Construct a NestedVector from an iterator range
+        /// Construct a MultiDimensionalVector from an iterator range
         uintvec(typename std::vector< uintvec<D-1> >::iterator first,
                 typename std::vector< uintvec<D-1> >::iterator last):
-            NestedVector<unsigned, D>(first, last) { }
+            MultiDimensionalVector<unsigned, D>(first, last) { }
 };
 
     /// Find an element in a uintvec

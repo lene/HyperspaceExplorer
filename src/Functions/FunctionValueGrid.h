@@ -24,7 +24,7 @@
 #include "ParametricFunction.h"
 
 #include "LoopHelper.h"
-#include "NestedVector.h"
+#include "MultiDimensionalVector.h"
 #include "Vector.h"
 
 #include <tr1/memory>
@@ -55,7 +55,7 @@ template <unsigned N, unsigned P, typename NUM = double>
       /// Type for storing the size of the grid in all required dimensions.
       typedef VecMath::Vector<P, unsigned> grid_size_type;
       /// Type for the storage of the function values on all grid points.
-      typedef VecMath::NestedVector< VecMath::Vector<N, NUM>, P > value_storage_type;
+      typedef VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, P > value_storage_type;
 
       /// Create an empty grid.
       FunctionValueGrid();

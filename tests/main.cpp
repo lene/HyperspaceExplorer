@@ -5,7 +5,7 @@
 #include "Test_Surface.h"
 #include "Test_Vector.h"
 #include "Test_Matrix.h"
-#include "Test_NestedVector.h"
+#include "Test_MultiDimensionalVector.h"
 #include "Test_Rotation.h"
 #include "Test_Realm.h"
 #include "Test_ParametricFunction.h"
@@ -56,7 +56,7 @@ int main(int argc, char **argv) {
 
     runner.run(new Test_Vector);
     runner.run(new Test_Matrix);
-    runner.run(new Test_NestedVector);
+    runner.run(new Test_MultiDimensionalVector);
     runner.run(new Test_Rotation);
     runner.run(new Test_Realm);
     runner.run(new Test_Rotope);

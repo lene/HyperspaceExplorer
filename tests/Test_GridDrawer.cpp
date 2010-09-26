@@ -26,9 +26,9 @@
 #include <complex>
 
 using VecMath::Vector;
-using VecMath::NestedVector;
+using VecMath::MultiDimensionalVector;
 
-typedef NestedVector< Vector<3>, 2 > projected2D;
+typedef MultiDimensionalVector< Vector<3>, 2 > projected2D;
 
 void Test_GridDrawer::initTestCase() { }
 

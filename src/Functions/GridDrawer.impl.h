@@ -8,7 +8,7 @@
 #include "Globals.h"
 
 template <unsigned P, typename NUM, unsigned D>
-GridDrawer<P, NUM, D>::GridDrawer(const VecMath::NestedVector< VecMath::Vector<D, NUM>, P > &x_scr,
+GridDrawer<P, NUM, D>::GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, P > &x_scr,
                                   UI::View *view):
     _x_scr(x_scr), _view(view) { }
 
@@ -22,8 +22,8 @@ void GridDrawer<P, NUM, D>::execute() {
 }
 
 template<typename NUM, unsigned D>
-GridDrawer<3, NUM, D>::GridDrawer(const VecMath::NestedVector< VecMath::Vector<4, NUM>, 3 > &x,
-                                  const VecMath::NestedVector< VecMath::Vector<D, NUM>, 3 > &x_scr,
+GridDrawer<3, NUM, D>::GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, 3 > &x,
+                                  const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 3 > &x_scr,
                                   UI::View *view):
   x_(x), x_scr_(x_scr), view_(view) { }
 
@@ -72,7 +72,7 @@ inline void GridDrawer<3, NUM, D>::drawCube (unsigned t, unsigned u, unsigned v)
 }
 
 template<typename NUM, unsigned D>
-GridDrawer<1, NUM, D>::GridDrawer(const VecMath::NestedVector< VecMath::Vector<D, NUM>, 1 > &x_scr,
+GridDrawer<1, NUM, D>::GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 1 > &x_scr,
                                   UI::View *view):
   _x_scr(x_scr), _view(view) { }
 

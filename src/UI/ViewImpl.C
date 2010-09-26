@@ -12,7 +12,7 @@
 
 #include "ViewImpl.h"
 
-#include "NestedVector.h"
+#include "MultiDimensionalVector.h"
 
 namespace UI {
 
@@ -165,7 +165,7 @@ namespace UI {
       throw NotYetImplementedException("drawPolygon()");
     }
 
-    void ViewImpl::drawCube(const VecMath::NestedVector< VecMath::Vector< 4 >, 3 >& X, 
+    void ViewImpl::drawCube(const VecMath::MultiDimensionalVector< VecMath::Vector< 4 >, 3 >& X, 
                             unsigned int t, unsigned int u, unsigned int v, 
                             const VecMath::Vector< 3 >& v0, const VecMath::Vector< 3 >& v1, 
                             const VecMath::Vector< 3 >& v2, const VecMath::Vector< 3 >& v3, 

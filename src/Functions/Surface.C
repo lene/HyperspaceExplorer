@@ -17,7 +17,7 @@
 
 #include "DefinitionRangeOfDimension.impl.h"
 
-using VecMath::NestedVector;
+using VecMath::MultiDimensionalVector;
 using VecMath::Vector;
 
 /// SurfaceDefinitionRange provides a base class for functions which take two parameters
@@ -91,9 +91,9 @@ struct Surface::Impl {
     void for_each(function_on_fourspace_transformed_and_projected_vertex apply);
     void for_each(function_on_projected_vertex apply);
 
-    const VecMath::NestedVector< Vector< 4 >, 2 > &X() const { return _X.getValues(); }
-    const VecMath::NestedVector< VecMath::Vector<4>, 2 > &Xtrans() const { return _Xtrans; }
-    const VecMath::NestedVector< VecMath::Vector<3>, 2 > &Xscr() const { return _Xscr; }
+    const VecMath::MultiDimensionalVector< Vector< 4 >, 2 > &X() const { return _X.getValues(); }
+    const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > &Xtrans() const { return _Xtrans; }
+    const VecMath::MultiDimensionalVector< VecMath::Vector<3>, 2 > &Xscr() const { return _Xscr; }
 
     void DrawStrip (unsigned t, UI::View *view);
 
@@ -110,7 +110,7 @@ struct Surface::Impl {
     /// Array of function values after transform.
     FunctionValueGrid<4, 2>::value_storage_type _Xtrans;
     /// Array of projected function values.
-    VecMath::NestedVector< VecMath::Vector<3>, 2 > _Xscr;
+    VecMath::MultiDimensionalVector< VecMath::Vector<3>, 2 > _Xscr;
 };  
 
 void Surface::Impl::Transform(const VecMath::Rotation< 4 >& R, const VecMath::Vector< 4 >& T) {
@@ -370,14 +370,14 @@ unsigned int Surface::getTsteps() const { return pImpl_->definitionRange_.getTst
 
 unsigned int Surface::getUsteps() const { return pImpl_->definitionRange_.getUsteps(); }
 
-const NestedVector< Vector<4>, 2 > &Surface::X() const {
+const MultiDimensionalVector< Vector<4>, 2 > &Surface::X() const {
   return pImpl_->X();
 }
 
-const NestedVector< Vector<4>, 2 > &Surface::Xtrans() const {
+const MultiDimensionalVector< Vector<4>, 2 > &Surface::Xtrans() const {
   return pImpl_->Xtrans();
 }
 
-const VecMath::NestedVector< Vector< 3 >, 2 >& Surface::Xscr() const {
+const VecMath::MultiDimensionalVector< Vector< 3 >, 2 >& Surface::Xscr() const {
   return pImpl_->Xscr();
 }

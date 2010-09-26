@@ -22,7 +22,7 @@
 #define PROJECTION_H
 
 #include "Vector.h"
-#include "NestedVector.h"
+#include "MultiDimensionalVector.h"
 #include "ViewpointList.h"
 #include "ArrayList.h"
 
@@ -55,8 +55,8 @@ template <unsigned N, unsigned Nnew, unsigned P, typename NUM = double, typename
     Projection(NUM scrW, NUM camW, bool depthCue4D);
 
     /// Execute the Projection on a \p P dimensional field of \p N dimensional vertices.
-    VecMath::NestedVector< VecMath::Vector<Nnew, NUM>, P > project(
-            const VecMath::NestedVector< VecMath::Vector<N, NUM>, P > &values);
+    VecMath::MultiDimensionalVector< VecMath::Vector<Nnew, NUM>, P > project(
+            const VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, P > &values);
 
   private:
 
@@ -111,8 +111,8 @@ template <unsigned N, unsigned Nnew, unsigned P, typename NUM> class SimpleProje
                            _screen_distance(screen_distance), _depth_cue(depth_cue) { }
 
     /// Execute the Projection on the given grid of \p values.
-    VecMath::NestedVector< VecMath::Vector<Nnew, NUM>, P > project(
-        const VecMath::NestedVector< VecMath::Vector<N, NUM>, P > &values);
+    VecMath::MultiDimensionalVector< VecMath::Vector<Nnew, NUM>, P > project(
+        const VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, P > &values);
 
   private:
 
@@ -153,8 +153,8 @@ template <unsigned N, unsigned Nnew, typename NUM> class SimpleProjectionPolicy<
                            _screen_distance(screen_distance), _depth_cue(depth_cue) { }
 
     /// Execute the Projection on the given grid of \p values.
-    VecMath::NestedVector< VecMath::Vector<Nnew, NUM>, 1 > project(
-        const VecMath::NestedVector< VecMath::Vector<N, NUM>, 1 > &values);
+    VecMath::MultiDimensionalVector< VecMath::Vector<Nnew, NUM>, 1 > project(
+        const VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, 1 > &values);
 
   private:
 
@@ -186,8 +186,8 @@ template <unsigned N, typename NUM> class SimpleProjectionPolicy<N, N, 1, NUM> {
                            typename Projection<N, N, 1, NUM>::BoolList) { }
 
     /// Returns the given grid of \p values.
-    VecMath::NestedVector< VecMath::Vector<N, NUM>, 1 > project(
-        const VecMath::NestedVector< VecMath::Vector<N, NUM>, 1 > &values) {
+    VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, 1 > project(
+        const VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, 1 > &values) {
       return values;
     }
 
