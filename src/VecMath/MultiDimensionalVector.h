@@ -22,10 +22,6 @@
 #define MULTIDIMENSIONAL_VECTOR_H
 
 #include <vector>
-#include <iostream>
-#include <iterator>
-
-#include <sstream>
 
 namespace VecMath {
 
