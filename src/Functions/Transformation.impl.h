@@ -23,6 +23,8 @@
 
 #include "Transformation.h"
 
+#include "Matrix.impl.h"
+
 template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
 Transformation<N, P, NUM, TransformationPolicy>::Transformation():
   _transform(), _translation() { }

@@ -1,7 +1,7 @@
 
 #include "Test_Matrix.h"
 
-#include "Matrix.h"
+#include "Matrix.impl.h"
 
 #include <sstream>
 #include <string>

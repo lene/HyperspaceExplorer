@@ -1,4 +1,7 @@
 #include "Rotation.h"
+
+#include "Matrix.impl.h"
+
 #include <typeinfo>
 
 namespace VecMath {

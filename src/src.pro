@@ -176,6 +176,7 @@ DEPENDPATH += ./VecMath
 HEADERS += VecMath/ArrayList.h \
            VecMath/ArrayList.impl.h \
            VecMath/Matrix.h \
+           VecMath/Matrix.impl.h \
            VecMath/NestedVector.h \
            VecMath/Rotation.h \
            VecMath/Vector.h \
