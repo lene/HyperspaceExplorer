@@ -91,8 +91,10 @@ class RealFunctionDefinitionRange: public DefinitionRangeOfDimension<3> {
 
 };
 
-struct RealFunction::Impl {
+class RealFunction::Impl {
   
+  public:
+    
     Impl(double tmin, double tmax, double dt,
          double umin, double umax, double du,
          double vmin, double vmax, double dv);
@@ -112,13 +114,17 @@ struct RealFunction::Impl {
     const VecMath::NestedVector< VecMath::Vector<4>, 3 > &Xtrans() const { return _Xtrans; }
     const VecMath::NestedVector< VecMath::Vector<3>, 3 > &Xscr() const { return _Xscr; }
 
-      /// Initialize depth cue.
-    void setDepthCueColors(double Wmax, double Wmin);
-
     /// Set up the grid using boundaries and stepwidth.
     void setBoundariesAndStepwidth(double tmin, double tmax, double dt,
                                    double umin, double umax, double du,
                                    double vmin, double vmax, double dv);
+    RealFunctionDefinitionRange definitionRange_;
+    /// Array of function values.
+    FunctionValueGrid<4, 3> _X;
+
+  private:
+    /// Initialize depth cue.
+    void setDepthCueColors(double Wmax, double Wmin);
 
     /// Finds maximum and minimum function value in w.
     std::pair<double, double> findExtremesInW() const;
@@ -127,9 +133,6 @@ struct RealFunction::Impl {
     void DrawStrip (unsigned, unsigned, UI::View *view);
     void DrawCube (unsigned, unsigned, unsigned, UI::View *view);
     
-    RealFunctionDefinitionRange definitionRange_;
-    /// Array of function values.
-    FunctionValueGrid<4, 3> _X;
     /// Array of function values after transform.
     FunctionValueGrid<4, 3>::value_storage_type _Xtrans;
     /// Array of projected function values.
@@ -436,9 +439,9 @@ const VecMath::NestedVector< Vector< 4 >, 3 > &RealFunction::X() const {
 }
 
 const VecMath::NestedVector< Vector< 4 >, 3 > &RealFunction::Xtrans() const {
-  return pImpl_->_Xtrans;
+  return pImpl_->Xtrans();
 }
 
 const VecMath::NestedVector< Vector< 3 >, 3 >& RealFunction::Xscr() const {
-    return pImpl_->_Xscr;
+    return pImpl_->Xscr();
 }
