@@ -14,6 +14,7 @@
 #include "Test_Projection.h"
 #include "Test_GridDrawer.h"
 #include "Test_FunctionFactory.h"
+#include "Test_FunctionHolder.h"
 
 #include <QtTest/QtTest>
 
@@ -56,20 +57,21 @@ int main(int argc, char **argv) {
 
     runner.run(new Test_Vector);
     runner.run(new Test_Matrix);
-    runner.run(new Test_MultiDimensionalVector);
     runner.run(new Test_Rotation);
     runner.run(new Test_Realm);
     runner.run(new Test_Rotope);
     runner.run(new Test_Function);
-    runner.run(new Test_RealFunction);
-    runner.run(new Test_Surface);
+    runner.run(new Test_FunctionFactory);
     runner.run(new Test_FunctionValueGrid);
     runner.run(new Test_ParametricFunction);
     runner.run(new Test_Transformation);
     runner.run(new Test_Projection);
     runner.run(new Test_GridDrawer);
-    runner.run(new Test_FunctionFactory);
-
+    runner.run(new Test_MultiDimensionalVector);
+    runner.run(new Test_RealFunction);
+    runner.run(new Test_Surface);
+    runner.run(new Test_FunctionHolder);
+    
     runner.printSummary();
 
     return runner.exitValue();

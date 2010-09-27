@@ -26,11 +26,25 @@ RCC_DIR = tmp
 ###
 INCLUDEPATH += ./Functions
 DEPENDPATH += ./Functions
-HEADERS += Functions/ComplexFunction.h \
-           Functions/CustomFunction.h \
+HEADERS += \
+           Functions/FunctionParameterValueBase.h \
+           Functions/FunctionParameterValue.h \
+           Functions/FunctionParameter.h \
+           Functions/FunctionParameterFactory.h \
+           Functions/ParameterMap.h \
+           Functions/Function.h \
+           Functions/FunctionFactory.h \
            Functions/DefinitionSpaceRange.h \
            Functions/DefinitionRangeOfDimension.h \
            Functions/DefinitionRangeOfDimension.impl.h \
+           Functions/FunctionHolder.h \
+           Functions/FunctionHolder.impl.h \
+           Functions/RealFunction.h \
+           Functions/RealFunctionImplementations.h \
+           Functions/Surface.h \
+           Functions/SurfaceImplementations.h \
+           Functions/ComplexFunction.h \
+           Functions/CustomFunction.h \
            Functions/ParametricFunction.h \
            Functions/FunctionValueGrid.h \
            Functions/LoopHelper.h \
@@ -42,34 +56,24 @@ HEADERS += Functions/ComplexFunction.h \
            Functions/Projection.impl.h \
            Functions/GridDrawer.h \
            Functions/GridDrawer.impl.h \
-           Functions/Function.h \
            Functions/Object.h \
-           Functions/Surface.h \
-           Functions/SurfaceImplementations.h \
-           Functions/RealFunction.h \
-           Functions/RealFunctionImplementations.h \
-           Functions/FunctionParameterValueBase.h \
-           Functions/FunctionParameterValue.h \
-           Functions/FunctionParameter.h \
-           Functions/FunctionParameterFactory.h \
-           Functions/ParameterMap.h \
-           Functions/FunctionFactory.h \
            Functions/Transform.h \
            Functions/Sponge.h
 #          Functions/SteinerFunction.h
-SOURCES += Functions/ComplexFunction.C \
-           Functions/CustomFunction.C \
-           Functions/DefinitionSpaceRange.cpp \
-           Functions/Function.C \
-           Functions/Surface.C \
-           Functions/SurfaceImplementations.cpp \
-           Functions/Object.C \
-           Functions/RealFunction.C \
-           Functions/RealFunctionImplementations.cpp \
+SOURCES += \
            Functions/FunctionParameterValue.C \
            Functions/FunctionParameter.C \
            Functions/ParameterMap.C \
+           Functions/Function.C \
            Functions/FunctionFactory.C \
+           Functions/DefinitionSpaceRange.cpp \
+           Functions/RealFunction.C \
+           Functions/RealFunctionImplementations.cpp \
+           Functions/Surface.C \
+           Functions/SurfaceImplementations.cpp \
+           Functions/ComplexFunction.C \
+           Functions/CustomFunction.C \
+           Functions/Object.C \
            Functions/Sponge.C
 #          Functions/SteinerFunction.C
 

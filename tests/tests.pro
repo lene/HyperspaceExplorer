@@ -38,6 +38,7 @@ HEADERS += MockView.h \
            Test_Projection.h \
            Test_GridDrawer.h \
            Test_FunctionFactory.h \
+           Test_FunctionHolder.h \
            Test_Function.h
 SOURCES += MockView.cpp \
            Test_Rotope.cpp \
@@ -54,6 +55,7 @@ SOURCES += MockView.cpp \
            Test_Projection.cpp \
            Test_GridDrawer.cpp \
            Test_FunctionFactory.cpp \
+           Test_FunctionHolder.cpp \
            Test_Function.cpp \
            main.cpp
 
