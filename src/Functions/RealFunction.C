@@ -338,7 +338,7 @@ void RealFunction::Initialize () {
   Vector<3, double> max = pImpl_->definitionRange_.getMaxValue();
   
   pImpl_->_X = FunctionValueGrid<4, 3>(
-    _function, numSteps.operator+(2), min, max
+    _function, numSteps+Vector<3, unsigned>(2), min, max
   );
 
   calibrateColors();

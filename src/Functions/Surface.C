@@ -253,7 +253,7 @@ void Surface::Initialize () {
   Vector<2, double> max = pImpl_->definitionRange_.getMaxValue();
   
   pImpl_->_X = FunctionValueGrid<4, 2>(
-    _function, numSteps.operator+(2), min, max
+    _function, numSteps+Vector<2, unsigned>(2), min, max
   );
 
   calibrateColors();

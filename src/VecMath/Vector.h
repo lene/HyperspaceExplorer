@@ -40,150 +40,155 @@
 /// Vector and Matrix algebra
 namespace VecMath {
 
-    ///  Vector<D, N>: a D-dimensional vector of numbers of type N
-    /** @tparam D dimension of the vector
-     *  @tparam N numerical type of the vector elements
-     *  \ingroup VecMath
-     *  @author Lene Preuss <lene.preuss@gmail.com>                     */
-    template <unsigned D, typename N = double> class Vector {
+  ///  Vector<D, N>: a D-dimensional vector of numbers of type N
+  /** @tparam D dimension of the vector
+   *  @tparam N numerical type of the vector elements
+   *  \ingroup VecMath
+   *  @author Lene Preuss <lene.preuss@gmail.com>                     */
+  template <unsigned D, typename N = double> class Vector {
 
-        public:
+    public:
 
-        //----------  management  ----------
-        /// Default constructor.
-        Vector<D, N> ();
-        /// Make all elements have the same size.
-        Vector<D, N> (const N &x);
-        /// Constructor with variable argument list.
-        Vector<D, N> (N x0, N x1, ... );
+      //----------  management  ----------
+      /// Default constructor.
+      Vector<D, N> ();
+      /// Make all elements have the same size.
+      Vector<D, N> (const N &x);
+      /// Constructor with variable argument list.
+      Vector<D, N> (N x0, N x1, ... );
 
-        //----------  access      ----------
+      //----------  access      ----------
 
-        /// Returns a reference to component i
-        N &operator[] (unsigned i);
-        /// Returns component i by value
-        N operator[] (unsigned i) const;
+      /// Returns a reference to component i
+      N &operator[] (unsigned i);
+      /// Returns component i by value
+      N operator[] (unsigned i) const;
 
-        static unsigned dimension (void);
+      static unsigned dimension (void);
 
-        //----------  arithmetics ----------
+      //----------  arithmetics ----------
 
-        Vector<D, N> &operator+= (const Vector<D, N> &Y);
-        Vector<D, N> &operator-= (const Vector<D, N> &Y);
-        Vector<D, N> &operator*= (const N &s);
+      Vector<D, N> &operator+= (const Vector<D, N> &Y);
+      Vector<D, N> &operator-= (const Vector<D, N> &Y);
+      Vector<D, N> &operator*= (const N &s);
 
-        /// Direct access to the array storing the components
-        const N *data () const;               
+      /// Direct access to the array storing the components
+      const N *data () const;               
 
-        /// Convert the Vector into an array of arbitrary objects
-        template <typename T> operator const T * () const;
+      /// Convert the Vector into an array of arbitrary objects
+      template <typename T> operator const T * () const;
         
-        /// Convert Vector to a std::string.
-        std::string toString() const;
+      /// Convert Vector to a std::string.
+      std::string toString() const;
 
-        //  move the following functions out of the class!
+      //  move the following functions out of the class!
         
-        /** @return -*this                                                    */
-        Vector<D, N> operator- (void) const;
-        /** @param Y other Vector
-         *  @return *this+Y                                                   */
-        Vector<D, N> operator+ (const Vector<D, N> &Y) const;
-        /** @param Y other Vector
-         *  @return *this-Y                                                   */
-        Vector<D, N> operator- (const Vector<D, N> &Y) const;
-        /** @param s scalar type
-         *  @return *this*s                                                   */
-        Vector<D, N> operator* (const N &s) const;
-        /// scalar multiplication between two Vectors (dot product)
-        /** @param X other Vector
-         *  @return dot product < *this, Y >                                  */
-        N operator* (const Vector<D, N> &X) const;
-        /** @param s scalar type
-         *  @return *this/s                                                   */
-        Vector<D, N> operator/ (const N &s) const;
-        /// divide every component of one vector by same component of another
-        /** @param X other Vector
-         *  @return scaled vector                                             */
-        Vector<D, N> operator/ (const Vector<D, N> &X) const;
-
-        /** @return the squared norm of the vector, |V|�                      */
-        N sqnorm (void) const;
+      /** @return the squared norm of the vector, |V|�                      */
+      N sqnorm (void) const;
 
     private:
-        N _x[D]; ///< A static array storing the components
-    };
 
-    /// Comparison operator: Test for equality
-    template <unsigned D, typename N>    
-    bool operator==(const Vector<D, N> &one, const Vector<D, N> &other);
+      N _x[D]; ///< A static array storing the components
+        
+  };
+
+  /// Unary minus
+  template <unsigned D, typename N>    
+  Vector<D, N> operator-(const Vector<D, N> &v);
+  /// Plus
+  template <unsigned D, typename N>    
+  Vector<D, N> operator+(const Vector<D, N> &x, const Vector<D, N> &y);
+  /// Binary minus
+  template <unsigned D, typename N>    
+  Vector<D, N> operator-(const Vector<D, N> &x, const Vector<D, N> &y);
+        
+  template <unsigned D, typename N>    
+  Vector<D, N> operator* (const Vector<D, N> &x, const N &s);
+  template <unsigned D, typename N>    
+  Vector<D, N> operator* (const N &s, const Vector<D, N> &x);
     
-    /// Comparison operator: Test for inequality
-    template <unsigned D, typename N>    
-    bool operator!=(const Vector<D, N> &one, const Vector<D, N> &other);
+  /// scalar multiplication between two Vectors (dot product)
+  template <unsigned D, typename N>    
+  N operator* (const Vector<D, N> &x, const Vector<D, N> &y);
     
-    /// Ordering needed to use Vector as key for a std::map
-    template <unsigned D, typename N>    
-    bool operator<(const Vector<D, N> &one, const Vector<D, N> &other);
+  template <unsigned D, typename N>    
+  Vector<D, N> operator/ (const Vector<D, N> &x, const N &s);
+    
+  /// divide every component of one vector by same component of another
+  template <unsigned D, typename N>    
+  Vector<D, N> operator/ (const Vector<D, N> &x, const Vector<D, N> &y);
+    
+  /// Comparison operator: Test for equality
+  template <unsigned D, typename N>    
+  bool operator==(const Vector<D, N> &one, const Vector<D, N> &other);
+    
+  /// Comparison operator: Test for inequality
+  template <unsigned D, typename N>    
+  bool operator!=(const Vector<D, N> &one, const Vector<D, N> &other);
+    
+  /// Ordering needed to use Vector as key for a std::map
+  template <unsigned D, typename N>    
+  bool operator<(const Vector<D, N> &one, const Vector<D, N> &other);
 
-    /// Vector output operator
-    template <unsigned D, typename N>
-    std::ostream &operator << (std::ostream &s, const Vector<D, N> &v);
+  /// Vector output operator
+  template <unsigned D, typename N>
+  std::ostream &operator << (std::ostream &s, const Vector<D, N> &v);
 
-    /// Vector input operator
-    template <unsigned D, typename N>
-    std::istringstream &operator >> (std::istringstream &in, Vector<D, N> &v);
+  /// Vector input operator
+  template <unsigned D, typename N>
+  std::istringstream &operator >> (std::istringstream &in, Vector<D, N> &v);
 
-    /// Cross product of two 3-Vectors.
-     template <typename N>
-     Vector<3, N> vcross (Vector<3, N> a, Vector<3, N> b);
+  /// Cross product of two 3-Vectors.
+  template <typename N>
+  Vector<3, N> vcross (Vector<3, N> a, Vector<3, N> b);
 
-    /// Cross product of three 4-Vectors
-     template <typename N>
-     Vector<4, N> vcross (Vector<4, N> a, Vector<4, N> b, Vector<4, N> c);
+  /// Cross product of three 4-Vectors
+  template <typename N>
+  Vector<4, N> vcross (Vector<4, N> a, Vector<4, N> b, Vector<4, N> c);
      
-    /// Normalizes a 3-Vector out-of-place
-    template <unsigned D, typename N>
-    Vector<D, N> vnormalize( const Vector<D, N> &x );
+  /// Normalizes a 3-Vector out-of-place
+  template <unsigned D, typename N>
+  Vector<D, N> vnormalize( const Vector<D, N> &x );
     
-    /// Generator function for a 2-dimensional Vector
-    template <typename N> Vector<2, N> makeVector(N const &x0, N const &x1);
+  /// Generator function for a 2-dimensional Vector
+  template <typename N> Vector<2, N> makeVector(N const &x0, N const &x1);
     
-    /// Generator function for a 3-dimensional Vector
-    template <typename N> 
-    Vector<3, N> makeVector(N const &x0, N const &x1, N const &x2);
+  /// Generator function for a 3-dimensional Vector
+  template <typename N> 
+  Vector<3, N> makeVector(N const &x0, N const &x1, N const &x2);
     
-    /// Generator function for a 4-dimensional Vector
-    template <typename N> 
-    Vector<4, N> makeVector(N const &x0, N const &x1, N const &x2, N const &x3);
+  /// Generator function for a 4-dimensional Vector
+  template <typename N> 
+  Vector<4, N> makeVector(N const &x0, N const &x1, N const &x2, N const &x3);
     
-    /// Generator function for a 5-dimensional Vector
-    template <typename N> 
-    Vector<5, N> makeVector(N const &x0, N const &x1, N const &x2, N const &x3, N const &x4);
+  /// Generator function for a 5-dimensional Vector
+  template <typename N> 
+  Vector<5, N> makeVector(N const &x0, N const &x1, N const &x2, N const &x3, N const &x4);
     
-    /// Generator function for a 6-dimensional Vector
-    template <typename N> 
-    Vector<6, N> makeVector(N const &x0, N const &x1, N const &x2, N const &x3, N const &x4,
-                            N const &x5);
+  /// Generator function for a 6-dimensional Vector
+  template <typename N> 
+  Vector<6, N> makeVector(N const &x0, N const &x1, N const &x2, N const &x3, N const &x4,
+                          N const &x5);
      
-    /// Generator function for a 7-dimensional Vector
-    template <typename N> 
-    Vector<7, N> makeVector(N const &x0, N const &x1, N const &x2, N const &x3, N const &x4,
-                            N const &x5, N const &x6);
+  /// Generator function for a 7-dimensional Vector
+  template <typename N> 
+  Vector<7, N> makeVector(N const &x0, N const &x1, N const &x2, N const &x3, N const &x4,
+                          N const &x5, N const &x6);
 
-    /// Generator function for a 8-dimensional Vector
-    template <typename N> 
-    Vector<8, N> makeVector(N const &x0, N const &x1, N const &x2, N const &x3, N const &x4,
-                            N const &x5, N const &x6, N const &x7);
+  /// Generator function for a 8-dimensional Vector
+  template <typename N> 
+  Vector<8, N> makeVector(N const &x0, N const &x1, N const &x2, N const &x3, N const &x4,
+                          N const &x5, N const &x6, N const &x7);
                             
-    /// Generator function for a 9-dimensional Vector
-    template <typename N> 
-    Vector<9, N> makeVector(N const &x0, N const &x1, N const &x2, N const &x3, N const &x4,
-                            N const &x5, N const &x6, N const &x7, N const &x8);
+  /// Generator function for a 9-dimensional Vector
+  template <typename N> 
+  Vector<9, N> makeVector(N const &x0, N const &x1, N const &x2, N const &x3, N const &x4,
+                          N const &x5, N const &x6, N const &x7, N const &x8);
                             
-    /// Generator function for a 10-dimensional Vector
-    template <typename N> 
-    Vector<10, N> makeVector(N const &x0, N const &x1, N const &x2, N const &x3, N const &x4,
-                             N const &x5, N const &x6, N const &x7, N const &x8, N const &x9);
+  /// Generator function for a 10-dimensional Vector
+  template <typename N> 
+  Vector<10, N> makeVector(N const &x0, N const &x1, N const &x2, N const &x3, N const &x4,
+                           N const &x5, N const &x6, N const &x7, N const &x8, N const &x9);
 
      
 }

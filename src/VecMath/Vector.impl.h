@@ -128,8 +128,92 @@ Vector<D, N>::operator const T * () const {
   return data;
 }
 
+template <unsigned D, typename N>
+std::string Vector<D, N>::toString() const {
+  std::ostringstream o;
+  o << *this << std::ends;
+  return o.str();
+}
+
 // -------- non-member functions -----------------------------------------------
 
+/** \return \p-v */
+template <unsigned D, typename N>
+Vector<D, N> operator-(const Vector<D, N> &v) {
+  Vector<D, N> Z(v);
+  for (unsigned i = 0; i < D; i++) Z[i] = -v[i] ;
+  return Z;
+}
+
+/** \param x first operand
+ *  \param y second operand
+ *  \return \p x+y
+ */
+template <unsigned D, typename N>
+Vector<D, N> operator+(const Vector<D, N> &x, const Vector<D, N> &y) {
+  Vector<D, N> z(x);
+  return (z += y);
+}
+
+/** \param x first operand
+ *  \param y second operand
+ *  \return \p x-y
+ */
+template <unsigned D, typename N>
+Vector<D, N> operator-(const Vector<D, N> &x, const Vector<D, N> &y) {
+  Vector<D, N> z(x);
+  return (z -= y);
+}
+
+/** \param x Vector
+ *  @param s scalar type
+ *  @return \p x*s                                                   
+ */   
+template <unsigned D, typename N>
+Vector<D, N> operator* (const Vector<D, N> &x, const N &s) {
+  Vector<D, N> z(x);
+  return z *= s;
+}
+
+/** \param x Vector
+ *  @param s scalar type
+ *  @return \p x*s                                                   
+ */   
+template <unsigned D, typename N>
+Vector<D, N> operator* (const N &s, const Vector<D, N> &x) {
+  return x*s;
+}
+
+/** @param X other Vector
+ *  @return dot product < \p x, \p y >                                  
+ */
+template <unsigned D, typename N>
+N operator*(const Vector<D, N> &x, const Vector<D, N> &y) {
+    N dot = 0.;
+    for (unsigned i = 0; i < D; i++) dot += x[i]*y[i];
+
+    return dot;
+}
+
+/** @param s scalar type
+ *  @return *this/s                                                   
+ */
+template <unsigned D, typename N>
+Vector<D, N> operator/ (const Vector<D, N> &x, const N &s) {
+    return x*(1./s);
+}
+
+/** @param X other Vector
+ *  @return scaled vector                                             
+ */
+template <unsigned D, typename N>
+Vector<D, N> operator/ (const Vector<D, N> &x, const Vector<D, N> &y) {
+  Vector<D, N> tmp;
+  for (unsigned i = 0; i < D; i++)
+    tmp[i] = x[i]/y[i];
+  return tmp;
+}
+    
 template <unsigned D, typename N>    
 bool operator==(const Vector<D, N> &one, const Vector<D, N> &other) {
       for (unsigned i = 0; i < D; i++) {
@@ -160,65 +244,10 @@ bool operator<(const Vector<D, N> &one, const Vector<D, N> &other) {
 
     template <unsigned D, typename N>
             N Vector<D, N>::sqnorm (void) const {
-        return operator* (*this);
+        return (*this)*(*this);
     }
 
-    template <unsigned D, typename N>
-    std::string Vector<D, N>::toString() const {
-        std::ostringstream o;
-        o << *this << std::ends;
-        return o.str();
-    }
-
-    template <unsigned D, typename N>
-            Vector<D, N> Vector<D, N>::operator- (void) const {
-        static Vector<D, N> Z;
-        Z = *this;
-        for (unsigned i = 0; i < D; i++) Z._x[i] = -_x[i] ;
-        return Z;
-    }
-
-    template <unsigned D, typename N>
-            Vector<D, N> Vector<D, N>::operator+ (const Vector<D, N> &Y) const {
-    static Vector<D, N> Z;
-    Z = *this;
-    return (Z += Y);
-    }
-
-    template <unsigned D, typename N>
-            Vector<D, N> Vector<D, N>::operator- (const Vector<D, N> &Y) const {
-    static Vector<D, N> Z;
-    Z = *this;
-    return (Z -= Y);
-    }
-
-    template <unsigned D, typename N>
-            Vector<D, N> Vector<D, N>::operator* (const N &s) const {
-    Vector <D, N>Z;
-    Z = *this;
-    return Z *= s;
-    }
-
-    template <unsigned D, typename N>
-            N Vector<D, N>::operator* (const Vector<D, N> &Y) const {
-    N dot = 0.;
-    for (unsigned i = 0; i < D; i++) dot += _x[i]*Y._x[i];
-
-    return dot;
-    }
-
-    template <unsigned D, typename N>
-            Vector<D, N> Vector<D, N>::operator/ (const N &s) const {
-    return operator* (1./s);
-    }
-
-    template <unsigned D, typename N>
-            Vector<D, N> Vector<D, N>::operator/ (const Vector<D, N> &X) const {
-        Vector<D, N> tmp;
-        for (unsigned i = 0; i < D; i++)
-            tmp[i] = _x[i]/X[i];
-        return tmp;
-    }
+    
 
 //------------  important non-member functions for class Vector
 
