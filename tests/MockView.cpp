@@ -26,7 +26,7 @@ template <unsigned D, typename NUM>
 bool is_in(vector< Vector<D, NUM> > &collection, const Vector<D, NUM> &element) {
   typedef typename vector< Vector<D, NUM> >::const_iterator collection_iterator;
   for (collection_iterator i = collection.begin(); i != collection.end(); ++i) {
-    if ((element-*i).sqnorm() < EPSILON) return true;
+    if (VecMath::sqnorm(element-*i) < EPSILON) return true;
   }
   return false;
 }
@@ -52,7 +52,7 @@ bool MockView::Face<D>::operator==(const Face< D >& other) const {
   if (vertex_.size() != other.vertex_.size()) return false;
 
   for (size_t i = 0; i < vertex_.size(); ++i) {
-    if ((vertex_[i]-other.vertex_[i]).sqnorm() > EPSILON) return false;
+    if (VecMath::sqnorm(vertex_[i]-other.vertex_[i]) > EPSILON) return false;
   }
   
   return true;

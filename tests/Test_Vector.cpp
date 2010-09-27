@@ -48,7 +48,7 @@ void Test_Vector::dotProduct() {
 
 void Test_Vector::sqnorm() {
     Vector<3> v1(2., 0., 0.);
-    QVERIFY(v1.sqnorm() == 4.);
+    QVERIFY(VecMath::sqnorm(v1) == 4.);
 }
 
 void Test_Vector::equals() {

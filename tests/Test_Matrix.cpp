@@ -46,7 +46,7 @@ void Test_Matrix::vectorMultiplication() {
     Vector<3> v(1.,0.,0.);
 
     QVERIFY(u*v == v);
-    QVERIFY((m1*v-Vector<3>(0., 1., 0.)).sqnorm() < EPSILON);
+    QVERIFY(VecMath::sqnorm(m1*v-Vector<3>(0., 1., 0.)) < EPSILON);
 }
 
 void Test_Matrix::toString() {

@@ -26,12 +26,12 @@ void checkVertexDrawn(const VecMath::Vector<3> &v) {
 }
 
 void checkVerticesEqual(const VecMath::Vector<4> &v1, const VecMath::Vector<4> &v2) {
-  QVERIFY((v1 - v2).sqnorm() < EPSILON);
+  QVERIFY(VecMath::sqnorm(v1 - v2) < EPSILON);
 }
 
 
 void checkVerticesNotEqual(const VecMath::Vector<4> &v1, const VecMath::Vector<4> &v2) {
-  QVERIFY((v1 - v2).sqnorm() > EPSILON);
+  QVERIFY(VecMath::sqnorm(v1 - v2) > EPSILON);
 }
 
 template<typename T> T random_number() {
@@ -102,7 +102,8 @@ void Test_RealFunction::functionValue() {
     for (double x = X_MIN; x <= X_MAX; x += 1.) {
         for (double y = X_MIN; y <= X_MAX; y += 1.) {
             for (double z = X_MIN; z <= X_MAX; z += 1.) {
-                QVERIFY( (function_->function_value(x, y, z) - Vector<4>(x, y, z,CONSTANT_FUNCTION_VALUE)).sqnorm() <= EPSILON );
+                QVERIFY( VecMath::sqnorm(function_->function_value(x, y, z) - 
+                                         Vector<4>(x, y, z,CONSTANT_FUNCTION_VALUE)) <= EPSILON );
             }
         }
     }

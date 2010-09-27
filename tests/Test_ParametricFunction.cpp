@@ -177,7 +177,8 @@ void Test_ParametricFunction::functionValue() {
     for (double y = -5; y < 5.; ++y) {
       for (double z = -5; z < 5.; ++z) {
         VecMath::Vector<4> f = _function->f(VecMath::Vector<3>(x, y, z));
-        QVERIFY2((f - VecMath::Vector<4>(0., 0., 0., 1.)).sqnorm() < 1e-8, f.toString().c_str());
+        QVERIFY2(VecMath::sqnorm(f - VecMath::Vector<4>(0., 0., 0., 1.)) < 1e-8, 
+                 f.toString().c_str());
       }
     }
   }

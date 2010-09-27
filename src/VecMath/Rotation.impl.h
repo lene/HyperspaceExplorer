@@ -98,7 +98,7 @@ Rotation<D, N> &Rotation<D, N>::operator +=(const Rotation<D, N>& that) {
 /** \todo move out of the class */
 template <unsigned D, typename N> 
 Rotation<D, N>::operator bool() const {
-  return axis.sqnorm() != 0.; 
+  return sqnorm(axis) != 0.; 
 }
 
 template <unsigned D, typename N> 

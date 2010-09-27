@@ -101,7 +101,8 @@ void Test_Function::functionValue() {
 
     VecMath::Vector<4> f = function.f();
 
-    QVERIFY2((f - VecMath::Vector<4>(0., 0., 0., sqrt(2.))).sqnorm() < 1e-8, f.toString().c_str());
+    QVERIFY2(VecMath::sqnorm(f - VecMath::Vector<4>(0., 0., 0., sqrt(2.))) < 1e-8, 
+             f.toString().c_str());
 }
 
 void Test_Function::parameters() {

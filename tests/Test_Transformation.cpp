@@ -90,8 +90,9 @@ void Test_Transformation::rotationPreservesNorm() {
   for (unsigned i = 0; i < g.size(); ++i) {
     for (unsigned j = 0; j < g.size(); ++j) {
       for (unsigned k = 0; k < g.size(); ++k) {
-        QVERIFY2(fabs(g[i][j][k].sqnorm() - _grid->getValues()[i][j][k].sqnorm()) < 1e-8,
-                 (QString::number(g[i][j][k].sqnorm()) + " != "+ QString::number(_grid->getValues()[i][j][k].sqnorm())).toAscii()
+        QVERIFY2(fabs(VecMath::sqnorm(g[i][j][k])) - VecMath::sqnorm(_grid->getValues()[i][j][k]) < 1e-8,
+                 (QString::number(VecMath::sqnorm(g[i][j][k])) + " != "+ 
+                  QString::number(VecMath::sqnorm(_grid->getValues()[i][j][k]))).toAscii()
         );
       }
     }
@@ -152,7 +153,7 @@ void Test_Transformation::rotate180DegreesIsNegative() {
     for (unsigned j = 0; j < g.size(); ++j) {
       for (unsigned k = 0; k < g.size(); ++k) {
         if (g[i][j][k] != _grid->getValues()[i][j][k]) {
-          QVERIFY((g[i][j][k] + _grid->getValues()[i][j][k]).sqnorm() < 1e-8);
+          QVERIFY(VecMath::sqnorm(g[i][j][k] + _grid->getValues()[i][j][k]) < 1e-8);
         }
       }
     }
@@ -181,7 +182,7 @@ void Test_Transformation::rotate360DegreesIsEqual() {
   for (unsigned i = 0; i < g.size(); ++i) {
     for (unsigned j = 0; j < g.size(); ++j) {
       for (unsigned k = 0; k < g.size(); ++k) {
-        QVERIFY((g[i][j][k] - _grid->getValues()[i][j][k]).sqnorm() < 1e-8);
+        QVERIFY(VecMath::sqnorm(g[i][j][k] - _grid->getValues()[i][j][k]) < 1e-8);
       }
     }
   }
@@ -206,7 +207,7 @@ void Test_Transformation::translationAddsVector() {
   for (unsigned i = 0; i < g.size(); ++i) {
     for (unsigned j = 0; j < g.size(); ++j) {
       for (unsigned k = 0; k < g.size(); ++k) {
-        QVERIFY((g[i][j][k] - _grid->getValues()[i][j][k]-translation).sqnorm() < 1e-8);
+        QVERIFY(VecMath::sqnorm(g[i][j][k] - _grid->getValues()[i][j][k]-translation) < 1e-8);
       }
     }
   }
@@ -263,6 +264,7 @@ ParametricFunctionTestImplementation::ParametricFunctionTestImplementation() {
 
 using VecMath::makeRotation;
 using VecMath::makeVector;
+using VecMath::sqnorm;
 
 void Test_Transformation::rotateFloatVector() {
     VecMath::MultiDimensionalVector<Vector<4, float>, 1> vec;
@@ -276,8 +278,8 @@ void Test_Transformation::rotateFloatVector() {
 
         FunctionValueGrid<4, 1, float>::value_storage_type g = transform.transform(vec);
 
-        QVERIFY2(fabs(g[0].sqnorm() - vec[0].sqnorm()) < 1e-6,
-                 (QString::number(g[0].sqnorm()) + " != "+ QString::number(vec[0].sqnorm())).toAscii()
+        QVERIFY2(fabs(sqnorm(g[0]) - sqnorm(vec[0])) < 1e-6,
+                 (QString::number(sqnorm(g[0])) + " != "+ QString::number(sqnorm(vec[0]))).toAscii()
         );
     }
 }
@@ -321,11 +323,12 @@ void Test_Transformation::rotateFloats() {
     for (unsigned i = 0; i < g.size(); ++i) {
         for (unsigned j = 0; j < g.size(); ++j) {
             for (unsigned k = 0; k < g.size(); ++k) {
-                if (fabs(g[i][j][k].sqnorm() - grid->getValues()[i][j][k].sqnorm()) > 1e-6) {
+                if (fabs(sqnorm(g[i][j][k]) - sqnorm(grid->getValues()[i][j][k])) > 1e-6) {
                     QSKIP("Rotating floats may give strange results", SkipSingle);
                 }
-                QVERIFY2(fabs(g[i][j][k].sqnorm() - grid->getValues()[i][j][k].sqnorm()) < 1e-6,
-                         (QString::number(g[i][j][k].sqnorm()) + " != "+ QString::number(grid->getValues()[i][j][k].sqnorm())).toAscii()
+                QVERIFY2(fabs(VecMath::sqnorm(g[i][j][k]) - VecMath::sqnorm(grid->getValues()[i][j][k])) < 1e-6,
+                         (QString::number(VecMath::sqnorm(g[i][j][k])) + " != " + 
+                          QString::number(VecMath::sqnorm(grid->getValues()[i][j][k]))).toAscii()
                          );
             }
         }

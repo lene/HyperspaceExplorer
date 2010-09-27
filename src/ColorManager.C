@@ -262,7 +262,7 @@ std::pair<vector<Vector<4> >, vector<double> >
     vector<double> distances;
 
     for (colormap::iterator i = col.begin(); i != col.end(); ++i) {
-        double distance = (x-i->first).sqnorm();
+        double distance = VecMath::sqnorm(x-i->first);
         if (distances.empty()) {                            //  first point
             distances.push_back(distance);
             points.push_back(i->first);

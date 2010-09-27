@@ -31,7 +31,7 @@ void Test_Rotation::toMatrix() {
     Matrix<3> m(rot);
     Vector<3> v(1., 0., 0.),
             vprime = m*v;
-    QVERIFY((Vector<3>(0.,0.,1.)-vprime).sqnorm() < EPSILON);
+    QVERIFY(VecMath::sqnorm(Vector<3>(0.,0.,1.)-vprime) < EPSILON);
 
     QSKIP("Not understood yet how Rotation maps to a Matrix. "
           "Understand that and test other Rotations as well.",

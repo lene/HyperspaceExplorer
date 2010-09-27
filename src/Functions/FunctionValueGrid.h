@@ -147,7 +147,7 @@ template <unsigned N, unsigned P, typename NUM>
     const FunctionValueGrid::grid_size_type &grid_size) {
   if (grid_size == _grid_size) return;
   _grid_size = grid_size;
-  if (abs((_x_max-_x_min).sqnorm()) > EPSILON) recalculate_grid();
+  if (abs(VecMath::sqnorm(_x_max-_x_min)) > EPSILON) recalculate_grid();
 }
 
 /** \param x_min Lower boundary of the definition space.
@@ -156,10 +156,10 @@ template <unsigned N, unsigned P, typename NUM>
 template <unsigned N, unsigned P, typename NUM>
   void FunctionValueGrid<N, P, NUM>::setBoundaries(
     const FunctionValueGrid::boundary_type &x_min, const FunctionValueGrid::boundary_type &x_max) {
-  if (abs((_x_max-x_max).sqnorm()) < EPSILON && abs((_x_min-x_min).sqnorm()) < EPSILON) return;
+  if (abs(VecMath::sqnorm(_x_max-x_max)) < EPSILON && abs(VecMath::sqnorm(_x_min-x_min)) < EPSILON) return;
   _x_min = x_min;
   _x_max = x_max;
-  if (abs(_grid_size.sqnorm())) recalculate_grid();
+  if (VecMath::sqnorm(_grid_size)) recalculate_grid();
 }
 
 /** Initialize a LoopHelper and set it off.

@@ -232,24 +232,20 @@ bool operator!=(const Vector<D, N> &one, const Vector<D, N> &other) {
  */
 template <unsigned D, typename N>    
 bool operator<(const Vector<D, N> &one, const Vector<D, N> &other) {
-      if (one.sqnorm() == other.sqnorm()) {
+      if (sqnorm(one) == sqnorm(other)) {
         for (unsigned i = 0; i < D; i++) {
           if (one[i] < other[i]) return true;
           if (one[i] > other[i]) return false;
         }
       }
-      return one.sqnorm() < other.sqnorm();
+      return sqnorm(one) < sqnorm(other);
 }
 
-
-    template <unsigned D, typename N>
-            N Vector<D, N>::sqnorm (void) const {
-        return (*this)*(*this);
-    }
-
-    
-
-//------------  important non-member functions for class Vector
+/** @return the squared norm of the vector, \f$ |x|^2 \f$ */
+template <unsigned D, typename N>
+N sqnorm (const Vector<D, N> &x)  {
+ return x*x;
+}
 
     /** \ingroup VecMath
      *  @tparam D dimension of the vector
@@ -343,7 +339,7 @@ bool operator<(const Vector<D, N> &one, const Vector<D, N> &other) {
     template <unsigned D, typename N>
             Vector<D, N> vnormalize( const Vector<D, N> &x ) {
         static Vector<D, N> n;
-        N norm = sqrt ( x.sqnorm() );
+        N norm = sqrt(sqnorm(x));
         for ( unsigned i = 0; i < D; i++ ) n[i] = x[i]/norm;
         return n;
     }

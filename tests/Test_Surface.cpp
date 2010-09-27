@@ -48,7 +48,7 @@ void Test_Surface::functionValue() {
     for (double y = X_MIN; y <= X_MAX; y += 1.) {
       cerr << Vector<4>(x, y, CONSTANT_FUNCTION_VALUE,CONSTANT_FUNCTION_VALUE) << endl;
       QVERIFY2(
-        (_function->function_value(x, y) - Vector<4>(x, y, CONSTANT_FUNCTION_VALUE,CONSTANT_FUNCTION_VALUE)).sqnorm() <= EPSILON,
+        VecMath::sqnorm(_function->function_value(x, y) - Vector<4>(x, y, CONSTANT_FUNCTION_VALUE,CONSTANT_FUNCTION_VALUE)) <= EPSILON,
         (QString::number(x).toStdString()+", "+QString::number(y).toStdString()+" -> "+_function->function_value(x, y).toString()+
          " != "+Vector<4>(x, y, CONSTANT_FUNCTION_VALUE,CONSTANT_FUNCTION_VALUE).toString()).c_str()
         );
@@ -84,7 +84,7 @@ void Test_Surface::rotateAboutAllAxes() {
     for (unsigned j = 0; j < GRID_SIZE; ++j) {
       Vector<4> vertex = _function->vertices()[i][j],
                 transformed_vertex = _function->transformed_vertices()[i][j];
-      QVERIFY((vertex - transformed_vertex).sqnorm() > EPSILON);
+      QVERIFY(VecMath::sqnorm(vertex - transformed_vertex) > EPSILON);
     }
   }
 }
@@ -98,7 +98,7 @@ void Test_Surface::rotated360DegreesIsIdentical() {
     for (unsigned j = 0; j < GRID_SIZE; ++j) {
       Vector<4> vertex = _function->vertices()[i][j],
                 transformed_vertex = _function->transformed_vertices()[i][j];
-      QVERIFY((vertex - transformed_vertex).sqnorm() < EPSILON);
+      QVERIFY(VecMath::sqnorm(vertex - transformed_vertex) < EPSILON);
     }
   }
 }

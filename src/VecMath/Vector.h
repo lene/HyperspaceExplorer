@@ -80,12 +80,7 @@ namespace VecMath {
         
       /// Convert Vector to a std::string.
       std::string toString() const;
-
-      //  move the following functions out of the class!
         
-      /** @return the squared norm of the vector, |V|�                      */
-      N sqnorm (void) const;
-
     private:
 
       N _x[D]; ///< A static array storing the components
@@ -130,6 +125,10 @@ namespace VecMath {
   template <unsigned D, typename N>    
   bool operator<(const Vector<D, N> &one, const Vector<D, N> &other);
 
+  template <unsigned D, typename N>    
+  N sqnorm (const Vector<D, N> &x);
+
+  
   /// Vector output operator
   template <unsigned D, typename N>
   std::ostream &operator << (std::ostream &s, const Vector<D, N> &v);

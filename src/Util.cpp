@@ -71,7 +71,7 @@ namespace Util {
   }
 
   void glVertex(const Vector< 3, double >& V) {
-    if (std::isfinite (V.sqnorm()))
+    if (std::isfinite(VecMath::sqnorm(V)))
       glVertex3dv(V.data());
   }
 

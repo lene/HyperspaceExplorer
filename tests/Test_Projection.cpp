@@ -27,6 +27,7 @@
 #include <complex>
 
 using VecMath::Vector;
+using VecMath::sqnorm;
 using VecMath::MultiDimensionalVector;
 
 using std::complex;
@@ -85,7 +86,7 @@ void Test_Projection::project1D() {
   projected1D target = p.project(vertex_data);
 
   for (unsigned i = 0; i < target.size(); ++i) {
-    QVERIFY2((target[i]-projected_data[i]).sqnorm() < EPSILON,
+    QVERIFY2(sqnorm(target[i]-projected_data[i]) < EPSILON,
              (target[i].toString()+" != expected "+projected_data[i].toString()).c_str());
   }
 }
@@ -123,7 +124,7 @@ void Test_Projection::project5to3() {
   projected1D target = p.project(vertex_data);
 
   for (unsigned i = 0; i < target.size(); ++i) {
-    QVERIFY2((target[i]-projected_data[i]).sqnorm() < EPSILON,
+    QVERIFY2(sqnorm(target[i]-projected_data[i]) < EPSILON,
              (target[i].toString()+" != expected "+projected_data[i].toString()).c_str());
   }
 }
@@ -187,7 +188,7 @@ void Test_Projection::project2D() {
 
   for (unsigned i = 0; i < target.size(); ++i) {
     for (unsigned j = 0; j < target[i].size(); ++j) {
-      QVERIFY2((target[i][j]-projected_data[i][j]).sqnorm() < EPSILON,
+      QVERIFY2(sqnorm(target[i][j]-projected_data[i][j]) < EPSILON,
                (target[i][j].toString()+" != expected "+projected_data[i][j].toString()).c_str());
     }
   }
@@ -243,7 +244,7 @@ void Test_Projection::projectFloats() {
     projected1Dfloat target = p.project(vertex_data);
 
     for (unsigned i = 0; i < target.size(); ++i) {
-        QVERIFY2((target[i]-projected_data[i]).sqnorm() < EPSILON,
+        QVERIFY2(sqnorm(target[i]-projected_data[i]) < EPSILON,
                  (target[i].toString()+" != expected "+projected_data[i].toString()).c_str());
     }
 }
@@ -301,7 +302,7 @@ void Test_Projection::projectComplex() {
     projected1Dcomplex target = p.project(vertex_data);
 
     for (unsigned i = 0; i < target.size(); ++i) {
-        QVERIFY2(abs( (target[i]-projected_data[i]).sqnorm() ) < EPSILON,
+        QVERIFY2(abs(sqnorm(target[i]-projected_data[i])) < EPSILON,
                  (target[i].toString()+" != expected "+projected_data[i].toString()).c_str());
     }
 

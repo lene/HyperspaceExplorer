@@ -282,7 +282,7 @@ void Test_Rotope::sphereVertices() {
 
     for (std::vector< VecMath::Vector<4> >::const_iterator i = _vertices.begin();
             i != _vertices.end(); ++i) {
-        QVERIFY(i->sqnorm() -1 < EPSILON);
+        QVERIFY(VecMath::sqnorm(*i) -1 < EPSILON);
     }
 }
 
@@ -349,7 +349,7 @@ bool Test_Rotope::isInVertices(const VecMath::Vector<4> &vertex) const {
     if (std::find(_vertices.begin(), _vertices.end(), vertex) != _vertices.end()) return true;
     for (std::vector< VecMath::Vector<4> >::const_iterator i = _vertices.begin();
             i != _vertices.end(); ++i) {
-        if ((vertex-*i).sqnorm() < EPSILON) return true;
+        if (VecMath::sqnorm(vertex-*i) < EPSILON) return true;
     }
     return false;
 }
