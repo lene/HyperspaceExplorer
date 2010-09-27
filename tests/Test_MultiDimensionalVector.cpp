@@ -88,6 +88,26 @@ void Test_MultiDimensionalVector::for_each_const() {
   QVERIFY(sum_of_all_elements == calculateSumForSize(4));
 }
 
+class TestForEach {
+  public:
+    TestForEach(): sum_(0) { }
+    void operator()(const unsigned &i) {
+      sum_ += i;
+    }
+    unsigned sum() const { return sum_; }
+  private:
+    unsigned sum_;
+};
+
+void Test_MultiDimensionalVector::for_each_class() {
+  Vector2D v = generate2DVector(0, 4);
+  TestForEach test;
+  
+  test = v.for_each(test);
+  
+  QVERIFY2(test.sum() == calculateSumForSize(4), QString::number(test.sum()).toAscii());
+}
+
 Test_MultiDimensionalVector::Vector2D Test_MultiDimensionalVector::generate2DVector(
         Test_MultiDimensionalVector::stored_type start_value, unsigned size) {
     Vector2D v;

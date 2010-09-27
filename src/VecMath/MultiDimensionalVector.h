@@ -56,11 +56,6 @@ namespace VecMath {
       /// Iterator type to loop over elements, read only - from std::vector
       typedef typename std::vector<MultiDimensionalVector<T, D-1> >::const_iterator const_iterator;
 
-      /// Procedure that is applied on every element with for_each(), changing the element
-      typedef void(*function_on_element)(T &);
-      /// Procedure that is applied on every constant element with for_each()
-      typedef void(*function_on_const_element)(const T &);
-
       /// Construct an empty MultiDimensionalVector
       MultiDimensionalVector();
 
@@ -122,12 +117,9 @@ namespace VecMath {
       /// Returns true if \p other is not equal to \p this
       bool operator != (const MultiDimensionalVector<T, D> &other) const;
 
-      /// Apply a mutating function on every element of a MultiDimensionalVector
-      void for_each(function_on_element f);
+      /// Apply a function or functor on every element of a MultiDimensionalVector
+      template <typename Function> Function for_each(Function f);
 
-      /// Apply a non-mutating function on every element of a MultiDimensionalVector
-      void for_each(function_on_const_element f) const;
-      
       /// Convert NestedVector to a std::string.
       std::string toString() const;
 
@@ -169,11 +161,6 @@ namespace VecMath {
       /// See MultiDimensionalVector<T, D>::const_iterator
       typedef typename std::vector<T>::const_iterator const_iterator;
 
-      /// See MultiDimensionalVector<T, D>::function_on_element
-      typedef void(*function_on_element)(T &);
-      /// See MultiDimensionalVector<T, D>::function_on_const_element
-      typedef void(*function_on_const_element)(const T &);
-      
       /// See MultiDimensionalVector<T, D>::MultiDimensionalVector()
       MultiDimensionalVector();
       /// See MultiDimensionalVector<T, D>::MultiDimensionalVector()
@@ -222,11 +209,8 @@ namespace VecMath {
       /// See MultiDimensionalVector<T, D>::operator !=()
       bool operator != (const MultiDimensionalVector<T, 1> &other) const;
 
-      /// Apply a mutating function on every element of a MultiDimensionalVector
-      void for_each(function_on_element f);
-
-      /// Apply a non-mutating function on every element of a MultiDimensionalVector
-      void for_each(function_on_const_element f) const;
+      /// Apply a function or functor on every element of a MultiDimensionalVector
+      template <typename Function> Function for_each(Function f);
       
       /// Convert MultiDimensionalVector to a std::string.
       std::string toString() const;

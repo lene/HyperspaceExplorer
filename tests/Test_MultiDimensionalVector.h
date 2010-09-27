@@ -25,6 +25,7 @@ private slots:
 
   void for_each();
   void for_each_const();
+  void for_each_class();
   
 private:
   Test_MultiDimensionalVector::Vector1D generate1DVector(
