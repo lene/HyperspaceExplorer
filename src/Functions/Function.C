@@ -10,6 +10,9 @@
 #include "Log.h"
 #include "ParameterMap.h"
 
+#include "Vector.impl.h"
+#include "Rotation.impl.h"
+
 using std::cerr;
 using std::endl;
 

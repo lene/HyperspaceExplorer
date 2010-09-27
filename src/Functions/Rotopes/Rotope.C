@@ -10,8 +10,6 @@
 ///
 ///
 
-#include "Matrix.h"
-
 #include "Rotope.h"
 #include "Extrude.h"
 #include "Taper.h"
@@ -19,6 +17,7 @@
 #include "Torate.h"
 #include "RotopeFactory.h"
 
+#include "Matrix.impl.h"
 #include "Rotation.impl.h"
 
 using std::vector;

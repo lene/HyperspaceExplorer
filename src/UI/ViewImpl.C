@@ -12,8 +12,8 @@
 
 #include "ViewImpl.h"
 
-#include "MultiDimensionalVector.h"
-
+#include "Vector.impl.h"
+#include "MultiDimensionalVector.impl.h"
 #include "Rotation.impl.h"
 
 namespace UI {

@@ -2,6 +2,7 @@
 #include "Test_Matrix.h"
 
 #include "Matrix.impl.h"
+#include "Vector.impl.h"
 
 #include <sstream>
 #include <string>

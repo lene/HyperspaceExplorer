@@ -13,11 +13,12 @@
 #include "ColorManager.h"
 #include "Log.h"
 
-#include "Matrix.h"
+#include "Matrix.impl.h"
 #include "Transform.h"
 #include "View.h"
 
 #include "MultiDimensionalVector.impl.h"
+#include "Vector.impl.h"
 
 using std::cerr;
 using std::endl;

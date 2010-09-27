@@ -1,8 +1,8 @@
 TEMPLATE = lib
 
-CONFIG -= debug
-CONFIG += release qt warn_on uic staticlib
-#CONFIG += debug qt warn_on uic dll staticlib
+#CONFIG -= debug
+#CONFIG += release qt warn_on uic staticlib
+CONFIG += debug qt warn_on uic dll staticlib
 
 QT += opengl
 
@@ -227,6 +227,8 @@ CONFIG(debug){
 QMAKE_CFLAGS_DEBUG += -pg -g3 -gdwarf-2
 QMAKE_CXXFLAGS_DEBUG += -pg -g3 -gdwarf-2
 QMAKE_LFLAGS_DEBUG += -pg
+
+QMAKE_CXXFLAGS_RELEASE += -O2
 ###
 ### installation
 ###

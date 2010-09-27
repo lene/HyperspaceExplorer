@@ -1,6 +1,7 @@
 #include "MockView.h"
 
 #include "MultiDimensionalVector.h"
+#include "Vector.impl.h"
 
 using std::vector;
 using VecMath::Vector;

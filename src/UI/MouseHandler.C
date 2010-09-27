@@ -14,6 +14,7 @@
 
 #include "MouseHandler.h"
 #include "Menu4D.h"
+#include "Vector.impl.h"
 #include "Rotation.impl.h"
 
 using VecMath::Vector;

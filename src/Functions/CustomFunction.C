@@ -18,6 +18,8 @@
 #include "ComplexDialogImpl.h"
 #include "SurfaceDialogImpl.h"
 
+#include "Vector.impl.h"
+
 using std::complex;
 using std::cerr;
 using std::endl;

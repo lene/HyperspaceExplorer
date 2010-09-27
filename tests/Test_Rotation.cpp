@@ -1,6 +1,7 @@
 
 #include "Test_Rotation.h"
 
+#include "Vector.impl.h"
 #include "Rotation.impl.h"
 #include "Matrix.impl.h"
 

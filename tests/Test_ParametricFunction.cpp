@@ -8,6 +8,9 @@
 
 #include "Test_ParametricFunction.h"
 
+#include "Vector.impl.h"
+#include "Rotation.impl.h"
+
 #include <cstdlib>
 
 using std::cerr;

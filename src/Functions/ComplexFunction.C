@@ -11,6 +11,8 @@
 
 #include "ComplexFunction.h"
 
+#include "Vector.impl.h"
+
 #include <QString>
 
 using std::complex;

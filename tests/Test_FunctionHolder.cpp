@@ -21,6 +21,7 @@
 #include "Test_FunctionHolder.h"
 
 #include "FunctionHolder.impl.h"
+#include "MultiDimensionalVector.impl.h"
 
 class TestFunctionHolder: public FunctionHolder<4,3> {
   

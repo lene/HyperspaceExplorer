@@ -20,8 +20,9 @@
 
 #include "Test_GridDrawer.h"
 
-#include "Vector.h"
 #include "GridDrawer.impl.h"
+#include "Vector.impl.h"
+#include "MultiDimensionalVector.impl.h"
 
 #include <complex>
 
