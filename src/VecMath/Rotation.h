@@ -57,17 +57,7 @@ namespace VecMath {
      *  \ingroup VecMath                                                      */
     template <unsigned D> class RotationAxes {
         public:
-            /** Compute the row/column in a rotation Matrix from the dimension
-             *  of the vector space and the position of the rotation angle in
-             *  the Rotation vector.
-             *  \param which 0 for \p ii or 1 for \p jj
-             *  \param index position in the Rotation vector                  */
-            static unsigned axis(unsigned which, unsigned index) {
-                throw NotYetImplementedException(
-                        "RotationAxes<"+Util::itoa(D)+">::axis("+
-                        Util::itoa(which)+", "+
-                        Util::itoa(index)+")");
-            }
+            static unsigned axis(unsigned which, unsigned index);
         private:
             /// explicitly stores the values for \p ii and \p jj
             static unsigned _axis[2][NumAxes<D>::num];
@@ -76,14 +66,7 @@ namespace VecMath {
     /// Rotation axes in three dimensions, manually specified
     template <> class RotationAxes<3> {
         public:
-            /** Compute the row/column in a rotation Matrix from the dimension
-             *  of the vector space and the position of the rotation angle in
-             *  the Rotation vector.
-             *  \param which 0 for \p ii or 1 for \p jj
-             *  \param index position in the Rotation vector                  */
-            static unsigned axis(unsigned which, unsigned index) {
-                return _axis[which][index];
-            }
+            static unsigned axis(unsigned which, unsigned index);
         private:
             static const unsigned _axis[2][3];  ///< values for \p ii and \p jj
     };
@@ -91,14 +74,7 @@ namespace VecMath {
     /// Rotation axes in four dimensions, manually specified
     template <> class RotationAxes<4> {
         public:
-            /** Compute the row/column in a rotation Matrix from the dimension
-             *  of the vector space and the position of the rotation angle in
-             *  the Rotation vector.
-             *  \param which 0 for \p ii or 1 for \p jj
-             *  \param index position in the Rotation vector                  */
-            static unsigned axis(unsigned which, unsigned index) {
-                return _axis[which][index];
-            }
+            static unsigned axis(unsigned which, unsigned index);
         private:
             static const unsigned _axis[2][6];  ///< values for \p ii and \p jj
     };
@@ -118,54 +94,40 @@ namespace VecMath {
             public RotationBase {
 
         public:
+          
             /// default constructor, zero rotation
-            Rotation<D, N>(): axis() { }
+            Rotation<D, N>();
 
             /// Constructor with variable arglist
-            /** @param r0  angle about first rotation axis
-             *  @param ... angle about the other axes                         */
             Rotation<D, N> (N r0, ... );
 
             /// Returns a reference to component i
-            /** @param i index of the element
-             *  @return non-const reference to the accessed element           */
             N &operator[] (unsigned i);
             /// Returns component i by value
-            /** @param i index of the element
-             *  @return the accessed element                                  */
             N operator[] (unsigned i) const;
 
             /// Creates a rotation Matrix from the angles
-            /** \todo default implementation does not work correctly yet
-             *  \see the specializations for 3 and 4 dimensions in Rotation.C */
             operator Matrix<D, N>() const;
 
             /// Adds another Rotation to \c this.
-            /** @param that other Rotation
-             *  @return \c *this+that
-             */
             Rotation<D, N> &operator+= (const Rotation<D, N> &that);
             /// Returns the sum of two Rotation s.
-            /** @param that other Rotation
-             *  @return \c *this+that
-             *  \todo Move out of class.
-             */
             Rotation<D, N> operator+ (const Rotation<D, N> &that) const;
 
-
             /// true if rotation is nonzero
-            operator bool() const { return axis.sqnorm() != 0.; }
+            operator bool() const;
 
             /// access the stored values (needed by output operator <<())
-            const Vector<NumAxes<D>::num, N> &r() const { return axis; }
+            const Vector<NumAxes<D>::num, N> &r() const;
 
             /// write access the stored values (needed by input operator >>())
-            Vector<NumAxes<D>::num, N> &r() { return axis; }
+            Vector<NumAxes<D>::num, N> &r();
 
             /// Convert Rotation to a std::string.
-            std::string toString() const { return axis.toString(); }
+            std::string toString() const;
 
         private:
+          
             /// Rotation angles are stored as a Vector, operations are delegated
             Vector<NumAxes<D>::num, N> axis;
     };
@@ -175,67 +137,26 @@ namespace VecMath {
 
 
     /// RotationBase output operator
-    /** \ingroup VecMath
-     *  \param o ostream to push into
-     *  \return a new ostream to push Rotations and stuff into                */
     std::ostream &operator << (std::ostream &o, const RotationBase &);
 
     /// Rotation output operator
-    /** \ingroup VecMath
-     *  \param o ostream to push into
-     *  \param v Rotation to print
-     *  \return a new ostream to push Rotations and stuff into                */
     template <unsigned D, typename N>
-            std::ostream &operator << (std::ostream &o, const Rotation<D, N> &v) {
-        o << v.r();
-        return o;
-    }
+    std::ostream &operator << (std::ostream &o, const Rotation<D, N> &v);
 
     /// Rotation input operator
-    /** \ingroup VecMath
-     *  \param in istringstream to read from
-     *  \param v Rotation to read
-     *  \return a new istringstream to read stuff from
-     */
     template <unsigned D, typename N>
-            std::istringstream &operator >> (std::istringstream &in,
-                                             Rotation<D, N> &v) {
-        in >> v.r();
-        return in;
-    }
+    std::istringstream &operator >> (std::istringstream &in, Rotation<D, N> &v);
 
     //------------  functions that generate a Rotation without resorting to variable arglists
 
     /// Generator function for a 3-dimensional Rotation
-    template <typename N> Rotation<3, N> makeRotation(
-            N const &r0, N const &r1, N const &r2) {
-
-        Rotation<3, N> r;
-
-        r[0] = r0;
-        r[1] = r1;
-        r[2] = r2;
-
-        return r;
-    }
+    template <typename N> 
+    Rotation<3, N> makeRotation(N const &r0, N const &r1, N const &r2);
 
     /// Generator function for a 4-dimensional Rotation
-    template <typename N> Rotation<4, N> makeRotation(
-            N const &r0, N const &r1, N const &r2, N const &r3, N const &r4,
-            N const &r5) {
-
-        Rotation<4, N> r;
-
-        r[0] = r0;
-        r[1] = r1;
-        r[2] = r2;
-        r[3] = r3;
-        r[4] = r4;
-        r[5] = r5;
-
-        return r;
-    }
-
+    template <typename N> 
+    Rotation<4, N> makeRotation(N const &r0, N const &r1, N const &r2, 
+                                N const &r3, N const &r4, N const &r5);
 }
 
 #endif

@@ -1,5 +1,7 @@
 #include "ParameterMap.h"
 
+#include "Rotation.impl.h"
+
 #include <QString>
 
 /** \throw NonexistentParameterAccessed if \p name is not a key. */

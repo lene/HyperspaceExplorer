@@ -19,6 +19,8 @@
 #include "Torate.h"
 #include "RotopeFactory.h"
 
+#include "Rotation.impl.h"
+
 using std::vector;
 using std::cerr;
 using std::endl;

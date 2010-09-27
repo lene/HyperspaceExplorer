@@ -20,6 +20,8 @@
 
 #include "FunctionParameterValue.h"
 
+#include "Rotation.impl.h"
+
 /// Specialization for type double
 template<> FunctionParameterValue<double>::FunctionParameterValue(const double &value):
         _value(value) {}

@@ -21,53 +21,159 @@
 #include "Rotation.h"
 
 namespace VecMath {
-    template <unsigned D, typename N> Rotation<D, N>::Rotation (N r0, ... ):
-            axis() {
-        axis[0] = r0;
-        va_list argp;
-        va_start (argp, r0);
-        for (unsigned i = 1; i < NumAxes<D>::num; i++) {
-            axis[i] = va_arg (argp, N);
-        }
-        va_end (argp);
-    }
 
-    template <unsigned D, typename N>
-            N &Rotation<D, N>::operator[] (unsigned i) {
-        assert(i < NumAxes<D>::num);
-        return axis[i];
-    }
-
-    template <unsigned D, typename N>
-            N Rotation<D, N>::operator[] (unsigned i) const {
-        assert(i < NumAxes<D>::num);
-        return axis[i];
-    }
-
-    template <unsigned D, typename N> Rotation<D, N>::operator Matrix<D, N>() const {
-        Matrix<D, N> R;
-        for (unsigned i = 0; i < NumAxes<D>::num; i++) {
-            if (axis[i]) {
-                R *= Matrix<D, N>(RotationAxes<D>::axis(0, i),
-                                  RotationAxes<D>::axis(1, i),
-                                  axis[i]);
-            }
-        }
-        return R;
-    }
-
-    template <unsigned D, typename N>
-            Rotation<D, N> &Rotation<D, N>::operator +=(const Rotation<D, N>& that) {
-        axis += that.axis;
-        return *this;
-    }
-
-    template <unsigned D, typename N>
-            Rotation<D, N> Rotation<D, N>::operator+ (const Rotation<D, N> &that) const {
-        static Rotation<D, N> Z;
-        Z = *this;
-        return (Z += that);
-    }
-
+/** Compute the row/column in a rotation Matrix from the dimension
+ *  of the vector space and the position of the rotation angle in
+ *  the Rotation vector.
+ *  \param which 0 for \p ii or 1 for \p jj
+ *  \param index position in the Rotation vector                  
+ */
+template <unsigned D> 
+unsigned RotationAxes<D>::axis(unsigned which, unsigned index) {
+  throw NotYetImplementedException("RotationAxes<"+Util::itoa(D)+">::axis("+
+                                   Util::itoa(which)+", "+Util::itoa(index)+")");
+}
   
+template <unsigned D, typename N> 
+Rotation<D, N>::Rotation(): axis() { }
+  
+/** @param r0  angle about first rotation axis
+ *  @param ... angle about the other axes                         
+ */
+template <unsigned D, typename N> 
+Rotation<D, N>::Rotation (N r0, ... ): axis() {
+        
+  axis[0] = r0;
+  va_list argp;
+  va_start (argp, r0);
+  for (unsigned i = 1; i < NumAxes<D>::num; i++) {
+    axis[i] = va_arg (argp, N);
+  }
+  va_end (argp);
+}
+/** @param i index of the element
+ *  @return non-const reference to the accessed element           
+ */
+template <unsigned D, typename N>
+N &Rotation<D, N>::operator[] (unsigned i) {
+  assert(i < NumAxes<D>::num);
+  return axis[i];
+}
+
+/** @param i index of the element
+ *  @return the accessed element                                  
+ */
+template <unsigned D, typename N>
+N Rotation<D, N>::operator[] (unsigned i) const {
+  assert(i < NumAxes<D>::num);
+  return axis[i];
+}
+
+/** \todo default implementation does not work correctly yet
+ *  \see the specializations for 3 and 4 dimensions in Rotation.C 
+ */
+template <unsigned D, typename N> 
+Rotation<D, N>::operator Matrix<D, N>() const {
+  Matrix<D, N> R;
+  for (unsigned i = 0; i < NumAxes<D>::num; i++) {
+    if (operator[](i)) {
+      R *= Matrix<D, N>(RotationAxes<D>::axis(0, i),
+                        RotationAxes<D>::axis(1, i),
+                        operator[](i));
+    }
+  }
+  return R;
+}
+
+/** @param that other Rotation
+ *  @return \c *this+that
+ */
+template <unsigned D, typename N>
+Rotation<D, N> &Rotation<D, N>::operator +=(const Rotation<D, N>& that) {
+  axis += that.axis;
+  return *this;
+}
+
+/** @param that other Rotation
+ *  @return \c *this+that
+ *  \todo Move out of class.
+ */
+template <unsigned D, typename N>
+Rotation<D, N> Rotation<D, N>::operator+ (const Rotation<D, N> &that) const {
+  static Rotation<D, N> Z;
+  Z = *this;
+  return (Z += that);
+}
+
+template <unsigned D, typename N> 
+Rotation<D, N>::operator bool() const {
+  return axis.sqnorm() != 0.; 
+}
+
+template <unsigned D, typename N> 
+const Vector<NumAxes<D>::num, N> &Rotation<D, N>::r() const { 
+  return axis; 
+}
+
+template <unsigned D, typename N> 
+Vector<NumAxes<D>::num, N> &Rotation<D, N>::r() { 
+  return axis; 
+}
+
+template <unsigned D, typename N> 
+std::string Rotation<D, N>::toString() const { 
+  return axis.toString(); 
+}
+
+/** \ingroup VecMath
+ *  \param o ostream to push into
+ *  \param v Rotation to print
+ *  \return a new ostream to push Rotations and stuff into                */
+template <unsigned D, typename N>
+std::ostream &operator << (std::ostream &o, const Rotation<D, N> &v) {
+  o << v.r();
+  return o;
+}
+
+/** \ingroup VecMath
+ *  \param in istringstream to read from
+ *  \param v Rotation to read
+ *  \return a new istringstream to read stuff from
+ */
+template <unsigned D, typename N>
+std::istringstream &operator >> (std::istringstream &in, Rotation<D, N> &v) {
+  in >> v.r();
+  return in;
+}
+
+template <typename N> 
+Rotation<3, N> makeRotation(N const &r0, N const &r1, N const &r2) {
+
+  Rotation<3, N> r;
+
+  r[0] = r0;
+  r[1] = r1;
+  r[2] = r2;
+
+  return r;
+}
+
+template <typename N> 
+Rotation<4, N> makeRotation(N const &r0, N const &r1, N const &r2, 
+                            N const &r3, N const &r4, N const &r5) {
+
+  Rotation<4, N> r;
+
+  r[0] = r0;
+  r[1] = r1;
+  r[2] = r2;
+  r[3] = r3;
+  r[4] = r4;
+  r[5] = r5;
+
+  return r;
+}
+
+
+
 }

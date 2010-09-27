@@ -81,11 +81,11 @@ unsigned calculateSumForSize(unsigned size) {
 }
 
 void Test_MultiDimensionalVector::for_each_const() {
-  Vector2D v = generate2DVector();
+  Vector2D v = generate2DVector(0, 4);
 
   v.for_each(testForEachConst);
   
-  QVERIFY(sum_of_all_elements == calculateSumForSize(3));
+  QVERIFY(sum_of_all_elements == calculateSumForSize(4));
 }
 
 Test_MultiDimensionalVector::Vector2D Test_MultiDimensionalVector::generate2DVector(
