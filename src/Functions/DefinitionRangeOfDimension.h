@@ -47,8 +47,6 @@ template<unsigned D> class DefinitionRangeOfDimension {
     VecMath::Vector<D, unsigned> getNumSteps() const;
     void setNumSteps(unsigned i, unsigned numSteps);
 
-  protected:
-    
     void setRange(unsigned i, const DefinitionSpaceRange &range);
     
   private:

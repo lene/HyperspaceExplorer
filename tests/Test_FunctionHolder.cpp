@@ -26,16 +26,13 @@ class TestFunctionHolder: public FunctionHolder<4,3> {
   
   public:
     
-    virtual void Transform (const VecMath::Rotation<4, double> &R,
-                                const VecMath::Vector<4, double> &T) { }
-    virtual void Project (double ScrW, double CamW, bool DepthCue4D) { }
+    virtual void Transform (const VecMath::Rotation<4, double> &,
+                            const VecMath::Vector<4, double> &) { }
+    virtual void Project (double, double, bool) { }
     virtual void Draw (UI::View *) { }
-
-    virtual void ReInit(double _tmin, double _tmax, double _dt,
-                        double _umin, double _umax, double _du,
-                        double _vmin, double _vmax, double _dv) { }
-
-        /// Called by the ColorManager after setting the Function on the CM
+    virtual void ReInit(double, double, double,
+                        double, double, double,
+                        double, double, double) { }
     virtual void calibrateColors() const { }
     virtual std::string getFunctionName() const { return ""; } 
     virtual void for_each(function_on_fourspace_vertex apply) { }
@@ -50,4 +47,6 @@ class TestFunctionHolder: public FunctionHolder<4,3> {
 
 void Test_FunctionHolder::instantiate() {
   TestFunctionHolder f;
+  qDebug() << f.getNumParameters();
 }
+

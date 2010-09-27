@@ -39,11 +39,11 @@ class FunctionHolder : public Function {
   protected:
     
     /// Array of function values.
-    const VecMath::MultiDimensionalVector< VecMath::Vector<N>, P > &X() const;
+    const VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, P > &X() const;
     /// Array of function values after transform.
-    const VecMath::MultiDimensionalVector< VecMath::Vector<N>, P > &Xtrans() const;
+    const VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, P > &Xtrans() const;
     /// Array of projected function values.
-    const VecMath::MultiDimensionalVector< VecMath::Vector<3>, P > &Xscr() const;
+    const VecMath::MultiDimensionalVector< VecMath::Vector<3, NUM>, P > &Xscr() const;
 
   private:
     
