@@ -162,6 +162,15 @@ Function MultiDimensionalVector<T, D>::for_each(Function f) {
 }
 
 template <typename T, unsigned D> 
+template <typename Function>
+Function MultiDimensionalVector<T, D>::for_each(Function f) const {
+  for (const_iterator i = begin(); i != end(); ++i) {
+    f = i->for_each(f);
+  }
+  return f;
+}
+
+template <typename T, unsigned D> 
 std::string MultiDimensionalVector<T, D>::toString() const {
   std::ostringstream o;
   o << *this;
@@ -344,6 +353,12 @@ bool MultiDimensionalVector<T, 1>::operator != (const MultiDimensionalVector<T, 
 template <typename T> 
 template <typename Function>
 Function MultiDimensionalVector<T, 1>::for_each(Function f) {
+  return std::for_each(begin(), end(), f);
+}
+
+template <typename T> 
+template <typename Function>
+Function MultiDimensionalVector<T, 1>::for_each(Function f) const {
   return std::for_each(begin(), end(), f);
 }
 

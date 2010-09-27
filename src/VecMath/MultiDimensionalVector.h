@@ -119,6 +119,8 @@ namespace VecMath {
 
       /// Apply a function or functor on every element of a MultiDimensionalVector
       template <typename Function> Function for_each(Function f);
+      /// Apply a function or functor on every element of a MultiDimensionalVector
+      template <typename Function> Function for_each(Function f) const;
 
       /// Convert NestedVector to a std::string.
       std::string toString() const;
@@ -211,6 +213,8 @@ namespace VecMath {
 
       /// Apply a function or functor on every element of a MultiDimensionalVector
       template <typename Function> Function for_each(Function f);
+      /// Apply a function or functor on every element of a MultiDimensionalVector
+      template <typename Function> Function for_each(Function f) const;
       
       /// Convert MultiDimensionalVector to a std::string.
       std::string toString() const;
