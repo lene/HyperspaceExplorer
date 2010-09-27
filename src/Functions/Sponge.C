@@ -91,9 +91,11 @@ namespace SpongeUtility {
     };
 */
 # ifdef CONCURRENT
-  void renumber_Surfaces(VecMath::uintvec<2> &Surface, unsigned original_vertex, unsigned duplicate_vertex) {
+  void renumber_Surfaces(VecMath::MultiDimensionalVector<unsigned, 2> &Surface, 
+                         unsigned original_vertex, unsigned duplicate_vertex) {
   //  SingletonLog::Instance() << "renumberSurfaces(" << original_vertex << " " << duplicate_vertex << "\n";
-    for (VecMath::uintvec<2>::iterator it = Surface.begin(); it != Surface.end(); ++it) {
+    for (VecMath::MultiDimensionalVector<unsigned, 2>::iterator it = Surface.begin(); 
+         it != Surface.end(); ++it) {
       for (unsigned k = 0; k < 4; ++k) {
         if ((*it)[k] == duplicate_vertex) (*it)[k] = original_vertex;
         else if ((*it)[k] > duplicate_vertex) (*it)[k]--;
@@ -414,7 +416,7 @@ void AltSponge::reduceVertices() {
 void AltSponge::removeDuplicateSurfaces() {
 
     //  copy surface data from a std::vector into a std::list for more efficient erasing
-    typedef std::list<VecMath::uintvec<1> > container_type;
+    typedef std::list<VecMath::MultiDimensionalVector<unsigned, 1> > container_type;
     container_type S_tmp(Surface.size());
     std::copy(Surface.begin(), Surface.end(), S_tmp.begin());
 

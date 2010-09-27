@@ -130,7 +130,6 @@ template <unsigned D>
     header file anyway.
 */
 using VecMath::Vector;
-using VecMath::uintvec;
 using std::vector;
 
 #include "VertexDataPrinter.h"

@@ -180,8 +180,7 @@ HEADERS += VecMath/ArrayList.h \
            VecMath/MultiDimensionalVector.h \
            VecMath/MultiDimensionalVector.impl.h \
            VecMath/Rotation.h \
-           VecMath/Vector.h \
-           VecMath/uintvec.h
+           VecMath/Vector.h
 SOURCES += VecMath/Rotation.C
 
 ###

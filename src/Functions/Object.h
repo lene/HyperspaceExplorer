@@ -18,7 +18,7 @@
 #include "ParameterMap.h"
 #include "Function.h"
 #include "Vector.h"
-#include "uintvec.h"
+#include "MultiDimensionalVector.h"
 
 #define USE_INT_INDICES 0
 
@@ -68,7 +68,7 @@ class Object: public Function {
         vec3vec1D Xscr;     ///< temporary storage for projected function values
 
         /// the surfaces, stored as vectors of indeces to the points in X
-        VecMath::uintvec<2> Surface;
+        VecMath::MultiDimensionalVector<unsigned, 2> Surface;
 
         /** A pointless function, but it must be overridden to satisfy the
          *  Function interface. In an Object it is never called because the

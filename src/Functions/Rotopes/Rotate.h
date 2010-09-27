@@ -3,6 +3,8 @@
 
 #include "Rotope.h"
 
+#include "MultiDimensionalVector.h"
+
 /// Base class for Rotate classes, providing the actual rotate() function
 /** \tparam D Dimension of the vector space we're working in
  *  \ingroup RotopeGroup
@@ -28,11 +30,11 @@ template <unsigned D>
         /// Execute the rotate action on a line (generating a circle)
         void rotate_line(unsigned);
         /// Execute the rotate action on a triangle (generating a cone)
-        void rotate_triangle(unsigned, const uintvec<1> &);
+        void rotate_triangle(unsigned, const VecMath::MultiDimensionalVector<unsigned, 1> &);
         /// Execute the rotate action on a rectangle (generating a cylinder)
-        void rotate_quad(unsigned, const uintvec<1> &);
+        void rotate_quad(unsigned, const VecMath::MultiDimensionalVector<unsigned, 1> &);
         /// Execute the rotate action on a polygon
-        void rotate_polygon(unsigned, const uintvec<1> &);
+        void rotate_polygon(unsigned, const VecMath::MultiDimensionalVector<unsigned, 1> &);
     };
 
 /// A class template to execute rotate actions on an object
@@ -172,7 +174,7 @@ template <unsigned D> void rotate_base<D>::rotate_line(unsigned d) {
 #   if DEBUG_ROTOPES
         SingletonLog::Instance().log(__PRETTY_FUNCTION__);
 #   endif
-    uintvec<1> new_surface; // defines the disk
+    VecMath::MultiDimensionalVector<unsigned, 1> new_surface; // defines the disk
     new_surface.push_back(0);
     VertexData<D>::raw_vertices().pop_back();
     for (unsigned i = 1; i <= RotopeInterface::_numSegments; ++i) {
@@ -191,12 +193,12 @@ template <unsigned D> void rotate_base<D>::rotate_line(unsigned d) {
  *  \param current_surface The triangular surface to be extruded into a cone
  */
 template <unsigned D> void rotate_base<D>::rotate_triangle(
-        unsigned d, const uintvec<1> &current_surface) {
+        unsigned d, const VecMath::MultiDimensionalVector<unsigned, 1> &current_surface) {
 
 #   if DEBUG_ROTOPES
         SingletonLog::Instance().log(__PRETTY_FUNCTION__);
 #   endif
-    uintvec<1> new_surface; //  defines the first cap
+    VecMath::MultiDimensionalVector<unsigned, 1> new_surface; //  defines the first cap
     new_surface.push_back(current_surface[0]);
 
     unsigned old_current = 0;
@@ -237,21 +239,21 @@ template <unsigned D> void rotate_base<D>::rotate_triangle(
  *  \param current_surface The rectangular surface to be extruded into a cylinder
  */
 template <unsigned D> void rotate_base<D>::rotate_quad(
-        unsigned d, const uintvec<1> &current_surface) {
+        unsigned d, const VecMath::MultiDimensionalVector<unsigned, 1> &current_surface) {
 #   if DEBUG_ROTOPES
         SingletonLog::Instance().log(__PRETTY_FUNCTION__);
 #   endif
     unsigned old_current = current_surface[0];  //  saved index to current vertex
     unsigned old_next = current_surface[1];     //  saved index to next vertex
 
-    uintvec<1> bottom;       //  defines the first ("bottom") cap
+    VecMath::MultiDimensionalVector<unsigned, 1> bottom;       //  defines the first ("bottom") cap
     /// Save first vertex of "bottom" cap.
     bottom.push_back(current_surface[0]);
     /** Save first vertex of "top" cap.
      *  This relies on quads being defined in the order, 0, 1, 2, 3, where
      *  vertex 2 and 3 lie in the direction of the extrusion.
      */
-    uintvec<1> top;          //  defines the second ("top") cap
+    VecMath::MultiDimensionalVector<unsigned, 1> top;          //  defines the second ("top") cap
     top.push_back(current_surface[2]);
 
     /** Rotate the current surface through 360 degrees.
@@ -299,7 +301,7 @@ template <unsigned D> void rotate_base<D>::rotate_quad(
  *  \param current_surface The polygonal surface to be extruded into a sphere
  */
 template <unsigned D> void rotate_base<D>::rotate_polygon(
-        unsigned d, const uintvec<1> &current_surface) {
+        unsigned d, const VecMath::MultiDimensionalVector<unsigned, 1> &current_surface) {
 #   if DEBUG_ROTOPES
         SingletonLog::Instance().log(__PRETTY_FUNCTION__);
 #   endif
