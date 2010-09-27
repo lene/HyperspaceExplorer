@@ -37,8 +37,8 @@ unsigned RotationAxes<D>::axis(unsigned which, unsigned index) {
 template <unsigned D, typename N> 
 Rotation<D, N>::Rotation(): axis() { }
   
-/** @param r0  angle about first rotation axis
- *  @param ... angle about the other axes                         
+/** \param r0  angle about first rotation axis
+ *  \param ... angle about the other axes                         
  */
 template <unsigned D, typename N> 
 Rotation<D, N>::Rotation (N r0, ... ): axis() {
@@ -51,8 +51,8 @@ Rotation<D, N>::Rotation (N r0, ... ): axis() {
   }
   va_end (argp);
 }
-/** @param i index of the element
- *  @return non-const reference to the accessed element           
+/** \param i index of the element
+ *  \return non-const reference to the accessed element           
  */
 template <unsigned D, typename N>
 N &Rotation<D, N>::operator[] (unsigned i) {
@@ -60,8 +60,8 @@ N &Rotation<D, N>::operator[] (unsigned i) {
   return axis[i];
 }
 
-/** @param i index of the element
- *  @return the accessed element                                  
+/** \param i index of the element
+ *  \return the accessed element                                  
  */
 template <unsigned D, typename N>
 N Rotation<D, N>::operator[] (unsigned i) const {
@@ -70,6 +70,7 @@ N Rotation<D, N>::operator[] (unsigned i) const {
 }
 
 /** \todo default implementation does not work correctly yet
+ *  \todo move out of the class 
  *  \see the specializations for 3 and 4 dimensions in Rotation.C 
  */
 template <unsigned D, typename N> 
@@ -85,8 +86,8 @@ Rotation<D, N>::operator Matrix<D, N>() const {
   return R;
 }
 
-/** @param that other Rotation
- *  @return \c *this+that
+/** \param that other Rotation
+ *  \return \c *this+that
  */
 template <unsigned D, typename N>
 Rotation<D, N> &Rotation<D, N>::operator +=(const Rotation<D, N>& that) {
@@ -94,17 +95,7 @@ Rotation<D, N> &Rotation<D, N>::operator +=(const Rotation<D, N>& that) {
   return *this;
 }
 
-/** @param that other Rotation
- *  @return \c *this+that
- *  \todo Move out of class.
- */
-template <unsigned D, typename N>
-Rotation<D, N> Rotation<D, N>::operator+ (const Rotation<D, N> &that) const {
-  static Rotation<D, N> Z;
-  Z = *this;
-  return (Z += that);
-}
-
+/** \todo move out of the class */
 template <unsigned D, typename N> 
 Rotation<D, N>::operator bool() const {
   return axis.sqnorm() != 0.; 
@@ -123,6 +114,16 @@ Vector<NumAxes<D>::num, N> &Rotation<D, N>::r() {
 template <unsigned D, typename N> 
 std::string Rotation<D, N>::toString() const { 
   return axis.toString(); 
+}
+
+/** \param A first operand
+ *  \param B second operand
+ *  \return \c A+B
+ */
+template <unsigned D, typename N>
+Rotation<D, N> operator+ (const Rotation<D, N> &A, const Rotation<D, N> &B) {
+  Rotation<D, N> C(A);
+  return (C += B);
 }
 
 /** \ingroup VecMath
@@ -173,7 +174,5 @@ Rotation<4, N> makeRotation(N const &r0, N const &r1, N const &r2,
 
   return r;
 }
-
-
 
 }

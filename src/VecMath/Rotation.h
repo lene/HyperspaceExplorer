@@ -111,8 +111,6 @@ namespace VecMath {
 
             /// Adds another Rotation to \c this.
             Rotation<D, N> &operator+= (const Rotation<D, N> &that);
-            /// Returns the sum of two Rotation s.
-            Rotation<D, N> operator+ (const Rotation<D, N> &that) const;
 
             /// true if rotation is nonzero
             operator bool() const;
@@ -135,6 +133,9 @@ namespace VecMath {
 
     //------------  important non-member functions for class Rotation
 
+    /// Returns the sum of two Rotation s.
+    template <unsigned D, typename N>
+    Rotation<D, N> operator+ (const Rotation<D, N> &A, const Rotation<D, N> &B);
 
     /// RotationBase output operator
     std::ostream &operator << (std::ostream &o, const RotationBase &);
