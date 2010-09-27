@@ -20,7 +20,7 @@
 
 #include "Util.h"
 
-#include "Vector.h"
+#include "Vector.impl.h"
 
 #include <QString>
 

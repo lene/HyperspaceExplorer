@@ -10,6 +10,7 @@
 ///
 ///
 #include "Light.h"
+#include "Vector.impl.h"
 
 /// Includes all OpenGL headers in a system-independent way
 #include <QGLWidget>
