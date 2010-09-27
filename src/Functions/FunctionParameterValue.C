@@ -20,6 +20,7 @@
 
 #include "FunctionParameterValue.h"
 
+#include "Vector.impl.h"
 #include "Rotation.impl.h"
 
 /// Specialization for type double

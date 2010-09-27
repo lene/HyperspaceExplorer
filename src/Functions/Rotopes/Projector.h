@@ -1,6 +1,8 @@
 #ifndef PROJECTOR_H
 #define PROJECTOR_H
 
+#include "Vector.impl.h"
+
 /// A functor class to project a \p D -dimensional object to \p D-1 dimensions
 /**
  *  \tparam D Original dimension of the object

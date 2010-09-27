@@ -10,6 +10,8 @@
 
 #include "VertexData.h"
 
+#include "Vector.impl.h"
+
 #include <iomanip>
 #include <algorithm>
 

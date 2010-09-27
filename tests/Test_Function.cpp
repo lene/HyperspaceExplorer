@@ -14,6 +14,7 @@
 #include "ColorManager.h"
 
 #include "Rotation.impl.h"
+#include "Vector.impl.h"
 
 #include <cstdlib>
 

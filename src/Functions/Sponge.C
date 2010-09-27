@@ -4,6 +4,8 @@
 #include "Log.h"
 #include "ScopedTimer.h"
 
+#include "Vector.impl.h"
+
 #include <QtConcurrentRun>
 
 #include <algorithm>

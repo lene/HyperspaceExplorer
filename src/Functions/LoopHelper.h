@@ -23,7 +23,7 @@
 #define LOOP_HELPER_H
 
 #include "MultiDimensionalVector.h"
-#include "Vector.h"
+#include "Vector.impl.h"
 
 #include <tr1/memory>
 

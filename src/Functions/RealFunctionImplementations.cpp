@@ -20,6 +20,8 @@
 
 #include "RealFunctionImplementations.h"
 
+#include "Vector.impl.h"
+
 using std::tr1::shared_ptr;
 using VecMath::Vector;
 

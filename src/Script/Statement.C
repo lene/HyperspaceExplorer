@@ -3,6 +3,7 @@
 #include "Parser.h"
 #include "Statement.h"
 #include "FunctionFactory.h"
+#include "Vector.impl.h"
 #include "Rotation.impl.h"
 
 #include <iostream>

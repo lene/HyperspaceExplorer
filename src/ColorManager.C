@@ -16,6 +16,7 @@
 
 #include "ColorManager.h"
 #include "Function.h"
+#include "Vector.impl.h"
 
 using VecMath::Vector;
 using std::vector;

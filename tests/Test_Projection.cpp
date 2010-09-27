@@ -20,7 +20,7 @@
 
 #include "Test_Projection.h"
 
-#include "Vector.h"
+#include "Vector.impl.h"
 #include "Projection.impl.h"
 #include "MultiDimensionalVector.impl.h"
 

@@ -20,6 +20,8 @@
 
 #include "SurfaceImplementations.h"
 
+#include "Vector.impl.h"
+
 using VecMath::Vector;
 using std::tr1::shared_ptr;
 
