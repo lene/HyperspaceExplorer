@@ -83,6 +83,7 @@ class RealFunction: public Function {
 
     VecMath::Vector<4> &normal(double t, double u, double v);
 
+    /// Allocate and initialize X[][][] with values of f().
     virtual void Initialize (void);
 
     /// Pointer to the actual ParametricFunction doing all the work.

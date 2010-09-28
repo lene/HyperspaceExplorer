@@ -27,26 +27,37 @@ namespace VecMath {
   template <typename T, unsigned D> class MultiDimensionalVector;
 }
 
+template<unsigned N, unsigned P, typename NUM> class ParametricFunction;
+
 template <unsigned N, unsigned P, typename NUM = double>
 class FunctionHolder : public Function {
 
   public:
     
-    FunctionHolder();
+    typedef ParametricFunction<N, P, NUM> function_type;
+    typedef VecMath::Vector<N, NUM> vertex_type;
+    typedef VecMath::Vector<3, NUM> projected_vertex_type;
+    
+    FunctionHolder(std::tr1::shared_ptr< function_type > f);
     
     virtual unsigned int getDefinitionSpaceDimensions();
+
+    /** \return number of parameters for the function */
+    virtual unsigned getNumParameters();
     
   protected:
     
+    virtual void Initialize (void);
+    
     /// Array of function values.
-    const VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, P > &X() const;
+    const VecMath::MultiDimensionalVector< vertex_type, P > &X() const;
     /// Array of function values after transform.
-    const VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, P > &Xtrans() const;
+    const VecMath::MultiDimensionalVector< vertex_type, P > &Xtrans() const;
     /// Array of projected function values.
-    const VecMath::MultiDimensionalVector< VecMath::Vector<3, NUM>, P > &Xscr() const;
+    const VecMath::MultiDimensionalVector< projected_vertex_type, P > &Xscr() const;
 
   private:
-    
+
     class Impl;
     Impl *pImpl_;
     

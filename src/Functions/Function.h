@@ -161,7 +161,7 @@ class Function {
         FunctionParameter::parameter_ptr_type getParameter(const std::string &name);
 
         /** \return number of parameters for the function                     */
-        unsigned getNumParameters();
+        virtual unsigned getNumParameters();
 
         /** \return Value of the parameter with the name \p name.             */
         FunctionParameter::value_ptr_type getParameterValue(const std::string &name);

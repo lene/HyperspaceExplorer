@@ -330,7 +330,6 @@ RealFunction::RealFunction(double tmin, double tmax, double dt,
 
 RealFunction::~RealFunction() { }
 
-/// Allocate and initialize X[][][] with values of f().
 void RealFunction::Initialize () {
   
   Vector<3, unsigned> numSteps = pImpl_->definitionRange_.getNumSteps();

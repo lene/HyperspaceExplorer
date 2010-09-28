@@ -27,55 +27,86 @@
 using VecMath::Vector;
 using VecMath::MultiDimensionalVector;
 
+using std::tr1::shared_ptr;
+
 template <unsigned N, unsigned P, typename NUM>
 class FunctionHolder<N, P, NUM>::Impl {
 
   public:
 
-    Impl(double tmin, double tmax, double dt,
+    Impl(shared_ptr< function_type > f,
+         double tmin, double tmax, double dt,
          double umin, double umax, double du,
          double vmin, double vmax, double dv);
 
-    const MultiDimensionalVector< Vector<N, NUM>, P > &X() const { 
+         
+    unsigned getNumParameters() { return function_->getNumParameters(); }
+
+    void Initialize();
+    
+    const MultiDimensionalVector< vertex_type, P > &X() const { 
       return _X.getValues(); 
     }
-    const MultiDimensionalVector< Vector<N, NUM>, P > &Xtrans() const { 
+    const MultiDimensionalVector< vertex_type, P > &Xtrans() const { 
       return _Xtrans; 
     }
-    const MultiDimensionalVector< Vector<3, NUM>, P > &Xscr() const { 
+    const MultiDimensionalVector< projected_vertex_type, P > &Xscr() const { 
       return _Xscr; 
     }
     
-  private:
-    
     DefinitionRangeOfDimension<P> definitionRange_;
-
+    
     /// Array of function values.
     FunctionValueGrid<N, P, NUM> _X;
+
+  private:
+
     /// Array of function values after transform.
     typename FunctionValueGrid<N, P, NUM>::value_storage_type _Xtrans;
     /// Array of projected function values.
-    MultiDimensionalVector< Vector<3, NUM>, P > _Xscr;
+    MultiDimensionalVector< projected_vertex_type, P > _Xscr;
+
+    /// Pointer to the actual ParametricFunction doing all the work.
+    shared_ptr< function_type > function_;
 
 };
 
 template <unsigned N, unsigned P, typename NUM>
-FunctionHolder<N, P, NUM>::Impl::Impl(double tmin, double tmax, double dt, 
-                                      double umin, double umax, double du, 
-                                      double vmin, double vmax, double dv):
-  definitionRange_() { 
+FunctionHolder<N, P, NUM>::Impl::Impl(
+    shared_ptr< function_type > f,
+    double tmin, double tmax, double dt, 
+    double umin, double umax, double du, 
+    double vmin, double vmax, double dv):
+  definitionRange_(), function_(f) { 
   if (P > 0) definitionRange_.setRange(0, DefinitionSpaceRange(tmin, tmax, dt));
   if (P > 1) definitionRange_.setRange(1, DefinitionSpaceRange(umin, umax, du));
   if (P > 2) definitionRange_.setRange(2, DefinitionSpaceRange(vmin, vmax, dv));
 }
 
 template <unsigned N, unsigned P, typename NUM>
-FunctionHolder<N, P, NUM>::FunctionHolder(): 
+void FunctionHolder<N, P, NUM>::Impl::Initialize () {
+  
+  Vector<P, unsigned> numSteps = definitionRange_.getNumSteps();
+  Vector<P, NUM> min = definitionRange_.getMinValue();
+  Vector<P, NUM> max = definitionRange_.getMaxValue();
+
+  _X = FunctionValueGrid<4, 3>(
+    function_, numSteps+Vector<3, unsigned>(2), min, max
+  );
+
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+template <unsigned N, unsigned P, typename NUM>
+FunctionHolder<N, P, NUM>::FunctionHolder(shared_ptr< function_type > f): 
   Function(ParameterMap()), 
   pImpl_(new Impl(
+      f,
       DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep, 
       DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep, 
       DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep)) { }
+
 
 template <unsigned N, unsigned P, typename NUM>
 unsigned int FunctionHolder<N, P, NUM>::getDefinitionSpaceDimensions() {
@@ -83,6 +114,17 @@ unsigned int FunctionHolder<N, P, NUM>::getDefinitionSpaceDimensions() {
 }
 
 template <unsigned N, unsigned P, typename NUM>
+unsigned int FunctionHolder<N, P, NUM>::getNumParameters() {
+  return pImpl_->getNumParameters();
+}
+
+template <unsigned N, unsigned P, typename NUM>
+void FunctionHolder<N, P, NUM>::Initialize () {
+  pImpl_->Initialize();
+  calibrateColors();
+}
+
+template <unsigned N, unsigned P, typename NUM> 
 const VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, P > &
 FunctionHolder<N, P, NUM>::X() const {
   return pImpl_->X();

@@ -23,10 +23,13 @@
 #include "FunctionHolder.impl.h"
 #include "MultiDimensionalVector.impl.h"
 
+#include "Test_ParametricFunction.h"
+
 class TestFunctionHolder: public FunctionHolder<4,3> {
   
   public:
-    
+    TestFunctionHolder(std::tr1::shared_ptr< function_type > f): FunctionHolder< 4, 3>(f) { }
+    TestFunctionHolder(function_type *f): FunctionHolder< 4, 3>(std::tr1::shared_ptr< function_type > (f)) { }
     virtual void Transform (const VecMath::Rotation<4, double> &,
                             const VecMath::Vector<4, double> &) { }
     virtual void Project (double, double, bool) { }
@@ -47,7 +50,8 @@ class TestFunctionHolder: public FunctionHolder<4,3> {
 };
 
 void Test_FunctionHolder::instantiate() {
-  TestFunctionHolder f;
-  qDebug() << f.getNumParameters();
+  Test_ParametricFunction::ParametricFunctionTestImplementation function;
+  TestFunctionHolder holder(new Test_ParametricFunction::ParametricFunctionTestImplementation);
+  QVERIFY(holder.getNumParameters() == function.getNumParameters());
 }
 
