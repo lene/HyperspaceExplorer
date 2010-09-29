@@ -12,6 +12,7 @@
 
 #include "RealFunction.h"
 
+#include "FunctionHolder.impl.h"
 #include "DefinitionRangeOfDimension.impl.h"
 
 #include "Transformation.impl.h"
@@ -305,8 +306,8 @@ void RealFunction::Impl::DrawCube (unsigned t, unsigned u, unsigned v, UI::View*
 /** RealFunction c'tor given only a name: All grid values are set to defaults
  */
 RealFunction::RealFunction():
-  Function(ParameterMap()),
-    pImpl_(new Impl(
+  FunctionHolder<4, 3, double>(ParameterMap()),
+  pImpl_(new Impl( 
       DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep, 
       DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep, 
       DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep)) { }
@@ -326,7 +327,8 @@ RealFunction::RealFunction(double tmin, double tmax, double dt,
                            double umin, double umax, double du,
                            double vmin, double vmax, double dv,
                            ParameterMap parms):
-  Function(parms), pImpl_(new Impl(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv)) { }
+  FunctionHolder<4, 3, double>(parms),
+  pImpl_(new Impl(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv)) { }
 
 RealFunction::~RealFunction() { }
 

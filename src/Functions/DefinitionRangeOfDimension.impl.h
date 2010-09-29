@@ -1,3 +1,5 @@
+#ifndef DEFINITIONRANGEOFDIMENSION_IMPL_H
+#define DEFINITIONRANGEOFDIMENSION_IMPL_H
 
 #include "DefinitionRangeOfDimension.h"
 
@@ -81,3 +83,5 @@ void DefinitionRangeOfDimension<D>::setRange(unsigned i, const DefinitionSpaceRa
   assert(i < D);
   range_[i] = range;
 }
+
+#endif

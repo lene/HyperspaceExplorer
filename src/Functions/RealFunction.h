@@ -21,7 +21,7 @@
 #ifndef REAL_FUNCTION_H
 #define REAL_FUNCTION_H
 
-#include "Function.h"
+#include "FunctionHolder.h"
 
 #include "ParametricFunction.h"
 #include "MultiDimensionalVector.h"
@@ -38,7 +38,7 @@
  *
  *  \ingroup RealGroup
  *  @author Lene Preuss <lene.preuss@gmail.com>                         */
-class RealFunction: public Function {
+class RealFunction: public FunctionHolder<4, 3, double> {
 
   public:
 

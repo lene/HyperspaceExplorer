@@ -18,6 +18,9 @@
 
 */
 
+#ifndef FUNCTIONHOLDER_IMPL_H
+#define FUNCTIONHOLDER_IMPL_H
+
 #include "FunctionHolder.h"
 
 #include "FunctionValueGrid.h"
@@ -34,6 +37,9 @@ class FunctionHolder<N, P, NUM>::Impl {
 
   public:
 
+    Impl(double tmin, double tmax, double dt,
+         double umin, double umax, double du,
+         double vmin, double vmax, double dv);
     Impl(shared_ptr< function_type > f,
          double tmin, double tmax, double dt,
          double umin, double umax, double du,
@@ -68,8 +74,22 @@ class FunctionHolder<N, P, NUM>::Impl {
 
     /// Pointer to the actual ParametricFunction doing all the work.
     shared_ptr< function_type > function_;
+    
+    void addSafetyMargin(Vector<3, unsigned> &steps) { steps += 2; }
+    void setDefinitionRange(double tmin, double tmax, double dt, 
+                            double umin, double umax, double du, 
+                            double vmin, double vmax, double dv);
 
 };
+
+template <unsigned N, unsigned P, typename NUM>
+FunctionHolder<N, P, NUM>::Impl::Impl(
+    double tmin, double tmax, double dt, 
+    double umin, double umax, double du, 
+    double vmin, double vmax, double dv):
+  definitionRange_() { 
+  setDefinitionRange(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
+}
 
 template <unsigned N, unsigned P, typename NUM>
 FunctionHolder<N, P, NUM>::Impl::Impl(
@@ -78,6 +98,13 @@ FunctionHolder<N, P, NUM>::Impl::Impl(
     double umin, double umax, double du, 
     double vmin, double vmax, double dv):
   definitionRange_(), function_(f) { 
+  setDefinitionRange(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
+}
+
+template <unsigned N, unsigned P, typename NUM>
+void FunctionHolder<N, P, NUM>::Impl::setDefinitionRange(double tmin, double tmax, double dt, 
+                                                         double umin, double umax, double du, 
+                                                         double vmin, double vmax, double dv) {
   if (P > 0) definitionRange_.setRange(0, DefinitionSpaceRange(tmin, tmax, dt));
   if (P > 1) definitionRange_.setRange(1, DefinitionSpaceRange(umin, umax, du));
   if (P > 2) definitionRange_.setRange(2, DefinitionSpaceRange(vmin, vmax, dv));
@@ -86,13 +113,12 @@ FunctionHolder<N, P, NUM>::Impl::Impl(
 template <unsigned N, unsigned P, typename NUM>
 void FunctionHolder<N, P, NUM>::Impl::Initialize () {
   
-  Vector<P, unsigned> numSteps = definitionRange_.getNumSteps();
   Vector<P, NUM> min = definitionRange_.getMinValue();
   Vector<P, NUM> max = definitionRange_.getMaxValue();
+  Vector<P, unsigned> numSteps = definitionRange_.getNumSteps();
+  addSafetyMargin(numSteps);
 
-  _X = FunctionValueGrid<4, 3>(
-    function_, numSteps+Vector<3, unsigned>(2), min, max
-  );
+  _X = FunctionValueGrid<N, P, NUM>(function_, numSteps, min, max);
 
 }
 
@@ -107,6 +133,13 @@ FunctionHolder<N, P, NUM>::FunctionHolder(shared_ptr< function_type > f):
       DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep, 
       DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep)) { }
 
+template <unsigned N, unsigned P, typename NUM>
+FunctionHolder<N, P, NUM>::FunctionHolder(ParameterMap parms): 
+  Function(parms), 
+  pImpl_(new Impl(
+      DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep, 
+      DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep, 
+      DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep)) { }
 
 template <unsigned N, unsigned P, typename NUM>
 unsigned int FunctionHolder<N, P, NUM>::getDefinitionSpaceDimensions() {
@@ -141,3 +174,5 @@ const VecMath::MultiDimensionalVector< VecMath::Vector<3, NUM>, P > &
 FunctionHolder<N, P, NUM>::Xscr() const {
   return pImpl_->Xscr();
 }
+
+#endif

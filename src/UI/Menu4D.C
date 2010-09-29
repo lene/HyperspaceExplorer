@@ -28,6 +28,8 @@
 #include "AnimationDialogImpl.h"
 #include "Help.h"
 #include "ColorManager.h"
+
+#include "FunctionHolder.impl.h"
 #include "CustomFunctionSlot.impl.h"
 #include "TemplatedFunctionFactory.impl.h"
 

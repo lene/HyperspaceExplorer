@@ -27,7 +27,8 @@ namespace VecMath {
   template <typename T, unsigned D> class MultiDimensionalVector;
 }
 
-template<unsigned N, unsigned P, typename NUM> class ParametricFunction;
+template <unsigned N, unsigned P, typename NUM> class ParametricFunction;
+template <unsigned P> class DefinitionRangeOfDimension;
 
 template <unsigned N, unsigned P, typename NUM = double>
 class FunctionHolder : public Function {
@@ -38,8 +39,11 @@ class FunctionHolder : public Function {
     typedef VecMath::Vector<N, NUM> vertex_type;
     typedef VecMath::Vector<3, NUM> projected_vertex_type;
     
+    FunctionHolder(ParameterMap parameters);
     FunctionHolder(std::tr1::shared_ptr< function_type > f);
-    
+    FunctionHolder(std::tr1::shared_ptr< function_type > f,
+                   DefinitionRangeOfDimension<P> boundaries);
+
     virtual unsigned int getDefinitionSpaceDimensions();
 
     /** \return number of parameters for the function */

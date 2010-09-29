@@ -74,7 +74,12 @@ Test_RealFunction::RealFunctionTestImplementation::RealFunctionTestImplementatio
     RealFunction(X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1),
                  X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1),
                  X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1)) {
-    _function = std::tr1::shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction());
+  _function = std::tr1::shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction());
+  for (unsigned i = 0; i < NUM_PARAMETERS; ++i) {
+    std::ostringstream o;
+    o << "parameter " << i;
+    declareParameter(o.str(), (double)i);
+  }
   Initialize();
 }
 
@@ -111,10 +116,19 @@ void Test_RealFunction::functionValue() {
     }
 }
 
+void Test_RealFunction::getDefinitionSpaceDimensions() {
+  function_ = new RealFunctionTestImplementation();
+  QVERIFY(function_->getDefinitionSpaceDimensions() == 3);
+}
+
+void Test_RealFunction::getNumParameters() {
+  function_ = new RealFunctionTestImplementation();
+//  QVERIFY(function_->getNumParameters() == NUM_PARAMETERS);
+}
+
 void Test_RealFunction::meetsFormalRequirements() {
     function_ = new RealFunctionTestImplementation();
 
-    QVERIFY(function_->getDefinitionSpaceDimensions() == 3);
     QVERIFY(function_->vertices().size() >= GRID_SIZE);
     QVERIFY(function_->vertices()[0].size() >= GRID_SIZE);
     QVERIFY(function_->vertices()[0][0].size() >= GRID_SIZE);

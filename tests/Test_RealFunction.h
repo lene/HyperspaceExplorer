@@ -15,16 +15,20 @@ class Test_RealFunction: public QObject {
     static const double X_MIN = -1.;
     static const double X_MAX =  1.;
     static const unsigned GRID_SIZE = 5;
+    static const unsigned NUM_PARAMETERS = 3;
 
     const static QString TEST_FUNCTION_NAME;
 
     class RealFunctionTestImplementation;
 
     private slots:
-        void initTestCase();
-        void init();
+
+      void initTestCase();
+      void init();
 
         void functionValue();
+        void getDefinitionSpaceDimensions();
+        void getNumParameters();
         void meetsFormalRequirements();
         void boundsAndSteps();
 
