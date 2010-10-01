@@ -1,20 +1,20 @@
 /*
-    <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) <year>  <name of author>
+Hyperspace Explorer - visualizing higher-dimensional geometry
+Copyright (C) 2010  Lene Preuss <lene.preuss@gmail.com>
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License along
-    with this program; if not, write to the Free Software Foundation, Inc.,
-    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 */
 
@@ -27,26 +27,26 @@ double DefinitionSpaceRange::defaultStep = 0.1;
 struct DefinitionSpaceRange::Impl {
 
   Impl(): minValue_(0), maxValue_(0), stepsize_(0), numSteps_(1) { }
-  
-  Impl(double minValue, double maxValue, double stepsize): 
+
+  Impl(double minValue, double maxValue, double stepsize):
     minValue_(minValue), maxValue_(maxValue), stepsize_(stepsize) {
     recalibrateNumSteps();
   }
-  
+
   Impl(double minValue, double maxValue, unsigned int numSteps):
     minValue_(minValue), maxValue_(maxValue), numSteps_(numSteps) {
     recalibrateStepsize();
   }
-  
+
   void recalibrate();
   void recalibrateStepsize();
   void recalibrateNumSteps();
-  
+
   double minValue_;
   double maxValue_;
   double stepsize_;
   unsigned numSteps_;
-  
+
 };
 
 void DefinitionSpaceRange::Impl::recalibrate() {
@@ -54,7 +54,7 @@ void DefinitionSpaceRange::Impl::recalibrate() {
     recalibrateStepsize();
   } else {
     recalibrateNumSteps();
-  } 
+  }
 }
 
 void DefinitionSpaceRange::Impl::recalibrateStepsize() {
@@ -69,7 +69,7 @@ DefinitionSpaceRange::DefinitionSpaceRange(): pImpl_(new Impl()) { }
 
 DefinitionSpaceRange::DefinitionSpaceRange(double minValue, double maxValue, double stepsize):
   pImpl_(new Impl(minValue, maxValue, stepsize)) { }
-  
+
 DefinitionSpaceRange::DefinitionSpaceRange(double minValue, double maxValue, unsigned int numSteps):
   pImpl_(new Impl(minValue, maxValue, numSteps)) { }
 

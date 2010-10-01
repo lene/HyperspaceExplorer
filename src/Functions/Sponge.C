@@ -1,3 +1,22 @@
+/*
+Hyperspace Explorer - visualizing higher-dimensional geometry
+Copyright (C) 2010  Lene Preuss <lene.preuss@gmail.com>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+*/
 
 #include "Sponge.h"
 
@@ -93,10 +112,10 @@ namespace SpongeUtility {
     };
 */
 # ifdef CONCURRENT
-  void renumber_Surfaces(VecMath::MultiDimensionalVector<unsigned, 2> &Surface, 
+  void renumber_Surfaces(VecMath::MultiDimensionalVector<unsigned, 2> &Surface,
                          unsigned original_vertex, unsigned duplicate_vertex) {
   //  SingletonLog::Instance() << "renumberSurfaces(" << original_vertex << " " << duplicate_vertex << "\n";
-    for (VecMath::MultiDimensionalVector<unsigned, 2>::iterator it = Surface.begin(); 
+    for (VecMath::MultiDimensionalVector<unsigned, 2>::iterator it = Surface.begin();
          it != Surface.end(); ++it) {
       for (unsigned k = 0; k < 4; ++k) {
         if ((*it)[k] == duplicate_vertex) (*it)[k] = original_vertex;
@@ -525,7 +544,7 @@ Sponge::~Sponge () {
  *  they are Hypersponges with a \em level reduced by 1.
  */
 void Sponge::Initialize(void) {
-    
+
 # ifdef DEBUG_SPONGE
   ScopedTimer timer("Sponge::Initialize()");
 # endif

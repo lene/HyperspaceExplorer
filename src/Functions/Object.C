@@ -1,11 +1,22 @@
+/*
+Hyperspace Explorer - visualizing higher-dimensional geometry
+Copyright (C) 2010  Lene Preuss <lene.preuss@gmail.com>
 
-//      project:      hyperspace explorer
-//      module:       Object.C
-//      contains:     four-dimensional objects which cannot be defined as a
-//                    function
-//      compile with: make all
-//      author:       helge preuss (lene.preuss@gmail.com)
-//      license:      GPL (see License.txt)
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+*/
 
 #include "Object.h"
 
@@ -115,7 +126,7 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
 /// Draw the projected Object (onto screen or into GL list, as it is)
 void Object::Draw(UI::View *view) {
   for (unsigned i = 0; i < Surface.size(); ++i) {
-    view->drawQuadrangle(X[Surface[i][0]], X[Surface[i][1]], X[Surface[i][2]], X[Surface[i][3]], 
+    view->drawQuadrangle(X[Surface[i][0]], X[Surface[i][1]], X[Surface[i][2]], X[Surface[i][3]],
                          Xscr[Surface[i][0]], Xscr[Surface[i][1]], Xscr[Surface[i][2]], Xscr[Surface[i][3]]);
   }
 }
@@ -157,7 +168,7 @@ Hypercube::Hypercube (double a, const VecMath::Vector<4> &center):
 #   if !USE_INT_INDICES
 void Hypercube::Draw(UI::View *view) {
     for (surface_vec_type::const_iterator i = Surface.begin(); i != Surface.end(); ++i) {
-      view->drawQuadrangle(*((*i)[0]), *((*i)[1]), *((*i)[2]), *((*i)[3]), 
+      view->drawQuadrangle(*((*i)[0]), *((*i)[1]), *((*i)[2]), *((*i)[3]),
                          Xscr[i->index(0)], Xscr[i->index(1)], Xscr[i->index(2)], Xscr[i->index(3)]);
   }
 }

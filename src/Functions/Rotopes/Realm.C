@@ -1,14 +1,27 @@
-///
-/// C++ Implementation: Realm
-///
-/// Description:
-///
+/*
+Hyperspace Explorer - visualizing higher-dimensional geometry
+Copyright (C) 2009-2010  Lene Preuss <lene.preuss@gmail.com>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+*/
+
 ///
 /// Author: Lene Preuss <lene.preuss@gmail.com>, (C) 2009
 ///
-/// Copyright: See COPYING file that comes with this distribution
-///
-///
+
 #include "Realm.h"
 
 #include "Rotope.h"
@@ -35,7 +48,7 @@ void Realm::push_back(const Realm &r) {
         throw std::invalid_argument(
                 "Tried to push_back() "+r.toString()+" to Realm "+toString()+".\n"
                 "You can only add realms of dimension this->_dimension-1.");
-    
+
     _subrealm.push_back(r);
 }
 
@@ -69,8 +82,8 @@ void Realm::addOffset(unsigned delta) {
     }
 }
 
-unsigned Realm::toIndex() const { 
-    if (dimension() == 0) return _index; 
+unsigned Realm::toIndex() const {
+    if (dimension() == 0) return _index;
     throw std::invalid_argument(
             "Tried to convert Realm "+toString()+" to unsigned.\n"
             "Only a 0-dimensional Realm can be converted to an unsigned index.");
@@ -93,7 +106,7 @@ bool Realm::operator==(const Realm &other) const {
 
     return true;
 }
-    
+
 bool Realm::contains(const Realm &other) const {
 
     if (std::find(_subrealm.begin(), _subrealm.end(), other) != _subrealm.end()) {
@@ -152,7 +165,7 @@ Realm Realm::extrudedPoint(unsigned delta) const {
     if (_dimension) {
         throw std::logic_error("extrudePoint() called on Realm: "+toString());
     }
-    
+
     realm_container_type new_subrealms;
 
     new_subrealms.push_back(_index);
@@ -197,7 +210,7 @@ Realm Realm::extrudedPolygon(unsigned delta) const {
 
     Realm copied_realm(*this);
     new_subrealms.push_back(copied_realm);
-    
+
     for (unsigned i = 0; i < _subrealm.size(); ++i) {
         Realm new_subrealm;
         new_subrealm.push_back(_subrealm[i]._index);
@@ -210,7 +223,7 @@ Realm Realm::extrudedPolygon(unsigned delta) const {
 
     copied_realm.addOffset(delta);
     new_subrealms.push_back(copied_realm);
-    
+
     return Realm(new_subrealms);
 }
 
@@ -234,7 +247,7 @@ Realm Realm::extrudedRealm(unsigned delta) const {
     return Realm(new_subrealms);
 }
 
-/** \param taper_index Index in the vertex array of the new vertex, toward which 
+/** \param taper_index Index in the vertex array of the new vertex, toward which
  *      the object is tapered.
  */
 Realm Realm::tapered(unsigned taper_index) const {
@@ -243,7 +256,7 @@ Realm Realm::tapered(unsigned taper_index) const {
             "Tried to taper a point: "+toString()+".\n"
             "Realm::taper() can only operate on at least two vertices."
     );
-    case 1: return taperedLine(taper_index);    
+    case 1: return taperedLine(taper_index);
     case 2: return taperedPolygon(taper_index);
     default: return taperedRealm(taper_index);
     }
@@ -282,7 +295,7 @@ Realm Realm::taperedPolygon(unsigned taper_index) const {
         new_subrealm._dimension = 2;
         new_subrealms.push_back(new_subrealm);
     }
-    
+
     return Realm(new_subrealms);
 }
 
@@ -298,7 +311,7 @@ Realm Realm::taperedRealm(unsigned taper_index) const {
     for (unsigned i = 0; i < _subrealm.size(); ++i) {
         new_subrealms.push_back(_subrealm[i].tapered(taper_index));
     }
-    
+
     return Realm(new_subrealms);;
 }
 
@@ -369,7 +382,7 @@ void Realm::insertNewPoints(list<Realm> &original_list,
 
     list<Realm>::iterator i = original_list.begin();
     ++i;
-    
+
     for (list< realm_container_type >::const_iterator inew = new_points.begin();
          inew != new_points.end(); ++i, ++inew) {
         original_list.insert(i, inew->begin(), inew->end());
@@ -387,7 +400,7 @@ void Realm::insertNewPoints(list<Realm> &original_list,
  *  <tt>[0, 1, 5, 4], [4, 5, 7, 6], [6, 7, 3, 2], [2, 3, 9, 8], [8, 9, 11, 10], [10, 11, 1, 0]</tt>
  *  and for the caps: <tt>[0, 4, 6, 2, 8, 10], [1, 5, 7, 3, 9, 11]</tt>.
 
- *  Nietzsche said (I paraphrase), "Philosophers are often poor writers because they not only tell 
+ *  Nietzsche said (I paraphrase), "Philosophers are often poor writers because they not only tell
  *  us what they think, but also how they developed their thoughts." If I were a good writer, my
  *  code would express the solution for the numbering and ordering of indices in a "rotated" Realm
  *  clearly. Because I am not, I include my musings as a reference to whom it may concern.
@@ -462,7 +475,7 @@ Realm Realm::generateEmpty3DRealm() {
 
 void Realm::addRotationStrip(Realm &all_strips, unsigned rotation_step, unsigned num_segments) const {
     Realm temp_realm = rotateStep(0, rotation_step*num_segments, num_segments);
-    if (DEBUG_ROTATE) { 
+    if (DEBUG_ROTATE) {
         cerr << "addRotationStrip(..., " << rotation_step << ", " << num_segments << "): "
                 << "temp realm: " << endl << temp_realm.toString(); }
     all_strips.merge(temp_realm);
@@ -501,7 +514,7 @@ void Realm::addStayingWithinSameStrip(unsigned total_vertices, unsigned rotation
         return;
     }
     checkArgumentsForAddStayingWithinSameStrip();
-    
+
     addOffset(OFFSET_BETWEEN_NEIGHBORING_INDICES);
 
     std::pair<unsigned, unsigned> base_extruded1 = wrapToStayWithinStrip(_subrealm[0].toIndex(), _subrealm[1].toIndex(), total_vertices, rotation_step);
@@ -534,7 +547,7 @@ std::pair<unsigned, unsigned> Realm::wrapToStayWithinStrip(unsigned base, unsign
              max_extruded_index = (rotation_step+2)*num_segments-1;
 
     if (base > max_base_index) {
-    
+
         if (extruded <= max_extruded_index) {
             throw std::logic_error(
                     "If the base index wraps out of the rotation strip, the extruded must too: "
@@ -555,7 +568,7 @@ std::pair<unsigned, unsigned> Realm::wrapToStayWithinStrip(unsigned base, unsign
                     "an index dropped out of the current rotation strip!");
         }
     }
-    
+
     return std::make_pair(base, extruded);
 }
 
@@ -597,7 +610,7 @@ Realm Realm::rotatedRealm(unsigned num_segments, unsigned size) const {
  *  connected to the current Realm, resulting in a Realm of the same dimension. The total set of
  *  thusly created Realms, for all degrees from 0 to 360, constitute the surface Realm of the
  *  rotated object. Phoo, another mouthful.
- * 
+ *
  *  \todo clarify this documentation.
  *  \param index Currently only used for lines. Do I really need it? What is it for?
  *  \param base
@@ -648,7 +661,7 @@ Realm Realm::generateStripBetweenGreatCircles(unsigned base, unsigned delta) con
 
 Realm::realm_container_type Realm::rectsBetweenGreatCircles(unsigned int base, unsigned int delta) const {
     realm_container_type new_subrealms;
-    
+
     for (unsigned i = 0; i < _subrealm.size(); ++i) {
         new_subrealms.push_back(generateRectSegment(i, base, delta));
     }

@@ -1,3 +1,22 @@
+/*
+Hyperspace Explorer - visualizing higher-dimensional geometry
+Copyright (C) 2010  Lene Preuss <lene.preuss@gmail.com>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+*/
 
 #include "Test_RealFunction.h"
 
@@ -109,7 +128,7 @@ void Test_RealFunction::functionValue() {
     for (double x = X_MIN; x <= X_MAX; x += 1.) {
         for (double y = X_MIN; y <= X_MAX; y += 1.) {
             for (double z = X_MIN; z <= X_MAX; z += 1.) {
-                QVERIFY( VecMath::sqnorm(function_->function_value(x, y, z) - 
+                QVERIFY( VecMath::sqnorm(function_->function_value(x, y, z) -
                                          Vector<4>(x, y, z,CONSTANT_FUNCTION_VALUE)) <= EPSILON );
             }
         }

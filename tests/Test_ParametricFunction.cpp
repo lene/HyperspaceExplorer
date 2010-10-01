@@ -1,10 +1,22 @@
 /*
- * FunctionTest.cpp
- *
- *  Created on: Feb 19, 2010
- *  Author: lene.preuss@gmail.com
- *  License: GPL V2 (see COPYING)
- */
+Hyperspace Explorer - visualizing higher-dimensional geometry
+Copyright (C) 2010  Lene Preuss <lene.preuss@gmail.com>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+*/
 
 #include "Test_ParametricFunction.h"
 
@@ -180,7 +192,7 @@ void Test_ParametricFunction::functionValue() {
     for (double y = -5; y < 5.; ++y) {
       for (double z = -5; z < 5.; ++z) {
         VecMath::Vector<4> f = _function->f(VecMath::Vector<3>(x, y, z));
-        QVERIFY2(VecMath::sqnorm(f - VecMath::Vector<4>(0., 0., 0., 1.)) < 1e-8, 
+        QVERIFY2(VecMath::sqnorm(f - VecMath::Vector<4>(0., 0., 0., 1.)) < 1e-8,
                  f.toString().c_str());
       }
     }

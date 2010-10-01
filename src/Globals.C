@@ -1,10 +1,22 @@
+/*
+Hyperspace Explorer - visualizing higher-dimensional geometry
+Copyright (C) 2010  Lene Preuss <lene.preuss@gmail.com>
 
-//      project:      hyperspace explorer
-//      module:       Globals.C
-//      contains:     definitions of global variables and functions
-//      compile with: make all
-//      author:       lene preuss (lene.preuss@gmail.com)
-//      license:      GPL (see License.txt)
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+*/
 
 #include "Globals.h"
 
@@ -35,9 +47,9 @@ using VecMath::MultiDimensionalVector;
 struct Global::Impl {
 
   Impl(): mainWindow(NULL), quitAction(NULL), rcdirs() { }
- 
+
   /** whether to check for memory usage. this member is set or unset from
-   *  check_proc_meminfo(), depending on the success of that function.  
+   *  check_proc_meminfo(), depending on the success of that function.
    */
   static bool check_memory;
   static unsigned long check_proc_meminfo ();
@@ -60,7 +72,7 @@ struct Global::Impl {
   QAction *quitAction;
 
   QStringList rcdirs;
-  
+
 };
 
 bool Global::Impl::check_memory = false;

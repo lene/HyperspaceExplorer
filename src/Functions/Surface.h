@@ -1,11 +1,22 @@
+/*
+Hyperspace Explorer - visualizing higher-dimensional geometry
+Copyright (C) 2010  Lene Preuss <lene.preuss@gmail.com>
 
-//      project:      hyperspace explorer
-//      module:
-//      contains:
-//      compile with: make all
-//      author:       lene preuss (lene.preuss@gmail.com)
-//      license:      GPL (see License.txt)
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
 
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+*/
 
 #if(!defined SURFACE_H)
 #define SURFACE_H
@@ -34,7 +45,7 @@ class Surface: public Function {
     typedef VecMath::Vector<4> &function_type(double, double);
     /// the real, raw type of the function used to generate values
     typedef VecMath::Vector<4> raw_function_type (double, double);
-      
+
     Surface();
     Surface (double _umin, double _umax, double _du,
              double _vmin, double _vmax, double _dv,
@@ -72,7 +83,7 @@ class Surface: public Function {
 
     /// Pointer to the actual ParametricFunction doing all the work.
     std::tr1::shared_ptr< ParametricFunction<4, 2> > _function;
-        
+
     unsigned getTsteps() const;
     unsigned getUsteps() const;
 
@@ -87,7 +98,7 @@ class Surface: public Function {
 
     class Impl;
     Impl *pImpl_;
-    
+
 };
 
 #endif

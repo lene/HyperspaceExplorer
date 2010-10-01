@@ -1,5 +1,5 @@
 /*
-    Hyperspace Explorer - vizualizing higher-dimensional geometry
+    Hyperspace Explorer - visualizing higher-dimensional geometry
     Copyright (C) 2010  Lene Preuss <lene.preuss@gmail.com>
 
     This program is free software; you can redistribute it and/or modify
@@ -28,9 +28,9 @@
  *  \tparam T Type of the stored elements.
  */
 template <unsigned size, typename T> class ArrayList {
-  
+
   public:
-  
+
     /// Create an ArrayList with default-constructed elements.
     ArrayList();
     /// Create an ArrayList with all elements initialized to \p x.
@@ -50,7 +50,7 @@ template <unsigned size, typename T> class ArrayList {
     std::string toString() const;
 
   private:
-    
+
     /// Stores the elements of the list in a pair of an element and a shorter list.
     std::pair<T, ArrayList<size-1, T> > _elements;
 };
@@ -59,9 +59,9 @@ template <unsigned size, typename T> class ArrayList {
 /** \tparam T Type of the stored elements.
  */
 template <typename T> class ArrayList<0, T> {
-  
+
   public:
-  
+
     /// Empty List.
     ArrayList();
     /// Empty List.

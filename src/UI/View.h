@@ -1,14 +1,22 @@
-//
-// C++ Interface: View
-//
-// Description:
-//
-//
-// Author: Helge Preuss <lene.preuss@gmail.com>, (C) 2008
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
+/*
+Hyperspace Explorer - visualizing higher-dimensional geometry
+Copyright (C) 2008-2010  Lene Preuss <lene.preuss@gmail.com>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+*/
 
 #ifndef VIEW_H
 #define VIEW_H 1
@@ -180,7 +188,7 @@ namespace UI {
                                         const VecMath::Vector< 4 > &x2, const VecMath::Vector< 4 > &x3,
                                         const VecMath::Vector< 3 > &xscr0, const VecMath::Vector< 3 > &xscr1,
                                         const VecMath::Vector< 3 > &xscr2, const VecMath::Vector< 3 > &xscr3) = 0;
-            virtual void drawPolygon(const std::vector< VecMath::Vector< 4 > > &x0, 
+            virtual void drawPolygon(const std::vector< VecMath::Vector< 4 > > &x0,
                                      const std::vector< VecMath::Vector< 3 > > &xscr0) = 0;
             virtual void drawCube(const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 3 > &X,
                                   unsigned t, unsigned u, unsigned v,

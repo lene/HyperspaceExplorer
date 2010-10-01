@@ -1,14 +1,22 @@
-//
-// C++ Implementation: RealFunction
-//
-// Description:
-//
-//
-// Author: Helge Preuss <lene.preuss@gmail.com>, (C) 2008
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
+/*
+Hyperspace Explorer - visualizing higher-dimensional geometry
+Copyright (C) 2008-2010  Lene Preuss <lene.preuss@gmail.com>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+*/
 
 #include "RealFunction.h"
 
@@ -44,7 +52,7 @@ using VecMath::Vector;
  *  \todo Vector &normal (double, double, double); - or in base class?
  *
  *  \ingroup RealGroup
- *  \author Lene Preuss <lene.preuss@gmail.com>                         
+ *  \author Lene Preuss <lene.preuss@gmail.com>
  */
 class RealFunctionDefinitionRange: public DefinitionRangeOfDimension<3> {
 
@@ -55,7 +63,7 @@ class RealFunctionDefinitionRange: public DefinitionRangeOfDimension<3> {
                                 double vmin, double vmax, double dv) {
       setRange(0, DefinitionSpaceRange(tmin, tmax, dt));
       setRange(1, DefinitionSpaceRange(umin, umax, du));
-      setRange(2, DefinitionSpaceRange(vmin, vmax, dv));       
+      setRange(2, DefinitionSpaceRange(vmin, vmax, dv));
     }
 
     unsigned getTsteps() const { return getNumSteps(0); }
@@ -78,25 +86,25 @@ class RealFunctionDefinitionRange: public DefinitionRangeOfDimension<3> {
     double getDt() const { return getStepsize(0); }
 
     void setUmin(double umin) { setMinValue(1, umin); }
-    double getUmin() const { return getMinValue(1); } 
+    double getUmin() const { return getMinValue(1); }
     void setUmax(double umax) { setMaxValue(1, umax); }
     double getUmax() const { return getMaxValue(1); }
     void setDu(double du) { setStepsize(1, du); }
-    double getDu() const { return getStepsize(1); }  
-    
+    double getDu() const { return getStepsize(1); }
+
     void setVmin(double vmin) { setMinValue(2, vmin); }
     double getVmin() const { return getMinValue(2); }
     void setVmax(double vmax) { setMaxValue(2, vmax); }
     double getVmax() const { return getMaxValue(2); }
     void setDv(double dv) { setStepsize(2, dv); }
-    double getDv() const { return getStepsize(2); }  
+    double getDv() const { return getStepsize(2); }
 
 };
 
 class RealFunction::Impl {
-  
+
   public:
-    
+
     Impl(double tmin, double tmax, double dt,
          double umin, double umax, double du,
          double vmin, double vmax, double dv);
@@ -104,9 +112,9 @@ class RealFunction::Impl {
     void Transform (const VecMath::Rotation<4> &R, const VecMath::Vector<4> &T);
     void Project (double ScrW, double CamW, bool DepthCue4D);
     void Draw (UI::View *view);
-    
+
     void calibrateColors() const;
-         
+
     void for_each(function_on_fourspace_vertex apply);
     void for_each(function_on_fourspace_and_transformed_vertex apply);
     void for_each(function_on_fourspace_transformed_and_projected_vertex apply);
@@ -134,7 +142,7 @@ class RealFunction::Impl {
     void DrawPlane (unsigned, UI::View *view);
     void DrawStrip (unsigned, unsigned, UI::View *view);
     void DrawCube (unsigned, unsigned, unsigned, UI::View *view);
-    
+
     /// Array of function values after transform.
     FunctionValueGrid<4, 3>::value_storage_type _Xtrans;
     /// Array of projected function values.
@@ -142,8 +150,8 @@ class RealFunction::Impl {
 
 };
 
-RealFunction::Impl::Impl(double tmin, double tmax, double dt, 
-                         double umin, double umax, double du, 
+RealFunction::Impl::Impl(double tmin, double tmax, double dt,
+                         double umin, double umax, double du,
                          double vmin, double vmax, double dv):
   definitionRange_(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv) { }
 
@@ -184,7 +192,7 @@ void RealFunction::Impl::calibrateColors() const {
       for (unsigned v = 0; v <= definitionRange_.getVsteps()+1; v++) {
         ColMgrMgr::Instance().calibrateColor(
             X()[t][u][v],
-            Color(float(t)/float(definitionRange_.getTsteps()), 
+            Color(float(t)/float(definitionRange_.getTsteps()),
                   float(u)/float(definitionRange_.getUsteps()),
                   float(v)/float(definitionRange_.getVsteps()),
                   (X()[t][u][v][3]-Wext.first)/(Wext.second-Wext.first)));
@@ -283,7 +291,7 @@ void RealFunction::Impl::DrawPlane (unsigned t, UI::View *view){
  *  \param u current u value                                                  */
 void RealFunction::Impl::DrawStrip (unsigned t, unsigned u, UI::View *view){
   for (unsigned v = 0; v < definitionRange_.getVsteps(); v++)
-    DrawCube (t, u, v, view); 
+    DrawCube (t, u, v, view);
 }
 
 /// Draw the current cube or cell of the projected Function
@@ -307,11 +315,11 @@ void RealFunction::Impl::DrawCube (unsigned t, unsigned u, unsigned v, UI::View*
  */
 RealFunction::RealFunction():
   FunctionHolder<4, 3, double>(ParameterMap()),
-  pImpl_(new Impl( 
-      DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep, 
-      DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep, 
+  pImpl_(new Impl(
+      DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep,
+      DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep,
       DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep)) { }
- 
+
 /** RealFunction c'tor given a definition set in \f$ R^3 \f$ (as parameter space)
  *  \param tmin minimal value in t
  *  \param tmax maximal value in t
@@ -333,11 +341,11 @@ RealFunction::RealFunction(double tmin, double tmax, double dt,
 RealFunction::~RealFunction() { }
 
 void RealFunction::Initialize () {
-  
+
   Vector<3, unsigned> numSteps = pImpl_->definitionRange_.getNumSteps();
   Vector<3, double> min = pImpl_->definitionRange_.getMinValue();
   Vector<3, double> max = pImpl_->definitionRange_.getMaxValue();
-  
+
   pImpl_->_X = FunctionValueGrid<4, 3>(
     _function, numSteps+Vector<3, unsigned>(2), min, max
   );
@@ -355,7 +363,7 @@ unsigned int RealFunction::getDefinitionSpaceDimensions() { return 3; }
 /** @param t first argument, e.g. x or t
  *  @param u second argument, e.g. y or u
  *  @param v third argument, e.g. z or v
- *  @return f(t, u, v)                                                
+ *  @return f(t, u, v)
  */
 Vector<4>& RealFunction::operator()(double t, double u, double v) {
   static VecMath::Vector<4> F;

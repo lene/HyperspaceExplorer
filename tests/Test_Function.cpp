@@ -1,9 +1,22 @@
 /*
- * FunctionTest.cpp
- *
- *  Created on: Feb 19, 2010
- *      Author: helge
- */
+Hyperspace Explorer - visualizing higher-dimensional geometry
+Copyright (C) 2010  Lene Preuss <lene.preuss@gmail.com>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+*/
 
 #include "Test_Function.h"
 
@@ -101,7 +114,7 @@ void Test_Function::functionValue() {
 
     VecMath::Vector<4> f = function.f();
 
-    QVERIFY2(VecMath::sqnorm(f - VecMath::Vector<4>(0., 0., 0., sqrt(2.))) < 1e-8, 
+    QVERIFY2(VecMath::sqnorm(f - VecMath::Vector<4>(0., 0., 0., sqrt(2.))) < 1e-8,
              f.toString().c_str());
 }
 

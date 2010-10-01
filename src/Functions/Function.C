@@ -1,10 +1,22 @@
+/*
+Hyperspace Explorer - visualizing higher-dimensional geometry
+Copyright (C) 2010  Lene Preuss <lene.preuss@gmail.com>
 
-//      project:      hyperspace explorer
-//      module:
-//      contains:
-//      compile with: make all
-//	author:	      helge preuss (lene.preuss@gmail.com)
-//	license:      GPL (see License.txt)
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+*/
 
 #include "Function.h"
 #include "Log.h"
@@ -23,7 +35,7 @@ struct Function::Impl {
 
   Impl() {}
   Impl(ParameterMap parameters): _parameters(parameters) { }
-        
+
       /// Declare a new parameter for the Function
         void insertParameter(const std::string &name, FunctionParameter::parameter_ptr_type defaultValue) {
           _parameters.insert(std::make_pair(name, defaultValue));
@@ -31,7 +43,7 @@ struct Function::Impl {
 
         /// list of the parameters to the function
         ParameterMap _parameters;
- 
+
 };
 //////////////////////////////////////////////////////////////////////
 // construction / destruction
@@ -159,30 +171,29 @@ template <typename T> inline
 
 // explicit instantiations
 template void Function::declareParameter(const std::string &name,
-                                         const int &defaultValue); 
+                                         const int &defaultValue);
 template void Function::declareParameter(const std::string &name,
-                                         const unsigned &defaultValue); 
+                                         const unsigned &defaultValue);
 template void Function::declareParameter(const std::string &name,
-                                         const double &defaultValue);                                         
+                                         const double &defaultValue);
 template void Function::declareParameter(const std::string &name,
-                                         const std::string &defaultValue);                                         
+                                         const std::string &defaultValue);
 template void Function::declareParameter(const std::string &name,
-                                         const VecMath::Rotation<5> &defaultValue);                                         
+                                         const VecMath::Rotation<5> &defaultValue);
 template void Function::declareParameter(const std::string &name,
-                                         const VecMath::Rotation<6> &defaultValue);                                         
+                                         const VecMath::Rotation<6> &defaultValue);
 template void Function::declareParameter(const std::string &name,
-                                         const VecMath::Rotation<7> &defaultValue);                                         
+                                         const VecMath::Rotation<7> &defaultValue);
 template void Function::declareParameter(const std::string &name,
-                                         const VecMath::Rotation<8> &defaultValue);                                         
+                                         const VecMath::Rotation<8> &defaultValue);
 template void Function::declareParameter(const std::string &name,
-                                         const VecMath::Rotation<9> &defaultValue);                                         
+                                         const VecMath::Rotation<9> &defaultValue);
 template void Function::declareParameter(const std::string &name,
-                                         const VecMath::Rotation<10> &defaultValue);                                         
-                                         
+                                         const VecMath::Rotation<10> &defaultValue);
+
 template void Function::declareParameter(const std::string &name,
-                                         const unsigned &defaultValue, 
+                                         const unsigned &defaultValue,
                                          const unsigned &value);
 template void Function::declareParameter(const std::string &name,
-                                         const double &defaultValue, 
+                                         const double &defaultValue,
                                          const double &value);
-                                         

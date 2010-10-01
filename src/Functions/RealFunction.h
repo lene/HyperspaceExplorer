@@ -1,6 +1,6 @@
 /*
-    Hyperspace Explorer - vizualizing higher-dimensional geometry
-    Copyright (C) 2008  Lene Preuss <lene.preuss@gmail.com>
+    Hyperspace Explorer - visualizing higher-dimensional geometry
+    Copyright (C) 2008-2010 Lene Preuss <lene.preuss@gmail.com>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -43,12 +43,12 @@ class RealFunction: public FunctionHolder<4, 3, double> {
   public:
 
     /** type of the function used to generate values, optimized with a
-     *  reference as return value                                         
+     *  reference as return value
      */
     typedef VecMath::Vector<4> &function_type(double, double, double);
     /// the real, raw type of the function used to generate values
     typedef VecMath::Vector<4> raw_function_type (double, double, double);
-    
+
     RealFunction();
     RealFunction(double tmin, double tmax, double dt,
                  double umin, double umax, double du,
@@ -90,11 +90,11 @@ class RealFunction: public FunctionHolder<4, 3, double> {
     std::tr1::shared_ptr< ParametricFunction<4, 3> > _function;
 
     // The following functions are protected only so that unit tests can access them.
-    
+
     unsigned getTsteps() const;
     unsigned getUsteps() const;
     unsigned getVsteps() const;
-    
+
     /// Array of function values.
     const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 3 > &X() const;
     /// Array of function values after transform.
@@ -103,10 +103,10 @@ class RealFunction: public FunctionHolder<4, 3, double> {
     const VecMath::MultiDimensionalVector< VecMath::Vector<3>, 3 > &Xscr() const;
 
   private:
-    
+
     class Impl;
     Impl *pImpl_;
-    
+
 };
 
 #endif

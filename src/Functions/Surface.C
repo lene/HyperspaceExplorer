@@ -1,10 +1,22 @@
+/*
+Hyperspace Explorer - visualizing higher-dimensional geometry
+Copyright (C) 2010  Lene Preuss <lene.preuss@gmail.com>
 
-//      project:      hyperspace explorer
-//      module:
-//      contains:
-//      compile with: make all
-//      author:       helge preuss (lene.preuss@gmail.com)
-//      license:      GPL (see License.txt)
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+*/
 
 #include "Surface.h"
 
@@ -67,16 +79,16 @@ class SurfaceDefinitionRange: public DefinitionRangeOfDimension<2> {
     double getDt() const { return getStepsize(0); }
 
     void setUmin(double umin) { setMinValue(1, umin); }
-    double getUmin() const { return getMinValue(1); } 
+    double getUmin() const { return getMinValue(1); }
     void setUmax(double umax) { setMaxValue(1, umax); }
     double getUmax() const { return getMaxValue(1); }
     void setDu(double du) { setStepsize(1, du); }
-    double getDu() const { return getStepsize(1); }  
+    double getDu() const { return getStepsize(1); }
 
 };
 
 struct Surface::Impl {
-  
+
   Impl(double _umin, double _umax, double _du,
        double _vmin, double _vmax, double _dv):
     definitionRange_(_umin, _umax, _du, _vmin, _vmax, _dv) { }
@@ -84,9 +96,9 @@ struct Surface::Impl {
     void Transform (const VecMath::Rotation<4> &R, const VecMath::Vector<4> &T);
     void Project (double ScrW, double CamW, bool DepthCue4D);
     void Draw (UI::View *view);
-    
+
     void calibrateColors() const;
-         
+
     void for_each(function_on_fourspace_vertex apply);
     void for_each(function_on_fourspace_and_transformed_vertex apply);
     void for_each(function_on_fourspace_transformed_and_projected_vertex apply);
@@ -103,7 +115,7 @@ struct Surface::Impl {
                                    double umin, double umax, double du);
 
     std::pair<double, double> findExtremesInW() const;
-    
+
     SurfaceDefinitionRange definitionRange_;
 
     /// Array of function values.
@@ -112,7 +124,7 @@ struct Surface::Impl {
     FunctionValueGrid<4, 2>::value_storage_type _Xtrans;
     /// Array of projected function values.
     VecMath::MultiDimensionalVector< VecMath::Vector<3>, 2 > _Xscr;
-};  
+};
 
 void Surface::Impl::Transform(const VecMath::Rotation< 4 >& R, const VecMath::Vector< 4 >& T) {
   Transformation<4, 2> xform(R, T);
@@ -222,10 +234,10 @@ void Surface::Impl::setBoundariesAndStepwidth(double tmin, double tmax, double d
 }
 
 /// Surface default c'tor, zeroes everything
-Surface::Surface (): 
+Surface::Surface ():
   Function(ParameterMap()),
   pImpl_(new Impl(
-    DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep, 
+    DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep,
     DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep)) { }
 
 
@@ -251,7 +263,7 @@ void Surface::Initialize () {
   Vector<2, unsigned> numSteps = pImpl_->definitionRange_.getNumSteps();
   Vector<2, double> min = pImpl_->definitionRange_.getMinValue();
   Vector<2, double> max = pImpl_->definitionRange_.getMaxValue();
-  
+
   pImpl_->_X = FunctionValueGrid<4, 2>(
     _function, numSteps+Vector<2, unsigned>(2), min, max
   );
@@ -293,7 +305,7 @@ void Surface::for_each(Function::function_on_projected_vertex apply) {
 
 /** @param u first argument, e.g. y or u
  *  @param v second argument, e.g. z or v
- *  @return f(t, u, v)                                                
+ *  @return f(t, u, v)
  */
 Vector< 4 >& Surface::operator()(double u, double v, double ) {
   static VecMath::Vector<4> F;

@@ -1,14 +1,23 @@
-//
-// C++ Interface: ViewImpl
-//
-// Description:
-//
-//
-// Author: Helge Preuss <lene.preuss@gmail.com>, (C) 2008
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
+/*
+Hyperspace Explorer - visualizing higher-dimensional geometry
+Copyright (C) 2008-2010  Lene Preuss <lene.preuss@gmail.com>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+*/
+
 #ifndef VIEW_IMPL_H
 #define VIEW_IMPL_H 1
 
@@ -117,22 +126,22 @@ namespace UI {
             virtual void setTransparence(bool on);
 
             /// drawTriangle() is a convenience function that may not be implemented in all Views - this implementation throws an exception
-            virtual void drawTriangle(const VecMath::Vector< 4 >&, const VecMath::Vector< 4 >&, 
-                                      const VecMath::Vector< 4 >&, 
-                                      const VecMath::Vector< 3 >&, const VecMath::Vector< 3 >&, 
+            virtual void drawTriangle(const VecMath::Vector< 4 >&, const VecMath::Vector< 4 >&,
+                                      const VecMath::Vector< 4 >&,
+                                      const VecMath::Vector< 3 >&, const VecMath::Vector< 3 >&,
                                       const VecMath::Vector< 3 >&);
             /// drawPolygon() is a convenience function that may not be implemented in all Views - this implementation throws an exception
-            virtual void drawPolygon(const std::vector< VecMath::Vector< 4 > >&, 
+            virtual void drawPolygon(const std::vector< VecMath::Vector< 4 > >&,
                                      const std::vector< VecMath::Vector< 3 > >&);
 
             /// Generic implementation of drawCube() in terms of drawQuadrangle()
-            virtual void drawCube(const VecMath::MultiDimensionalVector< VecMath::Vector< 4 >, 3 >& X, 
-                                  unsigned int t, unsigned int u, unsigned int v, 
-                                  const VecMath::Vector< 3 >& v0, const VecMath::Vector< 3 >& v1, 
-                                  const VecMath::Vector< 3 >& v2, const VecMath::Vector< 3 >& v3, 
+            virtual void drawCube(const VecMath::MultiDimensionalVector< VecMath::Vector< 4 >, 3 >& X,
+                                  unsigned int t, unsigned int u, unsigned int v,
+                                  const VecMath::Vector< 3 >& v0, const VecMath::Vector< 3 >& v1,
+                                  const VecMath::Vector< 3 >& v2, const VecMath::Vector< 3 >& v3,
                                   const VecMath::Vector< 3 >& v4, const VecMath::Vector< 3 >& v5,
                                   const VecMath::Vector< 3 >& v6, const VecMath::Vector< 3 >& v7);
-            
+
         protected:
 
             /// Number of frames for animations
@@ -186,7 +195,7 @@ namespace UI {
         private:
 
             class Impl;
-            
+
             Impl *pImpl_;
 
             /// Default Color for the background
@@ -196,7 +205,7 @@ namespace UI {
             static LightSource _defaultLightSource;
             /// LightSource for flat, all-ambient lighting
             static LightSource _flatLightSource;
-        
+
     };
 
 }
