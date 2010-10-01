@@ -97,9 +97,9 @@ int main(int argc, char **argv) {
     runner.run(new Test_Projection);
     runner.run(new Test_GridDrawer);
     runner.run(new Test_MultiDimensionalVector);
-    runner.run(new Test_RealFunction);
     runner.run(new Test_Surface);
     runner.run(new Test_FunctionHolder);
+    runner.run(new Test_RealFunction);
 
     runner.printSummary();
 

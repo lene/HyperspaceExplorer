@@ -51,6 +51,7 @@ class Test_RealFunction: public QObject {
         void getNumParameters();
         void meetsFormalRequirements();
         void boundsAndSteps();
+        void ReInit();
 
         void rotateAboutAllAxes();
         void rotated360DegreesIsIdentical();

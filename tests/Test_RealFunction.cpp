@@ -119,35 +119,30 @@ void Test_RealFunction::initTestCase() {
 }
 
 void Test_RealFunction::init() {
+  function_ = new RealFunctionTestImplementation();
   view_ = new MockView;
 }
 
 void Test_RealFunction::functionValue() {
-    function_ = new RealFunctionTestImplementation();
-
-    for (double x = X_MIN; x <= X_MAX; x += 1.) {
-        for (double y = X_MIN; y <= X_MAX; y += 1.) {
-            for (double z = X_MIN; z <= X_MAX; z += 1.) {
-                QVERIFY( VecMath::sqnorm(function_->function_value(x, y, z) -
-                                         Vector<4>(x, y, z,CONSTANT_FUNCTION_VALUE)) <= EPSILON );
-            }
-        }
+  for (double x = X_MIN; x <= X_MAX; x += 1.) {
+    for (double y = X_MIN; y <= X_MAX; y += 1.) {
+      for (double z = X_MIN; z <= X_MAX; z += 1.) {
+        QVERIFY( VecMath::sqnorm(function_->function_value(x, y, z) -
+                 Vector<4>(x, y, z,CONSTANT_FUNCTION_VALUE)) <= EPSILON );
+      }
     }
+  }
 }
 
 void Test_RealFunction::getDefinitionSpaceDimensions() {
-  function_ = new RealFunctionTestImplementation();
   QVERIFY(function_->getDefinitionSpaceDimensions() == 3);
 }
 
 void Test_RealFunction::getNumParameters() {
-  function_ = new RealFunctionTestImplementation();
-//  QVERIFY(function_->getNumParameters() == NUM_PARAMETERS);
+  QVERIFY(function_->getNumParameters() == NUM_PARAMETERS);
 }
 
 void Test_RealFunction::meetsFormalRequirements() {
-    function_ = new RealFunctionTestImplementation();
-
     QVERIFY(function_->vertices().size() >= GRID_SIZE);
     QVERIFY(function_->vertices()[0].size() >= GRID_SIZE);
     QVERIFY(function_->vertices()[0][0].size() >= GRID_SIZE);
@@ -156,15 +151,26 @@ void Test_RealFunction::meetsFormalRequirements() {
 }
 
 void Test_RealFunction::boundsAndSteps() {
-    function_ = new RealFunctionTestImplementation();
-    QVERIFY(function_->xsteps() == GRID_SIZE);
-    QVERIFY(function_->ysteps() == GRID_SIZE);
-    QVERIFY(function_->zsteps() == GRID_SIZE);
+  QVERIFY2(function_->xsteps() == GRID_SIZE, QString::number(function_->xsteps()).toAscii());
+  QVERIFY2(function_->ysteps() == GRID_SIZE, QString::number(function_->ysteps()).toAscii());
+  QVERIFY2(function_->zsteps() == GRID_SIZE, QString::number(function_->zsteps()).toAscii());
 }
 
-void Test_RealFunction::rotateAboutAllAxes() {
-    function_ = new RealFunctionTestImplementation();
+void Test_RealFunction::ReInit() {
+  function_->ReInit(X_MIN, X_MAX, (X_MAX-X_MIN)/(2*GRID_SIZE),
+                    X_MIN, X_MAX, (X_MAX-X_MIN)/(2*GRID_SIZE),
+                    X_MIN, X_MAX, (X_MAX-X_MIN)/(2*GRID_SIZE));
 
+    QVERIFY(function_->xsteps() == 2*GRID_SIZE+1);
+    QVERIFY(function_->ysteps() == 2*GRID_SIZE+1);
+    QVERIFY(function_->zsteps() == 2*GRID_SIZE+1);
+    QVERIFY(function_->vertices().size() >= 2*GRID_SIZE);
+    QVERIFY(function_->vertices()[0].size() >= 2*GRID_SIZE);
+    QVERIFY(function_->vertices()[0][0].size() >= 2*GRID_SIZE);
+}
+
+
+void Test_RealFunction::rotateAboutAllAxes() {
     function_->Transform(Rotation<4>(90., 0., 0., 0., 0., 90.), Vector<4>());
 
     QVERIFY(function_->transformed_vertices().size() >= GRID_SIZE);
@@ -175,8 +181,6 @@ void Test_RealFunction::rotateAboutAllAxes() {
 }
 
 void Test_RealFunction::rotated360DegreesIsIdentical() {
-    function_ = new RealFunctionTestImplementation();
-
     function_->Transform(Rotation<4>(360., 360., 360., 360., 360., 360.), Vector<4>());
 
     function_->for_each(checkVerticesEqual);
@@ -199,7 +203,6 @@ void checkProjectProjects(const VecMath::Vector<4> &x,
 }
 
 void Test_RealFunction::project() {
-    function_ = new RealFunctionTestImplementation();
 
     function_->Transform(Rotation<4>(), Vector<4>());
     function_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
@@ -219,7 +222,6 @@ void checkGetColorRuns(const VecMath::Vector<4> &x,
 }
 
 void Test_RealFunction::projectWithDepthCue() {
-    function_ = new RealFunctionTestImplementation();
 
     function_->Transform(Rotation<4>(), Vector<4>());
     function_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, true);
@@ -233,7 +235,6 @@ void Test_RealFunction::projectWithDepthCue() {
 
 
 void Test_RealFunction::draw() {
-    function_ = new RealFunctionTestImplementation();
 
     function_->Transform(Rotation<4>(), Vector<4>());
     function_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
