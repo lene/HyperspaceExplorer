@@ -387,6 +387,10 @@ void RealFunction::for_each(Function::function_on_projected_vertex apply) {
   pImpl_->for_each(apply);
 }
 
+unsigned int RealFunction::getNumParameters() {
+    return Function::getNumParameters();
+}
+
 unsigned int RealFunction::getTsteps() const { return pImpl_->definitionRange_.getTsteps(); }
 unsigned int RealFunction::getUsteps() const { return pImpl_->definitionRange_.getUsteps(); }
 unsigned int RealFunction::getVsteps() const { return pImpl_->definitionRange_.getVsteps(); }

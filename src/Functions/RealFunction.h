@@ -79,6 +79,9 @@ class RealFunction: public FunctionHolder<4, 3, double> {
     virtual void for_each(function_on_fourspace_transformed_and_projected_vertex apply);
     virtual void for_each(function_on_projected_vertex apply);
 
+    /** \return number of parameters for the function */
+    virtual unsigned getNumParameters();
+
   protected:
 
     VecMath::Vector<4> &normal(double t, double u, double v);
