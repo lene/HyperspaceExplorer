@@ -43,26 +43,36 @@ class TestRunner {
 
   public:
 
-    TestRunner(): executedTestSuites_(0), failedTestSuites_(0), startTime_(clock()) { }
+    TestRunner(): executedTestSuites_(0), failedTestSuites_(), startTime_(clock()) { }
 
     void run(QObject *test) {
-      if (qExec(test)) failedTestSuites_++;
+      if (qExec(test)) failedTestSuites_.push_back(typeid(*test).name());
       executedTestSuites_++;
     }
 
     void printSummary() const {
       double timeElapsed = double(clock()-startTime_)/CLOCKS_PER_SEC;
-      if (failedTestSuites_) qDebug() << QString(80, '*');
+      if (!failedTestSuites_.empty()) qDebug() << QString(80, '*');
       qDebug() << "Tests finished in " << timeElapsed << " seconds.";
-      qDebug() << failedTestSuites_ << " Test suites out of " << executedTestSuites_ << " failed.";
-      if (failedTestSuites_) qDebug() << QString(80, '*');
+      qDebug() << failedTestSuites_.size() << " Test suites out of " << executedTestSuites_ << " failed.";
+      if (!failedTestSuites_.empty()) printFailedTestSuites();
+      if (!failedTestSuites_.empty()) qDebug() << QString(80, '*');
     }
 
-    unsigned exitValue() const { return failedTestSuites_; }
+    unsigned exitValue() const { return failedTestSuites_.size(); }
 
   private:
+
+    void printFailedTestSuites() const {
+      std::for_each(failedTestSuites_.begin(), failedTestSuites_.end(), printFailedTestSuite);
+    }
+
+    static void printFailedTestSuite(std::string suite) {
+      qDebug() << "    " << suite.c_str();
+    }
+
     unsigned executedTestSuites_;
-    unsigned failedTestSuites_;
+    std::vector<std::string> failedTestSuites_;
 
     clock_t startTime_;
 };
