@@ -52,6 +52,7 @@ private slots:
   void initTestCase();
   void cleanupTestCase();
 
+  void getNumParameters();
   void definedParametersArePresent();
   void definedParametersHaveCorrectValues();
   void getParameterValueWorks();

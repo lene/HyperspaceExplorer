@@ -51,19 +51,17 @@ void Test_ParametricFunction::initTestCase() {
   initializeFunction();
 }
 
-void Test_ParametricFunction::cleanupTestCase()
-{
+void Test_ParametricFunction::cleanupTestCase() { }
 
-}
-Test_ParametricFunction::~Test_ParametricFunction()
-{
+Test_ParametricFunction::~Test_ParametricFunction() { }
 
+void Test_ParametricFunction::getNumParameters() {
+  QVERIFY2(_function->getNumParameters() == TEST_FUNCTION_NUM_PARAMETERS,
+           QString::number(_function->getNumParameters()).toAscii());
 }
 
 void Test_ParametricFunction::definedParametersArePresent() {
 
-  QVERIFY2(_function->getNumParameters() == TEST_FUNCTION_NUM_PARAMETERS,
-           QString::number(_function->getNumParameters()).toAscii());
 
   ParameterMap parameters = _function->getParameterMap();
 

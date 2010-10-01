@@ -67,4 +67,4 @@ DEFINES += NEW_FUNCTION_HIERARCHY
 TARGET = HyperspaceExplorer-tests
 
 QMAKE_POST_LINK = ./HyperspaceExplorer-tests
-QMAKE_CXXFLAGS += -O2
+QMAKE_CXXFLAGS_RELEASE += -O2
