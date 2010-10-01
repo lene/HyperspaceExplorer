@@ -30,13 +30,33 @@ namespace VecMath {
 template <unsigned N, unsigned P, typename NUM> class ParametricFunction;
 template <unsigned P> class DefinitionRangeOfDimension;
 
+///
+/** This class evaluates a ParametricFunction on all vertices of a \p P - dimensional
+ *  (hyper-) grid in \p N dimensional vector space.
+ *
+ *  \todo It provides functions to apply an arbitray Transform on the \p N -
+ *  dimensional vertices, Project them into three-dimensional space and Draw
+ *  the resulting three-dimensional image onto a View.
+ *
+ *  \tparam N The dimension of the definition vector space.
+ *  \tparam P The dimension of the parameter vector space.
+ *  \tparam NUM The numeric type managed by the grid.
+ *
+ *  \ingroup FunctionGroup
+ *  @author Lene Preuss <lene.preuss@gmail.com>
+ */
 template <unsigned N, unsigned P, typename NUM = double>
 class FunctionHolder : public Function {
 
   public:
 
+    /// The numeric type that is used in all calculations.
+    typedef NUM numeric_type;
+    /// The type of the function that is evaluated on every vertex of the grid.
     typedef ParametricFunction<N, P, NUM> function_type;
+    /// A vertex in \p N - space.
     typedef VecMath::Vector<N, NUM> vertex_type;
+    /// A vertex projected into three dimensions.
     typedef VecMath::Vector<3, NUM> projected_vertex_type;
 
     FunctionHolder(ParameterMap parameters);
@@ -49,9 +69,15 @@ class FunctionHolder : public Function {
     /** \return number of parameters for the function */
     virtual unsigned getNumParameters();
 
+    void setDefinitionRange(double tmin, double tmax, double dt,
+                            double umin, double umax, double du,
+                            double vmin, double vmax, double dv);
+
   protected:
 
     virtual void Initialize (void);
+
+    const DefinitionRangeOfDimension<P> &getDefinitionRange() const;
 
     /// Array of function values.
     const VecMath::MultiDimensionalVector< vertex_type, P > &X() const;
