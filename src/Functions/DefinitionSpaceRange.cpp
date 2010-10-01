@@ -20,9 +20,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "DefinitionSpaceRange.h"
 
+#include <sstream>
+
 double DefinitionSpaceRange::defaultMin = -1.;
 double DefinitionSpaceRange::defaultMax =  1.;
-double DefinitionSpaceRange::defaultStep = 0.1;
+double DefinitionSpaceRange::defaultStep = 1.;
 
 struct DefinitionSpaceRange::Impl {
 
@@ -98,4 +100,11 @@ void DefinitionSpaceRange::setNumSteps(unsigned int numSteps) {
   pImpl_->numSteps_ = numSteps;
   pImpl_->recalibrateStepsize();
 }
+
+std::string DefinitionSpaceRange::toString() const {
+  std::ostringstream o;
+  o << "[ " << pImpl_->minValue_ << "; " << pImpl_->maxValue_ <<  " | " << pImpl_->numSteps_ << " ]";
+  return o.str();
+}
+
 

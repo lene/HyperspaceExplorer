@@ -21,6 +21,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef DEFINITIONSPACERANGE_H
 #define DEFINITIONSPACERANGE_H
 
+#include <string>
+
 class DefinitionSpaceRange {
 
   public:
@@ -41,6 +43,8 @@ class DefinitionSpaceRange {
 
     unsigned getNumSteps() const;
     void setNumSteps(unsigned numSteps);
+
+    std::string toString() const;
 
     static double defaultMin,   ///< Default value for lower grid boundary
                   defaultMax,   ///< Default value for upper grid boundary
