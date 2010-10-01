@@ -338,8 +338,8 @@ void C4DView::ApplyChanges (const ParameterMap &parms) {
             << "  Values = " << Values()->print() << "\n";
 
     F()->ReInit (Values()->tmin (), Values()->tmax (), Values()->dt (),
-      Values()->umin (), Values()->umax (), Values()->du (),
-             Values()->vmin (), Values()->vmax (), Values()->dv ());
+                 Values()->umin (), Values()->umax (), Values()->du (),
+                 Values()->vmin (), Values()->vmax (), Values()->dv ());
 
     ColMgrMgr::Instance().setFunction(F().get());
 
