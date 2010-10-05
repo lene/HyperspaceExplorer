@@ -130,13 +130,17 @@ bool MockView::isFaceDrawn(const Face<D>& face) const {
 }
 
 template <unsigned D> void printVertex(const VecMath::Vector<D> &vertex) {
+  static unsigned numPrinted = 0;
   std::cerr << vertex << " ";
+  if (++numPrinted % 4 == 0) std::cerr << std::endl;
 }
 
 void MockView::printVertices() const {
-  std::cerr << "MockView::printVertices(): " << numVerticesDrawn() << " vertices\n";
+  std::cerr << "\nMockView::printVertices(): " << numVerticesDrawn() << " vertices\n"
+            << "Drawn: =========================================================================\n";
   std::for_each(pImpl_->drawnVertices_.begin(), pImpl_->drawnVertices_.end(), printVertex<3>);
-  std::cerr << "\n";
+  
+  std::cerr << "\nOriginal: ======================================================================\n";
   std::for_each(pImpl_->originalVertices_.begin(), pImpl_->originalVertices_.end(), printVertex<4>);
   std::cerr << "\n";
 }
