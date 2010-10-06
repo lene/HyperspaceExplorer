@@ -25,6 +25,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "MultiDimensionalVector.impl.h"
 #include "Vector.impl.h"
 #include "Rotation.impl.h"
+#include "FunctionHolder.impl.h"
 
 #include "RealFunctionImplementations.h"
 #include "ColorManager.h"
