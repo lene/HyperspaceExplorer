@@ -31,7 +31,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "RealFunctionImplementations.h"
 #include "ColorManager.h"
 
-using UnitTests::testGreaterEqual;
+using namespace UnitTests;
 
 using VecMath::Vector;
 using VecMath::Rotation;
@@ -44,20 +44,20 @@ using std::string;
 MockView *globalView = NULL;
 
 void checkVertexPresent(const VecMath::Vector<4> &v) {
-  QVERIFY2(globalView->isVertexPresent(v), v.toString().c_str());
+  test(globalView->isVertexPresent(v), v.toString());
 }
 
 void checkVertexDrawn(const VecMath::Vector<3> &v) {
-  QVERIFY2(globalView->isVertexDrawn(v), v.toString().c_str());
+  test(globalView->isVertexDrawn(v), v.toString());
 }
 
 void checkVerticesEqual(const VecMath::Vector<4> &v1, const VecMath::Vector<4> &v2) {
-  QVERIFY(VecMath::sqnorm(v1 - v2) < EPSILON);
+  testEqual(v1, v2);
 }
 
 
 void checkVerticesNotEqual(const VecMath::Vector<4> &v1, const VecMath::Vector<4> &v2) {
-  QVERIFY(VecMath::sqnorm(v1 - v2) > EPSILON);
+  testNotEqual(v1, v2);
 }
 
 template<typename T> T random_number() {
@@ -132,19 +132,18 @@ void Test_RealFunction::functionValue() {
   for (double x = X_MIN; x <= X_MAX; x += 1.) {
     for (double y = X_MIN; y <= X_MAX; y += 1.) {
       for (double z = X_MIN; z <= X_MAX; z += 1.) {
-        QVERIFY( VecMath::sqnorm(function_->function_value(x, y, z) -
-                 Vector<4>(x, y, z,CONSTANT_FUNCTION_VALUE)) <= EPSILON );
+        testEqual(function_->function_value(x, y, z), Vector<4>(x, y, z,CONSTANT_FUNCTION_VALUE));
       }
     }
   }
 }
 
 void Test_RealFunction::getDefinitionSpaceDimensions() {
-  QVERIFY(function_->getDefinitionSpaceDimensions() == 3);
+  testEqual(function_->getDefinitionSpaceDimensions(), 3);
 }
 
 void Test_RealFunction::getNumParameters() {
-  QVERIFY(function_->getNumParameters() == NUM_PARAMETERS);
+  testEqual(function_->getNumParameters(), NUM_PARAMETERS);
 }
 
 void Test_RealFunction::meetsFormalRequirements() {
@@ -152,13 +151,13 @@ void Test_RealFunction::meetsFormalRequirements() {
     testGreaterEqual(function_->vertices()[0].size(), GRID_SIZE);
     testGreaterEqual(function_->vertices()[0][0].size(), GRID_SIZE);
 
-    QVERIFY(function_->getFunctionName() == Test_RealFunction::TEST_FUNCTION_NAME.toStdString());
+    testEqual(function_->getFunctionName(), Test_RealFunction::TEST_FUNCTION_NAME.toStdString());
 }
 
 void Test_RealFunction::boundsAndSteps() {
-  QVERIFY2(function_->xsteps() == GRID_SIZE, QString::number(function_->xsteps()).toAscii());
-  QVERIFY2(function_->ysteps() == GRID_SIZE, QString::number(function_->ysteps()).toAscii());
-  QVERIFY2(function_->zsteps() == GRID_SIZE, QString::number(function_->zsteps()).toAscii());
+  testEqual(function_->xsteps(), GRID_SIZE);
+  testEqual(function_->ysteps(), GRID_SIZE);
+  testEqual(function_->zsteps(), GRID_SIZE);
 }
 
 void Test_RealFunction::ReInit() {
@@ -166,21 +165,21 @@ void Test_RealFunction::ReInit() {
                     X_MIN, X_MAX, (X_MAX-X_MIN)/(2*GRID_SIZE),
                     X_MIN, X_MAX, (X_MAX-X_MIN)/(2*GRID_SIZE));
 
-    QVERIFY(function_->xsteps() == 2*GRID_SIZE+1);
-    QVERIFY(function_->ysteps() == 2*GRID_SIZE+1);
-    QVERIFY(function_->zsteps() == 2*GRID_SIZE+1);
-    QVERIFY(function_->vertices().size() >= 2*GRID_SIZE);
-    QVERIFY(function_->vertices()[0].size() >= 2*GRID_SIZE);
-    QVERIFY(function_->vertices()[0][0].size() >= 2*GRID_SIZE);
+    testEqual(function_->xsteps(), 2*GRID_SIZE+1);
+    testEqual(function_->ysteps(), 2*GRID_SIZE+1);
+    testEqual(function_->zsteps(), 2*GRID_SIZE+1);
+    testGreaterEqual(function_->vertices().size(), 2*GRID_SIZE);
+    testGreaterEqual(function_->vertices()[0].size(), 2*GRID_SIZE);
+    testGreaterEqual(function_->vertices()[0][0].size(), 2*GRID_SIZE);
 }
 
 
 void Test_RealFunction::rotateAboutAllAxes() {
     function_->Transform(Rotation<4>(90., 0., 0., 0., 0., 90.), Vector<4>());
 
-    QVERIFY(function_->transformed_vertices().size() >= GRID_SIZE);
-    QVERIFY(function_->transformed_vertices()[0].size() >= GRID_SIZE);
-    QVERIFY(function_->transformed_vertices()[0][0].size() >= GRID_SIZE);
+    testGreaterEqual(function_->transformed_vertices().size(), GRID_SIZE);
+    testGreaterEqual(function_->transformed_vertices()[0].size(), GRID_SIZE);
+    testGreaterEqual(function_->transformed_vertices()[0][0].size(), GRID_SIZE);
 
     function_->for_each(checkVerticesNotEqual);
 }
@@ -201,9 +200,7 @@ void checkProjectProjects(const VecMath::Vector<4> &x,
                           const VecMath::Vector<3> &xscr) {
   cerr << xscr << " == " << x*PROJECTION_FACTOR << "?" << endl;
   for(unsigned m = 0; m < 3; ++m) {
-    QVERIFY2(fabs(xscr[m] - x[m]*PROJECTION_FACTOR) < EPSILON,
-             (xscr.toString()+std::string(" != ")+(x*PROJECTION_FACTOR).toString()).c_str()
-             );
+    testEqual(xscr[m], x[m]*PROJECTION_FACTOR);
   }
 }
 
@@ -212,9 +209,9 @@ void Test_RealFunction::project() {
     function_->Transform(Rotation<4>(), Vector<4>());
     function_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
 
-    QVERIFY(function_->projected_vertices().size() >= GRID_SIZE);
-    QVERIFY(function_->projected_vertices()[0].size() >= GRID_SIZE);
-    QVERIFY(function_->projected_vertices()[0][0].size() >= GRID_SIZE);
+    testGreaterEqual(function_->projected_vertices().size(), GRID_SIZE);
+    testGreaterEqual(function_->projected_vertices()[0].size(), GRID_SIZE);
+    testGreaterEqual(function_->projected_vertices()[0][0].size(), GRID_SIZE);
 
     QSKIP("not solved yet why this fails.", SkipSingle);
     function_->for_each(checkProjectProjects);
@@ -246,7 +243,7 @@ void Test_RealFunction::draw() {
 
     function_->Draw(view_);
 
-    QVERIFY(view_->numVerticesDrawn() >= (GRID_SIZE+1)*(GRID_SIZE+1)*(GRID_SIZE+1));
+    testGreaterEqual(view_->numVerticesDrawn(), (GRID_SIZE+1)*(GRID_SIZE+1)*(GRID_SIZE+1));
 
     globalView = view_;
 

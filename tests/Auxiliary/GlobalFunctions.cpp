@@ -20,11 +20,19 @@
 
 #include "GlobalFunctions.h"
 
+#include "Vector.h"
+
 #include <QtTest/QtTest>
 #include <QString>
 
+using std::string;
+
 QString comparisonString(double checked, double precondition, const QString &operation) {
   return QString::number(checked) + " " + operation + " " + QString::number(precondition);
+}
+
+QString comparisonString(const string &checked, const string &precondition, const string &operation) {
+  return (checked + " " + operation + " " + precondition).c_str();
 }
 
 namespace UnitTests {
@@ -35,10 +43,32 @@ void test(bool condition, const QString &message) {
     message.toAscii());
 }
 
+void test(bool condition, const std::string& message) {
+  QVERIFY2(
+    condition, 
+    message.c_str());
+}
+
 void testEqual(double checked, double precondition) {
   test(
     checked == precondition,
     comparisonString(checked, precondition, "==")
+  );
+}
+
+void testEqual(const std::string& checked, const std::string& precondition) {
+  test(
+    checked == precondition,
+    comparisonString(checked, precondition, "==")
+  );
+}
+
+template <unsigned D, typename NUM>
+void testEqual(const VecMath::Vector<D, NUM> &checked, 
+               const VecMath::Vector<D, NUM> &precondition) {
+  test(
+    VecMath::sqnorm(checked-precondition) < EPSILON,
+    checked.toString() + " == " + precondition.toString()
   );
 }
 
@@ -49,6 +79,20 @@ void testGreaterEqual(double checked, double precondition) {
   );
 }
 
+template <unsigned D, typename NUM>
+void testNotEqual(const VecMath::Vector<D, NUM> &checked, 
+                  const VecMath::Vector<D, NUM> &precondition) {
+  test(
+    VecMath::sqnorm(checked-precondition) > EPSILON,
+    checked.toString() + " != " + precondition.toString()
+  );
+}
 
+/// Explicit instantiation
+template void testEqual(const VecMath::Vector<4, double> &checked, 
+                        const VecMath::Vector<4, double> &precondition);
+/// Explicit instantiation
+template void testNotEqual(const VecMath::Vector<4, double> &checked, 
+                           const VecMath::Vector<4, double> &precondition);
   
 }
