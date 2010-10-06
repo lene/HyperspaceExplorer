@@ -20,6 +20,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "Test_RealFunction.h"
 
+#include "GlobalFunctions.h"
 #include "MockView.h"
 
 #include "MultiDimensionalVector.impl.h"
@@ -30,8 +31,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "RealFunctionImplementations.h"
 #include "ColorManager.h"
 
+using UnitTests::testGreaterEqual;
+
 using VecMath::Vector;
 using VecMath::Rotation;
+
 using std::cerr;
 using std::endl;
 using std::string;
@@ -144,9 +148,9 @@ void Test_RealFunction::getNumParameters() {
 }
 
 void Test_RealFunction::meetsFormalRequirements() {
-    QVERIFY(function_->vertices().size() >= GRID_SIZE);
-    QVERIFY(function_->vertices()[0].size() >= GRID_SIZE);
-    QVERIFY(function_->vertices()[0][0].size() >= GRID_SIZE);
+    testGreaterEqual(function_->vertices().size(), GRID_SIZE);
+    testGreaterEqual(function_->vertices()[0].size(), GRID_SIZE);
+    testGreaterEqual(function_->vertices()[0][0].size(), GRID_SIZE);
 
     QVERIFY(function_->getFunctionName() == Test_RealFunction::TEST_FUNCTION_NAME.toStdString());
 }

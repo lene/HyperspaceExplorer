@@ -472,9 +472,11 @@ Vector<4> &RealFunction::normal (double tt, double uu, double vv) {
   return n;
 }
 
+# ifndef USE_FUNCTIONHOLDER_X    
 const VecMath::MultiDimensionalVector< Vector< 4 >, 3 > &RealFunction::X() const {
   return pImpl_->X();
 }
+#endif    
 
 const VecMath::MultiDimensionalVector< Vector< 4 >, 3 > &RealFunction::Xtrans() const {
   return pImpl_->Xtrans();

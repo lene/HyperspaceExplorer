@@ -21,6 +21,8 @@
 #ifndef REAL_FUNCTION_H
 #define REAL_FUNCTION_H
 
+#undef USE_FUNCTIONHOLDER_X
+
 #include "FunctionHolder.h"
 
 #include "ParametricFunction.h"
@@ -99,7 +101,9 @@ class RealFunction: public FunctionHolder<4, 3, double> {
     unsigned getVsteps() const;
 
     /// Array of function values.
+# ifndef USE_FUNCTIONHOLDER_X    
     const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 3 > &X() const;
+#endif    
     /// Array of function values after transform.
     const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 3 > &Xtrans() const;
     /// Array of projected function values.

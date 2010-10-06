@@ -23,8 +23,16 @@ UI_HEADERS_DIR = tmp
 RCC_DIR = tmp
 
 # Input
-HEADERS += Auxiliary/MockView.h \
-           Test_Rotope.h \
+
+INCLUDEPATH += ./Auxiliary
+DEPENDPATH += ./Auxiliary
+
+HEADERS += Auxiliary/GlobalFunctions.h \
+           Auxiliary/MockView.h
+SOURCES += Auxiliary/GlobalFunctions.cpp \
+           Auxiliary/MockView.cpp
+
+HEADERS += Test_Rotope.h \
            Test_Realm.h \
            Test_Vector.h \
            Test_Matrix.h \
@@ -40,8 +48,7 @@ HEADERS += Auxiliary/MockView.h \
            Test_FunctionFactory.h \
            Test_FunctionHolder.h \
            Test_Function.h
-SOURCES += Auxiliary/MockView.cpp \
-           Test_Rotope.cpp \
+SOURCES += Test_Rotope.cpp \
            Test_Realm.cpp \
            Test_Vector.cpp \
            Test_Matrix.cpp \
