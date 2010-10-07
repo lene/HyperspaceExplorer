@@ -67,6 +67,9 @@ class FunctionHolder : public Function {
 
     virtual unsigned int getDefinitionSpaceDimensions();
 
+    virtual void for_each(function_on_fourspace_vertex apply);
+    virtual void for_each(function_on_projected_vertex apply);
+
     /** \return number of parameters for the function */
     virtual unsigned getNumParameters();
 

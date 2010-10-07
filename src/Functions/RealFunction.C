@@ -55,7 +55,6 @@ class RealFunction::Impl {
 
     void calibrateColors() const;
 
-    void for_each(function_on_fourspace_vertex apply);
     void for_each(function_on_fourspace_and_transformed_vertex apply);
     void for_each(function_on_fourspace_transformed_and_projected_vertex apply);
     void for_each(function_on_projected_vertex apply);
@@ -122,7 +121,7 @@ std::cerr << "USE_GRID_DRAWER" << std::endl;
     GridDrawer<3> draw(X(), Xscr(), view);
     draw.execute();
 # else
-    for (unsigned t = 0; t < getDefinitionRange().getNumSteps(0); t++)
+    for (unsigned t = 0; t <= getDefinitionRange().getNumSteps(0); t++)
       DrawPlane (t, view);
 # endif
 
@@ -144,13 +143,6 @@ void RealFunction::Impl::calibrateColors() const {
       }
     }
   }
-}
-
-void RealFunction::Impl::for_each(Function::function_on_fourspace_vertex apply) {
-  for (unsigned t = 0; t < getDefinitionRange().getNumSteps(0); t++)
-    for (unsigned u = 0; u < getDefinitionRange().getNumSteps(1); u++)
-      for (unsigned v = 0; v < getDefinitionRange().getNumSteps(2); v++)
-        apply(X()[t][u][v]);
 }
 
 void RealFunction::Impl::for_each(Function::function_on_fourspace_and_transformed_vertex apply) {
@@ -227,7 +219,7 @@ std::pair< double, double > RealFunction::Impl::findExtremesInW() const {
 /** \param t current t value                                                  */
 void RealFunction::Impl::DrawPlane (unsigned t, UI::View *view){
 //  ScopedTimer timer("RealFunction::DrawPlane()");
-  for (unsigned u = 0; u < getDefinitionRange().getNumSteps(1); u++)
+  for (unsigned u = 0; u <= getDefinitionRange().getNumSteps(1); u++)
     DrawStrip (t, u, view);
 }
 
@@ -235,7 +227,7 @@ void RealFunction::Impl::DrawPlane (unsigned t, UI::View *view){
 /** \param t current t value
  *  \param u current u value                                                  */
 void RealFunction::Impl::DrawStrip (unsigned t, unsigned u, UI::View *view){
-  for (unsigned v = 0; v < getDefinitionRange().getNumSteps(2); v++)
+  for (unsigned v = 0; v <= getDefinitionRange().getNumSteps(2); v++)
     DrawCube (t, u, v, view);
 }
 
@@ -330,7 +322,7 @@ Vector<4>& RealFunction::operator()(double t, double u, double v) {
 }
 
 void RealFunction::for_each(Function::function_on_fourspace_vertex apply) {
-  pImpl_->for_each(apply);
+  FunctionHolder<4,3>::for_each(apply);
 }
 
 void RealFunction::for_each(Function::function_on_fourspace_and_transformed_vertex apply) {
@@ -342,7 +334,7 @@ void RealFunction::for_each(Function::function_on_fourspace_transformed_and_proj
 }
 
 void RealFunction::for_each(Function::function_on_projected_vertex apply) {
-  pImpl_->for_each(apply);
+  FunctionHolder<4,3>::for_each(apply);
 }
 
 unsigned int RealFunction::getNumParameters() {

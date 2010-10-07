@@ -44,11 +44,11 @@ using std::string;
 MockView *globalView = NULL;
 
 void checkVertexPresent(const VecMath::Vector<4> &v) {
-  test(globalView->isVertexPresent(v), v.toString());
+  test(globalView->isVertexPresent(v), v.toString()+" present");
 }
 
 void checkVertexDrawn(const VecMath::Vector<3> &v) {
-  test(globalView->isVertexDrawn(v), v.toString());
+  test(globalView->isVertexDrawn(v), v.toString()+" drawn");
 }
 
 void checkVerticesEqual(const VecMath::Vector<4> &v1, const VecMath::Vector<4> &v2) {

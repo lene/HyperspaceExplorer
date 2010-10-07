@@ -129,20 +129,25 @@ bool MockView::isFaceDrawn(const Face<D>& face) const {
   return is_in(pImpl_->drawnFaces_, face);
 }
 
+std::ostringstream o;
+
 template <unsigned D> void printVertex(const VecMath::Vector<D> &vertex) {
   static unsigned numPrinted = 0;
-  std::cerr << vertex << " ";
-  if (++numPrinted % 4 == 0) std::cerr << std::endl;
+  o << vertex << " ";
+  if (++numPrinted % 4 == 0) o << std::endl;
 }
 
 void MockView::printVertices() const {
-  std::cerr << "\nMockView::printVertices(): " << numVerticesDrawn() << " vertices\n"
-            << "Drawn: =========================================================================\n";
-  std::for_each(pImpl_->drawnVertices_.begin(), pImpl_->drawnVertices_.end(), printVertex<3>);
-  
-  std::cerr << "\nOriginal: ======================================================================\n";
-  std::for_each(pImpl_->originalVertices_.begin(), pImpl_->originalVertices_.end(), printVertex<4>);
-  std::cerr << "\n";
+  std::cerr << toString();
 }
 
+std::string MockView::toString() const {
+  o << "\nMockView::printVertices(): " << numVerticesDrawn() << " vertices\n"
+    << "Drawn: =========================================================================\n";
+  std::for_each(pImpl_->drawnVertices_.begin(), pImpl_->drawnVertices_.end(), printVertex<3>);
 
+  o << "\nOriginal: ======================================================================\n";
+  std::for_each(pImpl_->originalVertices_.begin(), pImpl_->originalVertices_.end(), printVertex<4>);
+  o << "\n";
+  return o.str();
+}

@@ -28,6 +28,8 @@
 
 #include <memory>
 
+#undef USE_FUNCTIONHOLDER_FOREACH
+
 /// A RealFunction is a mathematical function  \f$ f: R^3 \rightarrow R \f$ .
 /** The function \em f is evaluated on a 3-dimensional cartesian grid. The
  *  function value constitutes the fourth dimension of the Function object:

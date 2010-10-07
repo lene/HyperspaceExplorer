@@ -67,6 +67,7 @@ class MockView: public UI::ViewImpl {
 
     /// Debugging output
     void printVertices() const;
+    std::string toString() const;
 
   private:
 

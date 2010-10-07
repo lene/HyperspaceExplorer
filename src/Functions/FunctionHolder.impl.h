@@ -168,6 +168,16 @@ unsigned int FunctionHolder<N, P, NUM>::getDefinitionSpaceDimensions() {
 }
 
 template <unsigned N, unsigned P, typename NUM>
+void FunctionHolder<N, P, NUM>::for_each(Function::function_on_fourspace_vertex apply) {
+  X().for_each(apply);
+}
+
+template <unsigned N, unsigned P, typename NUM>
+void FunctionHolder<N, P, NUM>::for_each(Function::function_on_projected_vertex apply) {
+  Xscr().for_each(apply);
+}
+
+template <unsigned N, unsigned P, typename NUM>
 unsigned int FunctionHolder<N, P, NUM>::getNumParameters() {
   return pImpl_->getNumParameters();
 }
