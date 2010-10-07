@@ -31,12 +31,12 @@ using std::endl;
 using VecMath::Vector;
 
 
-struct Function::Impl {
+struct Displayable::Impl {
 
   Impl() {}
   Impl(ParameterMap parameters): _parameters(parameters) { }
 
-      /// Declare a new parameter for the Function
+      /// Declare a new parameter for the Displayable
         void insertParameter(const std::string &name, FunctionParameter::parameter_ptr_type defaultValue) {
           _parameters.insert(std::make_pair(name, defaultValue));
         }
@@ -51,53 +51,53 @@ struct Function::Impl {
 
 
 /** Zeroes everything       */
-Function::Function (): pImpl_(new Impl) { }
+Displayable::Displayable (): pImpl_(new Impl) { }
 
 
-/** \param parameters Parameters for the Function.
+/** \param parameters Parameters for the Displayable.
  */
-Function::Function (ParameterMap parameters): pImpl_(new Impl(parameters)) {
+Displayable::Displayable (ParameterMap parameters): pImpl_(new Impl(parameters)) {
 # if 0
     if (MemRequired() > Globals::Instance().getMaxMemory()) {
     }
 # endif
 }
 
-Function::~Function() { }
+Displayable::~Displayable() { }
 
-void Function::resetTransform()  { Transform (VecMath::Rotation<4>(),  VecMath::Vector<4>()); }
+void Displayable::resetTransform()  { Transform (VecMath::Rotation<4>(),  VecMath::Vector<4>()); }
 
-FunctionParameter::parameter_ptr_type Function::getParameter(const std::string& name) {
+FunctionParameter::parameter_ptr_type Displayable::getParameter(const std::string& name) {
   return pImpl_->_parameters.getParameter(name);
 }
 
-unsigned int Function::getNumParameters() { return pImpl_->_parameters.size(); }
+unsigned int Displayable::getNumParameters() { return pImpl_->_parameters.size(); }
 
-FunctionParameter::value_ptr_type Function::getParameterValue(const std::string& name) {
+FunctionParameter::value_ptr_type Displayable::getParameterValue(const std::string& name) {
   return pImpl_->_parameters.getValue(name);
 }
 
 /** \todo This function is only there to provide an interface, and it's
-*  not abstract so that Function s which don't have Parameters don't
+*  not abstract so that Displayable s which don't have Parameters don't
 *  need to reimplement an unneeded method. But the present implementation
 *  does not make sense.
 */
-void Function::SetParameters(const ParameterMap& ) {
-    std::cerr << "Function::SetParameters()" << std::endl;
+void Displayable::SetParameters(const ParameterMap& ) {
+    std::cerr << "Displayable::SetParameters()" << std::endl;
 }
-ParameterMap Function::getParameters() { return pImpl_->_parameters; }
+ParameterMap Displayable::getParameters() { return pImpl_->_parameters; }
 
-void Function::for_each_vertex_transformed(Function::function_on_fourspace_and_transformed_vertex) {
+void Displayable::for_each_vertex_transformed(Displayable::function_on_fourspace_and_transformed_vertex) {
   throw NotYetImplementedException("for_each(function_on_fourspace_and_transformed_vertex)");
 }
 
-void Function::for_each_vertex_transformed_projected(Function::function_on_fourspace_transformed_and_projected_vertex) {
+void Displayable::for_each_vertex_transformed_projected(Displayable::function_on_fourspace_transformed_and_projected_vertex) {
   throw NotYetImplementedException("for_each(function_on_fourspace_transformed_and_projected_vertex)");
 }
 
 /** \todo uses hardcoded and experimentally found value for memory per cell
 *  \return approx. mem required                                              */
-unsigned long Function::MemRequired (void) {
+unsigned long Displayable::MemRequired (void) {
     return 0;
 }
 
@@ -112,12 +112,12 @@ unsigned long Function::MemRequired (void) {
  *  \param uu u value
  *  \param vv v value
  *  \return gradient in t, u and v as array                                   */
-Function::vec4vec1D Function::df (double tt, double uu, double vv) {
+Displayable::vec4vec1D Displayable::df (double tt, double uu, double vv) {
 
     static Vector<4> F;                //  f (u, v)
     static Vector<4> F0;                //  f (u, v)
     static double h = 1e-5;
-    static Function::vec4vec1D DF(3);
+    static Displayable::vec4vec1D DF(3);
 
     F0 = operator () (tt, uu, vv);
 
@@ -135,7 +135,7 @@ Function::vec4vec1D Function::df (double tt, double uu, double vv) {
 
 /// Add a parameter with a name and a default value to the parameter list
 template <typename T> inline
-    void Function::declareParameter(const std::string &name,
+    void Displayable::declareParameter(const std::string &name,
                                     const T &defaultValue) {
       if (pImpl_->_parameters.find(name) != pImpl_->_parameters.end()) return;
 
@@ -147,7 +147,7 @@ template <typename T> inline
 
 /// Add a parameter with a name and a default value to the parameter list
 template <typename T> inline
-    void Function::declareParameter(const std::string &name,
+    void Displayable::declareParameter(const std::string &name,
                                     const T &defaultValue, const T &value) {
       if (pImpl_->_parameters.find(name) != pImpl_->_parameters.end()) return;
 
@@ -160,7 +160,7 @@ template <typename T> inline
     }
 
 template <typename T> inline
-    void Function::setParameter(const ParameterMap &parms,
+    void Displayable::setParameter(const ParameterMap &parms,
                                 T &parm,
                                 const std::string &key) {
         for (ParameterMap::const_iterator i = pImpl_->_parameters.begin();
@@ -170,30 +170,30 @@ template <typename T> inline
 }
 
 // explicit instantiations
-template void Function::declareParameter(const std::string &name,
+template void Displayable::declareParameter(const std::string &name,
                                          const int &defaultValue);
-template void Function::declareParameter(const std::string &name,
+template void Displayable::declareParameter(const std::string &name,
                                          const unsigned &defaultValue);
-template void Function::declareParameter(const std::string &name,
+template void Displayable::declareParameter(const std::string &name,
                                          const double &defaultValue);
-template void Function::declareParameter(const std::string &name,
+template void Displayable::declareParameter(const std::string &name,
                                          const std::string &defaultValue);
-template void Function::declareParameter(const std::string &name,
+template void Displayable::declareParameter(const std::string &name,
                                          const VecMath::Rotation<5> &defaultValue);
-template void Function::declareParameter(const std::string &name,
+template void Displayable::declareParameter(const std::string &name,
                                          const VecMath::Rotation<6> &defaultValue);
-template void Function::declareParameter(const std::string &name,
+template void Displayable::declareParameter(const std::string &name,
                                          const VecMath::Rotation<7> &defaultValue);
-template void Function::declareParameter(const std::string &name,
+template void Displayable::declareParameter(const std::string &name,
                                          const VecMath::Rotation<8> &defaultValue);
-template void Function::declareParameter(const std::string &name,
+template void Displayable::declareParameter(const std::string &name,
                                          const VecMath::Rotation<9> &defaultValue);
-template void Function::declareParameter(const std::string &name,
+template void Displayable::declareParameter(const std::string &name,
                                          const VecMath::Rotation<10> &defaultValue);
 
-template void Function::declareParameter(const std::string &name,
+template void Displayable::declareParameter(const std::string &name,
                                          const unsigned &defaultValue,
                                          const unsigned &value);
-template void Function::declareParameter(const std::string &name,
+template void Displayable::declareParameter(const std::string &name,
                                          const double &defaultValue,
                                          const double &value);

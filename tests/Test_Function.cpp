@@ -37,7 +37,7 @@ using std::endl;
 const std::string Test_Function::TEST_FUNCTION_NAME = "FunctionTestImplementation";
 
 Test_Function::FunctionTestImplementation::FunctionTestImplementation():
-    Function() {
+    Displayable() {
   declareParameter("double parameter", 1.0);
   declareParameter("unsigned parameter", (unsigned)1);
   declareParameter("int parameter", -1);
@@ -68,8 +68,8 @@ unsigned int Test_Function::FunctionTestImplementation::getDefinitionSpaceDimens
   return Test_Function::TEST_FUNCTION_DIMENSIONS;
 }
 
-void Test_Function::FunctionTestImplementation::for_each_vertex(Function::function_on_fourspace_vertex) { }
-void Test_Function::FunctionTestImplementation::for_each_projected(Function::function_on_projected_vertex) { }
+void Test_Function::FunctionTestImplementation::for_each_vertex(Displayable::function_on_fourspace_vertex) { }
+void Test_Function::FunctionTestImplementation::for_each_projected(Displayable::function_on_projected_vertex) { }
 
 void Test_Function::FunctionTestImplementation::Initialize(void) { }
 void Test_Function::FunctionTestImplementation::ReInit(double, double, double, double, double, double, double, double, double) { }

@@ -36,7 +36,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 /** \ingroup FunctionGroup
  *  @author Lene Preuss <lene.preuss@gmail.com>
  */
-class Surface: public Function {
+class Surface: public Displayable {
 
   public:
 

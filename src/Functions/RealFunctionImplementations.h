@@ -58,7 +58,7 @@ class ParametricTestFunction: public ParametricFunction<4, 3> {
 };
 
 namespace {
-    Function *createParametricTestFunction() { return new RealFunction(new ParametricTestFunction()); }
+    Displayable *createParametricTestFunction() { return new RealFunction(new ParametricTestFunction()); }
     const bool registeredR0 = TheFunctionFactory::Instance().registerFunction(createParametricTestFunction, "RealFunction");
 }
 
@@ -108,7 +108,7 @@ class Hypersphere: public RealFunction {
 };
 
 namespace {
-    Function *createHypersphere() { return new Hypersphere(); }
+    Displayable *createHypersphere() { return new Hypersphere(); }
     const bool registeredR1 = TheFunctionFactory::Instance().registerFunction(createHypersphere, "RealFunction");
 }
 
@@ -170,7 +170,7 @@ class Torus1: public RealFunction {
 };
 
 namespace {
-    Function *createTorus1() { return new Torus1(); }
+    Displayable *createTorus1() { return new Torus1(); }
     const bool registeredR2 = TheFunctionFactory::Instance().registerFunction(createTorus1, "RealFunction");
 }
 
@@ -229,7 +229,7 @@ class Torus2: public RealFunction {
 };
 
 namespace {
-    Function *createTorus2() { return new Torus2(); }
+    Displayable *createTorus2() { return new Torus2(); }
     const bool registeredR3 = TheFunctionFactory::Instance().registerFunction(createTorus2, "RealFunction");
 }
 
@@ -270,7 +270,7 @@ class Fr3r: public RealFunction {
 };
 
 namespace {
-    Function *createFr3r() { return new Fr3r(); }
+    Displayable *createFr3r() { return new Fr3r(); }
     const bool registeredR4 = TheFunctionFactory::Instance().registerFunction(createFr3r, "RealFunction");
 }
 
@@ -327,7 +327,7 @@ class GravitationPotential: public RealFunction {
 };
 
 namespace {
-    Function *createGravitationPotential() { return new GravitationPotential(); }
+    Displayable *createGravitationPotential() { return new GravitationPotential(); }
     const bool registeredR5 = TheFunctionFactory::Instance().registerFunction(createGravitationPotential, "RealFunction");
 }
 
@@ -364,7 +364,7 @@ class Fr3rSin: public RealFunction {
 };
 
 namespace {
-    Function *createFr3rSin() { return new Fr3rSin(); }
+    Displayable *createFr3rSin() { return new Fr3rSin(); }
     const bool registeredR6 = TheFunctionFactory::Instance().registerFunction(createFr3rSin, "RealFunction");
 }
 
@@ -401,7 +401,7 @@ class Fr3rExp: public RealFunction {
 };
 
 namespace {
-    Function *createFr3rExp() { return new Fr3rExp(); }
+    Displayable *createFr3rExp() { return new Fr3rExp(); }
     const bool registeredR7 = TheFunctionFactory::Instance().registerFunction(createFr3rExp, "RealFunction");
 }
 
@@ -481,7 +481,7 @@ class PolarSin: public RealFunction {
 };
 
 namespace {
-    Function *createPolarSin() { return new PolarSin(); }
+    Displayable *createPolarSin() { return new PolarSin(); }
     const bool registeredR8 = TheFunctionFactory::Instance().registerFunction(createPolarSin, "RealFunction");
 }
 
@@ -518,7 +518,7 @@ class PolarSin2: public RealFunction {
 };
 
 namespace {
-    Function *createPolarSin2() { return new PolarSin2(); }
+    Displayable *createPolarSin2() { return new PolarSin2(); }
     const bool registeredR9 = TheFunctionFactory::Instance().registerFunction(createPolarSin2, "RealFunction");
 }
 
@@ -569,7 +569,7 @@ class PolarR: public RealFunction {
 };
 
 namespace {
-    Function *createPolarR() { return new PolarR(); }
+    Displayable *createPolarR() { return new PolarR(); }
     const bool registeredR10 = TheFunctionFactory::Instance().registerFunction(createPolarR, "RealFunction");
 }
 

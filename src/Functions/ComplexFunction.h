@@ -93,7 +93,7 @@ class z2: public ComplexFunction {
 };
 
 namespace {
-    Function *createz2() { return new z2(); }
+    Displayable *createz2() { return new z2(); }
     const bool registered1 = TheFunctionFactory::Instance().registerFunction(createz2, "ComplexFunction");
 }
 
@@ -113,7 +113,7 @@ class z3: public ComplexFunction {
 };
 
 namespace {
-    Function *createz3() { return new z3(); }
+    Displayable *createz3() { return new z3(); }
     const bool registered2 = TheFunctionFactory::Instance().registerFunction(createz3, "ComplexFunction");
 }
 
@@ -149,7 +149,7 @@ class zA: public ComplexFunction {
 };
 
 namespace {
-    Function *createzA() { return new zA(); }
+    Displayable *createzA() { return new zA(); }
     const bool registered3 = TheFunctionFactory::Instance().registerFunction(createzA, "ComplexFunction");
 }
 
@@ -184,7 +184,7 @@ class ez: public ComplexFunction {
 };
 
 namespace {
-    Function *createez() { return new ez(); }
+    Displayable *createez() { return new ez(); }
     const bool registered4 = TheFunctionFactory::Instance().registerFunction(createez, "ComplexFunction");
 }
 
@@ -219,7 +219,7 @@ class emz2: public ComplexFunction {
 };
 
 namespace {
-    Function *createemz2() { return new emz2(); }
+    Displayable *createemz2() { return new emz2(); }
     const bool registered5 = TheFunctionFactory::Instance().registerFunction(createemz2, "ComplexFunction");
 }
 
@@ -239,7 +239,7 @@ class zm1: public ComplexFunction {
 };
 
 namespace {
-    Function *createzm1() { return new zm1(); }
+    Displayable *createzm1() { return new zm1(); }
     const bool registered6 = TheFunctionFactory::Instance().registerFunction(createzm1, "ComplexFunction");
 }
 
@@ -259,7 +259,7 @@ class zm2: public ComplexFunction {
 };
 
 namespace {
-    Function *createzm2() { return new zm2(); }
+    Displayable *createzm2() { return new zm2(); }
     const bool registered7 = TheFunctionFactory::Instance().registerFunction(createzm2, "ComplexFunction");
 }
 
@@ -279,7 +279,7 @@ class sqrtz: public ComplexFunction {
 };
 
 namespace {
-    Function *createsqrtz() { return new sqrtz(); }
+    Displayable *createsqrtz() { return new sqrtz(); }
     const bool registered8 = TheFunctionFactory::Instance().registerFunction(createsqrtz, "ComplexFunction");
 }
 
@@ -299,7 +299,7 @@ class lnz: public ComplexFunction {
 };
 
 namespace {
-    Function *createlnz() { return new lnz(); }
+    Displayable *createlnz() { return new lnz(); }
     const bool registered9 = TheFunctionFactory::Instance().registerFunction(createlnz, "ComplexFunction");
 }
 
@@ -319,7 +319,7 @@ class sinz: public ComplexFunction {
 };
 
 namespace {
-    Function *createsinz() { return new sinz(); }
+    Displayable *createsinz() { return new sinz(); }
     const bool registered10 = TheFunctionFactory::Instance().registerFunction(createsinz, "ComplexFunction");
 }
 
@@ -339,7 +339,7 @@ class cosz: public ComplexFunction {
 };
 
 namespace {
-    Function *createcosz() { return new cosz(); }
+    Displayable *createcosz() { return new cosz(); }
     const bool registered11 = TheFunctionFactory::Instance().registerFunction(createcosz, "ComplexFunction");
 }
 
@@ -359,7 +359,7 @@ class sinhz: public ComplexFunction {
 };
 
 namespace {
-    Function *createsinhz() { return new sinhz(); }
+    Displayable *createsinhz() { return new sinhz(); }
     const bool registered12 = TheFunctionFactory::Instance().registerFunction(createsinhz, "ComplexFunction");
 }
 
@@ -379,7 +379,7 @@ class coshz: public ComplexFunction {
 };
 
 namespace {
-    Function *createcoshz() { return new coshz(); }
+    Displayable *createcoshz() { return new coshz(); }
     const bool registered13 = TheFunctionFactory::Instance().registerFunction(createcoshz, "ComplexFunction");
 }
 
@@ -399,7 +399,7 @@ class tanz: public ComplexFunction {
 };
 
 namespace {
-    Function *createtanz() { return new tanz(); }
+    Displayable *createtanz() { return new tanz(); }
     const bool registered14 = TheFunctionFactory::Instance().registerFunction(createtanz, "ComplexFunction");
 }
 

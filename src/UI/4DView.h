@@ -32,7 +32,7 @@ class QPaintEvent;
 class QStatusBar;
 
 class C4DView;
-class Function;
+class Displayable;
 class RealFunction;
 class Surface;
 
@@ -270,7 +270,7 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         void checkAnglesForOverflow();
         void UpdateStatus(QString = "");
 
-        void AssignValues(const std::tr1::shared_ptr<Function> &);
+        void AssignValues(const std::tr1::shared_ptr<Displayable> &);
 
         double Size();
 

@@ -201,7 +201,7 @@ Vector<4>& RealFunction::operator()(double t, double u, double v) {
 
 /** \todo get rid of this function. */
 unsigned int RealFunction::getNumParameters() {
-  return Function::getNumParameters();
+  return Displayable::getNumParameters();
 }
 
 /// Re-initialize a RealFunction if the definition set has changed
@@ -231,7 +231,7 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
 Vector<4> &RealFunction::normal (double tt, double uu, double vv) {
   static Vector<4> n;
 
-  Function::vec4vec1D D = df (tt, uu, vv);
+  Displayable::vec4vec1D D = df (tt, uu, vv);
 
   n = VecMath::vcross (D[0], D[1], D[2]);
   VecMath::vnormalize (n);

@@ -26,7 +26,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <map>
 
-class Function;
+class Displayable;
 
 /// Factory class creating Function objects given the name of their class
 /** The factory is instantiated as singleton in the variable (in fact, class)
@@ -60,7 +60,7 @@ class FunctionFactory {
 
     public:
         /// callback function generating a Function and returning a Function*
-        typedef Function *(*CreateFunctionCallback)();
+        typedef Displayable *(*CreateFunctionCallback)();
 
         /// Thrown by createFunction() when \p name does not map to a function.
         class BadFunctionException: public std::runtime_error {
@@ -103,7 +103,7 @@ class FunctionFactory {
         /// Create an object derived from Function, given the name of its class
         /** \param name The class name of the created Function object
          *  \return a newly created object of class "name"                    */
-        Function *createFunction(const std::string &name);
+        Displayable *createFunction(const std::string &name);
 
         /// \todo implement me!
         std::vector<std::string> listFunctions();

@@ -30,7 +30,7 @@ class Test_Function: public QObject {
 
   Q_OBJECT
 
-  class FunctionTestImplementation: public Function {
+  class FunctionTestImplementation: public Displayable {
   public:
     FunctionTestImplementation();
 
@@ -94,7 +94,7 @@ private slots:
   void rotationAsParameter();
 
 private:
-  Function *_function;
+  Displayable *_function;
 
   const static std::string TEST_FUNCTION_NAME;
   const static unsigned TEST_FUNCTION_DIMENSIONS = 3;

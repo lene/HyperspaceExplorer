@@ -91,7 +91,7 @@ protected:
 };
 
 namespace {
-    Function *createAltSponge() { return new AltSponge(); }
+    Displayable *createAltSponge() { return new AltSponge(); }
     const bool registeredAS = TheFunctionFactory::Instance().registerFunction(createAltSponge, "Object");
 }
 
@@ -186,7 +186,7 @@ protected:
 };
 
 namespace {
-    Function *createSponge() { return new Sponge(); }
+    Displayable *createSponge() { return new Sponge(); }
     const bool registeredS = TheFunctionFactory::Instance().registerFunction(createSponge, "Object");
 }
 

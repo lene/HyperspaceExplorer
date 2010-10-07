@@ -55,7 +55,7 @@ namespace UI {
         *  \li Shows as many sliders to adjust the size of the grid the function is
         *      evaluated on, as the definition space of the function has dimensions
         *  \li Only displays labels for the parts of the dialog which are shown      */
-        void ValuesDialogImpl::setFunction(const std::tr1::shared_ptr< Function >&F) {
+        void ValuesDialogImpl::setFunction(const std::tr1::shared_ptr< Displayable >&F) {
             setParameters(F->getParameters());
 
             for (unsigned i = 0; i < F->getDefinitionSpaceDimensions(); ++i) {

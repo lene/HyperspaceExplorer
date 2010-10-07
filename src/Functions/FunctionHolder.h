@@ -47,7 +47,7 @@ template <unsigned P> class DefinitionRangeOfDimension;
  *  @author Lene Preuss <lene.preuss@gmail.com>
  */
 template <unsigned N, unsigned P, typename NUM = double>
-class FunctionHolder : public Function {
+class FunctionHolder : public Displayable {
 
   public:
 

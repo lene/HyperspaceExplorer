@@ -38,13 +38,13 @@ ColorManager::ColorManager():
         offset4Ddepthcue(0.1) { }
 
 /** \param _f The Function for which to manage colors */
-ColorManager::ColorManager(Function *_f):
+ColorManager::ColorManager(Displayable *_f):
         f(_f),
         ambientColorModifier(0.5), specularColorModifier(2.),
         specularColorMinimum(0.5), SHININESS(32.), ALPHA(0.8),
         offset4Ddepthcue(0.1) { }
 
-void ColorManager::setFunction(Function *_f) {
+void ColorManager::setFunction(Displayable *_f) {
     f = _f;
     f->calibrateColors();
 }
@@ -87,7 +87,7 @@ ColorManagerManager::ColorManagerUnsetException::ColorManagerUnsetException(
     std::logic_error("ColorManagerManager::"+functionName+"() called before a ColorManager was set") { }
 
 void ColorManagerManager::setColorManager(ColorManager* cm) {
-    Function *ftmp = 0;
+    Displayable *ftmp = 0;
     if (colorManager.get()) ftmp = colorManager->getFunction();
     colorManager.reset(cm);
     if (ftmp) cm->setFunction(ftmp);
@@ -97,7 +97,7 @@ bool ColorManagerManager::isColorManagerSet() const {
     return (bool)colorManager.get();
 }
 
-void ColorManagerManager::setFunction(Function* _f) {
+void ColorManagerManager::setFunction(Displayable* _f) {
     if (isColorManagerSet()) colorManager->setFunction(_f);
 //    throw ColorManagerUnsetException("setFunction");
 }
@@ -183,7 +183,7 @@ void ColorManagerManager::setColorManager(const std::string &name) {
 ////////////////////////////////////////////////////////////////////////////////
 
 /** \param _f new Function to manage    */
-void xyz2RGBColorManager::setFunction(Function *_f) {
+void xyz2RGBColorManager::setFunction(Displayable *_f) {
     col.clear();
     ColorManager::setFunction(_f);
 }
@@ -314,13 +314,13 @@ Fastxyz2RGBColorManager::Fastxyz2RGBColorManager():
         _opacityRange(0.6) { }
 
 /** \param _f Function to manage    */
-Fastxyz2RGBColorManager::Fastxyz2RGBColorManager(Function *_f):
+Fastxyz2RGBColorManager::Fastxyz2RGBColorManager(Displayable *_f):
         ColorManager(_f),
         _xmin(0), _xmax(0), _ymin(0), _ymax(0), _zmin(0), _zmax (0), _wmin(0), _wmax (0),
         _opacityRange(0.6) { }
 
 /** \param _f new Function to manage    */
-void Fastxyz2RGBColorManager::setFunction(Function *_f) {
+void Fastxyz2RGBColorManager::setFunction(Displayable *_f) {
     _xmin = _xmax = _ymin = _ymax = _zmin = _zmax = _wmin = _wmax = 0;
     ColorManager::setFunction(_f);
 }
@@ -367,7 +367,7 @@ void Fastxyz2RGBColorManager::depthCueColor(double, double, double,
 ////////////////////////////////////////////////////////////////////////////////
 
 /** \param _f new Function to manage    */
-void depth2RGBColorManager::setFunction(Function *_f) {
+void depth2RGBColorManager::setFunction(Displayable *_f) {
     _wmin = 1e6; _wmax = -1e6;
     ColorManager::setFunction(_f);
 }

@@ -169,25 +169,25 @@ void Surface::Impl::calibrateColors() const {
 
 }
 
-void Surface::Impl::for_each(Function::function_on_fourspace_vertex apply) {
+void Surface::Impl::for_each(Displayable::function_on_fourspace_vertex apply) {
   for (unsigned t = 0; t < definitionRange_.getTsteps(); t++)
     for (unsigned u = 0; u < definitionRange_.getUsteps(); u++)
       apply(X()[t][u]);
 }
 
-void Surface::Impl::for_each(Function::function_on_fourspace_and_transformed_vertex apply) {
+void Surface::Impl::for_each(Displayable::function_on_fourspace_and_transformed_vertex apply) {
   for (unsigned t = 0; t < definitionRange_.getTsteps(); t++)
     for (unsigned u = 0; u < definitionRange_.getUsteps(); u++)
       apply(X()[t][u], Xtrans()[t][u]);
 }
 
-void Surface::Impl::for_each(Function::function_on_fourspace_transformed_and_projected_vertex apply) {
+void Surface::Impl::for_each(Displayable::function_on_fourspace_transformed_and_projected_vertex apply) {
   for (unsigned t = 0; t < definitionRange_.getTsteps(); t++)
     for (unsigned u = 0; u < definitionRange_.getUsteps(); u++)
       apply(X()[t][u], Xtrans()[t][u], Xscr()[t][u]);
 }
 
-void Surface::Impl::for_each(Function::function_on_projected_vertex apply) {
+void Surface::Impl::for_each(Displayable::function_on_projected_vertex apply) {
   for (unsigned t = 0; t < definitionRange_.getTsteps(); t++)
     for (unsigned u = 0; u < definitionRange_.getUsteps(); u++)
       apply(Xscr()[t][u]);
@@ -235,7 +235,7 @@ void Surface::Impl::setBoundariesAndStepwidth(double tmin, double tmax, double d
 
 /// Surface default c'tor, zeroes everything
 Surface::Surface ():
-  Function(ParameterMap()),
+  Displayable(ParameterMap()),
   pImpl_(new Impl(
     DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep,
     DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep)) { }
@@ -252,7 +252,7 @@ Surface::Surface ():
 Surface::Surface (double _umin, double _umax, double _du,
                   double _vmin, double _vmax, double _dv,
                   ParameterMap _parms):
-    Function(_parms), pImpl_(new Impl(_umin, _umax, _du, _vmin, _vmax, _dv)) { }
+    Displayable(_parms), pImpl_(new Impl(_umin, _umax, _du, _vmin, _vmax, _dv)) { }
 
 Surface::~Surface() { }
 
@@ -287,7 +287,7 @@ void Surface::ReInit(double, double, double,
 
 unsigned int Surface::getDefinitionSpaceDimensions() { return 2; }
 
-void Surface::for_each_vertex(Function::function_on_fourspace_vertex apply) {
+void Surface::for_each_vertex(Displayable::function_on_fourspace_vertex apply) {
   pImpl_->for_each(apply);
 }
 
@@ -299,7 +299,7 @@ void Surface::for_each_vertex_transformed_projected(function_on_fourspace_transf
   pImpl_->for_each(apply);
 }
 
-void Surface::for_each_projected(Function::function_on_projected_vertex apply) {
+void Surface::for_each_projected(Displayable::function_on_projected_vertex apply) {
   pImpl_->for_each(apply);
 }
 
@@ -323,7 +323,7 @@ Vector< 4 >& Surface::operator()(double u, double v, double ) {
 Vector<4> &Surface::normal (double uu, double vv) {
     static Vector<4> n;
 
-    Function::vec4vec1D D = df(uu, vv);
+    Displayable::vec4vec1D D = df(uu, vv);
 
     n = VecMath::vcross(D[0], D[1], D[2]);
     VecMath::vnormalize(n);
@@ -341,12 +341,12 @@ Vector<4> &Surface::normal (double uu, double vv) {
  *  @param uu u value
  *  @param vv v value
  *  @return gradient in t, u and v as array                                   */
-Function::vec4vec1D Surface::df (double uu, double vv) {
+Displayable::vec4vec1D Surface::df (double uu, double vv) {
 
     static Vector<4> F0, F;        //  f (u, v)
     static double h = 1e-5;     //  maybe tweak to get best results
 
-    static Function::vec4vec1D DF(3);
+    static Displayable::vec4vec1D DF(3);
 
     F0 = operator() (uu, vv);
 

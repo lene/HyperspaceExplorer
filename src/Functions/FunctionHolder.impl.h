@@ -145,7 +145,7 @@ void FunctionHolder<N, P, NUM>::Impl::Initialize () {
 
 template <unsigned N, unsigned P, typename NUM>
 FunctionHolder<N, P, NUM>::FunctionHolder(shared_ptr< function_type > f):
-  Function(ParameterMap()),
+  Displayable(ParameterMap()),
   pImpl_(new Impl(
       f,
       DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep,
@@ -154,7 +154,7 @@ FunctionHolder<N, P, NUM>::FunctionHolder(shared_ptr< function_type > f):
 
 template <unsigned N, unsigned P, typename NUM>
 FunctionHolder<N, P, NUM>::FunctionHolder(ParameterMap parms):
-  Function(parms),
+  Displayable(parms),
   pImpl_(new Impl(
       DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep,
       DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep,
@@ -188,22 +188,22 @@ unsigned int FunctionHolder<N, P, NUM>::getDefinitionSpaceDimensions() {
 }
 
 template <unsigned N, unsigned P, typename NUM>
-void FunctionHolder<N, P, NUM>::for_each_vertex(Function::function_on_fourspace_vertex apply) {
+void FunctionHolder<N, P, NUM>::for_each_vertex(Displayable::function_on_fourspace_vertex apply) {
   X().for_each(apply);
 }
 
 template <unsigned N, unsigned P, typename NUM>
-void FunctionHolder<N, P, NUM>::for_each_vertex_transformed(Function::function_on_fourspace_and_transformed_vertex apply) {
+void FunctionHolder<N, P, NUM>::for_each_vertex_transformed(Displayable::function_on_fourspace_and_transformed_vertex apply) {
   VecMath::for_each(X(), Xtrans(), apply);
 }
 
 template <unsigned N, unsigned P, typename NUM>
-void FunctionHolder<N, P, NUM>::for_each_vertex_transformed_projected(Function::function_on_fourspace_transformed_and_projected_vertex apply) {
+void FunctionHolder<N, P, NUM>::for_each_vertex_transformed_projected(Displayable::function_on_fourspace_transformed_and_projected_vertex apply) {
   VecMath::for_each(X(), Xtrans(), Xscr(), apply);
 }
 
 template <unsigned N, unsigned P, typename NUM>
-void FunctionHolder<N, P, NUM>::for_each_projected(Function::function_on_projected_vertex apply) {
+void FunctionHolder<N, P, NUM>::for_each_projected(Displayable::function_on_projected_vertex apply) {
   Xscr().for_each(apply);
 }
 

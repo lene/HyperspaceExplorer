@@ -41,7 +41,7 @@ namespace UI {
     struct ViewImpl::Impl {
 
       Impl():
-        _F(std::tr1::shared_ptr<Function>()),
+        _F(std::tr1::shared_ptr<Displayable>()),
         _colors(true), _coordinates(false), _fog(true), _hyperfog(false),
         _lighting(true), _shading(true), _solid(true), _transparence(false),
         _background (0.25, 0.25, 0.25, 1.),
@@ -52,7 +52,7 @@ namespace UI {
         _imageDir("/tmp"),
         _imagePrefix("HyperspaceExplorer_Image") { }
 
-      std::tr1::shared_ptr<Function> _F;  ///< the Function object currently displayed
+      std::tr1::shared_ptr<Displayable> _F;  ///< the Function object currently displayed
 
       bool _colors;       ///< whether to use colors in rendering
       bool _coordinates;  ///< whether to display the 4D coordinate cross
@@ -88,9 +88,9 @@ namespace UI {
     ViewImpl::ViewImpl():
         View(), pImpl_(new Impl) { }
 
-    const std::tr1::shared_ptr< Function >& ViewImpl::F() const { return pImpl_->_F; }
+    const std::tr1::shared_ptr< Displayable >& ViewImpl::F() const { return pImpl_->_F; }
 
-    void ViewImpl::setF(Function* _f) { pImpl_->_F.reset(_f); }
+    void ViewImpl::setF(Displayable* _f) { pImpl_->_F.reset(_f); }
 
     const VecMath::Rotation< 4 >& ViewImpl::getdR() { return pImpl_->_dR; }
 

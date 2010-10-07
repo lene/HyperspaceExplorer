@@ -50,7 +50,7 @@ private:
 };
 
 namespace {
-    Function *createSurface1() { return new Surface1(); }
+    Displayable *createSurface1() { return new Surface1(); }
     const bool registeredS1 =
             TheFunctionFactory::Instance().registerFunction(createSurface1, "Surface");
 }
@@ -85,7 +85,7 @@ private:
 };
 
 namespace {
-    Function *createHorizon() { return new Horizon(); }
+    Displayable *createHorizon() { return new Horizon(); }
     const bool registeredS2 =
             TheFunctionFactory::Instance().registerFunction(createHorizon, "Surface");
 }
@@ -111,7 +111,7 @@ private:
 };
 
 namespace {
-    Function *createTorus3() { return new Torus3(); }
+    Displayable *createTorus3() { return new Torus3(); }
     const bool registeredS3 =
             TheFunctionFactory::Instance().registerFunction(createTorus3, "Surface");
 }

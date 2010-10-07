@@ -27,7 +27,7 @@ using std::vector;
 
 const std::string Test_FunctionFactory::TEST_FUNCTION_NAME = "Test_FunctionFactory";
 
-Function *createTest() { return new Test_FunctionFactory::FunctionTestImplementation(); }
+Displayable *createTest() { return new Test_FunctionFactory::FunctionTestImplementation(); }
 
 void Test_FunctionFactory::registerFunction() {
     TheFunctionFactory::Instance().registerFunction(createTest, "RealFunction");
@@ -50,7 +50,7 @@ void Test_FunctionFactory::unregisterFunction() {
     }
 
     try {
-        Function *f = TheFunctionFactory::Instance().createFunction(TEST_FUNCTION_NAME);
+        Displayable *f = TheFunctionFactory::Instance().createFunction(TEST_FUNCTION_NAME);
         QFAIL((TEST_FUNCTION_NAME+" not present in callback list, but it's still possible to create one").c_str());
     } catch (FunctionFactory::BadFunctionException &e) { }
 }
@@ -60,7 +60,7 @@ void Test_FunctionFactory::createFunction(){
 
     TheFunctionFactory::Instance().registerFunction(createTest, "RealFunction");
 
-    Function *f = TheFunctionFactory::Instance().createFunction(TEST_FUNCTION_NAME);
+    Displayable *f = TheFunctionFactory::Instance().createFunction(TEST_FUNCTION_NAME);
 
     QVERIFY(dynamic_cast<Test_FunctionFactory::FunctionTestImplementation *>(f) == f);
 }

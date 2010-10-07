@@ -33,7 +33,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Log.h"
 #include "ParameterMap.h"
 
-class Function;
+class Displayable;
 
 namespace UI {
     namespace Dialogs {
@@ -54,7 +54,7 @@ namespace UI {
                 ValuesDialogImpl(QWidget *parent = 0, Qt::WFlags f = 0);
                 virtual ~ValuesDialogImpl() {}
 
-                void setFunction(const std::tr1::shared_ptr<Function> &);
+                void setFunction(const std::tr1::shared_ptr<Displayable> &);
 
                 std::string print ();
 

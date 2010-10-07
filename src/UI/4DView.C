@@ -692,7 +692,7 @@ void C4DView::UpdateStatus (QString status) {
 /** Changes the display on the status bar and the number and names of the
  *  parameters and grid parameters on the ValuesDialog
  *  @param F the Function object for which the ValuesDialog is changed        */
-void C4DView::AssignValues (const std::tr1::shared_ptr<Function> &F) {
+void C4DView::AssignValues (const std::tr1::shared_ptr<Displayable> &F) {
 
     if (!F->getFunctionName().empty()) {
         setWindowTitle(F->getFunctionName().c_str());

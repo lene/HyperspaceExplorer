@@ -26,7 +26,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 bool FunctionFactory::registerFunction(CreateFunctionCallback creator,
                                        const std::string &) {
 
-    std::tr1::shared_ptr<Function> theFunction(creator());
+    std::tr1::shared_ptr<Displayable> theFunction(creator());
 
     std::string functionName = theFunction->getFunctionName();
 
@@ -39,7 +39,7 @@ bool FunctionFactory::unregisterFunction(const std::string &name) {
 }
 
 
-Function *FunctionFactory::createFunction(const std::string &name) {
+Displayable *FunctionFactory::createFunction(const std::string &name) {
     std::cerr << "FunctionFactory::createFunction(" << name << ")\n";
     CallbackMap::const_iterator i = callbacks.find(name);
     if (i == callbacks.end()) throw BadFunctionException(name);

@@ -68,15 +68,15 @@ class ColorManager {
         ColorManager();
 
         /// Create a ColorManager for a given Function
-        ColorManager(Function *);
+        ColorManager(Displayable *);
 
         virtual ~ColorManager() { }
 
         /// Set the function we are managing
-        virtual void setFunction(Function *);
+        virtual void setFunction(Displayable *);
 
         /// Access to the managed Function
-        Function *getFunction() const { return f; }
+        Displayable *getFunction() const { return f; }
 
         /// Point (x, y, z) has color col. This may serve for interpolation.
         virtual void calibrateColor(const VecMath::Vector<4> &x,
@@ -119,7 +119,7 @@ class ColorManager {
         double getAlpha() { return ALPHA; }
 
     private:
-        Function* f;      ///< Function for which to manage colors
+        Displayable* f;      ///< Function for which to manage colors
 
         /// value to multiply a color with to get its ambient value
         double ambientColorModifier;
@@ -171,7 +171,7 @@ class ColorManagerManager {
         void setColorManager(ColorManager *cm);
 
         /// proxy function for ColorManager::setFunction()
-        void setFunction(Function *_f);
+        void setFunction(Displayable *_f);
 
         /// proxy function for ColorManager::calibrateColor()
         void calibrateColor(const VecMath::Vector<4> &, const Color & = Color());
@@ -251,12 +251,12 @@ class xyz2RGBColorManager: public ColorManager {
 
         /// Given a Function to manage, construct a xyz2RGBColorManager
         /** \param _f Function to manage    */
-        xyz2RGBColorManager(Function *_f): ColorManager(_f), col(colormap()) { }
+        xyz2RGBColorManager(Displayable *_f): ColorManager(_f), col(colormap()) { }
 
         virtual ~xyz2RGBColorManager() { }
 
         /// set the managed Function
-        virtual void setFunction(Function *);
+        virtual void setFunction(Displayable *);
 
         virtual void calibrateColor(const VecMath::Vector<4> &x,
                                     const Color &_col = Color());
@@ -294,12 +294,12 @@ class Fastxyz2RGBColorManager: public ColorManager {
         Fastxyz2RGBColorManager();
 
         /// Given a Function to manage, construct a xyz2RGBColorManager
-        Fastxyz2RGBColorManager(Function *);
+        Fastxyz2RGBColorManager(Displayable *);
 
         virtual ~Fastxyz2RGBColorManager() { }
 
         /// set the managed Function
-        virtual void setFunction(Function *);
+        virtual void setFunction(Displayable *);
 
         virtual void calibrateColor(const VecMath::Vector<4> &,
                                     const Color & = Color());
@@ -339,13 +339,13 @@ class depth2RGBColorManager: public ColorManager {
 
         /// Given a Function to manage, construct a depth2RGBColorManager
         /** \param _f Function to manage    */
-        depth2RGBColorManager(Function *_f):
+        depth2RGBColorManager(Displayable *_f):
             ColorManager(_f), _wmin(1e6), _wmax(-1e6) { }
 
         virtual ~depth2RGBColorManager() { }
 
         /// set the managed Function
-        virtual void setFunction(Function *);
+        virtual void setFunction(Displayable *);
 
         virtual void calibrateColor(const VecMath::Vector<4> &,
                                     const Color & = Color());
@@ -381,7 +381,7 @@ class monochromeColorManager: public ColorManager {
 
         /// Given a Function to manage, construct a monochromeColorManager
         /** \param _f Function to manage    */
-        monochromeColorManager(Function *_f): ColorManager(_f) { }
+        monochromeColorManager(Displayable *_f): ColorManager(_f) { }
 
         virtual ~monochromeColorManager() { }
 

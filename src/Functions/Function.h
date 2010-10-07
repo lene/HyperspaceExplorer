@@ -48,8 +48,8 @@ class ParameterMap;
 /// \defgroup ComplexGroup Functions C -> C
 /// \ingroup SurfaceGroup
 
-/// A Function is a generalized four-dimensional mathematical function
-/** The Function interface provides abstract members for the evaluation of
+/// A Displayable is a generalized four-dimensional object
+/** The Displayable interface provides abstract members for the evaluation of
  *  the function values, usually on a grid, together with methods to rotate and
  *  translate the resulting four-dimensional geometry in 4-space, to project the
  *  transformed geometry onto 3-space, and to draw the projected grid into an
@@ -76,7 +76,7 @@ class ParameterMap;
  *  other useful members:
  *      \li Transform ()
  *
- *  Function objects can be created directly via their various constructors, or
+ *  Displayable objects can be created directly via their various constructors, or
  *  via the createFunction() method of the FunctionFactory class. To enable the
  *  latter, a Function's definition must be augmented by the following code
  *  (for example):
@@ -88,12 +88,14 @@ class ParameterMap;
  *  }
  *  \endcode
  *
+ *  \todo Update this documentation
+ *  \todo Rename other references to the name "Function"
  *  \todo Vector &normal (double, double, double); - or in derived classes?
  *  \todo  operator () (double t, double u, double v) - ditto
  *
  *  \ingroup FunctionGroup
  *  \author Helge Preuss <lene.preuss@gmail.com>                         */
-class Function {
+class Displayable {
 
     public:
 
@@ -131,10 +133,10 @@ class Function {
         typedef void(*function_on_projected_vertex)(const VecMath::Vector<3, double> &);
 
         /// Function default c'tor
-        Function();
+        Displayable();
         /// Function c'tor given a definition set in \f$ R^3 \f$ (as parameter space)
-        Function (ParameterMap parameters);
-        virtual ~Function();
+        Displayable (ParameterMap parameters);
+        virtual ~Displayable();
 
         /// Execute the desired rotation and translation to the Function object
         virtual void Transform (const VecMath::Rotation<4, double> &R,

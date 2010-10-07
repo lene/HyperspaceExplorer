@@ -59,7 +59,7 @@ namespace Script {
     /** @todo make a map (or something like that) to call the right function for
     *        the string supplied as argument                                     */
     bool ObjectStmt::execute() {
-        Function *f = TheFunctionFactory::Instance().createFunction(arg());
+        Displayable *f = TheFunctionFactory::Instance().createFunction(arg());
         if (!f) return false;
         parser()->getView()->setF(f);
         return true;

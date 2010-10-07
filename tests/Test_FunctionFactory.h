@@ -55,7 +55,7 @@ private:
 
   void printRegisteredFunctions();
 
-  Function *_function;
+  Displayable *_function;
 
   const static std::string TEST_FUNCTION_NAME;
 

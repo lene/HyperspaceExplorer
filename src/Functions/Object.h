@@ -44,7 +44,7 @@ struct EmptyType {};
  *  Instead it is described as a set of surfaces.
  *  \ingroup FunctionGroup
  *  @author Helge Preuss <lene.preuss@gmail.com>                         */
-class Object: public Function {
+class Object: public Displayable {
     public:
 
         Object (unsigned, unsigned);
@@ -263,7 +263,7 @@ public:
 };
 
 namespace {
-    Function *createHypercube() { return new Hypercube; }
+    Displayable *createHypercube() { return new Hypercube; }
     const bool registeredH = TheFunctionFactory::Instance().registerFunction(createHypercube, "Object");
 }
 
@@ -302,7 +302,7 @@ protected:
 };
 
 namespace {
-    Function *createPyramid() { return new Pyramid(); }
+    Displayable *createPyramid() { return new Pyramid(); }
     const bool registeredP =
             TheFunctionFactory::Instance().registerFunction(createPyramid, "Object");
 }
@@ -360,7 +360,7 @@ class Gasket: public Pyramid {
 };
 
 namespace {
-    Function *createGasket() { return new Gasket(); }
+    Displayable *createGasket() { return new Gasket(); }
     const bool registeredG =
             TheFunctionFactory::Instance().registerFunction(createGasket, "Object");
 }

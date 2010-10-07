@@ -25,7 +25,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <vector>
 
-class Function;
+class Displayable;
 class Light;
 namespace VecMath {
   template <typename T, unsigned D> class MultiDimensionalVector;
@@ -54,10 +54,10 @@ namespace UI {
             virtual ~View() { }
 
             /// \return The currently displayed object
-            virtual const std::tr1::shared_ptr<Function> &F() const = 0;
+            virtual const std::tr1::shared_ptr<Displayable> &F() const = 0;
             /// Set the currently displayed object to the given Function
             /** \param f The object to be set */
-            virtual void setF(Function *f) = 0;
+            virtual void setF(Displayable *f) = 0;
 
             /// Set the currently displayed object to a hypercube
             /** Necessary because I don't see a way to set the displayed object

@@ -45,7 +45,7 @@ using VecMath::Matrix;
  *  @param vertices number of vertices
  *  @param surfaces number of surfaces                                        */
 Object::Object (unsigned vertices, unsigned surfaces):
-        Function (),
+        Displayable(),
         X(vec4vec1D(vertices)), Xtrans(vec4vec1D(vertices)), Xscr(vec3vec1D()),
         Surface(surfaces) {
 
@@ -144,11 +144,11 @@ void Object::ReInit (double, double, double,
     Initialize();
 }
 
-void Object::for_each_vertex(Function::function_on_fourspace_vertex apply) {
+void Object::for_each_vertex(Displayable::function_on_fourspace_vertex apply) {
   std::for_each(X.begin(), X.end(), apply);
 }
 
-void Object::for_each_projected(Function::function_on_projected_vertex apply) {
+void Object::for_each_projected(Displayable::function_on_projected_vertex apply) {
   std::for_each(Xscr.begin(), Xscr.end(), apply);
 }
 
