@@ -68,8 +68,8 @@ unsigned int Test_Function::FunctionTestImplementation::getDefinitionSpaceDimens
   return Test_Function::TEST_FUNCTION_DIMENSIONS;
 }
 
-void Test_Function::FunctionTestImplementation::for_each(Function::function_on_fourspace_vertex) { }
-void Test_Function::FunctionTestImplementation::for_each(Function::function_on_projected_vertex) { }
+void Test_Function::FunctionTestImplementation::for_each_vertex(Function::function_on_fourspace_vertex) { }
+void Test_Function::FunctionTestImplementation::for_each_projected(Function::function_on_projected_vertex) { }
 
 void Test_Function::FunctionTestImplementation::Initialize(void) { }
 void Test_Function::FunctionTestImplementation::ReInit(double, double, double, double, double, double, double, double, double) { }

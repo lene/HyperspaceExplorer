@@ -49,8 +49,8 @@ class Test_Function: public QObject {
     virtual void calibrateColors() const;
     virtual unsigned getDefinitionSpaceDimensions();
 
-    virtual void for_each(function_on_fourspace_vertex apply);
-    virtual void for_each(function_on_projected_vertex apply);
+    virtual void for_each_vertex(function_on_fourspace_vertex apply);
+    virtual void for_each_projected(function_on_projected_vertex apply);
 
     double _doubleParm;
     unsigned _unsignedParm;

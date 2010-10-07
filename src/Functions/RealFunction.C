@@ -321,19 +321,19 @@ Vector<4>& RealFunction::operator()(double t, double u, double v) {
   return F;
 }
 
-void RealFunction::for_each(Function::function_on_fourspace_vertex apply) {
-  FunctionHolder<4,3>::for_each(apply);
+void RealFunction::for_each_vertex(Function::function_on_fourspace_vertex apply) {
+  FunctionHolder<4,3>::for_each_vertex(apply);
 }
 
-void RealFunction::for_each(Function::function_on_fourspace_and_transformed_vertex apply) {
+void RealFunction::for_each_vertex_transformed(Function::function_on_fourspace_and_transformed_vertex apply) {
   pImpl_->for_each(apply);
 }
 
-void RealFunction::for_each(Function::function_on_fourspace_transformed_and_projected_vertex apply) {
+void RealFunction::for_each_vertex_transformed_projected(Function::function_on_fourspace_transformed_and_projected_vertex apply) {
   pImpl_->for_each(apply);
 }
 
-void RealFunction::for_each(Function::function_on_projected_vertex apply) {
+void RealFunction::for_each_projected(Function::function_on_projected_vertex apply) {
   FunctionHolder<4,3>::for_each(apply);
 }
 

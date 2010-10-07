@@ -168,7 +168,7 @@ unsigned int FunctionHolder<N, P, NUM>::getDefinitionSpaceDimensions() {
 }
 
 template <unsigned N, unsigned P, typename NUM>
-void FunctionHolder<N, P, NUM>::for_each(Function::function_on_fourspace_vertex apply) {
+void FunctionHolder<N, P, NUM>::for_each_vertex(Function::function_on_fourspace_vertex apply) {
   X().for_each(apply);
 }
 

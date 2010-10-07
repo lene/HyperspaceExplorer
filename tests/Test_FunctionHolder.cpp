@@ -39,8 +39,8 @@ class TestFunctionHolder: public FunctionHolder<4,3> {
                         double, double, double) { }
     virtual void calibrateColors() const { }
     virtual std::string getFunctionName() const { return ""; }
-    virtual void for_each(function_on_fourspace_vertex apply) { }
-    virtual void for_each(function_on_projected_vertex apply) { }
+    virtual void for_each_vertex(function_on_fourspace_vertex apply) { }
+    virtual void for_each_projected(function_on_projected_vertex apply) { }
     virtual VecMath::Vector<4> &operator () (double, double, double) {
       static VecMath::Vector<4> v;
       return v;

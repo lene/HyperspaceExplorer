@@ -287,19 +287,19 @@ void Surface::ReInit(double, double, double,
 
 unsigned int Surface::getDefinitionSpaceDimensions() { return 2; }
 
-void Surface::for_each(Function::function_on_fourspace_vertex apply) {
+void Surface::for_each_vertex(Function::function_on_fourspace_vertex apply) {
   pImpl_->for_each(apply);
 }
 
-void Surface::for_each(function_on_fourspace_and_transformed_vertex apply) {
+void Surface::for_each_vertex_transformed(function_on_fourspace_and_transformed_vertex apply) {
   pImpl_->for_each(apply);
 }
 
-void Surface::for_each(function_on_fourspace_transformed_and_projected_vertex apply) {
+void Surface::for_each_vertex_transformed_projected(function_on_fourspace_transformed_and_projected_vertex apply) {
   pImpl_->for_each(apply);
 }
 
-void Surface::for_each(Function::function_on_projected_vertex apply) {
+void Surface::for_each_projected(Function::function_on_projected_vertex apply) {
   pImpl_->for_each(apply);
 }
 

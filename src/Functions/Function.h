@@ -185,7 +185,7 @@ class Function {
                                                 const std::string &key);
 
         /// Loop over all vertices managed by the Function and call apply on them.
-        virtual void for_each(function_on_fourspace_vertex apply) = 0;
+        virtual void for_each_vertex(function_on_fourspace_vertex apply) = 0;
         /// Loop over all vertices managed by the Function and their transformed
         /// images and call apply on them.
         /** This function is not pure virtual because it would be too tedious to
@@ -193,7 +193,7 @@ class Function {
          *
          *  The default implementation provided here throws an exception.
          */
-        virtual void for_each(function_on_fourspace_and_transformed_vertex apply);
+        virtual void for_each_vertex_transformed(function_on_fourspace_and_transformed_vertex apply);
         /// Loop over all vertices managed by the Function, their transformed images
         /// and the projection into three-space and call apply on them.
         /** This function is not pure virtual because it would be too tedious to
@@ -201,9 +201,9 @@ class Function {
         *
         *  The default implementation provided here throws an exception.
         */
-        virtual void for_each(function_on_fourspace_transformed_and_projected_vertex apply);
+        virtual void for_each_vertex_transformed_projected(function_on_fourspace_transformed_and_projected_vertex apply);
         /// Loop over all vertices managed by the Function and call apply on them.
-        virtual void for_each(function_on_projected_vertex apply) = 0;
+        virtual void for_each_projected(function_on_projected_vertex apply) = 0;
 
     protected:
         /// Function evaluation operator for three parameters

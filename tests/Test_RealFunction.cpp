@@ -181,13 +181,13 @@ void Test_RealFunction::rotateAboutAllAxes() {
     testGreaterEqual(function_->transformed_vertices()[0].size(), GRID_SIZE);
     testGreaterEqual(function_->transformed_vertices()[0][0].size(), GRID_SIZE);
 
-    function_->for_each(checkVerticesNotEqual);
+    function_->for_each_vertex_transformed(checkVerticesNotEqual);
 }
 
 void Test_RealFunction::rotated360DegreesIsIdentical() {
     function_->Transform(Rotation<4>(360., 360., 360., 360., 360., 360.), Vector<4>());
 
-    function_->for_each(checkVerticesEqual);
+    function_->for_each_vertex_transformed(checkVerticesEqual);
 }
 
 // intercept theorem gives this factor (constant because f is constant)
@@ -214,7 +214,7 @@ void Test_RealFunction::project() {
     testGreaterEqual(function_->projected_vertices()[0][0].size(), GRID_SIZE);
 
     QSKIP("not solved yet why this fails.", SkipSingle);
-    function_->for_each(checkProjectProjects);
+    function_->for_each_vertex_transformed_projected(checkProjectProjects);
 }
 
 void checkGetColorRuns(const VecMath::Vector<4> &x,
@@ -228,7 +228,7 @@ void Test_RealFunction::projectWithDepthCue() {
     function_->Transform(Rotation<4>(), Vector<4>());
     function_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, true);
 
-    function_->for_each(checkGetColorRuns);
+    function_->for_each_vertex_transformed_projected(checkGetColorRuns);
 
     QSKIP("All W values are equal. \nThus the color for all vertices is equal. \n"
           "Nothing meaningful to test. \nTo do: write a class with varying function values.",
@@ -247,7 +247,7 @@ void Test_RealFunction::draw() {
 
     globalView = view_;
 
-    function_->for_each(checkVertexPresent);
+    function_->for_each_vertex(checkVertexPresent);
     function_->for_each(checkVertexDrawn);
 }
 
@@ -344,6 +344,6 @@ void testReinitRuns(RealFunction& f) {
 
 void Test_RealFunction::testAllVerticesDrawn(RealFunction *f) {
   globalView = view_;
-  f->for_each(checkVertexPresent);
+  f->for_each_vertex(checkVertexPresent);
 }
 
