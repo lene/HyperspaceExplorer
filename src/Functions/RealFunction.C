@@ -55,10 +55,6 @@ class RealFunction::Impl {
 
     void calibrateColors() const;
 
-    void for_each(function_on_fourspace_and_transformed_vertex apply);
-    void for_each(function_on_fourspace_transformed_and_projected_vertex apply);
-    void for_each(function_on_projected_vertex apply);
-
     const MultiDimensionalVector< Vector< 4 >, 3 > &X() const {
       return parent_->X();
     }
@@ -143,27 +139,6 @@ void RealFunction::Impl::calibrateColors() const {
       }
     }
   }
-}
-
-void RealFunction::Impl::for_each(Function::function_on_fourspace_and_transformed_vertex apply) {
-  for (unsigned t = 0; t < getDefinitionRange().getNumSteps(0); t++)
-    for (unsigned u = 0; u < getDefinitionRange().getNumSteps(1); u++)
-      for (unsigned v = 0; v < getDefinitionRange().getNumSteps(2); v++)
-        apply(X()[t][u][v], Xtrans()[t][u][v]);
-}
-
-void RealFunction::Impl::for_each(Function::function_on_fourspace_transformed_and_projected_vertex apply) {
-  for (unsigned t = 0; t < getDefinitionRange().getNumSteps(0); t++)
-    for (unsigned u = 0; u < getDefinitionRange().getNumSteps(1); u++)
-      for (unsigned v = 0; v < getDefinitionRange().getNumSteps(2); v++)
-        apply(X()[t][u][v], Xtrans()[t][u][v], Xscr()[t][u][v]);
-}
-
-void RealFunction::Impl::for_each(Function::function_on_projected_vertex apply) {
-  for (unsigned t = 0; t < getDefinitionRange().getNumSteps(0); t++)
-    for (unsigned u = 0; u < getDefinitionRange().getNumSteps(1); u++)
-      for (unsigned v = 0; v < getDefinitionRange().getNumSteps(2); v++)
-        apply(Xscr()[t][u][v]);
 }
 
 void RealFunction::Impl::setDepthCueColors(double Wmax, double Wmin) {
@@ -319,14 +294,6 @@ Vector<4>& RealFunction::operator()(double t, double u, double v) {
   static VecMath::Vector<4> F;
   F = _function->f(VecMath::Vector<3>(t, u, v));
   return F;
-}
-
-void RealFunction::for_each_vertex_transformed(Function::function_on_fourspace_and_transformed_vertex apply) {
-  pImpl_->for_each(apply);
-}
-
-void RealFunction::for_each_vertex_transformed_projected(Function::function_on_fourspace_transformed_and_projected_vertex apply) {
-  pImpl_->for_each(apply);
 }
 
 unsigned int RealFunction::getNumParameters() {

@@ -173,6 +173,16 @@ void FunctionHolder<N, P, NUM>::for_each_vertex(Function::function_on_fourspace_
 }
 
 template <unsigned N, unsigned P, typename NUM>
+void FunctionHolder<N, P, NUM>::for_each_vertex_transformed(Function::function_on_fourspace_and_transformed_vertex apply) {
+  VecMath::for_each(X(), Xtrans(), apply);
+}
+
+template <unsigned N, unsigned P, typename NUM>
+void FunctionHolder<N, P, NUM>::for_each_vertex_transformed_projected(Function::function_on_fourspace_transformed_and_projected_vertex apply) {
+  VecMath::for_each(X(), Xtrans(), Xscr(), apply);
+}
+
+template <unsigned N, unsigned P, typename NUM>
 void FunctionHolder<N, P, NUM>::for_each_projected(Function::function_on_projected_vertex apply) {
   Xscr().for_each(apply);
 }

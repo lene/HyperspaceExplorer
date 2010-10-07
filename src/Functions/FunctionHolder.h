@@ -68,6 +68,8 @@ class FunctionHolder : public Function {
     virtual unsigned int getDefinitionSpaceDimensions();
 
     virtual void for_each_vertex(function_on_fourspace_vertex apply);
+    virtual void for_each_vertex_transformed(function_on_fourspace_and_transformed_vertex apply);
+    virtual void for_each_vertex_transformed_projected(function_on_fourspace_transformed_and_projected_vertex apply);
     virtual void for_each_projected(function_on_projected_vertex apply);
 
     /** \return number of parameters for the function */
