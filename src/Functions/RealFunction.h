@@ -100,11 +100,6 @@ class RealFunction: public FunctionHolder<4, 3, double> {
     unsigned getUsteps() const;
     unsigned getVsteps() const;
 
-    /// Array of function values after transform.
-    const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 3 > &Xtrans() const;
-    /// Array of projected function values.
-    const VecMath::MultiDimensionalVector< VecMath::Vector<3>, 3 > &Xscr() const;
-
   private:
 
     class Impl;

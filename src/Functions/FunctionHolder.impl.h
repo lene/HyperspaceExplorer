@@ -57,13 +57,22 @@ class FunctionHolder<N, P, NUM>::Impl {
     const MultiDimensionalVector< vertex_type, P > &X() const {
       return _X.getValues();
     }
-    void setX(const FunctionValueGrid<N, P, NUM>& x) { _X = x; }
+    void setX(const FunctionValueGrid<N, P, NUM>& x) {
+      _X = x;
+    }
 
     const MultiDimensionalVector< vertex_type, P > &Xtrans() const {
       return _Xtrans;
     }
+    void setXtrans(const VecMath::MultiDimensionalVector< vertex_type, P >& x) {
+      _Xtrans = x;
+    }
+
     const MultiDimensionalVector< projected_vertex_type, P > &Xscr() const {
       return _Xscr;
+    }
+    void setXscr(const VecMath::MultiDimensionalVector< projected_vertex_type, P >& x) {
+      _Xscr = x;
     }
 
     void setDefinitionRange(double tmin, double tmax, double dt,
@@ -203,9 +212,19 @@ FunctionHolder<N, P, NUM>::Xtrans() const {
 }
 
 template <unsigned N, unsigned P, typename NUM>
+void FunctionHolder<N, P, NUM>::setXtrans(const VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, P >& x) {
+  pImpl_->setXtrans(x);
+}
+
+template <unsigned N, unsigned P, typename NUM>
 const VecMath::MultiDimensionalVector< VecMath::Vector<3, NUM>, P > &
 FunctionHolder<N, P, NUM>::Xscr() const {
   return pImpl_->Xscr();
+}
+
+template <unsigned N, unsigned P, typename NUM>
+void FunctionHolder<N, P, NUM>::setXscr(const VecMath::MultiDimensionalVector< VecMath::Vector<3, NUM>, P >& x) {
+  pImpl_->setXscr(x);
 }
 
 #endif

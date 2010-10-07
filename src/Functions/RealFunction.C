@@ -60,9 +60,15 @@ class RealFunction::Impl {
     void for_each(function_on_fourspace_transformed_and_projected_vertex apply);
     void for_each(function_on_projected_vertex apply);
 
-    const MultiDimensionalVector< Vector< 4 >, 3 > &X() const { return parent_->X(); }
-    const MultiDimensionalVector< Vector<4>, 3 > &Xtrans() const { return _Xtrans; }
-    const MultiDimensionalVector< Vector<3>, 3 > &Xscr() const { return _Xscr; }
+    const MultiDimensionalVector< Vector< 4 >, 3 > &X() const {
+      return parent_->X();
+    }
+    const MultiDimensionalVector< Vector<4>, 3 > &Xtrans() const {
+      return parent_->Xtrans();
+    }
+    const MultiDimensionalVector< Vector<3>, 3 > &Xscr() const {
+      return parent_->Xscr();
+    }
 
     /// Set up the grid using boundaries and stepwidth.
     void setBoundariesAndStepwidth(double tmin, double tmax, double dt,
@@ -82,12 +88,6 @@ class RealFunction::Impl {
     void DrawStrip (unsigned, unsigned, UI::View *view);
     void DrawCube (unsigned, unsigned, unsigned, UI::View *view);
 
-
-    /// Array of function values after transform.
-    FunctionValueGrid<4, 3>::value_storage_type _Xtrans;
-    /// Array of projected function values.
-    MultiDimensionalVector< Vector<3>, 3 > _Xscr;
-
     RealFunction *parent_;
 
 };
@@ -102,12 +102,12 @@ RealFunction::Impl::Impl(RealFunction *f,
 
 void RealFunction::Impl::Transform(const Rotation< 4 >& R, const Vector< 4 >& T) {
   Transformation<4, 3> xform(R, T);
-  _Xtrans = xform.transform(X());
+  parent_->setXtrans(xform.transform(X()));
 }
 
 void RealFunction::Impl::Project(double scr_w, double cam_w, bool depthcue4d) {
   Projection<4, 3, 3> p(scr_w, cam_w, depthcue4d);
-  _Xscr = p.project(Xtrans());
+  parent_->setXscr(p.project(Xtrans()));
 
   if (depthcue4d) {
     std::pair< double, double > Wext = findExtremesInW();
@@ -179,7 +179,7 @@ void RealFunction::Impl::setDepthCueColors(double Wmax, double Wmin) {
     for(unsigned u = 0;u <= getDefinitionRange().getNumSteps(1) + 1;u++) {
       for(unsigned v = 0;v <= getDefinitionRange().getNumSteps(2) + 1;v++){
         ColMgrMgr::Instance().depthCueColor(Wmax, Wmin,
-                                            _Xtrans[t][u][v][3],
+                                            Xtrans()[t][u][v][3],
                                             X()[t][u][v]);
       }
     }
@@ -247,10 +247,10 @@ void RealFunction::Impl::DrawCube (unsigned t, unsigned u, unsigned v, UI::View*
     /// \todo don't use a malloc'ed pointer
     static Vector<3> *V = new Vector<3> [8];
 
-    V[0] = _Xscr[t][u][v];     V[1] = _Xscr[t][u][v+1];
-    V[2] = _Xscr[t][u+1][v];   V[3] = _Xscr[t][u+1][v+1];
-    V[4] = _Xscr[t+1][u][v];   V[5] = _Xscr[t+1][u][v+1];
-    V[6] = _Xscr[t+1][u+1][v]; V[7] = _Xscr[t+1][u+1][v+1];
+    V[0] = Xscr()[t][u][v];     V[1] = Xscr()[t][u][v+1];
+    V[2] = Xscr()[t][u+1][v];   V[3] = Xscr()[t][u+1][v+1];
+    V[4] = Xscr()[t+1][u][v];   V[5] = Xscr()[t+1][u][v+1];
+    V[6] = Xscr()[t+1][u+1][v]; V[7] = Xscr()[t+1][u+1][v+1];
 
     view->drawCube(X(), t, u, v,
                    V[0], V[1], V[2], V[3], V[4], V[5], V[6], V[7]);
@@ -408,12 +408,4 @@ Vector<4> &RealFunction::normal (double tt, double uu, double vv) {
   VecMath::vnormalize (n);
 
   return n;
-}
-
-const MultiDimensionalVector< Vector< 4 >, 3 > &RealFunction::Xtrans() const {
-  return pImpl_->Xtrans();
-}
-
-const MultiDimensionalVector< Vector< 3 >, 3 >& RealFunction::Xscr() const {
-    return pImpl_->Xscr();
 }

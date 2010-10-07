@@ -85,8 +85,10 @@ class FunctionHolder : public Function {
     void setX(const FunctionValueGrid<N, P, NUM>& x);
     /// Array of function values after transform.
     const VecMath::MultiDimensionalVector< vertex_type, P > &Xtrans() const;
+    void setXtrans(const VecMath::MultiDimensionalVector< vertex_type, P >& x);
     /// Array of projected function values.
     const VecMath::MultiDimensionalVector< projected_vertex_type, P > &Xscr() const;
+    void setXscr(const VecMath::MultiDimensionalVector< projected_vertex_type, P >& x);
 
   private:
 
