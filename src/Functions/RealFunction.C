@@ -44,12 +44,8 @@ class RealFunction::Impl {
 
   public:
 
-    Impl(RealFunction *f,
-         double tmin, double tmax, double dt,
-         double umin, double umax, double du,
-         double vmin, double vmax, double dv);
+    Impl(RealFunction *f);
 
-    void Transform (const Rotation<4> &R, const Vector<4> &T);
     void Project (double ScrW, double CamW, bool DepthCue4D);
     void Draw (UI::View *view);
 
@@ -64,11 +60,6 @@ class RealFunction::Impl {
     const MultiDimensionalVector< Vector<3>, 3 > &Xscr() const {
       return parent_->Xscr();
     }
-
-    /// Set up the grid using boundaries and stepwidth.
-    void setBoundariesAndStepwidth(double tmin, double tmax, double dt,
-                                   double umin, double umax, double du,
-                                   double vmin, double vmax, double dv);
 
     DefinitionRangeOfDimension<3> getDefinitionRange() const { return parent_->getDefinitionRange(); }
 
@@ -87,18 +78,7 @@ class RealFunction::Impl {
 
 };
 
-RealFunction::Impl::Impl(RealFunction *f,
-                         double tmin, double tmax, double dt,
-                         double umin, double umax, double du,
-                         double vmin, double vmax, double dv):
-  parent_(f) {
-    setBoundariesAndStepwidth(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
-  }
-
-void RealFunction::Impl::Transform(const Rotation< 4 >& R, const Vector< 4 >& T) {
-  Transformation<4, 3> xform(R, T);
-  parent_->setXtrans(xform.transform(X()));
-}
+RealFunction::Impl::Impl(RealFunction *f): parent_(f) { }
 
 void RealFunction::Impl::Project(double scr_w, double cam_w, bool depthcue4d) {
   Projection<4, 3, 3> p(scr_w, cam_w, depthcue4d);
@@ -151,27 +131,6 @@ void RealFunction::Impl::setDepthCueColors(double Wmax, double Wmin) {
       }
     }
   }
-}
-
-/** \param tmin minimal value in t
- *  \param tmax maximal value in t
- *  \param dt stepsize in t
- *  \param umin minimal value in u
- *  \param umax maximal value in u
- *  \param du stepsize in u
- *  \param vmin minimal value in v
- *  \param vmax maximal value in v
- *  \param dv stepsize in v
- */
-void RealFunction::Impl::setBoundariesAndStepwidth(double tmin, double tmax, double dt,
-                                             double umin, double umax, double du,
-                                             double vmin, double vmax, double dv) {
-#ifdef DEBUG_NUM_STEPS
-  std::cerr << "setBoundariesAndStepwidth(" << tmin<< ", " << tmax<< ", " << dt
-                        << ", " << umin<< ", " << umax<< ", " << du<< ", "
-                        << vmin<< ", " << vmax<< ", " << dv << ")\n";
-#endif
-  parent_->setDefinitionRange(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
 }
 
 std::pair< double, double > RealFunction::Impl::findExtremesInW() const {
@@ -228,11 +187,7 @@ void RealFunction::Impl::DrawCube (unsigned t, unsigned u, unsigned v, UI::View*
  */
 RealFunction::RealFunction():
   FunctionHolder<4, 3, double>(ParameterMap()),
-  pImpl_(new Impl(
-      this,
-      DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep,
-      DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep,
-      DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep)) { }
+  pImpl_(new Impl(this)) { }
 
 /** RealFunction c'tor given a definition set in \f$ R^3 \f$ (as parameter space)
  *  \param tmin minimal value in t
@@ -250,21 +205,17 @@ RealFunction::RealFunction(double tmin, double tmax, double dt,
                            double vmin, double vmax, double dv,
                            ParameterMap parms):
   FunctionHolder<4, 3, double>(parms),
-  pImpl_(new Impl(this, tmin, tmax, dt, umin, umax, du, vmin, vmax, dv)) {
-#ifdef DEBUG_NUM_STEPS
-    std::cerr << "RealFunction::RealFunction(" << tmin<< ", " << tmax<< ", " << dt
-            << ", " << umin<< ", " << umax<< ", " << du<< ", "
-            << vmin<< ", " << vmax<< ", " << dv << ")\n";
-#endif
-  }
+  pImpl_(new Impl(this)) {
+  setDefinitionRange(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
+}
 
 RealFunction::~RealFunction() { }
 
 void RealFunction::Initialize () {
 
-  Vector<3, unsigned> numSteps = pImpl_->getDefinitionRange().getNumSteps();
-  Vector<3, double> min = pImpl_->getDefinitionRange().getMinValue();
-  Vector<3, double> max = pImpl_->getDefinitionRange().getMaxValue();
+  Vector<3, unsigned> numSteps = getDefinitionRange().getNumSteps();
+  Vector<3, double> min = getDefinitionRange().getMinValue();
+  Vector<3, double> max = getDefinitionRange().getMaxValue();
 
 #ifdef DEBUG_NUM_STEPS
   std::cerr << "RealFunction::Initialize (): num steps = " << numSteps << std::endl;
@@ -300,24 +251,17 @@ unsigned int RealFunction::getNumParameters() {
     return Function::getNumParameters();
 }
 
-unsigned int RealFunction::getTsteps() const { return pImpl_->getDefinitionRange().getNumSteps(0); }
-unsigned int RealFunction::getUsteps() const { return pImpl_->getDefinitionRange().getNumSteps(1); }
-unsigned int RealFunction::getVsteps() const { return pImpl_->getDefinitionRange().getNumSteps(2); }
+unsigned int RealFunction::getTsteps() const { return getDefinitionRange().getNumSteps(0); }
+unsigned int RealFunction::getUsteps() const { return getDefinitionRange().getNumSteps(1); }
+unsigned int RealFunction::getVsteps() const { return getDefinitionRange().getNumSteps(2); }
 
 
 /// Re-initialize a RealFunction if the definition set has changed
 void RealFunction::ReInit(double tmin, double tmax, double dt,
                           double umin, double umax, double du,
                           double vmin, double vmax, double dv) {
-#ifdef DEBUG_NUM_STEPS
-  std::cerr << "ReInit(" << tmin<< ", " << tmax<< ", " << dt
-            << ", " << umin<< ", " << umax<< ", " << du<< ", "
-            << vmin<< ", " << vmax<< ", " << dv << ")\n";
-#endif
-  pImpl_->setBoundariesAndStepwidth(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
-
+  setDefinitionRange(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
   Initialize ();
-
 }
 
 /// Transforms a RealFunction
@@ -325,7 +269,8 @@ void RealFunction::ReInit(double tmin, double tmax, double dt,
  *  \param T translation                                                      */
 void RealFunction::Transform (const VecMath::Rotation<4> &R,
                               const VecMath::Vector<4> &T) {
-  pImpl_->Transform(R, T);
+  Transformation<4, 3> xform(R, T);
+  setXtrans(xform.transform(X()));
 }
 
 /// Projects a RealFunction into three-space
