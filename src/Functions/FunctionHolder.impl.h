@@ -124,11 +124,6 @@ template <unsigned N, unsigned P, typename NUM>
 void FunctionHolder<N, P, NUM>::Impl::setDefinitionRange(double tmin, double tmax, double dt,
                                                          double umin, double umax, double du,
                                                          double vmin, double vmax, double dv) {
-#ifdef DEBUG_NUM_STEPS
-  std::cerr << "FunctionHolder<N, P, NUM>::Impl::setDefinitionRange(" << tmin<< ", " << tmax<< ", " << dt
-            << ", " << umin<< ", " << umax<< ", " << du<< ", "
-            << vmin<< ", " << vmax<< ", " << dv << ")\n";
-#endif
   if (P > 0) definitionRange_.setRange(0, DefinitionSpaceRange(tmin, tmax, dt));
   if (P > 1) definitionRange_.setRange(1, DefinitionSpaceRange(umin, umax, du));
   if (P > 2) definitionRange_.setRange(2, DefinitionSpaceRange(vmin, vmax, dv));
@@ -221,11 +216,6 @@ template <unsigned N, unsigned P, typename NUM>
 void FunctionHolder<N, P, NUM>::setDefinitionRange(double tmin, double tmax, double dt,
                                                    double umin, double umax, double du,
                                                    double vmin, double vmax, double dv) {
-#ifdef DEBUG_NUM_STEPS
-  std::cerr << "FunctionHolder<N, P, NUM>::setDefinitionRange(" << tmin<< ", " << tmax<< ", " << dt
-            << ", " << umin<< ", " << umax<< ", " << du<< ", "
-            << vmin<< ", " << vmax<< ", " << dv << ")\n";
-#endif
   pImpl_->setDefinitionRange(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
 }
 template <unsigned N, unsigned P, typename NUM>

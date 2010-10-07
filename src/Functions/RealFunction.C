@@ -163,9 +163,6 @@ void RealFunction::Initialize () {
   Vector<3, double> min = getDefinitionRange().getMinValue();
   Vector<3, double> max = getDefinitionRange().getMaxValue();
 
-#ifdef DEBUG_NUM_STEPS
-  std::cerr << "RealFunction::Initialize (): num steps = " << numSteps << std::endl;
-#endif
   setX(
     FunctionValueGrid<4, 3>(
       _function, numSteps+Vector<3, unsigned>(2), min, max
