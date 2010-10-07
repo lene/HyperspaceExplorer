@@ -25,6 +25,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "FunctionValueGrid.h"
 #include "Transformation.impl.h"
+#include "Projection.impl.h"
+#include "GridDrawer.impl.h"
 #include "DefinitionRangeOfDimension.impl.h"
 
 
@@ -171,6 +173,19 @@ void FunctionHolder<N, P, NUM>::Transform (const VecMath::Rotation<N, NUM> &R,
   Transformation<N, P, NUM> xform(R, T);
   setXtrans(xform.transform(X()));
 }
+template <unsigned N, unsigned P, typename NUM>
+void FunctionHolder<N, P, NUM>::Project (double ScrW, double CamW, bool DepthCue4D) {
+  Projection<N, 3, P, NUM> p(ScrW, CamW, DepthCue4D);
+  setXscr(p.project(Xtrans()));
+}
+
+template <unsigned N, unsigned P, typename NUM>
+void FunctionHolder<N, P, NUM>::Draw(UI::View* view) {
+  GridDrawer<P, NUM, 3> draw(X(), Xscr(), view);
+  draw.execute();
+}
+
+
 
 template <unsigned N, unsigned P, typename NUM>
 unsigned int FunctionHolder<N, P, NUM>::getDefinitionSpaceDimensions() {

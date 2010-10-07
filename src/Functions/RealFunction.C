@@ -81,9 +81,7 @@ class RealFunction::Impl {
 RealFunction::Impl::Impl(RealFunction *f): parent_(f) { }
 
 void RealFunction::Impl::Project(double scr_w, double cam_w, bool depthcue4d) {
-  Projection<4, 3, 3> p(scr_w, cam_w, depthcue4d);
-  parent_->setXscr(p.project(Xtrans()));
-
+  parent_->FunctionHolder<4, 3>::Project(scr_w, cam_w, depthcue4d);
   if (depthcue4d) {
     std::pair< double, double > Wext = findExtremesInW();
     setDepthCueColors(Wext.first, Wext.second);
@@ -93,9 +91,7 @@ void RealFunction::Impl::Project(double scr_w, double cam_w, bool depthcue4d) {
 void RealFunction::Impl::Draw(UI::View* view) {
 //  ScopedTimer timer("Draw()");
 # ifdef USE_GRID_DRAWER
-std::cerr << "USE_GRID_DRAWER" << std::endl;
-    GridDrawer<3> draw(X(), Xscr(), view);
-    draw.execute();
+  parent_->FunctionHolder<4, 3>::Draw(view);
 # else
     for (unsigned t = 0; t <= getDefinitionRange().getNumSteps(0); t++)
       DrawPlane (t, view);
