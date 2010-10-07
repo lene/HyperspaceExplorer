@@ -23,7 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <GL/glu.h>
 
 #include "ColorManager.h"
-#include "Function.h"
+#include "Displayable.h"
 #include "Vector.impl.h"
 
 using VecMath::Vector;

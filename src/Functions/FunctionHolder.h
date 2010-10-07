@@ -21,7 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef FUNCTIONHOLDER_H
 #define FUNCTIONHOLDER_H
 
-#include "Function.h"
+#include "Displayable.h"
 
 namespace VecMath {
   template <typename T, unsigned D> class MultiDimensionalVector;

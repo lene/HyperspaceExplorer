@@ -21,7 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #if(!defined SURFACE_H)
 #define SURFACE_H
 
-#include "Function.h"
+#include "Displayable.h"
 
 #include "ParametricFunction.h"
 #include "MultiDimensionalVector.h"

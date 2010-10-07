@@ -30,7 +30,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "Color.h"
 #include "Vector.h"
-#include "Function.h"
+#include "Displayable.h"
 
 /// \defgroup Coloring Functionality for defining color schemes
 /// \ingroup UIGroup

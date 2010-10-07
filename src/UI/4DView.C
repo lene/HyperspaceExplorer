@@ -37,7 +37,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Matrix.impl.h"
 #include "Rotation.impl.h"
 
-#include "Function.h"
+#include "Displayable.h"
 #include "Surface.h"
 #include "ComplexFunction.h"
 #include "Object.h"

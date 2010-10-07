@@ -22,7 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define FUNCTIONFACTORY_H
 
 #include "SingletonHolder.h"
-#include "Function.h"
+#include "Displayable.h"
 
 #include <map>
 

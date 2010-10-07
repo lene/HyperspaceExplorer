@@ -32,7 +32,7 @@ HEADERS += \
            Functions/FunctionParameter.h \
            Functions/FunctionParameterFactory.h \
            Functions/ParameterMap.h \
-           Functions/Function.h \
+           Functions/Displayable.h \
            Functions/FunctionFactory.h \
            Functions/DefinitionSpaceRange.h \
            Functions/DefinitionRangeOfDimension.h \
@@ -64,7 +64,7 @@ SOURCES += \
            Functions/FunctionParameterValue.C \
            Functions/FunctionParameter.C \
            Functions/ParameterMap.C \
-           Functions/Function.C \
+           Functions/Displayable.cpp \
            Functions/FunctionFactory.C \
            Functions/DefinitionSpaceRange.cpp \
            Functions/RealFunction.C \

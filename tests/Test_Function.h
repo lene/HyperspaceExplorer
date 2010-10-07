@@ -23,7 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <QtTest/QtTest>
 
-#include "Function.h"
+#include "Displayable.h"
 
 /// Unit tests for class Function
 class Test_Function: public QObject {

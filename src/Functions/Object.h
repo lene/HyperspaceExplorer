@@ -27,7 +27,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <string>
 
 #include "ParameterMap.h"
-#include "Function.h"
+#include "Displayable.h"
 #include "Vector.h"
 #include "MultiDimensionalVector.h"
 

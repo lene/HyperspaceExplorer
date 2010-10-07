@@ -31,7 +31,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "Vector.h"
 #include "MultiDimensionalVector.impl.h"
-#include "Function.h"
+#include "Displayable.h"
 #include "Color.h"
 
 using std::cerr;

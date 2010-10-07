@@ -18,7 +18,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 */
 
-#include "Function.h"
+#include "Displayable.h"
 #include "Log.h"
 #include "ParameterMap.h"
 

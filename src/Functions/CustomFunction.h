@@ -23,7 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <dlfcn.h>
 
-#include "Function.h"
+#include "Displayable.h"
 #include "RealFunction.h"
 #include "ComplexFunction.h"
 #include "Surface.h"
