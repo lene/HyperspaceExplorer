@@ -65,6 +65,9 @@ class FunctionHolder : public Function {
     FunctionHolder(std::tr1::shared_ptr< function_type > f,
                    DefinitionRangeOfDimension<P> boundaries);
 
+    virtual void Transform (const VecMath::Rotation<N, NUM> &R,
+                            const vertex_type &T);
+
     virtual unsigned int getDefinitionSpaceDimensions();
 
     virtual void for_each_vertex(function_on_fourspace_vertex apply);

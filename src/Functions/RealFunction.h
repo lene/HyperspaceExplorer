@@ -60,8 +60,6 @@ class RealFunction: public FunctionHolder<4, 3, double> {
                  ParameterMap _parms = ParameterMap());
     virtual ~RealFunction();
 
-    virtual void Transform (const VecMath::Rotation<4> &R,
-                            const VecMath::Vector<4> &T);
     virtual void Project (double ScrW, double CamW, bool DepthCue4D);
     virtual void Draw (UI::View *view);
 

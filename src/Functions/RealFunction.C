@@ -265,13 +265,6 @@ void RealFunction::ReInit(double tmin, double tmax, double dt,
 }
 
 /// Transforms a RealFunction
-/** \param R rotation
- *  \param T translation                                                      */
-void RealFunction::Transform (const VecMath::Rotation<4> &R,
-                              const VecMath::Vector<4> &T) {
-  Transformation<4, 3> xform(R, T);
-  setXtrans(xform.transform(X()));
-}
 
 /// Projects a RealFunction into three-space
 /** \param scr_w w coordinate of screen

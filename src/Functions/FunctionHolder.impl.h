@@ -24,6 +24,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "FunctionHolder.h"
 
 #include "FunctionValueGrid.h"
+#include "Transformation.impl.h"
 #include "DefinitionRangeOfDimension.impl.h"
 
 
@@ -161,6 +162,15 @@ FunctionHolder<N, P, NUM>::FunctionHolder(ParameterMap parms):
       DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep,
       DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep,
       DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep)) { }
+
+/** \param R rotation
+ *  \param T translation                                                      */
+template <unsigned N, unsigned P, typename NUM>
+void FunctionHolder<N, P, NUM>::Transform (const VecMath::Rotation<N, NUM> &R,
+                                           const vertex_type &T) {
+  Transformation<N, P, NUM> xform(R, T);
+  setXtrans(xform.transform(X()));
+}
 
 template <unsigned N, unsigned P, typename NUM>
 unsigned int FunctionHolder<N, P, NUM>::getDefinitionSpaceDimensions() {
