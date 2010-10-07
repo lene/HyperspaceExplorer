@@ -20,7 +20,7 @@
 
 #include "GlobalFunctions.h"
 
-#include "Vector.h"
+#include "Vector.impl.h"
 
 #include <QtTest/QtTest>
 #include <QString>
@@ -39,13 +39,13 @@ namespace UnitTests {
 
 void test(bool condition, const QString &message) {
   QVERIFY2(
-    condition, 
+    condition,
     message.toAscii());
 }
 
 void test(bool condition, const std::string& message) {
   QVERIFY2(
-    condition, 
+    condition,
     message.c_str());
 }
 
@@ -64,7 +64,7 @@ void testEqual(const std::string& checked, const std::string& precondition) {
 }
 
 template <unsigned D, typename NUM>
-void testEqual(const VecMath::Vector<D, NUM> &checked, 
+void testEqual(const VecMath::Vector<D, NUM> &checked,
                const VecMath::Vector<D, NUM> &precondition) {
   test(
     VecMath::sqnorm(checked-precondition) < EPSILON,
@@ -80,7 +80,7 @@ void testGreaterEqual(double checked, double precondition) {
 }
 
 template <unsigned D, typename NUM>
-void testNotEqual(const VecMath::Vector<D, NUM> &checked, 
+void testNotEqual(const VecMath::Vector<D, NUM> &checked,
                   const VecMath::Vector<D, NUM> &precondition) {
   test(
     VecMath::sqnorm(checked-precondition) > EPSILON,
@@ -89,10 +89,10 @@ void testNotEqual(const VecMath::Vector<D, NUM> &checked,
 }
 
 /// Explicit instantiation
-template void testEqual(const VecMath::Vector<4, double> &checked, 
+template void testEqual(const VecMath::Vector<4, double> &checked,
                         const VecMath::Vector<4, double> &precondition);
 /// Explicit instantiation
-template void testNotEqual(const VecMath::Vector<4, double> &checked, 
+template void testNotEqual(const VecMath::Vector<4, double> &checked,
                            const VecMath::Vector<4, double> &precondition);
-  
+
 }

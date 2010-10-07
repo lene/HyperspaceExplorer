@@ -76,9 +76,9 @@ class Test_RealFunction::RealFunctionTestImplementation: public RealFunction {
     VecMath::MultiDimensionalVector<VecMath::Vector<4>, 3> transformed_vertices() { return Xtrans(); }
     VecMath::MultiDimensionalVector<VecMath::Vector<3>, 3> projected_vertices() { return Xscr(); }
 
-    unsigned xsteps() const { return getTsteps(); }
-    unsigned ysteps() const { return getUsteps(); }
-    unsigned zsteps() const { return getVsteps(); }
+    unsigned xsteps() const { return getDefinitionRange().getNumSteps(0); }
+    unsigned ysteps() const { return getDefinitionRange().getNumSteps(1); }
+    unsigned zsteps() const { return getDefinitionRange().getNumSteps(2); }
 
   protected:
     class DefiningFunction: public ParametricFunction<4, 3> {

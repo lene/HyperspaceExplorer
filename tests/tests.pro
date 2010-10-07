@@ -3,7 +3,10 @@
 ######################################################################
 
 CONFIG += qtestlib
+
 CONFIG += debug qt warn_on uic
+#CONFIG -= debug
+#CONFIG += release qt warn_on uic
 
 QT += opengl
 

@@ -247,14 +247,10 @@ Vector<4>& RealFunction::operator()(double t, double u, double v) {
   return F;
 }
 
+/** \todo get rid of this function. */
 unsigned int RealFunction::getNumParameters() {
     return Function::getNumParameters();
 }
-
-unsigned int RealFunction::getTsteps() const { return getDefinitionRange().getNumSteps(0); }
-unsigned int RealFunction::getUsteps() const { return getDefinitionRange().getNumSteps(1); }
-unsigned int RealFunction::getVsteps() const { return getDefinitionRange().getNumSteps(2); }
-
 
 /// Re-initialize a RealFunction if the definition set has changed
 void RealFunction::ReInit(double tmin, double tmax, double dt,
@@ -263,8 +259,6 @@ void RealFunction::ReInit(double tmin, double tmax, double dt,
   setDefinitionRange(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
   Initialize ();
 }
-
-/// Transforms a RealFunction
 
 /// Projects a RealFunction into three-space
 /** \param scr_w w coordinate of screen

@@ -41,6 +41,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "FunctionHolder.impl.h"
 #include "CustomFunctionSlot.impl.h"
 #include "TemplatedFunctionFactory.impl.h"
+#include "MultiDimensionalVector.impl.h"
 
 using std::ostringstream;
 using std::endl;

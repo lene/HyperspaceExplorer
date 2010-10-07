@@ -89,12 +89,6 @@ class RealFunction: public FunctionHolder<4, 3, double> {
     /// Pointer to the actual ParametricFunction doing all the work.
     std::tr1::shared_ptr< ParametricFunction<4, 3> > _function;
 
-    // The following functions are protected only so that unit tests can access them.
-
-    unsigned getTsteps() const;
-    unsigned getUsteps() const;
-    unsigned getVsteps() const;
-
   private:
 
     class Impl;
