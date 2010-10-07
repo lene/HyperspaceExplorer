@@ -248,7 +248,7 @@ void Test_RealFunction::draw() {
     globalView = view_;
 
     function_->for_each_vertex(checkVertexPresent);
-    function_->for_each(checkVertexDrawn);
+    function_->for_each_projected(checkVertexDrawn);
 }
 
 void Test_RealFunction::torus1() {

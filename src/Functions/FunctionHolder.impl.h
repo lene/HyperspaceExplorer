@@ -173,7 +173,7 @@ void FunctionHolder<N, P, NUM>::for_each_vertex(Function::function_on_fourspace_
 }
 
 template <unsigned N, unsigned P, typename NUM>
-void FunctionHolder<N, P, NUM>::for_each(Function::function_on_projected_vertex apply) {
+void FunctionHolder<N, P, NUM>::for_each_projected(Function::function_on_projected_vertex apply) {
   Xscr().for_each(apply);
 }
 
