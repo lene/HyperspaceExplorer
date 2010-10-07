@@ -45,11 +45,11 @@ namespace VecMath {
    *  \ingroup VecMath
    *  \author Lene Preuss <lene.preuss@gmail.com>
    */
-  template <typename T, unsigned D> 
+  template <typename T, unsigned D>
   class MultiDimensionalVector: public MultiDimensionalVector<T, D-1> {
 
     public:
-      
+
       /// Iterator type to loop over elements, read/write - from std::vector
       typedef typename std::vector<MultiDimensionalVector<T, D-1> >::iterator iterator;
 
@@ -143,7 +143,7 @@ namespace VecMath {
   };
 
   /// Print a MultiDimensionalVector<T, D> on a std::ostream
-  template<typename T, unsigned D> 
+  template<typename T, unsigned D>
   std::ostream& operator<<(std::ostream& s, MultiDimensionalVector<T, D> const& v);
 
   /// Find an element in a MultiDimensionalVector
@@ -151,13 +151,38 @@ namespace VecMath {
   typename MultiDimensionalVector<T, D>::iterator find(MultiDimensionalVector<T, D-1> const &find_me,
                                                        MultiDimensionalVector<T, D> &v);
 
-                                                       
+  /// Loop over two MultiDimensionalVector s simultaneously, applying a function on both elements
+  template<typename T1, typename T2, unsigned D, typename Function>
+  Function for_each(MultiDimensionalVector<T1, D> &v1,
+                    MultiDimensionalVector<T2, D> &v2,
+                    Function f);
+
+  /// Loop over two MultiDimensionalVector s simultaneously, applying a const function on both elements
+  template<typename T1, typename T2, unsigned D, typename Function>
+  Function for_each(const MultiDimensionalVector<T1, D> &v1,
+                    const MultiDimensionalVector<T2, D> &v2,
+                    Function f);
+
+  /// Loop over three MultiDimensionalVector s simultaneously, applying a function on all elements
+  template<typename T1, typename T2, typename T3, unsigned D, typename Function>
+  Function for_each(MultiDimensionalVector<T1, D> &v1,
+                    MultiDimensionalVector<T2, D> &v2,
+                    MultiDimensionalVector<T3, D> &v3,
+                    Function f);
+
+  /// Loop over three MultiDimensionalVector s simultaneously, applying a const function on all elements
+  template<typename T1, typename T2, typename T3, unsigned D, typename Function>
+  Function for_each(const MultiDimensionalVector<T1, D> &v1,
+                    const MultiDimensionalVector<T2, D> &v2,
+                    const MultiDimensionalVector<T3, D> &v3,
+                    Function f);
+
   /// Specialization of NestedVector<T, D> for \p D = 1
-  template<typename T> 
+  template<typename T>
   class MultiDimensionalVector<T, 1> {
-  
+
     public:
-    
+
       /// See MultiDimensionalVector<T, D>::iterator
       typedef typename std::vector<T>::iterator iterator;
       /// See MultiDimensionalVector<T, D>::const_iterator
@@ -167,7 +192,7 @@ namespace VecMath {
       MultiDimensionalVector();
       /// See MultiDimensionalVector<T, D>::MultiDimensionalVector()
       MultiDimensionalVector(unsigned n);
-     
+
       /// See MultiDimensionalVector<T, D>::begin()
       iterator begin();
       /// See MultiDimensionalVector<T, D>::end()
@@ -215,7 +240,7 @@ namespace VecMath {
       template <typename Function> Function for_each(Function f);
       /// Apply a function or functor on every element of a MultiDimensionalVector
       template <typename Function> Function for_each(Function f) const;
-      
+
       /// Convert MultiDimensionalVector to a std::string.
       std::string toString() const;
 
@@ -226,13 +251,13 @@ namespace VecMath {
       static bool print_num_elements();
       /// How deep to insert maximally with operator <<().
       static unsigned max_dimension();
-    
+
     protected:
       /// See MultiDimensionalVector<T, D>::data()
       std::vector<T> &data();
       /// See MultiDimensionalVector<T, D>::data()
       const std::vector<T> &data() const;
-    
+
     private:
       /// std::vector<T>. All operations are delegated to this vector.
       std::vector<T> _data;
@@ -241,12 +266,38 @@ namespace VecMath {
       static const bool PRINT_NUM_ELEMENTS = false;
       /// Compile-time configuration: How deep to insert maximally with operator <<().
       static const unsigned MAX_DIMENSION = 4;
-    
+
   };
-  
+
   /// Print a MultiDimensionalVector<T, 1> on a std::ostream
-  template<typename T> 
+  template<typename T>
   std::ostream& operator<<(std::ostream& s, MultiDimensionalVector<T, 1> const& v);
+
+  /// Loop over two MultiDimensionalVector s simultaneously, applying a function on both elements
+  template<typename T1, typename T2, typename Function>
+  Function for_each(MultiDimensionalVector<T1, 1> &v1,
+                    MultiDimensionalVector<T2, 1> &v2,
+                    Function f);
+
+  /// Loop over two MultiDimensionalVector s simultaneously, applying a const function on both elements
+  template<typename T1, typename T2, typename Function>
+  Function for_each(const MultiDimensionalVector<T1, 1> &v1,
+                    const MultiDimensionalVector<T2, 1> &v2,
+                    Function f);
+
+  /// Loop over three MultiDimensionalVector s simultaneously, applying a function on all elements
+  template<typename T1, typename T2, typename T3, typename Function>
+  Function for_each(MultiDimensionalVector<T1, 1> &v1,
+                    MultiDimensionalVector<T2, 1> &v2,
+                    MultiDimensionalVector<T3, 1> &v3,
+                    Function f);
+
+  /// Loop over three MultiDimensionalVector s simultaneously, applying a const function on all elements
+  template<typename T1, typename T2, typename T3, typename Function>
+  Function for_each(const MultiDimensionalVector<T1, 1> &v1,
+                    const MultiDimensionalVector<T2, 1> &v2,
+                    const MultiDimensionalVector<T3, 1> &v3,
+                    Function f);
 
 }
 
