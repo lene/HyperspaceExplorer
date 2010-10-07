@@ -28,6 +28,7 @@ namespace VecMath {
 }
 
 template <unsigned N, unsigned P, typename NUM> class ParametricFunction;
+template <unsigned N, unsigned P, typename NUM> class FunctionValueGrid;
 template <unsigned P> class DefinitionRangeOfDimension;
 
 ///
@@ -81,6 +82,7 @@ class FunctionHolder : public Function {
 
     /// Array of function values.
     const VecMath::MultiDimensionalVector< vertex_type, P > &X() const;
+    void setX(const FunctionValueGrid<N, P, NUM>& x);
     /// Array of function values after transform.
     const VecMath::MultiDimensionalVector< vertex_type, P > &Xtrans() const;
     /// Array of projected function values.
@@ -89,7 +91,7 @@ class FunctionHolder : public Function {
   private:
 
     class Impl;
-    Impl *pImpl_;
+    std::unique_ptr<Impl> pImpl_;
 
 };
 

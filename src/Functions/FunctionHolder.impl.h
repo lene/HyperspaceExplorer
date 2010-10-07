@@ -57,6 +57,8 @@ class FunctionHolder<N, P, NUM>::Impl {
     const MultiDimensionalVector< vertex_type, P > &X() const {
       return _X.getValues();
     }
+    void setX(const FunctionValueGrid<N, P, NUM>& x) { _X = x; }
+
     const MultiDimensionalVector< vertex_type, P > &Xtrans() const {
       return _Xtrans;
     }
@@ -187,6 +189,11 @@ template <unsigned N, unsigned P, typename NUM>
 const VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, P > &
 FunctionHolder<N, P, NUM>::X() const {
   return pImpl_->X();
+}
+
+template <unsigned N, unsigned P, typename NUM>
+void FunctionHolder<N, P, NUM>::setX(const FunctionValueGrid<N, P, NUM>& x) {
+  pImpl_->setX(x);
 }
 
 template <unsigned N, unsigned P, typename NUM>

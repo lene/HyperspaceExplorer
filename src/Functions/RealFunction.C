@@ -38,68 +38,7 @@ using std::endl;
 
 using VecMath::MultiDimensionalVector;
 using VecMath::Vector;
-
-/// \em RealBase provides a base class for functions which take three parameters
-/** The \em RealBase interface provides abstract members for the evaluation of
- *  the function values on a three-dimensional grid.
- *
- *  abstract member:
- *      \li Vector &f (double, double);
- *
- *  member:
- *      \li operator () (double t, double u, double);
- *
- *  \todo Vector &normal (double, double, double); - or in base class?
- *
- *  \ingroup RealGroup
- *  \author Lene Preuss <lene.preuss@gmail.com>
- */
-class RealFunctionDefinitionRange: public DefinitionRangeOfDimension<3> {
-
-  public:
-
-    RealFunctionDefinitionRange(double tmin, double tmax, double dt,
-                                double umin, double umax, double du,
-                                double vmin, double vmax, double dv) {
-      setRange(0, DefinitionSpaceRange(tmin, tmax, dt));
-      setRange(1, DefinitionSpaceRange(umin, umax, du));
-      setRange(2, DefinitionSpaceRange(vmin, vmax, dv));
-    }
-
-    unsigned getTsteps() const { return getNumSteps(0); }
-    void setTsteps(unsigned numSteps) { setNumSteps(0, numSteps); }
-    void decrementTsteps() { setTsteps(getTsteps()-1); }
-
-    unsigned getUsteps() const { return getNumSteps(1); }
-    void setUsteps(unsigned numSteps) { setNumSteps(1, numSteps); }
-    void decrementUsteps() { setUsteps(getUsteps()-1); }
-
-    unsigned getVsteps() const { return getNumSteps(2); }
-    void setVsteps(unsigned numSteps) { setNumSteps(2, numSteps); }
-    void decrementVsteps() { setVsteps(getVsteps()-1); }
-
-    void setTmin(double tmin) { setMinValue(0, tmin); }
-    double getTmin() const { return getMinValue(0); }
-    void setTmax(double tmax) { setMaxValue(0, tmax); }
-    double getTmax() const { return getMaxValue(0); }
-    void setDt(double dt) { setStepsize(0, dt); }
-    double getDt() const { return getStepsize(0); }
-
-    void setUmin(double umin) { setMinValue(1, umin); }
-    double getUmin() const { return getMinValue(1); }
-    void setUmax(double umax) { setMaxValue(1, umax); }
-    double getUmax() const { return getMaxValue(1); }
-    void setDu(double du) { setStepsize(1, du); }
-    double getDu() const { return getStepsize(1); }
-
-    void setVmin(double vmin) { setMinValue(2, vmin); }
-    double getVmin() const { return getMinValue(2); }
-    void setVmax(double vmax) { setMaxValue(2, vmax); }
-    double getVmax() const { return getMaxValue(2); }
-    void setDv(double dv) { setStepsize(2, dv); }
-    double getDv() const { return getStepsize(2); }
-
-};
+using VecMath::Rotation;
 
 class RealFunction::Impl {
 
@@ -110,7 +49,7 @@ class RealFunction::Impl {
          double umin, double umax, double du,
          double vmin, double vmax, double dv);
 
-    void Transform (const VecMath::Rotation<4> &R, const VecMath::Vector<4> &T);
+    void Transform (const Rotation<4> &R, const Vector<4> &T);
     void Project (double ScrW, double CamW, bool DepthCue4D);
     void Draw (UI::View *view);
 
@@ -121,17 +60,14 @@ class RealFunction::Impl {
     void for_each(function_on_fourspace_transformed_and_projected_vertex apply);
     void for_each(function_on_projected_vertex apply);
 
-    const VecMath::MultiDimensionalVector< Vector< 4 >, 3 > &X() const { return _X.getValues(); }
-    const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 3 > &Xtrans() const { return _Xtrans; }
-    const VecMath::MultiDimensionalVector< VecMath::Vector<3>, 3 > &Xscr() const { return _Xscr; }
+    const MultiDimensionalVector< Vector< 4 >, 3 > &X() const { return parent_->X(); }
+    const MultiDimensionalVector< Vector<4>, 3 > &Xtrans() const { return _Xtrans; }
+    const MultiDimensionalVector< Vector<3>, 3 > &Xscr() const { return _Xscr; }
 
     /// Set up the grid using boundaries and stepwidth.
     void setBoundariesAndStepwidth(double tmin, double tmax, double dt,
                                    double umin, double umax, double du,
                                    double vmin, double vmax, double dv);
-//    RealFunctionDefinitionRange definitionRange_;
-    /// Array of function values.
-    FunctionValueGrid<4, 3> _X;
 
     DefinitionRangeOfDimension<3> getDefinitionRange() const { return parent_->getDefinitionRange(); }
 
@@ -150,7 +86,7 @@ class RealFunction::Impl {
     /// Array of function values after transform.
     FunctionValueGrid<4, 3>::value_storage_type _Xtrans;
     /// Array of projected function values.
-    VecMath::MultiDimensionalVector< VecMath::Vector<3>, 3 > _Xscr;
+    MultiDimensionalVector< Vector<3>, 3 > _Xscr;
 
     RealFunction *parent_;
 
@@ -164,7 +100,7 @@ RealFunction::Impl::Impl(RealFunction *f,
     setBoundariesAndStepwidth(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
   }
 
-void RealFunction::Impl::Transform(const VecMath::Rotation< 4 >& R, const VecMath::Vector< 4 >& T) {
+void RealFunction::Impl::Transform(const Rotation< 4 >& R, const Vector< 4 >& T) {
   Transformation<4, 3> xform(R, T);
   _Xtrans = xform.transform(X());
 }
@@ -366,8 +302,10 @@ void RealFunction::Initialize () {
 #ifdef DEBUG_NUM_STEPS
   std::cerr << "RealFunction::Initialize (): num steps = " << numSteps << std::endl;
 #endif
-  pImpl_->_X = FunctionValueGrid<4, 3>(
-    _function, numSteps+Vector<3, unsigned>(2), min, max
+  setX(
+    FunctionValueGrid<4, 3>(
+      _function, numSteps+Vector<3, unsigned>(2), min, max
+    )
   );
 
   calibrateColors();
@@ -472,16 +410,10 @@ Vector<4> &RealFunction::normal (double tt, double uu, double vv) {
   return n;
 }
 
-# ifndef USE_FUNCTIONHOLDER_X    
-const VecMath::MultiDimensionalVector< Vector< 4 >, 3 > &RealFunction::X() const {
-  return pImpl_->X();
-}
-#endif    
-
-const VecMath::MultiDimensionalVector< Vector< 4 >, 3 > &RealFunction::Xtrans() const {
+const MultiDimensionalVector< Vector< 4 >, 3 > &RealFunction::Xtrans() const {
   return pImpl_->Xtrans();
 }
 
-const VecMath::MultiDimensionalVector< Vector< 3 >, 3 >& RealFunction::Xscr() const {
+const MultiDimensionalVector< Vector< 3 >, 3 >& RealFunction::Xscr() const {
     return pImpl_->Xscr();
 }
