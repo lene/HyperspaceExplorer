@@ -47,7 +47,6 @@ class RealFunction::Impl {
     Impl(RealFunction *f);
 
     void Project (double ScrW, double CamW, bool DepthCue4D);
-    void Draw (UI::View *view);
 
     void calibrateColors() const;
 
@@ -70,10 +69,6 @@ class RealFunction::Impl {
     /// Finds maximum and minimum function value in w.
     std::pair<double, double> findExtremesInW() const;
 
-    void DrawPlane (unsigned, UI::View *view);
-    void DrawStrip (unsigned, unsigned, UI::View *view);
-    void DrawCube (unsigned, unsigned, unsigned, UI::View *view);
-
     RealFunction *parent_;
 
 };
@@ -86,17 +81,6 @@ void RealFunction::Impl::Project(double scr_w, double cam_w, bool depthcue4d) {
     std::pair< double, double > Wext = findExtremesInW();
     setDepthCueColors(Wext.first, Wext.second);
   }
-}
-
-void RealFunction::Impl::Draw(UI::View* view) {
-//  ScopedTimer timer("Draw()");
-# ifdef USE_GRID_DRAWER
-  parent_->FunctionHolder<4, 3>::Draw(view);
-# else
-    for (unsigned t = 0; t <= getDefinitionRange().getNumSteps(0); t++)
-      DrawPlane (t, view);
-# endif
-
 }
 
 void RealFunction::Impl::calibrateColors() const {
@@ -142,40 +126,6 @@ std::pair< double, double > RealFunction::Impl::findExtremesInW() const {
   }
 
   return std::make_pair(Wmin, Wmax);
-}
-
-
-/// Draw the current plane of the projected Function
-/** \param t current t value                                                  */
-void RealFunction::Impl::DrawPlane (unsigned t, UI::View *view){
-//  ScopedTimer timer("RealFunction::DrawPlane()");
-  for (unsigned u = 0; u <= getDefinitionRange().getNumSteps(1); u++)
-    DrawStrip (t, u, view);
-}
-
-/// Draw the current strip of the projected Function
-/** \param t current t value
- *  \param u current u value                                                  */
-void RealFunction::Impl::DrawStrip (unsigned t, unsigned u, UI::View *view){
-  for (unsigned v = 0; v <= getDefinitionRange().getNumSteps(2); v++)
-    DrawCube (t, u, v, view);
-}
-
-/// Draw the current cube or cell of the projected Function
-/** \param t current t value
- *  \param u current u value
- *  \param v current v value                                                  */
-void RealFunction::Impl::DrawCube (unsigned t, unsigned u, unsigned v, UI::View* view) {
-    /// \todo don't use a malloc'ed pointer
-    static Vector<3> *V = new Vector<3> [8];
-
-    V[0] = Xscr()[t][u][v];     V[1] = Xscr()[t][u][v+1];
-    V[2] = Xscr()[t][u+1][v];   V[3] = Xscr()[t][u+1][v+1];
-    V[4] = Xscr()[t+1][u][v];   V[5] = Xscr()[t+1][u][v+1];
-    V[6] = Xscr()[t+1][u+1][v]; V[7] = Xscr()[t+1][u+1][v+1];
-
-    view->drawCube(X(), t, u, v,
-                   V[0], V[1], V[2], V[3], V[4], V[5], V[6], V[7]);
 }
 
 /** RealFunction c'tor given only a name: All grid values are set to defaults
@@ -245,7 +195,7 @@ Vector<4>& RealFunction::operator()(double t, double u, double v) {
 
 /** \todo get rid of this function. */
 unsigned int RealFunction::getNumParameters() {
-    return Function::getNumParameters();
+  return Function::getNumParameters();
 }
 
 /// Re-initialize a RealFunction if the definition set has changed
@@ -262,12 +212,6 @@ void RealFunction::ReInit(double tmin, double tmax, double dt,
  *  \param depthcue4d whether to use hyperfog/depth cue                       */
 void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
   pImpl_->Project(scr_w, cam_w, depthcue4d);
-}
-
-/// Draw the projected Function (onto screen or into GL list, as it is)
-/** */
-void RealFunction::Draw (UI::View *view) {
-  pImpl_->Draw(view);
 }
 
 /// Calculate normal to function at a given point in definition set.

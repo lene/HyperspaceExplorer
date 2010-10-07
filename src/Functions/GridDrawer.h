@@ -21,9 +21,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef GRID_DRAWER_H
 #define GRID_DRAWER_H
 
-/// define this if you want the GridDrawer do the drawing work
-#undef USE_GRID_DRAWER
-
 #include "View.h"
 #include "MultiDimensionalVector.h"
 

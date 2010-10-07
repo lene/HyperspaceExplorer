@@ -61,7 +61,6 @@ class RealFunction: public FunctionHolder<4, 3, double> {
     virtual ~RealFunction();
 
     virtual void Project (double ScrW, double CamW, bool DepthCue4D);
-    virtual void Draw (UI::View *view);
 
     virtual void ReInit(double tmin, double tmax, double dt,
                         double umin, double umax, double du,
