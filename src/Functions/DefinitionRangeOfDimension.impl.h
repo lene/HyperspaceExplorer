@@ -100,9 +100,6 @@ void DefinitionRangeOfDimension<D>::setNumSteps(unsigned i, unsigned numSteps) {
 
 template<unsigned D>
 void DefinitionRangeOfDimension<D>::setRange(unsigned i, const DefinitionSpaceRange &range) {
-#ifdef DEBUG_NUM_STEPS
-  std::cerr << "DefinitionRangeOfDimension<D>::setRange(" << i << range.toString() << ")\n";
-#endif
   assert(i < D);
   range_[i] = range;
 }

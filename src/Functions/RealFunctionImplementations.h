@@ -23,6 +23,45 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "RealFunction.h"
 
+/// Testing a ParametricFunction to initialize a RealFunction with
+/** \ingroup RealGroup                                                    */
+class ParametricTestFunction: public ParametricFunction<4, 3> {
+
+  public:
+
+    ParametricTestFunction() {
+      setName("ParametricTestFunction");
+      setDescription("Testing a ParametricFunction to initialize a RealFunction with");
+    }
+   
+    virtual return_type f(const argument_type &x) {
+      return_type F;
+      F[0] = x[0];
+      F[1] = x[1];
+      F[2] = x[2];
+      F[3] = a0
+           + a1x*x[0] + a1y*x[1] + a1z*x[2]
+           + a2xx*x[0]*x[0] + a2xy*x[0]*x[1] + a2xz*x[0]*x[2]  
+           + a2yy*x[1]*x[1] + a2yz*x[1]*x[2]  
+           + a2zz*x[2]*x[2]  
+        ;
+      return F;  
+    }    
+
+  private:
+    
+    static const double a0 = 0,
+                        a1x = 1, a1y = -1, a1z = 1,
+                        a2xx = -1, a2xy = 1, a2xz = -1,
+                        a2yy = 1, a2yz = -1,
+                        a2zz = 1;
+};
+
+namespace {
+    Function *createParametricTestFunction() { return new RealFunction(new ParametricTestFunction()); }
+    const bool registeredR0 = TheFunctionFactory::Instance().registerFunction(createParametricTestFunction, "RealFunction");
+}
+
 /// A hypersphere.
 /** Defining function is
     \f{eqnarray*} {
@@ -70,7 +109,7 @@ class Hypersphere: public RealFunction {
 
 namespace {
     Function *createHypersphere() { return new Hypersphere(); }
-    const bool registeredR1 = TheFunctionFactory::Instance().registerFunction(createHypersphere);
+    const bool registeredR1 = TheFunctionFactory::Instance().registerFunction(createHypersphere, "RealFunction");
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -132,7 +171,7 @@ class Torus1: public RealFunction {
 
 namespace {
     Function *createTorus1() { return new Torus1(); }
-    const bool registeredR2 = TheFunctionFactory::Instance().registerFunction(createTorus1);
+    const bool registeredR2 = TheFunctionFactory::Instance().registerFunction(createTorus1, "RealFunction");
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -191,7 +230,7 @@ class Torus2: public RealFunction {
 
 namespace {
     Function *createTorus2() { return new Torus2(); }
-    const bool registeredR3 = TheFunctionFactory::Instance().registerFunction(createTorus2);
+    const bool registeredR3 = TheFunctionFactory::Instance().registerFunction(createTorus2, "RealFunction");
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -232,7 +271,7 @@ class Fr3r: public RealFunction {
 
 namespace {
     Function *createFr3r() { return new Fr3r(); }
-    const bool registeredR4 = TheFunctionFactory::Instance().registerFunction(createFr3r);
+    const bool registeredR4 = TheFunctionFactory::Instance().registerFunction(createFr3r, "RealFunction");
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -289,7 +328,7 @@ class GravitationPotential: public RealFunction {
 
 namespace {
     Function *createGravitationPotential() { return new GravitationPotential(); }
-    const bool registeredR5 = TheFunctionFactory::Instance().registerFunction(createGravitationPotential);
+    const bool registeredR5 = TheFunctionFactory::Instance().registerFunction(createGravitationPotential, "RealFunction");
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -326,7 +365,7 @@ class Fr3rSin: public RealFunction {
 
 namespace {
     Function *createFr3rSin() { return new Fr3rSin(); }
-    const bool registeredR6 = TheFunctionFactory::Instance().registerFunction(createFr3rSin);
+    const bool registeredR6 = TheFunctionFactory::Instance().registerFunction(createFr3rSin, "RealFunction");
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -363,7 +402,7 @@ class Fr3rExp: public RealFunction {
 
 namespace {
     Function *createFr3rExp() { return new Fr3rExp(); }
-    const bool registeredR7 = TheFunctionFactory::Instance().registerFunction(createFr3rExp);
+    const bool registeredR7 = TheFunctionFactory::Instance().registerFunction(createFr3rExp, "RealFunction");
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -443,7 +482,7 @@ class PolarSin: public RealFunction {
 
 namespace {
     Function *createPolarSin() { return new PolarSin(); }
-    const bool registeredR8 = TheFunctionFactory::Instance().registerFunction(createPolarSin);
+    const bool registeredR8 = TheFunctionFactory::Instance().registerFunction(createPolarSin, "RealFunction");
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -480,7 +519,7 @@ class PolarSin2: public RealFunction {
 
 namespace {
     Function *createPolarSin2() { return new PolarSin2(); }
-    const bool registeredR9 = TheFunctionFactory::Instance().registerFunction(createPolarSin2);
+    const bool registeredR9 = TheFunctionFactory::Instance().registerFunction(createPolarSin2, "RealFunction");
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -531,7 +570,7 @@ class PolarR: public RealFunction {
 
 namespace {
     Function *createPolarR() { return new PolarR(); }
-    const bool registeredR10 = TheFunctionFactory::Instance().registerFunction(createPolarR);
+    const bool registeredR10 = TheFunctionFactory::Instance().registerFunction(createPolarR, "RealFunction");
 }
 
 #endif // REALFUNCTIONIMPLEMENTATIONS_H

@@ -23,7 +23,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <tr1/memory>
 
-bool FunctionFactory::registerFunction(CreateFunctionCallback creator) {
+bool FunctionFactory::registerFunction(CreateFunctionCallback creator,
+                                       const std::string &) {
 
     std::tr1::shared_ptr<Function> theFunction(creator());
 

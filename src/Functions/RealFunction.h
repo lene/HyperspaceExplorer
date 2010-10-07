@@ -52,6 +52,7 @@ class RealFunction: public FunctionHolder<4, 3, double> {
     typedef VecMath::Vector<4> raw_function_type (double, double, double);
 
     RealFunction();
+    RealFunction(ParametricFunction<4, 3> *function);
     RealFunction(double tmin, double tmax, double dt,
                  double umin, double umax, double du,
                  double vmin, double vmax, double dv,
@@ -67,6 +68,9 @@ class RealFunction: public FunctionHolder<4, 3, double> {
     /// Called by the ColorManager after setting the Function on the CM
     virtual void calibrateColors() const;
 
+    /** \return The name of the function in cleartext                     */
+    virtual std::string getFunctionName() const;
+    
     /// \see Function::getDefinitionSpaceDimensions()
     virtual unsigned getDefinitionSpaceDimensions();
 

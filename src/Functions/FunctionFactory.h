@@ -76,10 +76,23 @@ class FunctionFactory {
         typedef std::map<std::string, CreateFunctionCallback> CallbackMap;
 
     public:
+      
+        /// Registers a category under which menu entries to select Functions are shown.
+        /** This menu structure follows the inheritance hierarchy of Function
+         *  classes.
+         *  \param category_name The name of the newly registered category.
+         *  \param parent_category The parent category, if applicable.
+         */
+        bool registerCategory(const std::string &category_name, 
+                              const std::string &parent_category);
+        
         /// Registers a function creating a Function under the Function's class name
         /** \param creator Callback function creating an object of the desired class
+         *  \param parent_category Category the Function is under in the inheritance
+         *    hierarchy and the menu structure
          *  \return true if registration was successful                       */
-        bool registerFunction(CreateFunctionCallback creator);
+        bool registerFunction(CreateFunctionCallback creator,
+                              const std::string &parent_category);
 
         /// Remove a Function class from the factory
         /** \param name Name of the class which isn't available for creation any

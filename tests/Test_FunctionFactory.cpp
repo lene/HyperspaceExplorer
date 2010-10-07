@@ -30,7 +30,7 @@ const std::string Test_FunctionFactory::TEST_FUNCTION_NAME = "Test_FunctionFacto
 Function *createTest() { return new Test_FunctionFactory::FunctionTestImplementation(); }
 
 void Test_FunctionFactory::registerFunction() {
-    TheFunctionFactory::Instance().registerFunction(createTest);
+    TheFunctionFactory::Instance().registerFunction(createTest, "RealFunction");
 
     vector<string> registeredFunctions = TheFunctionFactory::Instance().listFunctions();
     if (std::find(registeredFunctions.begin(), registeredFunctions.end(), TEST_FUNCTION_NAME) == registeredFunctions.end()) {
@@ -40,7 +40,7 @@ void Test_FunctionFactory::registerFunction() {
 
 void Test_FunctionFactory::unregisterFunction() {
 
-    TheFunctionFactory::Instance().registerFunction(createTest);
+    TheFunctionFactory::Instance().registerFunction(createTest, "RealFunction");
 
     TheFunctionFactory::Instance().unregisterFunction(TEST_FUNCTION_NAME);
 
@@ -58,7 +58,7 @@ void Test_FunctionFactory::unregisterFunction() {
 
 void Test_FunctionFactory::createFunction(){
 
-    TheFunctionFactory::Instance().registerFunction(createTest);
+    TheFunctionFactory::Instance().registerFunction(createTest, "RealFunction");
 
     Function *f = TheFunctionFactory::Instance().createFunction(TEST_FUNCTION_NAME);
 
@@ -73,7 +73,7 @@ void Test_FunctionFactory::listFunctions() {
 
     unsigned previousSize = TheFunctionFactory::Instance().listFunctions().size();
 
-    TheFunctionFactory::Instance().registerFunction(createTest);
+    TheFunctionFactory::Instance().registerFunction(createTest, "RealFunction");
 
     QVERIFY(TheFunctionFactory::Instance().listFunctions().size() == previousSize+1);
 }

@@ -52,7 +52,7 @@ private:
 namespace {
     Function *createSurface1() { return new Surface1(); }
     const bool registeredS1 =
-            TheFunctionFactory::Instance().registerFunction(createSurface1);
+            TheFunctionFactory::Instance().registerFunction(createSurface1, "Surface");
 }
 
 /// A four-dimensional surface described by Thomas Banchoff.
@@ -87,7 +87,7 @@ private:
 namespace {
     Function *createHorizon() { return new Horizon(); }
     const bool registeredS2 =
-            TheFunctionFactory::Instance().registerFunction(createHorizon);
+            TheFunctionFactory::Instance().registerFunction(createHorizon, "Surface");
 }
 
 /// Another torus version, this one as a two-dimensional surface in four-space.
@@ -113,7 +113,7 @@ private:
 namespace {
     Function *createTorus3() { return new Torus3(); }
     const bool registeredS3 =
-            TheFunctionFactory::Instance().registerFunction(createTorus3);
+            TheFunctionFactory::Instance().registerFunction(createTorus3, "Surface");
 }
 
 #endif // SURFACEIMPLEMENTATIONS_H

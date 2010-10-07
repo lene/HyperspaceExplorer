@@ -264,7 +264,7 @@ public:
 
 namespace {
     Function *createHypercube() { return new Hypercube; }
-    const bool registeredH = TheFunctionFactory::Instance().registerFunction(createHypercube);
+    const bool registeredH = TheFunctionFactory::Instance().registerFunction(createHypercube, "Object");
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -304,7 +304,7 @@ protected:
 namespace {
     Function *createPyramid() { return new Pyramid(); }
     const bool registeredP =
-            TheFunctionFactory::Instance().registerFunction(createPyramid);
+            TheFunctionFactory::Instance().registerFunction(createPyramid, "Object");
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -362,7 +362,7 @@ class Gasket: public Pyramid {
 namespace {
     Function *createGasket() { return new Gasket(); }
     const bool registeredG =
-            TheFunctionFactory::Instance().registerFunction(createGasket);
+            TheFunctionFactory::Instance().registerFunction(createGasket, "Object");
 }
 
 #endif

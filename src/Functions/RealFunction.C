@@ -155,6 +155,10 @@ RealFunction::RealFunction(double tmin, double tmax, double dt,
   setDefinitionRange(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
 }
 
+RealFunction::RealFunction(ParametricFunction< 4, 3 >* function): 
+  FunctionHolder< 4, 3, double >(ParameterMap()), 
+  _function(function) { }
+
 RealFunction::~RealFunction() { }
 
 void RealFunction::Initialize () {
@@ -175,6 +179,11 @@ void RealFunction::Initialize () {
 
 void RealFunction::calibrateColors() const {
   pImpl_->calibrateColors();
+}
+
+std::string RealFunction::getFunctionName() const {
+  assert(_function);
+  return _function->getName();
 }
 
 unsigned int RealFunction::getDefinitionSpaceDimensions() { return 3; }
