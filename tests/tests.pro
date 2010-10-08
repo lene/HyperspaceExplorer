@@ -35,7 +35,9 @@ HEADERS += Auxiliary/GlobalFunctions.h \
 SOURCES += Auxiliary/GlobalFunctions.cpp \
            Auxiliary/MockView.cpp
 
-HEADERS += Test_Rotope.h \
+HEADERS += \
+	   Test_Rotope.h \
+	   Test_DisplayableClass.h \
            Test_Realm.h \
            Test_Vector.h \
            Test_Matrix.h \
@@ -51,7 +53,9 @@ HEADERS += Test_Rotope.h \
            Test_FunctionFactory.h \
            Test_FunctionHolder.h \
            Test_Function.h
-SOURCES += Test_Rotope.cpp \
+SOURCES += \
+	   Test_Rotope.cpp \
+	   Test_DisplayableClass.cpp \
            Test_Realm.cpp \
            Test_Vector.cpp \
            Test_Matrix.cpp \

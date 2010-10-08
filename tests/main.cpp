@@ -34,6 +34,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Test_GridDrawer.h"
 #include "Test_FunctionFactory.h"
 #include "Test_FunctionHolder.h"
+#include "Test_DisplayableClass.h"
 
 #include <QtTest/QtTest>
 
@@ -100,6 +101,7 @@ int main(int argc, char **argv) {
     runner.run(new Test_Surface);
     runner.run(new Test_FunctionHolder);
     runner.run(new Test_RealFunction);
+    runner.run(new Test_DisplayableClass);
 
     runner.printSummary();
 

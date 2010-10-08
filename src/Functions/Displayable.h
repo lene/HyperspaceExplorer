@@ -35,6 +35,8 @@ namespace VecMath {
     template <unsigned D, typename N> class Vector;
 }
 class ParameterMap;
+class DisplayableClass;
+#include "DisplayableClass.h"
 
 /// \defgroup FunctionGroup Functions and objects
 /// \defgroup RealGroup Functions R^3 -> R
@@ -243,5 +245,8 @@ class Displayable {
       Impl *pImpl_;
 };
 
+namespace {
+  const DisplayableClass &displayable_class_root = DisplayableClass::makeRootNode("Displayable", "Objects");
+}
 
 #endif

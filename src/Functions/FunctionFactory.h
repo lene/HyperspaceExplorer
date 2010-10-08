@@ -28,7 +28,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 class Displayable;
 
-/// Factory class creating Function objects given the name of their class
+/// Factory class creating Displayable objects given the name of their class
 /** The factory is instantiated as singleton in the variable (in fact, class)
  *  TheFunctionFactory.
  *
@@ -37,13 +37,13 @@ class Displayable;
  *  \code
  *  namespace {
  *
- *      Function *createHypercube() {
+ *      Displayable *createHypercube() {
  *          return new Hypercube();
  *      }
  *
  *      const bool registered =
- *          TheFunctionFactory::Instance().registerFunction("Hypercube",
- *                                                          createHypercube);
+ *          TheFunctionFactory::Instance().registerFunction(createHypercube,
+ *                                                          "Hypercube");
  *  }
  *  \endcode
  *  Of course, the name of the class and the description passed to
@@ -53,74 +53,62 @@ class Displayable;
 
  *  Objects are created with, e.g.:
  *  \code
- *  Function *f = TheFunctionFactory::Instance().createFunction("Hypercube");
+ *  Displayable *f = TheFunctionFactory::Instance().createFunction("Hypercube");
  *  \endcode
  * \author Helge Preuss <lene.preuss@gmail.com>                          */
 class FunctionFactory {
 
-    public:
-        /// callback function generating a Function and returning a Function*
-        typedef Displayable *(*CreateFunctionCallback)();
+  public:
 
-        /// Thrown by createFunction() when \p name does not map to a function.
-        class BadFunctionException: public std::runtime_error {
-            public:
-                /// Create a BadFunctionException
-                BadFunctionException(const std::string &what):
-                    std::runtime_error("\""+what+"\" is not the name of a registered"
-                        " Function") { }
-        };
+    /// callback function generating a Function and returning a Function*
+    typedef Displayable *(*CreateFunctionCallback)();
 
-    private:
-        /// stores a creator function with a string containing the class name
-        typedef std::map<std::string, CreateFunctionCallback> CallbackMap;
+    /// Thrown by createFunction() when \p name does not map to a function.
+    struct BadFunctionException: public std::runtime_error {
+      /// Create a BadFunctionException
+      BadFunctionException(const std::string &what):
+        std::runtime_error("\""+what+"\" is not the name of a registered Function") { }
+    };
 
-    public:
-      
-        /// Registers a category under which menu entries to select Functions are shown.
-        /** This menu structure follows the inheritance hierarchy of Function
-         *  classes.
-         *  \param category_name The name of the newly registered category.
-         *  \param parent_category The parent category, if applicable.
-         */
-        bool registerCategory(const std::string &category_name, 
-                              const std::string &parent_category);
-        
-        /// Registers a function creating a Function under the Function's class name
-        /** \param creator Callback function creating an object of the desired class
-         *  \param parent_category Category the Function is under in the inheritance
-         *    hierarchy and the menu structure
-         *  \return true if registration was successful                       */
-        bool registerFunction(CreateFunctionCallback creator,
-                              const std::string &parent_category);
+  private:
 
-        /// Remove a Function class from the factory
-        /** \param name Name of the class which isn't available for creation any
-         *      more
-         *  \return true if unregistration was successful                     */
-        bool unregisterFunction(const std::string &name);
+    /// stores a creator function with a string containing the class name
+    typedef std::map<std::string, CreateFunctionCallback> CallbackMap;
 
-        /// Create an object derived from Function, given the name of its class
-        /** \param name The class name of the created Function object
-         *  \return a newly created object of class "name"                    */
-        Displayable *createFunction(const std::string &name);
+  public:
 
-        /// \todo implement me!
-        std::vector<std::string> listFunctions();
+    /// Registers a category under which menu entries to select Functions are shown.
+    bool registerCategory(const std::string &category_name,
+                          const std::string &parent_category);
 
-    private:
-        /** disabled default constructor */
-        FunctionFactory(): callbacks() { }
-        /** disabled copy constructor */
-        FunctionFactory(const FunctionFactory &);
-        /** disabled assignment operator */
-        FunctionFactory &operator=(const FunctionFactory &);
-        /** disabled destructor */
-        ~FunctionFactory();
+    /// Registers a function creating a Function under the Function's class name
+    bool registerFunction(CreateFunctionCallback creator,
+                          const std::string &parent_category);
 
-        CallbackMap callbacks;  ///< Stores the Function creators
+    /// Remove a Function class from the factory
+    bool unregisterFunction(const std::string &name);
 
-    friend class Loki::CreateUsingNew<FunctionFactory>;
+    /// Create an object derived from Function, given the name of its class
+    Displayable *createFunction(const std::string &name);
+
+    /// Return the names of the registered Displayable classes as a std::vector<std::string>
+    std::vector<std::string> listFunctions();
+
+  private:
+
+    /// disabled default constructor
+    FunctionFactory(): callbacks() { }
+    /// disabled copy constructor
+    FunctionFactory(const FunctionFactory &);
+    /// disabled assignment operator
+    FunctionFactory &operator=(const FunctionFactory &);
+    /// disabled destructor
+    ~FunctionFactory();
+
+    CallbackMap callbacks;  ///< Stores the Function creators
+
+  friend class Loki::CreateUsingNew<FunctionFactory>;
+
 };
 
 typedef Loki::SingletonHolder<FunctionFactory> TheFunctionFactory;
