@@ -20,6 +20,64 @@
 
 #include "Test_DisplayableClass.h"
 
-void Test_DisplayableClass::printPresentClasses() {
+#include "GlobalFunctions.h"
 
+#include "FunctionHolder.h"
+
+#include <iostream>
+
+using namespace UnitTests;
+using std::vector;
+using std::string;
+
+void Test_DisplayableClass::initTestcase() {
+//  root_ = DisplayableClass::getRootNode();
 }
+
+void Test_DisplayableClass::rootNode() {
+  DisplayableClass root_ = DisplayableClass::getRootNode();
+  testEqual(root_.getName(), "Displayable");
+  testEqual(root_.getDescription(), "Objects");
+}
+
+void printDisplayableClass(const DisplayableClass &d) {
+  std::cerr << d.getName() << ": " << d.getDescription() << std::endl;
+}
+
+bool containsClassWithName(const vector<DisplayableClass> &classes, const string &name) {
+  for (vector<DisplayableClass>::const_iterator i = classes.begin(); i != classes.end(); ++i) {
+    if (i->getName() == name) return true;
+  }
+  return false;
+}
+
+void Test_DisplayableClass::getSubClasses() {
+  DisplayableClass root_ = DisplayableClass::getRootNode();
+  string root_name = root_.getName();
+  std::vector<DisplayableClass> subclasses = root_.getSubClasses();
+  testEqual(subclasses.size(), 3);  // FunctionHolder, Surface, Object
+  test(containsClassWithName(subclasses, "FunctionHolder"),
+       "FunctionHolder is subclass of "+root_name);
+  test(containsClassWithName(subclasses, "Surface"),
+       "Surface is subclass of "+root_name);
+  test(containsClassWithName(subclasses, "Object"),
+       "Object is subclass of "+root_name);
+}
+
+void Test_DisplayableClass::findClass() {
+  testEqual(DisplayableClass::findClass("FunctionHolder").getName(), "FunctionHolder");
+  testEqual(DisplayableClass::findClass("RealFunction").getName(), "RealFunction");
+  try {
+    DisplayableClass::findClass("nonexistent class name");
+    QFAIL("findClass() with a nonexistent class name should throw an exception!");
+  } catch (const DisplayableClass::DisplayableClassException &e) { 
+    return; 
+  } catch (...) {
+    QFAIL("findClass() with a nonexistent class name threw an exception, but of wrong type!");
+  }
+}
+
+void Test_DisplayableClass::getDisplayables() {
+  QSKIP("Not yet implemented", SkipSingle);
+}
+

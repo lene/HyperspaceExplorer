@@ -24,6 +24,7 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
+#include <map>
 
 class Displayable;
 
@@ -38,26 +39,29 @@ public:
   DisplayableClass(const std::string &name, const std::string &description, const std::string &parent_name);
 
   std::string getName() const;
+  std::string getDescription() const;
 
-  std::vector<Displayable> getChildDisplayables() const;
+  std::vector<Displayable> getDisplayables() const;
   std::vector<DisplayableClass> getSubClasses() const;
 
-  static const DisplayableClass &findClass(const std::string &class_name);
+  static DisplayableClass &findClass(const std::string &class_name);
 
   static const DisplayableClass &makeRootNode(const std::string &class_name,
                                               const std::string &description);
-  static const DisplayableClass &getRootNode();
+  static DisplayableClass &getRootNode();
 
+  void printSubclasses() const;
+  
 private:
 
   /// Create a DisplayableClass without a parent node. This may happen only once and creates the root node.
   DisplayableClass(const std::string & name, const std::string &description);
 
-  void addSubClass(const DisplayableClass &child);
+  void addSubClass(DisplayableClass &child);
 
-  const DisplayableClass &findSubClass(const std::string &class_name) const;
+  DisplayableClass &findSubClass(const std::string &class_name);
 
-  typedef std::vector<const DisplayableClass *> subclass_container_type;
+  typedef std::map<std::string, DisplayableClass *> subclass_container_type;
   typedef std::vector<std::string> displayable_container_type;
 
   std::string class_name_;
@@ -66,7 +70,7 @@ private:
   subclass_container_type subclasses_;
   displayable_container_type displayables_;
 
-  static const DisplayableClass *root_node_;
+  static DisplayableClass *root_node_;
 
 };
 

@@ -18,8 +18,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 */
 
-#if !defined(FUNCTION_H)
-#define FUNCTION_H
+#if !defined(DISPLAYABLE_H)
+#define DISPLAYABLE_H
 
 #include "FunctionParameter.h"
 #include "FunctionFactory.h"
@@ -50,14 +50,15 @@ class DisplayableClass;
 /// \defgroup ComplexGroup Functions C -> C
 /// \ingroup SurfaceGroup
 
-/// A Displayable is a generalized four-dimensional object
-/** The Displayable interface provides abstract members for the evaluation of
- *  the function values, usually on a grid, together with methods to rotate and
+/// A Displayable is a generalized four-dimensional object.
+/** The Displayable interface provides abstract members for the definition of 
+ *  four-dimensional objects, together with methods to rotate and
  *  translate the resulting four-dimensional geometry in 4-space, to project the
- *  transformed geometry onto 3-space, and to draw the projected grid into an
- *  OpenGL display list.
+ *  transformed geometry onto 3-space, and to draw the projected grid into a
+ *  generalized View that can display three-dimensional objects.
  *
- *  It also handles Function name and its parameters.
+ *  It also handles object name, description and any parameters that might be
+ *  needed to fully describe the object.
  *
  *  abstract members:
  *      \li Vector &f (double, double, double);
@@ -65,7 +66,7 @@ class DisplayableClass;
  *                     double Ryz, double Ryw, double Rzw,
  *                     double Tx, double Ty, double Tz, double Tw)
  *      \li Project (double ScrW, double CamW, bool DepthCue4D)
- *      \li Draw ()
+ *      \li Draw (View *view)
  *      \li ReInit(double _tmin, double _tmax, double _dt,
  *                 double _umin, double _umax, double _du,
  *                 double _vmin, double _vmax, double _dv)
@@ -76,21 +77,20 @@ class DisplayableClass;
  *      \li SetParameters (double = 0, double = 0, double = 0, double = 0)
  *
  *  other useful members:
- *      \li Transform ()
+ *      \li ResetTransform ()
  *
  *  Displayable objects can be created directly via their various constructors, or
  *  via the createFunction() method of the FunctionFactory class. To enable the
- *  latter, a Function's definition must be augmented by the following code
+ *  latter, a Displayable's definition must be augmented by the following code
  *  (for example):
  *  \code
  *  namespace {
- *      Function *createHypercube() { return new Hypercube(); }
+ *      Displayable *createHypercube() { return new Hypercube(); }
  *      const bool registered =
- *          TheFunctionFactory::Instance().registerFunction("Hypercube", createHypercube);
+ *          TheFunctionFactory::Instance().registerFunction(createHypercube, "Hypercube");
  *  }
  *  \endcode
  *
- *  \todo Update this documentation
  *  \todo Rename other references to the name "Function"
  *  \todo Vector &normal (double, double, double); - or in derived classes?
  *  \todo  operator () (double t, double u, double v) - ditto
@@ -134,13 +134,13 @@ class Displayable {
         /// function that is applied on vertices transformed and projected into 3-space
         typedef void(*function_on_projected_vertex)(const VecMath::Vector<3, double> &);
 
-        /// Function default c'tor
+        /// Displayable default c'tor.
         Displayable();
-        /// Function c'tor given a definition set in \f$ R^3 \f$ (as parameter space)
+        /// Displayable c'tor given a set of FunctionParameter 
         Displayable (ParameterMap parameters);
         virtual ~Displayable();
 
-        /// Execute the desired rotation and translation to the Function object
+        /// Execute the desired rotation and translation to the Displayable object
         virtual void Transform (const VecMath::Rotation<4, double> &R,
                                 const VecMath::Vector<4, double> &T) = 0;
         /// Overloaded function executing the transform to the default state
@@ -149,24 +149,24 @@ class Displayable {
         /// Projects the vertex data to 3D
         virtual void Project (double ScrW, double CamW, bool DepthCue4D) = 0;
 
-        /// Draw the function
+        /// Draw the Displayable object
         virtual void Draw (UI::View *) = 0;
 
-        /// Called when a Function must be created anew
+        /// Called when a Displayable must be created anew
         virtual void ReInit(double _tmin, double _tmax, double _dt,
                             double _umin, double _umax, double _du,
                             double _vmin, double _vmax, double _dv) = 0;
 
-        /// Called by the ColorManager after setting the Function on the CM
+        /// Called by the ColorManager after setting the Displayable on the CM
         virtual void calibrateColors() const = 0;
 
-        /** \return The name of the function in cleartext                     */
+        /** \return The name of the Displayable in cleartext                     */
         virtual std::string getFunctionName() const = 0;
 
         /// number of argument given to the defining function
         virtual unsigned getDefinitionSpaceDimensions() = 0;
 
-        /// Set parameters to the Function
+        /// Set parameters to the Displayable 
         virtual void SetParameters(const ParameterMap &);
 
         /// \return The collection of all parameters (and their values)
@@ -175,7 +175,7 @@ class Displayable {
         /// \return The value of the parameter which is named \p name
         FunctionParameter::parameter_ptr_type getParameter(const std::string &name);
 
-        /** \return number of parameters for the function                     */
+        /** \return number of parameters for the Displayable                     */
         virtual unsigned getNumParameters();
 
         /** \return Value of the parameter with the name \p name.             */
@@ -188,9 +188,9 @@ class Displayable {
                                                 T &parm,
                                                 const std::string &key);
 
-        /// Loop over all vertices managed by the Function and call apply on them.
+        /// Loop over all vertices managed by the Displayable and call apply on them.
         virtual void for_each_vertex(function_on_fourspace_vertex apply) = 0;
-        /// Loop over all vertices managed by the Function and their transformed
+        /// Loop over all vertices managed by the Displayable and their transformed
         /// images and call apply on them.
         /** This function is not pure virtual because it would be too tedious to
          *  require all implementing classes to provide an implementation.
@@ -198,7 +198,7 @@ class Displayable {
          *  The default implementation provided here throws an exception.
          */
         virtual void for_each_vertex_transformed(function_on_fourspace_and_transformed_vertex apply);
-        /// Loop over all vertices managed by the Function, their transformed images
+        /// Loop over all vertices managed by the Displayable, their transformed images
         /// and the projection into three-space and call apply on them.
         /** This function is not pure virtual because it would be too tedious to
         *  require all implementing classes to provide an implementation.
@@ -206,7 +206,7 @@ class Displayable {
         *  The default implementation provided here throws an exception.
         */
         virtual void for_each_vertex_transformed_projected(function_on_fourspace_transformed_and_projected_vertex apply);
-        /// Loop over all vertices managed by the Function and call apply on them.
+        /// Loop over all vertices managed by the Displayable and call apply on them.
         virtual void for_each_projected(function_on_projected_vertex apply) = 0;
 
     protected:
@@ -246,7 +246,7 @@ class Displayable {
 };
 
 namespace {
-  const DisplayableClass &displayable_class_root = DisplayableClass::makeRootNode("Displayable", "Objects");
+  static const DisplayableClass &displayable_class_root = DisplayableClass::makeRootNode("Displayable", "Objects");
 }
 
 #endif

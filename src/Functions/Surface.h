@@ -22,6 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define SURFACE_H
 
 #include "Displayable.h"
+#include "DisplayableClass.h"
 
 #include "ParametricFunction.h"
 #include "MultiDimensionalVector.h"
@@ -100,5 +101,11 @@ class Surface: public Displayable {
     Impl *pImpl_;
 
 };
+
+namespace {
+  static DisplayableClass displayable_class_surface(
+    "Surface", "Surfaces in R^4", "Displayable"
+  );
+}
 
 #endif

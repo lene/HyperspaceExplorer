@@ -108,7 +108,9 @@ class FunctionHolder : public Displayable {
 };
 
 namespace {
-  DisplayableClass displayable_class_function_holder("FunctionHolder", "Functions evaluated on a grid", "Displayable");
+  static DisplayableClass displayable_class_function_holder(
+    "FunctionHolder", "Functions evaluated on a grid", "Displayable"
+  );
 }
 
 #endif // FUNCTIONHOLDER_H

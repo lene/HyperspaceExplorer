@@ -91,6 +91,12 @@ class Object: public Displayable {
         }
 };
 
+namespace {
+  static DisplayableClass displayable_class_object(
+    "Object", "Geometrical object", "Displayable"
+  );
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////
 

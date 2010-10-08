@@ -97,4 +97,9 @@ class RealFunction: public FunctionHolder<4, 3, double> {
 
 };
 
+namespace {
+  DisplayableClass displayable_class_real_function(
+    "RealFunction", "Functions R³ -> R", "FunctionHolder"
+  );
+}
 #endif

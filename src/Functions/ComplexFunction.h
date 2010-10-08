@@ -77,6 +77,12 @@ private:
 
 };
 
+namespace {
+  static DisplayableClass displayable_class_complex_function(
+    "ComplexFunction", "Functions C -> C", "Surface"
+  );
+}
+
 /// \f$ f(z) = z^2 \f$
 /** \ingroup ComplexGroup                                                    */
 class z2: public ComplexFunction {

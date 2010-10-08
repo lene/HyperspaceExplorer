@@ -31,8 +31,16 @@ class Test_DisplayableClass: public QObject {
 
 private slots:
 
-  void printPresentClasses();
-
+  void initTestcase();
+  void rootNode();
+  void getSubClasses();
+  void findClass();
+  void getDisplayables();
+  
+private:
+  
+//  DisplayableClass root_;
+  
 };
 
 #endif // TEST_DISPLAYABLECLASS_H
