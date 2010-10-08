@@ -23,27 +23,25 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <memory>
 
-/** This menu structure follows the inheritance hierarchy of Function
- *  classes.
- *  \param category_name The name of the newly registered category.
- *  \param parent_category The parent category, if applicable.
- */
-bool FunctionFactory::registerCategory(const std::string& category_name,
-                                       const std::string& parent_category) { }
-
 /** \param creator Callback function creating an object of the desired class
  *  \param parent_category Category the Function is under in the inheritance
  *    hierarchy and the menu structure
  *  \return true if registration was successful
  */
 bool FunctionFactory::registerFunction(CreateFunctionCallback creator,
-                                       const std::string &) {
+                                       const std::string &parent_category) {
 
     std::tr1::shared_ptr<Displayable> theFunction(creator());
 
     std::string functionName = theFunction->getFunctionName();
 
-    return callbacks.insert(CallbackMap::value_type(functionName, creator)).second;
+    bool insertSuccessful = callbacks.insert(CallbackMap::value_type(functionName, creator)).second;
+    
+    if (insertSuccessful) {
+      DisplayableClass::findClass(parent_category).addDisplayable(functionName);
+    }
+    
+    return insertSuccessful;
 }
 
 /** \param name Name of the class which isn't available for creation any

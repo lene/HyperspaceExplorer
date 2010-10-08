@@ -77,10 +77,6 @@ class FunctionFactory {
 
   public:
 
-    /// Registers a category under which menu entries to select Functions are shown.
-    bool registerCategory(const std::string &category_name,
-                          const std::string &parent_category);
-
     /// Registers a function creating a Function under the Function's class name
     bool registerFunction(CreateFunctionCallback creator,
                           const std::string &parent_category);

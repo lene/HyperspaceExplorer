@@ -20,6 +20,8 @@
 
 #include "DisplayableClass.h"
 
+#include "FunctionFactory.h"
+
 #include <cassert>
 #include <iostream>
 
@@ -67,8 +69,22 @@ std::vector< DisplayableClass > DisplayableClass::getSubClasses() const {
   return subclasses;
 }
 
-std::vector< Displayable > DisplayableClass::getDisplayables() const {
+void DisplayableClass::addDisplayable(const std::string& displayable_name) {
+  displayables_.push_back(displayable_name);
+}
 
+std::vector< std::string > DisplayableClass::getDisplayableNames() const {
+  return displayables_;
+}
+
+std::vector< Displayable* > DisplayableClass::getDisplayables() const {
+  std::vector<Displayable*> displayables;
+//  for (displayable_container_type::const_iterator i = getDisplayableNames().begin();
+//       i != getDisplayableNames().end(); ++i) {
+//    std::cerr << *i << std::endl;
+//    displayables.push_back(TheFunctionFactory::Instance().createFunction(*i));
+//  }
+  return displayables;
 }
 
 DisplayableClass& DisplayableClass::getRootNode() {

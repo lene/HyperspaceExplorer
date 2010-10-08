@@ -41,9 +41,13 @@ public:
   std::string getName() const;
   std::string getDescription() const;
 
-  std::vector<Displayable> getDisplayables() const;
+  void addDisplayable(const std::string &displayable_name);
+  std::vector<std::string> getDisplayableNames() const;
+  std::vector<Displayable*> getDisplayables() const;
+
   std::vector<DisplayableClass> getSubClasses() const;
 
+  
   static DisplayableClass &findClass(const std::string &class_name);
 
   static const DisplayableClass &makeRootNode(const std::string &class_name,
@@ -51,6 +55,7 @@ public:
   static DisplayableClass &getRootNode();
 
   void printSubclasses() const;
+  void print() const;
   
 private:
 

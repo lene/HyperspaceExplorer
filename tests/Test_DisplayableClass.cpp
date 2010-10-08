@@ -77,7 +77,32 @@ void Test_DisplayableClass::findClass() {
   }
 }
 
+template <typename Value, class Container> bool contains(const Container &container, 
+                                                         const Value &value) {
+  return std::find(container.begin(), container.end(), value) != container.end();
+}
+
+void Test_DisplayableClass::getDisplayableNames() {
+  vector<string> displayable_names = DisplayableClass::findClass("RealFunction").getDisplayableNames();
+  test(contains(displayable_names, "Gravitation Potential"),
+       string("Gravitation Potential found as RealFunction implementation"));
+  
+  displayable_names = DisplayableClass::findClass("Surface").getDisplayableNames();
+  test(contains(displayable_names, "Surface1"),
+       string("Surface1 found as Surface implementation"));
+  test(contains(displayable_names, "Horizon"),
+       string("Horizon found as Surface implementation"));
+  test(contains(displayable_names, "Torus3"),
+       string("Torus3 found as Surface implementation"));
+
+  displayable_names = DisplayableClass::findClass("ComplexFunction").getDisplayableNames();
+  test(contains(displayable_names, "z2"),
+       string("z2 found as ComplexFunction implementation"));
+  
+  // todo: z3 zA e^a*z emz2 zm1 zm2 sqrtz lnz sinz cosz sinhz coshz tanz 
+}
+
 void Test_DisplayableClass::getDisplayables() {
-  QSKIP("Not yet implemented", SkipSingle);
+  vector<Displayable *> displayables = DisplayableClass::findClass("RealFunction").getDisplayables();
 }
 

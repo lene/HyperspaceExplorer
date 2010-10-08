@@ -35,6 +35,7 @@ private slots:
   void rootNode();
   void getSubClasses();
   void findClass();
+  void getDisplayableNames();
   void getDisplayables();
   
 private:
