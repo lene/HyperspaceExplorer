@@ -98,8 +98,8 @@ void Test_DisplayableClass::getDisplayableNames() {
   displayable_names = DisplayableClass::findClass("ComplexFunction").getDisplayableNames();
   test(contains(displayable_names, "z2"),
        string("z2 found as ComplexFunction implementation"));
-  
-  // todo: z3 zA e^a*z emz2 zm1 zm2 sqrtz lnz sinz cosz sinhz coshz tanz 
+  testContains(displayable_names, string("z3"));
+  // todo: zA e^a*z emz2 zm1 zm2 sqrtz lnz sinz cosz sinhz coshz tanz 
 }
 
 void Test_DisplayableClass::getDisplayables() {

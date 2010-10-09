@@ -47,6 +47,11 @@ namespace UnitTests {
   void testNotEqual(const VecMath::Vector<D, NUM> &checked, 
                     const VecMath::Vector<D, NUM> &precondition);
 
+  template <typename Value, class Container> 
+  void testContains(const Container &container, const Value &value);  
+  template <class Container> 
+  void testContains(const Container &container, const std::string &value);
+  
   static const double EPSILON = 1e-8;
   
 }

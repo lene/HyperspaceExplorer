@@ -88,11 +88,32 @@ void testNotEqual(const VecMath::Vector<D, NUM> &checked,
   );
 }
 
+template <typename Value, class Container> bool contains(const Container &container, 
+                                                         const Value &value) {
+  return std::find(container.begin(), container.end(), value) != container.end();
+}
+
+template <typename Value, class Container>
+void testContains(const Container &container, const Value &value) {
+  test(contains(container, value), 
+       string("Container contains value"));
+}
+
+template <class Container>
+void testContains(const Container &container, const std::string &value) {
+  test(contains(container, value), 
+       "Container contains \""+value+"\"");
+}
+
+
 /// Explicit instantiation
 template void testEqual(const VecMath::Vector<4, double> &checked,
                         const VecMath::Vector<4, double> &precondition);
 /// Explicit instantiation
 template void testNotEqual(const VecMath::Vector<4, double> &checked,
                            const VecMath::Vector<4, double> &precondition);
+/// Explicit instantiation
+template void testContains(const std::vector<std::string> &container, 
+                           const std::string &value);
 
 }
