@@ -425,6 +425,8 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
 
     friend class FunctionSlotHelper;
     friend class SurfaceSlotHelper;
+    friend class SlotHelper;
+
 };
 
 #endif // !defined(C4DVIEW)

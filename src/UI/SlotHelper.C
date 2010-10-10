@@ -43,3 +43,20 @@ void SurfaceSlotHelper::slot() {
     view->AssignValues(view->F());
     view->Redraw();
 }
+
+void SlotHelper::slot() {
+
+  UI::Dialogs::ValuesDialogImpl *values = view_->Values();
+  Displayable *new_displayable = TheFunctionFactory::Instance().createFunction(displayable_name_);
+  new_displayable->ReInit(
+    values->tmin (), values->tmax (), values->dt (),
+    values->umin (), values->umax (), values->du (),
+    values->vmin (), values->vmax (), values->dv ());
+  
+  view_->setF(new_displayable);
+
+  view_->Menu()->updateFunctionMenu(view_->F()->getFunctionName().c_str());
+  view_->AssignValues(view_->F());
+  view_->Redraw();
+  
+}

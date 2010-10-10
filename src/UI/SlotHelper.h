@@ -82,3 +82,26 @@ class SurfaceSlotHelper: public QObject {
         /// The factory object creating Surface's in createSurface()
         SurfaceFactory *surfaceFactory;
 };
+
+#include "FunctionFactory.h"
+
+class SlotHelper: public QObject {
+
+  Q_OBJECT
+  
+  public:
+        
+    SlotHelper(C4DView *view, const std::string &displayable_name):
+      view_(view), displayable_name_(displayable_name) {}              ///< Construction
+    virtual ~SlotHelper() { }   ///< Cleanup
+    
+  public slots:
+    
+    void slot();
+    
+    private:
+        /// The C4DView which wants to instantiate Function's
+        C4DView* view_;
+        /// The name of the Displayable as taken by the FunctionFactory
+        std::string displayable_name_;
+};

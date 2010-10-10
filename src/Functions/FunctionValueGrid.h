@@ -168,6 +168,8 @@ template <unsigned N, unsigned P, typename NUM>
   void FunctionValueGrid<N, P, NUM>::recalculate_grid() {
     LoopHelper< N, P, P, NUM > looper(
       _x_min, _x_max, _grid_size, _f);
+    std::cerr << "recalculate_grid(): [ " << _x_min << ", " << _x_max << " | " << _grid_size << " ] \n"
+              << _function_values << std::endl;
     VecMath::Vector<P, NUM> x = _x_min;
     looper.recalculateOneDimensionOfGrid(_function_values, x);
 }

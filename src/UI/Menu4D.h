@@ -25,6 +25,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <map>
 
 #include "4DView.h"
+#include "FunctionFactory.h"
 
 class QString;
 class QMenuBar;
@@ -101,6 +102,9 @@ class C4DView::Menu4D: public QMenu {
         /// Manages an ActionMap for each submenu
         typedef std::map<QMenu *, ActionMapType> MenuMapType;
 
+        /// Creates a menu with submenus from a DisplayableClass
+        QMenu *createMenu(const DisplayableClass &node);
+        
         /// insert a menu item with a specified slot into a specified menu
         QAction *insertAction(QMenu *, const QString &, const char * = 0,
                               bool = true);
@@ -108,6 +112,8 @@ class C4DView::Menu4D: public QMenu {
         QAction *insertAction(QMenu *, RealFunctionFactory *, bool = true);
         /// insert a menu item creating a Surface object into a specified menu
         QAction *insertAction(QMenu *, SurfaceFactory *, bool = true);
+        /// insert a menu item creating a Surface object into a specified menu
+        QAction *insertAction(QMenu *, const std::string &, bool = true);
 
         C4DView *_parent;       ///< the C4DView containing this menu
 
@@ -120,6 +126,7 @@ class C4DView::Menu4D: public QMenu {
         QMenu *_color;          ///< The "Appearance/Color Schemes" submenu
         QMenu *_animation;      ///< The "Animation" menu
         QMenu *_help;           ///< The "Help" menu
+        QMenu *generated_;      ///< The auto-generated Displayable menu
 
         MenuMapType _menuMap;    ///< Keeps the QActions belonging to the menu entries
 };

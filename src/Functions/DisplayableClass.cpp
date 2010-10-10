@@ -48,7 +48,7 @@ std::string DisplayableClass::getDescription() const {
 
 DisplayableClass& DisplayableClass::findSubClass(const std::string& class_name) {
   if (getName() == class_name) return *this;
-  for (subclass_container_type::iterator i = subclasses_.begin(); i != subclasses_.end(); ++i) {
+  for (subclass_iterator i = subclasses_.begin(); i != subclasses_.end(); ++i) {
     try {
       DisplayableClass &subclass = i->second->findSubClass(class_name);
       return subclass;
@@ -63,7 +63,7 @@ DisplayableClass& DisplayableClass::findClass(const std::string& class_name) {
 
 std::vector< DisplayableClass > DisplayableClass::getSubClasses() const {
   std::vector< DisplayableClass > subclasses;
-  for (subclass_container_type::const_iterator i = subclasses_.begin(); i != subclasses_.end(); ++i) {
+  for (subclass_const_iterator i = subclasses_.begin(); i != subclasses_.end(); ++i) {
     subclasses.push_back(*(i->second));
   }
   return subclasses;
@@ -105,7 +105,7 @@ void DisplayableClass::addSubClass(DisplayableClass& child) {
 
 void DisplayableClass::printSubclasses() const {
   std::cerr << getName()<< ": ";
-  for (subclass_container_type::const_iterator i = subclasses_.begin(); i != subclasses_.end(); ++i) {
+  for (subclass_const_iterator i = subclasses_.begin(); i != subclasses_.end(); ++i) {
     const DisplayableClass *subclass = i->second;
     std::cerr << subclass->getName() << ": " << subclass->getDescription() << "   ";
   }

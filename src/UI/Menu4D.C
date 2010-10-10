@@ -47,6 +47,9 @@ using std::ostringstream;
 using std::endl;
 using std::ends;
 
+using std::vector;
+using std::string;
+
 /// Disables menu entry if preprocessor variable TESTFEATURES is unset
 inline void TESTED_FEATURE(QAction *item) {
 # ifdef TESTFEATURES
@@ -54,6 +57,27 @@ inline void TESTED_FEATURE(QAction *item) {
 # else
     item->setEnabled (false);
 #endif
+}
+
+QMenu *C4DView::Menu4D::createMenu(const DisplayableClass &node) {
+  QMenu *thisMenu = new QMenu(node.getName().c_str());
+  
+  vector<DisplayableClass> subClasses = node.getSubClasses();
+  for (vector<DisplayableClass>::const_iterator i = subClasses.begin();
+       i != subClasses.end(); ++i) {
+    thisMenu->addMenu(createMenu(*i));
+  }
+  
+  vector<string> displayableNames = node.getDisplayableNames();
+  for (vector<string>::const_iterator i = displayableNames.begin();
+       i != displayableNames.end(); ++i) {
+    insertAction(thisMenu, *i, true);
+  }
+
+  thisMenu->setTearOffEnabled(true);
+  
+  std::cerr << thisMenu->title().toStdString() << std::endl;
+  return thisMenu;
 }
 
 /** This Constructor is where the menu structure is defined; if you want to
@@ -71,6 +95,9 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
     _appear = addMenu(tr("Appearance"));
     _animation = addMenu(tr("Animation"));
     _help = addMenu(tr("Help"));
+    
+    generated_ = createMenu(DisplayableClass::getRootNode());
+    addMenu(generated_);
 
     QString sup2(QChar(0x00B2));
     QString sup3(QChar(0x00B3));
@@ -136,6 +163,7 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
             }
         }
     }
+    
     ////////////////////////////////////////////////////////////////////////////
     //      "Appearance" Menu
     ////////////////////////////////////////////////////////////////////////////
@@ -529,3 +557,16 @@ QAction *C4DView::Menu4D::insertAction(QMenu *_menu, SurfaceFactory *factory, bo
   return tmp;
 }
 
+QAction* C4DView::Menu4D::insertAction(QMenu* menu, 
+                                       const std::string &displayable_name, 
+                                       bool checkable) {
+  QString title(displayable_name.c_str());
+  QAction *tmp = menu->addAction(title,
+                                 new SlotHelper(_parent, displayable_name),
+                                 SLOT(slot()), (const QKeySequence &)0);
+  tmp->setCheckable(checkable);
+  _menuMap[menu].insert(std::pair<QString, QAction *>(title, tmp));
+
+  return tmp;
+  
+}

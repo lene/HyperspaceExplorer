@@ -29,13 +29,13 @@
 class Displayable;
 
 class DisplayableClass {
-
+  
 public:
 
   struct DisplayableClassException: public std::logic_error {
     DisplayableClassException(const std::string &message): std::logic_error(message) { }
   };
-
+  
   DisplayableClass(const std::string &name, const std::string &description, const std::string &parent_name);
 
   std::string getName() const;
@@ -47,7 +47,6 @@ public:
 
   std::vector<DisplayableClass> getSubClasses() const;
 
-  
   static DisplayableClass &findClass(const std::string &class_name);
 
   static const DisplayableClass &makeRootNode(const std::string &class_name,
@@ -59,15 +58,17 @@ public:
   
 private:
 
+  typedef std::map<std::string, DisplayableClass *> subclass_container_type;
+  typedef std::vector<std::string> displayable_container_type;
+  typedef subclass_container_type::iterator subclass_iterator;
+  typedef subclass_container_type::const_iterator subclass_const_iterator;
+
   /// Create a DisplayableClass without a parent node. This may happen only once and creates the root node.
   DisplayableClass(const std::string & name, const std::string &description);
 
   void addSubClass(DisplayableClass &child);
 
   DisplayableClass &findSubClass(const std::string &class_name);
-
-  typedef std::map<std::string, DisplayableClass *> subclass_container_type;
-  typedef std::vector<std::string> displayable_container_type;
 
   std::string class_name_;
   std::string class_description_;
