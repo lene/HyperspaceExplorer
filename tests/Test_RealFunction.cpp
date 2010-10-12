@@ -366,7 +366,14 @@ void Test_RealFunction::testDynamicallyCreatedFunction(const std::string& fname)
     QFAIL(e.what());
   }
   QVERIFY2(f != NULL, "creating failed!");
-  f->ReInit(-2., 2., 0.8, -2., 2., 0.8, -2., 2., 1.0);
-  testFunction(*f);
+  f->ReInit(-1., 1., 1., -1., 1., 1., -1., 1., 1.);
+
+  testGetParametersRuns(*f);
+
+  testFunctionEvaluationRuns(*f);
+
+  testDrawDrawsAllVertices(*f);
+
+  testNonzeroRotationRuns(*f);
 
 }

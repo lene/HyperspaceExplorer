@@ -298,7 +298,7 @@ void Test_Surface::testDynamicallyCreatedFunction(const std::string& fname) {
     QFAIL(e.what());
   }
   QVERIFY2(f != NULL, "creating failed!");
-  f->ReInit(1., 1., 1., -2., 2., 0.2, -2., 2., 0.2);
+  f->ReInit(1., 1., 1., -1., 1., 1., -1., 1., 1.);
   testFunction(*f);
   
 }
