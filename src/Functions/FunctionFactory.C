@@ -56,7 +56,6 @@ bool FunctionFactory::unregisterFunction(const std::string &name) {
  *  \return a newly created object of class "name"
  */
 Displayable *FunctionFactory::createFunction(const std::string &name) {
-    std::cerr << "FunctionFactory::createFunction(" << name << ")\n";
     CallbackMap::const_iterator i = callbacks.find(name);
     if (i == callbacks.end()) throw BadFunctionException(name);
     return (i->second)();

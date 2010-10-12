@@ -104,6 +104,7 @@ class Test_Surface: public QObject {
     private:
 
       void testFunction(Surface &f);
+      void testDynamicallyCreatedFunction(const std::string &fname);
 
       SurfaceTestImplementation *_function;
       MockView *view_;

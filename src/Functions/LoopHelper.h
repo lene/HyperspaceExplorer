@@ -141,10 +141,10 @@ LoopHelper<N, P, 1, NUM>::
 recalculateOneDimensionOfGrid(
       VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, 1> &values,
       VecMath::Vector<P, NUM> &current_x) {
+  assert(_f != NULL);
   unsigned grid_size_in_current_dim = _grid_size[0];
   NUM x_min_in_current_dim = _x_min[0];
   NUM x_max_in_current_dim = _x_max[0];
-
   values.resize(grid_size_in_current_dim);
 
   for (unsigned i = 0; i < grid_size_in_current_dim; ++i) {

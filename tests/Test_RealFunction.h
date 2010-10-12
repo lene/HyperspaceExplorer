@@ -74,6 +74,8 @@ class Test_RealFunction: public QObject {
     private:
 
       void testFunction(RealFunction &f);
+      void testDynamicallyCreatedFunction(const std::string &fname);
+
       void testDrawDrawsAllVertices(RealFunction &f);
       void testNonzeroRotationRuns(RealFunction &f);
       void testAllVerticesDrawn(RealFunction* f);

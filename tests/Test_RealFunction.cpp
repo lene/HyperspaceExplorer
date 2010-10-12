@@ -23,6 +23,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "GlobalFunctions.h"
 #include "MockView.h"
 
+#include "FunctionFactory.h"
+
 #include "MultiDimensionalVector.impl.h"
 #include "Vector.impl.h"
 #include "Rotation.impl.h"
@@ -254,46 +256,55 @@ void Test_RealFunction::draw() {
 void Test_RealFunction::torus1() {
   Torus1 f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
   testFunction(f);
+  testDynamicallyCreatedFunction("Ditorus");
 }
 
 void Test_RealFunction::torus2() {
   Torus2 f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
   testFunction(f);
+  testDynamicallyCreatedFunction("Toraspherinder");
 }
 
 void Test_RealFunction::fr3r() {
   Fr3r f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
   testFunction(f);
+  testDynamicallyCreatedFunction("1/(r"+Util::sup2()+"+1)");
 }
 
 void Test_RealFunction::gravitationPotential() {
   GravitationPotential f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
   testFunction(f);
+  testDynamicallyCreatedFunction("Gravitation Potential");
 }
 
 void Test_RealFunction::fr3rSin() {
   Fr3rSin f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
   testFunction(f);
+  testDynamicallyCreatedFunction("sin (r"+Util::sup2()+")");
 }
 
 void Test_RealFunction::fr3rExp() {
   Fr3rExp f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
   testFunction(f);
+  testDynamicallyCreatedFunction("exp (r"+Util::sup2()+")");
 }
 
 void Test_RealFunction::polarSin() {
   PolarSin f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
   testFunction(f);
+  testDynamicallyCreatedFunction("Polar: r = 1/2+sin (Phase*pi*t*u*v)");
 }
 
 void Test_RealFunction::polarSin2() {
   PolarSin2 f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
   testFunction(f);
+  testDynamicallyCreatedFunction("Polar: r = sin (pi/3.*(t+u+v))");
 }
 
 void Test_RealFunction::polarR() {
   PolarR f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
   testFunction(f);
+  testDynamicallyCreatedFunction("Polar: r = sqrt (t"+Util::sup2()+"+u"+Util::sup2()+"+v"+Util::sup2()+")");
 }
 
 void Test_RealFunction::testFunction(RealFunction &f) {
@@ -347,3 +358,15 @@ void Test_RealFunction::testAllVerticesDrawn(RealFunction *f) {
   f->for_each_vertex(checkVertexPresent);
 }
 
+void Test_RealFunction::testDynamicallyCreatedFunction(const std::string& fname) {
+  RealFunction *f;
+  try {
+     f = dynamic_cast<RealFunction *>(TheFunctionFactory::Instance().createFunction(fname));
+  } catch (const FunctionFactory::BadFunctionException &e) { 
+    QFAIL(e.what());
+  }
+  QVERIFY2(f != NULL, "creating failed!");
+  f->ReInit(-2., 2., 0.8, -2., 2., 0.8, -2., 2., 1.0);
+  testFunction(*f);
+
+}

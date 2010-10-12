@@ -25,12 +25,14 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "SurfaceImplementations.h"
 #include "ComplexFunction.h"
 #include "ColorManager.h"
+#include "FunctionFactory.h"
 
 #include "Vector.impl.h"
 #include "MultiDimensionalVector.impl.h"
 #include "Rotation.impl.h"
 
 #include <tr1/memory>
+#include <FunctionFactory.h>
 
 using VecMath::Vector;
 using VecMath::Rotation;
@@ -187,70 +189,88 @@ void Test_Surface::draw() {
 void Test_Surface::surface1() {
   Surface1 f(-1., 1., 0.5, -1., 1., 0.5);
   testFunction(f);
+  testDynamicallyCreatedFunction("Surface1");
 }
+
 void Test_Surface::horizon() {
   Horizon f(-1., 1., 0.5, -1., 1., 0.5);
   testFunction(f);
+  testDynamicallyCreatedFunction("Horizon");
 }
 void Test_Surface::torus3() {
   Torus3 f(-1., 1., 0.5, -1., 1., 0.5);
   testFunction(f);
+  testDynamicallyCreatedFunction("Torus3");
 }
 void Test_Surface::t_z2() {
   z2 f(-1., 1., 0.5, -1., 1., 0.5);
   testFunction(f);
+  testDynamicallyCreatedFunction("z2");
 }
 void Test_Surface::t_z3() {
   z3 f(-1., 1., 0.5, -1., 1., 0.5);
   testFunction(f);
+  testDynamicallyCreatedFunction("z3");
 }
 void Test_Surface::t_zA() {
   zA f(-1., 1., 0.5, -1., 1., 0.5);
   testFunction(f);
+  testDynamicallyCreatedFunction("zA");
 }
 void Test_Surface::t_ez() {
   ez f(-1., 1., 0.5, -1., 1., 0.5);
   testFunction(f);
+  testDynamicallyCreatedFunction("e^a*z");
 }
 void Test_Surface::t_emz2() {
   emz2 f(-1., 1., 0.5, -1., 1., 0.5);
   testFunction(f);
+  testDynamicallyCreatedFunction("emz2");
 }
 void Test_Surface::t_zm1() {
   zm1 f(-1., 1., 0.5, -1., 1., 0.5);
   testFunction(f);
+  testDynamicallyCreatedFunction("zm1");
 }
 void Test_Surface::t_zm2() {
   zm2 f(-1., 1., 0.5, -1., 1., 0.5);
   testFunction(f);
+  testDynamicallyCreatedFunction("zm2");
 }
 void Test_Surface::t_sqrtz() {
   sqrtz f(-1., 1., 0.5, -1., 1., 0.5);
   testFunction(f);
+  testDynamicallyCreatedFunction("sqrtz");
 }
 void Test_Surface::t_lnz() {
   lnz f(-1., 1., 0.5, -1., 1., 0.5);
   testFunction(f);
+  testDynamicallyCreatedFunction("lnz");
 }
 void Test_Surface::t_sinz() {
   sinz  f(-1., 1., 0.5, -1., 1., 0.5);
   testFunction(f);
+  testDynamicallyCreatedFunction("sinz");
 }
 void Test_Surface::t_cosz() {
   cosz f(-1., 1., 0.5, -1., 1., 0.5);
   testFunction(f);
+  testDynamicallyCreatedFunction("cosz");
 }
 void Test_Surface::t_sinhz() {
   sinhz f(-1., 1., 0.5, -1., 1., 0.5);
   testFunction(f);
+  testDynamicallyCreatedFunction("sinhz");
 }
 void Test_Surface::t_coshz() {
   coshz f(-1., 1., 0.5, -1., 1., 0.5);
   testFunction(f);
+  testDynamicallyCreatedFunction("coshz");
 }
 void Test_Surface::t_tanz() {
   tanz f(-1., 1., 0.5, -1., 1., 0.5);
   testFunction(f);
+  testDynamicallyCreatedFunction("tanz");
 }
 
 template<typename T> T random_number() {
@@ -269,3 +289,18 @@ void Test_Surface::testFunction(Surface &f) {
   f.Draw(view_);
   f.ReInit(1., 1., 1., -2., 2., 0.2, -2., 2., 0.2);
 }
+
+void Test_Surface::testDynamicallyCreatedFunction(const std::string& fname) {
+  Surface *f;
+  try {
+     f = dynamic_cast<Surface *>(TheFunctionFactory::Instance().createFunction(fname));
+  } catch (const FunctionFactory::BadFunctionException &e) { 
+    QFAIL(e.what());
+  }
+  QVERIFY2(f != NULL, "creating failed!");
+  f->ReInit(1., 1., 1., -2., 2., 0.2, -2., 2., 0.2);
+  testFunction(*f);
+  
+}
+
+  

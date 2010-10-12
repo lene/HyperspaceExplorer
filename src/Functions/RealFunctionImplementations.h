@@ -75,7 +75,9 @@ class Hypersphere: public RealFunction {
 
   public:
 
-    Hypersphere(): RealFunction(), _radius(1.) { }
+    Hypersphere(): RealFunction(), _radius(1.) {
+      _function = std::tr1::shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+    }
     Hypersphere (double _tmin, double _tmax, double _dt,
                  double _umin, double _umax, double _du,
                  double _vmin, double _vmax, double _dv,
@@ -123,7 +125,9 @@ namespace {
 class Torus1: public RealFunction {
 
   public:
-    Torus1(): RealFunction(), _R(2.), _r(1.), _rho(0.5) { }
+    Torus1(): RealFunction(), _R(2.), _r(1.), _rho(0.5) { 
+      _function = std::tr1::shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+    }
     Torus1 (double tmin, double tmax, double dt,
             double umin, double umax, double du,
             double vmin, double vmax, double dv,
@@ -182,7 +186,9 @@ namespace {
  *  \ingroup RealGroup                                                    */
 class Torus2: public RealFunction {
     public:
-        Torus2(): RealFunction(), _R(1.), _r(0.5) { }
+        Torus2(): RealFunction(), _R(1.), _r(0.5) { 
+          _function = std::tr1::shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+        }
         Torus2 (double tmin, double tmax, double dt,
                 double umin, double umax, double du,
                 double vmin, double vmax, double dv,
@@ -243,7 +249,9 @@ namespace {
  *  \ingroup RealGroup                                                    */
 class Fr3r: public RealFunction {
     public:
-        Fr3r(): RealFunction() { }
+        Fr3r(): RealFunction() { 
+          _function = std::tr1::shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+        }
         Fr3r (double tmin, double tmax, double dt,
               double umin, double umax, double du,
               double vmin, double vmax, double dv);
@@ -282,7 +290,9 @@ class GravitationPotential: public RealFunction {
 
   public:
 
-    GravitationPotential(): RealFunction(), _M(1.), _R(0.25) { }
+    GravitationPotential(): RealFunction(), _M(1.), _R(0.25) { 
+          _function = std::tr1::shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+        }
 
     GravitationPotential (double tmin, double tmax, double dt,
                           double umin, double umax, double du,
@@ -337,13 +347,15 @@ namespace {
 /** \ingroup RealGroup                                                    */
 class Fr3rSin: public RealFunction {
     public:
-        Fr3rSin(): RealFunction() { }
+        Fr3rSin(): RealFunction() { 
+          _function = std::tr1::shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+        }
         Fr3rSin (double tmin, double tmax, double dt,
                  double umin, double umax, double du,
                  double vmin, double vmax, double dv);
         virtual ~Fr3rSin () { }
 
-        virtual std::string getFunctionName() const { return "sin (r�)"; }
+        virtual std::string getFunctionName() const { return "sin (r"+Util::sup2()+")"; }
 
     protected:
 
@@ -374,13 +386,15 @@ namespace {
 /** \ingroup RealGroup                                                    */
 class Fr3rExp: public RealFunction {
     public:
-        Fr3rExp(): RealFunction() { }
+        Fr3rExp(): RealFunction() { 
+          _function = std::tr1::shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+        }
         Fr3rExp (double tmin, double tmax, double dt,
                  double umin, double umax, double du,
                  double vmin, double vmax, double dv);
         virtual ~Fr3rExp () { }
 
-        virtual std::string getFunctionName() const { return "exp (r�)"; }
+        virtual std::string getFunctionName() const { return "exp (r"+Util::sup2()+")"; }
 
     protected:
 
@@ -440,7 +454,9 @@ class Polar: public RealFunction {
 /** \ingroup PolarGroup                                                    */
 class PolarSin: public RealFunction {
     public:
-        PolarSin(): RealFunction(), _phase(2.) { }
+        PolarSin(): RealFunction(), _phase(2.) { 
+          _function = std::tr1::shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+        }
         PolarSin (double tmin, double tmax, double dt,
                   double umin, double umax, double du,
                   double vmin, double vmax, double dv,
@@ -491,7 +507,9 @@ namespace {
 /** \ingroup PolarGroup                                                    */
 class PolarSin2: public RealFunction {
     public:
-        PolarSin2(): RealFunction() { }
+        PolarSin2(): RealFunction() { 
+          _function = std::tr1::shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+        }
         PolarSin2 (double tmin, double tmax, double dt,
                    double umin, double umax, double du,
                    double vmin, double vmax, double dv);
@@ -528,14 +546,18 @@ namespace {
 /** \ingroup PolarGroup                                                    */
 class PolarR: public RealFunction {
     public:
-        PolarR(): RealFunction(), _phase(2.) { }
+        PolarR(): RealFunction(), _phase(2.) { 
+          _function = std::tr1::shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction(this));
+        }
         PolarR (double _tmin, double _tmax, double _dt,
                 double _umin, double _umax, double _du,
                 double _vmin, double _vmax, double _dv,
                 double _phase = 2);
         virtual ~PolarR () { }
 
-        virtual std::string getFunctionName() const { return "Polar: r = sqrt (t�+u�+v�)"; }
+        virtual std::string getFunctionName() const { 
+          return "Polar: r = sqrt (t"+Util::sup2()+"+u"+Util::sup2()+"+v"+Util::sup2()+")"; 
+        }
 
         virtual void SetParameters(const ParameterMap &parms) {
 #       if 1

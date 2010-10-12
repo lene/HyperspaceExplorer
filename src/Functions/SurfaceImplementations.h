@@ -33,7 +33,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
  *  \ingroup SurfaceGroup                                                    */
 class Surface1: public Surface {
 public:
-    Surface1(): Surface() { }
+    Surface1(): Surface() {
+      _function = std::tr1::shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction);
+    }
     Surface1 (double _umin, double _umax, double _du,
               double _vmin, double _vmax, double _dv);
     virtual ~Surface1() { }
@@ -68,7 +70,9 @@ namespace {
  *  \ingroup SurfaceGroup                                                    */
 class Horizon: public Surface {
 public:
-    Horizon(): Surface() { }
+    Horizon(): Surface() {
+      _function = std::tr1::shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction);
+    }
     Horizon (double _umin, double _umax, double _du,
              double _vmin, double _vmax, double _dv);
     virtual ~Horizon () { }
@@ -94,7 +98,9 @@ namespace {
 /** \ingroup SurfaceGroup                                                    */
 class Torus3: public Surface {
 public:
-    Torus3(): Surface() { }
+    Torus3(): Surface() {
+      _function = std::tr1::shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction);
+    }
     Torus3 (double _umin, double _umax, double _du,
             double _vmin, double _vmax, double _dv);
     virtual ~Torus3 () { }
