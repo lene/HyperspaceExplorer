@@ -68,15 +68,16 @@ QMenu *C4DView::Menu4D::createMenu(const DisplayableClass &node) {
     thisMenu->addMenu(createMenu(*i));
   }
   
+  std::cerr << thisMenu->title().toStdString() << std::endl;
   vector<string> displayableNames = node.getDisplayableNames();
   for (vector<string>::const_iterator i = displayableNames.begin();
        i != displayableNames.end(); ++i) {
     insertAction(thisMenu, *i, true);
+    std::cerr << "    " << *i << std::endl;
   }
 
   thisMenu->setTearOffEnabled(true);
   
-  std::cerr << thisMenu->title().toStdString() << std::endl;
   return thisMenu;
 }
 

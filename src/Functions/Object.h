@@ -356,6 +356,8 @@ class Gasket: public Pyramid {
             Object::ReInit(0,0,0,0,0,0,0,0,0);
         }
 
+    virtual std::string getFunctionName() const { return "Sierpinski Gasket"; }
+
     protected:
         virtual void Initialize();
         virtual unsigned long MemRequired (void);

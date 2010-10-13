@@ -34,7 +34,7 @@ bool FunctionFactory::registerFunction(CreateFunctionCallback creator,
     std::tr1::shared_ptr<Displayable> theFunction(creator());
 
     std::string functionName = theFunction->getFunctionName();
-
+std::cerr << "registerFunction(" << functionName << ", " << parent_category << ")\n";
     bool insertSuccessful = callbacks.insert(CallbackMap::value_type(functionName, creator)).second;
     
     if (insertSuccessful) {
