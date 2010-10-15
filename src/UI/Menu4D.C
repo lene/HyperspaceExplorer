@@ -60,14 +60,14 @@ inline void TESTED_FEATURE(QAction *item) {
 }
 
 QMenu *C4DView::Menu4D::createMenu(const DisplayableClass &node) {
-  QMenu *thisMenu = new QMenu(node.getName().c_str());
-  
+  QMenu *thisMenu = new QMenu(node.getDescription().c_str());
+
   vector<DisplayableClass> subClasses = node.getSubClasses();
   for (vector<DisplayableClass>::const_iterator i = subClasses.begin();
        i != subClasses.end(); ++i) {
     thisMenu->addMenu(createMenu(*i));
   }
-  
+
   std::cerr << thisMenu->title().toStdString() << std::endl;
   vector<string> displayableNames = node.getDisplayableNames();
   for (vector<string>::const_iterator i = displayableNames.begin();
@@ -77,7 +77,7 @@ QMenu *C4DView::Menu4D::createMenu(const DisplayableClass &node) {
   }
 
   thisMenu->setTearOffEnabled(true);
-  
+
   return thisMenu;
 }
 
@@ -96,7 +96,7 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
     _appear = addMenu(tr("Appearance"));
     _animation = addMenu(tr("Animation"));
     _help = addMenu(tr("Help"));
-    
+
     generated_ = createMenu(DisplayableClass::getRootNode());
     addMenu(generated_);
 
@@ -164,7 +164,7 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
             }
         }
     }
-    
+
     ////////////////////////////////////////////////////////////////////////////
     //      "Appearance" Menu
     ////////////////////////////////////////////////////////////////////////////
@@ -460,22 +460,35 @@ void C4DView::Menu4D::addToMenuBar(QMenuBar *menuBar) {
     menuBar->addAction(Globals::Instance().getQuitAction());
 }
 
+
+void updateFunctionMenuRecursively(const QString &item, const QMenu *rootNode) {
+  QList<QAction *> actions = rootNode->actions();
+  for (QList<QAction *>::const_iterator i = actions.constBegin(); i != actions.constEnd(); ++i) {
+    const QMenu *submenu = (*i)->menu();
+    if (submenu) {
+      updateFunctionMenuRecursively(item, submenu);
+    } else {
+      (*i)->setChecked((*i)->text() == item);
+    }
+  }
+}
+
 /** \param item Title of the item whose checking status is toggled            */
 void C4DView::Menu4D::updateFunctionMenu (const QString &item) {
-    static QMenu* functionMenuList[] = {
-        _functions, _fr3r, _objects, _surfaces, _fcc
-    };
+  static QMenu* functionMenuList[] = {
+    _functions, _fr3r, _objects, _surfaces, _fcc
+  };
 
-    for (unsigned functionIdx = 0; functionIdx < sizeof(functionMenuList);
-         ++functionIdx) {
-             ActionMapType actionMap = _menuMap[functionMenuList[functionIdx]];
-             for (ActionMapType::iterator it = actionMap.begin();
-                  it != actionMap.end(); ++it) {
-                      it->second->setChecked(false);
-                  }
-         }
+  for (unsigned functionIdx = 0; functionIdx < sizeof(functionMenuList); ++functionIdx) {
+    ActionMapType actionMap = _menuMap[functionMenuList[functionIdx]];
+    for (ActionMapType::iterator it = actionMap.begin(); it != actionMap.end(); ++it) {
+      it->second->setChecked(false);
+    }
+  }
 
-         getAction(item)->setChecked(true);
+  getAction(item)->setChecked(true);
+
+  updateFunctionMenuRecursively(item, generated_);
 }
 
 /** \param key The title of the wanted menu item
@@ -558,8 +571,8 @@ QAction *C4DView::Menu4D::insertAction(QMenu *_menu, SurfaceFactory *factory, bo
   return tmp;
 }
 
-QAction* C4DView::Menu4D::insertAction(QMenu* menu, 
-                                       const std::string &displayable_name, 
+QAction* C4DView::Menu4D::insertAction(QMenu* menu,
+                                       const std::string &displayable_name,
                                        bool checkable) {
   QString title(displayable_name.c_str());
   QAction *tmp = menu->addAction(title,
@@ -569,5 +582,5 @@ QAction* C4DView::Menu4D::insertAction(QMenu* menu,
   _menuMap[menu].insert(std::pair<QString, QAction *>(title, tmp));
 
   return tmp;
-  
+
 }
