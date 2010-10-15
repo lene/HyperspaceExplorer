@@ -32,6 +32,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define CONCURRENT
 #undef CONCURRENT
 
+#include "View.h"
+
 #include <tr1/tuple>
 using std::tr1::tuple;
 using std::tr1::tuple_size;
@@ -630,5 +632,6 @@ void Sponge::Project (double scr_w, double cam_w, bool depthcue4d) {
 void Sponge::Draw (UI::View *view) {
     if (Level < 1) List[0]->Draw(view);
     else for (unsigned i = 0; i < List.size(); i++) List[i]->Draw(view);
+    view->commitDraw();
 }
 

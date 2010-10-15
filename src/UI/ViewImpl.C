@@ -26,19 +26,19 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 namespace UI {
 
-    Color ViewImpl::_defaultBackground(0.1, 0.1, 0.1, 1.0);
-    LightSource ViewImpl::_defaultLightSource (
+Color ViewImpl::_defaultBackground(0.1, 0.1, 0.1, 1.0);
+LightSource ViewImpl::_defaultLightSource (
         VecMath::Vector<4>( 4., 4., 8., 0.),
         Color(0.3, 0.3, 0.3, 1.),
         Color(0.9, 0.9, 0.9, 1.),
         Color(1., 1., 1., 1.));
-    LightSource ViewImpl::_flatLightSource (
+LightSource ViewImpl::_flatLightSource (
         VecMath::Vector<4>( 4., 4., 8., 0.),
         Color(1., 1., 1., 1.),
         Color(1., 1., 1., 1.),
         Color(1., 1., 1., 1.));
 
-    struct ViewImpl::Impl {
+struct ViewImpl::Impl {
 
       Impl():
         _F(std::tr1::shared_ptr<Displayable>()),
@@ -83,10 +83,9 @@ namespace UI {
       std::string _imageDir;      ///< directory to save images to
       std::string _imagePrefix;   ///< filename prefix for saved images
 
-    };
+};
 
-    ViewImpl::ViewImpl():
-        View(), pImpl_(new Impl) { }
+ViewImpl::ViewImpl(): View(), pImpl_(new Impl) { }
 
     const std::tr1::shared_ptr< Displayable >& ViewImpl::F() const { return pImpl_->_F; }
 
@@ -163,24 +162,24 @@ namespace UI {
 
     void ViewImpl::setTransparence(bool on) { pImpl_->_transparence = on; }
 
-    void ViewImpl::drawTriangle(const VecMath::Vector< 4 >&, const VecMath::Vector< 4 >&,
-                                const VecMath::Vector< 4 >&,
-                                const VecMath::Vector< 3 >&, const VecMath::Vector< 3 >&,
-                                const VecMath::Vector< 3 >&) {
-      throw NotYetImplementedException("drawTriangle()");
-    }
+void ViewImpl::drawTriangle(const VecMath::Vector< 4 >&, const VecMath::Vector< 4 >&,
+                            const VecMath::Vector< 4 >&,
+                            const VecMath::Vector< 3 >&, const VecMath::Vector< 3 >&,
+                            const VecMath::Vector< 3 >&) {
+  throw NotYetImplementedException("drawTriangle()");
+}
 
-    void ViewImpl::drawPolygon(const std::vector< VecMath::Vector< 4 > >&,
-                               const std::vector< VecMath::Vector< 3 > >&) {
-      throw NotYetImplementedException("drawPolygon()");
-    }
+void ViewImpl::drawPolygon(const std::vector< VecMath::Vector< 4 > >&,
+                           const std::vector< VecMath::Vector< 3 > >&) {
+  throw NotYetImplementedException("drawPolygon()");
+}
 
-    void ViewImpl::drawCube(const VecMath::MultiDimensionalVector< VecMath::Vector< 4 >, 3 >& X,
-                            unsigned int t, unsigned int u, unsigned int v,
-                            const VecMath::Vector< 3 >& v0, const VecMath::Vector< 3 >& v1,
-                            const VecMath::Vector< 3 >& v2, const VecMath::Vector< 3 >& v3,
-                            const VecMath::Vector< 3 >& v4, const VecMath::Vector< 3 >& v5,
-                            const VecMath::Vector< 3 >& v6, const VecMath::Vector< 3 >& v7) {
+void ViewImpl::drawCube(const VecMath::MultiDimensionalVector< VecMath::Vector< 4 >, 3 >& X,
+                        unsigned int t, unsigned int u, unsigned int v,
+                        const VecMath::Vector< 3 >& v0, const VecMath::Vector< 3 >& v1,
+                        const VecMath::Vector< 3 >& v2, const VecMath::Vector< 3 >& v3,
+                        const VecMath::Vector< 3 >& v4, const VecMath::Vector< 3 >& v5,
+                        const VecMath::Vector< 3 >& v6, const VecMath::Vector< 3 >& v7) {
   if (t == 0) {
     drawQuadrangle(X[t][u][v], X[t][u][v+1], X[t][u+1][v+1], X[t][u+1][v],
                    v0, v1, v3, v2);
@@ -205,47 +204,49 @@ namespace UI {
                  v1, v3, v7, v5);
 }
 
-    unsigned int ViewImpl::getNumFrames() { return pImpl_->_numFrames; }
+void ViewImpl::commitDraw() { }
 
-    unsigned int ViewImpl::getNumLoops() { return pImpl_->_numLoops; }
+unsigned int ViewImpl::getNumFrames() { return pImpl_->_numFrames; }
 
-    bool ViewImpl::getWriteImages() { return pImpl_->_writeImages; }
+unsigned int ViewImpl::getNumLoops() { return pImpl_->_numLoops; }
 
-    void ViewImpl::setWriteImages(bool on) { pImpl_->_writeImages = on; }
+bool ViewImpl::getWriteImages() { return pImpl_->_writeImages; }
 
-    void ViewImpl::setDefaultBackground() { setBackground(_defaultBackground); }
+void ViewImpl::setWriteImages(bool on) { pImpl_->_writeImages = on; }
 
-    void ViewImpl::setT(const VecMath::Vector< 4 >& _t) { pImpl_->_T = _t; }
+void ViewImpl::setDefaultBackground() { setBackground(_defaultBackground); }
 
-    const VecMath::Vector< 4 >& ViewImpl::T() { return pImpl_->_T; }
+void ViewImpl::setT(const VecMath::Vector< 4 >& _t) { pImpl_->_T = _t; }
 
-    void ViewImpl::addT(const VecMath::Vector< 4 >& _dT) { pImpl_->_T += _dT; }
+const VecMath::Vector< 4 >& ViewImpl::T() { return pImpl_->_T; }
 
-    void ViewImpl::setR(const VecMath::Rotation< 4 >& _r) { pImpl_->_R = _r; }
+void ViewImpl::addT(const VecMath::Vector< 4 >& _dT) { pImpl_->_T += _dT; }
 
-    const VecMath::Rotation< 4 >& ViewImpl::R() { return pImpl_->_R; }
+void ViewImpl::setR(const VecMath::Rotation< 4 >& _r) { pImpl_->_R = _r; }
 
-    void ViewImpl::addR(const VecMath::Rotation< 4 >& _dR) { pImpl_->_R += _dR; }
+const VecMath::Rotation< 4 >& ViewImpl::R() { return pImpl_->_R; }
 
-    /** \param ddR Rotation to be added to the current Rotation state */
-    void ViewImpl::adddR(const VecMath::Rotation<4> &ddR) {
-        /// Make sure temporary is not optimized away
-        VecMath::Rotation<4> newR = ddR + getdR();
-        setdR(newR);
-    }
+void ViewImpl::addR(const VecMath::Rotation< 4 >& _dR) { pImpl_->_R += _dR; }
 
-    double ViewImpl::CamW() const { return pImpl_->_camW; }
+/** \param ddR Rotation to be added to the current Rotation state */
+void ViewImpl::adddR(const VecMath::Rotation<4> &ddR) {
+  /// Make sure temporary is not optimized away
+  VecMath::Rotation<4> newR = ddR + getdR();
+  setdR(newR);
+}
 
-    void ViewImpl::setCamW(const double& _cw) { pImpl_->_camW = _cw; }
+double ViewImpl::CamW() const { return pImpl_->_camW; }
 
-    double ViewImpl::ScrW() const { return pImpl_->_scrW; }
+void ViewImpl::setCamW(const double& _cw) { pImpl_->_camW = _cw; }
 
-    void ViewImpl::setScrW(const double& _sw) { pImpl_->_scrW = _sw; }
+double ViewImpl::ScrW() const { return pImpl_->_scrW; }
 
-    double ViewImpl::distance() { return 1.; }
+void ViewImpl::setScrW(const double& _sw) { pImpl_->_scrW = _sw; }
 
-    const LightSource& ViewImpl::getDefaultLightSource() { return _defaultLightSource; }
+double ViewImpl::distance() { return 1.; }
 
-    const LightSource& ViewImpl::getFlatLightSource() { return _flatLightSource; }
+const LightSource& ViewImpl::getDefaultLightSource() { return _defaultLightSource; }
+
+const LightSource& ViewImpl::getFlatLightSource() { return _flatLightSource; }
 
 }

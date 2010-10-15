@@ -150,8 +150,10 @@ void Surface::Impl::Project(double scr_w, double cam_w, bool depthcue4d) {
 }
 
 void Surface::Impl::Draw(UI::View* view) {
-  for (unsigned t = 0; t <= definitionRange_.getTsteps(); t++)
+  for (unsigned t = 0; t <= definitionRange_.getTsteps(); t++) {
     DrawStrip (t, view);
+  }
+  view->commitDraw();
 }
 
 void Surface::Impl::calibrateColors() const {

@@ -177,25 +177,53 @@ namespace UI {
             /// Turn transparence/line antialiasing on or off
             virtual void setTransparence(bool) = 0;
 
+            /// Draws a single point.
+            /** \param x Location of the point in 4-space. Possibly needed for coloring information.
+             *  \param xscr Location of the point projected int 3D.
+             *  \todo Should it draw a point or just define one, e.g. for polygons?
+             *  \todo Abstract from the original vertex and only use the projected one?
+             */
             virtual void drawVertex(const VecMath::Vector< 4 > &x, const VecMath::Vector< 3 > &xscr) = 0;
+            /// Draws a line between two  points.
+            /** \param x0 Location of first point in 4-space. Possibly needed for coloring information.
+             *  \param x1 Location of second point in 4-space. Possibly needed for coloring information.
+             *  \param xscr0 Location of first point projected int 3D.
+             *  \param xscr1 Location of second point projected int 3D.
+             *  \todo Limit the number of arguments...
+             */
             virtual void drawLine(const VecMath::Vector< 4 > &x0, const VecMath::Vector< 4 > &x1,
                                   const VecMath::Vector< 3 > &xscr0, const VecMath::Vector< 3 > &xscr1) = 0;
+            /// Draws a triangle using three vertices projected to 3D and their four-space originals.
             virtual void drawTriangle(const VecMath::Vector< 4 > &x0, const VecMath::Vector< 4 > &x1,
                                       const VecMath::Vector< 4 > &x2,
                                       const VecMath::Vector< 3 > &xscr0, const VecMath::Vector< 3 > &xscr1,
                                       const VecMath::Vector< 3 > &xscr2) = 0;
+            /// Draws a quadrangle using four vertices projected to 3D and their four-space originals.
             virtual void drawQuadrangle(const VecMath::Vector< 4 > &x0, const VecMath::Vector< 4 > &x1,
                                         const VecMath::Vector< 4 > &x2, const VecMath::Vector< 4 > &x3,
                                         const VecMath::Vector< 3 > &xscr0, const VecMath::Vector< 3 > &xscr1,
                                         const VecMath::Vector< 3 > &xscr2, const VecMath::Vector< 3 > &xscr3) = 0;
+            /// Draws a polygon from a list of vertices projected to 3D and their four-space originals.
             virtual void drawPolygon(const std::vector< VecMath::Vector< 4 > > &x0,
                                      const std::vector< VecMath::Vector< 3 > > &xscr0) = 0;
+            /// Draws a cube.
+            /** \todo Eeew! Thisis only temporary, until I have a better idea; i just copied this
+             *    signature from the old RealFunction implementation.
+             */
             virtual void drawCube(const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 3 > &X,
                                   unsigned t, unsigned u, unsigned v,
                                   const VecMath::Vector<3> &v0, const VecMath::Vector<3> &v1,
                                   const VecMath::Vector<3> &v2, const VecMath::Vector<3> &v3,
                                   const VecMath::Vector<3> &v4, const VecMath::Vector<3> &v5,
                                   const VecMath::Vector<3> &v6, const VecMath::Vector<3> &v7) = 0;
+            /// This function must be called at the end of each draw operation.
+            /** To optimize the drawing process, it is not necessary to do every drawing operation
+             *  immediately as it is called. The View is allowed to store the operations
+             *  internally and perform optimizations. Only after commitDraw() is called, the
+             *  operations are actually executed.
+             */
+            virtual void commitDraw() = 0;
+
         protected:
             /// Apply changes in parameters and display them
             virtual void ApplyChanges(const ParameterMap &) = 0;

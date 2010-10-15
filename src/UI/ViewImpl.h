@@ -142,6 +142,9 @@ namespace UI {
                                   const VecMath::Vector< 3 >& v4, const VecMath::Vector< 3 >& v5,
                                   const VecMath::Vector< 3 >& v6, const VecMath::Vector< 3 >& v7);
 
+            /// Empty implementation; no operations are performed.
+            virtual void commitDraw();
+
         protected:
 
             /// Number of frames for animations

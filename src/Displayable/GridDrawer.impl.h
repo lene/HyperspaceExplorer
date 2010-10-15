@@ -38,6 +38,7 @@ void GridDrawer<P, NUM, D>::execute() {
     GridDrawer<P-1, NUM, D> sub_drawer(_x_scr[i], _view);
     sub_drawer.execute();
   }
+  _view->commitDraw();
 }
 
 template<typename NUM, unsigned D>
@@ -51,8 +52,11 @@ void GridDrawer<3, NUM, D>::execute() {
   unsigned size_t = x_scr_.size()-1;
 //  ScopedTimer timer("GridDrawer<3, NUM, D>::execute() "+Util::itoa(size_t));
 
-  for (unsigned t = 0; t < size_t; t++)
+  for (unsigned t = 0; t < size_t; t++) {
     drawPlane (t);
+  }
+
+  view_->commitDraw();
 
 }
 

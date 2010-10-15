@@ -129,6 +129,7 @@ void Object::Draw(UI::View *view) {
     view->drawQuadrangle(X[Surface[i][0]], X[Surface[i][1]], X[Surface[i][2]], X[Surface[i][3]],
                          Xscr[Surface[i][0]], Xscr[Surface[i][1]], Xscr[Surface[i][2]], Xscr[Surface[i][3]]);
   }
+  view->commitDraw();
 }
 
 /** Reinitialize an Object. This function is called when the initialization is
@@ -171,6 +172,7 @@ void Hypercube::Draw(UI::View *view) {
       view->drawQuadrangle(*((*i)[0]), *((*i)[1]), *((*i)[2]), *((*i)[3]),
                          Xscr[i->index(0)], Xscr[i->index(1)], Xscr[i->index(2)], Xscr[i->index(3)]);
   }
+  view->commitDraw();
 }
 #endif
 
@@ -399,4 +401,5 @@ void Gasket::Project (double scr_w, double cam_w, bool depthcue4d) {
 /** */
 void Gasket::Draw (UI::View* view) {
     for (unsigned i = 0; i < List.size (); i++) List[i]->Draw(view);
+    view->commitDraw();
 }
