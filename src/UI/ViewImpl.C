@@ -40,127 +40,127 @@ LightSource ViewImpl::_flatLightSource (
 
 struct ViewImpl::Impl {
 
-      Impl():
-        _F(std::tr1::shared_ptr<Displayable>()),
-        _colors(true), _coordinates(false), _fog(true), _hyperfog(false),
-        _lighting(true), _shading(true), _solid(true), _transparence(false),
-        _background (0.25, 0.25, 0.25, 1.),
-        _dR(), _T(), _R(),
-        _camW (-3.), _scrW (0.),
-        _numFrames(1), _numLoops(1),
-        _writeImages (false),
-        _imageDir("/tmp"),
-        _imagePrefix("HyperspaceExplorer_Image") { }
+  Impl():
+    _F(std::tr1::shared_ptr<Displayable>()),
+    _colors(true), _coordinates(false), _fog(true), _hyperfog(false),
+    _lighting(true), _shading(true), _solid(true), _transparence(false),
+    _background (0.25, 0.25, 0.25, 1.),
+    _dR(), _T(), _R(),
+    _camW (-3.), _scrW (0.),
+    _numFrames(1), _numLoops(1),
+    _writeImages (false),
+    _imageDir("/tmp"),
+    _imagePrefix("HyperspaceExplorer_Image") { }
 
-      std::tr1::shared_ptr<Displayable> _F;  ///< the Function object currently displayed
+  std::tr1::shared_ptr<Displayable> _F;  ///< the Function object currently displayed
 
-      bool _colors;       ///< whether to use colors in rendering
-      bool _coordinates;  ///< whether to display the 4D coordinate cross
-      bool _fog;          ///< whether to use depth cue/fog in rendering
-      bool _hyperfog;     ///< whether to use four-dimensional depth cue
-      bool _lighting;     ///< whether to use lighting in rendering
-      bool _shading;      ///< whether to use shading in rendering
-      bool _solid;        ///< whether to draw the objects' surfaces
-      bool _transparence; ///< whether to use transparence/line antialiasing
+  bool _colors;       ///< whether to use colors in rendering
+  bool _coordinates;  ///< whether to display the 4D coordinate cross
+  bool _fog;          ///< whether to use depth cue/fog in rendering
+  bool _hyperfog;     ///< whether to use four-dimensional depth cue
+  bool _lighting;     ///< whether to use lighting in rendering
+  bool _shading;      ///< whether to use shading in rendering
+  bool _solid;        ///< whether to draw the objects' surfaces
+  bool _transparence; ///< whether to use transparence/line antialiasing
 
-      /// Stores all the lights in the scene
-      /** \todo Abstract from std::vector and use a generic container */
-      std::vector<Light *> _lights;
-      Color _background;  ///< background color
+  /// Stores all the lights in the scene
+  /** \todo Abstract from std::vector and use a generic container */
+  std::vector<Light *> _lights;
+  Color _background;  ///< background color
 
-      /// delta values in angles for 4D rotation for animations
-      VecMath::Rotation<4> _dR;
-      VecMath::Vector<4> _T;      ///< coordinates for 4D translation
-      VecMath::Rotation<4> _R;    ///< angles for 4D rotation
+  /// delta values in angles for 4D rotation for animations
+  VecMath::Rotation<4> _dR;
+  VecMath::Vector<4> _T;      ///< coordinates for 4D translation
+  VecMath::Rotation<4> _R;    ///< angles for 4D rotation
 
-      double _camW;        ///< W coordinate of the camera
-      double _scrW;        ///< W coordinate of the screen
+  double _camW;        ///< W coordinate of the camera
+  double _scrW;        ///< W coordinate of the screen
 
-      unsigned _numFrames; ///< number of frames for animations
-      unsigned _numLoops;  ///< number of loops to repeat an animation
+  unsigned _numFrames; ///< number of frames for animations
+  unsigned _numLoops;  ///< number of loops to repeat an animation
 
-      bool _writeImages;  ///< whether to save images to file system
-      std::string _imageDir;      ///< directory to save images to
-      std::string _imagePrefix;   ///< filename prefix for saved images
+  bool _writeImages;  ///< whether to save images to file system
+  std::string _imageDir;      ///< directory to save images to
+  std::string _imagePrefix;   ///< filename prefix for saved images
 
 };
 
 ViewImpl::ViewImpl(): View(), pImpl_(new Impl) { }
 
-    const std::tr1::shared_ptr< Displayable >& ViewImpl::F() const { return pImpl_->_F; }
+const std::tr1::shared_ptr< Displayable >& ViewImpl::F() const { return pImpl_->_F; }
 
-    void ViewImpl::setF(Displayable* _f) { pImpl_->_F.reset(_f); }
+void ViewImpl::setF(Displayable* _f) { pImpl_->_F.reset(_f); }
 
-    const VecMath::Rotation< 4 >& ViewImpl::getdR() { return pImpl_->_dR; }
+const VecMath::Rotation< 4 >& ViewImpl::getdR() { return pImpl_->_dR; }
 
-    void ViewImpl::setdR(const VecMath::Rotation< 4 >& _dr) { pImpl_->_dR = _dr; }
+void ViewImpl::setdR(const VecMath::Rotation< 4 >& _dr) { pImpl_->_dR = _dr; }
 
-    void ViewImpl::setNumFrames(unsigned int frames) { pImpl_->_numFrames = frames; }
+void ViewImpl::setNumFrames(unsigned int frames) { pImpl_->_numFrames = frames; }
 
-    void ViewImpl::setNumLoops(unsigned int loops) { pImpl_->_numLoops = loops; }
+void ViewImpl::setNumLoops(unsigned int loops) { pImpl_->_numLoops = loops; }
 
-    const std::string& ViewImpl::getImgDir() { return pImpl_->_imageDir; }
+const std::string& ViewImpl::getImgDir() { return pImpl_->_imageDir; }
 
-    /** \param s Directory where to store image files */
-    void ViewImpl::setImgDir(const std::string &s) {
-        pImpl_->_imageDir = s;
-        setWriteImages(true);
-    }
+/** \param s Directory where to store image files */
+void ViewImpl::setImgDir(const std::string &s) {
+    pImpl_->_imageDir = s;
+    setWriteImages(true);
+}
 
-    const std::string& ViewImpl::getImgPrefix() { return pImpl_->_imagePrefix; }
+const std::string& ViewImpl::getImgPrefix() { return pImpl_->_imagePrefix; }
 
-    /** \param s Filename prefix for saved images */
-    void ViewImpl::setImgPrefix(const std::string &s) {
-        pImpl_->_imagePrefix = s;
-        setWriteImages(true);
-    }
+/** \param s Filename prefix for saved images */
+void ViewImpl::setImgPrefix(const std::string &s) {
+    pImpl_->_imagePrefix = s;
+    setWriteImages(true);
+}
 
-    const Color& ViewImpl::getBackground() { return pImpl_->_background; }
+const Color& ViewImpl::getBackground() { return pImpl_->_background; }
 
-    void ViewImpl::setBackground(const Color& bg) { pImpl_->_background = bg; }
+void ViewImpl::setBackground(const Color& bg) { pImpl_->_background = bg; }
 
-    void ViewImpl::addLight(Light* l) { pImpl_->_lights.push_back(l); }
+void ViewImpl::addLight(Light* l) { pImpl_->_lights.push_back(l); }
 
-    void ViewImpl::removeLight(std::vector<Light *>::iterator i) {
-        if (i >= pImpl_->_lights.end())
-            throw std::logic_error("Tried to remove a light beyond the end of \
-                    the list of lights");
-        pImpl_->_lights.erase(i);
-    }
+void ViewImpl::removeLight(std::vector<Light *>::iterator i) {
+    if (i >= pImpl_->_lights.end())
+        throw std::logic_error("Tried to remove a light beyond the end of \
+                the list of lights");
+    pImpl_->_lights.erase(i);
+}
 
-    const std::vector< Light* >& ViewImpl::getLights() { return pImpl_->_lights; }
+const std::vector< Light* >& ViewImpl::getLights() { return pImpl_->_lights; }
 
-    bool ViewImpl::getColors() const { return pImpl_->_colors; }
+bool ViewImpl::getColors() const { return pImpl_->_colors; }
 
-    void ViewImpl::setColors(bool on) { pImpl_->_colors = on; }
+void ViewImpl::setColors(bool on) { pImpl_->_colors = on; }
 
-    bool ViewImpl::getCoordinates() const { return pImpl_->_coordinates; }
+bool ViewImpl::getCoordinates() const { return pImpl_->_coordinates; }
 
-    void ViewImpl::setCoordinates(bool on) { pImpl_->_coordinates = on; }
+void ViewImpl::setCoordinates(bool on) { pImpl_->_coordinates = on; }
 
-    bool ViewImpl::getFog() const { return pImpl_->_fog; }
+bool ViewImpl::getFog() const { return pImpl_->_fog; }
 
-    void ViewImpl::setFog(bool on) { pImpl_->_fog = on; }
+void ViewImpl::setFog(bool on) { pImpl_->_fog = on; }
 
-    bool ViewImpl::getHyperfog() const { return pImpl_->_hyperfog; }
+bool ViewImpl::getHyperfog() const { return pImpl_->_hyperfog; }
 
-    void ViewImpl::setHyperfog(bool on) { pImpl_->_hyperfog = on; }
+void ViewImpl::setHyperfog(bool on) { pImpl_->_hyperfog = on; }
 
-    bool ViewImpl::getLighting() const { return pImpl_->_lighting; }
+bool ViewImpl::getLighting() const { return pImpl_->_lighting; }
 
-    void ViewImpl::setLighting(bool on) { pImpl_->_lighting = on; }
+void ViewImpl::setLighting(bool on) { pImpl_->_lighting = on; }
 
-    bool ViewImpl::getShading() const { return pImpl_->_shading; }
+bool ViewImpl::getShading() const { return pImpl_->_shading; }
 
-    void ViewImpl::setShading(bool on) { pImpl_->_shading = on; }
+void ViewImpl::setShading(bool on) { pImpl_->_shading = on; }
 
-    bool ViewImpl::getSolid() const { return pImpl_->_solid; }
+bool ViewImpl::getSolid() const { return pImpl_->_solid; }
 
-    void ViewImpl::setSolid(bool on) { pImpl_->_solid = on; }
+void ViewImpl::setSolid(bool on) { pImpl_->_solid = on; }
 
-    bool ViewImpl::getTransparence() const { return pImpl_->_transparence; }
+bool ViewImpl::getTransparence() const { return pImpl_->_transparence; }
 
-    void ViewImpl::setTransparence(bool on) { pImpl_->_transparence = on; }
+void ViewImpl::setTransparence(bool on) { pImpl_->_transparence = on; }
 
 void ViewImpl::drawTriangle(const VecMath::Vector< 4 >&, const VecMath::Vector< 4 >&,
                             const VecMath::Vector< 4 >&,
