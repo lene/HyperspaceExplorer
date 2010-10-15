@@ -330,6 +330,8 @@ class Gasket: public Pyramid {
                 VecMath::Vector<4> Center = VecMath::Vector<4> (0., 0.,0., 0.));
         virtual ~Gasket() { }
 
+        virtual std::string getFunctionName() const { return "4D Sierpinski Gasket"; }
+
         virtual void Transform (const VecMath::Rotation<4> &R,
                                 const VecMath::Vector<4> &T);
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
