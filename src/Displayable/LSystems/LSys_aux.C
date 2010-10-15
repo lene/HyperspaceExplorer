@@ -9,18 +9,27 @@
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
 
+#include "LSystem.h"
 
 #include <iostream>
 #include <fstream>
 #include <iomanip>
 #include <sstream>
-#include <vector>
 using namespace std;
 
-#include "../Matrix.H"
-#include "LSystem.H"
- 
+#include <QString>
+
+#include "Matrix.impl.h"
+#include "Vector.impl.h"
+
 ////////////////////////////////////////////////////////////////////////////////
+double atof(const char *s) {
+  return QString(s).toDouble();
+}
+
+int atoi(const char *s) {
+  return QString(s).toInt();
+}
 
 /*******************************************************************************
  * str_replace
@@ -34,17 +43,17 @@ string str_replace (string instring, string pattern, string replacement) {
     pos = instring.find (pattern, pos);
 
     if (pos >= instring.size ()) return instring;
-    
+
     instring.replace (pos, pattern.size (), replacement);
     pos += replacement.size () - pattern.size ();
   }
 
-  return instring;  
+  return instring;
 }
 
 
 /*******************************************************************************
- *  
+ *
  */
  string map_keys_to_string (map<string, string> rules) {
   string keys = "";
@@ -71,13 +80,13 @@ string str_replace (string instring, map<string, string> rules) {
     pos = instring.find_first_of (keys, pos);
 
     if (pos >= instring.size ()) return instring;
-    
+
     string replacement = rules[instring.substr (pos,1)];
     instring.replace (pos, 1, replacement);
     pos += replacement.size () - 1;
   }
-    
-  return instring;  
+
+  return instring;
 }
 
 
@@ -91,27 +100,27 @@ Vector left_handed (const Vector &V) {
   W[2] = -W[2];
   return W;
 }
- 
+
 
 /*******************************************************************************
  *  converts a matrix from right-handed to left-handed coordinates
  */
-matrix<3> left_handed (const matrix<3> &M) {
-  matrix<3> N (M), T;
+Matrix<3> left_handed (const Matrix<3> &M) {
+  Matrix<3> N (M), T;
   T(2,2) = -1;				//  to POV-ray's #!?*&ing left-handed coordinates:
                                         //  flip z coordinate
   N = T * N;
-  
+
   return N;
 }
 
 
 /*******************************************************************************
- *  
+ *
  */
 string vector_outstr (const Vector &V) {
   const double eps = 1e-8;
-  
+
   //  flip z-coordinate because left/right-handedness issue?
   //  V = left_handed (V);
   ostringstream o;
@@ -122,7 +131,7 @@ string vector_outstr (const Vector &V) {
   if (fabs (V[1]) > eps) o << V[1];
   else o << 0;
   o << ", ";
-  if (fabs (V[2]) > eps) o << V[2]; 	
+  if (fabs (V[2]) > eps) o << V[2];
   else o << 0;
   o << ">";
   return o.str ();
@@ -130,14 +139,14 @@ string vector_outstr (const Vector &V) {
 
 
 /*******************************************************************************
- *  
+ *
  */
-string matrix_outstr (matrix<3> M) {
+string matrix_outstr (Matrix<3> M) {
   const double eps = 1e-8;
   ostringstream o;
-  
+
   o << "      matrix <\n"
-    << setw (4) << setprecision (2) 
+    << setw (4) << setprecision (2)
     << "              ";
   if (fabs (M (0, 0)) > eps) o << M(0, 0);
   else o << 0;
@@ -176,7 +185,7 @@ string matrix_outstr (matrix<3> M) {
 
 
 /*******************************************************************************
- *  
+ *
  */
 string dtos (const double &d){
   ostringstream o;
@@ -186,9 +195,9 @@ string dtos (const double &d){
 
 
 /*******************************************************************************
- *  
+ *
  */
-void state_push (vector<matrix<3> >& Rstate, const matrix<3>& R,
+void state_push (vector<Matrix<3> >& Rstate, const Matrix<3>& R,
 		 vector<Vector>& xstate, const Vector & x,
 		 vector<string>& rotatestate, const string & rotate,
 		 vector<double>& scalestate, const double & scale) {
@@ -200,9 +209,9 @@ void state_push (vector<matrix<3> >& Rstate, const matrix<3>& R,
 
 
 /*******************************************************************************
- *  
+ *
  */
-void state_pop (vector<matrix<3> >& Rstate, matrix<3>& R,
+void state_pop (vector<Matrix<3> >& Rstate, Matrix<3>& R,
 		vector<Vector>& xstate, Vector & x,
 		vector<string>& rotatestate, string & rotate,
 		vector<double>& scalestate, double & scale) {
@@ -218,7 +227,7 @@ void state_pop (vector<matrix<3> >& Rstate, matrix<3>& R,
 
 
 /*******************************************************************************
- *  
+ *
  */
 void split_key_and_value (string &value, map<string, string> &store) {
   unsigned delimiter_pos = value.find_first_of (":");
@@ -250,7 +259,7 @@ void read_file (const string &filename,
     if (line.size () <1) continue;
     string keyword = line.substr (0, line.find_first_of (" \t")),
            value = line.substr (line.find_first_not_of (" \t", keyword.size ()));
-    
+
     if (keyword == "level") level = atoi (value.c_str ());
     else if (keyword == "axiom") axiom = value;
     else if (keyword == "rule") split_key_and_value (value, rules);
@@ -264,7 +273,7 @@ void read_file (const string &filename,
 
 
 /*******************************************************************************
- *  
+ *
  */
 void help (const string &program) {
   cerr << "usage:\n"
@@ -281,15 +290,15 @@ void help (const string &program) {
       << "    {/}    push/pop current transformation\n"
       << "    s<num> scale following transformations by <num>\n";
 }
-              
+
 ////////////////////////////////////////////////////////////////////////////////
 
 /*******************************************************************************
- *  
+ *
  */
 void test_str_replace () {
   string teststr = "XXX";
-  
+
   cout << teststr << ": X -> XYZ: " << str_replace (teststr, "X", "XYZ") << endl;
   teststr = "X";
   cout << teststr << ": X -> XYZ: " << str_replace (teststr, "X", "XYZ") << endl;
@@ -297,10 +306,10 @@ void test_str_replace () {
 
 
 /*******************************************************************************
- *  
+ *
  */
 void test_rotmat () {
-  matrix<3> R,
+  Matrix<3> R,
     Rx  (2, 1,  90.),
     R_x (2, 1, -90.),
     Ry  (0, 2,  90.),
@@ -310,7 +319,7 @@ void test_rotmat () {
   Vector ux (3, 1., 0., 0.),
     uy (3, 0., 1., 0.),
     uz (3, 0., 0., 1.);
-  
+
     cerr << "unity:\n " << matrix_outstr (R)
 	 << "Rx\n" << matrix_outstr (Rx)
 	 << "(Rx) * ux " << vector_outstr ((Rx)*ux) << endl
