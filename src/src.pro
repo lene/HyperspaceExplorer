@@ -158,11 +158,13 @@ FORMS += UI/ComplexDialog.ui \
 RESOURCES = UI/AnimationDialog.qrc
 
 ###
-###     Loki
+###     Utilities
 ###
-INCLUDEPATH += ./Loki
-DEPENDPATH += ./Loki
-HEADERS += Loki/SingletonHolder.h
+INCLUDEPATH += ./Utilities
+DEPENDPATH += ./Utilities
+HEADERS += Utilities/SingletonHolder.h \
+	   Utilities/Observer.h \
+	   Utilities/Observer.impl.h 
 
 ###
 ###     plugins
@@ -195,8 +197,6 @@ SOURCES += VecMath/Rotation.C
 INCLUDEPATH += .
 DEPENDPATH += .
 HEADERS += \
-	   Observer.h \
-	   Observer.impl.h \
 	   Globals.h \
            Help.h \
            Log.h \

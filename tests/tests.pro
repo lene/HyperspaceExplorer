@@ -12,8 +12,8 @@ QT += opengl
 
 TEMPLATE = app
 TARGET =
-DEPENDPATH += . ../src ../src/Functions ../src/Loki ../src/Script ../src/UI ../src/VecMath
-INCLUDEPATH += . ../src ../src/Functions ../src/Loki ../src/Script ../src/UI ../src/VecMath
+DEPENDPATH += . ../src ../src/Functions ../src/Utilities ../src/Script ../src/UI ../src/VecMath
+INCLUDEPATH += . ../src ../src/Functions ../src/Utilities ../src/Script ../src/UI ../src/VecMath
 
 ###
 ###     move all temporary files out of sight into subdirectory tmp

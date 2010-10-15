@@ -22,7 +22,7 @@
 #define GLOBALFUNCTIONS_H
 
 #include <bits/stringfwd.h>
-#include <GridDrawer.impl.h>
+#include "GridDrawer.impl.h"
 
 class QString;
 
@@ -34,26 +34,26 @@ namespace UnitTests {
 
   void test(bool condition, const QString &message);
   void test(bool condition, const std::string &message);
-  
+
   void testEqual(double checked, double precondition);
   void testEqual(const std::string &checked, const std::string &precondition);
   template <unsigned D, typename NUM>
-  void testEqual(const VecMath::Vector<D, NUM> &checked, 
+  void testEqual(const VecMath::Vector<D, NUM> &checked,
                  const VecMath::Vector<D, NUM> &precondition);
-  
+
   void testGreaterEqual(double checked, double precondition);
 
   template <unsigned D, typename NUM>
-  void testNotEqual(const VecMath::Vector<D, NUM> &checked, 
+  void testNotEqual(const VecMath::Vector<D, NUM> &checked,
                     const VecMath::Vector<D, NUM> &precondition);
 
-  template <typename Value, class Container> 
-  void testContains(const Container &container, const Value &value);  
-  template <class Container> 
+  template <typename Value, class Container>
+  void testContains(const Container &container, const Value &value);
+  template <class Container>
   void testContains(const Container &container, const std::string &value);
-  
+
   static const double EPSILON = 1e-8;
-  
+
 }
 
 #endif // GLOBALFUNCTIONS_H
