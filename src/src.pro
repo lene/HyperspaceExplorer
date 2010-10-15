@@ -134,7 +134,8 @@ HEADERS += UI/4DView.h \
            UI/ViewImpl.h \
            UI/ParameterInput.h \
            UI/RotationControl.h \
-           UI/RotationSlider.h
+           UI/RotationSlider.h \
+           UI/Help.h 
 SOURCES += UI/4DView.C \
            UI/Menu4D.C \
            UI/ComplexDialogImpl.C \
@@ -149,7 +150,8 @@ SOURCES += UI/4DView.C \
            UI/ViewImpl.C \
            UI/ParameterInput.C \
            UI/RotationControl.C \
-           UI/RotationSlider.C
+           UI/RotationSlider.C \
+           UI/Help.C            
 FORMS += UI/ComplexDialog.ui \
          UI/FunctionDialog.ui \
          UI/PolarDialog.ui \
@@ -158,19 +160,32 @@ FORMS += UI/ComplexDialog.ui \
 RESOURCES = UI/AnimationDialog.qrc
 
 ###
+###	Color
+###
+INCLUDEPATH += ./Color
+DEPENDPATH += ./Color
+HEADERS += \
+	   Color/Color.h \
+           Color/ColorManager.h \
+           Color/Light.h
+SOURCES += \
+           Color/ColorManager.C \
+           Color/Light.C
+
+###
 ###     Utilities
 ###
 INCLUDEPATH += ./Utilities
 DEPENDPATH += ./Utilities
 HEADERS += \
-	   Globals.h \
+	   Utilities/Globals.h \
 	   Utilities/SingletonHolder.h \
 	   Utilities/Log.h \
            Utilities/NotYetImplementedException.h \
 	   Utilities/Observer.h \
 	   Utilities/Observer.impl.h  \
            Utilities/ScopedTimer.h  \
-           Util.h
+           Utilities/Util.h
 SOURCES += \
 	   Utilities/Globals.C \
            Utilities/ScopedTimer.cpp \
@@ -207,14 +222,7 @@ SOURCES += VecMath/Rotation.C
 INCLUDEPATH += .
 DEPENDPATH += .
 HEADERS += \
-           Help.h \
-           Color.h \
-           ColorManager.h \
-           Light.h
-SOURCES += \
-           Help.C \
-           ColorManager.C \
-           Light.C
+           
 ###
 ################################################################################
 
