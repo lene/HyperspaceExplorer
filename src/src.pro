@@ -162,9 +162,19 @@ RESOURCES = UI/AnimationDialog.qrc
 ###
 INCLUDEPATH += ./Utilities
 DEPENDPATH += ./Utilities
-HEADERS += Utilities/SingletonHolder.h \
+HEADERS += \
+	   Globals.h \
+	   Utilities/SingletonHolder.h \
+	   Utilities/Log.h \
+           Utilities/NotYetImplementedException.h \
 	   Utilities/Observer.h \
-	   Utilities/Observer.impl.h 
+	   Utilities/Observer.impl.h  \
+           Utilities/ScopedTimer.h  \
+           Util.h
+SOURCES += \
+	   Utilities/Globals.C \
+           Utilities/ScopedTimer.cpp \
+           Utilities/Util.cpp
 
 ###
 ###     plugins
@@ -197,23 +207,14 @@ SOURCES += VecMath/Rotation.C
 INCLUDEPATH += .
 DEPENDPATH += .
 HEADERS += \
-	   Globals.h \
            Help.h \
-           Log.h \
            Color.h \
            ColorManager.h \
-           NotYetImplementedException.h \
-           Light.h \
-           ScopedTimer.h \
-           Util.h
+           Light.h
 SOURCES += \
-	   Globals.C \
            Help.C \
            ColorManager.C \
-           Light.C \
-           ScopedTimer.cpp \
-           Util.cpp
-
+           Light.C
 ###
 ################################################################################
 
