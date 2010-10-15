@@ -38,21 +38,21 @@ with this program; if not, write to the Free Software Foundation, Inc.,
  *  @author Helge Preuss <lene.preuss@gmail.com>                         */
 class ComplexFunction: public Surface {
 public:
-        /// Minimal constructor, sets the function name
-        ComplexFunction (): Surface() { 
-        _function = std::tr1::shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction(this));
-        }
-        ComplexFunction (double _umin, double _umax, double _du,
-                         double _vmin, double _vmax, double _dv);
-        virtual ~ComplexFunction ();
-        /// Set up to 4 parameters
-        /** Defaults to do nothing, so implementations need not implement it by
-         *  default.
-         */
-        virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
+  /// Minimal constructor, sets the function name
+  ComplexFunction (): Surface() {
+    _function = std::tr1::shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction(this));
+  }
+  ComplexFunction (double _umin, double _umax, double _du,
+                    double _vmin, double _vmax, double _dv);
+  virtual ~ComplexFunction ();
+  /// Set up to 4 parameters
+  /** Defaults to do nothing, so implementations need not implement it by
+    *  default.
+    */
+  virtual void SetParameters (double = 0, double = 0, double = 0, double = 0) { }
 
-        /// A function from \f$ C \rightarrow C \f$
-        typedef std::complex<double> function_type(std::complex <double>);
+  /// A function from \f$ C \rightarrow C \f$
+  typedef std::complex<double> function_type(std::complex <double>);
 
 protected:
 
@@ -88,16 +88,16 @@ namespace {
 /// \f$ f(z) = z^2 \f$
 /** \ingroup ComplexGroup                                                    */
 class z2: public ComplexFunction {
-    public:
-        z2 (): ComplexFunction() { }
-        z2 (double _umin, double _umax, double _du,
-            double _vmin, double _vmax, double _dv);
-        virtual ~z2() { }
+public:
+  z2 (): ComplexFunction() { }
+  z2 (double _umin, double _umax, double _du,
+      double _vmin, double _vmax, double _dv);
+  virtual ~z2() { }
 
-        virtual std::string getFunctionName() const { return "z2"; } //"z"+ComplexFunction::sup2,
+  virtual std::string getFunctionName() const { return "z2"; } //"z"+ComplexFunction::sup2,
 
-    protected:
-	virtual function_type g;
+protected:
+  virtual function_type g;
 };
 
 namespace {
