@@ -90,7 +90,6 @@ int main(int argc, char **argv) {
     runner.run(new Test_Matrix);
     runner.run(new Test_Rotation);
     runner.run(new Test_Realm);
-    runner.run(new Test_Rotope);
     runner.run(new Test_Function);
     runner.run(new Test_FunctionFactory);
     runner.run(new Test_FunctionValueGrid);
@@ -104,6 +103,7 @@ int main(int argc, char **argv) {
     runner.run(new Test_RealFunction);
     runner.run(new Test_DisplayableClass);
     runner.run(new Test_Observer);
+    runner.run(new Test_Rotope);
 
     runner.printSummary();
 

@@ -27,6 +27,55 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 using std::string;
 
+/** \param actions List of extrusion actions to perform
+ *  \param rotope Vertices to perform the extrusions on
+ *  \return New list of vertices, augmented by the extrusion
+ */
+template <unsigned D, unsigned d>
+VertexData<D> *RotopeFactory::RotopeAction<D, d>::operator()(string actions,
+                                                             VertexData<D> *rotope) {
+  if (d >= D) {
+    throw std::logic_error("RotopeFactory::performAction() called "
+                           "on a higher dimension than the vector space allows");
+  }
+  if (actions.empty()) return rotope;
+
+  char action = actions[d];
+  actions.erase(d);
+  rotope = RotopeAction<D, d-1>::operator()(actions, rotope);
+
+  switch(action) {
+    case 'E': case 'e':
+      return new Extrude<D, d, d>(*rotope);
+      break;
+    case 'T': case 't':
+      return new Taper<D, d, d>(*rotope);
+      break;
+    case 'R': case 'r':
+      return new Rotate<D, d, d>(*rotope);
+      break;
+    case 'D': case 'd':
+      return new Torate<D, d, d>(*rotope);
+      break;
+    default:
+      throw BadRotopeOperation("RotopeFactory::performAction()", string(1, action));
+  }
+}
+
+template <unsigned D>
+VertexData<D> *RotopeFactory::RotopeAction<D, 0>::operator()(string actions,
+                                                             VertexData<D> *rotope) {
+  switch(actions[0]) {
+    case 'E': case 'e':
+      return new Extrude<D, 0, 0>(*rotope);
+      break;
+    default:
+      throw BadRotopeOperation("RotopeFactory::performAction()",
+                               "First operation must be extrusion");
+  }
+  return rotope;
+}
+
 /** Takes a list of extrusion actions as string and creates a Rotope of the
  *  actions, performing them in the order in which they were specified
  *  \param actions The list of extrusion operations

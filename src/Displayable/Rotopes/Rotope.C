@@ -33,96 +33,109 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using std::vector;
 using std::cerr;
 using std::endl;
+using std::string;
 
 using VecMath::Vector;
 using VecMath::Matrix;
 using VecMath::Rotation;
 
-Rotope::Rotope(): Object(0, 0),
-        _actions("EEEE"), _rotope(0) {
-    Initialize();
+Rotope::Rotope():
+    Object(0, 0),
+    rot5D_(), rot6D_(), rot7D_(), rot8D_(), rot9D_(), rot10D_(),
+    numSegments_(RotopeInterface::DEFAULT_NUM_SEGMENTS),
+    actions_("EEEE"), rotope_(0) {
+  Initialize();
 }
 
 Rotope::Rotope(const std::string &actions):
         Object(0, 0),
-         _rot5D(), _rot6D(), _rot7D(), _rot8D(), _rot9D(), _rot10D(),
-        _numSegments(RotopeInterface::DEFAULT_NUM_SEGMENTS), _actions(actions), _rotope(0) {
+        rot5D_(), rot6D_(), rot7D_(), rot8D_(), rot9D_(), rot10D_(),
+        numSegments_(RotopeInterface::DEFAULT_NUM_SEGMENTS),
+        actions_(actions), rotope_(0) {
     Initialize();
 }
 
 Rotope::~Rotope() {
-    if (_rotope) delete _rotope;
+    if (rotope_) delete rotope_;
 }
 
 std::string Rotope::getFunctionName() const {
-    return "Rotope: "+_actions;
+    return "Rotope: "+actions_;
 }
 
 void Rotope::Initialize() {
     SingletonLog::Instance().log(__PRETTY_FUNCTION__);
 
     try {
-        RotopeInterface::setRotationSegments(_numSegments);
-        _rotope = RotopeFactory::generate(_actions);
-        declareParameter("Generator", _actions);
-        for(unsigned i = 5; i <= _actions.length(); ++i) {
-          string label = Util::itoa(i)+string("D Rotation");
-            switch(i) {
-                case 5:
-                    declareParameter(label, _rot5D);
-                    break;
-                case 6:
-                    declareParameter(label, _rot6D);
-                    break;
-                case 7:
-                    declareParameter(label, _rot7D);
-                    break;
-                case 8:
-                    declareParameter(label, _rot8D);
-                    break;
-                case 9:
-                    declareParameter(label, _rot9D);
-                    break;
-                case 10:
-                    declareParameter(label, _rot10D);
-                    break;
-                default:
-                    throw BadRotopeOperation("Rotope::Initialize()",
-                                             "Rotopes of dimension higher than 10 not supported.");
-            }
-        }
-        declareParameter("Rotation segments", _numSegments);
+      generateRotopeAndParameters();
     } catch (BadRotopeOperation e) {
-        declareParameter("Generator", string(DIM, 'E'));
-        _rotope = new Extrude<DIM, 0, DIM-1>();
-        /** \todo Show the warning in a QMessageBox. Currently that does not work
-         *  because C4DView::RenderScene() is called before the object has been
-         *  fully initialized.
-         */
-        /*
-        QMessageBox::warning (NULL,
-        QString("Rotope::Rotope(")+actions.c_str()+")",
-        e.what());
-        */
-        cerr << e.what() << endl
-                << "Rendering " << DIM << "-dimensional hypercube instead."
-                << endl;
+      generateDefaultRotope(e);
     } catch (NotYetImplementedException e) {
-        declareParameter("Generator", string(DIM, 'E'));
-        _rotope = new Extrude<DIM, 0, DIM-1>();
-        /// \todo See above
-        cerr << e.what() << endl;
+      generateDefaultRotope(e);
     }
 
-    SingletonLog::Instance() << getParameters().toString();
-    for (unsigned i = 5; i <= _rotope->dimension(); ++i) {
-        _rotope->addTransform(i, new VecMath::Rotation<5>());
-    }
+    addNDimensionalTransforms();
 
-    setX(_rotope->projected_vertices());
+    setX(rotope_->projected_vertices());
 
     Object::Initialize();
 
+}
+
+void Rotope::generateRotopeAndParameters() throw (BadRotopeOperation) {
+  RotopeInterface::setRotationSegments(numSegments_);
+  rotope_ = RotopeFactory::generate(actions_);
+  declareParameter("Generator", actions_);
+  for(unsigned i = 5; i <= actions_.length(); ++i) {
+    string label = Util::itoa(i)+string("D Rotation");
+    switch(i) {
+      case 5:
+        declareParameter(label, rot5D_);
+        break;
+      case 6:
+        declareParameter(label, rot6D_);
+        break;
+      case 7:
+        declareParameter(label, rot7D_);
+        break;
+      case 8:
+        declareParameter(label, rot8D_);
+        break;
+      case 9:
+        declareParameter(label, rot9D_);
+        break;
+      case 10:
+        declareParameter(label, rot10D_);
+        break;
+      default:
+        throw BadRotopeOperation("Rotope::Initialize()",
+                                 "Rotopes of dimension higher than 10 not supported.");
+    }
+  }
+  declareParameter("Rotation segments", numSegments_);
+}
+
+void Rotope::generateDefaultRotope(const std::logic_error& e) throw () {
+  declareParameter("Generator", string(DIM, 'E'));
+  rotope_ = new Extrude<DIM, 0, DIM-1>();
+  /** \todo Show the warning in a QMessageBox. Currently that does not work
+   *  because C4DView::RenderScene() is called before the object has been
+   *  fully initialized.
+   */
+  /*
+   *        QMessageBox::warning (NULL,
+   *        QString("Rotope::Rotope(")+actions.c_str()+")",
+   *        e.what());
+   */
+  cerr << e.what() << endl
+       << "Rendering " << DIM << "-dimensional hypercube instead." << endl;
+}
+
+void Rotope::addNDimensionalTransforms() {
+  SingletonLog::Instance() << getParameters().toString();
+  for (unsigned i = 5; i <= rotope_->dimension(); ++i) {
+    rotope_->addTransform(i, new VecMath::Rotation<5>());
+  }
 }
 
 /** @param R Rotation
@@ -130,7 +143,7 @@ void Rotope::Initialize() {
  */
 void Rotope::Transform(const VecMath::Rotation<4> &R,
                        const VecMath::Vector<4> &T) {
-    if (!_rotope) {
+    if (!rotope_) {
         throw std::logic_error("Rotope::Transform(): _rotope is NULL!");
     }
     Matrix<4> Rot(R);
@@ -142,19 +155,18 @@ void Rotope::Transform(const VecMath::Rotation<4> &R,
 }
 
 void Rotope::Draw (UI::View *view) {
-    if (!_rotope) {
+    if (!rotope_) {
         throw std::logic_error("Rotope::Draw(): _rotope is NULL!");
     }
 
-    if (_rotope->realm().size()) {
-        drawRealm(_rotope->realm(), view);
+    if (rotope_->realm().size()) {
+        drawRealm(rotope_->realm(), view);
 //        _rotope->print();
     } else {
         throw new std::logic_error("Rotope has no Realm member");
     }
 }
 
-#include <GL/gl.h>
 #include "View.h"
 
 void Rotope::drawRealm(const Realm &realm, UI::View *view) {
@@ -180,7 +192,6 @@ void Rotope::drawRealm(const Realm &realm, UI::View *view) {
              *  \code (0, 1, ..., n) \endcode
              */
             if (realm.getSubrealms().begin()->dimension() == 0) {
-#if 1
               vector< Vector<4> > original_vertices;
               vector< Vector<3> > projected_vertices;
               for (Realm::realm_container_type::const_iterator i = realm.getSubrealms().begin();
@@ -189,14 +200,6 @@ void Rotope::drawRealm(const Realm &realm, UI::View *view) {
                 projected_vertices.push_back(Xscr[i->toIndex()]);
               }
               view->drawPolygon(original_vertices, projected_vertices);
-#else
-              glBegin(GL_POLYGON);
-                    for (Realm::realm_container_type::const_iterator i = realm.getSubrealms().begin();
-                         i != realm.getSubrealms().end(); ++i) {
-                        setVertex(X[i->toIndex()], Xscr[i->toIndex()]);
-                    }
-                glEnd();
-#endif
             } else if (realm.getSubrealms().begin()->dimension() == 1) {
                 for (Realm::realm_container_type::const_iterator i = realm.getSubrealms().begin();
                      i != realm.getSubrealms().end(); ++i) {
@@ -223,38 +226,32 @@ void Rotope::SetParameters(const ParameterMap &parms) {
         for (ParameterMap::const_iterator i = parms.begin();
              i != parms.end(); ++i) {
             if (i->second->getName() == "Generator") {
-                _actions = i->second->toString();
+                actions_ = i->second->toString();
             }
             if (i->second->getName() == "Rotation segments") {
-                _numSegments = i->second->toUnsigned();
+                numSegments_ = i->second->toUnsigned();
             }
             if (i->second->getName() == "5D Rotation") {
-                _rot5D =  i->second->toRotation5();
-                std::cerr << "5D Rotation : " << _rot5D << "\n";
+                rot5D_ =  i->second->toRotation5();
             }
             if (i->second->getName() == "6D Rotation") {
-                _rot6D =  i->second->toRotation6();
-                std::cerr << "6D Rotation : " << _rot6D << "\n";
+                rot6D_ =  i->second->toRotation6();
             }
             if (i->second->getName() == "7D Rotation") {
-                _rot7D =  i->second->toRotation7();
-                std::cerr << "7D Rotation : " << _rot7D << "\n";
+                rot7D_ =  i->second->toRotation7();
             }
             if (i->second->getName() == "8D Rotation") {
-                _rot8D =  i->second->toRotation8();
-                std::cerr << "8D Rotation : " << _rot8D << "\n";
+                rot8D_ =  i->second->toRotation8();
             }
             if (i->second->getName() == "9D Rotation") {
-                _rot9D =  i->second->toRotation9();
-                std::cerr << "9D Rotation : " << _rot9D << "\n";
+                rot9D_ =  i->second->toRotation9();
             }
             if (i->second->getName() == "10D Rotation") {
-                _rot10D =  i->second->toRotation10();
-                std::cerr << "10D Rotation : " << _rot10D << "\n";
+                rot10D_ =  i->second->toRotation10();
             }
 
         }
 #   else
-        setParameter(parms, this->_actions, "Generator");
+        setParameter(parms, this->actions_, "Generator");
 #   endif
 }

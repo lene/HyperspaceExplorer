@@ -18,13 +18,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 */
 
+class RotopeInterface;
+template <unsigned D> class VertexData;
 
-#include "Extrude.h"
-#include "Taper.h"
-#include "Rotate.h"
-#include "Torate.h"
-
-using std::string;
+#include <string>
 
 /// A class to generate Rotopes
 /** Sports a static method generate() which takes a list of extrusion actions as
@@ -34,75 +31,30 @@ using std::string;
  *  \ingroup RotopeGroup
  */
 class RotopeFactory {
-    public:
-        /// Generate a Rotope
-        static RotopeInterface *generate(const std::string &actions);
 
-    private:
-        /// Functor class to perform an extrusion on a Rotope or vertex array
-        /** \tparam D Dimension of vector space we operate in
-         *  \tparam d Dimension we want to extrude into
-         */
-        template <unsigned D, unsigned d> class RotopeAction:
-                public RotopeAction<D, d-1> {
-            public:
-                /// Perform the extrusion operations
-                /** \param actions List of extrusion actions to perform
-                 *  \param rotope Vertices to perform the extrusions on
-                 *  \return New list of vertices, augmented by the extrusion
-                 */
-                VertexData<D> *operator()(std::string actions,
-                                           VertexData<D> *rotope) {
-                if (d >= D) {
-                    throw std::logic_error("RotopeFactory::performAction() called "
-                            "on a higher dimension than the vector space allows");
-                }
+public:
 
-                if (actions.empty()) return rotope;
+  /// Generate a Rotope
+  static RotopeInterface *generate(const std::string &actions);
 
-                char action = actions[d];
-                actions.erase(d);
-                rotope = RotopeAction<D, d-1>::operator()(actions, rotope);
+private:
 
-                switch(action) {
-                    case 'E': case 'e':
-                        return new Extrude<D, d, d>(*rotope);
-                        break;
-                    case 'T': case 't':
-                        return new Taper<D, d, d>(*rotope);
-                        break;
-                    case 'R': case 'r':
-                        return new Rotate<D, d, d>(*rotope);
-                        break;
-                    case 'D': case 'd':
-                        return new Torate<D, d, d>(*rotope);
-                        break;
-                    default:
-                        throw BadRotopeOperation("RotopeFactory::performAction()",
-                                                 std::string(1, action));
-                }
-            }
-        };
+  /// Functor class to perform an extrusion on a Rotope or vertex array
+  /** \tparam D Dimension of vector space we operate in
+   *  \tparam d Dimension we want to extrude into
+   */
+  template <unsigned D, unsigned d> struct RotopeAction: public RotopeAction<D, d-1> {
+    /// Perform the extrusion operations
+    VertexData<D> *operator()(std::string actions,
+                              VertexData<D> *rotope);
+  };
 
-        /// Specialization for extruding into the dimension 0 to end recursion
-        /** \tparam D Dimension of vector space we operate in
-         */
-        template <unsigned D> class RotopeAction<D, 0> {
-            public:
-                /// Perform the extrusion operations
-                VertexData<D> *operator()(std::string actions,
-                                           VertexData<D> *rotope) {
-                    switch(actions[0]) {
-                        case 'E': case 'e':
-                            return new Extrude<D, 0, 0>(*rotope);
-                            break;
-                        default:
-                            throw BadRotopeOperation("RotopeFactory::performAction()",
-                                                     "First operation must be "
-                                                        "extrusion");
-
-                    }
-                    return rotope;
-                }
-        };
+  /// Specialization for extruding into the dimension 0 to end recursion
+  /** \tparam D Dimension of vector space we operate in
+   */
+  template <unsigned D> struct RotopeAction<D, 0> {
+    /// Perform the extrusion operations
+    VertexData<D> *operator()(std::string actions,
+                              VertexData<D> *rotope);
+  };
 };

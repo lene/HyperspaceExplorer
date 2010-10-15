@@ -84,7 +84,7 @@ std::string ParameterMap::toString() const {
       continue;
     } catch (FunctionParameterValueBase::WrongParameterTypeException &e) { }
   }
-  o << "]" << std::endl << std::ends;
+  o << "]" << std::endl;
 
   return o.str();
 }

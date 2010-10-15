@@ -22,7 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 /// \todo fix in RotopeBase that this must be included firat
 #include "Rotation.h"
-#include "Rotopes/RotopeInterface.h"
+#include "Rotopes/Rotope.h"
 #include "Rotopes/RotopeFactory.h"
 
 #include <string>
@@ -350,7 +350,7 @@ void Test_Rotope::penteract() {
     if (false) printVertices();
 }
 
-void Test_Rotope::setRotope(const string &generator) {
+void Test_Rotope::setRotope(const std::string &generator) {
     _rotope = RotopeFactory::generate(generator);
     setRealm();
     setVertices();
