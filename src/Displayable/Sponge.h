@@ -60,8 +60,6 @@ public:
 #       endif
         }
 
-    virtual std::string getFunctionName() const { return "Menger Sponge"; }
-
     /** @return A string with a description of the Hypersponge object         */
     virtual std::string description () {
         std::ostringstream out;

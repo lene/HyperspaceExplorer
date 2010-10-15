@@ -22,84 +22,84 @@ RCC_DIR = tmp
 ###     subdirectories
 ###
 ###
-###     Functions
+###     Displayable
 ###
-INCLUDEPATH += ./Functions
-DEPENDPATH += ./Functions
+INCLUDEPATH += ./Displayable
+DEPENDPATH += ./Displayable
 HEADERS += \
-           Functions/FunctionParameterValueBase.h \
-           Functions/FunctionParameterValue.h \
-           Functions/FunctionParameter.h \
-           Functions/FunctionParameterFactory.h \
-           Functions/ParameterMap.h \
-           Functions/Displayable.h \
-           Functions/DisplayableClass.h \
-           Functions/FunctionFactory.h \
-           Functions/DefinitionSpaceRange.h \
-           Functions/DefinitionRangeOfDimension.h \
-           Functions/DefinitionRangeOfDimension.impl.h \
-           Functions/FunctionHolder.h \
-           Functions/FunctionHolder.impl.h \
-           Functions/RealFunction.h \
-           Functions/RealFunctionImplementations.h \
-           Functions/Surface.h \
-           Functions/SurfaceImplementations.h \
-           Functions/ComplexFunction.h \
-           Functions/CustomFunction.h \
-           Functions/ParametricFunction.h \
-           Functions/FunctionValueGrid.h \
-           Functions/LoopHelper.h \
-           Functions/Transformation.h \
-           Functions/Transformation.impl.h \
-           Functions/ViewpointList.h \
-           Functions/ViewpointList.impl.h \
-           Functions/Projection.h \
-           Functions/Projection.impl.h \
-           Functions/GridDrawer.h \
-           Functions/GridDrawer.impl.h \
-           Functions/Object.h \
-           Functions/Transform.h \
-           Functions/Sponge.h
-#          Functions/SteinerFunction.h
+           Displayable/FunctionParameterValueBase.h \
+           Displayable/FunctionParameterValue.h \
+           Displayable/FunctionParameter.h \
+           Displayable/FunctionParameterFactory.h \
+           Displayable/ParameterMap.h \
+           Displayable/Displayable.h \
+           Displayable/DisplayableClass.h \
+           Displayable/FunctionFactory.h \
+           Displayable/DefinitionSpaceRange.h \
+           Displayable/DefinitionRangeOfDimension.h \
+           Displayable/DefinitionRangeOfDimension.impl.h \
+           Displayable/FunctionHolder.h \
+           Displayable/FunctionHolder.impl.h \
+           Displayable/RealFunction.h \
+           Displayable/RealFunctionImplementations.h \
+           Displayable/Surface.h \
+           Displayable/SurfaceImplementations.h \
+           Displayable/ComplexFunction.h \
+           Displayable/CustomFunction.h \
+           Displayable/ParametricFunction.h \
+           Displayable/FunctionValueGrid.h \
+           Displayable/LoopHelper.h \
+           Displayable/Transformation.h \
+           Displayable/Transformation.impl.h \
+           Displayable/ViewpointList.h \
+           Displayable/ViewpointList.impl.h \
+           Displayable/Projection.h \
+           Displayable/Projection.impl.h \
+           Displayable/GridDrawer.h \
+           Displayable/GridDrawer.impl.h \
+           Displayable/Object.h \
+           Displayable/Transform.h \
+           Displayable/Sponge.h
+#          Displayable/SteinerFunction.h
 SOURCES += \
-           Functions/FunctionParameterValue.C \
-           Functions/FunctionParameter.C \
-           Functions/ParameterMap.C \
-           Functions/Displayable.cpp \
-           Functions/DisplayableClass.cpp \
-           Functions/FunctionFactory.C \
-           Functions/DefinitionSpaceRange.cpp \
-           Functions/RealFunction.C \
-           Functions/RealFunctionImplementations.cpp \
-           Functions/Surface.C \
-           Functions/SurfaceImplementations.cpp \
-           Functions/ComplexFunction.C \
-           Functions/CustomFunction.C \
-           Functions/Object.C \
-           Functions/Sponge.C
-#          Functions/SteinerFunction.C
+           Displayable/FunctionParameterValue.C \
+           Displayable/FunctionParameter.C \
+           Displayable/ParameterMap.C \
+           Displayable/Displayable.cpp \
+           Displayable/DisplayableClass.cpp \
+           Displayable/FunctionFactory.C \
+           Displayable/DefinitionSpaceRange.cpp \
+           Displayable/RealFunction.C \
+           Displayable/RealFunctionImplementations.cpp \
+           Displayable/Surface.C \
+           Displayable/SurfaceImplementations.cpp \
+           Displayable/ComplexFunction.C \
+           Displayable/CustomFunction.C \
+           Displayable/Object.C \
+           Displayable/Sponge.C
+#          Displayable/SteinerFunction.C
 
 ###
 ###     Rotopes
 ###
-INCLUDEPATH += ./Functions/Rotopes
-DEPENDPATH += ./Functions/Rotopes
-HEADERS += Functions/Rotopes/Rotope.h \
-           Functions/Rotopes/RotopeFactory.h \
-           Functions/Rotopes/Projector.h \
-           Functions/Rotopes/RotopeInterface.h \
-           Functions/Rotopes/VertexData.h \
-           Functions/Rotopes/VertexDataPrinter.h \
-           Functions/Rotopes/Realm.h \
-           Functions/Rotopes/Extrude.h \
-           Functions/Rotopes/Taper.h \
-           Functions/Rotopes/Rotate.h \
-           Functions/Rotopes/Torate.h
-SOURCES += Functions/Rotopes/Rotope.C \
-           Functions/Rotopes/RotopeFactory.C \
-           Functions/Rotopes/RotopeInterface.C \
-           Functions/Rotopes/Realm.C \
-           Functions/Rotopes/RealmPrinter.C
+INCLUDEPATH += ./Displayable/Rotopes
+DEPENDPATH += ./Displayable/Rotopes
+HEADERS += Displayable/Rotopes/Rotope.h \
+           Displayable/Rotopes/RotopeFactory.h \
+           Displayable/Rotopes/Projector.h \
+           Displayable/Rotopes/RotopeInterface.h \
+           Displayable/Rotopes/VertexData.h \
+           Displayable/Rotopes/VertexDataPrinter.h \
+           Displayable/Rotopes/Realm.h \
+           Displayable/Rotopes/Extrude.h \
+           Displayable/Rotopes/Taper.h \
+           Displayable/Rotopes/Rotate.h \
+           Displayable/Rotopes/Torate.h
+SOURCES += Displayable/Rotopes/Rotope.C \
+           Displayable/Rotopes/RotopeFactory.C \
+           Displayable/Rotopes/RotopeInterface.C \
+           Displayable/Rotopes/Realm.C \
+           Displayable/Rotopes/RealmPrinter.C
 
 ###
 ###     Script
