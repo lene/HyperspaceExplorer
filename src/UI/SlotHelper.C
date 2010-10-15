@@ -22,27 +22,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "SlotHelper.h"
 #include "4DView.h"
-#include "CustomFunctionSlot.impl.h"
-#include "TemplatedFunctionFactory.impl.h"
-
-/// Generalized slot. Sets C4DView::F to Function associated with this SlotHelper
-void FunctionSlotHelper::slot() {
-    view->setF(functionFactory->createFunction(view));
-
-    view->Menu()->updateFunctionMenu(view->F()->getFunctionName().c_str());
-    view->AssignValues(view->F());
-
-    view->Redraw();
-}
-
-/// Generalized slot. Sets C4DView::F to Surface associated with this SlotHelper
-void SurfaceSlotHelper::slot() {
-    view->setF(surfaceFactory->createSurface(view));
-
-    view->Menu()->updateFunctionMenu(view->F()->getFunctionName().c_str());
-    view->AssignValues(view->F());
-    view->Redraw();
-}
 
 void SlotHelper::slot() {
 
@@ -52,11 +31,11 @@ void SlotHelper::slot() {
     values->tmin (), values->tmax (), values->dt (),
     values->umin (), values->umax (), values->du (),
     values->vmin (), values->vmax (), values->dv ());
-  
+
   view_->setF(new_displayable);
 
   view_->Menu()->updateFunctionMenu(view_->F()->getFunctionName().c_str());
   view_->AssignValues(view_->F());
   view_->Redraw();
-  
+
 }

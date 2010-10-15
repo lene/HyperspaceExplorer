@@ -127,7 +127,6 @@ HEADERS += UI/4DView.h \
            UI/AnimationDialogImpl.h \
            UI/SlotHelper.h \
            UI/CustomFunctionSlot.impl.h \
-           UI/TemplatedFunctionFactory.impl.h \
            UI/ValuesDialog.h \
            UI/MouseHandler.h \
            UI/View.h \

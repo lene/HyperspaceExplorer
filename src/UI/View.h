@@ -34,13 +34,13 @@ namespace VecMath {
 /// User interface elements
 namespace UI {
 
-    /// Interface to display four-dimensional objects
-    /** Provides functions to display Function objects, transform them and
-     *  animate them. Also to set various viewing states.
-     *
-     *  \ingroup UIGroup
-     */
-    class View {
+/// Interface to display four-dimensional objects
+/** Provides functions to display Function objects, transform them and
+ *  animate them. Also to set various viewing states.
+ *
+ *  \ingroup UIGroup
+ */
+class View {
         /// Thrown when a function is not supported by a View implementation
         class FunctionNotSupportedException: public std::runtime_error {
             public:
@@ -58,27 +58,6 @@ namespace UI {
             /// Set the currently displayed object to the given Function
             /** \param f The object to be set */
             virtual void setF(Displayable *f) = 0;
-
-            /// Set the currently displayed object to a hypercube
-            /** Necessary because I don't see a way to set the displayed object
-             *  to a generic Object, only to Function s                       */
-            virtual void ObjectHypercube() = 0;
-            /// Set the currently displayed object to a hypersimplex
-            /** Necessary because I don't see a way to set the displayed object
-             *  to a generic Object, only to Function s                       */
-            virtual void ObjectHyperpyramid() = 0;
-            /// Set the currently displayed object to a hyper-menger sponge
-            /** Necessary because I don't see a way to set the displayed object
-             *  to a generic Object, only to Function s                       */
-            virtual void ObjectHypersponge() = 0;
-            /// Set the currently displayed object to a hyper-sierpinski gasket
-            /** Necessary because I don't see a way to set the displayed object
-             *  to a generic Object, only to Function s                       */
-            virtual void ObjectGasket() = 0;
-            /// Set the currently displayed object to a rotope
-            /** Necessary because I don't see a way to set the displayed object
-             *  to a generic Object, only to Function s                       */
-            virtual void ObjectRotope() = 0;
 
             /// Makes setting a parameter from the outside possible
             /** \param parmName Name of the parameter, as defined in the Function
@@ -241,7 +220,7 @@ namespace UI {
             /// Set a default background color
             virtual void setDefaultBackground() = 0;
 
-    };
+};
 
 }
 

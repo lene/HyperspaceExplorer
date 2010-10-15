@@ -45,112 +45,12 @@ class CustomComplexFunction;
 /// \defgroup UIHelpers Helper classes for User Interface classes
 /// \ingroup UIGroup
 
-/// Abstract base class for a factory creating Function's
-/** Defines the interface a TemplatedRealFunctionFactory<> implements
- *
- *  Separate classes are needed for Functions and Surfaces, because their
- *  constructors differ.
- *  \ingroup UIHelpers                                                        */
-class RealFunctionFactory {
-
-  public:
-    virtual ~RealFunctionFactory() { }
-
-    /// Template Method to create a RealFunction
-    RealFunction *createFunction(C4DView *view) {
-      return doCreateFunction(view);
-    }
-
-    /// The function name as a std::string.
-    std::string functionName() { return doGetFunctionName(); }
-
-  private:
-
-    /// Implementation of TemplateMethod createFunction()
-    virtual RealFunction *doCreateFunction(C4DView *) = 0;
-
-    /// Implementation of Template Method functionName().
-    virtual std::string doGetFunctionName() = 0;
-
-};
-
-/// Abstract base class for a factory creating Surface's
-/** Defines the interface a TemplatedSurfaceFactory<> implements
- *
- *  Separate classes are needed for Functions and Surfaces, because their
- *  constructors differ.
- *  \ingroup UIHelpers                                                        */
-class SurfaceFactory {
-
-  public:
-
-    virtual ~SurfaceFactory() { }
-
-    /// Template Method to create a Surface
-    Surface *createSurface(C4DView *view) {
-      return doCreateSurface(view);
-    }
-
-    /// The function name as a std::string.
-    std::string functionName() { return doGetFunctionName(); }
-
-  private:
-
-    /// Implementation of Template Method createSurface()
-    virtual Surface *doCreateSurface(C4DView *) = 0;
-
-    /// Implementation of Template Method functionName().
-    virtual std::string doGetFunctionName() = 0;
-
-};
-
 /// Displays and manipulates four-dimensional Functions in a QGLWidget
 /** This class is much too fat and will be split into parts wherever possible
  *  \ingroup UIGroup
  *  @author Helge Preuss <lene.preuss@gmail.com>                         */
 class C4DView : public QGLWidget, public UI::ViewImpl {
 
-  public:
-
-    /// Class template implementation for a factory creating Function's
-    /** The type of the Function to be created by the factory method of this
-     *  class is passed as a template parameter.
-     *
-     *  Separate classes are needed for Functions and Surfaces, because
-     *  their constructors differ.
-     *  \tparam function The type of \c RealFunction created by this factory.
-     *  \ingroup UIHelpers
-     */
-    template <typename function>
-      class TemplatedRealFunctionFactory: public RealFunctionFactory {
-
-        private:
-
-          /// Implementation of TemplateMethod createFunction()
-          virtual RealFunction *doCreateFunction(C4DView *);
-          virtual std::string doGetFunctionName();
-
-      };
-
-      /// Class template implementation for a factory creating Surface's
-      /** The type of the Surface to be created by the factory method of this
-       *  class is passed as a template parameter.
-       *
-       *  Separate classes are needed for Functions and Surfaces, because
-       *  their constructors differ.
-       *  \tparam function The type of \c Surface created by this factory.
-       *  \ingroup UIHelpers
-       */
-      template <typename function>
-        class TemplatedSurfaceFactory: public SurfaceFactory {
-
-          private:
-
-            /// Implementation of TemplateMethod createSurface()
-            virtual Surface *doCreateSurface(C4DView *);
-            virtual std::string doGetFunctionName();
-
-        };
 
     private:
         /// Class template to outsource redundant code for customized functions
@@ -174,19 +74,6 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         virtual ~C4DView();
 
         ////////        Implementations of the View interface        ////////
-
-        /// Implementation of UI::View::ObjectHypercube
-        virtual void ObjectHypercube();
-        /// Implementation of UI::View::ObjectHyperpyramid
-        virtual void ObjectHyperpyramid();
-        /// Implementation of UI::View::ObjectHypersponge
-        virtual void ObjectHypersponge();
-        /// Implementation of UI::View::ObjectHypersponge
-        virtual void ObjectAltSponge();
-        /// Implementation of UI::View::ObjectGasket
-        virtual void ObjectGasket();
-        /// Implementation of UI::View::ObjectRotope
-        virtual void ObjectRotope();
 
         /// Implementation of UI::View::applyTransform
         virtual void applyTransform(const VecMath::Rotation<4> &R,
@@ -224,6 +111,7 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
                                     const VecMath::Vector< 3 > &xscr2, const VecMath::Vector< 3 > &xscr3);
         virtual void drawPolygon(const std::vector< VecMath::Vector< 4 > >&x ,
                                  const std::vector< VecMath::Vector< 3 > >&xscr );
+
         ////////////////////////////////////////////////////////////////////////
 
         /// rotate in 3D 360 degrees

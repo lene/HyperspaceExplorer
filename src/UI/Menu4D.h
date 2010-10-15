@@ -51,18 +51,6 @@ class C4DView::Menu4D: public QMenu {
         void customFunction();
         /// "Object/f:R^3 -> R/Custom polar function" menu item selected
         void customPolarFunction();
-        /// "Object/Objects/Hypercube" menu item selected
-        void ObjectHypercube();
-        /// "Object/Objects/Hyperpyramid" menu item selected
-        void ObjectHyperpyramid();
-        /// "Object/Objects/Menger Sponge" menu item selected
-        void ObjectHypersponge();
-        /// "Object/Objects/Alt. Menger Sponge" menu item selected
-        void ObjectAltSponge();
-        /// "Object/Objects/Sierpinski Gasket" menu item selected
-        void ObjectGasket();
-        /// "Object/Objects/Rotope" menu item selected
-        void ObjectRotope();
         /// "Object/Surfaces/Custom surface" menu item selected
         void customSurface();
         /// "Object/Surfaces/f:C -> C/Custom complex function" menu item selected
@@ -104,24 +92,15 @@ class C4DView::Menu4D: public QMenu {
 
         /// Creates a menu with submenus from a DisplayableClass
         QMenu *createMenu(const DisplayableClass &node);
-        
+
         /// insert a menu item with a specified slot into a specified menu
         QAction *insertAction(QMenu *, const QString &, const char * = 0,
                               bool = true);
-        /// insert a menu item creating a RealFunction object into a specified menu
-        QAction *insertAction(QMenu *, RealFunctionFactory *, bool = true);
-        /// insert a menu item creating a Surface object into a specified menu
-        QAction *insertAction(QMenu *, SurfaceFactory *, bool = true);
         /// insert a menu item creating a Surface object into a specified menu
         QAction *insertAction(QMenu *, const std::string &, bool = true);
 
         C4DView *_parent;       ///< the C4DView containing this menu
 
-        QMenu *_functions;      ///< The "Object" menu
-        QMenu *_fr3r;           ///< The "Object/f:R^3 -> R" submenu
-        QMenu *_objects;        ///< The "Object/Objects" submenu
-        QMenu *_surfaces;       ///< The "Object/Surfaces" submenu
-        QMenu *_fcc;            ///< The "Object/Surfaces/f:C -> C" submenu
         QMenu *_appear;         ///< The "Appearance" menu
         QMenu *_color;          ///< The "Appearance/Color Schemes" submenu
         QMenu *_animation;      ///< The "Animation" menu

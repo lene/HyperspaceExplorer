@@ -279,7 +279,7 @@ void benchmark (const unsigned num_runs = 10) {
     C4DView view;
 
     {
-
+#if 0
         map < const char *, double2Dmap> results_by_object;
 
         view.ObjectHypercube ();
@@ -307,6 +307,7 @@ void benchmark (const unsigned num_runs = 10) {
                 benchmarks_by_style (view, num_runs, num_steps, step)));
 
         evaluate_benchmark (results_by_object);
+#endif
     }
 
   exit (0);

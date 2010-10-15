@@ -105,7 +105,10 @@ C4DView::C4DView(QWidget *parent):
     Menu()->setColorManager(new QAction("XYZ to RGB (fast)", this));
 //    Menu()->setColorManager(new QAction("W coordinate to RGB", this));
 
-    ObjectRotope();
+    setF(new Rotope("ERRE"));
+
+    AssignValues(F());
+    Redraw ();
 
     setLighting(true);
 }
@@ -114,60 +117,6 @@ C4DView::C4DView(QWidget *parent):
 C4DView::~C4DView() { }
 
 ////////        Implementations of the View interface        ////////
-
-void C4DView::ObjectHypercube() {
-    Menu()->updateFunctionMenu("Hypercube");
-
-    setF(new Hypercube ());
-
-    AssignValues(F());
-    Redraw ();
-}
-
-void C4DView::ObjectHyperpyramid() {
-    Menu()->updateFunctionMenu("Hyperpyramid");
-
-    setF(new Pyramid ());
-
-    AssignValues(F());
-    Redraw ();
-}
-
-void C4DView::ObjectHypersponge() {
-    Menu()->updateFunctionMenu("Menger Sponge");
-
-    setF(new Sponge ());
-
-    AssignValues(F());
-    Redraw ();
-}
-
-void C4DView::ObjectAltSponge() {
-    Menu()->updateFunctionMenu("Alt. Menger Sponge");
-
-    setF(new AltSponge ());
-
-    AssignValues(F());
-    Redraw ();
-}
-
-void C4DView::ObjectGasket() {
-    Menu()->updateFunctionMenu("Sierpinski Gasket");
-
-    setF(new Gasket ());
-
-    AssignValues(F());
-    Redraw ();
-}
-
-void C4DView::ObjectRotope() {
-    Menu()->updateFunctionMenu("Rotope");
-//    setF(new Horizon());
-    setF(new Rotope("ERRE"));
-
-    AssignValues(F());
-    Redraw ();
-}
 
 void C4DView::applyTransform(const VecMath::Rotation<4> &R,
                              const VecMath::Vector<4> &T) {

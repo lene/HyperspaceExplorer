@@ -40,7 +40,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "FunctionHolder.impl.h"
 #include "CustomFunctionSlot.impl.h"
-#include "TemplatedFunctionFactory.impl.h"
 #include "MultiDimensionalVector.impl.h"
 
 using std::ostringstream;
@@ -92,7 +91,6 @@ QMenu *C4DView::Menu4D::createMenu(const DisplayableClass &node) {
 C4DView::Menu4D::Menu4D(C4DView *_parent):
     _parent(_parent) {
 
-    _functions = addMenu(tr("Object"));
     _appear = addMenu(tr("Appearance"));
     _animation = addMenu(tr("Animation"));
     _help = addMenu(tr("Help"));
@@ -106,64 +104,6 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
     std::copy(TheFunctionFactory::Instance().listFunctions().begin(),
               TheFunctionFactory::Instance().listFunctions().end(),
               std::ostream_iterator<std::string>(std::cerr, " "));
-
-    ////////////////////////////////////////////////////////////////////////////
-    //      "Objects" Menu
-    ////////////////////////////////////////////////////////////////////////////
-    {
-        _fr3r = _functions->addMenu("f: R"+sup3+" -> R");
-        _objects = _functions->addMenu("Objects");
-        _surfaces = _functions->addMenu("Surfaces");
-        _fcc = _surfaces->addMenu("f: C -> C");
-        {
-            insertAction(_fr3r, new C4DView::TemplatedRealFunctionFactory<Fr3r>);
-            insertAction(_fr3r, new C4DView::TemplatedRealFunctionFactory<GravitationPotential>);
-            insertAction(_fr3r, new C4DView::TemplatedRealFunctionFactory<Fr3rSin>);
-            insertAction(_fr3r, new C4DView::TemplatedRealFunctionFactory<Fr3rExp>);
-            insertAction(_fr3r, "Custom function", SLOT(customFunction()));
-            insertAction(_fr3r, new C4DView::TemplatedRealFunctionFactory<PolarSin>);
-            insertAction(_fr3r, new C4DView::TemplatedRealFunctionFactory<PolarSin2>);
-            insertAction(_fr3r, new C4DView::TemplatedRealFunctionFactory<PolarR>);
-            insertAction(_fr3r, "Custom polar function", SLOT(customPolarFunction()));
-        }
-        {
-            insertAction(_objects, new C4DView::TemplatedRealFunctionFactory<Hypersphere>);
-            insertAction(_objects, "Hypercube", SLOT(ObjectHypercube()));
-            insertAction(_objects, "Hyperpyramid", SLOT(ObjectHyperpyramid()));
-            insertAction(_objects, "Menger Sponge", SLOT(ObjectHypersponge()));
-            insertAction(_objects, "Sierpinski Gasket", SLOT(ObjectGasket()));
-            insertAction(_objects, new C4DView::TemplatedRealFunctionFactory<Torus1>);
-            insertAction(_objects, new C4DView::TemplatedRealFunctionFactory<Torus2>);
-            insertAction(_objects, "Rotope", SLOT(ObjectRotope()));
-            insertAction(_objects, "Alt. Menger Sponge", SLOT(ObjectAltSponge()));
-            TESTED_FEATURE(getAction("Alt. Menger Sponge"));
-        }
-        {
-            insertAction(_surfaces, new C4DView::TemplatedSurfaceFactory<Surface1>);
-            insertAction(_surfaces, new C4DView::TemplatedSurfaceFactory<Horizon>);
-            insertAction(_surfaces, new C4DView::TemplatedSurfaceFactory<Torus3>);
-            insertAction(_surfaces, "Custom surface", SLOT(customSurface()));
-            {
-                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<z2>);
-                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<z3>);
-                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<zA>);
-                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<ez>);
-                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<emz2>);
-                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<zm1>);
-                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<zm2>);
-                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<sqrtz>);
-                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<lnz>);
-                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<sinz>);
-                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<cosz>);
-                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<sinhz>);
-                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<coshz>);
-                insertAction(_fcc, new C4DView::TemplatedSurfaceFactory<tanz>);
-                insertAction(_fcc, "Custom complex function",
-                             SLOT(customComplexFunction()));
-                TESTED_FEATURE (getAction("Custom complex function"));
-            }
-        }
-    }
 
     ////////////////////////////////////////////////////////////////////////////
     //      "Appearance" Menu
@@ -198,12 +138,7 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
                     this, SLOT(setColorManager(QAction *)));
         }
     }
-    /// \todo this is just a test for the tear off function!
-    _functions->setTearOffEnabled(true);
-    _fr3r->setTearOffEnabled(true);
-    _objects->setTearOffEnabled(true);
-    _surfaces->setTearOffEnabled(true);
-    _fcc->setTearOffEnabled(true);
+
     _appear->setTearOffEnabled(true);
 
     insertAction(_help, "Online _help", SLOT(Help ()), false);
@@ -244,36 +179,6 @@ void C4DView::Menu4D::customFunction() {
 /** Display a CustomPolarFunction object */
 void C4DView::Menu4D::customPolarFunction() {
     CustomFunctionSlot<CustomPolarFunction>::createCustomFunction(_parent);
-}
-
-/** Display a Hypercube object */
-void C4DView::Menu4D::ObjectHypercube() {
-    _parent->ObjectHypercube();
-}
-
-/** Display a Hyperpyramid object */
-void C4DView::Menu4D::ObjectHyperpyramid() {
-    _parent->ObjectHyperpyramid();
-}
-
-/** Display a Hypersponge object */
-void C4DView::Menu4D::ObjectHypersponge() {
-    _parent->ObjectHypersponge();
-}
-
-/** Display a Hypersponge object */
-void C4DView::Menu4D::ObjectAltSponge() {
-    _parent->ObjectAltSponge();
-}
-
-/** Display a Gasket object */
-void C4DView::Menu4D::ObjectGasket() {
-    _parent->ObjectGasket();
-}
-
-/** Display a Rotope object */
-void C4DView::Menu4D::ObjectRotope() {
-    _parent->ObjectRotope();
 }
 
 /** Display a CustomSurface object */
@@ -452,12 +357,12 @@ void C4DView::Menu4D::aboutQt() {
 
 /** \param menuBar The menu bar you want augmented with the menu              */
 void C4DView::Menu4D::addToMenuBar(QMenuBar *menuBar) {
-    menuBar->addMenu(_functions);
-    menuBar->addMenu(_appear);
-    menuBar->addMenu(_animation);
-    menuBar->addMenu(_help);
-    menuBar->addSeparator();
-    menuBar->addAction(Globals::Instance().getQuitAction());
+  menuBar->addMenu(generated_);
+  menuBar->addMenu(_appear);
+  menuBar->addMenu(_animation);
+  menuBar->addMenu(_help);
+  menuBar->addSeparator();
+  menuBar->addAction(Globals::Instance().getQuitAction());
 }
 
 
@@ -475,19 +380,6 @@ void updateFunctionMenuRecursively(const QString &item, const QMenu *rootNode) {
 
 /** \param item Title of the item whose checking status is toggled            */
 void C4DView::Menu4D::updateFunctionMenu (const QString &item) {
-  static QMenu* functionMenuList[] = {
-    _functions, _fr3r, _objects, _surfaces, _fcc
-  };
-
-  for (unsigned functionIdx = 0; functionIdx < sizeof(functionMenuList); ++functionIdx) {
-    ActionMapType actionMap = _menuMap[functionMenuList[functionIdx]];
-    for (ActionMapType::iterator it = actionMap.begin(); it != actionMap.end(); ++it) {
-      it->second->setChecked(false);
-    }
-  }
-
-  getAction(item)->setChecked(true);
-
   updateFunctionMenuRecursively(item, generated_);
 }
 
@@ -537,38 +429,6 @@ QAction *C4DView::Menu4D::insertAction(QMenu *_menu, const QString &title,
     tmp->setCheckable(checkable);
     _menuMap[_menu].insert(std::pair<QString, QAction *>(title, tmp));
     return tmp;
-}
-
-/** This version is called whenever a new RealFunction should be
- *  initialized and displayed in C4DView
- *  \param _menu the menu you want to add the item to
- *  \param factory the factory object creating the desired RealFunction object
- *  \param checkable whether the menu item is checkable                       */
-QAction *C4DView::Menu4D::insertAction(QMenu *_menu, RealFunctionFactory *factory, bool checkable) {
-  QString title(factory->functionName().c_str());
-  QAction *tmp = _menu->addAction(title,
-                                  new FunctionSlotHelper(_parent, factory),
-                                  SLOT(slot()), (const QKeySequence &)0);
-  tmp->setCheckable(checkable);
-  _menuMap[_fr3r].insert(std::pair<QString, QAction *>(title, tmp));
-
-  return tmp;
-}
-
-/** This version is called whenever a new Surface should be initialized and
- *  displayed in C4DView
- *  \param _menu the menu you want to add the item to
- *  \param factory the factory object creating the desired Surface object
- *  \param checkable whether the menu item is checkable                       */
-QAction *C4DView::Menu4D::insertAction(QMenu *_menu, SurfaceFactory *factory, bool checkable) {
-  QString title(factory->functionName().c_str());
-  QAction *tmp = _menu->addAction(title,
-                                  new SurfaceSlotHelper(_parent, factory),
-                                  SLOT(slot()), (const QKeySequence &)0);
-  tmp->setCheckable(checkable);
-  _menuMap[_fr3r].insert(std::pair<QString, QAction *>(title, tmp));
-
-  return tmp;
 }
 
 QAction* C4DView::Menu4D::insertAction(QMenu* menu,

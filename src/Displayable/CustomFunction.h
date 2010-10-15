@@ -118,11 +118,14 @@ class CustomSurface:
 /// Function \f$ f: C \rightarrow C \f$, editable to an arbitrary function
 /** \ingroup ComplexGroup                                                     */
 class CustomComplexFunction:
-        public ComplexFunction,
-        public CustomFunctionBase<ComplexFunction::function_type> {
-    public:
-        CustomComplexFunction (double _umin, double _umax, double _du,
-                               double _vmin, double _vmax, double _dv);
+    public ComplexFunction,
+    public CustomFunctionBase<ComplexFunction::function_type> {
+
+public:
+
+  CustomComplexFunction (): ComplexFunction() { }
+  CustomComplexFunction (double _umin, double _umax, double _du,
+                         double _vmin, double _vmax, double _dv);
         virtual ~CustomComplexFunction() { }
 
         virtual std::string getFunctionName() const;
@@ -131,6 +134,12 @@ class CustomComplexFunction:
         ComplexFunction::function_type g;
 };
 
+namespace {
+  Displayable *createcustomcomplexfunction() { return new CustomComplexFunction(); }
+  /// \todo make this work.
+  const bool registeredustomcomplexfunction = true;
+//    TheFunctionFactory::Instance().registerFunction(createcustomcomplexfunction, "ComplexFunction");
+}
 
 /** try to load a DLL and the f() in it
  *  \param libName name of the plugin DLL file
