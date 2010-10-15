@@ -194,7 +194,10 @@ SOURCES += VecMath/Rotation.C
 ###
 INCLUDEPATH += .
 DEPENDPATH += .
-HEADERS += Globals.h \
+HEADERS += \
+	   Observer.h \
+	   Observer.impl.h \
+	   Globals.h \
            Help.h \
            Log.h \
            Color.h \
@@ -203,7 +206,8 @@ HEADERS += Globals.h \
            Light.h \
            ScopedTimer.h \
            Util.h
-SOURCES += Globals.C \
+SOURCES += \
+	   Globals.C \
            Help.C \
            ColorManager.C \
            Light.C \

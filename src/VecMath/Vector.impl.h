@@ -109,11 +109,11 @@ Vector<D, N> &Vector<D, N>::operator*= (const N &s) {
 
 /** Needed by glVertex3dv   */
 template <unsigned D, typename N>
-const N *Vector<D, N>::data () const { 
-  return _x; 
+const N *Vector<D, N>::data () const {
+  return _x;
 }
 
-/** Array of floats is needed by glLightfv(). 
+/** Array of floats is needed by glLightfv().
  *  Any other type can be a target type as long as a conversion exists from \p N
  *  to \p T.
  *
@@ -137,7 +137,7 @@ std::string Vector<D, N>::toString() const {
 
 // -------- non-member functions -----------------------------------------------
 
-/** \return \p-v */
+/** \return \p -v */
 template <unsigned D, typename N>
 Vector<D, N> operator-(const Vector<D, N> &v) {
   Vector<D, N> Z(v);
@@ -167,8 +167,8 @@ Vector<D, N> operator-(const Vector<D, N> &x, const Vector<D, N> &y) {
 
 /** \param x Vector
  *  @param s scalar type
- *  @return \p x*s                                                   
- */   
+ *  @return \p x*s
+ */
 template <unsigned D, typename N>
 Vector<D, N> operator* (const Vector<D, N> &x, const N &s) {
   Vector<D, N> z(x);
@@ -177,15 +177,16 @@ Vector<D, N> operator* (const Vector<D, N> &x, const N &s) {
 
 /** \param x Vector
  *  @param s scalar type
- *  @return \p x*s                                                   
- */   
+ *  @return \p x*s
+ */
 template <unsigned D, typename N>
 Vector<D, N> operator* (const N &s, const Vector<D, N> &x) {
   return x*s;
 }
 
-/** @param X other Vector
- *  @return dot product < \p x, \p y >                                  
+/** @param x First factor
+ *  \param y Second factor
+ *  @return dot product < \p x, \p y >
  */
 template <unsigned D, typename N>
 N operator*(const Vector<D, N> &x, const Vector<D, N> &y) {
@@ -195,16 +196,18 @@ N operator*(const Vector<D, N> &x, const Vector<D, N> &y) {
     return dot;
 }
 
-/** @param s scalar type
- *  @return *this/s                                                   
+/** \param x Dividend
+ *  @param s Scalar divisor
+ *  @return *this/s
  */
 template <unsigned D, typename N>
 Vector<D, N> operator/ (const Vector<D, N> &x, const N &s) {
     return x*(1./s);
 }
 
-/** @param X other Vector
- *  @return scaled vector                                             
+/** \param X Dividend
+ *  \param y Divisor
+ *  @return scaled vector
  */
 template <unsigned D, typename N>
 Vector<D, N> operator/ (const Vector<D, N> &x, const Vector<D, N> &y) {
@@ -213,24 +216,24 @@ Vector<D, N> operator/ (const Vector<D, N> &x, const Vector<D, N> &y) {
     tmp[i] = x[i]/y[i];
   return tmp;
 }
-    
-template <unsigned D, typename N>    
+
+template <unsigned D, typename N>
 bool operator==(const Vector<D, N> &one, const Vector<D, N> &other) {
       for (unsigned i = 0; i < D; i++) {
         if (one[i] != other[i]) return false;
       }
       return true;
 }
-    
-template <unsigned D, typename N>    
+
+template <unsigned D, typename N>
 bool operator!=(const Vector<D, N> &one, const Vector<D, N> &other) {
-      return !(one == other); 
+      return !(one == other);
 }
-    
+
 /** \return whether absolute value of this is less than the other
- *  Vector's                                                          
+ *  Vector's
  */
-template <unsigned D, typename N>    
+template <unsigned D, typename N>
 bool operator<(const Vector<D, N> &one, const Vector<D, N> &other) {
       if (sqnorm(one) == sqnorm(other)) {
         for (unsigned i = 0; i < D; i++) {

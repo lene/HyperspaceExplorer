@@ -196,7 +196,7 @@ namespace UI {
 
             class Impl;
 
-            Impl *pImpl_;
+            Impl *pImpl_;   ///< Pointer to implementation
 
             /// Default Color for the background
             static Color _defaultBackground;
