@@ -26,80 +26,60 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 /// Gets thrown when an operation is not yet (or will never be) supported
 /** \ingroup RotopeGroup
- *  \author Helge Preuss <lene.preuss@gmail.com>
+ *  \author Lene Preuss <lene.preuss@gmail.com>
  */
-class BadRotopeOperation: public std::logic_error {
-    public:
-        /// Create a BadRotopeOperation
-        /** \param caller The function name throwing the BadRotopeOperation
-         *  \param op The unsupported operation \p caller wanted to perform
-         */
-        BadRotopeOperation(const std::string &caller, const std::string &op):
-            std::logic_error(caller+": "+"Unsupported action \""+op+"\"") {}
+struct BadRotopeOperation: public std::logic_error {
+  /// Create a BadRotopeOperation
+  BadRotopeOperation(const std::string &caller, const std::string &op);
 };
 
 /// A four-dimensional <a href="http://teamikaria.com/wiki/Rotope">Rotope</a>.
 /** \ingroup RotopeGroup
- *  \author Helge Preuss <lene.preuss@gmail.com>
+ *  \author Lene Preuss <lene.preuss@gmail.com>
  */
 class Rotope : public Object {
 
-    const static unsigned DIM = 6;      ///< Default dimension of Rotope objects
+  const static unsigned DIM = 6;      ///< Default dimension of Rotope objects
 
-    public:
-        /// Construct a default Rotope (\p DIM -dimensional hypercube).
-        Rotope();
-        /// Execute a series of extrusions to construct a Rotope
-        Rotope(const std::string &);
+  public:
 
-        ~Rotope();
+    /// Construct a default Rotope (\p DIM -dimensional hypercube).
+    Rotope();
+    /// Execute a series of extrusions to construct a Rotope
+    Rotope(const std::string &);
 
-        virtual std::string getFunctionName() const;
+    virtual ~Rotope();
 
-        /// Execute the desired extrude actions and declare FunctionParameter s
-        virtual void Initialize();
+    virtual std::string getFunctionName() const;
 
-        /// Transforms a Rotope
-        virtual void Transform (const VecMath::Rotation<4> &,
+    /// Execute the desired extrude actions and declare FunctionParameter s
+    virtual void Initialize();
+
+    /// Transforms a Rotope
+    virtual void Transform (const VecMath::Rotation<4> &,
                                 const VecMath::Vector<4> &);
-        /// Draw the projected Rotope (onto screen or into GL list, in fact)
-        virtual void Draw (UI::View *view);
+    /// Draw the projected Rotope
+    virtual void Draw (UI::View *view);
 
-        /// Set parameters to the Function
-        virtual void SetParameters(const ParameterMap &parms);
+    /// Set parameters to the Function
+    virtual void SetParameters(const ParameterMap &parms);
 
-    private:
+  private:
 
-      void generateRotopeAndParameters() throw(BadRotopeOperation);
-      void generateDefaultRotope(const std::logic_error &e) throw();
-      void addNDimensionalTransforms();
+    /// Draw a Realm, which may be a surface of the Rotope or the entire Rotope
+    void drawRealm(const Realm &realm, UI::View *view) const;
+    /// Draw \p realm if it is a point.
+    void drawPoint(const Realm &realm, UI::View *view) const;
+    /// Draw \p realm if it is a line.
+    void drawLine(const Realm &realm, UI::View *view) const;
+    /// Draw \p realm if it is two-dimensional.
+    void drawSurface(const Realm &realm, UI::View *view) const;
+    /// Draw \p realm if it has more than two dimensions.
+    void drawVolume(const Realm &realm, UI::View *view) const;
 
-      /// Draw a Realm, which may be a surface of the Rotope or the entire Rotope
-      /** Helper function for Draw(void). Calls itself recursively until the
-       *  Rotope is broken down to a suffieciently small dimension.
-       *  \param realm The Realm to draw into an OpenGL display list.
-       */
-      void drawRealm(const Realm &realm, UI::View *view);
+    class Impl;
+    Impl *pImpl_;
 
-        /// Rotation in 5-space (for objects of dimension >= 5)
-        VecMath::Rotation<5> rot5D_;
-        /// Rotation in 6-space (for objects of dimension >= 6)
-        VecMath::Rotation<6> rot6D_;
-        /// Rotation in 7-space (for objects of dimension >= 7)
-        VecMath::Rotation<7> rot7D_;
-        /// Rotation in 8-space (for objects of dimension >= 8)
-        VecMath::Rotation<8> rot8D_;
-        /// Rotation in 9-space (for objects of dimension >= 9)
-        VecMath::Rotation<9> rot9D_;
-        /// Rotation in 10-space (for objects of dimension >= 10)
-        VecMath::Rotation<10> rot10D_;
-        /// Number of segments approximating the object in rotation operations
-        unsigned numSegments_;
-
-        /// Sequence of extrusion actions needed to generate the Rotope
-        std::string actions_;
-        /// Actual rotope object to which all functions are delegated
-        RotopeInterface *rotope_;
 };
 
 namespace {

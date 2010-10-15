@@ -39,219 +39,266 @@ using VecMath::Vector;
 using VecMath::Matrix;
 using VecMath::Rotation;
 
-Rotope::Rotope():
-    Object(0, 0),
+/** \param caller The function name throwing the BadRotopeOperation
+ *  \param op The unsupported operation \p caller wanted to perform
+ */
+BadRotopeOperation::BadRotopeOperation(const std::string& caller, const std::string& op):
+std::logic_error(caller+": "+"Unsupported action \""+op+"\"") {}
+
+struct Rotope::Impl {
+
+  Impl(Rotope *parent, const std::string &actions):
     rot5D_(), rot6D_(), rot7D_(), rot8D_(), rot9D_(), rot10D_(),
     numSegments_(RotopeInterface::DEFAULT_NUM_SEGMENTS),
-    actions_("EEEE"), rotope_(0) {
+    actions_(actions), rotope_(NULL), parent_(parent) { }
+
+  void generateRotope() throw(BadRotopeOperation);
+  void generateParameters() throw(BadRotopeOperation);
+  void generateDefaultRotope(const std::logic_error &e) throw();
+  void addNDimensionalTransforms();
+
+  void readParameter(std::tr1::shared_ptr<FunctionParameter> parameter);
+
+  /// Rotation in 5-space (for objects of dimension >= 5)
+  VecMath::Rotation<5> rot5D_;
+  /// Rotation in 6-space (for objects of dimension >= 6)
+  VecMath::Rotation<6> rot6D_;
+  /// Rotation in 7-space (for objects of dimension >= 7)
+  VecMath::Rotation<7> rot7D_;
+  /// Rotation in 8-space (for objects of dimension >= 8)
+  VecMath::Rotation<8> rot8D_;
+  /// Rotation in 9-space (for objects of dimension >= 9)
+  VecMath::Rotation<9> rot9D_;
+  /// Rotation in 10-space (for objects of dimension >= 10)
+  VecMath::Rotation<10> rot10D_;
+  /// Number of segments approximating the object in rotation operations
+  unsigned numSegments_;
+
+  /// Sequence of extrusion actions needed to generate the Rotope
+  std::string actions_;
+  /// Actual rotope object to which all functions are delegated
+  RotopeInterface *rotope_;
+
+  Rotope *parent_;
+
+};
+
+Rotope::Rotope():
+    Object(0, 0), pImpl_(new Impl(this, "EEEE")) {
   Initialize();
 }
 
 Rotope::Rotope(const std::string &actions):
-        Object(0, 0),
-        rot5D_(), rot6D_(), rot7D_(), rot8D_(), rot9D_(), rot10D_(),
-        numSegments_(RotopeInterface::DEFAULT_NUM_SEGMENTS),
-        actions_(actions), rotope_(0) {
-    Initialize();
+    Object(0, 0), pImpl_(new Impl(this, actions)) {
+  Initialize();
 }
 
 Rotope::~Rotope() {
-    if (rotope_) delete rotope_;
+  if (pImpl_->rotope_) delete pImpl_->rotope_;
 }
 
 std::string Rotope::getFunctionName() const {
-    return "Rotope: "+actions_;
+  return "Rotope: "+pImpl_->actions_;
 }
 
 void Rotope::Initialize() {
-    SingletonLog::Instance().log(__PRETTY_FUNCTION__);
 
-    try {
-      generateRotopeAndParameters();
-    } catch (BadRotopeOperation e) {
-      generateDefaultRotope(e);
-    } catch (NotYetImplementedException e) {
-      generateDefaultRotope(e);
-    }
+  try {
+    pImpl_->generateRotope();
+    pImpl_->generateParameters();
+  } catch (BadRotopeOperation e) {
+    pImpl_->generateDefaultRotope(e);
+  } catch (NotYetImplementedException e) {
+    pImpl_->generateDefaultRotope(e);
+  }
 
-    addNDimensionalTransforms();
+  pImpl_->addNDimensionalTransforms();
 
-    setX(rotope_->projected_vertices());
+  setX(pImpl_->rotope_->projected_vertices());
 
-    Object::Initialize();
+  Object::Initialize();
 
 }
 
-void Rotope::generateRotopeAndParameters() throw (BadRotopeOperation) {
+void Rotope::Transform(const VecMath::Rotation<4> &R,
+                       const VecMath::Vector<4> &T) {
+  assert(pImpl_->rotope_);
+
+  Matrix<4> Rot(R);
+
+  for (unsigned i = 0; i < X.size(); i++) {
+    Xtrans[i] = (Rot*X[i])+T;
+  }
+
+}
+
+void Rotope::Draw (UI::View *view) {
+  assert(pImpl_->rotope_);
+  assert(pImpl_->rotope_->realm().size());
+
+  drawRealm(pImpl_->rotope_->realm(), view);
+}
+
+
+void Rotope::SetParameters(const ParameterMap &parms) {
+  for (ParameterMap::const_iterator i = parms.begin(); i != parms.end(); ++i) {
+    pImpl_->readParameter(i->second);
+  }
+}
+
+void Rotope::Impl::generateRotope() throw (BadRotopeOperation) {
   RotopeInterface::setRotationSegments(numSegments_);
   rotope_ = RotopeFactory::generate(actions_);
-  declareParameter("Generator", actions_);
+}
+
+void Rotope::Impl::generateParameters() throw (BadRotopeOperation) {
+  parent_->declareParameter("Generator", actions_);
   for(unsigned i = 5; i <= actions_.length(); ++i) {
     string label = Util::itoa(i)+string("D Rotation");
     switch(i) {
       case 5:
-        declareParameter(label, rot5D_);
+        parent_->declareParameter(label, rot5D_);
         break;
       case 6:
-        declareParameter(label, rot6D_);
+        parent_->declareParameter(label, rot6D_);
         break;
       case 7:
-        declareParameter(label, rot7D_);
+        parent_->declareParameter(label, rot7D_);
         break;
       case 8:
-        declareParameter(label, rot8D_);
+        parent_->declareParameter(label, rot8D_);
         break;
       case 9:
-        declareParameter(label, rot9D_);
+        parent_->declareParameter(label, rot9D_);
         break;
       case 10:
-        declareParameter(label, rot10D_);
+        parent_->declareParameter(label, rot10D_);
         break;
       default:
         throw BadRotopeOperation("Rotope::Initialize()",
                                  "Rotopes of dimension higher than 10 not supported.");
     }
   }
-  declareParameter("Rotation segments", numSegments_);
+  parent_->declareParameter("Rotation segments", numSegments_);
 }
 
-void Rotope::generateDefaultRotope(const std::logic_error& e) throw () {
-  declareParameter("Generator", string(DIM, 'E'));
+void Rotope::Impl::generateDefaultRotope(const std::logic_error& e) throw () {
+  parent_->declareParameter("Generator", string(DIM, 'E'));
   rotope_ = new Extrude<DIM, 0, DIM-1>();
   /** \todo Show the warning in a QMessageBox. Currently that does not work
    *  because C4DView::RenderScene() is called before the object has been
-   *  fully initialized.
-   */
-  /*
-   *        QMessageBox::warning (NULL,
-   *        QString("Rotope::Rotope(")+actions.c_str()+")",
-   *        e.what());
+   *  fully initialized:
+   *  \code
+   *  QMessageBox::warning (NULL, QString("Rotope::Rotope(")+actions.c_str()+")", e.what());
+   *  \endcode
    */
   cerr << e.what() << endl
-       << "Rendering " << DIM << "-dimensional hypercube instead." << endl;
+  << "Rendering " << DIM << "-dimensional hypercube instead." << endl;
 }
 
-void Rotope::addNDimensionalTransforms() {
-  SingletonLog::Instance() << getParameters().toString();
+void Rotope::Impl::addNDimensionalTransforms() {
+  SingletonLog::Instance() << __PRETTY_FUNCTION__ << parent_->getParameters().toString();
   for (unsigned i = 5; i <= rotope_->dimension(); ++i) {
     rotope_->addTransform(i, new VecMath::Rotation<5>());
   }
 }
 
-/** @param R Rotation
- *  @param T Translation
- */
-void Rotope::Transform(const VecMath::Rotation<4> &R,
-                       const VecMath::Vector<4> &T) {
-    if (!rotope_) {
-        throw std::logic_error("Rotope::Transform(): _rotope is NULL!");
-    }
-    Matrix<4> Rot(R);
-
-    for (unsigned i = 0; i < X.size(); i++) {
-        Xtrans[i] = (Rot*X[i])+T;
-    }
-
+void Rotope::Impl::readParameter(std::tr1::shared_ptr<FunctionParameter> parameter) {
+  string name = parameter->getName();
+  if (name == "Generator") {
+    actions_ = parameter->toString();
+  }
+  if (name == "Rotation segments") {
+    numSegments_ = parameter->toUnsigned();
+  }
+  if (name == "5D Rotation") {
+    rot5D_ =  parameter->toRotation5();
+  }
+  if (name == "6D Rotation") {
+    rot6D_ =  parameter->toRotation6();
+  }
+  if (name == "7D Rotation") {
+    rot7D_ =  parameter->toRotation7();
+  }
+  if (name == "8D Rotation") {
+    rot8D_ =  parameter->toRotation8();
+  }
+  if (name == "9D Rotation") {
+    rot9D_ =  parameter->toRotation9();
+  }
+  if (name == "10D Rotation") {
+    rot10D_ =  parameter->toRotation10();
+  }
 }
 
-void Rotope::Draw (UI::View *view) {
-    if (!rotope_) {
-        throw std::logic_error("Rotope::Draw(): _rotope is NULL!");
-    }
-
-    if (rotope_->realm().size()) {
-        drawRealm(rotope_->realm(), view);
-//        _rotope->print();
-    } else {
-        throw new std::logic_error("Rotope has no Realm member");
-    }
+/** Helper function for Draw(void). Calls itself recursively until the
+ *  Rotope is broken down to a sufficiently small dimension.
+ *  \param realm The Realm to draw.
+ *  \param view The View on which to draw.
+ *  \todo Actually, this function belongs more into the Realm realm...
+ */
+void Rotope::drawRealm(const Realm &realm, UI::View *view) const {
+  switch (realm.dimension()) {
+    case 0:
+      drawPoint(realm, view);
+      break;
+    case 1:
+      drawLine(realm, view);
+      break;
+    case 2:
+      drawSurface(realm, view);
+      break;
+    default:
+      drawVolume(realm, view);
+  }
 }
 
 #include "View.h"
 
-void Rotope::drawRealm(const Realm &realm, UI::View *view) {
-    switch (realm.dimension()) {
-        case 0:
-          /** Dimension 0 is a point. Easy to draw ;-) */
-          view->drawVertex(X[realm.toIndex()], Xscr[realm.toIndex()]);
-            break;
-        case 1:
-            /** In one dimension draw a line containing all points the Realm has
-             *  (i.e. 2 points)
-             */
-            for (unsigned i = 0; i < realm.getSubrealms().size()-1; ++i) {
-              Realm current = realm.getSubrealms()[i];
-              Realm next = realm.getSubrealms()[i+1];
-              view->drawLine(X[current.toIndex()], X[next.toIndex()],
-                             Xscr[current.toIndex()], Xscr[next.toIndex()]);
-            }
-            break;
-        case 2:
-            /** In two dimensions, draw a surface. The current implementation
-             *  represents two dimensional surfaces as vector of the form
-             *  \code (0, 1, ..., n) \endcode
-             */
-            if (realm.getSubrealms().begin()->dimension() == 0) {
-              vector< Vector<4> > original_vertices;
-              vector< Vector<3> > projected_vertices;
-              for (Realm::realm_container_type::const_iterator i = realm.getSubrealms().begin();
-                   i != realm.getSubrealms().end(); ++i) {
-                original_vertices.push_back(X[i->toIndex()]);
-                projected_vertices.push_back(Xscr[i->toIndex()]);
-              }
-              view->drawPolygon(original_vertices, projected_vertices);
-            } else if (realm.getSubrealms().begin()->dimension() == 1) {
-                for (Realm::realm_container_type::const_iterator i = realm.getSubrealms().begin();
-                     i != realm.getSubrealms().end(); ++i) {
-                    drawRealm(*i, view);
-                }
-            }
-            else throw std::logic_error("Realm contains a subrealm whose dimension is equal or greater than its own. Duh.");
-            break;
-        default:
-            /** OpenGL does not allow to draw anything above the dimension of a
-             *  surface. Recurse to draw the lower order realms, until we find
-             *  surfaces.
-             */
-            for (Realm::realm_container_type::const_iterator i = realm.getSubrealms().begin();
-                 i != realm.getSubrealms().end(); ++i) {
-              drawRealm(*i, view);
-            }
-            break;
+void Rotope::drawPoint(const Realm& realm, UI::View* view) const {
+  assert(realm.dimension() == 0);
+  view->drawVertex(X[realm.toIndex()], Xscr[realm.toIndex()]);
+}
+
+void Rotope::drawLine(const Realm& realm, UI::View* view) const {
+  assert(realm.dimension() == 1);
+  for (unsigned i = 0; i < realm.getSubrealms().size()-1; ++i) {
+    Realm current = realm.getSubrealms()[i];
+    Realm next = realm.getSubrealms()[i+1];
+    view->drawLine(X[current.toIndex()], X[next.toIndex()],
+                   Xscr[current.toIndex()], Xscr[next.toIndex()]);
+  }
+}
+
+/** The current implementation represents two dimensional surfaces as vector of
+ *  the form \code (0, 1, ..., n) \endcode.
+ */
+void Rotope::drawSurface(const Realm& realm, UI::View* view) const {
+  assert(realm.dimension() == 2);
+  if (realm.getSubrealms().begin()->dimension() == 0) {
+    vector< Vector<4> > original_vertices;
+    vector< Vector<3> > projected_vertices;
+    for (Realm::realm_container_type::const_iterator i = realm.getSubrealms().begin();
+         i != realm.getSubrealms().end(); ++i) {
+      original_vertices.push_back(X[i->toIndex()]);
+      projected_vertices.push_back(Xscr[i->toIndex()]);
     }
+    view->drawPolygon(original_vertices, projected_vertices);
+  } else if (realm.getSubrealms().begin()->dimension() == 1) {
+    for (Realm::realm_container_type::const_iterator i = realm.getSubrealms().begin();
+         i != realm.getSubrealms().end(); ++i) {
+      drawRealm(*i, view);
+    }
+  }
 }
 
-void Rotope::SetParameters(const ParameterMap &parms) {
-#   if 1
-        for (ParameterMap::const_iterator i = parms.begin();
-             i != parms.end(); ++i) {
-            if (i->second->getName() == "Generator") {
-                actions_ = i->second->toString();
-            }
-            if (i->second->getName() == "Rotation segments") {
-                numSegments_ = i->second->toUnsigned();
-            }
-            if (i->second->getName() == "5D Rotation") {
-                rot5D_ =  i->second->toRotation5();
-            }
-            if (i->second->getName() == "6D Rotation") {
-                rot6D_ =  i->second->toRotation6();
-            }
-            if (i->second->getName() == "7D Rotation") {
-                rot7D_ =  i->second->toRotation7();
-            }
-            if (i->second->getName() == "8D Rotation") {
-                rot8D_ =  i->second->toRotation8();
-            }
-            if (i->second->getName() == "9D Rotation") {
-                rot9D_ =  i->second->toRotation9();
-            }
-            if (i->second->getName() == "10D Rotation") {
-                rot10D_ =  i->second->toRotation10();
-            }
-
-        }
-#   else
-        setParameter(parms, this->actions_, "Generator");
-#   endif
+/** Recurse to draw the lower order realms, until we find surfaces.
+ */
+void Rotope::drawVolume(const Realm& realm, UI::View* view) const {
+  assert(realm.dimension() > 2);
+  for (Realm::realm_container_type::const_iterator i = realm.getSubrealms().begin();
+       i != realm.getSubrealms().end(); ++i) {
+    drawRealm(*i, view);
+  }
 }
+
