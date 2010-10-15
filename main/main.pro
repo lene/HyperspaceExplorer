@@ -1,11 +1,12 @@
 TEMPLATE = app
 CONFIG += debug qt warn_on uic
 QT += opengl
-INCLUDEPATH += ../src/Functions \
-               ../src/Functions/Rotopes \
+INCLUDEPATH += ../src/Color \
+	       ../src/Displayable \
+               ../src/Displayable/Rotopes \
                ../src/Script \
                ../src/UI \
-               ../src/Loki \
+               ../src/Utilities \
                ../src/VecMath \
                ../src
 
