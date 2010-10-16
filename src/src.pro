@@ -35,6 +35,7 @@ HEADERS += \
            Displayable/Displayable.h \
            Displayable/DisplayableClass.h \
            Displayable/FunctionFactory.h \
+           Displayable/Composite.h \
            Displayable/DefinitionSpaceRange.h \
            Displayable/DefinitionRangeOfDimension.h \
            Displayable/DefinitionRangeOfDimension.impl.h \
@@ -68,6 +69,7 @@ SOURCES += \
            Displayable/Displayable.cpp \
            Displayable/DisplayableClass.cpp \
            Displayable/FunctionFactory.C \
+           Displayable/Composite.cpp \
            Displayable/DefinitionSpaceRange.cpp \
            Displayable/RealFunction.C \
            Displayable/RealFunctionImplementations.cpp \
@@ -134,7 +136,7 @@ HEADERS += UI/4DView.h \
            UI/ParameterInput.h \
            UI/RotationControl.h \
            UI/RotationSlider.h \
-           UI/Help.h 
+           UI/Help.h
 SOURCES += UI/4DView.C \
            UI/Menu4D.C \
            UI/ComplexDialogImpl.C \
@@ -150,7 +152,7 @@ SOURCES += UI/4DView.C \
            UI/ParameterInput.C \
            UI/RotationControl.C \
            UI/RotationSlider.C \
-           UI/Help.C            
+           UI/Help.C
 FORMS += UI/ComplexDialog.ui \
          UI/FunctionDialog.ui \
          UI/PolarDialog.ui \
@@ -221,7 +223,7 @@ SOURCES += VecMath/Rotation.C
 INCLUDEPATH += .
 DEPENDPATH += .
 HEADERS += \
-           
+
 ###
 ################################################################################
 
