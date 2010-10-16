@@ -45,74 +45,7 @@ namespace SpongeUtility {
     return float(time)/float(CLOCKS_PER_SEC);
   }
 
-  template<typename T>
-  bool isPermutation(T m0, T m1,
-                     T n0, T n1) {
-    if (m0 == n0 && m1 == n1) return true;
-    if (m0 == n1 && m1 == n0) return true;
-    return false;
-  }
 
-  template<typename T>
-  bool isPermutation(T m0, T m1, T m2,
-                     T n0, T n1, T n2) {
-    if (m0 == n0 && isPermutation(m1, m2, n1, n2)) return true;
-    if (m0 == n1 && isPermutation(m1, m2, n0, n2)) return true;
-    if (m0 == n2 && isPermutation(m1, m2, n0, n1)) return true;
-    return false;
-  }
-
-  template<typename T>
-  bool isPermutation(T m0, T m1, T m2, T m3,
-                     T n0, T n1, T n2, T n3) {
-    if (m0 == n0 && isPermutation(m1, m2, m3, n1, n2, n3)) return true;
-    if (m0 == n1 && isPermutation(m1, m2, m3, n0, n2, n3)) return true;
-    if (m0 == n2 && isPermutation(m1, m2, m3, n0, n1, n3)) return true;
-    if (m0 == n3 && isPermutation(m1, m2, m3, n0, n1, n2)) return true;
-    return false;
-  }
-
-  template<typename T>
-  bool isPermutation(T m0, T m1, T m2, T m3, T m4,
-                     T n0, T n1, T n2, T n3, T n4) {
-    if (m0 == n0 && isPermutation(m1, m2, m3, m4, n1, n2, n3, n4)) return true;
-    if (m0 == n1 && isPermutation(m1, m2, m3, m4, n0, n2, n3, n4)) return true;
-    if (m0 == n2 && isPermutation(m1, m2, m3, m4, n0, n1, n3, n4)) return true;
-    if (m0 == n3 && isPermutation(m1, m2, m3, m4, n0, n1, n2, n4)) return true;
-    if (m0 == n4 && isPermutation(m1, m2, m3, m4, n0, n1, n2, n3)) return true;
-    return false;
-  }
-
-  /*
-   * unfinished attempts at rewriting isPermutation() as a variadic template
-   * using std::tr1::tuple follow.
-   * needs the g++ option
-   * QMAKE_CXXFLAGS += -std=c++0x
-   * to compile.
-
-    // attempt 1. function template.
-    // failed because i could not find the right syntax to even learn the number
-    // of elements in the tuple.
-    bool isPermutation(tuple<members...> list1,
-                       tuple<members...> list2) {
-      if (list1 == list2) return true;
-      if (tuple_size< list1 >::value != tuple_size< list2 >::value) {
-        return false;
-      }
-      ...
-
-      return false;
-    }
-
-    // attempt 2. use a class with variadic templates and a static member.
-    // failed at the point of g++ error message:
-    // sorry, unimplemented: cannot expand 'Args ...' into a fixed-length argument list
-    template<typename T> struct IsPermutation<> { };
-    template<typename T, T... Args>
-      struct IsPermutation<T, Args...> {
-        static const bool value = 1+IsPermutation<Args...>::value;
-    };
-*/
 # ifdef CONCURRENT
   void renumber_Surfaces(VecMath::MultiDimensionalVector<unsigned, 2> &Surface,
                          unsigned original_vertex, unsigned duplicate_vertex) {
