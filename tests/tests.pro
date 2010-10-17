@@ -85,8 +85,7 @@ DEFINES += NEW_FUNCTION_HIERARCHY
 TARGET = HyperspaceExplorer-tests
 
 QMAKE_POST_LINK = ./HyperspaceExplorer-tests
-QMAKE_CXXFLAGS_RELEASE += -O2
 
 ###
 ### C++0x support
-QMAKE_CXXFLAGS += -std=c++0x -O2 -fno-gcse
+QMAKE_CXXFLAGS += -std=c++0x -O2

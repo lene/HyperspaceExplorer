@@ -25,24 +25,37 @@
 
 #include "ArrayList.h"
 
+/// operator[] is defective when compiled with -O2. Should that ever change, define this.
+#undef TEST_ACCESS_OPERATOR
+/// Define this to compare run times for isPermutation() with Util::isPermutation().
+#undef COMPARE_TIMES  
+
 class Test_ArrayList: public QObject {
 
   Q_OBJECT
 
 private slots:
 
-  void makeList();
-  /*
-  void accessOperator2();
-  void accessOperator3();
-  void accessOperator4();
-  void accessOperator5();
-  void accessOperator10();
-  */
-  void minusElement();
-  void test_isPermutation();
-  void timing();
-    
+  void makeListRuns();
+  void minusElement2();
+  void minusElement3();
+  void test_isPermutation2();
+  void test_isPermutation3();
+  void test_isPermutation5();
+  void test_isPermutation10();
+
+# ifdef TEST_ACCESS_OPERATOR
+    void accessOperator2();
+    void accessOperator3();
+    void accessOperator4();
+    void accessOperator5();
+    void accessOperator10();
+# endif
+
+# ifdef COMPARE_TIMES  
+    void timing();
+# endif    
+
 };
 
 #endif // TEST_ARRAYLIST_H
