@@ -4,11 +4,11 @@ CONFIG = debug qt warn_on uic
 
 QT += opengl qt3support
 
-INCLUDEPATH += ../../VecMath
+INCLUDEPATH += .. ../../VecMath ../../Utilities
 
-HEADERS += LSystem.H # numclass.H ../Matrix.H
+HEADERS += LSystem.h LSystem_old.h
 
-SOURCES += LSystem.C LSys_aux.C
+SOURCES += LSystem.cpp LSystem_old.C LSys_aux.C
 #SOURCES += numclass.C
 
 DESTDIR = ./

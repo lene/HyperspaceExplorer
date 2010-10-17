@@ -9,7 +9,7 @@
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
 
-#include "LSystem.h"
+#include "LSystem_old.h"
 
 #include <iostream>
 #include <fstream>

@@ -54,7 +54,7 @@ DisplayableClass& DisplayableClass::findSubClass(const std::string& class_name) 
       return subclass;
     } catch (const DisplayableClassException &e) { }
   }
-  throw DisplayableClassException(class_name+" not found");
+  throw DisplayableClassException("Class \"" + class_name + "\" not found");
 }
 
 DisplayableClass& DisplayableClass::findClass(const std::string& class_name) {

@@ -7,8 +7,8 @@
 //	license:      GPL (see License.txt)
 
 
-#if(!defined LSYSTEM_H)
-#define LSYSTEM_H
+#if(!defined LSYSTEM_OLD_H)
+#define LSYSTEM_OLD_H
 
 #include "Vector.h"
 #include "Matrix.h"
@@ -24,14 +24,14 @@ using VecMath::Matrix;
 
 /** An experimental class to display Lindenmayer Systems (LSystems)
  *  @author Helge Preuss <scout@hyperspace-travel.de>                         */
-class LSystem {
+class LSystem_old {
 public:
     /// \todo document me
-    LSystem (unsigned = 2);
+    LSystem_old (unsigned = 2);
     /// \todo document me
-    LSystem (string, map<string, string>, unsigned = 2);
+    LSystem_old (string, map<string, string>, unsigned = 2);
     /// \todo document me
-    virtual ~LSystem ();
+    virtual ~LSystem_old ();
 
     /// \todo document me
     void level (unsigned n) { m_level = n; }

@@ -104,6 +104,16 @@ SOURCES += Displayable/Rotopes/Rotope.C \
            Displayable/Rotopes/RealmPrinter.C
 
 ###
+###     LSystems
+###
+INCLUDEPATH += ./Displayable/LSystems
+DEPENDPATH += ./Displayable/LSystems
+HEADERS += \
+           Displayable/LSystems/LSystem.h
+SOURCES += \
+           Displayable/LSystems/LSystem.cpp
+
+###
 ###     Script
 ###
 INCLUDEPATH += ./Script

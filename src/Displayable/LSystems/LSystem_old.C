@@ -1,15 +1,15 @@
 
 //      project:      hyperspace explorer
-//      module:       LSystem.C
+//      module:       LSystem_old.C
 //      contains:     parsing and display of l-systems
 //		      currently this module is NOT part of the hyperspace
 //		      explorer, but very preliminary code in earliest develop-
 //		      ment stage
-//      compile with: g++ -I.. LSystem.C LSys_aux.C numclass.C -o LSystem
+//      compile with: g++ -I.. LSystem_old.C LSys_aux.C numclass.C -o LSystem
 //	author:	      helge preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
 
-#include "LSystem.h"
+#include "LSystem_old.h"
 
 #include <iostream>
 #include <iomanip>
@@ -27,7 +27,7 @@ using namespace std;
 /*******************************************************************************
  *  default LSystem constructor
  */
-LSystem::LSystem (unsigned l):
+LSystem_old::LSystem_old (unsigned l):
   m_axiom ("X"),  m_level (l),  m_scale (1.0),  m_angle (90.)
 {
   m_rules["X"] = "^<XF^<XFX-F^>>XFX&F+>>XFX-F>X->";
@@ -35,9 +35,9 @@ LSystem::LSystem (unsigned l):
 }
 
 /*******************************************************************************
- *  LSystem constructor taking an axiom and a map of rules
+ *  LSystem_old constructor taking an axiom and a map of rules
  */
-LSystem::LSystem (string axiom, map<string, string> rules, unsigned level):
+LSystem_old::LSystem_old (string axiom, map<string, string> rules, unsigned level):
   m_axiom (axiom), m_rules (rules), m_level (level), m_scale (1.0), m_angle (90.)
 {
   m_object["default"] = "sphere { 0, 0.5 }";
@@ -52,9 +52,9 @@ LSystem::LSystem (string axiom, map<string, string> rules, unsigned level):
 }
 
 /*******************************************************************************
- *  generic LSystem destructor
+ *  generic LSystem_old destructor
  */
-LSystem::~LSystem () {
+LSystem_old::~LSystem_old () {
 }
 
 
@@ -62,7 +62,7 @@ LSystem::~LSystem () {
  *  fill up the object list (doesn't destroy any keys which are not in the input
  *  list)
  */
-void LSystem::object (map<string, string> object) {
+void LSystem_old::object (map<string, string> object) {
   map<string, string>::iterator i = object.begin ();
   while (i != object.end ()) {
     m_object[i->first] = i->second;
@@ -74,7 +74,7 @@ void LSystem::object (map<string, string> object) {
 /*******************************************************************************
  *
  */
-string LSystem::Expand (string axiom, unsigned l) {
+string LSystem_old::Expand (string axiom, unsigned l) {
   if (l > 0) {
     if (m_rules.size () > 0) {
       m_scale /= sqrt (2.0);
@@ -88,7 +88,7 @@ string LSystem::Expand (string axiom, unsigned l) {
 /*******************************************************************************
  *
  */
-string LSystem::Expand () {
+string LSystem_old::Expand () {
   return Expand (m_axiom, m_level);
 }
 
@@ -96,7 +96,7 @@ string LSystem::Expand () {
 /*******************************************************************************
  *
  */
-string LSystem::POV_Source () {
+string LSystem_old::POV_Source () {
   ostringstream out;
 
   string templ = Expand ();		//  the full expansion of the axiom under the current level
@@ -266,7 +266,7 @@ string LSystem::POV_Source () {
 /*******************************************************************************
  *
  */
-string LSystem::POV_Header (const string &expanded) {
+string LSystem_old::POV_Header (const string &expanded) {
   ostringstream out;
   out   << "//    level: " << m_level << endl
         << "//    axiom: " << m_axiom << endl
@@ -294,7 +294,7 @@ string LSystem::POV_Header (const string &expanded) {
 /*******************************************************************************
  *
  */
-string LSystem::POV_Footer (const Vector &xmin, const Vector &xmax) {
+string LSystem_old::POV_Footer (const Vector &xmin, const Vector &xmax) {
   ostringstream out;
   out << "cylinder { -2*x, 2*x, 0.02 pigment { color rgb <1, 0, 0> } }\n"
       << "cone { 2*x, .05, 2.2*x, 0 pigment { color rgb <1, 0, 0> } }\n"
@@ -318,7 +318,7 @@ string LSystem::POV_Footer (const Vector &xmin, const Vector &xmax) {
 /*******************************************************************************
  *
  */
-string LSystem::POV_Atom (const string &key, const string &transform) {
+string LSystem_old::POV_Atom (const string &key, const string &transform) {
   ostringstream out;
   out << "  object {\n";
 
@@ -379,7 +379,7 @@ int main (unsigned argc, char *argv[]) {
     level = 8;
   }
 
-  LSystem lsys (axiom, rules, level);
+  LSystem_old lsys (axiom, rules, level);
   if (!object.empty()) lsys.object (object);
 
   cout << lsys.POV_Source () << endl;
