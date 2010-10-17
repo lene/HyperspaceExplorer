@@ -36,9 +36,10 @@ SOURCES += Auxiliary/GlobalFunctions.cpp \
            Auxiliary/MockView.cpp
 
 HEADERS += \
-	   Test_Rotope.h \
-	   Test_Observer.h \
-	   Test_DisplayableClass.h \
+           Test_Rotope.h \
+           Test_ArrayList.h \
+           Test_Observer.h \
+           Test_DisplayableClass.h \
            Test_Realm.h \
            Test_Vector.h \
            Test_Matrix.h \
@@ -55,9 +56,10 @@ HEADERS += \
            Test_FunctionHolder.h \
            Test_Function.h
 SOURCES += \
-	   Test_Rotope.cpp \
-	   Test_Observer.cpp \
-	   Test_DisplayableClass.cpp \
+           Test_Rotope.cpp \
+           Test_ArrayList.cpp \
+           Test_Observer.cpp \
+           Test_DisplayableClass.cpp \
            Test_Realm.cpp \
            Test_Vector.cpp \
            Test_Matrix.cpp \
@@ -87,4 +89,4 @@ QMAKE_CXXFLAGS_RELEASE += -O2
 
 ###
 ### C++0x support
-QMAKE_CXXFLAGS += -std=c++0x
+QMAKE_CXXFLAGS += -std=c++0x -O2 -fno-gcse

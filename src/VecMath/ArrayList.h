@@ -35,17 +35,26 @@ template <unsigned size, typename T> class ArrayList {
     ArrayList();
     /// Create an ArrayList with all elements initialized to \p x.
     ArrayList(const T &x);
+    /// Create an ArrayList from a smaller ArrayList and an additional element.
+    ArrayList(const T &head, const ArrayList<size-1, T> &tail);
 
     /// Return the first element of an ArrayList.
-    T head() const;
+    const T &head() const;
+    T &head();
     /// Return an ArrayList that contains all but the first element.
-    ArrayList<size-1, T> tail() const;
+    const ArrayList<size-1, T> &tail() const;
+    ArrayList<size-1, T> &tail();
 
-    /// Read-write access to an element of the ArrayList.
-    T &operator[](unsigned i);
     /// Read-only access to an element of the ArrayList.
     const T &operator[](unsigned i) const;
+    /// Read-write access to an element of the ArrayList.
+    T &operator[](unsigned i);
 
+    /// Return an ArrayList that contains all but the given element.
+    ArrayList<size-1, T> minusElement(unsigned i) const;
+
+    bool contains(const T &x) const;
+    
     /// String representation.
     std::string toString() const;
 
@@ -58,17 +67,86 @@ template <unsigned size, typename T> class ArrayList {
 /// An empty ArrayList. Specialization to end recursion.
 /** \tparam T Type of the stored elements.
  */
+template <typename T> class ArrayList<1, T> {
+
+  public:
+
+    /// Create an ArrayList with a default-constructed element.
+    ArrayList();
+    /// Create an ArrayList with element initialized to \p x.
+    ArrayList(const T &x);
+    ArrayList(T x, ArrayList<0, T>);
+    
+    /// Return the first element of an ArrayList.
+    const T &head() const;
+    T &head();
+    ArrayList<0, T> tail() const;
+    
+    /// Read-write access to an element of the ArrayList.
+    T &operator[](unsigned);
+    /// Read-only access to an element of the ArrayList.
+    const T &operator[](unsigned) const;
+
+    /// Return an ArrayList that contains all but the given element.
+    ArrayList<0, T> minusElement(unsigned) const;
+
+    bool contains (const T &x) const;
+    
+    /// Empty String.
+    std::string toString() const;
+
+  private:
+    
+    T element_;
+    
+};
+
+/// An empty ArrayList. Specialization to end recursion.
+/** \tparam T Type of the stored elements.
+ */
 template <typename T> class ArrayList<0, T> {
 
   public:
 
-    /// Empty List.
+    /// Create an ArrayList with a default-constructed element.
     ArrayList();
-    /// Empty List.
-    ArrayList(T);
+    /// Create an ArrayList with element initialized to \p x.
+    ArrayList(const T &);
+    
     /// Empty String.
     std::string toString() const;
-
+    
 };
+
+template<unsigned size, typename T>
+bool isPermutation(const ArrayList<size, T> &list1, const ArrayList<size, T> &list2);
+template<typename T>
+bool isPermutation(const ArrayList<1, T> &list1, const ArrayList<1, T> &list2);
+
+template<typename T> 
+ArrayList<1, T> makeArrayList(const T &x0);
+template<typename T> 
+ArrayList<2, T> makeArrayList(const T &x0, const T &x1);
+template<typename T> 
+ArrayList<3, T> makeArrayList(const T &x0, const T &x1, const T &x2);
+template<typename T> 
+ArrayList<4, T> makeArrayList(const T &x0, const T &x1, const T &x2, const T &x3);
+template<typename T> 
+ArrayList<5, T> makeArrayList(const T &x0, const T &x1, const T &x2, const T &x3, const T &x4);
+template<typename T> 
+ArrayList<6, T> makeArrayList(const T &x0, const T &x1, const T &x2, const T &x3, const T &x4,
+                              const T &x5);
+template<typename T> 
+ArrayList<7, T> makeArrayList(const T &x0, const T &x1, const T &x2, const T &x3, const T &x4,
+                              const T &x5, const T &x6);
+template<typename T> 
+ArrayList<8, T> makeArrayList(const T &x0, const T &x1, const T &x2, const T &x3, const T &x4,
+                              const T &x5, const T &x6, const T &x7);
+template<typename T> 
+ArrayList<9, T> makeArrayList(const T &x0, const T &x1, const T &x2, const T &x3, const T &x4,
+                              const T &x5, const T &x6, const T &x7, const T &x8);
+template<typename T> 
+ArrayList<10, T> makeArrayList(const T &x0, const T &x1, const T &x2, const T &x3, const T &x4,
+                               const T &x5, const T &x6, const T &x7, const T &x8, const T &x9);
 
 #endif // ARRAYLIST_H
