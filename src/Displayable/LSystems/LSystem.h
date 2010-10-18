@@ -23,7 +23,7 @@
 
 #include "Object.h"
 
-#undef USE_LSYSTEM
+#define USE_LSYSTEM
 
 class LSystem : public Object {
 
@@ -31,13 +31,10 @@ public:
     LSystem();
     virtual ~LSystem();
     
-    virtual void for_each_projected(Displayable::function_on_projected_vertex apply);
-    virtual void for_each_vertex(Displayable::function_on_fourspace_vertex apply);
-    virtual unsigned int getDefinitionSpaceDimensions();
     virtual std::string getFunctionName() const;
     virtual void calibrateColors() const;
     virtual void ReInit(double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv);
-    virtual void Draw(UI::View* );
+    virtual void Draw(UI::View* view);
     virtual void Project(double ScrW, double CamW, bool DepthCue4D);
     virtual void Transform(const VecMath::Rotation< 4, double >& R, const VecMath::Vector< 4, double >& T);
 

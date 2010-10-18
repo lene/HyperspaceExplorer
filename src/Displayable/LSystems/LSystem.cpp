@@ -20,26 +20,15 @@
 
 #include "LSystem.h"
 
-LSystem::LSystem(): Object(1, 1) { }
+#include "View.h"
+
+using VecMath::Vector;
+
+LSystem::LSystem(): Object(0, 0) { }
 
 LSystem::~LSystem() { }
 
 void LSystem::Initialize() { }
-
-void LSystem::for_each_projected(Displayable::function_on_projected_vertex apply)
-{
-
-}
-
-void LSystem::for_each_vertex(Displayable::function_on_fourspace_vertex apply)
-{
-
-}
-
-unsigned int LSystem::getDefinitionSpaceDimensions()
-{
-
-}
 
 std::string LSystem::getFunctionName() const { return "Lindenmayer System"; }
 
@@ -47,14 +36,19 @@ void LSystem::calibrateColors() const {
 
 }
 
-void LSystem::ReInit(double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv)
-{
+void LSystem::ReInit(double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv) {
 
 }
 
-void LSystem::Draw(UI::View* )
-{
-
+void LSystem::Draw(UI::View* view ) {
+  view->drawQuadrangle(Vector<4>(1., 0., 0., 0.),
+                       Vector<4>(0., 1., 0., 0.),
+                       Vector<4>(0., 0., 1., 0.),
+                       Vector<4>(0., 0., 0., 1.),
+                       Vector<3>(1., 0., 0.),
+                       Vector<3>(0., 1., 0.),
+                       Vector<3>(0., 0., 1.),
+                       Vector<3>(0., 0., 0.));
 }
 
 void LSystem::Project(double ScrW, double CamW, bool DepthCue4D)
