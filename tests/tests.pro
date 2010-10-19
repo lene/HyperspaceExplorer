@@ -37,6 +37,7 @@ SOURCES += Auxiliary/GlobalFunctions.cpp \
 
 HEADERS += \
            Test_Rotope.h \
+           Test_Object.h \
            Test_ArrayList.h \
            Test_Observer.h \
            Test_DisplayableClass.h \
@@ -57,6 +58,7 @@ HEADERS += \
            Test_Function.h
 SOURCES += \
            Test_Rotope.cpp \
+           Test_Object.cpp \
            Test_ArrayList.cpp \
            Test_Observer.cpp \
            Test_DisplayableClass.cpp \

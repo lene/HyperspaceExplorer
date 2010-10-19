@@ -362,7 +362,7 @@ void Test_RealFunction::testDynamicallyCreatedFunction(const std::string& fname)
   RealFunction *f;
   try {
      f = dynamic_cast<RealFunction *>(TheFunctionFactory::Instance().createFunction(fname));
-  } catch (const FunctionFactory::BadFunctionException &e) { 
+  } catch (const FunctionFactory::BadFunctionException &e) {
     QFAIL(e.what());
   }
   QVERIFY2(f != NULL, "creating failed!");

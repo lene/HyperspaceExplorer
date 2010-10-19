@@ -36,6 +36,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Test_FunctionHolder.h"
 #include "Test_DisplayableClass.h"
 #include "Test_Observer.h"
+#include "Test_Object.h"
 #include "Test_ArrayList.h"
 
 #include <QtTest/QtTest>
@@ -105,8 +106,9 @@ int main(int argc, char **argv) {
     runner.run(new Test_DisplayableClass);
     runner.run(new Test_Observer);
     runner.run(new Test_Rotope);
-#endif    
     runner.run(new Test_ArrayList);
+#endif
+    runner.run(new Test_Object);
 
     runner.printSummary();
 
