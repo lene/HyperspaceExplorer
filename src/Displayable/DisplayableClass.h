@@ -21,6 +21,8 @@
 #ifndef DISPLAYABLECLASS_H
 #define DISPLAYABLECLASS_H
 
+#include "Tree.h"
+
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -29,13 +31,13 @@
 class Displayable;
 
 class DisplayableClass {
-  
+
 public:
 
   struct DisplayableClassException: public std::logic_error {
     DisplayableClassException(const std::string &message): std::logic_error(message) { }
   };
-  
+
   DisplayableClass(const std::string &name, const std::string &description, const std::string &parent_name);
 
   std::string getName() const;
@@ -55,7 +57,7 @@ public:
 
   void printSubclasses() const;
   void print() const;
-  
+
 private:
 
   typedef std::map<std::string, DisplayableClass *> subclass_container_type;
@@ -77,6 +79,8 @@ private:
   displayable_container_type displayables_;
 
   static DisplayableClass *root_node_;
+
+  static Tree<DisplayableClass> class_tree_;
 
 };
 

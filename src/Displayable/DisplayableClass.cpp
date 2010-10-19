@@ -21,6 +21,7 @@
 #include "DisplayableClass.h"
 
 #include "FunctionFactory.h"
+#include "Tree.impl.h"
 
 #include <cassert>
 #include <iostream>
@@ -28,7 +29,7 @@
 DisplayableClass * DisplayableClass::root_node_ = NULL;
 
 DisplayableClass::DisplayableClass(const std::string& name, const std::string &description):
-  class_name_(name), class_description_(description), 
+  class_name_(name), class_description_(description),
   subclasses_(), displayables_() { }
 
 DisplayableClass::DisplayableClass(const std::string& name, const std::string &description,
@@ -38,8 +39,8 @@ DisplayableClass::DisplayableClass(const std::string& name, const std::string &d
   findClass(parent_name).addSubClass(*this);
 }
 
-std::string DisplayableClass::getName() const { 
-  return class_name_; 
+std::string DisplayableClass::getName() const {
+  return class_name_;
 }
 
 std::string DisplayableClass::getDescription() const {
