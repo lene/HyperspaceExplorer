@@ -22,8 +22,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "MockView.h"
 
-#include "SurfaceImplementations.h"
-#include "ComplexFunction.h"
+#include "Surface/SurfaceImplementations.h"
+#include "Surface/ComplexFunction.h"
 #include "ColorManager.h"
 #include "FunctionFactory.h"
 
@@ -294,13 +294,13 @@ void Test_Surface::testDynamicallyCreatedFunction(const std::string& fname) {
   Surface *f;
   try {
      f = dynamic_cast<Surface *>(TheFunctionFactory::Instance().createFunction(fname));
-  } catch (const FunctionFactory::BadFunctionException &e) { 
+  } catch (const FunctionFactory::BadFunctionException &e) {
     QFAIL(e.what());
   }
   QVERIFY2(f != NULL, "creating failed!");
   f->ReInit(1., 1., 1., -1., 1., 1., -1., 1., 1.);
   testFunction(*f);
-  
+
 }
 
-  
+
