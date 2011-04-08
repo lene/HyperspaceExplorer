@@ -1,8 +1,8 @@
 TEMPLATE = lib
 
-#CONFIG -= debug
-#CONFIG += release qt warn_on uic staticlib
-CONFIG += debug qt warn_on uic dll staticlib
+CONFIG -= debug
+CONFIG += release qt warn_on uic staticlib
+#CONFIG += debug qt warn_on uic dll staticlib
 
 QT += opengl
 
@@ -27,6 +27,9 @@ RCC_DIR = tmp
 INCLUDEPATH += ./Displayable
 DEPENDPATH += ./Displayable
 HEADERS += \
+           Displayable/Surface/Surface.h \
+           Displayable/Surface/SurfaceImplementations.h \
+           Displayable/Surface/ComplexFunction.h \
            Displayable/FunctionParameterValueBase.h \
            Displayable/FunctionParameterValue.h \
            Displayable/FunctionParameter.h \
@@ -43,9 +46,6 @@ HEADERS += \
            Displayable/FunctionHolder.impl.h \
            Displayable/RealFunction.h \
            Displayable/RealFunctionImplementations.h \
-           Displayable/Surface.h \
-           Displayable/SurfaceImplementations.h \
-           Displayable/ComplexFunction.h \
            Displayable/CustomFunction.h \
            Displayable/ParametricFunction.h \
            Displayable/FunctionValueGrid.h \
@@ -63,6 +63,9 @@ HEADERS += \
            Displayable/Sponge.h
 #          Displayable/SteinerFunction.h
 SOURCES += \
+           Displayable/Surface/Surface.C \
+           Displayable/Surface/SurfaceImplementations.cpp \
+           Displayable/Surface/ComplexFunction.C \
            Displayable/FunctionParameterValue.C \
            Displayable/FunctionParameter.C \
            Displayable/ParameterMap.C \
@@ -73,9 +76,6 @@ SOURCES += \
            Displayable/DefinitionSpaceRange.cpp \
            Displayable/RealFunction.C \
            Displayable/RealFunctionImplementations.cpp \
-           Displayable/Surface.C \
-           Displayable/SurfaceImplementations.cpp \
-           Displayable/ComplexFunction.C \
            Displayable/CustomFunction.C \
            Displayable/Object.C \
            Displayable/Sponge.C
