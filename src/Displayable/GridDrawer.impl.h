@@ -26,6 +26,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "ScopedTimer.h"
 #include "Globals.h"
 
+#include "Vector.impl.h"
+
 template <unsigned P, typename NUM, unsigned D>
 GridDrawer<P, NUM, D>::GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, P > &x_scr,
                                   UI::View *view):

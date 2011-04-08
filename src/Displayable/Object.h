@@ -31,6 +31,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Vector.h"
 #include "MultiDimensionalVector.h"
 
+#include "Vector.impl.h"
+
 #define USE_INT_INDICES 0
 
 /// Artificial type to use in Typelists
