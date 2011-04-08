@@ -28,6 +28,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "Object.h"
 
+#include "Vector.impl.h"
+#include "Rotation.impl.h"
+
 using namespace UnitTests;
 
 using VecMath::Vector;
