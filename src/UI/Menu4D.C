@@ -32,7 +32,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "4DView.h"
 #include "Globals.h"
 #include "RealFunctionImplementations.h"
-#include "SurfaceImplementations.h"
+#include "Surface/SurfaceImplementations.h"
 #include "SlotHelper.h"
 #include "AnimationDialogImpl.h"
 #include "Help.h"

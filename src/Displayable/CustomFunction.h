@@ -25,8 +25,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "Displayable.h"
 #include "RealFunction.h"
-#include "ComplexFunction.h"
-#include "Surface.h"
+#include "Surface/ComplexFunction.h"
+#include "Surface/Surface.h"
 
 #include <QString>
 

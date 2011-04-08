@@ -38,8 +38,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Rotation.impl.h"
 
 #include "Displayable.h"
-#include "Surface.h"
-#include "ComplexFunction.h"
+#include "Surface/Surface.h"
+#include "Surface/ComplexFunction.h"
 #include "Object.h"
 #include "Sponge.h"
 #include "Rotope.h"

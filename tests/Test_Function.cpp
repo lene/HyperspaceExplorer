@@ -21,8 +21,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Test_Function.h"
 
 #include "RealFunction.h"
-#include "Surface.h"
-#include "ComplexFunction.h"
+#include "Surface/Surface.h"
+#include "Surface/ComplexFunction.h"
 #include "Sponge.h"
 #include "ColorManager.h"
 
