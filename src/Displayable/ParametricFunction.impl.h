@@ -25,6 +25,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "ParametricFunction.h"
 
 template <unsigned N, unsigned P, typename NUM>
-unsigned ParametricFunction<N, P, NUM>::getNumParameters() const { return _parameters.size(); }
+unsigned ParametricFunction<N, P, NUM>::getNumParameters() const { 
+  return _parameters.size(); 
+}
 
 #endif

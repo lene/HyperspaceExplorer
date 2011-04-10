@@ -49,7 +49,10 @@ class FunctionHolder<N, P, NUM>::Impl {
          double vmin, double vmax, double dv);
 
 
-    unsigned getNumParameters() { return function_->getNumParameters(); }
+    unsigned getNumParameters() { 
+      assert(function_);
+      return function_->getNumParameters(); 
+    }
 
     void Initialize();
 

@@ -52,8 +52,6 @@ class Surface: public FunctionHolder<4, 2, double> {
              ParameterMap _parms = ParameterMap());
     virtual ~Surface();
 
-/*    virtual void Transform (const VecMath::Rotation<4> &R,
-                            const VecMath::Vector<4> &T);*/
     virtual void Project (double ScrW, double CamW, bool DepthCue4D);
 
     virtual void ReInit(double _tmin, double _tmax, double _dt,
@@ -63,7 +61,7 @@ class Surface: public FunctionHolder<4, 2, double> {
     /// Called by the ColorManager after setting the Function on the CM
     virtual void calibrateColors() const;
 
-    /// \see Function::getDefinitionSpaceDimensions()
+    /// \see Displayable::getDefinitionSpaceDimensions()
     virtual unsigned getDefinitionSpaceDimensions();
 
     /// Function evaluation operator for three parameters
@@ -77,16 +75,6 @@ class Surface: public FunctionHolder<4, 2, double> {
 
     /// Pointer to the actual ParametricFunction doing all the work.
     std::tr1::shared_ptr< ParametricFunction<4, 2> > _function;
-
-//     unsigned getTsteps() const;
-//     unsigned getUsteps() const;
-
-    /// Array of function values.
-//    const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > &X() const;
-    /// Array of function values after transform.
-//    const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > &Xtrans() const;
-    /// Array of projected function values.
-//    const VecMath::MultiDimensionalVector< VecMath::Vector<3>, 2 > &Xscr() const;
 
   private:
 

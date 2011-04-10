@@ -68,14 +68,7 @@ struct Surface::Impl {
   /// Initialize depth cue.
   void setDepthCueColors(double Wmax, double Wmin);
 
-  /// Array of function values.
-  FunctionValueGrid<4, 2> _X;
-  /// Array of function values after transform.
-  FunctionValueGrid<4, 2>::value_storage_type _Xtrans;
-  /// Array of projected function values.
-  VecMath::MultiDimensionalVector< VecMath::Vector<3>, 2 > _Xscr;
-    
-    Surface *parent_;
+  Surface *parent_;
 
 };
 
@@ -117,7 +110,7 @@ void Surface::Impl::DrawStrip (unsigned t, UI::View *view) {
 
   for (unsigned u = 0; u <= getDefinitionRange().getNumSteps(1); u++) {
     view->drawQuadrangle(X()[t][u], X()[t+1][u], X()[t+1][u+1], X()[t][u+1],
-                         _Xscr[t][u], _Xscr[t+1][u], _Xscr[t+1][u+1], _Xscr[t][u+1]);
+                         Xscr()[t][u], Xscr()[t+1][u], Xscr()[t+1][u+1], Xscr()[t][u+1]);
   }
 }
 
@@ -166,7 +159,8 @@ Surface::Surface():
  *  \param _vmin minimal value in v
  *  \param _vmax maximal value in v
  *  \param _dv stepsize in v
- *  \param _parms Parameter for the function                                  */
+ *  \param _parms Parameter for the function                                  
+ */
 Surface::Surface (double _umin, double _umax, double _du,
                   double _vmin, double _vmax, double _dv,
                   ParameterMap _parms):

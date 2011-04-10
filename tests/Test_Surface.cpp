@@ -100,6 +100,11 @@ void Test_Surface::boundsAndSteps() {
   testEqual(function_->ysteps(), GRID_SIZE);
 }
 
+void Test_Surface::getNumParameters() {
+  function_ = new SurfaceTestImplementation();
+  testEqual(function_->getNumParameters(), 0);
+}
+
 void Test_Surface::rotateAboutAllAxes() {
   function_ = new SurfaceTestImplementation();
 

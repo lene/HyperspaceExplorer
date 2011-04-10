@@ -81,6 +81,8 @@ class Test_Surface: public QObject {
         void meetsFormalRequirements();
         void boundsAndSteps();
 
+        void getNumParameters();
+        
         void rotateAboutAllAxes();
         void rotated360DegreesIsIdentical();
 
