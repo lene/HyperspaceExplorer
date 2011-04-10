@@ -29,6 +29,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using VecMath::Vector;
 using VecMath::MultiDimensionalVector;
 
+typedef MultiDimensionalVector< Vector<4>, 2 > original2D;
 typedef MultiDimensionalVector< Vector<3>, 2 > projected2D;
 
 void Test_GridDrawer::initTestCase() { }
@@ -36,6 +37,7 @@ void Test_GridDrawer::initTestCase() { }
 void Test_GridDrawer::cleanupTestCase() { }
 
 void Test_GridDrawer::createGridDrawer() {
-  projected2D dummy_vertices;
-  GridDrawer<2> drawer(dummy_vertices, NULL);
+  original2D dummy_vertices;
+  projected2D dummy_projections;
+  GridDrawer<2> drawer(dummy_vertices, dummy_projections, NULL);
 }

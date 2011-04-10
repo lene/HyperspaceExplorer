@@ -20,6 +20,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "Surface.h"
 
+#include "FunctionHolder.impl.h"
+
 #include "ColorManager.h"
 
 #include "View.h"
@@ -33,137 +35,75 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using VecMath::MultiDimensionalVector;
 using VecMath::Vector;
 
-/// SurfaceDefinitionRange provides a base class for functions which take two parameters
-/** The SurfaceDefinitionRange interface provides abstract members for the evaluation
- * of the function values on a two-dimensional grid.
- *
- *  abstract member:
- *      \li Vector &f (double, double);
- *
- *  member:
- *      \li operator () (double t, double u, double);
- *
- *  @todo Vector &normal (double, double); - or in base class?
- *
- *  \ingroup SurfaceGroup
- *  @author Lene Preuss <lene.preuss@gmail.com>                         */
-class SurfaceDefinitionRange: public DefinitionRangeOfDimension<2> {
-  public:
-
-    /** \param _tmin lower bound in first parameter
-     *  \param _tmax upper bound in first parameter
-     *  \param _dt stepsize in first parameter
-     *  \param _umin lower bound in second parameter
-     *  \param _umax upper bound in second parameter
-     *  \param _du stepsize in second parameter
-     */
-    SurfaceDefinitionRange(double tmin, double tmax, double dt,
-                           double umin, double umax, double du) {
-      setRange(0, DefinitionSpaceRange(tmin, tmax, dt));
-      setRange(1, DefinitionSpaceRange(umin, umax, du));
-    }
-
-    unsigned getTsteps() const { return getNumSteps(0); }
-    void setTsteps(unsigned numSteps) { setNumSteps(0, numSteps); }
-    void decrementTsteps() { setTsteps(getTsteps()-1); }
-
-    unsigned getUsteps() const { return getNumSteps(1); }
-    void setUsteps(unsigned numSteps) { setNumSteps(1, numSteps); }
-    void decrementUsteps() { setUsteps(getUsteps()-1); }
-
-    void setTmin(double tmin) { setMinValue(0, tmin); }
-    double getTmin() const { return getMinValue(0); }
-    void setTmax(double tmax) { setMaxValue(0, tmax); }
-    double getTmax() const { return getMaxValue(0); }
-    void setDt(double dt) { setStepsize(0, dt); }
-    double getDt() const { return getStepsize(0); }
-
-    void setUmin(double umin) { setMinValue(1, umin); }
-    double getUmin() const { return getMinValue(1); }
-    void setUmax(double umax) { setMaxValue(1, umax); }
-    double getUmax() const { return getMaxValue(1); }
-    void setDu(double du) { setStepsize(1, du); }
-    double getDu() const { return getStepsize(1); }
-
-};
-
 struct Surface::Impl {
 
-  Impl(double _umin, double _umax, double _du,
-       double _vmin, double _vmax, double _dv):
-    definitionRange_(_umin, _umax, _du, _vmin, _vmax, _dv) { }
+  Impl(Surface *f): parent_(f) { }
 
-    void Transform (const VecMath::Rotation<4> &R, const VecMath::Vector<4> &T);
-    void Project (double ScrW, double CamW, bool DepthCue4D);
-    void Draw (UI::View *view);
+  void Transform (const VecMath::Rotation<4> &R, const VecMath::Vector<4> &T);
+  void Project (double ScrW, double CamW, bool DepthCue4D);
+  void Draw (UI::View *view);
 
-    void calibrateColors() const;
+  void calibrateColors() const;
 
-    void for_each(function_on_fourspace_vertex apply);
-    void for_each(function_on_fourspace_and_transformed_vertex apply);
-    void for_each(function_on_fourspace_transformed_and_projected_vertex apply);
-    void for_each(function_on_projected_vertex apply);
+  const VecMath::MultiDimensionalVector< Vector< 4 >, 2 > &X() const { 
+    return parent_->X();       
+  }
+  const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > &Xtrans() const { 
+    return parent_->Xtrans(); 
+  }
+  const VecMath::MultiDimensionalVector< VecMath::Vector<3>, 2 > &Xscr() const { 
+    return parent_->Xscr(); 
+  }
 
-    const VecMath::MultiDimensionalVector< Vector< 4 >, 2 > &X() const { return _X.getValues(); }
-    const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > &Xtrans() const { return _Xtrans; }
-    const VecMath::MultiDimensionalVector< VecMath::Vector<3>, 2 > &Xscr() const { return _Xscr; }
+  void DrawStrip (unsigned t, UI::View *view);
 
-    void DrawStrip (unsigned t, UI::View *view);
+  /// Set up the grid using boundaries and stepwidth.
+  void setBoundariesAndStepwidth(double tmin, double tmax, double dt,
+                                 double umin, double umax, double du);
 
-    /// Set up the grid using boundaries and stepwidth.
-    void setBoundariesAndStepwidth(double tmin, double tmax, double dt,
-                                   double umin, double umax, double du);
+  std::pair<double, double> findExtremesInW() const;
 
-    std::pair<double, double> findExtremesInW() const;
+  DefinitionRangeOfDimension<2> getDefinitionRange() const { return parent_->getDefinitionRange(); }
 
-    SurfaceDefinitionRange definitionRange_;
+  /// Initialize depth cue.
+  void setDepthCueColors(double Wmax, double Wmin);
 
-    /// Array of function values.
-    FunctionValueGrid<4, 2> _X;
-    /// Array of function values after transform.
-    FunctionValueGrid<4, 2>::value_storage_type _Xtrans;
-    /// Array of projected function values.
-    VecMath::MultiDimensionalVector< VecMath::Vector<3>, 2 > _Xscr;
+  /// Array of function values.
+  FunctionValueGrid<4, 2> _X;
+  /// Array of function values after transform.
+  FunctionValueGrid<4, 2>::value_storage_type _Xtrans;
+  /// Array of projected function values.
+  VecMath::MultiDimensionalVector< VecMath::Vector<3>, 2 > _Xscr;
+    
+    Surface *parent_;
+
 };
 
-void Surface::Impl::Transform(const VecMath::Rotation< 4 >& R, const VecMath::Vector< 4 >& T) {
-  Transformation<4, 2> xform(R, T);
-  _Xtrans = xform.transform(X());
-}
-
 void Surface::Impl::Project(double scr_w, double cam_w, bool depthcue4d) {
-
-    Projection<4, 3, 2> p(scr_w, cam_w, depthcue4d);
-    _Xscr = p.project(Xtrans());
-
-    if (depthcue4d) {
-        std::pair< double, double > Wext = findExtremesInW();
-        for (unsigned t = 0; t <= definitionRange_.getTsteps()+1; t++) {
-            for (unsigned u = 0; u <= definitionRange_.getUsteps()+1; u++) {
-                ColMgrMgr::Instance().depthCueColor(Wext.first, Wext.second,
-                                                    Xtrans()[t][u][3],
-                                                    X()[t][u]);
-            }
-        }
-    }
-
+  parent_->FunctionHolder<4, 2>::Project(scr_w, cam_w, depthcue4d);
+  if (depthcue4d) {
+    std::pair< double, double > Wext = findExtremesInW();
+    setDepthCueColors(Wext.first, Wext.second);
+  }
 }
 
-void Surface::Impl::Draw(UI::View* view) {
-  for (unsigned t = 0; t <= definitionRange_.getTsteps(); t++) {
-    DrawStrip (t, view);
+void Surface::Impl::setDepthCueColors(double Wmax, double Wmin) {
+  for (unsigned t = 0; t <= getDefinitionRange().getNumSteps(0)+1; t++) {
+    for (unsigned u = 0; u <= getDefinitionRange().getNumSteps(1)+1; u++) {
+      ColMgrMgr::Instance().depthCueColor(Wmax, Wmin,
+                                          Xtrans()[t][u][3],
+                                          X()[t][u]);
+    }
   }
-  view->commitDraw();
 }
 
 void Surface::Impl::calibrateColors() const {
-
   std::pair< double, double > Wext = findExtremesInW();
 
-  for (unsigned t = 0; t <= definitionRange_.getTsteps()+1; t++) {
-    for (unsigned u = 0; u <= definitionRange_.getUsteps()+1; u++) {
-      float r = float(t)/float(definitionRange_.getTsteps());
-      float g = float(u)/float(definitionRange_.getUsteps());
+  for (unsigned t = 0; t <= getDefinitionRange().getNumSteps(0)+1; t++) {
+    for (unsigned u = 0; u <= getDefinitionRange().getNumSteps(1)+1; u++) {
+      float r = float(t)/float(getDefinitionRange().getNumSteps(0));
+      float g = float(u)/float(getDefinitionRange().getNumSteps(1));
       float b = (Wext.second-X()[t][u][3])/(Wext.second-Wext.first);
       ColMgrMgr::Instance().calibrateColor(X()[t][u], Color(r, g, b));
     }
@@ -171,35 +111,11 @@ void Surface::Impl::calibrateColors() const {
 
 }
 
-void Surface::Impl::for_each(Displayable::function_on_fourspace_vertex apply) {
-  for (unsigned t = 0; t < definitionRange_.getTsteps(); t++)
-    for (unsigned u = 0; u < definitionRange_.getUsteps(); u++)
-      apply(X()[t][u]);
-}
-
-void Surface::Impl::for_each(Displayable::function_on_fourspace_and_transformed_vertex apply) {
-  for (unsigned t = 0; t < definitionRange_.getTsteps(); t++)
-    for (unsigned u = 0; u < definitionRange_.getUsteps(); u++)
-      apply(X()[t][u], Xtrans()[t][u]);
-}
-
-void Surface::Impl::for_each(Displayable::function_on_fourspace_transformed_and_projected_vertex apply) {
-  for (unsigned t = 0; t < definitionRange_.getTsteps(); t++)
-    for (unsigned u = 0; u < definitionRange_.getUsteps(); u++)
-      apply(X()[t][u], Xtrans()[t][u], Xscr()[t][u]);
-}
-
-void Surface::Impl::for_each(Displayable::function_on_projected_vertex apply) {
-  for (unsigned t = 0; t < definitionRange_.getTsteps(); t++)
-    for (unsigned u = 0; u < definitionRange_.getUsteps(); u++)
-      apply(Xscr()[t][u]);
-}
-
 /** draw the current strip of the projected Surface
  *  @param t current t value                                                  */
 void Surface::Impl::DrawStrip (unsigned t, UI::View *view) {
 
-  for (unsigned u = 0; u <= definitionRange_.getUsteps(); u++) {
+  for (unsigned u = 0; u <= getDefinitionRange().getNumSteps(1); u++) {
     view->drawQuadrangle(X()[t][u], X()[t+1][u], X()[t+1][u+1], X()[t][u+1],
                          _Xscr[t][u], _Xscr[t+1][u], _Xscr[t+1][u+1], _Xscr[t][u+1]);
   }
@@ -210,8 +126,8 @@ void Surface::Impl::DrawStrip (unsigned t, UI::View *view) {
 std::pair< double, double > Surface::Impl::findExtremesInW() const {
   double Wmax = 0, Wmin = 0;
 
-  for (unsigned t = 0; t <= definitionRange_.getTsteps()+1; t++) {
-    for (unsigned u = 0; u <= definitionRange_.getUsteps()+1; u++) {
+  for (unsigned t = 0; t <= getDefinitionRange().getNumSteps(0); t++) {
+    for (unsigned u = 0; u <= getDefinitionRange().getNumSteps(1)+1; u++) {
       if (X()[t][u][3] < Wmin) Wmin = X()[t][u][3];
       if (X()[t][u][3] > Wmax) Wmax = X()[t][u][3];
     }
@@ -229,18 +145,18 @@ std::pair< double, double > Surface::Impl::findExtremesInW() const {
  */
 void Surface::Impl::setBoundariesAndStepwidth(double tmin, double tmax, double dt,
                                         double umin, double umax, double du) {
-  definitionRange_.setTmin(tmin);   definitionRange_.setTmax(tmax);   definitionRange_.setDt(dt);
-  definitionRange_.setUmin(umin);   definitionRange_.setUmax(umax);   definitionRange_.setDu(du);
-  definitionRange_.setTsteps(unsigned((definitionRange_.getTmax()-definitionRange_.getTmin())/definitionRange_.getDt()+2));
-  definitionRange_.setUsteps(unsigned((definitionRange_.getUmax()-definitionRange_.getUmin())/definitionRange_.getDu()+2));
+  getDefinitionRange().setMinValue(0, tmin);   getDefinitionRange().setMaxValue(0, tmax);   
+  getDefinitionRange().setStepsize(0, dt);
+  getDefinitionRange().setMinValue(1, umin);   getDefinitionRange().setMaxValue(1, umax);   
+  getDefinitionRange().setStepsize(1, du);
+  getDefinitionRange().setNumSteps(0, unsigned((getDefinitionRange().getMaxValue(0)-getDefinitionRange().getMinValue(0))/getDefinitionRange().getStepsize(0)+2));
+  getDefinitionRange().setNumSteps(1, unsigned((getDefinitionRange().getMaxValue(1)-getDefinitionRange().getMinValue(1))/getDefinitionRange().getStepsize(1)+2));
 }
 
 /// Surface default c'tor, zeroes everything
-Surface::Surface ():
-  Displayable(ParameterMap()),
-  pImpl_(new Impl(
-    DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep,
-    DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep)) { }
+Surface::Surface():
+  FunctionHolder<4, 2, double>(ParameterMap()),
+  pImpl_(new Impl(this)) { }
 
 
 /** Surface c'tor given a definition set in \f$ R^2 \f$ (as parameter space)
@@ -254,7 +170,10 @@ Surface::Surface ():
 Surface::Surface (double _umin, double _umax, double _du,
                   double _vmin, double _vmax, double _dv,
                   ParameterMap _parms):
-    Displayable(_parms), pImpl_(new Impl(_umin, _umax, _du, _vmin, _vmax, _dv)) { }
+    FunctionHolder<4, 2, double>(_parms), 
+    pImpl_(new Impl(this)) {
+  setDefinitionRange(_umin, _umax, _du, _vmin, _vmax, _dv, 0, 0, 0);
+}
 
 Surface::~Surface() { }
 
@@ -262,16 +181,17 @@ Surface::~Surface() { }
 /** call InitMem () above                                                     */
 void Surface::Initialize () {
 
-  Vector<2, unsigned> numSteps = pImpl_->definitionRange_.getNumSteps();
-  Vector<2, double> min = pImpl_->definitionRange_.getMinValue();
-  Vector<2, double> max = pImpl_->definitionRange_.getMaxValue();
+  Vector<2, unsigned> numSteps = getDefinitionRange().getNumSteps();
+  Vector<2, double> min = getDefinitionRange().getMinValue();
+  Vector<2, double> max = getDefinitionRange().getMaxValue();
 
-  pImpl_->_X = FunctionValueGrid<4, 2>(
-    _function, numSteps+Vector<2, unsigned>(2), min, max
+  setX(
+    FunctionValueGrid<4, 2>(
+      _function, numSteps+Vector<2, unsigned>(2), min, max
+    )
   );
 
   calibrateColors();
-
 }
 
 void Surface::calibrateColors() const {
@@ -282,28 +202,11 @@ void Surface::calibrateColors() const {
 void Surface::ReInit(double, double, double,
                      double _tmin, double _tmax, double _dt,
                      double _umin, double _umax, double _du) {
-  pImpl_->setBoundariesAndStepwidth(_tmin, _tmax, _dt, _umin, _umax, _du);
-
-  Initialize ();
+  setDefinitionRange(_tmin, _tmax, _dt, _umin, _umax, _du, 0, 0, 0);
+  Initialize();
 }
 
 unsigned int Surface::getDefinitionSpaceDimensions() { return 2; }
-
-void Surface::for_each_vertex(Displayable::function_on_fourspace_vertex apply) {
-  pImpl_->for_each(apply);
-}
-
-void Surface::for_each_vertex_transformed(function_on_fourspace_and_transformed_vertex apply) {
-  pImpl_->for_each(apply);
-}
-
-void Surface::for_each_vertex_transformed_projected(function_on_fourspace_transformed_and_projected_vertex apply) {
-  pImpl_->for_each(apply);
-}
-
-void Surface::for_each_projected(Displayable::function_on_projected_vertex apply) {
-  pImpl_->for_each(apply);
-}
 
 /** @param u first argument, e.g. y or u
  *  @param v second argument, e.g. z or v
@@ -361,38 +264,10 @@ Displayable::vec4vec1D Surface::df (double uu, double vv) {
     return DF;
 }
 
-/// Transforms a Surface
-/** \param R rotation
- *  \param T translation                                                      */
-void Surface::Transform (const VecMath::Rotation<4> &R, const VecMath::Vector<4> &T) {
-  pImpl_->Transform(R, T);
-}
-
 /** projects a Surface into three-space
  *  \param scr_w w coordinate of screen
  *  \param cam_w w coordinate of camera
  *  \param depthcue4d whether to use hyperfog/depth cue                        */
 void Surface::Project (double scr_w, double cam_w, bool depthcue4d) {
   pImpl_->Project(scr_w, cam_w, depthcue4d);
-}
-
-/** draw the projected Surface (onto screen or into GL list, as it is)        */
-void Surface::Draw (UI::View *view) {
-  pImpl_->Draw(view);
-}
-
-unsigned int Surface::getTsteps() const { return pImpl_->definitionRange_.getTsteps(); }
-
-unsigned int Surface::getUsteps() const { return pImpl_->definitionRange_.getUsteps(); }
-
-const MultiDimensionalVector< Vector<4>, 2 > &Surface::X() const {
-  return pImpl_->X();
-}
-
-const MultiDimensionalVector< Vector<4>, 2 > &Surface::Xtrans() const {
-  return pImpl_->Xtrans();
-}
-
-const VecMath::MultiDimensionalVector< Vector< 3 >, 2 >& Surface::Xscr() const {
-  return pImpl_->Xscr();
 }

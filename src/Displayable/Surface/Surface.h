@@ -21,8 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #if(!defined SURFACE_H)
 #define SURFACE_H
 
-#include "Displayable.h"
-#include "DisplayableClass.h"
+#include "FunctionHolder.h"
 
 #include "ParametricFunction.h"
 #include "MultiDimensionalVector.h"
@@ -37,7 +36,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 /** \ingroup FunctionGroup
  *  @author Lene Preuss <lene.preuss@gmail.com>
  */
-class Surface: public Displayable {
+class Surface: public FunctionHolder<4, 2, double> {
 
   public:
 
@@ -53,10 +52,9 @@ class Surface: public Displayable {
              ParameterMap _parms = ParameterMap());
     virtual ~Surface();
 
-    virtual void Transform (const VecMath::Rotation<4> &R,
-                            const VecMath::Vector<4> &T);
+/*    virtual void Transform (const VecMath::Rotation<4> &R,
+                            const VecMath::Vector<4> &T);*/
     virtual void Project (double ScrW, double CamW, bool DepthCue4D);
-    virtual void Draw (UI::View *view);
 
     virtual void ReInit(double _tmin, double _tmax, double _dt,
                         double _umin, double _umax, double _du,
@@ -70,12 +68,7 @@ class Surface: public Displayable {
 
     /// Function evaluation operator for three parameters
     VecMath::Vector<4> &operator () (double u, double v, double = 0);
-
-    virtual void for_each_vertex(function_on_fourspace_vertex apply);
-    virtual void for_each_vertex_transformed(function_on_fourspace_and_transformed_vertex apply);
-    virtual void for_each_vertex_transformed_projected(function_on_fourspace_transformed_and_projected_vertex apply);
-    virtual void for_each_projected(function_on_projected_vertex apply);
-
+    
   protected:
     virtual vec4vec1D df (double, double);
     virtual function_type normal;
@@ -85,15 +78,15 @@ class Surface: public Displayable {
     /// Pointer to the actual ParametricFunction doing all the work.
     std::tr1::shared_ptr< ParametricFunction<4, 2> > _function;
 
-    unsigned getTsteps() const;
-    unsigned getUsteps() const;
+//     unsigned getTsteps() const;
+//     unsigned getUsteps() const;
 
     /// Array of function values.
-    const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > &X() const;
+//    const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > &X() const;
     /// Array of function values after transform.
-    const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > &Xtrans() const;
+//    const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > &Xtrans() const;
     /// Array of projected function values.
-    const VecMath::MultiDimensionalVector< VecMath::Vector<3>, 2 > &Xscr() const;
+//    const VecMath::MultiDimensionalVector< VecMath::Vector<3>, 2 > &Xscr() const;
 
   private:
 

@@ -28,14 +28,19 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "Vector.impl.h"
 
+// template <unsigned P, typename NUM, unsigned D>
+// GridDrawer<P, NUM, D>::GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, P > &x_scr,
+//                                   UI::View *view):
+//     _x(), _x_scr(x_scr), _view(view) { }
+
 template <unsigned P, typename NUM, unsigned D>
-GridDrawer<P, NUM, D>::GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, P > &x_scr,
+GridDrawer<P, NUM, D>::GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, P > &x, 
+				  const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, P > &x_scr,
                                   UI::View *view):
-    _x_scr(x_scr), _view(view) { }
+    _x(x), _x_scr(x_scr), _view(view) { }
 
 template <unsigned P, typename NUM, unsigned D>
 void GridDrawer<P, NUM, D>::execute() {
-  std::cerr << "GridDrawer<" << P << ">::execute()\n";
   for (unsigned i = 0; i < _x_scr.size(); ++i) {
     GridDrawer<P-1, NUM, D> sub_drawer(_x_scr[i], _view);
     sub_drawer.execute();

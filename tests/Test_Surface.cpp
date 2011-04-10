@@ -21,6 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Test_Surface.h"
 
 #include "MockView.h"
+#include "GlobalFunctions.h"
 
 #include "Surface/SurfaceImplementations.h"
 #include "Surface/ComplexFunction.h"
@@ -30,9 +31,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Vector.impl.h"
 #include "MultiDimensionalVector.impl.h"
 #include "Rotation.impl.h"
+#include "GridDrawer.impl.h"
 
 #include <tr1/memory>
 #include <FunctionFactory.h>
+#include <Util.h>
 
 using VecMath::Vector;
 using VecMath::Rotation;
@@ -40,6 +43,8 @@ using std::cerr;
 using std::endl;
 using std::string;
 using std::tr1::shared_ptr;
+
+using namespace UnitTests;
 
 void testFunction(Surface &f);
 
@@ -67,14 +72,13 @@ void Test_Surface::init() {
 }
 
 void Test_Surface::functionValue() {
-  _function = new SurfaceTestImplementation();
+  function_ = new SurfaceTestImplementation();
 
   for (double x = X_MIN; x <= X_MAX; x += 1.) {
     for (double y = X_MIN; y <= X_MAX; y += 1.) {
-      cerr << Vector<4>(x, y, CONSTANT_FUNCTION_VALUE,CONSTANT_FUNCTION_VALUE) << endl;
       QVERIFY2(
-        VecMath::sqnorm(_function->function_value(x, y) - Vector<4>(x, y, CONSTANT_FUNCTION_VALUE,CONSTANT_FUNCTION_VALUE)) <= EPSILON,
-        (QString::number(x).toStdString()+", "+QString::number(y).toStdString()+" -> "+_function->function_value(x, y).toString()+
+        VecMath::sqnorm(function_->function_value(x, y) - Vector<4>(x, y, CONSTANT_FUNCTION_VALUE,CONSTANT_FUNCTION_VALUE)) <= EPSILON,
+        (QString::number(x).toStdString()+", "+QString::number(y).toStdString()+" -> "+function_->function_value(x, y).toString()+
          " != "+Vector<4>(x, y, CONSTANT_FUNCTION_VALUE,CONSTANT_FUNCTION_VALUE).toString()).c_str()
         );
     }
@@ -82,60 +86,59 @@ void Test_Surface::functionValue() {
 }
 
 void Test_Surface::meetsFormalRequirements() {
-  _function = new SurfaceTestImplementation();
+  function_ = new SurfaceTestImplementation();
 
-  QVERIFY(_function->getDefinitionSpaceDimensions() == 2);
-  QVERIFY(_function->vertices().size() >= GRID_SIZE);
-  QVERIFY(_function->vertices()[0].size() >= GRID_SIZE);
-
-  QVERIFY(_function->getFunctionName() == Test_Surface::TEST_FUNCTION_NAME);
+  testEqual(function_->getDefinitionSpaceDimensions(), 2);
+  testGreaterEqual(function_->vertices().size(), GRID_SIZE);
+  testGreaterEqual(function_->vertices()[0].size(), GRID_SIZE);
+  testEqual(function_->getFunctionName(), Test_Surface::TEST_FUNCTION_NAME);
 }
 
 void Test_Surface::boundsAndSteps() {
-  _function = new SurfaceTestImplementation();
-  QVERIFY(_function->xsteps() == GRID_SIZE);
-  QVERIFY(_function->ysteps() == GRID_SIZE);
+  function_ = new SurfaceTestImplementation();
+  testEqual(function_->xsteps(), GRID_SIZE);
+  testEqual(function_->ysteps(), GRID_SIZE);
 }
 
 void Test_Surface::rotateAboutAllAxes() {
-  _function = new SurfaceTestImplementation();
+  function_ = new SurfaceTestImplementation();
 
-  _function->Transform(Rotation<4>(90., 0., 0., 0., 0., 90.), Vector<4>());
+  function_->Transform(Rotation<4>(90., 0., 0., 0., 0., 90.), Vector<4>());
 
-  QVERIFY(_function->transformed_vertices().size() >= GRID_SIZE);
-  QVERIFY(_function->transformed_vertices()[0].size() >= GRID_SIZE);
+  testGreaterEqual(function_->transformed_vertices().size(), GRID_SIZE);
+  testGreaterEqual(function_->transformed_vertices()[0].size(), GRID_SIZE);
 
   for (unsigned i = 0; i < GRID_SIZE; ++i) {
     for (unsigned j = 0; j < GRID_SIZE; ++j) {
-      Vector<4> vertex = _function->vertices()[i][j],
-                transformed_vertex = _function->transformed_vertices()[i][j];
+      Vector<4> vertex = function_->vertices()[i][j],
+                transformed_vertex = function_->transformed_vertices()[i][j];
       QVERIFY(VecMath::sqnorm(vertex - transformed_vertex) > EPSILON);
     }
   }
 }
 
 void Test_Surface::rotated360DegreesIsIdentical() {
-  _function = new SurfaceTestImplementation();
+  function_ = new SurfaceTestImplementation();
 
-  _function->Transform(Rotation<4>(360., 360., 360., 360., 360., 360.), Vector<4>());
+  function_->Transform(Rotation<4>(360., 360., 360., 360., 360., 360.), Vector<4>());
 
   for (unsigned i = 0; i < GRID_SIZE; ++i) {
     for (unsigned j = 0; j < GRID_SIZE; ++j) {
-      Vector<4> vertex = _function->vertices()[i][j],
-                transformed_vertex = _function->transformed_vertices()[i][j];
+      Vector<4> vertex = function_->vertices()[i][j],
+                transformed_vertex = function_->transformed_vertices()[i][j];
       QVERIFY(VecMath::sqnorm(vertex - transformed_vertex) < EPSILON);
     }
   }
 }
 
 void Test_Surface::project() {
-  _function = new SurfaceTestImplementation();
+  function_ = new SurfaceTestImplementation();
 
-  _function->Transform(Rotation<4>(), Vector<4>());
-  _function->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
+  function_->Transform(Rotation<4>(), Vector<4>());
+  function_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
 
-  QVERIFY(_function->projected_vertices().size() >= GRID_SIZE);
-  QVERIFY(_function->projected_vertices()[0].size() >= GRID_SIZE);
+  testGreaterEqual(function_->projected_vertices().size(), GRID_SIZE);
+  testGreaterEqual(function_->projected_vertices()[0].size(), GRID_SIZE);
 
   // intercept theorem gives this factor (constant because f is constant)
   const double PROJECTION_FACTOR =
@@ -144,8 +147,8 @@ void Test_Surface::project() {
 
   for (unsigned i = 0; i < GRID_SIZE; ++i) {
     for (unsigned j = 0; j < GRID_SIZE; ++j) {
-      Vector<4> vertex = _function->vertices()[i][j];
-      Vector<3> projected_vertex = _function->projected_vertices()[i][j];
+      Vector<4> vertex = function_->vertices()[i][j];
+      Vector<3> projected_vertex = function_->projected_vertices()[i][j];
       for(unsigned m = 0; m < 3; ++m) {
         QVERIFY(fabs(projected_vertex[m] - vertex[m]*PROJECTION_FACTOR) < EPSILON);
       }
@@ -154,15 +157,15 @@ void Test_Surface::project() {
 }
 
 void Test_Surface::projectWithDepthCue() {
-  _function = new SurfaceTestImplementation();
+  function_ = new SurfaceTestImplementation();
 
-  _function->Transform(Rotation<4>(), Vector<4>());
-  _function->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, true);
+  function_->Transform(Rotation<4>(), Vector<4>());
+  function_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, true);
 
   for (unsigned i = 0; i < GRID_SIZE; ++i) {
     for (unsigned j = 0; j < GRID_SIZE; ++j) {
-      Vector<4> vertex = _function->vertices()[i][j];
-      Vector<3> projected_vertex = _function->projected_vertices()[i][j];
+      Vector<4> vertex = function_->vertices()[i][j];
+      Vector<3> projected_vertex = function_->projected_vertices()[i][j];
       Color rgba = ColMgrMgr::Instance().getColor(vertex);
 
 //                cerr << vertex << " : " << projected_vertex << " " <<string(rgba).c_str()
@@ -176,12 +179,12 @@ void Test_Surface::projectWithDepthCue() {
 }
 
 void Test_Surface::draw() {
-  _function = new SurfaceTestImplementation();
+  function_ = new SurfaceTestImplementation();
 
-  _function->Transform(Rotation<4>(), Vector<4>());
-  _function->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
+  function_->Transform(Rotation<4>(), Vector<4>());
+  function_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
 
-  _function->Draw(view_);
+  function_->Draw(view_);
 
   QSKIP("No idea how to correctly test drawing yet", SkipSingle);
 }

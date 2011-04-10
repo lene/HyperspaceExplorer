@@ -25,6 +25,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "Surface/Surface.h"
 
+#include "DefinitionRangeOfDimension.h"
+
+#include "FunctionHolder.impl.h"
+
 class MockView;
 
 /// Unit tests for class Surface and its implementations
@@ -51,12 +55,14 @@ class Test_Surface: public QObject {
       virtual std::string getFunctionName() const { return TEST_FUNCTION_NAME; }
 
       VecMath::Vector<4> function_value(double tt, double uu) { return _function->f(VecMath::Vector<2>(tt,uu)); }
-      VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > vertices() { return X(); }
+      VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > vertices() { 
+        return X();
+      }
       VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > transformed_vertices() { return Xtrans(); }
       VecMath::MultiDimensionalVector< VecMath::Vector<3>, 2 > projected_vertices() { return Xscr(); }
 
-      unsigned xsteps() const { return getTsteps(); }
-      unsigned ysteps() const { return getUsteps(); }
+      unsigned xsteps() const { return getDefinitionRange().getNumSteps(0); }
+      unsigned ysteps() const { return getDefinitionRange().getNumSteps(1); }
 
     private:
 
@@ -106,7 +112,7 @@ class Test_Surface: public QObject {
       void testFunction(Surface &f);
       void testDynamicallyCreatedFunction(const std::string &fname);
 
-      SurfaceTestImplementation *_function;
+      SurfaceTestImplementation *function_;
       MockView *view_;
 };
 

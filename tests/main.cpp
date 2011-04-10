@@ -18,6 +18,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 */
 
+/// Otherwise, only run the latest test suites
+#define RUN_ALL_TESTS 1
+
 #include "Test_Rotope.h"
 #include "Test_Function.h"
 #include "Test_RealFunction.h"
@@ -87,7 +90,7 @@ int main(int argc, char **argv) {
     QApplication *app = new QApplication(argc, argv);
 
     TestRunner runner;
-#if 1
+#if RUN_ALL_TESTS
     runner.run(new Test_Vector);
     runner.run(new Test_Matrix);
     runner.run(new Test_Rotation);
@@ -100,7 +103,6 @@ int main(int argc, char **argv) {
     runner.run(new Test_Projection);
     runner.run(new Test_GridDrawer);
     runner.run(new Test_MultiDimensionalVector);
-    runner.run(new Test_Surface);
     runner.run(new Test_FunctionHolder);
     runner.run(new Test_RealFunction);
     runner.run(new Test_DisplayableClass);
@@ -109,6 +111,7 @@ int main(int argc, char **argv) {
     runner.run(new Test_ArrayList);
 #endif
     runner.run(new Test_Object);
+    runner.run(new Test_Surface);
 
     runner.printSummary();
 

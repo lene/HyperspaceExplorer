@@ -97,7 +97,7 @@ class FunctionHolder<N, P, NUM>::Impl {
     /// Pointer to the actual ParametricFunction doing all the work.
     shared_ptr< function_type > function_;
 
-    void addSafetyMargin(Vector<3, unsigned> &steps) { steps += 2; }
+    void addSafetyMargin(Vector<P, unsigned> &steps) { steps += 2; }
 
 };
 

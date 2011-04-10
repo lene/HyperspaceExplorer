@@ -41,12 +41,16 @@ template <unsigned P, typename NUM = double, unsigned D = 3>
 class GridDrawer {
   public:
 
-    GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, P > &x_scr, UI::View *view);
+//    GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, P > &x_scr, UI::View *view);
+    GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, P > &x, 
+               const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, P > &x_scr, 
+               UI::View *view);
 
     void execute();
 
   private:
 
+    const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, P > &_x;
     const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, P > &_x_scr;
     UI::View *_view;
 
