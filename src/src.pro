@@ -39,6 +39,7 @@ HEADERS += \
            Displayable/DisplayableClass.h \
            Displayable/FunctionFactory.h \
            Displayable/Composite.h \
+           Displayable/SimpleComposite.h \
            Displayable/DefinitionSpaceRange.h \
            Displayable/DefinitionRangeOfDimension.h \
            Displayable/DefinitionRangeOfDimension.impl.h \
@@ -73,6 +74,7 @@ SOURCES += \
            Displayable/DisplayableClass.cpp \
            Displayable/FunctionFactory.C \
            Displayable/Composite.cpp \
+           Displayable/SimpleComposite.cpp \
            Displayable/DefinitionSpaceRange.cpp \
            Displayable/RealFunction.C \
            Displayable/RealFunctionImplementations.cpp \

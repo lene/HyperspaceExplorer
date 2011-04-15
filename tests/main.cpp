@@ -41,6 +41,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Test_Observer.h"
 #include "Test_Object.h"
 #include "Test_ArrayList.h"
+#include "Test_Composite.h"
 
 #include <QtTest/QtTest>
 
@@ -109,9 +110,10 @@ int main(int argc, char **argv) {
     runner.run(new Test_Observer);
     runner.run(new Test_Rotope);
     runner.run(new Test_ArrayList);
+    runner.run(new Test_Surface);
 #endif
     runner.run(new Test_Object);
-    runner.run(new Test_Surface);
+    runner.run(new Test_Composite);
 
     runner.printSummary();
 

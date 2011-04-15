@@ -22,6 +22,9 @@
 
 #include "ParameterMap.h"
 
+#include "Vector.impl.h"
+#include "Rotation.impl.h"
+
 #include <list>
 #include <memory>
 #include <algorithm>
@@ -29,8 +32,28 @@
 using std::list;
 using std::shared_ptr;
 
+using VecMath::Vector;
+using VecMath::makeVector;
+using VecMath::Rotation;
+using VecMath::makeRotation;
+
+struct CompositeComponent {
+  CompositeComponent(
+    shared_ptr< Displayable > component,
+    Vector< 4 > translation = makeVector(0., 0., 0., 0.),
+    const VecMath::Rotation< 4 > rotation = makeRotation(0., 0., 0., 0., 0., 0.),
+    const VecMath::Vector< 4 > scale = makeVector(1., 1., 1., 1.)
+  ):
+    component_(component), translation_(translation), rotation_(rotation), scale_(scale) { }
+
+  shared_ptr< Displayable > component_;
+  const VecMath::Vector< 4 > translation_;
+  const VecMath::Rotation< 4 > rotation_;
+  const VecMath::Vector< 4 > scale_;
+};
+
 struct Composite::Impl {
-  typedef list< shared_ptr< Displayable > > list_type;
+  typedef list< CompositeComponent > list_type;
   list_type sub_objects_;
 };
 
@@ -41,23 +64,71 @@ Composite::Composite(ParameterMap parameters): Displayable(parameters), pImpl_(n
 Composite::~Composite() { }
 
 void Composite::Transform(const VecMath::Rotation< 4 >& R, const VecMath::Vector< 4 >& T) {
-  for (Impl::list_type::iterator i = pImpl_->sub_objects_.begin(); 
+  for (Impl::list_type::iterator i = pImpl_->sub_objects_.begin();
        i != pImpl_->sub_objects_.end(); ++i) {
-    (*i)->Transform(R, T);                    
+    i->component_->Transform(R, T);
   }
 }
 
 void Composite::Project(double ScrW, double CamW, bool DepthCue4D) {
-  for (Impl::list_type::iterator i = pImpl_->sub_objects_.begin(); 
+  for (Impl::list_type::iterator i = pImpl_->sub_objects_.begin();
        i != pImpl_->sub_objects_.end(); ++i) {
-    (*i)->Project(ScrW, CamW, DepthCue4D);                    
+    i->component_->Project(ScrW, CamW, DepthCue4D);
   }
 }
 
 void Composite::Draw(UI::View* view) {
-  for (Impl::list_type::iterator i = pImpl_->sub_objects_.begin(); 
+  for (Impl::list_type::iterator i = pImpl_->sub_objects_.begin();
        i != pImpl_->sub_objects_.end(); ++i) {
-    (*i)->Draw(view);                    
+    i->component_->Draw(view);
   }
 }
+
+void Composite::addComponent(std::shared_ptr<Displayable> component,
+                             const VecMath::Vector< 4 >& T,
+                             const VecMath::Rotation< 4 >& R) {
+  pImpl_->sub_objects_.push_back(CompositeComponent(component, T, R));
+}
+
+unsigned int Composite::getNumComponents() {
+  return pImpl_->sub_objects_.size();
+}
+
+void Composite::calibrateColors() const {
+  throw NotYetImplementedException("Composite::calibrateColors()");
+}
+
+VecMath::Vector< 4 >& Composite::operator()(double , double , double ) {
+  throw NotYetImplementedException("Composite::operator()");
+}
+
+unsigned int Composite::getDefinitionSpaceDimensions() {
+  throw NotYetImplementedException("Composite::getDefinitionSpaceDimensions()");
+  return 0;
+}
+
+void Composite::for_each_projected(Displayable::function_on_projected_vertex ) {
+  throw NotYetImplementedException("Composite::getDefinitionSpaceDimensions()");
+
+}
+
+void Composite::for_each_vertex(Displayable::function_on_fourspace_vertex ) {
+  throw NotYetImplementedException("Composite::for_each_vertex()");
+
+}
+
+void Composite::Initialize( )
+{
+  throw NotYetImplementedException("Composite::Initialize()");
+
+}
+
+void Composite::ReInit(double _tmin, double _tmax, double _dt,
+                       double _umin, double _umax, double _du,
+                       double _vmin, double _vmax, double _dv) {
+  throw NotYetImplementedException("Composite::ReInit()");
+
+}
+
+
 
