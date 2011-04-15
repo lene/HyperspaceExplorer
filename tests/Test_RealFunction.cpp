@@ -220,72 +220,54 @@ void Test_RealFunction::projectWithDepthCue() {
 
 void Test_RealFunction::draw() {
 
-    function_->Transform(Rotation<4>(), Vector<4>());
-    function_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
+  function_->Transform(Rotation<4>(), Vector<4>());
+  function_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
 
-    function_->Draw(view_);
+  function_->Draw(view_);
 
-    testGreaterEqual(view_->numVerticesDrawn(), (GRID_SIZE+1)*(GRID_SIZE+1)*(GRID_SIZE+1));
+  testGreaterEqual(view_->numVerticesDrawn(), (GRID_SIZE+1)*(GRID_SIZE+1)*(GRID_SIZE+1));
 
-    UnitTests::setGlobalView(view_);
-    function_->for_each_vertex(UnitTests::checkVertexPresent);
-    function_->for_each_projected(UnitTests::checkVertexDrawn);
+  UnitTests::setGlobalView(view_);
+  function_->for_each_vertex(UnitTests::checkVertexPresent);
+  function_->for_each_projected(UnitTests::checkVertexDrawn);
 
 }
 
 
 void Test_RealFunction::torus1() {
-  Torus1 f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
-  testFunction(f);
-  testDynamicallyCreatedFunction("Ditorus");
+  performFunctionTest<Torus1, 3>("Ditorus");
 }
-
 void Test_RealFunction::torus2() {
-  Torus2 f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
-  testFunction(f);
-  testDynamicallyCreatedFunction("Toraspherinder");
+  performFunctionTest<Torus2, 2>("Toraspherinder");
 }
-
 void Test_RealFunction::fr3r() {
-  Fr3r f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
-  testFunction(f);
-  testDynamicallyCreatedFunction("1/(r"+Util::sup2()+"+1)");
+  performFunctionTest<Fr3r, 0>("1/(r"+Util::sup2()+"+1)");
 }
-
 void Test_RealFunction::gravitationPotential() {
-  GravitationPotential f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
-  testFunction(f);
-  testDynamicallyCreatedFunction("Gravitation Potential");
+  performFunctionTest<GravitationPotential, 2>("Gravitation Potential");
 }
-
 void Test_RealFunction::fr3rSin() {
-  Fr3rSin f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
-  testFunction(f);
-  testDynamicallyCreatedFunction("sin (r"+Util::sup2()+")");
+  performFunctionTest<Fr3rSin, 0>("sin (r"+Util::sup2()+")");
 }
-
 void Test_RealFunction::fr3rExp() {
-  Fr3rExp f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
-  testFunction(f);
-  testDynamicallyCreatedFunction("exp (r"+Util::sup2()+")");
+  performFunctionTest<Fr3rExp, 0>("exp (r"+Util::sup2()+")");
 }
-
 void Test_RealFunction::polarSin() {
-  PolarSin f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
-  testFunction(f);
-  testDynamicallyCreatedFunction("Polar: r = 1/2+sin (Phase*pi*t*u*v)");
+  performFunctionTest<PolarSin, 1>("Polar: r = 1/2+sin (Phase*pi*t*u*v)");
 }
-
 void Test_RealFunction::polarSin2() {
-  PolarSin2 f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
-  testFunction(f);
-  testDynamicallyCreatedFunction("Polar: r = sin (pi/3.*(t+u+v))");
+  performFunctionTest<PolarSin2, 0>("Polar: r = sin (pi/3.*(t+u+v))");
+}
+void Test_RealFunction::polarR() {
+  performFunctionTest<PolarR, 1>("Polar: r = sqrt (t"+Util::sup2()+"+u"+Util::sup2()+"+v"+Util::sup2()+")");
 }
 
-void Test_RealFunction::polarR() {
-  PolarR f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
+template <class FunctionType, unsigned num_parameters>
+void Test_RealFunction::performFunctionTest(const std::string &fname) {
+  FunctionType f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
+  testEqual(f.getNumParameters(), num_parameters);
   testFunction(f);
-  testDynamicallyCreatedFunction("Polar: r = sqrt (t"+Util::sup2()+"+u"+Util::sup2()+"+v"+Util::sup2()+")");
+  testDynamicallyCreatedFunction(fname);
 }
 
 void Test_RealFunction::testFunction(RealFunction &f) {

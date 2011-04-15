@@ -73,6 +73,9 @@ class Test_RealFunction: public QObject {
 
     private:
 
+      template <class FunctionType, unsigned num_parameters>
+      void performFunctionTest(const std::string &fname);
+
       void testFunction(RealFunction &f);
       void testDynamicallyCreatedFunction(const std::string &fname);
 

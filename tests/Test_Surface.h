@@ -48,34 +48,7 @@ class Test_Surface: public QObject {
     static const double PROJECTION_SCREEN_W = 2.;
     static const double PROJECTION_CAMERA_W = 4.;
 
-    class SurfaceTestImplementation: public Surface {
-
-    public:
-      SurfaceTestImplementation();
-      virtual std::string getFunctionName() const { return TEST_FUNCTION_NAME; }
-
-      VecMath::Vector<4> function_value(double tt, double uu) { return _function->f(VecMath::Vector<2>(tt,uu)); }
-      VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > vertices() {
-        return X();
-      }
-      VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > transformed_vertices() { return Xtrans(); }
-      VecMath::MultiDimensionalVector< VecMath::Vector<3>, 2 > projected_vertices() { return Xscr(); }
-
-      unsigned xsteps() const { return getDefinitionRange().getNumSteps(0); }
-      unsigned ysteps() const { return getDefinitionRange().getNumSteps(1); }
-
-    private:
-
-      class DefiningFunction: public ParametricFunction<4, 2> {
-      public:
-        DefiningFunction(SurfaceTestImplementation *parent): parent_(parent) { }
-        virtual return_type f(const argument_type &x);
-      private:
-        /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
-        SurfaceTestImplementation *parent_;
-      };
-
-    };
+    class SurfaceTestImplementation;
 
     private slots:
 
