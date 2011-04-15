@@ -49,9 +49,9 @@ class FunctionHolder<N, P, NUM>::Impl {
          double vmin, double vmax, double dv);
 
 
-    unsigned getNumParameters() { 
+    unsigned getNumParameters() {
       assert(function_);
-      return function_->getNumParameters(); 
+      return function_->getNumParameters();
     }
 
     void Initialize();
@@ -120,7 +120,7 @@ FunctionHolder<N, P, NUM>::Impl::Impl(
     double umin, double umax, double du,
     double vmin, double vmax, double dv):
   definitionRange_(), function_(f) {
-  setDefinitionRange(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
+    setDefinitionRange(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
 }
 
 template <unsigned N, unsigned P, typename NUM>

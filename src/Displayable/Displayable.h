@@ -51,7 +51,7 @@ class DisplayableClass;
 /// \ingroup SurfaceGroup
 
 /// A Displayable is a generalized four-dimensional object.
-/** The Displayable interface provides abstract members for the definition of 
+/** The Displayable interface provides abstract members for the definition of
  *  four-dimensional objects, together with methods to rotate and
  *  translate the resulting four-dimensional geometry in 4-space, to project the
  *  transformed geometry onto 3-space, and to draw the projected grid into a
@@ -136,7 +136,7 @@ class Displayable {
 
         /// Displayable default c'tor.
         Displayable();
-        /// Displayable c'tor given a set of FunctionParameter 
+        /// Displayable c'tor given a set of FunctionParameter
         Displayable (ParameterMap parameters);
         virtual ~Displayable();
 
@@ -166,7 +166,7 @@ class Displayable {
         /// number of argument given to the defining function
         virtual unsigned getDefinitionSpaceDimensions() = 0;
 
-        /// Set parameters to the Displayable 
+        /// Set parameters to the Displayable
         virtual void SetParameters(const ParameterMap &);
 
         /// \return The collection of all parameters (and their values)

@@ -34,7 +34,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 class Surface1: public Surface {
 public:
     Surface1(): Surface() {
-      _function = std::tr1::shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction);
+      _function = std::tr1::shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction(this));
     }
     Surface1 (double _umin, double _umax, double _du,
               double _vmin, double _vmax, double _dv);
@@ -45,8 +45,13 @@ public:
 private:
 
   /// ParametricFunction that defines Surface1
-  struct DefiningFunction: public ParametricFunction<4, 2> {
+  class DefiningFunction: public ParametricFunction<4, 2> {
+  public:
+    DefiningFunction(Surface1 *parent): parent_(parent) { }
     virtual return_type f(const argument_type &x);
+  private:
+    /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
+    Surface1 *parent_;
   };
 
 };
@@ -71,7 +76,7 @@ namespace {
 class Horizon: public Surface {
 public:
     Horizon(): Surface() {
-      _function = std::tr1::shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction);
+      _function = std::tr1::shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction(this));
     }
     Horizon (double _umin, double _umax, double _du,
              double _vmin, double _vmax, double _dv);
@@ -82,8 +87,13 @@ public:
 private:
 
     /// ParametricFunction that defines Horizon
-  struct DefiningFunction: public ParametricFunction<4, 2> {
+  class DefiningFunction: public ParametricFunction<4, 2> {
+  public:
+    DefiningFunction(Horizon *parent): parent_(parent) { }
     virtual return_type f(const argument_type &x);
+  private:
+    /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
+    Horizon *parent_;
   };
 
 };
@@ -99,7 +109,7 @@ namespace {
 class Torus3: public Surface {
 public:
     Torus3(): Surface() {
-      _function = std::tr1::shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction);
+      _function = std::tr1::shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction(this));
     }
     Torus3 (double _umin, double _umax, double _du,
             double _vmin, double _vmax, double _dv);
@@ -110,8 +120,13 @@ public:
 private:
 
     /// ParametricFunction that defines Torus3
-  struct DefiningFunction: public ParametricFunction<4, 2> {
+  class DefiningFunction: public ParametricFunction<4, 2> {
+  public:
+    DefiningFunction(Torus3 *parent): parent_(parent) { }
     virtual return_type f(const argument_type &x);
+  private:
+    /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
+    Torus3 *parent_;
   };
 
 };

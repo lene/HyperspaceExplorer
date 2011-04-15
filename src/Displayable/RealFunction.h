@@ -70,9 +70,6 @@ class RealFunction: public FunctionHolder<4, 3, double> {
 
     /** \return The name of the function in cleartext                     */
     virtual std::string getFunctionName() const;
-    
-    /// \see Function::getDefinitionSpaceDimensions()
-    virtual unsigned getDefinitionSpaceDimensions();
 
     /// Function evaluation operator for three parameters
     VecMath::Vector<4> &operator () (double t, double u, double v);

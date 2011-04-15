@@ -52,8 +52,11 @@ const std::string Test_Surface::TEST_FUNCTION_NAME = "FunctionTestImplementation
 
 Test_Surface::SurfaceTestImplementation::SurfaceTestImplementation():
     Surface(X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1),
-            X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1)) {
-  _function = shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction);
+            X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1),
+            ParameterMap()
+           ) {
+      std::cerr << "SurfaceTestImplementation()\n";
+  _function = shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction(this));
   Initialize();
 }
 
@@ -198,17 +201,20 @@ void Test_Surface::surface1() {
   Surface1 f(-1., 1., 0.5, -1., 1., 0.5);
   testFunction(f);
   testDynamicallyCreatedFunction("Surface1");
+  testEqual(f.getNumParameters(), 0);
 }
 
 void Test_Surface::horizon() {
   Horizon f(-1., 1., 0.5, -1., 1., 0.5);
   testFunction(f);
   testDynamicallyCreatedFunction("Horizon");
+  testEqual(f.getNumParameters(), 0);
 }
 void Test_Surface::torus3() {
   Torus3 f(-1., 1., 0.5, -1., 1., 0.5);
   testFunction(f);
   testDynamicallyCreatedFunction("Torus3");
+  testEqual(f.getNumParameters(), 0);
 }
 void Test_Surface::t_z2() {
   z2 f(-1., 1., 0.5, -1., 1., 0.5);

@@ -55,7 +55,7 @@ class Test_Surface: public QObject {
       virtual std::string getFunctionName() const { return TEST_FUNCTION_NAME; }
 
       VecMath::Vector<4> function_value(double tt, double uu) { return _function->f(VecMath::Vector<2>(tt,uu)); }
-      VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > vertices() { 
+      VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > vertices() {
         return X();
       }
       VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > transformed_vertices() { return Xtrans(); }
@@ -66,8 +66,13 @@ class Test_Surface: public QObject {
 
     private:
 
-      struct DefiningFunction: public ParametricFunction<4, 2> {
+      class DefiningFunction: public ParametricFunction<4, 2> {
+      public:
+        DefiningFunction(SurfaceTestImplementation *parent): parent_(parent) { }
         virtual return_type f(const argument_type &x);
+      private:
+        /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
+        SurfaceTestImplementation *parent_;
       };
 
     };
@@ -82,7 +87,7 @@ class Test_Surface: public QObject {
         void boundsAndSteps();
 
         void getNumParameters();
-        
+
         void rotateAboutAllAxes();
         void rotated360DegreesIsIdentical();
 

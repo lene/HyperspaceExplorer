@@ -47,9 +47,9 @@ class Surface: public FunctionHolder<4, 2, double> {
     typedef VecMath::Vector<4> raw_function_type (double, double);
 
     Surface();
-    Surface (double _umin, double _umax, double _du,
-             double _vmin, double _vmax, double _dv,
-             ParameterMap _parms = ParameterMap());
+    Surface (double umin, double umax, double du,
+             double vmin, double vmax, double dv,
+             ParameterMap parms = ParameterMap());
     virtual ~Surface();
 
     virtual void Project (double ScrW, double CamW, bool DepthCue4D);
@@ -61,12 +61,12 @@ class Surface: public FunctionHolder<4, 2, double> {
     /// Called by the ColorManager after setting the Function on the CM
     virtual void calibrateColors() const;
 
-    /// \see Displayable::getDefinitionSpaceDimensions()
-    virtual unsigned getDefinitionSpaceDimensions();
-
     /// Function evaluation operator for three parameters
     VecMath::Vector<4> &operator () (double u, double v, double = 0);
-    
+
+    /** \return number of parameters for the function */
+    virtual unsigned getNumParameters();
+
   protected:
     virtual vec4vec1D df (double, double);
     virtual function_type normal;

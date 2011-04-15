@@ -36,7 +36,7 @@ Surface1::Surface1 (double _umin, double _umax, double _du,
                     double _vmin, double _vmax, double _dv):
         Surface (_umin, _umax, _du, _vmin, _vmax, _dv) {
 
-    _function = shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction);
+    _function = shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction(this));
     Initialize();
 }
 
@@ -69,7 +69,7 @@ Vector<4> Surface1::DefiningFunction::f (const Vector<2> &x) {
 Horizon::Horizon (double _umin, double _umax, double _du,
                   double _vmin, double _vmax, double _dv):
     Surface (_umin, _umax, _du, _vmin, _vmax, _dv) {
-    _function = shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction);
+    _function = shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction(this));
     Initialize ();
 }
 
@@ -99,7 +99,7 @@ Vector<4> Horizon::DefiningFunction::f (const Vector<2> &x) {
 Torus3::Torus3 (double _umin, double _umax, double _du,
                 double _vmin, double _vmax, double _dv):
         Surface (_umin, _umax, _du, _vmin, _vmax, _dv) {
-    _function = shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction);
+    _function = shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction(this));
     Initialize ();
 }
 

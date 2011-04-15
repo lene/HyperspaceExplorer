@@ -150,13 +150,13 @@ RealFunction::RealFunction(double tmin, double tmax, double dt,
                            double umin, double umax, double du,
                            double vmin, double vmax, double dv,
                            ParameterMap parms):
-  FunctionHolder<4, 3, double>(parms),
-  pImpl_(new Impl(this)) {
+    FunctionHolder<4, 3, double>(parms),
+    pImpl_(new Impl(this)) {
   setDefinitionRange(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
 }
 
-RealFunction::RealFunction(ParametricFunction< 4, 3 >* function): 
-  FunctionHolder< 4, 3, double >(ParameterMap()), 
+RealFunction::RealFunction(ParametricFunction< 4, 3 >* function):
+  FunctionHolder< 4, 3, double >(ParameterMap()),
   _function(function) { }
 
 RealFunction::~RealFunction() { }
@@ -185,8 +185,6 @@ std::string RealFunction::getFunctionName() const {
   assert(_function);
   return _function->getName();
 }
-
-unsigned int RealFunction::getDefinitionSpaceDimensions() { return 3; }
 
 /** @param t first argument, e.g. x or t
  *  @param u second argument, e.g. y or u

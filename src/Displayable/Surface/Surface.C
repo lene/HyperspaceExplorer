@@ -45,14 +45,14 @@ struct Surface::Impl {
 
   void calibrateColors() const;
 
-  const VecMath::MultiDimensionalVector< Vector< 4 >, 2 > &X() const { 
-    return parent_->X();       
+  const VecMath::MultiDimensionalVector< Vector< 4 >, 2 > &X() const {
+    return parent_->X();
   }
-  const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > &Xtrans() const { 
-    return parent_->Xtrans(); 
+  const VecMath::MultiDimensionalVector< VecMath::Vector<4>, 2 > &Xtrans() const {
+    return parent_->Xtrans();
   }
-  const VecMath::MultiDimensionalVector< VecMath::Vector<3>, 2 > &Xscr() const { 
-    return parent_->Xscr(); 
+  const VecMath::MultiDimensionalVector< VecMath::Vector<3>, 2 > &Xscr() const {
+    return parent_->Xscr();
   }
 
   void DrawStrip (unsigned t, UI::View *view);
@@ -138,9 +138,9 @@ std::pair< double, double > Surface::Impl::findExtremesInW() const {
  */
 void Surface::Impl::setBoundariesAndStepwidth(double tmin, double tmax, double dt,
                                         double umin, double umax, double du) {
-  getDefinitionRange().setMinValue(0, tmin);   getDefinitionRange().setMaxValue(0, tmax);   
+  getDefinitionRange().setMinValue(0, tmin);   getDefinitionRange().setMaxValue(0, tmax);
   getDefinitionRange().setStepsize(0, dt);
-  getDefinitionRange().setMinValue(1, umin);   getDefinitionRange().setMaxValue(1, umax);   
+  getDefinitionRange().setMinValue(1, umin);   getDefinitionRange().setMaxValue(1, umax);
   getDefinitionRange().setStepsize(1, du);
   getDefinitionRange().setNumSteps(0, unsigned((getDefinitionRange().getMaxValue(0)-getDefinitionRange().getMinValue(0))/getDefinitionRange().getStepsize(0)+2));
   getDefinitionRange().setNumSteps(1, unsigned((getDefinitionRange().getMaxValue(1)-getDefinitionRange().getMinValue(1))/getDefinitionRange().getStepsize(1)+2));
@@ -153,20 +153,20 @@ Surface::Surface():
 
 
 /** Surface c'tor given a definition set in \f$ R^2 \f$ (as parameter space)
- *  \param _umin minimal value in u
- *  \param _umax maximal value in u
- *  \param _du stepsize in u
- *  \param _vmin minimal value in v
- *  \param _vmax maximal value in v
- *  \param _dv stepsize in v
- *  \param _parms Parameter for the function                                  
+ *  \param umin minimal value in u
+ *  \param umax maximal value in u
+ *  \param du stepsize in u
+ *  \param vmin minimal value in v
+ *  \param vmax maximal value in v
+ *  \param dv stepsize in v
+ *  \param parms Parameter for the function
  */
-Surface::Surface (double _umin, double _umax, double _du,
-                  double _vmin, double _vmax, double _dv,
-                  ParameterMap _parms):
-    FunctionHolder<4, 2, double>(_parms), 
+Surface::Surface (double umin, double umax, double du,
+                  double vmin, double vmax, double dv,
+                  ParameterMap parms):
+    FunctionHolder<4, 2, double>(parms),
     pImpl_(new Impl(this)) {
-  setDefinitionRange(_umin, _umax, _du, _vmin, _vmax, _dv, 0, 0, 0);
+  setDefinitionRange(umin, umax, du, vmin, vmax, dv, 0, 0, 0);
 }
 
 Surface::~Surface() { }
@@ -200,7 +200,9 @@ void Surface::ReInit(double, double, double,
   Initialize();
 }
 
-unsigned int Surface::getDefinitionSpaceDimensions() { return 2; }
+unsigned int Surface::getNumParameters() {
+  return Displayable::getNumParameters();
+}
 
 /** @param u first argument, e.g. y or u
  *  @param v second argument, e.g. z or v
