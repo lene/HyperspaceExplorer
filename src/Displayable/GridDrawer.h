@@ -42,8 +42,8 @@ class GridDrawer {
   public:
 
 //    GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, P > &x_scr, UI::View *view);
-    GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, P > &x, 
-               const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, P > &x_scr, 
+    GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, P > &x,
+               const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, P > &x_scr,
                UI::View *view);
 
     void execute();
@@ -77,19 +77,39 @@ template<typename NUM, unsigned D> class GridDrawer<3, NUM, D> {
 
 };
 
-template<typename NUM, unsigned D> class GridDrawer<1, NUM, D> {
+template<typename NUM, unsigned D> class GridDrawer<2, NUM, D> {
   public:
 
-    GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 1 > &x_scr, UI::View *view);
+    GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, 2 > &x,
+              const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 2 > &x_scr,
+              UI::View *view);
 
     void execute();
 
   private:
 
-    void DrawCube (unsigned t, unsigned u, unsigned v);
+    void drawStrip(unsigned t);
 
-    const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 1 > &_x_scr;
-    UI::View *_view;
+    const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, 2 > &x_;
+    const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 2 > &x_scr_;
+    UI::View *view_;
+
+};
+
+template<typename NUM, unsigned D> class GridDrawer<1, NUM, D> {
+  public:
+
+    GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, 1 > &x,
+               const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 1 > &x_scr,
+               UI::View *view);
+
+    void execute();
+
+  private:
+
+    const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, 1 > &x_;
+    const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 1 > &x_scr_;
+    UI::View *view_;
 
 };
 

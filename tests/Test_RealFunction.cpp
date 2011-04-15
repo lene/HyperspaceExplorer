@@ -42,26 +42,6 @@ using std::cerr;
 using std::endl;
 using std::string;
 
-/// Stores a pointer to the view used by Test_RealFunction for global functions used by Function::for_each
-MockView *globalView = NULL;
-
-void checkVertexPresent(const VecMath::Vector<4> &v) {
-  test(globalView->isVertexPresent(v), v.toString()+" present");
-}
-
-void checkVertexDrawn(const VecMath::Vector<3> &v) {
-  test(globalView->isVertexDrawn(v), v.toString()+" drawn");
-}
-
-void checkVerticesEqual(const VecMath::Vector<4> &v1, const VecMath::Vector<4> &v2) {
-  testEqual(v1, v2);
-}
-
-
-void checkVerticesNotEqual(const VecMath::Vector<4> &v1, const VecMath::Vector<4> &v2) {
-  testNotEqual(v1, v2);
-}
-
 template<typename T> T random_number() {
   return (T)qrand()/(T)RAND_MAX;
 }
@@ -183,13 +163,13 @@ void Test_RealFunction::rotateAboutAllAxes() {
     testGreaterEqual(function_->transformed_vertices()[0].size(), GRID_SIZE);
     testGreaterEqual(function_->transformed_vertices()[0][0].size(), GRID_SIZE);
 
-    function_->for_each_vertex_transformed(checkVerticesNotEqual);
+    function_->for_each_vertex_transformed(UnitTests::testVerticesNotEqual);
 }
 
 void Test_RealFunction::rotated360DegreesIsIdentical() {
     function_->Transform(Rotation<4>(360., 360., 360., 360., 360., 360.), Vector<4>());
 
-    function_->for_each_vertex_transformed(checkVerticesEqual);
+    function_->for_each_vertex_transformed(UnitTests::testVerticesEqual);
 }
 
 // intercept theorem gives this factor (constant because f is constant)
@@ -247,11 +227,12 @@ void Test_RealFunction::draw() {
 
     testGreaterEqual(view_->numVerticesDrawn(), (GRID_SIZE+1)*(GRID_SIZE+1)*(GRID_SIZE+1));
 
-    globalView = view_;
+    UnitTests::setGlobalView(view_);
+    function_->for_each_vertex(UnitTests::checkVertexPresent);
+    function_->for_each_projected(UnitTests::checkVertexDrawn);
 
-    function_->for_each_vertex(checkVertexPresent);
-    function_->for_each_projected(checkVertexDrawn);
 }
+
 
 void Test_RealFunction::torus1() {
   Torus1 f(-1, 1, 1., -1, 1, 1., -1, 1, 1.);
@@ -354,8 +335,8 @@ void testReinitRuns(RealFunction& f) {
 }
 
 void Test_RealFunction::testAllVerticesDrawn(RealFunction *f) {
-  globalView = view_;
-  f->for_each_vertex(checkVertexPresent);
+  UnitTests::setGlobalView(view_);
+  f->for_each_vertex(UnitTests::checkVertexPresent);
 }
 
 void Test_RealFunction::testDynamicallyCreatedFunction(const std::string& fname) {

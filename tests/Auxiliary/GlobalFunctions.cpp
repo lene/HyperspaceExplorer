@@ -19,6 +19,7 @@
 */
 
 #include "GlobalFunctions.h"
+#include "MockView.h"
 
 #include "Vector.impl.h"
 
@@ -36,6 +37,13 @@ QString comparisonString(const string &checked, const string &precondition, cons
 }
 
 namespace UnitTests {
+
+MockView *globalView = NULL;
+
+void setGlobalView(MockView* v) {
+  globalView = v;
+}
+
 
 void test(bool condition, const QString &message) {
   QVERIFY2(
@@ -88,6 +96,22 @@ void testNotEqual(const VecMath::Vector<D, NUM> &checked,
   );
 }
 
+/// Explicit instantiation
+template void testEqual(const VecMath::Vector<4, double> &checked,
+                        const VecMath::Vector<4, double> &precondition);
+/// Explicit instantiation
+template void testNotEqual(const VecMath::Vector<4, double> &checked,
+                           const VecMath::Vector<4, double> &precondition);
+
+void testVerticesEqual(const VecMath::Vector<4> &v1, const VecMath::Vector<4> &v2) {
+  testEqual(v1, v2);
+}
+
+void testVerticesNotEqual(const VecMath::Vector<4> &v1, const VecMath::Vector<4> &v2) {
+  testNotEqual(v1, v2);
+}
+
+
 template <typename Value, class Container> bool contains(const Container &container,
                                                          const Value &value) {
   return std::find(container.begin(), container.end(), value) != container.end();
@@ -107,13 +131,17 @@ void testContains(const Container &container, const std::string &value) {
 
 
 /// Explicit instantiation
-template void testEqual(const VecMath::Vector<4, double> &checked,
-                        const VecMath::Vector<4, double> &precondition);
-/// Explicit instantiation
-template void testNotEqual(const VecMath::Vector<4, double> &checked,
-                           const VecMath::Vector<4, double> &precondition);
-/// Explicit instantiation
 template void testContains(const std::vector<std::string> &container,
                            const std::string &value);
+
+
+void checkVertexPresent(const VecMath::Vector<4> &v) {
+  test(globalView->isVertexPresent(v), v.toString()+" present");
+}
+
+void checkVertexDrawn(const VecMath::Vector<3> &v) {
+  test(globalView->isVertexDrawn(v), v.toString()+" drawn");
+}
+
 
 }

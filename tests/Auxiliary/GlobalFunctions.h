@@ -26,6 +26,8 @@
 
 class QString;
 
+class MockView;
+
 namespace VecMath {
   template <unsigned D, typename NUM> class Vector;
 }
@@ -47,10 +49,23 @@ namespace UnitTests {
   void testNotEqual(const VecMath::Vector<D, NUM> &checked,
                     const VecMath::Vector<D, NUM> &precondition);
 
+  /// Overload to feed into Displayable::for_each(), which cannot take template functions
+  void testVerticesEqual(const VecMath::Vector<4> &v1, const VecMath::Vector<4> &v2);
+  /// Overload to feed into Displayable::for_each(), which cannot take template functions
+  void testVerticesNotEqual(const VecMath::Vector<4> &v1, const VecMath::Vector<4> &v2);
+
   template <typename Value, class Container>
   void testContains(const Container &container, const Value &value);
   template <class Container>
   void testContains(const Container &container, const std::string &value);
+
+  /// Stores a pointer to the view used by Test_RealFunction for global functions used by Function::for_each
+  void setGlobalView(MockView *v);
+
+  void checkVertexPresent(const VecMath::Vector<4> &v);
+
+  void checkVertexDrawn(const VecMath::Vector<3> &v);
+
 
   static const double EPSILON = 1e-8;
 

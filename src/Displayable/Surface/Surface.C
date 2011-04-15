@@ -39,9 +39,7 @@ struct Surface::Impl {
 
   Impl(Surface *f): parent_(f) { }
 
-  void Transform (const VecMath::Rotation<4> &R, const VecMath::Vector<4> &T);
   void Project (double ScrW, double CamW, bool DepthCue4D);
-  void Draw (UI::View *view);
 
   void calibrateColors() const;
 

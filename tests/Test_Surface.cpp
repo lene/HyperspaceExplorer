@@ -55,7 +55,6 @@ Test_Surface::SurfaceTestImplementation::SurfaceTestImplementation():
             X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1),
             ParameterMap()
            ) {
-      std::cerr << "SurfaceTestImplementation()\n";
   _function = shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction(this));
   Initialize();
 }
@@ -194,101 +193,75 @@ void Test_Surface::draw() {
 
   function_->Draw(view_);
 
-  QSKIP("No idea how to correctly test drawing yet", SkipSingle);
+  testGreaterEqual(view_->numVerticesDrawn(), (GRID_SIZE+1)*(GRID_SIZE+1));
+
+  UnitTests::setGlobalView(view_);
+  function_->for_each_vertex(UnitTests::checkVertexPresent);
+  function_->for_each_projected(UnitTests::checkVertexDrawn);
 }
 
 void Test_Surface::surface1() {
-  Surface1 f(-1., 1., 0.5, -1., 1., 0.5);
-  testFunction(f);
-  testDynamicallyCreatedFunction("Surface1");
-  testEqual(f.getNumParameters(), 0);
+  performSurfaceTest<Surface1, 0>("Surface1");
 }
-
 void Test_Surface::horizon() {
-  Horizon f(-1., 1., 0.5, -1., 1., 0.5);
-  testFunction(f);
-  testDynamicallyCreatedFunction("Horizon");
-  testEqual(f.getNumParameters(), 0);
+  performSurfaceTest<Horizon, 0>("Horizon");
 }
 void Test_Surface::torus3() {
-  Torus3 f(-1., 1., 0.5, -1., 1., 0.5);
-  testFunction(f);
-  testDynamicallyCreatedFunction("Torus3");
-  testEqual(f.getNumParameters(), 0);
+  performSurfaceTest<Torus3, 0>("Torus3");
 }
 void Test_Surface::t_z2() {
-  z2 f(-1., 1., 0.5, -1., 1., 0.5);
-  testFunction(f);
-  testDynamicallyCreatedFunction("z2");
+  performSurfaceTest<z2, 0>("z2");
 }
 void Test_Surface::t_z3() {
-  z3 f(-1., 1., 0.5, -1., 1., 0.5);
-  testFunction(f);
-  testDynamicallyCreatedFunction("z3");
+  performSurfaceTest<z3, 0>("z3");
 }
 void Test_Surface::t_zA() {
-  zA f(-1., 1., 0.5, -1., 1., 0.5);
-  testFunction(f);
-  testDynamicallyCreatedFunction("zA");
+  performSurfaceTest<zA, 1>("zA");
 }
 void Test_Surface::t_ez() {
-  ez f(-1., 1., 0.5, -1., 1., 0.5);
-  testFunction(f);
-  testDynamicallyCreatedFunction("e^a*z");
+  performSurfaceTest<ez, 1>("e^a*z");
 }
 void Test_Surface::t_emz2() {
-  emz2 f(-1., 1., 0.5, -1., 1., 0.5);
-  testFunction(f);
-  testDynamicallyCreatedFunction("emz2");
+  performSurfaceTest<emz2, 1>("emz2");
 }
 void Test_Surface::t_zm1() {
-  zm1 f(-1., 1., 0.5, -1., 1., 0.5);
-  testFunction(f);
-  testDynamicallyCreatedFunction("zm1");
+  performSurfaceTest<zm1, 0>("zm1");
 }
 void Test_Surface::t_zm2() {
-  zm2 f(-1., 1., 0.5, -1., 1., 0.5);
-  testFunction(f);
-  testDynamicallyCreatedFunction("zm2");
+  performSurfaceTest<zm2, 0>("zm2");
 }
 void Test_Surface::t_sqrtz() {
-  sqrtz f(-1., 1., 0.5, -1., 1., 0.5);
-  testFunction(f);
-  testDynamicallyCreatedFunction("sqrtz");
+  performSurfaceTest<sqrtz, 0>("sqrtz");
 }
 void Test_Surface::t_lnz() {
-  lnz f(-1., 1., 0.5, -1., 1., 0.5);
-  testFunction(f);
-  testDynamicallyCreatedFunction("lnz");
+  performSurfaceTest<lnz, 0>("lnz");
 }
 void Test_Surface::t_sinz() {
-  sinz  f(-1., 1., 0.5, -1., 1., 0.5);
-  testFunction(f);
-  testDynamicallyCreatedFunction("sinz");
+  performSurfaceTest<sinz, 0>("sinz");
 }
 void Test_Surface::t_cosz() {
-  cosz f(-1., 1., 0.5, -1., 1., 0.5);
-  testFunction(f);
-  testDynamicallyCreatedFunction("cosz");
+  performSurfaceTest<cosz, 0>("cosz");
 }
 void Test_Surface::t_sinhz() {
-  sinhz f(-1., 1., 0.5, -1., 1., 0.5);
-  testFunction(f);
-  testDynamicallyCreatedFunction("sinhz");
+  performSurfaceTest<sinhz, 0>("sinhz");
 }
 void Test_Surface::t_coshz() {
-  coshz f(-1., 1., 0.5, -1., 1., 0.5);
-  testFunction(f);
-  testDynamicallyCreatedFunction("coshz");
+  performSurfaceTest<coshz, 0>("coshz");
 }
 void Test_Surface::t_tanz() {
-  tanz f(-1., 1., 0.5, -1., 1., 0.5);
-  testFunction(f);
-  testDynamicallyCreatedFunction("tanz");
+  performSurfaceTest<tanz, 0>("tanz");
 }
 
 template<typename T> T random_number() {
   return (T)qrand()/(T)RAND_MAX;
+}
+
+template <class SurfaceType, unsigned num_parameters>
+void Test_Surface::performSurfaceTest(const std::string &fname) {
+  SurfaceType f(-1., 1., 0.5, -1., 1., 0.5);
+  testEqual(f.getNumParameters(), num_parameters);
+  testFunction(f);
+  testDynamicallyCreatedFunction(fname);
 }
 
 void Test_Surface::testFunction(Surface &f) {

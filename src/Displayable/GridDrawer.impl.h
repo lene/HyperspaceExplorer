@@ -21,12 +21,17 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef GRID_DRAWER_IMPL_H
 #define GRID_DRAWER_IMPL_H
 
+#undef PERFORM_TIMING
+
 #include "GridDrawer.h"
 
-#include "ScopedTimer.h"
 #include "Globals.h"
 
 #include "Vector.impl.h"
+
+#ifdef PERFORM_TIMING
+# include "ScopedTimer.h"
+#endif
 
 // template <unsigned P, typename NUM, unsigned D>
 // GridDrawer<P, NUM, D>::GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, P > &x_scr,
@@ -34,7 +39,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 //     _x(), _x_scr(x_scr), _view(view) { }
 
 template <unsigned P, typename NUM, unsigned D>
-GridDrawer<P, NUM, D>::GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, P > &x, 
+GridDrawer<P, NUM, D>::GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, P > &x,
 				  const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, P > &x_scr,
                                   UI::View *view):
     _x(x), _x_scr(x_scr), _view(view) { }
@@ -42,7 +47,7 @@ GridDrawer<P, NUM, D>::GridDrawer(const VecMath::MultiDimensionalVector< VecMath
 template <unsigned P, typename NUM, unsigned D>
 void GridDrawer<P, NUM, D>::execute() {
   for (unsigned i = 0; i < _x_scr.size(); ++i) {
-    GridDrawer<P-1, NUM, D> sub_drawer(_x_scr[i], _view);
+    GridDrawer<P-1, NUM, D> sub_drawer(_x[i], _x_scr[i], _view);
     sub_drawer.execute();
   }
   _view->commitDraw();
@@ -57,7 +62,9 @@ GridDrawer<3, NUM, D>::GridDrawer(const VecMath::MultiDimensionalVector< VecMath
 template<typename NUM, unsigned D>
 void GridDrawer<3, NUM, D>::execute() {
   unsigned size_t = x_scr_.size()-1;
-//  ScopedTimer timer("GridDrawer<3, NUM, D>::execute() "+Util::itoa(size_t));
+# ifdef PERFORM_TIMING
+    ScopedTimer timer("GridDrawer<3, NUM, "+Util::itoa(D)+">::execute() "+Util::itoa(size_t));
+# endif
 
   for (unsigned t = 0; t < size_t; t++) {
     drawPlane (t);
@@ -70,7 +77,9 @@ void GridDrawer<3, NUM, D>::execute() {
 template<typename NUM, unsigned D>
 void GridDrawer<3, NUM, D>::drawPlane(unsigned t) {
   unsigned size_u = x_scr_[0].size()-1;
-//  ScopedTimer timer("GridDrawer<3, NUM, D>::drawPlane(" + Util::itoa(t)+ ") "+Util::itoa(size_u));
+# ifdef PERFORM_TIMING
+    ScopedTimer timer("GridDrawer<3, NUM, "+Util::itoa(D)+">::drawPlane(" + Util::itoa(t)+ ") "+Util::itoa(size_u));
+# endif
   for (unsigned u = 0; u < size_u; u++)
     drawStrip (t, u);
 }
@@ -82,35 +91,56 @@ void GridDrawer<3, NUM, D>::drawStrip(unsigned t, unsigned u) {
     drawCube (t, u, v);
 }
 
-static VecMath::Vector<3> V[8];
-
 template<typename NUM, unsigned D>
 inline void GridDrawer<3, NUM, D>::drawCube (unsigned t, unsigned u, unsigned v) {
-  /*
-  V[0] = x_scr_[t][u][v];     V[1] = x_scr_[t][u][v+1];
-  V[2] = x_scr_[t][u+1][v];   V[3] = x_scr_[t][u+1][v+1];
-  V[4] = x_scr_[t+1][u][v];   V[5] = x_scr_[t+1][u][v+1];
-  V[6] = x_scr_[t+1][u+1][v]; V[7] = x_scr_[t+1][u+1][v+1];
-
-  view_->drawCube(x_, t, u, v,
-                  V[0], V[1], V[2], V[3], V[4], V[5], V[6], V[7]);
-*/
   view_->drawCube(x_, t, u, v,
                   x_scr_[t][u][v], x_scr_[t][u][v+1], x_scr_[t][u+1][v], x_scr_[t][u+1][v+1],
                   x_scr_[t+1][u][v], x_scr_[t+1][u][v+1], x_scr_[t+1][u+1][v], x_scr_[t+1][u+1][v+1]);
 
 }
 
+
 template<typename NUM, unsigned D>
-GridDrawer<1, NUM, D>::GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 1 > &x_scr,
+GridDrawer<2, NUM, D>::GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, 2 > &x,
+                                  const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 2 > &x_scr,
                                   UI::View *view):
-  _x_scr(x_scr), _view(view) { }
+  x_(x), x_scr_(x_scr), view_(view) { }
+
+template<typename NUM, unsigned D>
+void GridDrawer<2, NUM, D>::execute() {
+# ifdef PERFORM_TIMING
+    ScopedTimer timer("GridDrawer<2, NUM, "+Util::itoa(D)+">::execute() "+Util::itoa(size_t));
+# endif
+  for (unsigned t = 0; t < x_scr_.size()-1; ++t) {
+    drawStrip(t);
+  }
+
+}
+
+template<typename NUM, unsigned D>
+void GridDrawer<2, NUM, D>::drawStrip(unsigned t) {
+  for (unsigned u = 0; u < x_scr_[0].size()-1; ++u) {
+    view_->drawQuadrangle(x_[t][u], x_[t+1][u], x_[t+1][u+1], x_[t][u+1],
+                          x_scr_[t][u], x_scr_[t+1][u], x_scr_[t+1][u+1], x_scr_[t][u+1]);
+   }
+}
+
+
+template<typename NUM, unsigned D>
+GridDrawer<1, NUM, D>::GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, 1 > &x,
+                                  const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 1 > &x_scr,
+                                  UI::View *view):
+  x_(x), x_scr_(x_scr), view_(view) { }
 
 template<typename NUM, unsigned D>
 void GridDrawer<1, NUM, D>::execute() {
-  std::cerr << "GridDrawer<1>::execute()\n";
-  for (unsigned i = 0; i < _x_scr.size(); ++i) {
-
+# ifdef PERFORM_TIMING
+    ScopedTimer timer("GridDrawer<1, NUM, "+Util::itoa(D)+">::execute() "+Util::itoa(size_t));
+# endif
+  for (unsigned i = 0; i < x_scr_.size(); ++i) {
+    view_->drawLine(
+      x_[i], x_[i+1],
+      x_scr_[i], x_scr_[i+1]);
   }
 
 }

@@ -116,6 +116,9 @@ class Test_Surface: public QObject {
 
     private:
 
+      template <class SurfaceType, unsigned num_parameters>
+      void performSurfaceTest(const std::string &fname);
+
       void testFunction(Surface &f);
       void testDynamicallyCreatedFunction(const std::string &fname);
 
