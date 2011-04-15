@@ -45,6 +45,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <QtTest/QtTest>
 
+#include <tr1/functional>
+
 using QTest::qExec;
 
 class TestRunner {
@@ -56,6 +58,10 @@ class TestRunner {
     void run(QObject *test) {
       if (qExec(test)) failedTestSuites_.push_back(typeid(*test).name());
       executedTestSuites_++;
+    }
+
+    void runConcurrently(QObject *test) {
+//      QFuture<void> future = QtConcurrent::run(std::tr1::bind(&TestRunner::run, test));
     }
 
     void printSummary() const {

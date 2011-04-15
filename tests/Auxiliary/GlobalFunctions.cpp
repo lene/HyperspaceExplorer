@@ -57,6 +57,11 @@ void test(bool condition, const std::string& message) {
     message.c_str());
 }
 
+void fail(const std::string& message) {
+  test(false, message);
+}
+
+
 void testEqual(double checked, double precondition) {
   test(
     checked == precondition,

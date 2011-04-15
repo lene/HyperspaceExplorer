@@ -37,6 +37,8 @@ namespace UnitTests {
   void test(bool condition, const QString &message);
   void test(bool condition, const std::string &message);
 
+  void fail(const std::string &message);
+
   void testEqual(double checked, double precondition);
   void testEqual(const std::string &checked, const std::string &precondition);
   template <unsigned D, typename NUM>

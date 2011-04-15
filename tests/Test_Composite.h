@@ -1,7 +1,7 @@
 /*
-    <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) <year>  <name of author>
-
+ * Hyperspace Explorer - visualizing higher-dimensional geometry
+ * Copyright (C) 2011  Lene Preuss <lene.preuss@gmail.com>
+ *
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -32,10 +32,15 @@ class Test_Composite : public QObject {
   private slots:
 
     void initTestCase();
-    void cleanupTestCase();
+    void init();
 
     void createSimpleComposite();
     void testSimpleCompositeComponents();
+    void meetsFormalRequirements();
+    void getNumParameters();
+
+    void rotateAboutAllAxes();
+    void rotated360DegreesIsIdentical();
 
   private:
 

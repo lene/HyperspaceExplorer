@@ -1,6 +1,6 @@
 /*
  * Hyperspace Explorer - visualizing higher-dimensional geometry
- * Copyright (C) 2010  Lene Preuss <lene.preuss@gmail.com>
+ * Copyright (C) 2011  Lene Preuss <lene.preuss@gmail.com>
  *
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

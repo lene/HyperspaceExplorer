@@ -66,7 +66,7 @@ Composite::~Composite() { }
 void Composite::Transform(const VecMath::Rotation< 4 >& R, const VecMath::Vector< 4 >& T) {
   for (Impl::list_type::iterator i = pImpl_->sub_objects_.begin();
        i != pImpl_->sub_objects_.end(); ++i) {
-    i->component_->Transform(R, T);
+    i->component_->Transform(i->rotation_+R, i->translation_+T);
   }
 }
 
@@ -102,10 +102,7 @@ VecMath::Vector< 4 >& Composite::operator()(double , double , double ) {
   throw NotYetImplementedException("Composite::operator()");
 }
 
-unsigned int Composite::getDefinitionSpaceDimensions() {
-  throw NotYetImplementedException("Composite::getDefinitionSpaceDimensions()");
-  return 0;
-}
+unsigned int Composite::getDefinitionSpaceDimensions() { return 0; }
 
 void Composite::for_each_projected(Displayable::function_on_projected_vertex ) {
   throw NotYetImplementedException("Composite::getDefinitionSpaceDimensions()");
