@@ -281,10 +281,6 @@ void Test_Surface::t_tanz() {
 }
 
 
-template<typename T> T random_number() {
-  return (T)qrand()/(T)RAND_MAX;
-}
-
 template <class SurfaceType, unsigned num_parameters>
 void Test_Surface::performSurfaceTest(const std::string &fname) {
   SurfaceType f(-1., 1., 0.5, -1., 1., 0.5);

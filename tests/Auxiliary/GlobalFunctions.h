@@ -21,8 +21,10 @@
 #ifndef GLOBALFUNCTIONS_H
 #define GLOBALFUNCTIONS_H
 
-#include <bits/stringfwd.h>
 #include "GridDrawer.impl.h"
+#include <QtGlobal>
+#include <bits/stringfwd.h>
+
 
 class QString;
 
@@ -68,6 +70,9 @@ namespace UnitTests {
 
   void checkVertexDrawn(const VecMath::Vector<3> &v);
 
+  template<typename T> T random_number() {
+    return (T)qrand()/(T)RAND_MAX;
+  }
 
   static const double EPSILON = 1e-8;
 

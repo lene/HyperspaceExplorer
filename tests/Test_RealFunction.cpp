@@ -42,10 +42,6 @@ using std::cerr;
 using std::endl;
 using std::string;
 
-template<typename T> T random_number() {
-  return (T)qrand()/(T)RAND_MAX;
-}
-
 class Test_RealFunction::RealFunctionTestImplementation: public RealFunction {
 
   public:

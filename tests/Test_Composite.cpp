@@ -56,6 +56,11 @@ void Test_Composite::getNumParameters() {
 
 void Test_Composite::rotateAboutAllAxes() {
   simple_composite_->Transform(Rotation<4>(90., 0., 0., 0., 0., 90.), Vector<4>());
+  try {
+    simple_composite_->for_each_vertex_transformed(testVerticesNotEqual);
+  } catch (const NotYetImplementedException &e) {
+    QSKIP(e.what(), SkipSingle);
+  }
   fail("method to compare vertices to rotated vertices (must differ from each other) not yet implemented.");
 }
 

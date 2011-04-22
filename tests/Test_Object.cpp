@@ -40,30 +40,6 @@ using std::cerr;
 using std::endl;
 using std::string;
 
-/// Stores a pointer to the view used by Test_Object for global functions used by Function::for_each
-MockView *globalView_2 = NULL;
-
-void checkVertexPresent_2(const VecMath::Vector<4> &v) {
-  test(globalView_2->isVertexPresent(v), v.toString()+" present");
-}
-
-void checkVertexDrawn_2(const VecMath::Vector<3> &v) {
-  test(globalView_2->isVertexDrawn(v), v.toString()+" drawn");
-}
-
-void checkVerticesEqual_2(const VecMath::Vector<4> &v1, const VecMath::Vector<4> &v2) {
-  testEqual(v1, v2);
-}
-
-
-void checkVerticesNotEqual_2(const VecMath::Vector<4> &v1, const VecMath::Vector<4> &v2) {
-  testNotEqual(v1, v2);
-}
-
-template<typename T> T random_number() {
-  return (T)qrand()/(T)RAND_MAX;
-}
-
 class Test_Object::ObjectTestImplementation: public Object {
 
   public:
@@ -122,7 +98,7 @@ void Test_Object::rotateAboutAllAxes() {
 
 //    testGreaterEqual(function_->transformed_vertices().size(), GRID_SIZE);
   try {
-    function_->for_each_vertex_transformed(checkVerticesNotEqual_2);
+    function_->for_each_vertex_transformed(testVerticesNotEqual);
   } catch (const NotYetImplementedException &e) {
     QSKIP(e.what(), SkipSingle);
   }
@@ -132,7 +108,7 @@ void Test_Object::rotated360DegreesIsIdentical() {
   function_->Transform(Rotation<4>(360., 360., 360., 360., 360., 360.), Vector<4>());
 
   try {
-    function_->for_each_vertex_transformed(checkVerticesEqual_2);
+    function_->for_each_vertex_transformed(testVerticesEqual);
   } catch (const NotYetImplementedException &e) {
     QSKIP(e.what(), SkipSingle);
   }
@@ -201,10 +177,10 @@ void Test_Object::draw() {
 
 //    testGreaterEqual(view_->numVerticesDrawn(), (GRID_SIZE+1)*(GRID_SIZE+1)*(GRID_SIZE+1));
 
-    globalView_2 = view_;
+    setGlobalView(view_);
 
-    function_->for_each_vertex(checkVertexPresent_2);
-    function_->for_each_projected(checkVertexDrawn_2);
+    function_->for_each_vertex(checkVertexPresent);
+    function_->for_each_projected(checkVertexDrawn);
 }
 
 void Test_Object::tesseract() {
@@ -275,8 +251,8 @@ void testReinitRuns(Object * f) {
 }
 
 void Test_Object::testAllVerticesDrawn(Object *f) {
-  globalView_2 = view_;
-  f->for_each_vertex(checkVertexPresent_2);
+  setGlobalView(view_);
+  f->for_each_vertex(checkVertexPresent);
 }
 
 void Test_Object::testDynamicallyCreatedFunction(const std::string& fname) {
