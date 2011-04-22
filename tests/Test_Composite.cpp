@@ -61,12 +61,15 @@ void Test_Composite::rotateAboutAllAxes() {
   } catch (const NotYetImplementedException &e) {
     QSKIP(e.what(), SkipSingle);
   }
-  fail("method to compare vertices to rotated vertices (must differ from each other) not yet implemented.");
 }
 
 void Test_Composite::rotated360DegreesIsIdentical() {
   simple_composite_->Transform(Rotation<4>(360., 360., 360., 360., 360., 360.), Vector<4>());
-  fail("method to compare vertices to rotated vertices (must be equal) not yet implemented.");
+  try {
+    simple_composite_->for_each_vertex_transformed(testVerticesEqual);
+  } catch (const NotYetImplementedException &e) {
+    QSKIP(e.what(), SkipSingle);
+  }
 }
 
 

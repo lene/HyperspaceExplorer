@@ -39,8 +39,11 @@ public:
   virtual void Project(double ScrW, double CamW, bool DepthCue4D);
   virtual void Draw(UI::View* view);
 
-  virtual void for_each_projected(Displayable::function_on_projected_vertex apply);
   virtual void for_each_vertex(Displayable::function_on_fourspace_vertex apply);
+  virtual void for_each_vertex_transformed(function_on_fourspace_and_transformed_vertex apply);
+  virtual void for_each_projected(Displayable::function_on_projected_vertex apply);
+  virtual void for_each_vertex_transformed_projected(function_on_fourspace_transformed_and_projected_vertex apply);
+
   virtual unsigned int getDefinitionSpaceDimensions();
   virtual void calibrateColors() const;
   virtual void ReInit(double _tmin, double _tmax, double _dt,

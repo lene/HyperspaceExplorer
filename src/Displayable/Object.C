@@ -149,8 +149,22 @@ void Object::for_each_vertex(Displayable::function_on_fourspace_vertex apply) {
   std::for_each(X.begin(), X.end(), apply);
 }
 
+void Object::for_each_vertex_transformed(function_on_fourspace_and_transformed_vertex apply) {
+  size_t max_element = std::min(X.size(), Xtrans.size());
+  for (size_t i = 0; i < max_element; ++i) {
+      apply(X[i], Xtrans[i]);
+  }
+}
+
 void Object::for_each_projected(Displayable::function_on_projected_vertex apply) {
   std::for_each(Xscr.begin(), Xscr.end(), apply);
+}
+
+void Object::for_each_vertex_transformed_projected(function_on_fourspace_transformed_and_projected_vertex apply) {
+  size_t max_element = std::min(std::min(X.size(), Xtrans.size()), Xscr.size());
+  for (size_t i = 0; i < max_element; ++i) {
+      apply(X[i], Xtrans[i], Xscr[i]);
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////

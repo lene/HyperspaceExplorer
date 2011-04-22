@@ -28,6 +28,7 @@
 #include <list>
 #include <memory>
 #include <algorithm>
+#include <vector>
 
 using std::list;
 using std::shared_ptr;
@@ -104,14 +105,29 @@ VecMath::Vector< 4 >& Composite::operator()(double , double , double ) {
 
 unsigned int Composite::getDefinitionSpaceDimensions() { return 0; }
 
-void Composite::for_each_projected(Displayable::function_on_projected_vertex ) {
-  throw NotYetImplementedException("Composite::getDefinitionSpaceDimensions()");
-
+void Composite::for_each_vertex(Displayable::function_on_fourspace_vertex apply) {
+  for (Impl::list_type::iterator it = pImpl_->sub_objects_.begin();
+          it != pImpl_->sub_objects_.end(); ++it) {
+      it->component_->for_each_vertex(apply);
+  }
 }
 
-void Composite::for_each_vertex(Displayable::function_on_fourspace_vertex ) {
-  throw NotYetImplementedException("Composite::for_each_vertex()");
+void Composite::for_each_vertex_transformed(Displayable::function_on_fourspace_and_transformed_vertex apply) {
+  std::cerr << "Composite::for_each_vertex_transformed\n";
+  for (Impl::list_type::iterator it = pImpl_->sub_objects_.begin();
+          it != pImpl_->sub_objects_.end(); ++it) {
+      std::cerr << it->component_->getFunctionName() << std::endl;
+      it->component_->for_each_vertex_transformed(apply);
+  }
+  std::cerr << "...done\n";
+}
 
+void Composite::for_each_projected(Displayable::function_on_projected_vertex ) {
+  throw NotYetImplementedException("Composite::for_each_projected()");
+}
+
+void Composite::for_each_vertex_transformed_projected(Displayable::function_on_fourspace_transformed_and_projected_vertex apply) {
+  throw NotYetImplementedException("Composite::for_each_vertex_transformed_projected()");
 }
 
 void Composite::Initialize( )

@@ -88,11 +88,15 @@ void Displayable::SetParameters(const ParameterMap& ) {
 ParameterMap Displayable::getParameters() { return pImpl_->_parameters; }
 
 void Displayable::for_each_vertex_transformed(Displayable::function_on_fourspace_and_transformed_vertex) {
-  throw NotYetImplementedException("for_each(function_on_fourspace_and_transformed_vertex)");
+  throw NotYetImplementedException(
+          "Displayable::for_each_vertex_transformed(function_on_fourspace_and_transformed_vertex)"
+        );
 }
 
 void Displayable::for_each_vertex_transformed_projected(Displayable::function_on_fourspace_transformed_and_projected_vertex) {
-  throw NotYetImplementedException("for_each(function_on_fourspace_transformed_and_projected_vertex)");
+  throw NotYetImplementedException(
+          "Displayable::for_each_vertex_transformed_projected(function_on_fourspace_transformed_and_projected_vertex)"
+        );
 }
 
 /** \todo uses hardcoded and experimentally found value for memory per cell
