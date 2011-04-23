@@ -22,6 +22,23 @@
 #define COMPOSITE_H
 #include "Displayable.h"
 
+#include <memory>
+
+struct CompositeComponent {
+  CompositeComponent(
+    std::shared_ptr< Displayable > component,
+    const VecMath::Vector< 4 > &translation = VecMath::makeVector(0., 0., 0., 0.),
+    const VecMath::Rotation< 4 > &rotation = VecMath::makeRotation(0., 0., 0., 0., 0., 0.),
+    const VecMath::Vector< 4 > &scale = VecMath::makeVector(1., 1., 1., 1.)
+  ):
+    component_(component), translation_(translation), rotation_(rotation), scale_(scale) { }
+  
+  std::shared_ptr< Displayable > component_;
+  VecMath::Vector< 4 > translation_;
+  VecMath::Rotation< 4 > rotation_;
+  VecMath::Vector< 4 > scale_;
+};
+
 class Composite: public Displayable {
 
 public:
@@ -33,6 +50,7 @@ public:
   void addComponent(std::shared_ptr<Displayable> component,
                     const VecMath::Vector< 4 >& translation,
                     const VecMath::Rotation< 4 >& rotation);
+  const CompositeComponent &getComponent(unsigned i) const;
   unsigned getNumComponents();
 
   virtual void Transform(const VecMath::Rotation< 4 >& R, const VecMath::Vector< 4 >& T);
@@ -49,6 +67,7 @@ public:
   virtual void ReInit(double _tmin, double _tmax, double _dt,
                       double _umin, double _umax, double _du,
                       double _vmin, double _vmax, double _dv);
+
 
 protected:
 

@@ -25,6 +25,7 @@
 
 #include <QtTest/QtTest>
 #include <QString>
+#include <iostream>
 
 using std::string;
 

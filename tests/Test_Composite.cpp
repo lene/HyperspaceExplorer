@@ -59,14 +59,25 @@ void Test_Composite::rotateAboutAllAxes() {
   try {
     simple_composite_->for_each_vertex_transformed(testVerticesNotEqual);
   } catch (const NotYetImplementedException &e) {
-    QSKIP(e.what(), SkipSingle);
+    fail(e.what());
   }
+}
+
+Vector<4> offset;
+void testVerticesEqualPlusOffset(const Vector<4> &v1, const Vector<4> &v2) {
+    testVerticesEqual(v1+offset, v2);
 }
 
 void Test_Composite::rotated360DegreesIsIdentical() {
   simple_composite_->Transform(Rotation<4>(360., 360., 360., 360., 360., 360.), Vector<4>());
   try {
-    simple_composite_->for_each_vertex_transformed(testVerticesEqual);
+      for (unsigned i = 0; i < simple_composite_->getNumComponents(); ++i) {
+          CompositeComponent sub_component = simple_composite_->getComponent(i);
+          std::shared_ptr<Displayable> component_object = sub_component.component_;
+          offset = sub_component.translation_;
+          component_object->for_each_vertex_transformed(testVerticesEqualPlusOffset);
+      }
+//    simple_composite_->for_each_vertex_transformed(testVerticesEqual);
   } catch (const NotYetImplementedException &e) {
     QSKIP(e.what(), SkipSingle);
   }

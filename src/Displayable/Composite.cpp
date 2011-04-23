@@ -30,7 +30,7 @@
 #include <algorithm>
 #include <vector>
 
-using std::list;
+using std::vector;
 using std::shared_ptr;
 
 using VecMath::Vector;
@@ -38,23 +38,9 @@ using VecMath::makeVector;
 using VecMath::Rotation;
 using VecMath::makeRotation;
 
-struct CompositeComponent {
-  CompositeComponent(
-    shared_ptr< Displayable > component,
-    Vector< 4 > translation = makeVector(0., 0., 0., 0.),
-    const VecMath::Rotation< 4 > rotation = makeRotation(0., 0., 0., 0., 0., 0.),
-    const VecMath::Vector< 4 > scale = makeVector(1., 1., 1., 1.)
-  ):
-    component_(component), translation_(translation), rotation_(rotation), scale_(scale) { }
-
-  shared_ptr< Displayable > component_;
-  const VecMath::Vector< 4 > translation_;
-  const VecMath::Rotation< 4 > rotation_;
-  const VecMath::Vector< 4 > scale_;
-};
 
 struct Composite::Impl {
-  typedef list< CompositeComponent > list_type;
+  typedef vector< CompositeComponent > list_type;
   list_type sub_objects_;
 };
 
@@ -91,6 +77,10 @@ void Composite::addComponent(std::shared_ptr<Displayable> component,
   pImpl_->sub_objects_.push_back(CompositeComponent(component, T, R));
 }
 
+const CompositeComponent& Composite::getComponent(unsigned i) const {
+    return pImpl_->sub_objects_[i];
+}
+
 unsigned int Composite::getNumComponents() {
   return pImpl_->sub_objects_.size();
 }
@@ -113,35 +103,33 @@ void Composite::for_each_vertex(Displayable::function_on_fourspace_vertex apply)
 }
 
 void Composite::for_each_vertex_transformed(Displayable::function_on_fourspace_and_transformed_vertex apply) {
-  std::cerr << "Composite::for_each_vertex_transformed\n";
   for (Impl::list_type::iterator it = pImpl_->sub_objects_.begin();
           it != pImpl_->sub_objects_.end(); ++it) {
-      std::cerr << it->component_->getFunctionName() << std::endl;
       it->component_->for_each_vertex_transformed(apply);
   }
-  std::cerr << "...done\n";
 }
 
-void Composite::for_each_projected(Displayable::function_on_projected_vertex ) {
-  throw NotYetImplementedException("Composite::for_each_projected()");
+void Composite::for_each_projected(Displayable::function_on_projected_vertex apply) {
+  for (Impl::list_type::iterator it = pImpl_->sub_objects_.begin();
+          it != pImpl_->sub_objects_.end(); ++it) {
+      it->component_->for_each_projected(apply);
+  }
 }
 
 void Composite::for_each_vertex_transformed_projected(Displayable::function_on_fourspace_transformed_and_projected_vertex apply) {
-  throw NotYetImplementedException("Composite::for_each_vertex_transformed_projected()");
+  for (Impl::list_type::iterator it = pImpl_->sub_objects_.begin();
+          it != pImpl_->sub_objects_.end(); ++it) {
+      it->component_->for_each_vertex_transformed_projected(apply);
+  }
 }
 
-void Composite::Initialize( )
-{
+void Composite::Initialize( ) {
   throw NotYetImplementedException("Composite::Initialize()");
-
 }
 
 void Composite::ReInit(double _tmin, double _tmax, double _dt,
                        double _umin, double _umax, double _du,
                        double _vmin, double _vmax, double _dv) {
   throw NotYetImplementedException("Composite::ReInit()");
-
 }
-
-
 
