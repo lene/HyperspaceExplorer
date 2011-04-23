@@ -21,6 +21,8 @@
 #ifndef TEST_COMPOSITE_H
 #define TEST_COMPOSITE_H
 
+#include "MockView.h"
+
 #include <QtTest/QtTest>
 
 class Composite;
@@ -29,22 +31,26 @@ class Test_Composite : public QObject {
 
   Q_OBJECT
 
-  private slots:
+private slots:
 
-    void initTestCase();
-    void init();
+  void initTestCase();
+  void init();
 
-    void createSimpleComposite();
-    void testSimpleCompositeComponents();
-    void meetsFormalRequirements();
-    void getNumParameters();
+  void createSimpleComposite();
+  void testSimpleCompositeComponents();
+  void meetsFormalRequirements();
+  void getNumParameters();
 
-    void rotateAboutAllAxes();
-    void rotated360DegreesIsIdentical();
+  void rotateAboutAllAxes();
+  void rotated360DegreesIsIdentical();
 
-  private:
+  void project();
+  void draw();
 
-    Composite *simple_composite_;
+private:
+
+  Composite *simple_composite_;
+  MockView *view_;
 
 };
 

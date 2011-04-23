@@ -24,6 +24,8 @@
 #include <SimpleComposite.h>
 #include "ColorManager.h"
 
+#include "Rotation.impl.h"
+
 using namespace UnitTests;
 
 using VecMath::Rotation;
@@ -35,6 +37,7 @@ void Test_Composite::initTestCase() {
 
 void Test_Composite::init() {
   simple_composite_ = new SimpleComposite;
+  view_ = new MockView;
 }
 
 void Test_Composite::createSimpleComposite() {
@@ -71,16 +74,53 @@ void testVerticesEqualPlusOffset(const Vector<4> &v1, const Vector<4> &v2) {
 void Test_Composite::rotated360DegreesIsIdentical() {
   simple_composite_->Transform(Rotation<4>(360., 360., 360., 360., 360., 360.), Vector<4>());
   try {
-      for (unsigned i = 0; i < simple_composite_->getNumComponents(); ++i) {
-          CompositeComponent sub_component = simple_composite_->getComponent(i);
-          std::shared_ptr<Displayable> component_object = sub_component.component_;
-          offset = sub_component.translation_;
-          component_object->for_each_vertex_transformed(testVerticesEqualPlusOffset);
-      }
-//    simple_composite_->for_each_vertex_transformed(testVerticesEqual);
+    for (unsigned i = 0; i < simple_composite_->getNumComponents(); ++i) {
+      CompositeComponent sub_component = simple_composite_->getComponent(i);
+      std::shared_ptr<Displayable> component_object = sub_component.component_;
+      offset = sub_component.translation_;
+      component_object->for_each_vertex_transformed(testVerticesEqualPlusOffset);
+    }
   } catch (const NotYetImplementedException &e) {
     QSKIP(e.what(), SkipSingle);
   }
 }
 
+void testProjectedPlusOffset(const Vector<4> &original, const Vector<4> &, const Vector<3> &projected) {
+    static Vector<4> dummy;
+    checkProjectedVertex(original+offset, dummy, projected);
+}
+
+void Test_Composite::project() {
+
+  simple_composite_->Transform(Rotation<4>(), Vector<4>());
+  simple_composite_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
+
+  setProjectionParameters(PROJECTION_CAMERA_W, PROJECTION_SCREEN_W);
+  try {
+    for (unsigned i = 0; i < simple_composite_->getNumComponents(); ++i) {
+      CompositeComponent sub_component = simple_composite_->getComponent(i);
+      std::shared_ptr<Displayable> component_object = sub_component.component_;
+      offset = sub_component.translation_;
+      component_object->for_each_vertex_transformed_projected(testProjectedPlusOffset);
+    }
+  } catch (const NotYetImplementedException &e) {
+    QSKIP(e.what(), SkipSingle);
+  }
+
+}
+
+void Test_Composite::draw() {
+
+    simple_composite_->Transform(Rotation<4>(), Vector<4>());
+    simple_composite_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
+
+    simple_composite_->Draw(view_);
+    view_->printVertices();
+    testGreaterEqual(view_->numVerticesDrawn(), 32);
+
+    setGlobalView(view_);
+
+    simple_composite_->for_each_vertex(checkVertexPresent);
+    simple_composite_->for_each_projected(checkVertexDrawn);
+}
 

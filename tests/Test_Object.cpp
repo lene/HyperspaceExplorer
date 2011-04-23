@@ -73,19 +73,19 @@ void Test_Object::initTestCase() {
 
 void Test_Object::init() {
   view_ = new MockView;
-  function_ = new ObjectTestImplementation;
+  object_ = new ObjectTestImplementation;
 }
 
 void Test_Object::getDefinitionSpaceDimensions() {
-  testEqual(function_->getDefinitionSpaceDimensions(), 0);
+  testEqual(object_->getDefinitionSpaceDimensions(), 0);
 }
 
 void Test_Object::getNumParameters() {
-  testEqual(function_->getNumParameters(), NUM_PARAMETERS);
+  testEqual(object_->getNumParameters(), NUM_PARAMETERS);
 }
 
 void Test_Object::meetsFormalRequirements() {
-    testEqual(function_->getFunctionName(), Test_Object::TEST_FUNCTION_NAME.toStdString());
+    testEqual(object_->getFunctionName(), Test_Object::TEST_FUNCTION_NAME.toStdString());
 }
 
 
@@ -94,51 +94,34 @@ void Test_Object::ReInit() { }
 
 void Test_Object::rotateAboutAllAxes() {
 
-  function_->Transform(Rotation<4>(90., 0., 0., 0., 0., 90.), Vector<4>());
+  object_->Transform(Rotation<4>(90., 0., 0., 0., 0., 90.), Vector<4>());
 
 //    testGreaterEqual(function_->transformed_vertices().size(), GRID_SIZE);
   try {
-    function_->for_each_vertex_transformed(testVerticesNotEqual);
+    object_->for_each_vertex_transformed(testVerticesNotEqual);
   } catch (const NotYetImplementedException &e) {
     QSKIP(e.what(), SkipSingle);
   }
 }
 
 void Test_Object::rotated360DegreesIsIdentical() {
-  function_->Transform(Rotation<4>(360., 360., 360., 360., 360., 360.), Vector<4>());
+  object_->Transform(Rotation<4>(360., 360., 360., 360., 360., 360.), Vector<4>());
 
   try {
-    function_->for_each_vertex_transformed(testVerticesEqual);
+    object_->for_each_vertex_transformed(testVerticesEqual);
   } catch (const NotYetImplementedException &e) {
     QSKIP(e.what(), SkipSingle);
   }
 }
 
-// intercept theorem gives this factor (constant because f is constant)
-const double PROJECTION_FACTOR =
-(Test_Object::PROJECTION_CAMERA_W-Test_Object::PROJECTION_SCREEN_W) /
-(Test_Object::PROJECTION_CAMERA_W-Test_Object::CONSTANT_FUNCTION_VALUE);
-
-void checkProjectProjects_2(const VecMath::Vector<4> &x,
-                          const VecMath::Vector<4> &,
-                          const VecMath::Vector<3> &xscr) {
-  cerr << xscr << " == " << x*PROJECTION_FACTOR << "?" << endl;
-  for(unsigned m = 0; m < 3; ++m) {
-    testEqual(xscr[m], x[m]*PROJECTION_FACTOR);
-  }
-}
-
 void Test_Object::project() {
 
-    function_->Transform(Rotation<4>(), Vector<4>());
-    function_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
+  object_->Transform(Rotation<4>(), Vector<4>());
+  object_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
 
-//    testGreaterEqual(function_->projected_vertices().size(), GRID_SIZE);
-
-  QSKIP("not solved yet why this fails.", SkipSingle);
-
+  setProjectionParameters(PROJECTION_CAMERA_W, PROJECTION_SCREEN_W);
   try {
-    function_->for_each_vertex_transformed_projected(checkProjectProjects_2);
+    object_->for_each_vertex_transformed_projected(checkProjectedVertex);
   } catch (const NotYetImplementedException &e) {
     QSKIP(e.what(), SkipSingle);
   }
@@ -153,11 +136,11 @@ void checkGetColorRuns_2(const VecMath::Vector<4> &x,
 
 void Test_Object::projectWithDepthCue() {
 
-  function_->Transform(Rotation<4>(), Vector<4>());
-  function_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, true);
+  object_->Transform(Rotation<4>(), Vector<4>());
+  object_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, true);
 
   try {
-    function_->for_each_vertex_transformed_projected(checkGetColorRuns_2);
+    object_->for_each_vertex_transformed_projected(checkGetColorRuns_2);
   } catch (const NotYetImplementedException &e) {
     QSKIP(e.what(), SkipSingle);
   }
@@ -170,17 +153,17 @@ void Test_Object::projectWithDepthCue() {
 
 void Test_Object::draw() {
 
-    function_->Transform(Rotation<4>(), Vector<4>());
-    function_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
+    object_->Transform(Rotation<4>(), Vector<4>());
+    object_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
 
-    function_->Draw(view_);
+    object_->Draw(view_);
 
 //    testGreaterEqual(view_->numVerticesDrawn(), (GRID_SIZE+1)*(GRID_SIZE+1)*(GRID_SIZE+1));
 
     setGlobalView(view_);
 
-    function_->for_each_vertex(checkVertexPresent);
-    function_->for_each_projected(checkVertexDrawn);
+    object_->for_each_vertex(checkVertexPresent);
+    object_->for_each_projected(checkVertexDrawn);
 }
 
 void Test_Object::tesseract() {

@@ -145,6 +145,23 @@ void checkVertexPresent(const VecMath::Vector<4> &v) {
   test(globalView->isVertexPresent(v), v.toString()+" present");
 }
 
+double projection_camera_w = 0.;
+double projection_screen_w = 0.;
+void setProjectionParameters(double camera_w, double screen_w) {
+  projection_camera_w = camera_w;
+  projection_screen_w = screen_w;
+}
+
+void checkProjectedVertex(const VecMath::Vector<4>& original,
+                          const VecMath::Vector<4> &,
+                          const VecMath::Vector<3>& projected) {
+  for(unsigned m = 0; m < 3; ++m) {
+    double projection_factor = (projection_camera_w-projection_screen_w)/(projection_camera_w-original[3]);
+    testEqual(projected[m], original[m]*projection_factor);
+  }
+
+}
+
 void checkVertexDrawn(const VecMath::Vector<3> &v) {
   test(globalView->isVertexDrawn(v), v.toString()+" drawn");
 }

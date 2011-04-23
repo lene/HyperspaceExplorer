@@ -30,55 +30,51 @@ class MockView;
 /// Unit tests for class Object and its implementations
 class Test_Object: public QObject {
 
-    Q_OBJECT
+  Q_OBJECT
 
+  class ObjectTestImplementation;
 
-    class ObjectTestImplementation;
+  static const unsigned NUM_PARAMETERS = 3;
 
-    static const unsigned NUM_PARAMETERS = 3;
+  const static QString TEST_FUNCTION_NAME;
 
-    const static QString TEST_FUNCTION_NAME;
+public:
+  static const double CONSTANT_FUNCTION_VALUE = 1.;
 
-  public:
-    static const double CONSTANT_FUNCTION_VALUE = 1.;
+private slots:
 
-    static const double PROJECTION_SCREEN_W = 2.;
-    static const double PROJECTION_CAMERA_W = 4.;
+  void initTestCase();
+  void init();
 
-    private slots:
+  void getDefinitionSpaceDimensions();
+  void getNumParameters();
+  void meetsFormalRequirements();
+  void ReInit();
 
-      void initTestCase();
-      void init();
+  void rotateAboutAllAxes();
+  void rotated360DegreesIsIdentical();
 
-        void getDefinitionSpaceDimensions();
-        void getNumParameters();
-        void meetsFormalRequirements();
-        void ReInit();
+  void project();
+  void projectWithDepthCue();
 
-        void rotateAboutAllAxes();
-        void rotated360DegreesIsIdentical();
+  void draw();
 
-        void project();
-        void projectWithDepthCue();
+  void tesseract();
+  void pentachoron();
+  void mengersponge();
+  void sierpinskigasket();
+  void altmengersponge();
 
-        void draw();
+private:
 
-        void tesseract();
-        void pentachoron();
-        void mengersponge();
-        void sierpinskigasket();
-        void altmengersponge();
+  void testFunction(Object *f);
+  void testDynamicallyCreatedFunction(const std::string& fname);
+  void testDrawDrawsAllVertices(Object * f);
+  void testAllVerticesDrawn(Object *f);
+  void testNonzeroRotationRuns(Object * f);
 
-    private:
-
-      void testFunction(Object *f);
-      void testDynamicallyCreatedFunction(const std::string& fname);
-      void testDrawDrawsAllVertices(Object * f);
-      void testAllVerticesDrawn(Object *f);
-      void testNonzeroRotationRuns(Object * f);
-
-      ObjectTestImplementation *function_;
-      MockView *view_;
+  ObjectTestImplementation *object_;
+  MockView *view_;
 };
 
 void testGetParametersRuns(Object * f);

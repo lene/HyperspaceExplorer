@@ -68,13 +68,21 @@ namespace UnitTests {
 
   void checkVertexPresent(const VecMath::Vector<4> &v);
 
+  void setProjectionParameters(double camera_w, double screen_w);
+  void checkProjectedVertex(const VecMath::Vector<4> &original, 
+                            const VecMath::Vector<4> &,
+                            const VecMath::Vector<3> &projected);
+  
   void checkVertexDrawn(const VecMath::Vector<3> &v);
 
   template<typename T> T random_number() {
     return (T)qrand()/(T)RAND_MAX;
   }
 
-  static const double EPSILON = 1e-8;
+  static const double EPSILON = 1e-8;   ///< precision to test for equality of floating point numbners
+
+  static const double PROJECTION_SCREEN_W = 2.;
+  static const double PROJECTION_CAMERA_W = 4.;
 
 }
 
