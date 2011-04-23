@@ -47,6 +47,9 @@ private slots:
   void project();
   void draw();
 
+  void ReInit();
+  void calibrateColors();
+
 private:
 
   Composite *simple_composite_;

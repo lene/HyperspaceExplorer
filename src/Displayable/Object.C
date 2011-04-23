@@ -18,6 +18,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 */
 
+#include <iostream>
+
 #include "Object.h"
 
 #include "Globals.h"
@@ -84,8 +86,8 @@ void Object::setX(const vec4vec1D &newX) {
 /** @param R Rotation
  *  @param T Translation
  */
-void Object::Transform (const VecMath::Rotation<4> &R,
-                        const VecMath::Vector<4> &T) {
+void Object::Transform(const VecMath::Rotation<4> &R,
+                       const VecMath::Vector<4> &T) {
     Matrix<4> Rot(R);
     Xtrans.resize(X.size());
     transform<vec4vec1D, 4>::xform(Rot, T, X, Xtrans);
@@ -97,18 +99,9 @@ void Object::Transform (const VecMath::Rotation<4> &R,
  *  @param depthcue4d wheter to use hyperfog/dc                               */
 void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
 
-    double ProjectionFactor;
-    double Wmax = 0, Wmin = 0;
-
     Xscr.resize(Xtrans.size());
-
     for (unsigned i = 0; i < Xtrans.size(); i++) {
-        if (depthcue4d) {
-            if (Xtrans[i][3] < Wmin) Wmin = Xtrans[i][3];
-            if (Xtrans[i][3] > Wmax) Wmax = Xtrans[i][3];
-        }
-
-        ProjectionFactor = (scr_w-cam_w)/(Xtrans[i][3]-cam_w);
+        double ProjectionFactor = (scr_w-cam_w)/(Xtrans[i][3]-cam_w);
 
         for (unsigned j = 0; j <= 2; j++) {
             Xscr[i][j] = ProjectionFactor*Xtrans[i][j];
@@ -117,6 +110,13 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
 
     if (!depthcue4d) return;
 
+    double Wmax = 0, Wmin = 0;
+    for (unsigned i = 0; i < Xtrans.size(); i++) {
+        if (depthcue4d) {
+            if (Xtrans[i][3] < Wmin) Wmin = Xtrans[i][3];
+            if (Xtrans[i][3] > Wmax) Wmax = Xtrans[i][3];
+        }
+    }
     //  apply hyperfog
     for (unsigned i = 0; i < X.size(); i++) {
         ColMgrMgr::Instance().depthCueColor(Wmax, Wmin, Xtrans[i][3], X[i]);

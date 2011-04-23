@@ -36,7 +36,7 @@ bool FunctionFactory::registerFunction(CreateFunctionCallback creator,
     std::string functionName = theFunction->getFunctionName();
 
     bool insertSuccessful = callbacks.insert(CallbackMap::value_type(functionName, creator)).second;
-    
+
     if (insertSuccessful) {
       DisplayableClass::findClass(parent_category).addDisplayable(functionName);
     }

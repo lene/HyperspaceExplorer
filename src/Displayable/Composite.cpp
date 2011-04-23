@@ -53,6 +53,7 @@ Composite::~Composite() { }
 void Composite::Transform(const VecMath::Rotation< 4 >& R, const VecMath::Vector< 4 >& T) {
   for (Impl::list_type::iterator i = pImpl_->sub_objects_.begin();
        i != pImpl_->sub_objects_.end(); ++i) {
+//      std::cerr << i->component_->getFunctionName() << "->Transform(): R = " << R<< "+" << i->rotation_ << ", T = " << T << "+" << i->translation_ << std::endl;
     i->component_->Transform(i->rotation_+R, i->translation_+T);
   }
 }
@@ -60,6 +61,7 @@ void Composite::Transform(const VecMath::Rotation< 4 >& R, const VecMath::Vector
 void Composite::Project(double ScrW, double CamW, bool DepthCue4D) {
   for (Impl::list_type::iterator i = pImpl_->sub_objects_.begin();
        i != pImpl_->sub_objects_.end(); ++i) {
+//      std::cerr << i->component_->getFunctionName() << "->Project(): scrW = " << ScrW<< ", camW = " << CamW << std::endl;
     i->component_->Project(ScrW, CamW, DepthCue4D);
   }
 }
@@ -86,7 +88,10 @@ unsigned int Composite::getNumComponents() {
 }
 
 void Composite::calibrateColors() const {
-  throw NotYetImplementedException("Composite::calibrateColors()");
+  for (Impl::list_type::iterator i = pImpl_->sub_objects_.begin();
+       i != pImpl_->sub_objects_.end(); ++i) {
+      i->component_->calibrateColors();
+  }
 }
 
 VecMath::Vector< 4 >& Composite::operator()(double , double , double ) {
@@ -130,6 +135,11 @@ void Composite::Initialize( ) {
 void Composite::ReInit(double _tmin, double _tmax, double _dt,
                        double _umin, double _umax, double _du,
                        double _vmin, double _vmax, double _dv) {
-  throw NotYetImplementedException("Composite::ReInit()");
+  for (Impl::list_type::iterator i = pImpl_->sub_objects_.begin();
+       i != pImpl_->sub_objects_.end(); ++i) {
+      i->component_->ReInit(_tmin, _tmax, _dt,
+                            _umin, _umax, _du,
+                            _vmin, _vmax, _dv);
+  }
 }
 

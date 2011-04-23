@@ -35,4 +35,9 @@ class SimpleComposite : public Composite {
 
 };
 
+namespace {
+    Displayable *createSimpleComposite() { return new SimpleComposite; }
+    const bool registeredSC = TheFunctionFactory::Instance().registerFunction(createSimpleComposite, "Object");
+}
+
 #endif // SIMPLECOMPOSITE_H

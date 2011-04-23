@@ -28,12 +28,12 @@
 SimpleComposite::SimpleComposite(): Composite() {
   addComponent(
     std::shared_ptr<Displayable> (new Hypercube),
-    VecMath::Vector<4>(-1, 0, 0, 0),
+    VecMath::Vector<4>(-1., 0., 0., 0.),
     VecMath::Rotation<4>()
   );
   addComponent(
     std::shared_ptr<Displayable> (new Hypercube),
-               VecMath::Vector<4>(1, 0, 0, 0),
+               VecMath::Vector<4>(1., 0., 0., 0.),
     VecMath::Rotation<4>()
   );
 }
