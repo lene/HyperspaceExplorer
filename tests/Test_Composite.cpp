@@ -115,8 +115,8 @@ void Test_Composite::draw() {
     simple_composite_->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
 
     simple_composite_->Draw(view_);
-    view_->printVertices();
-//    testGreaterEqual(view_->numVerticesDrawn(), 32);
+
+    testEqual(view_->numVerticesDrawn(), 24);
 
     setGlobalView(view_);
 
@@ -140,4 +140,8 @@ void Test_Composite::calibrateColors() {
       fail(e.what());
   }
   QSKIP("Implement me: Test_Composite::calibrateColors()", SkipSingle);
+}
+
+void Test_Composite::commitDrawIsDeferred() {
+  QSKIP("To do: ensure that commitDraw() is executed only from the toplevel Composite Draw() routine", SkipSingle);
 }

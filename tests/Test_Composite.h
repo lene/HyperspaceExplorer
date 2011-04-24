@@ -50,6 +50,8 @@ private slots:
   void ReInit();
   void calibrateColors();
 
+  void commitDrawIsDeferred();
+
 private:
 
   Composite *simple_composite_;

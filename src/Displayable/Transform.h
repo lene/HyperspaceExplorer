@@ -142,7 +142,7 @@ template <unsigned N> class copy_member_transform< VecMath::Vector<N>, N > {
     /** \param Xtrans The transformed vertex.
      */
     void operator() (VecMath::Vector<N> &Xtrans) {
-      Xtrans = (m_Rot*m_X)+m_T;
+      Xtrans = m_Rot*(m_X+m_T);
     }
 
   private:
