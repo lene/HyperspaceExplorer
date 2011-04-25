@@ -39,8 +39,10 @@ SimpleComposite::SimpleComposite(): Composite() {
 }
 
 std::string SimpleComposite::getFunctionName() const {
-  return "SimpleComposite";
+  return "Simple Composite";
 }
+
+#ifdef TEST_COMPOSITE_SCALING
 
 SimpleComposite2::SimpleComposite2(): Composite() {
   addComponent(
@@ -59,3 +61,5 @@ SimpleComposite2::SimpleComposite2(): Composite() {
 std::string SimpleComposite2::getFunctionName() const {
   return "SimpleComposite2";
 }
+
+#endif // TEST_COMPOSITE_SCALING

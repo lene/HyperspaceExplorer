@@ -76,9 +76,7 @@ SimpleTransformationPolicy<N, 1, NUM>::transform(
 
   for (unsigned i = 0; i < operand.size(); ++i) {
     VecMath::Matrix<N, NUM> matrix(rotation_);
-    VecMath::Vector<N, NUM> rotated = matrix*operand[i];
-    rotated.scale(scale_);
-    v[i] = rotated+translation_;
+    v[i] = matrix*(operand[i]+translation_).scale(scale_);
   }
 # if 0
   qDebug()

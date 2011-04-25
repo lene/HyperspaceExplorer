@@ -55,8 +55,7 @@ void Composite::Transform(const VecMath::Rotation< 4 >& R,
                           const VecMath::Vector< 4 >& scale) {
   for (Impl::list_type::iterator i = pImpl_->sub_objects_.begin();
        i != pImpl_->sub_objects_.end(); ++i) {
-      std::cerr << i->component_->getFunctionName() << "->Transform(): R = " << R<< "+" << i->rotation_ << ", T = " << T << "+" << i->translation_ << std::endl;
-    i->component_->Transform(i->rotation_+R, i->translation_+T, i->scale_*scale);
+    i->component_->Transform(i->rotation_+R, i->translation_+T, i->scale_.scale(scale));
   }
 }
 

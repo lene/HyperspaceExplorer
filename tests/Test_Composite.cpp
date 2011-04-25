@@ -50,7 +50,7 @@ void Test_Composite::testSimpleCompositeComponents() {
 
 void Test_Composite::meetsFormalRequirements() {
   testEqual(simple_composite_->getDefinitionSpaceDimensions(), 0);
-  testEqual(simple_composite_->getFunctionName(), "SimpleComposite");
+  testEqual(simple_composite_->getFunctionName(), "Simple Composite");
 }
 
 void Test_Composite::getNumParameters() {

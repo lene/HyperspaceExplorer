@@ -157,8 +157,8 @@ template <unsigned N> class copy_member_transform< VecMath::Vector<N>, N > {
     /** \param Xtrans The transformed vertex.
      */
     void operator() (VecMath::Vector<N> &Xtrans) {
-#warning "copy_member_transform::operator() To do: add scaling, make operation equal to SimpleTransformationPolicy::transform()"
-      Xtrans = m_Rot*(m_X+m_T);
+#warning "copy_member_transform::operator() To do: make operation equal to SimpleTransformationPolicy::transform()"
+      Xtrans = m_Rot*(m_X+m_T).scale(m_scale);
     }
 
   private:

@@ -21,6 +21,8 @@
 #ifndef SIMPLECOMPOSITE_H
 #define SIMPLECOMPOSITE_H
 
+#define TEST_COMPOSITE_SCALING
+
 #include <Composite.h>
 
 
@@ -40,6 +42,8 @@ namespace {
     const bool registeredSC = TheFunctionFactory::Instance().registerFunction(createSimpleComposite, "Object");
 }
 
+#ifdef TEST_COMPOSITE_SCALING
+
 class SimpleComposite2 : public Composite {
 
   public:
@@ -54,5 +58,7 @@ namespace {
     Displayable *createSimpleComposite2() { return new SimpleComposite2; }
     const bool registeredSC2 = TheFunctionFactory::Instance().registerFunction(createSimpleComposite2, "Object");
 }
+
+#endif // TEST_COMPOSITE_SCALING
 
 #endif // SIMPLECOMPOSITE_H
