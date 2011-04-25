@@ -79,6 +79,9 @@ template <unsigned N, unsigned P, typename NUM = double>
       /// Access the stored function values.
       const value_storage_type &getValues() const { return _function_values; }
 
+      /// Access the stored function values.
+      value_storage_type &getValuesNonConst() { return _function_values; }
+
     private:
 
       /// Loop over the entire definition space and fill the grid with the function values at those points.

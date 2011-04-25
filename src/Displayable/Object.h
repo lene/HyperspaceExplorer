@@ -56,6 +56,7 @@ class Object: public Displayable {
                              double, double, double);
         virtual void calibrateColors() const;
 
+        virtual void scale(const VecMath::Vector< 4, double >&scaling_factor);
         virtual void Transform (const VecMath::Rotation<4> &R,
                                 const VecMath::Vector<4> &T);
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);

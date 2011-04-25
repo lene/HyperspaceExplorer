@@ -33,7 +33,7 @@ SimpleComposite::SimpleComposite(): Composite() {
   );
   addComponent(
     std::shared_ptr<Displayable> (new Hypercube),
-               VecMath::Vector<4>(1., 0., 0., 0.),
+    VecMath::Vector<4>(1., 0., 0., 0.),
     VecMath::Rotation<4>()
   );
 }
@@ -42,3 +42,20 @@ std::string SimpleComposite::getFunctionName() const {
   return "SimpleComposite";
 }
 
+SimpleComposite2::SimpleComposite2(): Composite() {
+  addComponent(
+    std::shared_ptr<Displayable> (new Hypercube),
+    VecMath::Vector<4>(-1., 0., 0., 0.),
+    VecMath::Rotation<4>()
+  );
+  addComponent(
+    std::shared_ptr<Displayable> (new Hypercube),
+    VecMath::Vector<4>(.5, 0., 0., 0.),
+    VecMath::Rotation<4>(),
+    VecMath::makeVector(0.5,0.5,0.5,0.5)
+  );
+}
+
+std::string SimpleComposite2::getFunctionName() const {
+  return "SimpleComposite2";
+}

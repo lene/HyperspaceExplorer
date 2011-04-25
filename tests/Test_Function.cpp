@@ -74,6 +74,7 @@ void Test_Function::FunctionTestImplementation::for_each_projected(Displayable::
 void Test_Function::FunctionTestImplementation::Initialize(void) { }
 void Test_Function::FunctionTestImplementation::ReInit(double, double, double, double, double, double, double, double, double) { }
 void Test_Function::FunctionTestImplementation::calibrateColors() const { }
+void Test_Function::FunctionTestImplementation::scale(const VecMath::Vector< 4 >&) { }
 void Test_Function::FunctionTestImplementation::Transform(const VecMath::Rotation< 4 >&, const VecMath::Vector< 4 >&) { }
 void Test_Function::FunctionTestImplementation::Project(double, double, bool) { }
 void Test_Function::FunctionTestImplementation::Draw(UI::View *) { }

@@ -120,6 +120,12 @@ bool MockView::isVertexPresent(const VecMath::Vector<4>& vertex) const {
   return is_in(pImpl_->originalVertices_, vertex);
 }
 
+bool MockView::isTransformedVertexPresent(const VecMath::Vector<4>& vertex) const {
+    throw NotYetImplementedException(
+      "MockView::isTransformedVertexPresent("+vertex.toString()+std::string(")")
+    );
+}
+
 unsigned MockView::numVerticesDrawn() const {
   return pImpl_->drawnVertices_.size();
 }

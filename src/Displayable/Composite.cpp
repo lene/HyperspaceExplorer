@@ -50,10 +50,29 @@ Composite::Composite(ParameterMap parameters): Displayable(parameters), pImpl_(n
 
 Composite::~Composite() { }
 
+Vector<4> scaling_for_current_component;
+void setScaling(const Vector<4> &scaling) {
+  scaling_for_current_component = scaling;
+}
+
+void scaleVertex( Vector<4> &, Vector<4>&vertex_to_scale) {
+  for (unsigned i = 0; i < vertex_to_scale.dimension(); ++i) {
+    vertex_to_scale[i] *= scaling_for_current_component[i];
+  }
+}
+
+void Composite::scale(const VecMath::Vector< 4, double >&scaling_factor) {
+  for (Impl::list_type::iterator i = pImpl_->sub_objects_.begin();
+       i != pImpl_->sub_objects_.end(); ++i) {
+      i->scale_.scale(scaling_factor);
+  }
+}
+
 void Composite::Transform(const VecMath::Rotation< 4 >& R, const VecMath::Vector< 4 >& T) {
   for (Impl::list_type::iterator i = pImpl_->sub_objects_.begin();
        i != pImpl_->sub_objects_.end(); ++i) {
 //      std::cerr << i->component_->getFunctionName() << "->Transform(): R = " << R<< "+" << i->rotation_ << ", T = " << T << "+" << i->translation_ << std::endl;
+    i->component_->scale(i->scale_);
     i->component_->Transform(i->rotation_+R, i->translation_+T);
   }
 }
@@ -75,8 +94,9 @@ void Composite::Draw(UI::View* view) {
 
 void Composite::addComponent(std::shared_ptr<Displayable> component,
                              const VecMath::Vector< 4 >& T,
-                             const VecMath::Rotation< 4 >& R) {
-  pImpl_->sub_objects_.push_back(CompositeComponent(component, T, R));
+                             const VecMath::Rotation< 4 >& R,
+                             const VecMath::Vector<4> &scale) {
+  pImpl_->sub_objects_.push_back(CompositeComponent(component, T, R, scale));
 }
 
 const CompositeComponent& Composite::getComponent(unsigned i) const {

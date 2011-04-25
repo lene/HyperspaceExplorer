@@ -82,6 +82,12 @@ void Object::setX(const vec4vec1D &newX) {
     Xscr.resize(X.size());
 }
 
+void Object::scale(const VecMath::Vector< 4, double >&scaling_factor) {
+  for (vec4vec1D::iterator it = X.begin(); it != X.end(); ++it) {
+    it->scale(scaling_factor);
+  }
+}
+
 /// Transforms an Object
 /** @param R Rotation
  *  @param T Translation

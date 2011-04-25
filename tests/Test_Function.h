@@ -39,6 +39,7 @@ class Test_Function: public QObject {
     VecMath::Vector<4> f() { return VecMath::Vector<4>(0.,0.,0.,_doubleParm); }
     void SetParameters(const ParameterMap &parms);
 
+    virtual void scale(const VecMath::Vector< 4, double >&scaling_factor);
     virtual void Transform (const VecMath::Rotation<4> &R,
                             const VecMath::Vector<4> &T);
     virtual void Project (double, double, bool);

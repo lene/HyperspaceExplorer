@@ -48,11 +48,13 @@ public:
   virtual ~Composite();
 
   void addComponent(std::shared_ptr<Displayable> component,
-                    const VecMath::Vector< 4 >& translation,
-                    const VecMath::Rotation< 4 >& rotation);
+                    const VecMath::Vector<4> &translation,
+                    const VecMath::Rotation<4> &rotation,
+                    const VecMath::Vector<4> &scale = VecMath::makeVector(1., 1., 1., 1.));
   const CompositeComponent &getComponent(unsigned i) const;
   unsigned getNumComponents();
 
+  virtual void scale(const VecMath::Vector< 4, double >&scaling_factor);
   virtual void Transform(const VecMath::Rotation< 4 >& R, const VecMath::Vector< 4 >& T);
   virtual void Project(double ScrW, double CamW, bool DepthCue4D);
   virtual void Draw(UI::View* view);

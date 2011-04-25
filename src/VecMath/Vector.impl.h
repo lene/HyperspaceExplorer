@@ -107,6 +107,13 @@ Vector<D, N> &Vector<D, N>::operator*= (const N &s) {
     return *this;
 }
 
+template <unsigned D, typename N>
+void Vector<D, N>::scale(const Vector<D, N> &other) {
+  for (unsigned i = 0; i < D; ++i) {
+    _x[i] *= other[i];
+  }
+}
+
 /** Needed by glVertex3dv   */
 template <unsigned D, typename N>
 const N *Vector<D, N>::data () const {

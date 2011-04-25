@@ -60,6 +60,8 @@ class MockView: public UI::ViewImpl {
     bool isVertexDrawn(const VecMath::Vector<3>& vertex) const;
     /// Tests whether a specified 4D vertex has been drawn
     bool isVertexPresent(const VecMath::Vector<4>& vertex) const;
+    /// Tests whether 4D vertex transformed to the specified location has been drawn
+    bool isTransformedVertexPresent(const VecMath::Vector<4>& vertex) const;
     /// Returns the number of drawn vertices
     unsigned numVerticesDrawn() const;
 

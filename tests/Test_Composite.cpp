@@ -142,6 +142,47 @@ void Test_Composite::calibrateColors() {
   QSKIP("Implement me: Test_Composite::calibrateColors()", SkipSingle);
 }
 
+#include "Object.h"
+
+class CompositeWithScaling: public Composite {
+public:
+  CompositeWithScaling(): Composite() {
+    addComponent(
+        std::shared_ptr<Displayable> (new Hypercube),
+        VecMath::Vector<4>(-1., 0., 0., 0.),
+        VecMath::Rotation<4>()
+      );
+      addComponent(
+        std::shared_ptr<Displayable> (new Hypercube),
+        VecMath::Vector<4>(0.5, 0., 0., 0.),
+        VecMath::Rotation<4>(),
+        VecMath::makeVector(0.5, 0.5, 0.5, 0.5)
+      );
+  }
+  virtual std::string getFunctionName() const { return "CompositeWithScaling"; }
+};
+
+void Test_Composite::compositeWithScaling() {
+  std::shared_ptr<Displayable> composite(new CompositeWithScaling);
+  composite->Transform(Rotation<4>(), Vector<4>());
+  composite->Project(PROJECTION_SCREEN_W, PROJECTION_CAMERA_W, false);
+  composite->Draw(view_);
+  std::vector< VecMath::Vector<4> > vertices_to_test;
+  vertices_to_test.push_back(Vector<4>(-2., -1., -1., -1.));
+  view_->printVertices();
+  for (std::vector< VecMath::Vector<4> >::iterator it = vertices_to_test.begin();
+          it != vertices_to_test.end(); ++it) {
+//      if (!view_->isTransformedVertexPresent(*it)) view_->printVertices();
+//    test(view_->isTransformedVertexPresent(*it), it->toString().append(" present"));
+  }
+  QSKIP("Implement me: Test_Composite::compositeWithScaling()", SkipSingle);
+
+}
+
+void Test_Composite::compositeWithRotation() {
+   QSKIP("Implement me: Test_Composite::compositeWithRotation()", SkipSingle);
+}
+
 void Test_Composite::commitDrawIsDeferred() {
   QSKIP("To do: ensure that commitDraw() is executed only from the toplevel Composite Draw() routine", SkipSingle);
 }
