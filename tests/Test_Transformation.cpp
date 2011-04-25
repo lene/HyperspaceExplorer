@@ -56,7 +56,7 @@ void Test_Transformation::initTestCase() {
 
   Rotation<4> rot(1., 2., 3., 4., 5., 6.);
   Vector<4> trans(1., 1., 1., 1.);
-  Transformation<4, 3> transform(rot, trans);
+  Transformation<4, 3> transform(rot, trans, 1.);
 
   FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
 
@@ -83,7 +83,7 @@ void Test_Transformation::rotationPreservesNorm() {
   QFETCH(Rotation<4>, rotation);
 
   Vector<4> trans(0.);
-  Transformation<4, 3> transform(rotation, trans);
+  Transformation<4, 3> transform(rotation, trans, 1.);
 
   FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
 
@@ -115,7 +115,7 @@ void Test_Transformation::rotate90DegreesIsOrthogonal() {
   QFETCH(Rotation<4>, rotation);
 
   Vector<4> trans(0.);
-  Transformation<4, 3> transform(rotation, trans);
+  Transformation<4, 3> transform(rotation, trans, 1.);
 
   FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
 
@@ -145,7 +145,7 @@ void Test_Transformation::rotate180DegreesIsNegative() {
   QFETCH(Rotation<4>, rotation);
 
   Vector<4> trans(0.);
-  Transformation<4, 3> transform(rotation, trans);
+  Transformation<4, 3> transform(rotation, trans, 1.);
 
   FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
 
@@ -175,7 +175,7 @@ void Test_Transformation::rotate360DegreesIsEqual() {
   QFETCH(Rotation<4>, rotation);
 
   Vector<4> trans(0.);
-  Transformation<4, 3> transform(rotation, trans);
+  Transformation<4, 3> transform(rotation, trans, 1.);
 
   FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
 
@@ -200,7 +200,7 @@ void Test_Transformation::translationAddsVector() {
   Rotation<4> rotation(0., 0., 0., 0., 0., 0.);
   QFETCH(Vector<4>, translation);
 
-  Transformation<4, 3> transform(rotation, translation);
+  Transformation<4, 3> transform(rotation, translation, 1.);
 
   FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
 
@@ -274,7 +274,7 @@ void Test_Transformation::rotateFloatVector() {
     for (float angle = 0.f; angle <= 360.f; ++angle) {
         Rotation<4, float> rotation = makeRotation<float>(angle, 0., 0., 0., 0., 0.);
 
-        Transformation<4, 1, float> transform(rotation, trans);
+        Transformation<4, 1, float> transform(rotation, trans, 1.);
 
         FunctionValueGrid<4, 1, float>::value_storage_type g = transform.transform(vec);
 
@@ -315,7 +315,7 @@ void Test_Transformation::rotateFloats() {
     QFETCH(floatrot, rotation);
 
     Vector<4, float> trans(0.);
-    Transformation<4, 3, float> transform(rotation, trans);
+    Transformation<4, 3, float> transform(rotation, trans, 1.);
 
     FunctionValueGrid<4, 3, float>::value_storage_type g = transform.transform(grid->getValues());
 //    qDebug() << "Rotated:\n" << g.toString().c_str();

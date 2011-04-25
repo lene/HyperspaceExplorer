@@ -53,7 +53,7 @@ class Transformation {
      *  \param translation The translation Vector to add to all vertices.
      *  \param scale Scale the target, with independent values for each direction.
      */
-    Transformation(const VecMath::Rotation<N, NUM> &rotation,
+    Transformation(const VecMath::Matrix<N, NUM> &rotation,
                    const VecMath::Vector<N, NUM> &translation,
                    const VecMath::Vector<N, NUM> &scale);
 
@@ -63,15 +63,16 @@ class Transformation {
      *  \param transform The \p N x \p N Matrix to apply to all vertices.
      *  \param translation The translation Vector to add to all vertices.
      */
-    Transformation(const VecMath::Matrix<N, NUM> &transform, const VecMath::Vector<N, NUM> &translation);
+//    Transformation(const VecMath::Matrix<N, NUM> &transform, const VecMath::Vector<N, NUM> &translation);
 
     /// Execute the transform on a set of vertices.
     value_storage_type transform(const value_storage_type &operand);
 
   private:
 
-    VecMath::Matrix<N, NUM> _transform;     ///< Rotation/scale part of the Transformation.
-    VecMath::Vector<N, NUM> _translation;   ///< Translation part of the Transformation.
+    VecMath::Matrix<N, NUM> rotation_;      ///< Rotation part of the Transformation.
+    VecMath::Vector<N, NUM> translation_;   ///< Translation part of the Transformation.
+    VecMath::Vector<N, NUM> scale_;         ///< Scaling part of the Transformation.
 
 };
 
@@ -94,16 +95,19 @@ class SimpleTransformationPolicy {
     /** \param transform The \p N x \p N Matrix to apply to all vertices.
      *  \param translation The translation Vector to add to all vertices.
      */
-    SimpleTransformationPolicy(const VecMath::Matrix<N, NUM> &transform,
-                               const VecMath::Vector<N, NUM> &translation): _transform(transform), _translation(translation) { }
+    SimpleTransformationPolicy(const VecMath::Matrix<N, NUM> &rotation,
+                               const VecMath::Vector<N, NUM> &translation,
+                               const VecMath::Vector<N, NUM> &scale):
+    rotation_(rotation), translation_(translation), scale_(scale) { }
 
     /// Execute the transform on a set of vertices.
     value_storage_type transform(const value_storage_type &operand);
 
   private:
 
-    VecMath::Matrix<N, NUM> _transform;     ///< Rotation/scale part of the Transformation.
-    VecMath::Vector<N, NUM> _translation;   ///< Translation part of the Transformation.
+    VecMath::Matrix<N, NUM> rotation_;      ///< Rotation part of the Transformation.
+    VecMath::Vector<N, NUM> translation_;   ///< Translation part of the Transformation.
+    VecMath::Vector<N, NUM> scale_;         ///< Scaling part of the Transformation.
 
 };
 
@@ -122,16 +126,19 @@ template <unsigned N, typename NUM> class SimpleTransformationPolicy< N, 1, NUM 
     /** \param transform The \p N x \p N Matrix to apply to all vertices.
      *  \param translation The translation Vector to add to all vertices.
      */
-    SimpleTransformationPolicy(const VecMath::Matrix<N, NUM> &transform,
-                               const VecMath::Vector<N, NUM> &translation): _transform(transform), _translation(translation) { }
+    SimpleTransformationPolicy(const VecMath::Matrix<N, NUM> &rotation,
+                               const VecMath::Vector<N, NUM> &translation,
+                               const VecMath::Vector<N, NUM> &scale):
+    rotation_(rotation), translation_(translation), scale_(scale) { }
 
     /// Execute the transform on a set of vertices.
     value_storage_type transform(const value_storage_type &operand);
 
   private:
 
-    VecMath::Matrix<N, NUM> _transform;     ///< Rotation/scale part of the Transformation.
-    VecMath::Vector<N, NUM> _translation;   ///< Translation part of the Transformation.
+    VecMath::Matrix<N, NUM> rotation_;      ///< Rotation part of the Transformation.
+    VecMath::Vector<N, NUM> translation_;   ///< Translation part of the Transformation.
+    VecMath::Vector<N, NUM> scale_;         ///< Scaling part of the Transformation.
 
 };
 

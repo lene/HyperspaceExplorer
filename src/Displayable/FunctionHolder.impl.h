@@ -169,7 +169,7 @@ template <unsigned N, unsigned P, typename NUM>
 void FunctionHolder<N, P, NUM>::Transform (const VecMath::Rotation<N, NUM> &R,
                                            const vertex_type &T,
                                            const vertex_type &scale) {
-  Transformation<N, P, NUM> xform(R, T);
+  Transformation<N, P, NUM> xform(R, T, scale);
   setXtrans(xform.transform(X()));
 }
 template <unsigned N, unsigned P, typename NUM>

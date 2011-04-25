@@ -27,26 +27,24 @@
 
 template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
 Transformation<N, P, NUM, TransformationPolicy>::Transformation():
-  _transform(), _translation() { }
+  rotation_(), translation_(), scale_() { }
 
 template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
-Transformation<N, P, NUM, TransformationPolicy>::Transformation(const VecMath::Rotation<N, NUM> &rotation,
+Transformation<N, P, NUM, TransformationPolicy>::Transformation(const VecMath::Matrix<N, NUM> &rotation,
                                                            const VecMath::Vector<N, NUM> &translation,
                                                            const VecMath::Vector<N, NUM> &scale):
-  _transform(rotation), _translation(translation) {
-  _transform.scale(scale);
-}
-
+  rotation_(rotation), translation_(translation), scale_(scale) { }
+/*
 template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
 Transformation<N, P, NUM, TransformationPolicy>::Transformation(const VecMath::Matrix<N, NUM> &transform,
                                                            const VecMath::Vector<N, NUM> &translation):
-  _transform(transform), _translation(translation) { }
-
+  rotation_(transform), translation_(translation) { }
+*/
 template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
 typename Transformation<N, P, NUM, TransformationPolicy>::value_storage_type
 Transformation<N, P, NUM, TransformationPolicy>::transform(
   const value_storage_type &operand) {
-  TransformationPolicy p(_transform, _translation);
+  TransformationPolicy p(rotation_, translation_, scale_);
 
   return p.transform(operand);
 }
@@ -58,7 +56,9 @@ SimpleTransformationPolicy<N, P, NUM>::transform(
         const value_storage_type &operand
 ) {
   value_storage_type v(operand.size());
-  Transformation<N, P-1, NUM, SimpleTransformationPolicy<N, P-1, NUM> > sub_transform(_transform, _translation);
+  Transformation<N, P-1, NUM, SimpleTransformationPolicy<N, P-1, NUM> > sub_transform(
+    rotation_, translation_, scale_
+  );
 # if 0
   qDebug() << "SimpleTransformationPolicy<" << N << ", " << P << ", NUM>::transform("
            << operand.toString().c_str()
@@ -79,7 +79,9 @@ SimpleTransformationPolicy<N, 1, NUM>::transform(
   value_storage_type v(operand.size());
 
   for (unsigned i = 0; i < operand.size(); ++i) {
-    v[i] = _transform*operand[i]+_translation;
+    VecMath::Vector<N, NUM> rotated = rotation_*operand[i];
+    rotated.scale(scale_);
+    v[i] = rotated+translation_;
   }
 # if 0
   qDebug()

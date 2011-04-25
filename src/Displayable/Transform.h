@@ -46,8 +46,11 @@ template <typename Type, unsigned N> class copy_member_transform {
      *  \param T The Translation to be applied.
      *  \param X The object (vertex or collection of vertices) to be transformed.
      */
-    copy_member_transform(VecMath::Matrix<N> &Rot, const VecMath::Vector<N> &T, const Type &X):
-      m_Rot(Rot), m_T(T), m_X(X) { }
+    copy_member_transform(VecMath::Matrix<N> &Rot, 
+                          const VecMath::Vector<N> &T,
+                          const VecMath::Vector<N> &scale,
+                          const Type &X):
+      m_Rot(Rot), m_T(T), m_scale(scale), m_X(X) { }
 
     /// Executes the transform.
     /** This is not defined for the generic case, but must be specialized for
@@ -56,9 +59,10 @@ template <typename Type, unsigned N> class copy_member_transform {
     void operator() (Type &Xtrans);
 
   private:
-    VecMath::Matrix<N> &m_Rot;      ///< Rotation to be executed.
-    const VecMath::Vector<N> &m_T;  ///< Translation to be executed.
-    const Type &m_X;                ///< Object to be transformed.
+    VecMath::Matrix<N> &m_Rot;          ///< Rotation to be executed.
+    const VecMath::Vector<N> &m_T;      ///< Translation to be executed.
+    const VecMath::Vector<N> &m_scale;  ///< Scaling to be executed.
+    const Type &m_X;                    ///< Object to be transformed.
 };
 
 /// Specialization for a transform on a std::vector of objects
@@ -75,8 +79,11 @@ template <typename Type, unsigned N> class copy_member_transform< std::vector<Ty
      *  \param T The Translation to be applied.
      *  \param X The collection of vertices to be transformed.
      */
-    copy_member_transform(VecMath::Matrix<N> &Rot, const VecMath::Vector<N> &T, const std::vector<Type> &X):
-      m_Rot(Rot), m_T(T), m_X(X) { }
+    copy_member_transform(VecMath::Matrix<N> &Rot, 
+                          const VecMath::Vector<N> &T,
+                          const VecMath::Vector<N> &scale,
+                          const std::vector<Type> &X):
+      m_Rot(Rot), m_T(T), m_scale(scale), m_X(X) { }
 
     /// Static convenience function easing the initialization of the transformation.
     /** \param Rot The rotation Matrix to be executed.
@@ -86,8 +93,9 @@ template <typename Type, unsigned N> class copy_member_transform< std::vector<Ty
      */
     static void xform(VecMath::Matrix<N> &Rot,
       const VecMath::Vector<N> &T,
+      const VecMath::Vector<N> &scale,
       const std::vector<Type> &X, std::vector<Type> &Xtrans) {
-      copy_member_transform<std::vector<Type>, N> trans(Rot, T, X);
+      copy_member_transform<std::vector<Type>, N> trans(Rot, T, scale, X);
       trans(Xtrans);
     }
 
@@ -100,7 +108,7 @@ template <typename Type, unsigned N> class copy_member_transform< std::vector<Ty
       typename std::vector<Type>::const_iterator i = m_X.begin();
       typename std::vector<Type>::iterator j = Xtrans.begin();
       while(i != m_X.end() && j != Xtrans.end()) {
-        copy_member_transform<Type, N>::xform(m_Rot, m_T, *i, *j);
+        copy_member_transform<Type, N>::xform(m_Rot, m_T, m_scale, *i, *j);
         ++i; ++j;
       }
       // QtConcurrent::map(X, copy_member_transform<Type, N>::xform);
@@ -109,6 +117,7 @@ template <typename Type, unsigned N> class copy_member_transform< std::vector<Ty
   private:
     VecMath::Matrix<N> &m_Rot;      ///< Rotation to be executed.
     const VecMath::Vector<N> &m_T;  ///< Translation to be executed.
+    const VecMath::Vector<N> &m_scale;  ///< Scaling to be executed.
     const std::vector<Type> &m_X;   ///< Collection of objects to be transformed.
 };
 
@@ -123,8 +132,11 @@ template <unsigned N> class copy_member_transform< VecMath::Vector<N>, N > {
      *  \param T The Translation to be applied.
      *  \param X The collection of vertices to be transformed.
      */
-    copy_member_transform(VecMath::Matrix<N> &Rot, const VecMath::Vector<N> &T, const VecMath::Vector<N> &X):
-      m_Rot(Rot), m_T(T), m_X(X) { }
+    copy_member_transform(VecMath::Matrix<N> &Rot, 
+                          const VecMath::Vector<N> &T,
+                          const VecMath::Vector<N> &scale,
+                          const VecMath::Vector<N> &X):
+      m_Rot(Rot), m_T(T), m_scale(scale), m_X(X) { }
 
     /// Static convenience function easing the initialization of the transformation.
     /** \param Rot The rotation Matrix to be executed.
@@ -132,9 +144,12 @@ template <unsigned N> class copy_member_transform< VecMath::Vector<N>, N > {
      *  \param X The vertex to be transformed.
      *  \param Xtrans The transformed vertex.
      */
-    static void xform(VecMath::Matrix<N> &Rot, const VecMath::Vector<N> &T,
-      const VecMath::Vector<N> &X, VecMath::Vector<N> &Xtrans) {
-      copy_member_transform<VecMath::Vector<N>, N> trans(Rot, T, X);
+    static void xform(VecMath::Matrix<N> &Rot, 
+                      const VecMath::Vector<N> &T,
+                      const VecMath::Vector<N> &scale,
+                      const VecMath::Vector<N> &X,
+                      VecMath::Vector<N> &Xtrans) {
+      copy_member_transform<VecMath::Vector<N>, N> trans(Rot, T, scale, X);
       trans(Xtrans);
     }
 
@@ -148,6 +163,7 @@ template <unsigned N> class copy_member_transform< VecMath::Vector<N>, N > {
   private:
     VecMath::Matrix<N> &m_Rot;      ///< Rotation to be executed.
     const VecMath::Vector<N> &m_T;  ///< Translation to be executed.
+    const VecMath::Vector<N> &m_scale;  ///< Scaling to be executed.
     const VecMath::Vector<N> &m_X;  ///< Vertex to be transformed.
 };
 

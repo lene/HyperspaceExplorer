@@ -92,7 +92,7 @@ void Object::Transform(const VecMath::Rotation<4> &R,
                        const VecMath::Vector<4> &scale) {
     Matrix<4> Rot(R);
     Xtrans.resize(X.size());
-    transform<vec4vec1D, 4>::xform(Rot, T, X, Xtrans);
+    transform<vec4vec1D, 4>::xform(Rot, T, scale, X, Xtrans);
 }
 
 /// Projects an Object into three-space
