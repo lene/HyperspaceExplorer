@@ -23,23 +23,18 @@
 
 #include "Transformation.h"
 
-#include "Matrix.impl.h"
+#include "Rotation.impl.h"
 
 template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
 Transformation<N, P, NUM, TransformationPolicy>::Transformation():
   rotation_(), translation_(), scale_() { }
 
 template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
-Transformation<N, P, NUM, TransformationPolicy>::Transformation(const VecMath::Matrix<N, NUM> &rotation,
+Transformation<N, P, NUM, TransformationPolicy>::Transformation(const VecMath::Rotation<N, NUM> &rotation,
                                                            const VecMath::Vector<N, NUM> &translation,
                                                            const VecMath::Vector<N, NUM> &scale):
   rotation_(rotation), translation_(translation), scale_(scale) { }
-/*
-template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
-Transformation<N, P, NUM, TransformationPolicy>::Transformation(const VecMath::Matrix<N, NUM> &transform,
-                                                           const VecMath::Vector<N, NUM> &translation):
-  rotation_(transform), translation_(translation) { }
-*/
+
 template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
 typename Transformation<N, P, NUM, TransformationPolicy>::value_storage_type
 Transformation<N, P, NUM, TransformationPolicy>::transform(
@@ -79,7 +74,8 @@ SimpleTransformationPolicy<N, 1, NUM>::transform(
   value_storage_type v(operand.size());
 
   for (unsigned i = 0; i < operand.size(); ++i) {
-    VecMath::Vector<N, NUM> rotated = rotation_*operand[i];
+    VecMath::Matrix<N, NUM> matrix(rotation_);
+    VecMath::Vector<N, NUM> rotated = matrix*operand[i];
     rotated.scale(scale_);
     v[i] = rotated+translation_;
   }

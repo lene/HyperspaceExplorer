@@ -18,7 +18,12 @@
 
 */
 
+#ifndef ROTATION_IMPL_H
+#define ROTATION_IMPL_H
+
 #include "Rotation.h"
+
+#include "Matrix.impl.h"
 
 namespace VecMath {
 
@@ -176,3 +181,5 @@ Rotation<4, N> makeRotation(N const &r0, N const &r1, N const &r2,
 }
 
 }
+
+#endif

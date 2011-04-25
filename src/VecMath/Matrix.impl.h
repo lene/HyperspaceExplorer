@@ -18,6 +18,9 @@
 
 */
 
+#ifndef MATRIX_IMPL_H
+#define MATRIX_IMPL_H
+
 #include "Matrix.h"
 
 #include "Vector.h"
@@ -185,3 +188,5 @@ std::ostream &operator << (std::ostream &o, const Matrix<D, N> &M) {
 }
 
 }
+
+#endif
