@@ -64,15 +64,15 @@ void scaleVertex( Vector<4> &, Vector<4>&vertex_to_scale) {
 void Composite::scale(const VecMath::Vector< 4, double >&scaling_factor) {
   for (Impl::list_type::iterator i = pImpl_->sub_objects_.begin();
        i != pImpl_->sub_objects_.end(); ++i) {
-      i->scale_.scale(scaling_factor);
+    i->scale_.scale(scaling_factor);
+    i->component_->scale(i->scale_);
   }
 }
 
 void Composite::Transform(const VecMath::Rotation< 4 >& R, const VecMath::Vector< 4 >& T) {
   for (Impl::list_type::iterator i = pImpl_->sub_objects_.begin();
        i != pImpl_->sub_objects_.end(); ++i) {
-//      std::cerr << i->component_->getFunctionName() << "->Transform(): R = " << R<< "+" << i->rotation_ << ", T = " << T << "+" << i->translation_ << std::endl;
-    i->component_->scale(i->scale_);
+      std::cerr << i->component_->getFunctionName() << "->Transform(): R = " << R<< "+" << i->rotation_ << ", T = " << T << "+" << i->translation_ << std::endl;
     i->component_->Transform(i->rotation_+R, i->translation_+T);
   }
 }
@@ -85,7 +85,7 @@ void Composite::Project(double ScrW, double CamW, bool DepthCue4D) {
   }
 }
 
-void Composite::Draw(UI::View* view) {
+void Composite::Draw(std::shared_ptr< UI::View > view) {
   for (Impl::list_type::iterator i = pImpl_->sub_objects_.begin();
        i != pImpl_->sub_objects_.end(); ++i) {
     i->component_->Draw(view);

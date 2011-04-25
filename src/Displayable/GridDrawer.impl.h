@@ -41,7 +41,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 template <unsigned P, typename NUM, unsigned D>
 GridDrawer<P, NUM, D>::GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, P > &x,
 				  const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, P > &x_scr,
-                                  UI::View *view):
+                                  std::shared_ptr< UI::View > view):
     _x(x), _x_scr(x_scr), _view(view) { }
 
 template <unsigned P, typename NUM, unsigned D>
@@ -56,7 +56,7 @@ void GridDrawer<P, NUM, D>::execute() {
 template<typename NUM, unsigned D>
 GridDrawer<3, NUM, D>::GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, 3 > &x,
                                   const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 3 > &x_scr,
-                                  UI::View *view):
+                                  std::shared_ptr< UI::View > view):
   x_(x), x_scr_(x_scr), view_(view) { }
 
 template<typename NUM, unsigned D>
@@ -103,7 +103,7 @@ inline void GridDrawer<3, NUM, D>::drawCube (unsigned t, unsigned u, unsigned v)
 template<typename NUM, unsigned D>
 GridDrawer<2, NUM, D>::GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, 2 > &x,
                                   const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 2 > &x_scr,
-                                  UI::View *view):
+                                  std::shared_ptr< UI::View > view):
   x_(x), x_scr_(x_scr), view_(view) { }
 
 template<typename NUM, unsigned D>
@@ -129,7 +129,7 @@ void GridDrawer<2, NUM, D>::drawStrip(unsigned t) {
 template<typename NUM, unsigned D>
 GridDrawer<1, NUM, D>::GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, 1 > &x,
                                   const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 1 > &x_scr,
-                                  UI::View *view):
+                                  std::shared_ptr< UI::View > view):
   x_(x), x_scr_(x_scr), view_(view) { }
 
 template<typename NUM, unsigned D>

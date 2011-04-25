@@ -34,10 +34,14 @@ typedef MultiDimensionalVector< Vector<3>, 2 > projected2D;
 
 void Test_GridDrawer::initTestCase() { }
 
+void Test_GridDrawer::init() {
+    view_ = std::shared_ptr<MockView> (new MockView);
+}
+
 void Test_GridDrawer::cleanupTestCase() { }
 
 void Test_GridDrawer::createGridDrawer() {
   original2D dummy_vertices;
   projected2D dummy_projections;
-  GridDrawer<2> drawer(dummy_vertices, dummy_projections, NULL);
+  GridDrawer<2> drawer(dummy_vertices, dummy_projections, view_);
 }

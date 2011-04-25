@@ -196,7 +196,7 @@ void FunctionHolder<N, P, NUM>::Project (double ScrW, double CamW, bool DepthCue
 }
 
 template <unsigned N, unsigned P, typename NUM>
-void FunctionHolder<N, P, NUM>::Draw(UI::View* view) {
+void FunctionHolder<N, P, NUM>::Draw(std::shared_ptr< UI::View > view) {
   GridDrawer<P, NUM, 3> draw(X(), Xscr(), view);
   draw.execute();
 }

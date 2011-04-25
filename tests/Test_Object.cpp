@@ -72,7 +72,7 @@ void Test_Object::initTestCase() {
 }
 
 void Test_Object::init() {
-  view_ = new MockView;
+  view_ = std::shared_ptr<MockView>(new MockView);
   object_ = new ObjectTestImplementation;
 }
 

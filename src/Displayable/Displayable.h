@@ -154,7 +154,7 @@ class Displayable {
         virtual void Project (double ScrW, double CamW, bool DepthCue4D) = 0;
 
         /// Draw the Displayable object
-        virtual void Draw (UI::View *) = 0;
+        virtual void Draw (std::shared_ptr< UI::View >) = 0;
 
         /// Called when a Displayable must be created anew
         virtual void ReInit(double _tmin, double _tmax, double _dt,

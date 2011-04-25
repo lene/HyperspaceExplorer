@@ -302,6 +302,8 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
 
         static std::string _helpFile;   ///< Path to the user docs HTML file
 
+        static std::shared_ptr<UI::View> global_C4DView;
+
     /// Factory object, Menu callback, need access to ValuesDialog, F and Redraw
     friend class CustomFunctionSlot<CustomFunction>;
     /// Factory object, Menu callback, need access to ValuesDialog, F and Redraw

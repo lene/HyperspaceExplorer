@@ -36,11 +36,11 @@ void LSystem::calibrateColors() const {
 
 }
 
-void LSystem::ReInit(double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv) {
+void LSystem::ReInit(double, double, double, double, double, double, double, double, double) {
 
 }
 
-void LSystem::Draw(UI::View* view ) {
+void LSystem::Draw(std::shared_ptr<UI::View> view ) {
   view->drawQuadrangle(Vector<4>(1., 0., 0., 0.),
                        Vector<4>(0., 1., 0., 0.),
                        Vector<4>(0., 0., 1., 0.),

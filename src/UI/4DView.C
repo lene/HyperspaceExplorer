@@ -60,6 +60,7 @@ using VecMath::Rotation;
 using VecMath::Matrix;
 
 std::string  C4DView::_helpFile = "Hyperspace_Explorer_Help.html";
+std::shared_ptr<UI::View> C4DView::global_C4DView;
 
 ////////////////////////////////////////////////////////////////////////////////
 // 	C4DView construction/destruction
@@ -86,6 +87,8 @@ C4DView::C4DView(QWidget *parent):
     _objectList (0), _coordinateCross (0),
 
     _values (new UI::Dialogs::ValuesDialogImpl(this)) {
+
+    global_C4DView = std::shared_ptr<UI::View>(this);
 
     InitCross();
 
@@ -383,7 +386,7 @@ void C4DView::PreRedraw () {
     setObjectList(Util::GetGLList());
     glNewList (ObjectList(), GL_COMPILE_AND_EXECUTE);
         Project ();
-        F()->Draw(this);
+        F()->Draw(global_C4DView);
     glEndList ();
 }
 

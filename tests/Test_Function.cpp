@@ -77,7 +77,7 @@ void Test_Function::FunctionTestImplementation::calibrateColors() const { }
 void Test_Function::FunctionTestImplementation::scale(const VecMath::Vector< 4 >&) { }
 void Test_Function::FunctionTestImplementation::Transform(const VecMath::Rotation< 4 >&, const VecMath::Vector< 4 >&) { }
 void Test_Function::FunctionTestImplementation::Project(double, double, bool) { }
-void Test_Function::FunctionTestImplementation::Draw(UI::View *) { }
+void Test_Function::FunctionTestImplementation::Draw(std::shared_ptr< UI::View >) { }
 
 Test_Function::ParameterTestImplementation::ParameterTestImplementation() {
   declareParameter("looks like unsigned, but is int", 1);

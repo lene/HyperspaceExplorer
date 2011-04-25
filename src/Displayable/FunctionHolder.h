@@ -69,7 +69,7 @@ class FunctionHolder : public Displayable {
     virtual void Transform (const VecMath::Rotation<N, NUM> &R,
                             const vertex_type &T);
     virtual void Project (double ScrW, double CamW, bool DepthCue4D);
-    virtual void Draw (UI::View *view);
+    virtual void Draw (std::shared_ptr< UI::View >);
 
     virtual unsigned int getDefinitionSpaceDimensions();
 

@@ -34,7 +34,7 @@ public:
     virtual std::string getFunctionName() const;
     virtual void calibrateColors() const;
     virtual void ReInit(double _tmin, double _tmax, double _dt, double _umin, double _umax, double _du, double _vmin, double _vmax, double _dv);
-    virtual void Draw(UI::View* view);
+    virtual void Draw(std::shared_ptr<UI::View> view);
     virtual void Project(double ScrW, double CamW, bool DepthCue4D);
     virtual void Transform(const VecMath::Rotation< 4, double >& R, const VecMath::Vector< 4, double >& T);
 

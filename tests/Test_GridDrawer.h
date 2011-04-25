@@ -24,6 +24,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <QtTest/QtTest>
 
 #include "GridDrawer.h"
+#include "MockView.h"
 
 class Test_GridDrawer: public QObject {
 
@@ -31,12 +32,17 @@ class Test_GridDrawer: public QObject {
 
   static const double EPSILON = 1.e-8;
 
-  private slots:
+private slots:
 
-    void initTestCase();
-    void cleanupTestCase();
+  void initTestCase();
+  void init();
+  void cleanupTestCase();
 
-    void createGridDrawer();
+  void createGridDrawer();
+
+private:
+    
+  std::shared_ptr<MockView> view_;
 
 };
 

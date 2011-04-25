@@ -44,7 +44,7 @@ class GridDrawer {
 //    GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, P > &x_scr, UI::View *view);
     GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, P > &x,
                const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, P > &x_scr,
-               UI::View *view);
+               std::shared_ptr< UI::View > view);
 
     void execute();
 
@@ -52,7 +52,7 @@ class GridDrawer {
 
     const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, P > &_x;
     const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, P > &_x_scr;
-    UI::View *_view;
+    std::shared_ptr< UI::View > _view;
 
 };
 
@@ -61,7 +61,7 @@ template<typename NUM, unsigned D> class GridDrawer<3, NUM, D> {
 
     GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, 3 > &x,
                const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 3 > &x_scr,
-               UI::View *view);
+               std::shared_ptr< UI::View > view);
 
     void execute();
 
@@ -73,7 +73,7 @@ template<typename NUM, unsigned D> class GridDrawer<3, NUM, D> {
 
     const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, 3 > &x_;
     const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 3 > &x_scr_;
-    UI::View *view_;
+    std::shared_ptr< UI::View > view_;
 
 };
 
@@ -82,7 +82,7 @@ template<typename NUM, unsigned D> class GridDrawer<2, NUM, D> {
 
     GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, 2 > &x,
               const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 2 > &x_scr,
-              UI::View *view);
+              std::shared_ptr< UI::View > view);
 
     void execute();
 
@@ -92,7 +92,7 @@ template<typename NUM, unsigned D> class GridDrawer<2, NUM, D> {
 
     const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, 2 > &x_;
     const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 2 > &x_scr_;
-    UI::View *view_;
+    std::shared_ptr< UI::View > view_;
 
 };
 
@@ -101,7 +101,7 @@ template<typename NUM, unsigned D> class GridDrawer<1, NUM, D> {
 
     GridDrawer(const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, 1 > &x,
                const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 1 > &x_scr,
-               UI::View *view);
+               std::shared_ptr< UI::View > view);
 
     void execute();
 
@@ -109,7 +109,7 @@ template<typename NUM, unsigned D> class GridDrawer<1, NUM, D> {
 
     const VecMath::MultiDimensionalVector< VecMath::Vector<4, NUM>, 1 > &x_;
     const VecMath::MultiDimensionalVector< VecMath::Vector<D, NUM>, 1 > &x_scr_;
-    UI::View *view_;
+    std::shared_ptr< UI::View > view_;
 
 };
 

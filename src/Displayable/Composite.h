@@ -57,7 +57,7 @@ public:
   virtual void scale(const VecMath::Vector< 4, double >&scaling_factor);
   virtual void Transform(const VecMath::Rotation< 4 >& R, const VecMath::Vector< 4 >& T);
   virtual void Project(double ScrW, double CamW, bool DepthCue4D);
-  virtual void Draw(UI::View* view);
+  virtual void Draw(std::shared_ptr< UI::View >);
 
   virtual void for_each_vertex(Displayable::function_on_fourspace_vertex apply);
   virtual void for_each_vertex_transformed(function_on_fourspace_and_transformed_vertex apply);

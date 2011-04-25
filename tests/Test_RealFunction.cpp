@@ -103,7 +103,7 @@ void Test_RealFunction::initTestCase() {
 
 void Test_RealFunction::init() {
   function_ = new RealFunctionTestImplementation();
-  view_ = new MockView;
+  view_ = std::shared_ptr<MockView>(new MockView);
 }
 
 void Test_RealFunction::functionValue() {
