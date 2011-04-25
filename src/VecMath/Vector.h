@@ -72,7 +72,7 @@ namespace VecMath {
       Vector<D, N> &operator-= (const Vector<D, N> &Y);
       Vector<D, N> &operator*= (const N &s);
 
-      void scale(const Vector<D, N> &other);
+      Vector<D, N> & scale(const Vector<D, N> &other);
 
       /// Direct access to the array storing the components
       const N *data () const;               

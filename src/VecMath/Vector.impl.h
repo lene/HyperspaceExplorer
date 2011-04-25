@@ -108,10 +108,11 @@ Vector<D, N> &Vector<D, N>::operator*= (const N &s) {
 }
 
 template <unsigned D, typename N>
-void Vector<D, N>::scale(const Vector<D, N> &other) {
+Vector<D, N> &Vector<D, N>::scale(const Vector<D, N> &other) {
   for (unsigned i = 0; i < D; ++i) {
     _x[i] *= other[i];
   }
+  return *this;
 }
 
 /** Needed by glVertex3dv   */
