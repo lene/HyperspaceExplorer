@@ -39,9 +39,9 @@ QString comparisonString(const string &checked, const string &precondition, cons
 
 namespace UnitTests {
 
-std::shared_ptr<MockView> globalView;
+MockView* globalView;
 
-void setGlobalView(std::shared_ptr<MockView> v) {
+void setGlobalView(MockView* v) {
   globalView = v;
 }
 

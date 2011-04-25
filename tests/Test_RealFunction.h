@@ -84,7 +84,7 @@ class Test_RealFunction: public QObject {
       void testAllVerticesDrawn(RealFunction* f);
 
       RealFunctionTestImplementation *function_;
-      std::shared_ptr<MockView> view_;
+      MockView *view_;
 };
 
 static const double CONSTANT_FUNCTION_VALUE = 1.;

@@ -85,7 +85,7 @@ void Composite::Project(double ScrW, double CamW, bool DepthCue4D) {
   }
 }
 
-void Composite::Draw(std::shared_ptr< UI::View > view) {
+void Composite::Draw(UI::View *view) {
   for (Impl::list_type::iterator i = pImpl_->sub_objects_.begin();
        i != pImpl_->sub_objects_.end(); ++i) {
     i->component_->Draw(view);

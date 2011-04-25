@@ -98,7 +98,7 @@ void Test_Surface::initTestCase() {
 }
 
 void Test_Surface::init() {
-  view_ = std::shared_ptr<MockView>(new MockView);
+  view_ = new MockView;
 }
 
 void Test_Surface::functionValue() {

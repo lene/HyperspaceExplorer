@@ -66,7 +66,7 @@ public:
     virtual void Transform (const VecMath::Rotation<4> &R,
                             const VecMath::Vector<4> &T);
     virtual void Project (double ScrW, double CamW, bool DepthCue4D);
-    virtual void Draw (std::shared_ptr< UI::View > view);
+    virtual void Draw (UI::View *view);
 
     virtual void SetParameters(const ParameterMap &parms) {
         std::cerr << "Sponge::SetParameters(" << parms.toString() << ")\n";

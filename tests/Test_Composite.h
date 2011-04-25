@@ -58,7 +58,7 @@ private slots:
 private:
 
   std::shared_ptr<Composite> simple_composite_;
-  std::shared_ptr<MockView> view_;
+  MockView* view_;
 
 };
 

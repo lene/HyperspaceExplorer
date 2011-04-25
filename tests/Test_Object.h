@@ -74,7 +74,7 @@ private:
   void testNonzeroRotationRuns(Object * f);
 
   ObjectTestImplementation *object_;
-  std::shared_ptr<MockView> view_;
+  MockView* view_;
 };
 
 void testGetParametersRuns(Object * f);

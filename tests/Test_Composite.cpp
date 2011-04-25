@@ -37,7 +37,7 @@ void Test_Composite::initTestCase() {
 
 void Test_Composite::init() {
   simple_composite_ = std::shared_ptr<Composite>(new SimpleComposite);
-  view_ = std::shared_ptr<MockView>(new MockView);
+  view_ = new MockView;
 }
 
 void Test_Composite::createSimpleComposite() {

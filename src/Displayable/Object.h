@@ -60,7 +60,7 @@ class Object: public Displayable {
         virtual void Transform (const VecMath::Rotation<4> &R,
                                 const VecMath::Vector<4> &T);
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
-        virtual void Draw (std::shared_ptr< UI::View >);
+        virtual void Draw (UI::View *);
         virtual VecMath::Vector<4> &operator () (double, double, double) {
             throw std::logic_error("Object::operator() should never be called");
         }
@@ -236,7 +236,7 @@ public:
     }
 #   if !USE_INT_INDICES
       /// reimplement Draw() to make use of the stored vertices (instead of indices)
-      virtual void Draw (std::shared_ptr< UI::View > view);
+      virtual void Draw (UI::View *view);
 
 #   endif
   protected:
@@ -318,7 +318,7 @@ class Gasket: public Pyramid {
         virtual void Transform (const VecMath::Rotation<4> &R,
                                 const VecMath::Vector<4> &T);
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
-        virtual void Draw (std::shared_ptr< UI::View > view);
+        virtual void Draw (UI::View *view);
 
         virtual void SetParameters(const ParameterMap &parms) {
 #       if 1

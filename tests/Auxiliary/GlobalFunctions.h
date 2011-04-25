@@ -64,7 +64,7 @@ namespace UnitTests {
   void testContains(const Container &container, const std::string &value);
 
   /// Stores a pointer to the view used by Test_RealFunction for global functions used by Function::for_each
-  void setGlobalView(std::shared_ptr<MockView> v);
+  void setGlobalView(MockView* v);
 
   void checkVertexPresent(const VecMath::Vector<4> &v);
 

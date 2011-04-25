@@ -21,12 +21,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef C4DVIEW_H
 #define C4DVIEW_H
 
-#include <QTimer>
-#include <QGLWidget>
-
 #include "ViewImpl.h"
 #include "ValuesDialogImpl.h"
 #include "Rotation.h"
+
+#include <QTimer>
+#include <QGLWidget>
+
 
 class QPaintEvent;
 class QStatusBar;
@@ -49,7 +50,9 @@ class CustomComplexFunction;
 /** This class is much too fat and will be split into parts wherever possible
  *  \ingroup UIGroup
  *  @author Helge Preuss <lene.preuss@gmail.com>                         */
-class C4DView : public QGLWidget, public UI::ViewImpl {
+class C4DView :
+    public QGLWidget,
+    public UI::ViewImpl {
 
 
     private:
@@ -301,8 +304,6 @@ class C4DView : public QGLWidget, public UI::ViewImpl {
         std::vector<std::vector<VecMath::Vector<3> > > _crossScr;
 
         static std::string _helpFile;   ///< Path to the user docs HTML file
-
-        static std::shared_ptr<UI::View> global_C4DView;
 
     /// Factory object, Menu callback, need access to ValuesDialog, F and Redraw
     friend class CustomFunctionSlot<CustomFunction>;

@@ -42,7 +42,7 @@ private slots:
 
 private:
     
-  std::shared_ptr<MockView> view_;
+  MockView *view_;
 
 };
 

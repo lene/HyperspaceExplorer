@@ -30,3 +30,4 @@ DISTFILES += ../devel/footer.html ../TODO
 QMAKE_CFLAGS_DEBUG += -pg -g3 -gdwarf-2
 QMAKE_CXXFLAGS_DEBUG += -pg -g3 -gdwarf-2
 QMAKE_LFLAGS_DEBUG += -pg
+QMAKE_CXXFLAGS += -std=c++0x
