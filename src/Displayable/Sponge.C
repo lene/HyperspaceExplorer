@@ -543,9 +543,10 @@ void Sponge::Initialize(void) {
  *  @param R rotation
  *  @param T translation                                                      */
 void Sponge::Transform (const VecMath::Rotation<4> &R,
-                        const VecMath::Vector<4> &T) {
+                        const VecMath::Vector<4> &T,
+                        const VecMath::Vector<4> &scale) {
     for (unsigned i = 0; i < List.size (); i++)
-        List[i]->Transform (R, T);
+        List[i]->Transform (R, T, scale);
 }
 
 

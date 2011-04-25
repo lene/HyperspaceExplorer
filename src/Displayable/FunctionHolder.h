@@ -65,9 +65,9 @@ class FunctionHolder : public Displayable {
     FunctionHolder(std::tr1::shared_ptr< function_type > f,
                    DefinitionRangeOfDimension<P> boundaries);
 
-    virtual void scale(const VecMath::Vector<N, NUM> &scaling_factor);
     virtual void Transform (const VecMath::Rotation<N, NUM> &R,
-                            const vertex_type &T);
+                            const vertex_type &T,
+                            const vertex_type &scale = vertex_type(1.));
     virtual void Project (double ScrW, double CamW, bool DepthCue4D);
     virtual void Draw (UI::View *);
 

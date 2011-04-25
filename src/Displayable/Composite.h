@@ -29,7 +29,7 @@ struct CompositeComponent {
     std::shared_ptr< Displayable > component,
     const VecMath::Vector< 4 > &translation = VecMath::makeVector(0., 0., 0., 0.),
     const VecMath::Rotation< 4 > &rotation = VecMath::makeRotation(0., 0., 0., 0., 0., 0.),
-    const VecMath::Vector< 4 > &scale = VecMath::makeVector(1., 1., 1., 1.)
+    const VecMath::Vector< 4 > &scale = 1.
   ):
     component_(component), translation_(translation), rotation_(rotation), scale_(scale) { }
   
@@ -50,12 +50,14 @@ public:
   void addComponent(std::shared_ptr<Displayable> component,
                     const VecMath::Vector<4> &translation,
                     const VecMath::Rotation<4> &rotation,
-                    const VecMath::Vector<4> &scale = VecMath::makeVector(1., 1., 1., 1.));
+                    const VecMath::Vector<4> &scale = 1.);
   const CompositeComponent &getComponent(unsigned i) const;
   unsigned getNumComponents();
 
-  virtual void scale(const VecMath::Vector< 4, double >&scaling_factor);
-  virtual void Transform(const VecMath::Rotation< 4 >& R, const VecMath::Vector< 4 >& T);
+  virtual void Transform(
+    const VecMath::Rotation< 4 >& R,
+    const VecMath::Vector< 4 >& T,
+    const VecMath::Vector< 4 >& scale = 1.);
   virtual void Project(double ScrW, double CamW, bool DepthCue4D);
   virtual void Draw(UI::View *);
 

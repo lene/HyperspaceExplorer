@@ -224,7 +224,7 @@ void Test_Object::testNonzeroRotationRuns(Object * f) {
   VecMath::Vector<4> t(random_number<double>(), random_number<double>(),
                        random_number<double>(), random_number<double>());
 
-  f->Transform(r, t);
+  f->Transform(r, t, Vector<4>(1.));
   f->Project(2., 4., false);
   f->Draw(view_);
 }

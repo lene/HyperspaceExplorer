@@ -140,14 +140,10 @@ class Displayable {
         Displayable (ParameterMap parameters);
         virtual ~Displayable();
 
-        /// Scale all vertices in the array of original vertices
-        virtual void scale(const VecMath::Vector<4, double> &scaling_factor) = 0;
-        /// Scale all vertices by the same amount in all dimensions
-        void scale(double scaling_factor);
-
         /// Execute the desired rotation and translation to the Displayable object
         virtual void Transform (const VecMath::Rotation<4, double> &R,
-                                const VecMath::Vector<4, double> &T) = 0;
+                                const VecMath::Vector<4, double> &T,
+                                const VecMath::Vector<4, double> &scale = 1.) = 0;
         /// Overloaded function executing the transform to the default state
         void resetTransform();
         /// Projects the vertex data to 3D

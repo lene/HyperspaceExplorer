@@ -65,7 +65,9 @@ Displayable::Displayable (ParameterMap parameters): pImpl_(new Impl(parameters))
 
 Displayable::~Displayable() { }
 
-void Displayable::resetTransform()  { Transform (VecMath::Rotation<4>(),  VecMath::Vector<4>()); }
+void Displayable::resetTransform()  { 
+  Transform (VecMath::Rotation<4>(), VecMath::Vector<4>(), 1.);
+}
 
 FunctionParameter::parameter_ptr_type Displayable::getParameter(const std::string& name) {
   return pImpl_->_parameters.getParameter(name);

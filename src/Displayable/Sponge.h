@@ -64,7 +64,8 @@ public:
     virtual std::string getFunctionName() const { return "4D Menger Sponge"; }
 
     virtual void Transform (const VecMath::Rotation<4> &R,
-                            const VecMath::Vector<4> &T);
+                            const VecMath::Vector<4> &T,
+                            const VecMath::Vector<4> &scale);
     virtual void Project (double ScrW, double CamW, bool DepthCue4D);
     virtual void Draw (UI::View *view);
 

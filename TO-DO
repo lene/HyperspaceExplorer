@@ -17,3 +17,6 @@
 
 - continue with "torations" - or generalize rotations so they can take displacement as a parameter
   - displacement should be a parameter too
+
+- separate the UI::View functions out of C4DView and make the rest a controller class
+  - change Displayable::Draw() to take a shared_ptr<View> instead of a raw pointer

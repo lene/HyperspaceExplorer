@@ -56,9 +56,9 @@ class Object: public Displayable {
                              double, double, double);
         virtual void calibrateColors() const;
 
-        virtual void scale(const VecMath::Vector< 4, double >&scaling_factor);
         virtual void Transform (const VecMath::Rotation<4> &R,
-                                const VecMath::Vector<4> &T);
+                                const VecMath::Vector<4> &T,
+                                const VecMath::Vector<4> &scale = 1.);
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
         virtual void Draw (UI::View *);
         virtual VecMath::Vector<4> &operator () (double, double, double) {
@@ -316,7 +316,8 @@ class Gasket: public Pyramid {
         virtual std::string getFunctionName() const { return "4D Sierpinski Gasket"; }
 
         virtual void Transform (const VecMath::Rotation<4> &R,
-                                const VecMath::Vector<4> &T);
+                                const VecMath::Vector<4> &T,
+                                const VecMath::Vector<4> &scale);
         virtual void Project (double ScrW, double CamW, bool DepthCue4D);
         virtual void Draw (UI::View *view);
 

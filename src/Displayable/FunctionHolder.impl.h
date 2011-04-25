@@ -90,9 +90,6 @@ class FunctionHolder<N, P, NUM>::Impl {
     /// Array of function values.
     FunctionValueGrid<N, P, NUM> _X;
 
-    static VecMath::Vector<N, NUM> current_scaling_factor;
-    static void doScale(VecMath::Vector<N, NUM> &vertex);
-
   private:
 
     /// Array of function values after transform.
@@ -106,9 +103,6 @@ class FunctionHolder<N, P, NUM>::Impl {
     void addSafetyMargin(Vector<P, unsigned> &steps) { steps += 2; }
 
 };
-
-template <unsigned N, unsigned P, typename NUM>
-VecMath::Vector<N, NUM> FunctionHolder<N, P, NUM>::Impl::current_scaling_factor;
 
 template <unsigned N, unsigned P, typename NUM>
 FunctionHolder<N, P, NUM>::Impl::Impl(
@@ -169,23 +163,12 @@ FunctionHolder<N, P, NUM>::FunctionHolder(ParameterMap parms):
       DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep,
       DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep)) { }
 
-
-template <unsigned N, unsigned P, typename NUM>
-void FunctionHolder<N, P, NUM>::Impl::doScale(VecMath::Vector<N, NUM> &vertex) {
-    vertex.scale(current_scaling_factor);
-}
-
-template <unsigned N, unsigned P, typename NUM>
-void FunctionHolder<N, P, NUM>::scale(const VecMath::Vector<N, NUM> &scaling_factor) {
-  Impl::current_scaling_factor = scaling_factor;
-  pImpl_->_X.getValuesNonConst().for_each(Impl::doScale);
-}
-
 /** \param R rotation
  *  \param T translation                                                      */
 template <unsigned N, unsigned P, typename NUM>
 void FunctionHolder<N, P, NUM>::Transform (const VecMath::Rotation<N, NUM> &R,
-                                           const vertex_type &T) {
+                                           const vertex_type &T,
+                                           const vertex_type &scale) {
   Transformation<N, P, NUM> xform(R, T);
   setXtrans(xform.transform(X()));
 }
