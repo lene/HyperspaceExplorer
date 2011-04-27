@@ -42,6 +42,17 @@ class Transformation {
 
   public:
 
+      static inline VecMath::Vector<N, NUM> perform(
+        const VecMath::Vector<N, NUM> &x,
+        const VecMath::Matrix<N, NUM> &rot,
+        const VecMath::Vector<N, NUM> &trans,
+        const VecMath::Vector<N, NUM> &scale
+      ) {
+        return VecMath::scale(rot*(x+trans), scale);
+      }
+
+  public:
+
     /// Type for the storage of the function values on all grid points.
     typedef typename FunctionValueGrid< N, P, NUM >::value_storage_type value_storage_type;
 

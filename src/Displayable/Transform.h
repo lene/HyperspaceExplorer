@@ -23,6 +23,7 @@
 
 #include "Matrix.h"
 #include "Rotation.h"
+#include "Transformation.h"
 
 #include <QtConcurrentMap>
 
@@ -157,8 +158,7 @@ template <unsigned N> class copy_member_transform< VecMath::Vector<N>, N > {
     /** \param Xtrans The transformed vertex.
      */
     void operator() (VecMath::Vector<N> &Xtrans) {
-#warning "copy_member_transform::operator() To do: make operation equal to SimpleTransformationPolicy::transform()"
-      Xtrans = VecMath::scale(m_Rot*(m_X+m_T), m_scale);
+      Xtrans = Transformation<N, 1>::perform(m_X, m_Rot, m_T, m_scale);
     }
 
   private:

@@ -72,11 +72,10 @@ SimpleTransformationPolicy<N, 1, NUM>::transform(
         const value_storage_type &operand
 ) {
   value_storage_type v(operand.size());
-#warning "SimpleTransformationPolicy::transform To do: make operation equal to Transform::operator()"
 
   for (unsigned i = 0; i < operand.size(); ++i) {
     VecMath::Matrix<N, NUM> matrix(rotation_);
-    v[i] = VecMath::scale(matrix*(operand[i]+translation_), (scale_));
+    v[i] = Transformation<N, 1, NUM>::perform(operand[i], matrix, translation_, scale_);
   }
 # if 0
   qDebug()
