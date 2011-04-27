@@ -72,8 +72,6 @@ namespace VecMath {
       Vector<D, N> &operator-= (const Vector<D, N> &Y);
       Vector<D, N> &operator*= (const N &s);
 
-      Vector<D, N> & scale(const Vector<D, N> &other);
-
       /// Direct access to the array storing the components
       const N *data () const;               
 
@@ -114,7 +112,11 @@ namespace VecMath {
   /// divide every component of one vector by same component of another
   template <unsigned D, typename N>    
   Vector<D, N> operator/ (const Vector<D, N> &x, const Vector<D, N> &y);
-    
+
+  /// multiply every component of one vector with same component of another
+  template <unsigned D, typename N>
+  Vector<D, N> scale (const Vector<D, N> &x, const Vector<D, N> &y);
+
   /// Comparison operator: Test for equality
   template <unsigned D, typename N>    
   bool operator==(const Vector<D, N> &one, const Vector<D, N> &other);

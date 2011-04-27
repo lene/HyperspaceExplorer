@@ -107,7 +107,8 @@ C4DView::C4DView(QWidget *parent):
     Menu()->setColorManager(new QAction("XYZ to RGB (fast)", this));
 //    Menu()->setColorManager(new QAction("W coordinate to RGB", this));
 
-    setF(new Rotope("ERRE"));
+//    setF(new Rotope("ERRE"));
+    setF(new LSystem);
 
     AssignValues(F());
     Redraw ();

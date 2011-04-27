@@ -20,44 +20,82 @@
 
 #include "LSystem.h"
 
-#include "View.h"
+#include "Object.h"
+
+#include "Rotation.impl.h"
 
 using VecMath::Vector;
 
-LSystem::LSystem(): Object(0, 0) { }
+LSystem::LSystem(unsigned level): Composite(), level_(level) {
+  addComponent(
+    std::shared_ptr<Displayable> (new Hypercube),
+    VecMath::makeVector(0., 0., 0., 0.),
+    VecMath::Rotation<4>()
+  );
+  if (level_ > 0) {
+      const double rotation_angle = 5.;
+      const double displacement = 1.707;
+      const double scale = 0.707;
+      addComponent(
+        std::shared_ptr<Displayable> (new LSystem(level_-1)),
+        VecMath::makeVector(displacement, 0., 0., 0.),
+        VecMath::Rotation<4>(rotation_angle, 0., 0., 0., 0., 0.),
+        VecMath::Vector<4>(scale)
+      );
+      addComponent(
+        std::shared_ptr<Displayable> (new LSystem(level_-1)),
+        VecMath::makeVector(-displacement, 0., 0., 0.),
+        VecMath::Rotation<4>(rotation_angle, 0., 0., 0., 0., 0.),
+        VecMath::Vector<4>(scale)
+      );
+      addComponent(
+        std::shared_ptr<Displayable> (new LSystem(level_-1)),
+        VecMath::makeVector(0., displacement, 0., 0.),
+        VecMath::Rotation<4>(0., rotation_angle, 0., 0., 0., 0.),
+        VecMath::Vector<4>(scale)
+      );
+      addComponent(
+        std::shared_ptr<Displayable> (new LSystem(level_-1)),
+        VecMath::makeVector(0., -displacement, 0., 0.),
+        VecMath::Rotation<4>(0., rotation_angle, 0., 0., 0., 0.),
+        VecMath::Vector<4>(scale)
+      );
+      addComponent(
+        std::shared_ptr<Displayable> (new LSystem(level_-1)),
+        VecMath::makeVector(0., 0., displacement, 0.),
+        VecMath::Rotation<4>(0., 0., rotation_angle, 0., 0., 0.),
+        VecMath::Vector<4>(scale)
+      );
+      addComponent(
+        std::shared_ptr<Displayable> (new LSystem(level_-1)),
+        VecMath::makeVector(0., 0., -displacement, 0.),
+        VecMath::Rotation<4>(0., 0., rotation_angle, 0., 0., 0.),
+        VecMath::Vector<4>(scale)
+      );
+      addComponent(
+        std::shared_ptr<Displayable> (new LSystem(level_-1)),
+        VecMath::makeVector(0., 0., 0., displacement),
+        VecMath::Rotation<4>(0., 0., 0., rotation_angle, 0., 0.),
+        VecMath::Vector<4>(scale)
+      );
+      addComponent(
+        std::shared_ptr<Displayable> (new LSystem(level_-1)),
+        VecMath::makeVector(0., 0., 0., -displacement),
+        VecMath::Rotation<4>(0., 0., 0., rotation_angle, 0., 0.),
+        VecMath::Vector<4>(scale)
+      );
+  }
+}
 
 LSystem::~LSystem() { }
 
-void LSystem::Initialize() { }
 
 std::string LSystem::getFunctionName() const { return "Lindenmayer System"; }
 
-void LSystem::calibrateColors() const {
 
-}
 
-void LSystem::ReInit(double, double, double, double, double, double, double, double, double) {
 
-}
 
-void LSystem::Draw(std::shared_ptr<UI::View> view ) {
-  view->drawQuadrangle(Vector<4>(1., 0., 0., 0.),
-                       Vector<4>(0., 1., 0., 0.),
-                       Vector<4>(0., 0., 1., 0.),
-                       Vector<4>(0., 0., 0., 1.),
-                       Vector<3>(1., 0., 0.),
-                       Vector<3>(0., 1., 0.),
-                       Vector<3>(0., 0., 1.),
-                       Vector<3>(0., 0., 0.));
-}
 
-void LSystem::Project(double ScrW, double CamW, bool DepthCue4D)
-{
 
-}
-
-void LSystem::Transform(const VecMath::Rotation< 4, double >& R, const VecMath::Vector< 4, double >& T)
-{
-
-}
 

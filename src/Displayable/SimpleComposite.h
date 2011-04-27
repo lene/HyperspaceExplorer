@@ -42,23 +42,4 @@ namespace {
     const bool registeredSC = TheFunctionFactory::Instance().registerFunction(createSimpleComposite, "Object");
 }
 
-#ifdef TEST_COMPOSITE_SCALING
-
-class SimpleComposite2 : public Composite {
-
-  public:
-
-    SimpleComposite2();
-
-    virtual std::string getFunctionName() const;
-
-};
-
-namespace {
-    Displayable *createSimpleComposite2() { return new SimpleComposite2; }
-    const bool registeredSC2 = TheFunctionFactory::Instance().registerFunction(createSimpleComposite2, "Object");
-}
-
-#endif // TEST_COMPOSITE_SCALING
-
 #endif // SIMPLECOMPOSITE_H

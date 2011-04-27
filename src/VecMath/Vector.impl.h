@@ -107,14 +107,6 @@ Vector<D, N> &Vector<D, N>::operator*= (const N &s) {
     return *this;
 }
 
-template <unsigned D, typename N>
-Vector<D, N> &Vector<D, N>::scale(const Vector<D, N> &other) {
-  for (unsigned i = 0; i < D; ++i) {
-    _x[i] *= other[i];
-  }
-  return *this;
-}
-
 /** Needed by glVertex3dv   */
 template <unsigned D, typename N>
 const N *Vector<D, N>::data () const {
@@ -222,6 +214,18 @@ Vector<D, N> operator/ (const Vector<D, N> &x, const Vector<D, N> &y) {
   Vector<D, N> tmp;
   for (unsigned i = 0; i < D; i++)
     tmp[i] = x[i]/y[i];
+  return tmp;
+}
+
+/** \param X Dividend
+ *  \param y Divisor
+ *  @return scaled vector
+ */
+template <unsigned D, typename N>
+Vector<D, N> scale (const Vector<D, N> &x, const Vector<D, N> &y) {
+  Vector<D, N> tmp;
+  for (unsigned i = 0; i < D; i++)
+    tmp[i] = x[i]*y[i];
   return tmp;
 }
 

@@ -55,14 +55,13 @@ void Composite::Transform(const VecMath::Rotation< 4 >& R,
                           const VecMath::Vector< 4 >& scale) {
   for (Impl::list_type::iterator i = pImpl_->sub_objects_.begin();
        i != pImpl_->sub_objects_.end(); ++i) {
-    i->component_->Transform(i->rotation_+R, i->translation_+T, i->scale_.scale(scale));
+    i->component_->Transform(i->rotation_+R, i->translation_+T, VecMath::scale(i->scale_, scale));
   }
 }
 
 void Composite::Project(double ScrW, double CamW, bool DepthCue4D) {
   for (Impl::list_type::iterator i = pImpl_->sub_objects_.begin();
        i != pImpl_->sub_objects_.end(); ++i) {
-//      std::cerr << i->component_->getFunctionName() << "->Project(): scrW = " << ScrW<< ", camW = " << CamW << std::endl;
     i->component_->Project(ScrW, CamW, DepthCue4D);
   }
 }

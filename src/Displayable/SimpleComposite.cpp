@@ -41,25 +41,3 @@ SimpleComposite::SimpleComposite(): Composite() {
 std::string SimpleComposite::getFunctionName() const {
   return "Simple Composite";
 }
-
-#ifdef TEST_COMPOSITE_SCALING
-
-SimpleComposite2::SimpleComposite2(): Composite() {
-  addComponent(
-    std::shared_ptr<Displayable> (new Hypercube),
-    VecMath::Vector<4>(-1., 0., 0., 0.),
-    VecMath::Rotation<4>()
-  );
-  addComponent(
-    std::shared_ptr<Displayable> (new Hypercube),
-    VecMath::Vector<4>(.5, 0., 0., 0.),
-    VecMath::Rotation<4>(),
-    VecMath::makeVector(0.5,0.5,0.5,0.5)
-  );
-}
-
-std::string SimpleComposite2::getFunctionName() const {
-  return "SimpleComposite2";
-}
-
-#endif // TEST_COMPOSITE_SCALING
