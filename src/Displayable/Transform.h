@@ -259,8 +259,7 @@ template <unsigned N> class call_parameters_transform< VecMath::Vector<N>, N > {
      */
     void operator() (VecMath::Matrix<N> &Rot, const VecMath::Vector<N> &T,
                      const VecMath::Vector<N> &X, VecMath::Vector<N> &Xtrans) {
-#warning "call_parameters_transform::operator() To do: add scaling, make operation equal to SimpleTransformationPolicy::transform()"
-        Xtrans = (Rot*X)+T;
+      Xtrans = Transformation<N, 1>::perform(X, Rot, T, VecMath::Vector<N>(1.));
     }
 };
 
