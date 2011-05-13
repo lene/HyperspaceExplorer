@@ -35,6 +35,9 @@ class SimpleComposite : public Composite {
 
     virtual std::string getFunctionName() const;
 
+  protected:
+    virtual void Initialize();
+
 };
 
 namespace {

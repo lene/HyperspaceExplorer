@@ -41,3 +41,5 @@ SimpleComposite::SimpleComposite(): Composite() {
 std::string SimpleComposite::getFunctionName() const {
   return "Simple Composite";
 }
+
+void SimpleComposite::Initialize() { }

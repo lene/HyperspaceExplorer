@@ -46,14 +46,6 @@ class QString;
 ///  Utility functions
 namespace Util {
 
-  /// Print a std::vector on a std::ostream
-  /** \param s The ostream to which \p v is sent
-  *  \param v The vector to print
-  *  \return \p s
-  */
-  template<typename T> std::ostream& operator<<(std::ostream& s,
-                                                std::vector<T> const& v);
-
   /// Find an element in a vector
   /** \param find_me The element to find in the vector \p v
   *  \param v The vector to search for element \p find_me
@@ -170,7 +162,10 @@ namespace Util {
       static const bool value = IsPermutation<T, Args...>::value;
     };
 */
-  
+
+  std::string trim(const std::string &str);
+
+  std::vector<std::string> explode(const std::string &delimiter, const std::string &str);
 }
 
 #endif // UTIL_H

@@ -42,6 +42,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Test_Object.h"
 #include "Test_ArrayList.h"
 #include "Test_Composite.h"
+#include "Test_Util.h"
 
 #include <QtTest/QtTest>
 
@@ -112,6 +113,7 @@ int main(int argc, char **argv) {
 #endif
     runner.run(new Test_Object);
     runner.run(new Test_Composite);
+    runner.run(new Test_Util);
 
     runner.printSummary();
 

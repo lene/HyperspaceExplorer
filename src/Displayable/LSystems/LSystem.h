@@ -26,6 +26,47 @@
 
 #define USE_LSYSTEM
 
+
+  class Alphabet {
+
+  public:
+    Alphabet(const std::string &letters);
+    std::string toString() const;
+
+  private:
+      std::vector<char> letters_;
+  };
+
+  class Axiom {
+
+  public:
+    Axiom (const std::string &axiom);
+
+  private:
+    std::string axiom_;
+  };
+
+  class Rule {
+
+  public:
+    Rule(char from, const std::string &to);
+
+  private:
+      char predecessor_;
+      std::string successor;
+
+  };
+
+  class Rules {
+
+  public:
+    Rules(const std::string &rules);
+    std::string apply(const std::string &axiom);
+
+  private:
+    std::vector<Rule> rules_;
+  };
+
 class LSystem : public Composite {
 
 public:
@@ -35,10 +76,20 @@ public:
     
   virtual std::string getFunctionName() const;
 
+  virtual void SetParameters(const ParameterMap &parameters);
+
+protected:
+
+  virtual void Initialize();
+
 private:
 
+    LSystem generate(unsigned level);
 
     unsigned level_;
+    Alphabet alphabet_;
+    Rules rules_;
+    Axiom axiom_;
 
 };
 

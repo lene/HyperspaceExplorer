@@ -128,19 +128,24 @@ void Composite::for_each_vertex_transformed_projected(Displayable::function_on_f
       it->component_->for_each_vertex_transformed_projected(apply);
   }
 }
-
+/*
 void Composite::Initialize( ) {
   throw NotYetImplementedException("Composite::Initialize()");
 }
-
+*/
 void Composite::ReInit(double _tmin, double _tmax, double _dt,
                        double _umin, double _umax, double _du,
                        double _vmin, double _vmax, double _dv) {
+    std::cerr << "Composite::ReInit()\n";
   for (Impl::list_type::iterator i = pImpl_->sub_objects_.begin();
        i != pImpl_->sub_objects_.end(); ++i) {
       i->component_->ReInit(_tmin, _tmax, _dt,
                             _umin, _umax, _du,
                             _vmin, _vmax, _dv);
   }
+  Initialize();
 }
 
+void Composite::clear() {
+    pImpl_->sub_objects_.clear();
+}

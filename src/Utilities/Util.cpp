@@ -141,4 +141,24 @@ namespace Util {
     return sup3_;
   }
 
+  std::string trim(const std::string& str) {
+    std::string::size_type first = str.find_first_not_of(" \t\n\r");
+    std::string::size_type last = str.find_last_not_of(" \t\n\r");
+
+    return std::string(str, first, last-first+1);
+  }
+
+  std::vector<std::string> explode(const std::string& delimiter, const std::string& str) {
+
+    std::vector<std::string> parts;
+    std::string::size_type first = str.find_first_of(delimiter);
+    parts.push_back(std::string(str, 0, first));
+
+    if (first < str.length() && !delimiter.empty()) {
+      std::vector<std::string> subparts = explode(delimiter, std::string(str, first+delimiter.length()));
+      parts.insert(parts.end(), subparts.begin(), subparts.end());
+    }
+
+    return parts;
+  }
 }

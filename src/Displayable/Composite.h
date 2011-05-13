@@ -75,8 +75,9 @@ public:
 
 protected:
 
-  virtual void Initialize(void );
+//  virtual void Initialize(void );
   virtual VecMath::Vector< 4, double >& operator()(double , double , double );
+  void clear();
 
 private:
 

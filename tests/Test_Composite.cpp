@@ -160,6 +160,8 @@ public:
       );
   }
   virtual std::string getFunctionName() const { return "CompositeWithScaling"; }
+protected:
+    virtual void Initialize() { }
 };
 
 void Test_Composite::compositeWithScaling() {

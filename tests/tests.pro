@@ -36,6 +36,7 @@ SOURCES += Auxiliary/GlobalFunctions.cpp \
            Auxiliary/MockView.cpp
 
 HEADERS += \
+           Test_Util.h \
            Test_Composite.h \
            Test_Rotope.h \
            Test_Object.h \
@@ -58,6 +59,7 @@ HEADERS += \
            Test_FunctionHolder.h \
            Test_Function.h
 SOURCES += \
+           Test_Util.cpp \
            Test_Composite.cpp \
            Test_Rotope.cpp \
            Test_Object.cpp \
