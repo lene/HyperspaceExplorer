@@ -653,14 +653,13 @@ EXCLUDE_SYMLINKS       = NO
 # against the file with absolute path, so to exclude all test directories
 # for example use the pattern */test/*
 
-# The subdirectories "Balls" and "LSystems" are not yet ready.
+# The subdirectory "Balls" is not yet ready.
 
 EXCLUDE_PATTERNS       = */.svn/* \
                          */testing/* \
                          */plugins/* \
                          */tmp/* \
-						 */Balls/* \
-						 */LSystems/*
+						 */Balls/*
 
 # The EXCLUDE_SYMBOLS tag can be used to specify one or more symbol names
 # (namespaces, classes, functions, etc.) that should be excluded from the

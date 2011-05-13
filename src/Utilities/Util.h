@@ -163,8 +163,18 @@ namespace Util {
     };
 */
 
+  /// Strips leading and trailing whitespace from a string.
+  /** \param str A string to trim.
+   *  \return \p str without leading and trailing whitespace.
+   */
   std::string trim(const std::string &str);
 
+  /// Splits a string on each occurrence of \p delimiter.
+  /** @param delimiter The string at which \p str is split.
+   *  @param str The string which is split into its part
+   *  @return The list of parts of \p str. \p delimiter is not included in any
+   *     of the parts.
+   */
   std::vector<std::string> explode(const std::string &delimiter, const std::string &str);
 }
 

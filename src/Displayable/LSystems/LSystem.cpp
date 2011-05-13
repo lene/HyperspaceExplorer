@@ -26,12 +26,14 @@
 #include "Rotation.impl.h"
 
 using VecMath::Vector;
+using std::vector;
+using std::string;
 
 #include <sstream>
 #include <iterator>
 
 Alphabet::Alphabet(const std::string& letters): letters_() {
-  for(std::string::const_iterator it = letters.begin(); it != letters.end(); ++it) {
+  for(string::const_iterator it = letters.begin(); it != letters.end(); ++it) {
     if (*it != ' ' && *it != ',') {
         letters_.push_back(*it);
     }
@@ -46,16 +48,59 @@ std::string Alphabet::toString() const {
 
 Axiom::Axiom(const std::string& axiom): axiom_(axiom) { }
 
-Rules::Rules(const std::string& rules) {
-    std::vector<std::string> parts = Util::explode(",", rules);
+std::string::const_iterator Axiom::begin() {
+    return axiom_.begin();
 }
+
+std::string::const_iterator Axiom::end() {
+    return axiom_.end();
+}
+
+
+Rule::Rule(const std::string& rule) {
+  vector<string> parts = Util::explode(string(1, SEPARATOR), rule);
+  if (parts.size() != 2) {
+
+  } else {
+    string before = Util::trim(parts[0]);
+    if (before.length() != 1) {
+
+    } else {
+      predecessor_ = before.at(0);
+    }
+
+    successor_ = Util::trim(parts[1]);
+  }
+}
+
+std::string Rule::toString() const {
+  std::ostringstream o;
+  o << predecessor_ << ": " << successor_;
+  return o.str();
+}
+
+Rules::Rules(const std::string& rules) {
+    vector<string> parts = Util::explode(",", rules);
+    for (vector<string>::const_iterator i = parts.begin(); i != parts.end(); ++i) {
+      rules_.insert(std::make_pair('x', Rule(Util::trim(*i))));
+    }
+}
+
+std::string Rules::toString() const {
+  std::ostringstream o;
+  for (storage_type::const_iterator i = rules_.begin(); i != rules_.end(); ++i) {
+      o << i->second.toString() << ", ";
+  }
+  return o.str();
+}
+
 LSystem::LSystem(unsigned level): Composite(), 
         level_(level),
         alphabet_("AB"), rules_("A: AB, B: A"), axiom_("A") {
   declareParameter("Level", (unsigned)2);
-  declareParameter("Alphabet", std::string("..."));
-  declareParameter("Rules", std::string("..."));
-  declareParameter("Axiom", std::string("..."));
+  declareParameter("Alphabet", std::string("AB ..."));
+  declareParameter("Rules", std::string("A: AB, B: A ..."));
+  declareParameter("Axiom", std::string("A ..."));
 
   Initialize();
 }
@@ -63,15 +108,17 @@ LSystem::LSystem(unsigned level): Composite(),
 LSystem::~LSystem() { }
 
 
-std::string LSystem::getFunctionName() const { return "Lindenmayer System: "+alphabet_.toString(); }
+std::string LSystem::getFunctionName() const { 
+  return "Lindenmayer System: "+rules_.toString();
+}
 
 void LSystem::SetParameters(const ParameterMap &parms) {
-  std::cerr << "LSystem::SetParameters("<<parms.toString()<<")\n";
-      for (ParameterMap::const_iterator i = parms.begin(); i != parms.end(); ++i) {
-        if (i->second->getName() == "Alphabet") alphabet_ = i->second->toString();
-        if (i->second->getName() == "Level") level_ = i->second->toUnsigned();
-      }
-//  Initialize();
+  for (ParameterMap::const_iterator i = parms.begin(); i != parms.end(); ++i) {
+    if (i->second->getName() == "Level") level_ = i->second->toUnsigned();
+    if (i->second->getName() == "Alphabet") alphabet_ = i->second->toString();
+    if (i->second->getName() == "Rules") rules_ = i->second->toString();
+    if (i->second->getName() == "Axiom") axiom_ = i->second->toString();
+  }
 }
 
 void LSystem::Initialize() {
@@ -80,6 +127,9 @@ void LSystem::Initialize() {
     generate(level_);
 }
 LSystem LSystem::generate(unsigned level) {
+  for (string::const_iterator i = axiom_.begin(); i != axiom_.end(); ++i) {
+    
+  }
   addComponent(
     std::shared_ptr<Displayable> (new Hypercube),
     VecMath::makeVector(0., 0., 0., 0.),

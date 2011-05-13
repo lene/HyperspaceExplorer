@@ -37,14 +37,6 @@ using std::ostringstream;
 
 namespace Util {
 
-  template<typename T> std::ostream& operator<<(std::ostream& s,
-                                                std::vector<T> const& v) {
-    s << "(";
-    copy(v.begin(), v.end(), std::ostream_iterator<T>(s, " "));
-    s << ")";
-    return s;
-  }
-
   /** debug function for OpenGL commands; outputs all current GL errors on cerr
   *  @param op optional repetition of last GL command                          */
   void CheckGLErrors (const char *
