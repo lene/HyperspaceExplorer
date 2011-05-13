@@ -79,7 +79,7 @@
     const std::string &get() const;
     std::string::const_iterator begin() const;
     std::string::const_iterator end() const;
-
+    
   private:
     std::string axiom_;
   };
@@ -90,6 +90,8 @@
     static const char SEPARATOR = ':';
 
     Rule(const std::string &rule);
+
+    std::string apply(char atom) const;
 
     char getPredecessor() const;
     const std::string &getSuccessor() const;
@@ -109,7 +111,7 @@
   public:
     Rules(const std::string &rules);
 
-    std::string apply(const std::string &axiom);
+    std::string apply(const Axiom &axiom) const;
     storage_type::size_type size() const;
     std::string toString() const;
 

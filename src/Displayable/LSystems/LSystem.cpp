@@ -48,10 +48,6 @@ std::string Alphabet::toString() const {
 
 Axiom::Axiom(const std::string& axiom): axiom_(axiom) { }
 
-const std::string &Axiom::get() const {
-  return axiom_;
-}
-
 std::string::const_iterator Axiom::begin() const {
     return axiom_.begin();
 }
@@ -60,6 +56,9 @@ std::string::const_iterator Axiom::end() const {
     return axiom_.end();
 }
 
+const std::string &Axiom::get() const {
+  return axiom_;
+}
 
 Rule::Rule(const std::string& rule) {
   vector<string> parts = Util::explode(string(1, SEPARATOR), rule);
@@ -75,6 +74,13 @@ Rule::Rule(const std::string& rule) {
 
     successor_ = Util::trim(parts[1]);
   }
+}
+
+std::string Rule::apply(char atom) const {
+  if (atom == predecessor_) {
+      return successor_;
+  }
+  else return string(1, atom);
 }
 
 char Rule::getPredecessor() const { return predecessor_; }
@@ -93,9 +99,23 @@ Rules::Rules(const std::string& rules) {
     }
 }
 
+std::string Rules::apply(const Axiom& axiom) const {
+  string expanded;
+  for (string::const_iterator it = axiom.begin(); it != axiom.end(); ++it) {
+    storage_type::const_iterator rule = rules_.find(*it);
+    if (rule != rules_.end()) {
+      expanded.append(rule->second.apply(*it));
+    } else {
+      expanded.append(1, *it);
+    }
+  }
+  return expanded;
+}
+
 Rules::storage_type::size_type Rules::size() const {
   return rules_.size();
 }
+
 std::string Rules::toString() const {
   std::ostringstream o;
   for (storage_type::const_iterator i = rules_.begin(); i != rules_.end(); ++i) {
@@ -129,6 +149,8 @@ void LSystem::SetParameters(const ParameterMap &parms) {
     if (i->second->getName() == "Rules") rules_ = i->second->toString();
     if (i->second->getName() == "Axiom") axiom_ = i->second->toString();
   }
+    string product = expand(axiom_.get(), level_);
+    std::cerr << product << std::endl;
   std::cerr << getFunctionName() << std::endl;
 }
 
@@ -138,8 +160,6 @@ void LSystem::Initialize() {
 }
 
 LSystem LSystem::generate(unsigned level) {
-
-  string product = expand(axiom_.get(), level);
 
   addComponent(
     std::shared_ptr<Displayable> (new Hypercube),
@@ -170,13 +190,8 @@ LSystem LSystem::generate(unsigned level) {
 
 std::string LSystem::expand(const std::string &axiom, unsigned level) {
   if (level > 0 && rules_.size() > 0) {
-
-    for (string::const_iterator i = axiom.begin(); i != axiom.end(); ++i) {
-
-    }
-
-//    axiom = Expand (str_replace (axiom, m_rules), l-1);
-
+    string expanded = rules_.apply(axiom);
+    return expand(expanded, level-1);
   }
 
   return axiom;
