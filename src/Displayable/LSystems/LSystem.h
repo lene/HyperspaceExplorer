@@ -76,8 +76,9 @@
   public:
     Axiom (const std::string &axiom);
 
-    std::string::const_iterator begin();
-    std::string::const_iterator end();
+    const std::string &get() const;
+    std::string::const_iterator begin() const;
+    std::string::const_iterator end() const;
 
   private:
     std::string axiom_;
@@ -90,6 +91,9 @@
 
     Rule(const std::string &rule);
 
+    char getPredecessor() const;
+    const std::string &getSuccessor() const;
+
     std::string toString() const;
 
   private:
@@ -100,14 +104,16 @@
 
   class Rules {
 
+    typedef std::map<char, Rule> storage_type;
+
   public:
     Rules(const std::string &rules);
 
     std::string apply(const std::string &axiom);
+    storage_type::size_type size() const;
     std::string toString() const;
 
   private:
-    typedef std::map<char, Rule> storage_type;
     storage_type rules_;
   };
 
@@ -129,6 +135,8 @@ protected:
 private:
 
     LSystem generate(unsigned level);
+
+    std::string expand(const std::string &axiom, unsigned level);
 
     unsigned level_;
     Alphabet alphabet_;
