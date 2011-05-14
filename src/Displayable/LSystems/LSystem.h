@@ -27,6 +27,57 @@
 #define USE_LSYSTEM
 
 
+
+  class Axiom {
+
+  public:
+    Axiom (const std::string &axiom);
+
+    const std::string &get() const;
+    std::string::const_iterator begin() const;
+    std::string::const_iterator end() const;
+
+  private:
+    std::string axiom_;
+  };
+
+  class Rule {
+
+  public:
+    static const char SEPARATOR = ':';
+
+    Rule(const std::string &rule);
+
+    std::string apply(char atom) const;
+
+    char getPredecessor() const;
+    const std::string &getSuccessor() const;
+
+    std::string toString() const;
+
+  private:
+      char predecessor_;
+      std::string successor_;
+
+  };
+
+
+  class Ruleset {
+
+    typedef std::map<char, Rule> storage_type;
+
+  public:
+    Ruleset(const std::string &rules);
+
+    std::string apply(const Axiom &axiom) const;
+    storage_type::size_type size() const;
+    std::string toString() const;
+
+  private:
+    storage_type rules_;
+  };
+
+class LSystem : public Composite {
   /// The alphabet for the Lindenmayer System.
   /** See http://en.wikipedia.org/wiki/L-system#L-system_structure for definitions.
    *
@@ -65,61 +116,18 @@
 
 
     Alphabet(const std::string &letters);
+
+    void parse(const Axiom &axiom);
+
     std::string toString() const;
 
   private:
       std::vector<char> letters_;
-  };
-
-  class Axiom {
-
-  public:
-    Axiom (const std::string &axiom);
-
-    const std::string &get() const;
-    std::string::const_iterator begin() const;
-    std::string::const_iterator end() const;
-    
-  private:
-    std::string axiom_;
-  };
-
-  class Rule {
-
-  public:
-    static const char SEPARATOR = ':';
-
-    Rule(const std::string &rule);
-
-    std::string apply(char atom) const;
-
-    char getPredecessor() const;
-    const std::string &getSuccessor() const;
-
-    std::string toString() const;
-
-  private:
-      char predecessor_;
-      std::string successor_;
+      std::vector< VecMath::Matrix<4> > Rstate_;
+      std::vector< VecMath::Vector<4> > xstate_;
+      std::vector<double> scalestate_;
 
   };
-
-  class Rules {
-
-    typedef std::map<char, Rule> storage_type;
-
-  public:
-    Rules(const std::string &rules);
-
-    std::string apply(const Axiom &axiom) const;
-    storage_type::size_type size() const;
-    std::string toString() const;
-
-  private:
-    storage_type rules_;
-  };
-
-class LSystem : public Composite {
 
 public:
 
@@ -142,7 +150,7 @@ private:
 
     unsigned level_;
     Alphabet alphabet_;
-    Rules rules_;
+    Ruleset rules_;
     Axiom axiom_;
 
 };

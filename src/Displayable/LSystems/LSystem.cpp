@@ -26,13 +26,14 @@
 #include "Rotation.impl.h"
 
 using VecMath::Vector;
+using VecMath::Matrix;
 using std::vector;
 using std::string;
 
 #include <sstream>
 #include <iterator>
 
-Alphabet::Alphabet(const std::string& letters): letters_() {
+LSystem::Alphabet::Alphabet(const std::string& letters): letters_() {
   for(string::const_iterator it = letters.begin(); it != letters.end(); ++it) {
     if (*it != ' ' && *it != ',') {
         letters_.push_back(*it);
@@ -40,7 +41,130 @@ Alphabet::Alphabet(const std::string& letters): letters_() {
   }
 }
 
-std::string Alphabet::toString() const {
+void LSystem::Alphabet::parse(const Axiom& axiom) {
+
+  const Vector<4> ux (1., 0., 0., 0.);	//  unity vector in x direction
+
+  double m_angle = 30.;
+  double m_scale = 1.;
+
+  VecMath::Matrix<4> R,				//  current rotation state
+  Rx  (2, 1,  m_angle),			//  positive right angle in x direction
+  R_x (2, 1, -m_angle),			//  negative right angle in x direction
+  Ry  (0, 2,  m_angle),			//	y
+  R_y (0, 2, -m_angle),
+  Rz  (1, 0,  m_angle),			//	z
+  R_z (1, 0, -m_angle),
+  Rw  (1, 0,  m_angle),			//	w
+  R_w (1, 0, -m_angle);
+
+  Vector<4> x = VecMath::makeVector(0., 0., 0., 0.);		//  current translation state
+  Vector<4> xmin = VecMath::makeVector(0., 0., 0., 0.);		//  current translation state
+  Vector<4> xmax = VecMath::makeVector(0., 0., 0., 0.);		//  current translation state
+
+  //  parse the expanded lsystem string
+  for (unsigned pos = 0; pos < axiom.get().size (); pos++) {
+    char current = axiom.get()[pos];
+    if (current >= 'A' && current <= 'Z') {
+      std::ostringstream o;
+      o << "      rotate " << R << std::endl
+	<< "      translate " << x << std::endl
+	<< "      scale " << m_scale << std::endl
+        << "      object " << current << std::endl;
+    }
+    else {
+      switch (axiom.get()[pos]) {
+      case FORWARD:
+        x += R*ux;
+        break;
+      case BACK:
+        x -= R*ux;
+        break;
+
+      case LEFT_X:
+        R =  R*Rx;
+        break;
+      case RIGHT_X:
+        R = R*R_x;
+        break;
+
+      case LEFT_Y:
+        R =  R*Ry;
+        break;
+      case RIGHT_Y:
+        R = R*R_y;
+        break;
+
+      case LEFT_Z:
+        R =  R*Rz;
+        break;
+      case RIGHT_Z:
+        R = R*R_z;
+        break;
+
+      case LEFT_W:
+        R =  R*Rw;
+        break;
+      case RIGHT_W:
+        R = R*R_w;
+        break;
+
+      case '{':
+        Rstate_.push_back(R);
+        xstate_.push_back(x);
+        scalestate_.push_back(m_scale);
+	break;
+      case '}':
+        R = Rstate_.back();
+        Rstate_.pop_back ();
+        x = xstate_.back();
+        xstate_.pop_back ();
+        m_scale = scalestate_.back();
+        scalestate_.pop_back ();
+	break;
+
+    //        scaling
+      case 's': {
+          string num = "";
+          while (isdigit (axiom.get()[++pos]) || axiom.get()[pos] == '.') {
+            num += axiom.get()[pos];
+	  }
+	  pos--;
+	  m_scale *= atof (num.c_str ());
+
+        }
+        break;
+
+      case '@': {
+          string num = "";
+          while (isdigit (axiom.get()[++pos]) || axiom.get()[pos] == '.') {
+            num += axiom.get()[pos];
+	  }
+	  pos--;
+	  m_angle = atof (num.c_str ());
+	  Rx  = VecMath::Matrix<4> (2, 1,  m_angle);
+          R_x = Matrix<4> (2, 1, -m_angle);
+          Ry  = Matrix<4> (0, 2,  m_angle);
+          R_y = Matrix<4> (0, 2, -m_angle);
+          Rz  = Matrix<4> (1, 0,  m_angle);
+          R_z = Matrix<4> (1, 0, -m_angle);
+        }
+        break;
+
+      case ' ': break;			//  spaces as delimiters are always allowed
+      default:
+                std::cerr << "//  invalid character: \"" << current << "\"" << std::endl;
+      }
+    }
+
+    for (int i = 0; i < 3; i++) {
+      if (x[i] > xmax[i]) xmax[i] = x[i];
+      if (x[i] < xmin[i]) xmin[i] = x[i];
+    }
+  }
+
+}
+std::string LSystem::Alphabet::toString() const {
     std::ostringstream o;
     std::copy(letters_.begin(), letters_.end(), std::ostream_iterator<char>(o, " "));
     return o.str();
@@ -63,17 +187,16 @@ const std::string &Axiom::get() const {
 Rule::Rule(const std::string& rule) {
   vector<string> parts = Util::explode(string(1, SEPARATOR), rule);
   if (parts.size() != 2) {
-
-  } else {
-    string before = Util::trim(parts[0]);
-    if (before.length() != 1) {
-
-    } else {
-      predecessor_ = before.at(0);
-    }
-
-    successor_ = Util::trim(parts[1]);
+    return;
   }
+
+  string before = Util::trim(parts[0]);
+  if (before.length() != 1) {
+    return;
+  }
+
+  predecessor_ = before.at(0);
+  successor_ = Util::trim(parts[1]);
 }
 
 std::string Rule::apply(char atom) const {
@@ -91,7 +214,7 @@ std::string Rule::toString() const {
   return o.str();
 }
 
-Rules::Rules(const std::string& rules) {
+Ruleset::Ruleset(const std::string& rules) {
     vector<string> parts = Util::explode(",", rules);
     for (vector<string>::const_iterator i = parts.begin(); i != parts.end(); ++i) {
       Rule rule(Util::trim(*i));
@@ -99,7 +222,7 @@ Rules::Rules(const std::string& rules) {
     }
 }
 
-std::string Rules::apply(const Axiom& axiom) const {
+std::string Ruleset::apply(const Axiom& axiom) const {
   string expanded;
   for (string::const_iterator it = axiom.begin(); it != axiom.end(); ++it) {
     storage_type::const_iterator rule = rules_.find(*it);
@@ -112,11 +235,11 @@ std::string Rules::apply(const Axiom& axiom) const {
   return expanded;
 }
 
-Rules::storage_type::size_type Rules::size() const {
+Ruleset::storage_type::size_type Ruleset::size() const {
   return rules_.size();
 }
 
-std::string Rules::toString() const {
+std::string Ruleset::toString() const {
   std::ostringstream o;
   for (storage_type::const_iterator i = rules_.begin(); i != rules_.end(); ++i) {
       o << i->second.toString() << ", ";
