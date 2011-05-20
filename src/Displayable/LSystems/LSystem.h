@@ -114,18 +114,14 @@ class LSystem : public Composite {
     static const char SCALE = 's';
     static const char ANGLE = 'a';
 
-
     Alphabet(const std::string &letters);
 
-    void parse(const Axiom &axiom);
+    std::shared_ptr<Displayable> getDisplayable(char letter);
 
     std::string toString() const;
 
   private:
       std::vector<char> letters_;
-      std::vector< VecMath::Matrix<4> > Rstate_;
-      std::vector< VecMath::Vector<4> > xstate_;
-      std::vector<double> scalestate_;
 
   };
 
@@ -145,6 +141,7 @@ protected:
 private:
 
     LSystem generate(unsigned level);
+    void parse(const Axiom &axiom, const Ruleset &rules);
 
     std::string expand(const std::string &axiom, unsigned level);
 
@@ -152,6 +149,10 @@ private:
     Alphabet alphabet_;
     Ruleset rules_;
     Axiom axiom_;
+
+    std::vector< VecMath::Matrix<4> > Rstate_;
+    std::vector< VecMath::Vector<4> > xstate_;
+    std::vector<double> scalestate_;
 
 };
 

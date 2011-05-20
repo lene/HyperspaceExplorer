@@ -25,13 +25,15 @@
 
 #include "Rotation.impl.h"
 
+#include <sstream>
+#include <iterator>
+#include <memory>
+
 using VecMath::Vector;
 using VecMath::Matrix;
 using std::vector;
 using std::string;
-
-#include <sstream>
-#include <iterator>
+using std::shared_ptr;
 
 LSystem::Alphabet::Alphabet(const std::string& letters): letters_() {
   for(string::const_iterator it = letters.begin(); it != letters.end(); ++it) {
@@ -41,129 +43,6 @@ LSystem::Alphabet::Alphabet(const std::string& letters): letters_() {
   }
 }
 
-void LSystem::Alphabet::parse(const Axiom& axiom) {
-
-  const Vector<4> ux (1., 0., 0., 0.);	//  unity vector in x direction
-
-  double m_angle = 30.;
-  double m_scale = 1.;
-
-  VecMath::Matrix<4> R,				//  current rotation state
-  Rx  (2, 1,  m_angle),			//  positive right angle in x direction
-  R_x (2, 1, -m_angle),			//  negative right angle in x direction
-  Ry  (0, 2,  m_angle),			//	y
-  R_y (0, 2, -m_angle),
-  Rz  (1, 0,  m_angle),			//	z
-  R_z (1, 0, -m_angle),
-  Rw  (1, 0,  m_angle),			//	w
-  R_w (1, 0, -m_angle);
-
-  Vector<4> x = VecMath::makeVector(0., 0., 0., 0.);		//  current translation state
-  Vector<4> xmin = VecMath::makeVector(0., 0., 0., 0.);		//  current translation state
-  Vector<4> xmax = VecMath::makeVector(0., 0., 0., 0.);		//  current translation state
-
-  //  parse the expanded lsystem string
-  for (unsigned pos = 0; pos < axiom.get().size (); pos++) {
-    char current = axiom.get()[pos];
-    if (current >= 'A' && current <= 'Z') {
-      std::ostringstream o;
-      o << "      rotate " << R << std::endl
-	<< "      translate " << x << std::endl
-	<< "      scale " << m_scale << std::endl
-        << "      object " << current << std::endl;
-    }
-    else {
-      switch (axiom.get()[pos]) {
-      case FORWARD:
-        x += R*ux;
-        break;
-      case BACK:
-        x -= R*ux;
-        break;
-
-      case LEFT_X:
-        R =  R*Rx;
-        break;
-      case RIGHT_X:
-        R = R*R_x;
-        break;
-
-      case LEFT_Y:
-        R =  R*Ry;
-        break;
-      case RIGHT_Y:
-        R = R*R_y;
-        break;
-
-      case LEFT_Z:
-        R =  R*Rz;
-        break;
-      case RIGHT_Z:
-        R = R*R_z;
-        break;
-
-      case LEFT_W:
-        R =  R*Rw;
-        break;
-      case RIGHT_W:
-        R = R*R_w;
-        break;
-
-      case '{':
-        Rstate_.push_back(R);
-        xstate_.push_back(x);
-        scalestate_.push_back(m_scale);
-	break;
-      case '}':
-        R = Rstate_.back();
-        Rstate_.pop_back ();
-        x = xstate_.back();
-        xstate_.pop_back ();
-        m_scale = scalestate_.back();
-        scalestate_.pop_back ();
-	break;
-
-    //        scaling
-      case 's': {
-          string num = "";
-          while (isdigit (axiom.get()[++pos]) || axiom.get()[pos] == '.') {
-            num += axiom.get()[pos];
-	  }
-	  pos--;
-	  m_scale *= atof (num.c_str ());
-
-        }
-        break;
-
-      case '@': {
-          string num = "";
-          while (isdigit (axiom.get()[++pos]) || axiom.get()[pos] == '.') {
-            num += axiom.get()[pos];
-	  }
-	  pos--;
-	  m_angle = atof (num.c_str ());
-	  Rx  = VecMath::Matrix<4> (2, 1,  m_angle);
-          R_x = Matrix<4> (2, 1, -m_angle);
-          Ry  = Matrix<4> (0, 2,  m_angle);
-          R_y = Matrix<4> (0, 2, -m_angle);
-          Rz  = Matrix<4> (1, 0,  m_angle);
-          R_z = Matrix<4> (1, 0, -m_angle);
-        }
-        break;
-
-      case ' ': break;			//  spaces as delimiters are always allowed
-      default:
-                std::cerr << "//  invalid character: \"" << current << "\"" << std::endl;
-      }
-    }
-
-    for (int i = 0; i < 3; i++) {
-      if (x[i] > xmax[i]) xmax[i] = x[i];
-      if (x[i] < xmin[i]) xmin[i] = x[i];
-    }
-  }
-
-}
 std::string LSystem::Alphabet::toString() const {
     std::ostringstream o;
     std::copy(letters_.begin(), letters_.end(), std::ostream_iterator<char>(o, " "));
@@ -284,8 +163,10 @@ void LSystem::Initialize() {
 
 LSystem LSystem::generate(unsigned level) {
 
+
+
   addComponent(
-    std::shared_ptr<Displayable> (new Hypercube),
+    shared_ptr<Displayable> (new Hypercube),
     VecMath::makeVector(0., 0., 0., 0.),
     VecMath::Rotation<4>()
   );
@@ -300,7 +181,7 @@ LSystem LSystem::generate(unsigned level) {
               double z = (index == 2)*sign;
               double w = (index == 3)*sign;
               addComponent(
-                        std::shared_ptr<Displayable> (new LSystem(level-1)),
+                        shared_ptr<Displayable> (new LSystem(level-1)),
                         displacement*VecMath::makeVector(x, y, z, w),
                         VecMath::Rotation<4>(rotation_angle, 0., 0., 0., 0., 0.),
                         VecMath::Vector<4>(scale)
@@ -309,6 +190,134 @@ LSystem LSystem::generate(unsigned level) {
       }
   }
   return *this;
+}
+
+
+void LSystem::parse(const Axiom& axiom, const Ruleset &rules) {
+
+  std::map<char, shared_ptr<Displayable> > sub_objects;
+  
+
+  const Vector<4> ux (1., 0., 0., 0.);	//  unity vector in x direction
+
+  double m_angle = 30.;
+  double m_scale = 1.;
+
+  VecMath::Matrix<4> R,				//  current rotation state
+  Rx  (2, 1,  m_angle),			//  positive right angle in x direction
+  R_x (2, 1, -m_angle),			//  negative right angle in x direction
+  Ry  (0, 2,  m_angle),			//	y
+  R_y (0, 2, -m_angle),
+  Rz  (1, 0,  m_angle),			//	z
+  R_z (1, 0, -m_angle),
+  Rw  (1, 0,  m_angle),			//	w
+  R_w (1, 0, -m_angle);
+
+  Vector<4> x = VecMath::makeVector(0., 0., 0., 0.);		//  current translation state
+  Vector<4> xmin = VecMath::makeVector(0., 0., 0., 0.);		//  current translation state
+  Vector<4> xmax = VecMath::makeVector(0., 0., 0., 0.);		//  current translation state
+
+  //  parse the expanded lsystem string
+  for (unsigned pos = 0; pos < axiom.get().size (); pos++) {
+    char current = axiom.get()[pos];
+    if (current >= 'A' && current <= 'Z') {
+      std::ostringstream o;
+      o << "      rotate " << R << std::endl
+	<< "      translate " << x << std::endl
+	<< "      scale " << m_scale << std::endl
+        << "      object " << current << std::endl;
+    }
+    else {
+      switch (axiom.get()[pos]) {
+      case Alphabet::FORWARD:
+        x += R*ux;
+        break;
+      case Alphabet::BACK:
+        x -= R*ux;
+        break;
+
+      case Alphabet::LEFT_X:
+        R =  R*Rx;
+        break;
+      case Alphabet::RIGHT_X:
+        R = R*R_x;
+        break;
+
+      case Alphabet::LEFT_Y:
+        R =  R*Ry;
+        break;
+      case Alphabet::RIGHT_Y:
+        R = R*R_y;
+        break;
+
+      case Alphabet::LEFT_Z:
+        R =  R*Rz;
+        break;
+      case Alphabet::RIGHT_Z:
+        R = R*R_z;
+        break;
+
+      case Alphabet::LEFT_W:
+        R =  R*Rw;
+        break;
+      case Alphabet::RIGHT_W:
+        R = R*R_w;
+        break;
+
+      case '{':
+        Rstate_.push_back(R);
+        xstate_.push_back(x);
+        scalestate_.push_back(m_scale);
+	break;
+      case '}':
+        R = Rstate_.back();
+        Rstate_.pop_back ();
+        x = xstate_.back();
+        xstate_.pop_back ();
+        m_scale = scalestate_.back();
+        scalestate_.pop_back ();
+	break;
+
+    //        scaling
+      case 's': {
+          string num = "";
+          while (isdigit (axiom.get()[++pos]) || axiom.get()[pos] == '.') {
+            num += axiom.get()[pos];
+	  }
+	  pos--;
+	  m_scale *= atof (num.c_str ());
+
+        }
+        break;
+
+      case '@': {
+          string num = "";
+          while (isdigit (axiom.get()[++pos]) || axiom.get()[pos] == '.') {
+            num += axiom.get()[pos];
+	  }
+	  pos--;
+	  m_angle = atof (num.c_str ());
+	  Rx  = VecMath::Matrix<4> (2, 1,  m_angle);
+          R_x = Matrix<4> (2, 1, -m_angle);
+          Ry  = Matrix<4> (0, 2,  m_angle);
+          R_y = Matrix<4> (0, 2, -m_angle);
+          Rz  = Matrix<4> (1, 0,  m_angle);
+          R_z = Matrix<4> (1, 0, -m_angle);
+        }
+        break;
+
+      case ' ': break;			//  spaces as delimiters are always allowed
+      default:
+                std::cerr << "//  invalid character: \"" << current << "\"" << std::endl;
+      }
+    }
+
+    for (int i = 0; i < 3; i++) {
+      if (x[i] > xmax[i]) xmax[i] = x[i];
+      if (x[i] < xmin[i]) xmin[i] = x[i];
+    }
+  }
+
 }
 
 std::string LSystem::expand(const std::string &axiom, unsigned level) {
