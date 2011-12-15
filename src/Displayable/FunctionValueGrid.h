@@ -99,7 +99,7 @@ template <unsigned N, unsigned P, typename NUM = double>
       value_storage_type _function_values;
 
       /// \todo this should be somewhere global.
-      const static double EPSILON = 1e-8;
+      static constexpr double EPSILON = 1e-8;
 };
 
 template <unsigned N, unsigned P, typename NUM>

@@ -28,7 +28,7 @@ class Test_Matrix: public QObject {
 
   Q_OBJECT
 
-  static const double EPSILON = 1e-8;
+  static constexpr double EPSILON = 1e-8;
 
 private slots:
   void defaultConstructor();

@@ -29,7 +29,7 @@ class Test_Projection: public QObject {
 
   Q_OBJECT
 
-  static const double EPSILON = 1.e-8;
+  static constexpr double EPSILON = 1.e-8;
 
   private slots:
 

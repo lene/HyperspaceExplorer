@@ -30,7 +30,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
  */
 bool FunctionFactory::registerFunction(CreateFunctionCallback creator,
                                        const std::string &parent_category) {
-
     std::tr1::shared_ptr<Displayable> theFunction(creator());
 
     std::string functionName = theFunction->getFunctionName();

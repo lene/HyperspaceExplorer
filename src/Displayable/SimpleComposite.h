@@ -24,7 +24,7 @@
 #define TEST_COMPOSITE_SCALING
 
 #include <Composite.h>
-
+#include <Object.h>
 
 /// A simple Composite object, consisting of two Hypercube s. Meant only to develop the idea.
 class SimpleComposite : public Composite {

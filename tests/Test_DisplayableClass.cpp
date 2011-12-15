@@ -54,7 +54,9 @@ bool containsClassWithName(const vector<DisplayableClass> &classes, const string
 void Test_DisplayableClass::getSubClasses() {
   DisplayableClass root_ = DisplayableClass::getRootNode();
   string root_name = root_.getName();
+
   std::vector<DisplayableClass> subclasses = root_.getSubClasses();
+
   testEqual(subclasses.size(), 3);  // FunctionHolder, Surface, Object
   test(containsClassWithName(subclasses, "FunctionHolder"),
        "FunctionHolder is subclass of "+root_name);

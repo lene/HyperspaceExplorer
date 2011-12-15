@@ -19,6 +19,7 @@
 */
 #include "Rotation.h"
 
+#include "Vector.impl.h"
 #include "Matrix.impl.h"
 
 #include <typeinfo>

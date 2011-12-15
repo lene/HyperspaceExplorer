@@ -44,11 +44,11 @@ template <unsigned D>
         /// Hardcoded screen distance for generation of the Projection in projected_vertices().
         /** \todo un-hardcode this (configure from Rotope)
          */
-        const static double PROJECTION_SCREEN_W = 2.;
+        static constexpr double PROJECTION_SCREEN_W = 2.;
         /// Hardcoded camera w coordinate for generation of the Projection in projected_vertices().
         /** \todo un-hardcode this (configure from Rotope)
          */
-        const static double PROJECTION_CAMERA_W = 8.;
+        static constexpr double PROJECTION_CAMERA_W = 8.;
 
     public:
 

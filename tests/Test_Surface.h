@@ -36,17 +36,17 @@ class Test_Surface: public QObject {
 
     Q_OBJECT
 
-    static const double X_MIN = -1.;
-    static const double X_MAX =  1.;
-    static const unsigned GRID_SIZE = 5;
+    static constexpr double X_MIN = -1.;
+    static constexpr double X_MAX =  1.;
+    static constexpr unsigned GRID_SIZE = 5;
 
     const static std::string TEST_FUNCTION_NAME;
-    static const double CONSTANT_FUNCTION_VALUE = 1.;
+    static constexpr double CONSTANT_FUNCTION_VALUE = 1.;
 
-    static const double EPSILON = 1e-8;
+    static constexpr double EPSILON = 1e-8;
 
-    static const double PROJECTION_SCREEN_W = 2.;
-    static const double PROJECTION_CAMERA_W = 4.;
+    static constexpr double PROJECTION_SCREEN_W = 2.;
+    static constexpr double PROJECTION_CAMERA_W = 4.;
 
     class SurfaceTestImplementation;
 

@@ -51,9 +51,9 @@ private:
 
   std::tr1::shared_ptr< FunctionValueGrid<4, 3> > _grid;
 
-  const static double DEFAULT_X_MIN = -1.;
-  const static double DEFAULT_X_MAX =  1.;
-  const static unsigned DEFAULT_GRID_SIZE = 10;
+  constexpr static double DEFAULT_X_MIN = -1.;
+  constexpr static double DEFAULT_X_MAX =  1.;
+  constexpr static unsigned DEFAULT_GRID_SIZE = 10;
 
   const static VecMath::Vector<3> DEFAULT_XMIN;
   const static VecMath::Vector<3> DEFAULT_XMAX;

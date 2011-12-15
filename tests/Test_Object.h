@@ -39,7 +39,7 @@ class Test_Object: public QObject {
   const static QString TEST_FUNCTION_NAME;
 
 public:
-  static const double CONSTANT_FUNCTION_VALUE = 1.;
+  static constexpr double CONSTANT_FUNCTION_VALUE = 1.;
 
 private slots:
 

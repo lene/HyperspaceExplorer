@@ -32,10 +32,10 @@ class Test_RealFunction: public QObject {
 
     Q_OBJECT
 
-    static const double X_MIN = -1.;
-    static const double X_MAX =  1.;
-    static const unsigned GRID_SIZE = 5;
-    static const unsigned NUM_PARAMETERS = 3;
+    static constexpr double X_MIN = -1.;
+    static constexpr double X_MAX =  1.;
+    static constexpr unsigned GRID_SIZE = 5;
+    static constexpr unsigned NUM_PARAMETERS = 3;
 
     const static QString TEST_FUNCTION_NAME;
 

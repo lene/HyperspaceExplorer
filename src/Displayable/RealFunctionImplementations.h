@@ -50,7 +50,7 @@ class ParametricTestFunction: public ParametricFunction<4, 3> {
 
   private:
     
-    static const double a0 = 0,
+    static constexpr double a0 = 0,
                         a1x = 1, a1y = -1, a1z = 1,
                         a2xx = -1, a2xy = 1, a2xz = -1,
                         a2yy = 1, a2yz = -1,
