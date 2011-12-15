@@ -44,45 +44,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Test_Composite.h"
 #include "Test_Util.h"
 
+#include "Auxiliary/TestRunner.h"
+
 #include <QtTest/QtTest>
-
-class TestRunner {
-
-  public:
-
-    TestRunner(): executedTestSuites_(0), failedTestSuites_(), startTime_(clock()) { }
-
-    void run(QObject *test) {
-      if (QTest::qExec(test)) failedTestSuites_.push_back(typeid(*test).name());
-      executedTestSuites_++;
-    }
-
-    void printSummary() const {
-      double timeElapsed = double(clock()-startTime_)/CLOCKS_PER_SEC;
-      if (!failedTestSuites_.empty()) qDebug() << QString(80, '*');
-      qDebug() << "Tests finished in " << timeElapsed << " seconds.";
-      qDebug() << failedTestSuites_.size() << " Test suites out of " << executedTestSuites_ << " failed.";
-      if (!failedTestSuites_.empty()) printFailedTestSuites();
-      if (!failedTestSuites_.empty()) qDebug() << QString(80, '*');
-    }
-
-    unsigned exitValue() const { return failedTestSuites_.size(); }
-
-  private:
-
-    void printFailedTestSuites() const {
-      std::for_each(failedTestSuites_.begin(), failedTestSuites_.end(), printFailedTestSuite);
-    }
-
-    static void printFailedTestSuite(std::string suite) {
-      qDebug() << "    " << suite.c_str();
-    }
-
-    unsigned executedTestSuites_;
-    std::vector<std::string> failedTestSuites_;
-
-    clock_t startTime_;
-};
 
 
 int main(int argc, char **argv) {

@@ -172,8 +172,7 @@ void Test_Composite::compositeWithScaling() {
   std::vector< VecMath::Vector<4> > vertices_to_test;
   vertices_to_test.push_back(Vector<4>(-2., -1., -1., -1.));
   view_->printVertices();
-  for (std::vector< VecMath::Vector<4> >::iterator it = vertices_to_test.begin();
-          it != vertices_to_test.end(); ++it) {
+  for (auto it = vertices_to_test.begin(); it != vertices_to_test.end(); ++it) {
 //      if (!view_->isTransformedVertexPresent(*it)) view_->printVertices();
 //    test(view_->isTransformedVertexPresent(*it), it->toString().append(" present"));
   }

@@ -31,9 +31,11 @@ INCLUDEPATH += ./Auxiliary
 DEPENDPATH += ./Auxiliary
 
 HEADERS += Auxiliary/GlobalFunctions.h \
-           Auxiliary/MockView.h
+           Auxiliary/MockView.h \
+           Auxiliary/TestRunner.h
 SOURCES += Auxiliary/GlobalFunctions.cpp \
-           Auxiliary/MockView.cpp
+           Auxiliary/MockView.cpp \
+           Auxiliary/TestRunner.cpp
 
 HEADERS += \
            Test_Util.h \
