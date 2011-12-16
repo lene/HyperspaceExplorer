@@ -34,7 +34,8 @@ MultithreadedTransformationPolicy<N, P, NUM>::transform(
   return v;
 }
 
-template<unsigned  N, typename NUM> struct MapFunctor {
+template<unsigned  N, typename NUM>
+struct MultithreadedTransformationPolicy<N, 1, NUM>::MapFunctor {
 
     typedef VecMath::Vector<N, NUM> result_type;
 
@@ -58,10 +59,7 @@ typename MultithreadedTransformationPolicy<N, 1, NUM>::value_storage_type
 MultithreadedTransformationPolicy<N, 1, NUM>::transform(
         const value_storage_type &operand
 ) {
-  auto future = QtConcurrent::mapped(
-          operand.begin(), operand.end(),
-          MapFunctor<N, NUM>(this->rotation_, this->translation_, this->scale_)
-  );
+  auto future = QtConcurrent::mapped(operand.begin(), operand.end(), functor_);
 # if DEBUG_TRANSFORMATION
   qDebug() << "MultithreadedTransformationPolicy<" << N << ", " << 1 << ", " << typeid(NUM).name() << ">::transform("
            << operand.toString().c_str()

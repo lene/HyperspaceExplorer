@@ -45,7 +45,7 @@ class MultithreadedTransformationPolicy: public TransformationPolicy<N, P, NUM> 
 template <unsigned N, typename NUM>
 class MultithreadedTransformationPolicy< N, 1, NUM >: public TransformationPolicy<N, 1, NUM> {
 
-  public:
+public:
 
     /// Type for the storage of the function values on all grid points.
     typedef typename FunctionValueGrid< N, 1, NUM >::value_storage_type value_storage_type;
@@ -57,12 +57,15 @@ class MultithreadedTransformationPolicy< N, 1, NUM >: public TransformationPolic
     MultithreadedTransformationPolicy(const VecMath::Rotation<N, NUM> &rotation,
                                       const VecMath::Vector<N, NUM> &translation,
                                       const VecMath::Vector<N, NUM> &scale):
-    TransformationPolicy<N, 1, NUM>(rotation, translation, scale) { }
+    TransformationPolicy<N, 1, NUM>(rotation, translation, scale), functor_(rotation, translation, scale) { }
 
     /// Execute the transform on a set of vertices.
     value_storage_type transform(const value_storage_type &operand);
 
-    VecMath::Vector<N, NUM> mapFunction(const VecMath::Vector<N, NUM> &arg);
+private:
+
+    class MapFunctor;
+    MapFunctor functor_;
 };
 
 
