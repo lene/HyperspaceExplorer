@@ -23,6 +23,7 @@
 #include <algorithm>
 #include <sstream>
 #include <iostream>
+#include <iterator>
 
 namespace VecMath {
 
