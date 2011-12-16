@@ -55,14 +55,14 @@ bool FunctionFactory::unregisterFunction(const std::string &name) {
  *  \return a newly created object of class "name"
  */
 Displayable *FunctionFactory::createFunction(const std::string &name) {
-    CallbackMap::const_iterator i = callbacks.find(name);
+    auto i = callbacks.find(name);
     if (i == callbacks.end()) throw BadFunctionException(name);
     return (i->second)();
 }
 
 std::vector< std::string > FunctionFactory::listFunctions() {
     std::vector<std::string> list;
-    for (CallbackMap::const_iterator i = callbacks.begin(); i != callbacks.end(); ++i) {
+    for (auto i = callbacks.begin(); i != callbacks.end(); ++i) {
         list.push_back(i->first);
     }
     return list;
