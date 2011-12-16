@@ -71,13 +71,14 @@ int main(int argc, char **argv) {
     runner.run(new Test_Observer);
     runner.run(new Test_Rotope);
     runner.run(new Test_ArrayList);
-#endif
+
     runner.run(new Test_Object);
     runner.run(new Test_Composite);
     runner.run(new Test_Util);
 
     runner.run(new Test_RealFunction);
     runner.run(new Test_Surface);
+#endif
     runner.run(new Test_Transformation);
 
     runner.printSummary();

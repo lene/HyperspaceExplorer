@@ -38,7 +38,7 @@ class Test_Transformation: public QObject {
 
     void transformPerformed();
     void multithreadedTransformPerformed();
-    void multithreadedTransformWithBigData();
+    void multithreadedTransformFaster();
     void rotationPreservesNorm_data();
     void rotationPreservesNorm();
     void rotate90DegreesIsOrthogonal_data();
@@ -59,7 +59,9 @@ class Test_Transformation: public QObject {
 
   private:
 
-      std::tr1::shared_ptr< FunctionValueGrid<4, 3> > _grid;
+    static constexpr unsigned min_size_for_multithreaded_advantage = 1024;
+
+    std::tr1::shared_ptr< FunctionValueGrid<4, 3> > _grid;
 
 };
 
