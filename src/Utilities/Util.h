@@ -54,7 +54,7 @@ namespace Util {
   */
   template <typename T> typename std::vector<T>::iterator find(T find_me, std::vector<T> &v) {
     typename std::vector<T>::iterator i = v.begin();
-    while(*i != find_me && i != v.end()) ++i;
+    while(i != v.end() && *i != find_me) ++i;
     return i;
   }
 
