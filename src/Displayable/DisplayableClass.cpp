@@ -70,7 +70,7 @@ std::vector< Displayable* > DisplayableClass::getDisplayables() const {
 
 std::vector< DisplayableClass > DisplayableClass::getSubClasses() const {
   std::vector< DisplayableClass > subclasses;
-  for (subclass_const_iterator i = subclasses_.begin(); i != subclasses_.end(); ++i) {
+  for (auto i = subclasses_.begin(); i != subclasses_.end(); ++i) {
     subclasses.push_back(*(i->second));
   }
   return subclasses;
@@ -98,7 +98,7 @@ const DisplayableClass& DisplayableClass::makeRootNode(const std::string& class_
 
 void DisplayableClass::printSubclasses() const {
   std::cerr << getName()<< ": ";
-  for (subclass_const_iterator i = subclasses_.begin(); i != subclasses_.end(); ++i) {
+  for (auto i = subclasses_.begin(); i != subclasses_.end(); ++i) {
     const DisplayableClass *subclass = i->second;
     std::cerr << subclass->getName() << ": " << subclass->getDescription() << "   ";
   }
@@ -118,7 +118,7 @@ void DisplayableClass::addSubClass(DisplayableClass& child) {
 
 DisplayableClass& DisplayableClass::findSubClass(const std::string& class_name) {
   if (getName() == class_name) return *this;
-  for (subclass_iterator i = subclasses_.begin(); i != subclasses_.end(); ++i) {
+  for (auto i = subclasses_.begin(); i != subclasses_.end(); ++i) {
     try {
       DisplayableClass &subclass = i->second->findSubClass(class_name);
       return subclass;
