@@ -96,4 +96,4 @@ QMAKE_POST_LINK = ./HyperspaceExplorer-tests
 
 ###
 ### C++0x support
-QMAKE_CXXFLAGS += -std=c++0x -O2
+QMAKE_CXXFLAGS += -std=c++0x 

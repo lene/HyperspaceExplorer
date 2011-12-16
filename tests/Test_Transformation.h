@@ -36,6 +36,9 @@ class Test_Transformation: public QObject {
     void initTestCase();
     void cleanupTestCase();
 
+    void transformPerformed();
+    void multithreadedTransformPerformed();
+    void multithreadedTransformWithBigData();
     void rotationPreservesNorm_data();
     void rotationPreservesNorm();
     void rotate90DegreesIsOrthogonal_data();

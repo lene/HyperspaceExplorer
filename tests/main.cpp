@@ -63,21 +63,22 @@ int main(int argc, char **argv) {
     runner.run(new Test_FunctionFactory);
     runner.run(new Test_FunctionValueGrid);
     runner.run(new Test_ParametricFunction);
-    runner.run(new Test_Transformation);
     runner.run(new Test_Projection);
     runner.run(new Test_GridDrawer);
     runner.run(new Test_MultiDimensionalVector);
     runner.run(new Test_FunctionHolder);
-    runner.run(new Test_RealFunction);
     runner.run(new Test_DisplayableClass);
     runner.run(new Test_Observer);
     runner.run(new Test_Rotope);
     runner.run(new Test_ArrayList);
-    runner.run(new Test_Surface);
 #endif
     runner.run(new Test_Object);
     runner.run(new Test_Composite);
     runner.run(new Test_Util);
+
+    runner.run(new Test_RealFunction);
+    runner.run(new Test_Surface);
+    runner.run(new Test_Transformation);
 
     runner.printSummary();
 

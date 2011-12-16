@@ -30,7 +30,7 @@ void Test_Util::find_in_vector() {
 
   vector<string> vec_str;
   vec_str.push_back("buh!");
-
+ 
   test(Util::find(string("buh!"), vec_str) != vec_str.end(), string("buh! not found"));
 
   test(Util::find(string("bah!"), vec_str) == vec_str.end(), string("bah! found"));

@@ -28,6 +28,8 @@
 /// Forward declaration needed to make the SimpleTransformationPolicy a default template parameter for Transformation.
 template <unsigned N, unsigned P, typename NUM = double> class SimpleTransformationPolicy;
 
+template <unsigned N, unsigned P, typename NUM = double> class MultithreadedTransformationPolicy;
+
 /// Policy-based class template to apply a geometrical transformation on a set of vertices.
 /** \tparam N Dimension of the vertices.
  *  \tparam P Dimension of the parameter space.
@@ -67,72 +69,6 @@ class Transformation {
     Transformation(const VecMath::Rotation<N, NUM> &rotation,
                    const VecMath::Vector<N, NUM> &translation,
                    const VecMath::Vector<N, NUM> &scale);
-
-    /// Execute the transform on a set of vertices.
-    value_storage_type transform(const value_storage_type &operand);
-
-  private:
-
-    VecMath::Rotation<N, NUM> rotation_;      ///< Rotation part of the Transformation.
-    VecMath::Vector<N, NUM> translation_;   ///< Translation part of the Transformation.
-    VecMath::Vector<N, NUM> scale_;         ///< Scaling part of the Transformation.
-
-};
-
-/// Policy class template that contains the actual implementation of the transformation algorithm for Transformation.
-/** This class implements a single-threaded transformation algorithm without
- *  any optimizations.
- *  \tparam N Dimension of the vertices.
- *  \tparam P Dimension of the parameter space.
- *  \tparam NUM The numeric type of the \c Vector s.
- */
-template <unsigned N, unsigned P, typename NUM>
-class SimpleTransformationPolicy {
-
-  public:
-
-    /// Type for the storage of the function values on all grid points.
-    typedef typename FunctionValueGrid< N, P, NUM >::value_storage_type value_storage_type;
-
-    /// Initialize a SimpleTransformationPolicy with a transformation matrix and a translation vector.
-    /** \param transform The \p N x \p N Rotation to apply to all vertices.
-     *  \param translation The translation Vector to add to all vertices.
-     */
-    SimpleTransformationPolicy(const VecMath::Rotation<N, NUM> &rotation,
-                               const VecMath::Vector<N, NUM> &translation,
-                               const VecMath::Vector<N, NUM> &scale):
-    rotation_(rotation), translation_(translation), scale_(scale) { }
-
-    /// Execute the transform on a set of vertices.
-    value_storage_type transform(const value_storage_type &operand);
-
-  private:
-
-    VecMath::Rotation<N, NUM> rotation_;      ///< Rotation part of the Transformation.
-    VecMath::Vector<N, NUM> translation_;   ///< Translation part of the Transformation.
-    VecMath::Vector<N, NUM> scale_;         ///< Scaling part of the Transformation.
-
-};
-
-/// Specialization to end recursion - transform a one-dimensional vector of Vector s.
-/** \tparam N Dimension of the vertices.
- *  \tparam NUM The numeric type of the \c Vector s.
- */
-template <unsigned N, typename NUM> class SimpleTransformationPolicy< N, 1, NUM > {
-
-  public:
-
-    /// Type for the storage of the function values on all grid points.
-    typedef typename FunctionValueGrid< N, 1, NUM >::value_storage_type value_storage_type;
-
-    /// Initialize a SimpleTransformationPolicy with a transformation matrix and a translation vector.
-    /** \param transform The \p N x \p N Rotation to apply to all vertices.
-     *  \param translation The translation Vector to add to all vertices.
-     */
-    SimpleTransformationPolicy(const VecMath::Rotation<N, NUM> &rotation,
-                               const VecMath::Vector<N, NUM> &translation,
-                               const VecMath::Vector<N, NUM> &scale):
-    rotation_(rotation), translation_(translation), scale_(scale) { }
 
     /// Execute the transform on a set of vertices.
     value_storage_type transform(const value_storage_type &operand);

@@ -54,12 +54,6 @@ void Test_Transformation::initTestCase() {
                                   Vector<3>(-1., -1., -1.),
                                   Vector<3>(1., 1., 1.)));
 
-  Rotation<4> rot(1., 2., 3., 4., 5., 6.);
-  Vector<4> trans(1., 1., 1., 1.);
-  Transformation<4, 3> transform(rot, trans, 1.);
-
-  FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
-
 }
 
 void Test_Transformation::cleanupTestCase() {
@@ -68,6 +62,38 @@ void Test_Transformation::cleanupTestCase() {
 
 Q_DECLARE_METATYPE(Rotation<4>)
 Q_DECLARE_METATYPE(Vector<4>)
+
+void Test_Transformation::transformPerformed() {
+  Rotation<4> rot(1., 2., 3., 4., 5., 6.);
+  Vector<4> trans(1., 1., 1., 1.);
+  Transformation< 4, 3, double, SimpleTransformationPolicy<4, 3, double> > transform(rot, trans, 1.);
+
+  FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
+}
+
+void Test_Transformation::multithreadedTransformPerformed() {
+  Rotation<4> rot(1., 2., 3., 4., 5., 6.);
+  Vector<4> trans(1., 1., 1., 1.);
+  Transformation< 4, 3, double, MultithreadedTransformationPolicy<4, 3, double> > transform(rot, trans, 1.);
+
+  FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
+}
+
+void Test_Transformation::multithreadedTransformWithBigData() {
+
+  shared_ptr<ParametricFunction<4, 3> > pf(new Test_ParametricFunction::ParametricFunctionTestImplementation());
+
+  shared_ptr< FunctionValueGrid<4, 3> > grid(
+      new FunctionValueGrid<4, 3>(pf,
+                                  Vector<3, unsigned>(13, 13, 13),
+                                  Vector<3>(-1., -1., -1.),
+                                  Vector<3>(1., 1., 1.)));
+  Rotation<4> rot(1., 2., 3., 4., 5., 6.);
+  Vector<4> trans(1., 1., 1., 1.);
+  Transformation< 4, 3, double, MultithreadedTransformationPolicy<4, 3, double> > transform(rot, trans, 1.);
+
+  FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(grid->getValues());
+}
 
 void Test_Transformation::rotationPreservesNorm_data() {
   QTest::addColumn< Rotation<4> >("rotation");

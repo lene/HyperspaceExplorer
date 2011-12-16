@@ -53,6 +53,8 @@ HEADERS += \
            Displayable/LoopHelper.h \
            Displayable/Transformation.h \
            Displayable/Transformation.impl.h \
+           Displayable/TransformationPolicy.h \
+           Displayable/TransformationPolicy.impl.h \
            Displayable/ViewpointList.h \
            Displayable/ViewpointList.impl.h \
            Displayable/Projection.h \

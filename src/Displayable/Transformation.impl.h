@@ -22,8 +22,10 @@
 #define TRANSFORMATION_IMPL_H
 
 #include "Transformation.h"
+#include "TransformationPolicy.h"
 
 #include "Rotation.impl.h"
+#include "TransformationPolicy.impl.h"
 
 template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
 Transformation<N, P, NUM, TransformationPolicy>::Transformation():
@@ -42,47 +44,6 @@ Transformation<N, P, NUM, TransformationPolicy>::transform(
   TransformationPolicy p(rotation_, translation_, scale_);
 
   return p.transform(operand);
-}
-#include <QDebug>
-
-template <unsigned N, unsigned P, typename NUM>
-typename SimpleTransformationPolicy<N, P, NUM>::value_storage_type
-SimpleTransformationPolicy<N, P, NUM>::transform(
-        const value_storage_type &operand
-) {
-  value_storage_type v(operand.size());
-  Transformation<N, P-1, NUM, SimpleTransformationPolicy<N, P-1, NUM> > sub_transform(
-    rotation_, translation_, scale_
-  );
-# if 0
-  qDebug() << "SimpleTransformationPolicy<" << N << ", " << P << ", NUM>::transform("
-           << operand.toString().c_str()
-           << ")";
-# endif
-  for (unsigned i = 0; i < operand.size(); ++i) {
-    v[i] = sub_transform.transform(operand[i]);
-  }
-
-  return v;
-}
-
-template <unsigned N, typename NUM>
-typename SimpleTransformationPolicy<N, 1, NUM>::value_storage_type
-SimpleTransformationPolicy<N, 1, NUM>::transform(
-        const value_storage_type &operand
-) {
-  value_storage_type v(operand.size());
-
-  for (unsigned i = 0; i < operand.size(); ++i) {
-    VecMath::Matrix<N, NUM> matrix(rotation_);
-    v[i] = Transformation<N, 1, NUM>::perform(operand[i], matrix, translation_, scale_);
-  }
-# if 0
-  qDebug()
-    << operand.toString().c_str() << " * " << _transform.toString().c_str() << " + " << _translation.toString().c_str()
-    << " = " << v.toString().c_str();
-# endif
-  return v;
 }
 
 
