@@ -54,7 +54,10 @@ HEADERS += \
            Displayable/Transformation.h \
            Displayable/Transformation.impl.h \
            Displayable/TransformationPolicy.h \
-           Displayable/TransformationPolicy.impl.h \
+           Displayable/SimpleTransformationPolicy.h \
+           Displayable/SimpleTransformationPolicy.impl.h \
+           Displayable/MultithreadedTransformationPolicy.h \
+           Displayable/MultithreadedTransformationPolicy.impl.h \
            Displayable/ViewpointList.h \
            Displayable/ViewpointList.impl.h \
            Displayable/Projection.h \

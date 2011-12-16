@@ -18,6 +18,8 @@
 
 */
 
+#define DEBUG_TRANSFORMATION 0
+
 #include "Test_Transformation.h"
 
 #include "Transformation.impl.h"

@@ -25,7 +25,11 @@
 #include "TransformationPolicy.h"
 
 #include "Rotation.impl.h"
-#include "TransformationPolicy.impl.h"
+
+#warning This include should go away once Transformations are only generated with Factory Method
+#include "SimpleTransformationPolicy.impl.h"
+#include "MultithreadedTransformationPolicy.impl.h"
+
 
 template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
 Transformation<N, P, NUM, TransformationPolicy>::Transformation():
