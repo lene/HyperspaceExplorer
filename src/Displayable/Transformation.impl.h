@@ -26,29 +26,30 @@
 
 #include "Rotation.impl.h"
 
-#warning This include should go away once Transformations are only generated with Factory Method
-#include "SimpleTransformationPolicy.impl.h"
-#include "MultithreadedTransformationPolicy.impl.h"
-
-
 template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
-Transformation<N, P, NUM, TransformationPolicy>::Transformation():
+TransformationImpl<N, P, NUM, TransformationPolicy>::TransformationImpl():
   rotation_(), translation_(), scale_() { }
 
 template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
-Transformation<N, P, NUM, TransformationPolicy>::Transformation(const VecMath::Rotation<N, NUM> &rotation,
-                                                           const VecMath::Vector<N, NUM> &translation,
-                                                           const VecMath::Vector<N, NUM> &scale):
+TransformationImpl<N, P, NUM, TransformationPolicy>::TransformationImpl(
+        const VecMath::Rotation<N, NUM> &rotation,
+        const VecMath::Vector<N, NUM> &translation,
+        const VecMath::Vector<N, NUM> &scale):
   rotation_(rotation), translation_(translation), scale_(scale) { }
 
 template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
-typename Transformation<N, P, NUM, TransformationPolicy>::value_storage_type
-Transformation<N, P, NUM, TransformationPolicy>::transform(
-  const value_storage_type &operand) {
+typename TransformationImpl<N, P, NUM, TransformationPolicy>::value_storage_type
+TransformationImpl<N, P, NUM, TransformationPolicy>::transform(
+  const value_storage_type &operand) const {
   TransformationPolicy p(rotation_, translation_, scale_);
 
   return p.transform(operand);
 }
 
+#include "SimpleTransformationPolicy.impl.h"
+#include "MultithreadedTransformationPolicy.impl.h"
 
+template <unsigned N, unsigned P, typename NUM> 
+std::shared_ptr< const Transformation< N, P, NUM > > 
+TransformationFactory< N, P, NUM >::pointerToImpl_ = NULL;
 #endif // TRANSFORMATION_IMPL_H

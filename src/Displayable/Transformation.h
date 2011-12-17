@@ -30,36 +30,32 @@ template <unsigned N, unsigned P, typename NUM = double> class SimpleTransformat
 
 template <unsigned N, unsigned P, typename NUM = double> class MultithreadedTransformationPolicy;
 
-/// Policy-based class template to apply a geometrical transformation on a set of vertices.
-/** \tparam N Dimension of the vertices.
- *  \tparam P Dimension of the parameter space.
- *  \tparam NUM The numeric type of the \c Vector s.
- *  \tparam TransformationPolicy The class executing the actual transform on the set of vertices.
- *
- *  \todo typedefs for translation and rotation types
- */
-template <unsigned N, unsigned P, typename NUM = double,
-          typename TransformationPolicy = SimpleTransformationPolicy <N, P, NUM> >
+template <unsigned N, unsigned P, typename NUM = double>
 class Transformation {
 
-  public:
-
-      static inline VecMath::Vector<N, NUM> perform(
-        const VecMath::Vector<N, NUM> &x,
-        const VecMath::Matrix<N, NUM> &rot,
-        const VecMath::Vector<N, NUM> &trans,
-        const VecMath::Vector<N, NUM> &scale
-      ) {
-        return VecMath::scale(rot*(x+trans), scale);
-      }
-
-  public:
+public:
 
     /// Type for the storage of the function values on all grid points.
     typedef typename FunctionValueGrid< N, P, NUM >::value_storage_type value_storage_type;
 
+    static inline VecMath::Vector<N, NUM> perform(
+        const VecMath::Vector<N, NUM> &x,
+        const VecMath::Matrix<N, NUM> &rot,
+        const VecMath::Vector<N, NUM> &trans,
+        const VecMath::Vector<N, NUM> &scale
+    ) {
+        return VecMath::scale(rot*(x+trans), scale);
+    }
+
+    /// Execute the transform on a set of vertices.
+    virtual value_storage_type transform(const value_storage_type &operand) const = 0;
+
+    virtual ~Transformation() { }
+
+protected:
+
     /// Initialize an identity Transformation.
-    Transformation();
+    Transformation() { }
 
     /// Initialize a Transformation with a Rotation, a translation Vector and a scaling Vector.
     /** \param rotation The amount the target is rotated.
@@ -70,15 +66,95 @@ class Transformation {
                    const VecMath::Vector<N, NUM> &translation,
                    const VecMath::Vector<N, NUM> &scale);
 
+};
+
+template <unsigned N, unsigned P, typename NUM = double>
+class TransformationFactory;
+
+/// Policy-based class template to apply a geometrical transformation on a set of vertices.
+/** \tparam N Dimension of the vertices.
+ *  \tparam P Dimension of the parameter space.
+ *  \tparam NUM The numeric type of the \c Vector s.
+ *  \tparam TransformationPolicy The class executing the actual transform on the set of vertices.
+ *
+ *  \todo typedefs for translation and rotation types
+ */
+template <unsigned N, unsigned P, typename NUM = double,
+          typename TransformationPolicy = SimpleTransformationPolicy <N, P, NUM> >
+class TransformationImpl: public Transformation< N, P, NUM > {
+
+public:
+
+    /// Type for the storage of the function values on all grid points.
+    typedef typename FunctionValueGrid< N, P, NUM >::value_storage_type value_storage_type;
+
     /// Execute the transform on a set of vertices.
-    value_storage_type transform(const value_storage_type &operand);
+    virtual value_storage_type transform(const value_storage_type &operand) const;
 
   private:
+
+    /// Initialize an identity Transformation.
+    TransformationImpl();
+
+    /// Initialize a Transformation with a Rotation, a translation Vector and a scaling Vector.
+    /** \param rotation The amount the target is rotated.
+     *  \param translation The translation Vector to add to all vertices.
+     *  \param scale Scale the target, with independent values for each direction.
+     */
+    TransformationImpl(const VecMath::Rotation<N, NUM> &rotation,
+                       const VecMath::Vector<N, NUM> &translation,
+                       const VecMath::Vector<N, NUM> &scale);
 
     VecMath::Rotation<N, NUM> rotation_;      ///< Rotation part of the Transformation.
     VecMath::Vector<N, NUM> translation_;   ///< Translation part of the Transformation.
     VecMath::Vector<N, NUM> scale_;         ///< Scaling part of the Transformation.
 
+    friend class TransformationFactory< N, P, NUM >;
 };
 
+
+#include "SimpleTransformationPolicy.h"
+#include "MultithreadedTransformationPolicy.h"
+
+#include <memory>
+
+template < unsigned N, unsigned P, typename NUM >
+class TransformationFactory {
+    
+public:
+    
+    /// Initialize an identity Transformation.
+    static const Transformation< N, P, NUM > &create() {
+        return TransformationImpl< N, P, NUM, SimpleTransformationPolicy< N, P, NUM > >();
+    }
+
+    /// Initialize a Transformation with a Rotation, a translation Vector and a scaling Vector.
+    /** \param rotation The amount the target is rotated.
+     *  \param translation The translation Vector to add to all vertices.
+     *  \param scale Scale the target, with independent values for each direction.
+     */
+    static const Transformation< N, P, NUM > &create(
+        const VecMath::Rotation<N, NUM> &rotation,
+        const VecMath::Vector<N, NUM> &translation,
+        const VecMath::Vector<N, NUM> &scale
+    ) {
+        return createWithPolicy< SimpleTransformationPolicy< N, P, NUM > >(rotation, translation, scale);
+    }
+    
+    template <typename Policy> static const Transformation< N, P, NUM > &createWithPolicy(
+        const VecMath::Rotation<N, NUM> &rotation,
+        const VecMath::Vector<N, NUM> &translation,
+        const VecMath::Vector<N, NUM> &scale
+    ) {
+        pointerToImpl_ = std::shared_ptr< const Transformation< N, P, NUM > >(
+                new TransformationImpl< N, P, NUM, Policy >(
+                        rotation, translation, scale
+                )
+        );
+        return *pointerToImpl_;
+    }
+    
+    static std::shared_ptr< const Transformation< N, P, NUM > > pointerToImpl_;
+    
+};
 #endif // TRANSFORMATION_H

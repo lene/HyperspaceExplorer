@@ -46,7 +46,7 @@ class SimpleTransformationPolicy: public TransformationPolicy<N, P, NUM> {
 template <unsigned N, typename NUM>
 class SimpleTransformationPolicy< N, 1, NUM >: public TransformationPolicy<N, 1, NUM> {
 
-  public:
+public:
 
     /// Type for the storage of the function values on all grid points.
     typedef typename FunctionValueGrid< N, 1, NUM >::value_storage_type value_storage_type;
@@ -62,7 +62,7 @@ class SimpleTransformationPolicy< N, 1, NUM >: public TransformationPolicy<N, 1,
 
     /// Execute the transform on a set of vertices.
     value_storage_type transform(const value_storage_type &operand);
-
+    
 };
 
 #endif	/* SIMPLETRANSFORMATIONPOLICY_H */
