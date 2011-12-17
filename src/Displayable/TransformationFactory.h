@@ -14,15 +14,19 @@
 #include <memory>
 
 template < unsigned N, unsigned P, typename NUM >
+class Transformation;
+
+template < unsigned N, unsigned P, typename NUM >
 class TransformationFactory {
     
 public:
-    
-    /// Initialize an identity Transformation.
-    static const Transformation< N, P, NUM > &create() {
-        return TransformationImpl< N, P, NUM, SimpleTransformationPolicy< N, P, NUM > >();
-    }
 
+    typedef enum { Singlethreaded, Multithreaded } Method;
+    
+    static void setTransformationMethod(const Method &method);
+
+    static Method getTransformationMethod();
+    
     /// Initialize a Transformation with a Rotation, a translation Vector and a scaling Vector.
     /** \param rotation The amount the target is rotated.
      *  \param translation The translation Vector to add to all vertices.
@@ -32,27 +36,24 @@ public:
         const VecMath::Rotation<N, NUM> &rotation,
         const VecMath::Vector<N, NUM> &translation,
         const VecMath::Vector<N, NUM> &scale
-    ) {
-        return createWithPolicy< SimpleTransformationPolicy< N, P, NUM > >(rotation, translation, scale);
-    }
-    
+    );
+
+        /// Initialize an identity Transformation.
+    static const Transformation< N, P, NUM > &create();
+
     template <typename Policy> static const Transformation< N, P, NUM > &createWithPolicy(
         const VecMath::Rotation<N, NUM> &rotation,
         const VecMath::Vector<N, NUM> &translation,
         const VecMath::Vector<N, NUM> &scale
-    ) {
-        pointerToImpl_ = std::shared_ptr< const Transformation< N, P, NUM > >(
-                new TransformationImpl< N, P, NUM, Policy >(
-                        rotation, translation, scale
-                )
-        );
-        return *pointerToImpl_;
-    }
+    );
+    
+private:
     
     static std::shared_ptr< const Transformation< N, P, NUM > > pointerToImpl_;
     
+    static Method method_;
+    
 };
-
 
 #endif	/* TRANSFORMATIONFACTORY_H */
 

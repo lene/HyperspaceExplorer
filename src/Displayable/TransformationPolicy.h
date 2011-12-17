@@ -8,6 +8,8 @@
 #ifndef TRANSFORMATIONPOLICY_H
 #define	TRANSFORMATIONPOLICY_H
 
+#include "FunctionValueGrid.h"
+
 template <unsigned N, unsigned P, typename NUM = double>
 class TransformationPolicy {
 

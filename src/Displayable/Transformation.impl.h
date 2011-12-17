@@ -27,10 +27,6 @@
 #include "Rotation.impl.h"
 
 template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
-TransformationImpl<N, P, NUM, TransformationPolicy>::TransformationImpl():
-  rotation_(), translation_(), scale_() { }
-
-template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
 TransformationImpl<N, P, NUM, TransformationPolicy>::TransformationImpl(
         const VecMath::Rotation<N, NUM> &rotation,
         const VecMath::Vector<N, NUM> &translation,

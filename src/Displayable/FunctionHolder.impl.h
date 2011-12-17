@@ -24,8 +24,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "FunctionHolder.h"
 
 #include "FunctionValueGrid.h"
-#include "Transformation.impl.h"
 #include "TransformationFactory.impl.h"
+#include "Transformation.impl.h"
 #include "Projection.impl.h"
 #include "GridDrawer.impl.h"
 #include "DefinitionRangeOfDimension.impl.h"

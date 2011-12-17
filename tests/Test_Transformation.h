@@ -21,7 +21,7 @@
 #ifndef TEST_TRANSFORMATION_H
 #define TEST_TRANSFORMATION_H
 
-#include "Transformation.h"
+#include "TransformationFactory.h"
 
 #include <QtTest/QtTest>
 
@@ -39,6 +39,7 @@ class Test_Transformation: public QObject {
     void transformPerformed();
     void multithreadedTransformPerformed();
     void multithreadedTransformFaster();
+    void factorySetsSingleAndMultithreaded();
     void rotationPreservesNorm_data();
     void rotationPreservesNorm();
     void rotate90DegreesIsOrthogonal_data();
@@ -60,7 +61,10 @@ class Test_Transformation: public QObject {
   private:
 
     static constexpr unsigned min_size_for_multithreaded_advantage = 1024;
-
+    
+    int timeTransform(const Transformation< 4, 3, double > &transform);
+    int timeTransformationMethod(TransformationFactory< 4, 3, double >::Method method);
+    
     std::tr1::shared_ptr< FunctionValueGrid<4, 3> > _grid;
 
 };

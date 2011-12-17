@@ -22,10 +22,9 @@
  
 #include "Test_Transformation.h"
 
-#include "TransformationFactory.impl.h"
-
 #include "Test_ParametricFunction.h"
 
+#include "TransformationFactory.impl.h"
 #include "MultiDimensionalVector.impl.h"
 #include "Rotation.impl.h"
 
@@ -44,12 +43,17 @@ class AverageParametricFunction: public ParametricFunction<4,3, float> {
         }
 };
 
+Rotation<4> defaultRotation() {
+    return Rotation<4>(1., 2., 3., 4., 5., 6.);
+}
+
+Vector<4> defaultTranslation() {
+    return Vector<4>(1., 1., 1., 1.);
+}
+
 template <typename Policy>
 const Transformation< 4, 3 > &generateDefaultTransform() {
-  Rotation<4> rot(1., 2., 3., 4., 5., 6.);
-  Vector<4> trans(1., 1., 1., 1.);
-
-  return TransformationFactory<4, 3>::createWithPolicy< Policy >(rot, trans, 1.);
+  return TransformationFactory<4, 3>::createWithPolicy< Policy >(defaultRotation(), defaultTranslation(), 1.);
 }
 
 shared_ptr< FunctionValueGrid<4, 3> > makeGrid(unsigned xsize, unsigned ysize, unsigned zsize) {
@@ -89,25 +93,47 @@ void Test_Transformation::multithreadedTransformPerformed() {
   FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
 }
 
-void Test_Transformation::multithreadedTransformFaster() {
+int Test_Transformation::timeTransform(const Transformation< 4, 3 > &transform) {
   shared_ptr< FunctionValueGrid<4, 3> > grid = makeGrid(min_size_for_multithreaded_advantage, 2, 2);
-
   QTime t;
   t.start();
+  FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(grid->getValues());
+  return t.elapsed();
+}
+
+void Test_Transformation::multithreadedTransformFaster() {
+
   const Transformation< 4, 3 > &transform1 =
     generateDefaultTransform< MultithreadedTransformationPolicy<4, 3, double> >();
-  FunctionValueGrid<4, 3>::value_storage_type g1 = transform1.transform(grid->getValues());
-  int elapsed1 = t.elapsed();
+  int elapsed1 = timeTransform(transform1);
 
-  t.start();
   const Transformation< 4, 3 > &transform2 =
     generateDefaultTransform< SimpleTransformationPolicy<4, 3, double> >();
-  FunctionValueGrid<4, 3>::value_storage_type g2 = transform2.transform(grid->getValues());
-  int elapsed2 = t.elapsed();
+  int elapsed2 = timeTransform(transform2);
 
   qDebug() << "Multithreaded: " << elapsed1 << "ms, single threaded: " << elapsed2 << "ms";
   QVERIFY2(elapsed1 < elapsed2, "Multithreaded transform should be faster");
   
+}
+
+int Test_Transformation::timeTransformationMethod(TransformationFactory< 4, 3 >::Method method) {
+  TransformationFactory< 4, 3 >::setTransformationMethod(method);
+  const Transformation< 4, 3 > &transform = TransformationFactory< 4, 3 >::create(
+        defaultRotation(), defaultTranslation(), 1.
+  );
+  return timeTransform(transform);
+    
+}
+
+void Test_Transformation::factorySetsSingleAndMultithreaded() {
+  shared_ptr< FunctionValueGrid<4, 3> > grid = makeGrid(min_size_for_multithreaded_advantage, 2, 2);
+
+  int elapsed_multi = timeTransformationMethod(TransformationFactory< 4, 3 >::Multithreaded);
+  int elapsed_single = timeTransformationMethod(TransformationFactory< 4, 3 >::Singlethreaded);
+
+  qDebug() << "Multithreaded: " << elapsed_multi << "ms, single threaded: " << elapsed_single << "ms";
+  QVERIFY2(elapsed_multi < elapsed_single, "Multithreaded transform should be faster");
+    
 }
 
 void Test_Transformation::rotationPreservesNorm_data() {

@@ -52,7 +52,6 @@ public:
 
 protected:
 
-    /// Initialize an identity Transformation.
     Transformation() { }
 
     /// Initialize a Transformation with a Rotation, a translation Vector and a scaling Vector.
@@ -91,9 +90,6 @@ public:
 
   private:
 
-    /// Initialize an identity Transformation.
-    TransformationImpl();
-
     /// Initialize a Transformation with a Rotation, a translation Vector and a scaling Vector.
     /** \param rotation The amount the target is rotated.
      *  \param translation The translation Vector to add to all vertices.
@@ -109,6 +105,5 @@ public:
 
     friend class TransformationFactory< N, P, NUM >;
 };
-
 
 #endif // TRANSFORMATION_H
