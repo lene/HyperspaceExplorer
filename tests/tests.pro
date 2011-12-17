@@ -12,8 +12,24 @@ QT += opengl
 
 TEMPLATE = app
 TARGET =
-DEPENDPATH += . ../src ../src/Displayable ../src/Utilities ../src/Script ../src/UI ../src/VecMath ../src/Color
-INCLUDEPATH += . ../src ../src/Displayable ../src/Utilities ../src/Script ../src/UI ../src/VecMath ../src/Color
+DEPENDPATH += . \
+              ../src \
+              ../src/Displayable \
+              ../src/Displayable/Transformation \
+              ../src/Utilities \
+              ../src/Script \
+              ../src/UI \
+              ../src/VecMath \
+              ../src/Color
+INCLUDEPATH += . \
+               ../src \
+               ../src/Displayable \
+               ../src/Displayable/Transformation \
+               ../src/Utilities \
+               ../src/Script \
+               ../src/UI \
+               ../src/VecMath \
+               ../src/Color
 
 ###
 ###     move all temporary files out of sight into subdirectory tmp

@@ -51,15 +51,6 @@ HEADERS += \
            Displayable/ParametricFunction.h \
            Displayable/FunctionValueGrid.h \
            Displayable/LoopHelper.h \
-           Displayable/Transformation.h \
-           Displayable/Transformation.impl.h \
-           Displayable/TransformationFactory.h \
-           Displayable/TransformationFactory.impl.h \
-           Displayable/TransformationPolicy.h \
-           Displayable/SimpleTransformationPolicy.h \
-           Displayable/SimpleTransformationPolicy.impl.h \
-           Displayable/MultithreadedTransformationPolicy.h \
-           Displayable/MultithreadedTransformationPolicy.impl.h \
            Displayable/ViewpointList.h \
            Displayable/ViewpointList.impl.h \
            Displayable/Projection.h \
@@ -67,7 +58,6 @@ HEADERS += \
            Displayable/GridDrawer.h \
            Displayable/GridDrawer.impl.h \
            Displayable/Object.h \
-           Displayable/Transform.h \
            Displayable/Sponge.h
 #          Displayable/SteinerFunction.h
 SOURCES += \
@@ -89,6 +79,25 @@ SOURCES += \
            Displayable/Object.C \
            Displayable/Sponge.C
 #          Displayable/SteinerFunction.C
+
+###
+###     Transformation
+###
+
+INCLUDEPATH += ./Displayable/Transformation
+DEPENDPATH += ./Displayable/Transformation
+
+HEADERS += \
+           Displayable/Transformation/Transformation.h \
+           Displayable/Transformation/Transformation.impl.h \
+           Displayable/Transformation/TransformationFactory.h \
+           Displayable/Transformation/TransformationFactory.impl.h \
+           Displayable/Transformation/TransformationPolicy.h \
+           Displayable/Transformation/SimpleTransformationPolicy.h \
+           Displayable/Transformation/SimpleTransformationPolicy.impl.h \
+           Displayable/Transformation/MultithreadedTransformationPolicy.h \
+           Displayable/Transformation/MultithreadedTransformationPolicy.impl.h \
+           Displayable/Transform.h 
 
 ###
 ###     Rotopes
