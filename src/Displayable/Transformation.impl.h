@@ -46,10 +46,4 @@ TransformationImpl<N, P, NUM, TransformationPolicy>::transform(
   return p.transform(operand);
 }
 
-#include "SimpleTransformationPolicy.impl.h"
-#include "MultithreadedTransformationPolicy.impl.h"
-
-template <unsigned N, unsigned P, typename NUM> 
-std::shared_ptr< const Transformation< N, P, NUM > > 
-TransformationFactory< N, P, NUM >::pointerToImpl_ = NULL;
 #endif // TRANSFORMATION_IMPL_H
