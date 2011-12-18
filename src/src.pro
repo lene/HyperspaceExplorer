@@ -27,9 +27,6 @@ RCC_DIR = tmp
 INCLUDEPATH += ./Displayable
 DEPENDPATH += ./Displayable
 HEADERS += \
-           Displayable/Surface/Surface.h \
-           Displayable/Surface/SurfaceImplementations.h \
-           Displayable/Surface/ComplexFunction.h \
            Displayable/FunctionParameterValueBase.h \
            Displayable/FunctionParameterValue.h \
            Displayable/FunctionParameter.h \
@@ -56,15 +53,9 @@ HEADERS += \
            Displayable/Projection.h \
            Displayable/Projection.impl.h \
            Displayable/GridDrawer.h \
-           Displayable/GridDrawer.impl.h \
-           Displayable/Object.h \
-           Displayable/SurfaceType.h \
-           Displayable/Sponge.h
+           Displayable/GridDrawer.impl.h
 #          Displayable/SteinerFunction.h
 SOURCES += \
-           Displayable/Surface/Surface.C \
-           Displayable/Surface/SurfaceImplementations.cpp \
-           Displayable/Surface/ComplexFunction.C \
            Displayable/FunctionParameterValue.C \
            Displayable/FunctionParameter.C \
            Displayable/ParameterMap.C \
@@ -76,9 +67,7 @@ SOURCES += \
            Displayable/DefinitionSpaceRange.cpp \
            Displayable/RealFunction.C \
            Displayable/RealFunctionImplementations.cpp \
-           Displayable/CustomFunction.C \
-           Displayable/Object.C \
-           Displayable/Sponge.C
+           Displayable/CustomFunction.C 
 #          Displayable/SteinerFunction.C
 
 ###
@@ -99,6 +88,34 @@ HEADERS += \
            Displayable/Transformation/MultithreadedTransformationPolicy.h \
            Displayable/Transformation/MultithreadedTransformationPolicy.impl.h \
            Displayable/Transform.h 
+
+###
+###     Objects
+###
+INCLUDEPATH += ./Displayable/Object
+DEPENDPATH += ./Displayable/Object
+HEADERS += \
+           Displayable/Object/Object.h \
+           Displayable/Object/SurfaceType.h \
+           Displayable/Object/SurfaceType.impl.h \
+           Displayable/Object/Sponge.h
+SOURCES += \
+           Displayable/Object/Object.C \
+           Displayable/Object/Sponge.C
+
+###
+###     Surfaces
+###
+INCLUDEPATH += ./Displayable/Surface
+DEPENDPATH += ./Displayable/Surface
+HEADERS += \
+           Displayable/Surface/Surface.h \
+           Displayable/Surface/SurfaceImplementations.h \
+           Displayable/Surface/ComplexFunction.h 
+SOURCES += \
+           Displayable/Surface/Surface.C \
+           Displayable/Surface/SurfaceImplementations.cpp \
+           Displayable/Surface/ComplexFunction.C
 
 ###
 ###     Rotopes

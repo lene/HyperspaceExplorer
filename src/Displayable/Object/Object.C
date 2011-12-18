@@ -39,6 +39,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Matrix.impl.h"
 #include "MultiDimensionalVector.impl.h"
 #include "Vector.impl.h"
+#include "SurfaceType.impl.h"
 
 using std::cerr;
 using std::endl;

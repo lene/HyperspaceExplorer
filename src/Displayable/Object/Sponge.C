@@ -25,6 +25,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "Vector.impl.h"
 #include "MultiDimensionalVector.impl.h"
+#include "SurfaceType.impl.h"
 
 #include <QtConcurrentRun>
 

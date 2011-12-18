@@ -16,6 +16,7 @@ DEPENDPATH += . \
               ../src \
               ../src/Displayable \
               ../src/Displayable/Transformation \
+              ../src/Displayable/Object \
               ../src/Utilities \
               ../src/Script \
               ../src/UI \
@@ -25,6 +26,7 @@ INCLUDEPATH += . \
                ../src \
                ../src/Displayable \
                ../src/Displayable/Transformation \
+               ../src/Displayable/Object \
                ../src/Utilities \
                ../src/Script \
                ../src/UI \
