@@ -120,15 +120,21 @@ void Rotope::Initialize() {
 
 }
 
+#include "Transformation.impl.h"
+#include "TransformationFactory.impl.h"
+
 void Rotope::Transform(const VecMath::Rotation<4> &R,
                        const VecMath::Vector<4> &T) {
   assert(pImpl_->rotope_);
-
+/*
   Matrix<4> Rot(R);
 
-  for (unsigned i = 0; i < X.size(); i++) {
-    Xtrans[i] = (Rot*X[i])+T;
+  for (unsigned i = 0; i < X().size(); i++) {
+    Xtrans_[i] = (Rot*X()[i])+T;
   }
+ */
+    const Transformation<4, 1> &xform = TransformationFactory<4, 1>::create(R, T, 1.);
+    setXtrans(xform.transform(X()));
 
 }
 
@@ -257,7 +263,7 @@ void Rotope::drawRealm(const Realm &realm, UI::View *view) const {
 
 void Rotope::drawPoint(const Realm& realm, UI::View* view) const {
   assert(realm.dimension() == 0);
-  view->drawVertex(X[realm.toIndex()], Xscr[realm.toIndex()]);
+  view->drawVertex(X()[realm.toIndex()], Xscr()[realm.toIndex()]);
 }
 
 void Rotope::drawLine(const Realm& realm, UI::View* view) const {
@@ -265,8 +271,8 @@ void Rotope::drawLine(const Realm& realm, UI::View* view) const {
   for (unsigned i = 0; i < realm.getSubrealms().size()-1; ++i) {
     Realm current = realm.getSubrealms()[i];
     Realm next = realm.getSubrealms()[i+1];
-    view->drawLine(X[current.toIndex()], X[next.toIndex()],
-                   Xscr[current.toIndex()], Xscr[next.toIndex()]);
+    view->drawLine(X()[current.toIndex()], X()[next.toIndex()],
+                   Xscr()[current.toIndex()], Xscr()[next.toIndex()]);
   }
 }
 
@@ -280,8 +286,8 @@ void Rotope::drawSurface(const Realm& realm, UI::View* view) const {
     vector< Vector<3> > projected_vertices;
     for (Realm::realm_container_type::const_iterator i = realm.getSubrealms().begin();
          i != realm.getSubrealms().end(); ++i) {
-      original_vertices.push_back(X[i->toIndex()]);
-      projected_vertices.push_back(Xscr[i->toIndex()]);
+      original_vertices.push_back(X()[i->toIndex()]);
+      projected_vertices.push_back(Xscr()[i->toIndex()]);
     }
     view->drawPolygon(original_vertices, projected_vertices);
   } else if (realm.getSubrealms().begin()->dimension() == 1) {

@@ -75,6 +75,16 @@ void MultiDimensionalVector<T, D>::push_back(const MultiDimensionalVector<T, D-1
   data().push_back(x);
 }
 
+template <typename T, unsigned D>
+MultiDimensionalVector<T, D-1> &MultiDimensionalVector<T, D>::back() {
+    return data().back();
+}
+      
+template <typename T, unsigned D>
+const MultiDimensionalVector<T, D-1> &MultiDimensionalVector<T, D>::back() const {
+    return data().back();
+}
+
 /** \param position Iterator pointing to element to be erased
  *  \return An iterator pointing to the next element (or end())
  */
@@ -378,6 +388,16 @@ MultiDimensionalVector<T, 1>::end() const {
 template <typename T>
 void MultiDimensionalVector<T, 1>::push_back(const T &x) {
   data().push_back(x);
+}
+
+template <typename T>
+T &MultiDimensionalVector<T, 1>::back() {
+    return data().back();
+}
+      
+template <typename T>
+const T &MultiDimensionalVector<T, 1>::back() const {
+    return data().back();
 }
 
 /** \param position Iterator pointing to element to be erased

@@ -58,6 +58,7 @@ HEADERS += \
            Displayable/GridDrawer.h \
            Displayable/GridDrawer.impl.h \
            Displayable/Object.h \
+           Displayable/SurfaceType.h \
            Displayable/Sponge.h
 #          Displayable/SteinerFunction.h
 SOURCES += \

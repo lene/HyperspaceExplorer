@@ -84,6 +84,12 @@ namespace VecMath {
       /// Add data to the end of the vector
       void push_back(const MultiDimensionalVector<T, D-1> &x);
 
+      /// Returns a read/write reference to the data at the last element of the vector.
+      MultiDimensionalVector<T, D-1> &back();
+      
+      /// Returns a read-only (constant) reference to the data at the last element of the vector.
+      const MultiDimensionalVector<T, D-1> &back() const;
+      
       /// Remove element at given position
       iterator erase(iterator position);
 
@@ -204,6 +210,12 @@ namespace VecMath {
 
       /// See MultiDimensionalVector<T, D>::push_back()
       void push_back(const T &x);
+
+      /// Returns a read/write reference to the data at the last element of the vector.
+      T &back();
+      
+      /// Returns a read-only (constant) reference to the data at the last element of the vector.
+      const T &back() const;
 
       /// See MultiDimensionalVector<T, D>::erase()
       iterator erase(iterator position);

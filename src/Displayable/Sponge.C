@@ -24,6 +24,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "ScopedTimer.h"
 
 #include "Vector.impl.h"
+#include "MultiDimensionalVector.impl.h"
 
 #include <QtConcurrentRun>
 
@@ -224,14 +225,14 @@ void AltSponge::Initialize(void) {
 #   endif
     if (current_level < 1) {
 
-      X.resize(16);
+      resizeX(16);
       Surface.resize(24);
 
       Hypercube::Initialize();
 
     } else {
 #     ifdef DEBUG_SPONGE
-      for (unsigned i = 0; i < X.size(); ++i) cerr << "X[" << i << "]" << X[i]<< endl;
+      for (unsigned i = 0; i < X_.size(); ++i) cerr << "X[" << i << "]" << X_[i]<< endl;
 #     endif
 
       surface_vec_type Sold(Surface);
@@ -254,17 +255,17 @@ void AltSponge::Initialize(void) {
                     //  create new vertex and store it if necessary
                     Vector<4> xold = *(Sold[i][k]), xnew = xold/3.+NewCen;
 //                    cerr << "xold: " << xold << ", xnew: " << xnew << endl;
-                    vec4vec1D::const_iterator vec = std::find(X.begin(), X.end(), xnew);
-                    if (vec == X.end()) {
-                      X.push_back(xnew);
-                      new_vertices[k] = X.back();
+                    vec4vec1D::const_iterator vec = std::find(X().begin(), X().end(), xnew);
+                    if (vec == X().end()) {
+                      X_push_back(xnew);
+                      new_vertices[k] = X().back();
                     } else {
                       new_vertices[k] = *vec;
                     }
 
                   }
                   //  now store pointer to new vertex in surface array
-                  SurfaceType<4,4> new_surface(X, new_vertices[0], new_vertices[1], new_vertices[2], new_vertices[3]);
+                  SurfaceType<4,4> new_surface(X_as_old_format(), new_vertices[0], new_vertices[1], new_vertices[2], new_vertices[3]);
                   Surface.push_back(new_surface);
 
                   //  and remove the old surface

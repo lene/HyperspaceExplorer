@@ -18,6 +18,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 */
 
+#define USE_OUTDATED_CLASS 1
+
 #include <iostream>
 
 #include "Object.h"
@@ -26,10 +28,15 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "ColorManager.h"
 #include "Log.h"
 
-#include "Matrix.impl.h"
-#include "Transform.h"
 #include "View.h"
+#if USE_OUTDATED_CLASS
+# include "Transform.h"
+#else
+# include "TransformationFactory.h"
 
+# include "Transformation.impl.h"
+#endif
+#include "Matrix.impl.h"
 #include "MultiDimensionalVector.impl.h"
 #include "Vector.impl.h"
 
@@ -48,8 +55,9 @@ using VecMath::Matrix;
  *  @param surfaces number of surfaces                                        */
 Object::Object (unsigned vertices, unsigned surfaces):
         Displayable(),
-        X(vec4vec1D(vertices)), Xtrans(vec4vec1D(vertices)), Xscr(vec3vec1D()),
-        Surface(surfaces) {
+        Surface(surfaces),
+        X_(vec4vec1D(vertices)), Xtrans_(vec4vec1D(vertices)), Xscr_(vec3vec1D()),
+        X_in_new_format_(), Xscr_in_new_format_() {
 
     for (unsigned i = 0; i < surfaces; i++) Surface[i].resize(4);
 }
@@ -67,21 +75,80 @@ void Object::Initialize() {
 }
 
 void Object::calibrateColors() const {
-    for (unsigned i = 0; i < X.size(); i++) {
+    for (unsigned i = 0; i < X_.size(); i++) {
         ColMgrMgr::Instance().calibrateColor(
-            X[i],
-            Color((X[i][0]+1)/2, (X[i][1]+1)/2, (X[i][2]+1)/2,
-                  .75-(X[i][3]+1)/4));
+            X_[i],
+            Color((X_[i][0]+1)/2, (X_[i][1]+1)/2, (X_[i][2]+1)/2,
+                  .75-(X_[i][3]+1)/4));
     }
+}
+
+const VecMath::MultiDimensionalVector< Object::vertex_type, 1 > &Object::X() const {
+    X_in_new_format_.clear();
+    for (auto i = X_.begin(); i != X_.end(); ++i) {
+        X_in_new_format_.push_back(*i);
+    }
+    return X_in_new_format_;
+}
+
+Displayable::vec4vec1D Object::X_as_old_format() const {
+    return X_;
+}
+
+void Object::resizeX(unsigned size) {
+    X_.resize(size);
 }
 
 /** \param newX The array of vertices to be copied to \p X */
 void Object::setX(const vec4vec1D &newX) {
-    X = newX;
-    Xtrans.resize(X.size());
-    Xscr.resize(X.size());
+    X_ = newX;
+    Xtrans_.resize(X_.size());
+    Xscr_.resize(X_.size());
 }
 
+void Object::setX(int i, const Object::vertex_type &x) {
+    X_[i] = x;
+}
+
+void Object::X_push_back(const Object::vertex_type& x) {
+    X_.push_back(x);
+}
+
+void Object::setXtrans(const VecMath::MultiDimensionalVector< Object::vertex_type, 1 > &xtrans) {
+    Xtrans_.clear();
+    Xtrans_.resize(xtrans.size());
+    for (auto i = xtrans.begin(); i != xtrans.end(); ++i) {
+        Xtrans_.push_back(*i);
+    }
+}
+
+const VecMath::MultiDimensionalVector< Object::vertex_type, 1 > &Object::Xtrans() const {
+    Xtrans_in_new_format_.clear();
+    for (auto i = Xtrans_.begin(); i != Xtrans_.end(); ++i) {
+        Xtrans_in_new_format_.push_back(*i);
+    }
+    return Xtrans_in_new_format_;    
+}
+
+void Object::resizeXtrans(unsigned size) {
+    Xtrans_.resize(size);
+}
+
+const VecMath::MultiDimensionalVector< Object::projected_vertex_type, 1 > &Object::Xscr() const {
+    Xscr_in_new_format_.clear();
+    for (auto i = Xscr_.begin(); i != Xscr_.end(); ++i) {
+        Xscr_in_new_format_.push_back(*i);
+    }
+    return Xscr_in_new_format_;    
+}
+
+void Object::resizeXscr(unsigned size) {
+    Xscr_.resize(size);
+}
+
+void Object::setXscr(int i, const Object::projected_vertex_type &x) {
+    Xscr_[i] = x;
+}
 
 /// Transforms an Object
 /** @param R Rotation
@@ -90,9 +157,14 @@ void Object::setX(const vec4vec1D &newX) {
 void Object::Transform(const VecMath::Rotation<4> &R,
                        const VecMath::Vector<4> &T,
                        const VecMath::Vector<4> &scale) {
+# if USE_OUTDATED_CLASS
     Matrix<4> Rot(R);
-    Xtrans.resize(X.size());
-    transform<vec4vec1D, 4>::xform(Rot, T, scale, X, Xtrans);
+    resizeXtrans(X().size());
+    transform<vec4vec1D, 4>::xform(Rot, T, scale, X_, Xtrans_);
+# else  
+    const Transformation<4, 1> &xform = TransformationFactory<4, 1>::create(R, T, scale);
+    setXtrans(xform.transform(X()));
+# endif    
 }
 
 /// Projects an Object into three-space
@@ -101,35 +173,37 @@ void Object::Transform(const VecMath::Rotation<4> &R,
  *  @param depthcue4d wheter to use hyperfog/dc                               */
 void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
 
-    Xscr.resize(Xtrans.size());
-    for (unsigned i = 0; i < Xtrans.size(); i++) {
-        double ProjectionFactor = (scr_w-cam_w)/(Xtrans[i][3]-cam_w);
+    resizeXscr(Xtrans().size());
+    for (unsigned i = 0; i < Xtrans().size(); i++) {
+        double ProjectionFactor = (scr_w-cam_w)/(Xtrans()[i][3]-cam_w);
 
+        projected_vertex_type x_scr;
         for (unsigned j = 0; j <= 2; j++) {
-            Xscr[i][j] = ProjectionFactor*Xtrans[i][j];
+            x_scr[j] = ProjectionFactor*Xtrans()[i][j];
         }
+        setXscr(i, x_scr);
     }
 
     if (!depthcue4d) return;
 
     double Wmax = 0, Wmin = 0;
-    for (unsigned i = 0; i < Xtrans.size(); i++) {
+    for (unsigned i = 0; i < Xtrans().size(); i++) {
         if (depthcue4d) {
-            if (Xtrans[i][3] < Wmin) Wmin = Xtrans[i][3];
-            if (Xtrans[i][3] > Wmax) Wmax = Xtrans[i][3];
+            if (Xtrans()[i][3] < Wmin) Wmin = Xtrans()[i][3];
+            if (Xtrans()[i][3] > Wmax) Wmax = Xtrans()[i][3];
         }
     }
     //  apply hyperfog
-    for (unsigned i = 0; i < X.size(); i++) {
-        ColMgrMgr::Instance().depthCueColor(Wmax, Wmin, Xtrans[i][3], X[i]);
+    for (unsigned i = 0; i < X().size(); i++) {
+        ColMgrMgr::Instance().depthCueColor(Wmax, Wmin, Xtrans()[i][3], X()[i]);
     }
 }
 
 /// Draw the projected Object (onto screen or into GL list, as it is)
 void Object::Draw(UI::View *view) {
   for (unsigned i = 0; i < Surface.size(); ++i) {
-    view->drawQuadrangle(X[Surface[i][0]], X[Surface[i][1]], X[Surface[i][2]], X[Surface[i][3]],
-                         Xscr[Surface[i][0]], Xscr[Surface[i][1]], Xscr[Surface[i][2]], Xscr[Surface[i][3]]);
+    view->drawQuadrangle(X()[Surface[i][0]], X()[Surface[i][1]], X()[Surface[i][2]], X()[Surface[i][3]],
+                         Xscr()[Surface[i][0]], Xscr()[Surface[i][1]], Xscr()[Surface[i][2]], Xscr()[Surface[i][3]]);
   }
   view->commitDraw();
 }
@@ -148,24 +222,24 @@ void Object::ReInit (double, double, double,
 }
 
 void Object::for_each_vertex(Displayable::function_on_fourspace_vertex apply) {
-  std::for_each(X.begin(), X.end(), apply);
+  std::for_each(X_.begin(), X_.end(), apply);
 }
 
 void Object::for_each_vertex_transformed(function_on_fourspace_and_transformed_vertex apply) {
-  size_t max_element = std::min(X.size(), Xtrans.size());
+  size_t max_element = std::min(X_.size(), Xtrans_.size());
   for (size_t i = 0; i < max_element; ++i) {
-      apply(X[i], Xtrans[i]);
+      apply(X_[i], Xtrans_[i]);
   }
 }
 
 void Object::for_each_projected(Displayable::function_on_projected_vertex apply) {
-  std::for_each(Xscr.begin(), Xscr.end(), apply);
+  std::for_each(Xscr_.begin(), Xscr_.end(), apply);
 }
 
 void Object::for_each_vertex_transformed_projected(function_on_fourspace_transformed_and_projected_vertex apply) {
-  size_t max_element = std::min(std::min(X.size(), Xtrans.size()), Xscr.size());
+  size_t max_element = std::min(std::min(X_.size(), Xtrans_.size()), Xscr_.size());
   for (size_t i = 0; i < max_element; ++i) {
-      apply(X[i], Xtrans[i], Xscr[i]);
+      apply(X_[i], Xtrans_[i], Xscr_[i]);
   }
 }
 
@@ -186,7 +260,7 @@ Hypercube::Hypercube (double a, const VecMath::Vector<4> &center):
 void Hypercube::Draw(UI::View *view) {
     for (surface_vec_type::const_iterator i = Surface.begin(); i != Surface.end(); ++i) {
       view->drawQuadrangle(*((*i)[0]), *((*i)[1]), *((*i)[2]), *((*i)[3]),
-                         Xscr[i->index(0)], Xscr[i->index(1)], Xscr[i->index(2)], Xscr[i->index(3)]);
+                         Xscr()[i->index(0)], Xscr()[i->index(1)], Xscr()[i->index(2)], Xscr()[i->index(3)]);
   }
   view->commitDraw();
 }
@@ -198,17 +272,19 @@ void Hypercube::Draw(UI::View *view) {
  *  \p Surface[][].                                                           */
 void Hypercube::Initialize(void) {
 
-    if (X.size() < 16) X.resize(16);
+    if (X().size() < num_vertices) resizeX(num_vertices);
 
     for (int x = 0; x <= 1; x++)
         for (int y = 0; y <= 1; y++)
             for (int z = 0; z <= 1; z++)
                 for (int w = 0; w <= 1; w++) {
-                    X[x+2*(y+2*(z+2*w))] =
-                        Vector<4> (2.*x-1., 2.*y-1., 2.*z-1., 2.*w-1.)*_a+_center;
+                    setX(
+                        x+2*(y+2*(z+2*w)),
+                        Vector<4> (2.*x-1., 2.*y-1., 2.*z-1., 2.*w-1.)*_a+_center
+                    );
                 }
 
-    if (Surface.size() < 24) Surface.resize(24);
+    if (Surface.size() < num_faces) Surface.resize(num_faces);
 
     DeclareSquare (0,   0, 1, 3, 2);
     DeclareSquare (1,   0, 1, 5, 4);
@@ -254,19 +330,27 @@ void Hypercube::Initialize(void) {
  *  \param offset if there are multiple cubes, the index of the cube
  */
 void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, unsigned d, unsigned offset) {
-  if (Surface.size() < i+offset*24) Surface.resize(i+offset*24);
+  if (Surface.size() < i+offset*num_faces) Surface.resize(i+offset*num_faces);
 # if USE_INT_INDICES
-    if (Surface[i+offset*24].size() < 4) Surface[i+offset*24].resize(4);
-    Surface[i+offset*24][0] = a+offset*16;
-    Surface[i+offset*24][1] = b+offset*16;
-    Surface[i+offset*24][2] = c+offset*16;
-    Surface[i+offset*24][3] = d+offset*16;
+    if (Surface[i+offset*num_faces].size() < 4) Surface[i+offset*num_faces].resize(4);
+    Surface[i+offset*num_faces][0] = a+offset*num_vertices;
+    Surface[i+offset*num_faces][1] = b+offset*num_vertices;
+    Surface[i+offset*num_faces][2] = c+offset*num_vertices;
+    Surface[i+offset*num_faces][3] = d+offset*num_vertices;
 # else
 #     if 0
-        std::cerr << "Surface.size() = " << Surface.size() << ", X.size() = " << X.size()
-              << " i: " << i+offset*24 << " a: " << a+offset*16 << " b: " << b+offset*16 << " c: " << c+offset*16 << " d: " << d+offset*16 << std::endl;
+        qDebug() << "Surface.size() = " << Surface.size() << ", X.size() = " << X().size()
+                 << " i: " << i+offset*num_faces 
+                 << " a: " << a+offset*num_vertices << " b: " << b+offset*num_vertices 
+                 << " c: " << c+offset*num_vertices << " d: " << d+offset*num_vertices;
+        for (auto it = X().begin(); it != X().end(); ++it) qDebug() << it->toString().c_str();
+
 #     endif
-    Surface[i+offset*24] = SurfaceType<4, 4>(X, X[a+offset*16], X[b+offset*16], X[c+offset*16], X[d+offset*16]);
+    Surface[i+offset*num_faces] = SurfaceType<4, 4>(
+            X_as_old_format(), 
+            X()[a+offset*num_vertices], X()[b+offset*num_vertices], 
+            X()[c+offset*num_vertices], X()[d+offset*num_vertices]
+    );
 # endif
 }
 
@@ -289,15 +373,15 @@ Pyramid::Pyramid (double _a, const VecMath::Vector<4> &_center):
 /// Actually creates the Pyramid
 /** \see Hypercube::Initialize() */
 void Pyramid::Initialize() {
-    X[0] = Vector<4> (0.0, 0.0, 0.0, 0.0);
-    X[1] = Vector<4> (1.0, 0.0, 0.0, 0.0);
-    X[2] = Vector<4> (0.5, sqrt (3.)/2., 0.0, 0.0);
-    X[3] = Vector<4> (0.5, sqrt (3.)/6., sqrt (2./3.), 0.0);
-    X[4] = Vector<4> (0.5, sqrt (3.)/6., 1./sqrt (6.), 1./sqrt (2.));
+    setX(0, Vector<4> (0.0, 0.0, 0.0, 0.0));
+    setX(1, Vector<4> (1.0, 0.0, 0.0, 0.0));
+    setX(2, Vector<4> (0.5, sqrt (3.)/2., 0.0, 0.0));
+    setX(3, Vector<4> (0.5, sqrt (3.)/6., sqrt (2./3.), 0.0));
+    setX(4, Vector<4> (0.5, sqrt (3.)/6., 1./sqrt (6.), 1./sqrt (2.)));
 
     Vector<4> center_of_mass (0.5, sqrt (3.)/4., sqrt (1./6.), 1./sqrt (8.));
-    for (unsigned i = 0; i < X.size(); i++)
-        X[i] = X[i]*a+center-center_of_mass*a;
+    for (unsigned i = 0; i < X().size(); i++)
+        setX(i, X()[i]*a+center-center_of_mass*a);
 
     DeclareTriangle (0,  0, 1, 2);
     DeclareTriangle (1,  0, 1, 3);
