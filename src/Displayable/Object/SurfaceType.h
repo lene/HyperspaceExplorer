@@ -29,12 +29,12 @@ public:
     SurfaceType();
 
     /// Construct a SurfaceType with a vertex array and three vertices.
-    SurfaceType(const std::vector<vertex_type> &original_container,
+    SurfaceType(const VecMath::MultiDimensionalVector< vertex_type, 1 > &original_container,
                 const vertex_type &v0, const vertex_type &v1,
                 const vertex_type &v2);
     
     /// Construct a SurfaceType with a vertex array and four vertices.
-    SurfaceType(const std::vector<vertex_type> &original_container,
+    SurfaceType(const VecMath::MultiDimensionalVector< vertex_type, 1 > &original_container,
                 const vertex_type &v0, const vertex_type &v1,
                 const vertex_type &v2, const vertex_type &v3);
     
@@ -53,7 +53,7 @@ public:
 private:
       /// a version of std::find() that returns an index instead of an iterator
       static unsigned index_of(const vertex_type &x,
-                               const std::vector<vertex_type> &original_container);
+                               const VecMath::MultiDimensionalVector< vertex_type, 1 > &original_container);
       
       /// Array of vertices the Surface consists of
       vertex_ptr_type _vertices[N_vertex];

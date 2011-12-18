@@ -114,7 +114,7 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
 
 #     endif
     Surface[i+offset*num_faces] = SurfaceType<4, 4>(
-            X_as_old_format(), 
+            X(),
             X()[a+offset*num_vertices], X()[b+offset*num_vertices], 
             X()[c+offset*num_vertices], X()[d+offset*num_vertices]
     );

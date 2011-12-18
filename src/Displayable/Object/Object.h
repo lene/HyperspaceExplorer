@@ -83,7 +83,6 @@ protected:
     virtual void Initialize();
 
     const VecMath::MultiDimensionalVector< vertex_type, 1 > &X() const;
-    vec4vec1D X_as_old_format() const;
     void setX(const vec4vec1D &);           ///< Set temporary storage for the function values
     void setX(const VecMath::MultiDimensionalVector< vertex_type, 1 > &);           ///< Set temporary storage for the function values
     void setX(int i, const vertex_type &x);
@@ -108,16 +107,12 @@ protected:
     virtual VecMath::Vector<4> &f (double, double, double) {
         throw std::logic_error("Object::f() should never be called");
     }
-        
+
 private:
 
-    vec4vec1D X_;        ///< temporary storage for the function values
-    vec4vec1D Xtrans_;   ///< temp. storage for transformed function values
-    vec3vec1D Xscr_;     ///< temporary storage for projected function values
-    
-    mutable VecMath::MultiDimensionalVector< vertex_type, 1 > X_in_new_format_;
-    mutable VecMath::MultiDimensionalVector< vertex_type, 1 > Xtrans_in_new_format_;
-    mutable VecMath::MultiDimensionalVector< projected_vertex_type, 1 > Xscr_in_new_format_;
+    VecMath::MultiDimensionalVector< vertex_type, 1 > X_;        ///< temporary storage for the function values
+    VecMath::MultiDimensionalVector< vertex_type, 1 > Xtrans_;   ///< temp. storage for transformed function values
+    VecMath::MultiDimensionalVector< projected_vertex_type, 1 > Xscr_;     ///< temporary storage for projected function values
     
 };
 

@@ -20,7 +20,7 @@ SurfaceType<D, N_vertex>::SurfaceType() {
 
 template <unsigned D, unsigned N_vertex> 
 SurfaceType<D, N_vertex>::SurfaceType(
-        const std::vector<vertex_type> &original_container,
+        const VecMath::MultiDimensionalVector< vertex_type, 1 > &original_container,
         const vertex_type &v0, const vertex_type &v1,
         const vertex_type &v2) { 
     _vertices[0] = &v0; _indices[0] = index_of(v0, original_container);
@@ -34,7 +34,7 @@ SurfaceType<D, N_vertex>::SurfaceType(
 
 template <unsigned D, unsigned N_vertex> 
 SurfaceType<D, N_vertex>::SurfaceType(
-        const std::vector<vertex_type> &original_container,
+        const VecMath::MultiDimensionalVector< vertex_type, 1 > &original_container,
         const vertex_type &v0, const vertex_type &v1,
                 const vertex_type &v2, const vertex_type &v3) {
       _vertices[0] = &v0; _indices[0] = index_of(v0, original_container);
@@ -86,7 +86,7 @@ template <unsigned D, unsigned N_vertex>
 unsigned
 SurfaceType<D, N_vertex>::index_of(
         const vertex_type &x,
-        const std::vector<vertex_type> &original_container) {
+        const VecMath::MultiDimensionalVector< vertex_type, 1 > &original_container) {
     // assuming that more surfaces have vertices that have just been added
     // to the end of original_container
     for (int i = original_container.size()-1; i >= 0; --i) {

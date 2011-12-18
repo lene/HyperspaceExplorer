@@ -266,7 +266,7 @@ void AltSponge::Initialize(void) {
 
                   }
                   //  now store pointer to new vertex in surface array
-                  SurfaceType<4,4> new_surface(X_as_old_format(), new_vertices[0], new_vertices[1], new_vertices[2], new_vertices[3]);
+                  SurfaceType<4,4> new_surface(X(), new_vertices[0], new_vertices[1], new_vertices[2], new_vertices[3]);
                   Surface.push_back(new_surface);
 
                   //  and remove the old surface

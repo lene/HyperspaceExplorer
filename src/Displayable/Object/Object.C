@@ -18,7 +18,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 */
 
-#define USE_OUTDATED_CLASS 1
+#define USE_OUTDATED_CLASS 0
 
 #include <iostream>
 
@@ -57,8 +57,7 @@ using VecMath::Matrix;
 Object::Object (unsigned vertices, unsigned surfaces):
         Displayable(),
         Surface(surfaces),
-        X_(vec4vec1D(vertices)), Xtrans_(vec4vec1D(vertices)), Xscr_(vec3vec1D()),
-        X_in_new_format_(), Xscr_in_new_format_() {
+        X_(vertices), Xtrans_(vertices), Xscr_() {
 
     for (unsigned i = 0; i < surfaces; i++) Surface[i].resize(4);
 }
@@ -85,26 +84,18 @@ void Object::calibrateColors() const {
 }
 
 const VecMath::MultiDimensionalVector< Object::vertex_type, 1 > &Object::X() const {
-    X_in_new_format_.clear();
-    for (auto i = X_.begin(); i != X_.end(); ++i) {
-        X_in_new_format_.push_back(*i);
-    }
-    return X_in_new_format_;
+    return X_;
 }
 
-Displayable::vec4vec1D Object::X_as_old_format() const {
-    return X_;
+void Object::setX(const std::vector< Object::vertex_type > &x) {
+    X_.clear();
+    for (auto i = x.begin(); i != x.end(); ++i) {
+        X_.push_back(*i);
+    }
 }
 
 void Object::resizeX(unsigned size) {
     X_.resize(size);
-}
-
-/** \param newX The array of vertices to be copied to \p X */
-void Object::setX(const vec4vec1D &newX) {
-    X_ = newX;
-    Xtrans_.resize(X_.size());
-    Xscr_.resize(X_.size());
 }
 
 void Object::setX(int i, const Object::vertex_type &x) {
@@ -116,19 +107,11 @@ void Object::X_push_back(const Object::vertex_type& x) {
 }
 
 void Object::setXtrans(const VecMath::MultiDimensionalVector< Object::vertex_type, 1 > &xtrans) {
-    Xtrans_.clear();
-    Xtrans_.resize(xtrans.size());
-    for (auto i = xtrans.begin(); i != xtrans.end(); ++i) {
-        Xtrans_.push_back(*i);
-    }
+    Xtrans_ = xtrans;
 }
 
 const VecMath::MultiDimensionalVector< Object::vertex_type, 1 > &Object::Xtrans() const {
-    Xtrans_in_new_format_.clear();
-    for (auto i = Xtrans_.begin(); i != Xtrans_.end(); ++i) {
-        Xtrans_in_new_format_.push_back(*i);
-    }
-    return Xtrans_in_new_format_;    
+    return Xtrans_;
 }
 
 void Object::resizeXtrans(unsigned size) {
@@ -136,11 +119,7 @@ void Object::resizeXtrans(unsigned size) {
 }
 
 const VecMath::MultiDimensionalVector< Object::projected_vertex_type, 1 > &Object::Xscr() const {
-    Xscr_in_new_format_.clear();
-    for (auto i = Xscr_.begin(); i != Xscr_.end(); ++i) {
-        Xscr_in_new_format_.push_back(*i);
-    }
-    return Xscr_in_new_format_;    
+    return Xscr_;
 }
 
 void Object::resizeXscr(unsigned size) {
@@ -165,6 +144,9 @@ void Object::Transform(const VecMath::Rotation<4> &R,
 # else  
     const Transformation<4, 1> &xform = TransformationFactory<4, 1>::create(R, T, scale);
     setXtrans(xform.transform(X()));
+    for (auto i = Xtrans().begin(); i != Xtrans().end(); ++i) {
+        qDebug() << "Xtrans: " << i->toString().c_str();
+    }
 # endif    
 }
 
