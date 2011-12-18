@@ -1,18 +1,19 @@
-INCLUDEPATH += Displayable/Rotopes
-DEPENDPATH += Displayable/Rotopes
-HEADERS += Displayable/Rotopes/Rotope.h \
-           Displayable/Rotopes/RotopeFactory.h \
-           Displayable/Rotopes/Projector.h \
-           Displayable/Rotopes/RotopeInterface.h \
-           Displayable/Rotopes/VertexData.h \
-           Displayable/Rotopes/VertexDataPrinter.h \
-           Displayable/Rotopes/Realm.h \
-           Displayable/Rotopes/Extrude.h \
-           Displayable/Rotopes/Taper.h \
-           Displayable/Rotopes/Rotate.h \
-           Displayable/Rotopes/Torate.h
-SOURCES += Displayable/Rotopes/Rotope.C \
-           Displayable/Rotopes/RotopeFactory.C \
-           Displayable/Rotopes/RotopeInterface.C \
-           Displayable/Rotopes/Realm.C \
-           Displayable/Rotopes/RealmPrinter.C
+PATH = Displayable/Rotopes
+INCLUDEPATH += $${PATH}
+DEPENDPATH += $${PATH}
+HEADERS += $${PATH}/Rotope.h \
+           $${PATH}/RotopeFactory.h \
+           $${PATH}/Projector.h \
+           $${PATH}/RotopeInterface.h \
+           $${PATH}/VertexData.h \
+           $${PATH}/VertexDataPrinter.h \
+           $${PATH}/Realm.h \
+           $${PATH}/Extrude.h \
+           $${PATH}/Taper.h \
+           $${PATH}/Rotate.h \
+           $${PATH}/Torate.h
+SOURCES += $${PATH}/Rotope.C \
+           $${PATH}/RotopeFactory.C \
+           $${PATH}/RotopeInterface.C \
+           $${PATH}/Realm.C \
+           $${PATH}/RealmPrinter.C

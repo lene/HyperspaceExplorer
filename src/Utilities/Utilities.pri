@@ -1,17 +1,18 @@
-INCLUDEPATH += Utilities
-DEPENDPATH += Utilities
+PATH = Utilities
+INCLUDEPATH += $${PATH}
+DEPENDPATH += $${PATH}
 HEADERS += \
-           Utilities/Globals.h \
-           Utilities/Log.h \
-           Utilities/NotYetImplementedException.h \
-           Utilities/Observer.h \
-           Utilities/Observer.impl.h  \
-           Utilities/ScopedTimer.h  \
-           Utilities/SingletonHolder.h \
-           Utilities/Tree.h \
-           Utilities/Tree.impl.h \
-           Utilities/Util.h
+           $${PATH}/Globals.h \
+           $${PATH}/Log.h \
+           $${PATH}/NotYetImplementedException.h \
+           $${PATH}/Observer.h \
+           $${PATH}/Observer.impl.h  \
+           $${PATH}/ScopedTimer.h  \
+           $${PATH}/SingletonHolder.h \
+           $${PATH}/Tree.h \
+           $${PATH}/Tree.impl.h \
+           $${PATH}/Util.h
 SOURCES += \
-           Utilities/Globals.C \
-           Utilities/ScopedTimer.cpp \
-           Utilities/Util.cpp
+           $${PATH}/Globals.C \
+           $${PATH}/ScopedTimer.cpp \
+           $${PATH}/Util.cpp

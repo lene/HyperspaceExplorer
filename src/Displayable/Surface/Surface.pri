@@ -1,10 +1,11 @@
-INCLUDEPATH += Displayable/Surface
-DEPENDPATH += Displayable/Surface
+PATH = Displayable/Surface
+INCLUDEPATH += $${PATH}
+DEPENDPATH += $${PATH}
 HEADERS += \
-           Displayable/Surface/Surface.h \
-           Displayable/Surface/SurfaceImplementations.h \
-           Displayable/Surface/ComplexFunction.h 
+           $${PATH}/Surface.h \
+           $${PATH}/SurfaceImplementations.h \
+           $${PATH}/ComplexFunction.h 
 SOURCES += \
-           Displayable/Surface/Surface.C \
-           Displayable/Surface/SurfaceImplementations.cpp \
-           Displayable/Surface/ComplexFunction.C
+           $${PATH}/Surface.C \
+           $${PATH}/SurfaceImplementations.cpp \
+           $${PATH}/ComplexFunction.C

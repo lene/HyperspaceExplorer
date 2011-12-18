@@ -1,9 +1,10 @@
-INCLUDEPATH += Color
-DEPENDPATH += Color
+PATH = Color
+INCLUDEPATH += $${PATH}
+DEPENDPATH += $${PATH}
 HEADERS += \
-	   Color/Color.h \
-           Color/ColorManager.h \
-           Color/Light.h
+	   $${PATH}/Color.h \
+           $${PATH}/ColorManager.h \
+           $${PATH}/Light.h
 SOURCES += \
-           Color/ColorManager.C \
-           Color/Light.C
+           $${PATH}/ColorManager.C \
+           $${PATH}/Light.C

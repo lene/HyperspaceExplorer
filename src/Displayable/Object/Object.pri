@@ -1,12 +1,13 @@
-INCLUDEPATH += Displayable/Object
-DEPENDPATH += Displayable/Object
+PATH = Displayable/Object
+INCLUDEPATH += $${PATH}
+DEPENDPATH += $${PATH}
 HEADERS += \
-           Displayable/Object/Object.h \
-           Displayable/Object/SurfaceType.h \
-           Displayable/Object/SurfaceType.impl.h \
-           Displayable/Object/ObjectImplementations.h \
-           Displayable/Object/Sponge.h
+           $${PATH}/Object.h \
+           $${PATH}/SurfaceType.h \
+           $${PATH}/SurfaceType.impl.h \
+           $${PATH}/ObjectImplementations.h \
+           $${PATH}/Sponge.h
 SOURCES += \
-           Displayable/Object/Object.C \
-           Displayable/Object/ObjectImplementations.cpp \
-           Displayable/Object/Sponge.C
+           $${PATH}/Object.C \
+           $${PATH}/ObjectImplementations.cpp \
+           $${PATH}/Sponge.C

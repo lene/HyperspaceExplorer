@@ -1,6 +1,7 @@
-INCLUDEPATH += Displayable/LSystems
-DEPENDPATH += Displayable/LSystems
+PATH = Displayable/LSystems
+INCLUDEPATH += $${PATH}
+DEPENDPATH += $${PATH}
 HEADERS += \
-           Displayable/LSystems/LSystem.h
+           $${PATH}/LSystem.h
 SOURCES += \
-           Displayable/LSystems/LSystem.cpp
+           $${PATH}/LSystem.cpp

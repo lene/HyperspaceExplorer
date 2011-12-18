@@ -1,13 +1,14 @@
-INCLUDEPATH += Displayable/Transformation
-DEPENDPATH += Displayable/Transformation
+PATH = Displayable/Transformation
+INCLUDEPATH += $${PATH}
+DEPENDPATH += $${PATH}
 
 HEADERS += \
-           Displayable/Transformation/Transformation.h \
-           Displayable/Transformation/Transformation.impl.h \
-           Displayable/Transformation/TransformationFactory.h \
-           Displayable/Transformation/TransformationFactory.impl.h \
-           Displayable/Transformation/TransformationPolicy.h \
-           Displayable/Transformation/SimpleTransformationPolicy.h \
-           Displayable/Transformation/SimpleTransformationPolicy.impl.h \
-           Displayable/Transformation/MultithreadedTransformationPolicy.h \
-           Displayable/Transformation/MultithreadedTransformationPolicy.impl.h
+           $${PATH}/Transformation.h \
+           $${PATH}/Transformation.impl.h \
+           $${PATH}/TransformationFactory.h \
+           $${PATH}/TransformationFactory.impl.h \
+           $${PATH}/TransformationPolicy.h \
+           $${PATH}/SimpleTransformationPolicy.h \
+           $${PATH}/SimpleTransformationPolicy.impl.h \
+           $${PATH}/MultithreadedTransformationPolicy.h \
+           $${PATH}/MultithreadedTransformationPolicy.impl.h

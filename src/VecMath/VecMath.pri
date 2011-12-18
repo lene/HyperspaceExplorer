@@ -1,11 +1,12 @@
-INCLUDEPATH += VecMath
-DEPENDPATH += VecMath
-HEADERS += VecMath/ArrayList.h \
-           VecMath/ArrayList.impl.h \
-           VecMath/Matrix.h \
-           VecMath/Matrix.impl.h \
-           VecMath/MultiDimensionalVector.h \
-           VecMath/MultiDimensionalVector.impl.h \
-           VecMath/Rotation.h \
-           VecMath/Vector.h
-SOURCES += VecMath/Rotation.C
+PATH = VecMath
+INCLUDEPATH += $${PATH}
+DEPENDPATH += $${PATH}
+HEADERS += $${PATH}/ArrayList.h \
+           $${PATH}/ArrayList.impl.h \
+           $${PATH}/Matrix.h \
+           $${PATH}/Matrix.impl.h \
+           $${PATH}/MultiDimensionalVector.h \
+           $${PATH}/MultiDimensionalVector.impl.h \
+           $${PATH}/Rotation.h \
+           $${PATH}/Vector.h
+SOURCES += $${PATH}/Rotation.C
