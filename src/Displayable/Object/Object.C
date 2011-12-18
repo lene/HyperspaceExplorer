@@ -18,8 +18,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 */
 
-#define USE_OUTDATED_CLASS 0
-
 #include <iostream>
 
 #include "Object.h"
@@ -29,13 +27,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Log.h"
 
 #include "View.h"
-#if USE_OUTDATED_CLASS
-# include "Transform.h"
-#else
-# include "TransformationFactory.h"
+#include "TransformationFactory.h"
 
-# include "Transformation.impl.h"
-#endif
+#include "Transformation.impl.h"
 #include "Matrix.impl.h"
 #include "MultiDimensionalVector.impl.h"
 #include "Vector.impl.h"
@@ -137,17 +131,8 @@ void Object::setXscr(int i, const Object::projected_vertex_type &x) {
 void Object::Transform(const VecMath::Rotation<4> &R,
                        const VecMath::Vector<4> &T,
                        const VecMath::Vector<4> &scale) {
-# if USE_OUTDATED_CLASS
-    Matrix<4> Rot(R);
-    resizeXtrans(X().size());
-    transform<vec4vec1D, 4>::xform(Rot, T, scale, X_, Xtrans_);
-# else  
     const Transformation<4, 1> &xform = TransformationFactory<4, 1>::create(R, T, scale);
     setXtrans(xform.transform(X()));
-    for (auto i = Xtrans().begin(); i != Xtrans().end(); ++i) {
-        qDebug() << "Xtrans: " << i->toString().c_str();
-    }
-# endif    
 }
 
 /// Projects an Object into three-space

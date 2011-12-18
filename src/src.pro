@@ -86,8 +86,8 @@ HEADERS += \
            Displayable/Transformation/SimpleTransformationPolicy.h \
            Displayable/Transformation/SimpleTransformationPolicy.impl.h \
            Displayable/Transformation/MultithreadedTransformationPolicy.h \
-           Displayable/Transformation/MultithreadedTransformationPolicy.impl.h \
-           Displayable/Transform.h 
+           Displayable/Transformation/MultithreadedTransformationPolicy.impl.h
+#           Displayable/Transform.h 
 
 ###
 ###     Objects
