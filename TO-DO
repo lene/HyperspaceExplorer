@@ -1,22 +1,25 @@
-
+- convert Object to inherit from FunctionHolder
+- fix Rotopes to only use MultiDimVector, not vec1vec
+- separate qmakefiles for all directories
 - make rotations on Composites behave correctly
-
-- ensure commitDraw() is only called once, after all vertices are added - do something with scope
+- remove TransformationPolicies, they're unneccessarily complicated
+- ensure commitDraw() is only called once, after all vertices are added - do
+  something with scope
   - use a GL view that takes advantage of this optimization
-
-- refactor test suites for all Displayables to use as much common code as possible
-
-- Matrix should have late binding so different algrithms for multiplication can be selected
+- refactor test suites for all Displayables to use as much common code as
+  possible
+- Matrix should have late binding so different algrithms for multiplication can
+  be selected
   - test how much of a performance hit polymorphic Matrix multiplication is
   - move all creations of Matrix objects to a factory
   - replace operator notation with explicit function calls ;-(
-
-- make the output function of Matrix, Vector, Rotation, NestedVector and whatnot conform to same interface
-
-- combine vertex array with Realm to have a single class for surfaces without interdependence
-
-- continue with "torations" - or generalize rotations so they can take displacement as a parameter
-  - displacement should be a parameter too
-
-- separate the UI::View functions out of C4DView and make the rest a controller class
-  - change Displayable::Draw() to take a shared_ptr<View> instead of a raw pointer
+- make the output function of Matrix, Vector, Rotation, NestedVector and whatnot
+  conform to same interface
+- combine vertex array with Realm to have a single class for surfaces without 
+  interdependence
+- continue with "torations" - or generalize rotations so they can take 
+  displacement as a parameter
+- separate the UI::View functions out of C4DView and make the rest a controller 
+  class
+  - change Displayable::Draw() to take a shared_ptr<View> instead of a raw
+    pointer
