@@ -21,7 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #if(!defined SPONGE_H)
 #define SPONGE_H
 
-#include "Object.h"
+#include "ObjectImplementations.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 

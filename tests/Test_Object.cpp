@@ -26,7 +26,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "FunctionFactory.h"
 #include "ColorManager.h"
 
-#include "Object.h"
+#include "ObjectImplementations.h"
 
 #include "Vector.impl.h"
 #include "Rotation.impl.h"

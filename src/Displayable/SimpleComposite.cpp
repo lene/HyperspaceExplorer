@@ -21,6 +21,7 @@
 #include "SimpleComposite.h"
 
 #include "Object.h"
+#include "ObjectImplementations.h"
 
 #include "Vector.impl.h"
 #include "Rotation.impl.h"

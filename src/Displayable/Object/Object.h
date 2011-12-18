@@ -31,8 +31,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Vector.h"
 #include "MultiDimensionalVector.h"
 
-#include "Vector.impl.h"
-
 #define USE_INT_INDICES 0
 
 /// Artificial type to use in Typelists
@@ -57,59 +55,59 @@ public:
     /// A vertex projected into three dimensions.
     typedef VecMath::Vector<3, double> projected_vertex_type;
 
-        Object (unsigned, unsigned);
-        virtual ~Object () { }
-        virtual void ReInit (double, double, double,
-                             double, double, double,
-                             double, double, double);
-        virtual void calibrateColors() const;
+    Object (unsigned, unsigned);
+    virtual ~Object () { }
+    virtual void ReInit (double, double, double,
+                         double, double, double,
+                         double, double, double);
+    virtual void calibrateColors() const;
 
-        virtual void Transform (const VecMath::Rotation<4> &R,
-                                const VecMath::Vector<4> &T,
-                                const VecMath::Vector<4> &scale = 1.);
-        virtual void Project (double ScrW, double CamW, bool DepthCue4D);
-        virtual void Draw (UI::View *);
-        virtual VecMath::Vector<4> &operator () (double, double, double) {
-            throw std::logic_error("Object::operator() should never be called");
-        }
+    virtual void Transform (const VecMath::Rotation<4> &R,
+                            const VecMath::Vector<4> &T,
+                            const VecMath::Vector<4> &scale = 1.);
+    virtual void Project (double ScrW, double CamW, bool DepthCue4D);
+    virtual void Draw (UI::View *);
+    virtual VecMath::Vector<4> &operator () (double, double, double) {
+        throw std::logic_error("Object::operator() should never be called");
+    }
 
-        /// \see Function::getDefinitionSpaceDimensions()
-        virtual unsigned getDefinitionSpaceDimensions() { return 0; }
+    /// \see Function::getDefinitionSpaceDimensions()
+    virtual unsigned getDefinitionSpaceDimensions() { return 0; }
 
-        virtual void for_each_vertex(function_on_fourspace_vertex apply);
-        virtual void for_each_vertex_transformed(function_on_fourspace_and_transformed_vertex apply);
-        virtual void for_each_projected(function_on_projected_vertex apply);
-        virtual void for_each_vertex_transformed_projected(function_on_fourspace_transformed_and_projected_vertex apply);
+    virtual void for_each_vertex(function_on_fourspace_vertex apply);
+    virtual void for_each_vertex_transformed(function_on_fourspace_and_transformed_vertex apply);
+    virtual void for_each_projected(function_on_projected_vertex apply);
+    virtual void for_each_vertex_transformed_projected(function_on_fourspace_transformed_and_projected_vertex apply);
 
-    protected:
-        virtual void Initialize();
+protected:
+    virtual void Initialize();
 
-        const VecMath::MultiDimensionalVector< vertex_type, 1 > &X() const;
-        vec4vec1D X_as_old_format() const;
-        void setX(const vec4vec1D &);           ///< Set temporary storage for the function values
-        void setX(const VecMath::MultiDimensionalVector< vertex_type, 1 > &);           ///< Set temporary storage for the function values
-        void setX(int i, const vertex_type &x);
-        void resizeX(unsigned size);
-        void X_push_back(const vertex_type &x);
-        const VecMath::MultiDimensionalVector< vertex_type, 1 > &Xtrans() const;
-        void resizeXtrans(unsigned size);
-        void setXtrans(const VecMath::MultiDimensionalVector< vertex_type, 1 > &);           ///< Set temporary storage for the function values
-        const VecMath::MultiDimensionalVector< projected_vertex_type, 1 > &Xscr() const;
-        void setXscr(const VecMath::MultiDimensionalVector< projected_vertex_type, 1 > &);           ///< Set temporary storage for the function values
-        void resizeXscr(unsigned size);
-        void setXscr(int i, const projected_vertex_type &x);
+    const VecMath::MultiDimensionalVector< vertex_type, 1 > &X() const;
+    vec4vec1D X_as_old_format() const;
+    void setX(const vec4vec1D &);           ///< Set temporary storage for the function values
+    void setX(const VecMath::MultiDimensionalVector< vertex_type, 1 > &);           ///< Set temporary storage for the function values
+    void setX(int i, const vertex_type &x);
+    void resizeX(unsigned size);
+    void X_push_back(const vertex_type &x);
+    const VecMath::MultiDimensionalVector< vertex_type, 1 > &Xtrans() const;
+    void resizeXtrans(unsigned size);
+    void setXtrans(const VecMath::MultiDimensionalVector< vertex_type, 1 > &);           ///< Set temporary storage for the function values
+    const VecMath::MultiDimensionalVector< projected_vertex_type, 1 > &Xscr() const;
+    void setXscr(const VecMath::MultiDimensionalVector< projected_vertex_type, 1 > &);           ///< Set temporary storage for the function values
+    void resizeXscr(unsigned size);
+    void setXscr(int i, const projected_vertex_type &x);
 
-        /// the surfaces, stored as vectors of indeces to the points in X
-        VecMath::MultiDimensionalVector<unsigned, 2> Surface;
+    /// the surfaces, stored as vectors of indeces to the points in X
+    VecMath::MultiDimensionalVector<unsigned, 2> Surface;
 
-        /** A pointless function, but it must be overridden to satisfy the
-         *  Function interface. In an Object it is never called because the
-         *  four-dimensional object is represented by a list of surfaces instead
-         *  of a mathematical function.
-         */
-        virtual VecMath::Vector<4> &f (double, double, double) {
-            throw std::logic_error("Object::f() should never be called");
-        }
+    /** A pointless function, but it must be overridden to satisfy the
+     *  Function interface. In an Object it is never called because the
+     *  four-dimensional object is represented by a list of surfaces instead
+     *  of a mathematical function.
+     */
+    virtual VecMath::Vector<4> &f (double, double, double) {
+        throw std::logic_error("Object::f() should never be called");
+    }
         
 private:
 
@@ -127,165 +125,6 @@ namespace {
   static DisplayableClass displayable_class_object(
     "Object", "Geometrical object", "Displayable"
   );
-}
-
-
-///////////////////////////////////////////////////////////////////////////////
-
-#include "SurfaceType.h"
-
-/// A four-dimensional cube
-/** \ingroup ObjectGroup                                                    */
-class Hypercube: public Object {
-public:
-    /// Construct a hypercube with a side length and a center
-    Hypercube (double a = 1.,
-               const VecMath::Vector<4> &_center = VecMath::Vector<4>(0., 0., 0., 0.));
-    virtual ~Hypercube() { }
-
-    virtual std::string getFunctionName() const { return "Tesseract"; }
-
-    virtual void SetParameters(const ParameterMap &parms) {
-#       if 1
-            for (ParameterMap::const_iterator i = parms.begin();
-                 i != parms.end(); ++i) {
-                if (i->second->getName() == "Size") _a = i->second->toDouble();
-            }
-#       else
-            setParameter(parms, this->a, "Size");
-#       endif
-    }
-
-    /// \return A string carrying a description of the Function
-    virtual std::string description () {
-        std::ostringstream out;
-        out << "Tesseract of edge length " << _a << std::ends;
-        return out.str ();
-    }
-#   if !USE_INT_INDICES
-      /// reimplement Draw() to make use of the stored vertices (instead of indices)
-      virtual void Draw (UI::View *view);
-
-#   endif
-  protected:
-    virtual void Initialize();
-    void DeclareSquare (unsigned, unsigned, unsigned, unsigned, unsigned, unsigned = 0);
-
-    double _a;                  ///< Side length of the hypercube
-    VecMath::Vector<4> _center; ///< Center of the hypercube
-
-    static constexpr unsigned num_vertices = 16;
-    static constexpr unsigned num_faces = 24;
-
-#   if !USE_INT_INDICES
-      surface_vec_type Surface;
-#   endif
-};
-
-namespace {
-    Displayable *createHypercube() { return new Hypercube; }
-    const bool registeredH = TheFunctionFactory::Instance().registerFunction(createHypercube, "Object");
-}
-
-///////////////////////////////////////////////////////////////////////////////
-
-/// A four-dimensional pyramid, also known as hypersimplex
-/** \ingroup ObjectGroup                                                    */
-class Pyramid: public Object {
-public:
-    Pyramid (): Object (5, 10) {
-        declareParameter("Size", 1.0);
-    }
-    Pyramid (double _a,
-             const VecMath::Vector<4> &_Center = VecMath::Vector<4> (0., 0., 0., 0.));
-    virtual ~Pyramid() { }
-
-    virtual std::string getFunctionName() const { return "Pentachoron"; }
-
-    virtual void SetParameters(const ParameterMap &parms) {
-#       if 1
-        for (ParameterMap::const_iterator i = parms.begin();
-             i != parms.end(); ++i) {
-                 if (i->second->getName() == "Size") a = i->second->toDouble();
-             }
-#       else
-             setParameter(parms, this->a, "Size");
-#       endif
-    }
-
-protected:
-    virtual void Initialize();
-    void DeclareTriangle (unsigned, unsigned, unsigned, unsigned);
-
-    VecMath::Vector<4> center;  ///< location
-    double a;                   ///< size
-};
-
-namespace {
-    Displayable *createPyramid() { return new Pyramid(); }
-    const bool registeredP =
-            TheFunctionFactory::Instance().registerFunction(createPyramid, "Object");
-}
-
-///////////////////////////////////////////////////////////////////////////////
-
-/// A four-dimensional version of the Sierpinski Gasket.
-/** This object is similar to the Menger Sponge, but it uses a Hypersimplex as
- *  generator.
- *
- *  It lacks the \p distance parameter, because there is only one way
- *  to generate a Sierpinski Gasket of level \p n. Otherwise it is analogous to
- *  the Menger Sponge fractal.
- *  \ingroup ObjectGroup                                                      */
-class Gasket: public Pyramid {
-    public:
-        /// Create a gasket with a level, size and center
-        Gasket (unsigned level = 1, double rad = 1,
-                VecMath::Vector<4> Center = VecMath::Vector<4> (0., 0.,0., 0.));
-        virtual ~Gasket() { }
-
-        virtual std::string getFunctionName() const { return "4D Sierpinski Gasket"; }
-
-        virtual void Transform (const VecMath::Rotation<4> &R,
-                                const VecMath::Vector<4> &T,
-                                const VecMath::Vector<4> &scale);
-        virtual void Project (double ScrW, double CamW, bool DepthCue4D);
-        virtual void Draw (UI::View *view);
-
-        virtual void SetParameters(const ParameterMap &parms) {
-#       if 1
-            for (ParameterMap::const_iterator i = parms.begin();
-                 i != parms.end(); ++i) {
-                if (i->second->getName() == "Level")
-                    Level = i->second->toUnsigned();
-                if (i->second->getName() == "Size")
-                    rad = i->second->toDouble();
-            }
-#       else
-            setParameter(parms, this->Phase, "Phase");
-#       endif
-        }
-
-        virtual void ReInit (double, double, double,
-                             double, double, double,
-                             double, double, double) {
-            List.clear();
-            Object::ReInit(0,0,0,0,0,0,0,0,0);
-        }
-
-    protected:
-        virtual void Initialize();
-        virtual unsigned long MemRequired (void);
-        unsigned Level;                 ///< Recursion depth creating the gasket
-        std::vector<Pyramid *> List;    ///< List of sub-gaskets
-        double rad;                     ///< Scale of the gasket
-        VecMath::Vector<4> center;
-};
-
-namespace {
-    Displayable *createGasket() { return new Gasket(); }
-    const bool registeredG =
-            TheFunctionFactory::Instance().registerFunction(createGasket, "Object");
 }
 
 #endif

@@ -21,8 +21,9 @@
 #include "Test_Composite.h"
 #include "GlobalFunctions.h"
 
-#include <SimpleComposite.h>
+#include "SimpleComposite.h"
 #include "ColorManager.h"
+
 
 #include "Rotation.impl.h"
 

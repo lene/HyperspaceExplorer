@@ -20,10 +20,11 @@
 
 #include "LSystem.h"
 
-#include "Object.h"
+#include "ObjectImplementations.h"
 #include "Util.h"
 
 #include "Rotation.impl.h"
+#include "Vector.impl.h"
 
 #include <sstream>
 #include <iterator>
