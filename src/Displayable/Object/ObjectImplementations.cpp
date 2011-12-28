@@ -3,6 +3,7 @@
 
 #include "View.h"
 
+#include "FunctionHolder.impl.h"
 #include "Vector.impl.h"
 #include "FacePolygon.impl.h"
 

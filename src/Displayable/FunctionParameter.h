@@ -24,7 +24,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "FunctionParameterValue.h"
 
 #include <string>
-#include <tr1/memory>
+#include <memory>
 
 /// A parameter to a Function with a name, an optional description and a default
 /** This class stores a FunctionParameterValue for the value of the parameter,
@@ -51,9 +51,9 @@ class FunctionParameter {
     public:
 
         /// Pointer to the parameter's value
-        typedef std::tr1::shared_ptr< FunctionParameterValueBase > value_ptr_type;
+        typedef std::shared_ptr< FunctionParameterValueBase > value_ptr_type;
         /// Pointer to the parameter
-        typedef std::tr1::shared_ptr< FunctionParameter > parameter_ptr_type;
+        typedef std::shared_ptr< FunctionParameter > parameter_ptr_type;
 
         /// Construct a FunctionParameter from a name
         FunctionParameter(const std::string &name, const std::string &description = "");

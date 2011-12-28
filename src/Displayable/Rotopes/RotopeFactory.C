@@ -25,6 +25,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Rotate.h"
 #include "Torate.h"
 
+#include "FunctionHolder.impl.h"
+
 using std::string;
 
 /** \param actions List of extrusion actions to perform

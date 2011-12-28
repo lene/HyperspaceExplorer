@@ -23,7 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "MultiDimensionalVector.impl.h"
 
-using std::tr1::shared_ptr;
+using std::shared_ptr;
 using VecMath::Vector;
 
 const Vector<3> Test_FunctionValueGrid::DEFAULT_XMIN(

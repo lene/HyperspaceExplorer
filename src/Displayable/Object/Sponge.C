@@ -23,6 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Log.h"
 #include "ScopedTimer.h"
 
+#include "FunctionHolder.impl.h"
 #include "Vector.impl.h"
 #include "MultiDimensionalVector.impl.h"
 #include "FacePolygon.impl.h"

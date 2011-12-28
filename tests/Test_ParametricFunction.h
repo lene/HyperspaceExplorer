@@ -27,7 +27,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <QtTest/QtTest>
 
-#include <tr1/memory>
+#include <memory>
 
 /// Unit tests for class ParametricFunction
 class Test_ParametricFunction: public QObject {
@@ -65,7 +65,7 @@ private:
 
   void initializeFunction();
 
-  std::tr1::shared_ptr< ParametricFunction<4, 3> > _function;
+  std::shared_ptr< ParametricFunction<4, 3> > _function;
 
   const static unsigned TEST_FUNCTION_NUM_PARAMETERS = 5;
   const static double DOUBLE_PARAMETER_VALUE;

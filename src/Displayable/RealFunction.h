@@ -85,7 +85,7 @@ class RealFunction: public FunctionHolder<4, 3, double> {
     virtual void Initialize (void);
 
     /// Pointer to the actual ParametricFunction doing all the work.
-    std::tr1::shared_ptr< ParametricFunction<4, 3> > _function;
+    std::shared_ptr< ParametricFunction<4, 3> > _function;
 
   private:
 

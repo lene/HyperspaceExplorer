@@ -34,7 +34,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 class Surface1: public Surface {
 public:
     Surface1(): Surface() {
-      _function = std::tr1::shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction(this));
+      _function = std::shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction(this));
     }
     Surface1 (double _umin, double _umax, double _du,
               double _vmin, double _vmax, double _dv);
@@ -76,7 +76,7 @@ namespace {
 class Horizon: public Surface {
 public:
     Horizon(): Surface() {
-      _function = std::tr1::shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction(this));
+      _function = std::shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction(this));
     }
     Horizon (double _umin, double _umax, double _du,
              double _vmin, double _vmax, double _dv);
@@ -109,7 +109,7 @@ namespace {
 class Torus3: public Surface {
 public:
     Torus3(): Surface() {
-      _function = std::tr1::shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction(this));
+      _function = std::shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction(this));
     }
     Torus3 (double _umin, double _umax, double _du,
             double _vmin, double _vmax, double _dv);

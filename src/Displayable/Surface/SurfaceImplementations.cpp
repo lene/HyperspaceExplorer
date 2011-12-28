@@ -23,7 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Vector.impl.h"
 
 using VecMath::Vector;
-using std::tr1::shared_ptr;
+using std::shared_ptr;
 
 /** Surface1 c'tor given a definition set in \f$ R^2 \f$ (as parameter space)
  *  @param _umin minimal value in u

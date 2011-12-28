@@ -27,7 +27,7 @@
 #include "MultiDimensionalVector.h"
 #include "Vector.h"
 
-#include <tr1/memory>
+#include <memory>
 
 /// Values of a ParametricFunction stored on a grid representation of its parameter space.
 /** This class evaluates the parametric equation represented by a ParametricFunction
@@ -49,7 +49,7 @@ template <unsigned N, unsigned P, typename NUM = double>
       /// The type of the function whose values are stored in this class.
       typedef ParametricFunction<N, P, NUM> function_type;
       /// The type of pointers to function_type, used for late binding.
-      typedef std::tr1::shared_ptr<function_type> function_ptr_type;
+      typedef std::shared_ptr<function_type> function_ptr_type;
       /// The type of the lower and upper bounds of the definition space.
       typedef VecMath::Vector<P, NUM> boundary_type;
       /// Type for storing the size of the grid in all required dimensions.

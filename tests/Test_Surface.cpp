@@ -33,7 +33,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Rotation.impl.h"
 #include "GridDrawer.impl.h"
 
-#include <tr1/memory>
+#include <memory>
 #include <FunctionFactory.h>
 #include <Util.h>
 
@@ -42,7 +42,7 @@ using VecMath::Rotation;
 using std::cerr;
 using std::endl;
 using std::string;
-using std::tr1::shared_ptr;
+using std::shared_ptr;
 
 using namespace UnitTests;
 

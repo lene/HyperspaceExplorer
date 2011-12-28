@@ -21,15 +21,21 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #if(!defined OBJECT_H)
 #define OBJECT_H
 
+#include "FunctionHolder.h"
 
-#include <vector>
-#include <sstream>
-#include <string>
-
+#include "ParametricFunction.h"
+#include "MultiDimensionalVector.h"
+#if 0
 #include "ParameterMap.h"
 #include "Displayable.h"
 #include "Vector.h"
 #include "MultiDimensionalVector.h"
+
+#include <vector>
+#include <sstream>
+#include <string>
+#endif
+
 
 #define USE_INT_INDICES 0
 

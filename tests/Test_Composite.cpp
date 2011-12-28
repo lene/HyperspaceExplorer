@@ -25,6 +25,7 @@
 #include "ColorManager.h"
 
 
+#include "FunctionHolder.impl.h"
 #include "Rotation.impl.h"
 
 using namespace UnitTests;

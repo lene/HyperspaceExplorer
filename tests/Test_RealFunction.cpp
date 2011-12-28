@@ -76,7 +76,7 @@ Test_RealFunction::RealFunctionTestImplementation::RealFunctionTestImplementatio
     RealFunction(X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1),
                  X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1),
                  X_MIN, X_MAX, (X_MAX-X_MIN)/(GRID_SIZE-1)) {
-  _function = std::tr1::shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction());
+  _function = std::shared_ptr< ParametricFunction<4, 3> >(new DefiningFunction());
   for (unsigned i = 0; i < NUM_PARAMETERS; ++i) {
     std::ostringstream o;
     o << "parameter " << i;

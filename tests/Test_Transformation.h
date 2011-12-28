@@ -25,7 +25,7 @@
 
 #include <QtTest/QtTest>
 
-#include <tr1/memory>
+#include <memory>
 
 class Test_Transformation: public QObject {
 
@@ -65,7 +65,7 @@ class Test_Transformation: public QObject {
     int timeTransform(const Transformation< 4, 3, double > &transform);
     int timeTransformationMethod(TransformationFactory< 4, 3, double >::Method method);
     
-    std::tr1::shared_ptr< FunctionValueGrid<4, 3> > _grid;
+    std::shared_ptr< FunctionValueGrid<4, 3> > _grid;
 
 };
 

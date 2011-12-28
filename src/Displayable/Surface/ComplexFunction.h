@@ -40,7 +40,7 @@ class ComplexFunction: public Surface {
 public:
   /// Minimal constructor, sets the function name
   ComplexFunction (): Surface() {
-    _function = std::tr1::shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction(this));
+    _function = std::shared_ptr< ParametricFunction<4, 2> >(new DefiningFunction(this));
   }
   ComplexFunction (double _umin, double _umax, double _du,
                     double _vmin, double _vmax, double _dv);

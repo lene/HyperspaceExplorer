@@ -31,7 +31,7 @@
 using VecMath::Vector;
 using VecMath::Rotation;
 using VecMath::Matrix;
-using std::tr1::shared_ptr;
+using std::shared_ptr;
 using std::cerr;
 
 
@@ -373,7 +373,7 @@ void Test_Transformation::rotateFloats() {
     AverageParametricFunction *f = new AverageParametricFunction();
     shared_ptr<ParametricFunction<4, 3, float> > pf(f);
 
-    std::tr1::shared_ptr< FunctionValueGrid<4, 3, float> > grid(
+    std::shared_ptr< FunctionValueGrid<4, 3, float> > grid(
         new FunctionValueGrid<4, 3, float>(pf,
                                 makeVector<unsigned>(3, 3, 3),
                                 makeVector<float>(-1., -1., -1.),

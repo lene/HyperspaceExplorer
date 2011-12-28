@@ -27,7 +27,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <QString>
 
 using std::complex;
-using std::tr1::shared_ptr;
+using std::shared_ptr;
 
 using VecMath::Vector;
 

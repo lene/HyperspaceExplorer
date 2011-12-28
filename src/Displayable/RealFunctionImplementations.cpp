@@ -22,7 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "Vector.impl.h"
 
-using std::tr1::shared_ptr;
+using std::shared_ptr;
 using VecMath::Vector;
 
 /// Hypersphere c'tor given a definition set in \f$ R^3 \f$ (as parameter space) and a radius

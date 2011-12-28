@@ -26,7 +26,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "ParametricFunction.h"
 #include "MultiDimensionalVector.h"
 
-#include <tr1/memory>
+#include <memory>
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -74,7 +74,7 @@ class Surface: public FunctionHolder<4, 2, double> {
     void Initialize (void);
 
     /// Pointer to the actual ParametricFunction doing all the work.
-    std::tr1::shared_ptr< ParametricFunction<4, 2> > _function;
+    std::shared_ptr< ParametricFunction<4, 2> > _function;
 
   private:
 

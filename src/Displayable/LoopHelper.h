@@ -25,7 +25,7 @@
 #include "MultiDimensionalVector.h"
 #include "Vector.impl.h"
 
-#include <tr1/memory>
+#include <memory>
 
 /// Class that applies a function on every value in a MultiDimensionalVector
 /** \tparam N The dimension of the definition vector space.
@@ -44,7 +44,7 @@ class LoopHelper {
         const VecMath::Vector<P, NUM> &x_min,
         const VecMath::Vector<P, NUM> &x_max,
         const VecMath::Vector<P, unsigned> &grid_size,
-        std::tr1::shared_ptr< ParametricFunction< N, P, NUM > > f
+        std::shared_ptr< ParametricFunction< N, P, NUM > > f
     );
 
     /// Loop over one dimension, if necessary loop over lower dimensions too.
@@ -62,7 +62,7 @@ class LoopHelper {
     /// Vector of grid sizes.
     VecMath::Vector<P, unsigned> _grid_size;
     /// The function to be evaluated on every grid point.
-    std::tr1::shared_ptr< ParametricFunction< N, P, NUM > > _f;
+    std::shared_ptr< ParametricFunction< N, P, NUM > > _f;
 
 };
 
@@ -77,7 +77,7 @@ class LoopHelper< N, P, 1, NUM > {
         const VecMath::Vector<P, NUM> &x_min,
         const VecMath::Vector<P, NUM> &x_max,
         const VecMath::Vector<P, unsigned> &grid_size,
-        std::tr1::shared_ptr< ParametricFunction< N, P, NUM > > f
+        std::shared_ptr< ParametricFunction< N, P, NUM > > f
     );
 
     /// Loop over one dimension, evaluating _f and filling \p values.
@@ -95,7 +95,7 @@ class LoopHelper< N, P, 1, NUM > {
     /// Vector of grid sizes.
     VecMath::Vector<P, unsigned> _grid_size;
     /// The function to be evaluated on every grid point.
-    std::tr1::shared_ptr< ParametricFunction< N, P, NUM > > _f;
+    std::shared_ptr< ParametricFunction< N, P, NUM > > _f;
 };
 
 template <unsigned N, unsigned P, unsigned dimension, typename NUM>
@@ -103,7 +103,7 @@ template <unsigned N, unsigned P, unsigned dimension, typename NUM>
     const VecMath::Vector<P, NUM> &x_min,
     const VecMath::Vector<P, NUM> &x_max,
     const VecMath::Vector<P, unsigned> &grid_size,
-    std::tr1::shared_ptr< ParametricFunction< N, P, NUM > > f):
+    std::shared_ptr< ParametricFunction< N, P, NUM > > f):
     _x_min(x_min), _x_max(x_max), _grid_size(grid_size), _f(f) { }
 
 template <unsigned N, unsigned P, typename NUM>
@@ -111,7 +111,7 @@ template <unsigned N, unsigned P, typename NUM>
     const VecMath::Vector<P, NUM> &x_min,
     const VecMath::Vector<P, NUM> &x_max,
     const VecMath::Vector<P, unsigned> &grid_size,
-    std::tr1::shared_ptr< ParametricFunction< N, P, NUM > > f):
+    std::shared_ptr< ParametricFunction< N, P, NUM > > f):
     _x_min(x_min), _x_max(x_max), _grid_size(grid_size), _f(f) { }
 
 template <unsigned N, unsigned P, unsigned dimension, typename NUM>

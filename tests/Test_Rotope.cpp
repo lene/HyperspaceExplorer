@@ -25,6 +25,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Rotopes/Rotope.h"
 #include "Rotopes/RotopeFactory.h"
 
+#include "FunctionHolder.impl.h"
+
 #include <string>
 
 Realm generateSquareRealm();

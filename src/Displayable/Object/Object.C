@@ -29,6 +29,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "View.h"
 #include "TransformationFactory.h"
 
+#include "FunctionHolder.impl.h"
 #include "Transformation.impl.h"
 #include "Matrix.impl.h"
 #include "MultiDimensionalVector.impl.h"
@@ -49,6 +50,7 @@ using VecMath::Matrix;
  *  @param vertices number of vertices
  *  @param surfaces number of surfaces                                        */
 Object::Object (unsigned vertices, unsigned surfaces):
+//        FunctionHolder<4, 1, double>(ParameterMap()),
         Displayable(),
         Surface(surfaces),
         X_(vertices), Xtrans_(vertices), Xscr_() {

@@ -25,7 +25,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <QtTest/QtTest>
 
-#include <tr1/memory>
+#include <memory>
 
 /// Unit tests for class FunctionValueGrid
 class Test_FunctionValueGrid: public QObject {
@@ -49,7 +49,7 @@ private:
 
   void resetGridSize();
 
-  std::tr1::shared_ptr< FunctionValueGrid<4, 3> > _grid;
+  std::shared_ptr< FunctionValueGrid<4, 3> > _grid;
 
   constexpr static double DEFAULT_X_MIN = -1.;
   constexpr static double DEFAULT_X_MAX =  1.;

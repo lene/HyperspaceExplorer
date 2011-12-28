@@ -27,7 +27,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 using std::cerr;
 using std::endl;
-using std::tr1::shared_ptr;
+using std::shared_ptr;
 
 const double Test_ParametricFunction::DOUBLE_PARAMETER_VALUE = 1.0;
 const unsigned Test_ParametricFunction::UNSIGNED_PARAMETER_VALUE = 1;

@@ -161,7 +161,7 @@ class C4DView :
         void checkAnglesForOverflow();
         void UpdateStatus(QString = "");
 
-        void AssignValues(const std::tr1::shared_ptr<Displayable> &);
+        void AssignValues(const std::shared_ptr<Displayable> &);
 
         double Size();
 

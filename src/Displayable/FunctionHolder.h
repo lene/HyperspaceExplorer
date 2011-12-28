@@ -61,8 +61,8 @@ class FunctionHolder : public Displayable {
     typedef VecMath::Vector<3, NUM> projected_vertex_type;
 
     FunctionHolder(ParameterMap parameters);
-    FunctionHolder(std::tr1::shared_ptr< function_type > f);
-    FunctionHolder(std::tr1::shared_ptr< function_type > f,
+    FunctionHolder(std::shared_ptr< function_type > f);
+    FunctionHolder(std::shared_ptr< function_type > f,
                    DefinitionRangeOfDimension<P> boundaries);
 
     virtual void Transform (const VecMath::Rotation<N, NUM> &R,

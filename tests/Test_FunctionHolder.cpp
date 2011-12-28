@@ -28,8 +28,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 class TestFunctionHolder: public FunctionHolder<4,3> {
 
   public:
-    TestFunctionHolder(std::tr1::shared_ptr< function_type > f): FunctionHolder< 4, 3>(f) { }
-    TestFunctionHolder(function_type *f): FunctionHolder< 4, 3>(std::tr1::shared_ptr< function_type > (f)) { }
+    TestFunctionHolder(std::shared_ptr< function_type > f): FunctionHolder< 4, 3>(f) { }
+    TestFunctionHolder(function_type *f): FunctionHolder< 4, 3>(std::shared_ptr< function_type > (f)) { }
     virtual void Transform (const VecMath::Rotation<4, double> &,
                             const VecMath::Vector<4, double> &) { }
     virtual void Project (double, double, bool) { }

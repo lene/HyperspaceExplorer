@@ -34,7 +34,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using VecMath::Vector;
 using VecMath::MultiDimensionalVector;
 
-using std::tr1::shared_ptr;
+using std::shared_ptr;
 
 template <unsigned N, unsigned P, typename NUM>
 class FunctionHolder<N, P, NUM>::Impl {

@@ -25,7 +25,7 @@
 #include "ParameterMap.h"
 #include "Vector.h"
 
-#include <tr1/memory>
+#include <memory>
 
 /// A function describing a \p P dimensional surface in \p N dimensional space
 /** See also http://en.wikipedia.org/wiki/Parametric_surface for an explanation

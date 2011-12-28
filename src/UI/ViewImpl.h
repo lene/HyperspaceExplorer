@@ -46,7 +46,7 @@ public:
   ViewImpl();
 
   /// \return The currently displayed object
-  virtual const std::tr1::shared_ptr<Displayable> &F() const;
+  virtual const std::shared_ptr<Displayable> &F() const;
   /// Implementation of UI::View::setFunction
   virtual void setF(Displayable *_f);
 

@@ -26,6 +26,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Sponge.h"
 #include "ColorManager.h"
 
+#include "FunctionHolder.impl.h"
+
 #include "Rotation.impl.h"
 #include "Vector.impl.h"
 

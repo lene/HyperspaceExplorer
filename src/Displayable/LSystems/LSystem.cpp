@@ -23,6 +23,7 @@
 #include "ObjectImplementations.h"
 #include "Util.h"
 
+#include "FunctionHolder.impl.h"
 #include "Rotation.impl.h"
 #include "Vector.impl.h"
 

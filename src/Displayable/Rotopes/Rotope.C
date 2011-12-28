@@ -27,6 +27,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Torate.h"
 #include "RotopeFactory.h"
 
+#include "FunctionHolder.impl.h"
 #include "Matrix.impl.h"
 #include "Rotation.impl.h"
 
@@ -57,7 +58,7 @@ struct Rotope::Impl {
   void generateDefaultRotope(const std::logic_error &e) throw();
   void addNDimensionalTransforms();
 
-  void readParameter(std::tr1::shared_ptr<FunctionParameter> parameter);
+  void readParameter(std::shared_ptr<FunctionParameter> parameter);
 
   /// Rotation in 5-space (for objects of dimension >= 5)
   VecMath::Rotation<5> rot5D_;
@@ -209,7 +210,7 @@ void Rotope::Impl::addNDimensionalTransforms() {
   }
 }
 
-void Rotope::Impl::readParameter(std::tr1::shared_ptr<FunctionParameter> parameter) {
+void Rotope::Impl::readParameter(std::shared_ptr<FunctionParameter> parameter) {
   string name = parameter->getName();
   if (name == "Generator") {
     actions_ = parameter->toString();

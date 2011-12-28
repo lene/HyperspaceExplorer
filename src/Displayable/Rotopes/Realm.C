@@ -30,6 +30,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <list>
 #include <ios>
 
+#include "FunctionHolder.impl.h"
+
 using std::cout;
 using std::cerr;
 using std::endl;

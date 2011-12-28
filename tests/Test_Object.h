@@ -80,6 +80,8 @@ private:
 void testGetParametersRuns(Object * f);
 void testReinitRuns(Object * f);
 
+// needed by moc_Test_Object.cpp
+#include "FunctionHolder.impl.h"
 
 #if 0
 #endif
