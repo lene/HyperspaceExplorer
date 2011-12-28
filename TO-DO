@@ -1,4 +1,5 @@
-- convert Object to inherit from FunctionHolder
+- convert Object and FunctionHolder to inherit from a common class which differs
+  from FunctionHolder in just having a grid, no definition range
 - fix Rotopes to only use MultiDimVector, not vec1vec
 - separate qmakefiles for all directories
 - make rotations on Composites behave correctly

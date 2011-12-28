@@ -25,17 +25,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "ParametricFunction.h"
 #include "MultiDimensionalVector.h"
-#if 0
-#include "ParameterMap.h"
-#include "Displayable.h"
-#include "Vector.h"
-#include "MultiDimensionalVector.h"
-
-#include <vector>
-#include <sstream>
-#include <string>
-#endif
-
 
 #define USE_INT_INDICES 0
 
