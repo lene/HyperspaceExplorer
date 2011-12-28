@@ -21,6 +21,7 @@ HEADERS += \
            $${PATH}/RealFunctionImplementations.h \
            $${PATH}/CustomFunction.h \
            $${PATH}/ParametricFunction.h \
+           $${PATH}/VertexGrid.h \
            $${PATH}/FunctionValueGrid.h \
            $${PATH}/LoopHelper.h \
            $${PATH}/ViewpointList.h \

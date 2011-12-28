@@ -21,6 +21,8 @@
 #ifndef FUNCTIONVALUEGRID_H
 #define FUNCTIONVALUEGRID_H
 
+#include "VertexGrid.h"
+
 #include "ParametricFunction.h"
 
 #include "LoopHelper.h"
@@ -42,9 +44,14 @@
  *  @author Lene Preuss <lene.preuss@gmail.com>
  */
 template <unsigned N, unsigned P, typename NUM = double>
-  class FunctionValueGrid {
+  class FunctionValueGrid: public VertexGrid<N, P, NUM> {
 
     public:
+
+      /// Type for storing the size of the grid in all required dimensions.
+      typedef typename VertexGrid<N, P, NUM>::grid_size_type grid_size_type;
+      /// Type for the storage of the function values on all grid points.
+      typedef typename VertexGrid<N, P, NUM>::value_storage_type value_storage_type;
 
       /// The type of the function whose values are stored in this class.
       typedef ParametricFunction<N, P, NUM> function_type;
@@ -52,10 +59,6 @@ template <unsigned N, unsigned P, typename NUM = double>
       typedef std::shared_ptr<function_type> function_ptr_type;
       /// The type of the lower and upper bounds of the definition space.
       typedef VecMath::Vector<P, NUM> boundary_type;
-      /// Type for storing the size of the grid in all required dimensions.
-      typedef VecMath::Vector<P, unsigned> grid_size_type;
-      /// Type for the storage of the function values on all grid points.
-      typedef VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, P > value_storage_type;
 
       /// Create an empty grid.
       FunctionValueGrid();
@@ -63,24 +66,18 @@ template <unsigned N, unsigned P, typename NUM = double>
       FunctionValueGrid(const function_ptr_type &f);
       /// Fill a grid with a defined grid size. The supplied ParametricFunction knows its definition space.
       FunctionValueGrid(const function_ptr_type &f,
-                        const FunctionValueGrid::grid_size_type &grid_size);
+                        const grid_size_type &grid_size);
       /// Fill a grid with a defined grid size and boundaries.
       FunctionValueGrid(const function_ptr_type &f,
-                        const FunctionValueGrid::grid_size_type &grid_size,
-                        const FunctionValueGrid::boundary_type &x_min, const FunctionValueGrid::boundary_type &x_max);
+                        const grid_size_type &grid_size,
+                        const boundary_type &x_min, const boundary_type &x_max);
 
       virtual ~FunctionValueGrid() { }
 
       /// Change the size of the grid. If possible, function values are recalculated.
-      void setGridSize(const FunctionValueGrid::grid_size_type &grid_size);
+      void setGridSize(const grid_size_type &grid_size);
       /// Change the size of the definition space. If possible, function values are recalculated.
-      void setBoundaries(const FunctionValueGrid::boundary_type &x_min, const FunctionValueGrid::boundary_type &x_max);
-
-      /// Access the stored function values.
-      const value_storage_type &getValues() const { return _function_values; }
-
-      /// Access the stored function values.
-      value_storage_type &getValuesNonConst() { return _function_values; }
+      void setBoundaries(const boundary_type &x_min, const boundary_type &x_max);
 
     private:
 
@@ -93,10 +90,6 @@ template <unsigned N, unsigned P, typename NUM = double>
       boundary_type _x_min;
       /// Upper boundary of the grid in all dimensions.
       boundary_type _x_max;
-      /// Number of points on the grid in all dimensions.
-      grid_size_type _grid_size;
-      /// The actual function values on the grid.
-      value_storage_type _function_values;
 
       /// \todo this should be somewhere global.
       static constexpr double EPSILON = 1e-8;
@@ -104,14 +97,16 @@ template <unsigned N, unsigned P, typename NUM = double>
 
 template <unsigned N, unsigned P, typename NUM>
   FunctionValueGrid<N, P, NUM>::FunctionValueGrid():
-    _f(), _x_min(), _x_max(), _grid_size(), _function_values() { }
+    VertexGrid<N, P, NUM>(),
+    _f(), _x_min(), _x_max() { }
 
 /** \param f The function whose values are stored on its definition space.
  */
 template <unsigned N, unsigned P, typename NUM>
   FunctionValueGrid<N, P, NUM>::FunctionValueGrid(
         const FunctionValueGrid::function_ptr_type &f):
-    _f(f), _x_min(), _x_max(), _grid_size(), _function_values() {
+    VertexGrid<N, P, NUM>(),
+    _f(f), _x_min(), _x_max() {
   setBoundaries(f->getDefaultXMin(), f->getDefaultXMax());
 }
 
@@ -122,7 +117,8 @@ template <unsigned N, unsigned P, typename NUM>
   FunctionValueGrid<N, P, NUM>::FunctionValueGrid(
         const FunctionValueGrid::function_ptr_type &f,
         const FunctionValueGrid::grid_size_type &grid_size):
-      _f(f), _x_min(), _x_max(), _grid_size(), _function_values() {
+      VertexGrid<N, P, NUM>(),        
+      _f(f), _x_min(), _x_max() {
     setGridSize(grid_size);
     setBoundaries(f->getDefaultXMin(), f->getDefaultXMax());
   }
@@ -138,7 +134,8 @@ template <unsigned N, unsigned P, typename NUM>
         const FunctionValueGrid::grid_size_type &grid_size,
         const FunctionValueGrid::boundary_type &x_min,
         const FunctionValueGrid::boundary_type &x_max):
-      _f(f), _x_min(), _x_max(), _grid_size(), _function_values() {
+      VertexGrid<N, P, NUM>(),
+      _f(f), _x_min(), _x_max() {
     setGridSize(grid_size);
     setBoundaries(x_min, x_max);
   }
@@ -148,8 +145,8 @@ template <unsigned N, unsigned P, typename NUM>
 template <unsigned N, unsigned P, typename NUM>
   void FunctionValueGrid<N, P, NUM>::setGridSize(
     const FunctionValueGrid::grid_size_type &grid_size) {
-  if (grid_size == _grid_size) return;
-  _grid_size = grid_size;
+  if (grid_size == VertexGrid<N, P, NUM>::_grid_size) return;
+  VertexGrid<N, P, NUM>::_grid_size = grid_size;
   if (abs(VecMath::sqnorm(_x_max-_x_min)) > EPSILON) recalculate_grid();
 }
 
@@ -162,7 +159,7 @@ template <unsigned N, unsigned P, typename NUM>
   if (abs(VecMath::sqnorm(_x_max-x_max)) < EPSILON && abs(VecMath::sqnorm(_x_min-x_min)) < EPSILON) return;
   _x_min = x_min;
   _x_max = x_max;
-  if (VecMath::sqnorm(_grid_size)) recalculate_grid();
+  if (VecMath::sqnorm(VertexGrid<N, P, NUM>::_grid_size)) recalculate_grid();
 }
 
 /** Initialize a LoopHelper and set it off.
@@ -170,9 +167,9 @@ template <unsigned N, unsigned P, typename NUM>
 template <unsigned N, unsigned P, typename NUM>
   void FunctionValueGrid<N, P, NUM>::recalculate_grid() {
     LoopHelper< N, P, P, NUM > looper(
-      _x_min, _x_max, _grid_size, _f);
+      _x_min, _x_max, VertexGrid<N, P, NUM>::_grid_size, _f);
     VecMath::Vector<P, NUM> x = _x_min;
-    looper.recalculateOneDimensionOfGrid(_function_values, x);
+    looper.recalculateOneDimensionOfGrid(VertexGrid<N, P, NUM>::_vertices, x);
 }
 
 #endif // FUNCTIONVALUEGRID_H
