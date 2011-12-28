@@ -9,7 +9,7 @@
 #define	OBJECTIMPLEMENTATIONS_H
 
 #include "Object.h"
-#include "SurfaceType.h"
+#include "FacePolygon.h"
 
 /// A four-dimensional cube
 /** \ingroup ObjectGroup                                                    */

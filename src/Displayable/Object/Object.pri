@@ -3,8 +3,8 @@ INCLUDEPATH += $${PATH}
 DEPENDPATH += $${PATH}
 HEADERS += \
            $${PATH}/Object.h \
-           $${PATH}/SurfaceType.h \
-           $${PATH}/SurfaceType.impl.h \
+           $${PATH}/FacePolygon.h \
+           $${PATH}/FacePolygon.impl.h \
            $${PATH}/ObjectImplementations.h \
            $${PATH}/Sponge.h
 SOURCES += \

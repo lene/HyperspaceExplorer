@@ -4,7 +4,7 @@
 #include "View.h"
 
 #include "Vector.impl.h"
-#include "SurfaceType.impl.h"
+#include "FacePolygon.impl.h"
 
 using VecMath::Vector;
 using VecMath::Matrix;
@@ -113,7 +113,7 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
         for (auto it = X().begin(); it != X().end(); ++it) qDebug() << it->toString().c_str();
 
 #     endif
-    Surface[i+offset*num_faces] = SurfaceType<4, 4>(
+    Surface[i+offset*num_faces] = FacePolygon<4, 4>(
             X(),
             X()[a+offset*num_vertices], X()[b+offset*num_vertices], 
             X()[c+offset*num_vertices], X()[d+offset*num_vertices]

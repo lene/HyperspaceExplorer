@@ -8,18 +8,18 @@
 #ifndef SURFACETYPE_IMPL_H
 #define	SURFACETYPE_IMPL_H
 
-#include "SurfaceType.h"
+#include "FacePolygon.h"
 
 #include "Util.h"
 #include <QDebug>
 
 template <unsigned D, unsigned N_vertex> 
-SurfaceType<D, N_vertex>::SurfaceType() { 
+FacePolygon<D, N_vertex>::FacePolygon() { 
     for (unsigned i = 0; i < N_vertex; _vertices[i++] = 0) ; 
 }
 
 template <unsigned D, unsigned N_vertex> 
-SurfaceType<D, N_vertex>::SurfaceType(
+FacePolygon<D, N_vertex>::FacePolygon(
         const VecMath::MultiDimensionalVector< vertex_type, 1 > &original_container,
         const vertex_type &v0, const vertex_type &v1,
         const vertex_type &v2) { 
@@ -33,7 +33,7 @@ SurfaceType<D, N_vertex>::SurfaceType(
 }
 
 template <unsigned D, unsigned N_vertex> 
-SurfaceType<D, N_vertex>::SurfaceType(
+FacePolygon<D, N_vertex>::FacePolygon(
         const VecMath::MultiDimensionalVector< vertex_type, 1 > &original_container,
         const vertex_type &v0, const vertex_type &v1,
                 const vertex_type &v2, const vertex_type &v3) {
@@ -48,20 +48,20 @@ SurfaceType<D, N_vertex>::SurfaceType(
     }
 
 template <unsigned D, unsigned N_vertex> 
-const typename SurfaceType<D, N_vertex>::vertex_ptr_type &
-SurfaceType<D, N_vertex>::operator[](unsigned i) const { 
+const typename FacePolygon<D, N_vertex>::vertex_ptr_type &
+FacePolygon<D, N_vertex>::operator[](unsigned i) const { 
     return _vertices[i]; 
 }
 
 template <unsigned D, unsigned N_vertex> 
 unsigned
-SurfaceType<D, N_vertex>::index(unsigned i) const { 
+FacePolygon<D, N_vertex>::index(unsigned i) const { 
     return _indices[i];
 }
 
 template <unsigned D, unsigned N_vertex> 
 bool
-SurfaceType<D, N_vertex>::operator==(const SurfaceType<D, 4> &other) const {
+FacePolygon<D, N_vertex>::operator==(const FacePolygon<D, 4> &other) const {
     if (N_vertex != 4) return false;
     if (!Util::isPermutation(
           _indices[0], _indices[1], _indices[2], _indices[3],
@@ -76,7 +76,7 @@ SurfaceType<D, N_vertex>::operator==(const SurfaceType<D, 4> &other) const {
 
 template <unsigned D, unsigned N_vertex> 
 void
-SurfaceType<D, N_vertex>::print() {
+FacePolygon<D, N_vertex>::print() {
     for (unsigned i = 0; i < N_vertex; ++i)
         std::cerr << _indices[i] << ": " << *(_vertices[i]) << " ";
     std::cerr << std::endl;
@@ -84,7 +84,7 @@ SurfaceType<D, N_vertex>::print() {
 
 template <unsigned D, unsigned N_vertex> 
 unsigned
-SurfaceType<D, N_vertex>::index_of(
+FacePolygon<D, N_vertex>::index_of(
         const vertex_type &x,
         const VecMath::MultiDimensionalVector< vertex_type, 1 > &original_container) {
     // assuming that more surfaces have vertices that have just been added

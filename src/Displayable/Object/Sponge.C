@@ -25,7 +25,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "Vector.impl.h"
 #include "MultiDimensionalVector.impl.h"
-#include "SurfaceType.impl.h"
+#include "FacePolygon.impl.h"
 
 #include <QtConcurrentRun>
 
@@ -266,7 +266,7 @@ void AltSponge::Initialize(void) {
 
                   }
                   //  now store pointer to new vertex in surface array
-                  SurfaceType<4,4> new_surface(X(), new_vertices[0], new_vertices[1], new_vertices[2], new_vertices[3]);
+                  FacePolygon<4,4> new_surface(X(), new_vertices[0], new_vertices[1], new_vertices[2], new_vertices[3]);
                   Surface.push_back(new_surface);
 
                   //  and remove the old surface
@@ -298,7 +298,7 @@ void AltSponge::Initialize(void) {
 
   Object::Initialize();
 
-//  std::for_each(Surface.begin(), Surface.end(), std::mem_fun_ref(&SurfaceType<4, 4>::print));
+//  std::for_each(Surface.begin(), Surface.end(), std::mem_fun_ref(&FacePolygon<4, 4>::print));
 #ifdef DEBUG_SPONGE
   SingletonLog::Instance() << "time for initializing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
 #endif
