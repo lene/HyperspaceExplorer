@@ -43,12 +43,6 @@ class VertexHolder<N, P, NUM>::Impl {
     Impl() { }
     Impl(shared_ptr< function_type > f): function_(f) { }
 
-
-    unsigned getNumParameters() {
-      assert(function_);
-      return function_->getNumParameters();
-    }
-
     void Initialize();
 
     const MultiDimensionalVector< vertex_type, P > &X() const {
@@ -138,11 +132,6 @@ void VertexHolder<N, P, NUM>::for_each_vertex_transformed_projected(Displayable:
 template <unsigned N, unsigned P, typename NUM>
 void VertexHolder<N, P, NUM>::for_each_projected(Displayable::function_on_projected_vertex apply) {
   Xscr().for_each(apply);
-}
-
-template <unsigned N, unsigned P, typename NUM>
-unsigned int VertexHolder<N, P, NUM>::getNumParameters() {
-  return pImpl_->getNumParameters();
 }
 
 template <unsigned N, unsigned P, typename NUM>

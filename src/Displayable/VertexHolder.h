@@ -72,9 +72,6 @@ class VertexHolder : public Displayable {
     virtual void for_each_vertex_transformed_projected(function_on_fourspace_transformed_and_projected_vertex apply);
     virtual void for_each_projected(function_on_projected_vertex apply);
 
-    /** \return number of parameters for the function */
-    virtual unsigned getNumParameters();
-
   protected:
 
     /// Array of function values.

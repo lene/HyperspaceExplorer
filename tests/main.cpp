@@ -66,7 +66,6 @@ int main(int argc, char **argv) {
     runner.run(new Test_Projection);
     runner.run(new Test_GridDrawer);
     runner.run(new Test_MultiDimensionalVector);
-    runner.run(new Test_FunctionHolder);
     runner.run(new Test_DisplayableClass);
     runner.run(new Test_Observer);
     runner.run(new Test_ArrayList);
@@ -80,6 +79,7 @@ int main(int argc, char **argv) {
     runner.run(new Test_Rotope);
     runner.run(new Test_Object);
     runner.run(new Test_Composite);
+    runner.run(new Test_FunctionHolder);
 
     runner.printSummary();
 

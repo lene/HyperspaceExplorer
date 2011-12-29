@@ -50,8 +50,8 @@ using VecMath::Matrix;
  *  @param vertices number of vertices
  *  @param surfaces number of surfaces                                        */
 Object::Object (unsigned vertices, unsigned surfaces):
-//        FunctionHolder<4, 1, double>(ParameterMap()),
-        Displayable(),
+        VertexHolder<4, 1, double>(ParameterMap()),
+//        Displayable(),
         Surface(surfaces),
         X_(vertices), Xtrans_(vertices), Xscr_() {
 

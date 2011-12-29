@@ -136,6 +136,11 @@ void FunctionHolder<N, P, NUM>::Initialize () {
 }
 
 template <unsigned N, unsigned P, typename NUM>
+unsigned FunctionHolder<N, P, NUM>::getNumParameters() {
+    return pImpl_->function_->getNumParameters();
+}
+
+template <unsigned N, unsigned P, typename NUM>
 const DefinitionRangeOfDimension<P> &FunctionHolder<N, P, NUM>::getDefinitionRange() const {
   return pImpl_->getDefinitionRange();
 }

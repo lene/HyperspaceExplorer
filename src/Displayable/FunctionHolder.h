@@ -61,6 +61,8 @@ public:
     void setDefinitionRange(double tmin, double tmax, double dt,
                             double umin, double umax, double du,
                             double vmin, double vmax, double dv);
+    
+    virtual unsigned getNumParameters();
 
 protected:
 

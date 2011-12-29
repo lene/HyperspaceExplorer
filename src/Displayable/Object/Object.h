@@ -39,7 +39,7 @@ struct EmptyType {};
  *  Instead it is described as a set of surfaces.
  *  \ingroup FunctionGroup
  *  @author Helge Preuss <lene.preuss@gmail.com>                         */
-class Object: public Displayable {
+class Object: public VertexHolder<4, 1, double> {
     
 public:
 
