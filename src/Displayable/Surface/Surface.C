@@ -39,8 +39,6 @@ struct Surface::Impl {
 
   Impl(Surface *f): parent_(f) { }
 
-  void Project (double ScrW, double CamW, bool DepthCue4D);
-
   void calibrateColors() const;
 
   const VecMath::MultiDimensionalVector< Vector< 4 >, 2 > &X() const {
@@ -63,30 +61,9 @@ struct Surface::Impl {
 
   DefinitionRangeOfDimension<2> getDefinitionRange() const { return parent_->getDefinitionRange(); }
 
-  /// Initialize depth cue.
-  void setDepthCueColors(double Wmax, double Wmin);
-
   Surface *parent_;
 
 };
-
-void Surface::Impl::Project(double scr_w, double cam_w, bool depthcue4d) {
-  parent_->FunctionHolder<4, 2>::Project(scr_w, cam_w, depthcue4d);
-  if (depthcue4d) {
-    std::pair< double, double > Wext = findExtremesInW();
-    setDepthCueColors(Wext.first, Wext.second);
-  }
-}
-
-void Surface::Impl::setDepthCueColors(double Wmax, double Wmin) {
-  for (unsigned t = 0; t <= getDefinitionRange().getNumSteps(0)+1; t++) {
-    for (unsigned u = 0; u <= getDefinitionRange().getNumSteps(1)+1; u++) {
-      ColMgrMgr::Instance().depthCueColor(Wmax, Wmin,
-                                          Xtrans()[t][u][3],
-                                          X()[t][u]);
-    }
-  }
-}
 
 void Surface::Impl::calibrateColors() const {
   std::pair< double, double > Wext = findExtremesInW();
@@ -102,6 +79,19 @@ void Surface::Impl::calibrateColors() const {
 
 }
 
+std::pair<double, double> Surface::Impl::findExtremesInW() const {
+
+    double Wmax = 0, Wmin = 0;
+    for (unsigned t = 0; t <= getDefinitionRange().getNumSteps(0); t++) {
+        for (unsigned u = 0; u <= getDefinitionRange().getNumSteps(1)+1; u++) {
+            if (X()[t][u][3] < Wmin) Wmin = X()[t][u][3];
+            if (X()[t][u][3] > Wmax) Wmax = X()[t][u][3];
+        }
+    } 
+    return std::make_pair(Wmin, Wmax);
+}
+
+
 /** draw the current strip of the projected Surface
  *  @param t current t value                                                  */
 void Surface::Impl::DrawStrip (unsigned t, UI::View *view) {
@@ -110,21 +100,6 @@ void Surface::Impl::DrawStrip (unsigned t, UI::View *view) {
     view->drawQuadrangle(X()[t][u], X()[t+1][u], X()[t+1][u+1], X()[t][u+1],
                          Xscr()[t][u], Xscr()[t+1][u], Xscr()[t+1][u+1], Xscr()[t][u+1]);
   }
-}
-
-/** \return Maxima and minima in the W dimension
- */
-std::pair< double, double > Surface::Impl::findExtremesInW() const {
-  double Wmax = 0, Wmin = 0;
-
-  for (unsigned t = 0; t <= getDefinitionRange().getNumSteps(0); t++) {
-    for (unsigned u = 0; u <= getDefinitionRange().getNumSteps(1)+1; u++) {
-      if (X()[t][u][3] < Wmin) Wmin = X()[t][u][3];
-      if (X()[t][u][3] > Wmax) Wmax = X()[t][u][3];
-    }
-  }
-
-  return std::make_pair(Wmin, Wmax);
 }
 
 /** \param tmin minimal value in t
@@ -256,12 +231,4 @@ VecMath::MultiDimensionalVector< VecMath::Vector<4>, 1 > Surface::df (double uu,
     DF[2] = (F-F0)/h;           //  are you sure this is correct?
 
     return DF;
-}
-
-/** projects a Surface into three-space
- *  \param scr_w w coordinate of screen
- *  \param cam_w w coordinate of camera
- *  \param depthcue4d whether to use hyperfog/depth cue                        */
-void Surface::Project (double scr_w, double cam_w, bool depthcue4d) {
-  pImpl_->Project(scr_w, cam_w, depthcue4d);
 }

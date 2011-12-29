@@ -52,8 +52,6 @@ class Surface: public FunctionHolder<4, 2, double> {
              ParameterMap parms = ParameterMap());
     virtual ~Surface();
 
-    virtual void Project (double ScrW, double CamW, bool DepthCue4D);
-
     virtual void ReInit(double _tmin, double _tmax, double _dt,
                         double _umin, double _umax, double _du,
                         double _vmin, double _vmax, double _dv);

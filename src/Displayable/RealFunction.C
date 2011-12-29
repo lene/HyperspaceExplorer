@@ -46,8 +46,6 @@ class RealFunction::Impl {
 
     Impl(RealFunction *f);
 
-    void Project (double ScrW, double CamW, bool DepthCue4D);
-
     void calibrateColors() const;
 
     const MultiDimensionalVector< Vector< 4 >, 3 > &X() const {
@@ -63,8 +61,6 @@ class RealFunction::Impl {
     DefinitionRangeOfDimension<3> getDefinitionRange() const { return parent_->getDefinitionRange(); }
 
   private:
-    /// Initialize depth cue.
-    void setDepthCueColors(double Wmax, double Wmin);
 
     /// Finds maximum and minimum function value in w.
     std::pair<double, double> findExtremesInW() const;
@@ -74,14 +70,6 @@ class RealFunction::Impl {
 };
 
 RealFunction::Impl::Impl(RealFunction *f): parent_(f) { }
-
-void RealFunction::Impl::Project(double scr_w, double cam_w, bool depthcue4d) {
-  parent_->FunctionHolder<4, 3>::Project(scr_w, cam_w, depthcue4d);
-  if (depthcue4d) {
-    std::pair< double, double > Wext = findExtremesInW();
-    setDepthCueColors(Wext.first, Wext.second);
-  }
-}
 
 void RealFunction::Impl::calibrateColors() const {
 
@@ -96,18 +84,6 @@ void RealFunction::Impl::calibrateColors() const {
                   float(u)/float(getDefinitionRange().getNumSteps(1)),
                   float(v)/float(getDefinitionRange().getNumSteps(2)),
                   (X()[t][u][v][3]-Wext.first)/(Wext.second-Wext.first)));
-      }
-    }
-  }
-}
-
-void RealFunction::Impl::setDepthCueColors(double Wmax, double Wmin) {
-  for(unsigned t = 0;t <= getDefinitionRange().getNumSteps(0) + 1;t++) {
-    for(unsigned u = 0;u <= getDefinitionRange().getNumSteps(1) + 1;u++) {
-      for(unsigned v = 0;v <= getDefinitionRange().getNumSteps(2) + 1;v++){
-        ColMgrMgr::Instance().depthCueColor(Wmax, Wmin,
-                                            Xtrans()[t][u][v][3],
-                                            X()[t][u][v]);
       }
     }
   }
@@ -208,14 +184,6 @@ void RealFunction::ReInit(double tmin, double tmax, double dt,
                           double vmin, double vmax, double dv) {
   setDefinitionRange(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
   Initialize ();
-}
-
-/// Projects a RealFunction into three-space
-/** \param scr_w w coordinate of screen
- *  \param cam_w w coordinate of camera
- *  \param depthcue4d whether to use hyperfog/depth cue                       */
-void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
-  pImpl_->Project(scr_w, cam_w, depthcue4d);
 }
 
 /// Calculate normal to function at a given point in definition set.
