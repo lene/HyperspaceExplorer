@@ -97,7 +97,7 @@ class FunctionHolder<N, P, NUM>::Impl {
 
 template <unsigned N, unsigned P, typename NUM>
 FunctionHolder<N, P, NUM>::FunctionHolder(shared_ptr< function_type > f):
-  VertexHolder<N, P, NUM>(f),
+  VertexHolder<N, P, NUM>(ParameterMap()),
   pImpl_(new Impl(
       f,
       DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep,

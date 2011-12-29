@@ -38,11 +38,6 @@ class Object: public VertexHolder<4, 1, double> {
     
 public:
 
-    /// A vertex in \p N - space.
-    typedef VecMath::Vector<4, double> vertex_type;
-    /// A vertex projected into three dimensions.
-    typedef VecMath::Vector<3, double> projected_vertex_type;
-
     Object (unsigned, unsigned);
     virtual ~Object () { }
     virtual void ReInit (double, double, double,
@@ -50,6 +45,7 @@ public:
                          double, double, double);
     virtual void calibrateColors() const;
 
+    virtual void Project (double ScrW, double CamW, bool DepthCue4D);
     virtual void Draw (UI::View *);
 
     /// \see Function::getDefinitionSpaceDimensions()
@@ -63,9 +59,15 @@ protected:
 
     /// Set a vertex at a specified index
     void setX(unsigned i, const VecMath::Vector<4, double> &x);
+
     using VertexHolder<4, 1, double>::setX;
 
     void clearAndResizeX(unsigned size);
+    
+private:
+    void applyDepthCue();
+    double findMinimumW();
+    double findMaximumW();
 };
 
 namespace {

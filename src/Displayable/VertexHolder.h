@@ -58,7 +58,6 @@ class VertexHolder : public Displayable {
     typedef VecMath::Vector<3, NUM> projected_vertex_type;
 
     VertexHolder(ParameterMap parameters);
-    VertexHolder(std::shared_ptr< function_type > f);
 
     virtual void Transform (const VecMath::Rotation<N, NUM> &R,
                             const vertex_type &T,

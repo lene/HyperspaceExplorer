@@ -22,6 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define VertexHolder_IMPL_H
 
 #include "VertexHolder.h"
+#include "ColorManager.h"
 
 #include "FunctionValueGrid.h"
 #include "TransformationFactory.impl.h"
@@ -35,63 +36,64 @@ using VecMath::MultiDimensionalVector;
 
 using std::shared_ptr;
 
+namespace DepthCueUtil {
+    void checkMinimumW(const VecMath::Vector<4, double> &,
+                       const VecMath::Vector<4, double> &xtrans);
+    void resetWmin();
+    double getWmin();
+    
+    void checkMaximumW(const VecMath::Vector<4, double> &,
+                       const VecMath::Vector<4, double> &xtrans);
+    void resetWmax();
+    double getWmax();
+
+    void setDepthCueColor(const VecMath::Vector<4, double> &x,
+                          const VecMath::Vector<4, double> &xtrans);
+}
+
 template <unsigned N, unsigned P, typename NUM>
 class VertexHolder<N, P, NUM>::Impl {
 
-  public:
+public:
 
-    Impl() { }
-    Impl(shared_ptr< function_type > f): function_(f) { }
+    Impl(VertexHolder<N, P, NUM> *parent): parent_(parent) { }
 
-    void Initialize();
-
-    const MultiDimensionalVector< vertex_type, P > &X() const {
-      return _X.getValues();
+    void applyDepthCue() {
+        findMaximumW();
+        findMinimumW();
+        parent_->for_each_vertex_transformed(DepthCueUtil::setDepthCueColor);
     }
-    void setX(const VertexGrid<N, P, NUM>& x) {
-      _X = x;
+    
+    double findMinimumW() {
+        DepthCueUtil::resetWmin();
+        parent_->for_each_vertex_transformed(DepthCueUtil::checkMinimumW);
+        return DepthCueUtil::getWmin();
     }
-
-    const MultiDimensionalVector< vertex_type, P > &Xtrans() const {
-      return _Xtrans;
-    }
-    void setXtrans(const VecMath::MultiDimensionalVector< vertex_type, P >& x) {
-      _Xtrans = x;
-    }
-
-    const MultiDimensionalVector< projected_vertex_type, P > &Xscr() const {
-      return _Xscr;
-    }
-    void setXscr(const VecMath::MultiDimensionalVector< projected_vertex_type, P >& x) {
-      _Xscr = x;
+    double findMaximumW() {
+        DepthCueUtil::resetWmax();
+        parent_->for_each_vertex_transformed(DepthCueUtil::checkMaximumW);
+        return DepthCueUtil::getWmax();
     }
 
     /// Array of function values.
-    VertexGrid<N, P, NUM> _X;
-
-  private:
-
+    VertexGrid<N, P, NUM> X_;
     /// Array of function values after transform.
-    typename VertexGrid<N, P, NUM>::value_storage_type _Xtrans;
+    typename VertexGrid<N, P, NUM>::value_storage_type Xtrans_;
     /// Array of projected function values.
-    MultiDimensionalVector< projected_vertex_type, P > _Xscr;
+    MultiDimensionalVector< projected_vertex_type, P > Xscr_;
 
-    /// Pointer to the actual ParametricFunction doing all the work.
-    shared_ptr< function_type > function_;
-
+private: 
+    
+    VertexHolder<N, P, NUM> *parent_;
+    
 };
 
 ////////////////////////////////////////////////////////////////////////////////
 
 template <unsigned N, unsigned P, typename NUM>
-VertexHolder<N, P, NUM>::VertexHolder(shared_ptr< function_type > f):
-  Displayable(ParameterMap()),
-  pImpl_(new Impl(f)) { }
-
-template <unsigned N, unsigned P, typename NUM>
 VertexHolder<N, P, NUM>::VertexHolder(ParameterMap parms):
   Displayable(parms),
-  pImpl_(new Impl()) { }
+  pImpl_(new Impl(this)) { }
 
 /** \param R rotation
  *  \param T translation                                                      */
@@ -107,6 +109,7 @@ template <unsigned N, unsigned P, typename NUM>
 void VertexHolder<N, P, NUM>::Project (double ScrW, double CamW, bool DepthCue4D) {
   Projection<N, 3, P, NUM> p(ScrW, CamW, DepthCue4D);
   setXscr(p.project(Xtrans()));
+  if (DepthCue4D) pImpl_->applyDepthCue();
 }
 
 template <unsigned N, unsigned P, typename NUM>
@@ -137,46 +140,46 @@ void VertexHolder<N, P, NUM>::for_each_projected(Displayable::function_on_projec
 template <unsigned N, unsigned P, typename NUM>
 const VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, P > &
 VertexHolder<N, P, NUM>::X() const {
-  return pImpl_->X();
+  return pImpl_->X_.getValues();
 }
 
 template <unsigned N, unsigned P, typename NUM>
 void VertexHolder<N, P, NUM>::setX(const VertexGrid<N, P, NUM>& x) {
-  pImpl_->setX(x);
+  pImpl_->X_ = x;
 }
 
 template <unsigned N, unsigned P, typename NUM>
 const VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, P > &
 VertexHolder<N, P, NUM>::Xtrans() const {
-  return pImpl_->Xtrans();
+  return pImpl_->Xtrans_;
 }
 
 template <unsigned N, unsigned P, typename NUM>
 void VertexHolder<N, P, NUM>::setXtrans(const VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, P >& x) {
-  pImpl_->setXtrans(x);
+  pImpl_->Xtrans_ = x;
 }
 
 template <unsigned N, unsigned P, typename NUM>
 const VecMath::MultiDimensionalVector< VecMath::Vector<3, NUM>, P > &
 VertexHolder<N, P, NUM>::Xscr() const {
-  return pImpl_->Xscr();
+  return pImpl_->Xscr_;
 }
 
 template <unsigned N, unsigned P, typename NUM>
 void VertexHolder<N, P, NUM>::setXscr(const VecMath::MultiDimensionalVector< VecMath::Vector<3, NUM>, P >& x) {
-  pImpl_->setXscr(x);
+  pImpl_->Xscr_ = x;
 }
 
 template <unsigned N, unsigned P, typename NUM>
 const VertexGrid<N, P, NUM> &
 VertexHolder<N, P, NUM>::getGrid() const {
-  return pImpl_->_X;
+  return pImpl_->X_;
 }
 
 template <unsigned N, unsigned P, typename NUM>
 VertexGrid<N, P, NUM> &
 VertexHolder<N, P, NUM>::getGridNonConst() {
-  return pImpl_->_X;
+  return pImpl_->X_;
 }
 
 #endif

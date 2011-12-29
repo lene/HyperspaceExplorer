@@ -35,6 +35,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "MultiDimensionalVector.impl.h"
 #include "Vector.impl.h"
 #include "FacePolygon.impl.h"
+#include "Sponge.h"
 
 using std::cerr;
 using std::endl;
@@ -76,39 +77,52 @@ void Object::calibrateColors() const {
     }
 }
 
+namespace ObjectUtil {
+    double Wmin = 0.;
+    void checkMinimumW(const VecMath::Vector<4, double> &,
+                       const VecMath::Vector<4, double> &xtrans) {
+        if (xtrans[3] < Wmin) Wmin = xtrans[3];
+    }
+
+    double Wmax = 0.;
+    void checkMaximumW(const VecMath::Vector<4, double> &,
+                       const VecMath::Vector<4, double> &xtrans) {
+        if (xtrans[3] > Wmax) Wmax = xtrans[3];
+    }
+
+    void setDepthCueColor(const VecMath::Vector<4, double> &x,
+                          const VecMath::Vector<4, double> &xtrans) {
+        ColMgrMgr::Instance().depthCueColor(Wmax, Wmin, xtrans[3], x);
+    }
+}
+
+double Object::findMinimumW() {
+    ObjectUtil::Wmin = 0;
+    for_each_vertex_transformed(ObjectUtil::checkMinimumW);
+    return ObjectUtil::Wmin;
+}
+
+double Object::findMaximumW() {
+    ObjectUtil::Wmax = 0;
+    for_each_vertex_transformed(ObjectUtil::checkMaximumW);
+    return ObjectUtil::Wmax;
+}
+
+void Object::applyDepthCue() {
+    findMaximumW();
+    findMinimumW();
+    for_each_vertex_transformed(ObjectUtil::setDepthCueColor);    
+}
 
 /// Projects an Object into three-space
 /** @param scr_w w coordinate of screen
  *  @param cam_w w coordinate of camera
  *  @param depthcue4d wheter to use hyperfog/dc                               
-void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
-
-    resizeXscr(Xtrans().size());
-    for (unsigned i = 0; i < Xtrans().size(); i++) {
-        double ProjectionFactor = (scr_w-cam_w)/(Xtrans()[i][3]-cam_w);
-
-        projected_vertex_type x_scr;
-        for (unsigned j = 0; j <= 2; j++) {
-            x_scr[j] = ProjectionFactor*Xtrans()[i][j];
-        }
-        setXscr(i, x_scr);
-    }
-
-    if (!depthcue4d) return;
-
-    double Wmax = 0, Wmin = 0;
-    for (unsigned i = 0; i < Xtrans().size(); i++) {
-        if (depthcue4d) {
-            if (Xtrans()[i][3] < Wmin) Wmin = Xtrans()[i][3];
-            if (Xtrans()[i][3] > Wmax) Wmax = Xtrans()[i][3];
-        }
-    }
-    //  apply hyperfog
-    for (unsigned i = 0; i < X().size(); i++) {
-        ColMgrMgr::Instance().depthCueColor(Wmax, Wmin, Xtrans()[i][3], X()[i]);
-    }
-}
  */
+void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
+    VertexHolder<4, 1, double>::Project(scr_w, cam_w, depthcue4d);
+    if (depthcue4d) applyDepthCue();
+}
 
 /// Draw the projected Object (onto screen or into GL list, as it is)
 void Object::Draw(UI::View *view) {
@@ -137,8 +151,6 @@ void Object::clearAndResizeX(unsigned size) {
 }
 
 void Object::setX(unsigned i, const VecMath::Vector<4,double>& x) {
-    VertexGrid<4, 1, double> &grid = getGridNonConst();
-    MultiDimensionalVector< Vector<4>, 1 > &values = grid.getValuesNonConst();
-//    assert(values.size() > i);
+    MultiDimensionalVector< Vector<4>, 1 > &values = getGridNonConst().getValuesNonConst();
     values[i] = x;
 }

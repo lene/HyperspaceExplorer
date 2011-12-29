@@ -57,12 +57,7 @@ Displayable::Displayable (): pImpl_(new Impl) { }
 
 /** \param parameters Parameters for the Displayable.
  */
-Displayable::Displayable (ParameterMap parameters): pImpl_(new Impl(parameters)) {
-# if 0
-    if (MemRequired() > Globals::Instance().getMaxMemory()) {
-    }
-# endif
-}
+Displayable::Displayable (ParameterMap parameters): pImpl_(new Impl(parameters)) { }
 
 Displayable::~Displayable() { }
 
