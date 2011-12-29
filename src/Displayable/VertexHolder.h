@@ -18,13 +18,19 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 */
 
-#ifndef FUNCTIONHOLDER_H
-#define FUNCTIONHOLDER_H
+#ifndef VertexHolder_H
+#define VertexHolder_H
 
-#include "VertexHolder.h"
+#include "Displayable.h"
 
-template <unsigned P> class DefinitionRangeOfDimension;
+namespace VecMath {
+  template <typename T, unsigned D> class MultiDimensionalVector;
+}
 
+template <unsigned N, unsigned P, typename NUM> class ParametricFunction;
+template <unsigned N, unsigned P, typename NUM> class VertexGrid;
+
+///
 /** This class evaluates a ParametricFunction on all vertices of a \p P - dimensional
  *  (hyper-) grid in \p N dimensional vector space.
  *
@@ -40,9 +46,9 @@ template <unsigned P> class DefinitionRangeOfDimension;
  *  @author Lene Preuss <lene.preuss@gmail.com>
  */
 template <unsigned N, unsigned P, typename NUM = double>
-class FunctionHolder : public VertexHolder<N, P, NUM> {
+class VertexHolder : public Displayable {
 
-public:
+  public:
 
     /// The type of the function that is evaluated on every vertex of the grid.
     typedef ParametricFunction<N, P, NUM> function_type;
@@ -51,22 +57,35 @@ public:
     /// A vertex projected into three dimensions.
     typedef VecMath::Vector<3, NUM> projected_vertex_type;
 
-    FunctionHolder(ParameterMap parameters);
-    FunctionHolder(std::shared_ptr< function_type > f);
-    FunctionHolder(std::shared_ptr< function_type > f,
-                   DefinitionRangeOfDimension<P> boundaries);
+    VertexHolder(ParameterMap parameters);
+    VertexHolder(std::shared_ptr< function_type > f);
 
-    virtual void Draw (UI::View *);
+    virtual void Transform (const VecMath::Rotation<N, NUM> &R,
+                            const vertex_type &T,
+                            const vertex_type &scale = vertex_type(1.));
+    virtual void Project (double ScrW, double CamW, bool DepthCue4D);
 
-    void setDefinitionRange(double tmin, double tmax, double dt,
-                            double umin, double umax, double du,
-                            double vmin, double vmax, double dv);
+    virtual unsigned int getDefinitionSpaceDimensions();
 
-protected:
+    virtual void for_each_vertex(function_on_fourspace_vertex apply);
+    virtual void for_each_vertex_transformed(function_on_fourspace_and_transformed_vertex apply);
+    virtual void for_each_vertex_transformed_projected(function_on_fourspace_transformed_and_projected_vertex apply);
+    virtual void for_each_projected(function_on_projected_vertex apply);
 
-    virtual void Initialize (void);
+    /** \return number of parameters for the function */
+    virtual unsigned getNumParameters();
 
-    const DefinitionRangeOfDimension<P> &getDefinitionRange() const;
+  protected:
+
+    /// Array of function values.
+    const VecMath::MultiDimensionalVector< vertex_type, P > &X() const;
+    void setX(const VertexGrid<N, P, NUM>& x);
+    /// Array of function values after transform.
+    const VecMath::MultiDimensionalVector< vertex_type, P > &Xtrans() const;
+    void setXtrans(const VecMath::MultiDimensionalVector< vertex_type, P >& x);
+    /// Array of projected function values.
+    const VecMath::MultiDimensionalVector< projected_vertex_type, P > &Xscr() const;
+    void setXscr(const VecMath::MultiDimensionalVector< projected_vertex_type, P >& x);
 
   private:
 
@@ -75,10 +94,4 @@ protected:
 
 };
 
-namespace {
-  static DisplayableClass displayable_class_function_holder(
-    "FunctionHolder", "Functions evaluated on a grid", "Displayable"
-  );
-}
-
-#endif // FUNCTIONHOLDER_H
+#endif // VertexHolder_H

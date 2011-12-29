@@ -24,6 +24,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "FunctionHolder.h"
 
 #include "FunctionValueGrid.h"
+#include "VertexHolder.impl.h"
 #include "TransformationFactory.impl.h"
 #include "Transformation.impl.h"
 #include "Projection.impl.h"
@@ -43,11 +44,18 @@ class FunctionHolder<N, P, NUM>::Impl {
 
     Impl(double tmin, double tmax, double dt,
          double umin, double umax, double du,
-         double vmin, double vmax, double dv);
+         double vmin, double vmax, double dv):
+        definitionRange_() {
+        setDefinitionRange(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
+    }
+  
     Impl(shared_ptr< function_type > f,
          double tmin, double tmax, double dt,
          double umin, double umax, double du,
-         double vmin, double vmax, double dv);
+         double vmin, double vmax, double dv):
+        definitionRange_(), function_(f) {
+        setDefinitionRange(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
+    }
 
 
     unsigned getNumParameters() {
@@ -55,48 +63,28 @@ class FunctionHolder<N, P, NUM>::Impl {
       return function_->getNumParameters();
     }
 
-    void Initialize();
-
     const DefinitionRangeOfDimension<P> &getDefinitionRange() const {
       return definitionRange_;
     }
 
-    const MultiDimensionalVector< vertex_type, P > &X() const {
-      return _X.getValues();
-    }
-    void setX(const FunctionValueGrid<N, P, NUM>& x) {
-      _X = x;
-    }
-
-    const MultiDimensionalVector< vertex_type, P > &Xtrans() const {
-      return _Xtrans;
-    }
-    void setXtrans(const VecMath::MultiDimensionalVector< vertex_type, P >& x) {
-      _Xtrans = x;
-    }
-
-    const MultiDimensionalVector< projected_vertex_type, P > &Xscr() const {
-      return _Xscr;
-    }
-    void setXscr(const VecMath::MultiDimensionalVector< projected_vertex_type, P >& x) {
-      _Xscr = x;
-    }
-
     void setDefinitionRange(double tmin, double tmax, double dt,
                             double umin, double umax, double du,
-                            double vmin, double vmax, double dv);
+                            double vmin, double vmax, double dv) {
+        if (P > 0) definitionRange_.setRange(0, DefinitionSpaceRange(tmin, tmax, dt));
+        if (P > 1) definitionRange_.setRange(1, DefinitionSpaceRange(umin, umax, du));
+        if (P > 2) definitionRange_.setRange(2, DefinitionSpaceRange(vmin, vmax, dv));
+    }
 
+    Vector<P, unsigned> getNumSteps() {
+        Vector<P, unsigned> numSteps = definitionRange_.getNumSteps();
+        addSafetyMargin(numSteps);
+        return numSteps;
+    }
+
+    Vector<P, NUM> min() { return definitionRange_.getMinValue(); }
+    Vector<P, NUM> max() { return definitionRange_.getMaxValue(); }
+    
     DefinitionRangeOfDimension<P> definitionRange_;
-
-    /// Array of function values.
-    FunctionValueGrid<N, P, NUM> _X;
-
-  private:
-
-    /// Array of function values after transform.
-    typename FunctionValueGrid<N, P, NUM>::value_storage_type _Xtrans;
-    /// Array of projected function values.
-    MultiDimensionalVector< projected_vertex_type, P > _Xscr;
 
     /// Pointer to the actual ParametricFunction doing all the work.
     shared_ptr< function_type > function_;
@@ -105,51 +93,11 @@ class FunctionHolder<N, P, NUM>::Impl {
 
 };
 
-template <unsigned N, unsigned P, typename NUM>
-FunctionHolder<N, P, NUM>::Impl::Impl(
-    double tmin, double tmax, double dt,
-    double umin, double umax, double du,
-    double vmin, double vmax, double dv):
-  definitionRange_() {
-  setDefinitionRange(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
-}
-
-template <unsigned N, unsigned P, typename NUM>
-FunctionHolder<N, P, NUM>::Impl::Impl(
-    shared_ptr< function_type > f,
-    double tmin, double tmax, double dt,
-    double umin, double umax, double du,
-    double vmin, double vmax, double dv):
-  definitionRange_(), function_(f) {
-    setDefinitionRange(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
-}
-
-template <unsigned N, unsigned P, typename NUM>
-void FunctionHolder<N, P, NUM>::Impl::setDefinitionRange(double tmin, double tmax, double dt,
-                                                         double umin, double umax, double du,
-                                                         double vmin, double vmax, double dv) {
-  if (P > 0) definitionRange_.setRange(0, DefinitionSpaceRange(tmin, tmax, dt));
-  if (P > 1) definitionRange_.setRange(1, DefinitionSpaceRange(umin, umax, du));
-  if (P > 2) definitionRange_.setRange(2, DefinitionSpaceRange(vmin, vmax, dv));
-}
-
-template <unsigned N, unsigned P, typename NUM>
-void FunctionHolder<N, P, NUM>::Impl::Initialize () {
-
-  Vector<P, NUM> min = definitionRange_.getMinValue();
-  Vector<P, NUM> max = definitionRange_.getMaxValue();
-  Vector<P, unsigned> numSteps = definitionRange_.getNumSteps();
-  addSafetyMargin(numSteps);
-
-  _X = FunctionValueGrid<N, P, NUM>(function_, numSteps, min, max);
-
-}
-
 ////////////////////////////////////////////////////////////////////////////////
 
 template <unsigned N, unsigned P, typename NUM>
 FunctionHolder<N, P, NUM>::FunctionHolder(shared_ptr< function_type > f):
-  Displayable(ParameterMap()),
+  VertexHolder<N, P, NUM>(f),
   pImpl_(new Impl(
       f,
       DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep,
@@ -158,63 +106,16 @@ FunctionHolder<N, P, NUM>::FunctionHolder(shared_ptr< function_type > f):
 
 template <unsigned N, unsigned P, typename NUM>
 FunctionHolder<N, P, NUM>::FunctionHolder(ParameterMap parms):
-  Displayable(parms),
+  VertexHolder<N, P, NUM>(parms),
   pImpl_(new Impl(
       DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep,
       DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep,
       DefinitionSpaceRange::defaultMin, DefinitionSpaceRange::defaultMax, DefinitionSpaceRange::defaultStep)) { }
 
-/** \param R rotation
- *  \param T translation                                                      */
-template <unsigned N, unsigned P, typename NUM>
-void FunctionHolder<N, P, NUM>::Transform (const VecMath::Rotation<N, NUM> &R,
-                                           const vertex_type &T,
-                                           const vertex_type &scale) {
-  const Transformation<N, P, NUM> &xform = TransformationFactory<N, P, NUM>::create(R, T, scale);
-  setXtrans(xform.transform(X()));
-}
-template <unsigned N, unsigned P, typename NUM>
-void FunctionHolder<N, P, NUM>::Project (double ScrW, double CamW, bool DepthCue4D) {
-  Projection<N, 3, P, NUM> p(ScrW, CamW, DepthCue4D);
-  setXscr(p.project(Xtrans()));
-}
-
 template <unsigned N, unsigned P, typename NUM>
 void FunctionHolder<N, P, NUM>::Draw(UI::View *view) {
-  GridDrawer<P, NUM, 3> draw(X(), Xscr(), view);
+  GridDrawer<P, NUM, 3> draw(this->X(), this->Xscr(), view);
   draw.execute();
-}
-
-
-
-template <unsigned N, unsigned P, typename NUM>
-unsigned int FunctionHolder<N, P, NUM>::getDefinitionSpaceDimensions() {
-  return P;
-}
-
-template <unsigned N, unsigned P, typename NUM>
-void FunctionHolder<N, P, NUM>::for_each_vertex(Displayable::function_on_fourspace_vertex apply) {
-  X().for_each(apply);
-}
-
-template <unsigned N, unsigned P, typename NUM>
-void FunctionHolder<N, P, NUM>::for_each_vertex_transformed(Displayable::function_on_fourspace_and_transformed_vertex apply) {
-  VecMath::for_each(X(), Xtrans(), apply);
-}
-
-template <unsigned N, unsigned P, typename NUM>
-void FunctionHolder<N, P, NUM>::for_each_vertex_transformed_projected(Displayable::function_on_fourspace_transformed_and_projected_vertex apply) {
-  VecMath::for_each(X(), Xtrans(), Xscr(), apply);
-}
-
-template <unsigned N, unsigned P, typename NUM>
-void FunctionHolder<N, P, NUM>::for_each_projected(Displayable::function_on_projected_vertex apply) {
-  Xscr().for_each(apply);
-}
-
-template <unsigned N, unsigned P, typename NUM>
-unsigned int FunctionHolder<N, P, NUM>::getNumParameters() {
-  return pImpl_->getNumParameters();
 }
 
 template <unsigned N, unsigned P, typename NUM>
@@ -223,10 +124,15 @@ void FunctionHolder<N, P, NUM>::setDefinitionRange(double tmin, double tmax, dou
                                                    double vmin, double vmax, double dv) {
   pImpl_->setDefinitionRange(tmin, tmax, dt, umin, umax, du, vmin, vmax, dv);
 }
+
 template <unsigned N, unsigned P, typename NUM>
 void FunctionHolder<N, P, NUM>::Initialize () {
-  pImpl_->Initialize();
-  calibrateColors();
+  this->setX(
+      FunctionValueGrid<N, P, NUM>(
+          pImpl_->function_, pImpl_->getNumSteps(), pImpl_->min(), pImpl_->max()
+      )
+  );
+  this->calibrateColors();
 }
 
 template <unsigned N, unsigned P, typename NUM>
@@ -234,37 +140,5 @@ const DefinitionRangeOfDimension<P> &FunctionHolder<N, P, NUM>::getDefinitionRan
   return pImpl_->getDefinitionRange();
 }
 
-template <unsigned N, unsigned P, typename NUM>
-const VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, P > &
-FunctionHolder<N, P, NUM>::X() const {
-  return pImpl_->X();
-}
-
-template <unsigned N, unsigned P, typename NUM>
-void FunctionHolder<N, P, NUM>::setX(const FunctionValueGrid<N, P, NUM>& x) {
-  pImpl_->setX(x);
-}
-
-template <unsigned N, unsigned P, typename NUM>
-const VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, P > &
-FunctionHolder<N, P, NUM>::Xtrans() const {
-  return pImpl_->Xtrans();
-}
-
-template <unsigned N, unsigned P, typename NUM>
-void FunctionHolder<N, P, NUM>::setXtrans(const VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, P >& x) {
-  pImpl_->setXtrans(x);
-}
-
-template <unsigned N, unsigned P, typename NUM>
-const VecMath::MultiDimensionalVector< VecMath::Vector<3, NUM>, P > &
-FunctionHolder<N, P, NUM>::Xscr() const {
-  return pImpl_->Xscr();
-}
-
-template <unsigned N, unsigned P, typename NUM>
-void FunctionHolder<N, P, NUM>::setXscr(const VecMath::MultiDimensionalVector< VecMath::Vector<3, NUM>, P >& x) {
-  pImpl_->setXscr(x);
-}
 
 #endif

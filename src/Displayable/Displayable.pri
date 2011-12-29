@@ -15,6 +15,8 @@ HEADERS += \
            $${PATH}/DefinitionSpaceRange.h \
            $${PATH}/DefinitionRangeOfDimension.h \
            $${PATH}/DefinitionRangeOfDimension.impl.h \
+           $${PATH}/VertexHolder.h \
+           $${PATH}/VertexHolder.impl.h \
            $${PATH}/FunctionHolder.h \
            $${PATH}/FunctionHolder.impl.h \
            $${PATH}/RealFunction.h \
