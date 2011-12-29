@@ -43,9 +43,6 @@ using std::endl;
 using VecMath::Vector;
 using VecMath::Matrix;
 
-///////////////////////////////////////////////////////////////////////////////
-
-
 /** generic Object constructor; only allocates necessary arrays, children must
  *  fill them in their c'tor
  *  @param vertices number of vertices
@@ -75,53 +72,6 @@ void Object::calibrateColors() const {
             Color((X()[i][0]+1)/2, (X()[i][1]+1)/2, (X()[i][2]+1)/2,
                   .75-(X()[i][3]+1)/4));
     }
-}
-
-namespace ObjectUtil {
-    double Wmin = 0.;
-    void checkMinimumW(const VecMath::Vector<4, double> &,
-                       const VecMath::Vector<4, double> &xtrans) {
-        if (xtrans[3] < Wmin) Wmin = xtrans[3];
-    }
-
-    double Wmax = 0.;
-    void checkMaximumW(const VecMath::Vector<4, double> &,
-                       const VecMath::Vector<4, double> &xtrans) {
-        if (xtrans[3] > Wmax) Wmax = xtrans[3];
-    }
-
-    void setDepthCueColor(const VecMath::Vector<4, double> &x,
-                          const VecMath::Vector<4, double> &xtrans) {
-        ColMgrMgr::Instance().depthCueColor(Wmax, Wmin, xtrans[3], x);
-    }
-}
-
-double Object::findMinimumW() {
-    ObjectUtil::Wmin = 0;
-    for_each_vertex_transformed(ObjectUtil::checkMinimumW);
-    return ObjectUtil::Wmin;
-}
-
-double Object::findMaximumW() {
-    ObjectUtil::Wmax = 0;
-    for_each_vertex_transformed(ObjectUtil::checkMaximumW);
-    return ObjectUtil::Wmax;
-}
-
-void Object::applyDepthCue() {
-    findMaximumW();
-    findMinimumW();
-    for_each_vertex_transformed(ObjectUtil::setDepthCueColor);    
-}
-
-/// Projects an Object into three-space
-/** @param scr_w w coordinate of screen
- *  @param cam_w w coordinate of camera
- *  @param depthcue4d wheter to use hyperfog/dc                               
- */
-void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
-    VertexHolder<4, 1, double>::Project(scr_w, cam_w, depthcue4d);
-    if (depthcue4d) applyDepthCue();
 }
 
 /// Draw the projected Object (onto screen or into GL list, as it is)

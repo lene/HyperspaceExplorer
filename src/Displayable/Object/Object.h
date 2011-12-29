@@ -45,7 +45,6 @@ public:
                          double, double, double);
     virtual void calibrateColors() const;
 
-    virtual void Project (double ScrW, double CamW, bool DepthCue4D);
     virtual void Draw (UI::View *);
 
     /// \see Function::getDefinitionSpaceDimensions()
@@ -64,10 +63,6 @@ protected:
 
     void clearAndResizeX(unsigned size);
     
-private:
-    void applyDepthCue();
-    double findMinimumW();
-    double findMaximumW();
 };
 
 namespace {
