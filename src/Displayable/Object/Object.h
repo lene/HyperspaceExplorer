@@ -26,9 +26,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "ParametricFunction.h"
 #include "MultiDimensionalVector.h"
 
-/// Artificial type to use in Typelists
-struct EmptyType {};
-
 /// Generalized four-dimensional Object, described by vertexes and surfaces
 /** An Object is a four-dimensional geometrical object which can not be
  *  described as a mathematical function from \f$ R^3 \f$ to \f$ R \f$ or from
@@ -56,9 +53,6 @@ public:
     virtual void calibrateColors() const;
 
     virtual void Draw (UI::View *);
-    virtual VecMath::Vector<4> &operator () (double, double, double) {
-        throw std::logic_error("Object::operator() should never be called");
-    }
 
     /// \see Function::getDefinitionSpaceDimensions()
     virtual unsigned getDefinitionSpaceDimensions() { return 0; }
@@ -68,15 +62,6 @@ protected:
 
     /// the surfaces, stored as vectors of indeces to the points in X
     VecMath::MultiDimensionalVector<unsigned, 2> Surface;
-
-    /** A pointless function, but it must be overridden to satisfy the
-     *  Function interface. In an Object it is never called because the
-     *  four-dimensional object is represented by a list of surfaces instead
-     *  of a mathematical function.
-     */
-    virtual VecMath::Vector<4> &f (double, double, double) {
-        throw std::logic_error("Object::f() should never be called");
-    }
 
     void clearAndResizeX(unsigned size);
     void setX(unsigned i, const VecMath::Vector<4, double> &x);

@@ -101,6 +101,10 @@ void Displayable::for_each_vertex_transformed_projected(Displayable::function_on
         );
 }
 
+VecMath::Vector<4> &Displayable::operator () (double, double, double) {
+    throw std::logic_error("Displayable::operator() called on an object that does not implement it");
+}
+
 /** \todo uses hardcoded and experimentally found value for memory per cell
 *  \return approx. mem required                                              */
 unsigned long Displayable::MemRequired (void) {
