@@ -361,6 +361,9 @@ template <typename T>
 MultiDimensionalVector<T, 1>::MultiDimensionalVector(unsigned n): _data(n) { }
 
 template <typename T>
+MultiDimensionalVector<T, 1>::MultiDimensionalVector(std::vector<T> data): _data(data) { }
+
+template <typename T>
 typename MultiDimensionalVector<T, 1>::iterator
 MultiDimensionalVector<T, 1>::begin() {
   return data().begin();

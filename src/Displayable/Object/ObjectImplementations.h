@@ -70,9 +70,7 @@ namespace {
 /** \ingroup ObjectGroup                                                    */
 class Pyramid: public Object {
 public:
-    Pyramid (): Object (5, 10) {
-        declareParameter("Size", 1.0);
-    }
+    Pyramid ();
     Pyramid (double _a,
              const VecMath::Vector<4> &_Center = VecMath::Vector<4> (0., 0., 0., 0.));
     virtual ~Pyramid() { }
@@ -91,6 +89,10 @@ public:
     }
 
 protected:
+
+    static constexpr unsigned num_vertices = 5;
+    static constexpr unsigned num_faces = 10;
+
     virtual void Initialize();
     void DeclareTriangle (unsigned, unsigned, unsigned, unsigned);
 

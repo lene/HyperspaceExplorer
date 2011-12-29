@@ -167,4 +167,16 @@ void VertexHolder<N, P, NUM>::setXscr(const VecMath::MultiDimensionalVector< Vec
   pImpl_->setXscr(x);
 }
 
+template <unsigned N, unsigned P, typename NUM>
+const VertexGrid<N, P, NUM> &
+VertexHolder<N, P, NUM>::getGrid() const {
+  return pImpl_->_X;
+}
+
+template <unsigned N, unsigned P, typename NUM>
+VertexGrid<N, P, NUM> &
+VertexHolder<N, P, NUM>::getGridNonConst() {
+  return pImpl_->_X;
+}
+
 #endif

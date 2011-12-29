@@ -30,6 +30,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "FunctionHolder.impl.h"
 #include "Matrix.impl.h"
 #include "Rotation.impl.h"
+#include "MultiDimensionalVector.impl.h"
 
 using std::vector;
 using std::cerr;
@@ -115,7 +116,13 @@ void Rotope::Initialize() {
 
   pImpl_->addNDimensionalTransforms();
 
-  setX(pImpl_->rotope_->projected_vertices());
+  setX(
+      VertexGrid<4, 1, double>(
+          MultiDimensionalVector< Vector<4> , 1>(
+              pImpl_->rotope_->projected_vertices()
+          )
+      )
+  );
 
   Object::Initialize();
 

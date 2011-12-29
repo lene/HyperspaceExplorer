@@ -55,6 +55,8 @@ template <unsigned N, unsigned P, typename NUM = double>
       VertexGrid();
       /// Fill a grid with a defined grid size. The supplied ParametricFunction knows its definition space.
       VertexGrid(const VertexGrid::grid_size_type &grid_size);
+      
+      VertexGrid(const value_storage_type &vertices);
 
       virtual ~VertexGrid() { }
 
@@ -101,6 +103,13 @@ template <unsigned N, unsigned P, typename NUM>
         const VertexGrid::grid_size_type &grid_size):
       _grid_size(), _vertices() {
     setGridSize(grid_size);
+  }
+
+template <unsigned N, unsigned P, typename NUM>
+  VertexGrid<N, P, NUM>::VertexGrid(
+        const VertexGrid::value_storage_type &values):
+      _grid_size(), _vertices(values) {
+    _grid_size = values.size();
   }
 
 /** \param grid_size The new grid size.

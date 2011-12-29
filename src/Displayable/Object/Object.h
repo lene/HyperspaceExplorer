@@ -26,8 +26,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "ParametricFunction.h"
 #include "MultiDimensionalVector.h"
 
-#define USE_INT_INDICES 0
-
 /// Artificial type to use in Typelists
 struct EmptyType {};
 
@@ -57,10 +55,6 @@ public:
                          double, double, double);
     virtual void calibrateColors() const;
 
-    virtual void Transform (const VecMath::Rotation<4> &R,
-                            const VecMath::Vector<4> &T,
-                            const VecMath::Vector<4> &scale = 1.);
-    virtual void Project (double ScrW, double CamW, bool DepthCue4D);
     virtual void Draw (UI::View *);
     virtual VecMath::Vector<4> &operator () (double, double, double) {
         throw std::logic_error("Object::operator() should never be called");
@@ -69,27 +63,8 @@ public:
     /// \see Function::getDefinitionSpaceDimensions()
     virtual unsigned getDefinitionSpaceDimensions() { return 0; }
 
-    virtual void for_each_vertex(function_on_fourspace_vertex apply);
-    virtual void for_each_vertex_transformed(function_on_fourspace_and_transformed_vertex apply);
-    virtual void for_each_projected(function_on_projected_vertex apply);
-    virtual void for_each_vertex_transformed_projected(function_on_fourspace_transformed_and_projected_vertex apply);
-
 protected:
     virtual void Initialize();
-
-    const VecMath::MultiDimensionalVector< vertex_type, 1 > &X() const;
-    void setX(const vec4vec1D &);           ///< Set temporary storage for the function values
-    void setX(const VecMath::MultiDimensionalVector< vertex_type, 1 > &);           ///< Set temporary storage for the function values
-    void setX(int i, const vertex_type &x);
-    void resizeX(unsigned size);
-    void X_push_back(const vertex_type &x);
-    const VecMath::MultiDimensionalVector< vertex_type, 1 > &Xtrans() const;
-    void resizeXtrans(unsigned size);
-    void setXtrans(const VecMath::MultiDimensionalVector< vertex_type, 1 > &);           ///< Set temporary storage for the function values
-    const VecMath::MultiDimensionalVector< projected_vertex_type, 1 > &Xscr() const;
-    void setXscr(const VecMath::MultiDimensionalVector< projected_vertex_type, 1 > &);           ///< Set temporary storage for the function values
-    void resizeXscr(unsigned size);
-    void setXscr(int i, const projected_vertex_type &x);
 
     /// the surfaces, stored as vectors of indeces to the points in X
     VecMath::MultiDimensionalVector<unsigned, 2> Surface;
@@ -103,12 +78,9 @@ protected:
         throw std::logic_error("Object::f() should never be called");
     }
 
-private:
-
-    VecMath::MultiDimensionalVector< vertex_type, 1 > X_;        ///< temporary storage for the function values
-    VecMath::MultiDimensionalVector< vertex_type, 1 > Xtrans_;   ///< temp. storage for transformed function values
-    VecMath::MultiDimensionalVector< projected_vertex_type, 1 > Xscr_;     ///< temporary storage for projected function values
-    
+    void clearAndResizeX(unsigned size);
+    void setX(unsigned i, const VecMath::Vector<4, double> &x);
+    using VertexHolder<4, 1, double>::setX;
 };
 
 namespace {

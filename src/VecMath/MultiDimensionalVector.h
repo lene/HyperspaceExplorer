@@ -198,6 +198,8 @@ namespace VecMath {
       MultiDimensionalVector();
       /// See MultiDimensionalVector<T, D>::MultiDimensionalVector()
       MultiDimensionalVector(unsigned n);
+      
+      MultiDimensionalVector(std::vector<T> data);
 
       /// See MultiDimensionalVector<T, D>::begin()
       iterator begin();

@@ -21,6 +21,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #if(!defined SPONGE_H)
 #define SPONGE_H
 
+#define USE_ALT_SPONGE 0
+
 #include "ObjectImplementations.h"
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -181,6 +183,8 @@ protected:
    *  \param duplicate_vertex The removed vertex.
    */
   void renumberSurfaces(unsigned original_vertex, unsigned duplicate_vertex);
+  
+  void X_push_back(const VecMath::Vector<4> &x);
 
   unsigned Level;                 ///< Level of the hypersponge
   int distance;                   ///< max. distance (see Initialize())
@@ -188,10 +192,11 @@ protected:
         VecMath::Vector<4> center;      ///< center of the sponge
 };
 
+#if USE_ALT_SPONGE
 namespace {
   Displayable *createAltSponge() { return new AltSponge(); }
   const bool registeredAS = TheFunctionFactory::Instance().registerFunction(createAltSponge, "Object");
 }
-
+#endif
 
 #endif

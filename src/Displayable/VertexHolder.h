@@ -84,6 +84,9 @@ class VertexHolder : public Displayable {
     const VecMath::MultiDimensionalVector< projected_vertex_type, P > &Xscr() const;
     void setXscr(const VecMath::MultiDimensionalVector< projected_vertex_type, P >& x);
 
+    const VertexGrid<N, P, NUM> &getGrid() const;
+    VertexGrid<N, P, NUM> &getGridNonConst();
+
   private:
 
     class Impl;

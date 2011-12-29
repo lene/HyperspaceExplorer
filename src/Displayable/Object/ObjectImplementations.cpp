@@ -18,13 +18,12 @@ using std::endl;
  *  \param a side_length/2
  */
 Hypercube::Hypercube (double a, const VecMath::Vector<4> &center):
-    Object (16, 24),
+    Object (num_vertices, num_faces),
     _a (a), _center(center) {
   declareParameter("Size", 1.0);
   Initialize();
 }
 
-#   if !USE_INT_INDICES
 void Hypercube::Draw(UI::View *view) {
     for (surface_vec_type::const_iterator i = Surface.begin(); i != Surface.end(); ++i) {
       view->drawQuadrangle(*((*i)[0]), *((*i)[1]), *((*i)[2]), *((*i)[3]),
@@ -32,7 +31,6 @@ void Hypercube::Draw(UI::View *view) {
   }
   view->commitDraw();
 }
-#endif
 
 /// Actually creates the Hypercube
 /** sets up the vertices of the Hypercube in \p X[], then sets up the surfaces
@@ -40,7 +38,7 @@ void Hypercube::Draw(UI::View *view) {
  *  \p Surface[][].                                                           */
 void Hypercube::Initialize(void) {
 
-    if (X().size() < num_vertices) resizeX(num_vertices);
+    if (X().size() < num_vertices) clearAndResizeX(num_vertices);
 
     for (int x = 0; x <= 1; x++)
         for (int y = 0; y <= 1; y++)
@@ -81,12 +79,6 @@ void Hypercube::Initialize(void) {
 
     Object::Initialize();
 
-#   if !USE_INT_INDICES
-#     if 0
-        for (surface_vec_type::iterator i = Surface.begin(); i != Surface.end(); ++i) i->print();
-#     endif
-#   endif
-
 }
 
 /// Declare a square in the \p Surface array
@@ -99,13 +91,6 @@ void Hypercube::Initialize(void) {
  */
 void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, unsigned d, unsigned offset) {
   if (Surface.size() < i+offset*num_faces) Surface.resize(i+offset*num_faces);
-# if USE_INT_INDICES
-    if (Surface[i+offset*num_faces].size() < 4) Surface[i+offset*num_faces].resize(4);
-    Surface[i+offset*num_faces][0] = a+offset*num_vertices;
-    Surface[i+offset*num_faces][1] = b+offset*num_vertices;
-    Surface[i+offset*num_faces][2] = c+offset*num_vertices;
-    Surface[i+offset*num_faces][3] = d+offset*num_vertices;
-# else
 #     if 0
         qDebug() << "Surface.size() = " << Surface.size() << ", X.size() = " << X().size()
                  << " i: " << i+offset*num_faces 
@@ -119,9 +104,11 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
             X()[a+offset*num_vertices], X()[b+offset*num_vertices], 
             X()[c+offset*num_vertices], X()[d+offset*num_vertices]
     );
-# endif
 }
 
+Pyramid::Pyramid(): Object (num_vertices, num_faces) {
+    declareParameter("Size", 1.0);
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -132,7 +119,7 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
 /** @param _center center
  *  @param _a side_length/2                                                   */
 Pyramid::Pyramid (double _a, const VecMath::Vector<4> &_center):
-        Object (5, 10),
+        Object (num_vertices, num_faces),
         center(_center), a (_a) {
     declareParameter("Size", 1.0);
     Initialize();
@@ -141,6 +128,9 @@ Pyramid::Pyramid (double _a, const VecMath::Vector<4> &_center):
 /// Actually creates the Pyramid
 /** \see Hypercube::Initialize() */
 void Pyramid::Initialize() {
+
+    if (X().size() < num_vertices) clearAndResizeX(num_vertices);
+    
     setX(0, Vector<4> (0.0, 0.0, 0.0, 0.0));
     setX(1, Vector<4> (1.0, 0.0, 0.0, 0.0));
     setX(2, Vector<4> (0.5, sqrt (3.)/2., 0.0, 0.0));

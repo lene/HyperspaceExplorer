@@ -206,6 +206,13 @@ void AltSponge::Initialize(void) {
 
 #else
 
+void AltSponge::X_push_back(const VecMath::Vector<4>& x) {
+    auto Xold = X();
+    Xold.push_back(x);
+    setX(VertexGrid<4, 1, double>(Xold));
+    SingletonLog::Instance() << "mighty inefficient implementation of X_push_back()\n";
+}
+
 void AltSponge::Initialize(void) {
 
 # ifdef DEBUG_SPONGE
@@ -227,7 +234,7 @@ void AltSponge::Initialize(void) {
 #   endif
     if (current_level < 1) {
 
-      resizeX(16);
+      clearAndResizeX(16);
       Surface.resize(24);
 
       Hypercube::Initialize();

@@ -51,10 +51,7 @@ using VecMath::Matrix;
  *  @param surfaces number of surfaces                                        */
 Object::Object (unsigned vertices, unsigned surfaces):
         VertexHolder<4, 1, double>(ParameterMap()),
-//        Displayable(),
-        Surface(surfaces),
-        X_(vertices), Xtrans_(vertices), Xscr_() {
-
+        Surface(surfaces) {
     for (unsigned i = 0; i < surfaces; i++) Surface[i].resize(4);
 }
 
@@ -71,76 +68,19 @@ void Object::Initialize() {
 }
 
 void Object::calibrateColors() const {
-    for (unsigned i = 0; i < X_.size(); i++) {
+    for (unsigned i = 0; i < X().size(); i++) {
         ColMgrMgr::Instance().calibrateColor(
-            X_[i],
-            Color((X_[i][0]+1)/2, (X_[i][1]+1)/2, (X_[i][2]+1)/2,
-                  .75-(X_[i][3]+1)/4));
+            X()[i],
+            Color((X()[i][0]+1)/2, (X()[i][1]+1)/2, (X()[i][2]+1)/2,
+                  .75-(X()[i][3]+1)/4));
     }
 }
 
-const VecMath::MultiDimensionalVector< Object::vertex_type, 1 > &Object::X() const {
-    return X_;
-}
-
-void Object::setX(const std::vector< Object::vertex_type > &x) {
-    X_.clear();
-    for (auto i = x.begin(); i != x.end(); ++i) {
-        X_.push_back(*i);
-    }
-}
-
-void Object::resizeX(unsigned size) {
-    X_.resize(size);
-}
-
-void Object::setX(int i, const Object::vertex_type &x) {
-    X_[i] = x;
-}
-
-void Object::X_push_back(const Object::vertex_type& x) {
-    X_.push_back(x);
-}
-
-void Object::setXtrans(const VecMath::MultiDimensionalVector< Object::vertex_type, 1 > &xtrans) {
-    Xtrans_ = xtrans;
-}
-
-const VecMath::MultiDimensionalVector< Object::vertex_type, 1 > &Object::Xtrans() const {
-    return Xtrans_;
-}
-
-void Object::resizeXtrans(unsigned size) {
-    Xtrans_.resize(size);
-}
-
-const VecMath::MultiDimensionalVector< Object::projected_vertex_type, 1 > &Object::Xscr() const {
-    return Xscr_;
-}
-
-void Object::resizeXscr(unsigned size) {
-    Xscr_.resize(size);
-}
-
-void Object::setXscr(int i, const Object::projected_vertex_type &x) {
-    Xscr_[i] = x;
-}
-
-/// Transforms an Object
-/** @param R Rotation
- *  @param T Translation
- */
-void Object::Transform(const VecMath::Rotation<4> &R,
-                       const VecMath::Vector<4> &T,
-                       const VecMath::Vector<4> &scale) {
-    const Transformation<4, 1> &xform = TransformationFactory<4, 1>::create(R, T, scale);
-    setXtrans(xform.transform(X()));
-}
 
 /// Projects an Object into three-space
 /** @param scr_w w coordinate of screen
  *  @param cam_w w coordinate of camera
- *  @param depthcue4d wheter to use hyperfog/dc                               */
+ *  @param depthcue4d wheter to use hyperfog/dc                               
 void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
 
     resizeXscr(Xtrans().size());
@@ -168,6 +108,7 @@ void Object::Project (double scr_w, double cam_w, bool depthcue4d) {
         ColMgrMgr::Instance().depthCueColor(Wmax, Wmin, Xtrans()[i][3], X()[i]);
     }
 }
+ */
 
 /// Draw the projected Object (onto screen or into GL list, as it is)
 void Object::Draw(UI::View *view) {
@@ -191,27 +132,13 @@ void Object::ReInit (double, double, double,
     Initialize();
 }
 
-void Object::for_each_vertex(Displayable::function_on_fourspace_vertex apply) {
-  std::for_each(X_.begin(), X_.end(), apply);
+void Object::clearAndResizeX(unsigned size) {
+    setX(VertexGrid<4, 1, double>(VertexGrid<4,1,double>::grid_size_type(size)));
 }
 
-void Object::for_each_vertex_transformed(function_on_fourspace_and_transformed_vertex apply) {
-  size_t max_element = std::min(X_.size(), Xtrans_.size());
-  for (size_t i = 0; i < max_element; ++i) {
-      apply(X_[i], Xtrans_[i]);
-  }
+void Object::setX(unsigned i, const VecMath::Vector<4,double>& x) {
+    VertexGrid<4, 1, double> &grid = getGridNonConst();
+    MultiDimensionalVector< Vector<4>, 1 > &values = grid.getValuesNonConst();
+//    assert(values.size() > i);
+    values[i] = x;
 }
-
-void Object::for_each_projected(Displayable::function_on_projected_vertex apply) {
-  std::for_each(Xscr_.begin(), Xscr_.end(), apply);
-}
-
-void Object::for_each_vertex_transformed_projected(function_on_fourspace_transformed_and_projected_vertex apply) {
-  size_t max_element = std::min(std::min(X_.size(), Xtrans_.size()), Xscr_.size());
-  for (size_t i = 0; i < max_element; ++i) {
-      apply(X_[i], Xtrans_[i], Xscr_[i]);
-  }
-}
-
-////////////////////////////////////////////////////////////////////////////////
-
