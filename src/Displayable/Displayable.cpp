@@ -24,6 +24,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "Vector.impl.h"
 #include "Rotation.impl.h"
+#include "MultiDimensionalVector.impl.h"
 
 using std::cerr;
 using std::endl;
@@ -122,12 +123,12 @@ unsigned long Displayable::MemRequired (void) {
  *  \param uu u value
  *  \param vv v value
  *  \return gradient in t, u and v as array                                   */
-Displayable::vec4vec1D Displayable::df (double tt, double uu, double vv) {
+VecMath::MultiDimensionalVector< VecMath::Vector<4>, 1 > Displayable::df (double tt, double uu, double vv) {
 
     static Vector<4> F;                //  f (u, v)
     static Vector<4> F0;                //  f (u, v)
     static double h = 1e-5;
-    static Displayable::vec4vec1D DF(3);
+    static VecMath::MultiDimensionalVector< VecMath::Vector<4>, 1 > DF(3);
 
     F0 = operator () (tt, uu, vv);
 

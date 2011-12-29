@@ -68,7 +68,7 @@ class Surface: public FunctionHolder<4, 2, double> {
     virtual unsigned getNumParameters();
 
   protected:
-    virtual vec4vec1D df (double, double);
+    virtual VecMath::MultiDimensionalVector< VecMath::Vector<4>, 1 > df (double, double);
     virtual function_type normal;
 
     void Initialize (void);

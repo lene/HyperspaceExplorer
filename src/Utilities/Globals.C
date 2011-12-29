@@ -54,8 +54,6 @@ struct Global::Impl {
   static bool check_memory;
   static unsigned long check_proc_meminfo ();
 
-  /** global (YUCK!) background color                                   */
-//        static Color background;
   /** global (YUCK!) fog/depth cue color                                */
   static Color fog_color;
   /** color definition for White                                        */
@@ -119,45 +117,6 @@ unsigned long Global::Impl::check_proc_meminfo() {
     in >> meminfo;
     check_memory = true;
     return strtoul (meminfo.c_str (), NULL, 10)*1024;
-}
-
-MultiDimensionalVector< Vector<4>, 2 > toMultiDimensionalVector(const Displayable::vec4vec2D &v) {
-
-  MultiDimensionalVector< Vector<4>, 2 > temp2D;
-  for (Displayable::vec4vec2D::const_iterator it = v.begin();
-       it != v.end(); ++it) {
-    MultiDimensionalVector< Vector<4>, 1> temp1D;
-    for (Displayable::vec4vec1D::const_iterator jt = it->begin();
-         jt != it->end(); ++jt) {
-      temp1D.push_back(*jt);
-    }
-    temp2D.push_back(temp1D);
-  }
-  return temp2D;
-
-}
-
-MultiDimensionalVector< Vector<4>, 3 > toMultiDimensionalVector(const Displayable::vec4vec3D &v) {
-
-  MultiDimensionalVector< Vector<4>, 3 > temp3D;
-
-  for (Displayable::vec4vec3D::const_iterator it = v.begin(); it != v.end(); ++it) {
-
-    MultiDimensionalVector< Vector<4>, 2 > temp2D;
-    for (Displayable::vec4vec2D::const_iterator jt = it->begin(); jt != it->end(); ++jt) {
-
-      MultiDimensionalVector< Vector<4>, 1> temp1D;
-      for (Displayable::vec4vec1D::const_iterator kt = jt->begin(); kt != jt->end(); ++kt) {
-        temp1D.push_back(*kt);
-      }
-
-      temp2D.push_back(temp1D);
-    }
-
-    temp3D.push_back(temp2D);
-  }
-
-  return temp3D;
 }
 
 Color& Global::FogColor() { return pImpl_->fog_color; }

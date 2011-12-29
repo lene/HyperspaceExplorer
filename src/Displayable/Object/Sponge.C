@@ -264,7 +264,7 @@ void AltSponge::Initialize(void) {
                     //  create new vertex and store it if necessary
                     Vector<4> xold = *(Sold[i][k]), xnew = xold/3.+NewCen;
 //                    cerr << "xold: " << xold << ", xnew: " << xnew << endl;
-                    vec4vec1D::const_iterator vec = std::find(X().begin(), X().end(), xnew);
+                    auto vec = std::find(X().begin(), X().end(), xnew);
                     if (vec == X().end()) {
                       X_push_back(xnew);
                       new_vertices[k] = X().back();

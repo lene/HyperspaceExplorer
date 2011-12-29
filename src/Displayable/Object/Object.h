@@ -38,8 +38,6 @@ class Object: public VertexHolder<4, 1, double> {
     
 public:
 
-    /// The numeric type that is used in all calculations.
-    typedef double numeric_type;
     /// A vertex in \p N - space.
     typedef VecMath::Vector<4, double> vertex_type;
     /// A vertex projected into three dimensions.
@@ -63,9 +61,11 @@ protected:
     /// the surfaces, stored as vectors of indeces to the points in X
     VecMath::MultiDimensionalVector<unsigned, 2> Surface;
 
-    void clearAndResizeX(unsigned size);
+    /// Set a vertex at a specified index
     void setX(unsigned i, const VecMath::Vector<4, double> &x);
     using VertexHolder<4, 1, double>::setX;
+
+    void clearAndResizeX(unsigned size);
 };
 
 namespace {

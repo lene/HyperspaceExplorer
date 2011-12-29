@@ -23,6 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "FunctionParameter.h"
 #include "FunctionFactory.h"
+#include "DisplayableClass.h"
 
 #include <vector>
 
@@ -33,10 +34,9 @@ namespace UI {
 namespace VecMath {
     template <unsigned D, typename N> class Rotation;
     template <unsigned D, typename N> class Vector;
+    template <typename T, unsigned D> class MultiDimensionalVector;
 }
 class ParameterMap;
-class DisplayableClass;
-#include "DisplayableClass.h"
 
 /// \defgroup FunctionGroup Functions and objects
 /// \defgroup RealGroup Functions R^3 -> R
@@ -100,27 +100,6 @@ class DisplayableClass;
 class Displayable {
 
     public:
-
-        /// one-dimensional array of floats, implemented as a std::vector
-        typedef std::vector<float> floatvec1D;
-        /// two-dimensional array of floats, implemented as a nested std::vector
-        typedef std::vector<floatvec1D> floatvec2D;
-        /// three-dimensional array of floats, implemented as a nested std::vector
-        typedef std::vector<floatvec2D> floatvec3D;
-
-        /// one-dimensional array of Vector<3>, implemented as a std::vector
-        typedef std::vector<VecMath::Vector<3, double> > vec3vec1D;
-        /// two-dimensional array of Vector<3>, implemented as a nested std::vector
-        typedef std::vector<vec3vec1D> vec3vec2D;
-        /// three-dimensional array of Vector<3>, implemented as a nested std::vector
-        typedef std::vector<vec3vec2D> vec3vec3D;
-
-        /// one-dimensional array of Vector<4>, implemented as a std::vector
-        typedef std::vector<VecMath::Vector<4, double> > vec4vec1D;
-        /// two-dimensional array of Vector<4>, implemented as a nested std::vector
-        typedef std::vector<vec4vec1D> vec4vec2D;
-        /// three-dimensional array of Vector<4>, implemented as a nested std::vector
-        typedef std::vector<vec4vec2D> vec4vec3D;
 
         /// function that is applied on the original vertices
         typedef void(*function_on_fourspace_vertex)(const VecMath::Vector<4, double> &);
@@ -220,7 +199,7 @@ class Displayable {
         /** \todo this is not general enough. should take the number of arguments
          *  that are actually needed.
          */
-        virtual vec4vec1D df (double, double, double);
+        virtual VecMath::MultiDimensionalVector< VecMath::Vector<4>, 1 > df (double, double, double);
 
         /// This abstract function is called in the constructor of descendants
         virtual void Initialize (void) = 0;
@@ -243,6 +222,7 @@ class Displayable {
 
       class Impl;
       Impl *pImpl_;
+
 };
 
 namespace {

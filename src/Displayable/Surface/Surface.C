@@ -222,7 +222,7 @@ Vector< 4 >& Surface::operator()(double u, double v, double ) {
 Vector<4> &Surface::normal (double uu, double vv) {
     static Vector<4> n;
 
-    Displayable::vec4vec1D D = df(uu, vv);
+    VecMath::MultiDimensionalVector< VecMath::Vector<4>, 1 > D = df(uu, vv);
 
     n = VecMath::vcross(D[0], D[1], D[2]);
     VecMath::vnormalize(n);
@@ -240,12 +240,12 @@ Vector<4> &Surface::normal (double uu, double vv) {
  *  @param uu u value
  *  @param vv v value
  *  @return gradient in t, u and v as array                                   */
-Displayable::vec4vec1D Surface::df (double uu, double vv) {
+VecMath::MultiDimensionalVector< VecMath::Vector<4>, 1 > Surface::df (double uu, double vv) {
 
     static Vector<4> F0, F;        //  f (u, v)
     static double h = 1e-5;     //  maybe tweak to get best results
 
-    static Displayable::vec4vec1D DF(3);
+    static VecMath::MultiDimensionalVector< VecMath::Vector<4>, 1 > DF(3);
 
     F0 = operator() (uu, vv);
 

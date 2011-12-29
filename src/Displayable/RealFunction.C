@@ -229,7 +229,7 @@ void RealFunction::Project (double scr_w, double cam_w, bool depthcue4d) {
 Vector<4> &RealFunction::normal (double tt, double uu, double vv) {
   static Vector<4> n;
 
-  Displayable::vec4vec1D D = df (tt, uu, vv);
+  VecMath::MultiDimensionalVector< VecMath::Vector<4>, 1 > D = df (tt, uu, vv);
 
   n = VecMath::vcross (D[0], D[1], D[2]);
   VecMath::vnormalize (n);
