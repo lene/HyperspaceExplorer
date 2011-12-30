@@ -47,22 +47,10 @@ public:
     parent_(parent) { }
 
     void applyDepthCue() {
-        findMaximumW();
-        findMinimumW();
+        DepthCueUtil::determineExtrema(parent_);
         parent_->for_each_vertex_transformed(DepthCueUtil::setDepthCueColor);
     }
     
-    double findMinimumW() {
-        DepthCueUtil::resetMin();
-        parent_->for_each_vertex_transformed(DepthCueUtil::checkMinimum);
-        return DepthCueUtil::getWmin();
-    }
-    double findMaximumW() {
-        DepthCueUtil::resetMax();
-        parent_->for_each_vertex_transformed(DepthCueUtil::checkMaximum);
-        return DepthCueUtil::getWmax();
-    }
-
     function_on_fourspace_vertex getCalibrationFunction() {
         if (calibration_function == NULL) return DepthCueUtil::calibrateColor3D;
         return calibration_function;

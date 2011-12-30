@@ -125,6 +125,8 @@ void help (QString progname) {
        << QString(progname.size(), ' ').toStdString()
        << " [--benchmark [number_of_runs]]" << endl
        << QString(progname.size(), ' ').toStdString()
+       << " [--transformation single|multi]" << endl
+       << QString(progname.size(), ' ').toStdString()
        << " [-h | --help]" << endl
        << "Consult the online help for more info!" << endl;
 }
@@ -353,6 +355,22 @@ void parse (int argc, char *argv[]) {
             if (i+1 < argc) benchmark (QString (argv[i+1]).toUInt ());
             else benchmark (10);
         }
+        if (QString (argv[i]) == QString ("--transformation")) {
+            if (i+1 < argc) {
+                ++i;
+                if (QString (argv[i]) == QString ("single")) {
+                    
+                } else if (QString (argv[i]) == QString ("multi")) {
+                    
+                } else {
+                    help(argv[0]);
+                }
+            } else {
+                help(argv[0]);
+            }
+
+        }
+
     }
 }
 

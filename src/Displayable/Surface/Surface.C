@@ -78,7 +78,8 @@ void Surface::Impl::setBoundariesAndStepwidth(double tmin, double tmax, double d
 
 namespace DepthCueUtil {
 
-    void calibrateColor2D(const VecMath::Vector<4, double> &x) {
+    /// Color calibration function used in class Surface.
+    void calibrateColorForSurface(const VecMath::Vector<4, double> &x) {
         float r = getColorComponent(0, x);
         float g = getColorComponent(1, x);
         float b = getColorComponent(3, x);
@@ -90,7 +91,7 @@ namespace DepthCueUtil {
 Surface::Surface():
   FunctionHolder<4, 2, double>(ParameterMap()),
   pImpl_(new Impl(this)) {
-    setColorCalibrationFunction(DepthCueUtil::calibrateColor2D);
+    setColorCalibrationFunction(DepthCueUtil::calibrateColorForSurface);
 }
 
 
@@ -109,7 +110,7 @@ Surface::Surface (double umin, double umax, double du,
     FunctionHolder<4, 2, double>(parms),
     pImpl_(new Impl(this)) {
     setDefinitionRange(umin, umax, du, vmin, vmax, dv, 0, 0, 0);
-    setColorCalibrationFunction(DepthCueUtil::calibrateColor2D);
+    setColorCalibrationFunction(DepthCueUtil::calibrateColorForSurface);
 }
 
 Surface::~Surface() { }
