@@ -37,6 +37,7 @@ using VecMath::MultiDimensionalVector;
 using std::shared_ptr;
 
 namespace DepthCueUtil {
+    
     void checkMinimum(const VecMath::Vector<4, double> &,
                        const VecMath::Vector<4, double> &xtrans);
     void resetMin();
@@ -50,7 +51,9 @@ namespace DepthCueUtil {
     void setDepthCueColor(const VecMath::Vector<4, double> &x,
                           const VecMath::Vector<4, double> &xtrans);
     
-    void calibrateColor(const VecMath::Vector<4, double> &x);
+    void calibrateColor3D(const VecMath::Vector<4, double> &x);
+
+    float getColorComponent(unsigned i, const VecMath::Vector<4,double>& x);
     
 }
 
@@ -59,7 +62,9 @@ class VertexHolder<N, P, NUM>::Impl {
 
 public:
 
-    Impl(VertexHolder<N, P, NUM> *parent): parent_(parent) { }
+    Impl(VertexHolder<N, P, NUM> *parent): 
+    X_(), Xtrans_(), Xscr_(), calibration_function(NULL),
+    parent_(parent) { }
 
     void applyDepthCue() {
         findMaximumW();
@@ -78,6 +83,10 @@ public:
         return DepthCueUtil::getWmax();
     }
 
+    function_on_fourspace_vertex getCalibrationFunction() {
+        if (calibration_function == NULL) return DepthCueUtil::calibrateColor3D;
+        return calibration_function;
+    }
     /// Array of function values.
     VertexGrid<N, P, NUM> X_;
     /// Array of function values after transform.
@@ -85,6 +94,8 @@ public:
     /// Array of projected function values.
     MultiDimensionalVector< projected_vertex_type, P > Xscr_;
 
+    function_on_fourspace_vertex calibration_function;
+    
 private: 
     
     VertexHolder<N, P, NUM> *parent_;
@@ -117,7 +128,7 @@ void VertexHolder<N, P, NUM>::Project (double ScrW, double CamW, bool DepthCue4D
 
 template <unsigned N, unsigned P, typename NUM>
 void VertexHolder<N, P, NUM>::calibrateColors() {
-    for_each_vertex(DepthCueUtil::calibrateColor);
+    for_each_vertex(pImpl_->getCalibrationFunction());
 }
 
 template <unsigned N, unsigned P, typename NUM>
@@ -190,4 +201,9 @@ VertexHolder<N, P, NUM>::getGridNonConst() {
   return pImpl_->X_;
 }
 
+template <unsigned N, unsigned P, typename NUM>
+void
+VertexHolder<N, P, NUM>::setColorCalibrationFunction(function_on_fourspace_vertex calibrate) {
+    pImpl_->calibration_function = calibrate;
+}
 #endif

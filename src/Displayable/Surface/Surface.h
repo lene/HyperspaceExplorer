@@ -56,9 +56,6 @@ class Surface: public FunctionHolder<4, 2, double> {
                         double _umin, double _umax, double _du,
                         double _vmin, double _vmax, double _dv);
 
-    /// Called by the ColorManager after setting the Function on the CM
-    virtual void calibrateColors();
-
     /// Function evaluation operator for three parameters
     VecMath::Vector<4> &operator () (double u, double v, double = 0);
 

@@ -32,10 +32,10 @@ namespace DepthCueUtil {
     }
     
     float getColorComponent(unsigned i, const VecMath::Vector<4,double>& x) {
-        return float((x[0]-min[0])/(max[0]-min[0]));
+        return float((x[i]-min[i])/(max[i]-min[i]));
     }
     
-    void calibrateColor(const VecMath::Vector<4,double>& x) {
+    void calibrateColor3D(const VecMath::Vector<4,double>& x) {
         ColMgrMgr::Instance().calibrateColor(
             x,
             Color(getColorComponent(0, x),

@@ -87,6 +87,8 @@ class VertexHolder : public Displayable {
 
     const VertexGrid<N, P, NUM> &getGrid() const;
     VertexGrid<N, P, NUM> &getGridNonConst();
+    
+    void setColorCalibrationFunction(function_on_fourspace_vertex calibrate);
 
   private:
 

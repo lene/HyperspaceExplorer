@@ -39,8 +39,6 @@ struct Surface::Impl {
 
   Impl(Surface *f): parent_(f) { }
 
-  void calibrateColors() const;
-
   const VecMath::MultiDimensionalVector< Vector< 4 >, 2 > &X() const {
     return parent_->X();
   }
@@ -51,56 +49,15 @@ struct Surface::Impl {
     return parent_->Xscr();
   }
 
-  void DrawStrip (unsigned t, UI::View *view);
-
   /// Set up the grid using boundaries and stepwidth.
   void setBoundariesAndStepwidth(double tmin, double tmax, double dt,
                                  double umin, double umax, double du);
-
-  std::pair<double, double> findExtremesInW() const;
 
   DefinitionRangeOfDimension<2> getDefinitionRange() const { return parent_->getDefinitionRange(); }
 
   Surface *parent_;
 
 };
-
-void Surface::Impl::calibrateColors() const {
-  std::pair< double, double > Wext = findExtremesInW();
-
-  for (unsigned t = 0; t <= getDefinitionRange().getNumSteps(0)+1; t++) {
-    for (unsigned u = 0; u <= getDefinitionRange().getNumSteps(1)+1; u++) {
-      float r = float(t)/float(getDefinitionRange().getNumSteps(0));
-      float g = float(u)/float(getDefinitionRange().getNumSteps(1));
-      float b = (Wext.second-X()[t][u][3])/(Wext.second-Wext.first);
-      ColMgrMgr::Instance().calibrateColor(X()[t][u], Color(r, g, b));
-    }
-  }
-
-}
-
-std::pair<double, double> Surface::Impl::findExtremesInW() const {
-
-    double Wmax = 0, Wmin = 0;
-    for (unsigned t = 0; t <= getDefinitionRange().getNumSteps(0); t++) {
-        for (unsigned u = 0; u <= getDefinitionRange().getNumSteps(1)+1; u++) {
-            if (X()[t][u][3] < Wmin) Wmin = X()[t][u][3];
-            if (X()[t][u][3] > Wmax) Wmax = X()[t][u][3];
-        }
-    } 
-    return std::make_pair(Wmin, Wmax);
-}
-
-
-/** draw the current strip of the projected Surface
- *  @param t current t value                                                  */
-void Surface::Impl::DrawStrip (unsigned t, UI::View *view) {
-
-  for (unsigned u = 0; u <= getDefinitionRange().getNumSteps(1); u++) {
-    view->drawQuadrangle(X()[t][u], X()[t+1][u], X()[t+1][u+1], X()[t][u+1],
-                         Xscr()[t][u], Xscr()[t+1][u], Xscr()[t+1][u+1], Xscr()[t][u+1]);
-  }
-}
 
 /** \param tmin minimal value in t
  *  \param tmax maximal value in t
@@ -119,10 +76,22 @@ void Surface::Impl::setBoundariesAndStepwidth(double tmin, double tmax, double d
   getDefinitionRange().setNumSteps(1, unsigned((getDefinitionRange().getMaxValue(1)-getDefinitionRange().getMinValue(1))/getDefinitionRange().getStepsize(1)+2));
 }
 
+namespace DepthCueUtil {
+
+    void calibrateColor2D(const VecMath::Vector<4, double> &x) {
+        float r = getColorComponent(0, x);
+        float g = getColorComponent(1, x);
+        float b = getColorComponent(3, x);
+        ColMgrMgr::Instance().calibrateColor(x, Color(r, g, b));
+    }
+    
+}
 /// Surface default c'tor, zeroes everything
 Surface::Surface():
   FunctionHolder<4, 2, double>(ParameterMap()),
-  pImpl_(new Impl(this)) { }
+  pImpl_(new Impl(this)) {
+    setColorCalibrationFunction(DepthCueUtil::calibrateColor2D);
+}
 
 
 /** Surface c'tor given a definition set in \f$ R^2 \f$ (as parameter space)
@@ -139,7 +108,8 @@ Surface::Surface (double umin, double umax, double du,
                   ParameterMap parms):
     FunctionHolder<4, 2, double>(parms),
     pImpl_(new Impl(this)) {
-  setDefinitionRange(umin, umax, du, vmin, vmax, dv, 0, 0, 0);
+    setDefinitionRange(umin, umax, du, vmin, vmax, dv, 0, 0, 0);
+    setColorCalibrationFunction(DepthCueUtil::calibrateColor2D);
 }
 
 Surface::~Surface() { }
@@ -159,10 +129,6 @@ void Surface::Initialize () {
   );
 
   calibrateColors();
-}
-
-void Surface::calibrateColors() {
-  pImpl_->calibrateColors();
 }
 
 /// re-initialize a Surface if the definition set has changed
