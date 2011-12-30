@@ -46,8 +46,6 @@ class RealFunction::Impl {
 
     Impl(RealFunction *f);
 
-    void calibrateColors() const;
-
     const MultiDimensionalVector< Vector< 4 >, 3 > &X() const {
       return parent_->X();
     }
@@ -62,47 +60,11 @@ class RealFunction::Impl {
 
   private:
 
-    /// Finds maximum and minimum function value in w.
-    std::pair<double, double> findExtremesInW() const;
-
     RealFunction *parent_;
 
 };
 
 RealFunction::Impl::Impl(RealFunction *f): parent_(f) { }
-
-void RealFunction::Impl::calibrateColors() const {
-
-  std::pair< double, double > Wext = findExtremesInW();
-
-  for (unsigned t = 0; t <= getDefinitionRange().getNumSteps(0); t++) {
-    for (unsigned u = 0; u <= getDefinitionRange().getNumSteps(1)+1; u++) {
-      for (unsigned v = 0; v <= getDefinitionRange().getNumSteps(2)+1; v++) {
-        ColMgrMgr::Instance().calibrateColor(
-            X()[t][u][v],
-            Color(float(t)/float(getDefinitionRange().getNumSteps(0)),
-                  float(u)/float(getDefinitionRange().getNumSteps(1)),
-                  float(v)/float(getDefinitionRange().getNumSteps(2)),
-                  (X()[t][u][v][3]-Wext.first)/(Wext.second-Wext.first)));
-      }
-    }
-  }
-}
-
-std::pair< double, double > RealFunction::Impl::findExtremesInW() const {
-
-  double Wmin = 0., Wmax = 0.;
-  for (unsigned t = 0; t < getDefinitionRange().getNumSteps(0); t++) {
-    for (unsigned u = 0; u <= getDefinitionRange().getNumSteps(1)+1; u++) {
-      for (unsigned v = 0; v <= getDefinitionRange().getNumSteps(2)+1; v++) {
-        if (X()[t][u][v][3] < Wmin) Wmin = X()[t][u][v][3];
-        if (X()[t][u][v][3] > Wmax) Wmax = X()[t][u][v][3];
-      }
-    }
-  }
-
-  return std::make_pair(Wmin, Wmax);
-}
 
 /** RealFunction c'tor given only a name: All grid values are set to defaults
  *  \todo don't initialize the grid!
@@ -151,10 +113,6 @@ void RealFunction::Initialize () {
 
   calibrateColors();
 
-}
-
-void RealFunction::calibrateColors() {
-  pImpl_->calibrateColors();
 }
 
 std::string RealFunction::getFunctionName() const {
