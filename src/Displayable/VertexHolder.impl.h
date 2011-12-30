@@ -23,6 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "VertexHolder.h"
 #include "ColorManager.h"
+#include "DepthCueUtil.h"
 
 #include "FunctionValueGrid.h"
 #include "TransformationFactory.impl.h"
@@ -35,27 +36,6 @@ using VecMath::Vector;
 using VecMath::MultiDimensionalVector;
 
 using std::shared_ptr;
-
-namespace DepthCueUtil {
-    
-    void checkMinimum(const VecMath::Vector<4, double> &,
-                       const VecMath::Vector<4, double> &xtrans);
-    void resetMin();
-    double getWmin();
-    
-    void checkMaximum(const VecMath::Vector<4, double> &,
-                       const VecMath::Vector<4, double> &xtrans);
-    void resetMax();
-    double getWmax();
-
-    void setDepthCueColor(const VecMath::Vector<4, double> &x,
-                          const VecMath::Vector<4, double> &xtrans);
-    
-    void calibrateColor3D(const VecMath::Vector<4, double> &x);
-
-    float getColorComponent(unsigned i, const VecMath::Vector<4,double>& x);
-    
-}
 
 template <unsigned N, unsigned P, typename NUM>
 class VertexHolder<N, P, NUM>::Impl {
@@ -104,13 +84,15 @@ private:
 
 ////////////////////////////////////////////////////////////////////////////////
 
+/** \param parms Parameters for the Displayable                               */
 template <unsigned N, unsigned P, typename NUM>
 VertexHolder<N, P, NUM>::VertexHolder(ParameterMap parms):
   Displayable(parms),
   pImpl_(new Impl(this)) { }
 
 /** \param R rotation
- *  \param T translation                                                      */
+ *  \param T translation                       
+ *  \param scale scaling                                                      */
 template <unsigned N, unsigned P, typename NUM>
 void VertexHolder<N, P, NUM>::Transform (const VecMath::Rotation<N, NUM> &R,
                                            const vertex_type &T,
@@ -119,6 +101,11 @@ void VertexHolder<N, P, NUM>::Transform (const VecMath::Rotation<N, NUM> &R,
   setXtrans(xform.transform(X()));
 }
 
+/**
+ * @param ScrW \em w coordinate of the screen projected onto
+ * @param CamW \em w coordinate of the camera
+ * @param DepthCue4D whether to apply four-dimensional depth cue
+ */
 template <unsigned N, unsigned P, typename NUM>
 void VertexHolder<N, P, NUM>::Project (double ScrW, double CamW, bool DepthCue4D) {
   Projection<N, 3, P, NUM> p(ScrW, CamW, DepthCue4D);
@@ -136,21 +123,33 @@ unsigned int VertexHolder<N, P, NUM>::getDefinitionSpaceDimensions() {
   return P;
 }
 
+/**
+ * @param apply the function called for every vertex
+ */
 template <unsigned N, unsigned P, typename NUM>
 void VertexHolder<N, P, NUM>::for_each_vertex(Displayable::function_on_fourspace_vertex apply) {
   X().for_each(apply);
 }
 
+/**
+ * @param apply the function called for every vertex and transformed vertex
+ */
 template <unsigned N, unsigned P, typename NUM>
 void VertexHolder<N, P, NUM>::for_each_vertex_transformed(Displayable::function_on_fourspace_and_transformed_vertex apply) {
   VecMath::for_each(X(), Xtrans(), apply);
 }
 
+/**
+ * @param apply the function called for every vertex, transformed and projected vertex 
+ */
 template <unsigned N, unsigned P, typename NUM>
 void VertexHolder<N, P, NUM>::for_each_vertex_transformed_projected(Displayable::function_on_fourspace_transformed_and_projected_vertex apply) {
   VecMath::for_each(X(), Xtrans(), Xscr(), apply);
 }
 
+/**
+ * @param apply the function called for every projected vertex
+ */
 template <unsigned N, unsigned P, typename NUM>
 void VertexHolder<N, P, NUM>::for_each_projected(Displayable::function_on_projected_vertex apply) {
   Xscr().for_each(apply);
@@ -162,6 +161,9 @@ VertexHolder<N, P, NUM>::X() const {
   return pImpl_->X_.getValues();
 }
 
+/**
+ * @param x the new values for the vertices
+ */
 template <unsigned N, unsigned P, typename NUM>
 void VertexHolder<N, P, NUM>::setX(const VertexGrid<N, P, NUM>& x) {
   pImpl_->X_ = x;
@@ -173,6 +175,9 @@ VertexHolder<N, P, NUM>::Xtrans() const {
   return pImpl_->Xtrans_;
 }
 
+/**
+ * @param x the new values for the transformed vertices
+ */
 template <unsigned N, unsigned P, typename NUM>
 void VertexHolder<N, P, NUM>::setXtrans(const VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, P >& x) {
   pImpl_->Xtrans_ = x;
@@ -184,6 +189,9 @@ VertexHolder<N, P, NUM>::Xscr() const {
   return pImpl_->Xscr_;
 }
 
+/**
+ * @param x the new values for the projected vertices
+ */
 template <unsigned N, unsigned P, typename NUM>
 void VertexHolder<N, P, NUM>::setXscr(const VecMath::MultiDimensionalVector< VecMath::Vector<3, NUM>, P >& x) {
   pImpl_->Xscr_ = x;
@@ -201,6 +209,9 @@ VertexHolder<N, P, NUM>::getGridNonConst() {
   return pImpl_->X_;
 }
 
+/**
+ * @param calibrate The function called on every vertex to calibrate the ColorManager
+ */
 template <unsigned N, unsigned P, typename NUM>
 void
 VertexHolder<N, P, NUM>::setColorCalibrationFunction(function_on_fourspace_vertex calibrate) {

@@ -30,13 +30,12 @@ namespace VecMath {
 template <unsigned N, unsigned P, typename NUM> class ParametricFunction;
 template <unsigned N, unsigned P, typename NUM> class VertexGrid;
 
-///
-/** This class evaluates a ParametricFunction on all vertices of a \p P - dimensional
- *  (hyper-) grid in \p N dimensional vector space.
- *
- *  \todo It provides functions to apply an arbitray Transform on the \p N -
- *  dimensional vertices, Project them into three-dimensional space and Draw
- *  the resulting three-dimensional image onto a View.
+/// This class stores vertices in a \p P - dimensional (hyper-) grid in an \p N
+/// dimensional vector space.
+/**
+ *  It provides functions to apply an arbitray Transform on the \p N dimensional
+ *  vertices and Project them into three-dimensional space. The Draw() method
+ *  must be implemented in inheriting classes.
  *
  *  \tparam N The dimension of the definition vector space.
  *  \tparam P The dimension of the parameter vector space.
@@ -51,7 +50,7 @@ class VertexHolder : public Displayable {
   public:
 
     /// The type of the function that is evaluated on every vertex of the grid.
-    typedef ParametricFunction<N, P, NUM> function_type;
+   // typedef ParametricFunction<N, P, NUM> function_type;
     /// A vertex in \p N - space.
     typedef VecMath::Vector<N, NUM> vertex_type;
     /// A vertex projected into three dimensions.
@@ -75,19 +74,25 @@ class VertexHolder : public Displayable {
 
   protected:
 
-    /// Array of function values.
+    /// Array of vertices.
     const VecMath::MultiDimensionalVector< vertex_type, P > &X() const;
+    /// Replaces the array of vertices with \p x.
     void setX(const VertexGrid<N, P, NUM>& x);
-    /// Array of function values after transform.
+    /// Array of vertices after transform.
     const VecMath::MultiDimensionalVector< vertex_type, P > &Xtrans() const;
+    /// Replaces the array of transformed vertices with \p x.
     void setXtrans(const VecMath::MultiDimensionalVector< vertex_type, P >& x);
-    /// Array of projected function values.
+    /// Array of projected vertices.
     const VecMath::MultiDimensionalVector< projected_vertex_type, P > &Xscr() const;
+    /// Replaces the array of projected vertices with \p x.
     void setXscr(const VecMath::MultiDimensionalVector< projected_vertex_type, P >& x);
 
+    /// Access to the vertices as VertexGrid<N, P, NUM>.
     const VertexGrid<N, P, NUM> &getGrid() const;
+    /// Write access to the vertices as VertexGrid<N, P, NUM>.
     VertexGrid<N, P, NUM> &getGridNonConst();
     
+    /// Sets the function that is called for every vertex by calibrateColors().
     void setColorCalibrationFunction(function_on_fourspace_vertex calibrate);
 
   private:

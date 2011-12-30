@@ -43,7 +43,7 @@ SOURCES += \
            $${PATH}/Composite.cpp \
            $${PATH}/SimpleComposite.cpp \
            $${PATH}/DefinitionSpaceRange.cpp \
-           $${PATH}/VertexHolder.cpp \
+           $${PATH}/DepthCueUtil.cpp \
            $${PATH}/RealFunction.C \
            $${PATH}/RealFunctionImplementations.cpp \
            $${PATH}/CustomFunction.C 
