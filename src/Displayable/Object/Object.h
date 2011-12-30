@@ -43,7 +43,7 @@ public:
     virtual void ReInit (double, double, double,
                          double, double, double,
                          double, double, double);
-    virtual void calibrateColors() const;
+    virtual void calibrateColors();
 
     virtual void Draw (UI::View *);
 

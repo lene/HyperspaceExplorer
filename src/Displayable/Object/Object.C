@@ -65,7 +65,7 @@ void Object::Initialize() {
     calibrateColors();
 }
 
-void Object::calibrateColors() const {
+void Object::calibrateColors() {
     for (unsigned i = 0; i < X().size(); i++) {
         ColMgrMgr::Instance().calibrateColor(
             X()[i],

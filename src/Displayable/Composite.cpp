@@ -86,7 +86,7 @@ unsigned int Composite::getNumComponents() {
   return pImpl_->sub_objects_.size();
 }
 
-void Composite::calibrateColors() const {
+void Composite::calibrateColors() {
   for (auto i = pImpl_->sub_objects_.begin(); i != pImpl_->sub_objects_.end(); ++i) {
       i->component_->calibrateColors();
   }

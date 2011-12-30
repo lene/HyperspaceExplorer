@@ -153,7 +153,7 @@ void RealFunction::Initialize () {
 
 }
 
-void RealFunction::calibrateColors() const {
+void RealFunction::calibrateColors() {
   pImpl_->calibrateColors();
 }
 

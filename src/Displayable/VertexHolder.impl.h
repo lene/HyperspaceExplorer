@@ -37,18 +37,21 @@ using VecMath::MultiDimensionalVector;
 using std::shared_ptr;
 
 namespace DepthCueUtil {
-    void checkMinimumW(const VecMath::Vector<4, double> &,
+    void checkMinimum(const VecMath::Vector<4, double> &,
                        const VecMath::Vector<4, double> &xtrans);
-    void resetWmin();
+    void resetMin();
     double getWmin();
     
-    void checkMaximumW(const VecMath::Vector<4, double> &,
+    void checkMaximum(const VecMath::Vector<4, double> &,
                        const VecMath::Vector<4, double> &xtrans);
-    void resetWmax();
+    void resetMax();
     double getWmax();
 
     void setDepthCueColor(const VecMath::Vector<4, double> &x,
                           const VecMath::Vector<4, double> &xtrans);
+    
+    void calibrateColor(const VecMath::Vector<4, double> &x);
+    
 }
 
 template <unsigned N, unsigned P, typename NUM>
@@ -65,13 +68,13 @@ public:
     }
     
     double findMinimumW() {
-        DepthCueUtil::resetWmin();
-        parent_->for_each_vertex_transformed(DepthCueUtil::checkMinimumW);
+        DepthCueUtil::resetMin();
+        parent_->for_each_vertex_transformed(DepthCueUtil::checkMinimum);
         return DepthCueUtil::getWmin();
     }
     double findMaximumW() {
-        DepthCueUtil::resetWmax();
-        parent_->for_each_vertex_transformed(DepthCueUtil::checkMaximumW);
+        DepthCueUtil::resetMax();
+        parent_->for_each_vertex_transformed(DepthCueUtil::checkMaximum);
         return DepthCueUtil::getWmax();
     }
 
@@ -110,6 +113,11 @@ void VertexHolder<N, P, NUM>::Project (double ScrW, double CamW, bool DepthCue4D
   Projection<N, 3, P, NUM> p(ScrW, CamW, DepthCue4D);
   setXscr(p.project(Xtrans()));
   if (DepthCue4D) pImpl_->applyDepthCue();
+}
+
+template <unsigned N, unsigned P, typename NUM>
+void VertexHolder<N, P, NUM>::calibrateColors() {
+    for_each_vertex(DepthCueUtil::calibrateColor);
 }
 
 template <unsigned N, unsigned P, typename NUM>

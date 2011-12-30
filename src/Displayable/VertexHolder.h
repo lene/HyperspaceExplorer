@@ -64,6 +64,8 @@ class VertexHolder : public Displayable {
                             const vertex_type &scale = vertex_type(1.));
     virtual void Project (double ScrW, double CamW, bool DepthCue4D);
 
+    virtual void calibrateColors();
+
     virtual unsigned int getDefinitionSpaceDimensions();
 
     virtual void for_each_vertex(function_on_fourspace_vertex apply);

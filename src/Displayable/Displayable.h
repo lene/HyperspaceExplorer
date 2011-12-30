@@ -137,7 +137,7 @@ class Displayable {
                             double _vmin, double _vmax, double _dv) = 0;
 
         /// Called by the ColorManager after setting the Displayable on the CM
-        virtual void calibrateColors() const = 0;
+        virtual void calibrateColors() = 0;
 
         /** \return The name of the Displayable in cleartext                     */
         virtual std::string getFunctionName() const = 0;

@@ -64,7 +64,7 @@ class RealFunction: public FunctionHolder<4, 3, double> {
                         double vmin, double vmax, double dv);
 
     /// Called by the ColorManager after setting the Function on the CM
-    virtual void calibrateColors() const;
+    virtual void calibrateColors();
 
     /** \return The name of the function in cleartext                     */
     virtual std::string getFunctionName() const;

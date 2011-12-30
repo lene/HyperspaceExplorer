@@ -67,7 +67,7 @@ public:
   virtual void for_each_vertex_transformed_projected(function_on_fourspace_transformed_and_projected_vertex apply);
 
   virtual unsigned int getDefinitionSpaceDimensions();
-  virtual void calibrateColors() const;
+  virtual void calibrateColors();
   virtual void ReInit(double _tmin, double _tmax, double _dt,
                       double _umin, double _umax, double _du,
                       double _vmin, double _vmax, double _dv);

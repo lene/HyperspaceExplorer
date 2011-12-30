@@ -161,7 +161,7 @@ void Surface::Initialize () {
   calibrateColors();
 }
 
-void Surface::calibrateColors() const {
+void Surface::calibrateColors() {
   pImpl_->calibrateColors();
 }
 
