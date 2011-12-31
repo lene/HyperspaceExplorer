@@ -1,5 +1,9 @@
+- implement multithreaded transformations:
+  - remove TransformationPolicies, they're unneccessarily complicated
+  - make TransformationFactory a non-template
+    - figure out what to do to create tempated Transformations elegantly
+  - tweak the size of the vectors which are multithreadedly transformed
 - make rotations on Composites behave correctly
-- remove TransformationPolicies, they're unneccessarily complicated
 - ensure commitDraw() is only called once, after all vertices are added - do
   something with scope
   - use a GL view that takes advantage of this optimization
