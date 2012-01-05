@@ -65,7 +65,6 @@ protected:
 
 };
 
-template <unsigned N, unsigned P, typename NUM = double>
 class TransformationFactory;
 
 /// Policy-based class template to apply a geometrical transformation on a set of vertices.
@@ -103,7 +102,7 @@ public:
     VecMath::Vector<N, NUM> translation_;   ///< Translation part of the Transformation.
     VecMath::Vector<N, NUM> scale_;         ///< Scaling part of the Transformation.
 
-    friend class TransformationFactory< N, P, NUM >;
+    friend class TransformationFactory;
 };
 
 #endif // TRANSFORMATION_H

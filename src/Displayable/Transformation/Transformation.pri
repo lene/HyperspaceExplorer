@@ -12,3 +12,5 @@ HEADERS += \
            $${PATH}/SimpleTransformationPolicy.impl.h \
            $${PATH}/MultithreadedTransformationPolicy.h \
            $${PATH}/MultithreadedTransformationPolicy.impl.h
+
+SOURCES += $${PATH}/TransformationFactory.cpp

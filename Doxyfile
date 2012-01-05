@@ -38,7 +38,7 @@ PROJECT_NUMBER         = 0.7.1
 # If a relative path is entered, it will be relative to the location
 # where doxygen was started. If left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       = ./devel/html
+OUTPUT_DIRECTORY       = ./doc
 
 # If the CREATE_SUBDIRS tag is set to YES, then doxygen will create
 # 4096 sub-directories (in 2 levels) under the output directory of each output
@@ -124,7 +124,7 @@ FULL_PATH_NAMES        = YES
 # If left blank the directory from which doxygen is run is used as the
 # path to strip.
 
-STRIP_FROM_PATH        = /home/helge/workspace
+STRIP_FROM_PATH        = /home/lene/workspace
 
 # The STRIP_FROM_INC_PATH tag can be used to strip a user-defined part of
 # the path mentioned in the documentation of a class, which tells
@@ -1309,7 +1309,9 @@ SKIP_FUNCTION_MACROS   = YES
 # If a tag file is not located in the directory in which doxygen
 # is run, you must also specify the path to the tagfile here.
 
-TAGFILES               = devel/libstdc++.tag
+TAGFILES               = devel/libstdc++.tag devel/qt.tag
+# Does not work and I cannot find why:
+#TAGFILES = libstdc++.tag=http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/libstdc++.tag
 
 # When a file name is specified after GENERATE_TAGFILE, doxygen will create
 # a tag file that is based on the input files it reads.

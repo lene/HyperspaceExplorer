@@ -94,6 +94,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
  */
 
 #include <vector>
+
+#include "Transformation/TransformationFactory.h"
 #include <iomanip>
 
 #include <QApplication>
@@ -106,6 +108,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Menu4D.h"
 #include "Globals.h"
 #include "Parser.h"
+#include "Transformation/Transformation.h"
 
 using std::cout;
 using std::cerr;
@@ -359,9 +362,9 @@ void parse (int argc, char *argv[]) {
             if (i+1 < argc) {
                 ++i;
                 if (QString (argv[i]) == QString ("single")) {
-                    
+                    TransformationFactory::setTransformationMethod(TransformationFactory::Singlethreaded);
                 } else if (QString (argv[i]) == QString ("multi")) {
-                    
+                    TransformationFactory::setTransformationMethod(TransformationFactory::Multithreaded);
                 } else {
                     help(argv[0]);
                 }

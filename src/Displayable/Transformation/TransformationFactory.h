@@ -16,7 +16,6 @@
 template < unsigned N, unsigned P, typename NUM >
 class Transformation;
 
-template < unsigned N, unsigned P, typename NUM >
 class TransformationFactory {
     
 public:
@@ -32,6 +31,7 @@ public:
      *  \param translation The translation Vector to add to all vertices.
      *  \param scale Scale the target, with independent values for each direction.
      */
+    template < unsigned N, unsigned P, typename NUM = double >
     static const Transformation< N, P, NUM > &create(
         const VecMath::Rotation<N, NUM> &rotation,
         const VecMath::Vector<N, NUM> &translation,
@@ -39,17 +39,17 @@ public:
     );
 
         /// Initialize an identity Transformation.
+    template < unsigned N, unsigned P, typename NUM = double >
     static const Transformation< N, P, NUM > &create();
 
-    template <typename Policy> static const Transformation< N, P, NUM > &createWithPolicy(
+    template < unsigned N, unsigned P, typename NUM = double, typename Policy >
+    static const Transformation< N, P, NUM > &createWithPolicy(
         const VecMath::Rotation<N, NUM> &rotation,
         const VecMath::Vector<N, NUM> &translation,
         const VecMath::Vector<N, NUM> &scale
     );
     
 private:
-    
-    static std::shared_ptr< const Transformation< N, P, NUM > > pointerToImpl_;
     
     static Method method_;
     

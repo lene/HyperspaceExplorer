@@ -141,7 +141,7 @@ void Rotope::Transform(const VecMath::Rotation<4> &R,
     Xtrans_[i] = (Rot*X()[i])+T;
   }
  */
-    const Transformation<4, 1> &xform = TransformationFactory<4, 1>::create(R, T, 1.);
+    const Transformation<4, 1> &xform = TransformationFactory::create<4, 1, double>(R, T, 1.);
     setXtrans(xform.transform(X()));
 
 }

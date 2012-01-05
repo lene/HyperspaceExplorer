@@ -1,8 +1,9 @@
 - implement multithreaded transformations:
   - remove TransformationPolicies, they're unneccessarily complicated
-  - make TransformationFactory a non-template
-    - figure out what to do to create tempated Transformations elegantly
+  - make multithreaded transformation work for Objects
   - tweak the size of the vectors which are multithreadedly transformed
+  - add menu entry to switch transformation method
+    - make Appearance menu submenu of new Settings menu
 - make rotations on Composites behave correctly
 - ensure commitDraw() is only called once, after all vertices are added - do
   something with scope

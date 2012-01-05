@@ -63,7 +63,7 @@ class Test_Transformation: public QObject {
     static constexpr unsigned min_size_for_multithreaded_advantage = 1024;
     
     int timeTransform(const Transformation< 4, 3, double > &transform);
-    int timeTransformationMethod(TransformationFactory< 4, 3, double >::Method method);
+    int timeTransformationMethod(TransformationFactory::Method method);
     
     std::shared_ptr< FunctionValueGrid<4, 3> > _grid;
 

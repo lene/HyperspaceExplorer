@@ -207,14 +207,30 @@ function document() {
         ${USERNAME},${PROJECTNAME}@web.sourceforge.net:htdocs
 }
 
-
-parse_commandline $@
-
-LINES=$(find . \( -name \*.[CHh] -or -name \*.cpp \) -and -not -path \*/tmp/\* -exec cpp -fpreprocessed "{}" \; 2> /dev/null | \
+function print_loc_default() {
+  LINES=$(find . \( -name \*.[CHh] -or -name \*.cpp \) -and -not -path \*/tmp/\* -exec cpp -fpreprocessed "{}" \; 2> /dev/null | \
         grep -v ^$ | \
         grep -v ^# | \
         wc -l)
-echo $LINES lines of code
+  echo $LINES lines of code
+}
+
+function print_loc_cloc() {
+  make clean > /dev/null
+  cloc src tests main
+}
+
+function print_loc() {
+  if [ -z $(which cloc) ]; then
+	print_loc_default
+  else
+	print_loc_cloc
+  fi
+}
+
+parse_commandline $@
+
+print_loc
 
 if [ $edit -eq 1 -o $test -eq 1 -o $generate -eq 1 -o $check -eq 1 \
          -o $upload -eq 1 -o $document -eq 1 -o $branch -eq 1 ]; then
