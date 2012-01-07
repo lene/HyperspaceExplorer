@@ -32,7 +32,7 @@ public:
      *  \param scale Scale the target, with independent values for each direction.
      */
     template < unsigned N, unsigned P, typename NUM = double >
-    static const Transformation< N, P, NUM > &create(
+    static const Transformation< N, P, NUM > *create(
         const VecMath::Rotation<N, NUM> &rotation,
         const VecMath::Vector<N, NUM> &translation,
         const VecMath::Vector<N, NUM> &scale
@@ -40,10 +40,10 @@ public:
 
         /// Initialize an identity Transformation.
     template < unsigned N, unsigned P, typename NUM = double >
-    static const Transformation< N, P, NUM > &create();
+    static const Transformation< N, P, NUM > *create();
 
     template < unsigned N, unsigned P, typename NUM = double, typename Policy >
-    static const Transformation< N, P, NUM > &createWithPolicy(
+    static const Transformation< N, P, NUM > *createWithPolicy(
         const VecMath::Rotation<N, NUM> &rotation,
         const VecMath::Vector<N, NUM> &translation,
         const VecMath::Vector<N, NUM> &scale

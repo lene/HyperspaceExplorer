@@ -130,6 +130,7 @@ void Rotope::Initialize() {
 
 #include "Transformation.impl.h"
 #include "TransformationFactory.impl.h"
+#include <memory>
 
 void Rotope::Transform(const VecMath::Rotation<4> &R,
                        const VecMath::Vector<4> &T) {
@@ -141,8 +142,8 @@ void Rotope::Transform(const VecMath::Rotation<4> &R,
     Xtrans_[i] = (Rot*X()[i])+T;
   }
  */
-    const Transformation<4, 1> &xform = TransformationFactory::create<4, 1, double>(R, T, 1.);
-    setXtrans(xform.transform(X()));
+    std::shared_ptr<const Transformation<4, 1> > xform(TransformationFactory::create<4, 1, double>(R, T, 1.));
+    setXtrans(xform->transform(X()));
 
 }
 

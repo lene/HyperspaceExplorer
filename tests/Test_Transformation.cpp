@@ -52,7 +52,7 @@ Vector<4> defaultTranslation() {
 }
 
 template <typename Policy>
-const Transformation< 4, 3 > &generateDefaultTransform() {
+const Transformation< 4, 3 > *generateDefaultTransform() {
   return TransformationFactory::createWithPolicy< 4, 3, double, Policy >(defaultRotation(), defaultTranslation(), 1.);
 }
 
@@ -80,34 +80,34 @@ Q_DECLARE_METATYPE(Rotation<4>)
 Q_DECLARE_METATYPE(Vector<4>)
 
 void Test_Transformation::transformPerformed() {
-  const Transformation< 4, 3 > &transform =
+  const Transformation< 4, 3 > *transform =
     generateDefaultTransform< SimpleTransformationPolicy<4, 3, double> >();
 
-  FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
+  FunctionValueGrid<4, 3>::value_storage_type g = transform->transform(_grid->getValues());
 }
 
 void Test_Transformation::multithreadedTransformPerformed() {
-  const Transformation< 4, 3 > &transform =
+  const Transformation< 4, 3 > *transform =
     generateDefaultTransform< MultithreadedTransformationPolicy<4, 3, double> >();
 
-  FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
+  FunctionValueGrid<4, 3>::value_storage_type g = transform->transform(_grid->getValues());
 }
 
-int Test_Transformation::timeTransform(const Transformation< 4, 3 > &transform) {
+int Test_Transformation::timeTransform(const Transformation< 4, 3 > *transform) {
   shared_ptr< FunctionValueGrid<4, 3> > grid = makeGrid(min_size_for_multithreaded_advantage, 2, 2);
   QTime t;
   t.start();
-  FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(grid->getValues());
+  FunctionValueGrid<4, 3>::value_storage_type g = transform->transform(grid->getValues());
   return t.elapsed();
 }
 
 void Test_Transformation::multithreadedTransformFaster() {
 
-  const Transformation< 4, 3 > &transform1 =
+  const Transformation< 4, 3 > *transform1 =
     generateDefaultTransform< MultithreadedTransformationPolicy<4, 3, double> >();
   int elapsed1 = timeTransform(transform1);
 
-  const Transformation< 4, 3 > &transform2 =
+  const Transformation< 4, 3 > *transform2 =
     generateDefaultTransform< SimpleTransformationPolicy<4, 3, double> >();
   int elapsed2 = timeTransform(transform2);
 
@@ -118,7 +118,7 @@ void Test_Transformation::multithreadedTransformFaster() {
 
 int Test_Transformation::timeTransformationMethod(TransformationFactory::Method method) {
   TransformationFactory::setTransformationMethod(method);
-  const Transformation< 4, 3 > &transform = TransformationFactory::create< 4, 3, double >(
+  const Transformation< 4, 3 > *transform = TransformationFactory::create< 4, 3, double >(
         defaultRotation(), defaultTranslation(), 1.
   );
   return timeTransform(transform);
@@ -150,9 +150,9 @@ void Test_Transformation::rotationPreservesNorm() {
   QFETCH(Rotation<4>, rotation);
 
   Vector<4> trans(0.);
-  const Transformation<4, 3> &transform = TransformationFactory::create< 4, 3, double >(rotation, trans, 1.);
+  std::shared_ptr<const Transformation<4, 3> > transform(TransformationFactory::create< 4, 3, double >(rotation, trans, 1.));
 
-  FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
+  FunctionValueGrid<4, 3>::value_storage_type g = transform->transform(_grid->getValues());
 
   for (unsigned i = 0; i < g.size(); ++i) {
     for (unsigned j = 0; j < g.size(); ++j) {
@@ -182,9 +182,9 @@ void Test_Transformation::rotate90DegreesIsOrthogonal() {
   QFETCH(Rotation<4>, rotation);
 
   Vector<4> trans(0.);
-  const Transformation<4, 3> &transform = TransformationFactory::create< 4, 3, double >(rotation, trans, 1.);
+  std::shared_ptr<const Transformation<4, 3> > transform(TransformationFactory::create< 4, 3, double >(rotation, trans, 1.));
 
-  FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
+  FunctionValueGrid<4, 3>::value_storage_type g = transform->transform(_grid->getValues());
 
   for (unsigned i = 0; i < g.size(); ++i) {
     for (unsigned j = 0; j < g.size(); ++j) {
@@ -212,9 +212,9 @@ void Test_Transformation::rotate180DegreesIsNegative() {
   QFETCH(Rotation<4>, rotation);
 
   Vector<4> trans(0.);
-  const Transformation<4, 3> &transform = TransformationFactory::create< 4, 3, double >(rotation, trans, 1.);
+  std::shared_ptr<const Transformation<4, 3> > transform(TransformationFactory::create< 4, 3, double >(rotation, trans, 1.));
 
-  FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
+  FunctionValueGrid<4, 3>::value_storage_type g = transform->transform(_grid->getValues());
 
   for (unsigned i = 0; i < g.size(); ++i) {
     for (unsigned j = 0; j < g.size(); ++j) {
@@ -242,9 +242,9 @@ void Test_Transformation::rotate360DegreesIsEqual() {
   QFETCH(Rotation<4>, rotation);
 
   Vector<4> trans(0.);
-  const Transformation<4, 3> &transform = TransformationFactory::create< 4, 3, double >(rotation, trans, 1.);
+  std::shared_ptr< const Transformation<4, 3> > transform(TransformationFactory::create< 4, 3, double >(rotation, trans, 1.));
 
-  FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
+  FunctionValueGrid<4, 3>::value_storage_type g = transform->transform(_grid->getValues());
 
   for (unsigned i = 0; i < g.size(); ++i) {
     for (unsigned j = 0; j < g.size(); ++j) {
@@ -267,9 +267,9 @@ void Test_Transformation::translationAddsVector() {
   Rotation<4> rotation(0., 0., 0., 0., 0., 0.);
   QFETCH(Vector<4>, translation);
 
-  const Transformation<4, 3> &transform = TransformationFactory::create< 4, 3, double >(rotation, translation, 1.);
+  std::shared_ptr<const Transformation<4, 3> > transform(TransformationFactory::create< 4, 3, double >(rotation, translation, 1.));
 
-  FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
+  FunctionValueGrid<4, 3>::value_storage_type g = transform->transform(_grid->getValues());
 
   for (unsigned i = 0; i < g.size(); ++i) {
     for (unsigned j = 0; j < g.size(); ++j) {
@@ -297,9 +297,9 @@ void Test_Transformation::scaleScales(){
   Vector<4> translation(0.);
   QFETCH(Vector<4>, scale);
 
-  const Transformation<4, 3> &transform = TransformationFactory::create< 4, 3, double >(rotation, translation, scale);
+  std::shared_ptr<const Transformation<4, 3> > transform(TransformationFactory::create< 4, 3, double >(rotation, translation, scale));
 
-  FunctionValueGrid<4, 3>::value_storage_type g = transform.transform(_grid->getValues());
+  FunctionValueGrid<4, 3>::value_storage_type g = transform->transform(_grid->getValues());
 
   for (unsigned i = 0; i < g.size(); ++i) {
     for (unsigned j = 0; j < g.size(); ++j) {
@@ -341,9 +341,9 @@ void Test_Transformation::rotateFloatVector() {
     for (float angle = 0.f; angle <= 360.f; ++angle) {
         Rotation<4, float> rotation = makeRotation<float>(angle, 0., 0., 0., 0., 0.);
 
-        const Transformation<4, 1, float> &transform = TransformationFactory::create<4, 1, float>(rotation, trans, 1.);
+        std::shared_ptr<const Transformation<4, 1, float> > transform(TransformationFactory::create<4, 1, float>(rotation, trans, 1.));
 
-        FunctionValueGrid<4, 1, float>::value_storage_type g = transform.transform(vec);
+        FunctionValueGrid<4, 1, float>::value_storage_type g = transform->transform(vec);
 
         QVERIFY2(fabs(sqnorm(g[0]) - sqnorm(vec[0])) < 1e-6,
                  (QString::number(sqnorm(g[0])) + " != "+ QString::number(sqnorm(vec[0]))).toAscii()
@@ -382,9 +382,9 @@ void Test_Transformation::rotateFloats() {
     QFETCH(floatrot, rotation);
 
     Vector<4, float> trans(0.);
-    const Transformation<4, 3, float> &transform = TransformationFactory::create<4, 3, float>(rotation, trans, 1.);
+    std::shared_ptr<const Transformation<4, 3, float> > transform(TransformationFactory::create<4, 3, float>(rotation, trans, 1.));
 
-    FunctionValueGrid<4, 3, float>::value_storage_type g = transform.transform(grid->getValues());
+    FunctionValueGrid<4, 3, float>::value_storage_type g = transform->transform(grid->getValues());
 //    qDebug() << "Rotated:\n" << g.toString().c_str();
 
     for (unsigned i = 0; i < g.size(); ++i) {

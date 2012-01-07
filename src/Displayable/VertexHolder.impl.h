@@ -85,8 +85,8 @@ template <unsigned N, unsigned P, typename NUM>
 void VertexHolder<N, P, NUM>::Transform (const VecMath::Rotation<N, NUM> &R,
                                            const vertex_type &T,
                                            const vertex_type &scale) {
-  const Transformation<N, P, NUM> &xform = TransformationFactory::create<N, P, NUM>(R, T, scale);
-  setXtrans(xform.transform(X()));
+  std::shared_ptr<const Transformation<N, P, NUM> > xform(TransformationFactory::create<N, P, NUM>(R, T, scale));
+  setXtrans(xform->transform(X()));
 }
 
 /**

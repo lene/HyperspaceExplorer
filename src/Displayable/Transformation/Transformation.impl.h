@@ -25,21 +25,84 @@
 #include "TransformationPolicy.h"
 
 #include "Rotation.impl.h"
+#include "TransformationFactory.h"
 
-template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
-TransformationImpl<N, P, NUM, TransformationPolicy>::TransformationImpl(
+template <unsigned N, unsigned P, typename NUM>
+TransformationImpl<N, P, NUM>::TransformationImpl(
         const VecMath::Rotation<N, NUM> &rotation,
         const VecMath::Vector<N, NUM> &translation,
-        const VecMath::Vector<N, NUM> &scale):
+        const VecMath::Vector<N, NUM> &scale): 
   rotation_(rotation), translation_(translation), scale_(scale) { }
 
 template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
-typename TransformationImpl<N, P, NUM, TransformationPolicy>::value_storage_type
-TransformationImpl<N, P, NUM, TransformationPolicy>::transform(
-  const value_storage_type &operand) const {
-  TransformationPolicy p(rotation_, translation_, scale_);
+TransformationWithPolicy<N, P, NUM, TransformationPolicy>::TransformationWithPolicy(
+        const VecMath::Rotation<N, NUM> &rotation,
+        const VecMath::Vector<N, NUM> &translation,
+        const VecMath::Vector<N, NUM> &scale): 
+  TransformationImpl<N, P, NUM>(rotation, translation, scale) { }
 
-  return p.transform(operand);
+template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
+typename TransformationWithPolicy<N, P, NUM, TransformationPolicy>::value_storage_type
+TransformationWithPolicy<N, P, NUM, TransformationPolicy>::transform(
+  const value_storage_type &operand) const {
+    TransformationPolicy p(
+        TransformationImpl<N, P, NUM>::rotation_, 
+        TransformationImpl<N, P, NUM>::translation_, 
+        TransformationImpl<N, P, NUM>::scale_
+    );
+
+    return p.transform(operand);
+}
+
+template <unsigned N, unsigned P, typename NUM>
+SinglethreadedTransformation<N, P, NUM>::SinglethreadedTransformation(
+        const VecMath::Rotation<N, NUM> &rotation,
+        const VecMath::Vector<N, NUM> &translation,
+        const VecMath::Vector<N, NUM> &scale): 
+  TransformationImpl<N, P, NUM>(rotation, translation, scale) { }
+
+template <unsigned N, typename NUM>
+SinglethreadedTransformation<N, 1, NUM>::SinglethreadedTransformation(
+        const VecMath::Rotation<N, NUM> &rotation,
+        const VecMath::Vector<N, NUM> &translation,
+        const VecMath::Vector<N, NUM> &scale): 
+  TransformationImpl<N, 1, NUM>(rotation, translation, scale) { }
+
+template <unsigned N, unsigned P, typename NUM>
+typename SinglethreadedTransformation<N, P, NUM>::value_storage_type
+SinglethreadedTransformation<N, P, NUM>::transform(
+  const value_storage_type &x) const {
+    
+    value_storage_type xtrans(x.size());
+    
+    SinglethreadedTransformation<N, P-1, NUM> transformation(
+        TransformationImpl<N, P, NUM>::rotation_, 
+        TransformationImpl<N, P, NUM>::translation_, 
+        TransformationImpl<N, P, NUM>::scale_
+    );
+
+    for(unsigned i = 0; i != x.size(); ++i) {
+        xtrans[i] = transformation.transform(x[i]);
+    }
+    
+    return xtrans;
+}
+
+template <unsigned N, typename NUM>
+typename SinglethreadedTransformation<N, 1, NUM>::value_storage_type
+SinglethreadedTransformation<N, 1, NUM>::transform(
+  const value_storage_type &x) const {
+    value_storage_type xtrans(x.size());
+
+    for(unsigned i = 0; i != x.size(); ++i) {
+        xtrans[i] = perform(
+                x[i],
+                TransformationImpl<N, 1, NUM>::rotation_, 
+                TransformationImpl<N, 1, NUM>::translation_, 
+                TransformationImpl<N, 1, NUM>::scale_                
+        );
+    }
+    return xtrans;
 }
 
 #endif // TRANSFORMATION_IMPL_H

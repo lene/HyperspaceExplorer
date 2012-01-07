@@ -15,7 +15,7 @@
 #include "MultithreadedTransformationPolicy.impl.h"
 
 template <unsigned N, unsigned P, typename NUM> 
-const Transformation< N, P, NUM > & 
+const Transformation< N, P, NUM > * 
 TransformationFactory::create(
         const VecMath::Rotation<N, NUM> &rotation,
         const VecMath::Vector<N, NUM> &translation,
@@ -24,11 +24,12 @@ TransformationFactory::create(
     if (getTransformationMethod() == Multithreaded) {
         return createWithPolicy< N, P, NUM, MultithreadedTransformationPolicy< N, P, NUM > >(rotation, translation, scale);
     }
-    return createWithPolicy< N, P, NUM, SimpleTransformationPolicy< N, P, NUM > >(rotation, translation, scale);
+    return new SinglethreadedTransformation<N, P, NUM>(rotation, translation, scale);
+//    return createWithPolicy< N, P, NUM, SimpleTransformationPolicy< N, P, NUM > >(rotation, translation, scale);
 }
 
 template <unsigned N, unsigned P, typename NUM> 
-const Transformation< N, P, NUM > & 
+const Transformation< N, P, NUM > * 
 TransformationFactory::create() {
     return create(VecMath::Rotation<N, NUM>(), VecMath::Vector<N, NUM>(), VecMath::Vector<N, NUM>(1.));
 }
@@ -41,18 +42,24 @@ namespace TransformationFactoryUtil {
     }
 }
 template <unsigned N, unsigned P, typename NUM, typename Policy> 
-const Transformation< N, P, NUM > & 
+const Transformation< N, P, NUM > * 
 TransformationFactory::createWithPolicy(
         const VecMath::Rotation<N, NUM> &rotation,
         const VecMath::Vector<N, NUM> &translation,
         const VecMath::Vector<N, NUM> &scale
     ) {
+#   if 1    
+    return new TransformationWithPolicy< N, P, NUM, Policy >(
+        rotation, translation, scale
+    );
+#   else
     TransformationFactoryUtil::pointerToImpl<N, P, NUM>() = std::shared_ptr< const Transformation< N, P, NUM > >(
-                new TransformationImpl< N, P, NUM, Policy >(
+                new TransformationWithPolicy< N, P, NUM, Policy >(
                         rotation, translation, scale
                 )
     );
-    return *TransformationFactoryUtil::pointerToImpl<N, P, NUM>();
+    return TransformationFactoryUtil::pointerToImpl<N, P, NUM>();
+#   endif    
 }
 
 

@@ -22,7 +22,7 @@ SimpleTransformationPolicy<N, P, NUM>::transform(
         const value_storage_type &operand
 ) {
   value_storage_type v(operand.size());
-  const Transformation< N, P-1, NUM > &sub_transform =
+  const Transformation< N, P-1, NUM > *sub_transform =
           TransformationFactory::template createWithPolicy<N, P-1, NUM, SimpleTransformationPolicy<N, P-1, NUM> >(
     this->rotation_, this->translation_, this->scale_
   );
@@ -32,7 +32,7 @@ SimpleTransformationPolicy<N, P, NUM>::transform(
            << ")";
 # endif
   for (unsigned i = 0; i < operand.size(); ++i) {
-    v[i] = sub_transform.transform(operand[i]);
+    v[i] = sub_transform->transform(operand[i]);
   }
 
   return v;
