@@ -25,9 +25,6 @@
 
 #include "Rotation.h"
 
-/// Forward declaration needed to make the SimpleTransformationPolicy a default template parameter for Transformation.
-template <unsigned N, unsigned P, typename NUM = double> class SimpleTransformationPolicy;
-
 namespace TransformationUtil {
     template <unsigned N, typename NUM = double>
     inline VecMath::Vector<N, NUM> perform(
@@ -122,8 +119,8 @@ protected:
  *
  *  \todo typedefs for translation and rotation types
  */
-template <unsigned N, unsigned P, typename NUM = double,
-          typename TransformationPolicy = SimpleTransformationPolicy <N, P, NUM> >
+template <unsigned N, unsigned P, typename NUM,
+          typename TransformationPolicy >
 class TransformationWithPolicy: public TransformationImpl< N, P, NUM > {
 
 public:
@@ -134,8 +131,6 @@ public:
     /// Execute the transform on a set of vertices.
     virtual value_storage_type transform(const value_storage_type &operand) const;
 
-  private:
-
     /// Initialize a Transformation with a Rotation, a translation Vector and a scaling Vector.
     /** \param rotation The amount the target is rotated.
      *  \param translation The translation Vector to add to all vertices.
@@ -144,6 +139,9 @@ public:
     TransformationWithPolicy(const VecMath::Rotation<N, NUM> &rotation,
                        const VecMath::Vector<N, NUM> &translation,
                        const VecMath::Vector<N, NUM> &scale);
+    
+  private:
+
 
     friend class TransformationFactory;
 };

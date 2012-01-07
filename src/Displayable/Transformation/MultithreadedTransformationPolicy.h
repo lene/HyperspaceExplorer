@@ -50,7 +50,7 @@ public:
     /// Type for the storage of the function values on all grid points.
     typedef typename FunctionValueGrid< N, 1, NUM >::value_storage_type value_storage_type;
 
-    /// Initialize a SimpleTransformationPolicy with a transformation matrix and a translation vector.
+    /// Initialize a MultithreadedTransformationPolicy with a transformation matrix and a translation vector.
     /** \param transform The \p N x \p N Rotation to apply to all vertices.
      *  \param translation The translation Vector to add to all vertices.
      */

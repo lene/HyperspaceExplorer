@@ -2,15 +2,12 @@ PATH = Displayable/Transformation
 INCLUDEPATH += $${PATH}
 DEPENDPATH += $${PATH}
 
-HEADERS += \
-           $${PATH}/Transformation.h \
-           $${PATH}/Transformation.impl.h \
-           $${PATH}/TransformationFactory.h \
-           $${PATH}/TransformationFactory.impl.h \
-           $${PATH}/TransformationPolicy.h \
-           $${PATH}/SimpleTransformationPolicy.h \
-           $${PATH}/SimpleTransformationPolicy.impl.h \
-           $${PATH}/MultithreadedTransformationPolicy.h \
-           $${PATH}/MultithreadedTransformationPolicy.impl.h
+HEADERS += $${PATH}/Transformation.h 
+HEADERS += $${PATH}/Transformation.impl.h 
+HEADERS += $${PATH}/TransformationFactory.h 
+HEADERS += $${PATH}/TransformationFactory.impl.h 
+HEADERS += $${PATH}/TransformationPolicy.h 
+HEADERS += $${PATH}/MultithreadedTransformationPolicy.h 
+HEADERS += $${PATH}/MultithreadedTransformationPolicy.impl.h
 
 SOURCES += $${PATH}/TransformationFactory.cpp

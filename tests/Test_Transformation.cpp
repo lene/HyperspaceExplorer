@@ -51,9 +51,8 @@ Vector<4> defaultTranslation() {
     return Vector<4>(1., 1., 1., 1.);
 }
 
-template <typename Policy>
 const Transformation< 4, 3 > *generateDefaultTransform() {
-  return TransformationFactory::createWithPolicy< 4, 3, double, Policy >(defaultRotation(), defaultTranslation(), 1.);
+  return TransformationFactory::create< 4, 3, double >(defaultRotation(), defaultTranslation(), 1.);
 }
 
 shared_ptr< FunctionValueGrid<4, 3> > makeGrid(unsigned xsize, unsigned ysize, unsigned zsize) {
@@ -80,15 +79,15 @@ Q_DECLARE_METATYPE(Rotation<4>)
 Q_DECLARE_METATYPE(Vector<4>)
 
 void Test_Transformation::transformPerformed() {
-  const Transformation< 4, 3 > *transform =
-    generateDefaultTransform< SimpleTransformationPolicy<4, 3, double> >();
+  TransformationFactory::setTransformationMethod(TransformationFactory::Singlethreaded);
+  const Transformation< 4, 3 > *transform = generateDefaultTransform();
 
   FunctionValueGrid<4, 3>::value_storage_type g = transform->transform(_grid->getValues());
 }
 
 void Test_Transformation::multithreadedTransformPerformed() {
-  const Transformation< 4, 3 > *transform =
-    generateDefaultTransform< MultithreadedTransformationPolicy<4, 3, double> >();
+  TransformationFactory::setTransformationMethod(TransformationFactory::Multithreaded);
+  const Transformation< 4, 3 > *transform = generateDefaultTransform();
 
   FunctionValueGrid<4, 3>::value_storage_type g = transform->transform(_grid->getValues());
 }
@@ -103,16 +102,18 @@ int Test_Transformation::timeTransform(const Transformation< 4, 3 > *transform) 
 
 void Test_Transformation::multithreadedTransformFaster() {
 
-  const Transformation< 4, 3 > *transform1 =
-    generateDefaultTransform< MultithreadedTransformationPolicy<4, 3, double> >();
+    TransformationFactory::setTransformationMethod(TransformationFactory::Multithreaded);
+    const Transformation< 4, 3 > *transform1 =
+        TransformationFactory::create<4, 3>(defaultRotation(), defaultTranslation(), VecMath::Vector<4>(1.));
   int elapsed1 = timeTransform(transform1);
 
-  const Transformation< 4, 3 > *transform2 =
-    generateDefaultTransform< SimpleTransformationPolicy<4, 3, double> >();
-  int elapsed2 = timeTransform(transform2);
+    TransformationFactory::setTransformationMethod(TransformationFactory::Singlethreaded);
+    const Transformation< 4, 3 > *transform2 =
+        TransformationFactory::create<4, 3>(defaultRotation(), defaultTranslation(), VecMath::Vector<4>(1.));
+    int elapsed2 = timeTransform(transform2);
 
-  qDebug() << "Multithreaded: " << elapsed1 << "ms, single threaded: " << elapsed2 << "ms";
-  QVERIFY2(elapsed1 < elapsed2, "Multithreaded transform should be faster");
+    qDebug() << "Multithreaded: " << elapsed1 << "ms, single threaded: " << elapsed2 << "ms";
+    QVERIFY2(elapsed1 < elapsed2, "Multithreaded transform should be faster");
   
 }
 

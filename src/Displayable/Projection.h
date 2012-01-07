@@ -26,7 +26,7 @@
 #include "ViewpointList.h"
 #include "ArrayList.h"
 
-/// Forward declaration needed to make the SimpleTransformationPolicy a default template parameter for Transformation.
+/// Forward declaration needed to make the SimpleProjectionPolicy a default template parameter for Projection.
 template <unsigned N, unsigned Nnew, unsigned P, typename NUM> class SimpleProjectionPolicy;
 
 /// Class that projects a \p N dimensional vertex array to \p Nnew dimensions.

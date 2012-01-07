@@ -8,7 +8,6 @@
 #ifndef TRANSFORMATIONFACTORY_H
 #define	TRANSFORMATIONFACTORY_H
 
-#include "SimpleTransformationPolicy.h"
 #include "MultithreadedTransformationPolicy.h"
 
 #include <memory>
@@ -41,14 +40,14 @@ public:
         /// Initialize an identity Transformation.
     template < unsigned N, unsigned P, typename NUM = double >
     static const Transformation< N, P, NUM > *create();
-
+/*
     template < unsigned N, unsigned P, typename NUM = double, typename Policy >
     static const Transformation< N, P, NUM > *createWithPolicy(
         const VecMath::Rotation<N, NUM> &rotation,
         const VecMath::Vector<N, NUM> &translation,
         const VecMath::Vector<N, NUM> &scale
     );
-    
+*/    
 private:
     
     static Method method_;

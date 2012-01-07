@@ -25,7 +25,7 @@ MultithreadedTransformationPolicy<N, P, NUM>::transform(
 ) {
   value_storage_type v(operand.size());
   const Transformation< N, P-1, NUM > *sub_transform =
-          TransformationFactory::template createWithPolicy<N, P-1, NUM, MultithreadedTransformationPolicy<N, P-1, NUM> >(
+          new TransformationWithPolicy< N, P-1, NUM, MultithreadedTransformationPolicy<N, P-1, NUM> >(
     this->rotation_, this->translation_, this->scale_
   );
   for (unsigned i = 0; i < operand.size(); ++i) {
