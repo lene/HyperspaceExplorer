@@ -22,16 +22,21 @@ TransformationFactory::create(
         const VecMath::Vector<N, NUM> &translation,
         const VecMath::Vector<N, NUM> &scale
     ) {
-    if (getTransformationMethod() == Multithreaded) {
-        if (true) {
-            return new TransformationWithPolicy< N, P, NUM, MultithreadedTransformationPolicy< N, P, NUM > >(
-                rotation, translation, scale
-            );
-        } else {
-            return new MultithreadedTransformation<N, P, NUM>(rotation, translation, scale);
-        }
+    switch(getTransformationMethod()) {
+        
+        case Multithreaded:
+            if (false) {
+                return new TransformationWithPolicy< N, P, NUM, MultithreadedTransformationPolicy< N, P, NUM > >(
+                    rotation, translation, scale
+                );
+            } else {
+                return new MultithreadedTransformation<N, P, NUM>(rotation, translation, scale);
+            }
+            
+        case Singlethreaded:
+        default:
+            return new SinglethreadedTransformation<N, P, NUM>(rotation, translation, scale);
     }
-    return new SinglethreadedTransformation<N, P, NUM>(rotation, translation, scale);
 }
 
 template <unsigned N, unsigned P, typename NUM> 

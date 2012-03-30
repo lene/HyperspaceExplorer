@@ -12,6 +12,8 @@
 
 #include <QtConcurrentMap>
 
+#define DEBUG_TRANSFORMATION 1
+
 #if DEBUG_TRANSFORMATION
 #include <QDebug>
 #include <QThreadPool>

@@ -1,5 +1,6 @@
 - implement multithreaded transformations:
-  - remove TransformationPolicies, they're unneccessarily complicated
+  - remove MultithreadedTransformationPolicy
+    - debug MultithreadedTransformation first
   - make multithreaded transformation work for Objects
   - tweak the size of the vectors which are multithreadedly transformed
   - add menu entry to switch transformation method
