@@ -4,6 +4,10 @@ DEPENDPATH += $${PATH}
 
 HEADERS += $${PATH}/Transformation.h 
 HEADERS += $${PATH}/Transformation.impl.h 
+HEADERS += $${PATH}/SinglethreadedTransformation.h 
+HEADERS += $${PATH}/SinglethreadedTransformation.impl.h 
+HEADERS += $${PATH}/MultithreadedTransformation.h 
+HEADERS += $${PATH}/MultithreadedTransformation.impl.h 
 HEADERS += $${PATH}/TransformationFactory.h 
 HEADERS += $${PATH}/TransformationFactory.impl.h 
 HEADERS += $${PATH}/TransformationPolicy.h 
