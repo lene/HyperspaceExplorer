@@ -5,6 +5,7 @@
   - tweak the size of the vectors which are multithreadedly transformed
   - add menu entry to switch transformation method
     - make Appearance menu submenu of new Settings menu
+  - use Thrust library for CUDA transform
 - make rotations on Composites behave correctly
 - ensure commitDraw() is only called once, after all vertices are added - do
   something with scope
