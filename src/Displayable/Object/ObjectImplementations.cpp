@@ -6,6 +6,7 @@
 #include "FunctionHolder.impl.h"
 #include "Vector.impl.h"
 #include "FacePolygon.impl.h"
+#include "MultiDimensionalVector.impl.h"
 
 using VecMath::Vector;
 using VecMath::Matrix;
