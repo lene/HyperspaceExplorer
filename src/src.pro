@@ -7,10 +7,10 @@ TEMPLATE = lib
 ###     choose one:
 ###
 ###     release mode
-#CONFIG -= debug
-#CONFIG += release qt warn_on uic staticlib
+CONFIG -= debug
+CONFIG += release qt warn_on uic staticlib
 ###     debug mode
-CONFIG += debug qt warn_on uic dll staticlib
+#CONFIG += debug qt warn_on uic dll staticlib
 
 ###
 ###     set the version number here

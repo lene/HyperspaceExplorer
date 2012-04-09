@@ -2,7 +2,8 @@ HyperspaceExplorer Changelog
 =============================
 
 release 0.7.1:
-    * Based Functions (but not Objects yet) on FunctionValueGrid
+    * Based Functions on FunctionValueGrid, Objects on VertexGrid
+    * Added multithreaded Transformations
 
 release 0.7.0:
     * Added Rotopes to the function menu. Only Extrusion, Tapering and Rotation

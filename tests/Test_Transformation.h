@@ -63,7 +63,7 @@ class Test_Transformation: public QObject {
 
   private:
 
-    static constexpr unsigned min_size_for_multithreaded_advantage = 256;
+    static constexpr unsigned min_size_for_multithreaded_advantage = 1024;
     
     int timeTransform(const Transformation< 4, 3, double > *transform);
     int timeTransformationMethod(TransformationFactory::Method method);

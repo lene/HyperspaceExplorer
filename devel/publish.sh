@@ -106,7 +106,7 @@ function edit() {
 
 # run unit tests
 function run_tests() {
-    ./tests/tests || exit 1
+    ./tests/HyperspaceExplorer-tests || exit 1
 }
 
 # generate distribution package
@@ -191,7 +191,7 @@ function document() {
     echo "Generating documentation..."
     
     TAGFILE="http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/libstdc++.tag"
-    DOCDIR="devel/html"
+    DOCDIR="doc"
 
     cd ${BASEDIR}/${PROJECTDIR}
 

@@ -1,8 +1,7 @@
 - implement multithreaded transformations:
-  - make multithreaded transformation work for Objects
-    - tweak the size of the vectors which are multithreadedly transformed
   - add menu entry to switch transformation method
     - make Appearance menu submenu of new Settings menu
+  - multithreaded transformations for Composites
   - use Thrust library for CUDA transform
 - fix crash when switching desktop and back ("... is not a GL list")
 - make rotations on Composites behave correctly
