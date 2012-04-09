@@ -1,5 +1,5 @@
 /*
-    Hyperspace Explorer - vizualizing higher-dimensional geometry
+    Hyperspace Explorer - visualizing higher-dimensional geometry
     Copyright (C) 2010  Lene Preuss <lene.preuss@gmail.com>
 
     This program is free software; you can redistribute it and/or modify
@@ -18,8 +18,6 @@
 
 */
 
-#define DEBUG_TRANSFORMATION 0
- 
 #include "Test_Transformation.h"
 
 #include "Test_ParametricFunction.h"
@@ -93,28 +91,43 @@ void Test_Transformation::multithreadedTransformPerformed() {
 }
 
 int Test_Transformation::timeTransform(const Transformation< 4, 3 > *transform) {
-  shared_ptr< FunctionValueGrid<4, 3> > grid = makeGrid(min_size_for_multithreaded_advantage, 2, 2);
+  shared_ptr< FunctionValueGrid<4, 3> > grid = makeGrid(2, 2, min_size_for_multithreaded_advantage);
   QTime t;
   t.start();
   FunctionValueGrid<4, 3>::value_storage_type g = transform->transform(grid->getValues());
   return t.elapsed();
 }
 
+void Test_Transformation::verifyMultithreadedIsFaster(int elapsed_multi, int elapsed_single) {
+    qDebug() << "Multithreaded: " << elapsed_multi << "ms, single threaded: " << elapsed_single << "ms";
+    if (Util::isMultithreadedSensible()) {
+        QVERIFY2(elapsed_multi < elapsed_single, "Multithreaded transform should be faster");    
+    } else {
+        if (elapsed_multi >= elapsed_single) {
+            QSKIP(
+                "Multithreaded slower than singlethreaded; that may be because you don't have enough processors",
+                SkipSingle
+            );
+        } else {
+            QVERIFY(true);
+        }
+    }
+}
+
 void Test_Transformation::multithreadedTransformFaster() {
 
     TransformationFactory::setTransformationMethod(TransformationFactory::Multithreaded);
-    const Transformation< 4, 3 > *transform1 =
+    const Transformation< 4, 3 > *transform_multi =
         TransformationFactory::create<4, 3>(defaultRotation(), defaultTranslation(), VecMath::Vector<4>(1.));
-  int elapsed1 = timeTransform(transform1);
+    int elapsed_multi = timeTransform(transform_multi);
 
     TransformationFactory::setTransformationMethod(TransformationFactory::Singlethreaded);
-    const Transformation< 4, 3 > *transform2 =
+    const Transformation< 4, 3 > *transform_single =
         TransformationFactory::create<4, 3>(defaultRotation(), defaultTranslation(), VecMath::Vector<4>(1.));
-    int elapsed2 = timeTransform(transform2);
+    int elapsed_single = timeTransform(transform_single);
 
-    qDebug() << "Multithreaded: " << elapsed1 << "ms, single threaded: " << elapsed2 << "ms";
-    QVERIFY2(elapsed1 < elapsed2, "Multithreaded transform should be faster");
-  
+    verifyMultithreadedIsFaster(elapsed_multi, elapsed_single);
+    
 }
 
 int Test_Transformation::timeTransformationMethod(TransformationFactory::Method method) {
@@ -127,13 +140,21 @@ int Test_Transformation::timeTransformationMethod(TransformationFactory::Method 
 }
 
 void Test_Transformation::factorySetsSingleAndMultithreaded() {
-  shared_ptr< FunctionValueGrid<4, 3> > grid = makeGrid(min_size_for_multithreaded_advantage, 2, 2);
 
   int elapsed_multi = timeTransformationMethod(TransformationFactory::Multithreaded);
   int elapsed_single = timeTransformationMethod(TransformationFactory::Singlethreaded);
 
-  qDebug() << "Multithreaded: " << elapsed_multi << "ms, single threaded: " << elapsed_single << "ms";
-  QVERIFY2(elapsed_multi < elapsed_single, "Multithreaded transform should be faster");
+  verifyMultithreadedIsFaster(elapsed_multi, elapsed_single);
+    
+}
+
+void Test_Transformation::singlethreadedWorksForObjects() {
+
+//    shared_ptr< FunctionValueGrid<4, 1> > grid = makeGrid(4, 4, min_size_for_multithreaded_advantage);
+
+}
+
+void Test_Transformation::multithreadedWorksForObjects() {
     
 }
 

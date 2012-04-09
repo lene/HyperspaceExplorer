@@ -68,7 +68,23 @@ namespace VecMath {
 
       /// Copy construct a MultiDimensionalVector
       MultiDimensionalVector(const MultiDimensionalVector<T, D> &v);
+      
+      MultiDimensionalVector(MultiDimensionalVector<T, D> &&other) {
+          _data = std::move(other._data);
+      }
 
+      MultiDimensionalVector & operator=(const MultiDimensionalVector<T, D> &other) {
+          if (this == &other) return *this;
+          _data = other._data;
+          return *this;
+      }
+
+      MultiDimensionalVector & operator=(MultiDimensionalVector<T, D> &&other) {
+          if (this == &other) return *this;
+          _data = std::move(other._data);
+          return *this;
+      }
+      
       /// Iterator that points to the first element in the vector
       iterator begin();
 
@@ -116,6 +132,9 @@ namespace VecMath {
 
       /// Resizes the vector to the specified number of elements
       void resize(unsigned new_size, MultiDimensionalVector<T, D-1> x);
+      
+      /// Attempt to preallocate enough memory for specified number of elements
+      void reserve(unsigned new_size);
 
       /// Returns true if \p other is not equal to \p this
       bool operator == (const MultiDimensionalVector<T, D> &other) const;
@@ -243,6 +262,9 @@ namespace VecMath {
 
       /// Resizes the vector to the specified number of elements
       void resize(unsigned new_size, T x);
+
+      /// Attempt to preallocate enough memory for specified number of elements
+      void reserve(unsigned new_size);
 
       /// See MultiDimensionalVector<T, D>::operator ==()
       bool operator == (const MultiDimensionalVector<T, 1> &other) const;

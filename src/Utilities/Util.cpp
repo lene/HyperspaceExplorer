@@ -23,6 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Vector.impl.h"
 
 #include <QString>
+#include <QThread>
 
 #include <iterator>
 #include <string>
@@ -153,4 +154,9 @@ namespace Util {
 
     return parts;
   }
+  
+  bool isMultithreadedSensible() {
+      return (QThread::idealThreadCount() >= 4);
+  }
+
 }

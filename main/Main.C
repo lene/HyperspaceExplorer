@@ -324,6 +324,7 @@ void benchmark (const unsigned num_runs = 10) {
  *              --rcdir <resource_directory>
  *              --script <script_file>
  *              --benchmark [number_of_runs]
+ *              --transformation single|multi
  *  @param argc number of arguments
  *  @param argv array of arguments                                            */
 void parse (int argc, char *argv[]) {
@@ -398,6 +399,17 @@ void setRCFilePath() {
     Globals::Instance().rcdirs().append(prefix+"/share/HyperspaceExplorer");
 }
 
+/** 
+ *  Sets the method used to transform Vertices. The method can be overridden 
+ *  with the command line parameter \code --transformation single|multi \endcode
+ */
+void setTransformationMethod() {
+    if (Util::isMultithreadedSensible()) {
+        TransformationFactory::setTransformationMethod(TransformationFactory::Multithreaded);
+    } else {
+        TransformationFactory::setTransformationMethod(TransformationFactory::Singlethreaded);
+    }
+}
 
 /** initialize and run HyperspaceExplorer
  *  @param argc number of arguments
@@ -411,6 +423,8 @@ int main (int argc, char *argv[]) {
         QApplication app (argc, argv);
 
         setRCFilePath();
+        
+        setTransformationMethod();
 
         parse (argc, argv);
 

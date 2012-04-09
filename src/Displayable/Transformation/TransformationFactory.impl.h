@@ -9,11 +9,10 @@
 #define	TRANSFORMATIONFACTORY_IMPL_H
 
 #include "TransformationFactory.h"
+#include "MultithreadedTransformation.h"
 
 #include "Transformation.impl.h"
 #include "SinglethreadedTransformation.impl.h"
-#include "MultithreadedTransformation.impl.h"
-#include "MultithreadedTransformationPolicy.impl.h"
 
 template <unsigned N, unsigned P, typename NUM> 
 const Transformation< N, P, NUM > * 
@@ -25,13 +24,7 @@ TransformationFactory::create(
     switch(getTransformationMethod()) {
         
         case Multithreaded:
-            if (false) {
-                return new TransformationWithPolicy< N, P, NUM, MultithreadedTransformationPolicy< N, P, NUM > >(
-                    rotation, translation, scale
-                );
-            } else {
-                return new MultithreadedTransformation<N, P, NUM>(rotation, translation, scale);
-            }
+            return new MultithreadedTransformation<N, P, NUM>(rotation, translation, scale);
             
         case Singlethreaded:
         default:

@@ -8,21 +8,32 @@
 #ifndef TRANSFORMATIONFACTORY_H
 #define	TRANSFORMATIONFACTORY_H
 
-#include "MultithreadedTransformationPolicy.h"
-
 #include <memory>
 
+namespace VecMath {
+    template < unsigned N, typename NUM > class Rotation;
+    template < unsigned N, typename NUM > class Vector;
+}
 template < unsigned N, unsigned P, typename NUM >
 class Transformation;
 
+/// This class creates a Transformation. Always use it instead of the Transformation constructor.
+/** 
+ *  The method used for performing a Transformation is assigned with
+ *  setTransformationMethod() and a Transformation is created (according to the
+ *  globally selected Method) with create().
+ */
 class TransformationFactory {
     
 public:
 
+    /// The methods in which a Transformation can be performed.
     typedef enum { Singlethreaded, Multithreaded } Method;
     
+    /// Globally set how a Transformation is performed.
     static void setTransformationMethod(const Method &method);
 
+    /// How a Transformation is performed.
     static Method getTransformationMethod();
     
     /// Initialize a Transformation with a Rotation, a translation Vector and a scaling Vector.
@@ -37,17 +48,10 @@ public:
         const VecMath::Vector<N, NUM> &scale
     );
 
-        /// Initialize an identity Transformation.
+    /// Initialize an identity Transformation.
     template < unsigned N, unsigned P, typename NUM = double >
     static const Transformation< N, P, NUM > *create();
-/*
-    template < unsigned N, unsigned P, typename NUM = double, typename Policy >
-    static const Transformation< N, P, NUM > *createWithPolicy(
-        const VecMath::Rotation<N, NUM> &rotation,
-        const VecMath::Vector<N, NUM> &translation,
-        const VecMath::Vector<N, NUM> &scale
-    );
-*/    
+
 private:
     
     static Method method_;

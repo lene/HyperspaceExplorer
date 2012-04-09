@@ -38,6 +38,16 @@ namespace TransformationUtil {
     
 }
 
+/// Interface for applying a geometrical transformation on a set of vertices.
+/** 
+ *  This class defines the interface to which all implementations conform. The
+ *  interface basically consists of the constructor, which should only be used 
+ *  by the TransformationFactory class, and the transform() method.
+ * 
+ *  \tparam N Dimension of the vertices.
+ *  \tparam P Dimension of the parameter space.
+ *  \tparam NUM The numeric type of the \c Vector s.
+ */
 template <unsigned N, unsigned P, typename NUM = double>
 class Transformation {
 
@@ -56,6 +66,10 @@ public:
     }
 
     /// Execute the transform on a set of vertices.
+    /**
+     * @param operand A (multi-dimensional) array of vertices on which the transformation is performed
+     * @return A (multi-dimensional) array of transformed vertices
+     */
     virtual value_storage_type transform(const value_storage_type &operand) const = 0;
 
     virtual ~Transformation() { }
@@ -77,13 +91,15 @@ protected:
 
 class TransformationFactory;
 
-/// Policy-based class template to apply a geometrical transformation on a set of vertices.
-/** \tparam N Dimension of the vertices.
+/// Class template to apply a geometrical transformation on a set of vertices.
+/** 
+ *  This is the parent class from which implementations of the transformation
+ *  classes should inherit. It stores the parameters to a transformation, i.e.
+ *  the rotation, translation and scaling that are applied.
+ * 
+ *  \tparam N Dimension of the vertices.
  *  \tparam P Dimension of the parameter space.
  *  \tparam NUM The numeric type of the \c Vector s.
- *  \tparam TransformationPolicy The class executing the actual transform on the set of vertices.
- *
- *  \todo typedefs for translation and rotation types
  */
 template <unsigned N, unsigned P, typename NUM = double>
 class TransformationImpl: public Transformation< N, P, NUM > {
@@ -107,41 +123,6 @@ protected:
     VecMath::Rotation<N, NUM> rotation_;      ///< Rotation part of the Transformation.
     VecMath::Vector<N, NUM> translation_;   ///< Translation part of the Transformation.
     VecMath::Vector<N, NUM> scale_;         ///< Scaling part of the Transformation.
-
-    friend class TransformationFactory;
-};
-
-/// Policy-based class template to apply a geometrical transformation on a set of vertices.
-/** \tparam N Dimension of the vertices.
- *  \tparam P Dimension of the parameter space.
- *  \tparam NUM The numeric type of the \c Vector s.
- *  \tparam TransformationPolicy The class executing the actual transform on the set of vertices.
- *
- *  \todo typedefs for translation and rotation types
- */
-template <unsigned N, unsigned P, typename NUM,
-          typename TransformationPolicy >
-class TransformationWithPolicy: public TransformationImpl< N, P, NUM > {
-
-public:
-
-    /// Type for the storage of the function values on all grid points.
-    typedef typename FunctionValueGrid< N, P, NUM >::value_storage_type value_storage_type;
-
-    /// Execute the transform on a set of vertices.
-    virtual value_storage_type transform(const value_storage_type &operand) const;
-
-    /// Initialize a Transformation with a Rotation, a translation Vector and a scaling Vector.
-    /** \param rotation The amount the target is rotated.
-     *  \param translation The translation Vector to add to all vertices.
-     *  \param scale Scale the target, with independent values for each direction.
-     */
-    TransformationWithPolicy(const VecMath::Rotation<N, NUM> &rotation,
-                       const VecMath::Vector<N, NUM> &translation,
-                       const VecMath::Vector<N, NUM> &scale);
-    
-  private:
-
 
     friend class TransformationFactory;
 };

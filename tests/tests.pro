@@ -77,6 +77,7 @@ HEADERS += \
            Test_GridDrawer.h \
            Test_FunctionFactory.h \
            Test_FunctionHolder.h \
+           Test_PartitionedMultithreadedMap.h \
            Test_Function.h
 SOURCES += \
            Test_Util.cpp \
@@ -100,6 +101,7 @@ SOURCES += \
            Test_GridDrawer.cpp \
            Test_FunctionFactory.cpp \
            Test_FunctionHolder.cpp \
+           Test_PartitionedMultithreadedMap.cpp \
            Test_Function.cpp \
            main.cpp
 

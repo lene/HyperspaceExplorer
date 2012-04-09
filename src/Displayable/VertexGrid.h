@@ -57,6 +57,18 @@ template <unsigned N, unsigned P, typename NUM = double>
       VertexGrid(const VertexGrid::grid_size_type &grid_size);
       
       VertexGrid(const value_storage_type &vertices);
+      /// Copy constructor is needed because otherwise it is implicitly deleted
+      VertexGrid(const VertexGrid<N, P, NUM> &other) {
+          _vertices = other._vertices;
+          _grid_size = other._grid_size;
+      }
+      
+      VertexGrid<N, P, NUM> & operator=(const VertexGrid<N, P, NUM> & other) {
+          if (this == &other) return *this;
+          _vertices = other._vertices;
+          _grid_size = other._grid_size;
+          return *this;
+      }
 
       virtual ~VertexGrid() { }
 

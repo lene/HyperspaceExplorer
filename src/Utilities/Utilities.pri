@@ -11,6 +11,8 @@ HEADERS += \
            $${PATH}/SingletonHolder.h \
            $${PATH}/Tree.h \
            $${PATH}/Tree.impl.h \
+           $${PATH}/Multithreading.h \
+           $${PATH}/MultithreadingPrivate.h \
            $${PATH}/Util.h
 SOURCES += \
            $${PATH}/Globals.C \

@@ -176,6 +176,9 @@ namespace Util {
    *     of the parts.
    */
   std::vector<std::string> explode(const std::string &delimiter, const std::string &str);
+  
+  bool isMultithreadedSensible();
+  
 }
 
 #endif // UTIL_H

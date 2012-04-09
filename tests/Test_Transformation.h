@@ -1,5 +1,5 @@
 /*
-    Hyperspace Explorer - vizualizing higher-dimensional geometry
+    Hyperspace Explorer - visualizing higher-dimensional geometry
     Copyright (C) 2010  Lene Preuss <lene.preuss@gmail.com>
 
     This program is free software; you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #define TEST_TRANSFORMATION_H
 
 #include "TransformationFactory.h"
+#include "FunctionValueGrid.h"
 
 #include <QtTest/QtTest>
 
@@ -40,6 +41,8 @@ class Test_Transformation: public QObject {
     void multithreadedTransformPerformed();
     void multithreadedTransformFaster();
     void factorySetsSingleAndMultithreaded();
+    void singlethreadedWorksForObjects();
+    void multithreadedWorksForObjects();
     void rotationPreservesNorm_data();
     void rotationPreservesNorm();
     void rotate90DegreesIsOrthogonal_data();
@@ -60,10 +63,11 @@ class Test_Transformation: public QObject {
 
   private:
 
-    static constexpr unsigned min_size_for_multithreaded_advantage = 1024;
+    static constexpr unsigned min_size_for_multithreaded_advantage = 256;
     
     int timeTransform(const Transformation< 4, 3, double > *transform);
     int timeTransformationMethod(TransformationFactory::Method method);
+    void verifyMultithreadedIsFaster(int elapsed1, int elapsed2);
     
     std::shared_ptr< FunctionValueGrid<4, 3> > _grid;
 

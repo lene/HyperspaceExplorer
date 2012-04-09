@@ -22,7 +22,7 @@
 #define TRANSFORMATION_IMPL_H
 
 #include "Transformation.h"
-#include "TransformationPolicy.h"
+//#include "TransformationPolicy.h"
 
 #include "Rotation.impl.h"
 #include "TransformationFactory.h"
@@ -34,6 +34,7 @@ TransformationImpl<N, P, NUM>::TransformationImpl(
         const VecMath::Vector<N, NUM> &scale): 
   rotation_(rotation), translation_(translation), scale_(scale) { }
 
+#if 0
 template <unsigned N, unsigned P, typename NUM, typename TransformationPolicy>
 TransformationWithPolicy<N, P, NUM, TransformationPolicy>::TransformationWithPolicy(
         const VecMath::Rotation<N, NUM> &rotation,
@@ -53,5 +54,5 @@ TransformationWithPolicy<N, P, NUM, TransformationPolicy>::transform(
 
     return p.transform(operand);
 }
-
+#endif
 #endif // TRANSFORMATION_IMPL_H

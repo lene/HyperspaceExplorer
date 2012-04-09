@@ -62,4 +62,3 @@ SinglethreadedTransformation<N, 1, NUM>::transform(
 }
 
 #endif	/* SINGLETHREADEDTRANSFORMATION_IMPL_H */
-

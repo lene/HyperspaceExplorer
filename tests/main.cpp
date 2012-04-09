@@ -43,6 +43,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Test_ArrayList.h"
 #include "Test_Composite.h"
 #include "Test_Util.h"
+#include "Test_PartitionedMultithreadedMap.h"
 
 #include "Auxiliary/TestRunner.h"
 
@@ -80,6 +81,7 @@ int main(int argc, char **argv) {
     runner.run(new Test_Composite);
     runner.run(new Test_FunctionHolder);
     runner.run(new Test_Transformation);
+    runner.run(new Test_PartitionedMultithreadedMap);
 
     runner.printSummary();
 

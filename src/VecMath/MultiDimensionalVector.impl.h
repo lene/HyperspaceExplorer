@@ -151,6 +151,12 @@ void MultiDimensionalVector<T, D>::resize(unsigned new_size, MultiDimensionalVec
   data().resize(new_size, x);
 }
 
+/** \param new_size Number of elements the vector should contain */
+template <typename T, unsigned D>
+void MultiDimensionalVector<T, D>::reserve(unsigned new_size) {
+  data().reserve(new_size);
+}
+
 /** \param other NestedVector<T, D> to compare to */
 template <typename T, unsigned D>
 bool MultiDimensionalVector<T, D>::operator == (const MultiDimensionalVector<T, D> &other) const {
@@ -465,6 +471,12 @@ void MultiDimensionalVector<T, 1>::resize(unsigned new_size) {
 template <typename T>
 void MultiDimensionalVector<T, 1>::resize(unsigned new_size, T x) {
   data().resize(new_size, x);
+}
+
+/** \param new_size Number of elements the vector should contain */
+template <typename T>
+void MultiDimensionalVector<T, 1>::reserve(unsigned new_size) {
+  data().reserve(new_size);
 }
 
 /** \param other NestedVector<T, 1> to compare to */

@@ -90,10 +90,17 @@ DISTFILES += ../devel/footer.html ../TO-DO
 ###
 ###     subdirectories
 ###
+HEADERS += Color/Color.pri
 include(Color/Color.pri)
+HEADERS += Displayable/Displayable.pri
 include(Displayable/Displayable.pri)
+HEADERS += Script/Script.pri
 include(Script/Script.pri)
+HEADERS += UI/UI.pri
 include(UI/UI.pri)
+HEADERS += Utilities/Utilities.pri
 include(Utilities/Utilities.pri)
+HEADERS += VecMath/VecMath.pri
 include(VecMath/VecMath.pri)
+HEADERS += plugins/plugins.pri
 include(plugins/plugins.pri)

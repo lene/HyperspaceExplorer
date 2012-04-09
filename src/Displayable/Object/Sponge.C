@@ -28,14 +28,18 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "MultiDimensionalVector.impl.h"
 #include "FacePolygon.impl.h"
 
-#include <QtConcurrentRun>
-
 #include <algorithm>
 
 #define CONCURRENT
 #undef CONCURRENT
 
 #include "View.h"
+
+#ifdef CONCURRENT
+#   if USE_INT_INDICES
+#       include <QtConcurrentRun>
+#   endif
+#endif
 
 #include <tr1/tuple>
 using std::tr1::tuple;
