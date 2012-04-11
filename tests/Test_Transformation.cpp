@@ -400,14 +400,14 @@ void Test_Transformation::rotateFloats() {
                                 makeVector<unsigned>(3, 3, 3),
                                 makeVector<float>(-1., -1., -1.),
                                 makeVector<float>(1., 1., 1.)));
-//    qDebug() <<"Original:\n" << grid->getValues().toString().c_str();
+//    qDebug() <<"Original:\n" << grid->getValues().toString();
     QFETCH(floatrot, rotation);
 
     Vector<4, float> trans(0.);
     std::shared_ptr<const Transformation<4, 3, float> > transform(TransformationFactory::create<4, 3, float>(rotation, trans, 1.));
 
     FunctionValueGrid<4, 3, float>::value_storage_type g = transform->transform(grid->getValues());
-//    qDebug() << "Rotated:\n" << g.toString().c_str();
+//    qDebug() << "Rotated:\n" << g.toString();
 
     for (unsigned i = 0; i < g.size(); ++i) {
         for (unsigned j = 0; j < g.size(); ++j) {

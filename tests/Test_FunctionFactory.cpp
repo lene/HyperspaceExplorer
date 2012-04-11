@@ -19,6 +19,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 */
 
 #include "Test_FunctionFactory.h"
+#include "Util.h"
+
+#include <QDebug>
 
 #include <vector>
 
@@ -79,8 +82,7 @@ void Test_FunctionFactory::listFunctions() {
 }
 
 void Test_FunctionFactory::printRegisteredFunctions() {
-    vector<string> registeredFunctions = TheFunctionFactory::Instance().listFunctions();
-    for (vector<string>::iterator i = registeredFunctions.begin(); i != registeredFunctions.end(); ++i) {
-        qDebug() << i->c_str() << " ";
+    for (string func: TheFunctionFactory::Instance().listFunctions()) {
+        qDebug() << func.c_str() << " ";
     }
 }

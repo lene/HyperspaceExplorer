@@ -97,7 +97,7 @@ void Hypercube::DeclareSquare (unsigned i, unsigned a, unsigned b, unsigned c, u
                  << " i: " << i+offset*num_faces 
                  << " a: " << a+offset*num_vertices << " b: " << b+offset*num_vertices 
                  << " c: " << c+offset*num_vertices << " d: " << d+offset*num_vertices;
-        for (auto it = X().begin(); it != X().end(); ++it) qDebug() << it->toString().c_str();
+        for (auto x: X()) qDebug() << x.toString();
 
 #     endif
     Surface[i+offset*num_faces] = FacePolygon<4, 4>(

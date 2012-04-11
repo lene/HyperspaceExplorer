@@ -160,3 +160,8 @@ namespace Util {
   }
 
 }
+
+#include <QDebug>
+QDebug &operator<<(QDebug &qdebug, const std::string &message) {
+    return qdebug << message.c_str();
+}

@@ -42,14 +42,14 @@ void Test_ArrayList::makeListRuns() {
   }
   void Test_ArrayList::accessOperator3(){
     ArrayList<3, double> double3 = makeArrayList(1., 2., 3.);
-    qDebug() << double3.toString().c_str();
+    qDebug() << double3.toString();
     for (unsigned i = 0; i < 3; ++i) {
       testEqual(double3[i], i+1);
     }
   }
   void Test_ArrayList::accessOperator4() {
     ArrayList<4, double> int4 = makeArrayList(0., 1., 2., 3.); 
-    qDebug() << int4.toString().c_str();
+    qDebug() << int4.toString();
     for (unsigned i = 0; i < 4; ++i) {
       testEqual(int4[i], i);
     }
@@ -58,7 +58,7 @@ void Test_ArrayList::makeListRuns() {
 
   void Test_ArrayList::accessOperator5() {
     ArrayList<5, int> int5 = makeArrayList(0, 1, 2, 3, 4);
-    qDebug() << int5.toString().c_str();
+    qDebug() << int5.toString();
     for (unsigned i = 0; i < 5; ++i) {
       testEqual(int5[i], i);
     }
@@ -66,7 +66,7 @@ void Test_ArrayList::makeListRuns() {
 
   void Test_ArrayList::accessOperator10() {
     ArrayList<10, int> int10 = makeArrayList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
-    qDebug() << int10.toString().c_str();
+    qDebug() << int10.toString();
     for (unsigned i = 0; i < 10; ++i) {
       testEqual(int10[i], i);
     }

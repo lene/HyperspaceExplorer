@@ -419,7 +419,7 @@ void C4DView::RenderScene () {  //  draw (frame of animation)
             }
             sleep (1);
 #       else
-            cerr << "C4DView::RenderScene ():  "
+            qDebug() << "C4DView::RenderScene ():  "
                  << "ObjectList No. " << Util::itoa(ObjectList())
                  << " is not a GL list!" << endl;
             sleep (1);

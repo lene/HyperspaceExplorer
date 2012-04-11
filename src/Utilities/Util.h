@@ -181,4 +181,7 @@ namespace Util {
   
 }
 
+class QDebug;
+QDebug &operator<<(QDebug &qdebug, const std::string &message);
+
 #endif // UTIL_H
