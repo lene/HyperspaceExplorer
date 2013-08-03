@@ -26,6 +26,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Rotation.impl.h"
 
 #include <iostream>
+#include <unistd.h>
 
 using std::string;
 using std::vector;

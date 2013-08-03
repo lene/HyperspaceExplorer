@@ -14,7 +14,7 @@ SOURCES += Main.C
 
 PRE_TARGETDEPS *= ../lib/libHyperspaceExplorer.a \
                   ../tests/HyperspaceExplorer-tests
-LIBS *= ../lib/libHyperspaceExplorer.a
+LIBS *= ../lib/libHyperspaceExplorer.a -ldl -lGLU
 
 DESTDIR = ..
 TARGET = HyperspaceExplorer

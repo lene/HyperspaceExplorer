@@ -23,6 +23,8 @@
 
 #include <QtTest/QtTest>
 
+#include <unistd.h>
+
 class Test_PartitionedMultithreadedMap: public QObject {
 
   Q_OBJECT

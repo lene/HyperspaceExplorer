@@ -17,7 +17,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 */
-
+#include <unistd.h>
 #include <sstream>
 #include <iomanip>
 
@@ -48,6 +48,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "SimpleComposite.h"
 
 #include "ParameterMap.h"
+
+#include "GLUPerspective.h"
+//#include "LSystem_old.h"
 
 using std::ostringstream;
 using std::cerr;
@@ -736,9 +739,10 @@ void C4DView::resizeEvent (QResizeEvent *e) {
     glViewport (0, 0, width, height);           //  define the viewport
     glMatrixMode (GL_PROJECTION);               //  perspective view
     glLoadIdentity ();                          //  reset any transforms
-    gluPerspective (45, aspect,                 //  set FOV, aspect,
-                    .01*Size (),                //  front clipping plane
-                    100.*Size ());              //  & back clipping plane
+    GLUPerspective glu_perspective(
+        45, aspect, 0.01*Size(), 100.*Size()    //  set FOV, aspect, front & back clipping plane
+    );
+    glu_perspective.set();
 
     glMatrixMode (GL_MODELVIEW);                //  return to model view
     glLoadIdentity ();                          //  reset
@@ -867,12 +871,15 @@ void C4DView::resizeGL (int width, int height) {
     glViewport (0, 0, width, height);
     glMatrixMode (GL_PROJECTION);
     glLoadIdentity ();
-    gluPerspective (angle, aspect, .25, distance()+across);
+
+    GLUPerspective glu_perspective(angle, aspect, .25, distance()+across);
+    glu_perspective.set();
+
     glMatrixMode (GL_MODELVIEW);
     glLoadIdentity ();
-    gluLookAt (0., 0., 1.,
-               0., 0., 0.,
-               0., 1., 0.);
+    glu_perspective.setLookAt(
+        Vector<3>(0., 0., 1.), Vector<3>(0., 0., 0.), Vector<3>(0., 1., 0.) 
+    );
     glTranslatef (0, 0, -distance());
 
     if (getFog())

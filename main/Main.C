@@ -384,13 +384,13 @@ void parse (int argc, char *argv[]) {
 void setRCFilePath() {
     QString rcdir (".HyperspaceExplorer");
     //  if default rc directory does not yet exist, create it
-    if (!QDir::home ().exists (rcdir))
-        QDir::home ().mkdir (rcdir);
+    if (!QDir::home().exists(rcdir))
+        QDir::home().mkdir(rcdir);
     //  if Vector module for linking custom functions does not exist, copy it
-    if (!QDir::home ().exists (rcdir+"/plugins"))
-        QDir::home ().mkdir (rcdir+"/plugins");
-    if (!QDir::home ().exists (rcdir+"/plugins/Vector.H")) {
-        symlink ((qApp->applicationDirPath()+"/Vector.H").toAscii(),
+    if (!QDir::home().exists(rcdir+"/plugins"))
+        QDir::home().mkdir(rcdir+"/plugins");
+    if (!QDir::home().exists(rcdir+"/plugins/Vector.H")) {
+        QFile::link((qApp->applicationDirPath()+"/Vector.H").toAscii(),
                   (QDir::home().absolutePath()+"/"+rcdir+"/plugins/Vector.H").toAscii());
     }
     Globals::Instance().rcdirs().append (QDir::home ().absolutePath ()+"/"+rcdir);

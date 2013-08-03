@@ -28,8 +28,6 @@ HEADERS += \
            $${PATH}/LoopHelper.h \
            $${PATH}/ViewpointList.h \
            $${PATH}/ViewpointList.impl.h \
-           $${PATH}/Projection.h \
-           $${PATH}/Projection.impl.h \
            $${PATH}/GridDrawer.h \
            $${PATH}/GridDrawer.impl.h
 #          $${PATH}/SteinerFunction.h
@@ -54,6 +52,7 @@ SOURCES += \
 ###     subdirectories
 ###
 include(Transformation/Transformation.pri)
+include(Projection/Projection.pri)
 include(Object/Object.pri)
 include(Surface/Surface.pri)
 include(Rotopes/Rotopes.pri)

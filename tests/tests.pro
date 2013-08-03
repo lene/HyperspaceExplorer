@@ -112,7 +112,7 @@ DEFINES += NEW_FUNCTION_HIERARCHY
 
 TARGET = HyperspaceExplorer-tests
 
-QMAKE_POST_LINK = ./HyperspaceExplorer-tests
+QMAKE_POST_LINK = ./HyperspaceExplorer-tests || rm -f $TARGET
 
 ###
 ### C++0x support

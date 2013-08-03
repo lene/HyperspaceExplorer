@@ -13,8 +13,10 @@ HEADERS += \
            $${PATH}/Tree.impl.h \
            $${PATH}/Multithreading.h \
            $${PATH}/MultithreadingPrivate.h \
+           $${PATH}/GLUPerspective.h \
            $${PATH}/Util.h
 SOURCES += \
+           $${PATH}/GLUPerspective.cpp \
            $${PATH}/Globals.C \
            $${PATH}/ScopedTimer.cpp \
            $${PATH}/Util.cpp

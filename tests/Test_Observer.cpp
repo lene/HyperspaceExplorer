@@ -24,24 +24,24 @@
 
 using std::shared_ptr;
 
-class Base {
+class ProjectionPolicyBase {
 public:
   virtual void change() { }
 };
 
-class TestSubject: public Subject< Base > {
+class TestSubject: public Subject< ProjectionPolicyBase > {
 public:
   virtual void change() {
-    Base::change();
+    ProjectionPolicyBase::change();
     notify();
   }
 };
 
-class TestObserver: public Observer< Base > {
+class TestObserver: public Observer< ProjectionPolicyBase > {
 public:
   TestObserver(): changed_(false) { }
   bool isChanged() { return changed_; }
-  virtual void update(shared_ptr< const Subject<Base> > changedSubject) {
+  virtual void update(shared_ptr< const Subject<ProjectionPolicyBase> > changedSubject) {
     changed_ = true;
   }
 private:

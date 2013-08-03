@@ -51,7 +51,7 @@ SinglethreadedTransformation<N, 1, NUM>::transform(
     value_storage_type xtrans(x.size());
 
     for(unsigned i = 0; i != x.size(); ++i) {
-        xtrans[i] = perform(
+        xtrans[i] = this->perform(
                 x[i],
                 TransformationImpl<N, 1, NUM>::rotation_, 
                 TransformationImpl<N, 1, NUM>::translation_, 

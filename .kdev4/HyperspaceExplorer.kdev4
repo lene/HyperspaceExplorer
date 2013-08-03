@@ -35,7 +35,7 @@ Working Directory=
 isExecutable=true
 
 [MakeBuilder]
-Number Of Jobs=5
+Number Of Jobs=1
 Run Multiple Jobs=true
 
 [Project]
