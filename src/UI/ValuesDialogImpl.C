@@ -36,8 +36,8 @@ namespace UI {
     namespace Dialogs {
 
         /// Set up the components of the dialog and displays it
-        ValuesDialogImpl::ValuesDialogImpl(QWidget *parent, Qt::WFlags f) :
-            QDialog (parent, f) {
+        ValuesDialogImpl::ValuesDialogImpl(QWidget *parent):
+            QDialog (parent) {
             setupUi(this);
 
             Steps[0]->setText (QString::number (Slider[0]->value ()));

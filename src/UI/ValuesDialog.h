@@ -29,20 +29,20 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef UI_VALUESDIALOG_H
 #define UI_VALUESDIALOG_H
 
-#include <Qt3Support/Q3MimeSourceFactory>
+//#include <Qt3Support/Q3MimeSourceFactory>
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QComboBox>
-#include <QtGui/QDialog>
-#include <QtGui/QGridLayout>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QLabel>
-#include <QtGui/QLineEdit>
-#include <QtGui/QPushButton>
-#include <QtGui/QSlider>
-#include <QtGui/QVBoxLayout>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSlider>
+#include <QtWidgets/QVBoxLayout>
 
 #include "UI/ParameterInput.h"
 
@@ -276,61 +276,36 @@ namespace UI {
                 void retranslateUi(QDialog *ValuesDialog) {
                     ValuesDialog->setWindowTitle(
                             QApplication::translate("ValuesDialog",
-                                "Enter Values for the Function", 0,
-                                QApplication::UnicodeUTF8));
+                                "Enter Values for the Function"));
                     ValuesDialog->setWhatsThis(QApplication::translate("ValuesDialog",
                         "In this dialog window the user can enter up to four parameters"
                         "to the displayed four-dimensional function or object.\n"
-                        "She can also change the resolution of the grid.", 0,
-                        QApplication::UnicodeUTF8));
-                    gridLabel->setText(QApplication::translate("ValuesDialog",
-                        "Grid size and bounds", 0, QApplication::UnicodeUTF8));
-                    Label[0]->setText(QApplication::translate("ValuesDialog",
-                        "Steps in t", 0, QApplication::UnicodeUTF8));
-                    MinLabel[0]->setText(QApplication::translate("ValuesDialog",
-                        "tmin", 0, QApplication::UnicodeUTF8));
-                    MaxLabel[0]->setText(QApplication::translate("ValuesDialog",
-                        "tmax", 0, QApplication::UnicodeUTF8));
-                    Label[1]->setText(QApplication::translate("ValuesDialog",
-                        "Steps in u", 0, QApplication::UnicodeUTF8));
-                    MinLabel[1]->setText(QApplication::translate("ValuesDialog",
-                        "umin", 0, QApplication::UnicodeUTF8));
-                    MaxLabel[1]->setText(QApplication::translate("ValuesDialog",
-                        "umax", 0, QApplication::UnicodeUTF8));
-                    Label[2]->setText(QApplication::translate("ValuesDialog",
-                        "Steps in v", 0, QApplication::UnicodeUTF8));
-                    MinLabel[2]->setText(QApplication::translate("ValuesDialog",
-                        "vmin", 0, QApplication::UnicodeUTF8));
-                    MaxLabel[2]->setText(QApplication::translate("ValuesDialog",
-                        "vmax", 0, QApplication::UnicodeUTF8));
+                        "She can also change the resolution of the grid."));
+                    gridLabel->setText(QApplication::translate("ValuesDialog", "Grid size and bounds"));
+                    Label[0]->setText(QApplication::translate("ValuesDialog", "Steps in t"));
+                    MinLabel[0]->setText(QApplication::translate("ValuesDialog", "tmin"));
+                    MaxLabel[0]->setText(QApplication::translate("ValuesDialog", "tmax"));
+                    Label[1]->setText(QApplication::translate("ValuesDialog", "Steps in u"));
+                    MinLabel[1]->setText(QApplication::translate("ValuesDialog", "umin"));
+                    MaxLabel[1]->setText(QApplication::translate("ValuesDialog", "umax"));
+                    Label[2]->setText(QApplication::translate("ValuesDialog", "Steps in v"));
+                    MinLabel[2]->setText(QApplication::translate("ValuesDialog", "vmin"));
+                    MaxLabel[2]->setText(QApplication::translate("ValuesDialog", "vmax"));
                     for (unsigned i = 0; i < maxNumDimensions; ++i) {
-                        Steps[i]->setText(QApplication::translate("ValuesDialog",
-                            "1", 0, QApplication::UnicodeUTF8));
-                        Min[i]->setToolTip(QApplication::translate("ValuesDialog",
-                            "enter '-pi' if you mean -3.1415...", 0,
-                            QApplication::UnicodeUTF8));
-                        Min[i]->setText(QApplication::translate("ValuesDialog",
-                            "-1", 0, QApplication::UnicodeUTF8));
-                        Max[i]->setToolTip(QApplication::translate("ValuesDialog",
-                            "or 'pi' if you want 3.1415...", 0,
-                            QApplication::UnicodeUTF8));
-                        Max[i]->setText(QApplication::translate("ValuesDialog",
-                            "1", 0, QApplication::UnicodeUTF8));
+                        Steps[i]->setText(QApplication::translate("ValuesDialog", "1"));
+                        Min[i]->setToolTip(QApplication::translate("ValuesDialog", "enter '-pi' if you mean -3.1415..."));
+                        Min[i]->setText(QApplication::translate("ValuesDialog", "-1"));
+                        Max[i]->setToolTip(QApplication::translate("ValuesDialog", "or 'pi' if you want 3.1415..."));
+                        Max[i]->setText(QApplication::translate("ValuesDialog", "1"));
                     }
-                    functionLabel->setText(QApplication::translate("ValuesDialog",
-                        "Function Parameters", 0, QApplication::UnicodeUTF8));
+                    functionLabel->setText(QApplication::translate("ValuesDialog", "Function Parameters"));
                     for (unsigned i = 0; i < maxNumParameters; ++i) {
-                        ParameterLabel[i]->setText(QApplication::translate(
-                            "ValuesDialog", "Parameter", 0,
-                             QApplication::UnicodeUTF8));
+                        ParameterLabel[i]->setText(QApplication::translate("ValuesDialog", "Parameter"));
                         //  set 1 as default value (casted to QString)
-                        Parameter[i]->setValue(QApplication::translate(
-                            "ValuesDialog", "1", 0, QApplication::UnicodeUTF8));
+                        Parameter[i]->setValue(QApplication::translate("ValuesDialog", "1"));
                     }
-                    buttonApply->setToolTip(QApplication::translate("ValuesDialog",
-                        "Accept changes and redraw", 0, QApplication::UnicodeUTF8));
-                    buttonApply->setText(QApplication::translate("ValuesDialog",
-                        "&Apply", 0, QApplication::UnicodeUTF8));
+                    buttonApply->setToolTip(QApplication::translate("ValuesDialog", "Accept changes and redraw"));
+                    buttonApply->setText(QApplication::translate("ValuesDialog", "&Apply"));
                     Q_UNUSED(ValuesDialog);
                 } // retranslateUi
 

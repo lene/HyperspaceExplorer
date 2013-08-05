@@ -23,7 +23,7 @@
 
 #include "MultithreadingPrivate.h"
 
-#include <QtConcurrentMap>
+#include <QtConcurrent/QtConcurrentMap>
 
 /// Functions for multithreaded manipulation of data containers.
 /**

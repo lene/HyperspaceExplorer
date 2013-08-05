@@ -32,8 +32,8 @@ namespace UI {
         *  displays the dialog
         *  @param parent parent widget (NULL)
         *  @param f window flags                                                     */
-        AnimationDialogImpl::AnimationDialogImpl (QWidget *parent, Qt::WFlags f) :
-                QDialog (parent, f) {
+        AnimationDialogImpl::AnimationDialogImpl (QWidget *parent):
+                QDialog (parent) {
         setupUi(this);
         connect (fileDialogButton, SIGNAL(clicked()), this, SLOT(openFileDialog()));
         show ();

@@ -97,7 +97,7 @@ void Test_Function::cleanupTestCase() { }
 void Test_Function::instantiate() {
     _function = new FunctionTestImplementation();
     QVERIFY2(_function->getDefinitionSpaceDimensions() == TEST_FUNCTION_DIMENSIONS,
-             QString::number(_function->getDefinitionSpaceDimensions()).toAscii());
+             QString::number(_function->getDefinitionSpaceDimensions()).toLatin1());
     QVERIFY2(_function->getFunctionName() == TEST_FUNCTION_NAME,
              _function->getFunctionName().c_str());
 }
@@ -122,7 +122,7 @@ void Test_Function::functionValue() {
 
 void Test_Function::parameters() {
   QVERIFY2(_function->getNumParameters() == TEST_FUNCTION_NUM_PARAMETERS,
-           QString::number(_function->getNumParameters()).toAscii());
+           QString::number(_function->getNumParameters()).toLatin1());
 
   ParameterMap parameters = _function->getParameters();
 

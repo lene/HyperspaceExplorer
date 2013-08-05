@@ -57,7 +57,7 @@ Test_ParametricFunction::~Test_ParametricFunction() { }
 
 void Test_ParametricFunction::getNumParameters() {
   QVERIFY2(_function->getNumParameters() == TEST_FUNCTION_NUM_PARAMETERS,
-           QString::number(_function->getNumParameters()).toAscii());
+           QString::number(_function->getNumParameters()).toLatin1());
 }
 
 void Test_ParametricFunction::definedParametersArePresent() {
@@ -103,7 +103,7 @@ void Test_ParametricFunction::getParameterValueWorks() {
   QVERIFY(_function->getParameterValue("double parameter")->toDouble() == Test_ParametricFunction::DOUBLE_PARAMETER_VALUE);
   QVERIFY(_function->getParameterValue("unsigned parameter")->toUnsigned() == Test_ParametricFunction::UNSIGNED_PARAMETER_VALUE);
   QVERIFY2(_function->getParameterValue("int parameter")->toInt() == Test_ParametricFunction::INT_PARAMETER_VALUE,
-	   QString::number(_function->getParameterValue("int parameter")->toInt()).toAscii());
+	   QString::number(_function->getParameterValue("int parameter")->toInt()).toLatin1());
   QVERIFY2(_function->getParameterValue("string parameter")->toString() == Test_ParametricFunction::STRING_PARAMETER_VALUE,
            _function->getParameterValue("string parameter")->toString().c_str());
 }

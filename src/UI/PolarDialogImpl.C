@@ -43,8 +43,8 @@ namespace UI {
         *  displays the dialog
         *  @param parent parent widget (NULL)
         *  @param f window flags                                                     */
-        PolarDialogImpl::PolarDialogImpl (QWidget *parent, Qt::WFlags f) :
-                QDialog (parent, f) {
+        PolarDialogImpl::PolarDialogImpl (QWidget *parent):
+                QDialog (parent) {
         setupUi(this);
         connect (okButton, SIGNAL(clicked()), this, SLOT(checkValidity()));
         connect (loadButton, SIGNAL(clicked()), this, SLOT(loadFunction()));

@@ -33,7 +33,7 @@ namespace UI {
             Q_OBJECT
 
             public:
-                SurfaceDialogImpl (QWidget *parent = 0, Qt::WFlags f = 0);
+                SurfaceDialogImpl (QWidget *parent = 0);
                 virtual ~SurfaceDialogImpl() {}
 
             private slots:

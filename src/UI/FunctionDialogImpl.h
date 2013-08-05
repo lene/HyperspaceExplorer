@@ -33,7 +33,7 @@ namespace UI {
             Q_OBJECT
 
             public:
-                FunctionDialogImpl (QWidget *parent = 0, Qt::WFlags f = 0);
+                FunctionDialogImpl (QWidget *parent = 0);
                 virtual ~FunctionDialogImpl() {}
 
             private slots:

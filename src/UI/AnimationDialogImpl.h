@@ -33,7 +33,7 @@ namespace UI {
             Q_OBJECT
 
             public:
-                AnimationDialogImpl (QWidget *parent = 0, Qt::WFlags f = 0);
+                AnimationDialogImpl (QWidget *parent = 0);
                 virtual ~AnimationDialogImpl() {}   ///< Empty destructor
                 /// Read the maximum number of frames written to disk
                 /** @return maximum number of frames written to disk                  */

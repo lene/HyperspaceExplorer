@@ -187,7 +187,7 @@ void Test_Transformation::rotationPreservesNorm() {
       for (unsigned k = 0; k < g.size(); ++k) {
         QVERIFY2(fabs(VecMath::sqnorm(g[i][j][k])) - VecMath::sqnorm(_grid->getValues()[i][j][k]) < 1e-8,
                  (QString::number(VecMath::sqnorm(g[i][j][k])) + " != "+ 
-                  QString::number(VecMath::sqnorm(_grid->getValues()[i][j][k]))).toAscii()
+                  QString::number(VecMath::sqnorm(_grid->getValues()[i][j][k]))).toLatin1()
         );
       }
     }
@@ -334,7 +334,7 @@ void Test_Transformation::scaleScales(){
       for (unsigned k = 0; k < g.size(); ++k) {
         for (unsigned n = 0; n < g[i][j][k].dimension(); ++n) {
           double difference = g[i][j][k][n] - scale[n]*_grid->getValues()[i][j][k][n];
-          QVERIFY2(fabs(difference) < 1e-8, QString::number(difference).toAscii());
+          QVERIFY2(fabs(difference) < 1e-8, QString::number(difference).toLatin1());
         }
       }
     }
@@ -374,7 +374,7 @@ void Test_Transformation::rotateFloatVector() {
         FunctionValueGrid<4, 1, float>::value_storage_type g = transform->transform(vec);
 
         QVERIFY2(fabs(sqnorm(g[0]) - sqnorm(vec[0])) < 1e-6,
-                 (QString::number(sqnorm(g[0])) + " != "+ QString::number(sqnorm(vec[0]))).toAscii()
+                 (QString::number(sqnorm(g[0])) + " != "+ QString::number(sqnorm(vec[0]))).toLatin1()
         );
     }
 }
@@ -423,7 +423,7 @@ void Test_Transformation::rotateFloats() {
                 }
                 QVERIFY2(fabs(VecMath::sqnorm(g[i][j][k]) - VecMath::sqnorm(grid->getValues()[i][j][k])) < 1e-6,
                          (QString::number(VecMath::sqnorm(g[i][j][k])) + " != " + 
-                          QString::number(VecMath::sqnorm(grid->getValues()[i][j][k]))).toAscii()
+                          QString::number(VecMath::sqnorm(grid->getValues()[i][j][k]))).toLatin1()
                          );
             }
         }

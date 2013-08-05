@@ -238,7 +238,7 @@ void Test_Rotope::sphereRealm() {
     setRotope("ERR");
 
     QVERIFY2(_realm.dimension() == 3,
-             (QString("Actual dimension: ")+QString::number(_realm.dimension())).toAscii());
+             (QString("Actual dimension: ")+QString::number(_realm.dimension())).toLatin1());
 
     std::vector<Realm> surfaces = generatePartialSphereSurfaceSquares();
 

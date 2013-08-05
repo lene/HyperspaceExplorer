@@ -47,8 +47,8 @@ namespace UI {
         /// FunctionDialogImpl c'tor - displays the dialog
         /** @param parent parent widget (NULL)
         *  @param f window flags                                                     */
-        FunctionDialogImpl::FunctionDialogImpl (QWidget *parent, Qt::WFlags f) :
-            QDialog (parent, f) {
+        FunctionDialogImpl::FunctionDialogImpl (QWidget *parent):
+            QDialog (parent) {
             setupUi(this);
             connect (okButton, SIGNAL(clicked()), this, SLOT(checkValidity()));
             connect (loadButton, SIGNAL(clicked()), this, SLOT(loadFunction()));

@@ -295,8 +295,8 @@ void C4DView::Menu4D::AnimationSettings() {
     UI::Dialogs::AnimationDialogImpl *Dlg = new UI::Dialogs::AnimationDialogImpl;
     if (Dlg->exec () == QDialog::Accepted) {
         _parent->setanimationMaxFrames(Dlg->getFrames());
-        _parent->setImgDir(Dlg->getDir().toAscii().data());
-        _parent->setImgPrefix(Dlg->getPrefix().toAscii().data());
+        _parent->setImgDir(Dlg->getDir().toLatin1().data());
+        _parent->setImgPrefix(Dlg->getPrefix().toLatin1().data());
         SingletonLog::Instance()
             << "animationMaxFrames: " << (long)_parent->animationMaxFrames()
             << ", animationDirectory: " << _parent->getImgDir()

@@ -49,7 +49,7 @@ void setGlobalView(MockView* v) {
 void test(bool condition, const QString &message) {
   QVERIFY2(
     condition,
-    message.toAscii());
+    message.toLatin1());
 }
 
 void test(bool condition, const std::string& message) {

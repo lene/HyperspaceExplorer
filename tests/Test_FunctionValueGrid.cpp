@@ -136,8 +136,8 @@ void Test_FunctionValueGrid::nonconstantFunctionAndBoundaries() {
   }
 
   grid.setBoundaries(Vector<3>(-2., -2., -2.), Vector<3>(2., 2., 2.));
-  QVERIFY2(f->min_w == -6, QString::number(f->min_w).toAscii());
-  QVERIFY2(f->max_w == 6, QString::number(f->max_w).toAscii());
+  QVERIFY2(f->min_w == -6, QString::number(f->min_w).toLatin1());
+  QVERIFY2(f->max_w == 6, QString::number(f->max_w).toLatin1());
 }
 
 

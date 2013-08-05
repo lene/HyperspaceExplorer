@@ -36,7 +36,7 @@ namespace UI {
             Q_OBJECT
 
             public:
-                PolarDialogImpl (QWidget *parent = 0, Qt::WFlags f = 0);
+                PolarDialogImpl (QWidget *parent = 0);
                 virtual ~PolarDialogImpl() {}
 
             private slots:

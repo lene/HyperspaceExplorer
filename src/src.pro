@@ -40,7 +40,7 @@ QMAKE_CXXFLAGS += -std=c++0x
 ###
 ###     OpenGL support
 ###
-QT += opengl
+QT += opengl widgets
 
 ###
 ###     global defines

@@ -33,7 +33,7 @@ namespace UI {
             Q_OBJECT
 
             public:
-                ComplexDialogImpl (QWidget *parent = 0, Qt::WFlags f = 0);
+                ComplexDialogImpl (QWidget *parent = 0);
                 virtual ~ComplexDialogImpl() {}
 
             private slots:

@@ -22,8 +22,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define UI_DIALOGSPARAMETERINPUT_H
 
 #include <QWidget>
-#include <QtGui/QLineEdit>
-#include <QtGui/QSpinBox>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QSpinBox>
 
 #include "FunctionParameter.h"
 #include "RotationControl.h"

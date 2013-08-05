@@ -112,7 +112,8 @@ C4DView::C4DView(QWidget *parent):
 //    Menu()->setColorManager(new QAction("W coordinate to RGB", this));
 
 //    setF(new Rotope("ERRE"));
-    setF(new LSystem);
+//    setF(new LSystem);
+    setF(new Hypercube());
 
     AssignValues(F());
     Redraw ();

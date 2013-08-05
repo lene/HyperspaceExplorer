@@ -390,8 +390,8 @@ void setRCFilePath() {
     if (!QDir::home().exists(rcdir+"/plugins"))
         QDir::home().mkdir(rcdir+"/plugins");
     if (!QDir::home().exists(rcdir+"/plugins/Vector.H")) {
-        QFile::link((qApp->applicationDirPath()+"/Vector.H").toAscii(),
-                  (QDir::home().absolutePath()+"/"+rcdir+"/plugins/Vector.H").toAscii());
+        QFile::link((qApp->applicationDirPath()+"/Vector.H").toLatin1(),
+                  (QDir::home().absolutePath()+"/"+rcdir+"/plugins/Vector.H").toLatin1());
     }
     Globals::Instance().rcdirs().append (QDir::home ().absolutePath ()+"/"+rcdir);
 

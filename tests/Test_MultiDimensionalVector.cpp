@@ -124,7 +124,7 @@ void Test_MultiDimensionalVector::for_each_class() {
 
   test = v.for_each(test);
 
-  QVERIFY2(test.sum() == calculateSumForSize(4), QString::number(test.sum()).toAscii());
+  QVERIFY2(test.sum() == calculateSumForSize(4), QString::number(test.sum()).toLatin1());
 }
 
 Test_MultiDimensionalVector::Vector2D Test_MultiDimensionalVector::generate2DVector(
