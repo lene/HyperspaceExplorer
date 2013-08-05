@@ -10,6 +10,8 @@ CONFIG += debug qt warn_on uic
 
 QT += opengl
 
+QMAKE_CLEAN += Makefile
+
 TEMPLATE = app
 TARGET =
 DEPENDPATH += . \
@@ -113,7 +115,7 @@ DEFINES += NEW_FUNCTION_HIERARCHY
 
 TARGET = HyperspaceExplorer-tests
 
-QMAKE_POST_LINK = ./HyperspaceExplorer-tests || rm -f $TARGET
+QMAKE_POST_LINK = ./HyperspaceExplorer-tests || rm -f $${TARGET}
 
 ###
 ### C++0x support

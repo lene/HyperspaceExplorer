@@ -12,6 +12,8 @@ INCLUDEPATH += ../src/Color \
 
 SOURCES += Main.C
 
+QMAKE_CLEAN += Makefile
+
 PRE_TARGETDEPS *= ../lib/libHyperspaceExplorer.a \
                   ../tests/HyperspaceExplorer-tests
 LIBS *= ../lib/libHyperspaceExplorer.a -ldl -lGLU -lQt5Concurrent

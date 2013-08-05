@@ -25,7 +25,7 @@ public:
     
 private:
     const GLfloat PI_OVER_360 = M_PI/360.;
-    bool use_new_gl_ = false;
+    static bool use_new_gl_;
     GLfloat perpective_projection_matrix_[16];
     GLfloat fov_, aspect_, znear_, zfar_;
     

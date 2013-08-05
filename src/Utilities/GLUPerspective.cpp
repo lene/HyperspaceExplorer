@@ -12,10 +12,13 @@
 
 #include <GL/glu.h>
 
+bool GLUPerspective::use_new_gl_;
+
 GLUPerspective::GLUPerspective(float fov, float aspect, float znear, float zfar):
         fov_(fov), aspect_(aspect), znear_(znear), zfar_(zfar) {
-    const GLubyte * gl_version = glGetString(GL_VERSION);
-    if (gl_version[0] > '2') use_new_gl_ = true;
+//    const GLubyte * gl_version = glGetString(GL_VERSION);
+//    if (gl_version[0] <= '2') 
+        use_new_gl_ = false;
     
     if (!use_new_gl_) return;
     

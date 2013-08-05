@@ -32,6 +32,8 @@ UI_DIR = tmp
 UI_HEADERS_DIR = tmp
 RCC_DIR = tmp
 
+QMAKE_CLEAN += Makefile
+
 ###
 ###     C++0x support
 ###
