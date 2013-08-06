@@ -58,6 +58,7 @@ class Test_Function: public QObject {
     int _intParm;
     std::string _stringParm;
 
+    void print();
 
   protected:
     virtual VecMath::Vector<4> &operator () (double x, double y, double z);

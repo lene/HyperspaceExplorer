@@ -31,6 +31,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Rotation.impl.h"
 #include "Vector.impl.h"
 
+#include "Utilities/Util.h"
+
 #include <cstdlib>
 
 using std::cerr;
@@ -80,6 +82,14 @@ void Test_Function::FunctionTestImplementation::Transform(const VecMath::Rotatio
 void Test_Function::FunctionTestImplementation::Project(double, double, bool) { }
 void Test_Function::FunctionTestImplementation::Draw(UI::View *) { }
 
+void Test_Function::FunctionTestImplementation::print() {
+    qDebug() << "TestFunction::FunctionTestImplementation"
+    << " double: " << _doubleParm 
+    << ", unsigned: " << _unsignedParm
+    << ", int: " << _intParm 
+    << ", string: " << _stringParm ;
+}
+
 Test_Function::ParameterTestImplementation::ParameterTestImplementation() {
   declareParameter("looks like unsigned, but is int", 1);
 }
@@ -102,20 +112,36 @@ void Test_Function::instantiate() {
              _function->getFunctionName().c_str());
 }
 
+std::string getParameterValue(const FunctionParameter &parm) {
+    try {
+        return Util::ftoa(parm.toDouble());
+    } catch (const FunctionParameterValueBase::WrongParameterTypeException &) { }
+    try {
+        return Util::itoa(parm.toInt());
+    } catch (const FunctionParameterValueBase::WrongParameterTypeException &) { }
+    try {
+        return Util::itoa(parm.toUnsigned());
+    } catch (const FunctionParameterValueBase::WrongParameterTypeException &) { }
+    try {
+        return (parm.toString());
+    } catch (const FunctionParameterValueBase::WrongParameterTypeException &) { }
+    return "";
+}
+
+void printParameterMap(const ParameterMap &parms) {
+    qDebug() << "ParameterMap:";
+    for (auto parm: parms) {
+        qDebug() << "    " << parm.first.c_str() << " " << parm.second->getName() << " " << getParameterValue(*parm.second);
+    }    
+}
 void Test_Function::functionValue() {
-  FunctionTestImplementation function;
-  ParameterMap newParameters = function.getParameters();
-  std::string parameterName = "double parameter";
-  ParameterMap::iterator it = newParameters.find(parameterName);
-  if (it != newParameters.end()) {
-    it->second->setValue(QString::number(sqrt(2.)).toStdString());
-  } else {
-    QFAIL(("Parameter \""+parameterName+"\" not found in map "+newParameters.toString()).c_str());
-  }
+    FunctionTestImplementation function;
+    ParameterMap newParameters = function.getParameters();
+    std::string parameterName = "double parameter";
+    newParameters[parameterName]->setValue(std::shared_ptr<FunctionParameterValueBase>(new FunctionParameterValue<double>(sqrt(2.))));
     function.SetParameters(newParameters);
 
     VecMath::Vector<4> f = function.f();
-
     QVERIFY2(VecMath::sqnorm(f - VecMath::Vector<4>(0., 0., 0., sqrt(2.))) < 1e-8,
              f.toString().c_str());
 }
