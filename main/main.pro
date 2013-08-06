@@ -1,6 +1,6 @@
 TEMPLATE = app
 CONFIG += debug qt warn_on uic
-QT += opengl
+QT += opengl widgets
 INCLUDEPATH += ../src/Color \
 	       ../src/Displayable \
                ../src/Displayable/Rotopes \
