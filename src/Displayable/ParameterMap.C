@@ -21,6 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "ParameterMap.h"
 
 #include "Rotation.impl.h"
+#include "Vector.impl.h"
 
 #include <QString>
 
