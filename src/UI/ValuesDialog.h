@@ -31,19 +31,33 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 //#include <Qt3Support/Q3MimeSourceFactory>
 #include <QtCore/QVariant>
-#include <QtWidgets/QAction>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QComboBox>
-#include <QtWidgets/QDialog>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QSlider>
-#include <QtWidgets/QVBoxLayout>
-
+#if QT_VERSION < 050000
+# include <QtWidgets/QAction>
+# include <QtWidgets/QApplication>
+# include <QtWidgets/QButtonGroup>
+# include <QtWidgets/QComboBox>
+# include <QtWidgets/QDialog>
+# include <QtWidgets/QGridLayout>
+# include <QtWidgets/QHBoxLayout>
+# include <QtWidgets/QLabel>
+# include <QtWidgets/QLineEdit>
+# include <QtWidgets/QPushButton>
+# include <QtWidgets/QSlider>
+# include <QtWidgets/QVBoxLayout>
+#else
+# include <QAction>
+# include <QApplication>
+# include <QButtonGroup>
+# include <QComboBox>
+# include <QDialog>
+# include <QGridLayout>
+# include <QHBoxLayout>
+# include <QLabel>
+# include <QLineEdit>
+# include <QPushButton>
+# include <QSlider>
+# include <QVBoxLayout>
+#endif
 #include "UI/ParameterInput.h"
 
 namespace UI {
