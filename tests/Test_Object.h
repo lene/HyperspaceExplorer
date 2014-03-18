@@ -62,6 +62,7 @@ private slots:
   void tesseract();
   void pentachoron();
   void mengersponge();
+  void mengersponge_changelevel();
   void sierpinskigasket();
   void altmengersponge();
 
@@ -71,9 +72,10 @@ private:
   void testDynamicallyCreatedFunction(const std::string& fname);
   void testDrawDrawsAllVertices(Object * f);
   void testAllVerticesDrawn(Object *f);
+  void checkVertexPresentLocal(const VecMath::Vector<4> & v);
   void testNonzeroRotationRuns(Object * f);
 
-  ObjectTestImplementation *object_;
+  Object *object_;
   MockView* view_;
 };
 

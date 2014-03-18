@@ -112,32 +112,10 @@ void Test_Function::instantiate() {
              _function->getFunctionName().c_str());
 }
 
-std::string getParameterValue(const FunctionParameter &parm) {
-    try {
-        return Util::ftoa(parm.toDouble());
-    } catch (const FunctionParameterValueBase::WrongParameterTypeException &) { }
-    try {
-        return Util::itoa(parm.toInt());
-    } catch (const FunctionParameterValueBase::WrongParameterTypeException &) { }
-    try {
-        return Util::itoa(parm.toUnsigned());
-    } catch (const FunctionParameterValueBase::WrongParameterTypeException &) { }
-    try {
-        return (parm.toString());
-    } catch (const FunctionParameterValueBase::WrongParameterTypeException &) { }
-    return "";
-}
-
-void printParameterMap(const ParameterMap &parms) {
-    qDebug() << "ParameterMap:";
-    for (auto parm: parms) {
-        qDebug() << "    " << parm.first.c_str() << " " << parm.second->getName() << " " << getParameterValue(*parm.second);
-    }    
-}
 void Test_Function::functionValue() {
     FunctionTestImplementation function;
     ParameterMap newParameters = function.getParameters();
-    std::string parameterName = "double parameter";
+    const std::string parameterName = "double parameter";
     newParameters[parameterName]->setValue(std::shared_ptr<FunctionParameterValueBase>(new FunctionParameterValue<double>(sqrt(2.))));
     function.SetParameters(newParameters);
 

@@ -27,6 +27,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "ColorManager.h"
 
 #include "ObjectImplementations.h"
+#include "Sponge.h"
 
 #include "Vector.impl.h"
 #include "Rotation.impl.h"
@@ -172,25 +173,20 @@ void Test_Object::tesseract() {
   testDynamicallyCreatedFunction("Tesseract");
 }
 
-void Test_Object::pentachoron()
-{
+void Test_Object::pentachoron() { }
 
+void Test_Object::mengersponge() {
+  this->object_ = new Sponge();
+  testFunction(this->object_);
+//  testDynamicallyCreatedFunction("4D Menger Sponge");
 }
 
-void Test_Object::mengersponge()
-{
+void Test_Object::mengersponge_changelevel() { }
 
-}
 
-void Test_Object::altmengersponge()
-{
+void Test_Object::altmengersponge() { }
 
-}
-
-void Test_Object::sierpinskigasket()
-{
-
-}
+void Test_Object::sierpinskigasket() { }
 
 
 void Test_Object::testFunction(Object *f) {
@@ -237,6 +233,11 @@ void Test_Object::testAllVerticesDrawn(Object *f) {
   setGlobalView(view_);
   f->for_each_vertex(checkVertexPresent);
 }
+
+void Test_Object::checkVertexPresentLocal(const VecMath::Vector<4> &v) {
+  test(view_->isVertexPresent(v), v.toString()+" present");
+}
+
 
 void Test_Object::testDynamicallyCreatedFunction(const std::string& fname) {
   Object *f;

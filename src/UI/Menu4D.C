@@ -100,47 +100,15 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
 
     QString sup2(QChar(0x00B2));
     QString sup3(QChar(0x00B3));
-
+std::cout << "before copy" << endl;
+/*
     std::copy(TheFunctionFactory::Instance().listFunctions().begin(),
               TheFunctionFactory::Instance().listFunctions().end(),
               std::ostream_iterator<std::string>(std::cerr, " "));
-
-    ////////////////////////////////////////////////////////////////////////////
-    //      "Appearance" Menu
-    ////////////////////////////////////////////////////////////////////////////
-    {
-        insertAction(_appear, "Colors", SLOT(Colors ()));
-        insertAction(_appear, "Shading", SLOT(Shade()));
-        insertAction(_appear, "Depth Cue", SLOT(Fog()));
-        insertAction(_appear, "4D Depth Cue", SLOT(HyperFog()));
-        insertAction(_appear, "Transparence", SLOT(Transparent()));
-        insertAction(_appear, "Lighting", SLOT(Light()));
-        insertAction(_appear, "Wireframe", SLOT(Wireframe()), false);
-        insertAction(_appear, "Coordinate Cross", SLOT(Coordinates()));
-
-        _appear->addAction("Set Background Color", this, SLOT(setBackground()));
-
-        getAction("Colors")->setChecked(_parent->getColors());
-        getAction("Shading")->setChecked(_parent->getShading());
-        getAction("Depth Cue")->setChecked(_parent->getFog());
-        getAction("Lighting")->setChecked(_parent->getLighting());
-        getAction("Transparence")->setChecked(_parent->getTransparence());
-        getAction("Coordinate Cross")->setChecked(_parent->getCoordinates());
-        {
-            _color = _appear->addMenu("Coloring Schemes");
-            std::vector<std::string> colMgrList =
-                    ColMgrMgr::Instance().getRegisteredColorManagers();
-            for (std::vector<std::string>::const_iterator i = colMgrList.begin();
-                 i != colMgrList.end(); ++i) {
-                insertAction(_color, QString(i->c_str()));
-            }
-            connect(_color, SIGNAL(triggered(QAction *)),
-                    this, SLOT(setColorManager(QAction *)));
-        }
-    }
-
-    _appear->setTearOffEnabled(true);
-
+*/              
+std::cout << "before cAM" << endl;
+    createAppearanceMenu();
+    
     insertAction(_help, "Online _help", SLOT(Help ()), false);
     _help->insertSeparator (
         insertAction(_help, tr("&About ..."), SLOT(about()), false));
@@ -170,6 +138,48 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
       //      _appear->setItemEnabled (transparentAction, DisplayPolygons);
     _parent->setSolid(!_parent->getSolid());
 }
+
+void C4DView::Menu4D::createAppearanceMenu() {
+    ////////////////////////////////////////////////////////////////////////////
+    //      "Appearance" Menu
+    ////////////////////////////////////////////////////////////////////////////
+    {
+        insertAction(_appear, "Colors", SLOT(Colors ()));
+        insertAction(_appear, "Shading", SLOT(Shade()));
+        insertAction(_appear, "Depth Cue", SLOT(Fog()));
+        insertAction(_appear, "4D Depth Cue", SLOT(HyperFog()));
+        insertAction(_appear, "Transparence", SLOT(Transparent()));
+        insertAction(_appear, "Lighting", SLOT(Light()));
+        insertAction(_appear, "Wireframe", SLOT(Wireframe()), false);
+        insertAction(_appear, "Coordinate Cross", SLOT(Coordinates()));
+
+        _appear->addAction("Set Background Color", this, SLOT(setBackground()));
+
+        getAction("Colors")->setChecked(_parent->getColors());
+        getAction("Shading")->setChecked(_parent->getShading());
+        getAction("Depth Cue")->setChecked(_parent->getFog());
+        getAction("Lighting")->setChecked(_parent->getLighting());
+        getAction("Transparence")->setChecked(_parent->getTransparence());
+        getAction("Coordinate Cross")->setChecked(_parent->getCoordinates());
+
+        {
+            _color = _appear->addMenu("Coloring Schemes");
+            std::vector<std::string> colMgrList =
+                    ColMgrMgr::Instance().getRegisteredColorManagers();
+            for (std::vector<std::string>::const_iterator i = colMgrList.begin();
+                 i != colMgrList.end(); ++i) {
+                insertAction(_color, QString(i->c_str()));
+            }
+            connect(_color, SIGNAL(triggered(QAction *)),
+                    this, SLOT(setColorManager(QAction *)));
+        }
+    
+    }
+
+    _appear->setTearOffEnabled(true);
+
+}
+
 
 /** Display a CustomFunction object */
 void C4DView::Menu4D::customFunction() {

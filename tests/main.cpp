@@ -77,11 +77,11 @@ int main(int argc, char **argv) {
     runner.run(new Test_Surface);
 #endif
     runner.run(new Test_Rotope);
-    runner.run(new Test_Object);
     runner.run(new Test_Composite);
     runner.run(new Test_FunctionHolder);
     runner.run(new Test_Transformation);
     runner.run(new Test_PartitionedMultithreadedMap);
+    runner.run(new Test_Object);
 
     runner.printSummary();
 

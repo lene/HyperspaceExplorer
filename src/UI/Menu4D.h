@@ -90,6 +90,8 @@ class C4DView::Menu4D: public QMenu {
         /// Manages an ActionMap for each submenu
         typedef std::map<QMenu *, ActionMapType> MenuMapType;
 
+        void createAppearanceMenu();
+        
         /// Creates a menu with submenus from a DisplayableClass
         QMenu *createMenu(const DisplayableClass &node);
 
