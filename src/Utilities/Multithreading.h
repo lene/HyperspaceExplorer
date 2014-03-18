@@ -26,7 +26,8 @@
 #if QT_VERSION < 050000
 # include <QtConcurrent/QtConcurrentMap>
 #else
-# include <QtConcurrentMap>
+# include <QtConcurrent/QtConcurrentMap>
+//# include <QtConcurrentMap>
 #endif
 
 /// Functions for multithreaded manipulation of data containers.
