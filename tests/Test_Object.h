@@ -68,8 +68,8 @@ private slots:
 
 private:
 
-  void testFunction(Object *f);
-  void testDynamicallyCreatedFunction(const std::string& fname);
+  void testFunction(Object *f, bool checkIfVerticesDrawn = true);
+  void testDynamicallyCreatedFunction(const std::string& fname, bool checkIfVerticesDrawn = true);
   void testDrawDrawsAllVertices(Object * f);
   void testAllVerticesDrawn(Object *f);
   void checkVertexPresentLocal(const VecMath::Vector<4> & v);
