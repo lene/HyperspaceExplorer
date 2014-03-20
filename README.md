@@ -5,7 +5,7 @@ Displays four-dimensional objects and functions by projecting them into three-di
 
 Build with:
 
-$ qmake && make
+<tt>$ qmake && make</tt>
 
 The program is quite immature at the moment. Expect to run into problems. Especially the documentation is in a sorry state, as you can see in this README.
 
