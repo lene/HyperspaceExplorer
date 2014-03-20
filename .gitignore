@@ -24,5 +24,11 @@ FunctionMapTest.C
 Makefile
 doc
 dir.sh
+*.o
+HyperspaceExplorer-tests
+*.kdev4
 
-
+/dist/
+/build/
+tmp/
+.kdev4/
