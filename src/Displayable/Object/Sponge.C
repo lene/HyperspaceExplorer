@@ -20,6 +20,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "Sponge.h"
 
+#include <algorithm>
+#include <tuple>
+
 #include "Log.h"
 #include "ScopedTimer.h"
 
@@ -28,7 +31,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "MultiDimensionalVector.impl.h"
 #include "FacePolygon.impl.h"
 
-#include <algorithm>
 
 #define CONCURRENT
 #undef CONCURRENT
@@ -41,10 +43,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #   endif
 #endif
 
-#include <tr1/tuple>
-using std::tr1::tuple;
-using std::tr1::tuple_size;
-using std::tr1::tuple_element;
+using std::tuple;
+using std::tuple_size;
+using std::tuple_element;
 
 namespace SpongeUtility {
 
