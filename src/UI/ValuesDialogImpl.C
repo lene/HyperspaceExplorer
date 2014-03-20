@@ -18,12 +18,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 */
 
-#include <qmessagebox.h>
-#include <qslider.h>
-#include <qlineedit.h>
-#include <qstring.h>
-#include <qcombobox.h>
-#include <qlabel.h>
+#include <QMessageBox>
+#include <QSlider>
+#include <QLineEdit>
+#include <QString>
+#include <QComboBox>
+#include <QLabel>
+
 #include <sstream>
 #include <iostream>
 #include <iomanip>

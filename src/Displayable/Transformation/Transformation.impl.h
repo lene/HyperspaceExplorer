@@ -22,7 +22,6 @@
 #define TRANSFORMATION_IMPL_H
 
 #include "Transformation.h"
-//#include "TransformationPolicy.h"
 
 #include "Rotation.impl.h"
 #include "TransformationFactory.h"

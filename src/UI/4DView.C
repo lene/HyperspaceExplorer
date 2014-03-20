@@ -50,7 +50,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "ParameterMap.h"
 
 #include "GLUPerspective.h"
-//#include "LSystem_old.h"
 
 using std::ostringstream;
 using std::cerr;

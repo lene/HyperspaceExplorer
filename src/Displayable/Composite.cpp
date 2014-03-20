@@ -26,7 +26,6 @@
 #include "Rotation.impl.h"
 
 #include <list>
-#include <memory>
 #include <algorithm>
 #include <vector>
 

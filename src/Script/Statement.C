@@ -21,6 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "View.h"
 #include "Parser.h"
 #include "Statement.h"
+
 #include "FunctionFactory.h"
 #include "Vector.impl.h"
 #include "Rotation.impl.h"

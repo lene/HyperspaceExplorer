@@ -21,14 +21,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef PARSER_H
 #define PARSER_H
 
-#include "Parser.h"
-#include "View.h"
-
 #include <string>
 #include <vector>
 #include <stdexcept>
 
-//class UI::View;
+namespace UI {
+class View;
+}
 
 /// Interpreting and executing scripts
 namespace Script {
