@@ -68,40 +68,25 @@ public:
     virtual void Transform (const VecMath::Rotation<4> &R,
                             const VecMath::Vector<4> &T,
                             const VecMath::Vector<4> &scale);
+    /// Projects a Sponge into three-space
+    /** The projection is achieved by projecting all constituting sub-sponges.
+     *  @param ScrW w coordinate of screen
+     *  @param CamW w coordinate of camera
+     *  @param DepthCue4D wheter to use hyperfog/dc
+     */
     virtual void Project (double ScrW, double CamW, bool DepthCue4D);
+    /// Draw the projected Sponge, drawing all sub-sponges, recursively.
     virtual void Draw (UI::View *view);
 
-    virtual void SetParameters(const ParameterMap &parms) {
-        std::cerr << "Sponge::SetParameters(" << parms.toString() << ")\n";
-#       if 1
-            for (ParameterMap::const_iterator i = parms.begin();
-                 i != parms.end(); ++i) {
-                if (i->second->getName() == "Level")
-                    Level = i->second->toUnsigned();
-                if (i->second->getName() == "Distance")
-                    distance = i->second->toInt();
-                if (i->second->getName() == "Size")
-                    rad = i->second->toDouble();
-            }
-#       else
-            setParameter(parms, this->Phase, "Phase");
-#       endif
-        }
-
+    virtual void SetParameters(const ParameterMap &parms);
+    
     /// Rebuild the Sponge if the parameters have changed
     virtual void ReInit (double, double, double,
                          double, double, double,
-                         double, double, double) {
-        List.clear();
-        Object::ReInit(0,0,0,0,0,0,0,0,0);
-    }
-
+                         double, double, double);
+    
     /** @return A string with a description of the Hypersponge object         */
-    virtual std::string description () {
-        std::ostringstream out;
-        out << "Sponge (level = " << Level << ")" << std::ends;
-        return out.str ();
-    }
+    virtual std::string description ();
 
 protected:
     virtual void Initialize();

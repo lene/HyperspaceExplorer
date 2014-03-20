@@ -564,22 +564,40 @@ void Sponge::Transform (const VecMath::Rotation<4> &R,
 }
 
 
-/// Projects a Sponge into three-space
-/** The projection is achieved by projecting all constituting sub-sponges.
- *  @param scr_w w coordinate of screen
- *  @param cam_w w coordinate of camera
- *  @param depthcue4d wheter to use hyperfog/dc                               */
 void Sponge::Project (double scr_w, double cam_w, bool depthcue4d) {
 //    SingletonLog::Instance().log("Sponge::Project()");
     for (unsigned i = 0; i < List.size (); i++)
         List[i]->Project (scr_w, cam_w, depthcue4d);
 }
 
-/// Draw the projected Sponge (onto screen or into GL list, as it is)
-/** Draws all sub-sponges, recursively.                                       */
 void Sponge::Draw (UI::View *view) {
     if (Level < 1) List[0]->Draw(view);
     else for (unsigned i = 0; i < List.size(); i++) List[i]->Draw(view);
     view->commitDraw();
 }
 
+void Sponge::SetParameters(const ParameterMap &parms) {
+    std::cerr << "Sponge::SetParameters(" << parms.toString() << ")\n";
+#   if 1
+        for (ParameterMap::const_iterator i = parms.begin(); i != parms.end(); ++i) {
+            if (i->second->getName() == "Level") Level = i->second->toUnsigned();
+            if (i->second->getName() == "Distance") distance = i->second->toUnsigned();
+            if (i->second->getName() == "Size") rad = i->second->toDouble();
+        }
+#   else
+        setParameter(parms, this->Phase, "Phase");
+#   endif
+}
+
+void Sponge::ReInit (double, double, double,
+                     double, double, double,
+                     double, double, double) {
+    List.clear();
+    Object::ReInit(0,0,0,0,0,0,0,0,0);
+}
+
+std::string Sponge::description () {
+    std::ostringstream out;
+    out << "Sponge (level = " << Level << ")" << std::ends;
+    return out.str ();
+}
