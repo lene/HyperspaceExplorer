@@ -94,8 +94,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
  */
 
 #include <vector>
-
-#include "Transformation/TransformationFactory.h"
 #include <iomanip>
 
 #include <QApplication>
@@ -108,7 +106,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Menu4D.h"
 #include "Globals.h"
 #include "Parser.h"
-#include "Transformation/Transformation.h"
+#include "Transformation/TransformationFactory.h"
 
 using std::cout;
 using std::cerr;

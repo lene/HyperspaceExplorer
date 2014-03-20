@@ -10,8 +10,9 @@
 
 #include "FacePolygon.h"
 
-#include "Util.h"
 #include <QDebug>
+
+#include "Util.h"
 
 template <unsigned D, unsigned N_vertex> 
 FacePolygon<D, N_vertex>::FacePolygon() { 

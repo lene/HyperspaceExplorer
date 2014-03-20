@@ -22,20 +22,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "Object.h"
 
-#include "Globals.h"
-#include "ColorManager.h"
-#include "Log.h"
-
-#include "View.h"
-#include "TransformationFactory.h"
-
 #include "FunctionHolder.impl.h"
-#include "Transformation.impl.h"
-#include "Matrix.impl.h"
 #include "MultiDimensionalVector.impl.h"
-#include "Vector.impl.h"
-#include "FacePolygon.impl.h"
-#include "Sponge.h"
 
 using std::cerr;
 using std::endl;
