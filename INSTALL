@@ -1,19 +1,19 @@
-Installation instructions for Hyperspace Explorer V0.6.1
+Installation instructions for Hyperspace Explorer V0.7.1
 ========================================================
 
 Source distribution
 ===================
 
 Requirements:
-Linux (*BSD should work, but is not tested yet) (Windows should work in theory)
+-------------
+Linux (*BSD should work, but is not tested yet)
 
-Multithreaded Qt >= 4.0 <http://trolltech.com/products/qt>. I use Qt version 4.3
-during development, so even if I don't use any features newer than 4.0 I cannot
-guarantee that it will work with older versions of Qt.
+Multithreaded Qt >= 5.0 <http://trolltech.com/products/qt>. 
 
 OpenGL libraries and header files
 
 Building the executable:
+------------------------
 > tar jxf HyperspaceExplorer-X.Y.Z.tar.bz2
 > cd HyperspaceExplorer
 > qmake
@@ -28,12 +28,10 @@ customized by editing the variable INSTALLDIR in the qmakefile src/src.pro.
 Contacting the author
 =====================
 
-email me: scout@hyperspace-travel.de
+email me: lene.preuss@gmail.com
 
-Or use the Bug Tracker on the SourceForge project page: 
-http://sourceforge.net/projects/hyperspace-expl
-(You can find the Bug Tracker as the menu entry "Bugs" under the menu "Tracker".
-There is also a Tracker for Feature Requests.)
+Or use the Bug Tracker on the GitHub project page: 
+https://github.com/lene/HyperspaceExplorer/issues
 
 Tell me whatever you want about the program. If you find any interesting or 
 nice-looking functions, send them to me as well. I'd like to include them with
