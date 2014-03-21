@@ -1,5 +1,6 @@
 gprof2html.py
 HyperspaceExplorer-Makefile.mk
+Makefile-HyperspaceExplorer.mk
 Debug
 functions.sh
 a.out
