@@ -22,6 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define CUSTOMFUNCTION_H
 
 #include <dlfcn.h>
+#include <typeinfo>
 
 #include "Displayable.h"
 #include "RealFunction.h"
@@ -192,7 +193,8 @@ QString CustomFunctionBase<function_type>::symbolic () const {
 
     if ((error = dlerror()) != NULL)  {
         std::cerr << "Error finding symbolic description in " << error << std::endl;
-        return QString ("something");
+	
+        return QString (typeid(*this).name());
     }
     ret=(*sym)();
     return QString (ret);
