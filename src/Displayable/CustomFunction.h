@@ -70,6 +70,7 @@ class CustomFunction:
         public RealFunction,
         public CustomFunctionBase<RealFunction::raw_function_type> {
     public:
+	CustomFunction() { }
         CustomFunction (double _tmin, double _tmax, double _dt,
                         double _umin, double _umax, double _du,
                         double _vmin, double _vmax, double _dv,
@@ -82,12 +83,18 @@ class CustomFunction:
         virtual RealFunction::function_type f;
 };
 
+namespace {
+    Displayable *createCustomFunction() { return new CustomFunction; }
+    const bool registeredCF = TheFunctionFactory::Instance().registerFunction(createCustomFunction, "RealFunction");
+}
+
 /// Function \f$ f: R^3 \rightarrow R \f$, editable to an arbitrary function
 /** The function is interpreted as a four-dimensional polar function,
  *  \f$ r = r(\psi, \theta, \phi) \f$.
  *  \ingroup PolarGroup                                                    */
 class CustomPolarFunction: public CustomFunction {
     public:
+	CustomPolarFunction() { }
         CustomPolarFunction (double _tmin, double _tmax, double _dt,
                              double _umin, double _umax, double _du,
                              double _vmin, double _vmax, double _dv);
@@ -99,12 +106,18 @@ class CustomPolarFunction: public CustomFunction {
         virtual RealFunction::function_type f;
 };
 
+namespace {
+    Displayable *createCustomPolarFunction() { return new CustomPolarFunction; }
+    const bool registeredCPF = TheFunctionFactory::Instance().registerFunction(createCustomPolarFunction, "RealFunction");
+}
+
 /// Function \f$ f: R^2 \rightarrow R^4 \f$, editable to an arbitrary function
 /** \ingroup SurfaceGroup                                                     */
 class CustomSurface:
         public Surface,
         public CustomFunctionBase<Surface::raw_function_type> {
     public:
+	CustomSurface() { }
         CustomSurface (double _umin, double _umax, double _du,
                        double _vmin, double _vmax, double _dv);
         virtual ~CustomSurface() { }
@@ -114,6 +127,11 @@ class CustomSurface:
     protected:
         virtual Surface::function_type f;
 };
+
+namespace {
+    Displayable *createCustomSurface() { return new CustomSurface; }
+    const bool registeredCS = TheFunctionFactory::Instance().registerFunction(createCustomSurface, "Surface");
+}
 
 /// Function \f$ f: C \rightarrow C \f$, editable to an arbitrary function
 /** \ingroup ComplexGroup                                                     */
@@ -135,10 +153,9 @@ public:
 };
 
 namespace {
-  Displayable *createcustomcomplexfunction() { return new CustomComplexFunction(); }
+  Displayable *createCustomComplexfunction() { return new CustomComplexFunction(); }
   /// \todo make this work.
-  const bool registeredustomcomplexfunction = true;
-//    TheFunctionFactory::Instance().registerFunction(createcustomcomplexfunction, "ComplexFunction");
+  const bool registeredCCF = TheFunctionFactory::Instance().registerFunction(createCustomComplexfunction, "ComplexFunction");
 }
 
 /** try to load a DLL and the f() in it
