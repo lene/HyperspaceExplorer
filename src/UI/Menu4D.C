@@ -96,17 +96,18 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
     _help = addMenu(tr("Help"));
 
     generated_ = createMenu(DisplayableClass::getRootNode());
+    addCustomFunctionEntries(generated_);
+    
     addMenu(generated_);
 
     QString sup2(QChar(0x00B2));
     QString sup3(QChar(0x00B3));
-std::cout << "before copy" << endl;
 /*
     std::copy(TheFunctionFactory::Instance().listFunctions().begin(),
               TheFunctionFactory::Instance().listFunctions().end(),
               std::ostream_iterator<std::string>(std::cerr, " "));
 */              
-std::cout << "before cAM" << endl;
+
     createAppearanceMenu();
     
     insertAction(_help, "Online _help", SLOT(Help ()), false);
@@ -137,6 +138,15 @@ std::cout << "before cAM" << endl;
     }
       //      _appear->setItemEnabled (transparentAction, DisplayPolygons);
     _parent->setSolid(!_parent->getSolid());
+}
+
+void C4DView::Menu4D::addCustomFunctionEntries(QMenu* functions_menu) {
+  std::cerr << "*************************************************" << std::endl;
+  QList<QWidget *> children = functions_menu->findChildren<QWidget *>();
+  foreach(QWidget *item, children) {
+    std::cerr << item->accessibleName().toStdString() << std::endl;
+  }
+  std::cerr << "*************************************************" << std::endl;
 }
 
 void C4DView::Menu4D::createAppearanceMenu() {
