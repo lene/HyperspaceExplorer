@@ -90,8 +90,6 @@ class C4DView::Menu4D: public QMenu {
         /// Manages an ActionMap for each submenu
         typedef std::map<QMenu *, ActionMapType> MenuMapType;
 
-        void addCustomFunctionEntries(QMenu *functions_menu);
-        
         void createAppearanceMenu();
         
         /// Creates a menu with submenus from a DisplayableClass
@@ -105,7 +103,8 @@ class C4DView::Menu4D: public QMenu {
         
         void addClassSubmenu(QMenu *thisMenu, const std::vector<DisplayableClass> & subClasses);
         void addDisplayableEntries(QMenu *thisMenu, const std::vector<std::string> & displayableNames);
-
+        const char * getCustomFunctionSlot(const std::string & displayable);
+        
         C4DView *_parent;       ///< the C4DView containing this menu
 
         QMenu *_appear;         ///< The "Appearance" menu

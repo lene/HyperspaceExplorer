@@ -80,12 +80,8 @@ void C4DView::Menu4D::addClassSubmenu(QMenu *menu, const std::vector<Displayable
 void C4DView::Menu4D::addDisplayableEntries(QMenu* thisMenu, const vector<string> & displayableNames) {
   for (auto d: displayableNames) {
     if (d.find("Custom") != std::string::npos) {
-      const char * slot = SLOT(customFunction());
-      if (d == getCustomFunctionName<CustomPolarFunction>()) slot = SLOT(customPolarFunction());
-      if (d == getCustomFunctionName<CustomSurface>()) slot = SLOT(customSurface());
-      if (d == getCustomFunctionName<CustomComplexFunction>()) slot = SLOT(customComplexFunction());
       QAction *tmp = thisMenu->addAction(
-        d.c_str(), this, slot, (const QKeySequence &)0
+        d.c_str(), this, getCustomFunctionSlot(d), (const QKeySequence &)0
       );
       tmp->setCheckable(true);
       _menuMap[thisMenu].insert(std::pair<QString, QAction *>(d.c_str(), tmp));
@@ -95,6 +91,13 @@ void C4DView::Menu4D::addDisplayableEntries(QMenu* thisMenu, const vector<string
   }
 }
 
+const char* C4DView::Menu4D::getCustomFunctionSlot(const string& displayable) {
+  if (displayable == getCustomFunctionName<CustomFunction>()) return SLOT(customFunction());
+  if (displayable == getCustomFunctionName<CustomPolarFunction>()) return SLOT(customPolarFunction());
+  if (displayable == getCustomFunctionName<CustomSurface>()) return SLOT(customSurface());
+  if (displayable == getCustomFunctionName<CustomComplexFunction>()) return SLOT(customComplexFunction());
+  return "";
+}
 
 /** This Constructor is where the menu structure is defined; if you want to
  *  change the menu, do it here.
@@ -112,8 +115,7 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
     _help = addMenu(tr("Help"));
 
     generated_ = createMenu(DisplayableClass::getRootNode());
-    addCustomFunctionEntries(generated_);
-    
+
     addMenu(generated_);
 
     QString sup2(QChar(0x00B2));
@@ -154,15 +156,6 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
     }
       //      _appear->setItemEnabled (transparentAction, DisplayPolygons);
     _parent->setSolid(!_parent->getSolid());
-}
-
-void C4DView::Menu4D::addCustomFunctionEntries(QMenu* functions_menu) {
-  std::cerr << "*************************************************" << std::endl;
-  QList<QWidget *> children = functions_menu->findChildren<QWidget *>();
-  foreach(QWidget *item, children) {
-    std::cerr << item->accessibleName().toStdString() << std::endl;
-  }
-  std::cerr << "*************************************************" << std::endl;
 }
 
 void C4DView::Menu4D::createAppearanceMenu() {
