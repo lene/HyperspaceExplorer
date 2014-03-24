@@ -154,7 +154,7 @@ public:
         virtual ~CustomComplexFunction() { }
 
         virtual std::string getFunctionName() const;
-
+                
     protected:
         virtual QString defaultSymbolicName() const { return "Custom Complex Function"; }
         ComplexFunction::function_type g;

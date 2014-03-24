@@ -58,6 +58,11 @@ inline void TESTED_FEATURE(QAction *item) {
 #endif
 }
 
+template <class T> std::string getCustomFunctionName() {
+  T f;
+  return f.getFunctionName();
+}
+
 QMenu *C4DView::Menu4D::createMenu(const DisplayableClass &node) {
   QMenu *thisMenu = new QMenu(node.getDescription().c_str());
 
@@ -75,8 +80,12 @@ void C4DView::Menu4D::addClassSubmenu(QMenu *menu, const std::vector<Displayable
 void C4DView::Menu4D::addDisplayableEntries(QMenu* thisMenu, const vector<string> & displayableNames) {
   for (auto d: displayableNames) {
     if (d.find("Custom") != std::string::npos) {
+      auto slot = SLOT(customFunction());
+      if (d == getCustomFunctionName<CustomPolarFunction>()) slot = SLOT(customPolarFunction());
+      if (d == getCustomFunctionName<CustomSurface>()) slot = SLOT(customSurface());
+      if (d == getCustomFunctionName<CustomComplexFunction>()) slot = SLOT(customComplexFunction());
       QAction *tmp = thisMenu->addAction(
-        d.c_str(), this, SLOT(customFunction()), (const QKeySequence &)0
+        d.c_str(), this, slot, (const QKeySequence &)0
       );
       tmp->setCheckable(true);
       _menuMap[thisMenu].insert(std::pair<QString, QAction *>(d.c_str(), tmp));
