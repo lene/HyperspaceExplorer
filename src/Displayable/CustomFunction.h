@@ -56,6 +56,8 @@ template<class function_type>
         void setValid() { valid = true; }
         /// Signify failure in loading the function
         void setInvalid() { valid = false; }
+        
+        virtual QString defaultSymbolicName() const { return QString (typeid(*this).name()); }
 
         /// The function that is called
         function_type *func;
@@ -81,6 +83,8 @@ class CustomFunction:
         virtual std::string getFunctionName() const;
 
     protected:
+        virtual QString defaultSymbolicName() const { return "Custom Function"; }
+        
         virtual RealFunction::function_type f;
 };
 
@@ -104,6 +108,7 @@ class CustomPolarFunction: public CustomFunction {
         virtual std::string getFunctionName() const;
 
     protected:
+        virtual QString defaultSymbolicName() const { return "Custom Polar Function"; }
         virtual RealFunction::function_type f;
 };
 
@@ -126,6 +131,7 @@ class CustomSurface:
         virtual std::string getFunctionName() const;
 
     protected:
+        virtual QString defaultSymbolicName() const { return "Custom Surface"; }
         virtual Surface::function_type f;
 };
 
@@ -150,6 +156,7 @@ public:
         virtual std::string getFunctionName() const;
 
     protected:
+        virtual QString defaultSymbolicName() const { return "Custom Complex Function"; }
         ComplexFunction::function_type g;
 };
 
@@ -193,8 +200,7 @@ QString CustomFunctionBase<function_type>::symbolic () const {
 
     if ((error = dlerror()) != NULL)  {
         std::cerr << "Error finding symbolic description in " << error << std::endl;
-	
-        return QString (typeid(*this).name());
+        return defaultSymbolicName();
     }
     ret=(*sym)();
     return QString (ret);

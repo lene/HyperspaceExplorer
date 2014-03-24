@@ -102,6 +102,9 @@ class C4DView::Menu4D: public QMenu {
                               bool = true);
         /// insert a menu item creating a Surface object into a specified menu
         QAction *insertAction(QMenu *, const std::string &, bool = true);
+        
+        void addClassSubmenu(QMenu *thisMenu, const std::vector<DisplayableClass> & subClasses);
+        void addDisplayableEntries(QMenu *thisMenu, const std::vector<std::string> & displayableNames);
 
         C4DView *_parent;       ///< the C4DView containing this menu
 

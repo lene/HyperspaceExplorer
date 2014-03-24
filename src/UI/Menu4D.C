@@ -61,24 +61,31 @@ inline void TESTED_FEATURE(QAction *item) {
 QMenu *C4DView::Menu4D::createMenu(const DisplayableClass &node) {
   QMenu *thisMenu = new QMenu(node.getDescription().c_str());
 
-  vector<DisplayableClass> subClasses = node.getSubClasses();
-  for (vector<DisplayableClass>::const_iterator i = subClasses.begin();
-       i != subClasses.end(); ++i) {
-    thisMenu->addMenu(createMenu(*i));
-  }
-
-  std::cerr << thisMenu->title().toStdString() << std::endl;
-  vector<string> displayableNames = node.getDisplayableNames();
-  for (vector<string>::const_iterator i = displayableNames.begin();
-       i != displayableNames.end(); ++i) {
-    insertAction(thisMenu, *i, true);
-    std::cerr << "    " << *i << std::endl;
-  }
-
+  addClassSubmenu(thisMenu, node.getSubClasses());
+  addDisplayableEntries(thisMenu, node.getDisplayableNames());
   thisMenu->setTearOffEnabled(true);
 
   return thisMenu;
 }
+
+void C4DView::Menu4D::addClassSubmenu(QMenu *menu, const std::vector<DisplayableClass> & subClasses) {
+  for (auto c: subClasses) menu->addMenu(createMenu(c));
+}
+
+void C4DView::Menu4D::addDisplayableEntries(QMenu* thisMenu, const vector<string> & displayableNames) {
+  for (auto d: displayableNames) {
+    if (d.find("Custom") != std::string::npos) {
+      QAction *tmp = thisMenu->addAction(
+        d.c_str(), this, SLOT(customFunction()), (const QKeySequence &)0
+      );
+      tmp->setCheckable(true);
+      _menuMap[thisMenu].insert(std::pair<QString, QAction *>(d.c_str(), tmp));
+    } else {
+      insertAction(thisMenu, d, true);
+    }
+  }
+}
+
 
 /** This Constructor is where the menu structure is defined; if you want to
  *  change the menu, do it here.
