@@ -77,7 +77,7 @@ class RealFunction: public FunctionHolder<4, 3, double> {
     VecMath::Vector<4> &normal(double t, double u, double v);
 
     /// Allocate and initialize X[][][] with values of f().
-    virtual void Initialize (void);
+    virtual void Initialize(void);
 
     /// Pointer to the actual ParametricFunction doing all the work.
     std::shared_ptr< ParametricFunction<4, 3> > _function;

@@ -27,21 +27,22 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "PluginCreator.h"
 
 namespace UI {
-    namespace Dialogs {
-        /// Display  and load the selected DLL into current address space
-        /** Loads a dynamic library, which can be selected by the user on a QFileDialog.
-        *
-        *  Calls functionPresent() below. see there.
-        *  @param type the plugin's function type: real, polar, surface or complex
-        *  @param parent the QDialog calling this function
-        *  @return success                                                           */
-        bool PluginCreator::loadFunction(const QString &type, QDialog *parent) {
+    
+  namespace Dialogs {
+        
+    /// Display  and load the selected DLL into current address space
+    /** Loads a dynamic library, which can be selected by the user on a QFileDialog.
+     *
+     *  Calls functionPresent() below. see there.
+     *  @param type the plugin's function type: real, polar, surface or complex
+     *  @param parent the QDialog calling this function
+     *  @return success                                                           
+     */
+    bool PluginCreator::loadFunction(const QString &type, QDialog *parent) {
             QString libName;
             //  iterate through resource directories until plugin subdirectory found
-            for (QStringList::Iterator it = Globals::Instance().rcdirs().begin();
-                it != Globals::Instance().rcdirs().end();
-                ++it ) {
-                QDir current (*it);
+            for (auto dir: Globals::Instance().rcdirs()) {
+                QDir current(dir);
                 if (current.exists ("plugins/"+type)) {  //  plugin subdir present?
                     libName = QFileDialog::getOpenFileName(
                             parent,
@@ -60,7 +61,7 @@ namespace UI {
             }
 
             return false;
-        }
+    }
 
         /// Called when the user clicks the OK button in the Function Dialog
         /** Checks whether all fields are filled in, whether the given function
