@@ -83,6 +83,22 @@ class CustomFunction:
         virtual std::string getFunctionName() const;
 
     protected:
+      
+        /// ParametricFunction that defines Hypersphere
+        class DefiningFunction: public ParametricFunction<4, 3> {
+
+            public:
+
+                DefiningFunction(CustomFunction *parent): _parent(parent) { }
+                virtual return_type f(const argument_type &x);
+
+            private:
+
+                /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
+                CustomFunction* _parent;
+
+        };
+
         virtual QString defaultSymbolicName() const { return "Custom Function"; }
         
         virtual RealFunction::function_type f;
@@ -195,13 +211,12 @@ QString CustomFunctionBase<function_type>::symbolic () const {
     typedef char* STRING;
     STRING (*sym)();
     sym = (STRING (*)())dlsym(handle, "symbolic");
-    const char *error;
-    static char *ret;
 
-    if ((error = dlerror()) != NULL)  {
-        std::cerr << "Error finding symbolic description in " << error << std::endl;
+    if (dlerror() != NULL)  {
         return defaultSymbolicName();
     }
+
+    static char *ret;
     ret=(*sym)();
     return QString (ret);
 }

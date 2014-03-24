@@ -56,11 +56,11 @@ CustomFunction::CustomFunction (double _tmin, double _tmax, double _dt,
                                 bool final):
     RealFunction (_tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
     if (final) {
-        FunctionDialogImpl *Dlg = new FunctionDialogImpl ();
+        FunctionDialogImpl *Dlg = new FunctionDialogImpl();
 
-        if (Dlg->exec () == QDialog::Accepted &&
-            loadFunction (Dlg->libraryName())) {
-            Initialize ();
+        if (Dlg->exec () == QDialog::Accepted && loadFunction(Dlg->libraryName())) {
+            _function = std::shared_ptr<ParametricFunction<4,3>>(new DefiningFunction(/*func*/this));
+            Initialize();
             setValid();
         } else setInvalid();
     }
@@ -81,6 +81,15 @@ Vector<4> &CustomFunction::f (double x, double y, double z) {
     return T;
 }
 
+ParametricFunction< 4, 3 >::return_type CustomFunction::DefiningFunction::f(
+  const ParametricFunction< 4, 3 >::argument_type& x) {
+
+  Vector<4> F;
+  F = _parent->f(x[0], x[1], x[2]);
+
+  return F;
+
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
