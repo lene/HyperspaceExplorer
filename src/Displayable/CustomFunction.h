@@ -84,19 +84,15 @@ class CustomFunction:
 
     protected:
       
-        /// ParametricFunction that defines Hypersphere
+        /// ParametricFunction that defines CustomFunction
         class DefiningFunction: public ParametricFunction<4, 3> {
-
             public:
-
                 DefiningFunction(CustomFunction *parent): _parent(parent) { }
                 virtual return_type f(const argument_type &x);
 
             private:
-
                 /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
                 CustomFunction* _parent;
-
         };
 
         virtual QString defaultSymbolicName() const { return "Custom Function"; }
@@ -124,6 +120,16 @@ class CustomPolarFunction: public CustomFunction {
         virtual std::string getFunctionName() const;
 
     protected:
+        /// ParametricFunction that defines CustomPolarFunction
+        class DefiningFunction: public ParametricFunction<4, 3> {
+            public:
+                DefiningFunction(CustomPolarFunction *parent): _parent(parent) { }
+                virtual return_type f(const argument_type &x);
+
+            private:
+                /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
+                CustomPolarFunction* _parent;
+        };
         virtual QString defaultSymbolicName() const { return "Custom Polar Function"; }
         virtual RealFunction::function_type f;
 };
@@ -147,6 +153,16 @@ class CustomSurface:
         virtual std::string getFunctionName() const;
 
     protected:
+        /// ParametricFunction that defines CustomSurface
+        class DefiningFunction: public ParametricFunction<4, 2> {
+            public:
+                DefiningFunction(CustomSurface *parent): _parent(parent) { }
+                virtual return_type f(const argument_type &x);
+
+            private:
+                /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
+                CustomSurface* _parent;
+        };
         virtual QString defaultSymbolicName() const { return "Custom Surface"; }
         virtual Surface::function_type f;
 };
@@ -172,6 +188,16 @@ public:
         virtual std::string getFunctionName() const;
                 
     protected:
+        /// ParametricFunction that defines CustomComplexFunction
+        class DefiningFunction: public ParametricFunction<4, 2> {
+            public:
+                DefiningFunction(CustomComplexFunction *parent): _parent(parent) { }
+                virtual return_type f(const argument_type &x);
+
+            private:
+                /// Not a smart pointer because it's initialized to \c this and mustn't be deleted
+                CustomComplexFunction* _parent;
+        };
         virtual QString defaultSymbolicName() const { return "Custom Complex Function"; }
         ComplexFunction::function_type g;
 };

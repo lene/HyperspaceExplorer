@@ -59,7 +59,7 @@ CustomFunction::CustomFunction (double _tmin, double _tmax, double _dt,
         FunctionDialogImpl *Dlg = new FunctionDialogImpl();
 
         if (Dlg->exec () == QDialog::Accepted && loadFunction(Dlg->libraryName())) {
-            _function = std::shared_ptr<ParametricFunction<4,3>>(new DefiningFunction(/*func*/this));
+            _function = std::shared_ptr<ParametricFunction<4,3>>(new DefiningFunction(this));
             Initialize();
             setValid();
         } else setInvalid();
@@ -83,12 +83,7 @@ Vector<4> &CustomFunction::f (double x, double y, double z) {
 
 ParametricFunction< 4, 3 >::return_type CustomFunction::DefiningFunction::f(
   const ParametricFunction< 4, 3 >::argument_type& x) {
-
-  Vector<4> F;
-  F = _parent->f(x[0], x[1], x[2]);
-
-  return F;
-
+  return _parent->f(x[0], x[1], x[2]);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -109,10 +104,10 @@ CustomPolarFunction::CustomPolarFunction (double _tmin, double _tmax, double _dt
                                           double _umin, double _umax, double _du,
                                           double _vmin, double _vmax, double _dv):
     CustomFunction (_tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv, false) {
-    PolarDialogImpl *Dlg = new PolarDialogImpl ();
+    PolarDialogImpl *dialog = new PolarDialogImpl ();
 
-    if (Dlg->exec () == QDialog::Accepted &&
-        loadFunction (Dlg->libraryName())) {
+    if (dialog->exec () == QDialog::Accepted && loadFunction (dialog->libraryName())) {
+        _function = std::shared_ptr<ParametricFunction<4,3>>(new DefiningFunction(this));
         Initialize ();
         setValid();
     } else setInvalid();
@@ -134,6 +129,10 @@ Vector<4> &CustomPolarFunction::f (double x, double y, double z) {
     return T;
 }
 
+ParametricFunction< 4, 3 >::return_type CustomPolarFunction::DefiningFunction::f(
+  const ParametricFunction< 4, 3 >::argument_type& x) {
+  return _parent->f(x[0], x[1], x[2]);
+}
 
 /** CustomComplexFunction c'tor given a definition set in \f$ C \f$ (as parameter space) and a
  *  flag indicatin whether this is a test construction or a real one
@@ -148,8 +147,8 @@ CustomComplexFunction::CustomComplexFunction (double _umin, double _umax, double
         ComplexFunction (_umin, _umax, _du, _vmin, _vmax, _dv) {
     ComplexDialogImpl *Dlg = new ComplexDialogImpl ();
 
-    if (Dlg->exec () == QDialog::Accepted &&
-        loadFunction(Dlg->libraryName())) {
+    if (Dlg->exec () == QDialog::Accepted && loadFunction(Dlg->libraryName())) {
+        _function = std::shared_ptr<ParametricFunction<4,2>>(new DefiningFunction(this));
         Initialize ();
         setValid();
     } else setInvalid();
@@ -168,6 +167,17 @@ complex<double> CustomComplexFunction::g (complex<double> z) {
     return T;
 }
 
+ParametricFunction< 4, 2 >::return_type CustomComplexFunction::DefiningFunction::f(
+  const ParametricFunction< 4, 2 >::argument_type& x) {
+  ParametricFunction< 4, 2 >::return_type F;
+  complex< double > g = _parent->g(std::complex<double>(x[0], x[1]));
+  F[0] = x[0];
+  F[1] = x[1];
+  F[2] = g.real();
+  F[3] = g.imag();
+  return F;
+}
+
 /** CustomSurface c'tor given a definition set in \f$ R^3 \f$ (as parameter space) and a
  *  flag indicatin whether this is a test construction or a real one
  *  @param _umin minimal value in u
@@ -183,6 +193,7 @@ CustomSurface::CustomSurface (double _umin, double _umax, double _du,
 
     if (Dlg->exec () == QDialog::Accepted) {
         loadFunction (Dlg->libraryName());
+        _function = std::shared_ptr<ParametricFunction<4,2>>(new DefiningFunction(this));
         Initialize ();
         setValid();
     } else setInvalid();
@@ -201,4 +212,9 @@ Vector<4> &CustomSurface::f (double u, double v) {
     static Vector<4> T;
     T = func(u, v);
     return T;
+}
+
+ParametricFunction< 4, 2 >::return_type CustomSurface::DefiningFunction::f(
+  const ParametricFunction< 4, 2 >::argument_type& x) {
+  return _parent->f(x[0], x[1]);
 }
