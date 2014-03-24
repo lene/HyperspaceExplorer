@@ -80,7 +80,7 @@ void C4DView::Menu4D::addClassSubmenu(QMenu *menu, const std::vector<Displayable
 void C4DView::Menu4D::addDisplayableEntries(QMenu* thisMenu, const vector<string> & displayableNames) {
   for (auto d: displayableNames) {
     if (d.find("Custom") != std::string::npos) {
-      auto slot = SLOT(customFunction());
+      const char * slot = SLOT(customFunction());
       if (d == getCustomFunctionName<CustomPolarFunction>()) slot = SLOT(customPolarFunction());
       if (d == getCustomFunctionName<CustomSurface>()) slot = SLOT(customSurface());
       if (d == getCustomFunctionName<CustomComplexFunction>()) slot = SLOT(customComplexFunction());
