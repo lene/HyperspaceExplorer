@@ -1,4 +1,4 @@
-#include "Vector.H"		
+#include "Vector.h"		
 
 using namespace VecMath;
 
@@ -11,8 +11,8 @@ using namespace VecMath;
       F[0] = x;						
       F[1] = y;						
       F[2] = z;						
-      F[3] = sin (x)+sin (y)+sin (z);			
+      F[3] = sqrt (pow (x*x, y*y+z*z));			
                                                         
       return F; }					
                                                         
-    char *symbolic () { return "sin (x)+sin (y)+sin (z)"; }
+    char *symbolic () { return "sqrt (pow (x*x, y*y+z*z))"; }
