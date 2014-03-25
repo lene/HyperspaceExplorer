@@ -2,6 +2,7 @@ PATH = Utilities
 INCLUDEPATH += $${PATH}
 DEPENDPATH += $${PATH}
 HEADERS += \
+           $${PATH}/FunctionDLL.h \
            $${PATH}/Globals.h \
            $${PATH}/GLUPerspective.h \
            $${PATH}/Log.h \
@@ -17,6 +18,7 @@ HEADERS += \
            $${PATH}/Tree.impl.h \
            $${PATH}/Util.h
 SOURCES += \
+           $${PATH}/FunctionDLL.C \
            $${PATH}/Globals.C \
            $${PATH}/GLUPerspective.cpp \
            $${PATH}/PathChange.C  \

@@ -83,6 +83,7 @@ namespace UI {
     }
 }
 
+#include "FunctionDLL.h"
 #include <dlfcn.h>
 #include <iostream>
 #include <QFile>
@@ -102,29 +103,18 @@ namespace UI {
      */
     template <class F>
     bool PluginCreator::LoadFunctionHelper<F>::functionPresent(const QString &libName, QDialog *parent) {
+
+      FunctionDLL dll(libName.toStdString());
+      if (!dll.isValid()) {
+        QMessageBox::warning(parent, "Error opening library", dll.getError().c_str());
+        return false;
+      }
       
-      if (!QFile::exists (libName)) {
-        QMessageBox::warning (parent, "Error opening library", "Library does not exist: "+libName);
-        return false;
-      }
-
-      void *handle = dlopen (libName.toStdString().c_str(), RTLD_LAZY);
-      if (!handle) {
-        QMessageBox::warning (parent, "Error opening library", dlerror());
-        return false;
-      }
-
-      F *f = (F *)dlsym(handle, "f");
-
+      F* f = (F *)dll.getSymbol("f");
       if (f == NULL) {
-        const char *error;
-        if ((error = dlerror()) != NULL)  {
-          QMessageBox::warning (parent, "Error finding function", error);
+          QMessageBox::warning (parent, "Error finding function", /*error*/dll.getError().c_str());
           return false;
         }
-      }
-
-      dlclose(handle);
 
       return true;
     }
