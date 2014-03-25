@@ -61,13 +61,11 @@ namespace UI {
                 bool loadFunction(const QString &, QDialog *);
                 bool checkValidity(const QString &, const QString &, QDialog *);
 
-                bool compile (QString);
-                bool link (QString);
+                bool compile (const QString &);
+                bool link (const QString &);
 
             private:
 
-                QString findVectorHPath(QString start_path = "");
-                
                 /// Display  and load the selected DLL into current address space
                 virtual bool loadFunction() = 0;
                 /// Loads the dynamic library given by libName, if it exists and can be loaded.
@@ -75,6 +73,11 @@ namespace UI {
                 /// Write a C++ source file containing the given function
                 virtual void writeSource() = 0;
 
+                void setupPluginDirectoryStructure(const QString & type);
+                QString findVectorHPath(const QString &start_path = "");
+                bool copyVectorIncludeFile();                
+                bool generatePluginFromSource(const QString &name);
+                
                 QString LibraryName;    ///< Filename of the DLL to be loaded
         };
     }

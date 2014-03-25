@@ -26,6 +26,7 @@ Makefile
 doc
 dir.sh
 *.o
+*.so
 HyperspaceExplorer-tests
 *.kdev4
 

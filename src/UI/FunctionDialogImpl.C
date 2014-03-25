@@ -117,25 +117,27 @@ namespace UI {
         void FunctionDialogImpl::writeSource () {
             ofstream SourceFile ((nameEdit->text().toStdString()+".C").c_str());
 
-            SourceFile << "#include \"" << vector_include_file.toStdString() << "\"\n\
-        \n\
-        using namespace VecMath;\n\
-        \n\
-        extern \"C\" Vector<4> f (double, double, double);	\n\
-        extern \"C\" char *symbolic ();\n\
-        \n\
-        Vector<4> f (double x, double y, double z) {\n\
-            static Vector<4> F;\n\
-            F[0] = x;\n\
-            F[1] = y;\n\
-            F[2] = z;\n\
-            F[3] = " << functionEdit->text().toStdString() << ";\n\
-        \n\
-            return F; }\n\
-        \n\
-        char *symbolic () {\n\
-            return \"" << functionEdit->text().toStdString() << "\";\n\
-        }\n";
+            SourceFile << "\
+#include \"" << vector_include_file.toStdString() << "\"\n\
+\n\
+using namespace VecMath;\n\
+\n\
+extern \"C\" Vector<4> f (double, double, double);	\n\
+extern \"C\" char *symbolic ();\n\
+\n\
+Vector<4> f (double x, double y, double z) {\n\
+    static Vector<4> F;\n\
+    F[0] = x;\n\
+    F[1] = y;\n\
+    F[2] = z;\n\
+    F[3] = " << functionEdit->text().toStdString() << ";\n\
+\n\
+    return F;\n\
+}\n\
+\n\
+char *symbolic () {\n\
+    return \"" << functionEdit->text().toStdString() << "\";\n\
+}\n";
 
             SourceFile.close ();
         }

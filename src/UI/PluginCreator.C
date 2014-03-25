@@ -32,8 +32,22 @@ namespace UI {
     
   namespace Dialogs {
         
-    QDir getDir(QString start_path);
+    QDir getDir(const QString &start_path);
+    bool isSourceFile(const QString &filename);
+    std::pair<QString, QDir> getFileToLoad(const QString &type, QDialog *parent);
     
+    struct ChangePath {
+      ChangePath(const QString &newPath) {
+        old_path = QDir::currentPath();
+        QDir::setCurrent(newPath);
+      }
+      
+      ~ChangePath() {
+        QDir::setCurrent(old_path);
+      }
+    private:
+      QString old_path;
+    };
     
     /// Display  and load the selected DLL into current address space
     /** Loads a dynamic library, which can be selected by the user on a QFileDialog.
@@ -44,54 +58,38 @@ namespace UI {
      *  @return success                                                           
      */
     bool PluginCreator::loadFunction(const QString &type, QDialog *parent) {
-            QString libName;
-            QDir current;
-            //  iterate through resource directories until plugin subdirectory found
-            for (auto dir: Globals::Instance().rcdirs()) {
-                current = QDir(dir);
-                if (current.exists ("plugins/"+type)) {  //  plugin subdir present?
-                    libName = QFileDialog::getOpenFileName(
-                            parent,
-                            QObject::tr("Open a function"),
-                                current.absolutePath ()+"/plugins/"+type,
-                            "All Plugins (*.so* *.C);;Libraries (*.so*);;Source files (*.C)");
-                    if (!libName.isNull()) break;      //  "Cancel" pressed
-                }
-            }
-            if (libName.isNull()) return false;
+      
+      std::pair<QString, QDir> path = getFileToLoad(type, parent);
+      
+      QString lib_name = path.first;
+      QDir current_dir = path.second;
+      
+      if (lib_name.isNull()) return false;
             
-            QRegExp regexp(".C$");
-            if (regexp.indexIn(libName) > 0) {
-              std::cerr << "match: " << libName.toStdString() << std::endl;
-              QString oldPath = QDir::currentPath();
-              QDir::setCurrent(current.absolutePath()+"/plugins/"+type);
+      if (isSourceFile(lib_name)) {
+        
+        ChangePath path_changer(current_dir.absolutePath()+"/plugins/"+type);
               
-              libName = libName.remove(".C");
-              if (!compile(libName)) {
-                QDir::setCurrent(oldPath);
-                return false;
-              }
+        lib_name = lib_name.remove(".C");
+        
+        if (!compile(lib_name)) return false;
+        
+        if (!link(lib_name)) return false;
               
-              if (!link(libName)) {
-                QDir::setCurrent(oldPath);
-                return false;
-              }
+        lib_name += ".so";
               
-              libName += ".so";
-              
-              QDir::setCurrent(oldPath);
-            }
+      }
             
-            if (functionPresent(libName)) {
-                LibraryName = libName;
-                parent->accept();
-            }
+      if (functionPresent(lib_name)) {
+        LibraryName = lib_name;
+        parent->accept();
+      }
 
-            return false;
+      return false;
     }
 
-        /// Called when the user clicks the OK button in the Function Dialog
-        /** Checks whether all fields are filled in, whether the given function
+    /// Called when the user clicks the OK button in the Function Dialog
+    /** Checks whether all fields are filled in, whether the given function
         *  is valid C++ syntax, ie. whether it compiles, and whether the compiled code
         *  links into a dynamic library.
         *
@@ -110,52 +108,51 @@ namespace UI {
         *  @param name the name of the plugin
         *  @param parent the QDialog calling this function
         *  @return success                                                           */
-        bool PluginCreator::checkValidity(const QString &type, const QString &name,
-                                        QDialog *parent) {
-            QString currentPath = QDir::currentPath();
-            QDir::setCurrent(*(Globals::Instance().rcdirs().begin()));
+    bool PluginCreator::checkValidity(const QString &type, const QString &name, QDialog *parent) {
 
-            if (!QDir::current().exists ("plugins")) QDir::current().mkdir ("plugins");
-            if (!QDir::current().exists ("plugins/"+type)) QDir::current().mkdir ("plugins/"+type);
+      setupPluginDirectoryStructure(type);
+      
+      ChangePath path_changer(*(Globals::Instance().rcdirs().begin())+"plugins/"+type);
+      //  we are now in the subdirectory plugins/type under the first entry of the rcdirs list
 
-            if (!QDir::current().exists(vector_include_file)) {
-              for (QString rcdir: Globals::Instance().rcdirs()) {
-                QString vector_h_path = findVectorHPath(rcdir);
-                if (!vector_h_path.isEmpty()) {
-                  QFile::copy(vector_h_path+"/"+vector_include_file, QDir::current().absolutePath()+"/"+vector_include_file);
-                  std::cerr << vector_include_file.toStdString() << " found in " << rcdir.toStdString() << ": " << vector_h_path.toStdString() << std::endl;
-                  break;
-                }
-                std::cerr << "no " << vector_include_file.toStdString() << " in " << rcdir.toStdString() << std::endl;
-              }
-            }
-            QDir::setCurrent ("plugins/"+type);
-            //  we are now in the subdirectory plugins/type under the first entry of
-            //  the rcdirs list
+      writeSource();                          //  generate C++ source code
 
-            writeSource();                          //  generate C++ source code
+      if (!compile(name)) return false;
+      
+      if (!link (name)) return false;
+      
+      //  try to open the resulting dynamic library
+      //  the name of the dynamic library must be given absolutely, because
+      //  dlopen () only checks LD_LIBRARY_PATH, which usually doesn't contain "."
+      if (functionPresent(QDir::currentPath()+"/"+name+".so")) {
+        LibraryName = QDir::currentPath()+"/"+name+".so";
+        parent->accept();
+      }
 
-            if (!compile(name)) {                   //  try to compile
-                QDir::setCurrent(currentPath);
-                return false;
-            }
+      return true;
+    }
+    
+    void PluginCreator::setupPluginDirectoryStructure(const QString& type) {
+      ChangePath path_changer(*(Globals::Instance().rcdirs().begin()));
 
-            if (!link (name)) {                     //  try to link
-                QDir::setCurrent(currentPath);
-                return false;
-            }
-            //  try to open the resulting dynamic library
-            //  the name of the dynamic library must be given absolutely, because
-            //  dlopen () only checks LD_LIBRARY_PATH, which usually doesn't contain "."
-            if (functionPresent(QDir::currentPath()+"/"+name+".so")) {
-                LibraryName = QDir::currentPath()+"/"+name+".so";
-                parent->accept();
-            }
+      if (!QDir::current().exists ("plugins")) QDir::current().mkdir ("plugins");
+      if (!QDir::current().exists ("plugins/"+type)) QDir::current().mkdir ("plugins/"+type);
 
-            QDir::setCurrent (currentPath);
+      if (!QDir::current().exists(vector_include_file)) copyVectorIncludeFile();
+    }
 
+    bool PluginCreator::copyVectorIncludeFile() {
+      for (QString rcdir: Globals::Instance().rcdirs()) {
+        QString vector_h_path = findVectorHPath(rcdir);
+        if (!vector_h_path.isEmpty() &&
+            QFile::copy(vector_h_path+"/"+vector_include_file, QDir::current().absolutePath()+"/"+vector_include_file)) {
             return true;
         }
+      }
+      
+      return false;
+    }
+
 
         /// Compile the C++ source code written by writeSource()
         /** Display errors and warnings, if they come up.
@@ -164,7 +161,7 @@ namespace UI {
         *  \todo Might tweak the compilation flags a little, or make them variable
         *  @param name the name of the plugin
         *  @return success                                                           */
-        bool PluginCreator::compile (QString name) {
+        bool PluginCreator::compile (const QString &name) {
             QString compileCommand = "g++ -I.. -I../.. -I"
                     +Globals::Instance().rcdirs().join("/plugins -I")+"/plugins"
                     +(findVectorHPath("../..").isEmpty()? "": "-I "+findVectorHPath("../.."))
@@ -188,25 +185,27 @@ namespace UI {
         /// link the object file generated by compile() into a dynamic library.
         /** @param name the name of the plugin
         *  @return success                                                           */
-        bool PluginCreator::link (QString name) {
+        bool PluginCreator::link (const QString &name) {
             QString linkCommand = "g++ -shared -Wl,-export-dynamic -Wl,-soname,\""
                     +name+".so\" -o \""
                     +name+".so\" \""
                     +name+".o\""
                     +"> /tmp/HyperspaceExplorer.link.errors 2>&1";
-            bool Success = !system (linkCommand.toStdString().c_str());
+            bool Success = !system(linkCommand.toStdString().c_str());
 
             if (!Success) {
                 QFile Errs ("/tmp/HyperspaceExplorer.link.errors");
                 Errs.open (QIODevice::ReadOnly);
                 QString ErrString (Errs.readAll ());
                 QMessageBox::warning (NULL, "Link Errors", linkCommand+":\n"+ErrString);
+            } else {
+              QFile::remove(name+".o");
             }
 
             return Success;
         }
         
-        QString PluginCreator::findVectorHPath(QString start_path) {
+        QString PluginCreator::findVectorHPath(const QString &start_path) {
           QDir current = getDir(start_path);
           
           if (current.exists(vector_include_file)) return current.absolutePath();
@@ -217,10 +216,40 @@ namespace UI {
           return "";
         }
 
-        QDir getDir(QString start_path) {
+        ////////////////////////////////////////////////////////////////////////
+        // Local auxiliary functions
+        ////////////////////////////////////////////////////////////////////////
+        
+        /// Returns a QDir initialized either with \p start_path, if it exists, or the current directory
+        QDir getDir(const QString &start_path) {
           if (start_path.isEmpty()) return QDir::current();
           else return QDir(start_path);
         }
+
+        /// checks whether a filename ends in ".C"
+        bool isSourceFile(const QString &filename) {
+            QRegExp regexp(".C$");
+            return (regexp.indexIn(filename) > 0);
+        }
+        
+        std::pair< QString, QDir > getFileToLoad(const QString &type, QDialog *parent) {
+            QString libName;
+            QDir current;
+            //  iterate through resource directories until plugin subdirectory found
+            for (auto dir: Globals::Instance().rcdirs()) {
+                current = QDir(dir);
+                if (current.exists ("plugins/"+type)) {  //  plugin subdir present?
+                    libName = QFileDialog::getOpenFileName(
+                            parent,
+                            QObject::tr("Open a function"),
+                            current.absolutePath ()+"/plugins/"+type,
+                            "All Plugins (*.so* *.C);;Libraries (*.so*);;Source files (*.C)");
+                    if (!libName.isNull()) return std::make_pair(libName, current);
+                }
+            }
+            return std::make_pair(libName, current);
+        }
+
 
     }
 }
