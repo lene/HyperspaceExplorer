@@ -21,12 +21,15 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "PathChange.h"
 
 #include <QDir>
+#include <iostream>
 
 PathChange::PathChange(const QString &newPath) {
   if (QFile::exists(newPath) && QFileInfo(newPath).isDir()) {
       old_path = QDir::currentPath();
       QDir::setCurrent(newPath);
-  } else old_path = INVALID_PATH;
+  } else {
+    old_path = INVALID_PATH;
+  }
 }
       
 PathChange::~PathChange() {

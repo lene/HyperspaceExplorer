@@ -102,7 +102,7 @@ namespace UI {
 
       setupPluginDirectoryStructure(type);
       
-      PathChange path_changer(*(Globals::Instance().rcdirs().begin())+"plugins/"+type);
+      PathChange path_changer(*(Globals::Instance().rcdirs().begin())+"/plugins/"+type);
       //  we are now in the subdirectory plugins/type under the first entry of the rcdirs list
 
       writeSource();                          //  generate C++ source code

@@ -106,29 +106,30 @@ namespace UI {
         void ComplexDialogImpl::writeSource () {
         ofstream SourceFile ((nameEdit->text().toStdString()+".C").c_str());
 
-        SourceFile << "#include \"Vector.H\"\n\
-        #include <complex>\n\
-        \n\
-        using namespace VecMath;\n\
-        using std::complex;\n\
-        \n\
-        extern \"C\" Vector<4> f (double, double);\n\
-        extern \"C\" char *symbolic ();\n\
-        \n\
-        Vector<4> f (double u, double v) {\n\
-            static Vector<4> F;\n\
-            complex<double> z (u, v), w = " << WEdit->text().toStdString() << ";\n\
-            F[0] = u;\n\
-            F[1] = v;\n\
-            F[2] = w.real ();\n\
-            F[3] = w.imag ();\n\
-        \n\
-            return F;\n\
-        }\n\
-        \n\
-        char *symbolic () {\n\
-            return \"" << WEdit->text().toStdString() << "\"; \n\
-        }\n";
+        SourceFile << "\
+#include \"" << vector_include_file.toStdString() << "\"\n\
+#include <complex>\n\
+\n\
+using namespace VecMath;\n\
+using std::complex;\n\
+\n\
+extern \"C\" Vector<4> f (double, double);\n\
+extern \"C\" char *symbolic ();\n\
+\n\
+Vector<4> f (double u, double v) {\n\
+    static Vector<4> F;\n\
+    complex<double> z(u, v), w = " << WEdit->text().toStdString() << ";\n\
+    F[0] = u;\n\
+    F[1] = v;\n\
+    F[2] = w.real();\n\
+    F[3] = w.imag();\n\
+\n\
+    return F;\n\
+}\n\
+\n\
+char *symbolic () {\n\
+    return \"" << WEdit->text().toStdString() << "\"; \n\
+}\n";
 
             SourceFile.close ();
         }
