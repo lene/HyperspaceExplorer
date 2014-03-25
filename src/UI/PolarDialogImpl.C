@@ -103,31 +103,32 @@ namespace UI {
         void PolarDialogImpl::writeSource () {
             ofstream SourceFile ((nameEdit->text().toStdString()+".C").c_str());
 
-            SourceFile << "#include \"Vector.H\"\n\
-        \n\
-        using namespace VecMath;\n\
-        \n\
-        extern \"C\" Vector<4> f (double, double, double);\n\
-        extern \"C\" char *symbolic ();\n\
-        \n\
-        Vector<4> f (double t, double u, double v) {\n\
-            static Vector<4> F;\n\
-            double sinphi = sin (pi*t), cosphi = cos (pi*t),\n\
-                sintht = sin (pi*u), costht = cos (pi*u),\n\
-                sinpsi = sin (pi*v), cospsi = cos (pi*v),\n\
-                Radius = " << FEdit->text().toStdString() << ";\n\
-        \n\
-            F[0] = Radius*sinpsi*sintht*cosphi;\n\
-            F[1] = Radius*sinpsi*sintht*sinphi;\n\
-            F[2] = Radius*sinpsi*costht;\n\
-            F[3] = Radius*cospsi;\n\
-        \n\
-            return F;\n\
-        }\n\
-        \n\
-        char *symbolic () {\n\
-            return \"" << FEdit->text().toStdString() << "\";\n\
-        }\n";
+            SourceFile << "\
+#include \"" << vector_include_file.toStdString() << "\"\n\
+\n\
+using namespace VecMath;\n\
+\n\
+extern \"C\" Vector<4> f (double, double, double);\n\
+extern \"C\" char *symbolic ();\n\
+\n\
+Vector<4> f (double t, double u, double v) {\n\
+    static Vector<4> F;\n\
+    double sinphi = sin (pi*t), cosphi = cos (pi*t),\n\
+           sintht = sin (pi*u), costht = cos (pi*u),\n\
+           sinpsi = sin (pi*v), cospsi = cos (pi*v),\n\
+           Radius = " << FEdit->text().toStdString() << ";\n\
+\n\
+    F[0] = Radius*sinpsi*sintht*cosphi;\n\
+    F[1] = Radius*sinpsi*sintht*sinphi;\n\
+    F[2] = Radius*sinpsi*costht;\n\
+    F[3] = Radius*cospsi;\n\
+\n\
+    return F;\n\
+}\n\
+\n\
+char *symbolic () {\n\
+    return \"" << FEdit->text().toStdString() << "\";\n\
+}\n";
 
             SourceFile.close ();
         }
