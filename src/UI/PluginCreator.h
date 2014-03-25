@@ -55,6 +55,9 @@ namespace UI {
                 QString libraryName () { return LibraryName; }
 
             protected:
+
+                const QString vector_include_file = "Vector.h";
+              
                 bool loadFunction(const QString &, QDialog *);
                 bool checkValidity(const QString &, const QString &, QDialog *);
 
@@ -62,6 +65,9 @@ namespace UI {
                 bool link (QString);
 
             private:
+
+                QString findVectorHPath(QString start_path = "");
+                
                 /// Display  and load the selected DLL into current address space
                 virtual bool loadFunction() = 0;
                 /// Loads the dynamic library given by libName, if it exists and can be loaded.

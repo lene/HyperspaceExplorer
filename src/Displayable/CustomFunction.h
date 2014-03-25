@@ -50,7 +50,7 @@ template<class function_type>
         bool isValid() const { return valid; }
 
     protected:
-        bool loadFunction (const QString &, QString = "f");
+        bool loadFunction(const QString &, QString = "f");
 
         /// Signify success in loading the function
         void setValid() { valid = true; }
@@ -58,7 +58,7 @@ template<class function_type>
         void setInvalid() { valid = false; }
         
         virtual QString defaultSymbolicName() const { return QString (typeid(*this).name()); }
-
+        
         /// The function that is called
         function_type *func;
 
@@ -246,5 +246,6 @@ QString CustomFunctionBase<function_type>::symbolic () const {
     ret=(*sym)();
     return QString (ret);
 }
+
 
 #endif

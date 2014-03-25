@@ -21,6 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <QString>
 #include <QFile>
 #include <QFileDialog>
+#include <QDir>
 #include <QMessageBox>
 
 #include "Globals.h"
@@ -86,13 +87,22 @@ namespace UI {
         bool PluginCreator::checkValidity(const QString &type, const QString &name,
                                         QDialog *parent) {
             QString currentPath = QDir::currentPath();
-            QDir::setCurrent (*(Globals::Instance().rcdirs().begin()));
+            QDir::setCurrent(*(Globals::Instance().rcdirs().begin()));
 
-            if (!QDir::current ().exists ("plugins"))
-                QDir::current ().mkdir ("plugins");
-            if (!QDir::current ().exists ("plugins/"+type))
-                QDir::current ().mkdir ("plugins/"+type);
+            if (!QDir::current().exists ("plugins")) QDir::current().mkdir ("plugins");
+            if (!QDir::current().exists ("plugins/"+type)) QDir::current().mkdir ("plugins/"+type);
 
+            if (!QDir::current().exists(vector_include_file)) {
+              for (QString rcdir: Globals::Instance().rcdirs()) {
+                QString vector_h_path = findVectorHPath(rcdir);
+                if (!vector_h_path.isEmpty()) {
+                  QFile::copy(vector_h_path+"/"+vector_include_file, QDir::current().absolutePath()+"/"+vector_include_file);
+                  std::cerr << vector_include_file.toStdString() << " found in " << rcdir.toStdString() << ": " << vector_h_path.toStdString() << std::endl;
+                  break;
+                }
+                std::cerr << "no " << vector_include_file.toStdString() << " in " << rcdir.toStdString() << std::endl;
+              }
+            }
             QDir::setCurrent ("plugins/"+type);
             //  we are now in the subdirectory plugins/type under the first entry of
             //  the rcdirs list
@@ -131,10 +141,11 @@ namespace UI {
         bool PluginCreator::compile (QString name) {
             QString compileCommand = "g++ -I.. -I../.. -I"
                     +Globals::Instance().rcdirs().join("/plugins -I")+"/plugins"
+                    +(findVectorHPath("../..").isEmpty()? "": "-I "+findVectorHPath("../.."))
                     +" -g -c -Wall -fPIC \""
                     +name
                     +".C\" > /tmp/HyperspaceExplorer.compile.errors 2>&1";
-            bool Success = !system (compileCommand.toStdString().c_str());
+            bool Success = !system(compileCommand.toStdString().c_str());
 
             if (!Success) {
                 QFile Errs ("/tmp/HyperspaceExplorer.compile.errors");
@@ -168,5 +179,21 @@ namespace UI {
 
             return Success;
         }
+        
+        QString PluginCreator::findVectorHPath(QString start_path) {
+          QDir current;
+          if (start_path.isEmpty()) current = QDir::current();
+          else current = QDir(start_path);
+          std::cerr << current.absolutePath().toStdString() << std::endl;
+          
+          if (current.exists(vector_include_file)) return current.absolutePath();
+          
+          for (QString dir: current.entryList(QDir::Dirs|QDir::NoDotAndDotDot)) {
+//            std::cerr << (current.absolutePath()+"/"+dir).toStdString() << std::endl;
+            if (!findVectorHPath(current.absolutePath()+"/"+dir).isEmpty()) return findVectorHPath(current.absolutePath()+"/"+dir);
+          }
+          return "";
+        }
+
     }
 }

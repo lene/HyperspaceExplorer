@@ -117,7 +117,7 @@ namespace UI {
         void FunctionDialogImpl::writeSource () {
             ofstream SourceFile ((nameEdit->text().toStdString()+".C").c_str());
 
-            SourceFile << "#include \"Vector.H\"\n\
+            SourceFile << "#include \"" << vector_include_file.toStdString() << "\"\n\
         \n\
         using namespace VecMath;\n\
         \n\

@@ -56,9 +56,9 @@ CustomFunction::CustomFunction (double _tmin, double _tmax, double _dt,
                                 bool final):
     RealFunction (_tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
     if (final) {
-        FunctionDialogImpl *Dlg = new FunctionDialogImpl();
+        FunctionDialogImpl *dialog = new FunctionDialogImpl();
 
-        if (Dlg->exec () == QDialog::Accepted && loadFunction(Dlg->libraryName())) {
+        if (dialog->exec () == QDialog::Accepted && loadFunction(dialog->libraryName())) {
             _function = std::shared_ptr<ParametricFunction<4,3>>(new DefiningFunction(this));
             Initialize();
             setValid();
@@ -106,7 +106,7 @@ CustomPolarFunction::CustomPolarFunction (double _tmin, double _tmax, double _dt
     CustomFunction (_tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv, false) {
     PolarDialogImpl *dialog = new PolarDialogImpl ();
 
-    if (dialog->exec () == QDialog::Accepted && loadFunction (dialog->libraryName())) {
+    if (dialog->exec () == QDialog::Accepted && loadFunction(dialog->libraryName())) {
         _function = std::shared_ptr<ParametricFunction<4,3>>(new DefiningFunction(this));
         Initialize ();
         setValid();
