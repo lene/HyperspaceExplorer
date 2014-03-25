@@ -89,51 +89,46 @@ namespace UI {
 #include <QMessageBox>
 
 namespace UI {
-    namespace Dialogs {
-        /// Loads the dynamic library given by libName, if it exists and can be loaded.
-        /** Then it checks whether a function named \em f() is present.
-        *
-        *  If so, returns true. Else, gives an error message.
-        *
-        *  \tparam F The type of Function to be created.
-        *  \param libName filename for the selected DLL
-        *  \param parent the Dialog which calls this function
-        *  \return success                                                           */
-        template <class F>
-                bool PluginCreator::LoadFunctionHelper<F>::functionPresent(
-                    const QString &libName, QDialog *parent) {
-            void *handle;
-            F *f;
-            const char *error;
+  namespace Dialogs {
+    /// Loads the dynamic library given by libName, if it exists and can be loaded.
+    /** Then it checks whether a function named \c f() is present.
+     *
+     *  If so, returns true. Else, gives an error message.
+     *
+     *  \tparam F The type of Function to be created.
+     *  \param libName filename for the selected DLL
+     *  \param parent the Dialog which calls this function
+     *  \return success                                                           
+     */
+    template <class F>
+    bool PluginCreator::LoadFunctionHelper<F>::functionPresent(const QString &libName, QDialog *parent) {
+      
+      if (!QFile::exists (libName)) {
+        QMessageBox::warning (parent, "Error opening library", "Library does not exist: "+libName);
+        return false;
+      }
 
-            if (!QFile::exists (libName)) {
-                QMessageBox::warning (parent, "Error opening library",
-                                    "Library does not exist: "+libName);
-                std::cerr << "Library does not exist: "+libName.toStdString()
-                        << std::endl;
-                return false;
-            }
+      void *handle = dlopen (libName.toStdString().c_str(), RTLD_LAZY);
+      if (!handle) {
+        QMessageBox::warning (parent, "Error opening library", dlerror());
+        return false;
+      }
 
-            handle = dlopen (libName.toStdString().c_str(), RTLD_LAZY);
-            if (!handle) {
-                QMessageBox::warning (parent, "Error opening library", dlerror());
-                return false;
-            }
+      F *f = (F *)dlsym(handle, "f");
 
-            f = (F *)dlsym(handle, "f");
-
-            if (f == NULL) {
-                if ((error = dlerror()) != NULL)  {
-                    QMessageBox::warning (parent, "Error finding function", error);
-                    abort ();
-                    return false;
-                }
-            }
-
-            dlclose(handle);
-
-            return true;
+      if (f == NULL) {
+        const char *error;
+        if ((error = dlerror()) != NULL)  {
+          QMessageBox::warning (parent, "Error finding function", error);
+          return false;
         }
+      }
+
+      dlclose(handle);
+
+      return true;
     }
+  }
 }
+
 #endif

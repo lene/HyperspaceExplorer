@@ -37,14 +37,14 @@ using std::ofstream;
 using VecMath::Vector;
 
 namespace UI {
-    namespace Dialogs {
-        /** ComplexDialogImpl c'tor taking parameters for the parent ComplexDialog,
-        *  which in turn inherited them from QDialog
-        *  displays the dialog
-        *  @param parent parent widget (NULL)
-        *  @param f window flags                                                     */
-        ComplexDialogImpl::ComplexDialogImpl (QWidget *parent):
-                QDialog (parent) {
+  namespace Dialogs {
+    /** ComplexDialogImpl c'tor taking parameters for the parent ComplexDialog,
+     *  which in turn inherited them from QDialog
+     *  displays the dialog
+     *  @param parent parent widget (NULL)
+     *  @param f window flags                                                     
+     */
+    ComplexDialogImpl::ComplexDialogImpl (QWidget *parent): QDialog (parent) {
         setupUi(this);
         connect (okButton, SIGNAL(clicked()), this, SLOT(checkValidity()));
         connect (loadButton, SIGNAL(clicked()), this, SLOT(loadFunction()));
@@ -52,61 +52,63 @@ namespace UI {
         descriptionTextEdit->hide();
         if (layout()) layout()->setSizeConstraint(QLayout::SetFixedSize);
         show ();
-        }
+    }
 
-        /** display  and load the selected DLL into current address space
-        *  loads a dynamic library, which can be selected by the user on a QFileDialog.
-        *  calls loadFunction () below. see there.
-        *  @return	success (?)
-        */
-        bool ComplexDialogImpl::loadFunction() {
-            return PluginCreator::loadFunction("complex", this);
-        }
-
-
-        /** loads the dynamic library given by libName, if it exists and can be loaded.
-        *  then it checks whether a function named f () is present. if so, returns true.
-        *  else borks with an error message.
-        *  @param libName	filename for the selected DLL
-        *  @return		success
-        */
-        bool ComplexDialogImpl::functionPresent(const QString &libName) {
-            return PluginCreator::
-                LoadFunctionHelper<Vector<4> (double, double)>::
-                    functionPresent(libName, this);
-        }
+    /** Display  and load the selected DLL into current address space.
+     * 
+     *  Loads a dynamic library, which can be selected by the user on a QFileDialog.
+     *  Calls PluginCreator::loadFunction(). See there.
+     *  @return	success
+     */
+    bool ComplexDialogImpl::loadFunction() {
+      return PluginCreator::loadFunction("complex", this);
+    }
 
 
-        /** this function is called when the user clicks the OK button in the Function Dialog.
-        *  checks whether all fields are filled in, whether the given function is valid C++
-        *  syntax, ie. whether it compiles, and whether the compiled code links into a dynamic
-        *  library.
-        *  as a side effect, it generates this library.
-        *  finally, it checks whether the library can be loaded. if so, it accepts the input.
-        *  also, this function creates a directory structure "plugins/real" under the resource
-        *  directory and changes the CWD to that folder for the duration of checkValidity ().
-        *  the name for this function is chosen rather unfortunately, i guess.
-        *  @return		success
-        */
-        bool ComplexDialogImpl::checkValidity() {
-            if ((nameEdit->text().isEmpty()) || (WEdit->text().isEmpty())) {
-                QMessageBox::warning (this, "Missing fields",
-                                    "Please fill in all fields!");
-                return false;
-            }
-            return PluginCreator::checkValidity("complex", nameEdit->text(), this);
-        }
+    /** Loads the dynamic library given by \p lib_name, if it exists and can be loaded.
+     *  Then it checks whether a function named \c f() is present. If so, returns true.
+     *  else borks with an error message.
+     *  @param libName	filename for the selected DLL
+     *  @return		success
+     */
+    bool ComplexDialogImpl::functionPresent(const QString &lib_name) {
+      return PluginCreator::LoadFunctionHelper<Vector<4> (double, double)>::functionPresent(lib_name, this);
+    }
 
 
-        /** write a C++ source file, containing the given function and some framework to
-        *  make it compilable by g++ (there is currently no support for other compilers).
-        *  the resulting file "<function-name>.C" defines the function f () and the
-        *  function symbolic (), which returns the function in symbolic terms, not in
-        *  C++ syntax.                                                               */
-        void ComplexDialogImpl::writeSource () {
-        ofstream SourceFile ((nameEdit->text().toStdString()+".C").c_str());
+    /** This function is called when the user clicks the OK button in the Function Dialog. Checks 
+     *  whether all fields are filled in, whether the given function is valid C++ syntax, ie. 
+     *  whether it compiles, and whether the compiled code links into a dynamic library.
+     *  
+     *  As a side effect, it generates this library.
+     * 
+     *  Finally, it checks whether the library can be loaded. If so, it accepts the input.
+     * 
+     *  Also, this function creates a directory structure "plugins/real" under the resource
+     *  directory and changes the CWD to that folder for the duration of checkValidity ().
+     * 
+     *  The name for this function is chosen rather unfortunately, i guess.
+     *  @return		success
+     */
+    bool ComplexDialogImpl::checkValidity() {
+      if ((nameEdit->text().isEmpty()) || (WEdit->text().isEmpty())) {
+        QMessageBox::warning (this, "Missing fields", "Please fill in all fields!");
+        return false;
+      }
+      return PluginCreator::checkValidity("complex", nameEdit->text(), this);
+    }
 
-        SourceFile << "\
+
+    /** write a C++ source file, containing the given function and some framework to
+     *  make it compilable by g++ (there is currently no support for other compilers).
+     *  the resulting file "<function-name>.C" defines the function f () and the
+     *  function symbolic (), which returns the function in symbolic terms, not in
+     *  C++ syntax.                                                               
+     */
+    void ComplexDialogImpl::writeSource () {
+      ofstream SourceFile ((nameEdit->text().toStdString()+".C").c_str());
+
+      SourceFile << "\
 #include \"" << vector_include_file.toStdString() << "\"\n\
 #include <complex>\n\
 \n\
@@ -131,7 +133,7 @@ char *symbolic () {\n\
     return \"" << WEdit->text().toStdString() << "\"; \n\
 }\n";
 
-            SourceFile.close ();
-        }
+      SourceFile.close ();
     }
+  }
 }
