@@ -27,6 +27,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "Globals.h"
 #include "PluginCreator.h"
+#include "PathChange.h"
 
 namespace UI {
     
@@ -36,18 +37,6 @@ namespace UI {
     bool isSourceFile(const QString &filename);
     std::pair<QString, QDir> getFileToLoad(const QString &type, QDialog *parent);
     
-    struct ChangePath {
-      ChangePath(const QString &newPath) {
-        old_path = QDir::currentPath();
-        QDir::setCurrent(newPath);
-      }
-      
-      ~ChangePath() {
-        QDir::setCurrent(old_path);
-      }
-    private:
-      QString old_path;
-    };
     
     /// Display  and load the selected DLL into current address space
     /** Loads a dynamic library, which can be selected by the user on a QFileDialog.
@@ -68,7 +57,7 @@ namespace UI {
             
       if (isSourceFile(lib_name)) {
         
-        ChangePath path_changer(current_dir.absolutePath()+"/plugins/"+type);
+        PathChange path_changer(current_dir.absolutePath()+"/plugins/"+type);
               
         lib_name = lib_name.remove(".C");
         
@@ -90,29 +79,30 @@ namespace UI {
 
     /// Called when the user clicks the OK button in the Function Dialog
     /** Checks whether all fields are filled in, whether the given function
-        *  is valid C++ syntax, ie. whether it compiles, and whether the compiled code
-        *  links into a dynamic library.
-        *
-        *  As a side effect, it generates this library.
-        *
-        *  Finally, it checks whether the library can be loaded. if so, it accepts the
-        *  input.
-        *
-        *  Also, this function creates a directory structure "plugins/real" under the
-        *  resource directory and changes the CWD to that folder for the duration of
-        *  checkValidity ().
-        *
-        *  The name for this function is chosen rather unfortunately, i admit.
-        *
-        *  @param type the plugin's function type: real, polar, surface or complex
-        *  @param name the name of the plugin
-        *  @param parent the QDialog calling this function
-        *  @return success                                                           */
+     *  is valid C++ syntax, ie. whether it compiles, and whether the compiled code
+     *  links into a dynamic library.
+     *
+     *  As a side effect, it generates this library.
+     *
+     *  Finally, it checks whether the library can be loaded. if so, it accepts the
+     *  input.
+     *
+     *  Also, this function creates a directory structure "plugins/real" under the
+     *  resource directory and changes the CWD to that folder for the duration of
+     *  checkValidity ().
+     *
+     *  The name for this function is chosen rather unfortunately, i admit.
+     *
+     *  @param type the plugin's function type: real, polar, surface or complex
+     *  @param name the name of the plugin
+     *  @param parent the QDialog calling this function
+     *  @return success                                                           
+     */
     bool PluginCreator::checkValidity(const QString &type, const QString &name, QDialog *parent) {
 
       setupPluginDirectoryStructure(type);
       
-      ChangePath path_changer(*(Globals::Instance().rcdirs().begin())+"plugins/"+type);
+      PathChange path_changer(*(Globals::Instance().rcdirs().begin())+"plugins/"+type);
       //  we are now in the subdirectory plugins/type under the first entry of the rcdirs list
 
       writeSource();                          //  generate C++ source code
@@ -133,7 +123,7 @@ namespace UI {
     }
     
     void PluginCreator::setupPluginDirectoryStructure(const QString& type) {
-      ChangePath path_changer(*(Globals::Instance().rcdirs().begin()));
+      PathChange path_changer(*(Globals::Instance().rcdirs().begin()));
 
       if (!QDir::current().exists ("plugins")) QDir::current().mkdir ("plugins");
       if (!QDir::current().exists ("plugins/"+type)) QDir::current().mkdir ("plugins/"+type);
