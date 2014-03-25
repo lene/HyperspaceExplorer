@@ -112,7 +112,7 @@ namespace UI {
       
       F* f = (F *)dll.getSymbol("f");
       if (f == NULL) {
-          QMessageBox::warning (parent, "Error finding function", /*error*/dll.getError().c_str());
+          QMessageBox::warning (parent, "Error finding function", dll.getError().c_str());
           return false;
         }
 

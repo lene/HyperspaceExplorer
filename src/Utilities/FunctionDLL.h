@@ -12,19 +12,24 @@
 
 class FunctionDLL {
 public:
-    FunctionDLL(const std::string &lib_name);
-    virtual ~FunctionDLL();
+  
+  FunctionDLL();
+  FunctionDLL(const std::string &lib_name);
+  virtual ~FunctionDLL();
     
-    bool isValid() { return valid_; }
-    std::string getError() { return error_; }
+  bool isValid() { return valid_; }
+  std::string getError() { return lib_name_ + ": " + error_; }
     
-    void *getSymbol(const std::string &symbol);
+  void *getSymbol(const std::string &symbol);
     
 private:
-    void *handle_;
-    bool valid_;
-    std::string error_;
+  void Initialize(const std::string &lib_name);
     
+  std::string lib_name_;
+  void *handle_;
+  bool valid_;
+  std::string error_;
+  
 };
 
 #endif	/* FUNCTIONDLL_H */

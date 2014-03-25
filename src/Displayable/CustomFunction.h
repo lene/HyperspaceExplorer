@@ -21,15 +21,15 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #ifndef CUSTOMFUNCTION_H
 #define CUSTOMFUNCTION_H
 
-#include <dlfcn.h>
-#include <typeinfo>
-
 #include "Displayable.h"
 #include "RealFunction.h"
 #include "Surface/ComplexFunction.h"
 #include "Surface/Surface.h"
+#include "FunctionDLL.h"
 
 #include <QString>
+#include <dlfcn.h>
+
 
 class QString;
 /// Base class for custom functions, which can be edited by the user
@@ -41,7 +41,7 @@ class QString;
 template<class function_type>
         class CustomFunctionBase {
     public:
-        CustomFunctionBase(): handle (NULL) {}
+        CustomFunctionBase(): handle (NULL), dll_() {}
         /// CustomFunction destructor, closes DLL if necessary
         ~CustomFunctionBase() { if (handle) dlclose (handle); }
         QString symbolic () const;
@@ -64,6 +64,7 @@ template<class function_type>
 
     private:
         void *handle;   ///< Temporary function handle returned by dlopen()
+        mutable FunctionDLL dll_;
         bool valid;     ///< Whether loading the library succeeded
 };
 
@@ -214,17 +215,23 @@ namespace {
  *  \return success                                                       */
 template<class function_type>
         bool CustomFunctionBase<function_type>::loadFunction(const QString &libName, QString funcName) {
-    const char *error;
 
+//    dll_ = FunctionDLL(libName.toStdString());
+//    if (!dll_.isValid()) {
     handle = dlopen (libName.toStdString().c_str(), RTLD_LAZY);
     if (!handle) {
+//      std::cerr << "Error opening library: " << dll_.getError() << std::endl;
         std::cerr << "Error opening library: " << dlerror() << std::endl;
         return false;
     }
 
     func = (function_type *)dlsym(handle, funcName.toStdString().c_str());
+//    func = (function_type *)dll_.getSymbol(funcName.toStdString());
+    const char *error;
     if ((error = dlerror()) != NULL)  {
+//    if (func == NULL) {
         std::cerr << "Error finding function: " << error << std::endl;
+//        std::cerr << "Error finding function: " << dll_.getError() << std::endl;
         return false;
     }
 
@@ -237,8 +244,10 @@ QString CustomFunctionBase<function_type>::symbolic () const {
     typedef char* STRING;
     STRING (*sym)();
     sym = (STRING (*)())dlsym(handle, "symbolic");
-
+//    sym = (STRING (*)())dll_.getSymbol(symbolic_name);
+    
     if (dlerror() != NULL)  {
+//    if(sym == NULL) {
         return defaultSymbolicName();
     }
 
