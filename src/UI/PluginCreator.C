@@ -23,6 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <QFileDialog>
 #include <QDir>
 #include <QMessageBox>
+#include <QRegExp>
 
 #include "Globals.h"
 #include "PluginCreator.h"
@@ -31,6 +32,9 @@ namespace UI {
     
   namespace Dialogs {
         
+    QDir getDir(QString start_path);
+    
+    
     /// Display  and load the selected DLL into current address space
     /** Loads a dynamic library, which can be selected by the user on a QFileDialog.
      *
@@ -41,21 +45,43 @@ namespace UI {
      */
     bool PluginCreator::loadFunction(const QString &type, QDialog *parent) {
             QString libName;
+            QDir current;
             //  iterate through resource directories until plugin subdirectory found
             for (auto dir: Globals::Instance().rcdirs()) {
-                QDir current(dir);
+                current = QDir(dir);
                 if (current.exists ("plugins/"+type)) {  //  plugin subdir present?
                     libName = QFileDialog::getOpenFileName(
                             parent,
                             QObject::tr("Open a function"),
                                 current.absolutePath ()+"/plugins/"+type,
-                            "Libraries (*.so*)");
-                    if (!libName.isNull ()) break;      //  "Cancel" pressed
+                            "All Plugins (*.so* *.C);;Libraries (*.so*);;Source files (*.C)");
+                    if (!libName.isNull()) break;      //  "Cancel" pressed
                 }
             }
-
-            if (libName.isNull ()) return false;        //  nothing found or selected
-
+            if (libName.isNull()) return false;
+            
+            QRegExp regexp(".C$");
+            if (regexp.indexIn(libName) > 0) {
+              std::cerr << "match: " << libName.toStdString() << std::endl;
+              QString oldPath = QDir::currentPath();
+              QDir::setCurrent(current.absolutePath()+"/plugins/"+type);
+              
+              libName = libName.remove(".C");
+              if (!compile(libName)) {
+                QDir::setCurrent(oldPath);
+                return false;
+              }
+              
+              if (!link(libName)) {
+                QDir::setCurrent(oldPath);
+                return false;
+              }
+              
+              libName += ".so";
+              
+              QDir::setCurrent(oldPath);
+            }
+            
             if (functionPresent(libName)) {
                 LibraryName = libName;
                 parent->accept();
@@ -110,19 +136,19 @@ namespace UI {
             writeSource();                          //  generate C++ source code
 
             if (!compile(name)) {                   //  try to compile
-                QDir::setCurrent (currentPath);
+                QDir::setCurrent(currentPath);
                 return false;
             }
 
             if (!link (name)) {                     //  try to link
-                QDir::setCurrent (currentPath);
+                QDir::setCurrent(currentPath);
                 return false;
             }
             //  try to open the resulting dynamic library
             //  the name of the dynamic library must be given absolutely, because
             //  dlopen () only checks LD_LIBRARY_PATH, which usually doesn't contain "."
-            if (functionPresent(QDir::currentPath ()+"/"+name+".so")) {
-                LibraryName = QDir::currentPath ()+"/"+name+".so";
+            if (functionPresent(QDir::currentPath()+"/"+name+".so")) {
+                LibraryName = QDir::currentPath()+"/"+name+".so";
                 parent->accept();
             }
 
@@ -181,18 +207,19 @@ namespace UI {
         }
         
         QString PluginCreator::findVectorHPath(QString start_path) {
-          QDir current;
-          if (start_path.isEmpty()) current = QDir::current();
-          else current = QDir(start_path);
-          std::cerr << current.absolutePath().toStdString() << std::endl;
+          QDir current = getDir(start_path);
           
           if (current.exists(vector_include_file)) return current.absolutePath();
           
           for (QString dir: current.entryList(QDir::Dirs|QDir::NoDotAndDotDot)) {
-//            std::cerr << (current.absolutePath()+"/"+dir).toStdString() << std::endl;
             if (!findVectorHPath(current.absolutePath()+"/"+dir).isEmpty()) return findVectorHPath(current.absolutePath()+"/"+dir);
           }
           return "";
+        }
+
+        QDir getDir(QString start_path) {
+          if (start_path.isEmpty()) return QDir::current();
+          else return QDir(start_path);
         }
 
     }
