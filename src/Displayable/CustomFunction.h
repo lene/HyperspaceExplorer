@@ -41,21 +41,19 @@ class QString;
 template<class function_type>
         class CustomFunctionBase {
     public:
-        CustomFunctionBase(): handle (NULL), dll_() {}
-        /// CustomFunction destructor, closes DLL if necessary
-        ~CustomFunctionBase() { if (handle) dlclose (handle); }
+        CustomFunctionBase(): dll_() {}
         QString symbolic () const;
 
         /// \return Whether loading the library succeeded
-        bool isValid() const { return valid; }
+        bool isValid() const { return valid_; }
 
     protected:
         bool loadFunction(const QString &, QString = "f");
 
         /// Signify success in loading the function
-        void setValid() { valid = true; }
+        void setValid() { valid_ = true; }
         /// Signify failure in loading the function
-        void setInvalid() { valid = false; }
+        void setInvalid() { valid_ = false; }
         
         virtual QString defaultSymbolicName() const { return QString (typeid(*this).name()); }
         
@@ -63,9 +61,8 @@ template<class function_type>
         function_type *func;
 
     private:
-        void *handle;   ///< Temporary function handle returned by dlopen()
         mutable FunctionDLL dll_;
-        bool valid;     ///< Whether loading the library succeeded
+        bool valid_;     ///< Whether loading the library succeeded
 };
 
 /// Function \f$ f: R^3 \rightarrow R \f$, editable to an arbitrary function.
@@ -216,24 +213,16 @@ namespace {
 template<class function_type>
         bool CustomFunctionBase<function_type>::loadFunction(const QString &libName, QString funcName) {
 
-//    dll_ = FunctionDLL(libName.toStdString());
-//    if (!dll_.isValid()) {
-    handle = dlopen (libName.toStdString().c_str(), RTLD_LAZY);
-    if (!handle) {
-//      std::cerr << "Error opening library: " << dll_.getError() << std::endl;
-        std::cerr << "Error opening library: " << dlerror() << std::endl;
-        return false;
+    dll_ = FunctionDLL(libName.toStdString());
+    if (!dll_.isValid()) {
+      std::cerr << "Error opening library: " << dll_.getError() << std::endl;
+      return false;
     }
-
-    func = (function_type *)dlsym(handle, funcName.toStdString().c_str());
-//    func = (function_type *)dll_.getSymbol(funcName.toStdString());
-    const char *error;
-    if ((error = dlerror()) != NULL)  {
-//    if (func == NULL) {
-        std::cerr << "Error finding function: " << error << std::endl;
-//        std::cerr << "Error finding function: " << dll_.getError() << std::endl;
-        return false;
-    }
+    func = (function_type *)dll_.getSymbol(funcName.toStdString());
+    if (func == NULL) {
+      std::cerr << "Error finding function: " << dll_.getError() << std::endl;
+      return false;
+    }    
 
     return true;
 }
@@ -242,18 +231,11 @@ template<class function_type>
 template<class function_type>
 QString CustomFunctionBase<function_type>::symbolic () const {
     typedef char* STRING;
-    STRING (*sym)();
-    sym = (STRING (*)())dlsym(handle, "symbolic");
-//    sym = (STRING (*)())dll_.getSymbol(symbolic_name);
-    
-    if (dlerror() != NULL)  {
-//    if(sym == NULL) {
+    STRING (*sym)() = (STRING (*)())dll_.getSymbol("symbolic");
+    if(sym == NULL) {
         return defaultSymbolicName();
     }
-
-    static char *ret;
-    ret=(*sym)();
-    return QString (ret);
+    return QString((*sym)());
 }
 
 

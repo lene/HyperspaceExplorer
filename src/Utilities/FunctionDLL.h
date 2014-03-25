@@ -21,7 +21,7 @@ public:
   std::string getError() { return lib_name_ + ": " + error_; }
     
   void *getSymbol(const std::string &symbol);
-    
+  
 private:
   void Initialize(const std::string &lib_name);
     
