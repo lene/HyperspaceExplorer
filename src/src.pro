@@ -104,5 +104,5 @@ HEADERS += Utilities/Utilities.pri
 include(Utilities/Utilities.pri)
 HEADERS += VecMath/VecMath.pri
 include(VecMath/VecMath.pri)
-HEADERS += plugins/plugins.pri
-include(plugins/plugins.pri)
+#HEADERS += plugins/plugins.pri
+#include(plugins/plugins.pri)
