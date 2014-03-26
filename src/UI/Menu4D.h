@@ -103,6 +103,7 @@ class C4DView::Menu4D: public QMenu {
         
         void addClassSubmenu(QMenu *thisMenu, const std::vector<DisplayableClass> & subClasses);
         void addDisplayableEntries(QMenu *thisMenu, const std::vector<std::string> & displayableNames);
+        bool insertCustomFunctionEntry(QMenu* thisMenu, const std::string &displayable_name);
         const char * getCustomFunctionSlot(const std::string & displayable);
         
         C4DView *_parent;       ///< the C4DView containing this menu

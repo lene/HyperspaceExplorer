@@ -78,17 +78,18 @@ void C4DView::Menu4D::addClassSubmenu(QMenu *menu, const std::vector<Displayable
 }
 
 void C4DView::Menu4D::addDisplayableEntries(QMenu* thisMenu, const vector<string> & displayableNames) {
-  for (auto d: displayableNames) {
-    if (d.find("Custom") != std::string::npos) {
-      QAction *tmp = thisMenu->addAction(
-        d.c_str(), this, getCustomFunctionSlot(d), (const QKeySequence &)0
-      );
-      tmp->setCheckable(true);
-      _menuMap[thisMenu].insert(std::pair<QString, QAction *>(d.c_str(), tmp));
-    } else {
-      insertAction(thisMenu, d, true);
-    }
+  for (auto name: displayableNames) {
+      insertCustomFunctionEntry(thisMenu, name) || insertAction(thisMenu, name, true);
   }
+}
+
+bool C4DView::Menu4D::insertCustomFunctionEntry(QMenu* thisMenu, const std::string &displayable_name) {
+  if (displayable_name.find("Custom") == std::string::npos) return false;
+  
+  QAction *tmp = thisMenu->addAction(displayable_name.c_str(), this, getCustomFunctionSlot(displayable_name));
+  tmp->setCheckable(true);
+  
+  return _menuMap[thisMenu].insert(std::pair<QString, QAction *>(displayable_name.c_str(), tmp)).second;
 }
 
 const char* C4DView::Menu4D::getCustomFunctionSlot(const string& displayable) {
@@ -129,8 +130,9 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
     createAppearanceMenu();
     
     insertAction(_help, "Online _help", SLOT(Help()), false);
-    _help->insertSeparator (
-        insertAction(_help, tr("&About ..."), SLOT(about()), false));
+    _help->insertSeparator(
+        insertAction(_help, tr("&About ..."), SLOT(about()), false)
+    );
     insertAction(_help, tr("About &Qt ..."), SLOT(about()), false);
 
     addAction(Globals::Instance().getQuitAction());
