@@ -23,6 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <iostream>
 
 #include <qmessagebox.h>
+#include <qt4/QtGui/qdialog.h>
 
 #include "FunctionDialogImpl.h"
 #include "PolarDialogImpl.h"
@@ -37,6 +38,16 @@ using std::endl;
 
 using VecMath::Vector;
 using namespace UI::Dialogs;
+
+template <class function_type>
+template <class Dialog, class Lambda>
+void CustomFunctionBase<function_type>::initializeFromDialog(Lambda code_snippet) {
+    Dialog *dialog = new Dialog;
+    if (dialog->exec() == QDialog::Accepted && loadFunction(dialog->libraryName())) {
+        code_snippet();
+        setValid();
+    } else setInvalid();
+}
 
 /** CustomFunction c'tor given a definition set in \f$ R^3 \f$ (as parameter space) and a
  *  flag indicatin whether this is a test construction or a real one
@@ -56,13 +67,10 @@ CustomFunction::CustomFunction (double _tmin, double _tmax, double _dt,
                                 bool final):
     RealFunction (_tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv) {
     if (final) {
-        FunctionDialogImpl *dialog = new FunctionDialogImpl();
-
-        if (dialog->exec () == QDialog::Accepted && loadFunction(dialog->libraryName())) {
-            _function = std::shared_ptr<ParametricFunction<4,3>>(new DefiningFunction(this));
-            Initialize();
-            setValid();
-        } else setInvalid();
+        initializeFromDialog<FunctionDialogImpl>([&](){
+                _function = std::shared_ptr<ParametricFunction<4, 3>>(new DefiningFunction(this));
+                Initialize();        
+        });
     }
 }
 
@@ -88,7 +96,6 @@ ParametricFunction< 4, 3 >::return_type CustomFunction::DefiningFunction::f(
 
 ////////////////////////////////////////////////////////////////////////////////
 
-
 /** CustomPolarFunction c'tor given a definition set in \f$ R^3 \f$ (as parameter space)
  *  and a flag indicating whether this is a test construction or a real one
  *  @param _tmin minimal value in t
@@ -104,13 +111,10 @@ CustomPolarFunction::CustomPolarFunction (double _tmin, double _tmax, double _dt
                                           double _umin, double _umax, double _du,
                                           double _vmin, double _vmax, double _dv):
     CustomFunction (_tmin, _tmax, _dt, _umin, _umax, _du, _vmin, _vmax, _dv, false) {
-    PolarDialogImpl *dialog = new PolarDialogImpl ();
-
-    if (dialog->exec () == QDialog::Accepted && loadFunction(dialog->libraryName())) {
-        _function = std::shared_ptr<ParametricFunction<4,3>>(new DefiningFunction(this));
-        Initialize ();
-        setValid();
-    } else setInvalid();
+    initializeFromDialog<PolarDialogImpl>([&](){
+                _function = std::shared_ptr<ParametricFunction<4, 3>>(new DefiningFunction(this));
+                Initialize();        
+        });
 }
 
 std::string CustomPolarFunction::getFunctionName() const {
@@ -141,17 +145,24 @@ ParametricFunction< 4, 3 >::return_type CustomPolarFunction::DefiningFunction::f
  *  @param _du stepsize in u
  *  @param _vmin minimal value in v
  *  @param _vmax maximal value in v
- *  @param _dv stepsize in v                                             */
+ *  @param _dv stepsize in v                                             
+ */
 CustomComplexFunction::CustomComplexFunction (double _umin, double _umax, double _du,
                                               double _vmin, double _vmax, double _dv):
         ComplexFunction (_umin, _umax, _du, _vmin, _vmax, _dv) {
+#if 1
+    initializeFromDialog<ComplexDialogImpl>([&](){
+                _function = std::shared_ptr<ParametricFunction<4, 2>>(new DefiningFunction(this));
+                Initialize();        
+        });
+#else
     ComplexDialogImpl *Dlg = new ComplexDialogImpl ();
-
     if (Dlg->exec () == QDialog::Accepted && loadFunction(Dlg->libraryName())) {
         _function = std::shared_ptr<ParametricFunction<4,2>>(new DefiningFunction(this));
         Initialize ();
         setValid();
     } else setInvalid();
+#endif    
 }
 
 std::string CustomComplexFunction::getFunctionName() const {
@@ -189,14 +200,10 @@ ParametricFunction< 4, 2 >::return_type CustomComplexFunction::DefiningFunction:
 CustomSurface::CustomSurface (double _umin, double _umax, double _du,
                               double _vmin, double _vmax, double _dv):
         Surface (_umin, _umax, _du, _vmin, _vmax, _dv) {
-    SurfaceDialogImpl *Dlg = new SurfaceDialogImpl ();
-
-    if (Dlg->exec () == QDialog::Accepted) {
-        loadFunction (Dlg->libraryName());
-        _function = std::shared_ptr<ParametricFunction<4,2>>(new DefiningFunction(this));
-        Initialize ();
-        setValid();
-    } else setInvalid();
+    initializeFromDialog<SurfaceDialogImpl>([&](){
+                _function = std::shared_ptr<ParametricFunction<4, 2>>(new DefiningFunction(this));
+                Initialize();        
+        });
 }
 
 std::string CustomSurface::getFunctionName() const {

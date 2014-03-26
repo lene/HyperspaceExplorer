@@ -56,6 +56,8 @@ template<class function_type>
         void setInvalid() { valid_ = false; }
         
         virtual QString defaultSymbolicName() const { return QString (typeid(*this).name()); }
+
+        template <class Dialog, class Lambda> void initializeFromDialog(Lambda code_snippet);
         
         /// The function that is called
         function_type *func;
@@ -130,6 +132,7 @@ class CustomPolarFunction: public CustomFunction {
         };
         virtual QString defaultSymbolicName() const { return "Custom Polar Function"; }
         virtual RealFunction::function_type f;
+        
 };
 
 namespace {
