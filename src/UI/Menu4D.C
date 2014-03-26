@@ -128,7 +128,7 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
 
     createAppearanceMenu();
     
-    insertAction(_help, "Online _help", SLOT(Help ()), false);
+    insertAction(_help, "Online _help", SLOT(Help()), false);
     _help->insertSeparator (
         insertAction(_help, tr("&About ..."), SLOT(about()), false));
     insertAction(_help, tr("About &Qt ..."), SLOT(about()), false);
@@ -142,8 +142,8 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
     insertAction(_animation, "Animation Settings", SLOT(AnimationSettings()),
                  false);
 
-    insertAction(_animation, "Benchmark", SLOT (Benchmark()), false);
-    insertAction(_animation, "Random Animation", SLOT (RandomAnimation()), false);
+    insertAction(_animation, "Benchmark", SLOT(Benchmark()), false);
+    insertAction(_animation, "Random Animation", SLOT(RandomAnimation()), false);
 
     if (_parent->getSolid()) {
         getAction("Wireframe")->setText("Solid");
@@ -355,9 +355,7 @@ void C4DView::Menu4D::Benchmark() {
  *  every couple of seconds
  */
 void C4DView::Menu4D::RandomAnimation() {
-    static bool animated = false;
-    animated = !animated;
-    _parent->RandomAnimation(animated);
+    _parent->RandomAnimation(true);
 }
 
 /** Display _help window */
