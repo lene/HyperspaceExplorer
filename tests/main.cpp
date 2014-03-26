@@ -22,7 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #define RUN_ALL_TESTS 1
 
 #include "Test_Rotope.h"
-#include "Test_Function.h"
+#include "Test_Displayable.h"
 #include "Test_RealFunction.h"
 #include "Test_Surface.h"
 #include "Test_Vector.h"
@@ -60,7 +60,7 @@ int main(int argc, char **argv) {
     runner.run(new Test_Matrix);
     runner.run(new Test_Rotation);
     runner.run(new Test_Realm);
-    runner.run(new Test_Function);
+    runner.run(new Test_Displayable);
     runner.run(new Test_FunctionFactory);
     runner.run(new Test_FunctionValueGrid);
     runner.run(new Test_ParametricFunction);

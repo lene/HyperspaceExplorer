@@ -26,7 +26,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Displayable.h"
 
 /// Unit tests for class Function
-class Test_Function: public QObject {
+class Test_Displayable: public QObject {
 
   Q_OBJECT
 
@@ -77,7 +77,7 @@ class Test_Function: public QObject {
   };
 
 public:
-  ~Test_Function();
+  ~Test_Displayable();
 
 private slots:
 

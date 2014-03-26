@@ -18,7 +18,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 */
 
-#include "Test_Function.h"
+#include "Test_Displayable.h"
 
 #include "RealFunction.h"
 #include "Surface/Surface.h"
@@ -38,9 +38,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 using std::cerr;
 using std::endl;
 
-const std::string Test_Function::TEST_FUNCTION_NAME = "FunctionTestImplementation";
+const std::string Test_Displayable::TEST_FUNCTION_NAME = "FunctionTestImplementation";
 
-Test_Function::FunctionTestImplementation::FunctionTestImplementation():
+Test_Displayable::FunctionTestImplementation::FunctionTestImplementation():
     Displayable() {
   declareParameter("double parameter", 1.0);
   declareParameter("unsigned parameter", (unsigned)1);
@@ -48,7 +48,7 @@ Test_Function::FunctionTestImplementation::FunctionTestImplementation():
   declareParameter("string parameter", std::string("a string"));
 }
 
-void Test_Function::FunctionTestImplementation::SetParameters(const ParameterMap& parms) {
+void Test_Displayable::FunctionTestImplementation::SetParameters(const ParameterMap& parms) {
 #if 1
   for (ParameterMap::const_iterator i = parms.begin(); i != parms.end(); ++i) {
     if (i->second->getName() == "double parameter") _doubleParm = i->second->toDouble();
@@ -62,27 +62,27 @@ void Test_Function::FunctionTestImplementation::SetParameters(const ParameterMap
 }
 
 
-VecMath::Vector< 4 >& Test_Function::FunctionTestImplementation::operator()(double x, double y, double z) {
+VecMath::Vector< 4 >& Test_Displayable::FunctionTestImplementation::operator()(double x, double y, double z) {
   static VecMath::Vector<4> F;
   F = VecMath::Vector<4>(x, y, z, _doubleParm);
   return F;
 }
 
-unsigned int Test_Function::FunctionTestImplementation::getDefinitionSpaceDimensions() {
-  return Test_Function::TEST_FUNCTION_DIMENSIONS;
+unsigned int Test_Displayable::FunctionTestImplementation::getDefinitionSpaceDimensions() {
+  return Test_Displayable::TEST_FUNCTION_DIMENSIONS;
 }
 
-void Test_Function::FunctionTestImplementation::for_each_vertex(Displayable::function_on_fourspace_vertex) { }
-void Test_Function::FunctionTestImplementation::for_each_projected(Displayable::function_on_projected_vertex) { }
+void Test_Displayable::FunctionTestImplementation::for_each_vertex(Displayable::function_on_fourspace_vertex) { }
+void Test_Displayable::FunctionTestImplementation::for_each_projected(Displayable::function_on_projected_vertex) { }
 
-void Test_Function::FunctionTestImplementation::Initialize(void) { }
-void Test_Function::FunctionTestImplementation::ReInit(double, double, double, double, double, double, double, double, double) { }
-void Test_Function::FunctionTestImplementation::calibrateColors() { }
-void Test_Function::FunctionTestImplementation::Transform(const VecMath::Rotation< 4 >&, const VecMath::Vector< 4 >&, const VecMath::Vector< 4 >&) { }
-void Test_Function::FunctionTestImplementation::Project(double, double, bool) { }
-void Test_Function::FunctionTestImplementation::Draw(UI::View *) { }
+void Test_Displayable::FunctionTestImplementation::Initialize(void) { }
+void Test_Displayable::FunctionTestImplementation::ReInit(double, double, double, double, double, double, double, double, double) { }
+void Test_Displayable::FunctionTestImplementation::calibrateColors() { }
+void Test_Displayable::FunctionTestImplementation::Transform(const VecMath::Rotation< 4 >&, const VecMath::Vector< 4 >&, const VecMath::Vector< 4 >&) { }
+void Test_Displayable::FunctionTestImplementation::Project(double, double, bool) { }
+void Test_Displayable::FunctionTestImplementation::Draw(UI::View *) { }
 
-void Test_Function::FunctionTestImplementation::print() {
+void Test_Displayable::FunctionTestImplementation::print() {
     qDebug() << "TestFunction::FunctionTestImplementation"
     << " double: " << _doubleParm 
     << ", unsigned: " << _unsignedParm
@@ -90,21 +90,21 @@ void Test_Function::FunctionTestImplementation::print() {
     << ", string: " << _stringParm ;
 }
 
-Test_Function::ParameterTestImplementation::ParameterTestImplementation() {
+Test_Displayable::ParameterTestImplementation::ParameterTestImplementation() {
   declareParameter("looks like unsigned, but is int", 1);
 }
 
-Test_Function::RotationParameterTestImplementation::RotationParameterTestImplementation() {
+Test_Displayable::RotationParameterTestImplementation::RotationParameterTestImplementation() {
   declareParameter("rotation parameter", VecMath::Rotation<5>());
 }
 
-Test_Function::~Test_Function() { }
+Test_Displayable::~Test_Displayable() { }
 
-void Test_Function::initTestCase() { }
+void Test_Displayable::initTestCase() { }
 
-void Test_Function::cleanupTestCase() { }
+void Test_Displayable::cleanupTestCase() { }
 
-void Test_Function::instantiate() {
+void Test_Displayable::instantiate() {
     _function = new FunctionTestImplementation();
     QVERIFY2(_function->getDefinitionSpaceDimensions() == TEST_FUNCTION_DIMENSIONS,
              QString::number(_function->getDefinitionSpaceDimensions()).toLatin1());
@@ -112,7 +112,7 @@ void Test_Function::instantiate() {
              _function->getFunctionName().c_str());
 }
 
-void Test_Function::functionValue() {
+void Test_Displayable::functionValue() {
     FunctionTestImplementation function;
     ParameterMap newParameters = function.getParameters();
     const std::string parameterName = "double parameter";
@@ -124,7 +124,7 @@ void Test_Function::functionValue() {
              f.toString().c_str());
 }
 
-void Test_Function::parameters() {
+void Test_Displayable::parameters() {
   QVERIFY2(_function->getNumParameters() == TEST_FUNCTION_NUM_PARAMETERS,
            QString::number(_function->getNumParameters()).toLatin1());
 
@@ -153,7 +153,7 @@ void Test_Function::parameters() {
 
 }
 
-void Test_Function::parameter_get() {
+void Test_Displayable::parameter_get() {
   QVERIFY(_function->getParameters().getValue("double parameter")->toDouble() == 1.0);
   QVERIFY(_function->getParameters().getValue("unsigned parameter")->toUnsigned() == 1);
   QVERIFY(_function->getParameters().getValue("int parameter")->toInt() == -1);
@@ -163,7 +163,7 @@ void Test_Function::parameter_get() {
   QVERIFY(f.getParameters().getValue("rotation parameter")->toRotation5()[0] == 0.);
 }
 
-void Test_Function::parameter_set() {
+void Test_Displayable::parameter_set() {
   _function->getParameters().set("double parameter", 4.0);
   QVERIFY(_function->getParameters().getValue("double parameter")->toDouble() == 4.0);
   _function->getParameters().set("unsigned parameter", 4);
@@ -182,7 +182,7 @@ void Test_Function::parameter_set() {
   }
 }
 
-void Test_Function::parameterWithoutCast() {
+void Test_Displayable::parameterWithoutCast() {
   ParameterTestImplementation function;
   ParameterMap parameters = function.getParameters();
   try {
@@ -193,7 +193,7 @@ void Test_Function::parameterWithoutCast() {
   QFAIL("FunctionParameterValueBase::WrongParameterTypeException expected!");
 }
 
-void Test_Function::setParameters() {
+void Test_Displayable::setParameters() {
 
   ParameterMap newParameters = _function->getParameters();
   std::string parameterName = "double parameter";
@@ -234,7 +234,7 @@ void Test_Function::setParameters() {
 
 }
 
-void Test_Function::accessedNonexistentParameter() {
+void Test_Displayable::accessedNonexistentParameter() {
   try {
     FunctionParameter::parameter_ptr_type parameter = _function->getParameter("nonexistent parameter");
   } catch (ParameterMap::NonexistentParameterAccessed &e) {
@@ -244,7 +244,7 @@ void Test_Function::accessedNonexistentParameter() {
   QFAIL("ParameterMap::NonexistentParameterAccessed exception expected");
 }
 
-void Test_Function::rotationAsParameter() {
+void Test_Displayable::rotationAsParameter() {
   RotationParameterTestImplementation f;
   FunctionParameter::parameter_ptr_type parameter = f.getParameter("rotation parameter");
   VecMath::Rotation<5> rot = parameter->value()->toRotation5();
