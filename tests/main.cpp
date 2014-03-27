@@ -82,24 +82,38 @@ void fillTestsMap() {
 int main(int argc, char **argv) {
     // A QApplication must be instantiated for GUI tests to work. This causes a compiler warning.
     QApplication *app = new QApplication(argc, argv);
+    
+    std::vector<std::string> tests_to_run;
+    for (int i = 1; i < argc; i++) {
+        tests_to_run.push_back(std::string(argv[i]));
+    }
+
     fillTestsMap();
     
     TestRunner runner;
     
-#if RUN_ALL_TESTS
-    for (auto test: tests_by_name) {
-        runner.run(test.second);
+    if (tests_to_run.empty()) {
+#     if RUN_ALL_TESTS
+        for (auto test: tests_by_name) {
+            runner.run(test.second);
+        }
+#     else
+        runner.run(new Test_Rotope);
+        runner.run(new Test_Composite);
+        runner.run(new Test_FunctionHolder);
+        runner.run(new Test_Transformation);
+        runner.run(new Test_PartitionedMultithreadedMap);
+        runner.run(new Test_Object);
+        runner.run(new Test_Util);
+        runner.run(new Test_FacePolygon);
+#     endif
+    } else {
+        for (auto test: tests_to_run) {
+            if (tests_by_name.find(test) != tests_by_name.end()) {
+                runner.run(tests_by_name[test]);
+            }
+        }
     }
-#else
-    runner.run(new Test_Rotope);
-    runner.run(new Test_Composite);
-    runner.run(new Test_FunctionHolder);
-    runner.run(new Test_Transformation);
-    runner.run(new Test_PartitionedMultithreadedMap);
-    runner.run(new Test_Object);
-    runner.run(new Test_Util);
-    runner.run(new Test_FacePolygon);
-#endif
     runner.printSummary();
 
     return runner.exitValue();
