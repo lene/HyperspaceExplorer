@@ -50,30 +50,47 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <QtTest/QtTest>
 
+std::map<std::string, QObject *> tests_by_name;
+
+void fillTestsMap() {
+    tests_by_name.insert(std::pair<std::string, QObject *>("Vector", new Test_Vector));
+    tests_by_name.insert(std::pair<std::string, QObject *>("Matrix", new Test_Matrix));
+    tests_by_name.insert(std::pair<std::string, QObject *>("Rotation", new Test_Rotation));
+    tests_by_name.insert(std::pair<std::string, QObject *>("Realm", new Test_Realm));
+    tests_by_name.insert(std::pair<std::string, QObject *>("Displayable", new Test_Displayable));
+    tests_by_name.insert(std::pair<std::string, QObject *>("FunctionFactory", new Test_FunctionFactory));
+    tests_by_name.insert(std::pair<std::string, QObject *>("FunctionValueGrid", new Test_FunctionValueGrid));
+    tests_by_name.insert(std::pair<std::string, QObject *>("ParametricFunction", new Test_ParametricFunction));
+    tests_by_name.insert(std::pair<std::string, QObject *>("Projection", new Test_Projection));
+    tests_by_name.insert(std::pair<std::string, QObject *>("GridDrawer", new Test_GridDrawer));
+    tests_by_name.insert(std::pair<std::string, QObject *>("MultiDimensionalVector", new Test_MultiDimensionalVector));
+    tests_by_name.insert(std::pair<std::string, QObject *>("DisplayableClass", new Test_DisplayableClass));
+    tests_by_name.insert(std::pair<std::string, QObject *>("Observer", new Test_Observer));
+    tests_by_name.insert(std::pair<std::string, QObject *>("ArrayList", new Test_ArrayList));
+    tests_by_name.insert(std::pair<std::string, QObject *>("RealFunction", new Test_RealFunction));
+    tests_by_name.insert(std::pair<std::string, QObject *>("Surface", new Test_Surface));
+    tests_by_name.insert(std::pair<std::string, QObject *>("Rotope", new Test_Rotope));
+    tests_by_name.insert(std::pair<std::string, QObject *>("Composite", new Test_Composite));
+    tests_by_name.insert(std::pair<std::string, QObject *>("FunctionHolder", new Test_FunctionHolder));
+    tests_by_name.insert(std::pair<std::string, QObject *>("Transformation", new Test_Transformation));
+    tests_by_name.insert(std::pair<std::string, QObject *>("PartitionedMultithreadedMap", new Test_PartitionedMultithreadedMap));
+    tests_by_name.insert(std::pair<std::string, QObject *>("Object", new Test_Object));
+    tests_by_name.insert(std::pair<std::string, QObject *>("Util", new Test_Util));
+    tests_by_name.insert(std::pair<std::string, QObject *>("FacePolygon", new Test_FacePolygon));
+}
 
 int main(int argc, char **argv) {
     // A QApplication must be instantiated for GUI tests to work. This causes a compiler warning.
     QApplication *app = new QApplication(argc, argv);
-
+    fillTestsMap();
+    
     TestRunner runner;
+    
 #if RUN_ALL_TESTS
-    runner.run(new Test_Vector);
-    runner.run(new Test_Matrix);
-    runner.run(new Test_Rotation);
-    runner.run(new Test_Realm);
-    runner.run(new Test_Displayable);
-    runner.run(new Test_FunctionFactory);
-    runner.run(new Test_FunctionValueGrid);
-    runner.run(new Test_ParametricFunction);
-    runner.run(new Test_Projection);
-    runner.run(new Test_GridDrawer);
-    runner.run(new Test_MultiDimensionalVector);
-    runner.run(new Test_DisplayableClass);
-    runner.run(new Test_Observer);
-    runner.run(new Test_ArrayList);
-    runner.run(new Test_RealFunction);
-    runner.run(new Test_Surface);
-#endif
+    for (auto test: tests_by_name) {
+        runner.run(test.second);
+    }
+#else
     runner.run(new Test_Rotope);
     runner.run(new Test_Composite);
     runner.run(new Test_FunctionHolder);
@@ -82,7 +99,7 @@ int main(int argc, char **argv) {
     runner.run(new Test_Object);
     runner.run(new Test_Util);
     runner.run(new Test_FacePolygon);
-
+#endif
     runner.printSummary();
 
     return runner.exitValue();
