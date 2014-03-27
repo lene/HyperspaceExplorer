@@ -70,9 +70,19 @@ FacePolygon<D, N_vertex>::operator==(const FacePolygon<D, N_vertex> &other) cons
         return false;
     }
     print(); std::cerr << " == "; other.print(); std::cerr << "?\n";
+    unsigned associated_index[N_vertex];
     for (unsigned i = 0; i < N_vertex; ++i) {
-      std::cerr << *_vertices[_indices[i]] << " == " << *other._vertices[other._indices[i]] << "?\n";
-      if (_vertices[_indices[i]] != other._vertices[other._indices[i]]) return false;
+      for (unsigned j = 0; j < N_vertex; ++j) {
+        if (other._indices[j] == _indices[i]) {
+          associated_index[i] = j;
+          break;
+        }
+      }
+    }
+    for (unsigned i = 0; i < N_vertex; ++i) {
+      std::cerr << i << ": " << *_vertices[i] << " == " 
+                << associated_index[i] << ": " << *other._vertices[associated_index[i]] << "?\n";
+      if (*_vertices[i] != *other._vertices[associated_index[i]]) return false;
     }
     return true;
 }
