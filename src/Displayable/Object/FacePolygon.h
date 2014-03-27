@@ -57,6 +57,7 @@ private:
       /// a version of std::find() that returns an index instead of an iterator
       static unsigned index_of(const vertex_type &x,
                                const VecMath::MultiDimensionalVector< vertex_type, 1 > &original_container);
+      unsigned getAssociatedIndex(unsigned i, const FacePolygon<D, N_vertex> &other) const;
       
       /// Array of vertices the Surface consists of
       vertex_ptr_type _vertices[N_vertex];

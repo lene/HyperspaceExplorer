@@ -69,22 +69,23 @@ FacePolygon<D, N_vertex>::operator==(const FacePolygon<D, N_vertex> &other) cons
         ArrayList<N_vertex, unsigned>(other._indices))) {
         return false;
     }
-    print(); std::cerr << " == "; other.print(); std::cerr << "?\n";
-    unsigned associated_index[N_vertex];
+    
     for (unsigned i = 0; i < N_vertex; ++i) {
-      for (unsigned j = 0; j < N_vertex; ++j) {
-        if (other._indices[j] == _indices[i]) {
-          associated_index[i] = j;
-          break;
-        }
-      }
+      if (*_vertices[i] != *other._vertices[getAssociatedIndex(i, other)]) return false;
     }
-    for (unsigned i = 0; i < N_vertex; ++i) {
-      std::cerr << i << ": " << *_vertices[i] << " == " 
-                << associated_index[i] << ": " << *other._vertices[associated_index[i]] << "?\n";
-      if (*_vertices[i] != *other._vertices[associated_index[i]]) return false;
-    }
+    
     return true;
+}
+
+template <unsigned D, unsigned N_vertex> 
+unsigned
+FacePolygon<D, N_vertex>::getAssociatedIndex(unsigned i, const FacePolygon<D, N_vertex> &other) const {
+  for (unsigned j = 0; j < N_vertex; ++j) {
+    if (other._indices[j] == _indices[i]) {
+      return j;
+    }
+  }
+  return 0;
 }
 
 template <unsigned D, unsigned N_vertex> 
