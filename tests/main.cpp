@@ -44,6 +44,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Test_Composite.h"
 #include "Test_Util.h"
 #include "Test_PartitionedMultithreadedMap.h"
+#include "Test_FacePolygon.h"
 
 #include "Auxiliary/TestRunner.h"
 
@@ -80,6 +81,7 @@ int main(int argc, char **argv) {
     runner.run(new Test_PartitionedMultithreadedMap);
     runner.run(new Test_Object);
     runner.run(new Test_Util);
+    runner.run(new Test_FacePolygon);
 
     runner.printSummary();
 
