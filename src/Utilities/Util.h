@@ -23,6 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <iostream>
 #include <vector>
+#include "ArrayList.h"
 
 namespace VecMath {
   template <unsigned D, typename N> class Vector;
@@ -131,37 +132,6 @@ namespace Util {
     if (m0 == n4 && isPermutation(m1, m2, m3, m4, n0, n1, n2, n3)) return true;
     return false;
   }
-  
-  /*
-   * unfinished attempts at rewriting isPermutation() as a variadic template
-   * using std::tr1::tuple follow.
-   * needs the g++ option
-   * QMAKE_CXXFLAGS += -std=c++0x
-   * to compile.
-
-    // attempt 1. function template.
-    // failed because i could not find the right syntax to even learn the number
-    // of elements in the tuple.
-    bool isPermutation(tuple<members...> list1,
-                       tuple<members...> list2) {
-      if (list1 == list2) return true;
-      if (tuple_size< list1 >::value != tuple_size< list2 >::value) {
-        return false;
-      }
-      ...
-
-      return false;
-    }
-
-    // attempt 2. use a class with variadic templates and a static member.
-    // failed at the point of g++ error message:
-    // sorry, unimplemented: cannot expand 'Args ...' into a fixed-length argument list
-    template<typename T> struct IsPermutation<> { };
-    template<typename T, T Arg1, T... Args>
-    struct IsPermutation {
-      static const bool value = IsPermutation<T, Args...>::value;
-    };
-*/
 
   /// Strips leading and trailing whitespace from a string.
   /** \param str A string to trim.

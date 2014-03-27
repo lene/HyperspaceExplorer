@@ -1,6 +1,7 @@
 PATH = Utilities
 INCLUDEPATH += $${PATH}
 DEPENDPATH += $${PATH}
+
 HEADERS += \
            $${PATH}/FunctionDLL.h \
            $${PATH}/Globals.h \
@@ -17,6 +18,7 @@ HEADERS += \
            $${PATH}/Tree.h \
            $${PATH}/Tree.impl.h \
            $${PATH}/Util.h
+
 SOURCES += \
            $${PATH}/FunctionDLL.C \
            $${PATH}/Globals.C \

@@ -70,9 +70,6 @@ int main(int argc, char **argv) {
     runner.run(new Test_DisplayableClass);
     runner.run(new Test_Observer);
     runner.run(new Test_ArrayList);
-
-    runner.run(new Test_Util);
-
     runner.run(new Test_RealFunction);
     runner.run(new Test_Surface);
 #endif
@@ -82,6 +79,7 @@ int main(int argc, char **argv) {
     runner.run(new Test_Transformation);
     runner.run(new Test_PartitionedMultithreadedMap);
     runner.run(new Test_Object);
+    runner.run(new Test_Util);
 
     runner.printSummary();
 

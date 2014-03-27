@@ -143,6 +143,7 @@ void Test_ArrayList::test_isPermutation10() {
   
   QVERIFY(isPermutation(original4, original4));
   QVERIFY(isPermutation(original4, makeArrayList(0, 1, 2, 3, 4, 5, 6, 7, 9, 8)));
+  QVERIFY(isPermutation(original4, makeArrayList(9, 8, 7, 6, 5, 4, 3, 2, 1, 0)));
   QVERIFY(!isPermutation(original4, makeArrayList(0, 1, 2, 3, 4, 5, 6, 7, 9, 9)));
   QVERIFY(!isPermutation(original4, makeArrayList(0, 1, 2, 3, 4, 5, 6, 7, 9, 10)));
   
