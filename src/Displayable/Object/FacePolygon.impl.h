@@ -13,6 +13,7 @@
 #include <QDebug>
 
 #include "Util.h"
+#include "ArrayList.impl.h"
 
 template <unsigned D, unsigned N_vertex> 
 FacePolygon<D, N_vertex>::FacePolygon() { 
@@ -62,22 +63,23 @@ FacePolygon<D, N_vertex>::index(unsigned i) const {
 
 template <unsigned D, unsigned N_vertex> 
 bool
-FacePolygon<D, N_vertex>::operator==(const FacePolygon<D, 4> &other) const {
-    if (N_vertex != 4) return false;
-    if (!Util::isPermutation(
-          _indices[0], _indices[1], _indices[2], _indices[3],
-          other._indices[0], other._indices[1], other._indices[2], other._indices[3])) {
+FacePolygon<D, N_vertex>::operator==(const FacePolygon<D, N_vertex> &other) const {
+    if (!isPermutation(
+        ArrayList<N_vertex, unsigned>(_indices), 
+        ArrayList<N_vertex, unsigned>(other._indices))) {
         return false;
     }
-    return (_vertices[0] == other._vertices[0] &&
-              _vertices[1] == other._vertices[1] &&
-              _vertices[2] == other._vertices[2] &&
-              _vertices[3] == other._vertices[3]);
+    print(); std::cerr << " == "; other.print(); std::cerr << "?\n";
+    for (unsigned i = 0; i < N_vertex; ++i) {
+      std::cerr << *_vertices[_indices[i]] << " == " << *other._vertices[other._indices[i]] << "?\n";
+      if (_vertices[_indices[i]] != other._vertices[other._indices[i]]) return false;
+    }
+    return true;
 }
 
 template <unsigned D, unsigned N_vertex> 
 void
-FacePolygon<D, N_vertex>::print() {
+FacePolygon<D, N_vertex>::print() const {
     for (unsigned i = 0; i < N_vertex; ++i)
         std::cerr << _indices[i] << ": " << *(_vertices[i]) << " ";
     std::cerr << std::endl;

@@ -42,6 +42,9 @@ template <unsigned size, typename T>
 ArrayList<size, T>::ArrayList(const T &head, const ArrayList<size-1, T> &tail): 
   _elements(std::make_pair(head, tail)) { }
 
+template<unsigned size, typename T> 
+ArrayList<size, T>::ArrayList(const T *vec):  
+  _elements(std::make_pair(vec[0], ArrayList<size-1, T>(vec+1))) { }
 
 template <unsigned size, typename T> 
 const T &ArrayList<size, T>::head() const { 
@@ -112,6 +115,9 @@ ArrayList<1, T>::ArrayList(const T &x): element_(x) { }
 
 template <typename T> 
 ArrayList<1, T>::ArrayList(T x, ArrayList<0, T>): element_(x) { }
+
+template<typename T> 
+ArrayList<1, T>::ArrayList(const T *vec): element_(*vec) { }
 
 template <typename T> 
 const T &ArrayList<1, T>::head() const { 

@@ -37,6 +37,8 @@ template <unsigned size, typename T> class ArrayList {
     ArrayList(const T &x);
     /// Create an ArrayList from a smaller ArrayList and an additional element.
     ArrayList(const T &head, const ArrayList<size-1, T> &tail);
+    
+    ArrayList(const T* vec);
 
     /// Return the first element of an ArrayList.
     const T &head() const;
@@ -76,6 +78,7 @@ template <typename T> class ArrayList<1, T> {
     /// Create an ArrayList with element initialized to \p x.
     ArrayList(const T &x);
     ArrayList(T x, ArrayList<0, T>);
+    ArrayList(const T* vec);
     
     /// Return the first element of an ArrayList.
     const T &head() const;

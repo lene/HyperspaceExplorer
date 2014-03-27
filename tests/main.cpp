@@ -19,7 +19,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 */
 
 /// Otherwise, only run the latest test suites
-#define RUN_ALL_TESTS 1
+#define RUN_ALL_TESTS 0
 
 #include "Test_Rotope.h"
 #include "Test_Displayable.h"
@@ -98,13 +98,6 @@ int main(int argc, char **argv) {
             runner.run(test.second);
         }
 #     else
-        runner.run(new Test_Rotope);
-        runner.run(new Test_Composite);
-        runner.run(new Test_FunctionHolder);
-        runner.run(new Test_Transformation);
-        runner.run(new Test_PartitionedMultithreadedMap);
-        runner.run(new Test_Object);
-        runner.run(new Test_Util);
         runner.run(new Test_FacePolygon);
 #     endif
     } else {

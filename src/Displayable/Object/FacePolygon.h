@@ -1,12 +1,15 @@
 /* 
- * File:   SurfaceType.h
+ * File:   FacePolygon.h
  * Author: lene
  *
  * Created on December 18, 2011, 3:38 PM
  */
 
-#ifndef SURFACETYPE_H
-#define	SURFACETYPE_H
+#ifndef FACEPOLYGON_H
+#define	FACEPOLYGON_H
+
+#include "MultiDimensionalVector.h"
+#include "Vector.h"
 
 #if USE_INT_INDICES
 typedef VecMath::uintvec<2> surface_vec_type;
@@ -45,10 +48,10 @@ public:
     unsigned index(unsigned i) const;
 
     /// Preliminary version, only for N_vertex = 4
-    bool operator==(const FacePolygon<D, 4> &other) const;
-    
+    bool operator==(const FacePolygon<D, N_vertex> &other) const;
+    bool operator!=(const FacePolygon<D, N_vertex> &other) const { return !(*this == other); }
     /// Debugging output
-    void print();
+    void print() const;
     
 private:
       /// a version of std::find() that returns an index instead of an iterator
@@ -65,4 +68,4 @@ private:
 typedef std::vector< FacePolygon<4, 4> > surface_vec_type;
 #endif
 
-#endif	/* SURFACETYPE_H */
+#endif	/* FACEPOLYGON_H */
