@@ -98,6 +98,7 @@ int main(int argc, char **argv) {
             runner.run(test.second);
         }
 #     else
+        runner.run(new Test_ArrayList);
         runner.run(new Test_FacePolygon);
 #     endif
     } else {

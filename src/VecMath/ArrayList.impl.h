@@ -72,7 +72,7 @@ template <unsigned size, typename T>
 T &ArrayList<size, T>::operator[](unsigned i) {
   assert(i < size);
   if (i == 0) return head();
-  ArrayList<size-1, T> _tail = tail();
+  ArrayList<size-1, T> &_tail = tail();
   return _tail.operator[](i-1);
 }
 
@@ -96,6 +96,30 @@ template <unsigned size, typename T>
 bool ArrayList<size, T>::contains (const T &x) const {
   if (head() == x) return true;
   return tail().contains(x);
+}
+
+template <unsigned size, typename T> 
+bool ArrayList<size, T>::operator==(const ArrayList<size, T> &other) const {
+  return head() == other.head() && tail() == other.tail();
+}
+
+template <unsigned size, typename T> 
+ArrayList<size, T> &ArrayList<size, T>::shift(int amount) {
+  assert(amount == 1);
+  T temp = operator[](0);
+  for (unsigned i = 1; i < size; ++i) {
+    operator[](i-1) = operator[](i);
+  }
+  operator[](size-1) = temp;
+  return *this;
+}
+
+template <unsigned size, typename T> 
+ArrayList<size, T> &ArrayList<size, T>::reverse() {
+  for (unsigned i = 0; i < size/2; ++i) {
+    std::swap(operator[](i), operator[](size-1-i));
+  }
+  return *this;
 }
 
 template <unsigned size, typename T> 
@@ -159,6 +183,11 @@ bool ArrayList<1, T>::contains (const T &x) const {
 }
 
 template <typename T> 
+bool ArrayList<1, T>::operator==(const ArrayList<1, T> &other) const {
+  return head() == other.head();
+}
+
+template <typename T> 
 std::string ArrayList<1, T>::toString() const {
   std::ostringstream o;
   o << element_;
@@ -191,6 +220,30 @@ bool isPermutation(const ArrayList<size, T> &list1, const ArrayList<size, T> &li
 
 template<typename T>
 bool isPermutation(const ArrayList<1, T> &list1, const ArrayList<1, T> &list2) {
+  return list1.head() == list2.head();
+}
+
+template<unsigned size, typename T>
+bool isCircularPermutation(const ArrayList<size, T> &list1, const ArrayList<size, T> &list2) {
+  ArrayList<size, T> shifted = list2;
+  ArrayList<size, T> reversed = list2;
+  reversed.reverse();
+  for (unsigned shift = 0; shift < size-1; ++shift) {
+    if (list1 == shifted) return true;
+    if (list1 == reversed) return true;
+    shifted.shift();
+    reversed.shift();
+  }
+  return false;
+}
+
+template<typename T>
+bool isCircularPermutation(const ArrayList<2, T> &list1, const ArrayList<2, T> &list2) {
+  return isPermutation(list1, list2);
+}
+
+template<typename T>
+bool isCircularPermutation(const ArrayList<1, T> &list1, const ArrayList<1, T> &list2) {
   return list1.head() == list2.head();
 }
 

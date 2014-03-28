@@ -75,7 +75,7 @@ FacePolygon<D, N_vertex>::index(unsigned i) const {
 template <unsigned D, unsigned N_vertex> 
 bool
 FacePolygon<D, N_vertex>::operator==(const FacePolygon<D, N_vertex> &other) const {
-    if (!isPermutation(
+    if (!isCircularPermutation(
         ArrayList<N_vertex, unsigned>(_indices), 
         ArrayList<N_vertex, unsigned>(other._indices))) {
         return false;

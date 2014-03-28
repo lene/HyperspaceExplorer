@@ -39,10 +39,13 @@ private slots:
   void makeListRuns();
   void minusElement2();
   void minusElement3();
-  void test_isPermutation2();
-  void test_isPermutation3();
-  void test_isPermutation5();
-  void test_isPermutation10();
+  void isPermutation2();
+  void isPermutation3();
+  void isPermutation5();
+  void isPermutation10();
+  void shift();
+  void reverse();
+  void circularPermutation();
 
 # ifdef TEST_ACCESS_OPERATOR
     void accessOperator2();

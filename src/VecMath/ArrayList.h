@@ -56,6 +56,11 @@ template <unsigned size, typename T> class ArrayList {
     ArrayList<size-1, T> minusElement(unsigned i) const;
 
     bool contains(const T &x) const;
+
+    bool operator==(const ArrayList<size, T> &other) const;
+    
+    ArrayList<size, T> &shift(int amount = 1);
+    ArrayList<size, T> &reverse();
     
     /// String representation.
     std::string toString() const;
@@ -94,6 +99,8 @@ template <typename T> class ArrayList<1, T> {
     ArrayList<0, T> minusElement(unsigned) const;
 
     bool contains (const T &x) const;
+
+    bool operator==(const ArrayList<1, T> &other) const;
     
     /// Empty String.
     std::string toString() const;
@@ -122,9 +129,22 @@ template <typename T> class ArrayList<0, T> {
 };
 
 template<unsigned size, typename T>
+std::ostream &operator<<(std::ostream &o, const ArrayList<size, T> &list) {
+  o << list.toString();
+  return o;
+}
+
+template<unsigned size, typename T>
 bool isPermutation(const ArrayList<size, T> &list1, const ArrayList<size, T> &list2);
 template<typename T>
 bool isPermutation(const ArrayList<1, T> &list1, const ArrayList<1, T> &list2);
+
+template<unsigned size, typename T>
+bool isCircularPermutation(const ArrayList<size, T> &list1, const ArrayList<size, T> &list2);
+template<typename T>
+bool isCircularPermutation(const ArrayList<2, T> &list1, const ArrayList<2, T> &list2);
+template<typename T>
+bool isCircularPermutation(const ArrayList<1, T> &list1, const ArrayList<1, T> &list2);
 
 template<typename T> 
 ArrayList<1, T> makeArrayList(const T &x0);

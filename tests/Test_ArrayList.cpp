@@ -102,7 +102,7 @@ void Test_ArrayList::minusElement3() {
 
 }
 
-void Test_ArrayList::test_isPermutation2() {
+void Test_ArrayList::isPermutation2() {
 
   ArrayList<2, int> original = makeArrayList(0, 1);
   
@@ -111,7 +111,7 @@ void Test_ArrayList::test_isPermutation2() {
   QVERIFY(!isPermutation(original, makeArrayList(1, 1)));  
 }
 
-void Test_ArrayList::test_isPermutation3() {
+void Test_ArrayList::isPermutation3() {
   
   ArrayList<3, int> original2 = makeArrayList(0, 1, 2);
   
@@ -127,7 +127,7 @@ void Test_ArrayList::test_isPermutation3() {
   QVERIFY(!isPermutation(original2, makeArrayList(0, 1, 3)));
 }
 
-void Test_ArrayList::test_isPermutation5() {
+void Test_ArrayList::isPermutation5() {
   
   ArrayList<5, int> original3 = makeArrayList(0, 1, 2, 3, 4);
   
@@ -137,7 +137,7 @@ void Test_ArrayList::test_isPermutation5() {
   QVERIFY(!isPermutation(original3, makeArrayList(5, 3, 2, 1, 0)));
 }
 
-void Test_ArrayList::test_isPermutation10() {
+void Test_ArrayList::isPermutation10() {
   
   ArrayList<10, int> original4 = makeArrayList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
   
@@ -179,3 +179,30 @@ void Test_ArrayList::test_isPermutation10() {
     } 
   }
 #endif    
+
+void Test_ArrayList::shift() {
+    test(makeArrayList(1,2,3).shift() == makeArrayList(2, 3, 1), std::string("shift?"));
+}
+
+void Test_ArrayList::reverse() {
+    test(makeArrayList(1,2,3).reverse() == makeArrayList(3, 2, 1), std::string("reverse (odd number of elements)"));
+    test(makeArrayList(1,2,3,4).reverse() == makeArrayList(4, 3, 2, 1), std::string("reverse (even number of elements)"));
+}
+
+
+void Test_ArrayList::circularPermutation() {
+    test(isCircularPermutation(makeArrayList(1), makeArrayList(1)), std::string("one element, equal"));
+    test(!isCircularPermutation(makeArrayList(1), makeArrayList(2)), std::string("one element, not equal"));
+    test(isCircularPermutation(makeArrayList(1,2), makeArrayList(1,2)), std::string("two elements, equal"));
+    test(isCircularPermutation(makeArrayList(1,2), makeArrayList(2,1)), std::string("two elements, swapped"));
+    test(!isCircularPermutation(makeArrayList(1,2), makeArrayList(1,3)), std::string("two elements, not equal"));
+    test(isCircularPermutation(makeArrayList(1,2,3), makeArrayList(1,2,3)), std::string("three elements, equal"));
+    test(isCircularPermutation(makeArrayList(1,2,3), makeArrayList(3,1,2)), std::string("three elements, shifted"));
+    test(isCircularPermutation(makeArrayList(1,2,3), makeArrayList(3,2,1)), std::string("three elements, reversed"));
+    test(!isCircularPermutation(makeArrayList(1,2,3), makeArrayList(4,2,1)), std::string("three elements, not equal"));
+    test(isCircularPermutation(makeArrayList(1,2,3,4), makeArrayList(1,2,3,4)), std::string("four elements, equal"));
+    test(isCircularPermutation(makeArrayList(1,2,3,4), makeArrayList(4,1,2,3)), std::string("four elements, shifted"));
+    test(isCircularPermutation(makeArrayList(1,2,3,4), makeArrayList(4,3,2,1)), std::string("four elements, reversed"));
+    test(!isCircularPermutation(makeArrayList(1,2,3,4), makeArrayList(1,2,4,3)), std::string("four elements, garbled"));
+
+}
