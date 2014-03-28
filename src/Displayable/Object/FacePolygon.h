@@ -11,9 +11,6 @@
 #include "MultiDimensionalVector.h"
 #include "Vector.h"
 
-#if USE_INT_INDICES
-typedef VecMath::uintvec<2> surface_vec_type;
-#else
 /// Defines a surface element in \p D -space.
 /**
  *  \tparam D Dimension of vector space the surface is defined in.
@@ -67,6 +64,5 @@ private:
 };
 
 typedef std::vector< FacePolygon<4, 4> > surface_vec_type;
-#endif
 
 #endif	/* FACEPOLYGON_H */

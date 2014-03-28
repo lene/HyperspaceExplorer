@@ -39,11 +39,10 @@ public:
         out << "Tesseract of edge length " << _a << std::ends;
         return out.str ();
     }
-#   if !USE_INT_INDICES
-      /// reimplement Draw() to make use of the stored vertices (instead of indices)
+
+    /// reimplement Draw() to make use of the stored vertices (instead of indices)
       virtual void Draw (UI::View *view);
 
-#   endif
   protected:
     virtual void Initialize();
     void DeclareSquare (unsigned, unsigned, unsigned, unsigned, unsigned, unsigned = 0);
@@ -54,9 +53,7 @@ public:
     static constexpr unsigned num_vertices = 16;
     static constexpr unsigned num_faces = 24;
 
-#   if !USE_INT_INDICES
-      surface_vec_type Surface;
-#   endif
+    surface_vec_type Surface;
 };
 
 namespace {

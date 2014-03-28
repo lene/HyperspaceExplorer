@@ -37,12 +37,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "View.h"
 
-#ifdef CONCURRENT
-#   if USE_INT_INDICES
-#       include <QtConcurrentRun>
-#   endif
-#endif
-
 using std::tuple;
 using std::tuple_size;
 using std::tuple_element;
@@ -107,6 +101,13 @@ unsigned long AltSponge::MemRequired (unsigned distance) {
 
 #undef DEBUG_SPONGE
 
+void AltSponge::X_push_back(const VecMath::Vector<4>& x) {
+    auto Xold = X();
+    Xold.push_back(x);
+    setX(VertexGrid<4, 1, double>(Xold));
+    SingletonLog::Instance() << "mighty inefficient implementation of X_push_back()\n";
+}
+
 /// This function actually creates the hypersponge.
 /** It views it as an assembly
  *  of \f$ 3^4 \f$ smaller sponges, slicing the sponge in three sub-sponges in
@@ -130,93 +131,8 @@ unsigned long AltSponge::MemRequired (unsigned distance) {
  * \todo merge joined surfaces into one. not trivial, because the surfaces have
  *       holes.
  */
-#if USE_INT_INDICES
-void AltSponge::Initialize(void) {
 
-  distance = abs(distance);
-  if (distance > 3) distance = 3;     //  dunno if this is wise
 
-    unsigned long SpongePerLevel = ((distance == 0)? 81:
-    (distance == 1)? 72:
-    (distance == 2)? 48:
-    16);
-  unsigned TotalCubes = pow(SpongePerLevel, Level);
-
-  for (unsigned current_level = 0; current_level <= Level; current_level++) {
-#   ifdef DEBUG_SPONGE
-    SingletonLog::Instance() << "Level: " << current_level << "/" << Level << " -- total cubes: " << TotalCubes << "\n";
-#   endif
-
-    if (current_level < 1) {
-
-      X.resize(16);
-      Surface.resize(24);
-
-      Hypercube::Initialize();
-
-    } else {
-
-      vec4vec1D Xold(X);
-      surface_vec_type Sold(Surface);
-
-      for (unsigned i = 0; i < Xold.size(); ++i) Xold[i] *= 1./3.;
-
-      try {
-        X.resize(SpongePerLevel*X.size());
-        Surface.resize(SpongePerLevel*Surface.size());
-      } catch (std::bad_alloc) {
-        X.resize(Xold.size());
-        Surface.resize(Sold.size());
-        return;
-      }
-
-      unsigned indexX = 0, indexS = 0;
-      for (int x = -1; x <= 1; x++) {
-        for (int y = -1; y <= 1; y++) {
-          for (int z = -1; z <= 1; z++) {
-            for (int w = -1; w <= 1; w++) {
-              if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
-                Vector<4> NewCen = Vector<4>((double)x, (double)y, (double)z, (double)w)*2./3.+center;
-
-                for (unsigned i = 0; i < Xold.size(); ++i) {
-                  X[indexX+i] = Xold[i]+NewCen;
-                }
-                for (unsigned i = 0; i < Sold.size(); ++i) {
-                  if (Surface[indexS+i].size() < 4) Surface[indexS+i].resize(4);
-                  for (unsigned k = 0; k < 4; ++k) {
-                    Surface[indexS+i][k] = Sold[i][k]+indexX;
-                  }
-                }
-                indexX += Xold.size();
-                indexS += Sold.size();
-              }
-            }
-          }
-        }
-      }
-      //  remove duplicate vertices and surfaces, except when we have dust
-      if (distance < 3) {
-        reduceVertices();
-        removeDuplicateSurfaces();
-      }
-    }
-
-  }
-
-  Object::Initialize();
-# ifdef DEBUG_SPONGE
-  SingletonLog::Instance() << "time for initializing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
-# endif
-}
-
-#else
-
-void AltSponge::X_push_back(const VecMath::Vector<4>& x) {
-    auto Xold = X();
-    Xold.push_back(x);
-    setX(VertexGrid<4, 1, double>(Xold));
-    SingletonLog::Instance() << "mighty inefficient implementation of X_push_back()\n";
-}
 
 void AltSponge::Initialize(void) {
 
@@ -316,124 +232,7 @@ void AltSponge::Initialize(void) {
   SingletonLog::Instance() << "time for initializing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
 #endif
 }
-#endif
 
-#if USE_INT_INDICES
-void AltSponge::renumberSurfaces(unsigned original_vertex, unsigned duplicate_vertex) {
-//	SingletonLog::Instance() << "renumberSurfaces(" << original_vertex << " " << duplicate_vertex << "\n";
-    for (surface_vec_type::iterator it = Surface.begin(); it != Surface.end(); ++it) {
-        for (unsigned k = 0; k < 4; ++k) {
-            if ((*it)[k] == duplicate_vertex) (*it)[k] = original_vertex;
-            else if ((*it)[k] > duplicate_vertex) (*it)[k]--;
-        }
-    }
-}
-
-void AltSponge::reduceVertices() {
-
-    unsigned i_num = 0;
-
-    //  copy vertex data from a std::vector into a std::list for more efficient erasing
-    typedef std::list<VecMath::Vector<4> > container_type;
-    container_type X_tmp(X.size());
-    std::copy(X.begin(), X.end(), X_tmp.begin());
-
-    SingletonLog::Instance() << "vertices before reduction: " << X.size() << "\n";
-    clock_t start_time = clock ();
-
-#	ifdef CONCURRENT
-    QFuture<void> future;
-#	endif
-
-    for (container_type::iterator i = X_tmp.begin(); i != X_tmp.end(); ++i, ++i_num) {
-
-        //  used to identify the index of the removed vertex in the Surface array
-        unsigned j_num = i_num+1;
-
-        container_type::iterator j = i;
-        for (++j; j != X_tmp.end(); ++j, ++j_num) {
-
-            if (*i == *j) {
-
-                // erase equal vertices
-                j = X_tmp.erase(j);
-
-                // replace all surface indices pointing to equal vertex
-#               ifdef CONCURRENT
-                /* My tries to multithread the replacing of indices are preserved
-                 * here. Apparently multithreading does not speed up the function,
-                 * but instead slows it down, so I'm not finishing this now.
-                 */
-                future.waitForFinished();
-                //	using class function
-//                future = QtConcurrent::run(*this, &AltSponge::renumberSurfaces, i_num, j_num);
-                future = QtConcurrent::run(SpongeUtility::renumber_Surfaces, Surface, i_num, j_num);
-#               else
-                renumberSurfaces(i_num, j_num);
-#               endif
-            }
-        }
-    }
-
-    X.resize(X_tmp.size());
-    std::copy(X_tmp.begin(), X_tmp.end(), X.begin());
-
-    SingletonLog::Instance() << "vertices after reduction: " << X_tmp.size() << "\n"
-                             << "time for reducing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
-
-}
-
-
-void AltSponge::removeDuplicateSurfaces() {
-
-    //  copy surface data from a std::vector into a std::list for more efficient erasing
-    typedef std::list<VecMath::MultiDimensionalVector<unsigned, 1> > container_type;
-    container_type S_tmp(Surface.size());
-    std::copy(Surface.begin(), Surface.end(), S_tmp.begin());
-
-    container_type::iterator i = S_tmp.begin();
-    unsigned i_num = 0;
-
-    SingletonLog::Instance() << "Pre-Removing dups: surface.size() = " << S_tmp.size() << "\n";
-    clock_t start_time = clock ();                     //  record start time
-
-    while (i != S_tmp.end()) {
-
-        bool erased = false;
-
-        container_type::iterator j = i;
-        ++j;
-
-        while (j != S_tmp.end()) {
-
-            if (SpongeUtility::isPermutation((*i)[0], (*i)[1], (*i)[2], (*i)[3],
-                                             (*j)[0], (*j)[1], (*j)[2], (*j)[3])) {
-
-                S_tmp.erase(j);
-                erased = true;
-                break;
-
-            } else {
-                ++j;
-            }
-        }
-
-        if (erased) {
-            i = S_tmp.erase(i);
-        } else {
-            ++i;
-            i_num++;
-        }
-    }
-
-    Surface.resize(S_tmp.size());
-    std::copy(S_tmp.begin(), S_tmp.end(), Surface.begin());
-
-    SingletonLog::Instance() << "Post-Removing dups: surface.size() = " << S_tmp.size() << "\n"
-                             << "time for reducing: " << SpongeUtility::time_to_float(clock()-start_time) << "\n";
-
-}
-#endif
 ///////////////////////////////////////////////////////////////////////////////
 
 /// Construct a Hypersponge of level \p level
