@@ -72,25 +72,12 @@ class Test_Surface: public QObject {
         void surface1();
         void horizon();
         void torus3();
-        void t_z2();
-        void t_z3();
-        void t_zA();
-        void t_ez();
-        void t_emz2();
-        void t_zm1();
-        void t_zm2();
-        void t_sqrtz();
-        void t_lnz();
-        void t_sinz();
-        void t_cosz();
-        void t_sinhz();
-        void t_coshz();
-        void t_tanz();
 
-    private:
-
+protected:
       template <class SurfaceType, unsigned num_parameters>
       void performSurfaceTest(const std::string &fname);
+
+private:
 
       void testFunction(Surface &f);
       void testDynamicallyCreatedFunction(const std::string &fname);
@@ -99,5 +86,14 @@ class Test_Surface: public QObject {
       MockView *view_;
 };
 
+#include "GlobalFunctions.h"
+
+template <class SurfaceType, unsigned num_parameters>
+void Test_Surface::performSurfaceTest(const std::string &fname) {
+  SurfaceType f(-1., 1., 0.5, -1., 1., 0.5);
+  UnitTests::testEqual(f.getNumParameters(), num_parameters);
+  testFunction(f);
+  testDynamicallyCreatedFunction(fname);
+}
 
 #endif

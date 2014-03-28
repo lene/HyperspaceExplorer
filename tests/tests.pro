@@ -62,6 +62,7 @@ HEADERS += \
            Test_Util.h \
            Test_ChangeDir.h \
            Test_Composite.h \
+           Test_ComplexFunction.h \
            Test_Rotope.h \
            Test_Object.h \
            Test_ArrayList.h \
@@ -89,6 +90,7 @@ SOURCES += \
            Test_Util.cpp \
            Test_ChangeDir.cpp \
            Test_Composite.cpp \
+           Test_ComplexFunction.cpp \
            Test_Rotope.cpp \
            Test_Object.cpp \
            Test_ArrayList.cpp \

@@ -21,10 +21,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Test_Surface.h"
 
 #include "MockView.h"
-#include "GlobalFunctions.h"
 
 #include "Surface/SurfaceImplementations.h"
-#include "Surface/ComplexFunction.h"
 #include "ColorManager.h"
 #include "FunctionFactory.h"
 
@@ -236,57 +234,6 @@ void Test_Surface::horizon() {
 }
 void Test_Surface::torus3() {
   performSurfaceTest<Torus3, 0>("Torus3");
-}
-void Test_Surface::t_z2() {
-  performSurfaceTest<z2, 0>("z2");
-}
-void Test_Surface::t_z3() {
-  performSurfaceTest<z3, 0>("z3");
-}
-void Test_Surface::t_zA() {
-  performSurfaceTest<zA, 1>("zA");
-}
-void Test_Surface::t_ez() {
-  performSurfaceTest<ez, 1>("e^a*z");
-}
-void Test_Surface::t_emz2() {
-  performSurfaceTest<emz2, 1>("emz2");
-}
-void Test_Surface::t_zm1() {
-  performSurfaceTest<zm1, 0>("zm1");
-}
-void Test_Surface::t_zm2() {
-  performSurfaceTest<zm2, 0>("zm2");
-}
-void Test_Surface::t_sqrtz() {
-  performSurfaceTest<sqrtz, 0>("sqrtz");
-}
-void Test_Surface::t_lnz() {
-  performSurfaceTest<lnz, 0>("lnz");
-}
-void Test_Surface::t_sinz() {
-  performSurfaceTest<sinz, 0>("sinz");
-}
-void Test_Surface::t_cosz() {
-  performSurfaceTest<cosz, 0>("cosz");
-}
-void Test_Surface::t_sinhz() {
-  performSurfaceTest<sinhz, 0>("sinhz");
-}
-void Test_Surface::t_coshz() {
-  performSurfaceTest<coshz, 0>("coshz");
-}
-void Test_Surface::t_tanz() {
-  performSurfaceTest<tanz, 0>("tanz");
-}
-
-
-template <class SurfaceType, unsigned num_parameters>
-void Test_Surface::performSurfaceTest(const std::string &fname) {
-  SurfaceType f(-1., 1., 0.5, -1., 1., 0.5);
-  testEqual(f.getNumParameters(), num_parameters);
-  testFunction(f);
-  testDynamicallyCreatedFunction(fname);
 }
 
 void Test_Surface::testFunction(Surface &f) {
