@@ -19,7 +19,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 */
 
 /// Otherwise, only run the latest test suites, as manually defined below
-#define RUN_ALL_TESTS 1
+#define RUN_ALL_TESTS 0
 
 #include "Test_Rotope.h"
 #include "Test_Displayable.h"
@@ -45,6 +45,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Test_Util.h"
 #include "Test_PartitionedMultithreadedMap.h"
 #include "Test_FacePolygon.h"
+#include "Test_ChangeDir.h"
 
 #include "Auxiliary/TestRunner.h"
 
@@ -77,6 +78,7 @@ void fillTestsMap() {
     tests_by_name.insert(std::pair<std::string, QObject *>("Object", new Test_Object));
     tests_by_name.insert(std::pair<std::string, QObject *>("Util", new Test_Util));
     tests_by_name.insert(std::pair<std::string, QObject *>("FacePolygon", new Test_FacePolygon));
+    tests_by_name.insert(std::pair<std::string, QObject *>("ChangeDir", new Test_ChangeDir));
 }
 
 int main(int argc, char **argv) {
@@ -99,7 +101,8 @@ int main(int argc, char **argv) {
         }
 #     else
 //        runner.run(new Test_ArrayList);
-        runner.run(new Test_FacePolygon);
+//        runner.run(new Test_FacePolygon);
+        runner.run(new Test_ChangeDir);
 #     endif
     } else {
         for (auto test: tests_to_run) {
