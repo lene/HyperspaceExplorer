@@ -50,6 +50,17 @@ FacePolygon<D, N_vertex>::FacePolygon(
     }
 
 template <unsigned D, unsigned N_vertex> 
+template <class ForwardIterator>
+FacePolygon<D, N_vertex>::FacePolygon(
+        const VecMath::MultiDimensionalVector< vertex_type, 1 > &original_container,
+        ForwardIterator begin) {
+  for (unsigned i = 0; i < N_vertex; ++i) {
+    _vertices[i] = *begin++; 
+    _indices[i] = index_of(*_vertices[i], original_container);
+  }
+}
+
+template <unsigned D, unsigned N_vertex> 
 const typename FacePolygon<D, N_vertex>::vertex_ptr_type &
 FacePolygon<D, N_vertex>::operator[](unsigned i) const { 
     return _vertices[i]; 

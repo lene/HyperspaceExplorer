@@ -38,6 +38,10 @@ public:
                 const vertex_type &v0, const vertex_type &v1,
                 const vertex_type &v2, const vertex_type &v3);
     
+    template <class ForwardIterator>
+    FacePolygon(const VecMath::MultiDimensionalVector< vertex_type, 1 > &original_container,
+                ForwardIterator begin);
+    
     /// Returns the \p i -th vertex.
     const vertex_ptr_type &operator[](unsigned i) const;
 
