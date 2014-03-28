@@ -16,10 +16,7 @@ class Test_ChangeDir: public QObject {
   
   Q_OBJECT
   
-private slots:
-  
-  void initTestCase();
-  
+private slots:  
   void dirIsChanged();
   void changeBackOnExit();
   

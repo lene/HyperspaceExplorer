@@ -13,9 +13,6 @@
 
 using namespace UnitTests;
 
-void Test_ChangeDir::initTestCase() {
-}
-
 void Test_ChangeDir::dirIsChanged() {
     QTemporaryDir temp_dir;
     test(temp_dir.isValid(), std::string("temporary directory created"));
