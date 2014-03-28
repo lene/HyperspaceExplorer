@@ -18,8 +18,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 */
 
-/// Otherwise, only run the latest test suites
-#define RUN_ALL_TESTS 0
+/// Otherwise, only run the latest test suites, as manually defined below
+#define RUN_ALL_TESTS 1
 
 #include "Test_Rotope.h"
 #include "Test_Displayable.h"
@@ -98,7 +98,7 @@ int main(int argc, char **argv) {
             runner.run(test.second);
         }
 #     else
-        runner.run(new Test_ArrayList);
+//        runner.run(new Test_ArrayList);
         runner.run(new Test_FacePolygon);
 #     endif
     } else {

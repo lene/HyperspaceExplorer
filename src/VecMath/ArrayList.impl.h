@@ -228,7 +228,7 @@ bool isCircularPermutation(const ArrayList<size, T> &list1, const ArrayList<size
   ArrayList<size, T> shifted = list2;
   ArrayList<size, T> reversed = list2;
   reversed.reverse();
-  for (unsigned shift = 0; shift < size-1; ++shift) {
+  for (unsigned shift = 0; shift < size; ++shift) {
     if (list1 == shifted) return true;
     if (list1 == reversed) return true;
     shifted.shift();

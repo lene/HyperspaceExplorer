@@ -28,6 +28,7 @@ void Test_FacePolygon::faceEqualsItself() {
 void Test_FacePolygon::rotatedFaceIsEqual() {    
     FacePolygon<3, 3> face3_1(container_, ZERO, X, Y);
     FacePolygon<3, 3> face3_2(container_, X, Y, ZERO);
+    face3_1.print(); face3_2.print();
     UnitTests::test(face3_1 == face3_2, std::string("faces with shifted vertex order are equal"));
 }
 
