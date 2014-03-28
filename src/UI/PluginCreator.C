@@ -27,7 +27,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "Globals.h"
 #include "PluginCreator.h"
-#include "PathChange.h"
+#include "ChangeDir.h"
 
 namespace UI {
     
@@ -57,7 +57,7 @@ namespace UI {
             
       if (isSourceFile(lib_name)) {
         
-        PathChange path_changer(current_dir.absolutePath()+"/plugins/"+type);
+        ChangeDir path_changer(current_dir.absolutePath()+"/plugins/"+type);
               
         lib_name = lib_name.remove(".C");
         
@@ -102,7 +102,7 @@ namespace UI {
 
       setupPluginDirectoryStructure(type);
       
-      PathChange path_changer(*(Globals::Instance().rcdirs().begin())+"/plugins/"+type);
+      ChangeDir path_changer(*(Globals::Instance().rcdirs().begin())+"/plugins/"+type);
       //  we are now in the subdirectory plugins/type under the first entry of the rcdirs list
 
       writeSource();                          //  generate C++ source code
@@ -123,7 +123,7 @@ namespace UI {
     }
     
     void PluginCreator::setupPluginDirectoryStructure(const QString& type) {
-      PathChange path_changer(*(Globals::Instance().rcdirs().begin()));
+      ChangeDir path_changer(*(Globals::Instance().rcdirs().begin()));
 
       if (!QDir::current().exists ("plugins")) QDir::current().mkdir ("plugins");
       if (!QDir::current().exists ("plugins/"+type)) QDir::current().mkdir ("plugins/"+type);

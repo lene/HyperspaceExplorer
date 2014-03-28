@@ -23,9 +23,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <QString>
 
-struct PathChange {
-  PathChange(const QString &newPath);
-  ~PathChange();
+struct ChangeDir {
+  ChangeDir(const QString &newPath);
+  ~ChangeDir();
 
 private:
   QString old_path;
