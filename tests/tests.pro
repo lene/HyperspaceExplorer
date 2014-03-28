@@ -27,6 +27,7 @@ DEPENDPATH += . \
 INCLUDEPATH += . \
                ../src \
                ../src/Displayable \
+               ../src/Displayable/Projection \
                ../src/Displayable/Transformation \
                ../src/Displayable/Object \
                ../src/Utilities \

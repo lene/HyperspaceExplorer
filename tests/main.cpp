@@ -19,7 +19,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 */
 
 /// Otherwise, only run the latest test suites, as manually defined below
-#define RUN_ALL_TESTS 0
+#define RUN_ALL_TESTS 1
 
 #include "Test_Rotope.h"
 #include "Test_Displayable.h"
