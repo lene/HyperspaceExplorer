@@ -136,7 +136,7 @@ class ColorManager {
 };
 
 /// Singleton to set the color scheme globally - proxies the color manager
-/** The object also serves as a Factory for ColorManager s, instantiating a
+/** The object also serves as a Factory for \c ColorManager s, instantiating a
  *  ColorManager when given a string that describes it. It stores creator
  *  functions for all ColorManager implementations in a std::map indexed by a
  *  string.
