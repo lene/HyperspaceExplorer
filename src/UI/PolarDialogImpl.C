@@ -109,7 +109,7 @@ namespace UI {
 using namespace VecMath;\n\
 \n\
 extern \"C\" Vector<4> f (double, double, double);\n\
-extern \"C\" char *symbolic ();\n\
+extern \"C\" const char *symbolic ();\n\
 \n\
 Vector<4> f (double t, double u, double v) {\n\
     static Vector<4> F;\n\
@@ -126,7 +126,7 @@ Vector<4> f (double t, double u, double v) {\n\
     return F;\n\
 }\n\
 \n\
-char *symbolic () {\n\
+const char *symbolic () {\n\
     return \"" << FEdit->text().toStdString() << "\";\n\
 }\n";
 

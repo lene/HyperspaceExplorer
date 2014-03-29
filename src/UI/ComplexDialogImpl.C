@@ -116,7 +116,7 @@ using namespace VecMath;\n\
 using std::complex;\n\
 \n\
 extern \"C\" Vector<4> f (double, double);\n\
-extern \"C\" char *symbolic ();\n\
+extern \"C\" const char *symbolic ();\n\
 \n\
 Vector<4> f (double u, double v) {\n\
     static Vector<4> F;\n\
@@ -129,7 +129,7 @@ Vector<4> f (double u, double v) {\n\
     return F;\n\
 }\n\
 \n\
-char *symbolic () {\n\
+const char *symbolic () {\n\
     return \"" << WEdit->text().toStdString() << "\"; \n\
 }\n";
 
