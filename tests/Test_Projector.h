@@ -9,6 +9,7 @@
 #define	TEST_PROJECTOR_H
 
 #include <QtTest/QtTest>
+#include "Rotopes/Projector.impl.h"
 
 class Test_Projector: public QObject {
 

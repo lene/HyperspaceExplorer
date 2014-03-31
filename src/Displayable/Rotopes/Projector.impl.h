@@ -10,6 +10,8 @@
 
 #include "Projector.h"
 
+#include "NotYetImplementedException.h"
+
 template <unsigned D, unsigned D_>
 std::vector<VecMath::Vector<D_> > Projector< D, D_>::operator () (
     const std::vector<VecMath::Vector<D> > &x, double scrW, double camW
