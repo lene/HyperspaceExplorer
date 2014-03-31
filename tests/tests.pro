@@ -61,6 +61,7 @@ SOURCES += Auxiliary/GlobalFunctions.cpp \
 HEADERS += \
            Test_Util.h \
            Test_ChangeDir.h \
+           Test_ColorManager.h \
            Test_Composite.h \
            Test_ComplexFunction.h \
            Test_Rotope.h \
@@ -89,6 +90,7 @@ HEADERS += \
 SOURCES += \
            Test_Util.cpp \
            Test_ChangeDir.cpp \
+           Test_ColorManager.cpp \
            Test_Composite.cpp \
            Test_ComplexFunction.cpp \
            Test_Rotope.cpp \

@@ -47,6 +47,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Test_FacePolygon.h"
 #include "Test_ChangeDir.h"
 #include "Test_ComplexFunction.h"
+#include "Test_ColorManager.h"
 
 #include "Auxiliary/TestRunner.h"
 
@@ -81,6 +82,7 @@ void fillTestsMap() {
     tests_by_name.insert(std::pair<std::string, QObject *>("FacePolygon", new Test_FacePolygon));
     tests_by_name.insert(std::pair<std::string, QObject *>("ChangeDir", new Test_ChangeDir));
     tests_by_name.insert(std::pair<std::string, QObject *>("ComplexFunction", new Test_ComplexFunction));
+    tests_by_name.insert(std::pair<std::string, QObject *>("ColorManager", new Test_ColorManager));
 }
 
 int main(int argc, char **argv) {
@@ -104,7 +106,7 @@ int main(int argc, char **argv) {
 #     else
 //        runner.run(new Test_ArrayList);
 //        runner.run(new Test_FacePolygon);
-        runner.run(new Test_ComplexFunction);
+        runner.run(new Test_ColorManager);
 #     endif
     } else {
         for (auto test: tests_to_run) {
