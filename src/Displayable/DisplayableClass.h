@@ -21,8 +21,6 @@
 #ifndef DISPLAYABLECLASS_H
 #define DISPLAYABLECLASS_H
 
-#include "Tree.h"
-
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -118,8 +116,6 @@ private:
   displayable_container_type displayables_;
 
   static DisplayableClass *root_node_;
-
-  static Tree<DisplayableClass> class_tree_;
 
 };
 

@@ -15,8 +15,6 @@ HEADERS += \
            $${PATH}/Observer.impl.h  \
            $${PATH}/ScopedTimer.h  \
            $${PATH}/SingletonHolder.h \
-           $${PATH}/Tree.h \
-           $${PATH}/Tree.impl.h \
            $${PATH}/Util.h
 
 SOURCES += \

@@ -21,7 +21,6 @@
 #include "DisplayableClass.h"
 
 #include "FunctionFactory.h"
-#include "Tree.impl.h"
 
 #include <cassert>
 #include <iostream>
