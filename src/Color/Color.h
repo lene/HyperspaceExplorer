@@ -64,6 +64,9 @@ class Color {
         Color operator +(float);
         Color operator +=(const Color &);
         Color operator +(const Color &);
+        bool operator ==(const Color &other) { 
+            return r() == other.r() && g() == other.g() && b() == other.b() && a() == other.a();
+        }
         void setComponentLowerLimit(float);
         void setComponentUpperLimit(float);
 

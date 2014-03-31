@@ -17,7 +17,12 @@ private slots:
     
     void initTestCase();
     
-    // ...
+    void testgetRegisteredColorManagers();
+    void testisColorManagerSet();
+    
+    void testFastxyz2RGBColorManager();
+    void testdepth2RGBColorManager();
+    void testmonochromeColorManager();
     
 };
 
