@@ -59,16 +59,22 @@ SOURCES += Auxiliary/GlobalFunctions.cpp \
            Auxiliary/TestRunner.cpp
 
 HEADERS += \
-           Test_Util.h \
+           Test_ArrayList.h \
            Test_ChangeDir.h \
            Test_ColorManager.h \
-           Test_Composite.h \
            Test_ComplexFunction.h \
+           Test_Composite.h \
+           Test_Displayable.h \
+           Test_DisplayableClass.h \
+           Test_FacePolygon.h \
+           Test_FunctionFactory.h \
+           Test_FunctionHolder.h \
+           Test_FunctionValueGrid.h \
+           Test_GridDrawer.h \
            Test_Rotope.h \
            Test_Object.h \
-           Test_ArrayList.h \
            Test_Observer.h \
-           Test_DisplayableClass.h \
+           Test_Projector.h \
            Test_Realm.h \
            Test_Vector.h \
            Test_Matrix.h \
@@ -77,27 +83,23 @@ HEADERS += \
            Test_RealFunction.h \
            Test_Surface.h \
            Test_ParametricFunction.h \
-           Test_FunctionValueGrid.h \
            Test_Transformation.h \
            Test_Projection.h \
-           Test_GridDrawer.h \
-           Test_FunctionFactory.h \
-           Test_FunctionHolder.h \
            Test_PartitionedMultithreadedMap.h \
-           Test_FacePolygon.h \
-           Test_Displayable.h
+           Test_Util.h
 
 SOURCES += \
-           Test_Util.cpp \
+           Test_ArrayList.cpp \
            Test_ChangeDir.cpp \
            Test_ColorManager.cpp \
-           Test_Composite.cpp \
            Test_ComplexFunction.cpp \
+           Test_Composite.cpp \
+           Test_Displayable.cpp \
+           Test_DisplayableClass.cpp \
            Test_Rotope.cpp \
            Test_Object.cpp \
-           Test_ArrayList.cpp \
            Test_Observer.cpp \
-           Test_DisplayableClass.cpp \
+           Test_Projector.cpp \
            Test_Realm.cpp \
            Test_Vector.cpp \
            Test_Matrix.cpp \
@@ -114,7 +116,7 @@ SOURCES += \
            Test_FunctionHolder.cpp \
            Test_PartitionedMultithreadedMap.cpp \
            Test_FacePolygon.cpp \
-           Test_Displayable.cpp \
+           Test_Util.cpp \
            main.cpp
 
 PRE_TARGETDEPS *= ../lib/libHyperspaceExplorer.a
