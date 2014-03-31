@@ -4,6 +4,7 @@ DEPENDPATH += $${PATH}
 HEADERS += $${PATH}/Rotope.h \
            $${PATH}/RotopeFactory.h \
            $${PATH}/Projector.h \
+           $${PATH}/Projector.impl.h \
            $${PATH}/RotopeInterface.h \
            $${PATH}/VertexData.h \
            $${PATH}/VertexDataPrinter.h \

@@ -26,6 +26,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Torate.h"
 
 #include "FunctionHolder.impl.h"
+#include "Projector.impl.h"
 
 using std::string;
 

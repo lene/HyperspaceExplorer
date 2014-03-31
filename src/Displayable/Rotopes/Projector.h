@@ -33,7 +33,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
  *        separate from projection
  *
  *  \ingroup RotopeGroup
- *  \author Helge Preuss <lene.preuss@gmail.com>
+ *  \author Lene Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D, unsigned D_> class Projector: protected Projector<D-1, D_> {
     public:
@@ -47,13 +47,8 @@ template <unsigned D, unsigned D_> class Projector: protected Projector<D-1, D_>
          */
         std::vector<VecMath::Vector<D_> > operator()(
                 const std::vector<VecMath::Vector<D> > &x,
-                double scrW, double camW) {
-
-            checkConsistency(scrW, camW);
-
-            std::vector<VecMath::Vector<D-1> > x_proj = doProject(x, scrW, camW);
-            return Projector<D-1, D_>::operator()(x_proj, scrW, camW);
-        }
+                double scrW, double camW
+        );
 
         /// Project an array of vertices of dimension \p D to dimension \p D_ < \p D
         /** \param x The array of vertices to be projected
@@ -68,12 +63,7 @@ template <unsigned D, unsigned D_> class Projector: protected Projector<D-1, D_>
          */
         std::vector<VecMath::Vector<D_> > operator()(
                 const std::vector<VecMath::Vector<D> > &x,
-                const std::vector<double> &scrW, const std::vector<double> &camW) {
-            throw NotYetImplementedException("std::vector<VecMath::Vector<D_> > \n"
-                    "    Projector<D, D_>::operator()(\n"
-                    "        vector<Vector<D> > &, vector<double> &, "
-                    "vector<double> &)");
-        }
+                const std::vector<double> &scrW, const std::vector<double> &camW);
 
     private:
         /// Check if a projection makes sense, throw if it doesn't
@@ -81,17 +71,7 @@ template <unsigned D, unsigned D_> class Projector: protected Projector<D-1, D_>
          *              origin
          *  \param camW Distance of the camera/eye onto from the origin
          */
-        void checkConsistency(double scrW, double camW) {
-            if (D_ > D) {
-                throw std::logic_error("Tried to project to a higher dimension");
-            }
-            if (D_ == D) {
-                throw std::logic_error("Explicit specialization should be called");
-            }
-            if (camW <= scrW) {
-                throw std::logic_error("Screen must be closer to object than eye");
-            }
-        }
+        void checkConsistency(double scrW, double camW);
 
         /// Perform the projection from dimension \p D to dimension \p D-1
         /** \param x The array of vertices to be projected
@@ -103,18 +83,8 @@ template <unsigned D, unsigned D_> class Projector: protected Projector<D-1, D_>
          */
         std::vector<VecMath::Vector<D-1> > doProject(
                 const std::vector<VecMath::Vector<D> > &x,
-                double scrW, double camW) {
-            std::vector<VecMath::Vector<D-1> > x_proj(x.size());
-
-            for (unsigned i = 0; i < x.size(); i++) {
-                double ProjectionFactor = (scrW-camW)/(x[i][D-1]-camW);
-
-                for (unsigned j = 0; j < D-1; j++)
-                    x_proj.at(i)[j] = ProjectionFactor*x[i][j];
-            }
-            return x_proj;
-        }
-
+                double scrW, double camW
+        );
 };
 
 /// Specialization for \p D_ == \p D
