@@ -53,6 +53,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Test_Parameters.h"
 #include "Test_Parser.h"
 #include "Test_LSystem.h"
+#include "Test_LoopHelper.h"
 
 #include "Auxiliary/TestRunner.h"
 
@@ -93,6 +94,7 @@ void fillTestsMap() {
     tests_by_name.insert(std::pair<std::string, QObject *>("Parameters", new Test_Parameters));
     tests_by_name.insert(std::pair<std::string, QObject *>("Parser", new Test_Parser));
     tests_by_name.insert(std::pair<std::string, QObject *>("LSystem", new Test_LSystem));
+    tests_by_name.insert(std::pair<std::string, QObject *>("LoopHelper", new Test_LoopHelper));
 }
 
 int main(int argc, char **argv) {
@@ -116,6 +118,7 @@ int main(int argc, char **argv) {
 #     else
         runner.run(new Test_Parser);
         runner.run(new Test_LSystem);
+        runner.run(new Test_LoopHelper);
 #     endif
     } else {
         for (auto test: tests_to_run) {

@@ -73,6 +73,7 @@ HEADERS += \
            Test_FunctionHolder.h \
            Test_FunctionValueGrid.h \
            Test_GridDrawer.h \
+           Test_LoopHelper.h \
            Test_LSystem.h \
            Test_Matrix.h \
            Test_MultiDimensionalVector.h \
@@ -107,6 +108,7 @@ SOURCES += \
            Test_FunctionHolder.cpp \
            Test_FunctionValueGrid.cpp \
            Test_GridDrawer.cpp \
+           Test_LoopHelper.cpp \
            Test_LSystem.cpp \
            Test_Matrix.cpp \
            Test_MultiDimensionalVector.cpp \
