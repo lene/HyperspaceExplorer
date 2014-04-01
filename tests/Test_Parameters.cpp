@@ -8,6 +8,7 @@
 #include "Test_Parameters.h"
 
 #include "GlobalFunctions.h"
+#include "ExpectException.h"
 
 using namespace UnitTests;
 
@@ -57,12 +58,8 @@ void Test_Parameters::test_changeValue() {
 
 void Test_Parameters::test_nonexistentEntry() {
     ParameterMap map;
-    bool success = false;
-    try {
-        auto parameter = map.getParameter("help, i do not exist!");
-    } catch (const ParameterMap::NonexistentParameterAccessed &) {
-        success = true;
-    } catch (...) { }
-    test(success, std::string("ParameterMap::NonexistentParameterAccessed thrown"));
+    expectException<ParameterMap::NonexistentParameterAccessed>(
+        [&]() { auto parameter = map.getParameter("Help, I don't exist!"); }
+    );
 }
 

@@ -51,7 +51,9 @@ RCC_DIR = tmp
 INCLUDEPATH += ./Auxiliary
 DEPENDPATH += ./Auxiliary
 
-HEADERS += Auxiliary/GlobalFunctions.h \
+HEADERS += \
+           Auxiliary/ExpectException.h \
+           Auxiliary/GlobalFunctions.h \
            Auxiliary/MockView.h \
            Auxiliary/TestRunner.h
 SOURCES += Auxiliary/GlobalFunctions.cpp \
