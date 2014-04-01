@@ -17,6 +17,10 @@ class Test_Parameters: public QObject {
     
 private slots:
 
+    void test_insertAndRetrieve();
+    void test_insertByDefault();
+    void test_changeValue();
+    void test_nonexistentEntry();
 };
 
 #endif	/* TEST_PARAMETERS_H */
