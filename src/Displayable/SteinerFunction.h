@@ -4,7 +4,7 @@
 //      contains:     Steiner surfaces -- this is sort of a dead branch, haven't
 //		      really implemented anything; needs to be redone to fit in
 //      compile with: make all
-//	author:	      helge preuss (scout@hyperspace-travel.de)
+//	author:	      lene preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
 
 
@@ -14,7 +14,7 @@
  *  this is sort of a dead branch, I haven't really implemented anything;
  *  needs to be redone to fit in
  *  \ingroup FunctionGroup
- *  \author Helge Preuss <scout@hyperspace-travel.de>
+ *  \author Lene Preuss <scout@hyperspace-travel.de>
  */
 class SteinerFunction: public Function {
     public:

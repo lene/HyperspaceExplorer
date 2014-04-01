@@ -35,7 +35,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
         F_3 & = & Imag(f(z))
     \f}
  *  \ingroup FunctionGroup
- *  @author Helge Preuss <lene.preuss@gmail.com>                         */
+ *  @author Lene Preuss <lene.preuss@gmail.com>                         */
 class ComplexFunction: public Surface {
 public:
   /// Minimal constructor, sets the function name

@@ -6,7 +6,7 @@
 //		      explorer, but very preliminary code in earliest develop-
 //		      ment stage
 //      compile with: g++ -I.. LSystem_old.C LSys_aux.C numclass.C -o LSystem
-//	author:	      helge preuss (scout@hyperspace-travel.de)
+//	author:	      lene preuss (scout@hyperspace-travel.de)
 //	license:      GPL (see License.txt)
 
 #include "LSystem_old.h"

@@ -49,7 +49,7 @@ class CustomComplexFunction;
 /// Displays and manipulates four-dimensional Functions in a QGLWidget
 /** This class is much too fat and will be split into parts wherever possible
  *  \ingroup UIGroup
- *  @author Helge Preuss <lene.preuss@gmail.com>                         */
+ *  @author Lene Preuss <lene.preuss@gmail.com>                         */
 class C4DView :
     public QGLWidget,
     public UI::ViewImpl {

@@ -40,7 +40,7 @@ namespace Script {
     /// Parser reads a file and executes the commands in it in a C4DView
     /** This class takes the role of the Context class in the class diagram for
      *  the Interpreter pattern in the GOF book, p. 245
-     *  \author Helge Preuss <lene.preuss@gmail.com>
+     *  \author Lene Preuss <lene.preuss@gmail.com>
      *  \ingroup ScriptingGroup                                               */
     class Parser {
 

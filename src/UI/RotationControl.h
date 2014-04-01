@@ -31,7 +31,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 namespace UI {
 
 /// QWidget to edit the value of a VecMath::Rotation.
-/** @author Helge Preuss <lene.preuss@gmail.com>
+/** @author Lene Preuss <lene.preuss@gmail.com>
 */
 class RotationControl : public QWidget {
 Q_OBJECT

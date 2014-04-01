@@ -41,7 +41,7 @@ namespace UI {
         /** This class defines the interface that all input controls for
          *  FunctionParameter must follow.
          *
-         *  @author Helge Preuss <lene.preuss@gmail.com>
+         *  @author Lene Preuss <lene.preuss@gmail.com>
          */
         class ParameterInput {
             public:

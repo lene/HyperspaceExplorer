@@ -27,7 +27,7 @@ namespace UI {
         /** The function which has been entered will then be compiled into a dynamic
         *  library and loaded to be displayed on screen as a Function.
         *  \ingroup UIGroup
-        *  @author Helge Preuss <lene.preuss@gmail.com>                         */
+        *  @author Lene Preuss <lene.preuss@gmail.com>                         */
         class FunctionDialogImpl:
                 public QDialog, public Ui::functionDialog, public PluginCreator {
             Q_OBJECT

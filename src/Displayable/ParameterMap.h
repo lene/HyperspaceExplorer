@@ -30,7 +30,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 /// A class to store and manage FunctionParameter s
 /**
-    \author Helge Preuss <lene.preuss@gmail.com>
+    \author Lene Preuss <lene.preuss@gmail.com>
     \ingroup FunctionParameterGroup
 */
 class ParameterMap : public std::map< std::string, FunctionParameter::parameter_ptr_type > {

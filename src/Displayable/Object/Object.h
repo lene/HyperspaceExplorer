@@ -33,7 +33,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
  *
  *  Instead it is described as a set of surfaces.
  *  \ingroup FunctionGroup
- *  @author Helge Preuss <lene.preuss@gmail.com>                         */
+ *  @author Lene Preuss <lene.preuss@gmail.com>                         */
 class Object: public VertexHolder<4, 1, double> {
     
 public:

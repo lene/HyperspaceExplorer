@@ -89,7 +89,7 @@ namespace VecMath {
     /** @tparam D dimension of the vector space
      *  @tparam N numerical type of the rotation angles
      *  \ingroup VecMath
-     *  @author Helge Preuss <lene.preuss@gmail.com>                     */
+     *  @author Lene Preuss <lene.preuss@gmail.com>                     */
     template <unsigned D, typename N = double> class Rotation:
             public RotationBase {
 

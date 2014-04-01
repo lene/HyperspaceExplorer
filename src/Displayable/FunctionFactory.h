@@ -55,7 +55,7 @@ class Displayable;
  *  \code
  *  Displayable *f = TheFunctionFactory::Instance().createFunction("Hypercube");
  *  \endcode
- * \author Helge Preuss <lene.preuss@gmail.com>                          */
+ * \author Lene Preuss <lene.preuss@gmail.com>                          */
 class FunctionFactory {
 
   public:

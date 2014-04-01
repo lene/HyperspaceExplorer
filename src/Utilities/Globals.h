@@ -36,7 +36,7 @@ class QStringList;
  *
  *  Members are accessed with the SingletonHolder static function, i.e.
  *  Globals::Instance().
- *  @author Helge Preuss <lene.preuss@gmail.com>                         */
+ *  @author Lene Preuss <lene.preuss@gmail.com>                         */
 class Global {
 
     public:

@@ -28,7 +28,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 /// Base class for Rotate classes, providing the actual rotate() function
 /** \tparam D Dimension of the vector space we're working in
  *  \ingroup RotopeGroup
- *  \author Helge Preuss <lene.preuss@gmail.com>
+ *  \author Lene Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D>
     class rotate_base: public VertexData<D> {
@@ -86,7 +86,7 @@ template <unsigned D>
  *  \tparam Dmax Last of the set of dimensions being rotated into
  *
  *  \ingroup RotopeGroup
- *  \author Helge Preuss <lene.preuss@gmail.com>
+ *  \author Lene Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D, unsigned Dmin, unsigned Dmax>
     class Rotate: public Rotate<D, Dmin, Dmax-1> {
@@ -109,7 +109,7 @@ template <unsigned D, unsigned Dmin, unsigned Dmax>
  *  \tparam Dmin Dimension being rotated into
  *
  *  \ingroup RotopeGroup
- *  \author Helge Preuss <lene.preuss@gmail.com>
+ *  \author Lene Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D, unsigned Dmin>
     class Rotate<D, Dmin, Dmin>: public rotate_base<D> {

@@ -35,7 +35,7 @@ namespace UI {
         *  loadFunction(), functionPresent() and writeSource().
         *  \todo set the function name to symbolic() in the descendants' constructors
         *  \ingroup UIGroup
-        *  @author Helge Preuss <lene.preuss@gmail.com>                         */
+        *  @author Lene Preuss <lene.preuss@gmail.com>                         */
         class PluginCreator {
             /// Class template with a static function to simulate a function template.
             /** The function \em functionPresent() tries to load a dynamic library

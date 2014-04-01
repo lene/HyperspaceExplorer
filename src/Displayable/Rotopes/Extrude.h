@@ -26,7 +26,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 /// Base class for Extrude classes, providing the actual extrude() function
 /** \tparam D Dimension of the vector space we're working in
  *  \ingroup RotopeGroup
- *  \author Helge Preuss <lene.preuss@gmail.com>
+ *  \author Lene Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D>
     class extrude_base: public VertexData<D> {
@@ -76,7 +76,7 @@ template <unsigned D>
  *  \tparam Dmax Last of the set of dimensions being tapered into
  *
  *  \ingroup RotopeGroup
- *  \author Helge Preuss <lene.preuss@gmail.com>
+ *  \author Lene Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D, unsigned Dmin, unsigned Dmax>
     class Extrude: public Extrude<D, Dmin, Dmax-1> {
@@ -109,7 +109,7 @@ template <unsigned D, unsigned Dmin, unsigned Dmax>
  *  \tparam Dmin Dimension being tapered into
  *
  *  \ingroup RotopeGroup
- *  \author Helge Preuss <lene.preuss@gmail.com>
+ *  \author Lene Preuss <lene.preuss@gmail.com>
  */
 template <unsigned D, unsigned Dmin>
     class Extrude<D, Dmin, Dmin>: public extrude_base<D> {

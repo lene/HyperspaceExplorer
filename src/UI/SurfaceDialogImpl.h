@@ -27,7 +27,7 @@ namespace UI {
         /** The function will then be compiled into a dynamic library and loaded to be
         *  displayed on screen
         *  \ingroup UIGroup
-        *  @author Helge Preuss <lene.preuss@gmail.com>                         */
+        *  @author Lene Preuss <lene.preuss@gmail.com>                         */
         class SurfaceDialogImpl:
                 public QDialog, public Ui::SurfaceDialog, public PluginCreator {
             Q_OBJECT

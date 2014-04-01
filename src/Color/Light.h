@@ -86,7 +86,7 @@ class LightSource {
  *  the class LightSource, Light provides an abstract method render() which must
  *  be implemented in descendants to put the light source into the scene.
  *
- *  \author Helge Preuss <lene.preuss@gmail.com>
+ *  \author Lene Preuss <lene.preuss@gmail.com>
  */
 class Light {
     public:

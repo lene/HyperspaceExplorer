@@ -46,7 +46,7 @@ namespace UI {
          *  function is selected, is done from C4DView. This is of course
          *  unfortunate and will be changed.
          *  \ingroup UIGroup
-         *  \author Helge Preuss <lene.preuss@gmail.com>                 */
+         *  \author Lene Preuss <lene.preuss@gmail.com>                 */
         class ValuesDialogImpl: public QDialog, public UI::Dialogs::ValuesDialog {
             Q_OBJECT
 

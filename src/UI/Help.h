@@ -26,7 +26,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 class QTextBrowser;
 
 /// A popup window displaying the Hyperspace Explorer online help as HTML
-/** \author Helge Preuss <lene.preuss@gmail.com>                         */
+/** \author Lene Preuss <lene.preuss@gmail.com>                         */
 class HelpWindow : public QMainWindow {
     Q_OBJECT
     public:

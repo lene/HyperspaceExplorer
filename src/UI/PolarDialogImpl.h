@@ -30,7 +30,7 @@ namespace UI {
          *  loaded to be displayed on screen
          *  \todo Make the above definition mathematically correct
          *  \ingroup UIGroup
-         *  @author Helge Preuss <lene.preuss@gmail.com>                 */
+         *  @author Lene Preuss <lene.preuss@gmail.com>                 */
         class PolarDialogImpl:
                 public QDialog, public Ui::PolarDialog, public PluginCreator {
             Q_OBJECT

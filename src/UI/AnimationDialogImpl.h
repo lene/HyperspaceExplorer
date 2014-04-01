@@ -26,7 +26,7 @@ namespace UI {
     namespace Dialogs {
         /// A Dialog to select settings concerning the writing of animated frames to disk
         /** \ingroup UIGroup
-         *  @author Helge Preuss <lene.preuss@gmail.com>                         */
+         *  @author Lene Preuss <lene.preuss@gmail.com>                         */
         class AnimationDialogImpl:
                 public QDialog, public Ui::AnimationDialog {
 
