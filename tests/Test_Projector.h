@@ -18,6 +18,9 @@ class Test_Projector: public QObject {
 private slots:
 
     void testProject3Dto2D();
+    void testProject4Dto2D();
+    void testProject2Dto2D();
+    void testProjectSingleVertex();
     
 };
 

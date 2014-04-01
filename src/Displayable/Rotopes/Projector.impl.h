@@ -22,6 +22,18 @@ std::vector<VecMath::Vector<D_> > Projector< D, D_>::operator () (
     return Projector<D-1, D_>::operator()(x_proj, scrW, camW);
 }
 
+template <unsigned D, unsigned D_>
+VecMath::Vector<D_> Projector< D, D_>::operator () (
+    const VecMath::Vector<D> &x, double scrW, double camW
+) {
+    checkConsistency(scrW, camW);
+
+    VecMath::Vector<D-1> x_proj;
+    double ProjectionFactor = (scrW-camW)/(x[D-1]-camW);
+    for (unsigned j = 0; j < D-1; j++)
+        x_proj[j] = ProjectionFactor*x[j];
+    return Projector<D-1, D_>::operator()(x_proj, scrW, camW);
+}
 
 template <unsigned D, unsigned D_>
 std::vector<VecMath::Vector<D_> > Projector< D, D_>::operator () (
@@ -36,12 +48,9 @@ std::vector<VecMath::Vector<D_> > Projector< D, D_>::operator () (
 
 template <unsigned D, unsigned D_>
 void Projector< D, D_>::checkConsistency(double scrW, double camW) {
-    if (D_ > D) {
-        throw std::logic_error("Tried to project to a higher dimension");
-    }
-    if (D_ == D) {
-        throw std::logic_error("Explicit specialization should be called");
-    }
+    static_assert(D_ <= D, "Tried to project to a higher dimension");
+    static_assert(D_ < D, "Explicit specialization should be called");
+    
     if (camW <= scrW) {
         throw std::logic_error("Screen must be closer to object than eye");
     }

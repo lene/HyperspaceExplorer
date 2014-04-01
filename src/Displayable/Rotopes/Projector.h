@@ -37,6 +37,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
  */
 template <unsigned D, unsigned D_> class Projector: protected Projector<D-1, D_> {
     public:
+
         /// Project an array of vertices of dimension \p D to dimension \p D_ < \p D
         /** \param x The array of vertices to be projected
          *  \param scrW Distance of the "screen" to be projected onto from the
@@ -49,6 +50,16 @@ template <unsigned D, unsigned D_> class Projector: protected Projector<D-1, D_>
                 const std::vector<VecMath::Vector<D> > &x,
                 double scrW, double camW
         );
+
+        /// Project a single vertex of dimension \p D to dimension \p D_ < \p D
+        /** \param x The vertex to be projected
+         *  \param scrW Distance of the "screen" to be projected onto from the
+         *              origin
+         *  \param camW Distance of the camera/eye onto from the origin
+         *
+         *  \return \p x projected to \p D_
+         */
+        VecMath::Vector<D_> operator()(const VecMath::Vector<D> &x,double scrW, double camW);
 
         /// Project an array of vertices of dimension \p D to dimension \p D_ < \p D
         /** \param x The array of vertices to be projected
@@ -93,8 +104,11 @@ template <unsigned D, unsigned D_> class Projector: protected Projector<D-1, D_>
 template <unsigned D> class Projector<D, D> {
     public:
         /// Projection from D dimensions to D dimensions is a no-op
-        std::vector<VecMath::Vector<D> > operator()(
-            const std::vector<VecMath::Vector<D> > &x, double, double) {
+        const std::vector<VecMath::Vector<D> > &operator()(const std::vector<VecMath::Vector<D> > &x, double, double) {
+            return x;
+        }
+        
+        const VecMath::Vector<D> &operator()(const VecMath::Vector<D> &x, double, double) {
             return x;
         }
 };
