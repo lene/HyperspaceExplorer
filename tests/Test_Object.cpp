@@ -188,6 +188,17 @@ void Test_Object::mengersponge() {
 
 void Test_Object::mengersponge_changeparameters() { 
     Sponge *sponge = new Sponge(1);
+    testChangeSpongeParameters(sponge);
+ }
+
+
+void Test_Object::altmengersponge() {
+    Sponge *sponge = new Sponge(1);
+    testFunction(sponge, false);
+    testChangeSpongeParameters(sponge);
+}
+
+void Test_Object::testChangeSpongeParameters(Sponge* sponge) {
     test(sponge->getLevel() == 1, std::string("Sponge level should be 1: ")+sponge->description());
     test(sponge->getDistance() == 2, std::string("Sponge distance should be 2: ")+sponge->description());
     
@@ -205,17 +216,13 @@ void Test_Object::mengersponge_changeparameters() {
     test(sponge->getLevel() == 2, std::string("Sponge level should be 2: ")+sponge->description());
 
     testFunction(sponge, false);
- }
-
-
-void Test_Object::altmengersponge() {
-    object_ = new AltSponge();
-    QSKIP("Not yet implemented", SkipSingle);
 }
+
 
 void Test_Object::sierpinskigasket() { 
     object_ = new Gasket();
-    QSKIP("Not yet implemented", SkipSingle);
+    testFunction(object_, false);
+    testDynamicallyCreatedFunction("4D Sierpinski Gasket", false);
 }
 
 

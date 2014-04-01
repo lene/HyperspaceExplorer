@@ -26,6 +26,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Object.h"
 
 class MockView;
+class Sponge;
 
 /// Unit tests for class Object and its implementations
 class Test_Object: public QObject {
@@ -74,7 +75,8 @@ private:
   void testAllVerticesDrawn(Object *f);
   void checkVertexPresentLocal(const VecMath::Vector<4> & v);
   void testNonzeroRotationRuns(Object * f);
-
+  void testChangeSpongeParameters(Sponge *sponge);
+  
   Object *object_;
   MockView* view_;
 };
