@@ -52,6 +52,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Test_Multithreading.h"
 #include "Test_Parameters.h"
 #include "Test_Parser.h"
+#include "Test_LSystem.h"
 
 #include "Auxiliary/TestRunner.h"
 
@@ -91,6 +92,7 @@ void fillTestsMap() {
     tests_by_name.insert(std::pair<std::string, QObject *>("Multithreading", new Test_Multithreading));
     tests_by_name.insert(std::pair<std::string, QObject *>("Parameters", new Test_Parameters));
     tests_by_name.insert(std::pair<std::string, QObject *>("Parser", new Test_Parser));
+    tests_by_name.insert(std::pair<std::string, QObject *>("LSystem", new Test_LSystem));
 }
 
 int main(int argc, char **argv) {
@@ -113,6 +115,7 @@ int main(int argc, char **argv) {
         }
 #     else
         runner.run(new Test_Parser);
+        runner.run(new Test_LSystem);
 #     endif
     } else {
         for (auto test: tests_to_run) {
