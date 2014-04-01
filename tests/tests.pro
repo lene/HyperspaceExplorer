@@ -80,6 +80,7 @@ HEADERS += \
            Test_Observer.h \
            Test_Parameters.h \
            Test_ParametricFunction.h \
+           Test_Parser.h \
            Test_PartitionedMultithreadedMap.h \
            Test_Projection.h \
            Test_Projector.h \
@@ -112,6 +113,7 @@ SOURCES += \
            Test_Observer.cpp \
            Test_Parameters.cpp \
            Test_ParametricFunction.cpp \
+           Test_Parser.cpp \
            Test_PartitionedMultithreadedMap.cpp \
            Test_Projection.cpp \
            Test_Rotope.cpp \

@@ -74,7 +74,7 @@ namespace Script {
      *  that is discarded. This is a limitation of std::ifstream::getline().
      *  \param file The script file that is read
      */
-    Parser::Parser(const std::string &file) {
+    Parser::Parser(const std::string &file): _lines() {
         std::ifstream infile(file.c_str());
         if (infile.good()) {
             char buffer[4096];
@@ -85,6 +85,8 @@ namespace Script {
             }
         }
     }
+    
+    Parser::Parser(std::vector<std::string> lines): _lines(lines) { }
 
     /// execute the commands for the current command file
     /** Executes the statements in the file one after the other

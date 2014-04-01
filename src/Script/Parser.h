@@ -48,6 +48,9 @@ namespace Script {
             /// open a parser object for a given filename
             Parser(const std::string &file);
 
+            /// open a parser object for a given filename
+            Parser(std::vector<std::string> lines);
+
             /// Execute the commands described in the rc-file
             bool execute();
 
