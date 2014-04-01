@@ -75,7 +75,7 @@ using std::endl;
  *  \param _center Center point of the Sponge                                 */
 AltSponge::AltSponge (unsigned _level, unsigned _distance, double _rad,
                       VecMath::Vector<4> _center):
-        Level (_level), distance(_distance), rad(_rad), center(_center) {
+        level_ (_level), distance_(_distance), rad_(_rad), center_(_center) {
 //    setfunctionName("4-dimensional Menger Sponge");
 //    clearParameterNames();
     declareParameter("Level", (unsigned)1, _level);
@@ -96,7 +96,7 @@ unsigned long AltSponge::MemRequired (unsigned distance) {
                              (distance == 1)? 72:
                              (distance == 2)? 48:
                              16);
-    return (unsigned long) ((pow (SpongePerLevel, int (Level))*32)/1024+8)*1024*1024;
+    return (unsigned long) ((pow (SpongePerLevel, int (level_))*32)/1024+8)*1024*1024;
 }
 
 #undef DEBUG_SPONGE
@@ -140,18 +140,18 @@ void AltSponge::Initialize(void) {
   ScopedTimer timer("AltSponge::Initialize()");
 # endif
 
-  distance = abs(distance);
-  if (distance > 3) distance = 3;     //  dunno if this is wise
+  distance_ = abs(distance_);
+  if (distance_ > 3) distance_ = 3;     //  dunno if this is wise
 
 
-  for (unsigned current_level = 0; current_level <= Level; current_level++) {
+  for (unsigned current_level = 0; current_level <= level_; current_level++) {
 #   ifdef DEBUG_SPONGE
-    unsigned long SpongePerLevel = ((distance == 0)? 81:
-                                    (distance == 1)? 72:
-                                    (distance == 2)? 48:
+    unsigned long SpongePerLevel = ((distance_ == 0)? 81:
+                                    (distance_ == 1)? 72:
+                                    (distance_ == 2)? 48:
                                     16);
-    unsigned TotalCubes = pow(SpongePerLevel, Level);
-    SingletonLog::Instance() << "Level: " << current_level << "/" << Level << " -- total cubes: " << TotalCubes << "\n";
+    unsigned TotalCubes = pow(SpongePerLevel, level_);
+    SingletonLog::Instance() << "Level: " << current_level << "/" << level_ << " -- total cubes: " << TotalCubes << "\n";
 #   endif
     if (current_level < 1) {
 
@@ -172,9 +172,9 @@ void AltSponge::Initialize(void) {
           for (double z = -1; z <= 1; z++) {
             for (double w = -1; w <= 1; w++) {
 
-              if (fabs (x)+fabs (y)+fabs (z)+fabs (w) > distance) {
+              if (fabs (x)+fabs (y)+fabs (z)+fabs (w) > distance_) {
 
-                Vector<4> NewCen = Vector<4> (x, y, z, w)*2./3. + center;
+                Vector<4> NewCen = Vector<4> (x, y, z, w)*2./3. + center_;
 
                 for (unsigned i = 0; i < Sold.size(); ++i) {
 
@@ -218,7 +218,7 @@ void AltSponge::Initialize(void) {
 //      for (unsigned i = 0; i < X.size(); ++i) cerr << "X[" << i << "]" << X[i]<< endl;
 
       //  remove duplicate surfaces, except when we have dust
-      if (distance < 3) {
+      if (distance_ < 3) {
 //        removeDuplicateSurfaces();
       }
     }
@@ -242,7 +242,7 @@ void AltSponge::Initialize(void) {
  *  \param _center Center point of the Sponge                                 */
 Sponge::Sponge (unsigned _level, unsigned _distance, double _rad,
                 VecMath::Vector<4> _center):
-        Level (_level), distance(_distance), rad(_rad), center(_center) {
+        level_ (_level), distance_(_distance), rad_(_rad), center_(_center) {
 //    setfunctionName("4-dimensional Menger Sponge");
 //    clearParameterNames();
     declareParameter("Level", (unsigned)1, _level);
@@ -263,7 +263,7 @@ unsigned long Sponge::MemRequired (unsigned distance) {
                              (distance == 1)? 72:
                              (distance == 2)? 48:
                              16);
-    return (unsigned long) ((pow (SpongePerLevel, int (Level))*32)/1024+8)*1024*1024;
+    return (unsigned long) ((pow (SpongePerLevel, int (level_))*32)/1024+8)*1024*1024;
 }
 
 
@@ -298,46 +298,46 @@ void Sponge::Initialize(void) {
   ScopedTimer timer("Sponge::Initialize()");
 # endif
 
-    if (Level < 1)
-        List.push_back (new Hypercube (rad*3./2., center));
+    if (level_ < 1)
+        List.push_back (new Hypercube (rad_*3./2., center_));
     else {
-        if (distance > 3) distance = 3;   //  dunno if this is wise
+        if (distance_ > 3) distance_ = 3;   //  dunno if this is wise
 
-        if (0 && (MemRequired (distance) > Globals::Instance().getMaxMemory())) {
-            std::cerr << "Menger sponge of level " << Level
-                      << " would require approx. " << MemRequired (distance)/1024/1024
+        if (0 && (MemRequired (distance_) > Globals::Instance().getMaxMemory())) {
+            std::cerr << "Menger sponge of level " << level_
+                      << " would require approx. " << MemRequired (distance_)/1024/1024
                       << " MB of memory." << std::endl;
             if (Globals::Instance().checkMemory()) {
                 std::cerr << "This is more than your available Memory, "
                           << Globals::Instance().getMaxMemory()/1024/1024 << "MB" << std::endl;
-                while (MemRequired (distance) > Globals::Instance().getMaxMemory())
-                    Level--;
-                std::cerr << "Using level " << Level << " instead." << std::endl;
+                while (MemRequired (distance_) > Globals::Instance().getMaxMemory())
+                    level_--;
+                std::cerr << "Using level " << level_ << " instead." << std::endl;
             }
         }
         for (int x = -1; x <= 1; x++) {
             for (int y = -1; y <= 1; y++) {
                 for (int z = -1; z <= 1; z++) {
                     for (int w = -1; w <= 1; w++) {
-                        if (distance >= 0) {
-                            if (abs (x)+abs (y)+abs (z)+abs (w) > distance) {
+                        if (distance_ >= 0) {
+                            if (abs (x)+abs (y)+abs (z)+abs (w) > distance_) {
                                 Vector<4> NewCen =
                                     Vector<4> (double (x), double (y),
-                                               double (z), double (w))*rad;
-                                NewCen += center;
+                                               double (z), double (w))*rad_;
+                                NewCen += center_;
                                 List.push_back (
                                     new Sponge (
-                                        Level-1, distance, rad/3., NewCen));
+                                        level_-1, distance_, rad_/3., NewCen));
                             }
                         } else {
-                            if (abs (x)+abs (y)+abs (z)+abs (w) < distance) {
+                            if (abs (x)+abs (y)+abs (z)+abs (w) < distance_) {
                                 Vector<4> NewCen =
                                     Vector<4> (double (x), double (y),
-                                               double (z), double (w))*rad;
-                                NewCen += center;
+                                               double (z), double (w))*rad_;
+                                NewCen += center_;
                                 List.push_back (
                                     new Sponge (
-                                        Level-1, distance, rad/3., NewCen));
+                                        level_-1, distance_, rad_/3., NewCen));
                             }
                         }
                     }
@@ -371,18 +371,18 @@ void Sponge::Project (double scr_w, double cam_w, bool depthcue4d) {
 }
 
 void Sponge::Draw (UI::View *view) {
-    if (Level < 1) List[0]->Draw(view);
+    if (level_ < 1) List[0]->Draw(view);
     else for (unsigned i = 0; i < List.size(); i++) List[i]->Draw(view);
     view->commitDraw();
 }
 
 void Sponge::SetParameters(const ParameterMap &parms) {
-    std::cerr << "Sponge::SetParameters(" << parms.toString() << ")\n";
+//    std::cerr << "Sponge::SetParameters(" << parms.toString() << ")\n";
 #   if 1
         for (ParameterMap::const_iterator i = parms.begin(); i != parms.end(); ++i) {
-            if (i->second->getName() == "Level") Level = i->second->toUnsigned();
-            if (i->second->getName() == "Distance") distance = i->second->toUnsigned();
-            if (i->second->getName() == "Size") rad = i->second->toDouble();
+            if (i->second->getName() == "Level") level_ = i->second->toUnsigned();
+            if (i->second->getName() == "Distance") distance_ = i->second->toUnsigned();
+            if (i->second->getName() == "Size") rad_ = i->second->toDouble();
         }
 #   else
         setParameter(parms, this->Phase, "Phase");
@@ -398,6 +398,10 @@ void Sponge::ReInit (double, double, double,
 
 std::string Sponge::description () {
     std::ostringstream out;
-    out << "Sponge (level = " << Level << ")" << std::ends;
+    if (distance_ == 1) out << "Foam";
+    else if (distance_ == 2) out << "Sponge";
+    else if (distance_ == 3) out << "Dust";
+    else out << "Object (distance " << distance_ <<")";
+    out << " (level = " << level_ << ")" << std::ends;
     return out.str ();
 }

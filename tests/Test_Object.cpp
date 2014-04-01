@@ -186,14 +186,25 @@ void Test_Object::mengersponge() {
   testDynamicallyCreatedFunction("4D Menger Sponge", false);
 }
 
-void Test_Object::mengersponge_changelevel() { 
-    object_ = new Sponge(1);
+void Test_Object::mengersponge_changeparameters() { 
+    Sponge *sponge = new Sponge(1);
+    test(sponge->getLevel() == 1, std::string("Sponge level should be 1: ")+sponge->description());
+    test(sponge->getDistance() == 2, std::string("Sponge distance should be 2: ")+sponge->description());
+    
     ParameterMap parms;
-    parms.insertByValue("level", 2);
-    object_->SetParameters(parms);
+    parms.insertByValue("Distance", (unsigned)3);
+    sponge->SetParameters(parms);
+    test(sponge->getDistance() == 3, std::string("Sponge distance should be 3: ")+sponge->description());
 
-    object_->ReInit (0., 0., 0., 0., 0., 0., 0., 0., 0.);
-    testFunction(object_, false);
+    sponge->ReInit (0., 0., 0., 0., 0., 0., 0., 0., 0.);
+    test(sponge->getDistance() == 3, std::string("Sponge distance should be 3: ")+sponge->description());
+
+    parms.insertByValue("Level", (unsigned)2);
+    sponge->SetParameters(parms);
+    sponge->ReInit (0., 0., 0., 0., 0., 0., 0., 0., 0.);
+    test(sponge->getLevel() == 2, std::string("Sponge level should be 2: ")+sponge->description());
+
+    testFunction(sponge, false);
  }
 
 

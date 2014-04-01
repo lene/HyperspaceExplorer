@@ -86,20 +86,23 @@ public:
                          double, double, double);
     
     /** @return A string with a description of the Hypersponge object         */
-    virtual std::string description ();
-
+    virtual std::string description();
+    
+    unsigned getLevel() const { return level_; }
+    int getDistance() const { return distance_; }
+    
 protected:
     virtual void Initialize();
     virtual unsigned long MemRequired (unsigned);
-    unsigned Level;                 ///< Level of the hypersponge
+    unsigned level_;                 ///< Level of the hypersponge
+    int distance_;                   ///< max. distance (see Initialize())
+    double rad_;                     ///< radius, more correctly size, of the sponge
+    VecMath::Vector<4> center_;      ///< center of the sponge
 
     /// List of sub-sponges (see Initialize())
     /** @todo Use smart pointers instead of a simple pointer-to-object        */
     std::vector<Hypercube *> List;
 
-    int distance;                   ///< max. distance (see Initialize())
-    double rad;                     ///< radius, more correctly size, of the sponge
-    VecMath::Vector<4> center;      ///< center of the sponge
 };
 
 namespace {
@@ -134,11 +137,11 @@ public:
     for (ParameterMap::const_iterator i = parms.begin();
          i != parms.end(); ++i) {
       if (i->second->getName() == "Level")
-        Level = i->second->toUnsigned();
+        level_ = i->second->toUnsigned();
       if (i->second->getName() == "Distance")
-        distance = i->second->toInt();
+        distance_ = i->second->toInt();
       if (i->second->getName() == "Size")
-        rad = i->second->toDouble();
+        rad_ = i->second->toDouble();
      }
 #       else
      setParameter(parms, this->Phase, "Phase");
@@ -148,10 +151,14 @@ public:
   /** @return A string with a description of the Hypersponge object         */
   virtual std::string description () {
     std::ostringstream out;
-    out << "Alternative Sponge (level = " << Level << ")" << std::ends;
+    out << "Alternative Sponge (level = " << level_ << ")" << std::ends;
     return out.str ();
   }
 
+    
+  unsigned getLevel() const { return level_; }
+  int getDistance() const { return distance_; }
+  
 protected:
   virtual void Initialize();
   virtual unsigned long MemRequired (unsigned);
@@ -171,10 +178,10 @@ protected:
   
   void X_push_back(const VecMath::Vector<4> &x);
 
-  unsigned Level;                 ///< Level of the hypersponge
-  int distance;                   ///< max. distance (see Initialize())
-        double rad;                     ///< radius, more correctly size, of the sponge
-        VecMath::Vector<4> center;      ///< center of the sponge
+  unsigned level_;                 ///< Level of the hypersponge
+  int distance_;                   ///< max. distance (see Initialize())
+  double rad_;                     ///< radius, more correctly size, of the sponge
+  VecMath::Vector<4> center_;      ///< center of the sponge
 };
 
 #if USE_ALT_SPONGE

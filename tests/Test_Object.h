@@ -62,7 +62,7 @@ private slots:
   void tesseract();
   void pentachoron();
   void mengersponge();
-  void mengersponge_changelevel();
+  void mengersponge_changeparameters();
   void sierpinskigasket();
   void altmengersponge();
 
