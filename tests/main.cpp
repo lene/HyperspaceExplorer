@@ -49,6 +49,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "Test_ComplexFunction.h"
 #include "Test_ColorManager.h"
 #include "Test_Projector.h"
+#include "Test_Multithreading.h"
 
 #include "Auxiliary/TestRunner.h"
 
@@ -85,6 +86,7 @@ void fillTestsMap() {
     tests_by_name.insert(std::pair<std::string, QObject *>("ComplexFunction", new Test_ComplexFunction));
     tests_by_name.insert(std::pair<std::string, QObject *>("ColorManager", new Test_ColorManager));
     tests_by_name.insert(std::pair<std::string, QObject *>("Projector", new Test_Projector));
+    tests_by_name.insert(std::pair<std::string, QObject *>("Multithreading", new Test_Multithreading));
 }
 
 int main(int argc, char **argv) {
@@ -106,7 +108,7 @@ int main(int argc, char **argv) {
             runner.run(test.second);
         }
 #     else
-        runner.run(new Test_Projector);
+        runner.run(new Test_Multithreading);
 #     endif
     } else {
         for (auto test: tests_to_run) {

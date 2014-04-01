@@ -71,22 +71,23 @@ HEADERS += \
            Test_FunctionHolder.h \
            Test_FunctionValueGrid.h \
            Test_GridDrawer.h \
-           Test_Rotope.h \
-           Test_Object.h \
-           Test_Observer.h \
-           Test_Projector.h \
-           Test_Realm.h \
-           Test_Vector.h \
            Test_Matrix.h \
            Test_MultiDimensionalVector.h \
-           Test_Rotation.h \
-           Test_RealFunction.h \
-           Test_Surface.h \
+           Test_Multithreading.h \
+           Test_Object.h \
+           Test_Observer.h \
            Test_ParametricFunction.h \
-           Test_Transformation.h \
-           Test_Projection.h \
            Test_PartitionedMultithreadedMap.h \
-           Test_Util.h
+           Test_Projection.h \
+           Test_Projector.h \
+           Test_RealFunction.h \
+           Test_Realm.h \
+           Test_Rotation.h \
+           Test_Rotope.h \
+           Test_Surface.h \
+           Test_Transformation.h \
+           Test_Util.h \
+           Test_Vector.h
 
 SOURCES += \
            Test_ArrayList.cpp \
@@ -96,26 +97,27 @@ SOURCES += \
            Test_Composite.cpp \
            Test_Displayable.cpp \
            Test_DisplayableClass.cpp \
-           Test_Rotope.cpp \
+           Test_FacePolygon.cpp \
+           Test_FunctionFactory.cpp \
+           Test_FunctionHolder.cpp \
+           Test_FunctionValueGrid.cpp \
+           Test_GridDrawer.cpp \
+           Test_Matrix.cpp \
+           Test_MultiDimensionalVector.cpp \
+           Test_Multithreading.cpp \
            Test_Object.cpp \
            Test_Observer.cpp \
+           Test_ParametricFunction.cpp \
+           Test_PartitionedMultithreadedMap.cpp \
+           Test_Projection.cpp \
+           Test_Rotope.cpp \
            Test_Projector.cpp \
            Test_Realm.cpp \
            Test_Vector.cpp \
-           Test_Matrix.cpp \
-           Test_MultiDimensionalVector.cpp \
            Test_Rotation.cpp \
            Test_RealFunction.cpp \
            Test_Surface.cpp \
-           Test_ParametricFunction.cpp \
-           Test_FunctionValueGrid.cpp \
            Test_Transformation.cpp \
-           Test_Projection.cpp \
-           Test_GridDrawer.cpp \
-           Test_FunctionFactory.cpp \
-           Test_FunctionHolder.cpp \
-           Test_PartitionedMultithreadedMap.cpp \
-           Test_FacePolygon.cpp \
            Test_Util.cpp \
            main.cpp
 

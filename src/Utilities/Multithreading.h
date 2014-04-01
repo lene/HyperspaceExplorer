@@ -23,12 +23,7 @@
 
 #include "MultithreadingPrivate.h"
 
-#if QT_VERSION < 050000
 # include <QtConcurrent/QtConcurrentMap>
-#else
-# include <QtConcurrent/QtConcurrentMap>
-//# include <QtConcurrentMap>
-#endif
 
 /// Functions for multithreaded manipulation of data containers.
 /**
