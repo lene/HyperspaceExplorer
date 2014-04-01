@@ -4,7 +4,7 @@
 //      contains:     Steiner surfaces -- this is sort of a dead branch, haven't
 //		      really implemented anything; the present example is in 3D
 //      compile with: make all
-//	author:	      lene preuss (scout@hyperspace-travel.de)
+//	author:	      lene preuss (lene.preuss@gmail.com)
 //	license:      GPL (see License.txt)
 
 

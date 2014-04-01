@@ -3,7 +3,7 @@
 //      module:
 //      contains:
 //      compile with:
-//	author:	      lene preuss (scout@hyperspace-travel.de)
+//	author:	      lene preuss (lene.preuss@gmail.com)
 //	license:      GPL (see License.txt)
 
 
@@ -23,7 +23,7 @@ typedef VecMath::Vector<3, double> Vector;
 using VecMath::Matrix;
 
 /** An experimental class to display Lindenmayer Systems (LSystems)
- *  @author Lene Preuss <scout@hyperspace-travel.de>                         */
+ *  @author Lene Preuss <lene.preuss@gmail.com>                         */
 class LSystem_old {
 public:
     /// \todo document me

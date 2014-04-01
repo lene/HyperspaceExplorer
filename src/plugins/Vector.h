@@ -3,7 +3,7 @@
 //      module:       Vector.H
 //      contains:     class definitions for class Vector
 //      compile with: make all
-//	author:	      lene preuss (scout@hyperspace-travel.de)
+//	author:	      lene preuss (lene.preuss@gmail.com)
 //	license:      GPL (see License.txt)
 
 
