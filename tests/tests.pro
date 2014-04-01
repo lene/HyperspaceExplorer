@@ -76,6 +76,7 @@ HEADERS += \
            Test_Multithreading.h \
            Test_Object.h \
            Test_Observer.h \
+           Test_Parameters.h \
            Test_ParametricFunction.h \
            Test_PartitionedMultithreadedMap.h \
            Test_Projection.h \
@@ -107,6 +108,7 @@ SOURCES += \
            Test_Multithreading.cpp \
            Test_Object.cpp \
            Test_Observer.cpp \
+           Test_Parameters.cpp \
            Test_ParametricFunction.cpp \
            Test_PartitionedMultithreadedMap.cpp \
            Test_Projection.cpp \
