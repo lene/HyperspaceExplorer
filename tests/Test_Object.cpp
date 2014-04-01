@@ -173,7 +173,11 @@ void Test_Object::tesseract() {
   testDynamicallyCreatedFunction("Tesseract");
 }
 
-void Test_Object::pentachoron() { }
+void Test_Object::pentachoron() { 
+  Pyramid p(1.);
+  testFunction(&p);
+  testDynamicallyCreatedFunction("Pentachoron");
+}
 
 void Test_Object::mengersponge() {
   object_ = new Sponge();
@@ -184,10 +188,13 @@ void Test_Object::mengersponge() {
 
 void Test_Object::mengersponge_changelevel() { 
     object_ = new Sponge(1);
-    // change Sponge to level 2... how?
-    object_ = new Sponge(2);
-    QSKIP("Not yet implemented", SkipSingle);
-}
+    ParameterMap parms;
+    parms.insertByValue("level", 2);
+    object_->SetParameters(parms);
+
+    object_->ReInit (0., 0., 0., 0., 0., 0., 0., 0., 0.);
+    testFunction(object_, false);
+ }
 
 
 void Test_Object::altmengersponge() {

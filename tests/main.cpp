@@ -108,7 +108,7 @@ int main(int argc, char **argv) {
             runner.run(test.second);
         }
 #     else
-        runner.run(new Test_Multithreading);
+        runner.run(new Test_Object);
 #     endif
     } else {
         for (auto test: tests_to_run) {
