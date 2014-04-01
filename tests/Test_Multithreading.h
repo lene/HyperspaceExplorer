@@ -16,11 +16,14 @@ class Test_Multithreading: public QObject {
     
 private slots:
 
-    void test_mappedVector();
+    void test_mapped();
+    void test_partitionedMap();
+    void test_partitionedMapInPlace();
+    void test_partitionedMapped();
     
 private:
     
-    const unsigned CONTAINER_SIZE = 10;
+    const unsigned CONTAINER_SIZE = 1024;
     
 };
 
