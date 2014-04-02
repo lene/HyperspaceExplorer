@@ -14,8 +14,11 @@ class Test_LoopHelper: public QObject {
     
     Q_OBJECT
     
-private:
+private slots:
 
+    void test_1D();
+    void test_2D();
+    
 };
 
 #endif	/* TEST_LOOPHELPER_H */
