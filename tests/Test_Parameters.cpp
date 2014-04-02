@@ -18,19 +18,19 @@ void Test_Parameters::test_insertAndRetrieve() {
     const std::string INT_KEY = "one";
     map.insertByValue(INT_KEY, INT_VALUE);
     int i = map.getValue(INT_KEY)->toInt();
-    test(i == INT_VALUE, std::string("retrieved stored value"));
+    test(i == INT_VALUE, "retrieved stored value");
 
     const double DOUBLE_VALUE = 2.0;
     const std::string DOUBLE_KEY = "two";
     map.insertByValue(DOUBLE_KEY, DOUBLE_VALUE);
     double d = map.getValue(DOUBLE_KEY)->toDouble();
-    test(d == DOUBLE_VALUE, std::string("retrieved stored value"));
+    test(d == DOUBLE_VALUE, "retrieved stored value");
 
     const std::string STRING_VALUE = "three";
     const std::string STRING_KEY = "three";
     map.insertByValue(STRING_KEY, STRING_VALUE);
     std::string s = map.getValue(STRING_KEY)->toString();
-    test(s == STRING_VALUE, std::string("retrieved stored value"));
+    test(s == STRING_VALUE, "retrieved stored value");
 }
 
 void Test_Parameters::test_insertByDefault() {
@@ -39,7 +39,7 @@ void Test_Parameters::test_insertByDefault() {
     const std::string INT_KEY = "one";
     map.insertByDefault(INT_KEY, INT_VALUE);
     int i = map.getValue(INT_KEY)->toInt();
-    test(i == INT_VALUE, std::string("retrieved stored value"));
+    test(i == INT_VALUE, "retrieved stored value");
 
 }
 
@@ -49,11 +49,11 @@ void Test_Parameters::test_changeValue() {
     const int NEW_INT_VALUE = 2;
     const std::string INT_KEY = "one";
     map.insertByValue(INT_KEY, OLD_INT_VALUE);
-    test(map.getValue(INT_KEY)->toInt() == OLD_INT_VALUE, std::string("retrieved value stored first"));
+    test(map.getValue(INT_KEY)->toInt() == OLD_INT_VALUE, "retrieved value stored first");
 
     map.set(INT_KEY, NEW_INT_VALUE);
 
-    test(map.getValue(INT_KEY)->toInt() == NEW_INT_VALUE, std::string("retrieved new stored value"));
+    test(map.getValue(INT_KEY)->toInt() == NEW_INT_VALUE, "retrieved new stored value");
 }
 
 void Test_Parameters::test_nonexistentEntry() {

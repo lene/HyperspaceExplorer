@@ -87,19 +87,19 @@ template <typename Value, class Container> bool contains(const Container &contai
 void Test_DisplayableClass::getDisplayableNames() {
   vector<string> displayable_names = DisplayableClass::findClass("RealFunction").getDisplayableNames();
   test(contains(displayable_names, "Gravitation Potential"),
-       string("Gravitation Potential found as RealFunction implementation"));
+       "Gravitation Potential found as RealFunction implementation");
   
   displayable_names = DisplayableClass::findClass("Surface").getDisplayableNames();
   test(contains(displayable_names, "Surface1"),
-       string("Surface1 found as Surface implementation"));
+       "Surface1 found as Surface implementation");
   test(contains(displayable_names, "Horizon"),
-       string("Horizon found as Surface implementation"));
+       "Horizon found as Surface implementation");
   test(contains(displayable_names, "Torus3"),
-       string("Torus3 found as Surface implementation"));
+       "Torus3 found as Surface implementation");
 
   displayable_names = DisplayableClass::findClass("ComplexFunction").getDisplayableNames();
   test(contains(displayable_names, "z2"),
-       string("z2 found as ComplexFunction implementation"));
+       "z2 found as ComplexFunction implementation");
   testContains(displayable_names, string("z3"));
   // todo: zA e^a*z emz2 zm1 zm2 sqrtz lnz sinz cosz sinhz coshz tanz 
 }

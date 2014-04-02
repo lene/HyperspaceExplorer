@@ -35,32 +35,32 @@ struct Function2D: public ParametricFunction<3, 2> {
 
 void Test_LoopHelper::test_1D() {
     MultiDimensionalVector<Vector<3>, 1> storage;
-    test(storage.size() != GRID_SIZE, std::string("storage not sized to fit grid initially"));
+    test(storage.size() != GRID_SIZE, "storage not sized to fit grid initially");
     std::shared_ptr< ParametricFunction<3, 1>> f(new Function1D());
     LoopHelper<3, 1, 1, double> loop(Vector<1>(-1), Vector<1>(1), Vector<1, unsigned>(GRID_SIZE), f);
     Vector<1> current_x;
     
     loop.recalculateOneDimensionOfGrid(storage, current_x);
     
-    test(storage.size() == GRID_SIZE, std::string("storage has been resized to fit grid"));
+    test(storage.size() == GRID_SIZE, "storage has been resized to fit grid");
     for (auto v: storage) {
-        test(v == Vector<3>(CONSTANT_FUNCTION_VALUE, 0., 0.), std::string("storage contains predefined value"));
+        test(v == Vector<3>(CONSTANT_FUNCTION_VALUE, 0., 0.), "storage contains predefined value");
     }
 }
 
 void Test_LoopHelper::test_2D() {
     MultiDimensionalVector<Vector<3>, 2> storage;
-    test(storage.size() != GRID_SIZE, std::string("storage not sized to fit grid initially"));
+    test(storage.size() != GRID_SIZE, "storage not sized to fit grid initially");
     std::shared_ptr< ParametricFunction<3, 2>> f(new Function2D());
     LoopHelper<3, 2, 2, double> loop(Vector<2>(-1., -1.), Vector<2>(1., 1.), Vector<2, unsigned>(GRID_SIZE), f);
     Vector<2> current_x;
     
     loop.recalculateOneDimensionOfGrid(storage, current_x);
     
-    test(storage.size() == GRID_SIZE, std::string("storage has been resized to fit grid"));
+    test(storage.size() == GRID_SIZE, "storage has been resized to fit grid");
     for (auto column: storage) {
         for (auto v: column) {
-            test(v == Vector<3>(CONSTANT_FUNCTION_VALUE, 0., 0.), std::string("storage contains predefined value"));
+            test(v == Vector<3>(CONSTANT_FUNCTION_VALUE, 0., 0.), "storage contains predefined value");
         }
     }
 }

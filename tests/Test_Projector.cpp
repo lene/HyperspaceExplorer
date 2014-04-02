@@ -16,7 +16,7 @@ void Test_Projector::testProject3Dto2D() {
     std::vector<VecMath::Vector<3>> originals(1, original);
     Projector<3, 2> projector;
     VecMath::Vector<2> projected = projector(originals, 2., 4.).front();
-    test(projected == VecMath::Vector<2>(0.5, 0.), std::string("projected value wrong"));
+    test(projected == VecMath::Vector<2>(0.5, 0.), "projected value wrong");
 }
 
 void Test_Projector::testProject4Dto2D() {
@@ -24,7 +24,7 @@ void Test_Projector::testProject4Dto2D() {
     std::vector<VecMath::Vector<4>> originals(1, original);
     Projector<4, 2> projector;
     VecMath::Vector<2> projected = projector(originals, 2., 4.).front();
-    test(projected == VecMath::Vector<2>(0.25, 0.), std::string("projected value wrong"));
+    test(projected == VecMath::Vector<2>(0.25, 0.), "projected value wrong");
 }
 
 void Test_Projector::testProject2Dto2D() {
@@ -32,13 +32,13 @@ void Test_Projector::testProject2Dto2D() {
     std::vector<VecMath::Vector<2>> originals(1, original);
     Projector<2, 2> projector;
     VecMath::Vector<2> projected = projector(originals, 2., 4.).front();
-    test(projected == original, std::string("projected value wrong"));
+    test(projected == original, "projected value wrong");
 }
 
 void Test_Projector::testProjectSingleVertex() {
     VecMath::Vector<3> original(1., 0., 0.);
     Projector<3, 2> projector;
     VecMath::Vector<2> projected = projector(original, 2., 4.);
-    test(projected == VecMath::Vector<2>(0.5, 0.), std::string("projected value wrong"));
+    test(projected == VecMath::Vector<2>(0.5, 0.), "projected value wrong");
 }
 

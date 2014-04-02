@@ -18,13 +18,13 @@ void Test_ColorManager::initTestCase() {
 }
 
 void Test_ColorManager::testgetRegisteredColorManagers() {
-    test (!ColMgrMgr::Instance().getRegisteredColorManagers().empty(), std::string("found some registered color managers"));
+    test (!ColMgrMgr::Instance().getRegisteredColorManagers().empty(), "found some registered color managers");
 }
 
 void Test_ColorManager::testisColorManagerSet() {
-    test(!ColMgrMgr::Instance().isColorManagerSet(), std::string("Color Manager should be unset initially"));
+    test(!ColMgrMgr::Instance().isColorManagerSet(), "Color Manager should be unset initially");
     ColMgrMgr::Instance().setColorManager(new monochromeColorManager());
-    test(ColMgrMgr::Instance().isColorManagerSet(), std::string("Color Manager should be set now"));
+    test(ColMgrMgr::Instance().isColorManagerSet(), "Color Manager should be set now");
 }
 
 void Test_ColorManager::testFastxyz2RGBColorManager() {
@@ -41,5 +41,5 @@ void Test_ColorManager::testdepth2RGBColorManager() {
 
 void Test_ColorManager::testmonochromeColorManager() {
     ColMgrMgr::Instance().setColorManager(new monochromeColorManager());
-    test(ColMgrMgr::Instance().getColor(VecMath::Vector<4>(0., 0., 0., 0.)) == Color(1, 1, 1), std::string("monochrome color manager should return white"));
+    test(ColMgrMgr::Instance().getColor(VecMath::Vector<4>(0., 0., 0., 0.)) == Color(1, 1, 1), "monochrome color manager should return white");
 }

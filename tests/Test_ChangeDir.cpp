@@ -15,20 +15,20 @@ using namespace UnitTests;
 
 void Test_ChangeDir::dirIsChanged() {
     QTemporaryDir temp_dir;
-    test(temp_dir.isValid(), std::string("temporary directory created"));
-    test(QDir::currentPath() != temp_dir.path(), std::string("whut? we already changed to the temp dir?"));
+    test(temp_dir.isValid(), "temporary directory created");
+    test(QDir::currentPath() != temp_dir.path(), "whut? we already changed to the temp dir?");
     ChangeDir path_change(temp_dir.path());
-    test(QDir::currentPath() == temp_dir.path(), std::string("path changed"));
+    test(QDir::currentPath() == temp_dir.path(), "path changed");
 }
 
 void Test_ChangeDir::changeBackOnExit() {
     QTemporaryDir temp_dir;
-    test(temp_dir.isValid(), std::string("temporary directory created"));
+    test(temp_dir.isValid(), "temporary directory created");
     QString old_path = QDir::currentPath();
-    test(old_path != temp_dir.path(), std::string("whut? we already changed to the temp dir?"));
+    test(old_path != temp_dir.path(), "whut? we already changed to the temp dir?");
     {
         ChangeDir path_change(temp_dir.path());
-        test(QDir::currentPath() == temp_dir.path(), std::string("path changed"));
+        test(QDir::currentPath() == temp_dir.path(), "path changed");
     }
-    test(QDir::currentPath() == old_path, std::string("path changed back when objet went out of scope"));
+    test(QDir::currentPath() == old_path, "path changed back when objet went out of scope");
 }
