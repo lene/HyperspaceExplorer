@@ -62,39 +62,39 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 std::map<std::string, QObject *> tests_by_name;
 
 void fillTestsMap() {
-    tests_by_name.insert(std::pair<std::string, QObject *>("Vector", new Test_Vector));
-    tests_by_name.insert(std::pair<std::string, QObject *>("Matrix", new Test_Matrix));
-    tests_by_name.insert(std::pair<std::string, QObject *>("Rotation", new Test_Rotation));
-    tests_by_name.insert(std::pair<std::string, QObject *>("Realm", new Test_Realm));
-    tests_by_name.insert(std::pair<std::string, QObject *>("Displayable", new Test_Displayable));
-    tests_by_name.insert(std::pair<std::string, QObject *>("FunctionFactory", new Test_FunctionFactory));
-    tests_by_name.insert(std::pair<std::string, QObject *>("FunctionValueGrid", new Test_FunctionValueGrid));
-    tests_by_name.insert(std::pair<std::string, QObject *>("ParametricFunction", new Test_ParametricFunction));
-    tests_by_name.insert(std::pair<std::string, QObject *>("Projection", new Test_Projection));
-    tests_by_name.insert(std::pair<std::string, QObject *>("GridDrawer", new Test_GridDrawer));
-    tests_by_name.insert(std::pair<std::string, QObject *>("MultiDimensionalVector", new Test_MultiDimensionalVector));
-    tests_by_name.insert(std::pair<std::string, QObject *>("DisplayableClass", new Test_DisplayableClass));
-    tests_by_name.insert(std::pair<std::string, QObject *>("Observer", new Test_Observer));
-    tests_by_name.insert(std::pair<std::string, QObject *>("ArrayList", new Test_ArrayList));
-    tests_by_name.insert(std::pair<std::string, QObject *>("RealFunction", new Test_RealFunction));
-    tests_by_name.insert(std::pair<std::string, QObject *>("Surface", new Test_Surface));
-    tests_by_name.insert(std::pair<std::string, QObject *>("Rotope", new Test_Rotope));
-    tests_by_name.insert(std::pair<std::string, QObject *>("Composite", new Test_Composite));
-    tests_by_name.insert(std::pair<std::string, QObject *>("FunctionHolder", new Test_FunctionHolder));
-    tests_by_name.insert(std::pair<std::string, QObject *>("Transformation", new Test_Transformation));
-    tests_by_name.insert(std::pair<std::string, QObject *>("PartitionedMultithreadedMap", new Test_PartitionedMultithreadedMap));
-    tests_by_name.insert(std::pair<std::string, QObject *>("Object", new Test_Object));
-    tests_by_name.insert(std::pair<std::string, QObject *>("Util", new Test_Util));
-    tests_by_name.insert(std::pair<std::string, QObject *>("FacePolygon", new Test_FacePolygon));
-    tests_by_name.insert(std::pair<std::string, QObject *>("ChangeDir", new Test_ChangeDir));
-    tests_by_name.insert(std::pair<std::string, QObject *>("ComplexFunction", new Test_ComplexFunction));
-    tests_by_name.insert(std::pair<std::string, QObject *>("ColorManager", new Test_ColorManager));
-    tests_by_name.insert(std::pair<std::string, QObject *>("Projector", new Test_Projector));
-    tests_by_name.insert(std::pair<std::string, QObject *>("Multithreading", new Test_Multithreading));
-    tests_by_name.insert(std::pair<std::string, QObject *>("Parameters", new Test_Parameters));
-    tests_by_name.insert(std::pair<std::string, QObject *>("Parser", new Test_Parser));
-    tests_by_name.insert(std::pair<std::string, QObject *>("LSystem", new Test_LSystem));
-    tests_by_name.insert(std::pair<std::string, QObject *>("LoopHelper", new Test_LoopHelper));
+    tests_by_name.insert(std::make_pair("Vector", new Test_Vector));
+    tests_by_name.insert(std::make_pair("Matrix", new Test_Matrix));
+    tests_by_name.insert(std::make_pair("Rotation", new Test_Rotation));
+    tests_by_name.insert(std::make_pair("Realm", new Test_Realm));
+    tests_by_name.insert(std::make_pair("Displayable", new Test_Displayable));
+    tests_by_name.insert(std::make_pair("FunctionFactory", new Test_FunctionFactory));
+    tests_by_name.insert(std::make_pair("FunctionValueGrid", new Test_FunctionValueGrid));
+    tests_by_name.insert(std::make_pair("ParametricFunction", new Test_ParametricFunction));
+    tests_by_name.insert(std::make_pair("Projection", new Test_Projection));
+    tests_by_name.insert(std::make_pair("GridDrawer", new Test_GridDrawer));
+    tests_by_name.insert(std::make_pair("MultiDimensionalVector", new Test_MultiDimensionalVector));
+    tests_by_name.insert(std::make_pair("DisplayableClass", new Test_DisplayableClass));
+    tests_by_name.insert(std::make_pair("Observer", new Test_Observer));
+    tests_by_name.insert(std::make_pair("ArrayList", new Test_ArrayList));
+    tests_by_name.insert(std::make_pair("RealFunction", new Test_RealFunction));
+    tests_by_name.insert(std::make_pair("Surface", new Test_Surface));
+    tests_by_name.insert(std::make_pair("Rotope", new Test_Rotope));
+    tests_by_name.insert(std::make_pair("Composite", new Test_Composite));
+    tests_by_name.insert(std::make_pair("FunctionHolder", new Test_FunctionHolder));
+    tests_by_name.insert(std::make_pair("Transformation", new Test_Transformation));
+    tests_by_name.insert(std::make_pair("PartitionedMultithreadedMap", new Test_PartitionedMultithreadedMap));
+    tests_by_name.insert(std::make_pair("Object", new Test_Object));
+    tests_by_name.insert(std::make_pair("Util", new Test_Util));
+    tests_by_name.insert(std::make_pair("FacePolygon", new Test_FacePolygon));
+    tests_by_name.insert(std::make_pair("ChangeDir", new Test_ChangeDir));
+    tests_by_name.insert(std::make_pair("ComplexFunction", new Test_ComplexFunction));
+    tests_by_name.insert(std::make_pair("ColorManager", new Test_ColorManager));
+    tests_by_name.insert(std::make_pair("Projector", new Test_Projector));
+    tests_by_name.insert(std::make_pair("Multithreading", new Test_Multithreading));
+    tests_by_name.insert(std::make_pair("Parameters", new Test_Parameters));
+    tests_by_name.insert(std::make_pair("Parser", new Test_Parser));
+    tests_by_name.insert(std::make_pair("LSystem", new Test_LSystem));
+    tests_by_name.insert(std::make_pair("LoopHelper", new Test_LoopHelper));
 }
 
 int main(int argc, char **argv) {
@@ -116,9 +116,9 @@ int main(int argc, char **argv) {
             runner.run(test.second);
         }
 #     else
+        runner.run(new Test_LoopHelper);
         runner.run(new Test_Parser);
         runner.run(new Test_LSystem);
-        runner.run(new Test_LoopHelper);
 #     endif
     } else {
         for (auto test: tests_to_run) {
