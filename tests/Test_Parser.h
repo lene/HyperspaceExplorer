@@ -23,12 +23,24 @@
 
 #include <QtTest/QtTest>
 
+#include "Auxiliary/MockView.h"
+
+class MockView;
+
 class Test_Parser: public QObject {
 
     Q_OBJECT
     
 private slots:
+    
+    void initTestCase();
+    
+    void test_createParserFromLines();
+    
+private:
 
+    std::vector<std::string> create_hypercube_statements_;
+    MockView *view_;
 };
 
 #endif	/* TEST_PARSER_H */

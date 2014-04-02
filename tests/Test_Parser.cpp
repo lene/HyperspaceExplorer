@@ -20,3 +20,30 @@
 
 #include "Test_Parser.h"
 #include "GlobalFunctions.h"
+#include "MockView.h"
+
+#include "Parser.h"
+
+using Script::Parser;
+using VecMath::Vector;
+using namespace UnitTests;
+
+void Test_Parser::initTestCase() {
+    create_hypercube_statements_.push_back("object Tesseract");
+    create_hypercube_statements_.push_back("parameter double Size 1");
+    create_hypercube_statements_.push_back("frames 1");
+    create_hypercube_statements_.push_back("start_animation");
+    view_ = new MockView();
+    setGlobalView(view_);
+}
+
+
+void Test_Parser::test_createParserFromLines() {
+    Parser parser(create_hypercube_statements_);
+    parser.setView(view_);
+    
+    test(parser.execute(), "parser executed statements");
+    
+    checkVertexPresent(Vector<4>(-1., -1., -1., -1.));
+    view_->printVertices();
+}

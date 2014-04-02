@@ -116,9 +116,8 @@ int main(int argc, char **argv) {
             runner.run(test.second);
         }
 #     else
-        runner.run(new Test_LoopHelper);
-        runner.run(new Test_Parser);
         runner.run(new Test_LSystem);
+        runner.run(new Test_Parser);
 #     endif
     } else {
         for (auto test: tests_to_run) {
