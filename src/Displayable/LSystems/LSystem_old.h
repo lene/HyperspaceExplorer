@@ -19,7 +19,7 @@
 
 using namespace std;
 
-typedef VecMath::Vector<3, double> Vector;
+typedef VecMath::Vector<3, double> Vector3;
 using VecMath::Matrix;
 
 /** An experimental class to display Lindenmayer Systems (LSystems)
@@ -76,7 +76,7 @@ protected:
     /// \todo document me
     string POV_Header (const string &);
     /// \todo document me
-    string POV_Footer (const Vector &, const Vector &);
+    string POV_Footer (const Vector3 &, const Vector3 &);
     /// \todo document me
     virtual string POV_Atom (const string &, const string &);	//  one element of the l-system, pov-style
 
@@ -96,14 +96,14 @@ protected:
 string str_replace (string, string, string);
 string str_replace (string, map<string, string>);
 string matrix_outstr (Matrix<3> M);
-string vector_outstr (const Vector &V);
+string vector_outstr (const Vector3 &V);
 string dtos (const double &);
 void state_push (vector<Matrix<3> >&, const Matrix<3>&,
-                 vector<Vector>&, const Vector &,
+                 vector<Vector3>&, const Vector3 &,
                  vector<string>&, const string &,
                  vector<double>&, const double &);
 void state_pop (vector<Matrix<3> >&, Matrix<3>&,
-                 vector<Vector>&, Vector &,
+                 vector<Vector3>&, Vector3 &,
                  vector<string>&, string &,
                  vector<double>&, double &);
 void read_file (const string &, unsigned &, string &, map<string, string> &, map<string, string> &);
