@@ -36,7 +36,6 @@ namespace VecMath {
 
 namespace UnitTests {
 
-  void test(bool condition, const QString &message);
   void test(bool condition, const std::string &message);
 
   void fail(const std::string &message);

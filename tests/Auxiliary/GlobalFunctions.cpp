@@ -29,12 +29,12 @@
 
 using std::string;
 
-QString comparisonString(double checked, double precondition, const QString &operation) {
-  return QString::number(checked) + " " + operation + " " + QString::number(precondition);
+std::string comparisonString(double checked, double precondition, const QString &operation) {
+  return (QString::number(checked) + " " + operation + " " + QString::number(precondition)).toStdString();
 }
 
-QString comparisonString(const string &checked, const string &precondition, const string &operation) {
-  return (checked + " " + operation + " " + precondition).c_str();
+std::string comparisonString(const string &checked, const string &precondition, const string &operation) {
+  return checked + " " + operation + " " + precondition;
 }
 
 namespace UnitTests {
@@ -43,13 +43,6 @@ MockView* globalView;
 
 void setGlobalView(MockView* v) {
   globalView = v;
-}
-
-
-void test(bool condition, const QString &message) {
-  QVERIFY2(
-    condition,
-    message.toLatin1());
 }
 
 void test(bool condition, const std::string& message) {
