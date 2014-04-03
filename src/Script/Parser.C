@@ -92,8 +92,8 @@ namespace Script {
     /** Executes the statements in the file one after the other
      *  @return success                                                       */
     bool Parser::execute() {
-        for(vector<string>::iterator i = _lines.begin(); i != _lines.end(); ++i) {
-            StatementFactory::createStatement(this, *i)->execute();
+        for(auto line: _lines) {
+            StatementFactory::createStatement(this, line)->execute();
         }
         return true;
     }
