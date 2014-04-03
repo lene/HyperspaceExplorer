@@ -25,9 +25,9 @@ Hypercube::Hypercube (double a, const VecMath::Vector<4> &center):
 }
 
 void Hypercube::Draw(UI::View *view) {
-    for (surface_vec_type::const_iterator i = Surface.begin(); i != Surface.end(); ++i) {
-      view->drawQuadrangle(*((*i)[0]), *((*i)[1]), *((*i)[2]), *((*i)[3]),
-                         Xscr()[i->index(0)], Xscr()[i->index(1)], Xscr()[i->index(2)], Xscr()[i->index(3)]);
+  for (auto surface: Surface) {
+    view->drawQuadrangle(*(surface[0]), *(surface[1]), *(surface[2]), *(surface[3]),
+                         Xscr()[surface.index(0)], Xscr()[surface.index(1)], Xscr()[surface.index(2)], Xscr()[surface.index(3)]);
   }
   view->commitDraw();
 }
