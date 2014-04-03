@@ -44,8 +44,8 @@ class MockView: public UI::ViewImpl {
     virtual void ObjectHypersponge() {}
     virtual void ObjectGasket() {}
     virtual void ObjectRotope() {}
-    virtual void applyTransform(const VecMath::Rotation< 4 >& , const VecMath::Vector< 4 >& ) {}
-    virtual void animate() {}
+    virtual void applyTransform(const VecMath::Rotation< 4 >&R , const VecMath::Vector< 4 >&T );
+    virtual void animate();
     virtual void setSize(unsigned int , unsigned int ) {}
     virtual void drawVertex(const VecMath::Vector< 4 >& x, const VecMath::Vector< 3 >& xscr);
     virtual void drawLine(const VecMath::Vector< 4 >& x0, const VecMath::Vector< 4 >& x1,

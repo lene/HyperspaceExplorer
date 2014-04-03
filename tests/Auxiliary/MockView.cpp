@@ -21,13 +21,17 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "MockView.h"
 
 #include "MultiDimensionalVector.h"
+#include "Displayable.h"
+
 #include "Vector.impl.h"
+#include "Rotation.impl.h"
 
 using std::vector;
 using VecMath::Vector;
+using VecMath::Rotation;
 
 struct MockView::Impl {
-  Impl(bool verbose): verbose_(verbose), drawnVertices_() { }
+  Impl(bool verbose): verbose_(verbose), originalVertices_(), drawnVertices_(), drawnFaces_() { }
 
   bool verbose_;
   vector< Vector<4> > originalVertices_;
@@ -79,7 +83,18 @@ bool MockView::Face<D>::operator==(const Face< D >& other) const {
   return true;
 }
 
-MockView::MockView(bool verbose): pImpl_(new Impl(verbose)) { }
+MockView::MockView(bool verbose): pImpl_(new Impl(verbose)) {
+}
+
+void MockView::applyTransform(const VecMath::Rotation<4>& R, const VecMath::Vector<4>& T) {    
+    if (F().get()) F()->Transform (R, T, 1.);
+}
+
+void MockView::animate() {
+    applyTransform(Rotation<4>(),Vector<4>());
+    if (F().get()) F()->Project (ScrW(), CamW(), getHyperfog());
+    if (F().get()) F()->Draw(this);
+}
 
 void MockView::drawVertex(const VecMath::Vector< 4 >&, const VecMath::Vector< 3 >&) {
   throw NotYetImplementedException("MockView::drawVertex");
