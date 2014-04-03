@@ -27,6 +27,10 @@
 
 class MockView;
 
+namespace Script {
+    class Parser;
+}
+
 class Test_Parser: public QObject {
 
     Q_OBJECT
@@ -36,10 +40,17 @@ private slots:
     void initTestCase();
     
     void test_createParserFromLines();
+    void test_boolStatementWithColor();
+
+    void test_badStatement();
+    void test_statementsAreCaseSensitive();
+
+    void testObjectStatement();
     
 private:
-
-    std::vector<std::string> create_hypercube_statements_;
+    
+    Script::Parser *createEmptyParser();
+    
     MockView *view_;
 };
 

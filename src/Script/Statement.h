@@ -23,11 +23,12 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <string>
 
-class Parser;
 
 /// \defgroup ScriptingGroup Scripting
 
 namespace Script {
+
+    class Parser;
 
     /// exception thrown when an unknown statement is encountered in a script
     /** \ingroup ScriptingGroup                                               */
