@@ -31,9 +31,8 @@ using namespace UnitTests;
 void Test_Parser::initTestCase() {
     create_hypercube_statements_.push_back("object Tesseract");
     create_hypercube_statements_.push_back("parameter double Size 1");
-    create_hypercube_statements_.push_back("frames 1");
     create_hypercube_statements_.push_back("start_animation");
-    view_ = new MockView();
+    view_ = new MockView(false);
     setGlobalView(view_);
 }
 
@@ -43,7 +42,10 @@ void Test_Parser::test_createParserFromLines() {
     parser.setView(view_);
     
     test(parser.execute(), "parser executed statements");
-    
-    checkVertexPresent(Vector<4>(-1., -1., -1., -1.));
-    view_->printVertices();
+
+    for (double x = -1.; x <= 1.; x += 2.)
+        for (double y = -1.; y <= 1.; y += 2.)
+            for (double z = -1.; z <= 1.; z += 2.)
+                for (double w = -1.; w <= 1.; w += 2.)
+                    checkVertexPresent(Vector<4>(x, y, z, w));
 }
