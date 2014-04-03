@@ -25,6 +25,7 @@
 #include "Parser.h"
 #include "Statement.h"
 #include "ExpectException.h"
+#include "Displayable.h"
 
 using VecMath::Vector;
 using std::vector;
@@ -82,22 +83,39 @@ void Test_Parser::test_boolStatementWithColor() {
 }
 
 void Test_Parser::test_badStatement() {
-    Parser *parser = createEmptyParser();
-    
     expectException<BadStatementException>(
-        [&]() { StatementFactory::createStatement(parser, "hurglarglarblbaaah"); }
+        [&]() { StatementFactory::createStatement(createEmptyParser(), "hurglarglarblbaaah"); }
     );
 }
 
 void Test_Parser::test_statementsAreCaseSensitive() {
-    Parser *parser = createEmptyParser();
-
     expectException<BadStatementException>(
-        [&]() { StatementFactory::createStatement(parser, "Colors off")->execute(); }
+        [&]() { StatementFactory::createStatement(createEmptyParser(), "Colors off")->execute(); }
     );
 }
 
 void Test_Parser::testObjectStatement() {
+    Parser *parser = createEmptyParser();
+    
+    // trying to create all objects is repetitive and kind of pointless. 
+    // thus, a few representative examples only.
+    
+    // create a very simple object
+    StatementFactory::createStatement(parser, "object Tesseract")->execute();
+    testEqual(view_->F()->getFunctionName(), "Tesseract");
+
+    // create an object whose name contains spaces
+    StatementFactory::createStatement(parser, "object 4D Menger Sponge")->execute();
+    testEqual(view_->F()->getFunctionName(), "4D Menger Sponge");
+
+    // create a RealFunction with a somewhat complicated name
+    StatementFactory::createStatement(parser, "object Polar: r = sin (pi/3.*(t+u+v))")->execute();
+    testEqual(view_->F()->getFunctionName(), "Polar: r = sin (pi/3.*(t+u+v))");
+
+    // fail when trying to create an object that does not exist
+    expectException<FunctionFactory::BadFunctionException>(
+        [&]() { StatementFactory::createStatement(parser, "object No, this object does not exist")->execute(); }
+    );
 
 }
 
