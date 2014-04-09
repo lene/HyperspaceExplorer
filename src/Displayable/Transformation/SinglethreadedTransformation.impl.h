@@ -15,7 +15,10 @@ SinglethreadedTransformation<N, P, NUM>::SinglethreadedTransformation(
         const VecMath::Rotation<N, NUM> &rotation,
         const VecMath::Vector<N, NUM> &translation,
         const VecMath::Vector<N, NUM> &scale): 
-  TransformationImpl<N, P, NUM>(rotation, translation, scale) { }
+  TransformationImpl<N, P, NUM>(rotation, translation, scale) { 
+            std::cerr<<"SinglethreadedTransformation<"<<N<<", "<< P << ">()"<<std::endl;
+
+}
 
 template <unsigned N, typename NUM>
 SinglethreadedTransformation<N, 1, NUM>::SinglethreadedTransformation(

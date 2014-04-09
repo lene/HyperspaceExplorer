@@ -58,7 +58,9 @@ private:
                                 const VecMath::Vector<N, NUM> &translation,
                                 const VecMath::Vector<N, NUM> &scale): 
         TransformationImpl<N, P, NUM>(rotation, translation, scale), 
-        functor_(rotation, translation, scale) { }
+        functor_(rotation, translation, scale) { 
+            std::cerr<<"MultithreadedTransformation<"<<N<<", "<< P << ">()"<<std::endl;
+        }
     
     void perform_transformation(const VecMath::Vector<N, NUM>& x, const VecMath::Vector<N, NUM>& xtrans);
     
@@ -83,6 +85,8 @@ private:
         typename MultithreadedTransformation<N, P-1, NUM>::value_storage_type operator() (
             const VecMath::MultiDimensionalVector< VecMath::Vector<N, NUM>, P-1 > &arg
         ) {
+                        std::cerr<<"MultithreadedTransformation<"<<N<<", "<< P << ">::MapFunctor::operator()()"<<std::endl;
+
             SinglethreadedTransformation<N, P-1, NUM> xform(matrix_, translation_, scale_);
             return xform.transform(arg);
         }

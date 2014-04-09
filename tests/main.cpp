@@ -117,7 +117,6 @@ int main(int argc, char **argv) {
         }
 #     else
         runner.run(new Test_LSystem);
-        runner.run(new Test_Parser);
 #     endif
     } else {
         for (auto test: tests_to_run) {
