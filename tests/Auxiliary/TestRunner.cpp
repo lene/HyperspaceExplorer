@@ -24,7 +24,7 @@ struct TestRunner::Impl {
 TestRunner::TestRunner():
     pImpl(new Impl) { }
 
-void TestRunner::run(QObject *test) {
+void TestRunner::add(QObject *test) {
     if (QTest::qExec(test)) pImpl->failedTestSuites_.push_back(typeid(*test).name());
     pImpl->executedTestSuites_++;
 }

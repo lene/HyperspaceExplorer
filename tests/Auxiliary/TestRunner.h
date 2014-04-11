@@ -16,7 +16,7 @@ class TestRunner {
 
     TestRunner();
 
-    void run(QObject *test);
+    void add(QObject *test);
 
     void printSummary() const;
 

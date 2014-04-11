@@ -19,7 +19,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 */
 
 /// Otherwise, only run the latest test suites, as manually defined below
-#define RUN_ALL_TESTS 0
+#define RUN_ALL_TESTS 1
 
 #include "Test_Rotope.h"
 #include "Test_Displayable.h"
@@ -113,15 +113,15 @@ int main(int argc, char **argv) {
     if (tests_to_run.empty()) {
 #     if RUN_ALL_TESTS
         for (auto test: tests_by_name) {
-            runner.run(test.second);
+            runner.add(test.second);
         }
 #     else
-        runner.run(new Test_LSystem);
+        runner.add(new Test_LSystem);
 #     endif
     } else {
         for (auto test: tests_to_run) {
             if (tests_by_name.find(test) != tests_by_name.end()) {
-                runner.run(tests_by_name[test]);
+                runner.add(tests_by_name[test]);
             }
         }
     }
