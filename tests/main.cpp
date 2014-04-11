@@ -125,6 +125,7 @@ int main(int argc, char **argv) {
             }
         }
     }
+    runner.run();
     runner.printSummary();
 
     return runner.exitValue();

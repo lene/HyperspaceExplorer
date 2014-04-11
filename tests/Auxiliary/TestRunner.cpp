@@ -4,6 +4,7 @@
 #include <typeinfo>
 #include <algorithm>
 #include <memory>
+#include <qt5/QtCore/qobject.h>
 
 struct TestRunner::Impl {
 
@@ -15,6 +16,7 @@ struct TestRunner::Impl {
 
 
     unsigned executedTestSuites_;
+    std::vector<QObject *> tests_to_run_;
     std::vector<std::string> failedTestSuites_;
 
     clock_t startTime_;
@@ -25,8 +27,15 @@ TestRunner::TestRunner():
     pImpl(new Impl) { }
 
 void TestRunner::add(QObject *test) {
-    if (QTest::qExec(test)) pImpl->failedTestSuites_.push_back(typeid(*test).name());
-    pImpl->executedTestSuites_++;
+    pImpl->tests_to_run_.push_back(test);
+}
+
+void TestRunner::run() {
+    for (QObject *test: pImpl->tests_to_run_) {
+        if (QTest::qExec(test)) pImpl->failedTestSuites_.push_back(typeid(*test).name());
+        pImpl->executedTestSuites_++;
+    }
+    
 }
 
 void TestRunner::printSummary() const {
