@@ -20,22 +20,33 @@ struct TestRunner::Impl {
     std::vector<std::string> failedTestSuites_;
 
     clock_t startTime_;
-
+    bool has_run_ = false;
+    
 };
 
 TestRunner::TestRunner():
-    pImpl(new Impl) { }
+    pImpl(new Impl) {
+}
+
+TestRunner::~TestRunner() {
+    if (pImpl->has_run_) return;
+    run();
+    printSummary();
+}
 
 void TestRunner::add(QObject *test) {
     pImpl->tests_to_run_.push_back(test);
 }
 
 void TestRunner::run() {
+    QStringList args;
+    args.append("-o /tmp/out");
+//    args.append("");
     for (QObject *test: pImpl->tests_to_run_) {
-        if (QTest::qExec(test)) pImpl->failedTestSuites_.push_back(typeid(*test).name());
+        if (QTest::qExec(test, QStringList(args))) pImpl->failedTestSuites_.push_back(typeid(*test).name());
         pImpl->executedTestSuites_++;
     }
-    
+    pImpl->has_run_ = true;
 }
 
 void TestRunner::printSummary() const {

@@ -15,6 +15,7 @@ class TestRunner {
   public:
 
     TestRunner();
+    ~TestRunner();
 
     void add(QObject *test);
     void run();
