@@ -7,6 +7,7 @@
 #include <iostream>
 
 #include <QObject>
+#include <QtConcurrent>
 
 struct TestRunner::Impl {
 
@@ -15,8 +16,8 @@ struct TestRunner::Impl {
     void printFailedTestSuites() const;
 
     static void printFailedTestSuite(std::string suite);
-
     static QString getTestOutputFile(const QObject *test);
+    static void printTestResults(const QObject *test);
 
     unsigned executedTestSuites_;
     std::vector<QObject *> tests_to_run_;
@@ -33,7 +34,7 @@ TestRunner::TestRunner():
 
 TestRunner::~TestRunner() {
     if (pImpl->has_run_) return;
-    run();
+    runAll();
     printSummary();
 }
 
@@ -41,24 +42,27 @@ void TestRunner::add(QObject *test) {
     pImpl->tests_to_run_.push_back(test);
 }
 
-void TestRunner::run() {
+void TestRunner::runAll() {
+    
+    if (pImpl->has_run_) return;
+
+#if 0    
+    QtConcurrent::blockingMap(pImpl->tests_to_run_, [&](QObject *test) { runTest(test); });
+#else    
     for (QObject *test: pImpl->tests_to_run_) {
-        QStringList args;
-        args << " " << "-o" << TestRunner::Impl::getTestOutputFile(test);
-        if (QTest::qExec(test, args)) pImpl->failedTestSuites_.push_back(typeid(*test).name());
-        pImpl->executedTestSuites_++;
-        
-        QFile file(TestRunner::Impl::getTestOutputFile(test));
-        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-            return;
-
-        QTextStream in(&file);
-        while (!in.atEnd()) {
-            QString line = in.readLine();
-            std::cerr << line.toStdString() << std::endl;
-        }
-
+        runTest(test);
     }
+#endif    
+    pImpl->has_run_ = true;
+}
+
+void TestRunner::runTest(QObject* test) {
+    QStringList args;
+    args << " " << "-o" << Impl::getTestOutputFile(test);
+    if (QTest::qExec(test, args)) pImpl->failedTestSuites_.push_back(typeid(*test).name());
+    pImpl->executedTestSuites_++;
+    Impl::printTestResults(test);
+
     pImpl->has_run_ = true;
 }
 
@@ -87,4 +91,14 @@ QString TestRunner::Impl::getTestOutputFile(const QObject* test) {
     
     QString testname = typeid(*test).name();
     return "/tmp/"+testname+".out";
+}
+
+void TestRunner::Impl::printTestResults(const QObject* test) {
+    QFile file(TestRunner::Impl::getTestOutputFile(test));
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) return;
+
+    QTextStream in(&file);
+    while (!in.atEnd()) {
+        qDebug() << in.readLine();
+    }
 }

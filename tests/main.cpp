@@ -113,9 +113,10 @@ int main(int argc, char **argv) {
     if (tests_to_run.empty()) {
 #     if RUN_ALL_TESTS
         for (auto test: tests_by_name) {
-            runner.add(test.second);
+            runner.runTest(test.second);
         }
 #     else
+        runner.add(new Test_LoopHelper);
         runner.add(new Test_LSystem);
 #     endif
     } else {
@@ -125,7 +126,7 @@ int main(int argc, char **argv) {
             }
         }
     }
-    runner.run();
+    runner.runAll();
     runner.printSummary();
 
     return runner.exitValue();
