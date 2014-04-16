@@ -4,7 +4,9 @@
 #include <typeinfo>
 #include <algorithm>
 #include <memory>
-#include <qt5/QtCore/qobject.h>
+#include <iostream>
+
+#include <QObject>
 
 struct TestRunner::Impl {
 
@@ -14,6 +16,7 @@ struct TestRunner::Impl {
 
     static void printFailedTestSuite(std::string suite);
 
+    static QString getTestOutputFile(const QObject *test);
 
     unsigned executedTestSuites_;
     std::vector<QObject *> tests_to_run_;
@@ -39,12 +42,22 @@ void TestRunner::add(QObject *test) {
 }
 
 void TestRunner::run() {
-    QStringList args;
-    args.append("-o /tmp/out");
-//    args.append("");
     for (QObject *test: pImpl->tests_to_run_) {
-        if (QTest::qExec(test, QStringList(args))) pImpl->failedTestSuites_.push_back(typeid(*test).name());
+        QStringList args;
+        args << " " << "-o" << TestRunner::Impl::getTestOutputFile(test);
+        if (QTest::qExec(test, args)) pImpl->failedTestSuites_.push_back(typeid(*test).name());
         pImpl->executedTestSuites_++;
+        
+        QFile file(TestRunner::Impl::getTestOutputFile(test));
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+            return;
+
+        QTextStream in(&file);
+        while (!in.atEnd()) {
+            QString line = in.readLine();
+            std::cerr << line.toStdString() << std::endl;
+        }
+
     }
     pImpl->has_run_ = true;
 }
@@ -68,4 +81,10 @@ void TestRunner::Impl::printFailedTestSuites() const {
 
 void TestRunner::Impl::printFailedTestSuite(std::string suite) {
     qDebug() << "    " << suite.c_str();
+}
+
+QString TestRunner::Impl::getTestOutputFile(const QObject* test) {
+    
+    QString testname = typeid(*test).name();
+    return "/tmp/"+testname+".out";
 }
