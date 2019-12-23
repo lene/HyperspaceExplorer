@@ -220,7 +220,7 @@ class ColorManagerManager {
         /** disabled destructor */
         ~ColorManagerManager() { }
 
-        std::auto_ptr<ColorManager> colorManager;   ///< The proxied ColorManager
+        std::unique_ptr<ColorManager> colorManager;   ///< The proxied ColorManager
 
         CallbackMap callbacks;              ///< Stores the ColorManager creators
 
