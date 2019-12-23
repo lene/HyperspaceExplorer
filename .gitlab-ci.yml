@@ -4,6 +4,7 @@ stages:
 
 variables:
   QT_IMAGE: theshadowx/qt5:latest
+  DEBIAN_FRONTEND: noninteractive
 
 Build:
   stage: build
@@ -12,3 +13,13 @@ Build:
   script:
     - qmake
     - make -j4
+
+BuildDoc:
+  stage: build
+  image: ${QT_IMAGE}
+  when: always
+  before_script:
+    - apt install -y doxygen graphviz texlive-full
+  script:
+    doxygen
+
