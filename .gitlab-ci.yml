@@ -1,0 +1,14 @@
+stages:
+  - build
+  - test
+
+variables:
+  QT_IMAGE: theshadowx/qt5:latest
+
+Build:
+  stage: build
+  image: ${QT_IMAGE}
+  when: always
+  script:
+    - qmake
+    - make -j4
