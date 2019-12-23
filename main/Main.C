@@ -355,7 +355,7 @@ void parse (int argc, char *argv[]) {
         }
         if (QString (argv[i]) == QString ("--benchmark")) {
             
-#if 0            
+#if 0
             if (i+1 < argc) benchmark (QString (argv[i+1]).toUInt ());
             else benchmark (10);
 #else

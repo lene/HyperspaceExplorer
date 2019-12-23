@@ -15,7 +15,7 @@ CONFIG += release qt warn_on uic staticlib
 ###
 ###     set the version number here
 ###
-VERSION = 0.7.1
+VERSION = 0.8.0
 
 ################################################################################
 ###
