@@ -61,8 +61,8 @@ CONFIG(debug){
 ###
 ### turn profiling on in debug mode
 ###
-QMAKE_CFLAGS_DEBUG += -pg -g3 -gdwarf-2
-QMAKE_CXXFLAGS_DEBUG += -pg -g3 -gdwarf-2
+QMAKE_CFLAGS_DEBUG += -pg -g3 -gdwarf-2 -O0
+QMAKE_CXXFLAGS_DEBUG += -pg -g3 -gdwarf-2 -O0
 QMAKE_LFLAGS_DEBUG += -pg
 
 ###

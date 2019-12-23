@@ -436,7 +436,7 @@ int main (int argc, char *argv[]) {
         Globals::Instance().getMainWindow()->show();
 
         ret = app.exec ();
-    } catch (std::logic_error e) {
+    } catch (std::logic_error &e) {
         std::cerr << "\n\n"
             "The programmer of this software has done something wrong.\n"
             "You can drop her a message: <lene.preuss@gmail.com>\n"

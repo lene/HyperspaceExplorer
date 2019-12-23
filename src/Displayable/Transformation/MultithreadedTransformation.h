@@ -58,9 +58,7 @@ private:
                                 const VecMath::Vector<N, NUM> &translation,
                                 const VecMath::Vector<N, NUM> &scale): 
         TransformationImpl<N, P, NUM>(rotation, translation, scale), 
-        functor_(rotation, translation, scale) { 
-            std::cerr<<"MultithreadedTransformation<"<<N<<", "<< P << ">()"<<std::endl;
-        }
+        functor_(rotation, translation, scale) { }
     
     void perform_transformation(const VecMath::Vector<N, NUM>& x, const VecMath::Vector<N, NUM>& xtrans);
     

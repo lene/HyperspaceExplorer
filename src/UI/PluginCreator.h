@@ -37,16 +37,16 @@ namespace UI {
         *  \ingroup UIGroup
         *  @author Lene Preuss <lene.preuss@gmail.com>                         */
         class PluginCreator {
-            /// Class template with a static function to simulate a function template.
-            /** The function \em functionPresent() tries to load a dynamic library
-            *  containing a function \em f() with a variable signature.
-            *  @tparam F the type of function to be loaded                            */
-            template <class F> class LoadFunctionHelper {
-                public:
-                    static bool functionPresent(const QString &, QDialog *);
-            };
 
             public:
+                /// Class template with a static function to simulate a function template.
+                /** The function \em functionPresent() tries to load a dynamic library
+                *  containing a function \em f() with a variable signature.
+                *  @tparam F the type of function to be loaded                            */
+                template <class F> class LoadFunctionHelper {
+                    public:
+                        static bool functionPresent(const QString &, QDialog *);
+                };
 
                 virtual ~PluginCreator() { }    ///< Empty destructor
 

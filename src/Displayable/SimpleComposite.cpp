@@ -25,6 +25,7 @@
 
 #include "FunctionHolder.impl.h"
 #include "Vector.impl.h"
+#include "MultiDimensionalVector.impl.h"
 #include "Rotation.impl.h"
 
 SimpleComposite::SimpleComposite(): Composite() {

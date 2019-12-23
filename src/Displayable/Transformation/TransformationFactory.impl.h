@@ -21,8 +21,6 @@ TransformationFactory::create(
         const VecMath::Vector<N, NUM> &translation,
         const VecMath::Vector<N, NUM> &scale
     ) {
-                std::cerr<<"TransformationFactory::create(): " << getTransformationMethod() <<std::endl;
-
     switch(getTransformationMethod()) {
         
         case Multithreaded:

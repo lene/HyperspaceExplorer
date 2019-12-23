@@ -75,10 +75,8 @@ void ColorManager::setRGB(const Color &rgb) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-ColorManagerManager::BadColorManagerException::BadColorManagerException(
-        const std::string &what):
-        std::runtime_error("\""+what+"\" is not the name of a registered"
-        " ColorManager") { }
+ColorManagerManager::BadColorManagerException::BadColorManagerException(const std::string &what):
+        std::runtime_error("\""+what+"\" is not the name of a registered ColorManager") { }
 
 /** \param functionName Name of the function that was called
  */
