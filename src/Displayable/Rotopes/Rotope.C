@@ -53,9 +53,8 @@ struct Rotope::Impl {
     rot5D_(), rot6D_(), rot7D_(), rot8D_(), rot9D_(), rot10D_(),
     numSegments_(RotopeInterface::DEFAULT_NUM_SEGMENTS),
     actions_(actions), rotope_(NULL), parent_(parent) { }
-
-  void generateRotope() throw(BadRotopeOperation);
-  void generateParameters() throw(BadRotopeOperation);
+  void generateRotope() noexcept(false);
+  void generateParameters() noexcept(false);
   void generateDefaultRotope(const std::logic_error &e) throw();
   void addNDimensionalTransforms();
 
@@ -108,9 +107,9 @@ void Rotope::Initialize() {
   try {
     pImpl_->generateRotope();
     pImpl_->generateParameters();
-  } catch (BadRotopeOperation e) {
+  } catch (BadRotopeOperation &e) {
     pImpl_->generateDefaultRotope(e);
-  } catch (NotYetImplementedException e) {
+  } catch (NotYetImplementedException &e) {
     pImpl_->generateDefaultRotope(e);
   }
 
@@ -161,12 +160,12 @@ void Rotope::SetParameters(const ParameterMap &parms) {
   }
 }
 
-void Rotope::Impl::generateRotope() throw (BadRotopeOperation) {
+void Rotope::Impl::generateRotope() noexcept(false) {
   RotopeInterface::setRotationSegments(numSegments_);
   rotope_ = RotopeFactory::generate(actions_);
 }
 
-void Rotope::Impl::generateParameters() throw (BadRotopeOperation) {
+void Rotope::Impl::generateParameters() noexcept(false) {
   parent_->declareParameter("Generator", actions_);
   for(unsigned i = 5; i <= actions_.length(); ++i) {
     string label = Util::itoa(i)+string("D Rotation");

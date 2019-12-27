@@ -35,9 +35,9 @@ RCC_DIR = tmp
 QMAKE_CLEAN += Makefile
 
 ###
-###     C++0x support
+###     C++20 support
 ###
-QMAKE_CXXFLAGS += -std=c++0x
+QMAKE_CXXFLAGS += -std=c++2a
 
 ###
 ###     OpenGL support
@@ -61,8 +61,8 @@ CONFIG(debug){
 ###
 ### turn profiling on in debug mode
 ###
-QMAKE_CFLAGS_DEBUG += -pg -g3 -gdwarf-2
-QMAKE_CXXFLAGS_DEBUG += -pg -g3 -gdwarf-2
+QMAKE_CFLAGS_DEBUG += -pg -g3 -gdwarf-2 -O0
+QMAKE_CXXFLAGS_DEBUG += -pg -g3 -gdwarf-2 -O0
 QMAKE_LFLAGS_DEBUG += -pg
 
 ###

@@ -34,3 +34,6 @@ HyperspaceExplorer-tests
 /build/
 tmp/
 .kdev4/
+.idea
+.*.kate-swp
+.qmake.stash

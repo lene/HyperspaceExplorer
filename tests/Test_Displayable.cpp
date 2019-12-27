@@ -186,7 +186,7 @@ void Test_Displayable::parameterWithoutCast() {
   ParameterTestImplementation function;
   ParameterMap parameters = function.getParameters();
   try {
-    unsigned u = parameters.find("looks like unsigned, but is int")->second->value()->toUnsigned();
+    parameters.find("looks like unsigned, but is int")->second->value()->toUnsigned();
   } catch (FunctionParameterValueBase::WrongParameterTypeException &e) {
     return;
   }

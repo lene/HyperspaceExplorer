@@ -21,3 +21,7 @@
 #include "Test_LSystem.h"
 
 #include "GlobalFunctions.h"
+
+void Test_LSystem::parse() {
+    QSKIP("Not yet implemented");
+}

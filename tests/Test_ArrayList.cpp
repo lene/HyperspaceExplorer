@@ -28,8 +28,8 @@ using namespace UnitTests;
 using std::string;
 
 void Test_ArrayList::makeListRuns() {
-  ArrayList<2, int> int2 = makeArrayList(1, 2);
-  ArrayList<3, double> double3 = makeArrayList(1., 2., 3.);
+  makeArrayList(1, 2);
+  makeArrayList(1., 2., 3.);
   ArrayList<4, string> string4 = makeArrayList(string("one"), string("two"), string("three"), string("four"));
 }
 

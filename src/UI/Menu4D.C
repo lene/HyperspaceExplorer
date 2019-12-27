@@ -121,11 +121,6 @@ C4DView::Menu4D::Menu4D(C4DView *_parent):
 
     QString sup2(QChar(0x00B2));
     QString sup3(QChar(0x00B3));
-/*
-    std::copy(TheFunctionFactory::Instance().listFunctions().begin(),
-              TheFunctionFactory::Instance().listFunctions().end(),
-              std::ostream_iterator<std::string>(std::cerr, " "));
-*/              
 
     createAppearanceMenu();
     

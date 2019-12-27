@@ -37,7 +37,7 @@ void Test_Realm::push_back() {
 
     try {
         realm.push_back(realm);
-    } catch (std::invalid_argument e) {
+    } catch (std::invalid_argument &e) {
         return;
     }
     QFAIL("Expected invalid_argument");
@@ -110,8 +110,8 @@ void Test_Realm::toIndex() {
     QVERIFY(realm.toIndex() == 1);
     Realm line(createUintVec());
     try {
-        unsigned int_value = line.toIndex();
-    } catch (std::logic_error e) {
+        line.toIndex();
+    } catch (std::logic_error &e) {
         return;
     }
     QFAIL("expected logic_error");

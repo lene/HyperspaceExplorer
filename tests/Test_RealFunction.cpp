@@ -198,7 +198,7 @@ void Test_RealFunction::project() {
 void checkGetColorRuns(const VecMath::Vector<4> &x,
                        const VecMath::Vector<4> &,
                        const VecMath::Vector<3> &) {
-  Color rgba = ColMgrMgr::Instance().getColor(x);
+  ColMgrMgr::Instance().getColor(x);
 }
 
 void Test_RealFunction::projectWithDepthCue() {

@@ -116,8 +116,8 @@ int main(int argc, char **argv) {
             runner.runTest(test.second);
         }
 #     else
-        runner.add(new Test_LoopHelper);
-        runner.add(new Test_LSystem);
+        runner.add(new Test_ParametricFunction);
+        runner.add(new Test_Displayable);
 #     endif
     } else {
         for (auto test: tests_to_run) {

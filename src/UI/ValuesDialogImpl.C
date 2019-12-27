@@ -104,10 +104,10 @@ namespace UI {
 
                 //  check whether the current parameter is a Rotation - just for kicks
                 try {
-                    VecMath::RotationBase dummy = it->second->value()->toRotationBase();
+                    it->second->value()->toRotationBase();
                     SingletonLog::Instance() << __PRETTY_FUNCTION__ << ": "
                             << it->second->getName() << " is a Rotation\n";
-                } catch (FunctionParameterValueBase::WrongParameterTypeException e) {
+                } catch (FunctionParameterValueBase::WrongParameterTypeException &e) {
                     SingletonLog::Instance() << __PRETTY_FUNCTION__ << ": "
                             << it->second->getName() << " is NOT a Rotation\n";
                 }

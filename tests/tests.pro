@@ -142,5 +142,5 @@ TARGET = HyperspaceExplorer-tests
 QMAKE_POST_LINK = ./HyperspaceExplorer-tests || (rm -f $${TARGET} ; exit 1)
 
 ###
-### C++0x support
-QMAKE_CXXFLAGS += -std=c++0x 
+### C++20 support
+QMAKE_CXXFLAGS += -std=c++2a

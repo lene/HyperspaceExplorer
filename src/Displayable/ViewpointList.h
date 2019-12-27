@@ -60,11 +60,11 @@ template <unsigned N, unsigned Nnew, typename NUM = double> class ViewpointList 
     /// Returns element \p i from the list.
     /** \tparam i The index of the requested element.
      */
-    template <unsigned i> VecMath::Vector<N-i, NUM> get() {
+    /*template <unsigned i> VecMath::Vector<N-i, NUM> get() {
       if (i == 0) return head();
       return tail().get<i-1>();
-    }
-//    template <> VecMath::Vector<N> get<0>() { return head(); }
+    }*/
+    //template <> VecMath::Vector<0> get<0>() { return head(); }
 
     /// String representation.
     std::string toString() const { return _elements.first.toString()+", "+_elements.second.toString(); }

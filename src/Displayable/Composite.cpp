@@ -64,7 +64,6 @@ void Composite::Project(double ScrW, double CamW, bool DepthCue4D) {
 }
 
 void Composite::Draw(UI::View *view) {
-    unsigned i = 0;
     for (auto it = pImpl_->sub_objects_.begin(); it != pImpl_->sub_objects_.end(); ++it) {
         it->component_->Draw(view);
     }

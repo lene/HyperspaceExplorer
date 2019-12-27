@@ -23,7 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <iostream>
 
 #include <qmessagebox.h>
-#include <qt4/QtGui/qdialog.h>
+#include <qdialog.h>
 
 #include "FunctionDialogImpl.h"
 #include "PolarDialogImpl.h"

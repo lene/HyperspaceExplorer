@@ -129,7 +129,7 @@ void Test_Composite::draw() {
 void Test_Composite::ReInit() {
   try {
     simple_composite_->ReInit(-1., 1., 0.5,  -1., 1., 0.5,  -1., 1., 0.5);
-  } catch (NotYetImplementedException e) {
+  } catch (NotYetImplementedException &e) {
       fail(e.what());
   }
   QSKIP("Implement me: Test_Composite::ReInit()", SkipSingle);
@@ -138,7 +138,7 @@ void Test_Composite::ReInit() {
 void Test_Composite::calibrateColors() {
   try {
     simple_composite_->calibrateColors();
-  } catch (NotYetImplementedException e) {
+  } catch (NotYetImplementedException &e) {
       fail(e.what());
   }
   QSKIP("Implement me: Test_Composite::calibrateColors()", SkipSingle);

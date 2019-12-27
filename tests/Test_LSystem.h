@@ -28,7 +28,7 @@ class Test_LSystem: public QObject {
     Q_OBJECT
     
 private slots:
-
+    void parse();
 };
 
 #endif	/* TEST_LSYSTEM_H */

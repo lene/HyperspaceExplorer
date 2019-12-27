@@ -36,6 +36,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 class RotopeInterface {
 
 public:
+    virtual ~RotopeInterface() { }
 
     /// How many segments a rotation operation has by default.
     const static unsigned DEFAULT_NUM_SEGMENTS = 8;
