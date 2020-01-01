@@ -92,3 +92,12 @@ DeployDoc:
   environment:
     name: doc
     url: https://gitlab.com/lilacashes/HyperspaceExplorer/doc
+
+PushToGithub:
+  stage: deploy
+  only:
+    - master
+    - merge_requests
+  script:
+    - git remote show all
+    - git push origin master
