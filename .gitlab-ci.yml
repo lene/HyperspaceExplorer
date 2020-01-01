@@ -11,15 +11,20 @@ variables:
 include:
   - template: Code-Quality.gitlab-ci.yml
 
-Build:
-  stage: build
+.SetupBuildEnv:
   image: ${QT_IMAGE}
-  when: always
+  only:
+    - pushes
+    - master
+    - merge_requests
   before_script:
     - apt update
-    - apt upgrade
     - apt install -y g++-8
     - update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8
+
+Build:
+  extends: .SetupBuildEnv
+  stage: build
   script:
     - qmake
     - make -j4 sub-src
@@ -30,7 +35,8 @@ Build:
 BuildDoc:
   stage: build
   image: ${QT_IMAGE}
-  when: always
+  only:
+    - master
   before_script:
     - apt install -y doxygen graphviz texlive ghostscript
   script:
@@ -40,16 +46,10 @@ BuildDoc:
       - doc/html/**/*
 
 Test:
+  extends: .SetupBuildEnv
   stage: test
-  image: ${QT_IMAGE}
-  when: always
   dependencies:
     - Build
-  before_script:
-    - apt update
-    - apt upgrade
-    - apt install -y g++-8
-    - update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8
   script:
     - qmake
     - make -j4 sub-tests
@@ -63,17 +63,11 @@ code_quality:
       - gl-code-quality-report.json
 
 BuildMain:
+  extends: .SetupBuildEnv
   stage: build-main
-  image: ${QT_IMAGE}
-  when: always
   dependencies:
     - Build
     - Test
-  before_script:
-    - apt update
-    - apt upgrade
-    - apt install -y g++-8
-    - update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8
   script:
     - qmake
     - make sub-main
@@ -97,7 +91,8 @@ PushToGithub:
   stage: deploy
   only:
     - master
-    - merge_requests
+  when: manual
   script:
-    - git remote show all
-    - git push origin master
+    - git remote add github git@github.com:lene/HyperspaceExplorer.git
+    - git remote show github
+    - git push github master
