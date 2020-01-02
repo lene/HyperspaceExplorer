@@ -1,9 +1,9 @@
-- check all commented lines to see what they were good for (//, /*, #if 0)
-- squash all warnings
-- upgrade --std=c0x
-- make build and doc build run on gitlab CI
-- add separate test stage for gitlab CI
-- reenable --benchmark
+- get back to full-featured state with current compiler
+  - check all commented lines to see what they were good for (//, /*, #if 0)
+  - squash all warnings
+  - reenable --benchmark
+    - and make it run from gitlab CI
+- LSystems
 - implement multithreaded transformations:
   - add menu entry to switch transformation method
     - make Appearance menu submenu of new Settings menu
