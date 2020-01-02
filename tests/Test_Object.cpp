@@ -132,7 +132,7 @@ void Test_Object::project() {
 void checkGetColorRuns_2(const VecMath::Vector<4> &x,
                        const VecMath::Vector<4> &,
                        const VecMath::Vector<3> &) {
-  Color rgba = ColMgrMgr::Instance().getColor(x);
+  ColMgrMgr::Instance().getColor(x);
 }
 
 void Test_Object::projectWithDepthCue() {

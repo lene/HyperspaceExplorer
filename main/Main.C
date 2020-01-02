@@ -267,7 +267,7 @@ double2Dmap benchmarks_by_style (C4DView & view, const unsigned num_runs,
     return results_by_style;
 }
 
-
+#if 0
 /** runs rotation in four and three dimensions for hypercube and hyperpyramid
  *  for num_runs
  *  times the runs and evaluates the times by style and object
@@ -315,7 +315,7 @@ void benchmark (const unsigned num_runs = 10) {
 
   exit (0);
 }
-
+#endif
 
 /** parses commandline
  *  choices for args:
@@ -354,8 +354,14 @@ void parse (int argc, char *argv[]) {
             exit (0);
         }
         if (QString (argv[i]) == QString ("--benchmark")) {
+            
+#if 0
             if (i+1 < argc) benchmark (QString (argv[i+1]).toUInt ());
             else benchmark (10);
+#else
+            cout << "--benchmark is temporarily out of order" << endl;
+#endif
+            exit(0);
         }
         if (QString (argv[i]) == QString ("--transformation")) {
             if (i+1 < argc) {
@@ -436,7 +442,7 @@ int main (int argc, char *argv[]) {
         Globals::Instance().getMainWindow()->show();
 
         ret = app.exec ();
-    } catch (std::logic_error e) {
+    } catch (std::logic_error &e) {
         std::cerr << "\n\n"
             "The programmer of this software has done something wrong.\n"
             "You can drop her a message: <lene.preuss@gmail.com>\n"

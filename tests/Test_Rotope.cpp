@@ -41,7 +41,7 @@ void Test_Rotope::cleanupTestCase() { }
 void Test_Rotope::oneDimensionalRotope() {
     try {
         _rotope = RotopeFactory::generate(std::string("E"));
-    } catch (std::logic_error e) {
+    } catch (std::logic_error &e) {
         return;
     }
     QFAIL("Bad Rotope exception expected, but not thrown");
@@ -310,7 +310,7 @@ void Test_Rotope::sphereVertices() {
 void Test_Rotope::rotateTaper() {
     try {
         setRotope("ETR");
-    } catch (BadRotopeOperation e) {
+    } catch (BadRotopeOperation &e) {
         return;
     }
     QFAIL("Generating a Rotation of a Taper should throw a BadRotopeOperation.");
@@ -319,7 +319,7 @@ void Test_Rotope::rotateTaper() {
 void Test_Rotope::rotateExtrudedTaper() {
     try {
         setRotope("ETER");
-    } catch (BadRotopeOperation e) {
+    } catch (BadRotopeOperation &e) {
         return;
     }
     QFAIL("Generating a Rotation of an extruded Taper should throw a BadRotopeOperation.");

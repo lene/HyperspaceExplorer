@@ -99,7 +99,7 @@ void fillTestsMap() {
 
 int main(int argc, char **argv) {
     // A QApplication must be instantiated for GUI tests to work. This causes a compiler warning.
-    QApplication *app = new QApplication(argc, argv);
+    QCoreApplication *app = new QCoreApplication(argc, argv);
     
     std::vector<std::string> tests_to_run;
     for (int i = 1; i < argc; i++) {
@@ -116,8 +116,8 @@ int main(int argc, char **argv) {
             runner.runTest(test.second);
         }
 #     else
-        runner.add(new Test_LoopHelper);
-        runner.add(new Test_LSystem);
+        runner.add(new Test_ParametricFunction);
+        runner.add(new Test_Displayable);
 #     endif
     } else {
         for (auto test: tests_to_run) {

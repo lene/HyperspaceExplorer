@@ -198,11 +198,7 @@ void Test_Surface::projectWithDepthCue() {
   for (unsigned i = 0; i < GRID_SIZE; ++i) {
     for (unsigned j = 0; j < GRID_SIZE; ++j) {
       Vector<4> vertex = function_->vertices()[i][j];
-      Vector<3> projected_vertex = function_->projected_vertices()[i][j];
-      Color rgba = ColMgrMgr::Instance().getColor(vertex);
-
-//                cerr << vertex << " : " << projected_vertex << " " <<string(rgba).c_str()
-//                     << endl;
+      ColMgrMgr::Instance().getColor(vertex);
     }
   }
 

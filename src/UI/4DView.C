@@ -55,7 +55,6 @@ using std::ostringstream;
 using std::cerr;
 using std::endl;
 using std::ends;
-using std::auto_ptr;
 using std::vector;
 
 using VecMath::Vector;

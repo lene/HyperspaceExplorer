@@ -1,0 +1,98 @@
+stages:
+  - build
+  - test
+  - build-main
+  - deploy
+
+variables:
+  QT_IMAGE: theshadowx/qt5:latest
+  DEBIAN_FRONTEND: noninteractive
+
+include:
+  - template: Code-Quality.gitlab-ci.yml
+
+.SetupBuildEnv:
+  image: ${QT_IMAGE}
+  only:
+    - pushes
+    - master
+    - merge_requests
+  before_script:
+    - apt update
+    - apt install -y g++-8
+    - update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8
+
+Build:
+  extends: .SetupBuildEnv
+  stage: build
+  script:
+    - qmake
+    - make -j4 sub-src
+  artifacts:
+    paths:
+      - lib/libHyperspaceExplorer.a
+
+BuildDoc:
+  stage: build
+  image: ${QT_IMAGE}
+  only:
+    - master
+  before_script:
+    - apt install -y doxygen graphviz texlive ghostscript
+  script:
+    doxygen
+  artifacts:
+    paths:
+      - doc/html/**/*
+
+Test:
+  extends: .SetupBuildEnv
+  stage: test
+  dependencies:
+    - Build
+  script:
+    - qmake
+    - make -j4 sub-tests
+  artifacts:
+    paths:
+      - tests/HyperspaceExplorer-tests
+
+code_quality:
+  artifacts:
+    paths:
+      - gl-code-quality-report.json
+
+BuildMain:
+  extends: .SetupBuildEnv
+  stage: build-main
+  dependencies:
+    - Build
+    - Test
+  script:
+    - qmake
+    - make sub-main
+  artifacts:
+    paths:
+      - HyperspaceExplorer
+
+DeployDoc:
+  stage: deploy
+  only:
+    - master
+  dependencies:
+    - BuildDoc
+  script:
+    - echo "Deploying documentation to $CI_ENVIRONMENT_NAME ($CI_ENVIRONMENT_SLUG)"
+  environment:
+    name: doc
+    url: https://gitlab.com/lilacashes/HyperspaceExplorer/doc
+
+PushToGithub:
+  stage: deploy
+  only:
+    - master
+  when: manual
+  script:
+    - git remote add github git@github.com:lene/HyperspaceExplorer.git
+    - git remote show github
+    - git push github master
